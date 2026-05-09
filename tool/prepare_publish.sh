@@ -1,31 +1,36 @@
 #!/usr/bin/env bash
-# Pre-publish path-deps swap for terradart_google.
+# Pre-publish pubspec mutations for pub.dev.
 # Usage: tool/prepare_publish.sh <tag> <package_dir>
-#   e.g. tool/prepare_publish.sh v0.0.1-dev terradart_google
+#   e.g. tool/prepare_publish.sh v0.0.4-dev terradart_google
 
 set -euo pipefail
-TAG="${1:?tag required, e.g. v0.0.1-dev}"
+TAG="${1:?tag required, e.g. v0.0.4-dev}"
 PKG="${2:?package dir, e.g. terradart_google}"
-VERSION="${TAG#v}"   # v0.0.1-dev -> 0.0.1-dev
+VERSION="${TAG#v}"
 
 cd "packages/$PKG"
-# Strip publish_to line (including optional inline comment).
-sed -i.bak '/^publish_to:/d' pubspec.yaml
-rm -f pubspec.yaml.bak
-# Sync version field to the tag version.
-perl -pi -e "s/^version: .*/version: $VERSION/" pubspec.yaml
 
-if [[ "$PKG" == "terradart_google" ]]; then
-  python3 - "$VERSION" <<'EOF'
-import re, pathlib, sys
-version = sys.argv[1]
-p = pathlib.Path("pubspec.yaml")
-s = p.read_text()
-for dep in ("terradart_core", "terradart_annotations", "terradart_codegen"):
-    s = re.sub(rf"  {dep}:\n    path: \.\./{dep}", f"  {dep}: ^{version}", s)
-p.write_text(s)
-EOF
+# 1. Verify pubspec version matches the tag. Caller must bump pubspec + CHANGELOG before tagging.
+PUBSPEC_VERSION=$(yq e '.version' pubspec.yaml)
+if [[ "$PUBSPEC_VERSION" != "$VERSION" ]]; then
+  echo "::error::pubspec version ($PUBSPEC_VERSION) != tag version ($VERSION). Bump packages/$PKG/pubspec.yaml + CHANGELOG before tagging."
+  exit 1
 fi
 
-dart pub publish --dry-run
+# 2. Verify CHANGELOG has an entry for this version (dart pub publish enforces this).
+if ! grep -qE "^## ${VERSION}( |$)" CHANGELOG.md; then
+  echo "::error::CHANGELOG.md is missing an entry for version $VERSION. Add '## $VERSION' before tagging."
+  exit 1
+fi
+
+# 3. Strip publish_to: line (only terradart_google has it; safe no-op for others).
+yq e 'del(.publish_to)' -i pubspec.yaml
+
+# 4. Swap path: deps for terradart_google to hosted ^VERSION constraints.
+if [[ "$PKG" == "terradart_google" ]]; then
+  yq e ".dependencies.terradart_core = \"^${VERSION}\"" -i pubspec.yaml
+  yq e ".dependencies.terradart_annotations = \"^${VERSION}\"" -i pubspec.yaml
+  yq e ".dev_dependencies.terradart_codegen = \"^${VERSION}\"" -i pubspec.yaml
+fi
+
 echo "::notice::Pre-publish swap complete for $PKG ($VERSION)"

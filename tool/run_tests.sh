@@ -27,7 +27,8 @@ echo ">> dart analyze"
 dart analyze --fatal-infos --fatal-warnings
 
 PACKAGES=(
-  "packages/terradart"
+  "packages/terradart_annotations"
+  "packages/terradart_core"
   "packages/terradart_codegen"
   "packages/terradart_google"
 )
