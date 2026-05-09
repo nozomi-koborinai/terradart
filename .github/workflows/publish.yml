@@ -28,10 +28,15 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
+      - name: Install yq
+        run: |
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.44.3/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
+          yq --version
       - run: dart pub get
 
       - name: Pre-publish pubspec mutations
-        run: tool/prepare_publish.sh ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }} ${{ matrix.package }}
+        run: tool/prepare_publish.sh "${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}" ${{ matrix.package }}
 
       - name: Publish to pub.dev
         run: dart pub publish --force
@@ -51,6 +56,11 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
+      - name: Install yq
+        run: |
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.44.3/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
+          yq --version
       - run: dart pub get
 
       - name: Verify generated schema files
@@ -63,7 +73,7 @@ jobs:
           fi
 
       - name: Pre-publish pubspec mutations
-        run: tool/prepare_publish.sh ${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }} terradart_google
+        run: tool/prepare_publish.sh "${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}" terradart_google
 
       - name: Publish to pub.dev
         run: dart pub publish --force

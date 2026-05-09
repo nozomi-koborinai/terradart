@@ -85,10 +85,10 @@ Subsequent releases use the tag-driven flow above.
 If `publish-leaves` succeeds for some packages but fails for others, or if `publish-google` fails:
 
 1. Fix the underlying issue (CHANGELOG, version, lib naming, etc.) and commit.
-2. Bump to the next version (pub.dev rejects re-publishing the same version).
+2. Bump all 4 packages to the next version (pub.dev rejects re-publishing an existing version).
 3. Tag the new version and push.
 
-   Packages that already published successfully will be skipped automatically once the new tag is pushed (the next version's publish will only affect packages that weren't yet on pub.dev at this version).
+   All 4 packages will publish at the next version — successful packages from the previous attempt will simply receive a new minor bump (lockstep is preserved). There is no selective skip mechanism.
 
 ## Post-flight
 

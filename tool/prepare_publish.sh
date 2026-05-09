@@ -23,8 +23,8 @@ if ! grep -qE "^## ${VERSION}( |$)" CHANGELOG.md; then
   exit 1
 fi
 
-# 3. Strip publish_to: line (only terradart_google has it; safe no-op for others).
-yq e 'del(.publish_to)' -i pubspec.yaml
+# 3. Strip workspace-only fields (publish_to, resolution) — present in source pubspec but invalid on pub.dev.
+yq e 'del(.publish_to) | del(.resolution)' -i pubspec.yaml
 
 # 4. Swap path: deps for terradart_google to hosted ^VERSION constraints.
 if [[ "$PKG" == "terradart_google" ]]; then
