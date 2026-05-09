@@ -1,0 +1,27 @@
+{
+  "terraform": {
+    "required_version": ">= 1.11.0",
+    "required_providers": {
+      "google": {
+        "source": "hashicorp/google",
+        "version": "~> 7.0"
+      }
+    }
+  },
+  "provider": {
+    "google": {
+      "project": "demo"
+    }
+  },
+  "resource": {
+    "google_pubsub_topic": {
+      "orders": {
+        "name": "orders-prod",
+        "message_retention_duration": "604800s",
+        "lifecycle": {
+          "prevent_destroy": true
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+name: terradart_core
+description: terradart core runtime — Stack, Resource, Provider, Variable, Data, TfArg, TfRef, and LifecycleOptions for Dart-first Terraform synthesis.
+version: 0.0.2-dev
+homepage: https://github.com/nozomi-koborinai/terradart
+repository: https://github.com/nozomi-koborinai/terradart
+issue_tracker: https://github.com/nozomi-koborinai/terradart/issues
+documentation: https://github.com/nozomi-koborinai/terradart#readme
+
+topics:
+  - terraform
+  - infrastructure
+  - codegen
+  - google-cloud
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  meta: ^1.15.0
+
+dev_dependencies:
+  lints: ^6.0.0
+  test: ^1.25.6

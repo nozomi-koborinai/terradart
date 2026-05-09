@@ -1,0 +1,49 @@
+name: Publish to pub.dev
+
+on:
+  push:
+    tags:
+      - 'v*.*.*-dev'
+      - 'v*.*.*'
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        package: [terradart_annotations, terradart_core, terradart_codegen, terradart_google]
+      max-parallel: 1
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
+
+      - name: Pre-publish path-deps swap
+        run: tool/prepare_publish.sh ${{ github.ref_name }} ${{ matrix.package }}
+
+      - name: pana check
+        run: |
+          dart pub global activate pana
+          (cd packages/${{ matrix.package }} && dart pub global run pana --no-warning --exit-code-threshold 100)
+
+      - name: Verify generated schema files (terradart_google only)
+        if: matrix.package == 'terradart_google'
+        run: |
+          EXPECTED=12
+          ACTUAL=$(find packages/terradart_google/lib/src/generated -name "*.schema.g.dart" | wc -l)
+          if [ "$ACTUAL" -ne "$EXPECTED" ]; then
+            echo "::error::Expected $EXPECTED generated .g.dart files, got $ACTUAL"
+            exit 1
+          fi
+
+      - name: Publish to pub.dev
+        run: dart pub publish --force
+        working-directory: packages/${{ matrix.package }}

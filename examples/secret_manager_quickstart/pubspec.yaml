@@ -1,0 +1,15 @@
+name: terradart_example_secret_manager_quickstart
+description: terradart example -- Secret Manager with write-only secret_data_wo + IAM accessor grant.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  terradart_core:
+    path: ../../packages/terradart_core
+  terradart_google:
+    path: ../../packages/terradart_google
+
+dev_dependencies:
+  lints: ^6.0.0

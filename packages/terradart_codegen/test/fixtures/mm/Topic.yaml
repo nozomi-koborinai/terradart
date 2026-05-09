@@ -1,0 +1,39 @@
+name: 'Topic'
+description: |
+  A named resource to which messages are sent by publishers.
+properties:
+  - name: 'name'
+    type: String
+    immutable: true
+    description: 'Topic name.'
+    validation:
+      regex: '^[a-zA-Z][a-zA-Z0-9._~%+-]{2,254}$'
+      min_length: 3
+      max_length: 255
+  - name: 'project'
+    type: String
+    description: 'GCP project ID.'
+  - name: 'kmsKeyName'
+    api_name: 'kms_key_name'
+    type: String
+    immutable: true
+    description: 'Fully qualified KMS key resource name.'
+  - name: 'messageRetentionDuration'
+    api_name: 'message_retention_duration'
+    type: String
+    description: 'Message retention duration.'
+    validation:
+      regex: '^\d+(\.\d+)?s$'
+  - name: 'schemaSettings'
+    api_name: 'schema_settings'
+    type: NestedObject
+    immutable: true
+    properties:
+      - name: 'schema'
+        type: String
+      - name: 'encoding'
+        type: Enum
+        enum_values:
+          - 'ENCODING_UNSPECIFIED'
+          - 'JSON'
+          - 'BINARY'

@@ -1,0 +1,36 @@
+{
+  "terraform": {
+    "required_version": ">= 1.11.0",
+    "required_providers": {
+      "google": {
+        "source": "hashicorp/google",
+        "version": "~> 7.0"
+      }
+    }
+  },
+  "provider": {
+    "google": {
+      "project": "demo"
+    }
+  },
+  "resource": {
+    "google_pubsub_topic": {
+      "orders": {
+        "name": "orders-prod"
+      }
+    },
+    "google_pubsub_subscription": {
+      "orders_worker": {
+        "name": "orders-worker",
+        "topic": "${google_pubsub_topic.orders.id}"
+      }
+    },
+    "google_pubsub_subscription_iam_member": {
+      "orders_consumer": {
+        "subscription": "${google_pubsub_subscription.orders_worker.name}",
+        "role": "roles/pubsub.subscriber",
+        "member": "serviceAccount:consumer@demo.iam.gserviceaccount.com"
+      }
+    }
+  }
+}

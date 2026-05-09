@@ -1,0 +1,45 @@
+include: package:lints/recommended.yaml
+
+# Root-level analysis options. Each package under `packages/*` ships its
+# own analysis_options.yaml, which overrides this one for files inside that
+# package. This file applies to root-level Dart files only (e.g. tool/).
+#
+# Plan 07 references this as the strict baseline; package-level files may
+# narrow rules where needed (see e.g. `packages/terradart_codegen/`).
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+  errors:
+    # Promote infos to errors so --fatal-infos catches them in CI.
+    unused_import: error
+    unused_local_variable: error
+    dead_code: error
+    invalid_use_of_protected_member: error
+    missing_required_param: error
+    missing_return: error
+    todo: ignore
+  exclude:
+    - "**/*.g.dart"
+    - "**/*.freezed.dart"
+    - "**/.dart_tool/**"
+    - "**/build/**"
+    - "examples/**/lib/generated/**"
+
+linter:
+  rules:
+    - always_declare_return_types
+    - avoid_dynamic_calls
+    - avoid_print
+    - cancel_subscriptions
+    - close_sinks
+    - prefer_const_constructors
+    - prefer_const_declarations
+    - prefer_final_locals
+    - prefer_relative_imports
+    - require_trailing_commas
+    - sort_pub_dependencies
+    - unawaited_futures
+    - use_super_parameters

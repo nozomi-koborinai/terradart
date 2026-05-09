@@ -1,0 +1,34 @@
+{
+  "terraform": {
+    "required_version": ">= 1.11.0",
+    "required_providers": {
+      "google": {
+        "source": "hashicorp/google",
+        "version": "~> 7.0"
+      }
+    }
+  },
+  "provider": {
+    "google": {
+      "project": "demo"
+    }
+  },
+  "resource": {
+    "google_pubsub_topic": {
+      "orders": {
+        "name": "orders-prod"
+      }
+    },
+    "google_cloud_scheduler_job": {
+      "nightly": {
+        "name": "nightly",
+        "region": "us-central1",
+        "schedule": "0 0 * * *",
+        "pubsub_target": {
+          "topic_name": "${google_pubsub_topic.orders.id}",
+          "data": "dHJpZ2dlcg=="
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "terraform": {
+    "required_version": ">= 1.11.0",
+    "required_providers": {
+      "google": {
+        "source": "hashicorp/google",
+        "version": "~> 7.0"
+      }
+    }
+  },
+  "provider": {
+    "google": {
+      "project": "demo"
+    }
+  },
+  "resource": {
+    "google_pubsub_topic": {
+      "orders": {
+        "name": "orders-prod"
+      }
+    },
+    "google_pubsub_topic_iam_member": {
+      "orders_publisher": {
+        "topic": "${google_pubsub_topic.orders.name}",
+        "role": "roles/pubsub.publisher",
+        "member": "serviceAccount:publisher@demo.iam.gserviceaccount.com"
+      }
+    }
+  }
+}

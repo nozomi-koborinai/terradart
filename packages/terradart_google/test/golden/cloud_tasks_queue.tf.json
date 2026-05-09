@@ -1,0 +1,33 @@
+{
+  "terraform": {
+    "required_version": ">= 1.11.0",
+    "required_providers": {
+      "google": {
+        "source": "hashicorp/google",
+        "version": "~> 7.0"
+      }
+    }
+  },
+  "provider": {
+    "google": {
+      "project": "demo"
+    }
+  },
+  "resource": {
+    "google_cloud_tasks_queue": {
+      "jobs": {
+        "name": "jobs-prod",
+        "location": "us-central1",
+        "rate_limits": {
+          "max_concurrent_dispatches": 3,
+          "max_dispatches_per_second": 2
+        },
+        "retry_config": {
+          "max_attempts": 5,
+          "max_backoff": "300s",
+          "max_doublings": 3
+        }
+      }
+    }
+  }
+}

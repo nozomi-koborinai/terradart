@@ -1,0 +1,21 @@
+name: terradart_annotations
+description: Annotation surface consumed by terradart_codegen-generated abstract resource classes (@TerraformResource, @ForceNew, @Sensitive).
+version: 0.0.2-dev
+homepage: https://github.com/nozomi-koborinai/terradart
+repository: https://github.com/nozomi-koborinai/terradart
+issue_tracker: https://github.com/nozomi-koborinai/terradart/issues
+documentation: https://github.com/nozomi-koborinai/terradart#readme
+
+topics:
+  - terraform
+  - infrastructure
+  - codegen
+  - annotations
+environment:
+  sdk: ^3.6.0
+resolution: workspace
+dependencies:
+  meta: ^1.15.0
+dev_dependencies:
+  test: ^1.25.6
+  lints: ^6.0.0

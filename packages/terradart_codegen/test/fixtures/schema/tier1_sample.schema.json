@@ -1,0 +1,53 @@
+{
+  "format_version": "1.0",
+  "provider_schemas": {
+    "registry.terraform.io/hashicorp/google": {
+      "resource_schemas": {
+        "google_cloud_tasks_queue": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "name": {
+                "type": "string",
+                "description": "The queue name.",
+                "required": true
+              },
+              "location": {
+                "type": "string",
+                "description": "The location of the queue.",
+                "required": true
+              }
+            }
+          }
+        },
+        "google_secret_manager_secret": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "secret_id": {
+                "type": "string",
+                "description": "Logical secret id.",
+                "required": true
+              }
+            },
+            "block_types": {
+              "replication": {
+                "nesting_mode": "list",
+                "max_items": 1,
+                "min_items": 1,
+                "block": {
+                  "attributes": {
+                    "automatic": {
+                      "type": "bool",
+                      "optional": true
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

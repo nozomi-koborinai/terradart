@@ -1,0 +1,29 @@
+{
+  "terraform": {
+    "required_version": ">= 1.11.0",
+    "required_providers": {
+      "google": {
+        "source": "hashicorp/google",
+        "version": "~> 7.0"
+      }
+    }
+  },
+  "provider": {
+    "google": {
+      "project": "demo"
+    }
+  },
+  "resource": {
+    "google_cloud_scheduler_job": {
+      "health": {
+        "name": "health",
+        "region": "us-central1",
+        "schedule": "*/5 * * * *",
+        "http_target": {
+          "uri": "https://app.example.com/health",
+          "http_method": "GET"
+        }
+      }
+    }
+  }
+}

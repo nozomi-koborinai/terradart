@@ -1,0 +1,65 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: test (${{ matrix.package }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        package: [terradart_core, terradart_annotations, terradart_codegen, terradart_google]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
+      - if: matrix.package == 'terradart_core'
+        run: dart format --output=none --set-exit-if-changed .
+      - if: matrix.package == 'terradart_core'
+        run: dart analyze packages/ --fatal-infos --fatal-warnings
+      - run: dart test --reporter=github
+        working-directory: packages/${{ matrix.package }}
+
+  terraform_validate:
+    name: terraform validate (${{ matrix.example }})
+    runs-on: ubuntu-latest
+    needs: test
+    strategy:
+      fail-fast: false
+      matrix:
+        example: [pubsub, cloud_tasks, secret_manager, cloud_scheduler, iam]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_version: "1.15.2"
+      - run: dart pub get
+      - run: dart pub get
+        working-directory: examples/${{ matrix.example }}_quickstart
+      - run: dart run bin/infra.dart
+        working-directory: examples/${{ matrix.example }}_quickstart
+        env:
+          GCP_PROJECT_ID: ci-test-project-id
+          DB_PASSWORD: ci-test-secret
+      - run: |
+          terraform fmt -check
+          terraform init -backend=false
+          terraform validate
+        working-directory: examples/${{ matrix.example }}_quickstart/tf-out

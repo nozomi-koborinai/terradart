@@ -1,0 +1,12 @@
+name: _terradart_workspace
+description: terradart monorepo workspace root (not published).
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+workspace:
+  - packages/terradart_core
+  - packages/terradart_annotations
+  - packages/terradart_codegen
+  - packages/terradart_google

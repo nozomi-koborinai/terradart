@@ -1,0 +1,18 @@
+# Force LF line endings for all source/text files.
+*.dart text eol=lf
+*.tf.json text eol=lf
+*.tf text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.md text eol=lf
+*.sh text eol=lf
+*.toml text eol=lf
+*.hcl text eol=lf
+*.tfvars text eol=lf
+*.lock text eol=lf
+*.cfg text eol=lf
+
+# Mark generated golden output as binary-stable (no diff smudge / no merge).
+test/golden/** -text -merge=ours
+test/synth/**/golden/** -text -merge=ours

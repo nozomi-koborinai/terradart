@@ -1,0 +1,61 @@
+name: Bug or question
+description: Report a bug, ask a question, or request a feature.
+title: "[bug] "
+labels: ["triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file. terradart is a pre-alpha (v0.0.x)
+        single-maintainer project; triage is best-effort.
+
+        **PII note**: synthesized `.tf.json`, error output, and schema excerpts
+        may contain GCP project IDs, GCS bucket names, service account emails,
+        or secret names. Please redact before pasting
+        (e.g. `my-prod-1234` → `REDACTED-PROJECT`). If redacting is difficult,
+        use the [private security advisory](https://github.com/nozomi-koborinai/terradart/security/advisories/new) instead.
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of issue?
+      options:
+        - Bug — something doesn't work
+        - Question — how do I ...?
+        - Feature request — I'd like ...
+        - Tier 2 codegen — generated bindings problem
+    validations:
+      required: true
+
+  - type: input
+    id: terradart_version
+    attributes:
+      label: terradart version
+      placeholder: "0.0.1-dev"
+    validations:
+      required: false
+
+  - type: input
+    id: dart_version
+    attributes:
+      label: Dart SDK version
+      placeholder: "3.10.0"
+    validations:
+      required: false
+
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: What happened? What did you expect? Include the failing Dart Stack snippet or terraform output if applicable. Remember to redact PII.
+      render: dart
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction steps (if a bug)
+      description: Minimal commands / Dart code to reproduce.
+    validations:
+      required: false

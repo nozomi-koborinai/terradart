@@ -1,0 +1,49 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    "group:monorepos",
+    ":semanticCommitTypeAll(chore)"
+  ],
+  "schedule": ["before 6am on monday"],
+  "timezone": "Asia/Tokyo",
+  "labels": ["dependencies"],
+  "prConcurrentLimit": 3,
+  "prHourlyLimit": 1,
+  "rangeStrategy": "bump",
+  "packageRules": [
+    {
+      "description": "Group all Dart SDK / package:lints / package:test bumps",
+      "matchPackageNames": ["dart", "lints", "test", "build_runner", "build", "build_test"],
+      "groupName": "dart core toolchain",
+      "labels": ["dependencies", "dart-core"]
+    },
+    {
+      "description": "schemantic upstream — high attention, never auto-merge (Plan 1 fix #3)",
+      "matchPackageNames": ["schemantic"],
+      "groupName": "schemantic",
+      "labels": ["dependencies", "tier1-schemantic"],
+      "automerge": false
+    },
+    {
+      "description": "Pin terraform CLI version in CI workflows",
+      "matchFileNames": [".github/workflows/**"],
+      "matchPackageNames": ["hashicorp/setup-terraform"],
+      "groupName": "github-actions",
+      "labels": ["dependencies", "ci"]
+    },
+    {
+      "description": "Auto-merge minor/patch dev-dependency bumps",
+      "matchDepTypes": ["dev_dependencies"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true,
+      "automergeType": "branch"
+    }
+  ],
+  "vulnerabilityAlerts": {
+    "labels": ["security"],
+    "automerge": false
+  },
+  "dependencyDashboard": true,
+  "dependencyDashboardTitle": "Renovate Dependency Dashboard"
+}

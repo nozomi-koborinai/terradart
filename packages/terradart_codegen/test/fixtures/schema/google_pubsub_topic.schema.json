@@ -1,0 +1,80 @@
+{
+  "format_version": "1.0",
+  "provider_schemas": {
+    "registry.terraform.io/hashicorp/google": {
+      "resource_schemas": {
+        "google_pubsub_topic": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "name": {
+                "type": "string",
+                "description": "Topic name. Immutable after creation.",
+                "required": true
+              },
+              "project": {
+                "type": "string",
+                "description": "GCP project ID.",
+                "optional": true,
+                "computed": true
+              },
+              "labels": {
+                "type": ["map", "string"],
+                "description": "Resource labels.",
+                "optional": true
+              },
+              "kms_key_name": {
+                "type": "string",
+                "description": "Fully qualified KMS key resource name.",
+                "optional": true
+              },
+              "message_retention_duration": {
+                "type": "string",
+                "description": "Message retention duration.",
+                "optional": true
+              },
+              "id": {
+                "type": "string",
+                "computed": true
+              }
+            },
+            "block_types": {
+              "schema_settings": {
+                "nesting_mode": "list",
+                "max_items": 1,
+                "block": {
+                  "attributes": {
+                    "schema": {
+                      "type": "string",
+                      "description": "Resource name of the schema.",
+                      "required": true
+                    },
+                    "encoding": {
+                      "type": "string",
+                      "description": "Encoding format expected by the schema.",
+                      "optional": true
+                    }
+                  }
+                }
+              },
+              "message_storage_policy": {
+                "nesting_mode": "list",
+                "max_items": 1,
+                "block": {
+                  "attributes": {
+                    "allowed_persistence_regions": {
+                      "type": ["list", "string"],
+                      "description": "GCP regions where messages may be persisted.",
+                      "required": true
+                    }
+                  }
+                }
+              }
+            },
+            "description": "A named resource to which messages are sent by publishers."
+          }
+        }
+      }
+    }
+  }
+}

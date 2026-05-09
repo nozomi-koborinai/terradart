@@ -1,0 +1,19 @@
+name: 'Subscription'
+description: |
+  A subscription to a Pub/Sub topic.
+properties:
+  - name: 'name'
+    type: String
+    immutable: true
+  - name: 'topic'
+    type: String
+    immutable: true
+  - name: 'pushConfig'
+    api_name: 'push_config'
+    type: NestedObject
+    properties:
+      - name: 'pushEndpoint'
+        api_name: 'push_endpoint'
+        type: String
+        validation:
+          regex: '^https?://.+'

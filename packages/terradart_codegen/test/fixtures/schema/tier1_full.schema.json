@@ -1,0 +1,2466 @@
+{
+  "format_version": "1.0",
+  "provider_schemas": {
+    "registry.terraform.io/hashicorp/google": {
+      "resource_schemas": {
+        "google_pubsub_topic": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "effective_labels": {
+                "type": [
+                  "map",
+                  "string"
+                ],
+                "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "id": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "kms_key_name": {
+                "type": "string",
+                "description": "The resource name of the Cloud KMS CryptoKey to be used to protect access\nto messages published on this topic. Your project's PubSub service account\n('service-{{PROJECT_NUMBER}}@gcp-sa-pubsub.iam.gserviceaccount.com') must have\n'roles/cloudkms.cryptoKeyEncrypterDecrypter' to use this feature.\nThe expected format is 'projects/*/locations/*/keyRings/*/cryptoKeys/*'",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "labels": {
+                "type": [
+                  "map",
+                  "string"
+                ],
+                "description": "A set of key/value label pairs to assign to this Topic.\n\n\n**Note**: This field is non-authoritative, and will only manage the labels present in your configuration.\nPlease refer to the field 'effective_labels' for all of the labels present on the resource.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "message_retention_duration": {
+                "type": "string",
+                "description": "Indicates the minimum duration to retain a message after it is published\nto the topic. If this field is set, messages published to the topic in\nthe last messageRetentionDuration are always available to subscribers.\nFor instance, it allows any attached subscription to seek to a timestamp\nthat is up to messageRetentionDuration in the past. If this field is not\nset, message retention is controlled by settings on individual subscriptions.\nThe rotation period has the format of a decimal number, followed by the\nletter 's' (seconds). Cannot be more than 31 days or less than 10 minutes.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the topic.",
+                "description_kind": "plain",
+                "required": true
+              },
+              "project": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "tags": {
+                "type": [
+                  "map",
+                  "string"
+                ],
+                "description": "Input only. Resource manager tags to be bound to the topic. Tag keys and\nvalues have the same definition as resource manager tags. Keys must be in\nthe format tagKeys/{tag_key_id}, and values are in the format\ntagValues/456. The field is ignored when empty. The field is immutable and\ncauses resource replacement when mutated. This field is only set at create\ntime and modifying this field after creation will trigger recreation. To\napply tags to an existing resource, see the 'google_tags_tag_value'\nresource.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "terraform_labels": {
+                "type": [
+                  "map",
+                  "string"
+                ],
+                "description": "The combination of labels configured directly on the resource\n and default labels configured on the provider.",
+                "description_kind": "plain",
+                "computed": true
+              }
+            },
+            "block_types": {
+              "ingestion_data_source_settings": {
+                "nesting_mode": "list",
+                "block": {
+                  "block_types": {
+                    "aws_kinesis": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "aws_role_arn": {
+                            "type": "string",
+                            "description": "AWS role ARN to be used for Federated Identity authentication with\nKinesis. Check the Pub/Sub docs for how to set up this role and the\nrequired permissions that need to be attached to it.",
+                            "description_kind": "plain",
+                            "required": true
+                          },
+                          "consumer_arn": {
+                            "type": "string",
+                            "description": "The Kinesis consumer ARN to used for ingestion in\nEnhanced Fan-Out mode. The consumer must be already\ncreated and ready to be used.",
+                            "description_kind": "plain",
+                            "required": true
+                          },
+                          "gcp_service_account": {
+                            "type": "string",
+                            "description": "The GCP service account to be used for Federated Identity authentication\nwith Kinesis (via a 'AssumeRoleWithWebIdentity' call for the provided\nrole). The 'awsRoleArn' must be set up with 'accounts.google.com:sub'\nequals to this service account number.",
+                            "description_kind": "plain",
+                            "required": true
+                          },
+                          "stream_arn": {
+                            "type": "string",
+                            "description": "The Kinesis stream ARN to ingest data from.",
+                            "description_kind": "plain",
+                            "required": true
+                          }
+                        },
+                        "description": "Settings for ingestion from Amazon Kinesis Data Streams.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    },
+                    "aws_msk": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "aws_role_arn": {
+                            "type": "string",
+                            "description": "AWS role ARN to be used for Federated Identity authentication with\nMSK. Check the Pub/Sub docs for how to set up this role and the\nrequired permissions that need to be attached to it.",
+                            "description_kind": "plain",
+                            "required": true
+                          },
+                          "cluster_arn": {
+                            "type": "string",
+                            "description": "ARN that uniquely identifies the MSK cluster.",
+                            "description_kind": "plain",
+                            "required": true
+                          },
+                          "gcp_service_account": {
+                            "type": "string",
+                            "description": "The GCP service account to be used for Federated Identity authentication\nwith MSK (via a 'AssumeRoleWithWebIdentity' call for the provided\nrole). The 'awsRoleArn' must be set up with 'accounts.google.com:sub'\nequals to this service account number.",
+                            "description_kind": "plain",
+                            "required": true
+                          },
+                          "topic": {
+                            "type": "string",
+                            "description": "The name of the MSK topic that Pub/Sub will import from.",
+                            "description_kind": "plain",
+                            "required": true
+                          }
+                        },
+                        "description": "Settings for ingestion from Amazon Managed Streaming for Apache Kafka.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    },
+                    "azure_event_hubs": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "client_id": {
+                            "type": "string",
+                            "description": "The Azure event hub client ID to use for ingestion.",
+                            "description_kind": "plain",
+                            "optional": true
+                          },
+                          "event_hub": {
+                            "type": "string",
+                            "description": "The Azure event hub to ingest data from.",
+                            "description_kind": "plain",
+                            "optional": true
+                          },
+                          "gcp_service_account": {
+                            "type": "string",
+                            "description": "The GCP service account to be used for Federated Identity authentication\nwith Azure (via a 'AssumeRoleWithWebIdentity' call for the provided\nrole).",
+                            "description_kind": "plain",
+                            "optional": true
+                          },
+                          "namespace": {
+                            "type": "string",
+                            "description": "The Azure event hub namespace to ingest data from.",
+                            "description_kind": "plain",
+                            "optional": true
+                          },
+                          "resource_group": {
+                            "type": "string",
+                            "description": "The name of the resource group within an Azure subscription.",
+                            "description_kind": "plain",
+                            "optional": true
+                          },
+                          "subscription_id": {
+                            "type": "string",
+                            "description": "The Azure event hub subscription ID to use for ingestion.",
+                            "description_kind": "plain",
+                            "optional": true
+                          },
+                          "tenant_id": {
+                            "type": "string",
+                            "description": "The Azure event hub tenant ID to use for ingestion.",
+                            "description_kind": "plain",
+                            "optional": true
+                          }
+                        },
+                        "description": "Settings for ingestion from Azure Event Hubs.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    },
+                    "cloud_storage": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "bucket": {
+                            "type": "string",
+                            "description": "Cloud Storage bucket. The bucket name must be without any\nprefix like \"gs://\". See the bucket naming requirements:\nhttps://cloud.google.com/storage/docs/buckets#naming.",
+                            "description_kind": "plain",
+                            "required": true
+                          },
+                          "match_glob": {
+                            "type": "string",
+                            "description": "Glob pattern used to match objects that will be ingested. If unset, all\nobjects will be ingested. See the supported patterns:\nhttps://cloud.google.com/storage/docs/json_api/v1/objects/list#list-objects-and-prefixes-using-glob",
+                            "description_kind": "plain",
+                            "optional": true
+                          },
+                          "minimum_object_create_time": {
+                            "type": "string",
+                            "description": "The timestamp set in RFC3339 text format. If set, only objects with a\nlarger or equal timestamp will be ingested. Unset by default, meaning\nall objects will be ingested.",
+                            "description_kind": "plain",
+                            "optional": true
+                          }
+                        },
+                        "block_types": {
+                          "avro_format": {
+                            "nesting_mode": "list",
+                            "block": {
+                              "description": "Configuration for reading Cloud Storage data in Avro binary format. The\nbytes of each object will be set to the 'data' field of a Pub/Sub message.",
+                              "description_kind": "plain"
+                            },
+                            "max_items": 1
+                          },
+                          "pubsub_avro_format": {
+                            "nesting_mode": "list",
+                            "block": {
+                              "description": "Configuration for reading Cloud Storage data written via Cloud Storage\nsubscriptions(See https://cloud.google.com/pubsub/docs/cloudstorage). The\ndata and attributes fields of the originally exported Pub/Sub message\nwill be restored when publishing.",
+                              "description_kind": "plain"
+                            },
+                            "max_items": 1
+                          },
+                          "text_format": {
+                            "nesting_mode": "list",
+                            "block": {
+                              "attributes": {
+                                "delimiter": {
+                                  "type": "string",
+                                  "description": "The delimiter to use when using the 'text' format. Each line of text as\nspecified by the delimiter will be set to the 'data' field of a Pub/Sub\nmessage. When unset, '\\n' is used.",
+                                  "description_kind": "plain",
+                                  "optional": true
+                                }
+                              },
+                              "description": "Configuration for reading Cloud Storage data in text format. Each line of\ntext as specified by the delimiter will be set to the 'data' field of a\nPub/Sub message.",
+                              "description_kind": "plain"
+                            },
+                            "max_items": 1
+                          }
+                        },
+                        "description": "Settings for ingestion from Cloud Storage.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    },
+                    "confluent_cloud": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "bootstrap_server": {
+                            "type": "string",
+                            "description": "The Confluent Cloud bootstrap server. The format is url:port.",
+                            "description_kind": "plain",
+                            "required": true
+                          },
+                          "cluster_id": {
+                            "type": "string",
+                            "description": "The Confluent Cloud cluster ID.",
+                            "description_kind": "plain",
+                            "optional": true
+                          },
+                          "gcp_service_account": {
+                            "type": "string",
+                            "description": "The GCP service account to be used for Federated Identity authentication\nwith Confluent Cloud.",
+                            "description_kind": "plain",
+                            "required": true
+                          },
+                          "identity_pool_id": {
+                            "type": "string",
+                            "description": "Identity pool ID to be used for Federated Identity authentication with Confluent Cloud.",
+                            "description_kind": "plain",
+                            "required": true
+                          },
+                          "topic": {
+                            "type": "string",
+                            "description": "Name of the Confluent Cloud topic that Pub/Sub will import from.",
+                            "description_kind": "plain",
+                            "required": true
+                          }
+                        },
+                        "description": "Settings for ingestion from Confluent Cloud.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    },
+                    "platform_logs_settings": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "severity": {
+                            "type": "string",
+                            "description": "The minimum severity level of Platform Logs that will be written. If unspecified,\nno Platform Logs will be written. Default value: \"SEVERITY_UNSPECIFIED\" Possible values: [\"SEVERITY_UNSPECIFIED\", \"DISABLED\", \"DEBUG\", \"INFO\", \"WARNING\", \"ERROR\"]",
+                            "description_kind": "plain",
+                            "optional": true
+                          }
+                        },
+                        "description": "Settings for Platform Logs regarding ingestion to Pub/Sub. If unset,\nno Platform Logs will be generated.'",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    }
+                  },
+                  "description": "Settings for ingestion from a data source into this topic.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "message_storage_policy": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "allowed_persistence_regions": {
+                      "type": [
+                        "set",
+                        "string"
+                      ],
+                      "description": "A list of IDs of GCP regions where messages that are published to\nthe topic may be persisted in storage. Messages published by\npublishers running in non-allowed GCP regions (or running outside\nof GCP altogether) will be routed for storage in one of the\nallowed regions. An empty list means that no regions are allowed,\nand is not a valid configuration.",
+                      "description_kind": "plain",
+                      "required": true
+                    },
+                    "enforce_in_transit": {
+                      "type": "bool",
+                      "description": "If true, 'allowedPersistenceRegions' is also used to enforce in-transit\nguarantees for messages. That is, Pub/Sub will fail topics.publish\noperations on this topic and subscribe operations on any subscription\nattached to this topic in any region that is not in 'allowedPersistenceRegions'.",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "description": "Policy constraining the set of Google Cloud Platform regions where\nmessages published to the topic may be stored. If not present, then no\nconstraints are in effect.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "message_transforms": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "disabled": {
+                      "type": "bool",
+                      "description": "Controls whether or not to use this transform. If not set or 'false',\nthe transform will be applied to messages. Default: 'true'.",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "block_types": {
+                    "ai_inference": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "endpoint": {
+                            "type": "string",
+                            "description": "The endpoint to a Vertex AI model of the form\n'projects/{project}/locations/{location}/endpoints/{endpoint}' or\n'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}'.\nVertex AI API requests will be sent to this endpoint.",
+                            "description_kind": "plain",
+                            "required": true
+                          },
+                          "service_account_email": {
+                            "type": "string",
+                            "description": "The service account to use to make prediction requests against\nendpoints.",
+                            "description_kind": "plain",
+                            "optional": true
+                          }
+                        },
+                        "block_types": {
+                          "unstructured_inference": {
+                            "nesting_mode": "list",
+                            "block": {
+                              "attributes": {
+                                "parameters": {
+                                  "type": [
+                                    "map",
+                                    "string"
+                                  ],
+                                  "description": "A parameters object to be included in each inference request.\nThe parameters object is combined with the data field of the Pub/Sub\nmessage to form the inference request.",
+                                  "description_kind": "plain",
+                                  "optional": true
+                                }
+                              },
+                              "description": "Configuration for making inferences using arbitrary JSON payloads.",
+                              "description_kind": "plain"
+                            },
+                            "max_items": 1
+                          }
+                        },
+                        "description": "AI Inference. Specifies the Vertex AI endpoint that inference\nrequests built from the Pub/Sub message data and provided parameters will\nbe sent to.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    },
+                    "javascript_udf": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "code": {
+                            "type": "string",
+                            "description": "JavaScript code that contains a function 'function_name' with the\nfollowing signature:\n'''\n  /**\n  * Transforms a Pub/Sub message.\n  *\n  * @return {(Object<string, (string | Object<string, string>)>|null)} - To\n  * filter a message, return 'null'. To transform a message return a map\n  * with the following keys:\n  *   - (required) 'data' : {string}\n  *   - (optional) 'attributes' : {Object<string, string>}\n  * Returning empty 'attributes' will remove all attributes from the\n  * message.\n  *\n  * @param  {(Object<string, (string | Object<string, string>)>} Pub/Sub\n  * message. Keys:\n  *   - (required) 'data' : {string}\n  *   - (required) 'attributes' : {Object<string, string>}\n  *\n  * @param  {Object<string, any>} metadata - Pub/Sub message metadata.\n  * Keys:\n  *   - (required) 'message_id'  : {string}\n  *   - (optional) 'publish_time': {string} YYYY-MM-DDTHH:MM:SSZ format\n  *   - (optional) 'ordering_key': {string}\n  */\n  function <function_name>(message, metadata) {\n  }\n'''",
+                            "description_kind": "plain",
+                            "required": true
+                          },
+                          "function_name": {
+                            "type": "string",
+                            "description": "Name of the JavaScript function that should be applied to Pub/Sub messages.",
+                            "description_kind": "plain",
+                            "required": true
+                          }
+                        },
+                        "description": "Javascript User Defined Function. If multiple Javascript UDFs are specified on a resource,\neach one must have a unique 'function_name'.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    }
+                  },
+                  "description": "Transforms to be applied to messages published to the topic. Transforms are applied in the\norder specified.",
+                  "description_kind": "plain"
+                }
+              },
+              "schema_settings": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "encoding": {
+                      "type": "string",
+                      "description": "The encoding of messages validated against schema. Default value: \"ENCODING_UNSPECIFIED\" Possible values: [\"ENCODING_UNSPECIFIED\", \"JSON\", \"BINARY\"]",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "schema": {
+                      "type": "string",
+                      "description": "The name of the schema that messages published should be\nvalidated against. Format is projects/{project}/schemas/{schema}.\nThe value of this field will be _deleted-schema_\nif the schema has been deleted.",
+                      "description_kind": "plain",
+                      "required": true
+                    }
+                  },
+                  "description": "Settings for validating messages published against a schema.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "timeouts": {
+                "nesting_mode": "single",
+                "block": {
+                  "attributes": {
+                    "create": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "delete": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "update": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "description_kind": "plain"
+                }
+              }
+            },
+            "description_kind": "plain"
+          }
+        },
+        "google_pubsub_subscription": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "ack_deadline_seconds": {
+                "type": "number",
+                "description": "This value is the maximum time after a subscriber receives a message\nbefore the subscriber should acknowledge the message. After message\ndelivery but before the ack deadline expires and before the message is\nacknowledged, it is an outstanding message and will not be delivered\nagain during that time (on a best-effort basis).\n\nFor pull subscriptions, this value is used as the initial value for\nthe ack deadline. To override this value for a given message, call\nsubscriptions.modifyAckDeadline with the corresponding ackId if using\npull. The minimum custom deadline you can specify is 10 seconds. The\nmaximum custom deadline you can specify is 600 seconds (10 minutes).\nIf this parameter is 0, a default value of 10 seconds is used.\n\nFor push delivery, this value is also used to set the request timeout\nfor the call to the push endpoint.\n\nIf the subscriber never acknowledges the message, the Pub/Sub system\nwill eventually redeliver the message.",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "effective_labels": {
+                "type": [
+                  "map",
+                  "string"
+                ],
+                "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "enable_exactly_once_delivery": {
+                "type": "bool",
+                "description": "If 'true', Pub/Sub provides the following guarantees for the delivery\nof a message with a given value of messageId on this Subscriptions':\n\n- The message sent to a subscriber is guaranteed not to be resent before the message's acknowledgement deadline expires.\n\n- An acknowledged message will not be resent to a subscriber.\n\nNote that subscribers may still receive multiple copies of a message when 'enable_exactly_once_delivery'\nis true if the message was published multiple times by a publisher client. These copies are considered distinct by Pub/Sub and have distinct messageId values",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "enable_message_ordering": {
+                "type": "bool",
+                "description": "If 'true', messages published with the same orderingKey in PubsubMessage will be delivered to\nthe subscribers in the order in which they are received by the Pub/Sub system. Otherwise, they\nmay be delivered in any order.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "filter": {
+                "type": "string",
+                "description": "The subscription only delivers the messages that match the filter.\nPub/Sub automatically acknowledges the messages that don't match the filter. You can filter messages\nby their attributes. The maximum length of a filter is 256 bytes. After creating the subscription,\nyou can't modify the filter.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "id": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "labels": {
+                "type": [
+                  "map",
+                  "string"
+                ],
+                "description": "A set of key/value label pairs to assign to this Subscription.\n\n\n**Note**: This field is non-authoritative, and will only manage the labels present in your configuration.\nPlease refer to the field 'effective_labels' for all of the labels present on the resource.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "message_retention_duration": {
+                "type": "string",
+                "description": "How long to retain unacknowledged messages in the subscription's\nbacklog, from the moment a message is published. If\nretain_acked_messages is true, then this also configures the retention\nof acknowledged messages, and thus configures how far back in time a\nsubscriptions.seek can be done. Defaults to 7 days. Cannot be more\nthan 31 days ('\"2678400s\"') or less than 10 minutes ('\"600s\"').\n\nA duration in seconds with up to nine fractional digits, terminated\nby 's'. Example: '\"600.5s\"'.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the subscription.",
+                "description_kind": "plain",
+                "required": true
+              },
+              "project": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "retain_acked_messages": {
+                "type": "bool",
+                "description": "Indicates whether to retain acknowledged messages. If 'true', then\nmessages are not expunged from the subscription's backlog, even if\nthey are acknowledged, until they fall out of the\nmessageRetentionDuration window.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "tags": {
+                "type": [
+                  "map",
+                  "string"
+                ],
+                "description": "Input only. Resource manager tags to be bound to the subscription. Tag\nkeys and values have the same definition as resource manager tags. Keys\nmust be in the format tagKeys/{tag_key_id}, and values are in the format\ntagValues/456. The field is ignored when empty. The field is immutable and\ncauses resource replacement when mutated. This field is only set at create\ntime and modifying this field after creation will trigger recreation. To\napply tags to an existing resource, see the 'google_tags_tag_value'\nresource.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "terraform_labels": {
+                "type": [
+                  "map",
+                  "string"
+                ],
+                "description": "The combination of labels configured directly on the resource\n and default labels configured on the provider.",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "topic": {
+                "type": "string",
+                "description": "A reference to a Topic resource, of the form projects/{project}/topics/{{name}}\n(as in the id property of a google_pubsub_topic), or just a topic name if\nthe topic is in the same project as the subscription.",
+                "description_kind": "plain",
+                "required": true
+              }
+            },
+            "block_types": {
+              "bigquery_config": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "drop_unknown_fields": {
+                      "type": "bool",
+                      "description": "When true and use_topic_schema or use_table_schema is true, any fields that are a part of the topic schema or message schema that\nare not part of the BigQuery table schema are dropped when writing to BigQuery. Otherwise, the schemas must be kept in sync\nand any messages with extra fields are not written and remain in the subscription's backlog.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "service_account_email": {
+                      "type": "string",
+                      "description": "The service account to use to write to BigQuery. If not specified, the Pub/Sub\n[service agent](https://cloud.google.com/iam/docs/service-agents),\nservice-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "table": {
+                      "type": "string",
+                      "description": "The name of the table to which to write data, of the form {projectId}.{datasetId}.{tableId}",
+                      "description_kind": "plain",
+                      "required": true
+                    },
+                    "use_table_schema": {
+                      "type": "bool",
+                      "description": "When true, use the BigQuery table's schema as the columns to write to in BigQuery. Messages\nmust be published in JSON format. Only one of use_topic_schema and use_table_schema can be set.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "use_topic_schema": {
+                      "type": "bool",
+                      "description": "When true, use the topic's schema as the columns to write to in BigQuery, if it exists.\nOnly one of use_topic_schema and use_table_schema can be set.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "write_metadata": {
+                      "type": "bool",
+                      "description": "When true, write the subscription name, messageId, publishTime, attributes, and orderingKey to additional columns in the table.\nThe subscription name, messageId, and publishTime fields are put in their own columns while all other message properties (other than data) are written to a JSON object in the attributes column.",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "description": "If delivery to BigQuery is used with this subscription, this field is used to configure it.\nEither pushConfig, bigQueryConfig or cloudStorageConfig can be set, but not combined.\nIf all three are empty, then the subscriber will pull and ack messages using API methods.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "cloud_storage_config": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "bucket": {
+                      "type": "string",
+                      "description": "User-provided name for the Cloud Storage bucket. The bucket must be created by the user. The bucket name must be without any prefix like \"gs://\".",
+                      "description_kind": "plain",
+                      "required": true
+                    },
+                    "filename_datetime_format": {
+                      "type": "string",
+                      "description": "User-provided format string specifying how to represent datetimes in Cloud Storage filenames.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "filename_prefix": {
+                      "type": "string",
+                      "description": "User-provided prefix for Cloud Storage filename.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "filename_suffix": {
+                      "type": "string",
+                      "description": "User-provided suffix for Cloud Storage filename. Must not end in \"/\".",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "max_bytes": {
+                      "type": "number",
+                      "description": "The maximum bytes that can be written to a Cloud Storage file before a new file is created. Min 1 KB, max 10 GiB.\nThe maxBytes limit may be exceeded in cases where messages are larger than the limit.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "max_duration": {
+                      "type": "string",
+                      "description": "The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes.\nMay not exceed the subscription's acknowledgement deadline.\nA duration in seconds with up to nine fractional digits, ending with 's'. Example: \"3.5s\".",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "max_messages": {
+                      "type": "number",
+                      "description": "The maximum messages that can be written to a Cloud Storage file before a new file is created. Min 1000 messages.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "service_account_email": {
+                      "type": "string",
+                      "description": "The service account to use to write to Cloud Storage. If not specified, the Pub/Sub\n[service agent](https://cloud.google.com/iam/docs/service-agents),\nservice-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "state": {
+                      "type": "string",
+                      "description": "An output-only field that indicates whether or not the subscription can receive messages.",
+                      "description_kind": "plain",
+                      "computed": true
+                    }
+                  },
+                  "block_types": {
+                    "avro_config": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "use_topic_schema": {
+                            "type": "bool",
+                            "description": "When true, the output Cloud Storage file will be serialized using the topic schema, if it exists.",
+                            "description_kind": "plain",
+                            "optional": true
+                          },
+                          "write_metadata": {
+                            "type": "bool",
+                            "description": "When true, write the subscription name, messageId, publishTime, attributes, and orderingKey as additional fields in the output.",
+                            "description_kind": "plain",
+                            "optional": true
+                          }
+                        },
+                        "description": "If set, message data will be written to Cloud Storage in Avro format.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    },
+                    "text_config": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "state": {
+                            "type": "string",
+                            "description": "Output only. Placeholder to allow the empty text_config block.",
+                            "description_kind": "plain",
+                            "computed": true
+                          }
+                        },
+                        "description": "If set, message data will be written to Cloud Storage in text format.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    }
+                  },
+                  "description": "If delivery to Cloud Storage is used with this subscription, this field is used to configure it.\nEither pushConfig, bigQueryConfig or cloudStorageConfig can be set, but not combined.\nIf all three are empty, then the subscriber will pull and ack messages using API methods.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "dead_letter_policy": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "dead_letter_topic": {
+                      "type": "string",
+                      "description": "The name of the topic to which dead letter messages should be published.\nFormat is 'projects/{project}/topics/{topic}'.\n\nThe Cloud Pub/Sub service account associated with the enclosing subscription's\nparent project (i.e.,\nservice-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have\npermission to Publish() to this topic.\n\nThe operation will fail if the topic does not exist.\nUsers should ensure that there is a subscription attached to this topic\nsince messages published to a topic with no subscriptions are lost.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "max_delivery_attempts": {
+                      "type": "number",
+                      "description": "The maximum number of delivery attempts for any message. The value must be\nbetween 5 and 100.\n\nThe number of delivery attempts is defined as 1 + (the sum of number of\nNACKs and number of times the acknowledgement deadline has been exceeded for the message).\n\nA NACK is any call to ModifyAckDeadline with a 0 deadline. Note that\nclient libraries may automatically extend ack_deadlines.\n\nThis field will be honored on a best effort basis.\n\nIf this parameter is 0, a default value of 5 is used.",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "description": "A policy that specifies the conditions for dead lettering messages in\nthis subscription. If dead_letter_policy is not set, dead lettering\nis disabled.\n\nThe Cloud Pub/Sub service account associated with this subscription's\nparent project (i.e.,\nservice-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have\npermission to Acknowledge() messages on this subscription.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "expiration_policy": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "ttl": {
+                      "type": "string",
+                      "description": "Specifies the \"time-to-live\" duration for an associated resource. The\nresource expires if it is not active for a period of ttl.\nIf ttl is set to \"\", the associated resource never expires.\nA duration in seconds with up to nine fractional digits, terminated by 's'.\nExample - \"3.5s\".",
+                      "description_kind": "plain",
+                      "required": true
+                    }
+                  },
+                  "description": "A policy that specifies the conditions for this subscription's expiration.\nA subscription is considered active as long as any connected subscriber\nis successfully consuming messages from the subscription or is issuing\noperations on the subscription. If expirationPolicy is not set, a default\npolicy with ttl of 31 days will be used.  If it is set but ttl is \"\", the\nresource never expires.  The minimum allowed value for expirationPolicy.ttl\nis 1 day.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "message_transforms": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "disabled": {
+                      "type": "bool",
+                      "description": "Controls whether or not to use this transform. If not set or 'false',\nthe transform will be applied to messages. Default: 'true'.",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "block_types": {
+                    "ai_inference": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "endpoint": {
+                            "type": "string",
+                            "description": "The endpoint to a Vertex AI model of the form\n'projects/{project}/locations/{location}/endpoints/{endpoint}' or\n'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}'.\nVertex AI API requests will be sent to this endpoint.",
+                            "description_kind": "plain",
+                            "required": true
+                          },
+                          "service_account_email": {
+                            "type": "string",
+                            "description": "The service account to use to make prediction requests against\nendpoints.",
+                            "description_kind": "plain",
+                            "optional": true
+                          }
+                        },
+                        "block_types": {
+                          "unstructured_inference": {
+                            "nesting_mode": "list",
+                            "block": {
+                              "attributes": {
+                                "parameters": {
+                                  "type": [
+                                    "map",
+                                    "string"
+                                  ],
+                                  "description": "A parameters object to be included in each inference request.\nThe parameters object is combined with the data field of the Pub/Sub\nmessage to form the inference request.",
+                                  "description_kind": "plain",
+                                  "optional": true
+                                }
+                              },
+                              "description": "Configuration for making inferences using arbitrary JSON payloads.",
+                              "description_kind": "plain"
+                            },
+                            "max_items": 1
+                          }
+                        },
+                        "description": "AI Inference. Specifies the Vertex AI endpoint that inference\nrequests built from the Pub/Sub message data and provided parameters will\nbe sent to.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    },
+                    "javascript_udf": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "code": {
+                            "type": "string",
+                            "description": "JavaScript code that contains a function 'function_name' with the\nfollowing signature:\n'''\n  /**\n  * Transforms a Pub/Sub message.\n  *\n  * @return {(Object<string, (string | Object<string, string>)>|null)} - To\n  * filter a message, return 'null'. To transform a message return a map\n  * with the following keys:\n  *   - (required) 'data' : {string}\n  *   - (optional) 'attributes' : {Object<string, string>}\n  * Returning empty 'attributes' will remove all attributes from the\n  * message.\n  *\n  * @param  {(Object<string, (string | Object<string, string>)>} Pub/Sub\n  * message. Keys:\n  *   - (required) 'data' : {string}\n  *   - (required) 'attributes' : {Object<string, string>}\n  *\n  * @param  {Object<string, any>} metadata - Pub/Sub message metadata.\n  * Keys:\n  *   - (required) 'message_id'  : {string}\n  *   - (optional) 'publish_time': {string} YYYY-MM-DDTHH:MM:SSZ format\n  *   - (optional) 'ordering_key': {string}\n  */\n  function <function_name>(message, metadata) {\n  }\n'''",
+                            "description_kind": "plain",
+                            "required": true
+                          },
+                          "function_name": {
+                            "type": "string",
+                            "description": "Name of the JavaScript function that should be applied to Pub/Sub messages.",
+                            "description_kind": "plain",
+                            "required": true
+                          }
+                        },
+                        "description": "Javascript User Defined Function. If multiple Javascript UDFs are specified on a resource,\neach one must have a unique 'function_name'.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    }
+                  },
+                  "description": "Transforms to be applied to messages published to the topic. Transforms are applied in the\norder specified.",
+                  "description_kind": "plain"
+                }
+              },
+              "push_config": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "attributes": {
+                      "type": [
+                        "map",
+                        "string"
+                      ],
+                      "description": "Endpoint configuration attributes.\n\nEvery endpoint has a set of API supported attributes that can\nbe used to control different aspects of the message delivery.\n\nThe currently supported attribute is x-goog-version, which you\ncan use to change the format of the pushed message. This\nattribute indicates the version of the data expected by\nthe endpoint. This controls the shape of the pushed message\n(i.e., its fields and metadata). The endpoint version is\nbased on the version of the Pub/Sub API.\n\nIf not present during the subscriptions.create call,\nit will default to the version of the API used to make\nsuch call. If not present during a subscriptions.modifyPushConfig\ncall, its value will not be changed. subscriptions.get\ncalls will always return a valid version, even if the\nsubscription was created without this attribute.\n\nThe possible values for this attribute are:\n\n- v1beta1: uses the push format defined in the v1beta1 Pub/Sub API.\n- v1 or v1beta2: uses the push format defined in the v1 Pub/Sub API.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "push_endpoint": {
+                      "type": "string",
+                      "description": "A URL locating the endpoint to which messages should be pushed.\nFor example, a Webhook endpoint might use\n\"https://example.com/push\".",
+                      "description_kind": "plain",
+                      "required": true
+                    }
+                  },
+                  "block_types": {
+                    "no_wrapper": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "write_metadata": {
+                            "type": "bool",
+                            "description": "When true, writes the Pub/Sub message metadata to\n'x-goog-pubsub-<KEY>:<VAL>' headers of the HTTP request. Writes the\nPub/Sub message attributes to '<KEY>:<VAL>' headers of the HTTP request.",
+                            "description_kind": "plain",
+                            "required": true
+                          }
+                        },
+                        "description": "When set, the payload to the push endpoint is not wrapped.Sets the\n'data' field as the HTTP body for delivery.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    },
+                    "oidc_token": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "audience": {
+                            "type": "string",
+                            "description": "Audience to be used when generating OIDC token. The audience claim\nidentifies the recipients that the JWT is intended for. The audience\nvalue is a single case-sensitive string. Having multiple values (array)\nfor the audience field is not supported. More info about the OIDC JWT\ntoken audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3\nNote: if not specified, the Push endpoint URL will be used.",
+                            "description_kind": "plain",
+                            "optional": true
+                          },
+                          "service_account_email": {
+                            "type": "string",
+                            "description": "Service account email to be used for generating the OIDC token.\nThe caller (for subscriptions.create, subscriptions.patch, and\nsubscriptions.modifyPushConfig RPCs) must have the\niam.serviceAccounts.actAs permission for the service account.",
+                            "description_kind": "plain",
+                            "required": true
+                          }
+                        },
+                        "description": "If specified, Pub/Sub will generate and attach an OIDC JWT token as\nan Authorization header in the HTTP request for every pushed message.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    }
+                  },
+                  "description": "If push delivery is used with this subscription, this field is used to\nconfigure it. An empty pushConfig signifies that the subscriber will\npull and ack messages using API methods.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "retry_policy": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "maximum_backoff": {
+                      "type": "string",
+                      "description": "The maximum delay between consecutive deliveries of a given message. Value should be between 0 and 600 seconds. Defaults to 600 seconds.\nA duration in seconds with up to nine fractional digits, terminated by 's'. Example: \"3.5s\".",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    },
+                    "minimum_backoff": {
+                      "type": "string",
+                      "description": "The minimum delay between consecutive deliveries of a given message. Value should be between 0 and 600 seconds. Defaults to 10 seconds.\nA duration in seconds with up to nine fractional digits, terminated by 's'. Example: \"3.5s\".",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    }
+                  },
+                  "description": "A policy that specifies how Pub/Sub retries message delivery for this subscription.\n\nIf not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers.\nRetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "timeouts": {
+                "nesting_mode": "single",
+                "block": {
+                  "attributes": {
+                    "create": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "delete": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "update": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "description_kind": "plain"
+                }
+              }
+            },
+            "description_kind": "plain"
+          }
+        },
+        "google_pubsub_topic_iam_member": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "etag": {
+                "type": "string",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "id": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "member": {
+                "type": "string",
+                "description_kind": "plain",
+                "required": true
+              },
+              "project": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "role": {
+                "type": "string",
+                "description_kind": "plain",
+                "required": true
+              },
+              "topic": {
+                "type": "string",
+                "description_kind": "plain",
+                "required": true
+              }
+            },
+            "block_types": {
+              "condition": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "description": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "expression": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "required": true
+                    },
+                    "title": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "required": true
+                    }
+                  },
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              }
+            },
+            "description_kind": "plain"
+          }
+        },
+        "google_pubsub_subscription_iam_member": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "etag": {
+                "type": "string",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "id": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "member": {
+                "type": "string",
+                "description_kind": "plain",
+                "required": true
+              },
+              "project": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "role": {
+                "type": "string",
+                "description_kind": "plain",
+                "required": true
+              },
+              "subscription": {
+                "type": "string",
+                "description_kind": "plain",
+                "required": true
+              }
+            },
+            "block_types": {
+              "condition": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "description": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "expression": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "required": true
+                    },
+                    "title": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "required": true
+                    }
+                  },
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              }
+            },
+            "description_kind": "plain"
+          }
+        },
+        "google_cloud_tasks_queue": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "desired_state": {
+                "type": "string",
+                "description": "The desired state of the queue. Use this to pause and resume the queue.\n\n* RUNNING: The queue is running. Tasks can be dispatched.\n* PAUSED: The queue is paused. Tasks are not dispatched but can be added to the queue. Default value: \"RUNNING\" Possible values: [\"RUNNING\", \"PAUSED\"]",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "id": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "location": {
+                "type": "string",
+                "description": "The location of the queue",
+                "description_kind": "plain",
+                "required": true
+              },
+              "name": {
+                "type": "string",
+                "description": "The queue name.",
+                "description_kind": "plain",
+                "required": true
+              },
+              "project": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "state": {
+                "type": "string",
+                "description": "The current state of the queue.",
+                "description_kind": "plain",
+                "computed": true
+              }
+            },
+            "block_types": {
+              "app_engine_routing_override": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "host": {
+                      "type": "string",
+                      "description": "The host that the task is sent to.",
+                      "description_kind": "plain",
+                      "computed": true
+                    },
+                    "instance": {
+                      "type": "string",
+                      "description": "App instance.\n\nBy default, the task is sent to an instance which is available when the task is attempted.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "service": {
+                      "type": "string",
+                      "description": "App service.\n\nBy default, the task is sent to the service which is the default service when the task is attempted.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "version": {
+                      "type": "string",
+                      "description": "App version.\n\nBy default, the task is sent to the version which is the default version when the task is attempted.",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "description": "Overrides for task-level appEngineRouting. These settings apply only\nto App Engine tasks in this queue",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "http_target": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "http_method": {
+                      "type": "string",
+                      "description": "The HTTP method to use for the request.\n\nWhen specified, it overrides HttpRequest for the task.\nNote that if the value is set to GET the body of the task will be ignored at execution time. Possible values: [\"HTTP_METHOD_UNSPECIFIED\", \"POST\", \"GET\", \"HEAD\", \"PUT\", \"DELETE\", \"PATCH\", \"OPTIONS\"]",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    }
+                  },
+                  "block_types": {
+                    "header_overrides": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "block_types": {
+                          "header": {
+                            "nesting_mode": "list",
+                            "block": {
+                              "attributes": {
+                                "key": {
+                                  "type": "string",
+                                  "description": "The Key of the header.",
+                                  "description_kind": "plain",
+                                  "required": true
+                                },
+                                "value": {
+                                  "type": "string",
+                                  "description": "The Value of the header.",
+                                  "description_kind": "plain",
+                                  "required": true
+                                }
+                              },
+                              "description": "Header embodying a key and a value.",
+                              "description_kind": "plain"
+                            },
+                            "min_items": 1,
+                            "max_items": 1
+                          }
+                        },
+                        "description": "HTTP target headers.\n\nThis map contains the header field names and values.\nHeaders will be set when running the CreateTask and/or BufferTask.\n\nThese headers represent a subset of the headers that will be configured for the task's HTTP request.\nSome HTTP request headers will be ignored or replaced.\n\nHeaders which can have multiple values (according to RFC2616) can be specified using comma-separated values.\n\nThe size of the headers must be less than 80KB. Queue-level headers to override headers of all the tasks in the queue.",
+                        "description_kind": "plain"
+                      }
+                    },
+                    "oauth_token": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "scope": {
+                            "type": "string",
+                            "description": "OAuth scope to be used for generating OAuth access token.\nIf not specified, \"https://www.googleapis.com/auth/cloud-platform\" will be used.",
+                            "description_kind": "plain",
+                            "optional": true,
+                            "computed": true
+                          },
+                          "service_account_email": {
+                            "type": "string",
+                            "description": "Service account email to be used for generating OAuth token.\nThe service account must be within the same project as the queue.\nThe caller must have iam.serviceAccounts.actAs permission for the service account.",
+                            "description_kind": "plain",
+                            "required": true
+                          }
+                        },
+                        "description": "If specified, an OAuth token is generated and attached as the Authorization header in the HTTP request.\n\nThis type of authorization should generally be used only when calling Google APIs hosted on *.googleapis.com.\nNote that both the service account email and the scope MUST be specified when using the queue-level authorization override.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    },
+                    "oidc_token": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "audience": {
+                            "type": "string",
+                            "description": "Audience to be used when generating OIDC token. If not specified, the URI specified in target will be used.",
+                            "description_kind": "plain",
+                            "optional": true,
+                            "computed": true
+                          },
+                          "service_account_email": {
+                            "type": "string",
+                            "description": "Service account email to be used for generating OIDC token.\nThe service account must be within the same project as the queue.\nThe caller must have iam.serviceAccounts.actAs permission for the service account.",
+                            "description_kind": "plain",
+                            "required": true
+                          }
+                        },
+                        "description": "If specified, an OIDC token is generated and attached as an Authorization header in the HTTP request.\n\nThis type of authorization can be used for many scenarios, including calling Cloud Run, or endpoints where you intend to validate the token yourself.\nNote that both the service account email and the audience MUST be specified when using the queue-level authorization override.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    },
+                    "uri_override": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "host": {
+                            "type": "string",
+                            "description": "Host override.\n\nWhen specified, replaces the host part of the task URL.\nFor example, if the task URL is \"https://www.google.com\", and host value\nis set to \"example.net\", the overridden URI will be changed to \"https://example.net\".\nHost value cannot be an empty string (INVALID_ARGUMENT).",
+                            "description_kind": "plain",
+                            "optional": true
+                          },
+                          "port": {
+                            "type": "string",
+                            "description": "Port override.\n\nWhen specified, replaces the port part of the task URI.\nFor instance, for a URI http://www.google.com/foo and port=123, the overridden URI becomes http://www.google.com:123/foo.\nNote that the port value must be a positive integer.\nSetting the port to 0 (Zero) clears the URI port.",
+                            "description_kind": "plain",
+                            "optional": true
+                          },
+                          "scheme": {
+                            "type": "string",
+                            "description": "Scheme override.\n\nWhen specified, the task URI scheme is replaced by the provided value (HTTP or HTTPS). Possible values: [\"HTTP\", \"HTTPS\"]",
+                            "description_kind": "plain",
+                            "optional": true,
+                            "computed": true
+                          },
+                          "uri_override_enforce_mode": {
+                            "type": "string",
+                            "description": "URI Override Enforce Mode\n\nWhen specified, determines the Target UriOverride mode. If not specified, it defaults to ALWAYS. Possible values: [\"ALWAYS\", \"IF_NOT_EXISTS\"]",
+                            "description_kind": "plain",
+                            "optional": true,
+                            "computed": true
+                          }
+                        },
+                        "block_types": {
+                          "path_override": {
+                            "nesting_mode": "list",
+                            "block": {
+                              "attributes": {
+                                "path": {
+                                  "type": "string",
+                                  "description": "The URI path (e.g., /users/1234). Default is an empty string.",
+                                  "description_kind": "plain",
+                                  "optional": true,
+                                  "computed": true
+                                }
+                              },
+                              "description": "URI path.\n\nWhen specified, replaces the existing path of the task URL.\nSetting the path value to an empty string clears the URI path segment.",
+                              "description_kind": "plain"
+                            },
+                            "max_items": 1
+                          },
+                          "query_override": {
+                            "nesting_mode": "list",
+                            "block": {
+                              "attributes": {
+                                "query_params": {
+                                  "type": "string",
+                                  "description": "The query parameters (e.g., qparam1=123&qparam2=456). Default is an empty string.",
+                                  "description_kind": "plain",
+                                  "optional": true,
+                                  "computed": true
+                                }
+                              },
+                              "description": "URI query.\n\nWhen specified, replaces the query part of the task URI. Setting the query value to an empty string clears the URI query segment.",
+                              "description_kind": "plain"
+                            },
+                            "max_items": 1
+                          }
+                        },
+                        "description": "URI override.\n\nWhen specified, overrides the execution URI for all the tasks in the queue.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    }
+                  },
+                  "description": "Modifies HTTP target for HTTP tasks.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "rate_limits": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "max_burst_size": {
+                      "type": "number",
+                      "description": "The max burst size.\n\nMax burst size limits how fast tasks in queue are processed when many tasks are\nin the queue and the rate is high. This field allows the queue to have a high\nrate so processing starts shortly after a task is enqueued, but still limits\nresource usage when many tasks are enqueued in a short period of time.",
+                      "description_kind": "plain",
+                      "computed": true
+                    },
+                    "max_concurrent_dispatches": {
+                      "type": "number",
+                      "description": "The maximum number of concurrent tasks that Cloud Tasks allows to\nbe dispatched for this queue. After this threshold has been\nreached, Cloud Tasks stops dispatching tasks until the number of\nconcurrent requests decreases.",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    },
+                    "max_dispatches_per_second": {
+                      "type": "number",
+                      "description": "The maximum rate at which tasks are dispatched from this queue.\n\nIf unspecified when the queue is created, Cloud Tasks will pick the default.",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    }
+                  },
+                  "description": "Rate limits for task dispatches.\n\nThe queue's actual dispatch rate is the result of:\n\n* Number of tasks in the queue\n* User-specified throttling: rateLimits, retryConfig, and the queue's state.\n* System throttling due to 429 (Too Many Requests) or 503 (Service\n  Unavailable) responses from the worker, high error rates, or to\n  smooth sudden large traffic spikes.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "retry_config": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "max_attempts": {
+                      "type": "number",
+                      "description": "Number of attempts per task.\n\nCloud Tasks will attempt the task maxAttempts times (that is, if\nthe first attempt fails, then there will be maxAttempts - 1\nretries). Must be >= -1.\n\nIf unspecified when the queue is created, Cloud Tasks will pick\nthe default.\n\n-1 indicates unlimited attempts.",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    },
+                    "max_backoff": {
+                      "type": "string",
+                      "description": "A task will be scheduled for retry between minBackoff and\nmaxBackoff duration after it fails, if the queue's RetryConfig\nspecifies that the task should be retried.",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    },
+                    "max_doublings": {
+                      "type": "number",
+                      "description": "The time between retries will double maxDoublings times.\n\nA task's retry interval starts at minBackoff, then doubles maxDoublings times,\nthen increases linearly, and finally retries retries at intervals of maxBackoff\nup to maxAttempts times.",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    },
+                    "max_retry_duration": {
+                      "type": "string",
+                      "description": "If positive, maxRetryDuration specifies the time limit for\nretrying a failed task, measured from when the task was first\nattempted. Once maxRetryDuration time has passed and the task has\nbeen attempted maxAttempts times, no further attempts will be\nmade and the task will be deleted.\n\nIf zero, then the task age is unlimited.",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    },
+                    "min_backoff": {
+                      "type": "string",
+                      "description": "A task will be scheduled for retry between minBackoff and\nmaxBackoff duration after it fails, if the queue's RetryConfig\nspecifies that the task should be retried.",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    }
+                  },
+                  "description": "Settings that determine the retry behavior.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "stackdriver_logging_config": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "sampling_ratio": {
+                      "type": "number",
+                      "description": "Specifies the fraction of operations to write to Stackdriver Logging.\nThis field may contain any value between 0.0 and 1.0, inclusive. 0.0 is the\ndefault and means that no operations are logged.",
+                      "description_kind": "plain",
+                      "required": true
+                    }
+                  },
+                  "description": "Configuration options for writing logs to Stackdriver Logging.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "timeouts": {
+                "nesting_mode": "single",
+                "block": {
+                  "attributes": {
+                    "create": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "delete": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "update": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "description_kind": "plain"
+                }
+              }
+            },
+            "description_kind": "plain"
+          }
+        },
+        "google_cloud_tasks_queue_iam_member": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "etag": {
+                "type": "string",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "id": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "location": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "member": {
+                "type": "string",
+                "description_kind": "plain",
+                "required": true
+              },
+              "name": {
+                "type": "string",
+                "description_kind": "plain",
+                "required": true
+              },
+              "project": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "role": {
+                "type": "string",
+                "description_kind": "plain",
+                "required": true
+              }
+            },
+            "block_types": {
+              "condition": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "description": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "expression": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "required": true
+                    },
+                    "title": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "required": true
+                    }
+                  },
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              }
+            },
+            "description_kind": "plain"
+          }
+        },
+        "google_secret_manager_secret": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "annotations": {
+                "type": [
+                  "map",
+                  "string"
+                ],
+                "description": "Custom metadata about the secret.\n\nAnnotations are distinct from various forms of labels. Annotations exist to allow\nclient tools to store their own state information without requiring a database.\n\nAnnotation keys must be between 1 and 63 characters long, have a UTF-8 encoding of\nmaximum 128 bytes, begin and end with an alphanumeric character ([a-z0-9A-Z]), and\nmay have dashes (-), underscores (_), dots (.), and alphanumerics in between these\nsymbols.\n\nThe total size of annotation keys and values must be less than 16KiB.\n\nAn object containing a list of \"key\": value pairs. Example:\n{ \"name\": \"wrench\", \"mass\": \"1.3kg\", \"count\": \"3\" }.\n\n\n**Note**: This field is non-authoritative, and will only manage the annotations present in your configuration.\nPlease refer to the field 'effective_annotations' for all of the annotations present on the resource.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "create_time": {
+                "type": "string",
+                "description": "The time at which the Secret was created.",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "deletion_protection": {
+                "type": "bool",
+                "description": "Whether Terraform will be prevented from destroying the secret. Defaults to false.\nWhen the field is set to true in Terraform state, a 'terraform apply'\nor 'terraform destroy' that would delete the secret will fail.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "effective_annotations": {
+                "type": [
+                  "map",
+                  "string"
+                ],
+                "description": "All of annotations (key/value pairs) present on the resource in GCP, including the annotations configured through Terraform, other clients and services.",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "effective_labels": {
+                "type": [
+                  "map",
+                  "string"
+                ],
+                "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "expire_time": {
+                "type": "string",
+                "description": "Timestamp in UTC when the Secret is scheduled to expire. This is always provided on output, regardless of what was sent on input.\nA timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\".\nOnly one of 'expire_time' or 'ttl' can be provided.",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "id": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "labels": {
+                "type": [
+                  "map",
+                  "string"
+                ],
+                "description": "The labels assigned to this Secret.\n\nLabel keys must be between 1 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes,\nand must conform to the following PCRE regular expression: [\\p{Ll}\\p{Lo}][\\p{Ll}\\p{Lo}\\p{N}_-]{0,62}\n\nLabel values must be between 0 and 63 characters long, have a UTF-8 encoding of maximum 128 bytes,\nand must conform to the following PCRE regular expression: [\\p{Ll}\\p{Lo}\\p{N}_-]{0,63}\n\nNo more than 64 labels can be assigned to a given resource.\n\nAn object containing a list of \"key\": value pairs. Example:\n{ \"name\": \"wrench\", \"mass\": \"1.3kg\", \"count\": \"3\" }.\n\n\n**Note**: This field is non-authoritative, and will only manage the labels present in your configuration.\nPlease refer to the field 'effective_labels' for all of the labels present on the resource.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "name": {
+                "type": "string",
+                "description": "The resource name of the Secret. Format:\n'projects/{{project}}/secrets/{{secret_id}}'",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "project": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "secret_id": {
+                "type": "string",
+                "description": "This must be unique within the project.",
+                "description_kind": "plain",
+                "required": true
+              },
+              "tags": {
+                "type": [
+                  "map",
+                  "string"
+                ],
+                "description": "A map of resource manager tags.\nResource manager tag keys and values have the same definition as resource manager tags.\nKeys must be in the format tagKeys/{tag_key_id}, and values are in the format tagValues/{tag_value_id}.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "terraform_labels": {
+                "type": [
+                  "map",
+                  "string"
+                ],
+                "description": "The combination of labels configured directly on the resource\n and default labels configured on the provider.",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "ttl": {
+                "type": "string",
+                "description": "The TTL for the Secret.\nA duration in seconds with up to nine fractional digits, terminated by 's'. Example: \"3.5s\".\nOnly one of 'ttl' or 'expire_time' can be provided.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "version_aliases": {
+                "type": [
+                  "map",
+                  "string"
+                ],
+                "description": "Mapping from version alias to version name.\n\nA version alias is a string with a maximum length of 63 characters and can contain\nuppercase and lowercase letters, numerals, and the hyphen (-) and underscore ('_')\ncharacters. An alias string must start with a letter and cannot be the string\n'latest' or 'NEW'. No more than 50 aliases can be assigned to a given secret.\n\nAn object containing a list of \"key\": value pairs. Example:\n{ \"name\": \"wrench\", \"mass\": \"1.3kg\", \"count\": \"3\" }.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "version_destroy_ttl": {
+                "type": "string",
+                "description": "Secret Version TTL after destruction request.\nThis is a part of the delayed delete feature on Secret Version.\nFor secret with versionDestroyTtl>0, version destruction doesn't happen immediately\non calling destroy instead the version goes to a disabled state and\nthe actual destruction happens after this TTL expires.",
+                "description_kind": "plain",
+                "optional": true
+              }
+            },
+            "block_types": {
+              "replication": {
+                "nesting_mode": "list",
+                "block": {
+                  "block_types": {
+                    "auto": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "block_types": {
+                          "customer_managed_encryption": {
+                            "nesting_mode": "list",
+                            "block": {
+                              "attributes": {
+                                "kms_key_name": {
+                                  "type": "string",
+                                  "description": "The resource name of the Cloud KMS CryptoKey used to encrypt secret payloads.",
+                                  "description_kind": "plain",
+                                  "required": true
+                                }
+                              },
+                              "description": "The customer-managed encryption configuration of the Secret.\nIf no configuration is provided, Google-managed default\nencryption is used.",
+                              "description_kind": "plain"
+                            },
+                            "max_items": 1
+                          }
+                        },
+                        "description": "The Secret will automatically be replicated without any restrictions.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    },
+                    "user_managed": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "block_types": {
+                          "replicas": {
+                            "nesting_mode": "list",
+                            "block": {
+                              "attributes": {
+                                "location": {
+                                  "type": "string",
+                                  "description": "The canonical IDs of the location to replicate data. For example: \"us-east1\".",
+                                  "description_kind": "plain",
+                                  "required": true
+                                }
+                              },
+                              "block_types": {
+                                "customer_managed_encryption": {
+                                  "nesting_mode": "list",
+                                  "block": {
+                                    "attributes": {
+                                      "kms_key_name": {
+                                        "type": "string",
+                                        "description": "Describes the Cloud KMS encryption key that will be used to protect destination secret.",
+                                        "description_kind": "plain",
+                                        "required": true
+                                      }
+                                    },
+                                    "description": "Customer Managed Encryption for the secret.",
+                                    "description_kind": "plain"
+                                  },
+                                  "max_items": 1
+                                }
+                              },
+                              "description": "The list of Replicas for this Secret. Cannot be empty.",
+                              "description_kind": "plain"
+                            },
+                            "min_items": 1
+                          }
+                        },
+                        "description": "The Secret will be replicated to the regions specified by the user.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    }
+                  },
+                  "description": "The replication policy of the secret data attached to the Secret. It cannot be changed\nafter the Secret has been created.",
+                  "description_kind": "plain"
+                },
+                "min_items": 1,
+                "max_items": 1
+              },
+              "rotation": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "next_rotation_time": {
+                      "type": "string",
+                      "description": "Timestamp in UTC at which the Secret is scheduled to rotate.\nA timestamp in RFC3339 UTC \"Zulu\" format, with nanosecond resolution and up to nine fractional digits. Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\".",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "rotation_period": {
+                      "type": "string",
+                      "description": "The Duration between rotation notifications. Must be in seconds and at least 3600s (1h) and at most 3153600000s (100 years).\nIf rotationPeriod is set, 'next_rotation_time' must be set. 'next_rotation_time' will be advanced by this period when the service automatically sends rotation notifications.",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "description": "The rotation time and period for a Secret. At 'next_rotation_time', Secret Manager will send a Pub/Sub notification to the topics configured on the Secret. 'topics' must be set to configure rotation.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "timeouts": {
+                "nesting_mode": "single",
+                "block": {
+                  "attributes": {
+                    "create": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "delete": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "update": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "description_kind": "plain"
+                }
+              },
+              "topics": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "name": {
+                      "type": "string",
+                      "description": "The resource name of the Pub/Sub topic that will be published to, in the following format: projects/*/topics/*.\nFor publication to succeed, the Secret Manager Service Agent service account must have pubsub.publisher permissions on the topic.",
+                      "description_kind": "plain",
+                      "required": true
+                    }
+                  },
+                  "description": "A list of up to 10 Pub/Sub topics to which messages are published when control plane operations are called on the secret or its versions.",
+                  "description_kind": "plain"
+                }
+              }
+            },
+            "description_kind": "plain"
+          }
+        },
+        "google_secret_manager_secret_version": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "create_time": {
+                "type": "string",
+                "description": "The time at which the Secret was created.",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "deletion_policy": {
+                "type": "string",
+                "description": "The deletion policy for the secret version. Setting 'ABANDON' allows the resource\nto be abandoned rather than deleted. Setting 'DISABLE' allows the resource to be\ndisabled rather than deleted. Default is 'DELETE'. Possible values are:\n  * DELETE\n  * DISABLE\n  * ABANDON",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "destroy_time": {
+                "type": "string",
+                "description": "The time at which the Secret was destroyed. Only present if state is DESTROYED.",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "enabled": {
+                "type": "bool",
+                "description": "The current state of the SecretVersion.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "id": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "is_secret_data_base64": {
+                "type": "bool",
+                "description": "If set to 'true', the secret data is expected to be base64-encoded string and would be sent as is.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "name": {
+                "type": "string",
+                "description": "The resource name of the SecretVersion. Format:\n'projects/{{project}}/secrets/{{secret_id}}/versions/{{version}}'",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "project": {
+                "type": "string",
+                "description": "The ID of the project in which the resource belongs. If it is not provided,\nthe provider project is used",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "secret": {
+                "type": "string",
+                "description": "Secret Manager secret resource",
+                "description_kind": "plain",
+                "required": true
+              },
+              "secret_data": {
+                "type": "string",
+                "description": "The secret data. Must be no larger than 64KiB.",
+                "description_kind": "plain",
+                "optional": true,
+                "sensitive": true
+              },
+              "secret_data_wo": {
+                "type": "string",
+                "description": "The secret data. Must be no larger than 64KiB. For more info see [updating write-only arguments](/docs/providers/google/guides/using_write_only_arguments.html#updating-write-only-arguments)",
+                "description_kind": "plain",
+                "optional": true,
+                "write_only": true
+              },
+              "secret_data_wo_version": {
+                "type": "number",
+                "description": "Triggers update of secret data write-only. For more info see [updating write-only arguments](/docs/providers/google/guides/using_write_only_arguments.html#updating-write-only-arguments)",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "version": {
+                "type": "string",
+                "description": "The version of the Secret.",
+                "description_kind": "plain",
+                "computed": true
+              }
+            },
+            "block_types": {
+              "timeouts": {
+                "nesting_mode": "single",
+                "block": {
+                  "attributes": {
+                    "create": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "delete": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "update": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "description_kind": "plain"
+                }
+              }
+            },
+            "description_kind": "plain"
+          }
+        },
+        "google_secret_manager_secret_iam_member": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "etag": {
+                "type": "string",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "id": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "member": {
+                "type": "string",
+                "description_kind": "plain",
+                "required": true
+              },
+              "project": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "role": {
+                "type": "string",
+                "description_kind": "plain",
+                "required": true
+              },
+              "secret_id": {
+                "type": "string",
+                "description_kind": "plain",
+                "required": true
+              }
+            },
+            "block_types": {
+              "condition": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "description": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "expression": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "required": true
+                    },
+                    "title": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "required": true
+                    }
+                  },
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              }
+            },
+            "description_kind": "plain"
+          }
+        },
+        "google_cloud_scheduler_job": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "attempt_deadline": {
+                "type": "string",
+                "description": "The deadline for job attempts. If the request handler does not respond by this deadline then the request is\ncancelled and the attempt is marked as a DEADLINE_EXCEEDED failure. The failed attempt can be viewed in\nexecution logs. Cloud Scheduler will retry the job according to the RetryConfig.\nThe allowed duration for this deadline is:\n* For HTTP targets, between 15 seconds and 30 minutes.\n* For App Engine HTTP targets, between 15 seconds and 24 hours.\n* **Note**: For PubSub targets, this field is ignored - setting it will introduce an unresolvable diff.\nA duration in seconds with up to nine fractional digits, terminated by 's'. Example: \"3.5s\"",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "description": {
+                "type": "string",
+                "description": "A human-readable description for the job.\nThis string must not contain more than 500 characters.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "id": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "name": {
+                "type": "string",
+                "description": "The name of the job.",
+                "description_kind": "plain",
+                "required": true
+              },
+              "paused": {
+                "type": "bool",
+                "description": "Sets the job to a paused state. Jobs default to being enabled when this property is not set.",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "project": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "region": {
+                "type": "string",
+                "description": "Region where the scheduler job resides. If it is not provided, Terraform will use the provider default.",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "schedule": {
+                "type": "string",
+                "description": "Describes the schedule on which the job will be executed.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "state": {
+                "type": "string",
+                "description": "State of the job.",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "time_zone": {
+                "type": "string",
+                "description": "Specifies the time zone to be used in interpreting schedule.\nThe value of this field must be a time zone name from the tz database.",
+                "description_kind": "plain",
+                "optional": true
+              }
+            },
+            "block_types": {
+              "app_engine_http_target": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "body": {
+                      "type": "string",
+                      "description": "HTTP request body.\nA request body is allowed only if the HTTP method is POST or PUT.\nIt will result in invalid argument error to set a body on a job with an incompatible HttpMethod.\n\nA base64-encoded string.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "headers": {
+                      "type": [
+                        "map",
+                        "string"
+                      ],
+                      "description": "HTTP request headers.\nThis map contains the header field names and values.\nHeaders can be set when the job is created.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "http_method": {
+                      "type": "string",
+                      "description": "Which HTTP method to use for the request.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "relative_uri": {
+                      "type": "string",
+                      "description": "The relative URI.\nThe relative URL must begin with \"/\" and must be a valid HTTP relative URL.\nIt can contain a path, query string arguments, and \\# fragments.\nIf the relative URL is empty, then the root path \"/\" will be used.\nNo spaces are allowed, and the maximum length allowed is 2083 characters",
+                      "description_kind": "plain",
+                      "required": true
+                    }
+                  },
+                  "block_types": {
+                    "app_engine_routing": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "instance": {
+                            "type": "string",
+                            "description": "App instance.\nBy default, the job is sent to an instance which is available when the job is attempted.",
+                            "description_kind": "plain",
+                            "optional": true
+                          },
+                          "service": {
+                            "type": "string",
+                            "description": "App service.\nBy default, the job is sent to the service which is the default service when the job is attempted.",
+                            "description_kind": "plain",
+                            "optional": true
+                          },
+                          "version": {
+                            "type": "string",
+                            "description": "App version.\nBy default, the job is sent to the version which is the default version when the job is attempted.",
+                            "description_kind": "plain",
+                            "optional": true
+                          }
+                        },
+                        "description": "App Engine Routing setting for the job.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    }
+                  },
+                  "description": "App Engine HTTP target.\nIf the job providers a App Engine HTTP target the cron will\nsend a request to the service instance",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "http_target": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "body": {
+                      "type": "string",
+                      "description": "HTTP request body.\nA request body is allowed only if the HTTP method is POST, PUT, or PATCH.\nIt is an error to set body on a job with an incompatible HttpMethod.\n\nA base64-encoded string.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "headers": {
+                      "type": [
+                        "map",
+                        "string"
+                      ],
+                      "description": "This map contains the header field names and values.\nRepeated headers are not supported, but a header value can contain commas.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "http_method": {
+                      "type": "string",
+                      "description": "Which HTTP method to use for the request.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "uri": {
+                      "type": "string",
+                      "description": "The full URI path that the request will be sent to.",
+                      "description_kind": "plain",
+                      "required": true
+                    }
+                  },
+                  "block_types": {
+                    "oauth_token": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "scope": {
+                            "type": "string",
+                            "description": "OAuth scope to be used for generating OAuth access token. If not specified,\n\"https://www.googleapis.com/auth/cloud-platform\" will be used.",
+                            "description_kind": "plain",
+                            "optional": true
+                          },
+                          "service_account_email": {
+                            "type": "string",
+                            "description": "Service account email to be used for generating OAuth token.\nThe service account must be within the same project as the job.",
+                            "description_kind": "plain",
+                            "required": true
+                          }
+                        },
+                        "description": "Contains information needed for generating an OAuth token.\nThis type of authorization should be used when sending requests to a GCP endpoint.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    },
+                    "oidc_token": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "audience": {
+                            "type": "string",
+                            "description": "Audience to be used when generating OIDC token. If not specified,\nthe URI specified in target will be used.",
+                            "description_kind": "plain",
+                            "optional": true
+                          },
+                          "service_account_email": {
+                            "type": "string",
+                            "description": "Service account email to be used for generating OAuth token.\nThe service account must be within the same project as the job.",
+                            "description_kind": "plain",
+                            "required": true
+                          }
+                        },
+                        "description": "Contains information needed for generating an OpenID Connect token.\nThis type of authorization should be used when sending requests to third party endpoints or Cloud Run.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    }
+                  },
+                  "description": "HTTP target.\nIf the job providers a http_target the cron will\nsend a request to the targeted url",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "pubsub_target": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "attributes": {
+                      "type": [
+                        "map",
+                        "string"
+                      ],
+                      "description": "Attributes for PubsubMessage.\nPubsub message must contain either non-empty data, or at least one attribute.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "data": {
+                      "type": "string",
+                      "description": "The message payload for PubsubMessage.\nPubsub message must contain either non-empty data, or at least one attribute.\n\n A base64-encoded string.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "topic_name": {
+                      "type": "string",
+                      "description": "The full resource name for the Cloud Pub/Sub topic to which\nmessages will be published when a job is delivered. ~>**NOTE:**\nThe topic name must be in the same format as required by PubSub's\nPublishRequest.name, e.g. 'projects/my-project/topics/my-topic'.",
+                      "description_kind": "plain",
+                      "required": true
+                    }
+                  },
+                  "description": "Pub/Sub target\nIf the job providers a Pub/Sub target the cron will publish\na message to the provided topic",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "retry_config": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "max_backoff_duration": {
+                      "type": "string",
+                      "description": "The maximum amount of time to wait before retrying a job after it fails.\nA duration in seconds with up to nine fractional digits, terminated by 's'.",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    },
+                    "max_doublings": {
+                      "type": "number",
+                      "description": "The time between retries will double maxDoublings times.\nA job's retry interval starts at minBackoffDuration,\nthen doubles maxDoublings times, then increases linearly,\nand finally retries retries at intervals of maxBackoffDuration up to retryCount times.",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    },
+                    "max_retry_duration": {
+                      "type": "string",
+                      "description": "The time limit for retrying a failed job, measured from time when an execution was first attempted.\nIf specified with retryCount, the job will be retried until both limits are reached.\nA duration in seconds with up to nine fractional digits, terminated by 's'.",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    },
+                    "min_backoff_duration": {
+                      "type": "string",
+                      "description": "The minimum amount of time to wait before retrying a job after it fails.\nA duration in seconds with up to nine fractional digits, terminated by 's'.",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    },
+                    "retry_count": {
+                      "type": "number",
+                      "description": "The number of attempts that the system will make to run a\njob using the exponential backoff procedure described by maxDoublings.\nValues greater than 5 and negative values are not allowed.",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    }
+                  },
+                  "description": "By default, if a job does not complete successfully,\nmeaning that an acknowledgement is not received from the handler,\nthen it will be retried with exponential backoff according to the settings",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "timeouts": {
+                "nesting_mode": "single",
+                "block": {
+                  "attributes": {
+                    "create": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "delete": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "update": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "description_kind": "plain"
+                }
+              }
+            },
+            "description_kind": "plain"
+          }
+        },
+        "google_project_service": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "disable_dependent_services": {
+                "type": "bool",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "disable_on_destroy": {
+                "type": "bool",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "id": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "project": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "service": {
+                "type": "string",
+                "description_kind": "plain",
+                "required": true
+              }
+            },
+            "block_types": {
+              "timeouts": {
+                "nesting_mode": "single",
+                "block": {
+                  "attributes": {
+                    "create": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "delete": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "read": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "update": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "description_kind": "plain"
+                }
+              }
+            },
+            "description_kind": "plain"
+          }
+        },
+        "google_service_account": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "account_id": {
+                "type": "string",
+                "description": "The account id that is used to generate the service account email address and a stable unique id. It is unique within a project, must be 6-30 characters long, and match the regular expression [a-z]([-a-z0-9]*[a-z0-9]) to comply with RFC1035. Changing this forces a new service account to be created.",
+                "description_kind": "plain",
+                "required": true
+              },
+              "create_ignore_already_exists": {
+                "type": "bool",
+                "description": "If set to true, skip service account creation if a service account with the same email already exists.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "description": {
+                "type": "string",
+                "description": "A text description of the service account. Must be less than or equal to 256 UTF-8 bytes.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "disabled": {
+                "type": "bool",
+                "description": "Whether the service account is disabled. Defaults to false",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "display_name": {
+                "type": "string",
+                "description": "The display name for the service account. Can be updated without creating a new resource.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "email": {
+                "type": "string",
+                "description": "The e-mail address of the service account. This value should be referenced from any google_iam_policy data sources that would grant the service account privileges.",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "id": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "member": {
+                "type": "string",
+                "description": "The Identity of the service account in the form 'serviceAccount:{email}'. This value is often used to refer to the service account in order to grant IAM permissions.",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "name": {
+                "type": "string",
+                "description": "The fully-qualified name of the service account.",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "project": {
+                "type": "string",
+                "description": "The ID of the project that the service account will be created in. Defaults to the provider project configuration.",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "unique_id": {
+                "type": "string",
+                "description": "The unique id of the service account.",
+                "description_kind": "plain",
+                "computed": true
+              }
+            },
+            "block_types": {
+              "timeouts": {
+                "nesting_mode": "single",
+                "block": {
+                  "attributes": {
+                    "create": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "description_kind": "plain"
+                }
+              }
+            },
+            "description_kind": "plain"
+          }
+        }
+      }
+    }
+  }
+}
