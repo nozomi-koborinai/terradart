@@ -1,0 +1,274 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+import 'package:meta/meta.dart';
+import 'package:terradart_core/terradart_core.dart';
+
+import 'package:terradart_google/src/generated/google_cloud_scheduler_job.schema.dart'
+    show $GoogleCloudSchedulerJob, googleCloudSchedulerJobSensitive;
+
+// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
+// consumed by `ResourceRef<S>.placeholder` (a future surface). We
+// keep this stub inline. `noSuchMethod` satisfies the abstract field
+// getters; they are never invoked in v0.0.x.
+class _GoogleCloudSchedulerJobSchemaInstance
+    implements $GoogleCloudSchedulerJob {
+  const _GoogleCloudSchedulerJobSchemaInstance();
+
+  @override
+  // ignore: non_constant_identifier_names
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
+// ===========================================================================
+// SchedulerTarget — sealed (Pubsub | Http | AppEngineHttp)
+// ===========================================================================
+
+/// Choice of scheduler target. Sealed to make the trichotomy exhaustive at
+/// the type level.
+sealed class SchedulerTarget {
+  const SchedulerTarget();
+
+  /// argMap key under which this target is emitted (e.g. `pubsub_target`).
+  String get blockKey;
+
+  Map<String, Object?> encode();
+}
+
+/// `pubsub_target` block. Use [topicName] = `TfArg.ref(topic.id)` so the
+/// value resolves to the full `projects/{project}/topics/{name}` path
+/// — `topic.nameRef` (just the bare name) is **not** sufficient.
+@immutable
+final class PubsubTarget extends SchedulerTarget {
+  const PubsubTarget({required this.topicName, this.data, this.attributes});
+
+  /// **Important:** Pub/Sub Scheduler expects the *full resource path*
+  /// `projects/{project}/topics/{topic}`. Pass `TfArg.ref(topic.id)` —
+  /// **not** `topic.nameRef`. See `topic.id` getter on
+  /// [GooglePubsubTopic] (the runtime exposes `id` for exactly this case).
+  final TfArg<String> topicName;
+  final TfArg<String>? data;
+  final TfArg<Map<String, String>>? attributes;
+
+  @override
+  String get blockKey => 'pubsub_target';
+
+  @override
+  Map<String, Object?> encode() => {
+    'topic_name': topicName.toTfJson(),
+    if (data != null) 'data': data!.toTfJson(),
+    if (attributes != null) 'attributes': attributes!.toTfJson(),
+  };
+}
+
+/// Generic webhook `http_target` block.
+@immutable
+final class HttpTarget extends SchedulerTarget {
+  const HttpTarget({
+    required this.uri,
+    this.httpMethod,
+    this.body,
+    this.headers,
+    this.oauthToken,
+    this.oidcToken,
+  });
+
+  final TfArg<String> uri;
+  final TfArg<String>? httpMethod;
+  final TfArg<String>? body;
+  final TfArg<Map<String, String>>? headers;
+  final HttpOauthToken? oauthToken;
+  final HttpOidcToken? oidcToken;
+
+  @override
+  String get blockKey => 'http_target';
+
+  @override
+  Map<String, Object?> encode() => {
+    'uri': uri.toTfJson(),
+    if (httpMethod != null) 'http_method': httpMethod!.toTfJson(),
+    if (body != null) 'body': body!.toTfJson(),
+    if (headers != null) 'headers': headers!.toTfJson(),
+    if (oauthToken != null) 'oauth_token': oauthToken!.encode(),
+    if (oidcToken != null) 'oidc_token': oidcToken!.encode(),
+  };
+}
+
+/// `app_engine_http_target` block — App Engine routing variant.
+@immutable
+final class AppEngineHttpTarget extends SchedulerTarget {
+  const AppEngineHttpTarget({
+    required this.relativeUri,
+    this.httpMethod,
+    this.body,
+    this.headers,
+    this.appEngineRouting,
+  });
+
+  final TfArg<String> relativeUri;
+  final TfArg<String>? httpMethod;
+  final TfArg<String>? body;
+  final TfArg<Map<String, String>>? headers;
+  final AppEngineRouting? appEngineRouting;
+
+  @override
+  String get blockKey => 'app_engine_http_target';
+
+  @override
+  Map<String, Object?> encode() => {
+    'relative_uri': relativeUri.toTfJson(),
+    if (httpMethod != null) 'http_method': httpMethod!.toTfJson(),
+    if (body != null) 'body': body!.toTfJson(),
+    if (headers != null) 'headers': headers!.toTfJson(),
+    if (appEngineRouting != null)
+      'app_engine_routing': appEngineRouting!.encode(),
+  };
+}
+
+/// OAuth token for [HttpTarget].
+@immutable
+class HttpOauthToken {
+  const HttpOauthToken({required this.serviceAccountEmail, this.scope});
+
+  final TfArg<String> serviceAccountEmail;
+  final TfArg<String>? scope;
+
+  Map<String, Object?> encode() => {
+    'service_account_email': serviceAccountEmail.toTfJson(),
+    if (scope != null) 'scope': scope!.toTfJson(),
+  };
+}
+
+/// OIDC token for [HttpTarget].
+@immutable
+class HttpOidcToken {
+  const HttpOidcToken({required this.serviceAccountEmail, this.audience});
+
+  final TfArg<String> serviceAccountEmail;
+  final TfArg<String>? audience;
+
+  Map<String, Object?> encode() => {
+    'service_account_email': serviceAccountEmail.toTfJson(),
+    if (audience != null) 'audience': audience!.toTfJson(),
+  };
+}
+
+/// `app_engine_routing` block under [AppEngineHttpTarget].
+@immutable
+class AppEngineRouting {
+  const AppEngineRouting({this.service, this.version, this.instance});
+
+  final TfArg<String>? service;
+  final TfArg<String>? version;
+  final TfArg<String>? instance;
+
+  Map<String, Object?> encode() => {
+    if (service != null) 'service': service!.toTfJson(),
+    if (version != null) 'version': version!.toTfJson(),
+    if (instance != null) 'instance': instance!.toTfJson(),
+  };
+}
+
+/// `retry_config` block on a Scheduler job (distinct from Cloud Tasks).
+@immutable
+class SchedulerRetryConfig {
+  const SchedulerRetryConfig({
+    this.retryCount,
+    this.maxRetryDuration,
+    this.minBackoffDuration,
+    this.maxBackoffDuration,
+    this.maxDoublings,
+  });
+
+  final TfArg<int>? retryCount;
+  final TfArg<String>? maxRetryDuration;
+  final TfArg<String>? minBackoffDuration;
+  final TfArg<String>? maxBackoffDuration;
+  final TfArg<int>? maxDoublings;
+
+  Map<String, Object?> encode() => {
+    if (retryCount != null) 'retry_count': retryCount!.toTfJson(),
+    if (maxRetryDuration != null)
+      'max_retry_duration': maxRetryDuration!.toTfJson(),
+    if (minBackoffDuration != null)
+      'min_backoff_duration': minBackoffDuration!.toTfJson(),
+    if (maxBackoffDuration != null)
+      'max_backoff_duration': maxBackoffDuration!.toTfJson(),
+    if (maxDoublings != null) 'max_doublings': maxDoublings!.toTfJson(),
+  };
+}
+
+// ===========================================================================
+// Factory
+// ===========================================================================
+
+/// Factory wrapper for `google_cloud_scheduler_job`.
+///
+/// `region` is treated as Required for ergonomic clarity in v0.0.x, even
+/// though the underlying provider attribute is technically Optional (it
+/// falls back to the provider default). This avoids subtle issues where a
+/// stack pinned to one region quietly schedules jobs in another.
+///
+/// Choose exactly one [SchedulerTarget]:
+/// - [PubsubTarget] — note `topicName` MUST use `topic.id` (full path).
+/// - [HttpTarget] — generic HTTP webhook.
+/// - [AppEngineHttpTarget] — App Engine routing.
+///
+/// ```dart
+/// final orders = GooglePubsubTopic(
+///   localName: 'orders',
+///   name: TfArg.literal('orders'),
+/// );
+/// final job = GoogleCloudSchedulerJob(
+///   localName: 'nightly',
+///   name: TfArg.literal('nightly'),
+///   region: TfArg.literal('us-central1'),
+///   schedule: TfArg.literal('0 0 * * *'),
+///   target: PubsubTarget(
+///     // Correct: topic.id resolves to the full projects/.../topics/... path.
+///     topicName: TfArg.ref(orders.id),
+///   ),
+/// );
+/// ```
+final class GoogleCloudSchedulerJob extends Resource<$GoogleCloudSchedulerJob> {
+  // ignore: constant_identifier_names
+  static const String $tfType = 'google_cloud_scheduler_job';
+
+  GoogleCloudSchedulerJob({
+    required super.localName,
+    required TfArg<String> name,
+    required TfArg<String> region,
+    required SchedulerTarget target,
+    TfArg<String>? description,
+    TfArg<String>? schedule,
+    TfArg<String>? timeZone,
+    TfArg<bool>? paused,
+    TfArg<String>? attemptDeadline,
+    SchedulerRetryConfig? retryConfig,
+    TfArg<String>? project,
+    super.lifecycle,
+    super.dependsOn,
+  }) : super(
+         terraformType: $tfType,
+         schema: const _GoogleCloudSchedulerJobSchemaInstance(),
+         argMap: {
+           'name': name,
+           'region': region,
+           if (description != null) 'description': description,
+           if (schedule != null) 'schedule': schedule,
+           if (timeZone != null) 'time_zone': timeZone,
+           if (paused != null) 'paused': paused,
+           if (attemptDeadline != null) 'attempt_deadline': attemptDeadline,
+           if (retryConfig != null)
+             'retry_config': TfArg.literal(retryConfig.encode()),
+           if (project != null) 'project': project,
+           target.blockKey: TfArg.literal(target.encode()),
+         },
+       );
+
+  @override
+  // ignore: non_constant_identifier_names
+  Set<String> get $sensitiveFields => googleCloudSchedulerJobSensitive;
+
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+}

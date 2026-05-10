@@ -1,2 +1,3 @@
+outputDir: x
 extraImports:
   - "import 'package:meta/meta.dart';"

@@ -1,3 +1,4 @@
+outputDir: project
 classDocComment: |-
   /// Factory wrapper for `google_project_service`
   /// (provider `hashicorp/google ~> 7.0`).

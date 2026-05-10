@@ -1,3 +1,4 @@
+outputDir: cloud_scheduler
 classDocComment: |-
   /// Factory wrapper for `google_cloud_scheduler_job`.
   ///

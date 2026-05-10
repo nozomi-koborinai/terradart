@@ -1,3 +1,9 @@
+import 'dart:io';
+
+import 'package:path/path.dart' as p;
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/loader_errors.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
 import 'package:test/test.dart';
 import 'package:yaml/yaml.dart';
@@ -10,7 +16,7 @@ void main() {
           rootDir: 'test/fixtures/semantic_hints_loader/happy',
         );
         // ファイル名 stem `empty` が key として使われる前提
-        final result = loader.load();
+        final result = loader.load().resources;
         expect(result, contains('empty'));
         final override = result['empty']!;
         expect(override.classDocComment, isNull);
@@ -30,7 +36,7 @@ void main() {
         final loader = YamlOverrideLoader(
           rootDir: 'test/fixtures/semantic_hints_loader/happy',
         );
-        final result = loader.load();
+        final result = loader.load().resources;
         final o = result['class_doc_comment_only']!;
         expect(o.classDocComment, equals('/// Test doc.\n/// Multi-line.'));
         expect(o.paramOrder, isNull);
@@ -41,7 +47,7 @@ void main() {
         final loader = YamlOverrideLoader(
           rootDir: 'test/fixtures/semantic_hints_loader/happy',
         );
-        final result = loader.load();
+        final result = loader.load().resources;
         final o = result['param_order_only']!;
         expect(o.paramOrder, equals(['alpha', 'beta', 'gamma']));
         expect(o.argMapOrder, isNull);
@@ -53,7 +59,7 @@ void main() {
         final loader = YamlOverrideLoader(
           rootDir: 'test/fixtures/semantic_hints_loader/happy',
         );
-        final result = loader.load();
+        final result = loader.load().resources;
         final o = result['arg_map_order_only']!;
         expect(o.paramOrder, equals(['alpha', 'beta']));
         expect(o.argMapOrder, equals(['beta', 'alpha']));
@@ -63,7 +69,7 @@ void main() {
         final loader = YamlOverrideLoader(
           rootDir: 'test/fixtures/semantic_hints_loader/happy',
         );
-        final result = loader.load();
+        final result = loader.load().resources;
         final o = result['extra_getters_only']!;
         expect(o.extraGetters, endsWith('\n'));
         expect(
@@ -78,7 +84,7 @@ void main() {
         final loader = YamlOverrideLoader(
           rootDir: 'test/fixtures/semantic_hints_loader/happy',
         );
-        final result = loader.load();
+        final result = loader.load().resources;
         final o = result['schema_stub_comment_only']!;
         expect(o.schemaStubComment, isNot(endsWith('\n')));
         expect(o.schemaStubComment, equals('// line 1\n// line 2'));
@@ -88,7 +94,7 @@ void main() {
         final loader = YamlOverrideLoader(
           rootDir: 'test/fixtures/semantic_hints_loader/happy',
         );
-        final result = loader.load();
+        final result = loader.load().resources;
         final o = result['required_params_only']!;
         expect(o.requiredParams, equals(['location', 'region']));
       });
@@ -97,7 +103,7 @@ void main() {
         final loader = YamlOverrideLoader(
           rootDir: 'test/fixtures/semantic_hints_loader/happy',
         );
-        final result = loader.load();
+        final result = loader.load().resources;
         final o = result['dart_type_overrides_only']!;
         expect(
           o.dartTypeOverrides,
@@ -112,7 +118,7 @@ void main() {
         final loader = YamlOverrideLoader(
           rootDir: 'test/fixtures/semantic_hints_loader/happy',
         );
-        final result = loader.load();
+        final result = loader.load().resources;
         final o = result['deprecated_params_only']!;
         expect(
           o.deprecatedParams,
@@ -124,7 +130,7 @@ void main() {
         final loader = YamlOverrideLoader(
           rootDir: 'test/fixtures/semantic_hints_loader/happy',
         );
-        final result = loader.load();
+        final result = loader.load().resources;
         final o = result['extra_imports_only']!;
         expect(o.extraImports, equals(["import 'package:meta/meta.dart';"]));
       });
@@ -133,7 +139,7 @@ void main() {
         final loader = YamlOverrideLoader(
           rootDir: 'test/fixtures/semantic_hints_loader/happy',
         );
-        final result = loader.load();
+        final result = loader.load().resources;
         final o = result['prelude_only']!;
         expect(o.prelude, endsWith('\n'));
         expect(o.prelude, equals('sealed class Foo {\n  const Foo();\n}\n'));
@@ -143,7 +149,7 @@ void main() {
         final loader = YamlOverrideLoader(
           rootDir: 'test/fixtures/semantic_hints_loader/happy',
         );
-        final result = loader.load();
+        final result = loader.load().resources;
         final o = result['custom_slots_only']!;
         expect(o.customSlots, hasLength(1));
         expect(
@@ -160,7 +166,7 @@ void main() {
         final loader = YamlOverrideLoader(
           rootDir: 'test/fixtures/semantic_hints_loader/happy',
         );
-        final result = loader.load();
+        final result = loader.load().resources;
         final o = result['full_axis']!;
         expect(o.classDocComment, isNotNull);
         expect(o.paramOrder, equals(['x', 'y']));
@@ -345,12 +351,271 @@ void main() {
     });
 
     group('production round-trip', () {
-      test('production yaml/ directory loads without errors', () {
-        final loader = YamlOverrideLoader(
-          rootDir: 'lib/src/codegen/wrapper_overrides/yaml',
+      test(
+        'production yaml/ directory loads without errors',
+        () {
+          final loader = YamlOverrideLoader(
+            rootDir: 'lib/src/codegen/wrapper_overrides/yaml',
+          );
+          expect(loader.load, returnsNormally);
+        },
+      );
+    });
+  });
+
+  group('LoadedOverrides — kind dispatch', () {
+    test('separates resources and dataSources by kind field', () async {
+      final tmpDir = await Directory.systemTemp.createTemp('phase4_loader_');
+      try {
+        await File(p.join(tmpDir.path, 'google_pubsub_topic.yaml'))
+            .writeAsString('''
+outputDir: pubsub
+classDocComment: |-
+  /// Wrapper for google_pubsub_topic.
+''');
+        await File(p.join(tmpDir.path, 'google_project.yaml')).writeAsString('''
+kind: data_source
+outputDir: data
+schemaStubBodyMode: bare
+classDocComment: |-
+  /// Data source for data.google_project.
+''');
+
+        final loaded = loadWrapperOverrides(rootDir: tmpDir.path);
+        expect(loaded.resources.keys, ['google_pubsub_topic']);
+        expect(loaded.dataSources.keys, ['google_project']);
+        expect(
+          loaded.resources['google_pubsub_topic']!.kind,
+          WrapperOverrideKind.resource,
         );
-        expect(loader.load, returnsNormally);
-      });
+        expect(
+          loaded.dataSources['google_project']!.kind,
+          WrapperOverrideKind.dataSource,
+        );
+        expect(loaded.dataSources['google_project']!.outputDir, 'data');
+        expect(
+          loaded.dataSources['google_project']!.schemaStubBodyMode,
+          SchemaStubBodyMode.bare,
+        );
+      } finally {
+        await tmpDir.delete(recursive: true);
+      }
+    });
+
+    test('default kind is resource when omitted', () async {
+      final tmpDir = await Directory.systemTemp.createTemp('phase4_loader_');
+      try {
+        await File(p.join(tmpDir.path, 'google_x.yaml')).writeAsString('''
+outputDir: pubsub
+''');
+        final loaded = loadWrapperOverrides(rootDir: tmpDir.path);
+        expect(loaded.resources.containsKey('google_x'), isTrue);
+        expect(loaded.dataSources, isEmpty);
+      } finally {
+        await tmpDir.delete(recursive: true);
+      }
+    });
+  });
+
+  group('Axis: kind', () {
+    test('kind: data_source parses', () async {
+      final tmpDir = await Directory.systemTemp.createTemp('phase4_kind_');
+      try {
+        await File(p.join(tmpDir.path, 'x.yaml')).writeAsString('''
+kind: data_source
+outputDir: data
+''');
+        final loaded = loadWrapperOverrides(rootDir: tmpDir.path);
+        expect(loaded.dataSources['x']!.kind, WrapperOverrideKind.dataSource);
+      } finally {
+        await tmpDir.delete(recursive: true);
+      }
+    });
+
+    test('kind: <unknown> raises E101', () async {
+      final tmpDir = await Directory.systemTemp.createTemp('phase4_kind_');
+      try {
+        await File(p.join(tmpDir.path, 'x.yaml')).writeAsString('''
+kind: bogus
+outputDir: data
+''');
+        try {
+          loadWrapperOverrides(rootDir: tmpDir.path);
+          fail('expected LoaderErrorReport');
+        } on LoaderErrorReport catch (e) {
+          expect(e.errors, hasLength(1));
+          expect(e.errors.first.code, LoaderErrorCode.unknownKind);
+          expect(e.errors.first.message, contains('bogus'));
+        }
+      } finally {
+        await tmpDir.delete(recursive: true);
+      }
+    });
+  });
+
+  group('Axis: outputDir', () {
+    test('outputDir missing raises E102', () async {
+      final tmpDir = await Directory.systemTemp.createTemp('phase4_outdir_');
+      try {
+        await File(p.join(tmpDir.path, 'x.yaml')).writeAsString('''
+classDocComment: |-
+  /// X.
+''');
+        try {
+          loadWrapperOverrides(rootDir: tmpDir.path);
+          fail('expected LoaderErrorReport');
+        } on LoaderErrorReport catch (e) {
+          expect(e.errors.first.code, LoaderErrorCode.outputDirRequired);
+        }
+      } finally {
+        await tmpDir.delete(recursive: true);
+      }
+    });
+
+    test('outputDir with slash raises E103', () async {
+      final tmpDir = await Directory.systemTemp.createTemp('phase4_outdir_');
+      try {
+        await File(p.join(tmpDir.path, 'x.yaml')).writeAsString('''
+outputDir: data/sub
+''');
+        try {
+          loadWrapperOverrides(rootDir: tmpDir.path);
+          fail('expected LoaderErrorReport');
+        } on LoaderErrorReport catch (e) {
+          expect(e.errors.first.code, LoaderErrorCode.outputDirInvalid);
+        }
+      } finally {
+        await tmpDir.delete(recursive: true);
+      }
+    });
+
+    test('outputDir with .. raises E103', () async {
+      final tmpDir = await Directory.systemTemp.createTemp('phase4_outdir_');
+      try {
+        await File(p.join(tmpDir.path, 'x.yaml')).writeAsString('''
+outputDir: ..
+''');
+        try {
+          loadWrapperOverrides(rootDir: tmpDir.path);
+          fail('expected LoaderErrorReport');
+        } on LoaderErrorReport catch (e) {
+          expect(e.errors.first.code, LoaderErrorCode.outputDirInvalid);
+        }
+      } finally {
+        await tmpDir.delete(recursive: true);
+      }
+    });
+
+    test('data_source with outputDir != data raises E104', () async {
+      final tmpDir = await Directory.systemTemp.createTemp('phase4_outdir_');
+      try {
+        await File(p.join(tmpDir.path, 'x.yaml')).writeAsString('''
+kind: data_source
+outputDir: pubsub
+''');
+        try {
+          loadWrapperOverrides(rootDir: tmpDir.path);
+          fail('expected LoaderErrorReport');
+        } on LoaderErrorReport catch (e) {
+          expect(
+            e.errors.first.code,
+            LoaderErrorCode.outputDirMismatchForDataSource,
+          );
+        }
+      } finally {
+        await tmpDir.delete(recursive: true);
+      }
+    });
+  });
+
+  group('Axis: schemaStubBodyMode', () {
+    test('bare parses', () async {
+      final tmpDir = await Directory.systemTemp.createTemp('phase4_stub_');
+      try {
+        await File(p.join(tmpDir.path, 'x.yaml')).writeAsString('''
+kind: data_source
+outputDir: data
+schemaStubBodyMode: bare
+''');
+        final loaded = loadWrapperOverrides(rootDir: tmpDir.path);
+        expect(
+          loaded.dataSources['x']!.schemaStubBodyMode,
+          SchemaStubBodyMode.bare,
+        );
+      } finally {
+        await tmpDir.delete(recursive: true);
+      }
+    });
+  });
+
+  group('Axis: fileLeadingComment', () {
+    test('block scalar parses with newlines', () async {
+      final tmpDir = await Directory.systemTemp.createTemp('phase4_flc_');
+      try {
+        await File(p.join(tmpDir.path, 'x.yaml')).writeAsString('''
+kind: data_source
+outputDir: data
+fileLeadingComment: |-
+  Operational note line 1.
+  Line 2 explains why.
+''');
+        final loaded = loadWrapperOverrides(rootDir: tmpDir.path);
+        expect(
+          loaded.dataSources['x']!.fileLeadingComment,
+          'Operational note line 1.\nLine 2 explains why.',
+        );
+      } finally {
+        await tmpDir.delete(recursive: true);
+      }
+    });
+  });
+
+  group('Data source axis restriction', () {
+    test('schemaStubComment on data source raises E201', () async {
+      final tmpDir = await Directory.systemTemp.createTemp('phase4_axis_');
+      try {
+        await File(p.join(tmpDir.path, 'x.yaml')).writeAsString('''
+kind: data_source
+outputDir: data
+schemaStubComment: |-
+  // forbidden
+''');
+        try {
+          loadWrapperOverrides(rootDir: tmpDir.path);
+          fail('expected LoaderErrorReport');
+        } on LoaderErrorReport catch (e) {
+          expect(
+            e.errors.first.code,
+            LoaderErrorCode.axisNotAllowedForDataSource,
+          );
+          expect(e.errors.first.message, contains('schemaStubComment'));
+        }
+      } finally {
+        await tmpDir.delete(recursive: true);
+      }
+    });
+
+    test('prelude on data source raises E201', () async {
+      final tmpDir = await Directory.systemTemp.createTemp('phase4_axis_');
+      try {
+        await File(p.join(tmpDir.path, 'x.yaml')).writeAsString('''
+kind: data_source
+outputDir: data
+prelude: |
+  // forbidden prelude
+''');
+        try {
+          loadWrapperOverrides(rootDir: tmpDir.path);
+          fail('expected LoaderErrorReport');
+        } on LoaderErrorReport catch (e) {
+          expect(
+            e.errors.first.code,
+            LoaderErrorCode.axisNotAllowedForDataSource,
+          );
+        }
+      } finally {
+        await tmpDir.delete(recursive: true);
+      }
     });
   });
 }

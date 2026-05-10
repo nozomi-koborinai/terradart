@@ -1,3 +1,4 @@
+outputDir: x
 paramOrder:
   - alpha
   - beta
