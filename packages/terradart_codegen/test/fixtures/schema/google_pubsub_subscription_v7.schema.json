@@ -1,0 +1,1528 @@
+{
+  "format_version": "1.0",
+  "provider_schemas": {
+    "registry.terraform.io/hashicorp/google": {
+      "provider": {
+        "version": 0,
+        "block": {
+          "attributes": {
+            "access_approval_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "access_context_manager_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "access_token": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "active_directory_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "add_terraform_attribution_label": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "alloydb_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "apigee_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "apihub_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "apikeys_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "app_engine_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "apphub_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "artifact_registry_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "assured_workloads_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "backup_dr_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "beyondcorp_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "big_query_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "biglake_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "biglake_iceberg_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "bigquery_analytics_hub_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "bigquery_connection_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "bigquery_data_transfer_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "bigquery_datapolicy_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "bigquery_datapolicyv2_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "bigquery_reservation_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "bigtable_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "billing_budgets_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "billing_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "billing_project": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "binary_authorization_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "blockchain_node_engine_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "certificate_manager_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "ces_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "chronicle_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_asset_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_billing_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_build_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_functions_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_identity_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_ids_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_quotas_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_resource_manager_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_run_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_run_v2_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_scheduler_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_security_compliance_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_tasks_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloudbuildv2_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "clouddeploy_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "clouddomains_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloudfunctions2_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "colab_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "composer_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "compute_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "contact_center_insights_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "container_analysis_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "container_attached_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "container_aws_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "container_azure_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "container_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "core_billing_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "credentials": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "data_catalog_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "data_fusion_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "data_lineage_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "data_loss_prevention_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "data_pipeline_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "database_migration_service_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dataflow_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dataform_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dataplex_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dataproc_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dataproc_gdc_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dataproc_metastore_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "datastream_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "default_labels": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "deployment_manager_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "developer_connect_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dialogflow_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dialogflow_cx_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "discovery_engine_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dns_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "document_ai_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "document_ai_warehouse_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "edgecontainer_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "edgenetwork_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "essential_contacts_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "eventarc_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "filestore_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "firebase_app_check_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "firebase_app_hosting_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "firebase_data_connect_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "firebase_remote_config_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "firebaserules_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "firestore_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "gemini_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "gke_backup_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "gke_hub2_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "gke_hub_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "gkeonprem_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "healthcare_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "hypercomputecluster_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "iam2_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "iam3_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "iam_beta_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "iam_credentials_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "iam_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "iam_workforce_pool_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "iap_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "identity_platform_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "impersonate_service_account": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "impersonate_service_account_delegates": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "integration_connectors_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "integrations_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "kms_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "logging_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "looker_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "lustre_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "managed_kafka_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "memcache_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "memorystore_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "migration_center_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "ml_engine_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "model_armor_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "model_armor_global_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "monitoring_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "netapp_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "network_connectivity_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "network_connectivityv1_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "network_management_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "network_security_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "network_services_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "notebooks_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "observability_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "oracle_database_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "org_policy_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "os_config_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "os_config_v2_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "os_login_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "parallelstore_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "parameter_manager_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "parameter_manager_regional_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "poll_interval": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "prefer_global_endpoints": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "prefer_regional_endpoints": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "privateca_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "privileged_access_manager_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "project": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "public_ca_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "pubsub_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "pubsub_lite_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "recaptcha_enterprise_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "redis_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "region": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "request_reason": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "request_timeout": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "resource_manager3_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "resource_manager_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "resource_manager_v3_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "scopes": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "secret_manager_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "secret_manager_regional_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "secure_source_manager_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "security_center_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "security_center_management_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "security_center_v2_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "securityposture_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "service_directory_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "service_management_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "service_networking_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "service_usage_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "site_verification_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "source_repo_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "spanner_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "sql_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "storage_batch_operations_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "storage_control_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "storage_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "storage_insights_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "storage_transfer_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "tags_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "tags_location_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "terraform_attribution_label_addition_strategy": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "transcoder_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "universe_domain": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "user_project_override": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "vector_search_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "vertex_ai_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "vmwareengine_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "vpc_access_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "workbench_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "workflows_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "workload_identity_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "workstations_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "zone": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "batching": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enable_batching": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "send_after": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "external_credentials": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "audience": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "identity_token": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "service_account_email": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "resource_schemas": {
+        "google_pubsub_subscription": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "ack_deadline_seconds": {
+                "type": "number",
+                "description": "This value is the maximum time after a subscriber receives a message\nbefore the subscriber should acknowledge the message. After message\ndelivery but before the ack deadline expires and before the message is\nacknowledged, it is an outstanding message and will not be delivered\nagain during that time (on a best-effort basis).\n\nFor pull subscriptions, this value is used as the initial value for\nthe ack deadline. To override this value for a given message, call\nsubscriptions.modifyAckDeadline with the corresponding ackId if using\npull. The minimum custom deadline you can specify is 10 seconds. The\nmaximum custom deadline you can specify is 600 seconds (10 minutes).\nIf this parameter is 0, a default value of 10 seconds is used.\n\nFor push delivery, this value is also used to set the request timeout\nfor the call to the push endpoint.\n\nIf the subscriber never acknowledges the message, the Pub/Sub system\nwill eventually redeliver the message.",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "effective_labels": {
+                "type": [
+                  "map",
+                  "string"
+                ],
+                "description": "All of labels (key/value pairs) present on the resource in GCP, including the labels configured through Terraform, other clients and services.",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "enable_exactly_once_delivery": {
+                "type": "bool",
+                "description": "If 'true', Pub/Sub provides the following guarantees for the delivery\nof a message with a given value of messageId on this Subscriptions':\n\n- The message sent to a subscriber is guaranteed not to be resent before the message's acknowledgement deadline expires.\n\n- An acknowledged message will not be resent to a subscriber.\n\nNote that subscribers may still receive multiple copies of a message when 'enable_exactly_once_delivery'\nis true if the message was published multiple times by a publisher client. These copies are considered distinct by Pub/Sub and have distinct messageId values",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "enable_message_ordering": {
+                "type": "bool",
+                "description": "If 'true', messages published with the same orderingKey in PubsubMessage will be delivered to\nthe subscribers in the order in which they are received by the Pub/Sub system. Otherwise, they\nmay be delivered in any order.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "filter": {
+                "type": "string",
+                "description": "The subscription only delivers the messages that match the filter.\nPub/Sub automatically acknowledges the messages that don't match the filter. You can filter messages\nby their attributes. The maximum length of a filter is 256 bytes. After creating the subscription,\nyou can't modify the filter.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "id": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "labels": {
+                "type": [
+                  "map",
+                  "string"
+                ],
+                "description": "A set of key/value label pairs to assign to this Subscription.\n\n\n**Note**: This field is non-authoritative, and will only manage the labels present in your configuration.\nPlease refer to the field 'effective_labels' for all of the labels present on the resource.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "message_retention_duration": {
+                "type": "string",
+                "description": "How long to retain unacknowledged messages in the subscription's\nbacklog, from the moment a message is published. If\nretain_acked_messages is true, then this also configures the retention\nof acknowledged messages, and thus configures how far back in time a\nsubscriptions.seek can be done. Defaults to 7 days. Cannot be more\nthan 31 days ('\"2678400s\"') or less than 10 minutes ('\"600s\"').\n\nA duration in seconds with up to nine fractional digits, terminated\nby 's'. Example: '\"600.5s\"'.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "name": {
+                "type": "string",
+                "description": "Name of the subscription.",
+                "description_kind": "plain",
+                "required": true
+              },
+              "project": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "retain_acked_messages": {
+                "type": "bool",
+                "description": "Indicates whether to retain acknowledged messages. If 'true', then\nmessages are not expunged from the subscription's backlog, even if\nthey are acknowledged, until they fall out of the\nmessageRetentionDuration window.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "tags": {
+                "type": [
+                  "map",
+                  "string"
+                ],
+                "description": "Input only. Resource manager tags to be bound to the subscription. Tag\nkeys and values have the same definition as resource manager tags. Keys\nmust be in the format tagKeys/{tag_key_id}, and values are in the format\ntagValues/456. The field is ignored when empty. The field is immutable and\ncauses resource replacement when mutated. This field is only set at create\ntime and modifying this field after creation will trigger recreation. To\napply tags to an existing resource, see the 'google_tags_tag_value'\nresource.",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "terraform_labels": {
+                "type": [
+                  "map",
+                  "string"
+                ],
+                "description": "The combination of labels configured directly on the resource\n and default labels configured on the provider.",
+                "description_kind": "plain",
+                "computed": true
+              },
+              "topic": {
+                "type": "string",
+                "description": "A reference to a Topic resource, of the form projects/{project}/topics/{{name}}\n(as in the id property of a google_pubsub_topic), or just a topic name if\nthe topic is in the same project as the subscription.",
+                "description_kind": "plain",
+                "required": true
+              }
+            },
+            "block_types": {
+              "bigquery_config": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "drop_unknown_fields": {
+                      "type": "bool",
+                      "description": "When true and use_topic_schema or use_table_schema is true, any fields that are a part of the topic schema or message schema that\nare not part of the BigQuery table schema are dropped when writing to BigQuery. Otherwise, the schemas must be kept in sync\nand any messages with extra fields are not written and remain in the subscription's backlog.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "service_account_email": {
+                      "type": "string",
+                      "description": "The service account to use to write to BigQuery. If not specified, the Pub/Sub\n[service agent](https://cloud.google.com/iam/docs/service-agents),\nservice-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "table": {
+                      "type": "string",
+                      "description": "The name of the table to which to write data, of the form {projectId}.{datasetId}.{tableId}",
+                      "description_kind": "plain",
+                      "required": true
+                    },
+                    "use_table_schema": {
+                      "type": "bool",
+                      "description": "When true, use the BigQuery table's schema as the columns to write to in BigQuery. Messages\nmust be published in JSON format. Only one of use_topic_schema and use_table_schema can be set.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "use_topic_schema": {
+                      "type": "bool",
+                      "description": "When true, use the topic's schema as the columns to write to in BigQuery, if it exists.\nOnly one of use_topic_schema and use_table_schema can be set.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "write_metadata": {
+                      "type": "bool",
+                      "description": "When true, write the subscription name, messageId, publishTime, attributes, and orderingKey to additional columns in the table.\nThe subscription name, messageId, and publishTime fields are put in their own columns while all other message properties (other than data) are written to a JSON object in the attributes column.",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "description": "If delivery to BigQuery is used with this subscription, this field is used to configure it.\nEither pushConfig, bigQueryConfig or cloudStorageConfig can be set, but not combined.\nIf all three are empty, then the subscriber will pull and ack messages using API methods.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "cloud_storage_config": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "bucket": {
+                      "type": "string",
+                      "description": "User-provided name for the Cloud Storage bucket. The bucket must be created by the user. The bucket name must be without any prefix like \"gs://\".",
+                      "description_kind": "plain",
+                      "required": true
+                    },
+                    "filename_datetime_format": {
+                      "type": "string",
+                      "description": "User-provided format string specifying how to represent datetimes in Cloud Storage filenames.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "filename_prefix": {
+                      "type": "string",
+                      "description": "User-provided prefix for Cloud Storage filename.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "filename_suffix": {
+                      "type": "string",
+                      "description": "User-provided suffix for Cloud Storage filename. Must not end in \"/\".",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "max_bytes": {
+                      "type": "number",
+                      "description": "The maximum bytes that can be written to a Cloud Storage file before a new file is created. Min 1 KB, max 10 GiB.\nThe maxBytes limit may be exceeded in cases where messages are larger than the limit.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "max_duration": {
+                      "type": "string",
+                      "description": "The maximum duration that can elapse before a new Cloud Storage file is created. Min 1 minute, max 10 minutes, default 5 minutes.\nMay not exceed the subscription's acknowledgement deadline.\nA duration in seconds with up to nine fractional digits, ending with 's'. Example: \"3.5s\".",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "max_messages": {
+                      "type": "number",
+                      "description": "The maximum messages that can be written to a Cloud Storage file before a new file is created. Min 1000 messages.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "service_account_email": {
+                      "type": "string",
+                      "description": "The service account to use to write to Cloud Storage. If not specified, the Pub/Sub\n[service agent](https://cloud.google.com/iam/docs/service-agents),\nservice-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com, is used.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "state": {
+                      "type": "string",
+                      "description": "An output-only field that indicates whether or not the subscription can receive messages.",
+                      "description_kind": "plain",
+                      "computed": true
+                    }
+                  },
+                  "block_types": {
+                    "avro_config": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "use_topic_schema": {
+                            "type": "bool",
+                            "description": "When true, the output Cloud Storage file will be serialized using the topic schema, if it exists.",
+                            "description_kind": "plain",
+                            "optional": true
+                          },
+                          "write_metadata": {
+                            "type": "bool",
+                            "description": "When true, write the subscription name, messageId, publishTime, attributes, and orderingKey as additional fields in the output.",
+                            "description_kind": "plain",
+                            "optional": true
+                          }
+                        },
+                        "description": "If set, message data will be written to Cloud Storage in Avro format.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    },
+                    "text_config": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "state": {
+                            "type": "string",
+                            "description": "Output only. Placeholder to allow the empty text_config block.",
+                            "description_kind": "plain",
+                            "computed": true
+                          }
+                        },
+                        "description": "If set, message data will be written to Cloud Storage in text format.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    }
+                  },
+                  "description": "If delivery to Cloud Storage is used with this subscription, this field is used to configure it.\nEither pushConfig, bigQueryConfig or cloudStorageConfig can be set, but not combined.\nIf all three are empty, then the subscriber will pull and ack messages using API methods.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "dead_letter_policy": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "dead_letter_topic": {
+                      "type": "string",
+                      "description": "The name of the topic to which dead letter messages should be published.\nFormat is 'projects/{project}/topics/{topic}'.\n\nThe Cloud Pub/Sub service account associated with the enclosing subscription's\nparent project (i.e.,\nservice-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have\npermission to Publish() to this topic.\n\nThe operation will fail if the topic does not exist.\nUsers should ensure that there is a subscription attached to this topic\nsince messages published to a topic with no subscriptions are lost.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "max_delivery_attempts": {
+                      "type": "number",
+                      "description": "The maximum number of delivery attempts for any message. The value must be\nbetween 5 and 100.\n\nThe number of delivery attempts is defined as 1 + (the sum of number of\nNACKs and number of times the acknowledgement deadline has been exceeded for the message).\n\nA NACK is any call to ModifyAckDeadline with a 0 deadline. Note that\nclient libraries may automatically extend ack_deadlines.\n\nThis field will be honored on a best effort basis.\n\nIf this parameter is 0, a default value of 5 is used.",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "description": "A policy that specifies the conditions for dead lettering messages in\nthis subscription. If dead_letter_policy is not set, dead lettering\nis disabled.\n\nThe Cloud Pub/Sub service account associated with this subscription's\nparent project (i.e.,\nservice-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have\npermission to Acknowledge() messages on this subscription.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "expiration_policy": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "ttl": {
+                      "type": "string",
+                      "description": "Specifies the \"time-to-live\" duration for an associated resource. The\nresource expires if it is not active for a period of ttl.\nIf ttl is set to \"\", the associated resource never expires.\nA duration in seconds with up to nine fractional digits, terminated by 's'.\nExample - \"3.5s\".",
+                      "description_kind": "plain",
+                      "required": true
+                    }
+                  },
+                  "description": "A policy that specifies the conditions for this subscription's expiration.\nA subscription is considered active as long as any connected subscriber\nis successfully consuming messages from the subscription or is issuing\noperations on the subscription. If expirationPolicy is not set, a default\npolicy with ttl of 31 days will be used.  If it is set but ttl is \"\", the\nresource never expires.  The minimum allowed value for expirationPolicy.ttl\nis 1 day.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "message_transforms": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "disabled": {
+                      "type": "bool",
+                      "description": "Controls whether or not to use this transform. If not set or 'false',\nthe transform will be applied to messages. Default: 'true'.",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "block_types": {
+                    "ai_inference": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "endpoint": {
+                            "type": "string",
+                            "description": "The endpoint to a Vertex AI model of the form\n'projects/{project}/locations/{location}/endpoints/{endpoint}' or\n'projects/{project}/locations/{location}/publishers/{publisher}/models/{model}'.\nVertex AI API requests will be sent to this endpoint.",
+                            "description_kind": "plain",
+                            "required": true
+                          },
+                          "service_account_email": {
+                            "type": "string",
+                            "description": "The service account to use to make prediction requests against\nendpoints.",
+                            "description_kind": "plain",
+                            "optional": true
+                          }
+                        },
+                        "block_types": {
+                          "unstructured_inference": {
+                            "nesting_mode": "list",
+                            "block": {
+                              "attributes": {
+                                "parameters": {
+                                  "type": [
+                                    "map",
+                                    "string"
+                                  ],
+                                  "description": "A parameters object to be included in each inference request.\nThe parameters object is combined with the data field of the Pub/Sub\nmessage to form the inference request.",
+                                  "description_kind": "plain",
+                                  "optional": true
+                                }
+                              },
+                              "description": "Configuration for making inferences using arbitrary JSON payloads.",
+                              "description_kind": "plain"
+                            },
+                            "max_items": 1
+                          }
+                        },
+                        "description": "AI Inference. Specifies the Vertex AI endpoint that inference\nrequests built from the Pub/Sub message data and provided parameters will\nbe sent to.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    },
+                    "javascript_udf": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "code": {
+                            "type": "string",
+                            "description": "JavaScript code that contains a function 'function_name' with the\nfollowing signature:\n'''\n  /**\n  * Transforms a Pub/Sub message.\n  *\n  * @return {(Object<string, (string | Object<string, string>)>|null)} - To\n  * filter a message, return 'null'. To transform a message return a map\n  * with the following keys:\n  *   - (required) 'data' : {string}\n  *   - (optional) 'attributes' : {Object<string, string>}\n  * Returning empty 'attributes' will remove all attributes from the\n  * message.\n  *\n  * @param  {(Object<string, (string | Object<string, string>)>} Pub/Sub\n  * message. Keys:\n  *   - (required) 'data' : {string}\n  *   - (required) 'attributes' : {Object<string, string>}\n  *\n  * @param  {Object<string, any>} metadata - Pub/Sub message metadata.\n  * Keys:\n  *   - (required) 'message_id'  : {string}\n  *   - (optional) 'publish_time': {string} YYYY-MM-DDTHH:MM:SSZ format\n  *   - (optional) 'ordering_key': {string}\n  */\n  function <function_name>(message, metadata) {\n  }\n'''",
+                            "description_kind": "plain",
+                            "required": true
+                          },
+                          "function_name": {
+                            "type": "string",
+                            "description": "Name of the JavaScript function that should be applied to Pub/Sub messages.",
+                            "description_kind": "plain",
+                            "required": true
+                          }
+                        },
+                        "description": "Javascript User Defined Function. If multiple Javascript UDFs are specified on a resource,\neach one must have a unique 'function_name'.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    }
+                  },
+                  "description": "Transforms to be applied to messages published to the topic. Transforms are applied in the\norder specified.",
+                  "description_kind": "plain"
+                }
+              },
+              "push_config": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "attributes": {
+                      "type": [
+                        "map",
+                        "string"
+                      ],
+                      "description": "Endpoint configuration attributes.\n\nEvery endpoint has a set of API supported attributes that can\nbe used to control different aspects of the message delivery.\n\nThe currently supported attribute is x-goog-version, which you\ncan use to change the format of the pushed message. This\nattribute indicates the version of the data expected by\nthe endpoint. This controls the shape of the pushed message\n(i.e., its fields and metadata). The endpoint version is\nbased on the version of the Pub/Sub API.\n\nIf not present during the subscriptions.create call,\nit will default to the version of the API used to make\nsuch call. If not present during a subscriptions.modifyPushConfig\ncall, its value will not be changed. subscriptions.get\ncalls will always return a valid version, even if the\nsubscription was created without this attribute.\n\nThe possible values for this attribute are:\n\n- v1beta1: uses the push format defined in the v1beta1 Pub/Sub API.\n- v1 or v1beta2: uses the push format defined in the v1 Pub/Sub API.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "push_endpoint": {
+                      "type": "string",
+                      "description": "A URL locating the endpoint to which messages should be pushed.\nFor example, a Webhook endpoint might use\n\"https://example.com/push\".",
+                      "description_kind": "plain",
+                      "required": true
+                    }
+                  },
+                  "block_types": {
+                    "no_wrapper": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "write_metadata": {
+                            "type": "bool",
+                            "description": "When true, writes the Pub/Sub message metadata to\n'x-goog-pubsub-<KEY>:<VAL>' headers of the HTTP request. Writes the\nPub/Sub message attributes to '<KEY>:<VAL>' headers of the HTTP request.",
+                            "description_kind": "plain",
+                            "required": true
+                          }
+                        },
+                        "description": "When set, the payload to the push endpoint is not wrapped.Sets the\n'data' field as the HTTP body for delivery.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    },
+                    "oidc_token": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "audience": {
+                            "type": "string",
+                            "description": "Audience to be used when generating OIDC token. The audience claim\nidentifies the recipients that the JWT is intended for. The audience\nvalue is a single case-sensitive string. Having multiple values (array)\nfor the audience field is not supported. More info about the OIDC JWT\ntoken audience here: https://tools.ietf.org/html/rfc7519#section-4.1.3\nNote: if not specified, the Push endpoint URL will be used.",
+                            "description_kind": "plain",
+                            "optional": true
+                          },
+                          "service_account_email": {
+                            "type": "string",
+                            "description": "Service account email to be used for generating the OIDC token.\nThe caller (for subscriptions.create, subscriptions.patch, and\nsubscriptions.modifyPushConfig RPCs) must have the\niam.serviceAccounts.actAs permission for the service account.",
+                            "description_kind": "plain",
+                            "required": true
+                          }
+                        },
+                        "description": "If specified, Pub/Sub will generate and attach an OIDC JWT token as\nan Authorization header in the HTTP request for every pushed message.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    }
+                  },
+                  "description": "If push delivery is used with this subscription, this field is used to\nconfigure it. An empty pushConfig signifies that the subscriber will\npull and ack messages using API methods.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "retry_policy": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "maximum_backoff": {
+                      "type": "string",
+                      "description": "The maximum delay between consecutive deliveries of a given message. Value should be between 0 and 600 seconds. Defaults to 600 seconds.\nA duration in seconds with up to nine fractional digits, terminated by 's'. Example: \"3.5s\".",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    },
+                    "minimum_backoff": {
+                      "type": "string",
+                      "description": "The minimum delay between consecutive deliveries of a given message. Value should be between 0 and 600 seconds. Defaults to 10 seconds.\nA duration in seconds with up to nine fractional digits, terminated by 's'. Example: \"3.5s\".",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    }
+                  },
+                  "description": "A policy that specifies how Pub/Sub retries message delivery for this subscription.\n\nIf not set, the default retry policy is applied. This generally implies that messages will be retried as soon as possible for healthy subscribers.\nRetryPolicy will be triggered on NACKs or acknowledgement deadline exceeded events for a given message",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "timeouts": {
+                "nesting_mode": "single",
+                "block": {
+                  "attributes": {
+                    "create": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "delete": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "update": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "description_kind": "plain"
+                }
+              }
+            },
+            "description_kind": "plain"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1402 @@
+{
+  "format_version": "1.0",
+  "provider_schemas": {
+    "registry.terraform.io/hashicorp/google": {
+      "provider": {
+        "version": 0,
+        "block": {
+          "attributes": {
+            "access_approval_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "access_context_manager_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "access_token": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "active_directory_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "add_terraform_attribution_label": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "alloydb_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "apigee_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "apihub_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "apikeys_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "app_engine_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "apphub_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "artifact_registry_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "assured_workloads_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "backup_dr_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "beyondcorp_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "big_query_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "biglake_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "biglake_iceberg_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "bigquery_analytics_hub_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "bigquery_connection_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "bigquery_data_transfer_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "bigquery_datapolicy_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "bigquery_datapolicyv2_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "bigquery_reservation_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "bigtable_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "billing_budgets_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "billing_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "billing_project": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "binary_authorization_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "blockchain_node_engine_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "certificate_manager_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "ces_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "chronicle_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_asset_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_billing_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_build_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_functions_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_identity_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_ids_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_quotas_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_resource_manager_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_run_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_run_v2_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_scheduler_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_security_compliance_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloud_tasks_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloudbuildv2_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "clouddeploy_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "clouddomains_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "cloudfunctions2_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "colab_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "composer_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "compute_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "contact_center_insights_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "container_analysis_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "container_attached_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "container_aws_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "container_azure_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "container_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "core_billing_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "credentials": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "data_catalog_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "data_fusion_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "data_lineage_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "data_loss_prevention_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "data_pipeline_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "database_migration_service_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dataflow_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dataform_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dataplex_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dataproc_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dataproc_gdc_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dataproc_metastore_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "datastream_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "default_labels": {
+              "type": [
+                "map",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "deployment_manager_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "developer_connect_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dialogflow_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dialogflow_cx_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "discovery_engine_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "dns_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "document_ai_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "document_ai_warehouse_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "edgecontainer_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "edgenetwork_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "essential_contacts_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "eventarc_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "filestore_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "firebase_app_check_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "firebase_app_hosting_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "firebase_data_connect_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "firebase_remote_config_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "firebaserules_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "firestore_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "gemini_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "gke_backup_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "gke_hub2_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "gke_hub_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "gkeonprem_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "healthcare_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "hypercomputecluster_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "iam2_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "iam3_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "iam_beta_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "iam_credentials_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "iam_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "iam_workforce_pool_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "iap_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "identity_platform_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "impersonate_service_account": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "impersonate_service_account_delegates": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "integration_connectors_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "integrations_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "kms_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "logging_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "looker_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "lustre_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "managed_kafka_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "memcache_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "memorystore_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "migration_center_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "ml_engine_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "model_armor_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "model_armor_global_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "monitoring_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "netapp_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "network_connectivity_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "network_connectivityv1_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "network_management_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "network_security_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "network_services_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "notebooks_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "observability_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "oracle_database_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "org_policy_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "os_config_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "os_config_v2_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "os_login_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "parallelstore_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "parameter_manager_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "parameter_manager_regional_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "poll_interval": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "prefer_global_endpoints": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "prefer_regional_endpoints": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "privateca_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "privileged_access_manager_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "project": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "public_ca_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "pubsub_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "pubsub_lite_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "recaptcha_enterprise_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "redis_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "region": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "request_reason": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "request_timeout": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "resource_manager3_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "resource_manager_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "resource_manager_v3_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "scopes": {
+              "type": [
+                "list",
+                "string"
+              ],
+              "description_kind": "plain",
+              "optional": true
+            },
+            "secret_manager_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "secret_manager_regional_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "secure_source_manager_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "security_center_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "security_center_management_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "security_center_v2_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "securityposture_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "service_directory_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "service_management_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "service_networking_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "service_usage_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "site_verification_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "source_repo_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "spanner_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "sql_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "storage_batch_operations_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "storage_control_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "storage_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "storage_insights_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "storage_transfer_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "tags_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "tags_location_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "terraform_attribution_label_addition_strategy": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "transcoder_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "universe_domain": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "user_project_override": {
+              "type": "bool",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "vector_search_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "vertex_ai_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "vmwareengine_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "vpc_access_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "workbench_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "workflows_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "workload_identity_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "workstations_custom_endpoint": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            },
+            "zone": {
+              "type": "string",
+              "description_kind": "plain",
+              "optional": true
+            }
+          },
+          "block_types": {
+            "batching": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "enable_batching": {
+                    "type": "bool",
+                    "description_kind": "plain",
+                    "optional": true
+                  },
+                  "send_after": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "optional": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            },
+            "external_credentials": {
+              "nesting_mode": "list",
+              "block": {
+                "attributes": {
+                  "audience": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "identity_token": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  },
+                  "service_account_email": {
+                    "type": "string",
+                    "description_kind": "plain",
+                    "required": true
+                  }
+                },
+                "description_kind": "plain"
+              }
+            }
+          },
+          "description_kind": "plain"
+        }
+      },
+      "resource_schemas": {
+        "google_cloud_tasks_queue": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "desired_state": {
+                "type": "string",
+                "description": "The desired state of the queue. Use this to pause and resume the queue.\n\n* RUNNING: The queue is running. Tasks can be dispatched.\n* PAUSED: The queue is paused. Tasks are not dispatched but can be added to the queue. Default value: \"RUNNING\" Possible values: [\"RUNNING\", \"PAUSED\"]",
+                "description_kind": "plain",
+                "optional": true
+              },
+              "id": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "location": {
+                "type": "string",
+                "description": "The location of the queue",
+                "description_kind": "plain",
+                "required": true
+              },
+              "name": {
+                "type": "string",
+                "description": "The queue name.",
+                "description_kind": "plain",
+                "required": true
+              },
+              "project": {
+                "type": "string",
+                "description_kind": "plain",
+                "optional": true,
+                "computed": true
+              },
+              "state": {
+                "type": "string",
+                "description": "The current state of the queue.",
+                "description_kind": "plain",
+                "computed": true
+              }
+            },
+            "block_types": {
+              "app_engine_routing_override": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "host": {
+                      "type": "string",
+                      "description": "The host that the task is sent to.",
+                      "description_kind": "plain",
+                      "computed": true
+                    },
+                    "instance": {
+                      "type": "string",
+                      "description": "App instance.\n\nBy default, the task is sent to an instance which is available when the task is attempted.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "service": {
+                      "type": "string",
+                      "description": "App service.\n\nBy default, the task is sent to the service which is the default service when the task is attempted.",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "version": {
+                      "type": "string",
+                      "description": "App version.\n\nBy default, the task is sent to the version which is the default version when the task is attempted.",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "description": "Overrides for task-level appEngineRouting. These settings apply only\nto App Engine tasks in this queue",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "http_target": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "http_method": {
+                      "type": "string",
+                      "description": "The HTTP method to use for the request.\n\nWhen specified, it overrides HttpRequest for the task.\nNote that if the value is set to GET the body of the task will be ignored at execution time. Possible values: [\"HTTP_METHOD_UNSPECIFIED\", \"POST\", \"GET\", \"HEAD\", \"PUT\", \"DELETE\", \"PATCH\", \"OPTIONS\"]",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    }
+                  },
+                  "block_types": {
+                    "header_overrides": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "block_types": {
+                          "header": {
+                            "nesting_mode": "list",
+                            "block": {
+                              "attributes": {
+                                "key": {
+                                  "type": "string",
+                                  "description": "The Key of the header.",
+                                  "description_kind": "plain",
+                                  "required": true
+                                },
+                                "value": {
+                                  "type": "string",
+                                  "description": "The Value of the header.",
+                                  "description_kind": "plain",
+                                  "required": true
+                                }
+                              },
+                              "description": "Header embodying a key and a value.",
+                              "description_kind": "plain"
+                            },
+                            "min_items": 1,
+                            "max_items": 1
+                          }
+                        },
+                        "description": "HTTP target headers.\n\nThis map contains the header field names and values.\nHeaders will be set when running the CreateTask and/or BufferTask.\n\nThese headers represent a subset of the headers that will be configured for the task's HTTP request.\nSome HTTP request headers will be ignored or replaced.\n\nHeaders which can have multiple values (according to RFC2616) can be specified using comma-separated values.\n\nThe size of the headers must be less than 80KB. Queue-level headers to override headers of all the tasks in the queue.",
+                        "description_kind": "plain"
+                      }
+                    },
+                    "oauth_token": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "scope": {
+                            "type": "string",
+                            "description": "OAuth scope to be used for generating OAuth access token.\nIf not specified, \"https://www.googleapis.com/auth/cloud-platform\" will be used.",
+                            "description_kind": "plain",
+                            "optional": true,
+                            "computed": true
+                          },
+                          "service_account_email": {
+                            "type": "string",
+                            "description": "Service account email to be used for generating OAuth token.\nThe service account must be within the same project as the queue.\nThe caller must have iam.serviceAccounts.actAs permission for the service account.",
+                            "description_kind": "plain",
+                            "required": true
+                          }
+                        },
+                        "description": "If specified, an OAuth token is generated and attached as the Authorization header in the HTTP request.\n\nThis type of authorization should generally be used only when calling Google APIs hosted on *.googleapis.com.\nNote that both the service account email and the scope MUST be specified when using the queue-level authorization override.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    },
+                    "oidc_token": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "audience": {
+                            "type": "string",
+                            "description": "Audience to be used when generating OIDC token. If not specified, the URI specified in target will be used.",
+                            "description_kind": "plain",
+                            "optional": true,
+                            "computed": true
+                          },
+                          "service_account_email": {
+                            "type": "string",
+                            "description": "Service account email to be used for generating OIDC token.\nThe service account must be within the same project as the queue.\nThe caller must have iam.serviceAccounts.actAs permission for the service account.",
+                            "description_kind": "plain",
+                            "required": true
+                          }
+                        },
+                        "description": "If specified, an OIDC token is generated and attached as an Authorization header in the HTTP request.\n\nThis type of authorization can be used for many scenarios, including calling Cloud Run, or endpoints where you intend to validate the token yourself.\nNote that both the service account email and the audience MUST be specified when using the queue-level authorization override.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    },
+                    "uri_override": {
+                      "nesting_mode": "list",
+                      "block": {
+                        "attributes": {
+                          "host": {
+                            "type": "string",
+                            "description": "Host override.\n\nWhen specified, replaces the host part of the task URL.\nFor example, if the task URL is \"https://www.google.com\", and host value\nis set to \"example.net\", the overridden URI will be changed to \"https://example.net\".\nHost value cannot be an empty string (INVALID_ARGUMENT).",
+                            "description_kind": "plain",
+                            "optional": true
+                          },
+                          "port": {
+                            "type": "string",
+                            "description": "Port override.\n\nWhen specified, replaces the port part of the task URI.\nFor instance, for a URI http://www.google.com/foo and port=123, the overridden URI becomes http://www.google.com:123/foo.\nNote that the port value must be a positive integer.\nSetting the port to 0 (Zero) clears the URI port.",
+                            "description_kind": "plain",
+                            "optional": true
+                          },
+                          "scheme": {
+                            "type": "string",
+                            "description": "Scheme override.\n\nWhen specified, the task URI scheme is replaced by the provided value (HTTP or HTTPS). Possible values: [\"HTTP\", \"HTTPS\"]",
+                            "description_kind": "plain",
+                            "optional": true,
+                            "computed": true
+                          },
+                          "uri_override_enforce_mode": {
+                            "type": "string",
+                            "description": "URI Override Enforce Mode\n\nWhen specified, determines the Target UriOverride mode. If not specified, it defaults to ALWAYS. Possible values: [\"ALWAYS\", \"IF_NOT_EXISTS\"]",
+                            "description_kind": "plain",
+                            "optional": true,
+                            "computed": true
+                          }
+                        },
+                        "block_types": {
+                          "path_override": {
+                            "nesting_mode": "list",
+                            "block": {
+                              "attributes": {
+                                "path": {
+                                  "type": "string",
+                                  "description": "The URI path (e.g., /users/1234). Default is an empty string.",
+                                  "description_kind": "plain",
+                                  "optional": true,
+                                  "computed": true
+                                }
+                              },
+                              "description": "URI path.\n\nWhen specified, replaces the existing path of the task URL.\nSetting the path value to an empty string clears the URI path segment.",
+                              "description_kind": "plain"
+                            },
+                            "max_items": 1
+                          },
+                          "query_override": {
+                            "nesting_mode": "list",
+                            "block": {
+                              "attributes": {
+                                "query_params": {
+                                  "type": "string",
+                                  "description": "The query parameters (e.g., qparam1=123&qparam2=456). Default is an empty string.",
+                                  "description_kind": "plain",
+                                  "optional": true,
+                                  "computed": true
+                                }
+                              },
+                              "description": "URI query.\n\nWhen specified, replaces the query part of the task URI. Setting the query value to an empty string clears the URI query segment.",
+                              "description_kind": "plain"
+                            },
+                            "max_items": 1
+                          }
+                        },
+                        "description": "URI override.\n\nWhen specified, overrides the execution URI for all the tasks in the queue.",
+                        "description_kind": "plain"
+                      },
+                      "max_items": 1
+                    }
+                  },
+                  "description": "Modifies HTTP target for HTTP tasks.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "rate_limits": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "max_burst_size": {
+                      "type": "number",
+                      "description": "The max burst size.\n\nMax burst size limits how fast tasks in queue are processed when many tasks are\nin the queue and the rate is high. This field allows the queue to have a high\nrate so processing starts shortly after a task is enqueued, but still limits\nresource usage when many tasks are enqueued in a short period of time.",
+                      "description_kind": "plain",
+                      "computed": true
+                    },
+                    "max_concurrent_dispatches": {
+                      "type": "number",
+                      "description": "The maximum number of concurrent tasks that Cloud Tasks allows to\nbe dispatched for this queue. After this threshold has been\nreached, Cloud Tasks stops dispatching tasks until the number of\nconcurrent requests decreases.",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    },
+                    "max_dispatches_per_second": {
+                      "type": "number",
+                      "description": "The maximum rate at which tasks are dispatched from this queue.\n\nIf unspecified when the queue is created, Cloud Tasks will pick the default.",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    }
+                  },
+                  "description": "Rate limits for task dispatches.\n\nThe queue's actual dispatch rate is the result of:\n\n* Number of tasks in the queue\n* User-specified throttling: rateLimits, retryConfig, and the queue's state.\n* System throttling due to 429 (Too Many Requests) or 503 (Service\n  Unavailable) responses from the worker, high error rates, or to\n  smooth sudden large traffic spikes.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "retry_config": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "max_attempts": {
+                      "type": "number",
+                      "description": "Number of attempts per task.\n\nCloud Tasks will attempt the task maxAttempts times (that is, if\nthe first attempt fails, then there will be maxAttempts - 1\nretries). Must be >= -1.\n\nIf unspecified when the queue is created, Cloud Tasks will pick\nthe default.\n\n-1 indicates unlimited attempts.",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    },
+                    "max_backoff": {
+                      "type": "string",
+                      "description": "A task will be scheduled for retry between minBackoff and\nmaxBackoff duration after it fails, if the queue's RetryConfig\nspecifies that the task should be retried.",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    },
+                    "max_doublings": {
+                      "type": "number",
+                      "description": "The time between retries will double maxDoublings times.\n\nA task's retry interval starts at minBackoff, then doubles maxDoublings times,\nthen increases linearly, and finally retries retries at intervals of maxBackoff\nup to maxAttempts times.",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    },
+                    "max_retry_duration": {
+                      "type": "string",
+                      "description": "If positive, maxRetryDuration specifies the time limit for\nretrying a failed task, measured from when the task was first\nattempted. Once maxRetryDuration time has passed and the task has\nbeen attempted maxAttempts times, no further attempts will be\nmade and the task will be deleted.\n\nIf zero, then the task age is unlimited.",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    },
+                    "min_backoff": {
+                      "type": "string",
+                      "description": "A task will be scheduled for retry between minBackoff and\nmaxBackoff duration after it fails, if the queue's RetryConfig\nspecifies that the task should be retried.",
+                      "description_kind": "plain",
+                      "optional": true,
+                      "computed": true
+                    }
+                  },
+                  "description": "Settings that determine the retry behavior.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "stackdriver_logging_config": {
+                "nesting_mode": "list",
+                "block": {
+                  "attributes": {
+                    "sampling_ratio": {
+                      "type": "number",
+                      "description": "Specifies the fraction of operations to write to Stackdriver Logging.\nThis field may contain any value between 0.0 and 1.0, inclusive. 0.0 is the\ndefault and means that no operations are logged.",
+                      "description_kind": "plain",
+                      "required": true
+                    }
+                  },
+                  "description": "Configuration options for writing logs to Stackdriver Logging.",
+                  "description_kind": "plain"
+                },
+                "max_items": 1
+              },
+              "timeouts": {
+                "nesting_mode": "single",
+                "block": {
+                  "attributes": {
+                    "create": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "delete": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    },
+                    "update": {
+                      "type": "string",
+                      "description_kind": "plain",
+                      "optional": true
+                    }
+                  },
+                  "description_kind": "plain"
+                }
+              }
+            },
+            "description_kind": "plain"
+          }
+        }
+      }
+    }
+  }
+}

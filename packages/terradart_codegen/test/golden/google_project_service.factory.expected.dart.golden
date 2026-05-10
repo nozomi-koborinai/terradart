@@ -1,0 +1,95 @@
+import 'package:terradart_core/terradart_core.dart';
+
+import 'package:terradart_google/src/generated/google_project_service.schema.dart'
+    show $GoogleProjectService, googleProjectServiceSensitive;
+
+// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
+// consumed by `ResourceRef<S>.placeholder` (a future surface). We
+// keep this stub inline. `noSuchMethod` satisfies the abstract field
+// getters; they are never invoked in v0.0.x.
+class _GoogleProjectServiceSchemaInstance implements $GoogleProjectService {
+  const _GoogleProjectServiceSchemaInstance();
+
+  @override
+  // ignore: non_constant_identifier_names
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
+/// Factory wrapper for `google_project_service`
+/// (provider `hashicorp/google ~> 7.0`).
+///
+/// Enables a single Google Cloud API on a project. Each Tier 1 GCP API
+/// (Pub/Sub, Cloud Tasks, Secret Manager, Cloud Scheduler, …) requires its
+/// matching `google_project_service` resource to be enabled before its
+/// resources can be created — typically wired as an explicit `dependsOn`
+/// so Terraform applies the API enablement first.
+///
+/// Required identity:
+/// - [localName]: Terraform local name (the address segment after
+///   `google_project_service.`).
+/// - `service`: API endpoint name, e.g. `pubsub.googleapis.com`.
+///   Pass `TfArg.literal('pubsub.googleapis.com')`.
+///
+/// Optional knobs:
+/// - `project`: explicit project ID; defaults to the provider's `project`
+///   when omitted.
+/// - `disableOnDestroy`: when `false`, leaves the API enabled if the
+///   resource is destroyed. **Recommended `false` for personal/shared
+///   projects** — disabling APIs that other resources outside Terraform's
+///   knowledge depend on can break unrelated workloads.
+/// - `disableDependentServices`: when `true`, also disables any APIs that
+///   depend on this one. Default `false`.
+///
+/// Example pairing with [GooglePubsubTopic]:
+/// ```dart
+/// final pubsubApi = GoogleProjectService(
+///   localName: 'pubsub',
+///   service: TfArg.literal('pubsub.googleapis.com'),
+///   disableOnDestroy: TfArg.literal(false),
+/// );
+///
+/// final orders = GooglePubsubTopic(
+///   localName: 'orders',
+///   name: TfArg.literal('orders-prod'),
+///   dependsOn: [pubsubApi],
+/// );
+/// ```
+///
+/// Composition pattern: extends `Resource<$GoogleProjectService>` for
+/// runtime behavior, implements `$GoogleProjectService` for the schemantic
+/// schema surface. `argMap` stores `TfArg<dynamic>?` entries directly;
+/// synth's JSON-encoding pass walks them and calls `arg.toTfJson()` to
+/// encode at write time.
+final class GoogleProjectService extends Resource<$GoogleProjectService> {
+  // ignore: constant_identifier_names
+  static const String $tfType = 'google_project_service';
+
+  GoogleProjectService({
+    required super.localName,
+    required TfArg<String> service,
+    TfArg<String>? project,
+    TfArg<bool>? disableOnDestroy,
+    TfArg<bool>? disableDependentServices,
+    super.lifecycle,
+    super.dependsOn,
+  }) : super(
+         terraformType: $tfType,
+         schema: const _GoogleProjectServiceSchemaInstance(),
+         argMap: {
+           'service': service,
+           if (project != null) 'project': project,
+           if (disableOnDestroy != null) 'disable_on_destroy': disableOnDestroy,
+           if (disableDependentServices != null)
+             'disable_dependent_services': disableDependentServices,
+         },
+       );
+
+  @override
+  // ignore: non_constant_identifier_names
+  Set<String> get $sensitiveFields => googleProjectServiceSensitive;
+
+  /// Reference to `id` attribute (full path `[project]/services/[service]`).
+  /// Use this when another resource needs to reference the enablement, e.g.
+  /// as a dependency interpolation target.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+}
