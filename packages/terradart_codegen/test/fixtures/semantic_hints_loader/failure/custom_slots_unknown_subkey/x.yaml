@@ -1,0 +1,5 @@
+customSlots:
+  target:
+    paramDeclaration: 'required X target'
+    argMapEntry: 'target: foo,'
+    extra: 'nope'

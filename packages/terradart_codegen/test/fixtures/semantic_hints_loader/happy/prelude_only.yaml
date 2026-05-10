@@ -1,0 +1,4 @@
+prelude: |
+  sealed class Foo {
+    const Foo();
+  }

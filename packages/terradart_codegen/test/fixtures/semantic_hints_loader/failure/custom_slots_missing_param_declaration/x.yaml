@@ -1,0 +1,3 @@
+customSlots:
+  target:
+    argMapEntry: 'target: foo,'

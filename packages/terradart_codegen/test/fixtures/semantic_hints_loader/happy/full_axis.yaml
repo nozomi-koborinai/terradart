@@ -1,0 +1,26 @@
+classDocComment: |-
+  /// Doc.
+paramOrder:
+  - x
+  - y
+argMapOrder:
+  - y
+  - x
+extraGetters: |
+    TfRef<String> get foo => TfRef.attribute<String>(this, 'foo');
+schemaStubComment: |-
+  // stub.
+requiredParams:
+  - x
+dartTypeOverrides:
+  x: int
+deprecatedParams:
+  y: 'use z'
+extraImports:
+  - "import 'package:meta/meta.dart';"
+prelude: |
+  sealed class Bar {}
+customSlots:
+  s:
+    paramDeclaration: 'required Bar b'
+    argMapEntry: 's: TfArg.literal(b.encode()),'

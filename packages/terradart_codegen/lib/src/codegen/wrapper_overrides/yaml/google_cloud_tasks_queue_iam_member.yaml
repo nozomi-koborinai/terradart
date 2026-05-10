@@ -1,0 +1,21 @@
+classDocComment: |-
+  /// Factory wrapper for `google_cloud_tasks_queue_iam_member`.
+  ///
+  /// Identity: `name` + `location` + `role` + `member` (project optional).
+
+paramOrder:
+  - name
+  - location
+  - role
+  - member
+  - condition
+  - project
+
+extraGetters: |2
+    TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+# The hand-written wrapper treats `location` as identity (required), but
+# Terraform's v7 schema marks it `optional + computed`. requiredParams
+# forces the constructor / argMap to use the hand-written shape.
+requiredParams:
+  - location

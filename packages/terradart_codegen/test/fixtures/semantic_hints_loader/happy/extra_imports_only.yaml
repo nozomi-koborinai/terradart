@@ -1,0 +1,2 @@
+extraImports:
+  - "import 'package:meta/meta.dart';"

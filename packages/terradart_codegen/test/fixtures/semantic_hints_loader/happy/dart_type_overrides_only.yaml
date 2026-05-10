@@ -1,0 +1,3 @@
+dartTypeOverrides:
+  ack_deadline_seconds: int
+  count: int

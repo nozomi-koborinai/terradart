@@ -1,0 +1,279 @@
+classDocComment: |-
+  /// Factory wrapper for `google_cloud_scheduler_job`.
+  ///
+  /// `region` is treated as Required for ergonomic clarity in v0.0.x, even
+  /// though the underlying provider attribute is technically Optional (it
+  /// falls back to the provider default). This avoids subtle issues where a
+  /// stack pinned to one region quietly schedules jobs in another.
+  ///
+  /// Choose exactly one [SchedulerTarget]:
+  /// - [PubsubTarget] — note `topicName` MUST use `topic.id` (full path).
+  /// - [HttpTarget] — generic HTTP webhook.
+  /// - [AppEngineHttpTarget] — App Engine routing.
+  ///
+  /// ```dart
+  /// final orders = GooglePubsubTopic(
+  ///   localName: 'orders',
+  ///   name: TfArg.literal('orders'),
+  /// );
+  /// final job = GoogleCloudSchedulerJob(
+  ///   localName: 'nightly',
+  ///   name: TfArg.literal('nightly'),
+  ///   region: TfArg.literal('us-central1'),
+  ///   schedule: TfArg.literal('0 0 * * *'),
+  ///   target: PubsubTarget(
+  ///     // Correct: topic.id resolves to the full projects/.../topics/... path.
+  ///     topicName: TfArg.ref(orders.id),
+  ///   ),
+  /// );
+  /// ```
+
+# Slot order chosen to mirror the hand-written constructor's intent:
+# identity (name, region) first, then the virtual `target` slot
+# (sealed SchedulerTarget) at position 3, then the optional-payload
+# slots in hand-written order, then `retry_config` (helper-typed) and
+# `project`. The IR's three nested-block target slots
+# (`pubsub_target`, `http_target`, `app_engine_http_target`) are
+# intentionally omitted — they fan out into the single virtual
+# `target` customSlot and the emitter silently skips IR slots not
+# listed here.
+paramOrder:
+  - name
+  - region
+  - target
+  - description
+  - schedule
+  - time_zone
+  - paused
+  - attempt_deadline
+  - retry_config
+  - project
+
+# argMap places `target` at the END (after `project`) because its key
+# is dynamic (`target.blockKey`) — hand-written keeps static-keyed
+# entries above the dynamic-keyed one for readability. Every other
+# slot keeps its paramOrder position.
+argMapOrder:
+  - name
+  - region
+  - description
+  - schedule
+  - time_zone
+  - paused
+  - attempt_deadline
+  - retry_config
+  - project
+  - target
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+prelude: |
+  // ===========================================================================
+  // SchedulerTarget — sealed (Pubsub | Http | AppEngineHttp)
+  // ===========================================================================
+
+  /// Choice of scheduler target. Sealed to make the trichotomy exhaustive at
+  /// the type level.
+  sealed class SchedulerTarget {
+    const SchedulerTarget();
+
+    /// argMap key under which this target is emitted (e.g. `pubsub_target`).
+    String get blockKey;
+
+    Map<String, Object?> encode();
+  }
+
+  /// `pubsub_target` block. Use [topicName] = `TfArg.ref(topic.id)` so the
+  /// value resolves to the full `projects/{project}/topics/{name}` path
+  /// — `topic.nameRef` (just the bare name) is **not** sufficient.
+  @immutable
+  final class PubsubTarget extends SchedulerTarget {
+    const PubsubTarget({required this.topicName, this.data, this.attributes});
+
+    /// **Important:** Pub/Sub Scheduler expects the *full resource path*
+    /// `projects/{project}/topics/{topic}`. Pass `TfArg.ref(topic.id)` —
+    /// **not** `topic.nameRef`. See `topic.id` getter on
+    /// [GooglePubsubTopic] (the runtime exposes `id` for exactly this case).
+    final TfArg<String> topicName;
+    final TfArg<String>? data;
+    final TfArg<Map<String, String>>? attributes;
+
+    @override
+    String get blockKey => 'pubsub_target';
+
+    @override
+    Map<String, Object?> encode() => {
+      'topic_name': topicName.toTfJson(),
+      if (data != null) 'data': data!.toTfJson(),
+      if (attributes != null) 'attributes': attributes!.toTfJson(),
+    };
+  }
+
+  /// Generic webhook `http_target` block.
+  @immutable
+  final class HttpTarget extends SchedulerTarget {
+    const HttpTarget({
+      required this.uri,
+      this.httpMethod,
+      this.body,
+      this.headers,
+      this.oauthToken,
+      this.oidcToken,
+    });
+
+    final TfArg<String> uri;
+    final TfArg<String>? httpMethod;
+    final TfArg<String>? body;
+    final TfArg<Map<String, String>>? headers;
+    final HttpOauthToken? oauthToken;
+    final HttpOidcToken? oidcToken;
+
+    @override
+    String get blockKey => 'http_target';
+
+    @override
+    Map<String, Object?> encode() => {
+      'uri': uri.toTfJson(),
+      if (httpMethod != null) 'http_method': httpMethod!.toTfJson(),
+      if (body != null) 'body': body!.toTfJson(),
+      if (headers != null) 'headers': headers!.toTfJson(),
+      if (oauthToken != null) 'oauth_token': oauthToken!.encode(),
+      if (oidcToken != null) 'oidc_token': oidcToken!.encode(),
+    };
+  }
+
+  /// `app_engine_http_target` block — App Engine routing variant.
+  @immutable
+  final class AppEngineHttpTarget extends SchedulerTarget {
+    const AppEngineHttpTarget({
+      required this.relativeUri,
+      this.httpMethod,
+      this.body,
+      this.headers,
+      this.appEngineRouting,
+    });
+
+    final TfArg<String> relativeUri;
+    final TfArg<String>? httpMethod;
+    final TfArg<String>? body;
+    final TfArg<Map<String, String>>? headers;
+    final AppEngineRouting? appEngineRouting;
+
+    @override
+    String get blockKey => 'app_engine_http_target';
+
+    @override
+    Map<String, Object?> encode() => {
+      'relative_uri': relativeUri.toTfJson(),
+      if (httpMethod != null) 'http_method': httpMethod!.toTfJson(),
+      if (body != null) 'body': body!.toTfJson(),
+      if (headers != null) 'headers': headers!.toTfJson(),
+      if (appEngineRouting != null)
+        'app_engine_routing': appEngineRouting!.encode(),
+    };
+  }
+
+  /// OAuth token for [HttpTarget].
+  @immutable
+  class HttpOauthToken {
+    const HttpOauthToken({required this.serviceAccountEmail, this.scope});
+
+    final TfArg<String> serviceAccountEmail;
+    final TfArg<String>? scope;
+
+    Map<String, Object?> encode() => {
+      'service_account_email': serviceAccountEmail.toTfJson(),
+      if (scope != null) 'scope': scope!.toTfJson(),
+    };
+  }
+
+  /// OIDC token for [HttpTarget].
+  @immutable
+  class HttpOidcToken {
+    const HttpOidcToken({required this.serviceAccountEmail, this.audience});
+
+    final TfArg<String> serviceAccountEmail;
+    final TfArg<String>? audience;
+
+    Map<String, Object?> encode() => {
+      'service_account_email': serviceAccountEmail.toTfJson(),
+      if (audience != null) 'audience': audience!.toTfJson(),
+    };
+  }
+
+  /// `app_engine_routing` block under [AppEngineHttpTarget].
+  @immutable
+  class AppEngineRouting {
+    const AppEngineRouting({this.service, this.version, this.instance});
+
+    final TfArg<String>? service;
+    final TfArg<String>? version;
+    final TfArg<String>? instance;
+
+    Map<String, Object?> encode() => {
+      if (service != null) 'service': service!.toTfJson(),
+      if (version != null) 'version': version!.toTfJson(),
+      if (instance != null) 'instance': instance!.toTfJson(),
+    };
+  }
+
+  /// `retry_config` block on a Scheduler job (distinct from Cloud Tasks).
+  @immutable
+  class SchedulerRetryConfig {
+    const SchedulerRetryConfig({
+      this.retryCount,
+      this.maxRetryDuration,
+      this.minBackoffDuration,
+      this.maxBackoffDuration,
+      this.maxDoublings,
+    });
+
+    final TfArg<int>? retryCount;
+    final TfArg<String>? maxRetryDuration;
+    final TfArg<String>? minBackoffDuration;
+    final TfArg<String>? maxBackoffDuration;
+    final TfArg<int>? maxDoublings;
+
+    Map<String, Object?> encode() => {
+      if (retryCount != null) 'retry_count': retryCount!.toTfJson(),
+      if (maxRetryDuration != null)
+        'max_retry_duration': maxRetryDuration!.toTfJson(),
+      if (minBackoffDuration != null)
+        'min_backoff_duration': minBackoffDuration!.toTfJson(),
+      if (maxBackoffDuration != null)
+        'max_backoff_duration': maxBackoffDuration!.toTfJson(),
+      if (maxDoublings != null) 'max_doublings': maxDoublings!.toTfJson(),
+    };
+  }
+
+  // ===========================================================================
+  // Factory
+  // ===========================================================================
+
+customSlots:
+  # Virtual slot. Replaces IR's three separate nested-block slots
+  # (`pubsub_target`, `http_target`, `app_engine_http_target`) with a
+  # single sealed-typed param. The argMap entry uses `target.blockKey`
+  # so the dispatch happens at the runtime — whichever subclass the
+  # caller passed determines the snake-case Terraform key.
+  target:
+    paramDeclaration: 'required SchedulerTarget target'
+    argMapEntry: 'target.blockKey: TfArg.literal(target.encode()),'
+  # Helper-typed override. IR carries `retry_config` as a nested block
+  # (would render `TfArg<Map<String, dynamic>>?`); hand-written exposes
+  # `SchedulerRetryConfig?` and encodes via `.encode()`. The argMap
+  # entry stays guarded because the slot is optional.
+  retry_config:
+    paramDeclaration: 'SchedulerRetryConfig? retryConfig'
+    argMapEntry: "if (retryConfig != null) 'retry_config': TfArg.literal(retryConfig.encode()),"
+
+extraGetters: |2
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+# Hand-written tightens `region` from `optional + computed` to required
+# for ergonomic clarity; matches the existing IAM-member precedent
+# (e.g. google_cloud_tasks_queue_iam_member tightens `location`).
+requiredParams:
+  - region

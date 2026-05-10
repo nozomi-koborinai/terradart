@@ -1,0 +1,4 @@
+customSlots:
+  target:
+    paramDeclaration: 'required Target target'
+    argMapEntry: 'target.blockKey: TfArg.literal(target.encode()),'
