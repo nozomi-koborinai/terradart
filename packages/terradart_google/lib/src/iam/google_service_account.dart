@@ -1,6 +1,9 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import '../generated/google_service_account.schema.dart'
+import 'package:terradart_google/src/generated/google_service_account.schema.dart'
     show $GoogleServiceAccount, googleServiceAccountSensitive;
 
 // Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only

@@ -2,6 +2,7 @@ import 'package:args/command_runner.dart';
 
 import 'codegen_command.dart';
 import 'version_command.dart';
+import 'wrap_command.dart';
 
 /// Build the top-level `terradart` [CommandRunner].
 ///
@@ -18,6 +19,7 @@ CommandRunner<int> buildCliRunner() {
       help: 'Print the terradart CLI version and exit.',
     )
     ..addCommand(CodegenCommand())
+    ..addCommand(WrapCommand())
     ..addCommand(VersionCommand());
   return runner;
 }

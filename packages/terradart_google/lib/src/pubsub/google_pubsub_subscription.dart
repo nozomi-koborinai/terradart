@@ -1,7 +1,10 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import '../generated/google_pubsub_subscription.schema.dart'
+import 'package:terradart_google/src/generated/google_pubsub_subscription.schema.dart'
     show $GooglePubsubSubscription, googlePubsubSubscriptionSensitive;
 
 // Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
