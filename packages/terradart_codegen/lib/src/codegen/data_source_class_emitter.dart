@@ -52,11 +52,15 @@ class DataSourceClassEmitter {
 
     final buf = StringBuffer();
 
-    // File header (2 lines). Note `data.` prefix in the Source: line so
-    // the file's origin is unambiguous against the resource-side Layer 1
-    // (which uses the bare terraform type).
+    // File header. `data.` prefix in the Source: line so the file's origin
+    // is unambiguous against the resource-side Layer 1 (which uses the bare
+    // terraform type). `unused_element` is ignored because the private stub
+    // class is reserved for future Layer 2 imports — Phase 4.1's Layer 2
+    // data source factories still inline their stub, so until that migration
+    // the class is declared without being referenced.
     buf.writeln('// GENERATED FILE - DO NOT EDIT');
     buf.writeln('// Source: $providerSource -- data.$tfType');
+    buf.writeln('// ignore_for_file: unused_element');
     buf.writeln();
 
     // Marker abstract. Empty body — concrete getters live in Layer 2.

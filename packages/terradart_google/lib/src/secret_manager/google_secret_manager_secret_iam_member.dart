@@ -1,6 +1,9 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import '../generated/google_secret_manager_secret_iam_member.schema.dart'
+import 'package:terradart_google/src/generated/google_secret_manager_secret_iam_member.schema.dart'
     show
         $GoogleSecretManagerSecretIamMember,
         googleSecretManagerSecretIamMemberSensitive;

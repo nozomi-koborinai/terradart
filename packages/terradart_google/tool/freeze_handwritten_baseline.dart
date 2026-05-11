@@ -8,7 +8,8 @@ import 'package:path/path.dart' as p;
 
 const _header =
     '// GENERATED FILE - DO NOT EDIT\n'
-    '// Run `terradart wrap` to regenerate.\n';
+    '// Run `terradart wrap` to regenerate.\n'
+    '// ignore_for_file: prefer_relative_imports\n';
 
 const _sources = <String>[
   'lib/src/pubsub/google_pubsub_topic.dart',
@@ -49,10 +50,21 @@ void main() {
       (m) => "import 'package:terradart_google/src/generated/${m[2]}'",
     );
 
-    // Prepend the GENERATED header (idempotent: skip if already present).
-    if (!content.startsWith('// GENERATED FILE')) {
-      content = _header + content;
+    // Strip any pre-existing GENERATED FILE header block, then prepend the
+    // canonical one. This keeps the freeze idempotent under header revisions
+    // (e.g. adding the `// ignore_for_file: prefer_relative_imports` line).
+    if (content.startsWith('// GENERATED FILE')) {
+      final lines = content.split('\n');
+      var skip = 0;
+      while (skip < lines.length &&
+          (lines[skip].startsWith('// GENERATED FILE') ||
+              lines[skip].startsWith('// Run `terradart wrap`') ||
+              lines[skip].startsWith('// ignore_for_file:'))) {
+        skip++;
+      }
+      content = lines.sublist(skip).join('\n');
     }
+    content = _header + content;
 
     // Force LF line endings.
     content = content.replaceAll('\r\n', '\n');
