@@ -101,4 +101,206 @@ void main() {
       }
     });
   });
+
+  group('WrapCommand --check', () {
+    test('exit 0 when generated matches existing', () async {
+      final tmpOut = await Directory.systemTemp.createTemp('phase4_check_');
+      try {
+        final runner = buildCliRunner();
+        await runner.run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          tmpOut.path,
+        ]);
+        final code = await buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          tmpOut.path,
+          '--check',
+        ]);
+        expect(code, 0);
+      } finally {
+        await tmpOut.delete(recursive: true);
+      }
+    });
+
+    test('exit non-zero when one file differs', () async {
+      final tmpOut = await Directory.systemTemp.createTemp('phase4_check_');
+      try {
+        await buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          tmpOut.path,
+        ]);
+        final f =
+            File(p.join(tmpOut.path, 'pubsub', 'google_pubsub_topic.dart'));
+        var src = f.readAsStringSync();
+        src = src.replaceFirst(
+            'class GooglePubsubTopic', 'class GooglePubsubTopicMUTATED');
+        f.writeAsStringSync(src);
+        final code = await buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          tmpOut.path,
+          '--check',
+        ]);
+        expect(code, isNot(0));
+      } finally {
+        await tmpOut.delete(recursive: true);
+      }
+    });
+
+    test('aggregates multiple file diffs (still non-zero)', () async {
+      final tmpOut = await Directory.systemTemp.createTemp('phase4_check_');
+      try {
+        await buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          tmpOut.path,
+        ]);
+        for (final rel in [
+          'pubsub/google_pubsub_topic.dart',
+          'data/google_project.dart'
+        ]) {
+          final f = File(p.join(tmpOut.path, rel));
+          f.writeAsStringSync('${f.readAsStringSync()}\n// trailing edit\n');
+        }
+        final code = await buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          tmpOut.path,
+          '--check',
+        ]);
+        expect(code, isNot(0));
+      } finally {
+        await tmpOut.delete(recursive: true);
+      }
+    });
+  });
+
+  group('WrapCommand --force', () {
+    test('refuses to overwrite non-generated file by default (E401)', () async {
+      final tmpOut = await Directory.systemTemp.createTemp('phase4_force_');
+      try {
+        // Pre-create a non-generated file at one of wrap's target paths.
+        final dir = Directory(p.join(tmpOut.path, 'pubsub'));
+        dir.createSync(recursive: true);
+        const preExisting = '// hand-written, not generated\nclass Foo {}\n';
+        final f = File(p.join(dir.path, 'google_pubsub_topic.dart'));
+        f.writeAsStringSync(preExisting);
+
+        final code = await buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          tmpOut.path,
+        ]);
+        expect(code, isNot(0));
+        expect(f.readAsStringSync(), preExisting);
+      } finally {
+        await tmpOut.delete(recursive: true);
+      }
+    });
+
+    test('--force overwrites the non-generated file', () async {
+      final tmpOut = await Directory.systemTemp.createTemp('phase4_force_');
+      try {
+        final dir = Directory(p.join(tmpOut.path, 'pubsub'));
+        dir.createSync(recursive: true);
+        final f = File(p.join(dir.path, 'google_pubsub_topic.dart'));
+        f.writeAsStringSync('// hand-written, not generated\nclass Foo {}\n');
+
+        final code = await buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          tmpOut.path,
+          '--force',
+        ]);
+        expect(code, 0);
+        expect(f.readAsStringSync().startsWith('// GENERATED FILE'), isTrue);
+      } finally {
+        await tmpOut.delete(recursive: true);
+      }
+    });
+  });
+
+  group('WrapCommand fixture-driven', () {
+    // Fixture files are stored with a `.dart.golden` suffix (matching the
+    // project-wide golden naming convention under `test/golden/`) so they
+    // are byte-frozen and not rewritten by `dart format`. The wrap-emit
+    // pipeline formats with `DartFormatter.latestLanguageVersion`, which
+    // can diverge from this package's pubspec SDK constraint formatter
+    // version; the `.golden` extension keeps `dart format .` from touching
+    // them while still letting the test diff bytes 1:1 against the wrap
+    // output (the `.golden` suffix is stripped when computing actualPath).
+    test('output matches expected_output exactly (14 files)', () async {
+      final tmpOut = await Directory.systemTemp.createTemp('phase4_fix_');
+      try {
+        final code = await buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          tmpOut.path,
+        ]);
+        expect(code, 0);
+
+        final fixtureDir = Directory(
+          p.join('test', 'fixtures', 'wrap', 'expected_output'),
+        );
+        var checked = 0;
+        for (final fixFile
+            in fixtureDir.listSync(recursive: true).whereType<File>()) {
+          final rel = p.relative(fixFile.path, from: fixtureDir.path);
+          // Strip the trailing `.golden` so the path lines up with the
+          // wrap output on disk (`.dart.golden` → `.dart`).
+          final actualRel = rel.endsWith('.golden')
+              ? rel.substring(0, rel.length - '.golden'.length)
+              : rel;
+          final actualPath = p.join(tmpOut.path, actualRel);
+          final actual =
+              File(actualPath).readAsStringSync().replaceAll('\r\n', '\n');
+          final expected = fixFile.readAsStringSync().replaceAll('\r\n', '\n');
+          expect(actual, expected, reason: actualRel);
+          checked++;
+        }
+        expect(checked, 14, reason: 'fixture must hold exactly 14 files');
+      } finally {
+        await tmpOut.delete(recursive: true);
+      }
+    });
+  });
 }

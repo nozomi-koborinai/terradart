@@ -216,14 +216,46 @@ class WrapCommand extends Command<int> {
     return CliExitCodes.success;
   }
 
-  /// `--check` mode body. Phase 4.1 Task 17 will diff [buffer] against the
-  /// on-disk files under [output] and return [CliExitCodes.dataError] when
-  /// any pair diverges. Until then, surface a "not yet implemented" stub
-  /// so callers don't mistake the no-op for success.
+  /// `--check` mode body. Diffs [buffer] (the in-memory emit result, keyed
+  /// by repo-relative path) against the on-disk files under [output] and
+  /// returns [CliExitCodes.dataError] when any pair diverges. Line endings
+  /// are normalised to LF on both sides so CRLF Windows checkouts are not
+  /// reported as bogus mismatches.
   int _runCheck(Map<String, String> buffer, String output) {
+    final mismatches = <String>[];
+    for (final entry in buffer.entries) {
+      final outFile = File(p.join(output, entry.key));
+      if (!outFile.existsSync()) {
+        mismatches.add(
+          '${entry.key}: missing (expected to exist; run `terradart wrap` to regenerate)',
+        );
+        continue;
+      }
+      final actual = outFile.readAsStringSync().replaceAll('\r\n', '\n');
+      final expected = entry.value.replaceAll('\r\n', '\n');
+      if (actual != expected) {
+        final actualLines = actual.split('\n').length;
+        final expectedLines = expected.split('\n').length;
+        mismatches.add(
+          '${entry.key}: bytes differ '
+          '($expectedLines expected lines vs $actualLines actual lines)',
+        );
+      }
+    }
+    if (mismatches.isEmpty) {
+      stdout.writeln(
+        'terradart wrap --check: all ${buffer.length} files match.',
+      );
+      return CliExitCodes.success;
+    }
     stderr.writeln(
-      'terradart wrap --check: not yet implemented (Phase 4.1 Task 17).',
+      'terradart wrap --check: ${mismatches.length} of ${buffer.length} '
+      'files differ:\n',
     );
-    return CliExitCodes.software;
+    for (final m in mismatches) {
+      stderr.writeln('  [E301] $m');
+    }
+    stderr.writeln('\nRun `terradart wrap` to regenerate.');
+    return CliExitCodes.dataError;
   }
 }
