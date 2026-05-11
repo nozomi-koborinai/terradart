@@ -618,4 +618,48 @@ prelude: |
       }
     });
   });
+
+  group('LoaderErrorReport aggregation', () {
+    test('multiple errors aggregated and reported', () async {
+      final tmpDir = await Directory.systemTemp.createTemp('phase4_aggr_');
+      try {
+        // E101: unknown kind value.
+        await File(p.join(tmpDir.path, 'a.yaml')).writeAsString('''
+kind: bogus
+outputDir: x
+''');
+        // E102: outputDir missing entirely.
+        await File(p.join(tmpDir.path, 'b.yaml')).writeAsString('''
+classDocComment: |-
+  /// hi
+''');
+        try {
+          loadWrapperOverrides(rootDir: tmpDir.path);
+          fail('expected LoaderErrorReport');
+        } on LoaderErrorReport catch (e) {
+          expect(e.errors.length, greaterThanOrEqualTo(2));
+          final formatted = e.format();
+          expect(formatted, contains('[E101]'));
+          expect(formatted, contains('[E102]'));
+        }
+      } finally {
+        await tmpDir.delete(recursive: true);
+      }
+    });
+  });
+
+  group('production round-trip (13 entries)', () {
+    test(
+      'lib/src/codegen/wrapper_overrides/yaml/ loads 12 resources + 1 data source',
+      () {
+        final loaded = loadWrapperOverrides(
+          rootDir:
+              p.absolute('lib', 'src', 'codegen', 'wrapper_overrides', 'yaml'),
+        );
+        expect(loaded.resources.length, 12);
+        expect(loaded.dataSources.length, 1);
+        expect(loaded.dataSources.keys.first, 'google_project');
+      },
+    );
+  });
 }
