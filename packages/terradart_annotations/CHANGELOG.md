@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.0.4-dev - 2026-05-11
+
+- No user-facing API changes. Version bumped for workspace consistency with Phase 4.1 (`terradart wrap` subcommand + DataSource emitters + 13 `terradart_google` wrappers migrated to generator output).
+
 ## 0.0.3-dev - 2026-05-09
 
 - Fix: rename terradart_core main library file to match package name.

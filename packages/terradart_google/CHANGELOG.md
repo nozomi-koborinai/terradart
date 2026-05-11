@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.0.4-dev - 2026-05-11
+
+- chore: the 13 wrapper files under `lib/src/{pubsub,cloud_tasks,secret_manager,cloud_scheduler,iam,project,data}/` are now produced by `terradart wrap` (run from `packages/terradart_codegen/`). Output is byte-identical with the Wave 0 handwritten_baseline goldens; no behavioural changes for consumers.
+- feat: new Layer 1 schema carrier at `lib/src/generated/data_google_project.schema.dart` (reserved for future ResourceRef placeholder migration; not yet imported by Layer 2).
+
 ## 0.0.3-dev - 2026-05-09
 
 - Fix: rename terradart_core main library file to match package name.
