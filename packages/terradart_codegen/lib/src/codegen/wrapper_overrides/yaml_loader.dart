@@ -207,10 +207,8 @@ class YamlOverrideLoader {
     final kind = _parseKind(yaml, filePath, errors);
     if (kind == null) return null;
     final outputDir = _parseOutputDir(yaml, filePath, errors);
-    final schemaStubBodyMode =
-        _parseSchemaStubBodyMode(yaml, filePath, errors);
-    final fileLeadingComment =
-        _parseFileLeadingComment(yaml, filePath, errors);
+    final schemaStubBodyMode = _parseSchemaStubBodyMode(yaml, filePath, errors);
+    final fileLeadingComment = _parseFileLeadingComment(yaml, filePath, errors);
 
     // E104: data sources must live under "data/" — keeps the wrap pipeline's
     // fan-out predictable and matches the hand-written `data/` directory.
