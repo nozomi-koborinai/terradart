@@ -1,3 +1,4 @@
+outputDir: x
 requiredParams:
   - location
   - region

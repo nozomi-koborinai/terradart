@@ -1,3 +1,4 @@
+outputDir: cloud_tasks
 classDocComment: |-
   /// Factory wrapper for `google_cloud_tasks_queue_iam_member`.
   ///

@@ -1,3 +1,4 @@
+outputDir: x
 customSlots:
   target:
     paramDeclaration: 'required Target target'

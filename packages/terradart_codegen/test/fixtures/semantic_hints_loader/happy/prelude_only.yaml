@@ -1,3 +1,4 @@
+outputDir: x
 prelude: |
   sealed class Foo {
     const Foo();

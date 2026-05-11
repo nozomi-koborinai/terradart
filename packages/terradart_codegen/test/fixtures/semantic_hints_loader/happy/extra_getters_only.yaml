@@ -1,2 +1,3 @@
+outputDir: x
 extraGetters: |4
         TfRef<String> get x => TfRef.attribute<String>(this, 'x');

@@ -9,7 +9,7 @@ import 'package:terradart_codegen/src/cli/exit_codes.dart';
 import 'package:terradart_codegen/src/cli/version_command.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_emitter.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
-import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
 
 Future<void> main(List<String> args) => Chain.capture(
       () async {
@@ -65,7 +65,7 @@ Future<WrapperEmitter> buildWrapperEmitterFromPackageYaml() async {
       '(package:terradart_codegen/src/codegen/wrapper_overrides/yaml/)',
     );
   }
-  final Map<String, WrapperOverride> overrides =
+  final LoadedOverrides loaded =
       loadWrapperOverrides(rootDir: yamlRootUri.toFilePath());
-  return WrapperEmitter(overrides: overrides);
+  return WrapperEmitter(overrides: loaded.resources);
 }

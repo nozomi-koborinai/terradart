@@ -26,7 +26,7 @@ terradart treats this seam as a first-class artifact: the same `Topic` object wh
 ### Why not CDKTF, Pulumi, or HCL?
 
 - **HCL**: Excellent for infrastructure teams who live in the Terraform ecosystem. The seam to a Dart subscriber, however, requires `terraform output → JSON → Dart string parsing`, which is exactly what terradart eliminates.
-- **CDKTF**: HashiCorp [archived CDKTF in October 2025](https://www.hashicorp.com/blog/cdktf-deprecation). Its TypeScript / Python / Java targets never included Dart, and the project's deprecation reduces long-term incentive to invest in a Dart provider. terradart deliberately occupies the Dart-shaped slot CDKTF did not reach.
+- **CDKTF**: HashiCorp [archived CDKTF in December 2025](https://github.com/hashicorp/terraform-cdk). Its TypeScript / Python / Java targets never included Dart, and the project's deprecation reduces long-term incentive to invest in a Dart provider. terradart deliberately occupies the Dart-shaped slot CDKTF did not reach.
 - **Pulumi**: Pulumi has not shipped a Dart SDK and has not announced one. Pulumi can store state in S3, GCS, or Pulumi Cloud — overlap with Terraform — but its provider invocation model and automation API differ. terradart synthesizes drop-in JSON that any existing Terraform pipeline already understands.
 
 ### Why a generator and not a hand-written DSL?
@@ -137,7 +137,7 @@ Apache-2.0. See [LICENSE](LICENSE).
 
 ## Acknowledgements
 
-terradart's seam-first framing draws on prior work in [CDKTF](https://www.hashicorp.com/blog/cdktf-deprecation) (HashiCorp, archived 2025), [AWS CDK](https://aws.amazon.com/cdk/), and [Pulumi](https://www.pulumi.com/) — each of which pioneered "infrastructure as real code" in their own ecosystems. The Tier 1 / Tier 2 split is original to this project.
+terradart's seam-first framing draws on prior work in [CDKTF](https://github.com/hashicorp/terraform-cdk) (HashiCorp, archived December 2025), [AWS CDK](https://aws.amazon.com/cdk/), and [Pulumi](https://www.pulumi.com/) — each of which pioneered "infrastructure as real code" in their own ecosystems. The Tier 1 / Tier 2 split is original to this project.
 
 `terradart_google` uses [schemantic](https://pub.dev/packages/schemantic) (developed by the [Genkit](https://genkit.dev/) team) for the Tier 1 schema stubs (`*.schema.dart` / `*.schema.g.dart`).
 

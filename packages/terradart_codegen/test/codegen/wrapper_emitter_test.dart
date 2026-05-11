@@ -153,7 +153,7 @@ void main() {
     setUpAll(() {
       overrides = loadWrapperOverrides(
         rootDir: 'lib/src/codegen/wrapper_overrides/yaml',
-      );
+      ).resources;
     });
 
     test('emit returns non-empty string for minimal ResourceDef', () {

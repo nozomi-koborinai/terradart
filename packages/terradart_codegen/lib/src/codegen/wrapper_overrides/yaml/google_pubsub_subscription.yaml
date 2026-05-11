@@ -1,3 +1,4 @@
+outputDir: pubsub
 classDocComment: |-
   /// Factory wrapper for `google_pubsub_subscription`.
   ///

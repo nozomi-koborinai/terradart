@@ -1,1 +1,2 @@
-# empty override (all defaults)
+# empty override (all defaults except required outputDir)
+outputDir: x

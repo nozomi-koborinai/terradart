@@ -1,3 +1,19 @@
+/// Kind of override entry. Determines which emitter consumes it.
+///
+/// - [resource]: Consumed by `WrapperEmitter` to render a Terraform resource
+///   wrapper under `<output>/<outputDir>/`.
+/// - [dataSource]: Consumed by `DataSourceWrapperEmitter` to render a
+///   Terraform data source wrapper under `<output>/data/`.
+enum WrapperOverrideKind { resource, dataSource }
+
+/// Schema-stub class body shape.
+///
+/// - [nosuchmethod]: 5-line variant with `noSuchMethod` (existing 12 resource
+///   pattern, keeps abstract member dispatch live).
+/// - [bare]: 3-line variant without `noSuchMethod` (data source pattern,
+///   reproduces `_GoogleProjectSchemaInstance` exactly).
+enum SchemaStubBodyMode { nosuchmethod, bare }
+
 /// Hand-curated overrides applied by `WrapperEmitter` on top of the
 /// IR-derived defaults.
 ///
@@ -207,7 +223,41 @@ final class WrapperOverride {
   /// from the IR".
   final Map<String, CustomSlot>? customSlots;
 
+  /// Override entry kind. Default: [WrapperOverrideKind.resource].
+  ///
+  /// Determines which emitter consumes the override entry — `WrapperEmitter`
+  /// for [WrapperOverrideKind.resource], `DataSourceWrapperEmitter` for
+  /// [WrapperOverrideKind.dataSource].
+  final WrapperOverrideKind kind;
+
+  /// Output directory under `<output>/`. Required (no inference).
+  ///
+  /// For [WrapperOverrideKind.dataSource], must be exactly `'data'`
+  /// (validated at load time).
+  final String outputDir;
+
+  /// Schema-stub body mode. Default: [SchemaStubBodyMode.nosuchmethod].
+  ///
+  /// The 12 resource yaml entries keep the default; the `google_project`
+  /// data source yaml selects [SchemaStubBodyMode.bare] to reproduce the
+  /// hand-written `_GoogleProjectSchemaInstance` exactly.
+  final SchemaStubBodyMode schemaStubBodyMode;
+
+  /// Optional file-leading comment placed after the import block and before
+  /// the schema-stub class.
+  ///
+  /// Each line of the source string is prefixed with `// ` by the emitter.
+  /// Used for operational notes (e.g. `data/google_project.dart` l.3-12
+  /// explains why the file is exempt from `tool/regen_tier1.dart`).
+  ///
+  /// `null` means "no file-leading comment".
+  final String? fileLeadingComment;
+
   const WrapperOverride({
+    required this.outputDir,
+    this.kind = WrapperOverrideKind.resource,
+    this.schemaStubBodyMode = SchemaStubBodyMode.nosuchmethod,
+    this.fileLeadingComment,
     this.classDocComment,
     this.paramOrder,
     this.argMapOrder,
