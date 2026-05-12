@@ -319,21 +319,21 @@ packages:
       path: "../../packages/terradart_annotations"
       relative: true
     source: path
-    version: "0.0.2-dev"
+    version: "0.0.4-dev"
   terradart_core:
     dependency: "direct main"
     description:
       path: "../../packages/terradart_core"
       relative: true
     source: path
-    version: "0.0.2-dev"
+    version: "0.0.4-dev"
   terradart_google:
     dependency: "direct main"
     description:
       path: "../../packages/terradart_google"
       relative: true
     source: path
-    version: "0.0.2-dev"
+    version: "0.0.4-dev"
   test_api:
     dependency: transitive
     description:

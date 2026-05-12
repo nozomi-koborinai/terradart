@@ -1,0 +1,46 @@
+{
+  "terraform": {
+    "required_version": ">= 1.11.0",
+    "required_providers": {
+      "google": {
+        "source": "hashicorp/google",
+        "version": "~> 7.0"
+      }
+    }
+  },
+  "provider": {
+    "google": {
+      "project": "ci-test-project-id",
+      "region": "us-central1"
+    }
+  },
+  "resource": {
+    "google_pubsub_topic": {
+      "nightly_cleanup": {
+        "name": "nightly-cleanup"
+      }
+    },
+    "google_cloud_scheduler_job": {
+      "nightly_job": {
+        "name": "nightly-cleanup-job",
+        "region": "us-central1",
+        "schedule": "0 3 * * *",
+        "time_zone": "Asia/Tokyo",
+        "retry_config": {
+          "retry_count": 3,
+          "min_backoff_duration": "5s",
+          "max_backoff_duration": "60s"
+        },
+        "pubsub_target": {
+          "topic_name": "${google_pubsub_topic.nightly_cleanup.id}",
+          "data": "Y2xlYW51cA=="
+        }
+      }
+    }
+  },
+  "output": {
+    "NIGHTLY_TOPIC_ID": {
+      "value": "${google_pubsub_topic.nightly_cleanup.id}"
+    }
+  }
+}
