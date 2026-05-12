@@ -39,6 +39,16 @@ enum LoaderErrorCode {
   /// because `--force` was not provided.
   wrapInitTargetExists('E402'),
 
+  /// E403: `terradart wrap-promote` requires an existing wrap-init yaml to
+  /// overlay the MM-derived sealed-class skeletons onto, but the target file
+  /// was not found.
+  wrapPromoteRequiresExistingYaml('E403'),
+
+  /// E404: `terradart wrap-promote` requires Magic Modules hints (`mm/` yaml)
+  /// to derive sealed-class skeletons and enums from, but no MM source was
+  /// found.
+  wrapPromoteRequiresMm('E404'),
+
   /// E501: atomic write failed and the rollback path was taken.
   atomicWriteFailed('E501'),
   ;
