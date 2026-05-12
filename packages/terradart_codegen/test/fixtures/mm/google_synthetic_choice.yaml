@@ -1,0 +1,12 @@
+name: SyntheticChoice
+product: synthetic
+description: |
+  Synthetic resource demonstrating exactly_one_of with two options.
+exactly_one_of:
+  - option_a
+  - option_b
+properties:
+  - name: name
+    type: String
+    description: Identifier.
+    immutable: true

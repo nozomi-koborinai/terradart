@@ -1,0 +1,19 @@
+name: Subscription
+product: pubsub
+description: |
+  A named resource representing the stream of messages from a single, specific topic.
+properties:
+  - name: name
+    type: String
+    description: Name of the subscription.
+    immutable: true
+  - name: ack_deadline_seconds
+    type: Integer
+    description: The acknowledgement deadline in seconds.
+  - name: dead_letter_policy_kind
+    type: String
+    description: Synthetic enum for ValidValuesEmitter test.
+    enum_values:
+      - 'kept'
+      - 'expired'
+      - 'archived'
