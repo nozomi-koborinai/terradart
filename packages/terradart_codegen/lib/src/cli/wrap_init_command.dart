@@ -1,7 +1,15 @@
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
+import 'package:path/path.dart' as p;
 
+import '../codegen/wrap_init/clock.dart';
+import '../codegen/wrap_init/output_dir_resolver.dart';
+import '../codegen/wrap_init/wrap_init_emitter.dart';
+import '../codegen/wrap_init/wrap_init_generator.dart';
+import '../codegen/wrapper_overrides/wrapper_override.dart';
+import '../parser/mm_yaml_parser.dart';
+import '../parser/schema_parser.dart';
 import 'exit_codes.dart';
 
 /// `terradart wrap-init <resource>` — scaffolds a wrapper override YAML
@@ -88,9 +96,84 @@ class WrapInitCommand extends Command<int> {
       return CliExitCodes.dataError;
     }
 
-    // Task 11 fills in the body. For now, this skeleton just surfaces
-    // "not yet implemented" so the args-parse tests pass while Task 11
-    // is in flight.
-    return CliExitCodes.software;
+    final resourceName = rest.single;
+    final force = results['force'] as bool;
+
+    // 1. Locate the schema file.
+    //
+    // The spec describes `<source>/schema.json` as the canonical layout.
+    // For the existing test fixtures (`test/fixtures/schema/<r>_v7.schema.json`)
+    // there is no single combined `schema.json` to point at, so we accept
+    // BOTH shapes:
+    //   (a) <source>/schema.json (canonical, used in production when paired
+    //       with the wrap subcommand's source dir)
+    //   (b) <source>/schema/<resource>_v7.schema.json (per-resource layout,
+    //       matches the existing Phase 2/4.1 schema fixtures)
+    final canonicalSchemaFile = File(p.join(source, 'schema.json'));
+    final perResourceSchemaFile = File(
+      p.join(source, 'schema', '${resourceName}_v7.schema.json'),
+    );
+    final File schemaFile;
+    if (canonicalSchemaFile.existsSync()) {
+      schemaFile = canonicalSchemaFile;
+    } else if (perResourceSchemaFile.existsSync()) {
+      schemaFile = perResourceSchemaFile;
+    } else {
+      stderr.writeln(
+        'terradart wrap-init: neither ${canonicalSchemaFile.path} nor '
+        '${perResourceSchemaFile.path} exists.',
+      );
+      return CliExitCodes.dataError;
+    }
+
+    final ir = const SchemaJsonParser()
+        .parseString(schemaFile.readAsStringSync(), providerVersion: '7.31.0');
+
+    // 2. Resolve kind from where the resource lives in the IR.
+    final def = ir.resources[resourceName] ?? ir.dataSources[resourceName];
+    if (def == null) {
+      stderr.writeln(
+        'terradart wrap-init: schema does not contain resource OR data '
+        'source "$resourceName".',
+      );
+      return CliExitCodes.dataError;
+    }
+    final kind = ir.resources.containsKey(resourceName)
+        ? WrapperOverrideKind.resource
+        : WrapperOverrideKind.dataSource;
+
+    // 3. Load MM YAML if present (optional).
+    final mmFile = File(p.join(source, 'mm', '$resourceName.yaml'));
+    final MmResourceOverrides? mm = mmFile.existsSync()
+        ? const MmYamlParser().parseString(mmFile.readAsStringSync())
+        : null;
+
+    // 4. E402 guard before any generation.
+    final outFile = File(p.join(output, '$resourceName.yaml'));
+    if (outFile.existsSync() && !force) {
+      stderr.writeln(
+        '[E402] ${outFile.path} already exists. Pass --force to overwrite.',
+      );
+      return CliExitCodes.dataError;
+    }
+
+    // 5. Generate + emit.
+    final generator = WrapInitGenerator(
+      clock: const SystemClock(),
+      outputDirResolver: const OutputDirResolver(),
+    );
+    const emitter = WrapInitEmitter();
+    final draft = generator.generate(
+      terraformType: resourceName,
+      def: def,
+      kind: kind,
+      mm: mm,
+    );
+    final yaml = emitter.emit(draft);
+
+    // 6. Write.
+    outFile.parent.createSync(recursive: true);
+    outFile.writeAsStringSync(yaml);
+    return CliExitCodes.success;
   }
 }
