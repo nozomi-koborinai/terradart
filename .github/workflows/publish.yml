@@ -63,12 +63,13 @@ jobs:
           yq --version
       - run: dart pub get
 
-      - name: Verify generated schema files
+      - name: Verify generated schema and wrapper files
+        working-directory: packages/terradart_google
         run: |
-          EXPECTED=12
-          ACTUAL=$(find packages/terradart_google/lib/src/generated -name "*.schema.g.dart" | wc -l)
-          if [ "$ACTUAL" -ne "$EXPECTED" ]; then
-            echo "::error::Expected $EXPECTED generated .g.dart files, got $ACTUAL"
+          schema_g_count=$(find lib/src/generated -name "*.schema.g.dart" | wc -l)
+          wrapper_count=$(find lib/src -mindepth 2 -name 'google_*.dart' -not -path 'lib/src/generated/*' | wc -l)
+          if [ "$schema_g_count" -ne 12 ] || [ "$wrapper_count" -ne 13 ]; then
+            echo "::error::Expected 12 schema.g.dart + 13 wrapper, got $schema_g_count + $wrapper_count"
             exit 1
           fi
 
