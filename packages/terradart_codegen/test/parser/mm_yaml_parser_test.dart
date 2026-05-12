@@ -72,4 +72,46 @@ properties: []
     final result = const MmYamlParser().parseString(yaml);
     expect(result.product, isNull);
   });
+
+  test('parses top-level `exactly_one_of` into a single group', () {
+    final yaml = '''
+description: Test.
+exactly_one_of:
+  - pubsub_target
+  - http_target
+  - app_engine_http_target
+properties: []
+''';
+    final result = const MmYamlParser().parseString(yaml);
+    expect(result.exactlyOneOfGroups, hasLength(1));
+    expect(result.exactlyOneOfGroups.first, [
+      'pubsub_target',
+      'http_target',
+      'app_engine_http_target',
+    ]);
+  });
+
+  test('parses per-property `exactly_one_of` with prefix-scoped paths', () {
+    final yaml = '''
+properties:
+  - name: foo
+    exactly_one_of:
+      - foo_a
+      - foo_b
+''';
+    final result = const MmYamlParser().parseString(yaml);
+    expect(result.exactlyOneOfGroups, hasLength(1));
+    expect(result.exactlyOneOfGroups.first, ['foo.foo_a', 'foo.foo_b']);
+  });
+
+  test('exactlyOneOfGroups is empty when absent', () {
+    final yaml = '''
+description: Test.
+properties:
+  - name: name
+    type: String
+''';
+    final result = const MmYamlParser().parseString(yaml);
+    expect(result.exactlyOneOfGroups, isEmpty);
+  });
 }

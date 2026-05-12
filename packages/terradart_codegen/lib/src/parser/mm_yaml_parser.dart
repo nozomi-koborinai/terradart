@@ -21,10 +21,18 @@ class MmResourceOverrides {
   /// the constraint bits MM YAML actually contributes.
   final Map<String, Constraints> fieldOverrides;
 
+  /// `exactly_one_of` groups (top-level + nested merged into one flat list).
+  /// Each inner list is one mutually-exclusive set of property names,
+  /// recorded in snake_case Terraform path form (e.g. `'foo.foo_a'` for a
+  /// nested group). Consumed by `terradart wrap-promote` to generate
+  /// sealed-class skeletons in the prelude block.
+  final List<List<String>> exactlyOneOfGroups;
+
   const MmResourceOverrides({
     required this.fieldOverrides,
     this.description,
     this.product,
+    this.exactlyOneOfGroups = const [],
   });
 }
 
@@ -38,16 +46,23 @@ class MmYamlParser {
       throw const FormatException('MM YAML root must be a map.');
     }
     final overrides = <String, Constraints>{};
+    final groups = <List<String>>[];
+
+    // Top-level exactly_one_of (applies to direct children).
+    final topGroup = _readExactlyOneOf(doc, prefix: '');
+    if (topGroup != null) groups.add(topGroup);
+
     final props = doc['properties'];
     if (props is YamlList) {
       for (final p in props) {
-        _walkProperty(p as YamlMap, '', overrides);
+        _walkProperty(p as YamlMap, '', overrides, groups);
       }
     }
     return MmResourceOverrides(
       fieldOverrides: overrides,
       description: doc['description'] as String?,
       product: doc['product'] as String?,
+      exactlyOneOfGroups: groups,
     );
   }
 
@@ -55,6 +70,7 @@ class MmYamlParser {
     YamlMap prop,
     String prefix,
     Map<String, Constraints> sink,
+    List<List<String>> groupSink,
   ) {
     final apiName =
         (prop['api_name'] as String?) ?? _toSnakeCase(prop['name'] as String);
@@ -71,12 +87,25 @@ class MmYamlParser {
       sink[fullKey] = c;
     }
 
+    // Per-property exactly_one_of (siblings of this property's nested kids).
+    final propGroup = _readExactlyOneOf(prop, prefix: fullKey);
+    if (propGroup != null) groupSink.add(propGroup);
+
     final nested = prop['properties'];
     if (nested is YamlList) {
       for (final n in nested) {
-        _walkProperty(n as YamlMap, fullKey, sink);
+        _walkProperty(n as YamlMap, fullKey, sink, groupSink);
       }
     }
+  }
+
+  List<String>? _readExactlyOneOf(YamlMap node, {required String prefix}) {
+    final raw = node['exactly_one_of'];
+    if (raw is! YamlList) return null;
+    return [
+      for (final v in raw)
+        prefix.isEmpty ? v.toString() : '$prefix.${v.toString()}',
+    ];
   }
 
   List<String>? _enumValues(YamlMap prop) {

@@ -82,4 +82,28 @@ void main() {
     expect(err.format(), startsWith('[E402]'));
     expect(err.format(), contains('already exists'));
   });
+
+  test('E403 wrapPromoteRequiresExistingYaml is formatted as [E403]', () {
+    final err = LoaderError(
+      code: LoaderErrorCode.wrapPromoteRequiresExistingYaml,
+      message: 'foo.yaml does not exist. Run terradart wrap-init first.',
+      filePath: 'out/foo.yaml',
+      line: 1,
+      column: 1,
+    );
+    expect(err.format(), startsWith('[E403]'));
+    expect(err.format(), contains('Run terradart wrap-init'));
+  });
+
+  test('E404 wrapPromoteRequiresMm is formatted as [E404]', () {
+    final err = LoaderError(
+      code: LoaderErrorCode.wrapPromoteRequiresMm,
+      message: 'mm/foo.yaml not found. wrap-promote requires MM hints.',
+      filePath: 'src/mm/foo.yaml',
+      line: 1,
+      column: 1,
+    );
+    expect(err.format(), startsWith('[E404]'));
+    expect(err.format(), contains('requires MM hints'));
+  });
 }
