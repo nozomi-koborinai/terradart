@@ -1,0 +1,19 @@
+# Tag configuration for `dart test`.
+#
+# `e2e` tests perform real `dart run` subprocess invocations and file I/O
+# outside the package (e.g. driving every `examples/<service>_quickstart`
+# synth). They are SKIPPED by default so the fast unit + integration loop
+# stays small and the CI matrix `test` job (which invokes plain
+# `dart test --reporter=github`) doesn't pull in subprocess-heavy work.
+#
+# To run the e2e tests explicitly:
+#
+#   dart test -t e2e --run-skipped
+#
+# (Both flags are needed: `--run-skipped` overrides the `skip: true`
+# below, and `-t e2e` narrows the run to just the tagged tests.)
+#
+# The Wave 5 `wrap_check` CI job will opt in via this same flag pair.
+tags:
+  e2e:
+    skip: "e2e tests are opt-in; run with `dart test -t e2e --run-skipped`"

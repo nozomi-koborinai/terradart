@@ -1,0 +1,51 @@
+{
+  "terraform": {
+    "required_version": ">= 1.11.0",
+    "required_providers": {
+      "google": {
+        "source": "hashicorp/google",
+        "version": "~> 7.0"
+      }
+    }
+  },
+  "provider": {
+    "google": {
+      "project": "YOUR-PROJECT-ID",
+      "region": "us-central1"
+    }
+  },
+  "resource": {
+    "google_cloud_tasks_queue": {
+      "email_jobs": {
+        "name": "email-jobs",
+        "location": "us-central1",
+        "rate_limits": {
+          "max_concurrent_dispatches": 10,
+          "max_dispatches_per_second": 5
+        },
+        "retry_config": {
+          "max_attempts": 5,
+          "min_backoff": "5s",
+          "max_backoff": "300s",
+          "max_doublings": 3
+        }
+      }
+    },
+    "google_cloud_tasks_queue_iam_member": {
+      "email_jobs_enqueuer": {
+        "name": "${google_cloud_tasks_queue.email_jobs.name}",
+        "location": "${google_cloud_tasks_queue.email_jobs.location}",
+        "role": "roles/cloudtasks.enqueuer",
+        "member": "serviceAccount:enqueuer@YOUR-PROJECT-ID.iam.gserviceaccount.com"
+      }
+    }
+  },
+  "output": {
+    "EMAIL_QUEUE_NAME": {
+      "value": "${google_cloud_tasks_queue.email_jobs.name}"
+    },
+    "EMAIL_QUEUE_LOCATION": {
+      "value": "${google_cloud_tasks_queue.email_jobs.location}"
+    }
+  }
+}
