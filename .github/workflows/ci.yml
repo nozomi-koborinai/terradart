@@ -34,6 +34,25 @@ jobs:
       - run: dart test --reporter=github
         working-directory: packages/${{ matrix.package }}
 
+  wrap_check:
+    name: terradart wrap --check
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
+      - name: Verify generated wrappers are up to date
+        working-directory: packages/terradart_codegen
+        run: |
+          dart run bin/terradart.dart wrap \
+            --provider hashicorp/google \
+            --source test/fixtures/wrap/source \
+            --output ../terradart_google/lib/src \
+            --check
+
   terraform_validate:
     name: terraform validate (${{ matrix.example }})
     runs-on: ubuntu-latest
