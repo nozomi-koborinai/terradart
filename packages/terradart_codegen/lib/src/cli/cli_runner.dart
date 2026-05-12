@@ -3,6 +3,7 @@ import 'package:args/command_runner.dart';
 import 'codegen_command.dart';
 import 'version_command.dart';
 import 'wrap_command.dart';
+import 'wrap_init_command.dart';
 
 /// Build the top-level `terradart` [CommandRunner].
 ///
@@ -20,6 +21,7 @@ CommandRunner<int> buildCliRunner() {
     )
     ..addCommand(CodegenCommand())
     ..addCommand(WrapCommand())
+    ..addCommand(WrapInitCommand())
     ..addCommand(VersionCommand());
   return runner;
 }

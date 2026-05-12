@@ -1,0 +1,12 @@
+name: Topic
+product: pubsub
+description: |
+  A named resource to which messages are sent by publishers.
+properties:
+  - name: name
+    type: String
+    description: Name of the topic.
+    immutable: true
+  - name: labels
+    type: KeyValueLabels
+    description: A set of key/value label pairs to assign to this Topic.

@@ -12,6 +12,10 @@ class MmResourceOverrides {
   /// Top-level YAML `description`, if any.
   final String? description;
 
+  /// Top-level YAML `product` field, if any. Used by `terradart wrap-init` to
+  /// derive `outputDir` defaults from the Magic Modules product folder.
+  final String? product;
+
   /// Keyed by **Terraform snake_case path**: a flat field is `'name'`, a
   /// nested field is `'schema_settings.encoding'`. Each value carries only
   /// the constraint bits MM YAML actually contributes.
@@ -20,6 +24,7 @@ class MmResourceOverrides {
   const MmResourceOverrides({
     required this.fieldOverrides,
     this.description,
+    this.product,
   });
 }
 
@@ -42,6 +47,7 @@ class MmYamlParser {
     return MmResourceOverrides(
       fieldOverrides: overrides,
       description: doc['description'] as String?,
+      product: doc['product'] as String?,
     );
   }
 

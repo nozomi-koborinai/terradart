@@ -1,0 +1,8 @@
+name: Project
+product: resourcemanager
+description: |
+  Use to look up the active project's number and name.
+properties:
+  - name: project_id
+    type: String
+    description: The project ID.

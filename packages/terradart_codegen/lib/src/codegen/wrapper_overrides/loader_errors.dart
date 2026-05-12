@@ -35,6 +35,10 @@ enum LoaderErrorCode {
   /// artifact (missing or wrong header marker).
   refuseOverwriteNonGenerated('E401'),
 
+  /// E402: `terradart wrap-init` refused to overwrite an existing target file
+  /// because `--force` was not provided.
+  wrapInitTargetExists('E402'),
+
   /// E501: atomic write failed and the rollback path was taken.
   atomicWriteFailed('E501'),
   ;
