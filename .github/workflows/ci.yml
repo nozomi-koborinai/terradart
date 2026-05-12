@@ -67,6 +67,20 @@ jobs:
         working-directory: packages/terradart_codegen
         run: dart test --run-skipped -t e2e --name 'wrap-init'
 
+  wrap_promote_check:
+    name: terradart wrap-promote smoke
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
+      - name: wrap-promote determinism (L4)
+        working-directory: packages/terradart_codegen
+        run: dart test --run-skipped -t e2e --name 'wrap-promote'
+
   terraform_validate:
     name: terraform validate (${{ matrix.example }})
     runs-on: ubuntu-latest
