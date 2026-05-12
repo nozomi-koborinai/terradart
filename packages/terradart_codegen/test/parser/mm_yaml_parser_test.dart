@@ -53,4 +53,23 @@ void main() {
       expect(result.fieldOverrides, isEmpty);
     });
   });
+
+  test('parses top-level `product:` field when present', () {
+    final yaml = '''
+description: Test resource.
+product: pubsub
+properties: []
+''';
+    final result = const MmYamlParser().parseString(yaml);
+    expect(result.product, 'pubsub');
+  });
+
+  test('product is null when absent', () {
+    final yaml = '''
+description: Test resource.
+properties: []
+''';
+    final result = const MmYamlParser().parseString(yaml);
+    expect(result.product, isNull);
+  });
 }

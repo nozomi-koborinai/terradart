@@ -70,4 +70,16 @@ void main() {
       expect(() => report.fatal(), throwsA(isA<LoaderErrorReport>()));
     });
   });
+
+  test('E402 wrapInitTargetExists is formatted as [E402]', () {
+    final err = LoaderError(
+      code: LoaderErrorCode.wrapInitTargetExists,
+      message: 'foo.yaml already exists. Pass --force to overwrite.',
+      filePath: 'out/foo.yaml',
+      line: 1,
+      column: 1,
+    );
+    expect(err.format(), startsWith('[E402]'));
+    expect(err.format(), contains('already exists'));
+  });
 }
