@@ -45,7 +45,35 @@ final class TfArgLiteral<T> extends TfArg<T> {
   T get literalOrPlaceholder => value;
 
   @override
-  Object? toTfJson() => value;
+  Object? toTfJson() {
+    final v = value;
+    if (v is Enum) {
+      // Phase 4.5.1 (TG-4): Dart enums aren't JSON-encodable by default
+      // (`dart:convert` would throw "Converting object to an encodable
+      // object failed: Instance of '<Enum>'"). Convention: any enum that
+      // ships a `String terraformValue` getter is encoded as that value.
+      // Detected via dynamic dispatch — no terradart_core ↔ user-defined-
+      // enum interface coupling, but the no-getter case is a clear error
+      // (silent wrong output is worse).
+      final dyn = v as dynamic;
+      try {
+        // ignore: avoid_dynamic_calls
+        final tv = dyn.terraformValue;
+        if (tv is String) return tv;
+      } on NoSuchMethodError {
+        // fall through to ArgumentError below
+      }
+      throw ArgumentError(
+        'TfArg.literal received an Enum value '
+        '${v.runtimeType}.${v.name} but ${v.runtimeType} does not '
+        'expose a `String terraformValue` getter. Add '
+        '`final String terraformValue;` to the enum (with a '
+        '`const X(this.terraformValue);` constructor) or pass '
+        '`TfArg.literal(value.someStringGetter)` explicitly.',
+      );
+    }
+    return value;
+  }
 }
 
 @immutable
