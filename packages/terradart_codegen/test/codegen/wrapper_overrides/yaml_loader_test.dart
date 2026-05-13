@@ -648,15 +648,17 @@ classDocComment: |-
     });
   });
 
-  group('production round-trip (16 entries — Phase 4.1 13 + Phase 4.5 3)', () {
+  group(
+      'production round-trip (17 entries — Phase 4.1 13 + Phase 4.5 Wave 0+1 4)',
+      () {
     test(
-      'lib/src/codegen/wrapper_overrides/yaml/ loads 15 resources + 1 data source',
+      'lib/src/codegen/wrapper_overrides/yaml/ loads 16 resources + 1 data source',
       () {
         final loaded = loadWrapperOverrides(
           rootDir:
               p.absolute('lib', 'src', 'codegen', 'wrapper_overrides', 'yaml'),
         );
-        expect(loaded.resources.length, 15);
+        expect(loaded.resources.length, 16);
         expect(loaded.dataSources.length, 1);
         expect(loaded.dataSources.keys.first, 'google_project');
       },

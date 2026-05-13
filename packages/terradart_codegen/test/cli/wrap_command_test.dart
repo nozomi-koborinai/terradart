@@ -42,7 +42,7 @@ void main() {
 
   group('WrapCommand integration', () {
     test(
-        'emits 32 files (15 resource Layer 2 + 15 resource Layer 1 + 1 data source Layer 2 + 1 data source Layer 1)',
+        'emits 34 files (16 resource Layer 2 + 16 resource Layer 1 + 1 data source Layer 2 + 1 data source Layer 1)',
         () async {
       final tmpOut = await Directory.systemTemp.createTemp('phase4_wrap_');
       try {
@@ -64,7 +64,7 @@ void main() {
             files.add(p.relative(ent.path, from: tmpOut.path));
           }
         }
-        expect(files, hasLength(32));
+        expect(files, hasLength(34));
         expect(files, contains(p.join('pubsub', 'google_pubsub_topic.dart')));
         expect(files, contains(p.join('data', 'google_project.dart')));
         expect(
