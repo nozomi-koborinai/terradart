@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:path/path.dart' as p;
 
+import '../codegen/providers/provider_rules.dart';
 import '../codegen/wrap_init/clock.dart';
 import '../codegen/wrap_promote/wrap_promote_generator.dart';
 import '../codegen/wrap_promote/wrap_promote_marker.dart';
@@ -13,7 +14,7 @@ import 'exit_codes.dart';
 /// `terradart wrap-promote <resource>` — overlays MM-derived sealed-class
 /// skeletons + Dart enums onto an existing wrap-init-produced yaml.
 class WrapPromoteCommand extends Command<int> {
-  WrapPromoteCommand() {
+  WrapPromoteCommand({required this.providers}) {
     argParser
       ..addOption(
         'provider',
@@ -43,6 +44,8 @@ class WrapPromoteCommand extends Command<int> {
             'Regenerate the marker section even if one already exists (default: refuse).',
       );
   }
+
+  final Map<String, ProviderRules> providers;
 
   @override
   String get name => 'wrap-promote';
@@ -74,10 +77,10 @@ class WrapPromoteCommand extends Command<int> {
         'Invalid --provider "$provider". Expected "namespace/name".',
       );
     }
-    if (provider != 'hashicorp/google') {
+    if (!providers.containsKey(provider)) {
       usageException(
-        'Provider "$provider" not supported in Phase 4.3 '
-        '(only hashicorp/google).',
+        'Provider "$provider" not supported. '
+        'Available: ${providers.keys.join(", ")}.',
       );
     }
 
