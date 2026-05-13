@@ -215,20 +215,20 @@ void main() {
       // ~1000 google_* resources later in Phase 4).
       final emitter = WrapperEmitter(overrides: overrides);
       const def = ResourceDef(
-        terraformType: 'google_cloud_run_v2_service',
+        terraformType: 'google_emitter_test_resource',
         root: BlockDef(attributes: [], nestedBlocks: []),
       );
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
       expect(
         out,
         contains(
-          'class _GoogleCloudRunV2ServiceSchemaInstance '
-          'implements \$GoogleCloudRunV2Service {',
+          'class _GoogleEmitterTestResourceSchemaInstance '
+          'implements \$GoogleEmitterTestResource {',
         ),
       );
       expect(
         out,
-        contains('const _GoogleCloudRunV2ServiceSchemaInstance();'),
+        contains('const _GoogleEmitterTestResourceSchemaInstance();'),
       );
     });
 
@@ -262,20 +262,20 @@ void main() {
       // snakeToPascal so the emitter scales across all google_* resources.
       final emitter = WrapperEmitter(overrides: overrides);
       const def = ResourceDef(
-        terraformType: 'google_cloud_run_v2_service',
+        terraformType: 'google_emitter_test_resource',
         root: BlockDef(attributes: [], nestedBlocks: []),
       );
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
       expect(
         out,
         contains(
-          'final class GoogleCloudRunV2Service extends Resource<\$GoogleCloudRunV2Service> {',
+          'final class GoogleEmitterTestResource extends Resource<\$GoogleEmitterTestResource> {',
         ),
       );
       expect(
         out,
         contains(
-          "  static const String \$tfType = 'google_cloud_run_v2_service';",
+          "  static const String \$tfType = 'google_emitter_test_resource';",
         ),
       );
     });
@@ -436,14 +436,14 @@ void main() {
       // any google_* schema, not just google_pubsub_topic.
       final emitter = WrapperEmitter(overrides: overrides);
       const def = ResourceDef(
-        terraformType: 'google_cloud_run_v2_service',
+        terraformType: 'google_emitter_test_resource',
         root: BlockDef(attributes: [], nestedBlocks: []),
       );
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
       expect(
         out,
         contains(
-          '  Set<String> get \$sensitiveFields => googleCloudRunV2ServiceSensitive;',
+          '  Set<String> get \$sensitiveFields => googleEmitterTestResourceSensitive;',
         ),
       );
     });
@@ -485,7 +485,7 @@ void main() {
       // semantic_hints.yaml mechanism.
       final emitter = WrapperEmitter(overrides: overrides);
       const def = ResourceDef(
-        terraformType: 'google_cloud_run_v2_service',
+        terraformType: 'google_emitter_test_resource',
         root: BlockDef(attributes: [], nestedBlocks: []),
       );
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
