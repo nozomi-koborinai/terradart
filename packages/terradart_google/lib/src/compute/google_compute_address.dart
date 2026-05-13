@@ -19,6 +19,9 @@ class _GoogleComputeAddressSchemaInstance implements $GoogleComputeAddress {
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
+// Phase 4.5 Wave 0: `dartTypeOverrides` for enums is deferred (see friction
+// log TG-4). Pass `TfArg.literal(AddressType.external.terraformValue)` etc.
+
 /// Address allocation scope: INTERNAL (VPC-private) or EXTERNAL (public IP).
 enum AddressType {
   internal('INTERNAL'),
@@ -86,13 +89,13 @@ final class GoogleComputeAddress extends Resource<$GoogleComputeAddress> {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<AddressType>? addressType,
+    TfArg<String>? addressType,
     TfArg<String>? address,
     TfArg<num>? prefixLength,
     TfArg<String>? purpose,
-    TfArg<NetworkTier>? networkTier,
-    TfArg<IpVersion>? ipVersion,
-    TfArg<Ipv6EndpointType>? ipv6EndpointType,
+    TfArg<String>? networkTier,
+    TfArg<String>? ipVersion,
+    TfArg<String>? ipv6EndpointType,
     TfArg<String>? network,
     TfArg<String>? subnetwork,
     TfArg<String>? ipCollection,

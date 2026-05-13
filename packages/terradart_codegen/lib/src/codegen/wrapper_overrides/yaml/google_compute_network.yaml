@@ -52,13 +52,13 @@ extraGetters: |2
     /// param of downstream resources like `google_compute_subnetwork`.
     TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
-dartTypeOverrides:
-  routing_mode: RoutingMode
-  bgp_best_path_selection_mode: BgpBestPathSelectionMode
-  bgp_inter_region_cost: BgpInterRegionCost
-  network_firewall_policy_enforcement_order: NetworkFirewallPolicyEnforcementOrder
-
 prelude: |
+  // Phase 4.5 Wave 0: `dartTypeOverrides` for enums is deferred (see friction
+  // log TG-4). The enums below are documentation helpers; callers pass
+  // `TfArg.literal(MyEnum.value.terraformValue)` to the corresponding String
+  // constructor param. Phase 4.5.1+ will add TfArg-level enum serialization
+  // so `dartTypeOverrides: routing_mode: RoutingMode` works end-to-end.
+
   /// Routing mode for `google_compute_network`. Controls how routes are
   /// advertised between VPC subnets (regional) or all subnets (global).
   enum RoutingMode {

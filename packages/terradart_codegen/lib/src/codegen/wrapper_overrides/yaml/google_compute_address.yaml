@@ -57,13 +57,10 @@ extraGetters: |2
     /// Reference to `self_link` attribute.
     TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
-dartTypeOverrides:
-  address_type: AddressType
-  network_tier: NetworkTier
-  ip_version: IpVersion
-  ipv6_endpoint_type: Ipv6EndpointType
-
 prelude: |
+  // Phase 4.5 Wave 0: `dartTypeOverrides` for enums is deferred (see friction
+  // log TG-4). Pass `TfArg.literal(AddressType.external.terraformValue)` etc.
+
   /// Address allocation scope: INTERNAL (VPC-private) or EXTERNAL (public IP).
   enum AddressType {
     internal('INTERNAL'),

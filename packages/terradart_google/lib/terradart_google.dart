@@ -29,9 +29,24 @@ export 'src/cloud_tasks/google_cloud_tasks_queue.dart'
         StackdriverLoggingConfig;
 export 'src/cloud_tasks/google_cloud_tasks_queue_iam_member.dart'
     show GoogleCloudTasksQueueIamMember;
+export 'src/compute/google_compute_address.dart'
+    show
+        AddressType,
+        GoogleComputeAddress,
+        IpVersion,
+        Ipv6EndpointType,
+        NetworkTier;
+export 'src/compute/google_compute_network.dart'
+    show
+        BgpBestPathSelectionMode,
+        BgpInterRegionCost,
+        GoogleComputeNetwork,
+        NetworkFirewallPolicyEnforcementOrder,
+        RoutingMode;
 export 'src/data/google_project.dart' show GoogleProject;
 export 'src/google_provider.dart' show GoogleProvider;
 export 'src/iam/google_service_account.dart' show GoogleServiceAccount;
+export 'src/kms/google_kms_key_ring.dart' show GoogleKmsKeyRing;
 export 'src/project/google_project_service.dart' show GoogleProjectService;
 export 'src/pubsub/google_pubsub_subscription.dart'
     show
