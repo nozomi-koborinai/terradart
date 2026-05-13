@@ -6,6 +6,27 @@ library;
 
 export 'src/_provider_meta.dart'
     show kProviderSource, kProviderVersionConstraint;
+export 'src/bigquery/google_bigquery_dataset.dart'
+    show
+        Access,
+        AccessCondition,
+        AccessDataset,
+        AccessDomain,
+        AccessGroupByEmail,
+        AccessIamMember,
+        AccessRoutine,
+        AccessSpecialGroup,
+        AccessUserByEmail,
+        AccessView,
+        DatasetAccessChild,
+        DatasetReference,
+        DatasetRoutineRef,
+        DatasetStorageBillingModel,
+        DatasetView,
+        DefaultEncryptionConfiguration,
+        ExternalCatalogDatasetOptions,
+        ExternalDatasetReference,
+        GoogleBigqueryDataset;
 export 'src/cloud_scheduler/google_cloud_scheduler_job.dart'
     show
         AppEngineHttpTarget,
@@ -46,6 +67,8 @@ export 'src/compute/google_compute_network.dart'
 export 'src/data/google_project.dart' show GoogleProject;
 export 'src/google_provider.dart' show GoogleProvider;
 export 'src/iam/google_service_account.dart' show GoogleServiceAccount;
+export 'src/kms/google_kms_crypto_key.dart'
+    show GoogleKmsCryptoKey, KmsKeyPurpose, KmsProtectionLevel, VersionTemplate;
 export 'src/kms/google_kms_key_ring.dart' show GoogleKmsKeyRing;
 export 'src/project/google_project_service.dart' show GoogleProjectService;
 export 'src/pubsub/google_pubsub_subscription.dart'
@@ -98,3 +121,12 @@ export 'src/storage/google_storage_bucket.dart'
         SoftDeletePolicy,
         Versioning,
         VpcNetworkSource;
+export 'src/storage/google_storage_bucket_object.dart'
+    show
+        BucketObjectContent,
+        BucketObjectFromContent,
+        BucketObjectFromSource,
+        BucketObjectRetention,
+        BucketObjectStorageClass,
+        CustomerEncryption,
+        GoogleStorageBucketObject;
