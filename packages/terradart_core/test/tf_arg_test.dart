@@ -58,4 +58,41 @@ void main() {
       expect(arg, isA<TfArgRef<String>>());
     });
   });
+
+  group('Phase 4.5.1 TG-4: TfArgLiteral enum serialization', () {
+    test('Enum with `terraformValue` getter → toTfJson returns that String',
+        () {
+      final arg = TfArg.literal(_SampleEnum.alpha);
+      expect(arg.toTfJson(), 'ALPHA_VALUE');
+    });
+
+    test('Enum without `terraformValue` getter → toTfJson throws ArgumentError',
+        () {
+      final arg = TfArg.literal(_BareEnum.first);
+      expect(arg.toTfJson, throwsA(isA<ArgumentError>()));
+    });
+
+    test('String literal: toTfJson unchanged', () {
+      expect(TfArg.literal('hello').toTfJson(), 'hello');
+    });
+
+    test('int literal: toTfJson unchanged', () {
+      expect(TfArg.literal(42).toTfJson(), 42);
+    });
+
+    test('bool literal: toTfJson unchanged', () {
+      expect(TfArg.literal(true).toTfJson(), true);
+    });
+  });
 }
+
+/// Sample enum with the convention (`terraformValue` String getter).
+enum _SampleEnum {
+  alpha('ALPHA_VALUE');
+
+  const _SampleEnum(this.terraformValue);
+  final String terraformValue;
+}
+
+/// Sample enum WITHOUT the convention. TfArg should throw on this.
+enum _BareEnum { first }
