@@ -1,10 +1,13 @@
+import 'package:terradart_codegen/src/codegen/providers/google_provider_rules.dart';
 import 'package:terradart_codegen/src/codegen/wrap_init/output_dir_resolver.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
 import 'package:test/test.dart';
 
 void main() {
   group('OutputDirResolver', () {
-    final resolver = const OutputDirResolver();
+    final resolver = OutputDirResolver(
+      aliases: const GoogleProviderRules().outputDirAliases,
+    );
 
     test('Tier 0: kind=dataSource short-circuits to "data"', () {
       final result = resolver.resolve(
@@ -43,8 +46,6 @@ void main() {
     });
 
     test('Tier 3: alias override on segment-1 fallback', () {
-      // google_service_account → tier-2 prefix-strip yields "service"
-      // → alias override maps service_account → iam
       final result = resolver.resolve(
         terraformType: 'google_service_account',
         mmProduct: null,

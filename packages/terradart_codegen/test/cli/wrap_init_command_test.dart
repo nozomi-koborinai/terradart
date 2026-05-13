@@ -62,7 +62,8 @@ void main() {
       );
     });
 
-    test('--provider hashicorp/aws → usage error (only google supported)', () {
+    test('--provider hashicorp/aws → usage error with registry-driven message',
+        () {
       final runner = buildCliRunner();
       expect(
         () => runner.run([
@@ -75,7 +76,17 @@ void main() {
           '--output',
           '/tmp',
         ]),
-        throwsA(isA<UsageException>()),
+        throwsA(
+          isA<UsageException>().having(
+            (e) => e.message,
+            'message',
+            allOf(
+              contains('hashicorp/aws'),
+              contains('not supported'),
+              contains('Available: hashicorp/google'),
+            ),
+          ),
+        ),
       );
     });
   });

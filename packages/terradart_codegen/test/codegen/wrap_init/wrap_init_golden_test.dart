@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:terradart_codegen/src/codegen/providers/google_provider_rules.dart';
 import 'package:terradart_codegen/src/codegen/wrap_init/clock.dart';
 import 'package:terradart_codegen/src/codegen/wrap_init/output_dir_resolver.dart';
 import 'package:terradart_codegen/src/codegen/wrap_init/wrap_init_emitter.dart';
@@ -11,9 +12,11 @@ import 'package:terradart_codegen/src/parser/schema_parser.dart';
 import 'package:test/test.dart';
 
 void main() {
+  const rules = GoogleProviderRules();
   final generator = WrapInitGenerator(
     clock: FixedClock(DateTime.parse('2026-01-01T00:00:00.000Z')),
-    outputDirResolver: const OutputDirResolver(),
+    outputDirResolver: OutputDirResolver(aliases: rules.outputDirAliases),
+    providerRules: rules,
   );
   const emitter = WrapInitEmitter();
 

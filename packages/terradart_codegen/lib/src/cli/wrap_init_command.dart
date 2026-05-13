@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:args/command_runner.dart';
 import 'package:path/path.dart' as p;
 
+import '../codegen/providers/provider_rules.dart';
 import '../codegen/wrap_init/clock.dart';
 import '../codegen/wrap_init/output_dir_resolver.dart';
 import '../codegen/wrap_init/wrap_init_emitter.dart';
@@ -15,7 +16,7 @@ import 'exit_codes.dart';
 /// `terradart wrap-init <resource>` — scaffolds a wrapper override YAML
 /// for a single Terraform resource.
 class WrapInitCommand extends Command<int> {
-  WrapInitCommand() {
+  WrapInitCommand({required this.providers}) {
     argParser
       ..addOption(
         'provider',
@@ -45,6 +46,8 @@ class WrapInitCommand extends Command<int> {
       );
   }
 
+  final Map<String, ProviderRules> providers;
+
   @override
   String get name => 'wrap-init';
 
@@ -70,17 +73,18 @@ class WrapInitCommand extends Command<int> {
       );
     }
 
-    // --provider validation + Phase 4.2 support gating.
+    // --provider validation + registry lookup.
     final provider = results['provider'] as String;
     if (!_providerIdPattern.hasMatch(provider)) {
       usageException(
         'Invalid --provider "$provider". Expected "namespace/name".',
       );
     }
-    if (provider != 'hashicorp/google') {
+    final rules = providers[provider];
+    if (rules == null) {
       usageException(
-        'Provider "$provider" not supported in Phase 4.2 '
-        '(only hashicorp/google).',
+        'Provider "$provider" not supported. '
+        'Available: ${providers.keys.join(", ")}.',
       );
     }
 
@@ -160,7 +164,8 @@ class WrapInitCommand extends Command<int> {
     // 5. Generate + emit.
     final generator = WrapInitGenerator(
       clock: const SystemClock(),
-      outputDirResolver: const OutputDirResolver(),
+      outputDirResolver: OutputDirResolver(aliases: rules.outputDirAliases),
+      providerRules: rules,
     );
     const emitter = WrapInitEmitter();
     final draft = generator.generate(

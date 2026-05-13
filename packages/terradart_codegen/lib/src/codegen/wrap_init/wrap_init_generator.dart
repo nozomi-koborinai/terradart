@@ -1,5 +1,6 @@
 import '../../ir/resource_def.dart';
 import '../../parser/mm_yaml_parser.dart';
+import '../providers/provider_rules.dart';
 import '../wrapper_overrides/wrapper_override.dart';
 import 'clock.dart';
 import 'output_dir_resolver.dart';
@@ -14,10 +15,12 @@ class WrapInitGenerator {
   WrapInitGenerator({
     required this.clock,
     required this.outputDirResolver,
+    required this.providerRules,
   });
 
   final Clock clock;
   final OutputDirResolver outputDirResolver;
+  final ProviderRules providerRules;
 
   /// Returns a draft for one resource. Caller passes parsed inputs; this
   /// function does NOT touch the filesystem.
@@ -90,15 +93,7 @@ class WrapInitGenerator {
   }
 
   WrapInitAxis _buildExtraGettersAxis(ResourceDef def) {
-    final attrs = def.root.attributes.map((a) => a.name).toSet();
-    final lines = <String>[];
-    if (attrs.contains('id')) {
-      lines.add("TfRef<String> get id => TfRef.attribute<String>(this, 'id');");
-    }
-    if (attrs.contains('name')) {
-      lines.add(
-          "TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');");
-    }
+    final lines = providerRules.universalGetters(def);
     return TodoAxis(
       'extraGetters',
       todoMessage: todoExtraGetters,
