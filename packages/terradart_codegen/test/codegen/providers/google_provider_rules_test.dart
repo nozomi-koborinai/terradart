@@ -25,6 +25,8 @@ void main() {
       // Tier-2/3 segment / prefix overrides.
       expect(rules.outputDirAliases['service_account'], 'iam');
       expect(rules.outputDirAliases['project_service'], 'project');
+      // Phase 4.5 pilot — cloud_run service alias.
+      expect(rules.outputDirAliases['cloudrunv2'], 'cloud_run');
     });
 
     test('universalGetters returns id + nameRef when both attrs are present',
