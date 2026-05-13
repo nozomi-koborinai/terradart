@@ -1,0 +1,15 @@
+name: terradart_example_cloud_run_quickstart
+description: Phase 4.5 Wave 3 quickstart -- Cloud Run v2 Service with secret env var (sealed EnvVarSource) + VPC egress.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  terradart_core:
+    path: ../../packages/terradart_core
+  terradart_google:
+    path: ../../packages/terradart_google
+
+dev_dependencies:
+  lints: ^6.0.0
