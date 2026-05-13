@@ -35,8 +35,12 @@ class LatencyAlertStack extends Stack {
         displayName: TfArg.literal('api-p95-latency'),
         combiner: TfArg.literal(AlertCombiner.or),
         severity: TfArg.literal(AlertSeverity.warning),
-        notificationChannels:
-            TfArg.literal(const [r'${var.pagerduty_channel_id}']),
+        // Replace with `TfArg.ref(...)` to a real GoogleMonitoringNotificationChannel
+        // once that resource lands; for the quickstart we use a placeholder
+        // resource path so the synth output passes `terraform validate`.
+        notificationChannels: TfArg.literal(const [
+          'projects/your-project/notificationChannels/your-channel-id',
+        ]),
         conditions: [
           AlertCondition(
             displayName: TfArg.literal('p95 > 1500ms for 5m'),
