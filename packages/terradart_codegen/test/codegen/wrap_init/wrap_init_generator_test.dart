@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:terradart_codegen/src/codegen/providers/google_provider_rules.dart';
 import 'package:terradart_codegen/src/codegen/wrap_init/clock.dart';
 import 'package:terradart_codegen/src/codegen/wrap_init/output_dir_resolver.dart';
 import 'package:terradart_codegen/src/codegen/wrap_init/wrap_init_draft.dart';
@@ -31,10 +32,14 @@ void main() {
     googleProject = projIr.dataSources['google_project']!;
   });
 
-  WrapInitGenerator generator() => WrapInitGenerator(
-        clock: FixedClock(DateTime.utc(2026, 1, 1)),
-        outputDirResolver: const OutputDirResolver(),
-      );
+  WrapInitGenerator generator() {
+    const rules = GoogleProviderRules();
+    return WrapInitGenerator(
+      clock: FixedClock(DateTime.utc(2026, 1, 1)),
+      outputDirResolver: OutputDirResolver(aliases: rules.outputDirAliases),
+      providerRules: rules,
+    );
+  }
 
   group('WrapInitGenerator axis derivation', () {
     test('kind=resource: no `kind:` line in draft axes', () {
