@@ -1,0 +1,15 @@
+name: terradart_example_dns_quickstart
+description: Phase 4.5 Wave 2 quickstart -- private DNS zone with typed peering_config + DNSSEC enums.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  terradart_core:
+    path: ../../packages/terradart_core
+  terradart_google:
+    path: ../../packages/terradart_google
+
+dev_dependencies:
+  lints: ^6.0.0

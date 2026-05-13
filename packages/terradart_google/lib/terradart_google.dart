@@ -57,6 +57,14 @@ export 'src/compute/google_compute_address.dart'
         IpVersion,
         Ipv6EndpointType,
         NetworkTier;
+export 'src/compute/google_compute_firewall.dart'
+    show
+        FirewallAllowRule,
+        FirewallDenyRule,
+        FirewallDirection,
+        FirewallLogConfig,
+        FirewallLogMetadata,
+        GoogleComputeFirewall;
 export 'src/compute/google_compute_network.dart'
     show
         BgpBestPathSelectionMode,
@@ -64,12 +72,45 @@ export 'src/compute/google_compute_network.dart'
         GoogleComputeNetwork,
         NetworkFirewallPolicyEnforcementOrder,
         RoutingMode;
+export 'src/compute/google_compute_subnetwork.dart'
+    show
+        GoogleComputeSubnetwork,
+        SecondaryIpRange,
+        SubnetworkIpv6AccessType,
+        SubnetworkLogConfig,
+        SubnetworkLogConfigAggregationInterval,
+        SubnetworkLogConfigMetadata,
+        SubnetworkPurpose,
+        SubnetworkResolveSubnetMask,
+        SubnetworkRole,
+        SubnetworkStackType;
 export 'src/data/google_project.dart' show GoogleProject;
+export 'src/dns/google_dns_managed_zone.dart'
+    show
+        CloudLoggingConfig,
+        DnsZoneVisibility,
+        DnssecConfig,
+        DnssecKeyAlgorithm,
+        DnssecKeySpec,
+        DnssecKeyType,
+        DnssecNonExistence,
+        DnssecState,
+        ForwardingConfig,
+        ForwardingPath,
+        ForwardingTargetNameServer,
+        GoogleDnsManagedZone,
+        PeeringConfig,
+        PeeringTargetNetwork,
+        PrivateVisibilityConfig,
+        PrivateVisibilityGkeCluster,
+        PrivateVisibilityNetwork;
 export 'src/google_provider.dart' show GoogleProvider;
 export 'src/iam/google_service_account.dart' show GoogleServiceAccount;
 export 'src/kms/google_kms_crypto_key.dart'
     show GoogleKmsCryptoKey, KmsKeyPurpose, KmsProtectionLevel, VersionTemplate;
 export 'src/kms/google_kms_key_ring.dart' show GoogleKmsKeyRing;
+export 'src/logging/google_logging_project_sink.dart'
+    show BigqueryOptions, GoogleLoggingProjectSink, LogSinkExclusion;
 export 'src/project/google_project_service.dart' show GoogleProjectService;
 export 'src/pubsub/google_pubsub_subscription.dart'
     show
