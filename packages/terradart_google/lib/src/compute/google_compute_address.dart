@@ -19,8 +19,8 @@ class _GoogleComputeAddressSchemaInstance implements $GoogleComputeAddress {
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
-// Phase 4.5 Wave 0: `dartTypeOverrides` for enums is deferred (see friction
-// log TG-4). Pass `TfArg.literal(AddressType.external.terraformValue)` etc.
+// Phase 4.5.1: dartTypeOverrides re-enabled. Callers pass enum values
+// directly; TfArg detects `.terraformValue` getter.
 
 /// Address allocation scope: INTERNAL (VPC-private) or EXTERNAL (public IP).
 enum AddressType {
@@ -74,8 +74,8 @@ enum Ipv6EndpointType {
 ///   localName: 'lb_vip',
 ///   name: TfArg.literal('lb-vip-prod'),
 ///   region: TfArg.literal('asia-northeast1'),
-///   addressType: TfArg.literal(AddressType.external.terraformValue),
-///   networkTier: TfArg.literal(NetworkTier.premium.terraformValue),
+///   addressType: TfArg.literal(AddressType.external),
+///   networkTier: TfArg.literal(NetworkTier.premium),
 /// );
 /// ```
 ///
@@ -89,13 +89,13 @@ final class GoogleComputeAddress extends Resource<$GoogleComputeAddress> {
     required super.localName,
     required TfArg<String> name,
     TfArg<String>? region,
-    TfArg<String>? addressType,
+    TfArg<AddressType>? addressType,
     TfArg<String>? address,
     TfArg<num>? prefixLength,
     TfArg<String>? purpose,
-    TfArg<String>? networkTier,
-    TfArg<String>? ipVersion,
-    TfArg<String>? ipv6EndpointType,
+    TfArg<NetworkTier>? networkTier,
+    TfArg<IpVersion>? ipVersion,
+    TfArg<Ipv6EndpointType>? ipv6EndpointType,
     TfArg<String>? network,
     TfArg<String>? subnetwork,
     TfArg<String>? ipCollection,

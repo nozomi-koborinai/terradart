@@ -19,11 +19,9 @@ class _GoogleComputeNetworkSchemaInstance implements $GoogleComputeNetwork {
   dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
 
-// Phase 4.5 Wave 0: `dartTypeOverrides` for enums is deferred (see friction
-// log TG-4). The enums below are documentation helpers; callers pass
-// `TfArg.literal(MyEnum.value.terraformValue)` to the corresponding String
-// constructor param. Phase 4.5.1+ will add TfArg-level enum serialization
-// so `dartTypeOverrides: routing_mode: RoutingMode` works end-to-end.
+// Phase 4.5.1: dartTypeOverrides re-enabled for enum-typed fields. Callers
+// pass `TfArg.literal(RoutingMode.regional)` (enum value directly) and the
+// TfArg.toTfJson layer detects the `terraformValue` getter convention.
 
 /// Routing mode for `google_compute_network`. Controls how routes are
 /// advertised between VPC subnets (regional) or all subnets (global).
@@ -78,7 +76,7 @@ enum NetworkFirewallPolicyEnforcementOrder {
 ///   localName: 'main',
 ///   name: TfArg.literal('main-vpc'),
 ///   autoCreateSubnetworks: TfArg.literal(false),
-///   routingMode: TfArg.literal(RoutingMode.regional.terraformValue),
+///   routingMode: TfArg.literal(RoutingMode.regional),
 /// );
 /// ```
 ///
@@ -92,17 +90,18 @@ final class GoogleComputeNetwork extends Resource<$GoogleComputeNetwork> {
     required super.localName,
     required TfArg<String> name,
     TfArg<bool>? autoCreateSubnetworks,
-    TfArg<String>? routingMode,
+    TfArg<RoutingMode>? routingMode,
     TfArg<num>? mtu,
     TfArg<String>? description,
-    TfArg<String>? networkFirewallPolicyEnforcementOrder,
+    TfArg<NetworkFirewallPolicyEnforcementOrder>?
+    networkFirewallPolicyEnforcementOrder,
     TfArg<String>? networkProfile,
     TfArg<bool>? enableUlaInternalIpv6,
     TfArg<bool>? deleteDefaultRoutesOnCreate,
     TfArg<bool>? deleteBgpAlwaysCompareMed,
     TfArg<bool>? bgpAlwaysCompareMed,
-    TfArg<String>? bgpBestPathSelectionMode,
-    TfArg<String>? bgpInterRegionCost,
+    TfArg<BgpBestPathSelectionMode>? bgpBestPathSelectionMode,
+    TfArg<BgpInterRegionCost>? bgpInterRegionCost,
     TfArg<String>? internalIpv6Range,
     TfArg<String>? project,
     super.lifecycle,

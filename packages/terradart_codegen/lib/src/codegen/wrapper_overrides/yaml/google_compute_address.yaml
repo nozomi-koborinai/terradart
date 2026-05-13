@@ -15,8 +15,8 @@ classDocComment: |-
   ///   localName: 'lb_vip',
   ///   name: TfArg.literal('lb-vip-prod'),
   ///   region: TfArg.literal('asia-northeast1'),
-  ///   addressType: TfArg.literal(AddressType.external.terraformValue),
-  ///   networkTier: TfArg.literal(NetworkTier.premium.terraformValue),
+  ///   addressType: TfArg.literal(AddressType.external),
+  ///   networkTier: TfArg.literal(NetworkTier.premium),
   /// );
   /// ```
   ///
@@ -57,9 +57,15 @@ extraGetters: |2
     /// Reference to `self_link` attribute.
     TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
+dartTypeOverrides:
+  address_type: AddressType
+  network_tier: NetworkTier
+  ip_version: IpVersion
+  ipv6_endpoint_type: Ipv6EndpointType
+
 prelude: |
-  // Phase 4.5 Wave 0: `dartTypeOverrides` for enums is deferred (see friction
-  // log TG-4). Pass `TfArg.literal(AddressType.external.terraformValue)` etc.
+  // Phase 4.5.1: dartTypeOverrides re-enabled. Callers pass enum values
+  // directly; TfArg detects `.terraformValue` getter.
 
   /// Address allocation scope: INTERNAL (VPC-private) or EXTERNAL (public IP).
   enum AddressType {
