@@ -648,7 +648,9 @@ classDocComment: |-
     });
   });
 
-  group('production round-trip (17 entries — Phase 4.1 13 + Phase 4.5 Wave 0+1 4)', () {
+  group(
+      'production round-trip (17 entries — Phase 4.1 13 + Phase 4.5 Wave 0+1 4)',
+      () {
     test(
       'lib/src/codegen/wrapper_overrides/yaml/ loads 16 resources + 1 data source',
       () {
