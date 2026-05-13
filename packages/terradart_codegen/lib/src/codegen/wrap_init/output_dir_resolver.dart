@@ -8,10 +8,10 @@ import '../wrapper_overrides/wrapper_override.dart';
 ///   * Tier 2: `mmProduct == null` → terraform-type prefix match against aliases
 ///   * Tier 3: terraform-type segment-1 after `google_`, with alias override
 ///
-/// The alias map is Google-specific. Phase 4.4 will extract this to a
-/// `ProviderRules` adapter; Phase 4.2 keeps it inline.
+/// The alias map is provider-specific. As of Phase 4.4 the resolver itself is
+/// universal; the map ships from `ProviderRules.outputDirAliases`.
 class OutputDirResolver {
-  const OutputDirResolver({this.aliases = _googleOutputDirAliases});
+  const OutputDirResolver({required this.aliases});
 
   /// Both Tier-1 MM-product aliases and Tier-2/3 prefix/segment overrides.
   final Map<String, String> aliases;
@@ -50,21 +50,3 @@ class OutputDirResolver {
     return aliases[firstSegment] ?? firstSegment;
   }
 }
-
-/// Google provider alias map. Bootstrap entries derived from the 13 yaml
-/// files shipped in Phase 4.1; extend during Phase 4.5 wave rollout when
-/// new MM products land.
-const Map<String, String> _googleOutputDirAliases = {
-  // Tier 1 — MM `product` field normalization (snake_case alignment).
-  'cloudtasks': 'cloud_tasks',
-  'secretmanager': 'secret_manager',
-  'cloudscheduler': 'cloud_scheduler',
-  'resourcemanager': 'project',
-
-  // Tier 2/3 — terraform-type prefix / segment overrides.
-  'cloud_tasks': 'cloud_tasks',
-  'secret_manager': 'secret_manager',
-  'cloud_scheduler': 'cloud_scheduler',
-  'service_account': 'iam',
-  'project_service': 'project',
-};
