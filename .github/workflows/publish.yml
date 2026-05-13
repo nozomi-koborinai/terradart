@@ -64,14 +64,19 @@ jobs:
       - run: dart pub get
 
       - name: Verify generated schema and wrapper files
-        working-directory: packages/terradart_google
         run: |
-          schema_g_count=$(find lib/src/generated -name "*.schema.g.dart" | wc -l)
-          wrapper_count=$(find lib/src -mindepth 2 -name 'google_*.dart' -not -path 'lib/src/generated/*' | wc -l)
-          if [ "$schema_g_count" -ne 12 ] || [ "$wrapper_count" -ne 13 ]; then
-            echo "::error::Expected 12 schema.g.dart + 13 wrapper, got $schema_g_count + $wrapper_count"
-            exit 1
-          fi
+          # Source of truth: per-resource yaml overrides under terradart_codegen.
+          yaml_count=$(find packages/terradart_codegen/lib/src/codegen/wrapper_overrides/yaml -name '*.yaml' | wc -l | tr -d ' ')
+          # Layer 1 (Phase 4.1+ `.schema.dart`): one per yaml override.
+          schema_dart_count=$(find packages/terradart_google/lib/src -name '*.schema.dart' | wc -l | tr -d ' ')
+          # Layer 2 (wrapper `google_*.dart`): one per yaml override.
+          wrapper_count=$(find packages/terradart_google/lib/src -mindepth 2 -name 'google_*.dart' -not -path '*/generated/*' | wc -l | tr -d ' ')
+          # Legacy schemantic Layer 1 (`.schema.g.dart` under generated/): static at 12 (no growth as Phase 4.x adds resources).
+          schema_g_count=$(find packages/terradart_google/lib/src/generated -name '*.schema.g.dart' | wc -l | tr -d ' ')
+          echo "yaml=$yaml_count schema.dart=$schema_dart_count wrapper=$wrapper_count schema.g.dart=$schema_g_count"
+          [ "$yaml_count" -eq "$schema_dart_count" ] || { echo "::error::schema.dart count ($schema_dart_count) != yaml count ($yaml_count)"; exit 1; }
+          [ "$yaml_count" -eq "$wrapper_count" ] || { echo "::error::wrapper count ($wrapper_count) != yaml count ($yaml_count)"; exit 1; }
+          [ "$schema_g_count" -eq 12 ] || { echo "::error::legacy schema.g.dart count ($schema_g_count) != 12"; exit 1; }
 
       - name: Pre-publish pubspec mutations
         run: tool/prepare_publish.sh "${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}" terradart_google

@@ -41,5 +41,8 @@ final class GoogleProviderRules extends ProviderRules {
     'cloud_scheduler': 'cloud_scheduler',
     'service_account': 'iam',
     'project_service': 'project',
+
+    // Phase 4.5 pilot — additional MM-product alias.
+    'cloudrunv2': 'cloud_run',
   };
 }
