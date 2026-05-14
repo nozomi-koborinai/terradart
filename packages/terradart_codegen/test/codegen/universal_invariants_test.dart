@@ -3,6 +3,8 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/universal_invariants/enum_extractor.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
+import 'package:terradart_codegen/src/parser/schema_parser.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -85,6 +87,82 @@ void main() {
               'bug class — wrap-promote ValidValuesEmitter producing '
               'garbage Dart identifiers like `addCOSTTOMED` or `3DES`.\n'
               'Offenders: ${offenders.join(", ")}',
+        );
+      });
+    });
+
+    group('Gate 1: paramOrder covers every required schema attribute', () {
+      test('every required attr is in paramOrder or customSlots', () {
+        final loaded = loadWrapperOverrides(
+          rootDir: 'lib/src/codegen/wrapper_overrides/yaml',
+        );
+        final schemaSrc = File(
+          'test/fixtures/wrap/source/schema.json',
+        ).readAsStringSync();
+        final ir = const SchemaJsonParser()
+            .parseString(schemaSrc, providerVersion: '7.31.0');
+
+        final offenders = <String>[];
+
+        // Resources side.
+        for (final entry in loaded.resources.entries) {
+          final terraformType = entry.key;
+          final override = entry.value;
+          final def = ir.resources[terraformType];
+          // TODO(gate1-unmatched): a yaml override naming a resource absent
+          // from the fixture schema (typo, or fixture stale) is silently
+          // skipped here. Add a complementary assertion that every override
+          // key resolves to an IR def.
+          if (def == null) continue;
+
+          // NOTE: only root-level attributes are checked. Required nested
+          // blocks (min_items > 0) are excluded by scope — track in a future
+          // gate if regressions emerge.
+          final requiredAttrs = def.root.attributes
+              .where((a) => a.constraints.required)
+              .map((a) => a.name)
+              .toSet();
+
+          final fromParamOrder = override.paramOrder?.toSet() ?? <String>{};
+          final fromCustomSlots =
+              override.customSlots?.keys.toSet() ?? <String>{};
+          final covered = fromParamOrder.union(fromCustomSlots);
+
+          final missing = requiredAttrs.difference(covered);
+          if (missing.isNotEmpty) {
+            offenders.add('$terraformType: missing required attrs $missing');
+          }
+        }
+
+        // Data sources side (same logic against `ir.dataSources`).
+        for (final entry in loaded.dataSources.entries) {
+          final terraformType = entry.key;
+          final override = entry.value;
+          final def = ir.dataSources[terraformType];
+          if (def == null) continue;
+
+          final requiredAttrs = def.root.attributes
+              .where((a) => a.constraints.required)
+              .map((a) => a.name)
+              .toSet();
+          final fromParamOrder = override.paramOrder?.toSet() ?? <String>{};
+          final fromCustomSlots =
+              override.customSlots?.keys.toSet() ?? <String>{};
+          final covered = fromParamOrder.union(fromCustomSlots);
+          final missing = requiredAttrs.difference(covered);
+          if (missing.isNotEmpty) {
+            offenders.add('$terraformType: missing required attrs $missing');
+          }
+        }
+
+        expect(
+          offenders,
+          isEmpty,
+          reason: 'paramOrder must list every required schema attribute '
+              '(or the attribute must be covered via customSlots). '
+              'A required attr absent from both is silently dropped from '
+              'the factory constructor.\n'
+              'Offenders: ${offenders.join("\n  ")}',
         );
       });
     });
