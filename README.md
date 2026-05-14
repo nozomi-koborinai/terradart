@@ -37,7 +37,7 @@ The Terraform Google provider has 1,000+ resources and migrates schema versions 
 
 terradart is a **schema → Dart binding generator**, not a Terraform module ecosystem replacement. The `module` block lets you reuse existing Terraform modules (`source = "github.com/..."`); supporting it would mean implementing module input/output type inference, version constraints, and registry resolution — all of which exist in the Terraform CLI ecosystem already.
 
-For v0.0.x we keep terradart focused on the IaC↔application seam (typed Dart constants for resource identifiers your app code consumes). If you need module composition, write Terraform modules in HCL alongside terradart-generated `.tf.json` — both feed the same `terraform apply`. We may revisit module ergonomics in a future major version once Tier 1 is stable.
+For the v0.x.y-dev pre-alpha cycle we keep terradart focused on the IaC↔application seam (typed Dart constants for resource identifiers your app code consumes). If you need module composition, write Terraform modules in HCL alongside terradart-generated `.tf.json` — both feed the same `terraform apply`. We may revisit module ergonomics in a future major version once Tier 1 is stable.
 
 ### Why doesn't the CLI have a `synth` subcommand?
 
@@ -46,7 +46,7 @@ Most IaC tools (CDKTF, AWS CDK, Pulumi) ship a `synth` CLI command that compiles
 ```dart
 // bin/infra.dart
 import 'dart:convert';
-import 'package:terradart_core/terradart.dart';
+import 'package:terradart_core/terradart_core.dart';
 import 'package:my_app_infra/orders_stack.dart';
 
 void main() {
@@ -68,17 +68,25 @@ If you'd prefer a uniform CLI experience: write a 5-line `bin/infra.dart` once a
 
 | Tier | Surface | Stability |
 |---|---|---|
-| **Tier 1** | **12 resources + 1 data source.** Pub/Sub: `google_pubsub_topic`, `google_pubsub_subscription`, `google_pubsub_topic_iam_member`, `google_pubsub_subscription_iam_member`. Cloud Tasks: `google_cloud_tasks_queue`, `google_cloud_tasks_queue_iam_member`. Secret Manager: `google_secret_manager_secret`, `google_secret_manager_secret_version`, `google_secret_manager_secret_iam_member`. Cloud Scheduler: `google_cloud_scheduler_job`. Project enablement: `google_project_service`. IAM: `google_service_account`. Data source: `google_project`. | **Pre-alpha (v0.0.x)** — generator-first, hand-written + golden-tested. No SemVer guarantees yet. |
-| **Tier 2** | All other `google_*` and `google-beta_*` resources | **Planned** — generator-supported via `terradart_codegen`, no semver guarantee on emitted Dart names |
+| **Tier 1** | **28 resources + 1 data source.** `terradart_google` ships typed factory wrappers for compute (5), BigQuery (2), KMS (2), Cloud Storage (2), DNS (1), Cloud Run v2 (1), Logging (1), Monitoring (1), Pub/Sub (4), Cloud Tasks (2), Secret Manager (3), Cloud Scheduler (1), IAM service account (1), project service enablement (1), and the `google_project` data source. See [`terradart_google` README](packages/terradart_google/README.md) for the full list. | **Pre-alpha (v0.x.y-dev)** — golden-tested, regenerated deterministically via `terradart wrap --check` in CI. No SemVer guarantees until v1.0.0. |
+| **Tier 2** | Every other `google_*` / `google-beta_*` resource | **Generator-supported.** Run `terradart codegen` against your provider schema dump to emit bindings into your own `lib/generated/`. No SemVer guarantee on emitted Dart names. |
+
+### Type-safe authoring (v0.1.0-dev)
+
+Every Tier 1 resource ships:
+
+- **Typed Dart enums** for each schema field with a fixed value set. `TfArg<RoutingMode>.literal(RoutingMode.regional)` encodes to `"REGIONAL"` via the `.terraformValue` convention — typos surface at compile time.
+- **Typed nested-block helpers** (e.g. `BootDisk`, `NetworkInterface`, `LifecycleRule`, `ConditionThreshold`, `AlertStrategy`) that serialize via `toArgMap()`.
+- **Sealed types for exactly-one-of nested blocks** so the compiler keeps mutually-exclusive variants honest: `Access` (8 variants on `bigquery_dataset`), `BucketObjectContent`, `EnvVarSource` (env literal vs. secret_key_ref on Cloud Run), `VolumeSource`.
 
 ## Quickstart
 
 ```bash
 # 1. Install the codegen CLI globally (explicit version required for pre-release).
-dart pub global activate terradart_codegen 0.0.1-dev
+dart pub global activate terradart_codegen 0.1.0-dev
 
 # 2. Add the runtime + Tier 1 factories to your IaC project.
-dart pub add 'terradart_core:^0.0.1-dev' 'terradart_google:^0.0.1-dev'
+dart pub add 'terradart_core:^0.1.0-dev' 'terradart_google:^0.1.0-dev'
 
 # 3. Generate the Terraform Google provider schema dump:
 mkdir schema-dir && cd schema-dir
@@ -93,7 +101,7 @@ terraform init
 terraform providers schema -json > schema.json
 cd ..
 
-# 4. Run codegen against the schema.
+# 4. Run codegen for Tier 2 resources you need that aren't in terradart_google.
 terradart codegen \
   --provider hashicorp/google \
   --source schema-dir \
@@ -105,22 +113,41 @@ terradart codegen \
 
 See [`examples/pubsub_quickstart/`](examples/pubsub_quickstart/) for a runnable end-to-end project.
 
-## Tier 1 examples
+## Examples
+
+Foundational:
 
 - [Pub/Sub topic + IAM member](examples/pubsub_quickstart/)
 - [Cloud Tasks queue + IAM member](examples/cloud_tasks_quickstart/)
 - [Secret Manager (write-only fields)](examples/secret_manager_quickstart/)
 - [Cloud Scheduler → Pub/Sub target](examples/cloud_scheduler_quickstart/)
-- [Tier 1 IAM members across all four services](examples/iam_quickstart/)
+- [IAM members across all four foundational services](examples/iam_quickstart/)
+
+Compute & networking:
+
+- [Compute network + external address (typed enums)](examples/compute_quickstart/)
+- [DNS managed zone (private + DNSSEC)](examples/dns_quickstart/)
+
+Data & storage:
+
+- [GCS bucket + bucket object](examples/storage_quickstart/)
+- [BigQuery dataset (sealed `Access` hierarchy)](examples/bigquery_quickstart/)
+- [Cloud KMS keyring + crypto key](examples/kms_quickstart/)
+
+Application platform & operations:
+
+- [Cloud Run v2 service (sealed `EnvVarSource`)](examples/cloud_run_quickstart/)
+- [Logging project sink → BigQuery](examples/ops_quickstart/)
+- [Monitoring alert policy with typed `Aligner` / `Reducer`](examples/monitoring_quickstart/)
 
 ## What it is **not** (Non-goals)
 
 - **Not a Terraform replacement.** terradart synthesizes JSON; `terraform plan / apply` runs as before.
 - **Not a state backend.** State remains in GCS / Terraform Cloud / wherever you already have it. terradart ships a `GcsBackend` helper for the common case; everything else stays in your existing pipeline.
 - **Not a Pulumi competitor.** No runtime provider invocation, no automation API.
-- **Not a multi-cloud tool in v0.0.x.** Google provider only. AWS / Azure may follow if Tier 1 stabilizes — no promise.
-- **Not Firebase Functions Dart's Pub/Sub trigger story.** As of v0.0.x, Firebase Functions for Dart does not expose a Pub/Sub trigger decorator. terradart can still emit the topic name as a typed constant for HTTP-fronted subscribers; we do not paper over the runtime gap.
-- **Not a constructs framework.** Composite abstractions are out of scope for v0.0.x.
+- **Not a multi-cloud tool yet.** Google provider only. AWS / Azure may follow if Tier 1 stabilizes — no promise.
+- **Not Firebase Functions Dart's Pub/Sub trigger story.** As of the pre-alpha cycle, Firebase Functions for Dart does not expose a Pub/Sub trigger decorator. terradart can still emit the topic name as a typed constant for HTTP-fronted subscribers; we do not paper over the runtime gap.
+- **Not a constructs framework.** Composite abstractions are out of scope for the pre-alpha cycle.
 
 ## Contributing
 
