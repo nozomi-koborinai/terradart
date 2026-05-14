@@ -1,5 +1,6 @@
 import 'package:meta/meta.dart';
 
+import 'duration_helper.dart';
 import 'tf_ref.dart';
 
 /// A Terraform argument: either a Dart-side literal or a Terraform-side
@@ -21,6 +22,22 @@ sealed class TfArg<T> {
 
   /// Convenience: `TfArg.ref(topic.nameRef)`.
   static TfArg<T> ref<T>(TfRef<T> ref) => TfArgRef<T>(ref);
+
+  /// Convenience for Terraform duration-string fields
+  /// (`rotation_period`, `message_retention_duration`, `ack_deadline_seconds`
+  /// when expressed in string-seconds form, etc.).
+  ///
+  /// ```dart
+  /// rotationPeriod: TfArg.duration(const Duration(days: 90)),
+  /// // emits "rotation_period": "7776000s"
+  /// ```
+  ///
+  /// Equivalent to `TfArg.literal(duration.toTfDurationString())` — the
+  /// returned [TfArg] is a `TfArgLiteral<String>` whose payload is the
+  /// `"${inSeconds}s"` representation produced by [TerraformDurationExt].
+  /// Throws [ArgumentError] for negative or sub-second durations.
+  static TfArg<String> duration(Duration duration) =>
+      TfArgLiteral<String>(duration.toTfDurationString());
 
   /// Value to pass to schemantic concrete constructor.
   ///
