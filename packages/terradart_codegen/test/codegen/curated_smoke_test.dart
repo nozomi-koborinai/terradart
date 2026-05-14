@@ -11,7 +11,7 @@ void main() {
 
       // Identity-heterogeneous services (name+location, secret_id, etc.)
       final svcResult = await runCodegen(
-        schemaJsonPath: 'test/fixtures/schema/tier1_sample.schema.json',
+        schemaJsonPath: 'test/fixtures/schema/curated_sample.schema.json',
         mmYamlPaths: const {},
         outputDir: tmp.path,
         providerVersion: '5.32.0',
@@ -21,7 +21,7 @@ void main() {
       // The 4 IAM bindings (Cloud Scheduler IAM is NOT in this set per
       // critical-fix #4 — it doesn't exist in hashicorp/google).
       final iamResult = await runCodegen(
-        schemaJsonPath: 'test/fixtures/schema/tier1_iam.schema.json',
+        schemaJsonPath: 'test/fixtures/schema/curated_iam.schema.json',
         mmYamlPaths: const {},
         outputDir: tmp.path,
         providerVersion: '5.32.0',
@@ -51,8 +51,8 @@ void main() {
 
     test('Cloud Scheduler IAM is intentionally absent from the curated set',
         () {
-      final fixture =
-          File('test/fixtures/schema/tier1_iam.schema.json').readAsStringSync();
+      final fixture = File('test/fixtures/schema/curated_iam.schema.json')
+          .readAsStringSync();
       // Defensive: verify the fixture itself doesn't accidentally include it.
       expect(fixture, isNot(contains('cloud_scheduler_job_iam_member')));
     });

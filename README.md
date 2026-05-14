@@ -105,7 +105,8 @@ dependencies:
 ```bash
 dart pub get
 dart pub global activate terradart_codegen 0.1.0-dev    # only if you need
-                                                         # Tier-2 codegen
+                                                         # codegen for non-curated
+                                                         # google_* resources
 dart run bin/infra.dart                                  # synth → tf-out/
 cd tf-out && terraform init && terraform apply
 ```

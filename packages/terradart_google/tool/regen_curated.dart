@@ -14,13 +14,13 @@
 // The script is idempotent: re-running it on a clean tree should yield no
 // `git diff`. Intended invocation is manual, once per curated schema bump:
 //
-//     (cd packages/terradart_google && dart run tool/regen_tier1.dart)
+//     (cd packages/terradart_google && dart run tool/regen_curated.dart)
 //
 // To refresh the underlying fixture from a live provider, see
 // `validation/tf-out/` (init google provider, then
 // `terraform providers schema -json > <fixture>`). The 11 curated
 // resource bodies are then extracted into
-// `packages/terradart_codegen/test/fixtures/schema/tier1_full.schema.json`.
+// `packages/terradart_codegen/test/fixtures/schema/curated_full.schema.json`.
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
@@ -56,7 +56,7 @@ Future<void> main() async {
     'test',
     'fixtures',
     'schema',
-    'tier1_full.schema.json',
+    'curated_full.schema.json',
   );
   final outDir = p.join(
     repoRoot,

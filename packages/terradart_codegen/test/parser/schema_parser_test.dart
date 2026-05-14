@@ -60,7 +60,7 @@ void main() {
 
   group('Curated-surface identity heterogeneity (critical-fix #4)', () {
     final fixture = File(
-      'test/fixtures/schema/tier1_sample.schema.json',
+      'test/fixtures/schema/curated_sample.schema.json',
     ).readAsStringSync();
     final ir = const SchemaJsonParser().parseString(fixture);
 

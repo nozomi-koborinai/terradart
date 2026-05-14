@@ -22,7 +22,7 @@
       "description": "schemantic upstream — high attention, never auto-merge (Plan 1 fix #3)",
       "matchPackageNames": ["schemantic"],
       "groupName": "schemantic",
-      "labels": ["dependencies", "tier1-schemantic"],
+      "labels": ["dependencies", "curated-schemantic"],
       "automerge": false
     },
     {
