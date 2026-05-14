@@ -73,6 +73,7 @@ class YamlOverrideLoader {
     'dartTypeOverrides',
     'deprecatedParams',
     'extraImports',
+    'extraSensitiveFields',
     'prelude',
     'customSlots',
     // 4 Phase 4.1 axes (kind dispatch + emitter routing).
@@ -271,6 +272,8 @@ class YamlOverrideLoader {
       dartTypeOverrides: _readStringMap(yaml, 'dartTypeOverrides', filePath),
       deprecatedParams: _readStringMap(yaml, 'deprecatedParams', filePath),
       extraImports: _readStringList(yaml, 'extraImports', filePath),
+      extraSensitiveFields:
+          _readStringList(yaml, 'extraSensitiveFields', filePath),
       prelude: _readString(yaml, 'prelude', filePath),
       customSlots: _readCustomSlots(yaml, filePath),
     );

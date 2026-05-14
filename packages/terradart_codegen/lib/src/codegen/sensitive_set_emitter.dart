@@ -24,16 +24,28 @@ import 'naming.dart';
 ///
 /// The keys are Terraform JSON snake_case names, dotted for nested fields.
 /// The set is alphabetically sorted for deterministic golden tests.
-String emitSensitiveStaticSet(ResourceDef def) {
-  final names = <String>[];
+///
+/// [extraSensitiveFields] (optional) lists additional paths the curator
+/// wants masked even though the provider schema does not flag them as
+/// sensitive — e.g. `metadata_startup_script` on `google_compute_instance`
+/// frequently holds credentials in practice. Entries are merged with the
+/// schema-derived set; duplicates collapse via the underlying Set.
+String emitSensitiveStaticSet(
+  ResourceDef def, {
+  List<String>? extraSensitiveFields,
+}) {
+  final names = <String>{};
   _collect(def.root.attributes, def.root.nestedBlocks, '', names);
-  names.sort();
+  if (extraSensitiveFields != null) {
+    names.addAll(extraSensitiveFields);
+  }
+  final sorted = names.toList()..sort();
   final constName = sensitiveConstName(def.terraformType);
   final docComment = "/// Sensitive field paths for `${def.terraformType}`.\n";
-  if (names.isEmpty) {
+  if (sorted.isEmpty) {
     return "${docComment}const Set<String> $constName = <String>{};";
   }
-  final body = names.map((n) => "'$n'").join(', ');
+  final body = sorted.map((n) => "'$n'").join(', ');
   return "${docComment}const Set<String> $constName = <String>{$body};";
 }
 
@@ -52,7 +64,7 @@ void _collect(
   List<Attribute> attrs,
   List<NestedBlockDef> nested,
   String prefix,
-  List<String> sink,
+  Set<String> sink,
 ) {
   for (final a in attrs) {
     if (a.constraints.sensitive) {

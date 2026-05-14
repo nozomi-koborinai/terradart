@@ -164,7 +164,11 @@ class WrapCommand extends Command<int> {
       // terradart_annotations imports + `part 'X.schema.g.dart';` directive
       // and formats the result. The part file (`.schema.g.dart`) is produced
       // separately by `dart run build_runner build` after `wrap`.
-      final layer1 = resourceLayer1Emitter.emit(ir: ir, def: def);
+      final layer1 = resourceLayer1Emitter.emit(
+        ir: ir,
+        def: def,
+        extraSensitiveFields: entry.value.extraSensitiveFields,
+      );
       buffer[p.join('generated', '${entry.key}.schema.dart')] = layer1;
     }
 

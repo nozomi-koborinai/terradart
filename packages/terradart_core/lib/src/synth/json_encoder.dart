@@ -128,22 +128,94 @@ class JsonEncoder {
   /// Like [encodeArgMap] but masks literal values for sensitive fields.
   /// Refs in sensitive fields are passed through (Terraform sees only
   /// the interpolation, never a plaintext literal).
+  ///
+  /// Supports both top-level keys (`'secret_data'`) and dotted nested
+  /// paths (`'customer_encryption.encryption_key'`) — the latter walks
+  /// through `List<Map>` nested-block wrappings to reach the leaf.
   static Map<String, dynamic> encodeArgMapWithSensitive({
     required Map<String, TfArg<dynamic>?> argMap,
     required Set<String> sensitiveFields,
   }) {
+    // Partition sensitive paths by top-level key.
+    final topLevel = <String>{};
+    final nested = <String, List<List<String>>>{};
+    for (final path in sensitiveFields) {
+      final parts = path.split('.');
+      if (parts.length == 1) {
+        topLevel.add(parts.first);
+      } else {
+        nested
+            .putIfAbsent(parts.first, () => <List<String>>[])
+            .add(parts.sublist(1));
+      }
+    }
+
     final out = <String, dynamic>{};
     argMap.forEach((k, v) {
       if (v == null) return;
       final encoded = encodeArg(v);
       if (encoded == null) return;
-      if (sensitiveFields.contains(k) && v is TfArgLiteral) {
+      if (topLevel.contains(k) && v is TfArgLiteral) {
         out[k] = '';
+      } else if (nested.containsKey(k)) {
+        out[k] = _maskNestedPaths(encoded, nested[k]!);
       } else {
         out[k] = encoded;
       }
     });
     return out;
+  }
+
+  /// Walks the encoded structure masking the leaf of every path in
+  /// [paths]. Each path is the remaining segment list (the top-level
+  /// key has already been consumed by the caller).
+  ///
+  /// - `List`: applied to every element (handles `[{...}]` single-block
+  ///   wrappings and unbounded `[...]` block lists alike).
+  /// - `Map`: descends one segment per path; masks at the leaf.
+  /// - Other (primitive, or `${...}` ref string): returned unchanged.
+  ///
+  /// Leaves whose value already looks like a Terraform interpolation
+  /// (`${...}`) are passed through — zeroing them would break wiring.
+  static dynamic _maskNestedPaths(
+    dynamic value,
+    List<List<String>> paths,
+  ) {
+    if (value is List) {
+      return value.map((e) => _maskNestedPaths(e, paths)).toList();
+    }
+    if (value is Map) {
+      final leavesToMask = <String>{};
+      final byHead = <String, List<List<String>>>{};
+      for (final path in paths) {
+        if (path.isEmpty) continue;
+        if (path.length == 1) {
+          leavesToMask.add(path.first);
+        } else {
+          byHead
+              .putIfAbsent(path.first, () => <List<String>>[])
+              .add(path.sublist(1));
+        }
+      }
+
+      final out = Map<String, dynamic>.from(value);
+      for (final leaf in leavesToMask) {
+        if (!out.containsKey(leaf)) continue;
+        final leafValue = out[leaf];
+        if (leafValue is String && leafValue.startsWith(r'${')) {
+          // Ref interpolation — pass through.
+          continue;
+        }
+        out[leaf] = '';
+      }
+      byHead.forEach((head, remaining) {
+        if (out.containsKey(head)) {
+          out[head] = _maskNestedPaths(out[head], remaining);
+        }
+      });
+      return out;
+    }
+    return value;
   }
 
   /// `lifecycle { ... }` nested block, or `null` when no fields are set.
