@@ -11,6 +11,7 @@ import '../codegen/file_emitter.dart';
 import '../codegen/generated_file_header.dart';
 import '../codegen/wrapper_emitter.dart';
 import '../codegen/wrapper_overrides/_registry.dart';
+import '../codegen/wrapper_overrides/yaml_loader.dart';
 import '../parser/schema_parser.dart';
 import 'exit_codes.dart';
 
@@ -53,6 +54,14 @@ class WrapCommand extends Command<int> {
         negatable: false,
         help: 'Overwrite files that are missing or have a non-TerraDart '
             'generated-file header (E401 is suppressed).',
+      )
+      ..addOption(
+        'only',
+        help: 'Regenerate only this Terraform type. Skips every other yaml '
+            'override under the registry — useful when a sibling yaml has '
+            'unstripped `wrap-promote` markers that would otherwise break '
+            'the full-registry load.',
+        valueHelp: 'TERRAFORM_TYPE',
       );
   }
 
@@ -94,6 +103,7 @@ class WrapCommand extends Command<int> {
 
     final check = results['check'] as bool;
     final force = results['force'] as bool;
+    final only = results['only'] as String?;
 
     // 1. Load schema.json from <source>/schema.json. The parser is tolerant
     //    of missing data_source_schemas / resource_schemas keys (returns an
@@ -126,7 +136,16 @@ class WrapCommand extends Command<int> {
       );
       return CliExitCodes.software;
     }
-    final loaded = loadWrapperOverrides(rootDir: yamlRootUri.toFilePath());
+    final LoadedOverrides loaded;
+    try {
+      loaded = loadWrapperOverrides(
+        rootDir: yamlRootUri.toFilePath(),
+        only: only,
+      );
+    } on StateError catch (e) {
+      stderr.writeln('terradart wrap: $e');
+      return CliExitCodes.dataError;
+    }
 
     // 3. Emit every override into an in-memory map keyed by repo-relative
     //    output path. Doing this before any filesystem mutation lets the
