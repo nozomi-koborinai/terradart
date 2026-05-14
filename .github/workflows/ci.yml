@@ -90,6 +90,10 @@ jobs:
       matrix:
         example: [pubsub, cloud_tasks, secret_manager, cloud_scheduler, iam, compute, kms, storage, bigquery, dns, ops, cloud_run, monitoring]
     steps:
+      - name: Job start
+        id: job_start
+        run: echo "started_ns=$(date +%s%N)" >> "$GITHUB_OUTPUT"
+
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
         with:
@@ -97,16 +101,61 @@ jobs:
       - uses: hashicorp/setup-terraform@v4
         with:
           terraform_version: "1.15.2"
-      - run: dart pub get
-      - run: dart pub get
+
+      - name: Setup checkpoint
+        id: after_setup
+        run: echo "ts_ns=$(date +%s%N)" >> "$GITHUB_OUTPUT"
+
+      - name: Workspace pub get
+        id: pub_get_workspace
+        run: |
+          start=$(date +%s%N)
+          dart pub get
+          echo "duration_ms=$(( ($(date +%s%N) - start) / 1000000 ))" >> "$GITHUB_OUTPUT"
+
+      - name: Example pub get
+        id: pub_get_example
         working-directory: examples/${{ matrix.example }}_quickstart
-      - run: dart run bin/infra.dart
+        run: |
+          start=$(date +%s%N)
+          dart pub get
+          echo "duration_ms=$(( ($(date +%s%N) - start) / 1000000 ))" >> "$GITHUB_OUTPUT"
+
+      - name: Synth
+        id: synth
         working-directory: examples/${{ matrix.example }}_quickstart
         env:
           GCP_PROJECT_ID: ci-test-project-id
           DB_PASSWORD: ci-test-secret
-      - run: |
+        run: |
+          start=$(date +%s%N)
+          dart run bin/infra.dart
+          echo "duration_ms=$(( ($(date +%s%N) - start) / 1000000 ))" >> "$GITHUB_OUTPUT"
+
+      - name: Terraform validate
+        id: tf_validate
+        working-directory: examples/${{ matrix.example }}_quickstart/tf-out
+        run: |
+          start=$(date +%s%N)
           terraform fmt -check
           terraform init -backend=false
           terraform validate
-        working-directory: examples/${{ matrix.example }}_quickstart/tf-out
+          echo "duration_ms=$(( ($(date +%s%N) - start) / 1000000 ))" >> "$GITHUB_OUTPUT"
+
+      - name: Phase 5.0 timing summary
+        if: always()
+        run: |
+          job_start_ns="${{ steps.job_start.outputs.started_ns }}"
+          after_setup_ns="${{ steps.after_setup.outputs.ts_ns }}"
+          setup_ms=$(( (after_setup_ns - job_start_ns) / 1000000 ))
+          {
+            echo "### ${{ matrix.example }}_quickstart timing"
+            echo ""
+            echo "| Step | Duration (ms) |"
+            echo "|---|---|"
+            echo "| Setup (checkout + Dart + Terraform install) | $setup_ms |"
+            echo "| Workspace \`pub get\` | ${{ steps.pub_get_workspace.outputs.duration_ms }} |"
+            echo "| Example \`pub get\` | ${{ steps.pub_get_example.outputs.duration_ms }} |"
+            echo "| Synth (\`dart run bin/infra.dart\`) | ${{ steps.synth.outputs.duration_ms }} |"
+            echo "| \`terraform fmt + init + validate\` | ${{ steps.tf_validate.outputs.duration_ms }} |"
+          } >> "$GITHUB_STEP_SUMMARY"
