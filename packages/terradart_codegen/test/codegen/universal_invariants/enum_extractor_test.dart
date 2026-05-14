@@ -34,6 +34,30 @@ enum BucketStorageClass {
       expect(const EnumExtractor().extract(src), isEmpty);
     });
 
+    test('extracts a multi-line member (Dart format trailing-comma style)', () {
+      const src = '''
+enum SubnetworkResolveSubnetMask {
+  arpAllRanges('ARP_ALL_RANGES'),
+  arpBroadcastPrimaryRangeWithLearning(
+    'ARP_BROADCAST_PRIMARY_RANGE_WITH_LEARNING',
+  );
+
+  const SubnetworkResolveSubnetMask(this.terraformValue);
+  final String terraformValue;
+}
+''';
+      final enums = const EnumExtractor().extract(src);
+      expect(enums, hasLength(1));
+      expect(
+        enums.single.members,
+        equals({
+          'arpAllRanges': 'ARP_ALL_RANGES',
+          'arpBroadcastPrimaryRangeWithLearning':
+              'ARP_BROADCAST_PRIMARY_RANGE_WITH_LEARNING',
+        }),
+      );
+    });
+
     test('extracts multiple enum declarations in one file', () {
       const src = '''
 enum A {

@@ -22,9 +22,11 @@ class EnumExtractor {
     dotAll: true,
   );
 
-  /// Within the body, matches each `member('STRING_VALUE')`.
+  /// Within the body, matches each `member('STRING_VALUE')`. The optional
+  /// trailing comma + whitespace before `)` handles Dart format's multi-line
+  /// member style: `name(\n    'LONG_VALUE',\n  )`.
   static final RegExp _memberEntry = RegExp(
-    r"([a-z][a-zA-Z0-9_]*)\s*\(\s*'([^']*)'\s*\)",
+    r"([a-z][a-zA-Z0-9_]*)\s*\(\s*'([^']*)'\s*,?\s*\)",
   );
 
   List<EmittedEnum> extract(String dartSource) {
