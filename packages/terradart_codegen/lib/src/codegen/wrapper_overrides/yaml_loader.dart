@@ -104,19 +104,36 @@ class YamlOverrideLoader {
   /// [FormatException] eagerly for backwards compatibility with Phase 2.x
   /// callers; those failures short-circuit before the [LoaderErrorReport]
   /// is assembled.
-  LoadedOverrides load() {
+  ///
+  /// [only], when non-null, restricts the scan to the single
+  /// `<only>.yaml` file under [rootDir]. Sibling yamls are not even
+  /// opened, so an unstripped `wrap-promote` marker block in a peer file
+  /// no longer aborts the load. Throws [StateError] if no matching file
+  /// exists.
+  LoadedOverrides load({String? only}) {
     final dir = Directory(rootDir);
     if (!dir.existsSync()) {
       throw StateError(
         'YamlOverrideLoader: rootDir does not exist: $rootDir',
       );
     }
-    final yamlFiles = dir
-        .listSync()
-        .whereType<File>()
-        .where((f) => f.path.endsWith('.yaml'))
-        .toList()
-      ..sort((a, b) => a.path.compareTo(b.path));
+    final List<File> yamlFiles;
+    if (only != null) {
+      final target = File(p.join(rootDir, '$only.yaml'));
+      if (!target.existsSync()) {
+        throw StateError(
+          'YamlOverrideLoader: --only target not found: ${target.path}',
+        );
+      }
+      yamlFiles = [target];
+    } else {
+      yamlFiles = dir
+          .listSync()
+          .whereType<File>()
+          .where((f) => f.path.endsWith('.yaml'))
+          .toList()
+        ..sort((a, b) => a.path.compareTo(b.path));
+    }
 
     final errors = <LoaderError>[];
     final all = <String, WrapperOverride>{};

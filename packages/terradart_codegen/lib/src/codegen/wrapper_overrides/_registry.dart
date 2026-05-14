@@ -12,6 +12,15 @@ import 'yaml_loader.dart';
 /// The split lets callers wire each emitter to its own half:
 /// `WrapperEmitter(overrides: loaded.resources)` and (Phase 4.1)
 /// `DataSourceWrapperEmitter(overrides: loaded.dataSources)`.
-LoadedOverrides loadWrapperOverrides({required String rootDir}) {
-  return YamlOverrideLoader(rootDir: rootDir).load();
+///
+/// [only], when non-null, restricts the load to a single
+/// `<terraformType>.yaml` file under [rootDir]. Sibling yamls are not even
+/// opened — useful when one of them carries an unstripped wrap-promote
+/// marker block that would otherwise abort the full-registry load with a
+/// `Duplicate mapping key` parse error.
+LoadedOverrides loadWrapperOverrides({
+  required String rootDir,
+  String? only,
+}) {
+  return YamlOverrideLoader(rootDir: rootDir).load(only: only);
 }

@@ -2,6 +2,7 @@ import '../../ir/resource_def.dart';
 import '../../parser/mm_yaml_parser.dart';
 import '../wrap_init/clock.dart';
 import 'exactly_one_of_emitter.dart';
+import 'prose_enum_extractor.dart';
 import 'valid_values_emitter.dart';
 import 'wrap_promote_marker.dart';
 
@@ -41,15 +42,28 @@ class WrapPromoteGenerator {
       body.writeln();
     }
 
-    // 2. validValues (enum_values) per field → single prelude block
-    //    containing all enums, followed by a commented dartTypeOverrides
-    //    snippet. Phase 4.5.1 aggregates here (was per-enum prelude in
-    //    Phase 4.3, which produced YAML duplicate-key violations).
+    // 2. validValues per field → single prelude block containing all
+    //    enums, followed by a commented dartTypeOverrides snippet.
+    //    Phase 4.5.1 aggregates here (was per-enum prelude in Phase 4.3,
+    //    which produced YAML duplicate-key violations).
+    //
+    //    Two enum sources, merged with MM yaml winning on conflict:
+    //    - MM yaml's structured `enum_values:` blocks (`mm.fieldOverrides`).
+    //    - The IR descriptions' "Possible values: A, B, C" prose
+    //      (Phase 4.5.2 fallback). Conservative — see
+    //      `prose_enum_extractor.dart`.
+    const proseExtractor = ProseEnumExtractor();
+    final proseEnums = proseExtractor.extract(def);
+    final allEnums = <String, List<String>>{
+      ...proseEnums,
+      for (final e in mm.fieldOverrides.entries)
+        if (e.value.enumValues != null && e.value.enumValues!.length >= 2)
+          e.key: e.value.enumValues!,
+    };
+
     final enumBodies = <String>[];
     final dartTypeOverrideEntries = <String>[];
-    mm.fieldOverrides.forEach((field, constraints) {
-      final ev = constraints.enumValues;
-      if (ev == null || ev.length < 2) return;
+    allEnums.forEach((field, ev) {
       enumBodies.add(validEmitter.emit(
         fieldName: field,
         enumValues: ev,

@@ -271,6 +271,62 @@ void main() {
     });
   });
 
+  group('WrapCommand --only', () {
+    test('emits exactly 2 files (Layer 1 + Layer 2) for one resource',
+        () async {
+      final tmpOut = await Directory.systemTemp.createTemp('phase4_only_');
+      try {
+        final code = await buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          tmpOut.path,
+          '--only',
+          'google_pubsub_topic',
+        ]);
+        expect(code, 0);
+
+        final files = <String>[];
+        for (final ent in Directory(tmpOut.path).listSync(recursive: true)) {
+          if (ent is File && ent.path.endsWith('.dart')) {
+            files.add(p.relative(ent.path, from: tmpOut.path));
+          }
+        }
+        expect(files, hasLength(2));
+        expect(files, contains(p.join('pubsub', 'google_pubsub_topic.dart')));
+        expect(
+          files,
+          contains(p.join('generated', 'google_pubsub_topic.schema.dart')),
+        );
+      } finally {
+        await tmpOut.delete(recursive: true);
+      }
+    });
+
+    test('unknown --only target exits with dataError', () async {
+      final tmpOut = await Directory.systemTemp.createTemp('phase4_only_');
+      try {
+        final code = await buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          tmpOut.path,
+          '--only',
+          'google_no_such_resource',
+        ]);
+        expect(code, CliExitCodes.dataError);
+      } finally {
+        await tmpOut.delete(recursive: true);
+      }
+    });
+  });
+
   group('WrapCommand fixture-driven', () {
     // Fixture files are stored with a `.dart.golden` suffix (matching the
     // project-wide golden naming convention under `test/golden/`) so they
