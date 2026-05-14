@@ -23,8 +23,9 @@ classDocComment: |-
   ///   name: TfArg.literal('payments'),
   ///   keyRing: TfArg.ref(ring.id),
   ///   purpose: TfArg.literal(KmsKeyPurpose.encryptDecrypt),
-  ///   // Terraform duration string (seconds + 's'). Must be > 86400s (1 day).
-  ///   rotationPeriod: TfArg.literal('7776000s'), // 90 days
+  ///   // Must be > 86400s (1 day). `TfArg.duration` converts the
+  ///   // Duration into the `"{seconds}s"` form Terraform expects.
+  ///   rotationPeriod: TfArg.duration(const Duration(days: 90)),
   ///   versionTemplate: const VersionTemplate(
   ///     algorithm: 'GOOGLE_SYMMETRIC_ENCRYPTION',
   ///     protectionLevel: KmsProtectionLevel.software,

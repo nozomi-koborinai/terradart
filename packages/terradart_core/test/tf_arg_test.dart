@@ -84,6 +84,35 @@ void main() {
       expect(TfArg.literal(true).toTfJson(), true);
     });
   });
+
+  group('TfArg.duration', () {
+    test('encodes a whole-second Duration as "{seconds}s"', () {
+      final arg = TfArg.duration(const Duration(days: 90));
+      expect(arg, isA<TfArgLiteral<String>>());
+      expect(arg.toTfJson(), equals('7776000s'));
+    });
+
+    test('zero duration encodes as "0s"', () {
+      expect(
+        TfArg.duration(Duration.zero).toTfJson(),
+        equals('0s'),
+      );
+    });
+
+    test('rejects sub-second durations with ArgumentError', () {
+      expect(
+        () => TfArg.duration(const Duration(milliseconds: 1500)),
+        throwsA(isA<ArgumentError>()),
+      );
+    });
+
+    test('rejects negative durations with ArgumentError', () {
+      expect(
+        () => TfArg.duration(const Duration(seconds: -1)),
+        throwsA(isA<ArgumentError>()),
+      );
+    });
+  });
 }
 
 /// Sample enum with the convention (`terraformValue` String getter).
