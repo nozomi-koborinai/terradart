@@ -2,6 +2,35 @@
 
 All notable changes to terradart are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## [0.1.0-dev] - 2026-05-14
+
+Adds 15 new GCP resource factories (terradart_google grows 13 → 28), typed enum support for `TfArg`, sealed types for exactly-one-of nested blocks, and the `terradart wrap-promote` codegen subcommand. Pre-alpha — pin tightly.
+
+### Added — 15 new GCP resource factories
+
+- **Compute** (5): `google_compute_network`, `google_compute_address`, `google_compute_subnetwork`, `google_compute_firewall`, `google_compute_instance`.
+- **BigQuery** (2): `google_bigquery_dataset`, `google_bigquery_table`.
+- **KMS** (2): `google_kms_key_ring`, `google_kms_crypto_key`.
+- **Cloud Storage** (2): `google_storage_bucket`, `google_storage_bucket_object`.
+- **DNS** (1): `google_dns_managed_zone`.
+- **Cloud Run v2** (1): `google_cloud_run_v2_service`.
+- **Logging** (1): `google_logging_project_sink`.
+- **Monitoring** (1): `google_monitoring_alert_policy`.
+
+Each resource ships typed Dart enums for every schema field with a fixed value set, plus typed helper classes for every nested block. See `packages/terradart_google/CHANGELOG.md` for the full per-resource detail.
+
+### Added — runtime / codegen
+
+- `TfArg<MyEnum>.literal(MyEnum.foo)` encodes typed Dart enums to Terraform strings via a new `.terraformValue` getter convention (`terradart_core`).
+- Sealed Dart types for nested blocks the schema declares exactly-one-of: `Access` (8 variants on `google_bigquery_dataset`), `BucketObjectContent` (`google_storage_bucket_object`), `EnvVarSource` and `VolumeSource` (`google_cloud_run_v2_service`).
+- `terradart wrap-promote` proposes enum_values and dartTypeOverrides for un-typed leaf fields by scanning the parsed schema; authors integrate and strip the marker block manually (`terradart_codegen`).
+- Schema descriptions containing literal `$` or over-escaped apostrophes are now sanitized at the parser layer so generated `.schema.g.dart` files stay parseable.
+
+### Quickstart examples
+
+- 9 new end-to-end stacks under `examples/`: `compute_quickstart`, `kms_quickstart`, `storage_quickstart`, `bigquery_quickstart`, `dns_quickstart`, `ops_quickstart`, `cloud_run_quickstart`, `monitoring_quickstart`, plus extensions to existing ones. Total examples: 14.
+- CI runs `terraform validate` against each example's synth output (13 matrix entries).
+
 ## [0.0.1-dev] - 2026-05-09
 
 Initial pre-alpha public release. Surface, APIs, and emitted Dart symbol names may change between 0.0.x versions. Pin tightly.

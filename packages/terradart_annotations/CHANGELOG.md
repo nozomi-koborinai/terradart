@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.0-dev - 2026-05-14
+
+No user-facing API changes. Version bumped for workspace consistency with `terradart_core` 0.1.0-dev (typed enum serialization) and `terradart_google` 0.1.0-dev (+15 resources).
+
 ## 0.0.4-dev - 2026-05-11
 
 - No user-facing API changes. Version bumped for workspace consistency with Phase 4.1 (`terradart wrap` subcommand + DataSource emitters + 13 `terradart_google` wrappers migrated to generator output).
