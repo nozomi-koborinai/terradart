@@ -58,7 +58,7 @@ void main() {
     });
   });
 
-  group('Tier 1 identity heterogeneity (critical-fix #4)', () {
+  group('Curated-surface identity heterogeneity (critical-fix #4)', () {
     final fixture = File(
       'test/fixtures/schema/tier1_sample.schema.json',
     ).readAsStringSync();

@@ -4,9 +4,9 @@ import 'package:terradart_codegen/src/codegen/codegen_entry.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('Tier 1 smoke', () {
+  group('Curated-surface smoke', () {
     test('4 services + 4 IAM bindings emit through the pipeline', () async {
-      final tmp = Directory.systemTemp.createTempSync('tier1_smoke_');
+      final tmp = Directory.systemTemp.createTempSync('curated_smoke_');
       addTearDown(() => tmp.deleteSync(recursive: true));
 
       // Identity-heterogeneous services (name+location, secret_id, etc.)
@@ -49,7 +49,8 @@ void main() {
       }
     });
 
-    test('Cloud Scheduler IAM is intentionally absent from Tier 1', () {
+    test('Cloud Scheduler IAM is intentionally absent from the curated set',
+        () {
       final fixture =
           File('test/fixtures/schema/tier1_iam.schema.json').readAsStringSync();
       // Defensive: verify the fixture itself doesn't accidentally include it.

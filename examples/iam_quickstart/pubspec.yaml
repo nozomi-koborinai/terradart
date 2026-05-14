@@ -1,5 +1,5 @@
 name: terradart_example_iam_quickstart
-description: terradart example -- all four Tier 1 _iam_member resources in one Stack.
+description: terradart example -- all four curated _iam_member resources in one Stack.
 publish_to: none
 
 environment:

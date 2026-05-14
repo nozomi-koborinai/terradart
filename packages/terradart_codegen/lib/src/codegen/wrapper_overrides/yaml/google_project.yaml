@@ -11,7 +11,7 @@ fileLeadingComment: |-
   When future adds data-source codegen support, this file will swap to
   importing from `lib/src/generated/data_google_project.schema.dart` and
   the inline stubs below will be deleted — same migration pattern as the
-  Tier 1 resource factories now follow.
+  curated resource factories now follow.
 classDocComment: |-
   /// Data source for `data.google_project`.
   ///

@@ -11,10 +11,10 @@ enum ResourceKind {
 
 /// Base of every user-instantiable Terraform resource.
 ///
-/// `S` is the schemantic concrete type (e.g. `_$GooglePubsubTopic`). Tier 1
-/// factory classes extend `Resource<S>` with concrete `S` baked in via class
-/// declaration so `S` does not leak into the user-facing factory
-/// constructor signature.
+/// `S` is the schemantic concrete type (e.g. `_$GooglePubsubTopic`). The
+/// factory classes in `terradart_google` (and any codegen output) extend
+/// `Resource<S>` with concrete `S` baked in via class declaration so `S`
+/// does not leak into the user-facing factory constructor signature.
 ///
 /// Implements `SchemaCarrier<S>` (which itself extends `TfAddressed`) so
 /// that `TfRef.resource<S>(this)` accepts the resource as a whole-resource
@@ -68,7 +68,7 @@ abstract class Resource<S> implements SchemaCarrier<S> {
   ResourceKind get kind => ResourceKind.resource;
 
   /// Field names that are `@Sensitive` per Stage 1 metadata.
-  /// Tier 1 factories override with a baked-in `static const Set<String>`.
+  /// Curated factories override with a baked-in `static const Set<String>`.
   Set<String> get $sensitiveFields;
 }
 

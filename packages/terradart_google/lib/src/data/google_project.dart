@@ -12,7 +12,7 @@ import 'package:terradart_core/terradart_core.dart';
 // When future adds data-source codegen support, this file will swap to
 // importing from `lib/src/generated/data_google_project.schema.dart` and
 // the inline stubs below will be deleted — same migration pattern as the
-// Tier 1 resource factories now follow.
+// curated resource factories now follow.
 
 /// Schemantic-style abstract for the `data.google_project` data source.
 abstract class $GoogleProject {}

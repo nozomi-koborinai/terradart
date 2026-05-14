@@ -4,7 +4,7 @@
 /// `terraform.required_providers.google = { source: ..., version: ... }`.
 ///
 /// Pinned to provider major v7. Confirmed against registry latest 7.31.0 on
-/// 2026-05-08; bump `~> 8.0` only after explicit Tier 1 regression sweep.
+/// 2026-05-08; bump `~> 8.0` only after a curated-surface regression sweep.
 library;
 
 /// Provider source identifier.

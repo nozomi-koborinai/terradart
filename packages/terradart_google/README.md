@@ -1,6 +1,6 @@
 # terradart_google
 
-Tier 1 GCP factory wrappers for [terradart](https://github.com/nozomi-koborinai/terradart). 28 resources + 1 data source, each shipping with typed Dart enums for fixed-value-set fields, typed helper classes for every nested block, and golden-tested deterministic codegen.
+Curated GCP factory wrappers for [terradart](https://github.com/nozomi-koborinai/terradart). 28 resources + 1 data source, each shipping with typed Dart enums for fixed-value-set fields, typed helper classes for every nested block, and golden-tested deterministic codegen.
 
 ## Resources
 
@@ -76,7 +76,7 @@ The factory wrappers under `lib/src/<service>/` are emitted by `terradart wrap` 
 
 CI verifies determinism via `terradart wrap --check`: all 56 emitted files (28 resource Layer 2 + 28 resource Layer 1) must stay byte-identical across PRs.
 
-Tier 2 — every other `google_*` / `google-beta_*` resource — is generator-supported via `terradart codegen` directly; emit those into your own `lib/generated/` rather than depending on this package.
+For any other `google_*` / `google-beta_*` resource that isn't in the catalog above, run `terradart codegen` against your provider schema dump and emit bindings into your own `lib/generated/` rather than depending on this package.
 
 For the runtime side (`Stack`, `Resource<S>`, `StackSynth.synth`), see [`terradart_core`](https://pub.dev/packages/terradart_core). For project-level documentation, see the [terradart repo README](https://github.com/nozomi-koborinai/terradart#readme).
 

@@ -21,11 +21,11 @@ class _GoogleProjectServiceSchemaInstance implements $GoogleProjectService {
 /// Factory wrapper for `google_project_service`
 /// (provider `hashicorp/google ~> 7.0`).
 ///
-/// Enables a single Google Cloud API on a project. Each Tier 1 GCP API
-/// (Pub/Sub, Cloud Tasks, Secret Manager, Cloud Scheduler, …) requires its
-/// matching `google_project_service` resource to be enabled before its
-/// resources can be created — typically wired as an explicit `dependsOn`
-/// so Terraform applies the API enablement first.
+/// Enables a single Google Cloud API on a project. Each GCP API (Pub/Sub,
+/// Cloud Tasks, Secret Manager, Cloud Scheduler, …) requires its matching
+/// `google_project_service` resource to be enabled before its resources
+/// can be created — typically wired as an explicit `dependsOn` so Terraform
+/// applies the API enablement first.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after

@@ -1,5 +1,5 @@
 name: terradart_google
-description: terradart hand-written, blessed Tier 1 GCP factories (Pub/Sub, Cloud Tasks, Secret Manager, Cloud Scheduler, IAM, service accounts) for Dart-first Terraform stacks.
+description: terradart curated GCP factory wrappers — 28 google_* resources + 1 data source (compute, BigQuery, KMS, Cloud Storage, DNS, Cloud Run v2, Logging, Monitoring, Pub/Sub, Cloud Tasks, Secret Manager, Cloud Scheduler, IAM) for Dart-first Terraform stacks.
 version: 0.1.0-dev
 publish_to: none  # Removed by tool/prepare_publish.sh before dart pub publish.
 homepage: https://github.com/nozomi-koborinai/terradart

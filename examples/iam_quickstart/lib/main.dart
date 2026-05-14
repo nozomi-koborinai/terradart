@@ -1,4 +1,4 @@
-/// IAM quickstart -- all four Tier 1 `_iam_member` resources in one Stack,
+/// IAM quickstart -- all four curated `_iam_member` resources in one Stack,
 /// plus the [GoogleServiceAccount] they bind to.
 ///
 /// Demonstrates the additive `_iam_member` pattern across:

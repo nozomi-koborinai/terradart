@@ -1,4 +1,4 @@
-/// End-to-end test: every Tier 1 factory + GoogleProject in one stack,
+/// End-to-end test: every curated factory + GoogleProject in one stack,
 /// synthed and matched against `test/golden/full_stack.tf.json`.
 ///
 /// `terraform validate` is intentionally NOT invoked here — that belongs in
@@ -17,7 +17,7 @@ import '_helpers.dart';
 
 void main() {
   test(
-    'all 9 Tier 1 resources + GoogleProject synth into a single tf.json',
+    'all 9 curated resources + GoogleProject synth into a single tf.json',
     () async {
       final stack = TestStack(
         providers: const [GoogleProvider(project: 'demo')],

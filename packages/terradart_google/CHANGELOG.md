@@ -58,7 +58,7 @@ Each resource that has nested blocks exposes them as typed Dart classes (e.g. `B
 
 ### Added
 
-- Initial pre-alpha release of `terradart_google` Tier 1 GCP factory wrappers.
+- Initial pre-alpha release of `terradart_google` curated GCP factory wrappers.
 - 12 hand-written factories: Pub/Sub (4), Cloud Tasks (2), Secret Manager (3), Cloud Scheduler (1), `google_project_service`, `google_service_account`. Plus the `google_project` data source.
 - Schema carriers (`<resource>.schema.dart` + `.g.dart`) generated and committed; consumers do not need `build_runner`.
 - `disableOnDestroy` / write-only `secret_data_wo` / `IamMember` helper patterns.

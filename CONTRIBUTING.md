@@ -6,10 +6,10 @@ Thanks for taking time to look at this. terradart is a pre-alpha single-maintain
 
 terradart's surface splits into two layers:
 
-- **Tier 1** — hand-written factories under `terradart_google` (Pub/Sub, Cloud Tasks, Secret Manager, Cloud Scheduler, IAM). Bug fixes, test cases, doc improvements welcome.
-- **Tier 2** — generator-supported codegen output for every other `google_*` resource. Best-effort; codegen template fixes welcome.
+- **Built-in factories** — the curated `google_*` factory wrappers that ship in [`terradart_google`](packages/terradart_google/README.md) (28 resources + 1 data source as of v0.1.0-dev). Bug fixes, test cases, doc improvements welcome. New resources are accepted as curated `wrap` overrides — open an issue first to discuss scope.
+- **Generated bindings** — output of `terradart codegen` for every other `google_*` / `google-beta_*` resource. Best-effort; codegen template fixes welcome.
 
-Both are pre-alpha (v0.0.x) — emitted Dart symbol names may change between 0.0.x releases.
+Both are pre-alpha (v0.x.y-dev) — emitted Dart symbol names may change between dev releases.
 
 Bug reports / questions: see the [Bug or question](.github/ISSUE_TEMPLATE/bug-or-question.yml) template.
 

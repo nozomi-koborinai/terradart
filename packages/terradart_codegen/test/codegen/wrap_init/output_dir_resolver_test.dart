@@ -18,7 +18,7 @@ void main() {
       expect(result, 'data');
     });
 
-    test('Tier 1: mmProduct hit (no alias) returns mmProduct verbatim', () {
+    test('Step 1: mmProduct hit (no alias) returns mmProduct verbatim', () {
       final result = resolver.resolve(
         terraformType: 'google_pubsub_topic',
         mmProduct: 'pubsub',
@@ -27,7 +27,7 @@ void main() {
       expect(result, 'pubsub');
     });
 
-    test('Tier 1 + alias: mmProduct=cloudtasks → cloud_tasks', () {
+    test('Step 1 + alias: mmProduct=cloudtasks → cloud_tasks', () {
       final result = resolver.resolve(
         terraformType: 'google_cloud_tasks_queue',
         mmProduct: 'cloudtasks',
@@ -36,7 +36,7 @@ void main() {
       expect(result, 'cloud_tasks');
     });
 
-    test('Tier 2: mmProduct=null, terraform type prefix match', () {
+    test('Step 2: mmProduct=null, terraform type prefix match', () {
       final result = resolver.resolve(
         terraformType: 'google_cloud_tasks_queue_iam_member',
         mmProduct: null,
@@ -45,7 +45,7 @@ void main() {
       expect(result, 'cloud_tasks');
     });
 
-    test('Tier 3: alias override on segment-1 fallback', () {
+    test('Step 3: alias override on segment-1 fallback', () {
       final result = resolver.resolve(
         terraformType: 'google_service_account',
         mmProduct: null,
