@@ -164,6 +164,24 @@ final class WrapperOverride {
   /// `null` means "no extra imports beyond `package:terradart_core`".
   final List<String>? extraImports;
 
+  /// Optional additional field paths to inject into the emitted
+  /// `<terraformTypeCamelCase>Sensitive` const, on top of the paths the
+  /// emitter derives from `@Sensitive` annotations on the IR.
+  ///
+  /// Use this when the provider schema does not flag a field as sensitive
+  /// but the curator considers it sensitive in practice (e.g.
+  /// `metadata_startup_script` on `google_compute_instance` — frequently
+  /// holds credentials in production but is not schema-flagged as
+  /// sensitive).
+  ///
+  /// Each entry is a Terraform JSON snake_case path; nested fields use
+  /// dotted notation (e.g. `'startup_options.boot_token'`). Paths are
+  /// merged into the schema-derived set and the result is alphabetically
+  /// sorted for deterministic output.
+  ///
+  /// `null` (the default) means "use the schema-derived set verbatim".
+  final List<String>? extraSensitiveFields;
+
   /// Verbatim Dart source inserted between the closing `}` of the
   /// `_<Pascal>SchemaInstance` stub class and the wrapper class's doc
   /// comment (or, when no doc comment is set, the `final class` header
@@ -267,6 +285,7 @@ final class WrapperOverride {
     this.dartTypeOverrides,
     this.deprecatedParams,
     this.extraImports,
+    this.extraSensitiveFields,
     this.prelude,
     this.customSlots,
   });

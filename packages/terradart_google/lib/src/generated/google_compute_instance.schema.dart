@@ -1006,4 +1006,5 @@ const Set<String> googleComputeInstanceSensitive = <String>{
   'boot_disk.initialize_params.source_image_encryption_key.rsa_encrypted_key',
   'boot_disk.initialize_params.source_snapshot_encryption_key.raw_key',
   'boot_disk.initialize_params.source_snapshot_encryption_key.rsa_encrypted_key',
+  'metadata_startup_script',
 };

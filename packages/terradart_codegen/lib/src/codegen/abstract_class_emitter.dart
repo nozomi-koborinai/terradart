@@ -21,7 +21,11 @@ import 'sensitive_set_emitter.dart';
 class AbstractClassEmitter {
   const AbstractClassEmitter();
 
-  String emit(ResourceDef def, {required String providerSource}) {
+  String emit(
+    ResourceDef def, {
+    required String providerSource,
+    List<String>? extraSensitiveFields,
+  }) {
     final buf = StringBuffer();
 
     // 1. Enum declarations (collected by walking the IR).
@@ -62,7 +66,9 @@ class AbstractClassEmitter {
     //    outside the class — schemantic 0.1.3 treats class members as schema
     //    fields, including statics.
     buf.writeln();
-    buf.writeln(emitSensitiveStaticSet(def));
+    buf.writeln(
+      emitSensitiveStaticSet(def, extraSensitiveFields: extraSensitiveFields),
+    );
 
     return buf.toString();
   }

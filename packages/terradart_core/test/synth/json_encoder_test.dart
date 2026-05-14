@@ -280,6 +280,83 @@ void main() {
         equals({'secret_data': r'${data.external.vault.value}'}),
       );
     });
+
+    test('TG-5: nested-path sensitive masks literal leaf at depth-2', () {
+      // Mirrors GoogleStorageBucketObject's CustomerEncryption helper —
+      // the top-level `customer_encryption` slot is `TfArg.literal([{...}])`
+      // (single-element list of a Dart Map). The sensitive set carries
+      // the dotted path `customer_encryption.encryption_key`; the masker
+      // must walk through the list wrap and the map to reach the leaf.
+      final argMap = <String, TfArg<dynamic>?>{
+        'customer_encryption': const TfArgLiteral<List<dynamic>>([
+          {
+            'encryption_algorithm': 'AES256',
+            'encryption_key': 'raw-base64-key',
+          },
+        ]),
+      };
+      final out = JsonEncoder.encodeArgMapWithSensitive(
+        argMap: argMap,
+        sensitiveFields: const {'customer_encryption.encryption_key'},
+      );
+      expect(
+        out,
+        equals({
+          'customer_encryption': [
+            {'encryption_algorithm': 'AES256', 'encryption_key': ''},
+          ],
+        }),
+      );
+    });
+
+    test('TG-5: nested-path sensitive preserves ref interpolation at leaf', () {
+      // If the leaf is a ref string (`${...}`), Terraform sees only the
+      // interpolation — zeroing it would break the wiring.
+      final argMap = <String, TfArg<dynamic>?>{
+        'customer_encryption': const TfArgLiteral<List<dynamic>>([
+          {
+            'encryption_algorithm': 'AES256',
+            'encryption_key': r'${var.csek_key}',
+          },
+        ]),
+      };
+      final out = JsonEncoder.encodeArgMapWithSensitive(
+        argMap: argMap,
+        sensitiveFields: const {'customer_encryption.encryption_key'},
+      );
+      expect(
+        out,
+        equals({
+          'customer_encryption': [
+            {
+              'encryption_algorithm': 'AES256',
+              'encryption_key': r'${var.csek_key}',
+            },
+          ],
+        }),
+      );
+    });
+
+    test('TG-5: multiple sibling nested paths under the same parent', () {
+      // Both `block.a` and `block.b` should mask within one pass.
+      final argMap = <String, TfArg<dynamic>?>{
+        'block': const TfArgLiteral<List<dynamic>>([
+          {'a': 'A-val', 'b': 'B-val', 'c': 'C-val'},
+        ]),
+      };
+      final out = JsonEncoder.encodeArgMapWithSensitive(
+        argMap: argMap,
+        sensitiveFields: const {'block.a', 'block.b'},
+      );
+      expect(
+        out,
+        equals({
+          'block': [
+            {'a': '', 'b': '', 'c': 'C-val'},
+          ],
+        }),
+      );
+    });
   });
 
   group('JsonEncoder.lifecycleBlock', () {

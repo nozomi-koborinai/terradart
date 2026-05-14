@@ -110,6 +110,12 @@ extraGetters: |2
 extraImports:
   - "import 'package:meta/meta.dart';"
 
+# `metadata_startup_script` is not schema-flagged as sensitive but
+# frequently holds bootstrap credentials in practice. Mask it on synth so
+# the rendered `main.tf.json` does not carry secrets in plaintext.
+extraSensitiveFields:
+  - metadata_startup_script
+
 prelude: |
   // ===========================================================================
   // Enums
