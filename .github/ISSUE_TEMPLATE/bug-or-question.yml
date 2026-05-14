@@ -23,7 +23,7 @@ body:
         - Bug — something doesn't work
         - Question — how do I ...?
         - Feature request — I'd like ...
-        - Tier 2 codegen — generated bindings problem
+        - Codegen — `terradart codegen` output problem
     validations:
       required: true
 
@@ -31,7 +31,7 @@ body:
     id: terradart_version
     attributes:
       label: terradart version
-      placeholder: "0.0.1-dev"
+      placeholder: "0.1.0-dev"
     validations:
       required: false
 

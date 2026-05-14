@@ -40,5 +40,7 @@ End users normally do not depend on this package directly — the abstract class
 
 ```yaml
 dependencies:
-  terradart_annotations: ^0.0.1-dev
+  terradart_annotations: ^0.1.0-dev
 ```
+
+terradart is a SemVer pre-release; explicit `^0.1.0-dev` is required because `dart pub get` skips pre-releases by default.

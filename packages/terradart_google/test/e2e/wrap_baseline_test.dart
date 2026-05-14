@@ -11,7 +11,7 @@ import 'package:test/test.dart';
 /// `lib/src/<service>/<basename>.dart`.
 ///
 /// The baseline is the Wave 0 freeze of the 13 hand-written wrappers
-/// (12 Tier 1 resources + 1 data source). Any drift between the live files
+/// (12 curated resources + 1 data source). Any drift between the live files
 /// and the baseline indicates someone edited production code without
 /// re-freezing the baseline -- the wrap codegen pipeline (Wave 3a) must
 /// remain a 1:1 replacement, so the baseline acts as the contract.

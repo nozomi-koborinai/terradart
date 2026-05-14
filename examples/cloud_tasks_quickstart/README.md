@@ -64,7 +64,7 @@ terraform apply
 
 ## Why `_iam_member` (and not `_iam_binding`)?
 
-terradart's Tier 1 surface uses **additive** `_iam_member` resources only -- they compose safely with bindings written by other tools (gcloud, the console, peer Terraform stacks). See [iam_quickstart](../iam_quickstart/) for the full discussion.
+terradart's curated factories use **additive** `_iam_member` resources only -- they compose safely with bindings written by other tools (gcloud, the console, peer Terraform stacks). See [iam_quickstart](../iam_quickstart/) for the full discussion.
 
 ## Note on Cloud Tasks IAM identity
 

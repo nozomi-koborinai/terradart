@@ -23,7 +23,7 @@ class _GooglePubsubTopicIamMemberSchemaInstance
 ///
 /// Adds a single IAM `role` → `member` binding on a topic. For
 /// multi-member binding semantics, prefer `google_pubsub_topic_iam_binding`
-/// (not in v0.0.x's Tier 1 surface).
+/// (available via `terradart codegen` until it lands as a curated factory).
 final class GooglePubsubTopicIamMember
     extends Resource<$GooglePubsubTopicIamMember> {
   // ignore: constant_identifier_names

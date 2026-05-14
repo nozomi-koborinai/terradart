@@ -93,7 +93,7 @@ void main() {
     });
 
     test(
-      'codegen emits expected files for a Tier 1 service via fixtures',
+      'codegen emits expected files for a curated service via fixtures',
       () async {
         final tmp = await Directory.systemTemp.createTemp('terradart_cli_e2e_');
         addTearDown(() async => tmp.delete(recursive: true));

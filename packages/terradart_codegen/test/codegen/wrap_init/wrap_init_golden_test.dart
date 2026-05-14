@@ -62,7 +62,7 @@ void main() {
     });
 
     test(
-      'L2-3: google_synthetic_widget (no MM YAML, tier-2/3 fallback) matches golden',
+      'L2-3: google_synthetic_widget (no MM YAML, step-2/3 fallback) matches golden',
       () {
         final yaml = _generate(
           terraformType: 'google_synthetic_widget',

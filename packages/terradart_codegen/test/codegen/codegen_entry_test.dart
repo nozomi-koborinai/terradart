@@ -33,7 +33,7 @@ void main() {
 
     test('onlyResources filter restricts output set', () async {
       final result = await runCodegen(
-        schemaJsonPath: 'test/fixtures/schema/tier1_sample.schema.json',
+        schemaJsonPath: 'test/fixtures/schema/curated_sample.schema.json',
         mmYamlPaths: const {},
         outputDir: tmp.path,
         onlyResources: ['google_cloud_tasks_queue'],

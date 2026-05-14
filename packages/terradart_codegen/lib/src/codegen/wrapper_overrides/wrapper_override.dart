@@ -248,7 +248,7 @@ final class WrapperOverride {
   ///
   /// Each line of the source string is prefixed with `// ` by the emitter.
   /// Used for operational notes (e.g. `data/google_project.dart` l.3-12
-  /// explains why the file is exempt from `tool/regen_tier1.dart`).
+  /// explains why the file is exempt from `tool/regen_curated.dart`).
   ///
   /// `null` means "no file-leading comment".
   final String? fileLeadingComment;

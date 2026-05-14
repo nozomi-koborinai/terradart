@@ -1,8 +1,9 @@
 import 'package:meta/meta.dart';
 
 /// Records the Terraform resource type and provider on a generated
-/// abstract `$Foo` class. Emitted by terradart_codegen on every Tier 1 /
-/// Tier 2 abstract class.
+/// abstract `$Foo` class. Emitted by terradart_codegen on every generated
+/// abstract class (both the curated `terradart_google` factories and any
+/// user-side codegen output).
 ///
 /// Example (emitter output):
 /// ```dart

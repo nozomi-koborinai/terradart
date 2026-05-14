@@ -23,8 +23,8 @@ class _GooglePubsubSubscriptionIamMemberSchemaInstance
 
 /// Factory wrapper for `google_pubsub_subscription_iam_member`.
 ///
-/// Pub/Sub Subscription IAM is in Tier 1 scope. (Cloud Scheduler IAM is
-/// not.)
+/// Pub/Sub Subscription IAM is part of the curated surface. (Cloud
+/// Scheduler IAM is not; use `terradart codegen` if you need it.)
 final class GooglePubsubSubscriptionIamMember
     extends Resource<$GooglePubsubSubscriptionIamMember> {
   // ignore: constant_identifier_names

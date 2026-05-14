@@ -86,4 +86,4 @@ The seam: `lib/generated/orders_stack.app.dart` will contain `OrdersStackExports
 
 ## Next steps
 
-- See [iam_quickstart](../iam_quickstart/) for all four Tier 1 IAM resources at once.
+- See [iam_quickstart](../iam_quickstart/) for all four curated IAM resources at once.

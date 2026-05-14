@@ -1,4 +1,4 @@
-/// terradart_google — hand-written Tier 1 GCP factories for `terradart`.
+/// terradart_google — curated GCP factory wrappers for `terradart`.
 ///
 /// Pinned to `hashicorp/google ~> 7.0`. See [kProviderSource] /
 /// [kProviderVersionConstraint].

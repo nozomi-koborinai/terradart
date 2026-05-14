@@ -1,9 +1,9 @@
-// Regenerates Tier 1 schema carriers under
+// Regenerates curated schema carriers under
 // `packages/terradart_google/lib/src/generated/`.
 //
 // Pipeline:
-//   1. Invoke terradart_codegen's `runCodegen` against the canonical Tier 1
-//      provider-schema fixture, filtered to the 11 Tier 1 resource names.
+//   1. Invoke terradart_codegen's `runCodegen` against the canonical curated
+//      provider-schema fixture, filtered to the 11 curated resource names.
 //   2. Rename each emitted `<resource>.dart` to `<resource>.schema.dart` so
 //      schemantic's emitted `part '<resource>.schema.g.dart';` directive
 //      resolves correctly when the build_runner step runs.
@@ -12,26 +12,26 @@
 //      `<resource>.schema.g.dart` part file.
 //
 // The script is idempotent: re-running it on a clean tree should yield no
-// `git diff`. Intended invocation is manual, once per Tier 1 schema bump:
+// `git diff`. Intended invocation is manual, once per curated schema bump:
 //
-//     (cd packages/terradart_google && dart run tool/regen_tier1.dart)
+//     (cd packages/terradart_google && dart run tool/regen_curated.dart)
 //
 // To refresh the underlying fixture from a live provider, see
 // `validation/tf-out/` (init google provider, then
-// `terraform providers schema -json > <fixture>`). The 11 Tier 1
+// `terraform providers schema -json > <fixture>`). The 11 curated
 // resource bodies are then extracted into
-// `packages/terradart_codegen/test/fixtures/schema/tier1_full.schema.json`.
+// `packages/terradart_codegen/test/fixtures/schema/curated_full.schema.json`.
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/codegen_entry.dart';
 
-/// The 12 Tier 1 resource names. `google_project_service` and
+/// The 12 curated resource names. `google_project_service` and
 /// `google_service_account` round out the foundational primitives every
-/// Tier 1 GCP example depends on; `google_project` (data source) is
+/// curated GCP example depends on; `google_project` (data source) is
 /// intentionally excluded — data sources don't have a schema-generation
 /// requirement in v0.0.x.
-const _tier1Resources = <String>[
+const _curatedResources = <String>[
   'google_pubsub_topic',
   'google_pubsub_subscription',
   'google_pubsub_topic_iam_member',
@@ -56,7 +56,7 @@ Future<void> main() async {
     'test',
     'fixtures',
     'schema',
-    'tier1_full.schema.json',
+    'curated_full.schema.json',
   );
   final outDir = p.join(
     repoRoot,
@@ -68,24 +68,24 @@ Future<void> main() async {
   );
 
   if (!File(fixturePath).existsSync()) {
-    stderr.writeln('Tier 1 fixture not found: $fixturePath');
+    stderr.writeln('curated fixture not found: $fixturePath');
     exit(1);
   }
   Directory(outDir).createSync(recursive: true);
 
-  // Step 1: run the emitter against the fixture, filtering to the Tier 1 set.
+  // Step 1: run the emitter against the fixture, filtering to the curated set.
   // The emitter writes `<resource>.dart`; we'll rename in step 2.
-  stdout.writeln('Step 1/3: emitting ${_tier1Resources.length} schema files');
+  stdout.writeln('Step 1/3: emitting ${_curatedResources.length} schema files');
   final result = await runCodegen(
     schemaJsonPath: fixturePath,
     mmYamlPaths: const {},
     outputDir: outDir,
     providerVersion: '7.31.0',
-    onlyResources: _tier1Resources,
+    onlyResources: _curatedResources,
   );
-  if (result.emittedFiles.length != _tier1Resources.length) {
+  if (result.emittedFiles.length != _curatedResources.length) {
     stderr.writeln(
-      'Expected ${_tier1Resources.length} emitted files, got '
+      'Expected ${_curatedResources.length} emitted files, got '
       '${result.emittedFiles.length}',
     );
     exit(1);

@@ -1,4 +1,4 @@
-/// Per-resource golden tests for every Tier 1 factory.
+/// Per-resource golden tests for every curated factory in terradart_google.
 ///
 /// One file (instead of one per factory) keeps boilerplate down. The
 /// section 1.3 narrative push subscription is in

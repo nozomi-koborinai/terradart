@@ -29,13 +29,13 @@ final class GoogleProviderRules extends ProviderRules {
   /// files shipped in Phase 4.1; extend during Phase 4.5 wave rollout when
   /// new MM products land.
   static const Map<String, String> _aliases = {
-    // Tier 1 — MM `product` field normalization (snake_case alignment).
+    // Strategy 1 — MM `product` field normalization (snake_case alignment).
     'cloudtasks': 'cloud_tasks',
     'secretmanager': 'secret_manager',
     'cloudscheduler': 'cloud_scheduler',
     'resourcemanager': 'project',
 
-    // Tier 2/3 — terraform-type prefix / segment overrides.
+    // Strategy 2 — terraform-type prefix / segment overrides.
     'cloud_tasks': 'cloud_tasks',
     'secret_manager': 'secret_manager',
     'cloud_scheduler': 'cloud_scheduler',
