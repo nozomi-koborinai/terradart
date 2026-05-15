@@ -8,57 +8,17 @@ on:
   workflow_dispatch:
     inputs:
       tag:
-        description: 'Tag to publish (e.g. v0.1.0-dev). Leave empty to use the latest tag matching v*.*.*.'
-        required: false
-        default: ''
-      package:
-        description: 'Publish only this package (single-package recovery mode). Leave empty to publish all 4.'
-        required: false
-        type: choice
-        default: ''
-        options:
-          - ''
-          - terradart_annotations
-          - terradart_core
-          - terradart_codegen
-          - terradart_google
+        description: 'Tag to publish (e.g. v0.0.4-dev). Required for workflow_dispatch.'
+        required: true
 
 permissions:
   id-token: write
   contents: read
 
 jobs:
-  resolve-tag:
-    name: resolve publish tag
-    runs-on: ubuntu-latest
-    outputs:
-      tag: ${{ steps.resolve.outputs.tag }}
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          fetch-depth: 0
-      - id: resolve
-        run: |
-          if [ "${{ github.event_name }}" = "push" ]; then
-            tag="${{ github.ref_name }}"
-          elif [ -n "${{ inputs.tag }}" ]; then
-            tag="${{ inputs.tag }}"
-          else
-            tag=$(git describe --tags --abbrev=0 --match='v*.*.*' 2>/dev/null || true)
-          fi
-          if [ -z "$tag" ]; then
-            echo "::error::Could not resolve tag (no push ref, no inputs.tag, no matching tag found in repo)."
-            exit 1
-          fi
-          echo "Resolved tag: $tag"
-          echo "tag=$tag" >> "$GITHUB_OUTPUT"
-
   publish-leaves:
-    if: github.event_name == 'push' || inputs.package == ''
     name: publish ${{ matrix.package }}
-    needs: resolve-tag
     runs-on: ubuntu-latest
-    environment: pub-dev
     strategy:
       fail-fast: false
       matrix:
@@ -76,18 +36,16 @@ jobs:
       - run: dart pub get
 
       - name: Pre-publish pubspec mutations
-        run: tool/prepare_publish.sh "${{ needs.resolve-tag.outputs.tag }}" ${{ matrix.package }}
+        run: tool/prepare_publish.sh "${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}" ${{ matrix.package }}
 
       - name: Publish to pub.dev
         run: dart pub publish --force
         working-directory: packages/${{ matrix.package }}
 
   publish-google:
-    if: github.event_name == 'push' || inputs.package == ''
     name: publish terradart_google
-    needs: [resolve-tag, publish-leaves]
+    needs: publish-leaves
     runs-on: ubuntu-latest
-    environment: pub-dev
     steps:
       - name: Wait for pub.dev index propagation
         run: |
@@ -127,48 +85,8 @@ jobs:
           [ "$schema_g_count" -eq "$resource_count" ] || { echo "::error::schema.g.dart count ($schema_g_count) != resource yaml count ($resource_count)"; exit 1; }
 
       - name: Pre-publish pubspec mutations
-        run: tool/prepare_publish.sh "${{ needs.resolve-tag.outputs.tag }}" terradart_google
+        run: tool/prepare_publish.sh "${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}" terradart_google
 
       - name: Publish to pub.dev
         run: dart pub publish --force
         working-directory: packages/terradart_google
-
-  publish-single:
-    if: github.event_name == 'workflow_dispatch' && inputs.package != ''
-    name: publish ${{ inputs.package }} (single-package recovery)
-    needs: resolve-tag
-    runs-on: ubuntu-latest
-    environment: pub-dev
-    steps:
-      - uses: actions/checkout@v6
-      - uses: dart-lang/setup-dart@v1
-        with:
-          sdk: stable
-      - name: Install yq
-        run: |
-          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.44.3/yq_linux_amd64
-          sudo chmod +x /usr/local/bin/yq
-          yq --version
-      - run: dart pub get
-
-      - name: Verify generated schema and wrapper files
-        if: inputs.package == 'terradart_google'
-        run: |
-          # Source of truth: per-resource yaml overrides under terradart_codegen.
-          yaml_count=$(find packages/terradart_codegen/lib/src/codegen/wrapper_overrides/yaml -name '*.yaml' | wc -l | tr -d ' ')
-          data_source_count=$(grep -l '^kind: data_source$' packages/terradart_codegen/lib/src/codegen/wrapper_overrides/yaml/*.yaml | wc -l | tr -d ' ')
-          resource_count=$((yaml_count - data_source_count))
-          schema_dart_count=$(find packages/terradart_google/lib/src -name '*.schema.dart' | wc -l | tr -d ' ')
-          wrapper_count=$(find packages/terradart_google/lib/src -mindepth 2 -name 'google_*.dart' -not -path '*/generated/*' | wc -l | tr -d ' ')
-          schema_g_count=$(find packages/terradart_google/lib/src/generated -name '*.schema.g.dart' | wc -l | tr -d ' ')
-          echo "yaml=$yaml_count (resources=$resource_count, data_sources=$data_source_count) schema.dart=$schema_dart_count wrapper=$wrapper_count schema.g.dart=$schema_g_count"
-          [ "$yaml_count" -eq "$schema_dart_count" ] || { echo "::error::schema.dart count ($schema_dart_count) != yaml count ($yaml_count)"; exit 1; }
-          [ "$yaml_count" -eq "$wrapper_count" ] || { echo "::error::wrapper count ($wrapper_count) != yaml count ($yaml_count)"; exit 1; }
-          [ "$schema_g_count" -eq "$resource_count" ] || { echo "::error::schema.g.dart count ($schema_g_count) != resource yaml count ($resource_count)"; exit 1; }
-
-      - name: Pre-publish pubspec mutations
-        run: tool/prepare_publish.sh "${{ needs.resolve-tag.outputs.tag }}" ${{ inputs.package }}
-
-      - name: Publish to pub.dev
-        run: dart pub publish --force
-        working-directory: packages/${{ inputs.package }}
