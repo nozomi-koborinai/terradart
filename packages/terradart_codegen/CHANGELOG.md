@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1-dev - 2026-05-16
+
+No API change since 0.2.0-dev. Re-published after the 0.2.0-dev tag's publish run failed at the parallel matrix validation step — `terradart_codegen` was uploaded before pub.dev's index had `terradart_core` 0.2.0-dev, causing the `^0.2.0-dev` constraint to fail version solving. 0.2.1-dev ships through a re-ordered publish pipeline (`publish-codegen` now waits for `publish-no-deps` to complete + pub.dev index propagation before uploading).
+
 ## 0.2.0-dev - 2026-05-16
 
 ### Added

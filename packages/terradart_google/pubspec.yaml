@@ -1,6 +1,6 @@
 name: terradart_google
 description: terradart curated GCP factory wrappers — 28 google_* resources + 1 data source (compute, BigQuery, KMS, Cloud Storage, DNS, Cloud Run v2, Logging, Monitoring, Pub/Sub, Cloud Tasks, Secret Manager, Cloud Scheduler, IAM) for Dart-first Terraform stacks.
-version: 0.2.0-dev
+version: 0.2.1-dev
 publish_to: none  # Removed by tool/prepare_publish.sh before dart pub publish.
 homepage: https://github.com/nozomi-koborinai/terradart
 repository: https://github.com/nozomi-koborinai/terradart

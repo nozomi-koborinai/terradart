@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1-dev - 2026-05-16
+
+No user-facing API changes. Workspace consistency bump after the 0.2.0-dev publish run partially failed (`terradart_codegen` and `terradart_google` did not reach pub.dev). 0.2.1-dev republishes the workspace through a re-ordered publish pipeline.
+
 ## 0.2.0-dev - 2026-05-16
 
 No user-facing API changes. Version bumped for workspace consistency with `terradart_core` 0.2.0-dev (TfArg.duration + nested-path sensitive masking fix) and `terradart_codegen` 0.2.0-dev (curator workflow improvements).

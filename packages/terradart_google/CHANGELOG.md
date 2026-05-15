@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.1-dev - 2026-05-16
+
+No API change since the 0.2.0-dev attempt. Neither 0.1.0-dev nor 0.2.0-dev reached pub.dev for this package — 0.1.0-dev was blocked by an unrelated `terradart_google` job failure, and 0.2.0-dev was blocked by the upstream `terradart_codegen` failure in the parallel matrix. 0.2.1-dev ships through a re-ordered publish pipeline (`publish-google` now waits for `publish-codegen` instead of the parallel `publish-leaves` matrix) and is the first version of this package to land on pub.dev.
+
 ## 0.2.0-dev - 2026-05-16
 
 No API change since the 0.1.0-dev attempt. The 0.1.0-dev publish run did not reach pub.dev for this package (the leaf packages succeeded but `terradart_google` did not); 0.2.0-dev is the first version to ship the full surface documented below.
