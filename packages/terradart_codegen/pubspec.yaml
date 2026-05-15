@@ -28,7 +28,7 @@ dependencies:
   meta: ^1.15.0
   dart_style: ^3.0.0
   stack_trace: ^1.11.1
-  terradart_core: ^0.1.0-dev
+  terradart_core: ^0.2.0-dev
 
 dev_dependencies:
   test: ^1.25.6
