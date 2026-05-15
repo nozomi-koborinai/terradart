@@ -15,14 +15,32 @@ permissions:
   id-token: write
   contents: read
 
+# Publish ordering rationale.
+#
+# terradart_codegen's published pubspec declares `terradart_core: ^X.Y.Z-dev`,
+# and terradart_google's published pubspec is rewritten by
+# tool/prepare_publish.sh to declare hosted ^X.Y.Z-dev constraints for
+# terradart_core, terradart_annotations, and terradart_codegen. pub.dev
+# validates these constraints against its index at upload time, so a
+# dependent package can't ship until its dependencies' versions are visible
+# on pub.dev.
+#
+# Phase 1 publishes the two no-deps packages in parallel.
+# Phase 2 waits for pub.dev's index to catch up, then publishes terradart_codegen.
+# Phase 3 waits again, then publishes terradart_google.
+#
+# Previous shape (matrix of all 3 leaves in parallel) raced terradart_codegen
+# against terradart_core's index propagation and intermittently failed
+# version-solving at the codegen upload step.
+
 jobs:
-  publish-leaves:
+  publish-no-deps:
     name: publish ${{ matrix.package }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        package: [terradart_annotations, terradart_core, terradart_codegen]
+        package: [terradart_annotations, terradart_core]
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -42,14 +60,42 @@ jobs:
         run: dart pub publish --force
         working-directory: packages/${{ matrix.package }}
 
-  publish-google:
-    name: publish terradart_google
-    needs: publish-leaves
+  publish-codegen:
+    name: publish terradart_codegen
+    needs: publish-no-deps
     runs-on: ubuntu-latest
     steps:
       - name: Wait for pub.dev index propagation
         run: |
-          echo "Waiting 3 minutes for pub.dev index to update before publishing terradart_google..."
+          echo "Waiting 3 minutes for pub.dev to index terradart_core before publishing terradart_codegen..."
+          sleep 180
+
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - name: Install yq
+        run: |
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.44.3/yq_linux_amd64
+          sudo chmod +x /usr/local/bin/yq
+          yq --version
+      - run: dart pub get
+
+      - name: Pre-publish pubspec mutations
+        run: tool/prepare_publish.sh "${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}" terradart_codegen
+
+      - name: Publish to pub.dev
+        run: dart pub publish --force
+        working-directory: packages/terradart_codegen
+
+  publish-google:
+    name: publish terradart_google
+    needs: publish-codegen
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for pub.dev index propagation
+        run: |
+          echo "Waiting 3 minutes for pub.dev to index terradart_codegen + terradart_core + terradart_annotations before publishing terradart_google..."
           sleep 180
 
       - uses: actions/checkout@v6
