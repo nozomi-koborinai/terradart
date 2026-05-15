@@ -30,6 +30,24 @@ Each new resource ships typed Dart enums for every schema field with a fixed val
 
 Each resource that has nested blocks exposes them as typed Dart classes (e.g. `BootDisk`, `NetworkInterface`, `Scheduling`, `Versioning`, `LifecycleRule`, `LifecycleAction`, `LifecycleCondition`, `PrivateVisibilityConfig`, `DnssecConfig`, `Template`, `ServiceContainer`, `ContainerResources`, `ContainerPort`, `VolumeMount`, `AlertCondition`, `ConditionThreshold`, `Aggregation`, `AlertStrategy`, `Documentation`, ...). All helpers carry `toArgMap()` and serialize via the standard `TfArg.literal([...])` pattern.
 
+### Added — per-service barrels
+
+- Per-service barrels (`package:terradart_google/<service>.dart`) for every
+  curated service. Example: `import 'package:terradart_google/pubsub.dart';`
+  re-exports `GooglePubsubTopic`, `GooglePubsubSubscription`, both IAM
+  bindings, and their nested helpers — and nothing else.
+- `package:terradart_google/provider.dart` exports `GoogleProvider` and the
+  pinned-version constants for the `hashicorp/google` provider.
+- `package:terradart_google/data.dart` exports the `GoogleProject` data
+  source.
+
+### Changed
+
+- `package:terradart_google/terradart_google.dart` umbrella now re-exports
+  the per-service barrels instead of inlining every symbol export. Every
+  previously-exported symbol is still available through the umbrella —
+  zero migration required for existing consumers.
+
 ### Quickstart examples
 
 9 new end-to-end stacks under `examples/` showing every new resource: `compute_quickstart`, `kms_quickstart`, `storage_quickstart`, `bigquery_quickstart`, `dns_quickstart`, `ops_quickstart`, `cloud_run_quickstart`, `monitoring_quickstart` (+ extensions to existing ones). Total examples: 14.
