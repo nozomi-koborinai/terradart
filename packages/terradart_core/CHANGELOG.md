@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.2.0-dev - 2026-05-16
+
+### Added
+
+- `TfArg.duration(Duration)` factory — converts a Dart `Duration` to the `"{seconds}s"` form Terraform expects for duration-string fields (`rotation_period`, `message_retention_duration`, the `'s'`-suffixed forms of `ack_deadline_seconds`, etc.). Sub-second precision and negative durations are rejected with `ArgumentError`.
+
+### Fixed
+
+- `JsonEncoder.encodeArgMapWithSensitive` now masks sensitive paths through nested-block (`List<Map>`) structures. Previously, paths like `customer_encryption.encryption_key` were left as plaintext in `tf-out/main.tf.json` because the masker only walked top-level keys. Ref interpolations (`${...}`) continue to pass through unchanged so Terraform wiring is preserved.
+
 ## 0.1.0-dev - 2026-05-14
 
 ### Added

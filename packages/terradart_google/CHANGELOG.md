@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.0-dev - 2026-05-16
+
+No API change since the 0.1.0-dev attempt. The 0.1.0-dev publish run did not reach pub.dev for this package (the leaf packages succeeded but `terradart_google` did not); 0.2.0-dev is the first version to ship the full surface documented below.
+
 ## 0.1.0-dev - 2026-05-14
 
 Adds 15 new GCP resource factories. Total surface: **28 resources + 1 data source**.
