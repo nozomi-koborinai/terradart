@@ -9,7 +9,8 @@ import 'dart:convert' as dart_convert;
 import 'dart:io';
 
 import 'package:terradart_core/terradart_core.dart';
-import 'package:terradart_google/terradart_google.dart';
+import 'package:terradart_google/kms.dart';
+import 'package:terradart_google/provider.dart';
 
 class CryptoStack extends Stack {
   CryptoStack({required String projectId})
