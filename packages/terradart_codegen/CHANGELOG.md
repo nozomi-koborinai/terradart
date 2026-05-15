@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.0-dev - 2026-05-16
+
+### Added
+
+- `extraSensitiveFields:` yaml override axis — curators can declare per-resource sensitive paths beyond what the Terraform schema flags. Each entry is a dotted path (e.g. `metadata_startup_script`); the resulting `<Resource>Sensitive` const ships the union of schema-declared and curator-declared paths.
+- `terradart wrap --only=<resource>` — regenerates a single wrapper file even when sibling yaml overrides have validation errors. Designed for the case where unrelated breakage in another resource blocks the whole-package `wrap` cycle.
+- `wrap-promote` now extracts enum candidates from prose descriptions matching `Possible values: A, B, C` in addition to schema `enum_values` blocks. Falls back to the prose set when the schema declares no enum, with MM yaml taking priority when both are present.
+- 5 universal QA gates (CI-only invariants over `terradart_google/lib/src/**`): `paramOrder` covers every required schema attribute, emitted enum `terraformValue` matches schema `enum_values`, no `UnimplementedError('TODO(wrap-promote)')` ships in the curated source, every emitted enum member is lowerCamelCase, and sensitive path masking round-trips to `""`.
+
 ## 0.1.0-dev - 2026-05-14
 
 ### Added

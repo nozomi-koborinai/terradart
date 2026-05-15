@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.2.0-dev - 2026-05-16
+
+No user-facing API changes. Version bumped for workspace consistency with `terradart_core` 0.2.0-dev (TfArg.duration + nested-path sensitive masking fix) and `terradart_codegen` 0.2.0-dev (curator workflow improvements).
+
 ## 0.1.0-dev - 2026-05-14
 
 No user-facing API changes. Version bumped for workspace consistency with `terradart_core` 0.1.0-dev (typed enum serialization) and `terradart_google` 0.1.0-dev (+15 resources).
