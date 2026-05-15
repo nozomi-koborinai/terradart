@@ -58,6 +58,7 @@ jobs:
     name: publish ${{ matrix.package }}
     needs: resolve-tag
     runs-on: ubuntu-latest
+    environment: pub-dev
     strategy:
       fail-fast: false
       matrix:
@@ -86,6 +87,7 @@ jobs:
     name: publish terradart_google
     needs: [resolve-tag, publish-leaves]
     runs-on: ubuntu-latest
+    environment: pub-dev
     steps:
       - name: Wait for pub.dev index propagation
         run: |
@@ -136,6 +138,7 @@ jobs:
     name: publish ${{ inputs.package }} (single-package recovery)
     needs: resolve-tag
     runs-on: ubuntu-latest
+    environment: pub-dev
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
