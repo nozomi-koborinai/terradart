@@ -13,7 +13,9 @@ import 'dart:convert' as dart_convert;
 import 'dart:io';
 
 import 'package:terradart_core/terradart_core.dart';
-import 'package:terradart_google/terradart_google.dart';
+import 'package:terradart_google/cloud_scheduler.dart';
+import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/pubsub.dart';
 
 /// Cloud Scheduler job + Pub/Sub topic Stack.
 class NightlyCleanupStack extends Stack {

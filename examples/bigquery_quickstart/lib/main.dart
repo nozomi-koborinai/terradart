@@ -16,7 +16,8 @@ import 'dart:convert' as dart_convert;
 import 'dart:io';
 
 import 'package:terradart_core/terradart_core.dart';
-import 'package:terradart_google/terradart_google.dart';
+import 'package:terradart_google/bigquery.dart';
+import 'package:terradart_google/provider.dart';
 
 class AnalyticsStack extends Stack {
   AnalyticsStack({required String projectId})

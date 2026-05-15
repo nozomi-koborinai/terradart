@@ -20,7 +20,8 @@ import 'dart:convert' as dart_convert;
 import 'dart:io';
 
 import 'package:terradart_core/terradart_core.dart';
-import 'package:terradart_google/terradart_google.dart';
+import 'package:terradart_google/monitoring.dart';
+import 'package:terradart_google/provider.dart';
 
 class LatencyAlertStack extends Stack {
   LatencyAlertStack({required String projectId})

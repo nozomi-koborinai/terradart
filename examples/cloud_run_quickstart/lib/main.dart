@@ -18,7 +18,9 @@ import 'dart:convert' as dart_convert;
 import 'dart:io';
 
 import 'package:terradart_core/terradart_core.dart';
-import 'package:terradart_google/terradart_google.dart';
+import 'package:terradart_google/cloud_run.dart';
+import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/secret_manager.dart';
 
 class ApiServiceStack extends Stack {
   ApiServiceStack({required String projectId})
