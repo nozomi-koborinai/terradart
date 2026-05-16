@@ -96,5 +96,52 @@ properties:
       expect(attr.constraints.deprecationMessage, 'Use the new API.',
           reason: 'MM-only deprecation must survive when schema has none');
     });
+
+    test('MM YAML deprecation overrides schema-json Deprecated. placeholder',
+        () {
+      const base = ProviderSchemaIR(
+        providerName: 'test',
+        providerSource: 'test/test',
+        providerVersion: '0.0.1',
+        resources: {
+          'test_resource': ResourceDef(
+            terraformType: 'test_resource',
+            root: BlockDef(
+              attributes: [
+                Attribute(
+                  name: 'foo',
+                  type: StringType(),
+                  constraints: Constraints(
+                    deprecationMessage: 'Deprecated.',
+                  ),
+                ),
+              ],
+            ),
+          ),
+        },
+        dataSources: {},
+      );
+      final overrides = <String, MmResourceOverrides>{
+        'test_resource': const MmResourceOverrides(
+          fieldOverrides: {
+            'foo': Constraints(
+              deprecationMessage:
+                  'BigQuery deprecated this in favour of foo.bar.',
+            ),
+          },
+        ),
+      };
+
+      final merged = const IrMerger().merge(base: base, overrides: overrides);
+
+      final attr = merged.resources['test_resource']!.root.attributes
+          .singleWhere((a) => a.name == 'foo');
+      expect(
+        attr.constraints.deprecationMessage,
+        'BigQuery deprecated this in favour of foo.bar.',
+        reason:
+            'MM YAML deprecation message must override schema-json placeholder',
+      );
+    });
   });
 }
