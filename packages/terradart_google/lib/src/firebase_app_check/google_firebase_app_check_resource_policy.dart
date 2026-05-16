@@ -1,0 +1,122 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
+import 'package:terradart_google/src/firebase_app_check/google_firebase_app_check_service_config.dart'
+    show AppCheckEnforcementMode;
+import 'package:terradart_core/terradart_core.dart';
+
+import 'package:terradart_google/src/generated/google_firebase_app_check_resource_policy.schema.dart'
+    show
+        $GoogleFirebaseAppCheckResourcePolicy,
+        googleFirebaseAppCheckResourcePolicySensitive;
+
+// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
+// consumed by `ResourceRef<S>.placeholder` (a future surface). We
+// keep this stub inline instead of constructing schemantic's generated
+// concrete class (which requires JSON-backed field args). `noSuchMethod`
+// satisfies the abstract field getters; they are never invoked in v0.0.x.
+class _GoogleFirebaseAppCheckResourcePolicySchemaInstance
+    implements $GoogleFirebaseAppCheckResourcePolicy {
+  const _GoogleFirebaseAppCheckResourcePolicySchemaInstance();
+
+  @override
+  // ignore: non_constant_identifier_names
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
+/// Factory wrapper for `google_firebase_app_check_resource_policy`
+/// (provider `hashicorp/google ~> 7.0`).
+///
+/// Required identity:
+/// - [localName]: Terraform local name (the address segment after
+///   `google_firebase_app_check_resource_policy.`).
+/// - `service_id`: the service this policy applies to. Currently
+///   supported values:
+///     * `oauth2.googleapis.com` (Google Identity for iOS)
+///   The provider does not enumerate this set in the v7 schema, so the
+///   parameter stays a plain `TfArg<String>`; apply your own validation
+///   in calling code.
+/// - `target_resource`: the fully-qualified name of the resource this
+///   policy applies to. The format is service-specific. For iOS OAuth
+///   clients:
+///   `//oauth2.googleapis.com/projects/{project_number}/oauthClients/{oauthClientId}`.
+///
+/// Optional:
+/// - [enforcementMode]: [AppCheckEnforcementMode.unenforced] collects
+///   metrics without blocking requests; [AppCheckEnforcementMode.enforced]
+///   blocks unverified requests for the specific [targetResource]. The
+///   per-resource setting OVERRIDES the service-wide
+///   [GoogleFirebaseAppCheckServiceConfig.enforcementMode] for the same
+///   service. Leaving it null is equivalent to `OFF` in the REST API —
+///   no enforcement, no metrics — and deleting the Terraform resource
+///   restores the resource to `OFF`.
+///
+/// Example (enforce App Check on one iOS OAuth client):
+/// ```dart
+/// final iosOauthEnforcement = GoogleFirebaseAppCheckResourcePolicy(
+///   localName: 'ios_oauth_enforce',
+///   serviceId: TfArg.literal('oauth2.googleapis.com'),
+///   targetResource: TfArg.literal(
+///     '//oauth2.googleapis.com/projects/123456789/oauthClients/abc-def-ghi',
+///   ),
+///   enforcementMode: TfArg.literal(AppCheckEnforcementMode.enforced),
+/// );
+/// ```
+///
+/// Configures App Check enforcement for a **single, named resource**
+/// (e.g. one specific iOS OAuth client) within a service. This overrides
+/// the broader [GoogleFirebaseAppCheckServiceConfig] setting for the
+/// same service — letting you progressively roll enforcement out per
+/// resource instead of flipping the entire service at once.
+///
+/// **Caution**: enabling [AppCheckEnforcementMode.enforced] on a
+/// production resource will reject requests from clients running app
+/// versions that have not yet been updated to integrate App Check. Run
+/// with [AppCheckEnforcementMode.unenforced] first to gather metrics.
+///
+/// No nested blocks aside from the meta-arg `timeouts`.
+final class GoogleFirebaseAppCheckResourcePolicy
+    extends Resource<$GoogleFirebaseAppCheckResourcePolicy> {
+  // ignore: constant_identifier_names
+  static const String $tfType = 'google_firebase_app_check_resource_policy';
+
+  GoogleFirebaseAppCheckResourcePolicy({
+    required super.localName,
+    required TfArg<String> serviceId,
+    required TfArg<String> targetResource,
+    TfArg<AppCheckEnforcementMode>? enforcementMode,
+    TfArg<String>? project,
+    super.lifecycle,
+    super.dependsOn,
+  }) : super(
+         terraformType: $tfType,
+         schema: const _GoogleFirebaseAppCheckResourcePolicySchemaInstance(),
+         argMap: {
+           'service_id': serviceId,
+           'target_resource': targetResource,
+           if (enforcementMode != null) 'enforcement_mode': enforcementMode,
+           if (project != null) 'project': project,
+         },
+       );
+
+  @override
+  // ignore: non_constant_identifier_names
+  Set<String> get $sensitiveFields =>
+      googleFirebaseAppCheckResourcePolicySensitive;
+
+  /// Reference to `id` attribute (the full resource path).
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `resource_policy_id` -- the server-generated UID for
+  /// the policy. Populated after apply.
+  TfRef<String> get resourcePolicyIdRef =>
+      TfRef.attribute<String>(this, 'resource_policy_id');
+
+  /// Reference to `etag` (used for optimistic concurrency on update /
+  /// delete).
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `update_time` -- RFC3339 timestamp of the last
+  /// server-side mutation.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+}

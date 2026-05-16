@@ -1,0 +1,372 @@
+outputDir: firebase_remote_config
+
+classDocComment: |-
+  /// Factory wrapper for `google_firebase_remote_config_remote_config`
+  /// (provider `hashicorp/google ~> 7.0`).
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name (the address segment after
+  ///   `google_firebase_remote_config_remote_config.`).
+  /// - `project`: optional override of the provider's default project
+  ///   (Remote Config templates are scoped to a single Firebase project).
+  ///
+  /// All three composition surfaces ([parameters], [parameterGroups],
+  /// [conditions]) are individually optional, but in practice at least one
+  /// of [parameters] or [parameterGroups] is what makes a template useful;
+  /// the resource is the project-level container for the entire template.
+  /// Only one Remote Config template exists per Firebase project (the
+  /// `name` is server-fixed as
+  /// `projects/{project}/namespaces/{namespace}/remoteConfig`), so this
+  /// resource is effectively a singleton.
+  ///
+  /// Example (one boolean parameter, one staged condition):
+  /// ```dart
+  /// final cfg = GoogleFirebaseRemoteConfigRemoteConfig(
+  ///   localName: 'default',
+  ///   conditions: const [
+  ///     RemoteConfigCondition(
+  ///       name: 'staging_only',
+  ///       expression: "app.id == 'com.example.app.staging'",
+  ///       tagColor: RemoteConfigTagColor.orange,
+  ///     ),
+  ///   ],
+  ///   parameters: const [
+  ///     RemoteConfigParameter(
+  ///       parameterName: 'feature_x_enabled',
+  ///       valueType: RemoteConfigValueType.boolean,
+  ///       description: 'Gates the feature X rollout.',
+  ///       defaultValue: RemoteConfigDefaultValue(value: 'false'),
+  ///       conditionalValues: [
+  ///         RemoteConfigConditionalValue(
+  ///           conditionName: 'staging_only',
+  ///           value: 'true',
+  ///         ),
+  ///       ],
+  ///     ),
+  ///   ],
+  /// );
+  /// ```
+  ///
+  /// Example (one parameter group):
+  /// ```dart
+  /// final cfg = GoogleFirebaseRemoteConfigRemoteConfig(
+  ///   localName: 'default',
+  ///   parameterGroups: const [
+  ///     RemoteConfigParameterGroup(
+  ///       parameterGroupName: 'search_v2',
+  ///       description: 'New mobile search view.',
+  ///       parameters: [
+  ///         RemoteConfigParameter(
+  ///           parameterName: 'search_layout',
+  ///           valueType: RemoteConfigValueType.string,
+  ///           defaultValue: RemoteConfigDefaultValue(value: 'grid'),
+  ///         ),
+  ///       ],
+  ///     ),
+  ///   ],
+  /// );
+  /// ```
+  ///
+  /// Manages the project-level Firebase Remote Config template. The
+  /// template's payload is composed of three orthogonal collections:
+  /// [conditions] (boolean predicates evaluated at client fetch time),
+  /// [parameters] (top-level parameter map, keyed by [RemoteConfigParameter.parameterName]),
+  /// and [parameterGroups] (named buckets of parameters, see
+  /// [RemoteConfigParameterGroup]). Conditional values inside each
+  /// parameter reference conditions by name -- the wrapper does not (and
+  /// cannot) cross-validate these references at compile time; mismatches
+  /// surface at apply time from the Remote Config API.
+
+# `parameters` / `parameter_groups` / `conditions` are the three composition
+# axes -- listed first because they constitute the template payload. `project`
+# is the standard tail. Every name below corresponds to a real input slot
+# (block_type for the first three, optional+computed attribute for `project`);
+# computed-only attributes (`name`, `version`) and `id` are filtered by the
+# emitter, `timeouts` (Terraform meta-arg) is also filtered. Verified
+# entry-by-entry per the Round 2 paramOrder anti-hallucination check.
+paramOrder:
+  - parameters
+  - parameter_groups
+  - conditions
+  - project
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+extraGetters: |2
+    /// Reference to `name` attribute (full resource path, of the shape
+    /// `projects/{project}/namespaces/{namespace}/remoteConfig`).
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute. Same shape as [nameRef] for this
+    /// resource.
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+prelude: |
+  // ===========================================================================
+  // Enums (sourced from schema "Possible values" prose)
+  // ===========================================================================
+
+  /// `conditions[].tag_color` -- display-only swatch attached to a
+  /// condition in the Firebase Console. The 11 values below come from the
+  /// schema's enumerated "Possible values" list. Leaving this null (the
+  /// schema-default) lets the Console pick a colour automatically.
+  enum RemoteConfigTagColor {
+    blue('BLUE'),
+    brown('BROWN'),
+    cyan('CYAN'),
+    deepOrange('DEEP_ORANGE'),
+    green('GREEN'),
+    indigo('INDIGO'),
+    lime('LIME'),
+    orange('ORANGE'),
+    pink('PINK'),
+    purple('PURPLE'),
+    teal('TEAL');
+
+    const RemoteConfigTagColor(this.terraformValue);
+    final String terraformValue;
+  }
+
+  /// `parameters[].value_type` (and `parameter_groups[].parameters[].value_type`)
+  /// -- the data type interpretation of [RemoteConfigDefaultValue.value] /
+  /// [RemoteConfigConditionalValue.value]. `string` is the schema default.
+  /// `jsonValue` covers any structured payload (the wire format is still a
+  /// string -- the client is expected to JSON-parse it).
+  enum RemoteConfigValueType {
+    string('STRING'),
+    boolean('BOOLEAN'),
+    number('NUMBER'),
+    jsonValue('JSON');
+
+    const RemoteConfigValueType(this.terraformValue);
+    final String terraformValue;
+  }
+
+  // ===========================================================================
+  // conditions[] helper
+  // ===========================================================================
+
+  /// One entry in `conditions` (nesting=list, ordered). Per the schema
+  /// description, the list is in descending priority order: the first
+  /// condition that evaluates to `true` for a given client wins for any
+  /// parameter that references it by [name].
+  ///
+  /// See
+  /// https://firebase.google.com/docs/remote-config/condition-reference
+  /// for the expected syntax of [expression].
+  @immutable
+  class RemoteConfigCondition {
+    const RemoteConfigCondition({
+      required this.name,
+      required this.expression,
+      this.tagColor,
+    });
+
+    /// Unique condition name. Referenced verbatim by
+    /// [RemoteConfigConditionalValue.conditionName].
+    final String name;
+
+    /// Condition expression (see the link in the class doc).
+    final String expression;
+
+    /// Display swatch for the Firebase Console. Null lets the Console
+    /// auto-assign.
+    final RemoteConfigTagColor? tagColor;
+
+    Map<String, Object?> toArgMap() => {
+      'name': name,
+      'expression': expression,
+      if (tagColor != null) 'tag_color': tagColor!.terraformValue,
+    };
+  }
+
+  // ===========================================================================
+  // parameter value helpers
+  // ===========================================================================
+
+  /// `default_value` block (max_items=1). Per the schema's own constraint
+  /// ("Only one of use_in_app_default or value may be specified"), exactly
+  /// one of [useInAppDefault] / [value] should be set; setting both is a
+  /// server-side error.
+  ///
+  /// Use [useInAppDefault]=true to mark "no template-side default; fall
+  /// back to whatever the client SDK was compiled with"; use [value] to
+  /// supply a literal string (interpreted per the parent parameter's
+  /// [RemoteConfigParameter.valueType]).
+  @immutable
+  class RemoteConfigDefaultValue {
+    const RemoteConfigDefaultValue({this.useInAppDefault, this.value})
+      : assert(
+          useInAppDefault == null || value == null,
+          'RemoteConfigDefaultValue: pass at most one of `useInAppDefault` '
+          'or `value` -- the schema rejects both being set.',
+        );
+
+    /// When true, the parameter is omitted from values returned to the
+    /// client (the client falls back to its in-app default).
+    final bool? useInAppDefault;
+
+    /// String value (interpreted per the parent parameter's `valueType`).
+    final String? value;
+
+    Map<String, Object?> toArgMap() => {
+      if (useInAppDefault != null) 'use_in_app_default': useInAppDefault,
+      if (value != null) 'value': value,
+    };
+  }
+
+  /// One entry in a parameter's `conditional_values` (nesting=set). Pairs
+  /// a [conditionName] (referencing a [RemoteConfigCondition.name] in the
+  /// template's [conditions] list) with either an in-app-default flag or
+  /// a literal [value]. Per the schema's own constraint, only one of
+  /// [useInAppDefault] / [value] may be specified.
+  ///
+  /// The condition_name of the highest priority (i.e. the one listed
+  /// first in the template's [conditions]) that evaluates to true
+  /// determines this parameter's value for a given client.
+  @immutable
+  class RemoteConfigConditionalValue {
+    const RemoteConfigConditionalValue({
+      required this.conditionName,
+      this.useInAppDefault,
+      this.value,
+    }) : assert(
+            useInAppDefault == null || value == null,
+            'RemoteConfigConditionalValue: pass at most one of '
+            '`useInAppDefault` or `value` -- the schema rejects both being '
+            'set.',
+          );
+
+    /// Must match a [RemoteConfigCondition.name] in the parent template's
+    /// [conditions] list. Mismatches are not caught at compile time;
+    /// Terraform apply surfaces the error from the Remote Config API.
+    final String conditionName;
+
+    /// When true, the parameter is omitted from values returned to the
+    /// client (the client falls back to its in-app default) when this
+    /// condition matches.
+    final bool? useInAppDefault;
+
+    /// String value (interpreted per the parent parameter's `valueType`).
+    final String? value;
+
+    Map<String, Object?> toArgMap() => {
+      'condition_name': conditionName,
+      if (useInAppDefault != null) 'use_in_app_default': useInAppDefault,
+      if (value != null) 'value': value,
+    };
+  }
+
+  // ===========================================================================
+  // parameter helper (shared between top-level [parameters] and
+  // [RemoteConfigParameterGroup.parameters])
+  // ===========================================================================
+
+  /// One entry in `parameters` (top-level set) or in a
+  /// [RemoteConfigParameterGroup.parameters] (nested set). Carries the
+  /// parameter's identity (`parameter_name`), optional metadata
+  /// (`description`, `value_type`), and the default / conditional value
+  /// payload (each modelled by a dedicated helper).
+  ///
+  /// A given parameter only appears once per template -- either at the
+  /// top level OR within exactly one group. The wrapper does not enforce
+  /// this; the Remote Config API does.
+  @immutable
+  class RemoteConfigParameter {
+    const RemoteConfigParameter({
+      required this.parameterName,
+      this.description,
+      this.valueType,
+      this.defaultValue,
+      this.conditionalValues,
+    });
+
+    /// Parameter key (referenced by client SDKs via
+    /// `RemoteConfig.getValue('<parameter_name>')`).
+    final String parameterName;
+
+    /// Free-form description (<= 256 Unicode chars). Surfaced in the
+    /// Firebase Console.
+    final String? description;
+
+    /// Data type for [defaultValue.value] / [conditionalValues[].value].
+    /// Null falls through to the provider default
+    /// ([RemoteConfigValueType.string]).
+    final RemoteConfigValueType? valueType;
+
+    /// Optional default value (used when none of the [conditionalValues]
+    /// match).
+    final RemoteConfigDefaultValue? defaultValue;
+
+    /// Optional list of per-condition overrides. Empty list and null both
+    /// mean "no overrides".
+    final List<RemoteConfigConditionalValue>? conditionalValues;
+
+    Map<String, Object?> toArgMap() => {
+      'parameter_name': parameterName,
+      if (description != null) 'description': description,
+      if (valueType != null) 'value_type': valueType!.terraformValue,
+      if (defaultValue != null) 'default_value': [defaultValue!.toArgMap()],
+      if (conditionalValues != null)
+        'conditional_values':
+            conditionalValues!.map((c) => c.toArgMap()).toList(),
+    };
+  }
+
+  // ===========================================================================
+  // parameter_groups[] helper
+  // ===========================================================================
+
+  /// One entry in `parameter_groups` (nesting=set). A group is a named
+  /// bucket of [parameters] -- the Firebase Console renders them grouped
+  /// under the [parameterGroupName] / [description] heading.
+  ///
+  /// Group names are mutable but must be unique within a template; the
+  /// wrapper does not de-duplicate them, the Remote Config API does.
+  @immutable
+  class RemoteConfigParameterGroup {
+    const RemoteConfigParameterGroup({
+      required this.parameterGroupName,
+      this.description,
+      this.parameters,
+    });
+
+    /// Human-readable group identifier (<= 256 Unicode chars). Unique
+    /// within the template.
+    final String parameterGroupName;
+
+    /// Free-form description (<= 256 Unicode chars). Surfaced in the
+    /// Firebase Console.
+    final String? description;
+
+    /// Parameters belonging to this group. Each parameter appears exactly
+    /// once in the entire template -- either at the top level OR within
+    /// one specific group, never both.
+    final List<RemoteConfigParameter>? parameters;
+
+    Map<String, Object?> toArgMap() => {
+      'parameter_group_name': parameterGroupName,
+      if (description != null) 'description': description,
+      if (parameters != null)
+        'parameters': parameters!.map((p) => p.toArgMap()).toList(),
+    };
+  }
+
+customSlots:
+  parameters:
+    paramDeclaration: 'List<RemoteConfigParameter>? parameters'
+    argMapEntry: "if (parameters != null) 'parameters': TfArg.literal(parameters.map((p) => p.toArgMap()).toList()),"
+  parameter_groups:
+    paramDeclaration: 'List<RemoteConfigParameterGroup>? parameterGroups'
+    argMapEntry: "if (parameterGroups != null) 'parameter_groups': TfArg.literal(parameterGroups.map((g) => g.toArgMap()).toList()),"
+  conditions:
+    paramDeclaration: 'List<RemoteConfigCondition>? conditions'
+    argMapEntry: "if (conditions != null) 'conditions': TfArg.literal(conditions.map((c) => c.toArgMap()).toList()),"
+
+schemaStubComment: |-
+  // Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
+  // consumed by `ResourceRef<S>.placeholder` (a future surface). We
+  // keep this stub inline instead of constructing schemantic's generated
+  // concrete class (which requires JSON-backed field args). `noSuchMethod`
+  // satisfies the abstract field getters; they are never invoked in v0.0.x.

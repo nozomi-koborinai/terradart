@@ -1,0 +1,161 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
+import 'package:terradart_core/terradart_core.dart';
+
+import 'package:terradart_google/src/generated/google_firebase_data_connect_service.schema.dart'
+    show
+        $GoogleFirebaseDataConnectService,
+        googleFirebaseDataConnectServiceSensitive;
+
+// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
+// consumed by `ResourceRef<S>.placeholder` (a future surface). We
+// keep this stub inline instead of constructing schemantic's generated
+// concrete class (which requires JSON-backed field args). `noSuchMethod`
+// satisfies the abstract field getters; they are never invoked in v0.0.x.
+class _GoogleFirebaseDataConnectServiceSchemaInstance
+    implements $GoogleFirebaseDataConnectService {
+  const _GoogleFirebaseDataConnectServiceSchemaInstance();
+
+  @override
+  // ignore: non_constant_identifier_names
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
+// ===========================================================================
+// Enums (sourced from schema "Possible values" prose)
+// ===========================================================================
+
+/// `deletion_policy` -- behaviour of `terraform destroy` when downstream
+/// Data Connect schemas / connectors still exist. [defaultPolicy] (the
+/// schema default) refuses to delete the service while any are present;
+/// [force] tears the service down regardless.
+enum DataConnectDeletionPolicy {
+  defaultPolicy('DEFAULT'),
+  force('FORCE');
+
+  const DataConnectDeletionPolicy(this.terraformValue);
+  final String terraformValue;
+}
+
+/// Factory wrapper for `google_firebase_data_connect_service` (provider
+/// `hashicorp/google ~> 7.0`).
+///
+/// Required identity:
+/// - [localName]: Terraform local name (the address segment after
+///   `google_firebase_data_connect_service.`).
+/// - `service_id`: stable user-chosen identifier. Becomes the final
+///   segment of the service's full resource name. Note (per the schema's
+///   own warning): this ID is specific to the Data Connect service itself
+///   and is NOT the ID of the underlying Cloud SQL instance.
+/// - `location`: GCP region (e.g. `'us-central1'`, `'asia-east1'`).
+///
+/// Example (minimal):
+/// ```dart
+/// final svc = GoogleFirebaseDataConnectService(
+///   localName: 'web',
+///   serviceId: TfArg.literal('web-svc'),
+///   location: TfArg.literal('us-central1'),
+///   displayName: TfArg.literal('Web app data connect'),
+/// );
+/// ```
+///
+/// Manages a Firebase Data Connect service -- the serverless GraphQL
+/// backend that fronts a Cloud SQL (PostgreSQL) instance. This resource
+/// is the top-level container only; the GraphQL schema and connectors
+/// that bind it to a specific Cloud SQL instance live in separate
+/// downstream resources (e.g. `google_firebase_data_connect_schema`,
+/// `google_firebase_data_connect_connector`) which are NOT covered by
+/// the v0.0.x wrapper surface. Consequently, the
+/// `<service>.cloudSqlInstance` linkage is NOT modelled here -- the
+/// service-level schema in provider v7.31.0 does not expose it.
+///
+/// Setting [deletionPolicy] to [DataConnectDeletionPolicy.force] allows
+/// `terraform destroy` to remove the service even when downstream
+/// schemas / connectors still exist; the default leaves the service in
+/// place if any are present.
+final class GoogleFirebaseDataConnectService
+    extends Resource<$GoogleFirebaseDataConnectService> {
+  // ignore: constant_identifier_names
+  static const String $tfType = 'google_firebase_data_connect_service';
+
+  GoogleFirebaseDataConnectService({
+    required super.localName,
+    required TfArg<String> serviceId,
+    required TfArg<String> location,
+    TfArg<DataConnectDeletionPolicy>? deletionPolicy,
+    TfArg<String>? displayName,
+    TfArg<Map<String, String>>? annotations,
+    TfArg<Map<String, String>>? labels,
+    TfArg<String>? project,
+    super.lifecycle,
+    super.dependsOn,
+  }) : super(
+         terraformType: $tfType,
+         schema: const _GoogleFirebaseDataConnectServiceSchemaInstance(),
+         argMap: {
+           'service_id': serviceId,
+           'location': location,
+           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           if (displayName != null) 'display_name': displayName,
+           if (annotations != null) 'annotations': annotations,
+           if (labels != null) 'labels': labels,
+           if (project != null) 'project': project,
+         },
+       );
+
+  @override
+  // ignore: non_constant_identifier_names
+  Set<String> get $sensitiveFields => googleFirebaseDataConnectServiceSensitive;
+
+  /// Reference to `name` attribute (full resource path
+  /// `projects/{project}/locations/{location}/services/{service_id}`).
+  /// Per the schema's own note, the `{service_id}` segment is the Data
+  /// Connect service ID, NOT the underlying Cloud SQL instance ID.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute. Same shape as [nameRef] for this
+  /// resource.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `service_id` -- the stable user-chosen segment
+  /// downstream Data Connect resources (schema, connector) reference.
+  TfRef<String> get serviceIdRef => TfRef.attribute<String>(this, 'service_id');
+
+  /// Reference to `uid` (server-assigned unique identifier; stable
+  /// across renames).
+  TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
+
+  /// Reference to `etag` (used for optimistic concurrency on update /
+  /// delete; see https://google.aip.dev/154).
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `reconciling` -- `true` while the server is still
+  /// converging the service state after a recent change. Read-only.
+  TfRef<bool> get reconciling => TfRef.attribute<bool>(this, 'reconciling');
+
+  /// Reference to `create_time` (RFC3339 timestamp).
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `update_time` (RFC3339 timestamp; bumped on every
+  /// server-acknowledged change).
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `effective_annotations` -- the server-side authoritative
+  /// view of annotations, including those set by other clients / GCP
+  /// services in addition to the Terraform-managed [annotations] map.
+  TfRef<Map<String, String>> get effectiveAnnotations =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_annotations');
+
+  /// Reference to `effective_labels` -- the server-side authoritative
+  /// view of labels (Terraform-managed + provider-default + other-client
+  /// labels merged).
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `terraform_labels` -- the combination of [labels] set
+  /// directly on this resource and provider-default labels. Useful when
+  /// other resources need to apply the same label set.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+}
