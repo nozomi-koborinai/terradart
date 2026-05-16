@@ -1,0 +1,15 @@
+name: terradart_example_cloud_functions_quickstart
+description: Cloud Functions Gen 2 quickstart -- HTTP-triggered Python function with a GCS source archive and a dedicated runtime service account.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  terradart_core:
+    path: ../../packages/terradart_core
+  terradart_google:
+    path: ../../packages/terradart_google
+
+dev_dependencies:
+  lints: ^6.0.0

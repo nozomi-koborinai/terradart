@@ -11,12 +11,14 @@
 library;
 
 export 'bigquery.dart';
+export 'cloud_functions.dart';
 export 'cloud_run.dart';
 export 'cloud_scheduler.dart';
 export 'cloud_tasks.dart';
 export 'compute.dart';
 export 'data.dart';
 export 'dns.dart';
+export 'firestore.dart';
 export 'iam.dart';
 export 'kms.dart';
 export 'logging.dart';
