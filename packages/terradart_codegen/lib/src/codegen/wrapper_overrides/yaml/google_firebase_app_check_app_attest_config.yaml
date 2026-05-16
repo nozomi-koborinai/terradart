@@ -1,0 +1,56 @@
+outputDir: firebase_app_check
+
+classDocComment: |-
+  /// Factory wrapper for `google_firebase_app_check_app_attest_config`
+  /// (provider `hashicorp/google ~> 7.0`).
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name (the address segment after
+  ///   `google_firebase_app_check_app_attest_config.`).
+  /// - `app_id`: the ID of the Firebase Apple App this config binds to. See
+  ///   https://firebase.google.com/docs/reference/firebase-management/rest/v1beta1/projects.iosApps#IosApp.FIELDS.app_id.
+  ///   Forces replacement when changed.
+  ///
+  /// Example:
+  /// ```dart
+  /// final appAttest = GoogleFirebaseAppCheckAppAttestConfig(
+  ///   localName: 'ios',
+  ///   appId: TfArg.literal('1:1234567890:ios:abcdef'),
+  ///   tokenTtl: TfArg.literal('3600s'),
+  /// );
+  /// ```
+  ///
+  /// Registers the Apple App Attest provider configuration for the given
+  /// Firebase Apple App so App Check can exchange App Attest assertions for
+  /// App Check tokens. This is the modern iOS path (iOS 14+); the legacy
+  /// DeviceCheck path is exposed via
+  /// [GoogleFirebaseAppCheckDeviceCheckConfig]. Counterpart to
+  /// [GoogleFirebaseAppCheckRecaptchaEnterpriseConfig] (Web) and
+  /// [GoogleFirebaseAppCheckPlayIntegrityConfig] (Android). No nested blocks
+  /// aside from the meta-arg `timeouts`.
+
+# paramOrder: app_id is the structural / forced-replace identity slot, then
+# token_ttl, then project. App Attest has no provider-side secret — assertion
+# verification is performed by Apple's attestation service plus Firebase
+# server-side, with no key material in Terraform state. (Contrast with
+# DeviceCheck, which DOES carry a sensitive `private_key`.)
+paramOrder:
+  - app_id
+  - token_ttl
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute (the relative resource name of the
+    /// App Attest configuration object, in the shape
+    /// `projects/{project}/apps/{app_id}/appAttestConfig`).
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute. Same as `nameRef` for this resource.
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+schemaStubComment: |-
+  // Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
+  // consumed by `ResourceRef<S>.placeholder` (a future surface). We
+  // keep this stub inline instead of constructing schemantic's generated
+  // concrete class (which requires JSON-backed field args). `noSuchMethod`
+  // satisfies the abstract field getters; they are never invoked in v0.0.x.

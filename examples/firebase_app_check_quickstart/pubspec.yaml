@@ -1,0 +1,15 @@
+name: terradart_example_firebase_app_check_quickstart
+description: Firebase App Check quickstart -- attestation providers + service enforcement.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  terradart_core:
+    path: ../../packages/terradart_core
+  terradart_google:
+    path: ../../packages/terradart_google
+
+dev_dependencies:
+  lints: ^6.0.0

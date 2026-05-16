@@ -1,0 +1,192 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
+import 'package:terradart_core/terradart_core.dart';
+
+import 'package:terradart_google/src/generated/google_firebase_app_hosting_traffic.schema.dart'
+    show
+        $GoogleFirebaseAppHostingTraffic,
+        googleFirebaseAppHostingTrafficSensitive;
+
+// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
+// consumed by `ResourceRef<S>.placeholder` (a future surface). We
+// keep this stub inline instead of constructing schemantic's generated
+// concrete class (which requires JSON-backed field args). `noSuchMethod`
+// satisfies the abstract field getters; they are never invoked in v0.0.x.
+class _GoogleFirebaseAppHostingTrafficSchemaInstance
+    implements $GoogleFirebaseAppHostingTraffic {
+  const _GoogleFirebaseAppHostingTrafficSchemaInstance();
+
+  @override
+  // ignore: non_constant_identifier_names
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+}
+
+// ===========================================================================
+// target block (max_items=1) + splits (min_items=1)
+// ===========================================================================
+
+/// `target` block. Manually pin the desired traffic split across builds.
+/// The state's `current` field eventually reconverges to this value.
+/// Split percentages must sum to 100, and per the provider's current
+/// schema each individual entry must be exactly 0 or 100 (so today this
+/// behaves as "single live build" rather than a true weighted split).
+@immutable
+class AppHostingTrafficTarget {
+  const AppHostingTrafficTarget({required this.splits})
+    : assert(
+        splits.length >= 1,
+        'AppHostingTrafficTarget.splits must have at least one entry '
+        '(schema enforces min_items=1)',
+      );
+
+  /// At least one [AppHostingTrafficSplit] per the schema's `min_items=1`.
+  final List<AppHostingTrafficSplit> splits;
+
+  Map<String, Object?> toArgMap() => {
+    'splits': splits.map((s) => s.toArgMap()).toList(),
+  };
+}
+
+/// One entry in `target.splits`. Pairs a build with the percentage of
+/// traffic it should receive.
+@immutable
+class AppHostingTrafficSplit {
+  const AppHostingTrafficSplit({required this.build, required this.percent});
+
+  /// `build_id` of the target build (NOT the full resource path).
+  /// Typically `TfArg.ref(build.buildIdRef)` where `build` is a
+  /// [GoogleFirebaseAppHostingBuild].
+  final TfArg<String> build;
+
+  /// Percentage of traffic to direct at [build]. Provider currently
+  /// requires this to be exactly 0 or 100; the split list as a whole
+  /// must sum to 100.
+  final TfArg<int> percent;
+
+  Map<String, Object?> toArgMap() => {
+    'build': build.toTfJson(),
+    'percent': percent.toTfJson(),
+  };
+}
+
+// ===========================================================================
+// rollout_policy block (max_items=1)
+// ===========================================================================
+
+/// `rollout_policy` block. Drives automated builds and rollouts off a
+/// git branch in the backend's linked Developer Connect repository.
+/// When omitted, the backend never auto-rolls out -- builds are
+/// triggered exclusively by explicit [GoogleFirebaseAppHostingBuild]
+/// resources.
+@immutable
+class AppHostingTrafficRolloutPolicy {
+  const AppHostingTrafficRolloutPolicy({this.codebaseBranch, this.disabled});
+
+  /// Branch to watch. New commits on this branch trigger a build +
+  /// rollout. When null, no automatic rollouts happen.
+  final TfArg<String>? codebaseBranch;
+
+  /// If `true`, suspends new rollouts via this policy. The state
+  /// surfaces `disabled_time` once a pause takes effect.
+  final TfArg<bool>? disabled;
+
+  Map<String, Object?> toArgMap() => {
+    if (codebaseBranch != null) 'codebase_branch': codebaseBranch!.toTfJson(),
+    if (disabled != null) 'disabled': disabled!.toTfJson(),
+  };
+}
+
+/// Factory wrapper for `google_firebase_app_hosting_traffic` (provider
+/// `hashicorp/google ~> 7.0`).
+///
+/// Required identity:
+/// - [localName]: Terraform local name (the address segment after
+///   `google_firebase_app_hosting_traffic.`).
+/// - `backend`: ID of the backend whose traffic this resource configures.
+///   Typically `TfArg.ref(backend.backendIdRef)` where `backend` is a
+///   [GoogleFirebaseAppHostingBackend].
+/// - `location`: GCP region of the backend.
+///
+/// Set either [target] (manually pin which build gets traffic),
+/// [rolloutPolicy] (automatic builds on commits to a branch), or both.
+///
+/// Example (manual pin: 100% to one build):
+/// ```dart
+/// final traffic = GoogleFirebaseAppHostingTraffic(
+///   localName: 'main',
+///   backend: TfArg.ref(backend.backendIdRef),
+///   location: TfArg.literal('us-central1'),
+///   target: AppHostingTrafficTarget(
+///     splits: [
+///       AppHostingTrafficSplit(
+///         build: TfArg.ref(build.buildIdRef),
+///         percent: TfArg.literal(100),
+///       ),
+///     ],
+///   ),
+/// );
+/// ```
+///
+/// Example (automatic rollouts off the `main` branch):
+/// ```dart
+/// final traffic = GoogleFirebaseAppHostingTraffic(
+///   localName: 'main',
+///   backend: TfArg.ref(backend.backendIdRef),
+///   location: TfArg.literal('us-central1'),
+///   rolloutPolicy: AppHostingTrafficRolloutPolicy(
+///     codebaseBranch: TfArg.literal('main'),
+///   ),
+/// );
+/// ```
+///
+/// Manages traffic shaping + rollout policy for an App Hosting backend.
+/// The `target` block lets you manually steer traffic across builds (with
+/// the provider currently restricting split percentages to 0 or 100);
+/// the `rollout_policy` block hooks builds into a git branch so commits
+/// trigger automatic redeploys.
+final class GoogleFirebaseAppHostingTraffic
+    extends Resource<$GoogleFirebaseAppHostingTraffic> {
+  // ignore: constant_identifier_names
+  static const String $tfType = 'google_firebase_app_hosting_traffic';
+
+  GoogleFirebaseAppHostingTraffic({
+    required super.localName,
+    required TfArg<String> backend,
+    required TfArg<String> location,
+    AppHostingTrafficTarget? target,
+    AppHostingTrafficRolloutPolicy? rolloutPolicy,
+    TfArg<String>? project,
+    super.lifecycle,
+    super.dependsOn,
+  }) : super(
+         terraformType: $tfType,
+         schema: const _GoogleFirebaseAppHostingTrafficSchemaInstance(),
+         argMap: {
+           'backend': backend,
+           'location': location,
+           if (target != null) 'target': TfArg.literal([target.toArgMap()]),
+           if (rolloutPolicy != null)
+             'rollout_policy': TfArg.literal([rolloutPolicy.toArgMap()]),
+           if (project != null) 'project': project,
+         },
+       );
+
+  @override
+  // ignore: non_constant_identifier_names
+  Set<String> get $sensitiveFields => googleFirebaseAppHostingTrafficSensitive;
+
+  /// Reference to `name` attribute (full resource path
+  /// `projects/{project}/locations/{location}/backends/{backend}/traffic`).
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute. Same as `nameRef` for this resource.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `uid` (server-assigned unique identifier).
+  TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
+
+  /// Reference to `etag` (used for optimistic concurrency).
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+}

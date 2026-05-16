@@ -88,7 +88,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        example: [pubsub, cloud_tasks, secret_manager, cloud_scheduler, iam, compute, kms, storage, bigquery, dns, ops, cloud_run, monitoring]
+        example: [pubsub, cloud_tasks, secret_manager, cloud_scheduler, iam, compute, kms, storage, bigquery, dns, ops, cloud_run, monitoring, cloud_functions, firestore, firebase_app_hosting, firebase_app_check, firebase_data_connect, firebase_remote_config]
     steps:
       - name: Job start
         id: job_start

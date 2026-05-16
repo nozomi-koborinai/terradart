@@ -1,0 +1,15 @@
+name: terradart_example_firestore_quickstart
+description: Cloud Firestore quickstart -- Native-mode database with point-in-time recovery and a composite index on a "messages" collection.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  terradart_core:
+    path: ../../packages/terradart_core
+  terradart_google:
+    path: ../../packages/terradart_google
+
+dev_dependencies:
+  lints: ^6.0.0

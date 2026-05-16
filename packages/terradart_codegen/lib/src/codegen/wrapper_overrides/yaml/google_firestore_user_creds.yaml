@@ -1,0 +1,55 @@
+outputDir: firestore
+classDocComment: |-
+  /// Factory wrapper for `google_firestore_user_creds`.
+  ///
+  /// Provisions a database-level credential (username + server-generated
+  /// password) for a Cloud Firestore database. The credential is scoped
+  /// to one [database] and identified by [name] (4-63 chars,
+  /// `[a-z][0-9]-` shape, must not be UUID-like).
+  ///
+  /// The `secure_password` attribute is **sensitive and computed** -- the
+  /// provider generates it server-side and Terraform records it in state
+  /// only. terradart's masking layer flags it as sensitive via the
+  /// generated `$sensitiveFields` set.
+  ///
+  /// Example:
+  /// ```dart
+  /// final readerCreds = GoogleFirestoreUserCreds(
+  ///   localName: 'reader_creds',
+  ///   database: TfArg.ref(db.nameRef),
+  ///   name: TfArg.literal('analytics-reader'),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - database
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute. Same as `name` for this resource --
+    /// user creds have no separate id distinct from their resource path.
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute (the full resource path
+    /// `projects/{p}/databases/{db}/userCreds/{name}`).
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `state` attribute (lifecycle state of the creds:
+    /// `ENABLED`, `DISABLED`, etc. -- the provider does not enumerate
+    /// the full set).
+    TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+    /// Reference to the server-generated `secure_password` attribute.
+    /// **Marked sensitive in the schema** -- terradart's `$sensitiveFields`
+    /// set already includes this attribute; masking is automatic.
+    TfRef<String> get securePassword =>
+        TfRef.attribute<String>(this, 'secure_password');
+
+    /// Reference to `create_time` attribute (RFC3339).
+    TfRef<String> get createTime =>
+        TfRef.attribute<String>(this, 'create_time');
+
+    /// Reference to `update_time` attribute (RFC3339).
+    TfRef<String> get updateTime =>
+        TfRef.attribute<String>(this, 'update_time');
