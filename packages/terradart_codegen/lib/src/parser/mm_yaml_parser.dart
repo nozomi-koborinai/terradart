@@ -8,6 +8,7 @@ import '../ir/constraints.dart';
 /// - `forceNew` (from `immutable: true`)
 /// - `regex`, `minLength`, `maxLength` (from `validation`)
 /// - `enumValues` (from `enum_values`)
+/// - `deprecationMessage` (from `deprecation_message`)
 class MmResourceOverrides {
   /// Top-level YAML `description`, if any.
   final String? description;
@@ -82,6 +83,7 @@ class MmYamlParser {
       minLength: (prop['validation'] as YamlMap?)?['min_length'] as int?,
       maxLength: (prop['validation'] as YamlMap?)?['max_length'] as int?,
       enumValues: _enumValues(prop),
+      deprecationMessage: prop['deprecation_message'] as String?,
     );
     if (_isMeaningful(c)) {
       sink[fullKey] = c;
@@ -119,7 +121,8 @@ class MmYamlParser {
       c.regex != null ||
       c.minLength != null ||
       c.maxLength != null ||
-      c.enumValues != null;
+      c.enumValues != null ||
+      c.deprecationMessage != null;
 
   /// MM YAML uses lowerCamelCase for the `name` field, but the canonical
   /// Terraform JSON name comes from `api_name`. When `api_name` is absent
