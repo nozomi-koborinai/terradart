@@ -1,3 +1,10 @@
+import 'package:terradart_codegen/src/ir/attribute.dart';
+import 'package:terradart_codegen/src/ir/constraints.dart';
+import 'package:terradart_codegen/src/ir/nested_block.dart';
+import 'package:terradart_codegen/src/ir/provider_schema_ir.dart';
+import 'package:terradart_codegen/src/ir/resource_def.dart';
+import 'package:terradart_codegen/src/ir/type_def.dart';
+import 'package:terradart_codegen/src/parser/ir_merger.dart';
 import 'package:terradart_codegen/src/parser/mm_yaml_parser.dart';
 import 'package:test/test.dart';
 
@@ -45,6 +52,49 @@ properties:
             'fieldOverrides. If this fires, _isMeaningful is over-eager and '
             'will pollute downstream IR merging with no-op entries.',
       );
+    });
+  });
+
+  group('IrMerger merges Constraints.deprecationMessage', () {
+    test('preserves MM-only deprecation when schema is silent', () {
+      const base = ProviderSchemaIR(
+        providerName: 'test',
+        providerSource: 'test/test',
+        providerVersion: '0.0.1',
+        resources: {
+          'test_resource': ResourceDef(
+            terraformType: 'test_resource',
+            root: BlockDef(
+              attributes: [
+                Attribute(
+                  name: 'foo',
+                  type: StringType(),
+                  constraints: Constraints(required: true),
+                ),
+              ],
+            ),
+          ),
+        },
+        dataSources: {},
+      );
+      final overrides = <String, MmResourceOverrides>{
+        'test_resource': const MmResourceOverrides(
+          fieldOverrides: {
+            'foo': Constraints(
+              deprecationMessage: 'Use the new API.',
+            ),
+          },
+        ),
+      };
+
+      final merged = const IrMerger().merge(base: base, overrides: overrides);
+
+      final attr = merged.resources['test_resource']!.root.attributes
+          .singleWhere((a) => a.name == 'foo');
+      expect(attr.constraints.required, isTrue,
+          reason: 'schema-side required flag must survive');
+      expect(attr.constraints.deprecationMessage, 'Use the new API.',
+          reason: 'MM-only deprecation must survive when schema has none');
     });
   });
 }

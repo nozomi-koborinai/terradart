@@ -10,7 +10,8 @@ import 'mm_yaml_parser.dart';
 /// Resolution rules (see plan §15 for the spec):
 /// - schema-json owns the shape and the required/optional/computed/
 ///   sensitive/writeOnly/deprecated booleans.
-/// - MM YAML contributes forceNew, regex, minLength, maxLength, enumValues.
+/// - MM YAML contributes forceNew, regex, minLength, maxLength, enumValues,
+///   deprecationMessage.
 /// - On conflict for the MM-owned bits, MM wins.
 /// - Fields in MM YAML but not in schema-json are silently dropped.
 /// - Description: schema-json wins; MM is fallback.
@@ -77,6 +78,8 @@ class IrMerger {
         minLength: ovr.minLength ?? a.constraints.minLength,
         maxLength: ovr.maxLength ?? a.constraints.maxLength,
         enumValues: ovr.enumValues ?? a.constraints.enumValues,
+        deprecationMessage:
+            ovr.deprecationMessage ?? a.constraints.deprecationMessage,
       ),
     );
   }
