@@ -24,3 +24,5 @@ export 'src/cloud_functions/google_cloudfunctions2_function.dart'
         StorageSource,
         UpdatePolicy,
         VpcConnectorEgressSettings;
+export 'src/cloud_functions/google_cloudfunctions2_function_iam_member.dart'
+    show GoogleCloudfunctions2FunctionIamMember;

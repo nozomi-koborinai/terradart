@@ -18,6 +18,7 @@ export 'cloud_tasks.dart';
 export 'compute.dart';
 export 'data.dart';
 export 'dns.dart';
+export 'firebase_app_hosting.dart';
 export 'firestore.dart';
 export 'iam.dart';
 export 'kms.dart';

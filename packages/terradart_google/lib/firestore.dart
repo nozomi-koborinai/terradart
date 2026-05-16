@@ -3,6 +3,13 @@
 /// management.
 library;
 
+export 'src/firestore/google_firestore_backup_schedule.dart'
+    show
+        BackupDayOfWeek,
+        BackupRecurrence,
+        DailyRecurrence,
+        GoogleFirestoreBackupSchedule,
+        WeeklyRecurrence;
 export 'src/firestore/google_firestore_database.dart'
     show
         AppEngineIntegrationMode,
@@ -16,6 +23,14 @@ export 'src/firestore/google_firestore_database.dart'
         MongodbCompatibleDataAccessMode,
         PointInTimeRecoveryEnablement,
         RealtimeUpdatesMode;
+export 'src/firestore/google_firestore_field.dart'
+    show
+        FirestoreFieldOrder,
+        FirestoreFieldQueryScope,
+        GoogleFirestoreField,
+        IndexConfig,
+        SingleFieldIndex,
+        TtlConfig;
 export 'src/firestore/google_firestore_index.dart'
     show
         FirestoreIndexApiScope,
@@ -32,3 +47,5 @@ export 'src/firestore/google_firestore_index.dart'
         IndexFieldTextSpec,
         IndexFieldTextSpecEntry,
         IndexFieldVectorConfig;
+export 'src/firestore/google_firestore_user_creds.dart'
+    show GoogleFirestoreUserCreds;
