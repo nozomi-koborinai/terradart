@@ -1,5 +1,33 @@
 # Changelog
 
+## 0.3.0-dev - 2026-05-16
+
+Wave 4: adds 21 new GA resources across 6 Firebase / Cloud Functions / Firestore services. terradart_google now 49 resources, 22 per-service barrels.
+
+### Added — resources
+
+- **Cloud Functions Gen 2** (2): `google_cloudfunctions2_function`, `google_cloudfunctions2_function_iam_member`.
+- **Firestore** (5): `google_firestore_database`, `google_firestore_field`, `google_firestore_index`, `google_firestore_backup_schedule`, `google_firestore_user_creds`.
+- **Firebase App Hosting** (5): `google_firebase_app_hosting_backend`, `_build`, `_default_domain`, `_domain`, `_traffic`.
+- **Firebase App Check** (7): `_recaptcha_enterprise_config`, `_play_integrity_config`, `_app_attest_config`, `_device_check_config`, `_service_config`, `_debug_token`, `_resource_policy`.
+- **Firebase Data Connect** (1): `google_firebase_data_connect_service`.
+- **Firebase Remote Config** (1): `google_firebase_remote_config_remote_config`.
+
+### Added — per-service barrels
+
+6 new barrels following Plan 5.B convention: `cloud_functions.dart`, `firestore.dart`, `firebase_app_hosting.dart`, `firebase_app_check.dart`, `firebase_data_connect.dart`, `firebase_remote_config.dart`. The umbrella `terradart_google.dart` re-exports them transitively — existing umbrella consumers see all new resources without code change.
+
+### Added — quickstart examples
+
+6 new end-to-end stacks under `examples/`: `cloud_functions_quickstart`, `firestore_quickstart`, `firebase_app_hosting_quickstart`, `firebase_app_check_quickstart`, `firebase_data_connect_quickstart`, `firebase_remote_config_quickstart`. Each validated by CI `terraform_validate` matrix.
+
+### Notes
+
+- `google-beta` provider integration intentionally out of scope; tracked at GitHub Issue with `wave-4.5-candidate` label for demand-driven promotion.
+- `google_firestore_document` intentionally not curated (IaC anti-pattern at production scale).
+- IAM pattern remains `*_iam_member` only; `_iam_binding` / `_iam_policy` deferred to a future universal IAM spec.
+- `AppCheckEnforcementMode` enum is declared once in `firebase_app_check_service_config` and re-imported by `firebase_app_check_resource_policy` — single source of truth for the shared enum.
+
 ## 0.2.1-dev - 2026-05-16
 
 No API change since the 0.2.0-dev attempt. Neither 0.1.0-dev nor 0.2.0-dev reached pub.dev for this package — 0.1.0-dev was blocked by an unrelated `terradart_google` job failure, and 0.2.0-dev was blocked by the upstream `terradart_codegen` failure in the parallel matrix. 0.2.1-dev ships through a re-ordered publish pipeline (`publish-google` now waits for `publish-codegen` instead of the parallel `publish-leaves` matrix) and is the first version of this package to land on pub.dev.

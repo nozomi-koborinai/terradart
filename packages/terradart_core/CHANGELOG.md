@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.3.0-dev - 2026-05-16
+
+No user-facing API changes. Workspace consistency bump alongside `terradart_google` 0.3.0-dev (Wave 4: 21 new GA resources across 6 Firebase / Cloud Functions / Firestore services).
+
 ## 0.2.1-dev - 2026-05-16
 
 No API change since 0.2.0-dev. Workspace consistency bump after the 0.2.0-dev publish run partially failed; 0.2.1-dev republishes through a re-ordered publish pipeline.
