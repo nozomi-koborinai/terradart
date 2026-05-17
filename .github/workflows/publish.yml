@@ -67,8 +67,11 @@ jobs:
     steps:
       - name: Wait for pub.dev index propagation
         run: |
-          echo "Waiting 3 minutes for pub.dev to index terradart_core before publishing terradart_codegen..."
-          sleep 180
+          # pub.dev's upload response says: "it may take up-to 10 minutes before
+          # the new version is available." 3-min sleep was insufficient and
+          # intermittently broke version-solving (observed on v0.5.0-dev publish).
+          echo "Waiting 10 minutes for pub.dev to index terradart_core before publishing terradart_codegen..."
+          sleep 600
 
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -95,8 +98,11 @@ jobs:
     steps:
       - name: Wait for pub.dev index propagation
         run: |
-          echo "Waiting 3 minutes for pub.dev to index terradart_codegen + terradart_core before publishing terradart_google..."
-          sleep 180
+          # See terradart_codegen job for rationale. pub.dev advertises up-to
+          # 10 minute propagation; 3-min sleep raced and intermittently broke
+          # version-solving (observed on v0.5.0-dev publish).
+          echo "Waiting 10 minutes for pub.dev to index terradart_codegen + terradart_core before publishing terradart_google..."
+          sleep 600
 
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
