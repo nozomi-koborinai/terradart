@@ -1,0 +1,237 @@
+name: schema-bump
+
+on:
+  schedule:
+    # Weekly: Monday 07:00 JST (Sunday 22:00 UTC).
+    - cron: '0 22 * * 0'
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'If true, do not create a PR (only run detection + report).'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  detect-and-pr:
+    name: detect schema/MM drift and open PR
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - uses: hashicorp/setup-terraform@v3
+        # Default terraform_version is latest stable; intentional per
+        # docs/superpowers/specs/2026-05-17-plan5e-schema-bump-automation-design.md
+        # Section 9 question 1.
+
+      - name: Resolve workspace deps
+        run: dart pub get
+
+      - name: Read current provider version
+        id: current_version
+        run: |
+          # Extract the version from the _provider_meta.dart comment.
+          # Regex must match: "Confirmed against registry latest X.Y.Z on YYYY-MM-DD"
+          v=$(grep -oE 'Confirmed against registry latest [0-9]+\.[0-9]+\.[0-9]+' \
+              packages/terradart_google/lib/src/_provider_meta.dart \
+              | awk '{print $NF}')
+          if [ -z "$v" ]; then
+            echo "::error::Could not parse provider version from _provider_meta.dart"
+            exit 1
+          fi
+          echo "version=$v" >> "$GITHUB_OUTPUT"
+          echo "Current provider version: $v"
+
+      - name: Detect latest v7 + max major
+        id: fetch_state
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          state_json=$(dart tool/fetch_schema.dart \
+            --current-version=${{ steps.current_version.outputs.version }})
+          echo "$state_json" > /tmp/state.json
+          echo "state_json=$state_json" >> "$GITHUB_OUTPUT"
+          echo "$state_json"
+
+      - name: Refresh provider schema (terraform init + schema)
+        id: refresh_schema
+        run: |
+          v7_latest=$(jq -r '.v7_latest' /tmp/state.json)
+          bump_needed=$(jq -r '.bump_needed' /tmp/state.json)
+          if [ "$bump_needed" != "true" ]; then
+            echo "No v7 bump needed; skipping schema refresh."
+            echo "refreshed=false" >> "$GITHUB_OUTPUT"
+            cp packages/terradart_codegen/test/fixtures/wrap/source/schema.json /tmp/old_schema.json
+            cp packages/terradart_codegen/test/fixtures/wrap/source/schema.json /tmp/new_schema.json
+            exit 0
+          fi
+
+          # Save the pre-bump schema for diff.
+          cp packages/terradart_codegen/test/fixtures/wrap/source/schema.json /tmp/old_schema.json
+
+          mkdir -p /tmp/tf-schema-bump
+          cat > /tmp/tf-schema-bump/main.tf <<EOF
+          terraform {
+            required_providers {
+              google = {
+                source  = "hashicorp/google"
+                version = "= $v7_latest"
+              }
+            }
+          }
+          EOF
+
+          (cd /tmp/tf-schema-bump && terraform init -no-color && \
+            terraform providers schema -json > /tmp/new_schema.json)
+
+          cp /tmp/new_schema.json packages/terradart_codegen/test/fixtures/wrap/source/schema.json
+          echo "refreshed=true" >> "$GITHUB_OUTPUT"
+
+      - name: Sync MM YAML overlays
+        run: |
+          dart tool/sync_mm_yaml.dart \
+            --manifest=tool/mm_yaml_sources.yaml \
+            --target-dir=packages/terradart_codegen/test/fixtures/wrap/source/mm \
+            > /tmp/mm_yaml_sync.json
+          cat /tmp/mm_yaml_sync.json
+
+      - name: Compute schema resource diff
+        run: |
+          jq -r '.provider_schemas["registry.terraform.io/hashicorp/google"].resource_schemas | keys[]' \
+            /tmp/old_schema.json | sort > /tmp/old_resources.txt
+          jq -r '.provider_schemas["registry.terraform.io/hashicorp/google"].resource_schemas | keys[]' \
+            /tmp/new_schema.json | sort > /tmp/new_resources.txt
+
+          added=$(comm -13 /tmp/old_resources.txt /tmp/new_resources.txt | jq -R . | jq -s .)
+
+          # Removed-from-schema: only those removed AND currently curated.
+          all_removed=$(comm -23 /tmp/old_resources.txt /tmp/new_resources.txt)
+          curated=$(find packages/terradart_google/lib/src -mindepth 2 \
+            -name 'google_*.dart' -not -path '*/generated/*' \
+            -exec basename {} .dart \; | sort)
+          removed_curated="[]"
+          for r in $all_removed; do
+            if echo "$curated" | grep -qx "$r"; then
+              removed_curated=$(echo "$removed_curated" | jq --arg r "$r" '. + [$r]')
+            fi
+          done
+
+          jq -n --argjson added "$added" --argjson removed "$removed_curated" \
+            '{added_resources: $added, removed_resources: $removed}' \
+            > /tmp/schema_diff.json
+          cat /tmp/schema_diff.json
+
+      - name: Update `_provider_meta.dart` confirmation comment
+        if: steps.fetch_state.outputs.state_json && fromJSON(steps.fetch_state.outputs.state_json).bump_needed
+        run: |
+          v7_latest=$(jq -r '.v7_latest' /tmp/state.json)
+          today=$(date -u +%Y-%m-%d)
+          file=packages/terradart_google/lib/src/_provider_meta.dart
+          # Strict regex: only update the canonical comment line.
+          sed -i -E \
+            "s|(Confirmed against registry latest )[0-9]+\.[0-9]+\.[0-9]+( on )[0-9]{4}-[0-9]{2}-[0-9]{2}|\1$v7_latest\2$today|" \
+            "$file"
+
+      - name: Run `terradart wrap --check`
+        id: wrap_check
+        run: |
+          set +e
+          (cd packages/terradart_codegen && dart run bin/terradart.dart wrap \
+            --provider hashicorp/google \
+            --source test/fixtures/wrap/source \
+            --output ../terradart_google/lib/src \
+            --check) > /tmp/wrap_check.txt 2>&1
+          rc=$?
+          echo "$rc" > /tmp/wrap_check_exit
+          echo "Exit: $rc"
+          cat /tmp/wrap_check.txt
+
+      - name: Run universal QA gates
+        id: gates
+        run: |
+          set +e
+          (cd packages/terradart_codegen && dart test \
+            test/codegen/universal_invariants_test.dart -r expanded) \
+            > /tmp/gates.txt 2>&1
+          rc=$?
+          echo "$rc" > /tmp/gates_exit
+          echo "Exit: $rc"
+
+      - name: Assemble drift-report inputs
+        run: |
+          mkdir -p /tmp/inputs
+          cp /tmp/state.json /tmp/inputs/state.json
+          cp /tmp/wrap_check.txt /tmp/inputs/wrap_check.txt
+          cp /tmp/wrap_check_exit /tmp/inputs/wrap_check_exit
+          cp /tmp/gates.txt /tmp/inputs/gates.txt
+          cp /tmp/gates_exit /tmp/inputs/gates_exit
+          cp /tmp/mm_yaml_sync.json /tmp/inputs/mm_yaml_sync.json
+          cp /tmp/schema_diff.json /tmp/inputs/schema_diff.json
+          # Add bump_date to state.json for the report title.
+          today=$(date -u +%Y-%m-%d)
+          jq --arg d "$today" '. + {bump_date: $d}' /tmp/state.json \
+            > /tmp/inputs/state.json.tmp && \
+            mv /tmp/inputs/state.json.tmp /tmp/inputs/state.json
+
+      - name: Generate drift report
+        run: |
+          mkdir -p .schema-bump
+          dart tool/generate_drift_report.dart \
+            --inputs-dir=/tmp/inputs \
+            --out=.schema-bump/drift_report.md
+
+      - name: Append new resources to curation backlog
+        run: |
+          added_count=$(jq '.added_resources | length' /tmp/schema_diff.json)
+          if [ "$added_count" = "0" ]; then
+            echo "No new resources; backlog unchanged."
+            exit 0
+          fi
+          today=$(date -u +%Y-%m-%d)
+          v7_latest=$(jq -r '.v7_latest' /tmp/state.json)
+          jq -r '.added_resources[]' /tmp/schema_diff.json | while read -r r; do
+            # Append: shell mutation, idempotent for this run only.
+            printf '  - resource: %s\n    detected_at: %s\n    provider_version: %s\n' \
+              "$r" "$today" "$v7_latest" >> tool/curation_backlog.yaml
+          done
+          # Validate post-append.
+          python3 -c "import yaml; yaml.safe_load(open('tool/curation_backlog.yaml'))"
+
+      - name: Skip if nothing changed
+        id: skip_check
+        run: |
+          # Anything to ship if: any tracked file differs OR v8 banner.
+          v8=$(jq -r '.v8_available' /tmp/state.json)
+          changes=$(git status --porcelain | wc -l)
+          if [ "$changes" = "0" ] && [ "$v8" != "true" ]; then
+            echo "Nothing to report this week. Exiting."
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create branch + commit + PR
+        if: steps.skip_check.outputs.skip != 'true' && github.event.inputs.dry_run != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          today=$(date -u +%Y-%m-%d)
+          branch="chore/schema-bump-$today"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$branch"
+          git add -A
+          git commit -m "chore(schema): weekly bump $today"
+          git push -u origin "$branch"
+          gh pr create \
+            --title "chore(schema): weekly bump $today" \
+            --body-file .schema-bump/drift_report.md \
+            --label dependencies --label schema-bump

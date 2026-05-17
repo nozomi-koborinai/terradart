@@ -179,6 +179,35 @@ Application platform & operations
 
 Pre-alpha (v0.1.0-dev). No SemVer guarantees until v1.0.0; pin tightly. Surface and emitted Terraform JSON may change. `dart pub get` skips pre-releases by default — opt in with explicit `^0.1.0-dev` constraints.
 
+## Schema-bump automation (Plan 5.E)
+
+A weekly GitHub Actions workflow (`.github/workflows/schema-bump.yml`)
+auto-detects new `terraform-provider-google` v7 minor/patch releases and
+upstream `magic-modules` MM YAML overlay updates. Each Monday morning JST
+the workflow opens a PR titled `chore(schema): weekly bump YYYY-MM-DD`
+whose body is a structured drift report. When the workflow finds nothing
+to report, no PR is created.
+
+**Weekly maintenance flow:**
+
+1. PR appears (or not — silence means clean week).
+2. Read the drift report's Summary table. If everything is ✅, squash-merge.
+3. For wrap `--check` divergence: re-run `terradart wrap` locally and adjust
+   `wrapper_overrides/yaml/*.yaml` as needed.
+4. For new resources: review the appended `tool/curation_backlog.yaml`
+   entries and decide whether to queue them for a future Wave.
+5. For a `⚠️ NEW MAJOR AVAILABLE: v8.x` banner: do not bump in the same PR —
+   plan a separate v8 migration effort (curated-surface regression sweep).
+
+**Ad-hoc trigger:** workflow_dispatch on the Actions tab (with `dry_run`
+input for detection-only runs).
+
+**Why not Renovate for terraform-provider-google?** Renovate has no
+auto-detection path with our repo shape (no `.tf` or `.terraform-version`
+file). The schema-bump workflow is the single source of truth for provider
+bump tracking. Dart toolchain bumps still use Renovate as configured in
+`renovate.json`.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). For security issues, use the [GitHub private security advisory flow](SECURITY.md).

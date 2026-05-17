@@ -1,0 +1,49 @@
+# Source-of-truth manifest for terradart_codegen MM YAML fixture sync.
+#
+# Each entry maps a local fixture file (under
+# packages/terradart_codegen/test/fixtures/wrap/source/mm/) to its upstream
+# magic-modules path.
+#
+# Sync direction is one-way: upstream → local. Conflicts surface as drift in
+# the weekly schema-bump PR — never auto-resolved.
+#
+# Updating this manifest is a manual maintainer action (when curating a new
+# resource that needs an MM YAML overlay, add an entry here).
+
+upstream_repo: GoogleCloudPlatform/magic-modules
+upstream_branch: main
+
+# Each entry's key is the local fixture basename (without .yaml).
+# `upstream` is the path relative to the upstream repo root.
+# A `null` upstream marks a fixture as synthetic (skipped by sync).
+files:
+  google_bigquery_dataset:
+    upstream: mmv1/products/bigquery/Dataset.yaml
+  google_bigquery_table:
+    upstream: mmv1/products/bigquery/Table.yaml
+  google_cloud_run_v2_service:
+    upstream: mmv1/products/cloudrunv2/Service.yaml
+  google_compute_address:
+    upstream: mmv1/products/compute/Address.yaml
+  google_compute_firewall:
+    upstream: mmv1/products/compute/Firewall.yaml
+  google_compute_instance:
+    upstream: mmv1/products/compute/Instance.yaml
+  google_compute_network:
+    upstream: mmv1/products/compute/Network.yaml
+  google_compute_subnetwork:
+    upstream: mmv1/products/compute/Subnetwork.yaml
+  google_dns_managed_zone:
+    upstream: mmv1/products/dns/ManagedZone.yaml
+  google_kms_crypto_key:
+    upstream: mmv1/products/kms/CryptoKey.yaml
+  google_kms_key_ring:
+    upstream: mmv1/products/kms/KeyRing.yaml
+  google_logging_project_sink:
+    upstream: mmv1/products/logging/ProjectSink.yaml
+  google_monitoring_alert_policy:
+    upstream: mmv1/products/monitoring/AlertPolicy.yaml
+  google_storage_bucket:
+    upstream: mmv1/products/storage/Bucket.yaml
+  google_storage_bucket_object:
+    upstream: mmv1/products/storage/BucketObject.yaml

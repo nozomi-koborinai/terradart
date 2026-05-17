@@ -1,5 +1,22 @@
 # Changelog
 
+## 0.6.0-dev
+
+Plan 5.E: Schema-bump automation. Adds a weekly GitHub Actions workflow
+(`.github/workflows/schema-bump.yml`) that detects `terraform-provider-google`
+v7 bumps + `magic-modules` MM YAML overlay updates, runs drift detection
+(`terradart wrap --check` + 6 universal QA gates), and opens a PR with a
+structured drift report. v8+ majors are surfaced as a banner but never
+auto-bumped. New `google_*` resources are appended to
+`tool/curation_backlog.yaml`.
+
+- New: `tool/fetch_schema.dart`, `tool/sync_mm_yaml.dart`,
+  `tool/generate_drift_report.dart`, `tool/mm_yaml_sources.yaml`,
+  `tool/curation_backlog.yaml`.
+- New: `dev_dependencies` add `http: ^1.0.0` and `pub_semver: ^2.1.0`.
+- See ADR-aligned spec at
+  `docs/superpowers/specs/2026-05-17-plan5e-schema-bump-automation-design.md`.
+
 ## 0.5.0-dev
 
 Plan 5.X: schemantic codegen path removed.
