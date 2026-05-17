@@ -3,6 +3,9 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/wrap_init/clock.dart';
 import 'package:terradart_codegen/src/codegen/wrap_promote/wrap_promote_generator.dart';
+import 'package:terradart_codegen/src/ir/constraints.dart';
+import 'package:terradart_codegen/src/ir/nested_block.dart';
+import 'package:terradart_codegen/src/ir/resource_def.dart';
 import 'package:terradart_codegen/src/parser/mm_yaml_parser.dart';
 import 'package:terradart_codegen/src/parser/schema_parser.dart';
 import 'package:test/test.dart';
@@ -68,6 +71,84 @@ void main() {
         'google_pubsub_subscription.wrap_promote.expected.yaml.golden',
       )).readAsStringSync();
       expect(yaml, equals(golden));
+    });
+  });
+
+  group('WrapPromoteGenerator min_items assert hints (Plan 5.D PR 4)', () {
+    test(
+        'includes assert hints in marker block when qualifying nested '
+        'block is present', () {
+      // Synthetic ResourceDef with one list-shaped nested block that
+      // qualifies (min_items=1, no max_items).
+      const def = ResourceDef(
+        terraformType: 'google_synthetic',
+        description: null,
+        deprecationMessage: null,
+        root: BlockDef(
+          attributes: [],
+          nestedBlocks: [
+            NestedBlockDef(
+              name: 'splits',
+              nesting: NestingMode.list,
+              minItems: 1,
+              block: BlockDef(),
+              constraints: Constraints(),
+            ),
+          ],
+          description: null,
+        ),
+      );
+      final mm = const MmYamlParser().parseString('description: synthetic\n');
+      final generator = WrapPromoteGenerator(
+        clock: FixedClock(DateTime.parse('2026-05-17T00:00:00.000Z')),
+      );
+
+      final output = generator.generate(
+        terraformType: 'google_synthetic',
+        def: def,
+        mm: mm,
+      );
+
+      expect(output, contains('# === wrap-promote additions'));
+      expect(output, contains('# Assert hints'));
+      expect(output, contains('splits.length >= 1'));
+      expect(output, contains('# === end wrap-promote additions ==='));
+    });
+
+    test('emits empty string when no qualifying nested block exists', () {
+      // single-shaped nested block (max_items==1) does NOT qualify.
+      const def = ResourceDef(
+        terraformType: 'google_synthetic',
+        description: null,
+        deprecationMessage: null,
+        root: BlockDef(
+          attributes: [],
+          nestedBlocks: [
+            NestedBlockDef(
+              name: 'config',
+              nesting: NestingMode.single,
+              minItems: 1,
+              maxItems: 1,
+              block: BlockDef(),
+              constraints: Constraints(),
+            ),
+          ],
+          description: null,
+        ),
+      );
+      final mm = const MmYamlParser().parseString('description: synthetic\n');
+      final generator = WrapPromoteGenerator(
+        clock: FixedClock(DateTime.parse('2026-05-17T00:00:00.000Z')),
+      );
+
+      final output = generator.generate(
+        terraformType: 'google_synthetic',
+        def: def,
+        mm: mm,
+      );
+
+      // No qualifying nested block + no exactly_one_of + no enums ⇒ empty.
+      expect(output, isEmpty);
     });
   });
 }
