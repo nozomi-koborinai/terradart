@@ -859,10 +859,3 @@ customSlots:
   network_performance_config:
     paramDeclaration: "NetworkPerformanceConfig? networkPerformanceConfig"
     argMapEntry: "if (networkPerformanceConfig != null) 'network_performance_config': TfArg.literal([networkPerformanceConfig.toArgMap()]),"
-
-schemaStubComment: |-
-  // Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-  // consumed by `ResourceRef<S>.placeholder` (a future surface). We
-  // keep this stub inline instead of constructing schemantic's generated
-  // concrete class (which requires JSON-backed field args). `noSuchMethod`
-  // satisfies the abstract field getters; they are never invoked in v0.0.x.
