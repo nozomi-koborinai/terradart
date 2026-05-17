@@ -169,6 +169,14 @@ prelude: |
     /// [blockKey]. Always a `TfArg<String>` (source is a file path,
     /// content is the inline string).
     TfArg<String> get value;
+
+    /// Wire-format encoding (`{blockKey: value.toTfJson()}`). The parent
+    /// factory uses the `blockKey` + `value` pair directly in its argMap
+    /// (relying on the synth layer to unwrap the [TfArg]); this method
+    /// exists for parity with other sealed-class encoders (e.g.
+    /// [BucketObjectRetention.toArgMap], `AppHostingBuildSource.encode`)
+    /// and is exercised by the Gate 6 encode round-trip test.
+    Map<String, Object?> encode() => {blockKey: value.toTfJson()};
   }
 
   /// Upload from a local filesystem path. Terraform reads the file at
