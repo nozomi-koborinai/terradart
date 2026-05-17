@@ -8,7 +8,7 @@ prelude: |
   sealed class GoogleSyntheticChoiceChoice {
     const GoogleSyntheticChoiceChoice();
     String get blockKey;
-    String encode();
+    Map<String, Object?> encode();
   }
 
   final class OptionA extends GoogleSyntheticChoiceChoice {
@@ -21,9 +21,9 @@ prelude: |
     String get blockKey => 'option_a';
 
     @override
-    String encode() {
+    Map<String, Object?> encode() {
       // TODO(wrap-promote): implement encode for OptionA.
-      // Pattern: '{key = ${field.encode()}, ...}' with `if (optional != null)` guards.
+      // Pattern: { if (optional != null) 'optional_key': optional!.toTfJson(), 'required_key': required.toTfJson(), ... }
       throw UnimplementedError('TODO(wrap-promote): implement encode for OptionA');
     }
   }
@@ -40,9 +40,9 @@ prelude: |
     String get blockKey => 'option_b';
 
     @override
-    String encode() {
+    Map<String, Object?> encode() {
       // TODO(wrap-promote): implement encode for OptionB.
-      // Pattern: '{key = ${field.encode()}, ...}' with `if (optional != null)` guards.
+      // Pattern: { if (optional != null) 'optional_key': optional!.toTfJson(), 'required_key': required.toTfJson(), ... }
       throw UnimplementedError('TODO(wrap-promote): implement encode for OptionB');
     }
   }

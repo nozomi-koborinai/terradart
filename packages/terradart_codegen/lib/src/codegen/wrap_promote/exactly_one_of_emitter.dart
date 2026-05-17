@@ -44,7 +44,7 @@ class ExactlyOneOfEmitter {
     buf.writeln('  sealed class $sealedName {');
     buf.writeln('    const $sealedName();');
     buf.writeln('    String get blockKey;');
-    buf.writeln('    String encode();');
+    buf.writeln('    Map<String, Object?> encode();');
     buf.writeln('  }');
 
     for (final member in groupMembers) {
@@ -68,11 +68,11 @@ class ExactlyOneOfEmitter {
       buf.writeln("    String get blockKey => '$member';");
       buf.writeln();
       buf.writeln('    @override');
-      buf.writeln('    String encode() {');
+      buf.writeln('    Map<String, Object?> encode() {');
       buf.writeln(
           '      // TODO(wrap-promote): implement encode for $memberPascal.');
       buf.writeln(
-          "      // Pattern: '{key = \${field.encode()}, ...}' with `if (optional != null)` guards.");
+          "      // Pattern: { if (optional != null) 'optional_key': optional!.toTfJson(), 'required_key': required.toTfJson(), ... }");
       buf.writeln(
           "      throw UnimplementedError('TODO(wrap-promote): implement encode for $memberPascal');");
       buf.writeln('    }');
