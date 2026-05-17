@@ -19,13 +19,6 @@
       "labels": ["dependencies", "dart-core"]
     },
     {
-      "description": "schemantic upstream — high attention, never auto-merge (Plan 1 fix #3)",
-      "matchPackageNames": ["schemantic"],
-      "groupName": "schemantic",
-      "labels": ["dependencies", "curated-schemantic"],
-      "automerge": false
-    },
-    {
       "description": "Pin terraform CLI version in CI workflows",
       "matchFileNames": [".github/workflows/**"],
       "matchPackageNames": ["hashicorp/setup-terraform"],
