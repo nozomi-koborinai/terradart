@@ -2,6 +2,7 @@ import '../../ir/resource_def.dart';
 import '../../parser/mm_yaml_parser.dart';
 import '../wrap_init/clock.dart';
 import 'exactly_one_of_emitter.dart';
+import 'min_items_assert_emitter.dart';
 import 'prose_enum_extractor.dart';
 import 'valid_values_emitter.dart';
 import 'wrap_promote_marker.dart';
@@ -88,6 +89,16 @@ class WrapPromoteGenerator {
       for (final entry in dartTypeOverrideEntries) {
         body.writeln(entry);
       }
+      body.writeln();
+    }
+
+    // 3. min_items >= 1 list-shape nested blocks → assert hints.
+    //    Curator-facing scaffold only — copies into hand-authored helper
+    //    class. See `min_items_assert_emitter.dart` for scope rules.
+    const minItemsEmitter = MinItemsAssertEmitter();
+    final assertHints = minItemsEmitter.emit(def);
+    if (assertHints.isNotEmpty) {
+      body.write(assertHints);
       body.writeln();
     }
 
