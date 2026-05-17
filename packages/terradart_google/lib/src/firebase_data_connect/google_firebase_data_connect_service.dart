@@ -74,17 +74,17 @@ final class GoogleFirebaseDataConnectService extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'service_id': serviceId,
-            'location': location,
-            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-            if (displayName != null) 'display_name': displayName,
-            if (annotations != null) 'annotations': annotations,
-            if (labels != null) 'labels': labels,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'service_id': serviceId,
+           'location': location,
+           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           if (displayName != null) 'display_name': displayName,
+           if (annotations != null) 'annotations': annotations,
+           if (labels != null) 'labels': labels,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

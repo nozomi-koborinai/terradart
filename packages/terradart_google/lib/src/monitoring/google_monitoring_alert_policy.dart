@@ -139,14 +139,14 @@ class Aggregation {
   final TfArg<List<String>>? groupByFields;
 
   Map<String, Object?> toArgMap() => {
-        if (alignmentPeriod != null)
-          'alignment_period': alignmentPeriod!.toTfJson(),
-        if (perSeriesAligner != null)
-          'per_series_aligner': perSeriesAligner!.terraformValue,
-        if (crossSeriesReducer != null)
-          'cross_series_reducer': crossSeriesReducer!.terraformValue,
-        if (groupByFields != null) 'group_by_fields': groupByFields!.toTfJson(),
-      };
+    if (alignmentPeriod != null)
+      'alignment_period': alignmentPeriod!.toTfJson(),
+    if (perSeriesAligner != null)
+      'per_series_aligner': perSeriesAligner!.terraformValue,
+    if (crossSeriesReducer != null)
+      'cross_series_reducer': crossSeriesReducer!.terraformValue,
+    if (groupByFields != null) 'group_by_fields': groupByFields!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -161,9 +161,9 @@ class ConditionTrigger {
   final TfArg<num>? count;
   final TfArg<num>? percent;
   Map<String, Object?> toArgMap() => {
-        if (count != null) 'count': count!.toTfJson(),
-        if (percent != null) 'percent': percent!.toTfJson(),
-      };
+    if (count != null) 'count': count!.toTfJson(),
+    if (percent != null) 'percent': percent!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -175,8 +175,8 @@ class ForecastOptions {
   const ForecastOptions({required this.forecastHorizon});
   final TfArg<String> forecastHorizon;
   Map<String, Object?> toArgMap() => {
-        'forecast_horizon': forecastHorizon.toTfJson(),
-      };
+    'forecast_horizon': forecastHorizon.toTfJson(),
+  };
 }
 
 /// `condition_threshold` block — compares a time series against a fixed
@@ -211,24 +211,24 @@ class ConditionThreshold {
   final ForecastOptions? forecastOptions;
 
   Map<String, Object?> toArgMap() => {
-        'filter': filter.toTfJson(),
-        'comparison': comparison.toTfJson(),
-        'duration': duration.toTfJson(),
-        if (thresholdValue != null)
-          'threshold_value': thresholdValue!.toTfJson(),
-        if (denominatorFilter != null)
-          'denominator_filter': denominatorFilter!.toTfJson(),
-        if (evaluationMissingData != null)
-          'evaluation_missing_data': evaluationMissingData!.toTfJson(),
-        if (aggregations != null)
-          'aggregations': aggregations!.map((a) => a.toArgMap()).toList(),
-        if (denominatorAggregations != null)
-          'denominator_aggregations':
-              denominatorAggregations!.map((a) => a.toArgMap()).toList(),
-        if (trigger != null) 'trigger': [trigger!.toArgMap()],
-        if (forecastOptions != null)
-          'forecast_options': [forecastOptions!.toArgMap()],
-      };
+    'filter': filter.toTfJson(),
+    'comparison': comparison.toTfJson(),
+    'duration': duration.toTfJson(),
+    if (thresholdValue != null) 'threshold_value': thresholdValue!.toTfJson(),
+    if (denominatorFilter != null)
+      'denominator_filter': denominatorFilter!.toTfJson(),
+    if (evaluationMissingData != null)
+      'evaluation_missing_data': evaluationMissingData!.toTfJson(),
+    if (aggregations != null)
+      'aggregations': aggregations!.map((a) => a.toArgMap()).toList(),
+    if (denominatorAggregations != null)
+      'denominator_aggregations': denominatorAggregations!
+          .map((a) => a.toArgMap())
+          .toList(),
+    if (trigger != null) 'trigger': [trigger!.toArgMap()],
+    if (forecastOptions != null)
+      'forecast_options': [forecastOptions!.toArgMap()],
+  };
 }
 
 /// `condition_absent` block — fires when a time series stops receiving
@@ -246,12 +246,12 @@ class ConditionAbsent {
   final List<Aggregation>? aggregations;
   final ConditionTrigger? trigger;
   Map<String, Object?> toArgMap() => {
-        'duration': duration.toTfJson(),
-        if (filter != null) 'filter': filter!.toTfJson(),
-        if (aggregations != null)
-          'aggregations': aggregations!.map((a) => a.toArgMap()).toList(),
-        if (trigger != null) 'trigger': [trigger!.toArgMap()],
-      };
+    'duration': duration.toTfJson(),
+    if (filter != null) 'filter': filter!.toTfJson(),
+    if (aggregations != null)
+      'aggregations': aggregations!.map((a) => a.toArgMap()).toList(),
+    if (trigger != null) 'trigger': [trigger!.toArgMap()],
+  };
 }
 
 // ===========================================================================
@@ -267,10 +267,10 @@ class ConditionMatchedLog {
   final TfArg<String> filter;
   final TfArg<Map<String, String>>? labelExtractors;
   Map<String, Object?> toArgMap() => {
-        'filter': filter.toTfJson(),
-        if (labelExtractors != null)
-          'label_extractors': labelExtractors!.toTfJson(),
-      };
+    'filter': filter.toTfJson(),
+    if (labelExtractors != null)
+      'label_extractors': labelExtractors!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -291,12 +291,12 @@ class ConditionMonitoringQueryLanguage {
   final TfArg<EvaluationMissingData>? evaluationMissingData;
   final ConditionTrigger? trigger;
   Map<String, Object?> toArgMap() => {
-        'query': query.toTfJson(),
-        'duration': duration.toTfJson(),
-        if (evaluationMissingData != null)
-          'evaluation_missing_data': evaluationMissingData!.toTfJson(),
-        if (trigger != null) 'trigger': [trigger!.toArgMap()],
-      };
+    'query': query.toTfJson(),
+    'duration': duration.toTfJson(),
+    if (evaluationMissingData != null)
+      'evaluation_missing_data': evaluationMissingData!.toTfJson(),
+    if (trigger != null) 'trigger': [trigger!.toArgMap()],
+  };
 }
 
 // ===========================================================================
@@ -324,16 +324,16 @@ class ConditionPrometheusQueryLanguage {
   final TfArg<String>? ruleGroup;
   final TfArg<bool>? disableMetricValidation;
   Map<String, Object?> toArgMap() => {
-        'query': query.toTfJson(),
-        if (duration != null) 'duration': duration!.toTfJson(),
-        if (evaluationInterval != null)
-          'evaluation_interval': evaluationInterval!.toTfJson(),
-        if (alertRule != null) 'alert_rule': alertRule!.toTfJson(),
-        if (labels != null) 'labels': labels!.toTfJson(),
-        if (ruleGroup != null) 'rule_group': ruleGroup!.toTfJson(),
-        if (disableMetricValidation != null)
-          'disable_metric_validation': disableMetricValidation!.toTfJson(),
-      };
+    'query': query.toTfJson(),
+    if (duration != null) 'duration': duration!.toTfJson(),
+    if (evaluationInterval != null)
+      'evaluation_interval': evaluationInterval!.toTfJson(),
+    if (alertRule != null) 'alert_rule': alertRule!.toTfJson(),
+    if (labels != null) 'labels': labels!.toTfJson(),
+    if (ruleGroup != null) 'rule_group': ruleGroup!.toTfJson(),
+    if (disableMetricValidation != null)
+      'disable_metric_validation': disableMetricValidation!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -353,9 +353,9 @@ class SqlScheduleHourly {
   final TfArg<num> periodicity;
   final TfArg<num>? minuteOffset;
   Map<String, Object?> toArgMap() => {
-        'periodicity': periodicity.toTfJson(),
-        if (minuteOffset != null) 'minute_offset': minuteOffset!.toTfJson(),
-      };
+    'periodicity': periodicity.toTfJson(),
+    if (minuteOffset != null) 'minute_offset': minuteOffset!.toTfJson(),
+  };
 }
 
 /// `condition_sql.daily.execution_time` (max=1) — wall-clock time of day
@@ -367,11 +367,11 @@ class SqlExecutionTime {
   final TfArg<num>? seconds;
   final TfArg<num>? nanos;
   Map<String, Object?> toArgMap() => {
-        if (hours != null) 'hours': hours!.toTfJson(),
-        if (minutes != null) 'minutes': minutes!.toTfJson(),
-        if (seconds != null) 'seconds': seconds!.toTfJson(),
-        if (nanos != null) 'nanos': nanos!.toTfJson(),
-      };
+    if (hours != null) 'hours': hours!.toTfJson(),
+    if (minutes != null) 'minutes': minutes!.toTfJson(),
+    if (seconds != null) 'seconds': seconds!.toTfJson(),
+    if (nanos != null) 'nanos': nanos!.toTfJson(),
+  };
 }
 
 /// `condition_sql.daily` schedule.
@@ -380,10 +380,9 @@ class SqlScheduleDaily {
   final TfArg<num> periodicity;
   final SqlExecutionTime? executionTime;
   Map<String, Object?> toArgMap() => {
-        'periodicity': periodicity.toTfJson(),
-        if (executionTime != null)
-          'execution_time': [executionTime!.toArgMap()],
-      };
+    'periodicity': periodicity.toTfJson(),
+    if (executionTime != null) 'execution_time': [executionTime!.toArgMap()],
+  };
 }
 
 /// `condition_sql.boolean_test` — the SQL query returns a boolean column;
@@ -401,9 +400,9 @@ class SqlRowCountTest {
   final TfArg<Comparison> comparison;
   final TfArg<num> threshold;
   Map<String, Object?> toArgMap() => {
-        'comparison': comparison.toTfJson(),
-        'threshold': threshold.toTfJson(),
-      };
+    'comparison': comparison.toTfJson(),
+    'threshold': threshold.toTfJson(),
+  };
 }
 
 /// `condition_sql` block — Log Analytics SQL-driven condition. Pick
@@ -426,13 +425,13 @@ class ConditionSql {
   final SqlBooleanTest? booleanTest;
   final SqlRowCountTest? rowCountTest;
   Map<String, Object?> toArgMap() => {
-        'query': query.toTfJson(),
-        if (minutes != null) 'minutes': [minutes!.toArgMap()],
-        if (hourly != null) 'hourly': [hourly!.toArgMap()],
-        if (daily != null) 'daily': [daily!.toArgMap()],
-        if (booleanTest != null) 'boolean_test': [booleanTest!.toArgMap()],
-        if (rowCountTest != null) 'row_count_test': [rowCountTest!.toArgMap()],
-      };
+    'query': query.toTfJson(),
+    if (minutes != null) 'minutes': [minutes!.toArgMap()],
+    if (hourly != null) 'hourly': [hourly!.toArgMap()],
+    if (daily != null) 'daily': [daily!.toArgMap()],
+    if (booleanTest != null) 'boolean_test': [booleanTest!.toArgMap()],
+    if (rowCountTest != null) 'row_count_test': [rowCountTest!.toArgMap()],
+  };
 }
 
 // ===========================================================================
@@ -464,23 +463,23 @@ class AlertCondition {
   final ConditionSql? conditionSql;
 
   Map<String, Object?> toArgMap() => {
-        'display_name': displayName.toTfJson(),
-        if (conditionThreshold != null)
-          'condition_threshold': [conditionThreshold!.toArgMap()],
-        if (conditionAbsent != null)
-          'condition_absent': [conditionAbsent!.toArgMap()],
-        if (conditionMatchedLog != null)
-          'condition_matched_log': [conditionMatchedLog!.toArgMap()],
-        if (conditionMonitoringQueryLanguage != null)
-          'condition_monitoring_query_language': [
-            conditionMonitoringQueryLanguage!.toArgMap(),
-          ],
-        if (conditionPrometheusQueryLanguage != null)
-          'condition_prometheus_query_language': [
-            conditionPrometheusQueryLanguage!.toArgMap(),
-          ],
-        if (conditionSql != null) 'condition_sql': [conditionSql!.toArgMap()],
-      };
+    'display_name': displayName.toTfJson(),
+    if (conditionThreshold != null)
+      'condition_threshold': [conditionThreshold!.toArgMap()],
+    if (conditionAbsent != null)
+      'condition_absent': [conditionAbsent!.toArgMap()],
+    if (conditionMatchedLog != null)
+      'condition_matched_log': [conditionMatchedLog!.toArgMap()],
+    if (conditionMonitoringQueryLanguage != null)
+      'condition_monitoring_query_language': [
+        conditionMonitoringQueryLanguage!.toArgMap(),
+      ],
+    if (conditionPrometheusQueryLanguage != null)
+      'condition_prometheus_query_language': [
+        conditionPrometheusQueryLanguage!.toArgMap(),
+      ],
+    if (conditionSql != null) 'condition_sql': [conditionSql!.toArgMap()],
+  };
 }
 
 // ===========================================================================
@@ -494,8 +493,8 @@ class NotificationRateLimit {
   const NotificationRateLimit({this.period});
   final TfArg<String>? period;
   Map<String, Object?> toArgMap() => {
-        if (period != null) 'period': period!.toTfJson(),
-      };
+    if (period != null) 'period': period!.toTfJson(),
+  };
 }
 
 /// `alert_strategy.notification_channel_strategy` (list) — per-channel
@@ -509,11 +508,11 @@ class NotificationChannelStrategy {
   final TfArg<List<String>>? notificationChannelNames;
   final TfArg<String>? renotifyInterval;
   Map<String, Object?> toArgMap() => {
-        if (notificationChannelNames != null)
-          'notification_channel_names': notificationChannelNames!.toTfJson(),
-        if (renotifyInterval != null)
-          'renotify_interval': renotifyInterval!.toTfJson(),
-      };
+    if (notificationChannelNames != null)
+      'notification_channel_names': notificationChannelNames!.toTfJson(),
+    if (renotifyInterval != null)
+      'renotify_interval': renotifyInterval!.toTfJson(),
+  };
 }
 
 /// `alert_strategy` block (max=1) — controls notification cadence,
@@ -532,16 +531,18 @@ class AlertStrategy {
   final TfArg<String>? autoClose;
   final List<NotificationChannelStrategy>? notificationChannelStrategy;
   Map<String, Object?> toArgMap() => {
-        if (notificationRateLimit != null)
-          'notification_rate_limit': [notificationRateLimit!.toArgMap()],
-        if (notificationPrompts != null)
-          'notification_prompts':
-              notificationPrompts!.map((p) => p.terraformValue).toList(),
-        if (autoClose != null) 'auto_close': autoClose!.toTfJson(),
-        if (notificationChannelStrategy != null)
-          'notification_channel_strategy':
-              notificationChannelStrategy!.map((s) => s.toArgMap()).toList(),
-      };
+    if (notificationRateLimit != null)
+      'notification_rate_limit': [notificationRateLimit!.toArgMap()],
+    if (notificationPrompts != null)
+      'notification_prompts': notificationPrompts!
+          .map((p) => p.terraformValue)
+          .toList(),
+    if (autoClose != null) 'auto_close': autoClose!.toTfJson(),
+    if (notificationChannelStrategy != null)
+      'notification_channel_strategy': notificationChannelStrategy!
+          .map((s) => s.toArgMap())
+          .toList(),
+  };
 }
 
 // ===========================================================================
@@ -555,9 +556,9 @@ class DocumentationLink {
   final TfArg<String>? displayName;
   final TfArg<String>? url;
   Map<String, Object?> toArgMap() => {
-        if (displayName != null) 'display_name': displayName!.toTfJson(),
-        if (url != null) 'url': url!.toTfJson(),
-      };
+    if (displayName != null) 'display_name': displayName!.toTfJson(),
+    if (url != null) 'url': url!.toTfJson(),
+  };
 }
 
 /// `documentation` block (max=1) — notification-side context: content body,
@@ -569,11 +570,11 @@ class Documentation {
   final TfArg<String>? subject;
   final List<DocumentationLink>? links;
   Map<String, Object?> toArgMap() => {
-        if (content != null) 'content': content!.toTfJson(),
-        if (mimeType != null) 'mime_type': mimeType!.toTfJson(),
-        if (subject != null) 'subject': subject!.toTfJson(),
-        if (links != null) 'links': links!.map((l) => l.toArgMap()).toList(),
-      };
+    if (content != null) 'content': content!.toTfJson(),
+    if (mimeType != null) 'mime_type': mimeType!.toTfJson(),
+    if (subject != null) 'subject': subject!.toTfJson(),
+    if (links != null) 'links': links!.map((l) => l.toArgMap()).toList(),
+  };
 }
 
 /// Factory wrapper for `google_monitoring_alert_policy` (provider
@@ -648,25 +649,25 @@ final class GoogleMonitoringAlertPolicy extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'display_name': displayName,
-            'combiner': combiner,
-            'conditions': TfArg.literal(
-              conditions.map((c) => c.toArgMap()).toList(),
-            ),
-            if (notificationChannels != null)
-              'notification_channels': notificationChannels,
-            if (alertStrategy != null)
-              'alert_strategy': TfArg.literal([alertStrategy.toArgMap()]),
-            if (documentation != null)
-              'documentation': TfArg.literal([documentation.toArgMap()]),
-            if (enabled != null) 'enabled': enabled,
-            if (severity != null) 'severity': severity,
-            if (userLabels != null) 'user_labels': userLabels,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'display_name': displayName,
+           'combiner': combiner,
+           'conditions': TfArg.literal(
+             conditions.map((c) => c.toArgMap()).toList(),
+           ),
+           if (notificationChannels != null)
+             'notification_channels': notificationChannels,
+           if (alertStrategy != null)
+             'alert_strategy': TfArg.literal([alertStrategy.toArgMap()]),
+           if (documentation != null)
+             'documentation': TfArg.literal([documentation.toArgMap()]),
+           if (enabled != null) 'enabled': enabled,
+           if (severity != null) 'severity': severity,
+           if (userLabels != null) 'user_labels': userLabels,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

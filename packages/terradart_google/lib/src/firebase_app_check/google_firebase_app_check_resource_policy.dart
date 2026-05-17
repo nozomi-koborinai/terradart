@@ -72,14 +72,14 @@ final class GoogleFirebaseAppCheckResourcePolicy extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'service_id': serviceId,
-            'target_resource': targetResource,
-            if (enforcementMode != null) 'enforcement_mode': enforcementMode,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'service_id': serviceId,
+           'target_resource': targetResource,
+           if (enforcementMode != null) 'enforcement_mode': enforcementMode,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

@@ -27,8 +27,13 @@ jobs:
         with:
           sdk: stable
       - run: dart pub get
+      # Format check is scoped to terradart_core + terradart_codegen because
+      # terradart_google wrappers are formatted by `terradart wrap`'s pinned
+      # dart_style (3.1.9), which can drift from the SDK-bundled `dart format`
+      # CLI. wrap CLI output is the authoritative format for generated wrappers
+      # and is guarded by the `wrap_check` job (`terradart wrap --check`).
       - if: matrix.package == 'terradart_core'
-        run: dart format --output=none --set-exit-if-changed .
+        run: dart format --output=none --set-exit-if-changed packages/terradart_core/ packages/terradart_codegen/
       - if: matrix.package == 'terradart_core'
         run: dart analyze packages/ --fatal-infos --fatal-warnings
       - run: dart test --reporter=github

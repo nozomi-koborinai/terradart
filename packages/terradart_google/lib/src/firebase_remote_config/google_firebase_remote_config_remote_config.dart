@@ -79,10 +79,10 @@ class RemoteConfigCondition {
   final RemoteConfigTagColor? tagColor;
 
   Map<String, Object?> toArgMap() => {
-        'name': name,
-        'expression': expression,
-        if (tagColor != null) 'tag_color': tagColor!.terraformValue,
-      };
+    'name': name,
+    'expression': expression,
+    if (tagColor != null) 'tag_color': tagColor!.terraformValue,
+  };
 }
 
 // ===========================================================================
@@ -101,11 +101,11 @@ class RemoteConfigCondition {
 @immutable
 class RemoteConfigDefaultValue {
   const RemoteConfigDefaultValue({this.useInAppDefault, this.value})
-      : assert(
-          useInAppDefault == null || value == null,
-          'RemoteConfigDefaultValue: pass at most one of `useInAppDefault` '
-          'or `value` -- the schema rejects both being set.',
-        );
+    : assert(
+        useInAppDefault == null || value == null,
+        'RemoteConfigDefaultValue: pass at most one of `useInAppDefault` '
+        'or `value` -- the schema rejects both being set.',
+      );
 
   /// When true, the parameter is omitted from values returned to the
   /// client (the client falls back to its in-app default).
@@ -115,9 +115,9 @@ class RemoteConfigDefaultValue {
   final String? value;
 
   Map<String, Object?> toArgMap() => {
-        if (useInAppDefault != null) 'use_in_app_default': useInAppDefault,
-        if (value != null) 'value': value,
-      };
+    if (useInAppDefault != null) 'use_in_app_default': useInAppDefault,
+    if (value != null) 'value': value,
+  };
 }
 
 /// One entry in a parameter's `conditional_values` (nesting=set). Pairs
@@ -136,11 +136,11 @@ class RemoteConfigConditionalValue {
     this.useInAppDefault,
     this.value,
   }) : assert(
-          useInAppDefault == null || value == null,
-          'RemoteConfigConditionalValue: pass at most one of '
-          '`useInAppDefault` or `value` -- the schema rejects both being '
-          'set.',
-        );
+         useInAppDefault == null || value == null,
+         'RemoteConfigConditionalValue: pass at most one of '
+         '`useInAppDefault` or `value` -- the schema rejects both being '
+         'set.',
+       );
 
   /// Must match a [RemoteConfigCondition.name] in the parent template's
   /// [conditions] list. Mismatches are not caught at compile time;
@@ -156,10 +156,10 @@ class RemoteConfigConditionalValue {
   final String? value;
 
   Map<String, Object?> toArgMap() => {
-        'condition_name': conditionName,
-        if (useInAppDefault != null) 'use_in_app_default': useInAppDefault,
-        if (value != null) 'value': value,
-      };
+    'condition_name': conditionName,
+    if (useInAppDefault != null) 'use_in_app_default': useInAppDefault,
+    if (value != null) 'value': value,
+  };
 }
 
 // ===========================================================================
@@ -208,14 +208,15 @@ class RemoteConfigParameter {
   final List<RemoteConfigConditionalValue>? conditionalValues;
 
   Map<String, Object?> toArgMap() => {
-        'parameter_name': parameterName,
-        if (description != null) 'description': description,
-        if (valueType != null) 'value_type': valueType!.terraformValue,
-        if (defaultValue != null) 'default_value': [defaultValue!.toArgMap()],
-        if (conditionalValues != null)
-          'conditional_values':
-              conditionalValues!.map((c) => c.toArgMap()).toList(),
-      };
+    'parameter_name': parameterName,
+    if (description != null) 'description': description,
+    if (valueType != null) 'value_type': valueType!.terraformValue,
+    if (defaultValue != null) 'default_value': [defaultValue!.toArgMap()],
+    if (conditionalValues != null)
+      'conditional_values': conditionalValues!
+          .map((c) => c.toArgMap())
+          .toList(),
+  };
 }
 
 // ===========================================================================
@@ -250,11 +251,11 @@ class RemoteConfigParameterGroup {
   final List<RemoteConfigParameter>? parameters;
 
   Map<String, Object?> toArgMap() => {
-        'parameter_group_name': parameterGroupName,
-        if (description != null) 'description': description,
-        if (parameters != null)
-          'parameters': parameters!.map((p) => p.toArgMap()).toList(),
-      };
+    'parameter_group_name': parameterGroupName,
+    if (description != null) 'description': description,
+    if (parameters != null)
+      'parameters': parameters!.map((p) => p.toArgMap()).toList(),
+  };
 }
 
 /// Factory wrapper for `google_firebase_remote_config_remote_config`
@@ -345,23 +346,23 @@ final class GoogleFirebaseRemoteConfigRemoteConfig extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            if (parameters != null)
-              'parameters': TfArg.literal(
-                parameters.map((p) => p.toArgMap()).toList(),
-              ),
-            if (parameterGroups != null)
-              'parameter_groups': TfArg.literal(
-                parameterGroups.map((g) => g.toArgMap()).toList(),
-              ),
-            if (conditions != null)
-              'conditions': TfArg.literal(
-                conditions.map((c) => c.toArgMap()).toList(),
-              ),
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           if (parameters != null)
+             'parameters': TfArg.literal(
+               parameters.map((p) => p.toArgMap()).toList(),
+             ),
+           if (parameterGroups != null)
+             'parameter_groups': TfArg.literal(
+               parameterGroups.map((g) => g.toArgMap()).toList(),
+             ),
+           if (conditions != null)
+             'conditions': TfArg.literal(
+               conditions.map((c) => c.toArgMap()).toList(),
+             ),
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

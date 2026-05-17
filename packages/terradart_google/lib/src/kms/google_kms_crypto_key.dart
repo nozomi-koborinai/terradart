@@ -45,10 +45,10 @@ class VersionTemplate {
   final String algorithm;
   final KmsProtectionLevel? protectionLevel;
   Map<String, Object?> toArgMap() => {
-        'algorithm': algorithm,
-        if (protectionLevel != null)
-          'protection_level': protectionLevel!.terraformValue,
-      };
+    'algorithm': algorithm,
+    if (protectionLevel != null)
+      'protection_level': protectionLevel!.terraformValue,
+  };
 }
 
 /// Factory wrapper for `google_kms_crypto_key` (provider `hashicorp/google ~> 7.0`).
@@ -107,24 +107,23 @@ final class GoogleKmsCryptoKey extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            'key_ring': keyRing,
-            if (purpose != null) 'purpose': purpose,
-            if (rotationPeriod != null) 'rotation_period': rotationPeriod,
-            if (labels != null) 'labels': labels,
-            if (skipInitialVersionCreation != null)
-              'skip_initial_version_creation': skipInitialVersionCreation,
-            if (destroyScheduledDuration != null)
-              'destroy_scheduled_duration': destroyScheduledDuration,
-            if (importOnly != null) 'import_only': importOnly,
-            if (cryptoKeyBackend != null)
-              'crypto_key_backend': cryptoKeyBackend,
-            if (versionTemplate != null)
-              'version_template': TfArg.literal([versionTemplate.toArgMap()]),
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           'key_ring': keyRing,
+           if (purpose != null) 'purpose': purpose,
+           if (rotationPeriod != null) 'rotation_period': rotationPeriod,
+           if (labels != null) 'labels': labels,
+           if (skipInitialVersionCreation != null)
+             'skip_initial_version_creation': skipInitialVersionCreation,
+           if (destroyScheduledDuration != null)
+             'destroy_scheduled_duration': destroyScheduledDuration,
+           if (importOnly != null) 'import_only': importOnly,
+           if (cryptoKeyBackend != null) 'crypto_key_backend': cryptoKeyBackend,
+           if (versionTemplate != null)
+             'version_template': TfArg.literal([versionTemplate.toArgMap()]),
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

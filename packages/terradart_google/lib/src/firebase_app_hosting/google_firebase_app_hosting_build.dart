@@ -39,13 +39,13 @@ final class AppHostingBuildSourceCodebase extends AppHostingBuildSource {
 
   @override
   Map<String, Object?> encode() => {
-        'codebase': [
-          {
-            if (branch != null) 'branch': branch!.toTfJson(),
-            if (commit != null) 'commit': commit!.toTfJson(),
-          },
-        ],
-      };
+    'codebase': [
+      {
+        if (branch != null) 'branch': branch!.toTfJson(),
+        if (commit != null) 'commit': commit!.toTfJson(),
+      },
+    ],
+  };
 }
 
 /// `source.container` sub-block. Skips the Cloud Build step and uses the
@@ -60,10 +60,10 @@ final class AppHostingBuildSourceContainer extends AppHostingBuildSource {
 
   @override
   Map<String, Object?> encode() => {
-        'container': [
-          {'image': image.toTfJson()},
-        ],
-      };
+    'container': [
+      {'image': image.toTfJson()},
+    ],
+  };
 }
 
 /// Factory wrapper for `google_firebase_app_hosting_build` (provider
@@ -135,18 +135,18 @@ final class GoogleFirebaseAppHostingBuild extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'backend': backend,
-            'location': location,
-            'build_id': buildId,
-            'source': TfArg.literal([source.encode()]),
-            if (displayName != null) 'display_name': displayName,
-            if (annotations != null) 'annotations': annotations,
-            if (labels != null) 'labels': labels,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'backend': backend,
+           'location': location,
+           'build_id': buildId,
+           'source': TfArg.literal([source.encode()]),
+           if (displayName != null) 'display_name': displayName,
+           if (annotations != null) 'annotations': annotations,
+           if (labels != null) 'labels': labels,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names
