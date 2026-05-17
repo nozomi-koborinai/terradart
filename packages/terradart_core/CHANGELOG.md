@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0-dev - 2026-05-17
+
+No user-facing API changes. Workspace consistency bump alongside `terradart_codegen` 0.4.0-dev (Plan 5.D: codegen correctness improvements — MM YAML deprecation parsing fix, encode skeleton fix + Gate 6, paramOrder measurement tool, min_items assert hints).
+
 ## 0.3.0-dev - 2026-05-16
 
 No user-facing API changes. Workspace consistency bump alongside `terradart_google` 0.3.0-dev (Wave 4: 21 new GA resources across 6 Firebase / Cloud Functions / Firestore services).
