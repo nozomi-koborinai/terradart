@@ -38,5 +38,25 @@ void main() {
       // encode round-trip).
       expect(expr, 'RolloutPolicy()');
     });
+
+    test(
+        'preserves required params in input order and skips optionals when '
+        'they are interleaved', () {
+      const member = SealedClassMember(
+        name: 'BigqueryAccess',
+        params: [
+          SealedClassParam(name: 'userByEmail', required: true),
+          SealedClassParam(name: 'domain', required: false),
+          SealedClassParam(name: 'role', required: true),
+        ],
+      );
+
+      final expr = const SyntheticInstanceBuilder().buildExpression(member);
+
+      // Required `userByEmail` and `role` must appear in input order; the
+      // interleaved optional `domain` must NOT appear. Guards against a
+      // future regression that reorders or drops required params.
+      expect(expr, 'BigqueryAccess(userByEmail: <TODO>, role: <TODO>)');
+    });
   });
 }
