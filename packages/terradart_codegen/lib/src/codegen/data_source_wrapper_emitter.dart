@@ -6,26 +6,10 @@ import 'naming.dart';
 import 'sensitive_set_emitter.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 
-/// Default text for the schema-stub class's leading comment block when
-/// [SchemaStubBodyMode.bare] is selected.
-///
-/// Mirrors the 4-line `noSuchMethod`-variant default in [WrapperEmitter]
-/// (`_defaultSchemaStubComment`) but drops the line that talks about
-/// satisfying abstract field getters via `noSuchMethod` — the bare body
-/// has no such mechanism. Stays 3 lines so the hand-written
-/// `_GoogleProjectSchemaInstance` block is reproduced verbatim.
-///
-/// String must carry NO trailing newline — the emitter writes it via
-/// `writeln`.
-const String _defaultBareSchemaStubComment =
-    '// Tiny const carrier for `Data<S>.schema`. Inert in v0.0.x synth — only\n'
-    '// consumed by `ResourceRef<S>.placeholder` (a future surface). We\n'
-    '// keep this stub inline.';
-
 /// Emits a Factory Wrapper class for **data source** entries
-/// (`final class GoogleProject extends Data<$GoogleProject>`).
+/// (`final class GoogleProject extends Data`).
 ///
-/// Sibling of [WrapperEmitter] (`Resource<S>` entries). The public API
+/// Sibling of [WrapperEmitter] (`Resource` entries). The public API
 /// mirrors [WrapperEmitter] for symmetry: take a [ResourceDef] (the IR
 /// reuses [ResourceDef] for both resource and data source schemas — see
 /// `ProviderSchemaIR.dataSources` typed as `Map<String, ResourceDef>`)
@@ -44,23 +28,19 @@ const String _defaultBareSchemaStubComment =
 /// );
 /// ```
 ///
-/// Differences from [WrapperEmitter]:
+/// Plan 5.X (v0.5.0-dev): the schemantic chain (`$<R>` abstract +
+/// `_<R>SchemaInstance` stub + `Data<S>` generic) is retired. The emitted
+/// wrapper now:
 ///
-/// 1. Generates `final class X extends Data<$X>` (not `Resource<$X>`).
-/// 2. When [WrapperOverride.schemaStubBodyMode] is [SchemaStubBodyMode.bare],
-///    emits a 3-line schema-stub class (no `noSuchMethod`) — reproduces
-///    the hand-written `_GoogleProjectSchemaInstance` exactly.
-/// 3. When [WrapperOverride.fileLeadingComment] is set, emits the comment
-///    block after the import block and before the schema-stub class
-///    (used for the 14-line operational note on `google_project`).
-/// 4. The sensitive const set is emitted **inline**
-///    (`const Set<String> googleProjectSensitive = <String>{};`) rather
-///    than imported from `<resource>.schema.dart`, because data source
-///    schemas are typically empty.
-/// 5. The schemantic-style abstract is emitted **inline** (as an empty
-///    `abstract class $GoogleProject {}`) instead of imported from a
-///    `.schema.dart` file. Same rationale as the sensitive set — v0.0.x
-///    data source codegen does not produce a schema-class file.
+/// - Does NOT emit the schemantic-style abstract `$<R>` class inline.
+/// - Does NOT emit the `_<R>SchemaInstance` schema-stub class.
+/// - Extends `Data` (no `<S>` generic).
+/// - Does NOT pass `schema:` to the `super()` initializer (the field is
+///   gone from `Data`).
+/// - Emits a file-private `_<r>Sensitive` const (data source schemas are
+///   typically empty, so this is `<String>{}` — but the shape is
+///   identical to the resource path for consistency).
+/// - `$sensitiveFields` getter references the file-private const.
 class DataSourceWrapperEmitter {
   DataSourceWrapperEmitter({required this.overrides});
 
@@ -98,16 +78,19 @@ class DataSourceWrapperEmitter {
     final buf = StringBuffer();
 
     final pascal = snakeToPascal(def.terraformType); // GoogleProject
-    final abstractName = '\$$pascal'; // $GoogleProject
-    final schemaStubName = '_${pascal}SchemaInstance';
-    final sensitiveConst =
-        sensitiveConstName(def.terraformType); // googleProjectSensitive
+    final sensitiveConst = filePrivateSensitiveConstName(
+      def.terraformType,
+    ); // _googleProjectSensitive
     final requiredOverrides =
         (override.requiredParams ?? const <String>[]).toSet();
 
     // Imports. Same alphabetical-within-`package:`-group convention as the
     // resource emitter; `extraImports` come first so consumers can sort
     // `package:meta` above `package:terradart_core`.
+    //
+    // Plan 5.X: no `.schema.dart` import (data source Layer 1 retired
+    // alongside the resource Layer 1) and no `package:terradart_annotations`
+    // import (package deleted).
     final extraImports = override.extraImports ?? const <String>[];
     for (final imp in extraImports) {
       buf.writeln(imp);
@@ -116,7 +99,7 @@ class DataSourceWrapperEmitter {
     buf.writeln();
 
     // File-leading comment block: a verbatim narrative comment that lives
-    // between the import block and the schema-stub abstract. Each line is
+    // between the import block and the wrapper class. Each line is
     // prefixed with `// `; empty source lines become `//` so the block
     // remains a single contiguous comment to `dart_style`.
     final fileLeadingComment = override.fileLeadingComment;
@@ -131,50 +114,23 @@ class DataSourceWrapperEmitter {
       buf.writeln();
     }
 
-    // Schemantic-style abstract: emitted inline because v0.0.x data source
-    // codegen does not ship a `.schema.dart` Layer 1 file for data
-    // sources. The body stays empty — schemantic only consumes its
-    // members for resources.
+    // File-private sensitive const, emitted inline. Data source schemas
+    // are almost always empty; the emit shape is shared with the resource
+    // wrapper so the synth pipeline's `$sensitiveFields` lookup is
+    // structurally identical for both kinds.
+    //
+    // `extraSensitiveFields` is sourced from the override; the data
+    // source emitter does not take an additional emit-time parameter
+    // (no Wave-B-time injection point for data sources).
+    final extraSensitive = override.extraSensitiveFields;
     buf.writeln(
-      '/// Schemantic-style abstract for the `data.${def.terraformType}` data source.',
+      emitFilePrivateSensitiveSet(
+        def,
+        extraSensitiveFields: (extraSensitive == null || extraSensitive.isEmpty)
+            ? null
+            : extraSensitive,
+      ),
     );
-    buf.writeln('abstract class $abstractName {}');
-    buf.writeln();
-
-    // Sensitive-field const, also inline (data source schemas are
-    // typically empty). The doc comment mirrors the hand-written baseline
-    // (`Empty per provider schema.`) so dart_style preserves it verbatim.
-    buf.writeln(
-      '/// Sensitive field paths for `data.${def.terraformType}`. Empty per provider schema.',
-    );
-    buf.writeln('const Set<String> $sensitiveConst = <String>{};');
-    buf.writeln();
-
-    // Schema-stub class. Bare body (no `noSuchMethod`) is the only mode
-    // we support today; switching to nosuchmethod would just reuse
-    // WrapperEmitter's surface. The leading comment defaults to the
-    // 3-line bare variant; overrides can swap via [schemaStubComment].
-    final schemaStubComment =
-        override.schemaStubComment ?? _defaultBareSchemaStubComment;
-    buf.writeln(schemaStubComment);
-    switch (override.schemaStubBodyMode) {
-      case SchemaStubBodyMode.bare:
-        buf.writeln('class $schemaStubName implements $abstractName {');
-        buf.writeln('  const $schemaStubName();');
-        buf.writeln('}');
-      case SchemaStubBodyMode.nosuchmethod:
-        // Hypothetical future use; mirrors WrapperEmitter so consumers can
-        // opt in without forking the emitter. Not exercised today.
-        buf.writeln('class $schemaStubName implements $abstractName {');
-        buf.writeln('  const $schemaStubName();');
-        buf.writeln();
-        buf.writeln('  @override');
-        buf.writeln('  // ignore: non_constant_identifier_names');
-        buf.writeln(
-          '  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);',
-        );
-        buf.writeln('}');
-    }
     buf.writeln();
 
     // Class-level doc comment (verbatim). Hand-curated because the comment
@@ -184,8 +140,8 @@ class DataSourceWrapperEmitter {
       buf.writeln(docComment);
     }
 
-    // Wrapper class header — Data<S>, NOT Resource<S>.
-    buf.writeln('final class $pascal extends Data<$abstractName> {');
+    // Wrapper class header — Plan 5.X: `extends Data` (no `<S>` generic).
+    buf.writeln('final class $pascal extends Data {');
     buf.writeln('  // ignore: constant_identifier_names');
     buf.writeln("  static const String \$tfType = '${def.terraformType}';");
     buf.writeln();
@@ -223,7 +179,6 @@ class DataSourceWrapperEmitter {
     }
     buf.writeln('  }) : super(');
     buf.writeln('         terraformType: \$tfType,');
-    buf.writeln('         schema: const $schemaStubName(),');
     buf.writeln('         argMap: {');
     for (final name in argMapOrder) {
       final snippet = argMapByName[name];
