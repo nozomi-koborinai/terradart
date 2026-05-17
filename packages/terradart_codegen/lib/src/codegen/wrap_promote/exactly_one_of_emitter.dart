@@ -12,7 +12,7 @@ import '../naming.dart';
 /// Phase 4.3: skeleton level. Class names, constructor parameter lists, and
 /// `blockKey` getters are fully generated from the IR. The `encode()` body
 /// is left as `UnimplementedError` for the human reviewer to fill in (the
-/// TfArg encoding pattern varies per resource and is too risky to auto-fill).
+/// argMap encoding pattern varies per resource and is too risky to auto-fill).
 class ExactlyOneOfEmitter {
   const ExactlyOneOfEmitter();
 
