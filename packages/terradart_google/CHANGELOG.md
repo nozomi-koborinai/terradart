@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.0-dev - 2026-05-17
+
+### Added
+
+- `BucketObjectContent` sealed class (in `storage/google_storage_bucket_object.dart`) now exposes an `encode()` method for parity with other sealed-class encoders. No production behavior change — the parent factory still wires `blockKey + value` directly into the argMap.
+- Gate 6 (`test/synth/encode_round_trip_test.dart`) — 34 sealed-class members across 11 sealed classes now exercise encode round-trip structural assertions (see `terradart_codegen` 0.4.0-dev for the gate's contract).
+
 ## 0.3.0-dev - 2026-05-16
 
 Wave 4: adds 21 new GA resources across 6 Firebase / Cloud Functions / Firestore services. terradart_google now 49 resources, 22 per-service barrels.

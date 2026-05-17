@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.4.0-dev - 2026-05-17
+
+No user-facing API changes. Workspace consistency bump alongside `terradart_codegen` 0.4.0-dev (Plan 5.D: codegen correctness improvements).
+
 ## 0.3.0-dev - 2026-05-16
 
 No user-facing API changes. Workspace consistency bump alongside `terradart_google` 0.3.0-dev (Wave 4).

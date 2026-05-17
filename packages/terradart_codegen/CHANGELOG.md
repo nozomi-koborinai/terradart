@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.4.0-dev - 2026-05-17
+
+Plan 5.D — codegen correctness improvements (4 PRs).
+
+### Added
+
+- **Gate 6: sealed-class `encode()` round-trip (structural)** — new universal QA gate (joining the existing 5 from Plan 5.A) that, for every shipped sealed-class member, constructs a synthetic instance, calls `encode()` (or `toArgMap()` fallback), and asserts the result is a non-empty `Map<String, Object?>` (or single-element `List<Map<...>>` for `nesting_mode: list, max_items: 1`), every required ctor param's snake_case schema key is present (recursively — discriminator-block wire formats nest required keys inside), no raw `TfArg<T>` values leak, and no `UnimplementedError` is thrown. Currently covers 34 sealed-class members across 11 sealed classes.
+- `SealedClassExtractor` + `SyntheticInstanceBuilder` modules under `lib/src/codegen/universal_invariants/` — building blocks for Gate 6 (regex-based prelude parsing).
+- `MinItemsAssertEmitter` — wrap-promote now emits curator-facing commented `assert(list.length >= N)` hint snippets for top-level list-shape nested blocks with `min_items >= 1 && max_items != 1`. Curator copies the snippet into their helper-class constructor on next regen. Scalar attribute constraints (`min_length` / `max_length` / `min` / `max` / `regex`) stay at the schemantic layer.
+- `tool/measure_param_order.dart` — standalone measurement script that quantifies how well a candidate paramOrder heuristic predicts the curator-curated orders across the 49-yaml corpus. Output (gitignored, regenerable) drives a Wave 5-close decision matrix on whether to ship the heuristic.
+
+### Fixed
+
+- `MmYamlParser` now reads `deprecation_message:` from MM YAML field overrides into `Constraints.deprecationMessage`. `IrMerger._mergeAttr` propagates the field with the MM-wins precedence used for `regex` / `minLength` / etc. Closes a Plan 4.2-era dead-code path in `wrap_init_generator._buildDeprecatedParamsAxis` that read a perpetually-null field. Skeleton emission of `deprecatedParams:` (the now-populated downstream consumer) stays deferred to Plan 5.E (Renovate-driven schema-bump automation).
+- `exactly_one_of_emitter.dart` skeleton: replaced misleading `String encode()` signature with `Map<String, Object?> encode()`. The previous shape mismatched all 12 production sealed-class instances and pointed curators at the wrong wire format.
+
 ## 0.3.0-dev - 2026-05-16
 
 No user-facing CLI changes. WrapperOverride YAML registry expands from 30 to **49 resources** (Wave 4 additions: see `terradart_google` 0.3.0-dev for the resource list). Plan 5.A's 5 universal QA gates continue to hold over the expanded registry. Workspace consistency bump alongside `terradart_google` 0.3.0-dev.
