@@ -90,19 +90,19 @@ class SealedClassExtractor {
   }
 }
 
-class SealedClass {
+final class SealedClass {
   const SealedClass({required this.name, required this.members});
   final String name;
   final List<SealedClassMember> members;
 }
 
-class SealedClassMember {
+final class SealedClassMember {
   const SealedClassMember({required this.name, required this.params});
   final String name;
   final List<SealedClassParam> params;
 }
 
-class SealedClassParam {
+final class SealedClassParam {
   const SealedClassParam({required this.name, required this.required});
   final String name;
   final bool required;
