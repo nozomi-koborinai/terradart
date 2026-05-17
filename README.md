@@ -187,6 +187,6 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). For security issues, use the [GitHub pri
 
 Apache-2.0. See [LICENSE](LICENSE).
 
-The seam-first framing draws on prior work in [CDKTF](https://github.com/hashicorp/terraform-cdk) (archived Dec 2025), [AWS CDK](https://aws.amazon.com/cdk/), and [Pulumi](https://www.pulumi.com/). Schema carriers use [`schemantic`](https://pub.dev/packages/schemantic) (Genkit team).
+The seam-first framing draws on prior work in [CDKTF](https://github.com/hashicorp/terraform-cdk) (archived Dec 2025), [AWS CDK](https://aws.amazon.com/cdk/), and [Pulumi](https://www.pulumi.com/).
 
 TerraDart is not affiliated with HashiCorp. Terraform® is a registered trademark of HashiCorp, Inc.

@@ -167,69 +167,17 @@ void main() {
     });
 
     test('emit produces correct import declarations', () {
-      // Use the v7 fixture so the registered override (which lists every
-      // expected slot in paramOrder) can resolve every name against the IR.
+      // Post Plan 5.X: wrapper imports only terradart_core. The legacy
+      // `.schema.dart` show clause and `terradart_annotations` import are
+      // both gone (schemantic chain retired; @TerraformResource/@ForceNew/
+      // @Sensitive annotations no longer emitted onto the wrapper).
       final emitter = WrapperEmitter(overrides: overrides);
       final def = _loadGooglePubsubTopicV7();
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
       expect(out,
           contains("import 'package:terradart_core/terradart_core.dart';"));
-      expect(
-        out,
-        contains(
-          "import 'package:terradart_google/src/generated/google_pubsub_topic.schema.dart'\n"
-          "    show \$GooglePubsubTopic, googlePubsubTopicSensitive;",
-        ),
-      );
-    });
-
-    test('emit produces _<Pascal>SchemaInstance stub class', () {
-      final emitter = WrapperEmitter(overrides: overrides);
-      final def = _loadGooglePubsubTopicV7();
-      final out = emitter.emit(def, providerSource: 'hashicorp/google');
-
-      // The schema stub block must match the hand-written reference verbatim,
-      // so assert the entire 11-line region as one substring instead of
-      // checking individual lines (line-by-line `contains` would silently pass
-      // even if blank lines or wording drifted).
-      const expected =
-          '// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only\n'
-          '// consumed by `ResourceRef<S>.placeholder` (a future surface). We\n'
-          "// keep this stub inline instead of constructing schemantic's generated\n"
-          '// concrete class (which requires JSON-backed field args). `noSuchMethod`\n'
-          '// satisfies the abstract field getters; they are never invoked in v0.0.x.\n'
-          'class _GooglePubsubTopicSchemaInstance implements \$GooglePubsubTopic {\n'
-          '  const _GooglePubsubTopicSchemaInstance();\n'
-          '\n'
-          '  @override\n'
-          '  // ignore: non_constant_identifier_names\n'
-          '  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);\n'
-          '}\n';
-      expect(out, contains(expected));
-    });
-
-    test('emit derives schema instance name from terraformType', () {
-      // Sanity check that the stub class name follows snakeToPascal so the
-      // emitter generalizes beyond google_pubsub_topic without us having to
-      // hand-curate per-resource (this is what unblocks the rest of the
-      // ~1000 google_* resources later in Phase 4).
-      final emitter = WrapperEmitter(overrides: overrides);
-      const def = ResourceDef(
-        terraformType: 'google_emitter_test_resource',
-        root: BlockDef(attributes: [], nestedBlocks: []),
-      );
-      final out = emitter.emit(def, providerSource: 'hashicorp/google');
-      expect(
-        out,
-        contains(
-          'class _GoogleEmitterTestResourceSchemaInstance '
-          'implements \$GoogleEmitterTestResource {',
-        ),
-      );
-      expect(
-        out,
-        contains('const _GoogleEmitterTestResourceSchemaInstance();'),
-      );
+      expect(out, isNot(contains("'package:terradart_google/src/generated/")));
+      expect(out, isNot(contains("'package:terradart_annotations/")));
     });
 
     test('emit produces final class header with \$tfType constant', () {
@@ -237,13 +185,11 @@ void main() {
       final def = _loadGooglePubsubTopicV7();
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
 
-      // Header — the wrapper class extends Resource<S> where S is the abstract
-      // schema interface ($GooglePubsubTopic).
+      // Header — post Plan 5.X, the wrapper class extends a flat `Resource`
+      // (no `<S>` generic since the schemantic schema field is gone).
       expect(
         out,
-        contains(
-          'final class GooglePubsubTopic extends Resource<\$GooglePubsubTopic> {',
-        ),
+        contains('final class GooglePubsubTopic extends Resource {'),
       );
 
       // \$tfType is a static const carrying the Terraform type string. The
@@ -257,9 +203,8 @@ void main() {
     });
 
     test('emit derives wrapper class name from terraformType', () {
-      // Same generalization check as the schema-stub variant above — the
-      // wrapper class name and Resource<S> type parameter must follow
-      // snakeToPascal so the emitter scales across all google_* resources.
+      // Sanity check that the wrapper class name follows snakeToPascal so the
+      // emitter scales across all google_* resources without hand-curation.
       final emitter = WrapperEmitter(overrides: overrides);
       const def = ResourceDef(
         terraformType: 'google_emitter_test_resource',
@@ -269,7 +214,7 @@ void main() {
       expect(
         out,
         contains(
-          'final class GoogleEmitterTestResource extends Resource<\$GoogleEmitterTestResource> {',
+          'final class GoogleEmitterTestResource extends Resource {',
         ),
       );
       expect(
@@ -339,18 +284,16 @@ void main() {
       },
     );
 
-    test('emit super initializer feeds Resource<S> with argMap entries', () {
+    test('emit super initializer feeds Resource with argMap entries', () {
       final def = _loadGooglePubsubTopicV7();
       final emitter = WrapperEmitter(overrides: overrides);
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
 
-      // Super initializer prefix + meta entries.
+      // Super initializer prefix + meta entries. Post Plan 5.X: no `schema:`
+      // arg (the schemantic schema field is gone from Resource).
       expect(out, contains('}) : super('));
       expect(out, contains('terraformType: \$tfType,'));
-      expect(
-        out,
-        contains('schema: const _GooglePubsubTopicSchemaInstance(),'),
-      );
+      expect(out, isNot(contains('schema:')));
       expect(out, contains('argMap: {'));
 
       // Required attribute: unconditional entry, snake_case key, camelCase
@@ -415,25 +358,22 @@ void main() {
     test('emit \$sensitiveFields getter delegates to the const Set', () {
       // The wrapper exposes the sensitive-field set via a `$sensitiveFields`
       // getter so synth can mask values without re-deriving them from the
-      // schema. The set itself is generated by `sensitive_set_emitter` and
-      // imported in the file header (Task 4).
+      // schema. Post Plan 5.X the const lives file-private at the top of
+      // the wrapper file (was: imported from .schema.dart).
       final def = _loadGooglePubsubTopicV7();
       final emitter = WrapperEmitter(overrides: overrides);
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
 
-      // Match the full 3-line block so we cannot accidentally satisfy this
-      // by relying on the schema-stub class's `@override` / non_constant
-      // ignore lines.
       const expected = '  @override\n'
           '  // ignore: non_constant_identifier_names\n'
-          '  Set<String> get \$sensitiveFields => googlePubsubTopicSensitive;\n';
+          '  Set<String> get \$sensitiveFields => _googlePubsubTopicSensitive;\n';
       expect(out, contains(expected));
     });
 
     test('emit \$sensitiveFields const name follows snake-to-camel', () {
       // Sanity check that the getter expression uses the same identifier
-      // sensitive_set_emitter generates, so the wrapper compiles against
-      // any google_* schema, not just google_pubsub_topic.
+      // sensitive_set_emitter generates (file-private `_<r>Sensitive`),
+      // so the wrapper compiles against any google_* schema.
       final emitter = WrapperEmitter(overrides: overrides);
       const def = ResourceDef(
         terraformType: 'google_emitter_test_resource',
@@ -443,7 +383,7 @@ void main() {
       expect(
         out,
         contains(
-          '  Set<String> get \$sensitiveFields => googleEmitterTestResourceSensitive;',
+          '  Set<String> get \$sensitiveFields => _googleEmitterTestResourceSensitive;',
         ),
       );
     });

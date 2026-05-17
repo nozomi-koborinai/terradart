@@ -4,16 +4,10 @@ import 'package:terradart_core/src/stack.dart';
 import 'package:terradart_core/src/tf_arg.dart';
 import 'package:test/test.dart';
 
-class _FakeSchema {
-  const _FakeSchema(this.name);
-  final String name;
-}
-
-class _FakeResource extends Resource<_FakeSchema> {
+class _FakeResource extends Resource {
   _FakeResource({required super.localName, required TfArg<String> name})
       : super(
           terraformType: 'fake_thing',
-          schema: _FakeSchema(name.literalOrPlaceholder),
           argMap: {'name': name},
         );
 
@@ -21,11 +15,10 @@ class _FakeResource extends Resource<_FakeSchema> {
   Set<String> get $sensitiveFields => const {};
 }
 
-class _FakeData extends Data<_FakeSchema> {
+class _FakeData extends Data {
   _FakeData({required super.localName, required TfArg<String> name})
       : super(
           terraformType: 'fake_thing',
-          schema: _FakeSchema(name.literalOrPlaceholder),
           argMap: {'name': name},
         );
 

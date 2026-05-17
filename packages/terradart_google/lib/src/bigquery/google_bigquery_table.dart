@@ -4,21 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_bigquery_table.schema.dart'
-    show $GoogleBigqueryTable, googleBigqueryTableSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleBigqueryTableSchemaInstance implements $GoogleBigqueryTable {
-  const _GoogleBigqueryTableSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_bigquery_table`.
+const Set<String> _googleBigqueryTableSensitive = <String>{};
 
 // ===========================================================================
 // Enums
@@ -656,7 +643,7 @@ class BiglakeConfiguration {
 /// view / external_data_configuration / encryption_configuration /
 /// table_constraints / table_replication_info / biglake_configuration)
 /// are modeled as helper classes in the `prelude` below.
-final class GoogleBigqueryTable extends Resource<$GoogleBigqueryTable> {
+final class GoogleBigqueryTable extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_bigquery_table';
 
@@ -691,7 +678,6 @@ final class GoogleBigqueryTable extends Resource<$GoogleBigqueryTable> {
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleBigqueryTableSchemaInstance(),
          argMap: {
            'dataset_id': datasetId,
            'table_id': tableId,
@@ -746,7 +732,7 @@ final class GoogleBigqueryTable extends Resource<$GoogleBigqueryTable> {
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleBigqueryTableSensitive;
+  Set<String> get $sensitiveFields => _googleBigqueryTableSensitive;
 
   /// Reference to `table_id` attribute.
   TfRef<String> get tableIdRef => TfRef.attribute<String>(this, 'table_id');

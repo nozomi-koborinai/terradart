@@ -3,21 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_dns_managed_zone.schema.dart'
-    show $GoogleDnsManagedZone, googleDnsManagedZoneSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleDnsManagedZoneSchemaInstance implements $GoogleDnsManagedZone {
-  const _GoogleDnsManagedZoneSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_dns_managed_zone`.
+const Set<String> _googleDnsManagedZoneSensitive = <String>{};
 
 // ===========================================================================
 // Enums — discovered from Magic Modules `enum_values`.
@@ -239,7 +226,7 @@ class CloudLoggingConfig {
 /// classes in the `prelude` below; each block has `max_items=1`, so the
 /// factory wraps the encoded map in a single-element list before passing
 /// it to Terraform.
-final class GoogleDnsManagedZone extends Resource<$GoogleDnsManagedZone> {
+final class GoogleDnsManagedZone extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_dns_managed_zone';
 
@@ -261,7 +248,6 @@ final class GoogleDnsManagedZone extends Resource<$GoogleDnsManagedZone> {
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleDnsManagedZoneSchemaInstance(),
          argMap: {
            'name': name,
            'dns_name': dnsName,
@@ -289,7 +275,7 @@ final class GoogleDnsManagedZone extends Resource<$GoogleDnsManagedZone> {
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleDnsManagedZoneSensitive;
+  Set<String> get $sensitiveFields => _googleDnsManagedZoneSensitive;
 
   /// Reference to `id` attribute (`projects/{project}/managedZones/{name}`).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

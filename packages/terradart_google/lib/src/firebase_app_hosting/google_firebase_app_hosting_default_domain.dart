@@ -3,24 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_firebase_app_hosting_default_domain.schema.dart'
-    show
-        $GoogleFirebaseAppHostingDefaultDomain,
-        googleFirebaseAppHostingDefaultDomainSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleFirebaseAppHostingDefaultDomainSchemaInstance
-    implements $GoogleFirebaseAppHostingDefaultDomain {
-  const _GoogleFirebaseAppHostingDefaultDomainSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_firebase_app_hosting_default_domain`.
+const Set<String> _googleFirebaseAppHostingDefaultDomainSensitive = <String>{};
 
 /// Factory wrapper for `google_firebase_app_hosting_default_domain` (provider
 /// `hashicorp/google ~> 7.0`).
@@ -49,8 +33,7 @@ class _GoogleFirebaseAppHostingDefaultDomainSchemaInstance
 /// Hosting backend. Unlike [GoogleFirebaseAppHostingDomain] (custom domains),
 /// this resource just exposes the auto-created default endpoint so it can be
 /// disabled or referenced from other resources. There are no nested blocks.
-final class GoogleFirebaseAppHostingDefaultDomain
-    extends Resource<$GoogleFirebaseAppHostingDefaultDomain> {
+final class GoogleFirebaseAppHostingDefaultDomain extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_firebase_app_hosting_default_domain';
 
@@ -65,7 +48,6 @@ final class GoogleFirebaseAppHostingDefaultDomain
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleFirebaseAppHostingDefaultDomainSchemaInstance(),
          argMap: {
            'backend': backend,
            'location': location,
@@ -78,7 +60,7 @@ final class GoogleFirebaseAppHostingDefaultDomain
   @override
   // ignore: non_constant_identifier_names
   Set<String> get $sensitiveFields =>
-      googleFirebaseAppHostingDefaultDomainSensitive;
+      _googleFirebaseAppHostingDefaultDomainSensitive;
 
   /// Reference to `name` attribute (full resource path
   /// `projects/{project}/locations/{location}/backends/{backend}/domains/{domain_id}`).

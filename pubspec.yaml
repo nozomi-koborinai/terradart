@@ -7,6 +7,5 @@ environment:
 
 workspace:
   - packages/terradart_core
-  - packages/terradart_annotations
   - packages/terradart_codegen
   - packages/terradart_google

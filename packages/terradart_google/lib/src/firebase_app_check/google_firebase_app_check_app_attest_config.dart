@@ -3,24 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_firebase_app_check_app_attest_config.schema.dart'
-    show
-        $GoogleFirebaseAppCheckAppAttestConfig,
-        googleFirebaseAppCheckAppAttestConfigSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleFirebaseAppCheckAppAttestConfigSchemaInstance
-    implements $GoogleFirebaseAppCheckAppAttestConfig {
-  const _GoogleFirebaseAppCheckAppAttestConfigSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_firebase_app_check_app_attest_config`.
+const Set<String> _googleFirebaseAppCheckAppAttestConfigSensitive = <String>{};
 
 /// Factory wrapper for `google_firebase_app_check_app_attest_config`
 /// (provider `hashicorp/google ~> 7.0`).
@@ -49,8 +33,7 @@ class _GoogleFirebaseAppCheckAppAttestConfigSchemaInstance
 /// [GoogleFirebaseAppCheckRecaptchaEnterpriseConfig] (Web) and
 /// [GoogleFirebaseAppCheckPlayIntegrityConfig] (Android). No nested blocks
 /// aside from the meta-arg `timeouts`.
-final class GoogleFirebaseAppCheckAppAttestConfig
-    extends Resource<$GoogleFirebaseAppCheckAppAttestConfig> {
+final class GoogleFirebaseAppCheckAppAttestConfig extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_firebase_app_check_app_attest_config';
 
@@ -63,7 +46,6 @@ final class GoogleFirebaseAppCheckAppAttestConfig
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleFirebaseAppCheckAppAttestConfigSchemaInstance(),
          argMap: {
            'app_id': appId,
            if (tokenTtl != null) 'token_ttl': tokenTtl,
@@ -74,7 +56,7 @@ final class GoogleFirebaseAppCheckAppAttestConfig
   @override
   // ignore: non_constant_identifier_names
   Set<String> get $sensitiveFields =>
-      googleFirebaseAppCheckAppAttestConfigSensitive;
+      _googleFirebaseAppCheckAppAttestConfigSensitive;
 
   /// Reference to `name` attribute (the relative resource name of the
   /// App Attest configuration object, in the shape

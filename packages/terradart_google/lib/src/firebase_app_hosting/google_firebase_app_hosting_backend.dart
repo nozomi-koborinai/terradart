@@ -4,24 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_firebase_app_hosting_backend.schema.dart'
-    show
-        $GoogleFirebaseAppHostingBackend,
-        googleFirebaseAppHostingBackendSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleFirebaseAppHostingBackendSchemaInstance
-    implements $GoogleFirebaseAppHostingBackend {
-  const _GoogleFirebaseAppHostingBackendSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_firebase_app_hosting_backend`.
+const Set<String> _googleFirebaseAppHostingBackendSensitive = <String>{};
 
 // ===========================================================================
 // Enums
@@ -113,8 +97,7 @@ class AppHostingBackendCodebase {
 /// followed by a Cloud Run service deployment, with Firebase-side identity
 /// integration via [appId]. The single `codebase` block links the backend to
 /// a Developer Connect-managed git repository.
-final class GoogleFirebaseAppHostingBackend
-    extends Resource<$GoogleFirebaseAppHostingBackend> {
+final class GoogleFirebaseAppHostingBackend extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_firebase_app_hosting_backend';
 
@@ -135,7 +118,6 @@ final class GoogleFirebaseAppHostingBackend
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleFirebaseAppHostingBackendSchemaInstance(),
          argMap: {
            'backend_id': backendId,
            'location': location,
@@ -154,7 +136,7 @@ final class GoogleFirebaseAppHostingBackend
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleFirebaseAppHostingBackendSensitive;
+  Set<String> get $sensitiveFields => _googleFirebaseAppHostingBackendSensitive;
 
   /// Reference to `name` attribute (full resource path
   /// `projects/{project}/locations/{location}/backends/{backend_id}`).

@@ -4,20 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_cloud_tasks_queue.schema.dart'
-    show $GoogleCloudTasksQueue, googleCloudTasksQueueSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline. `noSuchMethod` satisfies the abstract field
-// getters; they are never invoked in v0.0.x.
-class _GoogleCloudTasksQueueSchemaInstance implements $GoogleCloudTasksQueue {
-  const _GoogleCloudTasksQueueSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_cloud_tasks_queue`.
+const Set<String> _googleCloudTasksQueueSensitive = <String>{};
 
 // ===========================================================================
 // Nested-block helpers
@@ -161,7 +149,7 @@ class QueueOidcToken {
 /// - `location`: GCP region (e.g. `us-central1`). v0.0.x treats this as
 ///   Required for ergonomic clarity even though the underlying provider
 ///   attribute is technically Optional.
-final class GoogleCloudTasksQueue extends Resource<$GoogleCloudTasksQueue> {
+final class GoogleCloudTasksQueue extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_cloud_tasks_queue';
 
@@ -180,7 +168,6 @@ final class GoogleCloudTasksQueue extends Resource<$GoogleCloudTasksQueue> {
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleCloudTasksQueueSchemaInstance(),
          argMap: {
            'name': name,
            'location': location,
@@ -205,7 +192,7 @@ final class GoogleCloudTasksQueue extends Resource<$GoogleCloudTasksQueue> {
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleCloudTasksQueueSensitive;
+  Set<String> get $sensitiveFields => _googleCloudTasksQueueSensitive;
 
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
   TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');

@@ -4,21 +4,18 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_compute_instance.schema.dart'
-    show $GoogleComputeInstance, googleComputeInstanceSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleComputeInstanceSchemaInstance implements $GoogleComputeInstance {
-  const _GoogleComputeInstanceSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_compute_instance`.
+const Set<String> _googleComputeInstanceSensitive = <String>{
+  'attached_disk.disk_encryption_key_raw',
+  'attached_disk.disk_encryption_key_rsa',
+  'boot_disk.disk_encryption_key_raw',
+  'boot_disk.disk_encryption_key_rsa',
+  'boot_disk.initialize_params.source_image_encryption_key.raw_key',
+  'boot_disk.initialize_params.source_image_encryption_key.rsa_encrypted_key',
+  'boot_disk.initialize_params.source_snapshot_encryption_key.raw_key',
+  'boot_disk.initialize_params.source_snapshot_encryption_key.rsa_encrypted_key',
+  'metadata_startup_script',
+};
 
 // ===========================================================================
 // Enums
@@ -738,7 +735,7 @@ class NetworkPerformanceConfig {
 /// `prelude` below. Single-instance blocks (max_items=1) are wrapped in a
 /// `[map]` list before being passed to Terraform; list-typed blocks are
 /// passed through as `List<Map>`.
-final class GoogleComputeInstance extends Resource<$GoogleComputeInstance> {
+final class GoogleComputeInstance extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_compute_instance';
 
@@ -779,7 +776,6 @@ final class GoogleComputeInstance extends Resource<$GoogleComputeInstance> {
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleComputeInstanceSchemaInstance(),
          argMap: {
            'name': name,
            'machine_type': machineType,
@@ -849,7 +845,7 @@ final class GoogleComputeInstance extends Resource<$GoogleComputeInstance> {
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleComputeInstanceSensitive;
+  Set<String> get $sensitiveFields => _googleComputeInstanceSensitive;
 
   /// Reference to `id` attribute (full path
   /// `projects/{project}/zones/{zone}/instances/{name}`).

@@ -4,21 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_bigquery_dataset.schema.dart'
-    show $GoogleBigqueryDataset, googleBigqueryDatasetSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleBigqueryDatasetSchemaInstance implements $GoogleBigqueryDataset {
-  const _GoogleBigqueryDatasetSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_bigquery_dataset`.
+const Set<String> _googleBigqueryDatasetSensitive = <String>{};
 
 // ===========================================================================
 // Enums
@@ -394,7 +381,7 @@ class ExternalCatalogDatasetOptions {
 ///   ],
 /// );
 /// ```
-final class GoogleBigqueryDataset extends Resource<$GoogleBigqueryDataset> {
+final class GoogleBigqueryDataset extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_bigquery_dataset';
 
@@ -422,7 +409,6 @@ final class GoogleBigqueryDataset extends Resource<$GoogleBigqueryDataset> {
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleBigqueryDatasetSchemaInstance(),
          argMap: {
            'dataset_id': datasetId,
            if (friendlyName != null) 'friendly_name': friendlyName,
@@ -463,7 +449,7 @@ final class GoogleBigqueryDataset extends Resource<$GoogleBigqueryDataset> {
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleBigqueryDatasetSensitive;
+  Set<String> get $sensitiveFields => _googleBigqueryDatasetSensitive;
 
   /// Reference to `dataset_id` attribute. BigQuery tables reference their
   /// parent dataset via this value (e.g. `dataset.datasetIdRef` passed to

@@ -3,29 +3,15 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_pubsub_topic_iam_member.schema.dart'
-    show $GooglePubsubTopicIamMember, googlePubsubTopicIamMemberSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline. `noSuchMethod` satisfies the abstract field
-// getters; they are never invoked in v0.0.x.
-class _GooglePubsubTopicIamMemberSchemaInstance
-    implements $GooglePubsubTopicIamMember {
-  const _GooglePubsubTopicIamMemberSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_pubsub_topic_iam_member`.
+const Set<String> _googlePubsubTopicIamMemberSensitive = <String>{};
 
 /// Factory wrapper for `google_pubsub_topic_iam_member`.
 ///
 /// Adds a single IAM `role` → `member` binding on a topic. For
 /// multi-member binding semantics, prefer `google_pubsub_topic_iam_binding`
 /// (available via `terradart codegen` until it lands as a curated factory).
-final class GooglePubsubTopicIamMember
-    extends Resource<$GooglePubsubTopicIamMember> {
+final class GooglePubsubTopicIamMember extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_pubsub_topic_iam_member';
 
@@ -39,20 +25,19 @@ final class GooglePubsubTopicIamMember
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         schema: const _GooglePubsubTopicIamMemberSchemaInstance(),
-         argMap: {
-           'topic': topic,
-           'role': role,
-           'member': member,
-           if (condition != null) 'condition': condition,
-           if (project != null) 'project': project,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'topic': topic,
+            'role': role,
+            'member': member,
+            if (condition != null) 'condition': condition,
+            if (project != null) 'project': project,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googlePubsubTopicIamMemberSensitive;
+  Set<String> get $sensitiveFields => _googlePubsubTopicIamMemberSensitive;
 
   /// Reference to `etag` attribute (concurrency token written by the API).
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');

@@ -183,7 +183,7 @@ class OutputEmitter {
   /// `interpolation` and `bareAddress`. To look up literals in
   /// `LiteralResolver` we need the `(owner.tfAddress, attr)` pair, which
   /// lives on `AttributeRef<T>` / `DataRef<T>` (the only ref subtypes that
-  /// target a single attribute). `ResourceRef<S>` has no attribute — exports
+  /// target a single attribute). `ResourceRef` has no attribute — exports
   /// that wrap it cannot be literal-resolved against an attr.
   static (String, String) _refAddress(TfRef<dynamic> ref) {
     if (ref is AttributeRef) {

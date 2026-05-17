@@ -3,20 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_project_service.schema.dart'
-    show $GoogleProjectService, googleProjectServiceSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline. `noSuchMethod` satisfies the abstract field
-// getters; they are never invoked in v0.0.x.
-class _GoogleProjectServiceSchemaInstance implements $GoogleProjectService {
-  const _GoogleProjectServiceSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_project_service`.
+const Set<String> _googleProjectServiceSensitive = <String>{};
 
 /// Factory wrapper for `google_project_service`
 /// (provider `hashicorp/google ~> 7.0`).
@@ -63,7 +51,7 @@ class _GoogleProjectServiceSchemaInstance implements $GoogleProjectService {
 /// schema surface. `argMap` stores `TfArg<dynamic>?` entries directly;
 /// synth's JSON-encoding pass walks them and calls `arg.toTfJson()` to
 /// encode at write time.
-final class GoogleProjectService extends Resource<$GoogleProjectService> {
+final class GoogleProjectService extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_project_service';
 
@@ -77,7 +65,6 @@ final class GoogleProjectService extends Resource<$GoogleProjectService> {
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleProjectServiceSchemaInstance(),
          argMap: {
            'service': service,
            if (project != null) 'project': project,
@@ -89,7 +76,7 @@ final class GoogleProjectService extends Resource<$GoogleProjectService> {
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleProjectServiceSensitive;
+  Set<String> get $sensitiveFields => _googleProjectServiceSensitive;
 
   /// Reference to `id` attribute (full path `[project]/services/[service]`).
   /// Use this when another resource needs to reference the enablement, e.g.

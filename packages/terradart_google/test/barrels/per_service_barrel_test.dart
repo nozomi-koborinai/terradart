@@ -70,11 +70,11 @@ void main() {
     // Evaluated at test-collection time; lib/ must exist from the working dir.
     final barrels = libDir.existsSync()
         ? libDir
-              .listSync()
-              .whereType<File>()
-              .where((f) => f.path.endsWith('.dart'))
-              .where((f) => p.basename(f.path) != 'terradart_google.dart')
-              .toList()
+            .listSync()
+            .whereType<File>()
+            .where((f) => f.path.endsWith('.dart'))
+            .where((f) => p.basename(f.path) != 'terradart_google.dart')
+            .toList()
         : <File>[];
 
     test('discovered at least 1 per-service barrel under lib/', () {
@@ -101,8 +101,7 @@ void main() {
           expect(
             sourceFile.existsSync(),
             isTrue,
-            reason:
-                '$barrelName.dart exports from "${directive.sourcePath}" '
+            reason: '$barrelName.dart exports from "${directive.sourcePath}" '
                 'but lib/${directive.sourcePath} does not exist',
           );
           final declarations = _topLevelDeclarations(
@@ -112,8 +111,7 @@ void main() {
             expect(
               declarations.contains(shownName),
               isTrue,
-              reason:
-                  '$barrelName.dart show entry "$shownName" '
+              reason: '$barrelName.dart show entry "$shownName" '
                   '(from ${directive.sourcePath}) has no matching top-level '
                   'declaration. Either drop the show entry or add the '
                   'declaration to the source file.',

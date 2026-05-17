@@ -3,23 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_cloudfunctions2_function_iam_member.schema.dart'
-    show
-        $GoogleCloudfunctions2FunctionIamMember,
-        googleCloudfunctions2FunctionIamMemberSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline. `noSuchMethod` satisfies the abstract field
-// getters; they are never invoked in v0.0.x.
-class _GoogleCloudfunctions2FunctionIamMemberSchemaInstance
-    implements $GoogleCloudfunctions2FunctionIamMember {
-  const _GoogleCloudfunctions2FunctionIamMemberSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_cloudfunctions2_function_iam_member`.
+const Set<String> _googleCloudfunctions2FunctionIamMemberSensitive = <String>{};
 
 /// Factory wrapper for `google_cloudfunctions2_function_iam_member`.
 ///
@@ -34,8 +19,7 @@ class _GoogleCloudfunctions2FunctionIamMemberSchemaInstance
 /// the Cloud Run service**, not on the function. Use this resource for
 /// admin-level roles (e.g. `roles/cloudfunctions.viewer`) and pair with
 /// `google_cloud_run_service_iam_member` for invocation.
-final class GoogleCloudfunctions2FunctionIamMember
-    extends Resource<$GoogleCloudfunctions2FunctionIamMember> {
+final class GoogleCloudfunctions2FunctionIamMember extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_cloudfunctions2_function_iam_member';
 
@@ -51,7 +35,6 @@ final class GoogleCloudfunctions2FunctionIamMember
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleCloudfunctions2FunctionIamMemberSchemaInstance(),
          argMap: {
            'cloud_function': cloudFunction,
            'role': role,
@@ -65,7 +48,7 @@ final class GoogleCloudfunctions2FunctionIamMember
   @override
   // ignore: non_constant_identifier_names
   Set<String> get $sensitiveFields =>
-      googleCloudfunctions2FunctionIamMemberSensitive;
+      _googleCloudfunctions2FunctionIamMemberSensitive;
 
   /// Reference to `etag` attribute (concurrency token written by the API).
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');

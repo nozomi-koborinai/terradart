@@ -3,21 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_compute_address.schema.dart'
-    show $GoogleComputeAddress, googleComputeAddressSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleComputeAddressSchemaInstance implements $GoogleComputeAddress {
-  const _GoogleComputeAddressSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_compute_address`.
+const Set<String> _googleComputeAddressSensitive = <String>{};
 
 // Phase 4.5.1: dartTypeOverrides re-enabled. Callers pass enum values
 // directly; TfArg detects `.terraformValue` getter.
@@ -81,7 +68,7 @@ enum Ipv6EndpointType {
 ///
 /// Represents an IP address resource (regional or global). Use `addressType:
 /// 'INTERNAL'` for VPC-internal addresses, `'EXTERNAL'` for public IPs.
-final class GoogleComputeAddress extends Resource<$GoogleComputeAddress> {
+final class GoogleComputeAddress extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_compute_address';
 
@@ -106,7 +93,6 @@ final class GoogleComputeAddress extends Resource<$GoogleComputeAddress> {
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleComputeAddressSchemaInstance(),
          argMap: {
            'name': name,
            if (region != null) 'region': region,
@@ -128,7 +114,7 @@ final class GoogleComputeAddress extends Resource<$GoogleComputeAddress> {
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleComputeAddressSensitive;
+  Set<String> get $sensitiveFields => _googleComputeAddressSensitive;
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

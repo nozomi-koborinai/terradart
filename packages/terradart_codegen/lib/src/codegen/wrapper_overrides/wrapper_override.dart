@@ -83,22 +83,6 @@ final class WrapperOverride {
   /// `null` means "no extra getters".
   final String? extraGetters;
 
-  /// Override for the `_<Pascal>SchemaInstance` block's leading comment.
-  ///
-  /// The hand-written wrappers are inconsistent: `google_pubsub_topic`
-  /// carries a 5-line variant ("...keep this stub inline instead of
-  /// constructing schemantic's generated concrete class..."), the IAM
-  /// member family and other resources carry a 4-line variant ("...keep
-  /// this stub inline. `noSuchMethod` satisfies..."). The emitter's
-  /// default is the 4-line form (majority); resources that ship the
-  /// 5-line form set this field to keep byte-diff parity.
-  ///
-  /// The string must carry the leading `// ` markers but NOT a trailing
-  /// newline; the emitter writes it via `writeln`.
-  ///
-  /// `null` means "use the emitter's 4-line default".
-  final String? schemaStubComment;
-
   /// Snake-case parameter names that the override forces to be `required`
   /// in the constructor and unconditional in argMap, regardless of what
   /// the v7 schema says.
@@ -280,7 +264,6 @@ final class WrapperOverride {
     this.paramOrder,
     this.argMapOrder,
     this.extraGetters,
-    this.schemaStubComment,
     this.requiredParams,
     this.dartTypeOverrides,
     this.deprecatedParams,

@@ -9,8 +9,6 @@ argMapOrder:
   - x
 extraGetters: |
     TfRef<String> get foo => TfRef.attribute<String>(this, 'foo');
-schemaStubComment: |-
-  // stub.
 requiredParams:
   - x
 dartTypeOverrides:

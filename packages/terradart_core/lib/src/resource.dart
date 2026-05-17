@@ -11,19 +11,14 @@ enum ResourceKind {
 
 /// Base of every user-instantiable Terraform resource.
 ///
-/// `S` is the schemantic concrete type (e.g. `_$GooglePubsubTopic`). The
-/// factory classes in `terradart_google` (and any codegen output) extend
-/// `Resource<S>` with concrete `S` baked in via class declaration so `S`
-/// does not leak into the user-facing factory constructor signature.
-///
-/// Implements `SchemaCarrier<S>` (which itself extends `TfAddressed`) so
-/// that `TfRef.resource<S>(this)` accepts the resource as a whole-resource
-/// reference target.
-abstract class Resource<S> implements SchemaCarrier<S> {
+/// Plan 5.X (v0.5.0-dev) removed the `<S>` generic and the `schema` field —
+/// the schemantic-backed dead chain that motivated them is fully retired.
+/// `Resource` is now flat: factories pass `argMap` and `$sensitiveFields`,
+/// synth consumes both directly.
+abstract class Resource implements TfAddressed {
   Resource({
     required this.terraformType,
     required this.localName,
-    required this.schema,
     required this.argMap,
     this.lifecycle,
     this.dependsOn,
@@ -35,13 +30,6 @@ abstract class Resource<S> implements SchemaCarrier<S> {
 
   /// User-supplied local name within a Stack.
   final String localName;
-
-  /// schemantic concrete instance. Constructed by the factory subclass
-  /// using `arg.literalOrPlaceholder` for every field. v0.0.x does not
-  /// validate `S` when any `TfArgRef` is present in `argMap` — synth
-  /// skips validation for ref-bearing argMaps.
-  @override
-  final S schema;
 
   /// Argument-name → TfArg map. **Keys are snake_case** (Terraform JSON name).
   /// Synth emits these keys directly; the factory is responsible for the
@@ -64,18 +52,18 @@ abstract class Resource<S> implements SchemaCarrier<S> {
   @override
   String get tfAddress => '$terraformType.$localName';
 
-  /// Always `ResourceKind.resource`. Overridden by `Data<S>`.
+  /// Always `ResourceKind.resource`. Overridden by `Data`.
   ResourceKind get kind => ResourceKind.resource;
 
-  /// Field names that are `@Sensitive` per Stage 1 metadata.
-  /// Curated factories override with a baked-in `static const Set<String>`.
+  /// Field names that are `@Sensitive` per the IR-derived per-resource
+  /// constant. Curated factories override with a baked-in
+  /// `static const Set<String>` (file-private in v0.5+).
   Set<String> get $sensitiveFields;
 }
 
-/// Lightweight type stand-in for the v0.0.x provider binding so the core
-/// runtime stays independent of provider-specific packages. Concrete
-/// `Provider` classes (e.g. `GoogleProvider` in `terradart_google`)
-/// implement this.
+/// Lightweight type stand-in for the provider binding so the core runtime
+/// stays independent of provider-specific packages. Concrete `Provider`
+/// classes (e.g. `GoogleProvider` in `terradart_google`) implement this.
 abstract interface class ProviderBinding {
   /// Provider name, e.g. `'google'`.
   String get providerName;

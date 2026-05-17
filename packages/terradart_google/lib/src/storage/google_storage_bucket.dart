@@ -3,21 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_storage_bucket.schema.dart'
-    show $GoogleStorageBucket, googleStorageBucketSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleStorageBucketSchemaInstance implements $GoogleStorageBucket {
-  const _GoogleStorageBucketSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_storage_bucket`.
+const Set<String> _googleStorageBucketSensitive = <String>{};
 
 /// Storage class for `google_storage_bucket.storage_class`.
 ///
@@ -336,7 +323,7 @@ class SoftDeletePolicy {
 /// `Resource<$GoogleStorageBucket>` for runtime behavior. The 13 nested
 /// blocks (lifecycle_rule / versioning / cors / encryption / etc.) are
 /// modeled as helper classes in the `prelude` below.
-final class GoogleStorageBucket extends Resource<$GoogleStorageBucket> {
+final class GoogleStorageBucket extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_storage_bucket';
 
@@ -370,7 +357,6 @@ final class GoogleStorageBucket extends Resource<$GoogleStorageBucket> {
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleStorageBucketSchemaInstance(),
          argMap: {
            'name': name,
            'location': location,
@@ -421,7 +407,7 @@ final class GoogleStorageBucket extends Resource<$GoogleStorageBucket> {
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleStorageBucketSensitive;
+  Set<String> get $sensitiveFields => _googleStorageBucketSensitive;
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

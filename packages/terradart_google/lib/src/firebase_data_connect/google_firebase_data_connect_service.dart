@@ -3,24 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_firebase_data_connect_service.schema.dart'
-    show
-        $GoogleFirebaseDataConnectService,
-        googleFirebaseDataConnectServiceSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleFirebaseDataConnectServiceSchemaInstance
-    implements $GoogleFirebaseDataConnectService {
-  const _GoogleFirebaseDataConnectServiceSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_firebase_data_connect_service`.
+const Set<String> _googleFirebaseDataConnectServiceSensitive = <String>{};
 
 // ===========================================================================
 // Enums (sourced from schema "Possible values" prose)
@@ -74,8 +58,7 @@ enum DataConnectDeletionPolicy {
 /// `terraform destroy` to remove the service even when downstream
 /// schemas / connectors still exist; the default leaves the service in
 /// place if any are present.
-final class GoogleFirebaseDataConnectService
-    extends Resource<$GoogleFirebaseDataConnectService> {
+final class GoogleFirebaseDataConnectService extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_firebase_data_connect_service';
 
@@ -92,7 +75,6 @@ final class GoogleFirebaseDataConnectService
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleFirebaseDataConnectServiceSchemaInstance(),
          argMap: {
            'service_id': serviceId,
            'location': location,
@@ -106,7 +88,8 @@ final class GoogleFirebaseDataConnectService
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleFirebaseDataConnectServiceSensitive;
+  Set<String> get $sensitiveFields =>
+      _googleFirebaseDataConnectServiceSensitive;
 
   /// Reference to `name` attribute (full resource path
   /// `projects/{project}/locations/{location}/services/{service_id}`).

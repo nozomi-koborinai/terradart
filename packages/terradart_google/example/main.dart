@@ -6,9 +6,11 @@ import 'package:terradart_google/terradart_google.dart';
 /// Minimal example: a single Pub/Sub topic, synthesized to Terraform JSON.
 class HelloStack extends Stack {
   HelloStack({required String projectId})
-    : super(
-        providers: [GoogleProvider(project: projectId, region: 'us-central1')],
-      ) {
+      : super(
+          providers: [
+            GoogleProvider(project: projectId, region: 'us-central1')
+          ],
+        ) {
     add(GooglePubsubTopic(localName: 'hello', name: TfArg.literal('hello')));
   }
 

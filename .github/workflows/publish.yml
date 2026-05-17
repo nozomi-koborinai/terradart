@@ -20,7 +20,7 @@ permissions:
 # terradart_codegen's published pubspec declares `terradart_core: ^X.Y.Z-dev`,
 # and terradart_google's published pubspec is rewritten by
 # tool/prepare_publish.sh to declare hosted ^X.Y.Z-dev constraints for
-# terradart_core, terradart_annotations, and terradart_codegen. pub.dev
+# terradart_core and terradart_codegen. pub.dev
 # validates these constraints against its index at upload time, so a
 # dependent package can't ship until its dependencies' versions are visible
 # on pub.dev.
@@ -40,7 +40,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [terradart_annotations, terradart_core]
+        package: [terradart_core]
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -95,7 +95,7 @@ jobs:
     steps:
       - name: Wait for pub.dev index propagation
         run: |
-          echo "Waiting 3 minutes for pub.dev to index terradart_codegen + terradart_core + terradart_annotations before publishing terradart_google..."
+          echo "Waiting 3 minutes for pub.dev to index terradart_codegen + terradart_core before publishing terradart_google..."
           sleep 180
 
       - uses: actions/checkout@v6
@@ -109,26 +109,16 @@ jobs:
           yq --version
       - run: dart pub get
 
-      - name: Verify generated schema and wrapper files
+      - name: Verify generated wrapper files
         run: |
           # Source of truth: per-resource yaml overrides under terradart_codegen.
           yaml_count=$(find packages/terradart_codegen/lib/src/codegen/wrapper_overrides/yaml -name '*.yaml' | wc -l | tr -d ' ')
-          # Data source overrides ship inline-stub schemas instead of going
-          # through build_runner — they have a `.schema.dart` but no
-          # `.schema.g.dart`.
           data_source_count=$(grep -l '^kind: data_source$' packages/terradart_codegen/lib/src/codegen/wrapper_overrides/yaml/*.yaml | wc -l | tr -d ' ')
           resource_count=$((yaml_count - data_source_count))
-          # Layer 1 (`.schema.dart`): one per yaml override (resource + data source).
-          schema_dart_count=$(find packages/terradart_google/lib/src -name '*.schema.dart' | wc -l | tr -d ' ')
-          # Layer 2 (wrapper `google_*.dart`): one per yaml override.
+          # Wrapper (`google_*.dart`): one per yaml override.
           wrapper_count=$(find packages/terradart_google/lib/src -mindepth 2 -name 'google_*.dart' -not -path '*/generated/*' | wc -l | tr -d ' ')
-          # build_runner output (`.schema.g.dart`): one per resource yaml; data
-          # sources are inline-stubbed so they are excluded.
-          schema_g_count=$(find packages/terradart_google/lib/src/generated -name '*.schema.g.dart' | wc -l | tr -d ' ')
-          echo "yaml=$yaml_count (resources=$resource_count, data_sources=$data_source_count) schema.dart=$schema_dart_count wrapper=$wrapper_count schema.g.dart=$schema_g_count"
-          [ "$yaml_count" -eq "$schema_dart_count" ] || { echo "::error::schema.dart count ($schema_dart_count) != yaml count ($yaml_count)"; exit 1; }
+          echo "yaml=$yaml_count (resources=$resource_count, data_sources=$data_source_count) wrapper=$wrapper_count"
           [ "$yaml_count" -eq "$wrapper_count" ] || { echo "::error::wrapper count ($wrapper_count) != yaml count ($yaml_count)"; exit 1; }
-          [ "$schema_g_count" -eq "$resource_count" ] || { echo "::error::schema.g.dart count ($schema_g_count) != resource yaml count ($resource_count)"; exit 1; }
 
       - name: Pre-publish pubspec mutations
         run: tool/prepare_publish.sh "${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}" terradart_google

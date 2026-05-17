@@ -3,23 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_secret_manager_secret_version.schema.dart'
-    show
-        $GoogleSecretManagerSecretVersion,
-        googleSecretManagerSecretVersionSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline. `noSuchMethod` satisfies the abstract field
-// getters; they are never invoked in v0.0.x.
-class _GoogleSecretManagerSecretVersionSchemaInstance
-    implements $GoogleSecretManagerSecretVersion {
-  const _GoogleSecretManagerSecretVersionSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_secret_manager_secret_version`.
+const Set<String> _googleSecretManagerSecretVersionSensitive = <String>{
+  'secret_data',
+};
 
 /// Factory wrapper for `google_secret_manager_secret_version`.
 ///
@@ -30,8 +17,7 @@ class _GoogleSecretManagerSecretVersionSchemaInstance
 ///
 /// `secret_data` is `@Deprecated`; using it logs an analyzer warning at
 /// every call site.
-final class GoogleSecretManagerSecretVersion
-    extends Resource<$GoogleSecretManagerSecretVersion> {
+final class GoogleSecretManagerSecretVersion extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_secret_manager_secret_version';
 
@@ -49,25 +35,25 @@ final class GoogleSecretManagerSecretVersion
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         schema: const _GoogleSecretManagerSecretVersionSchemaInstance(),
-         argMap: {
-           'secret': secret,
-           if (secretDataWo != null) 'secret_data_wo': secretDataWo,
-           if (secretDataWoVersion != null)
-             'secret_data_wo_version': secretDataWoVersion,
-           if (secretData != null) 'secret_data': secretData,
-           if (enabled != null) 'enabled': enabled,
-           if (isSecretDataBase64 != null)
-             'is_secret_data_base64': isSecretDataBase64,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'secret': secret,
+            if (secretDataWo != null) 'secret_data_wo': secretDataWo,
+            if (secretDataWoVersion != null)
+              'secret_data_wo_version': secretDataWoVersion,
+            if (secretData != null) 'secret_data': secretData,
+            if (enabled != null) 'enabled': enabled,
+            if (isSecretDataBase64 != null)
+              'is_secret_data_base64': isSecretDataBase64,
+            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+            if (project != null) 'project': project,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleSecretManagerSecretVersionSensitive;
+  Set<String> get $sensitiveFields =>
+      _googleSecretManagerSecretVersionSensitive;
 
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

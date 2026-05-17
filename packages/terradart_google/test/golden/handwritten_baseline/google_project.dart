@@ -14,18 +14,8 @@ import 'package:terradart_core/terradart_core.dart';
 // the inline stubs below will be deleted — same migration pattern as the
 // curated resource factories now follow.
 
-/// Schemantic-style abstract for the `data.google_project` data source.
-abstract class $GoogleProject {}
-
-/// Sensitive field paths for `data.google_project`. Empty per provider schema.
-const Set<String> googleProjectSensitive = <String>{};
-
-// Tiny const carrier for `Data<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline.
-class _GoogleProjectSchemaInstance implements $GoogleProject {
-  const _GoogleProjectSchemaInstance();
-}
+/// Sensitive field paths for `google_project`.
+const Set<String> _googleProjectSensitive = <String>{};
 
 /// Data source for `data.google_project`.
 ///
@@ -47,20 +37,19 @@ class _GoogleProjectSchemaInstance implements $GoogleProject {
 /// Composition: extends `Data<$GoogleProject>` (the `Data<S>` base in
 /// `terradart`). Synth emits this under `data.google_project.<localName>`
 /// (vs `resource.…` for `Resource<S>`).
-final class GoogleProject extends Data<$GoogleProject> {
+final class GoogleProject extends Data {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_project';
 
   GoogleProject({required super.localName, TfArg<String>? projectId})
-    : super(
-        terraformType: $tfType,
-        schema: const _GoogleProjectSchemaInstance(),
-        argMap: {if (projectId != null) 'project_id': projectId},
-      );
+      : super(
+          terraformType: $tfType,
+          argMap: {if (projectId != null) 'project_id': projectId},
+        );
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleProjectSensitive;
+  Set<String> get $sensitiveFields => _googleProjectSensitive;
 
   TfRef<String> get number => TfRef.attribute<String>(this, 'number');
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');

@@ -3,21 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_kms_crypto_key.schema.dart'
-    show $GoogleKmsCryptoKey, googleKmsCryptoKeySensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleKmsCryptoKeySchemaInstance implements $GoogleKmsCryptoKey {
-  const _GoogleKmsCryptoKeySchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_kms_crypto_key`.
+const Set<String> _googleKmsCryptoKeySensitive = <String>{};
 
 /// Purpose for `google_kms_crypto_key.purpose` (immutable, default
 /// `encryptDecrypt`). See the
@@ -101,7 +88,7 @@ class VersionTemplate {
 /// CryptoKeyVersions unusable but does not delete the resource from the
 /// project. Consider attaching `lifecycle { prevent_destroy = true }` for
 /// production keys.
-final class GoogleKmsCryptoKey extends Resource<$GoogleKmsCryptoKey> {
+final class GoogleKmsCryptoKey extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_kms_crypto_key';
 
@@ -121,7 +108,6 @@ final class GoogleKmsCryptoKey extends Resource<$GoogleKmsCryptoKey> {
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleKmsCryptoKeySchemaInstance(),
          argMap: {
            'name': name,
            'key_ring': keyRing,
@@ -141,7 +127,7 @@ final class GoogleKmsCryptoKey extends Resource<$GoogleKmsCryptoKey> {
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleKmsCryptoKeySensitive;
+  Set<String> get $sensitiveFields => _googleKmsCryptoKeySensitive;
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

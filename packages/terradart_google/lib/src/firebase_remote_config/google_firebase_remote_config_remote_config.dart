@@ -4,24 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_firebase_remote_config_remote_config.schema.dart'
-    show
-        $GoogleFirebaseRemoteConfigRemoteConfig,
-        googleFirebaseRemoteConfigRemoteConfigSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleFirebaseRemoteConfigRemoteConfigSchemaInstance
-    implements $GoogleFirebaseRemoteConfigRemoteConfig {
-  const _GoogleFirebaseRemoteConfigRemoteConfigSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_firebase_remote_config_remote_config`.
+const Set<String> _googleFirebaseRemoteConfigRemoteConfigSensitive = <String>{};
 
 // ===========================================================================
 // Enums (sourced from schema "Possible values" prose)
@@ -349,8 +333,7 @@ class RemoteConfigParameterGroup {
 /// parameter reference conditions by name -- the wrapper does not (and
 /// cannot) cross-validate these references at compile time; mismatches
 /// surface at apply time from the Remote Config API.
-final class GoogleFirebaseRemoteConfigRemoteConfig
-    extends Resource<$GoogleFirebaseRemoteConfigRemoteConfig> {
+final class GoogleFirebaseRemoteConfigRemoteConfig extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_firebase_remote_config_remote_config';
 
@@ -364,7 +347,6 @@ final class GoogleFirebaseRemoteConfigRemoteConfig
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleFirebaseRemoteConfigRemoteConfigSchemaInstance(),
          argMap: {
            if (parameters != null)
              'parameters': TfArg.literal(
@@ -385,7 +367,7 @@ final class GoogleFirebaseRemoteConfigRemoteConfig
   @override
   // ignore: non_constant_identifier_names
   Set<String> get $sensitiveFields =>
-      googleFirebaseRemoteConfigRemoteConfigSensitive;
+      _googleFirebaseRemoteConfigRemoteConfigSensitive;
 
   /// Reference to `name` attribute (full resource path, of the shape
   /// `projects/{project}/namespaces/{namespace}/remoteConfig`).

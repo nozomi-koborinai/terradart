@@ -241,7 +241,7 @@ abstract final class OrdersExports {
       expect(deps[0], isNot(startsWith(r'${')));
     });
 
-    test('Data<S> sources emit data {} block separate from resource', () {
+    test('Data sources emit data {} block separate from resource', () {
       final stack = TestStack(
         providers: const [
           FakeStackProvider(

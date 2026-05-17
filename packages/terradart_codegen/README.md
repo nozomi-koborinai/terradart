@@ -1,6 +1,6 @@
 # terradart_codegen
 
-Codegen for [terradart](https://github.com/nozomi-koborinai/terradart). Parses `terraform providers schema -json` (plus optional Magic Modules YAML overlays) and emits annotated abstract Dart classes that [`schemantic`](https://pub.dev/packages/schemantic) consumes via `build_runner` to produce concrete bindings.
+Codegen for [terradart](https://github.com/nozomi-koborinai/terradart). Parses `terraform providers schema -json` (plus optional Magic Modules YAML overlays) and emits typed Dart factory wrappers for use with [`terradart_core`](https://pub.dev/packages/terradart_core).
 
 This package ships the `terradart` CLI with three subcommands:
 

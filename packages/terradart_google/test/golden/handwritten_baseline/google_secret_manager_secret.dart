@@ -4,21 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_secret_manager_secret.schema.dart'
-    show $GoogleSecretManagerSecret, googleSecretManagerSecretSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline. `noSuchMethod` satisfies the abstract field
-// getters; they are never invoked in v0.0.x.
-class _GoogleSecretManagerSecretSchemaInstance
-    implements $GoogleSecretManagerSecret {
-  const _GoogleSecretManagerSecretSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_secret_manager_secret`.
+const Set<String> _googleSecretManagerSecretSensitive = <String>{};
 
 // ===========================================================================
 // Replication (sealed: Auto | UserManaged) + nested helpers
@@ -49,11 +36,11 @@ final class _AutoReplication extends Replication {
 
   @override
   Map<String, Object?> encode() => {
-    'auto': <String, Object?>{
-      if (customerManagedEncryption != null)
-        'customer_managed_encryption': customerManagedEncryption!.encode(),
-    },
-  };
+        'auto': <String, Object?>{
+          if (customerManagedEncryption != null)
+            'customer_managed_encryption': customerManagedEncryption!.encode(),
+        },
+      };
 }
 
 @immutable
@@ -64,10 +51,10 @@ final class _UserManagedReplication extends Replication {
 
   @override
   Map<String, Object?> encode() => {
-    'user_managed': <String, Object?>{
-      'replicas': replicas.map((r) => r.encode()).toList(),
-    },
-  };
+        'user_managed': <String, Object?>{
+          'replicas': replicas.map((r) => r.encode()).toList(),
+        },
+      };
 }
 
 /// `customer_managed_encryption` nested block (CMEK).
@@ -89,10 +76,10 @@ class Replica {
   final CustomerManagedEncryption? customerManagedEncryption;
 
   Map<String, Object?> encode() => {
-    'location': location.toTfJson(),
-    if (customerManagedEncryption != null)
-      'customer_managed_encryption': customerManagedEncryption!.encode(),
-  };
+        'location': location.toTfJson(),
+        if (customerManagedEncryption != null)
+          'customer_managed_encryption': customerManagedEncryption!.encode(),
+      };
 }
 
 /// Pub/Sub `topics` entry under `google_secret_manager_secret.topics`.
@@ -115,10 +102,11 @@ class Rotation {
   final TfArg<String>? rotationPeriod;
 
   Map<String, Object?> encode() => {
-    if (nextRotationTime != null)
-      'next_rotation_time': nextRotationTime!.toTfJson(),
-    if (rotationPeriod != null) 'rotation_period': rotationPeriod!.toTfJson(),
-  };
+        if (nextRotationTime != null)
+          'next_rotation_time': nextRotationTime!.toTfJson(),
+        if (rotationPeriod != null)
+          'rotation_period': rotationPeriod!.toTfJson(),
+      };
 }
 
 // ===========================================================================
@@ -132,8 +120,7 @@ class Rotation {
 /// - `secretId`: GCP secret ID.
 /// - `replication`: sealed [Replication] (`Replication.auto()` or
 ///   `Replication.userManaged([...])`).
-final class GoogleSecretManagerSecret
-    extends Resource<$GoogleSecretManagerSecret> {
+final class GoogleSecretManagerSecret extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_secret_manager_secret';
 
@@ -155,31 +142,30 @@ final class GoogleSecretManagerSecret
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         schema: const _GoogleSecretManagerSecretSchemaInstance(),
-         argMap: {
-           'secret_id': secretId,
-           'replication': TfArg.literal(replication.encode()),
-           if (labels != null) 'labels': labels,
-           if (annotations != null) 'annotations': annotations,
-           if (versionAliases != null) 'version_aliases': versionAliases,
-           if (versionDestroyTtl != null)
-             'version_destroy_ttl': versionDestroyTtl,
-           if (topics != null)
-             'topics': TfArg.literal(topics.map((t) => t.encode()).toList()),
-           if (expireTime != null) 'expire_time': expireTime,
-           if (ttl != null) 'ttl': ttl,
-           if (rotation != null) 'rotation': TfArg.literal(rotation.encode()),
-           if (tags != null) 'tags': tags,
-           if (project != null) 'project': project,
-           if (deletionProtection != null)
-             'deletion_protection': deletionProtection,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'secret_id': secretId,
+            'replication': TfArg.literal(replication.encode()),
+            if (labels != null) 'labels': labels,
+            if (annotations != null) 'annotations': annotations,
+            if (versionAliases != null) 'version_aliases': versionAliases,
+            if (versionDestroyTtl != null)
+              'version_destroy_ttl': versionDestroyTtl,
+            if (topics != null)
+              'topics': TfArg.literal(topics.map((t) => t.encode()).toList()),
+            if (expireTime != null) 'expire_time': expireTime,
+            if (ttl != null) 'ttl': ttl,
+            if (rotation != null) 'rotation': TfArg.literal(rotation.encode()),
+            if (tags != null) 'tags': tags,
+            if (project != null) 'project': project,
+            if (deletionProtection != null)
+              'deletion_protection': deletionProtection,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleSecretManagerSecretSensitive;
+  Set<String> get $sensitiveFields => _googleSecretManagerSecretSensitive;
 
   TfRef<String> get secretIdRef => TfRef.attribute<String>(this, 'secret_id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

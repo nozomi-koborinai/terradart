@@ -46,10 +46,10 @@ final class GoogleProvider implements StackProvider {
 
   @override
   Map<String, Object?> get configArgs => {
-    if (project != null) 'project': project,
-    if (region != null) 'region': region,
-    if (zone != null) 'zone': zone,
-  };
+        if (project != null) 'project': project,
+        if (region != null) 'region': region,
+        if (zone != null) 'zone': zone,
+      };
 
   @override
   Map<String, Object?> toTfJson() => configArgs;

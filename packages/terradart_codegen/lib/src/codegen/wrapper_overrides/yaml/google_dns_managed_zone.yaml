@@ -269,10 +269,3 @@ customSlots:
   cloud_logging_config:
     paramDeclaration: 'CloudLoggingConfig? cloudLoggingConfig'
     argMapEntry: "if (cloudLoggingConfig != null) 'cloud_logging_config': TfArg.literal([cloudLoggingConfig.toArgMap()]),"
-
-schemaStubComment: |-
-  // Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-  // consumed by `ResourceRef<S>.placeholder` (a future surface). We
-  // keep this stub inline instead of constructing schemantic's generated
-  // concrete class (which requires JSON-backed field args). `noSuchMethod`
-  // satisfies the abstract field getters; they are never invoked in v0.0.x.

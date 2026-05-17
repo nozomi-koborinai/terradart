@@ -39,13 +39,15 @@ void main() {
             'google_secret_manager_secret_iam_member.dart',
           }));
 
-      // Sanity: each emitted file contains the abstract class header.
+      // Plan 5.X (v0.5.0-dev): the resource Layer 1 file content is the
+      // empty string — schemantic decorations (`abstract class $Google...`,
+      // `@TerraformResource(...)`) are no longer emitted. The pipeline still
+      // creates one file per requested resource so the file-count contract
+      // above stays meaningful; content is intentionally empty.
       for (final f in iamResult.emittedFiles) {
         final src = File(f).readAsStringSync();
-        expect(src, contains('abstract class \$Google'),
-            reason: 'Emitted file lacks expected \$Foo abstract class: $f');
-        expect(src, contains('@TerraformResource('),
-            reason: 'Emitted file lacks @TerraformResource: $f');
+        expect(src, isEmpty,
+            reason: 'Plan 5.X: Layer 1 emit is a no-op stub. Got: $f');
       }
     });
 

@@ -4,22 +4,11 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_storage_bucket_object.schema.dart'
-    show $GoogleStorageBucketObject, googleStorageBucketObjectSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleStorageBucketObjectSchemaInstance
-    implements $GoogleStorageBucketObject {
-  const _GoogleStorageBucketObjectSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_storage_bucket_object`.
+const Set<String> _googleStorageBucketObjectSensitive = <String>{
+  'content',
+  'customer_encryption.encryption_key',
+};
 
 // ===========================================================================
 // BucketObjectContent — sealed (FromSource | FromContent)
@@ -213,8 +202,7 @@ class BucketObjectRetention {
 ///   contentType: TfArg.literal('image/png'),
 /// );
 /// ```
-final class GoogleStorageBucketObject
-    extends Resource<$GoogleStorageBucketObject> {
+final class GoogleStorageBucketObject extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_storage_bucket_object';
 
@@ -243,7 +231,6 @@ final class GoogleStorageBucketObject
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleStorageBucketObjectSchemaInstance(),
          argMap: {
            'bucket': bucket,
            'name': name,
@@ -275,7 +262,7 @@ final class GoogleStorageBucketObject
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleStorageBucketObjectSensitive;
+  Set<String> get $sensitiveFields => _googleStorageBucketObjectSensitive;
 
   /// Reference to `id` attribute (composite `{bucket}-{name}`).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

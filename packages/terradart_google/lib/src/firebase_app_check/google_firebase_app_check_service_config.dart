@@ -3,24 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_firebase_app_check_service_config.schema.dart'
-    show
-        $GoogleFirebaseAppCheckServiceConfig,
-        googleFirebaseAppCheckServiceConfigSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleFirebaseAppCheckServiceConfigSchemaInstance
-    implements $GoogleFirebaseAppCheckServiceConfig {
-  const _GoogleFirebaseAppCheckServiceConfigSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_firebase_app_check_service_config`.
+const Set<String> _googleFirebaseAppCheckServiceConfigSensitive = <String>{};
 
 // ===========================================================================
 // Enums
@@ -96,8 +80,7 @@ enum AppCheckEnforcementMode {
 /// flipping the switch.
 ///
 /// No nested blocks aside from the meta-arg `timeouts`.
-final class GoogleFirebaseAppCheckServiceConfig
-    extends Resource<$GoogleFirebaseAppCheckServiceConfig> {
+final class GoogleFirebaseAppCheckServiceConfig extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_firebase_app_check_service_config';
 
@@ -110,7 +93,6 @@ final class GoogleFirebaseAppCheckServiceConfig
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleFirebaseAppCheckServiceConfigSchemaInstance(),
          argMap: {
            'service_id': serviceId,
            if (enforcementMode != null) 'enforcement_mode': enforcementMode,
@@ -121,7 +103,7 @@ final class GoogleFirebaseAppCheckServiceConfig
   @override
   // ignore: non_constant_identifier_names
   Set<String> get $sensitiveFields =>
-      googleFirebaseAppCheckServiceConfigSensitive;
+      _googleFirebaseAppCheckServiceConfigSensitive;
 
   /// Reference to `name` attribute (the fully-qualified resource name of
   /// the service enforcement configuration, in the shape

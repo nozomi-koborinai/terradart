@@ -102,10 +102,3 @@ customSlots:
   exclusions:
     paramDeclaration: 'List<LogSinkExclusion>? exclusions'
     argMapEntry: "if (exclusions != null) 'exclusions': TfArg.literal(exclusions.map((e) => e.toArgMap()).toList()),"
-
-schemaStubComment: |-
-  // Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-  // consumed by `ResourceRef<S>.placeholder` (a future surface). We
-  // keep this stub inline instead of constructing schemantic's generated
-  // concrete class. `noSuchMethod` satisfies the abstract field getters; they
-  // are never invoked in v0.0.x.

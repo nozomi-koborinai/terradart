@@ -3,21 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_compute_network.schema.dart'
-    show $GoogleComputeNetwork, googleComputeNetworkSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleComputeNetworkSchemaInstance implements $GoogleComputeNetwork {
-  const _GoogleComputeNetworkSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_compute_network`.
+const Set<String> _googleComputeNetworkSensitive = <String>{};
 
 // Phase 4.5.1: dartTypeOverrides re-enabled for enum-typed fields. Callers
 // pass `TfArg.literal(RoutingMode.regional)` (enum value directly) and the
@@ -82,7 +69,7 @@ enum NetworkFirewallPolicyEnforcementOrder {
 ///
 /// Manages a VPC network or legacy network resource on GCP. Composition
 /// pattern: extends `Resource<$GoogleComputeNetwork>` for runtime behavior.
-final class GoogleComputeNetwork extends Resource<$GoogleComputeNetwork> {
+final class GoogleComputeNetwork extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_compute_network';
 
@@ -108,7 +95,6 @@ final class GoogleComputeNetwork extends Resource<$GoogleComputeNetwork> {
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleComputeNetworkSchemaInstance(),
          argMap: {
            'name': name,
            if (autoCreateSubnetworks != null)
@@ -140,7 +126,7 @@ final class GoogleComputeNetwork extends Resource<$GoogleComputeNetwork> {
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleComputeNetworkSensitive;
+  Set<String> get $sensitiveFields => _googleComputeNetworkSensitive;
 
   /// Reference to `name` attribute. Use for interpolations like
   /// `network.nameRef` → `${google_compute_network.<localName>.name}`.

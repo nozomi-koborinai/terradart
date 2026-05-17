@@ -38,10 +38,13 @@ Future<void> main() async {
     final exDir = p.join(_repoRoot, 'examples', '${svc}_quickstart');
 
     // 1. dart pub get (in case .dart_tool is stale or missing).
-    final pubGet = await Process.run('dart', [
-      'pub',
-      'get',
-    ], workingDirectory: exDir);
+    final pubGet = await Process.run(
+        'dart',
+        [
+          'pub',
+          'get',
+        ],
+        workingDirectory: exDir);
     if (pubGet.exitCode != 0) {
       stderr.writeln('pub get failed for $svc:\n${pubGet.stderr}');
       exit(1);
