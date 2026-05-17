@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.5.0-dev
+
+**BREAKING** — Plan 5.X: schemantic removal.
+
+- Dropped `package:schemantic` runtime dep.
+- Dropped `package:terradart_annotations` runtime dep.
+- Deleted all 48 `.schema.dart` + 48 `.schema.g.dart` files under `lib/src/generated/`.
+- 96 wrapper files regenerated: no `_<Resource>SchemaInstance` stub, no `extends Resource<$<R>>` (now `extends Resource`), no `schema:` constructor arg, file-private `_<resource>Sensitive` const inline (previously imported as public const from `.schema.dart`).
+- Sensitive masking unchanged — IR-derived const Set → wrapper `$sensitiveFields` getter → `JsonEncoder.encodeArgMapWithSensitive`.
+- Dropped `build_runner` dev_dep (no more schemantic generation).
+- Dart SDK floor restored to `^3.6.0` (was `^3.10.0` solely for schemantic).
+- See [ADR-0013](../../docs/decisions/0013-drop-schemantic-and-flatten-resource-type.md) for full rationale.
+
 ## 0.4.0-dev - 2026-05-17
 
 ### Added

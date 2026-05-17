@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.5.0-dev
+
+Plan 5.X: schemantic codegen path removed.
+
+- `file_emitter` no longer emits `part 'X.schema.g.dart';`.
+- `abstract_class_emitter` + `data_source_class_emitter` deactivated (Layer 1 schema-carrier classes no longer emitted).
+- `wrapper_emitter` + `data_source_wrapper_emitter`: stop emitting `_<R>SchemaInstance` stub block, stop emitting `schema:` arg, drop generic from `extends Resource`, emit file-private `_<resource>Sensitive` const at the top of the wrapper file.
+- `sensitive_set_emitter` retargeted to wrapper-file inline (no longer writes into `.schema.dart`).
+- `wrap_command`: Layer 1 emit step + Layer 2 build_runner invocation removed.
+- `WrapperOverride.schemaStubComment` axis dropped from `wrapper_override.dart` + `yaml_loader.dart` + 14 YAML override files.
+- Dropped `terradart_annotations` runtime dep.
+- See [ADR-0013](../../docs/decisions/0013-drop-schemantic-and-flatten-resource-type.md) for full rationale.
+
 ## 0.4.0-dev - 2026-05-17
 
 Plan 5.D — codegen correctness improvements (4 PRs).

@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.5.0-dev
+
+**BREAKING** — Plan 5.X: schemantic removal + Resource type flattening.
+
+- Dropped `Resource<S>` generic — `Resource` is now flat. User wrappers extend `Resource` without a type parameter.
+- Dropped `Resource.schema` field.
+- Dropped `SchemaCarrier<S>` interface.
+- Dropped `ResourceRef<S>.placeholder` — `ResourceRef` no longer carries a schemantic-instance type parameter (it pins to `Object?` since the value never escapes).
+- Dropped `TfArgRef.literalOrPlaceholder`.
+- Deleted `placeholder.dart`.
+- Existing dead tests around the above (e.g. `r.schema.name` assertions) removed.
+- See [ADR-0013](../../docs/decisions/0013-drop-schemantic-and-flatten-resource-type.md) for full rationale.
+
 ## 0.4.0-dev - 2026-05-17
 
 No user-facing API changes. Workspace consistency bump alongside `terradart_codegen` 0.4.0-dev (Plan 5.D: codegen correctness improvements — MM YAML deprecation parsing fix, encode skeleton fix + Gate 6, paramOrder measurement tool, min_items assert hints).
