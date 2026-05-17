@@ -19,10 +19,6 @@ void main() {
     test('bareAddress is unwrapped', () {
       expect(ref.bareAddress, 'google_pubsub_topic.orders.name');
     });
-
-    test('placeholder uses placeholderFor<T>()', () {
-      expect(ref.placeholder, '');
-    });
   });
 
   group('TfRef.data', () {
@@ -40,21 +36,15 @@ void main() {
 
   group('TfRef.resource', () {
     test('bareAddress is the resource address with no attribute', () {
-      final res = _FakeResourceLike<int>('google_pubsub_topic.orders', 0);
-      final ref = TfRef.resource<int>(res);
+      final res = _FakeAddressed('google_pubsub_topic.orders');
+      final ref = TfRef.resource(res);
       expect(ref.bareAddress, 'google_pubsub_topic.orders');
     });
 
     test('interpolation wraps the bare address with \${...}', () {
-      final res = _FakeResourceLike<int>('google_pubsub_topic.orders', 0);
-      final ref = TfRef.resource<int>(res);
+      final res = _FakeAddressed('google_pubsub_topic.orders');
+      final ref = TfRef.resource(res);
       expect(ref.interpolation, r'${google_pubsub_topic.orders}');
-    });
-
-    test('placeholder returns the owner schema instance', () {
-      final res = _FakeResourceLike<int>('google_pubsub_topic.orders', 7);
-      final ref = TfRef.resource<int>(res);
-      expect(ref.placeholder, 7);
     });
   });
 
@@ -64,23 +54,9 @@ void main() {
       final tag = switch (ref) {
         AttributeRef<int>() => 'attr',
         DataRef<int>() => 'data',
-        ResourceRef<int>() => 'res',
+        ResourceRef() => 'res',
       };
       expect(tag, 'attr');
     });
   });
-}
-
-/// A minimal `SchemaCarrier<S>` fixture so we can construct a
-/// `ResourceRef<S>` without dragging the full `Resource<S>` base
-/// into this test file. In real Task 4/7 tests, a true `Resource<S>`
-/// instance is used.
-class _FakeResourceLike<S> implements SchemaCarrier<S> {
-  _FakeResourceLike(this._addr, this._schema);
-  final String _addr;
-  final S _schema;
-  @override
-  String get tfAddress => _addr;
-  @override
-  S get schema => _schema;
 }

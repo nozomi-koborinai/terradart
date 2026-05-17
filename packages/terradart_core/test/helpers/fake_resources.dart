@@ -10,12 +10,6 @@ class AddressStub implements TfAddressed {
   final String tfAddress;
 }
 
-/// Schemantic stand-in. The synth pipeline never inspects it; it only
-/// satisfies `Resource<S>.schema`'s typing requirement.
-class FakeSchema {
-  const FakeSchema();
-}
-
 /// Fake `StackProvider` test fixture. `GoogleProvider` (in `terradart_google`)
 /// is the real implementation; this stub satisfies the interface for synth
 /// tests.
@@ -57,13 +51,12 @@ class TestStack extends Stack {
       throw UnimplementedError('use StackSynth.synth(...) directly in tests');
 }
 
-class FakePubsubTopic extends Resource<FakeSchema> {
+class FakePubsubTopic extends Resource {
   FakePubsubTopic({
     required super.localName,
     required super.argMap,
   }) : super(
           terraformType: 'google_pubsub_topic',
-          schema: const FakeSchema(),
         );
 
   FakePubsubTopic.withMeta({
@@ -73,46 +66,42 @@ class FakePubsubTopic extends Resource<FakeSchema> {
     super.dependsOn,
   }) : super(
           terraformType: 'google_pubsub_topic',
-          schema: const FakeSchema(),
         );
 
   @override
   Set<String> get $sensitiveFields => const {};
 }
 
-class FakePubsubSubscription extends Resource<FakeSchema> {
+class FakePubsubSubscription extends Resource {
   FakePubsubSubscription({
     required super.localName,
     required super.argMap,
   }) : super(
           terraformType: 'google_pubsub_subscription',
-          schema: const FakeSchema(),
         );
 
   @override
   Set<String> get $sensitiveFields => const {};
 }
 
-class FakeSecretVersion extends Resource<FakeSchema> {
+class FakeSecretVersion extends Resource {
   FakeSecretVersion({
     required super.localName,
     required super.argMap,
   }) : super(
           terraformType: 'google_secret_manager_secret_version',
-          schema: const FakeSchema(),
         );
 
   @override
   Set<String> get $sensitiveFields => const {'secret_data'};
 }
 
-class FakeProjectData extends Data<FakeSchema> {
+class FakeProjectData extends Data {
   FakeProjectData({
     required super.localName,
     required super.argMap,
   }) : super(
           terraformType: 'google_project',
-          schema: const FakeSchema(),
         );
 
   @override

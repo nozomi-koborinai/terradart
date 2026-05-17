@@ -4,18 +4,12 @@ import 'package:terradart_core/src/tf_arg.dart';
 import 'package:terradart_core/src/tf_ref.dart';
 import 'package:test/test.dart';
 
-class _FakeProjectSchema {
-  const _FakeProjectSchema(this.projectId);
-  final String projectId;
-}
-
-class _FakeProjectData extends Data<_FakeProjectSchema> {
+class _FakeProjectData extends Data {
   _FakeProjectData({
     required super.localName,
     required TfArg<String> projectId,
   }) : super(
           terraformType: 'google_project',
-          schema: _FakeProjectSchema(projectId.literalOrPlaceholder),
           argMap: {'project_id': projectId},
         );
 
@@ -26,7 +20,7 @@ class _FakeProjectData extends Data<_FakeProjectSchema> {
 }
 
 void main() {
-  group('Data<S>', () {
+  group('Data', () {
     final d = _FakeProjectData(
       localName: 'current',
       projectId: const TfArgLiteral('my-proj'),

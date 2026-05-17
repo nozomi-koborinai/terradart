@@ -243,7 +243,7 @@ class JsonEncoder {
   /// JSON for one resource block: `argMap` + optional `depends_on` +
   /// optional `lifecycle`. Sensitive fields are masked per
   /// `Resource.$sensitiveFields`.
-  static Map<String, dynamic> resourceBlock(Resource<dynamic> r) {
+  static Map<String, dynamic> resourceBlock(Resource r) {
     final out = encodeArgMapWithSensitive(
       argMap: r.argMap,
       sensitiveFields: r.$sensitiveFields,
