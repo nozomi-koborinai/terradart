@@ -5,9 +5,7 @@ import 'package:args/command_runner.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart' as p;
 
-import '../codegen/data_source_class_emitter.dart';
 import '../codegen/data_source_wrapper_emitter.dart';
-import '../codegen/file_emitter.dart';
 import '../codegen/generated_file_header.dart';
 import '../codegen/wrapper_emitter.dart';
 import '../codegen/wrapper_overrides/_registry.dart';
@@ -151,17 +149,22 @@ class WrapCommand extends Command<int> {
     //    output path. Doing this before any filesystem mutation lets the
     //    `--force` check (and the future `--check` diff) consider the
     //    whole batch atomically.
+    //
+    //    Plan 5.X (v0.5.0-dev): Layer 1 schema-carrier emission
+    //    (`generated/<type>.schema.dart` and
+    //    `generated/data_<type>.schema.dart`) is retired along with the
+    //    schemantic `build_runner` Layer 2 step. Only Layer 2 factory
+    //    wrappers are emitted now, and the wrapper itself carries its
+    //    file-private `_<r>Sensitive` const inline (see
+    //    `WrapperEmitter`).
     final buffer = <String, String>{};
     final resourceEmitter = WrapperEmitter(overrides: loaded.resources);
     final dataSourceEmitter =
         DataSourceWrapperEmitter(overrides: loaded.dataSources);
-    const layer1Emitter = DataSourceClassEmitter();
-    final resourceLayer1Emitter = FileEmitter();
     // Layer 2 emit output is unformatted; match the WrapperEmitter /
     // DataSourceWrapperEmitter Level A test convention (dart_style 3.x with
     // `latestLanguageVersion`) so wrap output is byte-identical with the
-    // handwritten_baseline goldens. Layer 1's emitter ships ready-formatted
-    // output and is not run through the formatter.
+    // handwritten_baseline goldens.
     final formatter = DartFormatter(
       languageVersion: DartFormatter.latestLanguageVersion,
     );
@@ -175,20 +178,15 @@ class WrapCommand extends Command<int> {
         return CliExitCodes.dataError;
       }
       // Layer 2 wrapper: `<outputDir>/<terraformType>.dart`.
-      final raw = resourceEmitter.emit(def, providerSource: provider);
-      final dartSrc = generatedFileHeader + formatter.format(raw);
-      buffer[p.join(entry.value.outputDir, '${entry.key}.dart')] = dartSrc;
-      // Layer 1 schema carrier: `generated/<terraformType>.schema.dart`.
-      // FileEmitter wraps `AbstractClassEmitter` with the schemantic /
-      // terradart_annotations imports + `part 'X.schema.g.dart';` directive
-      // and formats the result. The part file (`.schema.g.dart`) is produced
-      // separately by `dart run build_runner build` after `wrap`.
-      final layer1 = resourceLayer1Emitter.emit(
-        ir: ir,
-        def: def,
+      // `extraSensitiveFields` (formerly forwarded to the Layer 1 abstract
+      // emitter) is now consumed by the wrapper emitter inline.
+      final raw = resourceEmitter.emit(
+        def,
+        providerSource: provider,
         extraSensitiveFields: entry.value.extraSensitiveFields,
       );
-      buffer[p.join('generated', '${entry.key}.schema.dart')] = layer1;
+      final dartSrc = generatedFileHeader + formatter.format(raw);
+      buffer[p.join(entry.value.outputDir, '${entry.key}.dart')] = dartSrc;
     }
 
     for (final entry in loaded.dataSources.entries) {
@@ -204,12 +202,6 @@ class WrapCommand extends Command<int> {
       final raw = dataSourceEmitter.emit(def, providerSource: provider);
       final layer2 = generatedFileHeader + formatter.format(raw);
       buffer[p.join(entry.value.outputDir, '${entry.key}.dart')] = layer2;
-      // Layer 1 schema carrier: `generated/data_<terraformType>.schema.dart`.
-      // DataSourceClassEmitter already prepends its own GENERATED FILE
-      // header (with the `// Source:` banner) and ships pre-formatted
-      // output, so we neither add the shared header constant nor format.
-      final layer1 = layer1Emitter.emit(def, providerSource: provider);
-      buffer[p.join('generated', 'data_${entry.key}.schema.dart')] = layer1;
     }
 
     // 4. E401 guard: refuse to clobber files that don't carry one of the

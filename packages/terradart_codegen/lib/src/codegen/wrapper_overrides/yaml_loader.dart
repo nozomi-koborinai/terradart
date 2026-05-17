@@ -63,12 +63,12 @@ class YamlOverrideLoader {
   static final RegExp _terraformTypePattern = RegExp(r'^[a-z][a-z0-9_]*$');
 
   static const Set<String> _allowedTopLevelKeys = {
-    // 11 wrapper axes (Phase 2.x).
+    // 10 wrapper axes (Phase 2.x, minus the Plan 5.X-retired
+    // `schemaStubComment` axis whose host stub class is gone).
     'classDocComment',
     'paramOrder',
     'argMapOrder',
     'extraGetters',
-    'schemaStubComment',
     'requiredParams',
     'dartTypeOverrides',
     'deprecatedParams',
@@ -248,9 +248,13 @@ class YamlOverrideLoader {
     // E201: data sources reject resource-only axes. Listed axes are the ones
     // the data source emitter has no slot for; surfacing them at load time
     // beats silently dropping verbatim Dart at emit time.
+    //
+    // Plan 5.X (v0.5.0-dev): `schemaStubComment` is no longer a recognized
+    // top-level key (its host stub class is retired), so it's already
+    // rejected by the top-level allowed-keys check above — keeping it out
+    // of this resource-only list avoids a duplicate / unreachable branch.
     if (kind == WrapperOverrideKind.dataSource) {
       const resourceOnlyAxes = <String>[
-        'schemaStubComment',
         'prelude',
         'customSlots',
         'deprecatedParams',
@@ -284,7 +288,7 @@ class YamlOverrideLoader {
       paramOrder: paramOrder,
       argMapOrder: argMapOrder,
       extraGetters: _readString(yaml, 'extraGetters', filePath),
-      schemaStubComment: _readString(yaml, 'schemaStubComment', filePath),
+      // Plan 5.X: `schemaStubComment` is retired — no read here.
       requiredParams: _readStringList(yaml, 'requiredParams', filePath),
       dartTypeOverrides: _readStringMap(yaml, 'dartTypeOverrides', filePath),
       deprecatedParams: _readStringMap(yaml, 'deprecatedParams', filePath),

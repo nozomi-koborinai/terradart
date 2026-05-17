@@ -23,7 +23,9 @@ void main() {
         expect(override.paramOrder, isNull);
         expect(override.argMapOrder, isNull);
         expect(override.extraGetters, isNull);
-        expect(override.schemaStubComment, isNull);
+        // Plan 5.X: `schemaStubComment` axis retired alongside the
+        // schemantic stub-class emit. The field no longer exists on
+        // [WrapperOverride].
         expect(override.requiredParams, isNull);
         expect(override.dartTypeOverrides, isNull);
         expect(override.deprecatedParams, isNull);
@@ -80,15 +82,10 @@ void main() {
         );
       });
 
-      test('schema_stub_comment_only -> trailing newline stripped', () {
-        final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/happy',
-        );
-        final result = loader.load().resources;
-        final o = result['schema_stub_comment_only']!;
-        expect(o.schemaStubComment, isNot(endsWith('\n')));
-        expect(o.schemaStubComment, equals('// line 1\n// line 2'));
-      });
+      // Plan 5.X: the `schema_stub_comment_only` happy-path test is
+      // retired alongside the axis. The negative coverage moved to
+      // `schemaStubComment is now rejected as an unknown top-level key`
+      // (group: failure).
 
       test('required_params_only -> list set', () {
         final loader = YamlOverrideLoader(
@@ -162,7 +159,9 @@ void main() {
         );
       });
 
-      test('full_axis -> all 11 axes set', () {
+      test(
+          'full_axis -> all axes set (Plan 5.X: 10 axes, schemaStubComment retired)',
+          () {
         final loader = YamlOverrideLoader(
           rootDir: 'test/fixtures/semantic_hints_loader/happy',
         );
@@ -172,7 +171,6 @@ void main() {
         expect(o.paramOrder, equals(['x', 'y']));
         expect(o.argMapOrder, equals(['y', 'x']));
         expect(o.extraGetters, isNotNull);
-        expect(o.schemaStubComment, isNotNull);
         expect(o.requiredParams, equals(['x']));
         expect(o.dartTypeOverrides, equals({'x': 'int'}));
         expect(o.deprecatedParams, equals({'y': 'use z'}));
@@ -205,6 +203,33 @@ void main() {
           loader.load,
           throwsFormatExceptionWith('unknown top-level key: classDocCommen'),
         );
+      });
+
+      // Plan 5.X: `schemaStubComment` is no longer a recognized
+      // top-level axis. The retirement is enforced via the standard
+      // unknown-top-level-key rejection so any leftover yaml axis (or
+      // future yaml edits that reintroduce it) fail loud at load time
+      // rather than silently dropping the value.
+      test('schemaStubComment is no longer a recognized top-level key',
+          () async {
+        final tmpDir =
+            await Directory.systemTemp.createTemp('plan5x_stubcomment_');
+        try {
+          await File(p.join(tmpDir.path, 'x.yaml')).writeAsString('''
+outputDir: pubsub
+schemaStubComment: |-
+  // leftover from Plan 4.x
+''');
+          final loader = YamlOverrideLoader(rootDir: tmpDir.path);
+          expect(
+            loader.load,
+            throwsFormatExceptionWith(
+              'unknown top-level key: schemaStubComment',
+            ),
+          );
+        } finally {
+          await tmpDir.delete(recursive: true);
+        }
       });
 
       test('top-level not mapping -> FormatException', () {
@@ -571,7 +596,14 @@ fileLeadingComment: |-
   });
 
   group('Data source axis restriction', () {
-    test('schemaStubComment on data source raises E201', () async {
+    // Plan 5.X: `schemaStubComment` is no longer a recognized top-level
+    // key for any override kind. The post-Plan-5.X behavior is that the
+    // key is rejected at the top-level allowed-keys check
+    // (FormatException, code path: `unknown top-level key`), well before
+    // the resource-vs-data-source axis routing runs.
+    test(
+        'schemaStubComment on data source is rejected as unknown top-level key',
+        () async {
       final tmpDir = await Directory.systemTemp.createTemp('phase4_axis_');
       try {
         await File(p.join(tmpDir.path, 'x.yaml')).writeAsString('''
@@ -580,16 +612,16 @@ outputDir: data
 schemaStubComment: |-
   // forbidden
 ''');
-        try {
-          loadWrapperOverrides(rootDir: tmpDir.path);
-          fail('expected LoaderErrorReport');
-        } on LoaderErrorReport catch (e) {
-          expect(
-            e.errors.first.code,
-            LoaderErrorCode.axisNotAllowedForDataSource,
-          );
-          expect(e.errors.first.message, contains('schemaStubComment'));
-        }
+        expect(
+          () => loadWrapperOverrides(rootDir: tmpDir.path),
+          throwsA(
+            isA<FormatException>().having(
+              (e) => e.message,
+              'message',
+              contains('unknown top-level key: schemaStubComment'),
+            ),
+          ),
+        );
       } finally {
         await tmpDir.delete(recursive: true);
       }
