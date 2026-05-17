@@ -3,22 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_logging_project_sink.schema.dart'
-    show $GoogleLoggingProjectSink, googleLoggingProjectSinkSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class. `noSuchMethod` satisfies the abstract field getters; they
-// are never invoked in v0.0.x.
-class _GoogleLoggingProjectSinkSchemaInstance
-    implements $GoogleLoggingProjectSink {
-  const _GoogleLoggingProjectSinkSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_logging_project_sink`.
+const Set<String> _googleLoggingProjectSinkSensitive = <String>{};
 
 /// `bigquery_options` block. Toggles partitioned tables for BigQuery
 /// destinations (date-sharded vs. partitioned by `_PARTITIONTIME`).
@@ -88,8 +74,7 @@ class LogSinkExclusion {
 /// `Resource<$GoogleLoggingProjectSink>` for runtime behavior. The
 /// `bigquery_options` block and `exclusions` list are modeled as helper
 /// classes in the `prelude` below.
-final class GoogleLoggingProjectSink
-    extends Resource<$GoogleLoggingProjectSink> {
+final class GoogleLoggingProjectSink extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_logging_project_sink';
 
@@ -109,7 +94,6 @@ final class GoogleLoggingProjectSink
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleLoggingProjectSinkSchemaInstance(),
          argMap: {
            'name': name,
            'destination': destination,
@@ -132,7 +116,7 @@ final class GoogleLoggingProjectSink
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleLoggingProjectSinkSensitive;
+  Set<String> get $sensitiveFields => _googleLoggingProjectSinkSensitive;
 
   /// Reference to `id` attribute (`projects/{project}/sinks/{name}`).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

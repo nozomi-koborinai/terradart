@@ -4,22 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_pubsub_subscription.schema.dart'
-    show $GooglePubsubSubscription, googlePubsubSubscriptionSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class. `noSuchMethod` satisfies the abstract field getters; they
-// are never invoked in v0.0.x.
-class _GooglePubsubSubscriptionSchemaInstance
-    implements $GooglePubsubSubscription {
-  const _GooglePubsubSubscriptionSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_pubsub_subscription`.
+const Set<String> _googlePubsubSubscriptionSensitive = <String>{};
 
 // ===========================================================================
 // Nested-block helper classes
@@ -214,8 +200,7 @@ class ExpirationPolicy {
 ///   ),
 /// );
 /// ```
-final class GooglePubsubSubscription
-    extends Resource<$GooglePubsubSubscription> {
+final class GooglePubsubSubscription extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_pubsub_subscription';
 
@@ -243,7 +228,6 @@ final class GooglePubsubSubscription
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GooglePubsubSubscriptionSchemaInstance(),
          argMap: {
            'name': name,
            'topic': topic,
@@ -280,7 +264,7 @@ final class GooglePubsubSubscription
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googlePubsubSubscriptionSensitive;
+  Set<String> get $sensitiveFields => _googlePubsubSubscriptionSensitive;
 
   /// Reference to `name` attribute (`google_pubsub_subscription.<id>.name`).
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

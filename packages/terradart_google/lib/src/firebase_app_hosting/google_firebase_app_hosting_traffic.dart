@@ -4,24 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_firebase_app_hosting_traffic.schema.dart'
-    show
-        $GoogleFirebaseAppHostingTraffic,
-        googleFirebaseAppHostingTrafficSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleFirebaseAppHostingTrafficSchemaInstance
-    implements $GoogleFirebaseAppHostingTraffic {
-  const _GoogleFirebaseAppHostingTrafficSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_firebase_app_hosting_traffic`.
+const Set<String> _googleFirebaseAppHostingTrafficSensitive = <String>{};
 
 // ===========================================================================
 // target block (max_items=1) + splits (min_items=1)
@@ -146,8 +130,7 @@ class AppHostingTrafficRolloutPolicy {
 /// the provider currently restricting split percentages to 0 or 100);
 /// the `rollout_policy` block hooks builds into a git branch so commits
 /// trigger automatic redeploys.
-final class GoogleFirebaseAppHostingTraffic
-    extends Resource<$GoogleFirebaseAppHostingTraffic> {
+final class GoogleFirebaseAppHostingTraffic extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_firebase_app_hosting_traffic';
 
@@ -162,7 +145,6 @@ final class GoogleFirebaseAppHostingTraffic
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleFirebaseAppHostingTrafficSchemaInstance(),
          argMap: {
            'backend': backend,
            'location': location,
@@ -175,7 +157,7 @@ final class GoogleFirebaseAppHostingTraffic
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleFirebaseAppHostingTrafficSensitive;
+  Set<String> get $sensitiveFields => _googleFirebaseAppHostingTrafficSensitive;
 
   /// Reference to `name` attribute (full resource path
   /// `projects/{project}/locations/{location}/backends/{backend}/traffic`).

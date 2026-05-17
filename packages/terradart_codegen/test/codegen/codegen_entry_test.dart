@@ -14,7 +14,14 @@ void main() {
       tmp.deleteSync(recursive: true);
     });
 
-    test('emits one .dart file per requested resource', () async {
+    // Plan 5.X (v0.5.0-dev): the resource Layer 1 file content is the empty
+    // string — `FileEmitter.emit` is a no-op stub now (schemantic chain is
+    // retired). The entry point still writes one file per requested resource
+    // so downstream `dart pub` workspace iteration stays predictable; the
+    // file contents are intentionally empty pending full deletion of the
+    // entry point in a later cleanup pass.
+    test('emits one .dart file per requested resource (no-op stub content)',
+        () async {
       final result = await runCodegen(
         schemaJsonPath: 'test/fixtures/schema/google_pubsub_topic.schema.json',
         mmYamlPaths: {
@@ -27,8 +34,7 @@ void main() {
       final emitted = result.emittedFiles.single;
       expect(p.basename(emitted), 'google_pubsub_topic.dart');
       final src = File(emitted).readAsStringSync();
-      expect(src, contains(r'abstract class $GooglePubsubTopic'));
-      expect(src, contains("'hashicorp/google'"));
+      expect(src, isEmpty);
     });
 
     test('onlyResources filter restricts output set', () async {

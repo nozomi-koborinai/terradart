@@ -4,21 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_cloud_scheduler_job.schema.dart'
-    show $GoogleCloudSchedulerJob, googleCloudSchedulerJobSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline. `noSuchMethod` satisfies the abstract field
-// getters; they are never invoked in v0.0.x.
-class _GoogleCloudSchedulerJobSchemaInstance
-    implements $GoogleCloudSchedulerJob {
-  const _GoogleCloudSchedulerJobSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_cloud_scheduler_job`.
+const Set<String> _googleCloudSchedulerJobSensitive = <String>{};
 
 // ===========================================================================
 // SchedulerTarget — sealed (Pubsub | Http | AppEngineHttp)
@@ -230,7 +217,7 @@ class SchedulerRetryConfig {
 ///   ),
 /// );
 /// ```
-final class GoogleCloudSchedulerJob extends Resource<$GoogleCloudSchedulerJob> {
+final class GoogleCloudSchedulerJob extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_cloud_scheduler_job';
 
@@ -250,7 +237,6 @@ final class GoogleCloudSchedulerJob extends Resource<$GoogleCloudSchedulerJob> {
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleCloudSchedulerJobSchemaInstance(),
          argMap: {
            'name': name,
            'region': region,
@@ -268,7 +254,7 @@ final class GoogleCloudSchedulerJob extends Resource<$GoogleCloudSchedulerJob> {
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleCloudSchedulerJobSensitive;
+  Set<String> get $sensitiveFields => _googleCloudSchedulerJobSensitive;
 
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

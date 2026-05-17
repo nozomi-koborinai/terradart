@@ -3,21 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_compute_firewall.schema.dart'
-    show $GoogleComputeFirewall, googleComputeFirewallSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleComputeFirewallSchemaInstance implements $GoogleComputeFirewall {
-  const _GoogleComputeFirewallSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_compute_firewall`.
+const Set<String> _googleComputeFirewallSensitive = <String>{};
 
 // Phase 4.5.1: dartTypeOverrides re-enabled. Callers pass enum values
 // directly; TfArg detects `.terraformValue` getter.
@@ -111,7 +98,7 @@ class FirewallLogConfig {
 /// `Resource<$GoogleComputeFirewall>` for runtime behavior. The `allow` /
 /// `deny` list-typed blocks and the single `log_config` block are modeled
 /// as helper classes in the `prelude` below.
-final class GoogleComputeFirewall extends Resource<$GoogleComputeFirewall> {
+final class GoogleComputeFirewall extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_compute_firewall';
 
@@ -138,7 +125,6 @@ final class GoogleComputeFirewall extends Resource<$GoogleComputeFirewall> {
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleComputeFirewallSchemaInstance(),
          argMap: {
            'name': name,
            'network': network,
@@ -168,7 +154,7 @@ final class GoogleComputeFirewall extends Resource<$GoogleComputeFirewall> {
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleComputeFirewallSensitive;
+  Set<String> get $sensitiveFields => _googleComputeFirewallSensitive;
 
   /// Reference to `name` attribute. Use for interpolations like
   /// `fw.nameRef` → `${google_compute_firewall.<localName>.name}`.

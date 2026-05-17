@@ -4,20 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_firestore_field.schema.dart'
-    show $GoogleFirestoreField, googleFirestoreFieldSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline. `noSuchMethod` satisfies the abstract field
-// getters; they are never invoked in v0.0.x.
-class _GoogleFirestoreFieldSchemaInstance implements $GoogleFirestoreField {
-  const _GoogleFirestoreFieldSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_firestore_field`.
+const Set<String> _googleFirestoreFieldSensitive = <String>{};
 
 // ===========================================================================
 // Enums (sourced from schema "Possible values" prose)
@@ -160,7 +148,7 @@ class TtlConfig {
 ///   indexConfig: const IndexConfig(indexes: []),
 /// );
 /// ```
-final class GoogleFirestoreField extends Resource<$GoogleFirestoreField> {
+final class GoogleFirestoreField extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_firestore_field';
 
@@ -176,7 +164,6 @@ final class GoogleFirestoreField extends Resource<$GoogleFirestoreField> {
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleFirestoreFieldSchemaInstance(),
          argMap: {
            'collection': collection,
            'field': field,
@@ -191,7 +178,7 @@ final class GoogleFirestoreField extends Resource<$GoogleFirestoreField> {
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleFirestoreFieldSensitive;
+  Set<String> get $sensitiveFields => _googleFirestoreFieldSensitive;
 
   /// Reference to `name` attribute (the full path
   /// `projects/{p}/databases/{db}/collectionGroups/{c}/fields/{f}`).

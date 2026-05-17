@@ -4,22 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_cloudfunctions2_function.schema.dart'
-    show $GoogleCloudfunctions2Function, googleCloudfunctions2FunctionSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleCloudfunctions2FunctionSchemaInstance
-    implements $GoogleCloudfunctions2Function {
-  const _GoogleCloudfunctions2FunctionSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_cloudfunctions2_function`.
+const Set<String> _googleCloudfunctions2FunctionSensitive = <String>{};
 
 // ===========================================================================
 // Enums (sourced from schema "Possible values" prose)
@@ -650,8 +636,7 @@ class DirectVpcNetworkInterface {
 /// single source of truth for the build step (source archive + runtime),
 /// the runtime service config (memory / CPU / scaling), and (optionally)
 /// the event-trigger binding.
-final class GoogleCloudfunctions2Function
-    extends Resource<$GoogleCloudfunctions2Function> {
+final class GoogleCloudfunctions2Function extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_cloudfunctions2_function';
 
@@ -670,7 +655,6 @@ final class GoogleCloudfunctions2Function
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleCloudfunctions2FunctionSchemaInstance(),
          argMap: {
            'name': name,
            'location': location,
@@ -689,7 +673,7 @@ final class GoogleCloudfunctions2Function
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleCloudfunctions2FunctionSensitive;
+  Set<String> get $sensitiveFields => _googleCloudfunctions2FunctionSensitive;
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

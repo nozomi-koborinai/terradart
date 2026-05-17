@@ -1,28 +1,12 @@
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_cloud_tasks_queue_iam_member.schema.dart'
-    show
-        $GoogleCloudTasksQueueIamMember,
-        googleCloudTasksQueueIamMemberSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline. `noSuchMethod` satisfies the abstract field
-// getters; they are never invoked in v0.0.x.
-class _GoogleCloudTasksQueueIamMemberSchemaInstance
-    implements $GoogleCloudTasksQueueIamMember {
-  const _GoogleCloudTasksQueueIamMemberSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_cloud_tasks_queue_iam_member`.
+const Set<String> _googleCloudTasksQueueIamMemberSensitive = <String>{};
 
 /// Factory wrapper for `google_cloud_tasks_queue_iam_member`.
 ///
 /// Identity: `name` + `location` + `role` + `member` (project optional).
-final class GoogleCloudTasksQueueIamMember
-    extends Resource<$GoogleCloudTasksQueueIamMember> {
+final class GoogleCloudTasksQueueIamMember extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_cloud_tasks_queue_iam_member';
 
@@ -38,7 +22,6 @@ final class GoogleCloudTasksQueueIamMember
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleCloudTasksQueueIamMemberSchemaInstance(),
          argMap: {
            'name': name,
            'location': location,
@@ -51,7 +34,7 @@ final class GoogleCloudTasksQueueIamMember
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleCloudTasksQueueIamMemberSensitive;
+  Set<String> get $sensitiveFields => _googleCloudTasksQueueIamMemberSensitive;
 
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }

@@ -3,22 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_monitoring_alert_policy.schema.dart'
-    show $GoogleMonitoringAlertPolicy, googleMonitoringAlertPolicySensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleMonitoringAlertPolicySchemaInstance
-    implements $GoogleMonitoringAlertPolicy {
-  const _GoogleMonitoringAlertPolicySchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_monitoring_alert_policy`.
+const Set<String> _googleMonitoringAlertPolicySensitive = <String>{};
 
 // ===========================================================================
 // Top-level enums
@@ -644,8 +630,7 @@ class Documentation {
 /// nested-block helpers ([AlertCondition], [ConditionThreshold],
 /// [Aggregation], [AlertStrategy], [Documentation], etc.) are modeled in
 /// the `prelude` below.
-final class GoogleMonitoringAlertPolicy
-    extends Resource<$GoogleMonitoringAlertPolicy> {
+final class GoogleMonitoringAlertPolicy extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_monitoring_alert_policy';
 
@@ -665,7 +650,6 @@ final class GoogleMonitoringAlertPolicy
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleMonitoringAlertPolicySchemaInstance(),
          argMap: {
            'display_name': displayName,
            'combiner': combiner,
@@ -687,7 +671,7 @@ final class GoogleMonitoringAlertPolicy
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleMonitoringAlertPolicySensitive;
+  Set<String> get $sensitiveFields => _googleMonitoringAlertPolicySensitive;
 
   /// Reference to `id` attribute (the alert policy's full resource name,
   /// `projects/{project}/alertPolicies/{policy_id}`).

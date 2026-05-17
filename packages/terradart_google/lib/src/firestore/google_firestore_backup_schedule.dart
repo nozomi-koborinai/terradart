@@ -4,21 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_firestore_backup_schedule.schema.dart'
-    show $GoogleFirestoreBackupSchedule, googleFirestoreBackupScheduleSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline. `noSuchMethod` satisfies the abstract field
-// getters; they are never invoked in v0.0.x.
-class _GoogleFirestoreBackupScheduleSchemaInstance
-    implements $GoogleFirestoreBackupSchedule {
-  const _GoogleFirestoreBackupScheduleSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_firestore_backup_schedule`.
+const Set<String> _googleFirestoreBackupScheduleSensitive = <String>{};
 
 // ===========================================================================
 // BackupRecurrence -- sealed (Daily | Weekly)
@@ -126,8 +113,7 @@ enum BackupDayOfWeek {
 ///
 /// `retention` is a Google `Duration` string (seconds-suffixed, up to
 /// nine fractional digits, e.g. `"86400s"`). Maximum 14 weeks.
-final class GoogleFirestoreBackupSchedule
-    extends Resource<$GoogleFirestoreBackupSchedule> {
+final class GoogleFirestoreBackupSchedule extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_firestore_backup_schedule';
 
@@ -141,7 +127,6 @@ final class GoogleFirestoreBackupSchedule
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleFirestoreBackupScheduleSchemaInstance(),
          argMap: {
            if (database != null) 'database': database,
            'retention': retention,
@@ -152,7 +137,7 @@ final class GoogleFirestoreBackupSchedule
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleFirestoreBackupScheduleSensitive;
+  Set<String> get $sensitiveFields => _googleFirestoreBackupScheduleSensitive;
 
   /// Reference to `id` attribute (full resource path
   /// `projects/{p}/databases/{db}/backupSchedules/{id}`).

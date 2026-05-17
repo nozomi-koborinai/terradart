@@ -3,21 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_kms_key_ring.schema.dart'
-    show $GoogleKmsKeyRing, googleKmsKeyRingSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleKmsKeyRingSchemaInstance implements $GoogleKmsKeyRing {
-  const _GoogleKmsKeyRingSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_kms_key_ring`.
+const Set<String> _googleKmsKeyRingSensitive = <String>{};
 
 /// Factory wrapper for `google_kms_key_ring` (provider `hashicorp/google ~> 7.0`).
 ///
@@ -40,7 +27,7 @@ class _GoogleKmsKeyRingSchemaInstance implements $GoogleKmsKeyRing {
 /// **Note:** KeyRings cannot be deleted from GCP. Destroying a
 /// Terraform-managed KeyRing removes it from state but does not delete the
 /// resource from the project (per GCP policy).
-final class GoogleKmsKeyRing extends Resource<$GoogleKmsKeyRing> {
+final class GoogleKmsKeyRing extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_kms_key_ring';
 
@@ -53,7 +40,6 @@ final class GoogleKmsKeyRing extends Resource<$GoogleKmsKeyRing> {
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleKmsKeyRingSchemaInstance(),
          argMap: {
            'name': name,
            'location': location,
@@ -63,7 +49,7 @@ final class GoogleKmsKeyRing extends Resource<$GoogleKmsKeyRing> {
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleKmsKeyRingSensitive;
+  Set<String> get $sensitiveFields => _googleKmsKeyRingSensitive;
 
   /// Reference to `name` attribute. Use for interpolations like
   /// `keyRing.nameRef` → `${google_kms_key_ring.<localName>.name}`.

@@ -30,13 +30,13 @@ void main() {
   group('DataSourceWrapperEmitter', () {
     // L2b-1 — minimal override drives the bare-stub data source surface.
     //
-    // The override carries no extras (no fileLeadingComment, no
-    // classDocComment, no extraGetters). What we are exercising is the
-    // emitter's MUST-EMIT spine: it has to produce a wrapper class header
-    // that says `extends Data<$GoogleProject>` regardless of override
-    // verbosity. Any drift here is a regression in the spine, not the
-    // hand-curation layer.
-    test('L2b-1 minimal: emits Data<\$GoogleProject> wrapper header', () {
+    // Plan 5.X (v0.5.0-dev): the `<$GoogleProject>` schema generic is gone,
+    // so the emitted header is `extends Data` (no generic). The override
+    // carries no extras (no fileLeadingComment, no classDocComment, no
+    // extraGetters). What we are exercising is the emitter's MUST-EMIT
+    // spine: it has to produce a wrapper class header that says
+    // `extends Data` regardless of override verbosity.
+    test('L2b-1 minimal: emits Data wrapper header (no schema generic)', () {
       const override = WrapperOverride(
         kind: WrapperOverrideKind.dataSource,
         outputDir: 'data',
@@ -52,9 +52,7 @@ void main() {
       );
       expect(
         out,
-        contains(
-          'final class GoogleProject extends Data<\$GoogleProject> {',
-        ),
+        contains('final class GoogleProject extends Data {'),
       );
     });
 
@@ -128,14 +126,15 @@ void main() {
       );
     });
 
-    // L2b-4 — extends Data<S>, not Resource<S>.
+    // L2b-4 — extends Data, not Resource.
     //
-    // The whole reason DataSourceWrapperEmitter exists alongside
-    // WrapperEmitter is to swap the base class. Asserting both the
-    // positive (Data<...) and the negative (no Resource<...) catches a
-    // copy-paste regression where the emitter accidentally reuses
-    // WrapperEmitter's `extends Resource<` line.
-    test('L2b-4: extends Data<S> and not Resource<S>', () {
+    // Plan 5.X (v0.5.0-dev): `Data<S>` / `Resource<S>` generics are gone,
+    // so the check is now on the bare class names. The whole reason
+    // DataSourceWrapperEmitter exists alongside WrapperEmitter is to swap
+    // the base class. Asserting both the positive (Data) and the negative
+    // (no Resource) catches a copy-paste regression where the emitter
+    // accidentally reuses WrapperEmitter's `extends Resource` line.
+    test('L2b-4: extends Data and not Resource', () {
       const override = WrapperOverride(
         kind: WrapperOverrideKind.dataSource,
         outputDir: 'data',
@@ -149,19 +148,20 @@ void main() {
         _googleProject,
         providerSource: 'hashicorp/google',
       );
-      expect(out, contains('extends Data<'));
+      expect(out, contains('extends Data '));
+      expect(out, isNot(contains('extends Resource ')));
       expect(out, isNot(contains('extends Resource<')));
     });
 
-    // L2b-5 — sensitive set is emitted inline as an empty const.
+    // L2b-5 — sensitive set is emitted inline as a file-private empty const.
     //
-    // Data source schemas are typically empty (no sensitive fields), and
-    // the data source emitter inlines the const set rather than importing
-    // it from a `.schema.dart` file (because data sources don't ship a
-    // schema-class file in v0.0.x). Asserting the exact line shape is the
-    // easiest way to detect drift in either the doc comment or the
-    // `<String>{}` literal.
-    test('L2b-5 sensitive set: emitted inline as empty const', () {
+    // Plan 5.X (v0.5.0-dev): the const is now file-private
+    // (`_googleProjectSensitive`) since the schemantic `.schema.dart`
+    // sibling is retired and the const lives inline at the top of the
+    // wrapper file. Data source schemas are typically empty (no sensitive
+    // fields); asserting the exact line shape catches drift in either the
+    // doc comment or the `<String>{}` literal.
+    test('L2b-5 sensitive set: emitted inline as file-private empty const', () {
       const override = WrapperOverride(
         kind: WrapperOverrideKind.dataSource,
         outputDir: 'data',
@@ -177,7 +177,7 @@ void main() {
       );
       expect(
         out,
-        contains('const Set<String> googleProjectSensitive = <String>{}'),
+        contains('const Set<String> _googleProjectSensitive = <String>{}'),
       );
     });
   });

@@ -3,21 +3,8 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_pubsub_topic.schema.dart'
-    show $GooglePubsubTopic, googlePubsubTopicSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GooglePubsubTopicSchemaInstance implements $GooglePubsubTopic {
-  const _GooglePubsubTopicSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_pubsub_topic`.
+const Set<String> _googlePubsubTopicSensitive = <String>{};
 
 /// Factory wrapper for `google_pubsub_topic` (provider `hashicorp/google ~> 7.0`).
 ///
@@ -42,7 +29,7 @@ class _GooglePubsubTopicSchemaInstance implements $GooglePubsubTopic {
 /// behavior. `argMap` stores `TfArg<dynamic>?` entries directly. Synth's
 /// JSON-encoding pass walks them and calls `arg.toTfJson()` to encode at
 /// write time.
-final class GooglePubsubTopic extends Resource<$GooglePubsubTopic> {
+final class GooglePubsubTopic extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_pubsub_topic';
 
@@ -62,7 +49,6 @@ final class GooglePubsubTopic extends Resource<$GooglePubsubTopic> {
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GooglePubsubTopicSchemaInstance(),
          argMap: {
            'name': name,
            if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
@@ -83,7 +69,7 @@ final class GooglePubsubTopic extends Resource<$GooglePubsubTopic> {
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googlePubsubTopicSensitive;
+  Set<String> get $sensitiveFields => _googlePubsubTopicSensitive;
 
   /// Reference to `name` attribute. Use for interpolations like
   /// `topic.nameRef` → `${google_pubsub_topic.<localName>.name}`.

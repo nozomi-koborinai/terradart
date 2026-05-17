@@ -5,24 +5,8 @@ import 'package:terradart_google/src/firebase_app_check/google_firebase_app_chec
     show AppCheckEnforcementMode;
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_firebase_app_check_resource_policy.schema.dart'
-    show
-        $GoogleFirebaseAppCheckResourcePolicy,
-        googleFirebaseAppCheckResourcePolicySensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleFirebaseAppCheckResourcePolicySchemaInstance
-    implements $GoogleFirebaseAppCheckResourcePolicy {
-  const _GoogleFirebaseAppCheckResourcePolicySchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_firebase_app_check_resource_policy`.
+const Set<String> _googleFirebaseAppCheckResourcePolicySensitive = <String>{};
 
 /// Factory wrapper for `google_firebase_app_check_resource_policy`
 /// (provider `hashicorp/google ~> 7.0`).
@@ -75,8 +59,7 @@ class _GoogleFirebaseAppCheckResourcePolicySchemaInstance
 /// with [AppCheckEnforcementMode.unenforced] first to gather metrics.
 ///
 /// No nested blocks aside from the meta-arg `timeouts`.
-final class GoogleFirebaseAppCheckResourcePolicy
-    extends Resource<$GoogleFirebaseAppCheckResourcePolicy> {
+final class GoogleFirebaseAppCheckResourcePolicy extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_firebase_app_check_resource_policy';
 
@@ -90,7 +73,6 @@ final class GoogleFirebaseAppCheckResourcePolicy
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleFirebaseAppCheckResourcePolicySchemaInstance(),
          argMap: {
            'service_id': serviceId,
            'target_resource': targetResource,
@@ -102,7 +84,7 @@ final class GoogleFirebaseAppCheckResourcePolicy
   @override
   // ignore: non_constant_identifier_names
   Set<String> get $sensitiveFields =>
-      googleFirebaseAppCheckResourcePolicySensitive;
+      _googleFirebaseAppCheckResourcePolicySensitive;
 
   /// Reference to `id` attribute (the full resource path).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -4,22 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_cloud_run_v2_service.schema.dart'
-    show $GoogleCloudRunV2Service, googleCloudRunV2ServiceSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleCloudRunV2ServiceSchemaInstance
-    implements $GoogleCloudRunV2Service {
-  const _GoogleCloudRunV2ServiceSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_cloud_run_v2_service`.
+const Set<String> _googleCloudRunV2ServiceSensitive = <String>{};
 
 // ===========================================================================
 // Top-level enums
@@ -1026,7 +1012,7 @@ final class NfsVolume extends VolumeSource {
 ///
 /// Manages a Cloud Run v2 fully-managed service. Composition pattern:
 /// extends `Resource<$GoogleCloudRunV2Service>` for runtime behavior.
-final class GoogleCloudRunV2Service extends Resource<$GoogleCloudRunV2Service> {
+final class GoogleCloudRunV2Service extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_cloud_run_v2_service';
 
@@ -1055,7 +1041,6 @@ final class GoogleCloudRunV2Service extends Resource<$GoogleCloudRunV2Service> {
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleCloudRunV2ServiceSchemaInstance(),
          argMap: {
            'name': name,
            'location': location,
@@ -1090,7 +1075,7 @@ final class GoogleCloudRunV2Service extends Resource<$GoogleCloudRunV2Service> {
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleCloudRunV2ServiceSensitive;
+  Set<String> get $sensitiveFields => _googleCloudRunV2ServiceSensitive;
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -3,21 +3,10 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_firestore_user_creds.schema.dart'
-    show $GoogleFirestoreUserCreds, googleFirestoreUserCredsSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline. `noSuchMethod` satisfies the abstract field
-// getters; they are never invoked in v0.0.x.
-class _GoogleFirestoreUserCredsSchemaInstance
-    implements $GoogleFirestoreUserCreds {
-  const _GoogleFirestoreUserCredsSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_firestore_user_creds`.
+const Set<String> _googleFirestoreUserCredsSensitive = <String>{
+  'secure_password',
+};
 
 /// Factory wrapper for `google_firestore_user_creds`.
 ///
@@ -39,8 +28,7 @@ class _GoogleFirestoreUserCredsSchemaInstance
 ///   name: TfArg.literal('analytics-reader'),
 /// );
 /// ```
-final class GoogleFirestoreUserCreds
-    extends Resource<$GoogleFirestoreUserCreds> {
+final class GoogleFirestoreUserCreds extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_firestore_user_creds';
 
@@ -53,7 +41,6 @@ final class GoogleFirestoreUserCreds
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleFirestoreUserCredsSchemaInstance(),
          argMap: {
            'name': name,
            'database': database,
@@ -63,7 +50,7 @@ final class GoogleFirestoreUserCreds
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleFirestoreUserCredsSensitive;
+  Set<String> get $sensitiveFields => _googleFirestoreUserCredsSensitive;
 
   /// Reference to `id` attribute. Same as `name` for this resource --
   /// user creds have no separate id distinct from their resource path.

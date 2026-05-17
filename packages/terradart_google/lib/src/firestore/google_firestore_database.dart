@@ -4,22 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_firestore_database.schema.dart'
-    show $GoogleFirestoreDatabase, googleFirestoreDatabaseSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleFirestoreDatabaseSchemaInstance
-    implements $GoogleFirestoreDatabase {
-  const _GoogleFirestoreDatabaseSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_firestore_database`.
+const Set<String> _googleFirestoreDatabaseSensitive = <String>{};
 
 // ===========================================================================
 // Enums (sourced from schema "Possible values" prose)
@@ -179,7 +165,7 @@ class CmekConfig {
 /// implicitly when the Firestore API is first enabled, so importing it
 /// (via `terraform import`) is often the right move before placing it
 /// under Terraform control.
-final class GoogleFirestoreDatabase extends Resource<$GoogleFirestoreDatabase> {
+final class GoogleFirestoreDatabase extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_firestore_database';
 
@@ -204,7 +190,6 @@ final class GoogleFirestoreDatabase extends Resource<$GoogleFirestoreDatabase> {
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleFirestoreDatabaseSchemaInstance(),
          argMap: {
            'name': name,
            'location_id': locationId,
@@ -234,7 +219,7 @@ final class GoogleFirestoreDatabase extends Resource<$GoogleFirestoreDatabase> {
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleFirestoreDatabaseSensitive;
+  Set<String> get $sensitiveFields => _googleFirestoreDatabaseSensitive;
 
   /// Reference to `name` attribute (`google_firestore_database.<id>.name`).
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -4,22 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_compute_subnetwork.schema.dart'
-    show $GoogleComputeSubnetwork, googleComputeSubnetworkSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleComputeSubnetworkSchemaInstance
-    implements $GoogleComputeSubnetwork {
-  const _GoogleComputeSubnetworkSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_compute_subnetwork`.
+const Set<String> _googleComputeSubnetworkSensitive = <String>{};
 
 // Phase 4.5.1: dartTypeOverrides re-enabled for enum-typed fields. Callers
 // pass `TfArg.literal(SubnetworkPurpose.private)` (enum value directly) and
@@ -219,7 +205,7 @@ class SubnetworkLogConfig {
 ///
 /// Manages a regional subnetwork within a VPC. Composition pattern:
 /// extends `Resource<$GoogleComputeSubnetwork>` for runtime behavior.
-final class GoogleComputeSubnetwork extends Resource<$GoogleComputeSubnetwork> {
+final class GoogleComputeSubnetwork extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_compute_subnetwork';
 
@@ -250,7 +236,6 @@ final class GoogleComputeSubnetwork extends Resource<$GoogleComputeSubnetwork> {
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleComputeSubnetworkSchemaInstance(),
          argMap: {
            'name': name,
            if (region != null) 'region': region,
@@ -290,7 +275,7 @@ final class GoogleComputeSubnetwork extends Resource<$GoogleComputeSubnetwork> {
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleComputeSubnetworkSensitive;
+  Set<String> get $sensitiveFields => _googleComputeSubnetworkSensitive;
 
   /// Reference to `name` attribute. Use for interpolations like
   /// `subnet.nameRef` → `${google_compute_subnetwork.<localName>.name}`.

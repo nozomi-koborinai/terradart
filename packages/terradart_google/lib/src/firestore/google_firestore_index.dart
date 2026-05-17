@@ -4,21 +4,8 @@
 import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
-import 'package:terradart_google/src/generated/google_firestore_index.schema.dart'
-    show $GoogleFirestoreIndex, googleFirestoreIndexSensitive;
-
-// Tiny const carrier for `Resource<S>.schema`. Inert in v0.0.x synth — only
-// consumed by `ResourceRef<S>.placeholder` (a future surface). We
-// keep this stub inline instead of constructing schemantic's generated
-// concrete class (which requires JSON-backed field args). `noSuchMethod`
-// satisfies the abstract field getters; they are never invoked in v0.0.x.
-class _GoogleFirestoreIndexSchemaInstance implements $GoogleFirestoreIndex {
-  const _GoogleFirestoreIndexSchemaInstance();
-
-  @override
-  // ignore: non_constant_identifier_names
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
-}
+/// Sensitive field paths for `google_firestore_index`.
+const Set<String> _googleFirestoreIndexSensitive = <String>{};
 
 // ===========================================================================
 // Enums (sourced from schema "Possible values" prose)
@@ -286,7 +273,7 @@ final class IndexFieldVectorConfig extends IndexFieldSpec {
 /// field indexes are managed by Firestore automatically and have a
 /// different resource (`google_firestore_field`); only composite /
 /// array-contains indexes need an explicit [GoogleFirestoreIndex].
-final class GoogleFirestoreIndex extends Resource<$GoogleFirestoreIndex> {
+final class GoogleFirestoreIndex extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_firestore_index';
 
@@ -307,7 +294,6 @@ final class GoogleFirestoreIndex extends Resource<$GoogleFirestoreIndex> {
     super.dependsOn,
   }) : super(
          terraformType: $tfType,
-         schema: const _GoogleFirestoreIndexSchemaInstance(),
          argMap: {
            'collection': collection,
            'fields': TfArg.literal(fields.map((f) => f.encode()).toList()),
@@ -325,7 +311,7 @@ final class GoogleFirestoreIndex extends Resource<$GoogleFirestoreIndex> {
 
   @override
   // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => googleFirestoreIndexSensitive;
+  Set<String> get $sensitiveFields => _googleFirestoreIndexSensitive;
 
   /// Reference to `name` attribute (server-assigned full path:
   /// `projects/{p}/databases/{db}/collectionGroups/{collection}/indexes/{id}`).

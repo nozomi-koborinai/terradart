@@ -6,14 +6,20 @@ import 'package:terradart_codegen/src/codegen/universal_invariants/synthetic_arg
 import 'package:terradart_core/terradart_core.dart';
 import 'package:test/test.dart';
 
-/// Parses `const Set<String> <Name>Sensitive = <String>{ 'a', 'b.c' };` from
-/// a generated `.schema.dart` file. Returns the parsed paths (or empty
-/// set if the const is `<String>{}` / not present).
+/// Parses `const Set<String> [_]<Name>Sensitive = <String>{ 'a', 'b.c' };`
+/// from a wrapper Dart source. Returns the parsed paths (or empty set if
+/// the const is `<String>{}` / not present).
+///
+/// Plan 5.X (v0.5.0-dev) moved the const from a sibling Layer 1
+/// `<r>.schema.dart` file (public `<r>Sensitive`) into the wrapper file
+/// itself (file-private `_<r>Sensitive`). The regex tolerates both shapes:
+/// the optional leading `_` covers the new file-private form and any
+/// downstream forks that re-publicise the const.
 Set<String> _parseSensitiveSet(String dartSource) {
   // Capture: between `<String>{` and the closing `};`. Tolerates
   // multi-line + arbitrary whitespace.
   final block = RegExp(
-    r'const\s+Set<String>\s+\w+Sensitive\s*=\s*<String>\{([^}]*)\};',
+    r'const\s+Set<String>\s+_?\w+Sensitive\s*=\s*<String>\{([^}]*)\};',
     dotAll: true,
   );
   final match = block.firstMatch(dartSource);
@@ -24,34 +30,36 @@ Set<String> _parseSensitiveSet(String dartSource) {
 
 void main() {
   group('Gate 2: sensitive mask round-trip per resource', () {
-    final generatedDir = Directory(p.join('lib', 'src', 'generated'));
-    final schemaFiles = generatedDir
-        .listSync()
+    // Plan 5.X retired the `lib/src/generated/<r>.schema.dart` Layer 1; the
+    // file-private `_<r>Sensitive` const now lives inline at the top of each
+    // wrapper file under `lib/src/<service>/google_*.dart`. We walk every
+    // `lib/src/` subdir and pick wrapper files (skipping the empty `data/`
+    // case if it has no wrappers).
+    final libSrc = Directory(p.join('lib', 'src'));
+    final wrapperFiles = libSrc
+        .listSync(recursive: true)
         .whereType<File>()
-        .where((f) => f.path.endsWith('.schema.dart'))
+        .where(
+          (f) =>
+              f.path.endsWith('.dart') &&
+              p.basename(f.path).startsWith('google_'),
+        )
         .toList();
 
-    test(
-      'generated dir contains at least 28 schema files (curated corpus)',
-      () {
-        expect(
-          schemaFiles,
-          hasLength(greaterThanOrEqualTo(28)),
-          reason:
-              'terradart_google/lib/src/generated/ should hold at least 28 '
-              '<resource>.schema.dart files (curated corpus floor). Partial '
-              'regen or stale checkout suspected if fewer.',
-        );
-      },
-    );
+    test('lib/src/ contains at least 28 wrapper files (curated corpus)', () {
+      expect(
+        wrapperFiles,
+        hasLength(greaterThanOrEqualTo(28)),
+        reason:
+            'terradart_google/lib/src/ should hold at least 28 '
+            'google_*.dart wrapper files (curated corpus floor). Partial '
+            'regen or stale checkout suspected if fewer.',
+      );
+    });
 
-    for (final schemaFile in schemaFiles) {
-      final fileName = p.basenameWithoutExtension(schemaFile.path);
-      // fileName looks like `google_compute_instance.schema` — strip `.schema`.
-      final resourceName = fileName.endsWith('.schema')
-          ? fileName.substring(0, fileName.length - '.schema'.length)
-          : fileName;
-      final src = schemaFile.readAsStringSync();
+    for (final wrapperFile in wrapperFiles) {
+      final resourceName = p.basenameWithoutExtension(wrapperFile.path);
+      final src = wrapperFile.readAsStringSync();
       final paths = _parseSensitiveSet(src);
       if (paths.isEmpty) continue;
 

@@ -42,8 +42,12 @@ void main() {
 
   group('WrapCommand integration', () {
     test(
-        'emits 80 files (39 resource Layer 2 + 39 resource Layer 1 + 1 data source Layer 2 + 1 data source Layer 1)',
+        'emits 49 files (48 resource Layer 2 + 1 data source Layer 2; Plan 5.X)',
         () async {
+      // Plan 5.X (v0.5.0-dev): the schemantic Layer 1 chain
+      // (`generated/<type>.schema.dart` + `generated/<type>.schema.g.dart`
+      // + `generated/data_<type>.schema.dart`) is retired. Only Layer 2
+      // factory wrappers are emitted — one per wrapper-override YAML.
       final tmpOut = await Directory.systemTemp.createTemp('phase4_wrap_');
       try {
         final runner = buildCliRunner();
@@ -64,17 +68,19 @@ void main() {
             files.add(p.relative(ent.path, from: tmpOut.path));
           }
         }
-        expect(files, hasLength(98));
+        expect(files, hasLength(49));
         expect(files, contains(p.join('pubsub', 'google_pubsub_topic.dart')));
         expect(files, contains(p.join('data', 'google_project.dart')));
+        // Plan 5.X: Layer 1 files are no longer emitted.
         expect(
           files,
-          contains(p.join('generated', 'data_google_project.schema.dart')),
+          isNot(
+              contains(p.join('generated', 'data_google_project.schema.dart'))),
         );
-        // Phase 4.5.0: resource Layer 1 emit added.
         expect(
           files,
-          contains(p.join('generated', 'google_pubsub_topic.schema.dart')),
+          isNot(
+              contains(p.join('generated', 'google_pubsub_topic.schema.dart'))),
         );
       } finally {
         await tmpOut.delete(recursive: true);
@@ -272,8 +278,11 @@ void main() {
   });
 
   group('WrapCommand --only', () {
-    test('emits exactly 2 files (Layer 1 + Layer 2) for one resource',
+    test('emits exactly 1 file (Layer 2 wrapper only) for one resource',
         () async {
+      // Plan 5.X (v0.5.0-dev): Layer 1 emit retired. `--only <type>` now
+      // produces a single wrapper file rather than the historical Layer 1
+      // + Layer 2 pair.
       final tmpOut = await Directory.systemTemp.createTemp('phase4_only_');
       try {
         final code = await buildCliRunner().run([
@@ -295,11 +304,12 @@ void main() {
             files.add(p.relative(ent.path, from: tmpOut.path));
           }
         }
-        expect(files, hasLength(2));
+        expect(files, hasLength(1));
         expect(files, contains(p.join('pubsub', 'google_pubsub_topic.dart')));
         expect(
           files,
-          contains(p.join('generated', 'google_pubsub_topic.schema.dart')),
+          isNot(
+              contains(p.join('generated', 'google_pubsub_topic.schema.dart'))),
         );
       } finally {
         await tmpOut.delete(recursive: true);
@@ -336,7 +346,8 @@ void main() {
     // version; the `.golden` extension keeps `dart format .` from touching
     // them while still letting the test diff bytes 1:1 against the wrap
     // output (the `.golden` suffix is stripped when computing actualPath).
-    test('output matches expected_output exactly (14 files)', () async {
+    test('output matches expected_output exactly (13 files; Plan 5.X)',
+        () async {
       final tmpOut = await Directory.systemTemp.createTemp('phase4_fix_');
       try {
         final code = await buildCliRunner().run([
@@ -369,7 +380,10 @@ void main() {
           expect(actual, expected, reason: actualRel);
           checked++;
         }
-        expect(checked, 14, reason: 'fixture must hold exactly 14 files');
+        expect(checked, 13,
+            reason: 'fixture must hold exactly 13 files (Plan 5.X: dropped '
+                'generated/data_google_project.schema.dart.golden along with '
+                'the rest of Layer 1)');
       } finally {
         await tmpOut.delete(recursive: true);
       }

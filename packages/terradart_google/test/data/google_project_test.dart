@@ -27,9 +27,9 @@ void main() {
     expect(dp.argMap['project_id']!.toTfJson(), equals('host-project'));
   });
 
-  test('GoogleProject is a Data<S> (not Resource)', () {
+  test('GoogleProject is a Data (not Resource)', () {
     final dp = GoogleProject(localName: 'current');
-    expect(dp, isA<Data<dynamic>>());
+    expect(dp, isA<Data>());
     expect(dp.tfAddress, equals('data.google_project.current'));
   });
 }
