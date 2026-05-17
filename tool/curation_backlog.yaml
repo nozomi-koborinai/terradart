@@ -1,0 +1,19 @@
+# tool/curation_backlog.yaml
+#
+# Append-only log of google_* resources detected in upstream provider schema
+# that are NOT yet curated in terradart_google. Maintained by the weekly
+# schema-bump workflow (.github/workflows/schema-bump.yml) — each cron run
+# appends any newly-detected resources here.
+#
+# Maintainers: when curating a resource (via Wave N), remove its entry from
+# this file in the same PR that introduces the curated wrapper. This file
+# is the single source of truth for "what's left to look at".
+#
+# Schema:
+#   entries:
+#     - resource: google_X_Y_Z
+#       detected_at: YYYY-MM-DD (date of the schema-bump PR that detected it)
+#       provider_version: 7.X.Y (the v7 release that introduced it)
+#       note: (optional, maintainer-added)
+
+entries: []
