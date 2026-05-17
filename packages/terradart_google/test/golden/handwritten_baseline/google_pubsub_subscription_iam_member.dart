@@ -24,15 +24,15 @@ final class GooglePubsubSubscriptionIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'subscription': subscription,
-           'role': role,
-           'member': member,
-           if (condition != null) 'condition': condition,
-           if (project != null) 'project': project,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'subscription': subscription,
+            'role': role,
+            'member': member,
+            if (condition != null) 'condition': condition,
+            if (project != null) 'project': project,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

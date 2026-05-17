@@ -45,13 +45,13 @@ final class GoogleFirebaseAppCheckAppAttestConfig extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'app_id': appId,
-           if (tokenTtl != null) 'token_ttl': tokenTtl,
-           if (project != null) 'project': project,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'app_id': appId,
+            if (tokenTtl != null) 'token_ttl': tokenTtl,
+            if (project != null) 'project': project,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

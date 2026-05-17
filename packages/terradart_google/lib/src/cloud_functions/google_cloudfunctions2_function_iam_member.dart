@@ -34,16 +34,16 @@ final class GoogleCloudfunctions2FunctionIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'cloud_function': cloudFunction,
-           'role': role,
-           'member': member,
-           if (condition != null) 'condition': condition,
-           if (location != null) 'location': location,
-           if (project != null) 'project': project,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'cloud_function': cloudFunction,
+            'role': role,
+            'member': member,
+            if (condition != null) 'condition': condition,
+            if (location != null) 'location': location,
+            if (project != null) 'project': project,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

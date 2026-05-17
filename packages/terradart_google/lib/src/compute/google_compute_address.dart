@@ -92,25 +92,26 @@ final class GoogleComputeAddress extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'name': name,
-           if (region != null) 'region': region,
-           if (addressType != null) 'address_type': addressType,
-           if (address != null) 'address': address,
-           if (prefixLength != null) 'prefix_length': prefixLength,
-           if (purpose != null) 'purpose': purpose,
-           if (networkTier != null) 'network_tier': networkTier,
-           if (ipVersion != null) 'ip_version': ipVersion,
-           if (ipv6EndpointType != null) 'ipv6_endpoint_type': ipv6EndpointType,
-           if (network != null) 'network': network,
-           if (subnetwork != null) 'subnetwork': subnetwork,
-           if (ipCollection != null) 'ip_collection': ipCollection,
-           if (labels != null) 'labels': labels,
-           if (description != null) 'description': description,
-           if (project != null) 'project': project,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'name': name,
+            if (region != null) 'region': region,
+            if (addressType != null) 'address_type': addressType,
+            if (address != null) 'address': address,
+            if (prefixLength != null) 'prefix_length': prefixLength,
+            if (purpose != null) 'purpose': purpose,
+            if (networkTier != null) 'network_tier': networkTier,
+            if (ipVersion != null) 'ip_version': ipVersion,
+            if (ipv6EndpointType != null)
+              'ipv6_endpoint_type': ipv6EndpointType,
+            if (network != null) 'network': network,
+            if (subnetwork != null) 'subnetwork': subnetwork,
+            if (ipCollection != null) 'ip_collection': ipCollection,
+            if (labels != null) 'labels': labels,
+            if (description != null) 'description': description,
+            if (project != null) 'project': project,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

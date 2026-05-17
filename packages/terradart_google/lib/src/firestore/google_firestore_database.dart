@@ -189,33 +189,34 @@ final class GoogleFirestoreDatabase extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'name': name,
-           'location_id': locationId,
-           'type': type,
-           if (cmekConfig != null)
-             'cmek_config': TfArg.literal([cmekConfig.encode()]),
-           if (databaseEdition != null) 'database_edition': databaseEdition,
-           if (concurrencyMode != null) 'concurrency_mode': concurrencyMode,
-           if (appEngineIntegrationMode != null)
-             'app_engine_integration_mode': appEngineIntegrationMode,
-           if (pointInTimeRecoveryEnablement != null)
-             'point_in_time_recovery_enablement': pointInTimeRecoveryEnablement,
-           if (deleteProtectionState != null)
-             'delete_protection_state': deleteProtectionState,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (firestoreDataAccessMode != null)
-             'firestore_data_access_mode': firestoreDataAccessMode,
-           if (mongodbCompatibleDataAccessMode != null)
-             'mongodb_compatible_data_access_mode':
-                 mongodbCompatibleDataAccessMode,
-           if (realtimeUpdatesMode != null)
-             'realtime_updates_mode': realtimeUpdatesMode,
-           if (tags != null) 'tags': tags,
-           if (project != null) 'project': project,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'name': name,
+            'location_id': locationId,
+            'type': type,
+            if (cmekConfig != null)
+              'cmek_config': TfArg.literal([cmekConfig.encode()]),
+            if (databaseEdition != null) 'database_edition': databaseEdition,
+            if (concurrencyMode != null) 'concurrency_mode': concurrencyMode,
+            if (appEngineIntegrationMode != null)
+              'app_engine_integration_mode': appEngineIntegrationMode,
+            if (pointInTimeRecoveryEnablement != null)
+              'point_in_time_recovery_enablement':
+                  pointInTimeRecoveryEnablement,
+            if (deleteProtectionState != null)
+              'delete_protection_state': deleteProtectionState,
+            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+            if (firestoreDataAccessMode != null)
+              'firestore_data_access_mode': firestoreDataAccessMode,
+            if (mongodbCompatibleDataAccessMode != null)
+              'mongodb_compatible_data_access_mode':
+                  mongodbCompatibleDataAccessMode,
+            if (realtimeUpdatesMode != null)
+              'realtime_updates_mode': realtimeUpdatesMode,
+            if (tags != null) 'tags': tags,
+            if (project != null) 'project': project,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

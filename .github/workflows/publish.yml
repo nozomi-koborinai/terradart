@@ -20,7 +20,7 @@ permissions:
 # terradart_codegen's published pubspec declares `terradart_core: ^X.Y.Z-dev`,
 # and terradart_google's published pubspec is rewritten by
 # tool/prepare_publish.sh to declare hosted ^X.Y.Z-dev constraints for
-# terradart_core, terradart_annotations, and terradart_codegen. pub.dev
+# terradart_core and terradart_codegen. pub.dev
 # validates these constraints against its index at upload time, so a
 # dependent package can't ship until its dependencies' versions are visible
 # on pub.dev.
@@ -40,7 +40,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [terradart_annotations, terradart_core]
+        package: [terradart_core]
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -95,7 +95,7 @@ jobs:
     steps:
       - name: Wait for pub.dev index propagation
         run: |
-          echo "Waiting 3 minutes for pub.dev to index terradart_codegen + terradart_core + terradart_annotations before publishing terradart_google..."
+          echo "Waiting 3 minutes for pub.dev to index terradart_codegen + terradart_core before publishing terradart_google..."
           sleep 180
 
       - uses: actions/checkout@v6

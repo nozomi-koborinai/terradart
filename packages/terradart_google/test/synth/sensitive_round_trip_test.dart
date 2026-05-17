@@ -50,8 +50,7 @@ void main() {
       expect(
         wrapperFiles,
         hasLength(greaterThanOrEqualTo(28)),
-        reason:
-            'terradart_google/lib/src/ should hold at least 28 '
+        reason: 'terradart_google/lib/src/ should hold at least 28 '
             'google_*.dart wrapper files (curated corpus floor). Partial '
             'regen or stale checkout suspected if fewer.',
       );
@@ -76,8 +75,7 @@ void main() {
           expect(
             leaf,
             equals(''),
-            reason:
-                '$resourceName: path "$path" not masked '
+            reason: '$resourceName: path "$path" not masked '
                 '(encoded leaf is $leaf, expected "")',
           );
         }

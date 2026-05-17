@@ -84,11 +84,11 @@ class PrivateVisibilityConfig {
   final List<PrivateVisibilityGkeCluster>? gkeClusters;
   final List<PrivateVisibilityNetwork>? networks;
   Map<String, Object?> toArgMap() => {
-    if (gkeClusters != null)
-      'gke_clusters': gkeClusters!.map((g) => g.toArgMap()).toList(),
-    if (networks != null)
-      'networks': networks!.map((n) => n.toArgMap()).toList(),
-  };
+        if (gkeClusters != null)
+          'gke_clusters': gkeClusters!.map((g) => g.toArgMap()).toList(),
+        if (networks != null)
+          'networks': networks!.map((n) => n.toArgMap()).toList(),
+      };
 }
 
 /// One entry inside `private_visibility_config.gke_clusters`.
@@ -119,12 +119,13 @@ class DnssecConfig {
   final DnssecState? state;
   final List<DnssecKeySpec>? defaultKeySpecs;
   Map<String, Object?> toArgMap() => {
-    if (kind != null) 'kind': kind,
-    if (nonExistence != null) 'non_existence': nonExistence!.terraformValue,
-    if (state != null) 'state': state!.terraformValue,
-    if (defaultKeySpecs != null)
-      'default_key_specs': defaultKeySpecs!.map((s) => s.toArgMap()).toList(),
-  };
+        if (kind != null) 'kind': kind,
+        if (nonExistence != null) 'non_existence': nonExistence!.terraformValue,
+        if (state != null) 'state': state!.terraformValue,
+        if (defaultKeySpecs != null)
+          'default_key_specs':
+              defaultKeySpecs!.map((s) => s.toArgMap()).toList(),
+      };
 }
 
 /// One entry inside `dnssec_config.default_key_specs`.
@@ -140,11 +141,11 @@ class DnssecKeySpec {
   final DnssecKeyType? keyType;
   final String? kind;
   Map<String, Object?> toArgMap() => {
-    if (algorithm != null) 'algorithm': algorithm!.terraformValue,
-    if (keyLength != null) 'key_length': keyLength,
-    if (keyType != null) 'key_type': keyType!.terraformValue,
-    if (kind != null) 'kind': kind,
-  };
+        if (algorithm != null) 'algorithm': algorithm!.terraformValue,
+        if (keyLength != null) 'key_length': keyLength,
+        if (keyType != null) 'key_type': keyType!.terraformValue,
+        if (kind != null) 'kind': kind,
+      };
 }
 
 /// `peering_config` block. Exactly one `target_network` is required.
@@ -152,8 +153,8 @@ class PeeringConfig {
   const PeeringConfig({required this.targetNetwork});
   final PeeringTargetNetwork targetNetwork;
   Map<String, Object?> toArgMap() => {
-    'target_network': [targetNetwork.toArgMap()],
-  };
+        'target_network': [targetNetwork.toArgMap()],
+      };
 }
 
 /// `peering_config.target_network` single sub-block (`max_items=1`).
@@ -168,8 +169,9 @@ class ForwardingConfig {
   const ForwardingConfig({required this.targetNameServers});
   final List<ForwardingTargetNameServer> targetNameServers;
   Map<String, Object?> toArgMap() => {
-    'target_name_servers': targetNameServers.map((s) => s.toArgMap()).toList(),
-  };
+        'target_name_servers':
+            targetNameServers.map((s) => s.toArgMap()).toList(),
+      };
 }
 
 /// One entry inside `forwarding_config.target_name_servers`.
@@ -185,12 +187,12 @@ class ForwardingTargetNameServer {
   final String? ipv6Address;
   final ForwardingPath? forwardingPath;
   Map<String, Object?> toArgMap() => {
-    if (domainName != null) 'domain_name': domainName,
-    if (ipv4Address != null) 'ipv4_address': ipv4Address,
-    if (ipv6Address != null) 'ipv6_address': ipv6Address,
-    if (forwardingPath != null)
-      'forwarding_path': forwardingPath!.terraformValue,
-  };
+        if (domainName != null) 'domain_name': domainName,
+        if (ipv4Address != null) 'ipv4_address': ipv4Address,
+        if (ipv6Address != null) 'ipv6_address': ipv6Address,
+        if (forwardingPath != null)
+          'forwarding_path': forwardingPath!.terraformValue,
+      };
 }
 
 /// `cloud_logging_config` block — toggles export to Cloud Logging.
@@ -247,31 +249,31 @@ final class GoogleDnsManagedZone extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'name': name,
-           'dns_name': dnsName,
-           if (description != null) 'description': description,
-           if (visibility != null) 'visibility': visibility,
-           if (privateVisibilityConfig != null)
-             'private_visibility_config': TfArg.literal([
-               privateVisibilityConfig.toArgMap(),
-             ]),
-           if (dnssecConfig != null)
-             'dnssec_config': TfArg.literal([dnssecConfig.toArgMap()]),
-           if (peeringConfig != null)
-             'peering_config': TfArg.literal([peeringConfig.toArgMap()]),
-           if (forwardingConfig != null)
-             'forwarding_config': TfArg.literal([forwardingConfig.toArgMap()]),
-           if (cloudLoggingConfig != null)
-             'cloud_logging_config': TfArg.literal([
-               cloudLoggingConfig.toArgMap(),
-             ]),
-           if (labels != null) 'labels': labels,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (project != null) 'project': project,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'name': name,
+            'dns_name': dnsName,
+            if (description != null) 'description': description,
+            if (visibility != null) 'visibility': visibility,
+            if (privateVisibilityConfig != null)
+              'private_visibility_config': TfArg.literal([
+                privateVisibilityConfig.toArgMap(),
+              ]),
+            if (dnssecConfig != null)
+              'dnssec_config': TfArg.literal([dnssecConfig.toArgMap()]),
+            if (peeringConfig != null)
+              'peering_config': TfArg.literal([peeringConfig.toArgMap()]),
+            if (forwardingConfig != null)
+              'forwarding_config': TfArg.literal([forwardingConfig.toArgMap()]),
+            if (cloudLoggingConfig != null)
+              'cloud_logging_config': TfArg.literal([
+                cloudLoggingConfig.toArgMap(),
+              ]),
+            if (labels != null) 'labels': labels,
+            if (forceDestroy != null) 'force_destroy': forceDestroy,
+            if (project != null) 'project': project,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

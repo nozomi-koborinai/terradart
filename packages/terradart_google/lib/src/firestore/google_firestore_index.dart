@@ -93,9 +93,9 @@ class IndexField {
   final IndexFieldSpec spec;
 
   Map<String, Object?> encode() => {
-    'field_path': fieldPath.toTfJson(),
-    ...spec.encode(),
-  };
+        'field_path': fieldPath.toTfJson(),
+        ...spec.encode(),
+      };
 }
 
 /// Sealed dispatch for [IndexField.spec]. Models the schema's
@@ -130,10 +130,10 @@ final class IndexFieldArrayConfig extends IndexFieldSpec {
 
   @override
   Map<String, Object?> encode() => {
-    // `CONTAINS` is the only valid value for `array_config` as of provider v7.31.0;
-    // hard-coded here to keep the encoded shape consistent with the schema.
-    'array_config': 'CONTAINS',
-  };
+        // `CONTAINS` is the only valid value for `array_config` as of provider v7.31.0;
+        // hard-coded here to keep the encoded shape consistent with the schema.
+        'array_config': 'CONTAINS',
+      };
 }
 
 /// Text-search dimension for a field (Firestore Vector Search /
@@ -152,12 +152,12 @@ final class IndexFieldSearchConfig extends IndexFieldSpec {
 
   @override
   Map<String, Object?> encode() => {
-    'search_config': [
-      {
-        if (textSpec != null) 'text_spec': [textSpec!.encode()],
-      },
-    ],
-  };
+        'search_config': [
+          {
+            if (textSpec != null) 'text_spec': [textSpec!.encode()],
+          },
+        ],
+      };
 }
 
 /// `search_config.text_spec` block. Carries a list of
@@ -167,18 +167,18 @@ final class IndexFieldSearchConfig extends IndexFieldSpec {
 @immutable
 class IndexFieldTextSpec {
   const IndexFieldTextSpec({required this.indexSpecs})
-    : assert(
-        indexSpecs.length >= 1,
-        'IndexFieldTextSpec.indexSpecs must have at least one entry '
-        '(schema enforces min_items=1)',
-      );
+      : assert(
+          indexSpecs.length >= 1,
+          'IndexFieldTextSpec.indexSpecs must have at least one entry '
+          '(schema enforces min_items=1)',
+        );
 
   /// At least one per the schema's `min_items=1`.
   final List<IndexFieldTextSpecEntry> indexSpecs;
 
   Map<String, Object?> encode() => {
-    'index_specs': indexSpecs.map((e) => e.encode()).toList(),
-  };
+        'index_specs': indexSpecs.map((e) => e.encode()).toList(),
+      };
 }
 
 /// One entry in `text_spec.index_specs`. Both fields are
@@ -196,9 +196,9 @@ class IndexFieldTextSpecEntry {
   final String? matchType;
 
   Map<String, Object?> encode() => {
-    if (indexType != null) 'index_type': indexType,
-    if (matchType != null) 'match_type': matchType,
-  };
+        if (indexType != null) 'index_type': indexType,
+        if (matchType != null) 'match_type': matchType,
+      };
 }
 
 /// Vector-search dimension for a field. The schema requires
@@ -213,13 +213,13 @@ final class IndexFieldVectorConfig extends IndexFieldSpec {
 
   @override
   Map<String, Object?> encode() => {
-    'vector_config': [
-      {
-        'dimension': dimension,
-        'flat': [<String, Object?>{}],
-      },
-    ],
-  };
+        'vector_config': [
+          {
+            'dimension': dimension,
+            'flat': [<String, Object?>{}],
+          },
+        ],
+      };
 }
 
 /// Factory wrapper for `google_firestore_index` (provider
@@ -293,21 +293,21 @@ final class GoogleFirestoreIndex extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'collection': collection,
-           'fields': TfArg.literal(fields.map((f) => f.encode()).toList()),
-           if (database != null) 'database': database,
-           if (queryScope != null) 'query_scope': queryScope,
-           if (apiScope != null) 'api_scope': apiScope,
-           if (density != null) 'density': density,
-           if (multikey != null) 'multikey': multikey,
-           if (unique != null) 'unique': unique,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (skipWait != null) 'skip_wait': skipWait,
-           if (project != null) 'project': project,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'collection': collection,
+            'fields': TfArg.literal(fields.map((f) => f.encode()).toList()),
+            if (database != null) 'database': database,
+            if (queryScope != null) 'query_scope': queryScope,
+            if (apiScope != null) 'api_scope': apiScope,
+            if (density != null) 'density': density,
+            if (multikey != null) 'multikey': multikey,
+            if (unique != null) 'unique': unique,
+            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+            if (skipWait != null) 'skip_wait': skipWait,
+            if (project != null) 'project': project,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

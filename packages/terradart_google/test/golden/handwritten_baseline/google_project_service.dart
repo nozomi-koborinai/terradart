@@ -64,15 +64,16 @@ final class GoogleProjectService extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'service': service,
-           if (project != null) 'project': project,
-           if (disableOnDestroy != null) 'disable_on_destroy': disableOnDestroy,
-           if (disableDependentServices != null)
-             'disable_dependent_services': disableDependentServices,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'service': service,
+            if (project != null) 'project': project,
+            if (disableOnDestroy != null)
+              'disable_on_destroy': disableOnDestroy,
+            if (disableDependentServices != null)
+              'disable_dependent_services': disableDependentServices,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

@@ -127,11 +127,9 @@ void main() {
       );
 
       final actual = StackSynth.synth(stack).tfJson;
-      final golden =
-          jsonDecode(
-                await File('test/golden/full_stack.tf.json').readAsString(),
-              )
-              as Map<String, dynamic>;
+      final golden = jsonDecode(
+        await File('test/golden/full_stack.tf.json').readAsString(),
+      ) as Map<String, dynamic>;
       expect(actual, equals(golden));
 
       // Sanity: data.google_project is keyed under "data", not "resource".

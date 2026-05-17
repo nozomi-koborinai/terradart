@@ -76,17 +76,17 @@ final class GoogleServiceAccount extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'account_id': accountId,
-           if (project != null) 'project': project,
-           if (displayName != null) 'display_name': displayName,
-           if (description != null) 'description': description,
-           if (createIgnoreAlreadyExists != null)
-             'create_ignore_already_exists': createIgnoreAlreadyExists,
-           if (disabled != null) 'disabled': disabled,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'account_id': accountId,
+            if (project != null) 'project': project,
+            if (displayName != null) 'display_name': displayName,
+            if (description != null) 'description': description,
+            if (createIgnoreAlreadyExists != null)
+              'create_ignore_already_exists': createIgnoreAlreadyExists,
+            if (disabled != null) 'disabled': disabled,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

@@ -52,11 +52,11 @@ class BucketCors {
   final List<String>? origin;
   final List<String>? responseHeader;
   Map<String, Object?> toArgMap() => {
-    if (maxAgeSeconds != null) 'max_age_seconds': maxAgeSeconds,
-    if (method != null) 'method': method,
-    if (origin != null) 'origin': origin,
-    if (responseHeader != null) 'response_header': responseHeader,
-  };
+        if (maxAgeSeconds != null) 'max_age_seconds': maxAgeSeconds,
+        if (method != null) 'method': method,
+        if (origin != null) 'origin': origin,
+        if (responseHeader != null) 'response_header': responseHeader,
+      };
 }
 
 /// One `lifecycle_rule` entry: action + condition.
@@ -65,9 +65,9 @@ class LifecycleRule {
   final LifecycleAction action;
   final LifecycleCondition condition;
   Map<String, Object?> toArgMap() => {
-    'action': [action.toArgMap()],
-    'condition': [condition.toArgMap()],
-  };
+        'action': [action.toArgMap()],
+        'condition': [condition.toArgMap()],
+      };
 }
 
 /// Action to take when a lifecycle_rule's condition matches.
@@ -77,9 +77,9 @@ class LifecycleAction {
   final LifecycleActionType type;
   final BucketStorageClass? storageClass;
   Map<String, Object?> toArgMap() => {
-    'type': type.terraformValue,
-    if (storageClass != null) 'storage_class': storageClass!.terraformValue,
-  };
+        'type': type.terraformValue,
+        if (storageClass != null) 'storage_class': storageClass!.terraformValue,
+      };
 }
 
 /// Condition under which a lifecycle_rule's action fires.
@@ -117,30 +117,30 @@ class LifecycleCondition {
   final bool? sendNumNewerVersionsIfZero;
   final String? withState;
   Map<String, Object?> toArgMap() => {
-    if (age != null) 'age': age,
-    if (createdBefore != null) 'created_before': createdBefore,
-    if (customTimeBefore != null) 'custom_time_before': customTimeBefore,
-    if (daysSinceCustomTime != null)
-      'days_since_custom_time': daysSinceCustomTime,
-    if (daysSinceNoncurrentTime != null)
-      'days_since_noncurrent_time': daysSinceNoncurrentTime,
-    if (matchesPrefix != null) 'matches_prefix': matchesPrefix,
-    if (matchesStorageClass != null)
-      'matches_storage_class': matchesStorageClass,
-    if (matchesSuffix != null) 'matches_suffix': matchesSuffix,
-    if (noncurrentTimeBefore != null)
-      'noncurrent_time_before': noncurrentTimeBefore,
-    if (numNewerVersions != null) 'num_newer_versions': numNewerVersions,
-    if (sendAgeIfZero != null) 'send_age_if_zero': sendAgeIfZero,
-    if (sendDaysSinceCustomTimeIfZero != null)
-      'send_days_since_custom_time_if_zero': sendDaysSinceCustomTimeIfZero,
-    if (sendDaysSinceNoncurrentTimeIfZero != null)
-      'send_days_since_noncurrent_time_if_zero':
-          sendDaysSinceNoncurrentTimeIfZero,
-    if (sendNumNewerVersionsIfZero != null)
-      'send_num_newer_versions_if_zero': sendNumNewerVersionsIfZero,
-    if (withState != null) 'with_state': withState,
-  };
+        if (age != null) 'age': age,
+        if (createdBefore != null) 'created_before': createdBefore,
+        if (customTimeBefore != null) 'custom_time_before': customTimeBefore,
+        if (daysSinceCustomTime != null)
+          'days_since_custom_time': daysSinceCustomTime,
+        if (daysSinceNoncurrentTime != null)
+          'days_since_noncurrent_time': daysSinceNoncurrentTime,
+        if (matchesPrefix != null) 'matches_prefix': matchesPrefix,
+        if (matchesStorageClass != null)
+          'matches_storage_class': matchesStorageClass,
+        if (matchesSuffix != null) 'matches_suffix': matchesSuffix,
+        if (noncurrentTimeBefore != null)
+          'noncurrent_time_before': noncurrentTimeBefore,
+        if (numNewerVersions != null) 'num_newer_versions': numNewerVersions,
+        if (sendAgeIfZero != null) 'send_age_if_zero': sendAgeIfZero,
+        if (sendDaysSinceCustomTimeIfZero != null)
+          'send_days_since_custom_time_if_zero': sendDaysSinceCustomTimeIfZero,
+        if (sendDaysSinceNoncurrentTimeIfZero != null)
+          'send_days_since_noncurrent_time_if_zero':
+              sendDaysSinceNoncurrentTimeIfZero,
+        if (sendNumNewerVersionsIfZero != null)
+          'send_num_newer_versions_if_zero': sendNumNewerVersionsIfZero,
+        if (withState != null) 'with_state': withState,
+      };
 }
 
 /// Encryption configuration: optional CMEK key + 3 enforcement sub-blocks.
@@ -154,23 +154,24 @@ class Encryption {
   final String? defaultKmsKeyName;
   final EncryptionEnforcementConfig? customerManagedEncryptionEnforcementConfig;
   final EncryptionEnforcementConfig?
-  customerSuppliedEncryptionEnforcementConfig;
+      customerSuppliedEncryptionEnforcementConfig;
   final EncryptionEnforcementConfig? googleManagedEncryptionEnforcementConfig;
   Map<String, Object?> toArgMap() => {
-    if (defaultKmsKeyName != null) 'default_kms_key_name': defaultKmsKeyName,
-    if (customerManagedEncryptionEnforcementConfig != null)
-      'customer_managed_encryption_enforcement_config': [
-        customerManagedEncryptionEnforcementConfig!.toArgMap(),
-      ],
-    if (customerSuppliedEncryptionEnforcementConfig != null)
-      'customer_supplied_encryption_enforcement_config': [
-        customerSuppliedEncryptionEnforcementConfig!.toArgMap(),
-      ],
-    if (googleManagedEncryptionEnforcementConfig != null)
-      'google_managed_encryption_enforcement_config': [
-        googleManagedEncryptionEnforcementConfig!.toArgMap(),
-      ],
-  };
+        if (defaultKmsKeyName != null)
+          'default_kms_key_name': defaultKmsKeyName,
+        if (customerManagedEncryptionEnforcementConfig != null)
+          'customer_managed_encryption_enforcement_config': [
+            customerManagedEncryptionEnforcementConfig!.toArgMap(),
+          ],
+        if (customerSuppliedEncryptionEnforcementConfig != null)
+          'customer_supplied_encryption_enforcement_config': [
+            customerSuppliedEncryptionEnforcementConfig!.toArgMap(),
+          ],
+        if (googleManagedEncryptionEnforcementConfig != null)
+          'google_managed_encryption_enforcement_config': [
+            googleManagedEncryptionEnforcementConfig!.toArgMap(),
+          ],
+      };
 }
 
 /// Shared shape for the 3 `encryption.*_enforcement_config` sub-blocks.
@@ -186,9 +187,9 @@ class RetentionPolicy {
   final String retentionPeriod;
   final bool? isLocked;
   Map<String, Object?> toArgMap() => {
-    'retention_period': retentionPeriod,
-    if (isLocked != null) 'is_locked': isLocked,
-  };
+        'retention_period': retentionPeriod,
+        if (isLocked != null) 'is_locked': isLocked,
+      };
 }
 
 /// Access-log delivery configuration.
@@ -197,9 +198,9 @@ class BucketLogging {
   final String logBucket;
   final String? logObjectPrefix;
   Map<String, Object?> toArgMap() => {
-    'log_bucket': logBucket,
-    if (logObjectPrefix != null) 'log_object_prefix': logObjectPrefix,
-  };
+        'log_bucket': logBucket,
+        if (logObjectPrefix != null) 'log_object_prefix': logObjectPrefix,
+      };
 }
 
 /// Static-website hosting configuration.
@@ -208,9 +209,9 @@ class BucketWebsite {
   final String? mainPageSuffix;
   final String? notFoundPage;
   Map<String, Object?> toArgMap() => {
-    if (mainPageSuffix != null) 'main_page_suffix': mainPageSuffix,
-    if (notFoundPage != null) 'not_found_page': notFoundPage,
-  };
+        if (mainPageSuffix != null) 'main_page_suffix': mainPageSuffix,
+        if (notFoundPage != null) 'not_found_page': notFoundPage,
+      };
 }
 
 /// Autoclass tiering.
@@ -219,10 +220,10 @@ class Autoclass {
   final bool enabled;
   final String? terminalStorageClass;
   Map<String, Object?> toArgMap() => {
-    'enabled': enabled,
-    if (terminalStorageClass != null)
-      'terminal_storage_class': terminalStorageClass,
-  };
+        'enabled': enabled,
+        if (terminalStorageClass != null)
+          'terminal_storage_class': terminalStorageClass,
+      };
 }
 
 /// Custom placement (dual-region) configuration.
@@ -254,25 +255,25 @@ class IpFilter {
   final PublicNetworkSource? publicNetworkSource;
   final List<VpcNetworkSource>? vpcNetworkSources;
   Map<String, Object?> toArgMap() => {
-    'mode': mode,
-    if (allowAllServiceAgentAccess != null)
-      'allow_all_service_agent_access': allowAllServiceAgentAccess,
-    if (allowCrossOrgVpcs != null) 'allow_cross_org_vpcs': allowCrossOrgVpcs,
-    if (publicNetworkSource != null)
-      'public_network_source': [publicNetworkSource!.toArgMap()],
-    if (vpcNetworkSources != null)
-      'vpc_network_sources': vpcNetworkSources!
-          .map((v) => v.toArgMap())
-          .toList(),
-  };
+        'mode': mode,
+        if (allowAllServiceAgentAccess != null)
+          'allow_all_service_agent_access': allowAllServiceAgentAccess,
+        if (allowCrossOrgVpcs != null)
+          'allow_cross_org_vpcs': allowCrossOrgVpcs,
+        if (publicNetworkSource != null)
+          'public_network_source': [publicNetworkSource!.toArgMap()],
+        if (vpcNetworkSources != null)
+          'vpc_network_sources':
+              vpcNetworkSources!.map((v) => v.toArgMap()).toList(),
+      };
 }
 
 class PublicNetworkSource {
   const PublicNetworkSource({required this.allowedIpCidrRanges});
   final List<String> allowedIpCidrRanges;
   Map<String, Object?> toArgMap() => {
-    'allowed_ip_cidr_ranges': allowedIpCidrRanges,
-  };
+        'allowed_ip_cidr_ranges': allowedIpCidrRanges,
+      };
 }
 
 class VpcNetworkSource {
@@ -283,9 +284,9 @@ class VpcNetworkSource {
   final String network;
   final List<String> allowedIpCidrRanges;
   Map<String, Object?> toArgMap() => {
-    'network': network,
-    'allowed_ip_cidr_ranges': allowedIpCidrRanges,
-  };
+        'network': network,
+        'allowed_ip_cidr_ranges': allowedIpCidrRanges,
+      };
 }
 
 /// Soft-delete policy. `retentionDurationSeconds == 0` disables soft-delete.
@@ -293,9 +294,9 @@ class SoftDeletePolicy {
   const SoftDeletePolicy({this.retentionDurationSeconds});
   final int? retentionDurationSeconds;
   Map<String, Object?> toArgMap() => {
-    if (retentionDurationSeconds != null)
-      'retention_duration_seconds': retentionDurationSeconds,
-  };
+        if (retentionDurationSeconds != null)
+          'retention_duration_seconds': retentionDurationSeconds,
+      };
 }
 
 /// Factory wrapper for `google_storage_bucket` (provider `hashicorp/google ~> 7.0`).
@@ -356,54 +357,55 @@ final class GoogleStorageBucket extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'name': name,
-           'location': location,
-           if (storageClass != null) 'storage_class': storageClass,
-           if (forceDestroy != null) 'force_destroy': forceDestroy,
-           if (publicAccessPrevention != null)
-             'public_access_prevention': publicAccessPrevention,
-           if (uniformBucketLevelAccess != null)
-             'uniform_bucket_level_access': uniformBucketLevelAccess,
-           if (defaultEventBasedHold != null)
-             'default_event_based_hold': defaultEventBasedHold,
-           if (enableObjectRetention != null)
-             'enable_object_retention': enableObjectRetention,
-           if (requesterPays != null) 'requester_pays': requesterPays,
-           if (rpo != null) 'rpo': rpo,
-           if (labels != null) 'labels': labels,
-           if (versioning != null)
-             'versioning': TfArg.literal([versioning.toArgMap()]),
-           if (cors != null)
-             'cors': TfArg.literal(cors.map((c) => c.toArgMap()).toList()),
-           if (lifecycleRule != null)
-             'lifecycle_rule': TfArg.literal(
-               lifecycleRule.map((r) => r.toArgMap()).toList(),
-             ),
-           if (encryption != null)
-             'encryption': TfArg.literal([encryption.toArgMap()]),
-           if (retentionPolicy != null)
-             'retention_policy': TfArg.literal([retentionPolicy.toArgMap()]),
-           if (logging != null) 'logging': TfArg.literal([logging.toArgMap()]),
-           if (website != null) 'website': TfArg.literal([website.toArgMap()]),
-           if (autoclass != null)
-             'autoclass': TfArg.literal([autoclass.toArgMap()]),
-           if (customPlacementConfig != null)
-             'custom_placement_config': TfArg.literal([
-               customPlacementConfig.toArgMap(),
-             ]),
-           if (hierarchicalNamespace != null)
-             'hierarchical_namespace': TfArg.literal([
-               hierarchicalNamespace.toArgMap(),
-             ]),
-           if (ipFilter != null)
-             'ip_filter': TfArg.literal([ipFilter.toArgMap()]),
-           if (softDeletePolicy != null)
-             'soft_delete_policy': TfArg.literal([softDeletePolicy.toArgMap()]),
-           if (project != null) 'project': project,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'name': name,
+            'location': location,
+            if (storageClass != null) 'storage_class': storageClass,
+            if (forceDestroy != null) 'force_destroy': forceDestroy,
+            if (publicAccessPrevention != null)
+              'public_access_prevention': publicAccessPrevention,
+            if (uniformBucketLevelAccess != null)
+              'uniform_bucket_level_access': uniformBucketLevelAccess,
+            if (defaultEventBasedHold != null)
+              'default_event_based_hold': defaultEventBasedHold,
+            if (enableObjectRetention != null)
+              'enable_object_retention': enableObjectRetention,
+            if (requesterPays != null) 'requester_pays': requesterPays,
+            if (rpo != null) 'rpo': rpo,
+            if (labels != null) 'labels': labels,
+            if (versioning != null)
+              'versioning': TfArg.literal([versioning.toArgMap()]),
+            if (cors != null)
+              'cors': TfArg.literal(cors.map((c) => c.toArgMap()).toList()),
+            if (lifecycleRule != null)
+              'lifecycle_rule': TfArg.literal(
+                lifecycleRule.map((r) => r.toArgMap()).toList(),
+              ),
+            if (encryption != null)
+              'encryption': TfArg.literal([encryption.toArgMap()]),
+            if (retentionPolicy != null)
+              'retention_policy': TfArg.literal([retentionPolicy.toArgMap()]),
+            if (logging != null) 'logging': TfArg.literal([logging.toArgMap()]),
+            if (website != null) 'website': TfArg.literal([website.toArgMap()]),
+            if (autoclass != null)
+              'autoclass': TfArg.literal([autoclass.toArgMap()]),
+            if (customPlacementConfig != null)
+              'custom_placement_config': TfArg.literal([
+                customPlacementConfig.toArgMap(),
+              ]),
+            if (hierarchicalNamespace != null)
+              'hierarchical_namespace': TfArg.literal([
+                hierarchicalNamespace.toArgMap(),
+              ]),
+            if (ipFilter != null)
+              'ip_filter': TfArg.literal([ipFilter.toArgMap()]),
+            if (softDeletePolicy != null)
+              'soft_delete_policy':
+                  TfArg.literal([softDeletePolicy.toArgMap()]),
+            if (project != null) 'project': project,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

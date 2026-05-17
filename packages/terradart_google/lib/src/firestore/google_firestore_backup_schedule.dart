@@ -60,8 +60,8 @@ final class WeeklyRecurrence extends BackupRecurrence {
 
   @override
   List<Map<String, Object?>> encode() => [
-    {if (day != null) 'day': day!.terraformValue},
-  ];
+        {if (day != null) 'day': day!.terraformValue},
+      ];
 }
 
 /// `weekly_recurrence.day` -- which day of the week the weekly backup
@@ -126,14 +126,14 @@ final class GoogleFirestoreBackupSchedule extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           if (database != null) 'database': database,
-           'retention': retention,
-           if (project != null) 'project': project,
-           recurrence.blockKey: TfArg.literal(recurrence.encode()),
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            if (database != null) 'database': database,
+            'retention': retention,
+            if (project != null) 'project': project,
+            recurrence.blockKey: TfArg.literal(recurrence.encode()),
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

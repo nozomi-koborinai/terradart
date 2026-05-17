@@ -62,28 +62,28 @@ final Map<String, Object Function()> _syntheticInstances = {
   'AccessIamMember': () =>
       AccessIamMember(iamMember: TfArg.literal('allUsers')),
   'AccessView': () => AccessView(
-    view: DatasetView(
-      projectId: TfArg.literal('p'),
-      datasetId: TfArg.literal('d'),
-      tableId: TfArg.literal('t'),
-    ),
-  ),
-  'AccessDataset': () => AccessDataset(
-    dataset: DatasetAccessChild(
-      dataset: DatasetReference(
-        projectId: TfArg.literal('p'),
-        datasetId: TfArg.literal('d'),
+        view: DatasetView(
+          projectId: TfArg.literal('p'),
+          datasetId: TfArg.literal('d'),
+          tableId: TfArg.literal('t'),
+        ),
       ),
-      targetTypes: [TfArg.literal('VIEWS')],
-    ),
-  ),
+  'AccessDataset': () => AccessDataset(
+        dataset: DatasetAccessChild(
+          dataset: DatasetReference(
+            projectId: TfArg.literal('p'),
+            datasetId: TfArg.literal('d'),
+          ),
+          targetTypes: [TfArg.literal('VIEWS')],
+        ),
+      ),
   'AccessRoutine': () => AccessRoutine(
-    routine: DatasetRoutineRef(
-      projectId: TfArg.literal('p'),
-      datasetId: TfArg.literal('d'),
-      routineId: TfArg.literal('r'),
-    ),
-  ),
+        routine: DatasetRoutineRef(
+          projectId: TfArg.literal('p'),
+          datasetId: TfArg.literal('d'),
+          routineId: TfArg.literal('r'),
+        ),
+      ),
 
   // --- EnvVarSource (2) — cloud_run_v2_service -----------------------------
   'EnvVarFromLiteral': () => EnvVarFromLiteral(TfArg.literal('mock-value')),
@@ -96,9 +96,9 @@ final Map<String, Object Function()> _syntheticInstances = {
   'EmptyDirVolume': () => const EmptyDirVolume(),
   'GcsVolume': () => GcsVolume(bucket: TfArg.literal('mock-bucket')),
   'NfsVolume': () => NfsVolume(
-    server: TfArg.literal('nfs.example.com'),
-    path: TfArg.literal('/exports/data'),
-  ),
+        server: TfArg.literal('nfs.example.com'),
+        path: TfArg.literal('/exports/data'),
+      ),
 
   // --- SchedulerTarget (3) — cloud_scheduler_job ---------------------------
   'PubsubTarget': () =>
@@ -110,9 +110,9 @@ final Map<String, Object Function()> _syntheticInstances = {
 
   // --- SourceConfig (2) — cloudfunctions2_function -------------------------
   'StorageSource': () => StorageSource(
-    bucket: TfArg.literal('mock-bucket'),
-    object: TfArg.literal('mock-object.zip'),
-  ),
+        bucket: TfArg.literal('mock-bucket'),
+        object: TfArg.literal('mock-object.zip'),
+      ),
   'RepoSource': () => RepoSource(repoName: TfArg.literal('mock-repo')),
 
   // --- UpdatePolicy (2) — cloudfunctions2_function -------------------------
@@ -122,8 +122,8 @@ final Map<String, Object Function()> _syntheticInstances = {
   // --- AppHostingBuildSource (2) — firebase_app_hosting_build --------------
   'AppHostingBuildSourceCodebase': () => const AppHostingBuildSourceCodebase(),
   'AppHostingBuildSourceContainer': () => AppHostingBuildSourceContainer(
-    image: TfArg.literal('us-central1-docker.pkg.dev/p/r/web:1.0.0'),
-  ),
+        image: TfArg.literal('us-central1-docker.pkg.dev/p/r/web:1.0.0'),
+      ),
 
   // --- BackupRecurrence (2) — firestore_backup_schedule --------------------
   // These return List<Map<String, Object?>> (single-element, per the
@@ -166,13 +166,12 @@ void main() {
         'yaml',
       ),
     );
-    final yamlFiles =
-        yamlDir
-            .listSync()
-            .whereType<File>()
-            .where((f) => f.path.endsWith('.yaml'))
-            .toList()
-          ..sort((a, b) => a.path.compareTo(b.path));
+    final yamlFiles = yamlDir
+        .listSync()
+        .whereType<File>()
+        .where((f) => f.path.endsWith('.yaml'))
+        .toList()
+      ..sort((a, b) => a.path.compareTo(b.path));
 
     for (final yamlFile in yamlFiles) {
       final yamlSource = yamlFile.readAsStringSync();
@@ -185,14 +184,14 @@ void main() {
 
       for (final sealed in sealedClasses) {
         for (final member in sealed.members) {
-          test('${sealed.name}.${member.name}: encode() round-trips '
+          test(
+              '${sealed.name}.${member.name}: encode() round-trips '
               'with required keys present', () {
             final thunk = _syntheticInstances[member.name];
             expect(
               thunk,
               isNotNull,
-              reason:
-                  'Gate 6 lookup table missing entry for ${member.name}. '
+              reason: 'Gate 6 lookup table missing entry for ${member.name}. '
                   'Add a constructor thunk to _syntheticInstances in '
                   'encode_round_trip_test.dart. See Plan 5.D PR 2 Task 10.',
             );
@@ -264,8 +263,7 @@ void main() {
               expect(
                 allKeys,
                 contains(schemaKey),
-                reason:
-                    'required attr "$schemaKey" '
+                reason: 'required attr "$schemaKey" '
                     '(camel: ${param.name}) must appear as a key somewhere '
                     'in the encoded payload (top-level or nested under a '
                     'discriminator block). Top-level keys observed: '
@@ -282,8 +280,7 @@ void main() {
             expect(
               tfArgLeaks,
               isEmpty,
-              reason:
-                  'encoded values must be TfArg-unwrapped '
+              reason: 'encoded values must be TfArg-unwrapped '
                   '(.toTfJson() should have been called). Found raw '
                   'TfArg instances at: $tfArgLeaks',
             );

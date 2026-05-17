@@ -73,8 +73,7 @@ void main() {
       expect(
         actual,
         equals(expected),
-        reason:
-            '$svc tf-out drifted. Re-run '
+        reason: '$svc tf-out drifted. Re-run '
             '`dart run tool/freeze_tfout_snapshots.dart` if intentional.',
       );
     });

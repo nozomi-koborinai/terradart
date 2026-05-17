@@ -20,7 +20,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [terradart_core, terradart_annotations, terradart_codegen, terradart_google]
+        package: [terradart_core, terradart_codegen, terradart_google]
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
