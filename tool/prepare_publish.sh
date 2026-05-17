@@ -27,9 +27,10 @@ fi
 yq e 'del(.publish_to) | del(.resolution)' -i pubspec.yaml
 
 # 4. Swap path: deps for terradart_google to hosted ^VERSION constraints.
+# Note: terradart_annotations was removed in Plan 5.X (v0.5.0-dev) — no longer
+# a dep of terradart_google.
 if [[ "$PKG" == "terradart_google" ]]; then
   yq e ".dependencies.terradart_core = \"^${VERSION}\"" -i pubspec.yaml
-  yq e ".dependencies.terradart_annotations = \"^${VERSION}\"" -i pubspec.yaml
   yq e ".dev_dependencies.terradart_codegen = \"^${VERSION}\"" -i pubspec.yaml
 fi
 
