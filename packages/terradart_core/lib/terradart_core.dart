@@ -28,4 +28,4 @@ export 'src/synth/output_emitter.dart'
 export 'src/synth/stack_synth.dart' show StackSynth, SynthResult;
 export 'src/tf_arg.dart' show TfArg, TfArgLiteral, TfArgRef;
 export 'src/tf_ref.dart'
-    show AttributeRef, DataRef, ResourceRef, SchemaCarrier, TfAddressed, TfRef;
+    show AttributeRef, DataRef, ResourceRef, TfAddressed, TfRef;

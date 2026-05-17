@@ -10,11 +10,6 @@ class _FakeAddressed implements TfAddressed {
 
 void main() {
   group('TfArg.literal', () {
-    test('literalOrPlaceholder returns the value', () {
-      const arg = TfArgLiteral<String>('orders-prod');
-      expect(arg.literalOrPlaceholder, 'orders-prod');
-    });
-
     test('toTfJson returns the raw value', () {
       const arg = TfArgLiteral<int>(60);
       expect(arg.toTfJson(), 60);
@@ -25,10 +20,6 @@ void main() {
     final topic = _FakeAddressed('google_pubsub_topic.orders');
     final ref = TfRef.attribute<String>(topic, 'name');
     final arg = TfArg.ref(ref);
-
-    test('literalOrPlaceholder returns the placeholder', () {
-      expect(arg.literalOrPlaceholder, '');
-    });
 
     test('toTfJson returns the interpolation string', () {
       expect(arg.toTfJson(), r'${google_pubsub_topic.orders.name}');

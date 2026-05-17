@@ -81,8 +81,8 @@ abstract class Stack {
   final List<StackProvider> _providers;
 
   // Insertion-ordered for deterministic JSON emission.
-  final Map<_DedupKey, Resource<dynamic>> _resources = {};
-  final Map<_DedupKey, Data<dynamic>> _dataSources = {};
+  final Map<_DedupKey, Resource> _resources = {};
+  final Map<_DedupKey, Data> _dataSources = {};
 
   // ---- Coordination state (synth consumes) --------------------------------
 
@@ -103,10 +103,9 @@ abstract class Stack {
 
   List<StackProvider> get providers => _providers;
   StackBackend? get backend => _backend;
-  List<Resource<dynamic>> get resources =>
-      List<Resource<dynamic>>.unmodifiable(_resources.values);
-  List<Data<dynamic>> get dataSources =>
-      List<Data<dynamic>>.unmodifiable(_dataSources.values);
+  List<Resource> get resources =>
+      List<Resource>.unmodifiable(_resources.values);
+  List<Data> get dataSources => List<Data>.unmodifiable(_dataSources.values);
 
   /// Read-only map of registered exports, keyed by user-supplied name.
   /// Insertion order is preserved for deterministic generated output.
@@ -150,10 +149,10 @@ abstract class Stack {
   // ---- Resource registration ---------------------------------------------
 
   /// Register a resource. Returns the same instance for fluent assignment.
-  T add<T extends Resource<dynamic>>(T resource) {
+  T add<T extends Resource>(T resource) {
     if (resource is Data) {
       throw ArgumentError(
-        'Use Stack.addData() to register a Data<S>, not Stack.add().',
+        'Use Stack.addData() to register a Data, not Stack.add().',
       );
     }
     final key = _DedupKey(
@@ -173,7 +172,7 @@ abstract class Stack {
   }
 
   /// Register a data source. Returns the same instance.
-  T addData<T extends Data<dynamic>>(T data) {
+  T addData<T extends Data>(T data) {
     final key = _DedupKey(data.kind, data.terraformType, data.localName);
     if (_resources.containsKey(key) || _dataSources.containsKey(key)) {
       throw DuplicateResourceError(

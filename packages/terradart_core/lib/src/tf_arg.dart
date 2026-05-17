@@ -6,8 +6,8 @@ import 'tf_ref.dart';
 /// A Terraform argument: either a Dart-side literal or a Terraform-side
 /// reference.
 ///
-/// `T` is the schemantic-side Dart type. Resource factories accept
-/// `TfArg<T>` (or `TfArg<T>?`) for every settable field.
+/// `T` is the Dart type the factory parameter accepts. Resource factories
+/// accept `TfArg<T>` (or `TfArg<T>?`) for every settable field.
 sealed class TfArg<T> {
   const TfArg();
 
@@ -39,12 +39,6 @@ sealed class TfArg<T> {
   static TfArg<String> duration(Duration duration) =>
       TfArgLiteral<String>(duration.toTfDurationString());
 
-  /// Value to pass to schemantic concrete constructor.
-  ///
-  /// - `TfArgLiteral` → the actual value
-  /// - `TfArgRef`     → a typed dummy from `placeholderFor<T>()`
-  T get literalOrPlaceholder;
-
   /// Value emitted into Terraform JSON.
   ///
   /// - `TfArgLiteral` → the actual value (string, int, etc.)
@@ -57,9 +51,6 @@ final class TfArgLiteral<T> extends TfArg<T> {
   const TfArgLiteral(this.value);
 
   final T value;
-
-  @override
-  T get literalOrPlaceholder => value;
 
   @override
   Object? toTfJson() {
@@ -98,9 +89,6 @@ final class TfArgRef<T> extends TfArg<T> {
   const TfArgRef(this.ref);
 
   final TfRef<T> ref;
-
-  @override
-  T get literalOrPlaceholder => ref.placeholder;
 
   @override
   Object? toTfJson() => ref.interpolation;

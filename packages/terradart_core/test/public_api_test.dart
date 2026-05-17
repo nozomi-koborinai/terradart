@@ -13,7 +13,6 @@ void main() {
       DataRef,
       ResourceRef,
       TfAddressed,
-      SchemaCarrier,
       Resource,
       ResourceKind,
       Data,
@@ -43,7 +42,7 @@ void main() {
       SynthResult,
       DuplicateResourceError,
     ];
-    expect(symbols, hasLength(36));
+    expect(symbols, hasLength(35));
   });
 
   test('TerraformDurationExt is accessible (extension method)', () {
