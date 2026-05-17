@@ -16,6 +16,10 @@ import '../naming.dart';
 /// - `nested_block.minItems != null && nested_block.minItems >= 1`
 /// - `nested_block.maxItems != 1` (max_items==1 is already encoded as a
 ///   non-nullable `required SingleObj` parameter — an assert there is noise)
+/// - **Top-level `def.root.nestedBlocks` only — recursion is deliberately
+///   omitted.** Wave 4 helpers `AppHostingTrafficTarget.splits` (depth 1)
+///   and `IndexFieldTextSpec.indexSpecs` (depth 3) are NOT covered by this
+///   emitter; deeper walking is future scope. See PR 4 body for rationale.
 ///
 /// Scalar attribute constraints (`min_length`, `max_length`, `min`, `max`,
 /// `regex`) are NOT covered here — they are handled at the schemantic layer
