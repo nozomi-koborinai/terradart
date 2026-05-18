@@ -101,3 +101,58 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dns_managed_zone_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+
+  # Wave 6 — Compute LB stack (Plan 5.G).
+  # MM URLs are best-effort guesses; Batch 0 probes each and rewrites to
+  # `upstream: null` for any that return 404 (handwritten in
+  # terraform-provider-google, not generated from Magic Modules).
+  google_compute_autoscaler:
+    upstream: mmv1/products/compute/Autoscaler.yaml
+  google_compute_backend_bucket:
+    upstream: mmv1/products/compute/BackendBucket.yaml
+  google_compute_backend_service:
+    upstream: mmv1/products/compute/BackendService.yaml
+  google_compute_forwarding_rule:
+    upstream: mmv1/products/compute/ForwardingRule.yaml
+  google_compute_global_forwarding_rule:
+    upstream: mmv1/products/compute/GlobalForwardingRule.yaml
+  google_compute_global_network_endpoint_group:
+    upstream: mmv1/products/compute/GlobalNetworkEndpointGroup.yaml
+  google_compute_health_check:
+    upstream: mmv1/products/compute/HealthCheck.yaml
+  google_compute_instance_group_manager:
+    upstream: mmv1/products/compute/InstanceGroupManager.yaml
+  google_compute_instance_template:
+    upstream: mmv1/products/compute/InstanceTemplate.yaml
+  google_compute_managed_ssl_certificate:
+    upstream: mmv1/products/compute/ManagedSslCertificate.yaml
+  google_compute_network_endpoint_group:
+    upstream: mmv1/products/compute/NetworkEndpointGroup.yaml
+  google_compute_region_autoscaler:
+    upstream: mmv1/products/compute/RegionAutoscaler.yaml
+  google_compute_region_backend_service:
+    upstream: mmv1/products/compute/RegionBackendService.yaml
+  google_compute_region_health_check:
+    upstream: mmv1/products/compute/RegionHealthCheck.yaml
+  google_compute_region_instance_group_manager:
+    upstream: mmv1/products/compute/RegionInstanceGroupManager.yaml
+  google_compute_region_network_endpoint_group:
+    upstream: mmv1/products/compute/RegionNetworkEndpointGroup.yaml
+  google_compute_region_target_http_proxy:
+    upstream: mmv1/products/compute/RegionTargetHttpProxy.yaml
+  google_compute_region_target_https_proxy:
+    upstream: mmv1/products/compute/RegionTargetHttpsProxy.yaml
+  google_compute_region_url_map:
+    upstream: mmv1/products/compute/RegionUrlMap.yaml
+  google_compute_security_policy:
+    upstream: null  # handwritten in terraform-provider-google (probe returned 404)
+  google_compute_ssl_certificate:
+    upstream: mmv1/products/compute/SslCertificate.yaml
+  google_compute_ssl_policy:
+    upstream: mmv1/products/compute/SslPolicy.yaml
+  google_compute_target_http_proxy:
+    upstream: mmv1/products/compute/TargetHttpProxy.yaml
+  google_compute_target_https_proxy:
+    upstream: mmv1/products/compute/TargetHttpsProxy.yaml
+  google_compute_url_map:
+    upstream: mmv1/products/compute/UrlMap.yaml
