@@ -50,7 +50,7 @@ files:
 
 # Wave 5 — IAM completion + Cloud SQL (Plan 5.F)
 
-# IAM core
+  # IAM core
   google_project_iam_custom_role:
     upstream: null  # handwritten in terraform provider; no MM YAML
   google_project_iam_member:
@@ -62,7 +62,7 @@ files:
   google_iam_workload_identity_pool:
     upstream: mmv1/products/iambeta/WorkloadIdentityPool.yaml
 
-# Cloud SQL
+  # Cloud SQL
   google_sql_database_instance:
     upstream: null  # handwritten in terraform provider; no MM YAML
   google_sql_database:
@@ -74,11 +74,11 @@ files:
   google_compute_global_address:
     upstream: mmv1/products/compute/GlobalAddress.yaml
 
-# Cloud Run v2 job (parent for the *_iam_member sibling)
+  # Cloud Run v2 job (parent for the *_iam_member sibling)
   google_cloud_run_v2_job:
     upstream: mmv1/products/cloudrunv2/Job.yaml
 
-# *_iam_member fill (no MM yaml; all schema-only)
+  # *_iam_member fill (no MM YAML; all schema-only)
   google_bigquery_dataset_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_bigquery_table_iam_member:
