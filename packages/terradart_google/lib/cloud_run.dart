@@ -35,6 +35,8 @@ export 'src/cloud_run/google_cloud_run_v2_job.dart'
         JobVpcAccessEgress,
         JobVpcNetworkInterface,
         TaskTemplate;
+export 'src/cloud_run/google_cloud_run_v2_job_iam_member.dart'
+    show GoogleCloudRunV2JobIamMember;
 export 'src/cloud_run/google_cloud_run_v2_service.dart'
     show
         BinaryAuthorization,
@@ -74,3 +76,5 @@ export 'src/cloud_run/google_cloud_run_v2_service.dart'
         VpcAccess,
         VpcAccessEgress,
         VpcNetworkInterface;
+export 'src/cloud_run/google_cloud_run_v2_service_iam_member.dart'
+    show GoogleCloudRunV2ServiceIamMember;

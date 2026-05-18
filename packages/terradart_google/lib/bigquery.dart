@@ -24,6 +24,8 @@ export 'src/bigquery/google_bigquery_dataset.dart'
         ExternalCatalogDatasetOptions,
         ExternalDatasetReference,
         GoogleBigqueryDataset;
+export 'src/bigquery/google_bigquery_dataset_iam_member.dart'
+    show GoogleBigqueryDatasetIamMember;
 export 'src/bigquery/google_bigquery_table.dart'
     show
         AvroOptions,
@@ -54,3 +56,5 @@ export 'src/bigquery/google_bigquery_table.dart'
         TableView,
         TimePartitioning,
         TimePartitioningType;
+export 'src/bigquery/google_bigquery_table_iam_member.dart'
+    show GoogleBigqueryTableIamMember;
