@@ -1,6 +1,6 @@
 # terradart_google
 
-Curated GCP factory wrappers for [terradart](https://github.com/nozomi-koborinai/terradart). 28 resources + 1 data source, each shipping with typed Dart enums for fixed-value-set fields, typed helper classes for every nested block, and golden-tested deterministic codegen.
+Curated GCP factory wrappers for [terradart](https://github.com/nozomi-koborinai/terradart). 71 curated resources + 1 data source, each shipping with typed Dart enums for fixed-value-set fields, typed helper classes for every nested block, and golden-tested deterministic codegen.
 
 ## Resources
 
@@ -74,11 +74,11 @@ Curated GCP factory wrappers for [terradart](https://github.com/nozomi-koborinai
 
 The factory wrappers under `lib/src/<service>/` are emitted by `terradart wrap` from curated overrides under [`terradart_codegen`](https://pub.dev/packages/terradart_codegen). They are committed to the package so consumers can depend on `terradart_google` directly without running any codegen themselves.
 
-CI verifies determinism via `terradart wrap --check`: all 56 emitted files (28 resource Layer 2 + 28 resource Layer 1) must stay byte-identical across PRs.
+CI verifies determinism via `terradart wrap --check`: all 71 emitted wrapper files must stay byte-identical across PRs.
 
 For any other `google_*` / `google-beta_*` resource that isn't in the catalog above, run `terradart codegen` against your provider schema dump and emit bindings into your own `lib/generated/` rather than depending on this package.
 
-For the runtime side (`Stack`, `Resource<S>`, `StackSynth.synth`), see [`terradart_core`](https://pub.dev/packages/terradart_core). For project-level documentation, see the [terradart repo README](https://github.com/nozomi-koborinai/terradart#readme).
+For the runtime side (`Stack`, `Resource`, `StackSynth.synth`), see [`terradart_core`](https://pub.dev/packages/terradart_core). For project-level documentation, see the [terradart repo README](https://github.com/nozomi-koborinai/terradart#readme).
 
 ## Installation
 

@@ -128,7 +128,7 @@ Runnable end-to-end:  [`examples/pubsub_quickstart/`](examples/pubsub_quickstart
 
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **28 resource factories + 1 data source**: compute (5), BigQuery (2), KMS (2), Cloud Storage (2), DNS (1), Cloud Run v2 (1), Logging (1), Monitoring (1), Pub/Sub (4), Cloud Tasks (2), Secret Manager (3), Cloud Scheduler (1), IAM service account (1), project service enablement (1), and the `google_project` data source. CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
+[`terradart_google`](packages/terradart_google/README.md) ships **71 curated resource factories + 1 data source**: Compute (8), BigQuery (4), KMS (4), Cloud Storage (3), DNS (2), Cloud Run v2 (4), Logging (1), Monitoring (1), Pub/Sub (4), Cloud Tasks (2), Secret Manager (3), Cloud Scheduler (1), IAM (6), Cloud SQL (5), Service Networking (1), project service enablement (1), and the `google_project` data source. CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
 For any other `google_*` resource: run `terradart codegen` against your provider schema dump. The emitted Dart names have no SemVer guarantee.
 
