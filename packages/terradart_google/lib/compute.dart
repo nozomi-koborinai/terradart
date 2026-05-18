@@ -58,6 +58,14 @@ export 'src/compute/google_compute_firewall.dart'
         FirewallLogConfig,
         FirewallLogMetadata,
         GoogleComputeFirewall;
+export 'src/compute/google_compute_forwarding_rule.dart'
+    show
+        ForwardingRuleIpProtocol,
+        ForwardingRuleIpVersion,
+        ForwardingRuleLoadBalancingScheme,
+        ForwardingRuleNetworkTier,
+        ForwardingRuleServiceDirectoryRegistration,
+        GoogleComputeForwardingRule;
 export 'src/compute/google_compute_global_address.dart'
     show
         GlobalAddressIpVersion,
@@ -76,6 +84,19 @@ export 'src/compute/google_compute_global_forwarding_rule.dart'
         GlobalForwardingRuleNetworkTier,
         GlobalForwardingRuleServiceDirectoryRegistration,
         GoogleComputeGlobalForwardingRule;
+export 'src/compute/google_compute_health_check.dart'
+    show
+        GoogleComputeHealthCheck,
+        GrpcHealthCheckConfig,
+        HealthCheckLogConfig,
+        HealthCheckPortSpecification,
+        HealthCheckProxyHeader,
+        HealthCheckType,
+        Http2HealthCheckConfig,
+        HttpHealthCheckConfig,
+        HttpsHealthCheckConfig,
+        SslHealthCheckConfig,
+        TcpHealthCheckConfig;
 export 'src/compute/google_compute_instance.dart'
     show
         AccessConfig,
@@ -122,6 +143,76 @@ export 'src/compute/google_compute_network.dart'
         GoogleComputeNetwork,
         NetworkFirewallPolicyEnforcementOrder,
         RoutingMode;
+export 'src/compute/google_compute_region_backend_service.dart'
+    show
+        GoogleComputeRegionBackendService,
+        RegionBackendServiceBackend,
+        RegionBackendServiceBackendCustomMetric,
+        RegionBackendServiceBalancingMode,
+        RegionBackendServiceCacheMode,
+        RegionBackendServiceCdnCacheKeyPolicy,
+        RegionBackendServiceCdnNegativeCachingPolicy,
+        RegionBackendServiceCdnPolicy,
+        RegionBackendServiceCircuitBreakers,
+        RegionBackendServiceConsistentHash,
+        RegionBackendServiceConsistentHashHttpCookie,
+        RegionBackendServiceCustomMetric,
+        RegionBackendServiceDuration,
+        RegionBackendServiceFailoverPolicy,
+        RegionBackendServiceFastIpMove,
+        RegionBackendServiceHaPolicy,
+        RegionBackendServiceHaPolicyLeader,
+        RegionBackendServiceHaPolicyLeaderNetworkEndpoint,
+        RegionBackendServiceIap,
+        RegionBackendServiceIpAddressSelectionPolicy,
+        RegionBackendServiceLoadBalancingScheme,
+        RegionBackendServiceLocalityLbPolicy,
+        RegionBackendServiceLogConfig,
+        RegionBackendServiceLogOptionalMode,
+        RegionBackendServiceNetworkPassThroughLbTrafficPolicy,
+        RegionBackendServiceOutlierDetection,
+        RegionBackendServiceParams,
+        RegionBackendServiceProtocol,
+        RegionBackendServiceSessionAffinity,
+        RegionBackendServiceStrongSessionAffinityCookie,
+        RegionBackendServiceTlsSettings,
+        RegionBackendServiceTlsSubjectAltName,
+        RegionBackendServiceZonalAffinity,
+        RegionBackendServiceZonalAffinitySpillover;
+export 'src/compute/google_compute_region_health_check.dart'
+    show
+        GoogleComputeRegionHealthCheck,
+        RegionHealthCheckGrpcConfig,
+        RegionHealthCheckHttp2Config,
+        RegionHealthCheckHttpConfig,
+        RegionHealthCheckHttpsConfig,
+        RegionHealthCheckLogConfig,
+        RegionHealthCheckPortSpecification,
+        RegionHealthCheckProxyHeader,
+        RegionHealthCheckSslConfig,
+        RegionHealthCheckTcpConfig,
+        RegionHealthCheckType;
+export 'src/compute/google_compute_region_target_http_proxy.dart'
+    show GoogleComputeRegionTargetHttpProxy;
+export 'src/compute/google_compute_region_target_https_proxy.dart'
+    show GoogleComputeRegionTargetHttpsProxy;
+export 'src/compute/google_compute_region_url_map.dart'
+    show
+        GoogleComputeRegionUrlMap,
+        RegionUrlMapHeaderAction,
+        RegionUrlMapHeaderMatch,
+        RegionUrlMapHeaderMatchRange,
+        RegionUrlMapHeaderToAdd,
+        RegionUrlMapHostRule,
+        RegionUrlMapPathMatcher,
+        RegionUrlMapPathRule,
+        RegionUrlMapQueryParameterMatch,
+        RegionUrlMapRedirectResponseCode,
+        RegionUrlMapRouteRule,
+        RegionUrlMapRouteRuleMatch,
+        RegionUrlMapTest,
+        RegionUrlMapTestHeader,
+        RegionUrlMapUrlRedirect;
 export 'src/compute/google_compute_ssl_certificate.dart'
     show GoogleComputeSslCertificate;
 export 'src/compute/google_compute_subnetwork.dart'
