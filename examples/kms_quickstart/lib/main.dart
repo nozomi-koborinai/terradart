@@ -8,6 +8,10 @@
 /// the ring plus a `roles/cloudkms.cryptoKeyEncrypter` binding on the key
 /// for a workload SA -- the standard envelope-encryption setup where the
 /// application wraps DEKs with this KEK at write time.
+///
+/// Wave 5 Batch 4 adds a `roles/cloudkms.viewer` binding on the *ring* for
+/// a read-only inventory SA -- this is the right granularity for "list
+/// every key under this ring" without granting per-key encrypt/decrypt.
 library;
 
 import 'dart:convert' as dart_convert;
@@ -70,6 +74,29 @@ class CryptoStack extends Stack {
         cryptoKeyId: TfArg.ref(paymentsKey.id),
         role: TfArg.literal('roles/cloudkms.cryptoKeyEncrypter'),
         member: TfArg.ref(encrypter.member),
+      ),
+    );
+
+    // ---- IAM: read-only inventory SA on the ring --------------------------
+    //
+    // A separate SA used by audit / monitoring tooling that needs to list
+    // keys + versions under the ring but never wrap, unwrap, or sign. The
+    // binding lives on the ring rather than on each key so adding new keys
+    // under the ring extends the inventory automatically.
+
+    final ringInventory = GoogleServiceAccount(
+      localName: 'kms_ring_inventory',
+      accountId: TfArg.literal('kms-ring-inventory'),
+      displayName: TfArg.literal('KMS ring inventory reader'),
+    );
+    add(ringInventory);
+
+    add(
+      GoogleKmsKeyRingIamMember(
+        localName: 'ring_inventory_binding',
+        keyRingId: TfArg.ref(ring.id),
+        role: TfArg.literal('roles/cloudkms.viewer'),
+        member: TfArg.ref(ringInventory.member),
       ),
     );
   }

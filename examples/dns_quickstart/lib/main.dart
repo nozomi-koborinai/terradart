@@ -11,6 +11,10 @@
 /// `google_dns_managed_zone` and the 6 schema-faithful enums
 /// (visibility / DNSSEC state / DNSSEC non-existence / DNSSEC algorithm /
 /// DNSSEC key-type / forwarding-path).
+///
+/// Wave 5 Batch 4 adds a `roles/dns.admin` binding on the zone for a
+/// per-zone admin SA -- the standard delegated-DNS pattern where a team
+/// owns its own subdomain without project-wide DNS admin.
 library;
 
 import 'dart:convert' as dart_convert;
@@ -19,6 +23,7 @@ import 'dart:io';
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/dns.dart';
+import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 
 class InternalDnsStack extends Stack {
@@ -35,37 +40,59 @@ class InternalDnsStack extends Stack {
     );
     add(vpc);
 
+    final internalZone = GoogleDnsManagedZone(
+      localName: 'internal',
+      name: TfArg.literal('internal-corp'),
+      dnsName: TfArg.literal('internal.corp.'),
+      description:
+          TfArg.literal('Private DNS for internal services in gnd-vpc.'),
+      visibility: TfArg.literal(DnsZoneVisibility.private),
+      privateVisibilityConfig: PrivateVisibilityConfig(
+        networks: [
+          PrivateVisibilityNetwork(
+            networkUrl: r'${google_compute_network.gnd_vpc.id}',
+          ),
+        ],
+      ),
+      dnssecConfig: const DnssecConfig(
+        state: DnssecState.on,
+        nonExistence: DnssecNonExistence.nsec3,
+        defaultKeySpecs: [
+          DnssecKeySpec(
+            algorithm: DnssecKeyAlgorithm.rsasha256,
+            keyType: DnssecKeyType.keySigning,
+            keyLength: 2048,
+          ),
+          DnssecKeySpec(
+            algorithm: DnssecKeyAlgorithm.rsasha256,
+            keyType: DnssecKeyType.zoneSigning,
+            keyLength: 1024,
+          ),
+        ],
+      ),
+    );
+    add(internalZone);
+
+    // ---- IAM: delegated zone admin ----------------------------------------
+    //
+    // The networking team owns `internal.corp.` end-to-end. Granting
+    // `roles/dns.admin` on this one zone (rather than project-wide) lets
+    // them add / update / remove records without giving them control over
+    // other zones in the same project.
+
+    final zoneAdmin = GoogleServiceAccount(
+      localName: 'internal_zone_admin',
+      accountId: TfArg.literal('internal-zone-admin'),
+      displayName: TfArg.literal('internal.corp. zone admin'),
+    );
+    add(zoneAdmin);
+
     add(
-      GoogleDnsManagedZone(
-        localName: 'internal',
-        name: TfArg.literal('internal-corp'),
-        dnsName: TfArg.literal('internal.corp.'),
-        description:
-            TfArg.literal('Private DNS for internal services in gnd-vpc.'),
-        visibility: TfArg.literal(DnsZoneVisibility.private),
-        privateVisibilityConfig: PrivateVisibilityConfig(
-          networks: [
-            PrivateVisibilityNetwork(
-              networkUrl: r'${google_compute_network.gnd_vpc.id}',
-            ),
-          ],
-        ),
-        dnssecConfig: const DnssecConfig(
-          state: DnssecState.on,
-          nonExistence: DnssecNonExistence.nsec3,
-          defaultKeySpecs: [
-            DnssecKeySpec(
-              algorithm: DnssecKeyAlgorithm.rsasha256,
-              keyType: DnssecKeyType.keySigning,
-              keyLength: 2048,
-            ),
-            DnssecKeySpec(
-              algorithm: DnssecKeyAlgorithm.rsasha256,
-              keyType: DnssecKeyType.zoneSigning,
-              keyLength: 1024,
-            ),
-          ],
-        ),
+      GoogleDnsManagedZoneIamMember(
+        localName: 'internal_zone_admin_binding',
+        managedZone: TfArg.ref(internalZone.nameRef),
+        role: TfArg.literal('roles/dns.admin'),
+        member: TfArg.ref(zoneAdmin.member),
       ),
     );
   }

@@ -21,3 +21,5 @@ export 'src/dns/google_dns_managed_zone.dart'
         PrivateVisibilityConfig,
         PrivateVisibilityGkeCluster,
         PrivateVisibilityNetwork;
+export 'src/dns/google_dns_managed_zone_iam_member.dart'
+    show GoogleDnsManagedZoneIamMember;

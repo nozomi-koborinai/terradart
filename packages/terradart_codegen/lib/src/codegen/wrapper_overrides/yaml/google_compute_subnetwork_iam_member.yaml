@@ -1,0 +1,55 @@
+outputDir: compute
+classDocComment: |-
+  /// Factory wrapper for `google_compute_subnetwork_iam_member`.
+  ///
+  /// Grants a single (`role`, `member`) IAM binding **on a single VPC
+  /// subnetwork** — i.e. who can attach VMs / load balancers / GKE node
+  /// pools to this specific subnet. Subnetwork-scoped IAM is the standard
+  /// tool for Shared VPC: the host project owns the network, and each
+  /// service project's compute SAs are bound `roles/compute.networkUser`
+  /// on *only* the subnets they're allowed to use. Tightly scoping here
+  /// keeps service projects from creating workloads in the wrong region or
+  /// shared subnet by accident.
+  ///
+  /// Picking the right `*_iam_*` variant:
+  ///
+  /// - `*_iam_member` (this resource) — **additive**: grants ONE
+  ///   (role, member) tuple. Does not touch other principals' bindings.
+  ///   Safe in 95% of cases; prefer this unless you have a concrete reason
+  ///   to use one of the authoritative variants below.
+  /// - `*_iam_binding` — **authoritative per role**: takes a list of
+  ///   members and *replaces* the entire member list for that role. Will
+  ///   silently erase any other principal previously bound to that role
+  ///   on this subnetwork.
+  /// - `*_iam_policy` — **authoritative for the entire resource**: replaces
+  ///   the subnetwork's whole IAM policy. Will erase **all** existing
+  ///   bindings.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - `subnetwork`: the target subnetwork's `name` attribute (the short
+  ///   subnet name in the same project + region, *not* a fully-qualified
+  ///   `projects/.../subnetworks/...` path). Pass `TfArg.ref(subnet.nameRef)`.
+  /// - `role`: role name, typically `'roles/compute.networkUser'` (the
+  ///   Shared-VPC subnet-attach role).
+  /// - `member`: principal in IAM v1 string form. For Shared VPC this is
+  ///   often a service project's compute SA, e.g.
+  ///   `'serviceAccount:<project_number>@cloudservices.gserviceaccount.com'`.
+  ///
+  /// `region` is optional and defaults to the provider region; `project` is
+  /// optional and defaults to the provider project.
+  ///
+  /// Optional `condition` is a single IAM Condition block (CEL
+  /// `expression`, `title`, optional `description`).
+
+paramOrder:
+  - subnetwork
+  - role
+  - member
+  - condition
+  - region
+  - project
+
+extraGetters: |2
+    /// Reference to `etag` attribute (concurrency token written by the API).
+    TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');

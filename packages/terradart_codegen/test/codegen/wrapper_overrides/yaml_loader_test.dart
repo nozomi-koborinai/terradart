@@ -681,16 +681,16 @@ classDocComment: |-
   });
 
   group(
-      'production round-trip (66 entries — Phase 4.1 13 + Phase 4.5 Wave 0+1+2+3 15 + Plan 5.C Wave 4 Round 1 3 + Plan 5.C Wave 4 Round 2 9 + Plan 5.C Wave 4 Round 3 9 + Plan 5.F Wave 5 Batch 1 +6 + Plan 5.F Wave 5 Batch 2 +5 + Plan 5.F Wave 5 Batch 3 +6 new)',
+      'production round-trip (71 entries — Phase 4.1 13 + Phase 4.5 Wave 0+1+2+3 15 + Plan 5.C Wave 4 Round 1 3 + Plan 5.C Wave 4 Round 2 9 + Plan 5.C Wave 4 Round 3 9 + Plan 5.F Wave 5 Batch 1 +6 + Plan 5.F Wave 5 Batch 2 +5 + Plan 5.F Wave 5 Batch 3 +6 + Plan 5.F Wave 5 Batch 4 +5 new)',
       () {
     test(
-      'lib/src/codegen/wrapper_overrides/yaml/ loads 65 resources + 1 data source',
+      'lib/src/codegen/wrapper_overrides/yaml/ loads 70 resources + 1 data source',
       () {
         final loaded = loadWrapperOverrides(
           rootDir:
               p.absolute('lib', 'src', 'codegen', 'wrapper_overrides', 'yaml'),
         );
-        expect(loaded.resources.length, 65);
+        expect(loaded.resources.length, 70);
         expect(loaded.dataSources.length, 1);
         expect(loaded.dataSources.keys.first, 'google_project');
       },
