@@ -12,6 +12,11 @@
 ///
 /// demonstrating the sealed `EnvVarSource` dispatch and the typed
 /// enum/helper coverage from `google_cloud_run_v2_service`.
+///
+/// Wave 5 Batch 2 also provisions a companion Cloud Run v2 **Job**
+/// (`nightly-cleanup`) running a single container that prints a message.
+/// The Job is the curated parent for `cloud_run_v2_job_iam_member` shipped
+/// in Wave 5 Batch 3.
 library;
 
 import 'dart:convert' as dart_convert;
@@ -75,6 +80,41 @@ class ApiServiceStack extends Stack {
           minInstanceCount: TfArg.literal(0),
           maxInstanceCount: TfArg.literal(4),
           scalingMode: TfArg.literal(ScalingMode.automatic),
+        ),
+      ),
+    );
+
+    // ---- Cloud Run v2 Job: nightly cleanup --------------------------------
+    //
+    // One-shot batch container, run to completion. Triggered externally
+    // (e.g. Cloud Scheduler -> Cloud Run Admin API); the Terraform
+    // resource only defines the Job, not its executions.
+
+    add(
+      GoogleCloudRunV2Job(
+        localName: 'nightly_cleanup',
+        name: TfArg.literal('nightly-cleanup'),
+        location: TfArg.literal('asia-northeast1'),
+        template: JobTemplate(
+          template: TaskTemplate(
+            maxRetries: TfArg.literal(2),
+            timeout: TfArg.literal('600s'),
+            containers: [
+              JobContainer(
+                image: TfArg.literal('gcr.io/cloudrun/hello'),
+                args: TfArg.literal([
+                  '/bin/sh',
+                  '-c',
+                  'echo "nightly cleanup running"',
+                ]),
+                resources: JobContainerResources(
+                  limits: TfArg.literal({'cpu': '1', 'memory': '512Mi'}),
+                ),
+              ),
+            ],
+          ),
+          parallelism: TfArg.literal(1),
+          taskCount: TfArg.literal(1),
         ),
       ),
     );

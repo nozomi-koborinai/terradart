@@ -42,7 +42,7 @@ void main() {
 
   group('WrapCommand integration', () {
     test(
-        'emits 55 files (54 resource Layer 2 + 1 data source Layer 2; Plan 5.F Wave 5 Batch 1)',
+        'emits 60 files (59 resource Layer 2 + 1 data source Layer 2; Plan 5.F Wave 5 Batch 2)',
         () async {
       // Plan 5.X (v0.5.0-dev): the schemantic Layer 1 chain
       // (`generated/<type>.schema.dart` + `generated/<type>.schema.g.dart`
@@ -68,7 +68,7 @@ void main() {
             files.add(p.relative(ent.path, from: tmpOut.path));
           }
         }
-        expect(files, hasLength(55));
+        expect(files, hasLength(60));
         expect(files, contains(p.join('pubsub', 'google_pubsub_topic.dart')));
         expect(files, contains(p.join('data', 'google_project.dart')));
         // Plan 5.X: Layer 1 files are no longer emitted.
