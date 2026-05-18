@@ -10,6 +10,19 @@ export 'src/compute/google_compute_address.dart'
         IpVersion,
         Ipv6EndpointType,
         NetworkTier;
+export 'src/compute/google_compute_autoscaler.dart'
+    show
+        AutoscalerAutoscalingPolicy,
+        AutoscalerCpuPredictiveMethod,
+        AutoscalerCpuUtilization,
+        AutoscalerLoadBalancingUtilization,
+        AutoscalerMetric,
+        AutoscalerMetricType,
+        AutoscalerMode,
+        AutoscalerScaleInControl,
+        AutoscalerScaleInReplicas,
+        AutoscalerScalingSchedule,
+        GoogleComputeAutoscaler;
 export 'src/compute/google_compute_backend_service.dart'
     show
         BackendServiceAwsV4Authentication,
@@ -129,8 +142,58 @@ export 'src/compute/google_compute_instance.dart'
         ServiceAccount,
         ShieldedInstanceConfig,
         SpecificReservation;
+export 'src/compute/google_compute_instance_group_manager.dart'
+    show
+        GoogleComputeInstanceGroupManager,
+        InstanceGroupManagerAllInstancesConfig,
+        InstanceGroupManagerAutoHealingPolicy,
+        InstanceGroupManagerInstanceLifecyclePolicy,
+        InstanceGroupManagerNamedPort,
+        InstanceGroupManagerResourcePolicies,
+        InstanceGroupManagerStandbyPolicy,
+        InstanceGroupManagerStatefulDisk,
+        InstanceGroupManagerStatefulIp,
+        InstanceGroupManagerTargetSizePolicy,
+        InstanceGroupManagerUpdatePolicy,
+        InstanceGroupManagerUpdatePolicyAction,
+        InstanceGroupManagerUpdatePolicyReplacementMethod,
+        InstanceGroupManagerUpdatePolicyType,
+        InstanceGroupManagerVersion,
+        InstanceGroupManagerVersionTargetSize;
 export 'src/compute/google_compute_instance_iam_member.dart'
     show GoogleComputeInstanceIamMember;
+export 'src/compute/google_compute_instance_template.dart'
+    show
+        GoogleComputeInstanceTemplate,
+        InstanceTemplateAccessConfig,
+        InstanceTemplateAccessConfigNetworkTier,
+        InstanceTemplateAdvancedMachineFeatures,
+        InstanceTemplateAliasIpRange,
+        InstanceTemplateConfidentialInstanceConfig,
+        InstanceTemplateConfidentialInstanceType,
+        InstanceTemplateDisk,
+        InstanceTemplateDiskEncryptionKey,
+        InstanceTemplateDiskMode,
+        InstanceTemplateGuestAccelerator,
+        InstanceTemplateInstanceTerminationAction,
+        InstanceTemplateIpv6AccessConfig,
+        InstanceTemplateNetworkInterface,
+        InstanceTemplateNetworkPerformanceConfig,
+        InstanceTemplateNicType,
+        InstanceTemplateNodeAffinity,
+        InstanceTemplateOnHostMaintenance,
+        InstanceTemplateOnInstanceStopAction,
+        InstanceTemplatePerformanceMonitoringUnit,
+        InstanceTemplateProvisioningModel,
+        InstanceTemplateReservationAffinity,
+        InstanceTemplateReservationAffinityType,
+        InstanceTemplateScheduling,
+        InstanceTemplateSchedulingDuration,
+        InstanceTemplateServiceAccount,
+        InstanceTemplateShieldedInstanceConfig,
+        InstanceTemplateSourceImageEncryptionKey,
+        InstanceTemplateSourceSnapshotEncryptionKey,
+        InstanceTemplateSpecificReservation;
 export 'src/compute/google_compute_managed_ssl_certificate.dart'
     show
         GoogleComputeManagedSslCertificate,
@@ -143,6 +206,19 @@ export 'src/compute/google_compute_network.dart'
         GoogleComputeNetwork,
         NetworkFirewallPolicyEnforcementOrder,
         RoutingMode;
+export 'src/compute/google_compute_region_autoscaler.dart'
+    show
+        GoogleComputeRegionAutoscaler,
+        RegionAutoscalerAutoscalingPolicy,
+        RegionAutoscalerCpuPredictiveMethod,
+        RegionAutoscalerCpuUtilization,
+        RegionAutoscalerLoadBalancingUtilization,
+        RegionAutoscalerMetric,
+        RegionAutoscalerMetricType,
+        RegionAutoscalerMode,
+        RegionAutoscalerScaleInControl,
+        RegionAutoscalerScaleInReplicas,
+        RegionAutoscalerScalingSchedule;
 export 'src/compute/google_compute_region_backend_service.dart'
     show
         GoogleComputeRegionBackendService,
@@ -192,6 +268,28 @@ export 'src/compute/google_compute_region_health_check.dart'
         RegionHealthCheckSslConfig,
         RegionHealthCheckTcpConfig,
         RegionHealthCheckType;
+export 'src/compute/google_compute_region_instance_group_manager.dart'
+    show
+        GoogleComputeRegionInstanceGroupManager,
+        RegionInstanceGroupManagerAllInstancesConfig,
+        RegionInstanceGroupManagerAutoHealingPolicy,
+        RegionInstanceGroupManagerDistributionPolicyTargetShape,
+        RegionInstanceGroupManagerInstanceFlexibilityPolicy,
+        RegionInstanceGroupManagerInstanceLifecyclePolicy,
+        RegionInstanceGroupManagerInstanceRedistributionType,
+        RegionInstanceGroupManagerInstanceSelection,
+        RegionInstanceGroupManagerNamedPort,
+        RegionInstanceGroupManagerResourcePolicies,
+        RegionInstanceGroupManagerStandbyPolicy,
+        RegionInstanceGroupManagerStatefulDisk,
+        RegionInstanceGroupManagerStatefulIp,
+        RegionInstanceGroupManagerTargetSizePolicy,
+        RegionInstanceGroupManagerUpdatePolicy,
+        RegionInstanceGroupManagerUpdatePolicyAction,
+        RegionInstanceGroupManagerUpdatePolicyReplacementMethod,
+        RegionInstanceGroupManagerUpdatePolicyType,
+        RegionInstanceGroupManagerVersion,
+        RegionInstanceGroupManagerVersionTargetSize;
 export 'src/compute/google_compute_region_target_http_proxy.dart'
     show GoogleComputeRegionTargetHttpProxy;
 export 'src/compute/google_compute_region_target_https_proxy.dart'
