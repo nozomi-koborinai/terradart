@@ -93,16 +93,16 @@ final class GoogleServiceAccountKey extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'service_account_id': serviceAccountId,
-           if (keyAlgorithm != null) 'key_algorithm': keyAlgorithm,
-           if (privateKeyType != null) 'private_key_type': privateKeyType,
-           if (publicKeyType != null) 'public_key_type': publicKeyType,
-           if (publicKeyData != null) 'public_key_data': publicKeyData,
-           if (keepers != null) 'keepers': keepers,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'service_account_id': serviceAccountId,
+            if (keyAlgorithm != null) 'key_algorithm': keyAlgorithm,
+            if (privateKeyType != null) 'private_key_type': privateKeyType,
+            if (publicKeyType != null) 'public_key_type': publicKeyType,
+            if (publicKeyData != null) 'public_key_data': publicKeyData,
+            if (keepers != null) 'keepers': keepers,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

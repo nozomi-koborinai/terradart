@@ -74,16 +74,16 @@ final class GoogleServiceNetworkingConnection extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'network': network,
-           'service': service,
-           'reserved_peering_ranges': reservedPeeringRanges,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (updateOnCreationFail != null)
-             'update_on_creation_fail': updateOnCreationFail,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'network': network,
+            'service': service,
+            'reserved_peering_ranges': reservedPeeringRanges,
+            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+            if (updateOnCreationFail != null)
+              'update_on_creation_fail': updateOnCreationFail,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

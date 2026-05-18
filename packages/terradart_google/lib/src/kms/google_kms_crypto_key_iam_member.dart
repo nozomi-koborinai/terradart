@@ -55,14 +55,14 @@ final class GoogleKmsCryptoKeyIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'crypto_key_id': cryptoKeyId,
-           'role': role,
-           'member': member,
-           if (condition != null) 'condition': condition,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'crypto_key_id': cryptoKeyId,
+            'role': role,
+            'member': member,
+            if (condition != null) 'condition': condition,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

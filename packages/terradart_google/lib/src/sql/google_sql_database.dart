@@ -49,16 +49,16 @@ final class GoogleSqlDatabase extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'name': name,
-           'instance': instance,
-           if (charset != null) 'charset': charset,
-           if (collation != null) 'collation': collation,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'name': name,
+            'instance': instance,
+            if (charset != null) 'charset': charset,
+            if (collation != null) 'collation': collation,
+            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+            if (project != null) 'project': project,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

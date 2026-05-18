@@ -66,16 +66,16 @@ final class GoogleProjectIamCustomRole extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'role_id': roleId,
-           'title': title,
-           'permissions': permissions,
-           if (description != null) 'description': description,
-           if (stage != null) 'stage': stage,
-           if (project != null) 'project': project,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'role_id': roleId,
+            'title': title,
+            'permissions': permissions,
+            if (description != null) 'description': description,
+            if (stage != null) 'stage': stage,
+            if (project != null) 'project': project,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

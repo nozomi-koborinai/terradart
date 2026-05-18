@@ -113,17 +113,18 @@ class BuildConfig {
   final UpdatePolicy? updatePolicy;
 
   Map<String, Object?> encode() => {
-    if (runtime != null) 'runtime': runtime!.toTfJson(),
-    if (entryPoint != null) 'entry_point': entryPoint!.toTfJson(),
-    if (source != null) 'source': [source!.encode()],
-    if (environmentVariables != null)
-      'environment_variables': environmentVariables!.toTfJson(),
-    if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
-    if (dockerRepository != null)
-      'docker_repository': dockerRepository!.toTfJson(),
-    if (workerPool != null) 'worker_pool': workerPool!.toTfJson(),
-    if (updatePolicy != null) ...updatePolicy!.encode(),
-  };
+        if (runtime != null) 'runtime': runtime!.toTfJson(),
+        if (entryPoint != null) 'entry_point': entryPoint!.toTfJson(),
+        if (source != null) 'source': [source!.encode()],
+        if (environmentVariables != null)
+          'environment_variables': environmentVariables!.toTfJson(),
+        if (serviceAccount != null)
+          'service_account': serviceAccount!.toTfJson(),
+        if (dockerRepository != null)
+          'docker_repository': dockerRepository!.toTfJson(),
+        if (workerPool != null) 'worker_pool': workerPool!.toTfJson(),
+        if (updatePolicy != null) ...updatePolicy!.encode(),
+      };
 }
 
 /// Sealed dispatch for [BuildConfig.source]. Models the
@@ -158,14 +159,14 @@ final class StorageSource extends SourceConfig {
 
   @override
   Map<String, Object?> encode() => {
-    'storage_source': [
-      {
-        'bucket': bucket.toTfJson(),
-        'object': object.toTfJson(),
-        if (generation != null) 'generation': generation!.toTfJson(),
-      },
-    ],
-  };
+        'storage_source': [
+          {
+            'bucket': bucket.toTfJson(),
+            'object': object.toTfJson(),
+            if (generation != null) 'generation': generation!.toTfJson(),
+          },
+        ],
+      };
 }
 
 /// Cloud Source Repositories-backed source
@@ -207,18 +208,18 @@ final class RepoSource extends SourceConfig {
 
   @override
   Map<String, Object?> encode() => {
-    'repo_source': [
-      {
-        'repo_name': repoName.toTfJson(),
-        if (projectId != null) 'project_id': projectId!.toTfJson(),
-        if (dir != null) 'dir': dir!.toTfJson(),
-        if (branchName != null) 'branch_name': branchName!.toTfJson(),
-        if (tagName != null) 'tag_name': tagName!.toTfJson(),
-        if (commitSha != null) 'commit_sha': commitSha!.toTfJson(),
-        if (invertRegex != null) 'invert_regex': invertRegex!.toTfJson(),
-      },
-    ],
-  };
+        'repo_source': [
+          {
+            'repo_name': repoName.toTfJson(),
+            if (projectId != null) 'project_id': projectId!.toTfJson(),
+            if (dir != null) 'dir': dir!.toTfJson(),
+            if (branchName != null) 'branch_name': branchName!.toTfJson(),
+            if (tagName != null) 'tag_name': tagName!.toTfJson(),
+            if (commitSha != null) 'commit_sha': commitSha!.toTfJson(),
+            if (invertRegex != null) 'invert_regex': invertRegex!.toTfJson(),
+          },
+        ],
+      };
 }
 
 /// Sealed dispatch for [BuildConfig.updatePolicy]. The schema exposes two
@@ -240,8 +241,8 @@ final class AutomaticUpdatePolicy extends UpdatePolicy {
 
   @override
   Map<String, Object?> encode() => {
-    'automatic_update_policy': [<String, Object?>{}],
-  };
+        'automatic_update_policy': [<String, Object?>{}],
+      };
 }
 
 /// `on_deploy_update_policy` sub-block. Pin the runtime version observed
@@ -254,8 +255,8 @@ final class OnDeployUpdatePolicy extends UpdatePolicy {
 
   @override
   Map<String, Object?> encode() => {
-    'on_deploy_update_policy': [<String, Object?>{}],
-  };
+        'on_deploy_update_policy': [<String, Object?>{}],
+      };
 }
 
 // ===========================================================================
@@ -302,15 +303,15 @@ class EventTrigger {
   final List<EventFilter>? eventFilters;
 
   Map<String, Object?> encode() => {
-    'event_type': eventType.toTfJson(),
-    if (pubsubTopic != null) 'pubsub_topic': pubsubTopic!.toTfJson(),
-    if (serviceAccountEmail != null)
-      'service_account_email': serviceAccountEmail!.toTfJson(),
-    if (retryPolicy != null) 'retry_policy': retryPolicy!.toTfJson(),
-    if (triggerRegion != null) 'trigger_region': triggerRegion!.toTfJson(),
-    if (eventFilters != null)
-      'event_filters': eventFilters!.map((f) => f.encode()).toList(),
-  };
+        'event_type': eventType.toTfJson(),
+        if (pubsubTopic != null) 'pubsub_topic': pubsubTopic!.toTfJson(),
+        if (serviceAccountEmail != null)
+          'service_account_email': serviceAccountEmail!.toTfJson(),
+        if (retryPolicy != null) 'retry_policy': retryPolicy!.toTfJson(),
+        if (triggerRegion != null) 'trigger_region': triggerRegion!.toTfJson(),
+        if (eventFilters != null)
+          'event_filters': eventFilters!.map((f) => f.encode()).toList(),
+      };
 }
 
 /// One entry in `event_trigger.event_filters`. Matches a CloudEvents
@@ -335,10 +336,10 @@ class EventFilter {
   final TfArg<String>? operator;
 
   Map<String, Object?> encode() => {
-    'attribute': attribute.toTfJson(),
-    'value': value.toTfJson(),
-    if (operator != null) 'operator': operator!.toTfJson(),
-  };
+        'attribute': attribute.toTfJson(),
+        'value': value.toTfJson(),
+        if (operator != null) 'operator': operator!.toTfJson(),
+      };
 }
 
 // ===========================================================================
@@ -429,43 +430,44 @@ class ServiceConfig {
   final List<DirectVpcNetworkInterface>? directVpcNetworkInterfaces;
 
   Map<String, Object?> encode() => {
-    if (availableMemory != null)
-      'available_memory': availableMemory!.toTfJson(),
-    if (availableCpu != null) 'available_cpu': availableCpu!.toTfJson(),
-    if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
-    if (minInstanceCount != null)
-      'min_instance_count': minInstanceCount!.toTfJson(),
-    if (maxInstanceCount != null)
-      'max_instance_count': maxInstanceCount!.toTfJson(),
-    if (maxInstanceRequestConcurrency != null)
-      'max_instance_request_concurrency': maxInstanceRequestConcurrency!
-          .toTfJson(),
-    if (environmentVariables != null)
-      'environment_variables': environmentVariables!.toTfJson(),
-    if (serviceAccountEmail != null)
-      'service_account_email': serviceAccountEmail!.toTfJson(),
-    if (ingressSettings != null)
-      'ingress_settings': ingressSettings!.toTfJson(),
-    if (allTrafficOnLatestRevision != null)
-      'all_traffic_on_latest_revision': allTrafficOnLatestRevision!.toTfJson(),
-    if (vpcConnector != null) 'vpc_connector': vpcConnector!.toTfJson(),
-    if (vpcConnectorEgressSettings != null)
-      'vpc_connector_egress_settings': vpcConnectorEgressSettings!.toTfJson(),
-    if (directVpcEgress != null)
-      'direct_vpc_egress': directVpcEgress!.toTfJson(),
-    if (binaryAuthorizationPolicy != null)
-      'binary_authorization_policy': binaryAuthorizationPolicy!.toTfJson(),
-    if (secretEnvironmentVariables != null)
-      'secret_environment_variables': secretEnvironmentVariables!
-          .map((s) => s.encode())
-          .toList(),
-    if (secretVolumes != null)
-      'secret_volumes': secretVolumes!.map((s) => s.encode()).toList(),
-    if (directVpcNetworkInterfaces != null)
-      'direct_vpc_network_interface': directVpcNetworkInterfaces!
-          .map((n) => n.encode())
-          .toList(),
-  };
+        if (availableMemory != null)
+          'available_memory': availableMemory!.toTfJson(),
+        if (availableCpu != null) 'available_cpu': availableCpu!.toTfJson(),
+        if (timeoutSeconds != null)
+          'timeout_seconds': timeoutSeconds!.toTfJson(),
+        if (minInstanceCount != null)
+          'min_instance_count': minInstanceCount!.toTfJson(),
+        if (maxInstanceCount != null)
+          'max_instance_count': maxInstanceCount!.toTfJson(),
+        if (maxInstanceRequestConcurrency != null)
+          'max_instance_request_concurrency':
+              maxInstanceRequestConcurrency!.toTfJson(),
+        if (environmentVariables != null)
+          'environment_variables': environmentVariables!.toTfJson(),
+        if (serviceAccountEmail != null)
+          'service_account_email': serviceAccountEmail!.toTfJson(),
+        if (ingressSettings != null)
+          'ingress_settings': ingressSettings!.toTfJson(),
+        if (allTrafficOnLatestRevision != null)
+          'all_traffic_on_latest_revision':
+              allTrafficOnLatestRevision!.toTfJson(),
+        if (vpcConnector != null) 'vpc_connector': vpcConnector!.toTfJson(),
+        if (vpcConnectorEgressSettings != null)
+          'vpc_connector_egress_settings':
+              vpcConnectorEgressSettings!.toTfJson(),
+        if (directVpcEgress != null)
+          'direct_vpc_egress': directVpcEgress!.toTfJson(),
+        if (binaryAuthorizationPolicy != null)
+          'binary_authorization_policy': binaryAuthorizationPolicy!.toTfJson(),
+        if (secretEnvironmentVariables != null)
+          'secret_environment_variables':
+              secretEnvironmentVariables!.map((s) => s.encode()).toList(),
+        if (secretVolumes != null)
+          'secret_volumes': secretVolumes!.map((s) => s.encode()).toList(),
+        if (directVpcNetworkInterfaces != null)
+          'direct_vpc_network_interface':
+              directVpcNetworkInterfaces!.map((n) => n.encode()).toList(),
+      };
 }
 
 /// One entry in `service_config.secret_environment_variables`. Each
@@ -494,11 +496,11 @@ class SecretEnvironmentVariable {
   final TfArg<String> version;
 
   Map<String, Object?> encode() => {
-    'key': key.toTfJson(),
-    'project_id': projectId.toTfJson(),
-    'secret': secret.toTfJson(),
-    'version': version.toTfJson(),
-  };
+        'key': key.toTfJson(),
+        'project_id': projectId.toTfJson(),
+        'secret': secret.toTfJson(),
+        'version': version.toTfJson(),
+      };
 }
 
 /// One entry in `service_config.secret_volumes`. Mounts one or more
@@ -526,11 +528,12 @@ class SecretVolume {
   final List<SecretVolumeVersion>? versions;
 
   Map<String, Object?> encode() => {
-    'mount_path': mountPath.toTfJson(),
-    'project_id': projectId.toTfJson(),
-    'secret': secret.toTfJson(),
-    if (versions != null) 'versions': versions!.map((v) => v.encode()).toList(),
-  };
+        'mount_path': mountPath.toTfJson(),
+        'project_id': projectId.toTfJson(),
+        'secret': secret.toTfJson(),
+        if (versions != null)
+          'versions': versions!.map((v) => v.encode()).toList(),
+      };
 }
 
 /// One entry in `secret_volumes.versions`. Maps a specific secret version
@@ -546,9 +549,9 @@ class SecretVolumeVersion {
   final TfArg<String> version;
 
   Map<String, Object?> encode() => {
-    'path': path.toTfJson(),
-    'version': version.toTfJson(),
-  };
+        'path': path.toTfJson(),
+        'version': version.toTfJson(),
+      };
 }
 
 /// One entry in `service_config.direct_vpc_network_interface`. Attaches
@@ -568,10 +571,10 @@ class DirectVpcNetworkInterface {
   final TfArg<List<String>>? tags;
 
   Map<String, Object?> encode() => {
-    if (network != null) 'network': network!.toTfJson(),
-    if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
-    if (tags != null) 'tags': tags!.toTfJson(),
-  };
+        if (network != null) 'network': network!.toTfJson(),
+        if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
+        if (tags != null) 'tags': tags!.toTfJson(),
+      };
 }
 
 /// Factory wrapper for `google_cloudfunctions2_function` (provider
@@ -654,22 +657,22 @@ final class GoogleCloudfunctions2Function extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'name': name,
-           'location': location,
-           if (description != null) 'description': description,
-           if (buildConfig != null)
-             'build_config': TfArg.literal([buildConfig.encode()]),
-           if (serviceConfig != null)
-             'service_config': TfArg.literal([serviceConfig.encode()]),
-           if (eventTrigger != null)
-             'event_trigger': TfArg.literal([eventTrigger.encode()]),
-           if (labels != null) 'labels': labels,
-           if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
-           if (project != null) 'project': project,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'name': name,
+            'location': location,
+            if (description != null) 'description': description,
+            if (buildConfig != null)
+              'build_config': TfArg.literal([buildConfig.encode()]),
+            if (serviceConfig != null)
+              'service_config': TfArg.literal([serviceConfig.encode()]),
+            if (eventTrigger != null)
+              'event_trigger': TfArg.literal([eventTrigger.encode()]),
+            if (labels != null) 'labels': labels,
+            if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
+            if (project != null) 'project': project,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

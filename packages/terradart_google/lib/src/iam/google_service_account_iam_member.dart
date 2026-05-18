@@ -52,14 +52,14 @@ final class GoogleServiceAccountIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'service_account_id': serviceAccountId,
-           'role': role,
-           'member': member,
-           if (condition != null) 'condition': condition,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'service_account_id': serviceAccountId,
+            'role': role,
+            'member': member,
+            if (condition != null) 'condition': condition,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

@@ -47,15 +47,15 @@ final class GoogleFirebaseAppHostingDefaultDomain extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'backend': backend,
-           'location': location,
-           'domain_id': domainId,
-           if (disabled != null) 'disabled': disabled,
-           if (project != null) 'project': project,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'backend': backend,
+            'location': location,
+            'domain_id': domainId,
+            if (disabled != null) 'disabled': disabled,
+            if (project != null) 'project': project,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

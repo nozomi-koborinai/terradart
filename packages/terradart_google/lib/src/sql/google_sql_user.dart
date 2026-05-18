@@ -102,21 +102,21 @@ final class GoogleSqlUser extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'name': name,
-           'instance': instance,
-           if (type != null) 'type': type,
-           if (password != null) 'password': password,
-           if (passwordWo != null) 'password_wo': passwordWo,
-           if (passwordWoVersion != null)
-             'password_wo_version': passwordWoVersion,
-           if (host != null) 'host': host,
-           if (databaseRoles != null) 'database_roles': databaseRoles,
-           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           if (project != null) 'project': project,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'name': name,
+            'instance': instance,
+            if (type != null) 'type': type,
+            if (password != null) 'password': password,
+            if (passwordWo != null) 'password_wo': passwordWo,
+            if (passwordWoVersion != null)
+              'password_wo_version': passwordWoVersion,
+            if (host != null) 'host': host,
+            if (databaseRoles != null) 'database_roles': databaseRoles,
+            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+            if (project != null) 'project': project,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

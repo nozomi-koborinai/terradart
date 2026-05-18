@@ -56,14 +56,14 @@ final class GoogleProjectIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'project': project,
-           'role': role,
-           'member': member,
-           if (condition != null) 'condition': condition,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'project': project,
+            'role': role,
+            'member': member,
+            if (condition != null) 'condition': condition,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

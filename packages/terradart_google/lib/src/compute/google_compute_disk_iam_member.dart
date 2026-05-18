@@ -58,16 +58,16 @@ final class GoogleComputeDiskIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'name': name,
-           'role': role,
-           'member': member,
-           if (condition != null) 'condition': condition,
-           if (zone != null) 'zone': zone,
-           if (project != null) 'project': project,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'name': name,
+            'role': role,
+            'member': member,
+            if (condition != null) 'condition': condition,
+            if (zone != null) 'zone': zone,
+            if (project != null) 'project': project,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

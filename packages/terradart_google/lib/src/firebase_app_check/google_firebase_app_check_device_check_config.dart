@@ -64,15 +64,15 @@ final class GoogleFirebaseAppCheckDeviceCheckConfig extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'app_id': appId,
-           'key_id': keyId,
-           'private_key': privateKey,
-           if (tokenTtl != null) 'token_ttl': tokenTtl,
-           if (project != null) 'project': project,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'app_id': appId,
+            'key_id': keyId,
+            'private_key': privateKey,
+            if (tokenTtl != null) 'token_ttl': tokenTtl,
+            if (project != null) 'project': project,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

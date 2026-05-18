@@ -62,16 +62,16 @@ final class GoogleComputeSubnetworkIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'subnetwork': subnetwork,
-           'role': role,
-           'member': member,
-           if (condition != null) 'condition': condition,
-           if (region != null) 'region': region,
-           if (project != null) 'project': project,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'subnetwork': subnetwork,
+            'role': role,
+            'member': member,
+            if (condition != null) 'condition': condition,
+            if (region != null) 'region': region,
+            if (project != null) 'project': project,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

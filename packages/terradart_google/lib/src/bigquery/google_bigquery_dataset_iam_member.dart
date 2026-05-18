@@ -53,15 +53,15 @@ final class GoogleBigqueryDatasetIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'dataset_id': datasetId,
-           'role': role,
-           'member': member,
-           if (condition != null) 'condition': condition,
-           if (project != null) 'project': project,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'dataset_id': datasetId,
+            'role': role,
+            'member': member,
+            if (condition != null) 'condition': condition,
+            if (project != null) 'project': project,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names

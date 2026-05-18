@@ -12,8 +12,8 @@ class BigqueryOptions {
   const BigqueryOptions({required this.usePartitionedTables});
   final bool usePartitionedTables;
   Map<String, Object?> toArgMap() => {
-    'use_partitioned_tables': usePartitionedTables,
-  };
+        'use_partitioned_tables': usePartitionedTables,
+      };
 }
 
 /// One entry in the `exclusions` list. Log entries matching `filter`
@@ -31,11 +31,11 @@ class LogSinkExclusion {
   final String? description;
   final bool? disabled;
   Map<String, Object?> toArgMap() => {
-    'name': name,
-    'filter': filter,
-    if (description != null) 'description': description,
-    if (disabled != null) 'disabled': disabled,
-  };
+        'name': name,
+        'filter': filter,
+        if (description != null) 'description': description,
+        if (disabled != null) 'disabled': disabled,
+      };
 }
 
 /// Factory wrapper for `google_logging_project_sink` (provider
@@ -93,26 +93,26 @@ final class GoogleLoggingProjectSink extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
-         argMap: {
-           'name': name,
-           'destination': destination,
-           if (filter != null) 'filter': filter,
-           if (description != null) 'description': description,
-           if (disabled != null) 'disabled': disabled,
-           if (uniqueWriterIdentity != null)
-             'unique_writer_identity': uniqueWriterIdentity,
-           if (customWriterIdentity != null)
-             'custom_writer_identity': customWriterIdentity,
-           if (bigqueryOptions != null)
-             'bigquery_options': TfArg.literal([bigqueryOptions.toArgMap()]),
-           if (exclusions != null)
-             'exclusions': TfArg.literal(
-               exclusions.map((e) => e.toArgMap()).toList(),
-             ),
-           if (project != null) 'project': project,
-         },
-       );
+          terraformType: $tfType,
+          argMap: {
+            'name': name,
+            'destination': destination,
+            if (filter != null) 'filter': filter,
+            if (description != null) 'description': description,
+            if (disabled != null) 'disabled': disabled,
+            if (uniqueWriterIdentity != null)
+              'unique_writer_identity': uniqueWriterIdentity,
+            if (customWriterIdentity != null)
+              'custom_writer_identity': customWriterIdentity,
+            if (bigqueryOptions != null)
+              'bigquery_options': TfArg.literal([bigqueryOptions.toArgMap()]),
+            if (exclusions != null)
+              'exclusions': TfArg.literal(
+                exclusions.map((e) => e.toArgMap()).toList(),
+              ),
+            if (project != null) 'project': project,
+          },
+        );
 
   @override
   // ignore: non_constant_identifier_names
