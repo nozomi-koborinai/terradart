@@ -1,7 +1,42 @@
 // packages/terradart_google/lib/cloud_run.dart
-/// Cloud Run v2 services.
+/// Cloud Run v2 services + jobs.
 library;
 
+export 'src/cloud_run/google_cloud_run_v2_job.dart'
+    show
+        GoogleCloudRunV2Job,
+        JobBinaryAuthorization,
+        JobCloudSqlVolume,
+        JobContainer,
+        JobContainerPort,
+        JobContainerResources,
+        JobEmptyDirMedium,
+        JobEmptyDirVolume,
+        JobEnvVar,
+        JobEnvVarFromLiteral,
+        JobEnvVarFromSecret,
+        JobEnvVarSource,
+        JobExecutionEnvironment,
+        JobGcsVolume,
+        JobHttpGetAction,
+        JobHttpHeader,
+        JobLaunchStage,
+        JobNfsVolume,
+        JobNodeSelector,
+        JobSecretVolumeItem,
+        JobStartupProbe,
+        JobTcpSocketAction,
+        JobTemplate,
+        JobVolume,
+        JobVolumeMount,
+        JobVolumeSecret,
+        JobVolumeSource,
+        JobVpcAccess,
+        JobVpcAccessEgress,
+        JobVpcNetworkInterface,
+        TaskTemplate;
+export 'src/cloud_run/google_cloud_run_v2_job_iam_member.dart'
+    show GoogleCloudRunV2JobIamMember;
 export 'src/cloud_run/google_cloud_run_v2_service.dart'
     show
         BinaryAuthorization,
@@ -41,3 +76,5 @@ export 'src/cloud_run/google_cloud_run_v2_service.dart'
         VpcAccess,
         VpcAccessEgress,
         VpcNetworkInterface;
+export 'src/cloud_run/google_cloud_run_v2_service_iam_member.dart'
+    show GoogleCloudRunV2ServiceIamMember;

@@ -1,5 +1,32 @@
 # Changelog
 
+## 0.6.0-dev - 2026-05-18
+
+Wave 5: adds 22 new GA resources across IAM completion + Cloud SQL + `*_iam_member` fill. terradart_google now 71 resources, 24 per-service barrels.
+
+### Added — resources
+
+- **IAM** (5): `google_project_iam_member`, `google_project_iam_custom_role`, `google_service_account_iam_member`, `google_service_account_key`, `google_iam_workload_identity_pool`.
+- **Cloud SQL** (3 + 2 network adjuncts): `google_sql_database_instance`, `google_sql_database`, `google_sql_user`, `google_service_networking_connection`, `google_compute_global_address`.
+- **Cloud Run v2** (1 + 2 IAM): `google_cloud_run_v2_job`, `google_cloud_run_v2_service_iam_member`, `google_cloud_run_v2_job_iam_member`.
+- **`*_iam_member` fill** (9): `google_bigquery_dataset_iam_member`, `google_bigquery_table_iam_member`, `google_storage_bucket_iam_member`, `google_kms_crypto_key_iam_member`, `google_kms_key_ring_iam_member`, `google_compute_instance_iam_member`, `google_compute_disk_iam_member`, `google_compute_subnetwork_iam_member`, `google_dns_managed_zone_iam_member`.
+
+### Added — per-service barrels
+
+2 new barrels: `cloud_sql.dart`, `service_networking.dart`. The umbrella `terradart_google.dart` re-exports them transitively.
+
+### Added — quickstart examples
+
+1 new end-to-end stack: `cloud_sql_quickstart` (Cloud SQL instance + database + user with private-IP wiring through `service_networking_connection` + `compute_global_address`). 7 existing quickstarts (iam, cloud_run, bigquery, storage, kms, compute, dns) extended with `*_iam_member` showcases.
+
+### Notes
+
+- IAM-binding variants remain `*_iam_member` only (additive / safe). `_iam_binding` (authoritative per role) and `_iam_policy` (authoritative for resource) are out of scope; demand-driven follow-up tracked under GitHub label `wave-5-followup`.
+- WIF pool shipped without its provider sibling (`iam_workload_identity_pool_provider`); the pool alone is meaningful for identity grouping. Provider deferred to a future wave.
+- Cloud SQL replicas / read pools deferred to a future wave; `sql_database_instance` covers the single-primary case which is the dominant deployment shape.
+- Spec originally targeted `google_compute_network_iam_member`, but Google Cloud does not expose VPC-network-level IAM at that granularity. Substituted with `google_compute_disk_iam_member` — same rationale (resource-scoped grants without project-wide compute admin) and a real production pattern (backup SAs scoped to specific data disks).
+- Plan 5.E weekly drift PR cron remained active during Wave 5 as the automation's first real-world evaluation vehicle. See `docs/superpowers/notes/2026-05-18-plan5e-vehicle-eval.md` (local) for operational findings; Task 8 will produce that note.
+
 ## 0.5.0-dev
 
 **BREAKING** — Plan 5.X: schemantic removal.

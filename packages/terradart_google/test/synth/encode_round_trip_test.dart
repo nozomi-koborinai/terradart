@@ -100,6 +100,22 @@ final Map<String, Object Function()> _syntheticInstances = {
         path: TfArg.literal('/exports/data'),
       ),
 
+  // --- JobEnvVarSource (2) — cloud_run_v2_job ------------------------------
+  'JobEnvVarFromLiteral': () =>
+      JobEnvVarFromLiteral(TfArg.literal('mock-value')),
+  'JobEnvVarFromSecret': () => JobEnvVarFromSecret(
+        secret: TfArg.literal('mock-secret'),
+        version: TfArg.literal('latest'),
+      ),
+
+  // --- JobVolumeSource (5) — cloud_run_v2_job ------------------------------
+  'JobVolumeSecret': () =>
+      JobVolumeSecret(secret: TfArg.literal('mock-secret')),
+  'JobCloudSqlVolume': () => const JobCloudSqlVolume(),
+  'JobEmptyDirVolume': () => const JobEmptyDirVolume(),
+  'JobGcsVolume': () => JobGcsVolume(bucket: TfArg.literal('mock-bucket')),
+  'JobNfsVolume': () => JobNfsVolume(server: TfArg.literal('nfs.example.com')),
+
   // --- SchedulerTarget (3) — cloud_scheduler_job ---------------------------
   'PubsubTarget': () =>
       PubsubTarget(topicName: TfArg.literal('projects/p/topics/t')),

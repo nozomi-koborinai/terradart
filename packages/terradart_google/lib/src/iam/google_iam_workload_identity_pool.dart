@@ -1,0 +1,113 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
+import 'package:terradart_core/terradart_core.dart';
+
+/// Sensitive field paths for `google_iam_workload_identity_pool`.
+const Set<String> _googleIamWorkloadIdentityPoolSensitive = <String>{};
+
+/// Operating mode for a workload identity pool.
+///
+/// **Immutable after creation** — changing this on an existing pool will
+/// be accepted at `terraform plan` time but rejected by the API at apply
+/// time with `Error 400: Attempted to update an immutable field.`.
+///
+/// - [federationOnly] (default): pool federates external identities into
+///   GCP via OIDC / SAML / AWS. No identity-format constraints; no
+///   namespace / provider resources beyond the pool itself.
+/// - [trustDomain]: pool issues identities to GCP workloads. Subjects
+///   must follow `ns/<namespace>/sa/<workload>` format. Providers cannot
+///   be created inside a trust-domain pool.
+/// - [systemTrustDomain]: pool managed entirely by Google Cloud services
+///   (GKE, Compute Engine managed identity). Users cannot create
+///   providers or namespaces inside it.
+enum WorkloadIdentityPoolMode {
+  federationOnly('FEDERATION_ONLY'),
+  trustDomain('TRUST_DOMAIN'),
+  systemTrustDomain('SYSTEM_TRUST_DOMAIN');
+
+  const WorkloadIdentityPoolMode(this.terraformValue);
+  final String terraformValue;
+}
+
+/// Factory wrapper for `google_iam_workload_identity_pool` (provider
+/// `hashicorp/google ~> 7.0`).
+///
+/// Represents a Workload Identity Federation (WIF) pool — a container for
+/// external workload identities (GitHub Actions, AWS, Azure, generic OIDC
+/// IdPs) that map to GCP service accounts without long-lived JSON keys.
+///
+/// This wrapper covers the pool resource itself. The companion provider
+/// resource (`google_iam_workload_identity_pool_provider`, which
+/// configures the actual OIDC / AWS / SAML trust binding) is deferred
+/// to a future wave. A pool without a provider is still meaningful as a
+/// logical grouping namespace for future providers.
+///
+/// Required identity:
+/// - [localName]: Terraform local name (the address segment after
+///   `google_iam_workload_identity_pool.`).
+/// - `workloadIdentityPoolId`: user-facing pool ID. Must be 4-32 chars,
+///   `[a-z0-9-]`. The prefix `gcp-` is reserved by Google and is rejected.
+///   Forms the final segment of the pool's resource name (e.g.
+///   `projects/{n}/locations/global/workloadIdentityPools/{poolId}`).
+///   Immutable after creation.
+///
+/// Example (CI/CD federation for GitHub Actions):
+/// ```dart
+/// final ciPool = GoogleIamWorkloadIdentityPool(
+///   localName: 'ci',
+///   workloadIdentityPoolId: TfArg.literal('github-actions'),
+///   displayName: TfArg.literal('GitHub Actions CI/CD'),
+///   description: TfArg.literal(
+///     'WIF pool for the deploy pipeline; provider configured separately.',
+///   ),
+/// );
+/// ```
+///
+/// Composition pattern: extends `Resource<$GoogleIamWorkloadIdentityPool>`
+/// for runtime behavior.
+final class GoogleIamWorkloadIdentityPool extends Resource {
+  // ignore: constant_identifier_names
+  static const String $tfType = 'google_iam_workload_identity_pool';
+
+  GoogleIamWorkloadIdentityPool({
+    required super.localName,
+    required TfArg<String> workloadIdentityPoolId,
+    TfArg<String>? displayName,
+    TfArg<String>? description,
+    TfArg<bool>? disabled,
+    TfArg<WorkloadIdentityPoolMode>? mode,
+    TfArg<String>? project,
+    super.lifecycle,
+    super.dependsOn,
+  }) : super(
+         terraformType: $tfType,
+         argMap: {
+           'workload_identity_pool_id': workloadIdentityPoolId,
+           if (displayName != null) 'display_name': displayName,
+           if (description != null) 'description': description,
+           if (disabled != null) 'disabled': disabled,
+           if (mode != null) 'mode': mode,
+           if (project != null) 'project': project,
+         },
+       );
+
+  @override
+  // ignore: non_constant_identifier_names
+  Set<String> get $sensitiveFields => _googleIamWorkloadIdentityPoolSensitive;
+
+  /// Reference to `id` attribute (full path
+  /// `projects/{project}/locations/global/workloadIdentityPools/{poolId}`).
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `name` attribute — same shape as [id] but uses the
+  /// project number (not the project ID) and is what downstream
+  /// `google_iam_workload_identity_pool_provider` resources expect as
+  /// their `workload_identity_pool_id` reference.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `state` attribute — lifecycle state of the pool
+  /// (`ACTIVE` or `DELETED`). Soft-deleted pools are permanently
+  /// removed after ~30 days.
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+}

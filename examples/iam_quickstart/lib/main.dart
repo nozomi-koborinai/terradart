@@ -1,11 +1,26 @@
-/// IAM quickstart -- all four curated `_iam_member` resources in one Stack,
-/// plus the [GoogleServiceAccount] they bind to.
+/// IAM quickstart -- a `GoogleIamWorkloadIdentityPool` for keyless CI auth,
+/// all four curated `_iam_member` resources in one Stack, plus the
+/// [GoogleServiceAccount] they bind to. Wave 5 Batch 2 extends the stack
+/// with the IAM-core surface (custom role + project-level grant +
+/// service-account-level grant + service-account key).
 ///
 /// Demonstrates the additive `_iam_member` pattern across:
 ///   1. `google_pubsub_topic_iam_member`
 ///   2. `google_pubsub_subscription_iam_member`
 ///   3. `google_cloud_tasks_queue_iam_member`
 ///   4. `google_secret_manager_secret_iam_member`
+///
+/// And the IAM-core resources:
+///   5. `google_project_iam_custom_role` -- defines a minimal read-only
+///      Cloud Storage observer custom role.
+///   6. `google_project_iam_member` -- grants that custom role to the demo
+///      SA at the project level.
+///   7. `google_service_account_iam_member` -- grants
+///      `roles/iam.serviceAccountUser` to a second SA on the demo SA
+///      (impersonation seam).
+///   8. `google_service_account_key` -- emits a long-lived JSON key for
+///      the demo SA. The `private_key` output is marked sensitive and
+///      masked at synth time.
 ///
 /// Each IAM resource has a slightly different identity surface (topic name
 /// vs. subscription name vs. queue name+location vs. secret_id) -- this
@@ -31,9 +46,25 @@ class IamShowcaseStack extends Stack {
     required String projectId,
   }) : super(
           providers: [
-            GoogleProvider(project: projectId, region: 'us-central1')
+            GoogleProvider(project: projectId, region: 'us-central1'),
           ],
         ) {
+    // ---- Workload Identity Federation pool -------------------------------
+    //
+    // Logical grouping for external identities (e.g. GitHub Actions
+    // OIDC) that will be allowed to impersonate the demo SA below. The
+    // companion `_provider` resource (which wires up the actual trust
+    // binding) is deferred to a future wave -- the pool on its own is
+    // still meaningful as a namespace.
+
+    add(
+      GoogleIamWorkloadIdentityPool(
+        localName: 'ci',
+        workloadIdentityPoolId: TfArg.literal('github-actions'),
+        displayName: TfArg.literal('GitHub Actions CI/CD'),
+      ),
+    );
+
     // ---- Service account -------------------------------------------------
     //
     // The SA the four bindings below grant roles to. `sa.member` is the
@@ -133,6 +164,85 @@ class IamShowcaseStack extends Stack {
       ),
     );
 
+    // ---- 5. Custom role: minimal Cloud Storage observer -------------------
+    //
+    // A least-privilege custom role granting read-only access to GCS
+    // objects + buckets. Useful as a building block when a predefined
+    // role (e.g. `roles/storage.objectViewer`) is too broad or too narrow.
+
+    final customRole = add(
+      GoogleProjectIamCustomRole(
+        localName: 'gcs_observer',
+        roleId: TfArg.literal('gcsObserver'),
+        title: TfArg.literal('GCS Observer'),
+        permissions: TfArg.literal([
+          'storage.objects.get',
+          'storage.objects.list',
+          'storage.buckets.get',
+          'storage.buckets.list',
+        ]),
+        description: TfArg.literal(
+          'Read-only access to GCS objects and bucket metadata.',
+        ),
+        stage: TfArg.literal(CustomRoleStage.ga),
+      ),
+    );
+
+    // ---- 6. Project-level binding: grant custom role to demo SA -----------
+    //
+    // Wait for the custom role to exist before referencing it.
+
+    add(
+      GoogleProjectIamMember(
+        localName: 'demo_sa_observer',
+        project: TfArg.literal(projectId),
+        // Reference the custom role's full path so Terraform binds against
+        // the created resource (not just a string literal).
+        role: TfArg.ref(customRole.nameRef),
+        member: saMember,
+        dependsOn: [ResourceDependency(customRole)],
+      ),
+    );
+
+    // ---- 7. Service-account-level binding: impersonation ------------------
+    //
+    // A second SA represents whoever needs to impersonate `demo`. Granting
+    // `roles/iam.serviceAccountUser` on `demo` lets the second SA generate
+    // tokens for `demo` -- the standard cross-team handoff pattern.
+
+    final impersonator = add(
+      GoogleServiceAccount(
+        localName: 'impersonator',
+        accountId: TfArg.literal('demo-impersonator'),
+        displayName: TfArg.literal('Demo SA impersonator'),
+      ),
+    );
+
+    add(
+      GoogleServiceAccountIamMember(
+        localName: 'demo_sa_user',
+        // Target SA is the demo SA; identified by its full resource path.
+        serviceAccountId: TfArg.ref(sa.name),
+        role: TfArg.literal('roles/iam.serviceAccountUser'),
+        member: TfArg.ref(impersonator.member),
+      ),
+    );
+
+    // ---- 8. Long-lived SA key for the demo SA -----------------------------
+    //
+    // Only do this when integrating with a system that cannot accept
+    // short-lived OAuth tokens. The `private_key` output is sensitive --
+    // synth masks it from rendered Terraform JSON / app constants.
+
+    add(
+      GoogleServiceAccountKey(
+        localName: 'demo_sa_key',
+        serviceAccountId: TfArg.ref(sa.name),
+        keyAlgorithm: TfArg.literal(KeyAlgorithm.rsa2048),
+        privateKeyType: TfArg.literal(PrivateKeyType.googleCredentialsFile),
+      ),
+    );
+
     // The seam: export each resource path so the application side has
     // typed lookup keys for all four resources.
     addExport(
@@ -150,6 +260,10 @@ class IamShowcaseStack extends Stack {
     addExport(
       'SECRET_ID',
       ResourceIdExport(secret.id, emitTerraformOutput: true),
+    );
+    addExport(
+      'CUSTOM_ROLE_NAME',
+      ResourceIdExport(customRole.nameRef, emitTerraformOutput: true),
     );
 
     setAppExportsOutputPath('lib/generated/iam_showcase_stack.app.dart');

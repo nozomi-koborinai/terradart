@@ -10,6 +10,8 @@ export 'src/compute/google_compute_address.dart'
         IpVersion,
         Ipv6EndpointType,
         NetworkTier;
+export 'src/compute/google_compute_disk_iam_member.dart'
+    show GoogleComputeDiskIamMember;
 export 'src/compute/google_compute_firewall.dart'
     show
         FirewallAllowRule,
@@ -18,6 +20,12 @@ export 'src/compute/google_compute_firewall.dart'
         FirewallLogConfig,
         FirewallLogMetadata,
         GoogleComputeFirewall;
+export 'src/compute/google_compute_global_address.dart'
+    show
+        GlobalAddressIpVersion,
+        GlobalAddressPurpose,
+        GlobalAddressType,
+        GoogleComputeGlobalAddress;
 export 'src/compute/google_compute_instance.dart'
     show
         AccessConfig,
@@ -50,6 +58,8 @@ export 'src/compute/google_compute_instance.dart'
         ServiceAccount,
         ShieldedInstanceConfig,
         SpecificReservation;
+export 'src/compute/google_compute_instance_iam_member.dart'
+    show GoogleComputeInstanceIamMember;
 export 'src/compute/google_compute_network.dart'
     show
         BgpBestPathSelectionMode,
@@ -69,3 +79,5 @@ export 'src/compute/google_compute_subnetwork.dart'
         SubnetworkResolveSubnetMask,
         SubnetworkRole,
         SubnetworkStackType;
+export 'src/compute/google_compute_subnetwork_iam_member.dart'
+    show GoogleComputeSubnetworkIamMember;

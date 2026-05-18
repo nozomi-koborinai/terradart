@@ -24,6 +24,8 @@ export 'src/storage/google_storage_bucket.dart'
         SoftDeletePolicy,
         Versioning,
         VpcNetworkSource;
+export 'src/storage/google_storage_bucket_iam_member.dart'
+    show GoogleStorageBucketIamMember;
 export 'src/storage/google_storage_bucket_object.dart'
     show
         BucketObjectContent,

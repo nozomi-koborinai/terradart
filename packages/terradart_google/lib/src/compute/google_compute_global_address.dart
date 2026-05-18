@@ -1,0 +1,147 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
+import 'package:terradart_core/terradart_core.dart';
+
+/// Sensitive field paths for `google_compute_global_address`.
+const Set<String> _googleComputeGlobalAddressSensitive = <String>{};
+
+/// `address_type` for `google_compute_global_address`. Default `external`
+/// (public IP). Use `internal` for in-VPC ranges (private-services
+/// peering, internal load balancer VIPs).
+enum GlobalAddressType {
+  external('EXTERNAL'),
+  internal('INTERNAL');
+
+  const GlobalAddressType(this.terraformValue);
+  final String terraformValue;
+}
+
+/// `purpose` for `google_compute_global_address`. Selects the role the
+/// reserved range plays.
+///
+/// - [vpcPeering]: the private-services peering use case — reserves an
+///   internal CIDR on the user's VPC that Google's producer services
+///   (Cloud SQL private IP, Memorystore, etc) peer into via
+///   [GoogleServiceNetworkingConnection].
+/// - [privateServiceConnect]: PSC consumer endpoint backing a PSC
+///   forwarding rule (Beta in MM, GA in the provider).
+enum GlobalAddressPurpose {
+  vpcPeering('VPC_PEERING'),
+  privateServiceConnect('PRIVATE_SERVICE_CONNECT');
+
+  const GlobalAddressPurpose(this.terraformValue);
+  final String terraformValue;
+}
+
+/// IP protocol version for the global address. Default `ipv4`.
+enum GlobalAddressIpVersion {
+  ipv4('IPV4'),
+  ipv6('IPV6');
+
+  const GlobalAddressIpVersion(this.terraformValue);
+  final String terraformValue;
+}
+
+/// Factory wrapper for `google_compute_global_address` (provider
+/// `hashicorp/google ~> 7.0`).
+///
+/// Reserves a global (regionless) IP range. Two complementary use cases:
+///
+/// 1. **HTTP(S) load balancer VIP** — `addressType: external`, `purpose`
+///    unset, no `network`. The provider allocates a single anycast IPv4
+///    (or IPv6 when [ipVersion] is set) routed across Google's edge.
+/// 2. **Private services peering range** — `addressType: internal`,
+///    `purpose: vpcPeering`, `network` pointing at a
+///    [GoogleComputeNetwork]. Reserves an internal CIDR block on the
+///    user's VPC that [GoogleServiceNetworkingConnection] then peers with
+///    Google's service producer VPC (for Cloud SQL private IP, Memorystore,
+///    etc).
+///
+/// Required identity:
+/// - [localName]: Terraform local name (the address segment after
+///   `google_compute_global_address.`).
+/// - `name`: GCP-internal address resource name. Forces replacement when
+///   changed.
+///
+/// Example (Cloud SQL private-IP peering range, the canonical Wave 5
+/// chain): see also [GoogleServiceNetworkingConnection].
+/// ```dart
+/// final psaRange = GoogleComputeGlobalAddress(
+///   localName: 'psa_range',
+///   name: TfArg.literal('cloudsql-psa-range'),
+///   addressType: TfArg.literal(GlobalAddressType.internal),
+///   purpose: TfArg.literal(GlobalAddressPurpose.vpcPeering),
+///   prefixLength: TfArg.literal(16),
+///   network: TfArg.ref(vpc.selfLink),
+/// );
+/// ```
+///
+/// Example (external LB VIP):
+/// ```dart
+/// final lbVip = GoogleComputeGlobalAddress(
+///   localName: 'lb_vip',
+///   name: TfArg.literal('global-lb-vip'),
+///   addressType: TfArg.literal(GlobalAddressType.external),
+///   ipVersion: TfArg.literal(GlobalAddressIpVersion.ipv4),
+/// );
+/// ```
+///
+/// Composition pattern: extends `Resource<$GoogleComputeGlobalAddress>` for
+/// runtime behavior.
+final class GoogleComputeGlobalAddress extends Resource {
+  // ignore: constant_identifier_names
+  static const String $tfType = 'google_compute_global_address';
+
+  GoogleComputeGlobalAddress({
+    required super.localName,
+    required TfArg<String> name,
+    TfArg<GlobalAddressType>? addressType,
+    TfArg<GlobalAddressPurpose>? purpose,
+    TfArg<GlobalAddressIpVersion>? ipVersion,
+    TfArg<String>? address,
+    TfArg<num>? prefixLength,
+    TfArg<String>? network,
+    TfArg<Map<String, String>>? labels,
+    TfArg<String>? description,
+    TfArg<String>? project,
+    super.lifecycle,
+    super.dependsOn,
+  }) : super(
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           if (addressType != null) 'address_type': addressType,
+           if (purpose != null) 'purpose': purpose,
+           if (ipVersion != null) 'ip_version': ipVersion,
+           if (address != null) 'address': address,
+           if (prefixLength != null) 'prefix_length': prefixLength,
+           if (network != null) 'network': network,
+           if (labels != null) 'labels': labels,
+           if (description != null) 'description': description,
+           if (project != null) 'project': project,
+         },
+       );
+
+  @override
+  // ignore: non_constant_identifier_names
+  Set<String> get $sensitiveFields => _googleComputeGlobalAddressSensitive;
+
+  /// Reference to `name` attribute. Use this when downstream consumers
+  /// (notably [GoogleServiceNetworkingConnection.reservedPeeringRanges])
+  /// require the address by name, not full self_link.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute (full path
+  /// `projects/{project}/global/addresses/{name}`).
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to the allocated `address` attribute (the actual IP or
+  /// CIDR base GCP picks when [address] is omitted). Available after
+  /// apply. Use this to pass the IP to downstream resources like load
+  /// balancer forwarding rules.
+  TfRef<String> get addressRef => TfRef.attribute<String>(this, 'address');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+}

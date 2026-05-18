@@ -1,0 +1,15 @@
+name: terradart_example_cloud_sql_quickstart
+description: Wave 5 quickstart -- Cloud SQL private-IP chain (VPC + global address + service networking + SQL instance/database/user).
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  terradart_core:
+    path: ../../packages/terradart_core
+  terradart_google:
+    path: ../../packages/terradart_google
+
+dev_dependencies:
+  lints: ^6.0.0

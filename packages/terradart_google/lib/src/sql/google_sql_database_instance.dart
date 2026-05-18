@@ -1,0 +1,828 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
+import 'package:terradart_core/terradart_core.dart';
+
+/// Sensitive field paths for `google_sql_database_instance`.
+const Set<String> _googleSqlDatabaseInstanceSensitive = <String>{
+  'replica_configuration.password',
+  'root_password',
+  'server_ca_cert',
+};
+
+// ===========================================================================
+// Top-level enums
+// ===========================================================================
+
+/// Engine + major version for a Cloud SQL instance. Mapped from the
+/// `database_version` schema string (see the schema attribute description
+/// for the canonical supported set). Picking a major family is **forcing**
+/// — Terraform recreates the instance on change.
+enum DatabaseVersion {
+  mysql56('MYSQL_5_6'),
+  mysql57('MYSQL_5_7'),
+  mysql80('MYSQL_8_0'),
+  mysql84('MYSQL_8_4'),
+  postgres96('POSTGRES_9_6'),
+  postgres10('POSTGRES_10'),
+  postgres11('POSTGRES_11'),
+  postgres12('POSTGRES_12'),
+  postgres13('POSTGRES_13'),
+  postgres14('POSTGRES_14'),
+  postgres15('POSTGRES_15'),
+  postgres16('POSTGRES_16'),
+  postgres17('POSTGRES_17'),
+  postgres18('POSTGRES_18'),
+  sqlserver2022Standard('SQLSERVER_2022_STANDARD'),
+  sqlserver2022Enterprise('SQLSERVER_2022_ENTERPRISE'),
+  sqlserver2022Express('SQLSERVER_2022_EXPRESS'),
+  sqlserver2022Web('SQLSERVER_2022_WEB'),
+  sqlserver2025Standard('SQLSERVER_2025_STANDARD'),
+  sqlserver2025Enterprise('SQLSERVER_2025_ENTERPRISE'),
+  sqlserver2025Express('SQLSERVER_2025_EXPRESS'),
+  sqlserver2025Web('SQLSERVER_2025_WEB');
+
+  const DatabaseVersion(this.terraformValue);
+  final String terraformValue;
+}
+
+/// `settings.availability_type`. `regional` is HA (across 2 zones in the
+/// region, automatic failover); `zonal` is single-zone (cheaper). HA
+/// also requires backup_configuration to be enabled (and binary logs on
+/// MySQL / point-in-time recovery on Postgres).
+enum SqlAvailabilityType {
+  regional('REGIONAL'),
+  zonal('ZONAL');
+
+  const SqlAvailabilityType(this.terraformValue);
+  final String terraformValue;
+}
+
+/// `settings.edition`. `enterprisePlus` unlocks data cache, advanced
+/// disaster recovery, and the read-pool instance type.
+enum SqlEdition {
+  enterprise('ENTERPRISE'),
+  enterprisePlus('ENTERPRISE_PLUS');
+
+  const SqlEdition(this.terraformValue);
+  final String terraformValue;
+}
+
+/// `settings.activation_policy`. `always` (default) keeps the instance
+/// running 24/7; `never` keeps it stopped (the underlying storage is
+/// preserved). `onDemand` is legacy — kept for backwards compatibility.
+enum SqlActivationPolicy {
+  always('ALWAYS'),
+  never('NEVER'),
+  onDemand('ON_DEMAND');
+
+  const SqlActivationPolicy(this.terraformValue);
+  final String terraformValue;
+}
+
+/// `settings.disk_type`. Tier-dependent — `hyperdiskBalanced` is only
+/// available on Enterprise Plus.
+enum SqlDiskType {
+  pdSsd('PD_SSD'),
+  pdHdd('PD_HDD'),
+  hyperdiskBalanced('HYPERDISK_BALANCED');
+
+  const SqlDiskType(this.terraformValue);
+  final String terraformValue;
+}
+
+// ===========================================================================
+// Settings + nested helpers
+// ===========================================================================
+
+/// `settings` block. Required in practice for any non-trivial instance —
+/// at minimum supply [tier]. The remaining knobs default to GCP's
+/// per-tier sensible values; override only the ones you need.
+///
+/// Rarely-touched sub-blocks (`active_directory_config`,
+/// `sql_server_audit_config`, `entraid_config`,
+/// `password_validation_policy`, `connection_pool_config`,
+/// `read_pool_auto_scale_config`, `data_cache_config`,
+/// `advanced_machine_features`, `deny_maintenance_period`,
+/// `final_backup_config`, `insights_config`) are not modeled as typed
+/// helpers; pass a raw `Map<String, Object?>` via [advancedExtra] keyed
+/// by the Terraform block name when you need them.
+@immutable
+class Settings {
+  const Settings({
+    this.tier,
+    this.availabilityType,
+    this.edition,
+    this.activationPolicy,
+    this.diskSize,
+    this.diskType,
+    this.diskAutoresize,
+    this.diskAutoresizeLimit,
+    this.userLabels,
+    this.collation,
+    this.timeZone,
+    this.connectorEnforcement,
+    this.dataApiAccess,
+    this.deletionProtectionEnabled,
+    this.retainBackupsOnDelete,
+    this.pricingPlan,
+    this.enableDataplexIntegration,
+    this.enableGoogleMlIntegration,
+    this.autoUpgradeEnabled,
+    this.ipConfiguration,
+    this.backupConfiguration,
+    this.locationPreference,
+    this.maintenanceWindow,
+    this.databaseFlags,
+    this.advancedExtra,
+  });
+
+  /// Machine type / instance shape. Examples: `'db-perf-optimized-N-2'`,
+  /// `'db-custom-2-7680'`, `'db-f1-micro'` (legacy shared-core, dev only).
+  final TfArg<String>? tier;
+
+  /// HA mode: `regional` (multi-zone failover) vs `zonal` (single-zone).
+  final TfArg<SqlAvailabilityType>? availabilityType;
+
+  /// Enterprise vs Enterprise Plus. ENTERPRISE_PLUS unlocks data cache,
+  /// HDR, and the read-pool instance type.
+  final TfArg<SqlEdition>? edition;
+
+  /// 24/7 vs stopped. Most instances stay on [SqlActivationPolicy.always].
+  final TfArg<SqlActivationPolicy>? activationPolicy;
+
+  /// Data disk size in GB. Existing instances cannot be shrunk.
+  final TfArg<int>? diskSize;
+
+  /// Disk type. Tier-dependent.
+  final TfArg<SqlDiskType>? diskType;
+
+  /// Whether storage automatically grows. Default `true`.
+  final TfArg<bool>? diskAutoresize;
+
+  /// Ceiling for auto-grow, in GB. `0` means "no limit (within quota)".
+  final TfArg<int>? diskAutoresizeLimit;
+
+  /// Free-form key/value labels.
+  final TfArg<Map<String, String>>? userLabels;
+
+  /// Server collation (SQL Server only).
+  final TfArg<String>? collation;
+
+  /// Database engine timezone (SQL Server only — Posix string).
+  final TfArg<String>? timeZone;
+
+  /// Cloud SQL Auth Proxy / connector enforcement
+  /// (`'REQUIRED'` / `'NOT_REQUIRED'`).
+  final TfArg<String>? connectorEnforcement;
+
+  /// `'EXECUTE_SQL_ENABLED'` to opt in to the ExecuteSql API.
+  final TfArg<String>? dataApiAccess;
+
+  /// API-level deletion protection. Separate from the top-level
+  /// [GoogleSqlDatabaseInstance.deletionProtection] (which is enforced
+  /// by Terraform).
+  final TfArg<bool>? deletionProtectionEnabled;
+
+  /// Retain backups when the instance is deleted.
+  final TfArg<bool>? retainBackupsOnDelete;
+
+  /// Pricing plan. The only currently supported value is `'PER_USE'`.
+  final TfArg<String>? pricingPlan;
+
+  /// Toggle Dataplex integration.
+  final TfArg<bool>? enableDataplexIntegration;
+
+  /// Toggle Vertex AI integration.
+  final TfArg<bool>? enableGoogleMlIntegration;
+
+  /// MySQL automatic version upgrade. Has no effect on Postgres /
+  /// SQL Server.
+  final TfArg<bool>? autoUpgradeEnabled;
+
+  /// IP connectivity configuration — `ipv4_enabled`, `private_network`,
+  /// `authorized_networks`, SSL mode. The private-IP cornerstone for
+  /// the Wave 5 chain.
+  final IpConfiguration? ipConfiguration;
+
+  /// Automatic backups + point-in-time recovery.
+  final BackupConfiguration? backupConfiguration;
+
+  /// Zone / failover-zone preferences. Typically auto-selected.
+  final LocationPreference? locationPreference;
+
+  /// Maintenance window (day / hour / track).
+  final MaintenanceWindow? maintenanceWindow;
+
+  /// Engine-level flags (e.g. `max_connections`, `log_min_duration`).
+  final List<DatabaseFlag>? databaseFlags;
+
+  /// Escape hatch for the less-curated sub-blocks listed in this class's
+  /// doc comment. Keys are Terraform block names; values are the block
+  /// payload (single block → `[{...}]`, set → list of maps).
+  final Map<String, Object?>? advancedExtra;
+
+  Map<String, Object?> toArgMap() => {
+    if (tier != null) 'tier': tier!.toTfJson(),
+    if (availabilityType != null)
+      'availability_type': availabilityType!.toTfJson(),
+    if (edition != null) 'edition': edition!.toTfJson(),
+    if (activationPolicy != null)
+      'activation_policy': activationPolicy!.toTfJson(),
+    if (diskSize != null) 'disk_size': diskSize!.toTfJson(),
+    if (diskType != null) 'disk_type': diskType!.toTfJson(),
+    if (diskAutoresize != null) 'disk_autoresize': diskAutoresize!.toTfJson(),
+    if (diskAutoresizeLimit != null)
+      'disk_autoresize_limit': diskAutoresizeLimit!.toTfJson(),
+    if (userLabels != null) 'user_labels': userLabels!.toTfJson(),
+    if (collation != null) 'collation': collation!.toTfJson(),
+    if (timeZone != null) 'time_zone': timeZone!.toTfJson(),
+    if (connectorEnforcement != null)
+      'connector_enforcement': connectorEnforcement!.toTfJson(),
+    if (dataApiAccess != null) 'data_api_access': dataApiAccess!.toTfJson(),
+    if (deletionProtectionEnabled != null)
+      'deletion_protection_enabled': deletionProtectionEnabled!.toTfJson(),
+    if (retainBackupsOnDelete != null)
+      'retain_backups_on_delete': retainBackupsOnDelete!.toTfJson(),
+    if (pricingPlan != null) 'pricing_plan': pricingPlan!.toTfJson(),
+    if (enableDataplexIntegration != null)
+      'enable_dataplex_integration': enableDataplexIntegration!.toTfJson(),
+    if (enableGoogleMlIntegration != null)
+      'enable_google_ml_integration': enableGoogleMlIntegration!.toTfJson(),
+    if (autoUpgradeEnabled != null)
+      'auto_upgrade_enabled': autoUpgradeEnabled!.toTfJson(),
+    if (ipConfiguration != null)
+      'ip_configuration': [ipConfiguration!.toArgMap()],
+    if (backupConfiguration != null)
+      'backup_configuration': [backupConfiguration!.toArgMap()],
+    if (locationPreference != null)
+      'location_preference': [locationPreference!.toArgMap()],
+    if (maintenanceWindow != null)
+      'maintenance_window': [maintenanceWindow!.toArgMap()],
+    if (databaseFlags != null)
+      'database_flags': databaseFlags!.map((f) => f.toArgMap()).toList(),
+    if (advancedExtra != null) ...advancedExtra!,
+  };
+}
+
+/// `settings.ip_configuration` — controls how clients reach the
+/// instance. Two main shapes:
+///
+/// 1. Public IP: `ipv4Enabled: true`, optionally with
+///    `authorizedNetworks` for source IP allow-listing.
+/// 2. Private IP: `ipv4Enabled: false` + `privateNetwork` pointing at
+///    a VPC the user has already peered to
+///    `servicenetworking.googleapis.com` via a
+///    [GoogleServiceNetworkingConnection].
+///
+/// SSL mode names (`ssl_mode`) accepted by the API include
+/// `'ALLOW_UNENCRYPTED_AND_ENCRYPTED'`, `'ENCRYPTED_ONLY'`, and
+/// `'TRUSTED_CLIENT_CERTIFICATE_REQUIRED'`; passed through as a string
+/// rather than an enum because the schema does not declare the set
+/// (Gate 3 invariant).
+@immutable
+class IpConfiguration {
+  const IpConfiguration({
+    this.ipv4Enabled,
+    this.privateNetwork,
+    this.allocatedIpRange,
+    this.enablePrivatePathForGoogleCloudServices,
+    this.sslMode,
+    this.serverCaMode,
+    this.serverCaPool,
+    this.serverCertificateRotationMode,
+    this.customSubjectAlternativeNames,
+    this.authorizedNetworks,
+    this.pscConfig,
+  });
+
+  /// Whether the instance has a public IPv4 address. Set to `false` for
+  /// private-only instances.
+  final TfArg<bool>? ipv4Enabled;
+
+  /// VPC network the instance is reachable from on its private IP.
+  /// Typically `TfArg.ref(vpc.selfLink)`. The downstream
+  /// `service_networking_connection` must be applied first.
+  final TfArg<String>? privateNetwork;
+
+  /// Name of the allocated IP range for the private-IP instance (i.e.
+  /// the [GoogleComputeGlobalAddress.nameRef] consumed by
+  /// service_networking). When `null`, the API picks any matching range.
+  final TfArg<String>? allocatedIpRange;
+
+  /// Allow Google managed services (BigQuery etc.) to reach the
+  /// instance over private IP.
+  final TfArg<bool>? enablePrivatePathForGoogleCloudServices;
+
+  /// `'ALLOW_UNENCRYPTED_AND_ENCRYPTED'` (default), `'ENCRYPTED_ONLY'`,
+  /// or `'TRUSTED_CLIENT_CERTIFICATE_REQUIRED'`.
+  final TfArg<String>? sslMode;
+
+  /// CA hosting mode. `'GOOGLE_MANAGED_INTERNAL_CA'` (default),
+  /// `'GOOGLE_MANAGED_CAS_CA'`, or `'CUSTOMER_MANAGED_CAS_CA'`.
+  final TfArg<String>? serverCaMode;
+
+  /// CA pool resource path. Required when [serverCaMode] is the
+  /// customer-managed CAS option.
+  final TfArg<String>? serverCaPool;
+
+  /// `'NEW_CA_KEY'` or `'ROTATE_CA_CERT'`. Triggers CA rotation.
+  final TfArg<String>? serverCertificateRotationMode;
+
+  /// Subject alternative names baked into the server cert. Only
+  /// meaningful with customer-managed CAS.
+  final TfArg<List<String>>? customSubjectAlternativeNames;
+
+  /// IP allow-list for public-IP instances.
+  final List<AuthorizedNetwork>? authorizedNetworks;
+
+  /// Private Service Connect connectivity (replaces VPC peering on
+  /// PSC-enabled instances).
+  final PscConfig? pscConfig;
+
+  Map<String, Object?> toArgMap() => {
+    if (ipv4Enabled != null) 'ipv4_enabled': ipv4Enabled!.toTfJson(),
+    if (privateNetwork != null) 'private_network': privateNetwork!.toTfJson(),
+    if (allocatedIpRange != null)
+      'allocated_ip_range': allocatedIpRange!.toTfJson(),
+    if (enablePrivatePathForGoogleCloudServices != null)
+      'enable_private_path_for_google_cloud_services':
+          enablePrivatePathForGoogleCloudServices!.toTfJson(),
+    if (sslMode != null) 'ssl_mode': sslMode!.toTfJson(),
+    if (serverCaMode != null) 'server_ca_mode': serverCaMode!.toTfJson(),
+    if (serverCaPool != null) 'server_ca_pool': serverCaPool!.toTfJson(),
+    if (serverCertificateRotationMode != null)
+      'server_certificate_rotation_mode': serverCertificateRotationMode!
+          .toTfJson(),
+    if (customSubjectAlternativeNames != null)
+      'custom_subject_alternative_names': customSubjectAlternativeNames!
+          .toTfJson(),
+    if (authorizedNetworks != null)
+      'authorized_networks': authorizedNetworks!
+          .map((n) => n.toArgMap())
+          .toList(),
+    if (pscConfig != null) 'psc_config': [pscConfig!.toArgMap()],
+  };
+}
+
+/// One entry in `ip_configuration.authorized_networks`. The `value`
+/// field is a CIDR (`'203.0.113.0/24'` or `'203.0.113.42/32'`).
+@immutable
+class AuthorizedNetwork {
+  const AuthorizedNetwork({
+    required this.value,
+    this.name,
+    this.expirationTime,
+  });
+
+  /// Source CIDR.
+  final TfArg<String> value;
+
+  /// Human-readable label for the entry.
+  final TfArg<String>? name;
+
+  /// RFC3339 timestamp after which the entry stops applying.
+  final TfArg<String>? expirationTime;
+
+  Map<String, Object?> toArgMap() => {
+    'value': value.toTfJson(),
+    if (name != null) 'name': name!.toTfJson(),
+    if (expirationTime != null) 'expiration_time': expirationTime!.toTfJson(),
+  };
+}
+
+/// `ip_configuration.psc_config` — Private Service Connect. Mutually
+/// exclusive with VPC peering on the same instance.
+@immutable
+class PscConfig {
+  const PscConfig({
+    this.pscEnabled,
+    this.allowedConsumerProjects,
+    this.networkAttachmentUri,
+  });
+
+  /// Master switch for PSC connectivity.
+  final TfArg<bool>? pscEnabled;
+
+  /// Projects allow-listed to connect via PSC.
+  final TfArg<List<String>>? allowedConsumerProjects;
+
+  /// `projects/{p}/regions/{r}/networkAttachments/{n}` — producer
+  /// network attachment for the PSC connection.
+  final TfArg<String>? networkAttachmentUri;
+
+  Map<String, Object?> toArgMap() => {
+    if (pscEnabled != null) 'psc_enabled': pscEnabled!.toTfJson(),
+    if (allowedConsumerProjects != null)
+      'allowed_consumer_projects': allowedConsumerProjects!.toTfJson(),
+    if (networkAttachmentUri != null)
+      'network_attachment_uri': networkAttachmentUri!.toTfJson(),
+  };
+}
+
+/// `settings.backup_configuration`. Enabling backups is a prerequisite
+/// for HA (`availability_type: REGIONAL`) and point-in-time recovery
+/// on Postgres.
+@immutable
+class BackupConfiguration {
+  const BackupConfiguration({
+    this.enabled,
+    this.startTime,
+    this.location,
+    this.pointInTimeRecoveryEnabled,
+    this.binaryLogEnabled,
+    this.transactionLogRetentionDays,
+    this.backupRetentionSettings,
+  });
+
+  /// Toggle automatic backups.
+  final bool? enabled;
+
+  /// `HH:MM` 24h UTC. Backups run within a ~1h window starting here.
+  final String? startTime;
+
+  /// Multi-region or single-region location override (default:
+  /// instance's region).
+  final String? location;
+
+  /// PITR — required for Postgres minute-level rewind.
+  final bool? pointInTimeRecoveryEnabled;
+
+  /// Binary log retention — required for MySQL PITR.
+  final bool? binaryLogEnabled;
+
+  /// 1-7 days. Number of days of transaction logs retained for PITR.
+  final int? transactionLogRetentionDays;
+
+  /// How many backups to retain.
+  final BackupRetentionSettings? backupRetentionSettings;
+
+  Map<String, Object?> toArgMap() => {
+    if (enabled != null) 'enabled': enabled,
+    if (startTime != null) 'start_time': startTime,
+    if (location != null) 'location': location,
+    if (pointInTimeRecoveryEnabled != null)
+      'point_in_time_recovery_enabled': pointInTimeRecoveryEnabled,
+    if (binaryLogEnabled != null) 'binary_log_enabled': binaryLogEnabled,
+    if (transactionLogRetentionDays != null)
+      'transaction_log_retention_days': transactionLogRetentionDays,
+    if (backupRetentionSettings != null)
+      'backup_retention_settings': [backupRetentionSettings!.toArgMap()],
+  };
+}
+
+/// `backup_configuration.backup_retention_settings`.
+@immutable
+class BackupRetentionSettings {
+  const BackupRetentionSettings({
+    required this.retainedBackups,
+    this.retentionUnit,
+  });
+
+  /// How many backups to keep.
+  final int retainedBackups;
+
+  /// Currently `'COUNT'` is the only value the API accepts.
+  final String? retentionUnit;
+
+  Map<String, Object?> toArgMap() => {
+    'retained_backups': retainedBackups,
+    if (retentionUnit != null) 'retention_unit': retentionUnit,
+  };
+}
+
+/// One `settings.database_flags` entry — engine-level flag. Both keys
+/// are simple strings on the wire (numeric flag values are stringified
+/// — `'1000'`, not `1000`).
+@immutable
+class DatabaseFlag {
+  const DatabaseFlag({required this.name, required this.value});
+
+  /// Engine flag name (e.g. `'max_connections'`).
+  final String name;
+
+  /// Flag value.
+  final String value;
+
+  Map<String, Object?> toArgMap() => {'name': name, 'value': value};
+}
+
+/// `settings.location_preference`. Optional — the API picks a zone
+/// when omitted. [followGaeApplication] is rarely set; leave `null`
+/// unless co-locating with an App Engine app.
+@immutable
+class LocationPreference {
+  const LocationPreference({
+    this.zone,
+    this.secondaryZone,
+    this.followGaeApplication,
+  });
+
+  /// Primary zone (e.g. `'asia-northeast1-a'`).
+  final String? zone;
+
+  /// Failover zone for HA. Must be in the same region as [zone].
+  final String? secondaryZone;
+
+  /// App Engine app ID to co-locate with.
+  final String? followGaeApplication;
+
+  Map<String, Object?> toArgMap() => {
+    if (zone != null) 'zone': zone,
+    if (secondaryZone != null) 'secondary_zone': secondaryZone,
+    if (followGaeApplication != null)
+      'follow_gae_application': followGaeApplication,
+  };
+}
+
+/// `settings.maintenance_window`. Pin a weekly window when GCP can
+/// take the instance down for upgrades.
+@immutable
+class MaintenanceWindow {
+  const MaintenanceWindow({this.day, this.hour, this.updateTrack});
+
+  /// 1 = Monday, 7 = Sunday.
+  final int? day;
+
+  /// 0-23 (UTC).
+  final int? hour;
+
+  /// `'canary'` (1-week lead), `'stable'` (2-week lead), or `'week5'`
+  /// (5-week lead).
+  final String? updateTrack;
+
+  Map<String, Object?> toArgMap() => {
+    if (day != null) 'day': day,
+    if (hour != null) 'hour': hour,
+    if (updateTrack != null) 'update_track': updateTrack,
+  };
+}
+
+// ===========================================================================
+// replica_configuration (top-level, separate from settings)
+// ===========================================================================
+
+/// `replica_configuration` block. Only set on read-replica instances
+/// (i.e. when [GoogleSqlDatabaseInstance.masterInstanceName] is also
+/// set). The replica's [GoogleSqlDatabaseInstance.databaseVersion] must
+/// match the primary.
+///
+/// `password` here is also sensitive in the schema and round-trips
+/// through `$sensitiveFields`.
+@immutable
+class ReplicaConfiguration {
+  const ReplicaConfiguration({
+    this.failoverTarget,
+    this.cascadableReplica,
+    this.username,
+    this.password,
+    this.caCertificate,
+    this.clientCertificate,
+    this.clientKey,
+    this.connectRetryInterval,
+    this.dumpFilePath,
+    this.masterHeartbeatPeriod,
+    this.sslCipher,
+    this.verifyServerCertificate,
+  });
+
+  /// Promote this replica to primary on failover. MySQL only.
+  final TfArg<bool>? failoverTarget;
+
+  /// Cascadable replica (SQL Server only).
+  final TfArg<bool>? cascadableReplica;
+
+  /// Replication username (MySQL).
+  final TfArg<String>? username;
+
+  /// Replication password (MySQL). **Sensitive** — masked at synth.
+  final TfArg<String>? password;
+
+  /// PEM CA cert pinning the master's identity (MySQL external).
+  final TfArg<String>? caCertificate;
+
+  /// PEM client cert (MySQL external).
+  final TfArg<String>? clientCertificate;
+
+  /// PEM client key (MySQL external).
+  final TfArg<String>? clientKey;
+
+  /// Seconds between reconnect attempts (MySQL).
+  final TfArg<int>? connectRetryInterval;
+
+  /// GCS path to a SQL dump for replica seed (MySQL external).
+  final TfArg<String>? dumpFilePath;
+
+  /// Heartbeat period in ms (MySQL).
+  final TfArg<int>? masterHeartbeatPeriod;
+
+  /// Permitted SSL ciphers (MySQL).
+  final TfArg<String>? sslCipher;
+
+  /// Validate master common name during SSL handshake (MySQL).
+  final TfArg<bool>? verifyServerCertificate;
+
+  Map<String, Object?> toArgMap() => {
+    if (failoverTarget != null) 'failover_target': failoverTarget!.toTfJson(),
+    if (cascadableReplica != null)
+      'cascadable_replica': cascadableReplica!.toTfJson(),
+    if (username != null) 'username': username!.toTfJson(),
+    if (password != null) 'password': password!.toTfJson(),
+    if (caCertificate != null) 'ca_certificate': caCertificate!.toTfJson(),
+    if (clientCertificate != null)
+      'client_certificate': clientCertificate!.toTfJson(),
+    if (clientKey != null) 'client_key': clientKey!.toTfJson(),
+    if (connectRetryInterval != null)
+      'connect_retry_interval': connectRetryInterval!.toTfJson(),
+    if (dumpFilePath != null) 'dump_file_path': dumpFilePath!.toTfJson(),
+    if (masterHeartbeatPeriod != null)
+      'master_heartbeat_period': masterHeartbeatPeriod!.toTfJson(),
+    if (sslCipher != null) 'ssl_cipher': sslCipher!.toTfJson(),
+    if (verifyServerCertificate != null)
+      'verify_server_certificate': verifyServerCertificate!.toTfJson(),
+  };
+}
+
+/// Factory wrapper for `google_sql_database_instance` (provider
+/// `hashicorp/google ~> 7.0`).
+///
+/// Manages a Cloud SQL instance — a managed MySQL, PostgreSQL, or SQL
+/// Server engine. The schema is large; this wrapper exposes the
+/// commonly-used fields as typed helpers ([Settings], [IpConfiguration],
+/// [BackupConfiguration], [DatabaseFlag], [LocationPreference],
+/// [MaintenanceWindow], [ReplicaConfiguration]) and leaves the rarely-set
+/// knobs (e.g. `active_directory_config`, `sql_server_audit_config`,
+/// `password_validation_policy`) on the
+/// [Settings.extra] / [Settings.advancedExtra] escape hatches so the
+/// curation surface stays manageable.
+///
+/// Required identity:
+/// - [localName]: Terraform local name (the address segment after
+///   `google_sql_database_instance.`).
+/// - `databaseVersion`: engine + major version (e.g.
+///   [DatabaseVersion.postgres15], [DatabaseVersion.mysql80]). Forces
+///   replacement when the major family changes (Postgres → MySQL etc.);
+///   minor in-family upgrades are in-place.
+///
+/// Strongly recommended:
+/// - `name`: instance name. When `null` Terraform picks a random one —
+///   surprising in CI, set explicitly in production.
+/// - `region`: GCP region (e.g. `'asia-northeast1'`). Falls back to the
+///   provider's region.
+/// - `settings.tier`: machine type (e.g. `'db-perf-optimized-N-2'`,
+///   `'db-custom-2-7680'`, or the lower-cost `'db-f1-micro'` legacy
+///   shared-core tier for dev).
+///
+/// Private-IP wiring (the canonical Wave 5 chain):
+///
+/// ```
+/// google_compute_network              ┐
+/// google_compute_global_address       ├─ build the peering bridge first
+/// google_service_networking_connection┘
+///                  ↓
+/// google_sql_database_instance        ── private_network points at
+///                                        the network above; ipv4Enabled
+///                                        is false → private-only.
+/// ```
+///
+/// Example (private-IP PostgreSQL primary — see the
+/// `cloud_sql_quickstart` example for the full chain):
+/// ```dart
+/// final primary = GoogleSqlDatabaseInstance(
+///   localName: 'primary',
+///   name: TfArg.literal('orders-primary'),
+///   databaseVersion: TfArg.literal(DatabaseVersion.postgres15),
+///   region: TfArg.literal('asia-northeast1'),
+///   deletionProtection: TfArg.literal(false), // dev / quickstart
+///   settings: Settings(
+///     tier: TfArg.literal('db-custom-2-7680'),
+///     availabilityType: TfArg.literal(SqlAvailabilityType.regional),
+///     edition: TfArg.literal(SqlEdition.enterprise),
+///     diskSize: TfArg.literal(20),
+///     diskType: TfArg.literal(SqlDiskType.pdSsd),
+///     ipConfiguration: IpConfiguration(
+///       ipv4Enabled: TfArg.literal(false),
+///       privateNetwork: TfArg.ref(vpc.selfLink),
+///     ),
+///     backupConfiguration: const BackupConfiguration(
+///       enabled: true,
+///       pointInTimeRecoveryEnabled: true,
+///       startTime: '03:00',
+///     ),
+///   ),
+/// );
+/// ```
+///
+/// `root_password` is sensitive in the schema and round-trips through
+/// the generated `$sensitiveFields` set — synth masks it. Prefer
+/// `root_password_wo` (write-only, never stored in state, requires
+/// Terraform >= 1.11) for new deployments.
+///
+/// Composition pattern: extends `Resource<$GoogleSqlDatabaseInstance>`
+/// for runtime behavior.
+final class GoogleSqlDatabaseInstance extends Resource {
+  // ignore: constant_identifier_names
+  static const String $tfType = 'google_sql_database_instance';
+
+  GoogleSqlDatabaseInstance({
+    required super.localName,
+    required TfArg<DatabaseVersion> databaseVersion,
+    TfArg<String>? name,
+    TfArg<String>? region,
+    Settings? settings,
+    TfArg<String>? rootPassword,
+    TfArg<String>? rootPasswordWo,
+    TfArg<String>? rootPasswordWoVersion,
+    TfArg<bool>? deletionProtection,
+    TfArg<String>? masterInstanceName,
+    ReplicaConfiguration? replicaConfiguration,
+    TfArg<String>? instanceType,
+    TfArg<num>? nodeCount,
+    TfArg<String>? maintenanceVersion,
+    TfArg<String>? encryptionKeyName,
+    TfArg<List<String>>? replicaNames,
+    TfArg<String>? finalBackupDescription,
+    TfArg<String>? backupdrBackup,
+    TfArg<String>? project,
+    super.lifecycle,
+    super.dependsOn,
+  }) : super(
+         terraformType: $tfType,
+         argMap: {
+           'database_version': databaseVersion,
+           if (name != null) 'name': name,
+           if (region != null) 'region': region,
+           if (settings != null)
+             'settings': TfArg.literal([settings.toArgMap()]),
+           if (rootPassword != null) 'root_password': rootPassword,
+           if (rootPasswordWo != null) 'root_password_wo': rootPasswordWo,
+           if (rootPasswordWoVersion != null)
+             'root_password_wo_version': rootPasswordWoVersion,
+           if (deletionProtection != null)
+             'deletion_protection': deletionProtection,
+           if (masterInstanceName != null)
+             'master_instance_name': masterInstanceName,
+           if (replicaConfiguration != null)
+             'replica_configuration': TfArg.literal([
+               replicaConfiguration.toArgMap(),
+             ]),
+           if (instanceType != null) 'instance_type': instanceType,
+           if (nodeCount != null) 'node_count': nodeCount,
+           if (maintenanceVersion != null)
+             'maintenance_version': maintenanceVersion,
+           if (encryptionKeyName != null)
+             'encryption_key_name': encryptionKeyName,
+           if (replicaNames != null) 'replica_names': replicaNames,
+           if (finalBackupDescription != null)
+             'final_backup_description': finalBackupDescription,
+           if (backupdrBackup != null) 'backupdr_backup': backupdrBackup,
+           if (project != null) 'project': project,
+         },
+       );
+
+  @override
+  // ignore: non_constant_identifier_names
+  Set<String> get $sensitiveFields => _googleSqlDatabaseInstanceSensitive;
+
+  /// Reference to `name` attribute. Use this when downstream resources
+  /// like [GoogleSqlDatabase] / [GoogleSqlUser] need the bare instance
+  /// name (NOT the full `id`).
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute. The provider sets `id == name`, but
+  /// downstream consumers should prefer [nameRef] for clarity.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to the computed `connection_name` attribute
+  /// (`{project}:{region}:{instance}`). Required by the Cloud SQL Auth
+  /// Proxy and as a `cloud_sql_instance.instances[]` entry on Cloud Run
+  /// volume mounts.
+  TfRef<String> get connectionName =>
+      TfRef.attribute<String>(this, 'connection_name');
+
+  /// Reference to the computed `private_ip_address` — populated when
+  /// the instance has `ipv4_enabled = false` and a `private_network`
+  /// set. Empty otherwise.
+  TfRef<String> get privateIpAddress =>
+      TfRef.attribute<String>(this, 'private_ip_address');
+
+  /// Reference to the computed `public_ip_address` — populated when
+  /// `ipv4_enabled` is true. Empty otherwise.
+  TfRef<String> get publicIpAddress =>
+      TfRef.attribute<String>(this, 'public_ip_address');
+
+  /// Reference to the auto-managed runtime service-account email
+  /// (`p<projectNumber>-<hash>@gcp-sa-cloud-sql.iam.gserviceaccount.com`).
+  /// Grant it `roles/cloudkms.cryptoKeyEncrypterDecrypter` on the CMEK
+  /// key when [encryptionKeyName] is set.
+  TfRef<String> get serviceAccountEmailAddress =>
+      TfRef.attribute<String>(this, 'service_account_email_address');
+
+  /// Reference to `self_link` attribute (HTTPS API path).
+  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to the computed `dns_name` attribute. Populated for PSC
+  /// instances and public-IP CAS instances; empty otherwise.
+  TfRef<String> get dnsName => TfRef.attribute<String>(this, 'dns_name');
+}

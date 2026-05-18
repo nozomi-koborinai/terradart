@@ -1,0 +1,47 @@
+outputDir: cloud_run
+classDocComment: |-
+  /// Factory wrapper for `google_cloud_run_v2_job_iam_member`.
+  ///
+  /// Grants a single (`role`, `member`) IAM binding **on a Cloud Run v2
+  /// job** — most commonly `roles/run.invoker` to control who is allowed
+  /// to trigger an execution of the job (e.g. a Cloud Scheduler SA, or a
+  /// human operator's group).
+  ///
+  /// Picking the right `*_iam_*` variant:
+  ///
+  /// - `*_iam_member` (this resource) — **additive**: grants ONE
+  ///   (role, member) tuple. Does not touch other principals' bindings.
+  ///   Safe in 95% of cases; prefer this unless you have a concrete reason
+  ///   to use one of the authoritative variants below.
+  /// - `*_iam_binding` — **authoritative per role**: takes a list of
+  ///   members and *replaces* the entire member list for that role. Will
+  ///   silently erase any other principal previously bound to that role
+  ///   on this Cloud Run v2 job.
+  /// - `*_iam_policy` — **authoritative for the entire resource**: replaces
+  ///   the job's whole IAM policy. Will erase **all** existing bindings.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - `name`: the target Cloud Run v2 job's `name` attribute (the short
+  ///   job name, *not* the fully-qualified `projects/.../jobs/...` path).
+  ///   Pass `TfArg.ref(job.nameRef)`.
+  /// - `role`: role name, typically `'roles/run.invoker'` (run-this-job)
+  ///   or `'roles/run.viewer'` (inspect-only).
+  /// - `member`: principal in IAM v1 string form.
+  ///
+  /// `location` is optional and defaults to the provider region.
+  ///
+  /// Optional `condition` is a single IAM Condition block (CEL
+  /// `expression`, `title`, optional `description`).
+
+paramOrder:
+  - name
+  - role
+  - member
+  - condition
+  - location
+  - project
+
+extraGetters: |2
+    /// Reference to `etag` attribute (concurrency token written by the API).
+    TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');

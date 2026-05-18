@@ -4,4 +4,8 @@ library;
 
 export 'src/kms/google_kms_crypto_key.dart'
     show GoogleKmsCryptoKey, KmsKeyPurpose, KmsProtectionLevel, VersionTemplate;
+export 'src/kms/google_kms_crypto_key_iam_member.dart'
+    show GoogleKmsCryptoKeyIamMember;
 export 'src/kms/google_kms_key_ring.dart' show GoogleKmsKeyRing;
+export 'src/kms/google_kms_key_ring_iam_member.dart'
+    show GoogleKmsKeyRingIamMember;
