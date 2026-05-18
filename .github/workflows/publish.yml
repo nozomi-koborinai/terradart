@@ -67,8 +67,8 @@ jobs:
     steps:
       - name: Wait for pub.dev index propagation
         run: |
-          echo "Waiting 3 minutes for pub.dev to index terradart_core before publishing terradart_codegen..."
-          sleep 180
+          echo "Waiting 5 minutes for pub.dev to index terradart_core before publishing terradart_codegen..."
+          sleep 300
 
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -95,8 +95,8 @@ jobs:
     steps:
       - name: Wait for pub.dev index propagation
         run: |
-          echo "Waiting 3 minutes for pub.dev to index terradart_codegen + terradart_core before publishing terradart_google..."
-          sleep 180
+          echo "Waiting 5 minutes for pub.dev to index terradart_codegen + terradart_core before publishing terradart_google..."
+          sleep 300
 
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
