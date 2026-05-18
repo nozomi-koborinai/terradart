@@ -1,0 +1,135 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
+import 'package:terradart_core/terradart_core.dart';
+
+/// Sensitive field paths for `google_sql_user`.
+const Set<String> _googleSqlUserSensitive = <String>{'password'};
+
+/// Authentication mechanism for a `google_sql_user`.
+///
+/// - [builtIn]: classic username/password user owned by the database
+///   engine. Default when `type` is omitted.
+/// - [cloudIamUser]: a human Google identity. `name` must be the user's
+///   Google email.
+/// - [cloudIamServiceAccount]: a GCP service account. `name` must be the
+///   service account email (`...iam.gserviceaccount.com`).
+/// - [cloudIamGroup]: a Cloud Identity / Workspace group. `name` must be
+///   the group's primary email.
+///
+/// `password` is meaningful only for [builtIn] users; IAM-typed users
+/// authenticate by exchanging IAM tokens and must omit it.
+enum SqlUserType {
+  builtIn('BUILT_IN'),
+  cloudIamUser('CLOUD_IAM_USER'),
+  cloudIamServiceAccount('CLOUD_IAM_SERVICE_ACCOUNT'),
+  cloudIamGroup('CLOUD_IAM_GROUP');
+
+  const SqlUserType(this.terraformValue);
+  final String terraformValue;
+}
+
+/// Factory wrapper for `google_sql_user` (provider
+/// `hashicorp/google ~> 7.0`).
+///
+/// Represents a database user inside a Cloud SQL instance. The exact
+/// semantics depend on the parent instance's `database_version` (MySQL,
+/// PostgreSQL, SQL Server) and the user's [type] — a built-in DB user,
+/// a Cloud IAM user, a Cloud IAM service account, or a Cloud IAM group.
+///
+/// Required identity:
+/// - [localName]: Terraform local name (the address segment after
+///   `google_sql_user.`).
+/// - `instance`: parent Cloud SQL instance name. Typically
+///   `TfArg.ref(sqlInstance.nameRef)`. Immutable.
+/// - `name`: database username. Immutable.
+///
+/// Optional knobs:
+/// - [type]: authentication mechanism. Defaults to the database's built-in
+///   user when omitted.
+/// - [password] / [passwordWo]: only for [SqlUserType.builtIn] users on
+///   MySQL / SQL Server, and required for PostgreSQL built-ins. Cloud IAM
+///   users authenticate via IAM tokens — leave both `null`.
+///   * `password` is sensitive in the schema and round-trips through
+///     state; the generated `$sensitiveFields` set masks it at synth time.
+///   * `password_wo` is the write-only variant (TF 1.11+); it is **also**
+///     sensitive in the schema and is not stored in state. Bump
+///     `passwordWoVersion` to force a rotation.
+/// - [host]: MySQL-only — restricts which client hosts may authenticate
+///   with these credentials. Ignored on Postgres / SQL Server.
+///
+/// Example (built-in PostgreSQL user):
+/// ```dart
+/// final appUser = GoogleSqlUser(
+///   localName: 'app',
+///   instance: TfArg.ref(primary.nameRef),
+///   name: TfArg.literal('app'),
+///   type: TfArg.literal(SqlUserType.builtIn),
+///   password: TfArg.literal(Platform.environment['DB_PASSWORD']!),
+/// );
+/// ```
+///
+/// Example (Cloud IAM service-account user, no password):
+/// ```dart
+/// final ciUser = GoogleSqlUser(
+///   localName: 'ci',
+///   instance: TfArg.ref(primary.nameRef),
+///   name: TfArg.literal('ci-runner@my-project.iam.gserviceaccount.com'),
+///   type: TfArg.literal(SqlUserType.cloudIamServiceAccount),
+/// );
+/// ```
+///
+/// Composition pattern: extends `Resource<$GoogleSqlUser>` for runtime
+/// behavior.
+final class GoogleSqlUser extends Resource {
+  // ignore: constant_identifier_names
+  static const String $tfType = 'google_sql_user';
+
+  GoogleSqlUser({
+    required super.localName,
+    required TfArg<String> name,
+    required TfArg<String> instance,
+    TfArg<SqlUserType>? type,
+    TfArg<String>? password,
+    TfArg<String>? passwordWo,
+    TfArg<num>? passwordWoVersion,
+    TfArg<String>? host,
+    TfArg<List<String>>? databaseRoles,
+    TfArg<String>? deletionPolicy,
+    TfArg<String>? project,
+    super.lifecycle,
+    super.dependsOn,
+  }) : super(
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           'instance': instance,
+           if (type != null) 'type': type,
+           if (password != null) 'password': password,
+           if (passwordWo != null) 'password_wo': passwordWo,
+           if (passwordWoVersion != null)
+             'password_wo_version': passwordWoVersion,
+           if (host != null) 'host': host,
+           if (databaseRoles != null) 'database_roles': databaseRoles,
+           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           if (project != null) 'project': project,
+         },
+       );
+
+  @override
+  // ignore: non_constant_identifier_names
+  Set<String> get $sensitiveFields => _googleSqlUserSensitive;
+
+  /// Reference to `id` attribute (full path
+  /// `{project}/{instance}/{host}/{name}` on MySQL, or
+  /// `{project}/{instance}/{name}` on Postgres / SQL Server).
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `name` attribute (the bare username).
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to the computed `iam_email` attribute. Set for Cloud IAM
+  /// MySQL users; format `<user>@<project>.iam.gserviceaccount.com` for
+  /// service accounts. Empty for built-in users.
+  TfRef<String> get iamEmail => TfRef.attribute<String>(this, 'iam_email');
+}

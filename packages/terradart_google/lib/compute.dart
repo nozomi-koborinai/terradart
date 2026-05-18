@@ -18,6 +18,12 @@ export 'src/compute/google_compute_firewall.dart'
         FirewallLogConfig,
         FirewallLogMetadata,
         GoogleComputeFirewall;
+export 'src/compute/google_compute_global_address.dart'
+    show
+        GlobalAddressIpVersion,
+        GlobalAddressPurpose,
+        GlobalAddressType,
+        GoogleComputeGlobalAddress;
 export 'src/compute/google_compute_instance.dart'
     show
         AccessConfig,

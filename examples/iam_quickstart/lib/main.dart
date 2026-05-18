@@ -34,6 +34,22 @@ class IamShowcaseStack extends Stack {
             GoogleProvider(project: projectId, region: 'us-central1')
           ],
         ) {
+    // ---- Workload Identity Federation pool -------------------------------
+    //
+    // Logical grouping for external identities (e.g. GitHub Actions
+    // OIDC) that will be allowed to impersonate the demo SA below. The
+    // companion `_provider` resource (which wires up the actual trust
+    // binding) is curated in a later Wave 5 batch -- the pool on its
+    // own is still meaningful as a namespace.
+
+    add(
+      GoogleIamWorkloadIdentityPool(
+        localName: 'ci',
+        workloadIdentityPoolId: TfArg.literal('github-actions'),
+        displayName: TfArg.literal('GitHub Actions CI/CD'),
+      ),
+    );
+
     // ---- Service account -------------------------------------------------
     //
     // The SA the four bindings below grant roles to. `sa.member` is the
