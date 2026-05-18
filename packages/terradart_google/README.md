@@ -1,70 +1,96 @@
 # terradart_google
 
-Curated GCP factory wrappers for [terradart](https://github.com/nozomi-koborinai/terradart). 71 curated resources + 1 data source, each shipping with typed Dart enums for fixed-value-set fields, typed helper classes for every nested block, and golden-tested deterministic codegen.
+Curated GCP factory wrappers for [terradart](https://github.com/nozomi-koborinai/terradart). 70 curated resource factories + 1 data source, each shipping with typed Dart enums for fixed-value-set fields, typed helper classes for every nested block, and golden-tested deterministic codegen.
 
 ## Resources
 
-### Compute (5)
+### BigQuery (4)
 
-- `GoogleComputeNetwork`, `GoogleComputeAddress`, `GoogleComputeSubnetwork`, `GoogleComputeFirewall`, `GoogleComputeInstance` (typed `BootDisk`, `NetworkInterface`, `Scheduling`, `ShieldedInstanceConfig`, `ConfidentialInstanceConfig`, etc.).
+- `GoogleBigqueryDataset` (8-variant sealed `Access` hierarchy), `GoogleBigqueryTable`, `GoogleBigqueryDatasetIamMember`, `GoogleBigqueryTableIamMember`.
 
-### BigQuery (2)
+### Cloud Functions (2)
 
-- `GoogleBigqueryDataset` (8-variant sealed `Access` hierarchy covering UserByEmail / GroupByEmail / SpecialGroup / Domain / IamMember / View / Dataset / Routine).
-- `GoogleBigqueryTable` (typed `TimePartitioning`, `RangePartitioning`, `MaterializedView`, `ExternalDataConfiguration` + per-format sub-helpers, `TableConstraints`).
+- `GoogleCloudfunctions2Function` (Gen 2; typed `BuildConfig`, `ServiceConfig`, `EventTrigger`), `GoogleCloudfunctions2FunctionIamMember`.
 
-### Cloud KMS (2)
+### Cloud Run v2 (4)
 
-- `GoogleKmsKeyRing`, `GoogleKmsCryptoKey` (typed `KmsKeyPurpose`, `KmsProtectionLevel`, `VersionTemplate`).
-
-### Cloud Storage (2)
-
-- `GoogleStorageBucket` (typed `BucketStorageClass`, `LifecycleRule`, `LifecycleAction`, `LifecycleCondition`, `Versioning`, `RetentionPolicy`, `Autoclass`, `Encryption`, `SoftDeletePolicy`, `IpFilter`, etc.).
-- `GoogleStorageBucketObject` (sealed `BucketObjectContent` for source / content exactly-one-of; typed `BucketObjectStorageClass`, `CustomerEncryption`, `BucketObjectRetention`).
-
-### Cloud DNS (1)
-
-- `GoogleDnsManagedZone` (typed `DnsZoneVisibility`, `DnssecState`, `DnssecKeyAlgorithm`, `DnssecKeyType`, `ForwardingPath`; helpers for private visibility / DNSSEC / peering / forwarding / cloud logging configs).
-
-### Cloud Run v2 (1)
-
-- `GoogleCloudRunV2Service` (sealed `EnvVarSource` for env literal vs. `secret_key_ref`; sealed `VolumeSource` for the 5 volume sources; typed `Ingress`, `LaunchStage`, `ExecutionEnvironment`, `ScalingMode`, `Template`, `ServiceContainer`, `ContainerResources`, `ContainerPort`, `VolumeMount`, `StartupProbe`, `LivenessProbe`).
-
-### Cloud Logging (1)
-
-- `GoogleLoggingProjectSink` (typed `BigqueryOptions`, `LogSinkExclusion`).
-
-### Cloud Monitoring (1)
-
-- `GoogleMonitoringAlertPolicy` (typed `Comparison`, `Aligner` 19 variants, `Reducer` 14 variants, `EvaluationMissingData`, `AlertSeverity`, `AlertCombiner`; `AlertCondition` covering the 6 mutually-exclusive condition variants; `AlertStrategy`, `NotificationRateLimit`, `Documentation`).
-
-### Pub/Sub (4)
-
-- `GooglePubsubTopic`, `GooglePubsubSubscription` (typed `PushConfig`, `BigQueryConfig`, `CloudStorageConfig`, `DeadLetterPolicy`, `RetryPolicy`, `ExpirationPolicy`, `OidcToken`, `NoWrapper`).
-- `GooglePubsubTopicIamMember`, `GooglePubsubSubscriptionIamMember`.
-
-### Cloud Tasks (2)
-
-- `GoogleCloudTasksQueue` (typed `RateLimits`, `RetryConfig`, `QueueHttpTarget`, `StackdriverLoggingConfig`, `AppEngineRoutingOverride`).
-- `GoogleCloudTasksQueueIamMember`.
-
-### Secret Manager (3)
-
-- `GoogleSecretManagerSecret` (sealed `Replication` for auto / userManaged variants).
-- `GoogleSecretManagerSecretVersion` (write-only `secret_data_wo`).
-- `GoogleSecretManagerSecretIamMember`.
+- `GoogleCloudRunV2Service` (sealed `EnvVarSource`, sealed `VolumeSource`; typed `Ingress`, `LaunchStage`, `Template`, `ServiceContainer`, etc.), `GoogleCloudRunV2Job`, `GoogleCloudRunV2ServiceIamMember`, `GoogleCloudRunV2JobIamMember`.
 
 ### Cloud Scheduler (1)
 
 - `GoogleCloudSchedulerJob` (Pub/Sub / HTTP / AppEngine targets).
 
-### IAM (1)
+### Cloud SQL (3)
 
-- `GoogleServiceAccount` (pre-formatted `member` ref for IAM bindings).
+- `GoogleSqlDatabaseInstance` (typed `DatabaseVersion`, `SqlActivationPolicy`, `IpConfiguration`, `BackupConfiguration`, `InsightsConfig`), `GoogleSqlDatabase`, `GoogleSqlUser`.
+
+### Cloud Tasks (2)
+
+- `GoogleCloudTasksQueue` (typed `RateLimits`, `RetryConfig`, `QueueHttpTarget`), `GoogleCloudTasksQueueIamMember`.
+
+### Compute (9)
+
+- `GoogleComputeNetwork`, `GoogleComputeAddress`, `GoogleComputeSubnetwork`, `GoogleComputeFirewall`, `GoogleComputeInstance` (typed `BootDisk`, `NetworkInterface`, `Scheduling`, etc.), `GoogleComputeGlobalAddress`, `GoogleComputeInstanceIamMember`, `GoogleComputeDiskIamMember`, `GoogleComputeSubnetworkIamMember`.
+
+### DNS (2)
+
+- `GoogleDnsManagedZone` (typed `DnsZoneVisibility`, `DnssecState`; helpers for private visibility / DNSSEC / peering / forwarding), `GoogleDnsManagedZoneIamMember`.
+
+### Firebase App Check (7)
+
+- `GoogleFirebaseAppCheckRecaptchaEnterpriseConfig`, `GoogleFirebaseAppCheckPlayIntegrityConfig`, `GoogleFirebaseAppCheckAppAttestConfig`, `GoogleFirebaseAppCheckDeviceCheckConfig`, `GoogleFirebaseAppCheckServiceConfig` (shared `AppCheckEnforcementMode` enum), `GoogleFirebaseAppCheckDebugToken`, `GoogleFirebaseAppCheckResourcePolicy`.
+
+### Firebase App Hosting (5)
+
+- `GoogleFirebaseAppHostingBackend`, `GoogleFirebaseAppHostingBuild`, `GoogleFirebaseAppHostingDefaultDomain`, `GoogleFirebaseAppHostingDomain`, `GoogleFirebaseAppHostingTraffic`.
+
+### Firebase Data Connect (1)
+
+- `GoogleFirebaseDataConnectService`.
+
+### Firebase Remote Config (1)
+
+- `GoogleFirebaseRemoteConfigRemoteConfig`.
+
+### Firestore (5)
+
+- `GoogleFirestoreDatabase`, `GoogleFirestoreField`, `GoogleFirestoreIndex`, `GoogleFirestoreBackupSchedule`, `GoogleFirestoreUserCreds`.
+
+### IAM (6)
+
+- `GoogleServiceAccount` (pre-formatted `member` ref), `GoogleProjectIamMember`, `GoogleProjectIamCustomRole` (typed `CustomRoleStage`), `GoogleServiceAccountIamMember`, `GoogleServiceAccountKey` (typed `KeyAlgorithm`, `PrivateKeyType`; `private_key` masked at synth time), `GoogleIamWorkloadIdentityPool` (typed `WorkloadIdentityPoolMode`).
+
+### KMS (4)
+
+- `GoogleKmsKeyRing`, `GoogleKmsCryptoKey` (typed `KmsKeyPurpose`, `KmsProtectionLevel`, `VersionTemplate`), `GoogleKmsCryptoKeyIamMember`, `GoogleKmsKeyRingIamMember`.
+
+### Logging (1)
+
+- `GoogleLoggingProjectSink` (typed `BigqueryOptions`, `LogSinkExclusion`).
+
+### Monitoring (1)
+
+- `GoogleMonitoringAlertPolicy` (typed `Comparison`, `Aligner` 19 variants, `Reducer` 14 variants; `AlertCondition` covering 6 mutually-exclusive condition variants).
 
 ### Project enablement (1)
 
 - `GoogleProjectService`.
+
+### Pub/Sub (4)
+
+- `GooglePubsubTopic`, `GooglePubsubSubscription` (typed `PushConfig`, `BigQueryConfig`, `CloudStorageConfig`, `DeadLetterPolicy`, `RetryPolicy`), `GooglePubsubTopicIamMember`, `GooglePubsubSubscriptionIamMember`.
+
+### Secret Manager (3)
+
+- `GoogleSecretManagerSecret` (sealed `Replication` for auto / userManaged variants), `GoogleSecretManagerSecretVersion` (write-only `secret_data_wo`), `GoogleSecretManagerSecretIamMember`.
+
+### Service Networking (1)
+
+- `GoogleServiceNetworkingConnection`.
+
+### Cloud Storage (3)
+
+- `GoogleStorageBucket` (typed `BucketStorageClass`, `LifecycleRule`, `Versioning`, `RetentionPolicy`, etc.), `GoogleStorageBucketObject` (sealed `BucketObjectContent` for source / content exactly-one-of), `GoogleStorageBucketIamMember`.
 
 ### Data sources (1)
 
@@ -74,7 +100,7 @@ Curated GCP factory wrappers for [terradart](https://github.com/nozomi-koborinai
 
 The factory wrappers under `lib/src/<service>/` are emitted by `terradart wrap` from curated overrides under [`terradart_codegen`](https://pub.dev/packages/terradart_codegen). They are committed to the package so consumers can depend on `terradart_google` directly without running any codegen themselves.
 
-CI verifies determinism via `terradart wrap --check`: all 71 emitted wrapper files must stay byte-identical across PRs.
+CI verifies determinism via `terradart wrap --check`: all 71 emitted files (70 resource wrappers + 1 data source) must stay byte-identical across PRs.
 
 For any other `google_*` / `google-beta_*` resource that isn't in the catalog above, run `terradart codegen` against your provider schema dump and emit bindings into your own `lib/generated/` rather than depending on this package.
 
@@ -124,4 +150,4 @@ class AssetsStack extends Stack {
 }
 ```
 
-See the 14 runnable quickstart projects under [`examples/`](https://github.com/nozomi-koborinai/terradart/tree/main/examples) for end-to-end usage of every service.
+See the 20 runnable quickstart projects under [`examples/`](https://github.com/nozomi-koborinai/terradart/tree/main/examples) for end-to-end usage of every service.

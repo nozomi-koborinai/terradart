@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.6.0-dev - 2026-05-18
+
+No user-facing API changes. Workspace consistency bump alongside `terradart_google` 0.6.0-dev (Wave 5: 22 new GA resources across IAM completion + Cloud SQL + `*_iam_member` fill).
+
 ## 0.5.0-dev
 
 **BREAKING** — Plan 5.X: schemantic removal + Resource type flattening.

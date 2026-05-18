@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.5.1-dev - 2026-05-18
+## 0.6.0-dev - 2026-05-18
 
 Wave 5: adds 22 new GA resources across IAM completion + Cloud SQL + `*_iam_member` fill. terradart_google now 71 resources, 24 per-service barrels.
 

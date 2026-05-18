@@ -54,8 +54,8 @@ class IamShowcaseStack extends Stack {
     // Logical grouping for external identities (e.g. GitHub Actions
     // OIDC) that will be allowed to impersonate the demo SA below. The
     // companion `_provider` resource (which wires up the actual trust
-    // binding) is curated in a later Wave 5 batch -- the pool on its
-    // own is still meaningful as a namespace.
+    // binding) is deferred to a future wave -- the pool on its own is
+    // still meaningful as a namespace.
 
     add(
       GoogleIamWorkloadIdentityPool(

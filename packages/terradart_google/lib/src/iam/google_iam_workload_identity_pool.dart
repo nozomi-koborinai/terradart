@@ -39,10 +39,9 @@ enum WorkloadIdentityPoolMode {
 ///
 /// This wrapper covers the pool resource itself. The companion provider
 /// resource (`google_iam_workload_identity_pool_provider`, which
-/// configures the actual OIDC / AWS / SAML trust binding) lives outside
-/// this wave; it will join a later Wave 5 batch. A pool without a
-/// provider is still meaningful as a logical grouping namespace for
-/// future providers.
+/// configures the actual OIDC / AWS / SAML trust binding) is deferred
+/// to a future wave. A pool without a provider is still meaningful as a
+/// logical grouping namespace for future providers.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after

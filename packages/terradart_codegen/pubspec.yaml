@@ -1,6 +1,6 @@
 name: terradart_codegen
 description: terradart Stage 1 codegen — parses Terraform provider schema JSON and Magic Modules YAML and emits annotated abstract Dart classes. Ships the terradart CLI.
-version: 0.5.0-dev
+version: 0.6.0-dev
 homepage: https://github.com/nozomi-koborinai/terradart
 repository: https://github.com/nozomi-koborinai/terradart
 issue_tracker: https://github.com/nozomi-koborinai/terradart/issues
@@ -28,7 +28,7 @@ dependencies:
   meta: ^1.15.0
   dart_style: ^3.0.0
   stack_trace: ^1.11.1
-  terradart_core: ^0.5.0-dev
+  terradart_core: ^0.6.0-dev
 
 dev_dependencies:
   http: ^1.0.0

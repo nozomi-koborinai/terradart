@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.6.0-dev
+## 0.6.0-dev - 2026-05-18
 
 Plan 5.E: Schema-bump automation. Adds a weekly GitHub Actions workflow
 (`.github/workflows/schema-bump.yml`) that detects `terraform-provider-google`
@@ -16,6 +16,8 @@ auto-bumped. New `google_*` resources are appended to
 - New: `dev_dependencies` add `http: ^1.0.0` and `pub_semver: ^2.1.0`.
 - See ADR-aligned spec at
   `docs/superpowers/specs/2026-05-17-plan5e-schema-bump-automation-design.md`.
+
+WrapperOverride YAML registry expands from 49 to 71 resources (Wave 5 additions; see `terradart_google` 0.6.0-dev for the resource list). All 6 universal QA gates continue to hold over the expanded registry. Workspace consistency bump alongside `terradart_google` 0.6.0-dev.
 
 ## 0.5.0-dev
 
