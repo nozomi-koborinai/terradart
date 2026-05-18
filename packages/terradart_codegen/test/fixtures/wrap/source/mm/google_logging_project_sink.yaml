@@ -1,6 +1,0 @@
-name: ProjectSink
-product: logging
-description: |
-  Routes log entries to a destination (BigQuery, GCS, Pub/Sub, or Logging bucket).
-  Schema source-of-truth is schema.json; this stub exists to satisfy the wrap pipeline fixture convention.
-properties: []
