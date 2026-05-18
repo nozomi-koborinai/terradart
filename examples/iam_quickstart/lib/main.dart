@@ -1,5 +1,6 @@
-/// IAM quickstart -- all four curated `_iam_member` resources in one Stack,
-/// plus the [GoogleServiceAccount] they bind to.
+/// IAM quickstart -- a `GoogleIamWorkloadIdentityPool` for keyless CI auth,
+/// all four curated `_iam_member` resources in one Stack, plus the
+/// [GoogleServiceAccount] they bind to.
 ///
 /// Demonstrates the additive `_iam_member` pattern across:
 ///   1. `google_pubsub_topic_iam_member`

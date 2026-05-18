@@ -60,7 +60,7 @@ class CloudSqlStack extends Stack {
 
     // ---- 3. Service Networking peering connection ------------------------
 
-    add(
+    final psaConnection = add(
       GoogleServiceNetworkingConnection(
         localName: 'psa',
         network: TfArg.ref(vpc.selfLink),
@@ -78,9 +78,12 @@ class CloudSqlStack extends Stack {
     // `deletionProtection: false` is set for the quickstart only.
     // Production stacks should leave it at the default `true`.
     //
-    // `psaRange.nameRef` is referenced here only for completeness; the
-    // actual gating dependency on the peering connection is established
-    // via `private_network` -> `vpc.selfLink`.
+    // `dependsOn: [psaConnection]` is required: the SQL instance and the
+    // service_networking_connection both reference `vpc` but neither
+    // references the other, so Terraform treats them as siblings and could
+    // apply them in parallel. The PSA peering must exist before the
+    // instance can be created with a private IP, so we declare it
+    // explicitly.
 
     final primary = add(
       GoogleSqlDatabaseInstance(
@@ -98,9 +101,13 @@ class CloudSqlStack extends Stack {
           ipConfiguration: IpConfiguration(
             ipv4Enabled: TfArg.literal(false),
             privateNetwork: TfArg.ref(vpc.selfLink),
+            // Pins the instance to the named PSA range; without this the
+            // API would pick any peered range, which is ambiguous when a
+            // VPC has multiple PSA peerings.
             allocatedIpRange: TfArg.ref(psaRange.nameRef),
           ),
         ),
+        dependsOn: [ResourceDependency(psaConnection)],
       ),
     );
 

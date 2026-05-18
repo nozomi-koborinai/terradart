@@ -52,8 +52,10 @@ enum SqlUserType {
 ///   users authenticate via IAM tokens — leave both `null`.
 ///   * `password` is sensitive in the schema and round-trips through
 ///     state; the generated `$sensitiveFields` set masks it at synth time.
-///   * `password_wo` is the write-only variant (TF 1.11+); it is **also**
-///     sensitive in the schema and is not stored in state. Bump
+///   * `password_wo` is the write-only variant (TF 1.11+). Write-only
+///     fields never enter Terraform state, so the wrapper's
+///     `$sensitiveFields` set masks only the state-stored `password` —
+///     `password_wo` does not need to appear there. Bump
 ///     `passwordWoVersion` to force a rotation.
 /// - [host]: MySQL-only — restricts which client hosts may authenticate
 ///   with these credentials. Ignored on Postgres / SQL Server.
