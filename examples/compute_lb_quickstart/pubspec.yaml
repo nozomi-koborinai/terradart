@@ -1,0 +1,15 @@
+name: terradart_example_compute_lb_quickstart
+description: Wave 6 Batch 1 quickstart -- L7 Global Application Load Balancer chain (global_address + managed_ssl_certificate + backend_service + url_map + target_https_proxy + global_forwarding_rule).
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  terradart_core:
+    path: ../../packages/terradart_core
+  terradart_google:
+    path: ../../packages/terradart_google
+
+dev_dependencies:
+  lints: ^6.0.0

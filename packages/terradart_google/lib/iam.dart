@@ -13,8 +13,4 @@ export 'src/iam/google_service_account.dart' show GoogleServiceAccount;
 export 'src/iam/google_service_account_iam_member.dart'
     show GoogleServiceAccountIamMember;
 export 'src/iam/google_service_account_key.dart'
-    show
-        GoogleServiceAccountKey,
-        KeyAlgorithm,
-        PrivateKeyType,
-        PublicKeyType;
+    show GoogleServiceAccountKey, KeyAlgorithm, PrivateKeyType, PublicKeyType;

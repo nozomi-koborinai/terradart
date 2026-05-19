@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.7.0-dev - 2026-05-19
+
+- Plan 5.G Wave 6: 25 new curated GA resources added to the registry (Compute LB stack — L7 Application LB Global + Regional/Internal cores + Health checks + MIG/Autoscaler + NEG + Cloud Armor + SSL Policy).
+- Constraint bump: `terradart_core: ^0.7.0-dev` (lockstep with `terradart_core` and `terradart_google`).
+- No CLI / codegen / wrap-promote changes.
+
 ## 0.6.0-dev - 2026-05-18
 
 Plan 5.E: Schema-bump automation. Adds a weekly GitHub Actions workflow

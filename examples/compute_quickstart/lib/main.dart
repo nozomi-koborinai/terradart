@@ -128,7 +128,8 @@ class NetworkStack extends Stack {
         localName: 'data_disk_backup',
         name: TfArg.literal('persistent-data-disk'),
         role: TfArg.literal('roles/compute.storageAdmin'),
-        member: TfArg.literal('serviceAccount:backup@example.iam.gserviceaccount.com'),
+        member: TfArg.literal(
+            'serviceAccount:backup@example.iam.gserviceaccount.com'),
         zone: TfArg.literal('asia-northeast1-a'),
       ),
     );
