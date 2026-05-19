@@ -68,7 +68,7 @@ void main() {
             files.add(p.relative(ent.path, from: tmpOut.path));
           }
         }
-        expect(files, hasLength(102));
+        expect(files, hasLength(108));
         expect(files, contains(p.join('pubsub', 'google_pubsub_topic.dart')));
         expect(files, contains(p.join('data', 'google_project.dart')));
         // Plan 5.X: Layer 1 files are no longer emitted.

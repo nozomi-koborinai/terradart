@@ -690,7 +690,7 @@ classDocComment: |-
           rootDir:
               p.absolute('lib', 'src', 'codegen', 'wrapper_overrides', 'yaml'),
         );
-        expect(loaded.resources.length, 101);
+        expect(loaded.resources.length, 107);
         expect(loaded.dataSources.length, 1);
         expect(loaded.dataSources.keys.first, 'google_project');
       },

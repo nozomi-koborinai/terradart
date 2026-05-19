@@ -191,8 +191,8 @@ files:
     upstream: mmv1/products/eventarc/Trigger.yaml
   google_logging_folder_sink:
     upstream: null  # handwritten in terraform-provider-google (probe 404)
-  google_logging_log_metric:
-    upstream: mmv1/products/logging/Metric.yaml
+  google_logging_metric:
+    upstream: mmv1/products/logging/Metric.yaml  # MM internal `name: Metric` → TF resource `google_logging_metric` (Wave 7 Batch 0 seeded `google_logging_log_metric`; corrected here to match schema.json)
   google_logging_organization_sink:
     upstream: null  # handwritten in terraform-provider-google (probe 404)
   google_monitoring_dashboard:
