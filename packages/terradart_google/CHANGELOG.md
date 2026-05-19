@@ -1,5 +1,62 @@
 # Changelog
 
+## 0.8.0-dev - 2026-05-19
+
+### Wave 7 — Data ops + observability + CI/CD (Plan 5.H, final wave before v1.0.0)
+
+Adds **23 GA resources** covering Data operations + observability + CI/CD on Google Cloud. terradart_google now ships **118 curated resource factories + 1 data source** across **27 per-service barrels**.
+
+**Cloud Build CI/CD (4):**
+
+- `google_cloudbuild_trigger`
+- `google_cloudbuild_worker_pool`
+- `google_cloudbuildv2_connection` (SCM — GitHub App / Bitbucket / GitLab v2)
+- `google_cloudbuildv2_repository`
+
+**Artifact Registry (2):**
+
+- `google_artifact_registry_repository` (Docker / Maven / npm / Python / Apt / Yum / Go / Generic / KFP)
+- `google_artifact_registry_repository_iam_member`
+
+**Logging (3):**
+
+- `google_logging_metric` (corrected from the plan's `google_logging_log_metric` — the actual Terraform provider resource is `google_logging_metric`)
+- `google_logging_folder_sink`
+- `google_logging_organization_sink`
+
+(`google_logging_project_sink` was already curated since Wave 2 and is unchanged.)
+
+**Monitoring (5):**
+
+- `google_monitoring_notification_channel`
+- `google_monitoring_uptime_check_config`
+- `google_monitoring_dashboard`
+- `google_monitoring_metric_descriptor`
+- `google_monitoring_service` (SLO — only `basic_service` variant is exposed by the provider schema; the other 8 SLO service-type variants listed in the original spec are not present and cannot be set via Terraform)
+
+**BigQuery Data ops (6):**
+
+- `google_bigquery_job` (one-of: `query` / `load` / `extract` / `copy`; ephemeral — for scheduled work use `data_transfer_config`)
+- `google_bigquery_routine`
+- `google_bigquery_data_transfer_config`
+- `google_bigquery_reservation`
+- `google_bigquery_capacity_commitment`
+- `google_bigquery_connection` (one-of with 7 schema-present variants: `cloud_sql` / `cloud_spanner` / `aws` / `azure` / `cloud_resource` / `spark` / `configuration`; `vertex_ai` and `salesforce_data_cloud` listed in the original spec are not in the GA provider schema)
+
+**Adjacent event-driven Data ops (3):**
+
+- `google_eventarc_trigger` (destination one-of: `cloud_run_service` / `cloud_function` / `workflow` / `http_endpoint` / `gke`; `gke` and `retry_policy` block are schema-required additions not in the original spec)
+- `google_pubsub_schema` (`PROTOCOL_BUFFER` / `AVRO`)
+- `google_storage_notification`
+
+**New per-service barrels:** `cloud_build.dart`, `artifact_registry.dart`, `eventarc.dart` (24 → 27 barrels).
+
+**Quickstart:** `examples/cloud_build_quickstart/` — full CI/CD pipeline end-to-end.
+
+**Constraint bump:** `terradart_core: ^0.8.0-dev` (lockstep).
+
+**Note on Wave 7 final count vs original spec:** the original Plan 5.H spec targeted 25 new resources (96 → 121). Schema-of-truth verification during execution removed 2 from scope: the plan's `google_logging_log_metric` was a misnaming (already covered by the existing `google_logging_project_sink` curation since Wave 2 means logging adds 3 not 4 new), and `google_artifact_registry_vpcsc_config` is beta-only and not in the GA schema. Final delivery: 23 new resources (96 → 119 = 118 factories + 1 data source).
+
 ## 0.7.0-dev - 2026-05-19
 
 ### Wave 6 — Compute LB stack (Plan 5.G)

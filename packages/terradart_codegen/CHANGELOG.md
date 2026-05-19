@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.8.0-dev - 2026-05-19
+
+- Plan 5.H Wave 7: 23 new curated GA resources added to the registry (Data ops + observability + CI/CD).
+- Constraint bump: `terradart_core: ^0.8.0-dev` (lockstep with `terradart_core` and `terradart_google`).
+- Discovered + corrected a manifest naming bug in `tool/mm_yaml_sources.yaml`: the Wave 7 Batch 0 seed used `google_logging_log_metric` (a non-existent Terraform resource); the actual provider resource is `google_logging_metric` (renamed in Batch 2, see pitfall #12 in wave-commit-pitfalls memory).
+- No CLI / codegen / wrap-promote changes.
+
 ## 0.7.0-dev - 2026-05-19
 
 - Plan 5.G Wave 6: 25 new curated GA resources added to the registry (Compute LB stack — L7 Application LB Global + Regional/Internal cores + Health checks + MIG/Autoscaler + NEG + Cloud Armor + SSL Policy).
