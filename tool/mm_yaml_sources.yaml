@@ -166,7 +166,7 @@ files:
   google_artifact_registry_repository_iam_member:
     upstream: null  # IAM templates are schema-only curation (Wave 5 precedent)
   google_artifact_registry_vpcsc_config:
-    upstream: mmv1/products/artifactregistry/VPCSCConfig.yaml
+    upstream: null  # beta-only resource; not in GA-pinned schema fixture. Wave 7 follow-up PR will extend the schema fixture against terraform-provider-google-beta and curate this resource. yaml override authored in Wave 7 specialist work, parked at packages/terradart_codegen/lib/src/codegen/wrapper_overrides/yaml/google_artifact_registry_vpcsc_config.yaml on a side branch.
   google_bigquery_capacity_commitment:
     upstream: mmv1/products/bigqueryreservation/CapacityCommitment.yaml
   google_bigquery_connection:

@@ -1,0 +1,1107 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
+import 'package:terradart_core/terradart_core.dart';
+
+/// Sensitive field paths for `google_cloudbuild_trigger`.
+const Set<String> _googleCloudbuildTriggerSensitive = <String>{};
+
+// ===========================================================================
+// Top-level + nested enums
+// ===========================================================================
+
+/// `include_build_logs`. Controls whether Cloud Build forwards build
+/// logs back to the originating GitHub check-run. Only meaningful for
+/// triggers attached to a GitHub source.
+enum CloudBuildTriggerIncludeBuildLogs {
+  unspecified('INCLUDE_BUILD_LOGS_UNSPECIFIED'),
+  withStatus('INCLUDE_BUILD_LOGS_WITH_STATUS');
+
+  const CloudBuildTriggerIncludeBuildLogs(this.terraformValue);
+  final String terraformValue;
+}
+
+/// `pull_request.comment_control`. Shared by [CloudBuildTriggerGithub],
+/// [CloudBuildTriggerBitbucketServerTriggerConfig],
+/// [CloudBuildTriggerRepositoryEventConfig], and
+/// [CloudBuildTriggerDeveloperConnectEventConfig] pull-request filters.
+/// Decides whether a repository owner / collaborator must comment
+/// `/gcbrun` before a build runs against the PR.
+enum CloudBuildTriggerCommentControl {
+  commentsDisabled('COMMENTS_DISABLED'),
+  commentsEnabled('COMMENTS_ENABLED'),
+  commentsEnabledForExternalContributorsOnly(
+    'COMMENTS_ENABLED_FOR_EXTERNAL_CONTRIBUTORS_ONLY',
+  );
+
+  const CloudBuildTriggerCommentControl(this.terraformValue);
+  final String terraformValue;
+}
+
+/// `repo_type` for [CloudBuildTriggerGitFileSource] and
+/// [CloudBuildTriggerSourceToBuild]. Disambiguates the repo provider
+/// when the URI alone cannot ([cloudSourceRepositories], [github],
+/// [bitbucketServer]); use [unknown] only when the type really is
+/// undetermined.
+enum CloudBuildTriggerRepoType {
+  unknown('UNKNOWN'),
+  cloudSourceRepositories('CLOUD_SOURCE_REPOSITORIES'),
+  github('GITHUB'),
+  bitbucketServer('BITBUCKET_SERVER');
+
+  const CloudBuildTriggerRepoType(this.terraformValue);
+  final String terraformValue;
+}
+
+/// `build.options.substitution_option`. Controls whether unknown
+/// substitution variables fail the build ([mustMatch]) or are silently
+/// dropped ([allowLoose]). Note that for trigger-driven builds the API
+/// always treats this as [allowLoose] regardless — the field is mostly
+/// useful when re-running the same build config standalone via
+/// `gcloud builds submit`.
+enum CloudBuildTriggerSubstitutionOption {
+  mustMatch('MUST_MATCH'),
+  allowLoose('ALLOW_LOOSE');
+
+  const CloudBuildTriggerSubstitutionOption(this.terraformValue);
+  final String terraformValue;
+}
+
+/// `build.options.log_streaming_option`. [streamDefault] uses the
+/// project-default log streaming behavior; [streamOn] forces logs to
+/// stream live (visible in the Cloud Build console while the build is
+/// running); [streamOff] suppresses live streaming.
+enum CloudBuildTriggerLogStreamingOption {
+  streamDefault('STREAM_DEFAULT'),
+  streamOn('STREAM_ON'),
+  streamOff('STREAM_OFF');
+
+  const CloudBuildTriggerLogStreamingOption(this.terraformValue);
+  final String terraformValue;
+}
+
+/// `build.options.logging`. Picks where Cloud Build sends the build
+/// logs.
+///
+/// - [loggingUnspecified]: provider-default behavior.
+/// - [legacy]: original Stackdriver + GCS dual-write (deprecated).
+/// - [gcsOnly]: logs land only in the configured logs bucket.
+/// - [stackdriverOnly]: alias retained for backward compat — equivalent
+///   to [cloudLoggingOnly].
+/// - [cloudLoggingOnly]: logs go to Cloud Logging only (recommended).
+/// - [none]: suppresses logging entirely (rarely useful — debugging
+///   failures requires re-running with logging re-enabled).
+enum CloudBuildTriggerBuildLogging {
+  loggingUnspecified('LOGGING_UNSPECIFIED'),
+  legacy('LEGACY'),
+  gcsOnly('GCS_ONLY'),
+  stackdriverOnly('STACKDRIVER_ONLY'),
+  cloudLoggingOnly('CLOUD_LOGGING_ONLY'),
+  none('NONE');
+
+  const CloudBuildTriggerBuildLogging(this.terraformValue);
+  final String terraformValue;
+}
+
+/// One entry in `build.options.source_provenance_hash[]`. Picks the
+/// hash algorithm Cloud Build records on the source archive uploaded
+/// for the build. Multiple algorithms can be requested simultaneously.
+enum CloudBuildTriggerSourceProvenanceHash {
+  none('NONE'),
+  sha256('SHA256'),
+  md5('MD5');
+
+  const CloudBuildTriggerSourceProvenanceHash(this.terraformValue);
+  final String terraformValue;
+}
+
+/// `build.options.requested_verify_option`. When set to [verified],
+/// Cloud Build emits an attestation that the build produced the
+/// declared `images[]` (used by Binary Authorization). [notVerified] is
+/// the default and skips the attestation.
+enum CloudBuildTriggerRequestedVerifyOption {
+  notVerified('NOT_VERIFIED'),
+  verified('VERIFIED');
+
+  const CloudBuildTriggerRequestedVerifyOption(this.terraformValue);
+  final String terraformValue;
+}
+
+// ===========================================================================
+// SCM event-source helpers (v1 form: github, bitbucket_server_trigger_config)
+// ===========================================================================
+
+/// `github` block (v1 form). Wires the trigger to a GitHub App or
+/// GitHub Enterprise installation; events are delivered via the legacy
+/// Cloud Build first-party webhook. New triggers SHOULD prefer the v2
+/// [CloudBuildTriggerRepositoryEventConfig] form instead.
+///
+/// Pick exactly one of [push] / [pullRequest] — the schema enforces it
+/// at apply time.
+@immutable
+class CloudBuildTriggerGithub {
+  const CloudBuildTriggerGithub({
+    this.owner,
+    this.name,
+    this.push,
+    this.pullRequest,
+    this.enterpriseConfigResourceName,
+  });
+
+  /// Repository owner. For `https://github.com/googlecloudplatform/cloud-builders`
+  /// this is `'googlecloudplatform'`.
+  final TfArg<String>? owner;
+
+  /// Repository name (the segment after the owner). For the URL above
+  /// this is `'cloud-builders'`.
+  final TfArg<String>? name;
+
+  /// Push-event filter (matches branches or tags). Mutually exclusive
+  /// with [pullRequest].
+  final CloudBuildTriggerPushFilter? push;
+
+  /// Pull-request filter. Mutually exclusive with [push].
+  final CloudBuildTriggerPullRequestFilter? pullRequest;
+
+  /// Resource name of a GitHub Enterprise config (when targeting a
+  /// self-hosted GHE installation). Format:
+  /// `'projects/{project}/locations/{location}/githubEnterpriseConfigs/{id}'`.
+  final TfArg<String>? enterpriseConfigResourceName;
+
+  Map<String, Object?> toArgMap() => {
+    if (owner != null) 'owner': owner!.toTfJson(),
+    if (name != null) 'name': name!.toTfJson(),
+    if (push != null) 'push': [push!.toArgMap()],
+    if (pullRequest != null) 'pull_request': [pullRequest!.toArgMap()],
+    if (enterpriseConfigResourceName != null)
+      'enterprise_config_resource_name': enterpriseConfigResourceName!
+          .toTfJson(),
+  };
+}
+
+/// `bitbucket_server_trigger_config` block (v1 form). Wires the
+/// trigger to a Bitbucket Server installation via the legacy Cloud
+/// Build first-party webhook. New triggers SHOULD prefer the v2
+/// [CloudBuildTriggerRepositoryEventConfig] form (with a
+/// `BITBUCKET_DATA_CENTER` connection) instead.
+///
+/// Pick exactly one of [push] / [pullRequest].
+@immutable
+class CloudBuildTriggerBitbucketServerTriggerConfig {
+  const CloudBuildTriggerBitbucketServerTriggerConfig({
+    required this.repoSlug,
+    required this.projectKey,
+    required this.bitbucketServerConfigResource,
+    this.push,
+    this.pullRequest,
+  });
+
+  /// URL-friendly repository slug. For
+  /// `https://mybitbucket.server/projects/TEST/repos/test-repo` this is
+  /// `'test-repo'`.
+  final TfArg<String> repoSlug;
+
+  /// Bitbucket project key (the all-caps segment between `projects/`
+  /// and `repos/`). `'TEST'` in the URL above.
+  final TfArg<String> projectKey;
+
+  /// Resource name of the Bitbucket Server connection config that this
+  /// trigger uses. Format:
+  /// `'projects/{project}/locations/{location}/bitbucketServerConfigs/{id}'`.
+  final TfArg<String> bitbucketServerConfigResource;
+
+  /// Push-event filter. Mutually exclusive with [pullRequest].
+  final CloudBuildTriggerPushFilter? push;
+
+  /// Pull-request filter. Mutually exclusive with [push].
+  final CloudBuildTriggerPullRequestFilter? pullRequest;
+
+  Map<String, Object?> toArgMap() => {
+    'repo_slug': repoSlug.toTfJson(),
+    'project_key': projectKey.toTfJson(),
+    'bitbucket_server_config_resource': bitbucketServerConfigResource
+        .toTfJson(),
+    if (push != null) 'push': [push!.toArgMap()],
+    if (pullRequest != null) 'pull_request': [pullRequest!.toArgMap()],
+  };
+}
+
+// ===========================================================================
+// v2 form: repository_event_config + developer_connect_event_config
+// ===========================================================================
+
+/// `repository_event_config` block (v2 form). Wires the trigger to a
+/// `cloudbuildv2_repository` (which in turn references a
+/// `cloudbuildv2_connection`). The connection abstracts the SCM
+/// provider — GitHub, GitHub Enterprise, GitLab Self-Managed,
+/// Bitbucket Data Center, Bitbucket Cloud — behind one uniform Repo
+/// API surface.
+///
+/// Pick exactly one of [push] / [pullRequest].
+@immutable
+class CloudBuildTriggerRepositoryEventConfig {
+  const CloudBuildTriggerRepositoryEventConfig({
+    this.repository,
+    this.push,
+    this.pullRequest,
+  });
+
+  /// Resource name of the `cloudbuildv2_repository`. Format:
+  /// `'projects/{project}/locations/{location}/connections/{connection}/repositories/{repository}'`.
+  /// Within a Terraform configuration typically passed as
+  /// `TfArg.ref(repo.id)` against a sibling
+  /// `google_cloudbuildv2_repository`.
+  final TfArg<String>? repository;
+
+  /// Push-event filter. Mutually exclusive with [pullRequest].
+  final CloudBuildTriggerPushFilter? push;
+
+  /// Pull-request filter. Mutually exclusive with [push].
+  final CloudBuildTriggerPullRequestFilter? pullRequest;
+
+  Map<String, Object?> toArgMap() => {
+    if (repository != null) 'repository': repository!.toTfJson(),
+    if (push != null) 'push': [push!.toArgMap()],
+    if (pullRequest != null) 'pull_request': [pullRequest!.toArgMap()],
+  };
+}
+
+/// `developer_connect_event_config` block. Wires the trigger to a
+/// `developerconnect_git_repository_link` — the newer Developer
+/// Connect alternative to the v2 Repo API. Source providers covered
+/// include GitHub, GitHub Enterprise, GitLab, GitLab Enterprise,
+/// Bitbucket Data Center, and Bitbucket Cloud.
+///
+/// Pick exactly one of [push] / [pullRequest].
+@immutable
+class CloudBuildTriggerDeveloperConnectEventConfig {
+  const CloudBuildTriggerDeveloperConnectEventConfig({
+    required this.gitRepositoryLink,
+    this.push,
+    this.pullRequest,
+  });
+
+  /// Developer Connect Git repository link. Format:
+  /// `'projects/{project}/locations/{location}/connections/{connection}/gitRepositoryLinks/{link}'`.
+  final TfArg<String> gitRepositoryLink;
+
+  /// Push-event filter. Mutually exclusive with [pullRequest].
+  final CloudBuildTriggerPushFilter? push;
+
+  /// Pull-request filter. Mutually exclusive with [push].
+  final CloudBuildTriggerPullRequestFilter? pullRequest;
+
+  Map<String, Object?> toArgMap() => {
+    'git_repository_link': gitRepositoryLink.toTfJson(),
+    if (push != null) 'push': [push!.toArgMap()],
+    if (pullRequest != null) 'pull_request': [pullRequest!.toArgMap()],
+  };
+}
+
+// ===========================================================================
+// Shared push / pull-request filters
+// ===========================================================================
+
+/// `push` event filter (shared by [CloudBuildTriggerGithub],
+/// [CloudBuildTriggerBitbucketServerTriggerConfig],
+/// [CloudBuildTriggerRepositoryEventConfig], and
+/// [CloudBuildTriggerDeveloperConnectEventConfig]).
+///
+/// Pick exactly one of [branch] / [tag] (the schema enforces it at
+/// apply time for v1 forms; v2 and developer-connect leave the choice
+/// to the GCP API but the same semantics apply). Set [invertRegex] to
+/// invert the match.
+@immutable
+class CloudBuildTriggerPushFilter {
+  const CloudBuildTriggerPushFilter({this.branch, this.tag, this.invertRegex});
+
+  /// RE2 regex of branches to match (e.g. `'^main\$'`, `'^release/.*\$'`).
+  final TfArg<String>? branch;
+
+  /// RE2 regex of tags to match (e.g. `'^v[0-9]+\\..*\$'`).
+  final TfArg<String>? tag;
+
+  /// When `true`, the filter matches refs that do NOT match the
+  /// branch / tag regex.
+  final TfArg<bool>? invertRegex;
+
+  Map<String, Object?> toArgMap() => {
+    if (branch != null) 'branch': branch!.toTfJson(),
+    if (tag != null) 'tag': tag!.toTfJson(),
+    if (invertRegex != null) 'invert_regex': invertRegex!.toTfJson(),
+  };
+}
+
+/// `pull_request` event filter (shared by [CloudBuildTriggerGithub],
+/// [CloudBuildTriggerBitbucketServerTriggerConfig],
+/// [CloudBuildTriggerRepositoryEventConfig], and
+/// [CloudBuildTriggerDeveloperConnectEventConfig]).
+///
+/// [branch] is required by the v1 forms; the v2 forms leave it
+/// optional. [commentControl] gates the build on a `/gcbrun` comment
+/// from a repository owner / collaborator — useful for review-gated
+/// CI pipelines.
+@immutable
+class CloudBuildTriggerPullRequestFilter {
+  const CloudBuildTriggerPullRequestFilter({
+    this.branch,
+    this.commentControl,
+    this.invertRegex,
+  });
+
+  /// RE2 regex of target branches to match. Required for v1 forms.
+  final TfArg<String>? branch;
+
+  /// Whether to require a `/gcbrun` comment before the build runs.
+  final TfArg<CloudBuildTriggerCommentControl>? commentControl;
+
+  /// When `true`, the filter matches refs that do NOT match [branch].
+  final TfArg<bool>? invertRegex;
+
+  Map<String, Object?> toArgMap() => {
+    if (branch != null) 'branch': branch!.toTfJson(),
+    if (commentControl != null) 'comment_control': commentControl!.toTfJson(),
+    if (invertRegex != null) 'invert_regex': invertRegex!.toTfJson(),
+  };
+}
+
+// ===========================================================================
+// Pub/Sub + Webhook event sources
+// ===========================================================================
+
+/// `pubsub_config` block. Fires a build whenever a message is
+/// published to [topic]. Pair with [GoogleCloudbuildTrigger.filter]
+/// (a CEL expression over the message attributes) to scope which
+/// messages actually launch a build, and with [sourceToBuild] /
+/// [gitFileSource] to declare what source to build.
+@immutable
+class CloudBuildTriggerPubsubConfig {
+  const CloudBuildTriggerPubsubConfig({
+    required this.topic,
+    this.serviceAccountEmail,
+  });
+
+  /// Pub/Sub topic resource name. Format:
+  /// `'projects/{project}/topics/{topic}'`.
+  final TfArg<String> topic;
+
+  /// Service account email that signs the push request to Cloud Build.
+  /// Defaults to the project's Cloud Build SA when omitted.
+  final TfArg<String>? serviceAccountEmail;
+
+  Map<String, Object?> toArgMap() => {
+    'topic': topic.toTfJson(),
+    if (serviceAccountEmail != null)
+      'service_account_email': serviceAccountEmail!.toTfJson(),
+  };
+}
+
+/// `webhook_config` block. Fires a build whenever an HTTP request is
+/// sent to the trigger's webhook URL with a matching [secret]. Pair
+/// with [GoogleCloudbuildTrigger.filter] to scope payloads.
+@immutable
+class CloudBuildTriggerWebhookConfig {
+  const CloudBuildTriggerWebhookConfig({required this.secret});
+
+  /// Resource name of the Secret Manager secret holding the URL
+  /// signing token. Format:
+  /// `'projects/{project}/secrets/{secret}/versions/{version}'`.
+  /// Callers attaching the trigger to a webhook must supply the
+  /// secret's plaintext value in the request as a query string
+  /// parameter named `secret`.
+  final TfArg<String> secret;
+
+  Map<String, Object?> toArgMap() => {'secret': secret.toTfJson()};
+}
+
+// ===========================================================================
+// Manual / sourceToBuild / triggerTemplate / gitFileSource
+// ===========================================================================
+
+/// `source_to_build` block. Declares the source the build operates on
+/// — used by Pub/Sub, Webhook, and Manual triggers (i.e. triggers that
+/// do not respond to SCM webhooks and therefore have no inherent ref).
+@immutable
+class CloudBuildTriggerSourceToBuild {
+  const CloudBuildTriggerSourceToBuild({
+    required this.ref,
+    required this.repoType,
+    this.uri,
+    this.repository,
+    this.githubEnterpriseConfig,
+    this.bitbucketServerConfig,
+  });
+
+  /// Branch / tag / SHA to build. Must start with `'refs/'`.
+  final TfArg<String> ref;
+
+  /// Repo type. Pick [CloudBuildTriggerRepoType.unknown] when the type
+  /// cannot be inferred from [uri].
+  final TfArg<CloudBuildTriggerRepoType> repoType;
+
+  /// Repo URI. Mutually exclusive with [repository]; supply at least
+  /// one.
+  final TfArg<String>? uri;
+
+  /// Repo API resource name (v2 form). Format:
+  /// `'projects/{project}/locations/{location}/connections/{connection}/repositories/{repository}'`.
+  final TfArg<String>? repository;
+
+  /// GitHub Enterprise config resource name. Format:
+  /// `'projects/{project}/locations/{location}/githubEnterpriseConfigs/{id}'`.
+  final TfArg<String>? githubEnterpriseConfig;
+
+  /// Bitbucket Server config resource name. Format:
+  /// `'projects/{project}/locations/{location}/bitbucketServerConfigs/{id}'`.
+  final TfArg<String>? bitbucketServerConfig;
+
+  Map<String, Object?> toArgMap() => {
+    'ref': ref.toTfJson(),
+    'repo_type': repoType.toTfJson(),
+    if (uri != null) 'uri': uri!.toTfJson(),
+    if (repository != null) 'repository': repository!.toTfJson(),
+    if (githubEnterpriseConfig != null)
+      'github_enterprise_config': githubEnterpriseConfig!.toTfJson(),
+    if (bitbucketServerConfig != null)
+      'bitbucket_server_config': bitbucketServerConfig!.toTfJson(),
+  };
+}
+
+/// `trigger_template` block. Legacy Cloud Source Repositories form —
+/// builds fire when the matching ref in a CSR repo changes. Use one of
+/// [branchName] / [tagName] / [commitSha] (exactly_one_of).
+@immutable
+class CloudBuildTriggerTriggerTemplate {
+  const CloudBuildTriggerTriggerTemplate({
+    this.projectId,
+    this.repoName,
+    this.dir,
+    this.invertRegex,
+    this.branchName,
+    this.tagName,
+    this.commitSha,
+  });
+
+  /// CSR project id. Defaults to the trigger's project.
+  final TfArg<String>? projectId;
+
+  /// CSR repository name. Defaults to `'default'`.
+  final TfArg<String>? repoName;
+
+  /// Sub-directory (relative path) within the repo to run the build
+  /// from.
+  final TfArg<String>? dir;
+
+  /// When `true`, the filter matches refs that do NOT match the
+  /// regex.
+  final TfArg<bool>? invertRegex;
+
+  /// Regex of branches to build. Mutually exclusive with [tagName] /
+  /// [commitSha].
+  final TfArg<String>? branchName;
+
+  /// Regex of tags to build. Mutually exclusive with [branchName] /
+  /// [commitSha].
+  final TfArg<String>? tagName;
+
+  /// Explicit commit SHA to build. Mutually exclusive with
+  /// [branchName] / [tagName].
+  final TfArg<String>? commitSha;
+
+  Map<String, Object?> toArgMap() => {
+    if (projectId != null) 'project_id': projectId!.toTfJson(),
+    if (repoName != null) 'repo_name': repoName!.toTfJson(),
+    if (dir != null) 'dir': dir!.toTfJson(),
+    if (invertRegex != null) 'invert_regex': invertRegex!.toTfJson(),
+    if (branchName != null) 'branch_name': branchName!.toTfJson(),
+    if (tagName != null) 'tag_name': tagName!.toTfJson(),
+    if (commitSha != null) 'commit_sha': commitSha!.toTfJson(),
+  };
+}
+
+/// `git_file_source` block. Fetches the build config (`cloudbuild.yaml`
+/// or similar) from an arbitrary repo and ref. Used by Pub/Sub,
+/// Webhook, Manual, and v2 triggers as a replacement for [filename]
+/// (which is limited to the SCM event source's repo).
+@immutable
+class CloudBuildTriggerGitFileSource {
+  const CloudBuildTriggerGitFileSource({
+    required this.path,
+    required this.repoType,
+    this.uri,
+    this.repository,
+    this.revision,
+    this.githubEnterpriseConfig,
+    this.bitbucketServerConfig,
+  });
+
+  /// Path of the build-config file relative to the repo root.
+  final TfArg<String> path;
+
+  /// Repo type. Pick [CloudBuildTriggerRepoType.unknown] when the type
+  /// cannot be inferred from [uri].
+  final TfArg<CloudBuildTriggerRepoType> repoType;
+
+  /// Repo URI. Mutually exclusive with [repository]; supply at least
+  /// one.
+  final TfArg<String>? uri;
+
+  /// Repo API resource name (v2 form).
+  final TfArg<String>? repository;
+
+  /// Ref to fetch the file from. Same syntax as `gitrevisions(5)`.
+  /// Defaults to the triggering ref.
+  final TfArg<String>? revision;
+
+  /// GitHub Enterprise config resource name.
+  final TfArg<String>? githubEnterpriseConfig;
+
+  /// Bitbucket Server config resource name.
+  final TfArg<String>? bitbucketServerConfig;
+
+  Map<String, Object?> toArgMap() => {
+    'path': path.toTfJson(),
+    'repo_type': repoType.toTfJson(),
+    if (uri != null) 'uri': uri!.toTfJson(),
+    if (repository != null) 'repository': repository!.toTfJson(),
+    if (revision != null) 'revision': revision!.toTfJson(),
+    if (githubEnterpriseConfig != null)
+      'github_enterprise_config': githubEnterpriseConfig!.toTfJson(),
+    if (bitbucketServerConfig != null)
+      'bitbucket_server_config': bitbucketServerConfig!.toTfJson(),
+  };
+}
+
+// ===========================================================================
+// approval_config
+// ===========================================================================
+
+/// `approval_config` block. When [approvalRequired] is `true`, every
+/// build invocation through this trigger lands in `PENDING` and waits
+/// for a human with the `Cloud Build Approver` role to release it.
+@immutable
+class CloudBuildTriggerApprovalConfig {
+  const CloudBuildTriggerApprovalConfig({this.approvalRequired});
+
+  /// `true` to require manual approval. Defaults to `false`.
+  final TfArg<bool>? approvalRequired;
+
+  Map<String, Object?> toArgMap() => {
+    if (approvalRequired != null)
+      'approval_required': approvalRequired!.toTfJson(),
+  };
+}
+
+// ===========================================================================
+// build (inline build content). Sprawling sub-tree — the wrapper
+// models the commonly-used surface and exposes the rest via
+// advancedExtra escape hatches.
+// ===========================================================================
+
+/// `build` block. Inline declaration of the build to run (an
+/// alternative to [filename] / [gitFileSource]). Holds at least one
+/// [CloudBuildTriggerBuildStep].
+///
+/// Deeply nested or rarely-curated sub-blocks (`secret[]`,
+/// `available_secrets`, `artifacts.maven_artifacts`,
+/// `artifacts.npm_packages`, `artifacts.python_packages`,
+/// `artifacts.objects`, `source` for inline source override) are
+/// exposed via [advancedExtra]. Keys are Terraform block names; values
+/// are the block payload (single block -> `[{...}]`, list of blocks
+/// -> list of maps). The map is spread into the emitted Terraform args
+/// verbatim.
+@immutable
+class CloudBuildTriggerBuild {
+  const CloudBuildTriggerBuild({
+    required this.step,
+    this.tags,
+    this.images,
+    this.substitutions,
+    this.queueTtl,
+    this.logsBucket,
+    this.timeout,
+    this.options,
+    this.artifactImages,
+    this.advancedExtra,
+  });
+
+  /// Ordered list of build steps. At least one entry required per the
+  /// schema.
+  final List<CloudBuildTriggerBuildStep> step;
+
+  /// Free-form annotation tags on the build (NOT docker tags).
+  final TfArg<List<String>>? tags;
+
+  /// Container images to push on successful completion. Image digests
+  /// are recorded on the Build resource's `results.images`.
+  final TfArg<List<String>>? images;
+
+  /// Substitution variable map (`_KEY -> value`). User-defined keys
+  /// must start with `_`.
+  final TfArg<Map<String, String>>? substitutions;
+
+  /// Queue-time TTL. Format: number-of-seconds + `'s'`, e.g.
+  /// `'1800s'`. Builds that wait longer than this in queue expire to
+  /// `EXPIRED`.
+  final TfArg<String>? queueTtl;
+
+  /// GCS bucket to write logs to. Format: bare bucket name or
+  /// `'gs://bucket/prefix'`.
+  final TfArg<String>? logsBucket;
+
+  /// Build wall-clock timeout. Format: number-of-seconds + `'s'`.
+  /// Default `'600s'` (10 minutes). Must be >= sum of step timeouts.
+  final TfArg<String>? timeout;
+
+  /// Special build options (machine type, logging, pool, etc.).
+  final CloudBuildTriggerBuildOptions? options;
+
+  /// Container images uploaded via `artifacts.images`. Equivalent to
+  /// [images] but checked against the post-build artifact registry
+  /// rather than the build's docker daemon — set this for
+  /// Binary-Authorization-attested builds.
+  final TfArg<List<String>>? artifactImages;
+
+  /// Escape hatch for the uncurated nested blocks of `build`:
+  /// - `source` (inline source spec — only used when the trigger has
+  ///   no event-source source of its own).
+  /// - `secret` (KMS-encrypted env vars).
+  /// - `available_secrets` (Secret Manager-backed env vars).
+  /// - `artifacts.maven_artifacts`, `artifacts.npm_packages`,
+  ///   `artifacts.python_packages`, `artifacts.objects` (publish to
+  ///   Artifact Registry / GCS).
+  ///
+  /// Keys are Terraform block names; values are the block payload
+  /// (single block -> `[{...}]`, list of blocks -> list of maps). The
+  /// map is spread into the emitted Terraform args verbatim. Use
+  /// sparingly — the typed surface above covers the common cases.
+  final Map<String, Object?>? advancedExtra;
+
+  Map<String, Object?> toArgMap() => {
+    'step': step.map((s) => s.toArgMap()).toList(),
+    if (tags != null) 'tags': tags!.toTfJson(),
+    if (images != null) 'images': images!.toTfJson(),
+    if (substitutions != null) 'substitutions': substitutions!.toTfJson(),
+    if (queueTtl != null) 'queue_ttl': queueTtl!.toTfJson(),
+    if (logsBucket != null) 'logs_bucket': logsBucket!.toTfJson(),
+    if (timeout != null) 'timeout': timeout!.toTfJson(),
+    if (options != null) 'options': [options!.toArgMap()],
+    if (artifactImages != null)
+      'artifacts': [
+        {'images': artifactImages!.toTfJson()},
+      ],
+    if (advancedExtra != null) ...advancedExtra!,
+  };
+}
+
+/// One `build.step[]` entry. [name] is the container image that runs
+/// the step (e.g. `'gcr.io/cloud-builders/docker'`); the rest mirrors
+/// the docker `RUN` semantics.
+///
+/// The `volumes` sub-block (per-step volume mounts) is exposed via
+/// [advancedExtra] rather than as a typed helper.
+@immutable
+class CloudBuildTriggerBuildStep {
+  const CloudBuildTriggerBuildStep({
+    required this.name,
+    this.id,
+    this.args,
+    this.env,
+    this.entrypoint,
+    this.dir,
+    this.secretEnv,
+    this.timeout,
+    this.waitFor,
+    this.script,
+    this.allowFailure,
+    this.allowExitCodes,
+    this.advancedExtra,
+  });
+
+  /// Container image URL. Cloud Build's prebuilt `gcr.io/cloud-builders/*`
+  /// images cover docker / gcloud / git / gsutil / kubectl / mvn / npm
+  /// and a few others.
+  final TfArg<String> name;
+
+  /// Step id, referenced from [waitFor] / `wait_for` for ordering.
+  final TfArg<String>? id;
+
+  /// Args appended to the image's entrypoint (or used AS the
+  /// entrypoint when the image has none).
+  final TfArg<List<String>>? args;
+
+  /// Env vars in `'KEY=VALUE'` form.
+  final TfArg<List<String>>? env;
+
+  /// Entrypoint override (replaces the image's `ENTRYPOINT`).
+  final TfArg<String>? entrypoint;
+
+  /// Working directory relative to the build's `/workspace`. Absolute
+  /// paths leave the workspace and are NOT persisted across steps.
+  final TfArg<String>? dir;
+
+  /// Names of KMS-encrypted env vars (defined under
+  /// [CloudBuildTriggerBuild.advancedExtra]'s `secret` block) to
+  /// inject into this step.
+  final TfArg<List<String>>? secretEnv;
+
+  /// Per-step timeout (`'90s'`, `'1m30s'`, ...). Defaults to no limit
+  /// (i.e. capped only by [CloudBuildTriggerBuild.timeout]).
+  final TfArg<String>? timeout;
+
+  /// Step ids that must complete before this step runs. Empty list
+  /// (`[]`) means "run as soon as the build starts" (i.e. fan out from
+  /// the start).
+  final TfArg<List<String>>? waitFor;
+
+  /// Inline shell script. When set, [entrypoint] / [args] must NOT be
+  /// set — the provider rejects the combination.
+  final TfArg<String>? script;
+
+  /// When `true`, the step may exit non-zero without failing the
+  /// build. [allowExitCodes] takes precedence when both are set.
+  final TfArg<bool>? allowFailure;
+
+  /// Specific non-zero exit codes that count as success. Implies
+  /// [allowFailure].
+  final TfArg<List<int>>? allowExitCodes;
+
+  /// Escape hatch for the uncurated nested blocks of `step`:
+  /// - `volumes` (per-step Docker volume mounts).
+  ///
+  /// Keys are Terraform block names; values are the block payload.
+  /// The map is spread into the emitted Terraform args verbatim.
+  final Map<String, Object?>? advancedExtra;
+
+  Map<String, Object?> toArgMap() => {
+    'name': name.toTfJson(),
+    if (id != null) 'id': id!.toTfJson(),
+    if (args != null) 'args': args!.toTfJson(),
+    if (env != null) 'env': env!.toTfJson(),
+    if (entrypoint != null) 'entrypoint': entrypoint!.toTfJson(),
+    if (dir != null) 'dir': dir!.toTfJson(),
+    if (secretEnv != null) 'secret_env': secretEnv!.toTfJson(),
+    if (timeout != null) 'timeout': timeout!.toTfJson(),
+    if (waitFor != null) 'wait_for': waitFor!.toTfJson(),
+    if (script != null) 'script': script!.toTfJson(),
+    if (allowFailure != null) 'allow_failure': allowFailure!.toTfJson(),
+    if (allowExitCodes != null) 'allow_exit_codes': allowExitCodes!.toTfJson(),
+    if (advancedExtra != null) ...advancedExtra!,
+  };
+}
+
+/// `build.options` block. Picks the worker shape, logging mode,
+/// substitution policy, and other build-wide knobs. Every field is
+/// optional — omitting the entire block uses Cloud Build defaults
+/// (n1-standard-1, `LOGGING_UNSPECIFIED`, `MUST_MATCH`).
+@immutable
+class CloudBuildTriggerBuildOptions {
+  const CloudBuildTriggerBuildOptions({
+    this.machineType,
+    this.diskSizeGb,
+    this.workerPool,
+    this.substitutionOption,
+    this.logStreamingOption,
+    this.logging,
+    this.requestedVerifyOption,
+    this.dynamicSubstitutions,
+    this.sourceProvenanceHash,
+    this.env,
+    this.secretEnv,
+  });
+
+  /// Worker machine type. Free-form on the wire (the provider schema
+  /// declares it as a plain string). Common values published in the
+  /// Cloud Build catalog at API GA:
+  /// - `'UNSPECIFIED'` — default `n1-standard-1` shape.
+  /// - `'N1_HIGHCPU_8'`, `'N1_HIGHCPU_32'` — high-CPU N1 tiers.
+  /// - `'E2_HIGHCPU_8'`, `'E2_HIGHCPU_32'` — high-CPU E2 tiers.
+  ///
+  /// Cloud Build may introduce additional tiers over time — pass the
+  /// new identifier as a literal (e.g.
+  /// `TfArg.literal('CUSTOM_TYPE')`) without needing a wrapper bump.
+  /// Omitting the option entirely uses the default shape.
+  final TfArg<String>? machineType;
+
+  /// Boot disk size in GB (max 1000). Default 100.
+  final TfArg<int>? diskSizeGb;
+
+  /// Worker pool resource id. Format:
+  /// `'projects/{project}/workerPools/{workerPool}'`. Typically passed
+  /// as `TfArg.ref(pool.id)` against a sibling
+  /// [GoogleCloudbuildWorkerPool]; within a Terraform configuration
+  /// often plumbed via `var.cloudbuild_worker_pool_id`.
+  final TfArg<String>? workerPool;
+
+  /// Substitution validation policy. NOTE the API ignores this for
+  /// trigger-driven builds and always uses
+  /// [CloudBuildTriggerSubstitutionOption.allowLoose] — the field
+  /// matters only when re-running the same build config standalone.
+  final TfArg<CloudBuildTriggerSubstitutionOption>? substitutionOption;
+
+  /// Live log streaming policy.
+  final TfArg<CloudBuildTriggerLogStreamingOption>? logStreamingOption;
+
+  /// Where the build sends logs.
+  final TfArg<CloudBuildTriggerBuildLogging>? logging;
+
+  /// Provenance attestation policy.
+  final TfArg<CloudBuildTriggerRequestedVerifyOption>? requestedVerifyOption;
+
+  /// When `true`, substitutions undergo bash-style string operations
+  /// (e.g. `${_FOO:-default}`). Always-on for trigger-driven builds.
+  final TfArg<bool>? dynamicSubstitutions;
+
+  /// Source-archive hash algorithms to record. Multiple algorithms can
+  /// be requested simultaneously.
+  final TfArg<List<CloudBuildTriggerSourceProvenanceHash>>?
+  sourceProvenanceHash;
+
+  /// Build-wide env vars in `'KEY=VALUE'` form. Available to every
+  /// step.
+  final TfArg<List<String>>? env;
+
+  /// Names of KMS-encrypted env vars (defined under
+  /// [CloudBuildTriggerBuild.advancedExtra]'s `secret` block) to
+  /// inject into every step.
+  final TfArg<List<String>>? secretEnv;
+
+  Map<String, Object?> toArgMap() => {
+    if (machineType != null) 'machine_type': machineType!.toTfJson(),
+    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
+    if (workerPool != null) 'worker_pool': workerPool!.toTfJson(),
+    if (substitutionOption != null)
+      'substitution_option': substitutionOption!.toTfJson(),
+    if (logStreamingOption != null)
+      'log_streaming_option': logStreamingOption!.toTfJson(),
+    if (logging != null) 'logging': logging!.toTfJson(),
+    if (requestedVerifyOption != null)
+      'requested_verify_option': requestedVerifyOption!.toTfJson(),
+    if (dynamicSubstitutions != null)
+      'dynamic_substitutions': dynamicSubstitutions!.toTfJson(),
+    if (sourceProvenanceHash != null)
+      'source_provenance_hash': sourceProvenanceHash!.toTfJson(),
+    if (env != null) 'env': env!.toTfJson(),
+    if (secretEnv != null) 'secret_env': secretEnv!.toTfJson(),
+  };
+}
+
+/// Factory wrapper for `google_cloudbuild_trigger` (provider
+/// `hashicorp/google ~> 7.0`).
+///
+/// A Cloud Build trigger fires a build in response to a source event
+/// (SCM push / pull request, Pub/Sub message, webhook, or manual run).
+/// The resource has **two competing repository-connection forms** that
+/// callers must pick between:
+///
+/// 1. **v1 (legacy)** — point the trigger at a GitHub App / Bitbucket
+///    Server installation directly via the inline [github] or
+///    [bitbucketServerTriggerConfig] block. The trigger watches the SCM
+///    webhook delivered through the legacy Cloud Build first-party
+///    integration. Recommended only for installs that pre-date the
+///    second-generation connection (i.e. existing GitHub App users).
+/// 2. **v2 (modern, 2024+)** — supply [repositoryEventConfig] referring
+///    to a `cloudbuildv2_repository` (which in turn pins a
+///    `cloudbuildv2_connection`). The v2 form supports the full matrix
+///    of providers — GitHub, GitHub Enterprise, GitLab Self-Managed,
+///    Bitbucket Data Center, Bitbucket Cloud — through a single uniform
+///    Repo API surface. Recommended for new builds.
+///
+/// Each trigger picks exactly one of: [github] / [bitbucketServerTriggerConfig]
+/// / [repositoryEventConfig] / [developerConnectEventConfig] /
+/// [pubsubConfig] / [webhookConfig] / [triggerTemplate] / [sourceToBuild].
+/// The first six wire up an event source; [triggerTemplate] is the
+/// legacy Cloud Source Repositories form; [sourceToBuild] declares a
+/// manual / Pub/Sub / Webhook-invoked build's source explicitly.
+///
+/// Build content is supplied in one of three ways (exactly one):
+/// - [filename] — path to an in-repo `cloudbuild.yaml`. Use with
+///   [triggerTemplate] or [github].
+/// - [gitFileSource] — fetch the build config from an arbitrary repo /
+///   ref. Use with Pub/Sub, Webhook, Manual, or v2 triggers.
+/// - [build] — inline build steps + options, fully defined in HCL.
+///
+/// Required identity:
+/// - [localName]: Terraform local name (the address segment after
+///   `google_cloudbuild_trigger.`).
+///
+/// Optional but commonly set:
+/// - `location`: Cloud Build region (e.g. `'asia-northeast1'`).
+///   Defaults to `'global'`. Repository-event triggers MUST live in the
+///   same region as their `cloudbuildv2_repository`.
+/// - `name`: trigger name (must be unique within the project). When
+///   omitted the API assigns one.
+/// - `service_account`: Cloud Build service account to run the build
+///   as. Format:
+///   `'projects/{PROJECT_ID}/serviceAccounts/{SA_EMAIL}'`. When `null`
+///   the legacy `[PROJECT_NUM]@cloudbuild.gserviceaccount.com` SA is
+///   used.
+///
+/// ### Example 1 — v1 form (GitHub App push to `main`, runs in-repo
+/// `cloudbuild.yaml`):
+/// ```dart
+/// final pushTrigger = GoogleCloudbuildTrigger(
+///   localName: 'push_main',
+///   name: TfArg.literal('push-main'),
+///   location: TfArg.literal('asia-northeast1'),
+///   filename: TfArg.literal('cloudbuild.yaml'),
+///   github: const CloudBuildTriggerGithub(
+///     owner: TfArg.literal('myorg'),
+///     name: TfArg.literal('my-repo'),
+///     push: CloudBuildTriggerPushFilter(
+///       branch: TfArg.literal('^main\$'),
+///     ),
+///   ),
+/// );
+/// ```
+///
+/// ### Example 2 — v2 form (Repository event config, pull-request gate
+/// against a `cloudbuildv2_repository` sibling — controller wires the
+/// real `id` at quickstart-materialize time):
+/// ```dart
+/// final prTrigger = GoogleCloudbuildTrigger(
+///   localName: 'pr_gate',
+///   name: TfArg.literal('pr-gate'),
+///   location: TfArg.literal('asia-northeast1'),
+///   serviceAccount: TfArg.literal(
+///     'projects/my-project/serviceAccounts/cb-runner@my-project.iam.gserviceaccount.com',
+///   ),
+///   filename: TfArg.literal('cloudbuild.yaml'),
+///   repositoryEventConfig: CloudBuildTriggerRepositoryEventConfig(
+///     repository: TfArg.literal(r'${var.cloudbuildv2_repository_id}'),
+///     pullRequest: const CloudBuildTriggerPullRequestFilter(
+///       branch: TfArg.literal('^main\$'),
+///       commentControl: TfArg.literal(
+///         CloudBuildTriggerCommentControl.commentsEnabled,
+///       ),
+///     ),
+///   ),
+/// );
+/// ```
+///
+/// Naming convention: ALL nested helper types are prefixed
+/// `CloudBuildTrigger...` (e.g. [CloudBuildTriggerGithub],
+/// [CloudBuildTriggerPushFilter], [CloudBuildTriggerBuild],
+/// [CloudBuildTriggerBuildStep]) to avoid colliding with sibling
+/// resources such as [GoogleCloudbuildWorkerPool].
+///
+/// The `build` sub-tree is sprawling — the schema reaches several
+/// levels deep through `source.repo_source.substitutions`,
+/// `step.volumes`, `artifacts.maven_artifacts`, `available_secrets`,
+/// etc. The wrapper models the commonly-used surface as typed helpers
+/// ([CloudBuildTriggerBuild], [CloudBuildTriggerBuildStep],
+/// [CloudBuildTriggerBuildOptions]) and exposes the deeper / rarely-set
+/// sub-blocks via the [CloudBuildTriggerBuild.advancedExtra] escape
+/// hatch — pass a raw `Map<String, Object?>` keyed by the Terraform
+/// block name when you need them. See the per-class doc for the exact
+/// escape-hatch key.
+///
+/// Cross-resource references:
+/// - `build.options.pool` accepts a `google_cloudbuild_worker_pool` id
+///   (typically passed as `var.cloudbuild_worker_pool_id` from a
+///   sibling [GoogleCloudbuildWorkerPool]).
+/// - [repositoryEventConfig].`repository` accepts a
+///   `google_cloudbuildv2_repository` id (typically passed as
+///   `var.cloudbuildv2_repository_id`).
+///
+/// Composition pattern: extends `Resource<$GoogleCloudbuildTrigger>`
+/// for runtime behavior.
+final class GoogleCloudbuildTrigger extends Resource {
+  // ignore: constant_identifier_names
+  static const String $tfType = 'google_cloudbuild_trigger';
+
+  GoogleCloudbuildTrigger({
+    required super.localName,
+    TfArg<String>? name,
+    TfArg<String>? location,
+    TfArg<String>? description,
+    TfArg<List<String>>? tags,
+    TfArg<bool>? disabled,
+    TfArg<String>? serviceAccount,
+    TfArg<CloudBuildTriggerIncludeBuildLogs>? includeBuildLogs,
+    TfArg<String>? filter,
+    TfArg<Map<String, String>>? substitutions,
+    TfArg<List<String>>? includedFiles,
+    TfArg<List<String>>? ignoredFiles,
+    TfArg<String>? filename,
+    CloudBuildTriggerGitFileSource? gitFileSource,
+    CloudBuildTriggerSourceToBuild? sourceToBuild,
+    CloudBuildTriggerTriggerTemplate? triggerTemplate,
+    CloudBuildTriggerGithub? github,
+    CloudBuildTriggerBitbucketServerTriggerConfig? bitbucketServerTriggerConfig,
+    CloudBuildTriggerRepositoryEventConfig? repositoryEventConfig,
+    CloudBuildTriggerDeveloperConnectEventConfig? developerConnectEventConfig,
+    CloudBuildTriggerPubsubConfig? pubsubConfig,
+    CloudBuildTriggerWebhookConfig? webhookConfig,
+    CloudBuildTriggerApprovalConfig? approvalConfig,
+    CloudBuildTriggerBuild? build,
+    TfArg<String>? project,
+    super.lifecycle,
+    super.dependsOn,
+  }) : super(
+         terraformType: $tfType,
+         argMap: {
+           if (name != null) 'name': name,
+           if (location != null) 'location': location,
+           if (description != null) 'description': description,
+           if (tags != null) 'tags': tags,
+           if (disabled != null) 'disabled': disabled,
+           if (serviceAccount != null) 'service_account': serviceAccount,
+           if (includeBuildLogs != null) 'include_build_logs': includeBuildLogs,
+           if (filter != null) 'filter': filter,
+           if (substitutions != null) 'substitutions': substitutions,
+           if (includedFiles != null) 'included_files': includedFiles,
+           if (ignoredFiles != null) 'ignored_files': ignoredFiles,
+           if (filename != null) 'filename': filename,
+           if (gitFileSource != null)
+             'git_file_source': TfArg.literal([gitFileSource.toArgMap()]),
+           if (sourceToBuild != null)
+             'source_to_build': TfArg.literal([sourceToBuild.toArgMap()]),
+           if (triggerTemplate != null)
+             'trigger_template': TfArg.literal([triggerTemplate.toArgMap()]),
+           if (github != null) 'github': TfArg.literal([github.toArgMap()]),
+           if (bitbucketServerTriggerConfig != null)
+             'bitbucket_server_trigger_config': TfArg.literal([
+               bitbucketServerTriggerConfig.toArgMap(),
+             ]),
+           if (repositoryEventConfig != null)
+             'repository_event_config': TfArg.literal([
+               repositoryEventConfig.toArgMap(),
+             ]),
+           if (developerConnectEventConfig != null)
+             'developer_connect_event_config': TfArg.literal([
+               developerConnectEventConfig.toArgMap(),
+             ]),
+           if (pubsubConfig != null)
+             'pubsub_config': TfArg.literal([pubsubConfig.toArgMap()]),
+           if (webhookConfig != null)
+             'webhook_config': TfArg.literal([webhookConfig.toArgMap()]),
+           if (approvalConfig != null)
+             'approval_config': TfArg.literal([approvalConfig.toArgMap()]),
+           if (build != null) 'build': TfArg.literal([build.toArgMap()]),
+           if (project != null) 'project': project,
+         },
+       );
+
+  @override
+  // ignore: non_constant_identifier_names
+  Set<String> get $sensitiveFields => _googleCloudbuildTriggerSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute. The id format is
+  /// `projects/{project}/locations/{location}/triggers/{trigger_id}`
+  /// for regional triggers, or `projects/{project}/triggers/{trigger_id}`
+  /// for the legacy `global` location.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to the server-assigned `trigger_id` — the stable
+  /// identifier in the API path. Populated after apply.
+  TfRef<String> get triggerId => TfRef.attribute<String>(this, 'trigger_id');
+
+  /// Reference to the `create_time` attribute (RFC 3339 timestamp).
+  /// Populated after apply.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+}

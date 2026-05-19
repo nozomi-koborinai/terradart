@@ -1,0 +1,15 @@
+name: terradart_example_cloud_build_quickstart
+description: Wave 7 Batch 1 quickstart -- Cloud Build CI/CD chain (cloudbuildv2 connection + repository + artifact registry + worker pool + trigger).
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  terradart_core:
+    path: ../../packages/terradart_core
+  terradart_google:
+    path: ../../packages/terradart_google
+
+dev_dependencies:
+  lints: ^6.0.0
