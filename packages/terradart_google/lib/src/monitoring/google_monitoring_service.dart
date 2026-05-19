@@ -1,0 +1,152 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
+import 'package:terradart_core/terradart_core.dart';
+
+/// Sensitive field paths for `google_monitoring_service`.
+const Set<String> _googleMonitoringServiceSensitive = <String>{};
+
+// ===========================================================================
+// basic_service helper
+// ===========================================================================
+
+/// `basic_service` block (max=1) — a well-known service type defined by
+/// its [serviceType] (e.g. `'APP_ENGINE'`, `'CLOUD_ENDPOINTS'`,
+/// `'CLUSTER_ISTIO'`, `'MESH_ISTIO'`) and a set of [serviceLabels] that
+/// pin the variant to a specific service instance. See the
+/// [SLO monitoring docs](https://cloud.google.com/stackdriver/docs/solutions/slo-monitoring/api/api-structures#basic-svc-w-basic-sli)
+/// for the valid `(serviceType, serviceLabels)` combinations.
+class MonitoringServiceBasicService {
+  const MonitoringServiceBasicService({this.serviceType, this.serviceLabels});
+
+  /// Well-known service type. Examples: `'APP_ENGINE'`,
+  /// `'CLOUD_ENDPOINTS'`, `'CLUSTER_ISTIO'`, `'MESH_ISTIO'`.
+  final TfArg<String>? serviceType;
+
+  /// Labels that pin the basic service to a specific monitored resource
+  /// (e.g. `{'module_id': 'default'}` for App Engine).
+  final TfArg<Map<String, String>>? serviceLabels;
+
+  Map<String, Object?> toArgMap() => {
+    if (serviceType != null) 'service_type': serviceType!.toTfJson(),
+    if (serviceLabels != null) 'service_labels': serviceLabels!.toTfJson(),
+  };
+}
+
+// ===========================================================================
+// telemetry view-model
+// ===========================================================================
+
+/// Read-only view of the server-populated `telemetry` block. Cloud
+/// Monitoring derives [resourceName] from the chosen service-type
+/// variant; consumers may read it via [GoogleMonitoringService.telemetry].
+class MonitoringServiceTelemetry {
+  const MonitoringServiceTelemetry({this.resourceName});
+
+  /// Fully-qualified monitored-resource name that the service is
+  /// associated with.
+  final TfArg<String>? resourceName;
+
+  Map<String, Object?> toArgMap() => {
+    if (resourceName != null) 'resource_name': resourceName!.toTfJson(),
+  };
+}
+
+/// Factory wrapper for `google_monitoring_service` (provider
+/// `hashicorp/google ~> 7.0`).
+///
+/// Required identity:
+/// - [localName]: Terraform local name (the address segment after
+///   `google_monitoring_service.`).
+/// - `serviceId`: user-supplied service identifier. The full resource name
+///   exposed by Cloud Monitoring will be
+///   `projects/{project}/services/{serviceId}`.
+///
+/// Modeling notes:
+/// - The Cloud Monitoring API has multiple service-type variants
+///   (`basic_service`, `cloud_endpoints`, `app_engine`, `mesh_istio`,
+///   `cluster_istio`, `cloud_run`, `gke_namespace`, `gke_workload`,
+///   `gke_service`), but the terraform-provider-google schema for this
+///   resource only surfaces [basicService]. Use the auto-detected
+///   variants by creating the service through the GCP API directly, or
+///   omit [basicService] entirely to register an opaque "custom" service
+///   identified solely by [serviceId].
+/// - [telemetry] is server-populated (the underlying API derives the
+///   monitored resource name on create) and is therefore exposed as a
+///   getter, not a constructor input. See [telemetry].
+/// - `userLabels` accepts up to 64 entries; both keys and values are
+///   capped at 63 characters (and 128 bytes).
+///
+/// Example (custom service identified by [serviceId] only):
+/// ```dart
+/// final svc = GoogleMonitoringService(
+///   localName: 'checkout_api',
+///   serviceId: TfArg.literal('checkout-api'),
+///   displayName: TfArg.literal('Checkout API'),
+///   userLabels: TfArg.literal(const {'team': 'payments'}),
+/// );
+/// ```
+///
+/// Example (well-known basic service with labels — selecting the service
+/// instance that emits the monitoring data):
+/// ```dart
+/// final svc = GoogleMonitoringService(
+///   localName: 'app_engine_default',
+///   serviceId: TfArg.literal('appengine-default'),
+///   displayName: TfArg.literal('App Engine default service'),
+///   basicService: MonitoringServiceBasicService(
+///     serviceType: TfArgLiteral('APP_ENGINE'),
+///     serviceLabels: TfArgLiteral(const {'module_id': 'default'}),
+///   ),
+/// );
+/// ```
+///
+/// Manages a Cloud Monitoring [Service](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/services).
+/// Composition pattern: extends `Resource<$GoogleMonitoringService>` for
+/// runtime behavior. The nested-block helper
+/// ([MonitoringServiceBasicService]) and the telemetry view-model
+/// ([MonitoringServiceTelemetry]) live in the `prelude` below.
+final class GoogleMonitoringService extends Resource {
+  // ignore: constant_identifier_names
+  static const String $tfType = 'google_monitoring_service';
+
+  GoogleMonitoringService({
+    required super.localName,
+    required TfArg<String> serviceId,
+    TfArg<String>? displayName,
+    MonitoringServiceBasicService? basicService,
+    TfArg<Map<String, String>>? userLabels,
+    TfArg<String>? project,
+    super.lifecycle,
+    super.dependsOn,
+  }) : super(
+         terraformType: $tfType,
+         argMap: {
+           'service_id': serviceId,
+           if (displayName != null) 'display_name': displayName,
+           if (basicService != null)
+             'basic_service': TfArg.literal([basicService.toArgMap()]),
+           if (userLabels != null) 'user_labels': userLabels,
+           if (project != null) 'project': project,
+         },
+       );
+
+  @override
+  // ignore: non_constant_identifier_names
+  Set<String> get $sensitiveFields => _googleMonitoringServiceSensitive;
+
+  /// Reference to `id` attribute (the service's full resource name,
+  /// `projects/{project}/services/{service_id}`).
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `name` attribute (same shape as [id]; populated by
+  /// Cloud Monitoring on create).
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to the server-populated `telemetry` block. The Cloud
+  /// Monitoring API derives the monitored resource name from the chosen
+  /// service-type variant, so this is exposed as a read-only reference
+  /// rather than a constructor input.
+  TfRef<List<Map<String, Object?>>> get telemetry =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'telemetry');
+}
