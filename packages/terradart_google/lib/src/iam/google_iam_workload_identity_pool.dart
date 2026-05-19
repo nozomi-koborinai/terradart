@@ -81,16 +81,16 @@ final class GoogleIamWorkloadIdentityPool extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'workload_identity_pool_id': workloadIdentityPoolId,
-            if (displayName != null) 'display_name': displayName,
-            if (description != null) 'description': description,
-            if (disabled != null) 'disabled': disabled,
-            if (mode != null) 'mode': mode,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'workload_identity_pool_id': workloadIdentityPoolId,
+           if (displayName != null) 'display_name': displayName,
+           if (description != null) 'description': description,
+           if (disabled != null) 'disabled': disabled,
+           if (mode != null) 'mode': mode,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

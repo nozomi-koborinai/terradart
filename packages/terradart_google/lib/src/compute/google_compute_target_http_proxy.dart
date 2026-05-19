@@ -56,17 +56,17 @@ final class GoogleComputeTargetHttpProxy extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            'url_map': urlMap,
-            if (proxyBind != null) 'proxy_bind': proxyBind,
-            if (httpKeepAliveTimeoutSec != null)
-              'http_keep_alive_timeout_sec': httpKeepAliveTimeoutSec,
-            if (description != null) 'description': description,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           'url_map': urlMap,
+           if (proxyBind != null) 'proxy_bind': proxyBind,
+           if (httpKeepAliveTimeoutSec != null)
+             'http_keep_alive_timeout_sec': httpKeepAliveTimeoutSec,
+           if (description != null) 'description': description,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

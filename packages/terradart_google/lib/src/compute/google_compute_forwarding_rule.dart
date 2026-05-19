@@ -119,9 +119,9 @@ class ForwardingRuleServiceDirectoryRegistration {
   final TfArg<String>? service;
 
   Map<String, Object?> toArgMap() => {
-        if (namespace != null) 'namespace': namespace!.toTfJson(),
-        if (service != null) 'service': service!.toTfJson(),
-      };
+    if (namespace != null) 'namespace': namespace!.toTfJson(),
+    if (service != null) 'service': service!.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_compute_forwarding_rule` (provider
@@ -244,7 +244,7 @@ final class GoogleComputeForwardingRule extends Resource {
     TfArg<List<String>>? sourceIpRanges,
     TfArg<String>? serviceLabel,
     List<ForwardingRuleServiceDirectoryRegistration>?
-        serviceDirectoryRegistrations,
+    serviceDirectoryRegistrations,
     TfArg<bool>? allowGlobalAccess,
     TfArg<bool>? allowPscGlobalAccess,
     TfArg<bool>? isMirroringCollector,
@@ -257,45 +257,45 @@ final class GoogleComputeForwardingRule extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            if (region != null) 'region': region,
-            if (target != null) 'target': target,
-            if (backendService != null) 'backend_service': backendService,
-            if (ipAddress != null) 'ip_address': ipAddress,
-            if (ipProtocol != null) 'ip_protocol': ipProtocol,
-            if (ipVersion != null) 'ip_version': ipVersion,
-            if (portRange != null) 'port_range': portRange,
-            if (ports != null) 'ports': ports,
-            if (allPorts != null) 'all_ports': allPorts,
-            if (loadBalancingScheme != null)
-              'load_balancing_scheme': loadBalancingScheme,
-            if (network != null) 'network': network,
-            if (subnetwork != null) 'subnetwork': subnetwork,
-            if (networkTier != null) 'network_tier': networkTier,
-            if (sourceIpRanges != null) 'source_ip_ranges': sourceIpRanges,
-            if (serviceLabel != null) 'service_label': serviceLabel,
-            if (serviceDirectoryRegistrations != null)
-              'service_directory_registrations': TfArg.literal(
-                serviceDirectoryRegistrations.map((r) => r.toArgMap()).toList(),
-              ),
-            if (allowGlobalAccess != null)
-              'allow_global_access': allowGlobalAccess,
-            if (allowPscGlobalAccess != null)
-              'allow_psc_global_access': allowPscGlobalAccess,
-            if (isMirroringCollector != null)
-              'is_mirroring_collector': isMirroringCollector,
-            if (noAutomateDnsZone != null)
-              'no_automate_dns_zone': noAutomateDnsZone,
-            if (recreateClosedPsc != null)
-              'recreate_closed_psc': recreateClosedPsc,
-            if (ipCollection != null) 'ip_collection': ipCollection,
-            if (labels != null) 'labels': labels,
-            if (description != null) 'description': description,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           if (region != null) 'region': region,
+           if (target != null) 'target': target,
+           if (backendService != null) 'backend_service': backendService,
+           if (ipAddress != null) 'ip_address': ipAddress,
+           if (ipProtocol != null) 'ip_protocol': ipProtocol,
+           if (ipVersion != null) 'ip_version': ipVersion,
+           if (portRange != null) 'port_range': portRange,
+           if (ports != null) 'ports': ports,
+           if (allPorts != null) 'all_ports': allPorts,
+           if (loadBalancingScheme != null)
+             'load_balancing_scheme': loadBalancingScheme,
+           if (network != null) 'network': network,
+           if (subnetwork != null) 'subnetwork': subnetwork,
+           if (networkTier != null) 'network_tier': networkTier,
+           if (sourceIpRanges != null) 'source_ip_ranges': sourceIpRanges,
+           if (serviceLabel != null) 'service_label': serviceLabel,
+           if (serviceDirectoryRegistrations != null)
+             'service_directory_registrations': TfArg.literal(
+               serviceDirectoryRegistrations.map((r) => r.toArgMap()).toList(),
+             ),
+           if (allowGlobalAccess != null)
+             'allow_global_access': allowGlobalAccess,
+           if (allowPscGlobalAccess != null)
+             'allow_psc_global_access': allowPscGlobalAccess,
+           if (isMirroringCollector != null)
+             'is_mirroring_collector': isMirroringCollector,
+           if (noAutomateDnsZone != null)
+             'no_automate_dns_zone': noAutomateDnsZone,
+           if (recreateClosedPsc != null)
+             'recreate_closed_psc': recreateClosedPsc,
+           if (ipCollection != null) 'ip_collection': ipCollection,
+           if (labels != null) 'labels': labels,
+           if (description != null) 'description': description,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

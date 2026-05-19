@@ -124,10 +124,10 @@ class RegionInstanceGroupManagerVersion {
   final RegionInstanceGroupManagerVersionTargetSize? targetSize;
 
   Map<String, Object?> toArgMap() => {
-        'instance_template': instanceTemplate.toTfJson(),
-        if (name != null) 'name': name!.toTfJson(),
-        if (targetSize != null) 'target_size': [targetSize!.toArgMap()],
-      };
+    'instance_template': instanceTemplate.toTfJson(),
+    if (name != null) 'name': name!.toTfJson(),
+    if (targetSize != null) 'target_size': [targetSize!.toArgMap()],
+  };
 }
 
 /// `version.target_size` (`max_items=1`). Exactly one of [fixed] or
@@ -143,9 +143,9 @@ class RegionInstanceGroupManagerVersionTargetSize {
   final int? percent;
 
   Map<String, Object?> toArgMap() => {
-        if (fixed != null) 'fixed': fixed,
-        if (percent != null) 'percent': percent,
-      };
+    if (fixed != null) 'fixed': fixed,
+    if (percent != null) 'percent': percent,
+  };
 }
 
 // ===========================================================================
@@ -172,9 +172,9 @@ class RegionInstanceGroupManagerAutoHealingPolicy {
   final int initialDelaySec;
 
   Map<String, Object?> toArgMap() => {
-        'health_check': healthCheck.toTfJson(),
-        'initial_delay_sec': initialDelaySec,
-      };
+    'health_check': healthCheck.toTfJson(),
+    'initial_delay_sec': initialDelaySec,
+  };
 }
 
 // ===========================================================================
@@ -208,11 +208,11 @@ class RegionInstanceGroupManagerUpdatePolicy {
   /// Regional-only. Whether the MIG proactively rebalances VMs
   /// across [distributionPolicyZones]. Default `PROACTIVE`.
   final RegionInstanceGroupManagerInstanceRedistributionType?
-      instanceRedistributionType;
+  instanceRedistributionType;
 
   /// Maximum action the MIG may escalate to.
   final RegionInstanceGroupManagerUpdatePolicyAction?
-      mostDisruptiveAllowedAction;
+  mostDisruptiveAllowedAction;
 
   /// Extra VMs the MIG may add over
   /// [GoogleComputeRegionInstanceGroupManager.targetSize] during the
@@ -232,26 +232,26 @@ class RegionInstanceGroupManagerUpdatePolicy {
   /// Whether to keep names (`RECREATE`) or randomise them
   /// (`SUBSTITUTE`, default) when swapping VMs.
   final RegionInstanceGroupManagerUpdatePolicyReplacementMethod?
-      replacementMethod;
+  replacementMethod;
 
   Map<String, Object?> toArgMap() => {
-        'minimal_action': minimalAction.terraformValue,
-        'type': type.terraformValue,
-        if (instanceRedistributionType != null)
-          'instance_redistribution_type':
-              instanceRedistributionType!.terraformValue,
-        if (mostDisruptiveAllowedAction != null)
-          'most_disruptive_allowed_action':
-              mostDisruptiveAllowedAction!.terraformValue,
-        if (maxSurgeFixed != null) 'max_surge_fixed': maxSurgeFixed,
-        if (maxSurgePercent != null) 'max_surge_percent': maxSurgePercent,
-        if (maxUnavailableFixed != null)
-          'max_unavailable_fixed': maxUnavailableFixed,
-        if (maxUnavailablePercent != null)
-          'max_unavailable_percent': maxUnavailablePercent,
-        if (replacementMethod != null)
-          'replacement_method': replacementMethod!.terraformValue,
-      };
+    'minimal_action': minimalAction.terraformValue,
+    'type': type.terraformValue,
+    if (instanceRedistributionType != null)
+      'instance_redistribution_type':
+          instanceRedistributionType!.terraformValue,
+    if (mostDisruptiveAllowedAction != null)
+      'most_disruptive_allowed_action':
+          mostDisruptiveAllowedAction!.terraformValue,
+    if (maxSurgeFixed != null) 'max_surge_fixed': maxSurgeFixed,
+    if (maxSurgePercent != null) 'max_surge_percent': maxSurgePercent,
+    if (maxUnavailableFixed != null)
+      'max_unavailable_fixed': maxUnavailableFixed,
+    if (maxUnavailablePercent != null)
+      'max_unavailable_percent': maxUnavailablePercent,
+    if (replacementMethod != null)
+      'replacement_method': replacementMethod!.terraformValue,
+  };
 }
 
 // ===========================================================================
@@ -303,9 +303,9 @@ class RegionInstanceGroupManagerStatefulDisk {
   final String? deleteRule;
 
   Map<String, Object?> toArgMap() => {
-        'device_name': deviceName,
-        if (deleteRule != null) 'delete_rule': deleteRule,
-      };
+    'device_name': deviceName,
+    if (deleteRule != null) 'delete_rule': deleteRule,
+  };
 }
 
 /// One entry in [statefulInternalIps] / [statefulExternalIps].
@@ -325,9 +325,9 @@ class RegionInstanceGroupManagerStatefulIp {
   final String? deleteRule;
 
   Map<String, Object?> toArgMap() => {
-        if (interfaceName != null) 'interface_name': interfaceName,
-        if (deleteRule != null) 'delete_rule': deleteRule,
-      };
+    if (interfaceName != null) 'interface_name': interfaceName,
+    if (deleteRule != null) 'delete_rule': deleteRule,
+  };
 }
 
 // ===========================================================================
@@ -348,9 +348,9 @@ class RegionInstanceGroupManagerAllInstancesConfig {
   final Map<String, String>? metadata;
 
   Map<String, Object?> toArgMap() => {
-        if (labels != null) 'labels': labels,
-        if (metadata != null) 'metadata': metadata,
-      };
+    if (labels != null) 'labels': labels,
+    if (metadata != null) 'metadata': metadata,
+  };
 }
 
 // ===========================================================================
@@ -374,11 +374,11 @@ class RegionInstanceGroupManagerInstanceLifecyclePolicy {
   final String? forceUpdateOnRepair;
 
   Map<String, Object?> toArgMap() => {
-        if (defaultActionOnFailure != null)
-          'default_action_on_failure': defaultActionOnFailure,
-        if (forceUpdateOnRepair != null)
-          'force_update_on_repair': forceUpdateOnRepair,
-      };
+    if (defaultActionOnFailure != null)
+      'default_action_on_failure': defaultActionOnFailure,
+    if (forceUpdateOnRepair != null)
+      'force_update_on_repair': forceUpdateOnRepair,
+  };
 }
 
 // ===========================================================================
@@ -400,10 +400,11 @@ class RegionInstanceGroupManagerInstanceFlexibilityPolicy {
   final List<RegionInstanceGroupManagerInstanceSelection>? instanceSelections;
 
   Map<String, Object?> toArgMap() => {
-        if (instanceSelections != null)
-          'instance_selections':
-              instanceSelections!.map((s) => s.toArgMap()).toList(),
-      };
+    if (instanceSelections != null)
+      'instance_selections': instanceSelections!
+          .map((s) => s.toArgMap())
+          .toList(),
+  };
 }
 
 /// One entry in
@@ -427,10 +428,10 @@ class RegionInstanceGroupManagerInstanceSelection {
   final int? rank;
 
   Map<String, Object?> toArgMap() => {
-        'name': name,
-        'machine_types': machineTypes,
-        if (rank != null) 'rank': rank,
-      };
+    'name': name,
+    'machine_types': machineTypes,
+    if (rank != null) 'rank': rank,
+  };
 }
 
 // ===========================================================================
@@ -454,9 +455,9 @@ class RegionInstanceGroupManagerStandbyPolicy {
   final String? mode;
 
   Map<String, Object?> toArgMap() => {
-        if (initialDelaySec != null) 'initial_delay_sec': initialDelaySec,
-        if (mode != null) 'mode': mode,
-      };
+    if (initialDelaySec != null) 'initial_delay_sec': initialDelaySec,
+    if (mode != null) 'mode': mode,
+  };
 }
 
 // ===========================================================================
@@ -490,9 +491,8 @@ class RegionInstanceGroupManagerResourcePolicies {
   final TfArg<String>? workloadPolicy;
 
   Map<String, Object?> toArgMap() => {
-        if (workloadPolicy != null)
-          'workload_policy': workloadPolicy!.toTfJson(),
-      };
+    if (workloadPolicy != null) 'workload_policy': workloadPolicy!.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_compute_region_instance_group_manager`
@@ -609,7 +609,7 @@ final class GoogleComputeRegionInstanceGroupManager extends Resource {
     TfArg<String>? waitForInstancesStatus,
     TfArg<List<String>>? distributionPolicyZones,
     TfArg<RegionInstanceGroupManagerDistributionPolicyTargetShape>?
-        distributionPolicyTargetShape,
+    distributionPolicyTargetShape,
     TfArg<List<String>>? targetPools,
     required List<RegionInstanceGroupManagerVersion> versions,
     List<RegionInstanceGroupManagerNamedPort>? namedPorts,
@@ -617,7 +617,7 @@ final class GoogleComputeRegionInstanceGroupManager extends Resource {
     RegionInstanceGroupManagerUpdatePolicy? updatePolicy,
     RegionInstanceGroupManagerInstanceLifecyclePolicy? instanceLifecyclePolicy,
     RegionInstanceGroupManagerInstanceFlexibilityPolicy?
-        instanceFlexibilityPolicy,
+    instanceFlexibilityPolicy,
     RegionInstanceGroupManagerStandbyPolicy? standbyPolicy,
     List<RegionInstanceGroupManagerTargetSizePolicy>? targetSizePolicies,
     RegionInstanceGroupManagerResourcePolicies? resourcePolicies,
@@ -629,75 +629,73 @@ final class GoogleComputeRegionInstanceGroupManager extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            if (region != null) 'region': region,
-            if (description != null) 'description': description,
-            'base_instance_name': baseInstanceName,
-            if (targetSize != null) 'target_size': targetSize,
-            if (targetStoppedSize != null)
-              'target_stopped_size': targetStoppedSize,
-            if (targetSuspendedSize != null)
-              'target_suspended_size': targetSuspendedSize,
-            if (listManagedInstancesResults != null)
-              'list_managed_instances_results': listManagedInstancesResults,
-            if (waitForInstances != null)
-              'wait_for_instances': waitForInstances,
-            if (waitForInstancesStatus != null)
-              'wait_for_instances_status': waitForInstancesStatus,
-            if (distributionPolicyZones != null)
-              'distribution_policy_zones': distributionPolicyZones,
-            if (distributionPolicyTargetShape != null)
-              'distribution_policy_target_shape': distributionPolicyTargetShape,
-            if (targetPools != null) 'target_pools': targetPools,
-            'version':
-                TfArg.literal(versions.map((v) => v.toArgMap()).toList()),
-            if (namedPorts != null)
-              'named_port': TfArg.literal(
-                namedPorts.map((p) => p.toArgMap()).toList(),
-              ),
-            if (autoHealingPolicies != null)
-              'auto_healing_policies': TfArg.literal([
-                autoHealingPolicies.toArgMap(),
-              ]),
-            if (updatePolicy != null)
-              'update_policy': TfArg.literal([updatePolicy.toArgMap()]),
-            if (instanceLifecyclePolicy != null)
-              'instance_lifecycle_policy': TfArg.literal([
-                instanceLifecyclePolicy.toArgMap(),
-              ]),
-            if (instanceFlexibilityPolicy != null)
-              'instance_flexibility_policy': TfArg.literal([
-                instanceFlexibilityPolicy.toArgMap(),
-              ]),
-            if (standbyPolicy != null)
-              'standby_policy': TfArg.literal([standbyPolicy.toArgMap()]),
-            if (targetSizePolicies != null)
-              'target_size_policy': TfArg.literal(
-                targetSizePolicies.map((p) => p.toArgMap()).toList(),
-              ),
-            if (resourcePolicies != null)
-              'resource_policies': TfArg.literal([resourcePolicies.toArgMap()]),
-            if (allInstancesConfig != null)
-              'all_instances_config': TfArg.literal([
-                allInstancesConfig.toArgMap(),
-              ]),
-            if (statefulDisks != null)
-              'stateful_disk': TfArg.literal(
-                statefulDisks.map((d) => d.toArgMap()).toList(),
-              ),
-            if (statefulInternalIps != null)
-              'stateful_internal_ip': TfArg.literal(
-                statefulInternalIps.map((i) => i.toArgMap()).toList(),
-              ),
-            if (statefulExternalIps != null)
-              'stateful_external_ip': TfArg.literal(
-                statefulExternalIps.map((i) => i.toArgMap()).toList(),
-              ),
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           if (region != null) 'region': region,
+           if (description != null) 'description': description,
+           'base_instance_name': baseInstanceName,
+           if (targetSize != null) 'target_size': targetSize,
+           if (targetStoppedSize != null)
+             'target_stopped_size': targetStoppedSize,
+           if (targetSuspendedSize != null)
+             'target_suspended_size': targetSuspendedSize,
+           if (listManagedInstancesResults != null)
+             'list_managed_instances_results': listManagedInstancesResults,
+           if (waitForInstances != null) 'wait_for_instances': waitForInstances,
+           if (waitForInstancesStatus != null)
+             'wait_for_instances_status': waitForInstancesStatus,
+           if (distributionPolicyZones != null)
+             'distribution_policy_zones': distributionPolicyZones,
+           if (distributionPolicyTargetShape != null)
+             'distribution_policy_target_shape': distributionPolicyTargetShape,
+           if (targetPools != null) 'target_pools': targetPools,
+           'version': TfArg.literal(versions.map((v) => v.toArgMap()).toList()),
+           if (namedPorts != null)
+             'named_port': TfArg.literal(
+               namedPorts.map((p) => p.toArgMap()).toList(),
+             ),
+           if (autoHealingPolicies != null)
+             'auto_healing_policies': TfArg.literal([
+               autoHealingPolicies.toArgMap(),
+             ]),
+           if (updatePolicy != null)
+             'update_policy': TfArg.literal([updatePolicy.toArgMap()]),
+           if (instanceLifecyclePolicy != null)
+             'instance_lifecycle_policy': TfArg.literal([
+               instanceLifecyclePolicy.toArgMap(),
+             ]),
+           if (instanceFlexibilityPolicy != null)
+             'instance_flexibility_policy': TfArg.literal([
+               instanceFlexibilityPolicy.toArgMap(),
+             ]),
+           if (standbyPolicy != null)
+             'standby_policy': TfArg.literal([standbyPolicy.toArgMap()]),
+           if (targetSizePolicies != null)
+             'target_size_policy': TfArg.literal(
+               targetSizePolicies.map((p) => p.toArgMap()).toList(),
+             ),
+           if (resourcePolicies != null)
+             'resource_policies': TfArg.literal([resourcePolicies.toArgMap()]),
+           if (allInstancesConfig != null)
+             'all_instances_config': TfArg.literal([
+               allInstancesConfig.toArgMap(),
+             ]),
+           if (statefulDisks != null)
+             'stateful_disk': TfArg.literal(
+               statefulDisks.map((d) => d.toArgMap()).toList(),
+             ),
+           if (statefulInternalIps != null)
+             'stateful_internal_ip': TfArg.literal(
+               statefulInternalIps.map((i) => i.toArgMap()).toList(),
+             ),
+           if (statefulExternalIps != null)
+             'stateful_external_ip': TfArg.literal(
+               statefulExternalIps.map((i) => i.toArgMap()).toList(),
+             ),
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

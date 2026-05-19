@@ -81,7 +81,7 @@ final class GoogleComputeNetwork extends Resource {
     TfArg<num>? mtu,
     TfArg<String>? description,
     TfArg<NetworkFirewallPolicyEnforcementOrder>?
-        networkFirewallPolicyEnforcementOrder,
+    networkFirewallPolicyEnforcementOrder,
     TfArg<String>? networkProfile,
     TfArg<bool>? enableUlaInternalIpv6,
     TfArg<bool>? deleteDefaultRoutesOnCreate,
@@ -94,35 +94,35 @@ final class GoogleComputeNetwork extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            if (autoCreateSubnetworks != null)
-              'auto_create_subnetworks': autoCreateSubnetworks,
-            if (routingMode != null) 'routing_mode': routingMode,
-            if (mtu != null) 'mtu': mtu,
-            if (description != null) 'description': description,
-            if (networkFirewallPolicyEnforcementOrder != null)
-              'network_firewall_policy_enforcement_order':
-                  networkFirewallPolicyEnforcementOrder,
-            if (networkProfile != null) 'network_profile': networkProfile,
-            if (enableUlaInternalIpv6 != null)
-              'enable_ula_internal_ipv6': enableUlaInternalIpv6,
-            if (deleteDefaultRoutesOnCreate != null)
-              'delete_default_routes_on_create': deleteDefaultRoutesOnCreate,
-            if (deleteBgpAlwaysCompareMed != null)
-              'delete_bgp_always_compare_med': deleteBgpAlwaysCompareMed,
-            if (bgpAlwaysCompareMed != null)
-              'bgp_always_compare_med': bgpAlwaysCompareMed,
-            if (bgpBestPathSelectionMode != null)
-              'bgp_best_path_selection_mode': bgpBestPathSelectionMode,
-            if (bgpInterRegionCost != null)
-              'bgp_inter_region_cost': bgpInterRegionCost,
-            if (internalIpv6Range != null)
-              'internal_ipv6_range': internalIpv6Range,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           if (autoCreateSubnetworks != null)
+             'auto_create_subnetworks': autoCreateSubnetworks,
+           if (routingMode != null) 'routing_mode': routingMode,
+           if (mtu != null) 'mtu': mtu,
+           if (description != null) 'description': description,
+           if (networkFirewallPolicyEnforcementOrder != null)
+             'network_firewall_policy_enforcement_order':
+                 networkFirewallPolicyEnforcementOrder,
+           if (networkProfile != null) 'network_profile': networkProfile,
+           if (enableUlaInternalIpv6 != null)
+             'enable_ula_internal_ipv6': enableUlaInternalIpv6,
+           if (deleteDefaultRoutesOnCreate != null)
+             'delete_default_routes_on_create': deleteDefaultRoutesOnCreate,
+           if (deleteBgpAlwaysCompareMed != null)
+             'delete_bgp_always_compare_med': deleteBgpAlwaysCompareMed,
+           if (bgpAlwaysCompareMed != null)
+             'bgp_always_compare_med': bgpAlwaysCompareMed,
+           if (bgpBestPathSelectionMode != null)
+             'bgp_best_path_selection_mode': bgpBestPathSelectionMode,
+           if (bgpInterRegionCost != null)
+             'bgp_inter_region_cost': bgpInterRegionCost,
+           if (internalIpv6Range != null)
+             'internal_ipv6_range': internalIpv6Range,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

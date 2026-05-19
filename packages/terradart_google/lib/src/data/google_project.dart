@@ -42,10 +42,10 @@ final class GoogleProject extends Data {
   static const String $tfType = 'google_project';
 
   GoogleProject({required super.localName, TfArg<String>? projectId})
-      : super(
-          terraformType: $tfType,
-          argMap: {if (projectId != null) 'project_id': projectId},
-        );
+    : super(
+        terraformType: $tfType,
+        argMap: {if (projectId != null) 'project_id': projectId},
+      );
 
   @override
   // ignore: non_constant_identifier_names

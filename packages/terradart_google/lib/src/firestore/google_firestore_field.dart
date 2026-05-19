@@ -48,8 +48,8 @@ class IndexConfig {
   final List<SingleFieldIndex> indexes;
 
   Map<String, Object?> encode() => {
-        'indexes': indexes.map((i) => i.encode()).toList(),
-      };
+    'indexes': indexes.map((i) => i.encode()).toList(),
+  };
 }
 
 /// One entry in `index_config.indexes`. Pick exactly one of [order]
@@ -63,16 +63,16 @@ class SingleFieldIndex {
     this.order,
     this.arrayContains = false,
     this.queryScope,
-  })  : assert(
-          !(order != null && arrayContains),
-          'SingleFieldIndex: pass exactly one of `order` or '
-          '`arrayContains: true` -- the schema rejects both.',
-        ),
-        assert(
-          order != null || arrayContains,
-          'SingleFieldIndex: must specify either `order` or '
-          '`arrayContains: true`.',
-        );
+  }) : assert(
+         !(order != null && arrayContains),
+         'SingleFieldIndex: pass exactly one of `order` or '
+         '`arrayContains: true` -- the schema rejects both.',
+       ),
+       assert(
+         order != null || arrayContains,
+         'SingleFieldIndex: must specify either `order` or '
+         '`arrayContains: true`.',
+       );
 
   /// Index direction. Null when [arrayContains] is true.
   final FirestoreFieldOrder? order;
@@ -86,12 +86,12 @@ class SingleFieldIndex {
   final FirestoreFieldQueryScope? queryScope;
 
   Map<String, Object?> encode() => {
-        if (order != null) 'order': order!.terraformValue,
-        // `CONTAINS` is the only valid value for `array_config` as of provider v7.31.0;
-        // hard-coded here to keep the encoded shape consistent with the schema.
-        if (arrayContains) 'array_config': 'CONTAINS',
-        if (queryScope != null) 'query_scope': queryScope!.terraformValue,
-      };
+    if (order != null) 'order': order!.terraformValue,
+    // `CONTAINS` is the only valid value for `array_config` as of provider v7.31.0;
+    // hard-coded here to keep the encoded shape consistent with the schema.
+    if (arrayContains) 'array_config': 'CONTAINS',
+    if (queryScope != null) 'query_scope': queryScope!.terraformValue,
+  };
 }
 
 /// `ttl_config` block (max_items=1). Presence alone enables the TTL
@@ -163,18 +163,18 @@ final class GoogleFirestoreField extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'collection': collection,
-            'field': field,
-            if (database != null) 'database': database,
-            if (indexConfig != null)
-              'index_config': TfArg.literal([indexConfig.encode()]),
-            if (ttlConfig != null)
-              'ttl_config': TfArg.literal([ttlConfig.encode()]),
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'collection': collection,
+           'field': field,
+           if (database != null) 'database': database,
+           if (indexConfig != null)
+             'index_config': TfArg.literal([indexConfig.encode()]),
+           if (ttlConfig != null)
+             'ttl_config': TfArg.literal([ttlConfig.encode()]),
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

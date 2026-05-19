@@ -128,10 +128,10 @@ class CustomerEncryption {
   final TfArg<String>? encryptionAlgorithm;
 
   Map<String, Object?> toArgMap() => {
-        'encryption_key': encryptionKey.toTfJson(),
-        if (encryptionAlgorithm != null)
-          'encryption_algorithm': encryptionAlgorithm!.toTfJson(),
-      };
+    'encryption_key': encryptionKey.toTfJson(),
+    if (encryptionAlgorithm != null)
+      'encryption_algorithm': encryptionAlgorithm!.toTfJson(),
+  };
 }
 
 /// Object-level retention policy (`retention` block).
@@ -152,9 +152,9 @@ class BucketObjectRetention {
   final TfArg<String> retainUntilTime;
 
   Map<String, Object?> toArgMap() => {
-        'mode': mode.toTfJson(),
-        'retain_until_time': retainUntilTime.toTfJson(),
-      };
+    'mode': mode.toTfJson(),
+    'retain_until_time': retainUntilTime.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_storage_bucket_object` (provider
@@ -230,35 +230,35 @@ final class GoogleStorageBucketObject extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'bucket': bucket,
-            'name': name,
-            if (contentType != null) 'content_type': contentType,
-            if (cacheControl != null) 'cache_control': cacheControl,
-            if (contentDisposition != null)
-              'content_disposition': contentDisposition,
-            if (contentEncoding != null) 'content_encoding': contentEncoding,
-            if (contentLanguage != null) 'content_language': contentLanguage,
-            if (storageClass != null) 'storage_class': storageClass,
-            if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
-            if (metadata != null) 'metadata': metadata,
-            if (eventBasedHold != null) 'event_based_hold': eventBasedHold,
-            if (temporaryHold != null) 'temporary_hold': temporaryHold,
-            if (forceEmptyContentType != null)
-              'force_empty_content_type': forceEmptyContentType,
-            if (detectMd5hash != null) 'detect_md5hash': detectMd5hash,
-            if (sourceMd5hash != null) 'source_md5hash': sourceMd5hash,
-            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-            if (customerEncryption != null)
-              'customer_encryption': TfArg.literal([
-                customerEncryption.toArgMap(),
-              ]),
-            if (retention != null)
-              'retention': TfArg.literal([retention.toArgMap()]),
-            body.blockKey: body.value,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'bucket': bucket,
+           'name': name,
+           if (contentType != null) 'content_type': contentType,
+           if (cacheControl != null) 'cache_control': cacheControl,
+           if (contentDisposition != null)
+             'content_disposition': contentDisposition,
+           if (contentEncoding != null) 'content_encoding': contentEncoding,
+           if (contentLanguage != null) 'content_language': contentLanguage,
+           if (storageClass != null) 'storage_class': storageClass,
+           if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
+           if (metadata != null) 'metadata': metadata,
+           if (eventBasedHold != null) 'event_based_hold': eventBasedHold,
+           if (temporaryHold != null) 'temporary_hold': temporaryHold,
+           if (forceEmptyContentType != null)
+             'force_empty_content_type': forceEmptyContentType,
+           if (detectMd5hash != null) 'detect_md5hash': detectMd5hash,
+           if (sourceMd5hash != null) 'source_md5hash': sourceMd5hash,
+           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           if (customerEncryption != null)
+             'customer_encryption': TfArg.literal([
+               customerEncryption.toArgMap(),
+             ]),
+           if (retention != null)
+             'retention': TfArg.literal([retention.toArgMap()]),
+           body.blockKey: body.value,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

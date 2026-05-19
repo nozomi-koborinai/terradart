@@ -111,15 +111,15 @@ final class GoogleComputeManagedSslCertificate extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            if (name != null) 'name': name,
-            if (managed != null) 'managed': TfArg.literal([managed.toArgMap()]),
-            if (type != null) 'type': type,
-            if (description != null) 'description': description,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           if (name != null) 'name': name,
+           if (managed != null) 'managed': TfArg.literal([managed.toArgMap()]),
+           if (type != null) 'type': type,
+           if (description != null) 'description': description,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

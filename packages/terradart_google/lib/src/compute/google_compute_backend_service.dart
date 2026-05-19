@@ -241,26 +241,23 @@ class BackendServiceBackend {
   final List<BackendServiceBackendCustomMetric>? customMetrics;
 
   Map<String, Object?> toArgMap() => {
-        'group': group.toTfJson(),
-        if (balancingMode != null)
-          'balancing_mode': balancingMode!.terraformValue,
-        if (capacityScaler != null) 'capacity_scaler': capacityScaler,
-        if (description != null) 'description': description!.toTfJson(),
-        if (maxConnections != null) 'max_connections': maxConnections,
-        if (maxConnectionsPerEndpoint != null)
-          'max_connections_per_endpoint': maxConnectionsPerEndpoint,
-        if (maxConnectionsPerInstance != null)
-          'max_connections_per_instance': maxConnectionsPerInstance,
-        if (maxRate != null) 'max_rate': maxRate,
-        if (maxRatePerEndpoint != null)
-          'max_rate_per_endpoint': maxRatePerEndpoint,
-        if (maxRatePerInstance != null)
-          'max_rate_per_instance': maxRatePerInstance,
-        if (maxUtilization != null) 'max_utilization': maxUtilization,
-        if (preference != null) 'preference': preference!.terraformValue,
-        if (customMetrics != null)
-          'custom_metrics': customMetrics!.map((m) => m.toArgMap()).toList(),
-      };
+    'group': group.toTfJson(),
+    if (balancingMode != null) 'balancing_mode': balancingMode!.terraformValue,
+    if (capacityScaler != null) 'capacity_scaler': capacityScaler,
+    if (description != null) 'description': description!.toTfJson(),
+    if (maxConnections != null) 'max_connections': maxConnections,
+    if (maxConnectionsPerEndpoint != null)
+      'max_connections_per_endpoint': maxConnectionsPerEndpoint,
+    if (maxConnectionsPerInstance != null)
+      'max_connections_per_instance': maxConnectionsPerInstance,
+    if (maxRate != null) 'max_rate': maxRate,
+    if (maxRatePerEndpoint != null) 'max_rate_per_endpoint': maxRatePerEndpoint,
+    if (maxRatePerInstance != null) 'max_rate_per_instance': maxRatePerInstance,
+    if (maxUtilization != null) 'max_utilization': maxUtilization,
+    if (preference != null) 'preference': preference!.terraformValue,
+    if (customMetrics != null)
+      'custom_metrics': customMetrics!.map((m) => m.toArgMap()).toList(),
+  };
 }
 
 /// One entry under `backend.custom_metrics` — a signal exported by the
@@ -285,10 +282,10 @@ class BackendServiceBackendCustomMetric {
   final double? maxUtilization;
 
   Map<String, Object?> toArgMap() => {
-        'name': name.toTfJson(),
-        'dry_run': dryRun,
-        if (maxUtilization != null) 'max_utilization': maxUtilization,
-      };
+    'name': name.toTfJson(),
+    'dry_run': dryRun,
+    if (maxUtilization != null) 'max_utilization': maxUtilization,
+  };
 }
 
 // ===========================================================================
@@ -338,7 +335,7 @@ class BackendServiceCdnPolicy {
 
   /// Bypass cache when any of these request headers is present.
   final List<BackendServiceCdnBypassCacheOnRequestHeader>?
-      bypassCacheOnRequestHeaders;
+  bypassCacheOnRequestHeaders;
 
   /// Cache key policy — which request components participate in the
   /// cache key.
@@ -349,24 +346,26 @@ class BackendServiceCdnPolicy {
   final List<BackendServiceCdnNegativeCachingPolicy>? negativeCachingPolicy;
 
   Map<String, Object?> toArgMap() => {
-        if (cacheMode != null) 'cache_mode': cacheMode!.terraformValue,
-        if (clientTtl != null) 'client_ttl': clientTtl,
-        if (defaultTtl != null) 'default_ttl': defaultTtl,
-        if (maxTtl != null) 'max_ttl': maxTtl,
-        if (negativeCaching != null) 'negative_caching': negativeCaching,
-        if (requestCoalescing != null) 'request_coalescing': requestCoalescing,
-        if (serveWhileStale != null) 'serve_while_stale': serveWhileStale,
-        if (signedUrlCacheMaxAgeSec != null)
-          'signed_url_cache_max_age_sec': signedUrlCacheMaxAgeSec,
-        if (bypassCacheOnRequestHeaders != null)
-          'bypass_cache_on_request_headers':
-              bypassCacheOnRequestHeaders!.map((h) => h.toArgMap()).toList(),
-        if (cacheKeyPolicy != null)
-          'cache_key_policy': [cacheKeyPolicy!.toArgMap()],
-        if (negativeCachingPolicy != null)
-          'negative_caching_policy':
-              negativeCachingPolicy!.map((p) => p.toArgMap()).toList(),
-      };
+    if (cacheMode != null) 'cache_mode': cacheMode!.terraformValue,
+    if (clientTtl != null) 'client_ttl': clientTtl,
+    if (defaultTtl != null) 'default_ttl': defaultTtl,
+    if (maxTtl != null) 'max_ttl': maxTtl,
+    if (negativeCaching != null) 'negative_caching': negativeCaching,
+    if (requestCoalescing != null) 'request_coalescing': requestCoalescing,
+    if (serveWhileStale != null) 'serve_while_stale': serveWhileStale,
+    if (signedUrlCacheMaxAgeSec != null)
+      'signed_url_cache_max_age_sec': signedUrlCacheMaxAgeSec,
+    if (bypassCacheOnRequestHeaders != null)
+      'bypass_cache_on_request_headers': bypassCacheOnRequestHeaders!
+          .map((h) => h.toArgMap())
+          .toList(),
+    if (cacheKeyPolicy != null)
+      'cache_key_policy': [cacheKeyPolicy!.toArgMap()],
+    if (negativeCachingPolicy != null)
+      'negative_caching_policy': negativeCachingPolicy!
+          .map((p) => p.toArgMap())
+          .toList(),
+  };
 }
 
 /// Cache-bypass rule keyed on a request header name.
@@ -402,19 +401,17 @@ class BackendServiceCdnCacheKeyPolicy {
   final List<String>? queryStringBlacklist;
 
   Map<String, Object?> toArgMap() => {
-        if (includeHost != null) 'include_host': includeHost,
-        if (includeProtocol != null) 'include_protocol': includeProtocol,
-        if (includeQueryString != null)
-          'include_query_string': includeQueryString,
-        if (includeHttpHeaders != null)
-          'include_http_headers': includeHttpHeaders,
-        if (includeNamedCookies != null)
-          'include_named_cookies': includeNamedCookies,
-        if (queryStringWhitelist != null)
-          'query_string_whitelist': queryStringWhitelist,
-        if (queryStringBlacklist != null)
-          'query_string_blacklist': queryStringBlacklist,
-      };
+    if (includeHost != null) 'include_host': includeHost,
+    if (includeProtocol != null) 'include_protocol': includeProtocol,
+    if (includeQueryString != null) 'include_query_string': includeQueryString,
+    if (includeHttpHeaders != null) 'include_http_headers': includeHttpHeaders,
+    if (includeNamedCookies != null)
+      'include_named_cookies': includeNamedCookies,
+    if (queryStringWhitelist != null)
+      'query_string_whitelist': queryStringWhitelist,
+    if (queryStringBlacklist != null)
+      'query_string_blacklist': queryStringBlacklist,
+  };
 }
 
 /// One row in `cdn_policy.negative_caching_policy`.
@@ -431,9 +428,9 @@ class BackendServiceCdnNegativeCachingPolicy {
   final int? ttl;
 
   Map<String, Object?> toArgMap() => {
-        if (code != null) 'code': code,
-        if (ttl != null) 'ttl': ttl,
-      };
+    if (code != null) 'code': code,
+    if (ttl != null) 'ttl': ttl,
+  };
 }
 
 // ===========================================================================
@@ -469,12 +466,11 @@ class BackendServiceIap {
   final TfArg<String>? oauth2ClientSecret;
 
   Map<String, Object?> toArgMap() => {
-        'enabled': enabled,
-        if (oauth2ClientId != null)
-          'oauth2_client_id': oauth2ClientId!.toTfJson(),
-        if (oauth2ClientSecret != null)
-          'oauth2_client_secret': oauth2ClientSecret!.toTfJson(),
-      };
+    'enabled': enabled,
+    if (oauth2ClientId != null) 'oauth2_client_id': oauth2ClientId!.toTfJson(),
+    if (oauth2ClientSecret != null)
+      'oauth2_client_secret': oauth2ClientSecret!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -502,14 +498,13 @@ class BackendServiceCircuitBreakers {
   final int? maxRetries;
 
   Map<String, Object?> toArgMap() => {
-        if (maxConnections != null) 'max_connections': maxConnections,
-        if (maxPendingRequests != null)
-          'max_pending_requests': maxPendingRequests,
-        if (maxRequests != null) 'max_requests': maxRequests,
-        if (maxRequestsPerConnection != null)
-          'max_requests_per_connection': maxRequestsPerConnection,
-        if (maxRetries != null) 'max_retries': maxRetries,
-      };
+    if (maxConnections != null) 'max_connections': maxConnections,
+    if (maxPendingRequests != null) 'max_pending_requests': maxPendingRequests,
+    if (maxRequests != null) 'max_requests': maxRequests,
+    if (maxRequestsPerConnection != null)
+      'max_requests_per_connection': maxRequestsPerConnection,
+    if (maxRetries != null) 'max_retries': maxRetries,
+  };
 }
 
 // ===========================================================================
@@ -536,11 +531,10 @@ class BackendServiceConsistentHash {
   final BackendServiceConsistentHashHttpCookie? httpCookie;
 
   Map<String, Object?> toArgMap() => {
-        if (httpHeaderName != null)
-          'http_header_name': httpHeaderName!.toTfJson(),
-        if (minimumRingSize != null) 'minimum_ring_size': minimumRingSize,
-        if (httpCookie != null) 'http_cookie': [httpCookie!.toArgMap()],
-      };
+    if (httpHeaderName != null) 'http_header_name': httpHeaderName!.toTfJson(),
+    if (minimumRingSize != null) 'minimum_ring_size': minimumRingSize,
+    if (httpCookie != null) 'http_cookie': [httpCookie!.toArgMap()],
+  };
 }
 
 /// `consistent_hash.http_cookie` (max_items=1).
@@ -557,10 +551,10 @@ class BackendServiceConsistentHashHttpCookie {
   final BackendServiceDuration? ttl;
 
   Map<String, Object?> toArgMap() => {
-        if (name != null) 'name': name!.toTfJson(),
-        if (path != null) 'path': path!.toTfJson(),
-        if (ttl != null) 'ttl': [ttl!.toArgMap()],
-      };
+    if (name != null) 'name': name!.toTfJson(),
+    if (path != null) 'path': path!.toTfJson(),
+    if (ttl != null) 'ttl': [ttl!.toArgMap()],
+  };
 }
 
 /// google.protobuf.Duration-shaped value used by several sub-blocks
@@ -578,9 +572,9 @@ class BackendServiceDuration {
   final int? nanos;
 
   Map<String, Object?> toArgMap() => {
-        'seconds': seconds,
-        if (nanos != null) 'nanos': nanos,
-      };
+    'seconds': seconds,
+    if (nanos != null) 'nanos': nanos,
+  };
 }
 
 // ===========================================================================
@@ -612,11 +606,11 @@ class BackendServiceLogConfig {
   final List<String>? optionalFields;
 
   Map<String, Object?> toArgMap() => {
-        if (enable != null) 'enable': enable,
-        if (sampleRate != null) 'sample_rate': sampleRate,
-        if (optionalMode != null) 'optional_mode': optionalMode!.terraformValue,
-        if (optionalFields != null) 'optional_fields': optionalFields,
-      };
+    if (enable != null) 'enable': enable,
+    if (sampleRate != null) 'sample_rate': sampleRate,
+    if (optionalMode != null) 'optional_mode': optionalMode!.terraformValue,
+    if (optionalFields != null) 'optional_fields': optionalFields,
+  };
 }
 
 // ===========================================================================
@@ -659,28 +653,27 @@ class BackendServiceOutlierDetection {
   final BackendServiceDuration? interval;
 
   Map<String, Object?> toArgMap() => {
-        if (consecutiveErrors != null) 'consecutive_errors': consecutiveErrors,
-        if (consecutiveGatewayFailure != null)
-          'consecutive_gateway_failure': consecutiveGatewayFailure,
-        if (enforcingConsecutiveErrors != null)
-          'enforcing_consecutive_errors': enforcingConsecutiveErrors,
-        if (enforcingConsecutiveGatewayFailure != null)
-          'enforcing_consecutive_gateway_failure':
-              enforcingConsecutiveGatewayFailure,
-        if (enforcingSuccessRate != null)
-          'enforcing_success_rate': enforcingSuccessRate,
-        if (maxEjectionPercent != null)
-          'max_ejection_percent': maxEjectionPercent,
-        if (successRateMinimumHosts != null)
-          'success_rate_minimum_hosts': successRateMinimumHosts,
-        if (successRateRequestVolume != null)
-          'success_rate_request_volume': successRateRequestVolume,
-        if (successRateStdevFactor != null)
-          'success_rate_stdev_factor': successRateStdevFactor,
-        if (baseEjectionTime != null)
-          'base_ejection_time': [baseEjectionTime!.toArgMap()],
-        if (interval != null) 'interval': [interval!.toArgMap()],
-      };
+    if (consecutiveErrors != null) 'consecutive_errors': consecutiveErrors,
+    if (consecutiveGatewayFailure != null)
+      'consecutive_gateway_failure': consecutiveGatewayFailure,
+    if (enforcingConsecutiveErrors != null)
+      'enforcing_consecutive_errors': enforcingConsecutiveErrors,
+    if (enforcingConsecutiveGatewayFailure != null)
+      'enforcing_consecutive_gateway_failure':
+          enforcingConsecutiveGatewayFailure,
+    if (enforcingSuccessRate != null)
+      'enforcing_success_rate': enforcingSuccessRate,
+    if (maxEjectionPercent != null) 'max_ejection_percent': maxEjectionPercent,
+    if (successRateMinimumHosts != null)
+      'success_rate_minimum_hosts': successRateMinimumHosts,
+    if (successRateRequestVolume != null)
+      'success_rate_request_volume': successRateRequestVolume,
+    if (successRateStdevFactor != null)
+      'success_rate_stdev_factor': successRateStdevFactor,
+    if (baseEjectionTime != null)
+      'base_ejection_time': [baseEjectionTime!.toArgMap()],
+    if (interval != null) 'interval': [interval!.toArgMap()],
+  };
 }
 
 // ===========================================================================
@@ -712,12 +705,12 @@ class BackendServiceSecuritySettings {
   final BackendServiceAwsV4Authentication? awsV4Authentication;
 
   Map<String, Object?> toArgMap() => {
-        if (clientTlsPolicy != null)
-          'client_tls_policy': clientTlsPolicy!.toTfJson(),
-        if (subjectAltNames != null) 'subject_alt_names': subjectAltNames,
-        if (awsV4Authentication != null)
-          'aws_v4_authentication': [awsV4Authentication!.toArgMap()],
-      };
+    if (clientTlsPolicy != null)
+      'client_tls_policy': clientTlsPolicy!.toTfJson(),
+    if (subjectAltNames != null) 'subject_alt_names': subjectAltNames,
+    if (awsV4Authentication != null)
+      'aws_v4_authentication': [awsV4Authentication!.toArgMap()],
+  };
 }
 
 /// `security_settings.aws_v4_authentication` (max_items=1).
@@ -745,12 +738,12 @@ class BackendServiceAwsV4Authentication {
   final TfArg<String>? originRegion;
 
   Map<String, Object?> toArgMap() => {
-        if (accessKey != null) 'access_key': accessKey!.toTfJson(),
-        if (accessKeyId != null) 'access_key_id': accessKeyId!.toTfJson(),
-        if (accessKeyVersion != null)
-          'access_key_version': accessKeyVersion!.toTfJson(),
-        if (originRegion != null) 'origin_region': originRegion!.toTfJson(),
-      };
+    if (accessKey != null) 'access_key': accessKey!.toTfJson(),
+    if (accessKeyId != null) 'access_key_id': accessKeyId!.toTfJson(),
+    if (accessKeyVersion != null)
+      'access_key_version': accessKeyVersion!.toTfJson(),
+    if (originRegion != null) 'origin_region': originRegion!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -774,10 +767,10 @@ class BackendServiceStrongSessionAffinityCookie {
   final BackendServiceDuration? ttl;
 
   Map<String, Object?> toArgMap() => {
-        if (name != null) 'name': name!.toTfJson(),
-        if (path != null) 'path': path!.toTfJson(),
-        if (ttl != null) 'ttl': [ttl!.toArgMap()],
-      };
+    if (name != null) 'name': name!.toTfJson(),
+    if (path != null) 'path': path!.toTfJson(),
+    if (ttl != null) 'ttl': [ttl!.toArgMap()],
+  };
 }
 
 // ===========================================================================
@@ -797,9 +790,9 @@ class BackendServiceMaxStreamDuration {
   final int? nanos;
 
   Map<String, Object?> toArgMap() => {
-        'seconds': seconds.toTfJson(),
-        if (nanos != null) 'nanos': nanos,
-      };
+    'seconds': seconds.toTfJson(),
+    if (nanos != null) 'nanos': nanos,
+  };
 }
 
 // ===========================================================================
@@ -827,13 +820,12 @@ class BackendServiceTlsSettings {
   final List<BackendServiceTlsSubjectAltName>? subjectAltNames;
 
   Map<String, Object?> toArgMap() => {
-        if (authenticationConfig != null)
-          'authentication_config': authenticationConfig!.toTfJson(),
-        if (sni != null) 'sni': sni!.toTfJson(),
-        if (subjectAltNames != null)
-          'subject_alt_names':
-              subjectAltNames!.map((s) => s.toArgMap()).toList(),
-      };
+    if (authenticationConfig != null)
+      'authentication_config': authenticationConfig!.toTfJson(),
+    if (sni != null) 'sni': sni!.toTfJson(),
+    if (subjectAltNames != null)
+      'subject_alt_names': subjectAltNames!.map((s) => s.toArgMap()).toList(),
+  };
 }
 
 /// One entry under `tls_settings.subject_alt_names`. Exactly one of
@@ -849,10 +841,10 @@ class BackendServiceTlsSubjectAltName {
   final TfArg<String>? uniformResourceIdentifier;
 
   Map<String, Object?> toArgMap() => {
-        if (dnsName != null) 'dns_name': dnsName!.toTfJson(),
-        if (uniformResourceIdentifier != null)
-          'uniform_resource_identifier': uniformResourceIdentifier!.toTfJson(),
-      };
+    if (dnsName != null) 'dns_name': dnsName!.toTfJson(),
+    if (uniformResourceIdentifier != null)
+      'uniform_resource_identifier': uniformResourceIdentifier!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -872,9 +864,9 @@ class BackendServiceLocalityLbPolicyEntry {
   final BackendServiceLocalityLbCustomPolicy? customPolicy;
 
   Map<String, Object?> toArgMap() => {
-        if (policy != null) 'policy': [policy!.toArgMap()],
-        if (customPolicy != null) 'custom_policy': [customPolicy!.toArgMap()],
-      };
+    if (policy != null) 'policy': [policy!.toArgMap()],
+    if (customPolicy != null) 'custom_policy': [customPolicy!.toArgMap()],
+  };
 }
 
 /// Built-in `locality_lb_policies[].policy` (max_items=1).
@@ -899,9 +891,9 @@ class BackendServiceLocalityLbCustomPolicy {
   final TfArg<String>? data;
 
   Map<String, Object?> toArgMap() => {
-        'name': name.toTfJson(),
-        if (data != null) 'data': data!.toTfJson(),
-      };
+    'name': name.toTfJson(),
+    if (data != null) 'data': data!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -917,9 +909,9 @@ class BackendServiceCustomMetric {
   final TfArg<String> name;
   final bool dryRun;
   Map<String, Object?> toArgMap() => {
-        'name': name.toTfJson(),
-        'dry_run': dryRun,
-      };
+    'name': name.toTfJson(),
+    'dry_run': dryRun,
+  };
 }
 
 // ===========================================================================
@@ -936,9 +928,9 @@ class BackendServiceParams {
   final TfArg<Map<String, String>>? resourceManagerTags;
 
   Map<String, Object?> toArgMap() => {
-        if (resourceManagerTags != null)
-          'resource_manager_tags': resourceManagerTags!.toTfJson(),
-      };
+    if (resourceManagerTags != null)
+      'resource_manager_tags': resourceManagerTags!.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_compute_backend_service` (provider
@@ -1062,79 +1054,78 @@ final class GoogleComputeBackendService extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            if (description != null) 'description': description,
-            if (protocol != null) 'protocol': protocol,
-            if (portName != null) 'port_name': portName,
-            if (loadBalancingScheme != null)
-              'load_balancing_scheme': loadBalancingScheme,
-            if (localityLbPolicy != null)
-              'locality_lb_policy': localityLbPolicy,
-            if (sessionAffinity != null) 'session_affinity': sessionAffinity,
-            if (affinityCookieTtlSec != null)
-              'affinity_cookie_ttl_sec': affinityCookieTtlSec,
-            if (timeoutSec != null) 'timeout_sec': timeoutSec,
-            if (connectionDrainingTimeoutSec != null)
-              'connection_draining_timeout_sec': connectionDrainingTimeoutSec,
-            if (enableCdn != null) 'enable_cdn': enableCdn,
-            if (compressionMode != null) 'compression_mode': compressionMode,
-            if (ipAddressSelectionPolicy != null)
-              'ip_address_selection_policy': ipAddressSelectionPolicy,
-            if (customRequestHeaders != null)
-              'custom_request_headers': customRequestHeaders,
-            if (customResponseHeaders != null)
-              'custom_response_headers': customResponseHeaders,
-            if (healthChecks != null) 'health_checks': healthChecks,
-            if (securityPolicy != null) 'security_policy': securityPolicy,
-            if (edgeSecurityPolicy != null)
-              'edge_security_policy': edgeSecurityPolicy,
-            if (serviceLbPolicy != null) 'service_lb_policy': serviceLbPolicy,
-            if (externalManagedMigrationState != null)
-              'external_managed_migration_state': externalManagedMigrationState,
-            if (externalManagedMigrationTestingPercentage != null)
-              'external_managed_migration_testing_percentage':
-                  externalManagedMigrationTestingPercentage,
-            if (backends != null)
-              'backend': TfArg.literal(
-                backends.map((b) => b.toArgMap()).toList(),
-              ),
-            if (cdnPolicy != null)
-              'cdn_policy': TfArg.literal([cdnPolicy.toArgMap()]),
-            if (iap != null) 'iap': TfArg.literal([iap.toArgMap()]),
-            if (circuitBreakers != null)
-              'circuit_breakers': TfArg.literal([circuitBreakers.toArgMap()]),
-            if (consistentHash != null)
-              'consistent_hash': TfArg.literal([consistentHash.toArgMap()]),
-            if (outlierDetection != null)
-              'outlier_detection': TfArg.literal([outlierDetection.toArgMap()]),
-            if (logConfig != null)
-              'log_config': TfArg.literal([logConfig.toArgMap()]),
-            if (securitySettings != null)
-              'security_settings': TfArg.literal([securitySettings.toArgMap()]),
-            if (localityLbPolicies != null)
-              'locality_lb_policies': TfArg.literal(
-                localityLbPolicies.map((p) => p.toArgMap()).toList(),
-              ),
-            if (customMetrics != null)
-              'custom_metrics': TfArg.literal(
-                customMetrics.map((m) => m.toArgMap()).toList(),
-              ),
-            if (maxStreamDuration != null)
-              'max_stream_duration': TfArg.literal([
-                maxStreamDuration.toArgMap(),
-              ]),
-            if (strongSessionAffinityCookie != null)
-              'strong_session_affinity_cookie': TfArg.literal([
-                strongSessionAffinityCookie.toArgMap(),
-              ]),
-            if (tlsSettings != null)
-              'tls_settings': TfArg.literal([tlsSettings.toArgMap()]),
-            if (params != null) 'params': TfArg.literal([params.toArgMap()]),
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           if (description != null) 'description': description,
+           if (protocol != null) 'protocol': protocol,
+           if (portName != null) 'port_name': portName,
+           if (loadBalancingScheme != null)
+             'load_balancing_scheme': loadBalancingScheme,
+           if (localityLbPolicy != null) 'locality_lb_policy': localityLbPolicy,
+           if (sessionAffinity != null) 'session_affinity': sessionAffinity,
+           if (affinityCookieTtlSec != null)
+             'affinity_cookie_ttl_sec': affinityCookieTtlSec,
+           if (timeoutSec != null) 'timeout_sec': timeoutSec,
+           if (connectionDrainingTimeoutSec != null)
+             'connection_draining_timeout_sec': connectionDrainingTimeoutSec,
+           if (enableCdn != null) 'enable_cdn': enableCdn,
+           if (compressionMode != null) 'compression_mode': compressionMode,
+           if (ipAddressSelectionPolicy != null)
+             'ip_address_selection_policy': ipAddressSelectionPolicy,
+           if (customRequestHeaders != null)
+             'custom_request_headers': customRequestHeaders,
+           if (customResponseHeaders != null)
+             'custom_response_headers': customResponseHeaders,
+           if (healthChecks != null) 'health_checks': healthChecks,
+           if (securityPolicy != null) 'security_policy': securityPolicy,
+           if (edgeSecurityPolicy != null)
+             'edge_security_policy': edgeSecurityPolicy,
+           if (serviceLbPolicy != null) 'service_lb_policy': serviceLbPolicy,
+           if (externalManagedMigrationState != null)
+             'external_managed_migration_state': externalManagedMigrationState,
+           if (externalManagedMigrationTestingPercentage != null)
+             'external_managed_migration_testing_percentage':
+                 externalManagedMigrationTestingPercentage,
+           if (backends != null)
+             'backend': TfArg.literal(
+               backends.map((b) => b.toArgMap()).toList(),
+             ),
+           if (cdnPolicy != null)
+             'cdn_policy': TfArg.literal([cdnPolicy.toArgMap()]),
+           if (iap != null) 'iap': TfArg.literal([iap.toArgMap()]),
+           if (circuitBreakers != null)
+             'circuit_breakers': TfArg.literal([circuitBreakers.toArgMap()]),
+           if (consistentHash != null)
+             'consistent_hash': TfArg.literal([consistentHash.toArgMap()]),
+           if (outlierDetection != null)
+             'outlier_detection': TfArg.literal([outlierDetection.toArgMap()]),
+           if (logConfig != null)
+             'log_config': TfArg.literal([logConfig.toArgMap()]),
+           if (securitySettings != null)
+             'security_settings': TfArg.literal([securitySettings.toArgMap()]),
+           if (localityLbPolicies != null)
+             'locality_lb_policies': TfArg.literal(
+               localityLbPolicies.map((p) => p.toArgMap()).toList(),
+             ),
+           if (customMetrics != null)
+             'custom_metrics': TfArg.literal(
+               customMetrics.map((m) => m.toArgMap()).toList(),
+             ),
+           if (maxStreamDuration != null)
+             'max_stream_duration': TfArg.literal([
+               maxStreamDuration.toArgMap(),
+             ]),
+           if (strongSessionAffinityCookie != null)
+             'strong_session_affinity_cookie': TfArg.literal([
+               strongSessionAffinityCookie.toArgMap(),
+             ]),
+           if (tlsSettings != null)
+             'tls_settings': TfArg.literal([tlsSettings.toArgMap()]),
+           if (params != null) 'params': TfArg.literal([params.toArgMap()]),
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

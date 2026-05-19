@@ -92,11 +92,11 @@ class JobBinaryAuthorization {
   final TfArg<String>? breakglassJustification;
 
   Map<String, Object?> toArgMap() => {
-        if (useDefault != null) 'use_default': useDefault!.toTfJson(),
-        if (policy != null) 'policy': policy!.toTfJson(),
-        if (breakglassJustification != null)
-          'breakglass_justification': breakglassJustification!.toTfJson(),
-      };
+    if (useDefault != null) 'use_default': useDefault!.toTfJson(),
+    if (policy != null) 'policy': policy!.toTfJson(),
+    if (breakglassJustification != null)
+      'breakglass_justification': breakglassJustification!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -133,12 +133,12 @@ class JobTemplate {
   final TfArg<Map<String, String>>? annotations;
 
   Map<String, Object?> toArgMap() => {
-        'template': [template.toArgMap()],
-        if (parallelism != null) 'parallelism': parallelism!.toTfJson(),
-        if (taskCount != null) 'task_count': taskCount!.toTfJson(),
-        if (labels != null) 'labels': labels!.toTfJson(),
-        if (annotations != null) 'annotations': annotations!.toTfJson(),
-      };
+    'template': [template.toArgMap()],
+    if (parallelism != null) 'parallelism': parallelism!.toTfJson(),
+    if (taskCount != null) 'task_count': taskCount!.toTfJson(),
+    if (labels != null) 'labels': labels!.toTfJson(),
+    if (annotations != null) 'annotations': annotations!.toTfJson(),
+  };
 }
 
 /// Inner `template.template` block — the per-Task template. Holds at
@@ -193,22 +193,19 @@ class TaskTemplate {
   final JobNodeSelector? nodeSelector;
 
   Map<String, Object?> toArgMap() => {
-        'containers': containers.map((c) => c.toArgMap()).toList(),
-        if (serviceAccount != null)
-          'service_account': serviceAccount!.toTfJson(),
-        if (timeout != null) 'timeout': timeout!.toTfJson(),
-        if (maxRetries != null) 'max_retries': maxRetries!.toTfJson(),
-        if (executionEnvironment != null)
-          'execution_environment': executionEnvironment!.toTfJson(),
-        if (encryptionKey != null) 'encryption_key': encryptionKey!.toTfJson(),
-        if (gpuZonalRedundancyDisabled != null)
-          'gpu_zonal_redundancy_disabled':
-              gpuZonalRedundancyDisabled!.toTfJson(),
-        if (vpcAccess != null) 'vpc_access': [vpcAccess!.toArgMap()],
-        if (volumes != null)
-          'volumes': volumes!.map((v) => v.toArgMap()).toList(),
-        if (nodeSelector != null) 'node_selector': [nodeSelector!.toArgMap()],
-      };
+    'containers': containers.map((c) => c.toArgMap()).toList(),
+    if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
+    if (timeout != null) 'timeout': timeout!.toTfJson(),
+    if (maxRetries != null) 'max_retries': maxRetries!.toTfJson(),
+    if (executionEnvironment != null)
+      'execution_environment': executionEnvironment!.toTfJson(),
+    if (encryptionKey != null) 'encryption_key': encryptionKey!.toTfJson(),
+    if (gpuZonalRedundancyDisabled != null)
+      'gpu_zonal_redundancy_disabled': gpuZonalRedundancyDisabled!.toTfJson(),
+    if (vpcAccess != null) 'vpc_access': [vpcAccess!.toArgMap()],
+    if (volumes != null) 'volumes': volumes!.map((v) => v.toArgMap()).toList(),
+    if (nodeSelector != null) 'node_selector': [nodeSelector!.toArgMap()],
+  };
 }
 
 /// `template.template.vpc_access` block. Either pin a Serverless VPC
@@ -229,12 +226,13 @@ class JobVpcAccess {
   final List<JobVpcNetworkInterface>? networkInterfaces;
 
   Map<String, Object?> toArgMap() => {
-        if (connector != null) 'connector': connector!.toTfJson(),
-        if (egress != null) 'egress': egress!.toTfJson(),
-        if (networkInterfaces != null)
-          'network_interfaces':
-              networkInterfaces!.map((n) => n.toArgMap()).toList(),
-      };
+    if (connector != null) 'connector': connector!.toTfJson(),
+    if (egress != null) 'egress': egress!.toTfJson(),
+    if (networkInterfaces != null)
+      'network_interfaces': networkInterfaces!
+          .map((n) => n.toArgMap())
+          .toList(),
+  };
 }
 
 /// One direct-VPC-egress interface under [JobVpcAccess.networkInterfaces].
@@ -252,10 +250,10 @@ class JobVpcNetworkInterface {
   final TfArg<List<String>>? tags;
 
   Map<String, Object?> toArgMap() => {
-        if (network != null) 'network': network!.toTfJson(),
-        if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
-        if (tags != null) 'tags': tags!.toTfJson(),
-      };
+    if (network != null) 'network': network!.toTfJson(),
+    if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
+    if (tags != null) 'tags': tags!.toTfJson(),
+  };
 }
 
 /// GPU accelerator selector (`template.template.node_selector`).
@@ -327,19 +325,19 @@ class JobContainer {
   final JobStartupProbe? startupProbe;
 
   Map<String, Object?> toArgMap() => {
-        'image': image.toTfJson(),
-        if (name != null) 'name': name!.toTfJson(),
-        if (command != null) 'command': command!.toTfJson(),
-        if (args != null) 'args': args!.toTfJson(),
-        if (env != null) 'env': env!.map((e) => e.toArgMap()).toList(),
-        if (resources != null) 'resources': [resources!.toArgMap()],
-        if (ports != null) 'ports': [ports!.toArgMap()],
-        if (volumeMounts != null)
-          'volume_mounts': volumeMounts!.map((v) => v.toArgMap()).toList(),
-        if (workingDir != null) 'working_dir': workingDir!.toTfJson(),
-        if (dependsOn != null) 'depends_on': dependsOn!.toTfJson(),
-        if (startupProbe != null) 'startup_probe': [startupProbe!.toArgMap()],
-      };
+    'image': image.toTfJson(),
+    if (name != null) 'name': name!.toTfJson(),
+    if (command != null) 'command': command!.toTfJson(),
+    if (args != null) 'args': args!.toTfJson(),
+    if (env != null) 'env': env!.map((e) => e.toArgMap()).toList(),
+    if (resources != null) 'resources': [resources!.toArgMap()],
+    if (ports != null) 'ports': [ports!.toArgMap()],
+    if (volumeMounts != null)
+      'volume_mounts': volumeMounts!.map((v) => v.toArgMap()).toList(),
+    if (workingDir != null) 'working_dir': workingDir!.toTfJson(),
+    if (dependsOn != null) 'depends_on': dependsOn!.toTfJson(),
+    if (startupProbe != null) 'startup_probe': [startupProbe!.toArgMap()],
+  };
 }
 
 /// One env var. Set [source] to inject a value (literal or secret-ref).
@@ -355,9 +353,9 @@ class JobEnvVar {
   final JobEnvVarSource? source;
 
   Map<String, Object?> toArgMap() => {
-        'name': name,
-        if (source != null) ...source!.encode(),
-      };
+    'name': name,
+    if (source != null) ...source!.encode(),
+  };
 }
 
 /// Sealed dispatch for one [JobEnvVar.source]. Models the
@@ -393,14 +391,14 @@ final class JobEnvVarFromSecret extends JobEnvVarSource {
 
   @override
   Map<String, Object?> encode() => {
-        'value_source': [
-          {
-            'secret_key_ref': [
-              {'secret': secret.toTfJson(), 'version': version.toTfJson()},
-            ],
-          },
+    'value_source': [
+      {
+        'secret_key_ref': [
+          {'secret': secret.toTfJson(), 'version': version.toTfJson()},
         ],
-      };
+      },
+    ],
+  };
 }
 
 /// Container resource block (`resources`). Same shape as the
@@ -416,8 +414,8 @@ class JobContainerResources {
   final TfArg<Map<String, String>>? limits;
 
   Map<String, Object?> toArgMap() => {
-        if (limits != null) 'limits': limits!.toTfJson(),
-      };
+    if (limits != null) 'limits': limits!.toTfJson(),
+  };
 }
 
 /// Container port (`ports`). Cloud Run v2 supports exactly one port per
@@ -433,9 +431,9 @@ class JobContainerPort {
   final TfArg<String>? name;
 
   Map<String, Object?> toArgMap() => {
-        if (containerPort != null) 'container_port': containerPort!.toTfJson(),
-        if (name != null) 'name': name!.toTfJson(),
-      };
+    if (containerPort != null) 'container_port': containerPort!.toTfJson(),
+    if (name != null) 'name': name!.toTfJson(),
+  };
 }
 
 /// Volume mount entry.
@@ -457,10 +455,10 @@ class JobVolumeMount {
   final TfArg<String>? subPath;
 
   Map<String, Object?> toArgMap() => {
-        'name': name.toTfJson(),
-        'mount_path': mountPath.toTfJson(),
-        if (subPath != null) 'sub_path': subPath!.toTfJson(),
-      };
+    'name': name.toTfJson(),
+    'mount_path': mountPath.toTfJson(),
+    if (subPath != null) 'sub_path': subPath!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -494,17 +492,16 @@ class JobStartupProbe {
   final Map<String, Object?>? grpc;
 
   Map<String, Object?> toArgMap() => {
-        if (initialDelaySeconds != null)
-          'initial_delay_seconds': initialDelaySeconds!.toTfJson(),
-        if (timeoutSeconds != null)
-          'timeout_seconds': timeoutSeconds!.toTfJson(),
-        if (periodSeconds != null) 'period_seconds': periodSeconds!.toTfJson(),
-        if (failureThreshold != null)
-          'failure_threshold': failureThreshold!.toTfJson(),
-        if (httpGet != null) 'http_get': [httpGet!.toArgMap()],
-        if (tcpSocket != null) 'tcp_socket': [tcpSocket!.toArgMap()],
-        if (grpc != null) 'grpc': [grpc],
-      };
+    if (initialDelaySeconds != null)
+      'initial_delay_seconds': initialDelaySeconds!.toTfJson(),
+    if (timeoutSeconds != null) 'timeout_seconds': timeoutSeconds!.toTfJson(),
+    if (periodSeconds != null) 'period_seconds': periodSeconds!.toTfJson(),
+    if (failureThreshold != null)
+      'failure_threshold': failureThreshold!.toTfJson(),
+    if (httpGet != null) 'http_get': [httpGet!.toArgMap()],
+    if (tcpSocket != null) 'tcp_socket': [tcpSocket!.toArgMap()],
+    if (grpc != null) 'grpc': [grpc],
+  };
 }
 
 /// `http_get` probe action.
@@ -517,11 +514,11 @@ class JobHttpGetAction {
   final List<JobHttpHeader>? httpHeaders;
 
   Map<String, Object?> toArgMap() => {
-        if (path != null) 'path': path!.toTfJson(),
-        if (port != null) 'port': port!.toTfJson(),
-        if (httpHeaders != null)
-          'http_headers': httpHeaders!.map((h) => h.toArgMap()).toList(),
-      };
+    if (path != null) 'path': path!.toTfJson(),
+    if (port != null) 'port': port!.toTfJson(),
+    if (httpHeaders != null)
+      'http_headers': httpHeaders!.map((h) => h.toArgMap()).toList(),
+  };
 }
 
 /// `tcp_socket` probe action.
@@ -532,8 +529,8 @@ class JobTcpSocketAction {
   final TfArg<int>? port;
 
   Map<String, Object?> toArgMap() => {
-        if (port != null) 'port': port!.toTfJson(),
-      };
+    if (port != null) 'port': port!.toTfJson(),
+  };
 }
 
 /// One `http_headers` entry.
@@ -545,9 +542,9 @@ class JobHttpHeader {
   final TfArg<String>? value;
 
   Map<String, Object?> toArgMap() => {
-        'name': name.toTfJson(),
-        if (value != null) 'value': value!.toTfJson(),
-      };
+    'name': name.toTfJson(),
+    if (value != null) 'value': value!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -569,9 +566,9 @@ class JobVolume {
   final JobVolumeSource source;
 
   Map<String, Object?> toArgMap() => {
-        'name': name.toTfJson(),
-        ...source.encode(),
-      };
+    'name': name.toTfJson(),
+    ...source.encode(),
+  };
 }
 
 /// Sealed dispatch for [JobVolume.source].
@@ -592,15 +589,14 @@ final class JobVolumeSecret extends JobVolumeSource {
 
   @override
   Map<String, Object?> encode() => {
-        'secret': [
-          {
-            'secret': secret.toTfJson(),
-            if (defaultMode != null) 'default_mode': defaultMode!.toTfJson(),
-            if (items != null)
-              'items': items!.map((i) => i.toArgMap()).toList(),
-          },
-        ],
-      };
+    'secret': [
+      {
+        'secret': secret.toTfJson(),
+        if (defaultMode != null) 'default_mode': defaultMode!.toTfJson(),
+        if (items != null) 'items': items!.map((i) => i.toArgMap()).toList(),
+      },
+    ],
+  };
 }
 
 /// One entry under [JobVolumeSecret.items]. Both [path] and [version]
@@ -618,10 +614,10 @@ class JobSecretVolumeItem {
   final TfArg<int>? mode;
 
   Map<String, Object?> toArgMap() => {
-        'path': path.toTfJson(),
-        'version': version.toTfJson(),
-        if (mode != null) 'mode': mode!.toTfJson(),
-      };
+    'path': path.toTfJson(),
+    'version': version.toTfJson(),
+    if (mode != null) 'mode': mode!.toTfJson(),
+  };
 }
 
 /// Cloud SQL-backed volume.
@@ -634,10 +630,10 @@ final class JobCloudSqlVolume extends JobVolumeSource {
 
   @override
   Map<String, Object?> encode() => {
-        'cloud_sql_instance': [
-          {if (instances != null) 'instances': instances!.toTfJson()},
-        ],
-      };
+    'cloud_sql_instance': [
+      {if (instances != null) 'instances': instances!.toTfJson()},
+    ],
+  };
 }
 
 /// Ephemeral shared volume (`empty_dir`).
@@ -650,13 +646,13 @@ final class JobEmptyDirVolume extends JobVolumeSource {
 
   @override
   Map<String, Object?> encode() => {
-        'empty_dir': [
-          {
-            if (medium != null) 'medium': medium!.toTfJson(),
-            if (sizeLimit != null) 'size_limit': sizeLimit!.toTfJson(),
-          },
-        ],
-      };
+    'empty_dir': [
+      {
+        if (medium != null) 'medium': medium!.toTfJson(),
+        if (sizeLimit != null) 'size_limit': sizeLimit!.toTfJson(),
+      },
+    ],
+  };
 }
 
 /// GCSFuse-backed volume.
@@ -670,14 +666,14 @@ final class JobGcsVolume extends JobVolumeSource {
 
   @override
   Map<String, Object?> encode() => {
-        'gcs': [
-          {
-            'bucket': bucket.toTfJson(),
-            if (readOnly != null) 'read_only': readOnly!.toTfJson(),
-            if (mountOptions != null) 'mount_options': mountOptions!.toTfJson(),
-          },
-        ],
-      };
+    'gcs': [
+      {
+        'bucket': bucket.toTfJson(),
+        if (readOnly != null) 'read_only': readOnly!.toTfJson(),
+        if (mountOptions != null) 'mount_options': mountOptions!.toTfJson(),
+      },
+    ],
+  };
 }
 
 /// NFS-mounted volume.
@@ -691,14 +687,14 @@ final class JobNfsVolume extends JobVolumeSource {
 
   @override
   Map<String, Object?> encode() => {
-        'nfs': [
-          {
-            'server': server.toTfJson(),
-            if (path != null) 'path': path!.toTfJson(),
-            if (readOnly != null) 'read_only': readOnly!.toTfJson(),
-          },
-        ],
-      };
+    'nfs': [
+      {
+        'server': server.toTfJson(),
+        if (path != null) 'path': path!.toTfJson(),
+        if (readOnly != null) 'read_only': readOnly!.toTfJson(),
+      },
+    ],
+  };
 }
 
 /// Factory wrapper for `google_cloud_run_v2_job` (provider
@@ -767,25 +763,25 @@ final class GoogleCloudRunV2Job extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            'location': location,
-            'template': TfArg.literal([template.toArgMap()]),
-            if (binaryAuthorization != null)
-              'binary_authorization': TfArg.literal([
-                binaryAuthorization.toArgMap(),
-              ]),
-            if (launchStage != null) 'launch_stage': launchStage,
-            if (labels != null) 'labels': labels,
-            if (annotations != null) 'annotations': annotations,
-            if (client != null) 'client': client,
-            if (clientVersion != null) 'client_version': clientVersion,
-            if (deletionProtection != null)
-              'deletion_protection': deletionProtection,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           'location': location,
+           'template': TfArg.literal([template.toArgMap()]),
+           if (binaryAuthorization != null)
+             'binary_authorization': TfArg.literal([
+               binaryAuthorization.toArgMap(),
+             ]),
+           if (launchStage != null) 'launch_stage': launchStage,
+           if (labels != null) 'labels': labels,
+           if (annotations != null) 'annotations': annotations,
+           if (client != null) 'client': client,
+           if (clientVersion != null) 'client_version': clientVersion,
+           if (deletionProtection != null)
+             'deletion_protection': deletionProtection,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

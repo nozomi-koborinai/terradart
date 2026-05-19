@@ -60,16 +60,16 @@ final class GoogleComputeInstanceIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'instance_name': instanceName,
-            'role': role,
-            'member': member,
-            if (condition != null) 'condition': condition,
-            if (zone != null) 'zone': zone,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'instance_name': instanceName,
+           'role': role,
+           'member': member,
+           if (condition != null) 'condition': condition,
+           if (zone != null) 'zone': zone,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

@@ -127,11 +127,11 @@ class SecondaryIpRange {
   final TfArg<String>? reservedInternalRange;
 
   Map<String, Object?> toArgMap() => {
-        'range_name': rangeName.toTfJson(),
-        if (ipCidrRange != null) 'ip_cidr_range': ipCidrRange!.toTfJson(),
-        if (reservedInternalRange != null)
-          'reserved_internal_range': reservedInternalRange!.toTfJson(),
-      };
+    'range_name': rangeName.toTfJson(),
+    if (ipCidrRange != null) 'ip_cidr_range': ipCidrRange!.toTfJson(),
+    if (reservedInternalRange != null)
+      'reserved_internal_range': reservedInternalRange!.toTfJson(),
+  };
 }
 
 /// `log_config` block. Enables VPC flow logs for the subnetwork. Flow
@@ -165,14 +165,13 @@ class SubnetworkLogConfig {
   final TfArg<String>? filterExpr;
 
   Map<String, Object?> toArgMap() => {
-        if (aggregationInterval != null)
-          'aggregation_interval': aggregationInterval!.toTfJson(),
-        if (flowSampling != null) 'flow_sampling': flowSampling!.toTfJson(),
-        if (metadata != null) 'metadata': metadata!.toTfJson(),
-        if (metadataFields != null)
-          'metadata_fields': metadataFields!.toTfJson(),
-        if (filterExpr != null) 'filter_expr': filterExpr!.toTfJson(),
-      };
+    if (aggregationInterval != null)
+      'aggregation_interval': aggregationInterval!.toTfJson(),
+    if (flowSampling != null) 'flow_sampling': flowSampling!.toTfJson(),
+    if (metadata != null) 'metadata': metadata!.toTfJson(),
+    if (metadataFields != null) 'metadata_fields': metadataFields!.toTfJson(),
+    if (filterExpr != null) 'filter_expr': filterExpr!.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_compute_subnetwork` (provider
@@ -236,43 +235,43 @@ final class GoogleComputeSubnetwork extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            if (region != null) 'region': region,
-            'network': network,
-            if (ipCidrRange != null) 'ip_cidr_range': ipCidrRange,
-            if (purpose != null) 'purpose': purpose,
-            if (role != null) 'role': role,
-            if (secondaryIpRange != null)
-              'secondary_ip_range': TfArg.literal(
-                secondaryIpRange.map((s) => s.toArgMap()).toList(),
-              ),
-            if (privateIpGoogleAccess != null)
-              'private_ip_google_access': privateIpGoogleAccess,
-            if (privateIpv6GoogleAccess != null)
-              'private_ipv6_google_access': privateIpv6GoogleAccess,
-            if (logConfig != null)
-              'log_config': TfArg.literal([logConfig.toArgMap()]),
-            if (stackType != null) 'stack_type': stackType,
-            if (ipv6AccessType != null) 'ipv6_access_type': ipv6AccessType,
-            if (externalIpv6Prefix != null)
-              'external_ipv6_prefix': externalIpv6Prefix,
-            if (internalIpv6Prefix != null)
-              'internal_ipv6_prefix': internalIpv6Prefix,
-            if (ipCollection != null) 'ip_collection': ipCollection,
-            if (reservedInternalRange != null)
-              'reserved_internal_range': reservedInternalRange,
-            if (resolveSubnetMask != null)
-              'resolve_subnet_mask': resolveSubnetMask,
-            if (sendSecondaryIpRangeIfEmpty != null)
-              'send_secondary_ip_range_if_empty': sendSecondaryIpRangeIfEmpty,
-            if (allowSubnetCidrRoutesOverlap != null)
-              'allow_subnet_cidr_routes_overlap': allowSubnetCidrRoutesOverlap,
-            if (description != null) 'description': description,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           if (region != null) 'region': region,
+           'network': network,
+           if (ipCidrRange != null) 'ip_cidr_range': ipCidrRange,
+           if (purpose != null) 'purpose': purpose,
+           if (role != null) 'role': role,
+           if (secondaryIpRange != null)
+             'secondary_ip_range': TfArg.literal(
+               secondaryIpRange.map((s) => s.toArgMap()).toList(),
+             ),
+           if (privateIpGoogleAccess != null)
+             'private_ip_google_access': privateIpGoogleAccess,
+           if (privateIpv6GoogleAccess != null)
+             'private_ipv6_google_access': privateIpv6GoogleAccess,
+           if (logConfig != null)
+             'log_config': TfArg.literal([logConfig.toArgMap()]),
+           if (stackType != null) 'stack_type': stackType,
+           if (ipv6AccessType != null) 'ipv6_access_type': ipv6AccessType,
+           if (externalIpv6Prefix != null)
+             'external_ipv6_prefix': externalIpv6Prefix,
+           if (internalIpv6Prefix != null)
+             'internal_ipv6_prefix': internalIpv6Prefix,
+           if (ipCollection != null) 'ip_collection': ipCollection,
+           if (reservedInternalRange != null)
+             'reserved_internal_range': reservedInternalRange,
+           if (resolveSubnetMask != null)
+             'resolve_subnet_mask': resolveSubnetMask,
+           if (sendSecondaryIpRangeIfEmpty != null)
+             'send_secondary_ip_range_if_empty': sendSecondaryIpRangeIfEmpty,
+           if (allowSubnetCidrRoutesOverlap != null)
+             'allow_subnet_cidr_routes_overlap': allowSubnetCidrRoutesOverlap,
+           if (description != null) 'description': description,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

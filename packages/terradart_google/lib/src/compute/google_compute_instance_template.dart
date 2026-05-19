@@ -145,10 +145,10 @@ class InstanceTemplateDiskEncryptionKey {
   final String? kmsKeyServiceAccount;
 
   Map<String, Object?> toArgMap() => {
-        if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink,
-        if (kmsKeyServiceAccount != null)
-          'kms_key_service_account': kmsKeyServiceAccount,
-      };
+    if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink,
+    if (kmsKeyServiceAccount != null)
+      'kms_key_service_account': kmsKeyServiceAccount,
+  };
 }
 
 /// `disk.source_image_encryption_key` block (max_items=1). Customer-supplied
@@ -178,12 +178,12 @@ class InstanceTemplateSourceImageEncryptionKey {
   final String? rsaEncryptedKey;
 
   Map<String, Object?> toArgMap() => {
-        if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink,
-        if (kmsKeyServiceAccount != null)
-          'kms_key_service_account': kmsKeyServiceAccount,
-        if (rawKey != null) 'raw_key': rawKey,
-        if (rsaEncryptedKey != null) 'rsa_encrypted_key': rsaEncryptedKey,
-      };
+    if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink,
+    if (kmsKeyServiceAccount != null)
+      'kms_key_service_account': kmsKeyServiceAccount,
+    if (rawKey != null) 'raw_key': rawKey,
+    if (rsaEncryptedKey != null) 'rsa_encrypted_key': rsaEncryptedKey,
+  };
 }
 
 /// `disk.source_snapshot_encryption_key` block (max_items=1). Customer-
@@ -209,12 +209,12 @@ class InstanceTemplateSourceSnapshotEncryptionKey {
   final String? rsaEncryptedKey;
 
   Map<String, Object?> toArgMap() => {
-        if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink,
-        if (kmsKeyServiceAccount != null)
-          'kms_key_service_account': kmsKeyServiceAccount,
-        if (rawKey != null) 'raw_key': rawKey,
-        if (rsaEncryptedKey != null) 'rsa_encrypted_key': rsaEncryptedKey,
-      };
+    if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink,
+    if (kmsKeyServiceAccount != null)
+      'kms_key_service_account': kmsKeyServiceAccount,
+    if (rawKey != null) 'raw_key': rawKey,
+    if (rsaEncryptedKey != null) 'rsa_encrypted_key': rsaEncryptedKey,
+  };
 }
 
 /// One entry inside `disk`. Templates require `min_items=1`. Each `disk`
@@ -318,40 +318,40 @@ class InstanceTemplateDisk {
   final InstanceTemplateDiskEncryptionKey? diskEncryptionKey;
   final InstanceTemplateSourceImageEncryptionKey? sourceImageEncryptionKey;
   final InstanceTemplateSourceSnapshotEncryptionKey?
-      sourceSnapshotEncryptionKey;
+  sourceSnapshotEncryptionKey;
 
   Map<String, Object?> toArgMap() => {
-        if (boot != null) 'boot': boot,
-        if (autoDelete != null) 'auto_delete': autoDelete,
-        if (deviceName != null) 'device_name': deviceName,
-        if (diskName != null) 'disk_name': diskName,
-        if (diskSizeGb != null) 'disk_size_gb': diskSizeGb,
-        if (diskType != null) 'disk_type': diskType,
-        if (mode != null) 'mode': mode!.terraformValue,
-        if (source != null) 'source': source,
-        if (sourceImage != null) 'source_image': sourceImage,
-        if (sourceSnapshot != null) 'source_snapshot': sourceSnapshot,
-        if (type != null) 'type': type,
-        if (labels != null) 'labels': labels,
-        if (resourceManagerTags != null)
-          'resource_manager_tags': resourceManagerTags,
-        if (resourcePolicies != null) 'resource_policies': resourcePolicies,
-        if (guestOsFeatures != null) 'guest_os_features': guestOsFeatures,
-        if (interface != null) 'interface': interface,
-        if (provisionedIops != null) 'provisioned_iops': provisionedIops,
-        if (provisionedThroughput != null)
-          'provisioned_throughput': provisionedThroughput,
-        if (architecture != null) 'architecture': architecture,
-        if (storagePool != null) 'storage_pool': storagePool,
-        if (diskEncryptionKey != null)
-          'disk_encryption_key': [diskEncryptionKey!.toArgMap()],
-        if (sourceImageEncryptionKey != null)
-          'source_image_encryption_key': [sourceImageEncryptionKey!.toArgMap()],
-        if (sourceSnapshotEncryptionKey != null)
-          'source_snapshot_encryption_key': [
-            sourceSnapshotEncryptionKey!.toArgMap(),
-          ],
-      };
+    if (boot != null) 'boot': boot,
+    if (autoDelete != null) 'auto_delete': autoDelete,
+    if (deviceName != null) 'device_name': deviceName,
+    if (diskName != null) 'disk_name': diskName,
+    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb,
+    if (diskType != null) 'disk_type': diskType,
+    if (mode != null) 'mode': mode!.terraformValue,
+    if (source != null) 'source': source,
+    if (sourceImage != null) 'source_image': sourceImage,
+    if (sourceSnapshot != null) 'source_snapshot': sourceSnapshot,
+    if (type != null) 'type': type,
+    if (labels != null) 'labels': labels,
+    if (resourceManagerTags != null)
+      'resource_manager_tags': resourceManagerTags,
+    if (resourcePolicies != null) 'resource_policies': resourcePolicies,
+    if (guestOsFeatures != null) 'guest_os_features': guestOsFeatures,
+    if (interface != null) 'interface': interface,
+    if (provisionedIops != null) 'provisioned_iops': provisionedIops,
+    if (provisionedThroughput != null)
+      'provisioned_throughput': provisionedThroughput,
+    if (architecture != null) 'architecture': architecture,
+    if (storagePool != null) 'storage_pool': storagePool,
+    if (diskEncryptionKey != null)
+      'disk_encryption_key': [diskEncryptionKey!.toArgMap()],
+    if (sourceImageEncryptionKey != null)
+      'source_image_encryption_key': [sourceImageEncryptionKey!.toArgMap()],
+    if (sourceSnapshotEncryptionKey != null)
+      'source_snapshot_encryption_key': [
+        sourceSnapshotEncryptionKey!.toArgMap(),
+      ],
+  };
 }
 
 /// One entry inside `network_interface.access_config`. An access config
@@ -368,9 +368,9 @@ class InstanceTemplateAccessConfig {
   final InstanceTemplateAccessConfigNetworkTier? networkTier;
 
   Map<String, Object?> toArgMap() => {
-        if (natIp != null) 'nat_ip': natIp,
-        if (networkTier != null) 'network_tier': networkTier!.terraformValue,
-      };
+    if (natIp != null) 'nat_ip': natIp,
+    if (networkTier != null) 'network_tier': networkTier!.terraformValue,
+  };
 }
 
 /// One entry inside `network_interface.ipv6_access_config`. GCP currently
@@ -385,8 +385,8 @@ class InstanceTemplateIpv6AccessConfig {
   final InstanceTemplateAccessConfigNetworkTier networkTier;
 
   Map<String, Object?> toArgMap() => {
-        'network_tier': networkTier.terraformValue,
-      };
+    'network_tier': networkTier.terraformValue,
+  };
 }
 
 /// One entry inside `network_interface.alias_ip_range`. Alias IPs let pods
@@ -407,10 +407,10 @@ class InstanceTemplateAliasIpRange {
   final String? subnetworkRangeName;
 
   Map<String, Object?> toArgMap() => {
-        'ip_cidr_range': ipCidrRange,
-        if (subnetworkRangeName != null)
-          'subnetwork_range_name': subnetworkRangeName,
-      };
+    'ip_cidr_range': ipCidrRange,
+    if (subnetworkRangeName != null)
+      'subnetwork_range_name': subnetworkRangeName,
+  };
 }
 
 /// One entry inside `network_interface`. At least one is required by GCP.
@@ -478,27 +478,26 @@ class InstanceTemplateNetworkInterface {
   final List<InstanceTemplateAliasIpRange>? aliasIpRange;
 
   Map<String, Object?> toArgMap() => {
-        if (network != null) 'network': network,
-        if (subnetwork != null) 'subnetwork': subnetwork,
-        if (subnetworkProject != null) 'subnetwork_project': subnetworkProject,
-        if (networkIp != null) 'network_ip': networkIp,
-        if (networkAttachment != null) 'network_attachment': networkAttachment,
-        if (nicType != null) 'nic_type': nicType!.terraformValue,
-        if (queueCount != null) 'queue_count': queueCount,
-        if (stackType != null) 'stack_type': stackType,
-        if (ipv6Address != null) 'ipv6_address': ipv6Address,
-        if (internalIpv6PrefixLength != null)
-          'internal_ipv6_prefix_length': internalIpv6PrefixLength,
-        if (igmpQuery != null) 'igmp_query': igmpQuery,
-        if (vlan != null) 'vlan': vlan,
-        if (accessConfig != null)
-          'access_config': accessConfig!.map((a) => a.toArgMap()).toList(),
-        if (ipv6AccessConfig != null)
-          'ipv6_access_config':
-              ipv6AccessConfig!.map((a) => a.toArgMap()).toList(),
-        if (aliasIpRange != null)
-          'alias_ip_range': aliasIpRange!.map((a) => a.toArgMap()).toList(),
-      };
+    if (network != null) 'network': network,
+    if (subnetwork != null) 'subnetwork': subnetwork,
+    if (subnetworkProject != null) 'subnetwork_project': subnetworkProject,
+    if (networkIp != null) 'network_ip': networkIp,
+    if (networkAttachment != null) 'network_attachment': networkAttachment,
+    if (nicType != null) 'nic_type': nicType!.terraformValue,
+    if (queueCount != null) 'queue_count': queueCount,
+    if (stackType != null) 'stack_type': stackType,
+    if (ipv6Address != null) 'ipv6_address': ipv6Address,
+    if (internalIpv6PrefixLength != null)
+      'internal_ipv6_prefix_length': internalIpv6PrefixLength,
+    if (igmpQuery != null) 'igmp_query': igmpQuery,
+    if (vlan != null) 'vlan': vlan,
+    if (accessConfig != null)
+      'access_config': accessConfig!.map((a) => a.toArgMap()).toList(),
+    if (ipv6AccessConfig != null)
+      'ipv6_access_config': ipv6AccessConfig!.map((a) => a.toArgMap()).toList(),
+    if (aliasIpRange != null)
+      'alias_ip_range': aliasIpRange!.map((a) => a.toArgMap()).toList(),
+  };
 }
 
 /// `service_account` block (max_items=1). When set, instances created from
@@ -517,9 +516,9 @@ class InstanceTemplateServiceAccount {
   final List<String> scopes;
 
   Map<String, Object?> toArgMap() => {
-        if (email != null) 'email': email,
-        'scopes': scopes,
-      };
+    if (email != null) 'email': email,
+    'scopes': scopes,
+  };
 }
 
 /// `scheduling.max_run_duration` / `scheduling.local_ssd_recovery_timeout`
@@ -532,9 +531,9 @@ class InstanceTemplateSchedulingDuration {
   final int? nanos;
 
   Map<String, Object?> toArgMap() => {
-        'seconds': seconds,
-        if (nanos != null) 'nanos': nanos,
-      };
+    'seconds': seconds,
+    if (nanos != null) 'nanos': nanos,
+  };
 }
 
 /// One entry inside `scheduling.node_affinities`. Sole-tenant placement
@@ -554,10 +553,10 @@ class InstanceTemplateNodeAffinity {
   final List<String> values;
 
   Map<String, Object?> toArgMap() => {
-        'key': key,
-        'operator': operator,
-        'values': values,
-      };
+    'key': key,
+    'operator': operator,
+    'values': values,
+  };
 }
 
 /// `scheduling.on_instance_stop_action` block (max_items=1). Defines extra
@@ -571,8 +570,8 @@ class InstanceTemplateOnInstanceStopAction {
   final bool? discardLocalSsd;
 
   Map<String, Object?> toArgMap() => {
-        if (discardLocalSsd != null) 'discard_local_ssd': discardLocalSsd,
-      };
+    if (discardLocalSsd != null) 'discard_local_ssd': discardLocalSsd,
+  };
 }
 
 /// `scheduling` block (max_items=1). Controls preemptibility, host
@@ -617,28 +616,26 @@ class InstanceTemplateScheduling {
   final InstanceTemplateOnInstanceStopAction? onInstanceStopAction;
 
   Map<String, Object?> toArgMap() => {
-        if (preemptible != null) 'preemptible': preemptible,
-        if (onHostMaintenance != null)
-          'on_host_maintenance': onHostMaintenance!.terraformValue,
-        if (automaticRestart != null) 'automatic_restart': automaticRestart,
-        if (provisioningModel != null)
-          'provisioning_model': provisioningModel!.terraformValue,
-        if (instanceTerminationAction != null)
-          'instance_termination_action':
-              instanceTerminationAction!.terraformValue,
-        if (minNodeCpus != null) 'min_node_cpus': minNodeCpus,
-        if (availabilityDomain != null)
-          'availability_domain': availabilityDomain,
-        if (terminationTime != null) 'termination_time': terminationTime,
-        if (nodeAffinities != null)
-          'node_affinities': nodeAffinities!.map((n) => n.toArgMap()).toList(),
-        if (maxRunDuration != null)
-          'max_run_duration': [maxRunDuration!.toArgMap()],
-        if (localSsdRecoveryTimeout != null)
-          'local_ssd_recovery_timeout': [localSsdRecoveryTimeout!.toArgMap()],
-        if (onInstanceStopAction != null)
-          'on_instance_stop_action': [onInstanceStopAction!.toArgMap()],
-      };
+    if (preemptible != null) 'preemptible': preemptible,
+    if (onHostMaintenance != null)
+      'on_host_maintenance': onHostMaintenance!.terraformValue,
+    if (automaticRestart != null) 'automatic_restart': automaticRestart,
+    if (provisioningModel != null)
+      'provisioning_model': provisioningModel!.terraformValue,
+    if (instanceTerminationAction != null)
+      'instance_termination_action': instanceTerminationAction!.terraformValue,
+    if (minNodeCpus != null) 'min_node_cpus': minNodeCpus,
+    if (availabilityDomain != null) 'availability_domain': availabilityDomain,
+    if (terminationTime != null) 'termination_time': terminationTime,
+    if (nodeAffinities != null)
+      'node_affinities': nodeAffinities!.map((n) => n.toArgMap()).toList(),
+    if (maxRunDuration != null)
+      'max_run_duration': [maxRunDuration!.toArgMap()],
+    if (localSsdRecoveryTimeout != null)
+      'local_ssd_recovery_timeout': [localSsdRecoveryTimeout!.toArgMap()],
+    if (onInstanceStopAction != null)
+      'on_instance_stop_action': [onInstanceStopAction!.toArgMap()],
+  };
 }
 
 /// `shielded_instance_config` block (max_items=1). Enables Shielded VM
@@ -656,11 +653,11 @@ class InstanceTemplateShieldedInstanceConfig {
   final bool? enableIntegrityMonitoring;
 
   Map<String, Object?> toArgMap() => {
-        if (enableSecureBoot != null) 'enable_secure_boot': enableSecureBoot,
-        if (enableVtpm != null) 'enable_vtpm': enableVtpm,
-        if (enableIntegrityMonitoring != null)
-          'enable_integrity_monitoring': enableIntegrityMonitoring,
-      };
+    if (enableSecureBoot != null) 'enable_secure_boot': enableSecureBoot,
+    if (enableVtpm != null) 'enable_vtpm': enableVtpm,
+    if (enableIntegrityMonitoring != null)
+      'enable_integrity_monitoring': enableIntegrityMonitoring,
+  };
 }
 
 /// `confidential_instance_config` block (max_items=1). Enables Confidential
@@ -678,12 +675,11 @@ class InstanceTemplateConfidentialInstanceConfig {
   final InstanceTemplateConfidentialInstanceType? confidentialInstanceType;
 
   Map<String, Object?> toArgMap() => {
-        if (enableConfidentialCompute != null)
-          'enable_confidential_compute': enableConfidentialCompute,
-        if (confidentialInstanceType != null)
-          'confidential_instance_type':
-              confidentialInstanceType!.terraformValue,
-      };
+    if (enableConfidentialCompute != null)
+      'enable_confidential_compute': enableConfidentialCompute,
+    if (confidentialInstanceType != null)
+      'confidential_instance_type': confidentialInstanceType!.terraformValue,
+  };
 }
 
 /// One entry inside `guest_accelerator`. Attaches a GPU / TPU to instances
@@ -725,17 +721,16 @@ class InstanceTemplateAdvancedMachineFeatures {
   final String? turboMode;
 
   Map<String, Object?> toArgMap() => {
-        if (enableNestedVirtualization != null)
-          'enable_nested_virtualization': enableNestedVirtualization,
-        if (threadsPerCore != null) 'threads_per_core': threadsPerCore,
-        if (visibleCoreCount != null) 'visible_core_count': visibleCoreCount,
-        if (enableUefiNetworking != null)
-          'enable_uefi_networking': enableUefiNetworking,
-        if (performanceMonitoringUnit != null)
-          'performance_monitoring_unit':
-              performanceMonitoringUnit!.terraformValue,
-        if (turboMode != null) 'turbo_mode': turboMode,
-      };
+    if (enableNestedVirtualization != null)
+      'enable_nested_virtualization': enableNestedVirtualization,
+    if (threadsPerCore != null) 'threads_per_core': threadsPerCore,
+    if (visibleCoreCount != null) 'visible_core_count': visibleCoreCount,
+    if (enableUefiNetworking != null)
+      'enable_uefi_networking': enableUefiNetworking,
+    if (performanceMonitoringUnit != null)
+      'performance_monitoring_unit': performanceMonitoringUnit!.terraformValue,
+    if (turboMode != null) 'turbo_mode': turboMode,
+  };
 }
 
 /// `reservation_affinity.specific_reservation` sub-block (max_items=1).
@@ -770,10 +765,10 @@ class InstanceTemplateReservationAffinity {
   final InstanceTemplateSpecificReservation? specificReservation;
 
   Map<String, Object?> toArgMap() => {
-        'type': type.terraformValue,
-        if (specificReservation != null)
-          'specific_reservation': [specificReservation!.toArgMap()],
-      };
+    'type': type.terraformValue,
+    if (specificReservation != null)
+      'specific_reservation': [specificReservation!.toArgMap()],
+  };
 }
 
 /// `network_performance_config` block (max_items=1). Selects the Tier 1
@@ -789,8 +784,8 @@ class InstanceTemplateNetworkPerformanceConfig {
   final String totalEgressBandwidthTier;
 
   Map<String, Object?> toArgMap() => {
-        'total_egress_bandwidth_tier': totalEgressBandwidthTier,
-      };
+    'total_egress_bandwidth_tier': totalEgressBandwidthTier,
+  };
 }
 
 /// Factory wrapper for `google_compute_instance_template` (provider
@@ -885,62 +880,62 @@ final class GoogleComputeInstanceTemplate extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            if (name != null) 'name': name,
-            if (namePrefix != null) 'name_prefix': namePrefix,
-            'machine_type': machineType,
-            if (description != null) 'description': description,
-            if (instanceDescription != null)
-              'instance_description': instanceDescription,
-            if (labels != null) 'labels': labels,
-            if (tags != null) 'tags': tags,
-            if (metadata != null) 'metadata': metadata,
-            if (metadataStartupScript != null)
-              'metadata_startup_script': metadataStartupScript,
-            if (canIpForward != null) 'can_ip_forward': canIpForward,
-            if (minCpuPlatform != null) 'min_cpu_platform': minCpuPlatform,
-            if (region != null) 'region': region,
-            if (resourceManagerTags != null)
-              'resource_manager_tags': resourceManagerTags,
-            if (resourcePolicies != null) 'resource_policies': resourcePolicies,
-            if (keyRevocationActionType != null)
-              'key_revocation_action_type': keyRevocationActionType,
-            'disk': TfArg.literal(disk.map((d) => d.toArgMap()).toList()),
-            'network_interface': TfArg.literal(
-              networkInterface.map((n) => n.toArgMap()).toList(),
-            ),
-            if (serviceAccount != null)
-              'service_account': TfArg.literal([serviceAccount.toArgMap()]),
-            if (scheduling != null)
-              'scheduling': TfArg.literal([scheduling.toArgMap()]),
-            if (shieldedInstanceConfig != null)
-              'shielded_instance_config': TfArg.literal([
-                shieldedInstanceConfig.toArgMap(),
-              ]),
-            if (confidentialInstanceConfig != null)
-              'confidential_instance_config': TfArg.literal([
-                confidentialInstanceConfig.toArgMap(),
-              ]),
-            if (guestAccelerator != null)
-              'guest_accelerator': TfArg.literal(
-                guestAccelerator.map((g) => g.toArgMap()).toList(),
-              ),
-            if (advancedMachineFeatures != null)
-              'advanced_machine_features': TfArg.literal([
-                advancedMachineFeatures.toArgMap(),
-              ]),
-            if (reservationAffinity != null)
-              'reservation_affinity': TfArg.literal([
-                reservationAffinity.toArgMap(),
-              ]),
-            if (networkPerformanceConfig != null)
-              'network_performance_config': TfArg.literal([
-                networkPerformanceConfig.toArgMap(),
-              ]),
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           if (name != null) 'name': name,
+           if (namePrefix != null) 'name_prefix': namePrefix,
+           'machine_type': machineType,
+           if (description != null) 'description': description,
+           if (instanceDescription != null)
+             'instance_description': instanceDescription,
+           if (labels != null) 'labels': labels,
+           if (tags != null) 'tags': tags,
+           if (metadata != null) 'metadata': metadata,
+           if (metadataStartupScript != null)
+             'metadata_startup_script': metadataStartupScript,
+           if (canIpForward != null) 'can_ip_forward': canIpForward,
+           if (minCpuPlatform != null) 'min_cpu_platform': minCpuPlatform,
+           if (region != null) 'region': region,
+           if (resourceManagerTags != null)
+             'resource_manager_tags': resourceManagerTags,
+           if (resourcePolicies != null) 'resource_policies': resourcePolicies,
+           if (keyRevocationActionType != null)
+             'key_revocation_action_type': keyRevocationActionType,
+           'disk': TfArg.literal(disk.map((d) => d.toArgMap()).toList()),
+           'network_interface': TfArg.literal(
+             networkInterface.map((n) => n.toArgMap()).toList(),
+           ),
+           if (serviceAccount != null)
+             'service_account': TfArg.literal([serviceAccount.toArgMap()]),
+           if (scheduling != null)
+             'scheduling': TfArg.literal([scheduling.toArgMap()]),
+           if (shieldedInstanceConfig != null)
+             'shielded_instance_config': TfArg.literal([
+               shieldedInstanceConfig.toArgMap(),
+             ]),
+           if (confidentialInstanceConfig != null)
+             'confidential_instance_config': TfArg.literal([
+               confidentialInstanceConfig.toArgMap(),
+             ]),
+           if (guestAccelerator != null)
+             'guest_accelerator': TfArg.literal(
+               guestAccelerator.map((g) => g.toArgMap()).toList(),
+             ),
+           if (advancedMachineFeatures != null)
+             'advanced_machine_features': TfArg.literal([
+               advancedMachineFeatures.toArgMap(),
+             ]),
+           if (reservationAffinity != null)
+             'reservation_affinity': TfArg.literal([
+               reservationAffinity.toArgMap(),
+             ]),
+           if (networkPerformanceConfig != null)
+             'network_performance_config': TfArg.literal([
+               networkPerformanceConfig.toArgMap(),
+             ]),
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

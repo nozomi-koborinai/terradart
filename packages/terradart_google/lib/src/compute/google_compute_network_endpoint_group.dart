@@ -98,19 +98,19 @@ final class GoogleComputeNetworkEndpointGroup extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            if (zone != null) 'zone': zone,
-            'network': network,
-            if (subnetwork != null) 'subnetwork': subnetwork,
-            if (networkEndpointType != null)
-              'network_endpoint_type': networkEndpointType,
-            if (defaultPort != null) 'default_port': defaultPort,
-            if (description != null) 'description': description,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           if (zone != null) 'zone': zone,
+           'network': network,
+           if (subnetwork != null) 'subnetwork': subnetwork,
+           if (networkEndpointType != null)
+             'network_endpoint_type': networkEndpointType,
+           if (defaultPort != null) 'default_port': defaultPort,
+           if (description != null) 'description': description,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

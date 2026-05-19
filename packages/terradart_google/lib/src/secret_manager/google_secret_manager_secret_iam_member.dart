@@ -24,15 +24,15 @@ final class GoogleSecretManagerSecretIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'secret_id': secretId,
-            'role': role,
-            'member': member,
-            if (condition != null) 'condition': condition,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'secret_id': secretId,
+           'role': role,
+           'member': member,
+           if (condition != null) 'condition': condition,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

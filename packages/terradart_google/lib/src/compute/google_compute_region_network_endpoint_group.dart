@@ -80,10 +80,10 @@ class RegionNetworkEndpointGroupCloudRun {
   final TfArg<String>? urlMask;
 
   Map<String, Object?> toArgMap() => {
-        if (service != null) 'service': service!.toTfJson(),
-        if (tag != null) 'tag': tag!.toTfJson(),
-        if (urlMask != null) 'url_mask': urlMask!.toTfJson(),
-      };
+    if (service != null) 'service': service!.toTfJson(),
+    if (tag != null) 'tag': tag!.toTfJson(),
+    if (urlMask != null) 'url_mask': urlMask!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -113,9 +113,9 @@ class RegionNetworkEndpointGroupCloudFunction {
   final TfArg<String>? urlMask;
 
   Map<String, Object?> toArgMap() => {
-        if (function != null) 'function': function!.toTfJson(),
-        if (urlMask != null) 'url_mask': urlMask!.toTfJson(),
-      };
+    if (function != null) 'function': function!.toTfJson(),
+    if (urlMask != null) 'url_mask': urlMask!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -153,10 +153,10 @@ class RegionNetworkEndpointGroupAppEngine {
   final TfArg<String>? urlMask;
 
   Map<String, Object?> toArgMap() => {
-        if (service != null) 'service': service!.toTfJson(),
-        if (version != null) 'version': version!.toTfJson(),
-        if (urlMask != null) 'url_mask': urlMask!.toTfJson(),
-      };
+    if (service != null) 'service': service!.toTfJson(),
+    if (version != null) 'version': version!.toTfJson(),
+    if (urlMask != null) 'url_mask': urlMask!.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_compute_region_network_endpoint_group`
@@ -250,26 +250,25 @@ final class GoogleComputeRegionNetworkEndpointGroup extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            'region': region,
-            if (networkEndpointType != null)
-              'network_endpoint_type': networkEndpointType,
-            if (cloudRun != null)
-              'cloud_run': TfArg.literal([cloudRun.toArgMap()]),
-            if (cloudFunction != null)
-              'cloud_function': TfArg.literal([cloudFunction.toArgMap()]),
-            if (appEngine != null)
-              'app_engine': TfArg.literal([appEngine.toArgMap()]),
-            if (pscTargetService != null)
-              'psc_target_service': pscTargetService,
-            if (network != null) 'network': network,
-            if (subnetwork != null) 'subnetwork': subnetwork,
-            if (description != null) 'description': description,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           'region': region,
+           if (networkEndpointType != null)
+             'network_endpoint_type': networkEndpointType,
+           if (cloudRun != null)
+             'cloud_run': TfArg.literal([cloudRun.toArgMap()]),
+           if (cloudFunction != null)
+             'cloud_function': TfArg.literal([cloudFunction.toArgMap()]),
+           if (appEngine != null)
+             'app_engine': TfArg.literal([appEngine.toArgMap()]),
+           if (pscTargetService != null) 'psc_target_service': pscTargetService,
+           if (network != null) 'network': network,
+           if (subnetwork != null) 'subnetwork': subnetwork,
+           if (description != null) 'description': description,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

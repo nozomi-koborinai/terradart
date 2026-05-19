@@ -133,16 +133,16 @@ final class GoogleComputeSslPolicy extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            if (description != null) 'description': description,
-            if (profile != null) 'profile': profile,
-            if (minTlsVersion != null) 'min_tls_version': minTlsVersion,
-            if (customFeatures != null) 'custom_features': customFeatures,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           if (description != null) 'description': description,
+           if (profile != null) 'profile': profile,
+           if (minTlsVersion != null) 'min_tls_version': minTlsVersion,
+           if (customFeatures != null) 'custom_features': customFeatures,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

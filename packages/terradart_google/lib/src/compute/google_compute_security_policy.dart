@@ -171,17 +171,17 @@ class SecurityPolicyRule {
   final SecurityPolicyRuleHeaderAction? headerAction;
 
   Map<String, Object?> toArgMap() => {
-        'priority': priority,
-        'action': action.terraformValue,
-        'match': [match.toArgMap()],
-        if (description != null) 'description': description!.toTfJson(),
-        if (preview != null) 'preview': preview,
-        if (rateLimitOptions != null)
-          'rate_limit_options': [rateLimitOptions!.toArgMap()],
-        if (redirectOptions != null)
-          'redirect_options': [redirectOptions!.toArgMap()],
-        if (headerAction != null) 'header_action': [headerAction!.toArgMap()],
-      };
+    'priority': priority,
+    'action': action.terraformValue,
+    'match': [match.toArgMap()],
+    if (description != null) 'description': description!.toTfJson(),
+    if (preview != null) 'preview': preview,
+    if (rateLimitOptions != null)
+      'rate_limit_options': [rateLimitOptions!.toArgMap()],
+    if (redirectOptions != null)
+      'redirect_options': [redirectOptions!.toArgMap()],
+    if (headerAction != null) 'header_action': [headerAction!.toArgMap()],
+  };
 }
 
 /// `rule.match` -- the condition under which a rule fires.
@@ -202,8 +202,7 @@ class SecurityPolicyRuleMatch {
   factory SecurityPolicyRuleMatch.config({
     required SecurityPolicyRuleMatchVersionedExpr versionedExpr,
     required SecurityPolicyRuleMatchConfig config,
-  }) =>
-      SecurityPolicyRuleMatch._(versionedExpr: versionedExpr, config: config);
+  }) => SecurityPolicyRuleMatch._(versionedExpr: versionedExpr, config: config);
 
   /// User-defined CEL expression variant.
   factory SecurityPolicyRuleMatch.expr(SecurityPolicyRuleMatchExpr expr) =>
@@ -214,11 +213,10 @@ class SecurityPolicyRuleMatch {
   final SecurityPolicyRuleMatchExpr? expr;
 
   Map<String, Object?> toArgMap() => {
-        if (versionedExpr != null)
-          'versioned_expr': versionedExpr!.terraformValue,
-        if (config != null) 'config': [config!.toArgMap()],
-        if (expr != null) 'expr': [expr!.toArgMap()],
-      };
+    if (versionedExpr != null) 'versioned_expr': versionedExpr!.terraformValue,
+    if (config != null) 'config': [config!.toArgMap()],
+    if (expr != null) 'expr': [expr!.toArgMap()],
+  };
 }
 
 /// `match.config` -- payload for the `SRC_IPS_V1` predicate. The only
@@ -317,19 +315,20 @@ class SecurityPolicyRuleRateLimitOptions {
   final SecurityPolicyRuleRedirectOptions? exceedRedirectOptions;
 
   Map<String, Object?> toArgMap() => {
-        'conform_action': conformAction,
-        'exceed_action': exceedAction,
-        'rate_limit_threshold': [rateLimitThreshold.toArgMap()],
-        if (banDurationSec != null) 'ban_duration_sec': banDurationSec,
-        if (banThreshold != null) 'ban_threshold': [banThreshold!.toArgMap()],
-        if (enforceOnKey != null) 'enforce_on_key': enforceOnKey,
-        if (enforceOnKeyName != null) 'enforce_on_key_name': enforceOnKeyName,
-        if (enforceOnKeyConfigs != null)
-          'enforce_on_key_configs':
-              enforceOnKeyConfigs!.map((c) => c.toArgMap()).toList(),
-        if (exceedRedirectOptions != null)
-          'exceed_redirect_options': [exceedRedirectOptions!.toArgMap()],
-      };
+    'conform_action': conformAction,
+    'exceed_action': exceedAction,
+    'rate_limit_threshold': [rateLimitThreshold.toArgMap()],
+    if (banDurationSec != null) 'ban_duration_sec': banDurationSec,
+    if (banThreshold != null) 'ban_threshold': [banThreshold!.toArgMap()],
+    if (enforceOnKey != null) 'enforce_on_key': enforceOnKey,
+    if (enforceOnKeyName != null) 'enforce_on_key_name': enforceOnKeyName,
+    if (enforceOnKeyConfigs != null)
+      'enforce_on_key_configs': enforceOnKeyConfigs!
+          .map((c) => c.toArgMap())
+          .toList(),
+    if (exceedRedirectOptions != null)
+      'exceed_redirect_options': [exceedRedirectOptions!.toArgMap()],
+  };
 }
 
 /// `rate_limit_threshold` / `ban_threshold` shape. Count of requests
@@ -345,9 +344,9 @@ class SecurityPolicyRuleRateLimitThreshold {
   final int intervalSec;
 
   Map<String, Object?> toArgMap() => {
-        'count': count,
-        'interval_sec': intervalSec,
-      };
+    'count': count,
+    'interval_sec': intervalSec,
+  };
 }
 
 /// One entry in `rate_limit_options.enforce_on_key_configs`. Lets a
@@ -367,9 +366,9 @@ class SecurityPolicyRuleEnforceOnKeyConfig {
   final String? enforceOnKeyName;
 
   Map<String, Object?> toArgMap() => {
-        if (enforceOnKeyType != null) 'enforce_on_key_type': enforceOnKeyType,
-        if (enforceOnKeyName != null) 'enforce_on_key_name': enforceOnKeyName,
-      };
+    if (enforceOnKeyType != null) 'enforce_on_key_type': enforceOnKeyType,
+    if (enforceOnKeyName != null) 'enforce_on_key_name': enforceOnKeyName,
+  };
 }
 
 /// `rule.redirect_options` -- redirect target shape, also reused as
@@ -391,9 +390,9 @@ class SecurityPolicyRuleRedirectOptions {
   final String? target;
 
   Map<String, Object?> toArgMap() => {
-        'type': type,
-        if (target != null) 'target': target,
-      };
+    'type': type,
+    if (target != null) 'target': target,
+  };
 }
 
 /// `rule.header_action` -- request-header rewrites applied alongside
@@ -403,19 +402,20 @@ class SecurityPolicyRuleRedirectOptions {
 @immutable
 class SecurityPolicyRuleHeaderAction {
   const SecurityPolicyRuleHeaderAction({required this.requestHeadersToAdds})
-      : assert(
-          requestHeadersToAdds.length >= 1,
-          'SecurityPolicyRuleHeaderAction.requestHeadersToAdds must have '
-          'at least one entry (schema enforces min_items=1).',
-        );
+    : assert(
+        requestHeadersToAdds.length >= 1,
+        'SecurityPolicyRuleHeaderAction.requestHeadersToAdds must have '
+        'at least one entry (schema enforces min_items=1).',
+      );
 
   /// At least one per the schema's `min_items=1`.
   final List<SecurityPolicyRuleHeaderAdd> requestHeadersToAdds;
 
   Map<String, Object?> toArgMap() => {
-        'request_headers_to_adds':
-            requestHeadersToAdds.map((h) => h.toArgMap()).toList(),
-      };
+    'request_headers_to_adds': requestHeadersToAdds
+        .map((h) => h.toArgMap())
+        .toList(),
+  };
 }
 
 /// One header rewrite in [SecurityPolicyRuleHeaderAction.requestHeadersToAdds].
@@ -432,9 +432,9 @@ class SecurityPolicyRuleHeaderAdd {
   final String? headerValue;
 
   Map<String, Object?> toArgMap() => {
-        'header_name': headerName,
-        if (headerValue != null) 'header_value': headerValue,
-      };
+    'header_name': headerName,
+    if (headerValue != null) 'header_value': headerValue,
+  };
 }
 
 // ===========================================================================
@@ -476,15 +476,15 @@ class SecurityPolicyAdvancedOptionsConfig {
   final SecurityPolicyJsonCustomConfig? jsonCustomConfig;
 
   Map<String, Object?> toArgMap() => {
-        if (jsonParsing != null) 'json_parsing': jsonParsing!.terraformValue,
-        if (logLevel != null) 'log_level': logLevel!.terraformValue,
-        if (requestBodyInspectionSize != null)
-          'request_body_inspection_size': requestBodyInspectionSize,
-        if (userIpRequestHeaders != null)
-          'user_ip_request_headers': userIpRequestHeaders,
-        if (jsonCustomConfig != null)
-          'json_custom_config': [jsonCustomConfig!.toArgMap()],
-      };
+    if (jsonParsing != null) 'json_parsing': jsonParsing!.terraformValue,
+    if (logLevel != null) 'log_level': logLevel!.terraformValue,
+    if (requestBodyInspectionSize != null)
+      'request_body_inspection_size': requestBodyInspectionSize,
+    if (userIpRequestHeaders != null)
+      'user_ip_request_headers': userIpRequestHeaders,
+    if (jsonCustomConfig != null)
+      'json_custom_config': [jsonCustomConfig!.toArgMap()],
+  };
 }
 
 /// `advanced_options_config.json_custom_config` -- list of additional
@@ -514,9 +514,9 @@ class SecurityPolicyAdaptiveProtectionConfig {
   final SecurityPolicyLayer7DdosDefenseConfig? layer7DdosDefenseConfig;
 
   Map<String, Object?> toArgMap() => {
-        if (layer7DdosDefenseConfig != null)
-          'layer_7_ddos_defense_config': [layer7DdosDefenseConfig!.toArgMap()],
-      };
+    if (layer7DdosDefenseConfig != null)
+      'layer_7_ddos_defense_config': [layer7DdosDefenseConfig!.toArgMap()],
+  };
 }
 
 /// `layer_7_ddos_defense_config` block. Pair [enable] with [ruleVisibility]
@@ -543,12 +543,11 @@ class SecurityPolicyLayer7DdosDefenseConfig {
   final List<SecurityPolicyAdaptiveProtectionThresholdConfig>? thresholdConfigs;
 
   Map<String, Object?> toArgMap() => {
-        if (enable != null) 'enable': enable,
-        if (ruleVisibility != null) 'rule_visibility': ruleVisibility,
-        if (thresholdConfigs != null)
-          'threshold_configs':
-              thresholdConfigs!.map((t) => t.toArgMap()).toList(),
-      };
+    if (enable != null) 'enable': enable,
+    if (ruleVisibility != null) 'rule_visibility': ruleVisibility,
+    if (thresholdConfigs != null)
+      'threshold_configs': thresholdConfigs!.map((t) => t.toArgMap()).toList(),
+  };
 }
 
 /// One entry in `threshold_configs`. The numeric knobs are passed
@@ -584,26 +583,27 @@ class SecurityPolicyAdaptiveProtectionThresholdConfig {
   final List<SecurityPolicyTrafficGranularityConfig>? trafficGranularityConfigs;
 
   Map<String, Object?> toArgMap() => {
-        'name': name,
-        if (autoDeployConfidenceThreshold != null)
-          'auto_deploy_confidence_threshold': autoDeployConfidenceThreshold,
-        if (autoDeployExpirationSec != null)
-          'auto_deploy_expiration_sec': autoDeployExpirationSec,
-        if (autoDeployImpactedBaselineThreshold != null)
-          'auto_deploy_impacted_baseline_threshold':
-              autoDeployImpactedBaselineThreshold,
-        if (autoDeployLoadThreshold != null)
-          'auto_deploy_load_threshold': autoDeployLoadThreshold,
-        if (detectionAbsoluteQps != null)
-          'detection_absolute_qps': detectionAbsoluteQps,
-        if (detectionLoadThreshold != null)
-          'detection_load_threshold': detectionLoadThreshold,
-        if (detectionRelativeToBaselineQps != null)
-          'detection_relative_to_baseline_qps': detectionRelativeToBaselineQps,
-        if (trafficGranularityConfigs != null)
-          'traffic_granularity_configs':
-              trafficGranularityConfigs!.map((t) => t.toArgMap()).toList(),
-      };
+    'name': name,
+    if (autoDeployConfidenceThreshold != null)
+      'auto_deploy_confidence_threshold': autoDeployConfidenceThreshold,
+    if (autoDeployExpirationSec != null)
+      'auto_deploy_expiration_sec': autoDeployExpirationSec,
+    if (autoDeployImpactedBaselineThreshold != null)
+      'auto_deploy_impacted_baseline_threshold':
+          autoDeployImpactedBaselineThreshold,
+    if (autoDeployLoadThreshold != null)
+      'auto_deploy_load_threshold': autoDeployLoadThreshold,
+    if (detectionAbsoluteQps != null)
+      'detection_absolute_qps': detectionAbsoluteQps,
+    if (detectionLoadThreshold != null)
+      'detection_load_threshold': detectionLoadThreshold,
+    if (detectionRelativeToBaselineQps != null)
+      'detection_relative_to_baseline_qps': detectionRelativeToBaselineQps,
+    if (trafficGranularityConfigs != null)
+      'traffic_granularity_configs': trafficGranularityConfigs!
+          .map((t) => t.toArgMap())
+          .toList(),
+  };
 }
 
 /// One entry in `traffic_granularity_configs`. [enableEachUniqueValue]
@@ -630,11 +630,11 @@ class SecurityPolicyTrafficGranularityConfig {
   final String? value;
 
   Map<String, Object?> toArgMap() => {
-        'type': type,
-        if (enableEachUniqueValue != null)
-          'enable_each_unique_value': enableEachUniqueValue,
-        if (value != null) 'value': value,
-      };
+    'type': type,
+    if (enableEachUniqueValue != null)
+      'enable_each_unique_value': enableEachUniqueValue,
+    if (value != null) 'value': value,
+  };
 }
 
 // ===========================================================================
@@ -654,8 +654,8 @@ class SecurityPolicyRecaptchaOptionsConfig {
   final TfArg<String> redirectSiteKey;
 
   Map<String, Object?> toArgMap() => {
-        'redirect_site_key': redirectSiteKey.toTfJson(),
-      };
+    'redirect_site_key': redirectSiteKey.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_compute_security_policy` (provider
@@ -759,28 +759,28 @@ final class GoogleComputeSecurityPolicy extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            if (description != null) 'description': description,
-            if (type != null) 'type': type,
-            'rule': TfArg.literal(rules.map((r) => r.toArgMap()).toList()),
-            if (adaptiveProtectionConfig != null)
-              'adaptive_protection_config': TfArg.literal([
-                adaptiveProtectionConfig.toArgMap(),
-              ]),
-            if (advancedOptionsConfig != null)
-              'advanced_options_config': TfArg.literal([
-                advancedOptionsConfig.toArgMap(),
-              ]),
-            if (recaptchaOptionsConfig != null)
-              'recaptcha_options_config': TfArg.literal([
-                recaptchaOptionsConfig.toArgMap(),
-              ]),
-            if (labels != null) 'labels': labels,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           if (description != null) 'description': description,
+           if (type != null) 'type': type,
+           'rule': TfArg.literal(rules.map((r) => r.toArgMap()).toList()),
+           if (adaptiveProtectionConfig != null)
+             'adaptive_protection_config': TfArg.literal([
+               adaptiveProtectionConfig.toArgMap(),
+             ]),
+           if (advancedOptionsConfig != null)
+             'advanced_options_config': TfArg.literal([
+               advancedOptionsConfig.toArgMap(),
+             ]),
+           if (recaptchaOptionsConfig != null)
+             'recaptcha_options_config': TfArg.literal([
+               recaptchaOptionsConfig.toArgMap(),
+             ]),
+           if (labels != null) 'labels': labels,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

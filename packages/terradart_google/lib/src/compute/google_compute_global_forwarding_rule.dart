@@ -145,15 +145,15 @@ class GlobalForwardingRuleMetadataFilter {
   /// Whether the [filterLabels] entries are AND-combined ([GlobalForwardingRuleMetadataFilterMatchCriteria.matchAll])
   /// or OR-combined ([GlobalForwardingRuleMetadataFilterMatchCriteria.matchAny]).
   final TfArg<GlobalForwardingRuleMetadataFilterMatchCriteria>
-      filterMatchCriteria;
+  filterMatchCriteria;
 
   /// 1-64 label entries. Must be non-empty by schema (`min_items: 1`).
   final List<GlobalForwardingRuleMetadataFilterLabel> filterLabels;
 
   Map<String, Object?> toArgMap() => {
-        'filter_match_criteria': filterMatchCriteria.toTfJson(),
-        'filter_labels': filterLabels.map((l) => l.toArgMap()).toList(),
-      };
+    'filter_match_criteria': filterMatchCriteria.toTfJson(),
+    'filter_labels': filterLabels.map((l) => l.toArgMap()).toList(),
+  };
 }
 
 /// One `metadata_filters[*].filter_labels[*]` entry. Both [name] and
@@ -173,9 +173,9 @@ class GlobalForwardingRuleMetadataFilterLabel {
   final TfArg<String> value;
 
   Map<String, Object?> toArgMap() => {
-        'name': name.toTfJson(),
-        'value': value.toTfJson(),
-      };
+    'name': name.toTfJson(),
+    'value': value.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -203,10 +203,10 @@ class GlobalForwardingRuleServiceDirectoryRegistration {
   final TfArg<String>? serviceDirectoryRegion;
 
   Map<String, Object?> toArgMap() => {
-        if (namespace != null) 'namespace': namespace!.toTfJson(),
-        if (serviceDirectoryRegion != null)
-          'service_directory_region': serviceDirectoryRegion!.toTfJson(),
-      };
+    if (namespace != null) 'namespace': namespace!.toTfJson(),
+    if (serviceDirectoryRegion != null)
+      'service_directory_region': serviceDirectoryRegion!.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_compute_global_forwarding_rule` (provider
@@ -292,9 +292,9 @@ final class GoogleComputeGlobalForwardingRule extends Resource {
     TfArg<List<String>>? sourceIpRanges,
     List<GlobalForwardingRuleMetadataFilter>? metadataFilters,
     List<GlobalForwardingRuleServiceDirectoryRegistration>?
-        serviceDirectoryRegistrations,
+    serviceDirectoryRegistrations,
     TfArg<GlobalForwardingRuleMigrationState>?
-        externalManagedBackendBucketMigrationState,
+    externalManagedBackendBucketMigrationState,
     TfArg<num>? externalManagedBackendBucketMigrationTestingPercentage,
     TfArg<bool>? noAutomateDnsZone,
     TfArg<Map<String, String>>? labels,
@@ -303,41 +303,41 @@ final class GoogleComputeGlobalForwardingRule extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            'target': target,
-            if (ipAddress != null) 'ip_address': ipAddress,
-            if (ipProtocol != null) 'ip_protocol': ipProtocol,
-            if (ipVersion != null) 'ip_version': ipVersion,
-            if (portRange != null) 'port_range': portRange,
-            if (loadBalancingScheme != null)
-              'load_balancing_scheme': loadBalancingScheme,
-            if (network != null) 'network': network,
-            if (subnetwork != null) 'subnetwork': subnetwork,
-            if (networkTier != null) 'network_tier': networkTier,
-            if (sourceIpRanges != null) 'source_ip_ranges': sourceIpRanges,
-            if (metadataFilters != null)
-              'metadata_filters': TfArg.literal(
-                metadataFilters.map((f) => f.toArgMap()).toList(),
-              ),
-            if (serviceDirectoryRegistrations != null)
-              'service_directory_registrations': TfArg.literal(
-                serviceDirectoryRegistrations.map((r) => r.toArgMap()).toList(),
-              ),
-            if (externalManagedBackendBucketMigrationState != null)
-              'external_managed_backend_bucket_migration_state':
-                  externalManagedBackendBucketMigrationState,
-            if (externalManagedBackendBucketMigrationTestingPercentage != null)
-              'external_managed_backend_bucket_migration_testing_percentage':
-                  externalManagedBackendBucketMigrationTestingPercentage,
-            if (noAutomateDnsZone != null)
-              'no_automate_dns_zone': noAutomateDnsZone,
-            if (labels != null) 'labels': labels,
-            if (description != null) 'description': description,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           'target': target,
+           if (ipAddress != null) 'ip_address': ipAddress,
+           if (ipProtocol != null) 'ip_protocol': ipProtocol,
+           if (ipVersion != null) 'ip_version': ipVersion,
+           if (portRange != null) 'port_range': portRange,
+           if (loadBalancingScheme != null)
+             'load_balancing_scheme': loadBalancingScheme,
+           if (network != null) 'network': network,
+           if (subnetwork != null) 'subnetwork': subnetwork,
+           if (networkTier != null) 'network_tier': networkTier,
+           if (sourceIpRanges != null) 'source_ip_ranges': sourceIpRanges,
+           if (metadataFilters != null)
+             'metadata_filters': TfArg.literal(
+               metadataFilters.map((f) => f.toArgMap()).toList(),
+             ),
+           if (serviceDirectoryRegistrations != null)
+             'service_directory_registrations': TfArg.literal(
+               serviceDirectoryRegistrations.map((r) => r.toArgMap()).toList(),
+             ),
+           if (externalManagedBackendBucketMigrationState != null)
+             'external_managed_backend_bucket_migration_state':
+                 externalManagedBackendBucketMigrationState,
+           if (externalManagedBackendBucketMigrationTestingPercentage != null)
+             'external_managed_backend_bucket_migration_testing_percentage':
+                 externalManagedBackendBucketMigrationTestingPercentage,
+           if (noAutomateDnsZone != null)
+             'no_automate_dns_zone': noAutomateDnsZone,
+           if (labels != null) 'labels': labels,
+           if (description != null) 'description': description,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

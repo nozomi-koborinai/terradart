@@ -30,8 +30,8 @@ class AppHostingDomainServe {
   final AppHostingDomainRedirect? redirect;
 
   Map<String, Object?> toArgMap() => {
-        if (redirect != null) 'redirect': [redirect!.toArgMap()],
-      };
+    if (redirect != null) 'redirect': [redirect!.toArgMap()],
+  };
 }
 
 /// `serve.redirect` sub-block. Returns an HTTP 3xx redirect for every
@@ -49,9 +49,9 @@ class AppHostingDomainRedirect {
   final TfArg<String>? status;
 
   Map<String, Object?> toArgMap() => {
-        'uri': uri.toTfJson(),
-        if (status != null) 'status': status!.toTfJson(),
-      };
+    'uri': uri.toTfJson(),
+    if (status != null) 'status': status!.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_firebase_app_hosting_domain` (provider
@@ -111,15 +111,15 @@ final class GoogleFirebaseAppHostingDomain extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'backend': backend,
-            'location': location,
-            'domain_id': domainId,
-            if (serve != null) 'serve': TfArg.literal([serve.toArgMap()]),
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'backend': backend,
+           'location': location,
+           'domain_id': domainId,
+           if (serve != null) 'serve': TfArg.literal([serve.toArgMap()]),
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

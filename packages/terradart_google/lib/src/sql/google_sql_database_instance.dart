@@ -224,47 +224,46 @@ class Settings {
   final Map<String, Object?>? advancedExtra;
 
   Map<String, Object?> toArgMap() => {
-        if (tier != null) 'tier': tier!.toTfJson(),
-        if (availabilityType != null)
-          'availability_type': availabilityType!.toTfJson(),
-        if (edition != null) 'edition': edition!.toTfJson(),
-        if (activationPolicy != null)
-          'activation_policy': activationPolicy!.toTfJson(),
-        if (diskSize != null) 'disk_size': diskSize!.toTfJson(),
-        if (diskType != null) 'disk_type': diskType!.toTfJson(),
-        if (diskAutoresize != null)
-          'disk_autoresize': diskAutoresize!.toTfJson(),
-        if (diskAutoresizeLimit != null)
-          'disk_autoresize_limit': diskAutoresizeLimit!.toTfJson(),
-        if (userLabels != null) 'user_labels': userLabels!.toTfJson(),
-        if (collation != null) 'collation': collation!.toTfJson(),
-        if (timeZone != null) 'time_zone': timeZone!.toTfJson(),
-        if (connectorEnforcement != null)
-          'connector_enforcement': connectorEnforcement!.toTfJson(),
-        if (dataApiAccess != null) 'data_api_access': dataApiAccess!.toTfJson(),
-        if (deletionProtectionEnabled != null)
-          'deletion_protection_enabled': deletionProtectionEnabled!.toTfJson(),
-        if (retainBackupsOnDelete != null)
-          'retain_backups_on_delete': retainBackupsOnDelete!.toTfJson(),
-        if (pricingPlan != null) 'pricing_plan': pricingPlan!.toTfJson(),
-        if (enableDataplexIntegration != null)
-          'enable_dataplex_integration': enableDataplexIntegration!.toTfJson(),
-        if (enableGoogleMlIntegration != null)
-          'enable_google_ml_integration': enableGoogleMlIntegration!.toTfJson(),
-        if (autoUpgradeEnabled != null)
-          'auto_upgrade_enabled': autoUpgradeEnabled!.toTfJson(),
-        if (ipConfiguration != null)
-          'ip_configuration': [ipConfiguration!.toArgMap()],
-        if (backupConfiguration != null)
-          'backup_configuration': [backupConfiguration!.toArgMap()],
-        if (locationPreference != null)
-          'location_preference': [locationPreference!.toArgMap()],
-        if (maintenanceWindow != null)
-          'maintenance_window': [maintenanceWindow!.toArgMap()],
-        if (databaseFlags != null)
-          'database_flags': databaseFlags!.map((f) => f.toArgMap()).toList(),
-        if (advancedExtra != null) ...advancedExtra!,
-      };
+    if (tier != null) 'tier': tier!.toTfJson(),
+    if (availabilityType != null)
+      'availability_type': availabilityType!.toTfJson(),
+    if (edition != null) 'edition': edition!.toTfJson(),
+    if (activationPolicy != null)
+      'activation_policy': activationPolicy!.toTfJson(),
+    if (diskSize != null) 'disk_size': diskSize!.toTfJson(),
+    if (diskType != null) 'disk_type': diskType!.toTfJson(),
+    if (diskAutoresize != null) 'disk_autoresize': diskAutoresize!.toTfJson(),
+    if (diskAutoresizeLimit != null)
+      'disk_autoresize_limit': diskAutoresizeLimit!.toTfJson(),
+    if (userLabels != null) 'user_labels': userLabels!.toTfJson(),
+    if (collation != null) 'collation': collation!.toTfJson(),
+    if (timeZone != null) 'time_zone': timeZone!.toTfJson(),
+    if (connectorEnforcement != null)
+      'connector_enforcement': connectorEnforcement!.toTfJson(),
+    if (dataApiAccess != null) 'data_api_access': dataApiAccess!.toTfJson(),
+    if (deletionProtectionEnabled != null)
+      'deletion_protection_enabled': deletionProtectionEnabled!.toTfJson(),
+    if (retainBackupsOnDelete != null)
+      'retain_backups_on_delete': retainBackupsOnDelete!.toTfJson(),
+    if (pricingPlan != null) 'pricing_plan': pricingPlan!.toTfJson(),
+    if (enableDataplexIntegration != null)
+      'enable_dataplex_integration': enableDataplexIntegration!.toTfJson(),
+    if (enableGoogleMlIntegration != null)
+      'enable_google_ml_integration': enableGoogleMlIntegration!.toTfJson(),
+    if (autoUpgradeEnabled != null)
+      'auto_upgrade_enabled': autoUpgradeEnabled!.toTfJson(),
+    if (ipConfiguration != null)
+      'ip_configuration': [ipConfiguration!.toArgMap()],
+    if (backupConfiguration != null)
+      'backup_configuration': [backupConfiguration!.toArgMap()],
+    if (locationPreference != null)
+      'location_preference': [locationPreference!.toArgMap()],
+    if (maintenanceWindow != null)
+      'maintenance_window': [maintenanceWindow!.toArgMap()],
+    if (databaseFlags != null)
+      'database_flags': databaseFlags!.map((f) => f.toArgMap()).toList(),
+    if (advancedExtra != null) ...advancedExtra!,
+  };
 }
 
 /// `settings.ip_configuration` — controls how clients reach the
@@ -343,28 +342,28 @@ class IpConfiguration {
   final PscConfig? pscConfig;
 
   Map<String, Object?> toArgMap() => {
-        if (ipv4Enabled != null) 'ipv4_enabled': ipv4Enabled!.toTfJson(),
-        if (privateNetwork != null)
-          'private_network': privateNetwork!.toTfJson(),
-        if (allocatedIpRange != null)
-          'allocated_ip_range': allocatedIpRange!.toTfJson(),
-        if (enablePrivatePathForGoogleCloudServices != null)
-          'enable_private_path_for_google_cloud_services':
-              enablePrivatePathForGoogleCloudServices!.toTfJson(),
-        if (sslMode != null) 'ssl_mode': sslMode!.toTfJson(),
-        if (serverCaMode != null) 'server_ca_mode': serverCaMode!.toTfJson(),
-        if (serverCaPool != null) 'server_ca_pool': serverCaPool!.toTfJson(),
-        if (serverCertificateRotationMode != null)
-          'server_certificate_rotation_mode':
-              serverCertificateRotationMode!.toTfJson(),
-        if (customSubjectAlternativeNames != null)
-          'custom_subject_alternative_names':
-              customSubjectAlternativeNames!.toTfJson(),
-        if (authorizedNetworks != null)
-          'authorized_networks':
-              authorizedNetworks!.map((n) => n.toArgMap()).toList(),
-        if (pscConfig != null) 'psc_config': [pscConfig!.toArgMap()],
-      };
+    if (ipv4Enabled != null) 'ipv4_enabled': ipv4Enabled!.toTfJson(),
+    if (privateNetwork != null) 'private_network': privateNetwork!.toTfJson(),
+    if (allocatedIpRange != null)
+      'allocated_ip_range': allocatedIpRange!.toTfJson(),
+    if (enablePrivatePathForGoogleCloudServices != null)
+      'enable_private_path_for_google_cloud_services':
+          enablePrivatePathForGoogleCloudServices!.toTfJson(),
+    if (sslMode != null) 'ssl_mode': sslMode!.toTfJson(),
+    if (serverCaMode != null) 'server_ca_mode': serverCaMode!.toTfJson(),
+    if (serverCaPool != null) 'server_ca_pool': serverCaPool!.toTfJson(),
+    if (serverCertificateRotationMode != null)
+      'server_certificate_rotation_mode': serverCertificateRotationMode!
+          .toTfJson(),
+    if (customSubjectAlternativeNames != null)
+      'custom_subject_alternative_names': customSubjectAlternativeNames!
+          .toTfJson(),
+    if (authorizedNetworks != null)
+      'authorized_networks': authorizedNetworks!
+          .map((n) => n.toArgMap())
+          .toList(),
+    if (pscConfig != null) 'psc_config': [pscConfig!.toArgMap()],
+  };
 }
 
 /// One entry in `ip_configuration.authorized_networks`. The `value`
@@ -387,11 +386,10 @@ class AuthorizedNetwork {
   final TfArg<String>? expirationTime;
 
   Map<String, Object?> toArgMap() => {
-        'value': value.toTfJson(),
-        if (name != null) 'name': name!.toTfJson(),
-        if (expirationTime != null)
-          'expiration_time': expirationTime!.toTfJson(),
-      };
+    'value': value.toTfJson(),
+    if (name != null) 'name': name!.toTfJson(),
+    if (expirationTime != null) 'expiration_time': expirationTime!.toTfJson(),
+  };
 }
 
 /// `ip_configuration.psc_config` — Private Service Connect. Mutually
@@ -415,12 +413,12 @@ class PscConfig {
   final TfArg<String>? networkAttachmentUri;
 
   Map<String, Object?> toArgMap() => {
-        if (pscEnabled != null) 'psc_enabled': pscEnabled!.toTfJson(),
-        if (allowedConsumerProjects != null)
-          'allowed_consumer_projects': allowedConsumerProjects!.toTfJson(),
-        if (networkAttachmentUri != null)
-          'network_attachment_uri': networkAttachmentUri!.toTfJson(),
-      };
+    if (pscEnabled != null) 'psc_enabled': pscEnabled!.toTfJson(),
+    if (allowedConsumerProjects != null)
+      'allowed_consumer_projects': allowedConsumerProjects!.toTfJson(),
+    if (networkAttachmentUri != null)
+      'network_attachment_uri': networkAttachmentUri!.toTfJson(),
+  };
 }
 
 /// `settings.backup_configuration`. Enabling backups is a prerequisite
@@ -461,17 +459,17 @@ class BackupConfiguration {
   final BackupRetentionSettings? backupRetentionSettings;
 
   Map<String, Object?> toArgMap() => {
-        if (enabled != null) 'enabled': enabled,
-        if (startTime != null) 'start_time': startTime,
-        if (location != null) 'location': location,
-        if (pointInTimeRecoveryEnabled != null)
-          'point_in_time_recovery_enabled': pointInTimeRecoveryEnabled,
-        if (binaryLogEnabled != null) 'binary_log_enabled': binaryLogEnabled,
-        if (transactionLogRetentionDays != null)
-          'transaction_log_retention_days': transactionLogRetentionDays,
-        if (backupRetentionSettings != null)
-          'backup_retention_settings': [backupRetentionSettings!.toArgMap()],
-      };
+    if (enabled != null) 'enabled': enabled,
+    if (startTime != null) 'start_time': startTime,
+    if (location != null) 'location': location,
+    if (pointInTimeRecoveryEnabled != null)
+      'point_in_time_recovery_enabled': pointInTimeRecoveryEnabled,
+    if (binaryLogEnabled != null) 'binary_log_enabled': binaryLogEnabled,
+    if (transactionLogRetentionDays != null)
+      'transaction_log_retention_days': transactionLogRetentionDays,
+    if (backupRetentionSettings != null)
+      'backup_retention_settings': [backupRetentionSettings!.toArgMap()],
+  };
 }
 
 /// `backup_configuration.backup_retention_settings`.
@@ -489,9 +487,9 @@ class BackupRetentionSettings {
   final String? retentionUnit;
 
   Map<String, Object?> toArgMap() => {
-        'retained_backups': retainedBackups,
-        if (retentionUnit != null) 'retention_unit': retentionUnit,
-      };
+    'retained_backups': retainedBackups,
+    if (retentionUnit != null) 'retention_unit': retentionUnit,
+  };
 }
 
 /// One `settings.database_flags` entry — engine-level flag. Both keys
@@ -531,11 +529,11 @@ class LocationPreference {
   final String? followGaeApplication;
 
   Map<String, Object?> toArgMap() => {
-        if (zone != null) 'zone': zone,
-        if (secondaryZone != null) 'secondary_zone': secondaryZone,
-        if (followGaeApplication != null)
-          'follow_gae_application': followGaeApplication,
-      };
+    if (zone != null) 'zone': zone,
+    if (secondaryZone != null) 'secondary_zone': secondaryZone,
+    if (followGaeApplication != null)
+      'follow_gae_application': followGaeApplication,
+  };
 }
 
 /// `settings.maintenance_window`. Pin a weekly window when GCP can
@@ -555,10 +553,10 @@ class MaintenanceWindow {
   final String? updateTrack;
 
   Map<String, Object?> toArgMap() => {
-        if (day != null) 'day': day,
-        if (hour != null) 'hour': hour,
-        if (updateTrack != null) 'update_track': updateTrack,
-      };
+    if (day != null) 'day': day,
+    if (hour != null) 'hour': hour,
+    if (updateTrack != null) 'update_track': updateTrack,
+  };
 }
 
 // ===========================================================================
@@ -626,25 +624,24 @@ class ReplicaConfiguration {
   final TfArg<bool>? verifyServerCertificate;
 
   Map<String, Object?> toArgMap() => {
-        if (failoverTarget != null)
-          'failover_target': failoverTarget!.toTfJson(),
-        if (cascadableReplica != null)
-          'cascadable_replica': cascadableReplica!.toTfJson(),
-        if (username != null) 'username': username!.toTfJson(),
-        if (password != null) 'password': password!.toTfJson(),
-        if (caCertificate != null) 'ca_certificate': caCertificate!.toTfJson(),
-        if (clientCertificate != null)
-          'client_certificate': clientCertificate!.toTfJson(),
-        if (clientKey != null) 'client_key': clientKey!.toTfJson(),
-        if (connectRetryInterval != null)
-          'connect_retry_interval': connectRetryInterval!.toTfJson(),
-        if (dumpFilePath != null) 'dump_file_path': dumpFilePath!.toTfJson(),
-        if (masterHeartbeatPeriod != null)
-          'master_heartbeat_period': masterHeartbeatPeriod!.toTfJson(),
-        if (sslCipher != null) 'ssl_cipher': sslCipher!.toTfJson(),
-        if (verifyServerCertificate != null)
-          'verify_server_certificate': verifyServerCertificate!.toTfJson(),
-      };
+    if (failoverTarget != null) 'failover_target': failoverTarget!.toTfJson(),
+    if (cascadableReplica != null)
+      'cascadable_replica': cascadableReplica!.toTfJson(),
+    if (username != null) 'username': username!.toTfJson(),
+    if (password != null) 'password': password!.toTfJson(),
+    if (caCertificate != null) 'ca_certificate': caCertificate!.toTfJson(),
+    if (clientCertificate != null)
+      'client_certificate': clientCertificate!.toTfJson(),
+    if (clientKey != null) 'client_key': clientKey!.toTfJson(),
+    if (connectRetryInterval != null)
+      'connect_retry_interval': connectRetryInterval!.toTfJson(),
+    if (dumpFilePath != null) 'dump_file_path': dumpFilePath!.toTfJson(),
+    if (masterHeartbeatPeriod != null)
+      'master_heartbeat_period': masterHeartbeatPeriod!.toTfJson(),
+    if (sslCipher != null) 'ssl_cipher': sslCipher!.toTfJson(),
+    if (verifyServerCertificate != null)
+      'verify_server_certificate': verifyServerCertificate!.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_sql_database_instance` (provider
@@ -751,38 +748,38 @@ final class GoogleSqlDatabaseInstance extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'database_version': databaseVersion,
-            if (name != null) 'name': name,
-            if (region != null) 'region': region,
-            if (settings != null)
-              'settings': TfArg.literal([settings.toArgMap()]),
-            if (rootPassword != null) 'root_password': rootPassword,
-            if (rootPasswordWo != null) 'root_password_wo': rootPasswordWo,
-            if (rootPasswordWoVersion != null)
-              'root_password_wo_version': rootPasswordWoVersion,
-            if (deletionProtection != null)
-              'deletion_protection': deletionProtection,
-            if (masterInstanceName != null)
-              'master_instance_name': masterInstanceName,
-            if (replicaConfiguration != null)
-              'replica_configuration': TfArg.literal([
-                replicaConfiguration.toArgMap(),
-              ]),
-            if (instanceType != null) 'instance_type': instanceType,
-            if (nodeCount != null) 'node_count': nodeCount,
-            if (maintenanceVersion != null)
-              'maintenance_version': maintenanceVersion,
-            if (encryptionKeyName != null)
-              'encryption_key_name': encryptionKeyName,
-            if (replicaNames != null) 'replica_names': replicaNames,
-            if (finalBackupDescription != null)
-              'final_backup_description': finalBackupDescription,
-            if (backupdrBackup != null) 'backupdr_backup': backupdrBackup,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'database_version': databaseVersion,
+           if (name != null) 'name': name,
+           if (region != null) 'region': region,
+           if (settings != null)
+             'settings': TfArg.literal([settings.toArgMap()]),
+           if (rootPassword != null) 'root_password': rootPassword,
+           if (rootPasswordWo != null) 'root_password_wo': rootPasswordWo,
+           if (rootPasswordWoVersion != null)
+             'root_password_wo_version': rootPasswordWoVersion,
+           if (deletionProtection != null)
+             'deletion_protection': deletionProtection,
+           if (masterInstanceName != null)
+             'master_instance_name': masterInstanceName,
+           if (replicaConfiguration != null)
+             'replica_configuration': TfArg.literal([
+               replicaConfiguration.toArgMap(),
+             ]),
+           if (instanceType != null) 'instance_type': instanceType,
+           if (nodeCount != null) 'node_count': nodeCount,
+           if (maintenanceVersion != null)
+             'maintenance_version': maintenanceVersion,
+           if (encryptionKeyName != null)
+             'encryption_key_name': encryptionKeyName,
+           if (replicaNames != null) 'replica_names': replicaNames,
+           if (finalBackupDescription != null)
+             'final_backup_description': finalBackupDescription,
+           if (backupdrBackup != null) 'backupdr_backup': backupdrBackup,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

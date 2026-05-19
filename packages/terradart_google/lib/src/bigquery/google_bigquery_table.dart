@@ -133,14 +133,14 @@ class TimePartitioning {
   final bool? requirePartitionFilter;
 
   Map<String, Object?> toArgMap() => {
-        'type': type.terraformValue,
-        if (expirationMs != null) 'expiration_ms': expirationMs,
-        if (field != null) 'field': field,
-        // ignore: deprecated_member_use_from_same_package
-        if (requirePartitionFilter != null)
-          // ignore: deprecated_member_use_from_same_package
-          'require_partition_filter': requirePartitionFilter,
-      };
+    'type': type.terraformValue,
+    if (expirationMs != null) 'expiration_ms': expirationMs,
+    if (field != null) 'field': field,
+    // ignore: deprecated_member_use_from_same_package
+    if (requirePartitionFilter != null)
+      // ignore: deprecated_member_use_from_same_package
+      'require_partition_filter': requirePartitionFilter,
+  };
 }
 
 /// `range_partitioning` block (max=1). `field` is the int64 column
@@ -154,9 +154,9 @@ class RangePartitioning {
   final RangePartitioningRange range;
 
   Map<String, Object?> toArgMap() => {
-        'field': field,
-        'range': [range.toArgMap()],
-      };
+    'field': field,
+    'range': [range.toArgMap()],
+  };
 }
 
 /// Inner `range` block of `range_partitioning`. Half-open: `start` is
@@ -174,10 +174,10 @@ class RangePartitioningRange {
   final int interval;
 
   Map<String, Object?> toArgMap() => {
-        'start': start,
-        'end': end,
-        'interval': interval,
-      };
+    'start': start,
+    'end': end,
+    'interval': interval,
+  };
 }
 
 // ===========================================================================
@@ -202,12 +202,12 @@ class MaterializedView {
   final bool? allowNonIncrementalDefinition;
 
   Map<String, Object?> toArgMap() => {
-        'query': query,
-        if (enableRefresh != null) 'enable_refresh': enableRefresh,
-        if (refreshIntervalMs != null) 'refresh_interval_ms': refreshIntervalMs,
-        if (allowNonIncrementalDefinition != null)
-          'allow_non_incremental_definition': allowNonIncrementalDefinition,
-      };
+    'query': query,
+    if (enableRefresh != null) 'enable_refresh': enableRefresh,
+    if (refreshIntervalMs != null) 'refresh_interval_ms': refreshIntervalMs,
+    if (allowNonIncrementalDefinition != null)
+      'allow_non_incremental_definition': allowNonIncrementalDefinition,
+  };
 }
 
 /// `view` block (max=1). When set, the table is a logical view backed
@@ -222,9 +222,9 @@ class TableView {
   final bool? useLegacySql;
 
   Map<String, Object?> toArgMap() => {
-        'query': query,
-        if (useLegacySql != null) 'use_legacy_sql': useLegacySql,
-      };
+    'query': query,
+    if (useLegacySql != null) 'use_legacy_sql': useLegacySql,
+  };
 }
 
 // ===========================================================================
@@ -296,37 +296,35 @@ class ExternalDataConfiguration {
   final Map<String, Object?>? bigtableOptions;
 
   Map<String, Object?> toArgMap() => {
-        'autodetect': autodetect,
-        'source_uris': sourceUris,
-        if (sourceFormat != null) 'source_format': sourceFormat!.terraformValue,
-        if (compression != null) 'compression': compression!.terraformValue,
-        if (fileSetSpecType != null)
-          'file_set_spec_type': fileSetSpecType!.terraformValue,
-        if (ignoreUnknownValues != null)
-          'ignore_unknown_values': ignoreUnknownValues,
-        if (maxBadRecords != null) 'max_bad_records': maxBadRecords,
-        if (referenceFileSchemaUri != null)
-          'reference_file_schema_uri': referenceFileSchemaUri,
-        if (schema != null) 'schema': schema,
-        if (connectionId != null) 'connection_id': connectionId,
-        if (metadataCacheMode != null)
-          'metadata_cache_mode': metadataCacheMode!.terraformValue,
-        if (objectMetadata != null)
-          'object_metadata': objectMetadata!.terraformValue,
-        if (jsonExtension != null) 'json_extension': jsonExtension,
-        if (decimalTargetTypes != null)
-          'decimal_target_types': decimalTargetTypes,
-        if (csvOptions != null) 'csv_options': [csvOptions!.toArgMap()],
-        if (googleSheetsOptions != null)
-          'google_sheets_options': [googleSheetsOptions!.toArgMap()],
-        if (hivePartitioningOptions != null)
-          'hive_partitioning_options': [hivePartitioningOptions!.toArgMap()],
-        if (parquetOptions != null)
-          'parquet_options': [parquetOptions!.toArgMap()],
-        if (avroOptions != null) 'avro_options': [avroOptions!.toArgMap()],
-        if (jsonOptions != null) 'json_options': [jsonOptions!.toArgMap()],
-        if (bigtableOptions != null) 'bigtable_options': [bigtableOptions],
-      };
+    'autodetect': autodetect,
+    'source_uris': sourceUris,
+    if (sourceFormat != null) 'source_format': sourceFormat!.terraformValue,
+    if (compression != null) 'compression': compression!.terraformValue,
+    if (fileSetSpecType != null)
+      'file_set_spec_type': fileSetSpecType!.terraformValue,
+    if (ignoreUnknownValues != null)
+      'ignore_unknown_values': ignoreUnknownValues,
+    if (maxBadRecords != null) 'max_bad_records': maxBadRecords,
+    if (referenceFileSchemaUri != null)
+      'reference_file_schema_uri': referenceFileSchemaUri,
+    if (schema != null) 'schema': schema,
+    if (connectionId != null) 'connection_id': connectionId,
+    if (metadataCacheMode != null)
+      'metadata_cache_mode': metadataCacheMode!.terraformValue,
+    if (objectMetadata != null)
+      'object_metadata': objectMetadata!.terraformValue,
+    if (jsonExtension != null) 'json_extension': jsonExtension,
+    if (decimalTargetTypes != null) 'decimal_target_types': decimalTargetTypes,
+    if (csvOptions != null) 'csv_options': [csvOptions!.toArgMap()],
+    if (googleSheetsOptions != null)
+      'google_sheets_options': [googleSheetsOptions!.toArgMap()],
+    if (hivePartitioningOptions != null)
+      'hive_partitioning_options': [hivePartitioningOptions!.toArgMap()],
+    if (parquetOptions != null) 'parquet_options': [parquetOptions!.toArgMap()],
+    if (avroOptions != null) 'avro_options': [avroOptions!.toArgMap()],
+    if (jsonOptions != null) 'json_options': [jsonOptions!.toArgMap()],
+    if (bigtableOptions != null) 'bigtable_options': [bigtableOptions],
+  };
 }
 
 /// `external_data_configuration.csv_options` sub-block. `quote` is
@@ -353,15 +351,15 @@ class CsvOptions {
   final String? sourceColumnMatch;
 
   Map<String, Object?> toArgMap() => {
-        'quote': quote,
-        if (allowJaggedRows != null) 'allow_jagged_rows': allowJaggedRows,
-        if (allowQuotedNewlines != null)
-          'allow_quoted_newlines': allowQuotedNewlines,
-        if (encoding != null) 'encoding': encoding,
-        if (fieldDelimiter != null) 'field_delimiter': fieldDelimiter,
-        if (skipLeadingRows != null) 'skip_leading_rows': skipLeadingRows,
-        if (sourceColumnMatch != null) 'source_column_match': sourceColumnMatch,
-      };
+    'quote': quote,
+    if (allowJaggedRows != null) 'allow_jagged_rows': allowJaggedRows,
+    if (allowQuotedNewlines != null)
+      'allow_quoted_newlines': allowQuotedNewlines,
+    if (encoding != null) 'encoding': encoding,
+    if (fieldDelimiter != null) 'field_delimiter': fieldDelimiter,
+    if (skipLeadingRows != null) 'skip_leading_rows': skipLeadingRows,
+    if (sourceColumnMatch != null) 'source_column_match': sourceColumnMatch,
+  };
 }
 
 /// `external_data_configuration.google_sheets_options` sub-block. At
@@ -375,9 +373,9 @@ class GoogleSheetsOptions {
   final int? skipLeadingRows;
 
   Map<String, Object?> toArgMap() => {
-        if (range != null) 'range': range,
-        if (skipLeadingRows != null) 'skip_leading_rows': skipLeadingRows,
-      };
+    if (range != null) 'range': range,
+    if (skipLeadingRows != null) 'skip_leading_rows': skipLeadingRows,
+  };
 }
 
 /// `external_data_configuration.hive_partitioning_options` sub-block.
@@ -396,11 +394,11 @@ class HivePartitioningOptions {
   final String? sourceUriPrefix;
 
   Map<String, Object?> toArgMap() => {
-        if (mode != null) 'mode': mode,
-        if (requirePartitionFilter != null)
-          'require_partition_filter': requirePartitionFilter,
-        if (sourceUriPrefix != null) 'source_uri_prefix': sourceUriPrefix,
-      };
+    if (mode != null) 'mode': mode,
+    if (requirePartitionFilter != null)
+      'require_partition_filter': requirePartitionFilter,
+    if (sourceUriPrefix != null) 'source_uri_prefix': sourceUriPrefix,
+  };
 }
 
 /// `external_data_configuration.parquet_options` sub-block.
@@ -412,10 +410,10 @@ class ParquetOptions {
   final bool? enumAsString;
 
   Map<String, Object?> toArgMap() => {
-        if (enableListInference != null)
-          'enable_list_inference': enableListInference,
-        if (enumAsString != null) 'enum_as_string': enumAsString,
-      };
+    if (enableListInference != null)
+      'enable_list_inference': enableListInference,
+    if (enumAsString != null) 'enum_as_string': enumAsString,
+  };
 }
 
 /// `external_data_configuration.avro_options` sub-block.
@@ -427,8 +425,8 @@ class AvroOptions {
   final bool useAvroLogicalTypes;
 
   Map<String, Object?> toArgMap() => {
-        'use_avro_logical_types': useAvroLogicalTypes,
-      };
+    'use_avro_logical_types': useAvroLogicalTypes,
+  };
 }
 
 /// `external_data_configuration.json_options` sub-block.
@@ -439,8 +437,8 @@ class JsonOptions {
   final String? encoding;
 
   Map<String, Object?> toArgMap() => {
-        if (encoding != null) 'encoding': encoding,
-      };
+    if (encoding != null) 'encoding': encoding,
+  };
 }
 
 // ===========================================================================
@@ -471,10 +469,10 @@ class TableConstraints {
   final List<ForeignKey>? foreignKeys;
 
   Map<String, Object?> toArgMap() => {
-        if (primaryKey != null) 'primary_key': [primaryKey!.toArgMap()],
-        if (foreignKeys != null)
-          'foreign_keys': foreignKeys!.map((f) => f.toArgMap()).toList(),
-      };
+    if (primaryKey != null) 'primary_key': [primaryKey!.toArgMap()],
+    if (foreignKeys != null)
+      'foreign_keys': foreignKeys!.map((f) => f.toArgMap()).toList(),
+  };
 }
 
 /// `table_constraints.primary_key` sub-block (max=1).
@@ -504,10 +502,10 @@ class ForeignKey {
   final String? name;
 
   Map<String, Object?> toArgMap() => {
-        'referenced_table': [referencedTable.toArgMap()],
-        'column_references': [columnReferences.toArgMap()],
-        if (name != null) 'name': name,
-      };
+    'referenced_table': [referencedTable.toArgMap()],
+    'column_references': [columnReferences.toArgMap()],
+    if (name != null) 'name': name,
+  };
 }
 
 /// Inner `referenced_table` block of a foreign key constraint —
@@ -525,10 +523,10 @@ class ReferencedTable {
   final String tableId;
 
   Map<String, Object?> toArgMap() => {
-        'project_id': projectId,
-        'dataset_id': datasetId,
-        'table_id': tableId,
-      };
+    'project_id': projectId,
+    'dataset_id': datasetId,
+    'table_id': tableId,
+  };
 }
 
 /// Inner `column_references` block of a foreign key constraint —
@@ -544,9 +542,9 @@ class ColumnReferences {
   final String referencedColumn;
 
   Map<String, Object?> toArgMap() => {
-        'referencing_column': referencingColumn,
-        'referenced_column': referencedColumn,
-      };
+    'referencing_column': referencingColumn,
+    'referenced_column': referencedColumn,
+  };
 }
 
 /// `table_replication_info` block (max=1). Marks the table as a
@@ -567,12 +565,12 @@ class TableReplicationInfo {
   final int? replicationIntervalMs;
 
   Map<String, Object?> toArgMap() => {
-        'source_project_id': sourceProjectId,
-        'source_dataset_id': sourceDatasetId,
-        'source_table_id': sourceTableId,
-        if (replicationIntervalMs != null)
-          'replication_interval_ms': replicationIntervalMs,
-      };
+    'source_project_id': sourceProjectId,
+    'source_dataset_id': sourceDatasetId,
+    'source_table_id': sourceTableId,
+    if (replicationIntervalMs != null)
+      'replication_interval_ms': replicationIntervalMs,
+  };
 }
 
 /// `biglake_configuration` block (max=1). Promotes the table to a
@@ -594,11 +592,11 @@ class BiglakeConfiguration {
   final String tableFormat;
 
   Map<String, Object?> toArgMap() => {
-        'connection_id': connectionId,
-        'storage_uri': storageUri,
-        'file_format': fileFormat,
-        'table_format': tableFormat,
-      };
+    'connection_id': connectionId,
+    'storage_uri': storageUri,
+    'file_format': fileFormat,
+    'table_format': tableFormat,
+  };
 }
 
 /// Factory wrapper for `google_bigquery_table` (provider `hashicorp/google ~> 7.0`).
@@ -679,58 +677,58 @@ final class GoogleBigqueryTable extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'dataset_id': datasetId,
-            'table_id': tableId,
-            if (friendlyName != null) 'friendly_name': friendlyName,
-            if (description != null) 'description': description,
-            if (schema != null) 'schema': schema,
-            if (expirationTime != null) 'expiration_time': expirationTime,
-            if (clustering != null) 'clustering': clustering,
-            if (labels != null) 'labels': labels,
-            if (resourceTags != null) 'resource_tags': resourceTags,
-            if (requirePartitionFilter != null)
-              'require_partition_filter': requirePartitionFilter,
-            if (maxStaleness != null) 'max_staleness': maxStaleness,
-            if (deletionProtection != null)
-              'deletion_protection': deletionProtection,
-            if (ignoreAutoGeneratedSchema != null)
-              'ignore_auto_generated_schema': ignoreAutoGeneratedSchema,
-            if (ignoreSchemaChanges != null)
-              'ignore_schema_changes': ignoreSchemaChanges,
-            if (tableMetadataView != null)
-              'table_metadata_view': tableMetadataView,
-            if (timePartitioning != null)
-              'time_partitioning': TfArg.literal([timePartitioning.toArgMap()]),
-            if (rangePartitioning != null)
-              'range_partitioning': TfArg.literal([
-                rangePartitioning.toArgMap(),
-              ]),
-            if (materializedView != null)
-              'materialized_view': TfArg.literal([materializedView.toArgMap()]),
-            if (view != null) 'view': TfArg.literal([view.toArgMap()]),
-            if (externalDataConfiguration != null)
-              'external_data_configuration': TfArg.literal([
-                externalDataConfiguration.toArgMap(),
-              ]),
-            if (encryptionConfiguration != null)
-              'encryption_configuration': TfArg.literal([
-                encryptionConfiguration.toArgMap(),
-              ]),
-            if (tableConstraints != null)
-              'table_constraints': TfArg.literal([tableConstraints.toArgMap()]),
-            if (tableReplicationInfo != null)
-              'table_replication_info': TfArg.literal([
-                tableReplicationInfo.toArgMap(),
-              ]),
-            if (biglakeConfiguration != null)
-              'biglake_configuration': TfArg.literal([
-                biglakeConfiguration.toArgMap(),
-              ]),
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'dataset_id': datasetId,
+           'table_id': tableId,
+           if (friendlyName != null) 'friendly_name': friendlyName,
+           if (description != null) 'description': description,
+           if (schema != null) 'schema': schema,
+           if (expirationTime != null) 'expiration_time': expirationTime,
+           if (clustering != null) 'clustering': clustering,
+           if (labels != null) 'labels': labels,
+           if (resourceTags != null) 'resource_tags': resourceTags,
+           if (requirePartitionFilter != null)
+             'require_partition_filter': requirePartitionFilter,
+           if (maxStaleness != null) 'max_staleness': maxStaleness,
+           if (deletionProtection != null)
+             'deletion_protection': deletionProtection,
+           if (ignoreAutoGeneratedSchema != null)
+             'ignore_auto_generated_schema': ignoreAutoGeneratedSchema,
+           if (ignoreSchemaChanges != null)
+             'ignore_schema_changes': ignoreSchemaChanges,
+           if (tableMetadataView != null)
+             'table_metadata_view': tableMetadataView,
+           if (timePartitioning != null)
+             'time_partitioning': TfArg.literal([timePartitioning.toArgMap()]),
+           if (rangePartitioning != null)
+             'range_partitioning': TfArg.literal([
+               rangePartitioning.toArgMap(),
+             ]),
+           if (materializedView != null)
+             'materialized_view': TfArg.literal([materializedView.toArgMap()]),
+           if (view != null) 'view': TfArg.literal([view.toArgMap()]),
+           if (externalDataConfiguration != null)
+             'external_data_configuration': TfArg.literal([
+               externalDataConfiguration.toArgMap(),
+             ]),
+           if (encryptionConfiguration != null)
+             'encryption_configuration': TfArg.literal([
+               encryptionConfiguration.toArgMap(),
+             ]),
+           if (tableConstraints != null)
+             'table_constraints': TfArg.literal([tableConstraints.toArgMap()]),
+           if (tableReplicationInfo != null)
+             'table_replication_info': TfArg.literal([
+               tableReplicationInfo.toArgMap(),
+             ]),
+           if (biglakeConfiguration != null)
+             'biglake_configuration': TfArg.literal([
+               biglakeConfiguration.toArgMap(),
+             ]),
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

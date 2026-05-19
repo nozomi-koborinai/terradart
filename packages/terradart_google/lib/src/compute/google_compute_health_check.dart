@@ -101,15 +101,15 @@ class HttpHealthCheckConfig {
   final HealthCheckPortSpecification? portSpecification;
 
   Map<String, Object?> toArgMap() => {
-        if (host != null) 'host': host,
-        if (requestPath != null) 'request_path': requestPath,
-        if (response != null) 'response': response,
-        if (port != null) 'port': port,
-        if (portName != null) 'port_name': portName,
-        if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
-        if (portSpecification != null)
-          'port_specification': portSpecification!.terraformValue,
-      };
+    if (host != null) 'host': host,
+    if (requestPath != null) 'request_path': requestPath,
+    if (response != null) 'response': response,
+    if (port != null) 'port': port,
+    if (portName != null) 'port_name': portName,
+    if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
+    if (portSpecification != null)
+      'port_specification': portSpecification!.terraformValue,
+  };
 }
 
 /// `https_health_check` block.
@@ -136,15 +136,15 @@ class HttpsHealthCheckConfig {
   final HealthCheckPortSpecification? portSpecification;
 
   Map<String, Object?> toArgMap() => {
-        if (host != null) 'host': host,
-        if (requestPath != null) 'request_path': requestPath,
-        if (response != null) 'response': response,
-        if (port != null) 'port': port,
-        if (portName != null) 'port_name': portName,
-        if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
-        if (portSpecification != null)
-          'port_specification': portSpecification!.terraformValue,
-      };
+    if (host != null) 'host': host,
+    if (requestPath != null) 'request_path': requestPath,
+    if (response != null) 'response': response,
+    if (port != null) 'port': port,
+    if (portName != null) 'port_name': portName,
+    if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
+    if (portSpecification != null)
+      'port_specification': portSpecification!.terraformValue,
+  };
 }
 
 /// `http2_health_check` block.
@@ -171,15 +171,15 @@ class Http2HealthCheckConfig {
   final HealthCheckPortSpecification? portSpecification;
 
   Map<String, Object?> toArgMap() => {
-        if (host != null) 'host': host,
-        if (requestPath != null) 'request_path': requestPath,
-        if (response != null) 'response': response,
-        if (port != null) 'port': port,
-        if (portName != null) 'port_name': portName,
-        if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
-        if (portSpecification != null)
-          'port_specification': portSpecification!.terraformValue,
-      };
+    if (host != null) 'host': host,
+    if (requestPath != null) 'request_path': requestPath,
+    if (response != null) 'response': response,
+    if (port != null) 'port': port,
+    if (portName != null) 'port_name': portName,
+    if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
+    if (portSpecification != null)
+      'port_specification': portSpecification!.terraformValue,
+  };
 }
 
 /// `tcp_health_check` block. Pure TCP connect-or-payload probe.
@@ -209,14 +209,14 @@ class TcpHealthCheckConfig {
   final HealthCheckPortSpecification? portSpecification;
 
   Map<String, Object?> toArgMap() => {
-        if (request != null) 'request': request,
-        if (response != null) 'response': response,
-        if (port != null) 'port': port,
-        if (portName != null) 'port_name': portName,
-        if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
-        if (portSpecification != null)
-          'port_specification': portSpecification!.terraformValue,
-      };
+    if (request != null) 'request': request,
+    if (response != null) 'response': response,
+    if (port != null) 'port': port,
+    if (portName != null) 'port_name': portName,
+    if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
+    if (portSpecification != null)
+      'port_specification': portSpecification!.terraformValue,
+  };
 }
 
 /// `ssl_health_check` block. Pure SSL/TLS probe.
@@ -241,14 +241,14 @@ class SslHealthCheckConfig {
   final HealthCheckPortSpecification? portSpecification;
 
   Map<String, Object?> toArgMap() => {
-        if (request != null) 'request': request,
-        if (response != null) 'response': response,
-        if (port != null) 'port': port,
-        if (portName != null) 'port_name': portName,
-        if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
-        if (portSpecification != null)
-          'port_specification': portSpecification!.terraformValue,
-      };
+    if (request != null) 'request': request,
+    if (response != null) 'response': response,
+    if (port != null) 'port': port,
+    if (portName != null) 'port_name': portName,
+    if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
+    if (portSpecification != null)
+      'port_specification': portSpecification!.terraformValue,
+  };
 }
 
 /// `grpc_health_check` block. Probes via the gRPC Health Checking
@@ -275,12 +275,12 @@ class GrpcHealthCheckConfig {
   final String? grpcServiceName;
 
   Map<String, Object?> toArgMap() => {
-        if (port != null) 'port': port,
-        if (portName != null) 'port_name': portName,
-        if (portSpecification != null)
-          'port_specification': portSpecification!.terraformValue,
-        if (grpcServiceName != null) 'grpc_service_name': grpcServiceName,
-      };
+    if (port != null) 'port': port,
+    if (portName != null) 'port_name': portName,
+    if (portSpecification != null)
+      'port_specification': portSpecification!.terraformValue,
+    if (grpcServiceName != null) 'grpc_service_name': grpcServiceName,
+  };
 }
 
 // ===========================================================================
@@ -389,36 +389,33 @@ final class GoogleComputeHealthCheck extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            if (description != null) 'description': description,
-            if (checkIntervalSec != null)
-              'check_interval_sec': checkIntervalSec,
-            if (timeoutSec != null) 'timeout_sec': timeoutSec,
-            if (healthyThreshold != null) 'healthy_threshold': healthyThreshold,
-            if (unhealthyThreshold != null)
-              'unhealthy_threshold': unhealthyThreshold,
-            if (sourceRegions != null) 'source_regions': sourceRegions,
-            if (httpHealthCheck != null)
-              'http_health_check': TfArg.literal([httpHealthCheck.toArgMap()]),
-            if (httpsHealthCheck != null)
-              'https_health_check':
-                  TfArg.literal([httpsHealthCheck.toArgMap()]),
-            if (http2HealthCheck != null)
-              'http2_health_check':
-                  TfArg.literal([http2HealthCheck.toArgMap()]),
-            if (tcpHealthCheck != null)
-              'tcp_health_check': TfArg.literal([tcpHealthCheck.toArgMap()]),
-            if (sslHealthCheck != null)
-              'ssl_health_check': TfArg.literal([sslHealthCheck.toArgMap()]),
-            if (grpcHealthCheck != null)
-              'grpc_health_check': TfArg.literal([grpcHealthCheck.toArgMap()]),
-            if (logConfig != null)
-              'log_config': TfArg.literal([logConfig.toArgMap()]),
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           if (description != null) 'description': description,
+           if (checkIntervalSec != null) 'check_interval_sec': checkIntervalSec,
+           if (timeoutSec != null) 'timeout_sec': timeoutSec,
+           if (healthyThreshold != null) 'healthy_threshold': healthyThreshold,
+           if (unhealthyThreshold != null)
+             'unhealthy_threshold': unhealthyThreshold,
+           if (sourceRegions != null) 'source_regions': sourceRegions,
+           if (httpHealthCheck != null)
+             'http_health_check': TfArg.literal([httpHealthCheck.toArgMap()]),
+           if (httpsHealthCheck != null)
+             'https_health_check': TfArg.literal([httpsHealthCheck.toArgMap()]),
+           if (http2HealthCheck != null)
+             'http2_health_check': TfArg.literal([http2HealthCheck.toArgMap()]),
+           if (tcpHealthCheck != null)
+             'tcp_health_check': TfArg.literal([tcpHealthCheck.toArgMap()]),
+           if (sslHealthCheck != null)
+             'ssl_health_check': TfArg.literal([sslHealthCheck.toArgMap()]),
+           if (grpcHealthCheck != null)
+             'grpc_health_check': TfArg.literal([grpcHealthCheck.toArgMap()]),
+           if (logConfig != null)
+             'log_config': TfArg.literal([logConfig.toArgMap()]),
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

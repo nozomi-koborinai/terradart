@@ -108,20 +108,20 @@ final class GoogleComputeGlobalAddress extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            if (addressType != null) 'address_type': addressType,
-            if (purpose != null) 'purpose': purpose,
-            if (ipVersion != null) 'ip_version': ipVersion,
-            if (address != null) 'address': address,
-            if (prefixLength != null) 'prefix_length': prefixLength,
-            if (network != null) 'network': network,
-            if (labels != null) 'labels': labels,
-            if (description != null) 'description': description,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           if (addressType != null) 'address_type': addressType,
+           if (purpose != null) 'purpose': purpose,
+           if (ipVersion != null) 'ip_version': ipVersion,
+           if (address != null) 'address': address,
+           if (prefixLength != null) 'prefix_length': prefixLength,
+           if (network != null) 'network': network,
+           if (labels != null) 'labels': labels,
+           if (description != null) 'description': description,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

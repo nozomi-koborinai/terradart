@@ -48,9 +48,9 @@ class AppHostingBackendCodebase {
   final TfArg<String>? rootDirectory;
 
   Map<String, Object?> toArgMap() => {
-        'repository': repository.toTfJson(),
-        if (rootDirectory != null) 'root_directory': rootDirectory!.toTfJson(),
-      };
+    'repository': repository.toTfJson(),
+    if (rootDirectory != null) 'root_directory': rootDirectory!.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_firebase_app_hosting_backend` (provider
@@ -117,22 +117,22 @@ final class GoogleFirebaseAppHostingBackend extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'backend_id': backendId,
-            'location': location,
-            'app_id': appId,
-            'service_account': serviceAccount,
-            'serving_locality': servingLocality,
-            if (codebase != null)
-              'codebase': TfArg.literal([codebase.toArgMap()]),
-            if (environment != null) 'environment': environment,
-            if (displayName != null) 'display_name': displayName,
-            if (annotations != null) 'annotations': annotations,
-            if (labels != null) 'labels': labels,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'backend_id': backendId,
+           'location': location,
+           'app_id': appId,
+           'service_account': serviceAccount,
+           'serving_locality': servingLocality,
+           if (codebase != null)
+             'codebase': TfArg.literal([codebase.toArgMap()]),
+           if (environment != null) 'environment': environment,
+           if (displayName != null) 'display_name': displayName,
+           if (annotations != null) 'annotations': annotations,
+           if (labels != null) 'labels': labels,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

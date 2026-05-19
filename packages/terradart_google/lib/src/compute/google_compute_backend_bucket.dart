@@ -110,7 +110,7 @@ class BackendBucketCdnPolicy {
   /// Bypass the cache when any of these request headers is present.
   /// Up to 5 entries.
   final List<BackendBucketCdnBypassCacheOnRequestHeader>?
-      bypassCacheOnRequestHeaders;
+  bypassCacheOnRequestHeaders;
 
   /// Cache key policy — which request components participate in the
   /// cache key.
@@ -121,24 +121,26 @@ class BackendBucketCdnPolicy {
   final List<BackendBucketCdnNegativeCachingPolicy>? negativeCachingPolicy;
 
   Map<String, Object?> toArgMap() => {
-        if (cacheMode != null) 'cache_mode': cacheMode!.terraformValue,
-        if (clientTtl != null) 'client_ttl': clientTtl,
-        if (defaultTtl != null) 'default_ttl': defaultTtl,
-        if (maxTtl != null) 'max_ttl': maxTtl,
-        if (negativeCaching != null) 'negative_caching': negativeCaching,
-        if (requestCoalescing != null) 'request_coalescing': requestCoalescing,
-        if (serveWhileStale != null) 'serve_while_stale': serveWhileStale,
-        if (signedUrlCacheMaxAgeSec != null)
-          'signed_url_cache_max_age_sec': signedUrlCacheMaxAgeSec,
-        if (bypassCacheOnRequestHeaders != null)
-          'bypass_cache_on_request_headers':
-              bypassCacheOnRequestHeaders!.map((h) => h.toArgMap()).toList(),
-        if (cacheKeyPolicy != null)
-          'cache_key_policy': [cacheKeyPolicy!.toArgMap()],
-        if (negativeCachingPolicy != null)
-          'negative_caching_policy':
-              negativeCachingPolicy!.map((p) => p.toArgMap()).toList(),
-      };
+    if (cacheMode != null) 'cache_mode': cacheMode!.terraformValue,
+    if (clientTtl != null) 'client_ttl': clientTtl,
+    if (defaultTtl != null) 'default_ttl': defaultTtl,
+    if (maxTtl != null) 'max_ttl': maxTtl,
+    if (negativeCaching != null) 'negative_caching': negativeCaching,
+    if (requestCoalescing != null) 'request_coalescing': requestCoalescing,
+    if (serveWhileStale != null) 'serve_while_stale': serveWhileStale,
+    if (signedUrlCacheMaxAgeSec != null)
+      'signed_url_cache_max_age_sec': signedUrlCacheMaxAgeSec,
+    if (bypassCacheOnRequestHeaders != null)
+      'bypass_cache_on_request_headers': bypassCacheOnRequestHeaders!
+          .map((h) => h.toArgMap())
+          .toList(),
+    if (cacheKeyPolicy != null)
+      'cache_key_policy': [cacheKeyPolicy!.toArgMap()],
+    if (negativeCachingPolicy != null)
+      'negative_caching_policy': negativeCachingPolicy!
+          .map((p) => p.toArgMap())
+          .toList(),
+  };
 }
 
 /// Cache-bypass rule keyed on a request header name (one entry in
@@ -174,11 +176,10 @@ class BackendBucketCdnCacheKeyPolicy {
   final List<String>? queryStringWhitelist;
 
   Map<String, Object?> toArgMap() => {
-        if (includeHttpHeaders != null)
-          'include_http_headers': includeHttpHeaders,
-        if (queryStringWhitelist != null)
-          'query_string_whitelist': queryStringWhitelist,
-      };
+    if (includeHttpHeaders != null) 'include_http_headers': includeHttpHeaders,
+    if (queryStringWhitelist != null)
+      'query_string_whitelist': queryStringWhitelist,
+  };
 }
 
 /// One row in `cdn_policy.negative_caching_policy`.
@@ -195,9 +196,9 @@ class BackendBucketCdnNegativeCachingPolicy {
   final int? ttl;
 
   Map<String, Object?> toArgMap() => {
-        if (code != null) 'code': code,
-        if (ttl != null) 'ttl': ttl,
-      };
+    if (code != null) 'code': code,
+    if (ttl != null) 'ttl': ttl,
+  };
 }
 
 // ===========================================================================
@@ -215,9 +216,9 @@ class BackendBucketParams {
   final TfArg<Map<String, String>>? resourceManagerTags;
 
   Map<String, Object?> toArgMap() => {
-        if (resourceManagerTags != null)
-          'resource_manager_tags': resourceManagerTags!.toTfJson(),
-      };
+    if (resourceManagerTags != null)
+      'resource_manager_tags': resourceManagerTags!.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_compute_backend_bucket` (provider
@@ -327,25 +328,25 @@ final class GoogleComputeBackendBucket extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            'bucket_name': bucketName,
-            if (description != null) 'description': description,
-            if (enableCdn != null) 'enable_cdn': enableCdn,
-            if (compressionMode != null) 'compression_mode': compressionMode,
-            if (customResponseHeaders != null)
-              'custom_response_headers': customResponseHeaders,
-            if (edgeSecurityPolicy != null)
-              'edge_security_policy': edgeSecurityPolicy,
-            if (loadBalancingScheme != null)
-              'load_balancing_scheme': loadBalancingScheme,
-            if (cdnPolicy != null)
-              'cdn_policy': TfArg.literal([cdnPolicy.toArgMap()]),
-            if (params != null) 'params': TfArg.literal([params.toArgMap()]),
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           'bucket_name': bucketName,
+           if (description != null) 'description': description,
+           if (enableCdn != null) 'enable_cdn': enableCdn,
+           if (compressionMode != null) 'compression_mode': compressionMode,
+           if (customResponseHeaders != null)
+             'custom_response_headers': customResponseHeaders,
+           if (edgeSecurityPolicy != null)
+             'edge_security_policy': edgeSecurityPolicy,
+           if (loadBalancingScheme != null)
+             'load_balancing_scheme': loadBalancingScheme,
+           if (cdnPolicy != null)
+             'cdn_policy': TfArg.literal([cdnPolicy.toArgMap()]),
+           if (params != null) 'params': TfArg.literal([params.toArgMap()]),
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

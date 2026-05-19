@@ -48,24 +48,24 @@ final class GooglePubsubTopic extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
-            if (labels != null) 'labels': labels,
-            if (messageStoragePolicy != null)
-              'message_storage_policy': messageStoragePolicy,
-            if (schemaSettings != null) 'schema_settings': schemaSettings,
-            if (messageRetentionDuration != null)
-              'message_retention_duration': messageRetentionDuration,
-            if (ingestionDataSourceSettings != null)
-              'ingestion_data_source_settings': ingestionDataSourceSettings,
-            if (messageTransforms != null)
-              'message_transforms': messageTransforms,
-            if (tags != null) 'tags': tags,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
+           if (labels != null) 'labels': labels,
+           if (messageStoragePolicy != null)
+             'message_storage_policy': messageStoragePolicy,
+           if (schemaSettings != null) 'schema_settings': schemaSettings,
+           if (messageRetentionDuration != null)
+             'message_retention_duration': messageRetentionDuration,
+           if (ingestionDataSourceSettings != null)
+             'ingestion_data_source_settings': ingestionDataSourceSettings,
+           if (messageTransforms != null)
+             'message_transforms': messageTransforms,
+           if (tags != null) 'tags': tags,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

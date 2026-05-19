@@ -64,10 +64,10 @@ class UrlMapHostRule {
   final String? description;
 
   Map<String, Object?> toArgMap() => {
-        'hosts': hosts,
-        'path_matcher': pathMatcher,
-        if (description != null) 'description': description,
-      };
+    'hosts': hosts,
+    'path_matcher': pathMatcher,
+    if (description != null) 'description': description,
+  };
 }
 
 // ===========================================================================
@@ -136,18 +136,17 @@ class UrlMapPathMatcher {
   final Map<String, Object?>? advancedExtra;
 
   Map<String, Object?> toArgMap() => {
-        'name': name,
-        if (defaultService != null)
-          'default_service': defaultService!.toTfJson(),
-        if (description != null) 'description': description!.toTfJson(),
-        if (pathRules != null)
-          'path_rule': pathRules!.map((r) => r.toArgMap()).toList(),
-        if (routeRules != null)
-          'route_rules': routeRules!.map((r) => r.toArgMap()).toList(),
-        if (defaultUrlRedirect != null)
-          'default_url_redirect': [defaultUrlRedirect!.toArgMap()],
-        if (advancedExtra != null) ...advancedExtra!,
-      };
+    'name': name,
+    if (defaultService != null) 'default_service': defaultService!.toTfJson(),
+    if (description != null) 'description': description!.toTfJson(),
+    if (pathRules != null)
+      'path_rule': pathRules!.map((r) => r.toArgMap()).toList(),
+    if (routeRules != null)
+      'route_rules': routeRules!.map((r) => r.toArgMap()).toList(),
+    if (defaultUrlRedirect != null)
+      'default_url_redirect': [defaultUrlRedirect!.toArgMap()],
+    if (advancedExtra != null) ...advancedExtra!,
+  };
 }
 
 /// One `path_matcher.path_rule[]` entry. Matches request paths against
@@ -185,11 +184,11 @@ class UrlMapPathRule {
   final Map<String, Object?>? advancedExtra;
 
   Map<String, Object?> toArgMap() => {
-        'paths': paths,
-        if (service != null) 'service': service!.toTfJson(),
-        if (urlRedirect != null) 'url_redirect': [urlRedirect!.toArgMap()],
-        if (advancedExtra != null) ...advancedExtra!,
-      };
+    'paths': paths,
+    if (service != null) 'service': service!.toTfJson(),
+    if (urlRedirect != null) 'url_redirect': [urlRedirect!.toArgMap()],
+    if (advancedExtra != null) ...advancedExtra!,
+  };
 }
 
 /// One `path_matcher.route_rules[]` entry. Priority-ordered routing with
@@ -236,14 +235,14 @@ class UrlMapRouteRule {
   final Map<String, Object?>? advancedExtra;
 
   Map<String, Object?> toArgMap() => {
-        'priority': priority,
-        if (service != null) 'service': service!.toTfJson(),
-        if (matchRules != null)
-          'match_rules': matchRules!.map((m) => m.toArgMap()).toList(),
-        if (headerAction != null) 'header_action': [headerAction!.toArgMap()],
-        if (urlRedirect != null) 'url_redirect': [urlRedirect!.toArgMap()],
-        if (advancedExtra != null) ...advancedExtra!,
-      };
+    'priority': priority,
+    if (service != null) 'service': service!.toTfJson(),
+    if (matchRules != null)
+      'match_rules': matchRules!.map((m) => m.toArgMap()).toList(),
+    if (headerAction != null) 'header_action': [headerAction!.toArgMap()],
+    if (urlRedirect != null) 'url_redirect': [urlRedirect!.toArgMap()],
+    if (advancedExtra != null) ...advancedExtra!,
+  };
 }
 
 /// One `route_rules[].match_rules[]` entry. Carries the actual matching
@@ -303,19 +302,20 @@ class UrlMapRouteRuleMatch {
   final Map<String, Object?>? advancedExtra;
 
   Map<String, Object?> toArgMap() => {
-        if (fullPathMatch != null) 'full_path_match': fullPathMatch!.toTfJson(),
-        if (prefixMatch != null) 'prefix_match': prefixMatch!.toTfJson(),
-        if (regexMatch != null) 'regex_match': regexMatch!.toTfJson(),
-        if (pathTemplateMatch != null)
-          'path_template_match': pathTemplateMatch!.toTfJson(),
-        if (ignoreCase != null) 'ignore_case': ignoreCase!.toTfJson(),
-        if (headerMatches != null)
-          'header_matches': headerMatches!.map((h) => h.toArgMap()).toList(),
-        if (queryParameterMatches != null)
-          'query_parameter_matches':
-              queryParameterMatches!.map((q) => q.toArgMap()).toList(),
-        if (advancedExtra != null) ...advancedExtra!,
-      };
+    if (fullPathMatch != null) 'full_path_match': fullPathMatch!.toTfJson(),
+    if (prefixMatch != null) 'prefix_match': prefixMatch!.toTfJson(),
+    if (regexMatch != null) 'regex_match': regexMatch!.toTfJson(),
+    if (pathTemplateMatch != null)
+      'path_template_match': pathTemplateMatch!.toTfJson(),
+    if (ignoreCase != null) 'ignore_case': ignoreCase!.toTfJson(),
+    if (headerMatches != null)
+      'header_matches': headerMatches!.map((h) => h.toArgMap()).toList(),
+    if (queryParameterMatches != null)
+      'query_parameter_matches': queryParameterMatches!
+          .map((q) => q.toArgMap())
+          .toList(),
+    if (advancedExtra != null) ...advancedExtra!,
+  };
 }
 
 /// One `match_rules[].header_matches[]` entry. The schema permits one of
@@ -360,15 +360,15 @@ class UrlMapHeaderMatch {
   final UrlMapHeaderMatchRange? rangeMatch;
 
   Map<String, Object?> toArgMap() => {
-        'header_name': headerName.toTfJson(),
-        if (exactMatch != null) 'exact_match': exactMatch!.toTfJson(),
-        if (prefixMatch != null) 'prefix_match': prefixMatch!.toTfJson(),
-        if (suffixMatch != null) 'suffix_match': suffixMatch!.toTfJson(),
-        if (regexMatch != null) 'regex_match': regexMatch!.toTfJson(),
-        if (presentMatch != null) 'present_match': presentMatch!.toTfJson(),
-        if (invertMatch != null) 'invert_match': invertMatch!.toTfJson(),
-        if (rangeMatch != null) 'range_match': [rangeMatch!.toArgMap()],
-      };
+    'header_name': headerName.toTfJson(),
+    if (exactMatch != null) 'exact_match': exactMatch!.toTfJson(),
+    if (prefixMatch != null) 'prefix_match': prefixMatch!.toTfJson(),
+    if (suffixMatch != null) 'suffix_match': suffixMatch!.toTfJson(),
+    if (regexMatch != null) 'regex_match': regexMatch!.toTfJson(),
+    if (presentMatch != null) 'present_match': presentMatch!.toTfJson(),
+    if (invertMatch != null) 'invert_match': invertMatch!.toTfJson(),
+    if (rangeMatch != null) 'range_match': [rangeMatch!.toArgMap()],
+  };
 }
 
 /// `header_matches.range_match` block. Both bounds required by the schema.
@@ -386,9 +386,9 @@ class UrlMapHeaderMatchRange {
   final int rangeEnd;
 
   Map<String, Object?> toArgMap() => {
-        'range_start': rangeStart,
-        'range_end': rangeEnd,
-      };
+    'range_start': rangeStart,
+    'range_end': rangeEnd,
+  };
 }
 
 /// One `match_rules[].query_parameter_matches[]` entry. Matches a single
@@ -415,11 +415,11 @@ class UrlMapQueryParameterMatch {
   final TfArg<bool>? presentMatch;
 
   Map<String, Object?> toArgMap() => {
-        'name': name.toTfJson(),
-        if (exactMatch != null) 'exact_match': exactMatch!.toTfJson(),
-        if (regexMatch != null) 'regex_match': regexMatch!.toTfJson(),
-        if (presentMatch != null) 'present_match': presentMatch!.toTfJson(),
-      };
+    'name': name.toTfJson(),
+    if (exactMatch != null) 'exact_match': exactMatch!.toTfJson(),
+    if (regexMatch != null) 'regex_match': regexMatch!.toTfJson(),
+    if (presentMatch != null) 'present_match': presentMatch!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -472,15 +472,14 @@ class UrlMapUrlRedirect {
   final TfArg<UrlMapRedirectResponseCode>? redirectResponseCode;
 
   Map<String, Object?> toArgMap() => {
-        'strip_query': stripQuery.toTfJson(),
-        if (hostRedirect != null) 'host_redirect': hostRedirect!.toTfJson(),
-        if (pathRedirect != null) 'path_redirect': pathRedirect!.toTfJson(),
-        if (prefixRedirect != null)
-          'prefix_redirect': prefixRedirect!.toTfJson(),
-        if (httpsRedirect != null) 'https_redirect': httpsRedirect!.toTfJson(),
-        if (redirectResponseCode != null)
-          'redirect_response_code': redirectResponseCode!.toTfJson(),
-      };
+    'strip_query': stripQuery.toTfJson(),
+    if (hostRedirect != null) 'host_redirect': hostRedirect!.toTfJson(),
+    if (pathRedirect != null) 'path_redirect': pathRedirect!.toTfJson(),
+    if (prefixRedirect != null) 'prefix_redirect': prefixRedirect!.toTfJson(),
+    if (httpsRedirect != null) 'https_redirect': httpsRedirect!.toTfJson(),
+    if (redirectResponseCode != null)
+      'redirect_response_code': redirectResponseCode!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -517,17 +516,19 @@ class UrlMapHeaderAction {
   final TfArg<List<String>>? responseHeadersToRemove;
 
   Map<String, Object?> toArgMap() => {
-        if (requestHeadersToAdd != null)
-          'request_headers_to_add':
-              requestHeadersToAdd!.map((h) => h.toArgMap()).toList(),
-        if (requestHeadersToRemove != null)
-          'request_headers_to_remove': requestHeadersToRemove!.toTfJson(),
-        if (responseHeadersToAdd != null)
-          'response_headers_to_add':
-              responseHeadersToAdd!.map((h) => h.toArgMap()).toList(),
-        if (responseHeadersToRemove != null)
-          'response_headers_to_remove': responseHeadersToRemove!.toTfJson(),
-      };
+    if (requestHeadersToAdd != null)
+      'request_headers_to_add': requestHeadersToAdd!
+          .map((h) => h.toArgMap())
+          .toList(),
+    if (requestHeadersToRemove != null)
+      'request_headers_to_remove': requestHeadersToRemove!.toTfJson(),
+    if (responseHeadersToAdd != null)
+      'response_headers_to_add': responseHeadersToAdd!
+          .map((h) => h.toArgMap())
+          .toList(),
+    if (responseHeadersToRemove != null)
+      'response_headers_to_remove': responseHeadersToRemove!.toTfJson(),
+  };
 }
 
 /// One entry in [UrlMapHeaderAction.requestHeadersToAdd] /
@@ -552,10 +553,10 @@ class UrlMapHeaderToAdd {
   final TfArg<bool> replace;
 
   Map<String, Object?> toArgMap() => {
-        'header_name': headerName.toTfJson(),
-        'header_value': headerValue.toTfJson(),
-        'replace': replace.toTfJson(),
-      };
+    'header_name': headerName.toTfJson(),
+    'header_value': headerValue.toTfJson(),
+    'replace': replace.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -606,18 +607,17 @@ class UrlMapTest {
   final List<UrlMapTestHeader>? headers;
 
   Map<String, Object?> toArgMap() => {
-        'host': host.toTfJson(),
-        'path': path.toTfJson(),
-        if (service != null) 'service': service!.toTfJson(),
-        if (description != null) 'description': description!.toTfJson(),
-        if (expectedOutputUrl != null)
-          'expected_output_url': expectedOutputUrl!.toTfJson(),
-        if (expectedRedirectResponseCode != null)
-          'expected_redirect_response_code':
-              expectedRedirectResponseCode!.toTfJson(),
-        if (headers != null)
-          'headers': headers!.map((h) => h.toArgMap()).toList(),
-      };
+    'host': host.toTfJson(),
+    'path': path.toTfJson(),
+    if (service != null) 'service': service!.toTfJson(),
+    if (description != null) 'description': description!.toTfJson(),
+    if (expectedOutputUrl != null)
+      'expected_output_url': expectedOutputUrl!.toTfJson(),
+    if (expectedRedirectResponseCode != null)
+      'expected_redirect_response_code': expectedRedirectResponseCode!
+          .toTfJson(),
+    if (headers != null) 'headers': headers!.map((h) => h.toArgMap()).toList(),
+  };
 }
 
 /// One entry in [UrlMapTest.headers]. Both fields required by the schema.
@@ -632,9 +632,9 @@ class UrlMapTestHeader {
   final TfArg<String> value;
 
   Map<String, Object?> toArgMap() => {
-        'name': name.toTfJson(),
-        'value': value.toTfJson(),
-      };
+    'name': name.toTfJson(),
+    'value': value.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_compute_url_map` (provider
@@ -753,30 +753,30 @@ final class GoogleComputeUrlMap extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            if (defaultService != null) 'default_service': defaultService,
-            if (description != null) 'description': description,
-            if (hostRules != null)
-              'host_rule': TfArg.literal(
-                hostRules.map((r) => r.toArgMap()).toList(),
-              ),
-            if (pathMatchers != null)
-              'path_matcher': TfArg.literal(
-                pathMatchers.map((p) => p.toArgMap()).toList(),
-              ),
-            if (tests != null)
-              'test': TfArg.literal(tests.map((t) => t.toArgMap()).toList()),
-            if (defaultUrlRedirect != null)
-              'default_url_redirect': TfArg.literal([
-                defaultUrlRedirect.toArgMap(),
-              ]),
-            if (headerAction != null)
-              'header_action': TfArg.literal([headerAction.toArgMap()]),
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           if (defaultService != null) 'default_service': defaultService,
+           if (description != null) 'description': description,
+           if (hostRules != null)
+             'host_rule': TfArg.literal(
+               hostRules.map((r) => r.toArgMap()).toList(),
+             ),
+           if (pathMatchers != null)
+             'path_matcher': TfArg.literal(
+               pathMatchers.map((p) => p.toArgMap()).toList(),
+             ),
+           if (tests != null)
+             'test': TfArg.literal(tests.map((t) => t.toArgMap()).toList()),
+           if (defaultUrlRedirect != null)
+             'default_url_redirect': TfArg.literal([
+               defaultUrlRedirect.toArgMap(),
+             ]),
+           if (headerAction != null)
+             'header_action': TfArg.literal([headerAction.toArgMap()]),
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

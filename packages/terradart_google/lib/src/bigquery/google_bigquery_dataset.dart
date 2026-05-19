@@ -65,10 +65,10 @@ final class AccessUserByEmail extends Access {
 
   @override
   Map<String, Object?> encode() => {
-        'user_by_email': userByEmail.toTfJson(),
-        if (role != null) 'role': role!.toTfJson(),
-        if (condition != null) 'condition': [condition!.encode()],
-      };
+    'user_by_email': userByEmail.toTfJson(),
+    if (role != null) 'role': role!.toTfJson(),
+    if (condition != null) 'condition': [condition!.encode()],
+  };
 }
 
 /// `access` entry granting [role] to [groupByEmail].
@@ -85,10 +85,10 @@ final class AccessGroupByEmail extends Access {
 
   @override
   Map<String, Object?> encode() => {
-        'group_by_email': groupByEmail.toTfJson(),
-        if (role != null) 'role': role!.toTfJson(),
-        if (condition != null) 'condition': [condition!.encode()],
-      };
+    'group_by_email': groupByEmail.toTfJson(),
+    if (role != null) 'role': role!.toTfJson(),
+    if (condition != null) 'condition': [condition!.encode()],
+  };
 }
 
 /// `access` entry granting [role] to [specialGroup]. Documented values
@@ -107,10 +107,10 @@ final class AccessSpecialGroup extends Access {
 
   @override
   Map<String, Object?> encode() => {
-        'special_group': specialGroup.toTfJson(),
-        if (role != null) 'role': role!.toTfJson(),
-        if (condition != null) 'condition': [condition!.encode()],
-      };
+    'special_group': specialGroup.toTfJson(),
+    if (role != null) 'role': role!.toTfJson(),
+    if (condition != null) 'condition': [condition!.encode()],
+  };
 }
 
 /// `access` entry granting [role] to all members of [domain].
@@ -123,10 +123,10 @@ final class AccessDomain extends Access {
 
   @override
   Map<String, Object?> encode() => {
-        'domain': domain.toTfJson(),
-        if (role != null) 'role': role!.toTfJson(),
-        if (condition != null) 'condition': [condition!.encode()],
-      };
+    'domain': domain.toTfJson(),
+    if (role != null) 'role': role!.toTfJson(),
+    if (condition != null) 'condition': [condition!.encode()],
+  };
 }
 
 /// `access` entry granting [role] to an arbitrary IAM principal (e.g.
@@ -140,10 +140,10 @@ final class AccessIamMember extends Access {
 
   @override
   Map<String, Object?> encode() => {
-        'iam_member': iamMember.toTfJson(),
-        if (role != null) 'role': role!.toTfJson(),
-        if (condition != null) 'condition': [condition!.encode()],
-      };
+    'iam_member': iamMember.toTfJson(),
+    if (role != null) 'role': role!.toTfJson(),
+    if (condition != null) 'condition': [condition!.encode()],
+  };
 }
 
 /// `access` entry referring to a BigQuery view. Granting view access lets
@@ -157,9 +157,9 @@ final class AccessView extends Access {
 
   @override
   Map<String, Object?> encode() => {
-        'view': [view.encode()],
-        if (condition != null) 'condition': [condition!.encode()],
-      };
+    'view': [view.encode()],
+    if (condition != null) 'condition': [condition!.encode()],
+  };
 }
 
 /// `access` entry referring to a dataset (transitive read for resource
@@ -172,9 +172,9 @@ final class AccessDataset extends Access {
 
   @override
   Map<String, Object?> encode() => {
-        'dataset': [dataset.encode()],
-        if (condition != null) 'condition': [condition!.encode()],
-      };
+    'dataset': [dataset.encode()],
+    if (condition != null) 'condition': [condition!.encode()],
+  };
 }
 
 /// `access` entry referring to a BigQuery routine. Role is not required.
@@ -186,9 +186,9 @@ final class AccessRoutine extends Access {
 
   @override
   Map<String, Object?> encode() => {
-        'routine': [routine.encode()],
-        if (condition != null) 'condition': [condition!.encode()],
-      };
+    'routine': [routine.encode()],
+    if (condition != null) 'condition': [condition!.encode()],
+  };
 }
 
 // ===========================================================================
@@ -209,10 +209,10 @@ class DatasetView {
   final TfArg<String> tableId;
 
   Map<String, Object?> encode() => {
-        'project_id': projectId.toTfJson(),
-        'dataset_id': datasetId.toTfJson(),
-        'table_id': tableId.toTfJson(),
-      };
+    'project_id': projectId.toTfJson(),
+    'dataset_id': datasetId.toTfJson(),
+    'table_id': tableId.toTfJson(),
+  };
 }
 
 /// `access.dataset` sub-block — pairs a [dataset] reference with the
@@ -225,9 +225,9 @@ class DatasetAccessChild {
   final List<TfArg<String>> targetTypes;
 
   Map<String, Object?> encode() => {
-        'dataset': [dataset.encode()],
-        'target_types': targetTypes.map((t) => t.toTfJson()).toList(),
-      };
+    'dataset': [dataset.encode()],
+    'target_types': targetTypes.map((t) => t.toTfJson()).toList(),
+  };
 }
 
 /// `access.dataset.dataset` and `access.routine` projectId+datasetId pair.
@@ -239,9 +239,9 @@ class DatasetReference {
   final TfArg<String> datasetId;
 
   Map<String, Object?> encode() => {
-        'project_id': projectId.toTfJson(),
-        'dataset_id': datasetId.toTfJson(),
-      };
+    'project_id': projectId.toTfJson(),
+    'dataset_id': datasetId.toTfJson(),
+  };
 }
 
 /// `access.routine` sub-block — fully qualified BigQuery routine reference.
@@ -258,10 +258,10 @@ class DatasetRoutineRef {
   final TfArg<String> routineId;
 
   Map<String, Object?> encode() => {
-        'project_id': projectId.toTfJson(),
-        'dataset_id': datasetId.toTfJson(),
-        'routine_id': routineId.toTfJson(),
-      };
+    'project_id': projectId.toTfJson(),
+    'dataset_id': datasetId.toTfJson(),
+    'routine_id': routineId.toTfJson(),
+  };
 }
 
 /// `access.condition` — CEL binding restricting when an access entry
@@ -282,11 +282,11 @@ class AccessCondition {
   final TfArg<String>? location;
 
   Map<String, Object?> encode() => {
-        'expression': expression.toTfJson(),
-        if (title != null) 'title': title!.toTfJson(),
-        if (description != null) 'description': description!.toTfJson(),
-        if (location != null) 'location': location!.toTfJson(),
-      };
+    'expression': expression.toTfJson(),
+    if (title != null) 'title': title!.toTfJson(),
+    if (description != null) 'description': description!.toTfJson(),
+    if (location != null) 'location': location!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -317,9 +317,9 @@ class ExternalDatasetReference {
   final TfArg<String> connection;
 
   Map<String, Object?> encode() => {
-        'external_source': externalSource.toTfJson(),
-        'connection': connection.toTfJson(),
-      };
+    'external_source': externalSource.toTfJson(),
+    'connection': connection.toTfJson(),
+  };
 }
 
 /// `external_catalog_dataset_options` block — open-source catalog metadata
@@ -335,10 +335,10 @@ class ExternalCatalogDatasetOptions {
   final TfArg<Map<String, String>>? parameters;
 
   Map<String, Object?> encode() => {
-        if (defaultStorageLocationUri != null)
-          'default_storage_location_uri': defaultStorageLocationUri!.toTfJson(),
-        if (parameters != null) 'parameters': parameters!.toTfJson(),
-      };
+    if (defaultStorageLocationUri != null)
+      'default_storage_location_uri': defaultStorageLocationUri!.toTfJson(),
+    if (parameters != null) 'parameters': parameters!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -408,44 +408,44 @@ final class GoogleBigqueryDataset extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'dataset_id': datasetId,
-            if (friendlyName != null) 'friendly_name': friendlyName,
-            if (description != null) 'description': description,
-            if (location != null) 'location': location,
-            if (defaultTableExpirationMs != null)
-              'default_table_expiration_ms': defaultTableExpirationMs,
-            if (defaultPartitionExpirationMs != null)
-              'default_partition_expiration_ms': defaultPartitionExpirationMs,
-            if (defaultCollation != null) 'default_collation': defaultCollation,
-            if (isCaseInsensitive != null)
-              'is_case_insensitive': isCaseInsensitive,
-            if (maxTimeTravelHours != null)
-              'max_time_travel_hours': maxTimeTravelHours,
-            if (storageBillingModel != null)
-              'storage_billing_model': storageBillingModel,
-            if (deleteContentsOnDestroy != null)
-              'delete_contents_on_destroy': deleteContentsOnDestroy,
-            if (labels != null) 'labels': labels,
-            if (resourceTags != null) 'resource_tags': resourceTags,
-            if (access != null)
-              'access': TfArg.literal(access.map((a) => a.encode()).toList()),
-            if (defaultEncryptionConfiguration != null)
-              'default_encryption_configuration': TfArg.literal([
-                defaultEncryptionConfiguration.encode(),
-              ]),
-            if (externalDatasetReference != null)
-              'external_dataset_reference': TfArg.literal([
-                externalDatasetReference.encode(),
-              ]),
-            if (externalCatalogDatasetOptions != null)
-              'external_catalog_dataset_options': TfArg.literal([
-                externalCatalogDatasetOptions.encode(),
-              ]),
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'dataset_id': datasetId,
+           if (friendlyName != null) 'friendly_name': friendlyName,
+           if (description != null) 'description': description,
+           if (location != null) 'location': location,
+           if (defaultTableExpirationMs != null)
+             'default_table_expiration_ms': defaultTableExpirationMs,
+           if (defaultPartitionExpirationMs != null)
+             'default_partition_expiration_ms': defaultPartitionExpirationMs,
+           if (defaultCollation != null) 'default_collation': defaultCollation,
+           if (isCaseInsensitive != null)
+             'is_case_insensitive': isCaseInsensitive,
+           if (maxTimeTravelHours != null)
+             'max_time_travel_hours': maxTimeTravelHours,
+           if (storageBillingModel != null)
+             'storage_billing_model': storageBillingModel,
+           if (deleteContentsOnDestroy != null)
+             'delete_contents_on_destroy': deleteContentsOnDestroy,
+           if (labels != null) 'labels': labels,
+           if (resourceTags != null) 'resource_tags': resourceTags,
+           if (access != null)
+             'access': TfArg.literal(access.map((a) => a.encode()).toList()),
+           if (defaultEncryptionConfiguration != null)
+             'default_encryption_configuration': TfArg.literal([
+               defaultEncryptionConfiguration.encode(),
+             ]),
+           if (externalDatasetReference != null)
+             'external_dataset_reference': TfArg.literal([
+               externalDatasetReference.encode(),
+             ]),
+           if (externalCatalogDatasetOptions != null)
+             'external_catalog_dataset_options': TfArg.literal([
+               externalCatalogDatasetOptions.encode(),
+             ]),
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

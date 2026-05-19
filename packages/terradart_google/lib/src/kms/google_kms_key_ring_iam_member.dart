@@ -54,14 +54,14 @@ final class GoogleKmsKeyRingIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'key_ring_id': keyRingId,
-            'role': role,
-            'member': member,
-            if (condition != null) 'condition': condition,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'key_ring_id': keyRingId,
+           'role': role,
+           'member': member,
+           if (condition != null) 'condition': condition,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

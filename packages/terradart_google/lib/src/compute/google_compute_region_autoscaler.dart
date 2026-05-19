@@ -130,23 +130,21 @@ class RegionAutoscalerAutoscalingPolicy {
   final Map<String, RegionAutoscalerScalingSchedule>? scalingSchedules;
 
   Map<String, Object?> toArgMap() => {
-        'min_replicas': minReplicas,
-        'max_replicas': maxReplicas,
-        if (cooldownPeriod != null) 'cooldown_period': cooldownPeriod,
-        if (mode != null) 'mode': mode!.terraformValue,
-        if (cpuUtilization != null)
-          'cpu_utilization': [cpuUtilization!.toArgMap()],
-        if (loadBalancingUtilization != null)
-          'load_balancing_utilization': [loadBalancingUtilization!.toArgMap()],
-        if (metrics != null)
-          'metric': metrics!.map((m) => m.toArgMap()).toList(),
-        if (scaleInControl != null)
-          'scale_in_control': [scaleInControl!.toArgMap()],
-        if (scalingSchedules != null)
-          'scaling_schedules': scalingSchedules!.entries
-              .map((e) => {'name': e.key, ...e.value.toArgMap()})
-              .toList(),
-      };
+    'min_replicas': minReplicas,
+    'max_replicas': maxReplicas,
+    if (cooldownPeriod != null) 'cooldown_period': cooldownPeriod,
+    if (mode != null) 'mode': mode!.terraformValue,
+    if (cpuUtilization != null) 'cpu_utilization': [cpuUtilization!.toArgMap()],
+    if (loadBalancingUtilization != null)
+      'load_balancing_utilization': [loadBalancingUtilization!.toArgMap()],
+    if (metrics != null) 'metric': metrics!.map((m) => m.toArgMap()).toList(),
+    if (scaleInControl != null)
+      'scale_in_control': [scaleInControl!.toArgMap()],
+    if (scalingSchedules != null)
+      'scaling_schedules': scalingSchedules!.entries
+          .map((e) => {'name': e.key, ...e.value.toArgMap()})
+          .toList(),
+  };
 }
 
 // ===========================================================================
@@ -172,10 +170,10 @@ class RegionAutoscalerCpuUtilization {
   final RegionAutoscalerCpuPredictiveMethod? predictiveMethod;
 
   Map<String, Object?> toArgMap() => {
-        'target': target,
-        if (predictiveMethod != null)
-          'predictive_method': predictiveMethod!.terraformValue,
-      };
+    'target': target,
+    if (predictiveMethod != null)
+      'predictive_method': predictiveMethod!.terraformValue,
+  };
 }
 
 // ===========================================================================
@@ -238,13 +236,13 @@ class RegionAutoscalerMetric {
   final String? filter;
 
   Map<String, Object?> toArgMap() => {
-        'name': name,
-        if (target != null) 'target': target,
-        if (type != null) 'type': type!.terraformValue,
-        if (singleInstanceAssignment != null)
-          'single_instance_assignment': singleInstanceAssignment,
-        if (filter != null) 'filter': filter,
-      };
+    'name': name,
+    if (target != null) 'target': target,
+    if (type != null) 'type': type!.terraformValue,
+    if (singleInstanceAssignment != null)
+      'single_instance_assignment': singleInstanceAssignment,
+    if (filter != null) 'filter': filter,
+  };
 }
 
 // ===========================================================================
@@ -272,10 +270,10 @@ class RegionAutoscalerScaleInControl {
   final int? timeWindowSec;
 
   Map<String, Object?> toArgMap() => {
-        if (maxScaledInReplicas != null)
-          'max_scaled_in_replicas': [maxScaledInReplicas!.toArgMap()],
-        if (timeWindowSec != null) 'time_window_sec': timeWindowSec,
-      };
+    if (maxScaledInReplicas != null)
+      'max_scaled_in_replicas': [maxScaledInReplicas!.toArgMap()],
+    if (timeWindowSec != null) 'time_window_sec': timeWindowSec,
+  };
 }
 
 /// `max_scaled_in_replicas` sub-block. Express the cap as either a
@@ -294,9 +292,9 @@ class RegionAutoscalerScaleInReplicas {
   final int? percent;
 
   Map<String, Object?> toArgMap() => {
-        if (fixed != null) 'fixed': fixed,
-        if (percent != null) 'percent': percent,
-      };
+    if (fixed != null) 'fixed': fixed,
+    if (percent != null) 'percent': percent,
+  };
 }
 
 // ===========================================================================
@@ -343,13 +341,13 @@ class RegionAutoscalerScalingSchedule {
   final String? description;
 
   Map<String, Object?> toArgMap() => {
-        'min_required_replicas': minRequiredReplicas,
-        'schedule': schedule,
-        'duration_sec': durationSec,
-        if (timeZone != null) 'time_zone': timeZone,
-        if (disabled != null) 'disabled': disabled,
-        if (description != null) 'description': description,
-      };
+    'min_required_replicas': minRequiredReplicas,
+    'schedule': schedule,
+    'duration_sec': durationSec,
+    if (timeZone != null) 'time_zone': timeZone,
+    if (disabled != null) 'disabled': disabled,
+    if (description != null) 'description': description,
+  };
 }
 
 // ===========================================================================
@@ -452,16 +450,16 @@ final class GoogleComputeRegionAutoscaler extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            'region': region,
-            'target': target,
-            'autoscaling_policy': TfArg.literal([autoscalingPolicy.toArgMap()]),
-            if (description != null) 'description': description,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'name': name,
+           'region': region,
+           'target': target,
+           'autoscaling_policy': TfArg.literal([autoscalingPolicy.toArgMap()]),
+           if (description != null) 'description': description,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

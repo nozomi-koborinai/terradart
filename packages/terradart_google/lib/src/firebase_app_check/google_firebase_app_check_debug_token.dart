@@ -59,14 +59,14 @@ final class GoogleFirebaseAppCheckDebugToken extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'app_id': appId,
-            'display_name': displayName,
-            'token': token,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'app_id': appId,
+           'display_name': displayName,
+           'token': token,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names

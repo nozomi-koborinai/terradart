@@ -19,18 +19,18 @@ const Set<String> _googleFirebaseAppHostingTrafficSensitive = <String>{};
 @immutable
 class AppHostingTrafficTarget {
   const AppHostingTrafficTarget({required this.splits})
-      : assert(
-          splits.length >= 1,
-          'AppHostingTrafficTarget.splits must have at least one entry '
-          '(schema enforces min_items=1)',
-        );
+    : assert(
+        splits.length >= 1,
+        'AppHostingTrafficTarget.splits must have at least one entry '
+        '(schema enforces min_items=1)',
+      );
 
   /// At least one [AppHostingTrafficSplit] per the schema's `min_items=1`.
   final List<AppHostingTrafficSplit> splits;
 
   Map<String, Object?> toArgMap() => {
-        'splits': splits.map((s) => s.toArgMap()).toList(),
-      };
+    'splits': splits.map((s) => s.toArgMap()).toList(),
+  };
 }
 
 /// One entry in `target.splits`. Pairs a build with the percentage of
@@ -50,9 +50,9 @@ class AppHostingTrafficSplit {
   final TfArg<int> percent;
 
   Map<String, Object?> toArgMap() => {
-        'build': build.toTfJson(),
-        'percent': percent.toTfJson(),
-      };
+    'build': build.toTfJson(),
+    'percent': percent.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -77,10 +77,9 @@ class AppHostingTrafficRolloutPolicy {
   final TfArg<bool>? disabled;
 
   Map<String, Object?> toArgMap() => {
-        if (codebaseBranch != null)
-          'codebase_branch': codebaseBranch!.toTfJson(),
-        if (disabled != null) 'disabled': disabled!.toTfJson(),
-      };
+    if (codebaseBranch != null) 'codebase_branch': codebaseBranch!.toTfJson(),
+    if (disabled != null) 'disabled': disabled!.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_firebase_app_hosting_traffic` (provider
@@ -145,16 +144,16 @@ final class GoogleFirebaseAppHostingTraffic extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'backend': backend,
-            'location': location,
-            if (target != null) 'target': TfArg.literal([target.toArgMap()]),
-            if (rolloutPolicy != null)
-              'rollout_policy': TfArg.literal([rolloutPolicy.toArgMap()]),
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: $tfType,
+         argMap: {
+           'backend': backend,
+           'location': location,
+           if (target != null) 'target': TfArg.literal([target.toArgMap()]),
+           if (rolloutPolicy != null)
+             'rollout_policy': TfArg.literal([rolloutPolicy.toArgMap()]),
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
   // ignore: non_constant_identifier_names
