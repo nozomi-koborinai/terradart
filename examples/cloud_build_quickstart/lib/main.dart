@@ -113,7 +113,7 @@ class CloudBuildStack extends Stack {
         repository: TfArg.ref<String>(lbAr.nameRef),
         role: TfArg.literal('roles/artifactregistry.writer'),
         member: TfArg.literal(
-          'serviceAccount:cloud-build-sa@\${var.project_id}.iam.gserviceaccount.com',
+          'serviceAccount:cloud-build-sa@$projectId.iam.gserviceaccount.com',
         ),
       ),
     );
@@ -160,7 +160,7 @@ class CloudBuildStack extends Stack {
         ),
         filename: TfArg.literal('cloudbuild.yaml'),
         serviceAccount: TfArg.literal(
-          'projects/\${var.project_id}/serviceAccounts/cloud-build-sa@\${var.project_id}.iam.gserviceaccount.com',
+          'projects/$projectId/serviceAccounts/cloud-build-sa@$projectId.iam.gserviceaccount.com',
         ),
         // Worker pool dispatch is configured inside `cloudbuild.yaml`
         // via `options.pool.name`, fed by the `_WORKER_POOL`
