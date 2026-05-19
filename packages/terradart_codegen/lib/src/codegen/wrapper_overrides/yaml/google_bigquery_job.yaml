@@ -1,0 +1,847 @@
+outputDir: bigquery
+
+classDocComment: |-
+  /// Factory wrapper for `google_bigquery_job` (provider
+  /// `hashicorp/google ~> 7.0`).
+  ///
+  /// **Ephemeral — one-shot, not re-run on apply.** A BigQuery job is a
+  /// single, immutable execution of work (query / load / extract / copy).
+  /// Terraform creates the job record on first apply and records the
+  /// returned job state, but it does **not** re-execute the job on
+  /// subsequent applies — even if upstream data has changed. To trigger
+  /// a re-run, callers must rotate [jobId] (typically by interpolating a
+  /// timestamp / hash / random suffix into the local name). For recurring
+  /// or scheduled work — daily refreshes, periodic backfills, materialized
+  /// view rebuilds — use `google_bigquery_data_transfer_config` (curated
+  /// separately), which lets BigQuery own the schedule.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name (the address segment after
+  ///   `google_bigquery_job.`).
+  /// - `jobId`: BigQuery job ID. Must be globally unique within the
+  ///   project + location (BigQuery rejects duplicates with `409
+  ///   Conflict`). Caller-supplied — `terraform apply` will not retry
+  ///   under a different ID on collision.
+  ///
+  /// **Job-type one-of**: exactly one of [query], [load], [extract], or
+  /// [copy] must be set on a single job; they are mutually exclusive. The
+  /// Terraform schema does not enforce this at plan time, but the
+  /// BigQuery API will reject the apply with an
+  /// `Exactly one of query, load, extract, copy must be set` error if
+  /// the count is not 1.
+  ///
+  /// - [query] — execute a SQL statement, optionally writing results to a
+  ///   `destination_table`. The most common job type.
+  /// - [load] — bulk-load files from Cloud Storage (or inline) into a
+  ///   table. Second most common.
+  /// - [extract] — export a table or model to one or more Cloud Storage
+  ///   URIs.
+  /// - [copy] — copy one or more source tables into a destination table.
+  ///
+  /// Example (query — most common: SQL SELECT into a destination table):
+  /// ```dart
+  /// final dailyRollup = GoogleBigqueryJob(
+  ///   localName: 'daily_rollup',
+  ///   // Rotate the job ID to force re-execution on the next apply.
+  ///   jobId: TfArg.literal('daily_rollup_2026_05_19'),
+  ///   location: TfArg.literal('US'),
+  ///   labels: TfArg.literal({'pipeline': 'analytics', 'env': 'prod'}),
+  ///   query: BigqueryJobQuery(
+  ///     query: TfArg.literal(
+  ///       'SELECT user_id, COUNT(*) AS events '
+  ///       'FROM analytics_prod.events '
+  ///       'WHERE event_ts >= TIMESTAMP_SUB(CURRENT_TIMESTAMP(), INTERVAL 1 DAY) '
+  ///       'GROUP BY user_id',
+  ///     ),
+  ///     useLegacySql: false,
+  ///     destinationTable: BigqueryJobDestinationTable(
+  ///       projectId: TfArg.literal('my-proj'),
+  ///       datasetId: TfArg.literal('analytics_prod'),
+  ///       tableId: TfArg.literal('daily_user_events'),
+  ///     ),
+  ///     writeDisposition: BigqueryJobWriteDisposition.writeTruncate,
+  ///     createDisposition: BigqueryJobCreateDisposition.createIfNeeded,
+  ///     priority: BigqueryJobQueryPriority.batch,
+  ///   ),
+  /// );
+  /// ```
+  ///
+  /// Example (load — GCS file -> table):
+  /// ```dart
+  /// final ingest = GoogleBigqueryJob(
+  ///   localName: 'ingest_csv',
+  ///   jobId: TfArg.literal('ingest_csv_2026_05_19'),
+  ///   location: TfArg.literal('US'),
+  ///   load: BigqueryJobLoad(
+  ///     sourceUris: TfArg.literal([
+  ///       'gs://my-landing-bucket/users/2026-05-19/users-*.csv',
+  ///     ]),
+  ///     destinationTable: BigqueryJobDestinationTable(
+  ///       projectId: TfArg.literal('my-proj'),
+  ///       datasetId: TfArg.literal('staging'),
+  ///       tableId: TfArg.literal('users_raw'),
+  ///     ),
+  ///     sourceFormat: BigqueryJobLoadSourceFormat.csv,
+  ///     skipLeadingRows: 1,
+  ///     autodetect: true,
+  ///     writeDisposition: BigqueryJobWriteDisposition.writeTruncate,
+  ///     createDisposition: BigqueryJobCreateDisposition.createIfNeeded,
+  ///   ),
+  /// );
+  /// ```
+  ///
+  /// Sensitive fields: none. Authorization is via the service account
+  /// running Terraform — no in-schema secrets on this resource.
+
+# User-settable attrs first; the four mutually-exclusive job-type blocks
+# next; `project` last. Computed-only attrs (effective_labels, id,
+# job_type, status, terraform_labels, user_email) are filtered — they
+# are surfaced via extraGetters instead. `timeouts` is filtered (meta-arg).
+paramOrder:
+  - job_id
+  - location
+  - job_timeout_ms
+  - labels
+  - query
+  - load
+  - extract
+  - copy
+  - project
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+extraGetters: |2
+    /// Reference to `id` attribute
+    /// (`projects/{project}/jobs/{job_id}` — full job path).
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `job_type` attribute — server-classified bucket
+    /// (`QUERY` / `LOAD` / `EXTRACT` / `COPY`). Computed after apply.
+    TfRef<String> get jobType => TfRef.attribute<String>(this, 'job_type');
+
+    /// Reference to `user_email` — the principal BigQuery saw running
+    /// the job (the Terraform service account, in the usual case).
+    TfRef<String> get userEmail =>
+        TfRef.attribute<String>(this, 'user_email');
+
+    /// Reference to `status` — server-computed terminal status of the
+    /// job (a list-of-object with `state`, `error_result`, `errors`).
+    /// Use `.state` downstream to inspect `DONE` vs `PENDING` /
+    /// `RUNNING`. Note: by the time Terraform records this, the job
+    /// has already settled (Terraform waits for the job to finish at
+    /// apply time).
+    TfRef<List<Object?>> get status =>
+        TfRef.attribute<List<Object?>>(this, 'status');
+
+dartTypeOverrides: {}
+
+prelude: |
+  // ===========================================================================
+  // Enums (7)
+  // ===========================================================================
+
+  /// `create_disposition` — shared across `query`, `load`, and `copy`
+  /// job types. Default value: `CREATE_IF_NEEDED`. Possible values:
+  /// `["CREATE_IF_NEEDED", "CREATE_NEVER"]`.
+  ///
+  /// `CREATE_IF_NEEDED`: if the destination table does not exist,
+  /// BigQuery creates it. `CREATE_NEVER`: the destination table must
+  /// already exist; otherwise the job fails with a `notFound` error.
+  enum BigqueryJobCreateDisposition {
+    createIfNeeded('CREATE_IF_NEEDED'),
+    createNever('CREATE_NEVER');
+
+    const BigqueryJobCreateDisposition(this.terraformValue);
+    final String terraformValue;
+  }
+
+  /// `write_disposition` — shared across `query`, `load`, and `copy`
+  /// job types. Default value: `WRITE_EMPTY`. Possible values:
+  /// `["WRITE_TRUNCATE", "WRITE_APPEND", "WRITE_EMPTY"]`.
+  ///
+  /// `WRITE_TRUNCATE`: overwrite the destination table and its schema.
+  /// `WRITE_APPEND`: append to existing table data.
+  /// `WRITE_EMPTY`: fail with `duplicate` if the destination already
+  /// contains rows.
+  enum BigqueryJobWriteDisposition {
+    writeTruncate('WRITE_TRUNCATE'),
+    writeAppend('WRITE_APPEND'),
+    writeEmpty('WRITE_EMPTY');
+
+    const BigqueryJobWriteDisposition(this.terraformValue);
+    final String terraformValue;
+  }
+
+  /// `query.priority`. Default value: `INTERACTIVE`. Possible values:
+  /// `["INTERACTIVE", "BATCH"]`.
+  ///
+  /// `INTERACTIVE`: run immediately against the on-demand pool;
+  /// counts against concurrent-query limits. `BATCH`: queued, runs
+  /// against batch capacity; no concurrent-query limit but the job
+  /// may sit pending until capacity frees up.
+  enum BigqueryJobQueryPriority {
+    interactive('INTERACTIVE'),
+    batch('BATCH');
+
+    const BigqueryJobQueryPriority(this.terraformValue);
+    final String terraformValue;
+  }
+
+  /// `query.parameter_mode`. Standard SQL only. `POSITIONAL` uses `?`
+  /// placeholders; `NAMED` uses `@param` syntax. The provider
+  /// description does not expose a formal `Possible values` array;
+  /// the BigQuery API documents these two as the supported modes.
+  enum BigqueryJobParameterMode {
+    named('NAMED'),
+    positional('POSITIONAL');
+
+    const BigqueryJobParameterMode(this.terraformValue);
+    final String terraformValue;
+  }
+
+  /// `load.source_format`. From the schema description: for CSV
+  /// specify `CSV`; for datastore backups `DATASTORE_BACKUP`; for
+  /// newline-delimited JSON `NEWLINE_DELIMITED_JSON`; for Avro `AVRO`;
+  /// for Parquet `PARQUET`; for ORC `ORC`; [Beta] for Bigtable
+  /// `BIGTABLE`. Default is `CSV`. The schema doesn't expose a
+  /// formal `enum_values` array, so this list is sourced from the
+  /// attribute's `description` prose.
+  enum BigqueryJobLoadSourceFormat {
+    csv('CSV'),
+    newlineDelimitedJson('NEWLINE_DELIMITED_JSON'),
+    avro('AVRO'),
+    parquet('PARQUET'),
+    orc('ORC'),
+    datastoreBackup('DATASTORE_BACKUP'),
+    bigtable('BIGTABLE');
+
+    const BigqueryJobLoadSourceFormat(this.terraformValue);
+    final String terraformValue;
+  }
+
+  /// `extract.compression`. Schema description: "Possible values
+  /// include GZIP, DEFLATE, SNAPPY, and NONE. The default value is
+  /// NONE. DEFLATE and SNAPPY are only supported for Avro." The
+  /// schema doesn't expose a formal `enum_values` array — values
+  /// transcribed from the description prose.
+  enum BigqueryJobExtractCompression {
+    gzip('GZIP'),
+    deflate('DEFLATE'),
+    snappy('SNAPPY'),
+    none('NONE');
+
+    const BigqueryJobExtractCompression(this.terraformValue);
+    final String terraformValue;
+  }
+
+  /// `extract.destination_format`. Schema description: "Possible
+  /// values include CSV, NEWLINE_DELIMITED_JSON and AVRO for tables
+  /// and SAVED_MODEL for models. The default value for tables is CSV.
+  /// Tables with nested or repeated fields cannot be exported as CSV.
+  /// The default value for models is SAVED_MODEL." Values transcribed
+  /// from the description prose (no formal `enum_values` array on
+  /// this attribute).
+  enum BigqueryJobExtractDestinationFormat {
+    csv('CSV'),
+    newlineDelimitedJson('NEWLINE_DELIMITED_JSON'),
+    avro('AVRO'),
+    savedModel('SAVED_MODEL');
+
+    const BigqueryJobExtractDestinationFormat(this.terraformValue);
+    final String terraformValue;
+  }
+
+  /// `query.script_options.key_result_statement`. Possible values:
+  /// `["LAST", "FIRST_SELECT"]`. Determines which statement in the
+  /// script populates the schema and query results of the script job.
+  enum BigqueryJobScriptKeyResultStatement {
+    last('LAST'),
+    firstSelect('FIRST_SELECT');
+
+    const BigqueryJobScriptKeyResultStatement(this.terraformValue);
+    final String terraformValue;
+  }
+
+  // ===========================================================================
+  // Shared table-reference helpers
+  // ===========================================================================
+
+  /// Generic `{project_id, dataset_id, table_id}` reference. Used by
+  /// `query.destination_table`, `load.destination_table`,
+  /// `extract.source_table`, `copy.destination_table`, and each entry
+  /// in `copy.source_tables`. `tableId` is required; `projectId` and
+  /// `datasetId` are optional (the provider defaults them from the
+  /// surrounding project context).
+  @immutable
+  class BigqueryJobDestinationTable {
+    const BigqueryJobDestinationTable({
+      required this.tableId,
+      this.projectId,
+      this.datasetId,
+    });
+
+    final TfArg<String> tableId;
+    final TfArg<String>? projectId;
+    final TfArg<String>? datasetId;
+
+    Map<String, Object?> toArgMap() => {
+      'table_id': tableId.toTfJson(),
+      if (projectId != null) 'project_id': projectId!.toTfJson(),
+      if (datasetId != null) 'dataset_id': datasetId!.toTfJson(),
+    };
+  }
+
+  /// `query.default_dataset` — `{project_id, dataset_id}` pair used as
+  /// the default dataset for unqualified table references in the SQL
+  /// text. `datasetId` is required.
+  @immutable
+  class BigqueryJobDefaultDataset {
+    const BigqueryJobDefaultDataset({
+      required this.datasetId,
+      this.projectId,
+    });
+
+    final TfArg<String> datasetId;
+    final TfArg<String>? projectId;
+
+    Map<String, Object?> toArgMap() => {
+      'dataset_id': datasetId.toTfJson(),
+      if (projectId != null) 'project_id': projectId!.toTfJson(),
+    };
+  }
+
+  /// `query.destination_encryption_configuration` /
+  /// `load.destination_encryption_configuration` /
+  /// `copy.destination_encryption_configuration` — CMEK key applied
+  /// to the destination table. `kmsKeyVersion` is computed (returned
+  /// by the API after the job runs); only `kmsKeyName` is settable
+  /// here.
+  @immutable
+  class BigqueryJobEncryptionConfiguration {
+    const BigqueryJobEncryptionConfiguration({required this.kmsKeyName});
+
+    /// Self-link of the KMS crypto key, e.g.
+    /// `projects/p/locations/us/keyRings/r/cryptoKeys/k`.
+    final TfArg<String> kmsKeyName;
+
+    Map<String, Object?> toArgMap() => {
+      'kms_key_name': kmsKeyName.toTfJson(),
+    };
+  }
+
+  // ===========================================================================
+  // query block (max_items=1)
+  // ===========================================================================
+
+  /// `query` job-type block. Required field: [query] (the SQL text).
+  /// All other fields are optional. When [destinationTable] is set,
+  /// the query result is materialized to that table according to
+  /// [createDisposition] / [writeDisposition].
+  ///
+  /// Note: DML statements (`INSERT`, `UPDATE`, `DELETE`, `MERGE`)
+  /// must be configured with both `create_disposition` and
+  /// `write_disposition` set to the empty string per the provider
+  /// docs — this wrapper exposes the enums as nullable so callers
+  /// can simply omit them for the DML case.
+  @immutable
+  class BigqueryJobQuery {
+    const BigqueryJobQuery({
+      required this.query,
+      this.destinationTable,
+      this.defaultDataset,
+      this.destinationEncryptionConfiguration,
+      this.userDefinedFunctionResources,
+      this.connectionProperties,
+      this.scriptOptions,
+      this.createDisposition,
+      this.writeDisposition,
+      this.priority,
+      this.parameterMode,
+      this.useQueryCache,
+      this.flattenResults,
+      this.allowLargeResults,
+      this.maximumBillingTier,
+      this.maximumBytesBilled,
+      this.useLegacySql,
+      this.schemaUpdateOptions,
+    });
+
+    /// SQL text to execute. See [useLegacySql] for dialect selection.
+    final TfArg<String> query;
+
+    /// Optional materialization target. If null, the query is
+    /// "anonymous" (results queryable for 24h via the job ID only).
+    final BigqueryJobDestinationTable? destinationTable;
+
+    /// Default dataset for unqualified references in the SQL.
+    final BigqueryJobDefaultDataset? defaultDataset;
+
+    /// CMEK key applied to [destinationTable].
+    final BigqueryJobEncryptionConfiguration?
+        destinationEncryptionConfiguration;
+
+    /// JS UDF resources loaded into the query's scope.
+    final List<BigqueryJobUserDefinedFunctionResource>?
+        userDefinedFunctionResources;
+
+    /// Session / connection settings (`{key, value}` pairs).
+    final List<BigqueryJobQueryConnectionProperty>? connectionProperties;
+
+    /// Script execution behavior for multi-statement scripts.
+    final BigqueryJobScriptOptions? scriptOptions;
+
+    final BigqueryJobCreateDisposition? createDisposition;
+    final BigqueryJobWriteDisposition? writeDisposition;
+
+    final BigqueryJobQueryPriority? priority;
+    final BigqueryJobParameterMode? parameterMode;
+
+    final bool? useQueryCache;
+    final bool? flattenResults;
+    final bool? allowLargeResults;
+
+    /// Legacy SQL only. Cap on billing tier for the query.
+    final int? maximumBillingTier;
+
+    /// Int64 as a String per BigQuery API convention. Cap on bytes
+    /// billed; the job aborts if exceeded.
+    final TfArg<String>? maximumBytesBilled;
+
+    final bool? useLegacySql;
+
+    /// One or more of `ALLOW_FIELD_ADDITION`,
+    /// `ALLOW_FIELD_RELAXATION`. Only honored for `WRITE_APPEND` (and
+    /// `WRITE_TRUNCATE` against a partition).
+    final List<String>? schemaUpdateOptions;
+
+    Map<String, Object?> toArgMap() => {
+      'query': query.toTfJson(),
+      if (destinationTable != null)
+        'destination_table': [destinationTable!.toArgMap()],
+      if (defaultDataset != null)
+        'default_dataset': [defaultDataset!.toArgMap()],
+      if (destinationEncryptionConfiguration != null)
+        'destination_encryption_configuration': [
+          destinationEncryptionConfiguration!.toArgMap(),
+        ],
+      if (userDefinedFunctionResources != null)
+        'user_defined_function_resources': userDefinedFunctionResources!
+            .map((r) => r.toArgMap())
+            .toList(),
+      if (connectionProperties != null)
+        'connection_properties':
+            connectionProperties!.map((c) => c.toArgMap()).toList(),
+      if (scriptOptions != null)
+        'script_options': [scriptOptions!.toArgMap()],
+      if (createDisposition != null)
+        'create_disposition': createDisposition!.terraformValue,
+      if (writeDisposition != null)
+        'write_disposition': writeDisposition!.terraformValue,
+      if (priority != null) 'priority': priority!.terraformValue,
+      if (parameterMode != null)
+        'parameter_mode': parameterMode!.terraformValue,
+      if (useQueryCache != null) 'use_query_cache': useQueryCache,
+      if (flattenResults != null) 'flatten_results': flattenResults,
+      if (allowLargeResults != null)
+        'allow_large_results': allowLargeResults,
+      if (maximumBillingTier != null)
+        'maximum_billing_tier': maximumBillingTier,
+      if (maximumBytesBilled != null)
+        'maximum_bytes_billed': maximumBytesBilled!.toTfJson(),
+      if (useLegacySql != null) 'use_legacy_sql': useLegacySql,
+      if (schemaUpdateOptions != null)
+        'schema_update_options': schemaUpdateOptions,
+    };
+  }
+
+  /// One entry under `query.user_defined_function_resources`. Provide
+  /// either [resourceUri] (GCS URI to a .js file) or [inlineCode] —
+  /// not both.
+  @immutable
+  class BigqueryJobUserDefinedFunctionResource {
+    const BigqueryJobUserDefinedFunctionResource({
+      this.resourceUri,
+      this.inlineCode,
+    });
+
+    /// GCS URI of a JavaScript code file (`gs://bucket/path.js`).
+    final TfArg<String>? resourceUri;
+
+    /// Inline JavaScript UDF code.
+    final TfArg<String>? inlineCode;
+
+    Map<String, Object?> toArgMap() => {
+      if (resourceUri != null) 'resource_uri': resourceUri!.toTfJson(),
+      if (inlineCode != null) 'inline_code': inlineCode!.toTfJson(),
+    };
+  }
+
+  /// One entry under `query.connection_properties` — `(key, value)`
+  /// pair (e.g. `("time_zone", "America/Los_Angeles")`).
+  @immutable
+  class BigqueryJobQueryConnectionProperty {
+    const BigqueryJobQueryConnectionProperty({
+      required this.key,
+      required this.value,
+    });
+
+    final TfArg<String> key;
+    final TfArg<String> value;
+
+    Map<String, Object?> toArgMap() => {
+      'key': key.toTfJson(),
+      'value': value.toTfJson(),
+    };
+  }
+
+  /// `query.script_options` (max_items=1) — multi-statement script
+  /// execution behavior.
+  @immutable
+  class BigqueryJobScriptOptions {
+    const BigqueryJobScriptOptions({
+      this.statementTimeoutMs,
+      this.statementByteBudget,
+      this.keyResultStatement,
+    });
+
+    /// Per-statement timeout. Int64 as a String per BigQuery API
+    /// convention.
+    final TfArg<String>? statementTimeoutMs;
+
+    /// Per-statement byte budget. Int64 as a String.
+    final TfArg<String>? statementByteBudget;
+
+    /// Which statement's result is the script's "key result".
+    final BigqueryJobScriptKeyResultStatement? keyResultStatement;
+
+    Map<String, Object?> toArgMap() => {
+      if (statementTimeoutMs != null)
+        'statement_timeout_ms': statementTimeoutMs!.toTfJson(),
+      if (statementByteBudget != null)
+        'statement_byte_budget': statementByteBudget!.toTfJson(),
+      if (keyResultStatement != null)
+        'key_result_statement': keyResultStatement!.terraformValue,
+    };
+  }
+
+  // ===========================================================================
+  // load block (max_items=1)
+  // ===========================================================================
+
+  /// `load` job-type block. Required fields: [sourceUris] (GCS source
+  /// pattern) and [destinationTable] (the schema marks the inner
+  /// `table_id` required, and the block itself is `min_items=1`).
+  ///
+  /// Source format defaults to CSV — set [sourceFormat] for Avro /
+  /// Parquet / JSON / ORC / Datastore / Bigtable inputs. CSV-specific
+  /// knobs ([skipLeadingRows], [fieldDelimiter], [quote],
+  /// [allowQuotedNewlines], [allowJaggedRows], [encoding],
+  /// [nullMarker]) are ignored for non-CSV formats.
+  @immutable
+  class BigqueryJobLoad {
+    const BigqueryJobLoad({
+      required this.sourceUris,
+      required this.destinationTable,
+      this.destinationEncryptionConfiguration,
+      this.timePartitioning,
+      this.parquetOptions,
+      this.sourceFormat,
+      this.createDisposition,
+      this.writeDisposition,
+      this.schemaUpdateOptions,
+      this.projectionFields,
+      this.autodetect,
+      this.allowJaggedRows,
+      this.allowQuotedNewlines,
+      this.ignoreUnknownValues,
+      this.maxBadRecords,
+      this.skipLeadingRows,
+      this.fieldDelimiter,
+      this.quote,
+      this.encoding,
+      this.nullMarker,
+      this.jsonExtension,
+    });
+
+    /// GCS source URIs (wildcards supported, e.g.
+    /// `gs://bucket/path/files-*.csv`).
+    final TfArg<List<String>> sourceUris;
+
+    final BigqueryJobDestinationTable destinationTable;
+
+    final BigqueryJobEncryptionConfiguration?
+        destinationEncryptionConfiguration;
+
+    /// Optional time partitioning applied to the destination on create.
+    final BigqueryJobTimePartitioning? timePartitioning;
+
+    /// Parquet-specific knobs (`enable_list_inference`,
+    /// `enum_as_string`). Only honored when [sourceFormat] is
+    /// [BigqueryJobLoadSourceFormat.parquet].
+    final BigqueryJobParquetOptions? parquetOptions;
+
+    final BigqueryJobLoadSourceFormat? sourceFormat;
+    final BigqueryJobCreateDisposition? createDisposition;
+    final BigqueryJobWriteDisposition? writeDisposition;
+
+    /// Schema-update options — same vocabulary as the query variant.
+    final List<String>? schemaUpdateOptions;
+
+    /// Datastore backup only — fields to load from the backup.
+    final List<String>? projectionFields;
+
+    final bool? autodetect;
+    final bool? allowJaggedRows;
+    final bool? allowQuotedNewlines;
+    final bool? ignoreUnknownValues;
+    final int? maxBadRecords;
+
+    /// CSV only. Number of header rows to skip (typically 1).
+    final int? skipLeadingRows;
+
+    /// CSV only. Single-character delimiter. The provider lets this
+    /// be computed (it has a default).
+    final TfArg<String>? fieldDelimiter;
+
+    /// CSV only. Quote character (typically `"`). Computed-default.
+    final TfArg<String>? quote;
+
+    /// CSV only. `UTF-8` (default) or `ISO-8859-1`.
+    final TfArg<String>? encoding;
+
+    /// CSV only. String value treated as `NULL` (default: empty).
+    final TfArg<String>? nullMarker;
+
+    /// JSON only. Set to `GEOJSON` to load newline-delimited GeoJSON.
+    final TfArg<String>? jsonExtension;
+
+    Map<String, Object?> toArgMap() => {
+      'source_uris': sourceUris.toTfJson(),
+      'destination_table': [destinationTable.toArgMap()],
+      if (destinationEncryptionConfiguration != null)
+        'destination_encryption_configuration': [
+          destinationEncryptionConfiguration!.toArgMap(),
+        ],
+      if (timePartitioning != null)
+        'time_partitioning': [timePartitioning!.toArgMap()],
+      if (parquetOptions != null)
+        'parquet_options': [parquetOptions!.toArgMap()],
+      if (sourceFormat != null)
+        'source_format': sourceFormat!.terraformValue,
+      if (createDisposition != null)
+        'create_disposition': createDisposition!.terraformValue,
+      if (writeDisposition != null)
+        'write_disposition': writeDisposition!.terraformValue,
+      if (schemaUpdateOptions != null)
+        'schema_update_options': schemaUpdateOptions,
+      if (projectionFields != null) 'projection_fields': projectionFields,
+      if (autodetect != null) 'autodetect': autodetect,
+      if (allowJaggedRows != null) 'allow_jagged_rows': allowJaggedRows,
+      if (allowQuotedNewlines != null)
+        'allow_quoted_newlines': allowQuotedNewlines,
+      if (ignoreUnknownValues != null)
+        'ignore_unknown_values': ignoreUnknownValues,
+      if (maxBadRecords != null) 'max_bad_records': maxBadRecords,
+      if (skipLeadingRows != null) 'skip_leading_rows': skipLeadingRows,
+      if (fieldDelimiter != null)
+        'field_delimiter': fieldDelimiter!.toTfJson(),
+      if (quote != null) 'quote': quote!.toTfJson(),
+      if (encoding != null) 'encoding': encoding!.toTfJson(),
+      if (nullMarker != null) 'null_marker': nullMarker!.toTfJson(),
+      if (jsonExtension != null)
+        'json_extension': jsonExtension!.toTfJson(),
+    };
+  }
+
+  /// `load.time_partitioning` (max_items=1) — applies partitioning to
+  /// the destination table on first create. Required: [type] (only
+  /// `DAY` is documented as supported by BigQuery today). [field]
+  /// names the column to partition on; omit for ingestion-time
+  /// partitioning.
+  @immutable
+  class BigqueryJobTimePartitioning {
+    const BigqueryJobTimePartitioning({
+      required this.type,
+      this.field,
+      this.expirationMs,
+    });
+
+    /// Currently only `DAY` is supported.
+    final TfArg<String> type;
+
+    /// Partition column. Empty/null = ingestion-time partitioning.
+    final TfArg<String>? field;
+
+    /// Partition expiration. Int64 as a String.
+    final TfArg<String>? expirationMs;
+
+    Map<String, Object?> toArgMap() => {
+      'type': type.toTfJson(),
+      if (field != null) 'field': field!.toTfJson(),
+      if (expirationMs != null)
+        'expiration_ms': expirationMs!.toTfJson(),
+    };
+  }
+
+  /// `load.parquet_options` (max_items=1) — Parquet-specific load
+  /// behavior.
+  @immutable
+  class BigqueryJobParquetOptions {
+    const BigqueryJobParquetOptions({
+      this.enableListInference,
+      this.enumAsString,
+    });
+
+    final bool? enableListInference;
+    final bool? enumAsString;
+
+    Map<String, Object?> toArgMap() => {
+      if (enableListInference != null)
+        'enable_list_inference': enableListInference,
+      if (enumAsString != null) 'enum_as_string': enumAsString,
+    };
+  }
+
+  // ===========================================================================
+  // extract block (max_items=1)
+  // ===========================================================================
+
+  /// `extract` job-type block. Exports either a table ([sourceTable])
+  /// or an ML model ([sourceModel]) to one or more Cloud Storage
+  /// destinations ([destinationUris], required). Provide exactly one
+  /// of `sourceTable` / `sourceModel`.
+  ///
+  /// Tables with nested or repeated fields cannot be exported as
+  /// `CSV`. For Avro outputs, [useAvroLogicalTypes] controls how
+  /// TIMESTAMP / DATETIME / etc. surface in the Avro schema.
+  @immutable
+  class BigqueryJobExtract {
+    const BigqueryJobExtract({
+      required this.destinationUris,
+      this.sourceTable,
+      this.sourceModel,
+      this.compression,
+      this.destinationFormat,
+      this.fieldDelimiter,
+      this.printHeader,
+      this.useAvroLogicalTypes,
+    });
+
+    /// One or more GCS URIs to write the export to.
+    final TfArg<List<String>> destinationUris;
+
+    /// Source table reference. Mutually exclusive with [sourceModel].
+    final BigqueryJobDestinationTable? sourceTable;
+
+    /// Source ML model reference. Mutually exclusive with [sourceTable].
+    final BigqueryJobSourceModel? sourceModel;
+
+    final BigqueryJobExtractCompression? compression;
+    final BigqueryJobExtractDestinationFormat? destinationFormat;
+
+    /// CSV only. Computed-default.
+    final TfArg<String>? fieldDelimiter;
+
+    /// CSV only. Whether to write a header row (defaults true).
+    final bool? printHeader;
+
+    /// Avro only. Use Avro logical types for TIMESTAMP / DATETIME etc.
+    final bool? useAvroLogicalTypes;
+
+    Map<String, Object?> toArgMap() => {
+      'destination_uris': destinationUris.toTfJson(),
+      if (sourceTable != null)
+        'source_table': [sourceTable!.toArgMap()],
+      if (sourceModel != null)
+        'source_model': [sourceModel!.toArgMap()],
+      if (compression != null)
+        'compression': compression!.terraformValue,
+      if (destinationFormat != null)
+        'destination_format': destinationFormat!.terraformValue,
+      if (fieldDelimiter != null)
+        'field_delimiter': fieldDelimiter!.toTfJson(),
+      if (printHeader != null) 'print_header': printHeader,
+      if (useAvroLogicalTypes != null)
+        'use_avro_logical_types': useAvroLogicalTypes,
+    };
+  }
+
+  /// `extract.source_model` — fully qualified BigQuery ML model
+  /// reference. All three fields are required by the schema.
+  @immutable
+  class BigqueryJobSourceModel {
+    const BigqueryJobSourceModel({
+      required this.projectId,
+      required this.datasetId,
+      required this.modelId,
+    });
+
+    final TfArg<String> projectId;
+    final TfArg<String> datasetId;
+    final TfArg<String> modelId;
+
+    Map<String, Object?> toArgMap() => {
+      'project_id': projectId.toTfJson(),
+      'dataset_id': datasetId.toTfJson(),
+      'model_id': modelId.toTfJson(),
+    };
+  }
+
+  // ===========================================================================
+  // copy block (max_items=1)
+  // ===========================================================================
+
+  /// `copy` job-type block. Copies one or more [sourceTables] into a
+  /// single [destinationTable]. Schema requires `min_items=1` on
+  /// `source_tables`. Shares [createDisposition] / [writeDisposition]
+  /// semantics with the other job types.
+  @immutable
+  class BigqueryJobCopy {
+    const BigqueryJobCopy({
+      required this.sourceTables,
+      required this.destinationTable,
+      this.destinationEncryptionConfiguration,
+      this.createDisposition,
+      this.writeDisposition,
+    });
+
+    /// One or more source table references. Schema enforces
+    /// `min_items=1`.
+    final List<BigqueryJobDestinationTable> sourceTables;
+
+    final BigqueryJobDestinationTable destinationTable;
+
+    final BigqueryJobEncryptionConfiguration?
+        destinationEncryptionConfiguration;
+
+    final BigqueryJobCreateDisposition? createDisposition;
+    final BigqueryJobWriteDisposition? writeDisposition;
+
+    Map<String, Object?> toArgMap() => {
+      'source_tables': sourceTables.map((t) => t.toArgMap()).toList(),
+      'destination_table': [destinationTable.toArgMap()],
+      if (destinationEncryptionConfiguration != null)
+        'destination_encryption_configuration': [
+          destinationEncryptionConfiguration!.toArgMap(),
+        ],
+      if (createDisposition != null)
+        'create_disposition': createDisposition!.terraformValue,
+      if (writeDisposition != null)
+        'write_disposition': writeDisposition!.terraformValue,
+    };
+  }
+
+customSlots:
+  query:
+    paramDeclaration: 'BigqueryJobQuery? query'
+    argMapEntry: "if (query != null) 'query': TfArg.literal([query.toArgMap()]),"
+  load:
+    paramDeclaration: 'BigqueryJobLoad? load'
+    argMapEntry: "if (load != null) 'load': TfArg.literal([load.toArgMap()]),"
+  extract:
+    paramDeclaration: 'BigqueryJobExtract? extract'
+    argMapEntry: "if (extract != null) 'extract': TfArg.literal([extract.toArgMap()]),"
+  copy:
+    paramDeclaration: 'BigqueryJobCopy? copy'
+    argMapEntry: "if (copy != null) 'copy': TfArg.literal([copy.toArgMap()]),"
