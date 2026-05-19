@@ -23,6 +23,17 @@ export 'src/compute/google_compute_autoscaler.dart'
         AutoscalerScaleInReplicas,
         AutoscalerScalingSchedule,
         GoogleComputeAutoscaler;
+export 'src/compute/google_compute_backend_bucket.dart'
+    show
+        BackendBucketCacheMode,
+        BackendBucketCdnBypassCacheOnRequestHeader,
+        BackendBucketCdnCacheKeyPolicy,
+        BackendBucketCdnNegativeCachingPolicy,
+        BackendBucketCdnPolicy,
+        BackendBucketCompressionMode,
+        BackendBucketLoadBalancingScheme,
+        BackendBucketParams,
+        GoogleComputeBackendBucket;
 export 'src/compute/google_compute_backend_service.dart'
     show
         BackendServiceAwsV4Authentication,
@@ -97,6 +108,10 @@ export 'src/compute/google_compute_global_forwarding_rule.dart'
         GlobalForwardingRuleNetworkTier,
         GlobalForwardingRuleServiceDirectoryRegistration,
         GoogleComputeGlobalForwardingRule;
+export 'src/compute/google_compute_global_network_endpoint_group.dart'
+    show
+        GlobalNetworkEndpointGroupType,
+        GoogleComputeGlobalNetworkEndpointGroup;
 export 'src/compute/google_compute_health_check.dart'
     show
         GoogleComputeHealthCheck,
@@ -206,6 +221,8 @@ export 'src/compute/google_compute_network.dart'
         GoogleComputeNetwork,
         NetworkFirewallPolicyEnforcementOrder,
         RoutingMode;
+export 'src/compute/google_compute_network_endpoint_group.dart'
+    show GoogleComputeNetworkEndpointGroup, NetworkEndpointGroupType;
 export 'src/compute/google_compute_region_autoscaler.dart'
     show
         GoogleComputeRegionAutoscaler,
@@ -290,6 +307,13 @@ export 'src/compute/google_compute_region_instance_group_manager.dart'
         RegionInstanceGroupManagerUpdatePolicyType,
         RegionInstanceGroupManagerVersion,
         RegionInstanceGroupManagerVersionTargetSize;
+export 'src/compute/google_compute_region_network_endpoint_group.dart'
+    show
+        GoogleComputeRegionNetworkEndpointGroup,
+        RegionNetworkEndpointGroupAppEngine,
+        RegionNetworkEndpointGroupCloudFunction,
+        RegionNetworkEndpointGroupCloudRun,
+        RegionNetworkEndpointGroupType;
 export 'src/compute/google_compute_region_target_http_proxy.dart'
     show GoogleComputeRegionTargetHttpProxy;
 export 'src/compute/google_compute_region_target_https_proxy.dart'
@@ -311,8 +335,35 @@ export 'src/compute/google_compute_region_url_map.dart'
         RegionUrlMapTest,
         RegionUrlMapTestHeader,
         RegionUrlMapUrlRedirect;
+export 'src/compute/google_compute_security_policy.dart'
+    show
+        GoogleComputeSecurityPolicy,
+        SecurityPolicyAdaptiveProtectionConfig,
+        SecurityPolicyAdaptiveProtectionThresholdConfig,
+        SecurityPolicyAdvancedOptionsConfig,
+        SecurityPolicyJsonCustomConfig,
+        SecurityPolicyJsonParsing,
+        SecurityPolicyLayer7DdosDefenseConfig,
+        SecurityPolicyLogLevel,
+        SecurityPolicyRecaptchaOptionsConfig,
+        SecurityPolicyRule,
+        SecurityPolicyRuleAction,
+        SecurityPolicyRuleEnforceOnKeyConfig,
+        SecurityPolicyRuleHeaderAction,
+        SecurityPolicyRuleHeaderAdd,
+        SecurityPolicyRuleMatch,
+        SecurityPolicyRuleMatchConfig,
+        SecurityPolicyRuleMatchExpr,
+        SecurityPolicyRuleMatchVersionedExpr,
+        SecurityPolicyRuleRateLimitOptions,
+        SecurityPolicyRuleRateLimitThreshold,
+        SecurityPolicyRuleRedirectOptions,
+        SecurityPolicyTrafficGranularityConfig,
+        SecurityPolicyType;
 export 'src/compute/google_compute_ssl_certificate.dart'
     show GoogleComputeSslCertificate;
+export 'src/compute/google_compute_ssl_policy.dart'
+    show GoogleComputeSslPolicy, SslPolicyMinTlsVersion, SslPolicyProfile;
 export 'src/compute/google_compute_subnetwork.dart'
     show
         GoogleComputeSubnetwork,
