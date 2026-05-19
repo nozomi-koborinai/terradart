@@ -156,3 +156,56 @@ files:
     upstream: mmv1/products/compute/TargetHttpsProxy.yaml
   google_compute_url_map:
     upstream: mmv1/products/compute/UrlMap.yaml
+
+  # Wave 7 — Data ops + observability + CI/CD (Plan 5.H).
+  # MM URLs are best-effort guesses; Batch 0 probes each and rewrites to
+  # `upstream: null` for any that return 404 (handwritten in
+  # terraform-provider-google, not generated from Magic Modules).
+  google_artifact_registry_repository:
+    upstream: mmv1/products/artifactregistry/Repository.yaml
+  google_artifact_registry_repository_iam_member:
+    upstream: null  # IAM templates are schema-only curation (Wave 5 precedent)
+  google_artifact_registry_vpcsc_config:
+    upstream: null  # beta-only resource; not in GA-pinned schema fixture. Wave 7 follow-up PR will extend the schema fixture against terraform-provider-google-beta and curate this resource. yaml override authored in Wave 7 specialist work, parked at packages/terradart_codegen/lib/src/codegen/wrapper_overrides/yaml/google_artifact_registry_vpcsc_config.yaml on a side branch.
+  google_bigquery_capacity_commitment:
+    upstream: mmv1/products/bigqueryreservation/CapacityCommitment.yaml
+  google_bigquery_connection:
+    upstream: mmv1/products/bigqueryconnection/Connection.yaml
+  google_bigquery_data_transfer_config:
+    upstream: mmv1/products/bigquerydatatransfer/Config.yaml
+  google_bigquery_job:
+    upstream: mmv1/products/bigquery/Job.yaml
+  google_bigquery_reservation:
+    upstream: mmv1/products/bigqueryreservation/Reservation.yaml
+  google_bigquery_routine:
+    upstream: mmv1/products/bigquery/Routine.yaml
+  google_cloudbuild_trigger:
+    upstream: mmv1/products/cloudbuild/Trigger.yaml
+  google_cloudbuild_worker_pool:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)
+  google_cloudbuildv2_connection:
+    upstream: mmv1/products/cloudbuildv2/Connection.yaml
+  google_cloudbuildv2_repository:
+    upstream: mmv1/products/cloudbuildv2/Repository.yaml
+  google_eventarc_trigger:
+    upstream: mmv1/products/eventarc/Trigger.yaml
+  google_logging_folder_sink:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)
+  google_logging_log_metric:
+    upstream: mmv1/products/logging/Metric.yaml
+  google_logging_organization_sink:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)
+  google_monitoring_dashboard:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)
+  google_monitoring_metric_descriptor:
+    upstream: mmv1/products/monitoring/MetricDescriptor.yaml
+  google_monitoring_notification_channel:
+    upstream: mmv1/products/monitoring/NotificationChannel.yaml
+  google_monitoring_service:
+    upstream: mmv1/products/monitoring/Service.yaml
+  google_monitoring_uptime_check_config:
+    upstream: mmv1/products/monitoring/UptimeCheckConfig.yaml
+  google_pubsub_schema:
+    upstream: mmv1/products/pubsub/Schema.yaml
+  google_storage_notification:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)

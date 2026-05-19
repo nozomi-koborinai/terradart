@@ -1,0 +1,77 @@
+outputDir: cloud_build
+
+classDocComment: |-
+  /// Factory wrapper for `google_cloudbuildv2_repository` (provider
+  /// `hashicorp/google ~> 7.0`).
+  ///
+  /// A Cloud Build v2 (2nd-gen) **repository** registers a single remote
+  /// Git repository (GitHub repo, GitLab project, Bitbucket repo, …)
+  /// under a parent [GoogleCloudbuildv2Connection]. Triggers created by
+  /// `google_cloudbuildv2_repository` consumers reference the repository
+  /// via its `id` self-link to launch builds on push / PR / tag events.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name (the address segment after
+  ///   `google_cloudbuildv2_repository.`).
+  /// - `name`: repository resource name (the short name registered with
+  ///   the parent connection — typically the upstream repo's slug).
+  ///   Immutable.
+  /// - `parentConnection`: name of the parent
+  ///   [GoogleCloudbuildv2Connection]. Wire with
+  ///   `TfArg.ref(githubConn.nameRef)` so the dependency edge is wired
+  ///   into the Terraform graph. Immutable after creation.
+  /// - `remoteUri`: Git clone HTTPS URI (e.g.
+  ///   `'https://github.com/org/repo.git'`). Immutable.
+  ///
+  /// `location` is optional in the provider schema: when omitted the
+  /// provider extracts the region from the parent connection. Override it
+  /// only when you have a deliberate reason to deviate (it is otherwise
+  /// computed server-side and changes force replacement).
+  ///
+  /// Example:
+  /// ```dart
+  /// final repo = GoogleCloudbuildv2Repository(
+  ///   localName: 'repo',
+  ///   name: TfArg.literal('my-repo'),
+  ///   parentConnection: TfArg.ref(githubConn.nameRef),
+  ///   remoteUri: TfArg.literal('https://github.com/org/my-repo.git'),
+  /// );
+  /// ```
+  ///
+  /// The Cloud Build v2 repository resource is fully **immutable** —
+  /// changing `name`, `parentConnection`, `remoteUri`, or `annotations`
+  /// (the only writable field besides identity) forces replacement.
+  ///
+  /// Composition pattern: extends `Resource<$GoogleCloudbuildv2Repository>`
+  /// for runtime behavior.
+
+paramOrder:
+  - name
+  - parent_connection
+  - remote_uri
+  - location
+  - annotations
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute (the bare repository name registered
+    /// under the parent connection).
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute (full path
+    /// `projects/{project}/locations/{location}/connections/{parent_connection}/repositories/{name}`).
+    /// This is the value Cloud Build triggers reference when binding the
+    /// build source to this repository.
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `create_time` attribute (RFC 3339 timestamp).
+    TfRef<String> get createTime =>
+        TfRef.attribute<String>(this, 'create_time');
+
+    /// Reference to `update_time` attribute (RFC 3339 timestamp).
+    TfRef<String> get updateTime =>
+        TfRef.attribute<String>(this, 'update_time');
+
+    /// Reference to the computed `etag` attribute — optimistic-concurrency
+    /// token used by the API on update / delete.
+    TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');

@@ -1,0 +1,414 @@
+outputDir: cloud_build
+
+classDocComment: |-
+  /// Factory wrapper for `google_cloudbuildv2_connection` (provider
+  /// `hashicorp/google ~> 7.0`).
+  ///
+  /// A Cloud Build v2 (2nd-gen) **connection** binds a Google Cloud project
+  /// to a source-code-management host (GitHub, GitHub Enterprise, GitLab,
+  /// Bitbucket Data Center, Bitbucket Cloud). It carries the credentials
+  /// the Cloud Build control plane uses to enumerate repositories, fetch
+  /// source, and register webhooks — every `google_cloudbuildv2_repository`
+  /// (see [GoogleCloudbuildv2Repository]) hangs off exactly one connection.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name (the address segment after
+  ///   `google_cloudbuildv2_connection.`).
+  /// - `name`: connection resource name. Immutable.
+  /// - `location`: GCP region (e.g. `'us-central1'`, `'asia-northeast1'`).
+  ///   Cloud Build v2 connections are regional — repositories created from
+  ///   this connection live in the same region.
+  ///
+  /// **SCM one-of**: pick **at most one** of [githubConfig],
+  /// [githubEnterpriseConfig], [gitlabConfig], [bitbucketDataCenterConfig],
+  /// or [bitbucketCloudConfig]. The provider treats them as mutually
+  /// exclusive (`conflicts` in the upstream MagicModules definition);
+  /// supplying more than one errors at apply time. Omit them all to create
+  /// an unconfigured connection (rare — usually a placeholder during
+  /// staged setup).
+  ///
+  /// **Secret references**: every `*_secret_version` field on the nested
+  /// SCM configs takes the self-link of a
+  /// [GoogleSecretManagerSecretVersion] (format
+  /// `projects/*/secrets/*/versions/*`). The secret payload itself stays
+  /// in Secret Manager; the connection only stores the reference. Wire
+  /// these with `TfArg.ref(oauthVersion.id)` so changes to the underlying
+  /// secret version propagate as a connection update.
+  ///
+  /// Example (GitHub OAuth connection):
+  /// ```dart
+  /// final ghConn = GoogleCloudbuildv2Connection(
+  ///   localName: 'github',
+  ///   name: TfArg.literal('repo-github'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   githubConfig: CloudBuildV2ConnectionGithubConfig(
+  ///     appInstallationId: TfArg.literal(123456),
+  ///     authorizerCredential: CloudBuildV2ConnectionGithubAuthorizerCredential(
+  ///       oauthTokenSecretVersion: TfArg.ref(oauthSecretVersion.id),
+  ///     ),
+  ///   ),
+  /// );
+  /// ```
+  ///
+  /// Cross-resource references:
+  /// - Consumed by [GoogleCloudbuildv2Repository] via `parent_connection`
+  ///   = `TfArg.ref(connection.nameRef)`.
+  ///
+  /// Output-only state:
+  /// - [installationStateRef]: per-stage installation progress
+  ///   (`PENDING_CREATE_APP` / `PENDING_USER_OAUTH` /
+  ///   `PENDING_INSTALL_APP` / `COMPLETE`).
+  /// - [reconciling]: server-side reconciliation flag.
+  /// - [etag]: optimistic-concurrency token.
+  ///
+  /// Composition pattern: extends `Resource<$GoogleCloudbuildv2Connection>`
+  /// for runtime behavior.
+
+paramOrder:
+  - name
+  - location
+  - github_config
+  - github_enterprise_config
+  - gitlab_config
+  - bitbucket_data_center_config
+  - bitbucket_cloud_config
+  - disabled
+  - annotations
+  - project
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+extraGetters: |2
+    /// Reference to `name` attribute (the bare connection name).
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute (full path
+    /// `projects/{project}/locations/{location}/connections/{name}`).
+    /// This is the value `google_cloudbuildv2_repository.parent_connection`
+    /// expects when bound via self-link form.
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `create_time` attribute (RFC 3339 timestamp).
+    TfRef<String> get createTime =>
+        TfRef.attribute<String>(this, 'create_time');
+
+    /// Reference to `update_time` attribute (RFC 3339 timestamp).
+    TfRef<String> get updateTime =>
+        TfRef.attribute<String>(this, 'update_time');
+
+    /// Reference to the computed `reconciling` attribute. `true` while the
+    /// connection is being set up or updated server-side.
+    TfRef<bool> get reconciling =>
+        TfRef.attribute<bool>(this, 'reconciling');
+
+    /// Reference to the computed `etag` attribute — optimistic-concurrency
+    /// token used by the API on update / delete.
+    TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+    /// Reference to the computed `installation_state` block. Surfaced as a
+    /// dynamic ref because the underlying type is a list of objects
+    /// (`stage`, `message`, `action_uri`) — index into it from HCL when
+    /// needed.
+    TfRef<Object?> get installationStateRef =>
+        TfRef.attribute<Object?>(this, 'installation_state');
+
+prelude: |
+  // ===========================================================================
+  // SCM configuration nested blocks (max_items=1 each). The Cloud Build v2
+  // connection schema treats the five SCM variants as a mutually-exclusive
+  // one-of; supplying more than one errors at apply time. All `*_secret_version`
+  // fields take the self-link of a `google_secret_manager_secret_version` —
+  // the payload itself stays inside Secret Manager. Schema does NOT mark
+  // these self-link strings `sensitive` (only the secret's value is); they
+  // round-trip through state as plain resource paths.
+  // ===========================================================================
+
+  /// `github_config.authorizer_credential` block. OAuth credential of the
+  /// account that authorized the Cloud Build GitHub App.
+  @immutable
+  class CloudBuildV2ConnectionGithubAuthorizerCredential {
+    const CloudBuildV2ConnectionGithubAuthorizerCredential({
+      this.oauthTokenSecretVersion,
+    });
+
+    /// Self-link of the [GoogleSecretManagerSecretVersion] holding the
+    /// OAuth token (format `projects/*/secrets/*/versions/*`). Optional —
+    /// the GitHub App installation can be configured without it during a
+    /// staged rollout, but production connections almost always set it.
+    final TfArg<String>? oauthTokenSecretVersion;
+
+    Map<String, Object?> toArgMap() => {
+      if (oauthTokenSecretVersion != null)
+        'oauth_token_secret_version': oauthTokenSecretVersion!.toTfJson(),
+    };
+  }
+
+  /// `github_config` block. Use for connections to github.com (the public
+  /// GitHub host). For GitHub Enterprise Server pick
+  /// [CloudBuildV2ConnectionGithubEnterpriseConfig] instead.
+  @immutable
+  class CloudBuildV2ConnectionGithubConfig {
+    const CloudBuildV2ConnectionGithubConfig({
+      this.appInstallationId,
+      this.authorizerCredential,
+    });
+
+    /// GitHub App installation id (the numeric id GitHub assigns when the
+    /// Cloud Build GitHub App is installed on a user / organization).
+    final TfArg<int>? appInstallationId;
+
+    /// Nested OAuth authorizer credential.
+    final CloudBuildV2ConnectionGithubAuthorizerCredential? authorizerCredential;
+
+    Map<String, Object?> toArgMap() => {
+      if (appInstallationId != null)
+        'app_installation_id': appInstallationId!.toTfJson(),
+      if (authorizerCredential != null)
+        'authorizer_credential': [authorizerCredential!.toArgMap()],
+    };
+  }
+
+  /// `service_directory_config` block — shared shape across GitHub
+  /// Enterprise, GitLab, and Bitbucket Data Center configs. Use when the
+  /// on-premises SCM host sits behind Service Directory rather than on
+  /// the public internet.
+  @immutable
+  class CloudBuildV2ConnectionServiceDirectoryConfig {
+    const CloudBuildV2ConnectionServiceDirectoryConfig({required this.service});
+
+    /// Service Directory service name. Format:
+    /// `projects/{project}/locations/{location}/namespaces/{namespace}/services/{service}`.
+    final TfArg<String> service;
+
+    Map<String, Object?> toArgMap() => {'service': service.toTfJson()};
+  }
+
+  /// `github_enterprise_config` block. Use for GitHub Enterprise Server
+  /// (self-hosted). Distinct from public-github [CloudBuildV2ConnectionGithubConfig]
+  /// — Enterprise uses an App-id + private-key authentication model
+  /// rather than the public-GitHub OAuth flow.
+  @immutable
+  class CloudBuildV2ConnectionGithubEnterpriseConfig {
+    const CloudBuildV2ConnectionGithubEnterpriseConfig({
+      required this.hostUri,
+      this.appId,
+      this.appInstallationId,
+      this.appSlug,
+      this.privateKeySecretVersion,
+      this.webhookSecretSecretVersion,
+      this.serviceDirectoryConfig,
+      this.sslCa,
+    });
+
+    /// Required. URI of the GitHub Enterprise host (e.g.
+    /// `'https://ghe.example.com'`).
+    final TfArg<String> hostUri;
+
+    /// Id of the GitHub App created from the manifest.
+    final TfArg<int>? appId;
+
+    /// Installation id of the GitHub App on the Enterprise host.
+    final TfArg<int>? appInstallationId;
+
+    /// URL-friendly name of the GitHub App.
+    final TfArg<String>? appSlug;
+
+    /// Self-link of the [GoogleSecretManagerSecretVersion] holding the
+    /// GitHub App private key (format `projects/*/secrets/*/versions/*`).
+    final TfArg<String>? privateKeySecretVersion;
+
+    /// Self-link of the [GoogleSecretManagerSecretVersion] holding the
+    /// webhook secret used to verify GitHub webhook events.
+    final TfArg<String>? webhookSecretSecretVersion;
+
+    /// Optional Service Directory wiring for on-premises GHE servers not
+    /// reachable from the public internet.
+    final CloudBuildV2ConnectionServiceDirectoryConfig? serviceDirectoryConfig;
+
+    /// PEM-encoded SSL CA certificate to trust when calling the GHE host
+    /// (e.g. for self-signed certificates).
+    final TfArg<String>? sslCa;
+
+    Map<String, Object?> toArgMap() => {
+      'host_uri': hostUri.toTfJson(),
+      if (appId != null) 'app_id': appId!.toTfJson(),
+      if (appInstallationId != null)
+        'app_installation_id': appInstallationId!.toTfJson(),
+      if (appSlug != null) 'app_slug': appSlug!.toTfJson(),
+      if (privateKeySecretVersion != null)
+        'private_key_secret_version': privateKeySecretVersion!.toTfJson(),
+      if (webhookSecretSecretVersion != null)
+        'webhook_secret_secret_version': webhookSecretSecretVersion!.toTfJson(),
+      if (serviceDirectoryConfig != null)
+        'service_directory_config': [serviceDirectoryConfig!.toArgMap()],
+      if (sslCa != null) 'ssl_ca': sslCa!.toTfJson(),
+    };
+  }
+
+  /// Shared shape for `authorizer_credential` / `read_authorizer_credential`
+  /// blocks on the GitLab, Bitbucket Data Center, and Bitbucket Cloud
+  /// configs. All three SCMs use a user access token whose value lives in
+  /// Secret Manager.
+  @immutable
+  class CloudBuildV2ConnectionUserCredential {
+    const CloudBuildV2ConnectionUserCredential({
+      required this.userTokenSecretVersion,
+    });
+
+    /// Required. Self-link of the [GoogleSecretManagerSecretVersion]
+    /// holding the user access token (format
+    /// `projects/*/secrets/*/versions/*`).
+    final TfArg<String> userTokenSecretVersion;
+
+    Map<String, Object?> toArgMap() => {
+      'user_token_secret_version': userTokenSecretVersion.toTfJson(),
+    };
+  }
+
+  /// `gitlab_config` block. Use for gitlab.com or self-hosted GitLab
+  /// Enterprise.
+  @immutable
+  class CloudBuildV2ConnectionGitlabConfig {
+    const CloudBuildV2ConnectionGitlabConfig({
+      required this.webhookSecretSecretVersion,
+      required this.readAuthorizerCredential,
+      required this.authorizerCredential,
+      this.hostUri,
+      this.serviceDirectoryConfig,
+      this.sslCa,
+    });
+
+    /// Required. Self-link of the [GoogleSecretManagerSecretVersion]
+    /// holding the webhook secret used to verify GitLab webhook events.
+    /// Immutable after creation per schema.
+    final TfArg<String> webhookSecretSecretVersion;
+
+    /// Required. GitLab personal access token with the minimum `read_api`
+    /// scope. Used by Cloud Build to enumerate repositories.
+    final CloudBuildV2ConnectionUserCredential readAuthorizerCredential;
+
+    /// Required. GitLab personal access token with the `api` scope. Used
+    /// by Cloud Build for mutating operations (webhook management, etc.).
+    final CloudBuildV2ConnectionUserCredential authorizerCredential;
+
+    /// URI of the GitLab Enterprise host. Defaults to `https://gitlab.com`
+    /// when omitted (set this for self-hosted GitLab Enterprise).
+    final TfArg<String>? hostUri;
+
+    /// Optional Service Directory wiring for on-premises GitLab Enterprise
+    /// servers.
+    final CloudBuildV2ConnectionServiceDirectoryConfig? serviceDirectoryConfig;
+
+    /// PEM-encoded SSL CA certificate to trust when calling the GitLab host.
+    final TfArg<String>? sslCa;
+
+    Map<String, Object?> toArgMap() => {
+      'webhook_secret_secret_version': webhookSecretSecretVersion.toTfJson(),
+      'read_authorizer_credential': [readAuthorizerCredential.toArgMap()],
+      'authorizer_credential': [authorizerCredential.toArgMap()],
+      if (hostUri != null) 'host_uri': hostUri!.toTfJson(),
+      if (serviceDirectoryConfig != null)
+        'service_directory_config': [serviceDirectoryConfig!.toArgMap()],
+      if (sslCa != null) 'ssl_ca': sslCa!.toTfJson(),
+    };
+  }
+
+  /// `bitbucket_data_center_config` block. Use for self-hosted Bitbucket
+  /// Data Center (formerly Bitbucket Server). For cloud-hosted Bitbucket
+  /// pick [CloudBuildV2ConnectionBitbucketCloudConfig] instead.
+  @immutable
+  class CloudBuildV2ConnectionBitbucketDataCenterConfig {
+    const CloudBuildV2ConnectionBitbucketDataCenterConfig({
+      required this.hostUri,
+      required this.webhookSecretSecretVersion,
+      required this.readAuthorizerCredential,
+      required this.authorizerCredential,
+      this.serviceDirectoryConfig,
+      this.sslCa,
+    });
+
+    /// Required. URI of the Bitbucket Data Center host.
+    final TfArg<String> hostUri;
+
+    /// Required. Self-link of the [GoogleSecretManagerSecretVersion]
+    /// holding the webhook secret. Immutable after creation per schema.
+    final TfArg<String> webhookSecretSecretVersion;
+
+    /// Required. HTTP access token with `REPO_READ` access.
+    final CloudBuildV2ConnectionUserCredential readAuthorizerCredential;
+
+    /// Required. HTTP access token with `REPO_ADMIN` scope access.
+    final CloudBuildV2ConnectionUserCredential authorizerCredential;
+
+    /// Optional Service Directory wiring for on-premises Bitbucket Data
+    /// Center hosts.
+    final CloudBuildV2ConnectionServiceDirectoryConfig? serviceDirectoryConfig;
+
+    /// PEM-encoded SSL CA certificate to trust when calling the Bitbucket
+    /// Data Center host.
+    final TfArg<String>? sslCa;
+
+    Map<String, Object?> toArgMap() => {
+      'host_uri': hostUri.toTfJson(),
+      'webhook_secret_secret_version': webhookSecretSecretVersion.toTfJson(),
+      'read_authorizer_credential': [readAuthorizerCredential.toArgMap()],
+      'authorizer_credential': [authorizerCredential.toArgMap()],
+      if (serviceDirectoryConfig != null)
+        'service_directory_config': [serviceDirectoryConfig!.toArgMap()],
+      if (sslCa != null) 'ssl_ca': sslCa!.toTfJson(),
+    };
+  }
+
+  /// `bitbucket_cloud_config` block. Use for cloud-hosted Bitbucket
+  /// (bitbucket.org).
+  @immutable
+  class CloudBuildV2ConnectionBitbucketCloudConfig {
+    const CloudBuildV2ConnectionBitbucketCloudConfig({
+      required this.workspace,
+      required this.webhookSecretSecretVersion,
+      required this.readAuthorizerCredential,
+      required this.authorizerCredential,
+    });
+
+    /// Required. Bitbucket Cloud Workspace ID being connected to GCP.
+    final TfArg<String> workspace;
+
+    /// Required. Self-link of the [GoogleSecretManagerSecretVersion]
+    /// holding the webhook secret. Immutable after creation per schema.
+    final TfArg<String> webhookSecretSecretVersion;
+
+    /// Required. Access token with `repository` access. Workspace,
+    /// project, or repository access tokens are all accepted — using a
+    /// system account is recommended.
+    final CloudBuildV2ConnectionUserCredential readAuthorizerCredential;
+
+    /// Required. Access token with `webhook`, `repository`,
+    /// `repository:admin`, and `pullrequest` scope access. Same scope of
+    /// supported token types as [readAuthorizerCredential].
+    final CloudBuildV2ConnectionUserCredential authorizerCredential;
+
+    Map<String, Object?> toArgMap() => {
+      'workspace': workspace.toTfJson(),
+      'webhook_secret_secret_version': webhookSecretSecretVersion.toTfJson(),
+      'read_authorizer_credential': [readAuthorizerCredential.toArgMap()],
+      'authorizer_credential': [authorizerCredential.toArgMap()],
+    };
+  }
+
+customSlots:
+  github_config:
+    paramDeclaration: 'CloudBuildV2ConnectionGithubConfig? githubConfig'
+    argMapEntry: "if (githubConfig != null) 'github_config': TfArg.literal([githubConfig.toArgMap()]),"
+  github_enterprise_config:
+    paramDeclaration: 'CloudBuildV2ConnectionGithubEnterpriseConfig? githubEnterpriseConfig'
+    argMapEntry: "if (githubEnterpriseConfig != null) 'github_enterprise_config': TfArg.literal([githubEnterpriseConfig.toArgMap()]),"
+  gitlab_config:
+    paramDeclaration: 'CloudBuildV2ConnectionGitlabConfig? gitlabConfig'
+    argMapEntry: "if (gitlabConfig != null) 'gitlab_config': TfArg.literal([gitlabConfig.toArgMap()]),"
+  bitbucket_data_center_config:
+    paramDeclaration: 'CloudBuildV2ConnectionBitbucketDataCenterConfig? bitbucketDataCenterConfig'
+    argMapEntry: "if (bitbucketDataCenterConfig != null) 'bitbucket_data_center_config': TfArg.literal([bitbucketDataCenterConfig.toArgMap()]),"
+  bitbucket_cloud_config:
+    paramDeclaration: 'CloudBuildV2ConnectionBitbucketCloudConfig? bitbucketCloudConfig'
+    argMapEntry: "if (bitbucketCloudConfig != null) 'bitbucket_cloud_config': TfArg.literal([bitbucketCloudConfig.toArgMap()]),"
