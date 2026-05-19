@@ -1,5 +1,52 @@
 # Changelog
 
+## 0.7.0-dev - 2026-05-19
+
+### Wave 6 — Compute LB stack (Plan 5.G)
+
+Adds **25 GA resources** covering the L7 Application Load Balancer stack on Google Cloud. terradart_google now ships **96 curated resources** across **24 per-service barrels**.
+
+**L7 Global Application LB core (8):**
+
+- `google_compute_global_forwarding_rule`
+- `google_compute_target_http_proxy`, `google_compute_target_https_proxy`
+- `google_compute_url_map`
+- `google_compute_backend_service` (global)
+- `google_compute_managed_ssl_certificate`, `google_compute_ssl_certificate`
+- `google_compute_backend_bucket`
+
+**L7 Regional/Internal Application LB core (5):**
+
+- `google_compute_forwarding_rule` (regional)
+- `google_compute_region_target_http_proxy`, `google_compute_region_target_https_proxy`
+- `google_compute_region_url_map`
+- `google_compute_region_backend_service`
+
+**Health checks (2):**
+
+- `google_compute_health_check`, `google_compute_region_health_check` (unified HTTP/HTTPS/TCP/SSL/HTTP2/GRPC)
+
+**MIG / Autoscaler (5):**
+
+- `google_compute_instance_template`
+- `google_compute_instance_group_manager`, `google_compute_region_instance_group_manager`
+- `google_compute_autoscaler`, `google_compute_region_autoscaler`
+
+**NEG (3):**
+
+- `google_compute_network_endpoint_group` (zonal)
+- `google_compute_global_network_endpoint_group` (Internet)
+- `google_compute_region_network_endpoint_group` (Cloud Run / Cloud Functions Gen 2 / App Engine flex)
+
+**Cloud Armor + SSL Policy (2):**
+
+- `google_compute_security_policy` (Cloud Armor; rules inline; CEL expressions as raw `String`)
+- `google_compute_ssl_policy` (TLS profile + min_tls_version)
+
+**Quickstart:** `examples/compute_lb_quickstart/` — full L7 Global Application LB chain end-to-end.
+
+**Constraint bump:** `terradart_core: ^0.7.0-dev` (lockstep).
+
 ## 0.6.0-dev - 2026-05-18
 
 Wave 5: adds 22 new GA resources across IAM completion + Cloud SQL + `*_iam_member` fill. terradart_google now 71 resources, 24 per-service barrels.

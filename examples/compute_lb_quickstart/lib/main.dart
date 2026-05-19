@@ -282,7 +282,8 @@ class ComputeLbStack extends Stack {
         ipProtocol: TfArg.literal(GlobalForwardingRuleIpProtocol.tcp),
         portRange: TfArg.literal('443'),
         loadBalancingScheme: TfArg.literal(
-            GlobalForwardingRuleLoadBalancingScheme.externalManaged),
+          GlobalForwardingRuleLoadBalancingScheme.externalManaged,
+        ),
         target: TfArg.ref(lbHttpsProxy.selfLink),
       ),
     );

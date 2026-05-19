@@ -128,7 +128,7 @@ Runnable end-to-end:  [`examples/pubsub_quickstart/`](examples/pubsub_quickstart
 
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **70 curated resource factories + 1 data source**: BigQuery (4), Cloud Functions (2), Cloud Run v2 (4), Cloud Scheduler (1), Cloud SQL (3), Cloud Tasks (2), Compute (9), DNS (2), Firebase App Check (7), Firebase App Hosting (5), Firebase Data Connect (1), Firebase Remote Config (1), Firestore (5), IAM (6), KMS (4), Logging (1), Monitoring (1), project service enablement (1), Pub/Sub (4), Secret Manager (3), Service Networking (1), Cloud Storage (3), and the `google_project` data source. CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
+[`terradart_google`](packages/terradart_google/README.md) ships **95 curated resource factories + 1 data source**: BigQuery (4), Cloud Functions (2), Cloud Run v2 (4), Cloud Scheduler (1), Cloud SQL (3), Cloud Tasks (2), Compute (34 — including the full L7 Application LB stack: forwarding rules + target proxies + URL maps + backend services + managed/self-managed SSL + MIG + Autoscaler + NEG + Cloud Armor + SSL Policy + health checks), DNS (2), Firebase App Check (7), Firebase App Hosting (5), Firebase Data Connect (1), Firebase Remote Config (1), Firestore (5), IAM (6), KMS (4), Logging (1), Monitoring (1), project service enablement (1), Pub/Sub (4), Secret Manager (3), Service Networking (1), Cloud Storage (3), and the `google_project` data source. CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
 For any other `google_*` resource: run `terradart codegen` against your provider schema dump. The emitted Dart names have no SemVer guarantee.
 

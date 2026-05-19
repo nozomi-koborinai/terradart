@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.7.0-dev - 2026-05-19
+
+No user-facing API changes. Workspace consistency bump alongside `terradart_google` 0.7.0-dev (Wave 6: 25 new GA resources across the L7 Application Load Balancer stack — Global + Regional/Internal cores, Health checks, MIG/Autoscaler, NEG, Cloud Armor, SSL Policy).
+
 ## 0.6.0-dev - 2026-05-18
 
 No user-facing API changes. Workspace consistency bump alongside `terradart_google` 0.6.0-dev (Wave 5: 22 new GA resources across IAM completion + Cloud SQL + `*_iam_member` fill).
