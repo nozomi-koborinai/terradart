@@ -1,7 +1,9 @@
 // packages/terradart_google/lib/pubsub.dart
-/// Pub/Sub topics, subscriptions, and per-resource IAM bindings.
+/// Pub/Sub topics, subscriptions, schemas, and per-resource IAM bindings.
 library;
 
+export 'src/pubsub/google_pubsub_schema.dart'
+    show GooglePubsubSchema, PubsubSchemaType;
 export 'src/pubsub/google_pubsub_subscription.dart'
     show
         BigQueryConfig,

@@ -1,5 +1,6 @@
 // packages/terradart_google/lib/storage.dart
-/// Cloud Storage buckets and bucket objects.
+/// Cloud Storage buckets, bucket objects, and Pub/Sub object-change
+/// notifications.
 library;
 
 export 'src/storage/google_storage_bucket.dart'
@@ -35,3 +36,8 @@ export 'src/storage/google_storage_bucket_object.dart'
         BucketObjectStorageClass,
         CustomerEncryption,
         GoogleStorageBucketObject;
+export 'src/storage/google_storage_notification.dart'
+    show
+        GoogleStorageNotification,
+        StorageNotificationEventType,
+        StorageNotificationPayloadFormat;

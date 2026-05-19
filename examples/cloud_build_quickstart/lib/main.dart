@@ -58,7 +58,8 @@ class CloudBuildStack extends Stack {
         name: TfArg.literal('github-app-conn'),
         githubConfig: CloudBuildV2ConnectionGithubConfig(
           appInstallationId: TfArg.literal(12345),
-          authorizerCredential: CloudBuildV2ConnectionGithubAuthorizerCredential(
+          authorizerCredential:
+              CloudBuildV2ConnectionGithubAuthorizerCredential(
             oauthTokenSecretVersion: TfArg.literal(
               'projects/p/secrets/github-oauth/versions/1',
             ),
