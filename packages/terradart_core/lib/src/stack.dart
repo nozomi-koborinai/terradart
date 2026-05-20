@@ -1,9 +1,13 @@
+import 'dart:convert' as dart_convert;
+import 'dart:io';
+
 import 'package:meta/meta.dart';
 
 import 'app_export.dart';
 import 'data.dart';
 import 'duplicate_resource_error.dart';
 import 'resource.dart';
+import 'synth/stack_synth.dart';
 
 /// Lightweight backend hook — concrete classes (`GcsBackend`, `S3Backend`)
 /// live in provider-specific packages. The core `Stack` only stores the
@@ -185,11 +189,25 @@ abstract class Stack {
     return data;
   }
 
-  /// Synth entry point. Subclasses typically delegate to
-  /// `StackSynth.synth(this)` and write the result to disk.
+  /// Synth entry point. The default implementation calls
+  /// [StackSynth.synth] and writes the resulting Terraform JSON to
+  /// `${outDir}/main.tf.json` with two-space indentation, creating
+  /// [outDir] recursively if it doesn't exist.
   ///
-  /// `outDir`: filesystem directory for `.tf.json` output.
-  Future<void> synth({required String outDir});
+  /// Subclasses may override to customise file layout — e.g. to also
+  /// write the optional Dart constants file produced by
+  /// [SynthResult.dartConstants] — but most consumers can rely on the
+  /// default.
+  Future<void> synth({required String outDir}) async {
+    final result = StackSynth.synth(this);
+    final dir = Directory(outDir);
+    if (!await dir.exists()) {
+      await dir.create(recursive: true);
+    }
+    const encoder = dart_convert.JsonEncoder.withIndent('  ');
+    await File('$outDir/main.tf.json')
+        .writeAsString(encoder.convert(result.tfJson));
+  }
 }
 
 @immutable

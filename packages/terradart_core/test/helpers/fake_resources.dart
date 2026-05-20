@@ -41,14 +41,10 @@ class FakeStackProvider implements StackProvider {
   Map<String, Object?> toTfJson() => Map<String, Object?>.from(configArgs);
 }
 
-/// Minimal concrete `Stack` subclass for tests. `Stack` is abstract; this
-/// no-op `synth` lets the runtime exercise it.
+/// Minimal concrete `Stack` subclass for tests. Uses the default
+/// [Stack.synth] implementation.
 class TestStack extends Stack {
   TestStack({super.providers = const [], super.backend});
-
-  @override
-  Future<void> synth({required String outDir}) async =>
-      throw UnimplementedError('use StackSynth.synth(...) directly in tests');
 }
 
 class FakePubsubTopic extends Resource {
