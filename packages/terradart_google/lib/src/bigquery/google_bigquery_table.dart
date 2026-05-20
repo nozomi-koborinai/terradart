@@ -734,6 +734,9 @@ final class GoogleBigqueryTable extends Resource {
   // ignore: non_constant_identifier_names
   Set<String> get $sensitiveFields => _googleBigqueryTableSensitive;
 
+  @override
+  bool get $supportsDeletionProtection => true;
+
   /// Reference to `table_id` attribute.
   TfRef<String> get tableIdRef => TfRef.attribute<String>(this, 'table_id');
 

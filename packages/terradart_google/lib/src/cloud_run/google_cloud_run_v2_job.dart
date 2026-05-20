@@ -787,6 +787,9 @@ final class GoogleCloudRunV2Job extends Resource {
   // ignore: non_constant_identifier_names
   Set<String> get $sensitiveFields => _googleCloudRunV2JobSensitive;
 
+  @override
+  bool get $supportsDeletionProtection => true;
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 

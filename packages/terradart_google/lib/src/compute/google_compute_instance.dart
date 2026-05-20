@@ -847,6 +847,9 @@ final class GoogleComputeInstance extends Resource {
   // ignore: non_constant_identifier_names
   Set<String> get $sensitiveFields => _googleComputeInstanceSensitive;
 
+  @override
+  bool get $supportsDeletionProtection => true;
+
   /// Reference to `id` attribute (full path
   /// `projects/{project}/zones/{zone}/instances/{name}`).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

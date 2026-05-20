@@ -785,6 +785,9 @@ final class GoogleSqlDatabaseInstance extends Resource {
   // ignore: non_constant_identifier_names
   Set<String> get $sensitiveFields => _googleSqlDatabaseInstanceSensitive;
 
+  @override
+  bool get $supportsDeletionProtection => true;
+
   /// Reference to `name` attribute. Use this when downstream resources
   /// like [GoogleSqlDatabase] / [GoogleSqlUser] need the bare instance
   /// name (NOT the full `id`).
