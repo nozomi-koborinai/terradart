@@ -69,4 +69,36 @@ void main() {
       expect(r.tfAddress, isA<String>());
     });
   });
+
+  group('Resource.\$supportsDeletionProtection', () {
+    test('defaults to false on Resource base class', () {
+      final r = _FakeResource(
+        localName: 'a',
+        name: const TfArgLiteral('x'),
+      );
+      expect(r.$supportsDeletionProtection, isFalse);
+    });
+
+    test('can be overridden to true', () {
+      final r = _CapableResource(
+        localName: 'b',
+        name: const TfArgLiteral('y'),
+      );
+      expect(r.$supportsDeletionProtection, isTrue);
+    });
+  });
+}
+
+class _CapableResource extends Resource {
+  _CapableResource({required super.localName, required TfArg<String> name})
+      : super(
+          terraformType: 'fake_capable_thing',
+          argMap: {'name': name},
+        );
+
+  @override
+  Set<String> get $sensitiveFields => const {};
+
+  @override
+  bool get $supportsDeletionProtection => true;
 }
