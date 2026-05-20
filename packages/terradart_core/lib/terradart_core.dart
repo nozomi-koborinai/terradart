@@ -8,7 +8,7 @@ export 'src/app_export.dart'
         ResourceAttributeExport,
         ResourceIdExport,
         StringExport;
-export 'src/backends.dart' show GcsBackend;
+export 'src/backends.dart' show GcsBackend, LocalBackend;
 export 'src/data.dart' show Data;
 export 'src/duplicate_resource_error.dart' show DuplicateResourceError;
 export 'src/duration_helper.dart' show TerraformDurationExt;
