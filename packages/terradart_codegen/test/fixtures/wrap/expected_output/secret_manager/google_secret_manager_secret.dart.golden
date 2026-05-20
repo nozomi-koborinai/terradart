@@ -166,6 +166,9 @@ final class GoogleSecretManagerSecret extends Resource {
   // ignore: non_constant_identifier_names
   Set<String> get $sensitiveFields => _googleSecretManagerSecretSensitive;
 
+  @override
+  bool get $supportsDeletionProtection => true;
+
   TfRef<String> get secretIdRef => TfRef.attribute<String>(this, 'secret_id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
