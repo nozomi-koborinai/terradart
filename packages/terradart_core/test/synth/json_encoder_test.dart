@@ -594,4 +594,42 @@ void main() {
       );
     });
   });
+
+  group('JsonEncoder.terraformBlock — LocalBackend', () {
+    test('LocalBackend() with no path emits {"local": {}}', () {
+      final stack = TestStack(
+        providers: const [
+          FakeStackProvider(
+            providerName: 'google',
+            source: 'hashicorp/google',
+            versionConstraint: '~> 7.0',
+          ),
+        ],
+        backend: const LocalBackend(),
+      );
+      final block = JsonEncoder.terraformBlock(stack);
+      expect(
+        block['backend'],
+        equals({'local': <String, Object?>{}}),
+      );
+    });
+
+    test('LocalBackend(path:) emits {"local": {"path": "..."}}', () {
+      final stack = TestStack(
+        providers: const [
+          FakeStackProvider(
+            providerName: 'google',
+            source: 'hashicorp/google',
+            versionConstraint: '~> 7.0',
+          ),
+        ],
+        backend: const LocalBackend(path: 'state/terraform.tfstate'),
+      );
+      final block = JsonEncoder.terraformBlock(stack);
+      expect(
+        block['backend'],
+        equals({'local': {'path': 'state/terraform.tfstate'}}),
+      );
+    });
+  });
 }
