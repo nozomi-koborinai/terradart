@@ -2,7 +2,7 @@ import 'package:terradart_core/terradart_core.dart';
 
 /// Builds a synthetic `argMap` that mirrors how a real wrapper encodes
 /// the given dotted sensitive path. Used by Gate 2 to drive
-/// `JsonEncoder.encodeArgMapWithSensitive` without instantiating an
+/// `TfJsonEncoder.encodeArgMapWithSensitive` without instantiating an
 /// actual Resource (each resource has different required fields, which
 /// would make the per-resource test boilerplate explode at 120 resources).
 ///
