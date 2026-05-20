@@ -44,7 +44,7 @@ class FakeStackProvider implements StackProvider {
 /// Minimal concrete `Stack` subclass for tests. Uses the default
 /// [Stack.synth] implementation.
 class TestStack extends Stack {
-  TestStack({super.providers = const [], super.backend});
+  TestStack({super.providers = const [], super.backend, super.devMode});
 }
 
 class FakePubsubTopic extends Resource {
