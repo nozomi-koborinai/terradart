@@ -12,7 +12,7 @@ import 'package:terradart_core/src/tf_ref.dart';
 /// `TfArg` / `TfRef` instances escape — they're collapsed to strings or
 /// scalars). The orchestrator in `stack_synth.dart` glues these together
 /// into the top-level map.
-class JsonEncoder {
+class TfJsonEncoder {
   /// `>= 1.11.0` is the default required Terraform version because
   /// curated factories (notably Secret Manager's `secret_data_wo`) depend
   /// on Terraform 1.11+ write-only arguments. Override via

@@ -6,7 +6,7 @@ import 'stack.dart';
 ///
 /// v0.0.x ships GCS as the canonical "real-world" backend; other backends
 /// (S3, local, Terraform Cloud) live in caller packages and implement
-/// [StackBackend] directly. Synth's `JsonEncoder.terraformBlock` knows
+/// [StackBackend] directly. Synth's `TfJsonEncoder.terraformBlock` knows
 /// about [GcsBackend] specifically because it's the v0.0.x default.
 @immutable
 final class GcsBackend implements StackBackend {

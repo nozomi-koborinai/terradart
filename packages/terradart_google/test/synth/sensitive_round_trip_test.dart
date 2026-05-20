@@ -66,7 +66,7 @@ void main() {
         const builder = SyntheticArgMapBuilder();
         for (final path in paths) {
           final argMap = builder.buildForPath(path, 'plaintext-secret');
-          final encoded = JsonEncoder.encodeArgMapWithSensitive(
+          final encoded = TfJsonEncoder.encodeArgMapWithSensitive(
             argMap: argMap,
             sensitiveFields: {path},
           );
