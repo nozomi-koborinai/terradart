@@ -1,6 +1,7 @@
 import 'package:terradart_core/src/data.dart';
 import 'package:terradart_core/src/resource.dart';
 import 'package:terradart_core/src/stack.dart';
+import 'package:terradart_core/src/tf_arg.dart';
 import 'package:terradart_core/src/tf_ref.dart';
 
 /// Tiny `TfAddressed` stub for tests that don't need a real `Resource`.
@@ -45,6 +46,22 @@ class FakeStackProvider implements StackProvider {
 /// [Stack.synth] implementation.
 class TestStack extends Stack {
   TestStack({super.providers = const [], super.backend, super.devMode});
+}
+
+/// Generic non-capable fake resource for injection tests.
+/// `terraformType` is `'fake_thing'`; `$supportsDeletionProtection` defaults
+/// to `false` (base class behaviour).
+class FakeResource extends Resource {
+  FakeResource({
+    required super.localName,
+    required TfArg<String> name,
+  }) : super(
+          terraformType: 'fake_thing',
+          argMap: {'name': name},
+        );
+
+  @override
+  Set<String> get $sensitiveFields => const {};
 }
 
 class FakePubsubTopic extends Resource {

@@ -243,9 +243,25 @@ class TfJsonEncoder {
   /// JSON for one resource block: `argMap` + optional `depends_on` +
   /// optional `lifecycle`. Sensitive fields are masked per
   /// `Resource.$sensitiveFields`.
-  static Map<String, dynamic> resourceBlock(Resource r) {
+  ///
+  /// When [devModeInjectDeletionProtection] is `true` and the resource
+  /// exposes `$supportsDeletionProtection == true` and its `argMap` does
+  /// not already contain `deletion_protection`, `false` is injected so
+  /// dev stacks can be torn down without manual overrides.
+  static Map<String, dynamic> resourceBlock(
+    Resource r, {
+    bool devModeInjectDeletionProtection = false,
+  }) {
+    final argMap = devModeInjectDeletionProtection &&
+            r.$supportsDeletionProtection &&
+            !r.argMap.containsKey('deletion_protection')
+        ? <String, TfArg<dynamic>?>{
+            ...r.argMap,
+            'deletion_protection': const TfArgLiteral<bool>(false),
+          }
+        : r.argMap;
     final out = encodeArgMapWithSensitive(
-      argMap: r.argMap,
+      argMap: argMap,
       sensitiveFields: r.$sensitiveFields,
     );
     final deps = r.dependsOn;
@@ -267,8 +283,10 @@ class TfJsonEncoder {
     if (stack.resources.isEmpty) return null;
     final out = <String, Map<String, dynamic>>{};
     for (final r in stack.resources) {
-      out.putIfAbsent(r.terraformType, () => {})[r.localName] =
-          resourceBlock(r);
+      out.putIfAbsent(r.terraformType, () => {})[r.localName] = resourceBlock(
+        r,
+        devModeInjectDeletionProtection: stack.devMode,
+      );
     }
     return out;
   }
