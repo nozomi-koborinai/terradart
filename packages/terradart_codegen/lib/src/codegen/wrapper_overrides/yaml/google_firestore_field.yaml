@@ -132,8 +132,9 @@ prelude: |
     final FirestoreFieldOrder? order;
 
     /// When true, encodes `array_config: "CONTAINS"`. Mutually exclusive
-    /// with [order].
-    TfArg<bool> arrayContains;
+    /// with [order]. Plain [bool] (not [TfArg]) — this is a Dart-side
+    /// discriminant, not a Terraform argument.
+    final bool arrayContains; // gate7-ok
 
     /// Query scope for this index. Null falls through to the provider
     /// default (`COLLECTION`).

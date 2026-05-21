@@ -377,7 +377,7 @@ prelude: |
     /// Setting to `0.0` drains the backend. Cannot be set for `INTERNAL`
     /// (Passthrough NLB) backend services; required for every other
     /// scheme.
-    TfArg<double>? capacityScaler;
+    final TfArg<double>? capacityScaler;
 
     /// Free-form description.
     final TfArg<String>? description;
@@ -385,30 +385,30 @@ prelude: |
     /// Marks this backend as a failover backend within an Internal
     /// Passthrough NLB. More than one failover backend may be configured;
     /// promotion is driven by [ComputeRegionBackendServiceRegionBackendServiceFailoverPolicy].
-    TfArg<bool>? failover;
+    final TfArg<bool>? failover;
 
     /// Max simultaneous connections for the group (`CONNECTION` /
     /// `UTILIZATION` modes). Cannot be set for `INTERNAL` schemes.
-    TfArg<int>? maxConnections;
+    final TfArg<int>? maxConnections;
 
     /// Max simultaneous connections per endpoint (NEG-shaped backends).
-    TfArg<int>? maxConnectionsPerEndpoint;
+    final TfArg<int>? maxConnectionsPerEndpoint;
 
     /// Max simultaneous connections per backend instance (IG-shaped
     /// backends).
-    TfArg<int>? maxConnectionsPerInstance;
+    final TfArg<int>? maxConnectionsPerInstance;
 
     /// Max RPS for the group (`RATE` / `UTILIZATION` modes).
-    TfArg<int>? maxRate;
+    final TfArg<int>? maxRate;
 
     /// Max RPS per endpoint.
-    TfArg<double>? maxRatePerEndpoint;
+    final TfArg<double>? maxRatePerEndpoint;
 
     /// Max RPS per instance.
-    TfArg<double>? maxRatePerInstance;
+    final TfArg<double>? maxRatePerInstance;
 
     /// Target CPU utilization in `UTILIZATION` mode (`0.0`-`1.0`).
-    TfArg<double>? maxUtilization;
+    final TfArg<double>? maxUtilization;
 
     /// Custom metrics descriptors for `CUSTOM_METRICS` balancing.
     final List<ComputeRegionBackendServiceRegionBackendServiceBackendCustomMetric>? customMetrics;
@@ -452,10 +452,10 @@ prelude: |
 
     /// If `true`, the metric is reported to Cloud Monitoring but is not
     /// used for load balancing.
-    TfArg<bool> dryRun;
+    final TfArg<bool> dryRun;
 
     /// Optional target utilization (`0.0`-`1.0`) for this metric.
-    TfArg<double>? maxUtilization;
+    final TfArg<double>? maxUtilization;
 
     Map<String, Object?> toArgMap() => {
       'name': name.toTfJson(),
@@ -489,22 +489,22 @@ prelude: |
     final RegionBackendServiceCacheMode? cacheMode;
 
     /// Max TTL (seconds) for content served to clients.
-    TfArg<int>? clientTtl;
+    final TfArg<int>? clientTtl;
 
     /// Default TTL for cached content with no upstream `Cache-Control`.
-    TfArg<int>? defaultTtl;
+    final TfArg<int>? defaultTtl;
 
     /// Hard ceiling on cached content TTL.
-    TfArg<int>? maxTtl;
+    final TfArg<int>? maxTtl;
 
     /// Negative caching for selected status codes.
-    TfArg<bool>? negativeCaching;
+    final TfArg<bool>? negativeCaching;
 
     /// Serve cached content during origin revalidation/errors (seconds).
-    TfArg<int>? serveWhileStale;
+    final TfArg<int>? serveWhileStale;
 
     /// TTL for signed-URL responses (defaults to 3600).
-    TfArg<int>? signedUrlCacheMaxAgeSec;
+    final TfArg<int>? signedUrlCacheMaxAgeSec;
 
     /// Cache key policy — which request components participate in the
     /// cache key.
@@ -545,9 +545,9 @@ prelude: |
       this.queryStringBlacklist,
     });
 
-    TfArg<bool>? includeHost;
-    TfArg<bool>? includeProtocol;
-    TfArg<bool>? includeQueryString;
+    final TfArg<bool>? includeHost;
+    final TfArg<bool>? includeProtocol;
+    final TfArg<bool>? includeQueryString;
     final List<String>? includeNamedCookies;
     final List<String>? queryStringWhitelist;
     final List<String>? queryStringBlacklist;
@@ -558,11 +558,11 @@ prelude: |
       if (includeQueryString != null)
         'include_query_string': includeQueryString!.toTfJson(),
       if (includeNamedCookies != null)
-        'include_named_cookies': includeNamedCookies!.toTfJson(),
+        'include_named_cookies': includeNamedCookies,
       if (queryStringWhitelist != null)
-        'query_string_whitelist': queryStringWhitelist!.toTfJson(),
+        'query_string_whitelist': queryStringWhitelist,
       if (queryStringBlacklist != null)
-        'query_string_blacklist': queryStringBlacklist!.toTfJson(),
+        'query_string_blacklist': queryStringBlacklist,
     };
   }
 
@@ -575,7 +575,7 @@ prelude: |
     /// HTTP status code to apply a TTL to. Valid values per schema:
     /// 300, 301, 308, 404, 405, 410, 421, 451, 501. Each code may appear
     /// at most once.
-    TfArg<int>? code;
+    final TfArg<int>? code;
 
     Map<String, Object?> toArgMap() => {
       if (code != null) 'code': code!.toTfJson(),
@@ -605,7 +605,7 @@ prelude: |
 
     /// Whether IAP is on. Setting `false` keeps the block but disables
     /// IAP enforcement.
-    TfArg<bool> enabled;
+    final TfArg<bool> enabled;
 
     /// OAuth 2.0 client ID for the OAuth consent screen.
     final TfArg<String>? oauth2ClientId;
@@ -641,11 +641,11 @@ prelude: |
       this.maxRetries,
     });
 
-    TfArg<int>? maxConnections;
-    TfArg<int>? maxPendingRequests;
-    TfArg<int>? maxRequests;
-    TfArg<int>? maxRequestsPerConnection;
-    TfArg<int>? maxRetries;
+    final TfArg<int>? maxConnections;
+    final TfArg<int>? maxPendingRequests;
+    final TfArg<int>? maxRequests;
+    final TfArg<int>? maxRequestsPerConnection;
+    final TfArg<int>? maxRetries;
 
     Map<String, Object?> toArgMap() => {
       if (maxConnections != null) 'max_connections': maxConnections!.toTfJson(),
@@ -676,7 +676,7 @@ prelude: |
     final TfArg<String>? httpHeaderName;
 
     /// Minimum ring size for `RING_HASH`. Default 1024.
-    TfArg<int>? minimumRingSize;
+    final TfArg<int>? minimumRingSize;
 
     /// Hash on a named HTTP cookie.
     final ComputeRegionBackendServiceRegionBackendServiceConsistentHashHttpCookie? httpCookie;
@@ -719,10 +719,10 @@ prelude: |
     const ComputeRegionBackendServiceRegionBackendServiceDuration({required this.seconds, this.nanos});
 
     /// Whole seconds. Required by the schema for every Duration block.
-    TfArg<int> seconds;
+    final TfArg<int> seconds;
 
     /// Sub-second nanoseconds (`0`-`999_999_999`).
-    TfArg<int>? nanos;
+    final TfArg<int>? nanos;
 
     Map<String, Object?> toArgMap() => {
       'seconds': seconds.toTfJson(),
@@ -746,10 +746,10 @@ prelude: |
     });
 
     /// Master switch.
-    TfArg<bool>? enable;
+    final TfArg<bool>? enable;
 
     /// Sample rate `0.0`-`1.0`. Ignored when [enable] is `false`.
-    TfArg<double>? sampleRate;
+    final TfArg<double>? sampleRate;
 
     /// Which optional fields to include.
     final RegionBackendServiceLogOptionalMode? optionalMode;
@@ -762,7 +762,7 @@ prelude: |
       if (enable != null) 'enable': enable!.toTfJson(),
       if (sampleRate != null) 'sample_rate': sampleRate!.toTfJson(),
       if (optionalMode != null) 'optional_mode': optionalMode!.terraformValue,
-      if (optionalFields != null) 'optional_fields': optionalFields!.toTfJson(),
+      if (optionalFields != null) 'optional_fields': optionalFields,
     };
   }
 
@@ -789,15 +789,15 @@ prelude: |
       this.interval,
     });
 
-    TfArg<int>? consecutiveErrors;
-    TfArg<int>? consecutiveGatewayFailure;
-    TfArg<int>? enforcingConsecutiveErrors;
-    TfArg<int>? enforcingConsecutiveGatewayFailure;
-    TfArg<int>? enforcingSuccessRate;
-    TfArg<int>? maxEjectionPercent;
-    TfArg<int>? successRateMinimumHosts;
-    TfArg<int>? successRateRequestVolume;
-    TfArg<int>? successRateStdevFactor;
+    final TfArg<int>? consecutiveErrors;
+    final TfArg<int>? consecutiveGatewayFailure;
+    final TfArg<int>? enforcingConsecutiveErrors;
+    final TfArg<int>? enforcingConsecutiveGatewayFailure;
+    final TfArg<int>? enforcingSuccessRate;
+    final TfArg<int>? maxEjectionPercent;
+    final TfArg<int>? successRateMinimumHosts;
+    final TfArg<int>? successRateRequestVolume;
+    final TfArg<int>? successRateStdevFactor;
 
     /// Base time a host stays ejected. Schema requires `seconds`.
     final ComputeRegionBackendServiceRegionBackendServiceDuration? baseEjectionTime;
@@ -877,16 +877,16 @@ prelude: |
 
     /// If `true`, connections to the old active pool are not drained on
     /// failover. Can be set to `true` only when [protocol] is `TCP`.
-    TfArg<bool>? disableConnectionDrainOnFailover;
+    final TfArg<bool>? disableConnectionDrainOnFailover;
 
     /// If `true`, drop traffic when **no** healthy VM is detected in
     /// either pool. If `false`, traffic is spread across all VMs in the
     /// primary group as a best-effort fallback.
-    TfArg<bool>? dropTrafficIfUnhealthy;
+    final TfArg<bool>? dropTrafficIfUnhealthy;
 
     /// Health-fraction threshold (`0.0`-`1.0`) that triggers failover.
     /// L4 LBs only.
-    TfArg<double>? failoverRatio;
+    final TfArg<double>? failoverRatio;
 
     Map<String, Object?> toArgMap() => {
       if (disableConnectionDrainOnFailover != null)
@@ -996,7 +996,7 @@ prelude: |
     final RegionBackendServiceZonalAffinitySpillover? spillover;
 
     /// Healthy-fraction threshold (`0.0`-`1.0`) that triggers spillover.
-    TfArg<double>? spilloverRatio;
+    final TfArg<double>? spilloverRatio;
 
     Map<String, Object?> toArgMap() => {
       if (spillover != null) 'spillover': spillover!.terraformValue,
@@ -1072,7 +1072,7 @@ prelude: |
   class ComputeRegionBackendServiceRegionBackendServiceCustomMetric {
     const ComputeRegionBackendServiceRegionBackendServiceCustomMetric({required this.name, required this.dryRun});
     final TfArg<String> name;
-    TfArg<bool> dryRun;
+    final TfArg<bool> dryRun;
     Map<String, Object?> toArgMap() => {
       'name': name.toTfJson(),
       'dry_run': dryRun.toTfJson(),

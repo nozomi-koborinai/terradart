@@ -319,8 +319,7 @@ class BigqueryTableExternalDataConfiguration {
     if (objectMetadata != null)
       'object_metadata': objectMetadata!.terraformValue,
     if (jsonExtension != null) 'json_extension': jsonExtension!.toTfJson(),
-    if (decimalTargetTypes != null)
-      'decimal_target_types': decimalTargetTypes,
+    if (decimalTargetTypes != null) 'decimal_target_types': decimalTargetTypes,
     if (csvOptions != null) 'csv_options': [csvOptions!.toArgMap()],
     if (googleSheetsOptions != null)
       'google_sheets_options': [googleSheetsOptions!.toArgMap()],

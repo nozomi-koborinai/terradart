@@ -101,7 +101,7 @@ prelude: |
   /// e.g. `'GOOGLE_SYMMETRIC_ENCRYPTION'` or `'RSA_SIGN_PKCS1_2048_SHA256'`.
   class KmsCryptoKeyVersionTemplate {
     const KmsCryptoKeyVersionTemplate({required this.algorithm, this.protectionLevel});
-    TfArg<String> algorithm;
+    final TfArg<String> algorithm;
     final KmsProtectionLevel? protectionLevel;
     Map<String, Object?> toArgMap() => {
           'algorithm': algorithm.toTfJson(),

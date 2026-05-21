@@ -415,8 +415,7 @@ class ComputeBackendServiceBackendServiceCdnCacheKeyPolicy {
       'include_protocol': includeProtocol!.toTfJson(),
     if (includeQueryString != null)
       'include_query_string': includeQueryString!.toTfJson(),
-    if (includeHttpHeaders != null)
-      'include_http_headers': includeHttpHeaders,
+    if (includeHttpHeaders != null) 'include_http_headers': includeHttpHeaders,
     if (includeNamedCookies != null)
       'include_named_cookies': includeNamedCookies,
     if (queryStringWhitelist != null)
@@ -730,8 +729,7 @@ class ComputeBackendServiceBackendServiceSecuritySettings {
   Map<String, Object?> toArgMap() => {
     if (clientTlsPolicy != null)
       'client_tls_policy': clientTlsPolicy!.toTfJson(),
-    if (subjectAltNames != null)
-      'subject_alt_names': subjectAltNames,
+    if (subjectAltNames != null) 'subject_alt_names': subjectAltNames,
     if (awsV4Authentication != null)
       'aws_v4_authentication': [awsV4Authentication!.toArgMap()],
   };

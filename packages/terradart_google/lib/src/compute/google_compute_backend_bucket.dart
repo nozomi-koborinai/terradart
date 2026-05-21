@@ -182,8 +182,7 @@ class ComputeBackendBucketBackendBucketCdnCacheKeyPolicy {
   final List<String>? queryStringWhitelist;
 
   Map<String, Object?> toArgMap() => {
-    if (includeHttpHeaders != null)
-      'include_http_headers': includeHttpHeaders,
+    if (includeHttpHeaders != null) 'include_http_headers': includeHttpHeaders,
     if (queryStringWhitelist != null)
       'query_string_whitelist': queryStringWhitelist,
   };

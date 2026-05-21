@@ -339,10 +339,8 @@ class ComputeInstanceTemplateInstanceTemplateDisk {
     if (labels != null) 'labels': labels,
     if (resourceManagerTags != null)
       'resource_manager_tags': resourceManagerTags,
-    if (resourcePolicies != null)
-      'resource_policies': resourcePolicies,
-    if (guestOsFeatures != null)
-      'guest_os_features': guestOsFeatures,
+    if (resourcePolicies != null) 'resource_policies': resourcePolicies,
+    if (guestOsFeatures != null) 'guest_os_features': guestOsFeatures,
     if (interface != null) 'interface': interface!.toTfJson(),
     if (provisionedIops != null)
       'provisioned_iops': provisionedIops!.toTfJson(),
@@ -784,10 +782,7 @@ class ComputeInstanceTemplateInstanceTemplateSpecificReservation {
   final TfArg<String> key;
   final List<String> values;
 
-  Map<String, Object?> toArgMap() => {
-    'key': key.toTfJson(),
-    'values': values,
-  };
+  Map<String, Object?> toArgMap() => {'key': key.toTfJson(), 'values': values};
 }
 
 /// `reservation_affinity` block (max_items=1). Controls whether and how

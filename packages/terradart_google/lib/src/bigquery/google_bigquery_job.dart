@@ -494,8 +494,7 @@ class BigqueryJobLoad {
       'write_disposition': writeDisposition!.terraformValue,
     if (schemaUpdateOptions != null)
       'schema_update_options': schemaUpdateOptions,
-    if (projectionFields != null)
-      'projection_fields': projectionFields,
+    if (projectionFields != null) 'projection_fields': projectionFields,
     if (autodetect != null) 'autodetect': autodetect!.toTfJson(),
     if (allowJaggedRows != null)
       'allow_jagged_rows': allowJaggedRows!.toTfJson(),

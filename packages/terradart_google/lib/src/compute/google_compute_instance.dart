@@ -669,10 +669,7 @@ class ComputeInstanceSpecificReservation {
   final TfArg<String> key;
   final List<String> values;
 
-  Map<String, Object?> toArgMap() => {
-    'key': key.toTfJson(),
-    'values': values,
-  };
+  Map<String, Object?> toArgMap() => {'key': key.toTfJson(), 'values': values};
 }
 
 /// `reservation_affinity` block (max_items=1). Controls whether and how

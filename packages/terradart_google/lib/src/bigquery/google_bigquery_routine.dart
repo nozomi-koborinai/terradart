@@ -151,8 +151,7 @@ class BigqueryRoutineRemoteFunctionOptions {
   Map<String, Object?> toArgMap() => {
     if (endpoint != null) 'endpoint': endpoint!.toTfJson(),
     if (connection != null) 'connection': connection!.toTfJson(),
-    if (userDefinedContext != null)
-      'user_defined_context': userDefinedContext,
+    if (userDefinedContext != null) 'user_defined_context': userDefinedContext,
     if (maxBatchingRows != null)
       'max_batching_rows': maxBatchingRows!.toTfJson(),
   };

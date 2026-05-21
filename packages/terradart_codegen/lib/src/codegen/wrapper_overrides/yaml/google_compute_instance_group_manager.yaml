@@ -237,10 +237,10 @@ prelude: |
     const ComputeInstanceGroupManagerInstanceGroupManagerVersionTargetSize({this.fixed, this.percent});
 
     /// Fixed number of instances managed for this version.
-    TfArg<int>? fixed;
+    final TfArg<int>? fixed;
 
     /// Percentage (0-100) of total MIG size managed for this version.
-    TfArg<int>? percent;
+    final TfArg<int>? percent;
 
     Map<String, Object?> toArgMap() => {
       if (fixed != null) 'fixed': fixed!.toTfJson(),
@@ -269,7 +269,7 @@ prelude: |
 
     /// Seconds to wait after a VM is created before applying autohealing
     /// to it. Schema range: 0-3600.
-    TfArg<int> initialDelaySec;
+    final TfArg<int> initialDelaySec;
 
     Map<String, Object?> toArgMap() => {
       'health_check': healthCheck.toTfJson(),
@@ -308,17 +308,17 @@ prelude: |
 
     /// Extra VMs the MIG may add over [GoogleComputeInstanceGroupManager.targetSize]
     /// during the rollout. Conflicts with [maxSurgePercent].
-    TfArg<int>? maxSurgeFixed;
+    final TfArg<int>? maxSurgeFixed;
 
     /// Percent equivalent of [maxSurgeFixed].
-    TfArg<int>? maxSurgePercent;
+    final TfArg<int>? maxSurgePercent;
 
     /// VMs allowed to be unavailable simultaneously. Conflicts with
     /// [maxUnavailablePercent].
-    TfArg<int>? maxUnavailableFixed;
+    final TfArg<int>? maxUnavailableFixed;
 
     /// Percent equivalent of [maxUnavailableFixed].
-    TfArg<int>? maxUnavailablePercent;
+    final TfArg<int>? maxUnavailablePercent;
 
     /// Whether to keep names (`RECREATE`) or randomise them
     /// (`SUBSTITUTE`, default) when swapping VMs.
@@ -355,10 +355,10 @@ prelude: |
     });
 
     /// Port label. 1-63 chars, RFC1035.
-    TfArg<String> name;
+    final TfArg<String> name;
 
     /// Port number (1-65535).
-    TfArg<int> port;
+    final TfArg<int> port;
 
     Map<String, Object?> toArgMap() => {
       'name': name.toTfJson(),
@@ -382,11 +382,11 @@ prelude: |
 
     /// Device name the disk is attached to on the VM (matches the
     /// `device_name` set on the instance template's `disk` block).
-    TfArg<String> deviceName;
+    final TfArg<String> deviceName;
 
     /// `NEVER` (default — detach but keep the disk) or
     /// `ON_PERMANENT_INSTANCE_DELETION` (delete with the VM).
-    TfArg<String>? deleteRule;
+    final TfArg<String>? deleteRule;
 
     Map<String, Object?> toArgMap() => {
       'device_name': deviceName.toTfJson(),
@@ -404,11 +404,11 @@ prelude: |
     });
 
     /// Name of the VM network interface the IP is attached to.
-    TfArg<String>? interfaceName;
+    final TfArg<String>? interfaceName;
 
     /// `NEVER` (default — detach but keep the Address) or
     /// `ON_PERMANENT_INSTANCE_DELETION` (delete with the VM).
-    TfArg<String>? deleteRule;
+    final TfArg<String>? deleteRule;
 
     Map<String, Object?> toArgMap() => {
       if (interfaceName != null) 'interface_name': interfaceName!.toTfJson(),
@@ -431,8 +431,8 @@ prelude: |
     final Map<String, String>? metadata;
 
     Map<String, Object?> toArgMap() => {
-      if (labels != null) 'labels': labels!.toTfJson(),
-      if (metadata != null) 'metadata': metadata!.toTfJson(),
+      if (labels != null) 'labels': labels,
+      if (metadata != null) 'metadata': metadata,
     };
   }
 
@@ -450,11 +450,11 @@ prelude: |
     });
 
     /// Default behavior for instance or health check failures.
-    TfArg<String>? defaultActionOnFailure;
+    final TfArg<String>? defaultActionOnFailure;
 
     /// `YES` to apply the latest template when repairing a VM; `NO`
     /// (default) to honor the update policy.
-    TfArg<String>? forceUpdateOnRepair;
+    final TfArg<String>? forceUpdateOnRepair;
 
     Map<String, Object?> toArgMap() => {
       if (defaultActionOnFailure != null)
@@ -476,10 +476,10 @@ prelude: |
 
     /// Seconds to wait after creating a VM before allowing standby
     /// transitions (0-3600, default 0).
-    TfArg<int>? initialDelaySec;
+    final TfArg<int>? initialDelaySec;
 
     /// Standby mode. Defaults to `MANUAL`.
-    TfArg<String>? mode;
+    final TfArg<String>? mode;
 
     Map<String, Object?> toArgMap() => {
       if (initialDelaySec != null) 'initial_delay_sec': initialDelaySec!.toTfJson(),
@@ -499,7 +499,7 @@ prelude: |
     const ComputeInstanceGroupManagerInstanceGroupManagerTargetSizePolicy({required this.mode});
 
     /// Required. The provisioning mode (e.g. `BATCH`, `INDIVIDUAL`).
-    TfArg<String> mode;
+    final TfArg<String> mode;
 
     Map<String, Object?> toArgMap() => {'mode': mode};
   }

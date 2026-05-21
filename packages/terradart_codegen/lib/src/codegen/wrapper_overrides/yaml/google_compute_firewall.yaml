@@ -100,11 +100,11 @@ prelude: |
   /// (e.g. `icmp`, `esp`).
   class ComputeFirewallFirewallAllowRule {
     const ComputeFirewallFirewallAllowRule({required this.protocol, this.ports});
-    TfArg<String> protocol;
+    final TfArg<String> protocol;
     final List<String>? ports;
     Map<String, Object?> toArgMap() => {
           'protocol': protocol.toTfJson(),
-          if (ports != null) 'ports': ports!.toTfJson(),
+          if (ports != null) 'ports': ports,
         };
   }
 
@@ -113,11 +113,11 @@ prelude: |
   /// are mutually exclusive per GCP API).
   class ComputeFirewallFirewallDenyRule {
     const ComputeFirewallFirewallDenyRule({required this.protocol, this.ports});
-    TfArg<String> protocol;
+    final TfArg<String> protocol;
     final List<String>? ports;
     Map<String, Object?> toArgMap() => {
           'protocol': protocol.toTfJson(),
-          if (ports != null) 'ports': ports!.toTfJson(),
+          if (ports != null) 'ports': ports,
         };
   }
 
