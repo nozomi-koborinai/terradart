@@ -28,45 +28,48 @@ class FirestoreDocumentQuickstart extends Stack {
             GoogleProvider(project: projectId, region: 'asia-northeast1'),
           ],
         ) {
-    final apiFirestore = add(GoogleProjectService(
-      localName: 'api_firestore',
-      service: TfArg.literal('firestore.googleapis.com'),
-      disableOnDestroy: TfArg.literal(false),
-    ));
-
-    final db = add(GoogleFirestoreDatabase(
-      localName: 'default',
-      name: TfArg.literal('(default)'),
-      locationId: TfArg.literal('asia-northeast1'),
-      type: TfArg.literal(FirestoreDatabaseType.firestoreNative),
-      deleteProtectionState: TfArg.literal(
-        DeleteProtectionState.disabled,
+    final apiFirestore = add(
+      GoogleProjectService(
+        localName: 'api_firestore',
+        service: TfArg.literal('firestore.googleapis.com'),
+        disableOnDestroy: TfArg.literal(false),
       ),
-      dependsOn: [ResourceDependency(apiFirestore)],
-    ));
+    );
 
-    add(GoogleFirestoreDocument(
-      localName: 'flag_dark_mode',
-      collection: TfArg.literal('feature_flags'),
-      documentId: TfArg.literal('dark_mode'),
-      fields: FirestoreFields.encode({
-        'enabled': true,
-        'rollout_pct': 100,
-      }),
-      dependsOn: [ResourceDependency(db)],
-    ));
+    final db = add(
+      GoogleFirestoreDatabase(
+        localName: 'default',
+        name: TfArg.literal('(default)'),
+        locationId: TfArg.literal('asia-northeast1'),
+        type: TfArg.literal(FirestoreDatabaseType.firestoreNative),
+        deleteProtectionState: TfArg.literal(DeleteProtectionState.disabled),
+        dependsOn: [ResourceDependency(apiFirestore)],
+      ),
+    );
 
-    add(GoogleFirestoreDocument(
-      localName: 'tier_pro',
-      collection: TfArg.literal('pricing_tiers'),
-      documentId: TfArg.literal('pro'),
-      fields: FirestoreFields.encode({
-        'label': 'Pro',
-        'monthly_usd': 29,
-        'features': ['analytics', 'priority_support'],
-      }),
-      dependsOn: [ResourceDependency(db)],
-    ));
+    add(
+      GoogleFirestoreDocument(
+        localName: 'flag_dark_mode',
+        collection: TfArg.literal('feature_flags'),
+        documentId: TfArg.literal('dark_mode'),
+        fields: FirestoreFields.encode({'enabled': true, 'rollout_pct': 100}),
+        dependsOn: [ResourceDependency(db)],
+      ),
+    );
+
+    add(
+      GoogleFirestoreDocument(
+        localName: 'tier_pro',
+        collection: TfArg.literal('pricing_tiers'),
+        documentId: TfArg.literal('pro'),
+        fields: FirestoreFields.encode({
+          'label': 'Pro',
+          'monthly_usd': 29,
+          'features': ['analytics', 'priority_support'],
+        }),
+        dependsOn: [ResourceDependency(db)],
+      ),
+    );
   }
 
   @override

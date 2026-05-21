@@ -17,9 +17,12 @@ void main() {
     });
 
     test('equality is by path', () {
-      const a = FirestoreReference('projects/p/databases/(default)/documents/a');
-      const b = FirestoreReference('projects/p/databases/(default)/documents/a');
-      const c = FirestoreReference('projects/p/databases/(default)/documents/b');
+      const a =
+          FirestoreReference('projects/p/databases/(default)/documents/a');
+      const b =
+          FirestoreReference('projects/p/databases/(default)/documents/a');
+      const c =
+          FirestoreReference('projects/p/databases/(default)/documents/b');
       expect(a, equals(b));
       expect(a, isNot(equals(c)));
     });
@@ -54,7 +57,8 @@ void main() {
       final out = FirestoreFields.encode({'enabled': true, 'disabled': false});
       expect(
         out.toTfJson(),
-        equals('{"enabled":{"booleanValue":true},"disabled":{"booleanValue":false}}'),
+        equals(
+            '{"enabled":{"booleanValue":true},"disabled":{"booleanValue":false}}'),
       );
     });
 
@@ -212,18 +216,22 @@ void main() {
     test('sentinels embedded inside list', () {
       final out = FirestoreFields.encode({
         'related_plans': [
-          const FirestoreReference('projects/p/databases/(default)/documents/plans/free'),
-          const FirestoreReference('projects/p/databases/(default)/documents/plans/pro'),
+          const FirestoreReference(
+              'projects/p/databases/(default)/documents/plans/free'),
+          const FirestoreReference(
+              'projects/p/databases/(default)/documents/plans/pro'),
         ],
       });
       final encoded = out.toTfJson() as String;
       expect(
         encoded,
-        contains('"referenceValue":"projects/p/databases/(default)/documents/plans/free"'),
+        contains(
+            '"referenceValue":"projects/p/databases/(default)/documents/plans/free"'),
       );
       expect(
         encoded,
-        contains('"referenceValue":"projects/p/databases/(default)/documents/plans/pro"'),
+        contains(
+            '"referenceValue":"projects/p/databases/(default)/documents/plans/pro"'),
       );
     });
   });
