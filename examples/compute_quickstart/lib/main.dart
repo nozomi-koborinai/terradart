@@ -92,14 +92,14 @@ class NetworkStack extends Stack {
       name: TfArg.literal('ops-bastion'),
       machineType: TfArg.literal('e2-small'),
       zone: TfArg.literal('asia-northeast1-a'),
-      bootDisk: const BootDisk(
-        initializeParams: InitializeParams(
-          image: 'debian-cloud/debian-12',
+      bootDisk: ComputeInstanceBootDisk(
+        initializeParams: ComputeInstanceInitializeParams(
+          image: TfArg.literal('debian-cloud/debian-12'),
         ),
       ),
       networkInterface: [
-        NetworkInterface(
-          subnetwork: r'${google_compute_subnetwork.workload.self_link}',
+        ComputeInstanceNetworkInterface(
+          subnetwork: TfArg.ref(workloadSubnet.selfLink),
         ),
       ],
     );
@@ -129,7 +129,7 @@ class NetworkStack extends Stack {
         name: TfArg.literal('persistent-data-disk'),
         role: TfArg.literal('roles/compute.storageAdmin'),
         member: TfArg.literal(
-            'serviceAccount:backup@example.iam.gserviceaccount.com'),
+            'serviceAccount:backup@example.iam.gserviceaccount.com',),
         zone: TfArg.literal('asia-northeast1-a'),
       ),
     );

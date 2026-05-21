@@ -105,8 +105,8 @@ enum ForwardingRuleNetworkTier {
 /// Service Directory service name to register under), distinct from
 /// the global resource which exposes `namespace` + `service_directory_region`.
 @immutable
-class ForwardingRuleServiceDirectoryRegistration {
-  const ForwardingRuleServiceDirectoryRegistration({
+class ComputeForwardingRuleForwardingRuleServiceDirectoryRegistration {
+  const ComputeForwardingRuleForwardingRuleServiceDirectoryRegistration({
     this.namespace,
     this.service,
   });
@@ -243,7 +243,7 @@ final class GoogleComputeForwardingRule extends Resource {
     TfArg<ForwardingRuleNetworkTier>? networkTier,
     TfArg<List<String>>? sourceIpRanges,
     TfArg<String>? serviceLabel,
-    List<ForwardingRuleServiceDirectoryRegistration>?
+    List<ComputeForwardingRuleForwardingRuleServiceDirectoryRegistration>?
     serviceDirectoryRegistrations,
     TfArg<bool>? allowGlobalAccess,
     TfArg<bool>? allowPscGlobalAccess,

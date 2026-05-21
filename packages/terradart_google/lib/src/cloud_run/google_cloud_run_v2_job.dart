@@ -16,9 +16,9 @@ const Set<String> _googleCloudRunV2JobSensitive = <String>{};
 /// the field reflects the highest preview level actually used.
 ///
 /// The Job and Service enums share the same Terraform values but live
-/// under separate names ([JobLaunchStage] vs. [LaunchStage]) so the
+/// under separate names ([CloudRunV2JobLaunchStage] vs. [LaunchStage]) so the
 /// `cloud_run.dart` barrel can `show` both.
-enum JobLaunchStage {
+enum CloudRunV2JobLaunchStage {
   unimplemented('UNIMPLEMENTED'),
   prelaunch('PRELAUNCH'),
   earlyAccess('EARLY_ACCESS'),
@@ -27,38 +27,38 @@ enum JobLaunchStage {
   ga('GA'),
   deprecatedStage('DEPRECATED');
 
-  const JobLaunchStage(this.terraformValue);
+  const CloudRunV2JobLaunchStage(this.terraformValue);
   final String terraformValue;
 }
 
-/// Container sandbox environment for [TaskTemplate.executionEnvironment].
+/// Container sandbox environment for [CloudRunV2JobTaskTemplate.executionEnvironment].
 /// `gen2` enables larger CPU tiers + GCSFuse volumes; `gen1` keeps the
 /// legacy gVisor sandbox.
-enum JobExecutionEnvironment {
+enum CloudRunV2JobExecutionEnvironment {
   gen1('EXECUTION_ENVIRONMENT_GEN1'),
   gen2('EXECUTION_ENVIRONMENT_GEN2');
 
-  const JobExecutionEnvironment(this.terraformValue);
+  const CloudRunV2JobExecutionEnvironment(this.terraformValue);
   final String terraformValue;
 }
 
-/// Egress policy for [JobVpcAccess.egress] (`template.template.vpc_access.egress`).
-enum JobVpcAccessEgress {
+/// Egress policy for [CloudRunV2JobVpcAccess.egress] (`template.template.vpc_access.egress`).
+enum CloudRunV2JobVpcAccessEgress {
   allTraffic('ALL_TRAFFIC'),
   privateRangesOnly('PRIVATE_RANGES_ONLY');
 
-  const JobVpcAccessEgress(this.terraformValue);
+  const CloudRunV2JobVpcAccessEgress(this.terraformValue);
   final String terraformValue;
 }
 
-/// Storage medium for [JobEmptyDirVolume.medium]. The Cloud Run v2 Job
+/// Storage medium for [CloudRunV2JobEmptyDirVolume.medium]. The Cloud Run v2 Job
 /// schema documents `MEMORY`; `DISK` is reserved per the Magic-Modules
 /// mirror but rejected by the provider today.
-enum JobEmptyDirMedium {
+enum CloudRunV2JobEmptyDirMedium {
   memory('MEMORY'),
   disk('DISK');
 
-  const JobEmptyDirMedium(this.terraformValue);
+  const CloudRunV2JobEmptyDirMedium(this.terraformValue);
   final String terraformValue;
 }
 
@@ -71,8 +71,8 @@ enum JobEmptyDirMedium {
 /// level). [breakglassJustification] only takes effect when a policy
 /// denies admission and the deployer wants to override it.
 @immutable
-class JobBinaryAuthorization {
-  const JobBinaryAuthorization({
+class CloudRunV2JobBinaryAuthorization {
+  const CloudRunV2JobBinaryAuthorization({
     this.useDefault,
     this.policy,
     this.breakglassJustification,
@@ -100,15 +100,15 @@ class JobBinaryAuthorization {
 }
 
 // ===========================================================================
-// JobTemplate (outer) + TaskTemplate (inner) — `template.0.template.0`
+// CloudRunV2JobTemplate (outer) + CloudRunV2JobTaskTemplate (inner) — `template.0.template.0`
 // ===========================================================================
 
 /// Outer `template` block. Holds Job-level scheduling knobs
 /// ([parallelism], [taskCount]) and wraps the inner per-Task template
-/// ([template], a [TaskTemplate]).
+/// ([template], a [CloudRunV2JobTaskTemplate]).
 @immutable
-class JobTemplate {
-  const JobTemplate({
+class CloudRunV2JobTemplate {
+  const CloudRunV2JobTemplate({
     required this.template,
     this.parallelism,
     this.taskCount,
@@ -117,7 +117,7 @@ class JobTemplate {
   });
 
   /// Per-Task template. Required.
-  final TaskTemplate template;
+  final CloudRunV2JobTaskTemplate template;
 
   /// How many Tasks may run concurrently. Defaults to the value of
   /// [taskCount] (i.e. fully parallel).
@@ -142,11 +142,11 @@ class JobTemplate {
 }
 
 /// Inner `template.template` block — the per-Task template. Holds at
-/// least one [JobContainer] plus optional VPC access, volumes, retries,
+/// least one [CloudRunV2JobContainer] plus optional VPC access, volumes, retries,
 /// timeout.
 @immutable
-class TaskTemplate {
-  const TaskTemplate({
+class CloudRunV2JobTaskTemplate {
+  const CloudRunV2JobTaskTemplate({
     required this.containers,
     this.serviceAccount,
     this.timeout,
@@ -160,7 +160,7 @@ class TaskTemplate {
   });
 
   /// One or more containers (≥1).
-  final List<JobContainer> containers;
+  final List<CloudRunV2JobContainer> containers;
 
   /// Service account email the Task runs as. Defaults to the project
   /// default compute SA.
@@ -175,7 +175,7 @@ class TaskTemplate {
 
   /// `gen1` (legacy gVisor) or `gen2` (default; larger CPU tiers +
   /// GCSFuse).
-  final TfArg<JobExecutionEnvironment>? executionEnvironment;
+  final TfArg<CloudRunV2JobExecutionEnvironment>? executionEnvironment;
 
   /// CMEK key name to encrypt the Task's container image.
   final TfArg<String>? encryptionKey;
@@ -184,13 +184,13 @@ class TaskTemplate {
   final TfArg<bool>? gpuZonalRedundancyDisabled;
 
   /// VPC connector or direct VPC egress configuration.
-  final JobVpcAccess? vpcAccess;
+  final CloudRunV2JobVpcAccess? vpcAccess;
 
   /// Volumes available to all containers in the Task.
-  final List<JobVolume>? volumes;
+  final List<CloudRunV2JobVolume>? volumes;
 
   /// GPU accelerator pin.
-  final JobNodeSelector? nodeSelector;
+  final CloudRunV2JobNodeSelector? nodeSelector;
 
   Map<String, Object?> toArgMap() => {
     'containers': containers.map((c) => c.toArgMap()).toList(),
@@ -212,18 +212,22 @@ class TaskTemplate {
 /// Access connector ([connector]) OR use direct VPC egress
 /// ([networkInterfaces]) — the two conflict at the provider level.
 @immutable
-class JobVpcAccess {
-  const JobVpcAccess({this.connector, this.egress, this.networkInterfaces});
+class CloudRunV2JobVpcAccess {
+  const CloudRunV2JobVpcAccess({
+    this.connector,
+    this.egress,
+    this.networkInterfaces,
+  });
 
   /// Serverless VPC Access connector path. Conflicts with
   /// [networkInterfaces].
   final TfArg<String>? connector;
 
   /// Egress policy.
-  final TfArg<JobVpcAccessEgress>? egress;
+  final TfArg<CloudRunV2JobVpcAccessEgress>? egress;
 
   /// Direct VPC egress interfaces.
-  final List<JobVpcNetworkInterface>? networkInterfaces;
+  final List<CloudRunV2JobVpcNetworkInterface>? networkInterfaces;
 
   Map<String, Object?> toArgMap() => {
     if (connector != null) 'connector': connector!.toTfJson(),
@@ -235,10 +239,14 @@ class JobVpcAccess {
   };
 }
 
-/// One direct-VPC-egress interface under [JobVpcAccess.networkInterfaces].
+/// One direct-VPC-egress interface under [CloudRunV2JobVpcAccess.networkInterfaces].
 @immutable
-class JobVpcNetworkInterface {
-  const JobVpcNetworkInterface({this.network, this.subnetwork, this.tags});
+class CloudRunV2JobVpcNetworkInterface {
+  const CloudRunV2JobVpcNetworkInterface({
+    this.network,
+    this.subnetwork,
+    this.tags,
+  });
 
   /// VPC network self-link or short name.
   final TfArg<String>? network;
@@ -258,8 +266,8 @@ class JobVpcNetworkInterface {
 
 /// GPU accelerator selector (`template.template.node_selector`).
 @immutable
-class JobNodeSelector {
-  const JobNodeSelector({required this.accelerator});
+class CloudRunV2JobNodeSelector {
+  const CloudRunV2JobNodeSelector({required this.accelerator});
 
   /// Accelerator type, e.g. `'nvidia-l4'`.
   final TfArg<String> accelerator;
@@ -274,8 +282,8 @@ class JobNodeSelector {
 /// One entry in `template.template.containers`. At minimum supply
 /// [image].
 @immutable
-class JobContainer {
-  const JobContainer({
+class CloudRunV2JobContainer {
+  const CloudRunV2JobContainer({
     required this.image,
     this.name,
     this.command,
@@ -302,16 +310,16 @@ class JobContainer {
   final TfArg<List<String>>? args;
 
   /// Environment variables.
-  final List<JobEnvVar>? env;
+  final List<CloudRunV2JobEnvVar>? env;
 
   /// CPU / memory limits.
-  final JobContainerResources? resources;
+  final CloudRunV2JobContainerResources? resources;
 
   /// Container port (Cloud Run v2 supports exactly one per container).
-  final JobContainerPort? ports;
+  final CloudRunV2JobContainerPort? ports;
 
-  /// Volume mounts — reference [JobVolume.name].
-  final List<JobVolumeMount>? volumeMounts;
+  /// Volume mounts — reference [CloudRunV2JobVolume.name].
+  final List<CloudRunV2JobVolumeMount>? volumeMounts;
 
   /// Container working directory.
   final TfArg<String>? workingDir;
@@ -322,7 +330,7 @@ class JobContainer {
   /// Periodic probe that gates traffic until the container reports
   /// ready. Jobs surface `startup_probe` but not `liveness_probe` — once
   /// a Task is running the controller only waits for completion.
-  final JobStartupProbe? startupProbe;
+  final CloudRunV2JobStartupProbe? startupProbe;
 
   Map<String, Object?> toArgMap() => {
     'image': image.toTfJson(),
@@ -342,36 +350,36 @@ class JobContainer {
 
 /// One env var. Set [source] to inject a value (literal or secret-ref).
 @immutable
-class JobEnvVar {
-  const JobEnvVar({required this.name, this.source});
+class CloudRunV2JobEnvVar {
+  const CloudRunV2JobEnvVar({required this.name, this.source});
 
   /// C_IDENTIFIER name.
-  final String name;
+  final TfArg<String> name;
 
-  /// Value source. Pick exactly one of [JobEnvVarFromLiteral] or
-  /// [JobEnvVarFromSecret].
-  final JobEnvVarSource? source;
+  /// Value source. Pick exactly one of [CloudRunV2JobEnvVarFromLiteral] or
+  /// [CloudRunV2JobEnvVarFromSecret].
+  final CloudRunV2JobEnvVarSource? source;
 
   Map<String, Object?> toArgMap() => {
-    'name': name,
+    'name': name.toTfJson(),
     if (source != null) ...source!.encode(),
   };
 }
 
-/// Sealed dispatch for one [JobEnvVar.source]. Models the
+/// Sealed dispatch for one [CloudRunV2JobEnvVar.source]. Models the
 /// `value` / `value_source.secret_key_ref` exactly_one_of constraint at
 /// the type level.
-sealed class JobEnvVarSource {
-  const JobEnvVarSource();
+sealed class CloudRunV2JobEnvVarSource {
+  const CloudRunV2JobEnvVarSource();
 
-  /// Returns the JSON fragment to merge into [JobEnvVar.toArgMap].
+  /// Returns the JSON fragment to merge into [CloudRunV2JobEnvVar.toArgMap].
   Map<String, Object?> encode();
 }
 
 /// Literal env var value (`env.value`).
 @immutable
-final class JobEnvVarFromLiteral extends JobEnvVarSource {
-  const JobEnvVarFromLiteral(this.value);
+final class CloudRunV2JobEnvVarFromLiteral extends CloudRunV2JobEnvVarSource {
+  const CloudRunV2JobEnvVarFromLiteral(this.value);
 
   final TfArg<String> value;
 
@@ -383,8 +391,11 @@ final class JobEnvVarFromLiteral extends JobEnvVarSource {
 /// Both [secret] and [version] are required by the Cloud Run v2 Job
 /// schema.
 @immutable
-final class JobEnvVarFromSecret extends JobEnvVarSource {
-  const JobEnvVarFromSecret({required this.secret, required this.version});
+final class CloudRunV2JobEnvVarFromSecret extends CloudRunV2JobEnvVarSource {
+  const CloudRunV2JobEnvVarFromSecret({
+    required this.secret,
+    required this.version,
+  });
 
   final TfArg<String> secret;
   final TfArg<String> version;
@@ -406,8 +417,8 @@ final class JobEnvVarFromSecret extends JobEnvVarSource {
 /// cold-start knobs (`cpu_idle`, `startup_cpu_boost`) — Jobs run to
 /// completion so neither applies.
 @immutable
-class JobContainerResources {
-  const JobContainerResources({this.limits});
+class CloudRunV2JobContainerResources {
+  const CloudRunV2JobContainerResources({this.limits});
 
   /// Resource limits map. Recognized keys: `cpu`, `memory`,
   /// `nvidia.com/gpu`.
@@ -421,8 +432,8 @@ class JobContainerResources {
 /// Container port (`ports`). Cloud Run v2 supports exactly one port per
 /// container.
 @immutable
-class JobContainerPort {
-  const JobContainerPort({this.containerPort, this.name});
+class CloudRunV2JobContainerPort {
+  const CloudRunV2JobContainerPort({this.containerPort, this.name});
 
   /// TCP port number.
   final TfArg<int>? containerPort;
@@ -438,14 +449,14 @@ class JobContainerPort {
 
 /// Volume mount entry.
 @immutable
-class JobVolumeMount {
-  const JobVolumeMount({
+class CloudRunV2JobVolumeMount {
+  const CloudRunV2JobVolumeMount({
     required this.name,
     required this.mountPath,
     this.subPath,
   });
 
-  /// Volume name. Must match a [JobVolume.name].
+  /// Volume name. Must match a [CloudRunV2JobVolume.name].
   final TfArg<String> name;
 
   /// Mount path inside the container.
@@ -469,8 +480,8 @@ class JobVolumeMount {
 /// `startup_probe` block. Gates the Task Ready signal during cold start.
 /// Pick exactly one of [httpGet] / [tcpSocket] / [grpc].
 @immutable
-class JobStartupProbe {
-  const JobStartupProbe({
+class CloudRunV2JobStartupProbe {
+  const CloudRunV2JobStartupProbe({
     this.initialDelaySeconds,
     this.timeoutSeconds,
     this.periodSeconds,
@@ -484,8 +495,8 @@ class JobStartupProbe {
   final TfArg<int>? timeoutSeconds;
   final TfArg<int>? periodSeconds;
   final TfArg<int>? failureThreshold;
-  final JobHttpGetAction? httpGet;
-  final JobTcpSocketAction? tcpSocket;
+  final CloudRunV2JobHttpGetAction? httpGet;
+  final CloudRunV2JobTcpSocketAction? tcpSocket;
 
   /// gRPC action — passed through as an opaque map for bounded coverage.
   /// Schema fields: `port` (int), `service` (string).
@@ -506,12 +517,12 @@ class JobStartupProbe {
 
 /// `http_get` probe action.
 @immutable
-class JobHttpGetAction {
-  const JobHttpGetAction({this.path, this.port, this.httpHeaders});
+class CloudRunV2JobHttpGetAction {
+  const CloudRunV2JobHttpGetAction({this.path, this.port, this.httpHeaders});
 
   final TfArg<String>? path;
   final TfArg<int>? port;
-  final List<JobHttpHeader>? httpHeaders;
+  final List<CloudRunV2JobHttpHeader>? httpHeaders;
 
   Map<String, Object?> toArgMap() => {
     if (path != null) 'path': path!.toTfJson(),
@@ -523,8 +534,8 @@ class JobHttpGetAction {
 
 /// `tcp_socket` probe action.
 @immutable
-class JobTcpSocketAction {
-  const JobTcpSocketAction({this.port});
+class CloudRunV2JobTcpSocketAction {
+  const CloudRunV2JobTcpSocketAction({this.port});
 
   final TfArg<int>? port;
 
@@ -535,8 +546,8 @@ class JobTcpSocketAction {
 
 /// One `http_headers` entry.
 @immutable
-class JobHttpHeader {
-  const JobHttpHeader({required this.name, this.value});
+class CloudRunV2JobHttpHeader {
+  const CloudRunV2JobHttpHeader({required this.name, this.value});
 
   final TfArg<String> name;
   final TfArg<String>? value;
@@ -553,17 +564,17 @@ class JobHttpHeader {
 // ===========================================================================
 
 /// One entry in `template.template.volumes`. Pick exactly one
-/// [source] (sealed [JobVolumeSource]).
+/// [source] (sealed [CloudRunV2JobVolumeSource]).
 @immutable
-class JobVolume {
-  const JobVolume({required this.name, required this.source});
+class CloudRunV2JobVolume {
+  const CloudRunV2JobVolume({required this.name, required this.source});
 
   /// Volume name. Must be unique within the Task and match downstream
-  /// [JobVolumeMount.name].
+  /// [CloudRunV2JobVolumeMount.name].
   final TfArg<String> name;
 
   /// Backing storage.
-  final JobVolumeSource source;
+  final CloudRunV2JobVolumeSource source;
 
   Map<String, Object?> toArgMap() => {
     'name': name.toTfJson(),
@@ -571,21 +582,25 @@ class JobVolume {
   };
 }
 
-/// Sealed dispatch for [JobVolume.source].
-sealed class JobVolumeSource {
-  const JobVolumeSource();
+/// Sealed dispatch for [CloudRunV2JobVolume.source].
+sealed class CloudRunV2JobVolumeSource {
+  const CloudRunV2JobVolumeSource();
 
   Map<String, Object?> encode();
 }
 
 /// Secret Manager-backed volume.
 @immutable
-final class JobVolumeSecret extends JobVolumeSource {
-  const JobVolumeSecret({required this.secret, this.defaultMode, this.items});
+final class CloudRunV2JobVolumeSecret extends CloudRunV2JobVolumeSource {
+  const CloudRunV2JobVolumeSecret({
+    required this.secret,
+    this.defaultMode,
+    this.items,
+  });
 
   final TfArg<String> secret;
   final TfArg<int>? defaultMode;
-  final List<JobSecretVolumeItem>? items;
+  final List<CloudRunV2JobSecretVolumeItem>? items;
 
   @override
   Map<String, Object?> encode() => {
@@ -599,11 +614,11 @@ final class JobVolumeSecret extends JobVolumeSource {
   };
 }
 
-/// One entry under [JobVolumeSecret.items]. Both [path] and [version]
+/// One entry under [CloudRunV2JobVolumeSecret.items]. Both [path] and [version]
 /// are required by the Cloud Run v2 Job schema.
 @immutable
-class JobSecretVolumeItem {
-  const JobSecretVolumeItem({
+class CloudRunV2JobSecretVolumeItem {
+  const CloudRunV2JobSecretVolumeItem({
     required this.path,
     required this.version,
     this.mode,
@@ -622,8 +637,8 @@ class JobSecretVolumeItem {
 
 /// Cloud SQL-backed volume.
 @immutable
-final class JobCloudSqlVolume extends JobVolumeSource {
-  const JobCloudSqlVolume({this.instances});
+final class CloudRunV2JobCloudSqlVolume extends CloudRunV2JobVolumeSource {
+  const CloudRunV2JobCloudSqlVolume({this.instances});
 
   /// Cloud SQL connection names: `{project}:{region}:{instance}`.
   final TfArg<List<String>>? instances;
@@ -638,10 +653,10 @@ final class JobCloudSqlVolume extends JobVolumeSource {
 
 /// Ephemeral shared volume (`empty_dir`).
 @immutable
-final class JobEmptyDirVolume extends JobVolumeSource {
-  const JobEmptyDirVolume({this.medium, this.sizeLimit});
+final class CloudRunV2JobEmptyDirVolume extends CloudRunV2JobVolumeSource {
+  const CloudRunV2JobEmptyDirVolume({this.medium, this.sizeLimit});
 
-  final TfArg<JobEmptyDirMedium>? medium;
+  final TfArg<CloudRunV2JobEmptyDirMedium>? medium;
   final TfArg<String>? sizeLimit;
 
   @override
@@ -657,8 +672,12 @@ final class JobEmptyDirVolume extends JobVolumeSource {
 
 /// GCSFuse-backed volume.
 @immutable
-final class JobGcsVolume extends JobVolumeSource {
-  const JobGcsVolume({required this.bucket, this.readOnly, this.mountOptions});
+final class CloudRunV2JobGcsVolume extends CloudRunV2JobVolumeSource {
+  const CloudRunV2JobGcsVolume({
+    required this.bucket,
+    this.readOnly,
+    this.mountOptions,
+  });
 
   final TfArg<String> bucket;
   final TfArg<bool>? readOnly;
@@ -678,8 +697,12 @@ final class JobGcsVolume extends JobVolumeSource {
 
 /// NFS-mounted volume.
 @immutable
-final class JobNfsVolume extends JobVolumeSource {
-  const JobNfsVolume({required this.server, this.path, this.readOnly});
+final class CloudRunV2JobNfsVolume extends CloudRunV2JobVolumeSource {
+  const CloudRunV2JobNfsVolume({
+    required this.server,
+    this.path,
+    this.readOnly,
+  });
 
   final TfArg<String> server;
   final TfArg<String>? path;
@@ -706,15 +729,15 @@ final class JobNfsVolume extends JobVolumeSource {
 /// Eventarc, or the API). Unlike a [GoogleCloudRunV2Service], a Job has
 /// no public URL and no traffic split — the unit of execution is a Task
 /// (one container instance) replicated according to
-/// [JobTemplate.parallelism] and [JobTemplate.taskCount].
+/// [CloudRunV2JobTemplate.parallelism] and [CloudRunV2JobTemplate.taskCount].
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
 ///   `google_cloud_run_v2_job.`).
 /// - `name`: Job name (DNS_LABEL, lowercase, ≤63 chars).
 /// - `location`: GCP region (e.g. `'asia-northeast1'`).
-/// - `template`: required Job template ([JobTemplate]). Wraps the inner
-///   Task template ([JobTemplate.template], a [TaskTemplate]) which
+/// - `template`: required Job template ([CloudRunV2JobTemplate]). Wraps the inner
+///   Task template ([CloudRunV2JobTemplate.template], a [CloudRunV2JobTaskTemplate]) which
 ///   itself holds the container set, volumes, VPC access, retries, etc.
 ///
 /// Example (minimal one-shot batch job):
@@ -723,10 +746,10 @@ final class JobNfsVolume extends JobVolumeSource {
 ///   localName: 'etl',
 ///   name: TfArg.literal('nightly-etl'),
 ///   location: TfArg.literal('asia-northeast1'),
-///   template: JobTemplate(
-///     template: TaskTemplate(
+///   template: CloudRunV2JobTemplate(
+///     template: CloudRunV2JobTaskTemplate(
 ///       containers: [
-///         JobContainer(
+///         CloudRunV2JobContainer(
 ///           image: TfArg.literal('gcr.io/p/etl:v1'),
 ///         ),
 ///       ],
@@ -737,8 +760,8 @@ final class JobNfsVolume extends JobVolumeSource {
 ///
 /// Naming convention: helpers reuse the Cloud Run v2 Service shape but
 /// carry a `Job` / `Task` prefix
-/// (`JobTemplate`, `TaskTemplate`, `JobContainer`,
-/// `JobBinaryAuthorization`, `JobVolume`, `JobVolumeSource`, ...) to
+/// (`CloudRunV2JobTemplate`, `CloudRunV2JobTaskTemplate`, `CloudRunV2JobContainer`,
+/// `CloudRunV2JobBinaryAuthorization`, `CloudRunV2JobVolume`, `CloudRunV2JobVolumeSource`, ...) to
 /// stay barrel-exportable alongside the Service helpers.
 ///
 /// Composition pattern: extends `Resource<$GoogleCloudRunV2Job>` for
@@ -751,9 +774,9 @@ final class GoogleCloudRunV2Job extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    required JobTemplate template,
-    JobBinaryAuthorization? binaryAuthorization,
-    TfArg<JobLaunchStage>? launchStage,
+    required CloudRunV2JobTemplate template,
+    CloudRunV2JobBinaryAuthorization? binaryAuthorization,
+    TfArg<CloudRunV2JobLaunchStage>? launchStage,
     TfArg<Map<String, String>>? labels,
     TfArg<Map<String, String>>? annotations,
     TfArg<String>? client,
@@ -787,6 +810,9 @@ final class GoogleCloudRunV2Job extends Resource {
   // ignore: non_constant_identifier_names
   Set<String> get $sensitiveFields => _googleCloudRunV2JobSensitive;
 
+  @override
+  bool get $supportsDeletionProtection => true;
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
@@ -817,4 +843,7 @@ final class GoogleCloudRunV2Job extends Resource {
 
   /// Reference to `etag` (used for optimistic concurrency).
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `location` attribute — region the job is deployed in.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
 }

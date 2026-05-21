@@ -1,6 +1,7 @@
 import 'package:terradart_core/src/data.dart';
 import 'package:terradart_core/src/resource.dart';
 import 'package:terradart_core/src/stack.dart';
+import 'package:terradart_core/src/tf_arg.dart';
 import 'package:terradart_core/src/tf_ref.dart';
 
 /// Tiny `TfAddressed` stub for tests that don't need a real `Resource`.
@@ -41,14 +42,26 @@ class FakeStackProvider implements StackProvider {
   Map<String, Object?> toTfJson() => Map<String, Object?>.from(configArgs);
 }
 
-/// Minimal concrete `Stack` subclass for tests. `Stack` is abstract; this
-/// no-op `synth` lets the runtime exercise it.
+/// Minimal concrete `Stack` subclass for tests. Uses the default
+/// [Stack.synth] implementation.
 class TestStack extends Stack {
-  TestStack({super.providers = const [], super.backend});
+  TestStack({super.providers = const [], super.backend, super.devMode});
+}
+
+/// Generic non-capable fake resource for injection tests.
+/// `terraformType` is `'fake_thing'`; `$supportsDeletionProtection` defaults
+/// to `false` (base class behaviour).
+class FakeResource extends Resource {
+  FakeResource({
+    required super.localName,
+    required TfArg<String> name,
+  }) : super(
+          terraformType: 'fake_thing',
+          argMap: {'name': name},
+        );
 
   @override
-  Future<void> synth({required String outDir}) async =>
-      throw UnimplementedError('use StackSynth.synth(...) directly in tests');
+  Set<String> get $sensitiveFields => const {};
 }
 
 class FakePubsubTopic extends Resource {

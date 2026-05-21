@@ -25,7 +25,7 @@ class OrdersStack extends Stack {
   OrdersStack({required String projectId})
       : super(
           providers: [
-            GoogleProvider(project: projectId, region: 'us-central1')
+            GoogleProvider(project: projectId, region: 'us-central1'),
           ],
         ) {
     final topic = add(
@@ -46,8 +46,8 @@ class OrdersStack extends Stack {
         // full `projects/.../topics/orders-prod` path), NOT topic.nameRef.
         topic: TfArg.ref(topic.id),
         ackDeadlineSeconds: TfArg.literal(60),
-        pushConfig: const PushConfig(
-          pushEndpoint: TfArgLiteral<String>('https://app.example.com/push'),
+        pushConfig: PubsubSubscriptionPushConfig(
+          pushEndpoint: TfArg.literal('https://app.example.com/push'),
         ),
       ),
     );

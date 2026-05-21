@@ -8,13 +8,13 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleCloudSchedulerJobSensitive = <String>{};
 
 // ===========================================================================
-// SchedulerTarget — sealed (Pubsub | Http | AppEngineHttp)
+// CloudSchedulerJobSchedulerTarget — sealed (Pubsub | Http | AppEngineHttp)
 // ===========================================================================
 
 /// Choice of scheduler target. Sealed to make the trichotomy exhaustive at
 /// the type level.
-sealed class SchedulerTarget {
-  const SchedulerTarget();
+sealed class CloudSchedulerJobSchedulerTarget {
+  const CloudSchedulerJobSchedulerTarget();
 
   /// argMap key under which this target is emitted (e.g. `pubsub_target`).
   String get blockKey;
@@ -26,8 +26,13 @@ sealed class SchedulerTarget {
 /// value resolves to the full `projects/{project}/topics/{name}` path
 /// — `topic.nameRef` (just the bare name) is **not** sufficient.
 @immutable
-final class PubsubTarget extends SchedulerTarget {
-  const PubsubTarget({required this.topicName, this.data, this.attributes});
+final class CloudSchedulerJobPubsubTarget
+    extends CloudSchedulerJobSchedulerTarget {
+  const CloudSchedulerJobPubsubTarget({
+    required this.topicName,
+    this.data,
+    this.attributes,
+  });
 
   /// **Important:** Pub/Sub Scheduler expects the *full resource path*
   /// `projects/{project}/topics/{topic}`. Pass `TfArg.ref(topic.id)` —
@@ -50,8 +55,9 @@ final class PubsubTarget extends SchedulerTarget {
 
 /// Generic webhook `http_target` block.
 @immutable
-final class HttpTarget extends SchedulerTarget {
-  const HttpTarget({
+final class CloudSchedulerJobHttpTarget
+    extends CloudSchedulerJobSchedulerTarget {
+  const CloudSchedulerJobHttpTarget({
     required this.uri,
     this.httpMethod,
     this.body,
@@ -64,8 +70,8 @@ final class HttpTarget extends SchedulerTarget {
   final TfArg<String>? httpMethod;
   final TfArg<String>? body;
   final TfArg<Map<String, String>>? headers;
-  final HttpOauthToken? oauthToken;
-  final HttpOidcToken? oidcToken;
+  final CloudSchedulerJobHttpOauthToken? oauthToken;
+  final CloudSchedulerJobHttpOidcToken? oidcToken;
 
   @override
   String get blockKey => 'http_target';
@@ -83,8 +89,9 @@ final class HttpTarget extends SchedulerTarget {
 
 /// `app_engine_http_target` block — App Engine routing variant.
 @immutable
-final class AppEngineHttpTarget extends SchedulerTarget {
-  const AppEngineHttpTarget({
+final class CloudSchedulerJobAppEngineHttpTarget
+    extends CloudSchedulerJobSchedulerTarget {
+  const CloudSchedulerJobAppEngineHttpTarget({
     required this.relativeUri,
     this.httpMethod,
     this.body,
@@ -96,7 +103,7 @@ final class AppEngineHttpTarget extends SchedulerTarget {
   final TfArg<String>? httpMethod;
   final TfArg<String>? body;
   final TfArg<Map<String, String>>? headers;
-  final AppEngineRouting? appEngineRouting;
+  final CloudSchedulerJobAppEngineRouting? appEngineRouting;
 
   @override
   String get blockKey => 'app_engine_http_target';
@@ -112,10 +119,13 @@ final class AppEngineHttpTarget extends SchedulerTarget {
   };
 }
 
-/// OAuth token for [HttpTarget].
+/// OAuth token for [CloudSchedulerJobHttpTarget].
 @immutable
-class HttpOauthToken {
-  const HttpOauthToken({required this.serviceAccountEmail, this.scope});
+class CloudSchedulerJobHttpOauthToken {
+  const CloudSchedulerJobHttpOauthToken({
+    required this.serviceAccountEmail,
+    this.scope,
+  });
 
   final TfArg<String> serviceAccountEmail;
   final TfArg<String>? scope;
@@ -126,10 +136,13 @@ class HttpOauthToken {
   };
 }
 
-/// OIDC token for [HttpTarget].
+/// OIDC token for [CloudSchedulerJobHttpTarget].
 @immutable
-class HttpOidcToken {
-  const HttpOidcToken({required this.serviceAccountEmail, this.audience});
+class CloudSchedulerJobHttpOidcToken {
+  const CloudSchedulerJobHttpOidcToken({
+    required this.serviceAccountEmail,
+    this.audience,
+  });
 
   final TfArg<String> serviceAccountEmail;
   final TfArg<String>? audience;
@@ -140,10 +153,14 @@ class HttpOidcToken {
   };
 }
 
-/// `app_engine_routing` block under [AppEngineHttpTarget].
+/// `app_engine_routing` block under [CloudSchedulerJobAppEngineHttpTarget].
 @immutable
-class AppEngineRouting {
-  const AppEngineRouting({this.service, this.version, this.instance});
+class CloudSchedulerJobAppEngineRouting {
+  const CloudSchedulerJobAppEngineRouting({
+    this.service,
+    this.version,
+    this.instance,
+  });
 
   final TfArg<String>? service;
   final TfArg<String>? version;
@@ -158,8 +175,8 @@ class AppEngineRouting {
 
 /// `retry_config` block on a Scheduler job (distinct from Cloud Tasks).
 @immutable
-class SchedulerRetryConfig {
-  const SchedulerRetryConfig({
+class CloudSchedulerJobSchedulerRetryConfig {
+  const CloudSchedulerJobSchedulerRetryConfig({
     this.retryCount,
     this.maxRetryDuration,
     this.minBackoffDuration,
@@ -196,10 +213,10 @@ class SchedulerRetryConfig {
 /// falls back to the provider default). This avoids subtle issues where a
 /// stack pinned to one region quietly schedules jobs in another.
 ///
-/// Choose exactly one [SchedulerTarget]:
-/// - [PubsubTarget] — note `topicName` MUST use `topic.id` (full path).
-/// - [HttpTarget] — generic HTTP webhook.
-/// - [AppEngineHttpTarget] — App Engine routing.
+/// Choose exactly one [CloudSchedulerJobSchedulerTarget]:
+/// - [CloudSchedulerJobPubsubTarget] — note `topicName` MUST use `topic.id` (full path).
+/// - [CloudSchedulerJobHttpTarget] — generic HTTP webhook.
+/// - [CloudSchedulerJobAppEngineHttpTarget] — App Engine routing.
 ///
 /// ```dart
 /// final orders = GooglePubsubTopic(
@@ -211,7 +228,7 @@ class SchedulerRetryConfig {
 ///   name: TfArg.literal('nightly'),
 ///   region: TfArg.literal('us-central1'),
 ///   schedule: TfArg.literal('0 0 * * *'),
-///   target: PubsubTarget(
+///   target: CloudSchedulerJobPubsubTarget(
 ///     // Correct: topic.id resolves to the full projects/.../topics/... path.
 ///     topicName: TfArg.ref(orders.id),
 ///   ),
@@ -225,13 +242,13 @@ final class GoogleCloudSchedulerJob extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> region,
-    required SchedulerTarget target,
+    required CloudSchedulerJobSchedulerTarget target,
     TfArg<String>? description,
     TfArg<String>? schedule,
     TfArg<String>? timeZone,
     TfArg<bool>? paused,
     TfArg<String>? attemptDeadline,
-    SchedulerRetryConfig? retryConfig,
+    CloudSchedulerJobSchedulerRetryConfig? retryConfig,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

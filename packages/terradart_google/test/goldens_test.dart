@@ -86,11 +86,11 @@ void main() {
           localName: 'jobs',
           name: TfArg.literal('jobs-prod'),
           location: TfArg.literal('us-central1'),
-          rateLimits: const RateLimits(
+          rateLimits: const CloudTasksQueueRateLimits(
             maxConcurrentDispatches: TfArgLiteral<int>(3),
             maxDispatchesPerSecond: TfArgLiteral<num>(2),
           ),
-          retryConfig: const RetryConfig(
+          retryConfig: const CloudTasksQueueRetryConfig(
             maxAttempts: TfArgLiteral<int>(5),
             maxBackoff: TfArgLiteral<String>('300s'),
             maxDoublings: TfArgLiteral<int>(3),
@@ -137,7 +137,7 @@ void main() {
         GoogleSecretManagerSecret(
           localName: 'api_key',
           secretId: TfArg.literal('orders-api-key'),
-          replication: Replication.auto(),
+          replication: SecretManagerSecretReplication.auto(),
         ),
       );
 
@@ -157,7 +157,7 @@ void main() {
         GoogleSecretManagerSecret(
           localName: 'api_key',
           secretId: TfArg.literal('orders-api-key'),
-          replication: Replication.auto(),
+          replication: SecretManagerSecretReplication.auto(),
         ),
       );
       stack.add(
@@ -188,7 +188,7 @@ void main() {
       GoogleSecretManagerSecret(
         localName: 'api_key',
         secretId: TfArg.literal('orders-api-key'),
-        replication: Replication.auto(),
+        replication: SecretManagerSecretReplication.auto(),
       ),
     );
     stack.add(
@@ -222,7 +222,7 @@ void main() {
         name: TfArg.literal('nightly'),
         region: TfArg.literal('us-central1'),
         schedule: TfArg.literal('0 0 * * *'),
-        target: PubsubTarget(
+        target: CloudSchedulerJobPubsubTarget(
           topicName: TfArg.ref(orders.id),
           data: TfArg.literal('dHJpZ2dlcg=='),
         ),
@@ -243,7 +243,7 @@ void main() {
           name: TfArg.literal('health'),
           region: TfArg.literal('us-central1'),
           schedule: TfArg.literal('*/5 * * * *'),
-          target: const HttpTarget(
+          target: const CloudSchedulerJobHttpTarget(
             uri: TfArgLiteral<String>('https://app.example.com/health'),
             httpMethod: TfArgLiteral<String>('GET'),
           ),

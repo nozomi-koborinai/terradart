@@ -8,7 +8,7 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleFirestoreBackupScheduleSensitive = <String>{};
 
 // ===========================================================================
-// BackupRecurrence -- sealed (Daily | Weekly)
+// FirestoreBackupScheduleBackupRecurrence -- sealed (Daily | Weekly)
 // ===========================================================================
 
 /// Choice of recurrence for a [GoogleFirestoreBackupSchedule]. Sealed so
@@ -16,8 +16,8 @@ const Set<String> _googleFirestoreBackupScheduleSensitive = <String>{};
 /// requires exactly one of `daily_recurrence` / `weekly_recurrence` --
 /// the schema marks both as independently optional but rejects
 /// schedules with neither or both.
-sealed class BackupRecurrence {
-  const BackupRecurrence();
+sealed class FirestoreBackupScheduleBackupRecurrence {
+  const FirestoreBackupScheduleBackupRecurrence();
 
   /// argMap key under which this recurrence is emitted
   /// (`daily_recurrence` or `weekly_recurrence`).
@@ -32,8 +32,9 @@ sealed class BackupRecurrence {
 /// signals "run every day". The encoded value is a single empty map
 /// (matching the schema's `max_items: 1, list` shape).
 @immutable
-final class DailyRecurrence extends BackupRecurrence {
-  const DailyRecurrence();
+final class FirestoreBackupScheduleDailyRecurrence
+    extends FirestoreBackupScheduleBackupRecurrence {
+  const FirestoreBackupScheduleDailyRecurrence();
 
   @override
   String get blockKey => 'daily_recurrence';
@@ -47,8 +48,9 @@ final class DailyRecurrence extends BackupRecurrence {
 /// `DAY_OF_WEEK_UNSPECIFIED` (server picks). Pin a specific day for
 /// predictable backup windows.
 @immutable
-final class WeeklyRecurrence extends BackupRecurrence {
-  const WeeklyRecurrence({this.day});
+final class FirestoreBackupScheduleWeeklyRecurrence
+    extends FirestoreBackupScheduleBackupRecurrence {
+  const FirestoreBackupScheduleWeeklyRecurrence({this.day});
 
   /// Day of week to run. When null, the field is omitted from the
   /// encoded block and the provider treats it as
@@ -85,11 +87,11 @@ enum BackupDayOfWeek {
 ///
 /// Configures a periodic backup for one Cloud Firestore database. Each
 /// schedule has a single [retention] window and exactly one
-/// [recurrence]: either [DailyRecurrence] (every day) or
-/// [WeeklyRecurrence] (one day per week). The schema models the two
+/// [recurrence]: either [FirestoreBackupScheduleDailyRecurrence] (every day) or
+/// [FirestoreBackupScheduleWeeklyRecurrence] (one day per week). The schema models the two
 /// recurrences as independent optional blocks, but the Firestore
 /// service rejects schedules without exactly one -- the sealed
-/// [BackupRecurrence] dispatch enforces that at the type level.
+/// [FirestoreBackupScheduleBackupRecurrence] dispatch enforces that at the type level.
 ///
 /// Example (keep daily backups for 7 days):
 /// ```dart
@@ -97,7 +99,7 @@ enum BackupDayOfWeek {
 ///   localName: 'daily',
 ///   database: TfArg.ref(db.nameRef),
 ///   retention: TfArg.literal('604800s'),
-///   recurrence: const DailyRecurrence(),
+///   recurrence: const FirestoreBackupScheduleDailyRecurrence(),
 /// );
 /// ```
 ///
@@ -107,7 +109,7 @@ enum BackupDayOfWeek {
 ///   localName: 'weekly',
 ///   database: TfArg.ref(db.nameRef),
 ///   retention: TfArg.literal('2419200s'),
-///   recurrence: const WeeklyRecurrence(day: BackupDayOfWeek.monday),
+///   recurrence: const FirestoreBackupScheduleWeeklyRecurrence(day: BackupDayOfWeek.monday),
 /// );
 /// ```
 ///
@@ -121,7 +123,7 @@ final class GoogleFirestoreBackupSchedule extends Resource {
     required super.localName,
     TfArg<String>? database,
     required TfArg<String> retention,
-    required BackupRecurrence recurrence,
+    required FirestoreBackupScheduleBackupRecurrence recurrence,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

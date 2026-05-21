@@ -11,7 +11,7 @@ const Set<String> _googleStorageBucketObjectSensitive = <String>{
 };
 
 // ===========================================================================
-// BucketObjectContent — sealed (FromSource | FromContent)
+// StorageBucketObjectBucketObjectContent — sealed (FromSource | FromContent)
 // ===========================================================================
 
 /// Object payload for `google_storage_bucket_object`. Sealed to make the
@@ -19,12 +19,12 @@ const Set<String> _googleStorageBucketObjectSensitive = <String>{
 /// type level.
 ///
 /// Pick exactly one subclass:
-/// - [BucketObjectFromSource] — upload from a filesystem path
+/// - [StorageBucketObjectBucketObjectFromSource] — upload from a filesystem path
 ///   (Terraform reads the file at apply time).
-/// - [BucketObjectFromContent] — inline string payload (note: marked
+/// - [StorageBucketObjectBucketObjectFromContent] — inline string payload (note: marked
 ///   `Sensitive` by the provider — the value lands in Terraform state).
-sealed class BucketObjectContent {
-  const BucketObjectContent();
+sealed class StorageBucketObjectBucketObjectContent {
+  const StorageBucketObjectBucketObjectContent();
 
   /// argMap key under which this payload is emitted (`'source'` or
   /// `'content'`).
@@ -39,7 +39,7 @@ sealed class BucketObjectContent {
   /// factory uses the `blockKey` + `value` pair directly in its argMap
   /// (relying on the synth layer to unwrap the [TfArg]); this method
   /// exists for parity with other sealed-class encoders (e.g.
-  /// [BucketObjectRetention.toArgMap], `AppHostingBuildSource.encode`)
+  /// [StorageBucketObjectBucketObjectRetention.toArgMap], `AppHostingBuildSource.encode`)
   /// and is exercised by the Gate 6 encode round-trip test.
   Map<String, Object?> encode() => {blockKey: value.toTfJson()};
 }
@@ -49,8 +49,9 @@ sealed class BucketObjectContent {
 ///
 /// `source` is `ForceNew`: changing the path replaces the object.
 @immutable
-final class BucketObjectFromSource extends BucketObjectContent {
-  const BucketObjectFromSource({required this.source});
+final class StorageBucketObjectBucketObjectFromSource
+    extends StorageBucketObjectBucketObjectContent {
+  const StorageBucketObjectBucketObjectFromSource({required this.source});
 
   /// Filesystem path to the data. Usually `TfArg.literal('./path/to/file')`.
   final TfArg<String> source;
@@ -64,11 +65,12 @@ final class BucketObjectFromSource extends BucketObjectContent {
 
 /// Inline string payload. The provider marks `content` as `Sensitive`,
 /// so the value is redacted in `terraform plan` output but still ends
-/// up in Terraform state — prefer [BucketObjectFromSource] for any
+/// up in Terraform state — prefer [StorageBucketObjectBucketObjectFromSource] for any
 /// non-trivial data.
 @immutable
-final class BucketObjectFromContent extends BucketObjectContent {
-  const BucketObjectFromContent({required this.content});
+final class StorageBucketObjectBucketObjectFromContent
+    extends StorageBucketObjectBucketObjectContent {
+  const StorageBucketObjectBucketObjectFromContent({required this.content});
 
   /// The inline data to upload.
   final TfArg<String> content;
@@ -114,8 +116,8 @@ enum BucketObjectStorageClass {
 /// `encryptionKey` must be a base64-encoded 32-byte AES-256 key. The
 /// provider's ValidateFunc rejects non-base64 input.
 @immutable
-class CustomerEncryption {
-  const CustomerEncryption({
+class StorageBucketObjectCustomerEncryption {
+  const StorageBucketObjectCustomerEncryption({
     required this.encryptionKey,
     this.encryptionAlgorithm,
   });
@@ -139,8 +141,8 @@ class CustomerEncryption {
 /// Conflicts with `eventBasedHold` at the provider level — the schema
 /// rejects both being set.
 @immutable
-class BucketObjectRetention {
-  const BucketObjectRetention({
+class StorageBucketObjectBucketObjectRetention {
+  const StorageBucketObjectBucketObjectRetention({
     required this.mode,
     required this.retainUntilTime,
   });
@@ -168,9 +170,9 @@ class BucketObjectRetention {
 ///   here wants just the name).
 /// - `name`: GCS object name (path within the bucket, e.g. `'config/app.json'`).
 /// - `body`: object payload — choose exactly one of:
-///   - [BucketObjectFromSource] — upload from a local file path.
-///   - [BucketObjectFromContent] — inline string payload.
-///   The sealed [BucketObjectContent] type makes the `source` / `content`
+///   - [StorageBucketObjectBucketObjectFromSource] — upload from a local file path.
+///   - [StorageBucketObjectBucketObjectFromContent] — inline string payload.
+///   The sealed [StorageBucketObjectBucketObjectContent] type makes the `source` / `content`
 ///   `exactly_one_of` constraint exhaustive at the type level.
 ///
 /// Example (inline content):
@@ -184,7 +186,7 @@ class BucketObjectRetention {
 ///   localName: 'config',
 ///   bucket: TfArg.ref(assets.nameRef),
 ///   name: TfArg.literal('config/app.json'),
-///   body: BucketObjectFromContent(
+///   body: StorageBucketObjectBucketObjectFromContent(
 ///     content: TfArg.literal('{"feature_x": true}'),
 ///   ),
 ///   contentType: TfArg.literal('application/json'),
@@ -198,7 +200,7 @@ class BucketObjectRetention {
 ///   localName: 'logo',
 ///   bucket: TfArg.ref(assets.nameRef),
 ///   name: TfArg.literal('static/logo.png'),
-///   body: BucketObjectFromSource(source: TfArg.literal('./assets/logo.png')),
+///   body: StorageBucketObjectBucketObjectFromSource(source: TfArg.literal('./assets/logo.png')),
 ///   contentType: TfArg.literal('image/png'),
 /// );
 /// ```
@@ -210,7 +212,7 @@ final class GoogleStorageBucketObject extends Resource {
     required super.localName,
     required TfArg<String> bucket,
     required TfArg<String> name,
-    required BucketObjectContent body,
+    required StorageBucketObjectBucketObjectContent body,
     TfArg<String>? contentType,
     TfArg<String>? cacheControl,
     TfArg<String>? contentDisposition,
@@ -225,8 +227,8 @@ final class GoogleStorageBucketObject extends Resource {
     TfArg<String>? detectMd5hash,
     TfArg<String>? sourceMd5hash,
     TfArg<String>? deletionPolicy,
-    CustomerEncryption? customerEncryption,
-    BucketObjectRetention? retention,
+    StorageBucketObjectCustomerEncryption? customerEncryption,
+    StorageBucketObjectBucketObjectRetention? retention,
     super.lifecycle,
     super.dependsOn,
   }) : super(

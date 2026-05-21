@@ -4,13 +4,13 @@ library;
 
 export 'src/cloud_tasks/google_cloud_tasks_queue.dart'
     show
-        AppEngineRoutingOverride,
+        CloudTasksQueueAppEngineRoutingOverride,
         GoogleCloudTasksQueue,
-        QueueHttpTarget,
-        QueueOauthToken,
-        QueueOidcToken,
-        RateLimits,
-        RetryConfig,
-        StackdriverLoggingConfig;
+        CloudTasksQueueQueueHttpTarget,
+        CloudTasksQueueQueueOauthToken,
+        CloudTasksQueueQueueOidcToken,
+        CloudTasksQueueRateLimits,
+        CloudTasksQueueRetryConfig,
+        CloudTasksQueueStackdriverLoggingConfig;
 export 'src/cloud_tasks/google_cloud_tasks_queue_iam_member.dart'
     show GoogleCloudTasksQueueIamMember;

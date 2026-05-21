@@ -41,7 +41,7 @@ class HttpFunctionStack extends Stack {
       localName: 'fn_source_zip',
       bucket: TfArg.ref(sourceBucket.nameRef),
       name: TfArg.literal('hello-http.zip'),
-      body: BucketObjectFromSource(source: TfArg.literal('./hello-http.zip')),
+      body: StorageBucketObjectBucketObjectFromSource(source: TfArg.literal('./hello-http.zip')),
     );
     add(sourceObject);
 
@@ -60,7 +60,7 @@ class HttpFunctionStack extends Stack {
         description: TfArg.literal(
           'terradart Cloud Functions Gen 2 quickstart.',
         ),
-        buildConfig: BuildConfig(
+        buildConfig: Cloudfunctions2FunctionBuildConfig(
           runtime: TfArg.literal('python311'),
           entryPoint: TfArg.literal('hello'),
           source: StorageSource(
@@ -68,7 +68,7 @@ class HttpFunctionStack extends Stack {
             object: TfArg.ref(sourceObject.nameRef),
           ),
         ),
-        serviceConfig: ServiceConfig(
+        serviceConfig: Cloudfunctions2FunctionServiceConfig(
           availableMemory: TfArg.literal('256M'),
           timeoutSeconds: TfArg.literal(60),
           minInstanceCount: TfArg.literal(0),

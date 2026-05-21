@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.9.0 - 2026-05-21
+
+**BREAKING** — pre-1.0 polish wave. Codegen template changes that propagate to `terradart_google`'s emitted wrappers (0.9.x staging for the 1.0 surface; breaking changes still permitted within 0.9.x → 1.0):
+
+- Bumped `terradart_core` constraint to `^0.9.0`.
+- Wrapper emitter emits `@override bool get $supportsDeletionProtection => true;` on wrappers whose schema includes a `deletion_protection` attribute.
+- Abstract-class emitter emits service-prefixed nested helper class names (`SqlDatabaseInstanceSettings`, `BigqueryDatasetAccess`, `SecretManagerSecretReplication`, `LoggingProjectSinkBigqueryOptions`, etc.) — no more bare `Settings` / `Access` / `Replication` / `BigqueryOptions` Wave 4-era shapes.
+- Abstract-class emitter emits `TfArg<T>`-wrapped nested-helper fields uniformly. Plain Dart-type fields on helpers (Wave 7-era Monitoring uptime check shapes) are eliminated.
+- Wrapper emitter emits `.iamMember` getter (was `.member`) for IAM-binding refs.
+- Wrapper emitter emits `.locationRef` mirror getter on `google_cloud_run_v2_service` + `google_cloud_run_v2_job` (cookbook-evidence allow list; v1.x may extend).
+- Added Gates 6 (nested-helper prefix), 7 (TfArg-wrap uniformity), 8 (enum value identifier length ≥ 4 with industry-acronym allow-list) to `universal_invariants_test`.
+- YAML override format extended for per-resource class renames.
+
+See [MIGRATING.md](../../MIGRATING.md) for the full migration guide.
+
 ## 0.8.0-dev - 2026-05-19
 
 - Plan 5.H Wave 7: 23 new curated GA resources added to the registry (Data ops + observability + CI/CD).

@@ -35,8 +35,8 @@ prelude: |
 
   /// `rate_limits` block.
   @immutable
-  class RateLimits {
-    const RateLimits({this.maxConcurrentDispatches, this.maxDispatchesPerSecond});
+  class CloudTasksQueueRateLimits {
+    const CloudTasksQueueRateLimits({this.maxConcurrentDispatches, this.maxDispatchesPerSecond});
 
     final TfArg<int>? maxConcurrentDispatches;
     final TfArg<num>? maxDispatchesPerSecond;
@@ -51,8 +51,8 @@ prelude: |
 
   /// `retry_config` block (Cloud Tasks queue-level retry policy).
   @immutable
-  class RetryConfig {
-    const RetryConfig({
+  class CloudTasksQueueRetryConfig {
+    const CloudTasksQueueRetryConfig({
       this.maxAttempts,
       this.maxRetryDuration,
       this.minBackoff,
@@ -78,8 +78,8 @@ prelude: |
 
   /// `app_engine_routing_override` block (queue-level App Engine fallback).
   @immutable
-  class AppEngineRoutingOverride {
-    const AppEngineRoutingOverride({this.service, this.version, this.instance});
+  class CloudTasksQueueAppEngineRoutingOverride {
+    const CloudTasksQueueAppEngineRoutingOverride({this.service, this.version, this.instance});
 
     final TfArg<String>? service;
     final TfArg<String>? version;
@@ -94,8 +94,8 @@ prelude: |
 
   /// `stackdriver_logging_config` block — sampling ratio for queue logs.
   @immutable
-  class StackdriverLoggingConfig {
-    const StackdriverLoggingConfig({required this.samplingRatio});
+  class CloudTasksQueueStackdriverLoggingConfig {
+    const CloudTasksQueueStackdriverLoggingConfig({required this.samplingRatio});
 
     final TfArg<num> samplingRatio;
 
@@ -103,11 +103,11 @@ prelude: |
   }
 
   /// `http_target` block on the queue (NOT on the per-task HTTP request — this
-  /// is the queue-level URL override). Named `QueueHttpTarget` to avoid
+  /// is the queue-level URL override). Named `CloudTasksQueueQueueHttpTarget` to avoid
   /// colliding with `HttpTarget` in `cloud_scheduler/`.
   @immutable
-  class QueueHttpTarget {
-    const QueueHttpTarget({
+  class CloudTasksQueueQueueHttpTarget {
+    const CloudTasksQueueQueueHttpTarget({
       this.uriOverride,
       this.httpMethod,
       this.headerOverrides,
@@ -118,8 +118,8 @@ prelude: |
     final TfArg<Map<String, dynamic>>? uriOverride;
     final TfArg<String>? httpMethod;
     final TfArg<List<Map<String, dynamic>>>? headerOverrides;
-    final QueueOauthToken? oauthToken;
-    final QueueOidcToken? oidcToken;
+    final CloudTasksQueueQueueOauthToken? oauthToken;
+    final CloudTasksQueueQueueOidcToken? oidcToken;
 
     Map<String, Object?> encode() => {
       if (uriOverride != null) 'uri_override': uriOverride!.toTfJson(),
@@ -133,8 +133,8 @@ prelude: |
 
   /// OAuth token for queue-level HTTP target.
   @immutable
-  class QueueOauthToken {
-    const QueueOauthToken({required this.serviceAccountEmail, this.scope});
+  class CloudTasksQueueQueueOauthToken {
+    const CloudTasksQueueQueueOauthToken({required this.serviceAccountEmail, this.scope});
 
     final TfArg<String> serviceAccountEmail;
     final TfArg<String>? scope;
@@ -147,8 +147,8 @@ prelude: |
 
   /// OIDC token for queue-level HTTP target.
   @immutable
-  class QueueOidcToken {
-    const QueueOidcToken({required this.serviceAccountEmail, this.audience});
+  class CloudTasksQueueQueueOidcToken {
+    const CloudTasksQueueQueueOidcToken({required this.serviceAccountEmail, this.audience});
 
     final TfArg<String> serviceAccountEmail;
     final TfArg<String>? audience;
@@ -165,19 +165,19 @@ prelude: |
 
 customSlots:
   app_engine_routing_override:
-    paramDeclaration: "AppEngineRoutingOverride? appEngineRoutingOverride"
+    paramDeclaration: "CloudTasksQueueAppEngineRoutingOverride? appEngineRoutingOverride"
     argMapEntry: "if (appEngineRoutingOverride != null) 'app_engine_routing_override': TfArg.literal(appEngineRoutingOverride.encode()),"
   rate_limits:
-    paramDeclaration: "RateLimits? rateLimits"
+    paramDeclaration: "CloudTasksQueueRateLimits? rateLimits"
     argMapEntry: "if (rateLimits != null) 'rate_limits': TfArg.literal(rateLimits.encode()),"
   retry_config:
-    paramDeclaration: "RetryConfig? retryConfig"
+    paramDeclaration: "CloudTasksQueueRetryConfig? retryConfig"
     argMapEntry: "if (retryConfig != null) 'retry_config': TfArg.literal(retryConfig.encode()),"
   stackdriver_logging_config:
-    paramDeclaration: "StackdriverLoggingConfig? stackdriverLoggingConfig"
+    paramDeclaration: "CloudTasksQueueStackdriverLoggingConfig? stackdriverLoggingConfig"
     argMapEntry: "if (stackdriverLoggingConfig != null) 'stackdriver_logging_config': TfArg.literal(stackdriverLoggingConfig.encode()),"
   http_target:
-    paramDeclaration: "QueueHttpTarget? httpTarget"
+    paramDeclaration: "CloudTasksQueueQueueHttpTarget? httpTarget"
     argMapEntry: "if (httpTarget != null) 'http_target': TfArg.literal(httpTarget.encode()),"
 
 extraGetters: |2

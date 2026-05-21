@@ -5,25 +5,25 @@ library;
 
 export 'src/firebase_app_hosting/google_firebase_app_hosting_backend.dart'
     show
-        AppHostingBackendCodebase,
+        FirebaseAppHostingBackendAppHostingBackendCodebase,
         AppHostingServingLocality,
         GoogleFirebaseAppHostingBackend;
 export 'src/firebase_app_hosting/google_firebase_app_hosting_build.dart'
     show
-        AppHostingBuildSource,
-        AppHostingBuildSourceCodebase,
-        AppHostingBuildSourceContainer,
+        FirebaseAppHostingBuildAppHostingBuildSource,
+        FirebaseAppHostingBuildAppHostingBuildSourceCodebase,
+        FirebaseAppHostingBuildAppHostingBuildSourceContainer,
         GoogleFirebaseAppHostingBuild;
 export 'src/firebase_app_hosting/google_firebase_app_hosting_default_domain.dart'
     show GoogleFirebaseAppHostingDefaultDomain;
 export 'src/firebase_app_hosting/google_firebase_app_hosting_domain.dart'
     show
-        AppHostingDomainRedirect,
-        AppHostingDomainServe,
+        FirebaseAppHostingDomainAppHostingDomainRedirect,
+        FirebaseAppHostingDomainAppHostingDomainServe,
         GoogleFirebaseAppHostingDomain;
 export 'src/firebase_app_hosting/google_firebase_app_hosting_traffic.dart'
     show
-        AppHostingTrafficRolloutPolicy,
-        AppHostingTrafficSplit,
-        AppHostingTrafficTarget,
+        FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy,
+        FirebaseAppHostingTrafficAppHostingTrafficSplit,
+        FirebaseAppHostingTrafficAppHostingTrafficTarget,
         GoogleFirebaseAppHostingTraffic;

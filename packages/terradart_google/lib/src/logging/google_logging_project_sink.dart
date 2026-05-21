@@ -8,9 +8,9 @@ const Set<String> _googleLoggingProjectSinkSensitive = <String>{};
 
 /// `bigquery_options` block. Toggles partitioned tables for BigQuery
 /// destinations (date-sharded vs. partitioned by `_PARTITIONTIME`).
-class BigqueryOptions {
-  const BigqueryOptions({required this.usePartitionedTables});
-  final bool usePartitionedTables;
+class LoggingProjectSinkBigqueryOptions {
+  const LoggingProjectSinkBigqueryOptions({required this.usePartitionedTables});
+  final TfArg<bool> usePartitionedTables;
   Map<String, Object?> toArgMap() => {
     'use_partitioned_tables': usePartitionedTables,
   };
@@ -19,22 +19,22 @@ class BigqueryOptions {
 /// One entry in the `exclusions` list. Log entries matching `filter`
 /// are dropped before being routed to the sink's destination.
 /// `name` must be unique within the sink.
-class LogSinkExclusion {
-  const LogSinkExclusion({
+class LoggingProjectSinkLogSinkExclusion {
+  const LoggingProjectSinkLogSinkExclusion({
     required this.name,
     required this.filter,
     this.description,
     this.disabled,
   });
-  final String name;
-  final String filter;
-  final String? description;
-  final bool? disabled;
+  final TfArg<String> name;
+  final TfArg<String> filter;
+  final TfArg<String>? description;
+  final TfArg<bool>? disabled;
   Map<String, Object?> toArgMap() => {
-    'name': name,
-    'filter': filter,
-    if (description != null) 'description': description,
-    if (disabled != null) 'disabled': disabled,
+    'name': name.toTfJson(),
+    'filter': filter.toTfJson(),
+    if (description != null) 'description': description!.toTfJson(),
+    if (disabled != null) 'disabled': disabled!.toTfJson(),
   };
 }
 
@@ -87,8 +87,8 @@ final class GoogleLoggingProjectSink extends Resource {
     TfArg<bool>? disabled,
     TfArg<bool>? uniqueWriterIdentity,
     TfArg<String>? customWriterIdentity,
-    BigqueryOptions? bigqueryOptions,
-    List<LogSinkExclusion>? exclusions,
+    LoggingProjectSinkBigqueryOptions? bigqueryOptions,
+    List<LoggingProjectSinkLogSinkExclusion>? exclusions,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

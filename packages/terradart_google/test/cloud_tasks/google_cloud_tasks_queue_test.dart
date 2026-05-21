@@ -9,7 +9,7 @@ void main() {
         localName: 'jobs',
         name: TfArg.literal('jobs-prod'),
         location: TfArg.literal('us-central1'),
-        rateLimits: const RateLimits(
+        rateLimits: const CloudTasksQueueRateLimits(
           maxConcurrentDispatches: TfArgLiteral<int>(3),
           maxDispatchesPerSecond: TfArgLiteral<num>(2),
         ),
@@ -50,12 +50,12 @@ void main() {
         localName: 'jobs',
         name: TfArg.literal('jobs-prod'),
         location: TfArg.literal('us-central1'),
-        retryConfig: const RetryConfig(
+        retryConfig: const CloudTasksQueueRetryConfig(
           maxAttempts: TfArgLiteral<int>(5),
           maxBackoff: TfArgLiteral<String>('300s'),
           maxDoublings: TfArgLiteral<int>(3),
         ),
-        stackdriverLoggingConfig: const StackdriverLoggingConfig(
+        stackdriverLoggingConfig: const CloudTasksQueueStackdriverLoggingConfig(
           samplingRatio: TfArgLiteral<num>(0.5),
         ),
       );

@@ -109,7 +109,7 @@ enum RegionBackendServiceIpAddressSelectionPolicy {
   final String terraformValue;
 }
 
-/// Per-backend balancing mode. See [RegionBackendServiceBackend.balancingMode].
+/// Per-backend balancing mode. See [ComputeRegionBackendServiceRegionBackendServiceBackend.balancingMode].
 /// Note: the regional resource omits the global `IN_FLIGHT` mode.
 enum RegionBackendServiceBalancingMode {
   utilization('UTILIZATION'),
@@ -133,7 +133,7 @@ enum RegionBackendServiceCacheMode {
 }
 
 /// `log_config.optional_mode`. Controls which optional access-log
-/// fields are exported when [RegionBackendServiceLogConfig.enable] is
+/// fields are exported when [ComputeRegionBackendServiceRegionBackendServiceLogConfig.enable] is
 /// true.
 enum RegionBackendServiceLogOptionalMode {
   includeAllOptional('INCLUDE_ALL_OPTIONAL'),
@@ -180,11 +180,11 @@ enum RegionBackendServiceZonalAffinitySpillover {
 /// Endpoint Group — all backends in a single service must share the
 /// same kind (no mixing IG with NEG). Note: regional backends carry
 /// a [failover] flag (used by
-/// [RegionBackendServiceFailoverPolicy]) and do **not** support the
+/// [ComputeRegionBackendServiceRegionBackendServiceFailoverPolicy]) and do **not** support the
 /// global resource's `preference` field.
 @immutable
-class RegionBackendServiceBackend {
-  const RegionBackendServiceBackend({
+class ComputeRegionBackendServiceRegionBackendServiceBackend {
+  const ComputeRegionBackendServiceRegionBackendServiceBackend({
     required this.group,
     this.balancingMode,
     this.capacityScaler,
@@ -211,57 +211,62 @@ class RegionBackendServiceBackend {
   /// Setting to `0.0` drains the backend. Cannot be set for `INTERNAL`
   /// (Passthrough NLB) backend services; required for every other
   /// scheme.
-  final double? capacityScaler;
+  final TfArg<double>? capacityScaler;
 
   /// Free-form description.
   final TfArg<String>? description;
 
   /// Marks this backend as a failover backend within an Internal
   /// Passthrough NLB. More than one failover backend may be configured;
-  /// promotion is driven by [RegionBackendServiceFailoverPolicy].
-  final bool? failover;
+  /// promotion is driven by [ComputeRegionBackendServiceRegionBackendServiceFailoverPolicy].
+  final TfArg<bool>? failover;
 
   /// Max simultaneous connections for the group (`CONNECTION` /
   /// `UTILIZATION` modes). Cannot be set for `INTERNAL` schemes.
-  final int? maxConnections;
+  final TfArg<int>? maxConnections;
 
   /// Max simultaneous connections per endpoint (NEG-shaped backends).
-  final int? maxConnectionsPerEndpoint;
+  final TfArg<int>? maxConnectionsPerEndpoint;
 
   /// Max simultaneous connections per backend instance (IG-shaped
   /// backends).
-  final int? maxConnectionsPerInstance;
+  final TfArg<int>? maxConnectionsPerInstance;
 
   /// Max RPS for the group (`RATE` / `UTILIZATION` modes).
-  final int? maxRate;
+  final TfArg<int>? maxRate;
 
   /// Max RPS per endpoint.
-  final double? maxRatePerEndpoint;
+  final TfArg<double>? maxRatePerEndpoint;
 
   /// Max RPS per instance.
-  final double? maxRatePerInstance;
+  final TfArg<double>? maxRatePerInstance;
 
   /// Target CPU utilization in `UTILIZATION` mode (`0.0`-`1.0`).
-  final double? maxUtilization;
+  final TfArg<double>? maxUtilization;
 
   /// Custom metrics descriptors for `CUSTOM_METRICS` balancing.
-  final List<RegionBackendServiceBackendCustomMetric>? customMetrics;
+  final List<
+    ComputeRegionBackendServiceRegionBackendServiceBackendCustomMetric
+  >?
+  customMetrics;
 
   Map<String, Object?> toArgMap() => {
     'group': group.toTfJson(),
     if (balancingMode != null) 'balancing_mode': balancingMode!.terraformValue,
-    if (capacityScaler != null) 'capacity_scaler': capacityScaler,
+    if (capacityScaler != null) 'capacity_scaler': capacityScaler!.toTfJson(),
     if (description != null) 'description': description!.toTfJson(),
-    if (failover != null) 'failover': failover,
-    if (maxConnections != null) 'max_connections': maxConnections,
+    if (failover != null) 'failover': failover!.toTfJson(),
+    if (maxConnections != null) 'max_connections': maxConnections!.toTfJson(),
     if (maxConnectionsPerEndpoint != null)
-      'max_connections_per_endpoint': maxConnectionsPerEndpoint,
+      'max_connections_per_endpoint': maxConnectionsPerEndpoint!.toTfJson(),
     if (maxConnectionsPerInstance != null)
-      'max_connections_per_instance': maxConnectionsPerInstance,
-    if (maxRate != null) 'max_rate': maxRate,
-    if (maxRatePerEndpoint != null) 'max_rate_per_endpoint': maxRatePerEndpoint,
-    if (maxRatePerInstance != null) 'max_rate_per_instance': maxRatePerInstance,
-    if (maxUtilization != null) 'max_utilization': maxUtilization,
+      'max_connections_per_instance': maxConnectionsPerInstance!.toTfJson(),
+    if (maxRate != null) 'max_rate': maxRate!.toTfJson(),
+    if (maxRatePerEndpoint != null)
+      'max_rate_per_endpoint': maxRatePerEndpoint!.toTfJson(),
+    if (maxRatePerInstance != null)
+      'max_rate_per_instance': maxRatePerInstance!.toTfJson(),
+    if (maxUtilization != null) 'max_utilization': maxUtilization!.toTfJson(),
     if (customMetrics != null)
       'custom_metrics': customMetrics!.map((m) => m.toArgMap()).toList(),
   };
@@ -271,8 +276,8 @@ class RegionBackendServiceBackend {
 /// backend that the load balancer should consider when `balancingMode`
 /// is [RegionBackendServiceBalancingMode.customMetrics].
 @immutable
-class RegionBackendServiceBackendCustomMetric {
-  const RegionBackendServiceBackendCustomMetric({
+class ComputeRegionBackendServiceRegionBackendServiceBackendCustomMetric {
+  const ComputeRegionBackendServiceRegionBackendServiceBackendCustomMetric({
     required this.name,
     required this.dryRun,
     this.maxUtilization,
@@ -283,15 +288,15 @@ class RegionBackendServiceBackendCustomMetric {
 
   /// If `true`, the metric is reported to Cloud Monitoring but is not
   /// used for load balancing.
-  final bool dryRun;
+  final TfArg<bool> dryRun;
 
   /// Optional target utilization (`0.0`-`1.0`) for this metric.
-  final double? maxUtilization;
+  final TfArg<double>? maxUtilization;
 
   Map<String, Object?> toArgMap() => {
     'name': name.toTfJson(),
-    'dry_run': dryRun,
-    if (maxUtilization != null) 'max_utilization': maxUtilization,
+    'dry_run': dryRun.toTfJson(),
+    if (maxUtilization != null) 'max_utilization': maxUtilization!.toTfJson(),
   };
 }
 
@@ -303,8 +308,8 @@ class RegionBackendServiceBackendCustomMetric {
 /// The regional schema omits the global resource's
 /// `bypass_cache_on_request_headers` and `request_coalescing` fields.
 @immutable
-class RegionBackendServiceCdnPolicy {
-  const RegionBackendServiceCdnPolicy({
+class ComputeRegionBackendServiceRegionBackendServiceCdnPolicy {
+  const ComputeRegionBackendServiceRegionBackendServiceCdnPolicy({
     this.cacheMode,
     this.clientTtl,
     this.defaultTtl,
@@ -320,41 +325,46 @@ class RegionBackendServiceCdnPolicy {
   final RegionBackendServiceCacheMode? cacheMode;
 
   /// Max TTL (seconds) for content served to clients.
-  final int? clientTtl;
+  final TfArg<int>? clientTtl;
 
   /// Default TTL for cached content with no upstream `Cache-Control`.
-  final int? defaultTtl;
+  final TfArg<int>? defaultTtl;
 
   /// Hard ceiling on cached content TTL.
-  final int? maxTtl;
+  final TfArg<int>? maxTtl;
 
   /// Negative caching for selected status codes.
-  final bool? negativeCaching;
+  final TfArg<bool>? negativeCaching;
 
   /// Serve cached content during origin revalidation/errors (seconds).
-  final int? serveWhileStale;
+  final TfArg<int>? serveWhileStale;
 
   /// TTL for signed-URL responses (defaults to 3600).
-  final int? signedUrlCacheMaxAgeSec;
+  final TfArg<int>? signedUrlCacheMaxAgeSec;
 
   /// Cache key policy — which request components participate in the
   /// cache key.
-  final RegionBackendServiceCdnCacheKeyPolicy? cacheKeyPolicy;
+  final ComputeRegionBackendServiceRegionBackendServiceCdnCacheKeyPolicy?
+  cacheKeyPolicy;
 
   /// Per-status-code negative-cache TTLs. Only honored when
   /// [negativeCaching] is `true`.
-  final List<RegionBackendServiceCdnNegativeCachingPolicy>?
+  final List<
+    ComputeRegionBackendServiceRegionBackendServiceCdnNegativeCachingPolicy
+  >?
   negativeCachingPolicy;
 
   Map<String, Object?> toArgMap() => {
     if (cacheMode != null) 'cache_mode': cacheMode!.terraformValue,
-    if (clientTtl != null) 'client_ttl': clientTtl,
-    if (defaultTtl != null) 'default_ttl': defaultTtl,
-    if (maxTtl != null) 'max_ttl': maxTtl,
-    if (negativeCaching != null) 'negative_caching': negativeCaching,
-    if (serveWhileStale != null) 'serve_while_stale': serveWhileStale,
+    if (clientTtl != null) 'client_ttl': clientTtl!.toTfJson(),
+    if (defaultTtl != null) 'default_ttl': defaultTtl!.toTfJson(),
+    if (maxTtl != null) 'max_ttl': maxTtl!.toTfJson(),
+    if (negativeCaching != null)
+      'negative_caching': negativeCaching!.toTfJson(),
+    if (serveWhileStale != null)
+      'serve_while_stale': serveWhileStale!.toTfJson(),
     if (signedUrlCacheMaxAgeSec != null)
-      'signed_url_cache_max_age_sec': signedUrlCacheMaxAgeSec,
+      'signed_url_cache_max_age_sec': signedUrlCacheMaxAgeSec!.toTfJson(),
     if (cacheKeyPolicy != null)
       'cache_key_policy': [cacheKeyPolicy!.toArgMap()],
     if (negativeCachingPolicy != null)
@@ -366,8 +376,8 @@ class RegionBackendServiceCdnPolicy {
 
 /// `cdn_policy.cache_key_policy` (`max_items=1`).
 @immutable
-class RegionBackendServiceCdnCacheKeyPolicy {
-  const RegionBackendServiceCdnCacheKeyPolicy({
+class ComputeRegionBackendServiceRegionBackendServiceCdnCacheKeyPolicy {
+  const ComputeRegionBackendServiceRegionBackendServiceCdnCacheKeyPolicy({
     this.includeHost,
     this.includeProtocol,
     this.includeQueryString,
@@ -376,17 +386,19 @@ class RegionBackendServiceCdnCacheKeyPolicy {
     this.queryStringBlacklist,
   });
 
-  final bool? includeHost;
-  final bool? includeProtocol;
-  final bool? includeQueryString;
+  final TfArg<bool>? includeHost;
+  final TfArg<bool>? includeProtocol;
+  final TfArg<bool>? includeQueryString;
   final List<String>? includeNamedCookies;
   final List<String>? queryStringWhitelist;
   final List<String>? queryStringBlacklist;
 
   Map<String, Object?> toArgMap() => {
-    if (includeHost != null) 'include_host': includeHost,
-    if (includeProtocol != null) 'include_protocol': includeProtocol,
-    if (includeQueryString != null) 'include_query_string': includeQueryString,
+    if (includeHost != null) 'include_host': includeHost!.toTfJson(),
+    if (includeProtocol != null)
+      'include_protocol': includeProtocol!.toTfJson(),
+    if (includeQueryString != null)
+      'include_query_string': includeQueryString!.toTfJson(),
     if (includeNamedCookies != null)
       'include_named_cookies': includeNamedCookies,
     if (queryStringWhitelist != null)
@@ -399,15 +411,19 @@ class RegionBackendServiceCdnCacheKeyPolicy {
 /// One row in `cdn_policy.negative_caching_policy`. The regional
 /// schema does not model the `ttl` attribute (status-code key only).
 @immutable
-class RegionBackendServiceCdnNegativeCachingPolicy {
-  const RegionBackendServiceCdnNegativeCachingPolicy({this.code});
+class ComputeRegionBackendServiceRegionBackendServiceCdnNegativeCachingPolicy {
+  const ComputeRegionBackendServiceRegionBackendServiceCdnNegativeCachingPolicy({
+    this.code,
+  });
 
   /// HTTP status code to apply a TTL to. Valid values per schema:
   /// 300, 301, 308, 404, 405, 410, 421, 451, 501. Each code may appear
   /// at most once.
-  final int? code;
+  final TfArg<int>? code;
 
-  Map<String, Object?> toArgMap() => {if (code != null) 'code': code};
+  Map<String, Object?> toArgMap() => {
+    if (code != null) 'code': code!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -424,8 +440,8 @@ class RegionBackendServiceCdnNegativeCachingPolicy {
 /// `oauth2_client_secret_sha256` is also sensitive — provider
 /// implementation detail; nothing to set on this side.
 @immutable
-class RegionBackendServiceIap {
-  const RegionBackendServiceIap({
+class ComputeRegionBackendServiceRegionBackendServiceIap {
+  const ComputeRegionBackendServiceRegionBackendServiceIap({
     required this.enabled,
     this.oauth2ClientId,
     this.oauth2ClientSecret,
@@ -433,7 +449,7 @@ class RegionBackendServiceIap {
 
   /// Whether IAP is on. Setting `false` keeps the block but disables
   /// IAP enforcement.
-  final bool enabled;
+  final TfArg<bool> enabled;
 
   /// OAuth 2.0 client ID for the OAuth consent screen.
   final TfArg<String>? oauth2ClientId;
@@ -443,7 +459,7 @@ class RegionBackendServiceIap {
   final TfArg<String>? oauth2ClientSecret;
 
   Map<String, Object?> toArgMap() => {
-    'enabled': enabled,
+    'enabled': enabled.toTfJson(),
     if (oauth2ClientId != null) 'oauth2_client_id': oauth2ClientId!.toTfJson(),
     if (oauth2ClientSecret != null)
       'oauth2_client_secret': oauth2ClientSecret!.toTfJson(),
@@ -459,8 +475,8 @@ class RegionBackendServiceIap {
 /// `INTERNAL_SELF_MANAGED` / `INTERNAL_MANAGED` / `EXTERNAL_MANAGED`
 /// schemes.
 @immutable
-class RegionBackendServiceCircuitBreakers {
-  const RegionBackendServiceCircuitBreakers({
+class ComputeRegionBackendServiceRegionBackendServiceCircuitBreakers {
+  const ComputeRegionBackendServiceRegionBackendServiceCircuitBreakers({
     this.maxConnections,
     this.maxPendingRequests,
     this.maxRequests,
@@ -468,19 +484,20 @@ class RegionBackendServiceCircuitBreakers {
     this.maxRetries,
   });
 
-  final int? maxConnections;
-  final int? maxPendingRequests;
-  final int? maxRequests;
-  final int? maxRequestsPerConnection;
-  final int? maxRetries;
+  final TfArg<int>? maxConnections;
+  final TfArg<int>? maxPendingRequests;
+  final TfArg<int>? maxRequests;
+  final TfArg<int>? maxRequestsPerConnection;
+  final TfArg<int>? maxRetries;
 
   Map<String, Object?> toArgMap() => {
-    if (maxConnections != null) 'max_connections': maxConnections,
-    if (maxPendingRequests != null) 'max_pending_requests': maxPendingRequests,
-    if (maxRequests != null) 'max_requests': maxRequests,
+    if (maxConnections != null) 'max_connections': maxConnections!.toTfJson(),
+    if (maxPendingRequests != null)
+      'max_pending_requests': maxPendingRequests!.toTfJson(),
+    if (maxRequests != null) 'max_requests': maxRequests!.toTfJson(),
     if (maxRequestsPerConnection != null)
-      'max_requests_per_connection': maxRequestsPerConnection,
-    if (maxRetries != null) 'max_retries': maxRetries,
+      'max_requests_per_connection': maxRequestsPerConnection!.toTfJson(),
+    if (maxRetries != null) 'max_retries': maxRetries!.toTfJson(),
   };
 }
 
@@ -491,8 +508,8 @@ class RegionBackendServiceCircuitBreakers {
 /// `consistent_hash` block. Only meaningful when
 /// [RegionBackendServiceLocalityLbPolicy] is `ringHash` or `maglev`.
 @immutable
-class RegionBackendServiceConsistentHash {
-  const RegionBackendServiceConsistentHash({
+class ComputeRegionBackendServiceRegionBackendServiceConsistentHash {
+  const ComputeRegionBackendServiceRegionBackendServiceConsistentHash({
     this.httpHeaderName,
     this.minimumRingSize,
     this.httpCookie,
@@ -502,22 +519,24 @@ class RegionBackendServiceConsistentHash {
   final TfArg<String>? httpHeaderName;
 
   /// Minimum ring size for `RING_HASH`. Default 1024.
-  final int? minimumRingSize;
+  final TfArg<int>? minimumRingSize;
 
   /// Hash on a named HTTP cookie.
-  final RegionBackendServiceConsistentHashHttpCookie? httpCookie;
+  final ComputeRegionBackendServiceRegionBackendServiceConsistentHashHttpCookie?
+  httpCookie;
 
   Map<String, Object?> toArgMap() => {
     if (httpHeaderName != null) 'http_header_name': httpHeaderName!.toTfJson(),
-    if (minimumRingSize != null) 'minimum_ring_size': minimumRingSize,
+    if (minimumRingSize != null)
+      'minimum_ring_size': minimumRingSize!.toTfJson(),
     if (httpCookie != null) 'http_cookie': [httpCookie!.toArgMap()],
   };
 }
 
 /// `consistent_hash.http_cookie` (max_items=1).
 @immutable
-class RegionBackendServiceConsistentHashHttpCookie {
-  const RegionBackendServiceConsistentHashHttpCookie({
+class ComputeRegionBackendServiceRegionBackendServiceConsistentHashHttpCookie {
+  const ComputeRegionBackendServiceRegionBackendServiceConsistentHashHttpCookie({
     this.name,
     this.path,
     this.ttl,
@@ -525,7 +544,7 @@ class RegionBackendServiceConsistentHashHttpCookie {
 
   final TfArg<String>? name;
   final TfArg<String>? path;
-  final RegionBackendServiceDuration? ttl;
+  final ComputeRegionBackendServiceRegionBackendServiceDuration? ttl;
 
   Map<String, Object?> toArgMap() => {
     if (name != null) 'name': name!.toTfJson(),
@@ -540,18 +559,21 @@ class RegionBackendServiceConsistentHashHttpCookie {
 /// `outlier_detection.base_ejection_time`,
 /// `outlier_detection.interval`).
 @immutable
-class RegionBackendServiceDuration {
-  const RegionBackendServiceDuration({required this.seconds, this.nanos});
+class ComputeRegionBackendServiceRegionBackendServiceDuration {
+  const ComputeRegionBackendServiceRegionBackendServiceDuration({
+    required this.seconds,
+    this.nanos,
+  });
 
   /// Whole seconds. Required by the schema for every Duration block.
-  final int seconds;
+  final TfArg<int> seconds;
 
   /// Sub-second nanoseconds (`0`-`999_999_999`).
-  final int? nanos;
+  final TfArg<int>? nanos;
 
   Map<String, Object?> toArgMap() => {
-    'seconds': seconds,
-    if (nanos != null) 'nanos': nanos,
+    'seconds': seconds.toTfJson(),
+    if (nanos != null) 'nanos': nanos!.toTfJson(),
   };
 }
 
@@ -562,8 +584,8 @@ class RegionBackendServiceDuration {
 /// `log_config` block — Cloud Logging export configuration for the
 /// regional backend service.
 @immutable
-class RegionBackendServiceLogConfig {
-  const RegionBackendServiceLogConfig({
+class ComputeRegionBackendServiceRegionBackendServiceLogConfig {
+  const ComputeRegionBackendServiceRegionBackendServiceLogConfig({
     this.enable,
     this.sampleRate,
     this.optionalMode,
@@ -571,10 +593,10 @@ class RegionBackendServiceLogConfig {
   });
 
   /// Master switch.
-  final bool? enable;
+  final TfArg<bool>? enable;
 
   /// Sample rate `0.0`-`1.0`. Ignored when [enable] is `false`.
-  final double? sampleRate;
+  final TfArg<double>? sampleRate;
 
   /// Which optional fields to include.
   final RegionBackendServiceLogOptionalMode? optionalMode;
@@ -584,8 +606,8 @@ class RegionBackendServiceLogConfig {
   final List<String>? optionalFields;
 
   Map<String, Object?> toArgMap() => {
-    if (enable != null) 'enable': enable,
-    if (sampleRate != null) 'sample_rate': sampleRate,
+    if (enable != null) 'enable': enable!.toTfJson(),
+    if (sampleRate != null) 'sample_rate': sampleRate!.toTfJson(),
     if (optionalMode != null) 'optional_mode': optionalMode!.terraformValue,
     if (optionalFields != null) 'optional_fields': optionalFields,
   };
@@ -599,8 +621,8 @@ class RegionBackendServiceLogConfig {
 /// exceed the configured failure thresholds are ejected from the load
 /// balancing pool for `base_ejection_time` * consecutive-ejection-count.
 @immutable
-class RegionBackendServiceOutlierDetection {
-  const RegionBackendServiceOutlierDetection({
+class ComputeRegionBackendServiceRegionBackendServiceOutlierDetection {
+  const ComputeRegionBackendServiceRegionBackendServiceOutlierDetection({
     this.consecutiveErrors,
     this.consecutiveGatewayFailure,
     this.enforcingConsecutiveErrors,
@@ -614,40 +636,43 @@ class RegionBackendServiceOutlierDetection {
     this.interval,
   });
 
-  final int? consecutiveErrors;
-  final int? consecutiveGatewayFailure;
-  final int? enforcingConsecutiveErrors;
-  final int? enforcingConsecutiveGatewayFailure;
-  final int? enforcingSuccessRate;
-  final int? maxEjectionPercent;
-  final int? successRateMinimumHosts;
-  final int? successRateRequestVolume;
-  final int? successRateStdevFactor;
+  final TfArg<int>? consecutiveErrors;
+  final TfArg<int>? consecutiveGatewayFailure;
+  final TfArg<int>? enforcingConsecutiveErrors;
+  final TfArg<int>? enforcingConsecutiveGatewayFailure;
+  final TfArg<int>? enforcingSuccessRate;
+  final TfArg<int>? maxEjectionPercent;
+  final TfArg<int>? successRateMinimumHosts;
+  final TfArg<int>? successRateRequestVolume;
+  final TfArg<int>? successRateStdevFactor;
 
   /// Base time a host stays ejected. Schema requires `seconds`.
-  final RegionBackendServiceDuration? baseEjectionTime;
+  final ComputeRegionBackendServiceRegionBackendServiceDuration?
+  baseEjectionTime;
 
   /// How often outlier detection runs. Schema requires `seconds`.
-  final RegionBackendServiceDuration? interval;
+  final ComputeRegionBackendServiceRegionBackendServiceDuration? interval;
 
   Map<String, Object?> toArgMap() => {
-    if (consecutiveErrors != null) 'consecutive_errors': consecutiveErrors,
+    if (consecutiveErrors != null)
+      'consecutive_errors': consecutiveErrors!.toTfJson(),
     if (consecutiveGatewayFailure != null)
-      'consecutive_gateway_failure': consecutiveGatewayFailure,
+      'consecutive_gateway_failure': consecutiveGatewayFailure!.toTfJson(),
     if (enforcingConsecutiveErrors != null)
-      'enforcing_consecutive_errors': enforcingConsecutiveErrors,
+      'enforcing_consecutive_errors': enforcingConsecutiveErrors!.toTfJson(),
     if (enforcingConsecutiveGatewayFailure != null)
       'enforcing_consecutive_gateway_failure':
-          enforcingConsecutiveGatewayFailure,
+          enforcingConsecutiveGatewayFailure!.toTfJson(),
     if (enforcingSuccessRate != null)
-      'enforcing_success_rate': enforcingSuccessRate,
-    if (maxEjectionPercent != null) 'max_ejection_percent': maxEjectionPercent,
+      'enforcing_success_rate': enforcingSuccessRate!.toTfJson(),
+    if (maxEjectionPercent != null)
+      'max_ejection_percent': maxEjectionPercent!.toTfJson(),
     if (successRateMinimumHosts != null)
-      'success_rate_minimum_hosts': successRateMinimumHosts,
+      'success_rate_minimum_hosts': successRateMinimumHosts!.toTfJson(),
     if (successRateRequestVolume != null)
-      'success_rate_request_volume': successRateRequestVolume,
+      'success_rate_request_volume': successRateRequestVolume!.toTfJson(),
     if (successRateStdevFactor != null)
-      'success_rate_stdev_factor': successRateStdevFactor,
+      'success_rate_stdev_factor': successRateStdevFactor!.toTfJson(),
     if (baseEjectionTime != null)
       'base_ejection_time': [baseEjectionTime!.toArgMap()],
     if (interval != null) 'interval': [interval!.toArgMap()],
@@ -662,8 +687,8 @@ class RegionBackendServiceOutlierDetection {
 /// [sessionAffinity] is
 /// [RegionBackendServiceSessionAffinity.strongCookieAffinity].
 @immutable
-class RegionBackendServiceStrongSessionAffinityCookie {
-  const RegionBackendServiceStrongSessionAffinityCookie({
+class ComputeRegionBackendServiceRegionBackendServiceStrongSessionAffinityCookie {
+  const ComputeRegionBackendServiceRegionBackendServiceStrongSessionAffinityCookie({
     this.name,
     this.path,
     this.ttl,
@@ -673,7 +698,7 @@ class RegionBackendServiceStrongSessionAffinityCookie {
   final TfArg<String>? path;
 
   /// Cookie TTL. Schema requires `seconds`.
-  final RegionBackendServiceDuration? ttl;
+  final ComputeRegionBackendServiceRegionBackendServiceDuration? ttl;
 
   Map<String, Object?> toArgMap() => {
     if (name != null) 'name': name!.toTfJson(),
@@ -688,12 +713,12 @@ class RegionBackendServiceStrongSessionAffinityCookie {
 
 /// `failover_policy` block — only meaningful for Internal Passthrough
 /// NLBs. Backends are split into primary / failover pools (see
-/// [RegionBackendServiceBackend.failover]); when the primary pool's
+/// [ComputeRegionBackendServiceRegionBackendServiceBackend.failover]); when the primary pool's
 /// healthy fraction drops below [failoverRatio], traffic is shifted to
 /// the failover pool.
 @immutable
-class RegionBackendServiceFailoverPolicy {
-  const RegionBackendServiceFailoverPolicy({
+class ComputeRegionBackendServiceRegionBackendServiceFailoverPolicy {
+  const ComputeRegionBackendServiceRegionBackendServiceFailoverPolicy({
     this.disableConnectionDrainOnFailover,
     this.dropTrafficIfUnhealthy,
     this.failoverRatio,
@@ -701,23 +726,24 @@ class RegionBackendServiceFailoverPolicy {
 
   /// If `true`, connections to the old active pool are not drained on
   /// failover. Can be set to `true` only when [protocol] is `TCP`.
-  final bool? disableConnectionDrainOnFailover;
+  final TfArg<bool>? disableConnectionDrainOnFailover;
 
   /// If `true`, drop traffic when **no** healthy VM is detected in
   /// either pool. If `false`, traffic is spread across all VMs in the
   /// primary group as a best-effort fallback.
-  final bool? dropTrafficIfUnhealthy;
+  final TfArg<bool>? dropTrafficIfUnhealthy;
 
   /// Health-fraction threshold (`0.0`-`1.0`) that triggers failover.
   /// L4 LBs only.
-  final double? failoverRatio;
+  final TfArg<double>? failoverRatio;
 
   Map<String, Object?> toArgMap() => {
     if (disableConnectionDrainOnFailover != null)
-      'disable_connection_drain_on_failover': disableConnectionDrainOnFailover,
+      'disable_connection_drain_on_failover': disableConnectionDrainOnFailover!
+          .toTfJson(),
     if (dropTrafficIfUnhealthy != null)
-      'drop_traffic_if_unhealthy': dropTrafficIfUnhealthy,
-    if (failoverRatio != null) 'failover_ratio': failoverRatio,
+      'drop_traffic_if_unhealthy': dropTrafficIfUnhealthy!.toTfJson(),
+    if (failoverRatio != null) 'failover_ratio': failoverRatio!.toTfJson(),
   };
 }
 
@@ -733,14 +759,17 @@ class RegionBackendServiceFailoverPolicy {
 ///
 /// Backends under an HA policy must be zonal NEGs of type `GCE_VM_IP`.
 @immutable
-class RegionBackendServiceHaPolicy {
-  const RegionBackendServiceHaPolicy({this.fastIpMove, this.leader});
+class ComputeRegionBackendServiceRegionBackendServiceHaPolicy {
+  const ComputeRegionBackendServiceRegionBackendServiceHaPolicy({
+    this.fastIpMove,
+    this.leader,
+  });
 
   /// Fast-IP-move mode. See [RegionBackendServiceFastIpMove].
   final RegionBackendServiceFastIpMove? fastIpMove;
 
   /// Selects the current leader endpoint.
-  final RegionBackendServiceHaPolicyLeader? leader;
+  final ComputeRegionBackendServiceRegionBackendServiceHaPolicyLeader? leader;
 
   Map<String, Object?> toArgMap() => {
     if (fastIpMove != null) 'fast_ip_move': fastIpMove!.terraformValue,
@@ -750,8 +779,8 @@ class RegionBackendServiceHaPolicy {
 
 /// `ha_policy.leader` (max_items=1).
 @immutable
-class RegionBackendServiceHaPolicyLeader {
-  const RegionBackendServiceHaPolicyLeader({
+class ComputeRegionBackendServiceRegionBackendServiceHaPolicyLeader {
+  const ComputeRegionBackendServiceRegionBackendServiceHaPolicyLeader({
     this.backendGroup,
     this.networkEndpoint,
   });
@@ -760,7 +789,8 @@ class RegionBackendServiceHaPolicyLeader {
   final TfArg<String>? backendGroup;
 
   /// Which endpoint inside [backendGroup] is the leader.
-  final RegionBackendServiceHaPolicyLeaderNetworkEndpoint? networkEndpoint;
+  final ComputeRegionBackendServiceRegionBackendServiceHaPolicyLeaderNetworkEndpoint?
+  networkEndpoint;
 
   Map<String, Object?> toArgMap() => {
     if (backendGroup != null) 'backend_group': backendGroup!.toTfJson(),
@@ -771,8 +801,10 @@ class RegionBackendServiceHaPolicyLeader {
 
 /// `ha_policy.leader.network_endpoint` (max_items=1).
 @immutable
-class RegionBackendServiceHaPolicyLeaderNetworkEndpoint {
-  const RegionBackendServiceHaPolicyLeaderNetworkEndpoint({this.instance});
+class ComputeRegionBackendServiceRegionBackendServiceHaPolicyLeaderNetworkEndpoint {
+  const ComputeRegionBackendServiceRegionBackendServiceHaPolicyLeaderNetworkEndpoint({
+    this.instance,
+  });
 
   /// Name of the VM instance hosting the leader endpoint. The instance
   /// must already be attached to the NEG referenced by
@@ -791,12 +823,13 @@ class RegionBackendServiceHaPolicyLeaderNetworkEndpoint {
 /// `network_pass_through_lb_traffic_policy` block — traffic steering
 /// for Internal Passthrough NLBs (currently only zonal-affinity).
 @immutable
-class RegionBackendServiceNetworkPassThroughLbTrafficPolicy {
-  const RegionBackendServiceNetworkPassThroughLbTrafficPolicy({
+class ComputeRegionBackendServiceRegionBackendServiceNetworkPassThroughLbTrafficPolicy {
+  const ComputeRegionBackendServiceRegionBackendServiceNetworkPassThroughLbTrafficPolicy({
     this.zonalAffinity,
   });
 
-  final RegionBackendServiceZonalAffinity? zonalAffinity;
+  final ComputeRegionBackendServiceRegionBackendServiceZonalAffinity?
+  zonalAffinity;
 
   Map<String, Object?> toArgMap() => {
     if (zonalAffinity != null) 'zonal_affinity': [zonalAffinity!.toArgMap()],
@@ -809,8 +842,8 @@ class RegionBackendServiceNetworkPassThroughLbTrafficPolicy {
 /// in-zone healthy fraction drops below [spilloverRatio] is governed
 /// by [spillover].
 @immutable
-class RegionBackendServiceZonalAffinity {
-  const RegionBackendServiceZonalAffinity({
+class ComputeRegionBackendServiceRegionBackendServiceZonalAffinity {
+  const ComputeRegionBackendServiceRegionBackendServiceZonalAffinity({
     this.spillover,
     this.spilloverRatio,
   });
@@ -819,11 +852,11 @@ class RegionBackendServiceZonalAffinity {
   final RegionBackendServiceZonalAffinitySpillover? spillover;
 
   /// Healthy-fraction threshold (`0.0`-`1.0`) that triggers spillover.
-  final double? spilloverRatio;
+  final TfArg<double>? spilloverRatio;
 
   Map<String, Object?> toArgMap() => {
     if (spillover != null) 'spillover': spillover!.terraformValue,
-    if (spilloverRatio != null) 'spillover_ratio': spilloverRatio,
+    if (spilloverRatio != null) 'spillover_ratio': spilloverRatio!.toTfJson(),
   };
 }
 
@@ -837,8 +870,8 @@ class RegionBackendServiceZonalAffinity {
 /// `security_settings` — this is the only TLS-config block available
 /// here.
 @immutable
-class RegionBackendServiceTlsSettings {
-  const RegionBackendServiceTlsSettings({
+class ComputeRegionBackendServiceRegionBackendServiceTlsSettings {
+  const ComputeRegionBackendServiceRegionBackendServiceTlsSettings({
     this.authenticationConfig,
     this.sni,
     this.subjectAltNames,
@@ -851,7 +884,8 @@ class RegionBackendServiceTlsSettings {
   final TfArg<String>? sni;
 
   /// SAN matchers — at least one must match the backend's certificate.
-  final List<RegionBackendServiceTlsSubjectAltName>? subjectAltNames;
+  final List<ComputeRegionBackendServiceRegionBackendServiceTlsSubjectAltName>?
+  subjectAltNames;
 
   Map<String, Object?> toArgMap() => {
     if (authenticationConfig != null)
@@ -865,8 +899,8 @@ class RegionBackendServiceTlsSettings {
 /// One entry under `tls_settings.subject_alt_names`. Exactly one of
 /// [dnsName] / [uniformResourceIdentifier] should be set.
 @immutable
-class RegionBackendServiceTlsSubjectAltName {
-  const RegionBackendServiceTlsSubjectAltName({
+class ComputeRegionBackendServiceRegionBackendServiceTlsSubjectAltName {
+  const ComputeRegionBackendServiceRegionBackendServiceTlsSubjectAltName({
     this.dnsName,
     this.uniformResourceIdentifier,
   });
@@ -886,20 +920,20 @@ class RegionBackendServiceTlsSubjectAltName {
 // ===========================================================================
 
 /// One entry under the top-level `custom_metrics`. Mirrors
-/// [RegionBackendServiceBackendCustomMetric] but without
+/// [ComputeRegionBackendServiceRegionBackendServiceBackendCustomMetric] but without
 /// [maxUtilization] (schema only models `name` + `dry_run` at this
 /// scope).
 @immutable
-class RegionBackendServiceCustomMetric {
-  const RegionBackendServiceCustomMetric({
+class ComputeRegionBackendServiceRegionBackendServiceCustomMetric {
+  const ComputeRegionBackendServiceRegionBackendServiceCustomMetric({
     required this.name,
     required this.dryRun,
   });
   final TfArg<String> name;
-  final bool dryRun;
+  final TfArg<bool> dryRun;
   Map<String, Object?> toArgMap() => {
     'name': name.toTfJson(),
-    'dry_run': dryRun,
+    'dry_run': dryRun.toTfJson(),
   };
 }
 
@@ -909,8 +943,10 @@ class RegionBackendServiceCustomMetric {
 
 /// `params` block — currently only carries resource-manager tags.
 @immutable
-class RegionBackendServiceParams {
-  const RegionBackendServiceParams({this.resourceManagerTags});
+class ComputeRegionBackendServiceRegionBackendServiceParams {
+  const ComputeRegionBackendServiceRegionBackendServiceParams({
+    this.resourceManagerTags,
+  });
 
   /// `{tagKey: tagValue}` map of resource-manager tag bindings applied
   /// at creation time.
@@ -938,10 +974,10 @@ class RegionBackendServiceParams {
 /// (curated separately). The regional resource accepts `INTERNAL` and
 /// `INTERNAL_MANAGED` schemes that the global resource will reject at
 /// apply time, and it also surfaces a handful of regional-only blocks:
-/// [RegionBackendServiceFailoverPolicy] (Internal Passthrough NLB
-/// failover), [RegionBackendServiceHaPolicy] (self-managed HA for
+/// [ComputeRegionBackendServiceRegionBackendServiceFailoverPolicy] (Internal Passthrough NLB
+/// failover), [ComputeRegionBackendServiceRegionBackendServiceHaPolicy] (self-managed HA for
 /// Passthrough NLBs), and
-/// [RegionBackendServiceNetworkPassThroughLbTrafficPolicy] (zonal
+/// [ComputeRegionBackendServiceRegionBackendServiceNetworkPassThroughLbTrafficPolicy] (zonal
 /// affinity for Internal Passthrough NLBs). It does *not* support the
 /// global-only blocks `locality_lb_policies`, `security_settings`, or
 /// `max_stream_duration`, nor the global-only `compression_mode`,
@@ -961,19 +997,19 @@ class RegionBackendServiceParams {
 /// - [healthChecks]: list of self-links to `google_compute_health_check`
 ///   or `google_compute_region_health_check` resources. Required unless
 ///   every backend is an internet/serverless NEG, or the resource uses
-///   [RegionBackendServiceHaPolicy] (HA-managed services cannot
+///   [ComputeRegionBackendServiceRegionBackendServiceHaPolicy] (HA-managed services cannot
 ///   coexist with health checks).
 /// - [securityPolicy]: self-link to a regional Cloud Armor
 ///   `google_compute_region_security_policy`. Regional Cloud Armor
 ///   support is restricted to certain `load_balancing_scheme` values
 ///   (notably the regional managed schemes); the API rejects
 ///   incompatible combinations at apply time.
-/// - [RegionBackendServiceBackend.group]: self-link of an instance
+/// - [ComputeRegionBackendServiceRegionBackendServiceBackend.group]: self-link of an instance
 ///   group, regional MIG, or `region_network_endpoint_group`. All
 ///   backends in one service must share a kind (no mixing instance
 ///   groups with NEGs).
 /// - [network]: self-link of a `google_compute_network`. Required for
-///   Internal Passthrough NLBs when [RegionBackendServiceHaPolicy] is
+///   Internal Passthrough NLBs when [ComputeRegionBackendServiceRegionBackendServiceHaPolicy] is
 ///   set, and for External Passthrough NLBs when `haPolicy.fastIpMove`
 ///   is enabled. Only settable when [loadBalancingScheme] is `INTERNAL`,
 ///   or `EXTERNAL` with `haPolicy.fastIpMove`.
@@ -999,7 +1035,7 @@ class RegionBackendServiceParams {
 ///     'projects/p/regions/asia-northeast1/securityPolicies/edge-deny-all',
 ///   ),
 ///   backends: [
-///     RegionBackendServiceBackend(
+///     ComputeRegionBackendServiceRegionBackendServiceBackend(
 ///       group: TfArg.literal(
 ///         // var.backend_group_id — typically a Batch 4 regional NEG
 ///         // or a Batch 3 regional MIG self-link.
@@ -1010,12 +1046,12 @@ class RegionBackendServiceParams {
 ///       capacityScaler: 1.0,
 ///     ),
 ///   ],
-///   iap: const RegionBackendServiceIap(
+///   iap: const ComputeRegionBackendServiceRegionBackendServiceIap(
 ///     enabled: true,
 ///     oauth2ClientId: 'xxx.apps.googleusercontent.com',
 ///     oauth2ClientSecret: 'super-secret', // sensitive — masked at synth.
 ///   ),
-///   logConfig: const RegionBackendServiceLogConfig(
+///   logConfig: const ComputeRegionBackendServiceRegionBackendServiceLogConfig(
 ///     enable: true,
 ///     sampleRate: 1.0,
 ///   ),
@@ -1051,22 +1087,27 @@ final class GoogleComputeRegionBackendService extends Resource {
     TfArg<String>? network,
     TfArg<List<String>>? healthChecks,
     TfArg<String>? securityPolicy,
-    List<RegionBackendServiceBackend>? backends,
-    RegionBackendServiceCdnPolicy? cdnPolicy,
-    RegionBackendServiceIap? iap,
-    RegionBackendServiceCircuitBreakers? circuitBreakers,
-    RegionBackendServiceConsistentHash? consistentHash,
-    RegionBackendServiceOutlierDetection? outlierDetection,
-    RegionBackendServiceLogConfig? logConfig,
-    List<RegionBackendServiceCustomMetric>? customMetrics,
-    RegionBackendServiceStrongSessionAffinityCookie?
+    List<ComputeRegionBackendServiceRegionBackendServiceBackend>? backends,
+    ComputeRegionBackendServiceRegionBackendServiceCdnPolicy? cdnPolicy,
+    ComputeRegionBackendServiceRegionBackendServiceIap? iap,
+    ComputeRegionBackendServiceRegionBackendServiceCircuitBreakers?
+    circuitBreakers,
+    ComputeRegionBackendServiceRegionBackendServiceConsistentHash?
+    consistentHash,
+    ComputeRegionBackendServiceRegionBackendServiceOutlierDetection?
+    outlierDetection,
+    ComputeRegionBackendServiceRegionBackendServiceLogConfig? logConfig,
+    List<ComputeRegionBackendServiceRegionBackendServiceCustomMetric>?
+    customMetrics,
+    ComputeRegionBackendServiceRegionBackendServiceStrongSessionAffinityCookie?
     strongSessionAffinityCookie,
-    RegionBackendServiceFailoverPolicy? failoverPolicy,
-    RegionBackendServiceHaPolicy? haPolicy,
-    RegionBackendServiceNetworkPassThroughLbTrafficPolicy?
+    ComputeRegionBackendServiceRegionBackendServiceFailoverPolicy?
+    failoverPolicy,
+    ComputeRegionBackendServiceRegionBackendServiceHaPolicy? haPolicy,
+    ComputeRegionBackendServiceRegionBackendServiceNetworkPassThroughLbTrafficPolicy?
     networkPassThroughLbTrafficPolicy,
-    RegionBackendServiceTlsSettings? tlsSettings,
-    RegionBackendServiceParams? params,
+    ComputeRegionBackendServiceRegionBackendServiceTlsSettings? tlsSettings,
+    ComputeRegionBackendServiceRegionBackendServiceParams? params,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

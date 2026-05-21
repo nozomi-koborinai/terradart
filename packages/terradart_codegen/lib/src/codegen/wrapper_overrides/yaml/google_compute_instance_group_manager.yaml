@@ -31,17 +31,17 @@ classDocComment: |-
   ///   composition explicit.
   /// - `base_instance_name`: 1-58 chars; each VM the MIG creates is named
   ///   `<base_instance_name>-<random4>`.
-  /// - At least one [InstanceGroupManagerVersion] in [versions]; each
+  /// - At least one [ComputeInstanceGroupManagerInstanceGroupManagerVersion] in [versions]; each
   ///   version requires an `instance_template` self-link.
   ///
   /// Cross-resource references (typical wiring):
-  /// - [InstanceGroupManagerVersion.instanceTemplate]: self-link of a
+  /// - [ComputeInstanceGroupManagerInstanceGroupManagerVersion.instanceTemplate]: self-link of a
   ///   `google_compute_instance_template` resource (curated as a sibling
   ///   in the same batch). The MIG creates members from this template.
-  /// - [InstanceGroupManagerAutoHealingPolicy.healthCheck]: self-link of a
+  /// - [ComputeInstanceGroupManagerInstanceGroupManagerAutoHealingPolicy.healthCheck]: self-link of a
   ///   `google_compute_health_check` (or `google_compute_region_health_check`
   ///   for compatible types). When a VM fails this health check for
-  ///   longer than [InstanceGroupManagerAutoHealingPolicy.initialDelaySec],
+  ///   longer than [ComputeInstanceGroupManagerInstanceGroupManagerAutoHealingPolicy.initialDelaySec],
   ///   the MIG recreates it.
   /// - [targetPools]: self-links of `google_compute_target_pool`. New VMs
   ///   are added to these target pools; pre-existing VMs are not
@@ -57,7 +57,7 @@ classDocComment: |-
   ///   baseInstanceName: TfArg.literal('web'),
   ///   targetSize: TfArg.literal(3),
   ///   versions: [
-  ///     InstanceGroupManagerVersion(
+  ///     ComputeInstanceGroupManagerInstanceGroupManagerVersion(
   ///       name: TfArg.literal('canary'),
   ///       instanceTemplate: TfArg.literal(
   ///         // var.instance_template_id — within-batch sibling self-link.
@@ -66,16 +66,16 @@ classDocComment: |-
   ///     ),
   ///   ],
   ///   namedPorts: const [
-  ///     InstanceGroupManagerNamedPort(name: 'http', port: 80),
+  ///     ComputeInstanceGroupManagerInstanceGroupManagerNamedPort(name: 'http', port: 80),
   ///   ],
-  ///   autoHealingPolicies: InstanceGroupManagerAutoHealingPolicy(
+  ///   autoHealingPolicies: ComputeInstanceGroupManagerInstanceGroupManagerAutoHealingPolicy(
   ///     healthCheck: TfArg.literal(
   ///       // var.health_check_id — typically a Batch 4 health check.
   ///       'projects/p/global/healthChecks/web-hc',
   ///     ),
   ///     initialDelaySec: 300,
   ///   ),
-  ///   updatePolicy: const InstanceGroupManagerUpdatePolicy(
+  ///   updatePolicy: const ComputeInstanceGroupManagerInstanceGroupManagerUpdatePolicy(
   ///     type: InstanceGroupManagerUpdatePolicyType.proactive,
   ///     minimalAction: InstanceGroupManagerUpdatePolicyAction.replace,
   ///     maxSurgeFixed: 1,
@@ -200,14 +200,14 @@ prelude: |
   /// self-link, typically a within-batch sibling) and optionally caps how
   /// many instances run that version via [targetSize].
   ///
-  /// Multiple [InstanceGroupManagerVersion] entries enable canary
+  /// Multiple [ComputeInstanceGroupManagerInstanceGroupManagerVersion] entries enable canary
   /// rollouts: the MIG splits the total [GoogleComputeInstanceGroupManager.targetSize]
   /// across versions based on each version's [targetSize] (fixed count
   /// or percentage). A version without [targetSize] absorbs the
   /// remainder.
   @immutable
-  class InstanceGroupManagerVersion {
-    const InstanceGroupManagerVersion({
+  class ComputeInstanceGroupManagerInstanceGroupManagerVersion {
+    const ComputeInstanceGroupManagerInstanceGroupManagerVersion({
       required this.instanceTemplate,
       this.name,
       this.targetSize,
@@ -221,7 +221,7 @@ prelude: |
     final TfArg<String>? name;
 
     /// Cap on how many instances run this version (fixed or percent).
-    final InstanceGroupManagerVersionTargetSize? targetSize;
+    final ComputeInstanceGroupManagerInstanceGroupManagerVersionTargetSize? targetSize;
 
     Map<String, Object?> toArgMap() => {
       'instance_template': instanceTemplate.toTfJson(),
@@ -233,18 +233,18 @@ prelude: |
   /// `version.target_size` (`max_items=1`). Exactly one of [fixed] or
   /// [percent] should be set.
   @immutable
-  class InstanceGroupManagerVersionTargetSize {
-    const InstanceGroupManagerVersionTargetSize({this.fixed, this.percent});
+  class ComputeInstanceGroupManagerInstanceGroupManagerVersionTargetSize {
+    const ComputeInstanceGroupManagerInstanceGroupManagerVersionTargetSize({this.fixed, this.percent});
 
     /// Fixed number of instances managed for this version.
-    final int? fixed;
+    final TfArg<int>? fixed;
 
     /// Percentage (0-100) of total MIG size managed for this version.
-    final int? percent;
+    final TfArg<int>? percent;
 
     Map<String, Object?> toArgMap() => {
-      if (fixed != null) 'fixed': fixed,
-      if (percent != null) 'percent': percent,
+      if (fixed != null) 'fixed': fixed!.toTfJson(),
+      if (percent != null) 'percent': percent!.toTfJson(),
     };
   }
 
@@ -256,8 +256,8 @@ prelude: |
   /// for longer than the initial-delay window, the MIG recreates it.
   /// Schema marks both fields as required.
   @immutable
-  class InstanceGroupManagerAutoHealingPolicy {
-    const InstanceGroupManagerAutoHealingPolicy({
+  class ComputeInstanceGroupManagerInstanceGroupManagerAutoHealingPolicy {
+    const ComputeInstanceGroupManagerInstanceGroupManagerAutoHealingPolicy({
       required this.healthCheck,
       required this.initialDelaySec,
     });
@@ -269,11 +269,11 @@ prelude: |
 
     /// Seconds to wait after a VM is created before applying autohealing
     /// to it. Schema range: 0-3600.
-    final int initialDelaySec;
+    final TfArg<int> initialDelaySec;
 
     Map<String, Object?> toArgMap() => {
       'health_check': healthCheck.toTfJson(),
-      'initial_delay_sec': initialDelaySec,
+      'initial_delay_sec': initialDelaySec.toTfJson(),
     };
   }
 
@@ -282,10 +282,10 @@ prelude: |
   // ===========================================================================
 
   /// `update_policy` block. Drives how the MIG rolls a new
-  /// [InstanceGroupManagerVersion] across its members.
+  /// [ComputeInstanceGroupManagerInstanceGroupManagerVersion] across its members.
   @immutable
-  class InstanceGroupManagerUpdatePolicy {
-    const InstanceGroupManagerUpdatePolicy({
+  class ComputeInstanceGroupManagerInstanceGroupManagerUpdatePolicy {
+    const ComputeInstanceGroupManagerInstanceGroupManagerUpdatePolicy({
       required this.minimalAction,
       required this.type,
       this.mostDisruptiveAllowedAction,
@@ -308,17 +308,17 @@ prelude: |
 
     /// Extra VMs the MIG may add over [GoogleComputeInstanceGroupManager.targetSize]
     /// during the rollout. Conflicts with [maxSurgePercent].
-    final int? maxSurgeFixed;
+    final TfArg<int>? maxSurgeFixed;
 
     /// Percent equivalent of [maxSurgeFixed].
-    final int? maxSurgePercent;
+    final TfArg<int>? maxSurgePercent;
 
     /// VMs allowed to be unavailable simultaneously. Conflicts with
     /// [maxUnavailablePercent].
-    final int? maxUnavailableFixed;
+    final TfArg<int>? maxUnavailableFixed;
 
     /// Percent equivalent of [maxUnavailableFixed].
-    final int? maxUnavailablePercent;
+    final TfArg<int>? maxUnavailablePercent;
 
     /// Whether to keep names (`RECREATE`) or randomise them
     /// (`SUBSTITUTE`, default) when swapping VMs.
@@ -330,12 +330,12 @@ prelude: |
       if (mostDisruptiveAllowedAction != null)
         'most_disruptive_allowed_action':
             mostDisruptiveAllowedAction!.terraformValue,
-      if (maxSurgeFixed != null) 'max_surge_fixed': maxSurgeFixed,
-      if (maxSurgePercent != null) 'max_surge_percent': maxSurgePercent,
+      if (maxSurgeFixed != null) 'max_surge_fixed': maxSurgeFixed!.toTfJson(),
+      if (maxSurgePercent != null) 'max_surge_percent': maxSurgePercent!.toTfJson(),
       if (maxUnavailableFixed != null)
-        'max_unavailable_fixed': maxUnavailableFixed,
+        'max_unavailable_fixed': maxUnavailableFixed!.toTfJson(),
       if (maxUnavailablePercent != null)
-        'max_unavailable_percent': maxUnavailablePercent,
+        'max_unavailable_percent': maxUnavailablePercent!.toTfJson(),
       if (replacementMethod != null)
         'replacement_method': replacementMethod!.terraformValue,
     };
@@ -348,21 +348,21 @@ prelude: |
   /// One entry in [namedPorts]. Backend services that reference this
   /// MIG by `port_name` look up the matching [port] number here.
   @immutable
-  class InstanceGroupManagerNamedPort {
-    const InstanceGroupManagerNamedPort({
+  class ComputeInstanceGroupManagerInstanceGroupManagerNamedPort {
+    const ComputeInstanceGroupManagerInstanceGroupManagerNamedPort({
       required this.name,
       required this.port,
     });
 
     /// Port label. 1-63 chars, RFC1035.
-    final String name;
+    final TfArg<String> name;
 
     /// Port number (1-65535).
-    final int port;
+    final TfArg<int> port;
 
     Map<String, Object?> toArgMap() => {
-      'name': name,
-      'port': port,
+      'name': name.toTfJson(),
+      'port': port.toTfJson(),
     };
   }
 
@@ -374,45 +374,45 @@ prelude: |
   /// [deviceName] as **stateful** — the MIG preserves the disk across
   /// VM recreates per [deleteRule].
   @immutable
-  class InstanceGroupManagerStatefulDisk {
-    const InstanceGroupManagerStatefulDisk({
+  class ComputeInstanceGroupManagerInstanceGroupManagerStatefulDisk {
+    const ComputeInstanceGroupManagerInstanceGroupManagerStatefulDisk({
       required this.deviceName,
       this.deleteRule,
     });
 
     /// Device name the disk is attached to on the VM (matches the
     /// `device_name` set on the instance template's `disk` block).
-    final String deviceName;
+    final TfArg<String> deviceName;
 
     /// `NEVER` (default — detach but keep the disk) or
     /// `ON_PERMANENT_INSTANCE_DELETION` (delete with the VM).
-    final String? deleteRule;
+    final TfArg<String>? deleteRule;
 
     Map<String, Object?> toArgMap() => {
-      'device_name': deviceName,
-      if (deleteRule != null) 'delete_rule': deleteRule,
+      'device_name': deviceName.toTfJson(),
+      if (deleteRule != null) 'delete_rule': deleteRule!.toTfJson(),
     };
   }
 
   /// One entry in [statefulInternalIps] / [statefulExternalIps].
   /// Both blocks share the same shape.
   @immutable
-  class InstanceGroupManagerStatefulIp {
-    const InstanceGroupManagerStatefulIp({
+  class ComputeInstanceGroupManagerInstanceGroupManagerStatefulIp {
+    const ComputeInstanceGroupManagerInstanceGroupManagerStatefulIp({
       this.interfaceName,
       this.deleteRule,
     });
 
     /// Name of the VM network interface the IP is attached to.
-    final String? interfaceName;
+    final TfArg<String>? interfaceName;
 
     /// `NEVER` (default — detach but keep the Address) or
     /// `ON_PERMANENT_INSTANCE_DELETION` (delete with the VM).
-    final String? deleteRule;
+    final TfArg<String>? deleteRule;
 
     Map<String, Object?> toArgMap() => {
-      if (interfaceName != null) 'interface_name': interfaceName,
-      if (deleteRule != null) 'delete_rule': deleteRule,
+      if (interfaceName != null) 'interface_name': interfaceName!.toTfJson(),
+      if (deleteRule != null) 'delete_rule': deleteRule!.toTfJson(),
     };
   }
 
@@ -424,8 +424,8 @@ prelude: |
   /// every VM the MIG manages, overlaying the instance template's
   /// values.
   @immutable
-  class InstanceGroupManagerAllInstancesConfig {
-    const InstanceGroupManagerAllInstancesConfig({this.labels, this.metadata});
+  class ComputeInstanceGroupManagerInstanceGroupManagerAllInstancesConfig {
+    const ComputeInstanceGroupManagerInstanceGroupManagerAllInstancesConfig({this.labels, this.metadata});
 
     final Map<String, String>? labels;
     final Map<String, String>? metadata;
@@ -443,24 +443,24 @@ prelude: |
   /// `instance_lifecycle_policy` block — fine-grained behavior on
   /// failures and template updates.
   @immutable
-  class InstanceGroupManagerInstanceLifecyclePolicy {
-    const InstanceGroupManagerInstanceLifecyclePolicy({
+  class ComputeInstanceGroupManagerInstanceGroupManagerInstanceLifecyclePolicy {
+    const ComputeInstanceGroupManagerInstanceGroupManagerInstanceLifecyclePolicy({
       this.defaultActionOnFailure,
       this.forceUpdateOnRepair,
     });
 
     /// Default behavior for instance or health check failures.
-    final String? defaultActionOnFailure;
+    final TfArg<String>? defaultActionOnFailure;
 
     /// `YES` to apply the latest template when repairing a VM; `NO`
     /// (default) to honor the update policy.
-    final String? forceUpdateOnRepair;
+    final TfArg<String>? forceUpdateOnRepair;
 
     Map<String, Object?> toArgMap() => {
       if (defaultActionOnFailure != null)
-        'default_action_on_failure': defaultActionOnFailure,
+        'default_action_on_failure': defaultActionOnFailure!.toTfJson(),
       if (forceUpdateOnRepair != null)
-        'force_update_on_repair': forceUpdateOnRepair,
+        'force_update_on_repair': forceUpdateOnRepair!.toTfJson(),
     };
   }
 
@@ -471,19 +471,19 @@ prelude: |
   /// `standby_policy` block — controls how the MIG resumes VMs from a
   /// standby pool during scale-out.
   @immutable
-  class InstanceGroupManagerStandbyPolicy {
-    const InstanceGroupManagerStandbyPolicy({this.initialDelaySec, this.mode});
+  class ComputeInstanceGroupManagerInstanceGroupManagerStandbyPolicy {
+    const ComputeInstanceGroupManagerInstanceGroupManagerStandbyPolicy({this.initialDelaySec, this.mode});
 
     /// Seconds to wait after creating a VM before allowing standby
     /// transitions (0-3600, default 0).
-    final int? initialDelaySec;
+    final TfArg<int>? initialDelaySec;
 
     /// Standby mode. Defaults to `MANUAL`.
-    final String? mode;
+    final TfArg<String>? mode;
 
     Map<String, Object?> toArgMap() => {
-      if (initialDelaySec != null) 'initial_delay_sec': initialDelaySec,
-      if (mode != null) 'mode': mode,
+      if (initialDelaySec != null) 'initial_delay_sec': initialDelaySec!.toTfJson(),
+      if (mode != null) 'mode': mode!.toTfJson(),
     };
   }
 
@@ -495,11 +495,11 @@ prelude: |
   /// creates VMs individually or all at once to reach
   /// [GoogleComputeInstanceGroupManager.targetSize].
   @immutable
-  class InstanceGroupManagerTargetSizePolicy {
-    const InstanceGroupManagerTargetSizePolicy({required this.mode});
+  class ComputeInstanceGroupManagerInstanceGroupManagerTargetSizePolicy {
+    const ComputeInstanceGroupManagerInstanceGroupManagerTargetSizePolicy({required this.mode});
 
     /// Required. The provisioning mode (e.g. `BATCH`, `INDIVIDUAL`).
-    final String mode;
+    final TfArg<String> mode;
 
     Map<String, Object?> toArgMap() => {'mode': mode};
   }
@@ -511,8 +511,8 @@ prelude: |
   /// `resource_policies` block — wires the MIG to a
   /// `google_compute_resource_policy` workload policy.
   @immutable
-  class InstanceGroupManagerResourcePolicies {
-    const InstanceGroupManagerResourcePolicies({this.workloadPolicy});
+  class ComputeInstanceGroupManagerInstanceGroupManagerResourcePolicies {
+    const ComputeInstanceGroupManagerInstanceGroupManagerResourcePolicies({this.workloadPolicy});
 
     /// Full or partial URL of the workload policy.
     final TfArg<String>? workloadPolicy;
@@ -524,38 +524,38 @@ prelude: |
 
 customSlots:
   versions:
-    paramDeclaration: 'required List<InstanceGroupManagerVersion> versions'
+    paramDeclaration: 'required List<ComputeInstanceGroupManagerInstanceGroupManagerVersion> versions'
     argMapEntry: "'version': TfArg.literal(versions.map((v) => v.toArgMap()).toList()),"
   named_ports:
-    paramDeclaration: 'List<InstanceGroupManagerNamedPort>? namedPorts'
+    paramDeclaration: 'List<ComputeInstanceGroupManagerInstanceGroupManagerNamedPort>? namedPorts'
     argMapEntry: "if (namedPorts != null) 'named_port': TfArg.literal(namedPorts.map((p) => p.toArgMap()).toList()),"
   auto_healing_policies:
-    paramDeclaration: 'InstanceGroupManagerAutoHealingPolicy? autoHealingPolicies'
+    paramDeclaration: 'ComputeInstanceGroupManagerInstanceGroupManagerAutoHealingPolicy? autoHealingPolicies'
     argMapEntry: "if (autoHealingPolicies != null) 'auto_healing_policies': TfArg.literal([autoHealingPolicies.toArgMap()]),"
   update_policy:
-    paramDeclaration: 'InstanceGroupManagerUpdatePolicy? updatePolicy'
+    paramDeclaration: 'ComputeInstanceGroupManagerInstanceGroupManagerUpdatePolicy? updatePolicy'
     argMapEntry: "if (updatePolicy != null) 'update_policy': TfArg.literal([updatePolicy.toArgMap()]),"
   instance_lifecycle_policy:
-    paramDeclaration: 'InstanceGroupManagerInstanceLifecyclePolicy? instanceLifecyclePolicy'
+    paramDeclaration: 'ComputeInstanceGroupManagerInstanceGroupManagerInstanceLifecyclePolicy? instanceLifecyclePolicy'
     argMapEntry: "if (instanceLifecyclePolicy != null) 'instance_lifecycle_policy': TfArg.literal([instanceLifecyclePolicy.toArgMap()]),"
   standby_policy:
-    paramDeclaration: 'InstanceGroupManagerStandbyPolicy? standbyPolicy'
+    paramDeclaration: 'ComputeInstanceGroupManagerInstanceGroupManagerStandbyPolicy? standbyPolicy'
     argMapEntry: "if (standbyPolicy != null) 'standby_policy': TfArg.literal([standbyPolicy.toArgMap()]),"
   target_size_policy:
-    paramDeclaration: 'List<InstanceGroupManagerTargetSizePolicy>? targetSizePolicies'
+    paramDeclaration: 'List<ComputeInstanceGroupManagerInstanceGroupManagerTargetSizePolicy>? targetSizePolicies'
     argMapEntry: "if (targetSizePolicies != null) 'target_size_policy': TfArg.literal(targetSizePolicies.map((p) => p.toArgMap()).toList()),"
   resource_policies:
-    paramDeclaration: 'InstanceGroupManagerResourcePolicies? resourcePolicies'
+    paramDeclaration: 'ComputeInstanceGroupManagerInstanceGroupManagerResourcePolicies? resourcePolicies'
     argMapEntry: "if (resourcePolicies != null) 'resource_policies': TfArg.literal([resourcePolicies.toArgMap()]),"
   all_instances_config:
-    paramDeclaration: 'InstanceGroupManagerAllInstancesConfig? allInstancesConfig'
+    paramDeclaration: 'ComputeInstanceGroupManagerInstanceGroupManagerAllInstancesConfig? allInstancesConfig'
     argMapEntry: "if (allInstancesConfig != null) 'all_instances_config': TfArg.literal([allInstancesConfig.toArgMap()]),"
   stateful_disks:
-    paramDeclaration: 'List<InstanceGroupManagerStatefulDisk>? statefulDisks'
+    paramDeclaration: 'List<ComputeInstanceGroupManagerInstanceGroupManagerStatefulDisk>? statefulDisks'
     argMapEntry: "if (statefulDisks != null) 'stateful_disk': TfArg.literal(statefulDisks.map((d) => d.toArgMap()).toList()),"
   stateful_internal_ips:
-    paramDeclaration: 'List<InstanceGroupManagerStatefulIp>? statefulInternalIps'
+    paramDeclaration: 'List<ComputeInstanceGroupManagerInstanceGroupManagerStatefulIp>? statefulInternalIps'
     argMapEntry: "if (statefulInternalIps != null) 'stateful_internal_ip': TfArg.literal(statefulInternalIps.map((i) => i.toArgMap()).toList()),"
   stateful_external_ips:
-    paramDeclaration: 'List<InstanceGroupManagerStatefulIp>? statefulExternalIps'
+    paramDeclaration: 'List<ComputeInstanceGroupManagerInstanceGroupManagerStatefulIp>? statefulExternalIps'
     argMapEntry: "if (statefulExternalIps != null) 'stateful_external_ip': TfArg.literal(statefulExternalIps.map((i) => i.toArgMap()).toList()),"

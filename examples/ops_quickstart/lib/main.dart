@@ -44,12 +44,14 @@ class AuditPipelineStack extends Stack {
         ),
         filter: TfArg.literal('logName:"cloudaudit.googleapis.com"'),
         uniqueWriterIdentity: TfArg.literal(true),
-        bigqueryOptions: const BigqueryOptions(usePartitionedTables: true),
-        exclusions: const [
-          LogSinkExclusion(
-            name: 'drop-noisy-dns',
-            filter: 'resource.type="dns_query"',
-            description: 'Skip high-volume DNS query logs.',
+        bigqueryOptions: LoggingProjectSinkBigqueryOptions(
+          usePartitionedTables: TfArg.literal(true),
+        ),
+        exclusions: [
+          LoggingProjectSinkLogSinkExclusion(
+            name: TfArg.literal('drop-noisy-dns'),
+            filter: TfArg.literal('resource.type="dns_query"'),
+            description: TfArg.literal('Skip high-volume DNS query logs.'),
           ),
         ],
       ),

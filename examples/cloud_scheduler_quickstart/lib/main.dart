@@ -22,7 +22,7 @@ class NightlyCleanupStack extends Stack {
   NightlyCleanupStack({required String projectId})
       : super(
           providers: [
-            GoogleProvider(project: projectId, region: 'us-central1')
+            GoogleProvider(project: projectId, region: 'us-central1'),
           ],
         ) {
     final topic = add(
@@ -43,14 +43,14 @@ class NightlyCleanupStack extends Stack {
         // (projects/.../topics/nightly-cleanup), which is `topic.id`.
         // Using `topic.nameRef` would emit only the bare name and fail
         // at apply time. The PubsubTarget's class doc spells this out.
-        target: PubsubTarget(
+        target: CloudSchedulerJobPubsubTarget(
           topicName: TfArg.ref(topic.id),
           // Pub/Sub Scheduler accepts base64-encoded data here. The
           // provider expects pre-encoded text; "Y2xlYW51cA==" is base64
           // for "cleanup".
           data: TfArg.literal('Y2xlYW51cA=='),
         ),
-        retryConfig: const SchedulerRetryConfig(
+        retryConfig: CloudSchedulerJobSchedulerRetryConfig(
           retryCount: TfArgLiteral<int>(3),
           minBackoffDuration: TfArgLiteral<String>('5s'),
           maxBackoffDuration: TfArgLiteral<String>('60s'),

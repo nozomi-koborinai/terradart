@@ -13,8 +13,11 @@ const Set<String> _googleCloudTasksQueueSensitive = <String>{};
 
 /// `rate_limits` block.
 @immutable
-class RateLimits {
-  const RateLimits({this.maxConcurrentDispatches, this.maxDispatchesPerSecond});
+class CloudTasksQueueRateLimits {
+  const CloudTasksQueueRateLimits({
+    this.maxConcurrentDispatches,
+    this.maxDispatchesPerSecond,
+  });
 
   final TfArg<int>? maxConcurrentDispatches;
   final TfArg<num>? maxDispatchesPerSecond;
@@ -29,8 +32,8 @@ class RateLimits {
 
 /// `retry_config` block (Cloud Tasks queue-level retry policy).
 @immutable
-class RetryConfig {
-  const RetryConfig({
+class CloudTasksQueueRetryConfig {
+  const CloudTasksQueueRetryConfig({
     this.maxAttempts,
     this.maxRetryDuration,
     this.minBackoff,
@@ -56,8 +59,12 @@ class RetryConfig {
 
 /// `app_engine_routing_override` block (queue-level App Engine fallback).
 @immutable
-class AppEngineRoutingOverride {
-  const AppEngineRoutingOverride({this.service, this.version, this.instance});
+class CloudTasksQueueAppEngineRoutingOverride {
+  const CloudTasksQueueAppEngineRoutingOverride({
+    this.service,
+    this.version,
+    this.instance,
+  });
 
   final TfArg<String>? service;
   final TfArg<String>? version;
@@ -72,8 +79,8 @@ class AppEngineRoutingOverride {
 
 /// `stackdriver_logging_config` block — sampling ratio for queue logs.
 @immutable
-class StackdriverLoggingConfig {
-  const StackdriverLoggingConfig({required this.samplingRatio});
+class CloudTasksQueueStackdriverLoggingConfig {
+  const CloudTasksQueueStackdriverLoggingConfig({required this.samplingRatio});
 
   final TfArg<num> samplingRatio;
 
@@ -81,11 +88,11 @@ class StackdriverLoggingConfig {
 }
 
 /// `http_target` block on the queue (NOT on the per-task HTTP request — this
-/// is the queue-level URL override). Named `QueueHttpTarget` to avoid
+/// is the queue-level URL override). Named `CloudTasksQueueQueueHttpTarget` to avoid
 /// colliding with `HttpTarget` in `cloud_scheduler/`.
 @immutable
-class QueueHttpTarget {
-  const QueueHttpTarget({
+class CloudTasksQueueQueueHttpTarget {
+  const CloudTasksQueueQueueHttpTarget({
     this.uriOverride,
     this.httpMethod,
     this.headerOverrides,
@@ -96,8 +103,8 @@ class QueueHttpTarget {
   final TfArg<Map<String, dynamic>>? uriOverride;
   final TfArg<String>? httpMethod;
   final TfArg<List<Map<String, dynamic>>>? headerOverrides;
-  final QueueOauthToken? oauthToken;
-  final QueueOidcToken? oidcToken;
+  final CloudTasksQueueQueueOauthToken? oauthToken;
+  final CloudTasksQueueQueueOidcToken? oidcToken;
 
   Map<String, Object?> encode() => {
     if (uriOverride != null) 'uri_override': uriOverride!.toTfJson(),
@@ -111,8 +118,11 @@ class QueueHttpTarget {
 
 /// OAuth token for queue-level HTTP target.
 @immutable
-class QueueOauthToken {
-  const QueueOauthToken({required this.serviceAccountEmail, this.scope});
+class CloudTasksQueueQueueOauthToken {
+  const CloudTasksQueueQueueOauthToken({
+    required this.serviceAccountEmail,
+    this.scope,
+  });
 
   final TfArg<String> serviceAccountEmail;
   final TfArg<String>? scope;
@@ -125,8 +135,11 @@ class QueueOauthToken {
 
 /// OIDC token for queue-level HTTP target.
 @immutable
-class QueueOidcToken {
-  const QueueOidcToken({required this.serviceAccountEmail, this.audience});
+class CloudTasksQueueQueueOidcToken {
+  const CloudTasksQueueQueueOidcToken({
+    required this.serviceAccountEmail,
+    this.audience,
+  });
 
   final TfArg<String> serviceAccountEmail;
   final TfArg<String>? audience;
@@ -157,11 +170,11 @@ final class GoogleCloudTasksQueue extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    AppEngineRoutingOverride? appEngineRoutingOverride,
-    RateLimits? rateLimits,
-    RetryConfig? retryConfig,
-    StackdriverLoggingConfig? stackdriverLoggingConfig,
-    QueueHttpTarget? httpTarget,
+    CloudTasksQueueAppEngineRoutingOverride? appEngineRoutingOverride,
+    CloudTasksQueueRateLimits? rateLimits,
+    CloudTasksQueueRetryConfig? retryConfig,
+    CloudTasksQueueStackdriverLoggingConfig? stackdriverLoggingConfig,
+    CloudTasksQueueQueueHttpTarget? httpTarget,
     TfArg<String>? project,
     TfArg<String>? desiredState,
     super.lifecycle,

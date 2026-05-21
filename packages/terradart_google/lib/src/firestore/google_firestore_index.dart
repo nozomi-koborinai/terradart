@@ -61,7 +61,7 @@ enum FirestoreIndexDeletionPolicy {
   final String terraformValue;
 }
 
-/// One [IndexField.spec] dimension. Pairs with [FirestoreIndexOrder.descending]
+/// One [FirestoreIndexIndexField.spec] dimension. Pairs with [FirestoreIndexOrder.descending]
 /// to flip the per-field index direction.
 enum FirestoreIndexOrder {
   ascending('ASCENDING'),
@@ -72,25 +72,25 @@ enum FirestoreIndexOrder {
 }
 
 // ===========================================================================
-// fields[] + sealed IndexFieldSpec dispatch
+// fields[] + sealed FirestoreIndexIndexFieldSpec dispatch
 // ===========================================================================
 
 /// One entry in `fields[]`. Each indexed field declares either an
-/// [IndexFieldOrder] (range queries / equality / ORDER BY) or an
-/// [IndexFieldArrayConfig] (array-contains queries) via [spec]. The
+/// [FirestoreIndexIndexFieldOrder] (range queries / equality / ORDER BY) or an
+/// [FirestoreIndexIndexFieldArrayConfig] (array-contains queries) via [spec]. The
 /// schema's commented exactly_one_of constraint over
 /// `order` / `array_config` / `search_config` / `vector_config` is
-/// modeled at the type level by the sealed [IndexFieldSpec] dispatch.
+/// modeled at the type level by the sealed [FirestoreIndexIndexFieldSpec] dispatch.
 @immutable
-class IndexField {
-  const IndexField({required this.fieldPath, required this.spec});
+class FirestoreIndexIndexField {
+  const FirestoreIndexIndexField({required this.fieldPath, required this.spec});
 
   /// Dot-separated field path inside the document (e.g.
   /// `'user_id'`, `'metadata.tags'`).
   final TfArg<String> fieldPath;
 
   /// Index dimension for this field.
-  final IndexFieldSpec spec;
+  final FirestoreIndexIndexFieldSpec spec;
 
   Map<String, Object?> encode() => {
     'field_path': fieldPath.toTfJson(),
@@ -98,22 +98,22 @@ class IndexField {
   };
 }
 
-/// Sealed dispatch for [IndexField.spec]. Models the schema's
+/// Sealed dispatch for [FirestoreIndexIndexField.spec]. Models the schema's
 /// exactly_one_of (`order` / `array_config` / `search_config` /
 /// `vector_config`) at the type level. Subclasses encode their own
 /// Terraform key.
-sealed class IndexFieldSpec {
-  const IndexFieldSpec();
+sealed class FirestoreIndexIndexFieldSpec {
+  const FirestoreIndexIndexFieldSpec();
 
-  /// Returns the JSON fragment to merge into [IndexField.encode].
+  /// Returns the JSON fragment to merge into [FirestoreIndexIndexField.encode].
   Map<String, Object?> encode();
 }
 
 /// Range / equality / order-by dimension for a field. Pair
 /// [FirestoreIndexOrder.descending] to flip the per-field direction.
 @immutable
-final class IndexFieldOrder extends IndexFieldSpec {
-  const IndexFieldOrder(this.order);
+final class FirestoreIndexIndexFieldOrder extends FirestoreIndexIndexFieldSpec {
+  const FirestoreIndexIndexFieldOrder(this.order);
 
   /// Direction.
   final FirestoreIndexOrder order;
@@ -125,8 +125,9 @@ final class IndexFieldOrder extends IndexFieldSpec {
 /// Array-contains dimension for a field. Firestore only supports
 /// `'CONTAINS'` as the array config today, so no parameter is exposed.
 @immutable
-final class IndexFieldArrayConfig extends IndexFieldSpec {
-  const IndexFieldArrayConfig();
+final class FirestoreIndexIndexFieldArrayConfig
+    extends FirestoreIndexIndexFieldSpec {
+  const FirestoreIndexIndexFieldArrayConfig();
 
   @override
   Map<String, Object?> encode() => {
@@ -142,13 +143,14 @@ final class IndexFieldArrayConfig extends IndexFieldSpec {
 /// `geo_spec` requires a single boolean knob and merits a separate
 /// variant if/when needed.
 @immutable
-final class IndexFieldSearchConfig extends IndexFieldSpec {
-  const IndexFieldSearchConfig({this.textSpec});
+final class FirestoreIndexIndexFieldSearchConfig
+    extends FirestoreIndexIndexFieldSpec {
+  const FirestoreIndexIndexFieldSearchConfig({this.textSpec});
 
   /// Per-text-field index configuration (token vs. n-gram vs. substring;
   /// exact vs. prefix matching). When null, an empty `text_spec` is
   /// emitted, which Firestore treats as "use defaults".
-  final IndexFieldTextSpec? textSpec;
+  final FirestoreIndexIndexFieldTextSpec? textSpec;
 
   @override
   Map<String, Object?> encode() => {
@@ -161,20 +163,20 @@ final class IndexFieldSearchConfig extends IndexFieldSpec {
 }
 
 /// `search_config.text_spec` block. Carries a list of
-/// [IndexFieldTextSpecEntry] entries (one per index_spec the user wants
+/// [FirestoreIndexIndexFieldTextSpecEntry] entries (one per index_spec the user wants
 /// to configure -- e.g. one for substring matching, one for prefix
 /// matching of the same field).
 @immutable
-class IndexFieldTextSpec {
-  const IndexFieldTextSpec({required this.indexSpecs})
+class FirestoreIndexIndexFieldTextSpec {
+  const FirestoreIndexIndexFieldTextSpec({required this.indexSpecs})
     : assert(
         indexSpecs.length >= 1,
-        'IndexFieldTextSpec.indexSpecs must have at least one entry '
+        'FirestoreIndexIndexFieldTextSpec.indexSpecs must have at least one entry '
         '(schema enforces min_items=1)',
       );
 
   /// At least one per the schema's `min_items=1`.
-  final List<IndexFieldTextSpecEntry> indexSpecs;
+  final List<FirestoreIndexIndexFieldTextSpecEntry> indexSpecs;
 
   Map<String, Object?> encode() => {
     'index_specs': indexSpecs.map((e) => e.encode()).toList(),
@@ -185,37 +187,38 @@ class IndexFieldTextSpec {
 /// schema-optional; combinations are documented in
 /// https://firebase.google.com/docs/firestore/text-search.
 @immutable
-class IndexFieldTextSpecEntry {
-  const IndexFieldTextSpecEntry({this.indexType, this.matchType});
+class FirestoreIndexIndexFieldTextSpecEntry {
+  const FirestoreIndexIndexFieldTextSpecEntry({this.indexType, this.matchType});
 
   /// Index strategy (`TOKEN`, `NGRAM`, etc.). Forward the literal
   /// string -- the schema does not expose a typed enum here.
-  final String? indexType;
+  final TfArg<String>? indexType;
 
   /// Match strategy (`EXACT`, `PREFIX`). Forward the literal string.
-  final String? matchType;
+  final TfArg<String>? matchType;
 
   Map<String, Object?> encode() => {
-    if (indexType != null) 'index_type': indexType,
-    if (matchType != null) 'match_type': matchType,
+    if (indexType != null) 'index_type': indexType!.toTfJson(),
+    if (matchType != null) 'match_type': matchType!.toTfJson(),
   };
 }
 
 /// Vector-search dimension for a field. The schema requires
 /// [dimension] plus a marker `flat` sub-block; the wrapper emits both.
 @immutable
-final class IndexFieldVectorConfig extends IndexFieldSpec {
-  const IndexFieldVectorConfig({required this.dimension});
+final class FirestoreIndexIndexFieldVectorConfig
+    extends FirestoreIndexIndexFieldSpec {
+  const FirestoreIndexIndexFieldVectorConfig({required this.dimension});
 
   /// Vector dimensionality. The index only matches queries of the same
   /// dimension.
-  final int dimension;
+  final TfArg<int> dimension;
 
   @override
   Map<String, Object?> encode() => {
     'vector_config': [
       {
-        'dimension': dimension,
+        'dimension': dimension.toTfJson(),
         'flat': [<String, Object?>{}],
       },
     ],
@@ -232,7 +235,7 @@ final class IndexFieldVectorConfig extends IndexFieldSpec {
 ///   Indexes are scoped to a collection group, not a specific collection
 ///   path -- the same index covers every collection with this ID across
 ///   the database.
-/// - `fields`: at least one [IndexField]. The Firestore service ALSO
+/// - `fields`: at least one [FirestoreIndexIndexField]. The Firestore service ALSO
 ///   imposes a separate "must include `__name__`" rule on composite
 ///   indexes that is not surfaced by Terraform-side validation -- the
 ///   composite index variants below take care of it.
@@ -243,13 +246,13 @@ final class IndexFieldVectorConfig extends IndexFieldSpec {
 ///   localName: 'messages_by_user_time',
 ///   collection: TfArg.literal('messages'),
 ///   fields: [
-///     IndexField(
+///     FirestoreIndexIndexField(
 ///       fieldPath: TfArg.literal('user_id'),
-///       spec: const IndexFieldOrder(FirestoreIndexOrder.ascending),
+///       spec: const FirestoreIndexIndexFieldOrder(FirestoreIndexOrder.ascending),
 ///     ),
-///     IndexField(
+///     FirestoreIndexIndexField(
 ///       fieldPath: TfArg.literal('created_at'),
-///       spec: const IndexFieldOrder(FirestoreIndexOrder.descending),
+///       spec: const FirestoreIndexIndexFieldOrder(FirestoreIndexOrder.descending),
 ///     ),
 ///   ],
 /// );
@@ -261,9 +264,9 @@ final class IndexFieldVectorConfig extends IndexFieldSpec {
 ///   localName: 'messages_by_tag',
 ///   collection: TfArg.literal('messages'),
 ///   fields: [
-///     IndexField(
+///     FirestoreIndexIndexField(
 ///       fieldPath: TfArg.literal('tags'),
-///       spec: const IndexFieldArrayConfig(),
+///       spec: const FirestoreIndexIndexFieldArrayConfig(),
 ///     ),
 ///   ],
 /// );
@@ -280,7 +283,7 @@ final class GoogleFirestoreIndex extends Resource {
   GoogleFirestoreIndex({
     required super.localName,
     required TfArg<String> collection,
-    required List<IndexField> fields,
+    required List<FirestoreIndexIndexField> fields,
     TfArg<String>? database,
     TfArg<FirestoreIndexQueryScope>? queryScope,
     TfArg<FirestoreIndexApiScope>? apiScope,

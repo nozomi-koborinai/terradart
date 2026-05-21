@@ -208,6 +208,18 @@ class WrapperEmitter {
     buf.writeln('  // ignore: non_constant_identifier_names');
     buf.writeln('  Set<String> get \$sensitiveFields => $sensitiveConst;');
 
+    // `$supportsDeletionProtection` override. Emitted only when the resource
+    // schema exposes a top-level `deletion_protection` attribute, indicating
+    // the Terraform provider honours the soft-delete guard at runtime. The
+    // base class defaults to `false`; this override opts the wrapper in.
+    final hasDeletionProtection =
+        def.root.attributes.any((a) => a.name == 'deletion_protection');
+    if (hasDeletionProtection) {
+      buf.writeln();
+      buf.writeln('  @override');
+      buf.writeln('  bool get \$supportsDeletionProtection => true;');
+    }
+
     // Extra getters (TfRef shortcuts, etc.) inserted from the override.
     // The override snippet already carries indent and trailing newline, so
     // we use `write`, not `writeln`. A blank line separates them from the

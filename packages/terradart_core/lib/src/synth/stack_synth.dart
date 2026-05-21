@@ -33,7 +33,7 @@ class SynthResult {
 ///
 /// This is a thin orchestrator over the building blocks in `synth/`:
 /// [LiteralResolver] (Pass 1) → [OutputEmitter] (Pass 2) → assemble
-/// JSON via [JsonEncoder], render Dart via [DartConstantsEmitter].
+/// JSON via [TfJsonEncoder], render Dart via [DartConstantsEmitter].
 class StackSynth {
   /// Synthesise [stack] into a [SynthResult].
   ///
@@ -43,19 +43,19 @@ class StackSynth {
   /// `OrdersStackExports`.
   static SynthResult synth(Stack stack, {String? stackName}) {
     // 1. Top-level terraform block (required).
-    final terraform = JsonEncoder.terraformBlock(stack);
+    final terraform = TfJsonEncoder.terraformBlock(stack);
 
     // 2. Optional provider block.
-    final providers = JsonEncoder.providerBlock(stack);
+    final providers = TfJsonEncoder.providerBlock(stack);
 
     // 3. Resources & data sources.
-    final resources = JsonEncoder.resourcesGroup(stack);
-    final data = JsonEncoder.dataGroup(stack);
+    final resources = TfJsonEncoder.resourcesGroup(stack);
+    final data = TfJsonEncoder.dataGroup(stack);
 
     // 4. Two-pass app exports.
     final resolver = LiteralResolver.fromStack(stack);
     final pass2 = OutputEmitter.run(stack: stack, resolver: resolver);
-    final outputs = JsonEncoder.outputBlock(pass2.terraformOutputs);
+    final outputs = TfJsonEncoder.outputBlock(pass2.terraformOutputs);
 
     // 5. Assemble tf.json (key order is stable for golden tests).
     final tfJson = <String, dynamic>{'terraform': terraform};

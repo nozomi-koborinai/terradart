@@ -1,0 +1,6140 @@
+{
+  "nested_helper_renames": [
+    {
+      "barrel": "artifact_registry",
+      "file": "google_artifact_registry_repository.dart",
+      "old_name": "ArtifactRegistryDockerConfig",
+      "new_name": "ArtifactRegistryRepositoryArtifactRegistryDockerConfig"
+    },
+    {
+      "barrel": "artifact_registry",
+      "file": "google_artifact_registry_repository.dart",
+      "old_name": "ArtifactRegistryMavenConfig",
+      "new_name": "ArtifactRegistryRepositoryArtifactRegistryMavenConfig"
+    },
+    {
+      "barrel": "artifact_registry",
+      "file": "google_artifact_registry_repository.dart",
+      "old_name": "ArtifactRegistryVirtualRepositoryConfig",
+      "new_name": "ArtifactRegistryRepositoryArtifactRegistryVirtualRepositoryConfig"
+    },
+    {
+      "barrel": "artifact_registry",
+      "file": "google_artifact_registry_repository.dart",
+      "old_name": "ArtifactRegistryVirtualUpstreamPolicy",
+      "new_name": "ArtifactRegistryRepositoryArtifactRegistryVirtualUpstreamPolicy"
+    },
+    {
+      "barrel": "artifact_registry",
+      "file": "google_artifact_registry_repository.dart",
+      "old_name": "ArtifactRegistryRemoteRepositoryConfig",
+      "new_name": "ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig"
+    },
+    {
+      "barrel": "artifact_registry",
+      "file": "google_artifact_registry_repository.dart",
+      "old_name": "ArtifactRegistryRemoteCommonRepository",
+      "new_name": "ArtifactRegistryRepositoryArtifactRegistryRemoteCommonRepository"
+    },
+    {
+      "barrel": "artifact_registry",
+      "file": "google_artifact_registry_repository.dart",
+      "old_name": "ArtifactRegistryRemoteUpstreamCredentials",
+      "new_name": "ArtifactRegistryRepositoryArtifactRegistryRemoteUpstreamCredentials"
+    },
+    {
+      "barrel": "artifact_registry",
+      "file": "google_artifact_registry_repository.dart",
+      "old_name": "ArtifactRegistryRemoteUsernamePasswordCredentials",
+      "new_name": "ArtifactRegistryRepositoryArtifactRegistryRemoteUsernamePasswordCredentials"
+    },
+    {
+      "barrel": "artifact_registry",
+      "file": "google_artifact_registry_repository.dart",
+      "old_name": "ArtifactRegistryCleanupPolicy",
+      "new_name": "ArtifactRegistryRepositoryArtifactRegistryCleanupPolicy"
+    },
+    {
+      "barrel": "artifact_registry",
+      "file": "google_artifact_registry_repository.dart",
+      "old_name": "ArtifactRegistryCleanupCondition",
+      "new_name": "ArtifactRegistryRepositoryArtifactRegistryCleanupCondition"
+    },
+    {
+      "barrel": "artifact_registry",
+      "file": "google_artifact_registry_repository.dart",
+      "old_name": "ArtifactRegistryCleanupMostRecentVersions",
+      "new_name": "ArtifactRegistryRepositoryArtifactRegistryCleanupMostRecentVersions"
+    },
+    {
+      "barrel": "artifact_registry",
+      "file": "google_artifact_registry_repository.dart",
+      "old_name": "ArtifactRegistryVulnerabilityScanningConfig",
+      "new_name": "ArtifactRegistryRepositoryArtifactRegistryVulnerabilityScanningConfig"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_dataset.dart",
+      "old_name": "Access",
+      "new_name": "BigqueryDatasetAccess"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_dataset.dart",
+      "old_name": "AccessUserByEmail",
+      "new_name": "BigqueryDatasetAccessUserByEmail"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_dataset.dart",
+      "old_name": "AccessGroupByEmail",
+      "new_name": "BigqueryDatasetAccessGroupByEmail"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_dataset.dart",
+      "old_name": "AccessSpecialGroup",
+      "new_name": "BigqueryDatasetAccessSpecialGroup"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_dataset.dart",
+      "old_name": "AccessDomain",
+      "new_name": "BigqueryDatasetAccessDomain"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_dataset.dart",
+      "old_name": "AccessIamMember",
+      "new_name": "BigqueryDatasetAccessIamMember"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_dataset.dart",
+      "old_name": "AccessView",
+      "new_name": "BigqueryDatasetAccessView"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_dataset.dart",
+      "old_name": "AccessDataset",
+      "new_name": "BigqueryDatasetAccessDataset"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_dataset.dart",
+      "old_name": "AccessRoutine",
+      "new_name": "BigqueryDatasetAccessRoutine"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_dataset.dart",
+      "old_name": "DatasetView",
+      "new_name": "BigqueryDatasetDatasetView"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_dataset.dart",
+      "old_name": "DatasetAccessChild",
+      "new_name": "BigqueryDatasetDatasetAccessChild"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_dataset.dart",
+      "old_name": "DatasetReference",
+      "new_name": "BigqueryDatasetDatasetReference"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_dataset.dart",
+      "old_name": "DatasetRoutineRef",
+      "new_name": "BigqueryDatasetDatasetRoutineRef"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_dataset.dart",
+      "old_name": "AccessCondition",
+      "new_name": "BigqueryDatasetAccessCondition"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_dataset.dart",
+      "old_name": "DefaultEncryptionConfiguration",
+      "new_name": "BigqueryDatasetDefaultEncryptionConfiguration"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_dataset.dart",
+      "old_name": "ExternalDatasetReference",
+      "new_name": "BigqueryDatasetExternalDatasetReference"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_dataset.dart",
+      "old_name": "ExternalCatalogDatasetOptions",
+      "new_name": "BigqueryDatasetExternalCatalogDatasetOptions"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_table.dart",
+      "old_name": "TimePartitioning",
+      "new_name": "BigqueryTableTimePartitioning"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_table.dart",
+      "old_name": "RangePartitioning",
+      "new_name": "BigqueryTableRangePartitioning"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_table.dart",
+      "old_name": "RangePartitioningRange",
+      "new_name": "BigqueryTableRangePartitioningRange"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_table.dart",
+      "old_name": "MaterializedView",
+      "new_name": "BigqueryTableMaterializedView"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_table.dart",
+      "old_name": "TableView",
+      "new_name": "BigqueryTableTableView"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_table.dart",
+      "old_name": "ExternalDataConfiguration",
+      "new_name": "BigqueryTableExternalDataConfiguration"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_table.dart",
+      "old_name": "CsvOptions",
+      "new_name": "BigqueryTableCsvOptions"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_table.dart",
+      "old_name": "GoogleSheetsOptions",
+      "new_name": "BigqueryTableGoogleSheetsOptions"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_table.dart",
+      "old_name": "HivePartitioningOptions",
+      "new_name": "BigqueryTableHivePartitioningOptions"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_table.dart",
+      "old_name": "ParquetOptions",
+      "new_name": "BigqueryTableParquetOptions"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_table.dart",
+      "old_name": "AvroOptions",
+      "new_name": "BigqueryTableAvroOptions"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_table.dart",
+      "old_name": "JsonOptions",
+      "new_name": "BigqueryTableJsonOptions"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_table.dart",
+      "old_name": "EncryptionConfiguration",
+      "new_name": "BigqueryTableEncryptionConfiguration"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_table.dart",
+      "old_name": "TableConstraints",
+      "new_name": "BigqueryTableTableConstraints"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_table.dart",
+      "old_name": "PrimaryKey",
+      "new_name": "BigqueryTablePrimaryKey"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_table.dart",
+      "old_name": "ForeignKey",
+      "new_name": "BigqueryTableForeignKey"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_table.dart",
+      "old_name": "ReferencedTable",
+      "new_name": "BigqueryTableReferencedTable"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_table.dart",
+      "old_name": "ColumnReferences",
+      "new_name": "BigqueryTableColumnReferences"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_table.dart",
+      "old_name": "TableReplicationInfo",
+      "new_name": "BigqueryTableTableReplicationInfo"
+    },
+    {
+      "barrel": "bigquery",
+      "file": "google_bigquery_table.dart",
+      "old_name": "BiglakeConfiguration",
+      "new_name": "BigqueryTableBiglakeConfiguration"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuild_trigger.dart",
+      "old_name": "CloudBuildTriggerGithub",
+      "new_name": "CloudbuildTriggerCloudBuildTriggerGithub"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuild_trigger.dart",
+      "old_name": "CloudBuildTriggerBitbucketServerTriggerConfig",
+      "new_name": "CloudbuildTriggerCloudBuildTriggerBitbucketServerTriggerConfig"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuild_trigger.dart",
+      "old_name": "CloudBuildTriggerRepositoryEventConfig",
+      "new_name": "CloudbuildTriggerCloudBuildTriggerRepositoryEventConfig"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuild_trigger.dart",
+      "old_name": "CloudBuildTriggerDeveloperConnectEventConfig",
+      "new_name": "CloudbuildTriggerCloudBuildTriggerDeveloperConnectEventConfig"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuild_trigger.dart",
+      "old_name": "CloudBuildTriggerPushFilter",
+      "new_name": "CloudbuildTriggerCloudBuildTriggerPushFilter"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuild_trigger.dart",
+      "old_name": "CloudBuildTriggerPullRequestFilter",
+      "new_name": "CloudbuildTriggerCloudBuildTriggerPullRequestFilter"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuild_trigger.dart",
+      "old_name": "CloudBuildTriggerPubsubConfig",
+      "new_name": "CloudbuildTriggerCloudBuildTriggerPubsubConfig"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuild_trigger.dart",
+      "old_name": "CloudBuildTriggerWebhookConfig",
+      "new_name": "CloudbuildTriggerCloudBuildTriggerWebhookConfig"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuild_trigger.dart",
+      "old_name": "CloudBuildTriggerSourceToBuild",
+      "new_name": "CloudbuildTriggerCloudBuildTriggerSourceToBuild"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuild_trigger.dart",
+      "old_name": "CloudBuildTriggerTriggerTemplate",
+      "new_name": "CloudbuildTriggerCloudBuildTriggerTriggerTemplate"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuild_trigger.dart",
+      "old_name": "CloudBuildTriggerGitFileSource",
+      "new_name": "CloudbuildTriggerCloudBuildTriggerGitFileSource"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuild_trigger.dart",
+      "old_name": "CloudBuildTriggerApprovalConfig",
+      "new_name": "CloudbuildTriggerCloudBuildTriggerApprovalConfig"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuild_trigger.dart",
+      "old_name": "CloudBuildTriggerBuild",
+      "new_name": "CloudbuildTriggerCloudBuildTriggerBuild"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuild_trigger.dart",
+      "old_name": "CloudBuildTriggerBuildStep",
+      "new_name": "CloudbuildTriggerCloudBuildTriggerBuildStep"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuild_trigger.dart",
+      "old_name": "CloudBuildTriggerBuildOptions",
+      "new_name": "CloudbuildTriggerCloudBuildTriggerBuildOptions"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuild_worker_pool.dart",
+      "old_name": "CloudBuildWorkerPoolWorkerConfig",
+      "new_name": "CloudbuildWorkerPoolCloudBuildWorkerPoolWorkerConfig"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuild_worker_pool.dart",
+      "old_name": "CloudBuildWorkerPoolNetworkConfig",
+      "new_name": "CloudbuildWorkerPoolCloudBuildWorkerPoolNetworkConfig"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuild_worker_pool.dart",
+      "old_name": "CloudBuildWorkerPoolPrivateServiceConnect",
+      "new_name": "CloudbuildWorkerPoolCloudBuildWorkerPoolPrivateServiceConnect"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuildv2_connection.dart",
+      "old_name": "CloudBuildV2ConnectionGithubAuthorizerCredential",
+      "new_name": "Cloudbuildv2ConnectionCloudBuildV2ConnectionGithubAuthorizerCredential"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuildv2_connection.dart",
+      "old_name": "CloudBuildV2ConnectionGithubConfig",
+      "new_name": "Cloudbuildv2ConnectionCloudBuildV2ConnectionGithubConfig"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuildv2_connection.dart",
+      "old_name": "CloudBuildV2ConnectionServiceDirectoryConfig",
+      "new_name": "Cloudbuildv2ConnectionCloudBuildV2ConnectionServiceDirectoryConfig"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuildv2_connection.dart",
+      "old_name": "CloudBuildV2ConnectionGithubEnterpriseConfig",
+      "new_name": "Cloudbuildv2ConnectionCloudBuildV2ConnectionGithubEnterpriseConfig"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuildv2_connection.dart",
+      "old_name": "CloudBuildV2ConnectionUserCredential",
+      "new_name": "Cloudbuildv2ConnectionCloudBuildV2ConnectionUserCredential"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuildv2_connection.dart",
+      "old_name": "CloudBuildV2ConnectionGitlabConfig",
+      "new_name": "Cloudbuildv2ConnectionCloudBuildV2ConnectionGitlabConfig"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuildv2_connection.dart",
+      "old_name": "CloudBuildV2ConnectionBitbucketDataCenterConfig",
+      "new_name": "Cloudbuildv2ConnectionCloudBuildV2ConnectionBitbucketDataCenterConfig"
+    },
+    {
+      "barrel": "cloud_build",
+      "file": "google_cloudbuildv2_connection.dart",
+      "old_name": "CloudBuildV2ConnectionBitbucketCloudConfig",
+      "new_name": "Cloudbuildv2ConnectionCloudBuildV2ConnectionBitbucketCloudConfig"
+    },
+    {
+      "barrel": "cloud_functions",
+      "file": "google_cloudfunctions2_function.dart",
+      "old_name": "BuildConfig",
+      "new_name": "Cloudfunctions2FunctionBuildConfig"
+    },
+    {
+      "barrel": "cloud_functions",
+      "file": "google_cloudfunctions2_function.dart",
+      "old_name": "SourceConfig",
+      "new_name": "Cloudfunctions2FunctionSourceConfig"
+    },
+    {
+      "barrel": "cloud_functions",
+      "file": "google_cloudfunctions2_function.dart",
+      "old_name": "StorageSource",
+      "new_name": "Cloudfunctions2FunctionStorageSource"
+    },
+    {
+      "barrel": "cloud_functions",
+      "file": "google_cloudfunctions2_function.dart",
+      "old_name": "RepoSource",
+      "new_name": "Cloudfunctions2FunctionRepoSource"
+    },
+    {
+      "barrel": "cloud_functions",
+      "file": "google_cloudfunctions2_function.dart",
+      "old_name": "UpdatePolicy",
+      "new_name": "Cloudfunctions2FunctionUpdatePolicy"
+    },
+    {
+      "barrel": "cloud_functions",
+      "file": "google_cloudfunctions2_function.dart",
+      "old_name": "AutomaticUpdatePolicy",
+      "new_name": "Cloudfunctions2FunctionAutomaticUpdatePolicy"
+    },
+    {
+      "barrel": "cloud_functions",
+      "file": "google_cloudfunctions2_function.dart",
+      "old_name": "OnDeployUpdatePolicy",
+      "new_name": "Cloudfunctions2FunctionOnDeployUpdatePolicy"
+    },
+    {
+      "barrel": "cloud_functions",
+      "file": "google_cloudfunctions2_function.dart",
+      "old_name": "EventTrigger",
+      "new_name": "Cloudfunctions2FunctionEventTrigger"
+    },
+    {
+      "barrel": "cloud_functions",
+      "file": "google_cloudfunctions2_function.dart",
+      "old_name": "EventFilter",
+      "new_name": "Cloudfunctions2FunctionEventFilter"
+    },
+    {
+      "barrel": "cloud_functions",
+      "file": "google_cloudfunctions2_function.dart",
+      "old_name": "ServiceConfig",
+      "new_name": "Cloudfunctions2FunctionServiceConfig"
+    },
+    {
+      "barrel": "cloud_functions",
+      "file": "google_cloudfunctions2_function.dart",
+      "old_name": "SecretEnvironmentVariable",
+      "new_name": "Cloudfunctions2FunctionSecretEnvironmentVariable"
+    },
+    {
+      "barrel": "cloud_functions",
+      "file": "google_cloudfunctions2_function.dart",
+      "old_name": "SecretVolume",
+      "new_name": "Cloudfunctions2FunctionSecretVolume"
+    },
+    {
+      "barrel": "cloud_functions",
+      "file": "google_cloudfunctions2_function.dart",
+      "old_name": "SecretVolumeVersion",
+      "new_name": "Cloudfunctions2FunctionSecretVolumeVersion"
+    },
+    {
+      "barrel": "cloud_functions",
+      "file": "google_cloudfunctions2_function.dart",
+      "old_name": "DirectVpcNetworkInterface",
+      "new_name": "Cloudfunctions2FunctionDirectVpcNetworkInterface"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobBinaryAuthorization",
+      "new_name": "CloudRunV2JobJobBinaryAuthorization"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobTemplate",
+      "new_name": "CloudRunV2JobJobTemplate"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "TaskTemplate",
+      "new_name": "CloudRunV2JobTaskTemplate"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobVpcAccess",
+      "new_name": "CloudRunV2JobJobVpcAccess"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobVpcNetworkInterface",
+      "new_name": "CloudRunV2JobJobVpcNetworkInterface"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobNodeSelector",
+      "new_name": "CloudRunV2JobJobNodeSelector"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobContainer",
+      "new_name": "CloudRunV2JobJobContainer"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobEnvVar",
+      "new_name": "CloudRunV2JobJobEnvVar"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobEnvVarSource",
+      "new_name": "CloudRunV2JobJobEnvVarSource"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobEnvVarFromLiteral",
+      "new_name": "CloudRunV2JobJobEnvVarFromLiteral"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobEnvVarFromSecret",
+      "new_name": "CloudRunV2JobJobEnvVarFromSecret"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobContainerResources",
+      "new_name": "CloudRunV2JobJobContainerResources"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobContainerPort",
+      "new_name": "CloudRunV2JobJobContainerPort"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobVolumeMount",
+      "new_name": "CloudRunV2JobJobVolumeMount"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobStartupProbe",
+      "new_name": "CloudRunV2JobJobStartupProbe"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobHttpGetAction",
+      "new_name": "CloudRunV2JobJobHttpGetAction"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobTcpSocketAction",
+      "new_name": "CloudRunV2JobJobTcpSocketAction"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobHttpHeader",
+      "new_name": "CloudRunV2JobJobHttpHeader"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobVolume",
+      "new_name": "CloudRunV2JobJobVolume"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobVolumeSource",
+      "new_name": "CloudRunV2JobJobVolumeSource"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobVolumeSecret",
+      "new_name": "CloudRunV2JobJobVolumeSecret"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobSecretVolumeItem",
+      "new_name": "CloudRunV2JobJobSecretVolumeItem"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobCloudSqlVolume",
+      "new_name": "CloudRunV2JobJobCloudSqlVolume"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobEmptyDirVolume",
+      "new_name": "CloudRunV2JobJobEmptyDirVolume"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobGcsVolume",
+      "new_name": "CloudRunV2JobJobGcsVolume"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_job.dart",
+      "old_name": "JobNfsVolume",
+      "new_name": "CloudRunV2JobJobNfsVolume"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "BinaryAuthorization",
+      "new_name": "CloudRunV2ServiceBinaryAuthorization"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "ServiceScaling",
+      "new_name": "CloudRunV2ServiceServiceScaling"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "Traffic",
+      "new_name": "CloudRunV2ServiceTraffic"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "Template",
+      "new_name": "CloudRunV2ServiceTemplate"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "TemplateScaling",
+      "new_name": "CloudRunV2ServiceTemplateScaling"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "VpcAccess",
+      "new_name": "CloudRunV2ServiceVpcAccess"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "VpcNetworkInterface",
+      "new_name": "CloudRunV2ServiceVpcNetworkInterface"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "NodeSelector",
+      "new_name": "CloudRunV2ServiceNodeSelector"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "ServiceContainer",
+      "new_name": "CloudRunV2ServiceServiceContainer"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "EnvVar",
+      "new_name": "CloudRunV2ServiceEnvVar"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "EnvVarSource",
+      "new_name": "CloudRunV2ServiceEnvVarSource"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "EnvVarFromLiteral",
+      "new_name": "CloudRunV2ServiceEnvVarFromLiteral"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "EnvVarFromSecret",
+      "new_name": "CloudRunV2ServiceEnvVarFromSecret"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "ContainerResources",
+      "new_name": "CloudRunV2ServiceContainerResources"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "ContainerPort",
+      "new_name": "CloudRunV2ServiceContainerPort"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "VolumeMount",
+      "new_name": "CloudRunV2ServiceVolumeMount"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "StartupProbe",
+      "new_name": "CloudRunV2ServiceStartupProbe"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "LivenessProbe",
+      "new_name": "CloudRunV2ServiceLivenessProbe"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "HttpGetAction",
+      "new_name": "CloudRunV2ServiceHttpGetAction"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "TcpSocketAction",
+      "new_name": "CloudRunV2ServiceTcpSocketAction"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "HttpHeader",
+      "new_name": "CloudRunV2ServiceHttpHeader"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "ServiceVolume",
+      "new_name": "CloudRunV2ServiceServiceVolume"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "VolumeSource",
+      "new_name": "CloudRunV2ServiceVolumeSource"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "VolumeSecret",
+      "new_name": "CloudRunV2ServiceVolumeSecret"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "SecretVolumeItem",
+      "new_name": "CloudRunV2ServiceSecretVolumeItem"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "CloudSqlVolume",
+      "new_name": "CloudRunV2ServiceCloudSqlVolume"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "EmptyDirVolume",
+      "new_name": "CloudRunV2ServiceEmptyDirVolume"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "GcsVolume",
+      "new_name": "CloudRunV2ServiceGcsVolume"
+    },
+    {
+      "barrel": "cloud_run",
+      "file": "google_cloud_run_v2_service.dart",
+      "old_name": "NfsVolume",
+      "new_name": "CloudRunV2ServiceNfsVolume"
+    },
+    {
+      "barrel": "cloud_scheduler",
+      "file": "google_cloud_scheduler_job.dart",
+      "old_name": "SchedulerTarget",
+      "new_name": "CloudSchedulerJobSchedulerTarget"
+    },
+    {
+      "barrel": "cloud_scheduler",
+      "file": "google_cloud_scheduler_job.dart",
+      "old_name": "PubsubTarget",
+      "new_name": "CloudSchedulerJobPubsubTarget"
+    },
+    {
+      "barrel": "cloud_scheduler",
+      "file": "google_cloud_scheduler_job.dart",
+      "old_name": "HttpTarget",
+      "new_name": "CloudSchedulerJobHttpTarget"
+    },
+    {
+      "barrel": "cloud_scheduler",
+      "file": "google_cloud_scheduler_job.dart",
+      "old_name": "AppEngineHttpTarget",
+      "new_name": "CloudSchedulerJobAppEngineHttpTarget"
+    },
+    {
+      "barrel": "cloud_scheduler",
+      "file": "google_cloud_scheduler_job.dart",
+      "old_name": "HttpOauthToken",
+      "new_name": "CloudSchedulerJobHttpOauthToken"
+    },
+    {
+      "barrel": "cloud_scheduler",
+      "file": "google_cloud_scheduler_job.dart",
+      "old_name": "HttpOidcToken",
+      "new_name": "CloudSchedulerJobHttpOidcToken"
+    },
+    {
+      "barrel": "cloud_scheduler",
+      "file": "google_cloud_scheduler_job.dart",
+      "old_name": "AppEngineRouting",
+      "new_name": "CloudSchedulerJobAppEngineRouting"
+    },
+    {
+      "barrel": "cloud_scheduler",
+      "file": "google_cloud_scheduler_job.dart",
+      "old_name": "SchedulerRetryConfig",
+      "new_name": "CloudSchedulerJobSchedulerRetryConfig"
+    },
+    {
+      "barrel": "cloud_tasks",
+      "file": "google_cloud_tasks_queue.dart",
+      "old_name": "RateLimits",
+      "new_name": "CloudTasksQueueRateLimits"
+    },
+    {
+      "barrel": "cloud_tasks",
+      "file": "google_cloud_tasks_queue.dart",
+      "old_name": "RetryConfig",
+      "new_name": "CloudTasksQueueRetryConfig"
+    },
+    {
+      "barrel": "cloud_tasks",
+      "file": "google_cloud_tasks_queue.dart",
+      "old_name": "AppEngineRoutingOverride",
+      "new_name": "CloudTasksQueueAppEngineRoutingOverride"
+    },
+    {
+      "barrel": "cloud_tasks",
+      "file": "google_cloud_tasks_queue.dart",
+      "old_name": "StackdriverLoggingConfig",
+      "new_name": "CloudTasksQueueStackdriverLoggingConfig"
+    },
+    {
+      "barrel": "cloud_tasks",
+      "file": "google_cloud_tasks_queue.dart",
+      "old_name": "QueueHttpTarget",
+      "new_name": "CloudTasksQueueQueueHttpTarget"
+    },
+    {
+      "barrel": "cloud_tasks",
+      "file": "google_cloud_tasks_queue.dart",
+      "old_name": "QueueOauthToken",
+      "new_name": "CloudTasksQueueQueueOauthToken"
+    },
+    {
+      "barrel": "cloud_tasks",
+      "file": "google_cloud_tasks_queue.dart",
+      "old_name": "QueueOidcToken",
+      "new_name": "CloudTasksQueueQueueOidcToken"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_autoscaler.dart",
+      "old_name": "AutoscalerAutoscalingPolicy",
+      "new_name": "ComputeAutoscalerAutoscalerAutoscalingPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_autoscaler.dart",
+      "old_name": "AutoscalerCpuUtilization",
+      "new_name": "ComputeAutoscalerAutoscalerCpuUtilization"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_autoscaler.dart",
+      "old_name": "AutoscalerLoadBalancingUtilization",
+      "new_name": "ComputeAutoscalerAutoscalerLoadBalancingUtilization"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_autoscaler.dart",
+      "old_name": "AutoscalerMetric",
+      "new_name": "ComputeAutoscalerAutoscalerMetric"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_autoscaler.dart",
+      "old_name": "AutoscalerScaleInControl",
+      "new_name": "ComputeAutoscalerAutoscalerScaleInControl"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_autoscaler.dart",
+      "old_name": "AutoscalerScaleInReplicas",
+      "new_name": "ComputeAutoscalerAutoscalerScaleInReplicas"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_autoscaler.dart",
+      "old_name": "AutoscalerScalingSchedule",
+      "new_name": "ComputeAutoscalerAutoscalerScalingSchedule"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_bucket.dart",
+      "old_name": "BackendBucketCdnPolicy",
+      "new_name": "ComputeBackendBucketBackendBucketCdnPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_bucket.dart",
+      "old_name": "BackendBucketCdnBypassCacheOnRequestHeader",
+      "new_name": "ComputeBackendBucketBackendBucketCdnBypassCacheOnRequestHeader"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_bucket.dart",
+      "old_name": "BackendBucketCdnCacheKeyPolicy",
+      "new_name": "ComputeBackendBucketBackendBucketCdnCacheKeyPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_bucket.dart",
+      "old_name": "BackendBucketCdnNegativeCachingPolicy",
+      "new_name": "ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_bucket.dart",
+      "old_name": "BackendBucketParams",
+      "new_name": "ComputeBackendBucketBackendBucketParams"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceBackend",
+      "new_name": "ComputeBackendServiceBackendServiceBackend"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceBackendCustomMetric",
+      "new_name": "ComputeBackendServiceBackendServiceBackendCustomMetric"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceCdnPolicy",
+      "new_name": "ComputeBackendServiceBackendServiceCdnPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceCdnBypassCacheOnRequestHeader",
+      "new_name": "ComputeBackendServiceBackendServiceCdnBypassCacheOnRequestHeader"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceCdnCacheKeyPolicy",
+      "new_name": "ComputeBackendServiceBackendServiceCdnCacheKeyPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceCdnNegativeCachingPolicy",
+      "new_name": "ComputeBackendServiceBackendServiceCdnNegativeCachingPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceIap",
+      "new_name": "ComputeBackendServiceBackendServiceIap"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceCircuitBreakers",
+      "new_name": "ComputeBackendServiceBackendServiceCircuitBreakers"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceConsistentHash",
+      "new_name": "ComputeBackendServiceBackendServiceConsistentHash"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceConsistentHashHttpCookie",
+      "new_name": "ComputeBackendServiceBackendServiceConsistentHashHttpCookie"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceDuration",
+      "new_name": "ComputeBackendServiceBackendServiceDuration"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceLogConfig",
+      "new_name": "ComputeBackendServiceBackendServiceLogConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceOutlierDetection",
+      "new_name": "ComputeBackendServiceBackendServiceOutlierDetection"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceSecuritySettings",
+      "new_name": "ComputeBackendServiceBackendServiceSecuritySettings"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceAwsV4Authentication",
+      "new_name": "ComputeBackendServiceBackendServiceAwsV4Authentication"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceStrongSessionAffinityCookie",
+      "new_name": "ComputeBackendServiceBackendServiceStrongSessionAffinityCookie"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceMaxStreamDuration",
+      "new_name": "ComputeBackendServiceBackendServiceMaxStreamDuration"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceTlsSettings",
+      "new_name": "ComputeBackendServiceBackendServiceTlsSettings"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceTlsSubjectAltName",
+      "new_name": "ComputeBackendServiceBackendServiceTlsSubjectAltName"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceLocalityLbPolicyEntry",
+      "new_name": "ComputeBackendServiceBackendServiceLocalityLbPolicyEntry"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceLocalityLbBuiltinPolicy",
+      "new_name": "ComputeBackendServiceBackendServiceLocalityLbBuiltinPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceLocalityLbCustomPolicy",
+      "new_name": "ComputeBackendServiceBackendServiceLocalityLbCustomPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceCustomMetric",
+      "new_name": "ComputeBackendServiceBackendServiceCustomMetric"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_backend_service.dart",
+      "old_name": "BackendServiceParams",
+      "new_name": "ComputeBackendServiceBackendServiceParams"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_firewall.dart",
+      "old_name": "FirewallAllowRule",
+      "new_name": "ComputeFirewallFirewallAllowRule"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_firewall.dart",
+      "old_name": "FirewallDenyRule",
+      "new_name": "ComputeFirewallFirewallDenyRule"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_firewall.dart",
+      "old_name": "FirewallLogConfig",
+      "new_name": "ComputeFirewallFirewallLogConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_forwarding_rule.dart",
+      "old_name": "ForwardingRuleServiceDirectoryRegistration",
+      "new_name": "ComputeForwardingRuleForwardingRuleServiceDirectoryRegistration"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_global_forwarding_rule.dart",
+      "old_name": "GlobalForwardingRuleMetadataFilter",
+      "new_name": "ComputeGlobalForwardingRuleGlobalForwardingRuleMetadataFilter"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_global_forwarding_rule.dart",
+      "old_name": "GlobalForwardingRuleMetadataFilterLabel",
+      "new_name": "ComputeGlobalForwardingRuleGlobalForwardingRuleMetadataFilterLabel"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_global_forwarding_rule.dart",
+      "old_name": "GlobalForwardingRuleServiceDirectoryRegistration",
+      "new_name": "ComputeGlobalForwardingRuleGlobalForwardingRuleServiceDirectoryRegistration"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_health_check.dart",
+      "old_name": "HttpHealthCheckConfig",
+      "new_name": "ComputeHealthCheckHttpHealthCheckConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_health_check.dart",
+      "old_name": "HttpsHealthCheckConfig",
+      "new_name": "ComputeHealthCheckHttpsHealthCheckConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_health_check.dart",
+      "old_name": "Http2HealthCheckConfig",
+      "new_name": "ComputeHealthCheckHttp2HealthCheckConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_health_check.dart",
+      "old_name": "TcpHealthCheckConfig",
+      "new_name": "ComputeHealthCheckTcpHealthCheckConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_health_check.dart",
+      "old_name": "SslHealthCheckConfig",
+      "new_name": "ComputeHealthCheckSslHealthCheckConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_health_check.dart",
+      "old_name": "GrpcHealthCheckConfig",
+      "new_name": "ComputeHealthCheckGrpcHealthCheckConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_health_check.dart",
+      "old_name": "HealthCheckLogConfig",
+      "new_name": "ComputeHealthCheckHealthCheckLogConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance.dart",
+      "old_name": "InitializeParams",
+      "new_name": "ComputeInstanceInitializeParams"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance.dart",
+      "old_name": "BootDisk",
+      "new_name": "ComputeInstanceBootDisk"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance.dart",
+      "old_name": "AccessConfig",
+      "new_name": "ComputeInstanceAccessConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance.dart",
+      "old_name": "Ipv6AccessConfig",
+      "new_name": "ComputeInstanceIpv6AccessConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance.dart",
+      "old_name": "AliasIpRange",
+      "new_name": "ComputeInstanceAliasIpRange"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance.dart",
+      "old_name": "NetworkInterface",
+      "new_name": "ComputeInstanceNetworkInterface"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance.dart",
+      "old_name": "AttachedDisk",
+      "new_name": "ComputeInstanceAttachedDisk"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance.dart",
+      "old_name": "ScratchDisk",
+      "new_name": "ComputeInstanceScratchDisk"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance.dart",
+      "old_name": "ServiceAccount",
+      "new_name": "ComputeInstanceServiceAccount"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance.dart",
+      "old_name": "SchedulingDuration",
+      "new_name": "ComputeInstanceSchedulingDuration"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance.dart",
+      "old_name": "NodeAffinity",
+      "new_name": "ComputeInstanceNodeAffinity"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance.dart",
+      "old_name": "Scheduling",
+      "new_name": "ComputeInstanceScheduling"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance.dart",
+      "old_name": "ShieldedInstanceConfig",
+      "new_name": "ComputeInstanceShieldedInstanceConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance.dart",
+      "old_name": "ConfidentialInstanceConfig",
+      "new_name": "ComputeInstanceConfidentialInstanceConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance.dart",
+      "old_name": "GuestAccelerator",
+      "new_name": "ComputeInstanceGuestAccelerator"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance.dart",
+      "old_name": "AdvancedMachineFeatures",
+      "new_name": "ComputeInstanceAdvancedMachineFeatures"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance.dart",
+      "old_name": "SpecificReservation",
+      "new_name": "ComputeInstanceSpecificReservation"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance.dart",
+      "old_name": "ReservationAffinity",
+      "new_name": "ComputeInstanceReservationAffinity"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance.dart",
+      "old_name": "InstanceParams",
+      "new_name": "ComputeInstanceInstanceParams"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance.dart",
+      "old_name": "NetworkPerformanceConfig",
+      "new_name": "ComputeInstanceNetworkPerformanceConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_group_manager.dart",
+      "old_name": "InstanceGroupManagerVersion",
+      "new_name": "ComputeInstanceGroupManagerInstanceGroupManagerVersion"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_group_manager.dart",
+      "old_name": "InstanceGroupManagerVersionTargetSize",
+      "new_name": "ComputeInstanceGroupManagerInstanceGroupManagerVersionTargetSize"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_group_manager.dart",
+      "old_name": "InstanceGroupManagerAutoHealingPolicy",
+      "new_name": "ComputeInstanceGroupManagerInstanceGroupManagerAutoHealingPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_group_manager.dart",
+      "old_name": "InstanceGroupManagerUpdatePolicy",
+      "new_name": "ComputeInstanceGroupManagerInstanceGroupManagerUpdatePolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_group_manager.dart",
+      "old_name": "InstanceGroupManagerNamedPort",
+      "new_name": "ComputeInstanceGroupManagerInstanceGroupManagerNamedPort"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_group_manager.dart",
+      "old_name": "InstanceGroupManagerStatefulDisk",
+      "new_name": "ComputeInstanceGroupManagerInstanceGroupManagerStatefulDisk"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_group_manager.dart",
+      "old_name": "InstanceGroupManagerStatefulIp",
+      "new_name": "ComputeInstanceGroupManagerInstanceGroupManagerStatefulIp"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_group_manager.dart",
+      "old_name": "InstanceGroupManagerAllInstancesConfig",
+      "new_name": "ComputeInstanceGroupManagerInstanceGroupManagerAllInstancesConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_group_manager.dart",
+      "old_name": "InstanceGroupManagerInstanceLifecyclePolicy",
+      "new_name": "ComputeInstanceGroupManagerInstanceGroupManagerInstanceLifecyclePolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_group_manager.dart",
+      "old_name": "InstanceGroupManagerStandbyPolicy",
+      "new_name": "ComputeInstanceGroupManagerInstanceGroupManagerStandbyPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_group_manager.dart",
+      "old_name": "InstanceGroupManagerTargetSizePolicy",
+      "new_name": "ComputeInstanceGroupManagerInstanceGroupManagerTargetSizePolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_group_manager.dart",
+      "old_name": "InstanceGroupManagerResourcePolicies",
+      "new_name": "ComputeInstanceGroupManagerInstanceGroupManagerResourcePolicies"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_template.dart",
+      "old_name": "InstanceTemplateDiskEncryptionKey",
+      "new_name": "ComputeInstanceTemplateInstanceTemplateDiskEncryptionKey"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_template.dart",
+      "old_name": "InstanceTemplateSourceImageEncryptionKey",
+      "new_name": "ComputeInstanceTemplateInstanceTemplateSourceImageEncryptionKey"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_template.dart",
+      "old_name": "InstanceTemplateSourceSnapshotEncryptionKey",
+      "new_name": "ComputeInstanceTemplateInstanceTemplateSourceSnapshotEncryptionKey"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_template.dart",
+      "old_name": "InstanceTemplateDisk",
+      "new_name": "ComputeInstanceTemplateInstanceTemplateDisk"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_template.dart",
+      "old_name": "InstanceTemplateAccessConfig",
+      "new_name": "ComputeInstanceTemplateInstanceTemplateAccessConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_template.dart",
+      "old_name": "InstanceTemplateIpv6AccessConfig",
+      "new_name": "ComputeInstanceTemplateInstanceTemplateIpv6AccessConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_template.dart",
+      "old_name": "InstanceTemplateAliasIpRange",
+      "new_name": "ComputeInstanceTemplateInstanceTemplateAliasIpRange"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_template.dart",
+      "old_name": "InstanceTemplateNetworkInterface",
+      "new_name": "ComputeInstanceTemplateInstanceTemplateNetworkInterface"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_template.dart",
+      "old_name": "InstanceTemplateServiceAccount",
+      "new_name": "ComputeInstanceTemplateInstanceTemplateServiceAccount"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_template.dart",
+      "old_name": "InstanceTemplateSchedulingDuration",
+      "new_name": "ComputeInstanceTemplateInstanceTemplateSchedulingDuration"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_template.dart",
+      "old_name": "InstanceTemplateNodeAffinity",
+      "new_name": "ComputeInstanceTemplateInstanceTemplateNodeAffinity"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_template.dart",
+      "old_name": "InstanceTemplateOnInstanceStopAction",
+      "new_name": "ComputeInstanceTemplateInstanceTemplateOnInstanceStopAction"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_template.dart",
+      "old_name": "InstanceTemplateScheduling",
+      "new_name": "ComputeInstanceTemplateInstanceTemplateScheduling"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_template.dart",
+      "old_name": "InstanceTemplateShieldedInstanceConfig",
+      "new_name": "ComputeInstanceTemplateInstanceTemplateShieldedInstanceConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_template.dart",
+      "old_name": "InstanceTemplateConfidentialInstanceConfig",
+      "new_name": "ComputeInstanceTemplateInstanceTemplateConfidentialInstanceConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_template.dart",
+      "old_name": "InstanceTemplateGuestAccelerator",
+      "new_name": "ComputeInstanceTemplateInstanceTemplateGuestAccelerator"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_template.dart",
+      "old_name": "InstanceTemplateAdvancedMachineFeatures",
+      "new_name": "ComputeInstanceTemplateInstanceTemplateAdvancedMachineFeatures"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_template.dart",
+      "old_name": "InstanceTemplateSpecificReservation",
+      "new_name": "ComputeInstanceTemplateInstanceTemplateSpecificReservation"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_template.dart",
+      "old_name": "InstanceTemplateReservationAffinity",
+      "new_name": "ComputeInstanceTemplateInstanceTemplateReservationAffinity"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_instance_template.dart",
+      "old_name": "InstanceTemplateNetworkPerformanceConfig",
+      "new_name": "ComputeInstanceTemplateInstanceTemplateNetworkPerformanceConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_managed_ssl_certificate.dart",
+      "old_name": "ManagedSslCertificateConfig",
+      "new_name": "ComputeManagedSslCertificateManagedSslCertificateConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_autoscaler.dart",
+      "old_name": "RegionAutoscalerAutoscalingPolicy",
+      "new_name": "ComputeRegionAutoscalerRegionAutoscalerAutoscalingPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_autoscaler.dart",
+      "old_name": "RegionAutoscalerCpuUtilization",
+      "new_name": "ComputeRegionAutoscalerRegionAutoscalerCpuUtilization"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_autoscaler.dart",
+      "old_name": "RegionAutoscalerLoadBalancingUtilization",
+      "new_name": "ComputeRegionAutoscalerRegionAutoscalerLoadBalancingUtilization"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_autoscaler.dart",
+      "old_name": "RegionAutoscalerMetric",
+      "new_name": "ComputeRegionAutoscalerRegionAutoscalerMetric"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_autoscaler.dart",
+      "old_name": "RegionAutoscalerScaleInControl",
+      "new_name": "ComputeRegionAutoscalerRegionAutoscalerScaleInControl"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_autoscaler.dart",
+      "old_name": "RegionAutoscalerScaleInReplicas",
+      "new_name": "ComputeRegionAutoscalerRegionAutoscalerScaleInReplicas"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_autoscaler.dart",
+      "old_name": "RegionAutoscalerScalingSchedule",
+      "new_name": "ComputeRegionAutoscalerRegionAutoscalerScalingSchedule"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceBackend",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceBackend"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceBackendCustomMetric",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceBackendCustomMetric"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceCdnPolicy",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceCdnPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceCdnCacheKeyPolicy",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceCdnCacheKeyPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceCdnNegativeCachingPolicy",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceCdnNegativeCachingPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceIap",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceIap"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceCircuitBreakers",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceCircuitBreakers"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceConsistentHash",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceConsistentHash"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceConsistentHashHttpCookie",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceConsistentHashHttpCookie"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceDuration",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceDuration"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceLogConfig",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceLogConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceOutlierDetection",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceOutlierDetection"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceStrongSessionAffinityCookie",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceStrongSessionAffinityCookie"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceFailoverPolicy",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceFailoverPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceHaPolicy",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceHaPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceHaPolicyLeader",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceHaPolicyLeader"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceHaPolicyLeaderNetworkEndpoint",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceHaPolicyLeaderNetworkEndpoint"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceNetworkPassThroughLbTrafficPolicy",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceNetworkPassThroughLbTrafficPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceZonalAffinity",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceZonalAffinity"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceTlsSettings",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceTlsSettings"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceTlsSubjectAltName",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceTlsSubjectAltName"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceCustomMetric",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceCustomMetric"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_backend_service.dart",
+      "old_name": "RegionBackendServiceParams",
+      "new_name": "ComputeRegionBackendServiceRegionBackendServiceParams"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_health_check.dart",
+      "old_name": "RegionHealthCheckHttpConfig",
+      "new_name": "ComputeRegionHealthCheckRegionHealthCheckHttpConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_health_check.dart",
+      "old_name": "RegionHealthCheckHttpsConfig",
+      "new_name": "ComputeRegionHealthCheckRegionHealthCheckHttpsConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_health_check.dart",
+      "old_name": "RegionHealthCheckHttp2Config",
+      "new_name": "ComputeRegionHealthCheckRegionHealthCheckHttp2Config"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_health_check.dart",
+      "old_name": "RegionHealthCheckTcpConfig",
+      "new_name": "ComputeRegionHealthCheckRegionHealthCheckTcpConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_health_check.dart",
+      "old_name": "RegionHealthCheckSslConfig",
+      "new_name": "ComputeRegionHealthCheckRegionHealthCheckSslConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_health_check.dart",
+      "old_name": "RegionHealthCheckGrpcConfig",
+      "new_name": "ComputeRegionHealthCheckRegionHealthCheckGrpcConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_health_check.dart",
+      "old_name": "RegionHealthCheckLogConfig",
+      "new_name": "ComputeRegionHealthCheckRegionHealthCheckLogConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_instance_group_manager.dart",
+      "old_name": "RegionInstanceGroupManagerVersion",
+      "new_name": "ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_instance_group_manager.dart",
+      "old_name": "RegionInstanceGroupManagerVersionTargetSize",
+      "new_name": "ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersionTargetSize"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_instance_group_manager.dart",
+      "old_name": "RegionInstanceGroupManagerAutoHealingPolicy",
+      "new_name": "ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAutoHealingPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_instance_group_manager.dart",
+      "old_name": "RegionInstanceGroupManagerUpdatePolicy",
+      "new_name": "ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerUpdatePolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_instance_group_manager.dart",
+      "old_name": "RegionInstanceGroupManagerNamedPort",
+      "new_name": "ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerNamedPort"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_instance_group_manager.dart",
+      "old_name": "RegionInstanceGroupManagerStatefulDisk",
+      "new_name": "ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulDisk"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_instance_group_manager.dart",
+      "old_name": "RegionInstanceGroupManagerStatefulIp",
+      "new_name": "ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulIp"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_instance_group_manager.dart",
+      "old_name": "RegionInstanceGroupManagerAllInstancesConfig",
+      "new_name": "ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAllInstancesConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_instance_group_manager.dart",
+      "old_name": "RegionInstanceGroupManagerInstanceLifecyclePolicy",
+      "new_name": "ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceLifecyclePolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_instance_group_manager.dart",
+      "old_name": "RegionInstanceGroupManagerInstanceFlexibilityPolicy",
+      "new_name": "ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceFlexibilityPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_instance_group_manager.dart",
+      "old_name": "RegionInstanceGroupManagerInstanceSelection",
+      "new_name": "ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceSelection"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_instance_group_manager.dart",
+      "old_name": "RegionInstanceGroupManagerStandbyPolicy",
+      "new_name": "ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStandbyPolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_instance_group_manager.dart",
+      "old_name": "RegionInstanceGroupManagerTargetSizePolicy",
+      "new_name": "ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerTargetSizePolicy"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_instance_group_manager.dart",
+      "old_name": "RegionInstanceGroupManagerResourcePolicies",
+      "new_name": "ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerResourcePolicies"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_network_endpoint_group.dart",
+      "old_name": "RegionNetworkEndpointGroupCloudRun",
+      "new_name": "ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_network_endpoint_group.dart",
+      "old_name": "RegionNetworkEndpointGroupCloudFunction",
+      "new_name": "ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_network_endpoint_group.dart",
+      "old_name": "RegionNetworkEndpointGroupAppEngine",
+      "new_name": "ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_url_map.dart",
+      "old_name": "RegionUrlMapHostRule",
+      "new_name": "ComputeRegionUrlMapRegionUrlMapHostRule"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_url_map.dart",
+      "old_name": "RegionUrlMapPathMatcher",
+      "new_name": "ComputeRegionUrlMapRegionUrlMapPathMatcher"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_url_map.dart",
+      "old_name": "RegionUrlMapPathRule",
+      "new_name": "ComputeRegionUrlMapRegionUrlMapPathRule"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_url_map.dart",
+      "old_name": "RegionUrlMapRouteRule",
+      "new_name": "ComputeRegionUrlMapRegionUrlMapRouteRule"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_url_map.dart",
+      "old_name": "RegionUrlMapRouteRuleMatch",
+      "new_name": "ComputeRegionUrlMapRegionUrlMapRouteRuleMatch"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_url_map.dart",
+      "old_name": "RegionUrlMapHeaderMatch",
+      "new_name": "ComputeRegionUrlMapRegionUrlMapHeaderMatch"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_url_map.dart",
+      "old_name": "RegionUrlMapHeaderMatchRange",
+      "new_name": "ComputeRegionUrlMapRegionUrlMapHeaderMatchRange"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_url_map.dart",
+      "old_name": "RegionUrlMapQueryParameterMatch",
+      "new_name": "ComputeRegionUrlMapRegionUrlMapQueryParameterMatch"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_url_map.dart",
+      "old_name": "RegionUrlMapUrlRedirect",
+      "new_name": "ComputeRegionUrlMapRegionUrlMapUrlRedirect"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_url_map.dart",
+      "old_name": "RegionUrlMapHeaderAction",
+      "new_name": "ComputeRegionUrlMapRegionUrlMapHeaderAction"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_url_map.dart",
+      "old_name": "RegionUrlMapHeaderToAdd",
+      "new_name": "ComputeRegionUrlMapRegionUrlMapHeaderToAdd"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_url_map.dart",
+      "old_name": "RegionUrlMapTest",
+      "new_name": "ComputeRegionUrlMapRegionUrlMapTest"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_region_url_map.dart",
+      "old_name": "RegionUrlMapTestHeader",
+      "new_name": "ComputeRegionUrlMapRegionUrlMapTestHeader"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_security_policy.dart",
+      "old_name": "SecurityPolicyRule",
+      "new_name": "ComputeSecurityPolicySecurityPolicyRule"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_security_policy.dart",
+      "old_name": "SecurityPolicyRuleMatch",
+      "new_name": "ComputeSecurityPolicySecurityPolicyRuleMatch"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_security_policy.dart",
+      "old_name": "SecurityPolicyRuleMatchConfig",
+      "new_name": "ComputeSecurityPolicySecurityPolicyRuleMatchConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_security_policy.dart",
+      "old_name": "SecurityPolicyRuleMatchExpr",
+      "new_name": "ComputeSecurityPolicySecurityPolicyRuleMatchExpr"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_security_policy.dart",
+      "old_name": "SecurityPolicyRuleRateLimitOptions",
+      "new_name": "ComputeSecurityPolicySecurityPolicyRuleRateLimitOptions"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_security_policy.dart",
+      "old_name": "SecurityPolicyRuleRateLimitThreshold",
+      "new_name": "ComputeSecurityPolicySecurityPolicyRuleRateLimitThreshold"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_security_policy.dart",
+      "old_name": "SecurityPolicyRuleEnforceOnKeyConfig",
+      "new_name": "ComputeSecurityPolicySecurityPolicyRuleEnforceOnKeyConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_security_policy.dart",
+      "old_name": "SecurityPolicyRuleRedirectOptions",
+      "new_name": "ComputeSecurityPolicySecurityPolicyRuleRedirectOptions"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_security_policy.dart",
+      "old_name": "SecurityPolicyRuleHeaderAction",
+      "new_name": "ComputeSecurityPolicySecurityPolicyRuleHeaderAction"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_security_policy.dart",
+      "old_name": "SecurityPolicyRuleHeaderAdd",
+      "new_name": "ComputeSecurityPolicySecurityPolicyRuleHeaderAdd"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_security_policy.dart",
+      "old_name": "SecurityPolicyAdvancedOptionsConfig",
+      "new_name": "ComputeSecurityPolicySecurityPolicyAdvancedOptionsConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_security_policy.dart",
+      "old_name": "SecurityPolicyJsonCustomConfig",
+      "new_name": "ComputeSecurityPolicySecurityPolicyJsonCustomConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_security_policy.dart",
+      "old_name": "SecurityPolicyAdaptiveProtectionConfig",
+      "new_name": "ComputeSecurityPolicySecurityPolicyAdaptiveProtectionConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_security_policy.dart",
+      "old_name": "SecurityPolicyLayer7DdosDefenseConfig",
+      "new_name": "ComputeSecurityPolicySecurityPolicyLayer7DdosDefenseConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_security_policy.dart",
+      "old_name": "SecurityPolicyAdaptiveProtectionThresholdConfig",
+      "new_name": "ComputeSecurityPolicySecurityPolicyAdaptiveProtectionThresholdConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_security_policy.dart",
+      "old_name": "SecurityPolicyTrafficGranularityConfig",
+      "new_name": "ComputeSecurityPolicySecurityPolicyTrafficGranularityConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_security_policy.dart",
+      "old_name": "SecurityPolicyRecaptchaOptionsConfig",
+      "new_name": "ComputeSecurityPolicySecurityPolicyRecaptchaOptionsConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_subnetwork.dart",
+      "old_name": "SecondaryIpRange",
+      "new_name": "ComputeSubnetworkSecondaryIpRange"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_subnetwork.dart",
+      "old_name": "SubnetworkLogConfig",
+      "new_name": "ComputeSubnetworkSubnetworkLogConfig"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_url_map.dart",
+      "old_name": "UrlMapHostRule",
+      "new_name": "ComputeUrlMapUrlMapHostRule"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_url_map.dart",
+      "old_name": "UrlMapPathMatcher",
+      "new_name": "ComputeUrlMapUrlMapPathMatcher"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_url_map.dart",
+      "old_name": "UrlMapPathRule",
+      "new_name": "ComputeUrlMapUrlMapPathRule"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_url_map.dart",
+      "old_name": "UrlMapRouteRule",
+      "new_name": "ComputeUrlMapUrlMapRouteRule"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_url_map.dart",
+      "old_name": "UrlMapRouteRuleMatch",
+      "new_name": "ComputeUrlMapUrlMapRouteRuleMatch"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_url_map.dart",
+      "old_name": "UrlMapHeaderMatch",
+      "new_name": "ComputeUrlMapUrlMapHeaderMatch"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_url_map.dart",
+      "old_name": "UrlMapHeaderMatchRange",
+      "new_name": "ComputeUrlMapUrlMapHeaderMatchRange"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_url_map.dart",
+      "old_name": "UrlMapQueryParameterMatch",
+      "new_name": "ComputeUrlMapUrlMapQueryParameterMatch"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_url_map.dart",
+      "old_name": "UrlMapUrlRedirect",
+      "new_name": "ComputeUrlMapUrlMapUrlRedirect"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_url_map.dart",
+      "old_name": "UrlMapHeaderAction",
+      "new_name": "ComputeUrlMapUrlMapHeaderAction"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_url_map.dart",
+      "old_name": "UrlMapHeaderToAdd",
+      "new_name": "ComputeUrlMapUrlMapHeaderToAdd"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_url_map.dart",
+      "old_name": "UrlMapTest",
+      "new_name": "ComputeUrlMapUrlMapTest"
+    },
+    {
+      "barrel": "compute",
+      "file": "google_compute_url_map.dart",
+      "old_name": "UrlMapTestHeader",
+      "new_name": "ComputeUrlMapUrlMapTestHeader"
+    },
+    {
+      "barrel": "dns",
+      "file": "google_dns_managed_zone.dart",
+      "old_name": "PrivateVisibilityConfig",
+      "new_name": "DnsManagedZonePrivateVisibilityConfig"
+    },
+    {
+      "barrel": "dns",
+      "file": "google_dns_managed_zone.dart",
+      "old_name": "PrivateVisibilityGkeCluster",
+      "new_name": "DnsManagedZonePrivateVisibilityGkeCluster"
+    },
+    {
+      "barrel": "dns",
+      "file": "google_dns_managed_zone.dart",
+      "old_name": "PrivateVisibilityNetwork",
+      "new_name": "DnsManagedZonePrivateVisibilityNetwork"
+    },
+    {
+      "barrel": "dns",
+      "file": "google_dns_managed_zone.dart",
+      "old_name": "DnssecConfig",
+      "new_name": "DnsManagedZoneDnssecConfig"
+    },
+    {
+      "barrel": "dns",
+      "file": "google_dns_managed_zone.dart",
+      "old_name": "DnssecKeySpec",
+      "new_name": "DnsManagedZoneDnssecKeySpec"
+    },
+    {
+      "barrel": "dns",
+      "file": "google_dns_managed_zone.dart",
+      "old_name": "PeeringConfig",
+      "new_name": "DnsManagedZonePeeringConfig"
+    },
+    {
+      "barrel": "dns",
+      "file": "google_dns_managed_zone.dart",
+      "old_name": "PeeringTargetNetwork",
+      "new_name": "DnsManagedZonePeeringTargetNetwork"
+    },
+    {
+      "barrel": "dns",
+      "file": "google_dns_managed_zone.dart",
+      "old_name": "ForwardingConfig",
+      "new_name": "DnsManagedZoneForwardingConfig"
+    },
+    {
+      "barrel": "dns",
+      "file": "google_dns_managed_zone.dart",
+      "old_name": "ForwardingTargetNameServer",
+      "new_name": "DnsManagedZoneForwardingTargetNameServer"
+    },
+    {
+      "barrel": "dns",
+      "file": "google_dns_managed_zone.dart",
+      "old_name": "CloudLoggingConfig",
+      "new_name": "DnsManagedZoneCloudLoggingConfig"
+    },
+    {
+      "barrel": "firebase_app_hosting",
+      "file": "google_firebase_app_hosting_backend.dart",
+      "old_name": "AppHostingBackendCodebase",
+      "new_name": "FirebaseAppHostingBackendAppHostingBackendCodebase"
+    },
+    {
+      "barrel": "firebase_app_hosting",
+      "file": "google_firebase_app_hosting_build.dart",
+      "old_name": "AppHostingBuildSource",
+      "new_name": "FirebaseAppHostingBuildAppHostingBuildSource"
+    },
+    {
+      "barrel": "firebase_app_hosting",
+      "file": "google_firebase_app_hosting_build.dart",
+      "old_name": "AppHostingBuildSourceCodebase",
+      "new_name": "FirebaseAppHostingBuildAppHostingBuildSourceCodebase"
+    },
+    {
+      "barrel": "firebase_app_hosting",
+      "file": "google_firebase_app_hosting_build.dart",
+      "old_name": "AppHostingBuildSourceContainer",
+      "new_name": "FirebaseAppHostingBuildAppHostingBuildSourceContainer"
+    },
+    {
+      "barrel": "firebase_app_hosting",
+      "file": "google_firebase_app_hosting_domain.dart",
+      "old_name": "AppHostingDomainServe",
+      "new_name": "FirebaseAppHostingDomainAppHostingDomainServe"
+    },
+    {
+      "barrel": "firebase_app_hosting",
+      "file": "google_firebase_app_hosting_domain.dart",
+      "old_name": "AppHostingDomainRedirect",
+      "new_name": "FirebaseAppHostingDomainAppHostingDomainRedirect"
+    },
+    {
+      "barrel": "firebase_app_hosting",
+      "file": "google_firebase_app_hosting_traffic.dart",
+      "old_name": "AppHostingTrafficTarget",
+      "new_name": "FirebaseAppHostingTrafficAppHostingTrafficTarget"
+    },
+    {
+      "barrel": "firebase_app_hosting",
+      "file": "google_firebase_app_hosting_traffic.dart",
+      "old_name": "AppHostingTrafficSplit",
+      "new_name": "FirebaseAppHostingTrafficAppHostingTrafficSplit"
+    },
+    {
+      "barrel": "firebase_app_hosting",
+      "file": "google_firebase_app_hosting_traffic.dart",
+      "old_name": "AppHostingTrafficRolloutPolicy",
+      "new_name": "FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy"
+    },
+    {
+      "barrel": "firebase_remote_config",
+      "file": "google_firebase_remote_config_remote_config.dart",
+      "old_name": "RemoteConfigCondition",
+      "new_name": "FirebaseRemoteConfigRemoteConfigRemoteConfigCondition"
+    },
+    {
+      "barrel": "firebase_remote_config",
+      "file": "google_firebase_remote_config_remote_config.dart",
+      "old_name": "RemoteConfigDefaultValue",
+      "new_name": "FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue"
+    },
+    {
+      "barrel": "firebase_remote_config",
+      "file": "google_firebase_remote_config_remote_config.dart",
+      "old_name": "RemoteConfigConditionalValue",
+      "new_name": "FirebaseRemoteConfigRemoteConfigRemoteConfigConditionalValue"
+    },
+    {
+      "barrel": "firebase_remote_config",
+      "file": "google_firebase_remote_config_remote_config.dart",
+      "old_name": "RemoteConfigParameter",
+      "new_name": "FirebaseRemoteConfigRemoteConfigRemoteConfigParameter"
+    },
+    {
+      "barrel": "firebase_remote_config",
+      "file": "google_firebase_remote_config_remote_config.dart",
+      "old_name": "RemoteConfigParameterGroup",
+      "new_name": "FirebaseRemoteConfigRemoteConfigRemoteConfigParameterGroup"
+    },
+    {
+      "barrel": "firestore",
+      "file": "google_firestore_backup_schedule.dart",
+      "old_name": "BackupRecurrence",
+      "new_name": "FirestoreBackupScheduleBackupRecurrence"
+    },
+    {
+      "barrel": "firestore",
+      "file": "google_firestore_backup_schedule.dart",
+      "old_name": "DailyRecurrence",
+      "new_name": "FirestoreBackupScheduleDailyRecurrence"
+    },
+    {
+      "barrel": "firestore",
+      "file": "google_firestore_backup_schedule.dart",
+      "old_name": "WeeklyRecurrence",
+      "new_name": "FirestoreBackupScheduleWeeklyRecurrence"
+    },
+    {
+      "barrel": "firestore",
+      "file": "google_firestore_database.dart",
+      "old_name": "CmekConfig",
+      "new_name": "FirestoreDatabaseCmekConfig"
+    },
+    {
+      "barrel": "firestore",
+      "file": "google_firestore_field.dart",
+      "old_name": "IndexConfig",
+      "new_name": "FirestoreFieldIndexConfig"
+    },
+    {
+      "barrel": "firestore",
+      "file": "google_firestore_field.dart",
+      "old_name": "SingleFieldIndex",
+      "new_name": "FirestoreFieldSingleFieldIndex"
+    },
+    {
+      "barrel": "firestore",
+      "file": "google_firestore_field.dart",
+      "old_name": "TtlConfig",
+      "new_name": "FirestoreFieldTtlConfig"
+    },
+    {
+      "barrel": "firestore",
+      "file": "google_firestore_index.dart",
+      "old_name": "IndexField",
+      "new_name": "FirestoreIndexIndexField"
+    },
+    {
+      "barrel": "firestore",
+      "file": "google_firestore_index.dart",
+      "old_name": "IndexFieldSpec",
+      "new_name": "FirestoreIndexIndexFieldSpec"
+    },
+    {
+      "barrel": "firestore",
+      "file": "google_firestore_index.dart",
+      "old_name": "IndexFieldOrder",
+      "new_name": "FirestoreIndexIndexFieldOrder"
+    },
+    {
+      "barrel": "firestore",
+      "file": "google_firestore_index.dart",
+      "old_name": "IndexFieldArrayConfig",
+      "new_name": "FirestoreIndexIndexFieldArrayConfig"
+    },
+    {
+      "barrel": "firestore",
+      "file": "google_firestore_index.dart",
+      "old_name": "IndexFieldSearchConfig",
+      "new_name": "FirestoreIndexIndexFieldSearchConfig"
+    },
+    {
+      "barrel": "firestore",
+      "file": "google_firestore_index.dart",
+      "old_name": "IndexFieldTextSpec",
+      "new_name": "FirestoreIndexIndexFieldTextSpec"
+    },
+    {
+      "barrel": "firestore",
+      "file": "google_firestore_index.dart",
+      "old_name": "IndexFieldTextSpecEntry",
+      "new_name": "FirestoreIndexIndexFieldTextSpecEntry"
+    },
+    {
+      "barrel": "firestore",
+      "file": "google_firestore_index.dart",
+      "old_name": "IndexFieldVectorConfig",
+      "new_name": "FirestoreIndexIndexFieldVectorConfig"
+    },
+    {
+      "barrel": "kms",
+      "file": "google_kms_crypto_key.dart",
+      "old_name": "VersionTemplate",
+      "new_name": "KmsCryptoKeyVersionTemplate"
+    },
+    {
+      "barrel": "logging",
+      "file": "google_logging_project_sink.dart",
+      "old_name": "BigqueryOptions",
+      "new_name": "LoggingProjectSinkBigqueryOptions"
+    },
+    {
+      "barrel": "logging",
+      "file": "google_logging_project_sink.dart",
+      "old_name": "LogSinkExclusion",
+      "new_name": "LoggingProjectSinkLogSinkExclusion"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "Aggregation",
+      "new_name": "MonitoringAlertPolicyAggregation"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "ConditionTrigger",
+      "new_name": "MonitoringAlertPolicyConditionTrigger"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "ForecastOptions",
+      "new_name": "MonitoringAlertPolicyForecastOptions"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "ConditionThreshold",
+      "new_name": "MonitoringAlertPolicyConditionThreshold"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "ConditionAbsent",
+      "new_name": "MonitoringAlertPolicyConditionAbsent"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "ConditionMatchedLog",
+      "new_name": "MonitoringAlertPolicyConditionMatchedLog"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "ConditionMonitoringQueryLanguage",
+      "new_name": "MonitoringAlertPolicyConditionMonitoringQueryLanguage"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "ConditionPrometheusQueryLanguage",
+      "new_name": "MonitoringAlertPolicyConditionPrometheusQueryLanguage"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "SqlScheduleMinutes",
+      "new_name": "MonitoringAlertPolicySqlScheduleMinutes"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "SqlScheduleHourly",
+      "new_name": "MonitoringAlertPolicySqlScheduleHourly"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "SqlExecutionTime",
+      "new_name": "MonitoringAlertPolicySqlExecutionTime"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "SqlScheduleDaily",
+      "new_name": "MonitoringAlertPolicySqlScheduleDaily"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "SqlBooleanTest",
+      "new_name": "MonitoringAlertPolicySqlBooleanTest"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "SqlRowCountTest",
+      "new_name": "MonitoringAlertPolicySqlRowCountTest"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "ConditionSql",
+      "new_name": "MonitoringAlertPolicyConditionSql"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "AlertCondition",
+      "new_name": "MonitoringAlertPolicyAlertCondition"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "NotificationRateLimit",
+      "new_name": "MonitoringAlertPolicyNotificationRateLimit"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "NotificationChannelStrategy",
+      "new_name": "MonitoringAlertPolicyNotificationChannelStrategy"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "AlertStrategy",
+      "new_name": "MonitoringAlertPolicyAlertStrategy"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "DocumentationLink",
+      "new_name": "MonitoringAlertPolicyDocumentationLink"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "old_name": "Documentation",
+      "new_name": "MonitoringAlertPolicyDocumentation"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_uptime_check_config.dart",
+      "old_name": "MonitoringUptimeCheckMonitoredResource",
+      "new_name": "MonitoringUptimeCheckConfigMonitoringUptimeCheckMonitoredResource"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_uptime_check_config.dart",
+      "old_name": "MonitoringUptimeCheckResourceGroup",
+      "new_name": "MonitoringUptimeCheckConfigMonitoringUptimeCheckResourceGroup"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_uptime_check_config.dart",
+      "old_name": "MonitoringUptimeCheckHttpAuthInfo",
+      "new_name": "MonitoringUptimeCheckConfigMonitoringUptimeCheckHttpAuthInfo"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_uptime_check_config.dart",
+      "old_name": "MonitoringUptimeCheckPingConfig",
+      "new_name": "MonitoringUptimeCheckConfigMonitoringUptimeCheckPingConfig"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_uptime_check_config.dart",
+      "old_name": "MonitoringUptimeCheckAcceptedResponseStatus",
+      "new_name": "MonitoringUptimeCheckConfigMonitoringUptimeCheckAcceptedResponseStatus"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_uptime_check_config.dart",
+      "old_name": "MonitoringUptimeCheckServiceAgentAuthentication",
+      "new_name": "MonitoringUptimeCheckConfigMonitoringUptimeCheckServiceAgentAuthentication"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_uptime_check_config.dart",
+      "old_name": "MonitoringUptimeCheckHttpCheck",
+      "new_name": "MonitoringUptimeCheckConfigMonitoringUptimeCheckHttpCheck"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_uptime_check_config.dart",
+      "old_name": "MonitoringUptimeCheckTcpCheck",
+      "new_name": "MonitoringUptimeCheckConfigMonitoringUptimeCheckTcpCheck"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_uptime_check_config.dart",
+      "old_name": "MonitoringUptimeCheckCloudFunctionV2",
+      "new_name": "MonitoringUptimeCheckConfigMonitoringUptimeCheckCloudFunctionV2"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_uptime_check_config.dart",
+      "old_name": "MonitoringUptimeCheckSyntheticMonitor",
+      "new_name": "MonitoringUptimeCheckConfigMonitoringUptimeCheckSyntheticMonitor"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_uptime_check_config.dart",
+      "old_name": "MonitoringUptimeCheckJsonPathMatcher",
+      "new_name": "MonitoringUptimeCheckConfigMonitoringUptimeCheckJsonPathMatcher"
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_uptime_check_config.dart",
+      "old_name": "MonitoringUptimeCheckContentMatcher",
+      "new_name": "MonitoringUptimeCheckConfigMonitoringUptimeCheckContentMatcher"
+    },
+    {
+      "barrel": "pubsub",
+      "file": "google_pubsub_subscription.dart",
+      "old_name": "PushConfig",
+      "new_name": "PubsubSubscriptionPushConfig"
+    },
+    {
+      "barrel": "pubsub",
+      "file": "google_pubsub_subscription.dart",
+      "old_name": "OidcToken",
+      "new_name": "PubsubSubscriptionOidcToken"
+    },
+    {
+      "barrel": "pubsub",
+      "file": "google_pubsub_subscription.dart",
+      "old_name": "NoWrapper",
+      "new_name": "PubsubSubscriptionNoWrapper"
+    },
+    {
+      "barrel": "pubsub",
+      "file": "google_pubsub_subscription.dart",
+      "old_name": "BigQueryConfig",
+      "new_name": "PubsubSubscriptionBigQueryConfig"
+    },
+    {
+      "barrel": "pubsub",
+      "file": "google_pubsub_subscription.dart",
+      "old_name": "CloudStorageConfig",
+      "new_name": "PubsubSubscriptionCloudStorageConfig"
+    },
+    {
+      "barrel": "pubsub",
+      "file": "google_pubsub_subscription.dart",
+      "old_name": "DeadLetterPolicy",
+      "new_name": "PubsubSubscriptionDeadLetterPolicy"
+    },
+    {
+      "barrel": "pubsub",
+      "file": "google_pubsub_subscription.dart",
+      "old_name": "RetryPolicy",
+      "new_name": "PubsubSubscriptionRetryPolicy"
+    },
+    {
+      "barrel": "pubsub",
+      "file": "google_pubsub_subscription.dart",
+      "old_name": "ExpirationPolicy",
+      "new_name": "PubsubSubscriptionExpirationPolicy"
+    },
+    {
+      "barrel": "secret_manager",
+      "file": "google_secret_manager_secret.dart",
+      "old_name": "Replication",
+      "new_name": "SecretManagerSecretReplication"
+    },
+    {
+      "barrel": "secret_manager",
+      "file": "google_secret_manager_secret.dart",
+      "old_name": "CustomerManagedEncryption",
+      "new_name": "SecretManagerSecretCustomerManagedEncryption"
+    },
+    {
+      "barrel": "secret_manager",
+      "file": "google_secret_manager_secret.dart",
+      "old_name": "Replica",
+      "new_name": "SecretManagerSecretReplica"
+    },
+    {
+      "barrel": "secret_manager",
+      "file": "google_secret_manager_secret.dart",
+      "old_name": "SecretTopic",
+      "new_name": "SecretManagerSecretSecretTopic"
+    },
+    {
+      "barrel": "secret_manager",
+      "file": "google_secret_manager_secret.dart",
+      "old_name": "Rotation",
+      "new_name": "SecretManagerSecretRotation"
+    },
+    {
+      "barrel": "sql",
+      "file": "google_sql_database_instance.dart",
+      "old_name": "Settings",
+      "new_name": "SqlDatabaseInstanceSettings"
+    },
+    {
+      "barrel": "sql",
+      "file": "google_sql_database_instance.dart",
+      "old_name": "IpConfiguration",
+      "new_name": "SqlDatabaseInstanceIpConfiguration"
+    },
+    {
+      "barrel": "sql",
+      "file": "google_sql_database_instance.dart",
+      "old_name": "AuthorizedNetwork",
+      "new_name": "SqlDatabaseInstanceAuthorizedNetwork"
+    },
+    {
+      "barrel": "sql",
+      "file": "google_sql_database_instance.dart",
+      "old_name": "PscConfig",
+      "new_name": "SqlDatabaseInstancePscConfig"
+    },
+    {
+      "barrel": "sql",
+      "file": "google_sql_database_instance.dart",
+      "old_name": "BackupConfiguration",
+      "new_name": "SqlDatabaseInstanceBackupConfiguration"
+    },
+    {
+      "barrel": "sql",
+      "file": "google_sql_database_instance.dart",
+      "old_name": "BackupRetentionSettings",
+      "new_name": "SqlDatabaseInstanceBackupRetentionSettings"
+    },
+    {
+      "barrel": "sql",
+      "file": "google_sql_database_instance.dart",
+      "old_name": "DatabaseFlag",
+      "new_name": "SqlDatabaseInstanceDatabaseFlag"
+    },
+    {
+      "barrel": "sql",
+      "file": "google_sql_database_instance.dart",
+      "old_name": "LocationPreference",
+      "new_name": "SqlDatabaseInstanceLocationPreference"
+    },
+    {
+      "barrel": "sql",
+      "file": "google_sql_database_instance.dart",
+      "old_name": "MaintenanceWindow",
+      "new_name": "SqlDatabaseInstanceMaintenanceWindow"
+    },
+    {
+      "barrel": "sql",
+      "file": "google_sql_database_instance.dart",
+      "old_name": "ReplicaConfiguration",
+      "new_name": "SqlDatabaseInstanceReplicaConfiguration"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket.dart",
+      "old_name": "Versioning",
+      "new_name": "StorageBucketVersioning"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket.dart",
+      "old_name": "BucketCors",
+      "new_name": "StorageBucketBucketCors"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket.dart",
+      "old_name": "LifecycleRule",
+      "new_name": "StorageBucketLifecycleRule"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket.dart",
+      "old_name": "LifecycleAction",
+      "new_name": "StorageBucketLifecycleAction"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket.dart",
+      "old_name": "LifecycleCondition",
+      "new_name": "StorageBucketLifecycleCondition"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket.dart",
+      "old_name": "Encryption",
+      "new_name": "StorageBucketEncryption"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket.dart",
+      "old_name": "EncryptionEnforcementConfig",
+      "new_name": "StorageBucketEncryptionEnforcementConfig"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket.dart",
+      "old_name": "RetentionPolicy",
+      "new_name": "StorageBucketRetentionPolicy"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket.dart",
+      "old_name": "BucketLogging",
+      "new_name": "StorageBucketBucketLogging"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket.dart",
+      "old_name": "BucketWebsite",
+      "new_name": "StorageBucketBucketWebsite"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket.dart",
+      "old_name": "Autoclass",
+      "new_name": "StorageBucketAutoclass"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket.dart",
+      "old_name": "CustomPlacementConfig",
+      "new_name": "StorageBucketCustomPlacementConfig"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket.dart",
+      "old_name": "HierarchicalNamespace",
+      "new_name": "StorageBucketHierarchicalNamespace"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket.dart",
+      "old_name": "IpFilter",
+      "new_name": "StorageBucketIpFilter"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket.dart",
+      "old_name": "PublicNetworkSource",
+      "new_name": "StorageBucketPublicNetworkSource"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket.dart",
+      "old_name": "VpcNetworkSource",
+      "new_name": "StorageBucketVpcNetworkSource"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket.dart",
+      "old_name": "SoftDeletePolicy",
+      "new_name": "StorageBucketSoftDeletePolicy"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket_object.dart",
+      "old_name": "BucketObjectContent",
+      "new_name": "StorageBucketObjectBucketObjectContent"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket_object.dart",
+      "old_name": "BucketObjectFromSource",
+      "new_name": "StorageBucketObjectBucketObjectFromSource"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket_object.dart",
+      "old_name": "BucketObjectFromContent",
+      "new_name": "StorageBucketObjectBucketObjectFromContent"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket_object.dart",
+      "old_name": "CustomerEncryption",
+      "new_name": "StorageBucketObjectCustomerEncryption"
+    },
+    {
+      "barrel": "storage",
+      "file": "google_storage_bucket_object.dart",
+      "old_name": "BucketObjectRetention",
+      "new_name": "StorageBucketObjectBucketObjectRetention"
+    }
+  ],
+  "iam_member_getter_renames": [
+    {
+      "file": "iam/google_service_account.dart",
+      "old_getter": "member",
+      "new_getter": "iamMember"
+    }
+  ],
+  "enum_verbose_renames": [
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "enum": "Comparison",
+      "renames": [
+        {
+          "old": "gt",
+          "new": "greaterThan"
+        },
+        {
+          "old": "ge",
+          "new": "greaterThanOrEqual"
+        },
+        {
+          "old": "lt",
+          "new": "lessThan"
+        },
+        {
+          "old": "le",
+          "new": "lessThanOrEqual"
+        },
+        {
+          "old": "eq",
+          "new": "equalTo"
+        },
+        {
+          "old": "ne",
+          "new": "notEqualTo"
+        }
+      ]
+    },
+    {
+      "barrel": "monitoring",
+      "file": "google_monitoring_alert_policy.dart",
+      "enum": "Aligner",
+      "renames": [
+        {
+          "old": "nextOlder",
+          "new": "alignNextOlder"
+        }
+      ]
+    }
+  ],
+  "tf_arg_wrap_renames": [
+    {
+      "file": "artifact_registry/google_artifact_registry_repository.dart",
+      "helper": "ArtifactRegistryCleanupPolicy",
+      "fields": [
+        {
+          "name": "id",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "bigquery/google_bigquery_job.dart",
+      "helper": "BigqueryJobParquetOptions",
+      "fields": [
+        {
+          "name": "enableListInference",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "enumAsString",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "bigquery/google_bigquery_routine.dart",
+      "helper": "BigqueryRoutineArgument",
+      "fields": [
+        {
+          "name": "name",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "dataType",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "bigquery/google_bigquery_routine.dart",
+      "helper": "BigqueryRoutineRemoteFunctionOptions",
+      "fields": [
+        {
+          "name": "endpoint",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "connection",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "userDefinedContext",
+          "old_type": "Map<String, String>?",
+          "new_type": "TfArg<Map<String, String>>?"
+        },
+        {
+          "name": "maxBatchingRows",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "bigquery/google_bigquery_routine.dart",
+      "helper": "BigqueryRoutineSparkOptions",
+      "fields": [
+        {
+          "name": "connection",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "runtimeVersion",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "containerImage",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "properties",
+          "old_type": "Map<String, String>?",
+          "new_type": "TfArg<Map<String, String>>?"
+        },
+        {
+          "name": "mainFileUri",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "bigquery/google_bigquery_table.dart",
+      "helper": "TimePartitioning",
+      "fields": [
+        {
+          "name": "expirationMs",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "field",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "requirePartitionFilter",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "bigquery/google_bigquery_table.dart",
+      "helper": "RangePartitioning",
+      "fields": [
+        {
+          "name": "field",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "bigquery/google_bigquery_table.dart",
+      "helper": "RangePartitioningRange",
+      "fields": [
+        {
+          "name": "start",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        },
+        {
+          "name": "end",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        },
+        {
+          "name": "interval",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        }
+      ]
+    },
+    {
+      "file": "bigquery/google_bigquery_table.dart",
+      "helper": "MaterializedView",
+      "fields": [
+        {
+          "name": "query",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "enableRefresh",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "refreshIntervalMs",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "allowNonIncrementalDefinition",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "bigquery/google_bigquery_table.dart",
+      "helper": "TableView",
+      "fields": [
+        {
+          "name": "query",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "useLegacySql",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "bigquery/google_bigquery_table.dart",
+      "helper": "CsvOptions",
+      "fields": [
+        {
+          "name": "quote",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "allowJaggedRows",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "allowQuotedNewlines",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "encoding",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "fieldDelimiter",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "skipLeadingRows",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "sourceColumnMatch",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "bigquery/google_bigquery_table.dart",
+      "helper": "GoogleSheetsOptions",
+      "fields": [
+        {
+          "name": "range",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "skipLeadingRows",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "bigquery/google_bigquery_table.dart",
+      "helper": "HivePartitioningOptions",
+      "fields": [
+        {
+          "name": "mode",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "requirePartitionFilter",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "sourceUriPrefix",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "bigquery/google_bigquery_table.dart",
+      "helper": "ParquetOptions",
+      "fields": [
+        {
+          "name": "enableListInference",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "enumAsString",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "bigquery/google_bigquery_table.dart",
+      "helper": "AvroOptions",
+      "fields": [
+        {
+          "name": "useAvroLogicalTypes",
+          "old_type": "bool",
+          "new_type": "TfArg<bool>"
+        }
+      ]
+    },
+    {
+      "file": "bigquery/google_bigquery_table.dart",
+      "helper": "JsonOptions",
+      "fields": [
+        {
+          "name": "encoding",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "bigquery/google_bigquery_table.dart",
+      "helper": "ForeignKey",
+      "fields": [
+        {
+          "name": "name",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "bigquery/google_bigquery_table.dart",
+      "helper": "ReferencedTable",
+      "fields": [
+        {
+          "name": "projectId",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "datasetId",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "tableId",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "bigquery/google_bigquery_table.dart",
+      "helper": "ColumnReferences",
+      "fields": [
+        {
+          "name": "referencingColumn",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "referencedColumn",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "bigquery/google_bigquery_table.dart",
+      "helper": "TableReplicationInfo",
+      "fields": [
+        {
+          "name": "sourceProjectId",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "sourceDatasetId",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "sourceTableId",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "replicationIntervalMs",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "bigquery/google_bigquery_table.dart",
+      "helper": "BiglakeConfiguration",
+      "fields": [
+        {
+          "name": "connectionId",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "storageUri",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "fileFormat",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "tableFormat",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "cloud_run/google_cloud_run_v2_job.dart",
+      "helper": "JobEnvVar",
+      "fields": [
+        {
+          "name": "name",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "cloud_run/google_cloud_run_v2_service.dart",
+      "helper": "EnvVar",
+      "fields": [
+        {
+          "name": "name",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_autoscaler.dart",
+      "helper": "AutoscalerAutoscalingPolicy",
+      "fields": [
+        {
+          "name": "minReplicas",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_autoscaler.dart",
+      "helper": "AutoscalerCpuUtilization",
+      "fields": [
+        {
+          "name": "target",
+          "old_type": "double",
+          "new_type": "TfArg<double>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_autoscaler.dart",
+      "helper": "AutoscalerLoadBalancingUtilization",
+      "fields": [
+        {
+          "name": "target",
+          "old_type": "double",
+          "new_type": "TfArg<double>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_autoscaler.dart",
+      "helper": "AutoscalerMetric",
+      "fields": [
+        {
+          "name": "name",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "target",
+          "old_type": "double?",
+          "new_type": "TfArg<double>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_autoscaler.dart",
+      "helper": "AutoscalerScaleInControl",
+      "fields": [
+        {
+          "name": "timeWindowSec",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_autoscaler.dart",
+      "helper": "AutoscalerScaleInReplicas",
+      "fields": [
+        {
+          "name": "fixed",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "percent",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_autoscaler.dart",
+      "helper": "AutoscalerScalingSchedule",
+      "fields": [
+        {
+          "name": "minRequiredReplicas",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        },
+        {
+          "name": "schedule",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_backend_bucket.dart",
+      "helper": "BackendBucketCdnNegativeCachingPolicy",
+      "fields": [
+        {
+          "name": "code",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "ttl",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_backend_service.dart",
+      "helper": "BackendServiceBackendCustomMetric",
+      "fields": [
+        {
+          "name": "dryRun",
+          "old_type": "bool",
+          "new_type": "TfArg<bool>"
+        },
+        {
+          "name": "maxUtilization",
+          "old_type": "double?",
+          "new_type": "TfArg<double>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_backend_service.dart",
+      "helper": "BackendServiceCdnPolicy",
+      "fields": [
+        {
+          "name": "clientTtl",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_backend_service.dart",
+      "helper": "BackendServiceCdnCacheKeyPolicy",
+      "fields": [
+        {
+          "name": "includeHost",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "includeProtocol",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "includeQueryString",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_backend_service.dart",
+      "helper": "BackendServiceCdnNegativeCachingPolicy",
+      "fields": [
+        {
+          "name": "code",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "ttl",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_backend_service.dart",
+      "helper": "BackendServiceIap",
+      "fields": [
+        {
+          "name": "enabled",
+          "old_type": "bool",
+          "new_type": "TfArg<bool>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_backend_service.dart",
+      "helper": "BackendServiceCircuitBreakers",
+      "fields": [
+        {
+          "name": "maxConnections",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "maxPendingRequests",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "maxRequests",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "maxRequestsPerConnection",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "maxRetries",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_backend_service.dart",
+      "helper": "BackendServiceConsistentHash",
+      "fields": [
+        {
+          "name": "minimumRingSize",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_backend_service.dart",
+      "helper": "BackendServiceDuration",
+      "fields": [
+        {
+          "name": "seconds",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        },
+        {
+          "name": "nanos",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_backend_service.dart",
+      "helper": "BackendServiceLogConfig",
+      "fields": [
+        {
+          "name": "enable",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "sampleRate",
+          "old_type": "double?",
+          "new_type": "TfArg<double>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_backend_service.dart",
+      "helper": "BackendServiceOutlierDetection",
+      "fields": [
+        {
+          "name": "consecutiveErrors",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "consecutiveGatewayFailure",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "enforcingConsecutiveErrors",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_backend_service.dart",
+      "helper": "BackendServiceMaxStreamDuration",
+      "fields": [
+        {
+          "name": "nanos",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_backend_service.dart",
+      "helper": "BackendServiceCustomMetric",
+      "fields": [
+        {
+          "name": "dryRun",
+          "old_type": "bool",
+          "new_type": "TfArg<bool>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_firewall.dart",
+      "helper": "FirewallAllowRule",
+      "fields": [
+        {
+          "name": "protocol",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_firewall.dart",
+      "helper": "FirewallDenyRule",
+      "fields": [
+        {
+          "name": "protocol",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_health_check.dart",
+      "helper": "HttpHealthCheckConfig",
+      "fields": [
+        {
+          "name": "host",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "requestPath",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "response",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_health_check.dart",
+      "helper": "HttpsHealthCheckConfig",
+      "fields": [
+        {
+          "name": "host",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "requestPath",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "response",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "port",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "portName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_health_check.dart",
+      "helper": "Http2HealthCheckConfig",
+      "fields": [
+        {
+          "name": "host",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "requestPath",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "response",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "port",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "portName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_health_check.dart",
+      "helper": "TcpHealthCheckConfig",
+      "fields": [
+        {
+          "name": "request",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "response",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "port",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "portName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_health_check.dart",
+      "helper": "SslHealthCheckConfig",
+      "fields": [
+        {
+          "name": "request",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "response",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "port",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "portName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_health_check.dart",
+      "helper": "GrpcHealthCheckConfig",
+      "fields": [
+        {
+          "name": "port",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "portName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_health_check.dart",
+      "helper": "HealthCheckLogConfig",
+      "fields": [
+        {
+          "name": "enable",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance.dart",
+      "helper": "InitializeParams",
+      "fields": [
+        {
+          "name": "image",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance.dart",
+      "helper": "BootDisk",
+      "fields": [
+        {
+          "name": "source",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance.dart",
+      "helper": "AccessConfig",
+      "fields": [
+        {
+          "name": "natIp",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "publicPtrDomainName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance.dart",
+      "helper": "Ipv6AccessConfig",
+      "fields": [
+        {
+          "name": "publicPtrDomainName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "externalIpv6",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "externalIpv6PrefixLength",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "name",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance.dart",
+      "helper": "AliasIpRange",
+      "fields": [
+        {
+          "name": "ipCidrRange",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "subnetworkRangeName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance.dart",
+      "helper": "NetworkInterface",
+      "fields": [
+        {
+          "name": "network",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "subnetwork",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "subnetworkProject",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance.dart",
+      "helper": "AttachedDisk",
+      "fields": [
+        {
+          "name": "source",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "deviceName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "mode",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "kmsKeySelfLink",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "diskEncryptionKeyRaw",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "diskEncryptionServiceAccount",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance.dart",
+      "helper": "ScratchDisk",
+      "fields": [
+        {
+          "name": "deviceName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance.dart",
+      "helper": "ServiceAccount",
+      "fields": [
+        {
+          "name": "email",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance.dart",
+      "helper": "SchedulingDuration",
+      "fields": [
+        {
+          "name": "seconds",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        },
+        {
+          "name": "nanos",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance.dart",
+      "helper": "NodeAffinity",
+      "fields": [
+        {
+          "name": "key",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "operator",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance.dart",
+      "helper": "Scheduling",
+      "fields": [
+        {
+          "name": "preemptible",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "automaticRestart",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "minNodeCpus",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance.dart",
+      "helper": "ShieldedInstanceConfig",
+      "fields": [
+        {
+          "name": "enableSecureBoot",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "enableVtpm",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "enableIntegrityMonitoring",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance.dart",
+      "helper": "ConfidentialInstanceConfig",
+      "fields": [
+        {
+          "name": "enableConfidentialCompute",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance.dart",
+      "helper": "GuestAccelerator",
+      "fields": [
+        {
+          "name": "type",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "count",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance.dart",
+      "helper": "AdvancedMachineFeatures",
+      "fields": [
+        {
+          "name": "enableNestedVirtualization",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "threadsPerCore",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "visibleCoreCount",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "enableUefiNetworking",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance.dart",
+      "helper": "SpecificReservation",
+      "fields": [
+        {
+          "name": "key",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance.dart",
+      "helper": "InstanceParams",
+      "fields": [
+        {
+          "name": "resourceManagerTags",
+          "old_type": "Map<String, String>?",
+          "new_type": "TfArg<Map<String, String>>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance.dart",
+      "helper": "NetworkPerformanceConfig",
+      "fields": [
+        {
+          "name": "totalEgressBandwidthTier",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_group_manager.dart",
+      "helper": "InstanceGroupManagerVersionTargetSize",
+      "fields": [
+        {
+          "name": "fixed",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "percent",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_group_manager.dart",
+      "helper": "InstanceGroupManagerAutoHealingPolicy",
+      "fields": [
+        {
+          "name": "initialDelaySec",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_group_manager.dart",
+      "helper": "InstanceGroupManagerNamedPort",
+      "fields": [
+        {
+          "name": "name",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "port",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_group_manager.dart",
+      "helper": "InstanceGroupManagerStatefulDisk",
+      "fields": [
+        {
+          "name": "deviceName",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "deleteRule",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_group_manager.dart",
+      "helper": "InstanceGroupManagerStatefulIp",
+      "fields": [
+        {
+          "name": "interfaceName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "deleteRule",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_group_manager.dart",
+      "helper": "InstanceGroupManagerAllInstancesConfig",
+      "fields": [
+        {
+          "name": "labels",
+          "old_type": "Map<String, String>?",
+          "new_type": "TfArg<Map<String, String>>?"
+        },
+        {
+          "name": "metadata",
+          "old_type": "Map<String, String>?",
+          "new_type": "TfArg<Map<String, String>>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_group_manager.dart",
+      "helper": "InstanceGroupManagerInstanceLifecyclePolicy",
+      "fields": [
+        {
+          "name": "defaultActionOnFailure",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "forceUpdateOnRepair",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_group_manager.dart",
+      "helper": "InstanceGroupManagerStandbyPolicy",
+      "fields": [
+        {
+          "name": "initialDelaySec",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "mode",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_group_manager.dart",
+      "helper": "InstanceGroupManagerTargetSizePolicy",
+      "fields": [
+        {
+          "name": "mode",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_template.dart",
+      "helper": "InstanceTemplateDiskEncryptionKey",
+      "fields": [
+        {
+          "name": "kmsKeySelfLink",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "kmsKeyServiceAccount",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_template.dart",
+      "helper": "InstanceTemplateSourceImageEncryptionKey",
+      "fields": [
+        {
+          "name": "kmsKeySelfLink",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "kmsKeyServiceAccount",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "rawKey",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_template.dart",
+      "helper": "InstanceTemplateSourceSnapshotEncryptionKey",
+      "fields": [
+        {
+          "name": "kmsKeySelfLink",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "kmsKeyServiceAccount",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "rawKey",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "rsaEncryptedKey",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_template.dart",
+      "helper": "InstanceTemplateAccessConfig",
+      "fields": [
+        {
+          "name": "natIp",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_template.dart",
+      "helper": "InstanceTemplateAliasIpRange",
+      "fields": [
+        {
+          "name": "ipCidrRange",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "subnetworkRangeName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_template.dart",
+      "helper": "InstanceTemplateNetworkInterface",
+      "fields": [
+        {
+          "name": "network",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_template.dart",
+      "helper": "InstanceTemplateServiceAccount",
+      "fields": [
+        {
+          "name": "email",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_template.dart",
+      "helper": "InstanceTemplateSchedulingDuration",
+      "fields": [
+        {
+          "name": "seconds",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        },
+        {
+          "name": "nanos",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_template.dart",
+      "helper": "InstanceTemplateNodeAffinity",
+      "fields": [
+        {
+          "name": "key",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "operator",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_template.dart",
+      "helper": "InstanceTemplateOnInstanceStopAction",
+      "fields": [
+        {
+          "name": "discardLocalSsd",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_template.dart",
+      "helper": "InstanceTemplateScheduling",
+      "fields": [
+        {
+          "name": "preemptible",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "automaticRestart",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_template.dart",
+      "helper": "InstanceTemplateShieldedInstanceConfig",
+      "fields": [
+        {
+          "name": "enableSecureBoot",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "enableVtpm",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "enableIntegrityMonitoring",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_template.dart",
+      "helper": "InstanceTemplateConfidentialInstanceConfig",
+      "fields": [
+        {
+          "name": "enableConfidentialCompute",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_template.dart",
+      "helper": "InstanceTemplateGuestAccelerator",
+      "fields": [
+        {
+          "name": "type",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "count",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_template.dart",
+      "helper": "InstanceTemplateAdvancedMachineFeatures",
+      "fields": [
+        {
+          "name": "enableNestedVirtualization",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "enableUefiNetworking",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_template.dart",
+      "helper": "InstanceTemplateSpecificReservation",
+      "fields": [
+        {
+          "name": "key",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_instance_template.dart",
+      "helper": "InstanceTemplateNetworkPerformanceConfig",
+      "fields": [
+        {
+          "name": "totalEgressBandwidthTier",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_autoscaler.dart",
+      "helper": "RegionAutoscalerAutoscalingPolicy",
+      "fields": [
+        {
+          "name": "minReplicas",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_autoscaler.dart",
+      "helper": "RegionAutoscalerCpuUtilization",
+      "fields": [
+        {
+          "name": "target",
+          "old_type": "double",
+          "new_type": "TfArg<double>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_autoscaler.dart",
+      "helper": "RegionAutoscalerLoadBalancingUtilization",
+      "fields": [
+        {
+          "name": "target",
+          "old_type": "double",
+          "new_type": "TfArg<double>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_autoscaler.dart",
+      "helper": "RegionAutoscalerMetric",
+      "fields": [
+        {
+          "name": "name",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "target",
+          "old_type": "double?",
+          "new_type": "TfArg<double>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_autoscaler.dart",
+      "helper": "RegionAutoscalerScaleInControl",
+      "fields": [
+        {
+          "name": "timeWindowSec",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_autoscaler.dart",
+      "helper": "RegionAutoscalerScaleInReplicas",
+      "fields": [
+        {
+          "name": "fixed",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "percent",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_autoscaler.dart",
+      "helper": "RegionAutoscalerScalingSchedule",
+      "fields": [
+        {
+          "name": "minRequiredReplicas",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        },
+        {
+          "name": "schedule",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_backend_service.dart",
+      "helper": "RegionBackendServiceBackendCustomMetric",
+      "fields": [
+        {
+          "name": "dryRun",
+          "old_type": "bool",
+          "new_type": "TfArg<bool>"
+        },
+        {
+          "name": "maxUtilization",
+          "old_type": "double?",
+          "new_type": "TfArg<double>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_backend_service.dart",
+      "helper": "RegionBackendServiceCdnPolicy",
+      "fields": [
+        {
+          "name": "clientTtl",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_backend_service.dart",
+      "helper": "RegionBackendServiceCdnCacheKeyPolicy",
+      "fields": [
+        {
+          "name": "includeHost",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "includeProtocol",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "includeQueryString",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_backend_service.dart",
+      "helper": "RegionBackendServiceCdnNegativeCachingPolicy",
+      "fields": [
+        {
+          "name": "code",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_backend_service.dart",
+      "helper": "RegionBackendServiceIap",
+      "fields": [
+        {
+          "name": "enabled",
+          "old_type": "bool",
+          "new_type": "TfArg<bool>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_backend_service.dart",
+      "helper": "RegionBackendServiceCircuitBreakers",
+      "fields": [
+        {
+          "name": "maxConnections",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "maxPendingRequests",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "maxRequests",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "maxRequestsPerConnection",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "maxRetries",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_backend_service.dart",
+      "helper": "RegionBackendServiceConsistentHash",
+      "fields": [
+        {
+          "name": "minimumRingSize",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_backend_service.dart",
+      "helper": "RegionBackendServiceDuration",
+      "fields": [
+        {
+          "name": "seconds",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        },
+        {
+          "name": "nanos",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_backend_service.dart",
+      "helper": "RegionBackendServiceLogConfig",
+      "fields": [
+        {
+          "name": "enable",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "sampleRate",
+          "old_type": "double?",
+          "new_type": "TfArg<double>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_backend_service.dart",
+      "helper": "RegionBackendServiceOutlierDetection",
+      "fields": [
+        {
+          "name": "consecutiveErrors",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "consecutiveGatewayFailure",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "enforcingConsecutiveErrors",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_backend_service.dart",
+      "helper": "RegionBackendServiceFailoverPolicy",
+      "fields": [
+        {
+          "name": "disableConnectionDrainOnFailover",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_backend_service.dart",
+      "helper": "RegionBackendServiceZonalAffinity",
+      "fields": [
+        {
+          "name": "spilloverRatio",
+          "old_type": "double?",
+          "new_type": "TfArg<double>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_backend_service.dart",
+      "helper": "RegionBackendServiceCustomMetric",
+      "fields": [
+        {
+          "name": "dryRun",
+          "old_type": "bool",
+          "new_type": "TfArg<bool>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_health_check.dart",
+      "helper": "RegionHealthCheckHttpConfig",
+      "fields": [
+        {
+          "name": "host",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "requestPath",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "response",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_health_check.dart",
+      "helper": "RegionHealthCheckHttpsConfig",
+      "fields": [
+        {
+          "name": "host",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "requestPath",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "response",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "port",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "portName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_health_check.dart",
+      "helper": "RegionHealthCheckHttp2Config",
+      "fields": [
+        {
+          "name": "host",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "requestPath",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "response",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "port",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "portName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_health_check.dart",
+      "helper": "RegionHealthCheckTcpConfig",
+      "fields": [
+        {
+          "name": "request",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "response",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "port",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "portName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_health_check.dart",
+      "helper": "RegionHealthCheckSslConfig",
+      "fields": [
+        {
+          "name": "request",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "response",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "port",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "portName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_health_check.dart",
+      "helper": "RegionHealthCheckGrpcConfig",
+      "fields": [
+        {
+          "name": "port",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "portName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_health_check.dart",
+      "helper": "RegionHealthCheckLogConfig",
+      "fields": [
+        {
+          "name": "enable",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_instance_group_manager.dart",
+      "helper": "RegionInstanceGroupManagerVersionTargetSize",
+      "fields": [
+        {
+          "name": "fixed",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "percent",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_instance_group_manager.dart",
+      "helper": "RegionInstanceGroupManagerAutoHealingPolicy",
+      "fields": [
+        {
+          "name": "initialDelaySec",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_instance_group_manager.dart",
+      "helper": "RegionInstanceGroupManagerNamedPort",
+      "fields": [
+        {
+          "name": "name",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "port",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_instance_group_manager.dart",
+      "helper": "RegionInstanceGroupManagerStatefulDisk",
+      "fields": [
+        {
+          "name": "deviceName",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "deleteRule",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_instance_group_manager.dart",
+      "helper": "RegionInstanceGroupManagerStatefulIp",
+      "fields": [
+        {
+          "name": "interfaceName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "deleteRule",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_instance_group_manager.dart",
+      "helper": "RegionInstanceGroupManagerAllInstancesConfig",
+      "fields": [
+        {
+          "name": "labels",
+          "old_type": "Map<String, String>?",
+          "new_type": "TfArg<Map<String, String>>?"
+        },
+        {
+          "name": "metadata",
+          "old_type": "Map<String, String>?",
+          "new_type": "TfArg<Map<String, String>>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_instance_group_manager.dart",
+      "helper": "RegionInstanceGroupManagerInstanceLifecyclePolicy",
+      "fields": [
+        {
+          "name": "defaultActionOnFailure",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "forceUpdateOnRepair",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_instance_group_manager.dart",
+      "helper": "RegionInstanceGroupManagerInstanceSelection",
+      "fields": [
+        {
+          "name": "name",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "rank",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_instance_group_manager.dart",
+      "helper": "RegionInstanceGroupManagerStandbyPolicy",
+      "fields": [
+        {
+          "name": "initialDelaySec",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "mode",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_instance_group_manager.dart",
+      "helper": "RegionInstanceGroupManagerTargetSizePolicy",
+      "fields": [
+        {
+          "name": "mode",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_url_map.dart",
+      "helper": "RegionUrlMapHostRule",
+      "fields": [
+        {
+          "name": "pathMatcher",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_url_map.dart",
+      "helper": "RegionUrlMapPathMatcher",
+      "fields": [
+        {
+          "name": "name",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_url_map.dart",
+      "helper": "RegionUrlMapRouteRule",
+      "fields": [
+        {
+          "name": "priority",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_region_url_map.dart",
+      "helper": "RegionUrlMapHeaderMatchRange",
+      "fields": [
+        {
+          "name": "rangeStart",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        },
+        {
+          "name": "rangeEnd",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_security_policy.dart",
+      "helper": "SecurityPolicyRule",
+      "fields": [
+        {
+          "name": "priority",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_security_policy.dart",
+      "helper": "SecurityPolicyRuleRateLimitOptions",
+      "fields": [
+        {
+          "name": "conformAction",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_security_policy.dart",
+      "helper": "SecurityPolicyRuleRateLimitThreshold",
+      "fields": [
+        {
+          "name": "count",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        },
+        {
+          "name": "intervalSec",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_security_policy.dart",
+      "helper": "SecurityPolicyRuleEnforceOnKeyConfig",
+      "fields": [
+        {
+          "name": "enforceOnKeyType",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "enforceOnKeyName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_security_policy.dart",
+      "helper": "SecurityPolicyRuleRedirectOptions",
+      "fields": [
+        {
+          "name": "type",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "target",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_security_policy.dart",
+      "helper": "SecurityPolicyRuleHeaderAdd",
+      "fields": [
+        {
+          "name": "headerName",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "headerValue",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_security_policy.dart",
+      "helper": "SecurityPolicyLayer7DdosDefenseConfig",
+      "fields": [
+        {
+          "name": "enable",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "ruleVisibility",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_security_policy.dart",
+      "helper": "SecurityPolicyAdaptiveProtectionThresholdConfig",
+      "fields": [
+        {
+          "name": "name",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "autoDeployConfidenceThreshold",
+          "old_type": "double?",
+          "new_type": "TfArg<double>?"
+        },
+        {
+          "name": "autoDeployExpirationSec",
+          "old_type": "double?",
+          "new_type": "TfArg<double>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_security_policy.dart",
+      "helper": "SecurityPolicyTrafficGranularityConfig",
+      "fields": [
+        {
+          "name": "type",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "enableEachUniqueValue",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_url_map.dart",
+      "helper": "UrlMapHostRule",
+      "fields": [
+        {
+          "name": "pathMatcher",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_url_map.dart",
+      "helper": "UrlMapPathMatcher",
+      "fields": [
+        {
+          "name": "name",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_url_map.dart",
+      "helper": "UrlMapRouteRule",
+      "fields": [
+        {
+          "name": "priority",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        }
+      ]
+    },
+    {
+      "file": "compute/google_compute_url_map.dart",
+      "helper": "UrlMapHeaderMatchRange",
+      "fields": [
+        {
+          "name": "rangeStart",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        },
+        {
+          "name": "rangeEnd",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        }
+      ]
+    },
+    {
+      "file": "dns/google_dns_managed_zone.dart",
+      "helper": "PrivateVisibilityGkeCluster",
+      "fields": [
+        {
+          "name": "gkeClusterName",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "dns/google_dns_managed_zone.dart",
+      "helper": "PrivateVisibilityNetwork",
+      "fields": [
+        {
+          "name": "networkUrl",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "dns/google_dns_managed_zone.dart",
+      "helper": "DnssecConfig",
+      "fields": [
+        {
+          "name": "kind",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "dns/google_dns_managed_zone.dart",
+      "helper": "DnssecKeySpec",
+      "fields": [
+        {
+          "name": "keyLength",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "kind",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "dns/google_dns_managed_zone.dart",
+      "helper": "PeeringTargetNetwork",
+      "fields": [
+        {
+          "name": "networkUrl",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "dns/google_dns_managed_zone.dart",
+      "helper": "ForwardingTargetNameServer",
+      "fields": [
+        {
+          "name": "domainName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "ipv4Address",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "ipv6Address",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "dns/google_dns_managed_zone.dart",
+      "helper": "CloudLoggingConfig",
+      "fields": [
+        {
+          "name": "enableLogging",
+          "old_type": "bool",
+          "new_type": "TfArg<bool>"
+        }
+      ]
+    },
+    {
+      "file": "eventarc/google_eventarc_trigger.dart",
+      "helper": "EventarcTriggerMatchingCriteria",
+      "fields": [
+        {
+          "name": "attribute",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "value",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "operator",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "firebase_remote_config/google_firebase_remote_config_remote_config.dart",
+      "helper": "RemoteConfigCondition",
+      "fields": [
+        {
+          "name": "name",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "expression",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "firebase_remote_config/google_firebase_remote_config_remote_config.dart",
+      "helper": "RemoteConfigDefaultValue",
+      "fields": [
+        {
+          "name": "useInAppDefault",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "value",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "firebase_remote_config/google_firebase_remote_config_remote_config.dart",
+      "helper": "RemoteConfigParameter",
+      "fields": [
+        {
+          "name": "parameterName",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "description",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "firebase_remote_config/google_firebase_remote_config_remote_config.dart",
+      "helper": "RemoteConfigParameterGroup",
+      "fields": [
+        {
+          "name": "parameterGroupName",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "description",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "firestore/google_firestore_index.dart",
+      "helper": "IndexFieldTextSpecEntry",
+      "fields": [
+        {
+          "name": "indexType",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "matchType",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "firestore/google_firestore_index.dart",
+      "helper": "IndexFieldVectorConfig",
+      "fields": [
+        {
+          "name": "dimension",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        }
+      ]
+    },
+    {
+      "file": "kms/google_kms_crypto_key.dart",
+      "helper": "VersionTemplate",
+      "fields": [
+        {
+          "name": "algorithm",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "logging/google_logging_folder_sink.dart",
+      "helper": "LoggingFolderSinkBigqueryOptions",
+      "fields": [
+        {
+          "name": "usePartitionedTables",
+          "old_type": "bool",
+          "new_type": "TfArg<bool>"
+        }
+      ]
+    },
+    {
+      "file": "logging/google_logging_folder_sink.dart",
+      "helper": "LoggingFolderSinkExclusion",
+      "fields": [
+        {
+          "name": "name",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "filter",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "description",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "disabled",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "logging/google_logging_organization_sink.dart",
+      "helper": "LoggingOrganizationSinkBigqueryOptions",
+      "fields": [
+        {
+          "name": "usePartitionedTables",
+          "old_type": "bool",
+          "new_type": "TfArg<bool>"
+        }
+      ]
+    },
+    {
+      "file": "logging/google_logging_organization_sink.dart",
+      "helper": "LoggingOrganizationSinkExclusion",
+      "fields": [
+        {
+          "name": "name",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "filter",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "description",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "disabled",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "logging/google_logging_project_sink.dart",
+      "helper": "BigqueryOptions",
+      "fields": [
+        {
+          "name": "usePartitionedTables",
+          "old_type": "bool",
+          "new_type": "TfArg<bool>"
+        }
+      ]
+    },
+    {
+      "file": "logging/google_logging_project_sink.dart",
+      "helper": "LogSinkExclusion",
+      "fields": [
+        {
+          "name": "name",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "filter",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "description",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "disabled",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "monitoring/google_monitoring_uptime_check_config.dart",
+      "helper": "MonitoringUptimeCheckMonitoredResource",
+      "fields": [
+        {
+          "name": "type",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "labels",
+          "old_type": "Map<String, String>",
+          "new_type": "TfArg<Map<String, String>>"
+        }
+      ]
+    },
+    {
+      "file": "monitoring/google_monitoring_uptime_check_config.dart",
+      "helper": "MonitoringUptimeCheckResourceGroup",
+      "fields": [
+        {
+          "name": "groupId",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "monitoring/google_monitoring_uptime_check_config.dart",
+      "helper": "MonitoringUptimeCheckHttpAuthInfo",
+      "fields": [
+        {
+          "name": "username",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "password",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "passwordWo",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "monitoring/google_monitoring_uptime_check_config.dart",
+      "helper": "MonitoringUptimeCheckPingConfig",
+      "fields": [
+        {
+          "name": "pingsCount",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        }
+      ]
+    },
+    {
+      "file": "monitoring/google_monitoring_uptime_check_config.dart",
+      "helper": "MonitoringUptimeCheckAcceptedResponseStatus",
+      "fields": [
+        {
+          "name": "statusValue",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "monitoring/google_monitoring_uptime_check_config.dart",
+      "helper": "MonitoringUptimeCheckTcpCheck",
+      "fields": [
+        {
+          "name": "port",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        }
+      ]
+    },
+    {
+      "file": "monitoring/google_monitoring_uptime_check_config.dart",
+      "helper": "MonitoringUptimeCheckCloudFunctionV2",
+      "fields": [
+        {
+          "name": "name",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "monitoring/google_monitoring_uptime_check_config.dart",
+      "helper": "MonitoringUptimeCheckJsonPathMatcher",
+      "fields": [
+        {
+          "name": "jsonPath",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "monitoring/google_monitoring_uptime_check_config.dart",
+      "helper": "MonitoringUptimeCheckContentMatcher",
+      "fields": [
+        {
+          "name": "content",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "sql/google_sql_database_instance.dart",
+      "helper": "BackupConfiguration",
+      "fields": [
+        {
+          "name": "enabled",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "startTime",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "location",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "sql/google_sql_database_instance.dart",
+      "helper": "BackupRetentionSettings",
+      "fields": [
+        {
+          "name": "retainedBackups",
+          "old_type": "int",
+          "new_type": "TfArg<int>"
+        },
+        {
+          "name": "retentionUnit",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "sql/google_sql_database_instance.dart",
+      "helper": "DatabaseFlag",
+      "fields": [
+        {
+          "name": "name",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "value",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "sql/google_sql_database_instance.dart",
+      "helper": "LocationPreference",
+      "fields": [
+        {
+          "name": "zone",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "secondaryZone",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "followGaeApplication",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "sql/google_sql_database_instance.dart",
+      "helper": "MaintenanceWindow",
+      "fields": [
+        {
+          "name": "day",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "hour",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "updateTrack",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "storage/google_storage_bucket.dart",
+      "helper": "Versioning",
+      "fields": [
+        {
+          "name": "enabled",
+          "old_type": "bool",
+          "new_type": "TfArg<bool>"
+        }
+      ]
+    },
+    {
+      "file": "storage/google_storage_bucket.dart",
+      "helper": "BucketCors",
+      "fields": [
+        {
+          "name": "maxAgeSeconds",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    },
+    {
+      "file": "storage/google_storage_bucket.dart",
+      "helper": "LifecycleCondition",
+      "fields": [
+        {
+          "name": "age",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        },
+        {
+          "name": "createdBefore",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "customTimeBefore",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "storage/google_storage_bucket.dart",
+      "helper": "Encryption",
+      "fields": [
+        {
+          "name": "defaultKmsKeyName",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "storage/google_storage_bucket.dart",
+      "helper": "EncryptionEnforcementConfig",
+      "fields": [
+        {
+          "name": "restrictionMode",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "storage/google_storage_bucket.dart",
+      "helper": "RetentionPolicy",
+      "fields": [
+        {
+          "name": "retentionPeriod",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "isLocked",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "storage/google_storage_bucket.dart",
+      "helper": "BucketLogging",
+      "fields": [
+        {
+          "name": "logBucket",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "logObjectPrefix",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "storage/google_storage_bucket.dart",
+      "helper": "BucketWebsite",
+      "fields": [
+        {
+          "name": "mainPageSuffix",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        },
+        {
+          "name": "notFoundPage",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "storage/google_storage_bucket.dart",
+      "helper": "Autoclass",
+      "fields": [
+        {
+          "name": "enabled",
+          "old_type": "bool",
+          "new_type": "TfArg<bool>"
+        },
+        {
+          "name": "terminalStorageClass",
+          "old_type": "String?",
+          "new_type": "TfArg<String>?"
+        }
+      ]
+    },
+    {
+      "file": "storage/google_storage_bucket.dart",
+      "helper": "HierarchicalNamespace",
+      "fields": [
+        {
+          "name": "enabled",
+          "old_type": "bool",
+          "new_type": "TfArg<bool>"
+        }
+      ]
+    },
+    {
+      "file": "storage/google_storage_bucket.dart",
+      "helper": "IpFilter",
+      "fields": [
+        {
+          "name": "mode",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        },
+        {
+          "name": "allowAllServiceAgentAccess",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        },
+        {
+          "name": "allowCrossOrgVpcs",
+          "old_type": "bool?",
+          "new_type": "TfArg<bool>?"
+        }
+      ]
+    },
+    {
+      "file": "storage/google_storage_bucket.dart",
+      "helper": "VpcNetworkSource",
+      "fields": [
+        {
+          "name": "network",
+          "old_type": "String",
+          "new_type": "TfArg<String>"
+        }
+      ]
+    },
+    {
+      "file": "storage/google_storage_bucket.dart",
+      "helper": "SoftDeletePolicy",
+      "fields": [
+        {
+          "name": "retentionDurationSeconds",
+          "old_type": "int?",
+          "new_type": "TfArg<int>?"
+        }
+      ]
+    }
+  ],
+  "id_vs_name_ref_renames": [],
+  "location_ref_additions": [
+    {
+      "file": "cloud_run/google_cloud_run_v2_service.dart",
+      "new_getter": "locationRef",
+      "underlying_attribute": "location"
+    },
+    {
+      "file": "cloud_run/google_cloud_run_v2_job.dart",
+      "new_getter": "locationRef",
+      "underlying_attribute": "location"
+    }
+  ]
+}

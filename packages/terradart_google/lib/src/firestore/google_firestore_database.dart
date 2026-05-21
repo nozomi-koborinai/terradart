@@ -118,8 +118,8 @@ enum RealtimeUpdatesMode {
 /// Customer-Managed Encryption. Setting this on an existing database
 /// forces replacement -- CMEK cannot be added or removed in place.
 @immutable
-class CmekConfig {
-  const CmekConfig({required this.kmsKeyName});
+class FirestoreDatabaseCmekConfig {
+  const FirestoreDatabaseCmekConfig({required this.kmsKeyName});
 
   /// KMS key resource path:
   /// `projects/{project}/locations/{location}/keyRings/{ring}/cryptoKeys/{key}`.
@@ -174,7 +174,7 @@ final class GoogleFirestoreDatabase extends Resource {
     required TfArg<String> name,
     required TfArg<String> locationId,
     required TfArg<FirestoreDatabaseType> type,
-    CmekConfig? cmekConfig,
+    FirestoreDatabaseCmekConfig? cmekConfig,
     TfArg<DatabaseEdition>? databaseEdition,
     TfArg<ConcurrencyMode>? concurrencyMode,
     TfArg<AppEngineIntegrationMode>? appEngineIntegrationMode,

@@ -18,7 +18,7 @@ class EmailJobsStack extends Stack {
   EmailJobsStack({required String projectId})
       : super(
           providers: [
-            GoogleProvider(project: projectId, region: 'us-central1')
+            GoogleProvider(project: projectId, region: 'us-central1'),
           ],
         ) {
     final queue = add(
@@ -26,15 +26,15 @@ class EmailJobsStack extends Stack {
         localName: 'email_jobs',
         name: TfArg.literal('email-jobs'),
         location: TfArg.literal('us-central1'),
-        rateLimits: const RateLimits(
-          maxConcurrentDispatches: TfArgLiteral<int>(10),
-          maxDispatchesPerSecond: TfArgLiteral<num>(5),
+        rateLimits: CloudTasksQueueRateLimits(
+          maxConcurrentDispatches: TfArg.literal(10),
+          maxDispatchesPerSecond: TfArg.literal(5),
         ),
-        retryConfig: const RetryConfig(
-          maxAttempts: TfArgLiteral<int>(5),
-          minBackoff: TfArgLiteral<String>('5s'),
-          maxBackoff: TfArgLiteral<String>('300s'),
-          maxDoublings: TfArgLiteral<int>(3),
+        retryConfig: CloudTasksQueueRetryConfig(
+          maxAttempts: TfArg.literal(5),
+          minBackoff: TfArg.literal('5s'),
+          maxBackoff: TfArg.literal('300s'),
+          maxDoublings: TfArg.literal(3),
         ),
       ),
     );

@@ -111,16 +111,16 @@ class BigqueryRoutineArgument {
     this.dataType,
   });
 
-  final String? name;
+  final TfArg<String>? name;
   final BigqueryRoutineArgumentKind? argumentKind;
   final BigqueryRoutineArgumentMode? mode;
-  final String? dataType;
+  final TfArg<String>? dataType;
 
   Map<String, Object?> toArgMap() => {
-    if (name != null) 'name': name,
+    if (name != null) 'name': name!.toTfJson(),
     if (argumentKind != null) 'argument_kind': argumentKind!.terraformValue,
     if (mode != null) 'mode': mode!.terraformValue,
-    if (dataType != null) 'data_type': dataType,
+    if (dataType != null) 'data_type': dataType!.toTfJson(),
   };
 }
 
@@ -143,16 +143,17 @@ class BigqueryRoutineRemoteFunctionOptions {
     this.maxBatchingRows,
   });
 
-  final String? endpoint;
-  final String? connection;
+  final TfArg<String>? endpoint;
+  final TfArg<String>? connection;
   final Map<String, String>? userDefinedContext;
-  final String? maxBatchingRows;
+  final TfArg<String>? maxBatchingRows;
 
   Map<String, Object?> toArgMap() => {
-    if (endpoint != null) 'endpoint': endpoint,
-    if (connection != null) 'connection': connection,
+    if (endpoint != null) 'endpoint': endpoint!.toTfJson(),
+    if (connection != null) 'connection': connection!.toTfJson(),
     if (userDefinedContext != null) 'user_defined_context': userDefinedContext,
-    if (maxBatchingRows != null) 'max_batching_rows': maxBatchingRows,
+    if (maxBatchingRows != null)
+      'max_batching_rows': maxBatchingRows!.toTfJson(),
   };
 }
 
@@ -180,28 +181,28 @@ class BigqueryRoutineSparkOptions {
     this.mainClass,
   });
 
-  final String? connection;
-  final String? runtimeVersion;
-  final String? containerImage;
+  final TfArg<String>? connection;
+  final TfArg<String>? runtimeVersion;
+  final TfArg<String>? containerImage;
   final Map<String, String>? properties;
-  final String? mainFileUri;
+  final TfArg<String>? mainFileUri;
   final List<String>? pyFileUris;
   final List<String>? jarUris;
   final List<String>? fileUris;
   final List<String>? archiveUris;
-  final String? mainClass;
+  final TfArg<String>? mainClass;
 
   Map<String, Object?> toArgMap() => {
-    if (connection != null) 'connection': connection,
-    if (runtimeVersion != null) 'runtime_version': runtimeVersion,
-    if (containerImage != null) 'container_image': containerImage,
+    if (connection != null) 'connection': connection!.toTfJson(),
+    if (runtimeVersion != null) 'runtime_version': runtimeVersion!.toTfJson(),
+    if (containerImage != null) 'container_image': containerImage!.toTfJson(),
     if (properties != null) 'properties': properties,
-    if (mainFileUri != null) 'main_file_uri': mainFileUri,
+    if (mainFileUri != null) 'main_file_uri': mainFileUri!.toTfJson(),
     if (pyFileUris != null) 'py_file_uris': pyFileUris,
     if (jarUris != null) 'jar_uris': jarUris,
     if (fileUris != null) 'file_uris': fileUris,
     if (archiveUris != null) 'archive_uris': archiveUris,
-    if (mainClass != null) 'main_class': mainClass,
+    if (mainClass != null) 'main_class': mainClass!.toTfJson(),
   };
 }
 

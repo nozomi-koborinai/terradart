@@ -37,14 +37,14 @@ class AssetsStack extends Stack {
       storageClass: TfArg.literal(BucketStorageClass.standard),
       forceDestroy: TfArg.literal(false),
       uniformBucketLevelAccess: TfArg.literal(true),
-      versioning: const Versioning(enabled: true),
-      lifecycleRule: const [
-        LifecycleRule(
-          action: LifecycleAction(
+      versioning: StorageBucketVersioning(enabled: TfArg.literal(true)),
+      lifecycleRule: [
+        StorageBucketLifecycleRule(
+          action: StorageBucketLifecycleAction(
             type: LifecycleActionType.setStorageClass,
             storageClass: BucketStorageClass.archive,
           ),
-          condition: LifecycleCondition(age: 365),
+          condition: StorageBucketLifecycleCondition(age: TfArg.literal(365)),
         ),
       ],
     );
@@ -55,8 +55,8 @@ class AssetsStack extends Stack {
         localName: 'config',
         bucket: TfArg.ref(assets.nameRef),
         name: TfArg.literal('config/app.json'),
-        body: BucketObjectFromContent(
-          content: TfArg.literal('{"feature_flags":{"new_ui":true}}'),
+        body: StorageBucketObjectBucketObjectFromSource(
+          source: TfArg.literal('./config/app.json'),
         ),
         contentType: TfArg.literal('application/json'),
         storageClass: TfArg.literal(BucketObjectStorageClass.standard),
@@ -81,7 +81,7 @@ class AssetsStack extends Stack {
         localName: 'assets_reader_binding',
         bucket: TfArg.ref(assets.nameRef),
         role: TfArg.literal('roles/storage.objectViewer'),
-        member: TfArg.ref(reader.member),
+        member: TfArg.ref(reader.iamMember),
       ),
     );
   }

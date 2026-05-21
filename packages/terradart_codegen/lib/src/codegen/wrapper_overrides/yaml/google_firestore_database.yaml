@@ -209,8 +209,8 @@ prelude: |
   /// Customer-Managed Encryption. Setting this on an existing database
   /// forces replacement -- CMEK cannot be added or removed in place.
   @immutable
-  class CmekConfig {
-    const CmekConfig({required this.kmsKeyName});
+  class FirestoreDatabaseCmekConfig {
+    const FirestoreDatabaseCmekConfig({required this.kmsKeyName});
 
     /// KMS key resource path:
     /// `projects/{project}/locations/{location}/keyRings/{ring}/cryptoKeys/{key}`.
@@ -224,5 +224,5 @@ prelude: |
 
 customSlots:
   cmek_config:
-    paramDeclaration: "CmekConfig? cmekConfig"
+    paramDeclaration: "FirestoreDatabaseCmekConfig? cmekConfig"
     argMapEntry: "if (cmekConfig != null) 'cmek_config': TfArg.literal([cmekConfig.encode()]),"

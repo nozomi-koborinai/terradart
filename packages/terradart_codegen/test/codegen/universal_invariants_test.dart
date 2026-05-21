@@ -3,7 +3,10 @@ import 'dart:io';
 
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/universal_invariants/enum_extractor.dart';
+import 'package:terradart_codegen/src/codegen/universal_invariants/enum_value_length.dart';
+import 'package:terradart_codegen/src/codegen/universal_invariants/nested_helper_prefix.dart';
 import 'package:terradart_codegen/src/codegen/universal_invariants/path_walker.dart';
+import 'package:terradart_codegen/src/codegen/universal_invariants/tf_arg_wrap.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
 import 'package:terradart_codegen/src/ir/provider_schema_ir.dart';
@@ -278,6 +281,75 @@ void main() {
               'Offenders:\n  ${offenders.join("\n  ")}',
         );
       });
+    });
+  });
+
+  group('Gate 6: nested-helper class prefix uniformity', () {
+    test('every nested helper class is service-prefixed', () {
+      final violations = NestedHelperPrefix.scan(
+        rootDir: p.join('..', 'terradart_google', 'lib', 'src'),
+      );
+      expect(
+        violations,
+        isEmpty,
+        reason: 'Found unprefixed nested helper classes. Each must start with '
+            'its parent resource\'s <Service><Resource> prefix. '
+            'See packages/terradart_codegen/test/codegen/naming_audit/rename_list.json '
+            'for the canonical list.\n'
+            'Violations: ${violations.join('\n')}',
+      );
+    });
+  });
+
+  group('Gate 7: nested-helper TfArg-wrap uniformity', () {
+    test('every nested-helper field is TfArg-wrapped', () {
+      final violations = TfArgWrap.scan(
+        rootDir: p.join('..', 'terradart_google', 'lib', 'src'),
+      );
+      expect(violations, isEmpty,
+          reason: 'Plain Dart-type fields on nested helpers found:\n'
+              '${violations.join('\n')}');
+    });
+  });
+
+  group('Gate 8: enum value identifier minimum length', () {
+    test('every enum value identifier is >= 4 chars or in allow-list', () {
+      // Allow-list: industry-standard acronyms and natural-language short
+      // identifiers that mirror Terraform wire values and should NOT be
+      // verbose-renamed. The gate's intent is to catch abbreviation-style
+      // values like `Comparison.lt` / `.gt` / `.eq` — not to force
+      // `tcpProtocol` for `tcp`.
+      const allowList = <String>{
+        // Logical / quantifiers
+        'and', 'or', 'not', 'any', 'all', 'one',
+        // Networking protocols
+        'tcp', 'udp', 'ssl', 'tls', 'h2c', 'ah', 'esp',
+        // Data formats / hashes
+        'csv', 'orc', 'sql', 'md5', 'sha',
+        // Aggregates
+        'min', 'max', 'sum', 'avg',
+        // State / lifecycle
+        'on', 'off', 'ga',
+        // Confidential compute / KMS
+        'sev', 'tdx', 'mac', 'hsm',
+        // HTTP methods
+        'get', 'put',
+        // Regions / locales
+        'usa', 'eu', 'apj',
+        // Time units
+        'day', 'hour',
+        // Misc natural words
+        'the', 'vm',
+      };
+      final violations = EnumValueLength.scan(
+        rootDir: p.join('..', 'terradart_google', 'lib', 'src'),
+        minLength: 4,
+        allowList: allowList,
+      );
+      expect(violations, isEmpty,
+          reason: 'Short enum values found (consider verbose-natural form '
+              'or add to allowList if legitimately short):\n'
+              '${violations.join('\n')}');
     });
   });
 }

@@ -132,8 +132,8 @@ enum ReservationAffinityType {
 /// instance-create time. Mutually exclusive with `bootDisk.source` (which
 /// attaches an existing disk).
 @immutable
-class InitializeParams {
-  const InitializeParams({
+class ComputeInstanceInitializeParams {
+  const ComputeInstanceInitializeParams({
     this.image,
     this.size,
     this.type,
@@ -148,49 +148,50 @@ class InitializeParams {
   /// Image family or self-link (e.g. `'debian-cloud/debian-12'` or a
   /// project-scoped image self-link). Optional only when `bootDisk.source`
   /// is set elsewhere.
-  final String? image;
+  final TfArg<String>? image;
 
   /// Disk size in GB. GCP infers a reasonable default from the image when
   /// unset.
-  final num? size;
+  final TfArg<num>? size;
 
   /// PD type, e.g. `'pd-ssd'`, `'pd-balanced'`, `'hyperdisk-balanced'`.
-  final String? type;
+  final TfArg<String>? type;
 
   /// Disk labels.
   final Map<String, String>? labels;
 
   /// KMS CryptoKey self-link to encrypt the disk. Mutually exclusive with
-  /// `BootDisk.diskEncryptionKeyRaw`.
-  final String? kmsKeySelfLink;
+  /// `ComputeInstanceBootDisk.diskEncryptionKeyRaw`.
+  final TfArg<String>? kmsKeySelfLink;
 
   /// Resource Manager tags applied at disk-create time
   /// (`tagKeys/{id}` -> `tagValues/{id}`).
   final Map<String, String>? resourceManagerTags;
 
   /// Enables confidential compute on this boot disk. Pair with
-  /// [ConfidentialInstanceConfig] for guest-side enablement.
-  final bool? enableConfidentialCompute;
+  /// [ComputeInstanceConfidentialInstanceConfig] for guest-side enablement.
+  final TfArg<bool>? enableConfidentialCompute;
 
   /// Provisioned IOPS (Hyperdisk family only).
-  final num? provisionedIops;
+  final TfArg<num>? provisionedIops;
 
   /// Provisioned throughput in MB/s (Hyperdisk family only).
-  final num? provisionedThroughput;
+  final TfArg<num>? provisionedThroughput;
 
   Map<String, Object?> toArgMap() => {
-    if (image != null) 'image': image,
-    if (size != null) 'size': size,
-    if (type != null) 'type': type,
+    if (image != null) 'image': image!.toTfJson(),
+    if (size != null) 'size': size!.toTfJson(),
+    if (type != null) 'type': type!.toTfJson(),
     if (labels != null) 'labels': labels,
-    if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink,
+    if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink!.toTfJson(),
     if (resourceManagerTags != null)
       'resource_manager_tags': resourceManagerTags,
     if (enableConfidentialCompute != null)
-      'enable_confidential_compute': enableConfidentialCompute,
-    if (provisionedIops != null) 'provisioned_iops': provisionedIops,
+      'enable_confidential_compute': enableConfidentialCompute!.toTfJson(),
+    if (provisionedIops != null)
+      'provisioned_iops': provisionedIops!.toTfJson(),
     if (provisionedThroughput != null)
-      'provisioned_throughput': provisionedThroughput,
+      'provisioned_throughput': provisionedThroughput!.toTfJson(),
   };
 }
 
@@ -199,8 +200,8 @@ class InitializeParams {
 /// disk) is required by Terraform; this helper does not enforce that
 /// because both are nullable in the schema.
 @immutable
-class BootDisk {
-  const BootDisk({
+class ComputeInstanceBootDisk {
+  const ComputeInstanceBootDisk({
     this.initializeParams,
     this.source,
     this.deviceName,
@@ -212,45 +213,46 @@ class BootDisk {
   });
 
   /// New-disk initialization parameters. Mutually exclusive with [source].
-  final InitializeParams? initializeParams;
+  final ComputeInstanceInitializeParams? initializeParams;
 
   /// Existing disk name or self-link. Mutually exclusive with
   /// [initializeParams].
-  final String? source;
+  final TfArg<String>? source;
 
   /// Device name as exposed under `/dev/disk/by-id/`. Optional; defaults to
   /// the instance name.
-  final String? deviceName;
+  final TfArg<String>? deviceName;
 
   /// Whether to auto-delete the disk when the instance is deleted.
   /// Defaults to `true` server-side for boot disks.
-  final bool? autoDelete;
+  final TfArg<bool>? autoDelete;
 
   /// Read/write mode. One of `'READ_ONLY'` / `'READ_WRITE'`.
-  final String? mode;
+  final TfArg<String>? mode;
 
   /// KMS CryptoKey self-link. Mutually exclusive with
   /// [diskEncryptionKeyRaw].
-  final String? kmsKeySelfLink;
+  final TfArg<String>? kmsKeySelfLink;
 
   /// 256-bit customer-supplied encryption key, RFC4648 base64. Sensitive.
-  final String? diskEncryptionKeyRaw;
+  final TfArg<String>? diskEncryptionKeyRaw;
 
   /// Service account used for the KMS encryption request.
-  final String? diskEncryptionServiceAccount;
+  final TfArg<String>? diskEncryptionServiceAccount;
 
   Map<String, Object?> toArgMap() => {
     if (initializeParams != null)
       'initialize_params': [initializeParams!.toArgMap()],
-    if (source != null) 'source': source,
-    if (deviceName != null) 'device_name': deviceName,
-    if (autoDelete != null) 'auto_delete': autoDelete,
-    if (mode != null) 'mode': mode,
-    if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink,
+    if (source != null) 'source': source!.toTfJson(),
+    if (deviceName != null) 'device_name': deviceName!.toTfJson(),
+    if (autoDelete != null) 'auto_delete': autoDelete!.toTfJson(),
+    if (mode != null) 'mode': mode!.toTfJson(),
+    if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink!.toTfJson(),
     if (diskEncryptionKeyRaw != null)
-      'disk_encryption_key_raw': diskEncryptionKeyRaw,
+      'disk_encryption_key_raw': diskEncryptionKeyRaw!.toTfJson(),
     if (diskEncryptionServiceAccount != null)
-      'disk_encryption_service_account': diskEncryptionServiceAccount,
+      'disk_encryption_service_account': diskEncryptionServiceAccount!
+          .toTfJson(),
   };
 }
 
@@ -258,31 +260,35 @@ class BootDisk {
 /// gives the interface an external IPv4 address (ephemeral when [natIp]
 /// is null, static when it's a reserved IP).
 @immutable
-class AccessConfig {
-  const AccessConfig({this.natIp, this.networkTier, this.publicPtrDomainName});
+class ComputeInstanceAccessConfig {
+  const ComputeInstanceAccessConfig({
+    this.natIp,
+    this.networkTier,
+    this.publicPtrDomainName,
+  });
 
   /// Reserved external IP to attach. Null for an ephemeral IP.
-  final String? natIp;
+  final TfArg<String>? natIp;
 
   /// Network service tier.
   final AccessConfigNetworkTier? networkTier;
 
   /// FQDN published for the public PTR record.
-  final String? publicPtrDomainName;
+  final TfArg<String>? publicPtrDomainName;
 
   Map<String, Object?> toArgMap() => {
-    if (natIp != null) 'nat_ip': natIp,
+    if (natIp != null) 'nat_ip': natIp!.toTfJson(),
     if (networkTier != null) 'network_tier': networkTier!.terraformValue,
     if (publicPtrDomainName != null)
-      'public_ptr_domain_name': publicPtrDomainName,
+      'public_ptr_domain_name': publicPtrDomainName!.toTfJson(),
   };
 }
 
 /// One entry inside `network_interface.ipv6_access_config`. GCP currently
 /// allows at most one IPv6 access config per interface.
 @immutable
-class Ipv6AccessConfig {
-  const Ipv6AccessConfig({
+class ComputeInstanceIpv6AccessConfig {
+  const ComputeInstanceIpv6AccessConfig({
     required this.networkTier,
     this.publicPtrDomainName,
     this.externalIpv6,
@@ -292,19 +298,19 @@ class Ipv6AccessConfig {
 
   /// Service tier. Only `PREMIUM` is valid for IPv6 today.
   final AccessConfigNetworkTier networkTier;
-  final String? publicPtrDomainName;
-  final String? externalIpv6;
-  final String? externalIpv6PrefixLength;
-  final String? name;
+  final TfArg<String>? publicPtrDomainName;
+  final TfArg<String>? externalIpv6;
+  final TfArg<String>? externalIpv6PrefixLength;
+  final TfArg<String>? name;
 
   Map<String, Object?> toArgMap() => {
     'network_tier': networkTier.terraformValue,
     if (publicPtrDomainName != null)
-      'public_ptr_domain_name': publicPtrDomainName,
-    if (externalIpv6 != null) 'external_ipv6': externalIpv6,
+      'public_ptr_domain_name': publicPtrDomainName!.toTfJson(),
+    if (externalIpv6 != null) 'external_ipv6': externalIpv6!.toTfJson(),
     if (externalIpv6PrefixLength != null)
-      'external_ipv6_prefix_length': externalIpv6PrefixLength,
-    if (name != null) 'name': name,
+      'external_ipv6_prefix_length': externalIpv6PrefixLength!.toTfJson(),
+    if (name != null) 'name': name!.toTfJson(),
   };
 }
 
@@ -312,27 +318,30 @@ class Ipv6AccessConfig {
 /// / containers running on the instance use secondary CIDR ranges from the
 /// attached subnetwork.
 @immutable
-class AliasIpRange {
-  const AliasIpRange({required this.ipCidrRange, this.subnetworkRangeName});
+class ComputeInstanceAliasIpRange {
+  const ComputeInstanceAliasIpRange({
+    required this.ipCidrRange,
+    this.subnetworkRangeName,
+  });
 
   /// Alias range (single IP, netmask, or CIDR).
-  final String ipCidrRange;
+  final TfArg<String> ipCidrRange;
 
   /// Name of the secondary range to allocate from. When null, GCP uses the
   /// primary range.
-  final String? subnetworkRangeName;
+  final TfArg<String>? subnetworkRangeName;
 
   Map<String, Object?> toArgMap() => {
-    'ip_cidr_range': ipCidrRange,
+    'ip_cidr_range': ipCidrRange.toTfJson(),
     if (subnetworkRangeName != null)
-      'subnetwork_range_name': subnetworkRangeName,
+      'subnetwork_range_name': subnetworkRangeName!.toTfJson(),
   };
 }
 
 /// One entry inside `network_interface`. At least one is required by GCP.
 @immutable
-class NetworkInterface {
-  const NetworkInterface({
+class ComputeInstanceNetworkInterface {
+  const ComputeInstanceNetworkInterface({
     this.network,
     this.subnetwork,
     this.subnetworkProject,
@@ -346,36 +355,37 @@ class NetworkInterface {
 
   /// Network name or self-link. Mutually exclusive with [subnetwork] in
   /// auto-mode networks.
-  final String? network;
+  final TfArg<String>? network;
 
   /// Subnetwork name or self-link. Required for custom-mode networks.
-  final String? subnetwork;
+  final TfArg<String>? subnetwork;
 
   /// Host project of the subnetwork (Shared VPC).
-  final String? subnetworkProject;
+  final TfArg<String>? subnetworkProject;
 
   /// Internal IP within the subnet. When null, GCP assigns one.
-  final String? networkIp;
+  final TfArg<String>? networkIp;
 
   /// Interface name as observed inside the guest (`nic0`, `nic1`, ...).
-  final String? name;
+  final TfArg<String>? name;
   final NicType? nicType;
 
   /// Up to one `access_config` block enables an external IPv4 address.
-  final List<AccessConfig>? accessConfig;
+  final List<ComputeInstanceAccessConfig>? accessConfig;
 
   /// Up to one `ipv6_access_config` block enables an external IPv6 range.
-  final List<Ipv6AccessConfig>? ipv6AccessConfig;
+  final List<ComputeInstanceIpv6AccessConfig>? ipv6AccessConfig;
 
   /// Alias IP ranges (typically GKE pod / service ranges).
-  final List<AliasIpRange>? aliasIpRange;
+  final List<ComputeInstanceAliasIpRange>? aliasIpRange;
 
   Map<String, Object?> toArgMap() => {
-    if (network != null) 'network': network,
-    if (subnetwork != null) 'subnetwork': subnetwork,
-    if (subnetworkProject != null) 'subnetwork_project': subnetworkProject,
-    if (networkIp != null) 'network_ip': networkIp,
-    if (name != null) 'name': name,
+    if (network != null) 'network': network!.toTfJson(),
+    if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
+    if (subnetworkProject != null)
+      'subnetwork_project': subnetworkProject!.toTfJson(),
+    if (networkIp != null) 'network_ip': networkIp!.toTfJson(),
+    if (name != null) 'name': name!.toTfJson(),
     if (nicType != null) 'nic_type': nicType!.terraformValue,
     if (accessConfig != null)
       'access_config': accessConfig!.map((a) => a.toArgMap()).toList(),
@@ -389,8 +399,8 @@ class NetworkInterface {
 /// One entry inside `attached_disk`. Attaches an existing persistent disk
 /// to the instance.
 @immutable
-class AttachedDisk {
-  const AttachedDisk({
+class ComputeInstanceAttachedDisk {
+  const ComputeInstanceAttachedDisk({
     required this.source,
     this.deviceName,
     this.mode,
@@ -400,59 +410,64 @@ class AttachedDisk {
   });
 
   /// Disk name or self-link. Required.
-  final String source;
-  final String? deviceName;
-  final String? mode;
-  final String? kmsKeySelfLink;
-  final String? diskEncryptionKeyRaw;
-  final String? diskEncryptionServiceAccount;
+  final TfArg<String> source;
+  final TfArg<String>? deviceName;
+  final TfArg<String>? mode;
+  final TfArg<String>? kmsKeySelfLink;
+  final TfArg<String>? diskEncryptionKeyRaw;
+  final TfArg<String>? diskEncryptionServiceAccount;
 
   Map<String, Object?> toArgMap() => {
-    'source': source,
-    if (deviceName != null) 'device_name': deviceName,
-    if (mode != null) 'mode': mode,
-    if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink,
+    'source': source.toTfJson(),
+    if (deviceName != null) 'device_name': deviceName!.toTfJson(),
+    if (mode != null) 'mode': mode!.toTfJson(),
+    if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink!.toTfJson(),
     if (diskEncryptionKeyRaw != null)
-      'disk_encryption_key_raw': diskEncryptionKeyRaw,
+      'disk_encryption_key_raw': diskEncryptionKeyRaw!.toTfJson(),
     if (diskEncryptionServiceAccount != null)
-      'disk_encryption_service_account': diskEncryptionServiceAccount,
+      'disk_encryption_service_account': diskEncryptionServiceAccount!
+          .toTfJson(),
   };
 }
 
 /// One entry inside `scratch_disk`. Local SSD scratch disks are
 /// instance-lifetime only -- contents are lost on stop/start.
 @immutable
-class ScratchDisk {
-  const ScratchDisk({required this.interface, this.size, this.deviceName});
+class ComputeInstanceScratchDisk {
+  const ComputeInstanceScratchDisk({
+    required this.interface,
+    this.size,
+    this.deviceName,
+  });
 
   final ScratchDiskInterface interface;
 
   /// Disk size in GB; valid values are 375 or 3000.
-  final num? size;
-  final String? deviceName;
+  final TfArg<num>? size;
+  final TfArg<String>? deviceName;
 
   Map<String, Object?> toArgMap() => {
     'interface': interface.terraformValue,
-    if (size != null) 'size': size,
-    if (deviceName != null) 'device_name': deviceName,
+    if (size != null) 'size': size!.toTfJson(),
+    if (deviceName != null) 'device_name': deviceName!.toTfJson(),
   };
 }
 
 /// `service_account` block (max_items=1). When set, the VM's metadata
 /// exposes a Google service account credential to the guest.
 @immutable
-class ServiceAccount {
-  const ServiceAccount({this.email, required this.scopes});
+class ComputeInstanceServiceAccount {
+  const ComputeInstanceServiceAccount({this.email, required this.scopes});
 
   /// Service account email. When null, GCP uses the project's default
   /// Compute Engine service account.
-  final String? email;
+  final TfArg<String>? email;
 
   /// OAuth scopes granted (e.g. `'cloud-platform'`).
   final List<String> scopes;
 
   Map<String, Object?> toArgMap() => {
-    if (email != null) 'email': email,
+    if (email != null) 'email': email!.toTfJson(),
     'scopes': scopes,
   };
 }
@@ -460,37 +475,37 @@ class ServiceAccount {
 /// `scheduling.max_run_duration` / `scheduling.local_ssd_recovery_timeout`
 /// sub-block (Duration shape). Both fields take this same shape.
 @immutable
-class SchedulingDuration {
-  const SchedulingDuration({required this.seconds, this.nanos});
+class ComputeInstanceSchedulingDuration {
+  const ComputeInstanceSchedulingDuration({required this.seconds, this.nanos});
 
-  final int seconds;
-  final int? nanos;
+  final TfArg<int> seconds;
+  final TfArg<int>? nanos;
 
   Map<String, Object?> toArgMap() => {
-    'seconds': seconds,
-    if (nanos != null) 'nanos': nanos,
+    'seconds': seconds.toTfJson(),
+    if (nanos != null) 'nanos': nanos!.toTfJson(),
   };
 }
 
 /// One entry inside `scheduling.node_affinities`. Sole-tenant placement
 /// uses this to bind the VM to a node group with matching labels.
 @immutable
-class NodeAffinity {
-  const NodeAffinity({
+class ComputeInstanceNodeAffinity {
+  const ComputeInstanceNodeAffinity({
     required this.key,
     required this.operator,
     required this.values,
   });
 
-  final String key;
+  final TfArg<String> key;
 
   /// `'IN'` or `'NOT_IN'`.
-  final String operator;
+  final TfArg<String> operator;
   final List<String> values;
 
   Map<String, Object?> toArgMap() => {
-    'key': key,
-    'operator': operator,
+    'key': key.toTfJson(),
+    'operator': operator.toTfJson(),
     'values': values,
   };
 }
@@ -498,8 +513,8 @@ class NodeAffinity {
 /// `scheduling` block (max_items=1). Controls preemptibility, host
 /// maintenance, max run duration, and sole-tenant affinities.
 @immutable
-class Scheduling {
-  const Scheduling({
+class ComputeInstanceScheduling {
+  const ComputeInstanceScheduling({
     this.preemptible,
     this.onHostMaintenance,
     this.automaticRestart,
@@ -511,31 +526,32 @@ class Scheduling {
     this.localSsdRecoveryTimeout,
   });
 
-  final bool? preemptible;
+  final TfArg<bool>? preemptible;
   final OnHostMaintenance? onHostMaintenance;
-  final bool? automaticRestart;
+  final TfArg<bool>? automaticRestart;
   final ProvisioningModel? provisioningModel;
   final InstanceTerminationAction? instanceTerminationAction;
-  final int? minNodeCpus;
-  final List<NodeAffinity>? nodeAffinities;
+  final TfArg<int>? minNodeCpus;
+  final List<ComputeInstanceNodeAffinity>? nodeAffinities;
 
   /// Hard cap on instance run time. After this elapses GCP applies the
   /// [instanceTerminationAction] (stop or delete).
-  final SchedulingDuration? maxRunDuration;
+  final ComputeInstanceSchedulingDuration? maxRunDuration;
 
   /// Local SSD data-recovery grace period for VMs with `--local-ssd`.
-  final SchedulingDuration? localSsdRecoveryTimeout;
+  final ComputeInstanceSchedulingDuration? localSsdRecoveryTimeout;
 
   Map<String, Object?> toArgMap() => {
-    if (preemptible != null) 'preemptible': preemptible,
+    if (preemptible != null) 'preemptible': preemptible!.toTfJson(),
     if (onHostMaintenance != null)
       'on_host_maintenance': onHostMaintenance!.terraformValue,
-    if (automaticRestart != null) 'automatic_restart': automaticRestart,
+    if (automaticRestart != null)
+      'automatic_restart': automaticRestart!.toTfJson(),
     if (provisioningModel != null)
       'provisioning_model': provisioningModel!.terraformValue,
     if (instanceTerminationAction != null)
       'instance_termination_action': instanceTerminationAction!.terraformValue,
-    if (minNodeCpus != null) 'min_node_cpus': minNodeCpus,
+    if (minNodeCpus != null) 'min_node_cpus': minNodeCpus!.toTfJson(),
     if (nodeAffinities != null)
       'node_affinities': nodeAffinities!.map((n) => n.toArgMap()).toList(),
     if (maxRunDuration != null)
@@ -548,42 +564,43 @@ class Scheduling {
 /// `shielded_instance_config` block (max_items=1). Enables Shielded VM
 /// features (secure boot / vTPM / integrity monitoring).
 @immutable
-class ShieldedInstanceConfig {
-  const ShieldedInstanceConfig({
+class ComputeInstanceShieldedInstanceConfig {
+  const ComputeInstanceShieldedInstanceConfig({
     this.enableSecureBoot,
     this.enableVtpm,
     this.enableIntegrityMonitoring,
   });
 
-  final bool? enableSecureBoot;
-  final bool? enableVtpm;
-  final bool? enableIntegrityMonitoring;
+  final TfArg<bool>? enableSecureBoot;
+  final TfArg<bool>? enableVtpm;
+  final TfArg<bool>? enableIntegrityMonitoring;
 
   Map<String, Object?> toArgMap() => {
-    if (enableSecureBoot != null) 'enable_secure_boot': enableSecureBoot,
-    if (enableVtpm != null) 'enable_vtpm': enableVtpm,
+    if (enableSecureBoot != null)
+      'enable_secure_boot': enableSecureBoot!.toTfJson(),
+    if (enableVtpm != null) 'enable_vtpm': enableVtpm!.toTfJson(),
     if (enableIntegrityMonitoring != null)
-      'enable_integrity_monitoring': enableIntegrityMonitoring,
+      'enable_integrity_monitoring': enableIntegrityMonitoring!.toTfJson(),
   };
 }
 
 /// `confidential_instance_config` block (max_items=1). Enables Confidential
 /// VM. Requires `scheduling.on_host_maintenance = TERMINATE`.
 @immutable
-class ConfidentialInstanceConfig {
-  const ConfidentialInstanceConfig({
+class ComputeInstanceConfidentialInstanceConfig {
+  const ComputeInstanceConfidentialInstanceConfig({
     this.enableConfidentialCompute,
     this.confidentialInstanceType,
   });
 
   /// Deprecated by GCP -- prefer setting [confidentialInstanceType] to
   /// `ConfidentialInstanceType.sev`.
-  final bool? enableConfidentialCompute;
+  final TfArg<bool>? enableConfidentialCompute;
   final ConfidentialInstanceType? confidentialInstanceType;
 
   Map<String, Object?> toArgMap() => {
     if (enableConfidentialCompute != null)
-      'enable_confidential_compute': enableConfidentialCompute,
+      'enable_confidential_compute': enableConfidentialCompute!.toTfJson(),
     if (confidentialInstanceType != null)
       'confidential_instance_type': confidentialInstanceType!.terraformValue,
   };
@@ -591,20 +608,26 @@ class ConfidentialInstanceConfig {
 
 /// One entry inside `guest_accelerator`. Attaches a GPU / TPU to the VM.
 @immutable
-class GuestAccelerator {
-  const GuestAccelerator({required this.type, required this.count});
+class ComputeInstanceGuestAccelerator {
+  const ComputeInstanceGuestAccelerator({
+    required this.type,
+    required this.count,
+  });
 
   /// Accelerator type self-link or short name (e.g. `'nvidia-tesla-t4'`).
-  final String type;
-  final int count;
+  final TfArg<String> type;
+  final TfArg<int> count;
 
-  Map<String, Object?> toArgMap() => {'type': type, 'count': count};
+  Map<String, Object?> toArgMap() => {
+    'type': type.toTfJson(),
+    'count': count.toTfJson(),
+  };
 }
 
 /// `advanced_machine_features` block (max_items=1). Per-CPU tuning knobs.
 @immutable
-class AdvancedMachineFeatures {
-  const AdvancedMachineFeatures({
+class ComputeInstanceAdvancedMachineFeatures {
+  const ComputeInstanceAdvancedMachineFeatures({
     this.enableNestedVirtualization,
     this.threadsPerCore,
     this.visibleCoreCount,
@@ -612,47 +635,54 @@ class AdvancedMachineFeatures {
     this.performanceMonitoringUnit,
   });
 
-  final bool? enableNestedVirtualization;
-  final int? threadsPerCore;
-  final int? visibleCoreCount;
-  final bool? enableUefiNetworking;
+  final TfArg<bool>? enableNestedVirtualization;
+  final TfArg<int>? threadsPerCore;
+  final TfArg<int>? visibleCoreCount;
+  final TfArg<bool>? enableUefiNetworking;
   final PerformanceMonitoringUnit? performanceMonitoringUnit;
 
   Map<String, Object?> toArgMap() => {
     if (enableNestedVirtualization != null)
-      'enable_nested_virtualization': enableNestedVirtualization,
-    if (threadsPerCore != null) 'threads_per_core': threadsPerCore,
-    if (visibleCoreCount != null) 'visible_core_count': visibleCoreCount,
+      'enable_nested_virtualization': enableNestedVirtualization!.toTfJson(),
+    if (threadsPerCore != null) 'threads_per_core': threadsPerCore!.toTfJson(),
+    if (visibleCoreCount != null)
+      'visible_core_count': visibleCoreCount!.toTfJson(),
     if (enableUefiNetworking != null)
-      'enable_uefi_networking': enableUefiNetworking,
+      'enable_uefi_networking': enableUefiNetworking!.toTfJson(),
     if (performanceMonitoringUnit != null)
       'performance_monitoring_unit': performanceMonitoringUnit!.terraformValue,
   };
 }
 
 /// `reservation_affinity.specific_reservation` sub-block (max_items=1).
-/// Only meaningful when [ReservationAffinity.type] is
+/// Only meaningful when [ComputeInstanceReservationAffinity.type] is
 /// `ReservationAffinityType.specificReservation`.
 @immutable
-class SpecificReservation {
-  const SpecificReservation({required this.key, required this.values});
+class ComputeInstanceSpecificReservation {
+  const ComputeInstanceSpecificReservation({
+    required this.key,
+    required this.values,
+  });
 
   /// Label key. Use `'compute.googleapis.com/reservation-name'` to target
   /// a reservation by name.
-  final String key;
+  final TfArg<String> key;
   final List<String> values;
 
-  Map<String, Object?> toArgMap() => {'key': key, 'values': values};
+  Map<String, Object?> toArgMap() => {'key': key.toTfJson(), 'values': values};
 }
 
 /// `reservation_affinity` block (max_items=1). Controls whether and how
 /// the VM consumes capacity from a Compute Engine reservation.
 @immutable
-class ReservationAffinity {
-  const ReservationAffinity({required this.type, this.specificReservation});
+class ComputeInstanceReservationAffinity {
+  const ComputeInstanceReservationAffinity({
+    required this.type,
+    this.specificReservation,
+  });
 
   final ReservationAffinityType type;
-  final SpecificReservation? specificReservation;
+  final ComputeInstanceSpecificReservation? specificReservation;
 
   Map<String, Object?> toArgMap() => {
     'type': type.terraformValue,
@@ -665,8 +695,8 @@ class ReservationAffinity {
 /// not persisted on the resource (currently only resource manager tags
 /// applied at instance-create time).
 @immutable
-class InstanceParams {
-  const InstanceParams({this.resourceManagerTags});
+class ComputeInstanceInstanceParams {
+  const ComputeInstanceInstanceParams({this.resourceManagerTags});
 
   final Map<String, String>? resourceManagerTags;
 
@@ -679,15 +709,17 @@ class InstanceParams {
 /// `network_performance_config` block (max_items=1). Selects the Tier 1
 /// network egress profile.
 @immutable
-class NetworkPerformanceConfig {
-  const NetworkPerformanceConfig({required this.totalEgressBandwidthTier});
+class ComputeInstanceNetworkPerformanceConfig {
+  const ComputeInstanceNetworkPerformanceConfig({
+    required this.totalEgressBandwidthTier,
+  });
 
   /// Egress tier. `'TIER_1'` enables higher per-VM egress bandwidth;
   /// `'DEFAULT'` keeps the platform default.
-  final String totalEgressBandwidthTier;
+  final TfArg<String> totalEgressBandwidthTier;
 
   Map<String, Object?> toArgMap() => {
-    'total_egress_bandwidth_tier': totalEgressBandwidthTier,
+    'total_egress_bandwidth_tier': totalEgressBandwidthTier.toTfJson(),
   };
 }
 
@@ -700,9 +732,9 @@ class NetworkPerformanceConfig {
 /// - `name`: GCE instance name. Forces replacement when changed.
 /// - `machineType`: short machine type name (e.g. `'e2-medium'`) or full
 ///   self-link of a custom machine type.
-/// - `bootDisk`: a [BootDisk] describing the boot volume; the wrapper
+/// - `bootDisk`: a [ComputeInstanceBootDisk] describing the boot volume; the wrapper
 ///   converts this to the single-element `boot_disk` block GCP expects.
-/// - `networkInterface`: at least one [NetworkInterface] entry. GCP requires
+/// - `networkInterface`: at least one [ComputeInstanceNetworkInterface] entry. GCP requires
 ///   every VM to attach to a VPC.
 ///
 /// Example (minimal):
@@ -712,15 +744,15 @@ class NetworkPerformanceConfig {
 ///   name: TfArg.literal('web-01'),
 ///   machineType: TfArg.literal('e2-medium'),
 ///   zone: TfArg.literal('us-central1-a'),
-///   bootDisk: const BootDisk(
-///     initializeParams: InitializeParams(
+///   bootDisk: const ComputeInstanceBootDisk(
+///     initializeParams: ComputeInstanceInitializeParams(
 ///       image: 'debian-cloud/debian-12',
 ///     ),
 ///   ),
 ///   networkInterface: const [
-///     NetworkInterface(
+///     ComputeInstanceNetworkInterface(
 ///       network: 'default',
-///       accessConfig: [AccessConfig()],
+///       accessConfig: [ComputeInstanceAccessConfig()],
 ///     ),
 ///   ],
 /// );
@@ -758,19 +790,19 @@ final class GoogleComputeInstance extends Resource {
     TfArg<bool>? enableDisplay,
     TfArg<List<String>>? resourcePolicies,
     TfArg<String>? keyRevocationActionType,
-    required BootDisk bootDisk,
-    required List<NetworkInterface> networkInterface,
-    List<AttachedDisk>? attachedDisk,
-    List<ScratchDisk>? scratchDisk,
-    ServiceAccount? serviceAccount,
-    Scheduling? scheduling,
-    ShieldedInstanceConfig? shieldedInstanceConfig,
-    ConfidentialInstanceConfig? confidentialInstanceConfig,
-    List<GuestAccelerator>? guestAccelerator,
-    AdvancedMachineFeatures? advancedMachineFeatures,
-    ReservationAffinity? reservationAffinity,
-    InstanceParams? params,
-    NetworkPerformanceConfig? networkPerformanceConfig,
+    required ComputeInstanceBootDisk bootDisk,
+    required List<ComputeInstanceNetworkInterface> networkInterface,
+    List<ComputeInstanceAttachedDisk>? attachedDisk,
+    List<ComputeInstanceScratchDisk>? scratchDisk,
+    ComputeInstanceServiceAccount? serviceAccount,
+    ComputeInstanceScheduling? scheduling,
+    ComputeInstanceShieldedInstanceConfig? shieldedInstanceConfig,
+    ComputeInstanceConfidentialInstanceConfig? confidentialInstanceConfig,
+    List<ComputeInstanceGuestAccelerator>? guestAccelerator,
+    ComputeInstanceAdvancedMachineFeatures? advancedMachineFeatures,
+    ComputeInstanceReservationAffinity? reservationAffinity,
+    ComputeInstanceInstanceParams? params,
+    ComputeInstanceNetworkPerformanceConfig? networkPerformanceConfig,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -846,6 +878,9 @@ final class GoogleComputeInstance extends Resource {
   @override
   // ignore: non_constant_identifier_names
   Set<String> get $sensitiveFields => _googleComputeInstanceSensitive;
+
+  @override
+  bool get $supportsDeletionProtection => true;
 
   /// Reference to `id` attribute (full path
   /// `projects/{project}/zones/{zone}/instances/{name}`).

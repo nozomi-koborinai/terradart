@@ -34,7 +34,7 @@ enum RegionAutoscalerMode {
   final String terraformValue;
 }
 
-/// Predictive autoscaling method for [RegionAutoscalerCpuUtilization].
+/// Predictive autoscaling method for [ComputeRegionAutoscalerRegionAutoscalerCpuUtilization].
 ///
 /// - [none] — disable predictive autoscaling (default).
 /// - [optimizeAvailability] — monitor weekly load patterns and scale out
@@ -51,7 +51,7 @@ enum RegionAutoscalerCpuPredictiveMethod {
 /// Mirrors the API's `utilizationTargetType` enum.
 ///
 /// - [gauge] — the metric is an instantaneous reading; the autoscaler
-///   keeps it at [RegionAutoscalerMetric.target].
+///   keeps it at [ComputeRegionAutoscalerRegionAutoscalerMetric.target].
 /// - [deltaPerSecond] — the metric is a per-second rate.
 /// - [deltaPerMinute] — the metric is a per-minute rate.
 enum RegionAutoscalerMetricType {
@@ -76,8 +76,8 @@ enum RegionAutoscalerMetricType {
 /// At least one signal sub-block is recommended; if none are set the GCP
 /// API falls back to CPU utilization at 0.6 (60%).
 @immutable
-class RegionAutoscalerAutoscalingPolicy {
-  const RegionAutoscalerAutoscalingPolicy({
+class ComputeRegionAutoscalerRegionAutoscalerAutoscalingPolicy {
+  const ComputeRegionAutoscalerRegionAutoscalerAutoscalingPolicy({
     required this.minReplicas,
     required this.maxReplicas,
     this.cooldownPeriod,
@@ -91,48 +91,50 @@ class RegionAutoscalerAutoscalingPolicy {
 
   /// Minimum number of replicas the autoscaler may scale **down** to.
   /// Must be `>= 0`. The schema marks this required.
-  final int minReplicas;
+  final TfArg<int> minReplicas;
 
   /// Maximum number of replicas the autoscaler may scale **up** to.
   /// Must be `>= minReplicas`. The schema marks this required.
-  final int maxReplicas;
+  final TfArg<int> maxReplicas;
 
   /// Number of seconds the autoscaler waits before collecting metrics
   /// from a freshly-launched instance. Defaults to 60 on the API side
   /// when omitted; raise this for workloads with slow startup paths.
-  final int? cooldownPeriod;
+  final TfArg<int>? cooldownPeriod;
 
   /// Operating mode for the policy. Omitted -> API default ([on]).
   final RegionAutoscalerMode? mode;
 
   /// CPU-utilization signal. Mutually compatible with the other signal
   /// blocks; the autoscaler picks the **highest** recommended size.
-  final RegionAutoscalerCpuUtilization? cpuUtilization;
+  final ComputeRegionAutoscalerRegionAutoscalerCpuUtilization? cpuUtilization;
 
   /// Load-balancing utilization signal. Requires the target regional
   /// MIG to sit behind a backend service with `utilization` balancing
   /// mode.
-  final RegionAutoscalerLoadBalancingUtilization? loadBalancingUtilization;
+  final ComputeRegionAutoscalerRegionAutoscalerLoadBalancingUtilization?
+  loadBalancingUtilization;
 
   /// Custom Stackdriver / Cloud Monitoring metrics. Each entry defines
   /// one metric the autoscaler will observe; the policy picks the
   /// highest recommendation across all signals.
-  final List<RegionAutoscalerMetric>? metrics;
+  final List<ComputeRegionAutoscalerRegionAutoscalerMetric>? metrics;
 
   /// Smoothing applied to scale-**in** decisions (replica removals).
   /// Prevents the autoscaler from shedding replicas too aggressively
   /// during traffic dips.
-  final RegionAutoscalerScaleInControl? scaleInControl;
+  final ComputeRegionAutoscalerRegionAutoscalerScaleInControl? scaleInControl;
 
   /// Scheduled scaling overrides. Each entry pins a minimum replica
   /// count during a cron-defined time window. The map key becomes the
   /// schedule's `name` on the wire.
-  final Map<String, RegionAutoscalerScalingSchedule>? scalingSchedules;
+  final Map<String, ComputeRegionAutoscalerRegionAutoscalerScalingSchedule>?
+  scalingSchedules;
 
   Map<String, Object?> toArgMap() => {
-    'min_replicas': minReplicas,
-    'max_replicas': maxReplicas,
-    if (cooldownPeriod != null) 'cooldown_period': cooldownPeriod,
+    'min_replicas': minReplicas.toTfJson(),
+    'max_replicas': maxReplicas.toTfJson(),
+    if (cooldownPeriod != null) 'cooldown_period': cooldownPeriod!.toTfJson(),
     if (mode != null) 'mode': mode!.terraformValue,
     if (cpuUtilization != null) 'cpu_utilization': [cpuUtilization!.toArgMap()],
     if (loadBalancingUtilization != null)
@@ -154,8 +156,8 @@ class RegionAutoscalerAutoscalingPolicy {
 /// `cpu_utilization` block. Drives autoscaling against the average CPU
 /// usage of instances in the target regional MIG.
 @immutable
-class RegionAutoscalerCpuUtilization {
-  const RegionAutoscalerCpuUtilization({
+class ComputeRegionAutoscalerRegionAutoscalerCpuUtilization {
+  const ComputeRegionAutoscalerRegionAutoscalerCpuUtilization({
     required this.target,
     this.predictiveMethod,
   });
@@ -163,14 +165,14 @@ class RegionAutoscalerCpuUtilization {
   /// Target average CPU utilization, in the range `(0.0, 1.0]`. For
   /// example, `0.6` means "keep instances at ~60% CPU on average". The
   /// schema marks this required.
-  final double target;
+  final TfArg<double> target;
 
   /// Optional predictive method. Omitted -> API default
   /// ([RegionAutoscalerCpuPredictiveMethod.none]).
   final RegionAutoscalerCpuPredictiveMethod? predictiveMethod;
 
   Map<String, Object?> toArgMap() => {
-    'target': target,
+    'target': target.toTfJson(),
     if (predictiveMethod != null)
       'predictive_method': predictiveMethod!.terraformValue,
   };
@@ -184,14 +186,16 @@ class RegionAutoscalerCpuUtilization {
 /// backend-capacity utilization (HTTP(S) load balancer with
 /// `utilization` balancing mode).
 @immutable
-class RegionAutoscalerLoadBalancingUtilization {
-  const RegionAutoscalerLoadBalancingUtilization({required this.target});
+class ComputeRegionAutoscalerRegionAutoscalerLoadBalancingUtilization {
+  const ComputeRegionAutoscalerRegionAutoscalerLoadBalancingUtilization({
+    required this.target,
+  });
 
   /// Target fraction of backend capacity utilization (0.0..1.0). The
   /// schema marks this required; defaults to 0.8 on the API side.
-  final double target;
+  final TfArg<double> target;
 
-  Map<String, Object?> toArgMap() => {'target': target};
+  Map<String, Object?> toArgMap() => {'target': target.toTfJson()};
 }
 
 // ===========================================================================
@@ -202,8 +206,8 @@ class RegionAutoscalerLoadBalancingUtilization {
 /// Exactly one of [target] / [singleInstanceAssignment] is typically
 /// set; the GCP API enforces the constraint at apply time.
 @immutable
-class RegionAutoscalerMetric {
-  const RegionAutoscalerMetric({
+class ComputeRegionAutoscalerRegionAutoscalerMetric {
+  const ComputeRegionAutoscalerRegionAutoscalerMetric({
     required this.name,
     this.target,
     this.type,
@@ -215,11 +219,11 @@ class RegionAutoscalerMetric {
   /// `'pubsub.googleapis.com/subscription/num_undelivered_messages'`).
   /// The metric must emit `INT64` or `DOUBLE` values; negative values
   /// are not supported.
-  final String name;
+  final TfArg<String> name;
 
   /// Target value the autoscaler maintains for this metric. Mutually
   /// exclusive in practice with [singleInstanceAssignment].
-  final double? target;
+  final TfArg<double>? target;
 
   /// How the metric value is interpreted ([gauge] / [deltaPerSecond] /
   /// [deltaPerMinute]).
@@ -228,20 +232,20 @@ class RegionAutoscalerMetric {
   /// Per-instance assignment for **per-group** metrics: the metric
   /// reports the total amount of work; this value is the amount one
   /// instance can handle. Mutually exclusive with [target].
-  final double? singleInstanceAssignment;
+  final TfArg<double>? singleInstanceAssignment;
 
   /// Optional Monitoring TimeSeries filter. The default
   /// (`'resource.type = gce_instance'`) selects per-instance gauges; set
   /// a custom filter for per-group metrics on other resource types.
-  final String? filter;
+  final TfArg<String>? filter;
 
   Map<String, Object?> toArgMap() => {
-    'name': name,
-    if (target != null) 'target': target,
+    'name': name.toTfJson(),
+    if (target != null) 'target': target!.toTfJson(),
     if (type != null) 'type': type!.terraformValue,
     if (singleInstanceAssignment != null)
-      'single_instance_assignment': singleInstanceAssignment,
-    if (filter != null) 'filter': filter,
+      'single_instance_assignment': singleInstanceAssignment!.toTfJson(),
+    if (filter != null) 'filter': filter!.toTfJson(),
   };
 }
 
@@ -253,8 +257,8 @@ class RegionAutoscalerMetric {
 /// shed replicas inside a [timeWindowSec]-second sliding window — useful
 /// for stateful workloads that need warm capacity to drain gracefully.
 @immutable
-class RegionAutoscalerScaleInControl {
-  const RegionAutoscalerScaleInControl({
+class ComputeRegionAutoscalerRegionAutoscalerScaleInControl {
+  const ComputeRegionAutoscalerRegionAutoscalerScaleInControl({
     this.maxScaledInReplicas,
     this.timeWindowSec,
   });
@@ -262,17 +266,18 @@ class RegionAutoscalerScaleInControl {
   /// Upper bound on replicas removed within [timeWindowSec]. The schema
   /// requires at least one of [maxScaledInReplicas] / [timeWindowSec];
   /// both are typically set together.
-  final RegionAutoscalerScaleInReplicas? maxScaledInReplicas;
+  final ComputeRegionAutoscalerRegionAutoscalerScaleInReplicas?
+  maxScaledInReplicas;
 
   /// Lookback window, in seconds. The autoscaler computes a moving
   /// total of scale-in events over this duration and refuses to exceed
   /// [maxScaledInReplicas] within it.
-  final int? timeWindowSec;
+  final TfArg<int>? timeWindowSec;
 
   Map<String, Object?> toArgMap() => {
     if (maxScaledInReplicas != null)
       'max_scaled_in_replicas': [maxScaledInReplicas!.toArgMap()],
-    if (timeWindowSec != null) 'time_window_sec': timeWindowSec,
+    if (timeWindowSec != null) 'time_window_sec': timeWindowSec!.toTfJson(),
   };
 }
 
@@ -280,20 +285,23 @@ class RegionAutoscalerScaleInControl {
 /// [fixed] count or a [percent] of the current MIG size; the schema
 /// requires at least one of the two.
 @immutable
-class RegionAutoscalerScaleInReplicas {
-  const RegionAutoscalerScaleInReplicas({this.fixed, this.percent});
+class ComputeRegionAutoscalerRegionAutoscalerScaleInReplicas {
+  const ComputeRegionAutoscalerRegionAutoscalerScaleInReplicas({
+    this.fixed,
+    this.percent,
+  });
 
   /// Fixed maximum number of VM instances that may be removed inside
-  /// the parent [RegionAutoscalerScaleInControl.timeWindowSec] window.
+  /// the parent [ComputeRegionAutoscalerRegionAutoscalerScaleInControl.timeWindowSec] window.
   /// Must be a positive integer.
-  final int? fixed;
+  final TfArg<int>? fixed;
 
   /// Percentage of the current MIG size that may be removed (0..100).
-  final int? percent;
+  final TfArg<int>? percent;
 
   Map<String, Object?> toArgMap() => {
-    if (fixed != null) 'fixed': fixed,
-    if (percent != null) 'percent': percent,
+    if (fixed != null) 'fixed': fixed!.toTfJson(),
+    if (percent != null) 'percent': percent!.toTfJson(),
   };
 }
 
@@ -309,8 +317,8 @@ class RegionAutoscalerScaleInReplicas {
 /// a cron-defined time window. Multiple schedules may overlap; the
 /// effective floor is the maximum across all active schedules.
 @immutable
-class RegionAutoscalerScalingSchedule {
-  const RegionAutoscalerScalingSchedule({
+class ComputeRegionAutoscalerRegionAutoscalerScalingSchedule {
+  const ComputeRegionAutoscalerRegionAutoscalerScalingSchedule({
     required this.minRequiredReplicas,
     required this.schedule,
     required this.durationSec,
@@ -321,32 +329,32 @@ class RegionAutoscalerScalingSchedule {
 
   /// Minimum replica count the autoscaler will recommend while this
   /// schedule is active.
-  final int minRequiredReplicas;
+  final TfArg<int> minRequiredReplicas;
 
   /// Cron-format start times (extended cron, with optional year). E.g.
   /// `'0 9 * * MON-FRI'` for weekday mornings.
-  final String schedule;
+  final TfArg<String> schedule;
 
   /// Duration of each scheduled window, in seconds. Minimum: 300.
-  final int durationSec;
+  final TfArg<int> durationSec;
 
   /// IANA time-zone name (e.g. `'Asia/Tokyo'`). Defaults to `'UTC'`.
-  final String? timeZone;
+  final TfArg<String>? timeZone;
 
   /// When `true`, the schedule is recorded but has no effect on
   /// recommendations. Useful for parking a schedule without deleting it.
-  final bool? disabled;
+  final TfArg<bool>? disabled;
 
   /// Free-form description.
-  final String? description;
+  final TfArg<String>? description;
 
   Map<String, Object?> toArgMap() => {
-    'min_required_replicas': minRequiredReplicas,
-    'schedule': schedule,
-    'duration_sec': durationSec,
-    if (timeZone != null) 'time_zone': timeZone,
-    if (disabled != null) 'disabled': disabled,
-    if (description != null) 'description': description,
+    'min_required_replicas': minRequiredReplicas.toTfJson(),
+    'schedule': schedule.toTfJson(),
+    'duration_sec': durationSec.toTfJson(),
+    if (timeZone != null) 'time_zone': timeZone!.toTfJson(),
+    if (disabled != null) 'disabled': disabled!.toTfJson(),
+    if (description != null) 'description': description!.toTfJson(),
   };
 }
 
@@ -408,13 +416,13 @@ class RegionAutoscalerScalingSchedule {
 ///   name: TfArg.literal('web-autoscaler'),
 ///   region: TfArg.literal('asia-northeast1'),
 ///   target: TfArg.ref(rigm.selfLink),
-///   autoscalingPolicy: const RegionAutoscalerAutoscalingPolicy(
+///   autoscalingPolicy: const ComputeRegionAutoscalerRegionAutoscalerAutoscalingPolicy(
 ///     minReplicas: 2,
 ///     maxReplicas: 20,
 ///     cooldownPeriod: 90,
-///     cpuUtilization: RegionAutoscalerCpuUtilization(target: 0.65),
+///     cpuUtilization: ComputeRegionAutoscalerRegionAutoscalerCpuUtilization(target: 0.65),
 ///     scalingSchedules: {
-///       'business_hours': RegionAutoscalerScalingSchedule(
+///       'business_hours': ComputeRegionAutoscalerRegionAutoscalerScalingSchedule(
 ///         minRequiredReplicas: 8,
 ///         schedule: '0 9 * * MON-FRI',
 ///         durationSec: 28800,
@@ -427,10 +435,10 @@ class RegionAutoscalerScalingSchedule {
 ///
 /// Naming convention: ALL nested helper types in this resource are
 /// prefixed `RegionAutoscaler...` (e.g.
-/// [RegionAutoscalerAutoscalingPolicy],
-/// [RegionAutoscalerCpuUtilization],
-/// [RegionAutoscalerScaleInControl], [RegionAutoscalerMetric],
-/// [RegionAutoscalerScalingSchedule]) to avoid colliding with the
+/// [ComputeRegionAutoscalerRegionAutoscalerAutoscalingPolicy],
+/// [ComputeRegionAutoscalerRegionAutoscalerCpuUtilization],
+/// [ComputeRegionAutoscalerRegionAutoscalerScaleInControl], [ComputeRegionAutoscalerRegionAutoscalerMetric],
+/// [ComputeRegionAutoscalerRegionAutoscalerScalingSchedule]) to avoid colliding with the
 /// parallel `Autoscaler...` family on the zonal sibling.
 ///
 /// Composition pattern: extends
@@ -444,7 +452,8 @@ final class GoogleComputeRegionAutoscaler extends Resource {
     required TfArg<String> name,
     required TfArg<String> region,
     required TfArg<String> target,
-    required RegionAutoscalerAutoscalingPolicy autoscalingPolicy,
+    required ComputeRegionAutoscalerRegionAutoscalerAutoscalingPolicy
+    autoscalingPolicy,
     TfArg<String>? description,
     TfArg<String>? project,
     super.lifecycle,

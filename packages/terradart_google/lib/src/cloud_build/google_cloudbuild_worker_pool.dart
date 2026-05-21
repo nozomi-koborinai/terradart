@@ -17,8 +17,8 @@ const Set<String> _googleCloudbuildWorkerPoolSensitive = <String>{};
 /// this pool. All fields are optional — omitting the block leaves Cloud
 /// Build's defaults (`n1-standard-1`, standard disk, public egress).
 @immutable
-class CloudBuildWorkerPoolWorkerConfig {
-  const CloudBuildWorkerPoolWorkerConfig({
+class CloudbuildWorkerPoolWorkerConfig {
+  const CloudbuildWorkerPoolWorkerConfig({
     this.diskSizeGb,
     this.machineType,
     this.noExternalIp,
@@ -35,8 +35,8 @@ class CloudBuildWorkerPoolWorkerConfig {
   final TfArg<String>? machineType;
 
   /// When `true`, workers are created without any public IP, blocking
-  /// egress to the public internet. Pair with [CloudBuildWorkerPoolNetworkConfig]
-  /// (VPC peering) or [CloudBuildWorkerPoolPrivateServiceConnect] when
+  /// egress to the public internet. Pair with [CloudbuildWorkerPoolNetworkConfig]
+  /// (VPC peering) or [CloudbuildWorkerPoolPrivateServiceConnect] when
   /// the build still needs registry / API access.
   final TfArg<bool>? noExternalIp;
 
@@ -55,11 +55,11 @@ class CloudBuildWorkerPoolWorkerConfig {
 
 /// `network_config` block. Legacy VPC-peering form: the workers are
 /// peered to a customer VPC via Service Networking. Mutually exclusive
-/// with [CloudBuildWorkerPoolPrivateServiceConnect]; pick at most one.
+/// with [CloudbuildWorkerPoolPrivateServiceConnect]; pick at most one.
 /// Immutable after pool creation.
 @immutable
-class CloudBuildWorkerPoolNetworkConfig {
-  const CloudBuildWorkerPoolNetworkConfig({
+class CloudbuildWorkerPoolNetworkConfig {
+  const CloudbuildWorkerPoolNetworkConfig({
     required this.peeredNetwork,
     this.peeredNetworkIpRange,
   });
@@ -84,13 +84,13 @@ class CloudBuildWorkerPoolNetworkConfig {
 }
 
 /// `private_service_connect` block. Newer alternative to
-/// [CloudBuildWorkerPoolNetworkConfig]: workers connect to a Network
+/// [CloudbuildWorkerPoolNetworkConfig]: workers connect to a Network
 /// Attachment in the customer VPC via PSC. Mutually exclusive with
-/// [CloudBuildWorkerPoolNetworkConfig]; pick at most one. Immutable
+/// [CloudbuildWorkerPoolNetworkConfig]; pick at most one. Immutable
 /// after pool creation.
 @immutable
-class CloudBuildWorkerPoolPrivateServiceConnect {
-  const CloudBuildWorkerPoolPrivateServiceConnect({
+class CloudbuildWorkerPoolPrivateServiceConnect {
+  const CloudbuildWorkerPoolPrivateServiceConnect({
     required this.networkAttachment,
     this.routeAllTraffic,
   });
@@ -142,7 +142,7 @@ class CloudBuildWorkerPoolPrivateServiceConnect {
 ///   localName: 'main_pool',
 ///   name: TfArg.literal('main-pool'),
 ///   location: TfArg.literal('asia-northeast1'),
-///   workerConfig: const CloudBuildWorkerPoolWorkerConfig(
+///   workerConfig: const CloudbuildWorkerPoolWorkerConfig(
 ///     diskSizeGb: TfArg.literal(100),
 ///     machineType: TfArg.literal('e2-medium'),
 ///     noExternalIp: TfArg.literal(true),
@@ -156,11 +156,11 @@ class CloudBuildWorkerPoolPrivateServiceConnect {
 ///   localName: 'vpc_pool',
 ///   name: TfArg.literal('vpc-pool'),
 ///   location: TfArg.literal('asia-northeast1'),
-///   workerConfig: const CloudBuildWorkerPoolWorkerConfig(
+///   workerConfig: const CloudbuildWorkerPoolWorkerConfig(
 ///     machineType: TfArg.literal('e2-standard-4'),
 ///     noExternalIp: TfArg.literal(true),
 ///   ),
-///   networkConfig: CloudBuildWorkerPoolNetworkConfig(
+///   networkConfig: CloudbuildWorkerPoolNetworkConfig(
 ///     peeredNetwork: TfArg.ref(vpc.selfLink),
 ///     peeredNetworkIpRange: TfArg.literal('/29'),
 ///   ),
@@ -184,9 +184,9 @@ final class GoogleCloudbuildWorkerPool extends Resource {
     required TfArg<String> location,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? annotations,
-    CloudBuildWorkerPoolWorkerConfig? workerConfig,
-    CloudBuildWorkerPoolNetworkConfig? networkConfig,
-    CloudBuildWorkerPoolPrivateServiceConnect? privateServiceConnect,
+    CloudbuildWorkerPoolWorkerConfig? workerConfig,
+    CloudbuildWorkerPoolNetworkConfig? networkConfig,
+    CloudbuildWorkerPoolPrivateServiceConnect? privateServiceConnect,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

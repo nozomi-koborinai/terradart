@@ -59,6 +59,13 @@ abstract class Resource implements TfAddressed {
   /// constant. Curated factories override with a baked-in
   /// `static const Set<String>` (file-private in v0.5+).
   Set<String> get $sensitiveFields;
+
+  /// Capability flag: true when this resource's underlying Terraform
+  /// schema has a `deletion_protection` boolean attribute that the
+  /// synth-time devMode flow can flip to `false`. Defaults to false;
+  /// the codegen emitter overrides this to `true` for wrappers whose
+  /// schema includes the attribute.
+  bool get $supportsDeletionProtection => false;
 }
 
 /// Lightweight type stand-in for the provider binding so the core runtime

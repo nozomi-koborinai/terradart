@@ -40,7 +40,7 @@ void main() {
           localName: 'orders_push',
           name: TfArg.literal('orders-push'),
           topic: TfArg.ref(ordersTopic.id),
-          pushConfig: const PushConfig(
+          pushConfig: const PubsubSubscriptionPushConfig(
             pushEndpoint: TfArgLiteral<String>('https://app.example.com/push'),
           ),
         ),
@@ -92,7 +92,7 @@ void main() {
         GoogleSecretManagerSecret(
           localName: 'api_key',
           secretId: TfArg.literal('orders-api-key'),
-          replication: Replication.auto(),
+          replication: SecretManagerSecretReplication.auto(),
         ),
       );
 
@@ -122,7 +122,7 @@ void main() {
           name: TfArg.literal('nightly'),
           region: TfArg.literal('us-central1'),
           schedule: TfArg.literal('0 0 * * *'),
-          target: PubsubTarget(topicName: TfArg.ref(ordersTopic.id)),
+          target: CloudSchedulerJobPubsubTarget(topicName: TfArg.ref(ordersTopic.id)),
         ),
       );
 

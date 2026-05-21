@@ -59,8 +59,8 @@ enum RegionNetworkEndpointGroupType {
 /// optional [tag] pins traffic to a named revision tag for fine-grained
 /// canary routing.
 @immutable
-class RegionNetworkEndpointGroupCloudRun {
-  const RegionNetworkEndpointGroupCloudRun({
+class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun {
+  const ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun({
     this.service,
     this.tag,
     this.urlMask,
@@ -99,8 +99,11 @@ class RegionNetworkEndpointGroupCloudRun {
 /// [urlMask] to route across multiple functions via a URL template (the
 /// schema's `at_least_one_of` rule requires at least one of the two).
 @immutable
-class RegionNetworkEndpointGroupCloudFunction {
-  const RegionNetworkEndpointGroupCloudFunction({this.function, this.urlMask});
+class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction {
+  const ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction({
+    this.function,
+    this.urlMask,
+  });
 
   /// User-defined Cloud Function name. Case-sensitive, 1-63 chars.
   /// Example: `'func1'`. At least one of [function] or [urlMask] must be
@@ -132,8 +135,8 @@ class RegionNetworkEndpointGroupCloudFunction {
 /// pin a specific service or version, or supply [urlMask] to route across
 /// many at once.
 @immutable
-class RegionNetworkEndpointGroupAppEngine {
-  const RegionNetworkEndpointGroupAppEngine({
+class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine {
+  const ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine({
     this.service,
     this.version,
     this.urlMask,
@@ -198,9 +201,9 @@ class RegionNetworkEndpointGroupAppEngine {
 ///
 /// Serverless target (exactly one of `cloudRun` / `cloudFunction` /
 /// `appEngine`): use the inline nested classes
-/// [RegionNetworkEndpointGroupCloudRun],
-/// [RegionNetworkEndpointGroupCloudFunction], or
-/// [RegionNetworkEndpointGroupAppEngine]. Setting more than one is
+/// [ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun],
+/// [ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction], or
+/// [ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine]. Setting more than one is
 /// rejected at apply time.
 ///
 /// PSC consumer NEG: set
@@ -221,7 +224,7 @@ class RegionNetworkEndpointGroupAppEngine {
 ///   localName: 'cr_neg',
 ///   name: TfArg.literal('cloudrun-neg'),
 ///   region: TfArg.literal('asia-northeast1'),
-///   cloudRun: RegionNetworkEndpointGroupCloudRun(
+///   cloudRun: ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(
 ///     service: TfArg.ref(cloudRunService.nameRef),
 ///   ),
 /// );
@@ -239,9 +242,12 @@ final class GoogleComputeRegionNetworkEndpointGroup extends Resource {
     required TfArg<String> name,
     required TfArg<String> region,
     TfArg<RegionNetworkEndpointGroupType>? networkEndpointType,
-    RegionNetworkEndpointGroupCloudRun? cloudRun,
-    RegionNetworkEndpointGroupCloudFunction? cloudFunction,
-    RegionNetworkEndpointGroupAppEngine? appEngine,
+    ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun?
+    cloudRun,
+    ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction?
+    cloudFunction,
+    ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine?
+    appEngine,
     TfArg<String>? pscTargetService,
     TfArg<String>? network,
     TfArg<String>? subnetwork,

@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.9.0 - 2026-05-21
+
+**BREAKING** — pre-1.0 polish wave consuming dogfood findings (issues #52-#57). v0.x permits breaking changes; 1.0 semver lock is deferred until cookbook recipes + real-apply feedback have absorbed more cycles. The 0.9.x line is the staging ground for the 1.0 surface:
+
+- **`Stack.synth({required String outDir})` is now concrete** — default implementation writes pretty-printed `${outDir}/main.tf.json` and creates `outDir` recursively. Subclasses may still override; existing overrides that delegated to `StackSynth.synth(this)` + `JsonEncoder.withIndent('  ')` can be deleted in favour of the default.
+- **`JsonEncoder` → `TfJsonEncoder`** — the synth-time JSON encoder class no longer shadows `dart:convert`'s `JsonEncoder`. Consumers that imported the class directly need to rename references; consumers using only `Stack` / `StackSynth` are unaffected.
+- **`Stack({bool devMode = false})`** — new constructor parameter. When true, synth-time injection flips `deletion_protection: false` on registered resources whose `Resource.$supportsDeletionProtection` is true and that did not explicitly set the field. Intended for dogfood / sample apps; production stacks leave it false.
+- **`Resource.$supportsDeletionProtection`** — new capability getter (default `false`); codegen overrides to `true` on 6 curated resources with a `deletion_protection` attribute.
+- **`LocalBackend`** added — `StackBackend` implementation matching the existing `GcsBackend` shape. Pass via `Stack(backend: const LocalBackend())`; no more handwritten `tf-out/terraform.tf`.
+- **`TfArg.variable(String name)`** + `TfArgVariable<T>` added — third peer of the sealed `TfArg<T>` family. Emits `"${var.<name>}"` interpolation. Canonical pattern for sensitive runtime values.
+- **`SensitiveLiteralError`** added — thrown by `TfJsonEncoder.encodeArgMapWithSensitive` when a `TfArgLiteral` is assigned to a sensitive field. v0.x silently masked the value to empty string, which caused apply-time HTTP 400. Recovery: switch to `TfArg.variable(...)` or the `<field>_wo` write-only variant.
+- **`encodeArgMapWithSensitive` signature** — gains a required `String resourceAddress` parameter (used by `SensitiveLiteralError` for diagnostic messages). Internal callers (`TfJsonEncoder.resourceBlock`) updated.
+
+See [MIGRATING.md](../../MIGRATING.md) for the full rename table + `sed` recipes.
+
 ## 0.8.0-dev - 2026-05-19
 
 No user-facing API changes. Workspace consistency bump alongside `terradart_google` 0.8.0-dev (Wave 7: 23 new GA resources across Data ops + observability + CI/CD — Cloud Build, Artifact Registry, Logging, Monitoring, BigQuery, plus event-driven adjacent: Eventarc, Pub/Sub schema, Storage notification).

@@ -34,8 +34,10 @@ enum ManagedSslCertificateType {
 ///   to the load balancer fronting this certificate before issuance can
 ///   complete (typically 30-60 minutes of DNS validation per domain).
 @immutable
-class ManagedSslCertificateConfig {
-  const ManagedSslCertificateConfig({required this.domains});
+class ComputeManagedSslCertificateManagedSslCertificateConfig {
+  const ComputeManagedSslCertificateManagedSslCertificateConfig({
+    required this.domains,
+  });
 
   /// Domain names to include on the certificate. Required.
   final List<String> domains;
@@ -58,7 +60,7 @@ class ManagedSslCertificateConfig {
 ///   `TfArg.ref(otherCert.nameRef)`. Managed and self-managed SSL
 ///   certificates share a single namespace, so this name must be unique
 ///   across both resource types in the project.
-/// - `managed`: one [ManagedSslCertificateConfig] carrying the list of
+/// - `managed`: one [ComputeManagedSslCertificateManagedSslCertificateConfig] carrying the list of
 ///   domains. Required in practice — without it Google has nothing to
 ///   request a certificate for.
 ///
@@ -88,7 +90,7 @@ class ManagedSslCertificateConfig {
 /// final lbCert = GoogleComputeManagedSslCertificate(
 ///   localName: 'lb_cert',
 ///   name: TfArg.literal('lb-managed-cert'),
-///   managed: const ManagedSslCertificateConfig(
+///   managed: const ComputeManagedSslCertificateManagedSslCertificateConfig(
 ///     domains: ['api.example.com', 'www.example.com'],
 ///   ),
 /// );
@@ -104,7 +106,7 @@ final class GoogleComputeManagedSslCertificate extends Resource {
   GoogleComputeManagedSslCertificate({
     required super.localName,
     TfArg<String>? name,
-    ManagedSslCertificateConfig? managed,
+    ComputeManagedSslCertificateManagedSslCertificateConfig? managed,
     TfArg<ManagedSslCertificateType>? type,
     TfArg<String>? description,
     TfArg<String>? project,

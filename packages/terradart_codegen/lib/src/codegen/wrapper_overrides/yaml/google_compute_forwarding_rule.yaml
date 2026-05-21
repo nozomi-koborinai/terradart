@@ -288,8 +288,8 @@ prelude: |
   /// Service Directory service name to register under), distinct from
   /// the global resource which exposes `namespace` + `service_directory_region`.
   @immutable
-  class ForwardingRuleServiceDirectoryRegistration {
-    const ForwardingRuleServiceDirectoryRegistration({
+  class ComputeForwardingRuleForwardingRuleServiceDirectoryRegistration {
+    const ComputeForwardingRuleForwardingRuleServiceDirectoryRegistration({
       this.namespace,
       this.service,
     });
@@ -309,5 +309,5 @@ prelude: |
 
 customSlots:
   service_directory_registrations:
-    paramDeclaration: 'List<ForwardingRuleServiceDirectoryRegistration>? serviceDirectoryRegistrations'
+    paramDeclaration: 'List<ComputeForwardingRuleForwardingRuleServiceDirectoryRegistration>? serviceDirectoryRegistrations'
     argMapEntry: "if (serviceDirectoryRegistrations != null) 'service_directory_registrations': TfArg.literal(serviceDirectoryRegistrations.map((r) => r.toArgMap()).toList()),"

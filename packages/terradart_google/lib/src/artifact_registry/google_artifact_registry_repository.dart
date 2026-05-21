@@ -74,8 +74,10 @@ enum ArtifactRegistryVulnerabilityEnablementConfig {
 /// `docker_config` block. Applies only when the parent repository's
 /// `format` is `DOCKER`; ignored for other formats.
 @immutable
-class ArtifactRegistryDockerConfig {
-  const ArtifactRegistryDockerConfig({this.immutableTags});
+class ArtifactRegistryRepositoryArtifactRegistryDockerConfig {
+  const ArtifactRegistryRepositoryArtifactRegistryDockerConfig({
+    this.immutableTags,
+  });
 
   /// When `true`, prevents existing tags from being modified, moved, or
   /// deleted -- new tags can still be created. Useful for build-pipeline
@@ -94,8 +96,8 @@ class ArtifactRegistryDockerConfig {
 /// `maven_config` block. Applies only when the parent repository's
 /// `format` is `MAVEN`; ignored for other formats.
 @immutable
-class ArtifactRegistryMavenConfig {
-  const ArtifactRegistryMavenConfig({
+class ArtifactRegistryRepositoryArtifactRegistryMavenConfig {
+  const ArtifactRegistryRepositoryArtifactRegistryMavenConfig({
     this.allowSnapshotOverwrites,
     this.versionPolicy,
   });
@@ -122,19 +124,22 @@ class ArtifactRegistryMavenConfig {
 
 /// `virtual_repository_config` block. Required when
 /// `mode == VIRTUAL_REPOSITORY`; mutually exclusive with
-/// [ArtifactRegistryRemoteRepositoryConfig].
+/// [ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig].
 ///
 /// A virtual repository forwards pulls to one or more upstream
 /// repositories in priority order -- pulls hit the highest-priority
 /// upstream first, falling back on miss.
 @immutable
-class ArtifactRegistryVirtualRepositoryConfig {
-  const ArtifactRegistryVirtualRepositoryConfig({this.upstreamPolicies});
+class ArtifactRegistryRepositoryArtifactRegistryVirtualRepositoryConfig {
+  const ArtifactRegistryRepositoryArtifactRegistryVirtualRepositoryConfig({
+    this.upstreamPolicies,
+  });
 
   /// Upstream repositories this virtual repo proxies. Entries with a
-  /// greater [ArtifactRegistryVirtualUpstreamPolicy.priority] are tried
+  /// greater [ArtifactRegistryRepositoryArtifactRegistryVirtualUpstreamPolicy.priority] are tried
   /// first.
-  final List<ArtifactRegistryVirtualUpstreamPolicy>? upstreamPolicies;
+  final List<ArtifactRegistryRepositoryArtifactRegistryVirtualUpstreamPolicy>?
+  upstreamPolicies;
 
   Map<String, Object?> toArgMap() => {
     if (upstreamPolicies != null)
@@ -144,8 +149,8 @@ class ArtifactRegistryVirtualRepositoryConfig {
 
 /// One `virtual_repository_config.upstream_policies` entry.
 @immutable
-class ArtifactRegistryVirtualUpstreamPolicy {
-  const ArtifactRegistryVirtualUpstreamPolicy({
+class ArtifactRegistryRepositoryArtifactRegistryVirtualUpstreamPolicy {
+  const ArtifactRegistryRepositoryArtifactRegistryVirtualUpstreamPolicy({
     this.id,
     this.repository,
     this.priority,
@@ -176,7 +181,7 @@ class ArtifactRegistryVirtualUpstreamPolicy {
 
 /// `remote_repository_config` block. Required when
 /// `mode == REMOTE_REPOSITORY`; mutually exclusive with
-/// [ArtifactRegistryVirtualRepositoryConfig].
+/// [ArtifactRegistryRepositoryArtifactRegistryVirtualRepositoryConfig].
 ///
 /// A remote repository acts as a pull-through cache: clients pull from
 /// it, and on cache miss it fetches from a configured upstream registry
@@ -190,8 +195,8 @@ class ArtifactRegistryVirtualUpstreamPolicy {
 /// has 7+ upstream-type variants with enum-keyed public bases, and
 /// curating all of them would crowd out the common case.
 @immutable
-class ArtifactRegistryRemoteRepositoryConfig {
-  const ArtifactRegistryRemoteRepositoryConfig({
+class ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig {
+  const ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig({
     this.description,
     this.commonRepository,
     this.upstreamCredentials,
@@ -207,12 +212,14 @@ class ArtifactRegistryRemoteRepositoryConfig {
   /// qualified registry URI (`https://registry-1.docker.io`), or an
   /// Artifact Registry HTTPS URI
   /// (`https://<region>-docker.pkg.dev/<project>/<repo>`).
-  final ArtifactRegistryRemoteCommonRepository? commonRepository;
+  final ArtifactRegistryRepositoryArtifactRegistryRemoteCommonRepository?
+  commonRepository;
 
   /// Credentials used when pulling from a private upstream. Set this
   /// when the upstream requires authentication (e.g. a private Docker
   /// Hub org, a self-hosted Nexus).
-  final ArtifactRegistryRemoteUpstreamCredentials? upstreamCredentials;
+  final ArtifactRegistryRepositoryArtifactRegistryRemoteUpstreamCredentials?
+  upstreamCredentials;
 
   /// When `true`, skips upstream-reachability validation at create /
   /// update time. This field is INPUT_ONLY -- the API does not return
@@ -257,10 +264,12 @@ class ArtifactRegistryRemoteRepositoryConfig {
 /// `remote_repository_config.common_repository` -- generic upstream by
 /// URI. Mutually exclusive with the format-specific
 /// `*_repository` blocks (see
-/// [ArtifactRegistryRemoteRepositoryConfig.advancedExtra]).
+/// [ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig.advancedExtra]).
 @immutable
-class ArtifactRegistryRemoteCommonRepository {
-  const ArtifactRegistryRemoteCommonRepository({required this.uri});
+class ArtifactRegistryRepositoryArtifactRegistryRemoteCommonRepository {
+  const ArtifactRegistryRepositoryArtifactRegistryRemoteCommonRepository({
+    required this.uri,
+  });
 
   /// Upstream URI. Accepts an Artifact Registry repo path
   /// (`projects/<p>/locations/<l>/repositories/<repo>`), a registry URI
@@ -275,13 +284,13 @@ class ArtifactRegistryRemoteCommonRepository {
 /// the only credential variant currently modeled by the schema
 /// (`username_password_credentials`).
 @immutable
-class ArtifactRegistryRemoteUpstreamCredentials {
-  const ArtifactRegistryRemoteUpstreamCredentials({
+class ArtifactRegistryRepositoryArtifactRegistryRemoteUpstreamCredentials {
+  const ArtifactRegistryRepositoryArtifactRegistryRemoteUpstreamCredentials({
     this.usernamePasswordCredentials,
   });
 
   /// Username + Secret-Manager password version pair.
-  final ArtifactRegistryRemoteUsernamePasswordCredentials?
+  final ArtifactRegistryRepositoryArtifactRegistryRemoteUsernamePasswordCredentials?
   usernamePasswordCredentials;
 
   Map<String, Object?> toArgMap() => {
@@ -299,8 +308,8 @@ class ArtifactRegistryRemoteUpstreamCredentials {
 /// and Artifact Registry resolves [passwordSecretVersion] at fetch
 /// time.
 @immutable
-class ArtifactRegistryRemoteUsernamePasswordCredentials {
-  const ArtifactRegistryRemoteUsernamePasswordCredentials({
+class ArtifactRegistryRepositoryArtifactRegistryRemoteUsernamePasswordCredentials {
+  const ArtifactRegistryRepositoryArtifactRegistryRemoteUsernamePasswordCredentials({
     this.username,
     this.passwordSecretVersion,
   });
@@ -334,8 +343,8 @@ class ArtifactRegistryRemoteUsernamePasswordCredentials {
 /// = `true` to dry-run the rule against existing artifacts before
 /// enabling deletion.
 @immutable
-class ArtifactRegistryCleanupPolicy {
-  const ArtifactRegistryCleanupPolicy({
+class ArtifactRegistryRepositoryArtifactRegistryCleanupPolicy {
+  const ArtifactRegistryRepositoryArtifactRegistryCleanupPolicy({
     required this.id,
     this.action,
     this.condition,
@@ -344,7 +353,7 @@ class ArtifactRegistryCleanupPolicy {
 
   /// Policy id (also the map key). Free-form, unique within the
   /// repository, under 128 chars.
-  final String id;
+  final TfArg<String> id;
 
   /// What this policy does to matching versions when its condition
   /// fires. Optional in the schema, but a policy with no action is a
@@ -353,16 +362,17 @@ class ArtifactRegistryCleanupPolicy {
 
   /// Match versions by tag / age / prefix. Mutually exclusive with
   /// [mostRecentVersions].
-  final ArtifactRegistryCleanupCondition? condition;
+  final ArtifactRegistryRepositoryArtifactRegistryCleanupCondition? condition;
 
   /// Retain the N most recent versions matching [package name
-  /// prefixes][ArtifactRegistryCleanupMostRecentVersions.packageNamePrefixes].
+  /// prefixes][ArtifactRegistryRepositoryArtifactRegistryCleanupMostRecentVersions.packageNamePrefixes].
   /// May only be paired with `action == KEEP`. Mutually exclusive with
   /// [condition].
-  final ArtifactRegistryCleanupMostRecentVersions? mostRecentVersions;
+  final ArtifactRegistryRepositoryArtifactRegistryCleanupMostRecentVersions?
+  mostRecentVersions;
 
   Map<String, Object?> toArgMap() => {
-    'id': id,
+    'id': id.toTfJson(),
     if (action != null) 'action': action!.terraformValue,
     if (condition != null) 'condition': [condition!.toArgMap()],
     if (mostRecentVersions != null)
@@ -374,8 +384,8 @@ class ArtifactRegistryCleanupPolicy {
 /// At least one of the predicate fields should be set for the condition
 /// to be meaningful.
 @immutable
-class ArtifactRegistryCleanupCondition {
-  const ArtifactRegistryCleanupCondition({
+class ArtifactRegistryRepositoryArtifactRegistryCleanupCondition {
+  const ArtifactRegistryRepositoryArtifactRegistryCleanupCondition({
     this.tagState,
     this.tagPrefixes,
     this.versionNamePrefixes,
@@ -424,8 +434,8 @@ class ArtifactRegistryCleanupCondition {
 /// versions per matched package. Only valid paired with
 /// `action == KEEP`.
 @immutable
-class ArtifactRegistryCleanupMostRecentVersions {
-  const ArtifactRegistryCleanupMostRecentVersions({
+class ArtifactRegistryRepositoryArtifactRegistryCleanupMostRecentVersions {
+  const ArtifactRegistryRepositoryArtifactRegistryCleanupMostRecentVersions({
     this.packageNamePrefixes,
     this.keepCount,
   });
@@ -454,8 +464,10 @@ class ArtifactRegistryCleanupMostRecentVersions {
 /// [enablementStateReason] are returned by the API and surface as read
 /// getters on the parent class.
 @immutable
-class ArtifactRegistryVulnerabilityScanningConfig {
-  const ArtifactRegistryVulnerabilityScanningConfig({this.enablementConfig});
+class ArtifactRegistryRepositoryArtifactRegistryVulnerabilityScanningConfig {
+  const ArtifactRegistryRepositoryArtifactRegistryVulnerabilityScanningConfig({
+    this.enablementConfig,
+  });
 
   /// User-set scanning toggle. `INHERITED` defers to the project-level
   /// Container Analysis state; `DISABLED` opts this repo out
@@ -525,7 +537,7 @@ class ArtifactRegistryVulnerabilityScanningConfig {
 /// Deep nested blocks ([remoteRepositoryConfig].apt/docker/maven/npm/
 /// python/yum sub-blocks and their `public_repository` /
 /// `custom_repository` variants) are exposed via the [advancedExtra]
-/// escape hatch on [ArtifactRegistryRemoteRepositoryConfig] -- the
+/// escape hatch on [ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig] -- the
 /// surface is large (7+ upstream-type variants, deprecated
 /// `customRepository` paths, enum-keyed public repository bases) and
 /// would dominate the curated API for niche pull-through-cache use
@@ -554,13 +566,17 @@ final class GoogleArtifactRegistryRepository extends Resource {
     TfArg<String>? location,
     TfArg<String>? kmsKeyName,
     TfArg<Map<String, String>>? labels,
-    ArtifactRegistryDockerConfig? dockerConfig,
-    ArtifactRegistryMavenConfig? mavenConfig,
-    ArtifactRegistryVirtualRepositoryConfig? virtualRepositoryConfig,
-    ArtifactRegistryRemoteRepositoryConfig? remoteRepositoryConfig,
-    List<ArtifactRegistryCleanupPolicy>? cleanupPolicies,
+    ArtifactRegistryRepositoryArtifactRegistryDockerConfig? dockerConfig,
+    ArtifactRegistryRepositoryArtifactRegistryMavenConfig? mavenConfig,
+    ArtifactRegistryRepositoryArtifactRegistryVirtualRepositoryConfig?
+    virtualRepositoryConfig,
+    ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig?
+    remoteRepositoryConfig,
+    List<ArtifactRegistryRepositoryArtifactRegistryCleanupPolicy>?
+    cleanupPolicies,
     TfArg<bool>? cleanupPolicyDryRun,
-    ArtifactRegistryVulnerabilityScanningConfig? vulnerabilityScanningConfig,
+    ArtifactRegistryRepositoryArtifactRegistryVulnerabilityScanningConfig?
+    vulnerabilityScanningConfig,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

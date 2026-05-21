@@ -4,8 +4,11 @@ import 'package:dart_style/dart_style.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_emitter.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
+import 'package:terradart_codegen/src/ir/attribute.dart';
+import 'package:terradart_codegen/src/ir/constraints.dart';
 import 'package:terradart_codegen/src/ir/nested_block.dart';
 import 'package:terradart_codegen/src/ir/resource_def.dart';
+import 'package:terradart_codegen/src/ir/type_def.dart';
 import 'package:terradart_codegen/src/parser/schema_parser.dart';
 import 'package:test/test.dart';
 
@@ -697,6 +700,55 @@ void main() {
       ).readAsStringSync();
       expect(formatted, equals(expected));
     });
+
+    test(
+      'emit \$supportsDeletionProtection override present when schema has deletion_protection',
+      () {
+        // A resource whose root block exposes a top-level `deletion_protection`
+        // attribute must emit the `@override bool get $supportsDeletionProtection
+        // => true;` getter so the runtime devMode injection can opt-in.
+        final emitter = WrapperEmitter(overrides: overrides);
+        const def = ResourceDef(
+          terraformType: 'google_capable_resource',
+          root: BlockDef(
+            attributes: [
+              Attribute(
+                name: 'deletion_protection',
+                type: BoolType(),
+                constraints: Constraints(optional: true),
+              ),
+            ],
+          ),
+        );
+        final out = emitter.emit(def, providerSource: 'hashicorp/google');
+        const expected = '  @override\n'
+            '  bool get \$supportsDeletionProtection => true;\n';
+        expect(out, contains(expected));
+      },
+    );
+
+    test(
+      'emit \$supportsDeletionProtection override absent when schema lacks deletion_protection',
+      () {
+        // Resources without `deletion_protection` must NOT emit the override —
+        // they inherit the base-class default of false.
+        final emitter = WrapperEmitter(overrides: overrides);
+        const def = ResourceDef(
+          terraformType: 'google_incapable_resource',
+          root: BlockDef(
+            attributes: [
+              Attribute(
+                name: 'name',
+                type: StringType(),
+                constraints: Constraints(required: true),
+              ),
+            ],
+          ),
+        );
+        final out = emitter.emit(def, providerSource: 'hashicorp/google');
+        expect(out, isNot(contains('\$supportsDeletionProtection')));
+      },
+    );
 
     test(
       'emit constructor excludes computed-only, id, and timeouts',

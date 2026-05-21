@@ -39,7 +39,7 @@ enum LaunchStage {
   final String terraformValue;
 }
 
-/// Egress policy for [VpcAccess.egress] (`template.vpc_access.egress`).
+/// Egress policy for [CloudRunV2ServiceVpcAccess.egress] (`template.vpc_access.egress`).
 /// `allTraffic` routes every outbound request through the connector or
 /// network interface; `privateRangesOnly` keeps RFC1918 + Google APIs
 /// inside the VPC and bypasses it for the public internet.
@@ -51,10 +51,10 @@ enum VpcAccessEgress {
   final String terraformValue;
 }
 
-/// Scaling mode shared by service-level [ServiceScaling] and (when
+/// Scaling mode shared by service-level [CloudRunV2ServiceServiceScaling] and (when
 /// applicable) other Cloud Run v2 scaling blocks. `automatic` lets the
 /// runtime pick instance count from min/max bounds; `manual` pins to a
-/// fixed [ServiceScaling.manualInstanceCount].
+/// fixed [CloudRunV2ServiceServiceScaling.manualInstanceCount].
 enum ScalingMode {
   automatic('AUTOMATIC'),
   manual('MANUAL');
@@ -63,7 +63,7 @@ enum ScalingMode {
   final String terraformValue;
 }
 
-/// Container sandbox environment for [Template.executionEnvironment].
+/// Container sandbox environment for [CloudRunV2ServiceTemplate.executionEnvironment].
 /// `gen2` enables GCSFuse volumes + larger CPU/memory tiers; `gen1` keeps
 /// the legacy gVisor sandbox.
 enum ExecutionEnvironment {
@@ -74,9 +74,9 @@ enum ExecutionEnvironment {
   final String terraformValue;
 }
 
-/// Allocation type for one [Traffic] split. `latest` always points at the
+/// Allocation type for one [CloudRunV2ServiceTraffic] split. `latest` always points at the
 /// newest Ready revision (so `revision` MUST be omitted); `revision`
-/// pins to the [Traffic.revision] name.
+/// pins to the [CloudRunV2ServiceTraffic.revision] name.
 enum TrafficTargetAllocationType {
   latest('TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST'),
   revision('TRAFFIC_TARGET_ALLOCATION_TYPE_REVISION');
@@ -85,7 +85,7 @@ enum TrafficTargetAllocationType {
   final String terraformValue;
 }
 
-/// Storage medium for [EmptyDirVolume.medium]. The schema only documents
+/// Storage medium for [CloudRunV2ServiceEmptyDirVolume.medium]. The schema only documents
 /// `MEMORY` for v2 services; encoded as an enum for type-safety and to
 /// keep the door open for `DISK` (MM lists it but the provider rejects
 /// it today).
@@ -106,8 +106,8 @@ enum EmptyDirMedium {
 /// provider level). [breakglassJustification] only takes effect when a
 /// policy denies admission and the deployer wants to override it.
 @immutable
-class BinaryAuthorization {
-  const BinaryAuthorization({
+class CloudRunV2ServiceBinaryAuthorization {
+  const CloudRunV2ServiceBinaryAuthorization({
     this.useDefault,
     this.policy,
     this.breakglassJustification,
@@ -137,11 +137,11 @@ class BinaryAuthorization {
 
 /// Service-level `scaling` block (top-level on the service, not the
 /// template). Use this to pin manual instance count for the whole
-/// service. The revision-level [TemplateScaling] block lives under
-/// [Template.scaling].
+/// service. The revision-level [CloudRunV2ServiceTemplateScaling] block lives under
+/// [CloudRunV2ServiceTemplate.scaling].
 @immutable
-class ServiceScaling {
-  const ServiceScaling({
+class CloudRunV2ServiceServiceScaling {
+  const CloudRunV2ServiceServiceScaling({
     this.minInstanceCount,
     this.maxInstanceCount,
     this.scalingMode,
@@ -178,8 +178,13 @@ class ServiceScaling {
 /// One `traffic` entry. Splits traffic across revisions. Default (when
 /// the list is omitted) is 100% to the latest Ready revision.
 @immutable
-class Traffic {
-  const Traffic({this.type, this.revision, this.percent, this.tag});
+class CloudRunV2ServiceTraffic {
+  const CloudRunV2ServiceTraffic({
+    this.type,
+    this.revision,
+    this.percent,
+    this.tag,
+  });
 
   /// `latest` or `revision`. When `revision`, [revision] is required.
   final TfArg<TrafficTargetAllocationType>? type;
@@ -203,15 +208,15 @@ class Traffic {
 }
 
 // ===========================================================================
-// Template + nested helpers
+// CloudRunV2ServiceTemplate + nested helpers
 // ===========================================================================
 
 /// `template` block — the revision template. Required on every Cloud Run
-/// v2 service. Holds at least one [ServiceContainer] plus optional
+/// v2 service. Holds at least one [CloudRunV2ServiceServiceContainer] plus optional
 /// scaling, VPC access, volumes, etc.
 @immutable
-class Template {
-  const Template({
+class CloudRunV2ServiceTemplate {
+  const CloudRunV2ServiceTemplate({
     required this.containers,
     this.revision,
     this.labels,
@@ -232,7 +237,7 @@ class Template {
 
   /// One or more containers (the schema allows ≥1; multiple containers
   /// form a sidecar pattern with a single ingress container).
-  final List<ServiceContainer> containers;
+  final List<CloudRunV2ServiceServiceContainer> containers;
 
   /// Pin the revision name. When `null`, GCP auto-generates
   /// `<service>-<random>-<idx>`.
@@ -247,10 +252,10 @@ class Template {
   final TfArg<Map<String, String>>? annotations;
 
   /// Revision-level scaling (min/max instance count).
-  final TemplateScaling? scaling;
+  final CloudRunV2ServiceTemplateScaling? scaling;
 
   /// VPC connector or direct VPC egress configuration.
-  final VpcAccess? vpcAccess;
+  final CloudRunV2ServiceVpcAccess? vpcAccess;
 
   /// Per-request timeout duration ("3.5s" form). Default 5 minutes.
   final TfArg<String>? timeout;
@@ -279,11 +284,11 @@ class Template {
   final TfArg<bool>? gpuZonalRedundancyDisabled;
 
   /// Volumes available to all containers in the revision. Reference one
-  /// from [ServiceContainer.volumeMounts] by [ServiceVolume.name].
-  final List<ServiceVolume>? volumes;
+  /// from [CloudRunV2ServiceServiceContainer.volumeMounts] by [CloudRunV2ServiceServiceVolume.name].
+  final List<CloudRunV2ServiceServiceVolume>? volumes;
 
   /// GPU accelerator pin. Required when the revision uses GPU CPU tiers.
-  final NodeSelector? nodeSelector;
+  final CloudRunV2ServiceNodeSelector? nodeSelector;
 
   Map<String, Object?> toArgMap() => {
     'containers': containers.map((c) => c.toArgMap()).toList(),
@@ -313,10 +318,13 @@ class Template {
 
 /// Revision-level scaling block (`template.scaling`). Sets the floor and
 /// ceiling on serving instances for THIS revision. Service-level
-/// [ServiceScaling] applies across revisions.
+/// [CloudRunV2ServiceServiceScaling] applies across revisions.
 @immutable
-class TemplateScaling {
-  const TemplateScaling({this.minInstanceCount, this.maxInstanceCount});
+class CloudRunV2ServiceTemplateScaling {
+  const CloudRunV2ServiceTemplateScaling({
+    this.minInstanceCount,
+    this.maxInstanceCount,
+  });
 
   /// Minimum serving instances for this revision. Default 0.
   final TfArg<int>? minInstanceCount;
@@ -337,8 +345,12 @@ class TemplateScaling {
 /// connector ([connector]) OR use direct VPC egress
 /// ([networkInterfaces]) — the two conflict at the provider level.
 @immutable
-class VpcAccess {
-  const VpcAccess({this.connector, this.egress, this.networkInterfaces});
+class CloudRunV2ServiceVpcAccess {
+  const CloudRunV2ServiceVpcAccess({
+    this.connector,
+    this.egress,
+    this.networkInterfaces,
+  });
 
   /// Serverless VPC Access connector path:
   /// `projects/{p}/locations/{l}/connectors/{c}`. Conflicts with
@@ -351,7 +363,7 @@ class VpcAccess {
 
   /// Direct VPC egress interfaces. Currently the schema accepts at most
   /// one entry. Conflicts with [connector].
-  final List<VpcNetworkInterface>? networkInterfaces;
+  final List<CloudRunV2ServiceVpcNetworkInterface>? networkInterfaces;
 
   Map<String, Object?> toArgMap() => {
     if (connector != null) 'connector': connector!.toTfJson(),
@@ -363,11 +375,15 @@ class VpcAccess {
   };
 }
 
-/// One direct-VPC-egress interface under [VpcAccess.networkInterfaces].
+/// One direct-VPC-egress interface under [CloudRunV2ServiceVpcAccess.networkInterfaces].
 /// At least one of [network] or [subnetwork] must be specified.
 @immutable
-class VpcNetworkInterface {
-  const VpcNetworkInterface({this.network, this.subnetwork, this.tags});
+class CloudRunV2ServiceVpcNetworkInterface {
+  const CloudRunV2ServiceVpcNetworkInterface({
+    this.network,
+    this.subnetwork,
+    this.tags,
+  });
 
   /// VPC network self-link or short name. If omitted, looked up from
   /// [subnetwork].
@@ -390,8 +406,8 @@ class VpcNetworkInterface {
 /// GPU accelerator selector (`template.node_selector`). Required for
 /// GPU-tier revisions.
 @immutable
-class NodeSelector {
-  const NodeSelector({required this.accelerator});
+class CloudRunV2ServiceNodeSelector {
+  const CloudRunV2ServiceNodeSelector({required this.accelerator});
 
   /// Accelerator type, e.g. `'nvidia-l4'`. See
   /// https://cloud.google.com/run/docs/configuring/services/gpu.
@@ -407,8 +423,8 @@ class NodeSelector {
 /// One entry in `template.containers`. At minimum supply [image]. Use
 /// [name] to disambiguate when running multiple containers (sidecars).
 @immutable
-class ServiceContainer {
-  const ServiceContainer({
+class CloudRunV2ServiceServiceContainer {
+  const CloudRunV2ServiceServiceContainer({
     required this.image,
     this.name,
     this.command,
@@ -436,19 +452,19 @@ class ServiceContainer {
   final TfArg<List<String>>? args;
 
   /// Environment variables — both literal and secret-backed forms via
-  /// the sealed [EnvVarSource] dispatch.
-  final List<EnvVar>? env;
+  /// the sealed [CloudRunV2ServiceEnvVarSource] dispatch.
+  final List<CloudRunV2ServiceEnvVar>? env;
 
   /// CPU / memory / GPU limits + cold-start knobs.
-  final ContainerResources? resources;
+  final CloudRunV2ServiceContainerResources? resources;
 
   /// Container port. Cloud Run v2 supports exactly one port per
-  /// container; pass a single [ContainerPort] (not a list).
-  final ContainerPort? ports;
+  /// container; pass a single [CloudRunV2ServiceContainerPort] (not a list).
+  final CloudRunV2ServiceContainerPort? ports;
 
-  /// Volume mounts — reference [ServiceVolume.name] from
-  /// [Template.volumes].
-  final List<VolumeMount>? volumeMounts;
+  /// Volume mounts — reference [CloudRunV2ServiceServiceVolume.name] from
+  /// [CloudRunV2ServiceTemplate.volumes].
+  final List<CloudRunV2ServiceVolumeMount>? volumeMounts;
 
   /// Container working directory. Falls back to image default.
   final TfArg<String>? workingDir;
@@ -459,10 +475,10 @@ class ServiceContainer {
 
   /// Periodic probe that gates traffic until the container reports
   /// ready.
-  final StartupProbe? startupProbe;
+  final CloudRunV2ServiceStartupProbe? startupProbe;
 
   /// Periodic probe that restarts the container on failure.
-  final LivenessProbe? livenessProbe;
+  final CloudRunV2ServiceLivenessProbe? livenessProbe;
 
   Map<String, Object?> toArgMap() => {
     'image': image.toTfJson(),
@@ -485,36 +501,37 @@ class ServiceContainer {
 /// When [source] is `null` the variable is emitted with an empty literal
 /// (the schema's documented default — provider suppresses the diff).
 @immutable
-class EnvVar {
-  const EnvVar({required this.name, this.source});
+class CloudRunV2ServiceEnvVar {
+  const CloudRunV2ServiceEnvVar({required this.name, this.source});
 
   /// C_IDENTIFIER name. Required.
-  final String name;
+  final TfArg<String> name;
 
-  /// Value source. Pick exactly one of [EnvVarFromLiteral] or
-  /// [EnvVarFromSecret].
-  final EnvVarSource? source;
+  /// Value source. Pick exactly one of [CloudRunV2ServiceEnvVarFromLiteral] or
+  /// [CloudRunV2ServiceEnvVarFromSecret].
+  final CloudRunV2ServiceEnvVarSource? source;
 
   Map<String, Object?> toArgMap() => {
-    'name': name,
+    'name': name.toTfJson(),
     if (source != null) ...source!.encode(),
   };
 }
 
-/// Sealed dispatch for one [EnvVar.source]. Models the
+/// Sealed dispatch for one [CloudRunV2ServiceEnvVar.source]. Models the
 /// `value` / `value_source.secret_key_ref` exactly_one_of constraint at
 /// the type level.
-sealed class EnvVarSource {
-  const EnvVarSource();
+sealed class CloudRunV2ServiceEnvVarSource {
+  const CloudRunV2ServiceEnvVarSource();
 
-  /// Returns the JSON fragment to merge into [EnvVar.toArgMap].
+  /// Returns the JSON fragment to merge into [CloudRunV2ServiceEnvVar.toArgMap].
   Map<String, Object?> encode();
 }
 
 /// Literal env var value (`env.value`).
 @immutable
-final class EnvVarFromLiteral extends EnvVarSource {
-  const EnvVarFromLiteral(this.value);
+final class CloudRunV2ServiceEnvVarFromLiteral
+    extends CloudRunV2ServiceEnvVarSource {
+  const CloudRunV2ServiceEnvVarFromLiteral(this.value);
 
   /// Literal string value (≤32768 chars).
   final TfArg<String> value;
@@ -527,8 +544,9 @@ final class EnvVarFromLiteral extends EnvVarSource {
 /// Pass the secret name (short form `{secret}` when in the same project,
 /// or full `projects/{p}/secrets/{s}` path otherwise) and the version.
 @immutable
-final class EnvVarFromSecret extends EnvVarSource {
-  const EnvVarFromSecret({required this.secret, this.version});
+final class CloudRunV2ServiceEnvVarFromSecret
+    extends CloudRunV2ServiceEnvVarSource {
+  const CloudRunV2ServiceEnvVarFromSecret({required this.secret, this.version});
 
   /// Secret name. Required.
   final TfArg<String> secret;
@@ -555,8 +573,12 @@ final class EnvVarFromSecret extends EnvVarSource {
 /// values in `'1'`, `'2'`, `'4'`, `'6'`, `'8'`; memory in `'512Mi'`,
 /// `'1Gi'`, etc.; GPU in `'1'` (only one nvidia.com/gpu supported).
 @immutable
-class ContainerResources {
-  const ContainerResources({this.limits, this.cpuIdle, this.startupCpuBoost});
+class CloudRunV2ServiceContainerResources {
+  const CloudRunV2ServiceContainerResources({
+    this.limits,
+    this.cpuIdle,
+    this.startupCpuBoost,
+  });
 
   /// Resource limits map. Recognized keys: `cpu`, `memory`,
   /// `nvidia.com/gpu`.
@@ -581,8 +603,8 @@ class ContainerResources {
 /// Container port (`ports`). Cloud Run v2 supports exactly one port per
 /// container.
 @immutable
-class ContainerPort {
-  const ContainerPort({this.containerPort, this.name});
+class CloudRunV2ServiceContainerPort {
+  const CloudRunV2ServiceContainerPort({this.containerPort, this.name});
 
   /// TCP port number. Default is the value of `PORT` env (passed by
   /// Cloud Run at runtime).
@@ -597,17 +619,17 @@ class ContainerPort {
   };
 }
 
-/// Volume mount entry. [name] must match a [ServiceVolume.name] under
-/// [Template.volumes].
+/// Volume mount entry. [name] must match a [CloudRunV2ServiceServiceVolume.name] under
+/// [CloudRunV2ServiceTemplate.volumes].
 @immutable
-class VolumeMount {
-  const VolumeMount({
+class CloudRunV2ServiceVolumeMount {
+  const CloudRunV2ServiceVolumeMount({
     required this.name,
     required this.mountPath,
     this.subPath,
   });
 
-  /// Volume name. Must match a [ServiceVolume.name].
+  /// Volume name. Must match a [CloudRunV2ServiceServiceVolume.name].
   final TfArg<String> name;
 
   /// Mount path inside the container. For Cloud SQL volumes leave empty
@@ -632,8 +654,8 @@ class VolumeMount {
 /// `startup_probe` block. Gates the container Ready signal during cold
 /// start. Pick exactly one of [httpGet] / [tcpSocket] / [grpc].
 @immutable
-class StartupProbe {
-  const StartupProbe({
+class CloudRunV2ServiceStartupProbe {
+  const CloudRunV2ServiceStartupProbe({
     this.initialDelaySeconds,
     this.timeoutSeconds,
     this.periodSeconds,
@@ -656,10 +678,10 @@ class StartupProbe {
   final TfArg<int>? failureThreshold;
 
   /// HTTP GET action.
-  final HttpGetAction? httpGet;
+  final CloudRunV2ServiceHttpGetAction? httpGet;
 
   /// TCP socket action.
-  final TcpSocketAction? tcpSocket;
+  final CloudRunV2ServiceTcpSocketAction? tcpSocket;
 
   /// gRPC action — passed through as an opaque map for bounded coverage.
   /// Schema fields: `port` (int), `service` (string).
@@ -679,11 +701,11 @@ class StartupProbe {
 }
 
 /// `liveness_probe` block. Restarts the container on failure. Same
-/// shape as [StartupProbe] but uses liveness semantics (probe is gated
+/// shape as [CloudRunV2ServiceStartupProbe] but uses liveness semantics (probe is gated
 /// AFTER startup).
 @immutable
-class LivenessProbe {
-  const LivenessProbe({
+class CloudRunV2ServiceLivenessProbe {
+  const CloudRunV2ServiceLivenessProbe({
     this.initialDelaySeconds,
     this.timeoutSeconds,
     this.periodSeconds,
@@ -697,8 +719,8 @@ class LivenessProbe {
   final TfArg<int>? timeoutSeconds;
   final TfArg<int>? periodSeconds;
   final TfArg<int>? failureThreshold;
-  final HttpGetAction? httpGet;
-  final TcpSocketAction? tcpSocket;
+  final CloudRunV2ServiceHttpGetAction? httpGet;
+  final CloudRunV2ServiceTcpSocketAction? tcpSocket;
   final Map<String, Object?>? grpc;
 
   Map<String, Object?> toArgMap() => {
@@ -716,8 +738,12 @@ class LivenessProbe {
 
 /// `http_get` probe action.
 @immutable
-class HttpGetAction {
-  const HttpGetAction({this.path, this.port, this.httpHeaders});
+class CloudRunV2ServiceHttpGetAction {
+  const CloudRunV2ServiceHttpGetAction({
+    this.path,
+    this.port,
+    this.httpHeaders,
+  });
 
   /// Path on the HTTP server. Default `'/'`.
   final TfArg<String>? path;
@@ -726,7 +752,7 @@ class HttpGetAction {
   final TfArg<int>? port;
 
   /// Custom request headers (HTTP allows repeats).
-  final List<HttpHeader>? httpHeaders;
+  final List<CloudRunV2ServiceHttpHeader>? httpHeaders;
 
   Map<String, Object?> toArgMap() => {
     if (path != null) 'path': path!.toTfJson(),
@@ -738,8 +764,8 @@ class HttpGetAction {
 
 /// `tcp_socket` probe action.
 @immutable
-class TcpSocketAction {
-  const TcpSocketAction({this.port});
+class CloudRunV2ServiceTcpSocketAction {
+  const CloudRunV2ServiceTcpSocketAction({this.port});
 
   /// Port to probe (1–65535). Defaults to the container port.
   final TfArg<int>? port;
@@ -749,10 +775,10 @@ class TcpSocketAction {
   };
 }
 
-/// One `http_headers` entry under [HttpGetAction.httpHeaders].
+/// One `http_headers` entry under [CloudRunV2ServiceHttpGetAction.httpHeaders].
 @immutable
-class HttpHeader {
-  const HttpHeader({required this.name, this.value});
+class CloudRunV2ServiceHttpHeader {
+  const CloudRunV2ServiceHttpHeader({required this.name, this.value});
 
   /// Header field name. Required.
   final TfArg<String> name;
@@ -772,19 +798,22 @@ class HttpHeader {
 // ===========================================================================
 
 /// One entry in `template.volumes`. The volume's name is referenced
-/// from [VolumeMount.name] inside any [ServiceContainer.volumeMounts].
-/// Pick exactly one [source] (sealed [VolumeSource]).
+/// from [CloudRunV2ServiceVolumeMount.name] inside any [CloudRunV2ServiceServiceContainer.volumeMounts].
+/// Pick exactly one [source] (sealed [CloudRunV2ServiceVolumeSource]).
 @immutable
-class ServiceVolume {
-  const ServiceVolume({required this.name, required this.source});
+class CloudRunV2ServiceServiceVolume {
+  const CloudRunV2ServiceServiceVolume({
+    required this.name,
+    required this.source,
+  });
 
   /// Volume name. Must be unique within the revision and match
-  /// downstream [VolumeMount.name].
+  /// downstream [CloudRunV2ServiceVolumeMount.name].
   final TfArg<String> name;
 
-  /// Backing storage. Pick exactly one of [VolumeSecret],
-  /// [CloudSqlVolume], [EmptyDirVolume], [GcsVolume], [NfsVolume].
-  final VolumeSource source;
+  /// Backing storage. Pick exactly one of [CloudRunV2ServiceVolumeSecret],
+  /// [CloudRunV2ServiceCloudSqlVolume], [CloudRunV2ServiceEmptyDirVolume], [CloudRunV2ServiceGcsVolume], [CloudRunV2ServiceNfsVolume].
+  final CloudRunV2ServiceVolumeSource source;
 
   Map<String, Object?> toArgMap() => {
     'name': name.toTfJson(),
@@ -792,11 +821,11 @@ class ServiceVolume {
   };
 }
 
-/// Sealed dispatch for [ServiceVolume.source]. Each subclass encodes its
+/// Sealed dispatch for [CloudRunV2ServiceServiceVolume.source]. Each subclass encodes its
 /// own Terraform key (`secret`, `cloud_sql_instance`, `empty_dir`,
 /// `gcs`, `nfs`).
-sealed class VolumeSource {
-  const VolumeSource();
+sealed class CloudRunV2ServiceVolumeSource {
+  const CloudRunV2ServiceVolumeSource();
 
   Map<String, Object?> encode();
 }
@@ -805,8 +834,13 @@ sealed class VolumeSource {
 /// `<mountPath>/<items[].path>`, or under `<mountPath>/<secretName>`
 /// when [items] is empty.
 @immutable
-final class VolumeSecret extends VolumeSource {
-  const VolumeSecret({required this.secret, this.defaultMode, this.items});
+final class CloudRunV2ServiceVolumeSecret
+    extends CloudRunV2ServiceVolumeSource {
+  const CloudRunV2ServiceVolumeSecret({
+    required this.secret,
+    this.defaultMode,
+    this.items,
+  });
 
   /// Secret name. Short form when same-project, full
   /// `projects/{p}/secrets/{s}` otherwise.
@@ -816,7 +850,7 @@ final class VolumeSecret extends VolumeSource {
   final TfArg<int>? defaultMode;
 
   /// Per-version file mappings. When set, the volume exposes ONLY these.
-  final List<SecretVolumeItem>? items;
+  final List<CloudRunV2ServiceSecretVolumeItem>? items;
 
   @override
   Map<String, Object?> encode() => {
@@ -830,10 +864,14 @@ final class VolumeSecret extends VolumeSource {
   };
 }
 
-/// One entry under [VolumeSecret.items].
+/// One entry under [CloudRunV2ServiceVolumeSecret.items].
 @immutable
-class SecretVolumeItem {
-  const SecretVolumeItem({required this.path, this.version, this.mode});
+class CloudRunV2ServiceSecretVolumeItem {
+  const CloudRunV2ServiceSecretVolumeItem({
+    required this.path,
+    this.version,
+    this.mode,
+  });
 
   /// Relative path of the file in the container.
   final TfArg<String> path;
@@ -854,8 +892,9 @@ class SecretVolumeItem {
 /// Cloud SQL backed volume. Mount path conventionally `/cloudsql` (or
 /// empty — the provider auto-mounts at `/cloudsql/<instance>`).
 @immutable
-final class CloudSqlVolume extends VolumeSource {
-  const CloudSqlVolume({this.instances});
+final class CloudRunV2ServiceCloudSqlVolume
+    extends CloudRunV2ServiceVolumeSource {
+  const CloudRunV2ServiceCloudSqlVolume({this.instances});
 
   /// Cloud SQL connection names: `{project}:{region}:{instance}`.
   final TfArg<List<String>>? instances;
@@ -871,8 +910,9 @@ final class CloudSqlVolume extends VolumeSource {
 /// Ephemeral shared volume (`empty_dir`). Lives only as long as the
 /// revision instance.
 @immutable
-final class EmptyDirVolume extends VolumeSource {
-  const EmptyDirVolume({this.medium, this.sizeLimit});
+final class CloudRunV2ServiceEmptyDirVolume
+    extends CloudRunV2ServiceVolumeSource {
+  const CloudRunV2ServiceEmptyDirVolume({this.medium, this.sizeLimit});
 
   /// Storage backing. Default `MEMORY`.
   final TfArg<EmptyDirMedium>? medium;
@@ -894,8 +934,12 @@ final class EmptyDirVolume extends VolumeSource {
 /// GCSFuse-backed volume (`gcs`). Only supported in gen2 execution
 /// environment.
 @immutable
-final class GcsVolume extends VolumeSource {
-  const GcsVolume({required this.bucket, this.readOnly, this.mountOptions});
+final class CloudRunV2ServiceGcsVolume extends CloudRunV2ServiceVolumeSource {
+  const CloudRunV2ServiceGcsVolume({
+    required this.bucket,
+    this.readOnly,
+    this.mountOptions,
+  });
 
   /// GCS bucket name.
   final TfArg<String> bucket;
@@ -920,8 +964,12 @@ final class GcsVolume extends VolumeSource {
 
 /// NFS-mounted volume (`nfs`). Both [server] and [path] are required.
 @immutable
-final class NfsVolume extends VolumeSource {
-  const NfsVolume({required this.server, required this.path, this.readOnly});
+final class CloudRunV2ServiceNfsVolume extends CloudRunV2ServiceVolumeSource {
+  const CloudRunV2ServiceNfsVolume({
+    required this.server,
+    required this.path,
+    this.readOnly,
+  });
 
   /// NFS server hostname or IP.
   final TfArg<String> server;
@@ -952,7 +1000,7 @@ final class NfsVolume extends VolumeSource {
 ///   `google_cloud_run_v2_service.`).
 /// - `name`: Cloud Run service name (DNS_LABEL, lowercase, ≤63 chars).
 /// - `location`: GCP region (e.g. `'asia-northeast1'`).
-/// - `template`: required revision template ([Template]). Holds the
+/// - `template`: required revision template ([CloudRunV2ServiceTemplate]). Holds the
 ///   container set, scaling, VPC access, volumes, etc.
 ///
 /// Example (minimal hello-world service):
@@ -961,11 +1009,11 @@ final class NfsVolume extends VolumeSource {
 ///   localName: 'hello',
 ///   name: TfArg.literal('hello-svc'),
 ///   location: TfArg.literal('asia-northeast1'),
-///   template: const Template(
+///   template: const CloudRunV2ServiceTemplate(
 ///     containers: [
-///       ServiceContainer(
+///       CloudRunV2ServiceServiceContainer(
 ///         image: TfArg.literal('gcr.io/cloudrun/hello'),
-///         ports: ContainerPort(containerPort: 8080),
+///         ports: CloudRunV2ServiceContainerPort(containerPort: 8080),
 ///       ),
 ///     ],
 ///   ),
@@ -979,28 +1027,28 @@ final class NfsVolume extends VolumeSource {
 ///   localName: 'api',
 ///   name: TfArg.literal('api'),
 ///   location: TfArg.literal('asia-northeast1'),
-///   template: Template(
+///   template: CloudRunV2ServiceTemplate(
 ///     containers: [
-///       ServiceContainer(
+///       CloudRunV2ServiceServiceContainer(
 ///         image: TfArg.literal('asia-northeast1-docker.pkg.dev/p/r/api:v1'),
 ///         env: [
-///           EnvVar(
+///           CloudRunV2ServiceEnvVar(
 ///             name: 'DATABASE_URL',
-///             source: EnvVarFromSecret(
+///             source: CloudRunV2ServiceEnvVarFromSecret(
 ///               secret: TfArg.literal('db-url'),
 ///               version: TfArg.literal('latest'),
 ///             ),
 ///           ),
 ///         ],
 ///         volumeMounts: [
-///           VolumeMount(name: 'cache', mountPath: '/var/cache'),
+///           CloudRunV2ServiceVolumeMount(name: 'cache', mountPath: '/var/cache'),
 ///         ],
 ///       ),
 ///     ],
 ///     volumes: [
-///       ServiceVolume(
+///       CloudRunV2ServiceServiceVolume(
 ///         name: 'cache',
-///         source: GcsVolume(
+///         source: CloudRunV2ServiceGcsVolume(
 ///           bucket: TfArg.literal('my-cache-bucket'),
 ///         ),
 ///       ),
@@ -1020,10 +1068,10 @@ final class GoogleCloudRunV2Service extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    required Template template,
-    List<Traffic>? traffic,
-    ServiceScaling? scaling,
-    BinaryAuthorization? binaryAuthorization,
+    required CloudRunV2ServiceTemplate template,
+    List<CloudRunV2ServiceTraffic>? traffic,
+    CloudRunV2ServiceServiceScaling? scaling,
+    CloudRunV2ServiceBinaryAuthorization? binaryAuthorization,
     TfArg<Ingress>? ingress,
     TfArg<LaunchStage>? launchStage,
     TfArg<String>? description,
@@ -1077,6 +1125,9 @@ final class GoogleCloudRunV2Service extends Resource {
   // ignore: non_constant_identifier_names
   Set<String> get $sensitiveFields => _googleCloudRunV2ServiceSensitive;
 
+  @override
+  bool get $supportsDeletionProtection => true;
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
@@ -1105,4 +1156,7 @@ final class GoogleCloudRunV2Service extends Resource {
 
   /// Reference to `etag` (used for optimistic concurrency).
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `location` attribute — region the service is deployed in.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
 }

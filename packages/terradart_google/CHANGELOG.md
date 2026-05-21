@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.9.0 - 2026-05-21
+
+**BREAKING** — pre-1.0 polish wave. Coordinated rename pass + behaviour fixes consuming Plans 1-3 from terradart_core / terradart_codegen (0.9.x staging for the 1.0 surface; breaking changes still permitted within 0.9.x → 1.0):
+
+- Bumped `terradart_core` constraint to `^0.9.0`.
+- 118 curated GCP factories + 1 data source retained — no resource additions or removals in this release. The polish wave focuses on naming consistency, sensitive-field correctness, and Stack-level devMode.
+- **Service-prefixed nested helpers**: every nested helper class is `<Service><Resource><HelperName>` shape. Affects logging, bigquery, secret_manager, sql, cloud_run, monitoring, pubsub, and other barrels with formerly unprefixed helpers. See MIGRATING.md for the full table.
+- **`TfArg<T>`-wrapped nested-helper fields** — uniform across all barrels. Monitoring uptime check's previously plain `String` fields are now `TfArg<String>`.
+- **`.iamMember`** getter (was `.member`) on `GoogleServiceAccount` and analogous IAM-member-emitting resources.
+- **`.locationRef`** added on `GoogleCloudRunV2Service` + `GoogleCloudRunV2Job`.
+- **Enum values verbose-natural** — `Comparison.lessThan` (was `.lt`), `Aligner.alignNextOlder` (was `.nextOlder`), etc. See MIGRATING.md for the per-barrel table.
+- **`deletion_protection` synth-time devMode** — when `Stack(devMode: true)`, the 6 curated resources with a `deletion_protection` schema attribute emit `deletion_protection: false`. Production stacks leave `devMode: false` (default).
+- **Sensitive masking removed in favour of `SensitiveLiteralError`** — see `terradart_core` CHANGELOG entry.
+
+See [MIGRATING.md](../../MIGRATING.md) for the migration guide with `find` + `sed` recipes.
+
 ## 0.8.0-dev - 2026-05-19
 
 ### Wave 7 — Data ops + observability + CI/CD (Plan 5.H, final wave before v1.0.0)

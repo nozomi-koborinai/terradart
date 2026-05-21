@@ -22,10 +22,10 @@ enum CloudBuildTriggerIncludeBuildLogs {
   final String terraformValue;
 }
 
-/// `pull_request.comment_control`. Shared by [CloudBuildTriggerGithub],
-/// [CloudBuildTriggerBitbucketServerTriggerConfig],
-/// [CloudBuildTriggerRepositoryEventConfig], and
-/// [CloudBuildTriggerDeveloperConnectEventConfig] pull-request filters.
+/// `pull_request.comment_control`. Shared by [CloudbuildTriggerGithub],
+/// [CloudbuildTriggerBitbucketServerTriggerConfig],
+/// [CloudbuildTriggerRepositoryEventConfig], and
+/// [CloudbuildTriggerDeveloperConnectEventConfig] pull-request filters.
 /// Decides whether a repository owner / collaborator must comment
 /// `/gcbrun` before a build runs against the PR.
 enum CloudBuildTriggerCommentControl {
@@ -39,8 +39,8 @@ enum CloudBuildTriggerCommentControl {
   final String terraformValue;
 }
 
-/// `repo_type` for [CloudBuildTriggerGitFileSource] and
-/// [CloudBuildTriggerSourceToBuild]. Disambiguates the repo provider
+/// `repo_type` for [CloudbuildTriggerGitFileSource] and
+/// [CloudbuildTriggerSourceToBuild]. Disambiguates the repo provider
 /// when the URI alone cannot ([cloudSourceRepositories], [github],
 /// [bitbucketServer]); use [unknown] only when the type really is
 /// undetermined.
@@ -135,13 +135,13 @@ enum CloudBuildTriggerRequestedVerifyOption {
 /// `github` block (v1 form). Wires the trigger to a GitHub App or
 /// GitHub Enterprise installation; events are delivered via the legacy
 /// Cloud Build first-party webhook. New triggers SHOULD prefer the v2
-/// [CloudBuildTriggerRepositoryEventConfig] form instead.
+/// [CloudbuildTriggerRepositoryEventConfig] form instead.
 ///
 /// Pick exactly one of [push] / [pullRequest] — the schema enforces it
 /// at apply time.
 @immutable
-class CloudBuildTriggerGithub {
-  const CloudBuildTriggerGithub({
+class CloudbuildTriggerGithub {
+  const CloudbuildTriggerGithub({
     this.owner,
     this.name,
     this.push,
@@ -159,10 +159,10 @@ class CloudBuildTriggerGithub {
 
   /// Push-event filter (matches branches or tags). Mutually exclusive
   /// with [pullRequest].
-  final CloudBuildTriggerPushFilter? push;
+  final CloudbuildTriggerPushFilter? push;
 
   /// Pull-request filter. Mutually exclusive with [push].
-  final CloudBuildTriggerPullRequestFilter? pullRequest;
+  final CloudbuildTriggerPullRequestFilter? pullRequest;
 
   /// Resource name of a GitHub Enterprise config (when targeting a
   /// self-hosted GHE installation). Format:
@@ -183,13 +183,13 @@ class CloudBuildTriggerGithub {
 /// `bitbucket_server_trigger_config` block (v1 form). Wires the
 /// trigger to a Bitbucket Server installation via the legacy Cloud
 /// Build first-party webhook. New triggers SHOULD prefer the v2
-/// [CloudBuildTriggerRepositoryEventConfig] form (with a
+/// [CloudbuildTriggerRepositoryEventConfig] form (with a
 /// `BITBUCKET_DATA_CENTER` connection) instead.
 ///
 /// Pick exactly one of [push] / [pullRequest].
 @immutable
-class CloudBuildTriggerBitbucketServerTriggerConfig {
-  const CloudBuildTriggerBitbucketServerTriggerConfig({
+class CloudbuildTriggerBitbucketServerTriggerConfig {
+  const CloudbuildTriggerBitbucketServerTriggerConfig({
     required this.repoSlug,
     required this.projectKey,
     required this.bitbucketServerConfigResource,
@@ -212,10 +212,10 @@ class CloudBuildTriggerBitbucketServerTriggerConfig {
   final TfArg<String> bitbucketServerConfigResource;
 
   /// Push-event filter. Mutually exclusive with [pullRequest].
-  final CloudBuildTriggerPushFilter? push;
+  final CloudbuildTriggerPushFilter? push;
 
   /// Pull-request filter. Mutually exclusive with [push].
-  final CloudBuildTriggerPullRequestFilter? pullRequest;
+  final CloudbuildTriggerPullRequestFilter? pullRequest;
 
   Map<String, Object?> toArgMap() => {
     'repo_slug': repoSlug.toTfJson(),
@@ -240,8 +240,8 @@ class CloudBuildTriggerBitbucketServerTriggerConfig {
 ///
 /// Pick exactly one of [push] / [pullRequest].
 @immutable
-class CloudBuildTriggerRepositoryEventConfig {
-  const CloudBuildTriggerRepositoryEventConfig({
+class CloudbuildTriggerRepositoryEventConfig {
+  const CloudbuildTriggerRepositoryEventConfig({
     this.repository,
     this.push,
     this.pullRequest,
@@ -255,10 +255,10 @@ class CloudBuildTriggerRepositoryEventConfig {
   final TfArg<String>? repository;
 
   /// Push-event filter. Mutually exclusive with [pullRequest].
-  final CloudBuildTriggerPushFilter? push;
+  final CloudbuildTriggerPushFilter? push;
 
   /// Pull-request filter. Mutually exclusive with [push].
-  final CloudBuildTriggerPullRequestFilter? pullRequest;
+  final CloudbuildTriggerPullRequestFilter? pullRequest;
 
   Map<String, Object?> toArgMap() => {
     if (repository != null) 'repository': repository!.toTfJson(),
@@ -275,8 +275,8 @@ class CloudBuildTriggerRepositoryEventConfig {
 ///
 /// Pick exactly one of [push] / [pullRequest].
 @immutable
-class CloudBuildTriggerDeveloperConnectEventConfig {
-  const CloudBuildTriggerDeveloperConnectEventConfig({
+class CloudbuildTriggerDeveloperConnectEventConfig {
+  const CloudbuildTriggerDeveloperConnectEventConfig({
     required this.gitRepositoryLink,
     this.push,
     this.pullRequest,
@@ -287,10 +287,10 @@ class CloudBuildTriggerDeveloperConnectEventConfig {
   final TfArg<String> gitRepositoryLink;
 
   /// Push-event filter. Mutually exclusive with [pullRequest].
-  final CloudBuildTriggerPushFilter? push;
+  final CloudbuildTriggerPushFilter? push;
 
   /// Pull-request filter. Mutually exclusive with [push].
-  final CloudBuildTriggerPullRequestFilter? pullRequest;
+  final CloudbuildTriggerPullRequestFilter? pullRequest;
 
   Map<String, Object?> toArgMap() => {
     'git_repository_link': gitRepositoryLink.toTfJson(),
@@ -303,18 +303,18 @@ class CloudBuildTriggerDeveloperConnectEventConfig {
 // Shared push / pull-request filters
 // ===========================================================================
 
-/// `push` event filter (shared by [CloudBuildTriggerGithub],
-/// [CloudBuildTriggerBitbucketServerTriggerConfig],
-/// [CloudBuildTriggerRepositoryEventConfig], and
-/// [CloudBuildTriggerDeveloperConnectEventConfig]).
+/// `push` event filter (shared by [CloudbuildTriggerGithub],
+/// [CloudbuildTriggerBitbucketServerTriggerConfig],
+/// [CloudbuildTriggerRepositoryEventConfig], and
+/// [CloudbuildTriggerDeveloperConnectEventConfig]).
 ///
 /// Pick exactly one of [branch] / [tag] (the schema enforces it at
 /// apply time for v1 forms; v2 and developer-connect leave the choice
 /// to the GCP API but the same semantics apply). Set [invertRegex] to
 /// invert the match.
 @immutable
-class CloudBuildTriggerPushFilter {
-  const CloudBuildTriggerPushFilter({this.branch, this.tag, this.invertRegex});
+class CloudbuildTriggerPushFilter {
+  const CloudbuildTriggerPushFilter({this.branch, this.tag, this.invertRegex});
 
   /// RE2 regex of branches to match (e.g. `'^main\$'`, `'^release/.*\$'`).
   final TfArg<String>? branch;
@@ -333,18 +333,18 @@ class CloudBuildTriggerPushFilter {
   };
 }
 
-/// `pull_request` event filter (shared by [CloudBuildTriggerGithub],
-/// [CloudBuildTriggerBitbucketServerTriggerConfig],
-/// [CloudBuildTriggerRepositoryEventConfig], and
-/// [CloudBuildTriggerDeveloperConnectEventConfig]).
+/// `pull_request` event filter (shared by [CloudbuildTriggerGithub],
+/// [CloudbuildTriggerBitbucketServerTriggerConfig],
+/// [CloudbuildTriggerRepositoryEventConfig], and
+/// [CloudbuildTriggerDeveloperConnectEventConfig]).
 ///
 /// [branch] is required by the v1 forms; the v2 forms leave it
 /// optional. [commentControl] gates the build on a `/gcbrun` comment
 /// from a repository owner / collaborator — useful for review-gated
 /// CI pipelines.
 @immutable
-class CloudBuildTriggerPullRequestFilter {
-  const CloudBuildTriggerPullRequestFilter({
+class CloudbuildTriggerPullRequestFilter {
+  const CloudbuildTriggerPullRequestFilter({
     this.branch,
     this.commentControl,
     this.invertRegex,
@@ -376,8 +376,8 @@ class CloudBuildTriggerPullRequestFilter {
 /// messages actually launch a build, and with [sourceToBuild] /
 /// [gitFileSource] to declare what source to build.
 @immutable
-class CloudBuildTriggerPubsubConfig {
-  const CloudBuildTriggerPubsubConfig({
+class CloudbuildTriggerPubsubConfig {
+  const CloudbuildTriggerPubsubConfig({
     required this.topic,
     this.serviceAccountEmail,
   });
@@ -401,8 +401,8 @@ class CloudBuildTriggerPubsubConfig {
 /// sent to the trigger's webhook URL with a matching [secret]. Pair
 /// with [GoogleCloudbuildTrigger.filter] to scope payloads.
 @immutable
-class CloudBuildTriggerWebhookConfig {
-  const CloudBuildTriggerWebhookConfig({required this.secret});
+class CloudbuildTriggerWebhookConfig {
+  const CloudbuildTriggerWebhookConfig({required this.secret});
 
   /// Resource name of the Secret Manager secret holding the URL
   /// signing token. Format:
@@ -423,8 +423,8 @@ class CloudBuildTriggerWebhookConfig {
 /// — used by Pub/Sub, Webhook, and Manual triggers (i.e. triggers that
 /// do not respond to SCM webhooks and therefore have no inherent ref).
 @immutable
-class CloudBuildTriggerSourceToBuild {
-  const CloudBuildTriggerSourceToBuild({
+class CloudbuildTriggerSourceToBuild {
+  const CloudbuildTriggerSourceToBuild({
     required this.ref,
     required this.repoType,
     this.uri,
@@ -472,8 +472,8 @@ class CloudBuildTriggerSourceToBuild {
 /// builds fire when the matching ref in a CSR repo changes. Use one of
 /// [branchName] / [tagName] / [commitSha] (exactly_one_of).
 @immutable
-class CloudBuildTriggerTriggerTemplate {
-  const CloudBuildTriggerTriggerTemplate({
+class CloudbuildTriggerTriggerTemplate {
+  const CloudbuildTriggerTriggerTemplate({
     this.projectId,
     this.repoName,
     this.dir,
@@ -525,8 +525,8 @@ class CloudBuildTriggerTriggerTemplate {
 /// Webhook, Manual, and v2 triggers as a replacement for [filename]
 /// (which is limited to the SCM event source's repo).
 @immutable
-class CloudBuildTriggerGitFileSource {
-  const CloudBuildTriggerGitFileSource({
+class CloudbuildTriggerGitFileSource {
+  const CloudbuildTriggerGitFileSource({
     required this.path,
     required this.repoType,
     this.uri,
@@ -581,8 +581,8 @@ class CloudBuildTriggerGitFileSource {
 /// build invocation through this trigger lands in `PENDING` and waits
 /// for a human with the `Cloud Build Approver` role to release it.
 @immutable
-class CloudBuildTriggerApprovalConfig {
-  const CloudBuildTriggerApprovalConfig({this.approvalRequired});
+class CloudbuildTriggerApprovalConfig {
+  const CloudbuildTriggerApprovalConfig({this.approvalRequired});
 
   /// `true` to require manual approval. Defaults to `false`.
   final TfArg<bool>? approvalRequired;
@@ -601,7 +601,7 @@ class CloudBuildTriggerApprovalConfig {
 
 /// `build` block. Inline declaration of the build to run (an
 /// alternative to [filename] / [gitFileSource]). Holds at least one
-/// [CloudBuildTriggerBuildStep].
+/// [CloudbuildTriggerBuildStep].
 ///
 /// Deeply nested or rarely-curated sub-blocks (`secret[]`,
 /// `available_secrets`, `artifacts.maven_artifacts`,
@@ -612,8 +612,8 @@ class CloudBuildTriggerApprovalConfig {
 /// -> list of maps). The map is spread into the emitted Terraform args
 /// verbatim.
 @immutable
-class CloudBuildTriggerBuild {
-  const CloudBuildTriggerBuild({
+class CloudbuildTriggerBuild {
+  const CloudbuildTriggerBuild({
     required this.step,
     this.tags,
     this.images,
@@ -628,7 +628,7 @@ class CloudBuildTriggerBuild {
 
   /// Ordered list of build steps. At least one entry required per the
   /// schema.
-  final List<CloudBuildTriggerBuildStep> step;
+  final List<CloudbuildTriggerBuildStep> step;
 
   /// Free-form annotation tags on the build (NOT docker tags).
   final TfArg<List<String>>? tags;
@@ -655,7 +655,7 @@ class CloudBuildTriggerBuild {
   final TfArg<String>? timeout;
 
   /// Special build options (machine type, logging, pool, etc.).
-  final CloudBuildTriggerBuildOptions? options;
+  final CloudbuildTriggerBuildOptions? options;
 
   /// Container images uploaded via `artifacts.images`. Equivalent to
   /// [images] but checked against the post-build artifact registry
@@ -702,8 +702,8 @@ class CloudBuildTriggerBuild {
 /// The `volumes` sub-block (per-step volume mounts) is exposed via
 /// [advancedExtra] rather than as a typed helper.
 @immutable
-class CloudBuildTriggerBuildStep {
-  const CloudBuildTriggerBuildStep({
+class CloudbuildTriggerBuildStep {
+  const CloudbuildTriggerBuildStep({
     required this.name,
     this.id,
     this.args,
@@ -742,12 +742,12 @@ class CloudBuildTriggerBuildStep {
   final TfArg<String>? dir;
 
   /// Names of KMS-encrypted env vars (defined under
-  /// [CloudBuildTriggerBuild.advancedExtra]'s `secret` block) to
+  /// [CloudbuildTriggerBuild.advancedExtra]'s `secret` block) to
   /// inject into this step.
   final TfArg<List<String>>? secretEnv;
 
   /// Per-step timeout (`'90s'`, `'1m30s'`, ...). Defaults to no limit
-  /// (i.e. capped only by [CloudBuildTriggerBuild.timeout]).
+  /// (i.e. capped only by [CloudbuildTriggerBuild.timeout]).
   final TfArg<String>? timeout;
 
   /// Step ids that must complete before this step runs. Empty list
@@ -796,8 +796,8 @@ class CloudBuildTriggerBuildStep {
 /// optional — omitting the entire block uses Cloud Build defaults
 /// (n1-standard-1, `LOGGING_UNSPECIFIED`, `MUST_MATCH`).
 @immutable
-class CloudBuildTriggerBuildOptions {
-  const CloudBuildTriggerBuildOptions({
+class CloudbuildTriggerBuildOptions {
+  const CloudbuildTriggerBuildOptions({
     this.machineType,
     this.diskSizeGb,
     this.workerPool,
@@ -863,7 +863,7 @@ class CloudBuildTriggerBuildOptions {
   final TfArg<List<String>>? env;
 
   /// Names of KMS-encrypted env vars (defined under
-  /// [CloudBuildTriggerBuild.advancedExtra]'s `secret` block) to
+  /// [CloudbuildTriggerBuild.advancedExtra]'s `secret` block) to
   /// inject into every step.
   final TfArg<List<String>>? secretEnv;
 
@@ -946,10 +946,10 @@ class CloudBuildTriggerBuildOptions {
 ///   name: TfArg.literal('push-main'),
 ///   location: TfArg.literal('asia-northeast1'),
 ///   filename: TfArg.literal('cloudbuild.yaml'),
-///   github: const CloudBuildTriggerGithub(
+///   github: const CloudbuildTriggerGithub(
 ///     owner: TfArg.literal('myorg'),
 ///     name: TfArg.literal('my-repo'),
-///     push: CloudBuildTriggerPushFilter(
+///     push: CloudbuildTriggerPushFilter(
 ///       branch: TfArg.literal('^main\$'),
 ///     ),
 ///   ),
@@ -968,9 +968,9 @@ class CloudBuildTriggerBuildOptions {
 ///     'projects/my-project/serviceAccounts/cb-runner@my-project.iam.gserviceaccount.com',
 ///   ),
 ///   filename: TfArg.literal('cloudbuild.yaml'),
-///   repositoryEventConfig: CloudBuildTriggerRepositoryEventConfig(
+///   repositoryEventConfig: CloudbuildTriggerRepositoryEventConfig(
 ///     repository: TfArg.literal(r'${var.cloudbuildv2_repository_id}'),
-///     pullRequest: const CloudBuildTriggerPullRequestFilter(
+///     pullRequest: const CloudbuildTriggerPullRequestFilter(
 ///       branch: TfArg.literal('^main\$'),
 ///       commentControl: TfArg.literal(
 ///         CloudBuildTriggerCommentControl.commentsEnabled,
@@ -981,18 +981,18 @@ class CloudBuildTriggerBuildOptions {
 /// ```
 ///
 /// Naming convention: ALL nested helper types are prefixed
-/// `CloudBuildTrigger...` (e.g. [CloudBuildTriggerGithub],
-/// [CloudBuildTriggerPushFilter], [CloudBuildTriggerBuild],
-/// [CloudBuildTriggerBuildStep]) to avoid colliding with sibling
+/// `CloudBuildTrigger...` (e.g. [CloudbuildTriggerGithub],
+/// [CloudbuildTriggerPushFilter], [CloudbuildTriggerBuild],
+/// [CloudbuildTriggerBuildStep]) to avoid colliding with sibling
 /// resources such as [GoogleCloudbuildWorkerPool].
 ///
 /// The `build` sub-tree is sprawling — the schema reaches several
 /// levels deep through `source.repo_source.substitutions`,
 /// `step.volumes`, `artifacts.maven_artifacts`, `available_secrets`,
 /// etc. The wrapper models the commonly-used surface as typed helpers
-/// ([CloudBuildTriggerBuild], [CloudBuildTriggerBuildStep],
-/// [CloudBuildTriggerBuildOptions]) and exposes the deeper / rarely-set
-/// sub-blocks via the [CloudBuildTriggerBuild.advancedExtra] escape
+/// ([CloudbuildTriggerBuild], [CloudbuildTriggerBuildStep],
+/// [CloudbuildTriggerBuildOptions]) and exposes the deeper / rarely-set
+/// sub-blocks via the [CloudbuildTriggerBuild.advancedExtra] escape
 /// hatch — pass a raw `Map<String, Object?>` keyed by the Terraform
 /// block name when you need them. See the per-class doc for the exact
 /// escape-hatch key.
@@ -1025,17 +1025,17 @@ final class GoogleCloudbuildTrigger extends Resource {
     TfArg<List<String>>? includedFiles,
     TfArg<List<String>>? ignoredFiles,
     TfArg<String>? filename,
-    CloudBuildTriggerGitFileSource? gitFileSource,
-    CloudBuildTriggerSourceToBuild? sourceToBuild,
-    CloudBuildTriggerTriggerTemplate? triggerTemplate,
-    CloudBuildTriggerGithub? github,
-    CloudBuildTriggerBitbucketServerTriggerConfig? bitbucketServerTriggerConfig,
-    CloudBuildTriggerRepositoryEventConfig? repositoryEventConfig,
-    CloudBuildTriggerDeveloperConnectEventConfig? developerConnectEventConfig,
-    CloudBuildTriggerPubsubConfig? pubsubConfig,
-    CloudBuildTriggerWebhookConfig? webhookConfig,
-    CloudBuildTriggerApprovalConfig? approvalConfig,
-    CloudBuildTriggerBuild? build,
+    CloudbuildTriggerGitFileSource? gitFileSource,
+    CloudbuildTriggerSourceToBuild? sourceToBuild,
+    CloudbuildTriggerTriggerTemplate? triggerTemplate,
+    CloudbuildTriggerGithub? github,
+    CloudbuildTriggerBitbucketServerTriggerConfig? bitbucketServerTriggerConfig,
+    CloudbuildTriggerRepositoryEventConfig? repositoryEventConfig,
+    CloudbuildTriggerDeveloperConnectEventConfig? developerConnectEventConfig,
+    CloudbuildTriggerPubsubConfig? pubsubConfig,
+    CloudbuildTriggerWebhookConfig? webhookConfig,
+    CloudbuildTriggerApprovalConfig? approvalConfig,
+    CloudbuildTriggerBuild? build,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

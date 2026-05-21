@@ -89,14 +89,14 @@ class ComputeLbStack extends Stack {
         name: TfArg.literal('app-lb-backend-vm'),
         machineType: TfArg.literal('e2-small'),
         zone: TfArg.literal(zone),
-        bootDisk: const BootDisk(
-          initializeParams: InitializeParams(
-            image: 'debian-cloud/debian-12',
+        bootDisk: ComputeInstanceBootDisk(
+          initializeParams: ComputeInstanceInitializeParams(
+            image: TfArg.literal('debian-cloud/debian-12'),
           ),
         ),
-        networkInterface: const [
-          NetworkInterface(
-            subnetwork: r'${google_compute_subnetwork.lb_subnet.self_link}',
+        networkInterface: [
+          ComputeInstanceNetworkInterface(
+            subnetwork: TfArg.ref(lbSubnet.selfLink),
           ),
         ],
       ),
@@ -122,7 +122,7 @@ class ComputeLbStack extends Stack {
       GoogleComputeManagedSslCertificate(
         localName: 'lb_cert',
         name: TfArg.literal('app-lb-cert'),
-        managed: const ManagedSslCertificateConfig(
+        managed: ComputeManagedSslCertificateManagedSslCertificateConfig(
           domains: ['app.example.com'],
         ),
       ),
@@ -143,9 +143,9 @@ class ComputeLbStack extends Stack {
         timeoutSec: TfArg.literal(5),
         healthyThreshold: TfArg.literal(2),
         unhealthyThreshold: TfArg.literal(3),
-        httpsHealthCheck: const HttpsHealthCheckConfig(
-          port: 443,
-          requestPath: '/healthz',
+        httpsHealthCheck: ComputeHealthCheckHttpsHealthCheckConfig(
+          port: TfArg.literal(443),
+          requestPath: TfArg.literal('/healthz'),
           portSpecification: HealthCheckPortSpecification.useFixedPort,
         ),
       ),
@@ -186,16 +186,16 @@ class ComputeLbStack extends Stack {
         name: TfArg.literal('app-lb-armor'),
         type: TfArg.literal(SecurityPolicyType.cloudArmor),
         rules: [
-          SecurityPolicyRule(
-            priority: 2147483647,
+          ComputeSecurityPolicySecurityPolicyRule(
+            priority: TfArg.literal(2147483647),
             action: SecurityPolicyRuleAction.allow,
-            match: SecurityPolicyRuleMatch.config(
+            match: ComputeSecurityPolicySecurityPolicyRuleMatch.config(
               versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
-              config: const SecurityPolicyRuleMatchConfig(
+              config: ComputeSecurityPolicySecurityPolicyRuleMatchConfig(
                 srcIpRanges: ['*'],
               ),
             ),
-            description: const TfArgLiteral<String>('default allow-all'),
+            description: TfArg.literal('default allow-all'),
           ),
         ],
       ),
@@ -216,11 +216,11 @@ class ComputeLbStack extends Stack {
         loadBalancingScheme: TfArg.literal(LoadBalancingScheme.externalManaged),
         timeoutSec: TfArg.literal(30),
         backends: [
-          BackendServiceBackend(
+          ComputeBackendServiceBackendServiceBackend(
             group: TfArg.ref(lbNeg.selfLink),
             balancingMode: BackendServiceBalancingMode.rate,
-            maxRatePerEndpoint: 100,
-            capacityScaler: 1.0,
+            maxRatePerEndpoint: TfArg.literal(100),
+            capacityScaler: TfArg.literal(1.0),
           ),
         ],
         healthChecks: TfArg.literal([

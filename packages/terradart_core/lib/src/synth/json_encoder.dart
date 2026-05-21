@@ -3,6 +3,7 @@ import 'package:terradart_core/src/lifecycle.dart';
 import 'package:terradart_core/src/resource.dart';
 import 'package:terradart_core/src/stack.dart';
 import 'package:terradart_core/src/synth/output_emitter.dart';
+import 'package:terradart_core/src/synth/sensitive_literal_error.dart';
 import 'package:terradart_core/src/tf_arg.dart';
 import 'package:terradart_core/src/tf_ref.dart';
 
@@ -12,7 +13,7 @@ import 'package:terradart_core/src/tf_ref.dart';
 /// `TfArg` / `TfRef` instances escape — they're collapsed to strings or
 /// scalars). The orchestrator in `stack_synth.dart` glues these together
 /// into the top-level map.
-class JsonEncoder {
+class TfJsonEncoder {
   /// `>= 1.11.0` is the default required Terraform version because
   /// curated factories (notably Secret Manager's `secret_data_wo`) depend
   /// on Terraform 1.11+ write-only arguments. Override via
@@ -83,11 +84,16 @@ class JsonEncoder {
   /// - `TfArgLiteral<T>` → the raw `T` value (recursively walked in
   ///   case the literal is a Map/List that itself contains `TfArg`s).
   /// - `TfArgRef<T>` → the `${...}` interpolation string.
+  /// - `TfArgVariable<T>` → the `${var.<name>}` interpolation string.
   static dynamic encodeArg(TfArg<dynamic> arg) {
     final raw = arg.toTfJson();
-    // Refs already produced their final string form; literals may still
-    // hold nested `TfArg` instances inside Maps/Lists that need recursion.
-    return arg is TfArgRef ? raw : _encodeLiteralValue(raw);
+    // Both refs and variables produce final string forms (Terraform
+    // interpolations). Only literals may still hold nested `TfArg`
+    // instances inside Maps/Lists that need recursion.
+    if (arg is TfArgRef || arg is TfArgVariable) {
+      return raw;
+    }
+    return _encodeLiteralValue(raw);
   }
 
   /// Walk a literal value, recursively encoding nested `TfArg` instances
@@ -135,6 +141,7 @@ class JsonEncoder {
   static Map<String, dynamic> encodeArgMapWithSensitive({
     required Map<String, TfArg<dynamic>?> argMap,
     required Set<String> sensitiveFields,
+    required String resourceAddress,
   }) {
     // Partition sensitive paths by top-level key.
     final topLevel = <String>{};
@@ -153,12 +160,21 @@ class JsonEncoder {
     final out = <String, dynamic>{};
     argMap.forEach((k, v) {
       if (v == null) return;
+      if (topLevel.contains(k) && v is TfArgLiteral) {
+        throw SensitiveLiteralError(
+          resourceAddress: resourceAddress,
+          fieldPath: k,
+        );
+      }
       final encoded = encodeArg(v);
       if (encoded == null) return;
-      if (topLevel.contains(k) && v is TfArgLiteral) {
-        out[k] = '';
-      } else if (nested.containsKey(k)) {
-        out[k] = _maskNestedPaths(encoded, nested[k]!);
+      if (nested.containsKey(k)) {
+        out[k] = _checkNestedPaths(
+          encoded,
+          nested[k]!,
+          resourceAddress: resourceAddress,
+          parentKey: k,
+        );
       } else {
         out[k] = encoded;
       }
@@ -166,31 +182,45 @@ class JsonEncoder {
     return out;
   }
 
-  /// Walks the encoded structure masking the leaf of every path in
+  /// Walks the encoded structure checking the leaf of every path in
   /// [paths]. Each path is the remaining segment list (the top-level
   /// key has already been consumed by the caller).
   ///
   /// - `List`: applied to every element (handles `[{...}]` single-block
   ///   wrappings and unbounded `[...]` block lists alike).
-  /// - `Map`: descends one segment per path; masks at the leaf.
+  /// - `Map`: descends one segment per path; **throws** at literal leaves.
   /// - Other (primitive, or `${...}` ref string): returned unchanged.
   ///
   /// Leaves whose value already looks like a Terraform interpolation
-  /// (`${...}`) are passed through — zeroing them would break wiring.
-  static dynamic _maskNestedPaths(
+  /// (`${...}`) are passed through — refs and variables are safe in
+  /// sensitive positions. Plain string / int / bool literals at a
+  /// sensitive leaf throw [SensitiveLiteralError] with the dotted
+  /// `<parentKey>.<leaf>` path as `fieldPath`.
+  static dynamic _checkNestedPaths(
     dynamic value,
-    List<List<String>> paths,
-  ) {
+    List<List<String>> paths, {
+    required String resourceAddress,
+    required String parentKey,
+  }) {
     if (value is List) {
-      return value.map((e) => _maskNestedPaths(e, paths)).toList();
+      return value
+          .map(
+            (e) => _checkNestedPaths(
+              e,
+              paths,
+              resourceAddress: resourceAddress,
+              parentKey: parentKey,
+            ),
+          )
+          .toList();
     }
     if (value is Map) {
-      final leavesToMask = <String>{};
+      final leavesToCheck = <String>{};
       final byHead = <String, List<List<String>>>{};
       for (final path in paths) {
         if (path.isEmpty) continue;
         if (path.length == 1) {
-          leavesToMask.add(path.first);
+          leavesToCheck.add(path.first);
         } else {
           byHead
               .putIfAbsent(path.first, () => <List<String>>[])
@@ -198,19 +228,28 @@ class JsonEncoder {
         }
       }
 
-      final out = Map<String, dynamic>.from(value);
-      for (final leaf in leavesToMask) {
-        if (!out.containsKey(leaf)) continue;
-        final leafValue = out[leaf];
+      for (final leaf in leavesToCheck) {
+        if (!value.containsKey(leaf)) continue;
+        final leafValue = value[leaf];
         if (leafValue is String && leafValue.startsWith(r'${')) {
-          // Ref interpolation — pass through.
+          // Interpolation (ref or variable) — safe, pass through.
           continue;
         }
-        out[leaf] = '';
+        // Primitive literal at a sensitive leaf — throw.
+        throw SensitiveLiteralError(
+          resourceAddress: resourceAddress,
+          fieldPath: '$parentKey.$leaf',
+        );
       }
+      final out = Map<String, dynamic>.from(value);
       byHead.forEach((head, remaining) {
         if (out.containsKey(head)) {
-          out[head] = _maskNestedPaths(out[head], remaining);
+          out[head] = _checkNestedPaths(
+            out[head],
+            remaining,
+            resourceAddress: resourceAddress,
+            parentKey: '$parentKey.$head',
+          );
         }
       });
       return out;
@@ -243,10 +282,27 @@ class JsonEncoder {
   /// JSON for one resource block: `argMap` + optional `depends_on` +
   /// optional `lifecycle`. Sensitive fields are masked per
   /// `Resource.$sensitiveFields`.
-  static Map<String, dynamic> resourceBlock(Resource r) {
+  ///
+  /// When [devModeInjectDeletionProtection] is `true` and the resource
+  /// exposes `$supportsDeletionProtection == true` and its `argMap` does
+  /// not already contain `deletion_protection`, `false` is injected so
+  /// dev stacks can be torn down without manual overrides.
+  static Map<String, dynamic> resourceBlock(
+    Resource r, {
+    bool devModeInjectDeletionProtection = false,
+  }) {
+    final argMap = devModeInjectDeletionProtection &&
+            r.$supportsDeletionProtection &&
+            !r.argMap.containsKey('deletion_protection')
+        ? <String, TfArg<dynamic>?>{
+            ...r.argMap,
+            'deletion_protection': const TfArgLiteral<bool>(false),
+          }
+        : r.argMap;
     final out = encodeArgMapWithSensitive(
-      argMap: r.argMap,
+      argMap: argMap,
       sensitiveFields: r.$sensitiveFields,
+      resourceAddress: r.tfAddress,
     );
     final deps = r.dependsOn;
     if (deps != null) {
@@ -267,8 +323,10 @@ class JsonEncoder {
     if (stack.resources.isEmpty) return null;
     final out = <String, Map<String, dynamic>>{};
     for (final r in stack.resources) {
-      out.putIfAbsent(r.terraformType, () => {})[r.localName] =
-          resourceBlock(r);
+      out.putIfAbsent(r.terraformType, () => {})[r.localName] = resourceBlock(
+        r,
+        devModeInjectDeletionProtection: stack.devMode,
+      );
     }
     return out;
   }

@@ -43,19 +43,19 @@ class LatencyAlertStack extends Stack {
           'projects/your-project/notificationChannels/your-channel-id',
         ]),
         conditions: [
-          AlertCondition(
+          MonitoringAlertPolicyAlertCondition(
             displayName: TfArg.literal('p95 > 1500ms for 5m'),
-            conditionThreshold: ConditionThreshold(
+            conditionThreshold: MonitoringAlertPolicyConditionThreshold(
               filter: TfArg.literal(
                 'metric.type="run.googleapis.com/request_latencies" '
                 'AND resource.label.service_name="api"',
               ),
-              comparison: TfArg.literal(Comparison.gt),
+              comparison: TfArg.literal(Comparison.greaterThan),
               duration: TfArg.literal('300s'),
               thresholdValue: TfArg.literal(1500),
               evaluationMissingData: TfArg.literal(EvaluationMissingData.noOp),
               aggregations: [
-                Aggregation(
+                MonitoringAlertPolicyAggregation(
                   alignmentPeriod: TfArg.literal('60s'),
                   perSeriesAligner: Aligner.percentile95,
                   crossSeriesReducer: Reducer.percentile95,
@@ -66,10 +66,10 @@ class LatencyAlertStack extends Stack {
             ),
           ),
         ],
-        alertStrategy: AlertStrategy(
+        alertStrategy: MonitoringAlertPolicyAlertStrategy(
           autoClose: TfArg.literal('1800s'),
           notificationRateLimit:
-              NotificationRateLimit(period: TfArg.literal('300s')),
+              MonitoringAlertPolicyNotificationRateLimit(period: TfArg.literal('300s')),
         ),
       ),
     );

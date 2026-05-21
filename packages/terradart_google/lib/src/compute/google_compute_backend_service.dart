@@ -126,7 +126,7 @@ enum ExternalManagedMigrationState {
   final String terraformValue;
 }
 
-/// Per-backend balancing mode. See [BackendServiceBackend.balancingMode].
+/// Per-backend balancing mode. See [ComputeBackendServiceBackendServiceBackend.balancingMode].
 enum BackendServiceBalancingMode {
   utilization('UTILIZATION'),
   rate('RATE'),
@@ -160,7 +160,7 @@ enum BackendServiceCacheMode {
 }
 
 /// `log_config.optional_mode`. Controls which optional access-log
-/// fields are exported when [BackendServiceLogConfig.enable] is true.
+/// fields are exported when [ComputeBackendServiceBackendServiceLogConfig.enable] is true.
 enum BackendServiceLogOptionalMode {
   includeAllOptional('INCLUDE_ALL_OPTIONAL'),
   excludeAllOptional('EXCLUDE_ALL_OPTIONAL'),
@@ -179,8 +179,8 @@ enum BackendServiceLogOptionalMode {
 /// bucket — all backends in a single service must share the same kind
 /// (no mixing IG with NEG).
 @immutable
-class BackendServiceBackend {
-  const BackendServiceBackend({
+class ComputeBackendServiceBackendServiceBackend {
+  const ComputeBackendServiceBackendServiceBackend({
     required this.group,
     this.balancingMode,
     this.capacityScaler,
@@ -205,55 +205,58 @@ class BackendServiceBackend {
 
   /// Multiplier on the group's configured capacity (`0.0`-`1.0`).
   /// Setting to `0.0` drains the backend.
-  final double? capacityScaler;
+  final TfArg<double>? capacityScaler;
 
   /// Free-form description.
   final TfArg<String>? description;
 
   /// Max simultaneous connections for the group (`CONNECTION` /
   /// `UTILIZATION` modes).
-  final int? maxConnections;
+  final TfArg<int>? maxConnections;
 
   /// Max simultaneous connections per endpoint (NEG-shaped backends).
-  final int? maxConnectionsPerEndpoint;
+  final TfArg<int>? maxConnectionsPerEndpoint;
 
   /// Max simultaneous connections per backend instance (IG-shaped
   /// backends).
-  final int? maxConnectionsPerInstance;
+  final TfArg<int>? maxConnectionsPerInstance;
 
   /// Max RPS for the group (`RATE` / `UTILIZATION` modes).
-  final int? maxRate;
+  final TfArg<int>? maxRate;
 
   /// Max RPS per endpoint.
-  final double? maxRatePerEndpoint;
+  final TfArg<double>? maxRatePerEndpoint;
 
   /// Max RPS per instance.
-  final double? maxRatePerInstance;
+  final TfArg<double>? maxRatePerInstance;
 
   /// Target CPU utilization in `UTILIZATION` mode (`0.0`-`1.0`).
-  final double? maxUtilization;
+  final TfArg<double>? maxUtilization;
 
   /// Backend preference layer. Disallowed when `load_balancing_scheme`
   /// is `EXTERNAL`.
   final BackendServicePreference? preference;
 
   /// Custom metrics descriptors for `CUSTOM_METRICS` balancing.
-  final List<BackendServiceBackendCustomMetric>? customMetrics;
+  final List<ComputeBackendServiceBackendServiceBackendCustomMetric>?
+  customMetrics;
 
   Map<String, Object?> toArgMap() => {
     'group': group.toTfJson(),
     if (balancingMode != null) 'balancing_mode': balancingMode!.terraformValue,
-    if (capacityScaler != null) 'capacity_scaler': capacityScaler,
+    if (capacityScaler != null) 'capacity_scaler': capacityScaler!.toTfJson(),
     if (description != null) 'description': description!.toTfJson(),
-    if (maxConnections != null) 'max_connections': maxConnections,
+    if (maxConnections != null) 'max_connections': maxConnections!.toTfJson(),
     if (maxConnectionsPerEndpoint != null)
-      'max_connections_per_endpoint': maxConnectionsPerEndpoint,
+      'max_connections_per_endpoint': maxConnectionsPerEndpoint!.toTfJson(),
     if (maxConnectionsPerInstance != null)
-      'max_connections_per_instance': maxConnectionsPerInstance,
-    if (maxRate != null) 'max_rate': maxRate,
-    if (maxRatePerEndpoint != null) 'max_rate_per_endpoint': maxRatePerEndpoint,
-    if (maxRatePerInstance != null) 'max_rate_per_instance': maxRatePerInstance,
-    if (maxUtilization != null) 'max_utilization': maxUtilization,
+      'max_connections_per_instance': maxConnectionsPerInstance!.toTfJson(),
+    if (maxRate != null) 'max_rate': maxRate!.toTfJson(),
+    if (maxRatePerEndpoint != null)
+      'max_rate_per_endpoint': maxRatePerEndpoint!.toTfJson(),
+    if (maxRatePerInstance != null)
+      'max_rate_per_instance': maxRatePerInstance!.toTfJson(),
+    if (maxUtilization != null) 'max_utilization': maxUtilization!.toTfJson(),
     if (preference != null) 'preference': preference!.terraformValue,
     if (customMetrics != null)
       'custom_metrics': customMetrics!.map((m) => m.toArgMap()).toList(),
@@ -264,8 +267,8 @@ class BackendServiceBackend {
 /// backend that the load balancer should consider when `balancingMode`
 /// is [BackendServiceBalancingMode.customMetrics].
 @immutable
-class BackendServiceBackendCustomMetric {
-  const BackendServiceBackendCustomMetric({
+class ComputeBackendServiceBackendServiceBackendCustomMetric {
+  const ComputeBackendServiceBackendServiceBackendCustomMetric({
     required this.name,
     required this.dryRun,
     this.maxUtilization,
@@ -276,15 +279,15 @@ class BackendServiceBackendCustomMetric {
 
   /// If `true`, the metric is reported to Cloud Monitoring but is not
   /// used for load balancing.
-  final bool dryRun;
+  final TfArg<bool> dryRun;
 
   /// Optional target utilization (`0.0`-`1.0`) for this metric.
-  final double? maxUtilization;
+  final TfArg<double>? maxUtilization;
 
   Map<String, Object?> toArgMap() => {
     'name': name.toTfJson(),
-    'dry_run': dryRun,
-    if (maxUtilization != null) 'max_utilization': maxUtilization,
+    'dry_run': dryRun.toTfJson(),
+    if (maxUtilization != null) 'max_utilization': maxUtilization!.toTfJson(),
   };
 }
 
@@ -294,8 +297,8 @@ class BackendServiceBackendCustomMetric {
 
 /// `cdn_policy` block. Only honored when [enableCdn] is `true`.
 @immutable
-class BackendServiceCdnPolicy {
-  const BackendServiceCdnPolicy({
+class ComputeBackendServiceBackendServiceCdnPolicy {
+  const ComputeBackendServiceBackendServiceCdnPolicy({
     this.cacheMode,
     this.clientTtl,
     this.defaultTtl,
@@ -313,48 +316,52 @@ class BackendServiceCdnPolicy {
   final BackendServiceCacheMode? cacheMode;
 
   /// Max TTL (seconds) for content served to clients.
-  final int? clientTtl;
+  final TfArg<int>? clientTtl;
 
   /// Default TTL for cached content with no upstream `Cache-Control`.
-  final int? defaultTtl;
+  final TfArg<int>? defaultTtl;
 
   /// Hard ceiling on cached content TTL.
-  final int? maxTtl;
+  final TfArg<int>? maxTtl;
 
   /// Negative caching for selected status codes.
-  final bool? negativeCaching;
+  final TfArg<bool>? negativeCaching;
 
   /// Coalesce concurrent cache-fill requests to the origin.
-  final bool? requestCoalescing;
+  final TfArg<bool>? requestCoalescing;
 
   /// Serve cached content during origin revalidation/errors (seconds).
-  final int? serveWhileStale;
+  final TfArg<int>? serveWhileStale;
 
   /// TTL for signed-URL responses (defaults to 3600).
-  final int? signedUrlCacheMaxAgeSec;
+  final TfArg<int>? signedUrlCacheMaxAgeSec;
 
   /// Bypass cache when any of these request headers is present.
-  final List<BackendServiceCdnBypassCacheOnRequestHeader>?
+  final List<ComputeBackendServiceBackendServiceCdnBypassCacheOnRequestHeader>?
   bypassCacheOnRequestHeaders;
 
   /// Cache key policy — which request components participate in the
   /// cache key.
-  final BackendServiceCdnCacheKeyPolicy? cacheKeyPolicy;
+  final ComputeBackendServiceBackendServiceCdnCacheKeyPolicy? cacheKeyPolicy;
 
   /// Per-status-code negative-cache TTLs. Only honored when
   /// [negativeCaching] is `true`.
-  final List<BackendServiceCdnNegativeCachingPolicy>? negativeCachingPolicy;
+  final List<ComputeBackendServiceBackendServiceCdnNegativeCachingPolicy>?
+  negativeCachingPolicy;
 
   Map<String, Object?> toArgMap() => {
     if (cacheMode != null) 'cache_mode': cacheMode!.terraformValue,
-    if (clientTtl != null) 'client_ttl': clientTtl,
-    if (defaultTtl != null) 'default_ttl': defaultTtl,
-    if (maxTtl != null) 'max_ttl': maxTtl,
-    if (negativeCaching != null) 'negative_caching': negativeCaching,
-    if (requestCoalescing != null) 'request_coalescing': requestCoalescing,
-    if (serveWhileStale != null) 'serve_while_stale': serveWhileStale,
+    if (clientTtl != null) 'client_ttl': clientTtl!.toTfJson(),
+    if (defaultTtl != null) 'default_ttl': defaultTtl!.toTfJson(),
+    if (maxTtl != null) 'max_ttl': maxTtl!.toTfJson(),
+    if (negativeCaching != null)
+      'negative_caching': negativeCaching!.toTfJson(),
+    if (requestCoalescing != null)
+      'request_coalescing': requestCoalescing!.toTfJson(),
+    if (serveWhileStale != null)
+      'serve_while_stale': serveWhileStale!.toTfJson(),
     if (signedUrlCacheMaxAgeSec != null)
-      'signed_url_cache_max_age_sec': signedUrlCacheMaxAgeSec,
+      'signed_url_cache_max_age_sec': signedUrlCacheMaxAgeSec!.toTfJson(),
     if (bypassCacheOnRequestHeaders != null)
       'bypass_cache_on_request_headers': bypassCacheOnRequestHeaders!
           .map((h) => h.toArgMap())
@@ -370,8 +377,10 @@ class BackendServiceCdnPolicy {
 
 /// Cache-bypass rule keyed on a request header name.
 @immutable
-class BackendServiceCdnBypassCacheOnRequestHeader {
-  const BackendServiceCdnBypassCacheOnRequestHeader({required this.headerName});
+class ComputeBackendServiceBackendServiceCdnBypassCacheOnRequestHeader {
+  const ComputeBackendServiceBackendServiceCdnBypassCacheOnRequestHeader({
+    required this.headerName,
+  });
 
   /// Header field name (case-insensitive).
   final TfArg<String> headerName;
@@ -381,8 +390,8 @@ class BackendServiceCdnBypassCacheOnRequestHeader {
 
 /// `cdn_policy.cache_key_policy` (`max_items=1`).
 @immutable
-class BackendServiceCdnCacheKeyPolicy {
-  const BackendServiceCdnCacheKeyPolicy({
+class ComputeBackendServiceBackendServiceCdnCacheKeyPolicy {
+  const ComputeBackendServiceBackendServiceCdnCacheKeyPolicy({
     this.includeHost,
     this.includeProtocol,
     this.includeQueryString,
@@ -392,18 +401,20 @@ class BackendServiceCdnCacheKeyPolicy {
     this.queryStringBlacklist,
   });
 
-  final bool? includeHost;
-  final bool? includeProtocol;
-  final bool? includeQueryString;
+  final TfArg<bool>? includeHost;
+  final TfArg<bool>? includeProtocol;
+  final TfArg<bool>? includeQueryString;
   final List<String>? includeHttpHeaders;
   final List<String>? includeNamedCookies;
   final List<String>? queryStringWhitelist;
   final List<String>? queryStringBlacklist;
 
   Map<String, Object?> toArgMap() => {
-    if (includeHost != null) 'include_host': includeHost,
-    if (includeProtocol != null) 'include_protocol': includeProtocol,
-    if (includeQueryString != null) 'include_query_string': includeQueryString,
+    if (includeHost != null) 'include_host': includeHost!.toTfJson(),
+    if (includeProtocol != null)
+      'include_protocol': includeProtocol!.toTfJson(),
+    if (includeQueryString != null)
+      'include_query_string': includeQueryString!.toTfJson(),
     if (includeHttpHeaders != null) 'include_http_headers': includeHttpHeaders,
     if (includeNamedCookies != null)
       'include_named_cookies': includeNamedCookies,
@@ -416,20 +427,23 @@ class BackendServiceCdnCacheKeyPolicy {
 
 /// One row in `cdn_policy.negative_caching_policy`.
 @immutable
-class BackendServiceCdnNegativeCachingPolicy {
-  const BackendServiceCdnNegativeCachingPolicy({this.code, this.ttl});
+class ComputeBackendServiceBackendServiceCdnNegativeCachingPolicy {
+  const ComputeBackendServiceBackendServiceCdnNegativeCachingPolicy({
+    this.code,
+    this.ttl,
+  });
 
   /// HTTP status code to apply a TTL to. Valid values per schema:
   /// 300, 301, 308, 404, 405, 410, 421, 451, 501. Each code may appear
   /// at most once.
-  final int? code;
+  final TfArg<int>? code;
 
   /// TTL in seconds.
-  final int? ttl;
+  final TfArg<int>? ttl;
 
   Map<String, Object?> toArgMap() => {
-    if (code != null) 'code': code,
-    if (ttl != null) 'ttl': ttl,
+    if (code != null) 'code': code!.toTfJson(),
+    if (ttl != null) 'ttl': ttl!.toTfJson(),
   };
 }
 
@@ -447,8 +461,8 @@ class BackendServiceCdnNegativeCachingPolicy {
 /// `oauth2_client_secret_sha256` is also sensitive — provider
 /// implementation detail; nothing to set on this side.
 @immutable
-class BackendServiceIap {
-  const BackendServiceIap({
+class ComputeBackendServiceBackendServiceIap {
+  const ComputeBackendServiceBackendServiceIap({
     required this.enabled,
     this.oauth2ClientId,
     this.oauth2ClientSecret,
@@ -456,7 +470,7 @@ class BackendServiceIap {
 
   /// Whether IAP is on. Setting `false` keeps the block but disables
   /// IAP enforcement.
-  final bool enabled;
+  final TfArg<bool> enabled;
 
   /// OAuth 2.0 client ID for the OAuth consent screen.
   final TfArg<String>? oauth2ClientId;
@@ -466,7 +480,7 @@ class BackendServiceIap {
   final TfArg<String>? oauth2ClientSecret;
 
   Map<String, Object?> toArgMap() => {
-    'enabled': enabled,
+    'enabled': enabled.toTfJson(),
     if (oauth2ClientId != null) 'oauth2_client_id': oauth2ClientId!.toTfJson(),
     if (oauth2ClientSecret != null)
       'oauth2_client_secret': oauth2ClientSecret!.toTfJson(),
@@ -482,8 +496,8 @@ class BackendServiceIap {
 /// `INTERNAL_SELF_MANAGED` / `INTERNAL_MANAGED` / `EXTERNAL_MANAGED`
 /// schemes.
 @immutable
-class BackendServiceCircuitBreakers {
-  const BackendServiceCircuitBreakers({
+class ComputeBackendServiceBackendServiceCircuitBreakers {
+  const ComputeBackendServiceBackendServiceCircuitBreakers({
     this.maxConnections,
     this.maxPendingRequests,
     this.maxRequests,
@@ -491,19 +505,20 @@ class BackendServiceCircuitBreakers {
     this.maxRetries,
   });
 
-  final int? maxConnections;
-  final int? maxPendingRequests;
-  final int? maxRequests;
-  final int? maxRequestsPerConnection;
-  final int? maxRetries;
+  final TfArg<int>? maxConnections;
+  final TfArg<int>? maxPendingRequests;
+  final TfArg<int>? maxRequests;
+  final TfArg<int>? maxRequestsPerConnection;
+  final TfArg<int>? maxRetries;
 
   Map<String, Object?> toArgMap() => {
-    if (maxConnections != null) 'max_connections': maxConnections,
-    if (maxPendingRequests != null) 'max_pending_requests': maxPendingRequests,
-    if (maxRequests != null) 'max_requests': maxRequests,
+    if (maxConnections != null) 'max_connections': maxConnections!.toTfJson(),
+    if (maxPendingRequests != null)
+      'max_pending_requests': maxPendingRequests!.toTfJson(),
+    if (maxRequests != null) 'max_requests': maxRequests!.toTfJson(),
     if (maxRequestsPerConnection != null)
-      'max_requests_per_connection': maxRequestsPerConnection,
-    if (maxRetries != null) 'max_retries': maxRetries,
+      'max_requests_per_connection': maxRequestsPerConnection!.toTfJson(),
+    if (maxRetries != null) 'max_retries': maxRetries!.toTfJson(),
   };
 }
 
@@ -514,8 +529,8 @@ class BackendServiceCircuitBreakers {
 /// `consistent_hash` block. Only meaningful when [LocalityLbPolicy] is
 /// `ringHash` or `maglev`.
 @immutable
-class BackendServiceConsistentHash {
-  const BackendServiceConsistentHash({
+class ComputeBackendServiceBackendServiceConsistentHash {
+  const ComputeBackendServiceBackendServiceConsistentHash({
     this.httpHeaderName,
     this.minimumRingSize,
     this.httpCookie,
@@ -525,22 +540,23 @@ class BackendServiceConsistentHash {
   final TfArg<String>? httpHeaderName;
 
   /// Minimum ring size for `RING_HASH`. Default 1024.
-  final int? minimumRingSize;
+  final TfArg<int>? minimumRingSize;
 
   /// Hash on a named HTTP cookie.
-  final BackendServiceConsistentHashHttpCookie? httpCookie;
+  final ComputeBackendServiceBackendServiceConsistentHashHttpCookie? httpCookie;
 
   Map<String, Object?> toArgMap() => {
     if (httpHeaderName != null) 'http_header_name': httpHeaderName!.toTfJson(),
-    if (minimumRingSize != null) 'minimum_ring_size': minimumRingSize,
+    if (minimumRingSize != null)
+      'minimum_ring_size': minimumRingSize!.toTfJson(),
     if (httpCookie != null) 'http_cookie': [httpCookie!.toArgMap()],
   };
 }
 
 /// `consistent_hash.http_cookie` (max_items=1).
 @immutable
-class BackendServiceConsistentHashHttpCookie {
-  const BackendServiceConsistentHashHttpCookie({
+class ComputeBackendServiceBackendServiceConsistentHashHttpCookie {
+  const ComputeBackendServiceBackendServiceConsistentHashHttpCookie({
     this.name,
     this.path,
     this.ttl,
@@ -548,7 +564,7 @@ class BackendServiceConsistentHashHttpCookie {
 
   final TfArg<String>? name;
   final TfArg<String>? path;
-  final BackendServiceDuration? ttl;
+  final ComputeBackendServiceBackendServiceDuration? ttl;
 
   Map<String, Object?> toArgMap() => {
     if (name != null) 'name': name!.toTfJson(),
@@ -562,18 +578,21 @@ class BackendServiceConsistentHashHttpCookie {
 /// `strong_session_affinity_cookie.ttl`,
 /// `outlier_detection.base_ejection_time`, etc.).
 @immutable
-class BackendServiceDuration {
-  const BackendServiceDuration({required this.seconds, this.nanos});
+class ComputeBackendServiceBackendServiceDuration {
+  const ComputeBackendServiceBackendServiceDuration({
+    required this.seconds,
+    this.nanos,
+  });
 
   /// Whole seconds. Required by the schema for every Duration block.
-  final int seconds;
+  final TfArg<int> seconds;
 
   /// Sub-second nanoseconds (`0`-`999_999_999`).
-  final int? nanos;
+  final TfArg<int>? nanos;
 
   Map<String, Object?> toArgMap() => {
-    'seconds': seconds,
-    if (nanos != null) 'nanos': nanos,
+    'seconds': seconds.toTfJson(),
+    if (nanos != null) 'nanos': nanos!.toTfJson(),
   };
 }
 
@@ -584,8 +603,8 @@ class BackendServiceDuration {
 /// `log_config` block — Cloud Logging export configuration for the
 /// backend service.
 @immutable
-class BackendServiceLogConfig {
-  const BackendServiceLogConfig({
+class ComputeBackendServiceBackendServiceLogConfig {
+  const ComputeBackendServiceBackendServiceLogConfig({
     this.enable,
     this.sampleRate,
     this.optionalMode,
@@ -593,10 +612,10 @@ class BackendServiceLogConfig {
   });
 
   /// Master switch.
-  final bool? enable;
+  final TfArg<bool>? enable;
 
   /// Sample rate `0.0`-`1.0`. Ignored when [enable] is `false`.
-  final double? sampleRate;
+  final TfArg<double>? sampleRate;
 
   /// Which optional fields to include.
   final BackendServiceLogOptionalMode? optionalMode;
@@ -606,8 +625,8 @@ class BackendServiceLogConfig {
   final List<String>? optionalFields;
 
   Map<String, Object?> toArgMap() => {
-    if (enable != null) 'enable': enable,
-    if (sampleRate != null) 'sample_rate': sampleRate,
+    if (enable != null) 'enable': enable!.toTfJson(),
+    if (sampleRate != null) 'sample_rate': sampleRate!.toTfJson(),
     if (optionalMode != null) 'optional_mode': optionalMode!.terraformValue,
     if (optionalFields != null) 'optional_fields': optionalFields,
   };
@@ -621,8 +640,8 @@ class BackendServiceLogConfig {
 /// exceed the configured failure thresholds are ejected from the load
 /// balancing pool for `base_ejection_time` * consecutive-ejection-count.
 @immutable
-class BackendServiceOutlierDetection {
-  const BackendServiceOutlierDetection({
+class ComputeBackendServiceBackendServiceOutlierDetection {
+  const ComputeBackendServiceBackendServiceOutlierDetection({
     this.consecutiveErrors,
     this.consecutiveGatewayFailure,
     this.enforcingConsecutiveErrors,
@@ -636,40 +655,42 @@ class BackendServiceOutlierDetection {
     this.interval,
   });
 
-  final int? consecutiveErrors;
-  final int? consecutiveGatewayFailure;
-  final int? enforcingConsecutiveErrors;
-  final int? enforcingConsecutiveGatewayFailure;
-  final int? enforcingSuccessRate;
-  final int? maxEjectionPercent;
-  final int? successRateMinimumHosts;
-  final int? successRateRequestVolume;
-  final int? successRateStdevFactor;
+  final TfArg<int>? consecutiveErrors;
+  final TfArg<int>? consecutiveGatewayFailure;
+  final TfArg<int>? enforcingConsecutiveErrors;
+  final TfArg<int>? enforcingConsecutiveGatewayFailure;
+  final TfArg<int>? enforcingSuccessRate;
+  final TfArg<int>? maxEjectionPercent;
+  final TfArg<int>? successRateMinimumHosts;
+  final TfArg<int>? successRateRequestVolume;
+  final TfArg<int>? successRateStdevFactor;
 
   /// Base time a host stays ejected. Schema requires `seconds`.
-  final BackendServiceDuration? baseEjectionTime;
+  final ComputeBackendServiceBackendServiceDuration? baseEjectionTime;
 
   /// How often outlier detection runs. Schema requires `seconds`.
-  final BackendServiceDuration? interval;
+  final ComputeBackendServiceBackendServiceDuration? interval;
 
   Map<String, Object?> toArgMap() => {
-    if (consecutiveErrors != null) 'consecutive_errors': consecutiveErrors,
+    if (consecutiveErrors != null)
+      'consecutive_errors': consecutiveErrors!.toTfJson(),
     if (consecutiveGatewayFailure != null)
-      'consecutive_gateway_failure': consecutiveGatewayFailure,
+      'consecutive_gateway_failure': consecutiveGatewayFailure!.toTfJson(),
     if (enforcingConsecutiveErrors != null)
-      'enforcing_consecutive_errors': enforcingConsecutiveErrors,
+      'enforcing_consecutive_errors': enforcingConsecutiveErrors!.toTfJson(),
     if (enforcingConsecutiveGatewayFailure != null)
       'enforcing_consecutive_gateway_failure':
-          enforcingConsecutiveGatewayFailure,
+          enforcingConsecutiveGatewayFailure!.toTfJson(),
     if (enforcingSuccessRate != null)
-      'enforcing_success_rate': enforcingSuccessRate,
-    if (maxEjectionPercent != null) 'max_ejection_percent': maxEjectionPercent,
+      'enforcing_success_rate': enforcingSuccessRate!.toTfJson(),
+    if (maxEjectionPercent != null)
+      'max_ejection_percent': maxEjectionPercent!.toTfJson(),
     if (successRateMinimumHosts != null)
-      'success_rate_minimum_hosts': successRateMinimumHosts,
+      'success_rate_minimum_hosts': successRateMinimumHosts!.toTfJson(),
     if (successRateRequestVolume != null)
-      'success_rate_request_volume': successRateRequestVolume,
+      'success_rate_request_volume': successRateRequestVolume!.toTfJson(),
     if (successRateStdevFactor != null)
-      'success_rate_stdev_factor': successRateStdevFactor,
+      'success_rate_stdev_factor': successRateStdevFactor!.toTfJson(),
     if (baseEjectionTime != null)
       'base_ejection_time': [baseEjectionTime!.toArgMap()],
     if (interval != null) 'interval': [interval!.toArgMap()],
@@ -683,12 +704,12 @@ class BackendServiceOutlierDetection {
 /// `security_settings` block — mTLS / TLS policy used when dialing
 /// backends.
 ///
-/// **Sensitive**: [BackendServiceAwsV4Authentication.accessKey] is
+/// **Sensitive**: [ComputeBackendServiceBackendServiceAwsV4Authentication.accessKey] is
 /// flagged sensitive in the schema and round-trips through
 /// `$sensitiveFields`.
 @immutable
-class BackendServiceSecuritySettings {
-  const BackendServiceSecuritySettings({
+class ComputeBackendServiceBackendServiceSecuritySettings {
+  const ComputeBackendServiceBackendServiceSecuritySettings({
     this.clientTlsPolicy,
     this.subjectAltNames,
     this.awsV4Authentication,
@@ -702,7 +723,8 @@ class BackendServiceSecuritySettings {
 
   /// AWS Signature v4 credentials, used when the backend is a private
   /// AWS endpoint reached via a Hybrid NEG.
-  final BackendServiceAwsV4Authentication? awsV4Authentication;
+  final ComputeBackendServiceBackendServiceAwsV4Authentication?
+  awsV4Authentication;
 
   Map<String, Object?> toArgMap() => {
     if (clientTlsPolicy != null)
@@ -716,8 +738,8 @@ class BackendServiceSecuritySettings {
 /// `security_settings.aws_v4_authentication` (max_items=1).
 /// [accessKey] is **sensitive**.
 @immutable
-class BackendServiceAwsV4Authentication {
-  const BackendServiceAwsV4Authentication({
+class ComputeBackendServiceBackendServiceAwsV4Authentication {
+  const ComputeBackendServiceBackendServiceAwsV4Authentication({
     this.accessKey,
     this.accessKeyId,
     this.accessKeyVersion,
@@ -753,8 +775,8 @@ class BackendServiceAwsV4Authentication {
 /// `strong_session_affinity_cookie` block. Used only when
 /// [sessionAffinity] is [SessionAffinity.strongCookieAffinity].
 @immutable
-class BackendServiceStrongSessionAffinityCookie {
-  const BackendServiceStrongSessionAffinityCookie({
+class ComputeBackendServiceBackendServiceStrongSessionAffinityCookie {
+  const ComputeBackendServiceBackendServiceStrongSessionAffinityCookie({
     this.name,
     this.path,
     this.ttl,
@@ -764,7 +786,7 @@ class BackendServiceStrongSessionAffinityCookie {
   final TfArg<String>? path;
 
   /// Cookie TTL. Schema requires `seconds`.
-  final BackendServiceDuration? ttl;
+  final ComputeBackendServiceBackendServiceDuration? ttl;
 
   Map<String, Object?> toArgMap() => {
     if (name != null) 'name': name!.toTfJson(),
@@ -781,17 +803,20 @@ class BackendServiceStrongSessionAffinityCookie {
 /// is typed as a *string* (not a number) — pass a decimal string like
 /// `"30"` or `"30.500"`.
 @immutable
-class BackendServiceMaxStreamDuration {
-  const BackendServiceMaxStreamDuration({required this.seconds, this.nanos});
+class ComputeBackendServiceBackendServiceMaxStreamDuration {
+  const ComputeBackendServiceBackendServiceMaxStreamDuration({
+    required this.seconds,
+    this.nanos,
+  });
 
   /// Decimal seconds as a string (schema oddity).
   final TfArg<String> seconds;
 
-  final int? nanos;
+  final TfArg<int>? nanos;
 
   Map<String, Object?> toArgMap() => {
     'seconds': seconds.toTfJson(),
-    if (nanos != null) 'nanos': nanos,
+    if (nanos != null) 'nanos': nanos!.toTfJson(),
   };
 }
 
@@ -803,8 +828,8 @@ class BackendServiceMaxStreamDuration {
 /// TLS configuration; preferred over [security_settings] when both
 /// would otherwise apply.
 @immutable
-class BackendServiceTlsSettings {
-  const BackendServiceTlsSettings({
+class ComputeBackendServiceBackendServiceTlsSettings {
+  const ComputeBackendServiceBackendServiceTlsSettings({
     this.authenticationConfig,
     this.sni,
     this.subjectAltNames,
@@ -817,7 +842,8 @@ class BackendServiceTlsSettings {
   final TfArg<String>? sni;
 
   /// SAN matchers — at least one must match the backend's certificate.
-  final List<BackendServiceTlsSubjectAltName>? subjectAltNames;
+  final List<ComputeBackendServiceBackendServiceTlsSubjectAltName>?
+  subjectAltNames;
 
   Map<String, Object?> toArgMap() => {
     if (authenticationConfig != null)
@@ -831,8 +857,8 @@ class BackendServiceTlsSettings {
 /// One entry under `tls_settings.subject_alt_names`. Exactly one of
 /// [dnsName] / [uniformResourceIdentifier] should be set.
 @immutable
-class BackendServiceTlsSubjectAltName {
-  const BackendServiceTlsSubjectAltName({
+class ComputeBackendServiceBackendServiceTlsSubjectAltName {
+  const ComputeBackendServiceBackendServiceTlsSubjectAltName({
     this.dnsName,
     this.uniformResourceIdentifier,
   });
@@ -854,14 +880,17 @@ class BackendServiceTlsSubjectAltName {
 /// One entry under `locality_lb_policies`. Exactly one of [policy] /
 /// [customPolicy] should be set per entry.
 @immutable
-class BackendServiceLocalityLbPolicyEntry {
-  const BackendServiceLocalityLbPolicyEntry({this.policy, this.customPolicy});
+class ComputeBackendServiceBackendServiceLocalityLbPolicyEntry {
+  const ComputeBackendServiceBackendServiceLocalityLbPolicyEntry({
+    this.policy,
+    this.customPolicy,
+  });
 
   /// Built-in policy reference (`{ name }`).
-  final BackendServiceLocalityLbBuiltinPolicy? policy;
+  final ComputeBackendServiceBackendServiceLocalityLbBuiltinPolicy? policy;
 
   /// Caller-supplied xDS policy (`{ name, data }`).
-  final BackendServiceLocalityLbCustomPolicy? customPolicy;
+  final ComputeBackendServiceBackendServiceLocalityLbCustomPolicy? customPolicy;
 
   Map<String, Object?> toArgMap() => {
     if (policy != null) 'policy': [policy!.toArgMap()],
@@ -871,8 +900,10 @@ class BackendServiceLocalityLbPolicyEntry {
 
 /// Built-in `locality_lb_policies[].policy` (max_items=1).
 @immutable
-class BackendServiceLocalityLbBuiltinPolicy {
-  const BackendServiceLocalityLbBuiltinPolicy({required this.name});
+class ComputeBackendServiceBackendServiceLocalityLbBuiltinPolicy {
+  const ComputeBackendServiceBackendServiceLocalityLbBuiltinPolicy({
+    required this.name,
+  });
 
   /// Policy name — same vocabulary as the top-level
   /// [LocalityLbPolicy] string values (`ROUND_ROBIN`, `RING_HASH`, ...).
@@ -884,8 +915,11 @@ class BackendServiceLocalityLbBuiltinPolicy {
 /// Caller-supplied xDS `locality_lb_policies[].custom_policy`
 /// (max_items=1).
 @immutable
-class BackendServiceLocalityLbCustomPolicy {
-  const BackendServiceLocalityLbCustomPolicy({required this.name, this.data});
+class ComputeBackendServiceBackendServiceLocalityLbCustomPolicy {
+  const ComputeBackendServiceBackendServiceLocalityLbCustomPolicy({
+    required this.name,
+    this.data,
+  });
 
   final TfArg<String> name;
   final TfArg<String>? data;
@@ -901,16 +935,19 @@ class BackendServiceLocalityLbCustomPolicy {
 // ===========================================================================
 
 /// One entry under the top-level `custom_metrics`. Mirrors
-/// [BackendServiceBackendCustomMetric] but without [maxUtilization]
+/// [ComputeBackendServiceBackendServiceBackendCustomMetric] but without [maxUtilization]
 /// (schema only models `name` + `dry_run` at this scope).
 @immutable
-class BackendServiceCustomMetric {
-  const BackendServiceCustomMetric({required this.name, required this.dryRun});
+class ComputeBackendServiceBackendServiceCustomMetric {
+  const ComputeBackendServiceBackendServiceCustomMetric({
+    required this.name,
+    required this.dryRun,
+  });
   final TfArg<String> name;
-  final bool dryRun;
+  final TfArg<bool> dryRun;
   Map<String, Object?> toArgMap() => {
     'name': name.toTfJson(),
-    'dry_run': dryRun,
+    'dry_run': dryRun.toTfJson(),
   };
 }
 
@@ -920,8 +957,8 @@ class BackendServiceCustomMetric {
 
 /// `params` block — currently only carries resource-manager tags.
 @immutable
-class BackendServiceParams {
-  const BackendServiceParams({this.resourceManagerTags});
+class ComputeBackendServiceBackendServiceParams {
+  const ComputeBackendServiceBackendServiceParams({this.resourceManagerTags});
 
   /// `{tagKey: tagValue}` map of resource-manager tag bindings applied
   /// at creation time.
@@ -958,7 +995,7 @@ class BackendServiceParams {
 /// - [healthChecks]: list of self-links to `google_compute_health_check`
 ///   resources. Required unless every backend is an internet/serverless NEG.
 /// - [securityPolicy]: self-link to a Cloud Armor `google_compute_security_policy`.
-/// - [BackendServiceBackend.group]: self-link of an instance group, MIG,
+/// - [ComputeBackendServiceBackendServiceBackend.group]: self-link of an instance group, MIG,
 ///   or NEG. All backends in one service must share a kind (no mixing
 ///   instance groups with NEGs).
 ///
@@ -983,7 +1020,7 @@ class BackendServiceParams {
 ///     'projects/p/global/securityPolicies/edge-deny-all',
 ///   ),
 ///   backends: [
-///     BackendServiceBackend(
+///     ComputeBackendServiceBackendServiceBackend(
 ///       group: TfArg.literal(
 ///         // var.backend_group_id — typically a Batch 4 NEG or a
 ///         // Batch 3 MIG self-link.
@@ -994,12 +1031,12 @@ class BackendServiceParams {
 ///       capacityScaler: 1.0,
 ///     ),
 ///   ],
-///   iap: const BackendServiceIap(
+///   iap: const ComputeBackendServiceBackendServiceIap(
 ///     enabled: true,
 ///     oauth2ClientId: 'xxx.apps.googleusercontent.com',
 ///     oauth2ClientSecret: 'super-secret', // sensitive — masked at synth.
 ///   ),
-///   logConfig: const BackendServiceLogConfig(
+///   logConfig: const ComputeBackendServiceBackendServiceLogConfig(
 ///     enable: true,
 ///     sampleRate: 1.0,
 ///   ),
@@ -1036,20 +1073,22 @@ final class GoogleComputeBackendService extends Resource {
     TfArg<String>? serviceLbPolicy,
     TfArg<ExternalManagedMigrationState>? externalManagedMigrationState,
     TfArg<num>? externalManagedMigrationTestingPercentage,
-    List<BackendServiceBackend>? backends,
-    BackendServiceCdnPolicy? cdnPolicy,
-    BackendServiceIap? iap,
-    BackendServiceCircuitBreakers? circuitBreakers,
-    BackendServiceConsistentHash? consistentHash,
-    BackendServiceOutlierDetection? outlierDetection,
-    BackendServiceLogConfig? logConfig,
-    BackendServiceSecuritySettings? securitySettings,
-    List<BackendServiceLocalityLbPolicyEntry>? localityLbPolicies,
-    List<BackendServiceCustomMetric>? customMetrics,
-    BackendServiceMaxStreamDuration? maxStreamDuration,
-    BackendServiceStrongSessionAffinityCookie? strongSessionAffinityCookie,
-    BackendServiceTlsSettings? tlsSettings,
-    BackendServiceParams? params,
+    List<ComputeBackendServiceBackendServiceBackend>? backends,
+    ComputeBackendServiceBackendServiceCdnPolicy? cdnPolicy,
+    ComputeBackendServiceBackendServiceIap? iap,
+    ComputeBackendServiceBackendServiceCircuitBreakers? circuitBreakers,
+    ComputeBackendServiceBackendServiceConsistentHash? consistentHash,
+    ComputeBackendServiceBackendServiceOutlierDetection? outlierDetection,
+    ComputeBackendServiceBackendServiceLogConfig? logConfig,
+    ComputeBackendServiceBackendServiceSecuritySettings? securitySettings,
+    List<ComputeBackendServiceBackendServiceLocalityLbPolicyEntry>?
+    localityLbPolicies,
+    List<ComputeBackendServiceBackendServiceCustomMetric>? customMetrics,
+    ComputeBackendServiceBackendServiceMaxStreamDuration? maxStreamDuration,
+    ComputeBackendServiceBackendServiceStrongSessionAffinityCookie?
+    strongSessionAffinityCookie,
+    ComputeBackendServiceBackendServiceTlsSettings? tlsSettings,
+    ComputeBackendServiceBackendServiceParams? params,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

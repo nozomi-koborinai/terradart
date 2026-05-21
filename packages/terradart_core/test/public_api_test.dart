@@ -37,7 +37,7 @@ void main() {
       DartConstantSpec,
       TerraformOutputSpec,
       DartConstantsEmitter,
-      JsonEncoder,
+      TfJsonEncoder,
       StackSynth,
       SynthResult,
       DuplicateResourceError,

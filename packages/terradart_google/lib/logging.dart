@@ -5,8 +5,8 @@
 /// The three sink resources (`project`, `folder`, `organization`) share a
 /// common shape but differ in scope: each entry filters only the log stream
 /// produced under its respective resource hierarchy. `project_sink` predates
-/// the unified prefix convention and keeps its unprefixed `BigqueryOptions` /
-/// `LogSinkExclusion` helper types; the newer folder and organization sinks
+/// the unified prefix convention and keeps its unprefixed `LoggingProjectSinkBigqueryOptions` /
+/// `LoggingProjectSinkLogSinkExclusion` helper types; the newer folder and organization sinks
 /// use scope-prefixed names to avoid barrel-export collision.
 library;
 
@@ -33,4 +33,4 @@ export 'src/logging/google_logging_organization_sink.dart'
         LoggingOrganizationSinkBigqueryOptions,
         LoggingOrganizationSinkExclusion;
 export 'src/logging/google_logging_project_sink.dart'
-    show BigqueryOptions, GoogleLoggingProjectSink, LogSinkExclusion;
+    show LoggingProjectSinkBigqueryOptions, GoogleLoggingProjectSink, LoggingProjectSinkLogSinkExclusion;

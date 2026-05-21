@@ -8,31 +8,33 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleSecretManagerSecretSensitive = <String>{};
 
 // ===========================================================================
-// Replication (sealed: Auto | UserManaged) + nested helpers
+// SecretManagerSecretReplication (sealed: Auto | UserManaged) + nested helpers
 // ===========================================================================
 
 /// `replication` block on `google_secret_manager_secret`. Sealed so the
 /// constructor exposes only valid replication choices.
-sealed class Replication {
-  const Replication();
+sealed class SecretManagerSecretReplication {
+  const SecretManagerSecretReplication();
 
   /// Auto replication. Optionally pin a CMEK.
-  factory Replication.auto({
-    CustomerManagedEncryption? customerManagedEncryption,
-  }) = _AutoReplication;
+  factory SecretManagerSecretReplication.auto({
+    SecretManagerSecretCustomerManagedEncryption? customerManagedEncryption,
+  }) = SecretManagerSecretAutoReplication;
 
   /// User-managed replication across explicit replicas.
-  factory Replication.userManaged(List<Replica> replicas) =
-      _UserManagedReplication;
+  factory SecretManagerSecretReplication.userManaged(
+    List<SecretManagerSecretReplica> replicas,
+  ) = SecretManagerSecretUserManagedReplication;
 
   Map<String, Object?> encode();
 }
 
 @immutable
-final class _AutoReplication extends Replication {
-  const _AutoReplication({this.customerManagedEncryption});
+final class SecretManagerSecretAutoReplication
+    extends SecretManagerSecretReplication {
+  const SecretManagerSecretAutoReplication({this.customerManagedEncryption});
 
-  final CustomerManagedEncryption? customerManagedEncryption;
+  final SecretManagerSecretCustomerManagedEncryption? customerManagedEncryption;
 
   @override
   Map<String, Object?> encode() => {
@@ -44,10 +46,11 @@ final class _AutoReplication extends Replication {
 }
 
 @immutable
-final class _UserManagedReplication extends Replication {
-  const _UserManagedReplication(this.replicas);
+final class SecretManagerSecretUserManagedReplication
+    extends SecretManagerSecretReplication {
+  const SecretManagerSecretUserManagedReplication(this.replicas);
 
-  final List<Replica> replicas;
+  final List<SecretManagerSecretReplica> replicas;
 
   @override
   Map<String, Object?> encode() => {
@@ -59,8 +62,10 @@ final class _UserManagedReplication extends Replication {
 
 /// `customer_managed_encryption` nested block (CMEK).
 @immutable
-class CustomerManagedEncryption {
-  const CustomerManagedEncryption({required this.kmsKeyName});
+class SecretManagerSecretCustomerManagedEncryption {
+  const SecretManagerSecretCustomerManagedEncryption({
+    required this.kmsKeyName,
+  });
 
   final TfArg<String> kmsKeyName;
 
@@ -69,11 +74,14 @@ class CustomerManagedEncryption {
 
 /// One entry in `user_managed.replicas`.
 @immutable
-class Replica {
-  const Replica({required this.location, this.customerManagedEncryption});
+class SecretManagerSecretReplica {
+  const SecretManagerSecretReplica({
+    required this.location,
+    this.customerManagedEncryption,
+  });
 
   final TfArg<String> location;
-  final CustomerManagedEncryption? customerManagedEncryption;
+  final SecretManagerSecretCustomerManagedEncryption? customerManagedEncryption;
 
   Map<String, Object?> encode() => {
     'location': location.toTfJson(),
@@ -84,8 +92,8 @@ class Replica {
 
 /// Pub/Sub `topics` entry under `google_secret_manager_secret.topics`.
 @immutable
-class SecretTopic {
-  const SecretTopic({required this.name});
+class SecretManagerSecretSecretTopic {
+  const SecretManagerSecretSecretTopic({required this.name});
 
   /// Topic resource path, e.g. `TfArg.ref(notifyTopic.id)`.
   final TfArg<String> name;
@@ -95,8 +103,11 @@ class SecretTopic {
 
 /// `rotation` nested block.
 @immutable
-class Rotation {
-  const Rotation({this.nextRotationTime, this.rotationPeriod});
+class SecretManagerSecretRotation {
+  const SecretManagerSecretRotation({
+    this.nextRotationTime,
+    this.rotationPeriod,
+  });
 
   final TfArg<String>? nextRotationTime;
   final TfArg<String>? rotationPeriod;
@@ -117,8 +128,8 @@ class Rotation {
 /// Required identity:
 /// - [localName]: Terraform local name.
 /// - `secretId`: GCP secret ID.
-/// - `replication`: sealed [Replication] (`Replication.auto()` or
-///   `Replication.userManaged([...])`).
+/// - `replication`: sealed [SecretManagerSecretReplication] (`SecretManagerSecretReplication.auto()` or
+///   `SecretManagerSecretReplication.userManaged([...])`).
 final class GoogleSecretManagerSecret extends Resource {
   // ignore: constant_identifier_names
   static const String $tfType = 'google_secret_manager_secret';
@@ -126,15 +137,15 @@ final class GoogleSecretManagerSecret extends Resource {
   GoogleSecretManagerSecret({
     required super.localName,
     required TfArg<String> secretId,
-    required Replication replication,
+    required SecretManagerSecretReplication replication,
     TfArg<Map<String, String>>? labels,
     TfArg<Map<String, String>>? annotations,
     TfArg<Map<String, String>>? versionAliases,
     TfArg<String>? versionDestroyTtl,
-    List<SecretTopic>? topics,
+    List<SecretManagerSecretSecretTopic>? topics,
     TfArg<String>? expireTime,
     TfArg<String>? ttl,
-    Rotation? rotation,
+    SecretManagerSecretRotation? rotation,
     TfArg<Map<String, String>>? tags,
     TfArg<String>? project,
     TfArg<bool>? deletionProtection,
@@ -165,6 +176,9 @@ final class GoogleSecretManagerSecret extends Resource {
   @override
   // ignore: non_constant_identifier_names
   Set<String> get $sensitiveFields => _googleSecretManagerSecretSensitive;
+
+  @override
+  bool get $supportsDeletionProtection => true;
 
   TfRef<String> get secretIdRef => TfRef.attribute<String>(this, 'secret_id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -40,12 +40,15 @@ enum KmsProtectionLevel {
 /// has ~30 entries (symmetric, asymmetric sign, asymmetric decrypt, MAC,
 /// raw encrypt/decrypt families). Pass the GCP enum literal as a string,
 /// e.g. `'GOOGLE_SYMMETRIC_ENCRYPTION'` or `'RSA_SIGN_PKCS1_2048_SHA256'`.
-class VersionTemplate {
-  const VersionTemplate({required this.algorithm, this.protectionLevel});
-  final String algorithm;
+class KmsCryptoKeyVersionTemplate {
+  const KmsCryptoKeyVersionTemplate({
+    required this.algorithm,
+    this.protectionLevel,
+  });
+  final TfArg<String> algorithm;
   final KmsProtectionLevel? protectionLevel;
   Map<String, Object?> toArgMap() => {
-    'algorithm': algorithm,
+    'algorithm': algorithm.toTfJson(),
     if (protectionLevel != null)
       'protection_level': protectionLevel!.terraformValue,
   };
@@ -76,7 +79,7 @@ class VersionTemplate {
 ///   // Must be > 86400s (1 day). `TfArg.duration` converts the
 ///   // Duration into the `"{seconds}s"` form Terraform expects.
 ///   rotationPeriod: TfArg.duration(const Duration(days: 90)),
-///   versionTemplate: const VersionTemplate(
+///   versionTemplate: const KmsCryptoKeyVersionTemplate(
 ///     algorithm: 'GOOGLE_SYMMETRIC_ENCRYPTION',
 ///     protectionLevel: KmsProtectionLevel.software,
 ///   ),
@@ -103,7 +106,7 @@ final class GoogleKmsCryptoKey extends Resource {
     TfArg<String>? destroyScheduledDuration,
     TfArg<bool>? importOnly,
     TfArg<String>? cryptoKeyBackend,
-    VersionTemplate? versionTemplate,
+    KmsCryptoKeyVersionTemplate? versionTemplate,
     super.lifecycle,
     super.dependsOn,
   }) : super(

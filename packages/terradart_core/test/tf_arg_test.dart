@@ -32,6 +32,7 @@ void main() {
       final kind = switch (arg) {
         TfArgLiteral<String>() => 'literal',
         TfArgRef<String>() => 'ref',
+        TfArgVariable<String>() => 'variable',
       };
       expect(kind, 'literal');
     });
@@ -101,6 +102,60 @@ void main() {
       expect(
         () => TfArg.duration(const Duration(seconds: -1)),
         throwsA(isA<ArgumentError>()),
+      );
+    });
+  });
+
+  group('TfArg.variable', () {
+    test('TfArgVariable emits \${var.<name>} interpolation', () {
+      final arg = TfArgVariable<String>('db_password');
+      expect(arg.toTfJson(), equals(r'${var.db_password}'));
+    });
+
+    test('TfArg.variable factory returns TfArgVariable<T>', () {
+      final arg = TfArg.variable<String>('db_password');
+      expect(arg, isA<TfArgVariable<String>>());
+      expect(arg.toTfJson(), equals(r'${var.db_password}'));
+    });
+
+    test('TfArg.variable infers T from context', () {
+      // Implicit context type: TfArg<int>
+      final TfArg<int> arg = TfArg.variable('replica_count');
+      expect(arg, isA<TfArgVariable<int>>());
+      expect(arg.toTfJson(), equals(r'${var.replica_count}'));
+    });
+
+    test('TfArgVariable rejects empty name', () {
+      expect(
+        () => TfArgVariable<String>(''),
+        throwsA(isA<ArgumentError>()),
+      );
+    });
+  });
+
+  group('TfArg sealed exhaustive (3-way)', () {
+    test('switch covers Literal, Ref, Variable', () {
+      String dispatch(TfArg<String> arg) => switch (arg) {
+            TfArgLiteral<String>() => 'literal',
+            TfArgRef<String>() => 'ref',
+            TfArgVariable<String>() => 'variable',
+          };
+
+      expect(dispatch(const TfArgLiteral<String>('x')), equals('literal'));
+      expect(
+        dispatch(
+          TfArg.ref(
+            TfRef.attribute<String>(
+              _FakeAddressed('data.x.y'),
+              'z',
+            ),
+          ),
+        ),
+        equals('ref'),
+      );
+      expect(
+        dispatch(TfArgVariable<String>('z')),
+        equals('variable'),
       );
     });
   });

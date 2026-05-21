@@ -28,10 +28,6 @@ class _FakeData extends Data {
 
 class _TestStack extends Stack {
   _TestStack() : super(providers: const []);
-
-  @override
-  Future<void> synth({required String outDir}) async =>
-      throw UnimplementedError();
 }
 
 void main() {

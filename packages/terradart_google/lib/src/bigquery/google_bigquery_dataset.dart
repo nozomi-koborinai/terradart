@@ -24,13 +24,13 @@ enum DatasetStorageBillingModel {
 }
 
 // ===========================================================================
-// Access — sealed (8 variants matching BigQuery's discriminated union)
+// BigqueryDatasetAccess — sealed (8 variants matching BigQuery's discriminated union)
 // ===========================================================================
 //
 // BigQuery's `access` entry accepts exactly one identity field per entry.
 // Modeling as a sealed hierarchy makes the choice exhaustive at the type
 // level — the compiler enforces that callers pick one variant per
-// [Access] instance. All variants may carry an optional [AccessCondition]
+// [BigqueryDatasetAccess] instance. All variants may carry an optional [BigqueryDatasetAccessCondition]
 // (CEL binding) per the underlying API. The five identity-typed variants
 // accept a `role`; the reference-typed variants (view / dataset / routine)
 // omit it because BigQuery infers the role from the resource shape.
@@ -40,11 +40,11 @@ enum DatasetStorageBillingModel {
 /// Subclasses provide an [encode] method returning the snake-case map
 /// for synth.
 @immutable
-sealed class Access {
-  const Access({this.condition});
+sealed class BigqueryDatasetAccess {
+  const BigqueryDatasetAccess({this.condition});
 
   /// Optional CEL binding restricting when this access entry applies.
-  final AccessCondition? condition;
+  final BigqueryDatasetAccessCondition? condition;
 
   /// Encodes this entry into the snake-case map shape expected by
   /// Terraform's bigquery_dataset.access schema.
@@ -53,8 +53,8 @@ sealed class Access {
 
 /// `access` entry granting [role] to [userByEmail].
 @immutable
-final class AccessUserByEmail extends Access {
-  const AccessUserByEmail({
+final class BigqueryDatasetAccessUserByEmail extends BigqueryDatasetAccess {
+  const BigqueryDatasetAccessUserByEmail({
     required this.userByEmail,
     this.role,
     super.condition,
@@ -73,8 +73,8 @@ final class AccessUserByEmail extends Access {
 
 /// `access` entry granting [role] to [groupByEmail].
 @immutable
-final class AccessGroupByEmail extends Access {
-  const AccessGroupByEmail({
+final class BigqueryDatasetAccessGroupByEmail extends BigqueryDatasetAccess {
+  const BigqueryDatasetAccessGroupByEmail({
     required this.groupByEmail,
     this.role,
     super.condition,
@@ -95,8 +95,8 @@ final class AccessGroupByEmail extends Access {
 /// include `projectOwners`, `projectReaders`, `projectWriters`,
 /// `allAuthenticatedUsers` (BigQuery treats these as case-sensitive).
 @immutable
-final class AccessSpecialGroup extends Access {
-  const AccessSpecialGroup({
+final class BigqueryDatasetAccessSpecialGroup extends BigqueryDatasetAccess {
+  const BigqueryDatasetAccessSpecialGroup({
     required this.specialGroup,
     this.role,
     super.condition,
@@ -115,8 +115,12 @@ final class AccessSpecialGroup extends Access {
 
 /// `access` entry granting [role] to all members of [domain].
 @immutable
-final class AccessDomain extends Access {
-  const AccessDomain({required this.domain, this.role, super.condition});
+final class BigqueryDatasetAccessDomain extends BigqueryDatasetAccess {
+  const BigqueryDatasetAccessDomain({
+    required this.domain,
+    this.role,
+    super.condition,
+  });
 
   final TfArg<String> domain;
   final TfArg<String>? role;
@@ -132,8 +136,12 @@ final class AccessDomain extends Access {
 /// `access` entry granting [role] to an arbitrary IAM principal (e.g.
 /// `allUsers`, service identities) via [iamMember].
 @immutable
-final class AccessIamMember extends Access {
-  const AccessIamMember({required this.iamMember, this.role, super.condition});
+final class BigqueryDatasetAccessIamMember extends BigqueryDatasetAccess {
+  const BigqueryDatasetAccessIamMember({
+    required this.iamMember,
+    this.role,
+    super.condition,
+  });
 
   final TfArg<String> iamMember;
   final TfArg<String>? role;
@@ -150,10 +158,10 @@ final class AccessIamMember extends Access {
 /// queries against the view read tables in this dataset. Role is not
 /// required for view bindings.
 @immutable
-final class AccessView extends Access {
-  const AccessView({required this.view, super.condition});
+final class BigqueryDatasetAccessView extends BigqueryDatasetAccess {
+  const BigqueryDatasetAccessView({required this.view, super.condition});
 
-  final DatasetView view;
+  final BigqueryDatasetDatasetView view;
 
   @override
   Map<String, Object?> encode() => {
@@ -165,10 +173,10 @@ final class AccessView extends Access {
 /// `access` entry referring to a dataset (transitive read for resource
 /// types listed in `targetTypes`).
 @immutable
-final class AccessDataset extends Access {
-  const AccessDataset({required this.dataset, super.condition});
+final class BigqueryDatasetAccessDataset extends BigqueryDatasetAccess {
+  const BigqueryDatasetAccessDataset({required this.dataset, super.condition});
 
-  final DatasetAccessChild dataset;
+  final BigqueryDatasetDatasetAccessChild dataset;
 
   @override
   Map<String, Object?> encode() => {
@@ -179,10 +187,10 @@ final class AccessDataset extends Access {
 
 /// `access` entry referring to a BigQuery routine. Role is not required.
 @immutable
-final class AccessRoutine extends Access {
-  const AccessRoutine({required this.routine, super.condition});
+final class BigqueryDatasetAccessRoutine extends BigqueryDatasetAccess {
+  const BigqueryDatasetAccessRoutine({required this.routine, super.condition});
 
-  final DatasetRoutineRef routine;
+  final BigqueryDatasetDatasetRoutineRef routine;
 
   @override
   Map<String, Object?> encode() => {
@@ -192,13 +200,13 @@ final class AccessRoutine extends Access {
 }
 
 // ===========================================================================
-// Access sub-block helpers
+// BigqueryDatasetAccess sub-block helpers
 // ===========================================================================
 
 /// `access.view` sub-block — fully qualified BigQuery view reference.
 @immutable
-class DatasetView {
-  const DatasetView({
+class BigqueryDatasetDatasetView {
+  const BigqueryDatasetDatasetView({
     required this.projectId,
     required this.datasetId,
     required this.tableId,
@@ -218,10 +226,13 @@ class DatasetView {
 /// `access.dataset` sub-block — pairs a [dataset] reference with the
 /// [targetTypes] this binding applies to (currently only `VIEWS`).
 @immutable
-class DatasetAccessChild {
-  const DatasetAccessChild({required this.dataset, required this.targetTypes});
+class BigqueryDatasetDatasetAccessChild {
+  const BigqueryDatasetDatasetAccessChild({
+    required this.dataset,
+    required this.targetTypes,
+  });
 
-  final DatasetReference dataset;
+  final BigqueryDatasetDatasetReference dataset;
   final List<TfArg<String>> targetTypes;
 
   Map<String, Object?> encode() => {
@@ -232,8 +243,11 @@ class DatasetAccessChild {
 
 /// `access.dataset.dataset` and `access.routine` projectId+datasetId pair.
 @immutable
-class DatasetReference {
-  const DatasetReference({required this.projectId, required this.datasetId});
+class BigqueryDatasetDatasetReference {
+  const BigqueryDatasetDatasetReference({
+    required this.projectId,
+    required this.datasetId,
+  });
 
   final TfArg<String> projectId;
   final TfArg<String> datasetId;
@@ -246,8 +260,8 @@ class DatasetReference {
 
 /// `access.routine` sub-block — fully qualified BigQuery routine reference.
 @immutable
-class DatasetRoutineRef {
-  const DatasetRoutineRef({
+class BigqueryDatasetDatasetRoutineRef {
+  const BigqueryDatasetDatasetRoutineRef({
     required this.projectId,
     required this.datasetId,
     required this.routineId,
@@ -268,8 +282,8 @@ class DatasetRoutineRef {
 /// applies. [expression] is the CEL source; the other three fields are
 /// metadata for debugging / UI surfaces.
 @immutable
-class AccessCondition {
-  const AccessCondition({
+class BigqueryDatasetAccessCondition {
+  const BigqueryDatasetAccessCondition({
     required this.expression,
     this.title,
     this.description,
@@ -296,8 +310,10 @@ class AccessCondition {
 /// `default_encryption_configuration` block — CMEK key for tables that
 /// do not specify their own encryption.
 @immutable
-class DefaultEncryptionConfiguration {
-  const DefaultEncryptionConfiguration({required this.kmsKeyName});
+class BigqueryDatasetDefaultEncryptionConfiguration {
+  const BigqueryDatasetDefaultEncryptionConfiguration({
+    required this.kmsKeyName,
+  });
 
   final TfArg<String> kmsKeyName;
 
@@ -307,8 +323,8 @@ class DefaultEncryptionConfiguration {
 /// `external_dataset_reference` block — points the dataset at an
 /// externally-managed source (e.g. AWS Glue) via [connection].
 @immutable
-class ExternalDatasetReference {
-  const ExternalDatasetReference({
+class BigqueryDatasetExternalDatasetReference {
+  const BigqueryDatasetExternalDatasetReference({
     required this.externalSource,
     required this.connection,
   });
@@ -325,8 +341,8 @@ class ExternalDatasetReference {
 /// `external_catalog_dataset_options` block — open-source catalog metadata
 /// for datasets bridged from Iceberg / Hive Metastore-compatible sources.
 @immutable
-class ExternalCatalogDatasetOptions {
-  const ExternalCatalogDatasetOptions({
+class BigqueryDatasetExternalCatalogDatasetOptions {
+  const BigqueryDatasetExternalCatalogDatasetOptions({
     this.defaultStorageLocationUri,
     this.parameters,
   });
@@ -356,7 +372,7 @@ class ExternalCatalogDatasetOptions {
 /// The `access` block is a discriminated union: BigQuery accepts exactly
 /// one of `user_by_email` / `group_by_email` / `special_group` / `domain`
 /// / `iam_member` / `view` / `dataset` / `routine` per entry. We model it
-/// as a sealed [Access] hierarchy so the choice is exhaustive at the
+/// as a sealed [BigqueryDatasetAccess] hierarchy so the choice is exhaustive at the
 /// type level. The five simple identity variants accept a [role]; the
 /// reference variants (view / dataset / routine) deny it per the
 /// BigQuery API contract.
@@ -370,11 +386,11 @@ class ExternalCatalogDatasetOptions {
 ///   friendlyName: TfArg.literal('Analytics Production'),
 ///   defaultTableExpirationMs: TfArg.literal(3600000),
 ///   access: const [
-///     AccessUserByEmail(
+///     BigqueryDatasetAccessUserByEmail(
 ///       userByEmail: TfArgLiteral('data-eng@example.com'),
 ///       role: TfArgLiteral('OWNER'),
 ///     ),
-///     AccessSpecialGroup(
+///     BigqueryDatasetAccessSpecialGroup(
 ///       specialGroup: TfArgLiteral('projectReaders'),
 ///       role: TfArgLiteral('READER'),
 ///     ),
@@ -400,10 +416,11 @@ final class GoogleBigqueryDataset extends Resource {
     TfArg<bool>? deleteContentsOnDestroy,
     TfArg<Map<String, String>>? labels,
     TfArg<Map<String, String>>? resourceTags,
-    List<Access>? access,
-    DefaultEncryptionConfiguration? defaultEncryptionConfiguration,
-    ExternalDatasetReference? externalDatasetReference,
-    ExternalCatalogDatasetOptions? externalCatalogDatasetOptions,
+    List<BigqueryDatasetAccess>? access,
+    BigqueryDatasetDefaultEncryptionConfiguration?
+    defaultEncryptionConfiguration,
+    BigqueryDatasetExternalDatasetReference? externalDatasetReference,
+    BigqueryDatasetExternalCatalogDatasetOptions? externalCatalogDatasetOptions,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

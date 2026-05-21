@@ -8,7 +8,7 @@ export 'src/app_export.dart'
         ResourceAttributeExport,
         ResourceIdExport,
         StringExport;
-export 'src/backends.dart' show GcsBackend;
+export 'src/backends.dart' show GcsBackend, LocalBackend;
 export 'src/data.dart' show Data;
 export 'src/duplicate_resource_error.dart' show DuplicateResourceError;
 export 'src/duration_helper.dart' show TerraformDurationExt;
@@ -17,7 +17,7 @@ export 'src/lifecycle.dart'
 export 'src/resource.dart' show ProviderBinding, Resource, ResourceKind;
 export 'src/stack.dart' show Stack, StackBackend, StackProvider;
 export 'src/synth/dart_constants_emitter.dart' show DartConstantsEmitter;
-export 'src/synth/json_encoder.dart' show JsonEncoder;
+export 'src/synth/json_encoder.dart' show TfJsonEncoder;
 export 'src/synth/literal_resolver.dart' show LiteralResolver;
 export 'src/synth/output_emitter.dart'
     show
@@ -25,7 +25,8 @@ export 'src/synth/output_emitter.dart'
         OutputEmissionResult,
         OutputEmitter,
         TerraformOutputSpec;
+export 'src/synth/sensitive_literal_error.dart' show SensitiveLiteralError;
 export 'src/synth/stack_synth.dart' show StackSynth, SynthResult;
-export 'src/tf_arg.dart' show TfArg, TfArgLiteral, TfArgRef;
+export 'src/tf_arg.dart' show TfArg, TfArgLiteral, TfArgRef, TfArgVariable;
 export 'src/tf_ref.dart'
     show AttributeRef, DataRef, ResourceRef, TfAddressed, TfRef;

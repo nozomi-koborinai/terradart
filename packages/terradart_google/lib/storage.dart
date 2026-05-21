@@ -5,36 +5,36 @@ library;
 
 export 'src/storage/google_storage_bucket.dart'
     show
-        Autoclass,
-        BucketCors,
-        BucketLogging,
+        StorageBucketAutoclass,
+        StorageBucketBucketCors,
+        StorageBucketBucketLogging,
         BucketStorageClass,
-        BucketWebsite,
-        CustomPlacementConfig,
-        Encryption,
-        EncryptionEnforcementConfig,
+        StorageBucketBucketWebsite,
+        StorageBucketCustomPlacementConfig,
+        StorageBucketEncryption,
+        StorageBucketEncryptionEnforcementConfig,
         GoogleStorageBucket,
-        HierarchicalNamespace,
-        IpFilter,
-        LifecycleAction,
+        StorageBucketHierarchicalNamespace,
+        StorageBucketIpFilter,
+        StorageBucketLifecycleAction,
         LifecycleActionType,
-        LifecycleCondition,
-        LifecycleRule,
-        PublicNetworkSource,
-        RetentionPolicy,
-        SoftDeletePolicy,
-        Versioning,
-        VpcNetworkSource;
+        StorageBucketLifecycleCondition,
+        StorageBucketLifecycleRule,
+        StorageBucketPublicNetworkSource,
+        StorageBucketRetentionPolicy,
+        StorageBucketSoftDeletePolicy,
+        StorageBucketVersioning,
+        StorageBucketVpcNetworkSource;
 export 'src/storage/google_storage_bucket_iam_member.dart'
     show GoogleStorageBucketIamMember;
 export 'src/storage/google_storage_bucket_object.dart'
     show
-        BucketObjectContent,
-        BucketObjectFromContent,
-        BucketObjectFromSource,
-        BucketObjectRetention,
+        StorageBucketObjectBucketObjectContent,
+        StorageBucketObjectBucketObjectFromContent,
+        StorageBucketObjectBucketObjectFromSource,
+        StorageBucketObjectBucketObjectRetention,
         BucketObjectStorageClass,
-        CustomerEncryption,
+        StorageBucketObjectCustomerEncryption,
         GoogleStorageBucketObject;
 export 'src/storage/google_storage_notification.dart'
     show

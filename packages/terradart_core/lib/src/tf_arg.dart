@@ -23,6 +23,15 @@ sealed class TfArg<T> {
   /// Convenience: `TfArg.ref(topic.nameRef)`.
   static TfArg<T> ref<T>(TfRef<T> ref) => TfArgRef<T>(ref);
 
+  /// Convenience: `TfArg.variable('db_password')` (T inferred) or
+  /// `TfArg.variable<String>('db_password')` (explicit).
+  ///
+  /// Use this for sensitive runtime values supplied via
+  /// `terraform apply -var '...'`. Synth emits the interpolation
+  /// `"\${var.<name>}"`; the literal value never appears in any
+  /// Dart-side artifact.
+  static TfArg<T> variable<T>(String name) => TfArgVariable<T>(name);
+
   /// Convenience for Terraform duration-string fields
   /// (`rotation_period`, `message_retention_duration`, `ack_deadline_seconds`
   /// when expressed in string-seconds form, etc.).
@@ -41,8 +50,9 @@ sealed class TfArg<T> {
 
   /// Value emitted into Terraform JSON.
   ///
-  /// - `TfArgLiteral` → the actual value (string, int, etc.)
-  /// - `TfArgRef`     → an interpolation string `'${...}'`
+  /// - `TfArgLiteral`  → the actual value (string, int, etc.)
+  /// - `TfArgRef`      → an interpolation string `'${...}'`
+  /// - `TfArgVariable` → an interpolation string `'${var.<name>}'`
   Object? toTfJson();
 }
 
@@ -92,4 +102,24 @@ final class TfArgRef<T> extends TfArg<T> {
 
   @override
   Object? toTfJson() => ref.interpolation;
+}
+
+@immutable
+final class TfArgVariable<T> extends TfArg<T> {
+  TfArgVariable(this.name) {
+    if (name.isEmpty) {
+      throw ArgumentError.value(name, 'name', 'must not be empty');
+    }
+  }
+
+  /// Terraform variable name. Emitted as `"\${var.<name>}"` so consumers
+  /// can supply the value at `terraform apply -var '<name>=...'` time.
+  ///
+  /// The consumer is responsible for declaring the matching
+  /// `variable "<name>" { ... }` block in a `variables.tf` (or via a
+  /// future `Stack.variables` API; v1.x candidate).
+  final String name;
+
+  @override
+  Object? toTfJson() => '\${var.$name}';
 }

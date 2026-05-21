@@ -36,7 +36,7 @@ void main() {
         localName: 'orders_push',
         name: TfArg.literal('orders-push'),
         topic: TfArg.ref(topic.id),
-        pushConfig: const PushConfig(
+        pushConfig: const PubsubSubscriptionPushConfig(
           pushEndpoint: TfArgLiteral<String>('https://example.com/push'),
           attributes: TfArgLiteral<Map<String, String>>({
             'x-goog-version': 'v1',
@@ -65,11 +65,11 @@ void main() {
         localName: 's',
         name: TfArg.literal('s'),
         topic: TfArg.ref(topic.id),
-        deadLetterPolicy: DeadLetterPolicy(
+        deadLetterPolicy: PubsubSubscriptionDeadLetterPolicy(
           deadLetterTopic: TfArg.ref(dlq.id),
           maxDeliveryAttempts: TfArg.literal(5),
         ),
-        retryPolicy: const RetryPolicy(
+        retryPolicy: const PubsubSubscriptionRetryPolicy(
           minimumBackoff: TfArgLiteral<String>('10s'),
           maximumBackoff: TfArgLiteral<String>('600s'),
         ),
@@ -108,9 +108,9 @@ void main() {
     });
   });
 
-  group('PushConfig + nested helpers', () {
-    test('PushConfig encodes push_endpoint + attributes', () {
-      const cfg = PushConfig(
+  group('PubsubSubscriptionPushConfig + nested helpers', () {
+    test('PubsubSubscriptionPushConfig encodes push_endpoint + attributes', () {
+      const cfg = PubsubSubscriptionPushConfig(
         pushEndpoint: TfArgLiteral<String>('https://example.com/push'),
         attributes: TfArgLiteral<Map<String, String>>({'x-goog-version': 'v1'}),
       );
@@ -123,10 +123,10 @@ void main() {
       );
     });
 
-    test('OidcToken nested under PushConfig', () {
-      const cfg = PushConfig(
+    test('PubsubSubscriptionOidcToken nested under PubsubSubscriptionPushConfig', () {
+      const cfg = PubsubSubscriptionPushConfig(
         pushEndpoint: TfArgLiteral<String>('https://example.com/push'),
-        oidcToken: OidcToken(
+        oidcToken: PubsubSubscriptionOidcToken(
           serviceAccountEmail: TfArgLiteral<String>(
             'sa@example.iam.gserviceaccount.com',
           ),
@@ -138,13 +138,13 @@ void main() {
       );
     });
 
-    test('NoWrapper round-trips write_metadata', () {
-      const w = NoWrapper(writeMetadata: TfArgLiteral<bool>(true));
+    test('PubsubSubscriptionNoWrapper round-trips write_metadata', () {
+      const w = PubsubSubscriptionNoWrapper(writeMetadata: TfArgLiteral<bool>(true));
       expect(w.encode(), equals({'write_metadata': true}));
     });
 
-    test('BigQueryConfig snake_case keys', () {
-      const cfg = BigQueryConfig(
+    test('PubsubSubscriptionBigQueryConfig snake_case keys', () {
+      const cfg = PubsubSubscriptionBigQueryConfig(
         table: TfArgLiteral<String>('p:d.t'),
         useTopicSchema: TfArgLiteral<bool>(true),
         dropUnknownFields: TfArgLiteral<bool>(false),
@@ -159,8 +159,8 @@ void main() {
       );
     });
 
-    test('CloudStorageConfig snake_case keys', () {
-      const cfg = CloudStorageConfig(
+    test('PubsubSubscriptionCloudStorageConfig snake_case keys', () {
+      const cfg = PubsubSubscriptionCloudStorageConfig(
         bucket: TfArgLiteral<String>('my-bucket'),
         filenamePrefix: TfArgLiteral<String>('subs/'),
         maxBytes: TfArgLiteral<int>(1024),
@@ -175,8 +175,8 @@ void main() {
       );
     });
 
-    test('ExpirationPolicy ttl', () {
-      const e = ExpirationPolicy(ttl: TfArgLiteral<String>('86400s'));
+    test('PubsubSubscriptionExpirationPolicy ttl', () {
+      const e = PubsubSubscriptionExpirationPolicy(ttl: TfArgLiteral<String>('86400s'));
       expect(e.encode(), equals({'ttl': '86400s'}));
     });
   });

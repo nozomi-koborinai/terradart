@@ -41,11 +41,11 @@ class AnalyticsStack extends Stack {
       defaultTableExpirationMs: TfArg.literal(30 * 24 * 60 * 60 * 1000),
       storageBillingModel: TfArg.literal(DatasetStorageBillingModel.logical),
       access: [
-        AccessUserByEmail(
+        BigqueryDatasetAccessUserByEmail(
           userByEmail: TfArg.literal('data-eng@example.com'),
           role: TfArg.literal('OWNER'),
         ),
-        AccessSpecialGroup(
+        BigqueryDatasetAccessSpecialGroup(
           specialGroup: TfArg.literal('allAuthenticatedUsers'),
           role: TfArg.literal('READER'),
         ),
@@ -88,7 +88,7 @@ class AnalyticsStack extends Stack {
         localName: 'analytics_reader_binding',
         datasetId: TfArg.ref(dataset.datasetIdRef),
         role: TfArg.literal('roles/bigquery.dataViewer'),
-        member: TfArg.ref(reader.member),
+        member: TfArg.ref(reader.iamMember),
       ),
     );
 
@@ -112,7 +112,7 @@ class AnalyticsStack extends Stack {
         datasetId: TfArg.ref(dataset.datasetIdRef),
         tableId: TfArg.ref(eventsTable.tableIdRef),
         role: TfArg.literal('roles/bigquery.dataEditor'),
-        member: TfArg.ref(ingestor.member),
+        member: TfArg.ref(ingestor.iamMember),
       ),
     );
   }

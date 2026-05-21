@@ -38,20 +38,20 @@ class EventarcTriggerMatchingCriteria {
   });
 
   /// CloudEvents attribute name to match. Required.
-  final String attribute;
+  final TfArg<String> attribute;
 
   /// Value the attribute must equal (or glob-match when [operator] is
   /// `'match-path-pattern'`). Required.
-  final String value;
+  final TfArg<String> value;
 
   /// Optional matching operator. The only API-accepted value today is
   /// `'match-path-pattern'`; omit for exact-match semantics.
-  final String? operator;
+  final TfArg<String>? operator;
 
   Map<String, Object?> toArgMap() => {
-    'attribute': attribute,
-    'value': value,
-    if (operator != null) 'operator': operator,
+    'attribute': attribute.toTfJson(),
+    'value': value.toTfJson(),
+    if (operator != null) 'operator': operator!.toTfJson(),
   };
 }
 

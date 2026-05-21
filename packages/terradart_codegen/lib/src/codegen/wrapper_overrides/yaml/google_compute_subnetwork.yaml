@@ -151,7 +151,7 @@ prelude: |
   }
 
   /// VPC flow log metadata-inclusion mode. Pair `customMetadata` with the
-  /// [SubnetworkLogConfig.metadataFields] selector.
+  /// [ComputeSubnetworkSubnetworkLogConfig.metadataFields] selector.
   enum SubnetworkLogConfigMetadata {
     includeAllMetadata('INCLUDE_ALL_METADATA'),
     excludeAllMetadata('EXCLUDE_ALL_METADATA'),
@@ -182,8 +182,8 @@ prelude: |
   /// One `secondary_ip_range` entry. Defines an alias IP range usable by
   /// instances in this subnetwork (typically consumed by GKE pods/services).
   @immutable
-  class SecondaryIpRange {
-    const SecondaryIpRange({
+  class ComputeSubnetworkSecondaryIpRange {
+    const ComputeSubnetworkSecondaryIpRange({
       required this.rangeName,
       this.ipCidrRange,
       this.reservedInternalRange,
@@ -213,8 +213,8 @@ prelude: |
   /// logging is not supported when the subnetwork `purpose` is
   /// `REGIONAL_MANAGED_PROXY` or `GLOBAL_MANAGED_PROXY`.
   @immutable
-  class SubnetworkLogConfig {
-    const SubnetworkLogConfig({
+  class ComputeSubnetworkSubnetworkLogConfig {
+    const ComputeSubnetworkSubnetworkLogConfig({
       this.aggregationInterval,
       this.flowSampling,
       this.metadata,
@@ -255,8 +255,8 @@ extraImports:
 
 customSlots:
   secondary_ip_range:
-    paramDeclaration: "List<SecondaryIpRange>? secondaryIpRange"
+    paramDeclaration: "List<ComputeSubnetworkSecondaryIpRange>? secondaryIpRange"
     argMapEntry: "if (secondaryIpRange != null) 'secondary_ip_range': TfArg.literal(secondaryIpRange.map((s) => s.toArgMap()).toList()),"
   log_config:
-    paramDeclaration: "SubnetworkLogConfig? logConfig"
+    paramDeclaration: "ComputeSubnetworkSubnetworkLogConfig? logConfig"
     argMapEntry: "if (logConfig != null) 'log_config': TfArg.literal([logConfig.toArgMap()]),"

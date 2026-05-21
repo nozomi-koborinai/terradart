@@ -17,16 +17,16 @@ const Set<String> _googleFirebaseAppHostingTrafficSensitive = <String>{};
 /// schema each individual entry must be exactly 0 or 100 (so today this
 /// behaves as "single live build" rather than a true weighted split).
 @immutable
-class AppHostingTrafficTarget {
-  const AppHostingTrafficTarget({required this.splits})
+class FirebaseAppHostingTrafficAppHostingTrafficTarget {
+  const FirebaseAppHostingTrafficAppHostingTrafficTarget({required this.splits})
     : assert(
         splits.length >= 1,
-        'AppHostingTrafficTarget.splits must have at least one entry '
+        'FirebaseAppHostingTrafficAppHostingTrafficTarget.splits must have at least one entry '
         '(schema enforces min_items=1)',
       );
 
-  /// At least one [AppHostingTrafficSplit] per the schema's `min_items=1`.
-  final List<AppHostingTrafficSplit> splits;
+  /// At least one [FirebaseAppHostingTrafficAppHostingTrafficSplit] per the schema's `min_items=1`.
+  final List<FirebaseAppHostingTrafficAppHostingTrafficSplit> splits;
 
   Map<String, Object?> toArgMap() => {
     'splits': splits.map((s) => s.toArgMap()).toList(),
@@ -36,8 +36,11 @@ class AppHostingTrafficTarget {
 /// One entry in `target.splits`. Pairs a build with the percentage of
 /// traffic it should receive.
 @immutable
-class AppHostingTrafficSplit {
-  const AppHostingTrafficSplit({required this.build, required this.percent});
+class FirebaseAppHostingTrafficAppHostingTrafficSplit {
+  const FirebaseAppHostingTrafficAppHostingTrafficSplit({
+    required this.build,
+    required this.percent,
+  });
 
   /// `build_id` of the target build (NOT the full resource path).
   /// Typically `TfArg.ref(build.buildIdRef)` where `build` is a
@@ -65,8 +68,11 @@ class AppHostingTrafficSplit {
 /// triggered exclusively by explicit [GoogleFirebaseAppHostingBuild]
 /// resources.
 @immutable
-class AppHostingTrafficRolloutPolicy {
-  const AppHostingTrafficRolloutPolicy({this.codebaseBranch, this.disabled});
+class FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy {
+  const FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy({
+    this.codebaseBranch,
+    this.disabled,
+  });
 
   /// Branch to watch. New commits on this branch trigger a build +
   /// rollout. When null, no automatic rollouts happen.
@@ -102,9 +108,9 @@ class AppHostingTrafficRolloutPolicy {
 ///   localName: 'main',
 ///   backend: TfArg.ref(backend.backendIdRef),
 ///   location: TfArg.literal('us-central1'),
-///   target: AppHostingTrafficTarget(
+///   target: FirebaseAppHostingTrafficAppHostingTrafficTarget(
 ///     splits: [
-///       AppHostingTrafficSplit(
+///       FirebaseAppHostingTrafficAppHostingTrafficSplit(
 ///         build: TfArg.ref(build.buildIdRef),
 ///         percent: TfArg.literal(100),
 ///       ),
@@ -119,7 +125,7 @@ class AppHostingTrafficRolloutPolicy {
 ///   localName: 'main',
 ///   backend: TfArg.ref(backend.backendIdRef),
 ///   location: TfArg.literal('us-central1'),
-///   rolloutPolicy: AppHostingTrafficRolloutPolicy(
+///   rolloutPolicy: FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy(
 ///     codebaseBranch: TfArg.literal('main'),
 ///   ),
 /// );
@@ -138,8 +144,8 @@ final class GoogleFirebaseAppHostingTraffic extends Resource {
     required super.localName,
     required TfArg<String> backend,
     required TfArg<String> location,
-    AppHostingTrafficTarget? target,
-    AppHostingTrafficRolloutPolicy? rolloutPolicy,
+    FirebaseAppHostingTrafficAppHostingTrafficTarget? target,
+    FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy? rolloutPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
