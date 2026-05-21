@@ -138,11 +138,11 @@ class ComputeInstanceTemplateInstanceTemplateDiskEncryptionKey {
   });
 
   /// Self-link of the KMS CryptoKey.
-  TfArg<String>? kmsKeySelfLink;
+  final TfArg<String>? kmsKeySelfLink;
 
   /// Service account used for the KMS encryption request. If null, the
   /// Compute Engine default service account is used.
-  TfArg<String>? kmsKeyServiceAccount;
+  final TfArg<String>? kmsKeyServiceAccount;
 
   Map<String, Object?> toArgMap() => {
     if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink!.toTfJson(),
@@ -166,16 +166,16 @@ class ComputeInstanceTemplateInstanceTemplateSourceImageEncryptionKey {
 
   /// Self-link of the KMS CryptoKey. Mutually exclusive with [rawKey] and
   /// [rsaEncryptedKey].
-  TfArg<String>? kmsKeySelfLink;
-  TfArg<String>? kmsKeyServiceAccount;
+  final TfArg<String>? kmsKeySelfLink;
+  final TfArg<String>? kmsKeyServiceAccount;
 
   /// 256-bit customer-supplied encryption key, encoded RFC 4648 base64.
   /// Sensitive — source it from a secret store rather than a literal.
-  TfArg<String>? rawKey;
+  final TfArg<String>? rawKey;
 
   /// RSA-wrapped 2048-bit customer-supplied encryption key, encoded RFC 4648
   /// base64. Sensitive.
-  TfArg<String>? rsaEncryptedKey;
+  final TfArg<String>? rsaEncryptedKey;
 
   Map<String, Object?> toArgMap() => {
     if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink!.toTfJson(),
@@ -198,16 +198,16 @@ class ComputeInstanceTemplateInstanceTemplateSourceSnapshotEncryptionKey {
     this.rsaEncryptedKey,
   });
 
-  TfArg<String>? kmsKeySelfLink;
-  TfArg<String>? kmsKeyServiceAccount;
+  final TfArg<String>? kmsKeySelfLink;
+  final TfArg<String>? kmsKeyServiceAccount;
 
   /// 256-bit customer-supplied encryption key, encoded RFC 4648 base64.
   /// Sensitive.
-  TfArg<String>? rawKey;
+  final TfArg<String>? rawKey;
 
   /// RSA-wrapped 2048-bit customer-supplied encryption key, encoded RFC 4648
   /// base64. Sensitive.
-  TfArg<String>? rsaEncryptedKey;
+  final TfArg<String>? rsaEncryptedKey;
 
   Map<String, Object?> toArgMap() => {
     if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink!.toTfJson(),
@@ -252,42 +252,42 @@ class ComputeInstanceTemplateInstanceTemplateDisk {
 
   /// Indicates that this is a boot disk. At most one entry should set
   /// this to `true`.
-  TfArg<bool>? boot;
+  final TfArg<bool>? boot;
 
   /// Whether to auto-delete the disk when the instance is deleted.
   /// Defaults to `true` server-side.
-  TfArg<bool>? autoDelete;
+  final TfArg<bool>? autoDelete;
 
   /// Device name as exposed under `/dev/disk/by-id/`. Optional; defaults to
   /// the instance name.
-  TfArg<String>? deviceName;
+  final TfArg<String>? deviceName;
 
   /// Disk name. Defaults to the instance name when null.
-  TfArg<String>? diskName;
+  final TfArg<String>? diskName;
 
   /// Disk size in GB. For `SCRATCH` disks, must be 375 or 3000.
-  TfArg<num>? diskSizeGb;
+  final TfArg<num>? diskSizeGb;
 
   /// PD type, e.g. `'pd-ssd'`, `'pd-balanced'`, `'pd-standard'`,
   /// `'local-ssd'`.
-  TfArg<String>? diskType;
+  final TfArg<String>? diskType;
 
   /// Read/write mode.
   final InstanceTemplateDiskMode? mode;
 
   /// Existing disk name to attach. Mutually exclusive with
   /// [sourceImage] / [sourceSnapshot].
-  TfArg<String>? source;
+  final TfArg<String>? source;
 
   /// Image to initialize the disk from (self-link, family, or short form
   /// like `'debian-cloud/debian-12'`).
-  TfArg<String>? sourceImage;
+  final TfArg<String>? sourceImage;
 
   /// Snapshot to initialize the disk from.
-  TfArg<String>? sourceSnapshot;
+  final TfArg<String>? sourceSnapshot;
 
   /// `'SCRATCH'` or `'PERSISTENT'`.
-  TfArg<String>? type;
+  final TfArg<String>? type;
 
   /// Disk labels.
   final Map<String, String>? labels;
@@ -303,19 +303,19 @@ class ComputeInstanceTemplateInstanceTemplateDisk {
   final List<String>? guestOsFeatures;
 
   /// Disk interface (`'SCSI'` / `'NVME'`).
-  TfArg<String>? interface;
+  final TfArg<String>? interface;
 
   /// Provisioned IOPS (Extreme / Hyperdisk only).
-  TfArg<num>? provisionedIops;
+  final TfArg<num>? provisionedIops;
 
   /// Provisioned throughput in MB/s (Hyperdisk only).
-  TfArg<num>? provisionedThroughput;
+  final TfArg<num>? provisionedThroughput;
 
   /// Image architecture (`'ARM64'` or `'X86_64'`).
-  TfArg<String>? architecture;
+  final TfArg<String>? architecture;
 
   /// Self-link or ID of the Storage Pool to create the disk in.
-  TfArg<String>? storagePool;
+  final TfArg<String>? storagePool;
 
   final ComputeInstanceTemplateInstanceTemplateDiskEncryptionKey?
   diskEncryptionKey;
@@ -336,13 +336,13 @@ class ComputeInstanceTemplateInstanceTemplateDisk {
     if (sourceImage != null) 'source_image': sourceImage!.toTfJson(),
     if (sourceSnapshot != null) 'source_snapshot': sourceSnapshot!.toTfJson(),
     if (type != null) 'type': type!.toTfJson(),
-    if (labels != null) 'labels': labels!.toTfJson(),
+    if (labels != null) 'labels': labels,
     if (resourceManagerTags != null)
-      'resource_manager_tags': resourceManagerTags!.toTfJson(),
+      'resource_manager_tags': resourceManagerTags,
     if (resourcePolicies != null)
-      'resource_policies': resourcePolicies!.toTfJson(),
+      'resource_policies': resourcePolicies,
     if (guestOsFeatures != null)
-      'guest_os_features': guestOsFeatures!.toTfJson(),
+      'guest_os_features': guestOsFeatures,
     if (interface != null) 'interface': interface!.toTfJson(),
     if (provisionedIops != null)
       'provisioned_iops': provisionedIops!.toTfJson(),
@@ -372,7 +372,7 @@ class ComputeInstanceTemplateInstanceTemplateAccessConfig {
   });
 
   /// Reserved external IP to attach. Null for an ephemeral IP.
-  TfArg<String>? natIp;
+  final TfArg<String>? natIp;
 
   /// Network service tier.
   final InstanceTemplateAccessConfigNetworkTier? networkTier;
@@ -412,11 +412,11 @@ class ComputeInstanceTemplateInstanceTemplateAliasIpRange {
   });
 
   /// Alias range (single IP, netmask, or CIDR).
-  TfArg<String> ipCidrRange;
+  final TfArg<String> ipCidrRange;
 
   /// Name of the secondary range to allocate from. When null, GCP uses the
   /// primary range.
-  TfArg<String>? subnetworkRangeName;
+  final TfArg<String>? subnetworkRangeName;
 
   Map<String, Object?> toArgMap() => {
     'ip_cidr_range': ipCidrRange.toTfJson(),
@@ -448,37 +448,37 @@ class ComputeInstanceTemplateInstanceTemplateNetworkInterface {
 
   /// Network name or self-link. Mutually exclusive with [subnetwork] in
   /// auto-mode networks.
-  TfArg<String>? network;
+  final TfArg<String>? network;
 
   /// Subnetwork name or self-link. Required for custom-mode networks.
-  TfArg<String>? subnetwork;
+  final TfArg<String>? subnetwork;
 
   /// Host project of the subnetwork (Shared VPC).
-  TfArg<String>? subnetworkProject;
+  final TfArg<String>? subnetworkProject;
 
   /// Internal IP within the subnet. When null, GCP assigns one.
-  TfArg<String>? networkIp;
+  final TfArg<String>? networkIp;
 
   /// Network attachment URL
   /// (`projects/{p}/regions/{r}/networkAttachments/{name}`).
-  TfArg<String>? networkAttachment;
+  final TfArg<String>? networkAttachment;
   final InstanceTemplateNicType? nicType;
 
   /// vNIC queue count (Rx and Tx both use this value).
-  TfArg<num>? queueCount;
+  final TfArg<num>? queueCount;
 
   /// IP stack type (`'IPV4_ONLY'`, `'IPV4_IPV6'`, `'IPV6_ONLY'`).
-  TfArg<String>? stackType;
-  TfArg<String>? ipv6Address;
+  final TfArg<String>? stackType;
+  final TfArg<String>? ipv6Address;
 
   /// Prefix length of the primary internal IPv6 range.
-  TfArg<num>? internalIpv6PrefixLength;
+  final TfArg<num>? internalIpv6PrefixLength;
 
   /// Whether IGMP query is enabled, plus the supported version.
-  TfArg<String>? igmpQuery;
+  final TfArg<String>? igmpQuery;
 
   /// VLAN tag for a dynamic NIC (2-255).
-  TfArg<num>? vlan;
+  final TfArg<num>? vlan;
 
   /// Up to one `access_config` block enables an external IPv4 address.
   final List<ComputeInstanceTemplateInstanceTemplateAccessConfig>? accessConfig;
@@ -527,7 +527,7 @@ class ComputeInstanceTemplateInstanceTemplateServiceAccount {
 
   /// Service account email. When null, GCP uses the project's default
   /// Compute Engine service account.
-  TfArg<String>? email;
+  final TfArg<String>? email;
 
   /// OAuth scopes granted (e.g. `'cloud-platform'`,
   /// `'https://www.googleapis.com/auth/devstorage.read_only'`).
@@ -535,7 +535,7 @@ class ComputeInstanceTemplateInstanceTemplateServiceAccount {
 
   Map<String, Object?> toArgMap() => {
     if (email != null) 'email': email!.toTfJson(),
-    'scopes': scopes.toTfJson(),
+    'scopes': scopes,
   };
 }
 
@@ -548,8 +548,8 @@ class ComputeInstanceTemplateInstanceTemplateSchedulingDuration {
     this.nanos,
   });
 
-  TfArg<int> seconds;
-  TfArg<int>? nanos;
+  final TfArg<int> seconds;
+  final TfArg<int>? nanos;
 
   Map<String, Object?> toArgMap() => {
     'seconds': seconds.toTfJson(),
@@ -567,16 +567,16 @@ class ComputeInstanceTemplateInstanceTemplateNodeAffinity {
     required this.values,
   });
 
-  TfArg<String> key;
+  final TfArg<String> key;
 
   /// `'IN'` or `'NOT_IN'`.
-  TfArg<String> operator;
+  final TfArg<String> operator;
   final List<String> values;
 
   Map<String, Object?> toArgMap() => {
     'key': key.toTfJson(),
     'operator': operator.toTfJson(),
-    'values': values.toTfJson(),
+    'values': values,
   };
 }
 
@@ -590,7 +590,7 @@ class ComputeInstanceTemplateInstanceTemplateOnInstanceStopAction {
 
   /// If true, the contents of any attached Local SSD disks will be
   /// discarded on stop.
-  TfArg<bool>? discardLocalSsd;
+  final TfArg<bool>? discardLocalSsd;
 
   Map<String, Object?> toArgMap() => {
     if (discardLocalSsd != null)
@@ -617,18 +617,18 @@ class ComputeInstanceTemplateInstanceTemplateScheduling {
     this.onInstanceStopAction,
   });
 
-  TfArg<bool>? preemptible;
+  final TfArg<bool>? preemptible;
   final InstanceTemplateOnHostMaintenance? onHostMaintenance;
-  TfArg<bool>? automaticRestart;
+  final TfArg<bool>? automaticRestart;
   final InstanceTemplateProvisioningModel? provisioningModel;
   final InstanceTemplateInstanceTerminationAction? instanceTerminationAction;
-  TfArg<num>? minNodeCpus;
+  final TfArg<num>? minNodeCpus;
 
   /// Availability domain index for stretched zonal placement.
-  TfArg<num>? availabilityDomain;
+  final TfArg<num>? availabilityDomain;
 
   /// RFC3339 timestamp at which the instance will be terminated.
-  TfArg<String>? terminationTime;
+  final TfArg<String>? terminationTime;
   final List<ComputeInstanceTemplateInstanceTemplateNodeAffinity>?
   nodeAffinities;
 
@@ -679,9 +679,9 @@ class ComputeInstanceTemplateInstanceTemplateShieldedInstanceConfig {
     this.enableIntegrityMonitoring,
   });
 
-  TfArg<bool>? enableSecureBoot;
-  TfArg<bool>? enableVtpm;
-  TfArg<bool>? enableIntegrityMonitoring;
+  final TfArg<bool>? enableSecureBoot;
+  final TfArg<bool>? enableVtpm;
+  final TfArg<bool>? enableIntegrityMonitoring;
 
   Map<String, Object?> toArgMap() => {
     if (enableSecureBoot != null)
@@ -703,7 +703,7 @@ class ComputeInstanceTemplateInstanceTemplateConfidentialInstanceConfig {
 
   /// Deprecated by GCP -- prefer setting [confidentialInstanceType] to
   /// [InstanceTemplateConfidentialInstanceType.sev].
-  TfArg<bool>? enableConfidentialCompute;
+  final TfArg<bool>? enableConfidentialCompute;
   final InstanceTemplateConfidentialInstanceType? confidentialInstanceType;
 
   Map<String, Object?> toArgMap() => {
@@ -724,8 +724,8 @@ class ComputeInstanceTemplateInstanceTemplateGuestAccelerator {
   });
 
   /// Accelerator type self-link or short name (e.g. `'nvidia-tesla-t4'`).
-  TfArg<String> type;
-  TfArg<int> count;
+  final TfArg<String> type;
+  final TfArg<int> count;
 
   Map<String, Object?> toArgMap() => {
     'type': type.toTfJson(),
@@ -745,15 +745,15 @@ class ComputeInstanceTemplateInstanceTemplateAdvancedMachineFeatures {
     this.turboMode,
   });
 
-  TfArg<bool>? enableNestedVirtualization;
-  TfArg<num>? threadsPerCore;
-  TfArg<num>? visibleCoreCount;
-  TfArg<bool>? enableUefiNetworking;
+  final TfArg<bool>? enableNestedVirtualization;
+  final TfArg<num>? threadsPerCore;
+  final TfArg<num>? visibleCoreCount;
+  final TfArg<bool>? enableUefiNetworking;
   final InstanceTemplatePerformanceMonitoringUnit? performanceMonitoringUnit;
 
   /// Turbo frequency mode. Currently `'ALL_CORE_MAX'` is the only
   /// supported value.
-  TfArg<String>? turboMode;
+  final TfArg<String>? turboMode;
 
   Map<String, Object?> toArgMap() => {
     if (enableNestedVirtualization != null)
@@ -781,12 +781,12 @@ class ComputeInstanceTemplateInstanceTemplateSpecificReservation {
 
   /// Label key. Use `'compute.googleapis.com/reservation-name'` to target
   /// a reservation by name.
-  TfArg<String> key;
+  final TfArg<String> key;
   final List<String> values;
 
   Map<String, Object?> toArgMap() => {
     'key': key.toTfJson(),
-    'values': values.toTfJson(),
+    'values': values,
   };
 }
 
@@ -821,7 +821,7 @@ class ComputeInstanceTemplateInstanceTemplateNetworkPerformanceConfig {
 
   /// Egress tier. `'TIER_1'` enables higher per-VM egress bandwidth;
   /// `'DEFAULT'` keeps the platform default.
-  TfArg<String> totalEgressBandwidthTier;
+  final TfArg<String> totalEgressBandwidthTier;
 
   Map<String, Object?> toArgMap() => {
     'total_egress_bandwidth_tier': totalEgressBandwidthTier.toTfJson(),

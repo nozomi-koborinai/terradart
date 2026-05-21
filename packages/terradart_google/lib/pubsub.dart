@@ -6,15 +6,15 @@ export 'src/pubsub/google_pubsub_schema.dart'
     show GooglePubsubSchema, PubsubSchemaType;
 export 'src/pubsub/google_pubsub_subscription.dart'
     show
-        BigQueryConfig,
-        CloudStorageConfig,
-        DeadLetterPolicy,
-        ExpirationPolicy,
+        PubsubSubscriptionBigQueryConfig,
+        PubsubSubscriptionCloudStorageConfig,
+        PubsubSubscriptionDeadLetterPolicy,
+        PubsubSubscriptionExpirationPolicy,
         GooglePubsubSubscription,
-        NoWrapper,
-        OidcToken,
-        PushConfig,
-        RetryPolicy;
+        PubsubSubscriptionNoWrapper,
+        PubsubSubscriptionOidcToken,
+        PubsubSubscriptionPushConfig,
+        PubsubSubscriptionRetryPolicy;
 export 'src/pubsub/google_pubsub_subscription_iam_member.dart'
     show GooglePubsubSubscriptionIamMember;
 export 'src/pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;

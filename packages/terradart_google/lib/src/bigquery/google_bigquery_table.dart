@@ -128,9 +128,9 @@ class BigqueryTableTimePartitioning {
   });
 
   final TimePartitioningType type;
-  TfArg<int>? expirationMs;
-  TfArg<String>? field;
-  TfArg<bool>? requirePartitionFilter;
+  final TfArg<int>? expirationMs;
+  final TfArg<String>? field;
+  final TfArg<bool>? requirePartitionFilter;
 
   Map<String, Object?> toArgMap() => {
     'type': type.terraformValue,
@@ -139,7 +139,7 @@ class BigqueryTableTimePartitioning {
     // ignore: deprecated_member_use_from_same_package
     if (requirePartitionFilter != null)
       // ignore: deprecated_member_use_from_same_package
-      'require_partition_filter': requirePartitionFilter.toTfJson(),
+      'require_partition_filter': requirePartitionFilter!.toTfJson(),
   };
 }
 
@@ -153,7 +153,7 @@ class BigqueryTableRangePartitioning {
     required this.range,
   });
 
-  TfArg<String> field;
+  final TfArg<String> field;
   final BigqueryTableRangePartitioningRange range;
 
   Map<String, Object?> toArgMap() => {
@@ -172,9 +172,9 @@ class BigqueryTableRangePartitioningRange {
     required this.interval,
   });
 
-  TfArg<int> start;
-  TfArg<int> end;
-  TfArg<int> interval;
+  final TfArg<int> start;
+  final TfArg<int> end;
+  final TfArg<int> interval;
 
   Map<String, Object?> toArgMap() => {
     'start': start.toTfJson(),
@@ -199,10 +199,10 @@ class BigqueryTableMaterializedView {
     this.allowNonIncrementalDefinition,
   });
 
-  TfArg<String> query;
-  TfArg<bool>? enableRefresh;
-  TfArg<int>? refreshIntervalMs;
-  TfArg<bool>? allowNonIncrementalDefinition;
+  final TfArg<String> query;
+  final TfArg<bool>? enableRefresh;
+  final TfArg<int>? refreshIntervalMs;
+  final TfArg<bool>? allowNonIncrementalDefinition;
 
   Map<String, Object?> toArgMap() => {
     'query': query.toTfJson(),
@@ -223,8 +223,8 @@ class BigqueryTableMaterializedView {
 class BigqueryTableTableView {
   const BigqueryTableTableView({required this.query, this.useLegacySql});
 
-  TfArg<String> query;
-  TfArg<bool>? useLegacySql;
+  final TfArg<String> query;
+  final TfArg<bool>? useLegacySql;
 
   Map<String, Object?> toArgMap() => {
     'query': query.toTfJson(),
@@ -278,19 +278,19 @@ class BigqueryTableExternalDataConfiguration {
     this.bigtableOptions,
   });
 
-  TfArg<bool> autodetect;
+  final TfArg<bool> autodetect;
   final List<String> sourceUris;
   final ExternalDataSourceFormat? sourceFormat;
   final ExternalDataCompression? compression;
   final FileSetSpecType? fileSetSpecType;
-  TfArg<bool>? ignoreUnknownValues;
-  TfArg<int>? maxBadRecords;
-  TfArg<String>? referenceFileSchemaUri;
-  TfArg<String>? schema;
-  TfArg<String>? connectionId;
+  final TfArg<bool>? ignoreUnknownValues;
+  final TfArg<int>? maxBadRecords;
+  final TfArg<String>? referenceFileSchemaUri;
+  final TfArg<String>? schema;
+  final TfArg<String>? connectionId;
   final MetadataCacheMode? metadataCacheMode;
   final ObjectMetadata? objectMetadata;
-  TfArg<String>? jsonExtension;
+  final TfArg<String>? jsonExtension;
   final List<String>? decimalTargetTypes;
   final BigqueryTableCsvOptions? csvOptions;
   final BigqueryTableGoogleSheetsOptions? googleSheetsOptions;
@@ -302,7 +302,7 @@ class BigqueryTableExternalDataConfiguration {
 
   Map<String, Object?> toArgMap() => {
     'autodetect': autodetect.toTfJson(),
-    'source_uris': sourceUris.toTfJson(),
+    'source_uris': sourceUris,
     if (sourceFormat != null) 'source_format': sourceFormat!.terraformValue,
     if (compression != null) 'compression': compression!.terraformValue,
     if (fileSetSpecType != null)
@@ -320,7 +320,7 @@ class BigqueryTableExternalDataConfiguration {
       'object_metadata': objectMetadata!.terraformValue,
     if (jsonExtension != null) 'json_extension': jsonExtension!.toTfJson(),
     if (decimalTargetTypes != null)
-      'decimal_target_types': decimalTargetTypes!.toTfJson(),
+      'decimal_target_types': decimalTargetTypes,
     if (csvOptions != null) 'csv_options': [csvOptions!.toArgMap()],
     if (googleSheetsOptions != null)
       'google_sheets_options': [googleSheetsOptions!.toArgMap()],
@@ -348,13 +348,13 @@ class BigqueryTableCsvOptions {
     this.sourceColumnMatch,
   });
 
-  TfArg<String> quote;
-  TfArg<bool>? allowJaggedRows;
-  TfArg<bool>? allowQuotedNewlines;
-  TfArg<String>? encoding;
-  TfArg<String>? fieldDelimiter;
-  TfArg<int>? skipLeadingRows;
-  TfArg<String>? sourceColumnMatch;
+  final TfArg<String> quote;
+  final TfArg<bool>? allowJaggedRows;
+  final TfArg<bool>? allowQuotedNewlines;
+  final TfArg<String>? encoding;
+  final TfArg<String>? fieldDelimiter;
+  final TfArg<int>? skipLeadingRows;
+  final TfArg<String>? sourceColumnMatch;
 
   Map<String, Object?> toArgMap() => {
     'quote': quote.toTfJson(),
@@ -378,8 +378,8 @@ class BigqueryTableCsvOptions {
 class BigqueryTableGoogleSheetsOptions {
   const BigqueryTableGoogleSheetsOptions({this.range, this.skipLeadingRows});
 
-  TfArg<String>? range;
-  TfArg<int>? skipLeadingRows;
+  final TfArg<String>? range;
+  final TfArg<int>? skipLeadingRows;
 
   Map<String, Object?> toArgMap() => {
     if (range != null) 'range': range!.toTfJson(),
@@ -399,9 +399,9 @@ class BigqueryTableHivePartitioningOptions {
     this.sourceUriPrefix,
   });
 
-  TfArg<String>? mode;
-  TfArg<bool>? requirePartitionFilter;
-  TfArg<String>? sourceUriPrefix;
+  final TfArg<String>? mode;
+  final TfArg<bool>? requirePartitionFilter;
+  final TfArg<String>? sourceUriPrefix;
 
   Map<String, Object?> toArgMap() => {
     if (mode != null) 'mode': mode!.toTfJson(),
@@ -420,8 +420,8 @@ class BigqueryTableParquetOptions {
     this.enumAsString,
   });
 
-  TfArg<bool>? enableListInference;
-  TfArg<bool>? enumAsString;
+  final TfArg<bool>? enableListInference;
+  final TfArg<bool>? enumAsString;
 
   Map<String, Object?> toArgMap() => {
     if (enableListInference != null)
@@ -436,7 +436,7 @@ class BigqueryTableParquetOptions {
 class BigqueryTableAvroOptions {
   const BigqueryTableAvroOptions({required this.useAvroLogicalTypes});
 
-  TfArg<bool> useAvroLogicalTypes;
+  final TfArg<bool> useAvroLogicalTypes;
 
   Map<String, Object?> toArgMap() => {
     'use_avro_logical_types': useAvroLogicalTypes.toTfJson(),
@@ -448,7 +448,7 @@ class BigqueryTableAvroOptions {
 class BigqueryTableJsonOptions {
   const BigqueryTableJsonOptions({this.encoding});
 
-  TfArg<String>? encoding;
+  final TfArg<String>? encoding;
 
   Map<String, Object?> toArgMap() => {
     if (encoding != null) 'encoding': encoding!.toTfJson(),
@@ -513,7 +513,7 @@ class BigqueryTableForeignKey {
 
   final BigqueryTableReferencedTable referencedTable;
   final BigqueryTableColumnReferences columnReferences;
-  TfArg<String>? name;
+  final TfArg<String>? name;
 
   Map<String, Object?> toArgMap() => {
     'referenced_table': [referencedTable.toArgMap()],
@@ -532,9 +532,9 @@ class BigqueryTableReferencedTable {
     required this.tableId,
   });
 
-  TfArg<String> projectId;
-  TfArg<String> datasetId;
-  TfArg<String> tableId;
+  final TfArg<String> projectId;
+  final TfArg<String> datasetId;
+  final TfArg<String> tableId;
 
   Map<String, Object?> toArgMap() => {
     'project_id': projectId.toTfJson(),
@@ -552,8 +552,8 @@ class BigqueryTableColumnReferences {
     required this.referencedColumn,
   });
 
-  TfArg<String> referencingColumn;
-  TfArg<String> referencedColumn;
+  final TfArg<String> referencingColumn;
+  final TfArg<String> referencedColumn;
 
   Map<String, Object?> toArgMap() => {
     'referencing_column': referencingColumn.toTfJson(),
@@ -573,10 +573,10 @@ class BigqueryTableTableReplicationInfo {
     this.replicationIntervalMs,
   });
 
-  TfArg<String> sourceProjectId;
-  TfArg<String> sourceDatasetId;
-  TfArg<String> sourceTableId;
-  TfArg<int>? replicationIntervalMs;
+  final TfArg<String> sourceProjectId;
+  final TfArg<String> sourceDatasetId;
+  final TfArg<String> sourceTableId;
+  final TfArg<int>? replicationIntervalMs;
 
   Map<String, Object?> toArgMap() => {
     'source_project_id': sourceProjectId.toTfJson(),
@@ -600,10 +600,10 @@ class BigqueryTableBiglakeConfiguration {
     required this.tableFormat,
   });
 
-  TfArg<String> connectionId;
-  TfArg<String> storageUri;
-  TfArg<String> fileFormat;
-  TfArg<String> tableFormat;
+  final TfArg<String> connectionId;
+  final TfArg<String> storageUri;
+  final TfArg<String> fileFormat;
+  final TfArg<String> tableFormat;
 
   Map<String, Object?> toArgMap() => {
     'connection_id': connectionId.toTfJson(),

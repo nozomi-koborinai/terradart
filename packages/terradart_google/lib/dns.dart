@@ -4,22 +4,22 @@ library;
 
 export 'src/dns/google_dns_managed_zone.dart'
     show
-        CloudLoggingConfig,
+        DnsManagedZoneCloudLoggingConfig,
         DnsZoneVisibility,
-        DnssecConfig,
+        DnsManagedZoneDnssecConfig,
         DnssecKeyAlgorithm,
-        DnssecKeySpec,
+        DnsManagedZoneDnssecKeySpec,
         DnssecKeyType,
         DnssecNonExistence,
         DnssecState,
-        ForwardingConfig,
+        DnsManagedZoneForwardingConfig,
         ForwardingPath,
-        ForwardingTargetNameServer,
+        DnsManagedZoneForwardingTargetNameServer,
         GoogleDnsManagedZone,
-        PeeringConfig,
-        PeeringTargetNetwork,
-        PrivateVisibilityConfig,
-        PrivateVisibilityGkeCluster,
-        PrivateVisibilityNetwork;
+        DnsManagedZonePeeringConfig,
+        DnsManagedZonePeeringTargetNetwork,
+        DnsManagedZonePrivateVisibilityConfig,
+        DnsManagedZonePrivateVisibilityGkeCluster,
+        DnsManagedZonePrivateVisibilityNetwork;
 export 'src/dns/google_dns_managed_zone_iam_member.dart'
     show GoogleDnsManagedZoneIamMember;

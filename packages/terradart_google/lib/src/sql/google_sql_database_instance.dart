@@ -437,23 +437,23 @@ class SqlDatabaseInstanceBackupConfiguration {
   });
 
   /// Toggle automatic backups.
-  TfArg<bool>? enabled;
+  final TfArg<bool>? enabled;
 
   /// `HH:MM` 24h UTC. Backups run within a ~1h window starting here.
-  TfArg<String>? startTime;
+  final TfArg<String>? startTime;
 
   /// Multi-region or single-region location override (default:
   /// instance's region).
-  TfArg<String>? location;
+  final TfArg<String>? location;
 
   /// PITR — required for Postgres minute-level rewind.
-  TfArg<bool>? pointInTimeRecoveryEnabled;
+  final TfArg<bool>? pointInTimeRecoveryEnabled;
 
   /// Binary log retention — required for MySQL PITR.
-  TfArg<bool>? binaryLogEnabled;
+  final TfArg<bool>? binaryLogEnabled;
 
   /// 1-7 days. Number of days of transaction logs retained for PITR.
-  TfArg<int>? transactionLogRetentionDays;
+  final TfArg<int>? transactionLogRetentionDays;
 
   /// How many backups to retain.
   final SqlDatabaseInstanceBackupRetentionSettings? backupRetentionSettings;
@@ -482,10 +482,10 @@ class SqlDatabaseInstanceBackupRetentionSettings {
   });
 
   /// How many backups to keep.
-  TfArg<int> retainedBackups;
+  final TfArg<int> retainedBackups;
 
   /// Currently `'COUNT'` is the only value the API accepts.
-  TfArg<String>? retentionUnit;
+  final TfArg<String>? retentionUnit;
 
   Map<String, Object?> toArgMap() => {
     'retained_backups': retainedBackups.toTfJson(),
@@ -504,10 +504,10 @@ class SqlDatabaseInstanceDatabaseFlag {
   });
 
   /// Engine flag name (e.g. `'max_connections'`).
-  TfArg<String> name;
+  final TfArg<String> name;
 
   /// Flag value.
-  TfArg<String> value;
+  final TfArg<String> value;
 
   Map<String, Object?> toArgMap() => {'name': name, 'value': value};
 }
@@ -524,13 +524,13 @@ class SqlDatabaseInstanceLocationPreference {
   });
 
   /// Primary zone (e.g. `'asia-northeast1-a'`).
-  TfArg<String>? zone;
+  final TfArg<String>? zone;
 
   /// Failover zone for HA. Must be in the same region as [zone].
-  TfArg<String>? secondaryZone;
+  final TfArg<String>? secondaryZone;
 
   /// App Engine app ID to co-locate with.
-  TfArg<String>? followGaeApplication;
+  final TfArg<String>? followGaeApplication;
 
   Map<String, Object?> toArgMap() => {
     if (zone != null) 'zone': zone!.toTfJson(),
@@ -551,14 +551,14 @@ class SqlDatabaseInstanceMaintenanceWindow {
   });
 
   /// 1 = Monday, 7 = Sunday.
-  TfArg<int>? day;
+  final TfArg<int>? day;
 
   /// 0-23 (UTC).
-  TfArg<int>? hour;
+  final TfArg<int>? hour;
 
   /// `'canary'` (1-week lead), `'stable'` (2-week lead), or `'week5'`
   /// (5-week lead).
-  TfArg<String>? updateTrack;
+  final TfArg<String>? updateTrack;
 
   Map<String, Object?> toArgMap() => {
     if (day != null) 'day': day!.toTfJson(),

@@ -46,39 +46,39 @@ import 'package:test/test.dart';
 /// exists here — keeping the table in lockstep with yaml is a curator
 /// responsibility.
 ///
-/// Replication members are private (`_AutoReplication` / `_UserManagedReplication`);
+/// SecretManagerSecretReplication members are private (`_AutoReplication` / `_UserManagedReplication`);
 /// the lookup key uses the literal private-class name produced by the
-/// extractor, but thunk bodies construct via the public `Replication.auto()` /
-/// `Replication.userManaged(...)` factories.
+/// extractor, but thunk bodies construct via the public `SecretManagerSecretReplication.auto()` /
+/// `SecretManagerSecretReplication.userManaged(...)` factories.
 final Map<String, Object Function()> _syntheticInstances = {
   // --- Access (8) — bigquery_dataset ---------------------------------------
-  'AccessUserByEmail': () =>
-      AccessUserByEmail(userByEmail: TfArg.literal('user@example.com')),
-  'AccessGroupByEmail': () =>
-      AccessGroupByEmail(groupByEmail: TfArg.literal('group@example.com')),
-  'AccessSpecialGroup': () =>
-      AccessSpecialGroup(specialGroup: TfArg.literal('projectReaders')),
-  'AccessDomain': () => AccessDomain(domain: TfArg.literal('example.com')),
-  'AccessIamMember': () =>
-      AccessIamMember(iamMember: TfArg.literal('allUsers')),
-  'AccessView': () => AccessView(
-        view: DatasetView(
+  'BigqueryDatasetAccessUserByEmail': () =>
+      BigqueryDatasetAccessUserByEmail(userByEmail: TfArg.literal('user@example.com')),
+  'BigqueryDatasetAccessGroupByEmail': () =>
+      BigqueryDatasetAccessGroupByEmail(groupByEmail: TfArg.literal('group@example.com')),
+  'BigqueryDatasetAccessSpecialGroup': () =>
+      BigqueryDatasetAccessSpecialGroup(specialGroup: TfArg.literal('projectReaders')),
+  'BigqueryDatasetAccessDomain': () => BigqueryDatasetAccessDomain(domain: TfArg.literal('example.com')),
+  'BigqueryDatasetAccessIamMember': () =>
+      BigqueryDatasetAccessIamMember(iamMember: TfArg.literal('allUsers')),
+  'BigqueryDatasetAccessView': () => BigqueryDatasetAccessView(
+        view: BigqueryDatasetDatasetView(
           projectId: TfArg.literal('p'),
           datasetId: TfArg.literal('d'),
           tableId: TfArg.literal('t'),
         ),
       ),
-  'AccessDataset': () => AccessDataset(
-        dataset: DatasetAccessChild(
-          dataset: DatasetReference(
+  'BigqueryDatasetAccessDataset': () => BigqueryDatasetAccessDataset(
+        dataset: BigqueryDatasetDatasetAccessChild(
+          dataset: BigqueryDatasetDatasetReference(
             projectId: TfArg.literal('p'),
             datasetId: TfArg.literal('d'),
           ),
           targetTypes: [TfArg.literal('VIEWS')],
         ),
       ),
-  'AccessRoutine': () => AccessRoutine(
-        routine: DatasetRoutineRef(
+  'BigqueryDatasetAccessRoutine': () => BigqueryDatasetAccessRoutine(
+        routine: BigqueryDatasetDatasetRoutineRef(
           projectId: TfArg.literal('p'),
           datasetId: TfArg.literal('d'),
           routineId: TfArg.literal('r'),
@@ -86,43 +86,43 @@ final Map<String, Object Function()> _syntheticInstances = {
       ),
 
   // --- EnvVarSource (2) — cloud_run_v2_service -----------------------------
-  'EnvVarFromLiteral': () => EnvVarFromLiteral(TfArg.literal('mock-value')),
-  'EnvVarFromSecret': () =>
-      EnvVarFromSecret(secret: TfArg.literal('mock-secret')),
+  'CloudRunV2ServiceEnvVarFromLiteral': () => CloudRunV2ServiceEnvVarFromLiteral(TfArg.literal('mock-value')),
+  'CloudRunV2ServiceEnvVarFromSecret': () =>
+      CloudRunV2ServiceEnvVarFromSecret(secret: TfArg.literal('mock-secret')),
 
   // --- VolumeSource (5) — cloud_run_v2_service -----------------------------
-  'VolumeSecret': () => VolumeSecret(secret: TfArg.literal('mock-secret')),
-  'CloudSqlVolume': () => const CloudSqlVolume(),
-  'EmptyDirVolume': () => const EmptyDirVolume(),
-  'GcsVolume': () => GcsVolume(bucket: TfArg.literal('mock-bucket')),
-  'NfsVolume': () => NfsVolume(
+  'CloudRunV2ServiceVolumeSecret': () => CloudRunV2ServiceVolumeSecret(secret: TfArg.literal('mock-secret')),
+  'CloudRunV2ServiceCloudSqlVolume': () => const CloudRunV2ServiceCloudSqlVolume(),
+  'CloudRunV2ServiceEmptyDirVolume': () => const CloudRunV2ServiceEmptyDirVolume(),
+  'CloudRunV2ServiceGcsVolume': () => CloudRunV2ServiceGcsVolume(bucket: TfArg.literal('mock-bucket')),
+  'CloudRunV2ServiceNfsVolume': () => CloudRunV2ServiceNfsVolume(
         server: TfArg.literal('nfs.example.com'),
         path: TfArg.literal('/exports/data'),
       ),
 
   // --- JobEnvVarSource (2) — cloud_run_v2_job ------------------------------
-  'JobEnvVarFromLiteral': () =>
-      JobEnvVarFromLiteral(TfArg.literal('mock-value')),
-  'JobEnvVarFromSecret': () => JobEnvVarFromSecret(
+  'CloudRunV2JobEnvVarFromLiteral': () =>
+      CloudRunV2JobEnvVarFromLiteral(TfArg.literal('mock-value')),
+  'CloudRunV2JobEnvVarFromSecret': () => CloudRunV2JobEnvVarFromSecret(
         secret: TfArg.literal('mock-secret'),
         version: TfArg.literal('latest'),
       ),
 
   // --- JobVolumeSource (5) — cloud_run_v2_job ------------------------------
-  'JobVolumeSecret': () =>
-      JobVolumeSecret(secret: TfArg.literal('mock-secret')),
-  'JobCloudSqlVolume': () => const JobCloudSqlVolume(),
-  'JobEmptyDirVolume': () => const JobEmptyDirVolume(),
-  'JobGcsVolume': () => JobGcsVolume(bucket: TfArg.literal('mock-bucket')),
-  'JobNfsVolume': () => JobNfsVolume(server: TfArg.literal('nfs.example.com')),
+  'CloudRunV2JobVolumeSecret': () =>
+      CloudRunV2JobVolumeSecret(secret: TfArg.literal('mock-secret')),
+  'CloudRunV2JobCloudSqlVolume': () => const CloudRunV2JobCloudSqlVolume(),
+  'CloudRunV2JobEmptyDirVolume': () => const CloudRunV2JobEmptyDirVolume(),
+  'CloudRunV2JobGcsVolume': () => CloudRunV2JobGcsVolume(bucket: TfArg.literal('mock-bucket')),
+  'CloudRunV2JobNfsVolume': () => CloudRunV2JobNfsVolume(server: TfArg.literal('nfs.example.com')),
 
-  // --- SchedulerTarget (3) — cloud_scheduler_job ---------------------------
-  'PubsubTarget': () =>
-      PubsubTarget(topicName: TfArg.literal('projects/p/topics/t')),
-  'HttpTarget': () =>
-      HttpTarget(uri: TfArg.literal('https://example.com/webhook')),
-  'AppEngineHttpTarget': () =>
-      AppEngineHttpTarget(relativeUri: TfArg.literal('/handler')),
+  // --- CloudSchedulerJobSchedulerTarget (3) — cloud_scheduler_job ---------------------------
+  'CloudSchedulerJobPubsubTarget': () =>
+      CloudSchedulerJobPubsubTarget(topicName: TfArg.literal('projects/p/topics/t')),
+  'CloudSchedulerJobHttpTarget': () =>
+      CloudSchedulerJobHttpTarget(uri: TfArg.literal('https://example.com/webhook')),
+  'CloudSchedulerJobAppEngineHttpTarget': () =>
+      CloudSchedulerJobAppEngineHttpTarget(relativeUri: TfArg.literal('/handler')),
 
   // --- SourceConfig (2) — cloudfunctions2_function -------------------------
   'StorageSource': () => StorageSource(
@@ -136,8 +136,8 @@ final Map<String, Object Function()> _syntheticInstances = {
   'OnDeployUpdatePolicy': () => const OnDeployUpdatePolicy(),
 
   // --- AppHostingBuildSource (2) — firebase_app_hosting_build --------------
-  'AppHostingBuildSourceCodebase': () => const AppHostingBuildSourceCodebase(),
-  'AppHostingBuildSourceContainer': () => AppHostingBuildSourceContainer(
+  'FirebaseAppHostingBuildAppHostingBuildSourceCodebase': () => const FirebaseAppHostingBuildAppHostingBuildSourceCodebase(),
+  'FirebaseAppHostingBuildAppHostingBuildSourceContainer': () => FirebaseAppHostingBuildAppHostingBuildSourceContainer(
         image: TfArg.literal('us-central1-docker.pkg.dev/p/r/web:1.0.0'),
       ),
 
@@ -145,28 +145,28 @@ final Map<String, Object Function()> _syntheticInstances = {
   // These return List<Map<String, Object?>> (single-element, per the
   // nesting_mode: list, max_items: 1 schema convention). The dispatch logic
   // unwraps to the single inner map for the structural assertions.
-  'DailyRecurrence': () => const DailyRecurrence(),
-  'WeeklyRecurrence': () => const WeeklyRecurrence(),
+  'FirestoreBackupScheduleDailyRecurrence': () => const FirestoreBackupScheduleDailyRecurrence(),
+  'FirestoreBackupScheduleWeeklyRecurrence': () => const FirestoreBackupScheduleWeeklyRecurrence(),
 
   // --- IndexFieldSpec (4) — firestore_index --------------------------------
-  'IndexFieldOrder': () => const IndexFieldOrder(FirestoreIndexOrder.ascending),
-  'IndexFieldArrayConfig': () => const IndexFieldArrayConfig(),
-  'IndexFieldSearchConfig': () => const IndexFieldSearchConfig(),
-  'IndexFieldVectorConfig': () => const IndexFieldVectorConfig(dimension: 768),
+  'FirestoreIndexIndexFieldOrder': () => const FirestoreIndexIndexFieldOrder(FirestoreIndexOrder.ascending),
+  'FirestoreIndexIndexFieldArrayConfig': () => const FirestoreIndexIndexFieldArrayConfig(),
+  'FirestoreIndexIndexFieldSearchConfig': () => const FirestoreIndexIndexFieldSearchConfig(),
+  'FirestoreIndexIndexFieldVectorConfig': () => const FirestoreIndexIndexFieldVectorConfig(dimension: TfArgLiteral<int>(768)),
 
-  // --- Replication (2, private members) — secret_manager_secret ------------
-  // Extractor produces the literal `_AutoReplication` / `_UserManagedReplication`
-  // names; the thunks must construct via the public `Replication.auto()` /
-  // `Replication.userManaged(...)` factories.
-  '_AutoReplication': () => Replication.auto(),
-  '_UserManagedReplication': () =>
-      Replication.userManaged([Replica(location: TfArg.literal('us-east1'))]),
+  // --- SecretManagerSecretReplication (2) — secret_manager_secret ------------
+  // After v1.0 naming audit the subclasses are now public:
+  // SecretManagerSecretAutoReplication / SecretManagerSecretUserManagedReplication.
+  // Thunks construct via the public factories.
+  'SecretManagerSecretAutoReplication': () => SecretManagerSecretReplication.auto(),
+  'SecretManagerSecretUserManagedReplication': () =>
+      SecretManagerSecretReplication.userManaged([SecretManagerSecretReplica(location: TfArg.literal('us-east1'))]),
 
   // --- BucketObjectContent (2) — storage_bucket_object ---------------------
-  'BucketObjectFromSource': () =>
-      BucketObjectFromSource(source: TfArg.literal('./mock/path.bin')),
-  'BucketObjectFromContent': () =>
-      BucketObjectFromContent(content: TfArg.literal('mock-inline-payload')),
+  'StorageBucketObjectBucketObjectFromSource': () =>
+      StorageBucketObjectBucketObjectFromSource(source: TfArg.literal('./mock/path.bin')),
+  'StorageBucketObjectBucketObjectFromContent': () =>
+      StorageBucketObjectBucketObjectFromContent(content: TfArg.literal('mock-inline-payload')),
 };
 
 void main() {
@@ -219,7 +219,7 @@ void main() {
             // `encode()` first via dynamic dispatch; fall back to
             // `toArgMap()`. Both can return either `Map<String, Object?>`
             // OR a single-element `List<Map<String, Object?>>` (the latter
-            // used by `BackupRecurrence.{DailyRecurrence,WeeklyRecurrence}`
+            // used by `BackupRecurrence.{FirestoreBackupScheduleDailyRecurrence,FirestoreBackupScheduleWeeklyRecurrence}`
             // because their underlying blocks are
             // `nesting_mode: list, max_items: 1`).
             final dyn = instance as dynamic;

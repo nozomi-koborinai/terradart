@@ -90,16 +90,16 @@ class ComputeAutoscalerAutoscalerAutoscalingPolicy {
 
   /// Minimum number of replicas the autoscaler may scale **down** to.
   /// Must be `>= 0`. The schema marks this required.
-  TfArg<int> minReplicas;
+  final TfArg<int> minReplicas;
 
   /// Maximum number of replicas the autoscaler may scale **up** to.
   /// Must be `>= minReplicas`. The schema marks this required.
-  TfArg<int> maxReplicas;
+  final TfArg<int> maxReplicas;
 
   /// Number of seconds the autoscaler waits before collecting metrics
   /// from a freshly-launched instance. Defaults to 60 on the API side
   /// when omitted; raise this for workloads with slow startup paths.
-  TfArg<int>? cooldownPeriod;
+  final TfArg<int>? cooldownPeriod;
 
   /// Operating mode for the policy. Omitted -> API default ([on]).
   final AutoscalerMode? mode;
@@ -163,7 +163,7 @@ class ComputeAutoscalerAutoscalerCpuUtilization {
   /// Target average CPU utilization, in the range `(0.0, 1.0]`. For
   /// example, `0.6` means "keep instances at ~60% CPU on average". The
   /// schema marks this required.
-  TfArg<double> target;
+  final TfArg<double> target;
 
   /// Optional predictive method. Omitted -> API default
   /// ([AutoscalerCpuPredictiveMethod.none]).
@@ -191,7 +191,7 @@ class ComputeAutoscalerAutoscalerLoadBalancingUtilization {
 
   /// Target fraction of backend capacity utilization (0.0..1.0). The
   /// schema marks this required; defaults to 0.8 on the API side.
-  TfArg<double> target;
+  final TfArg<double> target;
 
   Map<String, Object?> toArgMap() => {'target': target.toTfJson()};
 }
@@ -217,11 +217,11 @@ class ComputeAutoscalerAutoscalerMetric {
   /// `'pubsub.googleapis.com/subscription/num_undelivered_messages'`).
   /// The metric must emit `INT64` or `DOUBLE` values; negative values
   /// are not supported.
-  TfArg<String> name;
+  final TfArg<String> name;
 
   /// Target value the autoscaler maintains for this metric. Mutually
   /// exclusive in practice with [singleInstanceAssignment].
-  TfArg<double>? target;
+  final TfArg<double>? target;
 
   /// How the metric value is interpreted ([gauge] / [deltaPerSecond] /
   /// [deltaPerMinute]).
@@ -230,12 +230,12 @@ class ComputeAutoscalerAutoscalerMetric {
   /// Per-instance assignment for **per-group** metrics: the metric
   /// reports the total amount of work; this value is the amount one
   /// instance can handle. Mutually exclusive with [target].
-  TfArg<double>? singleInstanceAssignment;
+  final TfArg<double>? singleInstanceAssignment;
 
   /// Optional Monitoring TimeSeries filter. The default
   /// (`'resource.type = gce_instance'`) selects per-instance gauges; set
   /// a custom filter for per-group metrics on other resource types.
-  TfArg<String>? filter;
+  final TfArg<String>? filter;
 
   Map<String, Object?> toArgMap() => {
     'name': name.toTfJson(),
@@ -269,7 +269,7 @@ class ComputeAutoscalerAutoscalerScaleInControl {
   /// Lookback window, in seconds. The autoscaler computes a moving
   /// total of scale-in events over this duration and refuses to exceed
   /// [maxScaledInReplicas] within it.
-  TfArg<int>? timeWindowSec;
+  final TfArg<int>? timeWindowSec;
 
   Map<String, Object?> toArgMap() => {
     if (maxScaledInReplicas != null)
@@ -288,10 +288,10 @@ class ComputeAutoscalerAutoscalerScaleInReplicas {
   /// Fixed maximum number of VM instances that may be removed inside
   /// the parent [ComputeAutoscalerAutoscalerScaleInControl.timeWindowSec] window. Must
   /// be a positive integer.
-  TfArg<int>? fixed;
+  final TfArg<int>? fixed;
 
   /// Percentage of the current MIG size that may be removed (0..100).
-  TfArg<int>? percent;
+  final TfArg<int>? percent;
 
   Map<String, Object?> toArgMap() => {
     if (fixed != null) 'fixed': fixed!.toTfJson(),
@@ -323,24 +323,24 @@ class ComputeAutoscalerAutoscalerScalingSchedule {
 
   /// Minimum replica count the autoscaler will recommend while this
   /// schedule is active.
-  TfArg<int> minRequiredReplicas;
+  final TfArg<int> minRequiredReplicas;
 
   /// Cron-format start times (extended cron, with optional year). E.g.
   /// `'0 9 * * MON-FRI'` for weekday mornings.
-  TfArg<String> schedule;
+  final TfArg<String> schedule;
 
   /// Duration of each scheduled window, in seconds. Minimum: 300.
-  TfArg<int> durationSec;
+  final TfArg<int> durationSec;
 
   /// IANA time-zone name (e.g. `'Asia/Tokyo'`). Defaults to `'UTC'`.
-  TfArg<String>? timeZone;
+  final TfArg<String>? timeZone;
 
   /// When `true`, the schedule is recorded but has no effect on
   /// recommendations. Useful for parking a schedule without deleting it.
-  TfArg<bool>? disabled;
+  final TfArg<bool>? disabled;
 
   /// Free-form description.
-  TfArg<String>? description;
+  final TfArg<String>? description;
 
   Map<String, Object?> toArgMap() => {
     'min_required_replicas': minRequiredReplicas.toTfJson(),

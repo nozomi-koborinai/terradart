@@ -82,30 +82,30 @@ class ComputeBackendBucketBackendBucketCdnPolicy {
   /// Max TTL (seconds) the cache will serve content to clients for.
   /// Must be omitted when [cacheMode] is
   /// [BackendBucketCacheMode.useOriginHeaders].
-  TfArg<int>? clientTtl;
+  final TfArg<int>? clientTtl;
 
   /// Default TTL for cached content with no upstream `Cache-Control`.
   /// Must be omitted when [cacheMode] is
   /// [BackendBucketCacheMode.useOriginHeaders].
-  TfArg<int>? defaultTtl;
+  final TfArg<int>? defaultTtl;
 
   /// Hard ceiling on cached content TTL. Must be omitted when
   /// [cacheMode] is [BackendBucketCacheMode.useOriginHeaders].
-  TfArg<int>? maxTtl;
+  final TfArg<int>? maxTtl;
 
   /// Negative caching for selected status codes. Pair with
   /// [negativeCachingPolicy] for per-code TTLs.
-  TfArg<bool>? negativeCaching;
+  final TfArg<bool>? negativeCaching;
 
   /// Coalesce concurrent cache-fill requests to the origin.
-  TfArg<bool>? requestCoalescing;
+  final TfArg<bool>? requestCoalescing;
 
   /// Serve cached content during origin revalidation or errors
   /// (seconds).
-  TfArg<int>? serveWhileStale;
+  final TfArg<int>? serveWhileStale;
 
   /// TTL for signed-URL responses (defaults to 3600 if unset).
-  TfArg<int>? signedUrlCacheMaxAgeSec;
+  final TfArg<int>? signedUrlCacheMaxAgeSec;
 
   /// Bypass the cache when any of these request headers is present.
   /// Up to 5 entries.
@@ -183,9 +183,9 @@ class ComputeBackendBucketBackendBucketCdnCacheKeyPolicy {
 
   Map<String, Object?> toArgMap() => {
     if (includeHttpHeaders != null)
-      'include_http_headers': includeHttpHeaders!.toTfJson(),
+      'include_http_headers': includeHttpHeaders,
     if (queryStringWhitelist != null)
-      'query_string_whitelist': queryStringWhitelist!.toTfJson(),
+      'query_string_whitelist': queryStringWhitelist,
   };
 }
 
@@ -200,10 +200,10 @@ class ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy {
   /// HTTP status code to apply a TTL to. Valid values per schema:
   /// 300, 301, 308, 404, 405, 410, 421, 451, 501. Each code may
   /// appear at most once.
-  TfArg<int>? code;
+  final TfArg<int>? code;
 
   /// TTL in seconds. Max allowed value 1800 (30 minutes).
-  TfArg<int>? ttl;
+  final TfArg<int>? ttl;
 
   Map<String, Object?> toArgMap() => {
     if (code != null) 'code': code!.toTfJson(),

@@ -99,14 +99,14 @@ class DnsManagedZonePrivateVisibilityGkeCluster {
   const DnsManagedZonePrivateVisibilityGkeCluster({
     required this.gkeClusterName,
   });
-  TfArg<String> gkeClusterName;
+  final TfArg<String> gkeClusterName;
   Map<String, Object?> toArgMap() => {'gke_cluster_name': gkeClusterName};
 }
 
 /// One entry inside `private_visibility_config.networks`.
 class DnsManagedZonePrivateVisibilityNetwork {
   const DnsManagedZonePrivateVisibilityNetwork({required this.networkUrl});
-  TfArg<String> networkUrl;
+  final TfArg<String> networkUrl;
   Map<String, Object?> toArgMap() => {'network_url': networkUrl};
 }
 
@@ -119,7 +119,7 @@ class DnsManagedZoneDnssecConfig {
     this.state,
     this.defaultKeySpecs,
   });
-  TfArg<String>? kind;
+  final TfArg<String>? kind;
   final DnssecNonExistence? nonExistence;
   final DnssecState? state;
   final List<DnsManagedZoneDnssecKeySpec>? defaultKeySpecs;
@@ -141,9 +141,9 @@ class DnsManagedZoneDnssecKeySpec {
     this.kind,
   });
   final DnssecKeyAlgorithm? algorithm;
-  TfArg<int>? keyLength;
+  final TfArg<int>? keyLength;
   final DnssecKeyType? keyType;
-  TfArg<String>? kind;
+  final TfArg<String>? kind;
   Map<String, Object?> toArgMap() => {
     if (algorithm != null) 'algorithm': algorithm!.terraformValue,
     if (keyLength != null) 'key_length': keyLength!.toTfJson(),
@@ -164,7 +164,7 @@ class DnsManagedZonePeeringConfig {
 /// `peering_config.target_network` single sub-block (`max_items=1`).
 class DnsManagedZonePeeringTargetNetwork {
   const DnsManagedZonePeeringTargetNetwork({required this.networkUrl});
-  TfArg<String> networkUrl;
+  final TfArg<String> networkUrl;
   Map<String, Object?> toArgMap() => {'network_url': networkUrl};
 }
 
@@ -185,9 +185,9 @@ class DnsManagedZoneForwardingTargetNameServer {
     this.ipv6Address,
     this.forwardingPath,
   });
-  TfArg<String>? domainName;
-  TfArg<String>? ipv4Address;
-  TfArg<String>? ipv6Address;
+  final TfArg<String>? domainName;
+  final TfArg<String>? ipv4Address;
+  final TfArg<String>? ipv6Address;
   final ForwardingPath? forwardingPath;
   Map<String, Object?> toArgMap() => {
     if (domainName != null) 'domain_name': domainName!.toTfJson(),
@@ -201,7 +201,7 @@ class DnsManagedZoneForwardingTargetNameServer {
 /// `cloud_logging_config` block — toggles export to Cloud Logging.
 class DnsManagedZoneCloudLoggingConfig {
   const DnsManagedZoneCloudLoggingConfig({required this.enableLogging});
-  TfArg<bool> enableLogging;
+  final TfArg<bool> enableLogging;
   Map<String, Object?> toArgMap() => {'enable_logging': enableLogging};
 }
 

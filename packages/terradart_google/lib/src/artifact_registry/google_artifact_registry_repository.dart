@@ -353,7 +353,7 @@ class ArtifactRegistryRepositoryArtifactRegistryCleanupPolicy {
 
   /// Policy id (also the map key). Free-form, unique within the
   /// repository, under 128 chars.
-  TfArg<String> id;
+  final TfArg<String> id;
 
   /// What this policy does to matching versions when its condition
   /// fires. Optional in the schema, but a policy with no action is a
@@ -420,11 +420,11 @@ class ArtifactRegistryRepositoryArtifactRegistryCleanupCondition {
 
   Map<String, Object?> toArgMap() => {
     if (tagState != null) 'tag_state': tagState!.terraformValue,
-    if (tagPrefixes != null) 'tag_prefixes': tagPrefixes!.toTfJson(),
+    if (tagPrefixes != null) 'tag_prefixes': tagPrefixes,
     if (versionNamePrefixes != null)
-      'version_name_prefixes': versionNamePrefixes!.toTfJson(),
+      'version_name_prefixes': versionNamePrefixes,
     if (packageNamePrefixes != null)
-      'package_name_prefixes': packageNamePrefixes!.toTfJson(),
+      'package_name_prefixes': packageNamePrefixes,
     if (olderThan != null) 'older_than': olderThan!.toTfJson(),
     if (newerThan != null) 'newer_than': newerThan!.toTfJson(),
   };
@@ -449,7 +449,7 @@ class ArtifactRegistryRepositoryArtifactRegistryCleanupMostRecentVersions {
 
   Map<String, Object?> toArgMap() => {
     if (packageNamePrefixes != null)
-      'package_name_prefixes': packageNamePrefixes!.toTfJson(),
+      'package_name_prefixes': packageNamePrefixes,
     if (keepCount != null) 'keep_count': keepCount!.toTfJson(),
   };
 }

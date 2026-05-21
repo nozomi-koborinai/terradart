@@ -78,20 +78,20 @@ class ComputeHealthCheckHttpHealthCheckConfig {
 
   /// Value of the `Host` header on the probe request. Defaults to the
   /// public IP being probed when left empty.
-  TfArg<String>? host;
+  final TfArg<String>? host;
 
   /// Request path. Defaults to `/`.
-  TfArg<String>? requestPath;
+  final TfArg<String>? requestPath;
 
   /// Bytes to match against the start of the response body. Empty
   /// means "any response counts as healthy". ASCII only.
-  TfArg<String>? response;
+  final TfArg<String>? response;
 
   /// TCP port. Defaults to 80.
-  TfArg<int>? port;
+  final TfArg<int>? port;
 
   /// Named port (resolved via the InstanceGroup's named-port map).
-  TfArg<String>? portName;
+  final TfArg<String>? portName;
 
   /// Proxy header to prepend on the probe.
   final HealthCheckProxyHeader? proxyHeader;
@@ -125,13 +125,13 @@ class ComputeHealthCheckHttpsHealthCheckConfig {
     this.portSpecification,
   });
 
-  TfArg<String>? host;
-  TfArg<String>? requestPath;
-  TfArg<String>? response;
+  final TfArg<String>? host;
+  final TfArg<String>? requestPath;
+  final TfArg<String>? response;
 
   /// TCP port. Defaults to 443.
-  TfArg<int>? port;
-  TfArg<String>? portName;
+  final TfArg<int>? port;
+  final TfArg<String>? portName;
   final HealthCheckProxyHeader? proxyHeader;
   final HealthCheckPortSpecification? portSpecification;
 
@@ -160,13 +160,13 @@ class ComputeHealthCheckHttp2HealthCheckConfig {
     this.portSpecification,
   });
 
-  TfArg<String>? host;
-  TfArg<String>? requestPath;
-  TfArg<String>? response;
+  final TfArg<String>? host;
+  final TfArg<String>? requestPath;
+  final TfArg<String>? response;
 
   /// TCP port. Defaults to 443.
-  TfArg<int>? port;
-  TfArg<String>? portName;
+  final TfArg<int>? port;
+  final TfArg<String>? portName;
   final HealthCheckProxyHeader? proxyHeader;
   final HealthCheckPortSpecification? portSpecification;
 
@@ -196,15 +196,15 @@ class ComputeHealthCheckTcpHealthCheckConfig {
 
   /// Bytes to send once the TCP connection is established. Empty means
   /// "connect-only is enough to be healthy". ASCII only.
-  TfArg<String>? request;
+  final TfArg<String>? request;
 
   /// Bytes to match against the start of the response. Empty matches
   /// any response.
-  TfArg<String>? response;
+  final TfArg<String>? response;
 
   /// TCP port. Defaults to 443.
-  TfArg<int>? port;
-  TfArg<String>? portName;
+  final TfArg<int>? port;
+  final TfArg<String>? portName;
   final HealthCheckProxyHeader? proxyHeader;
   final HealthCheckPortSpecification? portSpecification;
 
@@ -231,12 +231,12 @@ class ComputeHealthCheckSslHealthCheckConfig {
     this.portSpecification,
   });
 
-  TfArg<String>? request;
-  TfArg<String>? response;
+  final TfArg<String>? request;
+  final TfArg<String>? response;
 
   /// TCP port. Defaults to 443.
-  TfArg<int>? port;
-  TfArg<String>? portName;
+  final TfArg<int>? port;
+  final TfArg<String>? portName;
   final HealthCheckProxyHeader? proxyHeader;
   final HealthCheckPortSpecification? portSpecification;
 
@@ -265,14 +265,14 @@ class ComputeHealthCheckGrpcHealthCheckConfig {
   /// Port number. Must be set if `port_specification` is
   /// [HealthCheckPortSpecification.useFixedPort] and `portName` is
   /// unset. Valid 1-65535.
-  TfArg<int>? port;
-  TfArg<String>? portName;
+  final TfArg<int>? port;
+  final TfArg<String>? portName;
   final HealthCheckPortSpecification? portSpecification;
 
   /// gRPC service name passed in the `service` field of the Check RPC.
   /// Empty means "report aggregate server health"; a non-empty name
   /// scopes the check to a specific registered service. ASCII only.
-  TfArg<String>? grpcServiceName;
+  final TfArg<String>? grpcServiceName;
 
   Map<String, Object?> toArgMap() => {
     if (port != null) 'port': port!.toTfJson(),
@@ -295,7 +295,7 @@ class ComputeHealthCheckHealthCheckLogConfig {
 
   /// `true` exports each probe result to Cloud Logging. Defaults to
   /// `false` (no logs).
-  TfArg<bool>? enable;
+  final TfArg<bool>? enable;
 
   Map<String, Object?> toArgMap() => {
     if (enable != null) 'enable': enable!.toTfJson(),

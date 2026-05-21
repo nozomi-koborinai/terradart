@@ -192,10 +192,10 @@ class FirestoreIndexIndexFieldTextSpecEntry {
 
   /// Index strategy (`TOKEN`, `NGRAM`, etc.). Forward the literal
   /// string -- the schema does not expose a typed enum here.
-  TfArg<String>? indexType;
+  final TfArg<String>? indexType;
 
   /// Match strategy (`EXACT`, `PREFIX`). Forward the literal string.
-  TfArg<String>? matchType;
+  final TfArg<String>? matchType;
 
   Map<String, Object?> encode() => {
     if (indexType != null) 'index_type': indexType!.toTfJson(),
@@ -212,7 +212,7 @@ final class FirestoreIndexIndexFieldVectorConfig
 
   /// Vector dimensionality. The index only matches queries of the same
   /// dimension.
-  TfArg<int> dimension;
+  final TfArg<int> dimension;
 
   @override
   Map<String, Object?> encode() => {

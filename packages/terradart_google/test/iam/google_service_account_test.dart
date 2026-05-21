@@ -90,7 +90,7 @@ void main() {
         equals(r'${google_service_account.publisher.unique_id}'),
       );
       expect(
-        sa.member.interpolation,
+        sa.iamMember.interpolation,
         equals(r'${google_service_account.publisher.member}'),
       );
     });

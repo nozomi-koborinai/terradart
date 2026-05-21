@@ -141,10 +141,10 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersionTargetSi
   });
 
   /// Fixed number of instances managed for this version.
-  TfArg<int>? fixed;
+  final TfArg<int>? fixed;
 
   /// Percentage (0-100) of total MIG size managed for this version.
-  TfArg<int>? percent;
+  final TfArg<int>? percent;
 
   Map<String, Object?> toArgMap() => {
     if (fixed != null) 'fixed': fixed!.toTfJson(),
@@ -173,7 +173,7 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAutoHealingPoli
 
   /// Seconds to wait after a VM is created before applying autohealing
   /// to it. Schema range: 0-3600.
-  TfArg<int> initialDelaySec;
+  final TfArg<int> initialDelaySec;
 
   Map<String, Object?> toArgMap() => {
     'health_check': healthCheck.toTfJson(),
@@ -221,17 +221,17 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerUpdatePolicy {
   /// Extra VMs the MIG may add over
   /// [GoogleComputeRegionInstanceGroupManager.targetSize] during the
   /// rollout. Conflicts with [maxSurgePercent].
-  TfArg<int>? maxSurgeFixed;
+  final TfArg<int>? maxSurgeFixed;
 
   /// Percent equivalent of [maxSurgeFixed].
-  TfArg<int>? maxSurgePercent;
+  final TfArg<int>? maxSurgePercent;
 
   /// VMs allowed to be unavailable simultaneously. Conflicts with
   /// [maxUnavailablePercent].
-  TfArg<int>? maxUnavailableFixed;
+  final TfArg<int>? maxUnavailableFixed;
 
   /// Percent equivalent of [maxUnavailableFixed].
-  TfArg<int>? maxUnavailablePercent;
+  final TfArg<int>? maxUnavailablePercent;
 
   /// Whether to keep names (`RECREATE`) or randomise them
   /// (`SUBSTITUTE`, default) when swapping VMs.
@@ -273,10 +273,10 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerNamedPort {
   });
 
   /// Port label. 1-63 chars, RFC1035.
-  TfArg<String> name;
+  final TfArg<String> name;
 
   /// Port number (1-65535).
-  TfArg<int> port;
+  final TfArg<int> port;
 
   Map<String, Object?> toArgMap() => {
     'name': name.toTfJson(),
@@ -304,11 +304,11 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulDisk {
 
   /// Device name the disk is attached to on the VM (matches the
   /// `device_name` set on the instance template's `disk` block).
-  TfArg<String> deviceName;
+  final TfArg<String> deviceName;
 
   /// `NEVER` (default — detach but keep the disk) or
   /// `ON_PERMANENT_INSTANCE_DELETION` (delete with the VM).
-  TfArg<String>? deleteRule;
+  final TfArg<String>? deleteRule;
 
   Map<String, Object?> toArgMap() => {
     'device_name': deviceName.toTfJson(),
@@ -326,11 +326,11 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulIp {
   });
 
   /// Name of the VM network interface the IP is attached to.
-  TfArg<String>? interfaceName;
+  final TfArg<String>? interfaceName;
 
   /// `NEVER` (default — detach but keep the Address) or
   /// `ON_PERMANENT_INSTANCE_DELETION` (delete with the VM).
-  TfArg<String>? deleteRule;
+  final TfArg<String>? deleteRule;
 
   Map<String, Object?> toArgMap() => {
     if (interfaceName != null) 'interface_name': interfaceName!.toTfJson(),
@@ -356,8 +356,8 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAllInstancesCon
   final Map<String, String>? metadata;
 
   Map<String, Object?> toArgMap() => {
-    if (labels != null) 'labels': labels!.toTfJson(),
-    if (metadata != null) 'metadata': metadata!.toTfJson(),
+    if (labels != null) 'labels': labels,
+    if (metadata != null) 'metadata': metadata,
   };
 }
 
@@ -375,11 +375,11 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceLifecyc
   });
 
   /// Default behavior for instance or health check failures.
-  TfArg<String>? defaultActionOnFailure;
+  final TfArg<String>? defaultActionOnFailure;
 
   /// `YES` to apply the latest template when repairing a VM; `NO`
   /// (default) to honor the update policy.
-  TfArg<String>? forceUpdateOnRepair;
+  final TfArg<String>? forceUpdateOnRepair;
 
   Map<String, Object?> toArgMap() => {
     if (defaultActionOnFailure != null)
@@ -429,18 +429,18 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceSelecti
   });
 
   /// Required. Selection label.
-  TfArg<String> name;
+  final TfArg<String> name;
 
   /// Required. Full machine-type names (e.g. `n1-standard-16`).
   final List<String> machineTypes;
 
   /// Lower number = higher preference. Selections with the same rank
   /// are treated equally.
-  TfArg<int>? rank;
+  final TfArg<int>? rank;
 
   Map<String, Object?> toArgMap() => {
     'name': name.toTfJson(),
-    'machine_types': machineTypes.toTfJson(),
+    'machine_types': machineTypes,
     if (rank != null) 'rank': rank!.toTfJson(),
   };
 }
@@ -460,10 +460,10 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStandbyPolicy {
 
   /// Seconds to wait after creating a VM before allowing standby
   /// transitions (0-3600, default 0).
-  TfArg<int>? initialDelaySec;
+  final TfArg<int>? initialDelaySec;
 
   /// Standby mode. Defaults to `MANUAL`.
-  TfArg<String>? mode;
+  final TfArg<String>? mode;
 
   Map<String, Object?> toArgMap() => {
     if (initialDelaySec != null)
@@ -486,7 +486,7 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerTargetSizePolic
   });
 
   /// Required. The provisioning mode (e.g. `BATCH`, `INDIVIDUAL`).
-  TfArg<String> mode;
+  final TfArg<String> mode;
 
   Map<String, Object?> toArgMap() => {'mode': mode};
 }

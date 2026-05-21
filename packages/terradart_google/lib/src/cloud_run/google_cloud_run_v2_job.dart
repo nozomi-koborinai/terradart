@@ -354,7 +354,7 @@ class CloudRunV2JobEnvVar {
   const CloudRunV2JobEnvVar({required this.name, this.source});
 
   /// C_IDENTIFIER name.
-  TfArg<String> name;
+  final TfArg<String> name;
 
   /// Value source. Pick exactly one of [CloudRunV2JobEnvVarFromLiteral] or
   /// [CloudRunV2JobEnvVarFromSecret].

@@ -7,6 +7,11 @@ import 'dart:io';
 ///
 /// Returns an empty list when all helper fields conform.
 ///
+/// **Escape hatch**: annotate a field with `// gate7-ok` on the same
+/// line to suppress the violation for that declaration. Use only for
+/// Dart-side discriminant flags that are intentionally plain Dart types
+/// (not Terraform arguments), e.g. `final bool arrayContains; // gate7-ok`.
+///
 /// Note: regex-based parsing is a heuristic — it may produce false
 /// positives on multi-line declarations or false negatives on creative
 /// class bodies. For Plan 3 / v1.0 polish purposes, the gate's job is
@@ -24,9 +29,10 @@ class TfArgWrap {
       multiLine: true,
     );
 
-    // Plain field declarations (not TfArg-wrapped):
+    // Plain field declarations (not TfArg-wrapped).
+    // Optionally followed by `// gate7-ok` for intentional exceptions.
     final plainFieldRe = RegExp(
-      r'^\s*final\s+(String|int|bool|double|num)\??\s+[a-z][A-Za-z0-9]*\s*;',
+      r'^\s*final\s+(String|int|bool|double|num)\??\s+[a-z][A-Za-z0-9]*\s*;(?:\s*//[^\n]*)?',
       multiLine: true,
     );
 
@@ -66,6 +72,9 @@ class TfArgWrap {
 
         for (final fieldMatch in plainFieldRe.allMatches(body)) {
           final line = fieldMatch.group(0)!.trim();
+          // Skip fields annotated with `// gate7-ok` — these are
+          // intentional Dart-side discriminant flags, not TF arguments.
+          if (line.contains('// gate7-ok')) continue;
           violations.add('$filename: class $className: $line');
         }
       }

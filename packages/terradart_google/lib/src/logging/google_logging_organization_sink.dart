@@ -13,7 +13,7 @@ class LoggingOrganizationSinkBigqueryOptions {
   const LoggingOrganizationSinkBigqueryOptions({
     required this.usePartitionedTables,
   });
-  TfArg<bool> usePartitionedTables;
+  final TfArg<bool> usePartitionedTables;
   Map<String, Object?> toArgMap() => {
     'use_partitioned_tables': usePartitionedTables,
   };
@@ -30,10 +30,10 @@ class LoggingOrganizationSinkExclusion {
     this.description,
     this.disabled,
   });
-  TfArg<String> name;
-  TfArg<String> filter;
-  TfArg<String>? description;
-  TfArg<bool>? disabled;
+  final TfArg<String> name;
+  final TfArg<String> filter;
+  final TfArg<String>? description;
+  final TfArg<bool>? disabled;
   Map<String, Object?> toArgMap() => {
     'name': name.toTfJson(),
     'filter': filter.toTfJson(),

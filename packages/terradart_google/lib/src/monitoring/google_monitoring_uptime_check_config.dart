@@ -179,7 +179,7 @@ class MonitoringUptimeCheckConfigMonitoredResource {
   /// Monitored-resource type, e.g. `'uptime_url'`, `'gce_instance'`,
   /// `'gae_app'`, `'aws_ec2_instance'`, `'k8s_service'`,
   /// `'servicedirectory_service'`.
-  TfArg<String> type;
+  final TfArg<String> type;
 
   /// Values for every label declared by the monitored-resource
   /// descriptor (e.g. `{'host': 'api.example.com', 'project_id': '...'}`
@@ -188,7 +188,7 @@ class MonitoringUptimeCheckConfigMonitoredResource {
 
   Map<String, Object?> toArgMap() => {
     'type': type.toTfJson(),
-    'labels': labels.toTfJson(),
+    'labels': labels,
   };
 }
 
@@ -202,7 +202,7 @@ class MonitoringUptimeCheckConfigResourceGroup {
   });
 
   /// The `name` of a `google_monitoring_group` resource.
-  TfArg<String>? groupId;
+  final TfArg<String>? groupId;
 
   /// Member-resource type filter applied within the group.
   final MonitoringUptimeCheckResourceType? resourceType;
@@ -231,19 +231,19 @@ class MonitoringUptimeCheckConfigHttpAuthInfo {
     this.passwordWoVersion,
   });
 
-  TfArg<String> username;
+  final TfArg<String> username;
 
   /// **Sensitive.** Plaintext password — masked in rendered Terraform JSON.
-  TfArg<String>? password;
+  final TfArg<String>? password;
 
   /// Write-only variant of [password] (Terraform 1.11+ write-only
   /// attribute). Use this when the password is sourced from a secret
   /// store and should never be tracked in state.
-  TfArg<String>? passwordWo;
+  final TfArg<String>? passwordWo;
 
   /// Bump this version string whenever [passwordWo] changes so Terraform
   /// recognizes the rotation.
-  TfArg<String>? passwordWoVersion;
+  final TfArg<String>? passwordWoVersion;
 
   Map<String, Object?> toArgMap() => {
     'username': username.toTfJson(),
@@ -260,7 +260,7 @@ class MonitoringUptimeCheckConfigPingConfig {
   const MonitoringUptimeCheckConfigPingConfig({required this.pingsCount});
 
   /// Number of ICMP pings (max 3).
-  TfArg<int> pingsCount;
+  final TfArg<int> pingsCount;
 
   Map<String, Object?> toArgMap() => {'pings_count': pingsCount.toTfJson()};
 }
@@ -276,7 +276,7 @@ class MonitoringUptimeCheckConfigAcceptedResponseStatus {
   });
 
   final MonitoringUptimeCheckStatusClass? statusClass;
-  TfArg<int>? statusValue;
+  final TfArg<int>? statusValue;
 
   Map<String, Object?> toArgMap() => {
     if (statusClass != null) 'status_class': statusClass!.terraformValue,
@@ -329,25 +329,25 @@ class MonitoringUptimeCheckConfigHttpCheck {
   /// [MonitoringUptimeCheckContentType.userProvided]; must be left
   /// unset when [contentType] is
   /// [MonitoringUptimeCheckContentType.urlEncoded].
-  TfArg<String>? customContentType;
+  final TfArg<String>? customContentType;
 
   /// TCP port. Defaults to 80 when [useSsl] is false, 443 when true.
-  TfArg<int>? port;
+  final TfArg<int>? port;
 
   /// Request path. Defaults to `'/'`. A leading `/` is auto-prepended
   /// when missing.
-  TfArg<String>? path;
+  final TfArg<String>? path;
 
   /// `true` switches the probe to HTTPS.
-  TfArg<bool>? useSsl;
+  final TfArg<bool>? useSsl;
 
   /// Validate the SSL certificate chain (only meaningful when [useSsl]
   /// is true and [monitoredResource] type is `'uptime_url'`).
-  TfArg<bool>? validateSsl;
+  final TfArg<bool>? validateSsl;
 
   /// Encrypt header values in stored configs; on Get/List the server
   /// returns `'******'` for masked headers.
-  TfArg<bool>? maskHeaders;
+  final TfArg<bool>? maskHeaders;
 
   /// Extra request headers (max 100 entries). Duplicate keys are
   /// rejected by the API — comma-join duplicates as a single value.
@@ -356,7 +356,7 @@ class MonitoringUptimeCheckConfigHttpCheck {
   /// Request body. Base64-encoded over the wire — pass the raw bytes
   /// here; the codegen layer handles encoding. Required to be empty
   /// when [requestMethod] is [MonitoringUptimeCheckHttpMethod.get].
-  TfArg<String>? body;
+  final TfArg<String>? body;
 
   /// Basic auth credentials. Mutually exclusive with
   /// [serviceAgentAuthentication].
@@ -385,7 +385,7 @@ class MonitoringUptimeCheckConfigHttpCheck {
     if (useSsl != null) 'use_ssl': useSsl!.toTfJson(),
     if (validateSsl != null) 'validate_ssl': validateSsl!.toTfJson(),
     if (maskHeaders != null) 'mask_headers': maskHeaders!.toTfJson(),
-    if (headers != null) 'headers': headers!.toTfJson(),
+    if (headers != null) 'headers': headers,
     if (body != null) 'body': body!.toTfJson(),
     if (authInfo != null) 'auth_info': [authInfo!.toArgMap()],
     if (serviceAgentAuthentication != null)
@@ -412,7 +412,7 @@ class MonitoringUptimeCheckConfigTcpCheck {
 
   /// TCP port to connect to (combined with the host derived from
   /// [monitoredResource]).
-  TfArg<int> port;
+  final TfArg<int> port;
 
   /// Optional companion ICMP ping configuration.
   final MonitoringUptimeCheckConfigPingConfig? pingConfig;
@@ -434,7 +434,7 @@ class MonitoringUptimeCheckConfigCloudFunctionV2 {
 
   /// Fully-qualified Cloud Functions V2 function name, e.g.
   /// `'projects/p/locations/us-central1/functions/my-probe'`.
-  TfArg<String> name;
+  final TfArg<String> name;
 
   Map<String, Object?> toArgMap() => {'name': name.toTfJson()};
 }
@@ -466,7 +466,7 @@ class MonitoringUptimeCheckConfigJsonPathMatcher {
   });
 
   /// JSONPath expression to resolve before applying the [jsonMatcher].
-  TfArg<String> jsonPath;
+  final TfArg<String> jsonPath;
   final MonitoringUptimeCheckJsonMatcher? jsonMatcher;
 
   Map<String, Object?> toArgMap() => {
@@ -489,7 +489,7 @@ class MonitoringUptimeCheckConfigContentMatcher {
   /// Content to match (max 1024 bytes). Interpretation depends on
   /// [matcher] — literal substring for `CONTAINS_*`, regex for
   /// `MATCHES_REGEX*`, etc.
-  TfArg<String> content;
+  final TfArg<String> content;
 
   /// Match mode. Defaults to
   /// [MonitoringUptimeCheckMatcher.containsString] on the API side.

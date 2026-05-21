@@ -4,12 +4,12 @@ library;
 
 export 'src/secret_manager/google_secret_manager_secret.dart'
     show
-        CustomerManagedEncryption,
+        SecretManagerSecretCustomerManagedEncryption,
         GoogleSecretManagerSecret,
-        Replica,
-        Replication,
-        Rotation,
-        SecretTopic;
+        SecretManagerSecretReplica,
+        SecretManagerSecretReplication,
+        SecretManagerSecretRotation,
+        SecretManagerSecretSecretTopic;
 export 'src/secret_manager/google_secret_manager_secret_iam_member.dart'
     show GoogleSecretManagerSecretIamMember;
 export 'src/secret_manager/google_secret_manager_secret_version.dart'

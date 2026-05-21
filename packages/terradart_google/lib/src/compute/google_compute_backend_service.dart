@@ -205,33 +205,33 @@ class ComputeBackendServiceBackendServiceBackend {
 
   /// Multiplier on the group's configured capacity (`0.0`-`1.0`).
   /// Setting to `0.0` drains the backend.
-  TfArg<double>? capacityScaler;
+  final TfArg<double>? capacityScaler;
 
   /// Free-form description.
   final TfArg<String>? description;
 
   /// Max simultaneous connections for the group (`CONNECTION` /
   /// `UTILIZATION` modes).
-  TfArg<int>? maxConnections;
+  final TfArg<int>? maxConnections;
 
   /// Max simultaneous connections per endpoint (NEG-shaped backends).
-  TfArg<int>? maxConnectionsPerEndpoint;
+  final TfArg<int>? maxConnectionsPerEndpoint;
 
   /// Max simultaneous connections per backend instance (IG-shaped
   /// backends).
-  TfArg<int>? maxConnectionsPerInstance;
+  final TfArg<int>? maxConnectionsPerInstance;
 
   /// Max RPS for the group (`RATE` / `UTILIZATION` modes).
-  TfArg<int>? maxRate;
+  final TfArg<int>? maxRate;
 
   /// Max RPS per endpoint.
-  TfArg<double>? maxRatePerEndpoint;
+  final TfArg<double>? maxRatePerEndpoint;
 
   /// Max RPS per instance.
-  TfArg<double>? maxRatePerInstance;
+  final TfArg<double>? maxRatePerInstance;
 
   /// Target CPU utilization in `UTILIZATION` mode (`0.0`-`1.0`).
-  TfArg<double>? maxUtilization;
+  final TfArg<double>? maxUtilization;
 
   /// Backend preference layer. Disallowed when `load_balancing_scheme`
   /// is `EXTERNAL`.
@@ -279,10 +279,10 @@ class ComputeBackendServiceBackendServiceBackendCustomMetric {
 
   /// If `true`, the metric is reported to Cloud Monitoring but is not
   /// used for load balancing.
-  TfArg<bool> dryRun;
+  final TfArg<bool> dryRun;
 
   /// Optional target utilization (`0.0`-`1.0`) for this metric.
-  TfArg<double>? maxUtilization;
+  final TfArg<double>? maxUtilization;
 
   Map<String, Object?> toArgMap() => {
     'name': name.toTfJson(),
@@ -316,25 +316,25 @@ class ComputeBackendServiceBackendServiceCdnPolicy {
   final BackendServiceCacheMode? cacheMode;
 
   /// Max TTL (seconds) for content served to clients.
-  TfArg<int>? clientTtl;
+  final TfArg<int>? clientTtl;
 
   /// Default TTL for cached content with no upstream `Cache-Control`.
-  TfArg<int>? defaultTtl;
+  final TfArg<int>? defaultTtl;
 
   /// Hard ceiling on cached content TTL.
-  TfArg<int>? maxTtl;
+  final TfArg<int>? maxTtl;
 
   /// Negative caching for selected status codes.
-  TfArg<bool>? negativeCaching;
+  final TfArg<bool>? negativeCaching;
 
   /// Coalesce concurrent cache-fill requests to the origin.
-  TfArg<bool>? requestCoalescing;
+  final TfArg<bool>? requestCoalescing;
 
   /// Serve cached content during origin revalidation/errors (seconds).
-  TfArg<int>? serveWhileStale;
+  final TfArg<int>? serveWhileStale;
 
   /// TTL for signed-URL responses (defaults to 3600).
-  TfArg<int>? signedUrlCacheMaxAgeSec;
+  final TfArg<int>? signedUrlCacheMaxAgeSec;
 
   /// Bypass cache when any of these request headers is present.
   final List<ComputeBackendServiceBackendServiceCdnBypassCacheOnRequestHeader>?
@@ -401,9 +401,9 @@ class ComputeBackendServiceBackendServiceCdnCacheKeyPolicy {
     this.queryStringBlacklist,
   });
 
-  TfArg<bool>? includeHost;
-  TfArg<bool>? includeProtocol;
-  TfArg<bool>? includeQueryString;
+  final TfArg<bool>? includeHost;
+  final TfArg<bool>? includeProtocol;
+  final TfArg<bool>? includeQueryString;
   final List<String>? includeHttpHeaders;
   final List<String>? includeNamedCookies;
   final List<String>? queryStringWhitelist;
@@ -416,13 +416,13 @@ class ComputeBackendServiceBackendServiceCdnCacheKeyPolicy {
     if (includeQueryString != null)
       'include_query_string': includeQueryString!.toTfJson(),
     if (includeHttpHeaders != null)
-      'include_http_headers': includeHttpHeaders!.toTfJson(),
+      'include_http_headers': includeHttpHeaders,
     if (includeNamedCookies != null)
-      'include_named_cookies': includeNamedCookies!.toTfJson(),
+      'include_named_cookies': includeNamedCookies,
     if (queryStringWhitelist != null)
-      'query_string_whitelist': queryStringWhitelist!.toTfJson(),
+      'query_string_whitelist': queryStringWhitelist,
     if (queryStringBlacklist != null)
-      'query_string_blacklist': queryStringBlacklist!.toTfJson(),
+      'query_string_blacklist': queryStringBlacklist,
   };
 }
 
@@ -437,10 +437,10 @@ class ComputeBackendServiceBackendServiceCdnNegativeCachingPolicy {
   /// HTTP status code to apply a TTL to. Valid values per schema:
   /// 300, 301, 308, 404, 405, 410, 421, 451, 501. Each code may appear
   /// at most once.
-  TfArg<int>? code;
+  final TfArg<int>? code;
 
   /// TTL in seconds.
-  TfArg<int>? ttl;
+  final TfArg<int>? ttl;
 
   Map<String, Object?> toArgMap() => {
     if (code != null) 'code': code!.toTfJson(),
@@ -471,7 +471,7 @@ class ComputeBackendServiceBackendServiceIap {
 
   /// Whether IAP is on. Setting `false` keeps the block but disables
   /// IAP enforcement.
-  TfArg<bool> enabled;
+  final TfArg<bool> enabled;
 
   /// OAuth 2.0 client ID for the OAuth consent screen.
   final TfArg<String>? oauth2ClientId;
@@ -506,11 +506,11 @@ class ComputeBackendServiceBackendServiceCircuitBreakers {
     this.maxRetries,
   });
 
-  TfArg<int>? maxConnections;
-  TfArg<int>? maxPendingRequests;
-  TfArg<int>? maxRequests;
-  TfArg<int>? maxRequestsPerConnection;
-  TfArg<int>? maxRetries;
+  final TfArg<int>? maxConnections;
+  final TfArg<int>? maxPendingRequests;
+  final TfArg<int>? maxRequests;
+  final TfArg<int>? maxRequestsPerConnection;
+  final TfArg<int>? maxRetries;
 
   Map<String, Object?> toArgMap() => {
     if (maxConnections != null) 'max_connections': maxConnections!.toTfJson(),
@@ -541,7 +541,7 @@ class ComputeBackendServiceBackendServiceConsistentHash {
   final TfArg<String>? httpHeaderName;
 
   /// Minimum ring size for `RING_HASH`. Default 1024.
-  TfArg<int>? minimumRingSize;
+  final TfArg<int>? minimumRingSize;
 
   /// Hash on a named HTTP cookie.
   final ComputeBackendServiceBackendServiceConsistentHashHttpCookie? httpCookie;
@@ -586,10 +586,10 @@ class ComputeBackendServiceBackendServiceDuration {
   });
 
   /// Whole seconds. Required by the schema for every Duration block.
-  TfArg<int> seconds;
+  final TfArg<int> seconds;
 
   /// Sub-second nanoseconds (`0`-`999_999_999`).
-  TfArg<int>? nanos;
+  final TfArg<int>? nanos;
 
   Map<String, Object?> toArgMap() => {
     'seconds': seconds.toTfJson(),
@@ -613,10 +613,10 @@ class ComputeBackendServiceBackendServiceLogConfig {
   });
 
   /// Master switch.
-  TfArg<bool>? enable;
+  final TfArg<bool>? enable;
 
   /// Sample rate `0.0`-`1.0`. Ignored when [enable] is `false`.
-  TfArg<double>? sampleRate;
+  final TfArg<double>? sampleRate;
 
   /// Which optional fields to include.
   final BackendServiceLogOptionalMode? optionalMode;
@@ -629,7 +629,7 @@ class ComputeBackendServiceBackendServiceLogConfig {
     if (enable != null) 'enable': enable!.toTfJson(),
     if (sampleRate != null) 'sample_rate': sampleRate!.toTfJson(),
     if (optionalMode != null) 'optional_mode': optionalMode!.terraformValue,
-    if (optionalFields != null) 'optional_fields': optionalFields!.toTfJson(),
+    if (optionalFields != null) 'optional_fields': optionalFields,
   };
 }
 
@@ -656,15 +656,15 @@ class ComputeBackendServiceBackendServiceOutlierDetection {
     this.interval,
   });
 
-  TfArg<int>? consecutiveErrors;
-  TfArg<int>? consecutiveGatewayFailure;
-  TfArg<int>? enforcingConsecutiveErrors;
-  TfArg<int>? enforcingConsecutiveGatewayFailure;
-  TfArg<int>? enforcingSuccessRate;
-  TfArg<int>? maxEjectionPercent;
-  TfArg<int>? successRateMinimumHosts;
-  TfArg<int>? successRateRequestVolume;
-  TfArg<int>? successRateStdevFactor;
+  final TfArg<int>? consecutiveErrors;
+  final TfArg<int>? consecutiveGatewayFailure;
+  final TfArg<int>? enforcingConsecutiveErrors;
+  final TfArg<int>? enforcingConsecutiveGatewayFailure;
+  final TfArg<int>? enforcingSuccessRate;
+  final TfArg<int>? maxEjectionPercent;
+  final TfArg<int>? successRateMinimumHosts;
+  final TfArg<int>? successRateRequestVolume;
+  final TfArg<int>? successRateStdevFactor;
 
   /// Base time a host stays ejected. Schema requires `seconds`.
   final ComputeBackendServiceBackendServiceDuration? baseEjectionTime;
@@ -731,7 +731,7 @@ class ComputeBackendServiceBackendServiceSecuritySettings {
     if (clientTlsPolicy != null)
       'client_tls_policy': clientTlsPolicy!.toTfJson(),
     if (subjectAltNames != null)
-      'subject_alt_names': subjectAltNames!.toTfJson(),
+      'subject_alt_names': subjectAltNames,
     if (awsV4Authentication != null)
       'aws_v4_authentication': [awsV4Authentication!.toArgMap()],
   };
@@ -814,7 +814,7 @@ class ComputeBackendServiceBackendServiceMaxStreamDuration {
   /// Decimal seconds as a string (schema oddity).
   final TfArg<String> seconds;
 
-  TfArg<int>? nanos;
+  final TfArg<int>? nanos;
 
   Map<String, Object?> toArgMap() => {
     'seconds': seconds.toTfJson(),
@@ -946,7 +946,7 @@ class ComputeBackendServiceBackendServiceCustomMetric {
     required this.dryRun,
   });
   final TfArg<String> name;
-  TfArg<bool> dryRun;
+  final TfArg<bool> dryRun;
   Map<String, Object?> toArgMap() => {
     'name': name.toTfJson(),
     'dry_run': dryRun.toTfJson(),

@@ -136,7 +136,7 @@ class ComputeSecurityPolicySecurityPolicyRule {
 
   /// Unique positive integer indicating evaluation order. Lower =
   /// higher priority. Reserve `2147483647` for the default rule.
-  TfArg<int> priority;
+  final TfArg<int> priority;
 
   /// What Cloud Armor does when this rule matches. Certain actions
   /// require sibling blocks: `rateBasedBan` / `throttle` need
@@ -155,7 +155,7 @@ class ComputeSecurityPolicySecurityPolicyRule {
   /// but matches are logged with a `preview: true` annotation -- use
   /// to validate a new rule against production traffic before flipping
   /// it live.
-  TfArg<bool>? preview;
+  final TfArg<bool>? preview;
 
   /// Required when [action] is [SecurityPolicyRuleAction.rateBasedBan]
   /// or [SecurityPolicyRuleAction.throttle]; forbidden otherwise.
@@ -291,12 +291,12 @@ class ComputeSecurityPolicySecurityPolicyRuleRateLimitOptions {
 
   /// Action for under-threshold requests. The schema only accepts
   /// `'allow'` today.
-  TfArg<String> conformAction;
+  final TfArg<String> conformAction;
 
   /// Action for over-threshold requests. Valid values are `'deny(403)'`,
   /// `'deny(404)'`, `'deny(429)'`, `'deny(502)'`, and `'redirect'`
   /// (paired with [exceedRedirectOptions]).
-  TfArg<String> exceedAction;
+  final TfArg<String> exceedAction;
 
   /// Required rate-limit threshold (counts per interval).
   final ComputeSecurityPolicySecurityPolicyRuleRateLimitThreshold
@@ -305,7 +305,7 @@ class ComputeSecurityPolicySecurityPolicyRuleRateLimitOptions {
   /// Only honored when the rule action is
   /// [SecurityPolicyRuleAction.rateBasedBan]. Seconds the key remains
   /// banned after the rate falls below threshold.
-  TfArg<int>? banDurationSec;
+  final TfArg<int>? banDurationSec;
 
   /// Only honored when the rule action is
   /// [SecurityPolicyRuleAction.rateBasedBan]. Trip threshold for
@@ -315,11 +315,11 @@ class ComputeSecurityPolicySecurityPolicyRuleRateLimitOptions {
   /// Which request attribute the threshold is keyed on (e.g. `'IP'`,
   /// `'HTTP_HEADER'`, `'HTTP_COOKIE'`, `'XFF_IP'`, ...). See the Cloud
   /// Armor docs for the full list.
-  TfArg<String>? enforceOnKey;
+  final TfArg<String>? enforceOnKey;
 
   /// Header / cookie name when [enforceOnKey] is `HTTP_HEADER` or
   /// `HTTP_COOKIE`.
-  TfArg<String>? enforceOnKeyName;
+  final TfArg<String>? enforceOnKeyName;
 
   /// Composite key (combine multiple attributes). Mutually exclusive
   /// with the single-attribute [enforceOnKey] / [enforceOnKeyName].
@@ -357,8 +357,8 @@ class ComputeSecurityPolicySecurityPolicyRuleRateLimitThreshold {
     required this.intervalSec,
   });
 
-  TfArg<int> count;
-  TfArg<int> intervalSec;
+  final TfArg<int> count;
+  final TfArg<int> intervalSec;
 
   Map<String, Object?> toArgMap() => {
     'count': count.toTfJson(),
@@ -376,11 +376,11 @@ class ComputeSecurityPolicySecurityPolicyRuleEnforceOnKeyConfig {
   });
 
   /// Attribute type (`'IP'`, `'HTTP_HEADER'`, `'HTTP_COOKIE'`, ...).
-  TfArg<String>? enforceOnKeyType;
+  final TfArg<String>? enforceOnKeyType;
 
   /// Header / cookie name when [enforceOnKeyType] is `HTTP_HEADER` or
   /// `HTTP_COOKIE`.
-  TfArg<String>? enforceOnKeyName;
+  final TfArg<String>? enforceOnKeyName;
 
   Map<String, Object?> toArgMap() => {
     if (enforceOnKeyType != null)
@@ -405,11 +405,11 @@ class ComputeSecurityPolicySecurityPolicyRuleRedirectOptions {
   /// `'EXTERNAL_302'` or `'GOOGLE_RECAPTCHA'`. Surfaced as a raw
   /// string to avoid yet another enum for a binary choice; validate
   /// with a comment at the call site.
-  TfArg<String> type;
+  final TfArg<String> type;
 
   /// HTTPS redirect target. Required for `EXTERNAL_302`; rejected for
   /// `GOOGLE_RECAPTCHA`.
-  TfArg<String>? target;
+  final TfArg<String>? target;
 
   Map<String, Object?> toArgMap() => {
     'type': type.toTfJson(),
@@ -452,8 +452,8 @@ class ComputeSecurityPolicySecurityPolicyRuleHeaderAdd {
     this.headerValue,
   });
 
-  TfArg<String> headerName;
-  TfArg<String>? headerValue;
+  final TfArg<String> headerName;
+  final TfArg<String>? headerValue;
 
   Map<String, Object?> toArgMap() => {
     'header_name': headerName.toTfJson(),
@@ -488,7 +488,7 @@ class ComputeSecurityPolicySecurityPolicyAdvancedOptionsConfig {
   /// Max request body size to inspect with WAF (`'8KB'`, `'16KB'`,
   /// `'32KB'`, `'48KB'`, `'64KB'` -- case-insensitive). Larger values
   /// catch more attacks at the cost of latency / cost.
-  TfArg<String>? requestBodyInspectionSize;
+  final TfArg<String>? requestBodyInspectionSize;
 
   /// Headers Cloud Armor consults to derive the client IP (in addition
   /// to the L4 source). Case-insensitive header names; typically
@@ -505,7 +505,7 @@ class ComputeSecurityPolicySecurityPolicyAdvancedOptionsConfig {
     if (requestBodyInspectionSize != null)
       'request_body_inspection_size': requestBodyInspectionSize!.toTfJson(),
     if (userIpRequestHeaders != null)
-      'user_ip_request_headers': userIpRequestHeaders!.toTfJson(),
+      'user_ip_request_headers': userIpRequestHeaders,
     if (jsonCustomConfig != null)
       'json_custom_config': [jsonCustomConfig!.toArgMap()],
   };
@@ -560,12 +560,12 @@ class ComputeSecurityPolicySecurityPolicyLayer7DdosDefenseConfig {
   });
 
   /// Master switch for L7 adaptive protection on this policy.
-  TfArg<bool>? enable;
+  final TfArg<bool>? enable;
 
   /// Which rule details are surfaced in attack alerts: `'STANDARD'`
   /// (anonymised) or `'PREMIUM'` (full rule body). Premium requires
   /// Managed Protection Plus.
-  TfArg<String>? ruleVisibility;
+  final TfArg<String>? ruleVisibility;
 
   /// Per-named-config threshold overrides. Each entry must have a
   /// unique [ComputeSecurityPolicySecurityPolicyAdaptiveProtectionThresholdConfig.name].
@@ -600,15 +600,15 @@ class ComputeSecurityPolicySecurityPolicyAdaptiveProtectionThresholdConfig {
   });
 
   /// Unique config name (1-63 chars, RFC1035).
-  TfArg<String> name;
+  final TfArg<String> name;
 
-  TfArg<double>? autoDeployConfidenceThreshold;
-  TfArg<double>? autoDeployExpirationSec;
-  TfArg<double>? autoDeployImpactedBaselineThreshold;
-  TfArg<double>? autoDeployLoadThreshold;
-  TfArg<double>? detectionAbsoluteQps;
-  TfArg<double>? detectionLoadThreshold;
-  TfArg<double>? detectionRelativeToBaselineQps;
+  final TfArg<double>? autoDeployConfidenceThreshold;
+  final TfArg<double>? autoDeployExpirationSec;
+  final TfArg<double>? autoDeployImpactedBaselineThreshold;
+  final TfArg<double>? autoDeployLoadThreshold;
+  final TfArg<double>? detectionAbsoluteQps;
+  final TfArg<double>? detectionLoadThreshold;
+  final TfArg<double>? detectionRelativeToBaselineQps;
 
   /// Per-traffic-segment thresholds (e.g. region, header value). Each
   /// entry constitutes a separate traffic unit for evaluation.
@@ -654,15 +654,15 @@ class ComputeSecurityPolicySecurityPolicyTrafficGranularityConfig {
 
   /// Granularity dimension (`'HTTP_HEADER_HOST'`, `'HTTP_PATH'`, ...).
   /// See the Cloud Armor docs for the supported types.
-  TfArg<String> type;
+  final TfArg<String> type;
 
   /// When true, each unique value of [type] constitutes a separate
   /// traffic unit. Mutually exclusive with [value].
-  TfArg<bool>? enableEachUniqueValue;
+  final TfArg<bool>? enableEachUniqueValue;
 
   /// Pin a specific value to constitute a granular traffic unit.
   /// Mutually exclusive with [enableEachUniqueValue].
-  TfArg<String>? value;
+  final TfArg<String>? value;
 
   Map<String, Object?> toArgMap() => {
     'type': type.toTfJson(),

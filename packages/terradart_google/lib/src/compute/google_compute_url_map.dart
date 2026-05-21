@@ -58,13 +58,13 @@ class ComputeUrlMapUrlMapHostRule {
   /// Local name of the [ComputeUrlMapUrlMapPathMatcher] this rule dispatches to. Must
   /// match a [ComputeUrlMapUrlMapPathMatcher.name] within the same URL map -- this is
   /// NOT a `google_compute_*` resource address.
-  TfArg<String> pathMatcher;
+  final TfArg<String> pathMatcher;
 
   /// Free-form description.
-  TfArg<String>? description;
+  final TfArg<String>? description;
 
   Map<String, Object?> toArgMap() => {
-    'hosts': hosts.toTfJson(),
+    'hosts': hosts,
     'path_matcher': pathMatcher.toTfJson(),
     if (description != null) 'description': description!.toTfJson(),
   };
@@ -100,7 +100,7 @@ class ComputeUrlMapUrlMapPathMatcher {
   });
 
   /// Local name used by [ComputeUrlMapUrlMapHostRule.pathMatcher]. NOT a self-link.
-  TfArg<String> name;
+  final TfArg<String> name;
 
   /// Fallback backend self-link consulted when neither [pathRules] nor
   /// [routeRules] match. Accepts either a `backend_service` or a
@@ -184,7 +184,7 @@ class ComputeUrlMapUrlMapPathRule {
   final Map<String, Object?>? advancedExtra;
 
   Map<String, Object?> toArgMap() => {
-    'paths': paths.toTfJson(),
+    'paths': paths,
     if (service != null) 'service': service!.toTfJson(),
     if (urlRedirect != null) 'url_redirect': [urlRedirect!.toArgMap()],
     if (advancedExtra != null) ...advancedExtra!,
@@ -210,7 +210,7 @@ class ComputeUrlMapUrlMapRouteRule {
 
   /// Evaluation priority. Lower numbers evaluated first. Required by the
   /// schema. Must be unique within a single [ComputeUrlMapUrlMapPathMatcher.routeRules].
-  TfArg<int> priority;
+  final TfArg<int> priority;
 
   /// Backend self-link (backend service OR backend bucket). Mutually
   /// exclusive with [urlRedirect].
@@ -380,10 +380,10 @@ class ComputeUrlMapUrlMapHeaderMatchRange {
   });
 
   /// Inclusive lower bound.
-  TfArg<int> rangeStart;
+  final TfArg<int> rangeStart;
 
   /// Exclusive upper bound.
-  TfArg<int> rangeEnd;
+  final TfArg<int> rangeEnd;
 
   Map<String, Object?> toArgMap() => {
     'range_start': rangeStart.toTfJson(),

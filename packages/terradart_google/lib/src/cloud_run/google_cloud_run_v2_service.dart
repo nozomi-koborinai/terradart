@@ -505,7 +505,7 @@ class CloudRunV2ServiceEnvVar {
   const CloudRunV2ServiceEnvVar({required this.name, this.source});
 
   /// C_IDENTIFIER name. Required.
-  TfArg<String> name;
+  final TfArg<String> name;
 
   /// Value source. Pick exactly one of [CloudRunV2ServiceEnvVarFromLiteral] or
   /// [CloudRunV2ServiceEnvVarFromSecret].

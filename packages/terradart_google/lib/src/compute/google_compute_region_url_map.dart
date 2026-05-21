@@ -58,13 +58,13 @@ class ComputeRegionUrlMapRegionUrlMapHostRule {
   /// Local name of the [ComputeRegionUrlMapRegionUrlMapPathMatcher] this rule dispatches to.
   /// Must match a [ComputeRegionUrlMapRegionUrlMapPathMatcher.name] within the same URL map --
   /// this is NOT a `google_compute_*` resource address.
-  TfArg<String> pathMatcher;
+  final TfArg<String> pathMatcher;
 
   /// Free-form description.
-  TfArg<String>? description;
+  final TfArg<String>? description;
 
   Map<String, Object?> toArgMap() => {
-    'hosts': hosts.toTfJson(),
+    'hosts': hosts,
     'path_matcher': pathMatcher.toTfJson(),
     if (description != null) 'description': description!.toTfJson(),
   };
@@ -100,7 +100,7 @@ class ComputeRegionUrlMapRegionUrlMapPathMatcher {
   });
 
   /// Local name used by [ComputeRegionUrlMapRegionUrlMapHostRule.pathMatcher]. NOT a self-link.
-  TfArg<String> name;
+  final TfArg<String> name;
 
   /// Fallback backend self-link consulted when neither [pathRules] nor
   /// [routeRules] match. Accepts either a `region_backend_service` or a
@@ -184,7 +184,7 @@ class ComputeRegionUrlMapRegionUrlMapPathRule {
   final Map<String, Object?>? advancedExtra;
 
   Map<String, Object?> toArgMap() => {
-    'paths': paths.toTfJson(),
+    'paths': paths,
     if (service != null) 'service': service!.toTfJson(),
     if (urlRedirect != null) 'url_redirect': [urlRedirect!.toArgMap()],
     if (advancedExtra != null) ...advancedExtra!,
@@ -211,7 +211,7 @@ class ComputeRegionUrlMapRegionUrlMapRouteRule {
   /// Evaluation priority. Lower numbers evaluated first. Required by the
   /// schema. Must be unique within a single
   /// [ComputeRegionUrlMapRegionUrlMapPathMatcher.routeRules].
-  TfArg<int> priority;
+  final TfArg<int> priority;
 
   /// Backend self-link (region backend service OR backend bucket).
   /// Mutually exclusive with [urlRedirect].
@@ -382,10 +382,10 @@ class ComputeRegionUrlMapRegionUrlMapHeaderMatchRange {
   });
 
   /// Inclusive lower bound.
-  TfArg<int> rangeStart;
+  final TfArg<int> rangeStart;
 
   /// Exclusive upper bound.
-  TfArg<int> rangeEnd;
+  final TfArg<int> rangeEnd;
 
   Map<String, Object?> toArgMap() => {
     'range_start': rangeStart.toTfJson(),

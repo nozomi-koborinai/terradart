@@ -2,8 +2,8 @@
 /// Artifact Registry: container / package repository, per-repository IAM.
 ///
 /// Format is set at creation time and immutable. Pair `format: DOCKER`
-/// with [ArtifactRegistryDockerConfig], `format: MAVEN` with
-/// [ArtifactRegistryMavenConfig]. Mode is `STANDARD_REPOSITORY` (default),
+/// with [ArtifactRegistryRepositoryArtifactRegistryDockerConfig], `format: MAVEN` with
+/// [ArtifactRegistryRepositoryArtifactRegistryMavenConfig]. Mode is `STANDARD_REPOSITORY` (default),
 /// `VIRTUAL_REPOSITORY` (aggregating proxy), or `REMOTE_REPOSITORY`
 /// (caching proxy).
 ///
@@ -15,22 +15,22 @@ library;
 export 'src/artifact_registry/google_artifact_registry_repository.dart'
     show
         ArtifactRegistryCleanupAction,
-        ArtifactRegistryCleanupCondition,
-        ArtifactRegistryCleanupMostRecentVersions,
-        ArtifactRegistryCleanupPolicy,
+        ArtifactRegistryRepositoryArtifactRegistryCleanupCondition,
+        ArtifactRegistryRepositoryArtifactRegistryCleanupMostRecentVersions,
+        ArtifactRegistryRepositoryArtifactRegistryCleanupPolicy,
         ArtifactRegistryCleanupTagState,
-        ArtifactRegistryDockerConfig,
-        ArtifactRegistryMavenConfig,
+        ArtifactRegistryRepositoryArtifactRegistryDockerConfig,
+        ArtifactRegistryRepositoryArtifactRegistryMavenConfig,
         ArtifactRegistryMavenVersionPolicy,
         ArtifactRegistryMode,
-        ArtifactRegistryRemoteCommonRepository,
-        ArtifactRegistryRemoteRepositoryConfig,
-        ArtifactRegistryRemoteUpstreamCredentials,
-        ArtifactRegistryRemoteUsernamePasswordCredentials,
-        ArtifactRegistryVirtualRepositoryConfig,
-        ArtifactRegistryVirtualUpstreamPolicy,
+        ArtifactRegistryRepositoryArtifactRegistryRemoteCommonRepository,
+        ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig,
+        ArtifactRegistryRepositoryArtifactRegistryRemoteUpstreamCredentials,
+        ArtifactRegistryRepositoryArtifactRegistryRemoteUsernamePasswordCredentials,
+        ArtifactRegistryRepositoryArtifactRegistryVirtualRepositoryConfig,
+        ArtifactRegistryRepositoryArtifactRegistryVirtualUpstreamPolicy,
         ArtifactRegistryVulnerabilityEnablementConfig,
-        ArtifactRegistryVulnerabilityScanningConfig,
+        ArtifactRegistryRepositoryArtifactRegistryVulnerabilityScanningConfig,
         GoogleArtifactRegistryRepository;
 export 'src/artifact_registry/google_artifact_registry_repository_iam_member.dart'
     show GoogleArtifactRegistryRepositoryIamMember;

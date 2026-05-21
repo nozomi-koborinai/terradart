@@ -6,14 +6,14 @@ library;
 export 'src/firestore/google_firestore_backup_schedule.dart'
     show
         BackupDayOfWeek,
-        BackupRecurrence,
-        DailyRecurrence,
+        FirestoreBackupScheduleBackupRecurrence,
+        FirestoreBackupScheduleDailyRecurrence,
         GoogleFirestoreBackupSchedule,
-        WeeklyRecurrence;
+        FirestoreBackupScheduleWeeklyRecurrence;
 export 'src/firestore/google_firestore_database.dart'
     show
         AppEngineIntegrationMode,
-        CmekConfig,
+        FirestoreDatabaseCmekConfig,
         ConcurrencyMode,
         DatabaseEdition,
         DeleteProtectionState,
@@ -28,9 +28,9 @@ export 'src/firestore/google_firestore_field.dart'
         FirestoreFieldOrder,
         FirestoreFieldQueryScope,
         GoogleFirestoreField,
-        IndexConfig,
-        SingleFieldIndex,
-        TtlConfig;
+        FirestoreFieldIndexConfig,
+        FirestoreFieldSingleFieldIndex,
+        FirestoreFieldTtlConfig;
 export 'src/firestore/google_firestore_index.dart'
     show
         FirestoreIndexApiScope,
@@ -39,13 +39,13 @@ export 'src/firestore/google_firestore_index.dart'
         FirestoreIndexOrder,
         FirestoreIndexQueryScope,
         GoogleFirestoreIndex,
-        IndexField,
-        IndexFieldArrayConfig,
-        IndexFieldOrder,
-        IndexFieldSearchConfig,
-        IndexFieldSpec,
-        IndexFieldTextSpec,
-        IndexFieldTextSpecEntry,
-        IndexFieldVectorConfig;
+        FirestoreIndexIndexField,
+        FirestoreIndexIndexFieldArrayConfig,
+        FirestoreIndexIndexFieldOrder,
+        FirestoreIndexIndexFieldSearchConfig,
+        FirestoreIndexIndexFieldSpec,
+        FirestoreIndexIndexFieldTextSpec,
+        FirestoreIndexIndexFieldTextSpecEntry,
+        FirestoreIndexIndexFieldVectorConfig;
 export 'src/firestore/google_firestore_user_creds.dart'
     show GoogleFirestoreUserCreds;

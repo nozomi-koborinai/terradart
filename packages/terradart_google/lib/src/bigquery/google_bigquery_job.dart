@@ -261,18 +261,18 @@ class BigqueryJobQuery {
   final BigqueryJobQueryPriority? priority;
   final BigqueryJobParameterMode? parameterMode;
 
-  TfArg<bool>? useQueryCache;
-  TfArg<bool>? flattenResults;
-  TfArg<bool>? allowLargeResults;
+  final TfArg<bool>? useQueryCache;
+  final TfArg<bool>? flattenResults;
+  final TfArg<bool>? allowLargeResults;
 
   /// Legacy SQL only. Cap on billing tier for the query.
-  TfArg<int>? maximumBillingTier;
+  final TfArg<int>? maximumBillingTier;
 
   /// Int64 as a String per BigQuery API convention. Cap on bytes
   /// billed; the job aborts if exceeded.
   final TfArg<String>? maximumBytesBilled;
 
-  TfArg<bool>? useLegacySql;
+  final TfArg<bool>? useLegacySql;
 
   /// One or more of `ALLOW_FIELD_ADDITION`,
   /// `ALLOW_FIELD_RELAXATION`. Only honored for `WRITE_APPEND` (and
@@ -313,7 +313,7 @@ class BigqueryJobQuery {
       'maximum_bytes_billed': maximumBytesBilled!.toTfJson(),
     if (useLegacySql != null) 'use_legacy_sql': useLegacySql!.toTfJson(),
     if (schemaUpdateOptions != null)
-      'schema_update_options': schemaUpdateOptions!.toTfJson(),
+      'schema_update_options': schemaUpdateOptions,
   };
 }
 
@@ -452,14 +452,14 @@ class BigqueryJobLoad {
   /// Datastore backup only — fields to load from the backup.
   final List<String>? projectionFields;
 
-  TfArg<bool>? autodetect;
-  TfArg<bool>? allowJaggedRows;
-  TfArg<bool>? allowQuotedNewlines;
-  TfArg<bool>? ignoreUnknownValues;
-  TfArg<int>? maxBadRecords;
+  final TfArg<bool>? autodetect;
+  final TfArg<bool>? allowJaggedRows;
+  final TfArg<bool>? allowQuotedNewlines;
+  final TfArg<bool>? ignoreUnknownValues;
+  final TfArg<int>? maxBadRecords;
 
   /// CSV only. Number of header rows to skip (typically 1).
-  TfArg<int>? skipLeadingRows;
+  final TfArg<int>? skipLeadingRows;
 
   /// CSV only. Single-character delimiter. The provider lets this
   /// be computed (it has a default).
@@ -493,9 +493,9 @@ class BigqueryJobLoad {
     if (writeDisposition != null)
       'write_disposition': writeDisposition!.terraformValue,
     if (schemaUpdateOptions != null)
-      'schema_update_options': schemaUpdateOptions!.toTfJson(),
+      'schema_update_options': schemaUpdateOptions,
     if (projectionFields != null)
-      'projection_fields': projectionFields!.toTfJson(),
+      'projection_fields': projectionFields,
     if (autodetect != null) 'autodetect': autodetect!.toTfJson(),
     if (allowJaggedRows != null)
       'allow_jagged_rows': allowJaggedRows!.toTfJson(),
@@ -552,8 +552,8 @@ class BigqueryJobParquetOptions {
     this.enumAsString,
   });
 
-  TfArg<bool>? enableListInference;
-  TfArg<bool>? enumAsString;
+  final TfArg<bool>? enableListInference;
+  final TfArg<bool>? enumAsString;
 
   Map<String, Object?> toArgMap() => {
     if (enableListInference != null)
@@ -603,10 +603,10 @@ class BigqueryJobExtract {
   final TfArg<String>? fieldDelimiter;
 
   /// CSV only. Whether to write a header row (defaults true).
-  TfArg<bool>? printHeader;
+  final TfArg<bool>? printHeader;
 
   /// Avro only. Use Avro logical types for TIMESTAMP / DATETIME etc.
-  TfArg<bool>? useAvroLogicalTypes;
+  final TfArg<bool>? useAvroLogicalTypes;
 
   Map<String, Object?> toArgMap() => {
     'destination_uris': destinationUris.toTfJson(),

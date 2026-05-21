@@ -3,13 +3,13 @@ import 'package:terradart_google/terradart_google.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('SchedulerTarget — sealed', () {
-    test('PubsubTarget.topicName MUST be topic.id (full path)', () {
+  group('CloudSchedulerJobSchedulerTarget — sealed', () {
+    test('CloudSchedulerJobPubsubTarget.topicName MUST be topic.id (full path)', () {
       final topic = GooglePubsubTopic(
         localName: 'orders',
         name: TfArg.literal('orders'),
       );
-      final target = PubsubTarget(
+      final target = CloudSchedulerJobPubsubTarget(
         topicName: TfArg.ref(topic.id),
         data: TfArg.literal('dGVzdA=='),
       );
@@ -20,11 +20,11 @@ void main() {
       );
     });
 
-    test('HttpTarget with oidc_token', () {
-      const t = HttpTarget(
+    test('CloudSchedulerJobHttpTarget with oidc_token', () {
+      const t = CloudSchedulerJobHttpTarget(
         uri: TfArgLiteral<String>('https://example.com'),
         httpMethod: TfArgLiteral<String>('POST'),
-        oidcToken: HttpOidcToken(
+        oidcToken: CloudSchedulerJobHttpOidcToken(
           serviceAccountEmail: TfArgLiteral<String>(
             'sa@p.iam.gserviceaccount.com',
           ),
@@ -43,11 +43,11 @@ void main() {
       );
     });
 
-    test('AppEngineHttpTarget routing block', () {
-      const t = AppEngineHttpTarget(
+    test('CloudSchedulerJobAppEngineHttpTarget routing block', () {
+      const t = CloudSchedulerJobAppEngineHttpTarget(
         relativeUri: TfArgLiteral<String>('/cron'),
         httpMethod: TfArgLiteral<String>('POST'),
-        appEngineRouting: AppEngineRouting(
+        appEngineRouting: CloudSchedulerJobAppEngineRouting(
           service: TfArgLiteral<String>('default'),
           version: TfArgLiteral<String>('v1'),
         ),
@@ -75,7 +75,7 @@ void main() {
         name: TfArg.literal('nightly'),
         region: TfArg.literal('us-central1'),
         schedule: TfArg.literal('0 0 * * *'),
-        target: PubsubTarget(
+        target: CloudSchedulerJobPubsubTarget(
           topicName: TfArg.ref(topic.id),
           data: TfArg.literal('dHJpZ2dlcg=='),
         ),
@@ -102,7 +102,7 @@ void main() {
         name: TfArg.literal('health'),
         region: TfArg.literal('us-central1'),
         schedule: TfArg.literal('*/5 * * * *'),
-        target: const HttpTarget(
+        target: const CloudSchedulerJobHttpTarget(
           uri: TfArgLiteral<String>('https://app.example.com/health'),
           httpMethod: TfArgLiteral<String>('GET'),
         ),
@@ -114,15 +114,15 @@ void main() {
       expect(job.argMap.containsKey('pubsub_target'), isFalse);
     });
 
-    test('SchedulerRetryConfig snake_case keys', () {
+    test('CloudSchedulerJobSchedulerRetryConfig snake_case keys', () {
       final job = GoogleCloudSchedulerJob(
         localName: 'j',
         name: TfArg.literal('j'),
         region: TfArg.literal('us-central1'),
-        target: const HttpTarget(
+        target: const CloudSchedulerJobHttpTarget(
           uri: TfArgLiteral<String>('https://app.example.com'),
         ),
-        retryConfig: const SchedulerRetryConfig(
+        retryConfig: const CloudSchedulerJobSchedulerRetryConfig(
           retryCount: TfArgLiteral<int>(3),
           minBackoffDuration: TfArgLiteral<String>('5s'),
           maxBackoffDuration: TfArgLiteral<String>('60s'),

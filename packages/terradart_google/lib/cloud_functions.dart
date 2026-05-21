@@ -6,23 +6,23 @@ library;
 export 'src/cloud_functions/google_cloudfunctions2_function.dart'
     show
         AutomaticUpdatePolicy,
-        BuildConfig,
+        Cloudfunctions2FunctionBuildConfig,
         DirectVpcEgress,
-        DirectVpcNetworkInterface,
-        EventFilter,
-        EventTrigger,
+        Cloudfunctions2FunctionDirectVpcNetworkInterface,
+        Cloudfunctions2FunctionEventFilter,
+        Cloudfunctions2FunctionEventTrigger,
         EventTriggerRetryPolicy,
         GoogleCloudfunctions2Function,
         IngressSettings,
         OnDeployUpdatePolicy,
         RepoSource,
-        SecretEnvironmentVariable,
-        SecretVolume,
-        SecretVolumeVersion,
-        ServiceConfig,
-        SourceConfig,
+        Cloudfunctions2FunctionSecretEnvironmentVariable,
+        Cloudfunctions2FunctionSecretVolume,
+        Cloudfunctions2FunctionSecretVolumeVersion,
+        Cloudfunctions2FunctionServiceConfig,
+        Cloudfunctions2FunctionSourceConfig,
         StorageSource,
-        UpdatePolicy,
+        Cloudfunctions2FunctionUpdatePolicy,
         VpcConnectorEgressSettings;
 export 'src/cloud_functions/google_cloudfunctions2_function_iam_member.dart'
     show GoogleCloudfunctions2FunctionIamMember;

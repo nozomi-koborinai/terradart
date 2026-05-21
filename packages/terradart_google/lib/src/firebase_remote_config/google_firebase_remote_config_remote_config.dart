@@ -69,10 +69,10 @@ class FirebaseRemoteConfigRemoteConfigRemoteConfigCondition {
 
   /// Unique condition name. Referenced verbatim by
   /// [FirebaseRemoteConfigRemoteConfigRemoteConfigConditionalValue.conditionName].
-  TfArg<String> name;
+  final TfArg<String> name;
 
   /// Condition expression (see the link in the class doc).
-  TfArg<String> expression;
+  final TfArg<String> expression;
 
   /// Display swatch for the Firebase Console. Null lets the Console
   /// auto-assign.
@@ -111,10 +111,10 @@ class FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue {
 
   /// When true, the parameter is omitted from values returned to the
   /// client (the client falls back to its in-app default).
-  TfArg<bool>? useInAppDefault;
+  final TfArg<bool>? useInAppDefault;
 
   /// String value (interpreted per the parent parameter's `valueType`).
-  TfArg<String>? value;
+  final TfArg<String>? value;
 
   Map<String, Object?> toArgMap() => {
     if (useInAppDefault != null)
@@ -148,15 +148,15 @@ class FirebaseRemoteConfigRemoteConfigRemoteConfigConditionalValue {
   /// Must match a [FirebaseRemoteConfigRemoteConfigRemoteConfigCondition.name] in the parent template's
   /// [conditions] list. Mismatches are not caught at compile time;
   /// Terraform apply surfaces the error from the Remote Config API.
-  TfArg<String> conditionName;
+  final TfArg<String> conditionName;
 
   /// When true, the parameter is omitted from values returned to the
   /// client (the client falls back to its in-app default) when this
   /// condition matches.
-  TfArg<bool>? useInAppDefault;
+  final TfArg<bool>? useInAppDefault;
 
   /// String value (interpreted per the parent parameter's `valueType`).
-  TfArg<String>? value;
+  final TfArg<String>? value;
 
   Map<String, Object?> toArgMap() => {
     'condition_name': conditionName.toTfJson(),
@@ -192,11 +192,11 @@ class FirebaseRemoteConfigRemoteConfigRemoteConfigParameter {
 
   /// Parameter key (referenced by client SDKs via
   /// `RemoteConfig.getValue('<parameter_name>')`).
-  TfArg<String> parameterName;
+  final TfArg<String> parameterName;
 
   /// Free-form description (<= 256 Unicode chars). Surfaced in the
   /// Firebase Console.
-  TfArg<String>? description;
+  final TfArg<String>? description;
 
   /// Data type for [defaultValue.value] / [conditionalValues[].value].
   /// Null falls through to the provider default
@@ -244,11 +244,11 @@ class FirebaseRemoteConfigRemoteConfigRemoteConfigParameterGroup {
 
   /// Human-readable group identifier (<= 256 Unicode chars). Unique
   /// within the template.
-  TfArg<String> parameterGroupName;
+  final TfArg<String> parameterGroupName;
 
   /// Free-form description (<= 256 Unicode chars). Surfaced in the
   /// Firebase Console.
-  TfArg<String>? description;
+  final TfArg<String>? description;
 
   /// Parameters belonging to this group. Each parameter appears exactly
   /// once in the entire template -- either at the top level OR within

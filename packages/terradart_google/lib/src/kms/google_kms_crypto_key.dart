@@ -45,7 +45,7 @@ class KmsCryptoKeyVersionTemplate {
     required this.algorithm,
     this.protectionLevel,
   });
-  TfArg<String> algorithm;
+  final TfArg<String> algorithm;
   final KmsProtectionLevel? protectionLevel;
   Map<String, Object?> toArgMap() => {
     'algorithm': algorithm.toTfJson(),
