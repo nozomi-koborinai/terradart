@@ -182,21 +182,20 @@ class TfJsonEncoder {
     return out;
   }
 
-  /// Walks the encoded structure masking the leaf of every path in
+  /// Walks the encoded structure checking the leaf of every path in
   /// [paths]. Each path is the remaining segment list (the top-level
   /// key has already been consumed by the caller).
   ///
   /// - `List`: applied to every element (handles `[{...}]` single-block
   ///   wrappings and unbounded `[...]` block lists alike).
-  /// - `Map`: descends one segment per path; masks at the leaf.
+  /// - `Map`: descends one segment per path; **throws** at literal leaves.
   /// - Other (primitive, or `${...}` ref string): returned unchanged.
   ///
   /// Leaves whose value already looks like a Terraform interpolation
-  /// (`${...}`) are passed through — zeroing them would break wiring.
-  ///
-  /// [resourceAddress] and [parentKey] are threaded through for the
-  /// Task 5 upgrade where masked leaves will throw [SensitiveLiteralError]
-  /// instead of silently writing empty string.
+  /// (`${...}`) are passed through — refs and variables are safe in
+  /// sensitive positions. Plain string / int / bool literals at a
+  /// sensitive leaf throw [SensitiveLiteralError] with the dotted
+  /// `<parentKey>.<leaf>` path as `fieldPath`.
   static dynamic _checkNestedPaths(
     dynamic value,
     List<List<String>> paths, {
@@ -216,12 +215,12 @@ class TfJsonEncoder {
           .toList();
     }
     if (value is Map) {
-      final leavesToMask = <String>{};
+      final leavesToCheck = <String>{};
       final byHead = <String, List<List<String>>>{};
       for (final path in paths) {
         if (path.isEmpty) continue;
         if (path.length == 1) {
-          leavesToMask.add(path.first);
+          leavesToCheck.add(path.first);
         } else {
           byHead
               .putIfAbsent(path.first, () => <List<String>>[])
@@ -229,23 +228,27 @@ class TfJsonEncoder {
         }
       }
 
-      final out = Map<String, dynamic>.from(value);
-      for (final leaf in leavesToMask) {
-        if (!out.containsKey(leaf)) continue;
-        final leafValue = out[leaf];
+      for (final leaf in leavesToCheck) {
+        if (!value.containsKey(leaf)) continue;
+        final leafValue = value[leaf];
         if (leafValue is String && leafValue.startsWith(r'${')) {
-          // Ref interpolation — pass through.
+          // Interpolation (ref or variable) — safe, pass through.
           continue;
         }
-        out[leaf] = '';
+        // Primitive literal at a sensitive leaf — throw.
+        throw SensitiveLiteralError(
+          resourceAddress: resourceAddress,
+          fieldPath: '$parentKey.$leaf',
+        );
       }
+      final out = Map<String, dynamic>.from(value);
       byHead.forEach((head, remaining) {
         if (out.containsKey(head)) {
           out[head] = _checkNestedPaths(
             out[head],
             remaining,
             resourceAddress: resourceAddress,
-            parentKey: head,
+            parentKey: '$parentKey.$head',
           );
         }
       });

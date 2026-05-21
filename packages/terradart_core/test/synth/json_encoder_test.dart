@@ -662,6 +662,77 @@ void main() {
     });
   });
 
+  group('TfJsonEncoder sensitive throw (nested)', () {
+    test('throws SensitiveLiteralError on nested literal-on-sensitive', () {
+      final argMap = <String, TfArg<dynamic>?>{
+        'customer_encryption': const TfArgLiteral<List<dynamic>>([
+          {
+            'encryption_algorithm': 'AES256',
+            'encryption_key': 'raw-base64-key',
+          },
+        ]),
+      };
+      expect(
+        () => TfJsonEncoder.encodeArgMapWithSensitive(
+          argMap: argMap,
+          sensitiveFields: const {'customer_encryption.encryption_key'},
+          resourceAddress: 'google_storage_bucket_object.assets',
+        ),
+        throwsA(
+          isA<SensitiveLiteralError>().having(
+            (e) => e.fieldPath,
+            'fieldPath',
+            equals('customer_encryption.encryption_key'),
+          ),
+        ),
+      );
+    });
+
+    test('nested ref interpolation at sensitive leaf passes through', () {
+      final argMap = <String, TfArg<dynamic>?>{
+        'customer_encryption': const TfArgLiteral<List<dynamic>>([
+          {
+            'encryption_algorithm': 'AES256',
+            'encryption_key': r'${var.csek_key}',
+          },
+        ]),
+      };
+      final out = TfJsonEncoder.encodeArgMapWithSensitive(
+        argMap: argMap,
+        sensitiveFields: const {'customer_encryption.encryption_key'},
+        resourceAddress: 'google_storage_bucket_object.assets',
+      );
+      expect(
+        out,
+        equals({
+          'customer_encryption': [
+            {
+              'encryption_algorithm': 'AES256',
+              'encryption_key': r'${var.csek_key}',
+            },
+          ],
+        }),
+      );
+    });
+
+    test('nested: multiple sibling sensitive paths — first literal throws',
+        () {
+      final argMap = <String, TfArg<dynamic>?>{
+        'block': const TfArgLiteral<List<dynamic>>([
+          {'a': 'A-val', 'b': 'B-val', 'c': 'C-val'},
+        ]),
+      };
+      expect(
+        () => TfJsonEncoder.encodeArgMapWithSensitive(
+          argMap: argMap,
+          sensitiveFields: const {'block.a', 'block.b'},
+          resourceAddress: 'fake.r',
+        ),
+        throwsA(isA<SensitiveLiteralError>()),
+      );
+    });
+  });
+
   group('TfJsonEncoder sensitive throw (top-level)', () {
     test('throws SensitiveLiteralError on TfArgLiteral assigned to '
         'sensitive top-level field', () {
