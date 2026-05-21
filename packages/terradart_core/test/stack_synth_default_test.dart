@@ -1,7 +1,6 @@
 import 'dart:convert' as dart_convert;
 import 'dart:io';
 
-import 'package:terradart_core/src/stack.dart';
 import 'package:test/test.dart';
 
 import 'helpers/fake_resources.dart';

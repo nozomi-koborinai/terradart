@@ -18,7 +18,7 @@ class EmailJobsStack extends Stack {
   EmailJobsStack({required String projectId})
       : super(
           providers: [
-            GoogleProvider(project: projectId, region: 'us-central1')
+            GoogleProvider(project: projectId, region: 'us-central1'),
           ],
         ) {
     final queue = add(

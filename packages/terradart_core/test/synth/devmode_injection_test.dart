@@ -56,7 +56,7 @@ void main() {
       stack.add(_CapableResource(
         localName: 'r',
         name: const TfArgLiteral('x'),
-      ));
+      ),);
 
       final group = TfJsonEncoder.resourcesGroup(stack);
       expect(group, isNotNull);
@@ -80,7 +80,7 @@ void main() {
         localName: 'r',
         name: const TfArgLiteral('x'),
         deletionProtection: const TfArgLiteral<bool>(true),
-      ));
+      ),);
 
       final group = TfJsonEncoder.resourcesGroup(stack);
       final block = group!['fake_protected_thing']!['r']
@@ -101,7 +101,7 @@ void main() {
       stack.add(_CapableResource(
         localName: 'r',
         name: const TfArgLiteral('x'),
-      ));
+      ),);
 
       final group = TfJsonEncoder.resourcesGroup(stack);
       final block = group!['fake_protected_thing']!['r']
@@ -123,7 +123,7 @@ void main() {
       stack.add(FakeResource(
         localName: 'r',
         name: const TfArgLiteral('x'),
-      ));
+      ),);
 
       final group = TfJsonEncoder.resourcesGroup(stack);
       final block =

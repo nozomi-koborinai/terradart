@@ -25,7 +25,7 @@ class OrdersStack extends Stack {
   OrdersStack({required String projectId})
       : super(
           providers: [
-            GoogleProvider(project: projectId, region: 'us-central1')
+            GoogleProvider(project: projectId, region: 'us-central1'),
           ],
         ) {
     final topic = add(

@@ -24,7 +24,7 @@ class DbCredentialsStack extends Stack {
     int secretVersion = 1,
   }) : super(
           providers: [
-            GoogleProvider(project: projectId, region: 'us-central1')
+            GoogleProvider(project: projectId, region: 'us-central1'),
           ],
         ) {
     // 1. The secret resource itself (auto-replicated).

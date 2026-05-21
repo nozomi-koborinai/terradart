@@ -146,7 +146,7 @@ void main() {
         dispatch(TfArg.ref(TfRef.attribute<String>(
           _FakeAddressed('data.x.y'),
           'z',
-        ))),
+        ),),),
         equals('ref'),
       );
       expect(

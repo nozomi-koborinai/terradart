@@ -9,3 +9,8 @@ workspace:
   - packages/terradart_core
   - packages/terradart_codegen
   - packages/terradart_google
+dev_dependencies:
+  meta: any
+  pub_semver: any
+  http: any
+  yaml: any
