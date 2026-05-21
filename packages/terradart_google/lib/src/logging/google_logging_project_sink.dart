@@ -8,8 +8,8 @@ const Set<String> _googleLoggingProjectSinkSensitive = <String>{};
 
 /// `bigquery_options` block. Toggles partitioned tables for BigQuery
 /// destinations (date-sharded vs. partitioned by `_PARTITIONTIME`).
-class BigqueryOptions {
-  const BigqueryOptions({required this.usePartitionedTables});
+class LoggingProjectSinkBigqueryOptions {
+  const LoggingProjectSinkBigqueryOptions({required this.usePartitionedTables});
   TfArg<bool> usePartitionedTables;
   Map<String, Object?> toArgMap() => {
     'use_partitioned_tables': usePartitionedTables,
@@ -19,8 +19,8 @@ class BigqueryOptions {
 /// One entry in the `exclusions` list. Log entries matching `filter`
 /// are dropped before being routed to the sink's destination.
 /// `name` must be unique within the sink.
-class LogSinkExclusion {
-  const LogSinkExclusion({
+class LoggingProjectSinkLogSinkExclusion {
+  const LoggingProjectSinkLogSinkExclusion({
     required this.name,
     required this.filter,
     this.description,
@@ -87,8 +87,8 @@ final class GoogleLoggingProjectSink extends Resource {
     TfArg<bool>? disabled,
     TfArg<bool>? uniqueWriterIdentity,
     TfArg<String>? customWriterIdentity,
-    BigqueryOptions? bigqueryOptions,
-    List<LogSinkExclusion>? exclusions,
+    LoggingProjectSinkBigqueryOptions? bigqueryOptions,
+    List<LoggingProjectSinkLogSinkExclusion>? exclusions,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

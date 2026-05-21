@@ -155,31 +155,31 @@ class DnsManagedZoneDnssecKeySpec {
 /// `peering_config` block. Exactly one `target_network` is required.
 class DnsManagedZonePeeringConfig {
   const DnsManagedZonePeeringConfig({required this.targetNetwork});
-  final PeeringTargetNetwork targetNetwork;
+  final DnsManagedZonePeeringTargetNetwork targetNetwork;
   Map<String, Object?> toArgMap() => {
     'target_network': [targetNetwork.toArgMap()],
   };
 }
 
 /// `peering_config.target_network` single sub-block (`max_items=1`).
-class PeeringTargetNetwork {
-  const PeeringTargetNetwork({required this.networkUrl});
+class DnsManagedZonePeeringTargetNetwork {
+  const DnsManagedZonePeeringTargetNetwork({required this.networkUrl});
   TfArg<String> networkUrl;
   Map<String, Object?> toArgMap() => {'network_url': networkUrl};
 }
 
 /// `forwarding_config` block. At least one `targetNameServers` entry.
-class ForwardingConfig {
-  const ForwardingConfig({required this.targetNameServers});
-  final List<ForwardingTargetNameServer> targetNameServers;
+class DnsManagedZoneForwardingConfig {
+  const DnsManagedZoneForwardingConfig({required this.targetNameServers});
+  final List<DnsManagedZoneForwardingTargetNameServer> targetNameServers;
   Map<String, Object?> toArgMap() => {
     'target_name_servers': targetNameServers.map((s) => s.toArgMap()).toList(),
   };
 }
 
 /// One entry inside `forwarding_config.target_name_servers`.
-class ForwardingTargetNameServer {
-  const ForwardingTargetNameServer({
+class DnsManagedZoneForwardingTargetNameServer {
+  const DnsManagedZoneForwardingTargetNameServer({
     this.domainName,
     this.ipv4Address,
     this.ipv6Address,
@@ -199,8 +199,8 @@ class ForwardingTargetNameServer {
 }
 
 /// `cloud_logging_config` block — toggles export to Cloud Logging.
-class CloudLoggingConfig {
-  const CloudLoggingConfig({required this.enableLogging});
+class DnsManagedZoneCloudLoggingConfig {
+  const DnsManagedZoneCloudLoggingConfig({required this.enableLogging});
   TfArg<bool> enableLogging;
   Map<String, Object?> toArgMap() => {'enable_logging': enableLogging};
 }
@@ -244,8 +244,8 @@ final class GoogleDnsManagedZone extends Resource {
     DnsManagedZonePrivateVisibilityConfig? privateVisibilityConfig,
     DnsManagedZoneDnssecConfig? dnssecConfig,
     DnsManagedZonePeeringConfig? peeringConfig,
-    ForwardingConfig? forwardingConfig,
-    CloudLoggingConfig? cloudLoggingConfig,
+    DnsManagedZoneForwardingConfig? forwardingConfig,
+    DnsManagedZoneCloudLoggingConfig? cloudLoggingConfig,
     TfArg<Map<String, String>>? labels,
     TfArg<bool>? forceDestroy,
     TfArg<String>? project,

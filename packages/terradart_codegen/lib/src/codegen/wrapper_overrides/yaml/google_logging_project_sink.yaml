@@ -66,8 +66,8 @@ extraGetters: |2
 prelude: |
   /// `bigquery_options` block. Toggles partitioned tables for BigQuery
   /// destinations (date-sharded vs. partitioned by `_PARTITIONTIME`).
-  class BigqueryOptions {
-    const BigqueryOptions({required this.usePartitionedTables});
+  class LoggingProjectSinkBigqueryOptions {
+    const LoggingProjectSinkBigqueryOptions({required this.usePartitionedTables});
     TfArg<bool> usePartitionedTables;
     Map<String, Object?> toArgMap() =>
         {'use_partitioned_tables': usePartitionedTables};
@@ -76,8 +76,8 @@ prelude: |
   /// One entry in the `exclusions` list. Log entries matching `filter`
   /// are dropped before being routed to the sink's destination.
   /// `name` must be unique within the sink.
-  class LogSinkExclusion {
-    const LogSinkExclusion({
+  class LoggingProjectSinkLogSinkExclusion {
+    const LoggingProjectSinkLogSinkExclusion({
       required this.name,
       required this.filter,
       this.description,
@@ -97,8 +97,8 @@ prelude: |
 
 customSlots:
   bigquery_options:
-    paramDeclaration: 'BigqueryOptions? bigqueryOptions'
+    paramDeclaration: 'LoggingProjectSinkBigqueryOptions? bigqueryOptions'
     argMapEntry: "if (bigqueryOptions != null) 'bigquery_options': TfArg.literal([bigqueryOptions.toArgMap()]),"
   exclusions:
-    paramDeclaration: 'List<LogSinkExclusion>? exclusions'
+    paramDeclaration: 'List<LoggingProjectSinkLogSinkExclusion>? exclusions'
     argMapEntry: "if (exclusions != null) 'exclusions': TfArg.literal(exclusions.map((e) => e.toArgMap()).toList()),"

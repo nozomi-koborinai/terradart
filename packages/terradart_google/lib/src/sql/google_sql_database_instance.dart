@@ -93,7 +93,7 @@ enum SqlDiskType {
 }
 
 // ===========================================================================
-// Settings + nested helpers
+// SqlDatabaseInstanceSettings + nested helpers
 // ===========================================================================
 
 /// `settings` block. Required in practice for any non-trivial instance —
@@ -109,8 +109,8 @@ enum SqlDiskType {
 /// helpers; pass a raw `Map<String, Object?>` via [advancedExtra] keyed
 /// by the Terraform block name when you need them.
 @immutable
-class Settings {
-  const Settings({
+class SqlDatabaseInstanceSettings {
+  const SqlDatabaseInstanceSettings({
     this.tier,
     this.availabilityType,
     this.edition,
@@ -204,19 +204,19 @@ class Settings {
   /// IP connectivity configuration — `ipv4_enabled`, `private_network`,
   /// `authorized_networks`, SSL mode. The private-IP cornerstone for
   /// the Wave 5 chain.
-  final IpConfiguration? ipConfiguration;
+  final SqlDatabaseInstanceIpConfiguration? ipConfiguration;
 
   /// Automatic backups + point-in-time recovery.
-  final BackupConfiguration? backupConfiguration;
+  final SqlDatabaseInstanceBackupConfiguration? backupConfiguration;
 
   /// Zone / failover-zone preferences. Typically auto-selected.
-  final LocationPreference? locationPreference;
+  final SqlDatabaseInstanceLocationPreference? locationPreference;
 
   /// Maintenance window (day / hour / track).
-  final MaintenanceWindow? maintenanceWindow;
+  final SqlDatabaseInstanceMaintenanceWindow? maintenanceWindow;
 
   /// Engine-level flags (e.g. `max_connections`, `log_min_duration`).
-  final List<DatabaseFlag>? databaseFlags;
+  final List<SqlDatabaseInstanceDatabaseFlag>? databaseFlags;
 
   /// Escape hatch for the less-curated sub-blocks listed in this class's
   /// doc comment. Keys are Terraform block names; values are the block
@@ -282,8 +282,8 @@ class Settings {
 /// rather than an enum because the schema does not declare the set
 /// (Gate 3 invariant).
 @immutable
-class IpConfiguration {
-  const IpConfiguration({
+class SqlDatabaseInstanceIpConfiguration {
+  const SqlDatabaseInstanceIpConfiguration({
     this.ipv4Enabled,
     this.privateNetwork,
     this.allocatedIpRange,
@@ -335,11 +335,11 @@ class IpConfiguration {
   final TfArg<List<String>>? customSubjectAlternativeNames;
 
   /// IP allow-list for public-IP instances.
-  final List<AuthorizedNetwork>? authorizedNetworks;
+  final List<SqlDatabaseInstanceAuthorizedNetwork>? authorizedNetworks;
 
   /// Private Service Connect connectivity (replaces VPC peering on
   /// PSC-enabled instances).
-  final PscConfig? pscConfig;
+  final SqlDatabaseInstancePscConfig? pscConfig;
 
   Map<String, Object?> toArgMap() => {
     if (ipv4Enabled != null) 'ipv4_enabled': ipv4Enabled!.toTfJson(),
@@ -369,8 +369,8 @@ class IpConfiguration {
 /// One entry in `ip_configuration.authorized_networks`. The `value`
 /// field is a CIDR (`'203.0.113.0/24'` or `'203.0.113.42/32'`).
 @immutable
-class AuthorizedNetwork {
-  const AuthorizedNetwork({
+class SqlDatabaseInstanceAuthorizedNetwork {
+  const SqlDatabaseInstanceAuthorizedNetwork({
     required this.value,
     this.name,
     this.expirationTime,
@@ -395,8 +395,8 @@ class AuthorizedNetwork {
 /// `ip_configuration.psc_config` — Private Service Connect. Mutually
 /// exclusive with VPC peering on the same instance.
 @immutable
-class PscConfig {
-  const PscConfig({
+class SqlDatabaseInstancePscConfig {
+  const SqlDatabaseInstancePscConfig({
     this.pscEnabled,
     this.allowedConsumerProjects,
     this.networkAttachmentUri,
@@ -425,8 +425,8 @@ class PscConfig {
 /// for HA (`availability_type: REGIONAL`) and point-in-time recovery
 /// on Postgres.
 @immutable
-class BackupConfiguration {
-  const BackupConfiguration({
+class SqlDatabaseInstanceBackupConfiguration {
+  const SqlDatabaseInstanceBackupConfiguration({
     this.enabled,
     this.startTime,
     this.location,
@@ -456,7 +456,7 @@ class BackupConfiguration {
   TfArg<int>? transactionLogRetentionDays;
 
   /// How many backups to retain.
-  final BackupRetentionSettings? backupRetentionSettings;
+  final SqlDatabaseInstanceBackupRetentionSettings? backupRetentionSettings;
 
   Map<String, Object?> toArgMap() => {
     if (enabled != null) 'enabled': enabled!.toTfJson(),
@@ -475,8 +475,8 @@ class BackupConfiguration {
 
 /// `backup_configuration.backup_retention_settings`.
 @immutable
-class BackupRetentionSettings {
-  const BackupRetentionSettings({
+class SqlDatabaseInstanceBackupRetentionSettings {
+  const SqlDatabaseInstanceBackupRetentionSettings({
     required this.retainedBackups,
     this.retentionUnit,
   });
@@ -497,8 +497,11 @@ class BackupRetentionSettings {
 /// are simple strings on the wire (numeric flag values are stringified
 /// — `'1000'`, not `1000`).
 @immutable
-class DatabaseFlag {
-  const DatabaseFlag({required this.name, required this.value});
+class SqlDatabaseInstanceDatabaseFlag {
+  const SqlDatabaseInstanceDatabaseFlag({
+    required this.name,
+    required this.value,
+  });
 
   /// Engine flag name (e.g. `'max_connections'`).
   TfArg<String> name;
@@ -513,8 +516,8 @@ class DatabaseFlag {
 /// when omitted. [followGaeApplication] is rarely set; leave `null`
 /// unless co-locating with an App Engine app.
 @immutable
-class LocationPreference {
-  const LocationPreference({
+class SqlDatabaseInstanceLocationPreference {
+  const SqlDatabaseInstanceLocationPreference({
     this.zone,
     this.secondaryZone,
     this.followGaeApplication,
@@ -540,8 +543,12 @@ class LocationPreference {
 /// `settings.maintenance_window`. Pin a weekly window when GCP can
 /// take the instance down for upgrades.
 @immutable
-class MaintenanceWindow {
-  const MaintenanceWindow({this.day, this.hour, this.updateTrack});
+class SqlDatabaseInstanceMaintenanceWindow {
+  const SqlDatabaseInstanceMaintenanceWindow({
+    this.day,
+    this.hour,
+    this.updateTrack,
+  });
 
   /// 1 = Monday, 7 = Sunday.
   TfArg<int>? day;
@@ -572,8 +579,8 @@ class MaintenanceWindow {
 /// `password` here is also sensitive in the schema and round-trips
 /// through `$sensitiveFields`.
 @immutable
-class ReplicaConfiguration {
-  const ReplicaConfiguration({
+class SqlDatabaseInstanceReplicaConfiguration {
+  const SqlDatabaseInstanceReplicaConfiguration({
     this.failoverTarget,
     this.cascadableReplica,
     this.username,
@@ -650,12 +657,12 @@ class ReplicaConfiguration {
 ///
 /// Manages a Cloud SQL instance — a managed MySQL, PostgreSQL, or SQL
 /// Server engine. The schema is large; this wrapper exposes the
-/// commonly-used fields as typed helpers ([Settings], [IpConfiguration],
-/// [BackupConfiguration], [DatabaseFlag], [LocationPreference],
-/// [MaintenanceWindow], [ReplicaConfiguration]) and leaves the rarely-set
+/// commonly-used fields as typed helpers ([SqlDatabaseInstanceSettings], [SqlDatabaseInstanceIpConfiguration],
+/// [SqlDatabaseInstanceBackupConfiguration], [SqlDatabaseInstanceDatabaseFlag], [SqlDatabaseInstanceLocationPreference],
+/// [SqlDatabaseInstanceMaintenanceWindow], [SqlDatabaseInstanceReplicaConfiguration]) and leaves the rarely-set
 /// knobs (e.g. `active_directory_config`, `sql_server_audit_config`,
 /// `password_validation_policy`) on the
-/// [Settings.extra] / [Settings.advancedExtra] escape hatches so the
+/// [SqlDatabaseInstanceSettings.extra] / [SqlDatabaseInstanceSettings.advancedExtra] escape hatches so the
 /// curation surface stays manageable.
 ///
 /// Required identity:
@@ -696,17 +703,17 @@ class ReplicaConfiguration {
 ///   databaseVersion: TfArg.literal(DatabaseVersion.postgres15),
 ///   region: TfArg.literal('asia-northeast1'),
 ///   deletionProtection: TfArg.literal(false), // dev / quickstart
-///   settings: Settings(
+///   settings: SqlDatabaseInstanceSettings(
 ///     tier: TfArg.literal('db-custom-2-7680'),
 ///     availabilityType: TfArg.literal(SqlAvailabilityType.regional),
 ///     edition: TfArg.literal(SqlEdition.enterprise),
 ///     diskSize: TfArg.literal(20),
 ///     diskType: TfArg.literal(SqlDiskType.pdSsd),
-///     ipConfiguration: IpConfiguration(
+///     ipConfiguration: SqlDatabaseInstanceIpConfiguration(
 ///       ipv4Enabled: TfArg.literal(false),
 ///       privateNetwork: TfArg.ref(vpc.selfLink),
 ///     ),
-///     backupConfiguration: const BackupConfiguration(
+///     backupConfiguration: const SqlDatabaseInstanceBackupConfiguration(
 ///       enabled: true,
 ///       pointInTimeRecoveryEnabled: true,
 ///       startTime: '03:00',
@@ -731,13 +738,13 @@ final class GoogleSqlDatabaseInstance extends Resource {
     required TfArg<DatabaseVersion> databaseVersion,
     TfArg<String>? name,
     TfArg<String>? region,
-    Settings? settings,
+    SqlDatabaseInstanceSettings? settings,
     TfArg<String>? rootPassword,
     TfArg<String>? rootPasswordWo,
     TfArg<String>? rootPasswordWoVersion,
     TfArg<bool>? deletionProtection,
     TfArg<String>? masterInstanceName,
-    ReplicaConfiguration? replicaConfiguration,
+    SqlDatabaseInstanceReplicaConfiguration? replicaConfiguration,
     TfArg<String>? instanceType,
     TfArg<num>? nodeCount,
     TfArg<String>? maintenanceVersion,
