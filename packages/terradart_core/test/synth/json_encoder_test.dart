@@ -632,4 +632,27 @@ void main() {
       );
     });
   });
+
+  group('TfJsonEncoder.encodeArg variable routing', () {
+    test('TfArgVariable returns the interpolation string verbatim', () {
+      final arg = TfArgVariable<String>('db_password');
+      final out = TfJsonEncoder.encodeArg(arg);
+      expect(out, equals(r'${var.db_password}'));
+    });
+
+    test('TfArgVariable inside an argMap encodes without recursion', () {
+      final argMap = <String, TfArg<dynamic>?>{
+        'password': TfArgVariable<String>('db_password'),
+        'name': const TfArgLiteral<String>('alice'),
+      };
+      final out = TfJsonEncoder.encodeArgMap(argMap);
+      expect(
+        out,
+        equals({
+          'password': r'${var.db_password}',
+          'name': 'alice',
+        }),
+      );
+    });
+  });
 }

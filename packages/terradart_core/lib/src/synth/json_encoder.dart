@@ -85,9 +85,13 @@ class TfJsonEncoder {
   /// - `TfArgRef<T>` → the `${...}` interpolation string.
   static dynamic encodeArg(TfArg<dynamic> arg) {
     final raw = arg.toTfJson();
-    // Refs already produced their final string form; literals may still
-    // hold nested `TfArg` instances inside Maps/Lists that need recursion.
-    return arg is TfArgRef ? raw : _encodeLiteralValue(raw);
+    // Both refs and variables produce final string forms (Terraform
+    // interpolations). Only literals may still hold nested `TfArg`
+    // instances inside Maps/Lists that need recursion.
+    if (arg is TfArgRef || arg is TfArgVariable) {
+      return raw;
+    }
+    return _encodeLiteralValue(raw);
   }
 
   /// Walk a literal value, recursively encoding nested `TfArg` instances
