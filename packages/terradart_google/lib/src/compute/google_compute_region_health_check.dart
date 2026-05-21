@@ -69,8 +69,8 @@ enum RegionHealthCheckPortSpecification {
 /// `http_health_check` block. Set this (and only this) to make the
 /// resource an HTTP health check.
 @immutable
-class RegionHealthCheckHttpConfig {
-  const RegionHealthCheckHttpConfig({
+class ComputeRegionHealthCheckRegionHealthCheckHttpConfig {
+  const ComputeRegionHealthCheckRegionHealthCheckHttpConfig({
     this.host,
     this.requestPath,
     this.response,
@@ -82,20 +82,20 @@ class RegionHealthCheckHttpConfig {
 
   /// Value of the `Host` header on the probe request. Defaults to the
   /// public IP being probed when left empty.
-  final String? host;
+  TfArg<String>? host;
 
   /// Request path. Defaults to `/`.
-  final String? requestPath;
+  TfArg<String>? requestPath;
 
   /// Bytes to match against the start of the response body. Empty
   /// means "any response counts as healthy". ASCII only.
-  final String? response;
+  TfArg<String>? response;
 
   /// TCP port. Defaults to 80.
-  final int? port;
+  TfArg<int>? port;
 
   /// Named port (resolved via the InstanceGroup's named-port map).
-  final String? portName;
+  TfArg<String>? portName;
 
   /// Proxy header to prepend on the probe.
   final RegionHealthCheckProxyHeader? proxyHeader;
@@ -105,11 +105,11 @@ class RegionHealthCheckHttpConfig {
   final RegionHealthCheckPortSpecification? portSpecification;
 
   Map<String, Object?> toArgMap() => {
-    if (host != null) 'host': host,
-    if (requestPath != null) 'request_path': requestPath,
-    if (response != null) 'response': response,
-    if (port != null) 'port': port,
-    if (portName != null) 'port_name': portName,
+    if (host != null) 'host': host!.toTfJson(),
+    if (requestPath != null) 'request_path': requestPath!.toTfJson(),
+    if (response != null) 'response': response!.toTfJson(),
+    if (port != null) 'port': port!.toTfJson(),
+    if (portName != null) 'port_name': portName!.toTfJson(),
     if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
     if (portSpecification != null)
       'port_specification': portSpecification!.terraformValue,
@@ -118,8 +118,8 @@ class RegionHealthCheckHttpConfig {
 
 /// `https_health_check` block.
 @immutable
-class RegionHealthCheckHttpsConfig {
-  const RegionHealthCheckHttpsConfig({
+class ComputeRegionHealthCheckRegionHealthCheckHttpsConfig {
+  const ComputeRegionHealthCheckRegionHealthCheckHttpsConfig({
     this.host,
     this.requestPath,
     this.response,
@@ -129,22 +129,22 @@ class RegionHealthCheckHttpsConfig {
     this.portSpecification,
   });
 
-  final String? host;
-  final String? requestPath;
-  final String? response;
+  TfArg<String>? host;
+  TfArg<String>? requestPath;
+  TfArg<String>? response;
 
   /// TCP port. Defaults to 443.
-  final int? port;
-  final String? portName;
+  TfArg<int>? port;
+  TfArg<String>? portName;
   final RegionHealthCheckProxyHeader? proxyHeader;
   final RegionHealthCheckPortSpecification? portSpecification;
 
   Map<String, Object?> toArgMap() => {
-    if (host != null) 'host': host,
-    if (requestPath != null) 'request_path': requestPath,
-    if (response != null) 'response': response,
-    if (port != null) 'port': port,
-    if (portName != null) 'port_name': portName,
+    if (host != null) 'host': host!.toTfJson(),
+    if (requestPath != null) 'request_path': requestPath!.toTfJson(),
+    if (response != null) 'response': response!.toTfJson(),
+    if (port != null) 'port': port!.toTfJson(),
+    if (portName != null) 'port_name': portName!.toTfJson(),
     if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
     if (portSpecification != null)
       'port_specification': portSpecification!.terraformValue,
@@ -153,8 +153,8 @@ class RegionHealthCheckHttpsConfig {
 
 /// `http2_health_check` block.
 @immutable
-class RegionHealthCheckHttp2Config {
-  const RegionHealthCheckHttp2Config({
+class ComputeRegionHealthCheckRegionHealthCheckHttp2Config {
+  const ComputeRegionHealthCheckRegionHealthCheckHttp2Config({
     this.host,
     this.requestPath,
     this.response,
@@ -164,22 +164,22 @@ class RegionHealthCheckHttp2Config {
     this.portSpecification,
   });
 
-  final String? host;
-  final String? requestPath;
-  final String? response;
+  TfArg<String>? host;
+  TfArg<String>? requestPath;
+  TfArg<String>? response;
 
   /// TCP port. Defaults to 443.
-  final int? port;
-  final String? portName;
+  TfArg<int>? port;
+  TfArg<String>? portName;
   final RegionHealthCheckProxyHeader? proxyHeader;
   final RegionHealthCheckPortSpecification? portSpecification;
 
   Map<String, Object?> toArgMap() => {
-    if (host != null) 'host': host,
-    if (requestPath != null) 'request_path': requestPath,
-    if (response != null) 'response': response,
-    if (port != null) 'port': port,
-    if (portName != null) 'port_name': portName,
+    if (host != null) 'host': host!.toTfJson(),
+    if (requestPath != null) 'request_path': requestPath!.toTfJson(),
+    if (response != null) 'response': response!.toTfJson(),
+    if (port != null) 'port': port!.toTfJson(),
+    if (portName != null) 'port_name': portName!.toTfJson(),
     if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
     if (portSpecification != null)
       'port_specification': portSpecification!.terraformValue,
@@ -188,8 +188,8 @@ class RegionHealthCheckHttp2Config {
 
 /// `tcp_health_check` block. Pure TCP connect-or-payload probe.
 @immutable
-class RegionHealthCheckTcpConfig {
-  const RegionHealthCheckTcpConfig({
+class ComputeRegionHealthCheckRegionHealthCheckTcpConfig {
+  const ComputeRegionHealthCheckRegionHealthCheckTcpConfig({
     this.request,
     this.response,
     this.port,
@@ -200,23 +200,23 @@ class RegionHealthCheckTcpConfig {
 
   /// Bytes to send once the TCP connection is established. Empty means
   /// "connect-only is enough to be healthy". ASCII only.
-  final String? request;
+  TfArg<String>? request;
 
   /// Bytes to match against the start of the response. Empty matches
   /// any response.
-  final String? response;
+  TfArg<String>? response;
 
   /// TCP port. Defaults to 80 on the regional resource.
-  final int? port;
-  final String? portName;
+  TfArg<int>? port;
+  TfArg<String>? portName;
   final RegionHealthCheckProxyHeader? proxyHeader;
   final RegionHealthCheckPortSpecification? portSpecification;
 
   Map<String, Object?> toArgMap() => {
-    if (request != null) 'request': request,
-    if (response != null) 'response': response,
-    if (port != null) 'port': port,
-    if (portName != null) 'port_name': portName,
+    if (request != null) 'request': request!.toTfJson(),
+    if (response != null) 'response': response!.toTfJson(),
+    if (port != null) 'port': port!.toTfJson(),
+    if (portName != null) 'port_name': portName!.toTfJson(),
     if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
     if (portSpecification != null)
       'port_specification': portSpecification!.terraformValue,
@@ -225,8 +225,8 @@ class RegionHealthCheckTcpConfig {
 
 /// `ssl_health_check` block. Pure SSL/TLS probe.
 @immutable
-class RegionHealthCheckSslConfig {
-  const RegionHealthCheckSslConfig({
+class ComputeRegionHealthCheckRegionHealthCheckSslConfig {
+  const ComputeRegionHealthCheckRegionHealthCheckSslConfig({
     this.request,
     this.response,
     this.port,
@@ -235,20 +235,20 @@ class RegionHealthCheckSslConfig {
     this.portSpecification,
   });
 
-  final String? request;
-  final String? response;
+  TfArg<String>? request;
+  TfArg<String>? response;
 
   /// TCP port. Defaults to 443.
-  final int? port;
-  final String? portName;
+  TfArg<int>? port;
+  TfArg<String>? portName;
   final RegionHealthCheckProxyHeader? proxyHeader;
   final RegionHealthCheckPortSpecification? portSpecification;
 
   Map<String, Object?> toArgMap() => {
-    if (request != null) 'request': request,
-    if (response != null) 'response': response,
-    if (port != null) 'port': port,
-    if (portName != null) 'port_name': portName,
+    if (request != null) 'request': request!.toTfJson(),
+    if (response != null) 'response': response!.toTfJson(),
+    if (port != null) 'port': port!.toTfJson(),
+    if (portName != null) 'port_name': portName!.toTfJson(),
     if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
     if (portSpecification != null)
       'port_specification': portSpecification!.terraformValue,
@@ -258,8 +258,8 @@ class RegionHealthCheckSslConfig {
 /// `grpc_health_check` block. Probes via the gRPC Health Checking
 /// Protocol (`grpc.health.v1.Health/Check`).
 @immutable
-class RegionHealthCheckGrpcConfig {
-  const RegionHealthCheckGrpcConfig({
+class ComputeRegionHealthCheckRegionHealthCheckGrpcConfig {
+  const ComputeRegionHealthCheckRegionHealthCheckGrpcConfig({
     this.port,
     this.portName,
     this.portSpecification,
@@ -269,21 +269,22 @@ class RegionHealthCheckGrpcConfig {
   /// Port number. Must be set if `port_specification` is
   /// [RegionHealthCheckPortSpecification.useFixedPort] and `portName`
   /// is unset. Valid 1-65535.
-  final int? port;
-  final String? portName;
+  TfArg<int>? port;
+  TfArg<String>? portName;
   final RegionHealthCheckPortSpecification? portSpecification;
 
   /// gRPC service name passed in the `service` field of the Check RPC.
   /// Empty means "report aggregate server health"; a non-empty name
   /// scopes the check to a specific registered service. ASCII only.
-  final String? grpcServiceName;
+  TfArg<String>? grpcServiceName;
 
   Map<String, Object?> toArgMap() => {
-    if (port != null) 'port': port,
-    if (portName != null) 'port_name': portName,
+    if (port != null) 'port': port!.toTfJson(),
+    if (portName != null) 'port_name': portName!.toTfJson(),
     if (portSpecification != null)
       'port_specification': portSpecification!.terraformValue,
-    if (grpcServiceName != null) 'grpc_service_name': grpcServiceName,
+    if (grpcServiceName != null)
+      'grpc_service_name': grpcServiceName!.toTfJson(),
   };
 }
 
@@ -293,14 +294,16 @@ class RegionHealthCheckGrpcConfig {
 
 /// `log_config` block. Toggles Cloud Logging export of probe results.
 @immutable
-class RegionHealthCheckLogConfig {
-  const RegionHealthCheckLogConfig({this.enable});
+class ComputeRegionHealthCheckRegionHealthCheckLogConfig {
+  const ComputeRegionHealthCheckRegionHealthCheckLogConfig({this.enable});
 
   /// `true` exports each probe result to Cloud Logging. Defaults to
   /// `false` (no logs).
-  final bool? enable;
+  TfArg<bool>? enable;
 
-  Map<String, Object?> toArgMap() => {if (enable != null) 'enable': enable};
+  Map<String, Object?> toArgMap() => {
+    if (enable != null) 'enable': enable!.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_compute_region_health_check` (provider
@@ -343,13 +346,13 @@ class RegionHealthCheckLogConfig {
 ///   timeoutSec: TfArg.literal(5),
 ///   healthyThreshold: TfArg.literal(2),
 ///   unhealthyThreshold: TfArg.literal(3),
-///   httpsHealthCheck: const RegionHealthCheckHttpsConfig(
+///   httpsHealthCheck: const ComputeRegionHealthCheckRegionHealthCheckHttpsConfig(
 ///     port: 443,
 ///     requestPath: '/healthz',
 ///     portSpecification:
 ///         RegionHealthCheckPortSpecification.useFixedPort,
 ///   ),
-///   logConfig: const RegionHealthCheckLogConfig(enable: true),
+///   logConfig: const ComputeRegionHealthCheckRegionHealthCheckLogConfig(enable: true),
 /// );
 /// ```
 ///
@@ -372,13 +375,13 @@ final class GoogleComputeRegionHealthCheck extends Resource {
     TfArg<num>? timeoutSec,
     TfArg<num>? healthyThreshold,
     TfArg<num>? unhealthyThreshold,
-    RegionHealthCheckHttpConfig? httpHealthCheck,
-    RegionHealthCheckHttpsConfig? httpsHealthCheck,
-    RegionHealthCheckHttp2Config? http2HealthCheck,
-    RegionHealthCheckTcpConfig? tcpHealthCheck,
-    RegionHealthCheckSslConfig? sslHealthCheck,
-    RegionHealthCheckGrpcConfig? grpcHealthCheck,
-    RegionHealthCheckLogConfig? logConfig,
+    ComputeRegionHealthCheckRegionHealthCheckHttpConfig? httpHealthCheck,
+    ComputeRegionHealthCheckRegionHealthCheckHttpsConfig? httpsHealthCheck,
+    ComputeRegionHealthCheckRegionHealthCheckHttp2Config? http2HealthCheck,
+    ComputeRegionHealthCheckRegionHealthCheckTcpConfig? tcpHealthCheck,
+    ComputeRegionHealthCheckRegionHealthCheckSslConfig? sslHealthCheck,
+    ComputeRegionHealthCheckRegionHealthCheckGrpcConfig? grpcHealthCheck,
+    ComputeRegionHealthCheckRegionHealthCheckLogConfig? logConfig,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

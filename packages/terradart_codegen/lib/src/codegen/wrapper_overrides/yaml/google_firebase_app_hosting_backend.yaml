@@ -30,7 +30,7 @@ classDocComment: |-
   ///   appId: TfArg.literal('1:1234567890:web:abcdef'),
   ///   serviceAccount: TfArg.ref(sa.email),
   ///   servingLocality: TfArg.literal(AppHostingServingLocality.regionalStrict),
-  ///   codebase: AppHostingBackendCodebase(
+  ///   codebase: FirebaseAppHostingBackendAppHostingBackendCodebase(
   ///     repository: TfArg.literal(
   ///       'projects/p/locations/us-central1/connections/c/gitRepositoryLinks/r',
   ///     ),
@@ -114,8 +114,8 @@ prelude: |
   /// repository, so commits flowing into the configured branch trigger
   /// builds (see [GoogleFirebaseAppHostingTraffic.rolloutPolicy]).
   @immutable
-  class AppHostingBackendCodebase {
-    const AppHostingBackendCodebase({
+  class FirebaseAppHostingBackendAppHostingBackendCodebase {
+    const FirebaseAppHostingBackendAppHostingBackendCodebase({
       required this.repository,
       this.rootDirectory,
     });
@@ -138,5 +138,5 @@ prelude: |
 
 customSlots:
   codebase:
-    paramDeclaration: 'AppHostingBackendCodebase? codebase'
+    paramDeclaration: 'FirebaseAppHostingBackendAppHostingBackendCodebase? codebase'
     argMapEntry: "if (codebase != null) 'codebase': TfArg.literal([codebase.toArgMap()]),"

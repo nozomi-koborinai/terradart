@@ -38,13 +38,13 @@ classDocComment: |-
   ///   timeoutSec: TfArg.literal(5),
   ///   healthyThreshold: TfArg.literal(2),
   ///   unhealthyThreshold: TfArg.literal(3),
-  ///   httpHealthCheck: const HttpHealthCheckConfig(
+  ///   httpHealthCheck: const ComputeHealthCheckHttpHealthCheckConfig(
   ///     port: 8080,
   ///     requestPath: '/healthz',
   ///     proxyHeader: HealthCheckProxyHeader.none,
   ///     portSpecification: HealthCheckPortSpecification.useFixedPort,
   ///   ),
-  ///   logConfig: const HealthCheckLogConfig(enable: true),
+  ///   logConfig: const ComputeHealthCheckHealthCheckLogConfig(enable: true),
   /// );
   /// ```
   ///
@@ -53,7 +53,7 @@ classDocComment: |-
   /// final grpcHc = GoogleComputeHealthCheck(
   ///   localName: 'grpc_hc',
   ///   name: TfArg.literal('grpc-hc'),
-  ///   grpcHealthCheck: const GrpcHealthCheckConfig(
+  ///   grpcHealthCheck: const ComputeHealthCheckGrpcHealthCheckConfig(
   ///     port: 50051,
   ///     grpcServiceName: 'my.Service',
   ///     portSpecification: HealthCheckPortSpecification.useFixedPort,
@@ -168,8 +168,8 @@ prelude: |
   /// `http_health_check` block. Set this (and only this) to make the
   /// resource an HTTP health check.
   @immutable
-  class HttpHealthCheckConfig {
-    const HttpHealthCheckConfig({
+  class ComputeHealthCheckHttpHealthCheckConfig {
+    const ComputeHealthCheckHttpHealthCheckConfig({
       this.host,
       this.requestPath,
       this.response,
@@ -181,20 +181,20 @@ prelude: |
 
     /// Value of the `Host` header on the probe request. Defaults to the
     /// public IP being probed when left empty.
-    final String? host;
+    TfArg<String>? host;
 
     /// Request path. Defaults to `/`.
-    final String? requestPath;
+    TfArg<String>? requestPath;
 
     /// Bytes to match against the start of the response body. Empty
     /// means "any response counts as healthy". ASCII only.
-    final String? response;
+    TfArg<String>? response;
 
     /// TCP port. Defaults to 80.
-    final int? port;
+    TfArg<int>? port;
 
     /// Named port (resolved via the InstanceGroup's named-port map).
-    final String? portName;
+    TfArg<String>? portName;
 
     /// Proxy header to prepend on the probe.
     final HealthCheckProxyHeader? proxyHeader;
@@ -204,11 +204,11 @@ prelude: |
     final HealthCheckPortSpecification? portSpecification;
 
     Map<String, Object?> toArgMap() => {
-      if (host != null) 'host': host,
-      if (requestPath != null) 'request_path': requestPath,
-      if (response != null) 'response': response,
-      if (port != null) 'port': port,
-      if (portName != null) 'port_name': portName,
+      if (host != null) 'host': host!.toTfJson(),
+      if (requestPath != null) 'request_path': requestPath!.toTfJson(),
+      if (response != null) 'response': response!.toTfJson(),
+      if (port != null) 'port': port!.toTfJson(),
+      if (portName != null) 'port_name': portName!.toTfJson(),
       if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
       if (portSpecification != null)
         'port_specification': portSpecification!.terraformValue,
@@ -217,8 +217,8 @@ prelude: |
 
   /// `https_health_check` block.
   @immutable
-  class HttpsHealthCheckConfig {
-    const HttpsHealthCheckConfig({
+  class ComputeHealthCheckHttpsHealthCheckConfig {
+    const ComputeHealthCheckHttpsHealthCheckConfig({
       this.host,
       this.requestPath,
       this.response,
@@ -228,22 +228,22 @@ prelude: |
       this.portSpecification,
     });
 
-    final String? host;
-    final String? requestPath;
-    final String? response;
+    TfArg<String>? host;
+    TfArg<String>? requestPath;
+    TfArg<String>? response;
 
     /// TCP port. Defaults to 443.
-    final int? port;
-    final String? portName;
+    TfArg<int>? port;
+    TfArg<String>? portName;
     final HealthCheckProxyHeader? proxyHeader;
     final HealthCheckPortSpecification? portSpecification;
 
     Map<String, Object?> toArgMap() => {
-      if (host != null) 'host': host,
-      if (requestPath != null) 'request_path': requestPath,
-      if (response != null) 'response': response,
-      if (port != null) 'port': port,
-      if (portName != null) 'port_name': portName,
+      if (host != null) 'host': host!.toTfJson(),
+      if (requestPath != null) 'request_path': requestPath!.toTfJson(),
+      if (response != null) 'response': response!.toTfJson(),
+      if (port != null) 'port': port!.toTfJson(),
+      if (portName != null) 'port_name': portName!.toTfJson(),
       if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
       if (portSpecification != null)
         'port_specification': portSpecification!.terraformValue,
@@ -252,8 +252,8 @@ prelude: |
 
   /// `http2_health_check` block.
   @immutable
-  class Http2HealthCheckConfig {
-    const Http2HealthCheckConfig({
+  class ComputeHealthCheckHttp2HealthCheckConfig {
+    const ComputeHealthCheckHttp2HealthCheckConfig({
       this.host,
       this.requestPath,
       this.response,
@@ -263,22 +263,22 @@ prelude: |
       this.portSpecification,
     });
 
-    final String? host;
-    final String? requestPath;
-    final String? response;
+    TfArg<String>? host;
+    TfArg<String>? requestPath;
+    TfArg<String>? response;
 
     /// TCP port. Defaults to 443.
-    final int? port;
-    final String? portName;
+    TfArg<int>? port;
+    TfArg<String>? portName;
     final HealthCheckProxyHeader? proxyHeader;
     final HealthCheckPortSpecification? portSpecification;
 
     Map<String, Object?> toArgMap() => {
-      if (host != null) 'host': host,
-      if (requestPath != null) 'request_path': requestPath,
-      if (response != null) 'response': response,
-      if (port != null) 'port': port,
-      if (portName != null) 'port_name': portName,
+      if (host != null) 'host': host!.toTfJson(),
+      if (requestPath != null) 'request_path': requestPath!.toTfJson(),
+      if (response != null) 'response': response!.toTfJson(),
+      if (port != null) 'port': port!.toTfJson(),
+      if (portName != null) 'port_name': portName!.toTfJson(),
       if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
       if (portSpecification != null)
         'port_specification': portSpecification!.terraformValue,
@@ -287,8 +287,8 @@ prelude: |
 
   /// `tcp_health_check` block. Pure TCP connect-or-payload probe.
   @immutable
-  class TcpHealthCheckConfig {
-    const TcpHealthCheckConfig({
+  class ComputeHealthCheckTcpHealthCheckConfig {
+    const ComputeHealthCheckTcpHealthCheckConfig({
       this.request,
       this.response,
       this.port,
@@ -299,23 +299,23 @@ prelude: |
 
     /// Bytes to send once the TCP connection is established. Empty means
     /// "connect-only is enough to be healthy". ASCII only.
-    final String? request;
+    TfArg<String>? request;
 
     /// Bytes to match against the start of the response. Empty matches
     /// any response.
-    final String? response;
+    TfArg<String>? response;
 
     /// TCP port. Defaults to 443.
-    final int? port;
-    final String? portName;
+    TfArg<int>? port;
+    TfArg<String>? portName;
     final HealthCheckProxyHeader? proxyHeader;
     final HealthCheckPortSpecification? portSpecification;
 
     Map<String, Object?> toArgMap() => {
-      if (request != null) 'request': request,
-      if (response != null) 'response': response,
-      if (port != null) 'port': port,
-      if (portName != null) 'port_name': portName,
+      if (request != null) 'request': request!.toTfJson(),
+      if (response != null) 'response': response!.toTfJson(),
+      if (port != null) 'port': port!.toTfJson(),
+      if (portName != null) 'port_name': portName!.toTfJson(),
       if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
       if (portSpecification != null)
         'port_specification': portSpecification!.terraformValue,
@@ -324,8 +324,8 @@ prelude: |
 
   /// `ssl_health_check` block. Pure SSL/TLS probe.
   @immutable
-  class SslHealthCheckConfig {
-    const SslHealthCheckConfig({
+  class ComputeHealthCheckSslHealthCheckConfig {
+    const ComputeHealthCheckSslHealthCheckConfig({
       this.request,
       this.response,
       this.port,
@@ -334,20 +334,20 @@ prelude: |
       this.portSpecification,
     });
 
-    final String? request;
-    final String? response;
+    TfArg<String>? request;
+    TfArg<String>? response;
 
     /// TCP port. Defaults to 443.
-    final int? port;
-    final String? portName;
+    TfArg<int>? port;
+    TfArg<String>? portName;
     final HealthCheckProxyHeader? proxyHeader;
     final HealthCheckPortSpecification? portSpecification;
 
     Map<String, Object?> toArgMap() => {
-      if (request != null) 'request': request,
-      if (response != null) 'response': response,
-      if (port != null) 'port': port,
-      if (portName != null) 'port_name': portName,
+      if (request != null) 'request': request!.toTfJson(),
+      if (response != null) 'response': response!.toTfJson(),
+      if (port != null) 'port': port!.toTfJson(),
+      if (portName != null) 'port_name': portName!.toTfJson(),
       if (proxyHeader != null) 'proxy_header': proxyHeader!.terraformValue,
       if (portSpecification != null)
         'port_specification': portSpecification!.terraformValue,
@@ -357,8 +357,8 @@ prelude: |
   /// `grpc_health_check` block. Probes via the gRPC Health Checking
   /// Protocol (`grpc.health.v1.Health/Check`).
   @immutable
-  class GrpcHealthCheckConfig {
-    const GrpcHealthCheckConfig({
+  class ComputeHealthCheckGrpcHealthCheckConfig {
+    const ComputeHealthCheckGrpcHealthCheckConfig({
       this.port,
       this.portName,
       this.portSpecification,
@@ -368,21 +368,21 @@ prelude: |
     /// Port number. Must be set if `port_specification` is
     /// [HealthCheckPortSpecification.useFixedPort] and `portName` is
     /// unset. Valid 1-65535.
-    final int? port;
-    final String? portName;
+    TfArg<int>? port;
+    TfArg<String>? portName;
     final HealthCheckPortSpecification? portSpecification;
 
     /// gRPC service name passed in the `service` field of the Check RPC.
     /// Empty means "report aggregate server health"; a non-empty name
     /// scopes the check to a specific registered service. ASCII only.
-    final String? grpcServiceName;
+    TfArg<String>? grpcServiceName;
 
     Map<String, Object?> toArgMap() => {
-      if (port != null) 'port': port,
-      if (portName != null) 'port_name': portName,
+      if (port != null) 'port': port!.toTfJson(),
+      if (portName != null) 'port_name': portName!.toTfJson(),
       if (portSpecification != null)
         'port_specification': portSpecification!.terraformValue,
-      if (grpcServiceName != null) 'grpc_service_name': grpcServiceName,
+      if (grpcServiceName != null) 'grpc_service_name': grpcServiceName!.toTfJson(),
     };
   }
 
@@ -392,37 +392,37 @@ prelude: |
 
   /// `log_config` block. Toggles Cloud Logging export of probe results.
   @immutable
-  class HealthCheckLogConfig {
-    const HealthCheckLogConfig({this.enable});
+  class ComputeHealthCheckHealthCheckLogConfig {
+    const ComputeHealthCheckHealthCheckLogConfig({this.enable});
 
     /// `true` exports each probe result to Cloud Logging. Defaults to
     /// `false` (no logs).
-    final bool? enable;
+    TfArg<bool>? enable;
 
     Map<String, Object?> toArgMap() => {
-      if (enable != null) 'enable': enable,
+      if (enable != null) 'enable': enable!.toTfJson(),
     };
   }
 
 customSlots:
   http_health_check:
-    paramDeclaration: 'HttpHealthCheckConfig? httpHealthCheck'
+    paramDeclaration: 'ComputeHealthCheckHttpHealthCheckConfig? httpHealthCheck'
     argMapEntry: "if (httpHealthCheck != null) 'http_health_check': TfArg.literal([httpHealthCheck.toArgMap()]),"
   https_health_check:
-    paramDeclaration: 'HttpsHealthCheckConfig? httpsHealthCheck'
+    paramDeclaration: 'ComputeHealthCheckHttpsHealthCheckConfig? httpsHealthCheck'
     argMapEntry: "if (httpsHealthCheck != null) 'https_health_check': TfArg.literal([httpsHealthCheck.toArgMap()]),"
   http2_health_check:
-    paramDeclaration: 'Http2HealthCheckConfig? http2HealthCheck'
+    paramDeclaration: 'ComputeHealthCheckHttp2HealthCheckConfig? http2HealthCheck'
     argMapEntry: "if (http2HealthCheck != null) 'http2_health_check': TfArg.literal([http2HealthCheck.toArgMap()]),"
   tcp_health_check:
-    paramDeclaration: 'TcpHealthCheckConfig? tcpHealthCheck'
+    paramDeclaration: 'ComputeHealthCheckTcpHealthCheckConfig? tcpHealthCheck'
     argMapEntry: "if (tcpHealthCheck != null) 'tcp_health_check': TfArg.literal([tcpHealthCheck.toArgMap()]),"
   ssl_health_check:
-    paramDeclaration: 'SslHealthCheckConfig? sslHealthCheck'
+    paramDeclaration: 'ComputeHealthCheckSslHealthCheckConfig? sslHealthCheck'
     argMapEntry: "if (sslHealthCheck != null) 'ssl_health_check': TfArg.literal([sslHealthCheck.toArgMap()]),"
   grpc_health_check:
-    paramDeclaration: 'GrpcHealthCheckConfig? grpcHealthCheck'
+    paramDeclaration: 'ComputeHealthCheckGrpcHealthCheckConfig? grpcHealthCheck'
     argMapEntry: "if (grpcHealthCheck != null) 'grpc_health_check': TfArg.literal([grpcHealthCheck.toArgMap()]),"
   log_config:
-    paramDeclaration: 'HealthCheckLogConfig? logConfig'
+    paramDeclaration: 'ComputeHealthCheckHealthCheckLogConfig? logConfig'
     argMapEntry: "if (logConfig != null) 'log_config': TfArg.literal([logConfig.toArgMap()]),"

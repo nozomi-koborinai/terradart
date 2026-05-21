@@ -36,15 +36,15 @@ enum RegionUrlMapRedirectResponseCode {
 // ===========================================================================
 
 /// One `host_rule` entry. Binds a set of `Host:` header values to a
-/// [RegionUrlMapPathMatcher] by name. Multiple `host_rule` entries can
+/// [ComputeRegionUrlMapRegionUrlMapPathMatcher] by name. Multiple `host_rule` entries can
 /// point at the same `pathMatcher`.
 ///
 /// The schema models `host_rule` as a `set` of blocks; the wrapper still
-/// accepts a `List<RegionUrlMapHostRule>` -- duplicate entries are deduped
+/// accepts a `List<ComputeRegionUrlMapRegionUrlMapHostRule>` -- duplicate entries are deduped
 /// by the Terraform engine on apply.
 @immutable
-class RegionUrlMapHostRule {
-  const RegionUrlMapHostRule({
+class ComputeRegionUrlMapRegionUrlMapHostRule {
+  const ComputeRegionUrlMapRegionUrlMapHostRule({
     required this.hosts,
     required this.pathMatcher,
     this.description,
@@ -55,18 +55,18 @@ class RegionUrlMapHostRule {
   /// one entry is required per the schema.
   final List<String> hosts;
 
-  /// Local name of the [RegionUrlMapPathMatcher] this rule dispatches to.
-  /// Must match a [RegionUrlMapPathMatcher.name] within the same URL map --
+  /// Local name of the [ComputeRegionUrlMapRegionUrlMapPathMatcher] this rule dispatches to.
+  /// Must match a [ComputeRegionUrlMapRegionUrlMapPathMatcher.name] within the same URL map --
   /// this is NOT a `google_compute_*` resource address.
-  final String pathMatcher;
+  TfArg<String> pathMatcher;
 
   /// Free-form description.
-  final String? description;
+  TfArg<String>? description;
 
   Map<String, Object?> toArgMap() => {
-    'hosts': hosts,
-    'path_matcher': pathMatcher,
-    if (description != null) 'description': description,
+    'hosts': hosts.toTfJson(),
+    'path_matcher': pathMatcher.toTfJson(),
+    if (description != null) 'description': description!.toTfJson(),
   };
 }
 
@@ -75,7 +75,7 @@ class RegionUrlMapHostRule {
 // ===========================================================================
 
 /// One `path_matcher` entry. Each path matcher is named (so
-/// [RegionUrlMapHostRule] can reference it) and carries a fallback
+/// [ComputeRegionUrlMapRegionUrlMapHostRule] can reference it) and carries a fallback
 /// [defaultService] plus the path-based routing rules.
 ///
 /// Routing precedence inside a path matcher:
@@ -88,8 +88,8 @@ class RegionUrlMapHostRule {
 /// uncurated sub-blocks (`default_route_action`,
 /// `default_custom_error_response_policy`, `header_action`).
 @immutable
-class RegionUrlMapPathMatcher {
-  const RegionUrlMapPathMatcher({
+class ComputeRegionUrlMapRegionUrlMapPathMatcher {
+  const ComputeRegionUrlMapRegionUrlMapPathMatcher({
     required this.name,
     this.defaultService,
     this.description,
@@ -99,8 +99,8 @@ class RegionUrlMapPathMatcher {
     this.advancedExtra,
   });
 
-  /// Local name used by [RegionUrlMapHostRule.pathMatcher]. NOT a self-link.
-  final String name;
+  /// Local name used by [ComputeRegionUrlMapRegionUrlMapHostRule.pathMatcher]. NOT a self-link.
+  TfArg<String> name;
 
   /// Fallback backend self-link consulted when neither [pathRules] nor
   /// [routeRules] match. Accepts either a `region_backend_service` or a
@@ -115,16 +115,16 @@ class RegionUrlMapPathMatcher {
   /// Path-based routing rules. Simple "match longest prefix, send to
   /// service" semantics. Mutually exclusive on a per-path-rule basis with
   /// [routeRules].
-  final List<RegionUrlMapPathRule>? pathRules;
+  final List<ComputeRegionUrlMapRegionUrlMapPathRule>? pathRules;
 
   /// Priority-ordered routing rules with header / query / regex matching.
   /// More expressive than [pathRules]; required for traffic-director use
   /// cases. When non-empty, evaluated BEFORE [pathRules].
-  final List<RegionUrlMapRouteRule>? routeRules;
+  final List<ComputeRegionUrlMapRegionUrlMapRouteRule>? routeRules;
 
   /// Catch-all redirect when neither [pathRules] nor [routeRules] match.
   /// Mutually exclusive with [defaultService].
-  final RegionUrlMapUrlRedirect? defaultUrlRedirect;
+  final ComputeRegionUrlMapRegionUrlMapUrlRedirect? defaultUrlRedirect;
 
   /// Escape hatch for the uncurated nested blocks of `path_matcher`:
   /// - `default_route_action` (Envoy-style traffic policy)
@@ -136,7 +136,7 @@ class RegionUrlMapPathMatcher {
   final Map<String, Object?>? advancedExtra;
 
   Map<String, Object?> toArgMap() => {
-    'name': name,
+    'name': name.toTfJson(),
     if (defaultService != null) 'default_service': defaultService!.toTfJson(),
     if (description != null) 'description': description!.toTfJson(),
     if (pathRules != null)
@@ -156,10 +156,10 @@ class RegionUrlMapPathMatcher {
 ///
 /// The deep `route_action` sub-block is exposed via the [advancedExtra]
 /// escape hatch rather than as a typed helper (see
-/// [RegionUrlMapPathMatcher.advancedExtra] for the rationale).
+/// [ComputeRegionUrlMapRegionUrlMapPathMatcher.advancedExtra] for the rationale).
 @immutable
-class RegionUrlMapPathRule {
-  const RegionUrlMapPathRule({
+class ComputeRegionUrlMapRegionUrlMapPathRule {
+  const ComputeRegionUrlMapRegionUrlMapPathRule({
     required this.paths,
     this.service,
     this.urlRedirect,
@@ -176,7 +176,7 @@ class RegionUrlMapPathRule {
 
   /// Inline redirect for matching requests. Mutually exclusive with
   /// [service].
-  final RegionUrlMapUrlRedirect? urlRedirect;
+  final ComputeRegionUrlMapRegionUrlMapUrlRedirect? urlRedirect;
 
   /// Escape hatch for the uncurated nested blocks:
   /// - `route_action` (Envoy-style traffic policy)
@@ -184,7 +184,7 @@ class RegionUrlMapPathRule {
   final Map<String, Object?>? advancedExtra;
 
   Map<String, Object?> toArgMap() => {
-    'paths': paths,
+    'paths': paths.toTfJson(),
     if (service != null) 'service': service!.toTfJson(),
     if (urlRedirect != null) 'url_redirect': [urlRedirect!.toArgMap()],
     if (advancedExtra != null) ...advancedExtra!,
@@ -198,8 +198,8 @@ class RegionUrlMapPathRule {
 /// Exactly one of [service] / [urlRedirect] must be set (or alternatively
 /// the uncurated `route_action` sub-block via [advancedExtra]).
 @immutable
-class RegionUrlMapRouteRule {
-  const RegionUrlMapRouteRule({
+class ComputeRegionUrlMapRegionUrlMapRouteRule {
+  const ComputeRegionUrlMapRegionUrlMapRouteRule({
     required this.priority,
     this.service,
     this.matchRules,
@@ -210,8 +210,8 @@ class RegionUrlMapRouteRule {
 
   /// Evaluation priority. Lower numbers evaluated first. Required by the
   /// schema. Must be unique within a single
-  /// [RegionUrlMapPathMatcher.routeRules].
-  final int priority;
+  /// [ComputeRegionUrlMapRegionUrlMapPathMatcher.routeRules].
+  TfArg<int> priority;
 
   /// Backend self-link (region backend service OR backend bucket).
   /// Mutually exclusive with [urlRedirect].
@@ -220,15 +220,15 @@ class RegionUrlMapRouteRule {
   /// Per-rule match conditions (HTTP headers, query parameters, path
   /// regex, ...). When empty, the rule matches every request that reaches
   /// the parent path matcher.
-  final List<RegionUrlMapRouteRuleMatch>? matchRules;
+  final List<ComputeRegionUrlMapRegionUrlMapRouteRuleMatch>? matchRules;
 
   /// Per-rule header mutation applied to forwarded requests / responses.
   /// Layered on top of any path-matcher-level header action.
-  final RegionUrlMapHeaderAction? headerAction;
+  final ComputeRegionUrlMapRegionUrlMapHeaderAction? headerAction;
 
   /// Inline redirect for matching requests. Mutually exclusive with
   /// [service].
-  final RegionUrlMapUrlRedirect? urlRedirect;
+  final ComputeRegionUrlMapRegionUrlMapUrlRedirect? urlRedirect;
 
   /// Escape hatch for the uncurated nested blocks:
   /// - `route_action` (Envoy-style traffic policy)
@@ -236,7 +236,7 @@ class RegionUrlMapRouteRule {
   final Map<String, Object?>? advancedExtra;
 
   Map<String, Object?> toArgMap() => {
-    'priority': priority,
+    'priority': priority.toTfJson(),
     if (service != null) 'service': service!.toTfJson(),
     if (matchRules != null)
       'match_rules': matchRules!.map((m) => m.toArgMap()).toList(),
@@ -258,8 +258,8 @@ class RegionUrlMapRouteRule {
 /// and any other uncurated sub-fields can be passed verbatim via
 /// [advancedExtra]; the map is spread into the emitted Terraform args as-is.
 @immutable
-class RegionUrlMapRouteRuleMatch {
-  const RegionUrlMapRouteRuleMatch({
+class ComputeRegionUrlMapRegionUrlMapRouteRuleMatch {
+  const ComputeRegionUrlMapRegionUrlMapRouteRuleMatch({
     this.fullPathMatch,
     this.prefixMatch,
     this.regexMatch,
@@ -289,10 +289,11 @@ class RegionUrlMapRouteRuleMatch {
   final TfArg<bool>? ignoreCase;
 
   /// Per-header match predicates ANDed with the path predicate.
-  final List<RegionUrlMapHeaderMatch>? headerMatches;
+  final List<ComputeRegionUrlMapRegionUrlMapHeaderMatch>? headerMatches;
 
   /// Per-query-parameter match predicates.
-  final List<RegionUrlMapQueryParameterMatch>? queryParameterMatches;
+  final List<ComputeRegionUrlMapRegionUrlMapQueryParameterMatch>?
+  queryParameterMatches;
 
   /// Escape hatch for the uncurated nested blocks of `match_rules`:
   /// - `metadata_filters` (xDS / Traffic Director match predicates)
@@ -324,8 +325,8 @@ class RegionUrlMapRouteRuleMatch {
 /// [presentMatch] / [rangeMatch] per entry; [invertMatch] negates the
 /// outcome. Validation is left to the GCP API.
 @immutable
-class RegionUrlMapHeaderMatch {
-  const RegionUrlMapHeaderMatch({
+class ComputeRegionUrlMapRegionUrlMapHeaderMatch {
+  const ComputeRegionUrlMapRegionUrlMapHeaderMatch({
     required this.headerName,
     this.exactMatch,
     this.prefixMatch,
@@ -358,7 +359,7 @@ class RegionUrlMapHeaderMatch {
   final TfArg<bool>? invertMatch;
 
   /// Numeric-range match for integer header values.
-  final RegionUrlMapHeaderMatchRange? rangeMatch;
+  final ComputeRegionUrlMapRegionUrlMapHeaderMatchRange? rangeMatch;
 
   Map<String, Object?> toArgMap() => {
     'header_name': headerName.toTfJson(),
@@ -374,29 +375,29 @@ class RegionUrlMapHeaderMatch {
 
 /// `header_matches.range_match` block. Both bounds required by the schema.
 @immutable
-class RegionUrlMapHeaderMatchRange {
-  const RegionUrlMapHeaderMatchRange({
+class ComputeRegionUrlMapRegionUrlMapHeaderMatchRange {
+  const ComputeRegionUrlMapRegionUrlMapHeaderMatchRange({
     required this.rangeStart,
     required this.rangeEnd,
   });
 
   /// Inclusive lower bound.
-  final int rangeStart;
+  TfArg<int> rangeStart;
 
   /// Exclusive upper bound.
-  final int rangeEnd;
+  TfArg<int> rangeEnd;
 
   Map<String, Object?> toArgMap() => {
-    'range_start': rangeStart,
-    'range_end': rangeEnd,
+    'range_start': rangeStart.toTfJson(),
+    'range_end': rangeEnd.toTfJson(),
   };
 }
 
 /// One `match_rules[].query_parameter_matches[]` entry. Matches a single
 /// query parameter by name with a chosen predicate.
 @immutable
-class RegionUrlMapQueryParameterMatch {
-  const RegionUrlMapQueryParameterMatch({
+class ComputeRegionUrlMapRegionUrlMapQueryParameterMatch {
+  const ComputeRegionUrlMapRegionUrlMapQueryParameterMatch({
     required this.name,
     this.exactMatch,
     this.regexMatch,
@@ -437,8 +438,8 @@ class RegionUrlMapQueryParameterMatch {
 /// elsewhere -- the wrapper marks it required to keep the most common
 /// position safe by default).
 @immutable
-class RegionUrlMapUrlRedirect {
-  const RegionUrlMapUrlRedirect({
+class ComputeRegionUrlMapRegionUrlMapUrlRedirect {
+  const ComputeRegionUrlMapRegionUrlMapUrlRedirect({
     required this.stripQuery,
     this.hostRedirect,
     this.pathRedirect,
@@ -489,15 +490,15 @@ class RegionUrlMapUrlRedirect {
 
 /// `header_action` block. Adds / removes headers on requests forwarded to
 /// the backend and / or responses returned to the client. Used at the
-/// top-level URL-map slot and inside [RegionUrlMapRouteRule.headerAction].
+/// top-level URL-map slot and inside [ComputeRegionUrlMapRegionUrlMapRouteRule.headerAction].
 ///
 /// Note: the nested [requestHeadersToAdd] / [responseHeadersToAdd] schema
 /// requires every field (`header_name`, `header_value`, `replace`) at the
 /// top-level `header_action` slot. The wrapper enforces that by making them
-/// `required` on [RegionUrlMapHeaderToAdd].
+/// `required` on [ComputeRegionUrlMapRegionUrlMapHeaderToAdd].
 @immutable
-class RegionUrlMapHeaderAction {
-  const RegionUrlMapHeaderAction({
+class ComputeRegionUrlMapRegionUrlMapHeaderAction {
+  const ComputeRegionUrlMapRegionUrlMapHeaderAction({
     this.requestHeadersToAdd,
     this.requestHeadersToRemove,
     this.responseHeadersToAdd,
@@ -505,13 +506,13 @@ class RegionUrlMapHeaderAction {
   });
 
   /// Headers to add to forwarded requests.
-  final List<RegionUrlMapHeaderToAdd>? requestHeadersToAdd;
+  final List<ComputeRegionUrlMapRegionUrlMapHeaderToAdd>? requestHeadersToAdd;
 
   /// Header names (case-insensitive) to strip from forwarded requests.
   final TfArg<List<String>>? requestHeadersToRemove;
 
   /// Headers to add to returned responses.
-  final List<RegionUrlMapHeaderToAdd>? responseHeadersToAdd;
+  final List<ComputeRegionUrlMapRegionUrlMapHeaderToAdd>? responseHeadersToAdd;
 
   /// Header names (case-insensitive) to strip from returned responses.
   final TfArg<List<String>>? responseHeadersToRemove;
@@ -532,12 +533,12 @@ class RegionUrlMapHeaderAction {
   };
 }
 
-/// One entry in [RegionUrlMapHeaderAction.requestHeadersToAdd] /
-/// [RegionUrlMapHeaderAction.responseHeadersToAdd]. All three fields are
+/// One entry in [ComputeRegionUrlMapRegionUrlMapHeaderAction.requestHeadersToAdd] /
+/// [ComputeRegionUrlMapRegionUrlMapHeaderAction.responseHeadersToAdd]. All three fields are
 /// required by the schema at the top-level `header_action` slot.
 @immutable
-class RegionUrlMapHeaderToAdd {
-  const RegionUrlMapHeaderToAdd({
+class ComputeRegionUrlMapRegionUrlMapHeaderToAdd {
+  const ComputeRegionUrlMapRegionUrlMapHeaderToAdd({
     required this.headerName,
     required this.headerValue,
     required this.replace,
@@ -572,8 +573,8 @@ class RegionUrlMapHeaderToAdd {
 /// For redirect tests, set [expectedRedirectResponseCode] (and / or
 /// [expectedOutputUrl]) instead of (or in addition to) [service].
 @immutable
-class RegionUrlMapTest {
-  const RegionUrlMapTest({
+class ComputeRegionUrlMapRegionUrlMapTest {
+  const ComputeRegionUrlMapRegionUrlMapTest({
     required this.host,
     required this.path,
     this.service,
@@ -605,7 +606,7 @@ class RegionUrlMapTest {
   final TfArg<int>? expectedRedirectResponseCode;
 
   /// Extra request headers for header-aware route rules.
-  final List<RegionUrlMapTestHeader>? headers;
+  final List<ComputeRegionUrlMapRegionUrlMapTestHeader>? headers;
 
   Map<String, Object?> toArgMap() => {
     'host': host.toTfJson(),
@@ -621,11 +622,14 @@ class RegionUrlMapTest {
   };
 }
 
-/// One entry in [RegionUrlMapTest.headers]. Both fields required by the
+/// One entry in [ComputeRegionUrlMapRegionUrlMapTest.headers]. Both fields required by the
 /// schema.
 @immutable
-class RegionUrlMapTestHeader {
-  const RegionUrlMapTestHeader({required this.name, required this.value});
+class ComputeRegionUrlMapRegionUrlMapTestHeader {
+  const ComputeRegionUrlMapRegionUrlMapTestHeader({
+    required this.name,
+    required this.value,
+  });
 
   /// Header name.
   final TfArg<String> name;
@@ -705,21 +709,21 @@ class RegionUrlMapTestHeader {
 ///   region: TfArg.literal('us-central1'),
 ///   defaultService: TfArg.ref(login.selfLink),
 ///   hostRules: const [
-///     RegionUrlMapHostRule(
+///     ComputeRegionUrlMapRegionUrlMapHostRule(
 ///       hosts: ['mysite.com', 'myothersite.com'],
 ///       pathMatcher: 'allpaths',
 ///     ),
 ///   ],
 ///   pathMatchers: [
-///     RegionUrlMapPathMatcher(
+///     ComputeRegionUrlMapRegionUrlMapPathMatcher(
 ///       name: 'allpaths',
 ///       defaultService: TfArg.ref(login.selfLink),
 ///       pathRules: [
-///         RegionUrlMapPathRule(
+///         ComputeRegionUrlMapRegionUrlMapPathRule(
 ///           paths: const ['/home'],
 ///           service: TfArg.ref(login.selfLink),
 ///         ),
-///         RegionUrlMapPathRule(
+///         ComputeRegionUrlMapRegionUrlMapPathRule(
 ///           paths: const ['/static'],
 ///           service: TfArg.ref(staticBucket.selfLink),
 ///         ),
@@ -727,14 +731,14 @@ class RegionUrlMapTestHeader {
 ///     ),
 ///   ],
 ///   tests: const [
-///     RegionUrlMapTest(host: 'mysite.com', path: '/home'),
+///     ComputeRegionUrlMapRegionUrlMapTest(host: 'mysite.com', path: '/home'),
 ///   ],
 /// );
 /// ```
 ///
 /// Naming convention: ALL nested helper types in this resource are prefixed
-/// `RegionUrlMap...` (e.g. [RegionUrlMapHostRule], [RegionUrlMapPathMatcher],
-/// [RegionUrlMapUrlRedirect]) to avoid colliding with the
+/// `RegionUrlMap...` (e.g. [ComputeRegionUrlMapRegionUrlMapHostRule], [ComputeRegionUrlMapRegionUrlMapPathMatcher],
+/// [ComputeRegionUrlMapRegionUrlMapUrlRedirect]) to avoid colliding with the
 /// similarly-shaped helpers in the global `google_compute_url_map` wrapper
 /// (which uses the `UrlMap...` prefix) and with other sibling
 /// load-balancer resources.
@@ -746,7 +750,7 @@ class RegionUrlMapTestHeader {
 /// (cache_policy, cors_policy, fault_injection_policy, retry_policy,
 /// url_rewrite, weighted_backend_services, ...) that would dominate the
 /// curated surface for little common-case win. Pass a raw
-/// `Map<String, Object?>` via [RegionUrlMapPathMatcher.advancedExtra] etc.
+/// `Map<String, Object?>` via [ComputeRegionUrlMapRegionUrlMapPathMatcher.advancedExtra] etc.
 /// keyed by the Terraform block name when you need them; see the per-class
 /// doc for the exact escape-hatch key.
 ///
@@ -762,11 +766,11 @@ final class GoogleComputeRegionUrlMap extends Resource {
     TfArg<String>? region,
     TfArg<String>? defaultService,
     TfArg<String>? description,
-    List<RegionUrlMapHostRule>? hostRules,
-    List<RegionUrlMapPathMatcher>? pathMatchers,
-    List<RegionUrlMapTest>? tests,
-    RegionUrlMapUrlRedirect? defaultUrlRedirect,
-    RegionUrlMapHeaderAction? headerAction,
+    List<ComputeRegionUrlMapRegionUrlMapHostRule>? hostRules,
+    List<ComputeRegionUrlMapRegionUrlMapPathMatcher>? pathMatchers,
+    List<ComputeRegionUrlMapRegionUrlMapTest>? tests,
+    ComputeRegionUrlMapRegionUrlMapUrlRedirect? defaultUrlRedirect,
+    ComputeRegionUrlMapRegionUrlMapHeaderAction? headerAction,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

@@ -61,8 +61,8 @@ enum BackendBucketCacheMode {
 /// [includeQueryString] — buckets only expose the
 /// [queryStringWhitelist] / [includeHttpHeaders] axes).
 @immutable
-class BackendBucketCdnPolicy {
-  const BackendBucketCdnPolicy({
+class ComputeBackendBucketBackendBucketCdnPolicy {
+  const ComputeBackendBucketBackendBucketCdnPolicy({
     this.cacheMode,
     this.clientTtl,
     this.defaultTtl,
@@ -82,54 +82,58 @@ class BackendBucketCdnPolicy {
   /// Max TTL (seconds) the cache will serve content to clients for.
   /// Must be omitted when [cacheMode] is
   /// [BackendBucketCacheMode.useOriginHeaders].
-  final int? clientTtl;
+  TfArg<int>? clientTtl;
 
   /// Default TTL for cached content with no upstream `Cache-Control`.
   /// Must be omitted when [cacheMode] is
   /// [BackendBucketCacheMode.useOriginHeaders].
-  final int? defaultTtl;
+  TfArg<int>? defaultTtl;
 
   /// Hard ceiling on cached content TTL. Must be omitted when
   /// [cacheMode] is [BackendBucketCacheMode.useOriginHeaders].
-  final int? maxTtl;
+  TfArg<int>? maxTtl;
 
   /// Negative caching for selected status codes. Pair with
   /// [negativeCachingPolicy] for per-code TTLs.
-  final bool? negativeCaching;
+  TfArg<bool>? negativeCaching;
 
   /// Coalesce concurrent cache-fill requests to the origin.
-  final bool? requestCoalescing;
+  TfArg<bool>? requestCoalescing;
 
   /// Serve cached content during origin revalidation or errors
   /// (seconds).
-  final int? serveWhileStale;
+  TfArg<int>? serveWhileStale;
 
   /// TTL for signed-URL responses (defaults to 3600 if unset).
-  final int? signedUrlCacheMaxAgeSec;
+  TfArg<int>? signedUrlCacheMaxAgeSec;
 
   /// Bypass the cache when any of these request headers is present.
   /// Up to 5 entries.
-  final List<BackendBucketCdnBypassCacheOnRequestHeader>?
+  final List<ComputeBackendBucketBackendBucketCdnBypassCacheOnRequestHeader>?
   bypassCacheOnRequestHeaders;
 
   /// Cache key policy — which request components participate in the
   /// cache key.
-  final BackendBucketCdnCacheKeyPolicy? cacheKeyPolicy;
+  final ComputeBackendBucketBackendBucketCdnCacheKeyPolicy? cacheKeyPolicy;
 
   /// Per-status-code negative-cache TTLs. Only honored when
   /// [negativeCaching] is `true`.
-  final List<BackendBucketCdnNegativeCachingPolicy>? negativeCachingPolicy;
+  final List<ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy>?
+  negativeCachingPolicy;
 
   Map<String, Object?> toArgMap() => {
     if (cacheMode != null) 'cache_mode': cacheMode!.terraformValue,
-    if (clientTtl != null) 'client_ttl': clientTtl,
-    if (defaultTtl != null) 'default_ttl': defaultTtl,
-    if (maxTtl != null) 'max_ttl': maxTtl,
-    if (negativeCaching != null) 'negative_caching': negativeCaching,
-    if (requestCoalescing != null) 'request_coalescing': requestCoalescing,
-    if (serveWhileStale != null) 'serve_while_stale': serveWhileStale,
+    if (clientTtl != null) 'client_ttl': clientTtl!.toTfJson(),
+    if (defaultTtl != null) 'default_ttl': defaultTtl!.toTfJson(),
+    if (maxTtl != null) 'max_ttl': maxTtl!.toTfJson(),
+    if (negativeCaching != null)
+      'negative_caching': negativeCaching!.toTfJson(),
+    if (requestCoalescing != null)
+      'request_coalescing': requestCoalescing!.toTfJson(),
+    if (serveWhileStale != null)
+      'serve_while_stale': serveWhileStale!.toTfJson(),
     if (signedUrlCacheMaxAgeSec != null)
-      'signed_url_cache_max_age_sec': signedUrlCacheMaxAgeSec,
+      'signed_url_cache_max_age_sec': signedUrlCacheMaxAgeSec!.toTfJson(),
     if (bypassCacheOnRequestHeaders != null)
       'bypass_cache_on_request_headers': bypassCacheOnRequestHeaders!
           .map((h) => h.toArgMap())
@@ -146,8 +150,10 @@ class BackendBucketCdnPolicy {
 /// Cache-bypass rule keyed on a request header name (one entry in
 /// `cdn_policy.bypass_cache_on_request_headers`, max 5 entries).
 @immutable
-class BackendBucketCdnBypassCacheOnRequestHeader {
-  const BackendBucketCdnBypassCacheOnRequestHeader({required this.headerName});
+class ComputeBackendBucketBackendBucketCdnBypassCacheOnRequestHeader {
+  const ComputeBackendBucketBackendBucketCdnBypassCacheOnRequestHeader({
+    required this.headerName,
+  });
 
   /// Header field name (case-insensitive).
   final TfArg<String> headerName;
@@ -160,8 +166,8 @@ class BackendBucketCdnBypassCacheOnRequestHeader {
 /// `BackendServiceCdnCacheKeyPolicy`, there is no host / protocol /
 /// query-string-as-a-whole toggle.
 @immutable
-class BackendBucketCdnCacheKeyPolicy {
-  const BackendBucketCdnCacheKeyPolicy({
+class ComputeBackendBucketBackendBucketCdnCacheKeyPolicy {
+  const ComputeBackendBucketBackendBucketCdnCacheKeyPolicy({
     this.includeHttpHeaders,
     this.queryStringWhitelist,
   });
@@ -176,28 +182,32 @@ class BackendBucketCdnCacheKeyPolicy {
   final List<String>? queryStringWhitelist;
 
   Map<String, Object?> toArgMap() => {
-    if (includeHttpHeaders != null) 'include_http_headers': includeHttpHeaders,
+    if (includeHttpHeaders != null)
+      'include_http_headers': includeHttpHeaders!.toTfJson(),
     if (queryStringWhitelist != null)
-      'query_string_whitelist': queryStringWhitelist,
+      'query_string_whitelist': queryStringWhitelist!.toTfJson(),
   };
 }
 
 /// One row in `cdn_policy.negative_caching_policy`.
 @immutable
-class BackendBucketCdnNegativeCachingPolicy {
-  const BackendBucketCdnNegativeCachingPolicy({this.code, this.ttl});
+class ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy {
+  const ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy({
+    this.code,
+    this.ttl,
+  });
 
   /// HTTP status code to apply a TTL to. Valid values per schema:
   /// 300, 301, 308, 404, 405, 410, 421, 451, 501. Each code may
   /// appear at most once.
-  final int? code;
+  TfArg<int>? code;
 
   /// TTL in seconds. Max allowed value 1800 (30 minutes).
-  final int? ttl;
+  TfArg<int>? ttl;
 
   Map<String, Object?> toArgMap() => {
-    if (code != null) 'code': code,
-    if (ttl != null) 'ttl': ttl,
+    if (code != null) 'code': code!.toTfJson(),
+    if (ttl != null) 'ttl': ttl!.toTfJson(),
   };
 }
 
@@ -208,8 +218,8 @@ class BackendBucketCdnNegativeCachingPolicy {
 /// `params` block — currently only carries resource-manager tags
 /// applied at creation time. Immutable: changes force replacement.
 @immutable
-class BackendBucketParams {
-  const BackendBucketParams({this.resourceManagerTags});
+class ComputeBackendBucketBackendBucketParams {
+  const ComputeBackendBucketBackendBucketParams({this.resourceManagerTags});
 
   /// `{tagKeys/<id>: tagValues/<id>}` map of resource-manager tag
   /// bindings.
@@ -262,15 +272,15 @@ class BackendBucketParams {
 ///   name: TfArg.literal('static-assets'),
 ///   bucketName: TfArg.literal('my-static-assets'),
 ///   enableCdn: TfArg.literal(true),
-///   cdnPolicy: const BackendBucketCdnPolicy(
+///   cdnPolicy: const ComputeBackendBucketBackendBucketCdnPolicy(
 ///     cacheMode: BackendBucketCacheMode.cacheAllStatic,
 ///     defaultTtl: 3600,
 ///     maxTtl: 86400,
 ///     clientTtl: 3600,
 ///     negativeCaching: true,
 ///     negativeCachingPolicy: [
-///       BackendBucketCdnNegativeCachingPolicy(code: 404, ttl: 120),
-///       BackendBucketCdnNegativeCachingPolicy(code: 410, ttl: 120),
+///       ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy(code: 404, ttl: 120),
+///       ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy(code: 410, ttl: 120),
 ///     ],
 ///     serveWhileStale: 60,
 ///   ),
@@ -298,10 +308,10 @@ class BackendBucketParams {
 /// ```
 ///
 /// Nested-type prefix: every helper class for a `cdn_policy` sub-block
-/// is `BackendBucket`-prefixed (e.g. [BackendBucketCdnPolicy],
-/// [BackendBucketCdnCacheKeyPolicy],
-/// [BackendBucketCdnNegativeCachingPolicy],
-/// [BackendBucketCdnBypassCacheOnRequestHeader]). The shape mirrors the
+/// is `BackendBucket`-prefixed (e.g. [ComputeBackendBucketBackendBucketCdnPolicy],
+/// [ComputeBackendBucketBackendBucketCdnCacheKeyPolicy],
+/// [ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy],
+/// [ComputeBackendBucketBackendBucketCdnBypassCacheOnRequestHeader]). The shape mirrors the
 /// `BackendService*` family but is a **distinct type** — the bucket and
 /// service CDN configurations are not interchangeable, even where the
 /// schema field names agree.
@@ -322,8 +332,8 @@ final class GoogleComputeBackendBucket extends Resource {
     TfArg<List<String>>? customResponseHeaders,
     TfArg<String>? edgeSecurityPolicy,
     TfArg<BackendBucketLoadBalancingScheme>? loadBalancingScheme,
-    BackendBucketCdnPolicy? cdnPolicy,
-    BackendBucketParams? params,
+    ComputeBackendBucketBackendBucketCdnPolicy? cdnPolicy,
+    ComputeBackendBucketBackendBucketParams? params,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

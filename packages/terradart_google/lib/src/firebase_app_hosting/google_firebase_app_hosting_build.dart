@@ -8,16 +8,16 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleFirebaseAppHostingBuildSensitive = <String>{};
 
 // ===========================================================================
-// source block + sealed AppHostingBuildSource dispatch
+// source block + sealed FirebaseAppHostingBuildAppHostingBuildSource dispatch
 // ===========================================================================
 
 /// `source` block (required, max_items=1). Sealed dispatch over the
 /// schema's two mutually exclusive sub-blocks: pick a commit from the
-/// backend's Developer Connect repository ([AppHostingBuildSourceCodebase])
+/// backend's Developer Connect repository ([FirebaseAppHostingBuildAppHostingBuildSourceCodebase])
 /// OR point at a prebuilt Artifact Registry image
-/// ([AppHostingBuildSourceContainer]).
-sealed class AppHostingBuildSource {
-  const AppHostingBuildSource();
+/// ([FirebaseAppHostingBuildAppHostingBuildSourceContainer]).
+sealed class FirebaseAppHostingBuildAppHostingBuildSource {
+  const FirebaseAppHostingBuildAppHostingBuildSource();
 
   /// Returns the JSON fragment to merge into the `source` block.
   Map<String, Object?> encode();
@@ -27,8 +27,12 @@ sealed class AppHostingBuildSource {
 /// branch HEAD) and/or [commit] (pin to a specific SHA). The schema does
 /// not enforce a one-of, but the API ignores both being null.
 @immutable
-final class AppHostingBuildSourceCodebase extends AppHostingBuildSource {
-  const AppHostingBuildSourceCodebase({this.branch, this.commit});
+final class FirebaseAppHostingBuildAppHostingBuildSourceCodebase
+    extends FirebaseAppHostingBuildAppHostingBuildSource {
+  const FirebaseAppHostingBuildAppHostingBuildSourceCodebase({
+    this.branch,
+    this.commit,
+  });
 
   /// Branch in the backend's linked repository to build from. Builds at
   /// the latest commit of the branch when [commit] is null.
@@ -51,8 +55,11 @@ final class AppHostingBuildSourceCodebase extends AppHostingBuildSource {
 /// `source.container` sub-block. Skips the Cloud Build step and uses the
 /// supplied Artifact Registry image directly for the Cloud Run revision.
 @immutable
-final class AppHostingBuildSourceContainer extends AppHostingBuildSource {
-  const AppHostingBuildSourceContainer({required this.image});
+final class FirebaseAppHostingBuildAppHostingBuildSourceContainer
+    extends FirebaseAppHostingBuildAppHostingBuildSource {
+  const FirebaseAppHostingBuildAppHostingBuildSourceContainer({
+    required this.image,
+  });
 
   /// Artifact Registry image URI (e.g.
   /// `us-central1-docker.pkg.dev/p/r/web:1.2.3`).
@@ -77,9 +84,9 @@ final class AppHostingBuildSourceContainer extends AppHostingBuildSource {
 ///   [GoogleFirebaseAppHostingBackend].
 /// - `location`: GCP region of the backend.
 /// - `build_id`: Stable user-chosen identifier of this build.
-/// - `source`: required [AppHostingBuildSource]. Pick exactly one of
-///   [AppHostingBuildSourceCodebase] (commit ref into the configured
-///   Developer Connect repository) or [AppHostingBuildSourceContainer]
+/// - `source`: required [FirebaseAppHostingBuildAppHostingBuildSource]. Pick exactly one of
+///   [FirebaseAppHostingBuildAppHostingBuildSourceCodebase] (commit ref into the configured
+///   Developer Connect repository) or [FirebaseAppHostingBuildAppHostingBuildSourceContainer]
 ///   (point at a prebuilt Artifact Registry image, skipping the Cloud
 ///   Build step).
 ///
@@ -90,7 +97,7 @@ final class AppHostingBuildSourceContainer extends AppHostingBuildSource {
 ///   backend: TfArg.ref(backend.backendIdRef),
 ///   location: TfArg.literal('us-central1'),
 ///   buildId: TfArg.literal('v1'),
-///   source: AppHostingBuildSourceCodebase(
+///   source: FirebaseAppHostingBuildAppHostingBuildSourceCodebase(
 ///     branch: TfArg.literal('main'),
 ///   ),
 ///   displayName: TfArg.literal('First release'),
@@ -104,7 +111,7 @@ final class AppHostingBuildSourceContainer extends AppHostingBuildSource {
 ///   backend: TfArg.ref(backend.backendIdRef),
 ///   location: TfArg.literal('us-central1'),
 ///   buildId: TfArg.literal('v1'),
-///   source: AppHostingBuildSourceContainer(
+///   source: FirebaseAppHostingBuildAppHostingBuildSourceContainer(
 ///     image: TfArg.literal(
 ///       'us-central1-docker.pkg.dev/p/r/web:1.2.3',
 ///     ),
@@ -127,7 +134,7 @@ final class GoogleFirebaseAppHostingBuild extends Resource {
     required TfArg<String> backend,
     required TfArg<String> location,
     required TfArg<String> buildId,
-    required AppHostingBuildSource source,
+    required FirebaseAppHostingBuildAppHostingBuildSource source,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? annotations,
     TfArg<Map<String, String>>? labels,

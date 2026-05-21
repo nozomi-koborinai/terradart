@@ -33,8 +33,8 @@ enum RemoteConfigTagColor {
 }
 
 /// `parameters[].value_type` (and `parameter_groups[].parameters[].value_type`)
-/// -- the data type interpretation of [RemoteConfigDefaultValue.value] /
-/// [RemoteConfigConditionalValue.value]. `string` is the schema default.
+/// -- the data type interpretation of [FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue.value] /
+/// [FirebaseRemoteConfigRemoteConfigRemoteConfigConditionalValue.value]. `string` is the schema default.
 /// `jsonValue` covers any structured payload (the wire format is still a
 /// string -- the client is expected to JSON-parse it).
 enum RemoteConfigValueType {
@@ -60,27 +60,27 @@ enum RemoteConfigValueType {
 /// https://firebase.google.com/docs/remote-config/condition-reference
 /// for the expected syntax of [expression].
 @immutable
-class RemoteConfigCondition {
-  const RemoteConfigCondition({
+class FirebaseRemoteConfigRemoteConfigRemoteConfigCondition {
+  const FirebaseRemoteConfigRemoteConfigRemoteConfigCondition({
     required this.name,
     required this.expression,
     this.tagColor,
   });
 
   /// Unique condition name. Referenced verbatim by
-  /// [RemoteConfigConditionalValue.conditionName].
-  final String name;
+  /// [FirebaseRemoteConfigRemoteConfigRemoteConfigConditionalValue.conditionName].
+  TfArg<String> name;
 
   /// Condition expression (see the link in the class doc).
-  final String expression;
+  TfArg<String> expression;
 
   /// Display swatch for the Firebase Console. Null lets the Console
   /// auto-assign.
   final RemoteConfigTagColor? tagColor;
 
   Map<String, Object?> toArgMap() => {
-    'name': name,
-    'expression': expression,
+    'name': name.toTfJson(),
+    'expression': expression.toTfJson(),
     if (tagColor != null) 'tag_color': tagColor!.terraformValue,
   };
 }
@@ -97,31 +97,34 @@ class RemoteConfigCondition {
 /// Use [useInAppDefault]=true to mark "no template-side default; fall
 /// back to whatever the client SDK was compiled with"; use [value] to
 /// supply a literal string (interpreted per the parent parameter's
-/// [RemoteConfigParameter.valueType]).
+/// [FirebaseRemoteConfigRemoteConfigRemoteConfigParameter.valueType]).
 @immutable
-class RemoteConfigDefaultValue {
-  const RemoteConfigDefaultValue({this.useInAppDefault, this.value})
-    : assert(
-        useInAppDefault == null || value == null,
-        'RemoteConfigDefaultValue: pass at most one of `useInAppDefault` '
-        'or `value` -- the schema rejects both being set.',
-      );
+class FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue {
+  const FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue({
+    this.useInAppDefault,
+    this.value,
+  }) : assert(
+         useInAppDefault == null || value == null,
+         'FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue: pass at most one of `useInAppDefault` '
+         'or `value` -- the schema rejects both being set.',
+       );
 
   /// When true, the parameter is omitted from values returned to the
   /// client (the client falls back to its in-app default).
-  final bool? useInAppDefault;
+  TfArg<bool>? useInAppDefault;
 
   /// String value (interpreted per the parent parameter's `valueType`).
-  final String? value;
+  TfArg<String>? value;
 
   Map<String, Object?> toArgMap() => {
-    if (useInAppDefault != null) 'use_in_app_default': useInAppDefault,
-    if (value != null) 'value': value,
+    if (useInAppDefault != null)
+      'use_in_app_default': useInAppDefault!.toTfJson(),
+    if (value != null) 'value': value!.toTfJson(),
   };
 }
 
 /// One entry in a parameter's `conditional_values` (nesting=set). Pairs
-/// a [conditionName] (referencing a [RemoteConfigCondition.name] in the
+/// a [conditionName] (referencing a [FirebaseRemoteConfigRemoteConfigRemoteConfigCondition.name] in the
 /// template's [conditions] list) with either an in-app-default flag or
 /// a literal [value]. Per the schema's own constraint, only one of
 /// [useInAppDefault] / [value] may be specified.
@@ -130,45 +133,46 @@ class RemoteConfigDefaultValue {
 /// first in the template's [conditions]) that evaluates to true
 /// determines this parameter's value for a given client.
 @immutable
-class RemoteConfigConditionalValue {
-  const RemoteConfigConditionalValue({
+class FirebaseRemoteConfigRemoteConfigRemoteConfigConditionalValue {
+  const FirebaseRemoteConfigRemoteConfigRemoteConfigConditionalValue({
     required this.conditionName,
     this.useInAppDefault,
     this.value,
   }) : assert(
          useInAppDefault == null || value == null,
-         'RemoteConfigConditionalValue: pass at most one of '
+         'FirebaseRemoteConfigRemoteConfigRemoteConfigConditionalValue: pass at most one of '
          '`useInAppDefault` or `value` -- the schema rejects both being '
          'set.',
        );
 
-  /// Must match a [RemoteConfigCondition.name] in the parent template's
+  /// Must match a [FirebaseRemoteConfigRemoteConfigRemoteConfigCondition.name] in the parent template's
   /// [conditions] list. Mismatches are not caught at compile time;
   /// Terraform apply surfaces the error from the Remote Config API.
-  final String conditionName;
+  TfArg<String> conditionName;
 
   /// When true, the parameter is omitted from values returned to the
   /// client (the client falls back to its in-app default) when this
   /// condition matches.
-  final bool? useInAppDefault;
+  TfArg<bool>? useInAppDefault;
 
   /// String value (interpreted per the parent parameter's `valueType`).
-  final String? value;
+  TfArg<String>? value;
 
   Map<String, Object?> toArgMap() => {
-    'condition_name': conditionName,
-    if (useInAppDefault != null) 'use_in_app_default': useInAppDefault,
-    if (value != null) 'value': value,
+    'condition_name': conditionName.toTfJson(),
+    if (useInAppDefault != null)
+      'use_in_app_default': useInAppDefault!.toTfJson(),
+    if (value != null) 'value': value!.toTfJson(),
   };
 }
 
 // ===========================================================================
 // parameter helper (shared between top-level [parameters] and
-// [RemoteConfigParameterGroup.parameters])
+// [FirebaseRemoteConfigRemoteConfigRemoteConfigParameterGroup.parameters])
 // ===========================================================================
 
 /// One entry in `parameters` (top-level set) or in a
-/// [RemoteConfigParameterGroup.parameters] (nested set). Carries the
+/// [FirebaseRemoteConfigRemoteConfigRemoteConfigParameterGroup.parameters] (nested set). Carries the
 /// parameter's identity (`parameter_name`), optional metadata
 /// (`description`, `value_type`), and the default / conditional value
 /// payload (each modelled by a dedicated helper).
@@ -177,8 +181,8 @@ class RemoteConfigConditionalValue {
 /// top level OR within exactly one group. The wrapper does not enforce
 /// this; the Remote Config API does.
 @immutable
-class RemoteConfigParameter {
-  const RemoteConfigParameter({
+class FirebaseRemoteConfigRemoteConfigRemoteConfigParameter {
+  const FirebaseRemoteConfigRemoteConfigRemoteConfigParameter({
     required this.parameterName,
     this.description,
     this.valueType,
@@ -188,11 +192,11 @@ class RemoteConfigParameter {
 
   /// Parameter key (referenced by client SDKs via
   /// `RemoteConfig.getValue('<parameter_name>')`).
-  final String parameterName;
+  TfArg<String> parameterName;
 
   /// Free-form description (<= 256 Unicode chars). Surfaced in the
   /// Firebase Console.
-  final String? description;
+  TfArg<String>? description;
 
   /// Data type for [defaultValue.value] / [conditionalValues[].value].
   /// Null falls through to the provider default
@@ -201,15 +205,16 @@ class RemoteConfigParameter {
 
   /// Optional default value (used when none of the [conditionalValues]
   /// match).
-  final RemoteConfigDefaultValue? defaultValue;
+  final FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue? defaultValue;
 
   /// Optional list of per-condition overrides. Empty list and null both
   /// mean "no overrides".
-  final List<RemoteConfigConditionalValue>? conditionalValues;
+  final List<FirebaseRemoteConfigRemoteConfigRemoteConfigConditionalValue>?
+  conditionalValues;
 
   Map<String, Object?> toArgMap() => {
-    'parameter_name': parameterName,
-    if (description != null) 'description': description,
+    'parameter_name': parameterName.toTfJson(),
+    if (description != null) 'description': description!.toTfJson(),
     if (valueType != null) 'value_type': valueType!.terraformValue,
     if (defaultValue != null) 'default_value': [defaultValue!.toArgMap()],
     if (conditionalValues != null)
@@ -230,8 +235,8 @@ class RemoteConfigParameter {
 /// Group names are mutable but must be unique within a template; the
 /// wrapper does not de-duplicate them, the Remote Config API does.
 @immutable
-class RemoteConfigParameterGroup {
-  const RemoteConfigParameterGroup({
+class FirebaseRemoteConfigRemoteConfigRemoteConfigParameterGroup {
+  const FirebaseRemoteConfigRemoteConfigRemoteConfigParameterGroup({
     required this.parameterGroupName,
     this.description,
     this.parameters,
@@ -239,20 +244,20 @@ class RemoteConfigParameterGroup {
 
   /// Human-readable group identifier (<= 256 Unicode chars). Unique
   /// within the template.
-  final String parameterGroupName;
+  TfArg<String> parameterGroupName;
 
   /// Free-form description (<= 256 Unicode chars). Surfaced in the
   /// Firebase Console.
-  final String? description;
+  TfArg<String>? description;
 
   /// Parameters belonging to this group. Each parameter appears exactly
   /// once in the entire template -- either at the top level OR within
   /// one specific group, never both.
-  final List<RemoteConfigParameter>? parameters;
+  final List<FirebaseRemoteConfigRemoteConfigRemoteConfigParameter>? parameters;
 
   Map<String, Object?> toArgMap() => {
-    'parameter_group_name': parameterGroupName,
-    if (description != null) 'description': description,
+    'parameter_group_name': parameterGroupName.toTfJson(),
+    if (description != null) 'description': description!.toTfJson(),
     if (parameters != null)
       'parameters': parameters!.map((p) => p.toArgMap()).toList(),
   };
@@ -281,20 +286,20 @@ class RemoteConfigParameterGroup {
 /// final cfg = GoogleFirebaseRemoteConfigRemoteConfig(
 ///   localName: 'default',
 ///   conditions: const [
-///     RemoteConfigCondition(
+///     FirebaseRemoteConfigRemoteConfigRemoteConfigCondition(
 ///       name: 'staging_only',
 ///       expression: "app.id == 'com.example.app.staging'",
 ///       tagColor: RemoteConfigTagColor.orange,
 ///     ),
 ///   ],
 ///   parameters: const [
-///     RemoteConfigParameter(
+///     FirebaseRemoteConfigRemoteConfigRemoteConfigParameter(
 ///       parameterName: 'feature_x_enabled',
 ///       valueType: RemoteConfigValueType.boolean,
 ///       description: 'Gates the feature X rollout.',
-///       defaultValue: RemoteConfigDefaultValue(value: 'false'),
+///       defaultValue: FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue(value: 'false'),
 ///       conditionalValues: [
-///         RemoteConfigConditionalValue(
+///         FirebaseRemoteConfigRemoteConfigRemoteConfigConditionalValue(
 ///           conditionName: 'staging_only',
 ///           value: 'true',
 ///         ),
@@ -309,14 +314,14 @@ class RemoteConfigParameterGroup {
 /// final cfg = GoogleFirebaseRemoteConfigRemoteConfig(
 ///   localName: 'default',
 ///   parameterGroups: const [
-///     RemoteConfigParameterGroup(
+///     FirebaseRemoteConfigRemoteConfigRemoteConfigParameterGroup(
 ///       parameterGroupName: 'search_v2',
 ///       description: 'New mobile search view.',
 ///       parameters: [
-///         RemoteConfigParameter(
+///         FirebaseRemoteConfigRemoteConfigRemoteConfigParameter(
 ///           parameterName: 'search_layout',
 ///           valueType: RemoteConfigValueType.string,
-///           defaultValue: RemoteConfigDefaultValue(value: 'grid'),
+///           defaultValue: FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue(value: 'grid'),
 ///         ),
 ///       ],
 ///     ),
@@ -327,9 +332,9 @@ class RemoteConfigParameterGroup {
 /// Manages the project-level Firebase Remote Config template. The
 /// template's payload is composed of three orthogonal collections:
 /// [conditions] (boolean predicates evaluated at client fetch time),
-/// [parameters] (top-level parameter map, keyed by [RemoteConfigParameter.parameterName]),
+/// [parameters] (top-level parameter map, keyed by [FirebaseRemoteConfigRemoteConfigRemoteConfigParameter.parameterName]),
 /// and [parameterGroups] (named buckets of parameters, see
-/// [RemoteConfigParameterGroup]). Conditional values inside each
+/// [FirebaseRemoteConfigRemoteConfigRemoteConfigParameterGroup]). Conditional values inside each
 /// parameter reference conditions by name -- the wrapper does not (and
 /// cannot) cross-validate these references at compile time; mismatches
 /// surface at apply time from the Remote Config API.
@@ -339,9 +344,10 @@ final class GoogleFirebaseRemoteConfigRemoteConfig extends Resource {
 
   GoogleFirebaseRemoteConfigRemoteConfig({
     required super.localName,
-    List<RemoteConfigParameter>? parameters,
-    List<RemoteConfigParameterGroup>? parameterGroups,
-    List<RemoteConfigCondition>? conditions,
+    List<FirebaseRemoteConfigRemoteConfigRemoteConfigParameter>? parameters,
+    List<FirebaseRemoteConfigRemoteConfigRemoteConfigParameterGroup>?
+    parameterGroups,
+    List<FirebaseRemoteConfigRemoteConfigRemoteConfigCondition>? conditions,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

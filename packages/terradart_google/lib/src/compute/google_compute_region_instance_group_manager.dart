@@ -99,15 +99,15 @@ enum RegionInstanceGroupManagerUpdatePolicyReplacementMethod {
 /// self-link, typically a within-batch sibling) and optionally caps
 /// how many instances run that version via [targetSize].
 ///
-/// Multiple [RegionInstanceGroupManagerVersion] entries enable
+/// Multiple [ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion] entries enable
 /// canary rollouts: the MIG splits the total
 /// [GoogleComputeRegionInstanceGroupManager.targetSize] across
 /// versions based on each version's [targetSize] (fixed count or
 /// percentage). A version without [targetSize] absorbs the
 /// remainder.
 @immutable
-class RegionInstanceGroupManagerVersion {
-  const RegionInstanceGroupManagerVersion({
+class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion {
+  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion({
     required this.instanceTemplate,
     this.name,
     this.targetSize,
@@ -121,7 +121,8 @@ class RegionInstanceGroupManagerVersion {
   final TfArg<String>? name;
 
   /// Cap on how many instances run this version (fixed or percent).
-  final RegionInstanceGroupManagerVersionTargetSize? targetSize;
+  final ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersionTargetSize?
+  targetSize;
 
   Map<String, Object?> toArgMap() => {
     'instance_template': instanceTemplate.toTfJson(),
@@ -133,18 +134,21 @@ class RegionInstanceGroupManagerVersion {
 /// `version.target_size` (`max_items=1`). Exactly one of [fixed] or
 /// [percent] should be set.
 @immutable
-class RegionInstanceGroupManagerVersionTargetSize {
-  const RegionInstanceGroupManagerVersionTargetSize({this.fixed, this.percent});
+class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersionTargetSize {
+  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersionTargetSize({
+    this.fixed,
+    this.percent,
+  });
 
   /// Fixed number of instances managed for this version.
-  final int? fixed;
+  TfArg<int>? fixed;
 
   /// Percentage (0-100) of total MIG size managed for this version.
-  final int? percent;
+  TfArg<int>? percent;
 
   Map<String, Object?> toArgMap() => {
-    if (fixed != null) 'fixed': fixed,
-    if (percent != null) 'percent': percent,
+    if (fixed != null) 'fixed': fixed!.toTfJson(),
+    if (percent != null) 'percent': percent!.toTfJson(),
   };
 }
 
@@ -156,8 +160,8 @@ class RegionInstanceGroupManagerVersionTargetSize {
 /// for longer than the initial-delay window, the MIG recreates it.
 /// Schema marks both fields as required.
 @immutable
-class RegionInstanceGroupManagerAutoHealingPolicy {
-  const RegionInstanceGroupManagerAutoHealingPolicy({
+class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAutoHealingPolicy {
+  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAutoHealingPolicy({
     required this.healthCheck,
     required this.initialDelaySec,
   });
@@ -169,11 +173,11 @@ class RegionInstanceGroupManagerAutoHealingPolicy {
 
   /// Seconds to wait after a VM is created before applying autohealing
   /// to it. Schema range: 0-3600.
-  final int initialDelaySec;
+  TfArg<int> initialDelaySec;
 
   Map<String, Object?> toArgMap() => {
     'health_check': healthCheck.toTfJson(),
-    'initial_delay_sec': initialDelaySec,
+    'initial_delay_sec': initialDelaySec.toTfJson(),
   };
 }
 
@@ -182,11 +186,11 @@ class RegionInstanceGroupManagerAutoHealingPolicy {
 // ===========================================================================
 
 /// `update_policy` block. Drives how the regional MIG rolls a new
-/// [RegionInstanceGroupManagerVersion] across its members and how
+/// [ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion] across its members and how
 /// aggressively it rebalances across [distributionPolicyZones].
 @immutable
-class RegionInstanceGroupManagerUpdatePolicy {
-  const RegionInstanceGroupManagerUpdatePolicy({
+class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerUpdatePolicy {
+  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerUpdatePolicy({
     required this.minimalAction,
     required this.type,
     this.instanceRedistributionType,
@@ -217,17 +221,17 @@ class RegionInstanceGroupManagerUpdatePolicy {
   /// Extra VMs the MIG may add over
   /// [GoogleComputeRegionInstanceGroupManager.targetSize] during the
   /// rollout. Conflicts with [maxSurgePercent].
-  final int? maxSurgeFixed;
+  TfArg<int>? maxSurgeFixed;
 
   /// Percent equivalent of [maxSurgeFixed].
-  final int? maxSurgePercent;
+  TfArg<int>? maxSurgePercent;
 
   /// VMs allowed to be unavailable simultaneously. Conflicts with
   /// [maxUnavailablePercent].
-  final int? maxUnavailableFixed;
+  TfArg<int>? maxUnavailableFixed;
 
   /// Percent equivalent of [maxUnavailableFixed].
-  final int? maxUnavailablePercent;
+  TfArg<int>? maxUnavailablePercent;
 
   /// Whether to keep names (`RECREATE`) or randomise them
   /// (`SUBSTITUTE`, default) when swapping VMs.
@@ -243,12 +247,13 @@ class RegionInstanceGroupManagerUpdatePolicy {
     if (mostDisruptiveAllowedAction != null)
       'most_disruptive_allowed_action':
           mostDisruptiveAllowedAction!.terraformValue,
-    if (maxSurgeFixed != null) 'max_surge_fixed': maxSurgeFixed,
-    if (maxSurgePercent != null) 'max_surge_percent': maxSurgePercent,
+    if (maxSurgeFixed != null) 'max_surge_fixed': maxSurgeFixed!.toTfJson(),
+    if (maxSurgePercent != null)
+      'max_surge_percent': maxSurgePercent!.toTfJson(),
     if (maxUnavailableFixed != null)
-      'max_unavailable_fixed': maxUnavailableFixed,
+      'max_unavailable_fixed': maxUnavailableFixed!.toTfJson(),
     if (maxUnavailablePercent != null)
-      'max_unavailable_percent': maxUnavailablePercent,
+      'max_unavailable_percent': maxUnavailablePercent!.toTfJson(),
     if (replacementMethod != null)
       'replacement_method': replacementMethod!.terraformValue,
   };
@@ -261,19 +266,22 @@ class RegionInstanceGroupManagerUpdatePolicy {
 /// One entry in [namedPorts]. Backend services that reference this
 /// MIG by `port_name` look up the matching [port] number here.
 @immutable
-class RegionInstanceGroupManagerNamedPort {
-  const RegionInstanceGroupManagerNamedPort({
+class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerNamedPort {
+  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerNamedPort({
     required this.name,
     required this.port,
   });
 
   /// Port label. 1-63 chars, RFC1035.
-  final String name;
+  TfArg<String> name;
 
   /// Port number (1-65535).
-  final int port;
+  TfArg<int> port;
 
-  Map<String, Object?> toArgMap() => {'name': name, 'port': port};
+  Map<String, Object?> toArgMap() => {
+    'name': name.toTfJson(),
+    'port': port.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -284,49 +292,49 @@ class RegionInstanceGroupManagerNamedPort {
 /// [deviceName] as **stateful** — the MIG preserves the disk across
 /// VM recreates per [deleteRule]. Note: cross-zone instance
 /// redistribution must be disabled (set
-/// [RegionInstanceGroupManagerUpdatePolicy.instanceRedistributionType]
+/// [ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerUpdatePolicy.instanceRedistributionType]
 /// to [RegionInstanceGroupManagerInstanceRedistributionType.none])
 /// before updating stateful disks on an existing regional MIG.
 @immutable
-class RegionInstanceGroupManagerStatefulDisk {
-  const RegionInstanceGroupManagerStatefulDisk({
+class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulDisk {
+  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulDisk({
     required this.deviceName,
     this.deleteRule,
   });
 
   /// Device name the disk is attached to on the VM (matches the
   /// `device_name` set on the instance template's `disk` block).
-  final String deviceName;
+  TfArg<String> deviceName;
 
   /// `NEVER` (default — detach but keep the disk) or
   /// `ON_PERMANENT_INSTANCE_DELETION` (delete with the VM).
-  final String? deleteRule;
+  TfArg<String>? deleteRule;
 
   Map<String, Object?> toArgMap() => {
-    'device_name': deviceName,
-    if (deleteRule != null) 'delete_rule': deleteRule,
+    'device_name': deviceName.toTfJson(),
+    if (deleteRule != null) 'delete_rule': deleteRule!.toTfJson(),
   };
 }
 
 /// One entry in [statefulInternalIps] / [statefulExternalIps].
 /// Both blocks share the same shape.
 @immutable
-class RegionInstanceGroupManagerStatefulIp {
-  const RegionInstanceGroupManagerStatefulIp({
+class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulIp {
+  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulIp({
     this.interfaceName,
     this.deleteRule,
   });
 
   /// Name of the VM network interface the IP is attached to.
-  final String? interfaceName;
+  TfArg<String>? interfaceName;
 
   /// `NEVER` (default — detach but keep the Address) or
   /// `ON_PERMANENT_INSTANCE_DELETION` (delete with the VM).
-  final String? deleteRule;
+  TfArg<String>? deleteRule;
 
   Map<String, Object?> toArgMap() => {
-    if (interfaceName != null) 'interface_name': interfaceName,
-    if (deleteRule != null) 'delete_rule': deleteRule,
+    if (interfaceName != null) 'interface_name': interfaceName!.toTfJson(),
+    if (deleteRule != null) 'delete_rule': deleteRule!.toTfJson(),
   };
 }
 
@@ -338,8 +346,8 @@ class RegionInstanceGroupManagerStatefulIp {
 /// every VM the MIG manages, overlaying the instance template's
 /// values.
 @immutable
-class RegionInstanceGroupManagerAllInstancesConfig {
-  const RegionInstanceGroupManagerAllInstancesConfig({
+class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAllInstancesConfig {
+  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAllInstancesConfig({
     this.labels,
     this.metadata,
   });
@@ -348,8 +356,8 @@ class RegionInstanceGroupManagerAllInstancesConfig {
   final Map<String, String>? metadata;
 
   Map<String, Object?> toArgMap() => {
-    if (labels != null) 'labels': labels,
-    if (metadata != null) 'metadata': metadata,
+    if (labels != null) 'labels': labels!.toTfJson(),
+    if (metadata != null) 'metadata': metadata!.toTfJson(),
   };
 }
 
@@ -360,24 +368,24 @@ class RegionInstanceGroupManagerAllInstancesConfig {
 /// `instance_lifecycle_policy` block — fine-grained behavior on
 /// failures and template updates.
 @immutable
-class RegionInstanceGroupManagerInstanceLifecyclePolicy {
-  const RegionInstanceGroupManagerInstanceLifecyclePolicy({
+class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceLifecyclePolicy {
+  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceLifecyclePolicy({
     this.defaultActionOnFailure,
     this.forceUpdateOnRepair,
   });
 
   /// Default behavior for instance or health check failures.
-  final String? defaultActionOnFailure;
+  TfArg<String>? defaultActionOnFailure;
 
   /// `YES` to apply the latest template when repairing a VM; `NO`
   /// (default) to honor the update policy.
-  final String? forceUpdateOnRepair;
+  TfArg<String>? forceUpdateOnRepair;
 
   Map<String, Object?> toArgMap() => {
     if (defaultActionOnFailure != null)
-      'default_action_on_failure': defaultActionOnFailure,
+      'default_action_on_failure': defaultActionOnFailure!.toTfJson(),
     if (forceUpdateOnRepair != null)
-      'force_update_on_repair': forceUpdateOnRepair,
+      'force_update_on_repair': forceUpdateOnRepair!.toTfJson(),
   };
 }
 
@@ -389,15 +397,18 @@ class RegionInstanceGroupManagerInstanceLifecyclePolicy {
 /// pick from multiple machine types when creating new VMs, instead
 /// of the single machine type set on the instance template.
 @immutable
-class RegionInstanceGroupManagerInstanceFlexibilityPolicy {
-  const RegionInstanceGroupManagerInstanceFlexibilityPolicy({
+class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceFlexibilityPolicy {
+  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceFlexibilityPolicy({
     this.instanceSelections,
   });
 
   /// Named selections of machine types. The MIG ranks selections by
-  /// [RegionInstanceGroupManagerInstanceSelection.rank] (lower =
+  /// [ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceSelection.rank] (lower =
   /// higher preference).
-  final List<RegionInstanceGroupManagerInstanceSelection>? instanceSelections;
+  final List<
+    ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceSelection
+  >?
+  instanceSelections;
 
   Map<String, Object?> toArgMap() => {
     if (instanceSelections != null)
@@ -408,29 +419,29 @@ class RegionInstanceGroupManagerInstanceFlexibilityPolicy {
 }
 
 /// One entry in
-/// [RegionInstanceGroupManagerInstanceFlexibilityPolicy.instanceSelections].
+/// [ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceFlexibilityPolicy.instanceSelections].
 @immutable
-class RegionInstanceGroupManagerInstanceSelection {
-  const RegionInstanceGroupManagerInstanceSelection({
+class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceSelection {
+  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceSelection({
     required this.name,
     required this.machineTypes,
     this.rank,
   });
 
   /// Required. Selection label.
-  final String name;
+  TfArg<String> name;
 
   /// Required. Full machine-type names (e.g. `n1-standard-16`).
   final List<String> machineTypes;
 
   /// Lower number = higher preference. Selections with the same rank
   /// are treated equally.
-  final int? rank;
+  TfArg<int>? rank;
 
   Map<String, Object?> toArgMap() => {
-    'name': name,
-    'machine_types': machineTypes,
-    if (rank != null) 'rank': rank,
+    'name': name.toTfJson(),
+    'machine_types': machineTypes.toTfJson(),
+    if (rank != null) 'rank': rank!.toTfJson(),
   };
 }
 
@@ -441,22 +452,23 @@ class RegionInstanceGroupManagerInstanceSelection {
 /// `standby_policy` block — controls how the MIG resumes VMs from a
 /// standby pool during scale-out.
 @immutable
-class RegionInstanceGroupManagerStandbyPolicy {
-  const RegionInstanceGroupManagerStandbyPolicy({
+class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStandbyPolicy {
+  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStandbyPolicy({
     this.initialDelaySec,
     this.mode,
   });
 
   /// Seconds to wait after creating a VM before allowing standby
   /// transitions (0-3600, default 0).
-  final int? initialDelaySec;
+  TfArg<int>? initialDelaySec;
 
   /// Standby mode. Defaults to `MANUAL`.
-  final String? mode;
+  TfArg<String>? mode;
 
   Map<String, Object?> toArgMap() => {
-    if (initialDelaySec != null) 'initial_delay_sec': initialDelaySec,
-    if (mode != null) 'mode': mode,
+    if (initialDelaySec != null)
+      'initial_delay_sec': initialDelaySec!.toTfJson(),
+    if (mode != null) 'mode': mode!.toTfJson(),
   };
 }
 
@@ -468,11 +480,13 @@ class RegionInstanceGroupManagerStandbyPolicy {
 /// creates VMs individually or all at once to reach
 /// [GoogleComputeRegionInstanceGroupManager.targetSize].
 @immutable
-class RegionInstanceGroupManagerTargetSizePolicy {
-  const RegionInstanceGroupManagerTargetSizePolicy({required this.mode});
+class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerTargetSizePolicy {
+  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerTargetSizePolicy({
+    required this.mode,
+  });
 
   /// Required. The provisioning mode (e.g. `BATCH`, `INDIVIDUAL`).
-  final String mode;
+  TfArg<String> mode;
 
   Map<String, Object?> toArgMap() => {'mode': mode};
 }
@@ -484,8 +498,10 @@ class RegionInstanceGroupManagerTargetSizePolicy {
 /// `resource_policies` block — wires the MIG to a
 /// `google_compute_resource_policy` workload policy.
 @immutable
-class RegionInstanceGroupManagerResourcePolicies {
-  const RegionInstanceGroupManagerResourcePolicies({this.workloadPolicy});
+class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerResourcePolicies {
+  const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerResourcePolicies({
+    this.workloadPolicy,
+  });
 
   /// Full or partial URL of the workload policy.
   final TfArg<String>? workloadPolicy;
@@ -509,7 +525,7 @@ class RegionInstanceGroupManagerResourcePolicies {
 /// - [distributionPolicyTargetShape]: how aggressively the MIG balances
 ///   instances across [distributionPolicyZones]. See
 ///   [RegionInstanceGroupManagerDistributionPolicyTargetShape].
-/// - [RegionInstanceGroupManagerUpdatePolicy.instanceRedistributionType]:
+/// - [ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerUpdatePolicy.instanceRedistributionType]:
 ///   whether the MIG proactively rebalances VMs back toward the
 ///   target shape when VMs are added or removed.
 ///
@@ -528,18 +544,18 @@ class RegionInstanceGroupManagerResourcePolicies {
 ///   composition explicit.
 /// - `base_instance_name`: 1-58 chars; each VM the MIG creates is named
 ///   `<base_instance_name>-<random4>`.
-/// - At least one [RegionInstanceGroupManagerVersion] in [versions];
+/// - At least one [ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion] in [versions];
 ///   each version requires an `instance_template` self-link.
 ///
 /// Cross-resource references (typical wiring):
-/// - [RegionInstanceGroupManagerVersion.instanceTemplate]: self-link
+/// - [ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion.instanceTemplate]: self-link
 ///   of a `google_compute_instance_template` resource (curated as a
 ///   sibling in the same batch).
-/// - [RegionInstanceGroupManagerAutoHealingPolicy.healthCheck]:
+/// - [ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAutoHealingPolicy.healthCheck]:
 ///   self-link of a `google_compute_health_check` or
 ///   `google_compute_region_health_check`. When a VM fails this
 ///   health check for longer than
-///   [RegionInstanceGroupManagerAutoHealingPolicy.initialDelaySec],
+///   [ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAutoHealingPolicy.initialDelaySec],
 ///   the MIG recreates it.
 /// - [targetPools]: self-links of `google_compute_target_pool`. New VMs
 ///   are added to these target pools.
@@ -561,7 +577,7 @@ class RegionInstanceGroupManagerResourcePolicies {
 ///     RegionInstanceGroupManagerDistributionPolicyTargetShape.even,
 ///   ),
 ///   versions: [
-///     RegionInstanceGroupManagerVersion(
+///     ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion(
 ///       instanceTemplate: TfArg.literal(
 ///         // var.instance_template_id — within-batch sibling self-link.
 ///         'projects/p/global/instanceTemplates/web-v2',
@@ -569,16 +585,16 @@ class RegionInstanceGroupManagerResourcePolicies {
 ///     ),
 ///   ],
 ///   namedPorts: const [
-///     RegionInstanceGroupManagerNamedPort(name: 'http', port: 80),
+///     ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerNamedPort(name: 'http', port: 80),
 ///   ],
-///   autoHealingPolicies: RegionInstanceGroupManagerAutoHealingPolicy(
+///   autoHealingPolicies: ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAutoHealingPolicy(
 ///     healthCheck: TfArg.literal(
 ///       // var.health_check_id — typically a Batch 4 health check.
 ///       'projects/p/regions/asia-northeast1/healthChecks/web-hc',
 ///     ),
 ///     initialDelaySec: 300,
 ///   ),
-///   updatePolicy: const RegionInstanceGroupManagerUpdatePolicy(
+///   updatePolicy: const ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerUpdatePolicy(
 ///     type: RegionInstanceGroupManagerUpdatePolicyType.proactive,
 ///     instanceRedistributionType: RegionInstanceGroupManagerInstanceRedistributionType.proactive,
 ///     minimalAction: RegionInstanceGroupManagerUpdatePolicyAction.replace,
@@ -611,20 +627,38 @@ final class GoogleComputeRegionInstanceGroupManager extends Resource {
     TfArg<RegionInstanceGroupManagerDistributionPolicyTargetShape>?
     distributionPolicyTargetShape,
     TfArg<List<String>>? targetPools,
-    required List<RegionInstanceGroupManagerVersion> versions,
-    List<RegionInstanceGroupManagerNamedPort>? namedPorts,
-    RegionInstanceGroupManagerAutoHealingPolicy? autoHealingPolicies,
-    RegionInstanceGroupManagerUpdatePolicy? updatePolicy,
-    RegionInstanceGroupManagerInstanceLifecyclePolicy? instanceLifecyclePolicy,
-    RegionInstanceGroupManagerInstanceFlexibilityPolicy?
+    required List<
+      ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion
+    >
+    versions,
+    List<ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerNamedPort>?
+    namedPorts,
+    ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAutoHealingPolicy?
+    autoHealingPolicies,
+    ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerUpdatePolicy?
+    updatePolicy,
+    ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceLifecyclePolicy?
+    instanceLifecyclePolicy,
+    ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceFlexibilityPolicy?
     instanceFlexibilityPolicy,
-    RegionInstanceGroupManagerStandbyPolicy? standbyPolicy,
-    List<RegionInstanceGroupManagerTargetSizePolicy>? targetSizePolicies,
-    RegionInstanceGroupManagerResourcePolicies? resourcePolicies,
-    RegionInstanceGroupManagerAllInstancesConfig? allInstancesConfig,
-    List<RegionInstanceGroupManagerStatefulDisk>? statefulDisks,
-    List<RegionInstanceGroupManagerStatefulIp>? statefulInternalIps,
-    List<RegionInstanceGroupManagerStatefulIp>? statefulExternalIps,
+    ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStandbyPolicy?
+    standbyPolicy,
+    List<
+      ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerTargetSizePolicy
+    >?
+    targetSizePolicies,
+    ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerResourcePolicies?
+    resourcePolicies,
+    ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAllInstancesConfig?
+    allInstancesConfig,
+    List<
+      ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulDisk
+    >?
+    statefulDisks,
+    List<ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulIp>?
+    statefulInternalIps,
+    List<ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerStatefulIp>?
+    statefulExternalIps,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

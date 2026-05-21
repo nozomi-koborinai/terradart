@@ -40,9 +40,9 @@ classDocComment: |-
   ///
   /// Serverless target (exactly one of `cloudRun` / `cloudFunction` /
   /// `appEngine`): use the inline nested classes
-  /// [RegionNetworkEndpointGroupCloudRun],
-  /// [RegionNetworkEndpointGroupCloudFunction], or
-  /// [RegionNetworkEndpointGroupAppEngine]. Setting more than one is
+  /// [ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun],
+  /// [ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction], or
+  /// [ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine]. Setting more than one is
   /// rejected at apply time.
   ///
   /// PSC consumer NEG: set
@@ -63,7 +63,7 @@ classDocComment: |-
   ///   localName: 'cr_neg',
   ///   name: TfArg.literal('cloudrun-neg'),
   ///   region: TfArg.literal('asia-northeast1'),
-  ///   cloudRun: RegionNetworkEndpointGroupCloudRun(
+  ///   cloudRun: ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(
   ///     service: TfArg.ref(cloudRunService.nameRef),
   ///   ),
   /// );
@@ -158,8 +158,8 @@ prelude: |
   /// optional [tag] pins traffic to a named revision tag for fine-grained
   /// canary routing.
   @immutable
-  class RegionNetworkEndpointGroupCloudRun {
-    const RegionNetworkEndpointGroupCloudRun({
+  class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun {
+    const ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun({
       this.service,
       this.tag,
       this.urlMask,
@@ -198,8 +198,8 @@ prelude: |
   /// [urlMask] to route across multiple functions via a URL template (the
   /// schema's `at_least_one_of` rule requires at least one of the two).
   @immutable
-  class RegionNetworkEndpointGroupCloudFunction {
-    const RegionNetworkEndpointGroupCloudFunction({
+  class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction {
+    const ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction({
       this.function,
       this.urlMask,
     });
@@ -234,8 +234,8 @@ prelude: |
   /// pin a specific service or version, or supply [urlMask] to route across
   /// many at once.
   @immutable
-  class RegionNetworkEndpointGroupAppEngine {
-    const RegionNetworkEndpointGroupAppEngine({
+  class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine {
+    const ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine({
       this.service,
       this.version,
       this.urlMask,
@@ -263,11 +263,11 @@ prelude: |
 
 customSlots:
   cloud_run:
-    paramDeclaration: 'RegionNetworkEndpointGroupCloudRun? cloudRun'
+    paramDeclaration: 'ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun? cloudRun'
     argMapEntry: "if (cloudRun != null) 'cloud_run': TfArg.literal([cloudRun.toArgMap()]),"
   cloud_function:
-    paramDeclaration: 'RegionNetworkEndpointGroupCloudFunction? cloudFunction'
+    paramDeclaration: 'ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction? cloudFunction'
     argMapEntry: "if (cloudFunction != null) 'cloud_function': TfArg.literal([cloudFunction.toArgMap()]),"
   app_engine:
-    paramDeclaration: 'RegionNetworkEndpointGroupAppEngine? appEngine'
+    paramDeclaration: 'ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine? appEngine'
     argMapEntry: "if (appEngine != null) 'app_engine': TfArg.literal([appEngine.toArgMap()]),"

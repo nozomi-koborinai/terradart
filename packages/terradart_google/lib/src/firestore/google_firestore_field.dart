@@ -11,7 +11,7 @@ const Set<String> _googleFirestoreFieldSensitive = <String>{};
 // Enums (sourced from schema "Possible values" prose)
 // ===========================================================================
 
-/// One [SingleFieldIndex.order] direction. `ASCENDING` / `DESCENDING`.
+/// One [FirestoreFieldSingleFieldIndex.order] direction. `ASCENDING` / `DESCENDING`.
 enum FirestoreFieldOrder {
   ascending('ASCENDING'),
   descending('DESCENDING');
@@ -40,12 +40,12 @@ enum FirestoreFieldQueryScope {
 /// disables all single-field indexes on the field; a populated list
 /// adds explicit per-field indexes (mix of ordered / array-contains).
 @immutable
-class IndexConfig {
-  const IndexConfig({required this.indexes});
+class FirestoreFieldIndexConfig {
+  const FirestoreFieldIndexConfig({required this.indexes});
 
   /// Per-field indexes. Empty list is valid and means "no single-field
   /// indexes on this field" -- the override mechanism is binary.
-  final List<SingleFieldIndex> indexes;
+  final List<FirestoreFieldSingleFieldIndex> indexes;
 
   Map<String, Object?> encode() => {
     'indexes': indexes.map((i) => i.encode()).toList(),
@@ -58,19 +58,19 @@ class IndexConfig {
 /// 'order' and 'arrayConfig' can be specified"). [queryScope] is
 /// independent and defaults to `COLLECTION` server-side.
 @immutable
-class SingleFieldIndex {
-  const SingleFieldIndex({
+class FirestoreFieldSingleFieldIndex {
+  const FirestoreFieldSingleFieldIndex({
     this.order,
     this.arrayContains = false,
     this.queryScope,
   }) : assert(
          !(order != null && arrayContains),
-         'SingleFieldIndex: pass exactly one of `order` or '
+         'FirestoreFieldSingleFieldIndex: pass exactly one of `order` or '
          '`arrayContains: true` -- the schema rejects both.',
        ),
        assert(
          order != null || arrayContains,
-         'SingleFieldIndex: must specify either `order` or '
+         'FirestoreFieldSingleFieldIndex: must specify either `order` or '
          '`arrayContains: true`.',
        );
 
@@ -79,7 +79,7 @@ class SingleFieldIndex {
 
   /// When true, encodes `array_config: "CONTAINS"`. Mutually exclusive
   /// with [order].
-  final bool arrayContains;
+  TfArg<bool> arrayContains;
 
   /// Query scope for this index. Null falls through to the provider
   /// default (`COLLECTION`).
@@ -96,11 +96,11 @@ class SingleFieldIndex {
 
 /// `ttl_config` block (max_items=1). Presence alone enables the TTL
 /// policy on the parent field -- the schema's single attribute
-/// (`state`) is computed and read-only. Pass `const TtlConfig()` to
+/// (`state`) is computed and read-only. Pass `const FirestoreFieldTtlConfig()` to
 /// enable; omit to disable.
 @immutable
-class TtlConfig {
-  const TtlConfig();
+class FirestoreFieldTtlConfig {
+  const FirestoreFieldTtlConfig();
 
   /// Empty map -- the schema has no input attributes on this block.
   Map<String, Object?> encode() => const <String, Object?>{};
@@ -121,13 +121,13 @@ class TtlConfig {
 ///   `'metadata.tags'`).
 ///
 /// Use [indexConfig] to override single-field indexing. An empty
-/// `IndexConfig(indexes: [])` **disables** all single-field indexes on
+/// `FirestoreFieldIndexConfig(indexes: [])` **disables** all single-field indexes on
 /// the field (overriding the database's automatic indexing); a non-empty
 /// list adds explicit per-field indexes.
 ///
 /// Use [ttlConfig] to mark this field as a TTL field -- Firestore will
 /// delete documents whose timestamp value in this field has passed.
-/// Pass `const TtlConfig()` to enable; omit (or pass null) to disable.
+/// Pass `const FirestoreFieldTtlConfig()` to enable; omit (or pass null) to disable.
 ///
 /// Example (enable TTL on `expires_at`):
 /// ```dart
@@ -135,7 +135,7 @@ class TtlConfig {
 ///   localName: 'expires_at_ttl',
 ///   collection: TfArg.literal('sessions'),
 ///   field: TfArg.literal('expires_at'),
-///   ttlConfig: const TtlConfig(),
+///   ttlConfig: const FirestoreFieldTtlConfig(),
 /// );
 /// ```
 ///
@@ -145,7 +145,7 @@ class TtlConfig {
 ///   localName: 'large_blob_unindexed',
 ///   collection: TfArg.literal('messages'),
 ///   field: TfArg.literal('large_blob'),
-///   indexConfig: const IndexConfig(indexes: []),
+///   indexConfig: const FirestoreFieldIndexConfig(indexes: []),
 /// );
 /// ```
 final class GoogleFirestoreField extends Resource {
@@ -157,8 +157,8 @@ final class GoogleFirestoreField extends Resource {
     required TfArg<String> collection,
     required TfArg<String> field,
     TfArg<String>? database,
-    IndexConfig? indexConfig,
-    TtlConfig? ttlConfig,
+    FirestoreFieldIndexConfig? indexConfig,
+    FirestoreFieldTtlConfig? ttlConfig,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

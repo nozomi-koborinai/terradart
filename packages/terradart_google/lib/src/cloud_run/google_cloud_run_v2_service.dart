@@ -489,14 +489,14 @@ class EnvVar {
   const EnvVar({required this.name, this.source});
 
   /// C_IDENTIFIER name. Required.
-  final String name;
+  TfArg<String> name;
 
   /// Value source. Pick exactly one of [EnvVarFromLiteral] or
   /// [EnvVarFromSecret].
   final EnvVarSource? source;
 
   Map<String, Object?> toArgMap() => {
-    'name': name,
+    'name': name.toTfJson(),
     if (source != null) ...source!.encode(),
   };
 }
@@ -1108,4 +1108,7 @@ final class GoogleCloudRunV2Service extends Resource {
 
   /// Reference to `etag` (used for optimistic concurrency).
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `location` attribute — region the service is deployed in.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
 }

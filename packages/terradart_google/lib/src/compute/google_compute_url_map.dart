@@ -36,15 +36,15 @@ enum UrlMapRedirectResponseCode {
 // ===========================================================================
 
 /// One `host_rule` entry. Binds a set of `Host:` header values to a
-/// [UrlMapPathMatcher] by name. Multiple `host_rule` entries can point at
+/// [ComputeUrlMapUrlMapPathMatcher] by name. Multiple `host_rule` entries can point at
 /// the same `pathMatcher`.
 ///
 /// The schema models `host_rule` as a `set` of blocks; the wrapper still
-/// accepts a `List<UrlMapHostRule>` -- duplicate entries are deduped by
+/// accepts a `List<ComputeUrlMapUrlMapHostRule>` -- duplicate entries are deduped by
 /// the Terraform engine on apply.
 @immutable
-class UrlMapHostRule {
-  const UrlMapHostRule({
+class ComputeUrlMapUrlMapHostRule {
+  const ComputeUrlMapUrlMapHostRule({
     required this.hosts,
     required this.pathMatcher,
     this.description,
@@ -55,18 +55,18 @@ class UrlMapHostRule {
   /// one entry is required per the schema.
   final List<String> hosts;
 
-  /// Local name of the [UrlMapPathMatcher] this rule dispatches to. Must
-  /// match a [UrlMapPathMatcher.name] within the same URL map -- this is
+  /// Local name of the [ComputeUrlMapUrlMapPathMatcher] this rule dispatches to. Must
+  /// match a [ComputeUrlMapUrlMapPathMatcher.name] within the same URL map -- this is
   /// NOT a `google_compute_*` resource address.
-  final String pathMatcher;
+  TfArg<String> pathMatcher;
 
   /// Free-form description.
-  final String? description;
+  TfArg<String>? description;
 
   Map<String, Object?> toArgMap() => {
-    'hosts': hosts,
-    'path_matcher': pathMatcher,
-    if (description != null) 'description': description,
+    'hosts': hosts.toTfJson(),
+    'path_matcher': pathMatcher.toTfJson(),
+    if (description != null) 'description': description!.toTfJson(),
   };
 }
 
@@ -74,7 +74,7 @@ class UrlMapHostRule {
 // path_matcher[] (list, unbounded)
 // ===========================================================================
 
-/// One `path_matcher` entry. Each path matcher is named (so [UrlMapHostRule]
+/// One `path_matcher` entry. Each path matcher is named (so [ComputeUrlMapUrlMapHostRule]
 /// can reference it) and carries a fallback [defaultService] plus the
 /// path-based routing rules.
 ///
@@ -88,8 +88,8 @@ class UrlMapHostRule {
 /// uncurated sub-blocks (`default_route_action`,
 /// `default_custom_error_response_policy`, `header_action`).
 @immutable
-class UrlMapPathMatcher {
-  const UrlMapPathMatcher({
+class ComputeUrlMapUrlMapPathMatcher {
+  const ComputeUrlMapUrlMapPathMatcher({
     required this.name,
     this.defaultService,
     this.description,
@@ -99,8 +99,8 @@ class UrlMapPathMatcher {
     this.advancedExtra,
   });
 
-  /// Local name used by [UrlMapHostRule.pathMatcher]. NOT a self-link.
-  final String name;
+  /// Local name used by [ComputeUrlMapUrlMapHostRule.pathMatcher]. NOT a self-link.
+  TfArg<String> name;
 
   /// Fallback backend self-link consulted when neither [pathRules] nor
   /// [routeRules] match. Accepts either a `backend_service` or a
@@ -115,16 +115,16 @@ class UrlMapPathMatcher {
   /// Path-based routing rules. Simple "match longest prefix, send to
   /// service" semantics. Mutually exclusive on a per-path-rule basis with
   /// [routeRules].
-  final List<UrlMapPathRule>? pathRules;
+  final List<ComputeUrlMapUrlMapPathRule>? pathRules;
 
   /// Priority-ordered routing rules with header / query / regex matching.
   /// More expressive than [pathRules]; required for traffic-director use
   /// cases. When non-empty, evaluated BEFORE [pathRules].
-  final List<UrlMapRouteRule>? routeRules;
+  final List<ComputeUrlMapUrlMapRouteRule>? routeRules;
 
   /// Catch-all redirect when neither [pathRules] nor [routeRules] match.
   /// Mutually exclusive with [defaultService].
-  final UrlMapUrlRedirect? defaultUrlRedirect;
+  final ComputeUrlMapUrlMapUrlRedirect? defaultUrlRedirect;
 
   /// Escape hatch for the uncurated nested blocks of `path_matcher`:
   /// - `default_route_action` (Envoy-style traffic policy)
@@ -136,7 +136,7 @@ class UrlMapPathMatcher {
   final Map<String, Object?>? advancedExtra;
 
   Map<String, Object?> toArgMap() => {
-    'name': name,
+    'name': name.toTfJson(),
     if (defaultService != null) 'default_service': defaultService!.toTfJson(),
     if (description != null) 'description': description!.toTfJson(),
     if (pathRules != null)
@@ -156,10 +156,10 @@ class UrlMapPathMatcher {
 ///
 /// The deep `route_action` sub-block is exposed via the [advancedExtra]
 /// escape hatch rather than as a typed helper (see
-/// [UrlMapPathMatcher.advancedExtra] for the rationale).
+/// [ComputeUrlMapUrlMapPathMatcher.advancedExtra] for the rationale).
 @immutable
-class UrlMapPathRule {
-  const UrlMapPathRule({
+class ComputeUrlMapUrlMapPathRule {
+  const ComputeUrlMapUrlMapPathRule({
     required this.paths,
     this.service,
     this.urlRedirect,
@@ -176,7 +176,7 @@ class UrlMapPathRule {
 
   /// Inline redirect for matching requests. Mutually exclusive with
   /// [service].
-  final UrlMapUrlRedirect? urlRedirect;
+  final ComputeUrlMapUrlMapUrlRedirect? urlRedirect;
 
   /// Escape hatch for the uncurated nested blocks:
   /// - `route_action` (Envoy-style traffic policy)
@@ -184,7 +184,7 @@ class UrlMapPathRule {
   final Map<String, Object?>? advancedExtra;
 
   Map<String, Object?> toArgMap() => {
-    'paths': paths,
+    'paths': paths.toTfJson(),
     if (service != null) 'service': service!.toTfJson(),
     if (urlRedirect != null) 'url_redirect': [urlRedirect!.toArgMap()],
     if (advancedExtra != null) ...advancedExtra!,
@@ -198,8 +198,8 @@ class UrlMapPathRule {
 /// Exactly one of [service] / [urlRedirect] must be set (or alternatively
 /// the uncurated `route_action` sub-block via [advancedExtra]).
 @immutable
-class UrlMapRouteRule {
-  const UrlMapRouteRule({
+class ComputeUrlMapUrlMapRouteRule {
+  const ComputeUrlMapUrlMapRouteRule({
     required this.priority,
     this.service,
     this.matchRules,
@@ -209,8 +209,8 @@ class UrlMapRouteRule {
   });
 
   /// Evaluation priority. Lower numbers evaluated first. Required by the
-  /// schema. Must be unique within a single [UrlMapPathMatcher.routeRules].
-  final int priority;
+  /// schema. Must be unique within a single [ComputeUrlMapUrlMapPathMatcher.routeRules].
+  TfArg<int> priority;
 
   /// Backend self-link (backend service OR backend bucket). Mutually
   /// exclusive with [urlRedirect].
@@ -219,15 +219,15 @@ class UrlMapRouteRule {
   /// Per-rule match conditions (HTTP headers, query parameters, path
   /// regex, ...). When empty, the rule matches every request that reaches
   /// the parent path matcher.
-  final List<UrlMapRouteRuleMatch>? matchRules;
+  final List<ComputeUrlMapUrlMapRouteRuleMatch>? matchRules;
 
   /// Per-rule header mutation applied to forwarded requests / responses.
   /// Layered on top of any path-matcher-level header action.
-  final UrlMapHeaderAction? headerAction;
+  final ComputeUrlMapUrlMapHeaderAction? headerAction;
 
   /// Inline redirect for matching requests. Mutually exclusive with
   /// [service].
-  final UrlMapUrlRedirect? urlRedirect;
+  final ComputeUrlMapUrlMapUrlRedirect? urlRedirect;
 
   /// Escape hatch for the uncurated nested blocks:
   /// - `route_action` (Envoy-style traffic policy)
@@ -235,7 +235,7 @@ class UrlMapRouteRule {
   final Map<String, Object?>? advancedExtra;
 
   Map<String, Object?> toArgMap() => {
-    'priority': priority,
+    'priority': priority.toTfJson(),
     if (service != null) 'service': service!.toTfJson(),
     if (matchRules != null)
       'match_rules': matchRules!.map((m) => m.toArgMap()).toList(),
@@ -257,8 +257,8 @@ class UrlMapRouteRule {
 /// and any other uncurated sub-fields can be passed verbatim via
 /// [advancedExtra]; the map is spread into the emitted Terraform args as-is.
 @immutable
-class UrlMapRouteRuleMatch {
-  const UrlMapRouteRuleMatch({
+class ComputeUrlMapUrlMapRouteRuleMatch {
+  const ComputeUrlMapUrlMapRouteRuleMatch({
     this.fullPathMatch,
     this.prefixMatch,
     this.regexMatch,
@@ -288,10 +288,10 @@ class UrlMapRouteRuleMatch {
   final TfArg<bool>? ignoreCase;
 
   /// Per-header match predicates ANDed with the path predicate.
-  final List<UrlMapHeaderMatch>? headerMatches;
+  final List<ComputeUrlMapUrlMapHeaderMatch>? headerMatches;
 
   /// Per-query-parameter match predicates.
-  final List<UrlMapQueryParameterMatch>? queryParameterMatches;
+  final List<ComputeUrlMapUrlMapQueryParameterMatch>? queryParameterMatches;
 
   /// Escape hatch for the uncurated nested blocks of `match_rules`:
   /// - `metadata_filters` (xDS / Traffic Director match predicates)
@@ -323,8 +323,8 @@ class UrlMapRouteRuleMatch {
 /// [presentMatch] / [rangeMatch] per entry; [invertMatch] negates the
 /// outcome. Validation is left to the GCP API.
 @immutable
-class UrlMapHeaderMatch {
-  const UrlMapHeaderMatch({
+class ComputeUrlMapUrlMapHeaderMatch {
+  const ComputeUrlMapUrlMapHeaderMatch({
     required this.headerName,
     this.exactMatch,
     this.prefixMatch,
@@ -357,7 +357,7 @@ class UrlMapHeaderMatch {
   final TfArg<bool>? invertMatch;
 
   /// Numeric-range match for integer header values.
-  final UrlMapHeaderMatchRange? rangeMatch;
+  final ComputeUrlMapUrlMapHeaderMatchRange? rangeMatch;
 
   Map<String, Object?> toArgMap() => {
     'header_name': headerName.toTfJson(),
@@ -373,29 +373,29 @@ class UrlMapHeaderMatch {
 
 /// `header_matches.range_match` block. Both bounds required by the schema.
 @immutable
-class UrlMapHeaderMatchRange {
-  const UrlMapHeaderMatchRange({
+class ComputeUrlMapUrlMapHeaderMatchRange {
+  const ComputeUrlMapUrlMapHeaderMatchRange({
     required this.rangeStart,
     required this.rangeEnd,
   });
 
   /// Inclusive lower bound.
-  final int rangeStart;
+  TfArg<int> rangeStart;
 
   /// Exclusive upper bound.
-  final int rangeEnd;
+  TfArg<int> rangeEnd;
 
   Map<String, Object?> toArgMap() => {
-    'range_start': rangeStart,
-    'range_end': rangeEnd,
+    'range_start': rangeStart.toTfJson(),
+    'range_end': rangeEnd.toTfJson(),
   };
 }
 
 /// One `match_rules[].query_parameter_matches[]` entry. Matches a single
 /// query parameter by name with a chosen predicate.
 @immutable
-class UrlMapQueryParameterMatch {
-  const UrlMapQueryParameterMatch({
+class ComputeUrlMapUrlMapQueryParameterMatch {
+  const ComputeUrlMapUrlMapQueryParameterMatch({
     required this.name,
     this.exactMatch,
     this.regexMatch,
@@ -436,8 +436,8 @@ class UrlMapQueryParameterMatch {
 /// elsewhere -- the wrapper marks it required to keep the most common
 /// position safe by default).
 @immutable
-class UrlMapUrlRedirect {
-  const UrlMapUrlRedirect({
+class ComputeUrlMapUrlMapUrlRedirect {
+  const ComputeUrlMapUrlMapUrlRedirect({
     required this.stripQuery,
     this.hostRedirect,
     this.pathRedirect,
@@ -488,15 +488,15 @@ class UrlMapUrlRedirect {
 
 /// `header_action` block. Adds / removes headers on requests forwarded to
 /// the backend and / or responses returned to the client. Used at the
-/// top-level URL-map slot and inside [UrlMapRouteRule.headerAction].
+/// top-level URL-map slot and inside [ComputeUrlMapUrlMapRouteRule.headerAction].
 ///
 /// Note: the nested [requestHeadersToAdd] / [responseHeadersToAdd] schema
 /// requires every field (`header_name`, `header_value`, `replace`) at the
 /// top-level `header_action` slot. The wrapper enforces that by making them
-/// `required` on [UrlMapHeaderToAdd].
+/// `required` on [ComputeUrlMapUrlMapHeaderToAdd].
 @immutable
-class UrlMapHeaderAction {
-  const UrlMapHeaderAction({
+class ComputeUrlMapUrlMapHeaderAction {
+  const ComputeUrlMapUrlMapHeaderAction({
     this.requestHeadersToAdd,
     this.requestHeadersToRemove,
     this.responseHeadersToAdd,
@@ -504,13 +504,13 @@ class UrlMapHeaderAction {
   });
 
   /// Headers to add to forwarded requests.
-  final List<UrlMapHeaderToAdd>? requestHeadersToAdd;
+  final List<ComputeUrlMapUrlMapHeaderToAdd>? requestHeadersToAdd;
 
   /// Header names (case-insensitive) to strip from forwarded requests.
   final TfArg<List<String>>? requestHeadersToRemove;
 
   /// Headers to add to returned responses.
-  final List<UrlMapHeaderToAdd>? responseHeadersToAdd;
+  final List<ComputeUrlMapUrlMapHeaderToAdd>? responseHeadersToAdd;
 
   /// Header names (case-insensitive) to strip from returned responses.
   final TfArg<List<String>>? responseHeadersToRemove;
@@ -531,12 +531,12 @@ class UrlMapHeaderAction {
   };
 }
 
-/// One entry in [UrlMapHeaderAction.requestHeadersToAdd] /
-/// [UrlMapHeaderAction.responseHeadersToAdd]. All three fields are
+/// One entry in [ComputeUrlMapUrlMapHeaderAction.requestHeadersToAdd] /
+/// [ComputeUrlMapUrlMapHeaderAction.responseHeadersToAdd]. All three fields are
 /// required by the schema at the top-level `header_action` slot.
 @immutable
-class UrlMapHeaderToAdd {
-  const UrlMapHeaderToAdd({
+class ComputeUrlMapUrlMapHeaderToAdd {
+  const ComputeUrlMapUrlMapHeaderToAdd({
     required this.headerName,
     required this.headerValue,
     required this.replace,
@@ -571,8 +571,8 @@ class UrlMapHeaderToAdd {
 /// For redirect tests, set [expectedRedirectResponseCode] (and / or
 /// [expectedOutputUrl]) instead of (or in addition to) [service].
 @immutable
-class UrlMapTest {
-  const UrlMapTest({
+class ComputeUrlMapUrlMapTest {
+  const ComputeUrlMapUrlMapTest({
     required this.host,
     required this.path,
     this.service,
@@ -604,7 +604,7 @@ class UrlMapTest {
   final TfArg<int>? expectedRedirectResponseCode;
 
   /// Extra request headers for header-aware route rules.
-  final List<UrlMapTestHeader>? headers;
+  final List<ComputeUrlMapUrlMapTestHeader>? headers;
 
   Map<String, Object?> toArgMap() => {
     'host': host.toTfJson(),
@@ -620,10 +620,13 @@ class UrlMapTest {
   };
 }
 
-/// One entry in [UrlMapTest.headers]. Both fields required by the schema.
+/// One entry in [ComputeUrlMapUrlMapTest.headers]. Both fields required by the schema.
 @immutable
-class UrlMapTestHeader {
-  const UrlMapTestHeader({required this.name, required this.value});
+class ComputeUrlMapUrlMapTestHeader {
+  const ComputeUrlMapUrlMapTestHeader({
+    required this.name,
+    required this.value,
+  });
 
   /// Header name.
   final TfArg<String> name;
@@ -690,21 +693,21 @@ class UrlMapTestHeader {
 ///   name: TfArg.literal('urlmap-prod'),
 ///   defaultService: TfArg.ref(login.selfLink),
 ///   hostRules: const [
-///     UrlMapHostRule(
+///     ComputeUrlMapUrlMapHostRule(
 ///       hosts: ['mysite.com', 'myothersite.com'],
 ///       pathMatcher: 'allpaths',
 ///     ),
 ///   ],
 ///   pathMatchers: [
-///     UrlMapPathMatcher(
+///     ComputeUrlMapUrlMapPathMatcher(
 ///       name: 'allpaths',
 ///       defaultService: TfArg.ref(login.selfLink),
 ///       pathRules: [
-///         UrlMapPathRule(
+///         ComputeUrlMapUrlMapPathRule(
 ///           paths: const ['/home'],
 ///           service: TfArg.ref(login.selfLink),
 ///         ),
-///         UrlMapPathRule(
+///         ComputeUrlMapUrlMapPathRule(
 ///           paths: const ['/static'],
 ///           service: TfArg.ref(staticBucket.selfLink),
 ///         ),
@@ -712,14 +715,14 @@ class UrlMapTestHeader {
 ///     ),
 ///   ],
 ///   tests: const [
-///     UrlMapTest(host: 'mysite.com', path: '/home'),
+///     ComputeUrlMapUrlMapTest(host: 'mysite.com', path: '/home'),
 ///   ],
 /// );
 /// ```
 ///
 /// Naming convention: ALL nested helper types in this resource are prefixed
-/// `UrlMap...` (e.g. [UrlMapHostRule], [UrlMapPathMatcher],
-/// [UrlMapUrlRedirect]) to avoid colliding with similarly-named structures
+/// `UrlMap...` (e.g. [ComputeUrlMapUrlMapHostRule], [ComputeUrlMapUrlMapPathMatcher],
+/// [ComputeUrlMapUrlMapUrlRedirect]) to avoid colliding with similarly-named structures
 /// in sibling load-balancer resources such as `google_compute_backend_service`.
 ///
 /// Deeply nested traffic-policy sub-blocks (`default_route_action`,
@@ -729,7 +732,7 @@ class UrlMapTestHeader {
 /// (cache_policy, cors_policy, fault_injection_policy, retry_policy,
 /// url_rewrite, weighted_backend_services, ...) that would dominate the
 /// curated surface for little common-case win. Pass a raw
-/// `Map<String, Object?>` via [UrlMapPathMatcher.advancedExtra] etc. keyed
+/// `Map<String, Object?>` via [ComputeUrlMapUrlMapPathMatcher.advancedExtra] etc. keyed
 /// by the Terraform block name when you need them; see the per-class doc
 /// for the exact escape-hatch key.
 ///
@@ -744,11 +747,11 @@ final class GoogleComputeUrlMap extends Resource {
     required TfArg<String> name,
     TfArg<String>? defaultService,
     TfArg<String>? description,
-    List<UrlMapHostRule>? hostRules,
-    List<UrlMapPathMatcher>? pathMatchers,
-    List<UrlMapTest>? tests,
-    UrlMapUrlRedirect? defaultUrlRedirect,
-    UrlMapHeaderAction? headerAction,
+    List<ComputeUrlMapUrlMapHostRule>? hostRules,
+    List<ComputeUrlMapUrlMapPathMatcher>? pathMatchers,
+    List<ComputeUrlMapUrlMapTest>? tests,
+    ComputeUrlMapUrlMapUrlRedirect? defaultUrlRedirect,
+    ComputeUrlMapUrlMapHeaderAction? headerAction,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

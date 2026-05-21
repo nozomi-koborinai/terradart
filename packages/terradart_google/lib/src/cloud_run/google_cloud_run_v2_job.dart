@@ -346,14 +346,14 @@ class JobEnvVar {
   const JobEnvVar({required this.name, this.source});
 
   /// C_IDENTIFIER name.
-  final String name;
+  TfArg<String> name;
 
   /// Value source. Pick exactly one of [JobEnvVarFromLiteral] or
   /// [JobEnvVarFromSecret].
   final JobEnvVarSource? source;
 
   Map<String, Object?> toArgMap() => {
-    'name': name,
+    'name': name.toTfJson(),
     if (source != null) ...source!.encode(),
   };
 }
@@ -820,4 +820,7 @@ final class GoogleCloudRunV2Job extends Resource {
 
   /// Reference to `etag` (used for optimistic concurrency).
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `location` attribute — region the job is deployed in.
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
 }

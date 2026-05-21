@@ -19,7 +19,7 @@ classDocComment: |-
   ///   localName: 'orders_push',
   ///   name: TfArg.literal('orders-push'),
   ///   topic: TfArg.ref(orders.id),
-  ///   pushConfig: const PushConfig(
+  ///   pushConfig: const PubsubSubscriptionPushConfig(
   ///     pushEndpoint: TfArgLiteral('https://app.example.com/push'),
   ///   ),
   /// );
@@ -70,8 +70,8 @@ prelude: |
   /// `push_config` block. Pair with [pushEndpoint]; optionally attach an
   /// [oidcToken] (recommended for authenticated webhooks) or [noWrapper].
   @immutable
-  class PushConfig {
-    const PushConfig({
+  class PubsubSubscriptionPushConfig {
+    const PubsubSubscriptionPushConfig({
       required this.pushEndpoint,
       this.attributes,
       this.oidcToken,
@@ -80,8 +80,8 @@ prelude: |
 
     final TfArg<String> pushEndpoint;
     final TfArg<Map<String, String>>? attributes;
-    final OidcToken? oidcToken;
-    final NoWrapper? noWrapper;
+    final PubsubSubscriptionOidcToken? oidcToken;
+    final PubsubSubscriptionNoWrapper? noWrapper;
 
     Map<String, Object?> encode() => {
       'push_endpoint': pushEndpoint.toTfJson(),
@@ -93,8 +93,8 @@ prelude: |
 
   /// OIDC token configuration for authenticated push subscriptions.
   @immutable
-  class OidcToken {
-    const OidcToken({required this.serviceAccountEmail, this.audience});
+  class PubsubSubscriptionOidcToken {
+    const PubsubSubscriptionOidcToken({required this.serviceAccountEmail, this.audience});
 
     final TfArg<String> serviceAccountEmail;
     final TfArg<String>? audience;
@@ -107,8 +107,8 @@ prelude: |
 
   /// `no_wrapper` payload-shape override for push subscriptions.
   @immutable
-  class NoWrapper {
-    const NoWrapper({required this.writeMetadata});
+  class PubsubSubscriptionNoWrapper {
+    const PubsubSubscriptionNoWrapper({required this.writeMetadata});
 
     final TfArg<bool> writeMetadata;
 
@@ -117,8 +117,8 @@ prelude: |
 
   /// `bigquery_config` block.
   @immutable
-  class BigQueryConfig {
-    const BigQueryConfig({
+  class PubsubSubscriptionBigQueryConfig {
+    const PubsubSubscriptionBigQueryConfig({
       required this.table,
       this.useTopicSchema,
       this.useTableSchema,
@@ -148,8 +148,8 @@ prelude: |
 
   /// `cloud_storage_config` block.
   @immutable
-  class CloudStorageConfig {
-    const CloudStorageConfig({
+  class PubsubSubscriptionCloudStorageConfig {
+    const PubsubSubscriptionCloudStorageConfig({
       required this.bucket,
       this.filenamePrefix,
       this.filenameSuffix,
@@ -185,8 +185,8 @@ prelude: |
 
   /// `dead_letter_policy` block.
   @immutable
-  class DeadLetterPolicy {
-    const DeadLetterPolicy({this.deadLetterTopic, this.maxDeliveryAttempts});
+  class PubsubSubscriptionDeadLetterPolicy {
+    const PubsubSubscriptionDeadLetterPolicy({this.deadLetterTopic, this.maxDeliveryAttempts});
 
     final TfArg<String>? deadLetterTopic;
     final TfArg<int>? maxDeliveryAttempts;
@@ -201,8 +201,8 @@ prelude: |
 
   /// `retry_policy` block.
   @immutable
-  class RetryPolicy {
-    const RetryPolicy({this.minimumBackoff, this.maximumBackoff});
+  class PubsubSubscriptionRetryPolicy {
+    const PubsubSubscriptionRetryPolicy({this.minimumBackoff, this.maximumBackoff});
 
     final TfArg<String>? minimumBackoff;
     final TfArg<String>? maximumBackoff;
@@ -215,8 +215,8 @@ prelude: |
 
   /// `expiration_policy` block.
   @immutable
-  class ExpirationPolicy {
-    const ExpirationPolicy({required this.ttl});
+  class PubsubSubscriptionExpirationPolicy {
+    const PubsubSubscriptionExpirationPolicy({required this.ttl});
 
     final TfArg<String> ttl;
 
@@ -229,20 +229,20 @@ prelude: |
 
 customSlots:
   bigquery_config:
-    paramDeclaration: "BigQueryConfig? bigqueryConfig"
+    paramDeclaration: "PubsubSubscriptionBigQueryConfig? bigqueryConfig"
     argMapEntry: "if (bigqueryConfig != null) 'bigquery_config': TfArg.literal(bigqueryConfig.encode()),"
   cloud_storage_config:
-    paramDeclaration: "CloudStorageConfig? cloudStorageConfig"
+    paramDeclaration: "PubsubSubscriptionCloudStorageConfig? cloudStorageConfig"
     argMapEntry: "if (cloudStorageConfig != null) 'cloud_storage_config': TfArg.literal(cloudStorageConfig.encode()),"
   push_config:
-    paramDeclaration: "PushConfig? pushConfig"
+    paramDeclaration: "PubsubSubscriptionPushConfig? pushConfig"
     argMapEntry: "if (pushConfig != null) 'push_config': TfArg.literal(pushConfig.encode()),"
   expiration_policy:
-    paramDeclaration: "ExpirationPolicy? expirationPolicy"
+    paramDeclaration: "PubsubSubscriptionExpirationPolicy? expirationPolicy"
     argMapEntry: "if (expirationPolicy != null) 'expiration_policy': TfArg.literal(expirationPolicy.encode()),"
   dead_letter_policy:
-    paramDeclaration: "DeadLetterPolicy? deadLetterPolicy"
+    paramDeclaration: "PubsubSubscriptionDeadLetterPolicy? deadLetterPolicy"
     argMapEntry: "if (deadLetterPolicy != null) 'dead_letter_policy': TfArg.literal(deadLetterPolicy.encode()),"
   retry_policy:
-    paramDeclaration: "RetryPolicy? retryPolicy"
+    paramDeclaration: "PubsubSubscriptionRetryPolicy? retryPolicy"
     argMapEntry: "if (retryPolicy != null) 'retry_policy': TfArg.literal(retryPolicy.encode()),"

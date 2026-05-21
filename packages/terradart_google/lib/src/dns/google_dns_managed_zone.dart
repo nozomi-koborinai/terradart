@@ -79,10 +79,13 @@ enum ForwardingPath {
 
 /// `private_visibility_config` block. At least one of `gkeClusters` or
 /// `networks` must be supplied.
-class PrivateVisibilityConfig {
-  const PrivateVisibilityConfig({this.gkeClusters, this.networks});
-  final List<PrivateVisibilityGkeCluster>? gkeClusters;
-  final List<PrivateVisibilityNetwork>? networks;
+class DnsManagedZonePrivateVisibilityConfig {
+  const DnsManagedZonePrivateVisibilityConfig({
+    this.gkeClusters,
+    this.networks,
+  });
+  final List<DnsManagedZonePrivateVisibilityGkeCluster>? gkeClusters;
+  final List<DnsManagedZonePrivateVisibilityNetwork>? networks;
   Map<String, Object?> toArgMap() => {
     if (gkeClusters != null)
       'gke_clusters': gkeClusters!.map((g) => g.toArgMap()).toList(),
@@ -92,34 +95,36 @@ class PrivateVisibilityConfig {
 }
 
 /// One entry inside `private_visibility_config.gke_clusters`.
-class PrivateVisibilityGkeCluster {
-  const PrivateVisibilityGkeCluster({required this.gkeClusterName});
-  final String gkeClusterName;
+class DnsManagedZonePrivateVisibilityGkeCluster {
+  const DnsManagedZonePrivateVisibilityGkeCluster({
+    required this.gkeClusterName,
+  });
+  TfArg<String> gkeClusterName;
   Map<String, Object?> toArgMap() => {'gke_cluster_name': gkeClusterName};
 }
 
 /// One entry inside `private_visibility_config.networks`.
-class PrivateVisibilityNetwork {
-  const PrivateVisibilityNetwork({required this.networkUrl});
-  final String networkUrl;
+class DnsManagedZonePrivateVisibilityNetwork {
+  const DnsManagedZonePrivateVisibilityNetwork({required this.networkUrl});
+  TfArg<String> networkUrl;
   Map<String, Object?> toArgMap() => {'network_url': networkUrl};
 }
 
 /// `dnssec_config` block. `kind` is rarely overridden; defaults to
 /// `dns#managedZoneDnsSecConfig` on the server.
-class DnssecConfig {
-  const DnssecConfig({
+class DnsManagedZoneDnssecConfig {
+  const DnsManagedZoneDnssecConfig({
     this.kind,
     this.nonExistence,
     this.state,
     this.defaultKeySpecs,
   });
-  final String? kind;
+  TfArg<String>? kind;
   final DnssecNonExistence? nonExistence;
   final DnssecState? state;
-  final List<DnssecKeySpec>? defaultKeySpecs;
+  final List<DnsManagedZoneDnssecKeySpec>? defaultKeySpecs;
   Map<String, Object?> toArgMap() => {
-    if (kind != null) 'kind': kind,
+    if (kind != null) 'kind': kind!.toTfJson(),
     if (nonExistence != null) 'non_existence': nonExistence!.terraformValue,
     if (state != null) 'state': state!.terraformValue,
     if (defaultKeySpecs != null)
@@ -128,28 +133,28 @@ class DnssecConfig {
 }
 
 /// One entry inside `dnssec_config.default_key_specs`.
-class DnssecKeySpec {
-  const DnssecKeySpec({
+class DnsManagedZoneDnssecKeySpec {
+  const DnsManagedZoneDnssecKeySpec({
     this.algorithm,
     this.keyLength,
     this.keyType,
     this.kind,
   });
   final DnssecKeyAlgorithm? algorithm;
-  final int? keyLength;
+  TfArg<int>? keyLength;
   final DnssecKeyType? keyType;
-  final String? kind;
+  TfArg<String>? kind;
   Map<String, Object?> toArgMap() => {
     if (algorithm != null) 'algorithm': algorithm!.terraformValue,
-    if (keyLength != null) 'key_length': keyLength,
+    if (keyLength != null) 'key_length': keyLength!.toTfJson(),
     if (keyType != null) 'key_type': keyType!.terraformValue,
-    if (kind != null) 'kind': kind,
+    if (kind != null) 'kind': kind!.toTfJson(),
   };
 }
 
 /// `peering_config` block. Exactly one `target_network` is required.
-class PeeringConfig {
-  const PeeringConfig({required this.targetNetwork});
+class DnsManagedZonePeeringConfig {
+  const DnsManagedZonePeeringConfig({required this.targetNetwork});
   final PeeringTargetNetwork targetNetwork;
   Map<String, Object?> toArgMap() => {
     'target_network': [targetNetwork.toArgMap()],
@@ -159,7 +164,7 @@ class PeeringConfig {
 /// `peering_config.target_network` single sub-block (`max_items=1`).
 class PeeringTargetNetwork {
   const PeeringTargetNetwork({required this.networkUrl});
-  final String networkUrl;
+  TfArg<String> networkUrl;
   Map<String, Object?> toArgMap() => {'network_url': networkUrl};
 }
 
@@ -180,14 +185,14 @@ class ForwardingTargetNameServer {
     this.ipv6Address,
     this.forwardingPath,
   });
-  final String? domainName;
-  final String? ipv4Address;
-  final String? ipv6Address;
+  TfArg<String>? domainName;
+  TfArg<String>? ipv4Address;
+  TfArg<String>? ipv6Address;
   final ForwardingPath? forwardingPath;
   Map<String, Object?> toArgMap() => {
-    if (domainName != null) 'domain_name': domainName,
-    if (ipv4Address != null) 'ipv4_address': ipv4Address,
-    if (ipv6Address != null) 'ipv6_address': ipv6Address,
+    if (domainName != null) 'domain_name': domainName!.toTfJson(),
+    if (ipv4Address != null) 'ipv4_address': ipv4Address!.toTfJson(),
+    if (ipv6Address != null) 'ipv6_address': ipv6Address!.toTfJson(),
     if (forwardingPath != null)
       'forwarding_path': forwardingPath!.terraformValue,
   };
@@ -196,7 +201,7 @@ class ForwardingTargetNameServer {
 /// `cloud_logging_config` block — toggles export to Cloud Logging.
 class CloudLoggingConfig {
   const CloudLoggingConfig({required this.enableLogging});
-  final bool enableLogging;
+  TfArg<bool> enableLogging;
   Map<String, Object?> toArgMap() => {'enable_logging': enableLogging};
 }
 
@@ -236,9 +241,9 @@ final class GoogleDnsManagedZone extends Resource {
     required TfArg<String> dnsName,
     TfArg<String>? description,
     TfArg<DnsZoneVisibility>? visibility,
-    PrivateVisibilityConfig? privateVisibilityConfig,
-    DnssecConfig? dnssecConfig,
-    PeeringConfig? peeringConfig,
+    DnsManagedZonePrivateVisibilityConfig? privateVisibilityConfig,
+    DnsManagedZoneDnssecConfig? dnssecConfig,
+    DnsManagedZonePeeringConfig? peeringConfig,
     ForwardingConfig? forwardingConfig,
     CloudLoggingConfig? cloudLoggingConfig,
     TfArg<Map<String, String>>? labels,

@@ -131,23 +131,23 @@ enum InstanceTemplateReservationAffinityType {
 /// `disk.disk_encryption_key` block (max_items=1). Customer-managed KMS
 /// CryptoKey used to encrypt the disk at rest.
 @immutable
-class InstanceTemplateDiskEncryptionKey {
-  const InstanceTemplateDiskEncryptionKey({
+class ComputeInstanceTemplateInstanceTemplateDiskEncryptionKey {
+  const ComputeInstanceTemplateInstanceTemplateDiskEncryptionKey({
     this.kmsKeySelfLink,
     this.kmsKeyServiceAccount,
   });
 
   /// Self-link of the KMS CryptoKey.
-  final String? kmsKeySelfLink;
+  TfArg<String>? kmsKeySelfLink;
 
   /// Service account used for the KMS encryption request. If null, the
   /// Compute Engine default service account is used.
-  final String? kmsKeyServiceAccount;
+  TfArg<String>? kmsKeyServiceAccount;
 
   Map<String, Object?> toArgMap() => {
-    if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink,
+    if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink!.toTfJson(),
     if (kmsKeyServiceAccount != null)
-      'kms_key_service_account': kmsKeyServiceAccount,
+      'kms_key_service_account': kmsKeyServiceAccount!.toTfJson(),
   };
 }
 
@@ -156,8 +156,8 @@ class InstanceTemplateDiskEncryptionKey {
 /// customer-supplied keys, so MIGs cannot create disks from images encrypted
 /// with your own keys via a template.
 @immutable
-class InstanceTemplateSourceImageEncryptionKey {
-  const InstanceTemplateSourceImageEncryptionKey({
+class ComputeInstanceTemplateInstanceTemplateSourceImageEncryptionKey {
+  const ComputeInstanceTemplateInstanceTemplateSourceImageEncryptionKey({
     this.kmsKeySelfLink,
     this.kmsKeyServiceAccount,
     this.rawKey,
@@ -166,54 +166,56 @@ class InstanceTemplateSourceImageEncryptionKey {
 
   /// Self-link of the KMS CryptoKey. Mutually exclusive with [rawKey] and
   /// [rsaEncryptedKey].
-  final String? kmsKeySelfLink;
-  final String? kmsKeyServiceAccount;
+  TfArg<String>? kmsKeySelfLink;
+  TfArg<String>? kmsKeyServiceAccount;
 
   /// 256-bit customer-supplied encryption key, encoded RFC 4648 base64.
   /// Sensitive — source it from a secret store rather than a literal.
-  final String? rawKey;
+  TfArg<String>? rawKey;
 
   /// RSA-wrapped 2048-bit customer-supplied encryption key, encoded RFC 4648
   /// base64. Sensitive.
-  final String? rsaEncryptedKey;
+  TfArg<String>? rsaEncryptedKey;
 
   Map<String, Object?> toArgMap() => {
-    if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink,
+    if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink!.toTfJson(),
     if (kmsKeyServiceAccount != null)
-      'kms_key_service_account': kmsKeyServiceAccount,
-    if (rawKey != null) 'raw_key': rawKey,
-    if (rsaEncryptedKey != null) 'rsa_encrypted_key': rsaEncryptedKey,
+      'kms_key_service_account': kmsKeyServiceAccount!.toTfJson(),
+    if (rawKey != null) 'raw_key': rawKey!.toTfJson(),
+    if (rsaEncryptedKey != null)
+      'rsa_encrypted_key': rsaEncryptedKey!.toTfJson(),
   };
 }
 
 /// `disk.source_snapshot_encryption_key` block (max_items=1). Customer-
 /// supplied key that decrypted the source snapshot.
 @immutable
-class InstanceTemplateSourceSnapshotEncryptionKey {
-  const InstanceTemplateSourceSnapshotEncryptionKey({
+class ComputeInstanceTemplateInstanceTemplateSourceSnapshotEncryptionKey {
+  const ComputeInstanceTemplateInstanceTemplateSourceSnapshotEncryptionKey({
     this.kmsKeySelfLink,
     this.kmsKeyServiceAccount,
     this.rawKey,
     this.rsaEncryptedKey,
   });
 
-  final String? kmsKeySelfLink;
-  final String? kmsKeyServiceAccount;
+  TfArg<String>? kmsKeySelfLink;
+  TfArg<String>? kmsKeyServiceAccount;
 
   /// 256-bit customer-supplied encryption key, encoded RFC 4648 base64.
   /// Sensitive.
-  final String? rawKey;
+  TfArg<String>? rawKey;
 
   /// RSA-wrapped 2048-bit customer-supplied encryption key, encoded RFC 4648
   /// base64. Sensitive.
-  final String? rsaEncryptedKey;
+  TfArg<String>? rsaEncryptedKey;
 
   Map<String, Object?> toArgMap() => {
-    if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink,
+    if (kmsKeySelfLink != null) 'kms_key_self_link': kmsKeySelfLink!.toTfJson(),
     if (kmsKeyServiceAccount != null)
-      'kms_key_service_account': kmsKeyServiceAccount,
-    if (rawKey != null) 'raw_key': rawKey,
-    if (rsaEncryptedKey != null) 'rsa_encrypted_key': rsaEncryptedKey,
+      'kms_key_service_account': kmsKeyServiceAccount!.toTfJson(),
+    if (rawKey != null) 'raw_key': rawKey!.toTfJson(),
+    if (rsaEncryptedKey != null)
+      'rsa_encrypted_key': rsaEncryptedKey!.toTfJson(),
   };
 }
 
@@ -221,8 +223,8 @@ class InstanceTemplateSourceSnapshotEncryptionKey {
 /// either initializes a new disk inline (`sourceImage` / `sourceSnapshot`)
 /// or attaches an existing one (`source`).
 @immutable
-class InstanceTemplateDisk {
-  const InstanceTemplateDisk({
+class ComputeInstanceTemplateInstanceTemplateDisk {
+  const ComputeInstanceTemplateInstanceTemplateDisk({
     this.boot,
     this.autoDelete,
     this.deviceName,
@@ -250,42 +252,42 @@ class InstanceTemplateDisk {
 
   /// Indicates that this is a boot disk. At most one entry should set
   /// this to `true`.
-  final bool? boot;
+  TfArg<bool>? boot;
 
   /// Whether to auto-delete the disk when the instance is deleted.
   /// Defaults to `true` server-side.
-  final bool? autoDelete;
+  TfArg<bool>? autoDelete;
 
   /// Device name as exposed under `/dev/disk/by-id/`. Optional; defaults to
   /// the instance name.
-  final String? deviceName;
+  TfArg<String>? deviceName;
 
   /// Disk name. Defaults to the instance name when null.
-  final String? diskName;
+  TfArg<String>? diskName;
 
   /// Disk size in GB. For `SCRATCH` disks, must be 375 or 3000.
-  final num? diskSizeGb;
+  TfArg<num>? diskSizeGb;
 
   /// PD type, e.g. `'pd-ssd'`, `'pd-balanced'`, `'pd-standard'`,
   /// `'local-ssd'`.
-  final String? diskType;
+  TfArg<String>? diskType;
 
   /// Read/write mode.
   final InstanceTemplateDiskMode? mode;
 
   /// Existing disk name to attach. Mutually exclusive with
   /// [sourceImage] / [sourceSnapshot].
-  final String? source;
+  TfArg<String>? source;
 
   /// Image to initialize the disk from (self-link, family, or short form
   /// like `'debian-cloud/debian-12'`).
-  final String? sourceImage;
+  TfArg<String>? sourceImage;
 
   /// Snapshot to initialize the disk from.
-  final String? sourceSnapshot;
+  TfArg<String>? sourceSnapshot;
 
   /// `'SCRATCH'` or `'PERSISTENT'`.
-  final String? type;
+  TfArg<String>? type;
 
   /// Disk labels.
   final Map<String, String>? labels;
@@ -301,48 +303,53 @@ class InstanceTemplateDisk {
   final List<String>? guestOsFeatures;
 
   /// Disk interface (`'SCSI'` / `'NVME'`).
-  final String? interface;
+  TfArg<String>? interface;
 
   /// Provisioned IOPS (Extreme / Hyperdisk only).
-  final num? provisionedIops;
+  TfArg<num>? provisionedIops;
 
   /// Provisioned throughput in MB/s (Hyperdisk only).
-  final num? provisionedThroughput;
+  TfArg<num>? provisionedThroughput;
 
   /// Image architecture (`'ARM64'` or `'X86_64'`).
-  final String? architecture;
+  TfArg<String>? architecture;
 
   /// Self-link or ID of the Storage Pool to create the disk in.
-  final String? storagePool;
+  TfArg<String>? storagePool;
 
-  final InstanceTemplateDiskEncryptionKey? diskEncryptionKey;
-  final InstanceTemplateSourceImageEncryptionKey? sourceImageEncryptionKey;
-  final InstanceTemplateSourceSnapshotEncryptionKey?
+  final ComputeInstanceTemplateInstanceTemplateDiskEncryptionKey?
+  diskEncryptionKey;
+  final ComputeInstanceTemplateInstanceTemplateSourceImageEncryptionKey?
+  sourceImageEncryptionKey;
+  final ComputeInstanceTemplateInstanceTemplateSourceSnapshotEncryptionKey?
   sourceSnapshotEncryptionKey;
 
   Map<String, Object?> toArgMap() => {
-    if (boot != null) 'boot': boot,
-    if (autoDelete != null) 'auto_delete': autoDelete,
-    if (deviceName != null) 'device_name': deviceName,
-    if (diskName != null) 'disk_name': diskName,
-    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb,
-    if (diskType != null) 'disk_type': diskType,
+    if (boot != null) 'boot': boot!.toTfJson(),
+    if (autoDelete != null) 'auto_delete': autoDelete!.toTfJson(),
+    if (deviceName != null) 'device_name': deviceName!.toTfJson(),
+    if (diskName != null) 'disk_name': diskName!.toTfJson(),
+    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
+    if (diskType != null) 'disk_type': diskType!.toTfJson(),
     if (mode != null) 'mode': mode!.terraformValue,
-    if (source != null) 'source': source,
-    if (sourceImage != null) 'source_image': sourceImage,
-    if (sourceSnapshot != null) 'source_snapshot': sourceSnapshot,
-    if (type != null) 'type': type,
-    if (labels != null) 'labels': labels,
+    if (source != null) 'source': source!.toTfJson(),
+    if (sourceImage != null) 'source_image': sourceImage!.toTfJson(),
+    if (sourceSnapshot != null) 'source_snapshot': sourceSnapshot!.toTfJson(),
+    if (type != null) 'type': type!.toTfJson(),
+    if (labels != null) 'labels': labels!.toTfJson(),
     if (resourceManagerTags != null)
-      'resource_manager_tags': resourceManagerTags,
-    if (resourcePolicies != null) 'resource_policies': resourcePolicies,
-    if (guestOsFeatures != null) 'guest_os_features': guestOsFeatures,
-    if (interface != null) 'interface': interface,
-    if (provisionedIops != null) 'provisioned_iops': provisionedIops,
+      'resource_manager_tags': resourceManagerTags!.toTfJson(),
+    if (resourcePolicies != null)
+      'resource_policies': resourcePolicies!.toTfJson(),
+    if (guestOsFeatures != null)
+      'guest_os_features': guestOsFeatures!.toTfJson(),
+    if (interface != null) 'interface': interface!.toTfJson(),
+    if (provisionedIops != null)
+      'provisioned_iops': provisionedIops!.toTfJson(),
     if (provisionedThroughput != null)
-      'provisioned_throughput': provisionedThroughput,
-    if (architecture != null) 'architecture': architecture,
-    if (storagePool != null) 'storage_pool': storagePool,
+      'provisioned_throughput': provisionedThroughput!.toTfJson(),
+    if (architecture != null) 'architecture': architecture!.toTfJson(),
+    if (storagePool != null) 'storage_pool': storagePool!.toTfJson(),
     if (diskEncryptionKey != null)
       'disk_encryption_key': [diskEncryptionKey!.toArgMap()],
     if (sourceImageEncryptionKey != null)
@@ -358,17 +365,20 @@ class InstanceTemplateDisk {
 /// gives the interface an external IPv4 address (ephemeral when [natIp]
 /// is null, static when it's a reserved IP).
 @immutable
-class InstanceTemplateAccessConfig {
-  const InstanceTemplateAccessConfig({this.natIp, this.networkTier});
+class ComputeInstanceTemplateInstanceTemplateAccessConfig {
+  const ComputeInstanceTemplateInstanceTemplateAccessConfig({
+    this.natIp,
+    this.networkTier,
+  });
 
   /// Reserved external IP to attach. Null for an ephemeral IP.
-  final String? natIp;
+  TfArg<String>? natIp;
 
   /// Network service tier.
   final InstanceTemplateAccessConfigNetworkTier? networkTier;
 
   Map<String, Object?> toArgMap() => {
-    if (natIp != null) 'nat_ip': natIp,
+    if (natIp != null) 'nat_ip': natIp!.toTfJson(),
     if (networkTier != null) 'network_tier': networkTier!.terraformValue,
   };
 }
@@ -377,8 +387,10 @@ class InstanceTemplateAccessConfig {
 /// allows at most one IPv6 access config per interface; only `PREMIUM` tier
 /// is valid for IPv6 today.
 @immutable
-class InstanceTemplateIpv6AccessConfig {
-  const InstanceTemplateIpv6AccessConfig({required this.networkTier});
+class ComputeInstanceTemplateInstanceTemplateIpv6AccessConfig {
+  const ComputeInstanceTemplateInstanceTemplateIpv6AccessConfig({
+    required this.networkTier,
+  });
 
   /// Service tier. Required by the schema; only `PREMIUM` is currently
   /// accepted by GCP.
@@ -393,30 +405,30 @@ class InstanceTemplateIpv6AccessConfig {
 /// / containers running on instances created from this template use
 /// secondary CIDR ranges from the attached subnetwork.
 @immutable
-class InstanceTemplateAliasIpRange {
-  const InstanceTemplateAliasIpRange({
+class ComputeInstanceTemplateInstanceTemplateAliasIpRange {
+  const ComputeInstanceTemplateInstanceTemplateAliasIpRange({
     required this.ipCidrRange,
     this.subnetworkRangeName,
   });
 
   /// Alias range (single IP, netmask, or CIDR).
-  final String ipCidrRange;
+  TfArg<String> ipCidrRange;
 
   /// Name of the secondary range to allocate from. When null, GCP uses the
   /// primary range.
-  final String? subnetworkRangeName;
+  TfArg<String>? subnetworkRangeName;
 
   Map<String, Object?> toArgMap() => {
-    'ip_cidr_range': ipCidrRange,
+    'ip_cidr_range': ipCidrRange.toTfJson(),
     if (subnetworkRangeName != null)
-      'subnetwork_range_name': subnetworkRangeName,
+      'subnetwork_range_name': subnetworkRangeName!.toTfJson(),
   };
 }
 
 /// One entry inside `network_interface`. At least one is required by GCP.
 @immutable
-class InstanceTemplateNetworkInterface {
-  const InstanceTemplateNetworkInterface({
+class ComputeInstanceTemplateInstanceTemplateNetworkInterface {
+  const ComputeInstanceTemplateInstanceTemplateNetworkInterface({
     this.network,
     this.subnetwork,
     this.subnetworkProject,
@@ -436,61 +448,64 @@ class InstanceTemplateNetworkInterface {
 
   /// Network name or self-link. Mutually exclusive with [subnetwork] in
   /// auto-mode networks.
-  final String? network;
+  TfArg<String>? network;
 
   /// Subnetwork name or self-link. Required for custom-mode networks.
-  final String? subnetwork;
+  TfArg<String>? subnetwork;
 
   /// Host project of the subnetwork (Shared VPC).
-  final String? subnetworkProject;
+  TfArg<String>? subnetworkProject;
 
   /// Internal IP within the subnet. When null, GCP assigns one.
-  final String? networkIp;
+  TfArg<String>? networkIp;
 
   /// Network attachment URL
   /// (`projects/{p}/regions/{r}/networkAttachments/{name}`).
-  final String? networkAttachment;
+  TfArg<String>? networkAttachment;
   final InstanceTemplateNicType? nicType;
 
   /// vNIC queue count (Rx and Tx both use this value).
-  final num? queueCount;
+  TfArg<num>? queueCount;
 
   /// IP stack type (`'IPV4_ONLY'`, `'IPV4_IPV6'`, `'IPV6_ONLY'`).
-  final String? stackType;
-  final String? ipv6Address;
+  TfArg<String>? stackType;
+  TfArg<String>? ipv6Address;
 
   /// Prefix length of the primary internal IPv6 range.
-  final num? internalIpv6PrefixLength;
+  TfArg<num>? internalIpv6PrefixLength;
 
   /// Whether IGMP query is enabled, plus the supported version.
-  final String? igmpQuery;
+  TfArg<String>? igmpQuery;
 
   /// VLAN tag for a dynamic NIC (2-255).
-  final num? vlan;
+  TfArg<num>? vlan;
 
   /// Up to one `access_config` block enables an external IPv4 address.
-  final List<InstanceTemplateAccessConfig>? accessConfig;
+  final List<ComputeInstanceTemplateInstanceTemplateAccessConfig>? accessConfig;
 
   /// Up to one `ipv6_access_config` block enables an external IPv6 range.
-  final List<InstanceTemplateIpv6AccessConfig>? ipv6AccessConfig;
+  final List<ComputeInstanceTemplateInstanceTemplateIpv6AccessConfig>?
+  ipv6AccessConfig;
 
   /// Alias IP ranges (typically GKE pod / service ranges).
-  final List<InstanceTemplateAliasIpRange>? aliasIpRange;
+  final List<ComputeInstanceTemplateInstanceTemplateAliasIpRange>? aliasIpRange;
 
   Map<String, Object?> toArgMap() => {
-    if (network != null) 'network': network,
-    if (subnetwork != null) 'subnetwork': subnetwork,
-    if (subnetworkProject != null) 'subnetwork_project': subnetworkProject,
-    if (networkIp != null) 'network_ip': networkIp,
-    if (networkAttachment != null) 'network_attachment': networkAttachment,
+    if (network != null) 'network': network!.toTfJson(),
+    if (subnetwork != null) 'subnetwork': subnetwork!.toTfJson(),
+    if (subnetworkProject != null)
+      'subnetwork_project': subnetworkProject!.toTfJson(),
+    if (networkIp != null) 'network_ip': networkIp!.toTfJson(),
+    if (networkAttachment != null)
+      'network_attachment': networkAttachment!.toTfJson(),
     if (nicType != null) 'nic_type': nicType!.terraformValue,
-    if (queueCount != null) 'queue_count': queueCount,
-    if (stackType != null) 'stack_type': stackType,
-    if (ipv6Address != null) 'ipv6_address': ipv6Address,
+    if (queueCount != null) 'queue_count': queueCount!.toTfJson(),
+    if (stackType != null) 'stack_type': stackType!.toTfJson(),
+    if (ipv6Address != null) 'ipv6_address': ipv6Address!.toTfJson(),
     if (internalIpv6PrefixLength != null)
-      'internal_ipv6_prefix_length': internalIpv6PrefixLength,
-    if (igmpQuery != null) 'igmp_query': igmpQuery,
-    if (vlan != null) 'vlan': vlan,
+      'internal_ipv6_prefix_length': internalIpv6PrefixLength!.toTfJson(),
+    if (igmpQuery != null) 'igmp_query': igmpQuery!.toTfJson(),
+    if (vlan != null) 'vlan': vlan!.toTfJson(),
     if (accessConfig != null)
       'access_config': accessConfig!.map((a) => a.toArgMap()).toList(),
     if (ipv6AccessConfig != null)
@@ -504,81 +519,90 @@ class InstanceTemplateNetworkInterface {
 /// this template expose a Google service account credential to the guest
 /// via the metadata service.
 @immutable
-class InstanceTemplateServiceAccount {
-  const InstanceTemplateServiceAccount({this.email, required this.scopes});
+class ComputeInstanceTemplateInstanceTemplateServiceAccount {
+  const ComputeInstanceTemplateInstanceTemplateServiceAccount({
+    this.email,
+    required this.scopes,
+  });
 
   /// Service account email. When null, GCP uses the project's default
   /// Compute Engine service account.
-  final String? email;
+  TfArg<String>? email;
 
   /// OAuth scopes granted (e.g. `'cloud-platform'`,
   /// `'https://www.googleapis.com/auth/devstorage.read_only'`).
   final List<String> scopes;
 
   Map<String, Object?> toArgMap() => {
-    if (email != null) 'email': email,
-    'scopes': scopes,
+    if (email != null) 'email': email!.toTfJson(),
+    'scopes': scopes.toTfJson(),
   };
 }
 
 /// `scheduling.max_run_duration` / `scheduling.local_ssd_recovery_timeout`
 /// sub-block (Duration shape). Both fields take this same shape.
 @immutable
-class InstanceTemplateSchedulingDuration {
-  const InstanceTemplateSchedulingDuration({required this.seconds, this.nanos});
+class ComputeInstanceTemplateInstanceTemplateSchedulingDuration {
+  const ComputeInstanceTemplateInstanceTemplateSchedulingDuration({
+    required this.seconds,
+    this.nanos,
+  });
 
-  final int seconds;
-  final int? nanos;
+  TfArg<int> seconds;
+  TfArg<int>? nanos;
 
   Map<String, Object?> toArgMap() => {
-    'seconds': seconds,
-    if (nanos != null) 'nanos': nanos,
+    'seconds': seconds.toTfJson(),
+    if (nanos != null) 'nanos': nanos!.toTfJson(),
   };
 }
 
 /// One entry inside `scheduling.node_affinities`. Sole-tenant placement
 /// uses this to bind instances to a node group with matching labels.
 @immutable
-class InstanceTemplateNodeAffinity {
-  const InstanceTemplateNodeAffinity({
+class ComputeInstanceTemplateInstanceTemplateNodeAffinity {
+  const ComputeInstanceTemplateInstanceTemplateNodeAffinity({
     required this.key,
     required this.operator,
     required this.values,
   });
 
-  final String key;
+  TfArg<String> key;
 
   /// `'IN'` or `'NOT_IN'`.
-  final String operator;
+  TfArg<String> operator;
   final List<String> values;
 
   Map<String, Object?> toArgMap() => {
-    'key': key,
-    'operator': operator,
-    'values': values,
+    'key': key.toTfJson(),
+    'operator': operator.toTfJson(),
+    'values': values.toTfJson(),
   };
 }
 
 /// `scheduling.on_instance_stop_action` block (max_items=1). Defines extra
 /// behaviour applied when the chosen `instance_termination_action` runs.
 @immutable
-class InstanceTemplateOnInstanceStopAction {
-  const InstanceTemplateOnInstanceStopAction({this.discardLocalSsd});
+class ComputeInstanceTemplateInstanceTemplateOnInstanceStopAction {
+  const ComputeInstanceTemplateInstanceTemplateOnInstanceStopAction({
+    this.discardLocalSsd,
+  });
 
   /// If true, the contents of any attached Local SSD disks will be
   /// discarded on stop.
-  final bool? discardLocalSsd;
+  TfArg<bool>? discardLocalSsd;
 
   Map<String, Object?> toArgMap() => {
-    if (discardLocalSsd != null) 'discard_local_ssd': discardLocalSsd,
+    if (discardLocalSsd != null)
+      'discard_local_ssd': discardLocalSsd!.toTfJson(),
   };
 }
 
 /// `scheduling` block (max_items=1). Controls preemptibility, host
 /// maintenance, max run duration, and sole-tenant affinities.
 @immutable
-class InstanceTemplateScheduling {
-  const InstanceTemplateScheduling({
+class ComputeInstanceTemplateInstanceTemplateScheduling {
+  const ComputeInstanceTemplateInstanceTemplateScheduling({
     this.preemptible,
     this.onHostMaintenance,
     this.automaticRestart,
@@ -593,40 +617,47 @@ class InstanceTemplateScheduling {
     this.onInstanceStopAction,
   });
 
-  final bool? preemptible;
+  TfArg<bool>? preemptible;
   final InstanceTemplateOnHostMaintenance? onHostMaintenance;
-  final bool? automaticRestart;
+  TfArg<bool>? automaticRestart;
   final InstanceTemplateProvisioningModel? provisioningModel;
   final InstanceTemplateInstanceTerminationAction? instanceTerminationAction;
-  final num? minNodeCpus;
+  TfArg<num>? minNodeCpus;
 
   /// Availability domain index for stretched zonal placement.
-  final num? availabilityDomain;
+  TfArg<num>? availabilityDomain;
 
   /// RFC3339 timestamp at which the instance will be terminated.
-  final String? terminationTime;
-  final List<InstanceTemplateNodeAffinity>? nodeAffinities;
+  TfArg<String>? terminationTime;
+  final List<ComputeInstanceTemplateInstanceTemplateNodeAffinity>?
+  nodeAffinities;
 
   /// Hard cap on instance run time. After this elapses GCP applies the
   /// [instanceTerminationAction] (stop or delete).
-  final InstanceTemplateSchedulingDuration? maxRunDuration;
+  final ComputeInstanceTemplateInstanceTemplateSchedulingDuration?
+  maxRunDuration;
 
   /// Local SSD data-recovery grace period for VMs with `--local-ssd`.
-  final InstanceTemplateSchedulingDuration? localSsdRecoveryTimeout;
-  final InstanceTemplateOnInstanceStopAction? onInstanceStopAction;
+  final ComputeInstanceTemplateInstanceTemplateSchedulingDuration?
+  localSsdRecoveryTimeout;
+  final ComputeInstanceTemplateInstanceTemplateOnInstanceStopAction?
+  onInstanceStopAction;
 
   Map<String, Object?> toArgMap() => {
-    if (preemptible != null) 'preemptible': preemptible,
+    if (preemptible != null) 'preemptible': preemptible!.toTfJson(),
     if (onHostMaintenance != null)
       'on_host_maintenance': onHostMaintenance!.terraformValue,
-    if (automaticRestart != null) 'automatic_restart': automaticRestart,
+    if (automaticRestart != null)
+      'automatic_restart': automaticRestart!.toTfJson(),
     if (provisioningModel != null)
       'provisioning_model': provisioningModel!.terraformValue,
     if (instanceTerminationAction != null)
       'instance_termination_action': instanceTerminationAction!.terraformValue,
-    if (minNodeCpus != null) 'min_node_cpus': minNodeCpus,
-    if (availabilityDomain != null) 'availability_domain': availabilityDomain,
-    if (terminationTime != null) 'termination_time': terminationTime,
+    if (minNodeCpus != null) 'min_node_cpus': minNodeCpus!.toTfJson(),
+    if (availabilityDomain != null)
+      'availability_domain': availabilityDomain!.toTfJson(),
+    if (terminationTime != null)
+      'termination_time': terminationTime!.toTfJson(),
     if (nodeAffinities != null)
       'node_affinities': nodeAffinities!.map((n) => n.toArgMap()).toList(),
     if (maxRunDuration != null)
@@ -641,42 +672,43 @@ class InstanceTemplateScheduling {
 /// `shielded_instance_config` block (max_items=1). Enables Shielded VM
 /// features (secure boot / vTPM / integrity monitoring).
 @immutable
-class InstanceTemplateShieldedInstanceConfig {
-  const InstanceTemplateShieldedInstanceConfig({
+class ComputeInstanceTemplateInstanceTemplateShieldedInstanceConfig {
+  const ComputeInstanceTemplateInstanceTemplateShieldedInstanceConfig({
     this.enableSecureBoot,
     this.enableVtpm,
     this.enableIntegrityMonitoring,
   });
 
-  final bool? enableSecureBoot;
-  final bool? enableVtpm;
-  final bool? enableIntegrityMonitoring;
+  TfArg<bool>? enableSecureBoot;
+  TfArg<bool>? enableVtpm;
+  TfArg<bool>? enableIntegrityMonitoring;
 
   Map<String, Object?> toArgMap() => {
-    if (enableSecureBoot != null) 'enable_secure_boot': enableSecureBoot,
-    if (enableVtpm != null) 'enable_vtpm': enableVtpm,
+    if (enableSecureBoot != null)
+      'enable_secure_boot': enableSecureBoot!.toTfJson(),
+    if (enableVtpm != null) 'enable_vtpm': enableVtpm!.toTfJson(),
     if (enableIntegrityMonitoring != null)
-      'enable_integrity_monitoring': enableIntegrityMonitoring,
+      'enable_integrity_monitoring': enableIntegrityMonitoring!.toTfJson(),
   };
 }
 
 /// `confidential_instance_config` block (max_items=1). Enables Confidential
 /// VM. Requires `scheduling.on_host_maintenance = TERMINATE`.
 @immutable
-class InstanceTemplateConfidentialInstanceConfig {
-  const InstanceTemplateConfidentialInstanceConfig({
+class ComputeInstanceTemplateInstanceTemplateConfidentialInstanceConfig {
+  const ComputeInstanceTemplateInstanceTemplateConfidentialInstanceConfig({
     this.enableConfidentialCompute,
     this.confidentialInstanceType,
   });
 
   /// Deprecated by GCP -- prefer setting [confidentialInstanceType] to
   /// [InstanceTemplateConfidentialInstanceType.sev].
-  final bool? enableConfidentialCompute;
+  TfArg<bool>? enableConfidentialCompute;
   final InstanceTemplateConfidentialInstanceType? confidentialInstanceType;
 
   Map<String, Object?> toArgMap() => {
     if (enableConfidentialCompute != null)
-      'enable_confidential_compute': enableConfidentialCompute,
+      'enable_confidential_compute': enableConfidentialCompute!.toTfJson(),
     if (confidentialInstanceType != null)
       'confidential_instance_type': confidentialInstanceType!.terraformValue,
   };
@@ -685,23 +717,26 @@ class InstanceTemplateConfidentialInstanceConfig {
 /// One entry inside `guest_accelerator`. Attaches a GPU / TPU to instances
 /// created from this template. Both fields are required by the schema.
 @immutable
-class InstanceTemplateGuestAccelerator {
-  const InstanceTemplateGuestAccelerator({
+class ComputeInstanceTemplateInstanceTemplateGuestAccelerator {
+  const ComputeInstanceTemplateInstanceTemplateGuestAccelerator({
     required this.type,
     required this.count,
   });
 
   /// Accelerator type self-link or short name (e.g. `'nvidia-tesla-t4'`).
-  final String type;
-  final int count;
+  TfArg<String> type;
+  TfArg<int> count;
 
-  Map<String, Object?> toArgMap() => {'type': type, 'count': count};
+  Map<String, Object?> toArgMap() => {
+    'type': type.toTfJson(),
+    'count': count.toTfJson(),
+  };
 }
 
 /// `advanced_machine_features` block (max_items=1). Per-CPU tuning knobs.
 @immutable
-class InstanceTemplateAdvancedMachineFeatures {
-  const InstanceTemplateAdvancedMachineFeatures({
+class ComputeInstanceTemplateInstanceTemplateAdvancedMachineFeatures {
+  const ComputeInstanceTemplateInstanceTemplateAdvancedMachineFeatures({
     this.enableNestedVirtualization,
     this.threadsPerCore,
     this.visibleCoreCount,
@@ -710,59 +745,64 @@ class InstanceTemplateAdvancedMachineFeatures {
     this.turboMode,
   });
 
-  final bool? enableNestedVirtualization;
-  final num? threadsPerCore;
-  final num? visibleCoreCount;
-  final bool? enableUefiNetworking;
+  TfArg<bool>? enableNestedVirtualization;
+  TfArg<num>? threadsPerCore;
+  TfArg<num>? visibleCoreCount;
+  TfArg<bool>? enableUefiNetworking;
   final InstanceTemplatePerformanceMonitoringUnit? performanceMonitoringUnit;
 
   /// Turbo frequency mode. Currently `'ALL_CORE_MAX'` is the only
   /// supported value.
-  final String? turboMode;
+  TfArg<String>? turboMode;
 
   Map<String, Object?> toArgMap() => {
     if (enableNestedVirtualization != null)
-      'enable_nested_virtualization': enableNestedVirtualization,
-    if (threadsPerCore != null) 'threads_per_core': threadsPerCore,
-    if (visibleCoreCount != null) 'visible_core_count': visibleCoreCount,
+      'enable_nested_virtualization': enableNestedVirtualization!.toTfJson(),
+    if (threadsPerCore != null) 'threads_per_core': threadsPerCore!.toTfJson(),
+    if (visibleCoreCount != null)
+      'visible_core_count': visibleCoreCount!.toTfJson(),
     if (enableUefiNetworking != null)
-      'enable_uefi_networking': enableUefiNetworking,
+      'enable_uefi_networking': enableUefiNetworking!.toTfJson(),
     if (performanceMonitoringUnit != null)
       'performance_monitoring_unit': performanceMonitoringUnit!.terraformValue,
-    if (turboMode != null) 'turbo_mode': turboMode,
+    if (turboMode != null) 'turbo_mode': turboMode!.toTfJson(),
   };
 }
 
 /// `reservation_affinity.specific_reservation` sub-block (max_items=1).
-/// Only meaningful when [InstanceTemplateReservationAffinity.type] is
+/// Only meaningful when [ComputeInstanceTemplateInstanceTemplateReservationAffinity.type] is
 /// [InstanceTemplateReservationAffinityType.specificReservation].
 @immutable
-class InstanceTemplateSpecificReservation {
-  const InstanceTemplateSpecificReservation({
+class ComputeInstanceTemplateInstanceTemplateSpecificReservation {
+  const ComputeInstanceTemplateInstanceTemplateSpecificReservation({
     required this.key,
     required this.values,
   });
 
   /// Label key. Use `'compute.googleapis.com/reservation-name'` to target
   /// a reservation by name.
-  final String key;
+  TfArg<String> key;
   final List<String> values;
 
-  Map<String, Object?> toArgMap() => {'key': key, 'values': values};
+  Map<String, Object?> toArgMap() => {
+    'key': key.toTfJson(),
+    'values': values.toTfJson(),
+  };
 }
 
 /// `reservation_affinity` block (max_items=1). Controls whether and how
 /// instances created from this template consume capacity from a Compute
 /// Engine reservation.
 @immutable
-class InstanceTemplateReservationAffinity {
-  const InstanceTemplateReservationAffinity({
+class ComputeInstanceTemplateInstanceTemplateReservationAffinity {
+  const ComputeInstanceTemplateInstanceTemplateReservationAffinity({
     required this.type,
     this.specificReservation,
   });
 
   final InstanceTemplateReservationAffinityType type;
-  final InstanceTemplateSpecificReservation? specificReservation;
+  final ComputeInstanceTemplateInstanceTemplateSpecificReservation?
+  specificReservation;
 
   Map<String, Object?> toArgMap() => {
     'type': type.terraformValue,
@@ -774,17 +814,17 @@ class InstanceTemplateReservationAffinity {
 /// `network_performance_config` block (max_items=1). Selects the Tier 1
 /// network egress profile.
 @immutable
-class InstanceTemplateNetworkPerformanceConfig {
-  const InstanceTemplateNetworkPerformanceConfig({
+class ComputeInstanceTemplateInstanceTemplateNetworkPerformanceConfig {
+  const ComputeInstanceTemplateInstanceTemplateNetworkPerformanceConfig({
     required this.totalEgressBandwidthTier,
   });
 
   /// Egress tier. `'TIER_1'` enables higher per-VM egress bandwidth;
   /// `'DEFAULT'` keeps the platform default.
-  final String totalEgressBandwidthTier;
+  TfArg<String> totalEgressBandwidthTier;
 
   Map<String, Object?> toArgMap() => {
-    'total_egress_bandwidth_tier': totalEgressBandwidthTier,
+    'total_egress_bandwidth_tier': totalEgressBandwidthTier.toTfJson(),
   };
 }
 
@@ -797,10 +837,10 @@ class InstanceTemplateNetworkPerformanceConfig {
 /// - `machineType`: short machine type name (e.g. `'e2-medium'`) or full
 ///   self-link of a custom machine type (e.g. `'custom-6-20480'` for 6 vCPU /
 ///   20 GB of RAM).
-/// - `disk`: at least one [InstanceTemplateDisk]; GCP enforces `min_items=1`
+/// - `disk`: at least one [ComputeInstanceTemplateInstanceTemplateDisk]; GCP enforces `min_items=1`
 ///   on the underlying `disk` block. The first entry should usually be the
 ///   boot disk (`boot: true`).
-/// - `networkInterface`: at least one [InstanceTemplateNetworkInterface]
+/// - `networkInterface`: at least one [ComputeInstanceTemplateInstanceTemplateNetworkInterface]
 ///   entry. GCP requires every template to attach to a VPC.
 ///
 /// Identity (`name` / `namePrefix`):
@@ -816,16 +856,16 @@ class InstanceTemplateNetworkPerformanceConfig {
 ///   namePrefix: TfArg.literal('web-'),
 ///   machineType: TfArg.literal('e2-medium'),
 ///   disk: const [
-///     InstanceTemplateDisk(
+///     ComputeInstanceTemplateInstanceTemplateDisk(
 ///       boot: true,
 ///       sourceImage: 'debian-cloud/debian-12',
 ///       autoDelete: true,
 ///     ),
 ///   ],
 ///   networkInterface: const [
-///     InstanceTemplateNetworkInterface(
+///     ComputeInstanceTemplateInstanceTemplateNetworkInterface(
 ///       network: 'default',
-///       accessConfig: [InstanceTemplateAccessConfig()],
+///       accessConfig: [ComputeInstanceTemplateInstanceTemplateAccessConfig()],
 ///     ),
 ///   ],
 /// );
@@ -866,16 +906,23 @@ final class GoogleComputeInstanceTemplate extends Resource {
     TfArg<Map<String, String>>? resourceManagerTags,
     TfArg<List<String>>? resourcePolicies,
     TfArg<String>? keyRevocationActionType,
-    required List<InstanceTemplateDisk> disk,
-    required List<InstanceTemplateNetworkInterface> networkInterface,
-    InstanceTemplateServiceAccount? serviceAccount,
-    InstanceTemplateScheduling? scheduling,
-    InstanceTemplateShieldedInstanceConfig? shieldedInstanceConfig,
-    InstanceTemplateConfidentialInstanceConfig? confidentialInstanceConfig,
-    List<InstanceTemplateGuestAccelerator>? guestAccelerator,
-    InstanceTemplateAdvancedMachineFeatures? advancedMachineFeatures,
-    InstanceTemplateReservationAffinity? reservationAffinity,
-    InstanceTemplateNetworkPerformanceConfig? networkPerformanceConfig,
+    required List<ComputeInstanceTemplateInstanceTemplateDisk> disk,
+    required List<ComputeInstanceTemplateInstanceTemplateNetworkInterface>
+    networkInterface,
+    ComputeInstanceTemplateInstanceTemplateServiceAccount? serviceAccount,
+    ComputeInstanceTemplateInstanceTemplateScheduling? scheduling,
+    ComputeInstanceTemplateInstanceTemplateShieldedInstanceConfig?
+    shieldedInstanceConfig,
+    ComputeInstanceTemplateInstanceTemplateConfidentialInstanceConfig?
+    confidentialInstanceConfig,
+    List<ComputeInstanceTemplateInstanceTemplateGuestAccelerator>?
+    guestAccelerator,
+    ComputeInstanceTemplateInstanceTemplateAdvancedMachineFeatures?
+    advancedMachineFeatures,
+    ComputeInstanceTemplateInstanceTemplateReservationAffinity?
+    reservationAffinity,
+    ComputeInstanceTemplateInstanceTemplateNetworkPerformanceConfig?
+    networkPerformanceConfig,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

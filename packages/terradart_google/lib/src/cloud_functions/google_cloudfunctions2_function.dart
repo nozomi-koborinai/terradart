@@ -47,7 +47,7 @@ enum DirectVpcEgress {
 
 /// `service_config.vpc_connector_egress_settings` -- egress policy when
 /// the function attaches via a Serverless VPC Access connector
-/// ([ServiceConfig.vpcConnector]). Mutually exclusive in spirit with
+/// ([Cloudfunctions2FunctionServiceConfig.vpcConnector]). Mutually exclusive in spirit with
 /// [DirectVpcEgress] (which applies when using direct VPC egress).
 enum VpcConnectorEgressSettings {
   unspecified('VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED'),
@@ -66,8 +66,8 @@ enum VpcConnectorEgressSettings {
 /// declaration and source-archive reference for the Cloud Build step that
 /// produces the function's container image.
 @immutable
-class BuildConfig {
-  const BuildConfig({
+class Cloudfunctions2FunctionBuildConfig {
+  const Cloudfunctions2FunctionBuildConfig({
     this.runtime,
     this.entryPoint,
     this.source,
@@ -89,10 +89,10 @@ class BuildConfig {
 
   /// Source archive reference. Pick exactly one of [StorageSource] (GCS
   /// object) or [RepoSource] (Cloud Source Repositories ref).
-  final SourceConfig? source;
+  final Cloudfunctions2FunctionSourceConfig? source;
 
   /// Build-time environment variables (available to the build script, NOT
-  /// to the runtime — use [ServiceConfig.environmentVariables] for that).
+  /// to the runtime — use [Cloudfunctions2FunctionServiceConfig.environmentVariables] for that).
   final TfArg<Map<String, String>>? environmentVariables;
 
   /// Service account email Cloud Build runs as. Defaults to the project
@@ -110,7 +110,7 @@ class BuildConfig {
   /// Runtime update policy. Pick [AutomaticUpdatePolicy] (the default --
   /// pull patch-level runtime updates on every deploy) or
   /// [OnDeployUpdatePolicy] (pin the runtime version at deploy time).
-  final UpdatePolicy? updatePolicy;
+  final Cloudfunctions2FunctionUpdatePolicy? updatePolicy;
 
   Map<String, Object?> encode() => {
     if (runtime != null) 'runtime': runtime!.toTfJson(),
@@ -126,11 +126,11 @@ class BuildConfig {
   };
 }
 
-/// Sealed dispatch for [BuildConfig.source]. Models the
+/// Sealed dispatch for [Cloudfunctions2FunctionBuildConfig.source]. Models the
 /// `storage_source` / `repo_source` exactly_one_of constraint at the type
-/// level: each [SourceConfig] subclass encodes its own Terraform key.
-sealed class SourceConfig {
-  const SourceConfig();
+/// level: each [Cloudfunctions2FunctionSourceConfig] subclass encodes its own Terraform key.
+sealed class Cloudfunctions2FunctionSourceConfig {
+  const Cloudfunctions2FunctionSourceConfig();
 
   /// Returns the JSON fragment to merge into the `source` block.
   Map<String, Object?> encode();
@@ -139,7 +139,7 @@ sealed class SourceConfig {
 /// GCS-backed source archive (`build_config.source.storage_source`). The
 /// archive must be a single zip/tar.gz at `gs://{bucket}/{object}`.
 @immutable
-final class StorageSource extends SourceConfig {
+final class StorageSource extends Cloudfunctions2FunctionSourceConfig {
   const StorageSource({
     required this.bucket,
     required this.object,
@@ -173,7 +173,7 @@ final class StorageSource extends SourceConfig {
 /// [tagName], or [commitSha] (the schema does not enforce this but the
 /// API requires exactly one).
 @immutable
-final class RepoSource extends SourceConfig {
+final class RepoSource extends Cloudfunctions2FunctionSourceConfig {
   const RepoSource({
     required this.repoName,
     this.projectId,
@@ -221,21 +221,21 @@ final class RepoSource extends SourceConfig {
   };
 }
 
-/// Sealed dispatch for [BuildConfig.updatePolicy]. The schema exposes two
+/// Sealed dispatch for [Cloudfunctions2FunctionBuildConfig.updatePolicy]. The schema exposes two
 /// mutually exclusive sub-blocks (`automatic_update_policy` --
 /// pull patch-level updates on every deploy, vs. `on_deploy_update_policy`
 /// -- pin runtime version at deploy time).
-sealed class UpdatePolicy {
-  const UpdatePolicy();
+sealed class Cloudfunctions2FunctionUpdatePolicy {
+  const Cloudfunctions2FunctionUpdatePolicy();
 
-  /// Returns the JSON fragment to merge into [BuildConfig.encode].
+  /// Returns the JSON fragment to merge into [Cloudfunctions2FunctionBuildConfig.encode].
   Map<String, Object?> encode();
 }
 
 /// `automatic_update_policy` sub-block. Cloud Functions pulls the latest
 /// patch-level runtime release on every deploy. No tunable fields.
 @immutable
-final class AutomaticUpdatePolicy extends UpdatePolicy {
+final class AutomaticUpdatePolicy extends Cloudfunctions2FunctionUpdatePolicy {
   const AutomaticUpdatePolicy();
 
   @override
@@ -249,7 +249,7 @@ final class AutomaticUpdatePolicy extends UpdatePolicy {
 /// reconciles. No tunable fields on input; the server populates
 /// `runtime_version` on read.
 @immutable
-final class OnDeployUpdatePolicy extends UpdatePolicy {
+final class OnDeployUpdatePolicy extends Cloudfunctions2FunctionUpdatePolicy {
   const OnDeployUpdatePolicy();
 
   @override
@@ -266,8 +266,8 @@ final class OnDeployUpdatePolicy extends UpdatePolicy {
 /// Eventarc trigger. Use [pubsubTopic] for Pub/Sub events, or
 /// [eventFilters] to subscribe to GCS / Firestore / Eventarc system events.
 @immutable
-class EventTrigger {
-  const EventTrigger({
+class Cloudfunctions2FunctionEventTrigger {
+  const Cloudfunctions2FunctionEventTrigger({
     required this.eventType,
     this.pubsubTopic,
     this.serviceAccountEmail,
@@ -299,7 +299,7 @@ class EventTrigger {
 
   /// CloudEvents attribute filters (e.g. GCS bucket name match,
   /// Firestore document path match).
-  final List<EventFilter>? eventFilters;
+  final List<Cloudfunctions2FunctionEventFilter>? eventFilters;
 
   Map<String, Object?> encode() => {
     'event_type': eventType.toTfJson(),
@@ -317,8 +317,8 @@ class EventTrigger {
 /// attribute against a literal [value] (or, when [operator] is
 /// `'match-path-pattern'`, a path pattern).
 @immutable
-class EventFilter {
-  const EventFilter({
+class Cloudfunctions2FunctionEventFilter {
+  const Cloudfunctions2FunctionEventFilter({
     required this.attribute,
     required this.value,
     this.operator,
@@ -349,8 +349,8 @@ class EventFilter {
 /// Cloud Run service: memory, CPU, scaling, environment, VPC egress,
 /// secret refs.
 @immutable
-class ServiceConfig {
-  const ServiceConfig({
+class Cloudfunctions2FunctionServiceConfig {
+  const Cloudfunctions2FunctionServiceConfig({
     this.availableMemory,
     this.availableCpu,
     this.timeoutSeconds,
@@ -391,7 +391,7 @@ class ServiceConfig {
   final TfArg<int>? maxInstanceRequestConcurrency;
 
   /// Runtime environment variables (visible to the function code, NOT to
-  /// the build step -- use [BuildConfig.environmentVariables] for that).
+  /// the build step -- use [Cloudfunctions2FunctionBuildConfig.environmentVariables] for that).
   final TfArg<Map<String, String>>? environmentVariables;
 
   /// Runtime service account email. Defaults to the project default
@@ -419,14 +419,16 @@ class ServiceConfig {
   final TfArg<String>? binaryAuthorizationPolicy;
 
   /// Secret-Manager backed environment variables.
-  final List<SecretEnvironmentVariable>? secretEnvironmentVariables;
+  final List<Cloudfunctions2FunctionSecretEnvironmentVariable>?
+  secretEnvironmentVariables;
 
   /// Secret-Manager backed file mounts.
-  final List<SecretVolume>? secretVolumes;
+  final List<Cloudfunctions2FunctionSecretVolume>? secretVolumes;
 
   /// Direct VPC network interfaces. Mutually exclusive (at the provider
   /// level) with [vpcConnector].
-  final List<DirectVpcNetworkInterface>? directVpcNetworkInterfaces;
+  final List<Cloudfunctions2FunctionDirectVpcNetworkInterface>?
+  directVpcNetworkInterfaces;
 
   Map<String, Object?> encode() => {
     if (availableMemory != null)
@@ -472,8 +474,8 @@ class ServiceConfig {
 /// reference materializes as an env var whose value is the secret payload
 /// at runtime.
 @immutable
-class SecretEnvironmentVariable {
-  const SecretEnvironmentVariable({
+class Cloudfunctions2FunctionSecretEnvironmentVariable {
+  const Cloudfunctions2FunctionSecretEnvironmentVariable({
     required this.key,
     required this.projectId,
     required this.secret,
@@ -504,8 +506,8 @@ class SecretEnvironmentVariable {
 /// One entry in `service_config.secret_volumes`. Mounts one or more
 /// secret versions as files under [mountPath].
 @immutable
-class SecretVolume {
-  const SecretVolume({
+class Cloudfunctions2FunctionSecretVolume {
+  const Cloudfunctions2FunctionSecretVolume({
     required this.mountPath,
     required this.projectId,
     required this.secret,
@@ -523,7 +525,7 @@ class SecretVolume {
 
   /// Per-version file mappings. When null, the secret's `'latest'`
   /// version is mounted at `{mountPath}/{secret}`.
-  final List<SecretVolumeVersion>? versions;
+  final List<Cloudfunctions2FunctionSecretVolumeVersion>? versions;
 
   Map<String, Object?> encode() => {
     'mount_path': mountPath.toTfJson(),
@@ -536,8 +538,11 @@ class SecretVolume {
 /// One entry in `secret_volumes.versions`. Maps a specific secret version
 /// to a relative path under the volume mount.
 @immutable
-class SecretVolumeVersion {
-  const SecretVolumeVersion({required this.path, required this.version});
+class Cloudfunctions2FunctionSecretVolumeVersion {
+  const Cloudfunctions2FunctionSecretVolumeVersion({
+    required this.path,
+    required this.version,
+  });
 
   /// Relative path within the volume.
   final TfArg<String> path;
@@ -555,8 +560,12 @@ class SecretVolumeVersion {
 /// the function instance to a VPC network without going through a
 /// Serverless VPC Access connector.
 @immutable
-class DirectVpcNetworkInterface {
-  const DirectVpcNetworkInterface({this.network, this.subnetwork, this.tags});
+class Cloudfunctions2FunctionDirectVpcNetworkInterface {
+  const Cloudfunctions2FunctionDirectVpcNetworkInterface({
+    this.network,
+    this.subnetwork,
+    this.tags,
+  });
 
   /// VPC network self-link or short name.
   final TfArg<String>? network;
@@ -593,7 +602,7 @@ class DirectVpcNetworkInterface {
 ///   localName: 'http_fn',
 ///   name: TfArg.literal('hello-http'),
 ///   location: TfArg.literal('asia-northeast1'),
-///   buildConfig: BuildConfig(
+///   buildConfig: Cloudfunctions2FunctionBuildConfig(
 ///     runtime: TfArg.literal('python311'),
 ///     entryPoint: TfArg.literal('hello'),
 ///     source: StorageSource(
@@ -601,7 +610,7 @@ class DirectVpcNetworkInterface {
 ///       object: TfArg.literal('hello-http.zip'),
 ///     ),
 ///   ),
-///   serviceConfig: ServiceConfig(
+///   serviceConfig: Cloudfunctions2FunctionServiceConfig(
 ///     availableMemory: TfArg.literal('256M'),
 ///     timeoutSeconds: TfArg.literal(60),
 ///     ingressSettings: TfArg.literal(IngressSettings.allowAll),
@@ -615,7 +624,7 @@ class DirectVpcNetworkInterface {
 ///   localName: 'sub_fn',
 ///   name: TfArg.literal('order-handler'),
 ///   location: TfArg.literal('asia-northeast1'),
-///   buildConfig: BuildConfig(
+///   buildConfig: Cloudfunctions2FunctionBuildConfig(
 ///     runtime: TfArg.literal('python311'),
 ///     entryPoint: TfArg.literal('handle'),
 ///     source: StorageSource(
@@ -623,7 +632,7 @@ class DirectVpcNetworkInterface {
 ///       object: TfArg.literal('order-handler.zip'),
 ///     ),
 ///   ),
-///   eventTrigger: EventTrigger(
+///   eventTrigger: Cloudfunctions2FunctionEventTrigger(
 ///     eventType: TfArg.literal('google.cloud.pubsub.topic.v1.messagePublished'),
 ///     pubsubTopic: TfArg.literal('projects/p/topics/orders'),
 ///     retryPolicy: TfArg.literal(EventTriggerRetryPolicy.retry),
@@ -645,9 +654,9 @@ final class GoogleCloudfunctions2Function extends Resource {
     required TfArg<String> name,
     required TfArg<String> location,
     TfArg<String>? description,
-    BuildConfig? buildConfig,
-    ServiceConfig? serviceConfig,
-    EventTrigger? eventTrigger,
+    Cloudfunctions2FunctionBuildConfig? buildConfig,
+    Cloudfunctions2FunctionServiceConfig? serviceConfig,
+    Cloudfunctions2FunctionEventTrigger? eventTrigger,
     TfArg<Map<String, String>>? labels,
     TfArg<String>? kmsKeyName,
     TfArg<String>? project,

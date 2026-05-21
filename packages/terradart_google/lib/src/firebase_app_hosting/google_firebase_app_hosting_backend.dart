@@ -31,8 +31,8 @@ enum AppHostingServingLocality {
 /// repository, so commits flowing into the configured branch trigger
 /// builds (see [GoogleFirebaseAppHostingTraffic.rolloutPolicy]).
 @immutable
-class AppHostingBackendCodebase {
-  const AppHostingBackendCodebase({
+class FirebaseAppHostingBackendAppHostingBackendCodebase {
+  const FirebaseAppHostingBackendAppHostingBackendCodebase({
     required this.repository,
     this.rootDirectory,
   });
@@ -82,7 +82,7 @@ class AppHostingBackendCodebase {
 ///   appId: TfArg.literal('1:1234567890:web:abcdef'),
 ///   serviceAccount: TfArg.ref(sa.email),
 ///   servingLocality: TfArg.literal(AppHostingServingLocality.regionalStrict),
-///   codebase: AppHostingBackendCodebase(
+///   codebase: FirebaseAppHostingBackendAppHostingBackendCodebase(
 ///     repository: TfArg.literal(
 ///       'projects/p/locations/us-central1/connections/c/gitRepositoryLinks/r',
 ///     ),
@@ -108,7 +108,7 @@ final class GoogleFirebaseAppHostingBackend extends Resource {
     required TfArg<String> appId,
     required TfArg<String> serviceAccount,
     required TfArg<AppHostingServingLocality> servingLocality,
-    AppHostingBackendCodebase? codebase,
+    FirebaseAppHostingBackendAppHostingBackendCodebase? codebase,
     TfArg<String>? environment,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? annotations,

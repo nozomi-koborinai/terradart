@@ -76,7 +76,7 @@ enum SubnetworkLogConfigAggregationInterval {
 }
 
 /// VPC flow log metadata-inclusion mode. Pair `customMetadata` with the
-/// [SubnetworkLogConfig.metadataFields] selector.
+/// [ComputeSubnetworkSubnetworkLogConfig.metadataFields] selector.
 enum SubnetworkLogConfigMetadata {
   includeAllMetadata('INCLUDE_ALL_METADATA'),
   excludeAllMetadata('EXCLUDE_ALL_METADATA'),
@@ -107,8 +107,8 @@ enum SubnetworkResolveSubnetMask {
 /// One `secondary_ip_range` entry. Defines an alias IP range usable by
 /// instances in this subnetwork (typically consumed by GKE pods/services).
 @immutable
-class SecondaryIpRange {
-  const SecondaryIpRange({
+class ComputeSubnetworkSecondaryIpRange {
+  const ComputeSubnetworkSecondaryIpRange({
     required this.rangeName,
     this.ipCidrRange,
     this.reservedInternalRange,
@@ -138,8 +138,8 @@ class SecondaryIpRange {
 /// logging is not supported when the subnetwork `purpose` is
 /// `REGIONAL_MANAGED_PROXY` or `GLOBAL_MANAGED_PROXY`.
 @immutable
-class SubnetworkLogConfig {
-  const SubnetworkLogConfig({
+class ComputeSubnetworkSubnetworkLogConfig {
+  const ComputeSubnetworkSubnetworkLogConfig({
     this.aggregationInterval,
     this.flowSampling,
     this.metadata,
@@ -217,10 +217,10 @@ final class GoogleComputeSubnetwork extends Resource {
     TfArg<String>? ipCidrRange,
     TfArg<SubnetworkPurpose>? purpose,
     TfArg<SubnetworkRole>? role,
-    List<SecondaryIpRange>? secondaryIpRange,
+    List<ComputeSubnetworkSecondaryIpRange>? secondaryIpRange,
     TfArg<bool>? privateIpGoogleAccess,
     TfArg<String>? privateIpv6GoogleAccess,
-    SubnetworkLogConfig? logConfig,
+    ComputeSubnetworkSubnetworkLogConfig? logConfig,
     TfArg<SubnetworkStackType>? stackType,
     TfArg<SubnetworkIpv6AccessType>? ipv6AccessType,
     TfArg<String>? externalIpv6Prefix,

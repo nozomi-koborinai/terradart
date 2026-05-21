@@ -580,36 +580,36 @@ prelude: |
     });
 
     /// Toggle automatic backups.
-    final bool? enabled;
+    TfArg<bool>? enabled;
 
     /// `HH:MM` 24h UTC. Backups run within a ~1h window starting here.
-    final String? startTime;
+    TfArg<String>? startTime;
 
     /// Multi-region or single-region location override (default:
     /// instance's region).
-    final String? location;
+    TfArg<String>? location;
 
     /// PITR — required for Postgres minute-level rewind.
-    final bool? pointInTimeRecoveryEnabled;
+    TfArg<bool>? pointInTimeRecoveryEnabled;
 
     /// Binary log retention — required for MySQL PITR.
-    final bool? binaryLogEnabled;
+    TfArg<bool>? binaryLogEnabled;
 
     /// 1-7 days. Number of days of transaction logs retained for PITR.
-    final int? transactionLogRetentionDays;
+    TfArg<int>? transactionLogRetentionDays;
 
     /// How many backups to retain.
     final BackupRetentionSettings? backupRetentionSettings;
 
     Map<String, Object?> toArgMap() => {
-      if (enabled != null) 'enabled': enabled,
-      if (startTime != null) 'start_time': startTime,
-      if (location != null) 'location': location,
+      if (enabled != null) 'enabled': enabled!.toTfJson(),
+      if (startTime != null) 'start_time': startTime!.toTfJson(),
+      if (location != null) 'location': location!.toTfJson(),
       if (pointInTimeRecoveryEnabled != null)
-        'point_in_time_recovery_enabled': pointInTimeRecoveryEnabled,
-      if (binaryLogEnabled != null) 'binary_log_enabled': binaryLogEnabled,
+        'point_in_time_recovery_enabled': pointInTimeRecoveryEnabled!.toTfJson(),
+      if (binaryLogEnabled != null) 'binary_log_enabled': binaryLogEnabled!.toTfJson(),
       if (transactionLogRetentionDays != null)
-        'transaction_log_retention_days': transactionLogRetentionDays,
+        'transaction_log_retention_days': transactionLogRetentionDays!.toTfJson(),
       if (backupRetentionSettings != null)
         'backup_retention_settings': [
           backupRetentionSettings!.toArgMap(),
@@ -626,14 +626,14 @@ prelude: |
     });
 
     /// How many backups to keep.
-    final int retainedBackups;
+    TfArg<int> retainedBackups;
 
     /// Currently `'COUNT'` is the only value the API accepts.
-    final String? retentionUnit;
+    TfArg<String>? retentionUnit;
 
     Map<String, Object?> toArgMap() => {
-      'retained_backups': retainedBackups,
-      if (retentionUnit != null) 'retention_unit': retentionUnit,
+      'retained_backups': retainedBackups.toTfJson(),
+      if (retentionUnit != null) 'retention_unit': retentionUnit!.toTfJson(),
     };
   }
 
@@ -645,10 +645,10 @@ prelude: |
     const DatabaseFlag({required this.name, required this.value});
 
     /// Engine flag name (e.g. `'max_connections'`).
-    final String name;
+    TfArg<String> name;
 
     /// Flag value.
-    final String value;
+    TfArg<String> value;
 
     Map<String, Object?> toArgMap() => {'name': name, 'value': value};
   }
@@ -665,19 +665,19 @@ prelude: |
     });
 
     /// Primary zone (e.g. `'asia-northeast1-a'`).
-    final String? zone;
+    TfArg<String>? zone;
 
     /// Failover zone for HA. Must be in the same region as [zone].
-    final String? secondaryZone;
+    TfArg<String>? secondaryZone;
 
     /// App Engine app ID to co-locate with.
-    final String? followGaeApplication;
+    TfArg<String>? followGaeApplication;
 
     Map<String, Object?> toArgMap() => {
-      if (zone != null) 'zone': zone,
-      if (secondaryZone != null) 'secondary_zone': secondaryZone,
+      if (zone != null) 'zone': zone!.toTfJson(),
+      if (secondaryZone != null) 'secondary_zone': secondaryZone!.toTfJson(),
       if (followGaeApplication != null)
-        'follow_gae_application': followGaeApplication,
+        'follow_gae_application': followGaeApplication!.toTfJson(),
     };
   }
 
@@ -688,19 +688,19 @@ prelude: |
     const MaintenanceWindow({this.day, this.hour, this.updateTrack});
 
     /// 1 = Monday, 7 = Sunday.
-    final int? day;
+    TfArg<int>? day;
 
     /// 0-23 (UTC).
-    final int? hour;
+    TfArg<int>? hour;
 
     /// `'canary'` (1-week lead), `'stable'` (2-week lead), or `'week5'`
     /// (5-week lead).
-    final String? updateTrack;
+    TfArg<String>? updateTrack;
 
     Map<String, Object?> toArgMap() => {
-      if (day != null) 'day': day,
-      if (hour != null) 'hour': hour,
-      if (updateTrack != null) 'update_track': updateTrack,
+      if (day != null) 'day': day!.toTfJson(),
+      if (hour != null) 'hour': hour!.toTfJson(),
+      if (updateTrack != null) 'update_track': updateTrack!.toTfJson(),
     };
   }
 

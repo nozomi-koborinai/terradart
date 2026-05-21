@@ -261,18 +261,18 @@ class BigqueryJobQuery {
   final BigqueryJobQueryPriority? priority;
   final BigqueryJobParameterMode? parameterMode;
 
-  final bool? useQueryCache;
-  final bool? flattenResults;
-  final bool? allowLargeResults;
+  TfArg<bool>? useQueryCache;
+  TfArg<bool>? flattenResults;
+  TfArg<bool>? allowLargeResults;
 
   /// Legacy SQL only. Cap on billing tier for the query.
-  final int? maximumBillingTier;
+  TfArg<int>? maximumBillingTier;
 
   /// Int64 as a String per BigQuery API convention. Cap on bytes
   /// billed; the job aborts if exceeded.
   final TfArg<String>? maximumBytesBilled;
 
-  final bool? useLegacySql;
+  TfArg<bool>? useLegacySql;
 
   /// One or more of `ALLOW_FIELD_ADDITION`,
   /// `ALLOW_FIELD_RELAXATION`. Only honored for `WRITE_APPEND` (and
@@ -303,15 +303,17 @@ class BigqueryJobQuery {
       'write_disposition': writeDisposition!.terraformValue,
     if (priority != null) 'priority': priority!.terraformValue,
     if (parameterMode != null) 'parameter_mode': parameterMode!.terraformValue,
-    if (useQueryCache != null) 'use_query_cache': useQueryCache,
-    if (flattenResults != null) 'flatten_results': flattenResults,
-    if (allowLargeResults != null) 'allow_large_results': allowLargeResults,
-    if (maximumBillingTier != null) 'maximum_billing_tier': maximumBillingTier,
+    if (useQueryCache != null) 'use_query_cache': useQueryCache!.toTfJson(),
+    if (flattenResults != null) 'flatten_results': flattenResults!.toTfJson(),
+    if (allowLargeResults != null)
+      'allow_large_results': allowLargeResults!.toTfJson(),
+    if (maximumBillingTier != null)
+      'maximum_billing_tier': maximumBillingTier!.toTfJson(),
     if (maximumBytesBilled != null)
       'maximum_bytes_billed': maximumBytesBilled!.toTfJson(),
-    if (useLegacySql != null) 'use_legacy_sql': useLegacySql,
+    if (useLegacySql != null) 'use_legacy_sql': useLegacySql!.toTfJson(),
     if (schemaUpdateOptions != null)
-      'schema_update_options': schemaUpdateOptions,
+      'schema_update_options': schemaUpdateOptions!.toTfJson(),
   };
 }
 
@@ -450,14 +452,14 @@ class BigqueryJobLoad {
   /// Datastore backup only — fields to load from the backup.
   final List<String>? projectionFields;
 
-  final bool? autodetect;
-  final bool? allowJaggedRows;
-  final bool? allowQuotedNewlines;
-  final bool? ignoreUnknownValues;
-  final int? maxBadRecords;
+  TfArg<bool>? autodetect;
+  TfArg<bool>? allowJaggedRows;
+  TfArg<bool>? allowQuotedNewlines;
+  TfArg<bool>? ignoreUnknownValues;
+  TfArg<int>? maxBadRecords;
 
   /// CSV only. Number of header rows to skip (typically 1).
-  final int? skipLeadingRows;
+  TfArg<int>? skipLeadingRows;
 
   /// CSV only. Single-character delimiter. The provider lets this
   /// be computed (it has a default).
@@ -491,16 +493,19 @@ class BigqueryJobLoad {
     if (writeDisposition != null)
       'write_disposition': writeDisposition!.terraformValue,
     if (schemaUpdateOptions != null)
-      'schema_update_options': schemaUpdateOptions,
-    if (projectionFields != null) 'projection_fields': projectionFields,
-    if (autodetect != null) 'autodetect': autodetect,
-    if (allowJaggedRows != null) 'allow_jagged_rows': allowJaggedRows,
+      'schema_update_options': schemaUpdateOptions!.toTfJson(),
+    if (projectionFields != null)
+      'projection_fields': projectionFields!.toTfJson(),
+    if (autodetect != null) 'autodetect': autodetect!.toTfJson(),
+    if (allowJaggedRows != null)
+      'allow_jagged_rows': allowJaggedRows!.toTfJson(),
     if (allowQuotedNewlines != null)
-      'allow_quoted_newlines': allowQuotedNewlines,
+      'allow_quoted_newlines': allowQuotedNewlines!.toTfJson(),
     if (ignoreUnknownValues != null)
-      'ignore_unknown_values': ignoreUnknownValues,
-    if (maxBadRecords != null) 'max_bad_records': maxBadRecords,
-    if (skipLeadingRows != null) 'skip_leading_rows': skipLeadingRows,
+      'ignore_unknown_values': ignoreUnknownValues!.toTfJson(),
+    if (maxBadRecords != null) 'max_bad_records': maxBadRecords!.toTfJson(),
+    if (skipLeadingRows != null)
+      'skip_leading_rows': skipLeadingRows!.toTfJson(),
     if (fieldDelimiter != null) 'field_delimiter': fieldDelimiter!.toTfJson(),
     if (quote != null) 'quote': quote!.toTfJson(),
     if (encoding != null) 'encoding': encoding!.toTfJson(),
@@ -547,13 +552,13 @@ class BigqueryJobParquetOptions {
     this.enumAsString,
   });
 
-  final bool? enableListInference;
-  final bool? enumAsString;
+  TfArg<bool>? enableListInference;
+  TfArg<bool>? enumAsString;
 
   Map<String, Object?> toArgMap() => {
     if (enableListInference != null)
-      'enable_list_inference': enableListInference,
-    if (enumAsString != null) 'enum_as_string': enumAsString,
+      'enable_list_inference': enableListInference!.toTfJson(),
+    if (enumAsString != null) 'enum_as_string': enumAsString!.toTfJson(),
   };
 }
 
@@ -598,10 +603,10 @@ class BigqueryJobExtract {
   final TfArg<String>? fieldDelimiter;
 
   /// CSV only. Whether to write a header row (defaults true).
-  final bool? printHeader;
+  TfArg<bool>? printHeader;
 
   /// Avro only. Use Avro logical types for TIMESTAMP / DATETIME etc.
-  final bool? useAvroLogicalTypes;
+  TfArg<bool>? useAvroLogicalTypes;
 
   Map<String, Object?> toArgMap() => {
     'destination_uris': destinationUris.toTfJson(),
@@ -611,9 +616,9 @@ class BigqueryJobExtract {
     if (destinationFormat != null)
       'destination_format': destinationFormat!.terraformValue,
     if (fieldDelimiter != null) 'field_delimiter': fieldDelimiter!.toTfJson(),
-    if (printHeader != null) 'print_header': printHeader,
+    if (printHeader != null) 'print_header': printHeader!.toTfJson(),
     if (useAvroLogicalTypes != null)
-      'use_avro_logical_types': useAvroLogicalTypes,
+      'use_avro_logical_types': useAvroLogicalTypes!.toTfJson(),
   };
 }
 
