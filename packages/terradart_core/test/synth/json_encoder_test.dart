@@ -2,6 +2,7 @@ import 'package:terradart_core/src/backends.dart';
 import 'package:terradart_core/src/lifecycle.dart';
 import 'package:terradart_core/src/synth/json_encoder.dart';
 import 'package:terradart_core/src/synth/output_emitter.dart';
+import 'package:terradart_core/src/synth/sensitive_literal_error.dart';
 import 'package:terradart_core/src/tf_arg.dart';
 import 'package:terradart_core/src/tf_ref.dart';
 import 'package:test/test.dart';
@@ -252,6 +253,7 @@ void main() {
       final out = TfJsonEncoder.encodeArgMapWithSensitive(
         argMap: argMap,
         sensitiveFields: sensitiveFields,
+        resourceAddress: 'google_secret_manager_secret_version.legacy',
       );
       expect(
         out,
@@ -274,6 +276,7 @@ void main() {
       final out = TfJsonEncoder.encodeArgMapWithSensitive(
         argMap: argMap,
         sensitiveFields: const {'secret_data'},
+        resourceAddress: 'google_secret_manager_secret_version.legacy',
       );
       expect(
         out,
@@ -298,6 +301,7 @@ void main() {
       final out = TfJsonEncoder.encodeArgMapWithSensitive(
         argMap: argMap,
         sensitiveFields: const {'customer_encryption.encryption_key'},
+        resourceAddress: 'google_storage_bucket_object.legacy',
       );
       expect(
         out,
@@ -323,6 +327,7 @@ void main() {
       final out = TfJsonEncoder.encodeArgMapWithSensitive(
         argMap: argMap,
         sensitiveFields: const {'customer_encryption.encryption_key'},
+        resourceAddress: 'google_storage_bucket_object.legacy',
       );
       expect(
         out,
@@ -347,6 +352,7 @@ void main() {
       final out = TfJsonEncoder.encodeArgMapWithSensitive(
         argMap: argMap,
         sensitiveFields: const {'block.a', 'block.b'},
+        resourceAddress: 'fake_thing.legacy',
       );
       expect(
         out,
@@ -653,6 +659,62 @@ void main() {
           'name': 'alice',
         }),
       );
+    });
+  });
+
+  group('TfJsonEncoder sensitive throw (top-level)', () {
+    test('throws SensitiveLiteralError on TfArgLiteral assigned to '
+        'sensitive top-level field', () {
+      final argMap = <String, TfArg<dynamic>?>{
+        'name': const TfArgLiteral<String>('orders-secret'),
+        'secret_data': const TfArgLiteral<String>('SUPER-SECRET'),
+      };
+      expect(
+        () => TfJsonEncoder.encodeArgMapWithSensitive(
+          argMap: argMap,
+          sensitiveFields: const {'secret_data'},
+          resourceAddress: 'google_secret_manager_secret_version.v1',
+        ),
+        throwsA(
+          isA<SensitiveLiteralError>()
+              .having((e) => e.fieldPath, 'fieldPath', equals('secret_data'))
+              .having(
+                (e) => e.resourceAddress,
+                'resourceAddress',
+                equals('google_secret_manager_secret_version.v1'),
+              ),
+        ),
+      );
+    });
+
+    test('TfArgRef on sensitive top-level passes through (no throw)', () {
+      final argMap = <String, TfArg<dynamic>?>{
+        'secret_data': TfArgRef<String>(
+          TfRef.attribute<String>(
+            const AddressStub('data.external.vault'),
+            'value',
+          ),
+        ),
+      };
+      final out = TfJsonEncoder.encodeArgMapWithSensitive(
+        argMap: argMap,
+        sensitiveFields: const {'secret_data'},
+        resourceAddress: 'google_secret_manager_secret_version.v1',
+      );
+      expect(out, equals({'secret_data': r'${data.external.vault.value}'}));
+    });
+
+    test('TfArgVariable on sensitive top-level passes through (no throw)',
+        () {
+      final argMap = <String, TfArg<dynamic>?>{
+        'secret_data': TfArgVariable<String>('db_secret'),
+      };
+      final out = TfJsonEncoder.encodeArgMapWithSensitive(
+        argMap: argMap,
+        sensitiveFields: const {'secret_data'},
+        resourceAddress: 'google_secret_manager_secret_version.v1',
+      );
+      expect(out, equals({'secret_data': r'${var.db_secret}'}));
     });
   });
 }

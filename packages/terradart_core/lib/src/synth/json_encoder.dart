@@ -3,6 +3,7 @@ import 'package:terradart_core/src/lifecycle.dart';
 import 'package:terradart_core/src/resource.dart';
 import 'package:terradart_core/src/stack.dart';
 import 'package:terradart_core/src/synth/output_emitter.dart';
+import 'package:terradart_core/src/synth/sensitive_literal_error.dart';
 import 'package:terradart_core/src/tf_arg.dart';
 import 'package:terradart_core/src/tf_ref.dart';
 
@@ -140,6 +141,7 @@ class TfJsonEncoder {
   static Map<String, dynamic> encodeArgMapWithSensitive({
     required Map<String, TfArg<dynamic>?> argMap,
     required Set<String> sensitiveFields,
+    required String resourceAddress,
   }) {
     // Partition sensitive paths by top-level key.
     final topLevel = <String>{};
@@ -158,12 +160,21 @@ class TfJsonEncoder {
     final out = <String, dynamic>{};
     argMap.forEach((k, v) {
       if (v == null) return;
+      if (topLevel.contains(k) && v is TfArgLiteral) {
+        throw SensitiveLiteralError(
+          resourceAddress: resourceAddress,
+          fieldPath: k,
+        );
+      }
       final encoded = encodeArg(v);
       if (encoded == null) return;
-      if (topLevel.contains(k) && v is TfArgLiteral) {
-        out[k] = '';
-      } else if (nested.containsKey(k)) {
-        out[k] = _maskNestedPaths(encoded, nested[k]!);
+      if (nested.containsKey(k)) {
+        out[k] = _checkNestedPaths(
+          encoded,
+          nested[k]!,
+          resourceAddress: resourceAddress,
+          parentKey: k,
+        );
       } else {
         out[k] = encoded;
       }
@@ -182,12 +193,27 @@ class TfJsonEncoder {
   ///
   /// Leaves whose value already looks like a Terraform interpolation
   /// (`${...}`) are passed through — zeroing them would break wiring.
-  static dynamic _maskNestedPaths(
+  ///
+  /// [resourceAddress] and [parentKey] are threaded through for the
+  /// Task 5 upgrade where masked leaves will throw [SensitiveLiteralError]
+  /// instead of silently writing empty string.
+  static dynamic _checkNestedPaths(
     dynamic value,
-    List<List<String>> paths,
-  ) {
+    List<List<String>> paths, {
+    required String resourceAddress,
+    required String parentKey,
+  }) {
     if (value is List) {
-      return value.map((e) => _maskNestedPaths(e, paths)).toList();
+      return value
+          .map(
+            (e) => _checkNestedPaths(
+              e,
+              paths,
+              resourceAddress: resourceAddress,
+              parentKey: parentKey,
+            ),
+          )
+          .toList();
     }
     if (value is Map) {
       final leavesToMask = <String>{};
@@ -215,7 +241,12 @@ class TfJsonEncoder {
       }
       byHead.forEach((head, remaining) {
         if (out.containsKey(head)) {
-          out[head] = _maskNestedPaths(out[head], remaining);
+          out[head] = _checkNestedPaths(
+            out[head],
+            remaining,
+            resourceAddress: resourceAddress,
+            parentKey: head,
+          );
         }
       });
       return out;
@@ -268,6 +299,7 @@ class TfJsonEncoder {
     final out = encodeArgMapWithSensitive(
       argMap: argMap,
       sensitiveFields: r.$sensitiveFields,
+      resourceAddress: r.tfAddress,
     );
     final deps = r.dependsOn;
     if (deps != null) {
