@@ -83,6 +83,7 @@ class TfJsonEncoder {
   /// - `TfArgLiteral<T>` → the raw `T` value (recursively walked in
   ///   case the literal is a Map/List that itself contains `TfArg`s).
   /// - `TfArgRef<T>` → the `${...}` interpolation string.
+  /// - `TfArgVariable<T>` → the `${var.<name>}` interpolation string.
   static dynamic encodeArg(TfArg<dynamic> arg) {
     final raw = arg.toTfJson();
     // Both refs and variables produce final string forms (Terraform
