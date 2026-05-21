@@ -242,28 +242,7 @@ void main() {
     });
   });
 
-  group('TfJsonEncoder sensitive masking', () {
-    test('replaces sensitive field literal with empty string', () {
-      final argMap = <String, TfArg<dynamic>?>{
-        'name': const TfArgLiteral<String>('orders-secret'),
-        'secret_data': const TfArgLiteral<String>('SUPER-SECRET'),
-      };
-      const sensitiveFields = {'secret_data'};
-
-      final out = TfJsonEncoder.encodeArgMapWithSensitive(
-        argMap: argMap,
-        sensitiveFields: sensitiveFields,
-        resourceAddress: 'google_secret_manager_secret_version.legacy',
-      );
-      expect(
-        out,
-        equals({
-          'name': 'orders-secret',
-          'secret_data': '',
-        }),
-      );
-    });
-
+  group('TfJsonEncoder sensitive passthrough (ref + variable)', () {
     test('preserves sensitive field that is a ref (no masking needed)', () {
       final argMap = <String, TfArg<dynamic>?>{
         'secret_data': TfArgRef<String>(
@@ -281,35 +260,6 @@ void main() {
       expect(
         out,
         equals({'secret_data': r'${data.external.vault.value}'}),
-      );
-    });
-
-    test('TG-5: nested-path sensitive masks literal leaf at depth-2', () {
-      // Mirrors GoogleStorageBucketObject's CustomerEncryption helper —
-      // the top-level `customer_encryption` slot is `TfArg.literal([{...}])`
-      // (single-element list of a Dart Map). The sensitive set carries
-      // the dotted path `customer_encryption.encryption_key`; the masker
-      // must walk through the list wrap and the map to reach the leaf.
-      final argMap = <String, TfArg<dynamic>?>{
-        'customer_encryption': const TfArgLiteral<List<dynamic>>([
-          {
-            'encryption_algorithm': 'AES256',
-            'encryption_key': 'raw-base64-key',
-          },
-        ]),
-      };
-      final out = TfJsonEncoder.encodeArgMapWithSensitive(
-        argMap: argMap,
-        sensitiveFields: const {'customer_encryption.encryption_key'},
-        resourceAddress: 'google_storage_bucket_object.legacy',
-      );
-      expect(
-        out,
-        equals({
-          'customer_encryption': [
-            {'encryption_algorithm': 'AES256', 'encryption_key': ''},
-          ],
-        }),
       );
     });
 
@@ -342,27 +292,6 @@ void main() {
       );
     });
 
-    test('TG-5: multiple sibling nested paths under the same parent', () {
-      // Both `block.a` and `block.b` should mask within one pass.
-      final argMap = <String, TfArg<dynamic>?>{
-        'block': const TfArgLiteral<List<dynamic>>([
-          {'a': 'A-val', 'b': 'B-val', 'c': 'C-val'},
-        ]),
-      };
-      final out = TfJsonEncoder.encodeArgMapWithSensitive(
-        argMap: argMap,
-        sensitiveFields: const {'block.a', 'block.b'},
-        resourceAddress: 'fake_thing.legacy',
-      );
-      expect(
-        out,
-        equals({
-          'block': [
-            {'a': '', 'b': '', 'c': 'C-val'},
-          ],
-        }),
-      );
-    });
   });
 
   group('TfJsonEncoder.lifecycleBlock', () {
@@ -479,7 +408,7 @@ void main() {
       );
     });
 
-    test('sensitiveFields metadata masks literals', () {
+    test('sensitiveFields metadata throws on literal', () {
       final r = FakeSecretVersion(
         localName: 'api_key',
         argMap: const {
@@ -487,13 +416,9 @@ void main() {
           'secret_data': TfArgLiteral<String>('PLAINTEXT'),
         },
       );
-      final out = TfJsonEncoder.resourceBlock(r);
       expect(
-        out,
-        equals({
-          'secret': 'projects/x/secrets/api-key',
-          'secret_data': '',
-        }),
+        () => TfJsonEncoder.resourceBlock(r),
+        throwsA(isA<SensitiveLiteralError>()),
       );
     });
   });
