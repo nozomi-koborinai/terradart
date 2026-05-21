@@ -31,8 +31,32 @@ class EnumValueLength {
         final enumName = match.group(1)!;
         final body = match.group(2)!;
         for (final value in body.split(',')) {
-          final trimmed = value.trim().split(RegExp(r'[\s(]')).first;
+          // Strip dartdoc / line comments + the constructor declaration
+          // before extracting the value identifier. Enum bodies look like:
+          //   /// doc
+          //   foo('FOO'),
+          //   bar('BAR');
+          //   const Enum(this.terraformValue);
+          //   final String terraformValue;
+          // A naive split-by-`,` then split-by-`(` would pick up `///`
+          // and `);` as bogus values.
+          final cleaned = value
+              .split('\n')
+              .map((l) => l.trim())
+              .where((l) =>
+                  l.isNotEmpty &&
+                  !l.startsWith('///') &&
+                  !l.startsWith('//') &&
+                  !l.startsWith('const ') &&
+                  !l.startsWith('final '))
+              .join('\n')
+              .trim();
+          if (cleaned.isEmpty) continue;
+          final trimmed = cleaned.split(RegExp(r'[\s(;]')).first;
           if (trimmed.isEmpty) continue;
+          // Skip lines that start with `)` (constructor close after the
+          // last enum value, e.g. `);`) — these are stray after stripping.
+          if (!RegExp(r'^[a-zA-Z_]').hasMatch(trimmed)) continue;
           if (allowList.contains(trimmed)) continue;
           if (trimmed.length < minLength) {
             violations.add(

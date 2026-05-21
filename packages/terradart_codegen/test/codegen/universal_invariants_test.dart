@@ -340,7 +340,7 @@ void main() {
         // Time units
         'day', 'hour',
         // Misc natural words
-        'the',
+        'the', 'vm',
       };
       final violations = EnumValueLength.scan(
         rootDir: p.join('..', 'terradart_google', 'lib', 'src'),
