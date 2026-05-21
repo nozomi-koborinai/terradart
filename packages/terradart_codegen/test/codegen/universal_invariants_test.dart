@@ -314,13 +314,42 @@ void main() {
   });
 
   group('Gate 8: enum value identifier minimum length', () {
-    test('every enum value identifier is >= 4 characters', () {
+    test('every enum value identifier is >= 4 chars or in allow-list', () {
+      // Allow-list: industry-standard acronyms and natural-language short
+      // identifiers that mirror Terraform wire values and should NOT be
+      // verbose-renamed. The gate's intent is to catch abbreviation-style
+      // values like `Comparison.lt` / `.gt` / `.eq` — not to force
+      // `tcpProtocol` for `tcp`.
+      const allowList = <String>{
+        // Logical / quantifiers
+        'and', 'or', 'not', 'any', 'all', 'one',
+        // Networking protocols
+        'tcp', 'udp', 'ssl', 'tls', 'h2c', 'ah', 'esp',
+        // Data formats / hashes
+        'csv', 'orc', 'sql', 'md5', 'sha',
+        // Aggregates
+        'min', 'max', 'sum', 'avg',
+        // State / lifecycle
+        'on', 'off', 'ga',
+        // Confidential compute / KMS
+        'sev', 'tdx', 'mac', 'hsm',
+        // HTTP methods
+        'get', 'put',
+        // Regions / locales
+        'usa', 'eu', 'apj',
+        // Time units
+        'day', 'hour',
+        // Misc natural words
+        'the',
+      };
       final violations = EnumValueLength.scan(
         rootDir: p.join('..', 'terradart_google', 'lib', 'src'),
         minLength: 4,
+        allowList: allowList,
       );
       expect(violations, isEmpty,
-          reason: 'Short enum values found (consider verbose-natural form):\n'
+          reason: 'Short enum values found (consider verbose-natural form '
+              'or add to allowList if legitimately short):\n'
               '${violations.join('\n')}');
     });
   });
