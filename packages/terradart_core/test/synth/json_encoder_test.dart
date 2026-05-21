@@ -653,7 +653,13 @@ void main() {
           sensitiveFields: const {'block.a', 'block.b'},
           resourceAddress: 'fake.r',
         ),
-        throwsA(isA<SensitiveLiteralError>()),
+        throwsA(
+          isA<SensitiveLiteralError>().having(
+            (e) => e.fieldPath,
+            'fieldPath',
+            equals('block.a'),
+          ),
+        ),
       );
     });
   });
