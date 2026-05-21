@@ -1,10 +1,10 @@
 # Changelog
 
-## 1.0.0 - 2026-05-21
+## 0.9.0 - 2026-05-21
 
-**BREAKING** — v1.0.0 release. Coordinated rename pass + behaviour fixes consuming Plans 1-3 from terradart_core / terradart_codegen:
+**BREAKING** — pre-1.0 polish wave. Coordinated rename pass + behaviour fixes consuming Plans 1-3 from terradart_core / terradart_codegen (0.9.x staging for the 1.0 surface; breaking changes still permitted within 0.9.x → 1.0):
 
-- Bumped `terradart_core` constraint to `^1.0.0`.
+- Bumped `terradart_core` constraint to `^0.9.0`.
 - 118 curated GCP factories + 1 data source retained — no resource additions or removals in this release. The polish wave focuses on naming consistency, sensitive-field correctness, and Stack-level devMode.
 - **Service-prefixed nested helpers**: every nested helper class is `<Service><Resource><HelperName>` shape. Affects logging, bigquery, secret_manager, sql, cloud_run, monitoring, pubsub, and other barrels with formerly unprefixed helpers. See MIGRATING.md for the full table.
 - **`TfArg<T>`-wrapped nested-helper fields** — uniform across all barrels. Monitoring uptime check's previously plain `String` fields are now `TfArg<String>`.

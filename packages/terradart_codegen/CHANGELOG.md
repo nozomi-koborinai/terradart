@@ -1,10 +1,10 @@
 # Changelog
 
-## 1.0.0 - 2026-05-21
+## 0.9.0 - 2026-05-21
 
-**BREAKING** — v1.0.0 release. Codegen template changes that propagate to `terradart_google`'s emitted wrappers:
+**BREAKING** — pre-1.0 polish wave. Codegen template changes that propagate to `terradart_google`'s emitted wrappers (0.9.x staging for the 1.0 surface; breaking changes still permitted within 0.9.x → 1.0):
 
-- Bumped `terradart_core` constraint to `^1.0.0`.
+- Bumped `terradart_core` constraint to `^0.9.0`.
 - Wrapper emitter emits `@override bool get $supportsDeletionProtection => true;` on wrappers whose schema includes a `deletion_protection` attribute.
 - Abstract-class emitter emits service-prefixed nested helper class names (`SqlDatabaseInstanceSettings`, `BigqueryDatasetAccess`, `SecretManagerSecretReplication`, `LoggingProjectSinkBigqueryOptions`, etc.) — no more bare `Settings` / `Access` / `Replication` / `BigqueryOptions` Wave 4-era shapes.
 - Abstract-class emitter emits `TfArg<T>`-wrapped nested-helper fields uniformly. Plain Dart-type fields on helpers (Wave 7-era Monitoring uptime check shapes) are eliminated.

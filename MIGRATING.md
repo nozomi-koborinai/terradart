@@ -1,7 +1,7 @@
-# Migrating from terradart 0.8.0-dev to 1.0.0
+# Migrating from terradart 0.8.0-dev to 0.9.0
 
 This guide covers every breaking change introduced between `0.8.0-dev` and
-`1.0.0`. Work through the sections in order: the Stack API changes (§1) are
+`0.9.0`. Work through the sections in order: the Stack API changes (§1) are
 quick mechanical edits; the sensitive-field correctness fix (§2) may require
 an architectural decision; the naming changes (§3) are the largest surface
 but are mostly mechanical.
@@ -39,7 +39,7 @@ Future<void> synth({required String outDir}) async {
   );
 }
 
-// AFTER (1.0.0) — nothing. The base implementation does the same thing.
+// AFTER (0.9.0) — nothing. The base implementation does the same thing.
 ```
 
 If you need custom file layout (e.g. writing `SynthResult.dartConstants` as
@@ -57,7 +57,7 @@ import 'dart:convert' as dart_convert;
 // ...
 final encoded = const dart_convert.JsonEncoder.withIndent('  ').convert(map);
 
-// AFTER (1.0.0):
+// AFTER (0.9.0):
 // No import needed — TfJsonEncoder is re-exported from terradart_core.
 // If you called it for encoding helpers, use the static methods directly:
 final encoded = TfJsonEncoder.encodeArgMap(argMap);
@@ -75,8 +75,8 @@ after applying the above.
 
 ### 1.3 `LocalBackend` replaces handwritten `terraform.tf`
 
-`0.x` examples wrote a separate `terraform.tf` file by hand for local-state
-workflows. `1.0.0` ships a typed `LocalBackend`:
+`0.8.x` examples wrote a separate `terraform.tf` file by hand for local-state
+workflows. `0.9.0` ships a typed `LocalBackend`:
 
 ```dart
 // BEFORE (0.8.0-dev) — handwritten file and no backend arg:
@@ -85,7 +85,7 @@ class MyStack extends Stack {
 }
 // Separate tool/terraform.tf with: terraform { backend "local" {} }
 
-// AFTER (1.0.0) — pass it to the constructor:
+// AFTER (0.9.0) — pass it to the constructor:
 class MyStack extends Stack {
   MyStack()
       : super(
@@ -149,7 +149,7 @@ GoogleSqlUser(
   password: TfArg.literal('hunter2'),  // BAD — throws SensitiveLiteralError in v1.0
 )
 
-// AFTER (1.0.0):
+// AFTER (0.9.0):
 GoogleSqlUser(
   localName: 'app_user',
   instance: TfArg.ref(db.nameRef),
@@ -206,7 +206,7 @@ class name to eliminate collision between helpers from different resources
 
 The 15 most commonly encountered renames from cookbook rehearsal:
 
-| Old (0.8.0-dev) | New (1.0.0) | Barrel |
+| Old (0.8.0-dev) | New (0.9.0) | Barrel |
 |---|---|---|
 | `Settings(` | `SqlDatabaseInstanceSettings(` | `sql` |
 | `IpConfiguration(` | `SqlDatabaseInstanceIpConfiguration(` | `sql` |
@@ -240,7 +240,7 @@ under the `nested_helper_renames` key.
 
 ### 3.2 Getter renames
 
-| Old (0.8.0-dev) | New (1.0.0) | Notes |
+| Old (0.8.0-dev) | New (0.9.0) | Notes |
 |---|---|---|
 | `<serviceAccount>.member` | `<serviceAccount>.iamMember` | `GoogleServiceAccount` only |
 
@@ -289,7 +289,7 @@ EnvVar(
   source: EnvVarFromLiteral(TfArg.literal('info')),
 )
 
-// AFTER (1.0.0):
+// AFTER (0.9.0):
 CloudRunV2ServiceEnvVar(
   name: TfArg.literal('LOG_LEVEL'),  // wrap with TfArg.literal
   source: CloudRunV2ServiceEnvVarFromLiteral(TfArg.literal('info')),
@@ -309,7 +309,7 @@ const MonitoringUptimeCheckMonitoredResource(
   labels: {'host': 'example.com'},
 )
 
-// AFTER (1.0.0) — fields are TfArg<T>; drop const, wrap values:
+// AFTER (0.9.0) — fields are TfArg<T>; drop const, wrap values:
 MonitoringUptimeCheckConfigMonitoringUptimeCheckMonitoredResource(
   type: TfArg.literal('uptime_url'),
   labels: TfArg.literal({'host': 'example.com'}),
@@ -423,7 +423,7 @@ need renames from the full JSON.
 ## 4. Cookbook example
 
 The `terradart-cookbook` repository's `single-project-app` recipe has been
-fully migrated to the v1.0.0 API surface. See the `v1.0.0` tag in that repo
+fully migrated to the v0.9.0 API surface. See the `v0.9.0` tag in that repo
 for a working end-to-end reference, including:
 
 - `Stack(devMode: true)` usage

@@ -1,8 +1,8 @@
 # Changelog
 
-## 1.0.0 - 2026-05-21
+## 0.9.0 - 2026-05-21
 
-**BREAKING** — v1.0.0 release. API surface locked under semver from this version. Pre-1.0 dogfood-driven changes:
+**BREAKING** — pre-1.0 polish wave consuming dogfood findings (issues #52-#57). v0.x permits breaking changes; 1.0 semver lock is deferred until cookbook recipes + real-apply feedback have absorbed more cycles. The 0.9.x line is the staging ground for the 1.0 surface:
 
 - **`Stack.synth({required String outDir})` is now concrete** — default implementation writes pretty-printed `${outDir}/main.tf.json` and creates `outDir` recursively. Subclasses may still override; existing overrides that delegated to `StackSynth.synth(this)` + `JsonEncoder.withIndent('  ')` can be deleted in favour of the default.
 - **`JsonEncoder` → `TfJsonEncoder`** — the synth-time JSON encoder class no longer shadows `dart:convert`'s `JsonEncoder`. Consumers that imported the class directly need to rename references; consumers using only `Stack` / `StackSynth` are unaffected.
