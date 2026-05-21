@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.0 - 2026-MM-DD
+## 1.0.0 - 2026-05-21
 
 **BREAKING** — v1.0.0 release. API surface locked under semver from this version. Pre-1.0 dogfood-driven changes:
 

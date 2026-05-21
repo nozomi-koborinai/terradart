@@ -1,6 +1,6 @@
 # Changelog
 
-## 1.0.0 - 2026-MM-DD
+## 1.0.0 - 2026-05-21
 
 **BREAKING** — v1.0.0 release. Codegen template changes that propagate to `terradart_google`'s emitted wrappers:
 
