@@ -78,12 +78,21 @@ final class RolloutPolicy extends TrafficChoice {
       final preludeText = yaml.substring(preludeStart);
 
       final extracted = const SealedClassExtractor().extract(preludeText);
-      expect(extracted.map((s) => s.name), contains('SchedulerTarget'));
-      final scheduler =
-          extracted.singleWhere((s) => s.name == 'SchedulerTarget');
-      // SchedulerTarget has 3 known members per the Wave 4 yaml.
-      expect(scheduler.members.map((m) => m.name),
-          containsAll(['PubsubTarget', 'HttpTarget', 'AppEngineHttpTarget']));
+      expect(
+        extracted.map((s) => s.name),
+        contains('CloudSchedulerJobSchedulerTarget'),
+      );
+      final scheduler = extracted
+          .singleWhere((s) => s.name == 'CloudSchedulerJobSchedulerTarget');
+      // CloudSchedulerJobSchedulerTarget has 3 known members (v1.0 naming).
+      expect(
+        scheduler.members.map((m) => m.name),
+        containsAll([
+          'CloudSchedulerJobPubsubTarget',
+          'CloudSchedulerJobHttpTarget',
+          'CloudSchedulerJobAppEngineHttpTarget',
+        ]),
+      );
     });
   });
 }

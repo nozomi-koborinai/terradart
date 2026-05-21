@@ -19,8 +19,8 @@ const Set<String> _googlePubsubSubscriptionSensitive = <String>{};
 /// `push_config` block. Pair with [pushEndpoint]; optionally attach an
 /// [oidcToken] (recommended for authenticated webhooks) or [noWrapper].
 @immutable
-class PushConfig {
-  const PushConfig({
+class PubsubSubscriptionPushConfig {
+  const PubsubSubscriptionPushConfig({
     required this.pushEndpoint,
     this.attributes,
     this.oidcToken,
@@ -29,8 +29,8 @@ class PushConfig {
 
   final TfArg<String> pushEndpoint;
   final TfArg<Map<String, String>>? attributes;
-  final OidcToken? oidcToken;
-  final NoWrapper? noWrapper;
+  final PubsubSubscriptionOidcToken? oidcToken;
+  final PubsubSubscriptionNoWrapper? noWrapper;
 
   Map<String, Object?> encode() => {
     'push_endpoint': pushEndpoint.toTfJson(),
@@ -42,8 +42,11 @@ class PushConfig {
 
 /// OIDC token configuration for authenticated push subscriptions.
 @immutable
-class OidcToken {
-  const OidcToken({required this.serviceAccountEmail, this.audience});
+class PubsubSubscriptionOidcToken {
+  const PubsubSubscriptionOidcToken({
+    required this.serviceAccountEmail,
+    this.audience,
+  });
 
   final TfArg<String> serviceAccountEmail;
   final TfArg<String>? audience;
@@ -56,8 +59,8 @@ class OidcToken {
 
 /// `no_wrapper` payload-shape override for push subscriptions.
 @immutable
-class NoWrapper {
-  const NoWrapper({required this.writeMetadata});
+class PubsubSubscriptionNoWrapper {
+  const PubsubSubscriptionNoWrapper({required this.writeMetadata});
 
   final TfArg<bool> writeMetadata;
 
@@ -66,8 +69,8 @@ class NoWrapper {
 
 /// `bigquery_config` block.
 @immutable
-class BigQueryConfig {
-  const BigQueryConfig({
+class PubsubSubscriptionBigQueryConfig {
+  const PubsubSubscriptionBigQueryConfig({
     required this.table,
     this.useTopicSchema,
     this.useTableSchema,
@@ -97,8 +100,8 @@ class BigQueryConfig {
 
 /// `cloud_storage_config` block.
 @immutable
-class CloudStorageConfig {
-  const CloudStorageConfig({
+class PubsubSubscriptionCloudStorageConfig {
+  const PubsubSubscriptionCloudStorageConfig({
     required this.bucket,
     this.filenamePrefix,
     this.filenameSuffix,
@@ -134,8 +137,11 @@ class CloudStorageConfig {
 
 /// `dead_letter_policy` block.
 @immutable
-class DeadLetterPolicy {
-  const DeadLetterPolicy({this.deadLetterTopic, this.maxDeliveryAttempts});
+class PubsubSubscriptionDeadLetterPolicy {
+  const PubsubSubscriptionDeadLetterPolicy({
+    this.deadLetterTopic,
+    this.maxDeliveryAttempts,
+  });
 
   final TfArg<String>? deadLetterTopic;
   final TfArg<int>? maxDeliveryAttempts;
@@ -150,8 +156,11 @@ class DeadLetterPolicy {
 
 /// `retry_policy` block.
 @immutable
-class RetryPolicy {
-  const RetryPolicy({this.minimumBackoff, this.maximumBackoff});
+class PubsubSubscriptionRetryPolicy {
+  const PubsubSubscriptionRetryPolicy({
+    this.minimumBackoff,
+    this.maximumBackoff,
+  });
 
   final TfArg<String>? minimumBackoff;
   final TfArg<String>? maximumBackoff;
@@ -164,8 +173,8 @@ class RetryPolicy {
 
 /// `expiration_policy` block.
 @immutable
-class ExpirationPolicy {
-  const ExpirationPolicy({required this.ttl});
+class PubsubSubscriptionExpirationPolicy {
+  const PubsubSubscriptionExpirationPolicy({required this.ttl});
 
   final TfArg<String> ttl;
 
@@ -195,7 +204,7 @@ class ExpirationPolicy {
 ///   localName: 'orders_push',
 ///   name: TfArg.literal('orders-push'),
 ///   topic: TfArg.ref(orders.id),
-///   pushConfig: const PushConfig(
+///   pushConfig: const PubsubSubscriptionPushConfig(
 ///     pushEndpoint: TfArgLiteral('https://app.example.com/push'),
 ///   ),
 /// );
@@ -209,16 +218,16 @@ final class GooglePubsubSubscription extends Resource {
     required TfArg<String> name,
     required TfArg<String> topic,
     TfArg<Map<String, String>>? labels,
-    BigQueryConfig? bigqueryConfig,
-    CloudStorageConfig? cloudStorageConfig,
-    PushConfig? pushConfig,
+    PubsubSubscriptionBigQueryConfig? bigqueryConfig,
+    PubsubSubscriptionCloudStorageConfig? cloudStorageConfig,
+    PubsubSubscriptionPushConfig? pushConfig,
     TfArg<int>? ackDeadlineSeconds,
     TfArg<String>? messageRetentionDuration,
     TfArg<bool>? retainAckedMessages,
-    ExpirationPolicy? expirationPolicy,
+    PubsubSubscriptionExpirationPolicy? expirationPolicy,
     TfArg<String>? filter,
-    DeadLetterPolicy? deadLetterPolicy,
-    RetryPolicy? retryPolicy,
+    PubsubSubscriptionDeadLetterPolicy? deadLetterPolicy,
+    PubsubSubscriptionRetryPolicy? retryPolicy,
     TfArg<bool>? enableMessageOrdering,
     TfArg<bool>? enableExactlyOnceDelivery,
     TfArg<List<Map<String, dynamic>>>? messageTransforms,
