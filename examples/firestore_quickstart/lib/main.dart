@@ -46,13 +46,13 @@ class MessagesStack extends Stack {
         database: TfArg.ref(db.nameRef),
         queryScope: TfArg.literal(FirestoreIndexQueryScope.collection),
         fields: [
-          IndexField(
+          FirestoreIndexIndexField(
             fieldPath: TfArg.literal('user_id'),
-            spec: const IndexFieldOrder(FirestoreIndexOrder.ascending),
+            spec: FirestoreIndexIndexFieldOrder(FirestoreIndexOrder.ascending),
           ),
-          IndexField(
+          FirestoreIndexIndexField(
             fieldPath: TfArg.literal('created_at'),
-            spec: const IndexFieldOrder(FirestoreIndexOrder.descending),
+            spec: FirestoreIndexIndexFieldOrder(FirestoreIndexOrder.descending),
           ),
         ],
       ),

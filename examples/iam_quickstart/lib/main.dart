@@ -79,7 +79,7 @@ class IamShowcaseStack extends Stack {
       ),
     );
 
-    final saMember = TfArg.ref(sa.member);
+    final saMember = TfArg.ref(sa.iamMember);
 
     // ---- Resources to grant against ----------------------------------------
 
@@ -111,7 +111,7 @@ class IamShowcaseStack extends Stack {
       GoogleSecretManagerSecret(
         localName: 'demo_secret',
         secretId: TfArg.literal('demo-secret'),
-        replication: Replication.auto(),
+        replication: SecretManagerSecretReplication.auto(),
       ),
     );
 
@@ -224,7 +224,7 @@ class IamShowcaseStack extends Stack {
         // Target SA is the demo SA; identified by its full resource path.
         serviceAccountId: TfArg.ref(sa.name),
         role: TfArg.literal('roles/iam.serviceAccountUser'),
-        member: TfArg.ref(impersonator.member),
+        member: TfArg.ref(impersonator.iamMember),
       ),
     );
 

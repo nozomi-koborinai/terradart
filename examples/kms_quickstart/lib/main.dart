@@ -48,8 +48,8 @@ class CryptoStack extends Stack {
       keyRing: TfArg.ref(ring.id),
       purpose: TfArg.literal(KmsKeyPurpose.encryptDecrypt),
       rotationPeriod: TfArg.duration(const Duration(days: 90)),
-      versionTemplate: const VersionTemplate(
-        algorithm: 'GOOGLE_SYMMETRIC_ENCRYPTION',
+      versionTemplate: KmsCryptoKeyVersionTemplate(
+        algorithm: TfArg.literal('GOOGLE_SYMMETRIC_ENCRYPTION'),
         protectionLevel: KmsProtectionLevel.software,
       ),
     );
@@ -73,7 +73,7 @@ class CryptoStack extends Stack {
         localName: 'payments_encrypter_binding',
         cryptoKeyId: TfArg.ref(paymentsKey.id),
         role: TfArg.literal('roles/cloudkms.cryptoKeyEncrypter'),
-        member: TfArg.ref(encrypter.member),
+        member: TfArg.ref(encrypter.iamMember),
       ),
     );
 
@@ -96,7 +96,7 @@ class CryptoStack extends Stack {
         localName: 'ring_inventory_binding',
         keyRingId: TfArg.ref(ring.id),
         role: TfArg.literal('roles/cloudkms.viewer'),
-        member: TfArg.ref(ringInventory.member),
+        member: TfArg.ref(ringInventory.iamMember),
       ),
     );
   }

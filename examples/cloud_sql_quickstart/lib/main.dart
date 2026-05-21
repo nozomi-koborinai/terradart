@@ -92,13 +92,13 @@ class CloudSqlStack extends Stack {
         databaseVersion: TfArg.literal(DatabaseVersion.postgres15),
         region: TfArg.literal('asia-northeast1'),
         deletionProtection: TfArg.literal(false),
-        settings: Settings(
+        settings: SqlDatabaseInstanceSettings(
           tier: TfArg.literal('db-custom-2-7680'),
           availabilityType: TfArg.literal(SqlAvailabilityType.zonal),
           edition: TfArg.literal(SqlEdition.enterprise),
           diskSize: TfArg.literal(20),
           diskType: TfArg.literal(SqlDiskType.pdSsd),
-          ipConfiguration: IpConfiguration(
+          ipConfiguration: SqlDatabaseInstanceIpConfiguration(
             ipv4Enabled: TfArg.literal(false),
             privateNetwork: TfArg.ref(vpc.selfLink),
             // Pins the instance to the named PSA range; without this the
@@ -129,7 +129,8 @@ class CloudSqlStack extends Stack {
         instance: TfArg.ref(primary.nameRef),
         name: TfArg.literal('app'),
         type: TfArg.literal(SqlUserType.builtIn),
-        password: TfArg.literal(dbPassword),
+        passwordWo: TfArg.literal(dbPassword),
+        passwordWoVersion: TfArg.literal(1),
       ),
     );
   }

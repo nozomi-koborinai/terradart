@@ -56,10 +56,10 @@ class CloudBuildStack extends Stack {
         localName: 'lb_conn',
         location: TfArg.literal(region),
         name: TfArg.literal('github-app-conn'),
-        githubConfig: CloudBuildV2ConnectionGithubConfig(
+        githubConfig: Cloudbuildv2ConnectionGithubConfig(
           appInstallationId: TfArg.literal(12345),
           authorizerCredential:
-              CloudBuildV2ConnectionGithubAuthorizerCredential(
+              Cloudbuildv2ConnectionGithubAuthorizerCredential(
             oauthTokenSecretVersion: TfArg.literal(
               'projects/p/secrets/github-oauth/versions/1',
             ),
@@ -132,11 +132,11 @@ class CloudBuildStack extends Stack {
         localName: 'lb_pool',
         name: TfArg.literal('private-pool'),
         location: TfArg.literal(region),
-        workerConfig: CloudBuildWorkerPoolWorkerConfig(
+        workerConfig: CloudbuildWorkerPoolWorkerConfig(
           machineType: TfArg.literal('e2-standard-4'),
           diskSizeGb: TfArg.literal(100),
         ),
-        networkConfig: CloudBuildWorkerPoolNetworkConfig(
+        networkConfig: CloudbuildWorkerPoolNetworkConfig(
           peeredNetwork: TfArg.literal(
             'projects/PROJECT_ID/global/networks/cloudbuild-peered-vpc',
           ),
@@ -155,9 +155,9 @@ class CloudBuildStack extends Stack {
         localName: 'lb_trigger',
         name: TfArg.literal('myapp-main-push'),
         location: TfArg.literal(region),
-        repositoryEventConfig: CloudBuildTriggerRepositoryEventConfig(
+        repositoryEventConfig: CloudbuildTriggerRepositoryEventConfig(
           repository: TfArg.ref<String>(lbRepo.id),
-          push: CloudBuildTriggerPushFilter(branch: TfArg.literal('^main\$')),
+          push: CloudbuildTriggerPushFilter(branch: TfArg.literal('^main\$')),
         ),
         filename: TfArg.literal('cloudbuild.yaml'),
         serviceAccount: TfArg.literal(

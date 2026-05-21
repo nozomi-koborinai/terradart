@@ -32,7 +32,7 @@ class DbCredentialsStack extends Stack {
       GoogleSecretManagerSecret(
         localName: 'db_password',
         secretId: TfArg.literal('db-password'),
-        replication: Replication.auto(),
+        replication: SecretManagerSecretReplication.auto(),
         labels: const TfArgLiteral<Map<String, String>>({
           'managed-by': 'terradart',
         }),

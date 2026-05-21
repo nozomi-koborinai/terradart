@@ -47,26 +47,26 @@ class InternalDnsStack extends Stack {
       description:
           TfArg.literal('Private DNS for internal services in gnd-vpc.'),
       visibility: TfArg.literal(DnsZoneVisibility.private),
-      privateVisibilityConfig: PrivateVisibilityConfig(
+      privateVisibilityConfig: DnsManagedZonePrivateVisibilityConfig(
         networks: [
-          PrivateVisibilityNetwork(
-            networkUrl: r'${google_compute_network.gnd_vpc.id}',
+          DnsManagedZonePrivateVisibilityNetwork(
+            networkUrl: TfArg.ref(vpc.id),
           ),
         ],
       ),
-      dnssecConfig: const DnssecConfig(
+      dnssecConfig: DnsManagedZoneDnssecConfig(
         state: DnssecState.on,
         nonExistence: DnssecNonExistence.nsec3,
         defaultKeySpecs: [
-          DnssecKeySpec(
+          DnsManagedZoneDnssecKeySpec(
             algorithm: DnssecKeyAlgorithm.rsasha256,
             keyType: DnssecKeyType.keySigning,
-            keyLength: 2048,
+            keyLength: TfArg.literal(2048),
           ),
-          DnssecKeySpec(
+          DnsManagedZoneDnssecKeySpec(
             algorithm: DnssecKeyAlgorithm.rsasha256,
             keyType: DnssecKeyType.zoneSigning,
-            keyLength: 1024,
+            keyLength: TfArg.literal(1024),
           ),
         ],
       ),
@@ -92,7 +92,7 @@ class InternalDnsStack extends Stack {
         localName: 'internal_zone_admin_binding',
         managedZone: TfArg.ref(internalZone.nameRef),
         role: TfArg.literal('roles/dns.admin'),
-        member: TfArg.ref(zoneAdmin.member),
+        member: TfArg.ref(zoneAdmin.iamMember),
       ),
     );
   }

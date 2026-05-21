@@ -44,8 +44,8 @@ class ApiServiceStack extends Stack {
       GoogleSecretManagerSecret(
         localName: 'db_password',
         secretId: TfArg.literal('api-db-password'),
-        replication: Replication.userManaged([
-          Replica(location: TfArg.literal('asia-northeast1')),
+        replication: SecretManagerSecretReplication.userManaged([
+          SecretManagerSecretReplica(location: TfArg.literal('asia-northeast1')),
         ]),
       ),
     );
@@ -55,25 +55,25 @@ class ApiServiceStack extends Stack {
       name: TfArg.literal('api'),
       location: TfArg.literal('asia-northeast1'),
       ingress: TfArg.literal(Ingress.internalLoadBalancer),
-      template: Template(
+      template: CloudRunV2ServiceTemplate(
         containers: [
-          ServiceContainer(
+          CloudRunV2ServiceServiceContainer(
             image: TfArg.literal('gcr.io/cloudrun/hello'),
             env: [
-              EnvVar(
-                name: 'LOG_LEVEL',
-                source: EnvVarFromLiteral(TfArg.literal('info')),
+              CloudRunV2ServiceEnvVar(
+                name: TfArg.literal('LOG_LEVEL'),
+                source: CloudRunV2ServiceEnvVarFromLiteral(TfArg.literal('info')),
               ),
-              EnvVar(
-                name: 'DB_PASSWORD',
-                source: EnvVarFromSecret(
+              CloudRunV2ServiceEnvVar(
+                name: TfArg.literal('DB_PASSWORD'),
+                source: CloudRunV2ServiceEnvVarFromSecret(
                   secret: TfArg.literal('api-db-password'),
                   version: TfArg.literal('latest'),
                 ),
               ),
             ],
-            ports: ContainerPort(containerPort: TfArg.literal(8080)),
-            resources: ContainerResources(
+            ports: CloudRunV2ServiceContainerPort(containerPort: TfArg.literal(8080)),
+            resources: CloudRunV2ServiceContainerResources(
               limits: TfArg.literal({'cpu': '1', 'memory': '512Mi'}),
               cpuIdle: TfArg.literal(true),
               startupCpuBoost: TfArg.literal(true),
@@ -81,7 +81,7 @@ class ApiServiceStack extends Stack {
           ),
         ],
       ),
-      scaling: ServiceScaling(
+      scaling: CloudRunV2ServiceServiceScaling(
         minInstanceCount: TfArg.literal(0),
         maxInstanceCount: TfArg.literal(4),
         scalingMode: TfArg.literal(ScalingMode.automatic),
@@ -99,19 +99,19 @@ class ApiServiceStack extends Stack {
       localName: 'nightly_cleanup',
       name: TfArg.literal('nightly-cleanup'),
       location: TfArg.literal('asia-northeast1'),
-      template: JobTemplate(
-        template: TaskTemplate(
+      template: CloudRunV2JobTemplate(
+        template: CloudRunV2JobTaskTemplate(
           maxRetries: TfArg.literal(2),
           timeout: TfArg.literal('600s'),
           containers: [
-            JobContainer(
+            CloudRunV2JobContainer(
               image: TfArg.literal('gcr.io/cloudrun/hello'),
               args: TfArg.literal([
                 '/bin/sh',
                 '-c',
                 'echo "nightly cleanup running"',
               ]),
-              resources: JobContainerResources(
+              resources: CloudRunV2JobContainerResources(
                 limits: TfArg.literal({'cpu': '1', 'memory': '512Mi'}),
               ),
             ),
@@ -160,7 +160,7 @@ class ApiServiceStack extends Stack {
         localName: 'nightly_cleanup_invoker',
         name: TfArg.ref(nightlyJob.nameRef),
         role: TfArg.literal('roles/run.invoker'),
-        member: TfArg.ref(schedulerSa.member),
+        member: TfArg.ref(schedulerSa.iamMember),
         location: TfArg.literal('asia-northeast1'),
       ),
     );
