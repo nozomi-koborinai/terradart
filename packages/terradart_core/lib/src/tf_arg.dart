@@ -50,8 +50,9 @@ sealed class TfArg<T> {
 
   /// Value emitted into Terraform JSON.
   ///
-  /// - `TfArgLiteral` → the actual value (string, int, etc.)
-  /// - `TfArgRef`     → an interpolation string `'${...}'`
+  /// - `TfArgLiteral`  → the actual value (string, int, etc.)
+  /// - `TfArgRef`      → an interpolation string `'${...}'`
+  /// - `TfArgVariable` → an interpolation string `'${var.<name>}'`
   Object? toTfJson();
 }
 
@@ -105,7 +106,11 @@ final class TfArgRef<T> extends TfArg<T> {
 
 @immutable
 final class TfArgVariable<T> extends TfArg<T> {
-  const TfArgVariable(this.name);
+  TfArgVariable(this.name) {
+    if (name.isEmpty) {
+      throw ArgumentError.value(name, 'name', 'must not be empty');
+    }
+  }
 
   /// Terraform variable name. Emitted as `"\${var.<name>}"` so consumers
   /// can supply the value at `terraform apply -var '<name>=...'` time.

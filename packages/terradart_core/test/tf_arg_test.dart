@@ -108,7 +108,7 @@ void main() {
 
   group('TfArg.variable', () {
     test('TfArgVariable emits \${var.<name>} interpolation', () {
-      const arg = TfArgVariable<String>('db_password');
+      final arg = TfArgVariable<String>('db_password');
       expect(arg.toTfJson(), equals(r'${var.db_password}'));
     });
 
@@ -123,6 +123,13 @@ void main() {
       final TfArg<int> arg = TfArg.variable('replica_count');
       expect(arg, isA<TfArgVariable<int>>());
       expect(arg.toTfJson(), equals(r'${var.replica_count}'));
+    });
+
+    test('TfArgVariable rejects empty name', () {
+      expect(
+        () => TfArgVariable<String>(''),
+        throwsA(isA<ArgumentError>()),
+      );
     });
   });
 
@@ -143,7 +150,7 @@ void main() {
         equals('ref'),
       );
       expect(
-        dispatch(const TfArgVariable<String>('z')),
+        dispatch(TfArgVariable<String>('z')),
         equals('variable'),
       );
     });
