@@ -37,7 +37,8 @@ void main() {
 
       final decoded = dart_convert.jsonDecode(await tfJsonFile.readAsString());
       expect(decoded, isA<Map<String, dynamic>>());
-      expect((decoded as Map<String, dynamic>).containsKey('terraform'), isTrue);
+      expect(
+          (decoded as Map<String, dynamic>).containsKey('terraform'), isTrue);
     });
 
     test('creates outDir when it does not exist', () async {

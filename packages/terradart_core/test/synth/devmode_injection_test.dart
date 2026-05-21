@@ -53,15 +53,17 @@ void main() {
         ],
         devMode: true,
       );
-      stack.add(_CapableResource(
-        localName: 'r',
-        name: const TfArgLiteral('x'),
-      ),);
+      stack.add(
+        _CapableResource(
+          localName: 'r',
+          name: const TfArgLiteral('x'),
+        ),
+      );
 
       final group = TfJsonEncoder.resourcesGroup(stack);
       expect(group, isNotNull);
-      final block = group!['fake_protected_thing']!['r']
-          as Map<String, dynamic>;
+      final block =
+          group!['fake_protected_thing']!['r'] as Map<String, dynamic>;
       expect(block['deletion_protection'], equals(false));
     });
 
@@ -76,15 +78,17 @@ void main() {
         ],
         devMode: true,
       );
-      stack.add(_CapableResourceWithExplicitDP(
-        localName: 'r',
-        name: const TfArgLiteral('x'),
-        deletionProtection: const TfArgLiteral<bool>(true),
-      ),);
+      stack.add(
+        _CapableResourceWithExplicitDP(
+          localName: 'r',
+          name: const TfArgLiteral('x'),
+          deletionProtection: const TfArgLiteral<bool>(true),
+        ),
+      );
 
       final group = TfJsonEncoder.resourcesGroup(stack);
-      final block = group!['fake_protected_thing']!['r']
-          as Map<String, dynamic>;
+      final block =
+          group!['fake_protected_thing']!['r'] as Map<String, dynamic>;
       expect(block['deletion_protection'], equals(true));
     });
 
@@ -98,14 +102,16 @@ void main() {
           ),
         ],
       ); // devMode default false
-      stack.add(_CapableResource(
-        localName: 'r',
-        name: const TfArgLiteral('x'),
-      ),);
+      stack.add(
+        _CapableResource(
+          localName: 'r',
+          name: const TfArgLiteral('x'),
+        ),
+      );
 
       final group = TfJsonEncoder.resourcesGroup(stack);
-      final block = group!['fake_protected_thing']!['r']
-          as Map<String, dynamic>;
+      final block =
+          group!['fake_protected_thing']!['r'] as Map<String, dynamic>;
       expect(block.containsKey('deletion_protection'), isFalse);
     });
 
@@ -120,14 +126,15 @@ void main() {
         ],
         devMode: true,
       );
-      stack.add(FakeResource(
-        localName: 'r',
-        name: const TfArgLiteral('x'),
-      ),);
+      stack.add(
+        FakeResource(
+          localName: 'r',
+          name: const TfArgLiteral('x'),
+        ),
+      );
 
       final group = TfJsonEncoder.resourcesGroup(stack);
-      final block =
-          group!['fake_thing']!['r'] as Map<String, dynamic>;
+      final block = group!['fake_thing']!['r'] as Map<String, dynamic>;
       expect(block.containsKey('deletion_protection'), isFalse);
     });
   });

@@ -292,8 +292,7 @@ void main() {
       expect(
         violations,
         isEmpty,
-        reason:
-            'Found unprefixed nested helper classes. Each must start with '
+        reason: 'Found unprefixed nested helper classes. Each must start with '
             'its parent resource\'s <Service><Resource> prefix. '
             'See packages/terradart_codegen/test/codegen/naming_audit/rename_list.json '
             'for the canonical list.\n'

@@ -291,7 +291,6 @@ void main() {
         }),
       );
     });
-
   });
 
   group('TfJsonEncoder.lifecycleBlock', () {
@@ -559,7 +558,9 @@ void main() {
       final block = TfJsonEncoder.terraformBlock(stack);
       expect(
         block['backend'],
-        equals({'local': {'path': 'state/terraform.tfstate'}}),
+        equals({
+          'local': {'path': 'state/terraform.tfstate'}
+        }),
       );
     });
   });
@@ -640,8 +641,7 @@ void main() {
       );
     });
 
-    test('nested: multiple sibling sensitive paths — first literal throws',
-        () {
+    test('nested: multiple sibling sensitive paths — first literal throws', () {
       final argMap = <String, TfArg<dynamic>?>{
         'block': const TfArgLiteral<List<dynamic>>([
           {'a': 'A-val', 'b': 'B-val', 'c': 'C-val'},
@@ -665,7 +665,8 @@ void main() {
   });
 
   group('TfJsonEncoder sensitive throw (top-level)', () {
-    test('throws SensitiveLiteralError on TfArgLiteral assigned to '
+    test(
+        'throws SensitiveLiteralError on TfArgLiteral assigned to '
         'sensitive top-level field', () {
       final argMap = <String, TfArg<dynamic>?>{
         'name': const TfArgLiteral<String>('orders-secret'),
@@ -706,8 +707,7 @@ void main() {
       expect(out, equals({'secret_data': r'${data.external.vault.value}'}));
     });
 
-    test('TfArgVariable on sensitive top-level passes through (no throw)',
-        () {
+    test('TfArgVariable on sensitive top-level passes through (no throw)', () {
       final argMap = <String, TfArg<dynamic>?>{
         'secret_data': TfArgVariable<String>('db_secret'),
       };

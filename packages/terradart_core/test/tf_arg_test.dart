@@ -143,10 +143,14 @@ void main() {
 
       expect(dispatch(const TfArgLiteral<String>('x')), equals('literal'));
       expect(
-        dispatch(TfArg.ref(TfRef.attribute<String>(
-          _FakeAddressed('data.x.y'),
-          'z',
-        ),),),
+        dispatch(
+          TfArg.ref(
+            TfRef.attribute<String>(
+              _FakeAddressed('data.x.y'),
+              'z',
+            ),
+          ),
+        ),
         equals('ref'),
       );
       expect(

@@ -212,8 +212,8 @@ class WrapperEmitter {
     // schema exposes a top-level `deletion_protection` attribute, indicating
     // the Terraform provider honours the soft-delete guard at runtime. The
     // base class defaults to `false`; this override opts the wrapper in.
-    final hasDeletionProtection = def.root.attributes
-        .any((a) => a.name == 'deletion_protection');
+    final hasDeletionProtection =
+        def.root.attributes.any((a) => a.name == 'deletion_protection');
     if (hasDeletionProtection) {
       buf.writeln();
       buf.writeln('  @override');
