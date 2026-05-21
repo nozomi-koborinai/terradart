@@ -31,12 +31,12 @@ export GCP_PROJECT_ID=my-project
 dart pub get
 dart run bin/infra.dart    # synth to tf-out/main.tf.json
 cd tf-out
-terraform init -backend=false
+terraform init
 terraform validate
 ```
 
-CI's `terraform validate (firestore_document)` matrix entry covers this
-synth + validate workflow on every PR.
+The `firestore_document` entry in the CI `terraform validate` matrix
+exercises this synth + validate flow on every PR.
 
 ## What gets created
 
