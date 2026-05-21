@@ -559,7 +559,7 @@ void main() {
       expect(
         block['backend'],
         equals({
-          'local': {'path': 'state/terraform.tfstate'}
+          'local': {'path': 'state/terraform.tfstate'},
         }),
       );
     });
