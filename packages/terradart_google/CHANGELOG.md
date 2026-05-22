@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.10.0 - 2026-MM-DD
+
+**ADDED** — small Firestore master-data IaC support. Additive change; no breaking modifications to v0.9.0 API.
+
+- `google_firestore_document` curated. Manages a single Firestore document as a Terraform resource. Intended for **small fixed master-data sets** (feature flags, pricing tiers, lookup tables, regional config).
+- `FirestoreFields.encode(Map<String, Object?>)` static method added — converts a Dart map to the Firestore wire-format JSON string expected by `fields`. 11-type coverage: `null`, `bool`, `int` (string-encoded for 64-bit precision), `double`, `String`, `DateTime` (UTC-ISO-8601), `Uint8List` (base64), `List` (recursive), `Map<String, Object?>` (recursive), `FirestoreReference`, `FirestoreGeoPoint`. Unsupported types throw `ArgumentError` at synth time.
+- `FirestoreReference(String path)` sentinel for `referenceValue` (document-path) Firestore values.
+- `FirestoreGeoPoint({latitude, longitude})` sentinel for `geoPointValue` Firestore values.
+
+### Supersedes 0.3.0-dev note
+
+The 0.3.0-dev CHANGELOG entry listed `google_firestore_document` as "intentionally not curated (IaC anti-pattern at production scale)". That assessment holds for production-scale datasets (1000s of documents with frequent app-side writes drifting from Terraform state). For **small fixed master-data sets** (feature flags, pricing tiers, lookup tables, regional config) the IaC pattern is appropriate and reproducible — v0.10.0 enables this case.
+
+Use `FirestoreFields.encode(...)` for the `fields` argument; the helper handles the type-discriminated Firestore wire format automatically. See `recipes/firestore-seeded-data/` in `terradart-cookbook` for a worked example.
+
 ## 0.9.0 - 2026-05-21
 
 **BREAKING** — pre-1.0 polish wave. Coordinated rename pass + behaviour fixes consuming Plans 1-3 from terradart_core / terradart_codegen (0.9.x staging for the 1.0 surface; breaking changes still permitted within 0.9.x → 1.0):

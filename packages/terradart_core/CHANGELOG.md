@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.10.0 - 2026-MM-DD
+
+No user-facing API changes. Workspace consistency bump alongside `terradart_google` 0.10.0 (Firestore document curation + `FirestoreFields.encode` helper).
+
 ## 0.9.0 - 2026-05-21
 
 **BREAKING** — pre-1.0 polish wave consuming dogfood findings (issues #52-#57). v0.x permits breaking changes; 1.0 semver lock is deferred until cookbook recipes + real-apply feedback have absorbed more cycles. The 0.9.x line is the staging ground for the 1.0 surface:

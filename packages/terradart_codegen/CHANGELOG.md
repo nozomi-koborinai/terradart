@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.10.0 - 2026-MM-DD
+
+- Bumped `terradart_core` constraint to `^0.10.0`.
+- New YAML override `wrapper_overrides/yaml/google_firestore_document.yaml` enabling the `terradart_google` v0.10.0 Firestore document curation.
+
 ## 0.9.0 - 2026-05-21
 
 **BREAKING** — pre-1.0 polish wave. Codegen template changes that propagate to `terradart_google`'s emitted wrappers (0.9.x staging for the 1.0 surface; breaking changes still permitted within 0.9.x → 1.0):

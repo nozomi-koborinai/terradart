@@ -1,6 +1,6 @@
 name: terradart_google
 description: Curated factory wrappers for 118 Google Cloud resources (Compute, BigQuery, Cloud Run, Cloud SQL, Pub/Sub, Monitoring, ...) for Dart-first Terraform stacks.
-version: 0.9.0
+version: 0.10.0
 publish_to: none  # Removed by tool/prepare_publish.sh before dart pub publish.
 homepage: https://github.com/nozomi-koborinai/terradart
 repository: https://github.com/nozomi-koborinai/terradart
