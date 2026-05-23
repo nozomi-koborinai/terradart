@@ -9,6 +9,29 @@ workspace:
   - packages/terradart_core
   - packages/terradart_codegen
   - packages/terradart_google
+  - examples/bigquery_quickstart
+  - examples/cloud_build_quickstart
+  - examples/cloud_functions_quickstart
+  - examples/cloud_run_quickstart
+  - examples/cloud_scheduler_quickstart
+  - examples/cloud_sql_quickstart
+  - examples/cloud_tasks_quickstart
+  - examples/compute_lb_quickstart
+  - examples/compute_quickstart
+  - examples/dns_quickstart
+  - examples/firebase_app_check_quickstart
+  - examples/firebase_app_hosting_quickstart
+  - examples/firebase_data_connect_quickstart
+  - examples/firebase_remote_config_quickstart
+  - examples/firestore_document_quickstart
+  - examples/firestore_quickstart
+  - examples/iam_quickstart
+  - examples/kms_quickstart
+  - examples/monitoring_quickstart
+  - examples/ops_quickstart
+  - examples/pubsub_quickstart
+  - examples/secret_manager_quickstart
+  - examples/storage_quickstart
 dev_dependencies:
   meta: any
   pub_semver: any
