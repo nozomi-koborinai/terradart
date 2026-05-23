@@ -23,15 +23,9 @@ if ! grep -qE "^## ${VERSION}( |$)" CHANGELOG.md; then
   exit 1
 fi
 
-# 3. Strip workspace-only fields (publish_to, resolution) — present in source pubspec but invalid on pub.dev.
+# 3. Strip workspace-only fields (publish_to, resolution) — invalid on pub.dev.
+# `publish_to` is no longer present in any source pubspec; this remains as a
+# defensive noop to protect against future regressions.
 yq e 'del(.publish_to) | del(.resolution)' -i pubspec.yaml
-
-# 4. Swap path: deps for terradart_google to hosted ^VERSION constraints.
-# Note: terradart_annotations was removed in Plan 5.X (v0.5.0-dev) — no longer
-# a dep of terradart_google.
-if [[ "$PKG" == "terradart_google" ]]; then
-  yq e ".dependencies.terradart_core = \"^${VERSION}\"" -i pubspec.yaml
-  yq e ".dev_dependencies.terradart_codegen = \"^${VERSION}\"" -i pubspec.yaml
-fi
 
 echo "::notice::Pre-publish swap complete for $PKG ($VERSION)"
