@@ -138,8 +138,7 @@ void main() {
         expect(
           await File('${tempDir.path}/main.tf.json').exists(),
           isFalse,
-          reason:
-              'writeTo must fail before any I/O; a partial main.tf.json on '
+          reason: 'writeTo must fail before any I/O; a partial main.tf.json on '
               'disk would mislead users into thinking synth half-succeeded.',
         );
       },
