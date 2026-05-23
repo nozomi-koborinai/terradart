@@ -363,7 +363,7 @@ class ComputeRegionHealthCheckRegionHealthCheckLogConfig {
 /// - Attach via `google_compute_region_backend_service.health_checks`
 ///   (list of self-links; that resource is curated separately).
 ///
-/// Composition pattern: extends `Resource<$GoogleComputeRegionHealthCheck>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleComputeRegionHealthCheck extends Resource {
   static const String tfType = 'google_compute_region_health_check';

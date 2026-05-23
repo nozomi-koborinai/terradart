@@ -71,7 +71,7 @@ class LoggingProjectSinkLogSinkExclusion {
 ///
 /// Routes log entries to a destination (BigQuery, GCS, Pub/Sub, or
 /// Logging bucket). Composition pattern: extends
-/// `Resource<$GoogleLoggingProjectSink>` for runtime behavior. The
+/// `Resource` for runtime behavior. The
 /// `bigquery_options` block and `exclusions` list are modeled as helper
 /// classes in the `prelude` below.
 final class GoogleLoggingProjectSink extends Resource {

@@ -278,7 +278,7 @@ class ComputeGlobalForwardingRuleGlobalForwardingRuleServiceDirectoryRegistratio
 /// `loadBalancingScheme` is `INTERNAL_SELF_MANAGED` (Traffic Director).
 /// Skip the field for normal Application LB frontends.
 ///
-/// Composition pattern: extends `Resource<$GoogleComputeGlobalForwardingRule>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleComputeGlobalForwardingRule extends Resource {
   static const String tfType = 'google_compute_global_forwarding_rule';

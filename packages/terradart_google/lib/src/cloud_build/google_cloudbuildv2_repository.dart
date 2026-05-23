@@ -47,7 +47,7 @@ const Set<String> _googleCloudbuildv2RepositorySensitive = <String>{};
 /// changing `name`, `parentConnection`, `remoteUri`, or `annotations`
 /// (the only writable field besides identity) forces replacement.
 ///
-/// Composition pattern: extends `Resource<$GoogleCloudbuildv2Repository>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleCloudbuildv2Repository extends Resource {
   static const String tfType = 'google_cloudbuildv2_repository';

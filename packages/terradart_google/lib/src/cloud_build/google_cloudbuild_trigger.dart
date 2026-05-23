@@ -1013,7 +1013,7 @@ class CloudbuildTriggerBuildOptions {
 ///   `google_cloudbuildv2_repository` id (typically passed as
 ///   `var.cloudbuildv2_repository_id`).
 ///
-/// Composition pattern: extends `Resource<$GoogleCloudbuildTrigger>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleCloudbuildTrigger extends Resource {
   static const String tfType = 'google_cloudbuild_trigger';

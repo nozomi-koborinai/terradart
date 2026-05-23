@@ -658,7 +658,7 @@ class MonitoringAlertPolicyDocumentation {
 /// ```
 ///
 /// Manages a Cloud Monitoring alert policy. Composition pattern: extends
-/// `Resource<$GoogleMonitoringAlertPolicy>` for runtime behavior. The
+/// `Resource` for runtime behavior. The
 /// nested-block helpers ([MonitoringAlertPolicyAlertCondition], [MonitoringAlertPolicyConditionThreshold],
 /// [MonitoringAlertPolicyAggregation], [MonitoringAlertPolicyAlertStrategy], [MonitoringAlertPolicyDocumentation], etc.) are modeled in
 /// the `prelude` below.

@@ -102,7 +102,7 @@ class MonitoringServiceTelemetry {
 /// ```
 ///
 /// Manages a Cloud Monitoring [Service](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/services).
-/// Composition pattern: extends `Resource<$GoogleMonitoringService>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior. The nested-block helper
 /// ([MonitoringServiceBasicService]) and the telemetry view-model
 /// ([MonitoringServiceTelemetry]) live in the `prelude` below.

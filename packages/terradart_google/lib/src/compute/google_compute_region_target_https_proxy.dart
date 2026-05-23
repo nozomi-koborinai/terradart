@@ -81,7 +81,7 @@ const Set<String> _googleComputeRegionTargetHttpsProxySensitive = <String>{};
 /// schema omits these fields for regional proxies.
 ///
 /// Composition pattern: extends
-/// `Resource<$GoogleComputeRegionTargetHttpsProxy>` for runtime
+/// `Resource` for runtime
 /// behavior.
 final class GoogleComputeRegionTargetHttpsProxy extends Resource {
   static const String tfType = 'google_compute_region_target_https_proxy';

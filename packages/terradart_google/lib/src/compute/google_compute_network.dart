@@ -72,7 +72,7 @@ enum NetworkFirewallPolicyEnforcementOrder implements TerraformEnum {
 /// ```
 ///
 /// Manages a VPC network or legacy network resource on GCP. Composition
-/// pattern: extends `Resource<$GoogleComputeNetwork>` for runtime behavior.
+/// pattern: extends `Resource` for runtime behavior.
 final class GoogleComputeNetwork extends Resource {
   static const String tfType = 'google_compute_network';
 

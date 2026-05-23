@@ -281,7 +281,7 @@ class BigqueryDataTransferConfigEncryptionConfiguration {
 /// ```
 ///
 /// Composition pattern: extends
-/// `Resource<$GoogleBigqueryDataTransferConfig>` for runtime behavior.
+/// `Resource` for runtime behavior.
 /// The nested helpers
 /// ([BigqueryDataTransferConfigScheduleOptions],
 /// [BigqueryDataTransferConfigEmailPreferences],

@@ -172,7 +172,7 @@ class CloudbuildWorkerPoolPrivateServiceConnect {
 ///   `build.options.pool = <pool.id>` (regional pools require the trigger
 ///   to be in the same `location`).
 ///
-/// Composition pattern: extends `Resource<$GoogleCloudbuildWorkerPool>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleCloudbuildWorkerPool extends Resource {
   static const String tfType = 'google_cloudbuild_worker_pool';

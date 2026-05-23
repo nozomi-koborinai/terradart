@@ -428,7 +428,7 @@ class ComputeAutoscalerAutoscalerScalingSchedule {
 /// with the parallel `RegionAutoscaler...` family on the regional
 /// sibling.
 ///
-/// Composition pattern: extends `Resource<$GoogleComputeAutoscaler>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior.
 final class GoogleComputeAutoscaler extends Resource {
   static const String tfType = 'google_compute_autoscaler';

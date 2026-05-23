@@ -1066,7 +1066,7 @@ final class CloudRunV2ServiceNfsVolume extends CloudRunV2ServiceVolumeSource {
 /// ```
 ///
 /// Manages a Cloud Run v2 fully-managed service. Composition pattern:
-/// extends `Resource<$GoogleCloudRunV2Service>` for runtime behavior.
+/// extends `Resource` for runtime behavior.
 final class GoogleCloudRunV2Service extends Resource {
   static const String tfType = 'google_cloud_run_v2_service';
 

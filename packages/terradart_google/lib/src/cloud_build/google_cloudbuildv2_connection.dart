@@ -349,7 +349,7 @@ class Cloudbuildv2ConnectionBitbucketCloudConfig {
 /// - [reconciling]: server-side reconciliation flag.
 /// - [etag]: optimistic-concurrency token.
 ///
-/// Composition pattern: extends `Resource<$GoogleCloudbuildv2Connection>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleCloudbuildv2Connection extends Resource {
   static const String tfType = 'google_cloudbuildv2_connection';

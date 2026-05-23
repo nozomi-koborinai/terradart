@@ -25,7 +25,7 @@ const Set<String> _googlePubsubTopicSensitive = <String>{};
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GooglePubsubTopic>` for runtime
+/// Composition pattern: extends `Resource` for runtime
 /// behavior. `argMap` stores `TfArg<dynamic>?` entries directly. Synth's
 /// JSON-encoding pass walks them and calls `arg.toTfJson()` to encode at
 /// write time.

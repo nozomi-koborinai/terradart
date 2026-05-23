@@ -82,7 +82,7 @@ enum SqlUserType implements TerraformEnum {
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GoogleSqlUser>` for runtime
+/// Composition pattern: extends `Resource` for runtime
 /// behavior.
 final class GoogleSqlUser extends Resource {
   static const String tfType = 'google_sql_user';

@@ -173,7 +173,7 @@ class MonitoringMetricDescriptorMetadata {
 /// ```
 ///
 /// Manages a Cloud Monitoring user-defined metric descriptor. Composition
-/// pattern: extends `Resource<$GoogleMonitoringMetricDescriptor>` for
+/// pattern: extends `Resource` for
 /// runtime behavior. The nested-block helpers
 /// ([MonitoringMetricDescriptorLabel],
 /// [MonitoringMetricDescriptorMetadata]) and the enum wrappers

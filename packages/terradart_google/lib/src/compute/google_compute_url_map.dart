@@ -737,7 +737,7 @@ class ComputeUrlMapUrlMapTestHeader {
 /// by the Terraform block name when you need them; see the per-class doc
 /// for the exact escape-hatch key.
 ///
-/// Composition pattern: extends `Resource<$GoogleComputeUrlMap>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior.
 final class GoogleComputeUrlMap extends Resource {
   static const String tfType = 'google_compute_url_map';

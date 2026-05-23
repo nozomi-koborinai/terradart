@@ -90,7 +90,7 @@ enum GlobalAddressIpVersion implements TerraformEnum {
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GoogleComputeGlobalAddress>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior.
 final class GoogleComputeGlobalAddress extends Resource {
   static const String tfType = 'google_compute_global_address';

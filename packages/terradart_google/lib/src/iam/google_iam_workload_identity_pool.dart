@@ -65,7 +65,7 @@ enum WorkloadIdentityPoolMode implements TerraformEnum {
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GoogleIamWorkloadIdentityPool>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleIamWorkloadIdentityPool extends Resource {
   static const String tfType = 'google_iam_workload_identity_pool';

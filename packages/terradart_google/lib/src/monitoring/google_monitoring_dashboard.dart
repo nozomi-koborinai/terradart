@@ -90,7 +90,7 @@ const Set<String> _googleMonitoringDashboardSensitive = <String>{};
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GoogleMonitoringDashboard>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior. There are no nested helper classes — the entire
 /// dashboard body lives inside the [dashboardJson] String.
 final class GoogleMonitoringDashboard extends Resource {

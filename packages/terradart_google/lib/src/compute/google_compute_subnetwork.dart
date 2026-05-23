@@ -211,7 +211,7 @@ class ComputeSubnetworkSubnetworkLogConfig {
 /// ```
 ///
 /// Manages a regional subnetwork within a VPC. Composition pattern:
-/// extends `Resource<$GoogleComputeSubnetwork>` for runtime behavior.
+/// extends `Resource` for runtime behavior.
 final class GoogleComputeSubnetwork extends Resource {
   static const String tfType = 'google_compute_subnetwork';
 

@@ -167,7 +167,7 @@ class MonitoringNotificationChannelSensitiveLabels {
 /// ```
 ///
 /// Manages a Cloud Monitoring notification channel. Composition pattern:
-/// extends `Resource<$GoogleMonitoringNotificationChannel>` for runtime
+/// extends `Resource` for runtime
 /// behavior. The nested [MonitoringNotificationChannelSensitiveLabels]
 /// helper is modeled in the `prelude` below.
 final class GoogleMonitoringNotificationChannel extends Resource {

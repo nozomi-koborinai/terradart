@@ -369,7 +369,7 @@ class ComputeHealthCheckHealthCheckLogConfig {
 /// - Attach via [GoogleComputeBackendService.healthChecks] (list of
 ///   self-links).
 ///
-/// Composition pattern: extends `Resource<$GoogleComputeHealthCheck>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior.
 final class GoogleComputeHealthCheck extends Resource {
   static const String tfType = 'google_compute_health_check';

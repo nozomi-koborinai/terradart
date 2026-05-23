@@ -81,7 +81,7 @@ enum GlobalNetworkEndpointGroupType implements TerraformEnum {
 /// ```
 ///
 /// Composition pattern: extends
-/// `Resource<$GoogleComputeGlobalNetworkEndpointGroup>` for runtime
+/// `Resource` for runtime
 /// behavior.
 final class GoogleComputeGlobalNetworkEndpointGroup extends Resource {
   static const String tfType = 'google_compute_global_network_endpoint_group';

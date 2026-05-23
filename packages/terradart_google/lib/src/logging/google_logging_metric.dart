@@ -248,7 +248,7 @@ class LoggingMetricBucketOptions {
 /// ```
 ///
 /// Manages a Cloud Logging logs-based metric. Composition pattern: extends
-/// `Resource<$GoogleLoggingMetric>` for runtime behavior. The nested-block
+/// `Resource` for runtime behavior. The nested-block
 /// helpers ([LoggingMetricDescriptor], [LoggingMetricLabel],
 /// [LoggingMetricBucketOptions], plus the three bucket-variant classes)
 /// live in the `prelude` below.

@@ -344,7 +344,7 @@ class StorageBucketSoftDeletePolicy {
 /// ```
 ///
 /// Manages a Cloud Storage bucket. Composition pattern: extends
-/// `Resource<$GoogleStorageBucket>` for runtime behavior. The 13 nested
+/// `Resource` for runtime behavior. The 13 nested
 /// blocks (lifecycle_rule / versioning / cors / encryption / etc.) are
 /// modeled as helper classes in the `prelude` below.
 final class GoogleStorageBucket extends Resource {

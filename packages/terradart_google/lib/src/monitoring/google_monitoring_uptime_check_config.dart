@@ -599,7 +599,7 @@ class MonitoringUptimeCheckConfigContentMatcher {
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GoogleMonitoringUptimeCheckConfig>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior. Nested-block helpers ([MonitoringUptimeCheckConfigHttpCheck],
 /// [MonitoringUptimeCheckConfigTcpCheck], [MonitoringUptimeCheckConfigContentMatcher],
 /// [MonitoringUptimeCheckConfigMonitoredResource], [MonitoringUptimeCheckConfigResourceGroup],

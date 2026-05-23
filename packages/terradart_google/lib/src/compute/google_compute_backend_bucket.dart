@@ -318,7 +318,7 @@ class ComputeBackendBucketBackendBucketParams {
 /// service CDN configurations are not interchangeable, even where the
 /// schema field names agree.
 ///
-/// Composition pattern: extends `Resource<$GoogleComputeBackendBucket>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleComputeBackendBucket extends Resource {
   static const String tfType = 'google_compute_backend_bucket';

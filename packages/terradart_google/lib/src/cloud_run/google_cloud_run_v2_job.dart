@@ -768,7 +768,7 @@ final class CloudRunV2JobNfsVolume extends CloudRunV2JobVolumeSource {
 /// `CloudRunV2JobBinaryAuthorization`, `CloudRunV2JobVolume`, `CloudRunV2JobVolumeSource`, ...) to
 /// stay barrel-exportable alongside the Service helpers.
 ///
-/// Composition pattern: extends `Resource<$GoogleCloudRunV2Job>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior.
 final class GoogleCloudRunV2Job extends Resource {
   static const String tfType = 'google_cloud_run_v2_job';

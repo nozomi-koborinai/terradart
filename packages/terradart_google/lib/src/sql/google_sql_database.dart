@@ -32,7 +32,7 @@ const Set<String> _googleSqlDatabaseSensitive = <String>{};
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GoogleSqlDatabase>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior.
 final class GoogleSqlDatabase extends Resource {
   static const String tfType = 'google_sql_database';

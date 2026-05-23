@@ -232,7 +232,7 @@ class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine {
 /// ```
 ///
 /// Composition pattern: extends
-/// `Resource<$GoogleComputeRegionNetworkEndpointGroup>` for runtime
+/// `Resource` for runtime
 /// behavior.
 final class GoogleComputeRegionNetworkEndpointGroup extends Resource {
   static const String tfType = 'google_compute_region_network_endpoint_group';

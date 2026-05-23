@@ -378,7 +378,7 @@ class EventarcTriggerRetryPolicy {
 /// resources (channels, connections) and other event-delivery wrappers
 /// (Pub/Sub subscriptions, Cloud Scheduler).
 ///
-/// Composition pattern: extends `Resource<$GoogleEventarcTrigger>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior.
 final class GoogleEventarcTrigger extends Resource {
   static const String tfType = 'google_eventarc_trigger';

@@ -59,7 +59,7 @@ const Set<String> _googleServiceNetworkingConnectionSensitive = <String>{};
 /// ```
 ///
 /// Composition pattern: extends
-/// `Resource<$GoogleServiceNetworkingConnection>` for runtime behavior.
+/// `Resource` for runtime behavior.
 final class GoogleServiceNetworkingConnection extends Resource {
   static const String tfType = 'google_service_networking_connection';
 

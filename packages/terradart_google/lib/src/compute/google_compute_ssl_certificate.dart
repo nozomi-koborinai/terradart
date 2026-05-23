@@ -75,7 +75,7 @@ const Set<String> _googleComputeSslCertificateSensitive = <String>{
 /// Lifecycle: certificates are **immutable** — any change forces
 /// replacement. Combined with the soft-delete window on the GCP side,
 /// `namePrefix` is usually the safer choice when the cert is expected to
-/// rotate. Composition pattern: extends `Resource<$GoogleComputeSslCertificate>`
+/// rotate. Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleComputeSslCertificate extends Resource {
   static const String tfType = 'google_compute_ssl_certificate';

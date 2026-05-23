@@ -101,7 +101,7 @@ enum TlsEarlyData implements TerraformEnum {
 /// the curation roadmap). When passed via input variable use
 /// `TfArg.ref(var.ssl_policy_id)`.
 ///
-/// Composition pattern: extends `Resource<$GoogleComputeTargetHttpsProxy>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleComputeTargetHttpsProxy extends Resource {
   static const String tfType = 'google_compute_target_https_proxy';

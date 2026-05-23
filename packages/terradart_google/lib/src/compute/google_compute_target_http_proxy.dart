@@ -39,7 +39,7 @@ const Set<String> _googleComputeTargetHttpProxySensitive = <String>{};
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GoogleComputeTargetHttpProxy>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleComputeTargetHttpProxy extends Resource {
   static const String tfType = 'google_compute_target_http_proxy';

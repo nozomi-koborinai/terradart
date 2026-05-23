@@ -223,7 +223,7 @@ class ComputeForwardingRuleForwardingRuleServiceDirectoryRegistration {
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GoogleComputeForwardingRule>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleComputeForwardingRule extends Resource {
   static const String tfType = 'google_compute_forwarding_rule';

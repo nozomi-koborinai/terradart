@@ -74,7 +74,7 @@ class LoggingFolderSinkExclusion {
 ///
 /// Routes log entries from a folder (and optionally its descendants) to a
 /// destination (BigQuery, GCS, Pub/Sub, or Logging bucket). Composition
-/// pattern: extends `Resource<$GoogleLoggingFolderSink>` for runtime
+/// pattern: extends `Resource` for runtime
 /// behavior. The `bigquery_options` block and `exclusions` list are
 /// modeled as helper classes in the `prelude` below.
 final class GoogleLoggingFolderSink extends Resource {

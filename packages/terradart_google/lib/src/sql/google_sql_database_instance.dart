@@ -732,7 +732,7 @@ class SqlDatabaseInstanceReplicaConfiguration {
 /// `root_password_wo` (write-only, never stored in state, requires
 /// Terraform >= 1.11) for new deployments.
 ///
-/// Composition pattern: extends `Resource<$GoogleSqlDatabaseInstance>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleSqlDatabaseInstance extends Resource {
   static const String tfType = 'google_sql_database_instance';

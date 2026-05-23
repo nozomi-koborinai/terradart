@@ -97,7 +97,7 @@ class ComputeManagedSslCertificateManagedSslCertificateConfig {
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GoogleComputeManagedSslCertificate>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior. The single `managed` nested block (max_items=1)
 /// is modeled as a helper class in the `prelude` below.
 final class GoogleComputeManagedSslCertificate extends Resource {

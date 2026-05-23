@@ -97,7 +97,7 @@ class ComputeFirewallFirewallLogConfig {
 /// ```
 ///
 /// Manages a VPC firewall rule on GCP. Composition pattern: extends
-/// `Resource<$GoogleComputeFirewall>` for runtime behavior. The `allow` /
+/// `Resource` for runtime behavior. The `allow` /
 /// `deny` list-typed blocks and the single `log_config` block are modeled
 /// as helper classes in the `prelude` below.
 final class GoogleComputeFirewall extends Resource {

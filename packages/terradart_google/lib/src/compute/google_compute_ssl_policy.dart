@@ -118,7 +118,7 @@ enum SslPolicyMinTlsVersion implements TerraformEnum {
 /// Lifecycle: SSL policies are mutable in place (the resource uses
 /// `PATCH` for updates). Profile / minimum-TLS-version flips take effect
 /// after the next handshake — long-lived sessions are not torn down.
-/// Composition pattern: extends `Resource<$GoogleComputeSslPolicy>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior.
 final class GoogleComputeSslPolicy extends Resource {
   static const String tfType = 'google_compute_ssl_policy';

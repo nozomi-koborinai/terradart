@@ -43,7 +43,7 @@ const Set<String> _googleProjectServiceSensitive = <String>{};
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GoogleProjectService>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior, implements `$GoogleProjectService` for the schemantic
 /// schema surface. `argMap` stores `TfArg<dynamic>?` entries directly;
 /// synth's JSON-encoding pass walks them and calls `arg.toTfJson()` to
