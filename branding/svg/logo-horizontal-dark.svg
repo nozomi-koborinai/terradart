@@ -2,9 +2,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1072 320" width="1072" height="320" role="img" aria-label="TerraDart (dark)">
   <title>TerraDart</title>
 
-  <!-- Dark ground -->
-  <rect x="0" y="0" width="1072" height="320" fill="#0B0D12"/>
-
   <!-- Mark (dark variant) -->
   <g transform="translate(32, 32)">
     <polygon points="32,48 224,48 180,152 76,152" fill="#4DD0FE"/>

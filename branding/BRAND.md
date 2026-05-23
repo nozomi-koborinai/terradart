@@ -76,7 +76,7 @@ One stroke-width of clear space between mark and wordmark. Nothing else may sit 
 | `--paper` | `#F6F3EC` | Default ground (warm white) |
 | `--paper-dark` | `#0B0D12` | Inverted ground |
 
-**Dark-ground lifts** (for compositing on `--paper-dark`):
+**Dark-surface lifts** (used by `mark-dark.svg` / `logo-horizontal-dark.svg`, which ship with **transparent backgrounds** so they sit on any dark surface):
 
 | Token | Hex |
 |---|---|

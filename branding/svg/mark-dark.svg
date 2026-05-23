@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="TerraDart mark (dark)">
   <title>TerraDart</title>
-  <desc>Dark-ground variant. Upper plane lifted to a brighter cyan; lower plane in lifted Dart blue; Terra stratum in muted indigo so it reads against both planes.</desc>
-
-  <!-- Dark ground -->
-  <rect x="0" y="0" width="256" height="256" fill="#0B0D12"/>
+  <desc>Dark-surface variant (transparent background). Upper plane lifted to a brighter cyan; lower plane in lifted Dart blue; Terra stratum in muted indigo so it reads against any dark surface.</desc>
 
   <!-- Upper plane (lifted cyan) -->
   <polygon points="32,48 224,48 180,152 76,152" fill="#4DD0FE"/>
