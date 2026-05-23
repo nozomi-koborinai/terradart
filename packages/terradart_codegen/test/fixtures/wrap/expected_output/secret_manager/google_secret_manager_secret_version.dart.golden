@@ -18,8 +18,7 @@ const Set<String> _googleSecretManagerSecretVersionSensitive = <String>{
 /// `secret_data` is `@Deprecated`; using it logs an analyzer warning at
 /// every call site.
 final class GoogleSecretManagerSecretVersion extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_secret_manager_secret_version';
+  static const String tfType = 'google_secret_manager_secret_version';
 
   GoogleSecretManagerSecretVersion({
     required super.localName,
@@ -35,7 +34,7 @@ final class GoogleSecretManagerSecretVersion extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'secret': secret,
            if (secretDataWo != null) 'secret_data_wo': secretDataWo,
@@ -51,9 +50,7 @@ final class GoogleSecretManagerSecretVersion extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
-      _googleSecretManagerSecretVersionSensitive;
+  Set<String> get sensitiveFields => _googleSecretManagerSecretVersionSensitive;
 
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

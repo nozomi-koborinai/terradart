@@ -235,8 +235,7 @@ class CloudSchedulerJobSchedulerRetryConfig {
 /// );
 /// ```
 final class GoogleCloudSchedulerJob extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_cloud_scheduler_job';
+  static const String tfType = 'google_cloud_scheduler_job';
 
   GoogleCloudSchedulerJob({
     required super.localName,
@@ -253,7 +252,7 @@ final class GoogleCloudSchedulerJob extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'region': region,
@@ -270,8 +269,7 @@ final class GoogleCloudSchedulerJob extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleCloudSchedulerJobSensitive;
+  Set<String> get sensitiveFields => _googleCloudSchedulerJobSensitive;
 
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
