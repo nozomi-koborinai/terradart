@@ -123,15 +123,15 @@ GoogleCloudRunV2Service(
 ## Quickstart
 
 ```yaml
-# pubspec.yaml — pre-release explicit constraint required
+# pubspec.yaml
 dependencies:
-  terradart_core: ^0.1.0-dev
-  terradart_google: ^0.1.0-dev
+  terradart_core: ^0.11.0
+  terradart_google: ^0.11.0
 ```
 
 ```bash
 dart pub get
-dart pub global activate terradart_codegen 0.1.0-dev    # only if you need
+dart pub global activate terradart_codegen ^0.11.0      # only if you need
                                                          # codegen for non-curated
                                                          # google_* resources
 dart run bin/infra.dart                                  # synth → tf-out/
@@ -191,7 +191,7 @@ Application platform & operations
 
 ## Status
 
-Pre-alpha (v0.1.0-dev). No SemVer guarantees until v1.0.0; pin tightly. Surface and emitted Terraform JSON may change. `dart pub get` skips pre-releases by default — opt in with explicit `^0.1.0-dev` constraints.
+Pre-1.0 (v0.11.0). No SemVer guarantees until v1.0.0; pin to a specific `^0.11.x` minor and read [`MIGRATING.md`](MIGRATING.md) before bumping. Breaking changes are still permitted within the 0.x line and are documented per-release.
 
 ## Schema-bump automation (Plan 5.E)
 
