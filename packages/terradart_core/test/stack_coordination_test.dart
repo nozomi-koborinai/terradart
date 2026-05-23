@@ -52,10 +52,6 @@ class _FakeProvider implements StackProvider {
 
 final class _S extends Stack {
   _S({super.providers = const [], super.backend});
-
-  @override
-  Future<void> synth({required String outDir}) async =>
-      throw UnimplementedError();
 }
 
 void main() {

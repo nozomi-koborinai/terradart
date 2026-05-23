@@ -201,24 +201,51 @@ abstract base class Stack {
     return data;
   }
 
-  /// Synth entry point. The default implementation calls
-  /// [StackSynth.synth] and writes the resulting Terraform JSON to
-  /// `${outDir}/main.tf.json` with two-space indentation, creating
-  /// [outDir] recursively if it doesn't exist.
+  /// Synthesise this Stack into an in-memory [SynthResult] bundle.
   ///
-  /// Subclasses may override to customise file layout — e.g. to also
-  /// write the optional Dart constants file produced by
-  /// [SynthResult.dartConstants] — but most consumers can rely on the
-  /// default.
-  Future<void> synth({required String outDir}) async {
-    final result = StackSynth.synth(this);
-    final dir = Directory(outDir);
-    if (!await dir.exists()) {
-      await dir.create(recursive: true);
+  /// Pure / side-effect-free: produces the Terraform JSON map plus any
+  /// generated Dart constants source as values, without touching the
+  /// filesystem. Use [writeTo] to persist the result to disk under a
+  /// chosen output directory.
+  ///
+  /// `stackName` overrides the generated Dart class name when AppExports
+  /// are emitted. Defaults to the runtime type name of the Stack
+  /// subclass (e.g. `OrdersStack` → `OrdersStackExports`).
+  SynthResult synth({String? stackName}) =>
+      StackSynth.synth(this, stackName: stackName);
+
+  /// Synthesise this Stack and write the result to [outDir].
+  ///
+  /// Always writes `${outDir}/main.tf.json` with two-space indentation,
+  /// creating [outDir] recursively if it does not exist. When
+  /// AppExports produced Dart constants AND
+  /// [setAppExportsOutputPath] was called, also writes the generated
+  /// constants file at that path (creating its parent directories
+  /// recursively).
+  ///
+  /// Throws [StateError] when exports were registered via [addExport]
+  /// but no output path was set via [setAppExportsOutputPath] — the
+  /// generated constants would otherwise be silently dropped.
+  Future<void> writeTo(String outDir) async {
+    final result = synth();
+    await Directory(outDir).create(recursive: true);
+    await File('$outDir/main.tf.json').writeAsString(
+      const JsonEncoder.withIndent('  ').convert(result.tfJson),
+    );
+
+    if (result.dartConstants != null) {
+      if (result.dartConstantsPath == null) {
+        throw StateError(
+          'AppExport constants were registered (addExport called) '
+          'but no output path was set. Call '
+          'setAppExportsOutputPath() in your Stack constructor '
+          'before writeTo().',
+        );
+      }
+      final f = File(result.dartConstantsPath!);
+      await f.parent.create(recursive: true);
+      await f.writeAsString(result.dartConstants!);
     }
-    const encoder = JsonEncoder.withIndent('  ');
-    await File('$outDir/main.tf.json')
-        .writeAsString(encoder.convert(result.tfJson));
   }
 }
 

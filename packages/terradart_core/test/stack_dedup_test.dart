@@ -28,10 +28,6 @@ final class _D extends Data {
 
 final class _S extends Stack {
   _S() : super(providers: const []);
-
-  @override
-  Future<void> synth({required String outDir}) async =>
-      throw UnimplementedError();
 }
 
 void main() {
