@@ -12,7 +12,7 @@ final class _R extends Resource {
         );
 
   @override
-  Set<String> get $sensitiveFields => const {};
+  Set<String> get sensitiveFields => const {};
 }
 
 final class _D extends Data {
@@ -23,7 +23,7 @@ final class _D extends Data {
         );
 
   @override
-  Set<String> get $sensitiveFields => const {};
+  Set<String> get sensitiveFields => const {};
 }
 
 final class _S extends Stack {

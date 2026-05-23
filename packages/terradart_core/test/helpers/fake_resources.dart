@@ -49,7 +49,7 @@ final class TestStack extends Stack {
 }
 
 /// Generic non-capable fake resource for injection tests.
-/// `terraformType` is `'fake_thing'`; `$supportsDeletionProtection` defaults
+/// `terraformType` is `'fake_thing'`; `supportsDeletionProtection` defaults
 /// to `false` (base class behaviour).
 final class FakeResource extends Resource {
   FakeResource({
@@ -61,7 +61,7 @@ final class FakeResource extends Resource {
         );
 
   @override
-  Set<String> get $sensitiveFields => const {};
+  Set<String> get sensitiveFields => const {};
 }
 
 final class FakePubsubTopic extends Resource {
@@ -82,7 +82,7 @@ final class FakePubsubTopic extends Resource {
         );
 
   @override
-  Set<String> get $sensitiveFields => const {};
+  Set<String> get sensitiveFields => const {};
 }
 
 final class FakePubsubSubscription extends Resource {
@@ -94,7 +94,7 @@ final class FakePubsubSubscription extends Resource {
         );
 
   @override
-  Set<String> get $sensitiveFields => const {};
+  Set<String> get sensitiveFields => const {};
 }
 
 final class FakeSecretVersion extends Resource {
@@ -106,7 +106,7 @@ final class FakeSecretVersion extends Resource {
         );
 
   @override
-  Set<String> get $sensitiveFields => const {'secret_data'};
+  Set<String> get sensitiveFields => const {'secret_data'};
 }
 
 final class FakeProjectData extends Data {
@@ -118,5 +118,5 @@ final class FakeProjectData extends Data {
         );
 
   @override
-  Set<String> get $sensitiveFields => const {};
+  Set<String> get sensitiveFields => const {};
 }
