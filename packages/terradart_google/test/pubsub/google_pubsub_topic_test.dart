@@ -1,3 +1,7 @@
+// ignore_for_file: invalid_use_of_protected_member
+// Tests verify the codegen-emitted sensitiveFields getter value; reading a
+// @protected getter from test scope is the intended cross-boundary pattern
+// for wrapper integration tests.
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/terradart_google.dart';
 import 'package:test/test.dart';
@@ -65,7 +69,6 @@ void main() {
 
     test('sensitiveFields exposes generated set (empty for topic)', () {
       final topic = GooglePubsubTopic(localName: 't', name: TfArg.literal('t'));
-      // ignore: invalid_use_of_protected_member
       expect(topic.sensitiveFields, isEmpty);
     });
 

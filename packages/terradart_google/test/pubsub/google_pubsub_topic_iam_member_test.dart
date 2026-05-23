@@ -1,3 +1,7 @@
+// ignore_for_file: invalid_use_of_protected_member
+// Tests verify the codegen-emitted sensitiveFields getter value; reading a
+// @protected getter from test scope is the intended cross-boundary pattern
+// for wrapper integration tests.
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/terradart_google.dart';
 import 'package:test/test.dart';
@@ -30,7 +34,6 @@ void main() {
       equals('serviceAccount:publisher@p.iam.gserviceaccount.com'),
     );
     expect(iam.terraformType, equals('google_pubsub_topic_iam_member'));
-    // ignore: invalid_use_of_protected_member
     expect(iam.sensitiveFields, isEmpty);
   });
 

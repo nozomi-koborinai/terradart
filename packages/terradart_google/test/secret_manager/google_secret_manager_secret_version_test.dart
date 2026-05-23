@@ -1,6 +1,10 @@
 // Test calls @Deprecated `secretData` to verify it's still a working code
 // path; suppress the deprecation warning at the test boundary only.
 // ignore_for_file: deprecated_member_use_from_same_package
+// ignore_for_file: invalid_use_of_protected_member
+// Tests verify the codegen-emitted sensitiveFields getter value; reading a
+// @protected getter from test scope is the intended cross-boundary pattern
+// for wrapper integration tests.
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/terradart_google.dart';
@@ -43,7 +47,6 @@ void main() {
       localName: 'v',
       secret: TfArg.literal('projects/p/secrets/s'),
     );
-    // ignore: invalid_use_of_protected_member
     expect(v.sensitiveFields, equals(<String>{'secret_data'}));
   });
 
