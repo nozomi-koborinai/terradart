@@ -1,6 +1,10 @@
 // Test calls @Deprecated `secretData` to verify it's still a working code
 // path; suppress the deprecation warning at the test boundary only.
 // ignore_for_file: deprecated_member_use_from_same_package
+// ignore_for_file: invalid_use_of_protected_member
+// Tests verify the codegen-emitted sensitiveFields getter value; reading a
+// @protected getter from test scope is the intended cross-boundary pattern
+// for wrapper integration tests.
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/terradart_google.dart';
@@ -31,7 +35,7 @@ void main() {
     expect(v.argMap['secret_data_wo_version']!.toTfJson(), equals(1));
   });
 
-  test('\$sensitiveFields contains secret_data per provider schema', () {
+  test('sensitiveFields contains secret_data per provider schema', () {
     // The sensitive set is machine-derived from
     // the provider schema. The hashicorp/google v7.31.0 schema flags only
     // `secret_data` as sensitive (`secret_data_wo` is `write_only`, not
@@ -43,7 +47,7 @@ void main() {
       localName: 'v',
       secret: TfArg.literal('projects/p/secrets/s'),
     );
-    expect(v.$sensitiveFields, equals(<String>{'secret_data'}));
+    expect(v.sensitiveFields, equals(<String>{'secret_data'}));
   });
 
   test('legacy secretData path still works (with deprecation)', () {

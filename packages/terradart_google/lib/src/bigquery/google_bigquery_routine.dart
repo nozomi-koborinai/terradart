@@ -14,12 +14,13 @@ const Set<String> _googleBigqueryRoutineSensitive = <String>{};
 /// Type of routine for `routine_type`. BigQuery currently supports three
 /// shapes at this provider version: scalar UDFs, stored procedures, and
 /// table-valued functions.
-enum BigqueryRoutineType {
+enum BigqueryRoutineType implements TerraformEnum {
   scalarFunction('SCALAR_FUNCTION'),
   procedure('PROCEDURE'),
   tableValuedFunction('TABLE_VALUED_FUNCTION');
 
   const BigqueryRoutineType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -27,7 +28,7 @@ enum BigqueryRoutineType {
 /// pure-SQL UDFs and TVFs; `JAVASCRIPT` runs inline JS bodies; `PYTHON`
 /// / `JAVA` / `SCALA` require an accompanying [BigqueryRoutineSparkOptions]
 /// block.
-enum BigqueryRoutineLanguage {
+enum BigqueryRoutineLanguage implements TerraformEnum {
   sql('SQL'),
   javascript('JAVASCRIPT'),
   python('PYTHON'),
@@ -35,62 +36,68 @@ enum BigqueryRoutineLanguage {
   scala('SCALA');
 
   const BigqueryRoutineLanguage(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Determinism level for `determinism_level`. Applies to JavaScript UDFs
 /// — declaring `DETERMINISTIC` lets BigQuery cache results across query
 /// invocations with identical inputs.
-enum BigqueryRoutineDeterminismLevel {
+enum BigqueryRoutineDeterminismLevel implements TerraformEnum {
   unspecified('DETERMINISM_LEVEL_UNSPECIFIED'),
   deterministic('DETERMINISTIC'),
   notDeterministic('NOT_DETERMINISTIC');
 
   const BigqueryRoutineDeterminismLevel(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Data governance type for `data_governance_type`. The provider only
 /// accepts `DATA_MASKING` today — set this to register the routine as a
 /// custom masking function consumable by BigQuery column-level policies.
-enum BigqueryRoutineDataGovernanceType {
+enum BigqueryRoutineDataGovernanceType implements TerraformEnum {
   dataMasking('DATA_MASKING');
 
   const BigqueryRoutineDataGovernanceType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Security mode for `security_mode`. `DEFINER` runs the routine with
 /// the privileges of its owner; `INVOKER` runs with the caller's
 /// privileges. Defaults to BigQuery's auto-detect when omitted.
-enum BigqueryRoutineSecurityMode {
+enum BigqueryRoutineSecurityMode implements TerraformEnum {
   definer('DEFINER'),
   invoker('INVOKER');
 
   const BigqueryRoutineSecurityMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Argument kind for `arguments.argument_kind`. `FIXED_TYPE` (the
 /// default) requires `dataType` to be set; `ANY_TYPE` lets BigQuery
 /// infer the type at call site.
-enum BigqueryRoutineArgumentKind {
+enum BigqueryRoutineArgumentKind implements TerraformEnum {
   fixedType('FIXED_TYPE'),
   anyType('ANY_TYPE');
 
   const BigqueryRoutineArgumentKind(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Argument direction for `arguments.mode`. Procedures use this to mark
 /// each argument as input (`IN`), output (`OUT`), or bidirectional
 /// (`INOUT`); functions leave it null.
-enum BigqueryRoutineArgumentMode {
+enum BigqueryRoutineArgumentMode implements TerraformEnum {
   input('IN'),
   output('OUT'),
   inputOutput('INOUT');
 
   const BigqueryRoutineArgumentMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -256,8 +263,7 @@ class BigqueryRoutineSparkOptions {
 /// );
 /// ```
 final class GoogleBigqueryRoutine extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_bigquery_routine';
+  static const String tfType = 'google_bigquery_routine';
 
   GoogleBigqueryRoutine({
     required super.localName,
@@ -280,7 +286,7 @@ final class GoogleBigqueryRoutine extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'dataset_id': datasetId,
            'routine_id': routineId,
@@ -311,8 +317,7 @@ final class GoogleBigqueryRoutine extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleBigqueryRoutineSensitive;
+  Set<String> get sensitiveFields => _googleBigqueryRoutineSensitive;
 
   /// Reference to `routine_id` attribute.
   TfRef<String> get routineIdRef => TfRef.attribute<String>(this, 'routine_id');

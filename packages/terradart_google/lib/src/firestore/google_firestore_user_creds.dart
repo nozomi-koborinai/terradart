@@ -18,7 +18,7 @@ const Set<String> _googleFirestoreUserCredsSensitive = <String>{
 /// The `secure_password` attribute is **sensitive and computed** -- the
 /// provider generates it server-side and Terraform records it in state
 /// only. terradart's masking layer flags it as sensitive via the
-/// generated `$sensitiveFields` set.
+/// generated `sensitiveFields` set.
 ///
 /// Example:
 /// ```dart
@@ -29,8 +29,7 @@ const Set<String> _googleFirestoreUserCredsSensitive = <String>{
 /// );
 /// ```
 final class GoogleFirestoreUserCreds extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_firestore_user_creds';
+  static const String tfType = 'google_firestore_user_creds';
 
   GoogleFirestoreUserCreds({
     required super.localName,
@@ -40,7 +39,7 @@ final class GoogleFirestoreUserCreds extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'database': database,
@@ -49,8 +48,7 @@ final class GoogleFirestoreUserCreds extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleFirestoreUserCredsSensitive;
+  Set<String> get sensitiveFields => _googleFirestoreUserCredsSensitive;
 
   /// Reference to `id` attribute. Same as `name` for this resource --
   /// user creds have no separate id distinct from their resource path.
@@ -66,7 +64,7 @@ final class GoogleFirestoreUserCreds extends Resource {
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
   /// Reference to the server-generated `secure_password` attribute.
-  /// **Marked sensitive in the schema** -- terradart's `$sensitiveFields`
+  /// **Marked sensitive in the schema** -- terradart's `sensitiveFields`
   /// set already includes this attribute; masking is automatic.
   TfRef<String> get securePassword =>
       TfRef.attribute<String>(this, 'secure_password');

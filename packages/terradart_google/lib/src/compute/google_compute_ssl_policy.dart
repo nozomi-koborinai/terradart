@@ -14,7 +14,7 @@ const Set<String> _googleComputeSslPolicySensitive = <String>{};
 /// default), [modern] (modern browsers only), [compatible] (permissive
 /// legacy default), [fips202205] (FIPS 202205-pinned), and [custom]
 /// (caller-supplied via [GoogleComputeSslPolicy.customFeatures]).
-enum SslPolicyProfile {
+enum SslPolicyProfile implements TerraformEnum {
   compatible('COMPATIBLE'),
   modern('MODERN'),
   restricted('RESTRICTED'),
@@ -22,6 +22,7 @@ enum SslPolicyProfile {
   fips202205('FIPS_202205');
 
   const SslPolicyProfile(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -30,13 +31,14 @@ enum SslPolicyProfile {
 /// here; the API only exposes the 1.0 / 1.1 / 1.2 floors. To force
 /// TLS 1.3 only, pair [tls12] with [SslPolicyProfile.restricted], which
 /// drops the legacy 1.x suites from the negotiated set.
-enum SslPolicyMinTlsVersion {
+enum SslPolicyMinTlsVersion implements TerraformEnum {
   tls10('TLS_1_0'),
   tls11('TLS_1_1'),
   tls12('TLS_1_2'),
   tls13('TLS_1_3');
 
   const SslPolicyMinTlsVersion(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -116,11 +118,10 @@ enum SslPolicyMinTlsVersion {
 /// Lifecycle: SSL policies are mutable in place (the resource uses
 /// `PATCH` for updates). Profile / minimum-TLS-version flips take effect
 /// after the next handshake — long-lived sessions are not torn down.
-/// Composition pattern: extends `Resource<$GoogleComputeSslPolicy>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior.
 final class GoogleComputeSslPolicy extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_ssl_policy';
+  static const String tfType = 'google_compute_ssl_policy';
 
   GoogleComputeSslPolicy({
     required super.localName,
@@ -133,7 +134,7 @@ final class GoogleComputeSslPolicy extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            if (description != null) 'description': description,
@@ -145,8 +146,7 @@ final class GoogleComputeSslPolicy extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleComputeSslPolicySensitive;
+  Set<String> get sensitiveFields => _googleComputeSslPolicySensitive;
 
   /// Reference to `name` attribute. Use for interpolations like
   /// `policy.nameRef` →

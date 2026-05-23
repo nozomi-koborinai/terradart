@@ -14,7 +14,7 @@ final class _FakeProjectData extends Data {
         );
 
   @override
-  Set<String> get $sensitiveFields => const {};
+  Set<String> get sensitiveFields => const {};
 
   TfRef<String> get number => TfRef.data<String>(this, 'number');
 }

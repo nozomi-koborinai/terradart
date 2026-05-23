@@ -65,7 +65,7 @@ classDocComment: |-
   /// - Attach via [GoogleComputeBackendService.healthChecks] (list of
   ///   self-links).
   ///
-  /// Composition pattern: extends `Resource<$GoogleComputeHealthCheck>` for
+  /// Composition pattern: extends `Resource` for
   /// runtime behavior.
 
 paramOrder:
@@ -118,7 +118,7 @@ prelude: |
   /// it from which per-protocol config block was set), so callers don't
   /// set this directly — they pick the matching `*HealthCheck` block.
   /// Listed here for use in `==` comparisons against [typeRef] reads.
-  enum HealthCheckType {
+  enum HealthCheckType implements TerraformEnum {
     http('HTTP'),
     https('HTTPS'),
     tcp('TCP'),
@@ -127,16 +127,18 @@ prelude: |
     grpc('GRPC');
 
     const HealthCheckType(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `proxy_header` value used inside every per-protocol HTTP-shaped block
   /// (HTTP, HTTPS, HTTP2, TCP, SSL). Defaults to [none] on the GCP API.
-  enum HealthCheckProxyHeader {
+  enum HealthCheckProxyHeader implements TerraformEnum {
     none('NONE'),
     proxyV1('PROXY_V1');
 
     const HealthCheckProxyHeader(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -148,12 +150,13 @@ prelude: |
   /// - [useServingPort]: for Network Endpoint Groups, use each endpoint's
   ///   declared port; for other backends, use the Backend Service's
   ///   `port` / `port_name`.
-  enum HealthCheckPortSpecification {
+  enum HealthCheckPortSpecification implements TerraformEnum {
     useFixedPort('USE_FIXED_PORT'),
     useNamedPort('USE_NAMED_PORT'),
     useServingPort('USE_SERVING_PORT');
 
     const HealthCheckPortSpecification(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

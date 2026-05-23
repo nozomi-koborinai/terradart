@@ -10,40 +10,44 @@ const Set<String> _googleComputeAddressSensitive = <String>{};
 // directly; TfArg detects `.terraformValue` getter.
 
 /// Address allocation scope: INTERNAL (VPC-private) or EXTERNAL (public IP).
-enum AddressType {
+enum AddressType implements TerraformEnum {
   internal('INTERNAL'),
   external('EXTERNAL');
 
   const AddressType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Network service tier. PREMIUM uses Google's premium global backbone;
 /// STANDARD uses ISP-level routing (cheaper, regional).
-enum NetworkTier {
+enum NetworkTier implements TerraformEnum {
   premium('PREMIUM'),
   standard('STANDARD');
 
   const NetworkTier(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// IP protocol version for the address.
-enum IpVersion {
+enum IpVersion implements TerraformEnum {
   ipv4('IPV4'),
   ipv6('IPV6');
 
   const IpVersion(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// IPv6 endpoint type. Used when [GoogleComputeAddress.ipVersion] is
 /// `IpVersion.ipv6`.
-enum Ipv6EndpointType {
+enum Ipv6EndpointType implements TerraformEnum {
   vm('VM'),
   netlb('NETLB');
 
   const Ipv6EndpointType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -69,8 +73,7 @@ enum Ipv6EndpointType {
 /// Represents an IP address resource (regional or global). Use `addressType:
 /// 'INTERNAL'` for VPC-internal addresses, `'EXTERNAL'` for public IPs.
 final class GoogleComputeAddress extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_address';
+  static const String tfType = 'google_compute_address';
 
   GoogleComputeAddress({
     required super.localName,
@@ -92,7 +95,7 @@ final class GoogleComputeAddress extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            if (region != null) 'region': region,
@@ -113,8 +116,7 @@ final class GoogleComputeAddress extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleComputeAddressSensitive;
+  Set<String> get sensitiveFields => _googleComputeAddressSensitive;
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

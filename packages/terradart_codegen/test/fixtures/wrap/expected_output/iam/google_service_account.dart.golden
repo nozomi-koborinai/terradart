@@ -56,14 +56,13 @@ const Set<String> _googleServiceAccountSensitive = <String>{};
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GoogleServiceAccount>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior, implements `$GoogleServiceAccount` for the schemantic
 /// schema surface. `argMap` stores `TfArg<dynamic>?` entries directly;
 /// synth's JSON-encoding pass walks them and calls `arg.toTfJson()` to
 /// encode at write time.
 final class GoogleServiceAccount extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_service_account';
+  static const String tfType = 'google_service_account';
 
   GoogleServiceAccount({
     required super.localName,
@@ -76,7 +75,7 @@ final class GoogleServiceAccount extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'account_id': accountId,
            if (project != null) 'project': project,
@@ -89,8 +88,7 @@ final class GoogleServiceAccount extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleServiceAccountSensitive;
+  Set<String> get sensitiveFields => _googleServiceAccountSensitive;
 
   /// `id` — full resource path
   /// `projects/{project}/serviceAccounts/{email}`.

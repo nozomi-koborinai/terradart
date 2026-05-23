@@ -86,7 +86,7 @@ classDocComment: |-
   /// service CDN configurations are not interchangeable, even where the
   /// schema field names agree.
   ///
-  /// Composition pattern: extends `Resource<$GoogleComputeBackendBucket>`
+  /// Composition pattern: extends `Resource`
   /// for runtime behavior.
 
 paramOrder:
@@ -135,11 +135,12 @@ prelude: |
   /// `Accept-Encoding` header. Note: this is a *distinct type* from
   /// `BackendServiceCompressionMode` even though the wire values
   /// (`AUTOMATIC` / `DISABLED`) coincide.
-  enum BackendBucketCompressionMode {
+  enum BackendBucketCompressionMode implements TerraformEnum {
     automatic('AUTOMATIC'),
     disabled('DISABLED');
 
     const BackendBucketCompressionMode(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -149,10 +150,11 @@ prelude: |
   /// [internalManaged] for cross-region internal layer-7 load balancing.
   /// Important: when [internalManaged] is set, `enable_cdn` **must** be
   /// `false` (Cloud CDN is not available for internal schemes).
-  enum BackendBucketLoadBalancingScheme {
+  enum BackendBucketLoadBalancingScheme implements TerraformEnum {
     internalManaged('INTERNAL_MANAGED');
 
     const BackendBucketLoadBalancingScheme(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -160,12 +162,13 @@ prelude: |
   /// setting this defaults to `CACHE_ALL_STATIC`. Note: this is a
   /// *distinct type* from `BackendServiceCacheMode` — bucket-side CDN
   /// policies are not interchangeable with service-side policies.
-  enum BackendBucketCacheMode {
+  enum BackendBucketCacheMode implements TerraformEnum {
     useOriginHeaders('USE_ORIGIN_HEADERS'),
     forceCacheAll('FORCE_CACHE_ALL'),
     cacheAllStatic('CACHE_ALL_STATIC');
 
     const BackendBucketCacheMode(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

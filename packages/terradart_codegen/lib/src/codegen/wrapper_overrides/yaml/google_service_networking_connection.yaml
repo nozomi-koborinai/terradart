@@ -54,7 +54,7 @@ classDocComment: |-
   /// ```
   ///
   /// Composition pattern: extends
-  /// `Resource<$GoogleServiceNetworkingConnection>` for runtime behavior.
+  /// `Resource` for runtime behavior.
 
 paramOrder:
   - network

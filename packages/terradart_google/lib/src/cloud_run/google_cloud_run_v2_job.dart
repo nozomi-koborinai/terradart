@@ -18,7 +18,7 @@ const Set<String> _googleCloudRunV2JobSensitive = <String>{};
 /// The Job and Service enums share the same Terraform values but live
 /// under separate names ([CloudRunV2JobLaunchStage] vs. [LaunchStage]) so the
 /// `cloud_run.dart` barrel can `show` both.
-enum CloudRunV2JobLaunchStage {
+enum CloudRunV2JobLaunchStage implements TerraformEnum {
   unimplemented('UNIMPLEMENTED'),
   prelaunch('PRELAUNCH'),
   earlyAccess('EARLY_ACCESS'),
@@ -28,37 +28,41 @@ enum CloudRunV2JobLaunchStage {
   deprecatedStage('DEPRECATED');
 
   const CloudRunV2JobLaunchStage(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Container sandbox environment for [CloudRunV2JobTaskTemplate.executionEnvironment].
 /// `gen2` enables larger CPU tiers + GCSFuse volumes; `gen1` keeps the
 /// legacy gVisor sandbox.
-enum CloudRunV2JobExecutionEnvironment {
+enum CloudRunV2JobExecutionEnvironment implements TerraformEnum {
   gen1('EXECUTION_ENVIRONMENT_GEN1'),
   gen2('EXECUTION_ENVIRONMENT_GEN2');
 
   const CloudRunV2JobExecutionEnvironment(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Egress policy for [CloudRunV2JobVpcAccess.egress] (`template.template.vpc_access.egress`).
-enum CloudRunV2JobVpcAccessEgress {
+enum CloudRunV2JobVpcAccessEgress implements TerraformEnum {
   allTraffic('ALL_TRAFFIC'),
   privateRangesOnly('PRIVATE_RANGES_ONLY');
 
   const CloudRunV2JobVpcAccessEgress(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Storage medium for [CloudRunV2JobEmptyDirVolume.medium]. The Cloud Run v2 Job
 /// schema documents `MEMORY`; `DISK` is reserved per the Magic-Modules
 /// mirror but rejected by the provider today.
-enum CloudRunV2JobEmptyDirMedium {
+enum CloudRunV2JobEmptyDirMedium implements TerraformEnum {
   memory('MEMORY'),
   disk('DISK');
 
   const CloudRunV2JobEmptyDirMedium(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -764,11 +768,10 @@ final class CloudRunV2JobNfsVolume extends CloudRunV2JobVolumeSource {
 /// `CloudRunV2JobBinaryAuthorization`, `CloudRunV2JobVolume`, `CloudRunV2JobVolumeSource`, ...) to
 /// stay barrel-exportable alongside the Service helpers.
 ///
-/// Composition pattern: extends `Resource<$GoogleCloudRunV2Job>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior.
 final class GoogleCloudRunV2Job extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_cloud_run_v2_job';
+  static const String tfType = 'google_cloud_run_v2_job';
 
   GoogleCloudRunV2Job({
     required super.localName,
@@ -786,7 +789,7 @@ final class GoogleCloudRunV2Job extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'location': location,
@@ -807,11 +810,10 @@ final class GoogleCloudRunV2Job extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleCloudRunV2JobSensitive;
+  Set<String> get sensitiveFields => _googleCloudRunV2JobSensitive;
 
   @override
-  bool get $supportsDeletionProtection => true;
+  bool get supportsDeletionProtection => true;
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -210,8 +210,7 @@ class PubsubSubscriptionExpirationPolicy {
 /// );
 /// ```
 final class GooglePubsubSubscription extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_pubsub_subscription';
+  static const String tfType = 'google_pubsub_subscription';
 
   GooglePubsubSubscription({
     required super.localName,
@@ -236,7 +235,7 @@ final class GooglePubsubSubscription extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'topic': topic,
@@ -272,8 +271,7 @@ final class GooglePubsubSubscription extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googlePubsubSubscriptionSensitive;
+  Set<String> get sensitiveFields => _googlePubsubSubscriptionSensitive;
 
   /// Reference to `name` attribute (`google_pubsub_subscription.<id>.name`).
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

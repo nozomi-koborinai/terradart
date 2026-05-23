@@ -15,10 +15,17 @@ class EmittedEnum {
 class EnumExtractor {
   const EnumExtractor();
 
-  /// Matches: `enum <Name> { ... }` followed by the const constructor +
-  /// terraformValue field. Captures (name, body).
+  /// Matches: `enum <Name> [implements TerraformEnum] { ... }` followed by
+  /// the const constructor + terraformValue field. Captures (name, body).
+  ///
+  /// The optional `implements TerraformEnum` group allows hand-curated
+  /// enums authored before v0.11.0 (ADR-0016) — which carry the
+  /// `const X(this.terraformValue)` constructor + `final String
+  /// terraformValue` field but no `implements` clause — to still match
+  /// against this scanner. The canonical post-v0.11 shape always carries
+  /// the clause.
   static final RegExp _enumBlock = RegExp(
-    r'enum\s+([A-Z][A-Za-z0-9_]*)\s*\{([^}]*?)const\s+\1\s*\(this\.terraformValue\)\s*;\s*final\s+String\s+terraformValue\s*;',
+    r'enum\s+([A-Z][A-Za-z0-9_]*)(?:\s+implements\s+TerraformEnum)?\s*\{([^}]*?)const\s+\1\s*\(this\.terraformValue\)\s*;\s*final\s+String\s+terraformValue\s*;',
     dotAll: true,
   );
 

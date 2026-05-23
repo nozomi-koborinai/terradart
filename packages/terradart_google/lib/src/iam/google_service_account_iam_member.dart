@@ -40,8 +40,7 @@ const Set<String> _googleServiceAccountIamMemberSensitive = <String>{};
 /// Optional `condition` is a single IAM Condition block (CEL
 /// `expression`, `title`, optional `description`).
 final class GoogleServiceAccountIamMember extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_service_account_iam_member';
+  static const String tfType = 'google_service_account_iam_member';
 
   GoogleServiceAccountIamMember({
     required super.localName,
@@ -52,7 +51,7 @@ final class GoogleServiceAccountIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'service_account_id': serviceAccountId,
            'role': role,
@@ -62,8 +61,7 @@ final class GoogleServiceAccountIamMember extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleServiceAccountIamMemberSensitive;
+  Set<String> get sensitiveFields => _googleServiceAccountIamMemberSensitive;
 
   /// Reference to `etag` attribute (concurrency token written by the API).
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');

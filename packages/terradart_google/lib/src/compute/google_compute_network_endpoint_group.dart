@@ -24,7 +24,7 @@ const Set<String> _googleComputeNetworkEndpointGroupSensitive = <String>{};
 /// `GoogleComputeRegionNetworkEndpointGroup`. Prefer those resources
 /// for the dominant patterns; reach for the zonal variants only when
 /// you have a specific zonal-scoped use case.
-enum NetworkEndpointGroupType {
+enum NetworkEndpointGroupType implements TerraformEnum {
   gceVmIpPort('GCE_VM_IP_PORT'),
   gceVmIp('GCE_VM_IP'),
   nonGcpPrivateIpPort('NON_GCP_PRIVATE_IP_PORT'),
@@ -35,6 +35,7 @@ enum NetworkEndpointGroupType {
   gceVmIpDedicatedBackend('GCE_VM_IP_DEDICATED_BACKEND');
 
   const NetworkEndpointGroupType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -79,11 +80,10 @@ enum NetworkEndpointGroupType {
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GoogleComputeNetworkEndpointGroup>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleComputeNetworkEndpointGroup extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_network_endpoint_group';
+  static const String tfType = 'google_compute_network_endpoint_group';
 
   GoogleComputeNetworkEndpointGroup({
     required super.localName,
@@ -98,7 +98,7 @@ final class GoogleComputeNetworkEndpointGroup extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            if (zone != null) 'zone': zone,
@@ -113,8 +113,7 @@ final class GoogleComputeNetworkEndpointGroup extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googleComputeNetworkEndpointGroupSensitive;
 
   /// Reference to `name` attribute. Use this when downstream consumers

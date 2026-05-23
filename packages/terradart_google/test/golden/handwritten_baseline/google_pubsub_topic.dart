@@ -25,13 +25,12 @@ const Set<String> _googlePubsubTopicSensitive = <String>{};
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GooglePubsubTopic>` for runtime
+/// Composition pattern: extends `Resource` for runtime
 /// behavior. `argMap` stores `TfArg<dynamic>?` entries directly. Synth's
 /// JSON-encoding pass walks them and calls `arg.toTfJson()` to encode at
 /// write time.
 final class GooglePubsubTopic extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_pubsub_topic';
+  static const String tfType = 'google_pubsub_topic';
 
   GooglePubsubTopic({
     required super.localName,
@@ -48,28 +47,27 @@ final class GooglePubsubTopic extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
-            if (labels != null) 'labels': labels,
-            if (messageStoragePolicy != null)
-              'message_storage_policy': messageStoragePolicy,
-            if (schemaSettings != null) 'schema_settings': schemaSettings,
-            if (messageRetentionDuration != null)
-              'message_retention_duration': messageRetentionDuration,
-            if (ingestionDataSourceSettings != null)
-              'ingestion_data_source_settings': ingestionDataSourceSettings,
-            if (messageTransforms != null)
-              'message_transforms': messageTransforms,
-            if (tags != null) 'tags': tags,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: tfType,
+         argMap: {
+           'name': name,
+           if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
+           if (labels != null) 'labels': labels,
+           if (messageStoragePolicy != null)
+             'message_storage_policy': messageStoragePolicy,
+           if (schemaSettings != null) 'schema_settings': schemaSettings,
+           if (messageRetentionDuration != null)
+             'message_retention_duration': messageRetentionDuration,
+           if (ingestionDataSourceSettings != null)
+             'ingestion_data_source_settings': ingestionDataSourceSettings,
+           if (messageTransforms != null)
+             'message_transforms': messageTransforms,
+           if (tags != null) 'tags': tags,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googlePubsubTopicSensitive;
+  Set<String> get sensitiveFields => _googlePubsubTopicSensitive;
 
   /// Reference to `name` attribute. Use for interpolations like
   /// `topic.nameRef` → `${google_pubsub_topic.<localName>.name}`.

@@ -126,8 +126,7 @@ final class FirebaseAppHostingBuildAppHostingBuildSourceContainer
 /// `TfRef<String>` getters rather than typed enums because they are read-
 /// only and the wire values are best consumed as-is.
 final class GoogleFirebaseAppHostingBuild extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_firebase_app_hosting_build';
+  static const String tfType = 'google_firebase_app_hosting_build';
 
   GoogleFirebaseAppHostingBuild({
     required super.localName,
@@ -142,7 +141,7 @@ final class GoogleFirebaseAppHostingBuild extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'backend': backend,
            'location': location,
@@ -156,8 +155,7 @@ final class GoogleFirebaseAppHostingBuild extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleFirebaseAppHostingBuildSensitive;
+  Set<String> get sensitiveFields => _googleFirebaseAppHostingBuildSensitive;
 
   /// Reference to `name` attribute (full resource path
   /// `projects/{project}/locations/{location}/backends/{backend}/builds/{build_id}`).

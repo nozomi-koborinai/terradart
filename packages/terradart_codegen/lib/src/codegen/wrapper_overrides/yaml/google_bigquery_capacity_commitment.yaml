@@ -99,7 +99,7 @@ prelude: |
   /// `FLEX`, `TRIAL`, `MONTHLY`, `ANNUAL`, `THREE_YEAR`. Schema does
   /// not enumerate explicitly — see the field description for the
   /// authoritative link.
-  enum BigqueryCapacityCommitmentPlan {
+  enum BigqueryCapacityCommitmentPlan implements TerraformEnum {
     flex('FLEX'),
     trial('TRIAL'),
     monthly('MONTHLY'),
@@ -107,6 +107,7 @@ prelude: |
     threeYear('THREE_YEAR');
 
     const BigqueryCapacityCommitmentPlan(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -114,7 +115,7 @@ prelude: |
   /// Documented values: `NONE` (no renewal — commitment lapses),
   /// `FLEX`, `MONTHLY`, `ANNUAL`, `THREE_YEAR`. (`TRIAL` is a
   /// commitment-creation-only plan and is not a valid renewal target.)
-  enum BigqueryCapacityCommitmentRenewalPlan {
+  enum BigqueryCapacityCommitmentRenewalPlan implements TerraformEnum {
     none('NONE'),
     flex('FLEX'),
     monthly('MONTHLY'),
@@ -122,6 +123,7 @@ prelude: |
     threeYear('THREE_YEAR');
 
     const BigqueryCapacityCommitmentRenewalPlan(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -132,12 +134,13 @@ prelude: |
   /// `BigqueryReservationEdition` even though both wrap the same GCP
   /// enum — keeping resource-scoped naming avoids cross-resource
   /// coupling.
-  enum BigqueryCapacityCommitmentEdition {
+  enum BigqueryCapacityCommitmentEdition implements TerraformEnum {
     standard('STANDARD'),
     enterprise('ENTERPRISE'),
     enterprisePlus('ENTERPRISE_PLUS');
 
     const BigqueryCapacityCommitmentEdition(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

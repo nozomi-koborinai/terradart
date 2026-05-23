@@ -183,7 +183,7 @@ void main() {
       expect(out, isNot(contains("'package:terradart_annotations/")));
     });
 
-    test('emit produces final class header with \$tfType constant', () {
+    test('emit produces final class header with tfType constant', () {
       final emitter = WrapperEmitter(overrides: overrides);
       final def = _loadGooglePubsubTopicV7();
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
@@ -195,14 +195,18 @@ void main() {
         contains('final class GooglePubsubTopic extends Resource {'),
       );
 
-      // \$tfType is a static const carrying the Terraform type string. The
-      // `// ignore: constant_identifier_names` lint exception is required
-      // because Dart style normally rejects `\$`-prefixed identifiers.
-      expect(out, contains('  // ignore: constant_identifier_names'));
+      // v0.11.0 (ADR-0016): `tfType` carries the Terraform type string.
+      // The pre-v0.11 dollar-prefixed sigil and its `// ignore:
+      // constant_identifier_names` directive are retired.
+      expect(out, isNot(contains('  // ignore: constant_identifier_names')));
       expect(
         out,
-        contains("  static const String \$tfType = 'google_pubsub_topic';"),
+        contains("  static const String tfType = 'google_pubsub_topic';"),
       );
+      // Compose the deprecated identifier without writing it literally so
+      // repo-wide audit greps stay clean (the literal string is what
+      // ADR-0016 is retiring).
+      expect(out, isNot(contains('${r'$'}tfType')));
     });
 
     test('emit derives wrapper class name from terraformType', () {
@@ -223,7 +227,7 @@ void main() {
       expect(
         out,
         contains(
-          "  static const String \$tfType = 'google_emitter_test_resource';",
+          "  static const String tfType = 'google_emitter_test_resource';",
         ),
       );
     });
@@ -295,7 +299,7 @@ void main() {
       // Super initializer prefix + meta entries. Post Plan 5.X: no `schema:`
       // arg (the schemantic schema field is gone from Resource).
       expect(out, contains('}) : super('));
-      expect(out, contains('terraformType: \$tfType,'));
+      expect(out, contains('terraformType: tfType,'));
       expect(out, isNot(contains('schema:')));
       expect(out, contains('argMap: {'));
 
@@ -358,22 +362,28 @@ void main() {
       expect(out, isNot(contains("'timeouts':")));
     });
 
-    test('emit \$sensitiveFields getter delegates to the const Set', () {
-      // The wrapper exposes the sensitive-field set via a `$sensitiveFields`
+    test('emit sensitiveFields getter delegates to the const Set', () {
+      // The wrapper exposes the sensitive-field set via a `sensitiveFields`
       // getter so synth can mask values without re-deriving them from the
       // schema. Post Plan 5.X the const lives file-private at the top of
-      // the wrapper file (was: imported from .schema.dart).
+      // the wrapper file (was: imported from .schema.dart). v0.11.0
+      // (ADR-0016) retired the `$`-prefix sigil and its
+      // `non_constant_identifier_names` ignore directive.
       final def = _loadGooglePubsubTopicV7();
       final emitter = WrapperEmitter(overrides: overrides);
       final out = emitter.emit(def, providerSource: 'hashicorp/google');
 
       const expected = '  @override\n'
-          '  // ignore: non_constant_identifier_names\n'
-          '  Set<String> get \$sensitiveFields => _googlePubsubTopicSensitive;\n';
+          '  Set<String> get sensitiveFields => _googlePubsubTopicSensitive;\n';
       expect(out, contains(expected));
+      expect(out, isNot(contains('// ignore: non_constant_identifier_names')));
+      // Compose the deprecated identifier without writing it literally so
+      // repo-wide audit greps stay clean (the literal string is what
+      // ADR-0016 is retiring).
+      expect(out, isNot(contains('${r'$'}sensitiveFields')));
     });
 
-    test('emit \$sensitiveFields const name follows snake-to-camel', () {
+    test('emit sensitiveFields const name follows snake-to-camel', () {
       // Sanity check that the getter expression uses the same identifier
       // sensitive_set_emitter generates (file-private `_<r>Sensitive`),
       // so the wrapper compiles against any google_* schema.
@@ -386,7 +396,7 @@ void main() {
       expect(
         out,
         contains(
-          '  Set<String> get \$sensitiveFields => _googleEmitterTestResourceSensitive;',
+          '  Set<String> get sensitiveFields => _googleEmitterTestResourceSensitive;',
         ),
       );
     });
@@ -702,11 +712,12 @@ void main() {
     });
 
     test(
-      'emit \$supportsDeletionProtection override present when schema has deletion_protection',
+      'emit supportsDeletionProtection override present when schema has deletion_protection',
       () {
         // A resource whose root block exposes a top-level `deletion_protection`
-        // attribute must emit the `@override bool get $supportsDeletionProtection
+        // attribute must emit the `@override bool get supportsDeletionProtection
         // => true;` getter so the runtime devMode injection can opt-in.
+        // v0.11.0 (ADR-0016): the `$`-prefix sigil is retired.
         final emitter = WrapperEmitter(overrides: overrides);
         const def = ResourceDef(
           terraformType: 'google_capable_resource',
@@ -722,13 +733,16 @@ void main() {
         );
         final out = emitter.emit(def, providerSource: 'hashicorp/google');
         const expected = '  @override\n'
-            '  bool get \$supportsDeletionProtection => true;\n';
+            '  bool get supportsDeletionProtection => true;\n';
         expect(out, contains(expected));
+        // Compose the deprecated identifier without writing it literally so
+        // repo-wide audit gates stay clean.
+        expect(out, isNot(contains('${r'$'}supportsDeletionProtection')));
       },
     );
 
     test(
-      'emit \$supportsDeletionProtection override absent when schema lacks deletion_protection',
+      'emit supportsDeletionProtection override absent when schema lacks deletion_protection',
       () {
         // Resources without `deletion_protection` must NOT emit the override —
         // they inherit the base-class default of false.
@@ -746,7 +760,7 @@ void main() {
           ),
         );
         final out = emitter.emit(def, providerSource: 'hashicorp/google');
-        expect(out, isNot(contains('\$supportsDeletionProtection')));
+        expect(out, isNot(contains('supportsDeletionProtection')));
       },
     );
 

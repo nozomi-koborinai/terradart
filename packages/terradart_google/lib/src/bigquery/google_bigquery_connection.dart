@@ -18,12 +18,13 @@ const Set<String> _googleBigqueryConnectionSensitive = <String>{
 /// `DATABASE_TYPE_UNSPECIFIED` as a sentinel; do not pick it for new
 /// connections. `SQL_SERVER` is not exposed by the GA provider schema as
 /// of this curation.
-enum BigqueryConnectionCloudSqlType {
+enum BigqueryConnectionCloudSqlType implements TerraformEnum {
   databaseTypeUnspecified('DATABASE_TYPE_UNSPECIFIED'),
   postgres('POSTGRES'),
   mysql('MYSQL');
 
   const BigqueryConnectionCloudSqlType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -47,7 +48,7 @@ class BigqueryConnectionCloudSqlCredential {
   /// Required. Database user password. Wire via [TfArg.ref] to a Secret
   /// Manager-backed variable rather than a literal — the value is
   /// schema-flagged sensitive and is masked in the rendered
-  /// `main.tf.json` via the generated `$sensitiveFields` set.
+  /// `main.tf.json` via the generated `sensitiveFields` set.
   final TfArg<String> password;
 
   Map<String, Object?> toArgMap() => {
@@ -341,7 +342,7 @@ class BigqueryConnectionConfigurationAuthenticationPassword {
 
   /// Required. Plaintext password. Wire via [TfArg.ref] to a Secret
   /// Manager-backed variable; the value is masked in the rendered
-  /// `main.tf.json` via the generated `$sensitiveFields` set.
+  /// `main.tf.json` via the generated `sensitiveFields` set.
   final TfArg<String> plaintext;
 
   Map<String, Object?> toArgMap() => {'plaintext': plaintext.toTfJson()};
@@ -570,7 +571,7 @@ class BigqueryConnectionConfiguration {
 /// );
 /// ```
 ///
-/// Sensitive fields (round-trip through the generated `$sensitiveFields`
+/// Sensitive fields (round-trip through the generated `sensitiveFields`
 /// set; masked in serialized state by Terraform):
 /// - `cloud_sql.credential.password` — schema-flagged.
 /// - `configuration.authentication.username_password.password.plaintext`
@@ -583,8 +584,7 @@ class BigqueryConnectionConfiguration {
 /// - [hasCredential]: `true` once the credential block is materialized
 ///   server-side.
 final class GoogleBigqueryConnection extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_bigquery_connection';
+  static const String tfType = 'google_bigquery_connection';
 
   GoogleBigqueryConnection({
     required super.localName,
@@ -604,7 +604,7 @@ final class GoogleBigqueryConnection extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            if (connectionId != null) 'connection_id': connectionId,
            if (location != null) 'location': location,
@@ -627,8 +627,7 @@ final class GoogleBigqueryConnection extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleBigqueryConnectionSensitive;
+  Set<String> get sensitiveFields => _googleBigqueryConnectionSensitive;
 
   /// Reference to `name` attribute — the full resource name
   /// (`projects/{project}/locations/{location}/connections/{id}`). This

@@ -90,12 +90,11 @@ const Set<String> _googleMonitoringDashboardSensitive = <String>{};
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GoogleMonitoringDashboard>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior. There are no nested helper classes — the entire
 /// dashboard body lives inside the [dashboardJson] String.
 final class GoogleMonitoringDashboard extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_monitoring_dashboard';
+  static const String tfType = 'google_monitoring_dashboard';
 
   GoogleMonitoringDashboard({
     required super.localName,
@@ -104,7 +103,7 @@ final class GoogleMonitoringDashboard extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'dashboard_json': dashboardJson,
            if (project != null) 'project': project,
@@ -112,6 +111,5 @@ final class GoogleMonitoringDashboard extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleMonitoringDashboardSensitive;
+  Set<String> get sensitiveFields => _googleMonitoringDashboardSensitive;
 }

@@ -23,7 +23,7 @@ classDocComment: |-
   /// ```
   ///
   /// Manages a Cloud Storage bucket. Composition pattern: extends
-  /// `Resource<$GoogleStorageBucket>` for runtime behavior. The 13 nested
+  /// `Resource` for runtime behavior. The 13 nested
   /// blocks (lifecycle_rule / versioning / cors / encryption / etc.) are
   /// modeled as helper classes in the `prelude` below.
 
@@ -75,7 +75,7 @@ prelude: |
   ///
   /// `durableReducedAvailability` is the legacy class (deprecated 2018);
   /// keep for completeness, GCP still accepts it for existing buckets.
-  enum BucketStorageClass {
+  enum BucketStorageClass implements TerraformEnum {
     standard('STANDARD'),
     nearline('NEARLINE'),
     coldline('COLDLINE'),
@@ -85,15 +85,17 @@ prelude: |
     durableReducedAvailability('DURABLE_REDUCED_AVAILABILITY');
 
     const BucketStorageClass(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// Action type for `lifecycle_rule.action.type`.
-  enum LifecycleActionType {
+  enum LifecycleActionType implements TerraformEnum {
     delete('Delete'),
     setStorageClass('SetStorageClass');
 
     const LifecycleActionType(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

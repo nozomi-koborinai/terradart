@@ -111,7 +111,7 @@ prelude: |
   /// condition in the Firebase Console. The 11 values below come from the
   /// schema's enumerated "Possible values" list. Leaving this null (the
   /// schema-default) lets the Console pick a colour automatically.
-  enum RemoteConfigTagColor {
+  enum RemoteConfigTagColor implements TerraformEnum {
     blue('BLUE'),
     brown('BROWN'),
     cyan('CYAN'),
@@ -125,6 +125,7 @@ prelude: |
     teal('TEAL');
 
     const RemoteConfigTagColor(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -133,13 +134,14 @@ prelude: |
   /// [FirebaseRemoteConfigRemoteConfigRemoteConfigConditionalValue.value]. `string` is the schema default.
   /// `jsonValue` covers any structured payload (the wire format is still a
   /// string -- the client is expected to JSON-parse it).
-  enum RemoteConfigValueType {
+  enum RemoteConfigValueType implements TerraformEnum {
     string('STRING'),
     boolean('BOOLEAN'),
     number('NUMBER'),
     jsonValue('JSON');
 
     const RemoteConfigValueType(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

@@ -92,11 +92,12 @@ prelude: |
   /// `LOGICAL` (default per BigQuery API) bills by logical bytes; `PHYSICAL`
   /// bills by compressed on-disk bytes (typically cheaper for high-compression
   /// data with infrequent reads).
-  enum DatasetStorageBillingModel {
+  enum DatasetStorageBillingModel implements TerraformEnum {
     logical('LOGICAL'),
     physical('PHYSICAL');
 
     const DatasetStorageBillingModel(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

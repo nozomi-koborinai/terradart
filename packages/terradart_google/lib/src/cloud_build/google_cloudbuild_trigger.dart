@@ -14,11 +14,12 @@ const Set<String> _googleCloudbuildTriggerSensitive = <String>{};
 /// `include_build_logs`. Controls whether Cloud Build forwards build
 /// logs back to the originating GitHub check-run. Only meaningful for
 /// triggers attached to a GitHub source.
-enum CloudBuildTriggerIncludeBuildLogs {
+enum CloudBuildTriggerIncludeBuildLogs implements TerraformEnum {
   unspecified('INCLUDE_BUILD_LOGS_UNSPECIFIED'),
   withStatus('INCLUDE_BUILD_LOGS_WITH_STATUS');
 
   const CloudBuildTriggerIncludeBuildLogs(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -28,7 +29,7 @@ enum CloudBuildTriggerIncludeBuildLogs {
 /// [CloudbuildTriggerDeveloperConnectEventConfig] pull-request filters.
 /// Decides whether a repository owner / collaborator must comment
 /// `/gcbrun` before a build runs against the PR.
-enum CloudBuildTriggerCommentControl {
+enum CloudBuildTriggerCommentControl implements TerraformEnum {
   commentsDisabled('COMMENTS_DISABLED'),
   commentsEnabled('COMMENTS_ENABLED'),
   commentsEnabledForExternalContributorsOnly(
@@ -36,6 +37,7 @@ enum CloudBuildTriggerCommentControl {
   );
 
   const CloudBuildTriggerCommentControl(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -44,13 +46,14 @@ enum CloudBuildTriggerCommentControl {
 /// when the URI alone cannot ([cloudSourceRepositories], [github],
 /// [bitbucketServer]); use [unknown] only when the type really is
 /// undetermined.
-enum CloudBuildTriggerRepoType {
+enum CloudBuildTriggerRepoType implements TerraformEnum {
   unknown('UNKNOWN'),
   cloudSourceRepositories('CLOUD_SOURCE_REPOSITORIES'),
   github('GITHUB'),
   bitbucketServer('BITBUCKET_SERVER');
 
   const CloudBuildTriggerRepoType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -60,11 +63,12 @@ enum CloudBuildTriggerRepoType {
 /// always treats this as [allowLoose] regardless — the field is mostly
 /// useful when re-running the same build config standalone via
 /// `gcloud builds submit`.
-enum CloudBuildTriggerSubstitutionOption {
+enum CloudBuildTriggerSubstitutionOption implements TerraformEnum {
   mustMatch('MUST_MATCH'),
   allowLoose('ALLOW_LOOSE');
 
   const CloudBuildTriggerSubstitutionOption(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -72,12 +76,13 @@ enum CloudBuildTriggerSubstitutionOption {
 /// project-default log streaming behavior; [streamOn] forces logs to
 /// stream live (visible in the Cloud Build console while the build is
 /// running); [streamOff] suppresses live streaming.
-enum CloudBuildTriggerLogStreamingOption {
+enum CloudBuildTriggerLogStreamingOption implements TerraformEnum {
   streamDefault('STREAM_DEFAULT'),
   streamOn('STREAM_ON'),
   streamOff('STREAM_OFF');
 
   const CloudBuildTriggerLogStreamingOption(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -92,7 +97,7 @@ enum CloudBuildTriggerLogStreamingOption {
 /// - [cloudLoggingOnly]: logs go to Cloud Logging only (recommended).
 /// - [none]: suppresses logging entirely (rarely useful — debugging
 ///   failures requires re-running with logging re-enabled).
-enum CloudBuildTriggerBuildLogging {
+enum CloudBuildTriggerBuildLogging implements TerraformEnum {
   loggingUnspecified('LOGGING_UNSPECIFIED'),
   legacy('LEGACY'),
   gcsOnly('GCS_ONLY'),
@@ -101,18 +106,20 @@ enum CloudBuildTriggerBuildLogging {
   none('NONE');
 
   const CloudBuildTriggerBuildLogging(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// One entry in `build.options.source_provenance_hash[]`. Picks the
 /// hash algorithm Cloud Build records on the source archive uploaded
 /// for the build. Multiple algorithms can be requested simultaneously.
-enum CloudBuildTriggerSourceProvenanceHash {
+enum CloudBuildTriggerSourceProvenanceHash implements TerraformEnum {
   none('NONE'),
   sha256('SHA256'),
   md5('MD5');
 
   const CloudBuildTriggerSourceProvenanceHash(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -120,11 +127,12 @@ enum CloudBuildTriggerSourceProvenanceHash {
 /// Cloud Build emits an attestation that the build produced the
 /// declared `images[]` (used by Binary Authorization). [notVerified] is
 /// the default and skips the attestation.
-enum CloudBuildTriggerRequestedVerifyOption {
+enum CloudBuildTriggerRequestedVerifyOption implements TerraformEnum {
   notVerified('NOT_VERIFIED'),
   verified('VERIFIED');
 
   const CloudBuildTriggerRequestedVerifyOption(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -1005,11 +1013,10 @@ class CloudbuildTriggerBuildOptions {
 ///   `google_cloudbuildv2_repository` id (typically passed as
 ///   `var.cloudbuildv2_repository_id`).
 ///
-/// Composition pattern: extends `Resource<$GoogleCloudbuildTrigger>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleCloudbuildTrigger extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_cloudbuild_trigger';
+  static const String tfType = 'google_cloudbuild_trigger';
 
   GoogleCloudbuildTrigger({
     required super.localName,
@@ -1040,7 +1047,7 @@ final class GoogleCloudbuildTrigger extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            if (name != null) 'name': name,
            if (location != null) 'location': location,
@@ -1085,8 +1092,7 @@ final class GoogleCloudbuildTrigger extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleCloudbuildTriggerSensitive;
+  Set<String> get sensitiveFields => _googleCloudbuildTriggerSensitive;
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -31,7 +31,7 @@ classDocComment: |-
   /// ```
   ///
   /// Manages a regional subnetwork within a VPC. Composition pattern:
-  /// extends `Resource<$GoogleComputeSubnetwork>` for runtime behavior.
+  /// extends `Resource` for runtime behavior.
 
 paramOrder:
   - name
@@ -94,7 +94,7 @@ prelude: |
   /// Private Service Connect published service. `peerMigration` reserves the
   /// subnet for migrating resources between peered networks. `privateNat` is
   /// used as the source range for Private NAT gateways.
-  enum SubnetworkPurpose {
+  enum SubnetworkPurpose implements TerraformEnum {
     private('PRIVATE'),
     regionalManagedProxy('REGIONAL_MANAGED_PROXY'),
     globalManagedProxy('GLOBAL_MANAGED_PROXY'),
@@ -103,42 +103,46 @@ prelude: |
     privateNat('PRIVATE_NAT');
 
     const SubnetworkPurpose(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// Role of a managed-proxy subnetwork. Only meaningful when `purpose` is
   /// `REGIONAL_MANAGED_PROXY` or `GLOBAL_MANAGED_PROXY`.
-  enum SubnetworkRole {
+  enum SubnetworkRole implements TerraformEnum {
     active('ACTIVE'),
     backup('BACKUP');
 
     const SubnetworkRole(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// IP stack type for the subnetwork. Immutable after creation.
-  enum SubnetworkStackType {
+  enum SubnetworkStackType implements TerraformEnum {
     ipv4Only('IPV4_ONLY'),
     ipv4Ipv6('IPV4_IPV6'),
     ipv6Only('IPV6_ONLY');
 
     const SubnetworkStackType(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// Access type of the IPv6 address range held by the subnetwork. Immutable
   /// after creation. Only meaningful when [SubnetworkStackType] includes IPv6.
-  enum SubnetworkIpv6AccessType {
+  enum SubnetworkIpv6AccessType implements TerraformEnum {
     internal('INTERNAL'),
     external('EXTERNAL');
 
     const SubnetworkIpv6AccessType(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// VPC flow log aggregation interval. The default on GCP is
   /// [interval5Sec] (denser sampling, higher cost).
-  enum SubnetworkLogConfigAggregationInterval {
+  enum SubnetworkLogConfigAggregationInterval implements TerraformEnum {
     interval5Sec('INTERVAL_5_SEC'),
     interval30Sec('INTERVAL_30_SEC'),
     interval1Min('INTERVAL_1_MIN'),
@@ -147,23 +151,25 @@ prelude: |
     interval15Min('INTERVAL_15_MIN');
 
     const SubnetworkLogConfigAggregationInterval(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// VPC flow log metadata-inclusion mode. Pair `customMetadata` with the
   /// [ComputeSubnetworkSubnetworkLogConfig.metadataFields] selector.
-  enum SubnetworkLogConfigMetadata {
+  enum SubnetworkLogConfigMetadata implements TerraformEnum {
     includeAllMetadata('INCLUDE_ALL_METADATA'),
     excludeAllMetadata('EXCLUDE_ALL_METADATA'),
     customMetadata('CUSTOM_METADATA');
 
     const SubnetworkLogConfigMetadata(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// ARP resolution mode for the subnetwork. Controls which ranges respond
   /// to ARP requests. Used only by reserved-internal-range subnetworks.
-  enum SubnetworkResolveSubnetMask {
+  enum SubnetworkResolveSubnetMask implements TerraformEnum {
     arpAllRanges('ARP_ALL_RANGES'),
     arpPrimaryRange('ARP_PRIMARY_RANGE'),
     arpBroadcastPrimaryRange('ARP_BROADCAST_PRIMARY_RANGE'),
@@ -172,6 +178,7 @@ prelude: |
     );
 
     const SubnetworkResolveSubnetMask(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

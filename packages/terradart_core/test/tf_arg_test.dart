@@ -161,13 +161,17 @@ void main() {
   });
 }
 
-/// Sample enum with the convention (`terraformValue` String getter).
-enum _SampleEnum {
+/// Sample enum with the convention (`implements TerraformEnum`, providing
+/// a `terraformValue` String field). v0.11.0 (ADR-0016) requires
+/// codegen-emitted enums to declare the interface; this fixture matches.
+enum _SampleEnum implements TerraformEnum {
   alpha('ALPHA_VALUE');
 
   const _SampleEnum(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
-/// Sample enum WITHOUT the convention. TfArg should throw on this.
+/// Sample enum WITHOUT the convention (no `implements TerraformEnum`).
+/// TfArg should throw on this.
 enum _BareEnum { first }

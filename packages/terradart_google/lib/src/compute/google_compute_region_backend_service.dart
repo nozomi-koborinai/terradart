@@ -19,7 +19,7 @@ const Set<String> _googleComputeRegionBackendServiceSensitive = <String>{
 /// `SSL`, and `UDP` are for Passthrough Network Load Balancing /
 /// regional internal proxy routing. `GRPC` is required when the URL
 /// map is bound to a regional target gRPC proxy.
-enum RegionBackendServiceProtocol {
+enum RegionBackendServiceProtocol implements TerraformEnum {
   http('HTTP'),
   https('HTTPS'),
   http2('HTTP2'),
@@ -31,6 +31,7 @@ enum RegionBackendServiceProtocol {
   h2c('H2C');
 
   const RegionBackendServiceProtocol(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -44,7 +45,7 @@ enum RegionBackendServiceProtocol {
 /// [internalManaged] (Internal Application LB / Regional External
 /// Application LB) are unique to the regional resource and will be
 /// rejected by `google_compute_backend_service`.
-enum RegionBackendServiceLoadBalancingScheme {
+enum RegionBackendServiceLoadBalancingScheme implements TerraformEnum {
   external('EXTERNAL'),
   externalManaged('EXTERNAL_MANAGED'),
   internal('INTERNAL'),
@@ -52,6 +53,7 @@ enum RegionBackendServiceLoadBalancingScheme {
   internalSelfManaged('INTERNAL_SELF_MANAGED');
 
   const RegionBackendServiceLoadBalancingScheme(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -62,7 +64,7 @@ enum RegionBackendServiceLoadBalancingScheme {
 /// Passthrough NLBs only [maglev] and [weightedMaglev] are honored;
 /// for INTERNAL_MANAGED with HTTP-class protocols the full set is
 /// available.
-enum RegionBackendServiceLocalityLbPolicy {
+enum RegionBackendServiceLocalityLbPolicy implements TerraformEnum {
   roundRobin('ROUND_ROBIN'),
   leastRequest('LEAST_REQUEST'),
   ringHash('RING_HASH'),
@@ -73,6 +75,7 @@ enum RegionBackendServiceLocalityLbPolicy {
   weightedRoundRobin('WEIGHTED_ROUND_ROBIN');
 
   const RegionBackendServiceLocalityLbPolicy(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -82,7 +85,7 @@ enum RegionBackendServiceLocalityLbPolicy {
 /// 5-tuple variants apply directly. The regional resource adds
 /// [clientIpNoDestination] (Passthrough NLB variant that ignores the
 /// destination tuple component) versus the global resource.
-enum RegionBackendServiceSessionAffinity {
+enum RegionBackendServiceSessionAffinity implements TerraformEnum {
   none('NONE'),
   clientIp('CLIENT_IP'),
   clientIpPortProto('CLIENT_IP_PORT_PROTO'),
@@ -94,53 +97,58 @@ enum RegionBackendServiceSessionAffinity {
   strongCookieAffinity('STRONG_COOKIE_AFFINITY');
 
   const RegionBackendServiceSessionAffinity(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `ip_address_selection_policy`. Controls IPv4-vs-IPv6 preference when
 /// the load balancer dials a backend (or when a proxyless gRPC client
 /// dials directly).
-enum RegionBackendServiceIpAddressSelectionPolicy {
+enum RegionBackendServiceIpAddressSelectionPolicy implements TerraformEnum {
   ipv4Only('IPV4_ONLY'),
   preferIpv6('PREFER_IPV6'),
   ipv6Only('IPV6_ONLY');
 
   const RegionBackendServiceIpAddressSelectionPolicy(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Per-backend balancing mode. See [ComputeRegionBackendServiceRegionBackendServiceBackend.balancingMode].
 /// Note: the regional resource omits the global `IN_FLIGHT` mode.
-enum RegionBackendServiceBalancingMode {
+enum RegionBackendServiceBalancingMode implements TerraformEnum {
   utilization('UTILIZATION'),
   rate('RATE'),
   connection('CONNECTION'),
   customMetrics('CUSTOM_METRICS');
 
   const RegionBackendServiceBalancingMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `cdn_policy.cache_mode`. Enabling CDN (`enable_cdn = true`) without
 /// setting this defaults to `CACHE_ALL_STATIC`.
-enum RegionBackendServiceCacheMode {
+enum RegionBackendServiceCacheMode implements TerraformEnum {
   useOriginHeaders('USE_ORIGIN_HEADERS'),
   forceCacheAll('FORCE_CACHE_ALL'),
   cacheAllStatic('CACHE_ALL_STATIC');
 
   const RegionBackendServiceCacheMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `log_config.optional_mode`. Controls which optional access-log
 /// fields are exported when [ComputeRegionBackendServiceRegionBackendServiceLogConfig.enable] is
 /// true.
-enum RegionBackendServiceLogOptionalMode {
+enum RegionBackendServiceLogOptionalMode implements TerraformEnum {
   includeAllOptional('INCLUDE_ALL_OPTIONAL'),
   excludeAllOptional('EXCLUDE_ALL_OPTIONAL'),
   custom('CUSTOM');
 
   const RegionBackendServiceLogOptionalMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -152,22 +160,24 @@ enum RegionBackendServiceLogOptionalMode {
 ///   or ICMPv6 Router Advertisement (IPv6) packet to immediately but
 ///   temporarily redirect traffic to itself. Faster than the leader
 ///   API path; intended for sub-second failover.
-enum RegionBackendServiceFastIpMove {
+enum RegionBackendServiceFastIpMove implements TerraformEnum {
   disabled('DISABLED'),
   garpRa('GARP_RA');
 
   const RegionBackendServiceFastIpMove(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `network_pass_through_lb_traffic_policy.zonal_affinity.spillover`.
 /// Zonal-affinity selector for Internal Passthrough NLBs.
-enum RegionBackendServiceZonalAffinitySpillover {
+enum RegionBackendServiceZonalAffinitySpillover implements TerraformEnum {
   zonalAffinityDisabled('ZONAL_AFFINITY_DISABLED'),
   zonalAffinitySpillCrossZone('ZONAL_AFFINITY_SPILL_CROSS_ZONE'),
   zonalAffinityStayWithinZone('ZONAL_AFFINITY_STAY_WITHIN_ZONE');
 
   const RegionBackendServiceZonalAffinitySpillover(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -436,7 +446,7 @@ class ComputeRegionBackendServiceRegionBackendServiceCdnNegativeCachingPolicy {
 ///
 /// **Sensitive**: [oauth2ClientSecret] is flagged sensitive in the
 /// schema and is masked at synth time via the generated
-/// `$sensitiveFields` set. The computed
+/// `sensitiveFields` set. The computed
 /// `oauth2_client_secret_sha256` is also sensitive — provider
 /// implementation detail; nothing to set on this side.
 @immutable
@@ -455,7 +465,7 @@ class ComputeRegionBackendServiceRegionBackendServiceIap {
   final TfArg<String>? oauth2ClientId;
 
   /// OAuth 2.0 client secret. **Sensitive** — round-trips through
-  /// `$sensitiveFields`.
+  /// `sensitiveFields`.
   final TfArg<String>? oauth2ClientSecret;
 
   Map<String, Object?> toArgMap() => {
@@ -1058,15 +1068,14 @@ class ComputeRegionBackendServiceRegionBackendServiceParams {
 /// );
 /// ```
 ///
-/// Sensitive fields (round-trip through the generated `$sensitiveFields`
+/// Sensitive fields (round-trip through the generated `sensitiveFields`
 /// set): `iap.oauth2_client_secret` and the computed
 /// `iap.oauth2_client_secret_sha256` (provider-side detail). The global
 /// `security_settings.aws_v4_authentication.access_key` is **not**
 /// present on the regional resource — `security_settings` has no
 /// regional analog.
 final class GoogleComputeRegionBackendService extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_region_backend_service';
+  static const String tfType = 'google_compute_region_backend_service';
 
   GoogleComputeRegionBackendService({
     required super.localName,
@@ -1112,7 +1121,7 @@ final class GoogleComputeRegionBackendService extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            if (region != null) 'region': region,
@@ -1173,8 +1182,7 @@ final class GoogleComputeRegionBackendService extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googleComputeRegionBackendServiceSensitive;
 
   /// Reference to `name` attribute.

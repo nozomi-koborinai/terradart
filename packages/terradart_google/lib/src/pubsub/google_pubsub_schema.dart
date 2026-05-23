@@ -13,7 +13,7 @@ const Set<String> _googlePubsubSchemaSensitive = <String>{};
 /// `type` -- the payload shape this schema validates. Schema default
 /// `TYPE_UNSPECIFIED` (no validation); pick [protocolBuffer] or [avro]
 /// to enable publisher-side validation of message payloads.
-enum PubsubSchemaType {
+enum PubsubSchemaType implements TerraformEnum {
   /// Default. No payload validation is performed. Equivalent to omitting
   /// `type` in HCL.
   typeUnspecified('TYPE_UNSPECIFIED'),
@@ -26,6 +26,7 @@ enum PubsubSchemaType {
   avro('AVRO');
 
   const PubsubSchemaType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -74,13 +75,12 @@ enum PubsubSchemaType {
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GooglePubsubSchema>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior. `argMap` stores `TfArg<dynamic>?` entries directly.
 /// Synth's JSON-encoding pass walks them and calls `arg.toTfJson()` to
 /// encode at write time.
 final class GooglePubsubSchema extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_pubsub_schema';
+  static const String tfType = 'google_pubsub_schema';
 
   GooglePubsubSchema({
     required super.localName,
@@ -91,7 +91,7 @@ final class GooglePubsubSchema extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            if (type != null) 'type': type,
@@ -101,8 +101,7 @@ final class GooglePubsubSchema extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googlePubsubSchemaSensitive;
+  Set<String> get sensitiveFields => _googlePubsubSchemaSensitive;
 
   /// Reference to `name` attribute. Use for interpolations like
   /// `schema.nameRef` -> `${google_pubsub_schema.<localName>.name}`.

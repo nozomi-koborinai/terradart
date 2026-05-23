@@ -163,8 +163,7 @@ class CloudTasksQueueQueueOidcToken {
 ///   Required for ergonomic clarity even though the underlying provider
 ///   attribute is technically Optional.
 final class GoogleCloudTasksQueue extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_cloud_tasks_queue';
+  static const String tfType = 'google_cloud_tasks_queue';
 
   GoogleCloudTasksQueue({
     required super.localName,
@@ -180,7 +179,7 @@ final class GoogleCloudTasksQueue extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'location': location,
@@ -204,8 +203,7 @@ final class GoogleCloudTasksQueue extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleCloudTasksQueueSensitive;
+  Set<String> get sensitiveFields => _googleCloudTasksQueueSensitive;
 
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
   TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');

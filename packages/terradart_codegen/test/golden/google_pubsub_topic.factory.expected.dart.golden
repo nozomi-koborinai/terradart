@@ -22,13 +22,12 @@ const Set<String> _googlePubsubTopicSensitive = <String>{};
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GooglePubsubTopic>` for runtime
+/// Composition pattern: extends `Resource` for runtime
 /// behavior. `argMap` stores `TfArg<dynamic>?` entries directly. Synth's
 /// JSON-encoding pass walks them and calls `arg.toTfJson()` to encode at
 /// write time.
 final class GooglePubsubTopic extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_pubsub_topic';
+  static const String tfType = 'google_pubsub_topic';
 
   GooglePubsubTopic({
     required super.localName,
@@ -45,7 +44,7 @@ final class GooglePubsubTopic extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
@@ -65,8 +64,7 @@ final class GooglePubsubTopic extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googlePubsubTopicSensitive;
+  Set<String> get sensitiveFields => _googlePubsubTopicSensitive;
 
   /// Reference to `name` attribute. Use for interpolations like
   /// `topic.nameRef` → `${google_pubsub_topic.<localName>.name}`.

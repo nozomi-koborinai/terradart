@@ -117,7 +117,7 @@ classDocComment: |-
   /// ```
   ///
   /// Composition pattern: extends
-  /// `Resource<$GoogleBigqueryDataTransferConfig>` for runtime behavior.
+  /// `Resource` for runtime behavior.
   /// The nested helpers
   /// ([BigqueryDataTransferConfigScheduleOptions],
   /// [BigqueryDataTransferConfigEmailPreferences],
@@ -148,7 +148,7 @@ paramOrder:
   - project
 
 # Schema-flagged `sensitive: true` on `sensitive_params.secret_access_key`
-# auto-populates the generated `$sensitiveFields` set with the dotted
+# auto-populates the generated `sensitiveFields` set with the dotted
 # snake_case path. We restate it here so the contract is visible in the
 # override file itself — a reviewer scanning this file does not have to
 # cross-reference the schema to confirm the masking surface. Duplicates
@@ -259,7 +259,7 @@ prelude: |
   /// errors at apply time.
   ///
   /// Only the plaintext [secretAccessKey] is schema-flagged sensitive
-  /// (round-trips through the wrapper's `$sensitiveFields` set, synth
+  /// (round-trips through the wrapper's `sensitiveFields` set, synth
   /// masks it). Prefer the write-only siblings ([secretAccessKeyWo] +
   /// [secretAccessKeyWoVersion]) on Terraform 1.11+: the plaintext never
   /// enters Terraform state, and bumping the integer
@@ -274,7 +274,7 @@ prelude: |
     });
 
     /// AWS secret access key for the `amazon_s3` data source. Sensitive
-    /// — masked from plan output and surfaced in `$sensitiveFields`. The
+    /// — masked from plan output and surfaced in `sensitiveFields`. The
     /// matching access key id (non-secret) goes in the parent
     /// [GoogleBigqueryDataTransferConfig.params] map under the key
     /// `'access_key_id'`.

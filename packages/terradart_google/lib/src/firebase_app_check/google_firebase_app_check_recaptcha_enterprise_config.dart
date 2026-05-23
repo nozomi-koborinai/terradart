@@ -40,8 +40,7 @@ const Set<String> _googleFirebaseAppCheckRecaptchaEnterpriseConfigSensitive =
 /// (iOS). There are no nested blocks aside from the meta-arg `timeouts`,
 /// which is intentionally not surfaced (a Terraform meta-arg).
 final class GoogleFirebaseAppCheckRecaptchaEnterpriseConfig extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType =
+  static const String tfType =
       'google_firebase_app_check_recaptcha_enterprise_config';
 
   GoogleFirebaseAppCheckRecaptchaEnterpriseConfig({
@@ -53,7 +52,7 @@ final class GoogleFirebaseAppCheckRecaptchaEnterpriseConfig extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'app_id': appId,
            'site_key': siteKey,
@@ -63,8 +62,7 @@ final class GoogleFirebaseAppCheckRecaptchaEnterpriseConfig extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googleFirebaseAppCheckRecaptchaEnterpriseConfigSensitive;
 
   /// Reference to `name` attribute (the relative resource name of the

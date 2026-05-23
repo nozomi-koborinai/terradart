@@ -68,7 +68,7 @@ classDocComment: |-
   /// ```
   ///
   /// Manages a Cloud Run v2 fully-managed service. Composition pattern:
-  /// extends `Resource<$GoogleCloudRunV2Service>` for runtime behavior.
+  /// extends `Resource` for runtime behavior.
 
 paramOrder:
   - name
@@ -140,19 +140,20 @@ prelude: |
   /// Ingress restriction for `google_cloud_run_v2_service.ingress`. Controls
   /// which clients can reach the service URL. `all` is the default; the two
   /// `internal*` modes require Direct VPC egress or a load balancer in front.
-  enum Ingress {
+  enum Ingress implements TerraformEnum {
     all('INGRESS_TRAFFIC_ALL'),
     internalOnly('INGRESS_TRAFFIC_INTERNAL_ONLY'),
     internalLoadBalancer('INGRESS_TRAFFIC_INTERNAL_LOAD_BALANCER');
 
     const Ingress(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// Launch stage for `google_cloud_run_v2_service.launch_stage`. Setting a
   /// pre-GA stage on input allows preview features in that stage; on read
   /// the field reflects the highest preview level actually used.
-  enum LaunchStage {
+  enum LaunchStage implements TerraformEnum {
     unimplemented('UNIMPLEMENTED'),
     prelaunch('PRELAUNCH'),
     earlyAccess('EARLY_ACCESS'),
@@ -162,6 +163,7 @@ prelude: |
     deprecatedStage('DEPRECATED');
 
     const LaunchStage(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -169,11 +171,12 @@ prelude: |
   /// `allTraffic` routes every outbound request through the connector or
   /// network interface; `privateRangesOnly` keeps RFC1918 + Google APIs
   /// inside the VPC and bypasses it for the public internet.
-  enum VpcAccessEgress {
+  enum VpcAccessEgress implements TerraformEnum {
     allTraffic('ALL_TRAFFIC'),
     privateRangesOnly('PRIVATE_RANGES_ONLY');
 
     const VpcAccessEgress(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -181,33 +184,36 @@ prelude: |
   /// applicable) other Cloud Run v2 scaling blocks. `automatic` lets the
   /// runtime pick instance count from min/max bounds; `manual` pins to a
   /// fixed [CloudRunV2ServiceServiceScaling.manualInstanceCount].
-  enum ScalingMode {
+  enum ScalingMode implements TerraformEnum {
     automatic('AUTOMATIC'),
     manual('MANUAL');
 
     const ScalingMode(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// Container sandbox environment for [CloudRunV2ServiceTemplate.executionEnvironment].
   /// `gen2` enables GCSFuse volumes + larger CPU/memory tiers; `gen1` keeps
   /// the legacy gVisor sandbox.
-  enum ExecutionEnvironment {
+  enum ExecutionEnvironment implements TerraformEnum {
     gen1('EXECUTION_ENVIRONMENT_GEN1'),
     gen2('EXECUTION_ENVIRONMENT_GEN2');
 
     const ExecutionEnvironment(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// Allocation type for one [CloudRunV2ServiceTraffic] split. `latest` always points at the
   /// newest Ready revision (so `revision` MUST be omitted); `revision`
   /// pins to the [CloudRunV2ServiceTraffic.revision] name.
-  enum TrafficTargetAllocationType {
+  enum TrafficTargetAllocationType implements TerraformEnum {
     latest('TRAFFIC_TARGET_ALLOCATION_TYPE_LATEST'),
     revision('TRAFFIC_TARGET_ALLOCATION_TYPE_REVISION');
 
     const TrafficTargetAllocationType(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -215,11 +221,12 @@ prelude: |
   /// `MEMORY` for v2 services; encoded as an enum for type-safety and to
   /// keep the door open for `DISK` (MM lists it but the provider rejects
   /// it today).
-  enum EmptyDirMedium {
+  enum EmptyDirMedium implements TerraformEnum {
     memory('MEMORY'),
     disk('DISK');
 
     const EmptyDirMedium(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

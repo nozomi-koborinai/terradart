@@ -14,17 +14,20 @@ const Set<String> _googleCloudTasksQueueSensitive = <String>{};
 /// `rate_limits` block.
 @immutable
 class CloudTasksQueueRateLimits {
-  const CloudTasksQueueRateLimits({this.maxConcurrentDispatches, this.maxDispatchesPerSecond});
+  const CloudTasksQueueRateLimits({
+    this.maxConcurrentDispatches,
+    this.maxDispatchesPerSecond,
+  });
 
   final TfArg<int>? maxConcurrentDispatches;
   final TfArg<num>? maxDispatchesPerSecond;
 
   Map<String, Object?> encode() => {
-        if (maxConcurrentDispatches != null)
-          'max_concurrent_dispatches': maxConcurrentDispatches!.toTfJson(),
-        if (maxDispatchesPerSecond != null)
-          'max_dispatches_per_second': maxDispatchesPerSecond!.toTfJson(),
-      };
+    if (maxConcurrentDispatches != null)
+      'max_concurrent_dispatches': maxConcurrentDispatches!.toTfJson(),
+    if (maxDispatchesPerSecond != null)
+      'max_dispatches_per_second': maxDispatchesPerSecond!.toTfJson(),
+  };
 }
 
 /// `retry_config` block (Cloud Tasks queue-level retry policy).
@@ -45,29 +48,33 @@ class CloudTasksQueueRetryConfig {
   final TfArg<int>? maxDoublings;
 
   Map<String, Object?> encode() => {
-        if (maxAttempts != null) 'max_attempts': maxAttempts!.toTfJson(),
-        if (maxRetryDuration != null)
-          'max_retry_duration': maxRetryDuration!.toTfJson(),
-        if (minBackoff != null) 'min_backoff': minBackoff!.toTfJson(),
-        if (maxBackoff != null) 'max_backoff': maxBackoff!.toTfJson(),
-        if (maxDoublings != null) 'max_doublings': maxDoublings!.toTfJson(),
-      };
+    if (maxAttempts != null) 'max_attempts': maxAttempts!.toTfJson(),
+    if (maxRetryDuration != null)
+      'max_retry_duration': maxRetryDuration!.toTfJson(),
+    if (minBackoff != null) 'min_backoff': minBackoff!.toTfJson(),
+    if (maxBackoff != null) 'max_backoff': maxBackoff!.toTfJson(),
+    if (maxDoublings != null) 'max_doublings': maxDoublings!.toTfJson(),
+  };
 }
 
 /// `app_engine_routing_override` block (queue-level App Engine fallback).
 @immutable
 class CloudTasksQueueAppEngineRoutingOverride {
-  const CloudTasksQueueAppEngineRoutingOverride({this.service, this.version, this.instance});
+  const CloudTasksQueueAppEngineRoutingOverride({
+    this.service,
+    this.version,
+    this.instance,
+  });
 
   final TfArg<String>? service;
   final TfArg<String>? version;
   final TfArg<String>? instance;
 
   Map<String, Object?> encode() => {
-        if (service != null) 'service': service!.toTfJson(),
-        if (version != null) 'version': version!.toTfJson(),
-        if (instance != null) 'instance': instance!.toTfJson(),
-      };
+    if (service != null) 'service': service!.toTfJson(),
+    if (version != null) 'version': version!.toTfJson(),
+    if (instance != null) 'instance': instance!.toTfJson(),
+  };
 }
 
 /// `stackdriver_logging_config` block — sampling ratio for queue logs.
@@ -82,7 +89,7 @@ class CloudTasksQueueStackdriverLoggingConfig {
 
 /// `http_target` block on the queue (NOT on the per-task HTTP request — this
 /// is the queue-level URL override). Named `CloudTasksQueueQueueHttpTarget` to avoid
-/// colliding with `CloudSchedulerJobHttpTarget` in `cloud_scheduler/`.
+/// colliding with `HttpTarget` in `cloud_scheduler/`.
 @immutable
 class CloudTasksQueueQueueHttpTarget {
   const CloudTasksQueueQueueHttpTarget({
@@ -100,41 +107,47 @@ class CloudTasksQueueQueueHttpTarget {
   final CloudTasksQueueQueueOidcToken? oidcToken;
 
   Map<String, Object?> encode() => {
-        if (uriOverride != null) 'uri_override': uriOverride!.toTfJson(),
-        if (httpMethod != null) 'http_method': httpMethod!.toTfJson(),
-        if (headerOverrides != null)
-          'header_overrides': headerOverrides!.toTfJson(),
-        if (oauthToken != null) 'oauth_token': oauthToken!.encode(),
-        if (oidcToken != null) 'oidc_token': oidcToken!.encode(),
-      };
+    if (uriOverride != null) 'uri_override': uriOverride!.toTfJson(),
+    if (httpMethod != null) 'http_method': httpMethod!.toTfJson(),
+    if (headerOverrides != null)
+      'header_overrides': headerOverrides!.toTfJson(),
+    if (oauthToken != null) 'oauth_token': oauthToken!.encode(),
+    if (oidcToken != null) 'oidc_token': oidcToken!.encode(),
+  };
 }
 
 /// OAuth token for queue-level HTTP target.
 @immutable
 class CloudTasksQueueQueueOauthToken {
-  const CloudTasksQueueQueueOauthToken({required this.serviceAccountEmail, this.scope});
+  const CloudTasksQueueQueueOauthToken({
+    required this.serviceAccountEmail,
+    this.scope,
+  });
 
   final TfArg<String> serviceAccountEmail;
   final TfArg<String>? scope;
 
   Map<String, Object?> encode() => {
-        'service_account_email': serviceAccountEmail.toTfJson(),
-        if (scope != null) 'scope': scope!.toTfJson(),
-      };
+    'service_account_email': serviceAccountEmail.toTfJson(),
+    if (scope != null) 'scope': scope!.toTfJson(),
+  };
 }
 
 /// OIDC token for queue-level HTTP target.
 @immutable
 class CloudTasksQueueQueueOidcToken {
-  const CloudTasksQueueQueueOidcToken({required this.serviceAccountEmail, this.audience});
+  const CloudTasksQueueQueueOidcToken({
+    required this.serviceAccountEmail,
+    this.audience,
+  });
 
   final TfArg<String> serviceAccountEmail;
   final TfArg<String>? audience;
 
   Map<String, Object?> encode() => {
-        'service_account_email': serviceAccountEmail.toTfJson(),
-        if (audience != null) 'audience': audience!.toTfJson(),
-      };
+    'service_account_email': serviceAccountEmail.toTfJson(),
+    if (audience != null) 'audience': audience!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -150,8 +163,7 @@ class CloudTasksQueueQueueOidcToken {
 ///   Required for ergonomic clarity even though the underlying provider
 ///   attribute is technically Optional.
 final class GoogleCloudTasksQueue extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_cloud_tasks_queue';
+  static const String tfType = 'google_cloud_tasks_queue';
 
   GoogleCloudTasksQueue({
     required super.localName,
@@ -167,32 +179,31 @@ final class GoogleCloudTasksQueue extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            'location': location,
-            if (appEngineRoutingOverride != null)
-              'app_engine_routing_override': TfArg.literal(
-                appEngineRoutingOverride.encode(),
-              ),
-            if (rateLimits != null)
-              'rate_limits': TfArg.literal(rateLimits.encode()),
-            if (retryConfig != null)
-              'retry_config': TfArg.literal(retryConfig.encode()),
-            if (stackdriverLoggingConfig != null)
-              'stackdriver_logging_config': TfArg.literal(
-                stackdriverLoggingConfig.encode(),
-              ),
-            if (httpTarget != null)
-              'http_target': TfArg.literal(httpTarget.encode()),
-            if (project != null) 'project': project,
-            if (desiredState != null) 'desired_state': desiredState,
-          },
-        );
+         terraformType: tfType,
+         argMap: {
+           'name': name,
+           'location': location,
+           if (appEngineRoutingOverride != null)
+             'app_engine_routing_override': TfArg.literal(
+               appEngineRoutingOverride.encode(),
+             ),
+           if (rateLimits != null)
+             'rate_limits': TfArg.literal(rateLimits.encode()),
+           if (retryConfig != null)
+             'retry_config': TfArg.literal(retryConfig.encode()),
+           if (stackdriverLoggingConfig != null)
+             'stackdriver_logging_config': TfArg.literal(
+               stackdriverLoggingConfig.encode(),
+             ),
+           if (httpTarget != null)
+             'http_target': TfArg.literal(httpTarget.encode()),
+           if (project != null) 'project': project,
+           if (desiredState != null) 'desired_state': desiredState,
+         },
+       );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleCloudTasksQueueSensitive;
+  Set<String> get sensitiveFields => _googleCloudTasksQueueSensitive;
 
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
   TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');

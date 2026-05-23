@@ -9,11 +9,12 @@ const Set<String> _googleComputeGlobalAddressSensitive = <String>{};
 /// `address_type` for `google_compute_global_address`. Default `external`
 /// (public IP). Use `internal` for in-VPC ranges (private-services
 /// peering, internal load balancer VIPs).
-enum GlobalAddressType {
+enum GlobalAddressType implements TerraformEnum {
   external('EXTERNAL'),
   internal('INTERNAL');
 
   const GlobalAddressType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -26,20 +27,22 @@ enum GlobalAddressType {
 ///   [GoogleServiceNetworkingConnection].
 /// - [privateServiceConnect]: PSC consumer endpoint backing a PSC
 ///   forwarding rule (Beta in MM, GA in the provider).
-enum GlobalAddressPurpose {
+enum GlobalAddressPurpose implements TerraformEnum {
   vpcPeering('VPC_PEERING'),
   privateServiceConnect('PRIVATE_SERVICE_CONNECT');
 
   const GlobalAddressPurpose(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// IP protocol version for the global address. Default `ipv4`.
-enum GlobalAddressIpVersion {
+enum GlobalAddressIpVersion implements TerraformEnum {
   ipv4('IPV4'),
   ipv6('IPV6');
 
   const GlobalAddressIpVersion(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -87,11 +90,10 @@ enum GlobalAddressIpVersion {
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GoogleComputeGlobalAddress>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior.
 final class GoogleComputeGlobalAddress extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_global_address';
+  static const String tfType = 'google_compute_global_address';
 
   GoogleComputeGlobalAddress({
     required super.localName,
@@ -108,7 +110,7 @@ final class GoogleComputeGlobalAddress extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            if (addressType != null) 'address_type': addressType,
@@ -124,8 +126,7 @@ final class GoogleComputeGlobalAddress extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleComputeGlobalAddressSensitive;
+  Set<String> get sensitiveFields => _googleComputeGlobalAddressSensitive;
 
   /// Reference to `name` attribute. Use this when downstream consumers
   /// (notably [GoogleServiceNetworkingConnection.reservedPeeringRanges])

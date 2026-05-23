@@ -15,7 +15,7 @@ const Set<String> _googleFirebaseRemoteConfigRemoteConfigSensitive = <String>{};
 /// condition in the Firebase Console. The 11 values below come from the
 /// schema's enumerated "Possible values" list. Leaving this null (the
 /// schema-default) lets the Console pick a colour automatically.
-enum RemoteConfigTagColor {
+enum RemoteConfigTagColor implements TerraformEnum {
   blue('BLUE'),
   brown('BROWN'),
   cyan('CYAN'),
@@ -29,6 +29,7 @@ enum RemoteConfigTagColor {
   teal('TEAL');
 
   const RemoteConfigTagColor(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -37,13 +38,14 @@ enum RemoteConfigTagColor {
 /// [FirebaseRemoteConfigRemoteConfigRemoteConfigConditionalValue.value]. `string` is the schema default.
 /// `jsonValue` covers any structured payload (the wire format is still a
 /// string -- the client is expected to JSON-parse it).
-enum RemoteConfigValueType {
+enum RemoteConfigValueType implements TerraformEnum {
   string('STRING'),
   boolean('BOOLEAN'),
   number('NUMBER'),
   jsonValue('JSON');
 
   const RemoteConfigValueType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -339,8 +341,7 @@ class FirebaseRemoteConfigRemoteConfigRemoteConfigParameterGroup {
 /// cannot) cross-validate these references at compile time; mismatches
 /// surface at apply time from the Remote Config API.
 final class GoogleFirebaseRemoteConfigRemoteConfig extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_firebase_remote_config_remote_config';
+  static const String tfType = 'google_firebase_remote_config_remote_config';
 
   GoogleFirebaseRemoteConfigRemoteConfig({
     required super.localName,
@@ -352,7 +353,7 @@ final class GoogleFirebaseRemoteConfigRemoteConfig extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            if (parameters != null)
              'parameters': TfArg.literal(
@@ -371,8 +372,7 @@ final class GoogleFirebaseRemoteConfigRemoteConfig extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googleFirebaseRemoteConfigRemoteConfigSensitive;
 
   /// Reference to `name` attribute (full resource path, of the shape

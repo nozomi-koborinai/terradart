@@ -73,7 +73,7 @@ final class WrapperOverride {
   final List<String>? argMapOrder;
 
   /// Verbatim Dart source for any extra getters (TfRef, computed
-  /// shortcuts, etc.) inserted between `$sensitiveFields` and the closing
+  /// shortcuts, etc.) inserted between `sensitiveFields` and the closing
   /// `}` of the wrapper class.
   ///
   /// The string MUST already carry the proper indent (two spaces for

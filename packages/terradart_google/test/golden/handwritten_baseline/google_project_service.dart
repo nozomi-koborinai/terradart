@@ -46,14 +46,13 @@ const Set<String> _googleProjectServiceSensitive = <String>{};
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GoogleProjectService>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior, implements `$GoogleProjectService` for the schemantic
 /// schema surface. `argMap` stores `TfArg<dynamic>?` entries directly;
 /// synth's JSON-encoding pass walks them and calls `arg.toTfJson()` to
 /// encode at write time.
 final class GoogleProjectService extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_project_service';
+  static const String tfType = 'google_project_service';
 
   GoogleProjectService({
     required super.localName,
@@ -64,20 +63,18 @@ final class GoogleProjectService extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'service': service,
-            if (project != null) 'project': project,
-            if (disableOnDestroy != null)
-              'disable_on_destroy': disableOnDestroy,
-            if (disableDependentServices != null)
-              'disable_dependent_services': disableDependentServices,
-          },
-        );
+         terraformType: tfType,
+         argMap: {
+           'service': service,
+           if (project != null) 'project': project,
+           if (disableOnDestroy != null) 'disable_on_destroy': disableOnDestroy,
+           if (disableDependentServices != null)
+             'disable_dependent_services': disableDependentServices,
+         },
+       );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleProjectServiceSensitive;
+  Set<String> get sensitiveFields => _googleProjectServiceSensitive;
 
   /// Reference to `id` attribute (full path `[project]/services/[service]`).
   /// Use this when another resource needs to reference the enablement, e.g.

@@ -3,6 +3,21 @@ import 'package:meta/meta.dart';
 import 'duration_helper.dart';
 import 'tf_ref.dart';
 
+/// Implemented by every codegen-emitted Dart enum whose values map to
+/// Terraform string literals (e.g. `KmsKeyPurpose.encryptDecrypt` →
+/// `'ENCRYPT_DECRYPT'`).
+///
+/// `TfArg.literal` dispatches on this interface to encode enum payloads
+/// statically; the duck-typed `dynamic` cast it previously relied on is
+/// retired. The interface is non-generic — the underlying enum type is
+/// encoded by the `enum` declaration that implements it.
+abstract interface class TerraformEnum {
+  /// The Terraform-side string literal this enum value encodes to.
+  /// Convention: emitted exactly as it appears in provider docs (typically
+  /// `SCREAMING_SNAKE_CASE` for GCP).
+  String get terraformValue;
+}
+
 /// A Terraform argument: either a Dart-side literal or a Terraform-side
 /// reference.
 ///
@@ -65,28 +80,27 @@ final class TfArgLiteral<T> extends TfArg<T> {
   @override
   Object? toTfJson() {
     final v = value;
+    // v0.11.0 (ADR-0016): enum dispatch goes through the
+    // [TerraformEnum] interface, replacing the prior duck-typed `dynamic`
+    // cast. The interface check sits ahead of the `Enum` check so flow
+    // analysis can narrow `v` directly (a TerraformEnum is always an Enum
+    // in practice, but the language doesn't track that, so we'd otherwise
+    // need an explicit cast after `v is Enum`).
+    if (v is TerraformEnum) {
+      return v.terraformValue;
+    }
     if (v is Enum) {
-      // Phase 4.5.1 (TG-4): Dart enums aren't JSON-encodable by default
-      // (`dart:convert` would throw "Converting object to an encodable
-      // object failed: Instance of '<Enum>'"). Convention: any enum that
-      // ships a `String terraformValue` getter is encoded as that value.
-      // Detected via dynamic dispatch — no terradart_core ↔ user-defined-
-      // enum interface coupling, but the no-getter case is a clear error
-      // (silent wrong output is worse).
-      final dyn = v as dynamic;
-      try {
-        // ignore: avoid_dynamic_calls
-        final tv = dyn.terraformValue;
-        if (tv is String) return tv;
-      } on NoSuchMethodError {
-        // fall through to ArgumentError below
-      }
+      // Dart enums aren't JSON-encodable by default (`dart:convert` would
+      // throw "Converting object to an encodable object failed: Instance
+      // of '<Enum>'"). Any enum that reaches this branch lacks the
+      // [TerraformEnum] interface — that's a hard error, since silent
+      // wrong output is worse than a clear ArgumentError at synth time.
       throw ArgumentError(
         'TfArg.literal received an Enum value '
         '${v.runtimeType}.${v.name} but ${v.runtimeType} does not '
-        'expose a `String terraformValue` getter. Add '
-        '`final String terraformValue;` to the enum (with a '
-        '`const X(this.terraformValue);` constructor) or pass '
+        'implement `TerraformEnum`. Add `implements TerraformEnum` to '
+        'the enum declaration (with a `final String terraformValue;` '
+        'field and `const X(this.terraformValue);` constructor) or pass '
         '`TfArg.literal(value.someStringGetter)` explicitly.',
       );
     }

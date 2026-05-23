@@ -90,7 +90,7 @@ prelude: |
   /// metrics, and deleting the Terraform resource returns the service to
   /// the same `OFF` state. Only the two non-`OFF` values are surfaced as
   /// enum members.
-  enum AppCheckEnforcementMode {
+  enum AppCheckEnforcementMode implements TerraformEnum {
     /// App Check is NOT enforced; metrics ARE collected. Use this to
     /// observe how clients would fare under enforcement before flipping the
     /// switch.
@@ -102,5 +102,6 @@ prelude: |
     enforced('ENFORCED');
 
     const AppCheckEnforcementMode(this.terraformValue);
+    @override
     final String terraformValue;
   }

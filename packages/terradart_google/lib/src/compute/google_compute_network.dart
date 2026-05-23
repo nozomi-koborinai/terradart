@@ -12,40 +12,44 @@ const Set<String> _googleComputeNetworkSensitive = <String>{};
 
 /// Routing mode for `google_compute_network`. Controls how routes are
 /// advertised between VPC subnets (regional) or all subnets (global).
-enum RoutingMode {
+enum RoutingMode implements TerraformEnum {
   regional('REGIONAL'),
   global('GLOBAL');
 
   const RoutingMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// BGP best-path selection algorithm for the VPC.
-enum BgpBestPathSelectionMode {
+enum BgpBestPathSelectionMode implements TerraformEnum {
   legacy('LEGACY'),
   standard('STANDARD');
 
   const BgpBestPathSelectionMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// BGP inter-region cost calculation behaviour. Used when
 /// `bgpBestPathSelectionMode == standard`.
-enum BgpInterRegionCost {
+enum BgpInterRegionCost implements TerraformEnum {
   defaultCost('DEFAULT'),
   addCostToMed('ADD_COST_TO_MED');
 
   const BgpInterRegionCost(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Order in which a network firewall policy is enforced relative to
 /// classic firewall rules.
-enum NetworkFirewallPolicyEnforcementOrder {
+enum NetworkFirewallPolicyEnforcementOrder implements TerraformEnum {
   beforeClassicFirewall('BEFORE_CLASSIC_FIREWALL'),
   afterClassicFirewall('AFTER_CLASSIC_FIREWALL');
 
   const NetworkFirewallPolicyEnforcementOrder(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -68,10 +72,9 @@ enum NetworkFirewallPolicyEnforcementOrder {
 /// ```
 ///
 /// Manages a VPC network or legacy network resource on GCP. Composition
-/// pattern: extends `Resource<$GoogleComputeNetwork>` for runtime behavior.
+/// pattern: extends `Resource` for runtime behavior.
 final class GoogleComputeNetwork extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_network';
+  static const String tfType = 'google_compute_network';
 
   GoogleComputeNetwork({
     required super.localName,
@@ -94,7 +97,7 @@ final class GoogleComputeNetwork extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            if (autoCreateSubnetworks != null)
@@ -125,8 +128,7 @@ final class GoogleComputeNetwork extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleComputeNetworkSensitive;
+  Set<String> get sensitiveFields => _googleComputeNetworkSensitive;
 
   /// Reference to `name` attribute. Use for interpolations like
   /// `network.nameRef` → `${google_compute_network.<localName>.name}`.

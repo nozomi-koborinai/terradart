@@ -13,22 +13,24 @@ const Set<String> _googleFirestoreDatabaseSensitive = <String>{};
 
 /// `type` -- choose between Cloud Firestore's two API modes. Forces
 /// replacement when changed.
-enum FirestoreDatabaseType {
+enum FirestoreDatabaseType implements TerraformEnum {
   firestoreNative('FIRESTORE_NATIVE'),
   datastoreMode('DATASTORE_MODE');
 
   const FirestoreDatabaseType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `database_edition` -- pricing + feature tier. `enterprise` unlocks the
 /// MongoDB-compatible / Realtime-Updates / Data-Access modes but forces
 /// `type` to be `firestoreNative`.
-enum DatabaseEdition {
+enum DatabaseEdition implements TerraformEnum {
   standard('STANDARD'),
   enterprise('ENTERPRISE');
 
   const DatabaseEdition(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -36,77 +38,84 @@ enum DatabaseEdition {
 /// `optimistic` is the default for Native mode; `pessimistic` is the
 /// default for Datastore mode. `optimisticWithEntityGroups` is a legacy
 /// Datastore-mode option.
-enum ConcurrencyMode {
+enum ConcurrencyMode implements TerraformEnum {
   optimistic('OPTIMISTIC'),
   pessimistic('PESSIMISTIC'),
   optimisticWithEntityGroups('OPTIMISTIC_WITH_ENTITY_GROUPS');
 
   const ConcurrencyMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `app_engine_integration_mode` -- whether the database participates in
 /// the legacy App Engine integration. Only meaningful for Datastore-mode
 /// databases that were originally provisioned via App Engine.
-enum AppEngineIntegrationMode {
+enum AppEngineIntegrationMode implements TerraformEnum {
   enabled('ENABLED'),
   disabled('DISABLED');
 
   const AppEngineIntegrationMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `point_in_time_recovery_enablement` -- when `enabled`, reads can
 /// target timestamps within the past 7 days (1-minute granularity beyond
 /// the most-recent hour). Default `disabled`.
-enum PointInTimeRecoveryEnablement {
+enum PointInTimeRecoveryEnablement implements TerraformEnum {
   enabled('POINT_IN_TIME_RECOVERY_ENABLED'),
   disabled('POINT_IN_TIME_RECOVERY_DISABLED');
 
   const PointInTimeRecoveryEnablement(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `delete_protection_state` -- when `enabled`, the database refuses
 /// delete operations until protection is disabled. Default `unspecified`
 /// (server-side equivalent to `disabled`).
-enum DeleteProtectionState {
+enum DeleteProtectionState implements TerraformEnum {
   unspecified('DELETE_PROTECTION_STATE_UNSPECIFIED'),
   enabled('DELETE_PROTECTION_ENABLED'),
   disabled('DELETE_PROTECTION_DISABLED');
 
   const DeleteProtectionState(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `firestore_data_access_mode` -- whether the Firestore document API is
 /// accessible. Only valid for `enterprise` edition. Use to lock down a
 /// database to MongoDB-compatible / Realtime-Updates access only.
-enum FirestoreDataAccessMode {
+enum FirestoreDataAccessMode implements TerraformEnum {
   enabled('DATA_ACCESS_MODE_ENABLED'),
   disabled('DATA_ACCESS_MODE_DISABLED');
 
   const FirestoreDataAccessMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `mongodb_compatible_data_access_mode` -- whether the MongoDB-compatible
 /// API is accessible. Only valid for `enterprise` edition.
-enum MongodbCompatibleDataAccessMode {
+enum MongodbCompatibleDataAccessMode implements TerraformEnum {
   enabled('DATA_ACCESS_MODE_ENABLED'),
   disabled('DATA_ACCESS_MODE_DISABLED');
 
   const MongodbCompatibleDataAccessMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `realtime_updates_mode` -- whether the WebSocket-based realtime
 /// listener API is accessible. Only valid for `enterprise` edition.
-enum RealtimeUpdatesMode {
+enum RealtimeUpdatesMode implements TerraformEnum {
   enabled('REALTIME_UPDATES_MODE_ENABLED'),
   disabled('REALTIME_UPDATES_MODE_DISABLED');
 
   const RealtimeUpdatesMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -166,8 +175,7 @@ class FirestoreDatabaseCmekConfig {
 /// (via `terraform import`) is often the right move before placing it
 /// under Terraform control.
 final class GoogleFirestoreDatabase extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_firestore_database';
+  static const String tfType = 'google_firestore_database';
 
   GoogleFirestoreDatabase({
     required super.localName,
@@ -189,7 +197,7 @@ final class GoogleFirestoreDatabase extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'location_id': locationId,
@@ -218,8 +226,7 @@ final class GoogleFirestoreDatabase extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleFirestoreDatabaseSensitive;
+  Set<String> get sensitiveFields => _googleFirestoreDatabaseSensitive;
 
   /// Reference to `name` attribute (`google_firestore_database.<id>.name`).
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

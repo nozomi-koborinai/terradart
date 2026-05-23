@@ -11,35 +11,38 @@ const Set<String> _googleDnsManagedZoneSensitive = <String>{};
 // ===========================================================================
 
 /// Visibility of a managed zone (`google_dns_managed_zone.visibility`).
-enum DnsZoneVisibility {
+enum DnsZoneVisibility implements TerraformEnum {
   public('public'),
   private('private');
 
   const DnsZoneVisibility(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `dnssec_config.state` — whether DNSSEC is on, off, or in transfer.
-enum DnssecState {
+enum DnssecState implements TerraformEnum {
   off('off'),
   on('on'),
   transfer('transfer');
 
   const DnssecState(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `dnssec_config.non_existence` — proof-of-non-existence record type.
-enum DnssecNonExistence {
+enum DnssecNonExistence implements TerraformEnum {
   nsec('nsec'),
   nsec3('nsec3');
 
   const DnssecNonExistence(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `dnssec_config.default_key_specs.algorithm`.
-enum DnssecKeyAlgorithm {
+enum DnssecKeyAlgorithm implements TerraformEnum {
   ecdsap256sha256('ecdsap256sha256'),
   ecdsap384sha384('ecdsap384sha384'),
   rsasha1('rsasha1'),
@@ -47,25 +50,28 @@ enum DnssecKeyAlgorithm {
   rsasha512('rsasha512');
 
   const DnssecKeyAlgorithm(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `dnssec_config.default_key_specs.key_type` — KSK vs ZSK.
-enum DnssecKeyType {
+enum DnssecKeyType implements TerraformEnum {
   keySigning('keySigning'),
   zoneSigning('zoneSigning');
 
   const DnssecKeyType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `forwarding_config.target_name_servers.forwarding_path` — how Cloud DNS
 /// resolves the target's address range.
-enum ForwardingPath {
+enum ForwardingPath implements TerraformEnum {
   standard('default'),
   private('private');
 
   const ForwardingPath(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -232,8 +238,7 @@ class DnsManagedZoneCloudLoggingConfig {
 /// factory wraps the encoded map in a single-element list before passing
 /// it to Terraform.
 final class GoogleDnsManagedZone extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_dns_managed_zone';
+  static const String tfType = 'google_dns_managed_zone';
 
   GoogleDnsManagedZone({
     required super.localName,
@@ -252,7 +257,7 @@ final class GoogleDnsManagedZone extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'dns_name': dnsName,
@@ -279,8 +284,7 @@ final class GoogleDnsManagedZone extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleDnsManagedZoneSensitive;
+  Set<String> get sensitiveFields => _googleDnsManagedZoneSensitive;
 
   /// Reference to `id` attribute (`projects/{project}/managedZones/{name}`).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

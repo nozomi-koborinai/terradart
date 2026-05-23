@@ -61,7 +61,7 @@ classDocComment: |-
   /// - [reconciling]: server-side reconciliation flag.
   /// - [etag]: optimistic-concurrency token.
   ///
-  /// Composition pattern: extends `Resource<$GoogleCloudbuildv2Connection>`
+  /// Composition pattern: extends `Resource`
   /// for runtime behavior.
 
 paramOrder:

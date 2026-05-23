@@ -24,7 +24,7 @@ const Set<String> _googleBigqueryCapacityCommitmentSensitive = <String>{};
 /// `FLEX`, `TRIAL`, `MONTHLY`, `ANNUAL`, `THREE_YEAR`. Schema does
 /// not enumerate explicitly — see the field description for the
 /// authoritative link.
-enum BigqueryCapacityCommitmentPlan {
+enum BigqueryCapacityCommitmentPlan implements TerraformEnum {
   flex('FLEX'),
   trial('TRIAL'),
   monthly('MONTHLY'),
@@ -32,6 +32,7 @@ enum BigqueryCapacityCommitmentPlan {
   threeYear('THREE_YEAR');
 
   const BigqueryCapacityCommitmentPlan(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -39,7 +40,7 @@ enum BigqueryCapacityCommitmentPlan {
 /// Documented values: `NONE` (no renewal — commitment lapses),
 /// `FLEX`, `MONTHLY`, `ANNUAL`, `THREE_YEAR`. (`TRIAL` is a
 /// commitment-creation-only plan and is not a valid renewal target.)
-enum BigqueryCapacityCommitmentRenewalPlan {
+enum BigqueryCapacityCommitmentRenewalPlan implements TerraformEnum {
   none('NONE'),
   flex('FLEX'),
   monthly('MONTHLY'),
@@ -47,6 +48,7 @@ enum BigqueryCapacityCommitmentRenewalPlan {
   threeYear('THREE_YEAR');
 
   const BigqueryCapacityCommitmentRenewalPlan(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -57,12 +59,13 @@ enum BigqueryCapacityCommitmentRenewalPlan {
 /// `BigqueryReservationEdition` even though both wrap the same GCP
 /// enum — keeping resource-scoped naming avoids cross-resource
 /// coupling.
-enum BigqueryCapacityCommitmentEdition {
+enum BigqueryCapacityCommitmentEdition implements TerraformEnum {
   standard('STANDARD'),
   enterprise('ENTERPRISE'),
   enterprisePlus('ENTERPRISE_PLUS');
 
   const BigqueryCapacityCommitmentEdition(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -109,8 +112,7 @@ enum BigqueryCapacityCommitmentEdition {
 /// );
 /// ```
 final class GoogleBigqueryCapacityCommitment extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_bigquery_capacity_commitment';
+  static const String tfType = 'google_bigquery_capacity_commitment';
 
   GoogleBigqueryCapacityCommitment({
     required super.localName,
@@ -125,7 +127,7 @@ final class GoogleBigqueryCapacityCommitment extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'capacity_commitment_id': capacityCommitmentId,
            if (location != null) 'location': location,
@@ -141,9 +143,7 @@ final class GoogleBigqueryCapacityCommitment extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
-      _googleBigqueryCapacityCommitmentSensitive;
+  Set<String> get sensitiveFields => _googleBigqueryCapacityCommitmentSensitive;
 
   /// Reference to `name` attribute — the full commitment resource path
   /// (`projects/{project}/locations/{location}/capacityCommitments/{id}`).

@@ -21,7 +21,7 @@ const Set<String> _googleComputeForwardingRuleSensitive = <String>{};
 /// service with `UNSPECIFIED` protocol, and pairs with `allPorts: true`
 /// for internal protocol forwarding. It is rejected when the backend
 /// service explicitly declares `TCP` or `UDP`.
-enum ForwardingRuleIpProtocol {
+enum ForwardingRuleIpProtocol implements TerraformEnum {
   tcp('TCP'),
   udp('UDP'),
   esp('ESP'),
@@ -31,6 +31,7 @@ enum ForwardingRuleIpProtocol {
   l3Default('L3_DEFAULT');
 
   const ForwardingRuleIpProtocol(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -40,11 +41,12 @@ enum ForwardingRuleIpProtocol {
 /// rules) typically pairs with [GoogleComputeForwardingRule.ipCollection]
 /// pointing at a `PublicDelegatedPrefix` in
 /// `EXTERNAL_IPV6_FORWARDING_RULE_CREATION` mode.
-enum ForwardingRuleIpVersion {
+enum ForwardingRuleIpVersion implements TerraformEnum {
   ipv4('IPV4'),
   ipv6('IPV6');
 
   const ForwardingRuleIpVersion(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -68,13 +70,14 @@ enum ForwardingRuleIpVersion {
 /// Note: the global resource also accepts `INTERNAL_SELF_MANAGED`
 /// (Traffic Director); regional forwarding rules do **not** — that
 /// scheme is global-only.
-enum ForwardingRuleLoadBalancingScheme {
+enum ForwardingRuleLoadBalancingScheme implements TerraformEnum {
   external('EXTERNAL'),
   externalManaged('EXTERNAL_MANAGED'),
   internal('INTERNAL'),
   internalManaged('INTERNAL_MANAGED');
 
   const ForwardingRuleLoadBalancingScheme(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -83,11 +86,12 @@ enum ForwardingRuleLoadBalancingScheme {
 /// must match the tier of the referenced
 /// [GoogleComputeForwardingRule.ipAddress] when one is supplied. Leave
 /// `null` to inherit the provider default (`PREMIUM`).
-enum ForwardingRuleNetworkTier {
+enum ForwardingRuleNetworkTier implements TerraformEnum {
   premium('PREMIUM'),
   standard('STANDARD');
 
   const ForwardingRuleNetworkTier(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -219,11 +223,10 @@ class ComputeForwardingRuleForwardingRuleServiceDirectoryRegistration {
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GoogleComputeForwardingRule>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleComputeForwardingRule extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_forwarding_rule';
+  static const String tfType = 'google_compute_forwarding_rule';
 
   GoogleComputeForwardingRule({
     required super.localName,
@@ -257,7 +260,7 @@ final class GoogleComputeForwardingRule extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            if (region != null) 'region': region,
@@ -298,8 +301,7 @@ final class GoogleComputeForwardingRule extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleComputeForwardingRuleSensitive;
+  Set<String> get sensitiveFields => _googleComputeForwardingRuleSensitive;
 
   /// Reference to `name` attribute. Use for interpolations like
   /// `fwd.nameRef` →

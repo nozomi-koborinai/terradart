@@ -24,13 +24,14 @@ const Set<String> _googleComputeRegionAutoscalerSensitive = <String>{};
 /// - [onlyScaleOut] — alias for [onlyUp]; some GCP samples still use
 ///   this name. Retained for surface compatibility.
 /// - [on] — full bidirectional autoscaling.
-enum RegionAutoscalerMode {
+enum RegionAutoscalerMode implements TerraformEnum {
   off('OFF'),
   onlyUp('ONLY_UP'),
   onlyScaleOut('ONLY_SCALE_OUT'),
   on('ON');
 
   const RegionAutoscalerMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -39,11 +40,12 @@ enum RegionAutoscalerMode {
 /// - [none] — disable predictive autoscaling (default).
 /// - [optimizeAvailability] — monitor weekly load patterns and scale out
 ///   ahead of anticipated demand.
-enum RegionAutoscalerCpuPredictiveMethod {
+enum RegionAutoscalerCpuPredictiveMethod implements TerraformEnum {
   none('NONE'),
   optimizeAvailability('OPTIMIZE_AVAILABILITY');
 
   const RegionAutoscalerCpuPredictiveMethod(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -54,12 +56,13 @@ enum RegionAutoscalerCpuPredictiveMethod {
 ///   keeps it at [ComputeRegionAutoscalerRegionAutoscalerMetric.target].
 /// - [deltaPerSecond] — the metric is a per-second rate.
 /// - [deltaPerMinute] — the metric is a per-minute rate.
-enum RegionAutoscalerMetricType {
+enum RegionAutoscalerMetricType implements TerraformEnum {
   gauge('GAUGE'),
   deltaPerSecond('DELTA_PER_SECOND'),
   deltaPerMinute('DELTA_PER_MINUTE');
 
   const RegionAutoscalerMetricType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -442,10 +445,9 @@ class ComputeRegionAutoscalerRegionAutoscalerScalingSchedule {
 /// parallel `Autoscaler...` family on the zonal sibling.
 ///
 /// Composition pattern: extends
-/// `Resource<$GoogleComputeRegionAutoscaler>` for runtime behavior.
+/// `Resource` for runtime behavior.
 final class GoogleComputeRegionAutoscaler extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_region_autoscaler';
+  static const String tfType = 'google_compute_region_autoscaler';
 
   GoogleComputeRegionAutoscaler({
     required super.localName,
@@ -459,7 +461,7 @@ final class GoogleComputeRegionAutoscaler extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'region': region,
@@ -471,8 +473,7 @@ final class GoogleComputeRegionAutoscaler extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleComputeRegionAutoscalerSensitive;
+  Set<String> get sensitiveFields => _googleComputeRegionAutoscalerSensitive;
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -281,18 +281,22 @@ class TfJsonEncoder {
 
   /// JSON for one resource block: `argMap` + optional `depends_on` +
   /// optional `lifecycle`. Sensitive fields are masked per
-  /// `Resource.$sensitiveFields`.
+  /// `Resource.sensitiveFields`.
   ///
   /// When [devModeInjectDeletionProtection] is `true` and the resource
-  /// exposes `$supportsDeletionProtection == true` and its `argMap` does
+  /// exposes `supportsDeletionProtection == true` and its `argMap` does
   /// not already contain `deletion_protection`, `false` is injected so
   /// dev stacks can be torn down without manual overrides.
   static Map<String, dynamic> resourceBlock(
     Resource r, {
     bool devModeInjectDeletionProtection = false,
   }) {
+    // `@protected` on the Resource getters expresses subclass-only contract
+    // intent; the synth pipeline is the privileged in-library consumer that
+    // reads them. `ignore` is the standard escape hatch for this case.
     final argMap = devModeInjectDeletionProtection &&
-            r.$supportsDeletionProtection &&
+            // ignore: invalid_use_of_protected_member
+            r.supportsDeletionProtection &&
             !r.argMap.containsKey('deletion_protection')
         ? <String, TfArg<dynamic>?>{
             ...r.argMap,
@@ -301,7 +305,8 @@ class TfJsonEncoder {
         : r.argMap;
     final out = encodeArgMapWithSensitive(
       argMap: argMap,
-      sensitiveFields: r.$sensitiveFields,
+      // ignore: invalid_use_of_protected_member
+      sensitiveFields: r.sensitiveFields,
       resourceAddress: r.tfAddress,
     );
     final deps = r.dependsOn;

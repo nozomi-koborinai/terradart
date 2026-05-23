@@ -14,11 +14,12 @@ const Set<String> _googleFirebaseDataConnectServiceSensitive = <String>{};
 /// Data Connect schemas / connectors still exist. [defaultPolicy] (the
 /// schema default) refuses to delete the service while any are present;
 /// [force] tears the service down regardless.
-enum DataConnectDeletionPolicy {
+enum DataConnectDeletionPolicy implements TerraformEnum {
   defaultPolicy('DEFAULT'),
   force('FORCE');
 
   const DataConnectDeletionPolicy(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -59,8 +60,7 @@ enum DataConnectDeletionPolicy {
 /// schemas / connectors still exist; the default leaves the service in
 /// place if any are present.
 final class GoogleFirebaseDataConnectService extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_firebase_data_connect_service';
+  static const String tfType = 'google_firebase_data_connect_service';
 
   GoogleFirebaseDataConnectService({
     required super.localName,
@@ -74,7 +74,7 @@ final class GoogleFirebaseDataConnectService extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'service_id': serviceId,
            'location': location,
@@ -87,9 +87,7 @@ final class GoogleFirebaseDataConnectService extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
-      _googleFirebaseDataConnectServiceSensitive;
+  Set<String> get sensitiveFields => _googleFirebaseDataConnectServiceSensitive;
 
   /// Reference to `name` attribute (full resource path
   /// `projects/{project}/locations/{location}/services/{service_id}`).

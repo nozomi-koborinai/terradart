@@ -13,13 +13,14 @@ const Set<String> _googleBigqueryTableSensitive = <String>{};
 
 /// Partition unit for `time_partitioning.type`. Maps to BigQuery's
 /// supported partition granularities.
-enum TimePartitioningType {
+enum TimePartitioningType implements TerraformEnum {
   day('DAY'),
   hour('HOUR'),
   month('MONTH'),
   year('YEAR');
 
   const TimePartitioningType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -27,7 +28,7 @@ enum TimePartitioningType {
 /// `googleSheets` variant additionally requires
 /// `https://www.googleapis.com/auth/drive.readonly` on the service
 /// account performing the read.
-enum ExternalDataSourceFormat {
+enum ExternalDataSourceFormat implements TerraformEnum {
   csv('CSV'),
   newlineDelimitedJson('NEWLINE_DELIMITED_JSON'),
   avro('AVRO'),
@@ -40,17 +41,19 @@ enum ExternalDataSourceFormat {
   deltaLake('DELTA_LAKE');
 
   const ExternalDataSourceFormat(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Compression for `external_data_configuration.compression`. BigQuery
 /// only accepts these two values; format-specific compression (Snappy
 /// for Parquet, Deflate for Avro, etc.) is inferred from the file.
-enum ExternalDataCompression {
+enum ExternalDataCompression implements TerraformEnum {
   none('NONE'),
   gzip('GZIP');
 
   const ExternalDataCompression(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -58,11 +61,12 @@ enum ExternalDataCompression {
 /// `fileSystemMatch` (default) glob-expands `source_uris` against the
 /// underlying object store; `newLineDelimitedManifest` treats each
 /// source URI as a manifest file containing one object URI per line.
-enum FileSetSpecType {
+enum FileSetSpecType implements TerraformEnum {
   fileSystemMatch('FILE_SET_SPEC_TYPE_FILE_SYSTEM_MATCH'),
   newLineDelimitedManifest('FILE_SET_SPEC_TYPE_NEW_LINE_DELIMITED_MANIFEST');
 
   const FileSetSpecType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -71,11 +75,12 @@ enum FileSetSpecType {
 /// BigQuery refresh the cache on a service-controlled cadence;
 /// `manual` requires explicit `BQ.REFRESH_EXTERNAL_METADATA_CACHE`
 /// calls.
-enum MetadataCacheMode {
+enum MetadataCacheMode implements TerraformEnum {
   automatic('AUTOMATIC'),
   manual('MANUAL');
 
   const MetadataCacheMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -83,11 +88,12 @@ enum MetadataCacheMode {
 /// Set this to create an Object Table (a listing of objects + their
 /// metadata) rather than a regular external table; when set,
 /// `sourceFormat` must be omitted.
-enum ObjectMetadata {
+enum ObjectMetadata implements TerraformEnum {
   simple('SIMPLE'),
   directory('DIRECTORY');
 
   const ObjectMetadata(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -95,13 +101,14 @@ enum ObjectMetadata {
 /// returns when reading the table — `basic` (default) skips storage
 /// stats, `storageStats` adds size counters, `full` includes all
 /// optional fields. `unspecified` is the no-op default.
-enum TableMetadataView {
+enum TableMetadataView implements TerraformEnum {
   unspecified('TABLE_METADATA_VIEW_UNSPECIFIED'),
   basic('BASIC'),
   storageStats('STORAGE_STATS'),
   full('FULL');
 
   const TableMetadataView(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -651,14 +658,13 @@ class BigqueryTableBiglakeConfiguration {
 /// ```
 ///
 /// Manages a BigQuery table. Composition pattern: extends
-/// `Resource<$GoogleBigqueryTable>` for runtime behavior. The nested
+/// `Resource` for runtime behavior. The nested
 /// blocks (time_partitioning / range_partitioning / materialized_view /
 /// view / external_data_configuration / encryption_configuration /
 /// table_constraints / table_replication_info / biglake_configuration)
 /// are modeled as helper classes in the `prelude` below.
 final class GoogleBigqueryTable extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_bigquery_table';
+  static const String tfType = 'google_bigquery_table';
 
   GoogleBigqueryTable({
     required super.localName,
@@ -690,7 +696,7 @@ final class GoogleBigqueryTable extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'dataset_id': datasetId,
            'table_id': tableId,
@@ -744,11 +750,10 @@ final class GoogleBigqueryTable extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleBigqueryTableSensitive;
+  Set<String> get sensitiveFields => _googleBigqueryTableSensitive;
 
   @override
-  bool get $supportsDeletionProtection => true;
+  bool get supportsDeletionProtection => true;
 
   /// Reference to `table_id` attribute.
   TfRef<String> get tableIdRef => TfRef.attribute<String>(this, 'table_id');

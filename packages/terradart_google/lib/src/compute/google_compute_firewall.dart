@@ -12,21 +12,23 @@ const Set<String> _googleComputeFirewallSensitive = <String>{};
 /// Direction of traffic this firewall rule applies to. For `ingress`,
 /// at least one of `sourceRanges` / `sourceTags` / `sourceServiceAccounts`
 /// is required by GCP.
-enum FirewallDirection {
+enum FirewallDirection implements TerraformEnum {
   ingress('INGRESS'),
   egress('EGRESS');
 
   const FirewallDirection(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Whether to include or exclude metadata for firewall logs.
 /// Used as the `metadata` field of [ComputeFirewallFirewallLogConfig].
-enum FirewallLogMetadata {
+enum FirewallLogMetadata implements TerraformEnum {
   includeAllMetadata('INCLUDE_ALL_METADATA'),
   excludeAllMetadata('EXCLUDE_ALL_METADATA');
 
   const FirewallLogMetadata(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -95,12 +97,11 @@ class ComputeFirewallFirewallLogConfig {
 /// ```
 ///
 /// Manages a VPC firewall rule on GCP. Composition pattern: extends
-/// `Resource<$GoogleComputeFirewall>` for runtime behavior. The `allow` /
+/// `Resource` for runtime behavior. The `allow` /
 /// `deny` list-typed blocks and the single `log_config` block are modeled
 /// as helper classes in the `prelude` below.
 final class GoogleComputeFirewall extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_firewall';
+  static const String tfType = 'google_compute_firewall';
 
   GoogleComputeFirewall({
     required super.localName,
@@ -124,7 +125,7 @@ final class GoogleComputeFirewall extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'network': network,
@@ -153,8 +154,7 @@ final class GoogleComputeFirewall extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleComputeFirewallSensitive;
+  Set<String> get sensitiveFields => _googleComputeFirewallSensitive;
 
   /// Reference to `name` attribute. Use for interpolations like
   /// `fw.nameRef` → `${google_compute_firewall.<localName>.name}`.

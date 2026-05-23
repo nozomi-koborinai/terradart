@@ -15,11 +15,12 @@ const Set<String> _googleComputeBackendBucketSensitive = <String>{};
 /// `Accept-Encoding` header. Note: this is a *distinct type* from
 /// `BackendServiceCompressionMode` even though the wire values
 /// (`AUTOMATIC` / `DISABLED`) coincide.
-enum BackendBucketCompressionMode {
+enum BackendBucketCompressionMode implements TerraformEnum {
   automatic('AUTOMATIC'),
   disabled('DISABLED');
 
   const BackendBucketCompressionMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -29,10 +30,11 @@ enum BackendBucketCompressionMode {
 /// [internalManaged] for cross-region internal layer-7 load balancing.
 /// Important: when [internalManaged] is set, `enable_cdn` **must** be
 /// `false` (Cloud CDN is not available for internal schemes).
-enum BackendBucketLoadBalancingScheme {
+enum BackendBucketLoadBalancingScheme implements TerraformEnum {
   internalManaged('INTERNAL_MANAGED');
 
   const BackendBucketLoadBalancingScheme(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -40,12 +42,13 @@ enum BackendBucketLoadBalancingScheme {
 /// setting this defaults to `CACHE_ALL_STATIC`. Note: this is a
 /// *distinct type* from `BackendServiceCacheMode` — bucket-side CDN
 /// policies are not interchangeable with service-side policies.
-enum BackendBucketCacheMode {
+enum BackendBucketCacheMode implements TerraformEnum {
   useOriginHeaders('USE_ORIGIN_HEADERS'),
   forceCacheAll('FORCE_CACHE_ALL'),
   cacheAllStatic('CACHE_ALL_STATIC');
 
   const BackendBucketCacheMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -315,11 +318,10 @@ class ComputeBackendBucketBackendBucketParams {
 /// service CDN configurations are not interchangeable, even where the
 /// schema field names agree.
 ///
-/// Composition pattern: extends `Resource<$GoogleComputeBackendBucket>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleComputeBackendBucket extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_backend_bucket';
+  static const String tfType = 'google_compute_backend_bucket';
 
   GoogleComputeBackendBucket({
     required super.localName,
@@ -337,7 +339,7 @@ final class GoogleComputeBackendBucket extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'bucket_name': bucketName,
@@ -358,8 +360,7 @@ final class GoogleComputeBackendBucket extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleComputeBackendBucketSensitive;
+  Set<String> get sensitiveFields => _googleComputeBackendBucketSensitive;
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

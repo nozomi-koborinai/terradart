@@ -15,7 +15,7 @@ const Set<String> _googleComputeHealthCheckSensitive = <String>{};
 /// it from which per-protocol config block was set), so callers don't
 /// set this directly — they pick the matching `*HealthCheck` block.
 /// Listed here for use in `==` comparisons against [typeRef] reads.
-enum HealthCheckType {
+enum HealthCheckType implements TerraformEnum {
   http('HTTP'),
   https('HTTPS'),
   tcp('TCP'),
@@ -24,16 +24,18 @@ enum HealthCheckType {
   grpc('GRPC');
 
   const HealthCheckType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `proxy_header` value used inside every per-protocol HTTP-shaped block
 /// (HTTP, HTTPS, HTTP2, TCP, SSL). Defaults to [none] on the GCP API.
-enum HealthCheckProxyHeader {
+enum HealthCheckProxyHeader implements TerraformEnum {
   none('NONE'),
   proxyV1('PROXY_V1');
 
   const HealthCheckProxyHeader(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -45,12 +47,13 @@ enum HealthCheckProxyHeader {
 /// - [useServingPort]: for Network Endpoint Groups, use each endpoint's
 ///   declared port; for other backends, use the Backend Service's
 ///   `port` / `port_name`.
-enum HealthCheckPortSpecification {
+enum HealthCheckPortSpecification implements TerraformEnum {
   useFixedPort('USE_FIXED_PORT'),
   useNamedPort('USE_NAMED_PORT'),
   useServingPort('USE_SERVING_PORT');
 
   const HealthCheckPortSpecification(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -366,11 +369,10 @@ class ComputeHealthCheckHealthCheckLogConfig {
 /// - Attach via [GoogleComputeBackendService.healthChecks] (list of
 ///   self-links).
 ///
-/// Composition pattern: extends `Resource<$GoogleComputeHealthCheck>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior.
 final class GoogleComputeHealthCheck extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_health_check';
+  static const String tfType = 'google_compute_health_check';
 
   GoogleComputeHealthCheck({
     required super.localName,
@@ -392,7 +394,7 @@ final class GoogleComputeHealthCheck extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            if (description != null) 'description': description,
@@ -421,8 +423,7 @@ final class GoogleComputeHealthCheck extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleComputeHealthCheckSensitive;
+  Set<String> get sensitiveFields => _googleComputeHealthCheckSensitive;
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

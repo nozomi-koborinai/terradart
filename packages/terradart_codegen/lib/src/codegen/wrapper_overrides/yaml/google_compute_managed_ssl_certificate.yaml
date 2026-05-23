@@ -52,7 +52,7 @@ classDocComment: |-
   /// );
   /// ```
   ///
-  /// Composition pattern: extends `Resource<$GoogleComputeManagedSslCertificate>`
+  /// Composition pattern: extends `Resource`
   /// for runtime behavior. The single `managed` nested block (max_items=1)
   /// is modeled as a helper class in the `prelude` below.
 
@@ -108,10 +108,11 @@ prelude: |
   /// symmetry with the legacy unified `google_compute_ssl_certificate`
   /// resource (which historically distinguished `MANAGED` from
   /// `SELF_MANAGED`). For new code, omit `type` entirely.
-  enum ManagedSslCertificateType {
+  enum ManagedSslCertificateType implements TerraformEnum {
     managed('MANAGED');
 
     const ManagedSslCertificateType(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

@@ -122,102 +122,111 @@ prelude: |
   // ===========================================================================
 
   /// `network_interface.nic_type` -- vNIC family used for the interface.
-  enum NicType {
+  enum NicType implements TerraformEnum {
     gvnic('GVNIC'),
     virtioNet('VIRTIO_NET'),
     mrdma('MRDMA'),
     irdma('IRDMA');
 
     const NicType(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `network_interface.access_config.network_tier` -- service tier for the
   /// external IP. `STANDARD` is regional; `PREMIUM` is global.
-  enum AccessConfigNetworkTier {
+  enum AccessConfigNetworkTier implements TerraformEnum {
     premium('PREMIUM'),
     standard('STANDARD'),
     fixedStandard('FIXED_STANDARD');
 
     const AccessConfigNetworkTier(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `scratch_disk.interface` -- attach bus for the local SSD. Defaults to
   /// `NVME`; `SCSI` is retained for legacy machine families.
-  enum ScratchDiskInterface {
+  enum ScratchDiskInterface implements TerraformEnum {
     scsi('SCSI'),
     nvme('NVME');
 
     const ScratchDiskInterface(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `scheduling.on_host_maintenance` -- behaviour during host maintenance.
   /// `MIGRATE` (live migration) is the default for standard VMs; preemptible /
   /// SPOT / confidential VMs must use `TERMINATE`.
-  enum OnHostMaintenance {
+  enum OnHostMaintenance implements TerraformEnum {
     migrate('MIGRATE'),
     terminate('TERMINATE');
 
     const OnHostMaintenance(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `scheduling.provisioning_model` -- VM provisioning model. `STANDARD` runs
   /// at on-demand prices with no termination guarantees from GCP; `SPOT`
   /// runs at preemptible prices and may be reclaimed at any time.
-  enum ProvisioningModel {
+  enum ProvisioningModel implements TerraformEnum {
     standard('STANDARD'),
     spot('SPOT');
 
     const ProvisioningModel(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `scheduling.instance_termination_action` -- action when a SPOT VM is
   /// preempted or `max_run_duration` elapses.
-  enum InstanceTerminationAction {
+  enum InstanceTerminationAction implements TerraformEnum {
     stop('STOP'),
     delete('DELETE');
 
     const InstanceTerminationAction(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `confidential_instance_config.confidential_instance_type` -- confidential
   /// computing technology. `SEV` and `SEV_SNP` require AMD CPUs (the latter
   /// also requires `min_cpu_platform = "AMD Milan"`). `TDX` requires Intel.
-  enum ConfidentialInstanceType {
+  enum ConfidentialInstanceType implements TerraformEnum {
     sev('SEV'),
     sevSnp('SEV_SNP'),
     tdx('TDX');
 
     const ConfidentialInstanceType(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `advanced_machine_features.performance_monitoring_unit` -- PMU level
   /// exposed to the guest. `ARCHITECTURAL` is the minimum stable subset;
   /// `ENHANCED` exposes the broadest set of counters.
-  enum PerformanceMonitoringUnit {
+  enum PerformanceMonitoringUnit implements TerraformEnum {
     architectural('ARCHITECTURAL'),
     standard('STANDARD'),
     enhanced('ENHANCED');
 
     const PerformanceMonitoringUnit(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `reservation_affinity.type` -- reservation consumption mode. Pair
   /// `specificReservation` with a [ReservationAffinityType.specificReservation]
   /// value to target a named reservation; `noReservation` opts out.
-  enum ReservationAffinityType {
+  enum ReservationAffinityType implements TerraformEnum {
     anyReservation('ANY_RESERVATION'),
     specificReservation('SPECIFIC_RESERVATION'),
     noReservation('NO_RESERVATION');
 
     const ReservationAffinityType(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

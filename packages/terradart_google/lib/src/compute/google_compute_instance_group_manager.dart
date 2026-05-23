@@ -14,34 +14,38 @@ const Set<String> _googleComputeInstanceGroupManagerSensitive = <String>{};
 /// `update_policy.type`. Controls whether the MIG actively performs
 /// the rolling update or waits for an external action (resize,
 /// recreate-instances) to apply it.
-enum InstanceGroupManagerUpdatePolicyType {
+enum InstanceGroupManagerUpdatePolicyType implements TerraformEnum {
   opportunistic('OPPORTUNISTIC'),
   proactive('PROACTIVE');
 
   const InstanceGroupManagerUpdatePolicyType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `update_policy.minimal_action` / `update_policy.most_disruptive_allowed_action`.
 /// Shared enum — both fields accept the same value set.
-enum InstanceGroupManagerUpdatePolicyAction {
+enum InstanceGroupManagerUpdatePolicyAction implements TerraformEnum {
   none('NONE'),
   refresh('REFRESH'),
   restart('RESTART'),
   replace('REPLACE');
 
   const InstanceGroupManagerUpdatePolicyAction(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `update_policy.replacement_method`. `SUBSTITUTE` (default) replaces
 /// VMs with newly-named ones; `RECREATE` preserves instance names but
 /// requires `max_unavailable_*` > 0.
-enum InstanceGroupManagerUpdatePolicyReplacementMethod {
+enum InstanceGroupManagerUpdatePolicyReplacementMethod
+    implements TerraformEnum {
   substitute('SUBSTITUTE'),
   recreate('RECREATE');
 
   const InstanceGroupManagerUpdatePolicyReplacementMethod(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -479,8 +483,7 @@ class ComputeInstanceGroupManagerInstanceGroupManagerResourcePolicies {
 ///
 /// Sensitive fields: none. The MIG carries no secrets in its schema.
 final class GoogleComputeInstanceGroupManager extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_instance_group_manager';
+  static const String tfType = 'google_compute_instance_group_manager';
 
   GoogleComputeInstanceGroupManager({
     required super.localName,
@@ -520,7 +523,7 @@ final class GoogleComputeInstanceGroupManager extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            if (zone != null) 'zone': zone,
@@ -581,8 +584,7 @@ final class GoogleComputeInstanceGroupManager extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googleComputeInstanceGroupManagerSensitive;
 
   /// Reference to `name` attribute.

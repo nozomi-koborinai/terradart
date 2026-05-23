@@ -26,7 +26,7 @@ classDocComment: |-
   /// ```
   ///
   /// Manages a VPC firewall rule on GCP. Composition pattern: extends
-  /// `Resource<$GoogleComputeFirewall>` for runtime behavior. The `allow` /
+  /// `Resource` for runtime behavior. The `allow` /
   /// `deny` list-typed blocks and the single `log_config` block are modeled
   /// as helper classes in the `prelude` below.
 
@@ -71,21 +71,23 @@ prelude: |
   /// Direction of traffic this firewall rule applies to. For `ingress`,
   /// at least one of `sourceRanges` / `sourceTags` / `sourceServiceAccounts`
   /// is required by GCP.
-  enum FirewallDirection {
+  enum FirewallDirection implements TerraformEnum {
     ingress('INGRESS'),
     egress('EGRESS');
 
     const FirewallDirection(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// Whether to include or exclude metadata for firewall logs.
   /// Used as the `metadata` field of [ComputeFirewallFirewallLogConfig].
-  enum FirewallLogMetadata {
+  enum FirewallLogMetadata implements TerraformEnum {
     includeAllMetadata('INCLUDE_ALL_METADATA'),
     excludeAllMetadata('EXCLUDE_ALL_METADATA');
 
     const FirewallLogMetadata(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

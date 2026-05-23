@@ -70,7 +70,7 @@ classDocComment: |-
   /// with the parallel `RegionAutoscaler...` family on the regional
   /// sibling.
   ///
-  /// Composition pattern: extends `Resource<$GoogleComputeAutoscaler>` for
+  /// Composition pattern: extends `Resource` for
   /// runtime behavior.
 
 # Slot order chosen for ergonomic clarity:
@@ -126,13 +126,14 @@ prelude: |
   /// - [onlyScaleOut] — alias for [onlyUp]; some GCP samples still use
   ///   this name. Retained for surface compatibility.
   /// - [on] — full bidirectional autoscaling.
-  enum AutoscalerMode {
+  enum AutoscalerMode implements TerraformEnum {
     off('OFF'),
     onlyUp('ONLY_UP'),
     onlyScaleOut('ONLY_SCALE_OUT'),
     on('ON');
 
     const AutoscalerMode(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -141,11 +142,12 @@ prelude: |
   /// - [none] — disable predictive autoscaling (default).
   /// - [optimizeAvailability] — monitor weekly load patterns and scale out
   ///   ahead of anticipated demand.
-  enum AutoscalerCpuPredictiveMethod {
+  enum AutoscalerCpuPredictiveMethod implements TerraformEnum {
     none('NONE'),
     optimizeAvailability('OPTIMIZE_AVAILABILITY');
 
     const AutoscalerCpuPredictiveMethod(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -156,12 +158,13 @@ prelude: |
   ///   keeps it at [ComputeAutoscalerAutoscalerMetric.target].
   /// - [deltaPerSecond] — the metric is a per-second rate.
   /// - [deltaPerMinute] — the metric is a per-minute rate.
-  enum AutoscalerMetricType {
+  enum AutoscalerMetricType implements TerraformEnum {
     gauge('GAUGE'),
     deltaPerSecond('DELTA_PER_SECOND'),
     deltaPerMinute('DELTA_PER_MINUTE');
 
     const AutoscalerMetricType(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

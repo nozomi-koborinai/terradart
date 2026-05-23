@@ -39,11 +39,10 @@ const Set<String> _googleComputeTargetHttpProxySensitive = <String>{};
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GoogleComputeTargetHttpProxy>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleComputeTargetHttpProxy extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_target_http_proxy';
+  static const String tfType = 'google_compute_target_http_proxy';
 
   GoogleComputeTargetHttpProxy({
     required super.localName,
@@ -56,7 +55,7 @@ final class GoogleComputeTargetHttpProxy extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'url_map': urlMap,
@@ -69,8 +68,7 @@ final class GoogleComputeTargetHttpProxy extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleComputeTargetHttpProxySensitive;
+  Set<String> get sensitiveFields => _googleComputeTargetHttpProxySensitive;
 
   /// Reference to `name` attribute. Use for interpolations like
   /// `proxy.nameRef` →

@@ -9,12 +9,13 @@ const Set<String> _googleServiceAccountKeySensitive = <String>{'private_key'};
 /// Signing algorithm for [GoogleServiceAccountKey.keyAlgorithm]. GCP
 /// supports RSA-1024 (legacy) and RSA-2048 (default); `unspecified`
 /// lets the API pick.
-enum KeyAlgorithm {
+enum KeyAlgorithm implements TerraformEnum {
   unspecified('KEY_ALG_UNSPECIFIED'),
   rsa1024('KEY_ALG_RSA_1024'),
   rsa2048('KEY_ALG_RSA_2048');
 
   const KeyAlgorithm(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -23,24 +24,26 @@ enum KeyAlgorithm {
 /// (the default) returns a JSON credentials file matching what
 /// `gcloud iam service-accounts keys create` emits; `pkcs12File`
 /// returns a PKCS#12 keystore for systems that consume that format.
-enum PrivateKeyType {
+enum PrivateKeyType implements TerraformEnum {
   unspecified('TYPE_UNSPECIFIED'),
   pkcs12File('TYPE_PKCS12_FILE'),
   googleCredentialsFile('TYPE_GOOGLE_CREDENTIALS_FILE');
 
   const PrivateKeyType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Output format for the public key half
 /// ([GoogleServiceAccountKey.publicKeyType]). `x509PemFile` is the most
 /// portable choice; `rawPublicKey` returns just the key material.
-enum PublicKeyType {
+enum PublicKeyType implements TerraformEnum {
   none('TYPE_NONE'),
   x509PemFile('TYPE_X509_PEM_FILE'),
   rawPublicKey('TYPE_RAW_PUBLIC_KEY');
 
   const PublicKeyType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -49,7 +52,7 @@ enum PublicKeyType {
 /// Generates a long-lived JSON service account key for a given SA. The
 /// resulting private key material is exposed via the computed
 /// `private_key` attribute — Terraform marks it **sensitive** and the
-/// emitted [GoogleServiceAccountKey] adds it to `$sensitiveFields` so
+/// emitted [GoogleServiceAccountKey] adds it to `sensitiveFields` so
 /// stack synth masks it from any rendered Terraform JSON / app constants.
 ///
 /// **Security note**: long-lived SA keys are a recurring source of
@@ -79,8 +82,7 @@ enum PublicKeyType {
 ///   Typical pattern: `keepers: TfArg.literal({'rotation': timestamp})`
 ///   refreshed by an external scheduler.
 final class GoogleServiceAccountKey extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_service_account_key';
+  static const String tfType = 'google_service_account_key';
 
   GoogleServiceAccountKey({
     required super.localName,
@@ -93,7 +95,7 @@ final class GoogleServiceAccountKey extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'service_account_id': serviceAccountId,
            if (keyAlgorithm != null) 'key_algorithm': keyAlgorithm,
@@ -105,8 +107,7 @@ final class GoogleServiceAccountKey extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleServiceAccountKeySensitive;
+  Set<String> get sensitiveFields => _googleServiceAccountKeySensitive;
 
   /// Reference to `name` attribute — full key path
   /// `projects/{project}/serviceAccounts/{email}/keys/{keyId}`.

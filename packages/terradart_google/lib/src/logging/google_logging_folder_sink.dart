@@ -74,12 +74,11 @@ class LoggingFolderSinkExclusion {
 ///
 /// Routes log entries from a folder (and optionally its descendants) to a
 /// destination (BigQuery, GCS, Pub/Sub, or Logging bucket). Composition
-/// pattern: extends `Resource<$GoogleLoggingFolderSink>` for runtime
+/// pattern: extends `Resource` for runtime
 /// behavior. The `bigquery_options` block and `exclusions` list are
 /// modeled as helper classes in the `prelude` below.
 final class GoogleLoggingFolderSink extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_logging_folder_sink';
+  static const String tfType = 'google_logging_folder_sink';
 
   GoogleLoggingFolderSink({
     required super.localName,
@@ -96,7 +95,7 @@ final class GoogleLoggingFolderSink extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'folder': folder,
@@ -117,8 +116,7 @@ final class GoogleLoggingFolderSink extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleLoggingFolderSinkSensitive;
+  Set<String> get sensitiveFields => _googleLoggingFolderSinkSensitive;
 
   /// Reference to `id` attribute (`folders/{folder}/sinks/{name}`).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

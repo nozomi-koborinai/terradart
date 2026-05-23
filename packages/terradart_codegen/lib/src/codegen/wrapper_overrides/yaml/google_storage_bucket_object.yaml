@@ -227,7 +227,7 @@ prelude: |
   ///
   /// `durableReducedAvailability` is the legacy class (deprecated 2018);
   /// keep for completeness, GCP still accepts it for existing objects.
-  enum BucketObjectStorageClass {
+  enum BucketObjectStorageClass implements TerraformEnum {
     standard('STANDARD'),
     nearline('NEARLINE'),
     coldline('COLDLINE'),
@@ -237,6 +237,7 @@ prelude: |
     durableReducedAvailability('DURABLE_REDUCED_AVAILABILITY');
 
     const BucketObjectStorageClass(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

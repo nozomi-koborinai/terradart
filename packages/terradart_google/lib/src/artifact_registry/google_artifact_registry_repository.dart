@@ -15,55 +15,60 @@ const Set<String> _googleArtifactRegistryRepositorySensitive = <String>{};
 /// shape: standard (push/pull), virtual (federated view over other
 /// repositories), or remote (pull-through cache of an upstream registry).
 /// The schema defaults to `STANDARD_REPOSITORY`.
-enum ArtifactRegistryMode {
+enum ArtifactRegistryMode implements TerraformEnum {
   standardRepository('STANDARD_REPOSITORY'),
   virtualRepository('VIRTUAL_REPOSITORY'),
   remoteRepository('REMOTE_REPOSITORY');
 
   const ArtifactRegistryMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `cleanup_policies.action` -- what the cleanup policy does to matching
 /// versions when its condition fires.
-enum ArtifactRegistryCleanupAction {
+enum ArtifactRegistryCleanupAction implements TerraformEnum {
   delete('DELETE'),
   keep('KEEP');
 
   const ArtifactRegistryCleanupAction(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `cleanup_policies.condition.tag_state` -- limits a cleanup condition to
 /// tagged / untagged / any versions. Schema default `ANY`.
-enum ArtifactRegistryCleanupTagState {
+enum ArtifactRegistryCleanupTagState implements TerraformEnum {
   any('ANY'),
   tagged('TAGGED'),
   untagged('UNTAGGED');
 
   const ArtifactRegistryCleanupTagState(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `maven_config.version_policy` -- which Maven version classes the
 /// repository accepts. Schema default `VERSION_POLICY_UNSPECIFIED`.
-enum ArtifactRegistryMavenVersionPolicy {
+enum ArtifactRegistryMavenVersionPolicy implements TerraformEnum {
   versionPolicyUnspecified('VERSION_POLICY_UNSPECIFIED'),
   release('RELEASE'),
   snapshot('SNAPSHOT');
 
   const ArtifactRegistryMavenVersionPolicy(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `vulnerability_scanning_config.enablement_config` -- whether
 /// vulnerability scanning is enabled for artifacts pushed to this repo.
 /// `INHERITED` defers to the project-level Artifact Analysis API state.
-enum ArtifactRegistryVulnerabilityEnablementConfig {
+enum ArtifactRegistryVulnerabilityEnablementConfig implements TerraformEnum {
   inherited('INHERITED'),
   disabled('DISABLED');
 
   const ArtifactRegistryVulnerabilityEnablementConfig(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -546,7 +551,7 @@ class ArtifactRegistryRepositoryArtifactRegistryVulnerabilityScanningConfig {
 /// [disableUpstreamValidation]); reach for [advancedExtra] when you
 /// need the format-specific public-repository helpers.
 ///
-/// Sensitive fields (round-trip through the generated `$sensitiveFields`
+/// Sensitive fields (round-trip through the generated `sensitiveFields`
 /// set when marked by the schema): the
 /// `remote_repository_config.upstream_credentials
 /// .username_password_credentials.password_secret_version` field points
@@ -554,8 +559,7 @@ class ArtifactRegistryRepositoryArtifactRegistryVulnerabilityScanningConfig {
 /// -- the credential itself stays in Secret Manager and never lands in
 /// the Terraform state in plaintext.
 final class GoogleArtifactRegistryRepository extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_artifact_registry_repository';
+  static const String tfType = 'google_artifact_registry_repository';
 
   GoogleArtifactRegistryRepository({
     required super.localName,
@@ -581,7 +585,7 @@ final class GoogleArtifactRegistryRepository extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'repository_id': repositoryId,
            'format': format,
@@ -617,9 +621,7 @@ final class GoogleArtifactRegistryRepository extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
-      _googleArtifactRegistryRepositorySensitive;
+  Set<String> get sensitiveFields => _googleArtifactRegistryRepositorySensitive;
 
   /// Reference to `repository_id` attribute (short id; sibling
   /// `*_iam_member` resources consume this as their `repository`

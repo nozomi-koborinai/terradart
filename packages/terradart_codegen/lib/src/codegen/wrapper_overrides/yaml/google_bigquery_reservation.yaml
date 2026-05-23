@@ -80,12 +80,13 @@ prelude: |
   /// `BigqueryCapacityCommitmentEdition` by design (the two resources
   /// reference the same GCP enum but are kept separate at the Dart type
   /// level to preserve resource-scoped naming).
-  enum BigqueryReservationEdition {
+  enum BigqueryReservationEdition implements TerraformEnum {
     standard('STANDARD'),
     enterprise('ENTERPRISE'),
     enterprisePlus('ENTERPRISE_PLUS');
 
     const BigqueryReservationEdition(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

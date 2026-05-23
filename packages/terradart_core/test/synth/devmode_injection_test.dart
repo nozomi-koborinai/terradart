@@ -13,10 +13,10 @@ final class _CapableResource extends Resource {
         );
 
   @override
-  Set<String> get $sensitiveFields => const {};
+  Set<String> get sensitiveFields => const {};
 
   @override
-  bool get $supportsDeletionProtection => true;
+  bool get supportsDeletionProtection => true;
 }
 
 final class _CapableResourceWithExplicitDP extends Resource {
@@ -33,10 +33,10 @@ final class _CapableResourceWithExplicitDP extends Resource {
         );
 
   @override
-  Set<String> get $sensitiveFields => const {};
+  Set<String> get sensitiveFields => const {};
 
   @override
-  bool get $supportsDeletionProtection => true;
+  bool get supportsDeletionProtection => true;
 }
 
 void main() {

@@ -60,8 +60,7 @@ const Set<String> _googleFirebaseAppCheckResourcePolicySensitive = <String>{};
 ///
 /// No nested blocks aside from the meta-arg `timeouts`.
 final class GoogleFirebaseAppCheckResourcePolicy extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_firebase_app_check_resource_policy';
+  static const String tfType = 'google_firebase_app_check_resource_policy';
 
   GoogleFirebaseAppCheckResourcePolicy({
     required super.localName,
@@ -72,7 +71,7 @@ final class GoogleFirebaseAppCheckResourcePolicy extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'service_id': serviceId,
            'target_resource': targetResource,
@@ -82,8 +81,7 @@ final class GoogleFirebaseAppCheckResourcePolicy extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googleFirebaseAppCheckResourcePolicySensitive;
 
   /// Reference to `id` attribute (the full resource path).

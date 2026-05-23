@@ -34,8 +34,7 @@ const Set<String> _googleFirebaseAppCheckAppAttestConfigSensitive = <String>{};
 /// [GoogleFirebaseAppCheckPlayIntegrityConfig] (Android). No nested blocks
 /// aside from the meta-arg `timeouts`.
 final class GoogleFirebaseAppCheckAppAttestConfig extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_firebase_app_check_app_attest_config';
+  static const String tfType = 'google_firebase_app_check_app_attest_config';
 
   GoogleFirebaseAppCheckAppAttestConfig({
     required super.localName,
@@ -45,7 +44,7 @@ final class GoogleFirebaseAppCheckAppAttestConfig extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'app_id': appId,
            if (tokenTtl != null) 'token_ttl': tokenTtl,
@@ -54,8 +53,7 @@ final class GoogleFirebaseAppCheckAppAttestConfig extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googleFirebaseAppCheckAppAttestConfigSensitive;
 
   /// Reference to `name` attribute (the relative resource name of the

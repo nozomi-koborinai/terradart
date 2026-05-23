@@ -20,7 +20,7 @@ const Set<String> _googleComputeRegionUrlMapSensitive = <String>{};
 ///   on the wire; emitted as the literal token `MOVED_PERMANENTLY_DEFAULT`.
 /// - [found] -> 302, [seeOther] -> 303, [temporaryRedirect] -> 307,
 ///   [permanentRedirect] -> 308.
-enum RegionUrlMapRedirectResponseCode {
+enum RegionUrlMapRedirectResponseCode implements TerraformEnum {
   found('FOUND'),
   movedPermanentlyDefault('MOVED_PERMANENTLY_DEFAULT'),
   permanentRedirect('PERMANENT_REDIRECT'),
@@ -28,6 +28,7 @@ enum RegionUrlMapRedirectResponseCode {
   temporaryRedirect('TEMPORARY_REDIRECT');
 
   const RegionUrlMapRedirectResponseCode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -754,11 +755,10 @@ class ComputeRegionUrlMapRegionUrlMapTestHeader {
 /// keyed by the Terraform block name when you need them; see the per-class
 /// doc for the exact escape-hatch key.
 ///
-/// Composition pattern: extends `Resource<$GoogleComputeRegionUrlMap>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior.
 final class GoogleComputeRegionUrlMap extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_region_url_map';
+  static const String tfType = 'google_compute_region_url_map';
 
   GoogleComputeRegionUrlMap({
     required super.localName,
@@ -775,7 +775,7 @@ final class GoogleComputeRegionUrlMap extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            if (region != null) 'region': region,
@@ -802,8 +802,7 @@ final class GoogleComputeRegionUrlMap extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleComputeRegionUrlMapSensitive;
+  Set<String> get sensitiveFields => _googleComputeRegionUrlMapSensitive;
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

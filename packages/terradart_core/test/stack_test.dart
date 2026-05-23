@@ -12,7 +12,7 @@ final class _FakeResource extends Resource {
         );
 
   @override
-  Set<String> get $sensitiveFields => const {};
+  Set<String> get sensitiveFields => const {};
 }
 
 final class _FakeData extends Data {
@@ -23,7 +23,7 @@ final class _FakeData extends Data {
         );
 
   @override
-  Set<String> get $sensitiveFields => const {};
+  Set<String> get sensitiveFields => const {};
 }
 
 final class _TestStack extends Stack {

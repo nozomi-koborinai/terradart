@@ -40,7 +40,7 @@ import 'wrapper_overrides/wrapper_override.dart';
 /// - Emits a file-private `_<r>Sensitive` const (data source schemas are
 ///   typically empty, so this is `<String>{}` — but the shape is
 ///   identical to the resource path for consistency).
-/// - `$sensitiveFields` getter references the file-private const.
+/// - `sensitiveFields` getter references the file-private const.
 class DataSourceWrapperEmitter {
   DataSourceWrapperEmitter({required this.overrides});
 
@@ -116,7 +116,7 @@ class DataSourceWrapperEmitter {
 
     // File-private sensitive const, emitted inline. Data source schemas
     // are almost always empty; the emit shape is shared with the resource
-    // wrapper so the synth pipeline's `$sensitiveFields` lookup is
+    // wrapper so the synth pipeline's `sensitiveFields` lookup is
     // structurally identical for both kinds.
     //
     // `extraSensitiveFields` is sourced from the override; the data
@@ -141,9 +141,10 @@ class DataSourceWrapperEmitter {
     }
 
     // Wrapper class header — Plan 5.X: `extends Data` (no `<S>` generic).
+    // v0.11.0 (ADR-0016): the dollar-prefix sigil on the tfType identifier
+    // is retired — name is plain `tfType`, no `// ignore` directive required.
     buf.writeln('final class $pascal extends Data {');
-    buf.writeln('  // ignore: constant_identifier_names');
-    buf.writeln("  static const String \$tfType = '${def.terraformType}';");
+    buf.writeln("  static const String tfType = '${def.terraformType}';");
     buf.writeln();
 
     // Constructor + super initializer. The slot machinery mirrors
@@ -178,7 +179,7 @@ class DataSourceWrapperEmitter {
       buf.writeln('    $snippet,');
     }
     buf.writeln('  }) : super(');
-    buf.writeln('         terraformType: \$tfType,');
+    buf.writeln('         terraformType: tfType,');
     buf.writeln('         argMap: {');
     for (final name in argMapOrder) {
       final snippet = argMapByName[name];
@@ -195,12 +196,13 @@ class DataSourceWrapperEmitter {
     buf.writeln('       );');
     buf.writeln();
 
-    // `$sensitiveFields` getter. The const is the inline one we emitted
+    // `sensitiveFields` getter. The const is the inline one we emitted
     // above (not imported), so the getter expression is identical to the
     // resource path's.
+    // v0.11.0 (ADR-0016): the `$`-prefix sigil is retired — getter is
+    // plain `sensitiveFields`, no `// ignore` directive required.
     buf.writeln('  @override');
-    buf.writeln('  // ignore: non_constant_identifier_names');
-    buf.writeln('  Set<String> get \$sensitiveFields => $sensitiveConst;');
+    buf.writeln('  Set<String> get sensitiveFields => $sensitiveConst;');
 
     // Extra getters (TfRef shortcuts). Same verbatim-with-trailing-newline
     // contract as [WrapperEmitter] — `write`, not `writeln`, with a blank

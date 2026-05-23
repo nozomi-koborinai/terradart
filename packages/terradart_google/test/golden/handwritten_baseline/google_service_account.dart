@@ -56,14 +56,13 @@ const Set<String> _googleServiceAccountSensitive = <String>{};
 /// );
 /// ```
 ///
-/// Composition pattern: extends `Resource<$GoogleServiceAccount>` for
+/// Composition pattern: extends `Resource` for
 /// runtime behavior, implements `$GoogleServiceAccount` for the schemantic
 /// schema surface. `argMap` stores `TfArg<dynamic>?` entries directly;
 /// synth's JSON-encoding pass walks them and calls `arg.toTfJson()` to
 /// encode at write time.
 final class GoogleServiceAccount extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_service_account';
+  static const String tfType = 'google_service_account';
 
   GoogleServiceAccount({
     required super.localName,
@@ -76,21 +75,20 @@ final class GoogleServiceAccount extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'account_id': accountId,
-            if (project != null) 'project': project,
-            if (displayName != null) 'display_name': displayName,
-            if (description != null) 'description': description,
-            if (createIgnoreAlreadyExists != null)
-              'create_ignore_already_exists': createIgnoreAlreadyExists,
-            if (disabled != null) 'disabled': disabled,
-          },
-        );
+         terraformType: tfType,
+         argMap: {
+           'account_id': accountId,
+           if (project != null) 'project': project,
+           if (displayName != null) 'display_name': displayName,
+           if (description != null) 'description': description,
+           if (createIgnoreAlreadyExists != null)
+             'create_ignore_already_exists': createIgnoreAlreadyExists,
+           if (disabled != null) 'disabled': disabled,
+         },
+       );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleServiceAccountSensitive;
+  Set<String> get sensitiveFields => _googleServiceAccountSensitive;
 
   /// `id` — full resource path
   /// `projects/{project}/serviceAccounts/{email}`.
@@ -109,8 +107,8 @@ final class GoogleServiceAccount extends Resource {
   TfRef<String> get uniqueId => TfRef.attribute<String>(this, 'unique_id');
 
   /// `member` — pre-formatted `serviceAccount:<email>` string. **Use this
-  /// for IAM bindings** (e.g. `member: TfArg.ref(sa.member)`) — it
+  /// for IAM bindings** (e.g. `member: TfArg.ref(sa.iamMember)`) — it
   /// eliminates the manual `'serviceAccount:' + email` concatenation that
   /// is easy to typo and brittle when refactoring.
-  TfRef<String> get member => TfRef.attribute<String>(this, 'member');
+  TfRef<String> get iamMember => TfRef.attribute<String>(this, 'member');
 }

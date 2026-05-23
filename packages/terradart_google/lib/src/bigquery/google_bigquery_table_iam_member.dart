@@ -40,8 +40,7 @@ const Set<String> _googleBigqueryTableIamMemberSensitive = <String>{};
 /// Optional `condition` is a single IAM Condition block (CEL
 /// `expression`, `title`, optional `description`).
 final class GoogleBigqueryTableIamMember extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_bigquery_table_iam_member';
+  static const String tfType = 'google_bigquery_table_iam_member';
 
   GoogleBigqueryTableIamMember({
     required super.localName,
@@ -54,7 +53,7 @@ final class GoogleBigqueryTableIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'dataset_id': datasetId,
            'table_id': tableId,
@@ -66,8 +65,7 @@ final class GoogleBigqueryTableIamMember extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleBigqueryTableIamMemberSensitive;
+  Set<String> get sensitiveFields => _googleBigqueryTableIamMemberSensitive;
 
   /// Reference to `etag` attribute (concurrency token written by the API).
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');

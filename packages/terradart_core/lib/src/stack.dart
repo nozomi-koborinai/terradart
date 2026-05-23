@@ -84,7 +84,7 @@ abstract base class Stack {
 
   /// When true, synth-time injection flips `deletion_protection` to
   /// `false` on any registered resource whose
-  /// `Resource.$supportsDeletionProtection` is true and that did not
+  /// `Resource.supportsDeletionProtection` is true and that did not
   /// explicitly set the field. (The capability getter is added in the
   /// next commit.) Intended for dogfood / sample apps; production
   /// stacks leave this false (the provider default of `true` then

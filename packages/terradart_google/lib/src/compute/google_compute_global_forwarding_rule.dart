@@ -23,7 +23,7 @@ const Set<String> _googleComputeGlobalForwardingRuleSensitive = <String>{};
 /// this typed enum. Callers who need it can drop down to a raw
 /// `TfArg.literal<String>('L3_DEFAULT')` via the wrapper's untyped
 /// escape hatch.
-enum GlobalForwardingRuleIpProtocol {
+enum GlobalForwardingRuleIpProtocol implements TerraformEnum {
   tcp('TCP'),
   udp('UDP'),
   esp('ESP'),
@@ -32,17 +32,19 @@ enum GlobalForwardingRuleIpProtocol {
   icmp('ICMP');
 
   const GlobalForwardingRuleIpProtocol(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// IP version for the global forwarding rule's VIP. Default `IPV4`.
 /// Selecting [ipv6] requires a global IPv6 [GoogleComputeGlobalAddress]
 /// for [GoogleComputeGlobalForwardingRule.ipAddress].
-enum GlobalForwardingRuleIpVersion {
+enum GlobalForwardingRuleIpVersion implements TerraformEnum {
   ipv4('IPV4'),
   ipv6('IPV6');
 
   const GlobalForwardingRuleIpVersion(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -62,7 +64,7 @@ enum GlobalForwardingRuleIpVersion {
 ///   apply will fail.
 /// - [internalSelfManaged]: Traffic Director (xDS) — proxyless gRPC
 ///   service mesh. The only scheme that honors `metadata_filters`.
-enum GlobalForwardingRuleLoadBalancingScheme {
+enum GlobalForwardingRuleLoadBalancingScheme implements TerraformEnum {
   external('EXTERNAL'),
   externalManaged('EXTERNAL_MANAGED'),
 
@@ -75,6 +77,7 @@ enum GlobalForwardingRuleLoadBalancingScheme {
   internalSelfManaged('INTERNAL_SELF_MANAGED');
 
   const GlobalForwardingRuleLoadBalancingScheme(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -83,11 +86,12 @@ enum GlobalForwardingRuleLoadBalancingScheme {
 /// with the regional resource, but supplying it on a global rule
 /// errors out. Leave the field `null` (provider default = `PREMIUM`)
 /// unless overriding is explicitly needed.
-enum GlobalForwardingRuleNetworkTier {
+enum GlobalForwardingRuleNetworkTier implements TerraformEnum {
   premium('PREMIUM'),
   standard('STANDARD');
 
   const GlobalForwardingRuleNetworkTier(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -103,12 +107,13 @@ enum GlobalForwardingRuleNetworkTier {
 /// 3. [testAllTraffic]: route 100% before switching
 ///    `loadBalancingScheme` to [GlobalForwardingRuleLoadBalancingScheme.externalManaged].
 /// Rollback walks the same states in reverse.
-enum GlobalForwardingRuleMigrationState {
+enum GlobalForwardingRuleMigrationState implements TerraformEnum {
   prepare('PREPARE'),
   testByPercentage('TEST_BY_PERCENTAGE'),
   testAllTraffic('TEST_ALL_TRAFFIC');
 
   const GlobalForwardingRuleMigrationState(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -118,11 +123,12 @@ enum GlobalForwardingRuleMigrationState {
 /// - [matchAny]: at least one filter label must match a label in the
 ///   xDS client's node metadata.
 /// - [matchAll]: every filter label must match.
-enum GlobalForwardingRuleMetadataFilterMatchCriteria {
+enum GlobalForwardingRuleMetadataFilterMatchCriteria implements TerraformEnum {
   matchAny('MATCH_ANY'),
   matchAll('MATCH_ALL');
 
   const GlobalForwardingRuleMetadataFilterMatchCriteria(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -272,11 +278,10 @@ class ComputeGlobalForwardingRuleGlobalForwardingRuleServiceDirectoryRegistratio
 /// `loadBalancingScheme` is `INTERNAL_SELF_MANAGED` (Traffic Director).
 /// Skip the field for normal Application LB frontends.
 ///
-/// Composition pattern: extends `Resource<$GoogleComputeGlobalForwardingRule>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleComputeGlobalForwardingRule extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_global_forwarding_rule';
+  static const String tfType = 'google_compute_global_forwarding_rule';
 
   GoogleComputeGlobalForwardingRule({
     required super.localName,
@@ -307,7 +312,7 @@ final class GoogleComputeGlobalForwardingRule extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'target': target,
@@ -344,8 +349,7 @@ final class GoogleComputeGlobalForwardingRule extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googleComputeGlobalForwardingRuleSensitive;
 
   /// Reference to `name` attribute. Use for interpolations like

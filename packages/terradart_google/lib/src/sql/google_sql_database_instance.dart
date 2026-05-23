@@ -19,7 +19,7 @@ const Set<String> _googleSqlDatabaseInstanceSensitive = <String>{
 /// `database_version` schema string (see the schema attribute description
 /// for the canonical supported set). Picking a major family is **forcing**
 /// — Terraform recreates the instance on change.
-enum DatabaseVersion {
+enum DatabaseVersion implements TerraformEnum {
   mysql56('MYSQL_5_6'),
   mysql57('MYSQL_5_7'),
   mysql80('MYSQL_8_0'),
@@ -44,6 +44,7 @@ enum DatabaseVersion {
   sqlserver2025Web('SQLSERVER_2025_WEB');
 
   const DatabaseVersion(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -51,44 +52,48 @@ enum DatabaseVersion {
 /// region, automatic failover); `zonal` is single-zone (cheaper). HA
 /// also requires backup_configuration to be enabled (and binary logs on
 /// MySQL / point-in-time recovery on Postgres).
-enum SqlAvailabilityType {
+enum SqlAvailabilityType implements TerraformEnum {
   regional('REGIONAL'),
   zonal('ZONAL');
 
   const SqlAvailabilityType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `settings.edition`. `enterprisePlus` unlocks data cache, advanced
 /// disaster recovery, and the read-pool instance type.
-enum SqlEdition {
+enum SqlEdition implements TerraformEnum {
   enterprise('ENTERPRISE'),
   enterprisePlus('ENTERPRISE_PLUS');
 
   const SqlEdition(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `settings.activation_policy`. `always` (default) keeps the instance
 /// running 24/7; `never` keeps it stopped (the underlying storage is
 /// preserved). `onDemand` is legacy — kept for backwards compatibility.
-enum SqlActivationPolicy {
+enum SqlActivationPolicy implements TerraformEnum {
   always('ALWAYS'),
   never('NEVER'),
   onDemand('ON_DEMAND');
 
   const SqlActivationPolicy(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `settings.disk_type`. Tier-dependent — `hyperdiskBalanced` is only
 /// available on Enterprise Plus.
-enum SqlDiskType {
+enum SqlDiskType implements TerraformEnum {
   pdSsd('PD_SSD'),
   pdHdd('PD_HDD'),
   hyperdiskBalanced('HYPERDISK_BALANCED');
 
   const SqlDiskType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -577,7 +582,7 @@ class SqlDatabaseInstanceMaintenanceWindow {
 /// match the primary.
 ///
 /// `password` here is also sensitive in the schema and round-trips
-/// through `$sensitiveFields`.
+/// through `sensitiveFields`.
 @immutable
 class SqlDatabaseInstanceReplicaConfiguration {
   const SqlDatabaseInstanceReplicaConfiguration({
@@ -723,15 +728,14 @@ class SqlDatabaseInstanceReplicaConfiguration {
 /// ```
 ///
 /// `root_password` is sensitive in the schema and round-trips through
-/// the generated `$sensitiveFields` set — synth masks it. Prefer
+/// the generated `sensitiveFields` set — synth masks it. Prefer
 /// `root_password_wo` (write-only, never stored in state, requires
 /// Terraform >= 1.11) for new deployments.
 ///
-/// Composition pattern: extends `Resource<$GoogleSqlDatabaseInstance>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleSqlDatabaseInstance extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_sql_database_instance';
+  static const String tfType = 'google_sql_database_instance';
 
   GoogleSqlDatabaseInstance({
     required super.localName,
@@ -756,7 +760,7 @@ final class GoogleSqlDatabaseInstance extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'database_version': databaseVersion,
            if (name != null) 'name': name,
@@ -790,11 +794,10 @@ final class GoogleSqlDatabaseInstance extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleSqlDatabaseInstanceSensitive;
+  Set<String> get sensitiveFields => _googleSqlDatabaseInstanceSensitive;
 
   @override
-  bool get $supportsDeletionProtection => true;
+  bool get supportsDeletionProtection => true;
 
   /// Reference to `name` attribute. Use this when downstream resources
   /// like [GoogleSqlDatabase] / [GoogleSqlUser] need the bare instance

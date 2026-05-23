@@ -11,8 +11,7 @@ const Set<String> _googlePubsubSubscriptionIamMemberSensitive = <String>{};
 /// Pub/Sub Subscription IAM is part of the curated surface. (Cloud
 /// Scheduler IAM is not; use `terradart codegen` if you need it.)
 final class GooglePubsubSubscriptionIamMember extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_pubsub_subscription_iam_member';
+  static const String tfType = 'google_pubsub_subscription_iam_member';
 
   GooglePubsubSubscriptionIamMember({
     required super.localName,
@@ -24,7 +23,7 @@ final class GooglePubsubSubscriptionIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'subscription': subscription,
            'role': role,
@@ -35,8 +34,7 @@ final class GooglePubsubSubscriptionIamMember extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googlePubsubSubscriptionIamMemberSensitive;
 
   /// Reference to `etag` attribute.

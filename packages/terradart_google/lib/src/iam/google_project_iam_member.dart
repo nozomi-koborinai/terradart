@@ -44,8 +44,7 @@ const Set<String> _googleProjectIamMemberSensitive = <String>{};
 /// distinct tuple from the same role+member without the condition — the
 /// two coexist.
 final class GoogleProjectIamMember extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_project_iam_member';
+  static const String tfType = 'google_project_iam_member';
 
   GoogleProjectIamMember({
     required super.localName,
@@ -56,7 +55,7 @@ final class GoogleProjectIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'project': project,
            'role': role,
@@ -66,8 +65,7 @@ final class GoogleProjectIamMember extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleProjectIamMemberSensitive;
+  Set<String> get sensitiveFields => _googleProjectIamMemberSensitive;
 
   /// Reference to `etag` attribute (concurrency token written by the API).
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');

@@ -128,7 +128,7 @@ prelude: |
   /// `type` -- intended use of the security policy. Forces replacement
   /// when changed. The default (when unset on create) is
   /// [SecurityPolicyType.cloudArmor].
-  enum SecurityPolicyType {
+  enum SecurityPolicyType implements TerraformEnum {
     /// Backend-service policies. Filter incoming HTTP requests targeting
     /// backend services BEFORE they hit the origin servers. The default.
     cloudArmor('CLOUD_ARMOR'),
@@ -145,6 +145,7 @@ prelude: |
     cloudArmorNetwork('CLOUD_ARMOR_NETWORK');
 
     const SecurityPolicyType(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -155,7 +156,7 @@ prelude: |
   /// [ComputeSecurityPolicySecurityPolicyRule.redirectOptions]. The Terraform value
   /// preserves the literal provider strings (parentheses and digits
   /// included) -- the Dart variants pick identifier-safe names.
-  enum SecurityPolicyRuleAction {
+  enum SecurityPolicyRuleAction implements TerraformEnum {
     /// Pass the request through to the backend.
     allow('allow'),
 
@@ -183,6 +184,7 @@ prelude: |
     throttle('throttle');
 
     const SecurityPolicyRuleAction(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -190,12 +192,13 @@ prelude: |
   /// today. Pair with [ComputeSecurityPolicySecurityPolicyRuleMatchConfig.srcIpRanges] to
   /// match by source IP / CIDR. For richer matching (geo, path, headers),
   /// use [ComputeSecurityPolicySecurityPolicyRuleMatchExpr] (CEL) instead.
-  enum SecurityPolicyRuleMatchVersionedExpr {
+  enum SecurityPolicyRuleMatchVersionedExpr implements TerraformEnum {
     /// Source-IP-v1 predicate. Reads `match.config.src_ip_ranges` and
     /// matches IPv4/IPv6 CIDR ranges (or `'*'` for any).
     srcIpsV1('SRC_IPS_V1');
 
     const SecurityPolicyRuleMatchVersionedExpr(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -204,11 +207,12 @@ prelude: |
   /// required for the JSON-aware preconfigured WAF rules to inspect
   /// body content; otherwise default `disabled` keeps inspection limited
   /// to URI / headers / query string.
-  enum SecurityPolicyJsonParsing {
+  enum SecurityPolicyJsonParsing implements TerraformEnum {
     disabled('DISABLED'),
     standard('STANDARD');
 
     const SecurityPolicyJsonParsing(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -216,11 +220,12 @@ prelude: |
   /// Cloud Logging output. `verbose` includes preconfigured-WAF rule
   /// match details and is the recommended setting during policy tuning;
   /// switch back to `normal` for steady-state to control log volume.
-  enum SecurityPolicyLogLevel {
+  enum SecurityPolicyLogLevel implements TerraformEnum {
     normal('NORMAL'),
     verbose('VERBOSE');
 
     const SecurityPolicyLogLevel(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

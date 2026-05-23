@@ -30,7 +30,7 @@ classDocComment: |-
   ///
   /// Private key — choose one path:
   /// - `privateKey`: the PEM-encoded private key, stored in Terraform state.
-  ///   **Sensitive** (schema-flagged): the generated `$sensitiveFields` set
+  ///   **Sensitive** (schema-flagged): the generated `sensitiveFields` set
   ///   masks it at synth time. Prefer reading from a secret-management
   ///   source (e.g. Secret Manager, an environment variable, a Vault data
   ///   source) and passing via `TfArg.ref(...)` rather than embedding the
@@ -41,7 +41,7 @@ classDocComment: |-
   ///   over `privateKey` whenever your Terraform CLI version supports it.
   ///
   /// `certificate` is also **sensitive** in the schema (the cert + chain
-  /// can leak issuance metadata) and round-trips through `$sensitiveFields`.
+  /// can leak issuance metadata) and round-trips through `sensitiveFields`.
   ///
   /// Example (literal PEMs from inputs):
   /// ```dart
@@ -67,7 +67,7 @@ classDocComment: |-
   /// Lifecycle: certificates are **immutable** — any change forces
   /// replacement. Combined with the soft-delete window on the GCP side,
   /// `namePrefix` is usually the safer choice when the cert is expected to
-  /// rotate. Composition pattern: extends `Resource<$GoogleComputeSslCertificate>`
+  /// rotate. Composition pattern: extends `Resource`
   /// for runtime behavior.
 
 paramOrder:

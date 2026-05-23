@@ -12,7 +12,7 @@ void main() {
         enumValues: ['active', 'always_running', 'on_demand'],
         resourcePascal: 'GoogleFoo',
       );
-      expect(out, contains('enum GoogleFooState {'));
+      expect(out, contains('enum GoogleFooState implements TerraformEnum {'));
       expect(out, contains('active'));
       expect(out, contains('alwaysRunning'));
       expect(out, contains('onDemand'));
@@ -84,7 +84,12 @@ void main() {
       // No `.` in the Dart enum identifier.
       expect(out, isNot(contains('GoogleComputeNetworkRoutingConfig.')));
       // Pascal-cased leaf field.
-      expect(out, contains('enum GoogleComputeNetworkRoutingMode {'));
+      expect(
+        out,
+        contains(
+          'enum GoogleComputeNetworkRoutingMode implements TerraformEnum {',
+        ),
+      );
       // The header comment uses the leaf.
       expect(out, contains('# --- validValues: routing_mode ---'));
     });

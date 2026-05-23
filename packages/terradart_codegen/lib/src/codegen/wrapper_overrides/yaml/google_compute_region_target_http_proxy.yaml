@@ -43,7 +43,7 @@ classDocComment: |-
   /// ```
   ///
   /// Composition pattern: extends
-  /// `Resource<$GoogleComputeRegionTargetHttpProxy>` for runtime
+  /// `Resource` for runtime
   /// behavior.
 
 paramOrder:

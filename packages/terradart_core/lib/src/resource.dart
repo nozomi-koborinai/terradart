@@ -1,3 +1,5 @@
+import 'package:meta/meta.dart';
+
 import 'lifecycle.dart';
 import 'tf_arg.dart';
 import 'tf_ref.dart';
@@ -13,7 +15,7 @@ enum ResourceKind {
 ///
 /// Plan 5.X (v0.5.0-dev) removed the `<S>` generic and the `schema` field —
 /// the schemantic-backed dead chain that motivated them is fully retired.
-/// `Resource` is now flat: factories pass `argMap` and `$sensitiveFields`,
+/// `Resource` is now flat: factories pass `argMap` and `sensitiveFields`,
 /// synth consumes both directly.
 abstract base class Resource implements TfAddressed {
   Resource({
@@ -58,14 +60,26 @@ abstract base class Resource implements TfAddressed {
   /// Field names that are `@Sensitive` per the IR-derived per-resource
   /// constant. Curated factories override with a baked-in
   /// `static const Set<String>` (file-private in v0.5+).
-  Set<String> get $sensitiveFields;
+  ///
+  /// `@protected` (v0.11.0, ADR-0016): the getter is part of the
+  /// `Resource` ↔ synth contract and is only meant to be implemented /
+  /// invoked by subclasses (the curated wrappers) and the synth pipeline
+  /// inside `terradart_core`. External call sites should not reach into
+  /// this member.
+  @protected
+  Set<String> get sensitiveFields;
 
   /// Capability flag: true when this resource's underlying Terraform
   /// schema has a `deletion_protection` boolean attribute that the
   /// synth-time devMode flow can flip to `false`. Defaults to false;
   /// the codegen emitter overrides this to `true` for wrappers whose
   /// schema includes the attribute.
-  bool get $supportsDeletionProtection => false;
+  ///
+  /// `@protected` (v0.11.0, ADR-0016): same rationale as
+  /// [sensitiveFields] — subclass / synth contract member, not part of
+  /// the user-facing wrapper API.
+  @protected
+  bool get supportsDeletionProtection => false;
 }
 
 /// Lightweight type stand-in for the provider binding so the core runtime

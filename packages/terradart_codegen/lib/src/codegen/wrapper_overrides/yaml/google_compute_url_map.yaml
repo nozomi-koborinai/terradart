@@ -97,7 +97,7 @@ classDocComment: |-
   /// by the Terraform block name when you need them; see the per-class doc
   /// for the exact escape-hatch key.
   ///
-  /// Composition pattern: extends `Resource<$GoogleComputeUrlMap>` for
+  /// Composition pattern: extends `Resource` for
   /// runtime behavior.
 
 paramOrder:
@@ -155,7 +155,7 @@ prelude: |
   ///   on the wire; emitted as the literal token `MOVED_PERMANENTLY_DEFAULT`.
   /// - [found] -> 302, [seeOther] -> 303, [temporaryRedirect] -> 307,
   ///   [permanentRedirect] -> 308.
-  enum UrlMapRedirectResponseCode {
+  enum UrlMapRedirectResponseCode implements TerraformEnum {
     found('FOUND'),
     movedPermanentlyDefault('MOVED_PERMANENTLY_DEFAULT'),
     permanentRedirect('PERMANENT_REDIRECT'),
@@ -163,6 +163,7 @@ prelude: |
     temporaryRedirect('TEMPORARY_REDIRECT');
 
     const UrlMapRedirectResponseCode(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

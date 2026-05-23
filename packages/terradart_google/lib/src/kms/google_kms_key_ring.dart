@@ -28,8 +28,7 @@ const Set<String> _googleKmsKeyRingSensitive = <String>{};
 /// Terraform-managed KeyRing removes it from state but does not delete the
 /// resource from the project (per GCP policy).
 final class GoogleKmsKeyRing extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_kms_key_ring';
+  static const String tfType = 'google_kms_key_ring';
 
   GoogleKmsKeyRing({
     required super.localName,
@@ -39,7 +38,7 @@ final class GoogleKmsKeyRing extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'location': location,
@@ -48,8 +47,7 @@ final class GoogleKmsKeyRing extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleKmsKeyRingSensitive;
+  Set<String> get sensitiveFields => _googleKmsKeyRingSensitive;
 
   /// Reference to `name` attribute. Use for interpolations like
   /// `keyRing.nameRef` → `${google_kms_key_ring.<localName>.name}`.

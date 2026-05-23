@@ -19,7 +19,7 @@ classDocComment: |-
   ///   external UUID4 source. **Immutable**: this field is set on create
   ///   and cannot be updated — to rotate a debug token, destroy + recreate
   ///   the resource. **Sensitive**: terradart's masking layer flags it via
-  ///   the generated `$sensitiveFields` set, and the provider itself never
+  ///   the generated `sensitiveFields` set, and the provider itself never
   ///   echoes the value in responses.
   ///
   /// Example:
@@ -43,7 +43,7 @@ classDocComment: |-
 # paramOrder: app_id is the structural / forced-replace identity slot, then
 # the human-facing display_name, then the immutable token secret, then
 # project. token is schema-flagged sensitive and is already surfaced via
-# the auto-generated `$sensitiveFields` set — no extraSensitiveFields
+# the auto-generated `sensitiveFields` set — no extraSensitiveFields
 # override needed.
 paramOrder:
   - app_id

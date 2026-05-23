@@ -1,3 +1,7 @@
+// ignore_for_file: invalid_use_of_protected_member
+// Tests verify the codegen-emitted sensitiveFields getter value; reading a
+// @protected getter from test scope is the intended cross-boundary pattern
+// for wrapper integration tests.
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/terradart_google.dart';
 import 'package:test/test.dart';
@@ -95,21 +99,21 @@ void main() {
       );
     });
 
-    test('\$sensitiveFields exposes generated set (empty for SA)', () {
+    test('sensitiveFields exposes generated set (empty for SA)', () {
       final sa = GoogleServiceAccount(
         localName: 'sa',
         accountId: TfArg.literal('runner'),
       );
-      expect(sa.$sensitiveFields, isEmpty);
+      expect(sa.sensitiveFields, isEmpty);
     });
 
-    test('\$tfType constant matches terraformType', () {
+    test('tfType constant matches terraformType', () {
       final sa = GoogleServiceAccount(
         localName: 'sa',
         accountId: TfArg.literal('runner'),
       );
-      expect(GoogleServiceAccount.$tfType, equals('google_service_account'));
-      expect(sa.terraformType, equals(GoogleServiceAccount.$tfType));
+      expect(GoogleServiceAccount.tfType, equals('google_service_account'));
+      expect(sa.terraformType, equals(GoogleServiceAccount.tfType));
     });
   });
 }

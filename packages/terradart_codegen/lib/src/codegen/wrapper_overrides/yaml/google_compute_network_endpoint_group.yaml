@@ -42,7 +42,7 @@ classDocComment: |-
   /// );
   /// ```
   ///
-  /// Composition pattern: extends `Resource<$GoogleComputeNetworkEndpointGroup>`
+  /// Composition pattern: extends `Resource`
   /// for runtime behavior.
 
 paramOrder:
@@ -96,7 +96,7 @@ prelude: |
   /// `GoogleComputeRegionNetworkEndpointGroup`. Prefer those resources
   /// for the dominant patterns; reach for the zonal variants only when
   /// you have a specific zonal-scoped use case.
-  enum NetworkEndpointGroupType {
+  enum NetworkEndpointGroupType implements TerraformEnum {
     gceVmIpPort('GCE_VM_IP_PORT'),
     gceVmIp('GCE_VM_IP'),
     nonGcpPrivateIpPort('NON_GCP_PRIVATE_IP_PORT'),
@@ -107,5 +107,6 @@ prelude: |
     gceVmIpDedicatedBackend('GCE_VM_IP_DEDICATED_BACKEND');
 
     const NetworkEndpointGroupType(this.terraformValue);
+    @override
     final String terraformValue;
   }

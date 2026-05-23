@@ -10,7 +10,7 @@ const Set<String> _googleStorageBucketSensitive = <String>{};
 ///
 /// `durableReducedAvailability` is the legacy class (deprecated 2018);
 /// keep for completeness, GCP still accepts it for existing buckets.
-enum BucketStorageClass {
+enum BucketStorageClass implements TerraformEnum {
   standard('STANDARD'),
   nearline('NEARLINE'),
   coldline('COLDLINE'),
@@ -20,15 +20,17 @@ enum BucketStorageClass {
   durableReducedAvailability('DURABLE_REDUCED_AVAILABILITY');
 
   const BucketStorageClass(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Action type for `lifecycle_rule.action.type`.
-enum LifecycleActionType {
+enum LifecycleActionType implements TerraformEnum {
   delete('Delete'),
   setStorageClass('SetStorageClass');
 
   const LifecycleActionType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -342,12 +344,11 @@ class StorageBucketSoftDeletePolicy {
 /// ```
 ///
 /// Manages a Cloud Storage bucket. Composition pattern: extends
-/// `Resource<$GoogleStorageBucket>` for runtime behavior. The 13 nested
+/// `Resource` for runtime behavior. The 13 nested
 /// blocks (lifecycle_rule / versioning / cors / encryption / etc.) are
 /// modeled as helper classes in the `prelude` below.
 final class GoogleStorageBucket extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_storage_bucket';
+  static const String tfType = 'google_storage_bucket';
 
   GoogleStorageBucket({
     required super.localName,
@@ -378,7 +379,7 @@ final class GoogleStorageBucket extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'location': location,
@@ -428,8 +429,7 @@ final class GoogleStorageBucket extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleStorageBucketSensitive;
+  Set<String> get sensitiveFields => _googleStorageBucketSensitive;
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

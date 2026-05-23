@@ -349,11 +349,10 @@ class Cloudbuildv2ConnectionBitbucketCloudConfig {
 /// - [reconciling]: server-side reconciliation flag.
 /// - [etag]: optimistic-concurrency token.
 ///
-/// Composition pattern: extends `Resource<$GoogleCloudbuildv2Connection>`
+/// Composition pattern: extends `Resource`
 /// for runtime behavior.
 final class GoogleCloudbuildv2Connection extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_cloudbuildv2_connection';
+  static const String tfType = 'google_cloudbuildv2_connection';
 
   GoogleCloudbuildv2Connection({
     required super.localName,
@@ -370,7 +369,7 @@ final class GoogleCloudbuildv2Connection extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'location': location,
@@ -397,8 +396,7 @@ final class GoogleCloudbuildv2Connection extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleCloudbuildv2ConnectionSensitive;
+  Set<String> get sensitiveFields => _googleCloudbuildv2ConnectionSensitive;
 
   /// Reference to `name` attribute (the bare connection name).
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
