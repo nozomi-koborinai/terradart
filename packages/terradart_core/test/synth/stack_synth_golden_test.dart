@@ -1,4 +1,4 @@
-import 'dart:convert' as conv;
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:terradart_core/src/app_export.dart';
@@ -385,8 +385,8 @@ abstract final class OrdersExports {
 
       final result = StackSynth.synth(stack);
       // Must not throw — any unconverted TfArg/TfRef would raise here.
-      final json = conv.jsonEncode(result.tfJson);
-      expect(conv.jsonDecode(json), equals(result.tfJson));
+      final json = jsonEncode(result.tfJson);
+      expect(jsonDecode(json), equals(result.tfJson));
     });
 
     test('mixed exports: full §5.3 spec example', () {
@@ -499,11 +499,11 @@ abstract final class OrdersExports {
 
       final tfFile = File('${tmp.path}/main.tf.json');
       await tfFile.writeAsString(
-        const conv.JsonEncoder.withIndent('  ').convert(r.tfJson),
+        const JsonEncoder.withIndent('  ').convert(r.tfJson),
       );
       expect(await tfFile.exists(), isTrue);
       expect(
-        conv.jsonDecode(await tfFile.readAsString()),
+        jsonDecode(await tfFile.readAsString()),
         equals(r.tfJson),
       );
 

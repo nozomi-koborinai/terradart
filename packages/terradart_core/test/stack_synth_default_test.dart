@@ -1,4 +1,4 @@
-import 'dart:convert' as dart_convert;
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:test/test.dart';
@@ -35,7 +35,7 @@ void main() {
       final tfJsonFile = File('${tempDir.path}/main.tf.json');
       expect(await tfJsonFile.exists(), isTrue);
 
-      final decoded = dart_convert.jsonDecode(await tfJsonFile.readAsString());
+      final decoded = jsonDecode(await tfJsonFile.readAsString());
       expect(decoded, isA<Map<String, dynamic>>());
       expect(
         (decoded as Map<String, dynamic>).containsKey('terraform'),

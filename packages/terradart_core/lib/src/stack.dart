@@ -1,4 +1,4 @@
-import 'dart:convert' as dart_convert;
+import 'dart:convert';
 import 'dart:io';
 
 import 'app_export.dart';
@@ -216,7 +216,7 @@ abstract class Stack {
     if (!await dir.exists()) {
       await dir.create(recursive: true);
     }
-    const encoder = dart_convert.JsonEncoder.withIndent('  ');
+    const encoder = JsonEncoder.withIndent('  ');
     await File('$outDir/main.tf.json')
         .writeAsString(encoder.convert(result.tfJson));
   }

@@ -1,4 +1,4 @@
-import 'dart:convert' as convert;
+import 'dart:convert';
 
 import 'package:terradart_core/terradart_core.dart';
 
@@ -13,5 +13,5 @@ class EmptyStack extends Stack {
 
 void main() {
   final result = StackSynth.synth(EmptyStack());
-  print(const convert.JsonEncoder.withIndent('  ').convert(result.tfJson));
+  print(const JsonEncoder.withIndent('  ').convert(result.tfJson));
 }
