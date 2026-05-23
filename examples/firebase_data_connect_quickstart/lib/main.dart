@@ -16,9 +16,6 @@
 /// cross-reference getter.
 library;
 
-import 'dart:convert' as dart_convert;
-import 'dart:io';
-
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/firebase_data_connect.dart';
 import 'package:terradart_google/provider.dart';
@@ -45,16 +42,6 @@ final class DataConnectStack extends Stack {
         // production to guard against accidental teardown.
         deletionPolicy: TfArg.literal(DataConnectDeletionPolicy.force),
       ),
-    );
-  }
-
-  @override
-  Future<void> synth({required String outDir}) async {
-    final result = StackSynth.synth(this);
-    await Directory(outDir).create(recursive: true);
-    final tfFile = File('$outDir/main.tf.json');
-    await tfFile.writeAsString(
-      const dart_convert.JsonEncoder.withIndent('  ').convert(result.tfJson),
     );
   }
 }

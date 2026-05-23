@@ -17,9 +17,6 @@
 /// owns its own subdomain without project-wide DNS admin.
 library;
 
-import 'dart:convert' as dart_convert;
-import 'dart:io';
-
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/dns.dart';
@@ -94,16 +91,6 @@ final class InternalDnsStack extends Stack {
         role: TfArg.literal('roles/dns.admin'),
         member: TfArg.ref(zoneAdmin.iamMember),
       ),
-    );
-  }
-
-  @override
-  Future<void> synth({required String outDir}) async {
-    final result = StackSynth.synth(this);
-    await Directory(outDir).create(recursive: true);
-    final tfFile = File('$outDir/main.tf.json');
-    await tfFile.writeAsString(
-      const dart_convert.JsonEncoder.withIndent('  ').convert(result.tfJson),
     );
   }
 }

@@ -12,6 +12,6 @@ Future<void> main() async {
     exit(64);
   }
   final stack = AuditPipelineStack(projectId: projectId);
-  await stack.synth(outDir: 'tf-out');
+  await stack.writeTo('tf-out');
   print('synthesized to tf-out/main.tf.json');
 }

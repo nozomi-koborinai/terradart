@@ -9,9 +9,6 @@
 /// that publishes to it every night at 03:00 JST.
 library;
 
-import 'dart:convert' as dart_convert;
-import 'dart:io';
-
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_scheduler.dart';
 import 'package:terradart_google/provider.dart';
@@ -64,24 +61,5 @@ final class NightlyCleanupStack extends Stack {
     );
 
     setAppExportsOutputPath('lib/generated/nightly_cleanup_stack.app.dart');
-  }
-
-  @override
-  Future<void> synth({required String outDir}) async {
-    final result = StackSynth.synth(this);
-    await Directory(outDir).create(recursive: true);
-
-    final tfFile = File('$outDir/main.tf.json');
-    await tfFile.writeAsString(
-      const dart_convert.JsonEncoder.withIndent('  ').convert(result.tfJson),
-    );
-
-    final dartConstants = result.dartConstants;
-    final dartPath = result.dartConstantsPath;
-    if (dartConstants != null && dartPath != null) {
-      final dartFile = File(dartPath);
-      await dartFile.parent.create(recursive: true);
-      await dartFile.writeAsString(dartConstants);
-    }
   }
 }

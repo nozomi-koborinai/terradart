@@ -24,9 +24,6 @@
 /// pattern).
 library;
 
-import 'dart:convert' as dart_convert;
-import 'dart:io';
-
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/iam.dart';
@@ -45,7 +42,9 @@ final class ApiServiceStack extends Stack {
         localName: 'db_password',
         secretId: TfArg.literal('api-db-password'),
         replication: SecretManagerSecretReplication.userManaged([
-          SecretManagerSecretReplica(location: TfArg.literal('asia-northeast1')),
+          SecretManagerSecretReplica(
+            location: TfArg.literal('asia-northeast1'),
+          ),
         ]),
       ),
     );
@@ -62,7 +61,8 @@ final class ApiServiceStack extends Stack {
             env: [
               CloudRunV2ServiceEnvVar(
                 name: TfArg.literal('LOG_LEVEL'),
-                source: CloudRunV2ServiceEnvVarFromLiteral(TfArg.literal('info')),
+                source:
+                    CloudRunV2ServiceEnvVarFromLiteral(TfArg.literal('info')),
               ),
               CloudRunV2ServiceEnvVar(
                 name: TfArg.literal('DB_PASSWORD'),
@@ -72,7 +72,9 @@ final class ApiServiceStack extends Stack {
                 ),
               ),
             ],
-            ports: CloudRunV2ServiceContainerPort(containerPort: TfArg.literal(8080)),
+            ports: CloudRunV2ServiceContainerPort(
+              containerPort: TfArg.literal(8080),
+            ),
             resources: CloudRunV2ServiceContainerResources(
               limits: TfArg.literal({'cpu': '1', 'memory': '512Mi'}),
               cpuIdle: TfArg.literal(true),
@@ -163,16 +165,6 @@ final class ApiServiceStack extends Stack {
         member: TfArg.ref(schedulerSa.iamMember),
         location: TfArg.literal('asia-northeast1'),
       ),
-    );
-  }
-
-  @override
-  Future<void> synth({required String outDir}) async {
-    final result = StackSynth.synth(this);
-    await Directory(outDir).create(recursive: true);
-    final tfFile = File('$outDir/main.tf.json');
-    await tfFile.writeAsString(
-      const dart_convert.JsonEncoder.withIndent('  ').convert(result.tfJson),
     );
   }
 }

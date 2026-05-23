@@ -13,5 +13,5 @@ Future<void> main() async {
   final stack = IamShowcaseStack(
     projectId: projectId,
   );
-  await stack.synth(outDir: 'tf-out');
+  await stack.writeTo('tf-out');
 }

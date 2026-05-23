@@ -26,5 +26,5 @@ Future<void> main() async {
     dbPasswordCleartext: cleartext,
     secretVersion: 1, // bump this on rotation
   );
-  await stack.synth(outDir: 'tf-out');
+  await stack.writeTo('tf-out');
 }

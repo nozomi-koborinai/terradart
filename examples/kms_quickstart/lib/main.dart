@@ -14,9 +14,6 @@
 /// every key under this ring" without granting per-key encrypt/decrypt.
 library;
 
-import 'dart:convert' as dart_convert;
-import 'dart:io';
-
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/kms.dart';
@@ -98,16 +95,6 @@ final class CryptoStack extends Stack {
         role: TfArg.literal('roles/cloudkms.viewer'),
         member: TfArg.ref(ringInventory.iamMember),
       ),
-    );
-  }
-
-  @override
-  Future<void> synth({required String outDir}) async {
-    final result = StackSynth.synth(this);
-    await Directory(outDir).create(recursive: true);
-    final tfFile = File('$outDir/main.tf.json');
-    await tfFile.writeAsString(
-      const dart_convert.JsonEncoder.withIndent('  ').convert(result.tfJson),
     );
   }
 }

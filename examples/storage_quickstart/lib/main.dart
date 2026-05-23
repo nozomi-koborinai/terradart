@@ -15,9 +15,6 @@
 /// pattern for a static-assets bucket.
 library;
 
-import 'dart:convert' as dart_convert;
-import 'dart:io';
-
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
@@ -83,16 +80,6 @@ final class AssetsStack extends Stack {
         role: TfArg.literal('roles/storage.objectViewer'),
         member: TfArg.ref(reader.iamMember),
       ),
-    );
-  }
-
-  @override
-  Future<void> synth({required String outDir}) async {
-    final result = StackSynth.synth(this);
-    await Directory(outDir).create(recursive: true);
-    final tfFile = File('$outDir/main.tf.json');
-    await tfFile.writeAsString(
-      const dart_convert.JsonEncoder.withIndent('  ').convert(result.tfJson),
     );
   }
 }

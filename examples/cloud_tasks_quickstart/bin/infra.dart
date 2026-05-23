@@ -6,5 +6,5 @@ import 'package:terradart_example_cloud_tasks_quickstart/main.dart';
 
 Future<void> main() async {
   final stack = EmailJobsStack(projectId: 'YOUR-PROJECT-ID');
-  await stack.synth(outDir: 'tf-out');
+  await stack.writeTo('tf-out');
 }

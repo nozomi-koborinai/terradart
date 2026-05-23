@@ -9,9 +9,6 @@
 /// Bump `secretDataWoVersion` to rotate.
 library;
 
-import 'dart:convert' as dart_convert;
-import 'dart:io';
-
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/secret_manager.dart';
@@ -72,24 +69,5 @@ final class DbCredentialsStack extends Stack {
     );
 
     setAppExportsOutputPath('lib/generated/db_credentials_stack.app.dart');
-  }
-
-  @override
-  Future<void> synth({required String outDir}) async {
-    final result = StackSynth.synth(this);
-    await Directory(outDir).create(recursive: true);
-
-    final tfFile = File('$outDir/main.tf.json');
-    await tfFile.writeAsString(
-      const dart_convert.JsonEncoder.withIndent('  ').convert(result.tfJson),
-    );
-
-    final dartConstants = result.dartConstants;
-    final dartPath = result.dartConstantsPath;
-    if (dartConstants != null && dartPath != null) {
-      final dartFile = File(dartPath);
-      await dartFile.parent.create(recursive: true);
-      await dartFile.writeAsString(dartConstants);
-    }
   }
 }
