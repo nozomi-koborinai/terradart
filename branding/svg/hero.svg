@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 800" width="1600" height="800" role="img" aria-label="TerraDart — Type-safe IaC for Dart.">
+  <title>TerraDart</title>
+  <desc>Hero composition for README and social cards.</desc>
+
+  <!-- Paper ground -->
+  <rect x="0" y="0" width="1600" height="800" fill="#F6F3EC"/>
+
+  <!-- Mark, centered horizontally, scale 1.4 (256 × 1.4 = 358 px square) -->
+  <g transform="translate(621, 110) scale(1.4)">
+    <polygon points="32,48 224,48 180,152 76,152" fill="#13B9FD"/>
+    <polygon points="76,152 180,152 128,232" fill="#0175C2"/>
+    <rect x="60" y="96" width="136" height="6" fill="#1E2A56" opacity="0.88"/>
+  </g>
+
+  <!-- Wordmark, centered horizontally below mark -->
+  <text x="800" y="630"
+        text-anchor="middle"
+        font-family='Inter, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif'
+        font-size="170"
+        font-weight="400"
+        letter-spacing="-1"
+        fill="#0F1116">TerraDart</text>
+
+  <!-- Tagline, centered horizontally below wordmark -->
+  <text x="800" y="694"
+        text-anchor="middle"
+        font-family='Inter, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif'
+        font-size="32"
+        font-weight="400"
+        letter-spacing="2.4"
+        fill="#0F1116" opacity="0.82">Type-safe IaC for Dart.</text>
+
+</svg>

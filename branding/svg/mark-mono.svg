@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256" role="img" aria-label="TerraDart mark (monochrome)">
+  <title>TerraDart</title>
+  <desc>Single-ink fallback. Two ink planes at different opacities preserve the two-quadrilateral structure; the Terra stratum is reversed out to paper.</desc>
+
+  <!-- Upper plane (ink, lighter opacity) -->
+  <polygon points="32,48 224,48 180,152 76,152" fill="#0F1116" opacity="0.6"/>
+
+  <!-- Lower plane (ink, full) -->
+  <polygon points="76,152 180,152 128,232" fill="#0F1116"/>
+
+  <!-- Terra stratum: knocked out in paper -->
+  <rect x="60" y="96" width="136" height="6" fill="#F6F3EC"/>
+</svg>

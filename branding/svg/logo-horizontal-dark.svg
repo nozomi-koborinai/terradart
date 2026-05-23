@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1072 320" width="1072" height="320" role="img" aria-label="TerraDart (dark)">
+  <title>TerraDart</title>
+
+  <!-- Mark (dark variant) -->
+  <g transform="translate(32, 32)">
+    <polygon points="32,48 224,48 180,152 76,152" fill="#4DD0FE"/>
+    <polygon points="76,152 180,152 128,232" fill="#0F8FD8"/>
+    <rect x="60" y="96" width="136" height="6" fill="#3B4A82"/>
+  </g>
+
+  <!-- Wordmark in paper ink -->
+  <text x="320" y="208"
+        font-family='Inter, "SF Pro Display", "Helvetica Neue", Helvetica, Arial, sans-serif'
+        font-size="160"
+        font-weight="400"
+        letter-spacing="-1"
+        fill="#F6F3EC">TerraDart</text>
+</svg>
