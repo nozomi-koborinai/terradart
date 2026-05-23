@@ -8,19 +8,15 @@ final class HelloStack extends Stack {
   HelloStack({required String projectId})
       : super(
           providers: [
-            GoogleProvider(project: projectId, region: 'us-central1')
+            GoogleProvider(project: projectId, region: 'us-central1'),
           ],
         ) {
     add(GooglePubsubTopic(localName: 'hello', name: TfArg.literal('hello')));
   }
-
-  @override
-  Future<void> synth({required String outDir}) async {
-    final result = StackSynth.synth(this);
-    print(const JsonEncoder.withIndent('  ').convert(result.tfJson));
-  }
 }
 
-void main() async {
-  await HelloStack(projectId: 'YOUR-PROJECT-ID').synth(outDir: '.');
+void main() {
+  final result = HelloStack(projectId: 'YOUR-PROJECT-ID').synth();
+  // ignore: avoid_print
+  print(const JsonEncoder.withIndent('  ').convert(result.tfJson));
 }
