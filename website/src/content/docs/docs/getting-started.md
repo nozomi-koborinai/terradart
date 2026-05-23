@@ -4,7 +4,7 @@ description: Install TerraDart and synthesize your first stack.
 ---
 
 :::note[Coming soon]
-This page will be updated after the v0.11.0 release and README refresh. The API and package versions below may change.
+This page tracks the v0.11.0 API surface and will be expanded with end-to-end walkthroughs after the release. Package versions below are pre-release pins.
 :::
 
 ## Meanwhile
@@ -16,6 +16,6 @@ This page will be updated after the v0.11.0 release and README refresh. The API 
 ## Outline (planned)
 
 - Add `terradart_core` and `terradart_google` to `pubspec.yaml`
-- Implement a `Stack` subclass
-- Call `StackSynth.synth` from `bin/infra.dart`
+- Implement a `final class XxxStack extends Stack` subclass
+- Call `stack.writeTo('tf-out')` from `bin/infra.dart`
 - Run `terraform init` / `apply` in `tf-out/`

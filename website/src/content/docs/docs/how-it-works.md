@@ -9,8 +9,8 @@ Expanded diagrams and code samples will be added after v0.11.0. This page is a s
 
 ## Pipeline
 
-1. **Author** — Subclass `Stack` in Dart using curated `google_*` factories from `terradart_google`.
-2. **Synthesize** — `StackSynth.synth(stack)` writes standard `*.tf.json` under your output directory.
+1. **Author** — Subclass `Stack` in Dart (`final class XxxStack extends Stack`) using curated `google_*` factories from `terradart_google`.
+2. **Synthesize** — `stack.writeTo('tf-out')` writes standard `*.tf.json` under your output directory. (Use `stack.synth()` if you want the `SynthResult` in memory without writing to disk.)
 3. **Apply** — Run `terraform plan` and `terraform apply` with your existing state backend.
 4. **Hand off** — Export typed Dart constants for apps (Firebase Functions, Cloud Run jobs, etc.) so `dart analyze` catches drift at compile time.
 

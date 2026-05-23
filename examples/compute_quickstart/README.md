@@ -13,9 +13,9 @@ End-to-end terradart example for Cloud Compute networking primitives. Provisions
 ```
 examples/compute_quickstart/
 ├── lib/main.dart        # NetworkStack: VPC + load-balancer VIP
-├── bin/infra.dart       # Synth entry: NetworkStack.synth(outDir: 'tf-out')
+├── bin/infra.dart       # Synth entry: stack.writeTo('tf-out')
 ├── tf-out/              # (created on synth) main.tf.json
-└── pubspec.yaml         # path-deps to ../../packages/terradart_{core,google}
+└── pubspec.yaml         # workspace member with hosted carets (terradart_core: ^0.10.0)
 ```
 
 ## Usage

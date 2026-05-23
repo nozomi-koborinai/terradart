@@ -46,4 +46,4 @@ dart run build_runner build
 
 The `--source` directory must contain `schema.json` (output of `terraform providers schema -json`) and may contain an optional `mm/<resource>.yaml` overlay subdirectory.
 
-For the runtime side (`Stack`, `Resource<S>`, `StackSynth.synth`), see [`terradart_core`](https://pub.dev/packages/terradart_core). For the 28 curated GCP factory wrappers, see [`terradart_google`](https://pub.dev/packages/terradart_google). For project-level documentation see the [terradart repo README](https://github.com/nozomi-koborinai/terradart#readme).
+For the runtime side (`Stack`, `Resource`, `Stack.synth` / `Stack.writeTo`), see [`terradart_core`](https://pub.dev/packages/terradart_core). For the 28 curated GCP factory wrappers, see [`terradart_google`](https://pub.dev/packages/terradart_google). For project-level documentation see the [terradart repo README](https://github.com/nozomi-koborinai/terradart#readme).

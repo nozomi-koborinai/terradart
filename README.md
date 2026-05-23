@@ -28,7 +28,7 @@ import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';
 
-class OrdersStack extends Stack {
+final class OrdersStack extends Stack {
   OrdersStack({required String projectId})
       : super(providers: [GoogleProvider(project: projectId)]) {
     final orders = GooglePubsubTopic(
@@ -118,7 +118,7 @@ GoogleCloudRunV2Service(
 
 ### Plain Dart, not a templating DSL
 
-`Stack` subclasses are regular Dart classes. Loops, conditionals, env config, dependency injection — all work the way they already work. There is no synth CLI; you call `StackSynth.synth(stack)` from your own `bin/infra.dart`.
+`Stack` subclasses are regular Dart classes. Loops, conditionals, env config, dependency injection — all work the way they already work. There is no synth CLI; you call `stack.writeTo('tf-out')` from your own `bin/infra.dart` (or `stack.synth()` for an in-memory `SynthResult` without writing to disk).
 
 ## Quickstart
 
