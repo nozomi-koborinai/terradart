@@ -1,4 +1,4 @@
-import 'dart:convert' as convert;
+import 'dart:convert';
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/terradart_google.dart';
@@ -17,7 +17,7 @@ class HelloStack extends Stack {
   @override
   Future<void> synth({required String outDir}) async {
     final result = StackSynth.synth(this);
-    print(const convert.JsonEncoder.withIndent('  ').convert(result.tfJson));
+    print(const JsonEncoder.withIndent('  ').convert(result.tfJson));
   }
 }
 

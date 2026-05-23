@@ -2,9 +2,9 @@ include: package:lints/recommended.yaml
 
 analyzer:
   exclude:
-    # Golden files are expected emitter output; they import schemantic /
-    # terradart_annotations which don't exist yet (Plans 1+5). They're
-    # consumed by string equality, not compiled.
+    # Golden files are expected emitter output, consumed by string equality.
+    # They contain `# ignore` directives and other stylistic markers that the
+    # analyser would otherwise flag.
     - 'test/golden/**'
   language:
     strict-casts: true

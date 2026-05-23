@@ -1,7 +1,5 @@
-import 'dart:convert' as dart_convert;
+import 'dart:convert';
 import 'dart:io';
-
-import 'package:meta/meta.dart';
 
 import 'app_export.dart';
 import 'data.dart';
@@ -169,10 +167,10 @@ abstract class Stack {
         'Use Stack.addData() to register a Data, not Stack.add().',
       );
     }
-    final key = _DedupKey(
-      resource.kind,
-      resource.terraformType,
-      resource.localName,
+    final key = (
+      kind: resource.kind,
+      type: resource.terraformType,
+      localName: resource.localName,
     );
     if (_resources.containsKey(key) || _dataSources.containsKey(key)) {
       throw DuplicateResourceError(
@@ -187,7 +185,11 @@ abstract class Stack {
 
   /// Register a data source. Returns the same instance.
   T addData<T extends Data>(T data) {
-    final key = _DedupKey(data.kind, data.terraformType, data.localName);
+    final key = (
+      kind: data.kind,
+      type: data.terraformType,
+      localName: data.localName,
+    );
     if (_resources.containsKey(key) || _dataSources.containsKey(key)) {
       throw DuplicateResourceError(
         kind: data.kind,
@@ -214,27 +216,10 @@ abstract class Stack {
     if (!await dir.exists()) {
       await dir.create(recursive: true);
     }
-    const encoder = dart_convert.JsonEncoder.withIndent('  ');
+    const encoder = JsonEncoder.withIndent('  ');
     await File('$outDir/main.tf.json')
         .writeAsString(encoder.convert(result.tfJson));
   }
 }
 
-@immutable
-final class _DedupKey {
-  const _DedupKey(this.kind, this.type, this.localName);
-
-  final ResourceKind kind;
-  final String type;
-  final String localName;
-
-  @override
-  bool operator ==(Object other) =>
-      other is _DedupKey &&
-      other.kind == kind &&
-      other.type == type &&
-      other.localName == localName;
-
-  @override
-  int get hashCode => Object.hash(kind, type, localName);
-}
+typedef _DedupKey = ({ResourceKind kind, String type, String localName});

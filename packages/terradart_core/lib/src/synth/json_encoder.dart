@@ -85,7 +85,7 @@ class TfJsonEncoder {
   ///   case the literal is a Map/List that itself contains `TfArg`s).
   /// - `TfArgRef<T>` → the `${...}` interpolation string.
   /// - `TfArgVariable<T>` → the `${var.<name>}` interpolation string.
-  static dynamic encodeArg(TfArg<dynamic> arg) {
+  static Object? encodeArg(TfArg<dynamic> arg) {
     final raw = arg.toTfJson();
     // Both refs and variables produce final string forms (Terraform
     // interpolations). Only literals may still hold nested `TfArg`
@@ -113,10 +113,10 @@ class TfJsonEncoder {
 
   /// Encode a full argMap; drops keys whose value is `null` (optional
   /// unset fields) or whose literal payload encodes to `null`.
-  static Map<String, dynamic> encodeArgMap(
+  static Map<String, Object?> encodeArgMap(
     Map<String, TfArg<dynamic>?> argMap,
   ) {
-    final out = <String, dynamic>{};
+    final out = <String, Object?>{};
     argMap.forEach((k, v) {
       if (v == null) return;
       final encoded = encodeArg(v);
@@ -138,7 +138,7 @@ class TfJsonEncoder {
   /// Supports both top-level keys (`'secret_data'`) and dotted nested
   /// paths (`'customer_encryption.encryption_key'`) — the latter walks
   /// through `List<Map>` nested-block wrappings to reach the leaf.
-  static Map<String, dynamic> encodeArgMapWithSensitive({
+  static Map<String, Object?> encodeArgMapWithSensitive({
     required Map<String, TfArg<dynamic>?> argMap,
     required Set<String> sensitiveFields,
     required String resourceAddress,
@@ -157,7 +157,7 @@ class TfJsonEncoder {
       }
     }
 
-    final out = <String, dynamic>{};
+    final out = <String, Object?>{};
     argMap.forEach((k, v) {
       if (v == null) return;
       if (topLevel.contains(k) && v is TfArgLiteral) {
