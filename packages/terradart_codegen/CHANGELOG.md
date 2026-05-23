@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.11.0 - 2026-MM-DD
+
+**BREAKING** — template-side rename pass that pairs with the `terradart_core` 0.11.0 public-surface change (ADR-0016). v0.x permits breaking changes; emitted wrappers in `terradart_google` 0.11.0 follow the new shape. See [MIGRATING.md](../../MIGRATING.md) for before / after snippets.
+
+- Bumped `terradart_core` constraint to `^0.11.0`.
+- `wrapper_emitter.dart` / `data_source_wrapper_emitter.dart` emit `static const String tfType` and `Set<String> get sensitiveFields` (and `bool get supportsDeletionProtection` when the schema opts in) **without** the dollar prefix. The accompanying `// ignore: constant_identifier_names` and `// ignore: non_constant_identifier_names` directives are dropped.
+- `enum_emitter.dart` appends `implements TerraformEnum` on every emitted enum declaration. The wrapper file already imports `package:terradart_core/terradart_core.dart`, which re-exports the interface — no additional import at the enum-emit site.
+- `valid_values_emitter.dart` (wrap-promote scaffold) emits the same `implements TerraformEnum` clause plus `@override` on the generated `String get terraformValue` body.
+- `universal_invariants/enum_extractor.dart` regex now tolerates the optional `implements TerraformEnum` clause so the extractor stays backwards-compatible with wrap-promote scaffolds that haven't been fleshed out yet.
+- YAML prelude bodies (62 files, 233 enums) updated: `implements TerraformEnum` added to every `enum X {` declaration plus `@override` on the matching `final String terraformValue;` field. Doc-comment / inline-comment references to the dollar-prefixed identifiers are renamed in sync so the regen output and the override YAML stay aligned.
+- `wrapper_override.dart` / `sensitive_set_emitter.dart` dartdoc strings reference `sensitiveFields` / `tfType` without the dollar prefix.
+- No new CLI surface in this release.
+
 ## 0.10.0 - 2026-MM-DD
 
 - Bumped `terradart_core` constraint to `^0.10.0`.
