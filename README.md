@@ -1,12 +1,26 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="branding/png/logo-horizontal-dark-1024.png">
+    <img src="branding/png/logo-horizontal-1024.png" alt="TerraDart — Type-safe IaC for Dart" width="520">
+  </picture>
+</p>
+
 # TerraDart
 
+> **Type-safe IaC for Dart.**
+>
 > Google Cloud infrastructure as real Dart code — typed, refactor-safe, drop-in for `terraform apply`.
 
-[![pub package](https://img.shields.io/pub/v/terradart_core.svg)](https://pub.dev/packages/terradart_core)
-[![pub package: terradart_google](https://img.shields.io/pub/v/terradart_google.svg?label=terradart_google)](https://pub.dev/packages/terradart_google)
-[![CI](https://github.com/nozomi-koborinai/terradart/actions/workflows/ci.yml/badge.svg)](https://github.com/nozomi-koborinai/terradart/actions/workflows/ci.yml)
-[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+<!-- identity -->
+[![pub: terradart_core](https://img.shields.io/pub/v/terradart_core.svg?label=pub%3A%20core)](https://pub.dev/packages/terradart_core)
+[![pub: terradart_codegen](https://img.shields.io/pub/v/terradart_codegen.svg?label=pub%3A%20codegen)](https://pub.dev/packages/terradart_codegen)
+[![pub: terradart_google](https://img.shields.io/pub/v/terradart_google.svg?label=pub%3A%20google)](https://pub.dev/packages/terradart_google)
+[![pub points](https://img.shields.io/pub/points/terradart_core)](https://pub.dev/packages/terradart_core/score)
 [![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.6-blue.svg)](https://dart.dev)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
+<!-- health -->
+[![CI](https://github.com/nozomi-koborinai/terradart/actions/workflows/ci.yml/badge.svg)](https://github.com/nozomi-koborinai/terradart/actions/workflows/ci.yml)
+[![Schema Bump](https://github.com/nozomi-koborinai/terradart/actions/workflows/schema-bump.yml/badge.svg)](https://github.com/nozomi-koborinai/terradart/actions/workflows/schema-bump.yml)
 
 ```dart
 // infra/lib/orders_stack.dart
@@ -24,7 +38,7 @@ class OrdersStack extends Stack {
     );
     add(orders);
 
-    // The seam: the topic name flows from IaC to your Dart Cloud Function
+    // The boundary: the topic name flows from IaC to your Dart Cloud Function
     // as a typed constant. Rename `orders-prod` here, recompile, and the
     // function below won't build until you fix the reference.
     addExport('ORDERS_TOPIC', ResourceIdExport(orders.nameRef));
@@ -47,21 +61,21 @@ Future<void> handle(PubsubEvent event) async {
 
 That's the whole pitch.
 
-## The seam
+## The boundary
 
-**the seam** = the boundary where infrastructure values (topic IDs, queue names, secret refs, IAM members) flow into runtime Dart code. Today that boundary is held together by string literals on both sides:
+**the boundary** = the place where infrastructure values (topic IDs, queue names, secret refs, IAM members) flow into runtime Dart code. Today that boundary is held together by string literals on both sides:
 
 - A Pub/Sub topic name is hand-typed in HCL and again as a string literal in a Cloud Function.
 - A renamed secret silently breaks runtime resolution because the reference is a string.
 - IAM binding members drift between modules with no compiler visibility.
 
-TerraDart makes the seam a first-class artifact. The same `Topic` object whose ID is consumed by `terraform apply` is exported as a typed Dart constant your Firebase Function imports — and `dart analyze` catches drift the moment it happens.
+TerraDart makes this boundary a first-class artifact. The same `Topic` object whose ID is consumed by `terraform apply` is exported as a typed Dart constant your Firebase Function imports — and `dart analyze` catches drift the moment it happens.
 
 ## Why TerraDart
 
-A Dart team that wants to describe Google Cloud infrastructure has had three options up to now, none of which keep the seam type-safe:
+A Dart team that wants to describe Google Cloud infrastructure has had three options up to now, none of which keep this boundary type-safe:
 
-- **HCL** is mature and battle-tested, but the only way a Dart subscriber can read a topic ID is `terraform output | jq` and string parsing. The seam is a string literal on both sides.
+- **HCL** is mature and battle-tested, but the only way a Dart subscriber can read a topic ID is `terraform output | jq` and string parsing. The boundary is a string literal on both sides.
 - **CDKTF** was the natural home for "infrastructure as real code" on top of Terraform. HashiCorp [archived CDKTF in December 2025](https://github.com/hashicorp/terraform-cdk); its TypeScript / Python / Java / Go targets never reached Dart, and the project's deprecation removes the long-term incentive for anyone to add it.
 - **Pulumi** ships first-class TypeScript / Python / Go / Java / .NET SDKs, but no Dart SDK and no announced plans. Its state and provider-invocation model also diverge from the standard `terraform apply` pipeline most teams already run.
 
@@ -164,7 +178,7 @@ Application platform & operations
 |   | TerraDart | HCL | CDKTF | Pulumi |
 |---|---|---|---|---|
 | Dart authoring | ✅ | ❌ | ❌ (TS / Py / Java / Go) | ❌ (TS / Py / Go / etc.) |
-| Typed seam to your app | ✅ (compile-time) | ❌ (`terraform output` + parse) | ❌ (no Dart) | ❌ (no Dart) |
+| Type-safe handoff to your app | ✅ (compile-time) | ❌ (`terraform output` + parse) | ❌ (no Dart) | ❌ (no Dart) |
 | Drop-in for `terraform apply` | ✅ (emits `*.tf.json`) | ✅ (native) | ✅ | ⚠️ (different state model) |
 | Project status | Pre-alpha | Mature | **Archived Dec 2025** | Active |
 
@@ -212,10 +226,15 @@ bump tracking. Dart toolchain bumps still use Renovate as configured in
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). For security issues, use the [GitHub private security advisory flow](SECURITY.md).
 
+## Trademarks
+
+"Terraform" is a registered trademark of HashiCorp, Inc.
+"Dart" is a trademark of Google LLC.
+TerraDart is an independent open-source project and is not affiliated with,
+endorsed by, or sponsored by HashiCorp or Google.
+
 ## License & acknowledgements
 
 Apache-2.0. See [LICENSE](LICENSE).
 
-The seam-first framing draws on prior work in [CDKTF](https://github.com/hashicorp/terraform-cdk) (archived Dec 2025), [AWS CDK](https://aws.amazon.com/cdk/), and [Pulumi](https://www.pulumi.com/).
-
-TerraDart is not affiliated with HashiCorp. Terraform® is a registered trademark of HashiCorp, Inc.
+The framing draws on prior work in [CDKTF](https://github.com/hashicorp/terraform-cdk) (archived Dec 2025), [AWS CDK](https://aws.amazon.com/cdk/), and [Pulumi](https://www.pulumi.com/).
