@@ -53,7 +53,7 @@ classDocComment: |-
   /// );
   /// ```
   ///
-  /// Composition pattern: extends `Resource<$GoogleSqlUser>` for runtime
+  /// Composition pattern: extends `Resource` for runtime
   /// behavior.
 
 paramOrder:

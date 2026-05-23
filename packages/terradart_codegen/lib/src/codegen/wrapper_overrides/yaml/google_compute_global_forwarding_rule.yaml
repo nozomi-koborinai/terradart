@@ -63,7 +63,7 @@ classDocComment: |-
   /// `loadBalancingScheme` is `INTERNAL_SELF_MANAGED` (Traffic Director).
   /// Skip the field for normal Application LB frontends.
   ///
-  /// Composition pattern: extends `Resource<$GoogleComputeGlobalForwardingRule>`
+  /// Composition pattern: extends `Resource`
   /// for runtime behavior.
 
 paramOrder:

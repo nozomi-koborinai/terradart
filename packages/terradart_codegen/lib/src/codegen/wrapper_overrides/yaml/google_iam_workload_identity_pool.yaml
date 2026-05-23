@@ -35,7 +35,7 @@ classDocComment: |-
   /// );
   /// ```
   ///
-  /// Composition pattern: extends `Resource<$GoogleIamWorkloadIdentityPool>`
+  /// Composition pattern: extends `Resource`
   /// for runtime behavior.
 
 paramOrder:

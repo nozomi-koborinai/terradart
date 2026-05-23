@@ -88,7 +88,7 @@ classDocComment: |-
   /// );
   /// ```
   ///
-  /// Composition pattern: extends `Resource<$GoogleStorageNotification>`
+  /// Composition pattern: extends `Resource`
   /// for runtime behavior. `argMap` stores `TfArg<dynamic>?` entries
   /// directly. Synth's JSON-encoding pass walks them and calls
   /// `arg.toTfJson()` to encode at write time. The `event_types`

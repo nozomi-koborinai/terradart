@@ -68,7 +68,7 @@ classDocComment: |-
   /// ```
   ///
   /// Manages a Cloud Run v2 fully-managed service. Composition pattern:
-  /// extends `Resource<$GoogleCloudRunV2Service>` for runtime behavior.
+  /// extends `Resource` for runtime behavior.
 
 paramOrder:
   - name

@@ -31,7 +31,7 @@ classDocComment: |-
   /// ```
   ///
   /// Manages a regional subnetwork within a VPC. Composition pattern:
-  /// extends `Resource<$GoogleComputeSubnetwork>` for runtime behavior.
+  /// extends `Resource` for runtime behavior.
 
 paramOrder:
   - name

@@ -96,7 +96,7 @@ classDocComment: |-
   /// );
   /// ```
   ///
-  /// Composition pattern: extends `Resource<$GoogleComputeForwardingRule>`
+  /// Composition pattern: extends `Resource`
   /// for runtime behavior.
 
 paramOrder:

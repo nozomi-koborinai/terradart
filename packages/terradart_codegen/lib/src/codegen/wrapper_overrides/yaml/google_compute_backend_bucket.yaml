@@ -86,7 +86,7 @@ classDocComment: |-
   /// service CDN configurations are not interchangeable, even where the
   /// schema field names agree.
   ///
-  /// Composition pattern: extends `Resource<$GoogleComputeBackendBucket>`
+  /// Composition pattern: extends `Resource`
   /// for runtime behavior.
 
 paramOrder:

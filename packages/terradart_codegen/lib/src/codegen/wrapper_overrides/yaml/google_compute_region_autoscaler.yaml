@@ -81,7 +81,7 @@ classDocComment: |-
   /// parallel `Autoscaler...` family on the zonal sibling.
   ///
   /// Composition pattern: extends
-  /// `Resource<$GoogleComputeRegionAutoscaler>` for runtime behavior.
+  /// `Resource` for runtime behavior.
 
 # Slot order chosen for ergonomic clarity:
 # identity (name, region) first, then `target` (the regional MIG

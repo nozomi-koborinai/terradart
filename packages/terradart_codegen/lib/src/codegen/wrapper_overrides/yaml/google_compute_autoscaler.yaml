@@ -70,7 +70,7 @@ classDocComment: |-
   /// with the parallel `RegionAutoscaler...` family on the regional
   /// sibling.
   ///
-  /// Composition pattern: extends `Resource<$GoogleComputeAutoscaler>` for
+  /// Composition pattern: extends `Resource` for
   /// runtime behavior.
 
 # Slot order chosen for ergonomic clarity:

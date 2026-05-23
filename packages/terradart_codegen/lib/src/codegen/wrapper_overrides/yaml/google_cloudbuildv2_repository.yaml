@@ -42,7 +42,7 @@ classDocComment: |-
   /// changing `name`, `parentConnection`, `remoteUri`, or `annotations`
   /// (the only writable field besides identity) forces replacement.
   ///
-  /// Composition pattern: extends `Resource<$GoogleCloudbuildv2Repository>`
+  /// Composition pattern: extends `Resource`
   /// for runtime behavior.
 
 paramOrder:

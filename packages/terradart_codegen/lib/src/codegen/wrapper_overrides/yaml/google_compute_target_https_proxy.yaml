@@ -57,7 +57,7 @@ classDocComment: |-
   /// the curation roadmap). When passed via input variable use
   /// `TfArg.ref(var.ssl_policy_id)`.
   ///
-  /// Composition pattern: extends `Resource<$GoogleComputeTargetHttpsProxy>`
+  /// Composition pattern: extends `Resource`
   /// for runtime behavior.
 
 paramOrder:

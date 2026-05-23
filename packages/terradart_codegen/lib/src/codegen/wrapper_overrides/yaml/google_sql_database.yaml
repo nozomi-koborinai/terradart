@@ -27,7 +27,7 @@ classDocComment: |-
   /// );
   /// ```
   ///
-  /// Composition pattern: extends `Resource<$GoogleSqlDatabase>` for
+  /// Composition pattern: extends `Resource` for
   /// runtime behavior.
 
 paramOrder:

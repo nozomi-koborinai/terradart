@@ -20,7 +20,7 @@ classDocComment: |-
   /// ```
   ///
   /// Manages a VPC network or legacy network resource on GCP. Composition
-  /// pattern: extends `Resource<$GoogleComputeNetwork>` for runtime behavior.
+  /// pattern: extends `Resource` for runtime behavior.
 
 paramOrder:
   - name

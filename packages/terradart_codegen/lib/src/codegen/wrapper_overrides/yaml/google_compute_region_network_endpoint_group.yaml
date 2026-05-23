@@ -70,7 +70,7 @@ classDocComment: |-
   /// ```
   ///
   /// Composition pattern: extends
-  /// `Resource<$GoogleComputeRegionNetworkEndpointGroup>` for runtime
+  /// `Resource` for runtime
   /// behavior.
 
 paramOrder:

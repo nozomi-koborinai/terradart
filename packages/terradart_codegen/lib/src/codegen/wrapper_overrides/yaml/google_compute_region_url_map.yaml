@@ -112,7 +112,7 @@ classDocComment: |-
   /// keyed by the Terraform block name when you need them; see the per-class
   /// doc for the exact escape-hatch key.
   ///
-  /// Composition pattern: extends `Resource<$GoogleComputeRegionUrlMap>` for
+  /// Composition pattern: extends `Resource` for
   /// runtime behavior.
 
 paramOrder:

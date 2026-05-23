@@ -76,7 +76,7 @@ classDocComment: |-
   /// schema omits these fields for regional proxies.
   ///
   /// Composition pattern: extends
-  /// `Resource<$GoogleComputeRegionTargetHttpsProxy>` for runtime
+  /// `Resource` for runtime
   /// behavior.
 
 paramOrder:

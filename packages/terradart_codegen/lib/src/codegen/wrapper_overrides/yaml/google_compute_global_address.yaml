@@ -45,7 +45,7 @@ classDocComment: |-
   /// );
   /// ```
   ///
-  /// Composition pattern: extends `Resource<$GoogleComputeGlobalAddress>` for
+  /// Composition pattern: extends `Resource` for
   /// runtime behavior.
 
 paramOrder:

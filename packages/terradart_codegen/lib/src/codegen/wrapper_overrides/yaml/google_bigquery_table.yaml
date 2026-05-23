@@ -40,7 +40,7 @@ classDocComment: |-
   /// ```
   ///
   /// Manages a BigQuery table. Composition pattern: extends
-  /// `Resource<$GoogleBigqueryTable>` for runtime behavior. The nested
+  /// `Resource` for runtime behavior. The nested
   /// blocks (time_partitioning / range_partitioning / materialized_view /
   /// view / external_data_configuration / encryption_configuration /
   /// table_constraints / table_replication_info / biglake_configuration)

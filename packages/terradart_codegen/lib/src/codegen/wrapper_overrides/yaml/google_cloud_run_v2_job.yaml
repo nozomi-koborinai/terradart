@@ -45,7 +45,7 @@ classDocComment: |-
   /// `CloudRunV2JobBinaryAuthorization`, `CloudRunV2JobVolume`, `CloudRunV2JobVolumeSource`, ...) to
   /// stay barrel-exportable alongside the Service helpers.
   ///
-  /// Composition pattern: extends `Resource<$GoogleCloudRunV2Job>` for
+  /// Composition pattern: extends `Resource` for
   /// runtime behavior.
 
 paramOrder:
