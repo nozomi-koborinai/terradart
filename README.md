@@ -229,9 +229,10 @@ See [CONTRIBUTING.md](CONTRIBUTING.md). For security issues, use the [GitHub pri
 ## Trademarks
 
 "Terraform" is a registered trademark of HashiCorp, Inc.
-"Dart" is a trademark of Google LLC.
-TerraDart is an independent open-source project and is not affiliated with,
-endorsed by, or sponsored by HashiCorp or Google.
+
+Dart™ and the related logo are trademarks of Google LLC. We are not endorsed by or affiliated with Google LLC.
+
+TerraDart is an independent open-source project and is not affiliated with, endorsed by, or sponsored by HashiCorp or Google.
 
 ## License & acknowledgements
 

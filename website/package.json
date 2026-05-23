@@ -1,0 +1,30 @@
+{
+  "name": "@terradart/site",
+  "private": true,
+  "type": "module",
+  "version": "0.0.0",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "sync-branding": "node scripts/sync-branding.mjs",
+    "predev": "bun run sync-branding",
+    "dev": "astro dev",
+    "prebuild": "bun run sync-branding",
+    "build": "astro build",
+    "preview": "astro preview",
+    "typecheck": "astro check",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.39.2",
+    "astro": "^6.2.2",
+    "starlight-llms-txt": "^0.8.1",
+    "tailwindcss": "^4.2.4"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "@tailwindcss/vite": "^4.2.4",
+    "sharp": "^0.34.5"
+  }
+}

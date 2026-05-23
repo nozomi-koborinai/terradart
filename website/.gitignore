@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.astro/
+
+# Copied from ../branding/ on predev / prebuild
+public/*
+!public/.gitkeep

@@ -1,0 +1,434 @@
+@import "tailwindcss";
+
+/* TerraDart brand tokens — branding/BRAND.md */
+@theme {
+  --color-paper: #f6f3ec;
+  --color-ink: #0f1116;
+  --color-rule: #d8d4ca;
+  --color-mute: #5c5f6a;
+  --color-accent: #0175c2;
+  --color-accent-bright: #13b9fd;
+  --color-terra: #1e2a56;
+  --color-callout-bg: #f0ece2;
+
+  --font-display: "Inter", "SF Pro Display", "Helvetica Neue", system-ui,
+    sans-serif;
+  --font-body: "Inter", "Helvetica Neue", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "SF Mono", Consolas, monospace;
+}
+
+@layer base {
+  html {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    font-size: 17px;
+    line-height: 1.55;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    margin: 0;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-accent);
+    color: var(--color-paper);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1.08;
+    margin: 0;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+  }
+}
+
+@layer components {
+  .container-edit {
+    max-width: 72rem;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-edit {
+      padding-left: 2.5rem;
+      padding-right: 2.5rem;
+    }
+  }
+
+  .rule-top {
+    border-top: 1px solid var(--color-ink);
+  }
+
+  /* Terra stratum — single horizontal bar per BRAND */
+  .terra-stratum {
+    width: 8.5rem;
+    height: 4px;
+    background: var(--color-terra);
+    opacity: 0.88;
+    margin: 2rem 0 2.25rem;
+  }
+
+  .pre-alpha {
+    display: inline-block;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-mute);
+    margin-bottom: 1.25rem;
+  }
+
+  .pre-alpha--header {
+    margin-bottom: 0;
+    font-size: 0.6875rem;
+  }
+
+  .display-hero {
+    font-size: clamp(2.75rem, 7vw, 5.25rem);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    font-weight: 400;
+  }
+
+  .display-hero-line {
+    display: block;
+  }
+
+  .display-hero-accent {
+    color: var(--color-accent);
+  }
+
+  .display-section {
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    max-width: 18ch;
+  }
+
+  .body-lead {
+    font-size: clamp(1.0625rem, 1.5vw, 1.1875rem);
+    line-height: 1.6;
+    color: var(--color-ink);
+  }
+
+  .section-label {
+    font-size: 0.8125rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-mute);
+    margin-bottom: 1rem;
+  }
+
+  .section-inner {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-inner {
+      padding-top: 5.5rem;
+      padding-bottom: 5.5rem;
+    }
+  }
+
+  .section-footnote {
+    margin-top: 2.5rem;
+    font-size: 0.9rem;
+    color: var(--color-mute);
+  }
+
+  /* Header */
+  .site-header {
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .site-header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.125rem;
+    padding-bottom: 1.125rem;
+  }
+
+  .site-header-logo-img {
+    height: 2rem;
+    width: auto;
+    display: block;
+  }
+
+  .site-header-nav {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .site-header-link {
+    font-size: 0.9375rem;
+    color: var(--color-ink);
+    transition: color 0.2s ease;
+  }
+
+  .site-header-link:hover {
+    color: var(--color-accent);
+  }
+
+  .site-header-link--icon svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    display: block;
+  }
+
+  /* Hero */
+  .hero {
+    padding-top: 3rem;
+    padding-bottom: 4rem;
+  }
+
+  @media (min-width: 768px) {
+    .hero {
+      padding-top: 4.5rem;
+      padding-bottom: 5.5rem;
+    }
+  }
+
+  .hero-inner {
+    display: grid;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-inner {
+      grid-template-columns: 1fr minmax(240px, 360px);
+      gap: 4rem;
+    }
+  }
+
+  .hero-lead {
+    max-width: 36rem;
+    margin-top: 1.5rem;
+  }
+
+  .hero-lead code {
+    color: var(--color-accent);
+  }
+
+  .hero-cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .hero-visual {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  @media (min-width: 1024px) {
+    .hero-visual {
+      align-items: flex-end;
+      text-align: right;
+    }
+  }
+
+  .hero-visual-caption {
+    margin-top: 1.25rem;
+    max-width: 16rem;
+    font-size: 0.875rem;
+    line-height: 1.45;
+    color: var(--color-mute);
+  }
+
+  /* Buttons — Inter, not mono (BRAND: Regular humanist) */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    padding: 0.75rem 1.35rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    transition: background 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    background: var(--color-accent);
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.35rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    border: 1px solid var(--color-rule);
+    color: var(--color-ink);
+    background: transparent;
+    transition:
+      border-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  /* Mission */
+  .mission-grid {
+    display: grid;
+    gap: 2rem;
+    margin-top: 2.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .mission-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  .mission-card {
+    padding-top: 1.5rem;
+    border-top: 4px solid var(--color-terra);
+  }
+
+  .mission-card-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  .mission-card p {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: var(--color-mute);
+  }
+
+  .mission-card code {
+    color: var(--color-ink);
+  }
+
+  /* Pipeline */
+  .pipeline {
+    list-style: none;
+    padding: 0;
+    margin: 2.5rem 0 0;
+    display: grid;
+    gap: 0;
+  }
+
+  .pipeline-step {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 1.25rem;
+    padding: 1.75rem 0;
+    border-top: 1px solid var(--color-rule);
+  }
+
+  .pipeline-step:last-child {
+    border-bottom: 1px solid var(--color-rule);
+  }
+
+  .pipeline-index {
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    color: var(--color-accent);
+    padding-top: 0.15rem;
+  }
+
+  .pipeline-title {
+    font-size: 1.0625rem;
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+  }
+
+  .pipeline-body p {
+    font-size: 0.95rem;
+    color: var(--color-mute);
+    line-height: 1.5;
+  }
+
+  /* Compare */
+  .compare-wrap {
+    margin-top: 2.5rem;
+    overflow-x: auto;
+  }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9375rem;
+  }
+
+  .compare-table th,
+  .compare-table td {
+    border: 1px solid var(--color-rule);
+    padding: 0.75rem 1rem;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .compare-table thead th {
+    font-weight: 500;
+    background: var(--color-callout-bg);
+  }
+
+  .compare-table tbody th {
+    font-weight: 500;
+    color: var(--color-mute);
+    width: 30%;
+  }
+
+  .compare-table td:first-of-type {
+    font-weight: 500;
+  }
+
+  .link-mark {
+    color: var(--color-accent);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color 0.2s ease;
+  }
+
+  .link-mark:hover {
+    color: var(--color-accent-bright);
+  }
+
+  .text-mute {
+    color: var(--color-mute);
+  }
+
+  .bg-paper {
+    background: var(--color-paper);
+  }
+}

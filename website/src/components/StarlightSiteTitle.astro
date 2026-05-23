@@ -1,0 +1,48 @@
+---
+import config from "virtual:starlight/user-config";
+
+interface Props {
+  locale: string | undefined;
+}
+
+const { locale } = Astro.props;
+
+let title: string;
+if (typeof config.title === "string") {
+  title = config.title;
+} else {
+  const titleByLocale = config.title as Record<string, string>;
+  title =
+    (locale && titleByLocale[locale]) ||
+    titleByLocale["en"] ||
+    Object.values(titleByLocale)[0] ||
+    "TerraDart";
+}
+---
+
+<a href="/" class="site-title">
+  <img src="/logo-horizontal.svg" alt="" width="140" height="28" class="site-title-logo" />
+  <span class="sr-only">{title}</span>
+</a>
+
+<style>
+  .site-title {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  .site-title-logo {
+    height: 1.75rem;
+    width: auto;
+  }
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+</style>
