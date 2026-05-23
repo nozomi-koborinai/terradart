@@ -4,10 +4,6 @@ import 'package:terradart_core/terradart_core.dart';
 /// `packages/terradart/test/helpers/fake_resources.dart`. We can't import
 /// test-private helpers from the sibling package, so we redeclare the
 /// trivial subclass here.
-class TestStack extends Stack {
+final class TestStack extends Stack {
   TestStack({super.providers = const [], super.backend});
-
-  @override
-  Future<void> synth({required String outDir}) async =>
-      throw UnimplementedError('use StackSynth.synth(...) directly in tests');
 }

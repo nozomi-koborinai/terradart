@@ -15,14 +15,11 @@
 /// - [RemoteConfigTagColor] and [RemoteConfigValueType] enum usage.
 library;
 
-import 'dart:convert' as dart_convert;
-import 'dart:io';
-
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/firebase_remote_config.dart';
 import 'package:terradart_google/provider.dart';
 
-class RemoteConfigStack extends Stack {
+final class RemoteConfigStack extends Stack {
   RemoteConfigStack({required String projectId})
       : super(
           providers: [
@@ -30,7 +27,8 @@ class RemoteConfigStack extends Stack {
           ],
         ) {
     // A condition that fires for users in Japan.
-    final japanCondition = FirebaseRemoteConfigRemoteConfigRemoteConfigCondition(
+    final japanCondition =
+        FirebaseRemoteConfigRemoteConfigRemoteConfigCondition(
       name: TfArg.literal('is_japan'),
       expression: TfArg.literal("device.country in ['JP']"),
       tagColor: RemoteConfigTagColor.blue,
@@ -45,7 +43,8 @@ class RemoteConfigStack extends Stack {
           FirebaseRemoteConfigRemoteConfigRemoteConfigParameter(
             parameterName: TfArg.literal('enable_new_checkout'),
             valueType: RemoteConfigValueType.boolean,
-            defaultValue: FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue(
+            defaultValue:
+                FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue(
               value: TfArg.literal('false'),
             ),
             conditionalValues: [
@@ -60,7 +59,8 @@ class RemoteConfigStack extends Stack {
           FirebaseRemoteConfigRemoteConfigRemoteConfigParameter(
             parameterName: TfArg.literal('welcome_banner_text'),
             valueType: RemoteConfigValueType.string,
-            defaultValue: FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue(
+            defaultValue:
+                FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue(
               value: TfArg.literal('Welcome!'),
             ),
             conditionalValues: [
@@ -80,7 +80,8 @@ class RemoteConfigStack extends Stack {
               FirebaseRemoteConfigRemoteConfigRemoteConfigParameter(
                 parameterName: TfArg.literal('enable_dark_mode'),
                 valueType: RemoteConfigValueType.boolean,
-                defaultValue: FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue(
+                defaultValue:
+                    FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue(
                   value: TfArg.literal('false'),
                 ),
               ),
@@ -88,16 +89,6 @@ class RemoteConfigStack extends Stack {
           ),
         ],
       ),
-    );
-  }
-
-  @override
-  Future<void> synth({required String outDir}) async {
-    final result = StackSynth.synth(this);
-    await Directory(outDir).create(recursive: true);
-    final tfFile = File('$outDir/main.tf.json');
-    await tfFile.writeAsString(
-      const dart_convert.JsonEncoder.withIndent('  ').convert(result.tfJson),
     );
   }
 }

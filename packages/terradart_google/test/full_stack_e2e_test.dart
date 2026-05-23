@@ -126,7 +126,7 @@ void main() {
         ),
       );
 
-      final actual = StackSynth.synth(stack).tfJson;
+      final actual = stack.synth().tfJson;
       final golden = jsonDecode(
         await File('test/golden/full_stack.tf.json').readAsString(),
       ) as Map<String, dynamic>;

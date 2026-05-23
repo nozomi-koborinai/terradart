@@ -44,14 +44,14 @@ class FakeStackProvider implements StackProvider {
 
 /// Minimal concrete `Stack` subclass for tests. Uses the default
 /// [Stack.synth] implementation.
-class TestStack extends Stack {
+final class TestStack extends Stack {
   TestStack({super.providers = const [], super.backend, super.devMode});
 }
 
 /// Generic non-capable fake resource for injection tests.
 /// `terraformType` is `'fake_thing'`; `$supportsDeletionProtection` defaults
 /// to `false` (base class behaviour).
-class FakeResource extends Resource {
+final class FakeResource extends Resource {
   FakeResource({
     required super.localName,
     required TfArg<String> name,
@@ -64,7 +64,7 @@ class FakeResource extends Resource {
   Set<String> get $sensitiveFields => const {};
 }
 
-class FakePubsubTopic extends Resource {
+final class FakePubsubTopic extends Resource {
   FakePubsubTopic({
     required super.localName,
     required super.argMap,
@@ -85,7 +85,7 @@ class FakePubsubTopic extends Resource {
   Set<String> get $sensitiveFields => const {};
 }
 
-class FakePubsubSubscription extends Resource {
+final class FakePubsubSubscription extends Resource {
   FakePubsubSubscription({
     required super.localName,
     required super.argMap,
@@ -97,7 +97,7 @@ class FakePubsubSubscription extends Resource {
   Set<String> get $sensitiveFields => const {};
 }
 
-class FakeSecretVersion extends Resource {
+final class FakeSecretVersion extends Resource {
   FakeSecretVersion({
     required super.localName,
     required super.argMap,
@@ -109,7 +109,7 @@ class FakeSecretVersion extends Resource {
   Set<String> get $sensitiveFields => const {'secret_data'};
 }
 
-class FakeProjectData extends Data {
+final class FakeProjectData extends Data {
   FakeProjectData({
     required super.localName,
     required super.argMap,

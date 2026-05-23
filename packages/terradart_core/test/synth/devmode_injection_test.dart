@@ -5,7 +5,7 @@ import 'package:test/test.dart';
 
 import '../helpers/fake_resources.dart';
 
-class _CapableResource extends Resource {
+final class _CapableResource extends Resource {
   _CapableResource({required super.localName, required TfArg<String> name})
       : super(
           terraformType: 'fake_protected_thing',
@@ -19,7 +19,7 @@ class _CapableResource extends Resource {
   bool get $supportsDeletionProtection => true;
 }
 
-class _CapableResourceWithExplicitDP extends Resource {
+final class _CapableResourceWithExplicitDP extends Resource {
   _CapableResourceWithExplicitDP({
     required super.localName,
     required TfArg<String> name,

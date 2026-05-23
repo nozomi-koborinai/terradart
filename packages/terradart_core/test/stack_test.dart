@@ -4,7 +4,7 @@ import 'package:terradart_core/src/stack.dart';
 import 'package:terradart_core/src/tf_arg.dart';
 import 'package:test/test.dart';
 
-class _FakeResource extends Resource {
+final class _FakeResource extends Resource {
   _FakeResource({required super.localName, required TfArg<String> name})
       : super(
           terraformType: 'fake_thing',
@@ -15,7 +15,7 @@ class _FakeResource extends Resource {
   Set<String> get $sensitiveFields => const {};
 }
 
-class _FakeData extends Data {
+final class _FakeData extends Data {
   _FakeData({required super.localName, required TfArg<String> name})
       : super(
           terraformType: 'fake_thing',
@@ -26,7 +26,7 @@ class _FakeData extends Data {
   Set<String> get $sensitiveFields => const {};
 }
 
-class _TestStack extends Stack {
+final class _TestStack extends Stack {
   _TestStack() : super(providers: const []);
 }
 

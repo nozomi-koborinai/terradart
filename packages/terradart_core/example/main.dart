@@ -3,15 +3,12 @@ import 'dart:convert';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Minimal example: empty Stack synth.
-class EmptyStack extends Stack {
+final class EmptyStack extends Stack {
   EmptyStack() : super(providers: const []);
-
-  @override
-  Future<void> synth({required String outDir}) async =>
-      throw UnimplementedError('use StackSynth.synth(...) directly');
 }
 
 void main() {
-  final result = StackSynth.synth(EmptyStack());
+  final result = EmptyStack().synth();
+  // ignore: avoid_print
   print(const JsonEncoder.withIndent('  ').convert(result.tfJson));
 }

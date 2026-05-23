@@ -11,5 +11,5 @@ import 'package:terradart_example_cloud_scheduler_quickstart/main.dart';
 Future<void> main() async {
   final projectId = Platform.environment['GCP_PROJECT_ID'] ?? 'YOUR-PROJECT-ID';
   final stack = NightlyCleanupStack(projectId: projectId);
-  await stack.synth(outDir: 'tf-out');
+  await stack.writeTo('tf-out');
 }

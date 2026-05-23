@@ -13,15 +13,12 @@
 /// keeps service projects and tenants from over-reaching.
 library;
 
-import 'dart:convert' as dart_convert;
-import 'dart:io';
-
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/provider.dart';
 
 /// Network stack: a VPC + a public IP for a load balancer.
-class NetworkStack extends Stack {
+final class NetworkStack extends Stack {
   NetworkStack({required String projectId})
       : super(
           providers: [
@@ -129,19 +126,10 @@ class NetworkStack extends Stack {
         name: TfArg.literal('persistent-data-disk'),
         role: TfArg.literal('roles/compute.storageAdmin'),
         member: TfArg.literal(
-            'serviceAccount:backup@example.iam.gserviceaccount.com',),
+          'serviceAccount:backup@example.iam.gserviceaccount.com',
+        ),
         zone: TfArg.literal('asia-northeast1-a'),
       ),
-    );
-  }
-
-  @override
-  Future<void> synth({required String outDir}) async {
-    final result = StackSynth.synth(this);
-    await Directory(outDir).create(recursive: true);
-    final tfFile = File('$outDir/main.tf.json');
-    await tfFile.writeAsString(
-      const dart_convert.JsonEncoder.withIndent('  ').convert(result.tfJson),
     );
   }
 }

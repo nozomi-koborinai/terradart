@@ -10,15 +10,12 @@
 /// `LogSinkExclusion` list-entry helper from `google_logging_project_sink`.
 library;
 
-import 'dart:convert' as dart_convert;
-import 'dart:io';
-
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/bigquery.dart';
 import 'package:terradart_google/logging.dart';
 import 'package:terradart_google/provider.dart';
 
-class AuditPipelineStack extends Stack {
+final class AuditPipelineStack extends Stack {
   AuditPipelineStack({required String projectId})
       : super(
           providers: [
@@ -55,16 +52,6 @@ class AuditPipelineStack extends Stack {
           ),
         ],
       ),
-    );
-  }
-
-  @override
-  Future<void> synth({required String outDir}) async {
-    final result = StackSynth.synth(this);
-    await Directory(outDir).create(recursive: true);
-    final tfFile = File('$outDir/main.tf.json');
-    await tfFile.writeAsString(
-      const dart_convert.JsonEncoder.withIndent('  ').convert(result.tfJson),
     );
   }
 }

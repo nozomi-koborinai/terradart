@@ -24,15 +24,12 @@
 ///     to `main`, and dispatches the work to the private pool.
 library;
 
-import 'dart:convert' as dart_convert;
-import 'dart:io';
-
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/artifact_registry.dart';
 import 'package:terradart_google/cloud_build.dart';
 import 'package:terradart_google/provider.dart';
 
-class CloudBuildStack extends Stack {
+final class CloudBuildStack extends Stack {
   CloudBuildStack({required String projectId})
       : super(
           providers: [
@@ -170,16 +167,6 @@ class CloudBuildStack extends Stack {
         // delegates pool selection to the in-repo build config.)
         substitutions: TfArg.literal({'_WORKER_POOL': lbPool.id.interpolation}),
       ),
-    );
-  }
-
-  @override
-  Future<void> synth({required String outDir}) async {
-    final result = StackSynth.synth(this);
-    await Directory(outDir).create(recursive: true);
-    final tfFile = File('$outDir/main.tf.json');
-    await tfFile.writeAsString(
-      const dart_convert.JsonEncoder.withIndent('  ').convert(result.tfJson),
     );
   }
 }

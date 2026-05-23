@@ -1,3 +1,4 @@
+import 'package:meta/meta.dart';
 import 'package:terradart_core/src/stack.dart';
 import 'package:terradart_core/src/synth/dart_constants_emitter.dart';
 import 'package:terradart_core/src/synth/json_encoder.dart';
@@ -34,6 +35,11 @@ class SynthResult {
 /// This is a thin orchestrator over the building blocks in `synth/`:
 /// [LiteralResolver] (Pass 1) → [OutputEmitter] (Pass 2) → assemble
 /// JSON via [TfJsonEncoder], render Dart via [DartConstantsEmitter].
+///
+/// Internal: callers should use [Stack.synth] (in-memory) or
+/// [Stack.writeTo] (file write) — the public surface routes through
+/// the Stack-level API, not this orchestrator class directly.
+@internal
 class StackSynth {
   /// Synthesise [stack] into a [SynthResult].
   ///

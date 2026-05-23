@@ -16,15 +16,12 @@
 /// the table — covering both granularities of BigQuery IAM in one stack.
 library;
 
-import 'dart:convert' as dart_convert;
-import 'dart:io';
-
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/bigquery.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 
-class AnalyticsStack extends Stack {
+final class AnalyticsStack extends Stack {
   AnalyticsStack({required String projectId})
       : super(
           providers: [
@@ -114,16 +111,6 @@ class AnalyticsStack extends Stack {
         role: TfArg.literal('roles/bigquery.dataEditor'),
         member: TfArg.ref(ingestor.iamMember),
       ),
-    );
-  }
-
-  @override
-  Future<void> synth({required String outDir}) async {
-    final result = StackSynth.synth(this);
-    await Directory(outDir).create(recursive: true);
-    final tfFile = File('$outDir/main.tf.json');
-    await tfFile.writeAsString(
-      const dart_convert.JsonEncoder.withIndent('  ').convert(result.tfJson),
     );
   }
 }

@@ -13,15 +13,12 @@
 /// [FirestoreFields.encode] helper introduced in terradart v0.10.0.
 library;
 
-import 'dart:convert' as dart_convert;
-import 'dart:io';
-
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/firestore.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 
-class FirestoreDocumentQuickstart extends Stack {
+final class FirestoreDocumentQuickstart extends Stack {
   FirestoreDocumentQuickstart({required String projectId})
       : super(
           providers: [
@@ -69,16 +66,6 @@ class FirestoreDocumentQuickstart extends Stack {
         }),
         dependsOn: [ResourceDependency(db)],
       ),
-    );
-  }
-
-  @override
-  Future<void> synth({required String outDir}) async {
-    final result = StackSynth.synth(this);
-    await Directory(outDir).create(recursive: true);
-    final tfFile = File('$outDir/main.tf.json');
-    await tfFile.writeAsString(
-      const dart_convert.JsonEncoder.withIndent('  ').convert(result.tfJson),
     );
   }
 }

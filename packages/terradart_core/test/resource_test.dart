@@ -3,7 +3,7 @@ import 'package:terradart_core/src/resource.dart';
 import 'package:terradart_core/src/tf_arg.dart';
 import 'package:test/test.dart';
 
-class _FakeResource extends Resource {
+final class _FakeResource extends Resource {
   _FakeResource({
     required super.localName,
     required TfArg<String> name,
@@ -89,7 +89,7 @@ void main() {
   });
 }
 
-class _CapableResource extends Resource {
+final class _CapableResource extends Resource {
   _CapableResource({required super.localName, required TfArg<String> name})
       : super(
           terraformType: 'fake_capable_thing',

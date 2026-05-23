@@ -12,14 +12,11 @@
 /// and the sealed `IndexFieldSpec` dispatch from `google_firestore_index`.
 library;
 
-import 'dart:convert' as dart_convert;
-import 'dart:io';
-
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/firestore.dart';
 import 'package:terradart_google/provider.dart';
 
-class MessagesStack extends Stack {
+final class MessagesStack extends Stack {
   MessagesStack({required String projectId})
       : super(
           providers: [
@@ -56,16 +53,6 @@ class MessagesStack extends Stack {
           ),
         ],
       ),
-    );
-  }
-
-  @override
-  Future<void> synth({required String outDir}) async {
-    final result = StackSynth.synth(this);
-    await Directory(outDir).create(recursive: true);
-    final tfFile = File('$outDir/main.tf.json');
-    await tfFile.writeAsString(
-      const dart_convert.JsonEncoder.withIndent('  ').convert(result.tfJson),
     );
   }
 }

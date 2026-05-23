@@ -42,7 +42,7 @@ void main() {
     );
 
     expect(
-      StackSynth.synth(stack).tfJson,
+      stack.synth().tfJson,
       equals(await _readGolden('pubsub_topic_iam_member.tf.json')),
     );
   });
@@ -74,7 +74,7 @@ void main() {
     );
 
     expect(
-      StackSynth.synth(stack).tfJson,
+      stack.synth().tfJson,
       equals(await _readGolden('pubsub_subscription_iam_member.tf.json')),
     );
   });
@@ -99,7 +99,7 @@ void main() {
       );
 
     expect(
-      StackSynth.synth(stack).tfJson,
+      stack.synth().tfJson,
       equals(await _readGolden('cloud_tasks_queue.tf.json')),
     );
   });
@@ -126,7 +126,7 @@ void main() {
     );
 
     expect(
-      StackSynth.synth(stack).tfJson,
+      stack.synth().tfJson,
       equals(await _readGolden('cloud_tasks_queue_iam_member.tf.json')),
     );
   });
@@ -142,7 +142,7 @@ void main() {
       );
 
     expect(
-      StackSynth.synth(stack).tfJson,
+      stack.synth().tfJson,
       equals(await _readGolden('secret_manager_secret.tf.json')),
     );
   });
@@ -176,7 +176,7 @@ void main() {
       // through unmasked here. The legacy `secret_data` path (used in the
       // unit test for that field) is masked.
       expect(
-        StackSynth.synth(stack).tfJson,
+        stack.synth().tfJson,
         equals(await _readGolden('secret_manager_secret_version.tf.json')),
       );
     },
@@ -203,7 +203,7 @@ void main() {
     );
 
     expect(
-      StackSynth.synth(stack).tfJson,
+      stack.synth().tfJson,
       equals(await _readGolden('secret_manager_secret_iam_member.tf.json')),
     );
   });
@@ -230,7 +230,7 @@ void main() {
     );
 
     expect(
-      StackSynth.synth(stack).tfJson,
+      stack.synth().tfJson,
       equals(await _readGolden('cloud_scheduler_job_pubsub.tf.json')),
     );
   });
@@ -251,7 +251,7 @@ void main() {
       );
 
     expect(
-      StackSynth.synth(stack).tfJson,
+      stack.synth().tfJson,
       equals(await _readGolden('cloud_scheduler_job_http.tf.json')),
     );
   });

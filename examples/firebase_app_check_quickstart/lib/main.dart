@@ -12,14 +12,11 @@
 /// enforcement config (which decides what happens to unverified requests).
 library;
 
-import 'dart:convert' as dart_convert;
-import 'dart:io';
-
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/firebase_app_check.dart';
 import 'package:terradart_google/provider.dart';
 
-class AppCheckStack extends Stack {
+final class AppCheckStack extends Stack {
   AppCheckStack({required String projectId})
       : super(
           providers: [
@@ -47,16 +44,6 @@ class AppCheckStack extends Stack {
         serviceId: TfArg.literal('firestore.googleapis.com'),
         enforcementMode: TfArg.literal(AppCheckEnforcementMode.enforced),
       ),
-    );
-  }
-
-  @override
-  Future<void> synth({required String outDir}) async {
-    final result = StackSynth.synth(this);
-    await Directory(outDir).create(recursive: true);
-    final tfFile = File('$outDir/main.tf.json');
-    await tfFile.writeAsString(
-      const dart_convert.JsonEncoder.withIndent('  ').convert(result.tfJson),
     );
   }
 }

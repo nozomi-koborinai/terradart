@@ -6,15 +6,12 @@
 /// constant for application-side use.
 library;
 
-import 'dart:convert' as dart_convert;
-import 'dart:io';
-
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_tasks.dart';
 import 'package:terradart_google/provider.dart';
 
 /// Cloud Tasks queue + IAM enqueuer Stack.
-class EmailJobsStack extends Stack {
+final class EmailJobsStack extends Stack {
   EmailJobsStack({required String projectId})
       : super(
           providers: [
@@ -63,24 +60,5 @@ class EmailJobsStack extends Stack {
     );
 
     setAppExportsOutputPath('lib/generated/email_jobs_stack.app.dart');
-  }
-
-  @override
-  Future<void> synth({required String outDir}) async {
-    final result = StackSynth.synth(this);
-    await Directory(outDir).create(recursive: true);
-
-    final tfFile = File('$outDir/main.tf.json');
-    await tfFile.writeAsString(
-      const dart_convert.JsonEncoder.withIndent('  ').convert(result.tfJson),
-    );
-
-    final dartConstants = result.dartConstants;
-    final dartPath = result.dartConstantsPath;
-    if (dartConstants != null && dartPath != null) {
-      final dartFile = File(dartPath);
-      await dartFile.parent.create(recursive: true);
-      await dartFile.writeAsString(dartConstants);
-    }
   }
 }

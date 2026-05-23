@@ -12,16 +12,13 @@
 /// and the typed enum coverage from `google_cloudfunctions2_function`.
 library;
 
-import 'dart:convert' as dart_convert;
-import 'dart:io';
-
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_functions.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/storage.dart';
 
-class HttpFunctionStack extends Stack {
+final class HttpFunctionStack extends Stack {
   HttpFunctionStack({required String projectId})
       : super(
           providers: [
@@ -41,7 +38,9 @@ class HttpFunctionStack extends Stack {
       localName: 'fn_source_zip',
       bucket: TfArg.ref(sourceBucket.nameRef),
       name: TfArg.literal('hello-http.zip'),
-      body: StorageBucketObjectBucketObjectFromSource(source: TfArg.literal('./hello-http.zip')),
+      body: StorageBucketObjectBucketObjectFromSource(
+        source: TfArg.literal('./hello-http.zip'),
+      ),
     );
     add(sourceObject);
 
@@ -80,16 +79,6 @@ class HttpFunctionStack extends Stack {
           environmentVariables: TfArg.literal({'LOG_LEVEL': 'info'}),
         ),
       ),
-    );
-  }
-
-  @override
-  Future<void> synth({required String outDir}) async {
-    final result = StackSynth.synth(this);
-    await Directory(outDir).create(recursive: true);
-    final tfFile = File('$outDir/main.tf.json');
-    await tfFile.writeAsString(
-      const dart_convert.JsonEncoder.withIndent('  ').convert(result.tfJson),
     );
   }
 }

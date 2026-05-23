@@ -17,16 +17,13 @@
 ///    from `DB_PASSWORD`; it is sensitive and masked at synth time.
 library;
 
-import 'dart:convert' as dart_convert;
-import 'dart:io';
-
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_sql.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/service_networking.dart';
 
-class CloudSqlStack extends Stack {
+final class CloudSqlStack extends Stack {
   CloudSqlStack({
     required String projectId,
     required String dbPassword,
@@ -132,16 +129,6 @@ class CloudSqlStack extends Stack {
         passwordWo: TfArg.literal(dbPassword),
         passwordWoVersion: TfArg.literal(1),
       ),
-    );
-  }
-
-  @override
-  Future<void> synth({required String outDir}) async {
-    final result = StackSynth.synth(this);
-    await Directory(outDir).create(recursive: true);
-    final tfFile = File('$outDir/main.tf.json');
-    await tfFile.writeAsString(
-      const dart_convert.JsonEncoder.withIndent('  ').convert(result.tfJson),
     );
   }
 }
