@@ -58,8 +58,9 @@ abstract interface class StackProvider {
 /// User-extended IaC composition root.
 ///
 /// User subclasses construct resources inside their own constructor and
-/// register them via `add` / `addData`. `StackSynth.synth(stack)` walks the
-/// internal collections to emit Terraform JSON.
+/// register them via `add` / `addData`. `synth()` returns the in-memory
+/// [SynthResult] bundle (Terraform JSON map plus any generated Dart
+/// constants source); `writeTo(outDir)` persists that bundle to disk.
 ///
 /// Coordination surface for synth and concrete providers:
 ///
@@ -228,20 +229,26 @@ abstract base class Stack {
   /// generated constants would otherwise be silently dropped.
   Future<void> writeTo(String outDir) async {
     final result = synth();
+
+    // Guard before any I/O so the failure mode is atomic — a writeTo call
+    // that throws StateError must NOT have produced a partial main.tf.json
+    // on disk. Otherwise users see a confusing tf-out/ directory next to
+    // the exception and assume the synth half-succeeded.
+    if (result.dartConstants != null && result.dartConstantsPath == null) {
+      throw StateError(
+        'AppExport constants were registered (addExport called) '
+        'but no output path was set. Call '
+        'setAppExportsOutputPath() in your Stack constructor '
+        'before writeTo().',
+      );
+    }
+
     await Directory(outDir).create(recursive: true);
     await File('$outDir/main.tf.json').writeAsString(
       const JsonEncoder.withIndent('  ').convert(result.tfJson),
     );
 
     if (result.dartConstants != null) {
-      if (result.dartConstantsPath == null) {
-        throw StateError(
-          'AppExport constants were registered (addExport called) '
-          'but no output path was set. Call '
-          'setAppExportsOutputPath() in your Stack constructor '
-          'before writeTo().',
-        );
-      }
       final f = File(result.dartConstantsPath!);
       await f.parent.create(recursive: true);
       await f.writeAsString(result.dartConstants!);

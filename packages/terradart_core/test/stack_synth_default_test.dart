@@ -123,7 +123,7 @@ void main() {
       () async {
         final stack = _StackWithUnsetExportPath();
 
-        expect(
+        await expectLater(
           () async => stack.writeTo(tempDir.path),
           throwsA(
             isA<StateError>().having(
@@ -132,6 +132,15 @@ void main() {
               contains('setAppExportsOutputPath'),
             ),
           ),
+        );
+
+        // Atomic failure: nothing should have been written under outDir.
+        expect(
+          await File('${tempDir.path}/main.tf.json').exists(),
+          isFalse,
+          reason:
+              'writeTo must fail before any I/O; a partial main.tf.json on '
+              'disk would mislead users into thinking synth half-succeeded.',
         );
       },
     );
