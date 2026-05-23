@@ -1,0 +1,31 @@
+/* Starlight — TerraDart brand (branding/BRAND.md) */
+
+:root {
+  --sl-font: "Inter", "Helvetica Neue", system-ui, sans-serif;
+  --sl-font-mono: "JetBrains Mono", "SF Mono", Consolas, monospace;
+}
+
+:root[data-theme="light"] {
+  --sl-color-accent-low: #d6ecfa;
+  --sl-color-accent: #0175c2;
+  --sl-color-accent-high: #015a99;
+  --sl-color-text-accent: #0f1116;
+  --sl-color-bg-nav: #f6f3ec;
+  --sl-color-bg-sidebar: #f6f3ec;
+  --sl-color-hairline: #d8d4ca;
+  --sl-color-hairline-shade: #d8d4ca;
+  --sl-color-hairline-light: #e8e4da;
+}
+
+:root[data-theme="dark"] {
+  --sl-color-accent-low: #1a2a66;
+  --sl-color-accent: #4dd0fe;
+  --sl-color-accent-high: #c2e8ff;
+  --sl-color-text-accent: #f6f3ec;
+}
+
+:where(h1, h2, h3, h4, h5, h6) {
+  font-family: "Inter", "Helvetica Neue", system-ui, sans-serif;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}

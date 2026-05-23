@@ -1,0 +1,63 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="rule-top bg-paper">
+  <div class="container-edit py-12">
+    <div class="grid md:grid-cols-12 gap-8">
+      <div class="md:col-span-7">
+        <img
+          src="/logo-horizontal.svg"
+          alt="TerraDart"
+          width="160"
+          height="32"
+          class="h-7 w-auto"
+        />
+        <p class="text-mute mt-3 text-sm max-w-md">
+          Type-safe Google Cloud IaC for Dart. Synthesizes standard
+          <code class="font-mono text-[0.85em]">*.tf.json</code> — your existing
+          <code class="font-mono text-[0.85em]">terraform apply</code> pipeline
+          runs unchanged.
+        </p>
+        <p class="text-mute mt-4 text-xs leading-relaxed max-w-lg">
+          Dart™ and the related logo are trademarks of Google LLC. We are not
+          endorsed by or affiliated with Google LLC. &quot;Terraform&quot; is a
+          registered trademark of HashiCorp, Inc. TerraDart is an independent
+          open-source project and is not affiliated with, endorsed by, or
+          sponsored by HashiCorp or Google.
+        </p>
+      </div>
+      <div class="md:col-span-5">
+        <div class="sct-numeral mb-3">// resources</div>
+        <nav class="flex flex-col gap-2 text-sm font-mono">
+          <a href="/docs/" class="link-mark">docs →</a>
+          <a
+            href="https://github.com/nozomi-koborinai/terradart"
+            class="link-mark">GitHub →</a
+          >
+          <a href="https://pub.dev/packages/terradart_core" class="link-mark"
+            >pub.dev →</a
+          >
+          <a href="/llms.txt" class="link-mark">llms.txt →</a>
+          <a href="/privacy" class="link-mark">privacy →</a>
+        </nav>
+      </div>
+    </div>
+    <hr class="mt-12" />
+    <div
+      class="flex flex-wrap items-center justify-between gap-3 mt-6 text-xs text-mute"
+    >
+      <span>
+        © {year} TerraDart ·
+        <a href="/privacy" class="link-mark">analytics via Cloudflare</a>
+      </span>
+      <span>
+        Made by
+        <a
+          href="https://www.linkedin.com/in/nozomi-koborinai/"
+          class="link-mark text-[var(--color-ink)]">Nozomi Koborinai</a
+        >
+      </span>
+    </div>
+  </div>
+</footer>

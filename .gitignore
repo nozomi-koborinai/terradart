@@ -48,8 +48,8 @@ tf-out/
 .terraform/
 .terraform.lock.hcl
 
-# Internal docs — kept local only.
-docs/
+# Internal docs at repo root — kept local only (not Starlight under website/).
+/docs/
 RESUME.md
 
 # sed -i.bak residue (tool/prepare_publish.sh generates these during swap).
