@@ -12,22 +12,24 @@ const Set<String> _googleFirestoreFieldSensitive = <String>{};
 // ===========================================================================
 
 /// One [FirestoreFieldSingleFieldIndex.order] direction. `ASCENDING` / `DESCENDING`.
-enum FirestoreFieldOrder {
+enum FirestoreFieldOrder implements TerraformEnum {
   ascending('ASCENDING'),
   descending('DESCENDING');
 
   const FirestoreFieldOrder(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `query_scope` -- which queries can use this single-field index.
 /// `collection` scopes the index to a single collection; `collectionGroup`
 /// allows the index to serve collection-group queries.
-enum FirestoreFieldQueryScope {
+enum FirestoreFieldQueryScope implements TerraformEnum {
   collection('COLLECTION'),
   collectionGroup('COLLECTION_GROUP');
 
   const FirestoreFieldQueryScope(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -150,8 +152,7 @@ class FirestoreFieldTtlConfig {
 /// );
 /// ```
 final class GoogleFirestoreField extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_firestore_field';
+  static const String tfType = 'google_firestore_field';
 
   GoogleFirestoreField({
     required super.localName,
@@ -164,7 +165,7 @@ final class GoogleFirestoreField extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'collection': collection,
            'field': field,
@@ -178,8 +179,7 @@ final class GoogleFirestoreField extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleFirestoreFieldSensitive;
+  Set<String> get sensitiveFields => _googleFirestoreFieldSensitive;
 
   /// Reference to `name` attribute (the full path
   /// `projects/{p}/databases/{db}/collectionGroups/{c}/fields/{f}`).

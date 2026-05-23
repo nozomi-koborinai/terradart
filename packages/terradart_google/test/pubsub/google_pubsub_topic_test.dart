@@ -63,15 +63,16 @@ void main() {
       );
     });
 
-    test('\$sensitiveFields exposes generated set (empty for topic)', () {
+    test('sensitiveFields exposes generated set (empty for topic)', () {
       final topic = GooglePubsubTopic(localName: 't', name: TfArg.literal('t'));
-      expect(topic.$sensitiveFields, isEmpty);
+      // ignore: invalid_use_of_protected_member
+      expect(topic.sensitiveFields, isEmpty);
     });
 
-    test('\$tfType constant matches terraformType', () {
+    test('tfType constant matches terraformType', () {
       final topic = GooglePubsubTopic(localName: 't', name: TfArg.literal('t'));
-      expect(GooglePubsubTopic.$tfType, equals('google_pubsub_topic'));
-      expect(topic.terraformType, equals(GooglePubsubTopic.$tfType));
+      expect(GooglePubsubTopic.tfType, equals('google_pubsub_topic'));
+      expect(topic.terraformType, equals(GooglePubsubTopic.tfType));
     });
   });
 }

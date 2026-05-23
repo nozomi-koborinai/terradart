@@ -10,8 +10,7 @@ const Set<String> _googleCloudTasksQueueIamMemberSensitive = <String>{};
 ///
 /// Identity: `name` + `location` + `role` + `member` (project optional).
 final class GoogleCloudTasksQueueIamMember extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_cloud_tasks_queue_iam_member';
+  static const String tfType = 'google_cloud_tasks_queue_iam_member';
 
   GoogleCloudTasksQueueIamMember({
     required super.localName,
@@ -24,20 +23,19 @@ final class GoogleCloudTasksQueueIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            'location': location,
-            'role': role,
-            'member': member,
-            if (condition != null) 'condition': condition,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: tfType,
+         argMap: {
+           'name': name,
+           'location': location,
+           'role': role,
+           'member': member,
+           if (condition != null) 'condition': condition,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleCloudTasksQueueIamMemberSensitive;
+  Set<String> get sensitiveFields => _googleCloudTasksQueueIamMemberSensitive;
 
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }

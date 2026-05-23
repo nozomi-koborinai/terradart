@@ -69,7 +69,7 @@ final class FirestoreBackupScheduleWeeklyRecurrence
 /// `weekly_recurrence.day` -- which day of the week the weekly backup
 /// runs on. `dayOfWeekUnspecified` is the schema-default sentinel
 /// (server picks the day); the seven concrete weekdays pin the slot.
-enum BackupDayOfWeek {
+enum BackupDayOfWeek implements TerraformEnum {
   dayOfWeekUnspecified('DAY_OF_WEEK_UNSPECIFIED'),
   monday('MONDAY'),
   tuesday('TUESDAY'),
@@ -80,6 +80,7 @@ enum BackupDayOfWeek {
   sunday('SUNDAY');
 
   const BackupDayOfWeek(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -116,8 +117,7 @@ enum BackupDayOfWeek {
 /// `retention` is a Google `Duration` string (seconds-suffixed, up to
 /// nine fractional digits, e.g. `"86400s"`). Maximum 14 weeks.
 final class GoogleFirestoreBackupSchedule extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_firestore_backup_schedule';
+  static const String tfType = 'google_firestore_backup_schedule';
 
   GoogleFirestoreBackupSchedule({
     required super.localName,
@@ -128,7 +128,7 @@ final class GoogleFirestoreBackupSchedule extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            if (database != null) 'database': database,
            'retention': retention,
@@ -138,8 +138,7 @@ final class GoogleFirestoreBackupSchedule extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleFirestoreBackupScheduleSensitive;
+  Set<String> get sensitiveFields => _googleFirestoreBackupScheduleSensitive;
 
   /// Reference to `id` attribute (full resource path
   /// `projects/{p}/databases/{db}/backupSchedules/{id}`).

@@ -42,8 +42,7 @@ const Set<String> _googleKmsKeyRingIamMemberSensitive = <String>{};
 /// Optional `condition` is a single IAM Condition block (CEL
 /// `expression`, `title`, optional `description`).
 final class GoogleKmsKeyRingIamMember extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_kms_key_ring_iam_member';
+  static const String tfType = 'google_kms_key_ring_iam_member';
 
   GoogleKmsKeyRingIamMember({
     required super.localName,
@@ -54,7 +53,7 @@ final class GoogleKmsKeyRingIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'key_ring_id': keyRingId,
            'role': role,
@@ -64,8 +63,7 @@ final class GoogleKmsKeyRingIamMember extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleKmsKeyRingIamMemberSensitive;
+  Set<String> get sensitiveFields => _googleKmsKeyRingIamMemberSensitive;
 
   /// Reference to `etag` attribute (concurrency token written by the API).
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');

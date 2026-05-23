@@ -13,12 +13,13 @@ const Set<String> _googleLoggingMetricSensitive = <String>{};
 /// `metric_descriptor.metric_kind` — whether the metric records
 /// instantaneous values, deltas, or running totals. For counter metrics
 /// (the typical logs-based shape) use [LoggingMetricKind.delta].
-enum LoggingMetricKind {
+enum LoggingMetricKind implements TerraformEnum {
   delta('DELTA'),
   gauge('GAUGE'),
   cumulative('CUMULATIVE');
 
   const LoggingMetricKind(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -27,7 +28,7 @@ enum LoggingMetricKind {
 /// [LoggingMetricValueType.distribution] when pairing with
 /// [LoggingMetricBucketOptions] to build a histogram from
 /// [GoogleLoggingMetric.valueExtractor].
-enum LoggingMetricValueType {
+enum LoggingMetricValueType implements TerraformEnum {
   boolean('BOOL'),
   int64('INT64'),
   doubleValue('DOUBLE'),
@@ -36,6 +37,7 @@ enum LoggingMetricValueType {
   money('MONEY');
 
   const LoggingMetricValueType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -43,12 +45,13 @@ enum LoggingMetricValueType {
 /// extracted from log entries. The label-level value space is narrower
 /// than the descriptor's (no `DOUBLE` / `DISTRIBUTION` / `MONEY`).
 /// Defaults to [LoggingMetricLabelValueType.string] when omitted.
-enum LoggingMetricLabelValueType {
+enum LoggingMetricLabelValueType implements TerraformEnum {
   boolean('BOOL'),
   int64('INT64'),
   string('STRING');
 
   const LoggingMetricLabelValueType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -250,8 +253,7 @@ class LoggingMetricBucketOptions {
 /// [LoggingMetricBucketOptions], plus the three bucket-variant classes)
 /// live in the `prelude` below.
 final class GoogleLoggingMetric extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_logging_metric';
+  static const String tfType = 'google_logging_metric';
 
   GoogleLoggingMetric({
     required super.localName,
@@ -268,7 +270,7 @@ final class GoogleLoggingMetric extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'filter': filter,
@@ -286,8 +288,7 @@ final class GoogleLoggingMetric extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleLoggingMetricSensitive;
+  Set<String> get sensitiveFields => _googleLoggingMetricSensitive;
 
   /// Reference to `id` attribute (`projects/{project}/metrics/{name}`).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -35,8 +35,7 @@ const Set<String> _googleSqlDatabaseSensitive = <String>{};
 /// Composition pattern: extends `Resource<$GoogleSqlDatabase>` for
 /// runtime behavior.
 final class GoogleSqlDatabase extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_sql_database';
+  static const String tfType = 'google_sql_database';
 
   GoogleSqlDatabase({
     required super.localName,
@@ -49,7 +48,7 @@ final class GoogleSqlDatabase extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'instance': instance,
@@ -61,8 +60,7 @@ final class GoogleSqlDatabase extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleSqlDatabaseSensitive;
+  Set<String> get sensitiveFields => _googleSqlDatabaseSensitive;
 
   /// Reference to `id` attribute (full path
   /// `projects/{project}/instances/{instance}/databases/{name}`).

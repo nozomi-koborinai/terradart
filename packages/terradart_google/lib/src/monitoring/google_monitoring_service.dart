@@ -107,8 +107,7 @@ class MonitoringServiceTelemetry {
 /// ([MonitoringServiceBasicService]) and the telemetry view-model
 /// ([MonitoringServiceTelemetry]) live in the `prelude` below.
 final class GoogleMonitoringService extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_monitoring_service';
+  static const String tfType = 'google_monitoring_service';
 
   GoogleMonitoringService({
     required super.localName,
@@ -120,7 +119,7 @@ final class GoogleMonitoringService extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'service_id': serviceId,
            if (displayName != null) 'display_name': displayName,
@@ -132,8 +131,7 @@ final class GoogleMonitoringService extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleMonitoringServiceSensitive;
+  Set<String> get sensitiveFields => _googleMonitoringServiceSensitive;
 
   /// Reference to `id` attribute (the service's full resource name,
   /// `projects/{project}/services/{service_id}`).

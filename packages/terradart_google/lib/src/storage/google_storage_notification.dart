@@ -15,11 +15,12 @@ const Set<String> _googleStorageNotificationSensitive = <String>{};
 /// - [none]: header-only notification — the message attributes still
 ///   identify the bucket / object / event type, but the body is empty.
 ///   Use when downstream consumers only need the event signal.
-enum StorageNotificationPayloadFormat {
+enum StorageNotificationPayloadFormat implements TerraformEnum {
   jsonApiV1('JSON_API_V1'),
   none('NONE');
 
   const StorageNotificationPayloadFormat(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -35,13 +36,14 @@ enum StorageNotificationPayloadFormat {
 ///   has versioning enabled or not.
 /// - [objectArchive]: a versioned object became non-current (only
 ///   fires on versioning-enabled buckets).
-enum StorageNotificationEventType {
+enum StorageNotificationEventType implements TerraformEnum {
   objectFinalize('OBJECT_FINALIZE'),
   objectMetadataUpdate('OBJECT_METADATA_UPDATE'),
   objectDelete('OBJECT_DELETE'),
   objectArchive('OBJECT_ARCHIVE');
 
   const StorageNotificationEventType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -140,8 +142,7 @@ enum StorageNotificationEventType {
 /// enum-to-Terraform-string conversion happens in this wrapper before
 /// the values reach the JSON encoder.
 final class GoogleStorageNotification extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_storage_notification';
+  static const String tfType = 'google_storage_notification';
 
   GoogleStorageNotification({
     required super.localName,
@@ -154,7 +155,7 @@ final class GoogleStorageNotification extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'bucket': bucket,
            'topic': topic,
@@ -169,8 +170,7 @@ final class GoogleStorageNotification extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleStorageNotificationSensitive;
+  Set<String> get sensitiveFields => _googleStorageNotificationSensitive;
 
   /// Reference to `id` attribute. Format:
   /// `{bucket}/notificationConfigs/{notification_id}`.

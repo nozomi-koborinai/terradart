@@ -25,7 +25,8 @@ const Set<String> _googleComputeRegionInstanceGroupManagerSensitive =
 /// Note: `ANY` is not a Dart reserved word — bare [any] is safe; we
 /// avoid a method-name clash on `Iterable.any` because this is a
 /// value of an enum, not a method.
-enum RegionInstanceGroupManagerDistributionPolicyTargetShape {
+enum RegionInstanceGroupManagerDistributionPolicyTargetShape
+    implements TerraformEnum {
   even('EVEN'),
   balanced('BALANCED'),
   any('ANY'),
@@ -34,6 +35,7 @@ enum RegionInstanceGroupManagerDistributionPolicyTargetShape {
   const RegionInstanceGroupManagerDistributionPolicyTargetShape(
     this.terraformValue,
   );
+  @override
   final String terraformValue;
 }
 
@@ -44,49 +46,55 @@ enum RegionInstanceGroupManagerDistributionPolicyTargetShape {
 /// `update_policy.type`. Controls whether the MIG actively performs
 /// the rolling update or waits for an external action (resize,
 /// recreate-instances) to apply it.
-enum RegionInstanceGroupManagerUpdatePolicyType {
+enum RegionInstanceGroupManagerUpdatePolicyType implements TerraformEnum {
   opportunistic('OPPORTUNISTIC'),
   proactive('PROACTIVE');
 
   const RegionInstanceGroupManagerUpdatePolicyType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `update_policy.instance_redistribution_type` (regional only).
 /// `PROACTIVE` (default) keeps zones balanced as VMs come and go;
 /// `NONE` disables proactive rebalancing.
-enum RegionInstanceGroupManagerInstanceRedistributionType {
+enum RegionInstanceGroupManagerInstanceRedistributionType
+    implements TerraformEnum {
   proactive('PROACTIVE'),
   none('NONE');
 
   const RegionInstanceGroupManagerInstanceRedistributionType(
     this.terraformValue,
   );
+  @override
   final String terraformValue;
 }
 
 /// `update_policy.minimal_action` / `update_policy.most_disruptive_allowed_action`.
 /// Shared enum — both fields accept the same value set.
-enum RegionInstanceGroupManagerUpdatePolicyAction {
+enum RegionInstanceGroupManagerUpdatePolicyAction implements TerraformEnum {
   none('NONE'),
   refresh('REFRESH'),
   restart('RESTART'),
   replace('REPLACE');
 
   const RegionInstanceGroupManagerUpdatePolicyAction(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `update_policy.replacement_method`. `SUBSTITUTE` (default) replaces
 /// VMs with newly-named ones; `RECREATE` preserves instance names but
 /// requires `max_unavailable_*` > 0.
-enum RegionInstanceGroupManagerUpdatePolicyReplacementMethod {
+enum RegionInstanceGroupManagerUpdatePolicyReplacementMethod
+    implements TerraformEnum {
   substitute('SUBSTITUTE'),
   recreate('RECREATE');
 
   const RegionInstanceGroupManagerUpdatePolicyReplacementMethod(
     this.terraformValue,
   );
+  @override
   final String terraformValue;
 }
 
@@ -608,8 +616,7 @@ class ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerResourcePolicie
 ///
 /// Sensitive fields: none. The MIG carries no secrets in its schema.
 final class GoogleComputeRegionInstanceGroupManager extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_region_instance_group_manager';
+  static const String tfType = 'google_compute_region_instance_group_manager';
 
   GoogleComputeRegionInstanceGroupManager({
     required super.localName,
@@ -663,7 +670,7 @@ final class GoogleComputeRegionInstanceGroupManager extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            if (region != null) 'region': region,
@@ -732,8 +739,7 @@ final class GoogleComputeRegionInstanceGroupManager extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googleComputeRegionInstanceGroupManagerSensitive;
 
   /// Reference to `name` attribute.

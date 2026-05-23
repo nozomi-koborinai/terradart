@@ -33,25 +33,28 @@ class PubsubSubscriptionPushConfig {
   final PubsubSubscriptionNoWrapper? noWrapper;
 
   Map<String, Object?> encode() => {
-        'push_endpoint': pushEndpoint.toTfJson(),
-        if (attributes != null) 'attributes': attributes!.toTfJson(),
-        if (oidcToken != null) 'oidc_token': oidcToken!.encode(),
-        if (noWrapper != null) 'no_wrapper': noWrapper!.encode(),
-      };
+    'push_endpoint': pushEndpoint.toTfJson(),
+    if (attributes != null) 'attributes': attributes!.toTfJson(),
+    if (oidcToken != null) 'oidc_token': oidcToken!.encode(),
+    if (noWrapper != null) 'no_wrapper': noWrapper!.encode(),
+  };
 }
 
 /// OIDC token configuration for authenticated push subscriptions.
 @immutable
 class PubsubSubscriptionOidcToken {
-  const PubsubSubscriptionOidcToken({required this.serviceAccountEmail, this.audience});
+  const PubsubSubscriptionOidcToken({
+    required this.serviceAccountEmail,
+    this.audience,
+  });
 
   final TfArg<String> serviceAccountEmail;
   final TfArg<String>? audience;
 
   Map<String, Object?> encode() => {
-        'service_account_email': serviceAccountEmail.toTfJson(),
-        if (audience != null) 'audience': audience!.toTfJson(),
-      };
+    'service_account_email': serviceAccountEmail.toTfJson(),
+    if (audience != null) 'audience': audience!.toTfJson(),
+  };
 }
 
 /// `no_wrapper` payload-shape override for push subscriptions.
@@ -84,17 +87,15 @@ class PubsubSubscriptionBigQueryConfig {
   final TfArg<String>? serviceAccountEmail;
 
   Map<String, Object?> encode() => {
-        'table': table.toTfJson(),
-        if (useTopicSchema != null)
-          'use_topic_schema': useTopicSchema!.toTfJson(),
-        if (useTableSchema != null)
-          'use_table_schema': useTableSchema!.toTfJson(),
-        if (writeMetadata != null) 'write_metadata': writeMetadata!.toTfJson(),
-        if (dropUnknownFields != null)
-          'drop_unknown_fields': dropUnknownFields!.toTfJson(),
-        if (serviceAccountEmail != null)
-          'service_account_email': serviceAccountEmail!.toTfJson(),
-      };
+    'table': table.toTfJson(),
+    if (useTopicSchema != null) 'use_topic_schema': useTopicSchema!.toTfJson(),
+    if (useTableSchema != null) 'use_table_schema': useTableSchema!.toTfJson(),
+    if (writeMetadata != null) 'write_metadata': writeMetadata!.toTfJson(),
+    if (dropUnknownFields != null)
+      'drop_unknown_fields': dropUnknownFields!.toTfJson(),
+    if (serviceAccountEmail != null)
+      'service_account_email': serviceAccountEmail!.toTfJson(),
+  };
 }
 
 /// `cloud_storage_config` block.
@@ -121,51 +122,53 @@ class PubsubSubscriptionCloudStorageConfig {
   final TfArg<String>? serviceAccountEmail;
 
   Map<String, Object?> encode() => {
-        'bucket': bucket.toTfJson(),
-        if (filenamePrefix != null)
-          'filename_prefix': filenamePrefix!.toTfJson(),
-        if (filenameSuffix != null)
-          'filename_suffix': filenameSuffix!.toTfJson(),
-        if (filenameDatetimeFormat != null)
-          'filename_datetime_format': filenameDatetimeFormat!.toTfJson(),
-        if (maxDuration != null) 'max_duration': maxDuration!.toTfJson(),
-        if (maxBytes != null) 'max_bytes': maxBytes!.toTfJson(),
-        if (maxMessages != null) 'max_messages': maxMessages!.toTfJson(),
-        if (serviceAccountEmail != null)
-          'service_account_email': serviceAccountEmail!.toTfJson(),
-      };
+    'bucket': bucket.toTfJson(),
+    if (filenamePrefix != null) 'filename_prefix': filenamePrefix!.toTfJson(),
+    if (filenameSuffix != null) 'filename_suffix': filenameSuffix!.toTfJson(),
+    if (filenameDatetimeFormat != null)
+      'filename_datetime_format': filenameDatetimeFormat!.toTfJson(),
+    if (maxDuration != null) 'max_duration': maxDuration!.toTfJson(),
+    if (maxBytes != null) 'max_bytes': maxBytes!.toTfJson(),
+    if (maxMessages != null) 'max_messages': maxMessages!.toTfJson(),
+    if (serviceAccountEmail != null)
+      'service_account_email': serviceAccountEmail!.toTfJson(),
+  };
 }
 
 /// `dead_letter_policy` block.
 @immutable
 class PubsubSubscriptionDeadLetterPolicy {
-  const PubsubSubscriptionDeadLetterPolicy({this.deadLetterTopic, this.maxDeliveryAttempts});
+  const PubsubSubscriptionDeadLetterPolicy({
+    this.deadLetterTopic,
+    this.maxDeliveryAttempts,
+  });
 
   final TfArg<String>? deadLetterTopic;
   final TfArg<int>? maxDeliveryAttempts;
 
   Map<String, Object?> encode() => {
-        if (deadLetterTopic != null)
-          'dead_letter_topic': deadLetterTopic!.toTfJson(),
-        if (maxDeliveryAttempts != null)
-          'max_delivery_attempts': maxDeliveryAttempts!.toTfJson(),
-      };
+    if (deadLetterTopic != null)
+      'dead_letter_topic': deadLetterTopic!.toTfJson(),
+    if (maxDeliveryAttempts != null)
+      'max_delivery_attempts': maxDeliveryAttempts!.toTfJson(),
+  };
 }
 
 /// `retry_policy` block.
 @immutable
 class PubsubSubscriptionRetryPolicy {
-  const PubsubSubscriptionRetryPolicy({this.minimumBackoff, this.maximumBackoff});
+  const PubsubSubscriptionRetryPolicy({
+    this.minimumBackoff,
+    this.maximumBackoff,
+  });
 
   final TfArg<String>? minimumBackoff;
   final TfArg<String>? maximumBackoff;
 
   Map<String, Object?> encode() => {
-        if (minimumBackoff != null)
-          'minimum_backoff': minimumBackoff!.toTfJson(),
-        if (maximumBackoff != null)
-          'maximum_backoff': maximumBackoff!.toTfJson(),
-      };
+    if (minimumBackoff != null) 'minimum_backoff': minimumBackoff!.toTfJson(),
+    if (maximumBackoff != null) 'maximum_backoff': maximumBackoff!.toTfJson(),
+  };
 }
 
 /// `expiration_policy` block.
@@ -207,8 +210,7 @@ class PubsubSubscriptionExpirationPolicy {
 /// );
 /// ```
 final class GooglePubsubSubscription extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_pubsub_subscription';
+  static const String tfType = 'google_pubsub_subscription';
 
   GooglePubsubSubscription({
     required super.localName,
@@ -233,45 +235,43 @@ final class GooglePubsubSubscription extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            'topic': topic,
-            if (labels != null) 'labels': labels,
-            if (bigqueryConfig != null)
-              'bigquery_config': TfArg.literal(bigqueryConfig.encode()),
-            if (cloudStorageConfig != null)
-              'cloud_storage_config':
-                  TfArg.literal(cloudStorageConfig.encode()),
-            if (pushConfig != null)
-              'push_config': TfArg.literal(pushConfig.encode()),
-            if (ackDeadlineSeconds != null)
-              'ack_deadline_seconds': ackDeadlineSeconds,
-            if (messageRetentionDuration != null)
-              'message_retention_duration': messageRetentionDuration,
-            if (retainAckedMessages != null)
-              'retain_acked_messages': retainAckedMessages,
-            if (expirationPolicy != null)
-              'expiration_policy': TfArg.literal(expirationPolicy.encode()),
-            if (filter != null) 'filter': filter,
-            if (deadLetterPolicy != null)
-              'dead_letter_policy': TfArg.literal(deadLetterPolicy.encode()),
-            if (retryPolicy != null)
-              'retry_policy': TfArg.literal(retryPolicy.encode()),
-            if (enableMessageOrdering != null)
-              'enable_message_ordering': enableMessageOrdering,
-            if (enableExactlyOnceDelivery != null)
-              'enable_exactly_once_delivery': enableExactlyOnceDelivery,
-            if (messageTransforms != null)
-              'message_transforms': messageTransforms,
-            if (tags != null) 'tags': tags,
-            if (project != null) 'project': project,
-          },
-        );
+         terraformType: tfType,
+         argMap: {
+           'name': name,
+           'topic': topic,
+           if (labels != null) 'labels': labels,
+           if (bigqueryConfig != null)
+             'bigquery_config': TfArg.literal(bigqueryConfig.encode()),
+           if (cloudStorageConfig != null)
+             'cloud_storage_config': TfArg.literal(cloudStorageConfig.encode()),
+           if (pushConfig != null)
+             'push_config': TfArg.literal(pushConfig.encode()),
+           if (ackDeadlineSeconds != null)
+             'ack_deadline_seconds': ackDeadlineSeconds,
+           if (messageRetentionDuration != null)
+             'message_retention_duration': messageRetentionDuration,
+           if (retainAckedMessages != null)
+             'retain_acked_messages': retainAckedMessages,
+           if (expirationPolicy != null)
+             'expiration_policy': TfArg.literal(expirationPolicy.encode()),
+           if (filter != null) 'filter': filter,
+           if (deadLetterPolicy != null)
+             'dead_letter_policy': TfArg.literal(deadLetterPolicy.encode()),
+           if (retryPolicy != null)
+             'retry_policy': TfArg.literal(retryPolicy.encode()),
+           if (enableMessageOrdering != null)
+             'enable_message_ordering': enableMessageOrdering,
+           if (enableExactlyOnceDelivery != null)
+             'enable_exactly_once_delivery': enableExactlyOnceDelivery,
+           if (messageTransforms != null)
+             'message_transforms': messageTransforms,
+           if (tags != null) 'tags': tags,
+           if (project != null) 'project': project,
+         },
+       );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googlePubsubSubscriptionSensitive;
+  Set<String> get sensitiveFields => _googlePubsubSubscriptionSensitive;
 
   /// Reference to `name` attribute (`google_pubsub_subscription.<id>.name`).
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

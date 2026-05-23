@@ -38,18 +38,16 @@ const Set<String> _googleProjectSensitive = <String>{};
 /// `terradart`). Synth emits this under `data.google_project.<localName>`
 /// (vs `resource.…` for `Resource<S>`).
 final class GoogleProject extends Data {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_project';
+  static const String tfType = 'google_project';
 
   GoogleProject({required super.localName, TfArg<String>? projectId})
     : super(
-        terraformType: $tfType,
+        terraformType: tfType,
         argMap: {if (projectId != null) 'project_id': projectId},
       );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleProjectSensitive;
+  Set<String> get sensitiveFields => _googleProjectSensitive;
 
   TfRef<String> get number => TfRef.attribute<String>(this, 'number');
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');

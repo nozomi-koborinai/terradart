@@ -10,7 +10,7 @@ const Set<String> _googleProjectIamCustomRoleSensitive = <String>{};
 /// `stage` field exposed by the IAM API — `alpha` / `beta` / `ga` are
 /// grantable; `deprecated` / `disabled` keep the role visible but
 /// reject new bindings.
-enum CustomRoleStage {
+enum CustomRoleStage implements TerraformEnum {
   alpha('ALPHA'),
   beta('BETA'),
   ga('GA'),
@@ -18,6 +18,7 @@ enum CustomRoleStage {
   disabled('DISABLED');
 
   const CustomRoleStage(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -52,8 +53,7 @@ enum CustomRoleStage {
 /// requires destroying and recreating the role, which detaches every
 /// existing IAM binding that referenced it.
 final class GoogleProjectIamCustomRole extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_project_iam_custom_role';
+  static const String tfType = 'google_project_iam_custom_role';
 
   GoogleProjectIamCustomRole({
     required super.localName,
@@ -66,7 +66,7 @@ final class GoogleProjectIamCustomRole extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'role_id': roleId,
            'title': title,
@@ -78,8 +78,7 @@ final class GoogleProjectIamCustomRole extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleProjectIamCustomRoleSensitive;
+  Set<String> get sensitiveFields => _googleProjectIamCustomRoleSensitive;
 
   /// Reference to `id` attribute (full role path
   /// `projects/{project}/roles/{roleId}`).

@@ -9,7 +9,7 @@ const Set<String> _googleKmsCryptoKeySensitive = <String>{};
 /// Purpose for `google_kms_crypto_key.purpose` (immutable, default
 /// `encryptDecrypt`). See the
 /// [CryptoKeyPurpose reference](https://cloud.google.com/kms/docs/reference/rest/v1/projects.locations.keyRings.cryptoKeys#CryptoKeyPurpose).
-enum KmsKeyPurpose {
+enum KmsKeyPurpose implements TerraformEnum {
   encryptDecrypt('ENCRYPT_DECRYPT'),
   asymmetricSign('ASYMMETRIC_SIGN'),
   asymmetricDecrypt('ASYMMETRIC_DECRYPT'),
@@ -17,19 +17,21 @@ enum KmsKeyPurpose {
   rawEncryptDecrypt('RAW_ENCRYPT_DECRYPT');
 
   const KmsKeyPurpose(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Protection level for `version_template.protection_level` (immutable,
 /// default `software`). Per MM docs, possible values are SOFTWARE, HSM,
 /// EXTERNAL, EXTERNAL_VPC.
-enum KmsProtectionLevel {
+enum KmsProtectionLevel implements TerraformEnum {
   software('SOFTWARE'),
   hsm('HSM'),
   external('EXTERNAL'),
   externalVpc('EXTERNAL_VPC');
 
   const KmsProtectionLevel(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -92,8 +94,7 @@ class KmsCryptoKeyVersionTemplate {
 /// project. Consider attaching `lifecycle { prevent_destroy = true }` for
 /// production keys.
 final class GoogleKmsCryptoKey extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_kms_crypto_key';
+  static const String tfType = 'google_kms_crypto_key';
 
   GoogleKmsCryptoKey({
     required super.localName,
@@ -110,7 +111,7 @@ final class GoogleKmsCryptoKey extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'key_ring': keyRing,
@@ -129,8 +130,7 @@ final class GoogleKmsCryptoKey extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleKmsCryptoKeySensitive;
+  Set<String> get sensitiveFields => _googleKmsCryptoKeySensitive;
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

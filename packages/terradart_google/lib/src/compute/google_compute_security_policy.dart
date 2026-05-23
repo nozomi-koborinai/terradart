@@ -14,7 +14,7 @@ const Set<String> _googleComputeSecurityPolicySensitive = <String>{};
 /// `type` -- intended use of the security policy. Forces replacement
 /// when changed. The default (when unset on create) is
 /// [SecurityPolicyType.cloudArmor].
-enum SecurityPolicyType {
+enum SecurityPolicyType implements TerraformEnum {
   /// Backend-service policies. Filter incoming HTTP requests targeting
   /// backend services BEFORE they hit the origin servers. The default.
   cloudArmor('CLOUD_ARMOR'),
@@ -31,6 +31,7 @@ enum SecurityPolicyType {
   cloudArmorNetwork('CLOUD_ARMOR_NETWORK');
 
   const SecurityPolicyType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -41,7 +42,7 @@ enum SecurityPolicyType {
 /// [ComputeSecurityPolicySecurityPolicyRule.redirectOptions]. The Terraform value
 /// preserves the literal provider strings (parentheses and digits
 /// included) -- the Dart variants pick identifier-safe names.
-enum SecurityPolicyRuleAction {
+enum SecurityPolicyRuleAction implements TerraformEnum {
   /// Pass the request through to the backend.
   allow('allow'),
 
@@ -69,6 +70,7 @@ enum SecurityPolicyRuleAction {
   throttle('throttle');
 
   const SecurityPolicyRuleAction(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -76,12 +78,13 @@ enum SecurityPolicyRuleAction {
 /// today. Pair with [ComputeSecurityPolicySecurityPolicyRuleMatchConfig.srcIpRanges] to
 /// match by source IP / CIDR. For richer matching (geo, path, headers),
 /// use [ComputeSecurityPolicySecurityPolicyRuleMatchExpr] (CEL) instead.
-enum SecurityPolicyRuleMatchVersionedExpr {
+enum SecurityPolicyRuleMatchVersionedExpr implements TerraformEnum {
   /// Source-IP-v1 predicate. Reads `match.config.src_ip_ranges` and
   /// matches IPv4/IPv6 CIDR ranges (or `'*'` for any).
   srcIpsV1('SRC_IPS_V1');
 
   const SecurityPolicyRuleMatchVersionedExpr(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -90,11 +93,12 @@ enum SecurityPolicyRuleMatchVersionedExpr {
 /// required for the JSON-aware preconfigured WAF rules to inspect
 /// body content; otherwise default `disabled` keeps inspection limited
 /// to URI / headers / query string.
-enum SecurityPolicyJsonParsing {
+enum SecurityPolicyJsonParsing implements TerraformEnum {
   disabled('DISABLED'),
   standard('STANDARD');
 
   const SecurityPolicyJsonParsing(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -102,11 +106,12 @@ enum SecurityPolicyJsonParsing {
 /// Cloud Logging output. `verbose` includes preconfigured-WAF rule
 /// match details and is the recommended setting during policy tuning;
 /// switch back to `normal` for steady-state to control log volume.
-enum SecurityPolicyLogLevel {
+enum SecurityPolicyLogLevel implements TerraformEnum {
   normal('NORMAL'),
   verbose('VERBOSE');
 
   const SecurityPolicyLogLevel(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -779,8 +784,7 @@ class ComputeSecurityPolicySecurityPolicyRecaptchaOptionsConfig {
 /// reuse the same Terraform field names (`config`, `expr`, `match`,
 /// `header_action`, ...).
 final class GoogleComputeSecurityPolicy extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_security_policy';
+  static const String tfType = 'google_compute_security_policy';
 
   GoogleComputeSecurityPolicy({
     required super.localName,
@@ -799,7 +803,7 @@ final class GoogleComputeSecurityPolicy extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            if (description != null) 'description': description,
@@ -823,8 +827,7 @@ final class GoogleComputeSecurityPolicy extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleComputeSecurityPolicySensitive;
+  Set<String> get sensitiveFields => _googleComputeSecurityPolicySensitive;
 
   /// Reference to `name` attribute. Use `policy.nameRef` when wiring a
   /// `google_compute_backend_service.securityPolicy`.

@@ -40,8 +40,7 @@ const Set<String> _googleCloudRunV2JobIamMemberSensitive = <String>{};
 /// Optional `condition` is a single IAM Condition block (CEL
 /// `expression`, `title`, optional `description`).
 final class GoogleCloudRunV2JobIamMember extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_cloud_run_v2_job_iam_member';
+  static const String tfType = 'google_cloud_run_v2_job_iam_member';
 
   GoogleCloudRunV2JobIamMember({
     required super.localName,
@@ -54,7 +53,7 @@ final class GoogleCloudRunV2JobIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'role': role,
@@ -66,8 +65,7 @@ final class GoogleCloudRunV2JobIamMember extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleCloudRunV2JobIamMemberSensitive;
+  Set<String> get sensitiveFields => _googleCloudRunV2JobIamMemberSensitive;
 
   /// Reference to `etag` attribute (concurrency token written by the API).
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');

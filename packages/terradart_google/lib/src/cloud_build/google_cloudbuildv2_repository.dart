@@ -50,8 +50,7 @@ const Set<String> _googleCloudbuildv2RepositorySensitive = <String>{};
 /// Composition pattern: extends `Resource<$GoogleCloudbuildv2Repository>`
 /// for runtime behavior.
 final class GoogleCloudbuildv2Repository extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_cloudbuildv2_repository';
+  static const String tfType = 'google_cloudbuildv2_repository';
 
   GoogleCloudbuildv2Repository({
     required super.localName,
@@ -64,7 +63,7 @@ final class GoogleCloudbuildv2Repository extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'parent_connection': parentConnection,
@@ -76,8 +75,7 @@ final class GoogleCloudbuildv2Repository extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleCloudbuildv2RepositorySensitive;
+  Set<String> get sensitiveFields => _googleCloudbuildv2RepositorySensitive;
 
   /// Reference to `name` attribute (the bare repository name registered
   /// under the parent connection).

@@ -96,7 +96,7 @@ class BigqueryDataTransferConfigEmailPreferences {
 /// errors at apply time.
 ///
 /// Only the plaintext [secretAccessKey] is schema-flagged sensitive
-/// (round-trips through the wrapper's `$sensitiveFields` set, synth
+/// (round-trips through the wrapper's `sensitiveFields` set, synth
 /// masks it). Prefer the write-only siblings ([secretAccessKeyWo] +
 /// [secretAccessKeyWoVersion]) on Terraform 1.11+: the plaintext never
 /// enters Terraform state, and bumping the integer
@@ -111,7 +111,7 @@ class BigqueryDataTransferConfigSensitiveParams {
   });
 
   /// AWS secret access key for the `amazon_s3` data source. Sensitive
-  /// — masked from plan output and surfaced in `$sensitiveFields`. The
+  /// — masked from plan output and surfaced in `sensitiveFields`. The
   /// matching access key id (non-secret) goes in the parent
   /// [GoogleBigqueryDataTransferConfig.params] map under the key
   /// `'access_key_id'`.
@@ -289,8 +289,7 @@ class BigqueryDataTransferConfigEncryptionConfiguration {
 /// [BigqueryDataTransferConfigEncryptionConfiguration]) are modeled in
 /// the `prelude` below.
 final class GoogleBigqueryDataTransferConfig extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_bigquery_data_transfer_config';
+  static const String tfType = 'google_bigquery_data_transfer_config';
 
   GoogleBigqueryDataTransferConfig({
     required super.localName,
@@ -312,7 +311,7 @@ final class GoogleBigqueryDataTransferConfig extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'display_name': displayName,
            'data_source_id': dataSourceId,
@@ -343,9 +342,7 @@ final class GoogleBigqueryDataTransferConfig extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
-      _googleBigqueryDataTransferConfigSensitive;
+  Set<String> get sensitiveFields => _googleBigqueryDataTransferConfigSensitive;
 
   /// Reference to `id` attribute (the transfer config's full resource
   /// name, `projects/{project}/locations/{location}/transferConfigs/{configId}`

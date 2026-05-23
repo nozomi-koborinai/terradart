@@ -51,8 +51,7 @@ const Set<String> _googleComputeRegionTargetHttpProxySensitive = <String>{};
 /// `Resource<$GoogleComputeRegionTargetHttpProxy>` for runtime
 /// behavior.
 final class GoogleComputeRegionTargetHttpProxy extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_region_target_http_proxy';
+  static const String tfType = 'google_compute_region_target_http_proxy';
 
   GoogleComputeRegionTargetHttpProxy({
     required super.localName,
@@ -65,7 +64,7 @@ final class GoogleComputeRegionTargetHttpProxy extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'url_map': urlMap,
@@ -78,8 +77,7 @@ final class GoogleComputeRegionTargetHttpProxy extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googleComputeRegionTargetHttpProxySensitive;
 
   /// Reference to `name` attribute. Use for interpolations like

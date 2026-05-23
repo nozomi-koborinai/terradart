@@ -381,8 +381,7 @@ class EventarcTriggerRetryPolicy {
 /// Composition pattern: extends `Resource<$GoogleEventarcTrigger>` for
 /// runtime behavior.
 final class GoogleEventarcTrigger extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_eventarc_trigger';
+  static const String tfType = 'google_eventarc_trigger';
 
   GoogleEventarcTrigger({
     required super.localName,
@@ -400,7 +399,7 @@ final class GoogleEventarcTrigger extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'location': location,
@@ -422,8 +421,7 @@ final class GoogleEventarcTrigger extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleEventarcTriggerSensitive;
+  Set<String> get sensitiveFields => _googleEventarcTriggerSensitive;
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

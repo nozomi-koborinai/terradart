@@ -15,11 +15,12 @@ const Set<String> _googleMonitoringUptimeCheckConfigSensitive = <String>{
 /// Checker pool selector for `google_monitoring_uptime_check_config.checker_type`.
 ///
 /// Schema enum_values: `["STATIC_IP_CHECKERS", "VPC_CHECKERS"]`.
-enum MonitoringUptimeCheckCheckerType {
+enum MonitoringUptimeCheckCheckerType implements TerraformEnum {
   staticIpCheckers('STATIC_IP_CHECKERS'),
   vpcCheckers('VPC_CHECKERS');
 
   const MonitoringUptimeCheckCheckerType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -32,7 +33,7 @@ enum MonitoringUptimeCheckCheckerType {
 /// covered here can still pass a raw `TfArg<List<String>>` via
 /// [GoogleMonitoringUptimeCheckConfig.selectedRegions] (the API
 /// surface accepts string values directly).
-enum MonitoringUptimeCheckRegion {
+enum MonitoringUptimeCheckRegion implements TerraformEnum {
   usa('USA'),
   usaOregon('USA_OREGON'),
   usaIowa('USA_IOWA'),
@@ -42,6 +43,7 @@ enum MonitoringUptimeCheckRegion {
   asiaPacific('ASIA_PACIFIC');
 
   const MonitoringUptimeCheckRegion(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -53,12 +55,13 @@ enum MonitoringUptimeCheckRegion {
 ///
 /// Schema enum_values: `["METHOD_UNSPECIFIED", "GET", "POST"]`.
 /// Defaults to `GET` when unset.
-enum MonitoringUptimeCheckHttpMethod {
+enum MonitoringUptimeCheckHttpMethod implements TerraformEnum {
   methodUnspecified('METHOD_UNSPECIFIED'),
   get('GET'),
   post('POST');
 
   const MonitoringUptimeCheckHttpMethod(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -70,12 +73,13 @@ enum MonitoringUptimeCheckHttpMethod {
 /// [MonitoringUptimeCheckConfigHttpCheck.customContentType] with the literal
 /// header value. Using `URL_ENCODED` together with `customContentType`
 /// is rejected by the API.
-enum MonitoringUptimeCheckContentType {
+enum MonitoringUptimeCheckContentType implements TerraformEnum {
   typeUnspecified('TYPE_UNSPECIFIED'),
   urlEncoded('URL_ENCODED'),
   userProvided('USER_PROVIDED');
 
   const MonitoringUptimeCheckContentType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -84,13 +88,14 @@ enum MonitoringUptimeCheckContentType {
 ///
 /// Schema enum_values:
 /// `["SERVICE_AGENT_AUTHENTICATION_TYPE_UNSPECIFIED", "OIDC_TOKEN"]`.
-enum MonitoringUptimeCheckServiceAgentAuthType {
+enum MonitoringUptimeCheckServiceAgentAuthType implements TerraformEnum {
   serviceAgentAuthenticationTypeUnspecified(
     'SERVICE_AGENT_AUTHENTICATION_TYPE_UNSPECIFIED',
   ),
   oidcToken('OIDC_TOKEN');
 
   const MonitoringUptimeCheckServiceAgentAuthType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -99,7 +104,7 @@ enum MonitoringUptimeCheckServiceAgentAuthType {
 /// Schema enum_values: `["STATUS_CLASS_1XX", "STATUS_CLASS_2XX",
 /// "STATUS_CLASS_3XX", "STATUS_CLASS_4XX", "STATUS_CLASS_5XX",
 /// "STATUS_CLASS_ANY"]`.
-enum MonitoringUptimeCheckStatusClass {
+enum MonitoringUptimeCheckStatusClass implements TerraformEnum {
   statusClass1xx('STATUS_CLASS_1XX'),
   statusClass2xx('STATUS_CLASS_2XX'),
   statusClass3xx('STATUS_CLASS_3XX'),
@@ -108,6 +113,7 @@ enum MonitoringUptimeCheckStatusClass {
   statusClassAny('STATUS_CLASS_ANY');
 
   const MonitoringUptimeCheckStatusClass(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -121,7 +127,7 @@ enum MonitoringUptimeCheckStatusClass {
 /// Schema enum_values: `["CONTAINS_STRING", "NOT_CONTAINS_STRING",
 /// "MATCHES_REGEX", "NOT_MATCHES_REGEX", "MATCHES_JSON_PATH",
 /// "NOT_MATCHES_JSON_PATH"]`.
-enum MonitoringUptimeCheckMatcher {
+enum MonitoringUptimeCheckMatcher implements TerraformEnum {
   containsString('CONTAINS_STRING'),
   notContainsString('NOT_CONTAINS_STRING'),
   matchesRegex('MATCHES_REGEX'),
@@ -130,6 +136,7 @@ enum MonitoringUptimeCheckMatcher {
   notMatchesJsonPath('NOT_MATCHES_JSON_PATH');
 
   const MonitoringUptimeCheckMatcher(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -138,11 +145,12 @@ enum MonitoringUptimeCheckMatcher {
 /// Defaults to [exactMatch] on the GCP API.
 ///
 /// Schema enum_values: `["EXACT_MATCH", "REGEX_MATCH"]`.
-enum MonitoringUptimeCheckJsonMatcher {
+enum MonitoringUptimeCheckJsonMatcher implements TerraformEnum {
   exactMatch('EXACT_MATCH'),
   regexMatch('REGEX_MATCH');
 
   const MonitoringUptimeCheckJsonMatcher(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -154,12 +162,13 @@ enum MonitoringUptimeCheckJsonMatcher {
 ///
 /// Schema enum_values: `["RESOURCE_TYPE_UNSPECIFIED", "INSTANCE",
 /// "AWS_ELB_LOAD_BALANCER"]`.
-enum MonitoringUptimeCheckResourceType {
+enum MonitoringUptimeCheckResourceType implements TerraformEnum {
   resourceTypeUnspecified('RESOURCE_TYPE_UNSPECIFIED'),
   instance('INSTANCE'),
   awsElbLoadBalancer('AWS_ELB_LOAD_BALANCER');
 
   const MonitoringUptimeCheckResourceType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -597,8 +606,7 @@ class MonitoringUptimeCheckConfigContentMatcher {
 /// [MonitoringUptimeCheckConfigSyntheticMonitor], etc.) are modeled in the
 /// `prelude` below.
 final class GoogleMonitoringUptimeCheckConfig extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_monitoring_uptime_check_config';
+  static const String tfType = 'google_monitoring_uptime_check_config';
 
   GoogleMonitoringUptimeCheckConfig({
     required super.localName,
@@ -619,7 +627,7 @@ final class GoogleMonitoringUptimeCheckConfig extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'display_name': displayName,
            'timeout': timeout,
@@ -652,8 +660,7 @@ final class GoogleMonitoringUptimeCheckConfig extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googleMonitoringUptimeCheckConfigSensitive;
 
   /// Reference to `id` attribute (the uptime check's full resource name,

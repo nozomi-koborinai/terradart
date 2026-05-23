@@ -137,8 +137,7 @@ class FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy {
 /// the `rollout_policy` block hooks builds into a git branch so commits
 /// trigger automatic redeploys.
 final class GoogleFirebaseAppHostingTraffic extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_firebase_app_hosting_traffic';
+  static const String tfType = 'google_firebase_app_hosting_traffic';
 
   GoogleFirebaseAppHostingTraffic({
     required super.localName,
@@ -150,7 +149,7 @@ final class GoogleFirebaseAppHostingTraffic extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'backend': backend,
            'location': location,
@@ -162,8 +161,7 @@ final class GoogleFirebaseAppHostingTraffic extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleFirebaseAppHostingTrafficSensitive;
+  Set<String> get sensitiveFields => _googleFirebaseAppHostingTrafficSensitive;
 
   /// Reference to `name` attribute (full resource path
   /// `projects/{project}/locations/{location}/backends/{backend}/traffic`).

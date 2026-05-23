@@ -61,8 +61,7 @@ const Set<String> _googleServiceNetworkingConnectionSensitive = <String>{};
 /// Composition pattern: extends
 /// `Resource<$GoogleServiceNetworkingConnection>` for runtime behavior.
 final class GoogleServiceNetworkingConnection extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_service_networking_connection';
+  static const String tfType = 'google_service_networking_connection';
 
   GoogleServiceNetworkingConnection({
     required super.localName,
@@ -74,7 +73,7 @@ final class GoogleServiceNetworkingConnection extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'network': network,
            'service': service,
@@ -86,8 +85,7 @@ final class GoogleServiceNetworkingConnection extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googleServiceNetworkingConnectionSensitive;
 
   /// Reference to `id` attribute. The provider's `id` is composed from

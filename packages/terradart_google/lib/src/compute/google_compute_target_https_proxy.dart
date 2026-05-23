@@ -12,12 +12,13 @@ const Set<String> _googleComputeTargetHttpsProxySensitive = <String>{};
 /// QUIC negotiation policy for the HTTPS target proxy. When set to
 /// [none] (the default), Google manages whether QUIC is offered to
 /// clients; [enable] always offers QUIC; [disable] never offers it.
-enum QuicOverride {
+enum QuicOverride implements TerraformEnum {
   none('NONE'),
   enable('ENABLE'),
   disable('DISABLE');
 
   const QuicOverride(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -33,13 +34,14 @@ enum QuicOverride {
 /// - [unrestricted]: accept Early Data on any request. The caller is
 ///   responsible for handling replay risk.
 /// - [disabled]: never accept Early Data (0-RTT off).
-enum TlsEarlyData {
+enum TlsEarlyData implements TerraformEnum {
   strict('STRICT'),
   permissive('PERMISSIVE'),
   unrestricted('UNRESTRICTED'),
   disabled('DISABLED');
 
   const TlsEarlyData(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -102,8 +104,7 @@ enum TlsEarlyData {
 /// Composition pattern: extends `Resource<$GoogleComputeTargetHttpsProxy>`
 /// for runtime behavior.
 final class GoogleComputeTargetHttpsProxy extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_target_https_proxy';
+  static const String tfType = 'google_compute_target_https_proxy';
 
   GoogleComputeTargetHttpsProxy({
     required super.localName,
@@ -123,7 +124,7 @@ final class GoogleComputeTargetHttpsProxy extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'url_map': urlMap,
@@ -144,8 +145,7 @@ final class GoogleComputeTargetHttpsProxy extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleComputeTargetHttpsProxySensitive;
+  Set<String> get sensitiveFields => _googleComputeTargetHttpsProxySensitive;
 
   /// Reference to `name` attribute. Use for interpolations like
   /// `proxy.nameRef` →

@@ -38,7 +38,7 @@ const Set<String> _googleComputeSslCertificateSensitive = <String>{
 ///
 /// Private key — choose one path:
 /// - `privateKey`: the PEM-encoded private key, stored in Terraform state.
-///   **Sensitive** (schema-flagged): the generated `$sensitiveFields` set
+///   **Sensitive** (schema-flagged): the generated `sensitiveFields` set
 ///   masks it at synth time. Prefer reading from a secret-management
 ///   source (e.g. Secret Manager, an environment variable, a Vault data
 ///   source) and passing via `TfArg.ref(...)` rather than embedding the
@@ -49,7 +49,7 @@ const Set<String> _googleComputeSslCertificateSensitive = <String>{
 ///   over `privateKey` whenever your Terraform CLI version supports it.
 ///
 /// `certificate` is also **sensitive** in the schema (the cert + chain
-/// can leak issuance metadata) and round-trips through `$sensitiveFields`.
+/// can leak issuance metadata) and round-trips through `sensitiveFields`.
 ///
 /// Example (literal PEMs from inputs):
 /// ```dart
@@ -78,8 +78,7 @@ const Set<String> _googleComputeSslCertificateSensitive = <String>{
 /// rotate. Composition pattern: extends `Resource<$GoogleComputeSslCertificate>`
 /// for runtime behavior.
 final class GoogleComputeSslCertificate extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_ssl_certificate';
+  static const String tfType = 'google_compute_ssl_certificate';
 
   GoogleComputeSslCertificate({
     required super.localName,
@@ -94,7 +93,7 @@ final class GoogleComputeSslCertificate extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            if (name != null) 'name': name,
            if (namePrefix != null) 'name_prefix': namePrefix,
@@ -109,8 +108,7 @@ final class GoogleComputeSslCertificate extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleComputeSslCertificateSensitive;
+  Set<String> get sensitiveFields => _googleComputeSslCertificateSensitive;
 
   /// Reference to `name` attribute. For `name_prefix`-based resources
   /// this resolves to the GCP-assigned full name (prefix + suffix), so

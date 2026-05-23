@@ -43,8 +43,7 @@ const Set<String> _googleDnsManagedZoneIamMemberSensitive = <String>{};
 /// Optional `condition` is a single IAM Condition block (CEL
 /// `expression`, `title`, optional `description`).
 final class GoogleDnsManagedZoneIamMember extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_dns_managed_zone_iam_member';
+  static const String tfType = 'google_dns_managed_zone_iam_member';
 
   GoogleDnsManagedZoneIamMember({
     required super.localName,
@@ -56,7 +55,7 @@ final class GoogleDnsManagedZoneIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'managed_zone': managedZone,
            'role': role,
@@ -67,8 +66,7 @@ final class GoogleDnsManagedZoneIamMember extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleDnsManagedZoneIamMemberSensitive;
+  Set<String> get sensitiveFields => _googleDnsManagedZoneIamMemberSensitive;
 
   /// Reference to `etag` attribute (concurrency token written by the API).
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');

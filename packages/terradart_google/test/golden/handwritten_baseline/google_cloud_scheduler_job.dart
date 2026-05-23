@@ -26,8 +26,13 @@ sealed class CloudSchedulerJobSchedulerTarget {
 /// value resolves to the full `projects/{project}/topics/{name}` path
 /// — `topic.nameRef` (just the bare name) is **not** sufficient.
 @immutable
-final class CloudSchedulerJobPubsubTarget extends CloudSchedulerJobSchedulerTarget {
-  const CloudSchedulerJobPubsubTarget({required this.topicName, this.data, this.attributes});
+final class CloudSchedulerJobPubsubTarget
+    extends CloudSchedulerJobSchedulerTarget {
+  const CloudSchedulerJobPubsubTarget({
+    required this.topicName,
+    this.data,
+    this.attributes,
+  });
 
   /// **Important:** Pub/Sub Scheduler expects the *full resource path*
   /// `projects/{project}/topics/{topic}`. Pass `TfArg.ref(topic.id)` —
@@ -42,15 +47,16 @@ final class CloudSchedulerJobPubsubTarget extends CloudSchedulerJobSchedulerTarg
 
   @override
   Map<String, Object?> encode() => {
-        'topic_name': topicName.toTfJson(),
-        if (data != null) 'data': data!.toTfJson(),
-        if (attributes != null) 'attributes': attributes!.toTfJson(),
-      };
+    'topic_name': topicName.toTfJson(),
+    if (data != null) 'data': data!.toTfJson(),
+    if (attributes != null) 'attributes': attributes!.toTfJson(),
+  };
 }
 
 /// Generic webhook `http_target` block.
 @immutable
-final class CloudSchedulerJobHttpTarget extends CloudSchedulerJobSchedulerTarget {
+final class CloudSchedulerJobHttpTarget
+    extends CloudSchedulerJobSchedulerTarget {
   const CloudSchedulerJobHttpTarget({
     required this.uri,
     this.httpMethod,
@@ -72,18 +78,19 @@ final class CloudSchedulerJobHttpTarget extends CloudSchedulerJobSchedulerTarget
 
   @override
   Map<String, Object?> encode() => {
-        'uri': uri.toTfJson(),
-        if (httpMethod != null) 'http_method': httpMethod!.toTfJson(),
-        if (body != null) 'body': body!.toTfJson(),
-        if (headers != null) 'headers': headers!.toTfJson(),
-        if (oauthToken != null) 'oauth_token': oauthToken!.encode(),
-        if (oidcToken != null) 'oidc_token': oidcToken!.encode(),
-      };
+    'uri': uri.toTfJson(),
+    if (httpMethod != null) 'http_method': httpMethod!.toTfJson(),
+    if (body != null) 'body': body!.toTfJson(),
+    if (headers != null) 'headers': headers!.toTfJson(),
+    if (oauthToken != null) 'oauth_token': oauthToken!.encode(),
+    if (oidcToken != null) 'oidc_token': oidcToken!.encode(),
+  };
 }
 
 /// `app_engine_http_target` block — App Engine routing variant.
 @immutable
-final class CloudSchedulerJobAppEngineHttpTarget extends CloudSchedulerJobSchedulerTarget {
+final class CloudSchedulerJobAppEngineHttpTarget
+    extends CloudSchedulerJobSchedulerTarget {
   const CloudSchedulerJobAppEngineHttpTarget({
     required this.relativeUri,
     this.httpMethod,
@@ -103,57 +110,67 @@ final class CloudSchedulerJobAppEngineHttpTarget extends CloudSchedulerJobSchedu
 
   @override
   Map<String, Object?> encode() => {
-        'relative_uri': relativeUri.toTfJson(),
-        if (httpMethod != null) 'http_method': httpMethod!.toTfJson(),
-        if (body != null) 'body': body!.toTfJson(),
-        if (headers != null) 'headers': headers!.toTfJson(),
-        if (appEngineRouting != null)
-          'app_engine_routing': appEngineRouting!.encode(),
-      };
+    'relative_uri': relativeUri.toTfJson(),
+    if (httpMethod != null) 'http_method': httpMethod!.toTfJson(),
+    if (body != null) 'body': body!.toTfJson(),
+    if (headers != null) 'headers': headers!.toTfJson(),
+    if (appEngineRouting != null)
+      'app_engine_routing': appEngineRouting!.encode(),
+  };
 }
 
 /// OAuth token for [CloudSchedulerJobHttpTarget].
 @immutable
 class CloudSchedulerJobHttpOauthToken {
-  const CloudSchedulerJobHttpOauthToken({required this.serviceAccountEmail, this.scope});
+  const CloudSchedulerJobHttpOauthToken({
+    required this.serviceAccountEmail,
+    this.scope,
+  });
 
   final TfArg<String> serviceAccountEmail;
   final TfArg<String>? scope;
 
   Map<String, Object?> encode() => {
-        'service_account_email': serviceAccountEmail.toTfJson(),
-        if (scope != null) 'scope': scope!.toTfJson(),
-      };
+    'service_account_email': serviceAccountEmail.toTfJson(),
+    if (scope != null) 'scope': scope!.toTfJson(),
+  };
 }
 
 /// OIDC token for [CloudSchedulerJobHttpTarget].
 @immutable
 class CloudSchedulerJobHttpOidcToken {
-  const CloudSchedulerJobHttpOidcToken({required this.serviceAccountEmail, this.audience});
+  const CloudSchedulerJobHttpOidcToken({
+    required this.serviceAccountEmail,
+    this.audience,
+  });
 
   final TfArg<String> serviceAccountEmail;
   final TfArg<String>? audience;
 
   Map<String, Object?> encode() => {
-        'service_account_email': serviceAccountEmail.toTfJson(),
-        if (audience != null) 'audience': audience!.toTfJson(),
-      };
+    'service_account_email': serviceAccountEmail.toTfJson(),
+    if (audience != null) 'audience': audience!.toTfJson(),
+  };
 }
 
 /// `app_engine_routing` block under [CloudSchedulerJobAppEngineHttpTarget].
 @immutable
 class CloudSchedulerJobAppEngineRouting {
-  const CloudSchedulerJobAppEngineRouting({this.service, this.version, this.instance});
+  const CloudSchedulerJobAppEngineRouting({
+    this.service,
+    this.version,
+    this.instance,
+  });
 
   final TfArg<String>? service;
   final TfArg<String>? version;
   final TfArg<String>? instance;
 
   Map<String, Object?> encode() => {
-        if (service != null) 'service': service!.toTfJson(),
-        if (version != null) 'version': version!.toTfJson(),
-        if (instance != null) 'instance': instance!.toTfJson(),
-      };
+    if (service != null) 'service': service!.toTfJson(),
+    if (version != null) 'version': version!.toTfJson(),
+    if (instance != null) 'instance': instance!.toTfJson(),
+  };
 }
 
 /// `retry_config` block on a Scheduler job (distinct from Cloud Tasks).
@@ -174,15 +191,15 @@ class CloudSchedulerJobSchedulerRetryConfig {
   final TfArg<int>? maxDoublings;
 
   Map<String, Object?> encode() => {
-        if (retryCount != null) 'retry_count': retryCount!.toTfJson(),
-        if (maxRetryDuration != null)
-          'max_retry_duration': maxRetryDuration!.toTfJson(),
-        if (minBackoffDuration != null)
-          'min_backoff_duration': minBackoffDuration!.toTfJson(),
-        if (maxBackoffDuration != null)
-          'max_backoff_duration': maxBackoffDuration!.toTfJson(),
-        if (maxDoublings != null) 'max_doublings': maxDoublings!.toTfJson(),
-      };
+    if (retryCount != null) 'retry_count': retryCount!.toTfJson(),
+    if (maxRetryDuration != null)
+      'max_retry_duration': maxRetryDuration!.toTfJson(),
+    if (minBackoffDuration != null)
+      'min_backoff_duration': minBackoffDuration!.toTfJson(),
+    if (maxBackoffDuration != null)
+      'max_backoff_duration': maxBackoffDuration!.toTfJson(),
+    if (maxDoublings != null) 'max_doublings': maxDoublings!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -218,8 +235,7 @@ class CloudSchedulerJobSchedulerRetryConfig {
 /// );
 /// ```
 final class GoogleCloudSchedulerJob extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_cloud_scheduler_job';
+  static const String tfType = 'google_cloud_scheduler_job';
 
   GoogleCloudSchedulerJob({
     required super.localName,
@@ -236,25 +252,24 @@ final class GoogleCloudSchedulerJob extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'name': name,
-            'region': region,
-            if (description != null) 'description': description,
-            if (schedule != null) 'schedule': schedule,
-            if (timeZone != null) 'time_zone': timeZone,
-            if (paused != null) 'paused': paused,
-            if (attemptDeadline != null) 'attempt_deadline': attemptDeadline,
-            if (retryConfig != null)
-              'retry_config': TfArg.literal(retryConfig.encode()),
-            if (project != null) 'project': project,
-            target.blockKey: TfArg.literal(target.encode()),
-          },
-        );
+         terraformType: tfType,
+         argMap: {
+           'name': name,
+           'region': region,
+           if (description != null) 'description': description,
+           if (schedule != null) 'schedule': schedule,
+           if (timeZone != null) 'time_zone': timeZone,
+           if (paused != null) 'paused': paused,
+           if (attemptDeadline != null) 'attempt_deadline': attemptDeadline,
+           if (retryConfig != null)
+             'retry_config': TfArg.literal(retryConfig.encode()),
+           if (project != null) 'project': project,
+           target.blockKey: TfArg.literal(target.encode()),
+         },
+       );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleCloudSchedulerJobSensitive;
+  Set<String> get sensitiveFields => _googleCloudSchedulerJobSensitive;
 
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

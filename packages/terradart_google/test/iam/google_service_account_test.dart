@@ -95,21 +95,22 @@ void main() {
       );
     });
 
-    test('\$sensitiveFields exposes generated set (empty for SA)', () {
+    test('sensitiveFields exposes generated set (empty for SA)', () {
       final sa = GoogleServiceAccount(
         localName: 'sa',
         accountId: TfArg.literal('runner'),
       );
-      expect(sa.$sensitiveFields, isEmpty);
+      // ignore: invalid_use_of_protected_member
+      expect(sa.sensitiveFields, isEmpty);
     });
 
-    test('\$tfType constant matches terraformType', () {
+    test('tfType constant matches terraformType', () {
       final sa = GoogleServiceAccount(
         localName: 'sa',
         accountId: TfArg.literal('runner'),
       );
-      expect(GoogleServiceAccount.$tfType, equals('google_service_account'));
-      expect(sa.terraformType, equals(GoogleServiceAccount.$tfType));
+      expect(GoogleServiceAccount.tfType, equals('google_service_account'));
+      expect(sa.terraformType, equals(GoogleServiceAccount.tfType));
     });
   });
 }

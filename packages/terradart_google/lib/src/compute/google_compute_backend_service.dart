@@ -19,7 +19,7 @@ const Set<String> _googleComputeBackendServiceSensitive = <String>{
 /// and `H2C` require an HTTP(S)-class load balancer; `TCP`, `SSL`, and
 /// `UDP` are for Network Load Balancing / Traffic Director TCP routing.
 /// `GRPC` is required when the URL map is bound to a target gRPC proxy.
-enum BackendServiceProtocol {
+enum BackendServiceProtocol implements TerraformEnum {
   http('HTTP'),
   https('HTTPS'),
   http2('HTTP2'),
@@ -31,6 +31,7 @@ enum BackendServiceProtocol {
   h2c('H2C');
 
   const BackendServiceProtocol(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -45,13 +46,14 @@ enum BackendServiceProtocol {
 /// the Terraform schema accepts it but it will be rejected by the GCP
 /// API on a global resource — use `google_compute_region_backend_service`
 /// (curated separately) for `INTERNAL_MANAGED`.
-enum LoadBalancingScheme {
+enum LoadBalancingScheme implements TerraformEnum {
   external('EXTERNAL'),
   externalManaged('EXTERNAL_MANAGED'),
   internalSelfManaged('INTERNAL_SELF_MANAGED'),
   internalManaged('INTERNAL_MANAGED');
 
   const LoadBalancingScheme(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -59,7 +61,7 @@ enum LoadBalancingScheme {
 /// values are valid for which combination of `protocol` and
 /// `load_balancing_scheme` — Cloud Load Balancing silently coerces
 /// invalid values to the scheme's default at apply time.
-enum LocalityLbPolicy {
+enum LocalityLbPolicy implements TerraformEnum {
   roundRobin('ROUND_ROBIN'),
   leastRequest('LEAST_REQUEST'),
   ringHash('RING_HASH'),
@@ -70,13 +72,14 @@ enum LocalityLbPolicy {
   weightedRoundRobin('WEIGHTED_ROUND_ROBIN');
 
   const LocalityLbPolicy(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `session_affinity`. Applicable only when the locality LB policy is
 /// one of `MAGLEV`, `WEIGHTED_MAGLEV`, or `RING_HASH` (otherwise the
 /// setting is silently ignored).
-enum SessionAffinity {
+enum SessionAffinity implements TerraformEnum {
   none('NONE'),
   clientIp('CLIENT_IP'),
   clientIpPortProto('CLIENT_IP_PORT_PROTO'),
@@ -87,28 +90,31 @@ enum SessionAffinity {
   strongCookieAffinity('STRONG_COOKIE_AFFINITY');
 
   const SessionAffinity(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `compression_mode`. Brotli / gzip negotiation based on the client's
 /// `Accept-Encoding` header.
-enum BackendServiceCompressionMode {
+enum BackendServiceCompressionMode implements TerraformEnum {
   automatic('AUTOMATIC'),
   disabled('DISABLED');
 
   const BackendServiceCompressionMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `ip_address_selection_policy`. Controls IPv4-vs-IPv6 preference when
 /// the load balancer dials a backend (or when a proxyless gRPC client
 /// dials directly).
-enum IpAddressSelectionPolicy {
+enum IpAddressSelectionPolicy implements TerraformEnum {
   ipv4Only('IPV4_ONLY'),
   preferIpv6('PREFER_IPV6'),
   ipv6Only('IPV6_ONLY');
 
   const IpAddressSelectionPolicy(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -117,17 +123,18 @@ enum IpAddressSelectionPolicy {
 /// `PREPARE` → optional `TEST_BY_PERCENTAGE` → `TEST_ALL_TRAFFIC`
 /// before the load balancing scheme can flip from `EXTERNAL` to
 /// `EXTERNAL_MANAGED`; same order in reverse to roll back.
-enum ExternalManagedMigrationState {
+enum ExternalManagedMigrationState implements TerraformEnum {
   prepare('PREPARE'),
   testByPercentage('TEST_BY_PERCENTAGE'),
   testAllTraffic('TEST_ALL_TRAFFIC');
 
   const ExternalManagedMigrationState(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Per-backend balancing mode. See [ComputeBackendServiceBackendServiceBackend.balancingMode].
-enum BackendServiceBalancingMode {
+enum BackendServiceBalancingMode implements TerraformEnum {
   utilization('UTILIZATION'),
   rate('RATE'),
   connection('CONNECTION'),
@@ -135,38 +142,42 @@ enum BackendServiceBalancingMode {
   inFlight('IN_FLIGHT');
 
   const BackendServiceBalancingMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `backend.preference`. Cannot be set when `load_balancing_scheme` is
 /// `EXTERNAL`.
-enum BackendServicePreference {
+enum BackendServicePreference implements TerraformEnum {
   preferred('PREFERRED'),
   defaultPref('DEFAULT');
 
   const BackendServicePreference(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `cdn_policy.cache_mode`. Enabling CDN (`enable_cdn = true`) without
 /// setting this defaults to `CACHE_ALL_STATIC`.
-enum BackendServiceCacheMode {
+enum BackendServiceCacheMode implements TerraformEnum {
   useOriginHeaders('USE_ORIGIN_HEADERS'),
   forceCacheAll('FORCE_CACHE_ALL'),
   cacheAllStatic('CACHE_ALL_STATIC');
 
   const BackendServiceCacheMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `log_config.optional_mode`. Controls which optional access-log
 /// fields are exported when [ComputeBackendServiceBackendServiceLogConfig.enable] is true.
-enum BackendServiceLogOptionalMode {
+enum BackendServiceLogOptionalMode implements TerraformEnum {
   includeAllOptional('INCLUDE_ALL_OPTIONAL'),
   excludeAllOptional('EXCLUDE_ALL_OPTIONAL'),
   custom('CUSTOM');
 
   const BackendServiceLogOptionalMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -457,7 +468,7 @@ class ComputeBackendServiceBackendServiceCdnNegativeCachingPolicy {
 ///
 /// **Sensitive**: [oauth2ClientSecret] is flagged sensitive in the
 /// schema and is masked at synth time via the generated
-/// `$sensitiveFields` set. The computed
+/// `sensitiveFields` set. The computed
 /// `oauth2_client_secret_sha256` is also sensitive — provider
 /// implementation detail; nothing to set on this side.
 @immutable
@@ -476,7 +487,7 @@ class ComputeBackendServiceBackendServiceIap {
   final TfArg<String>? oauth2ClientId;
 
   /// OAuth 2.0 client secret. **Sensitive** — round-trips through
-  /// `$sensitiveFields`.
+  /// `sensitiveFields`.
   final TfArg<String>? oauth2ClientSecret;
 
   Map<String, Object?> toArgMap() => {
@@ -706,7 +717,7 @@ class ComputeBackendServiceBackendServiceOutlierDetection {
 ///
 /// **Sensitive**: [ComputeBackendServiceBackendServiceAwsV4Authentication.accessKey] is
 /// flagged sensitive in the schema and round-trips through
-/// `$sensitiveFields`.
+/// `sensitiveFields`.
 @immutable
 class ComputeBackendServiceBackendServiceSecuritySettings {
   const ComputeBackendServiceBackendServiceSecuritySettings({
@@ -747,7 +758,7 @@ class ComputeBackendServiceBackendServiceAwsV4Authentication {
   });
 
   /// AWS secret access key. **Sensitive** — round-trips through
-  /// `$sensitiveFields`.
+  /// `sensitiveFields`.
   final TfArg<String>? accessKey;
 
   /// AWS access key ID.
@@ -1043,12 +1054,11 @@ class ComputeBackendServiceBackendServiceParams {
 /// );
 /// ```
 ///
-/// Sensitive fields (round-trip through the generated `$sensitiveFields`
+/// Sensitive fields (round-trip through the generated `sensitiveFields`
 /// set): `iap.oauth2_client_secret`, `iap.oauth2_client_secret_sha256`
 /// (computed), and `security_settings.aws_v4_authentication.access_key`.
 final class GoogleComputeBackendService extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_backend_service';
+  static const String tfType = 'google_compute_backend_service';
 
   GoogleComputeBackendService({
     required super.localName,
@@ -1093,7 +1103,7 @@ final class GoogleComputeBackendService extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            if (description != null) 'description': description,
@@ -1167,8 +1177,7 @@ final class GoogleComputeBackendService extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleComputeBackendServiceSensitive;
+  Set<String> get sensitiveFields => _googleComputeBackendServiceSensitive;
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

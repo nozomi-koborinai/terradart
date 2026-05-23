@@ -19,48 +19,53 @@ sealed class SecretManagerSecretReplication {
   /// Auto replication. Optionally pin a CMEK.
   factory SecretManagerSecretReplication.auto({
     SecretManagerSecretCustomerManagedEncryption? customerManagedEncryption,
-  }) = _AutoReplication;
+  }) = SecretManagerSecretAutoReplication;
 
   /// User-managed replication across explicit replicas.
-  factory SecretManagerSecretReplication.userManaged(List<SecretManagerSecretReplica> replicas) =
-      _UserManagedReplication;
+  factory SecretManagerSecretReplication.userManaged(
+    List<SecretManagerSecretReplica> replicas,
+  ) = SecretManagerSecretUserManagedReplication;
 
   Map<String, Object?> encode();
 }
 
 @immutable
-final class _AutoReplication extends SecretManagerSecretReplication {
-  const _AutoReplication({this.customerManagedEncryption});
+final class SecretManagerSecretAutoReplication
+    extends SecretManagerSecretReplication {
+  const SecretManagerSecretAutoReplication({this.customerManagedEncryption});
 
   final SecretManagerSecretCustomerManagedEncryption? customerManagedEncryption;
 
   @override
   Map<String, Object?> encode() => {
-        'auto': <String, Object?>{
-          if (customerManagedEncryption != null)
-            'customer_managed_encryption': customerManagedEncryption!.encode(),
-        },
-      };
+    'auto': <String, Object?>{
+      if (customerManagedEncryption != null)
+        'customer_managed_encryption': customerManagedEncryption!.encode(),
+    },
+  };
 }
 
 @immutable
-final class _UserManagedReplication extends SecretManagerSecretReplication {
-  const _UserManagedReplication(this.replicas);
+final class SecretManagerSecretUserManagedReplication
+    extends SecretManagerSecretReplication {
+  const SecretManagerSecretUserManagedReplication(this.replicas);
 
   final List<SecretManagerSecretReplica> replicas;
 
   @override
   Map<String, Object?> encode() => {
-        'user_managed': <String, Object?>{
-          'replicas': replicas.map((r) => r.encode()).toList(),
-        },
-      };
+    'user_managed': <String, Object?>{
+      'replicas': replicas.map((r) => r.encode()).toList(),
+    },
+  };
 }
 
 /// `customer_managed_encryption` nested block (CMEK).
 @immutable
 class SecretManagerSecretCustomerManagedEncryption {
-  const SecretManagerSecretCustomerManagedEncryption({required this.kmsKeyName});
+  const SecretManagerSecretCustomerManagedEncryption({
+    required this.kmsKeyName,
+  });
 
   final TfArg<String> kmsKeyName;
 
@@ -70,16 +75,19 @@ class SecretManagerSecretCustomerManagedEncryption {
 /// One entry in `user_managed.replicas`.
 @immutable
 class SecretManagerSecretReplica {
-  const SecretManagerSecretReplica({required this.location, this.customerManagedEncryption});
+  const SecretManagerSecretReplica({
+    required this.location,
+    this.customerManagedEncryption,
+  });
 
   final TfArg<String> location;
   final SecretManagerSecretCustomerManagedEncryption? customerManagedEncryption;
 
   Map<String, Object?> encode() => {
-        'location': location.toTfJson(),
-        if (customerManagedEncryption != null)
-          'customer_managed_encryption': customerManagedEncryption!.encode(),
-      };
+    'location': location.toTfJson(),
+    if (customerManagedEncryption != null)
+      'customer_managed_encryption': customerManagedEncryption!.encode(),
+  };
 }
 
 /// Pub/Sub `topics` entry under `google_secret_manager_secret.topics`.
@@ -96,17 +104,19 @@ class SecretManagerSecretSecretTopic {
 /// `rotation` nested block.
 @immutable
 class SecretManagerSecretRotation {
-  const SecretManagerSecretRotation({this.nextRotationTime, this.rotationPeriod});
+  const SecretManagerSecretRotation({
+    this.nextRotationTime,
+    this.rotationPeriod,
+  });
 
   final TfArg<String>? nextRotationTime;
   final TfArg<String>? rotationPeriod;
 
   Map<String, Object?> encode() => {
-        if (nextRotationTime != null)
-          'next_rotation_time': nextRotationTime!.toTfJson(),
-        if (rotationPeriod != null)
-          'rotation_period': rotationPeriod!.toTfJson(),
-      };
+    if (nextRotationTime != null)
+      'next_rotation_time': nextRotationTime!.toTfJson(),
+    if (rotationPeriod != null) 'rotation_period': rotationPeriod!.toTfJson(),
+  };
 }
 
 // ===========================================================================
@@ -121,8 +131,7 @@ class SecretManagerSecretRotation {
 /// - `replication`: sealed [SecretManagerSecretReplication] (`SecretManagerSecretReplication.auto()` or
 ///   `SecretManagerSecretReplication.userManaged([...])`).
 final class GoogleSecretManagerSecret extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_secret_manager_secret';
+  static const String tfType = 'google_secret_manager_secret';
 
   GoogleSecretManagerSecret({
     required super.localName,
@@ -142,30 +151,32 @@ final class GoogleSecretManagerSecret extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-          terraformType: $tfType,
-          argMap: {
-            'secret_id': secretId,
-            'replication': TfArg.literal(replication.encode()),
-            if (labels != null) 'labels': labels,
-            if (annotations != null) 'annotations': annotations,
-            if (versionAliases != null) 'version_aliases': versionAliases,
-            if (versionDestroyTtl != null)
-              'version_destroy_ttl': versionDestroyTtl,
-            if (topics != null)
-              'topics': TfArg.literal(topics.map((t) => t.encode()).toList()),
-            if (expireTime != null) 'expire_time': expireTime,
-            if (ttl != null) 'ttl': ttl,
-            if (rotation != null) 'rotation': TfArg.literal(rotation.encode()),
-            if (tags != null) 'tags': tags,
-            if (project != null) 'project': project,
-            if (deletionProtection != null)
-              'deletion_protection': deletionProtection,
-          },
-        );
+         terraformType: tfType,
+         argMap: {
+           'secret_id': secretId,
+           'replication': TfArg.literal(replication.encode()),
+           if (labels != null) 'labels': labels,
+           if (annotations != null) 'annotations': annotations,
+           if (versionAliases != null) 'version_aliases': versionAliases,
+           if (versionDestroyTtl != null)
+             'version_destroy_ttl': versionDestroyTtl,
+           if (topics != null)
+             'topics': TfArg.literal(topics.map((t) => t.encode()).toList()),
+           if (expireTime != null) 'expire_time': expireTime,
+           if (ttl != null) 'ttl': ttl,
+           if (rotation != null) 'rotation': TfArg.literal(rotation.encode()),
+           if (tags != null) 'tags': tags,
+           if (project != null) 'project': project,
+           if (deletionProtection != null)
+             'deletion_protection': deletionProtection,
+         },
+       );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleSecretManagerSecretSensitive;
+  Set<String> get sensitiveFields => _googleSecretManagerSecretSensitive;
+
+  @override
+  bool get supportsDeletionProtection => true;
 
   TfRef<String> get secretIdRef => TfRef.attribute<String>(this, 'secret_id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

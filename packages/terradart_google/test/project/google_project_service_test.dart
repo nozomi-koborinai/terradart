@@ -77,21 +77,22 @@ void main() {
       );
     });
 
-    test('\$sensitiveFields exposes empty set', () {
+    test('sensitiveFields exposes empty set', () {
       final api = GoogleProjectService(
         localName: 'pubsub',
         service: TfArg.literal('pubsub.googleapis.com'),
       );
-      expect(api.$sensitiveFields, isEmpty);
+      // ignore: invalid_use_of_protected_member
+      expect(api.sensitiveFields, isEmpty);
     });
 
-    test('\$tfType constant matches terraformType', () {
+    test('tfType constant matches terraformType', () {
       final api = GoogleProjectService(
         localName: 'pubsub',
         service: TfArg.literal('pubsub.googleapis.com'),
       );
-      expect(GoogleProjectService.$tfType, equals('google_project_service'));
-      expect(api.terraformType, equals(GoogleProjectService.$tfType));
+      expect(GoogleProjectService.tfType, equals('google_project_service'));
+      expect(api.terraformType, equals(GoogleProjectService.tfType));
     });
   });
 }

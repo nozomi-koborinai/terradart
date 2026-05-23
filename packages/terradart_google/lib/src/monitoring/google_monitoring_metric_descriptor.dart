@@ -13,13 +13,14 @@ const Set<String> _googleMonitoringMetricDescriptorSensitive = <String>{};
 /// `metric_kind` — whether the metric records instantaneous values, deltas,
 /// or running totals. Not every `(metricKind, valueType)` combination is
 /// supported by the Cloud Monitoring API.
-enum MonitoringMetricKind {
+enum MonitoringMetricKind implements TerraformEnum {
   unspecified('METRIC_KIND_UNSPECIFIED'),
   gauge('GAUGE'),
   delta('DELTA'),
   cumulative('CUMULATIVE');
 
   const MonitoringMetricKind(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -27,7 +28,7 @@ enum MonitoringMetricKind {
 /// [MonitoringValueType.distribution] together with the histogram-bucket
 /// configuration on the metric's time series; the schema does **not**
 /// include `MONEY` or a `VALUE_TYPE_UNSPECIFIED` sentinel.
-enum MonitoringValueType {
+enum MonitoringValueType implements TerraformEnum {
   boolean('BOOL'),
   int64('INT64'),
   doubleValue('DOUBLE'),
@@ -35,6 +36,7 @@ enum MonitoringValueType {
   distribution('DISTRIBUTION');
 
   const MonitoringValueType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -42,18 +44,19 @@ enum MonitoringValueType {
 /// metric. The label-level value space is narrower than the descriptor's
 /// (no `DOUBLE` / `DISTRIBUTION`). Defaults to
 /// [MonitoringMetricLabelValueType.string] when omitted.
-enum MonitoringMetricLabelValueType {
+enum MonitoringMetricLabelValueType implements TerraformEnum {
   string('STRING'),
   boolean('BOOL'),
   int64('INT64');
 
   const MonitoringMetricLabelValueType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `launch_stage` — release-management stage of this metric definition.
 /// Defaults to [MonitoringMetricLaunchStage.ga] / unset for stable metrics.
-enum MonitoringMetricLaunchStage {
+enum MonitoringMetricLaunchStage implements TerraformEnum {
   unspecified('LAUNCH_STAGE_UNSPECIFIED'),
   unimplemented('UNIMPLEMENTED'),
   prelaunch('PRELAUNCH'),
@@ -64,6 +67,7 @@ enum MonitoringMetricLaunchStage {
   deprecated('DEPRECATED');
 
   const MonitoringMetricLaunchStage(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -177,8 +181,7 @@ class MonitoringMetricDescriptorMetadata {
 /// [MonitoringMetricLabelValueType], [MonitoringMetricLaunchStage]) live
 /// in the `prelude` below.
 final class GoogleMonitoringMetricDescriptor extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_monitoring_metric_descriptor';
+  static const String tfType = 'google_monitoring_metric_descriptor';
 
   GoogleMonitoringMetricDescriptor({
     required super.localName,
@@ -195,7 +198,7 @@ final class GoogleMonitoringMetricDescriptor extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'type': type,
            'metric_kind': metricKind,
@@ -213,9 +216,7 @@ final class GoogleMonitoringMetricDescriptor extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
-      _googleMonitoringMetricDescriptorSensitive;
+  Set<String> get sensitiveFields => _googleMonitoringMetricDescriptorSensitive;
 
   /// Reference to `id` attribute (the metric descriptor's full resource
   /// name, `projects/{project}/metricDescriptors/{type}`).

@@ -21,7 +21,7 @@ const Set<String> _googleFirebaseAppCheckDeviceCheckConfigSensitive = <String>{
 ///   DeviceCheck, created in your Apple Developer account.
 /// - `private_key`: the contents of the private key (`.p8`) file
 ///   associated with [keyId]. **Sensitive**: terradart's masking layer
-///   flags this field via the generated `$sensitiveFields` set, and the
+///   flags this field via the generated `sensitiveFields` set, and the
 ///   provider itself never returns the value in responses. Avoid logging
 ///   or persisting [TfArg] values for this field outside of Terraform
 ///   state.
@@ -51,8 +51,7 @@ const Set<String> _googleFirebaseAppCheckDeviceCheckConfigSensitive = <String>{
 ///
 /// No nested blocks aside from the meta-arg `timeouts`.
 final class GoogleFirebaseAppCheckDeviceCheckConfig extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_firebase_app_check_device_check_config';
+  static const String tfType = 'google_firebase_app_check_device_check_config';
 
   GoogleFirebaseAppCheckDeviceCheckConfig({
     required super.localName,
@@ -64,7 +63,7 @@ final class GoogleFirebaseAppCheckDeviceCheckConfig extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'app_id': appId,
            'key_id': keyId,
@@ -75,8 +74,7 @@ final class GoogleFirebaseAppCheckDeviceCheckConfig extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googleFirebaseAppCheckDeviceCheckConfigSensitive;
 
   /// Reference to `name` attribute (the relative resource name of the

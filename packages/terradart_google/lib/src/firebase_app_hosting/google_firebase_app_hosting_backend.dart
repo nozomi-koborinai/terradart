@@ -15,11 +15,12 @@ const Set<String> _googleFirebaseAppHostingBackendSensitive = <String>{};
 /// create; immutable thereafter (changing forces replacement).
 /// `regionalStrict` pins serving to the backend's [location]; `globalAccess`
 /// lets App Hosting replicate across its global edge fleet.
-enum AppHostingServingLocality {
+enum AppHostingServingLocality implements TerraformEnum {
   regionalStrict('REGIONAL_STRICT'),
   globalAccess('GLOBAL_ACCESS');
 
   const AppHostingServingLocality(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -98,8 +99,7 @@ class FirebaseAppHostingBackendAppHostingBackendCodebase {
 /// integration via [appId]. The single `codebase` block links the backend to
 /// a Developer Connect-managed git repository.
 final class GoogleFirebaseAppHostingBackend extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_firebase_app_hosting_backend';
+  static const String tfType = 'google_firebase_app_hosting_backend';
 
   GoogleFirebaseAppHostingBackend({
     required super.localName,
@@ -117,7 +117,7 @@ final class GoogleFirebaseAppHostingBackend extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'backend_id': backendId,
            'location': location,
@@ -135,8 +135,7 @@ final class GoogleFirebaseAppHostingBackend extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleFirebaseAppHostingBackendSensitive;
+  Set<String> get sensitiveFields => _googleFirebaseAppHostingBackendSensitive;
 
   /// Reference to `name` attribute (full resource path
   /// `projects/{project}/locations/{location}/backends/{backend_id}`).

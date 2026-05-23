@@ -19,13 +19,14 @@ const Set<String> _googleSqlUserSensitive = <String>{'password'};
 ///
 /// `password` is meaningful only for [builtIn] users; IAM-typed users
 /// authenticate by exchanging IAM tokens and must omit it.
-enum SqlUserType {
+enum SqlUserType implements TerraformEnum {
   builtIn('BUILT_IN'),
   cloudIamUser('CLOUD_IAM_USER'),
   cloudIamServiceAccount('CLOUD_IAM_SERVICE_ACCOUNT'),
   cloudIamGroup('CLOUD_IAM_GROUP');
 
   const SqlUserType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -51,10 +52,10 @@ enum SqlUserType {
 ///   MySQL / SQL Server, and required for PostgreSQL built-ins. Cloud IAM
 ///   users authenticate via IAM tokens — leave both `null`.
 ///   * `password` is sensitive in the schema and round-trips through
-///     state; the generated `$sensitiveFields` set masks it at synth time.
+///     state; the generated `sensitiveFields` set masks it at synth time.
 ///   * `password_wo` is the write-only variant (TF 1.11+). Write-only
 ///     fields never enter Terraform state, so the wrapper's
-///     `$sensitiveFields` set masks only the state-stored `password` —
+///     `sensitiveFields` set masks only the state-stored `password` —
 ///     `password_wo` does not need to appear there. Bump
 ///     `passwordWoVersion` to force a rotation.
 /// - [host]: MySQL-only — restricts which client hosts may authenticate
@@ -84,8 +85,7 @@ enum SqlUserType {
 /// Composition pattern: extends `Resource<$GoogleSqlUser>` for runtime
 /// behavior.
 final class GoogleSqlUser extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_sql_user';
+  static const String tfType = 'google_sql_user';
 
   GoogleSqlUser({
     required super.localName,
@@ -102,7 +102,7 @@ final class GoogleSqlUser extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'instance': instance,
@@ -119,8 +119,7 @@ final class GoogleSqlUser extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleSqlUserSensitive;
+  Set<String> get sensitiveFields => _googleSqlUserSensitive;
 
   /// Reference to `id` attribute (full path
   /// `{project}/{instance}/{host}/{name}` on MySQL, or

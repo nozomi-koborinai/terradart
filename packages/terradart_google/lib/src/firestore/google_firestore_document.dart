@@ -52,8 +52,7 @@ const Set<String> _googleFirestoreDocumentSensitive = <String>{};
 /// - `database`: Firestore database ID. Defaults to `'(default)'`.
 /// - `project`: GCP project. Defaults to the provider's project.
 final class GoogleFirestoreDocument extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_firestore_document';
+  static const String tfType = 'google_firestore_document';
 
   GoogleFirestoreDocument({
     required super.localName,
@@ -65,7 +64,7 @@ final class GoogleFirestoreDocument extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'collection': collection,
            'document_id': documentId,
@@ -76,8 +75,7 @@ final class GoogleFirestoreDocument extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleFirestoreDocumentSensitive;
+  Set<String> get sensitiveFields => _googleFirestoreDocumentSensitive;
 
   /// Reference to `id` attribute (full path within the database).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

@@ -21,11 +21,12 @@ const Set<String> _googleComputeGlobalNetworkEndpointGroupSensitive =
 /// - [internetIpPort]: endpoint identified by literal IP + port. Use when
 ///   the origin's public IP is stable and you do not want DNS in the
 ///   request path.
-enum GlobalNetworkEndpointGroupType {
+enum GlobalNetworkEndpointGroupType implements TerraformEnum {
   internetFqdnPort('INTERNET_FQDN_PORT'),
   internetIpPort('INTERNET_IP_PORT');
 
   const GlobalNetworkEndpointGroupType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -83,8 +84,7 @@ enum GlobalNetworkEndpointGroupType {
 /// `Resource<$GoogleComputeGlobalNetworkEndpointGroup>` for runtime
 /// behavior.
 final class GoogleComputeGlobalNetworkEndpointGroup extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_global_network_endpoint_group';
+  static const String tfType = 'google_compute_global_network_endpoint_group';
 
   GoogleComputeGlobalNetworkEndpointGroup({
     required super.localName,
@@ -96,7 +96,7 @@ final class GoogleComputeGlobalNetworkEndpointGroup extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'network_endpoint_type': networkEndpointType,
@@ -107,8 +107,7 @@ final class GoogleComputeGlobalNetworkEndpointGroup extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googleComputeGlobalNetworkEndpointGroupSensitive;
 
   /// Reference to `name` attribute. Use for interpolations like

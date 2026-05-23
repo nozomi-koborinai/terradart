@@ -23,13 +23,14 @@ const Set<String> _googleComputeAutoscalerSensitive = <String>{};
 /// - [onlyScaleOut] — alias for [onlyUp]; some GCP samples still use
 ///   this name. Retained for surface compatibility.
 /// - [on] — full bidirectional autoscaling.
-enum AutoscalerMode {
+enum AutoscalerMode implements TerraformEnum {
   off('OFF'),
   onlyUp('ONLY_UP'),
   onlyScaleOut('ONLY_SCALE_OUT'),
   on('ON');
 
   const AutoscalerMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -38,11 +39,12 @@ enum AutoscalerMode {
 /// - [none] — disable predictive autoscaling (default).
 /// - [optimizeAvailability] — monitor weekly load patterns and scale out
 ///   ahead of anticipated demand.
-enum AutoscalerCpuPredictiveMethod {
+enum AutoscalerCpuPredictiveMethod implements TerraformEnum {
   none('NONE'),
   optimizeAvailability('OPTIMIZE_AVAILABILITY');
 
   const AutoscalerCpuPredictiveMethod(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -53,12 +55,13 @@ enum AutoscalerCpuPredictiveMethod {
 ///   keeps it at [ComputeAutoscalerAutoscalerMetric.target].
 /// - [deltaPerSecond] — the metric is a per-second rate.
 /// - [deltaPerMinute] — the metric is a per-minute rate.
-enum AutoscalerMetricType {
+enum AutoscalerMetricType implements TerraformEnum {
   gauge('GAUGE'),
   deltaPerSecond('DELTA_PER_SECOND'),
   deltaPerMinute('DELTA_PER_MINUTE');
 
   const AutoscalerMetricType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -428,8 +431,7 @@ class ComputeAutoscalerAutoscalerScalingSchedule {
 /// Composition pattern: extends `Resource<$GoogleComputeAutoscaler>` for
 /// runtime behavior.
 final class GoogleComputeAutoscaler extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_autoscaler';
+  static const String tfType = 'google_compute_autoscaler';
 
   GoogleComputeAutoscaler({
     required super.localName,
@@ -442,7 +444,7 @@ final class GoogleComputeAutoscaler extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'zone': zone,
@@ -454,8 +456,7 @@ final class GoogleComputeAutoscaler extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleComputeAutoscalerSensitive;
+  Set<String> get sensitiveFields => _googleComputeAutoscalerSensitive;
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

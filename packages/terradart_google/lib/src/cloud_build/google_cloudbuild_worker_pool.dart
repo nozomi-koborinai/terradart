@@ -175,8 +175,7 @@ class CloudbuildWorkerPoolPrivateServiceConnect {
 /// Composition pattern: extends `Resource<$GoogleCloudbuildWorkerPool>`
 /// for runtime behavior.
 final class GoogleCloudbuildWorkerPool extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_cloudbuild_worker_pool';
+  static const String tfType = 'google_cloudbuild_worker_pool';
 
   GoogleCloudbuildWorkerPool({
     required super.localName,
@@ -191,7 +190,7 @@ final class GoogleCloudbuildWorkerPool extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'location': location,
@@ -210,8 +209,7 @@ final class GoogleCloudbuildWorkerPool extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleCloudbuildWorkerPoolSensitive;
+  Set<String> get sensitiveFields => _googleCloudbuildWorkerPoolSensitive;
 
   /// Reference to `name` attribute. Pass to triggers as the short pool
   /// name when interpolating into descriptive fields.

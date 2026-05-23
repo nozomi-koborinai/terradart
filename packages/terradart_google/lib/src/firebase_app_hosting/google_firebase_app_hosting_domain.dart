@@ -101,8 +101,7 @@ class FirebaseAppHostingDomainAppHostingDomainRedirect {
 /// add additional serve modes -- the helper is shaped to absorb them
 /// without breaking callers.
 final class GoogleFirebaseAppHostingDomain extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_firebase_app_hosting_domain';
+  static const String tfType = 'google_firebase_app_hosting_domain';
 
   GoogleFirebaseAppHostingDomain({
     required super.localName,
@@ -114,7 +113,7 @@ final class GoogleFirebaseAppHostingDomain extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'backend': backend,
            'location': location,
@@ -125,8 +124,7 @@ final class GoogleFirebaseAppHostingDomain extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleFirebaseAppHostingDomainSensitive;
+  Set<String> get sensitiveFields => _googleFirebaseAppHostingDomainSensitive;
 
   /// Reference to `name` attribute (full resource path
   /// `projects/{project}/locations/{location}/backends/{backend}/domains/{domain_id}`).

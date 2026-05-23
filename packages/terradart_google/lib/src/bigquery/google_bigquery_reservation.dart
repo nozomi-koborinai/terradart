@@ -20,12 +20,13 @@ const Set<String> _googleBigqueryReservationSensitive = <String>{};
 /// `BigqueryCapacityCommitmentEdition` by design (the two resources
 /// reference the same GCP enum but are kept separate at the Dart type
 /// level to preserve resource-scoped naming).
-enum BigqueryReservationEdition {
+enum BigqueryReservationEdition implements TerraformEnum {
   standard('STANDARD'),
   enterprise('ENTERPRISE'),
   enterprisePlus('ENTERPRISE_PLUS');
 
   const BigqueryReservationEdition(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -89,8 +90,7 @@ class BigqueryReservationAutoscale {
 /// );
 /// ```
 final class GoogleBigqueryReservation extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_bigquery_reservation';
+  static const String tfType = 'google_bigquery_reservation';
 
   GoogleBigqueryReservation({
     required super.localName,
@@ -107,7 +107,7 @@ final class GoogleBigqueryReservation extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            if (location != null) 'location': location,
@@ -125,8 +125,7 @@ final class GoogleBigqueryReservation extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleBigqueryReservationSensitive;
+  Set<String> get sensitiveFields => _googleBigqueryReservationSensitive;
 
   /// Reference to `name` attribute. Use this when wiring
   /// `google_bigquery_reservation_assignment.reservation` to bind this

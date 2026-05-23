@@ -28,7 +28,7 @@ const Set<String> _googleMonitoringNotificationChannelSensitive = <String>{
 ///
 /// The plaintext slots ([authToken], [password], [serviceKey]) are
 /// schema-flagged sensitive and round-trip through the wrapper's
-/// `$sensitiveFields` set — synth masks them in plan output. Prefer the
+/// `sensitiveFields` set — synth masks them in plan output. Prefer the
 /// write-only variants (`*Wo` + `*WoVersion`) on Terraform 1.11+: the
 /// plaintext never enters Terraform state, and bumping the integer
 /// `*WoVersion` slot forces a credential rotation on next apply.
@@ -50,7 +50,7 @@ class MonitoringNotificationChannelSensitiveLabels {
   });
 
   /// Slack bot OAuth token / webhook bearer token. Sensitive — masked
-  /// from plan output and surfaced in `$sensitiveFields`.
+  /// from plan output and surfaced in `sensitiveFields`.
   final TfArg<String>? authToken;
 
   /// Write-only sibling of [authToken] (Terraform 1.11+). Bump
@@ -171,8 +171,7 @@ class MonitoringNotificationChannelSensitiveLabels {
 /// behavior. The nested [MonitoringNotificationChannelSensitiveLabels]
 /// helper is modeled in the `prelude` below.
 final class GoogleMonitoringNotificationChannel extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_monitoring_notification_channel';
+  static const String tfType = 'google_monitoring_notification_channel';
 
   GoogleMonitoringNotificationChannel({
     required super.localName,
@@ -188,7 +187,7 @@ final class GoogleMonitoringNotificationChannel extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            if (displayName != null) 'display_name': displayName,
            'type': type,
@@ -204,8 +203,7 @@ final class GoogleMonitoringNotificationChannel extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googleMonitoringNotificationChannelSensitive;
 
   /// Reference to `id` attribute (the channel's full REST resource name,

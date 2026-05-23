@@ -34,8 +34,7 @@ const Set<String> _googleFirebaseAppHostingDefaultDomainSensitive = <String>{};
 /// this resource just exposes the auto-created default endpoint so it can be
 /// disabled or referenced from other resources. There are no nested blocks.
 final class GoogleFirebaseAppHostingDefaultDomain extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_firebase_app_hosting_default_domain';
+  static const String tfType = 'google_firebase_app_hosting_default_domain';
 
   GoogleFirebaseAppHostingDefaultDomain({
     required super.localName,
@@ -47,7 +46,7 @@ final class GoogleFirebaseAppHostingDefaultDomain extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'backend': backend,
            'location': location,
@@ -58,8 +57,7 @@ final class GoogleFirebaseAppHostingDefaultDomain extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googleFirebaseAppHostingDefaultDomainSensitive;
 
   /// Reference to `name` attribute (full resource path

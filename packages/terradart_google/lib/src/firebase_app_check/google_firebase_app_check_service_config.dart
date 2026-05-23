@@ -20,7 +20,7 @@ const Set<String> _googleFirebaseAppCheckServiceConfigSensitive = <String>{};
 /// metrics, and deleting the Terraform resource returns the service to
 /// the same `OFF` state. Only the two non-`OFF` values are surfaced as
 /// enum members.
-enum AppCheckEnforcementMode {
+enum AppCheckEnforcementMode implements TerraformEnum {
   /// App Check is NOT enforced; metrics ARE collected. Use this to
   /// observe how clients would fare under enforcement before flipping the
   /// switch.
@@ -32,6 +32,7 @@ enum AppCheckEnforcementMode {
   enforced('ENFORCED');
 
   const AppCheckEnforcementMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -81,8 +82,7 @@ enum AppCheckEnforcementMode {
 ///
 /// No nested blocks aside from the meta-arg `timeouts`.
 final class GoogleFirebaseAppCheckServiceConfig extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_firebase_app_check_service_config';
+  static const String tfType = 'google_firebase_app_check_service_config';
 
   GoogleFirebaseAppCheckServiceConfig({
     required super.localName,
@@ -92,7 +92,7 @@ final class GoogleFirebaseAppCheckServiceConfig extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'service_id': serviceId,
            if (enforcementMode != null) 'enforcement_mode': enforcementMode,
@@ -101,8 +101,7 @@ final class GoogleFirebaseAppCheckServiceConfig extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googleFirebaseAppCheckServiceConfigSensitive;
 
   /// Reference to `name` attribute (the fully-qualified resource name of

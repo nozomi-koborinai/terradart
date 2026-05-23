@@ -31,7 +31,7 @@ void main() {
     expect(v.argMap['secret_data_wo_version']!.toTfJson(), equals(1));
   });
 
-  test('\$sensitiveFields contains secret_data per provider schema', () {
+  test('sensitiveFields contains secret_data per provider schema', () {
     // The sensitive set is machine-derived from
     // the provider schema. The hashicorp/google v7.31.0 schema flags only
     // `secret_data` as sensitive (`secret_data_wo` is `write_only`, not
@@ -43,7 +43,8 @@ void main() {
       localName: 'v',
       secret: TfArg.literal('projects/p/secrets/s'),
     );
-    expect(v.$sensitiveFields, equals(<String>{'secret_data'}));
+    // ignore: invalid_use_of_protected_member
+    expect(v.sensitiveFields, equals(<String>{'secret_data'}));
   });
 
   test('legacy secretData path still works (with deprecation)', () {

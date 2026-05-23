@@ -18,11 +18,12 @@ const Set<String> _googleBigqueryJobSensitive = <String>{};
 /// `CREATE_IF_NEEDED`: if the destination table does not exist,
 /// BigQuery creates it. `CREATE_NEVER`: the destination table must
 /// already exist; otherwise the job fails with a `notFound` error.
-enum BigqueryJobCreateDisposition {
+enum BigqueryJobCreateDisposition implements TerraformEnum {
   createIfNeeded('CREATE_IF_NEEDED'),
   createNever('CREATE_NEVER');
 
   const BigqueryJobCreateDisposition(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -34,12 +35,13 @@ enum BigqueryJobCreateDisposition {
 /// `WRITE_APPEND`: append to existing table data.
 /// `WRITE_EMPTY`: fail with `duplicate` if the destination already
 /// contains rows.
-enum BigqueryJobWriteDisposition {
+enum BigqueryJobWriteDisposition implements TerraformEnum {
   writeTruncate('WRITE_TRUNCATE'),
   writeAppend('WRITE_APPEND'),
   writeEmpty('WRITE_EMPTY');
 
   const BigqueryJobWriteDisposition(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -50,11 +52,12 @@ enum BigqueryJobWriteDisposition {
 /// counts against concurrent-query limits. `BATCH`: queued, runs
 /// against batch capacity; no concurrent-query limit but the job
 /// may sit pending until capacity frees up.
-enum BigqueryJobQueryPriority {
+enum BigqueryJobQueryPriority implements TerraformEnum {
   interactive('INTERACTIVE'),
   batch('BATCH');
 
   const BigqueryJobQueryPriority(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -62,11 +65,12 @@ enum BigqueryJobQueryPriority {
 /// placeholders; `NAMED` uses `@param` syntax. The provider
 /// description does not expose a formal `Possible values` array;
 /// the BigQuery API documents these two as the supported modes.
-enum BigqueryJobParameterMode {
+enum BigqueryJobParameterMode implements TerraformEnum {
   named('NAMED'),
   positional('POSITIONAL');
 
   const BigqueryJobParameterMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -77,7 +81,7 @@ enum BigqueryJobParameterMode {
 /// `BIGTABLE`. Default is `CSV`. The schema doesn't expose a
 /// formal `enum_values` array, so this list is sourced from the
 /// attribute's `description` prose.
-enum BigqueryJobLoadSourceFormat {
+enum BigqueryJobLoadSourceFormat implements TerraformEnum {
   csv('CSV'),
   newlineDelimitedJson('NEWLINE_DELIMITED_JSON'),
   avro('AVRO'),
@@ -87,6 +91,7 @@ enum BigqueryJobLoadSourceFormat {
   bigtable('BIGTABLE');
 
   const BigqueryJobLoadSourceFormat(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -95,13 +100,14 @@ enum BigqueryJobLoadSourceFormat {
 /// NONE. DEFLATE and SNAPPY are only supported for Avro." The
 /// schema doesn't expose a formal `enum_values` array — values
 /// transcribed from the description prose.
-enum BigqueryJobExtractCompression {
+enum BigqueryJobExtractCompression implements TerraformEnum {
   gzip('GZIP'),
   deflate('DEFLATE'),
   snappy('SNAPPY'),
   none('NONE');
 
   const BigqueryJobExtractCompression(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -112,24 +118,26 @@ enum BigqueryJobExtractCompression {
 /// The default value for models is SAVED_MODEL." Values transcribed
 /// from the description prose (no formal `enum_values` array on
 /// this attribute).
-enum BigqueryJobExtractDestinationFormat {
+enum BigqueryJobExtractDestinationFormat implements TerraformEnum {
   csv('CSV'),
   newlineDelimitedJson('NEWLINE_DELIMITED_JSON'),
   avro('AVRO'),
   savedModel('SAVED_MODEL');
 
   const BigqueryJobExtractDestinationFormat(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `query.script_options.key_result_statement`. Possible values:
 /// `["LAST", "FIRST_SELECT"]`. Determines which statement in the
 /// script populates the schema and query results of the script job.
-enum BigqueryJobScriptKeyResultStatement {
+enum BigqueryJobScriptKeyResultStatement implements TerraformEnum {
   last('LAST'),
   firstSelect('FIRST_SELECT');
 
   const BigqueryJobScriptKeyResultStatement(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -777,8 +785,7 @@ class BigqueryJobCopy {
 /// Sensitive fields: none. Authorization is via the service account
 /// running Terraform — no in-schema secrets on this resource.
 final class GoogleBigqueryJob extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_bigquery_job';
+  static const String tfType = 'google_bigquery_job';
 
   GoogleBigqueryJob({
     required super.localName,
@@ -794,7 +801,7 @@ final class GoogleBigqueryJob extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'job_id': jobId,
            if (location != null) 'location': location,
@@ -809,8 +816,7 @@ final class GoogleBigqueryJob extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleBigqueryJobSensitive;
+  Set<String> get sensitiveFields => _googleBigqueryJobSensitive;
 
   /// Reference to `id` attribute
   /// (`projects/{project}/jobs/{job_id}` — full job path).

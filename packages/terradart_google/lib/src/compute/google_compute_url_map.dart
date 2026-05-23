@@ -20,7 +20,7 @@ const Set<String> _googleComputeUrlMapSensitive = <String>{};
 ///   on the wire; emitted as the literal token `MOVED_PERMANENTLY_DEFAULT`.
 /// - [found] -> 302, [seeOther] -> 303, [temporaryRedirect] -> 307,
 ///   [permanentRedirect] -> 308.
-enum UrlMapRedirectResponseCode {
+enum UrlMapRedirectResponseCode implements TerraformEnum {
   found('FOUND'),
   movedPermanentlyDefault('MOVED_PERMANENTLY_DEFAULT'),
   permanentRedirect('PERMANENT_REDIRECT'),
@@ -28,6 +28,7 @@ enum UrlMapRedirectResponseCode {
   temporaryRedirect('TEMPORARY_REDIRECT');
 
   const UrlMapRedirectResponseCode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -739,8 +740,7 @@ class ComputeUrlMapUrlMapTestHeader {
 /// Composition pattern: extends `Resource<$GoogleComputeUrlMap>` for
 /// runtime behavior.
 final class GoogleComputeUrlMap extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_url_map';
+  static const String tfType = 'google_compute_url_map';
 
   GoogleComputeUrlMap({
     required super.localName,
@@ -756,7 +756,7 @@ final class GoogleComputeUrlMap extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            if (defaultService != null) 'default_service': defaultService,
@@ -782,8 +782,7 @@ final class GoogleComputeUrlMap extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleComputeUrlMapSensitive;
+  Set<String> get sensitiveFields => _googleComputeUrlMapSensitive;
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

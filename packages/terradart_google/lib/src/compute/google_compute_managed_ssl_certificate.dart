@@ -15,10 +15,11 @@ const Set<String> _googleComputeManagedSslCertificateSensitive = <String>{};
 /// symmetry with the legacy unified `google_compute_ssl_certificate`
 /// resource (which historically distinguished `MANAGED` from
 /// `SELF_MANAGED`). For new code, omit `type` entirely.
-enum ManagedSslCertificateType {
+enum ManagedSslCertificateType implements TerraformEnum {
   managed('MANAGED');
 
   const ManagedSslCertificateType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -100,8 +101,7 @@ class ComputeManagedSslCertificateManagedSslCertificateConfig {
 /// for runtime behavior. The single `managed` nested block (max_items=1)
 /// is modeled as a helper class in the `prelude` below.
 final class GoogleComputeManagedSslCertificate extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_managed_ssl_certificate';
+  static const String tfType = 'google_compute_managed_ssl_certificate';
 
   GoogleComputeManagedSslCertificate({
     required super.localName,
@@ -113,7 +113,7 @@ final class GoogleComputeManagedSslCertificate extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            if (name != null) 'name': name,
            if (managed != null) 'managed': TfArg.literal([managed.toArgMap()]),
@@ -124,8 +124,7 @@ final class GoogleComputeManagedSslCertificate extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googleComputeManagedSslCertificateSensitive;
 
   /// Reference to `name` attribute. Use for interpolations like

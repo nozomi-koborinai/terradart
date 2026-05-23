@@ -15,11 +15,12 @@ const Set<String> _googleBigqueryDatasetSensitive = <String>{};
 /// `LOGICAL` (default per BigQuery API) bills by logical bytes; `PHYSICAL`
 /// bills by compressed on-disk bytes (typically cheaper for high-compression
 /// data with infrequent reads).
-enum DatasetStorageBillingModel {
+enum DatasetStorageBillingModel implements TerraformEnum {
   logical('LOGICAL'),
   physical('PHYSICAL');
 
   const DatasetStorageBillingModel(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -398,8 +399,7 @@ class BigqueryDatasetExternalCatalogDatasetOptions {
 /// );
 /// ```
 final class GoogleBigqueryDataset extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_bigquery_dataset';
+  static const String tfType = 'google_bigquery_dataset';
 
   GoogleBigqueryDataset({
     required super.localName,
@@ -425,7 +425,7 @@ final class GoogleBigqueryDataset extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'dataset_id': datasetId,
            if (friendlyName != null) 'friendly_name': friendlyName,
@@ -465,8 +465,7 @@ final class GoogleBigqueryDataset extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleBigqueryDatasetSensitive;
+  Set<String> get sensitiveFields => _googleBigqueryDatasetSensitive;
 
   /// Reference to `dataset_id` attribute. BigQuery tables reference their
   /// parent dataset via this value (e.g. `dataset.datasetIdRef` passed to

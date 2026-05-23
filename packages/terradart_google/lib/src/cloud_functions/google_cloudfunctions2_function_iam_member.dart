@@ -20,8 +20,7 @@ const Set<String> _googleCloudfunctions2FunctionIamMemberSensitive = <String>{};
 /// admin-level roles (e.g. `roles/cloudfunctions.viewer`) and pair with
 /// `google_cloud_run_service_iam_member` for invocation.
 final class GoogleCloudfunctions2FunctionIamMember extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_cloudfunctions2_function_iam_member';
+  static const String tfType = 'google_cloudfunctions2_function_iam_member';
 
   GoogleCloudfunctions2FunctionIamMember({
     required super.localName,
@@ -34,7 +33,7 @@ final class GoogleCloudfunctions2FunctionIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'cloud_function': cloudFunction,
            'role': role,
@@ -46,8 +45,7 @@ final class GoogleCloudfunctions2FunctionIamMember extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googleCloudfunctions2FunctionIamMemberSensitive;
 
   /// Reference to `etag` attribute (concurrency token written by the API).

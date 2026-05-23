@@ -83,8 +83,7 @@ class LoggingOrganizationSinkExclusion {
 /// `bigquery_options` block and `exclusions` list are modeled as helper
 /// classes in the `prelude` below.
 final class GoogleLoggingOrganizationSink extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_logging_organization_sink';
+  static const String tfType = 'google_logging_organization_sink';
 
   GoogleLoggingOrganizationSink({
     required super.localName,
@@ -101,7 +100,7 @@ final class GoogleLoggingOrganizationSink extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'org_id': orgId,
@@ -122,8 +121,7 @@ final class GoogleLoggingOrganizationSink extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleLoggingOrganizationSinkSensitive;
+  Set<String> get sensitiveFields => _googleLoggingOrganizationSinkSensitive;
 
   /// Reference to `id` attribute (`organizations/{org_id}/sinks/{name}`).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

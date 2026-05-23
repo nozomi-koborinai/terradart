@@ -21,12 +21,13 @@ const Set<String> _googleIamWorkloadIdentityPoolSensitive = <String>{};
 /// - [systemTrustDomain]: pool managed entirely by Google Cloud services
 ///   (GKE, Compute Engine managed identity). Users cannot create
 ///   providers or namespaces inside it.
-enum WorkloadIdentityPoolMode {
+enum WorkloadIdentityPoolMode implements TerraformEnum {
   federationOnly('FEDERATION_ONLY'),
   trustDomain('TRUST_DOMAIN'),
   systemTrustDomain('SYSTEM_TRUST_DOMAIN');
 
   const WorkloadIdentityPoolMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -67,8 +68,7 @@ enum WorkloadIdentityPoolMode {
 /// Composition pattern: extends `Resource<$GoogleIamWorkloadIdentityPool>`
 /// for runtime behavior.
 final class GoogleIamWorkloadIdentityPool extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_iam_workload_identity_pool';
+  static const String tfType = 'google_iam_workload_identity_pool';
 
   GoogleIamWorkloadIdentityPool({
     required super.localName,
@@ -81,7 +81,7 @@ final class GoogleIamWorkloadIdentityPool extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'workload_identity_pool_id': workloadIdentityPoolId,
            if (displayName != null) 'display_name': displayName,
@@ -93,8 +93,7 @@ final class GoogleIamWorkloadIdentityPool extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleIamWorkloadIdentityPoolSensitive;
+  Set<String> get sensitiveFields => _googleIamWorkloadIdentityPoolSensitive;
 
   /// Reference to `id` attribute (full path
   /// `projects/{project}/locations/global/workloadIdentityPools/{poolId}`).

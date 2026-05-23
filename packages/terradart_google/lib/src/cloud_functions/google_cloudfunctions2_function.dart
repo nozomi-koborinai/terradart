@@ -15,33 +15,36 @@ const Set<String> _googleCloudfunctions2FunctionSensitive = <String>{};
 /// `retry` re-delivers per the system retry budget; `doNotRetry` drops on
 /// first failure; `unspecified` defers to the server default (currently
 /// `doNotRetry`).
-enum EventTriggerRetryPolicy {
+enum EventTriggerRetryPolicy implements TerraformEnum {
   unspecified('RETRY_POLICY_UNSPECIFIED'),
   doNotRetry('RETRY_POLICY_DO_NOT_RETRY'),
   retry('RETRY_POLICY_RETRY');
 
   const EventTriggerRetryPolicy(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `service_config.ingress_settings` -- which traffic sources can invoke
 /// the underlying Cloud Run service. Defaults server-side to `allowAll`.
-enum IngressSettings {
+enum IngressSettings implements TerraformEnum {
   allowAll('ALLOW_ALL'),
   allowInternalOnly('ALLOW_INTERNAL_ONLY'),
   allowInternalAndGclb('ALLOW_INTERNAL_AND_GCLB');
 
   const IngressSettings(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `service_config.direct_vpc_egress` -- egress policy for direct VPC
 /// network interfaces. Server default is `vpcEgressPrivateRangesOnly`.
-enum DirectVpcEgress {
+enum DirectVpcEgress implements TerraformEnum {
   vpcEgressAllTraffic('VPC_EGRESS_ALL_TRAFFIC'),
   vpcEgressPrivateRangesOnly('VPC_EGRESS_PRIVATE_RANGES_ONLY');
 
   const DirectVpcEgress(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -49,12 +52,13 @@ enum DirectVpcEgress {
 /// the function attaches via a Serverless VPC Access connector
 /// ([Cloudfunctions2FunctionServiceConfig.vpcConnector]). Mutually exclusive in spirit with
 /// [DirectVpcEgress] (which applies when using direct VPC egress).
-enum VpcConnectorEgressSettings {
+enum VpcConnectorEgressSettings implements TerraformEnum {
   unspecified('VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED'),
   privateRangesOnly('PRIVATE_RANGES_ONLY'),
   allTraffic('ALL_TRAFFIC');
 
   const VpcConnectorEgressSettings(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -646,8 +650,7 @@ class Cloudfunctions2FunctionDirectVpcNetworkInterface {
 /// the runtime service config (memory / CPU / scaling), and (optionally)
 /// the event-trigger binding.
 final class GoogleCloudfunctions2Function extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_cloudfunctions2_function';
+  static const String tfType = 'google_cloudfunctions2_function';
 
   GoogleCloudfunctions2Function({
     required super.localName,
@@ -663,7 +666,7 @@ final class GoogleCloudfunctions2Function extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'location': location,
@@ -681,8 +684,7 @@ final class GoogleCloudfunctions2Function extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleCloudfunctions2FunctionSensitive;
+  Set<String> get sensitiveFields => _googleCloudfunctions2FunctionSensitive;
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

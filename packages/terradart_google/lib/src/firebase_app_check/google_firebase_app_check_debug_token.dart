@@ -26,7 +26,7 @@ const Set<String> _googleFirebaseAppCheckDebugTokenSensitive = <String>{
 ///   external UUID4 source. **Immutable**: this field is set on create
 ///   and cannot be updated — to rotate a debug token, destroy + recreate
 ///   the resource. **Sensitive**: terradart's masking layer flags it via
-///   the generated `$sensitiveFields` set, and the provider itself never
+///   the generated `sensitiveFields` set, and the provider itself never
 ///   echoes the value in responses.
 ///
 /// Example:
@@ -47,8 +47,7 @@ const Set<String> _googleFirebaseAppCheckDebugTokenSensitive = <String>{
 ///
 /// No nested blocks aside from the meta-arg `timeouts`.
 final class GoogleFirebaseAppCheckDebugToken extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_firebase_app_check_debug_token';
+  static const String tfType = 'google_firebase_app_check_debug_token';
 
   GoogleFirebaseAppCheckDebugToken({
     required super.localName,
@@ -59,7 +58,7 @@ final class GoogleFirebaseAppCheckDebugToken extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'app_id': appId,
            'display_name': displayName,
@@ -69,9 +68,7 @@ final class GoogleFirebaseAppCheckDebugToken extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
-      _googleFirebaseAppCheckDebugTokenSensitive;
+  Set<String> get sensitiveFields => _googleFirebaseAppCheckDebugTokenSensitive;
 
   /// Reference to `id` attribute. Equal to the full resource path
   /// `projects/{project}/apps/{app_id}/debugTokens/{debug_token_id}`.

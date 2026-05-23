@@ -15,24 +15,26 @@ const Set<String> _googleFirestoreIndexSensitive = <String>{};
 /// default) limits the index to queries scoped to a single collection;
 /// `collectionGroup` allows collection-group queries; `collectionRecursive`
 /// also covers descendant collection groups.
-enum FirestoreIndexQueryScope {
+enum FirestoreIndexQueryScope implements TerraformEnum {
   collection('COLLECTION'),
   collectionGroup('COLLECTION_GROUP'),
   collectionRecursive('COLLECTION_RECURSIVE');
 
   const FirestoreIndexQueryScope(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `api_scope` -- which Firestore API surface the index targets.
 /// `anyApi` (the default) serves both the Firestore native API and the
 /// Datastore-mode API; the others restrict to one.
-enum FirestoreIndexApiScope {
+enum FirestoreIndexApiScope implements TerraformEnum {
   anyApi('ANY_API'),
   datastoreModeApi('DATASTORE_MODE_API'),
   mongodbCompatibleApi('MONGODB_COMPATIBLE_API');
 
   const FirestoreIndexApiScope(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -40,12 +42,13 @@ enum FirestoreIndexApiScope {
 /// indexed fields. `sparseAll` only indexes documents with values for ALL
 /// fields (the default for composite indexes); `sparseAny` indexes
 /// documents with ANY field; `dense` indexes every document.
-enum FirestoreIndexDensity {
+enum FirestoreIndexDensity implements TerraformEnum {
   sparseAll('SPARSE_ALL'),
   sparseAny('SPARSE_ANY'),
   dense('DENSE');
 
   const FirestoreIndexDensity(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -53,21 +56,23 @@ enum FirestoreIndexDensity {
 /// default) tears the index down both in state and in GCP. `prevent`
 /// keeps the index in GCP and FAILS the destroy -- a safety mode for
 /// indexes that back production queries.
-enum FirestoreIndexDeletionPolicy {
+enum FirestoreIndexDeletionPolicy implements TerraformEnum {
   delete('DELETE'),
   prevent('PREVENT');
 
   const FirestoreIndexDeletionPolicy(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// One [FirestoreIndexIndexField.spec] dimension. Pairs with [FirestoreIndexOrder.descending]
 /// to flip the per-field index direction.
-enum FirestoreIndexOrder {
+enum FirestoreIndexOrder implements TerraformEnum {
   ascending('ASCENDING'),
   descending('DESCENDING');
 
   const FirestoreIndexOrder(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -277,8 +282,7 @@ final class FirestoreIndexIndexFieldVectorConfig
 /// different resource (`google_firestore_field`); only composite /
 /// array-contains indexes need an explicit [GoogleFirestoreIndex].
 final class GoogleFirestoreIndex extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_firestore_index';
+  static const String tfType = 'google_firestore_index';
 
   GoogleFirestoreIndex({
     required super.localName,
@@ -296,7 +300,7 @@ final class GoogleFirestoreIndex extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'collection': collection,
            'fields': TfArg.literal(fields.map((f) => f.encode()).toList()),
@@ -313,8 +317,7 @@ final class GoogleFirestoreIndex extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleFirestoreIndexSensitive;
+  Set<String> get sensitiveFields => _googleFirestoreIndexSensitive;
 
   /// Reference to `name` attribute (server-assigned full path:
   /// `projects/{p}/databases/{db}/collectionGroups/{collection}/indexes/{id}`).

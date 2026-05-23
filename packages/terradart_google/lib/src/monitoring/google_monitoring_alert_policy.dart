@@ -12,23 +12,25 @@ const Set<String> _googleMonitoringAlertPolicySensitive = <String>{};
 
 /// Combiner for `google_monitoring_alert_policy.combiner` — how the
 /// conditions list reduces to a single incident-open decision.
-enum AlertCombiner {
+enum AlertCombiner implements TerraformEnum {
   and('AND'),
   or('OR'),
   andWithMatchingResource('AND_WITH_MATCHING_RESOURCE');
 
   const AlertCombiner(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Severity for `google_monitoring_alert_policy.severity`. Surfaces on
 /// the Incident detail page and in notifications.
-enum AlertSeverity {
+enum AlertSeverity implements TerraformEnum {
   critical('CRITICAL'),
   error('ERROR'),
   warning('WARNING');
 
   const AlertSeverity(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -38,7 +40,7 @@ enum AlertSeverity {
 
 /// Comparison operator for `condition_threshold.comparison` and
 /// `condition_sql.row_count_test.comparison`.
-enum Comparison {
+enum Comparison implements TerraformEnum {
   greaterThan('COMPARISON_GT'),
   greaterThanOrEqual('COMPARISON_GE'),
   lessThan('COMPARISON_LT'),
@@ -47,21 +49,23 @@ enum Comparison {
   notEqualTo('COMPARISON_NE');
 
   const Comparison(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Behavior when a threshold / MQL condition stops receiving data.
-enum EvaluationMissingData {
+enum EvaluationMissingData implements TerraformEnum {
   inactive('EVALUATION_MISSING_DATA_INACTIVE'),
   active('EVALUATION_MISSING_DATA_ACTIVE'),
   noOp('EVALUATION_MISSING_DATA_NO_OP');
 
   const EvaluationMissingData(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Per-series alignment function for `aggregations.per_series_aligner`.
-enum Aligner {
+enum Aligner implements TerraformEnum {
   none('ALIGN_NONE'),
   delta('ALIGN_DELTA'),
   rate('ALIGN_RATE'),
@@ -83,11 +87,12 @@ enum Aligner {
   percentChange('ALIGN_PERCENT_CHANGE');
 
   const Aligner(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Cross-series reducer for `aggregations.cross_series_reducer`.
-enum Reducer {
+enum Reducer implements TerraformEnum {
   none('REDUCE_NONE'),
   mean('REDUCE_MEAN'),
   min('REDUCE_MIN'),
@@ -104,17 +109,19 @@ enum Reducer {
   percentile05('REDUCE_PERCENTILE_05');
 
   const Reducer(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// Notification prompt for `alert_strategy.notification_prompts` —
 /// controls when notifications fire across the incident lifecycle.
-enum NotificationPrompt {
+enum NotificationPrompt implements TerraformEnum {
   unspecified('NOTIFICATION_PROMPT_UNSPECIFIED'),
   opened('OPENED'),
   closed('CLOSED');
 
   const NotificationPrompt(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -656,8 +663,7 @@ class MonitoringAlertPolicyDocumentation {
 /// [MonitoringAlertPolicyAggregation], [MonitoringAlertPolicyAlertStrategy], [MonitoringAlertPolicyDocumentation], etc.) are modeled in
 /// the `prelude` below.
 final class GoogleMonitoringAlertPolicy extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_monitoring_alert_policy';
+  static const String tfType = 'google_monitoring_alert_policy';
 
   GoogleMonitoringAlertPolicy({
     required super.localName,
@@ -674,7 +680,7 @@ final class GoogleMonitoringAlertPolicy extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'display_name': displayName,
            'combiner': combiner,
@@ -695,8 +701,7 @@ final class GoogleMonitoringAlertPolicy extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleMonitoringAlertPolicySensitive;
+  Set<String> get sensitiveFields => _googleMonitoringAlertPolicySensitive;
 
   /// Reference to `id` attribute (the alert policy's full resource name,
   /// `projects/{project}/alertPolicies/{policy_id}`).

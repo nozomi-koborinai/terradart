@@ -131,8 +131,7 @@ class SecretManagerSecretRotation {
 /// - `replication`: sealed [SecretManagerSecretReplication] (`SecretManagerSecretReplication.auto()` or
 ///   `SecretManagerSecretReplication.userManaged([...])`).
 final class GoogleSecretManagerSecret extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_secret_manager_secret';
+  static const String tfType = 'google_secret_manager_secret';
 
   GoogleSecretManagerSecret({
     required super.localName,
@@ -152,7 +151,7 @@ final class GoogleSecretManagerSecret extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'secret_id': secretId,
            'replication': TfArg.literal(replication.encode()),
@@ -174,11 +173,10 @@ final class GoogleSecretManagerSecret extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleSecretManagerSecretSensitive;
+  Set<String> get sensitiveFields => _googleSecretManagerSecretSensitive;
 
   @override
-  bool get $supportsDeletionProtection => true;
+  bool get supportsDeletionProtection => true;
 
   TfRef<String> get secretIdRef => TfRef.attribute<String>(this, 'secret_id');
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

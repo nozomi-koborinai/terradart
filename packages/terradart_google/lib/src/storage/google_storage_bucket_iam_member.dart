@@ -42,8 +42,7 @@ const Set<String> _googleStorageBucketIamMemberSensitive = <String>{};
 /// legacy ACL world (`roles/storage.legacyBucketOwner`) is supported
 /// but discouraged in favour of Uniform Bucket-Level Access.
 final class GoogleStorageBucketIamMember extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_storage_bucket_iam_member';
+  static const String tfType = 'google_storage_bucket_iam_member';
 
   GoogleStorageBucketIamMember({
     required super.localName,
@@ -54,7 +53,7 @@ final class GoogleStorageBucketIamMember extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'bucket': bucket,
            'role': role,
@@ -64,8 +63,7 @@ final class GoogleStorageBucketIamMember extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleStorageBucketIamMemberSensitive;
+  Set<String> get sensitiveFields => _googleStorageBucketIamMemberSensitive;
 
   /// Reference to `etag` attribute (concurrency token written by the API).
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');

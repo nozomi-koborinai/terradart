@@ -30,7 +30,8 @@ void main() {
       equals('serviceAccount:publisher@p.iam.gserviceaccount.com'),
     );
     expect(iam.terraformType, equals('google_pubsub_topic_iam_member'));
-    expect(iam.$sensitiveFields, isEmpty);
+    // ignore: invalid_use_of_protected_member
+    expect(iam.sensitiveFields, isEmpty);
   });
 
   test('etag ref interpolation', () {

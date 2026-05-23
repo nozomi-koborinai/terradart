@@ -21,7 +21,7 @@ const Set<String> _googleComputeRegionHealthCheckSensitive = <String>{};
 /// block was set), so callers don't set this directly — they pick the
 /// matching `*HealthCheck` block. Listed here for use in `==`
 /// comparisons against [typeRef] reads.
-enum RegionHealthCheckType {
+enum RegionHealthCheckType implements TerraformEnum {
   http('HTTP'),
   https('HTTPS'),
   tcp('TCP'),
@@ -30,16 +30,18 @@ enum RegionHealthCheckType {
   grpc('GRPC');
 
   const RegionHealthCheckType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
 /// `proxy_header` value used inside the per-protocol HTTP-shaped blocks
 /// (HTTP, HTTPS, HTTP2, TCP, SSL). Defaults to [none] on the GCP API.
-enum RegionHealthCheckProxyHeader {
+enum RegionHealthCheckProxyHeader implements TerraformEnum {
   none('NONE'),
   proxyV1('PROXY_V1');
 
   const RegionHealthCheckProxyHeader(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -51,12 +53,13 @@ enum RegionHealthCheckProxyHeader {
 /// - [useServingPort]: for Network Endpoint Groups, use each endpoint's
 ///   declared port; for other backends, use the Backend Service's
 ///   `port` / `port_name`.
-enum RegionHealthCheckPortSpecification {
+enum RegionHealthCheckPortSpecification implements TerraformEnum {
   useFixedPort('USE_FIXED_PORT'),
   useNamedPort('USE_NAMED_PORT'),
   useServingPort('USE_SERVING_PORT');
 
   const RegionHealthCheckPortSpecification(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -363,8 +366,7 @@ class ComputeRegionHealthCheckRegionHealthCheckLogConfig {
 /// Composition pattern: extends `Resource<$GoogleComputeRegionHealthCheck>`
 /// for runtime behavior.
 final class GoogleComputeRegionHealthCheck extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_region_health_check';
+  static const String tfType = 'google_compute_region_health_check';
 
   GoogleComputeRegionHealthCheck({
     required super.localName,
@@ -386,7 +388,7 @@ final class GoogleComputeRegionHealthCheck extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            if (region != null) 'region': region,
@@ -415,8 +417,7 @@ final class GoogleComputeRegionHealthCheck extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleComputeRegionHealthCheckSensitive;
+  Set<String> get sensitiveFields => _googleComputeRegionHealthCheckSensitive;
 
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

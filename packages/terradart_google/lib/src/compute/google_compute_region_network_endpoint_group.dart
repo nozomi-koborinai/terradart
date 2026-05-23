@@ -33,7 +33,7 @@ const Set<String> _googleComputeRegionNetworkEndpointGroupSensitive =
 /// - [gceVmIpPortmap]: port-mapping NEG attached to a VM NIC. Niche; used
 ///   when an L4 internal passthrough LB needs to fan-out across multiple
 ///   destination ports on each backend VM.
-enum RegionNetworkEndpointGroupType {
+enum RegionNetworkEndpointGroupType implements TerraformEnum {
   serverless('SERVERLESS'),
   privateServiceConnect('PRIVATE_SERVICE_CONNECT'),
   internetIpPort('INTERNET_IP_PORT'),
@@ -41,6 +41,7 @@ enum RegionNetworkEndpointGroupType {
   gceVmIpPortmap('GCE_VM_IP_PORTMAP');
 
   const RegionNetworkEndpointGroupType(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -234,8 +235,7 @@ class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine {
 /// `Resource<$GoogleComputeRegionNetworkEndpointGroup>` for runtime
 /// behavior.
 final class GoogleComputeRegionNetworkEndpointGroup extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_compute_region_network_endpoint_group';
+  static const String tfType = 'google_compute_region_network_endpoint_group';
 
   GoogleComputeRegionNetworkEndpointGroup({
     required super.localName,
@@ -256,7 +256,7 @@ final class GoogleComputeRegionNetworkEndpointGroup extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'name': name,
            'region': region,
@@ -277,8 +277,7 @@ final class GoogleComputeRegionNetworkEndpointGroup extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields =>
+  Set<String> get sensitiveFields =>
       _googleComputeRegionNetworkEndpointGroupSensitive;
 
   /// Reference to `name` attribute. Use for interpolations like

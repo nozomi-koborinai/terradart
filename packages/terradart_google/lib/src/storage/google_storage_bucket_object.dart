@@ -94,7 +94,7 @@ final class StorageBucketObjectBucketObjectFromContent
 ///
 /// `durableReducedAvailability` is the legacy class (deprecated 2018);
 /// keep for completeness, GCP still accepts it for existing objects.
-enum BucketObjectStorageClass {
+enum BucketObjectStorageClass implements TerraformEnum {
   standard('STANDARD'),
   nearline('NEARLINE'),
   coldline('COLDLINE'),
@@ -104,6 +104,7 @@ enum BucketObjectStorageClass {
   durableReducedAvailability('DURABLE_REDUCED_AVAILABILITY');
 
   const BucketObjectStorageClass(this.terraformValue);
+  @override
   final String terraformValue;
 }
 
@@ -205,8 +206,7 @@ class StorageBucketObjectBucketObjectRetention {
 /// );
 /// ```
 final class GoogleStorageBucketObject extends Resource {
-  // ignore: constant_identifier_names
-  static const String $tfType = 'google_storage_bucket_object';
+  static const String tfType = 'google_storage_bucket_object';
 
   GoogleStorageBucketObject({
     required super.localName,
@@ -232,7 +232,7 @@ final class GoogleStorageBucketObject extends Resource {
     super.lifecycle,
     super.dependsOn,
   }) : super(
-         terraformType: $tfType,
+         terraformType: tfType,
          argMap: {
            'bucket': bucket,
            'name': name,
@@ -263,8 +263,7 @@ final class GoogleStorageBucketObject extends Resource {
        );
 
   @override
-  // ignore: non_constant_identifier_names
-  Set<String> get $sensitiveFields => _googleStorageBucketObjectSensitive;
+  Set<String> get sensitiveFields => _googleStorageBucketObjectSensitive;
 
   /// Reference to `id` attribute (composite `{bucket}-{name}`).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
