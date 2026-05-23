@@ -43,8 +43,10 @@ Future<void> synth({required String outDir}) async {
 ```
 
 If you need custom file layout (e.g. writing `SynthResult.dartConstants` as
-well), you can still override `synth` — the old body is now the default, so
-your override only needs the extra logic.
+well), override `writeTo` rather than `synth`: in v0.11.0+ `synth()` is the
+in-memory step that returns a `SynthResult`, and `writeTo(outDir)` is the
+file-IO wrapper. Calling `synth()` from your override gives you the same
+`tfJson` / `dartConstants` payload to lay out however you need.
 
 ### 1.2 `JsonEncoder` → `TfJsonEncoder`
 
