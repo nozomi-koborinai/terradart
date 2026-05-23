@@ -95,10 +95,11 @@ prelude: |
   /// - [internetIpPort]: endpoint identified by literal IP + port. Use when
   ///   the origin's public IP is stable and you do not want DNS in the
   ///   request path.
-  enum GlobalNetworkEndpointGroupType {
+  enum GlobalNetworkEndpointGroupType implements TerraformEnum {
     internetFqdnPort('INTERNET_FQDN_PORT'),
     internetIpPort('INTERNET_IP_PORT');
 
     const GlobalNetworkEndpointGroupType(this.terraformValue);
+    @override
     final String terraformValue;
   }

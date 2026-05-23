@@ -101,7 +101,7 @@ void main() {
     //
     // Mirrors WrapperEmitter's extraGetters behavior: the verbatim snippet
     // (with its own indent + trailing newline) is appended after the
-    // `$sensitiveFields` getter and before the class's closing brace.
+    // `sensitiveFields` getter and before the class's closing brace.
     test('L2b-3 extraGetters: injected verbatim into the wrapper class', () {
       const override = WrapperOverride(
         kind: WrapperOverrideKind.dataSource,

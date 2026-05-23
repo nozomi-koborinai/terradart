@@ -69,22 +69,24 @@ prelude: |
   // ===========================================================================
 
   /// One [FirestoreFieldSingleFieldIndex.order] direction. `ASCENDING` / `DESCENDING`.
-  enum FirestoreFieldOrder {
+  enum FirestoreFieldOrder implements TerraformEnum {
     ascending('ASCENDING'),
     descending('DESCENDING');
 
     const FirestoreFieldOrder(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `query_scope` -- which queries can use this single-field index.
   /// `collection` scopes the index to a single collection; `collectionGroup`
   /// allows the index to serve collection-group queries.
-  enum FirestoreFieldQueryScope {
+  enum FirestoreFieldQueryScope implements TerraformEnum {
     collection('COLLECTION'),
     collectionGroup('COLLECTION_GROUP');
 
     const FirestoreFieldQueryScope(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

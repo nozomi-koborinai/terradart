@@ -92,23 +92,25 @@ prelude: |
 
   /// Combiner for `google_monitoring_alert_policy.combiner` — how the
   /// conditions list reduces to a single incident-open decision.
-  enum AlertCombiner {
+  enum AlertCombiner implements TerraformEnum {
     and('AND'),
     or('OR'),
     andWithMatchingResource('AND_WITH_MATCHING_RESOURCE');
 
     const AlertCombiner(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// Severity for `google_monitoring_alert_policy.severity`. Surfaces on
   /// the Incident detail page and in notifications.
-  enum AlertSeverity {
+  enum AlertSeverity implements TerraformEnum {
     critical('CRITICAL'),
     error('ERROR'),
     warning('WARNING');
 
     const AlertSeverity(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -118,7 +120,7 @@ prelude: |
 
   /// Comparison operator for `condition_threshold.comparison` and
   /// `condition_sql.row_count_test.comparison`.
-  enum Comparison {
+  enum Comparison implements TerraformEnum {
     greaterThan('COMPARISON_GT'),
     greaterThanOrEqual('COMPARISON_GE'),
     lessThan('COMPARISON_LT'),
@@ -127,21 +129,23 @@ prelude: |
     notEqualTo('COMPARISON_NE');
 
     const Comparison(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// Behavior when a threshold / MQL condition stops receiving data.
-  enum EvaluationMissingData {
+  enum EvaluationMissingData implements TerraformEnum {
     inactive('EVALUATION_MISSING_DATA_INACTIVE'),
     active('EVALUATION_MISSING_DATA_ACTIVE'),
     noOp('EVALUATION_MISSING_DATA_NO_OP');
 
     const EvaluationMissingData(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// Per-series alignment function for `aggregations.per_series_aligner`.
-  enum Aligner {
+  enum Aligner implements TerraformEnum {
     none('ALIGN_NONE'),
     delta('ALIGN_DELTA'),
     rate('ALIGN_RATE'),
@@ -163,11 +167,12 @@ prelude: |
     percentChange('ALIGN_PERCENT_CHANGE');
 
     const Aligner(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// Cross-series reducer for `aggregations.cross_series_reducer`.
-  enum Reducer {
+  enum Reducer implements TerraformEnum {
     none('REDUCE_NONE'),
     mean('REDUCE_MEAN'),
     min('REDUCE_MIN'),
@@ -184,17 +189,19 @@ prelude: |
     percentile05('REDUCE_PERCENTILE_05');
 
     const Reducer(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// Notification prompt for `alert_strategy.notification_prompts` —
   /// controls when notifications fire across the incident lifecycle.
-  enum NotificationPrompt {
+  enum NotificationPrompt implements TerraformEnum {
     unspecified('NOTIFICATION_PROMPT_UNSPECIFIED'),
     opened('OPENED'),
     closed('CLOSED');
 
     const NotificationPrompt(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

@@ -61,7 +61,7 @@ prelude: |
   /// `stage` field exposed by the IAM API — `alpha` / `beta` / `ga` are
   /// grantable; `deprecated` / `disabled` keep the role visible but
   /// reject new bindings.
-  enum CustomRoleStage {
+  enum CustomRoleStage implements TerraformEnum {
     alpha('ALPHA'),
     beta('BETA'),
     ga('GA'),
@@ -69,5 +69,6 @@ prelude: |
     disabled('DISABLED');
 
     const CustomRoleStage(this.terraformValue);
+    @override
     final String terraformValue;
   }

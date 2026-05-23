@@ -98,11 +98,12 @@ prelude: |
   /// create; immutable thereafter (changing forces replacement).
   /// `regionalStrict` pins serving to the backend's [location]; `globalAccess`
   /// lets App Hosting replicate across its global edge fleet.
-  enum AppHostingServingLocality {
+  enum AppHostingServingLocality implements TerraformEnum {
     regionalStrict('REGIONAL_STRICT'),
     globalAccess('GLOBAL_ACCESS');
 
     const AppHostingServingLocality(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

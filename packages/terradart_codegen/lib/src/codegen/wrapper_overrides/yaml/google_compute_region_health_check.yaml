@@ -118,7 +118,7 @@ prelude: |
   /// block was set), so callers don't set this directly — they pick the
   /// matching `*HealthCheck` block. Listed here for use in `==`
   /// comparisons against [typeRef] reads.
-  enum RegionHealthCheckType {
+  enum RegionHealthCheckType implements TerraformEnum {
     http('HTTP'),
     https('HTTPS'),
     tcp('TCP'),
@@ -127,16 +127,18 @@ prelude: |
     grpc('GRPC');
 
     const RegionHealthCheckType(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `proxy_header` value used inside the per-protocol HTTP-shaped blocks
   /// (HTTP, HTTPS, HTTP2, TCP, SSL). Defaults to [none] on the GCP API.
-  enum RegionHealthCheckProxyHeader {
+  enum RegionHealthCheckProxyHeader implements TerraformEnum {
     none('NONE'),
     proxyV1('PROXY_V1');
 
     const RegionHealthCheckProxyHeader(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -148,12 +150,13 @@ prelude: |
   /// - [useServingPort]: for Network Endpoint Groups, use each endpoint's
   ///   declared port; for other backends, use the Backend Service's
   ///   `port` / `port_name`.
-  enum RegionHealthCheckPortSpecification {
+  enum RegionHealthCheckPortSpecification implements TerraformEnum {
     useFixedPort('USE_FIXED_PORT'),
     useNamedPort('USE_NAMED_PORT'),
     useServingPort('USE_SERVING_PORT');
 
     const RegionHealthCheckPortSpecification(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

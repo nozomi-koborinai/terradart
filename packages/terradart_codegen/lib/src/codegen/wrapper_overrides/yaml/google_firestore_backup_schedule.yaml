@@ -128,7 +128,7 @@ prelude: |
   /// `weekly_recurrence.day` -- which day of the week the weekly backup
   /// runs on. `dayOfWeekUnspecified` is the schema-default sentinel
   /// (server picks the day); the seven concrete weekdays pin the slot.
-  enum BackupDayOfWeek {
+  enum BackupDayOfWeek implements TerraformEnum {
     dayOfWeekUnspecified('DAY_OF_WEEK_UNSPECIFIED'),
     monday('MONDAY'),
     tuesday('TUESDAY'),
@@ -139,6 +139,7 @@ prelude: |
     sunday('SUNDAY');
 
     const BackupDayOfWeek(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

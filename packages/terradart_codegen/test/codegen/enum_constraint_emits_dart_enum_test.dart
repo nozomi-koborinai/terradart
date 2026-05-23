@@ -13,7 +13,7 @@ void main() {
       final src = emitEnumDeclaration(name);
       expect(src, equals('''
 /// Pubsub Topic enum for `encoding`.
-enum PubsubTopicEncoding { encodingUnspecified, json, binary }
+enum PubsubTopicEncoding implements TerraformEnum { encodingUnspecified, json, binary }
 '''));
     });
 
@@ -24,7 +24,7 @@ enum PubsubTopicEncoding { encodingUnspecified, json, binary }
         members: const ['ALL'],
       );
       final src = emitEnumDeclaration(name);
-      expect(src, contains('enum XMode { all }'));
+      expect(src, contains('enum XMode implements TerraformEnum { all }'));
     });
   });
 

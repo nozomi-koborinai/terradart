@@ -145,101 +145,110 @@ prelude: |
 
   /// `disk.mode` -- read / write mode for an attached or boot disk. Boot
   /// disks must be `READ_WRITE`.
-  enum InstanceTemplateDiskMode {
+  enum InstanceTemplateDiskMode implements TerraformEnum {
     readWrite('READ_WRITE'),
     readOnly('READ_ONLY');
 
     const InstanceTemplateDiskMode(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `network_interface.nic_type` -- vNIC family used for the interface.
-  enum InstanceTemplateNicType {
+  enum InstanceTemplateNicType implements TerraformEnum {
     gvnic('GVNIC'),
     virtioNet('VIRTIO_NET'),
     mrdma('MRDMA'),
     irdma('IRDMA');
 
     const InstanceTemplateNicType(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `network_interface.access_config.network_tier` -- service tier for the
   /// external IP. `STANDARD` is regional; `PREMIUM` is global.
-  enum InstanceTemplateAccessConfigNetworkTier {
+  enum InstanceTemplateAccessConfigNetworkTier implements TerraformEnum {
     premium('PREMIUM'),
     standard('STANDARD'),
     fixedStandard('FIXED_STANDARD');
 
     const InstanceTemplateAccessConfigNetworkTier(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `scheduling.on_host_maintenance` -- behaviour during host maintenance.
   /// `MIGRATE` (live migration) is the default for standard VMs; preemptible /
   /// SPOT / confidential VMs must use `TERMINATE`.
-  enum InstanceTemplateOnHostMaintenance {
+  enum InstanceTemplateOnHostMaintenance implements TerraformEnum {
     migrate('MIGRATE'),
     terminate('TERMINATE');
 
     const InstanceTemplateOnHostMaintenance(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `scheduling.provisioning_model` -- VM provisioning model. `STANDARD` runs
   /// at on-demand prices with no termination guarantees from GCP; `SPOT` runs
   /// at preemptible prices and may be reclaimed at any time.
-  enum InstanceTemplateProvisioningModel {
+  enum InstanceTemplateProvisioningModel implements TerraformEnum {
     standard('STANDARD'),
     spot('SPOT');
 
     const InstanceTemplateProvisioningModel(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `scheduling.instance_termination_action` -- action when a SPOT VM is
   /// preempted or `max_run_duration` elapses.
-  enum InstanceTemplateInstanceTerminationAction {
+  enum InstanceTemplateInstanceTerminationAction implements TerraformEnum {
     stop('STOP'),
     delete('DELETE');
 
     const InstanceTemplateInstanceTerminationAction(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `confidential_instance_config.confidential_instance_type` -- confidential
   /// computing technology. `SEV` and `SEV_SNP` require AMD CPUs (the latter
   /// also requires `min_cpu_platform = "AMD Milan"`). `TDX` requires Intel.
-  enum InstanceTemplateConfidentialInstanceType {
+  enum InstanceTemplateConfidentialInstanceType implements TerraformEnum {
     sev('SEV'),
     sevSnp('SEV_SNP'),
     tdx('TDX');
 
     const InstanceTemplateConfidentialInstanceType(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `advanced_machine_features.performance_monitoring_unit` -- PMU level
   /// exposed to the guest. `ARCHITECTURAL` is the minimum stable subset;
   /// `ENHANCED` exposes the broadest set of counters.
-  enum InstanceTemplatePerformanceMonitoringUnit {
+  enum InstanceTemplatePerformanceMonitoringUnit implements TerraformEnum {
     architectural('ARCHITECTURAL'),
     standard('STANDARD'),
     enhanced('ENHANCED');
 
     const InstanceTemplatePerformanceMonitoringUnit(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `reservation_affinity.type` -- reservation consumption mode. Pair
   /// `specificReservation` with [InstanceTemplateReservationAffinityType.specificReservation]
   /// to target a named reservation; `noReservation` opts out.
-  enum InstanceTemplateReservationAffinityType {
+  enum InstanceTemplateReservationAffinityType implements TerraformEnum {
     anyReservation('ANY_RESERVATION'),
     specificReservation('SPECIFIC_RESERVATION'),
     noReservation('NO_RESERVATION');
 
     const InstanceTemplateReservationAffinityType(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

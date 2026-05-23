@@ -131,11 +131,12 @@ prelude: |
   /// - [none]: header-only notification — the message attributes still
   ///   identify the bucket / object / event type, but the body is empty.
   ///   Use when downstream consumers only need the event signal.
-  enum StorageNotificationPayloadFormat {
+  enum StorageNotificationPayloadFormat implements TerraformEnum {
     jsonApiV1('JSON_API_V1'),
     none('NONE');
 
     const StorageNotificationPayloadFormat(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -151,13 +152,14 @@ prelude: |
   ///   has versioning enabled or not.
   /// - [objectArchive]: a versioned object became non-current (only
   ///   fires on versioning-enabled buckets).
-  enum StorageNotificationEventType {
+  enum StorageNotificationEventType implements TerraformEnum {
     objectFinalize('OBJECT_FINALIZE'),
     objectMetadataUpdate('OBJECT_METADATA_UPDATE'),
     objectDelete('OBJECT_DELETE'),
     objectArchive('OBJECT_ARCHIVE');
 
     const StorageNotificationEventType(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

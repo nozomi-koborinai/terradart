@@ -132,7 +132,7 @@ prelude: |
   /// - [gceVmIpPortmap]: port-mapping NEG attached to a VM NIC. Niche; used
   ///   when an L4 internal passthrough LB needs to fan-out across multiple
   ///   destination ports on each backend VM.
-  enum RegionNetworkEndpointGroupType {
+  enum RegionNetworkEndpointGroupType implements TerraformEnum {
     serverless('SERVERLESS'),
     privateServiceConnect('PRIVATE_SERVICE_CONNECT'),
     internetIpPort('INTERNET_IP_PORT'),
@@ -140,6 +140,7 @@ prelude: |
     gceVmIpPortmap('GCE_VM_IP_PORTMAP');
 
     const RegionNetworkEndpointGroupType(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

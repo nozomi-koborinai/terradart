@@ -90,7 +90,7 @@ classDocComment: |-
   /// );
   /// ```
   ///
-  /// Sensitive fields (round-trip through the generated `$sensitiveFields`
+  /// Sensitive fields (round-trip through the generated `sensitiveFields`
   /// set; masked in serialized state by Terraform):
   /// - `cloud_sql.credential.password` — schema-flagged.
   /// - `configuration.authentication.username_password.password.plaintext`
@@ -127,7 +127,7 @@ extraImports:
   - "import 'package:meta/meta.dart';"
 
 # Schema-flagged sensitive fields auto-populate the generated
-# `$sensitiveFields` set; we restate them here as belt-and-suspenders so
+# `sensitiveFields` set; we restate them here as belt-and-suspenders so
 # the masking surface is visible in this override and a reviewer scanning
 # the file does not have to cross-reference the schema. Duplicates collapse
 # via the underlying Set.
@@ -168,12 +168,13 @@ prelude: |
   /// `DATABASE_TYPE_UNSPECIFIED` as a sentinel; do not pick it for new
   /// connections. `SQL_SERVER` is not exposed by the GA provider schema as
   /// of this curation.
-  enum BigqueryConnectionCloudSqlType {
+  enum BigqueryConnectionCloudSqlType implements TerraformEnum {
     databaseTypeUnspecified('DATABASE_TYPE_UNSPECIFIED'),
     postgres('POSTGRES'),
     mysql('MYSQL');
 
     const BigqueryConnectionCloudSqlType(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -197,7 +198,7 @@ prelude: |
     /// Required. Database user password. Wire via [TfArg.ref] to a Secret
     /// Manager-backed variable rather than a literal — the value is
     /// schema-flagged sensitive and is masked in the rendered
-    /// `main.tf.json` via the generated `$sensitiveFields` set.
+    /// `main.tf.json` via the generated `sensitiveFields` set.
     final TfArg<String> password;
 
     Map<String, Object?> toArgMap() => {
@@ -496,7 +497,7 @@ prelude: |
 
     /// Required. Plaintext password. Wire via [TfArg.ref] to a Secret
     /// Manager-backed variable; the value is masked in the rendered
-    /// `main.tf.json` via the generated `$sensitiveFields` set.
+    /// `main.tf.json` via the generated `sensitiveFields` set.
     final TfArg<String> plaintext;
 
     Map<String, Object?> toArgMap() => {'plaintext': plaintext.toTfJson()};

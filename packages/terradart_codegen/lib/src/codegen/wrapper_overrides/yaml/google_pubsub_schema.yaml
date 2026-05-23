@@ -82,7 +82,7 @@ prelude: |
   /// `type` -- the payload shape this schema validates. Schema default
   /// `TYPE_UNSPECIFIED` (no validation); pick [protocolBuffer] or [avro]
   /// to enable publisher-side validation of message payloads.
-  enum PubsubSchemaType {
+  enum PubsubSchemaType implements TerraformEnum {
     /// Default. No payload validation is performed. Equivalent to omitting
     /// `type` in HCL.
     typeUnspecified('TYPE_UNSPECIFIED'),
@@ -95,5 +95,6 @@ prelude: |
     avro('AVRO');
 
     const PubsubSchemaType(this.terraformValue);
+    @override
     final String terraformValue;
   }

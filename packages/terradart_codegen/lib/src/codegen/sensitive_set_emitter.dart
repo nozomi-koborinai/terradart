@@ -9,12 +9,12 @@ import 'naming.dart';
 /// `$Resource` abstract class inside `<r>.schema.dart` (e.g.
 /// `const Set<String> googleSecretManagerSecretVersionSensitive = {...};`).
 /// The wrapper imported it via `show <r>Sensitive` and exposed it through
-/// the `$sensitiveFields` getter.
+/// the `sensitiveFields` getter.
 ///
 /// Plan 5.X (v0.5.0-dev) retires the entire `.schema.dart` Layer 1 — the
 /// const therefore moves **inline into the wrapper file** as a file-private
 /// const (`_<r>Sensitive`). The data flow is unchanged
-/// (`IR → const Set → $sensitiveFields → encoder masking`); only the
+/// (`IR → const Set → sensitiveFields → encoder masking`); only the
 /// physical location and visibility of the const move.
 ///
 /// Two emit helpers are exposed:

@@ -131,7 +131,7 @@ prelude: |
   /// default), [modern] (modern browsers only), [compatible] (permissive
   /// legacy default), [fips202205] (FIPS 202205-pinned), and [custom]
   /// (caller-supplied via [GoogleComputeSslPolicy.customFeatures]).
-  enum SslPolicyProfile {
+  enum SslPolicyProfile implements TerraformEnum {
     compatible('COMPATIBLE'),
     modern('MODERN'),
     restricted('RESTRICTED'),
@@ -139,6 +139,7 @@ prelude: |
     fips202205('FIPS_202205');
 
     const SslPolicyProfile(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -147,12 +148,13 @@ prelude: |
   /// here; the API only exposes the 1.0 / 1.1 / 1.2 floors. To force
   /// TLS 1.3 only, pair [tls12] with [SslPolicyProfile.restricted], which
   /// drops the legacy 1.x suites from the negotiated set.
-  enum SslPolicyMinTlsVersion {
+  enum SslPolicyMinTlsVersion implements TerraformEnum {
     tls10('TLS_1_0'),
     tls11('TLS_1_1'),
     tls12('TLS_1_2'),
     tls13('TLS_1_3');
 
     const SslPolicyMinTlsVersion(this.terraformValue);
+    @override
     final String terraformValue;
   }

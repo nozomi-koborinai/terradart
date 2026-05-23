@@ -120,33 +120,36 @@ prelude: |
   /// `retry` re-delivers per the system retry budget; `doNotRetry` drops on
   /// first failure; `unspecified` defers to the server default (currently
   /// `doNotRetry`).
-  enum EventTriggerRetryPolicy {
+  enum EventTriggerRetryPolicy implements TerraformEnum {
     unspecified('RETRY_POLICY_UNSPECIFIED'),
     doNotRetry('RETRY_POLICY_DO_NOT_RETRY'),
     retry('RETRY_POLICY_RETRY');
 
     const EventTriggerRetryPolicy(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `service_config.ingress_settings` -- which traffic sources can invoke
   /// the underlying Cloud Run service. Defaults server-side to `allowAll`.
-  enum IngressSettings {
+  enum IngressSettings implements TerraformEnum {
     allowAll('ALLOW_ALL'),
     allowInternalOnly('ALLOW_INTERNAL_ONLY'),
     allowInternalAndGclb('ALLOW_INTERNAL_AND_GCLB');
 
     const IngressSettings(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
   /// `service_config.direct_vpc_egress` -- egress policy for direct VPC
   /// network interfaces. Server default is `vpcEgressPrivateRangesOnly`.
-  enum DirectVpcEgress {
+  enum DirectVpcEgress implements TerraformEnum {
     vpcEgressAllTraffic('VPC_EGRESS_ALL_TRAFFIC'),
     vpcEgressPrivateRangesOnly('VPC_EGRESS_PRIVATE_RANGES_ONLY');
 
     const DirectVpcEgress(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -154,12 +157,13 @@ prelude: |
   /// the function attaches via a Serverless VPC Access connector
   /// ([Cloudfunctions2FunctionServiceConfig.vpcConnector]). Mutually exclusive in spirit with
   /// [DirectVpcEgress] (which applies when using direct VPC egress).
-  enum VpcConnectorEgressSettings {
+  enum VpcConnectorEgressSettings implements TerraformEnum {
     unspecified('VPC_CONNECTOR_EGRESS_SETTINGS_UNSPECIFIED'),
     privateRangesOnly('PRIVATE_RANGES_ONLY'),
     allTraffic('ALL_TRAFFIC');
 
     const VpcConnectorEgressSettings(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

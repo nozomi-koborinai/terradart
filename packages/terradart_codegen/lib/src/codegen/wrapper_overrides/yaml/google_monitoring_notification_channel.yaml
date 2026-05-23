@@ -98,7 +98,7 @@ paramOrder:
 
 # Schema-flagged `sensitive: true` fields under `sensitive_labels.*`
 # (auth_token, password, service_key) auto-populate the generated
-# `$sensitiveFields` set with their dotted snake_case paths. We restate
+# `sensitiveFields` set with their dotted snake_case paths. We restate
 # them here so the contract is visible in the override file itself — a
 # reviewer scanning this file does not have to cross-reference the
 # schema to confirm the masking surface. Duplicates collapse via the
@@ -145,7 +145,7 @@ prelude: |
   ///
   /// The plaintext slots ([authToken], [password], [serviceKey]) are
   /// schema-flagged sensitive and round-trip through the wrapper's
-  /// `$sensitiveFields` set — synth masks them in plan output. Prefer the
+  /// `sensitiveFields` set — synth masks them in plan output. Prefer the
   /// write-only variants (`*Wo` + `*WoVersion`) on Terraform 1.11+: the
   /// plaintext never enters Terraform state, and bumping the integer
   /// `*WoVersion` slot forces a credential rotation on next apply.
@@ -167,7 +167,7 @@ prelude: |
     });
 
     /// Slack bot OAuth token / webhook bearer token. Sensitive — masked
-    /// from plan output and surfaced in `$sensitiveFields`.
+    /// from plan output and surfaced in `sensitiveFields`.
     final TfArg<String>? authToken;
 
     /// Write-only sibling of [authToken] (Terraform 1.11+). Bump

@@ -5,11 +5,12 @@
 prelude: |
   # --- validValues: dead_letter_policy_kind ---
   # TODO(wrap-promote): rename `GooglePubsubSubscriptionDeadLetterPolicyKind` to a domain-appropriate name.
-  enum GooglePubsubSubscriptionDeadLetterPolicyKind {
+  enum GooglePubsubSubscriptionDeadLetterPolicyKind implements TerraformEnum {
     kept,
     expired,
     archived;
 
+    @override
     String get terraformValue {
       switch (this) {
         case GooglePubsubSubscriptionDeadLetterPolicyKind.kept: return 'kept';

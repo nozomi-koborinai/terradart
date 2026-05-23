@@ -14,7 +14,7 @@ classDocComment: |-
   ///   DeviceCheck, created in your Apple Developer account.
   /// - `private_key`: the contents of the private key (`.p8`) file
   ///   associated with [keyId]. **Sensitive**: terradart's masking layer
-  ///   flags this field via the generated `$sensitiveFields` set, and the
+  ///   flags this field via the generated `sensitiveFields` set, and the
   ///   provider itself never returns the value in responses. Avoid logging
   ///   or persisting [TfArg] values for this field outside of Terraform
   ///   state.
@@ -47,7 +47,7 @@ classDocComment: |-
 # paramOrder: structural identity first (app_id forces replacement), then the
 # DeviceCheck-specific credential pair (key_id + private_key), then
 # token_ttl, then project. private_key is schema-flagged sensitive and is
-# already surfaced via the auto-generated `$sensitiveFields` set — no
+# already surfaced via the auto-generated `sensitiveFields` set — no
 # extraSensitiveFields override needed.
 paramOrder:
   - app_id

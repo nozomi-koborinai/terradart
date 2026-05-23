@@ -175,7 +175,7 @@ prelude: |
   ///   on the wire; emitted as the literal token `MOVED_PERMANENTLY_DEFAULT`.
   /// - [found] -> 302, [seeOther] -> 303, [temporaryRedirect] -> 307,
   ///   [permanentRedirect] -> 308.
-  enum RegionUrlMapRedirectResponseCode {
+  enum RegionUrlMapRedirectResponseCode implements TerraformEnum {
     found('FOUND'),
     movedPermanentlyDefault('MOVED_PERMANENTLY_DEFAULT'),
     permanentRedirect('PERMANENT_REDIRECT'),
@@ -183,6 +183,7 @@ prelude: |
     temporaryRedirect('TEMPORARY_REDIRECT');
 
     const RegionUrlMapRedirectResponseCode(this.terraformValue);
+    @override
     final String terraformValue;
   }
 

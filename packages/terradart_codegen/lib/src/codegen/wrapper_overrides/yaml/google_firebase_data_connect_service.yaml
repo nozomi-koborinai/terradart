@@ -125,10 +125,11 @@ prelude: |
   /// Data Connect schemas / connectors still exist. [defaultPolicy] (the
   /// schema default) refuses to delete the service while any are present;
   /// [force] tears the service down regardless.
-  enum DataConnectDeletionPolicy {
+  enum DataConnectDeletionPolicy implements TerraformEnum {
     defaultPolicy('DEFAULT'),
     force('FORCE');
 
     const DataConnectDeletionPolicy(this.terraformValue);
+    @override
     final String terraformValue;
   }

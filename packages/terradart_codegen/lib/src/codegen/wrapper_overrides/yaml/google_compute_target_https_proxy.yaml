@@ -105,12 +105,13 @@ prelude: |
   /// QUIC negotiation policy for the HTTPS target proxy. When set to
   /// [none] (the default), Google manages whether QUIC is offered to
   /// clients; [enable] always offers QUIC; [disable] never offers it.
-  enum QuicOverride {
+  enum QuicOverride implements TerraformEnum {
     none('NONE'),
     enable('ENABLE'),
     disable('DISABLE');
 
     const QuicOverride(this.terraformValue);
+    @override
     final String terraformValue;
   }
 
@@ -126,12 +127,13 @@ prelude: |
   /// - [unrestricted]: accept Early Data on any request. The caller is
   ///   responsible for handling replay risk.
   /// - [disabled]: never accept Early Data (0-RTT off).
-  enum TlsEarlyData {
+  enum TlsEarlyData implements TerraformEnum {
     strict('STRICT'),
     permissive('PERMISSIVE'),
     unrestricted('UNRESTRICTED'),
     disabled('DISABLED');
 
     const TlsEarlyData(this.terraformValue);
+    @override
     final String terraformValue;
   }

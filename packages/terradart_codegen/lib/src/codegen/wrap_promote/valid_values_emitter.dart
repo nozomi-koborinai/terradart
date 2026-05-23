@@ -30,13 +30,14 @@ class ValidValuesEmitter {
     buf.writeln('  # --- validValues: $leaf ---');
     buf.writeln(
         '  # TODO(wrap-promote): rename `$enumName` to a domain-appropriate name.');
-    buf.writeln('  enum $enumName {');
+    buf.writeln('  enum $enumName implements TerraformEnum {');
     for (var i = 0; i < enumValues.length; i++) {
       final camel = camelByValue[enumValues[i]]!;
       final isLast = i == enumValues.length - 1;
       buf.writeln('    $camel${isLast ? ';' : ','}');
     }
     buf.writeln();
+    buf.writeln('    @override');
     buf.writeln('    String get terraformValue {');
     buf.writeln('      switch (this) {');
     for (final v in enumValues) {

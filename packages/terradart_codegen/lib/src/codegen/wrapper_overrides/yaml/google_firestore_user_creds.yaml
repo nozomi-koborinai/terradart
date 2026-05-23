@@ -10,7 +10,7 @@ classDocComment: |-
   /// The `secure_password` attribute is **sensitive and computed** -- the
   /// provider generates it server-side and Terraform records it in state
   /// only. terradart's masking layer flags it as sensitive via the
-  /// generated `$sensitiveFields` set.
+  /// generated `sensitiveFields` set.
   ///
   /// Example:
   /// ```dart
@@ -41,7 +41,7 @@ extraGetters: |2
     TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
     /// Reference to the server-generated `secure_password` attribute.
-    /// **Marked sensitive in the schema** -- terradart's `$sensitiveFields`
+    /// **Marked sensitive in the schema** -- terradart's `sensitiveFields`
     /// set already includes this attribute; masking is automatic.
     TfRef<String> get securePassword =>
         TfRef.attribute<String>(this, 'secure_password');
