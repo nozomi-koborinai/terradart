@@ -1,3 +1,207 @@
+# Migrating from terradart 0.10.0 to 0.11.0
+
+This guide covers every breaking change introduced between `0.10.0` and
+`0.11.0`. Two coordinated themes: the Stack API surface (§1, ADR-0017) and
+the codegen identifier rename (§2, ADR-0016). All changes are mechanical;
+none require an architectural rethink at the consumer.
+
+`0.9.0` → `0.10.0` was additive (Firestore document curation) and required
+no migration. The 0.9.0 migration guide is preserved below for archival
+reference.
+
+---
+
+## Before you start
+
+All three packages — `terradart_core`, `terradart_codegen`, and
+`terradart_google` — must be bumped in lockstep:
+
+```yaml
+# pubspec.yaml
+dependencies:
+  terradart_core: ^0.11.0
+  terradart_google: ^0.11.0
+```
+
+If you run codegen locally:
+
+```bash
+dart pub global activate terradart_codegen ^0.11.0
+```
+
+---
+
+## 1. Stack API surface changes (ADR-0017)
+
+### 1.1 `Stack.synth({required outDir})` split into `synth()` + `writeTo(outDir)`
+
+`Stack.synth` no longer performs file IO. It is now a pure in-memory step
+that returns a `SynthResult` carrying the encoded `tfJson` plus the optional
+`dartConstants` source for AppExports. The new `Stack.writeTo(outDir)`
+method is the file-IO wrapper that writes `main.tf.json` (and, when
+`setAppExportsOutputPath` was called, the generated Dart constants file).
+
+```dart
+// BEFORE (0.10.0):
+await stack.synth(outDir: 'tf-out');
+
+// AFTER (0.11.0) — same end-to-end behaviour:
+await stack.writeTo('tf-out');
+
+// AFTER (0.11.0) — in-memory only, no disk write:
+final result = stack.synth();
+// result.tfJson, result.dartConstants
+```
+
+`writeTo` throws `StateError` atomically — **before any disk write** — when
+`addExport` was called without `setAppExportsOutputPath`. v0.10.x silently
+dropped the exports in that case; v0.11.x makes the misconfiguration fail
+loudly at synth time.
+
+### 1.2 `StackSynth` removed from the `terradart_core` public barrel
+
+`StackSynth` is annotated `@internal` and is no longer re-exported from
+`package:terradart_core/terradart_core.dart`. Call the public method on
+your `Stack` instance instead.
+
+```dart
+// BEFORE (0.10.0):
+import 'package:terradart_core/terradart_core.dart';
+final result = StackSynth.synth(stack);
+
+// AFTER (0.11.0):
+final result = stack.synth();
+```
+
+If you really need the internal synth function (advanced cases — custom
+tooling that drives synth without a `Stack` instance), import it via the
+deep path; expect no semver protection on that surface:
+
+```dart
+// AFTER (0.11.0) — escape hatch, not recommended:
+import 'package:terradart_core/src/synth/stack_synth.dart';
+```
+
+### 1.3 `Stack`, `Resource`, `Data` promoted to `abstract base class`
+
+The three foundational classes are now `abstract base class` (Dart 3
+class-modifier feature). Their state — dedup maps, lifecycle wiring — is
+owned by the base class and must not be bypassed via `implements`.
+
+```dart
+// BEFORE (0.10.0):
+class OrdersStack extends Stack { ... }
+
+// AFTER (0.11.0):
+final class OrdersStack extends Stack { ... }
+// (or `base class` / `sealed class` if you have a subclass tree)
+```
+
+`implements Stack` / `implements Resource` / `implements Data` are now
+compile errors. This was already a foot-gun in v0.10 — a class that
+satisfied the interface without inheriting the state would silently break
+synth — so the new constraint replaces a runtime hazard with a static
+check.
+
+---
+
+## 2. Codegen identifier rename (ADR-0016)
+
+The dollar-prefixed identifiers on `Resource` subclasses are renamed to
+their canonical Dart names. External code that read them by `$`-prefixed
+name must drop the prefix. The two getters are now annotated `@protected`
+(from `package:meta`).
+
+### 2.1 `$tfType` → `tfType`, `$sensitiveFields` → `sensitiveFields`, `$supportsDeletionProtection` → `supportsDeletionProtection`
+
+```dart
+// BEFORE (0.10.0):
+final String type = MyResource.$tfType;
+final Set<String> sensitive = myResource.$sensitiveFields;
+final bool gated = myResource.$supportsDeletionProtection;
+
+// AFTER (0.11.0):
+final String type = MyResource.tfType;
+// ignore: invalid_use_of_protected_member  // documenting the access pattern
+final Set<String> sensitive = myResource.sensitiveFields;
+// ignore: invalid_use_of_protected_member  // documenting the access pattern
+final bool gated = myResource.supportsDeletionProtection;
+```
+
+The `@protected` annotation means that reads from outside the subclass
+hierarchy trigger an analyzer warning. The synth-time path (`TfJsonEncoder`)
+is the privileged in-library consumer the protected contract permits. If
+you have a legitimate need to read these from outside (introspection,
+custom diagnostics), add an `// ignore: invalid_use_of_protected_member`
+directive **with a justification comment** at the read site.
+
+Mechanical sed recipe for the rename (safe — it only matches the
+`$`-prefixed forms):
+
+```bash
+find . -name '*.dart' \
+  -exec sed -i.bak \
+    -e 's/\$tfType\b/tfType/g' \
+    -e 's/\$sensitiveFields\b/sensitiveFields/g' \
+    -e 's/\$supportsDeletionProtection\b/supportsDeletionProtection/g' \
+    {} \;
+```
+
+Then review each call site and either keep the bare read (if you're inside
+a subclass) or add the `// ignore: invalid_use_of_protected_member`
+directive (if you're outside).
+
+### 2.2 `TerraformEnum` interface
+
+`terradart_core` 0.11.0 introduces `abstract interface class TerraformEnum`
+with a single `String get terraformValue` contract. `TfArgLiteral.toTfJson`
+now routes enum dispatch through `if (v is TerraformEnum)` rather than the
+previous duck-typed `dynamic.terraformValue` cast.
+
+Codegen-emitted enums (everything in `terradart_google`) implement
+`TerraformEnum` automatically — no consumer action needed.
+
+If you hand-rolled a Terraform-mapped enum to pass to
+`TfArg<MyEnum>.literal(...)`, add the `implements` clause and the
+`@override` keyword:
+
+```dart
+// BEFORE (0.10.0):
+enum CustomMode {
+  fooBar('FOO_BAR'),
+  bazQux('BAZ_QUX');
+
+  const CustomMode(this.terraformValue);
+  final String terraformValue;
+}
+
+// AFTER (0.11.0):
+enum CustomMode implements TerraformEnum {
+  fooBar('FOO_BAR'),
+  bazQux('BAZ_QUX');
+
+  const CustomMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+```
+
+Without the `implements TerraformEnum` clause, the `is TerraformEnum`
+check at synth time will not recognise your enum and the value will fall
+through to the generic `Object.toString()` path — almost certainly not
+what you want.
+
+---
+
+## 3. Cookbook example
+
+The [`terradart-cookbook`](https://github.com/nozomi-koborinai/terradart-cookbook)
+repo's recipes will be regenerated against v0.11.0. If you cloned a recipe
+before that update, apply the §1 + §2 changes above to the recipe's stack
+file.
+
+---
+
 # Migrating from terradart 0.8.0-dev to 0.9.0
 
 This guide covers every breaking change introduced between `0.8.0-dev` and

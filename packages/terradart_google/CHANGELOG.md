@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.11.0 - 2026-MM-DD
+
+**BREAKING** — pre-1.0 polish wave consuming the `terradart_core` 0.11.0 / `terradart_codegen` 0.11.0 changes (ADR-0016, ADR-0017). v0.x permits breaking changes. See [MIGRATING.md](../../MIGRATING.md) for before / after snippets.
+
+- Bumped `terradart_core` constraint to `^0.11.0` (and `terradart_codegen` dev-dep to `^0.11.0`).
+- **118 curated GCP factories + 1 data source retained** — no resource additions or removals in this release. The polish wave focuses on identifier-rename propagation and pubspec hygiene.
+- **All 118 wrappers regenerated with unprefixed identifiers.** Every emitted wrapper now exposes `static const String tfType` (was `$tfType`), `Set<String> get sensitiveFields` (was `$sensitiveFields`), and `bool get supportsDeletionProtection` where applicable (was `$supportsDeletionProtection`). External code that read these by `$`-prefixed name must drop the prefix. The two getters are annotated `@protected`; non-subclass reads require an `// ignore: invalid_use_of_protected_member` directive with rationale.
+- **All emitted enums implement `TerraformEnum`.** Every enum declaration emitted by `terradart_codegen` 0.11.0 carries the `implements TerraformEnum` clause and `@override final String terraformValue;`. Mostly invisible to direct users; matters when authoring custom hand-rolled enums (must add the `implements` clause to satisfy `TfArg<MyEnum>.literal`).
+- **Hosted pubspec carets.** Examples no longer carry `path:` deps to sibling packages; they are workspace members of the monorepo and resolve against the published versions on pub.dev.
+
 ## 0.10.0 - 2026-MM-DD
 
 **ADDED** — small Firestore master-data IaC support. Additive change; no breaking modifications to v0.9.0 API.

@@ -2,6 +2,26 @@
 
 All notable changes to terradart are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, and `terradart_google` — this top-level file summarises cross-cutting milestones.
+
+## [0.11.0] - 2026-MM-DD
+
+Pre-1.0 polish wave focused on the `terradart_core` public surface. All three packages bump from 0.10.0 to 0.11.0 in lockstep. Coordinated breaking changes from ADR-0016 (codegen identifier rename) and ADR-0017 (Stack API surface). See [MIGRATING.md](MIGRATING.md) for before / after snippets covering every breaking change in this release.
+
+### Breaking changes
+
+- **Stack API surface (ADR-0017).** `Stack.synth({required outDir})` split into two methods: `Stack.synth() → SynthResult` is the pure in-memory step that returns the encoded tfJson and any AppExports Dart constants, and `Stack.writeTo(outDir) → Future<void>` is the file-IO wrapper that persists `main.tf.json` (and the optional generated Dart constants file when `setAppExportsOutputPath` was called). `writeTo` throws `StateError` atomically — before any disk write — when `addExport` was called without `setAppExportsOutputPath`. `StackSynth` is removed from the `terradart_core` public barrel and annotated `@internal` (still importable via the deep `src/synth/stack_synth.dart` path for advanced use). `Stack`, `Resource`, and `Data` are promoted to `abstract base class`; user subclasses must now be declared `final class XxxStack extends Stack` (or `base` / `sealed`) and `implements Stack` / `implements Resource` / `implements Data` are no longer permitted.
+- **Codegen identifier rename (ADR-0016).** `$tfType` → `tfType`, `$sensitiveFields` → `sensitiveFields`, `$supportsDeletionProtection` → `supportsDeletionProtection`. The two getters are now annotated `@protected` (from `package:meta`); non-subclass reads require an `// ignore: invalid_use_of_protected_member` directive with rationale. All 118 curated `terradart_google` wrappers regenerated with the new identifier names.
+- **`TerraformEnum` interface.** Hand-rolled Terraform-mapped enums must add `implements TerraformEnum` and `@override final String terraformValue;`. Codegen-emitted enums get this automatically.
+
+### Non-breaking improvements
+
+- `encodeArg` / `encodeArgMap` / `encodeArgMapWithSensitive` return types tightened from `dynamic` to `Object?` / `Map<String, Object?>`.
+- `_DedupKey` internal type rewritten as a Dart 3 named record.
+- `dart:convert` import prefixes unified (`as dart_convert` / `as conv` / `as convert` → no prefix everywhere).
+- `terradart_google` pubspec switched from `path:` deps to hosted carets; examples are now workspace members of the monorepo.
+- Stale schemantic-era comments in per-package `analysis_options.yaml` refreshed.
+
 ## [0.1.0-dev] - 2026-05-14
 
 Adds 15 new GCP resource factories (terradart_google grows 13 → 28), typed enum support for `TfArg`, sealed types for exactly-one-of nested blocks, and the `terradart wrap-promote` codegen subcommand. Pre-alpha — pin tightly.

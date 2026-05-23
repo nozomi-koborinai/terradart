@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.11.0 - 2026-MM-DD
+
+**BREAKING** — pre-1.0 polish wave on the `terradart_core` public surface. Coordinated changes from ADR-0016 (codegen identifier rename) and ADR-0017 (Stack API surface). v0.x permits breaking changes; the 0.11.x line continues to stage the 1.0 surface. See [MIGRATING.md](../../MIGRATING.md) for before / after snippets covering every item below.
+
+- **`Stack.synth({required outDir})` split** — `Stack.synth() → SynthResult` is now the pure in-memory step that returns the encoded `tfJson` plus the optional `dartConstants` source for AppExports. `Stack.writeTo(outDir) → Future<void>` is the new file-IO wrapper that always writes `main.tf.json` and, when AppExports produced Dart constants AND `setAppExportsOutputPath` was called, also writes the generated constants file at that path. `writeTo` throws `StateError` atomically — before any disk write — when `addExport` was called without `setAppExportsOutputPath`.
+- **`StackSynth` removed from the public barrel** — call `stack.synth()` instead of `StackSynth.synth(stack)`. The class is annotated `@internal`; advanced users may still import it via the deep path `package:terradart_core/src/synth/stack_synth.dart`.
+- **`Stack`, `Resource`, `Data` promoted to `abstract base class`** — user subclasses must now be declared `final class XxxStack extends Stack` (or `base` / `sealed`). `implements Stack` / `implements Resource` / `implements Data` are no longer permitted (was a state-bypass foot-gun).
+- **`Resource.$sensitiveFields` → `Resource.sensitiveFields`** and **`Resource.$supportsDeletionProtection` → `Resource.supportsDeletionProtection`** — dollar-prefix dropped. Both annotated `@protected` (from `package:meta`); non-subclass reads require an `// ignore: invalid_use_of_protected_member` directive with rationale. Privileged in-library consumers (the `TfJsonEncoder` synth call sites) already carry the ignore comment with justification.
+- **`TerraformEnum` interface added** — `abstract interface class TerraformEnum { String get terraformValue; }` is re-exported from the `terradart_core` barrel. `TfArgLiteral.toTfJson` enum dispatch now routes through `if (v is TerraformEnum)`; the previous duck-typed `dynamic.terraformValue` cast and its `// ignore: avoid_dynamic_calls` directive are retired. Hand-rolled Terraform-mapped enums must add `implements TerraformEnum` and `@override final String terraformValue;`; codegen-emitted enums get this automatically.
+
+### Non-breaking improvements
+
+- `encodeArg` / `encodeArgMap` / `encodeArgMapWithSensitive` return types tightened from `dynamic` to `Object?` / `Map<String, Object?>` — non-breaking at runtime, but call sites benefit from static type checking.
+- Internal `_DedupKey` value type rewritten as a Dart 3 named record. Drops the unused `package:meta/meta.dart` import.
+- `dart:convert` import prefixes unified across `lib/` and `test/` (`as dart_convert` / `as conv` / `as convert` → no prefix everywhere).
+
 ## 0.10.0 - 2026-MM-DD
 
 No user-facing API changes. Workspace consistency bump alongside `terradart_google` 0.10.0 (Firestore document curation + `FirestoreFields.encode` helper).

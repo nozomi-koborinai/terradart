@@ -4,14 +4,14 @@ description: Install TerraDart and synthesize your first stack.
 ---
 
 :::note[Coming soon]
-This page tracks the v0.11.0 API surface and will be expanded with end-to-end walkthroughs after the release. Package versions below are pre-release pins.
+This page tracks the v0.11.0 API surface and will be expanded with end-to-end walkthroughs after the release.
 :::
 
 ## Meanwhile
 
 1. Read the [README Quickstart](https://github.com/nozomi-koborinai/terradart#quickstart) on GitHub.
 2. Run the [Pub/Sub quickstart example](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart).
-3. Pin pre-release packages explicitly (`^0.1.0-dev` or the current dev version on [pub.dev](https://pub.dev/packages/terradart_core)).
+3. Pin the published packages with `^0.11.0` (see the current version on [pub.dev](https://pub.dev/packages/terradart_core)).
 
 ## Outline (planned)
 
