@@ -17,7 +17,7 @@ import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/secret_manager.dart';
 
 /// Secret Manager secret + version + IAM accessor Stack.
-class DbCredentialsStack extends Stack {
+final class DbCredentialsStack extends Stack {
   DbCredentialsStack({
     required String projectId,
     required String dbPasswordCleartext,

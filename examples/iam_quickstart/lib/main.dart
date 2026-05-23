@@ -41,7 +41,7 @@ import 'package:terradart_google/pubsub.dart';
 import 'package:terradart_google/secret_manager.dart';
 
 /// IAM showcase Stack.
-class IamShowcaseStack extends Stack {
+final class IamShowcaseStack extends Stack {
   IamShowcaseStack({
     required String projectId,
   }) : super(

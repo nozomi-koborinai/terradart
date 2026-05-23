@@ -19,7 +19,7 @@ import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/firestore.dart';
 import 'package:terradart_google/provider.dart';
 
-class MessagesStack extends Stack {
+final class MessagesStack extends Stack {
   MessagesStack({required String projectId})
       : super(
           providers: [

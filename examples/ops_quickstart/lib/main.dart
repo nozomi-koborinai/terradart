@@ -18,7 +18,7 @@ import 'package:terradart_google/bigquery.dart';
 import 'package:terradart_google/logging.dart';
 import 'package:terradart_google/provider.dart';
 
-class AuditPipelineStack extends Stack {
+final class AuditPipelineStack extends Stack {
   AuditPipelineStack({required String projectId})
       : super(
           providers: [

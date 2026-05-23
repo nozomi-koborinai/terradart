@@ -26,7 +26,7 @@ import 'package:terradart_google/dns.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 
-class InternalDnsStack extends Stack {
+final class InternalDnsStack extends Stack {
   InternalDnsStack({required String projectId})
       : super(
           providers: [

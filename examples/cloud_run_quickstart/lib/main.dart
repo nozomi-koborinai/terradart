@@ -33,7 +33,7 @@ import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/secret_manager.dart';
 
-class ApiServiceStack extends Stack {
+final class ApiServiceStack extends Stack {
   ApiServiceStack({required String projectId})
       : super(
           providers: [

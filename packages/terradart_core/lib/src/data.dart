@@ -5,7 +5,7 @@ import 'resource.dart';
 /// Parallel to `Resource`. The two share `Stack`-level dedup via
 /// `(kind, terraformType, localName)`. `Data` does not accept `lifecycle`
 /// (Terraform forbids it on data sources).
-abstract class Data extends Resource {
+abstract base class Data extends Resource {
   Data({
     required super.terraformType,
     required super.localName,

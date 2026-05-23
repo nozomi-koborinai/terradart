@@ -73,7 +73,7 @@ abstract interface class StackProvider {
 /// - `setBackend(...)` / `backend` — late binding for backend config
 ///   (alternative to passing it via constructor; useful when backend
 ///   config depends on values resolved during stack construction).
-abstract class Stack {
+abstract base class Stack {
   Stack({
     required List<StackProvider> providers,
     StackBackend? backend,

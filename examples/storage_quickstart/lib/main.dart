@@ -23,7 +23,7 @@ import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/storage.dart';
 
-class AssetsStack extends Stack {
+final class AssetsStack extends Stack {
   AssetsStack({required String projectId})
       : super(
           providers: [

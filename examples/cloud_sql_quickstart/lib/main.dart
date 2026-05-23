@@ -26,7 +26,7 @@ import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/service_networking.dart';
 
-class CloudSqlStack extends Stack {
+final class CloudSqlStack extends Stack {
   CloudSqlStack({
     required String projectId,
     required String dbPassword,

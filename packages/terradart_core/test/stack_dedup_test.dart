@@ -4,7 +4,7 @@ import 'package:terradart_core/src/resource.dart';
 import 'package:terradart_core/src/stack.dart';
 import 'package:test/test.dart';
 
-class _R extends Resource {
+final class _R extends Resource {
   _R({required super.localName, required String type})
       : super(
           terraformType: type,
@@ -15,7 +15,7 @@ class _R extends Resource {
   Set<String> get $sensitiveFields => const {};
 }
 
-class _D extends Data {
+final class _D extends Data {
   _D({required super.localName, required String type})
       : super(
           terraformType: type,
@@ -26,7 +26,7 @@ class _D extends Data {
   Set<String> get $sensitiveFields => const {};
 }
 
-class _S extends Stack {
+final class _S extends Stack {
   _S() : super(providers: const []);
 
   @override

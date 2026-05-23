@@ -18,7 +18,7 @@ import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';
 
 /// Cloud Scheduler job + Pub/Sub topic Stack.
-class NightlyCleanupStack extends Stack {
+final class NightlyCleanupStack extends Stack {
   NightlyCleanupStack({required String projectId})
       : super(
           providers: [

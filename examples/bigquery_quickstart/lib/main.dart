@@ -24,7 +24,7 @@ import 'package:terradart_google/bigquery.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 
-class AnalyticsStack extends Stack {
+final class AnalyticsStack extends Stack {
   AnalyticsStack({required String projectId})
       : super(
           providers: [

@@ -19,7 +19,7 @@ import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/firebase_app_check.dart';
 import 'package:terradart_google/provider.dart';
 
-class AppCheckStack extends Stack {
+final class AppCheckStack extends Stack {
   AppCheckStack({required String projectId})
       : super(
           providers: [

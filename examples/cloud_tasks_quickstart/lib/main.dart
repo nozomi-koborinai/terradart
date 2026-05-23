@@ -14,7 +14,7 @@ import 'package:terradart_google/cloud_tasks.dart';
 import 'package:terradart_google/provider.dart';
 
 /// Cloud Tasks queue + IAM enqueuer Stack.
-class EmailJobsStack extends Stack {
+final class EmailJobsStack extends Stack {
   EmailJobsStack({required String projectId})
       : super(
           providers: [

@@ -21,7 +21,7 @@ import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/storage.dart';
 
-class HttpFunctionStack extends Stack {
+final class HttpFunctionStack extends Stack {
   HttpFunctionStack({required String projectId})
       : super(
           providers: [

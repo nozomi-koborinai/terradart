@@ -23,7 +23,7 @@ import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/monitoring.dart';
 import 'package:terradart_google/provider.dart';
 
-class LatencyAlertStack extends Stack {
+final class LatencyAlertStack extends Stack {
   LatencyAlertStack({required String projectId})
       : super(
           providers: [

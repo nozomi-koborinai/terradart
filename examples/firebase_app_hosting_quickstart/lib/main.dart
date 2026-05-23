@@ -20,7 +20,7 @@ import 'package:terradart_google/firebase_app_hosting.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 
-class AppHostingStack extends Stack {
+final class AppHostingStack extends Stack {
   AppHostingStack({required String projectId})
       : super(
           providers: [

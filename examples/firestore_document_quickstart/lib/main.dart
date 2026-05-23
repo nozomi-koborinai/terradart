@@ -21,7 +21,7 @@ import 'package:terradart_google/firestore.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 
-class FirestoreDocumentQuickstart extends Stack {
+final class FirestoreDocumentQuickstart extends Stack {
   FirestoreDocumentQuickstart({required String projectId})
       : super(
           providers: [

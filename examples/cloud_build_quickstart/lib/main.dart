@@ -32,7 +32,7 @@ import 'package:terradart_google/artifact_registry.dart';
 import 'package:terradart_google/cloud_build.dart';
 import 'package:terradart_google/provider.dart';
 
-class CloudBuildStack extends Stack {
+final class CloudBuildStack extends Stack {
   CloudBuildStack({required String projectId})
       : super(
           providers: [

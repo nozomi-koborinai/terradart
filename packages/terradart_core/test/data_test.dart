@@ -4,7 +4,7 @@ import 'package:terradart_core/src/tf_arg.dart';
 import 'package:terradart_core/src/tf_ref.dart';
 import 'package:test/test.dart';
 
-class _FakeProjectData extends Data {
+final class _FakeProjectData extends Data {
   _FakeProjectData({
     required super.localName,
     required TfArg<String> projectId,

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Minimal example: empty Stack synth.
-class EmptyStack extends Stack {
+final class EmptyStack extends Stack {
   EmptyStack() : super(providers: const []);
 
   @override

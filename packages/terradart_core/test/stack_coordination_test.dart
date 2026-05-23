@@ -50,7 +50,7 @@ class _FakeProvider implements StackProvider {
   Map<String, Object?> toTfJson() => configArgs;
 }
 
-class _S extends Stack {
+final class _S extends Stack {
   _S({super.providers = const [], super.backend});
 
   @override

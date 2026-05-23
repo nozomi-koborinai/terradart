@@ -22,7 +22,7 @@ import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/kms.dart';
 import 'package:terradart_google/provider.dart';
 
-class CryptoStack extends Stack {
+final class CryptoStack extends Stack {
   CryptoStack({required String projectId})
       : super(
           providers: [

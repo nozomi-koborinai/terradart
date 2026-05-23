@@ -23,7 +23,7 @@ import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/firebase_data_connect.dart';
 import 'package:terradart_google/provider.dart';
 
-class DataConnectStack extends Stack {
+final class DataConnectStack extends Stack {
   DataConnectStack({required String projectId})
       : super(
           providers: [

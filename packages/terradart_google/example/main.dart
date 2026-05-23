@@ -4,7 +4,7 @@ import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/terradart_google.dart';
 
 /// Minimal example: a single Pub/Sub topic, synthesized to Terraform JSON.
-class HelloStack extends Stack {
+final class HelloStack extends Stack {
   HelloStack({required String projectId})
       : super(
           providers: [

@@ -21,7 +21,7 @@ import 'package:terradart_google/pubsub.dart';
 /// `addExport` registers a typed Dart constant ("ORDERS_TOPIC_ID") whose
 /// value is the topic's full resource path -- consumed by Firebase Functions
 /// Dart subscribers via the generated `<stack>.app.dart` file.
-class OrdersStack extends Stack {
+final class OrdersStack extends Stack {
   OrdersStack({required String projectId})
       : super(
           providers: [

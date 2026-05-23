@@ -21,7 +21,7 @@ import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/provider.dart';
 
 /// Network stack: a VPC + a public IP for a load balancer.
-class NetworkStack extends Stack {
+final class NetworkStack extends Stack {
   NetworkStack({required String projectId})
       : super(
           providers: [
