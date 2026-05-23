@@ -38,11 +38,10 @@ void main() {
       TerraformOutputSpec,
       DartConstantsEmitter,
       TfJsonEncoder,
-      StackSynth,
       SynthResult,
       DuplicateResourceError,
     ];
-    expect(symbols, hasLength(35));
+    expect(symbols, hasLength(34));
   });
 
   test('TerraformDurationExt is accessible (extension method)', () {

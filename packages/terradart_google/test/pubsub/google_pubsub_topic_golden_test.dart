@@ -21,7 +21,7 @@ void main() {
         ),
       );
 
-    final actual = StackSynth.synth(stack).tfJson;
+    final actual = stack.synth().tfJson;
     final expected = jsonDecode(
       await File('test/golden/pubsub_topic.tf.json').readAsString(),
     ) as Map<String, dynamic>;
