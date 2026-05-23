@@ -13,16 +13,16 @@ The smallest end-to-end terradart example. Provisions a `google_pubsub_topic`, a
 ```
 examples/pubsub_quickstart/
 ├── lib/main.dart        # Defines OrdersStack (topic + subscription + IAM)
-├── bin/infra.dart       # Synth entry point: stack.synth(outDir: 'tf-out')
+├── bin/infra.dart       # Synth entry point: stack.writeTo('tf-out')
 ├── lib/generated/       # (created on synth) orders_stack.app.dart -- typed export
 ├── tf-out/              # (created on synth) main.tf.json -- terraform input
-└── pubspec.yaml         # path-deps to ../../packages/terradart{,_google}
+└── pubspec.yaml         # workspace member with hosted carets (terradart_core: ^0.10.0)
 ```
 
 ## Usage
 
 ```bash
-# 1. Resolve deps (uses path: deps to the workspace siblings).
+# 1. Resolve deps (workspace member with hosted carets — siblings are picked up via `resolution: workspace`).
 dart pub get
 
 # 2. Edit `lib/main.dart` -- replace `YOUR-PROJECT-ID` with your GCP project.
