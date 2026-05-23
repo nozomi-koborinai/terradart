@@ -15,10 +15,20 @@
     }
   },
   "resource": {
+    "google_iam_workload_identity_pool": {
+      "ci": {
+        "workload_identity_pool_id": "github-actions",
+        "display_name": "GitHub Actions CI/CD"
+      }
+    },
     "google_service_account": {
       "demo": {
         "account_id": "demo-sa",
         "display_name": "IAM quickstart demo SA"
+      },
+      "impersonator": {
+        "account_id": "demo-impersonator",
+        "display_name": "Demo SA impersonator"
       }
     },
     "google_pubsub_topic": {
@@ -74,6 +84,44 @@
         "role": "roles/secretmanager.secretAccessor",
         "member": "${google_service_account.demo.member}"
       }
+    },
+    "google_project_iam_custom_role": {
+      "gcs_observer": {
+        "role_id": "gcsObserver",
+        "title": "GCS Observer",
+        "permissions": [
+          "storage.objects.get",
+          "storage.objects.list",
+          "storage.buckets.get",
+          "storage.buckets.list"
+        ],
+        "description": "Read-only access to GCS objects and bucket metadata.",
+        "stage": "GA"
+      }
+    },
+    "google_project_iam_member": {
+      "demo_sa_observer": {
+        "project": "ci-test-project-id",
+        "role": "${google_project_iam_custom_role.gcs_observer.name}",
+        "member": "${google_service_account.demo.member}",
+        "depends_on": [
+          "google_project_iam_custom_role.gcs_observer"
+        ]
+      }
+    },
+    "google_service_account_iam_member": {
+      "demo_sa_user": {
+        "service_account_id": "${google_service_account.demo.name}",
+        "role": "roles/iam.serviceAccountUser",
+        "member": "${google_service_account.impersonator.member}"
+      }
+    },
+    "google_service_account_key": {
+      "demo_sa_key": {
+        "service_account_id": "${google_service_account.demo.name}",
+        "key_algorithm": "KEY_ALG_RSA_2048",
+        "private_key_type": "TYPE_GOOGLE_CREDENTIALS_FILE"
+      }
     }
   },
   "output": {
@@ -88,6 +136,9 @@
     },
     "SECRET_ID": {
       "value": "${google_secret_manager_secret.demo_secret.id}"
+    },
+    "CUSTOM_ROLE_NAME": {
+      "value": "${google_project_iam_custom_role.gcs_observer.name}"
     }
   }
 }
