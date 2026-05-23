@@ -18,12 +18,12 @@ class EnumExtractor {
   /// Matches: `enum <Name> [implements TerraformEnum] { ... }` followed by
   /// the const constructor + terraformValue field. Captures (name, body).
   ///
-  /// v0.11.0 (ADR-0016): codegen-emitted enums declare
-  /// `implements TerraformEnum`, so the optional implements clause is part
-  /// of the canonical shape. Older enums without the clause still match —
-  /// the `(?:\s+implements\s+TerraformEnum)?` group is optional, keeping
-  /// the extractor backwards-compatible with the wrap-promote scaffold
-  /// (which emits the bare `enum X { ... }` for the user to flesh out).
+  /// The optional `implements TerraformEnum` group allows hand-curated
+  /// enums authored before v0.11.0 (ADR-0016) — which carry the
+  /// `const X(this.terraformValue)` constructor + `final String
+  /// terraformValue` field but no `implements` clause — to still match
+  /// against this scanner. The canonical post-v0.11 shape always carries
+  /// the clause.
   static final RegExp _enumBlock = RegExp(
     r'enum\s+([A-Z][A-Za-z0-9_]*)(?:\s+implements\s+TerraformEnum)?\s*\{([^}]*?)const\s+\1\s*\(this\.terraformValue\)\s*;\s*final\s+String\s+terraformValue\s*;',
     dotAll: true,
