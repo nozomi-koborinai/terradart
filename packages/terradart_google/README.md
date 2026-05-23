@@ -104,7 +104,7 @@ CI verifies determinism via `terradart wrap --check`: all 71 emitted files (70 r
 
 For any other `google_*` / `google-beta_*` resource that isn't in the catalog above, run `terradart codegen` against your provider schema dump and emit bindings into your own `lib/generated/` rather than depending on this package.
 
-For the runtime side (`Stack`, `Resource`, `StackSynth.synth`), see [`terradart_core`](https://pub.dev/packages/terradart_core). For project-level documentation, see the [terradart repo README](https://github.com/nozomi-koborinai/terradart#readme).
+For the runtime side (`Stack`, `Resource`, `Stack.synth` / `Stack.writeTo`), see [`terradart_core`](https://pub.dev/packages/terradart_core). For project-level documentation, see the [terradart repo README](https://github.com/nozomi-koborinai/terradart#readme).
 
 ## Installation
 
@@ -123,7 +123,7 @@ import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/storage.dart';
 
-class AssetsStack extends Stack {
+final class AssetsStack extends Stack {
   AssetsStack({required String projectId})
       : super(providers: [
           GoogleProvider(project: projectId, region: 'asia-northeast1'),
