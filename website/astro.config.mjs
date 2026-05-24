@@ -32,8 +32,9 @@ export default defineConfig({
           label: "Guide",
           items: [
             "docs/getting-started",
+            "docs/why-terradart",
+            "docs/architecture",
             "docs/status",
-            "docs/how-it-works",
           ],
         },
       ],
