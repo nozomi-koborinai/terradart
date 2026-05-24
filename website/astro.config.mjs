@@ -81,4 +81,7 @@ mermaid.initialize({ startOnLoad: true });
       [rehypeMermaid, { strategy: "pre-mermaid" }],
     ],
   },
+  redirects: {
+    "/docs/how-it-works/": "/docs/architecture/",
+  },
 });
