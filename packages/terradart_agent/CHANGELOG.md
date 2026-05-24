@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.12.1
+
+- **Fixed** — `list_resources` and `list_barrels` now return a JSON object (`{"resources": [...]}` / `{"barrels": [...]}`) instead of a bare array. MCP requires a tool result's `structuredContent` to be an object (record), so strict clients (e.g. Cursor) rejected the previous array form with "expected record, received array".
+- **Added** — Intel macOS (`terradart-mcp-darwin-amd64`) binary, built on an Apple Silicon runner via Rosetta 2 (Dart has no cross-compile, and GitHub's Intel runners are scarce).
+
 ## 0.12.0
 
 Initial release.
