@@ -12,6 +12,8 @@
 #   - packages/terradart_core/pubspec.yaml        (version: line)
 #   - packages/terradart_codegen/pubspec.yaml     (version: + terradart_core caret)
 #   - packages/terradart_google/pubspec.yaml      (version: + terradart_core caret + terradart_codegen dev caret)
+#   - packages/terradart_agent/pubspec.yaml       (version: + terradart_core caret + terradart_google caret)
+#   - packages/terradart_agent/lib/src/version.dart  (packageVersion const — lockstep with its pubspec)
 #   - examples/*/pubspec.yaml                     (terradart_core + terradart_google carets)
 #   - README.md                                   (Quickstart pubspec sample + `dart pub global activate terradart_codegen ^...` line)
 #   - website/src/content/docs/docs/getting-started.md  (pubspec sample caret note)
@@ -78,9 +80,9 @@ sed_inplace() {
 # Use `#` as the sed delimiter throughout — `|` is the ERE alternation
 # operator and clashes with the more common `s|...|...|` form.
 
-# 1. `version:` field on the three published package pubspecs.
+# 1. `version:` field on the package pubspecs.
 echo "  Package versions:"
-for pkg in terradart_core terradart_codegen terradart_google; do
+for pkg in terradart_core terradart_codegen terradart_google terradart_agent; do
   sed_inplace "s#^version: ${OLD_RE}\$#version: ${NEW}#" "packages/$pkg/pubspec.yaml"
   echo "    - packages/$pkg/pubspec.yaml -> $NEW"
 done
@@ -94,6 +96,16 @@ sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terra
 echo "    - terradart_google.dependencies.terradart_core: ^${NEW}"
 sed_inplace "s#^( *terradart_codegen): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_google/pubspec.yaml
 echo "    - terradart_google.dev_dependencies.terradart_codegen: ^${NEW}"
+sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_agent/pubspec.yaml
+echo "    - terradart_agent.dependencies.terradart_core: ^${NEW}"
+sed_inplace "s#^( *terradart_google): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_agent/pubspec.yaml
+echo "    - terradart_agent.dependencies.terradart_google: ^${NEW}"
+
+# 2b. terradart_agent binary version const (lockstep with its pubspec;
+#     guarded by packages/terradart_agent/test/version_test.dart).
+echo "  Binary version const:"
+sed_inplace "s#^const String packageVersion = '${OLD_RE}';\$#const String packageVersion = '${NEW}';#" packages/terradart_agent/lib/src/version.dart
+echo "    - packages/terradart_agent/lib/src/version.dart -> $NEW"
 
 # 3. Every example pubspec: terradart_core + terradart_google carets.
 echo "  Example pubspecs:"
@@ -129,6 +141,7 @@ STALE=$(
     README.md website/src/content/docs/docs/getting-started.md 2>/dev/null
   grep -nE "dart pub global activate terradart_codegen \\^${OLD_RE}([^0-9A-Za-z.-]|\$)" \
     README.md website/src/content/docs/docs/getting-started.md 2>/dev/null
+  grep -nE "packageVersion = '${OLD_RE}'" packages/terradart_agent/lib/src/version.dart 2>/dev/null
 )
 set -e
 

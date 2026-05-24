@@ -4,7 +4,7 @@ description: From Dart Stack classes to terraform apply.
 ---
 
 :::note[Coming soon]
-Expanded diagrams and code samples will be added after v0.11.0. This page is a short overview.
+Expanded diagrams and code samples will be added after v0.12.0. This page is a short overview.
 :::
 
 ## Pipeline

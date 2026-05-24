@@ -16,5 +16,5 @@ TerraDart is **pre-alpha**. There are no SemVer guarantees until v1.0.0.
 Use the [bug or question template](https://github.com/nozomi-koborinai/terradart/issues/new/choose) on GitHub.
 
 :::note[Coming soon]
-Version-specific migration notes will land here after v0.11.0.
+Version-specific migration notes will land here after v0.12.0.
 :::
