@@ -14,18 +14,30 @@ jobs:
         include:
           - os: macos-14
             asset: terradart-mcp-darwin-arm64
-          - os: macos-13
+            dart_arch: arm64
+          # Intel macOS: Dart has no cross-compile, and GitHub's Intel
+          # (macos-13) runners are scarce, so build the x64 binary on an Apple
+          # Silicon runner using the x64 Dart SDK under Rosetta 2.
+          - os: macos-14
             asset: terradart-mcp-darwin-amd64
+            dart_arch: x64
+            rosetta: true
           - os: ubuntu-22.04
             asset: terradart-mcp-linux-amd64
+            dart_arch: x64
           - os: windows-latest
             asset: terradart-mcp-windows-amd64.exe
+            dart_arch: x64
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6
+      - name: Install Rosetta 2 (for the x64 Dart SDK on Apple Silicon)
+        if: matrix.rosetta
+        run: sudo softwareupdate --install-rosetta --agree-to-license
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
+          architecture: ${{ matrix.dart_arch }}
       - run: dart pub get
       - name: Compile binary
         working-directory: packages/terradart_agent
