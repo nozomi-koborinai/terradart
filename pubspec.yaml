@@ -9,6 +9,7 @@ workspace:
   - packages/terradart_core
   - packages/terradart_codegen
   - packages/terradart_google
+  - packages/terradart_agent
   - examples/bigquery_quickstart
   - examples/cloud_build_quickstart
   - examples/cloud_functions_quickstart
