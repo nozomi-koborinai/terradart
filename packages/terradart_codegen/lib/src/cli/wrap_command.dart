@@ -5,17 +5,13 @@ import 'package:args/command_runner.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart' as p;
 
+import '../codegen/catalog_entry_builder.dart';
 import '../codegen/catalog_metadata_emitter.dart';
-import '../codegen/constructor_params.dart';
 import '../codegen/data_source_wrapper_emitter.dart';
 import '../codegen/generated_file_header.dart';
-import '../codegen/naming.dart';
-import '../codegen/sensitive_set_emitter.dart';
 import '../codegen/wrapper_emitter.dart';
 import '../codegen/wrapper_overrides/_registry.dart';
-import '../codegen/wrapper_overrides/wrapper_override.dart';
 import '../codegen/wrapper_overrides/yaml_loader.dart';
-import '../ir/resource_def.dart';
 import '../parser/schema_parser.dart';
 import 'exit_codes.dart';
 
@@ -201,7 +197,7 @@ class WrapCommand extends Command<int> {
       final dartSrc = generatedFileHeader + formatter.format(raw);
       buffer[p.join(entry.value.outputDir, '${entry.key}.dart')] = dartSrc;
       catalogEntries.add(
-        _buildCatalogEntry(
+        buildCatalogEntry(
           tfType: entry.key,
           override: entry.value,
           def: def,
@@ -225,7 +221,7 @@ class WrapCommand extends Command<int> {
       final layer2 = generatedFileHeader + formatter.format(raw);
       buffer[p.join(entry.value.outputDir, '${entry.key}.dart')] = layer2;
       catalogEntries.add(
-        _buildCatalogEntry(
+        buildCatalogEntry(
           tfType: entry.key,
           override: entry.value,
           def: def,
@@ -299,156 +295,6 @@ class WrapCommand extends Command<int> {
       outFile.writeAsStringSync(entry.value);
     }
     return CliExitCodes.success;
-  }
-
-  /// Builds the static [CatalogEntryData] for one curated [def].
-  ///
-  /// Every field is derived from the SAME sources the wrapper emitter uses,
-  /// so the catalog never drifts from the generated wrappers:
-  ///
-  /// - `className` / `barrel` / `docComment` / `summary`: trivially derived
-  ///   from the IR + override.
-  /// - `constructorParams`: `localName` + the emitter's resolved slot order
-  ///   (`orderedConstructorParams`, the A2 shared helper), with each slot
-  ///   mapped to its actual Dart parameter identifier — for `customSlots`
-  ///   that is the identifier in the slot's `paramDeclaration` (which may
-  ///   rename the slot, e.g. `host_rule` → `hostRules`), otherwise
-  ///   `snakeToCamel(slotName)`.
-  /// - `sensitiveFields`: [sensitiveFieldPaths] (the shared pure function
-  ///   that both this and the inline `_<r>Sensitive` const call).
-  /// - `nestedTypes`: scanned from [emittedSource] — the just-formatted
-  ///   wrapper Dart — because the resource-specific helper-type names cannot
-  ///   be reconstructed from the IR alone.
-  CatalogEntryData _buildCatalogEntry({
-    required String tfType,
-    required WrapperOverride override,
-    required ResourceDef def,
-    required String kind,
-    required String emittedSource,
-  }) {
-    final className = snakeToPascal(tfType);
-    // `override.classDocComment` is stored verbatim WITH leading `///`
-    // markers (it is emitted into the wrapper as-is). The IR's `description`
-    // is raw schema prose with no markers. For the catalog we want clean
-    // markdown either way, so strip the `///` line prefixes from the override
-    // form before recording it / extracting the summary.
-    final docComment = override.classDocComment != null
-        ? _stripDocMarkers(override.classDocComment!)
-        : (def.description ?? '');
-    return CatalogEntryData(
-      tfType: tfType,
-      className: className,
-      barrel: override.outputDir,
-      kind: kind,
-      summary: _firstSentence(docComment),
-      docComment: docComment,
-      constructorParams: _catalogConstructorParams(def, override),
-      nestedTypes: _scanNestedTypes(emittedSource, mainClass: className),
-      // Data sources have no extraSensitiveFields axis; for resources this is
-      // the same value forwarded to WrapperEmitter.emit, and the function is
-      // the exact one the inline const uses, so the lists are byte-identical.
-      sensitiveFields: sensitiveFieldPaths(
-        def,
-        extraSensitiveFields: override.extraSensitiveFields,
-      ),
-    );
-  }
-
-  /// Constructor parameter names in emitted order: `localName` first, then
-  /// each resolved slot's Dart identifier.
-  ///
-  /// Mirrors `WrapperEmitter`'s slot resolution: a name present in
-  /// `override.customSlots` takes its identifier from the slot's verbatim
-  /// `paramDeclaration` (handling renames like `host_rule` → `hostRules` and
-  /// virtual slots like scheduler_job's `target`); every other name is an
-  /// IR slot rendered as `snakeToCamel(name)`.
-  List<String> _catalogConstructorParams(
-    ResourceDef def,
-    WrapperOverride override,
-  ) {
-    final slots = orderedConstructorParams(def, override.paramOrder);
-    final customSlots = override.customSlots ?? const <String, CustomSlot>{};
-    final params = <String>['localName'];
-    for (final name in slots) {
-      final custom = customSlots[name];
-      params.add(
-        custom != null
-            ? _paramIdentifier(custom.paramDeclaration)
-            : snakeToCamel(name),
-      );
-    }
-    return params;
-  }
-
-  /// Extracts the parameter identifier from a `CustomSlot.paramDeclaration`,
-  /// e.g. `'List<ComputeUrlMapUrlMapHostRule>? hostRules'` → `hostRules`,
-  /// `'required SchedulerTarget target'` → `target`. The identifier is the
-  /// last `\w+` token (declarations never carry a trailing default value —
-  /// see `CustomSlot.paramDeclaration` contract).
-  String _paramIdentifier(String paramDeclaration) {
-    final matches = RegExp(r'[A-Za-z_$][A-Za-z0-9_$]*')
-        .allMatches(paramDeclaration)
-        .toList();
-    return matches.isEmpty ? paramDeclaration.trim() : matches.last.group(0)!;
-  }
-
-  /// Scans [source] (formatted wrapper Dart) for top-level type declarations
-  /// and returns their names in declaration order, EXCLUDING the main wrapper
-  /// class [mainClass]. These are exactly the resource-specific helper types
-  /// (`class ComputeUrlMapUrlMapHostRule`, `enum UrlMapRedirectResponseCode`,
-  /// `sealed class CloudSchedulerJobSchedulerTarget`, …) emitted alongside
-  /// the wrapper. Resources with no named helpers yield `[]`.
-  List<String> _scanNestedTypes(String source, {required String mainClass}) {
-    // Top-level declarations start at column 0 (the wrapper file's helper
-    // types and main class are all top-level; nested members are indented).
-    final re = RegExp(
-      r'^(?:final\s+|sealed\s+|abstract\s+|base\s+|interface\s+|mixin\s+)*'
-      r'(?:class|enum|mixin)\s+([A-Za-z_$][A-Za-z0-9_$]*)',
-      multiLine: true,
-    );
-    final out = <String>[];
-    for (final m in re.allMatches(source)) {
-      final name = m.group(1)!;
-      if (name == mainClass) continue;
-      out.add(name);
-    }
-    return out;
-  }
-
-  /// Strips Dart doc-comment markers from [doc]: each line's leading
-  /// whitespace + `///` (and a single following space) is removed. Used to
-  /// turn an override's verbatim `classDocComment` into clean markdown for
-  /// the catalog. Trailing whitespace on the whole block is trimmed.
-  String _stripDocMarkers(String doc) {
-    final lines = doc.split('\n').map((line) {
-      final m = RegExp(r'^\s*///?\s?').firstMatch(line);
-      return m == null ? line : line.substring(m.end);
-    });
-    return lines.join('\n').trimRight();
-  }
-
-  /// First sentence of [doc] (already marker-free markdown), collapsed to a
-  /// single line. Splits on the first sentence terminator (`. ` or `.\n`) or
-  /// a trailing period; returns the whole (newline-collapsed) string if no
-  /// terminator is found. Empty input yields `''`.
-  String _firstSentence(String doc) {
-    final trimmed = doc.trimLeft();
-    if (trimmed.isEmpty) return '';
-    final periodSpace = trimmed.indexOf('. ');
-    final periodNewline = trimmed.indexOf('.\n');
-    var end = -1;
-    if (periodSpace >= 0 && periodNewline >= 0) {
-      end = periodSpace < periodNewline ? periodSpace : periodNewline;
-    } else if (periodSpace >= 0) {
-      end = periodSpace;
-    } else if (periodNewline >= 0) {
-      end = periodNewline;
-    }
-    final sentence = end >= 0
-        ? trimmed.substring(0, end + 1)
-        : (trimmed.endsWith('.') ? trimmed : trimmed);
-    // Collapse any interior whitespace runs (incl. newlines) to single spaces.
-    return sentence.replaceAll(RegExp(r'\s+'), ' ').trim();
   }
 
   /// `--check` mode body. Diffs [buffer] (the in-memory emit result, keyed
