@@ -5,7 +5,7 @@ description: Guides for TerraDart — type-safe Google Cloud IaC for Dart.
 
 Welcome to the TerraDart docs.
 
-Several guides are **in progress** while the v0.12.0 API surface stabilizes. Until they are complete, use the [README on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/README.md) and the [examples directory](https://github.com/nozomi-koborinai/terradart/tree/main/examples).
+Several guides are **in progress** while the v0.12.x API surface stabilizes. Until they are complete, use the [README on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/README.md) and the [examples directory](https://github.com/nozomi-koborinai/terradart/tree/main/examples).
 
 ## Guides
 
@@ -16,4 +16,5 @@ Several guides are **in progress** while the v0.12.0 API surface stabilizes. Unt
 
 ## For AI assistants
 
+- [terradart-mcp](/docs/agent/) — MCP catalog server for coding agents (pre-alpha)
 - [llms.txt](/llms.txt) — condensed site map for LLM crawlers
