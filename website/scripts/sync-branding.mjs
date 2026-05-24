@@ -13,7 +13,7 @@ const copies = [
   ["svg/mark-light.svg", "favicon.svg"],
   ["svg/logo-horizontal-light.svg", "logo-horizontal.svg"],
   ["svg/logo-horizontal-dark.svg", "logo-horizontal-dark.svg"],
-  ["png/logo-horizontal-1024.png", "og.png"],
+  ["png/og-card.png", "og.png"],
   ["png/mark-light-512.png", "apple-touch-icon.png"],
 ];
 

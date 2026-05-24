@@ -1,53 +1,50 @@
 ---
+interface ComparisonRow {
+  label: string;
+  cells: string[];
+}
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  columns: string[]; // header column titles (across the top, excluding the first row-label column)
+  rows: ComparisonRow[];
+  intro?: string; // raw HTML
+  footnote?: string; // raw HTML
+}
+
+const { eyebrow = "Compare", heading, columns, rows, intro, footnote } =
+  Astro.props;
 ---
 
 <section class="section rule-top">
   <div class="container-edit section-inner">
-    <p class="section-label">Compare</p>
-    <h2 class="display-section">Where TerraDart sits</h2>
+    <p class="section-label">{eyebrow}</p>
+    <h2 class="display-section">{heading}</h2>
+
+    {intro && <p class="compare-intro" set:html={intro} />}
 
     <div class="compare-wrap">
       <table class="compare-table">
         <thead>
           <tr>
             <th scope="col"></th>
-            <th scope="col">TerraDart</th>
-            <th scope="col">HCL</th>
-            <th scope="col">CDKTF</th>
-            <th scope="col">Pulumi</th>
+            {columns.map((c) => <th scope="col">{c}</th>)}
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">Dart authoring</th>
-            <td>Yes</td>
-            <td>No</td>
-            <td>No</td>
-            <td>No</td>
-          </tr>
-          <tr>
-            <th scope="row">Drop-in for terraform apply</th>
-            <td>Yes</td>
-            <td>Yes</td>
-            <td>Yes</td>
-            <td>Different model</td>
-          </tr>
-          <tr>
-            <th scope="row">Typed GCP resource API</th>
-            <td>Yes</td>
-            <td>No</td>
-            <td>No</td>
-            <td>No</td>
-          </tr>
-          <tr>
-            <th scope="row">Project status</th>
-            <td>Pre-alpha</td>
-            <td>Mature</td>
-            <td>Archived 2025</td>
-            <td>Active</td>
-          </tr>
+          {
+            rows.map((row) => (
+              <tr>
+                <th scope="row">{row.label}</th>
+                {row.cells.map((c) => <td>{c}</td>)}
+              </tr>
+            ))
+          }
         </tbody>
       </table>
     </div>
+
+    {footnote && <p class="compare-footnote" set:html={footnote} />}
   </div>
 </section>

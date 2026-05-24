@@ -1,6 +1,8 @@
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import starlight from "@astrojs/starlight";
+import mdx from "@astrojs/mdx";
+import rehypeMermaid from "rehype-mermaid";
 import starlightLlmsTxt from "starlight-llms-txt";
 
 // https://astro.build/config
@@ -30,8 +32,9 @@ export default defineConfig({
           label: "Guide",
           items: [
             "docs/getting-started",
+            "docs/why-terradart",
+            "docs/architecture",
             "docs/status",
-            "docs/how-it-works",
           ],
         },
         {
@@ -71,7 +74,24 @@ export default defineConfig({
             href: "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap",
           },
         },
+        {
+          tag: "script",
+          attrs: { type: "module" },
+          content: `
+import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+mermaid.initialize({ startOnLoad: true });
+          `.trim(),
+        },
       ],
     }),
+    mdx(),
   ],
+  markdown: {
+    rehypePlugins: [
+      [rehypeMermaid, { strategy: "pre-mermaid" }],
+    ],
+  },
+  redirects: {
+    "/docs/how-it-works/": "/docs/architecture/",
+  },
 });

@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Header from "../components/Header.astro";
 import Hero from "../components/Hero.astro";
+import PitchCode from "../components/PitchCode.astro";
 import Mission from "../components/Mission.astro";
 import Comparison from "../components/Comparison.astro";
 import Pipeline from "../components/Pipeline.astro";
@@ -12,9 +13,77 @@ import Footer from "../components/Footer.astro";
   <Header />
   <main>
     <Hero />
-    <Mission />
-    <Comparison />
-    <Pipeline />
+    <PitchCode />
+    <Mission
+      eyebrow="Why TerraDart"
+      heading="Connect infra and app code with types"
+      cards={[
+        {
+          title: "A boundary held together by string literals",
+          body: "Topic names in HCL or the console and again in your Cloud Run functions handlers. Renames do not reach subscribers via <code>dart fix</code>. IAM members drift with no compiler visibility. Infra values flowing into app code are often the layer Dart&rsquo;s type system never sees.",
+        },
+        {
+          title: "Terraform stays the execution layer",
+          body: "TerraDart is not a parallel runtime. Write Terraform&rsquo;s resource model as Dart factories and sealed types, then <strong>generate</strong> <code>*.tf.json</code> for the provider you already use. <code>terraform plan</code>, <code>apply</code>, and remote state stay unchanged.",
+        },
+        {
+          title: "Dart types where HCL cannot help",
+          body: "Fixed values become enums. Exactly-one-of blocks become sealed classes. Your infra module is a <code>final class … extends Stack</code>&nbsp;&mdash; loops, config, and refactors work like any other Dart code.",
+        },
+      ]}
+    />
+    <p class="lp-cta">
+      <a href="/docs/why-terradart/" class="link-mark">Read the design rationale →</a>
+    </p>
+    <Comparison
+      eyebrow="Compare"
+      heading="Where TerraDart fits"
+      intro="TerraDart fits teams already centered on <strong>Dart</strong>, already running <strong>Terraform</strong> (or a compatible pipeline) or managing GCP in the <strong>console</strong>, where the seam between infra and app code hurts."
+      footnote="HCL has provider schema types; CDKTF bindings are typed in TypeScript and other languages. TerraDart&rsquo;s difference is <strong>Dart-native authoring</strong> without replacing your Terraform execution pipeline."
+      columns={["TerraDart", "HCL", "CDKTF", "Pulumi"]}
+      rows={[
+        {
+          label: "Dart authoring",
+          cells: ["Yes", "No", "No", "No"],
+        },
+        {
+          label: "Drop-in for terraform apply",
+          cells: ["Yes", "Yes", "Yes", "Different model"],
+        },
+        {
+          label: "Curated Dart factories for GCP",
+          cells: ["Yes", "No", "No", "No"],
+        },
+        {
+          label: "Project status",
+          cells: ["Pre-alpha", "Mature", "Archived 2025", "Active"],
+        },
+      ]}
+    />
+    <p class="lp-cta">
+      <a href="/docs/why-terradart/#how-it-fits-next-to-other-iac" class="link-mark"
+        >See full comparison →</a
+      >
+    </p>
+    <Pipeline
+      eyebrow="Pipeline"
+      heading="How it works in three steps"
+      steps={[
+        {
+          title: "Author in Dart",
+          body: "Subclass Stack with curated google_* factories from terradart_google.",
+        },
+        {
+          title: "Generate Terraform JSON",
+          body: "stack.writeTo(...) writes *.tf.json — no custom apply runtime.",
+        },
+        {
+          title: "Apply with Terraform",
+          body: "terraform plan and apply unchanged; state stays where it is.",
+        },
+      ]}
+      footnote={`Details: <a href="/docs/architecture/" class="link-mark">/docs/architecture</a> · <a href="https://github.com/nozomi-koborinai/terradart/blob/main/README.md" class="link-mark">README</a>`}
+    />
   </main>
   <Footer />
 </Layout>

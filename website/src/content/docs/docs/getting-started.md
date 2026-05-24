@@ -1,6 +1,6 @@
 ---
 title: Getting Started
-description: Install TerraDart and synthesize your first stack.
+description: Install TerraDart and generate your first *.tf.json from a Stack.
 ---
 
 :::note[Coming soon]

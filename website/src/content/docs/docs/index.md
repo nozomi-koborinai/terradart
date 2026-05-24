@@ -9,9 +9,10 @@ Several guides are **in progress** while the v0.12.0 API surface stabilizes. Unt
 
 ## Guides
 
-- [Getting Started](/docs/getting-started/) — installation and first synth (coming soon)
+- [Why TerraDart](/docs/why-terradart/) — motivation, comparison, and curated coverage
+- [Architecture](/docs/architecture/) — generate `*.tf.json`, `synth()` / `writeTo()`, AppExport
+- [Getting Started](/docs/getting-started/) — installation and first output (coming soon)
 - [Status & versioning](/docs/status/) — pre-alpha expectations
-- [How it works](/docs/how-it-works/) — Dart → `*.tf.json` → Terraform
 
 ## For AI assistants
 

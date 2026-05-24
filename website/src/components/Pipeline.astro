@@ -1,24 +1,23 @@
 ---
-const steps = [
-  {
-    title: "Author in Dart",
-    body: "Subclass Stack with curated google_* factories from terradart_google.",
-  },
-  {
-    title: "Synthesize",
-    body: "Stack.writeTo writes *.tf.json — no custom apply runtime.",
-  },
-  {
-    title: "Apply with Terraform",
-    body: "terraform plan and apply unchanged; state stays where it is.",
-  },
-];
+interface PipelineStep {
+  title: string;
+  body: string;
+}
+
+interface Props {
+  eyebrow?: string;
+  heading: string;
+  steps: PipelineStep[];
+  footnote?: string; // raw HTML, rendered with set:html
+}
+
+const { eyebrow = "Pipeline", heading, steps, footnote } = Astro.props;
 ---
 
 <section class="section rule-top">
   <div class="container-edit section-inner">
-    <p class="section-label">Pipeline</p>
-    <h2 class="display-section">Dart down into infrastructure</h2>
+    <p class="section-label">{eyebrow}</p>
+    <h2 class="display-section">{heading}</h2>
 
     <ol class="pipeline">
       {
@@ -27,21 +26,13 @@ const steps = [
             <span class="pipeline-index">{i + 1}</span>
             <div class="pipeline-body">
               <h3 class="pipeline-title">{step.title}</h3>
-              <p>{step.body}</p>
+              <p set:html={step.body} />
             </div>
           </li>
         ))
       }
     </ol>
 
-    <p class="section-footnote">
-      Expanded guide:
-      <a href="/docs/how-it-works/" class="link-mark">/docs/how-it-works</a>
-      (in progress) ·
-      <a
-        href="https://github.com/nozomi-koborinai/terradart/blob/main/README.md"
-        class="link-mark">README</a
-      >
-    </p>
+    {footnote && <p class="section-footnote" set:html={footnote} />}
   </div>
 </section>
