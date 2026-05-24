@@ -125,13 +125,13 @@ GoogleCloudRunV2Service(
 ```yaml
 # pubspec.yaml
 dependencies:
-  terradart_core: ^0.12.0
-  terradart_google: ^0.12.0
+  terradart_core: ^0.12.1
+  terradart_google: ^0.12.1
 ```
 
 ```bash
 dart pub get
-dart pub global activate terradart_codegen ^0.12.0      # only if you need
+dart pub global activate terradart_codegen ^0.12.1      # only if you need
                                                          # codegen for non-curated
                                                          # google_* resources
 dart run bin/infra.dart                                  # synth → tf-out/
@@ -191,7 +191,7 @@ Application platform & operations
 
 ## Status
 
-Pre-1.0 (v0.12.0). No SemVer guarantees until v1.0.0; pin to a specific `^0.12.x` minor and read [`MIGRATING.md`](MIGRATING.md) before bumping. Breaking changes are still permitted within the 0.x line and are documented per-release.
+Pre-1.0 (v0.12.1). No SemVer guarantees until v1.0.0; pin to a specific `^0.12.x` minor and read [`MIGRATING.md`](MIGRATING.md) before bumping. Breaking changes are still permitted within the 0.x line and are documented per-release.
 
 ## Schema-bump automation (Plan 5.E)
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.1
+
+No user-facing changes. Lockstep version bump alongside the `terradart_agent` v0.12.1 fix. The generated catalog and public surface are unchanged from 0.12.0.
+
 ## 0.12.0
 
 **ADDED** — ships a generated static catalog of the curated factory surface. Additive change; no breaking modifications to the v0.11.0 API and no resource additions or removals (still 118 curated GCP factories + 1 data source).

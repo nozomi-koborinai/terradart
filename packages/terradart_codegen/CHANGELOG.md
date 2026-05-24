@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.1
+
+No user-facing changes. Lockstep version bump alongside the `terradart_agent` v0.12.1 fix. `terradart_core` constraint bumped to `^0.12.1`.
+
 ## 0.12.0
 
 Adds static-catalog emission so the curated `terradart_google` surface can be introspected without loading or analyzing the wrapper source. Powers the new `terradart-mcp` server (`terradart_agent`).
