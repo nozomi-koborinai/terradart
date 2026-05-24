@@ -1,23 +1,115 @@
 ---
 title: Architecture
-description: From Dart Stack classes to terraform apply, plus the upstream provider chain.
+description: How TerraDart Stacks synthesize to Terraform JSON, how upstream provider changes propagate, and how the IaC/application seam works.
 ---
 
-:::note[Coming soon]
-Expanded diagrams (Stack lifecycle, mm chain, AppExport seam) and a worked AppExport example land in follow-up tasks.
-:::
+import Pipeline from "../../../components/Pipeline.astro";
 
-## Pipeline
+TerraDart is a thin authoring layer that produces standard Terraform JSON. The Dart side gives you types, refactor, and `dart analyze`; the Terraform side keeps state, planning, and apply unchanged.
 
-1. **Author** — Subclass `Stack` in Dart (`final class XxxStack extends Stack`) using curated `google_*` factories from `terradart_google`.
-2. **Synthesize** — `stack.writeTo('tf-out')` writes standard `*.tf.json` under your output directory. (Use `stack.synth()` if you want the `SynthResult` in memory without writing to disk.)
-3. **Apply** — Run `terraform plan` and `terraform apply` with your existing state backend.
-4. **Hand off** — Export typed Dart constants for apps (Firebase Functions, Cloud Run jobs, etc.) so `dart analyze` catches drift at compile time.
+<Pipeline
+  eyebrow="Pipeline"
+  heading="From Dart to terraform apply"
+  steps={[
+    {
+      title: "Author",
+      body: "Write final class XxxStack extends Stack using curated google_* factories from terradart_google.",
+    },
+    {
+      title: "Synthesize",
+      body: "Call stack.writeTo('tf-out') to write *.tf.json, or stack.synth() to keep the SynthResult in memory.",
+    },
+    {
+      title: "Apply",
+      body: "Run terraform plan and terraform apply against your existing state backend.",
+    },
+    {
+      title: "Hand off (optional)",
+      body: "Surface AppExport values as typed Dart constants and Terraform outputs for downstream apps.",
+    },
+  ]}
+/>
+
+## Stack lifecycle (synth internals)
+
+```mermaid
+graph LR
+  S[Stack instance] --> SY["synth()"]
+  SY --> SR[SynthResult]
+  SR --> W["writeTo(outDir)"]
+  W --> TF[main.tf.json]
+  W -.optional.-> AD[".app.dart constants"]
+```
+
+`synth()` is the pure, in-memory step. It walks the resources you registered with `add(...)`, applies lifecycle wiring, dedups, and produces a `SynthResult` whose `tfJson` field carries the Terraform JSON tree.
+
+`writeTo(outDir)` is the file-I/O wrapper. It always writes `main.tf.json`. If you registered `AppExport`s via `addExport(...)` AND called `setAppExportsOutputPath(...)`, it also writes a generated `.app.dart` file with typed Dart constants. If you registered exports but forgot to set the output path, `writeTo` throws `StateError` *before* writing anything — the failure mode is atomic, never partial.
+
+`Stack`, `Resource`, and `Data` are `abstract base class`. Your subclasses must declare a class modifier:
+
+```dart
+final class OrdersStack extends Stack { /* ... */ }
+```
+
+`base` and `sealed` are also valid; what is rejected is plain `class` (or `implements Stack`, which would bypass the base-class state that synth depends on).
+
+## Provider integration
+
+TerraDart depends on the Google Terraform provider via two upstream sources, both reconciled automatically on a weekly cadence.
+
+```mermaid
+graph LR
+  MM[Magic Modules repo]
+  MM -->|MM generator| TPG[terraform-provider-google]
+  MM -->|MM YAML overlay| MMY["mm/*.yaml fixtures"]
+  TPG -->|"terraform providers schema -json"| SJ[schema.json fixture]
+  SJ --> CG[terradart_codegen]
+  MMY --> CG
+  CG --> WR["terradart_google wrappers"]
+```
+
+The MM YAML overlay carries metadata that the provider schema does not surface — `sensitive_fields`, `force_new`, free-form description text. `terradart_codegen` merges both inputs into typed `<resource>.schema.dart` files that compose into the `terradart_google` package.
+
+Provider tracking is pinned to GA `~> 7.0`. The `-beta` provider is not yet curated; resources that only exist in beta are documented in `tool/mm_yaml_sources.yaml` with an `upstream: null` marker awaiting future opt-in.
+
+A weekly GitHub Actions workflow (`.github/workflows/schema-bump.yml`) runs every Monday morning JST. It detects new `terraform-provider-google` v7 releases and MM YAML overlay changes, refreshes the local schema + MM fixtures, runs `terradart wrap --check`, and opens a single drift-report PR if anything needs maintainer attention. Quiet weeks produce no PR.
+
+You don't need to track this loop to use TerraDart. The reason it's documented here is so that, when a v0.x.x release adds new curated factories or shifts an existing one, you can see exactly which upstream change drove it.
+
+## AppExport: the IaC ↔ application seam
+
+`AppExport` is the typed handoff from your Stack to whatever Dart application code consumes the resources it provisions.
+
+```mermaid
+graph LR
+  AE["addExport(name, AppExport)"]
+  AE --> TFO["Terraform output block (main.tf.json)"]
+  AE --> DC[".app.dart const class"]
+  ST[Application code] --> DC
+  TF[Terraform CLI] --> TFO
+```
+
+Two export kinds cover most cases:
+
+- **`ResourceIdExport`** — for values that aren't known until apply time, like a Cloud Run service URL. Pass `emitTerraformOutput: true` and Terraform writes the resolved value into its output. Application code can fetch it via `terraform output -raw <name>`.
+- **`StringExport`** — for literals known at synth time (service name, region, project ID). These materialize as `static const` declarations on the generated `<StackName>Exports` class in your `.app.dart` file — `dart analyze` catches rename drift before you ever `terraform apply`.
+
+Calling `setAppExportsOutputPath(...)` is what triggers the `.app.dart` emission. With only `ResourceIdExport`s registered, the generated constants file would have nothing to put on the class, and `writeTo` skips writing it.
+
+A worked end-to-end example lives in the [terradart-cookbook `single-project-app` recipe](https://github.com/nozomi-koborinai/terradart-cookbook/tree/main/recipes/single-project-app), exporting `coffee_service_uri` (Terraform output), `SERVICE_NAME`, and `REGION` (Dart constants).
 
 ## Non-goals
 
 - Not a Terraform replacement — state and apply stay in Terraform.
-- Not multi-cloud yet — Google provider only.
+- Not multi-cloud yet — the Google provider only.
 - Not a constructs framework in the pre-alpha cycle.
+- Not module-block support — compose Terraform modules in HCL alongside TerraDart-generated `*.tf.json`; both feed the same `terraform apply`.
 
-See [README — Non-goals](https://github.com/nozomi-koborinai/terradart#non-goals) for the full list.
+See [README — Non-goals](https://github.com/nozomi-koborinai/terradart#non-goals) for the canonical list.
+
+## Further reading
+
+- [`terradart_core` on pub.dev](https://pub.dev/packages/terradart_core) — Stack / TfArg / AppExport API reference.
+- [`terradart_google` on pub.dev](https://pub.dev/packages/terradart_google) — the curated factory catalog.
+- [`terradart_codegen` on pub.dev](https://pub.dev/packages/terradart_codegen) — `wrap` / `codegen` CLI reference.
+- [`examples/` on GitHub](https://github.com/nozomi-koborinai/terradart/tree/main/examples) — 23 runnable quickstart Stacks.
