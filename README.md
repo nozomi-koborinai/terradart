@@ -219,7 +219,7 @@ Runnable end-to-end:  [`examples/pubsub_quickstart/`](examples/pubsub_quickstart
 
 ## terradart-mcp
 
-**Pre-alpha.** [`terradart-mcp`](packages/terradart_agent/) is an MCP server that exposes the curated factory **catalog** to coding agents (Claude Code, Cursor, Claude Desktop, Genkit Dart). Four read-only tools — `list_barrels`, `list_resources`, `get_resource_schema`, `get_quickstart` — help agents author correct Dart without guessing factory names. It does **not** run Terraform or touch GCP.
+**Pre-alpha.** [`terradart-mcp`](packages/terradart_agent/) is an MCP server that exposes the curated factory **catalog** to coding agents (Claude Code, Cursor, Claude Desktop). Four read-only tools — `list_barrels`, `list_resources`, `get_resource_schema`, `get_quickstart` — help agents author correct Dart without guessing factory names. It does **not** run Terraform or touch GCP.
 
 ```sh
 brew install nozomi-koborinai/tap/terradart-mcp

@@ -5,13 +5,13 @@ description: An MCP server that exposes TerraDart's curated Google Cloud catalog
 
 `terradart-mcp` is a [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server that exposes TerraDart's curated Google Cloud factory **catalog** to coding agents. The catalog covers **120 entries** (**119** resource factories **+ 1** data source) **across 26 service barrels** (`compute`, `pubsub`, `cloud_run`, `firestore`, and more). With the server connected, an agent can look up the exact constructor signatures, nested types, and ready-made `Stack` templates it needs to author correct TerraDart Dart code — instead of guessing factory names from memory.
 
-It is built with [genkit_mcp](https://pub.dev/packages/genkit_mcp) (Genkit's MCP server library) and ships as a single compiled binary. The same binary works with any MCP-capable client: Claude Code, Claude Desktop, Cursor, or a Genkit Dart app.
+It is built with [genkit_mcp](https://pub.dev/packages/genkit_mcp) (Genkit's MCP server library) and ships as a single compiled binary. Coding agents connect via Claude Code, Claude Desktop, or Cursor; a Genkit Dart app can host the server as an MCP client too ([Connecting clients](/docs/agent/clients/#genkit-dart)).
 
 ## How it fits together
 
 ```mermaid
 flowchart TB
-  agent["coding agent<br/>(Claude Code / Cursor / Claude Desktop / Genkit Dart)"]
+  agent["coding agent<br/>(Claude Code / Cursor / Claude Desktop)"]
   mcp["terradart-mcp<br/>list_barrels · list_resources<br/>get_resource_schema · get_quickstart"]
   catalog["static catalog in terradart_google<br/>120 entries · 26 service barrels"]
   agent -->|stdio JSON-RPC MCP| mcp
