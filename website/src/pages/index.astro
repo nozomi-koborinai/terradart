@@ -12,9 +12,72 @@ import Footer from "../components/Footer.astro";
   <Header />
   <main>
     <Hero />
-    <Mission />
-    <Comparison />
-    <Pipeline />
+    <Mission
+      eyebrow="Mission"
+      heading="Bring the last non-Dart layer into Dart."
+      cards={[
+        {
+          title: "UI and server are already Dart",
+          body: "Flutter handles the UI. Cloud Functions and Cloud Run services run your Dart. For teams already centered on Dart, infrastructure is often the one layer still outside your repo&nbsp;&mdash; carried in HCL and manual console work, separate from the language your app, tests, and refactors already share.",
+        },
+        {
+          title: "Terraform&rsquo;s surface, absorbed",
+          body: "TerraDart is not a parallel runtime. It is Terraform&rsquo;s authoring model expressed as Dart factories and sealed types, synthesized to standard JSON for the provider you already use.",
+        },
+        {
+          title: "Discipline by design",
+          body: "Fixed-value fields become enums. Exactly-one-of blocks become sealed classes. Plain <code>Stack</code> subclasses&nbsp;&mdash; loops, config, and refactors work the way Dart already does.",
+        },
+      ]}
+    />
+    <p style="text-align: center; margin-top: 1.5rem;">
+      <a href="/docs/why-terradart/" class="link-mark">Read the design rationale →</a>
+    </p>
+    <Comparison
+      eyebrow="Compare"
+      heading="Where TerraDart sits"
+      columns={["TerraDart", "HCL", "CDKTF", "Pulumi"]}
+      rows={[
+        {
+          label: "Dart authoring",
+          cells: ["Yes", "No", "No", "No"],
+        },
+        {
+          label: "Drop-in for terraform apply",
+          cells: ["Yes", "Yes", "Yes", "Different model"],
+        },
+        {
+          label: "Typed GCP resource API",
+          cells: ["Yes", "No", "No", "No"],
+        },
+        {
+          label: "Project status",
+          cells: ["Pre-alpha", "Mature", "Archived 2025", "Active"],
+        },
+      ]}
+    />
+    <p style="text-align: center; margin-top: 1.5rem;">
+      <a href="/docs/why-terradart/#how-it-fits-next-to-other-iac" class="link-mark">See full comparison →</a>
+    </p>
+    <Pipeline
+      eyebrow="Pipeline"
+      heading="Dart down into infrastructure"
+      steps={[
+        {
+          title: "Author in Dart",
+          body: "Subclass Stack with curated google_* factories from terradart_google.",
+        },
+        {
+          title: "Synthesize",
+          body: "Stack.writeTo writes *.tf.json — no custom apply runtime.",
+        },
+        {
+          title: "Apply with Terraform",
+          body: "terraform plan and apply unchanged; state stays where it is.",
+        },
+      ]}
+      footnote={`Expanded guide: <a href="/docs/architecture/" class="link-mark">/docs/architecture</a> · <a href="https://github.com/nozomi-koborinai/terradart/blob/main/README.md" class="link-mark">README</a>`}
+    />
   </main>
   <Footer />
 </Layout>
