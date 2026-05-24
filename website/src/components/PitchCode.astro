@@ -1,0 +1,135 @@
+---
+import { codeToHtml } from "shiki";
+import githubLight from "shiki/themes/github-light.mjs";
+
+/** Site paper token — keep in sync with global.css @theme --color-paper */
+const paperBg = "#f6f3ec";
+
+const terradartPaper = {
+  ...githubLight,
+  name: "terradart-paper",
+  colors: {
+    ...githubLight.colors,
+    "editor.background": paperBg,
+  },
+};
+
+/** LP pitch snippet — Cloud SQL + Cloud Run with cloud-sql-proxy sidecar (illustrative). */
+const code = `// infra/lib/app_infra.dart
+// A Stack is one Terraform root module of GCP resources, written in Dart.
+import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/cloud_run.dart';
+import 'package:terradart_google/cloud_sql.dart';
+import 'package:terradart_google/iam.dart';
+import 'package:terradart_google/provider.dart';
+
+final class AppInfraStack extends Stack {
+  AppInfraStack({required String projectId})
+      : super(providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+        ]) {
+    add(GoogleSqlDatabaseInstance(
+      localName: 'app_sql',
+      name: TfArg.literal('app-sql'),
+      databaseVersion: TfArg.literal(DatabaseVersion.postgres15),
+      region: TfArg.literal('asia-northeast1'),
+      settings: SqlDatabaseInstanceSettings(
+        tier: TfArg.literal('db-f1-micro'),
+      ),
+    ));
+
+    final runSa = add(GoogleServiceAccount(
+      localName: 'run_sa',
+      accountId: TfArg.literal('app-run-sa'),
+    ));
+    add(GoogleProjectIamMember(
+      localName: 'run_sa_sql_client',
+      project: TfArg.literal(projectId),
+      role: TfArg.literal('roles/cloudsql.client'),
+      member: TfArg.ref(runSa.iamMember),
+    ));
+
+    add(GoogleCloudRunV2Service(
+      localName: 'app',
+      name: TfArg.literal('app'),
+      location: TfArg.literal('asia-northeast1'),
+      template: CloudRunV2ServiceTemplate(
+        serviceAccount: TfArg.ref(runSa.email),
+        containers: [
+          CloudRunV2ServiceServiceContainer(
+            name: TfArg.literal('app'),
+            image: TfArg.literal('gcr.io/cloudrun/hello'),
+            ports: CloudRunV2ServiceContainerPort(
+              containerPort: TfArg.literal(8080),
+            ),
+            env: [
+              CloudRunV2ServiceEnvVar(
+                name: TfArg.literal('DATABASE_URL'),
+                source: CloudRunV2ServiceEnvVarFromLiteral(
+                  TfArg.literal(
+                    'postgresql://app-client@\${projectId}.iam@localhost:5432/app',
+                  ),
+                ),
+              ),
+            ],
+          ),
+          CloudRunV2ServiceServiceContainer(
+            name: TfArg.literal('cloud-sql-proxy'),
+            image: TfArg.literal(
+              'gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.18.1',
+            ),
+            args: TfArg.literal([
+              '--port=5432',
+              '--auto-iam-authn',
+              '\${projectId}:asia-northeast1:app-sql',
+            ]),
+          ),
+        ],
+      ),
+    ));
+  }
+}`;
+
+const highlightedHtml = await codeToHtml(code, {
+  lang: "dart",
+  theme: terradartPaper,
+});
+---
+
+<section class="section rule-top pitch-code-section">
+  <div class="container-edit section-inner">
+    <p class="section-label">Example</p>
+    <h2 class="display-section">GCP resources in Dart</h2>
+    <p class="pitch-code-lead">
+      Cloud SQL, IAM, and a multi-container Cloud Run service with a
+      <code>cloud-sql-proxy</code> sidecar&nbsp;&mdash; the kind of infrastructure you would
+      otherwise maintain in HCL or the console.
+    </p>
+    <div class="pitch-code-figure">
+      <div class="terra-stratum" aria-hidden="true"></div>
+      <div class="pitch-code-wrap" set:html={highlightedHtml} />
+    </div>
+    <p class="pitch-code-meta">
+      <code>terradart_google</code> ships a <strong>curated</strong> subset of the
+      HashiCorp <code>google</code> provider&nbsp;&mdash; not every resource type yet. Factories
+      expand release by release; see
+      <a href="/docs/status/" class="link-mark">status</a> and
+      <a href="https://pub.dev/packages/terradart_google" class="link-mark">pub.dev</a>.
+      More complete stacks and dogfood patterns live in the
+      <a
+        href="https://github.com/nozomi-koborinai/terradart-cookbook"
+        class="link-mark">cookbook</a
+      >
+      and
+      <a
+        href="https://github.com/nozomi-koborinai/terradart/tree/main/examples"
+        class="link-mark">examples</a
+      >
+      on GitHub (both growing).
+    </p>
+    <p class="section-footnote">
+      A runnable quickstart in
+      <code class="font-mono text-[0.85em]">examples/</code> is on the way.
+    </p>
+  </div>
+</section>

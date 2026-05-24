@@ -1,6 +1,6 @@
 ---
 title: Architecture
-description: How TerraDart Stacks synthesize to Terraform JSON, how upstream provider changes propagate, and how the IaC/application seam works.
+description: How TerraDart Stacks generate Terraform JSON, how synth() and writeTo() fit together, and how provider coverage and AppExport work.
 ---
 
 import Pipeline from "../../../components/Pipeline.astro";
@@ -13,24 +13,30 @@ TerraDart is a thin authoring layer that produces standard Terraform JSON. The D
   steps={[
     {
       title: "Author",
-      body: "Write final class XxxStack extends Stack using curated google_* factories from terradart_google.",
+      body: "Write <code>final class XxxStack extends Stack</code> using curated <code>google_*</code> factories from terradart_google.",
     },
     {
-      title: "Synthesize",
-      body: "Call stack.writeTo('tf-out') to write *.tf.json, or stack.synth() to keep the SynthResult in memory.",
+      title: "Generate Terraform JSON",
+      body: "Call <code>stack.writeTo('tf-out')</code> to emit <code>*.tf.json</code>, or <code>stack.synth()</code> first if you need the in-memory <code>SynthResult</code>.",
     },
     {
       title: "Apply",
-      body: "Run terraform plan and terraform apply against your existing state backend.",
+      body: "Run <code>terraform plan</code> and <code>terraform apply</code> against your existing state backend.",
     },
     {
       title: "Hand off (optional)",
-      body: "Surface AppExport values as typed Dart constants and Terraform outputs for downstream apps.",
+      body: "Surface <code>AppExport</code> values as typed Dart constants and Terraform outputs for downstream apps.",
     },
   ]}
 />
 
-## Stack lifecycle (synth internals)
+## What is synth?
+
+On the [landing page](/), we say you **generate** `*.tf.json` — plain language for the outcome.
+
+In the API, **synth** is the in-memory step: your `Stack` is walked and assembled into the Terraform JSON tree. Code: `stack.synth()` → `SynthResult`. Writing files is the next step: `stack.writeTo(outDir)`.
+
+## Stack lifecycle (`synth()` internals)
 
 ```mermaid
 graph LR
@@ -48,12 +54,14 @@ graph LR
 `Stack`, `Resource`, and `Data` are `abstract base class`. Your subclasses must declare a class modifier:
 
 ```dart
-final class OrdersStack extends Stack { /* ... */ }
+final class AppInfraStack extends Stack { /* ... */ }
 ```
 
 `base` and `sealed` are also valid; what is rejected is plain `class` (or `implements Stack`, which would bypass the base-class state that synth depends on).
 
 ## Provider integration
+
+[`terradart_google`](https://pub.dev/packages/terradart_google) ships a **curated** subset of the HashiCorp [`google`](https://registry.terraform.io/providers/hashicorp/google/latest) provider — typed factories for common services, expanded release by release. It does not wrap every resource block in the upstream provider yet. See [status](/docs/status/) and the [package README](https://pub.dev/packages/terradart_google) for what is available today; [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and the [cookbook](https://github.com/nozomi-koborinai/terradart-cookbook) add fuller stacks over time.
 
 TerraDart depends on the Google Terraform provider via two upstream sources, both reconciled automatically on a weekly cadence.
 
@@ -78,7 +86,7 @@ You don't need to track this loop to use TerraDart. The reason it's documented h
 
 ## AppExport: the IaC ↔ application seam
 
-`AppExport` is the typed handoff from your Stack to whatever Dart application code consumes the resources it provisions.
+`AppExport` is the typed handoff from your Stack to whatever Dart application code consumes the resources it provisions (for example Cloud Run functions handlers).
 
 ```mermaid
 graph LR
@@ -112,4 +120,4 @@ See [README — Non-goals](https://github.com/nozomi-koborinai/terradart#non-goa
 - [`terradart_core` on pub.dev](https://pub.dev/packages/terradart_core) — Stack / TfArg / AppExport API reference.
 - [`terradart_google` on pub.dev](https://pub.dev/packages/terradart_google) — the curated factory catalog.
 - [`terradart_codegen` on pub.dev](https://pub.dev/packages/terradart_codegen) — `wrap` / `codegen` CLI reference.
-- [`examples/` on GitHub](https://github.com/nozomi-koborinai/terradart/tree/main/examples) — 23 runnable quickstart Stacks.
+- [`examples/` on GitHub](https://github.com/nozomi-koborinai/terradart/tree/main/examples) — runnable quickstart Stacks.

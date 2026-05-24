@@ -1,66 +1,58 @@
 ---
 title: Why TerraDart
-description: TerraDart brings the last non-Dart layer of a Dart-centric stack into Dart, by absorbing Terraform's authoring model into typed Dart factories.
+description: Why Dart teams adopt TerraDart — the infra/app boundary, Terraform-compatible generation, curated Google provider factories, and how it compares to HCL, CDKTF, and Pulumi.
 ---
 
-import Mission from "../../../components/Mission.astro";
-import Comparison from "../../../components/Comparison.astro";
+If you read the [landing page](/) first: TerraDart keeps **Terraform as the execution layer** while you **author GCP infrastructure in Dart**. This page goes deeper on motivation, the type system, and where TerraDart sits next to other IaC tools.
 
-If your team is building with Flutter on the client and Dart on the server (Cloud Functions, Cloud Run), there is usually one layer left where Dart's tooling doesn't reach: the infrastructure definitions. TerraDart closes that gap without asking you to give up Terraform itself.
-
-<Mission
-  eyebrow="Why TerraDart"
-  heading="Bring the last non-Dart layer into Dart."
-  cards={[
-    {
-      title: "UI and server are already Dart",
-      body: "Flutter handles the UI. Cloud Functions and Cloud Run services run your Dart. For teams already centered on Dart, infrastructure is often the one layer still outside your repo&nbsp;&mdash; carried in HCL and manual console work, separate from the language your app, tests, and refactors already share.",
-    },
-    {
-      title: "Terraform&rsquo;s surface, absorbed",
-      body: "TerraDart is not a parallel runtime. It is Terraform&rsquo;s authoring model expressed as Dart factories and sealed types, synthesized to standard JSON for the provider you already use.",
-    },
-    {
-      title: "Discipline by design",
-      body: "Fixed-value fields become enums. Exactly-one-of blocks become sealed classes. Plain <code>Stack</code> subclasses&nbsp;&mdash; loops, config, and refactors work the way Dart already does.",
-    },
-  ]}
-/>
+If your team ships Flutter on the client and Dart on the server (**Cloud Run**, **Cloud Run functions**), there is usually one layer left where Dart's tooling does not reach: **infrastructure definitions** — often maintained in HCL, a Terraform-compatible pipeline, or the GCP console. TerraDart closes that gap without asking you to give up Terraform itself.
 
 ## The last non-Dart layer
 
 | Layer | Already Dart? |
 | --- | --- |
 | Mobile UI (Flutter) | ✅ |
-| Backend handlers (Cloud Functions / Cloud Run) | ✅ |
+| Backend handlers (Cloud Run / Cloud Run functions) | ✅ |
 | Application business logic | ✅ |
-| Infrastructure definitions | ❌ — HCL + console clicks |
+| Infrastructure definitions | ❌ — HCL, Terraform-compatible tooling, or console |
 
-When the UI, the server, and the shared business logic all live in Dart, infrastructure is the last layer your refactor doesn't touch. A renamed Pub/Sub topic doesn't propagate to its subscribers via `dart fix`. A typo in a service name isn't a compile error — it's a `terraform apply` error, at best. IAM bindings drift from the code that depends on them, because nothing ties them together at the type system level.
+That bottom row is what people mean by the **last non-Dart layer**: everything above it shares `dart analyze`, refactors, and IDE navigation; infrastructure often does not.
 
-TerraDart pulls infrastructure into the same authoring surface as the rest of your code. `dart analyze` catches resource-name typos. Refactoring a Stack class is the same operation as refactoring any other Dart class. The same `final` / `sealed` discipline that already protects your domain model now protects your network topology.
+### A boundary held together by string literals
 
-## Terraform's surface, absorbed (not a parallel runtime)
+Topic names typed in HCL or the console and again in your Cloud Run functions handlers. Renames do not reach subscribers via `dart fix`. IAM member strings drift with no compiler visibility. Infra values flowing into app code are often the place Dart's type system never sees.
+
+TerraDart pulls infrastructure into the same authoring surface as the rest of your code. `dart analyze` catches resource-name typos. Refactoring a Stack class is the same operation as refactoring any other Dart class. The same `final` / `sealed` discipline that already protects your domain model can protect your network topology.
+
+## Terraform stays the execution layer
 
 TerraDart does not run `terraform apply` for you. It does not own your state file. It does not introduce a new provider or a new lock format.
 
-What it does is take Terraform's authoring model — provider blocks, resource blocks, references, lifecycle hooks — and express it as Dart code that synthesizes to the same `*.tf.json` Terraform would have accepted from HCL. `terraform plan`, `terraform apply`, and your remote state backend stay exactly where they are.
+What it does is take Terraform's authoring model — provider blocks, resource blocks, references, lifecycle hooks — and express it as Dart code that **generates** the same `*.tf.json` Terraform would have accepted from HCL. `terraform plan`, `terraform apply`, and your remote state backend stay exactly where they are.
+
+:::note[API name: synth]
+The in-memory step that builds the JSON tree is called **`synth()`** in code (`stack.synth()` → `SynthResult`, then `writeTo(outDir)`). The landing page uses "generate" for readability. See [Architecture — What is synth?](/docs/architecture/#what-is-synth).
+:::
 
 This is intentionally narrower than Pulumi, which has its own runtime, its own state model, and its own resource graph. With TerraDart the boundary is sharp: Dart is the **authoring** layer, Terraform is the **execution** layer. If you migrate off TerraDart tomorrow, your existing state and your existing modules are unchanged.
 
-CDKTF used to occupy this same "code-first authoring of Terraform" niche, but only for TypeScript / Python / Java / Go — never Dart. CDKTF was archived in December 2025, leaving a Dart-shaped hole that TerraDart now fills.
+CDKTF used to occupy this same "code-first authoring of Terraform" niche, but only for TypeScript / Python / Java / Go — never Dart. CDKTF was [archived in December 2025](https://github.com/hashicorp/terraform-cdk), leaving a Dart-shaped hole that TerraDart now fills.
 
-## Discipline by design (Dart's type system)
+## Dart types where HCL cannot help
 
-Three concrete patterns where the Dart type system catches what HCL can't:
+Three concrete patterns where the Dart type system catches what HCL cannot:
 
-**Enums for fixed-value fields.** Terraform schemas often have fields that accept one of a small, fixed set of strings — `INGRESS_TRAFFIC_ALL` vs `INGRESS_TRAFFIC_INTERNAL_ONLY`, for example. TerraDart emits these as Dart enums:
+### Enums for fixed-value fields
+
+Terraform schemas often have fields that accept one of a small, fixed set of strings — `INGRESS_TRAFFIC_ALL` vs `INGRESS_TRAFFIC_INTERNAL_ONLY`, for example. TerraDart emits these as Dart enums:
 
 ```dart
 ingress: TfArg.literal(Ingress.all)  // typo → compile error
 ```
 
-**Sealed classes for exactly-one-of nested blocks.** Some Terraform blocks accept exactly one variant from a set — for instance, a BigQuery dataset's `access` block has 8 mutually exclusive variants (`user_by_email`, `group_by_email`, `special_group`, `domain`, `iam_member`, `view`, `dataset`, `routine`). TerraDart emits these as a sealed class hierarchy:
+### Sealed classes for exactly-one-of nested blocks
+
+Some Terraform blocks accept exactly one variant from a set — for instance, a BigQuery dataset's `access` block has 8 mutually exclusive variants (`user_by_email`, `group_by_email`, `special_group`, `domain`, `iam_member`, `view`, `dataset`, `routine`). TerraDart emits these as a sealed class hierarchy:
 
 ```dart
 access: [
@@ -71,47 +63,40 @@ access: [
 
 The compiler enforces that exactly one variant is constructed per entry.
 
-**Final classes for Stack subclasses.** `Stack`, `Resource`, and `Data` are declared `abstract base class` since v0.11.0. Your own subclasses must use a class modifier:
+### Final classes for Stack subclasses
+
+`Stack`, `Resource`, and `Data` are declared `abstract base class` since v0.11.0. Your own subclasses must use a class modifier:
 
 ```dart
-final class OrdersStack extends Stack { /* ... */ }
+final class AppInfraStack extends Stack { /* ... */ }
 ```
 
-This prevents two foot-guns: forgetting to extend (using `implements` would skip the base-class state that synth needs), and accidentally subclassing an internal class that wasn't meant to be extended further. Both used to be runtime hazards in pre-v0.11 versions; they're now compile errors.
+This prevents two foot-guns: forgetting to extend (using `implements` would skip the base-class state that synth needs), and accidentally subclassing an internal class that was not meant to be extended further. Both used to be runtime hazards in pre-v0.11 versions; they are now compile errors.
 
 ## How it fits next to other IaC
 
-<Comparison
-  eyebrow="Compare"
-  heading="Where TerraDart sits"
-  columns={["TerraDart", "HCL", "CDKTF", "Pulumi"]}
-  rows={[
-    {
-      label: "Dart authoring",
-      cells: ["Yes", "No", "No", "No"],
-    },
-    {
-      label: "Drop-in for terraform apply",
-      cells: ["Yes", "Yes", "Yes", "Different model"],
-    },
-    {
-      label: "Typed GCP resource API",
-      cells: ["Yes", "No", "No", "No"],
-    },
-    {
-      label: "Project status",
-      cells: ["Pre-alpha", "Mature", "Archived 2025", "Active"],
-    },
-  ]}
-/>
+TerraDart fits teams already centered on **Dart**, already running **Terraform** (or a compatible pipeline) or managing GCP in the **console**, where the seam between infra and app code hurts.
 
-**HCL** is the native, mature option. If your team is comfortable maintaining HCL alongside your Dart application code, there's no urgency to switch. TerraDart's value proposition only matters once the cost of context-switching between Dart and HCL — and the absence of refactor / typecheck across that boundary — starts to bite.
+| | TerraDart | HCL | CDKTF | Pulumi |
+| --- | --- | --- | --- | --- |
+| Dart authoring | Yes | No | No | No |
+| Drop-in for `terraform apply` | Yes | Yes | Yes | Different model |
+| Curated Dart factories for GCP | Yes | No | No | No |
+| Project status | Pre-alpha | Mature | Archived 2025 | Active |
 
-**CDKTF** would have been the obvious model to follow, except it was archived by HashiCorp in December 2025 and never targeted Dart in any case. TerraDart is the Dart-shaped slot CDKTF didn't reach.
+HCL has provider schema types; CDKTF bindings are typed in TypeScript and other languages. TerraDart's difference is **Dart-native authoring** without replacing your Terraform execution pipeline.
 
-**Pulumi** is a different model entirely: its own runtime, its own state, its own resource graph. If you want a code-first IaC platform and you don't already have Terraform investment, Pulumi is a strong choice. TerraDart is for teams who already use Terraform and don't want to give that up.
+**HCL** is the native, mature option. If your team is comfortable maintaining HCL alongside your Dart application code, there is no urgency to switch. TerraDart's value proposition only matters once the cost of context-switching between Dart and HCL — and the absence of refactor / typecheck across that boundary — starts to bite.
 
-**TerraDart** makes sense when you're already centered on Dart (Flutter + Functions / Cloud Run), already using Terraform, and the gap between those two — IaC stuck in HCL — is the part that hurts.
+**CDKTF** would have been the obvious model to follow, except it was archived by HashiCorp in December 2025 and never targeted Dart in any case. TerraDart is the Dart-shaped slot CDKTF did not reach.
+
+**Pulumi** is a different model entirely: its own runtime, its own state, and its own resource graph. If you want a code-first IaC platform and you do not already have Terraform investment, Pulumi is a strong choice. TerraDart is for teams who already use Terraform and do not want to give that up.
+
+**TerraDart** makes sense when you are already centered on Dart (Flutter + Cloud Run / Cloud Run functions), already using Terraform (or heading there), and the gap between those two — IaC stuck outside your Dart repo — is the part that hurts.
+
+## Curated provider coverage
+
+[`terradart_google`](https://pub.dev/packages/terradart_google) does not wrap every resource in the upstream HashiCorp `google` provider. It ships **typed factories for a growing, battle-tested subset** — see [status](/docs/status/) and [Architecture — Provider integration](/docs/architecture/#provider-integration). Runnable stacks live in [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and the [cookbook](https://github.com/nozomi-koborinai/terradart-cookbook) (both expanding).
 
 ## Non-goals
 
@@ -120,4 +105,8 @@ This prevents two foot-guns: forgetting to extend (using `implements` would skip
 - Not a constructs framework in the pre-alpha cycle.
 - Not module-block support — compose Terraform modules in HCL alongside TerraDart-generated `*.tf.json`; both feed the same `terraform apply`.
 
-Ready to see how it fits together? Read the [Architecture](/docs/architecture/) page for the synth pipeline and provider chain.
+## Next steps
+
+- [Architecture](/docs/architecture/) — `synth()` / `writeTo()`, provider integration, AppExport
+- [Getting Started](/docs/getting-started/) — install and first `*.tf.json` output (in progress)
+- [Status](/docs/status/) — pre-alpha expectations

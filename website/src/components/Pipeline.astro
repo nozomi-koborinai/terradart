@@ -26,7 +26,7 @@ const { eyebrow = "Pipeline", heading, steps, footnote } = Astro.props;
             <span class="pipeline-index">{i + 1}</span>
             <div class="pipeline-body">
               <h3 class="pipeline-title">{step.title}</h3>
-              <p>{step.body}</p>
+              <p set:html={step.body} />
             </div>
           </li>
         ))
