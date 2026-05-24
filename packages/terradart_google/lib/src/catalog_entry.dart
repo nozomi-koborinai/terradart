@@ -1,11 +1,22 @@
 /// Whether a catalog entry is a managed resource or a read-only data source.
-enum CatalogKind { resource, dataSource }
+enum CatalogKind {
+  /// A managed Terraform resource (`resource.<type>.<name>`), emitted as a
+  /// `final class … extends Resource` wrapper.
+  resource,
+
+  /// A read-only Terraform data source (`data.<type>.<name>`), emitted as a
+  /// `final class … extends Data` wrapper.
+  dataSource,
+}
 
 /// Static metadata describing one curated terradart_google factory.
 ///
-/// Generated into `_catalog.g.dart` by `terradart wrap`; consumed by
-/// terradart_agent's MCP server. Hand-editing the generated list is pointless —
-/// regenerate via `terradart wrap`.
+/// This type is **hand-written** (it is part of the public catalog API
+/// consumed by terradart_agent's MCP server). Only the `terradartCatalog`
+/// *list* of [CatalogEntry] values lives in the generated `_catalog.g.dart`,
+/// which `terradart wrap` regenerates — one entry per curated resource and
+/// data source. Edit this type by hand; never hand-edit the generated list
+/// (regenerate via `terradart wrap`).
 final class CatalogEntry {
   const CatalogEntry({
     required this.tfType,
