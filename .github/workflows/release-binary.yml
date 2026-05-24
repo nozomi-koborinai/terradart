@@ -13,11 +13,13 @@ jobs:
       matrix:
         include:
           - os: macos-14
-            target: macos-arm64
+            asset: terradart-mcp-darwin-arm64
           - os: macos-13
-            target: macos-x86_64
+            asset: terradart-mcp-darwin-amd64
           - os: ubuntu-22.04
-            target: linux-x86_64
+            asset: terradart-mcp-linux-amd64
+          - os: windows-latest
+            asset: terradart-mcp-windows-amd64.exe
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6
@@ -27,18 +29,12 @@ jobs:
       - run: dart pub get
       - name: Compile binary
         working-directory: packages/terradart_agent
-        run: dart compile exe bin/terradart_mcp.dart -o terradart-mcp
+        run: dart compile exe bin/terradart_mcp.dart -o ${{ matrix.asset }}
       - name: Smoke test
         working-directory: packages/terradart_agent
-        run: ./terradart-mcp --version
-      - name: Package tarball
-        working-directory: packages/terradart_agent
-        run: |
-          tar -czf terradart-mcp-${{ matrix.target }}.tar.gz terradart-mcp
-          shasum -a 256 terradart-mcp-${{ matrix.target }}.tar.gz | tee terradart-mcp-${{ matrix.target }}.sha256
+        shell: bash
+        run: ./${{ matrix.asset }} --version
       - name: Upload to release
         uses: softprops/action-gh-release@v2
         with:
-          files: |
-            packages/terradart_agent/terradart-mcp-${{ matrix.target }}.tar.gz
-            packages/terradart_agent/terradart-mcp-${{ matrix.target }}.sha256
+          files: packages/terradart_agent/${{ matrix.asset }}
