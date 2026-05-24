@@ -33,7 +33,8 @@ import '../ir/resource_def.dart';
 ///   exposed via TfRef getter, not a constructor arg).
 /// - Nested blocks are excluded if: `name == 'timeouts'` (Terraform-internal
 ///   SDK metadata, not a user-facing input).
-List<String> orderedConstructorParams(ResourceDef def, List<String>? paramOrder) {
+List<String> orderedConstructorParams(
+    ResourceDef def, List<String>? paramOrder) {
   // Defensive copy: callers (e.g. the catalog emitter) must not be able to
   // mutate the override's stored `paramOrder` list through the return value.
   if (paramOrder != null) return List<String>.of(paramOrder);

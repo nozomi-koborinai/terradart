@@ -49,7 +49,9 @@ void main() {
       expect(result, isEmpty);
     });
 
-    test('attributes appear before nested blocks, both in IR (alphabetical) order', () {
+    test(
+        'attributes appear before nested blocks, both in IR (alphabetical) order',
+        () {
       // IR order from JSON parser is alphabetical; we mimic that by listing
       // attrs in alphabetical order here. The helper preserves that order.
       final def = makeResource(
@@ -78,7 +80,9 @@ void main() {
       expect(result, ['alpha', 'beta', 'config']);
     });
 
-    test('computed-only attributes are excluded (required/optional flag present = included)', () {
+    test(
+        'computed-only attributes are excluded (required/optional flag present = included)',
+        () {
       final def = makeResource(
         attrs: [
           // computed AND optional → eligible (not computed-only)
@@ -107,7 +111,8 @@ void main() {
       expect(result, isNot(contains('terraform_labels')));
     });
 
-    test('id attribute is always excluded by name (not just computed-only)', () {
+    test('id attribute is always excluded by name (not just computed-only)',
+        () {
       // `id` is given `optional + computed` constraints so it would NOT be
       // caught by the computed-only branch — this isolates the by-name
       // `isIdAttribute` exclusion. A plain `Constraints(computed: true)` would
