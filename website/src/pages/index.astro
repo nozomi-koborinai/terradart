@@ -12,7 +12,24 @@ import Footer from "../components/Footer.astro";
   <Header />
   <main>
     <Hero />
-    <Mission />
+    <Mission
+      eyebrow="Mission"
+      heading="Bring the last non-Dart layer into Dart."
+      cards={[
+        {
+          title: "UI and server are already Dart",
+          body: "Flutter handles the UI. Cloud Functions and Cloud Run services run your Dart. For teams already centered on Dart, infrastructure is often the one layer still outside your repo&nbsp;&mdash; carried in HCL and manual console work, separate from the language your app, tests, and refactors already share.",
+        },
+        {
+          title: "Terraform&rsquo;s surface, absorbed",
+          body: "TerraDart is not a parallel runtime. It is Terraform&rsquo;s authoring model expressed as Dart factories and sealed types, synthesized to standard JSON for the provider you already use.",
+        },
+        {
+          title: "Discipline by design",
+          body: "Fixed-value fields become enums. Exactly-one-of blocks become sealed classes. Plain <code>Stack</code> subclasses&nbsp;&mdash; loops, config, and refactors work the way Dart already does.",
+        },
+      ]}
+    />
     <Comparison />
     <Pipeline />
   </main>
