@@ -1,6 +1,7 @@
 import '../ir/attribute.dart';
 import '../ir/nested_block.dart';
 import '../ir/resource_def.dart';
+import 'constructor_params.dart';
 import 'dart_type_writer.dart';
 import 'naming.dart';
 import 'sensitive_set_emitter.dart';
@@ -150,7 +151,7 @@ class WrapperEmitter {
     // paramOrder are silently skipped — this is how virtual-fan-out
     // suppresses the schema's individual `pubsub_target` /
     // `http_target` / `app_engine_http_target` blocks.
-    final paramOrder = override?.paramOrder ?? _naturalOrderNames(def);
+    final paramOrder = orderedConstructorParams(def, override?.paramOrder);
     final argMapOrder = override?.argMapOrder ?? paramOrder;
     final customSlots = override?.customSlots ?? const <String, CustomSlot>{};
     final dartTypeOverrides =
@@ -247,23 +248,6 @@ class WrapperEmitter {
   // override (or IR default) specifies.
   // ---------------------------------------------------------------------
 
-  /// Returns input slot names in IR-natural order: attributes first
-  /// (alphabetical, since Terraform emits the JSON `attributes` map
-  /// alphabetically and the parser preserves that), then nested blocks
-  /// (also alphabetical). Filtering rules match [_paramsByName].
-  List<String> _naturalOrderNames(ResourceDef def) {
-    final out = <String>[];
-    for (final attr in def.root.attributes) {
-      if (_skipAttribute(attr)) continue;
-      out.add(attr.name);
-    }
-    for (final nested in def.root.nestedBlocks) {
-      if (_skipNestedBlock(nested)) continue;
-      out.add(nested.name);
-    }
-    return out;
-  }
-
   /// Builds a snake-case-name → constructor-param-snippet map.
   ///
   /// `requiredOverrides` lists slot names the override wants to force
@@ -278,7 +262,7 @@ class WrapperEmitter {
   ) {
     final out = <String, String>{};
     for (final attr in def.root.attributes) {
-      if (_skipAttribute(attr)) continue;
+      if (skipAttribute(attr)) continue;
       final isRequired =
           attr.constraints.required || requiredOverrides.contains(attr.name);
       out[attr.name] = _attributeParam(
@@ -289,7 +273,7 @@ class WrapperEmitter {
       );
     }
     for (final nested in def.root.nestedBlocks) {
-      if (_skipNestedBlock(nested)) continue;
+      if (skipNestedBlock(nested)) continue;
       final isRequired = nested.constraints.required ||
           requiredOverrides.contains(nested.name);
       out[nested.name] = _nestedBlockParam(nested, isRequired: isRequired);
@@ -305,38 +289,18 @@ class WrapperEmitter {
   ) {
     final out = <String, String>{};
     for (final attr in def.root.attributes) {
-      if (_skipAttribute(attr)) continue;
+      if (skipAttribute(attr)) continue;
       final isRequired =
           attr.constraints.required || requiredOverrides.contains(attr.name);
       out[attr.name] = _argMapEntry(attr.name, isRequired);
     }
     for (final nested in def.root.nestedBlocks) {
-      if (_skipNestedBlock(nested)) continue;
+      if (skipNestedBlock(nested)) continue;
       final isRequired = nested.constraints.required ||
           requiredOverrides.contains(nested.name);
       out[nested.name] = _argMapEntry(nested.name, isRequired);
     }
     return out;
-  }
-
-  // ---------------------------------------------------------------------
-  // Filtering. These rules apply uniformly to constructor params, argMap
-  // entries, and (transitively) the IR-natural ordering.
-  // ---------------------------------------------------------------------
-
-  /// Skips computed-only attributes (no input role) and the synthetic `id`
-  /// identity field (exposed via a TfRef getter, not as a constructor arg).
-  bool _skipAttribute(Attribute attr) {
-    final c = attr.constraints;
-    final isComputedOnly = c.computed && !c.optional && !c.required;
-    final isIdAttribute = attr.name == 'id';
-    return isComputedOnly || isIdAttribute;
-  }
-
-  /// Skips the Terraform-internal `timeouts` block, which is metadata for
-  /// the SDK rather than a user-facing input.
-  bool _skipNestedBlock(NestedBlockDef nested) {
-    return nested.name == 'timeouts';
   }
 
   // ---------------------------------------------------------------------
