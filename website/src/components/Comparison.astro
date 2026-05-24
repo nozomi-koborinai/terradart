@@ -9,15 +9,20 @@ interface Props {
   heading: string;
   columns: string[]; // header column titles (across the top, excluding the first row-label column)
   rows: ComparisonRow[];
+  intro?: string; // raw HTML
+  footnote?: string; // raw HTML
 }
 
-const { eyebrow = "Compare", heading, columns, rows } = Astro.props;
+const { eyebrow = "Compare", heading, columns, rows, intro, footnote } =
+  Astro.props;
 ---
 
 <section class="section rule-top">
   <div class="container-edit section-inner">
     <p class="section-label">{eyebrow}</p>
     <h2 class="display-section">{heading}</h2>
+
+    {intro && <p class="compare-intro" set:html={intro} />}
 
     <div class="compare-wrap">
       <table class="compare-table">
@@ -39,5 +44,7 @@ const { eyebrow = "Compare", heading, columns, rows } = Astro.props;
         </tbody>
       </table>
     </div>
+
+    {footnote && <p class="compare-footnote" set:html={footnote} />}
   </div>
 </section>
