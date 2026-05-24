@@ -53,18 +53,25 @@ Future<GenkitMcpServer> buildTerradartMcpServer() async {
         ),
       },
     ),
-    fn: (input, _) async => listResources(
-      terradartCatalog,
-      barrel: input['barrel'] as String?,
-    ).map((r) => r.toJson()).toList(),
+    // Wrapped in an object: MCP requires `structuredContent` to be a JSON
+    // object (record), not a bare array, or strict clients reject the result.
+    fn: (input, _) async => <String, Object?>{
+      'resources': listResources(
+        terradartCatalog,
+        barrel: input['barrel'] as String?,
+      ).map((r) => r.toJson()).toList(),
+    },
   );
 
   ai.defineTool<Map<String, dynamic>, Object>(
     name: 'list_barrels',
     description: 'List per-service barrels with resource counts.',
     inputSchema: _objectSchema(),
-    fn: (input, _) async =>
-        listBarrels(terradartCatalog).map((b) => b.toJson()).toList(),
+    // Wrapped in an object (see list_resources): `structuredContent` must be
+    // a JSON object, not a bare array.
+    fn: (input, _) async => <String, Object?>{
+      'barrels': listBarrels(terradartCatalog).map((b) => b.toJson()).toList(),
+    },
   );
 
   ai.defineTool<Map<String, dynamic>, Object>(

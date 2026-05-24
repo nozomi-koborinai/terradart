@@ -29,13 +29,15 @@ Lists the per-service barrels with their resource counts. No arguments.
 {}
 ```
 
-**Output** — an array of `{ name, resource_count }`, one entry per barrel (26 in total):
+**Output** — an object with a `barrels` array of `{ name, resource_count }`, one entry per barrel (26 in total):
 
 ```json
-[
-  { "name": "compute", "resource_count": 34 },
-  { "name": "pubsub", "resource_count": 5 }
-]
+{
+  "barrels": [
+    { "name": "compute", "resource_count": 34 },
+    { "name": "pubsub", "resource_count": 5 }
+  ]
+}
 ```
 
 Use this first to see what services TerraDart covers and how large each one is.
@@ -56,21 +58,23 @@ Lists curated resources and data sources. Pass `barrel` to filter to one service
 {}
 ```
 
-**Output** — an array of `{ name, barrel, summary }`:
+**Output** — an object with a `resources` array of `{ name, barrel, summary }`:
 
 ```json
-[
-  {
-    "name": "google_pubsub_topic",
-    "barrel": "pubsub",
-    "summary": "A named resource to which messages are sent by publishers."
-  },
-  {
-    "name": "google_pubsub_subscription",
-    "barrel": "pubsub",
-    "summary": "A named resource representing the stream of messages."
-  }
-]
+{
+  "resources": [
+    {
+      "name": "google_pubsub_topic",
+      "barrel": "pubsub",
+      "summary": "A named resource to which messages are sent by publishers."
+    },
+    {
+      "name": "google_pubsub_subscription",
+      "barrel": "pubsub",
+      "summary": "A named resource representing the stream of messages."
+    }
+  ]
+}
 ```
 
 The `name` is the Terraform type name — exactly what you pass to `get_resource_schema`.
