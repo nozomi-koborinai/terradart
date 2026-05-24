@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.12.0
+
+Adds static-catalog emission so the curated `terradart_google` surface can be introspected without loading or analyzing the wrapper source. Powers the new `terradart-mcp` server (`terradart_agent`).
+
+- Bumped `terradart_core` constraint to `^0.12.0`.
+- **New `CatalogMetadataEmitter`** — emits `terradart_google/lib/src/_catalog.g.dart`, a generated `const List<CatalogEntry> terradartCatalog` with one entry per curated resource and data source (tfType, Dart class name, per-service barrel, kind, summary, constructor params, nested types, sensitive fields, doc comment).
+- **New `catalog_entry_builder.dart`** — builds the per-resource `CatalogEntry` metadata from the same parsed IR + YAML overrides the wrapper emitters consume, so the catalog never drifts from the emitted wrappers.
+- **`terradart wrap` now emits the catalog.** The catalog file is regenerated as part of the normal wrap cycle (and verified under `wrap --check`) alongside the wrapper files — no separate command, and zero drift against the emitted source.
+- No new CLI surface in this release.
+
 ## 0.11.0 - 2026-MM-DD
 
 **BREAKING** — template-side rename pass that pairs with the `terradart_core` 0.11.0 public-surface change (ADR-0016). v0.x permits breaking changes; emitted wrappers in `terradart_google` 0.11.0 follow the new shape. See [MIGRATING.md](../../MIGRATING.md) for before / after snippets.

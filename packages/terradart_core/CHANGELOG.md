@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.0
+
+No user-facing API changes. Lockstep version bump alongside the rest of the workspace for the v0.12.0 release (`terradart_codegen` static-catalog emission, `terradart_google` generated catalog, and the new `terradart_agent` / `terradart-mcp` package). The `terradart_core` public surface is unchanged from 0.11.0.
+
 ## 0.11.0 - 2026-MM-DD
 
 **BREAKING** — pre-1.0 polish wave on the `terradart_core` public surface. Coordinated changes from ADR-0016 (codegen identifier rename) and ADR-0017 (Stack API surface). v0.x permits breaking changes; the 0.11.x line continues to stage the 1.0 surface. See [MIGRATING.md](../../MIGRATING.md) for before / after snippets covering every item below.

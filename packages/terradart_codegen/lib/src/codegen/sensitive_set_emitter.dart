@@ -69,9 +69,20 @@ String emitSensitiveStaticSet(
       extraSensitiveFields: extraSensitiveFields,
     );
 
-String _emit(
+/// Returns the sorted, deduped list of sensitive field paths for [def].
+///
+/// This is the single source of truth for the masked-field set: it merges
+/// the schema-derived sensitive paths (dotted snake_case, collected by
+/// walking [ResourceDef.root]) with the curator-supplied
+/// [extraSensitiveFields], dedupes via a `Set`, and sorts alphabetically for
+/// deterministic output.
+///
+/// Both the inline `_<r>Sensitive` const (via [emitFilePrivateSensitiveSet])
+/// and the static catalog's `sensitiveFields` (via the catalog metadata
+/// emitter) call this so the catalog is byte-identical to what the wrapper
+/// actually masks — there is exactly one place the path set is computed.
+List<String> sensitiveFieldPaths(
   ResourceDef def, {
-  required String constName,
   List<String>? extraSensitiveFields,
 }) {
   final names = <String>{};
@@ -79,7 +90,18 @@ String _emit(
   if (extraSensitiveFields != null) {
     names.addAll(extraSensitiveFields);
   }
-  final sorted = names.toList()..sort();
+  return names.toList()..sort();
+}
+
+String _emit(
+  ResourceDef def, {
+  required String constName,
+  List<String>? extraSensitiveFields,
+}) {
+  final sorted = sensitiveFieldPaths(
+    def,
+    extraSensitiveFields: extraSensitiveFields,
+  );
   final docComment = "/// Sensitive field paths for `${def.terraformType}`.\n";
   if (sorted.isEmpty) {
     return "${docComment}const Set<String> $constName = <String>{};";

@@ -37,6 +37,16 @@ export default defineConfig({
             "docs/status",
           ],
         },
+        {
+          label: "Agent",
+          items: [
+            "docs/agent",
+            "docs/agent/install",
+            "docs/agent/clients",
+            "docs/agent/tools-reference",
+            "docs/agent/recipes",
+          ],
+        },
       ],
       plugins: [starlightLlmsTxt()],
       components: {

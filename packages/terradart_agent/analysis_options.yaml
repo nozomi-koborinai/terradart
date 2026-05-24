@@ -1,0 +1,15 @@
+include: package:lints/recommended.yaml
+
+analyzer:
+  language:
+    strict-casts: true
+    strict-inference: true
+    strict-raw-types: true
+  errors:
+    invalid_use_of_internal_member: error
+
+linter:
+  rules:
+    - prefer_final_locals
+    - require_trailing_commas
+    - sort_constructors_first

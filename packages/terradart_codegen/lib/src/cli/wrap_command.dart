@@ -5,6 +5,8 @@ import 'package:args/command_runner.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart' as p;
 
+import '../codegen/catalog_entry_builder.dart';
+import '../codegen/catalog_metadata_emitter.dart';
 import '../codegen/data_source_wrapper_emitter.dart';
 import '../codegen/generated_file_header.dart';
 import '../codegen/wrapper_emitter.dart';
@@ -158,6 +160,13 @@ class WrapCommand extends Command<int> {
     //    file-private `_<r>Sensitive` const inline (see
     //    `WrapperEmitter`).
     final buffer = <String, String>{};
+    // Static catalog accumulator: one CatalogEntry per curated resource +
+    // data source. Built alongside each wrapper so the entry's `nestedTypes`
+    // can be scanned from the just-emitted, formatted Dart source (the only
+    // drift-proof source for the resource-specific helper-type names) and
+    // `sensitiveFields` / `constructorParams` are computed from the SAME
+    // helpers the wrapper emitter uses (zero drift by construction).
+    final catalogEntries = <CatalogEntryData>[];
     final resourceEmitter = WrapperEmitter(overrides: loaded.resources);
     final dataSourceEmitter =
         DataSourceWrapperEmitter(overrides: loaded.dataSources);
@@ -187,6 +196,15 @@ class WrapCommand extends Command<int> {
       );
       final dartSrc = generatedFileHeader + formatter.format(raw);
       buffer[p.join(entry.value.outputDir, '${entry.key}.dart')] = dartSrc;
+      catalogEntries.add(
+        buildCatalogEntry(
+          tfType: entry.key,
+          override: entry.value,
+          def: def,
+          kind: 'resource',
+          emittedSource: dartSrc,
+        ),
+      );
     }
 
     for (final entry in loaded.dataSources.entries) {
@@ -202,6 +220,35 @@ class WrapCommand extends Command<int> {
       final raw = dataSourceEmitter.emit(def, providerSource: provider);
       final layer2 = generatedFileHeader + formatter.format(raw);
       buffer[p.join(entry.value.outputDir, '${entry.key}.dart')] = layer2;
+      catalogEntries.add(
+        buildCatalogEntry(
+          tfType: entry.key,
+          override: entry.value,
+          def: def,
+          kind: 'dataSource',
+          emittedSource: layer2,
+        ),
+      );
+    }
+
+    // Static catalog: render one CatalogEntry per curated resource + data
+    // source into `_catalog.g.dart`. The key is `_catalog.g.dart` (no
+    // `lib/src/` prefix) because `--output` is already `.../lib/src`, so the
+    // file lands next to the per-service barrels (see catalog_entry.dart /
+    // catalog.dart in terradart_google). It is added to `buffer` here —
+    // before the E401 guard / `--check` diff / materialise step — so it flows
+    // through every downstream stage uniformly, formatted with the same
+    // `DartFormatter` as the wrappers and carrying the standard generated
+    // header (first line `// GENERATED FILE - DO NOT EDIT`, an accepted E401
+    // marker).
+    //
+    // `--only` is skipped: the catalog is a WHOLE-registry artifact, so a
+    // single-resource regen must not clobber the full 120-entry catalog with
+    // a 1-entry partial. `--only` callers regenerate one wrapper; the catalog
+    // is refreshed by the canonical full `terradart wrap`.
+    if (only == null) {
+      final catalogRaw = CatalogMetadataEmitter().emit(catalogEntries);
+      buffer['_catalog.g.dart'] = formatter.format(catalogRaw);
     }
 
     // 4. E401 guard: refuse to clobber files that don't carry one of the
