@@ -11,6 +11,8 @@
 >
 > Google Cloud infrastructure as real Dart code — typed, refactor-safe, drop-in for `terraform apply`.
 
+**Pre-alpha** — no SemVer guarantees until v1.0.0. Pin `^0.12.x`, read [`MIGRATING.md`](MIGRATING.md) before bumping, and see [status on terradart.dev](https://terradart.dev/docs/status/).
+
 <!-- identity -->
 [![pub: terradart_core](https://img.shields.io/pub/v/terradart_core.svg?label=pub%3A%20core)](https://pub.dev/packages/terradart_core)
 [![pub: terradart_codegen](https://img.shields.io/pub/v/terradart_codegen.svg?label=pub%3A%20codegen)](https://pub.dev/packages/terradart_codegen)
@@ -21,6 +23,97 @@
 <!-- health -->
 [![CI](https://github.com/nozomi-koborinai/terradart/actions/workflows/ci.yml/badge.svg)](https://github.com/nozomi-koborinai/terradart/actions/workflows/ci.yml)
 [![Schema Bump](https://github.com/nozomi-koborinai/terradart/actions/workflows/schema-bump.yml/badge.svg)](https://github.com/nozomi-koborinai/terradart/actions/workflows/schema-bump.yml)
+
+```dart
+// infra/lib/app_infra.dart
+// A Stack is one Terraform root module of GCP resources, written in Dart.
+import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/cloud_run.dart';
+import 'package:terradart_google/cloud_sql.dart';
+import 'package:terradart_google/iam.dart';
+import 'package:terradart_google/provider.dart';
+
+final class AppInfraStack extends Stack {
+  AppInfraStack({required String projectId})
+      : super(providers: [
+          GoogleProvider(project: projectId, region: 'asia-northeast1'),
+        ]) {
+    add(GoogleSqlDatabaseInstance(
+      localName: 'app_sql',
+      name: TfArg.literal('app-sql'),
+      databaseVersion: TfArg.literal(DatabaseVersion.postgres15),
+      region: TfArg.literal('asia-northeast1'),
+      settings: SqlDatabaseInstanceSettings(
+        tier: TfArg.literal('db-f1-micro'),
+      ),
+    ));
+
+    final runSa = add(GoogleServiceAccount(
+      localName: 'run_sa',
+      accountId: TfArg.literal('app-run-sa'),
+    ));
+    add(GoogleProjectIamMember(
+      localName: 'run_sa_sql_client',
+      project: TfArg.literal(projectId),
+      role: TfArg.literal('roles/cloudsql.client'),
+      member: TfArg.ref(runSa.iamMember),
+    ));
+
+    add(GoogleCloudRunV2Service(
+      localName: 'app',
+      name: TfArg.literal('app'),
+      location: TfArg.literal('asia-northeast1'),
+      template: CloudRunV2ServiceTemplate(
+        serviceAccount: TfArg.ref(runSa.email),
+        containers: [
+          CloudRunV2ServiceServiceContainer(
+            name: TfArg.literal('app'),
+            image: TfArg.literal('gcr.io/cloudrun/hello'),
+            ports: CloudRunV2ServiceContainerPort(
+              containerPort: TfArg.literal(8080),
+            ),
+            env: [
+              CloudRunV2ServiceEnvVar(
+                name: TfArg.literal('DATABASE_URL'),
+                source: CloudRunV2ServiceEnvVarFromLiteral(
+                  TfArg.literal(
+                    'postgresql://app-client@${projectId}.iam@localhost:5432/app',
+                  ),
+                ),
+              ),
+            ],
+          ),
+          CloudRunV2ServiceServiceContainer(
+            name: TfArg.literal('cloud-sql-proxy'),
+            image: TfArg.literal(
+              'gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.18.1',
+            ),
+            args: TfArg.literal([
+              '--port=5432',
+              '--auto-iam-authn',
+              '${projectId}:asia-northeast1:app-sql',
+            ]),
+          ),
+        ],
+      ),
+    ));
+  }
+}
+```
+
+Cloud SQL, IAM, and a multi-container Cloud Run service with a `cloud-sql-proxy` sidecar — the kind of stack you would otherwise maintain in HCL or the console. Per-service imports (`cloud_run.dart`, `cloud_sql.dart`, …) keep IDE completion scoped; the legacy `package:terradart_google/terradart_google.dart` barrel re-export remains supported.
+
+More on [terradart.dev](https://terradart.dev/) and in [`examples/`](examples/).
+
+## The boundary
+
+**the boundary** = the place where infrastructure values (topic IDs, queue names, secret refs, IAM members) flow into runtime Dart code. Today that boundary is held together by string literals on both sides:
+
+- A Pub/Sub topic name is hand-typed in HCL and again as a string literal in a Cloud Function.
+- A renamed secret silently breaks runtime resolution because the reference is a string.
+- IAM binding members drift between modules with no compiler visibility.
+
+TerraDart makes this boundary a first-class artifact. The same `Topic` object whose ID is consumed by `terraform apply` is exported as a typed Dart constant your Firebase Function imports — and `dart analyze` catches drift the moment it happens.
 
 ```dart
 // infra/lib/orders_stack.dart
@@ -37,19 +130,13 @@ final class OrdersStack extends Stack {
       messageRetentionDuration: TfArg.literal('604800s'),
     );
     add(orders);
-
-    // The boundary: the topic name flows from IaC to your Dart Cloud Function
-    // as a typed constant. Rename `orders-prod` here, recompile, and the
-    // function below won't build until you fix the reference.
     addExport('ORDERS_TOPIC', ResourceIdExport(orders.nameRef));
   }
 }
 ```
 
-The legacy umbrella `package:terradart_google/terradart_google.dart` re-exports every per-service barrel and remains supported. Per-service imports are recommended for new code — they keep IDE auto-complete service-scoped.
-
 ```dart
-// functions/lib/orders_handler.dart  (regenerated by terradart on synth)
+// functions/lib/orders_handler.dart  (regenerated on synth)
 import 'package:my_app_infra/exports.g.dart';
 
 Future<void> handle(PubsubEvent event) async {
@@ -59,17 +146,7 @@ Future<void> handle(PubsubEvent event) async {
 }
 ```
 
-That's the whole pitch.
-
-## The boundary
-
-**the boundary** = the place where infrastructure values (topic IDs, queue names, secret refs, IAM members) flow into runtime Dart code. Today that boundary is held together by string literals on both sides:
-
-- A Pub/Sub topic name is hand-typed in HCL and again as a string literal in a Cloud Function.
-- A renamed secret silently breaks runtime resolution because the reference is a string.
-- IAM binding members drift between modules with no compiler visibility.
-
-TerraDart makes this boundary a first-class artifact. The same `Topic` object whose ID is consumed by `terraform apply` is exported as a typed Dart constant your Firebase Function imports — and `dart analyze` catches drift the moment it happens.
+Rename `orders-prod` in the Stack and the handler will not compile until the reference is fixed.
 
 ## Why TerraDart
 
@@ -140,9 +217,20 @@ cd tf-out && terraform init && terraform apply
 
 Runnable end-to-end:  [`examples/pubsub_quickstart/`](examples/pubsub_quickstart/).
 
+## terradart-mcp
+
+**Pre-alpha.** [`terradart-mcp`](packages/terradart_agent/) is an MCP server that exposes the curated factory **catalog** to coding agents (Claude Code, Cursor, Claude Desktop). Four read-only tools — `list_barrels`, `list_resources`, `get_resource_schema`, `get_quickstart` — help agents author correct Dart without guessing factory names. It does **not** run Terraform or touch GCP.
+
+```sh
+brew install nozomi-koborinai/tap/terradart-mcp
+# or download from GitHub releases — see packages/terradart_agent/README.md
+```
+
+Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
+
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **118 curated resource factories + 1 data source**: Artifact Registry (2 — repository + repository IAM member), BigQuery (10 — dataset / table / dataset_iam_member / table_iam_member + job / routine / data_transfer_config / reservation / capacity_commitment / connection), Cloud Build (4 — v2 SCM connection / v2 repository / trigger / worker pool), Cloud Functions (2), Cloud Run v2 (4), Cloud Scheduler (1), Cloud SQL (3), Cloud Tasks (2), Compute (34 — including the full L7 Application LB stack: forwarding rules + target proxies + URL maps + backend services + managed/self-managed SSL + MIG + Autoscaler + NEG + Cloud Armor + SSL Policy + health checks), DNS (2), Eventarc (1 — trigger), Firebase App Check (7), Firebase App Hosting (5), Firebase Data Connect (1), Firebase Remote Config (1), Firestore (5), IAM (6), KMS (4), Logging (4 — metric + project/folder/organization sinks), Monitoring (6 — alert policy + notification channel + uptime check + dashboard + metric descriptor + service/SLO), project service enablement (1), Pub/Sub (5 — topic / subscription / 2 iam_member + schema), Secret Manager (3), Service Networking (1), Cloud Storage (4 — bucket / bucket_object / bucket_iam_member + notification), and the `google_project` data source. CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
+[`terradart_google`](packages/terradart_google/README.md) ships **119 curated resource factories + 1 data source** (120 catalog entries): Artifact Registry (2 — repository + repository IAM member), BigQuery (10 — dataset / table / dataset_iam_member / table_iam_member + job / routine / data_transfer_config / reservation / capacity_commitment / connection), Cloud Build (4 — v2 SCM connection / v2 repository / trigger / worker pool), Cloud Functions (2), Cloud Run v2 (4), Cloud Scheduler (1), Cloud SQL (3), Cloud Tasks (2), Compute (34 — including the full L7 Application LB stack: forwarding rules + target proxies + URL maps + backend services + managed/self-managed SSL + MIG + Autoscaler + NEG + Cloud Armor + SSL Policy + health checks), DNS (2), Eventarc (1 — trigger), Firebase App Check (7), Firebase App Hosting (5), Firebase Data Connect (1), Firebase Remote Config (1), Firestore (5), IAM (6), KMS (4), Logging (4 — metric + project/folder/organization sinks), Monitoring (6 — alert policy + notification channel + uptime check + dashboard + metric descriptor + service/SLO), project service enablement (1), Pub/Sub (5 — topic / subscription / 2 iam_member + schema), Secret Manager (3), Service Networking (1), Cloud Storage (4 — bucket / bucket_object / bucket_iam_member + notification), and the `google_project` data source. CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
 For any other `google_*` resource: run `terradart codegen` against your provider schema dump. The emitted Dart names have no SemVer guarantee.
 
@@ -191,7 +279,7 @@ Application platform & operations
 
 ## Status
 
-Pre-1.0 (v0.12.1). No SemVer guarantees until v1.0.0; pin to a specific `^0.12.x` minor and read [`MIGRATING.md`](MIGRATING.md) before bumping. Breaking changes are still permitted within the 0.x line and are documented per-release.
+**Pre-alpha**, pre-1.0 (v0.12.1). No SemVer guarantees until v1.0.0; pin to a specific `^0.12.x` minor and read [`MIGRATING.md`](MIGRATING.md) before bumping. Breaking changes are still permitted within the 0.x line and are documented per-release. Expectations: [terradart.dev/docs/status/](https://terradart.dev/docs/status/).
 
 ## Schema-bump automation (Plan 5.E)
 
