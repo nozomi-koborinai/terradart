@@ -1,15 +1,15 @@
 # Contributing to terradart
 
-Thanks for taking time to look at this. terradart is a pre-alpha single-maintainer project; contributions are welcome on a best-effort basis.
+Thanks for taking time to look at this. terradart is a **pre-alpha** single-maintainer project (0.12.x today; [beta planned at v0.13.0](https://terradart.dev/docs/status/#beta-readiness-checklist)). Contributions are welcome on a best-effort basis.
 
 ## What kind of contribution?
 
 terradart's surface splits into two layers:
 
-- **Built-in factories** — the curated `google_*` factory wrappers that ship in [`terradart_google`](packages/terradart_google/README.md) (28 resources + 1 data source as of v0.1.0-dev). Bug fixes, test cases, doc improvements welcome. New resources are accepted as curated `wrap` overrides — open an issue first to discuss scope.
+- **Built-in factories** — the curated `google_*` factory wrappers that ship in [`terradart_google`](packages/terradart_google/README.md) (**119 curated resource factories + 1 data source** as of 0.12.x). Bug fixes, test cases, doc improvements welcome. New resources are accepted as curated `wrap` overrides — open an issue first to discuss scope.
 - **Generated bindings** — output of `terradart codegen` for every other `google_*` / `google-beta_*` resource. Best-effort; codegen template fixes welcome.
 
-Both are pre-alpha (v0.x.y-dev) — emitted Dart symbol names may change between dev releases.
+Within a **minor** line (`^0.12.x`), we aim to avoid breaking public API changes. Across **minors**, breaking changes are allowed with `MIGRATING.md` coverage (stricter from v0.13.0 beta — see [status](https://terradart.dev/docs/status/)).
 
 Bug reports / questions: see the [Bug or question](.github/ISSUE_TEMPLATE/bug-or-question.yml) template.
 
@@ -33,6 +33,10 @@ dart test
 # Run static analysis (must pass with zero issues)
 dart analyze --fatal-infos --fatal-warnings
 
+# Docs / quickstart consistency (same as CI)
+dart tool/check_docs_consistency.dart
+tool/smoke_quickstart.sh
+
 # Format check
 dart format --set-exit-if-changed .
 ```
@@ -49,6 +53,8 @@ Before opening a PR:
 
 - [ ] `dart analyze --fatal-infos --fatal-warnings` passes.
 - [ ] `dart test` passes (full suite, not just one package).
+- [ ] `dart tool/check_docs_consistency.dart` passes when you touch versions or catalog counts.
+- [ ] `tool/smoke_quickstart.sh` passes when you touch `pubsub_quickstart` or synth/export paths.
 - [ ] `dart format` was run.
 
 ## Review cadence

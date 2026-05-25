@@ -38,7 +38,7 @@ sudo mv terradart-mcp-darwin-arm64 /usr/local/bin/terradart-mcp
 
 ```sh
 terradart-mcp --version
-# terradart-mcp 0.12.1
+# terradart-mcp 0.12.x
 ```
 
 If you see the version printed, the binary is ready. Next, point an MCP client at it: [Connecting clients](/docs/agent/clients/).

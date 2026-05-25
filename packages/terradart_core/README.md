@@ -6,47 +6,37 @@ This package ships the small set of primitives every terradart Stack uses:
 
 - `Stack` — abstract base for your infrastructure module. You subclass it (`final class MyStack extends Stack`), register `Resource` / `Data` instances via `add(...)` / `addData(...)`, and call `stack.writeTo('tf-out')` from your own `main()` to emit `main.tf.json`.
 - `Resource` / `Data` — typed nodes supplied by curated factories (in `terradart_google`) or generated bindings (from `terradart_codegen`).
-- `TfArg.literal(...)` / `TfArg.ref(...)` — the only two ways every settable field accepts input. `TfArg<MyEnum>.literal(MyEnum.foo)` now encodes typed Dart enums (see below).
+- `TfArg.literal(...)` / `TfArg.ref(...)` — the only two ways every settable field accepts input. `TfArg<MyEnum>.literal(MyEnum.foo)` encodes typed Dart enums (see below).
 - `LifecycleOptions` — `create_before_destroy`, `prevent_destroy`, `ignore_changes`, `replace_triggered_by`.
 - `Stack.synth()` returns an in-memory `SynthResult` with `tfJson` (Terraform JSON map) and optional `dartConstants` (typed Dart constants for the IaC ↔ application seam). `Stack.writeTo(outDir)` is the file-IO wrapper that calls `synth()` and writes `main.tf.json` (plus any `dartConstants`) under `outDir`.
 
 This package is the **runtime layer only**. It is intentionally small and dependency-free. The companion packages are:
 
 - [`terradart_codegen`](https://pub.dev/packages/terradart_codegen) — the codegen / `terradart` CLI that turns `terraform providers schema -json` into typed Dart bindings.
-- [`terradart_google`](https://pub.dev/packages/terradart_google) — 28 curated GCP factory wrappers + 1 data source, plus generated schema carriers.
+- [`terradart_google`](https://pub.dev/packages/terradart_google) — **119 curated GCP factories + 1 data source**, plus generated schema carriers.
 
-For project-level documentation, see the [terradart repo README](https://github.com/nozomi-koborinai/terradart#readme).
+For project-level documentation, see the [terradart repo README](https://github.com/nozomi-koborinai/terradart#readme) and [terradart.dev](https://terradart.dev/docs/getting-started/).
 
 ## Typed enum serialization
 
-`TfArgLiteral.toTfJson()` detects values that satisfy a small convention and serializes them to the Terraform string:
+Hand-rolled and codegen-emitted enums implement `TerraformEnum` with a `terraformValue` getter. `TfArgLiteral.toTfJson()` encodes them to Terraform strings; missing conventions throw `ArgumentError` at synth time.
 
 ```dart
-enum RoutingMode {
+enum RoutingMode implements TerraformEnum {
   regional('REGIONAL'),
   global('GLOBAL');
 
   const RoutingMode(this.terraformValue);
+  @override
   final String terraformValue;
 }
-
-// In your Stack:
-GoogleComputeNetwork(
-  localName: 'main',
-  name: TfArg.literal('main-vpc'),
-  routingMode: TfArg.literal(RoutingMode.regional), // encodes to "REGIONAL"
-);
 ```
-
-The runtime throws `ArgumentError` (not silent wrong-output) if you pass an enum value whose type does not implement the `.terraformValue` getter, so missing-getter bugs surface at synth time rather than as bad Terraform JSON. String / int / num / bool literals pass through unchanged.
-
-`terradart_google` 0.1.0-dev uses this convention for every fixed-value-set field in its 28 curated resources.
 
 ## Installation
 
-terradart is a SemVer pre-release. By default `dart pub get` skips pre-release versions; opt in explicitly:
-
 ```yaml
 dependencies:
-  terradart_core: ^0.1.0-dev
+  terradart_core: ^0.12.x
 ```
+
+Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch. Read [MIGRATING.md](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md) before minor bumps.

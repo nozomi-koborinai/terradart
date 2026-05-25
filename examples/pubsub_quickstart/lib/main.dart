@@ -49,9 +49,14 @@ final class OrdersStack extends Stack {
       ),
     );
 
-    // The seam: export topic.id as a Dart constant for the subscriber.
-    // Emit a Terraform `output` so subscribers without Dart codegen can also
-    // resolve it via `terraform output orders_topic_id`.
+    // Literal topic name — emitted as a Dart constant at synth time (see
+    // lib/generated/orders_stack.app.dart). Subscribers compare against this.
+    addExport(
+      'ORDERS_TOPIC_NAME',
+      ResourceIdExport(topic.nameRef, emitTerraformOutput: true),
+    );
+
+    // Full resource ID — Terraform output only (computed until after apply).
     addExport(
       'ORDERS_TOPIC_ID',
       ResourceIdExport(topic.id, emitTerraformOutput: true),

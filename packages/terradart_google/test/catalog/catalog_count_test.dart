@@ -4,12 +4,10 @@ import 'package:test/test.dart';
 void main() {
   test('terradartCatalog holds one entry per curated resource + data source',
       () {
-    // 119 curated resources + 1 data source (google_project). This must move
-    // in lockstep with the wrap file-count assertion in
-    // terradart_codegen/test/cli/wrap_command_test.dart (121 = 120 wrappers
-    // + the generated _catalog.g.dart). If `terradart wrap` regenerates a
-    // different count, update both together.
-    expect(terradartCatalog, hasLength(120));
+    // Sync catalogEntryCount in tool/doc_expectations.dart (also checked by
+    // tool/check_docs_consistency.dart). Must move in lockstep with wrap
+    // file-count in terradart_codegen/test/cli/wrap_command_test.dart.
+    expect(terradartCatalog, hasLength(120)); // catalogEntryCount
   });
 
   test('every catalog entry is well-formed', () {

@@ -1,0 +1,31 @@
+name: Docs consistency
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+concurrency:
+  group: docs-consistency-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  docs_consistency:
+    name: docs consistency + pubsub smoke
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
+      - name: Docs caret + catalog count
+        run: dart tool/check_docs_consistency.dart
+      - name: Pub/Sub quickstart smoke
+        run: |
+          chmod +x tool/smoke_quickstart.sh
+          tool/smoke_quickstart.sh

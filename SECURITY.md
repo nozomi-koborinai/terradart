@@ -31,14 +31,17 @@ What does **not** count:
 
 ## Supported versions
 
+Pin dependencies with `^0.12.x` on [pub.dev](https://pub.dev/packages/terradart_core) today.
+
 | Version | Status | Security fixes |
 |---|---|---|
-| 0.0.x (pre-alpha) | **Best-effort** | Yes, on a rolling basis — no embargo guarantees |
-| 0.1.x | TBD on release | Will be supported per the policy below once 0.1.0 ships |
+| **0.12.x** (pre-alpha, current) | **Best-effort** | Yes, on a rolling basis — no embargo guarantees |
+| **0.11.x and older** | Unsupported | Upgrade to 0.12.x; see [MIGRATING.md](MIGRATING.md) |
+| **0.13.x** (beta, planned) | Best-effort with clearer minor-boundary policy | See [status on terradart.dev](https://terradart.dev/docs/status/) |
 
 ## Disclosure policy
 
-**Best-effort, target 90 days** from confirmed-report to public advisory. As a single-maintainer pre-alpha (v0.0.x), we cannot guarantee this window — straightforward fixes typically ship within 30 days; fixes requiring upstream changes (provider schema, Dart SDK) may exceed 90 days. Reporters will be kept informed of timeline shifts on the embargoed advisory thread.
+**Best-effort, target 90 days** from confirmed-report to public advisory. As a single-maintainer pre-alpha project, we cannot guarantee this window — straightforward fixes typically ship within 30 days; fixes requiring upstream changes (provider schema, Dart SDK) may exceed 90 days. Reporters will be kept informed of timeline shifts on the embargoed advisory thread.
 
 CVE IDs are requested via GitHub's CNA on advisory publication.
 
@@ -50,4 +53,4 @@ Single-maintainer project. If you receive no acknowledgement within 10 business 
 
 ## Supply-chain assurance
 
-terradart is published to pub.dev by `nozomi-koborinai` via GitHub Actions OIDC trusted publishing (see `.github/workflows/publish.yml`). Verify the [pub.dev publisher](https://pub.dev/packages/terradart/publisher) before depending on releases. Report any package on pub.dev impersonating terradart through the channels above.
+terradart is published to pub.dev by `nozomi-koborinai` via GitHub Actions OIDC trusted publishing (see `.github/workflows/publish.yml`). Verify the [pub.dev publisher](https://pub.dev/packages/terradart_core/publisher) before depending on releases. Report any package on pub.dev impersonating terradart through the channels above.
