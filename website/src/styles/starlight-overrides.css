@@ -22,10 +22,58 @@
   --sl-color-accent: #4dd0fe;
   --sl-color-accent-high: #c2e8ff;
   --sl-color-text-accent: #f6f3ec;
+  --sl-color-bg: #0b0d12;
+  --sl-color-bg-nav: #0b0d12;
+  --sl-color-bg-sidebar: #0f1116;
+  --sl-color-hairline: #2a3142;
+  --sl-color-hairline-shade: #2a3142;
+  --sl-color-hairline-light: #1a2332;
+  --sl-color-gray-1: #f6f3ec;
+  --sl-color-gray-2: #c2e8ff;
+  --sl-color-gray-3: #8eb4d4;
+  --sl-color-gray-4: #4a5a78;
+  --sl-color-gray-5: #1a2332;
+  --sl-color-gray-6: #0b0d12;
+  --sl-color-black: #f6f3ec;
 }
 
 :where(h1, h2, h3, h4, h5, h6) {
   font-family: "Inter", "Helvetica Neue", system-ui, sans-serif;
   font-weight: 400;
   letter-spacing: -0.02em;
+}
+
+/* Mermaid — Dart palette; CSS fallback if client theme lags */
+:root[data-theme="light"] pre.mermaid {
+  --td-mermaid-line: #0175c2;
+  --td-mermaid-node: #d6ecfa;
+}
+
+:root[data-theme="dark"] pre.mermaid {
+  --td-mermaid-line: #4dd0fe;
+  --td-mermaid-node: #1a3a5c;
+}
+
+:root[data-theme="dark"] .mermaid svg .edgePath .path,
+:root[data-theme="dark"] .mermaid svg .flowchart-link,
+:root[data-theme="dark"] .mermaid svg .messageLine0,
+:root[data-theme="dark"] .mermaid svg .messageLine1 {
+  stroke: var(--td-mermaid-line) !important;
+}
+
+:root[data-theme="dark"] .mermaid svg .arrowheadPath,
+:root[data-theme="dark"] .mermaid svg marker path {
+  fill: var(--td-mermaid-line) !important;
+  stroke: var(--td-mermaid-line) !important;
+}
+
+:root[data-theme="light"] .mermaid svg .edgePath .path,
+:root[data-theme="light"] .mermaid svg .flowchart-link {
+  stroke: var(--td-mermaid-line) !important;
+}
+
+:root[data-theme="light"] .mermaid svg .arrowheadPath,
+:root[data-theme="light"] .mermaid svg marker path {
+  fill: var(--td-mermaid-line) !important;
+  stroke: var(--td-mermaid-line) !important;
 }

@@ -21,7 +21,20 @@ if (typeof config.title === "string") {
 ---
 
 <a href="/" class="site-title">
-  <img src="/logo-horizontal.svg" alt="" width="140" height="28" class="site-title-logo" />
+  <img
+    src="/logo-horizontal.svg"
+    alt=""
+    width="140"
+    height="28"
+    class="site-title-logo site-title-logo--light"
+  />
+  <img
+    src="/logo-horizontal-dark.svg"
+    alt=""
+    width="140"
+    height="28"
+    class="site-title-logo site-title-logo--dark"
+  />
   <span class="sr-only">{title}</span>
 </a>
 
@@ -44,5 +57,17 @@ if (typeof config.title === "string") {
     overflow: hidden;
     clip: rect(0, 0, 0, 0);
     border: 0;
+  }
+</style>
+
+<style is:global>
+  .site-title-logo--dark {
+    display: none;
+  }
+  html[data-theme="dark"] .site-title-logo--light {
+    display: none;
+  }
+  html[data-theme="dark"] .site-title-logo--dark {
+    display: inline;
   }
 </style>
