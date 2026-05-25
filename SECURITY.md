@@ -10,7 +10,7 @@ Use the GitHub private security advisory flow:
 2. Click "Report a vulnerability".
 3. Describe the issue, ideally with reproduction steps.
 
-If you cannot use GitHub advisories, email kobofender@gmail.com with the subject `[terradart-security]`. For sensitive payloads (working PoCs, leaked credentials), please encrypt with the maintainer's PGP key published at <https://github.com/nozomi-koborinai.gpg>. Expect an acknowledgement within **5 business days**. If you receive no response within **10 business days**, please open a minimal placeholder GitHub advisory (no exploit detail) so the report is not silently lost.
+If you cannot use GitHub advisories, email kobofender@gmail.com with the subject `[terradart-security]`. Expect an acknowledgement within **5 business days**. If you receive no response within **10 business days**, please open a minimal placeholder GitHub advisory (no exploit detail) so the report is not silently lost.
 
 ## What counts as a vulnerability
 
