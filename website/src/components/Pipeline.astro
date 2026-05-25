@@ -14,25 +14,92 @@ interface Props {
 const { eyebrow = "Pipeline", heading, steps, footnote } = Astro.props;
 ---
 
-<section class="section rule-top">
-  <div class="container-edit section-inner">
-    <p class="section-label">{eyebrow}</p>
-    <h2 class="display-section">{heading}</h2>
+<section class="td-pipeline">
+  <p class="td-pipeline-eyebrow">{eyebrow}</p>
+  <h2 class="td-pipeline-heading">{heading}</h2>
 
-    <ol class="pipeline">
-      {
-        steps.map((step, i) => (
-          <li class="pipeline-step">
-            <span class="pipeline-index">{i + 1}</span>
-            <div class="pipeline-body">
-              <h3 class="pipeline-title">{step.title}</h3>
-              <p set:html={step.body} />
-            </div>
-          </li>
-        ))
-      }
-    </ol>
-
-    {footnote && <p class="section-footnote" set:html={footnote} />}
+  <div class="td-pipeline-list" role="list">
+    {
+      steps.map((step, i) => (
+        <div class="td-pipeline-step" role="listitem">
+          <span class="td-pipeline-index" aria-hidden="true">
+            {i + 1}
+          </span>
+          <div class="td-pipeline-body">
+            <h3 class="td-pipeline-title">{step.title}</h3>
+            <p set:html={step.body} />
+          </div>
+        </div>
+      ))
+    }
   </div>
+
+  {footnote && <p class="td-pipeline-footnote" set:html={footnote} />}
 </section>
+
+<style is:global>
+  .td-pipeline {
+    margin: 2rem 0;
+  }
+
+  .td-pipeline-eyebrow {
+    font-family: var(--font-mono, var(--sl-font-mono));
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-mute, var(--sl-color-gray-3));
+    margin: 0 0 0.5rem;
+  }
+
+  .td-pipeline-heading {
+    font-size: 1.5rem;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    margin: 0 0 0.5rem;
+  }
+
+  .td-pipeline-list {
+    display: grid;
+    gap: 0;
+    margin: 1.5rem 0 0;
+    padding: 0;
+  }
+
+  .td-pipeline-step {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr;
+    gap: 1.25rem;
+    padding: 1.75rem 0;
+    border-top: 1px solid var(--color-rule, var(--sl-color-hairline));
+  }
+
+  .td-pipeline-step:last-child {
+    border-bottom: 1px solid var(--color-rule, var(--sl-color-hairline));
+  }
+
+  .td-pipeline-index {
+    font-family: var(--font-mono, var(--sl-font-mono));
+    font-size: 0.8125rem;
+    color: var(--color-accent, var(--sl-color-accent));
+    padding-top: 0.15rem;
+  }
+
+  .td-pipeline-title {
+    font-size: 1.0625rem;
+    font-weight: 500;
+    margin: 0 0 0.35rem;
+  }
+
+  .td-pipeline-body p {
+    font-size: 0.95rem;
+    color: var(--color-mute, var(--sl-color-gray-3));
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  .td-pipeline-footnote {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: var(--color-mute, var(--sl-color-gray-3));
+  }
+</style>

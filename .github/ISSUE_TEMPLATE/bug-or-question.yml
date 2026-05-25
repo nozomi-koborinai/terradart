@@ -6,8 +6,9 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for taking the time to file. terradart is a pre-alpha (v0.0.x)
-        single-maintainer project; triage is best-effort.
+        Thanks for taking the time to file. terradart is **pre-alpha** on
+        **0.12.x** today (beta planned from v0.13.0). Single-maintainer;
+        triage is best-effort. See https://terradart.dev/docs/status/
 
         **PII note**: synthesized `.tf.json`, error output, and schema excerpts
         may contain GCP project IDs, GCS bucket names, service account emails,

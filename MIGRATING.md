@@ -1,3 +1,39 @@
+# Migrating terradart
+
+## 0.11.x → 0.12.x
+
+There are **no breaking changes** to the `terradart_core` or `terradart_google`
+public APIs compared with `0.11.0`. Bump all three pub packages in lockstep:
+
+```yaml
+dependencies:
+  terradart_core: ^0.12.0
+  terradart_google: ^0.12.0
+```
+
+```bash
+dart pub global activate terradart_codegen ^0.12.0
+```
+
+(`0.12.1` is a lockstep patch for `terradart_agent` / MCP — same steps.)
+
+### Additive in 0.12.0
+
+- **`terradart_google`** — static `terradartCatalog` in
+  `package:terradart_google/catalog.dart` (metadata only; factory APIs unchanged).
+  Still **119 curated resource factories + 1 data source**.
+- **`terradart-mcp`** (optional) — MCP catalog server binary; not on pub.dev.
+  See [Agent install](https://terradart.dev/docs/agent/install/).
+
+### 0.12.1
+
+- MCP `list_resources` / `list_barrels` return JSON objects, not bare arrays
+  (strict MCP `structuredContent` clients).
+
+No Stack source edits are required when upgrading from `0.11.0`.
+
+---
+
 # Migrating from terradart 0.10.0 to 0.11.0
 
 This guide covers every breaking change introduced between `0.10.0` and

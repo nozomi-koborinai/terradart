@@ -10,7 +10,7 @@ It is built with [genkit_mcp](https://pub.dev/packages/genkit_mcp) (Genkit's MCP
 ## How it fits together
 
 ```mermaid
-flowchart TB
+graph LR
   agent["coding agent<br/>(Claude Code / Cursor / Claude Desktop)"]
   mcp["terradart-mcp<br/>list_barrels · list_resources<br/>get_resource_schema · get_quickstart"]
   catalog["static catalog in terradart_google<br/>120 entries · 26 service barrels"]

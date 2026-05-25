@@ -1,9 +1,18 @@
+import { readFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
 import { defineConfig } from "astro/config";
 import tailwindcss from "@tailwindcss/vite";
 import starlight from "@astrojs/starlight";
 import mdx from "@astrojs/mdx";
 import rehypeMermaid from "rehype-mermaid";
 import starlightLlmsTxt from "starlight-llms-txt";
+
+const websiteDir = dirname(fileURLToPath(import.meta.url));
+const mermaidInit = readFileSync(
+  join(websiteDir, "src/scripts/mermaid-init.mjs"),
+  "utf8",
+);
 
 // https://astro.build/config
 export default defineConfig({
@@ -77,10 +86,7 @@ export default defineConfig({
         {
           tag: "script",
           attrs: { type: "module" },
-          content: `
-import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-mermaid.initialize({ startOnLoad: true });
-          `.trim(),
+          content: mermaidInit,
         },
       ],
     }),

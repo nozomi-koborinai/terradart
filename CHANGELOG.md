@@ -2,9 +2,30 @@
 
 All notable changes to terradart are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, and `terradart_google` — this top-level file summarises cross-cutting milestones.
+Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
-## [0.11.0] - 2026-MM-DD
+## [0.12.1] - 2026-05-25
+
+Lockstep patch across the workspace. **No breaking changes** to `terradart_core` or `terradart_google`.
+
+### Fixed
+
+- **`terradart-mcp`** — `list_resources` and `list_barrels` return JSON objects (`{"resources": [...]}`) instead of bare arrays so strict MCP clients (e.g. Cursor) accept `structuredContent`.
+
+### Added
+
+- **`terradart-mcp`** — Intel macOS (`darwin-amd64`) release binary.
+
+## [0.12.0] - 2026-05-25
+
+Pre-alpha milestone: static curated catalog, optional MCP agent tooling. **No breaking changes** to `terradart_core` or `terradart_google` vs `0.11.0`. See [MIGRATING.md](MIGRATING.md#011x--012x) (0.11.x → 0.12.x).
+
+### Added
+
+- **`terradart_google`** — generated static catalog (`terradartCatalog`) for discovery and MCP; 119 curated factories + 1 data source unchanged.
+- **`terradart_agent` / `terradart-mcp`** — read-only MCP server (four catalog tools); Homebrew + GitHub Releases binary (`publish_to: none`).
+
+## [0.11.0] - 2026-05-23
 
 Pre-1.0 polish wave focused on the `terradart_core` public surface. All three packages bump from 0.10.0 to 0.11.0 in lockstep. Coordinated breaking changes from ADR-0016 (codegen identifier rename) and ADR-0017 (Stack API surface). See [MIGRATING.md](MIGRATING.md) for before / after snippets covering every breaking change in this release.
 

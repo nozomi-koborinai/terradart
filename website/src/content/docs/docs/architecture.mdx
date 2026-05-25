@@ -102,7 +102,7 @@ Two export kinds cover most cases:
 - **`ResourceIdExport`** — for values that aren't known until apply time, like a Cloud Run service URL. Pass `emitTerraformOutput: true` and Terraform writes the resolved value into its output. Application code can fetch it via `terraform output -raw <name>`.
 - **`StringExport`** — for literals known at synth time (service name, region, project ID). These materialize as `static const` declarations on the generated `<StackName>Exports` class in your `.app.dart` file — `dart analyze` catches rename drift before you ever `terraform apply`.
 
-Calling `setAppExportsOutputPath(...)` is what triggers the `.app.dart` emission. With only `ResourceIdExport`s registered, the generated constants file would have nothing to put on the class, and `writeTo` skips writing it.
+Calling `setAppExportsOutputPath(...)` is what triggers the `.app.dart` emission. Exports whose values are only known after apply (for example `ResourceIdExport(topic.id)`) emit Terraform `output` blocks only; literal-resolvable exports (for example `ResourceIdExport(topic.nameRef)`) become typed Dart constants. Runnable pattern: [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) (`lib/subscriber_stub.dart`).
 
 A worked end-to-end example lives in the [terradart-cookbook `single-project-app` recipe](https://github.com/nozomi-koborinai/terradart-cookbook/tree/main/recipes/single-project-app), exporting `coffee_service_uri` (Terraform output), `SERVICE_NAME`, and `REGION` (Dart constants).
 

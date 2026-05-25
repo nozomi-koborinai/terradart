@@ -10,8 +10,10 @@
   --sl-color-accent: #0175c2;
   --sl-color-accent-high: #015a99;
   --sl-color-text-accent: #0f1116;
+  /* Paper band on the header only; sidebar + main stay neutral white for reading. */
   --sl-color-bg-nav: #f6f3ec;
-  --sl-color-bg-sidebar: #f6f3ec;
+  --sl-color-bg-sidebar: #ffffff;
+  --sl-color-bg: #ffffff;
   --sl-color-hairline: #d8d4ca;
   --sl-color-hairline-shade: #d8d4ca;
   --sl-color-hairline-light: #e8e4da;
@@ -21,11 +23,78 @@
   --sl-color-accent-low: #1a2a66;
   --sl-color-accent: #4dd0fe;
   --sl-color-accent-high: #c2e8ff;
-  --sl-color-text-accent: #f6f3ec;
+  /* Links — neutral; do not reuse for sidebar highlight (Starlight uses text-accent as bg). */
+  --sl-color-text-accent: var(--sl-color-gray-2);
+  --sl-color-bg: #0b0d12;
+  --sl-color-bg-nav: #0b0d12;
+  --sl-color-bg-sidebar: #0f1116;
+  --sl-color-hairline: #2a3142;
+  --sl-color-hairline-shade: #2a3142;
+  --sl-color-hairline-light: #1a2332;
+  /* Keep Starlight gray-1…black scale — black is used for search + code tab bars in dark mode. */
+}
+
+/* Sidebar current page: accent tint, not link color */
+:root[data-theme="dark"] #starlight__sidebar a[aria-current="page"],
+:root[data-theme="dark"] #starlight__sidebar a[aria-current="page"]:hover,
+:root[data-theme="dark"] #starlight__sidebar a[aria-current="page"]:focus {
+  background-color: var(--sl-color-accent-low);
+  color: var(--sl-color-gray-1);
+}
+
+:root[data-theme="light"] #starlight__sidebar a[aria-current="page"],
+:root[data-theme="light"] #starlight__sidebar a[aria-current="page"]:hover,
+:root[data-theme="light"] #starlight__sidebar a[aria-current="page"]:focus {
+  background-color: var(--sl-color-accent-low);
+  color: var(--sl-color-text);
+}
+
+/* Code blocks — dark chrome; syntax stays Night Owl, frames follow Starlight tokens */
+:root[data-theme="dark"] .expressive-code {
+  --ec-frm-edTabBarBg: var(--sl-color-gray-6);
+  --ec-frm-trmTtbBg: var(--sl-color-gray-6);
+  --ec-frm-edActTabBg: var(--sl-color-gray-5);
+  --ec-frm-edBg: var(--sl-color-gray-6);
+  --ec-frm-trmBg: var(--sl-color-gray-6);
 }
 
 :where(h1, h2, h3, h4, h5, h6) {
   font-family: "Inter", "Helvetica Neue", system-ui, sans-serif;
   font-weight: 400;
   letter-spacing: -0.02em;
+}
+
+/* Mermaid — Dart palette; CSS fallback if client theme lags */
+:root[data-theme="light"] pre.mermaid {
+  --td-mermaid-line: #0175c2;
+  --td-mermaid-node: #d6ecfa;
+}
+
+:root[data-theme="dark"] pre.mermaid {
+  --td-mermaid-line: #4dd0fe;
+  --td-mermaid-node: #1a3a5c;
+}
+
+:root[data-theme="dark"] .mermaid svg .edgePath .path,
+:root[data-theme="dark"] .mermaid svg .flowchart-link,
+:root[data-theme="dark"] .mermaid svg .messageLine0,
+:root[data-theme="dark"] .mermaid svg .messageLine1 {
+  stroke: var(--td-mermaid-line) !important;
+}
+
+:root[data-theme="dark"] .mermaid svg .arrowheadPath,
+:root[data-theme="dark"] .mermaid svg marker path {
+  fill: var(--td-mermaid-line) !important;
+  stroke: var(--td-mermaid-line) !important;
+}
+
+:root[data-theme="light"] .mermaid svg .edgePath .path,
+:root[data-theme="light"] .mermaid svg .flowchart-link {
+  stroke: var(--td-mermaid-line) !important;
+}
+
+:root[data-theme="light"] .mermaid svg .arrowheadPath,
+:root[data-theme="light"] .mermaid svg marker path {
+  fill: var(--td-mermaid-line) !important;
+  stroke: var(--td-mermaid-line) !important;
 }

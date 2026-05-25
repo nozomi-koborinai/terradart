@@ -5,14 +5,14 @@ description: Guides for TerraDart — type-safe Google Cloud IaC for Dart.
 
 Welcome to the TerraDart docs.
 
-Several guides are **in progress** while the v0.12.x API surface stabilizes. Until they are complete, use the [README on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/README.md) and the [examples directory](https://github.com/nozomi-koborinai/terradart/tree/main/examples).
+Guides track the **0.12.x** line on pub.dev. The repo [README](https://github.com/nozomi-koborinai/terradart/blob/main/README.md) and [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) stay the deepest references; this site mirrors onboarding and release expectations.
 
 ## Guides
 
+- [Getting Started](/docs/getting-started/) — install, first `*.tf.json`, boundary export
 - [Why TerraDart](/docs/why-terradart/) — motivation, comparison, and curated coverage
 - [Architecture](/docs/architecture/) — generate `*.tf.json`, `synth()` / `writeTo()`, AppExport
-- [Getting Started](/docs/getting-started/) — installation and first output (coming soon)
-- [Status & versioning](/docs/status/) — pre-alpha expectations
+- [Status & versioning](/docs/status/) — pre-alpha, beta readiness (from v0.13.0), 1.0
 
 ## For AI assistants
 

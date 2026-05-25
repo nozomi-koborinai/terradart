@@ -1,9 +1,9 @@
 /// Synth entry point. Run `dart run bin/infra.dart` to emit
 /// `tf-out/main.tf.json`.
 ///
-/// Note: `topic.id` is a Terraform-computed reference, so the Dart
-/// constants file is not generated at synth time — use `terraform output`
-/// to read `orders_topic_id` after apply.
+/// Writes `tf-out/main.tf.json` and `lib/generated/orders_stack.app.dart`
+/// (literal exports such as `ORDERS_TOPIC_NAME`). Computed exports like
+/// `ORDERS_TOPIC_ID` appear as Terraform outputs only.
 ///
 /// Requires the GCP_PROJECT_ID environment variable.
 library;

@@ -1,20 +1,67 @@
 ---
 title: Status & versioning
-description: Pre-alpha expectations for TerraDart releases.
+description: Pre-alpha expectations, beta readiness, and how TerraDart versions releases.
 ---
 
-TerraDart is **pre-alpha**. There are no SemVer guarantees until v1.0.0.
+TerraDart is **pre-alpha** on the **0.12.x** line today. We remain pre-alpha until the [beta readiness](#beta-readiness-checklist) required gates are all complete; we plan to label the project **beta** starting with **v0.13.0**, not retroactively on 0.12.x.
 
-## What to expect
+There are no SemVer guarantees until **v1.0.0**. Pin with `^0.12.x` and read [MIGRATING.md](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md) before every **minor** bump. Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch.
 
-- Surface and emitted Terraform JSON may change between dev releases.
-- Pin tightly to explicit pre-release constraints on pub.dev.
-- `dart pub get` skips pre-releases by default — opt in with `^0.1.0-dev` (or the current dev version).
+## Release phases
+
+| Phase | Version line | What we promise |
+| --- | --- | --- |
+| **Pre-alpha** | 0.12.x (current) | Docs and automation are catching up. Breaking changes may land in any 0.x release until beta policy applies. |
+| **Beta** | from **0.13.0** (planned) | Trustworthy onboarding on terradart.dev and GitHub. **No breaking changes within a minor** (`^0.N.x`); breaking changes only on minor bumps, always documented in `MIGRATING.md`. Not SemVer-frozen until 1.0.0. |
+| **1.0.0** | TBD | Stable SemVer for `terradart_core`, `terradart_google`, and `terradart_codegen`. |
+
+## What to expect today (pre-alpha)
+
+- Surface and emitted Terraform JSON may change between releases, especially across **minor** bumps.
+- Use hosted `^0.12.x` carets on [pub.dev](https://pub.dev/packages/terradart_core) — not legacy `0.x.y-dev` pre-release tags.
+- `terradart codegen` output for non-curated resources has **no** stability guarantee.
+
+## Beta change policy (applies from v0.13.0)
+
+When we declare beta:
+
+- **Patch releases** (`0.N.x` → `0.N.y`): no intentional breaking changes to `terradart_core` / `terradart_google` public APIs.
+- **Minor releases** (`0.N.x` → `0.M.x`): breaking changes allowed only with a `MIGRATING.md` section for the previous minor.
+- **Curated factory additions** continue (additive waves); renaming or removing curated factories still counts as breaking.
+
+## Beta readiness checklist
+
+We will label the project **beta** starting with **v0.13.0** when every **required** item below is done.
+
+### Required (all must be ✅ before v0.13.0)
+
+- [x] **Getting Started** on terradart.dev matches the [README quickstart](https://github.com/nozomi-koborinai/terradart#quickstart); no “Coming soon” placeholders on Status or Getting Started.
+- [x] **`tool/check_docs_consistency`** runs in CI and passes (workspace + examples caret minor, catalog count, key meta docs). Workflow: [`.github/workflows/docs-consistency.yml`](https://github.com/nozomi-koborinai/terradart/blob/main/.github/workflows/docs-consistency.yml).
+- [x] **`tool/smoke_quickstart.sh`** runs in CI and passes (`pubsub_quickstart`: pub get → synth → analyze including export consumer stub).
+- [x] **Examples matrix** on `main` stays green (per-example synth + `terraform validate` on `tf-out/`).
+- [x] **Boundary demo**: [pubsub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) documents `addExport` / generated `.app.dart` and includes a subscriber stub that `dart analyze` accepts.
+- [x] **Meta docs aligned** with the current minor: CONTRIBUTING, SECURITY, issue templates, package READMEs, and root README agree on pre-alpha/beta wording, `^0.N.x` pins, and **119 curated factories + 1 data source**.
+- [x] **Beta change policy** published on this page (see [Beta change policy](#beta-change-policy-applies-from-v0130)).
+
+### Optional (does not block beta)
+
+- [ ] **`MIGRATING.md` covers the last two minors** (e.g. 0.11→0.12 and 0.12→0.13). *Each new minor must add a section; two-minor depth is a quality bar.*
+- [ ] **External quickstart**: someone outside the core team completes the README path once; feedback captured in an issue or discussion.
+- [ ] **Real apply dogfood** via [terradart-cookbook](https://github.com/nozomi-koborinai/terradart-cookbook): at least one non-trivial recipe documents a successful `terraform apply`.
+- [ ] **`terradart-mcp`**: [Agent install](/docs/agent/install/) verified on a clean machine (Homebrew or release binary + four tools).
+- [ ] **1.0.0 criteria** drafted (what “stable” means for curated names, codegen output, and `terradart_core` API).
+
+## What beta does *not* mean
+
+- **Not** a freeze on new curated factories.
+- **Not** [constructs / composite frameworks](https://github.com/nozomi-koborinai/terradart#non-goals).
+- **Not** SemVer until 1.0.0.
+- **Not** a guarantee that `terradart codegen` output is stable.
 
 ## Reporting issues
 
 Use the [bug or question template](https://github.com/nozomi-koborinai/terradart/issues/new/choose) on GitHub.
 
-:::note[Coming soon]
-Version-specific migration notes will land here after v0.12.0.
-:::
+## Maintainer notes
+
+Maintainer session notes stay in the gitignored repo-root `docs/` tree locally (not published).

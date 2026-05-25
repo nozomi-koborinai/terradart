@@ -3,19 +3,103 @@ title: Getting Started
 description: Install TerraDart and generate your first *.tf.json from a Stack.
 ---
 
-:::note[Coming soon]
-This page tracks the v0.12.0 API surface and will be expanded with end-to-end walkthroughs after the release.
-:::
+This guide matches the [README quickstart](https://github.com/nozomi-koborinai/terradart#quickstart) for the **0.12.x** line. TerraDart is **pre-alpha** until [beta gates](/docs/status/#beta-readiness-checklist) are complete (planned label: **v0.13.0**).
 
-## Meanwhile
+## Prerequisites
 
-1. Read the [README Quickstart](https://github.com/nozomi-koborinai/terradart#quickstart) on GitHub.
-2. Run the [Pub/Sub quickstart example](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart).
-3. Pin the published packages with `^0.12.0` (see the current version on [pub.dev](https://pub.dev/packages/terradart_core)).
+- Dart SDK ≥ 3.6
+- Terraform CLI ≥ 1.11.0
+- A GCP project with Pub/Sub enabled and Application Default Credentials (`gcloud auth application-default login`)
 
-## Outline (planned)
+## 1. Add dependencies
 
-- Add `terradart_core` and `terradart_google` to `pubspec.yaml`
-- Implement a `final class XxxStack extends Stack` subclass
-- Call `stack.writeTo('tf-out')` from `bin/infra.dart`
-- Run `terraform init` / `apply` in `tf-out/`
+```yaml
+# pubspec.yaml
+dependencies:
+  terradart_core: ^0.12.x
+  terradart_google: ^0.12.x
+```
+
+Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch, then run:
+
+```bash
+dart pub get
+```
+
+Codegen for non-curated `google_*` resources is optional:
+
+```bash
+dart pub global activate terradart_codegen ^0.12.x
+```
+
+## 2. Define a Stack
+
+Create `lib/orders_stack.dart` (or follow the [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart)):
+
+```dart
+import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/pubsub.dart';
+
+final class OrdersStack extends Stack {
+  OrdersStack({required String projectId})
+      : super(providers: [GoogleProvider(project: projectId)]) {
+    final topic = add(GooglePubsubTopic(
+      localName: 'orders',
+      name: TfArg.literal('orders-prod'),
+    ));
+    addExport('ORDERS_TOPIC_NAME', ResourceIdExport(topic.nameRef));
+    setAppExportsOutputPath('lib/generated/orders_stack.app.dart');
+  }
+}
+```
+
+## 3. Synth Terraform JSON
+
+From `bin/infra.dart`:
+
+```dart
+import 'package:my_pkg/orders_stack.dart';
+
+Future<void> main() async {
+  final stack = OrdersStack(projectId: 'YOUR-PROJECT-ID');
+  await stack.writeTo('tf-out');
+}
+```
+
+```bash
+dart run bin/infra.dart
+```
+
+This writes `tf-out/main.tf.json` and, when exports are literal-resolvable, `lib/generated/orders_stack.app.dart`.
+
+## 4. Plan and apply
+
+```bash
+cd tf-out
+terraform init
+terraform plan
+terraform apply
+```
+
+Your existing remote state backend and modules stay unchanged — TerraDart only replaces HCL/JSON authoring.
+
+## 5. The boundary (optional)
+
+Import generated constants in app code instead of string literals:
+
+```dart
+import 'generated/orders_stack.app.dart';
+
+bool acceptsTopic(String eventTopic) =>
+    eventTopic == OrdersStackExports.ORDERS_TOPIC_NAME;
+```
+
+Rename `orders-prod` in the Stack without updating the subscriber and `dart analyze` fails. See [Architecture — AppExport](/docs/architecture/#appexport-the-iac--app-seam) and the runnable [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) (`lib/subscriber_stub.dart`).
+
+## Next steps
+
+- [Why TerraDart](/docs/why-terradart/) — motivation and comparisons
+- [Architecture](/docs/architecture/) — `synth()`, `writeTo()`, curated coverage
+- [Status & versioning](/docs/status/) — pre-alpha vs beta vs 1.0
+- [Examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and [cookbook](https://github.com/nozomi-koborinai/terradart-cookbook) for fuller stacks
