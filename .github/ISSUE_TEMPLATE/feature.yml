@@ -1,0 +1,39 @@
+name: Feature request
+description: Suggest a new feature, provider, or curated resource.
+title: "[feature] "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to file. terradart is **pre-alpha** on
+        **0.12.x** today (beta planned from v0.13.0). Single-maintainer;
+        triage is best-effort. See https://terradart.dev/docs/status/
+
+        Feature requests are welcome — no timeline promises, but they help
+        prioritize the roadmap.
+
+  - type: input
+    id: terradart_version
+    attributes:
+      label: terradart version
+      placeholder: "0.12.0"
+    validations:
+      required: false
+
+  - type: textarea
+    id: details
+    attributes:
+      label: What would you like?
+      description: Describe the feature, your use case, and links to relevant docs or providers if applicable.
+      render: markdown
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: How are you solving this today? Any workarounds you've tried?
+    validations:
+      required: false

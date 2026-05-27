@@ -1,7 +1,7 @@
-name: Bug or question
-description: Report a bug, ask a question, or request a feature.
+name: Bug report
+description: Something doesn't work as documented or expected.
 title: "[bug] "
-labels: ["triage"]
+labels: ["bug", "triage"]
 body:
   - type: markdown
     attributes:
@@ -16,23 +16,11 @@ body:
         (e.g. `my-prod-1234` → `REDACTED-PROJECT`). If redacting is difficult,
         use the [private security advisory](https://github.com/nozomi-koborinai/terradart/security/advisories/new) instead.
 
-  - type: dropdown
-    id: kind
-    attributes:
-      label: What kind of issue?
-      options:
-        - Bug — something doesn't work
-        - Question — how do I ...?
-        - Feature request — I'd like ...
-        - Codegen — `terradart codegen` output problem
-    validations:
-      required: true
-
   - type: input
     id: terradart_version
     attributes:
       label: terradart version
-      placeholder: "0.1.0-dev"
+      placeholder: "0.12.0"
     validations:
       required: false
 
@@ -47,8 +35,8 @@ body:
   - type: textarea
     id: details
     attributes:
-      label: Details
-      description: What happened? What did you expect? Include the failing Dart Stack snippet or terraform output if applicable. Remember to redact PII.
+      label: What happened?
+      description: What did you expect instead? Include a failing Dart stack trace or terraform output if applicable. Remember to redact PII.
       render: dart
     validations:
       required: true
@@ -56,7 +44,7 @@ body:
   - type: textarea
     id: repro
     attributes:
-      label: Reproduction steps (if a bug)
+      label: Reproduction steps
       description: Minimal commands / Dart code to reproduce.
     validations:
-      required: false
+      required: true
