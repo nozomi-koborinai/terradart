@@ -11,7 +11,7 @@ terradart's surface splits into two layers:
 
 Within a **minor** line (`^0.12.x`), we aim to avoid breaking public API changes. Across **minors**, breaking changes are allowed with `MIGRATING.md` coverage (stricter from v0.13.0 beta — see [status](https://terradart.dev/docs/status/)).
 
-Bug reports / questions: see the [Bug or question](.github/ISSUE_TEMPLATE/bug-or-question.yml) template.
+Bug reports / questions / feature requests: pick a template when [opening an issue](https://github.com/nozomi-koborinai/terradart/issues/new/choose).
 
 ## Dev setup
 

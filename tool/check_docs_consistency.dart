@@ -29,7 +29,14 @@ void main() {
     minor,
     'website/src/content/docs/docs/getting-started.md',
   );
-  _checkCaretMinor(errors, minor, '.github/ISSUE_TEMPLATE/bug-or-question.yml');
+  for (final template in [
+    '.github/ISSUE_TEMPLATE/bug.yml',
+    '.github/ISSUE_TEMPLATE/feature.yml',
+    '.github/ISSUE_TEMPLATE/question.yml',
+    '.github/ISSUE_TEMPLATE/codegen.yml',
+  ]) {
+    _checkCaretMinor(errors, minor, template);
+  }
 
   for (final example in _exampleDirs()) {
     final pubspec = File('examples/$example/pubspec.yaml');
