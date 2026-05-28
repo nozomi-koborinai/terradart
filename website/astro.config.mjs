@@ -61,7 +61,10 @@ export default defineConfig({
       components: {
         SiteTitle: "./src/components/StarlightSiteTitle.astro",
       },
-      customCss: ["./src/styles/starlight-overrides.css"],
+      customCss: [
+        "./src/styles/starlight-overrides.css",
+        "./src/styles/pipeline.css",
+      ],
       head: [
         {
           tag: "link",
