@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+**BREAKING** — removes the `terradart codegen` CLI subcommand, `runCodegen`, `CodegenResult`, and `FileEmitter`. Maintainer generation is `terradart wrap` only. See [MIGRATING.md](../../MIGRATING.md).
+
 ## 0.12.1
 
 No user-facing changes. Lockstep version bump alongside the `terradart_agent` v0.12.1 fix. `terradart_core` constraint bumped to `^0.12.1`.

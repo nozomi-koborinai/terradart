@@ -12,8 +12,8 @@ _Avoid_: Generated binding, raw binding
 The release-time workflow that regenerates curated factories for `terradart_google`. It is optimized for the maintainer's ability to review, test, and publish a stable curated surface.
 _Avoid_: User codegen, runtime synth
 
-**User codegen**:
-A legacy external-user workflow for generating bindings outside the curated `terradart_google` surface. It is not part of the normal TerraDart user path and is a removal candidate because users should consume curated factories instead.
+**User codegen** (removed):
+A former external-user workflow (`terradart codegen`) for generating bindings outside the curated surface. Removed in favor of curation requests; users import `terradart_google` only.
 _Avoid_: Maintainer generation pipeline
 
 **Wrapper override**:

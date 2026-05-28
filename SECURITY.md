@@ -17,7 +17,7 @@ If you cannot use GitHub advisories, email kobofender@gmail.com with the subject
 - terradart emitting JSON that, when applied, exposes sensitive values that should have been masked (e.g. `@Sensitive` field surfaced to logs / state in plaintext).
 - Codegen producing Dart code that bypasses Terraform's intended access controls.
 - Build-time injection paths in the codegen pipeline (e.g. malicious provider schema input causing unsafe code emission).
-- Path traversal or arbitrary-file-read in `terradart codegen --source <dir>` when consuming attacker-controlled provider schema JSON or `mm/*.yaml` overlay files.
+- Path traversal or arbitrary-file-read in `terradart wrap --source <dir>` when consuming attacker-controlled provider schema JSON or `mm/*.yaml` overlay files (maintainer tooling).
 - Code injection via maliciously crafted provider schema JSON or YAML overlay (resource names, descriptions, or annotations that escape Dart string/identifier emission).
 - Synthesized `.tf.json` emitting an unintended resource, attribute, or IAM binding not present in the user's Stack source — i.e. `StackSynth.synth()` output diverging from declared intent.
 - Dependency vulnerabilities in packages bundled into the published `terradart` / `terradart_codegen` releases.

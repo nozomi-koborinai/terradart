@@ -97,4 +97,4 @@ Terraform exposes three IAM patterns per resource:
 - `_iam_binding` -- authoritative for a single role; replaces all members for that role. Out of scope for v0.0.x.
 - `_iam_member` -- **additive** for a single role + member. **terradart_google standardizes on this** because it composes safely with bindings written by other tools (gcloud, the console, peer Terraform stacks).
 
-`_iam_member` is the curated choice because additive semantics minimize the blast radius of a misapplied stack. `_iam_binding` and `_iam_policy` are available via `terradart codegen` (no semver guarantee on the emitted Dart names).
+`_iam_member` is the curated choice because additive semantics minimize the blast radius of a misapplied stack. `_iam_binding` and `_iam_policy` are not in the curated surface — open an issue to request curation.

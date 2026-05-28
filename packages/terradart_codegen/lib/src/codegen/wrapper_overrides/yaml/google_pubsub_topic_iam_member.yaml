@@ -4,7 +4,7 @@ classDocComment: |-
   ///
   /// Adds a single IAM `role` → `member` binding on a topic. For
   /// multi-member binding semantics, prefer `google_pubsub_topic_iam_binding`
-  /// (available via `terradart codegen` until it lands as a curated factory).
+  /// (not yet a curated factory — open an issue to request curation).
 
 paramOrder:
   - topic

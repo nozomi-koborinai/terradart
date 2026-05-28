@@ -1,11 +1,10 @@
-/// Stage 1 codegen library for terradart.
+/// Maintainer tooling for terradart curated factories.
 ///
 /// Parses Terraform provider schema JSON (primary) plus Magic Modules YAML
-/// (secondary) into a unified provider IR. The emitter (`file_emitter.dart`)
-/// and the `runCodegen` programmatic entry are layered on top of this IR.
+/// (secondary) into a unified provider IR. The `terradart wrap` CLI emits
+/// committed factories in `terradart_google`.
 library;
 
-export 'src/codegen/codegen_entry.dart' show runCodegen, CodegenResult;
 export 'src/ir/attribute.dart';
 export 'src/ir/constraints.dart';
 export 'src/ir/nested_block.dart';

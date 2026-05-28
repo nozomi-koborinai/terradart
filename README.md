@@ -208,9 +208,6 @@ dependencies:
 
 ```bash
 dart pub get
-dart pub global activate terradart_codegen ^0.12.x      # only if you need
-                                                         # codegen for non-curated
-                                                         # google_* resources
 dart run bin/infra.dart                                  # synth → tf-out/
 cd tf-out && terraform init && terraform apply
 ```
@@ -232,7 +229,7 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 [`terradart_google`](packages/terradart_google/README.md) ships **119 curated resource factories + 1 data source** (120 catalog entries): Artifact Registry (2 — repository + repository IAM member), BigQuery (10 — dataset / table / dataset_iam_member / table_iam_member + job / routine / data_transfer_config / reservation / capacity_commitment / connection), Cloud Build (4 — v2 SCM connection / v2 repository / trigger / worker pool), Cloud Functions (2), Cloud Run v2 (4), Cloud Scheduler (1), Cloud SQL (3), Cloud Tasks (2), Compute (34 — including the full L7 Application LB stack: forwarding rules + target proxies + URL maps + backend services + managed/self-managed SSL + MIG + Autoscaler + NEG + Cloud Armor + SSL Policy + health checks), DNS (2), Eventarc (1 — trigger), Firebase App Check (7), Firebase App Hosting (5), Firebase Data Connect (1), Firebase Remote Config (1), Firestore (5), IAM (6), KMS (4), Logging (4 — metric + project/folder/organization sinks), Monitoring (6 — alert policy + notification channel + uptime check + dashboard + metric descriptor + service/SLO), project service enablement (1), Pub/Sub (5 — topic / subscription / 2 iam_member + schema), Secret Manager (3), Service Networking (1), Cloud Storage (4 — bucket / bucket_object / bucket_iam_member + notification), and the `google_project` data source. CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
-For any other `google_*` resource: run `terradart codegen` against your provider schema dump. The emitted Dart names have no SemVer guarantee.
+For any other `google_*` resource: open a [feature request](https://github.com/nozomi-koborinai/terradart/issues/new/choose) to discuss adding it to the curated surface.
 
 ## Examples
 

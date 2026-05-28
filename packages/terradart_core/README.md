@@ -5,21 +5,21 @@ Core runtime for [terradart](https://github.com/nozomi-koborinai/terradart) — 
 This package ships the small set of primitives every terradart Stack uses:
 
 - `Stack` — abstract base for your infrastructure module. You subclass it (`final class MyStack extends Stack`), register `Resource` / `Data` instances via `add(...)` / `addData(...)`, and call `stack.writeTo('tf-out')` from your own `main()` to emit `main.tf.json`.
-- `Resource` / `Data` — typed nodes supplied by curated factories (in `terradart_google`) or generated bindings (from `terradart_codegen`).
+- `Resource` / `Data` — typed nodes supplied by curated factories in `terradart_google`.
 - `TfArg.literal(...)` / `TfArg.ref(...)` — the only two ways every settable field accepts input. `TfArg<MyEnum>.literal(MyEnum.foo)` encodes typed Dart enums (see below).
 - `LifecycleOptions` — `create_before_destroy`, `prevent_destroy`, `ignore_changes`, `replace_triggered_by`.
 - `Stack.synth()` returns an in-memory `SynthResult` with `tfJson` (Terraform JSON map) and optional `dartConstants` (typed Dart constants for the IaC ↔ application seam). `Stack.writeTo(outDir)` is the file-IO wrapper that calls `synth()` and writes `main.tf.json` (plus any `dartConstants`) under `outDir`.
 
 This package is the **runtime layer only**. It is intentionally small and dependency-free. The companion packages are:
 
-- [`terradart_codegen`](https://pub.dev/packages/terradart_codegen) — the codegen / `terradart` CLI that turns `terraform providers schema -json` into typed Dart bindings.
+- [`terradart_codegen`](https://pub.dev/packages/terradart_codegen) — maintainer `terradart` CLI (`wrap`, `wrap-init`, `wrap-promote`) used to regenerate curated factories in `terradart_google`.
 - [`terradart_google`](https://pub.dev/packages/terradart_google) — **119 curated GCP factories + 1 data source**, plus generated schema carriers.
 
 For project-level documentation, see the [terradart repo README](https://github.com/nozomi-koborinai/terradart#readme) and [terradart.dev](https://terradart.dev/docs/getting-started/).
 
 ## Typed enum serialization
 
-Hand-rolled and codegen-emitted enums implement `TerraformEnum` with a `terraformValue` getter. `TfArgLiteral.toTfJson()` encodes them to Terraform strings; missing conventions throw `ArgumentError` at synth time.
+Hand-rolled and wrap-emitted enums implement `TerraformEnum` with a `terraformValue` getter. `TfArgLiteral.toTfJson()` encodes them to Terraform strings; missing conventions throw `ArgumentError` at synth time.
 
 ```dart
 enum RoutingMode implements TerraformEnum {

@@ -3,7 +3,8 @@ classDocComment: |-
   /// Factory wrapper for `google_pubsub_subscription_iam_member`.
   ///
   /// Pub/Sub Subscription IAM is part of the curated surface. (Cloud
-  /// Scheduler IAM is not; use `terradart codegen` if you need it.)
+  /// Scheduler IAM is not in the curated surface — open an issue to request
+  /// curation.)
 
 paramOrder:
   - subscription

@@ -26,11 +26,7 @@ Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch, t
 dart pub get
 ```
 
-Codegen for non-curated `google_*` resources is optional:
-
-```bash
-dart pub global activate terradart_codegen ^0.12.x
-```
+Non-curated `google_*` resources are not generated locally. Request new factories via a [GitHub feature issue](https://github.com/nozomi-koborinai/terradart/issues/new/choose).
 
 ## 2. Define a Stack
 
