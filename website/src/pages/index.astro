@@ -65,25 +65,29 @@ import Footer from "../components/Footer.astro";
         >See full comparison →</a
       >
     </p>
-    <Pipeline
-      eyebrow="Pipeline"
-      heading="How it works in three steps"
-      steps={[
-        {
-          title: "Author in Dart",
-          body: "Subclass Stack with curated google_* factories from terradart_google.",
-        },
-        {
-          title: "Generate Terraform JSON",
-          body: "stack.writeTo(...) writes *.tf.json — no custom apply runtime.",
-        },
-        {
-          title: "Apply with Terraform",
-          body: "terraform plan and apply unchanged; state stays where it is.",
-        },
-      ]}
-      footnote={`Details: <a href="/docs/architecture/" class="link-mark">/docs/architecture</a> · <a href="https://github.com/nozomi-koborinai/terradart/blob/main/README.md" class="link-mark">README</a>`}
-    />
+    <section class="section rule-top">
+      <div class="container-edit section-inner">
+        <Pipeline
+          eyebrow="Pipeline"
+          heading="How it works in three steps"
+          steps={[
+            {
+              title: "Author in Dart",
+              body: "Subclass Stack with curated google_* factories from terradart_google.",
+            },
+            {
+              title: "Generate Terraform JSON",
+              body: "stack.writeTo(...) writes *.tf.json — no custom apply runtime.",
+            },
+            {
+              title: "Apply with Terraform",
+              body: "terraform plan and apply unchanged; state stays where it is.",
+            },
+          ]}
+          footnote={`Details: <a href="/docs/architecture/" class="link-mark">/docs/architecture</a> · <a href="https://github.com/nozomi-koborinai/terradart/blob/main/README.md" class="link-mark">README</a>`}
+        />
+      </div>
+    </section>
   </main>
   <Footer />
 </Layout>

@@ -1,0 +1,40 @@
+/* Pipeline steps — shared by LP (global.css) and Starlight docs (customCss). */
+.pipeline {
+  list-style: none;
+  padding: 0;
+  margin: 2.5rem 0 0;
+  display: grid;
+  gap: 0;
+}
+
+.pipeline-step {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr;
+  gap: 1.25rem;
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--color-rule, var(--sl-color-hairline));
+}
+
+.pipeline-step:last-child {
+  border-bottom: 1px solid var(--color-rule, var(--sl-color-hairline));
+}
+
+.pipeline-index {
+  font-family: var(--font-mono, var(--sl-font-mono));
+  font-size: 0.8125rem;
+  color: var(--color-accent, var(--sl-color-accent));
+  padding-top: 0.15rem;
+}
+
+.pipeline-title {
+  font-size: 1.0625rem;
+  font-weight: 500;
+  margin: 0 0 0.35rem;
+}
+
+.pipeline-body p {
+  font-size: 0.95rem;
+  color: var(--color-mute, var(--sl-color-gray-3));
+  line-height: 1.5;
+  margin: 0;
+}
