@@ -32,7 +32,10 @@ dart test
 # Run static analysis (must pass with zero issues)
 dart analyze --fatal-infos --fatal-warnings
 
-# Docs / quickstart consistency (same as CI)
+# Agent gate (subset of CI; no terraform matrix)
+tool/agent_verify.sh
+
+# Docs / quickstart only
 dart tool/check_docs_consistency.dart
 tool/smoke_quickstart.sh
 
@@ -50,8 +53,7 @@ tool/run_tests.sh
 
 Before opening a PR:
 
-- [ ] `dart analyze --fatal-infos --fatal-warnings` passes.
-- [ ] `dart test` passes (full suite, not just one package).
+- [ ] `tool/agent_verify.sh` passes (or explain what you could not run).
 - [ ] `dart tool/check_docs_consistency.dart` passes when you touch versions or catalog counts.
 - [ ] `tool/smoke_quickstart.sh` passes when you touch `pubsub_quickstart` or synth/export paths.
 - [ ] `dart format` was run.

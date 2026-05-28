@@ -29,23 +29,33 @@ The supported maintainer generation path is `terradart wrap`.
 - Root `CONTEXT.md` is a glossary only. Do not put implementation plans, chat transcripts, or ADR content there.
 - Public website docs live under `website/src/content/docs/docs/`.
 
-## Useful Commands
+## Agent verification
 
-Prefer task-specific scripts and CI for final verification. These commands are useful starting points:
+Before claiming work is done, run from the repository root:
 
 ```bash
-dart pub get
-dart analyze packages/ --fatal-infos --fatal-warnings
-dart test --reporter=expanded
-dart tool/check_docs_consistency.dart
-tool/smoke_quickstart.sh
+tool/agent_verify.sh
 ```
 
-Wrapper determinism:
+This is the shared agent gate (docs consistency, analyze, four-package tests, `terradart wrap --check`, pubsub smoke). It does **not** run the full `terraform_validate` example matrix; GitHub Actions still enforces that on merge.
+
+Optional flags:
 
 ```bash
-cd packages/terradart_codegen
-dart run bin/terradart.dart wrap \
+tool/agent_verify.sh --format       # scoped dart format (core, codegen, agent)
+tool/agent_verify.sh --maintainer   # add wrap-init / wrap-promote e2e tests
+```
+
+Local Cursor IDE runs `tool/agent_verify.sh` on agent completion via `.cursor/hooks.json` (`stop` hook). Cursor Cloud Agent does not run the `stop` hook yet — run `tool/agent_verify.sh` explicitly before finishing.
+
+## Useful Commands
+
+Targeted checks when `agent_verify.sh` is too broad:
+
+```bash
+dart tool/check_docs_consistency.dart
+tool/smoke_quickstart.sh
+cd packages/terradart_codegen && dart run bin/terradart.dart wrap \
   --provider hashicorp/google \
   --source test/fixtures/wrap/source \
   --output ../terradart_google/lib/src \
@@ -64,7 +74,7 @@ Cloud agents such as Devin, Cursor Cloud Agent, and Claude Code on the Web shoul
 4. Create or update only the required `wrapper_overrides/yaml/<terraform_type>.yaml` entries.
 5. Run `terradart wrap` for the target resource when the source inputs are available, then run full `wrap --check`.
 6. Inspect generated `terradart_google` API diffs for constructor names, helper types, getters, enum use, sealed types, and sensitive-field behavior.
-7. Run targeted tests first, then the verification commands above as needed.
+7. Run targeted tests first, then `tool/agent_verify.sh` (or `--maintainer` when touching wrap-init/promote).
 
 ### Handle Provider Schema Or MM YAML Drift
 
@@ -97,4 +107,4 @@ Cloud agents such as Devin, Cursor Cloud Agent, and Claude Code on the Web shoul
 - Do not rely on Gitignored `docs/` as authoritative context for cloud-agent work.
 - If a cloud agent needs durable guidance, prefer checked-in tooling/CI; otherwise add concise guidance to `AGENTS.md` or vocabulary to `CONTEXT.md`.
 - Keep long-form design notes in `docs/` unless they are intentionally being promoted into public docs or committed agent guidance.
-- After substantive edits, run the narrowest useful verification and report what did or did not run.
+- After substantive edits, run `tool/agent_verify.sh` when feasible and report what did or did not run.
