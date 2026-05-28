@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
-      - uses: actions/labeler@v5
+      - uses: actions/labeler@v6
         with:
           sync-labels: true
 
@@ -27,7 +27,7 @@ jobs:
     if: github.event.action == 'opened'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v7
+      - uses: actions/github-script@v8
         with:
           script: |
             const owner = context.repo.owner;
@@ -44,7 +44,7 @@ jobs:
     name: type from title
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v7
+      - uses: actions/github-script@v8
         with:
           script: |
             const managed = [
@@ -84,12 +84,12 @@ jobs:
             const toRemove = current.filter((l) => !desired.includes(l));
             const toAdd = desired.filter((l) => !current.includes(l));
 
-            if (toRemove.length > 0) {
-              await github.rest.issues.removeLabels({
+            for (const name of toRemove) {
+              await github.rest.issues.removeLabel({
                 owner,
                 repo,
                 issue_number,
-                labels: toRemove,
+                name,
               });
             }
             if (toAdd.length > 0) {
