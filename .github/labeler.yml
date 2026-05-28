@@ -1,0 +1,43 @@
+# Path-based labels for pull requests (actions/labeler@v5).
+
+'area:core':
+  - changed-files:
+      - any-glob-to-any-file: 'packages/terradart_core/**'
+
+'area:codegen':
+  - changed-files:
+      - any-glob-to-any-file: 'packages/terradart_codegen/**'
+
+'area:google':
+  - changed-files:
+      - any-glob-to-any-file: 'packages/terradart_google/**'
+
+'area:agent':
+  - changed-files:
+      - any-glob-to-any-file: 'packages/terradart_agent/**'
+
+'area:website':
+  - changed-files:
+      - any-glob-to-any-file: 'website/**'
+
+'area:tool':
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'tool/**'
+          - 'examples/**'
+
+'area:ci':
+  - changed-files:
+      - any-glob-to-any-file:
+          - '.github/workflows/**'
+          - '.github/ISSUE_TEMPLATE/**'
+
+'area:docs':
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'AGENTS.md'
+          - 'CONTEXT.md'
+          - 'README.md'
+          - 'MIGRATING.md'
+          - 'CLAUDE.md'
+          - '.cursor/**'

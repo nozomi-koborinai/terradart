@@ -1,0 +1,102 @@
+name: PR labeler
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, edited]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+concurrency:
+  group: pr-labeler-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  area:
+    name: area labels
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/labeler@v6
+        with:
+          sync-labels: true
+
+  triage:
+    name: triage on open
+    if: github.event.action == 'opened'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v8
+        with:
+          script: |
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const issue_number = context.payload.pull_request.number;
+            await github.rest.issues.addLabels({
+              owner,
+              repo,
+              issue_number,
+              labels: ['triage'],
+            });
+
+  type:
+    name: type from title
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/github-script@v8
+        with:
+          script: |
+            const managed = [
+              'enhancement',
+              'documentation',
+              'bug',
+              'test',
+              'ci',
+              'chore',
+              'maintainer',
+            ];
+            const title = context.payload.pull_request.title;
+            const desired = [];
+            if (/^feat(\(|!|:)/.test(title)) desired.push('enhancement');
+            if (/^fix(\(|!|:)/.test(title)) desired.push('bug');
+            if (/^docs(\(|!|:)/.test(title)) desired.push('documentation');
+            if (/^test(\(|!|:)/.test(title)) desired.push('test');
+            if (/^ci(\(|!|:)/.test(title)) desired.push('ci');
+            if (/^chore(\(|!|:)/.test(title)) desired.push('chore');
+            if (/^regen:/.test(title) || /^chore\(schema\):/.test(title)) {
+              desired.push('maintainer');
+            }
+
+            const owner = context.repo.owner;
+            const repo = context.repo.repo;
+            const issue_number = context.payload.pull_request.number;
+
+            const { data: issue } = await github.rest.issues.get({
+              owner,
+              repo,
+              issue_number,
+            });
+            const current = (issue.labels || [])
+              .map((l) => (typeof l === 'string' ? l : l.name))
+              .filter((name) => managed.includes(name));
+
+            const toRemove = current.filter((l) => !desired.includes(l));
+            const toAdd = desired.filter((l) => !current.includes(l));
+
+            for (const name of toRemove) {
+              await github.rest.issues.removeLabel({
+                owner,
+                repo,
+                issue_number,
+                name,
+              });
+            }
+            if (toAdd.length > 0) {
+              await github.rest.issues.addLabels({
+                owner,
+                repo,
+                issue_number,
+                labels: toAdd,
+              });
+            }
