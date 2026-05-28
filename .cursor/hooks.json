@@ -1,10 +1,15 @@
 {
   "version": 1,
   "hooks": {
-    "stop": [
+    "afterFileEdit": [
       {
-        "command": ".cursor/hooks/on-stop-verify.sh",
-        "loop_limit": 3
+        "command": ".cursor/hooks/after-file-format.sh"
+      }
+    ],
+    "preToolUse": [
+      {
+        "command": ".cursor/hooks/before-write-guard.sh",
+        "matcher": "Write|Edit"
       }
     ]
   }

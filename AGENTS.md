@@ -46,7 +46,35 @@ tool/agent_verify.sh --format       # scoped dart format (core, codegen, agent)
 tool/agent_verify.sh --maintainer   # add wrap-init / wrap-promote e2e tests
 ```
 
-Local Cursor IDE runs `tool/agent_verify.sh` on agent completion via `.cursor/hooks.json` (`stop` hook). Cursor Cloud Agent does not run the `stop` hook yet — run `tool/agent_verify.sh` explicitly before finishing.
+### Cursor hooks (Cloud + local IDE)
+
+Committed in `.cursor/hooks.json` (including Cursor Cloud Agent):
+
+- `afterFileEdit` — `dart format` on hand-written Dart only (not `terradart_google/lib/src`).
+- `preToolUse` (`Write|Edit`) — blocks direct edits to generated wrappers, wrap goldens, and `.github/workflows/`.
+
+Run `tool/agent_verify.sh` explicitly before claiming work is done (Cloud Agent and local IDE).
+
+## Commits
+
+Use [Conventional Commits](https://www.conventionalcommits.org/) for subject lines. This is documented policy only — the repo does not run commitlint or other commit-message tooling.
+
+Format: `type(scope?): subject` (imperative, concise, no trailing period).
+
+| Type | Use for |
+|------|---------|
+| `feat` | User-visible capability or public API |
+| `fix` | Bug fix |
+| `docs` | Documentation and agent guides only |
+| `chore` | Tooling, CI, hooks, refactors without API change |
+| `test` | Tests only |
+| `ci` | GitHub Actions workflow changes |
+
+Optional scope examples: `hooks`, `codegen`, `google`, `website`, `agent`.
+
+Maintainer automation sometimes uses `regen:` or `chore(schema):` — match that style for wrap/schema bot commits.
+
+Avoid vague subjects (`update`, `fix stuff`, `WIP`). Prefer one logical change per commit when you create multiple commits on a branch.
 
 ## Useful Commands
 
