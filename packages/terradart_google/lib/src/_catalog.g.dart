@@ -3371,7 +3371,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_pubsub_subscription_iam_member`.\n\nPub/Sub Subscription IAM is part of the curated surface. (Cloud\nScheduler IAM is not; use `terradart codegen` if you need it.)',
+        'Factory wrapper for `google_pubsub_subscription_iam_member`.\n\nPub/Sub Subscription IAM is part of the curated surface. (Cloud\nScheduler IAM is not in the curated surface — open an issue to request\ncuration.)',
   ),
   CatalogEntry(
     tfType: 'google_pubsub_topic',
@@ -3415,7 +3415,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_pubsub_topic_iam_member`.\n\nAdds a single IAM `role` → `member` binding on a topic. For\nmulti-member binding semantics, prefer `google_pubsub_topic_iam_binding`\n(available via `terradart codegen` until it lands as a curated factory).',
+        'Factory wrapper for `google_pubsub_topic_iam_member`.\n\nAdds a single IAM `role` → `member` binding on a topic. For\nmulti-member binding semantics, prefer `google_pubsub_topic_iam_binding`\n(not yet a curated factory — open an issue to request curation).',
   ),
   CatalogEntry(
     tfType: 'google_secret_manager_secret',

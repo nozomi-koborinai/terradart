@@ -8,7 +8,7 @@ The full per-service breakdown lives in the [repo README — What ships](https:/
 
 Factory wrappers under `lib/src/<service>/` are emitted by `terradart wrap` from curated overrides in [`terradart_codegen`](https://pub.dev/packages/terradart_codegen). They are committed so consumers depend on `terradart_google` without running codegen.
 
-CI verifies determinism via `terradart wrap --check`. For any other `google_*` resource, run `terradart codegen` in your own project.
+CI verifies determinism via `terradart wrap --check`. For any other `google_*` resource, open an issue to request curation.
 
 Runtime primitives (`Stack`, `TfArg`, `writeTo`) live in [`terradart_core`](https://pub.dev/packages/terradart_core).
 

@@ -1,5 +1,20 @@
 # Migrating terradart
 
+## Unreleased — `terradart codegen` removed
+
+The `terradart codegen` CLI subcommand and `runCodegen` library export are **removed**.
+Maintainer generation is **`terradart wrap` only** (`wrap-init`, `wrap-promote` unchanged).
+
+**If you only consumed `terradart_google`:** no Stack changes required.
+
+**If you ran `terradart codegen` locally:** stop using it. Import curated factories from
+`terradart_google`, or open a feature issue to request a new curated resource.
+
+`dart pub global activate terradart_codegen` remains valid for **maintainers** running
+`terradart wrap` against the repo fixtures.
+
+---
+
 ## 0.11.x → 0.12.x
 
 There are **no breaking changes** to the `terradart_core` or `terradart_google`

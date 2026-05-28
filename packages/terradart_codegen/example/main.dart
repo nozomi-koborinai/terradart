@@ -1,11 +1,11 @@
-/// Example: invoke the terradart codegen CLI.
+/// Example: invoke the terradart maintainer CLI.
 ///
 /// ```bash
-/// dart pub global activate terradart_codegen 0.0.1-dev
-/// terradart codegen \
+/// dart pub global activate terradart_codegen ^0.12.x
+/// terradart wrap \
 ///   --provider hashicorp/google \
 ///   --source path/to/schema-dir \
-///   --output lib/generated
+///   --output path/to/output
 /// ```
 void main() {
   // ignore: avoid_print

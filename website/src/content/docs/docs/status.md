@@ -19,7 +19,7 @@ There are no SemVer guarantees until **v1.0.0**. Pin with `^0.12.x` and read [MI
 
 - Surface and emitted Terraform JSON may change between releases, especially across **minor** bumps.
 - Use hosted `^0.12.x` carets on [pub.dev](https://pub.dev/packages/terradart_core) — not legacy `0.x.y-dev` pre-release tags.
-- `terradart codegen` output for non-curated resources has **no** stability guarantee.
+- Only the **curated** `terradart_google` surface is supported for users; non-curated resources require a curation request.
 
 ## Beta change policy (applies from v0.13.0)
 
@@ -49,14 +49,14 @@ We will label the project **beta** starting with **v0.13.0** when every **requir
 - [ ] **External quickstart**: someone outside the core team completes the README path once; feedback captured in an issue or discussion.
 - [ ] **Real apply dogfood** via [terradart-cookbook](https://github.com/nozomi-koborinai/terradart-cookbook): at least one non-trivial recipe documents a successful `terraform apply`.
 - [ ] **`terradart-mcp`**: [Agent install](/docs/agent/install/) verified on a clean machine (Homebrew or release binary + four tools).
-- [ ] **1.0.0 criteria** drafted (what “stable” means for curated names, codegen output, and `terradart_core` API).
+- [ ] **1.0.0 criteria** drafted (what “stable” means for curated names and `terradart_core` API).
 
 ## What beta does *not* mean
 
 - **Not** a freeze on new curated factories.
 - **Not** [constructs / composite frameworks](https://github.com/nozomi-koborinai/terradart#non-goals).
 - **Not** SemVer until 1.0.0.
-- **Not** a guarantee that `terradart codegen` output is stable.
+- **Not** on-demand generation of arbitrary `google_*` bindings outside the curated surface.
 
 ## Reporting issues
 

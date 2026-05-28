@@ -33,7 +33,6 @@ void main() {
     '.github/ISSUE_TEMPLATE/bug.yml',
     '.github/ISSUE_TEMPLATE/feature.yml',
     '.github/ISSUE_TEMPLATE/question.yml',
-    '.github/ISSUE_TEMPLATE/codegen.yml',
   ]) {
     _checkCaretMinor(errors, minor, template);
   }

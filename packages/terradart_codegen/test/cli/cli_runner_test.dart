@@ -14,9 +14,11 @@ void main() {
       expect(buildCliRunner().executableName, 'terradart');
     });
 
-    test('registers codegen and version subcommands', () {
+    test('registers wrap and version subcommands', () {
       final runner = buildCliRunner();
-      expect(runner.commands.containsKey('codegen'), isTrue);
+      expect(runner.commands.containsKey('wrap'), isTrue);
+      expect(runner.commands.containsKey('wrap-init'), isTrue);
+      expect(runner.commands.containsKey('wrap-promote'), isTrue);
       expect(runner.commands.containsKey('version'), isTrue);
     });
   });

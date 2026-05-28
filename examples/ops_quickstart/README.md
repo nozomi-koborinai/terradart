@@ -61,7 +61,7 @@ terraform apply
 }
 ```
 
-To wire the sink's writer identity to the destination's IAM, add a separate `GoogleBigqueryDatasetIamMember` granting `roles/bigquery.dataEditor` to `TfArg.ref(sink.writerIdentityRef)` (available via `terradart codegen` until it lands as a curated factory).
+To wire the sink's writer identity to the destination's IAM, add a separate `GoogleBigqueryDatasetIamMember` granting `roles/bigquery.dataEditor` to `TfArg.ref(sink.writerIdentityRef)` once it is added to the curated surface (open an issue to request curation).
 
 ## Next steps
 

@@ -16,9 +16,7 @@ Future<void> main(List<String> args) => Chain.capture(
         final runner = buildCliRunner();
 
         // Top-level `--version` short-circuit. Only fires when the flag
-        // sits at the front of the argv before any subcommand, so that
-        // `terradart codegen --version 5.32.0` (a value for the codegen
-        // subcommand) keeps working.
+        // sits at the front of the argv before any subcommand.
         if (_isTopLevelVersionInvocation(args)) {
           stdout.writeln(terradartCliVersion);
           exitCode = CliExitCodes.success;
@@ -51,10 +49,9 @@ bool _isTopLevelVersionInvocation(List<String> args) {
 /// `Isolate.resolvePackageUri` and builds a [WrapperEmitter] wired up to the
 /// override registry loaded from `<rootDir>/*.yaml`.
 ///
-/// Phase 2.3 adds this scaffold so future codegen passes (Phase 4) can wire
-/// the emitter without re-implementing package URI resolution. The function
-/// is exercised at runtime by Phase 4 hookups; v0.0.x codegen does not yet
-/// emit wrappers, so this is dormant scaffolding.
+/// Resolves the production semantic-hints YAML root and builds a
+/// [WrapperEmitter] wired to the override registry under
+/// `wrapper_overrides/yaml/`.
 Future<WrapperEmitter> buildWrapperEmitterFromPackageYaml() async {
   final yamlRootUri = await Isolate.resolvePackageUri(
     Uri.parse('package:terradart_codegen/src/codegen/wrapper_overrides/yaml/'),
