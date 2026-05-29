@@ -12,6 +12,8 @@ import '../codegen/generated_file_header.dart';
 import '../codegen/wrapper_emitter.dart';
 import '../codegen/wrapper_overrides/_registry.dart';
 import '../codegen/wrapper_overrides/yaml_loader.dart';
+import '../parser/ir_merger.dart';
+import '../parser/mm_yaml_parser.dart';
 import '../parser/schema_parser.dart';
 import 'exit_codes.dart';
 
@@ -117,8 +119,37 @@ class WrapCommand extends Command<int> {
       return CliExitCodes.dataError;
     }
     final schemaSrc = schemaFile.readAsStringSync();
-    final ir = const SchemaJsonParser()
+    final baseIr = const SchemaJsonParser()
         .parseString(schemaSrc, providerVersion: '7.31.0');
+
+    // 1b. Load MM YAML overrides from <source>/mm/ and merge them into the
+    //     schema IR so that enumValues (and other MM-derived constraints) are
+    //     available to the WrapperEmitter's `deriveEnums` gate.
+    //
+    //     The mm/ directory is optional: if it doesn't exist (e.g. a
+    //     schema-only fixture), we skip merging and use the bare schema IR.
+    //     For each resource in the registry we attempt to read
+    //     `mm/<terraform_type>.yaml`; missing files are silently skipped
+    //     (not every curated resource has a corresponding MM file).
+    final mmDir = Directory(p.join(source, 'mm'));
+    final mmOverrides = <String, MmResourceOverrides>{};
+    if (mmDir.existsSync()) {
+      for (final entity in mmDir.listSync()) {
+        if (entity is! File) continue;
+        final basename = p.basename(entity.path);
+        if (!basename.endsWith('.yaml')) continue;
+        final resourceType = basename.substring(0, basename.length - 5);
+        try {
+          mmOverrides[resourceType] =
+              const MmYamlParser().parseString(entity.readAsStringSync());
+        } catch (_) {
+          // Malformed MM YAML: skip silently (schema IR is still usable).
+        }
+      }
+    }
+    final ir = mmOverrides.isEmpty
+        ? baseIr
+        : const IrMerger().merge(base: baseIr, overrides: mmOverrides);
 
     // 2. Resolve the YAML override root. In `dart test` the package_config
     //    is provided by the runner, so `Isolate.resolvePackageUri` succeeds.
