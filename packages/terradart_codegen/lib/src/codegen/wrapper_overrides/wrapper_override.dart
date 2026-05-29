@@ -194,6 +194,12 @@ final class WrapperOverride {
   /// `null` means "no prelude".
   final String? prelude;
 
+  /// Phase A1 migration gate. When `true`, the emitter derives `TerraformEnum`
+  /// declarations for this resource's enum-valued attributes from the
+  /// MM-enriched IR, and the hand-written enum block must be removed from
+  /// [prelude]. Defaults to `false` so un-migrated resources are unaffected.
+  final bool deriveEnums;
+
   /// Snake-case slot name → custom constructor / argMap snippets.
   ///
   /// Two use cases:
@@ -271,6 +277,7 @@ final class WrapperOverride {
     this.extraSensitiveFields,
     this.prelude,
     this.customSlots,
+    this.deriveEnums = false,
   });
 }
 
