@@ -3,6 +3,7 @@ import '../ir/nested_block.dart';
 import '../ir/resource_def.dart';
 import 'constructor_params.dart';
 import 'dart_type_writer.dart';
+import 'enum_emitter.dart';
 import 'naming.dart';
 import 'sensitive_set_emitter.dart';
 import 'wrapper_overrides/wrapper_override.dart';
@@ -109,6 +110,24 @@ class WrapperEmitter {
       ),
     );
     buf.writeln();
+
+    // Phase A1: derive top-level `TerraformEnum` declarations from the
+    // MM-enriched IR when the override opts in via `deriveEnums: true`. Each
+    // top-level attribute carrying `enumValues` becomes a generated enum,
+    // replacing the hand-written `prelude` enum block. Nested-block enums are
+    // out of scope for A1 (top-level attributes only).
+    if (override?.deriveEnums ?? false) {
+      for (final attr in def.root.attributes) {
+        final values = attr.constraints.enumValues;
+        if (values == null || values.isEmpty) continue;
+        final en = enumName(
+          resourceType: def.terraformType,
+          fieldPath: attr.name,
+          members: values,
+        );
+        buf.writeln(emitEnumDeclaration(en));
+      }
+    }
 
     // Prelude (sealed types + helper classes the hand-written wrapper
     // ships inline). Plan 5.X: the schema-stub class is gone, so the

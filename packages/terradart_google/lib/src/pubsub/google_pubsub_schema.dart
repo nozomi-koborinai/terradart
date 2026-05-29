@@ -6,23 +6,10 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_pubsub_schema`.
 const Set<String> _googlePubsubSchemaSensitive = <String>{};
 
-// ===========================================================================
-// Enums (sourced from schema "Possible values" prose)
-// ===========================================================================
-
-/// `type` -- the payload shape this schema validates. Schema default
-/// `TYPE_UNSPECIFIED` (no validation); pick [protocolBuffer] or [avro]
-/// to enable publisher-side validation of message payloads.
+/// Pubsub Schema enum for `type`.
 enum PubsubSchemaType implements TerraformEnum {
-  /// Default. No payload validation is performed. Equivalent to omitting
-  /// `type` in HCL.
   typeUnspecified('TYPE_UNSPECIFIED'),
-
-  /// `definition` holds a Protobuf source string with a single
-  /// `message {...}` definition.
   protocolBuffer('PROTOCOL_BUFFER'),
-
-  /// `definition` holds an Avro JSON schema string.
   avro('AVRO');
 
   const PubsubSchemaType(this.terraformValue);

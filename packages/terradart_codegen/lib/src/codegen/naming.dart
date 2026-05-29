@@ -33,10 +33,12 @@ String resourceFileName(String terraformType) => '$terraformType.dart';
 class EnumName {
   final String dartName;
   final List<String> dartMembers;
+  final List<String> rawValues;
   final String fieldPath;
   const EnumName({
     required this.dartName,
     required this.dartMembers,
+    required this.rawValues,
     required this.fieldPath,
   });
 }
@@ -66,6 +68,7 @@ EnumName enumName({
   return EnumName(
     dartName: '$shortResourcePascal$leafPascal',
     dartMembers: dartMembers,
+    rawValues: List<String>.from(members),
     fieldPath: fieldPath,
   );
 }

@@ -32,6 +32,17 @@ void main() {
         expect(override.extraImports, isNull);
         expect(override.prelude, isNull);
         expect(override.customSlots, isNull);
+        expect(override.deriveEnums, isFalse);
+      });
+
+      test('derive_enums_on -> deriveEnums true', () {
+        final loader = YamlOverrideLoader(
+          rootDir: 'test/fixtures/semantic_hints_loader/happy',
+        );
+        final result = loader.load().resources;
+        final o = result['derive_enums_on']!;
+        expect(o.deriveEnums, isTrue);
+        expect(o.outputDir, 'test_out');
       });
 
       test('class_doc_comment_only -> only classDocComment set', () {
@@ -273,6 +284,19 @@ schemaStubComment: |-
         expect(
           loader.load,
           throwsFormatExceptionWith('must be a string'),
+        );
+      });
+
+      test('deriveEnums not a boolean -> FormatException', () {
+        final loader = YamlOverrideLoader(
+          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+              'derive_enums_not_bool',
+        );
+        expect(
+          loader.load,
+          throwsFormatExceptionWith(
+            '"deriveEnums" must be a boolean (true or false)',
+          ),
         );
       });
 

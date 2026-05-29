@@ -13,17 +13,26 @@ import 'naming.dart';
 /// `package:terradart_core/terradart_core.dart`, which re-exports
 /// [TerraformEnum]; no separate import is required at the enum-emit site.
 String emitEnumDeclaration(EnumName name) {
-  final memberList = name.dartMembers.join(', ');
-  // Resource label is everything except the trailing PascalCase chunk; the
-  // **leaf** field name (last segment of fieldPath) is the dartdoc reference,
-  // since it's already disambiguated by the resource prefix in the enum name.
   final words = _splitPascalWords(name.dartName);
   final resource = words.length >= 2
       ? words.sublist(0, words.length - 1).join(' ')
       : name.dartName;
   final leaf = name.fieldPath.split('.').last;
-  return '/// $resource enum for `$leaf`.\n'
-      'enum ${name.dartName} implements TerraformEnum { $memberList }\n';
+  final buf = StringBuffer()
+    ..writeln('/// $resource enum for `$leaf`.')
+    ..writeln('enum ${name.dartName} implements TerraformEnum {');
+  for (var i = 0; i < name.dartMembers.length; i++) {
+    final isLast = i == name.dartMembers.length - 1;
+    buf.writeln(
+        "  ${name.dartMembers[i]}('${name.rawValues[i]}')${isLast ? ';' : ','}");
+  }
+  buf
+    ..writeln()
+    ..writeln('  const ${name.dartName}(this.terraformValue);')
+    ..writeln('  @override')
+    ..writeln('  final String terraformValue;')
+    ..writeln('}');
+  return buf.toString();
 }
 
 String writeEnumDartType(EnumName name) => name.dartName;

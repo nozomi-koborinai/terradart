@@ -1,4 +1,5 @@
 outputDir: pubsub
+deriveEnums: true
 
 classDocComment: |-
   /// Factory wrapper for `google_pubsub_schema` (provider
@@ -73,28 +74,3 @@ extraGetters: |2
     /// `projects/{project}/schemas/{name}`). Topics' `schema_settings.schema`
     /// expects this full-path form -- pass `TfArg.ref(schema.id)`.
     TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-prelude: |
-  // ===========================================================================
-  // Enums (sourced from schema "Possible values" prose)
-  // ===========================================================================
-
-  /// `type` -- the payload shape this schema validates. Schema default
-  /// `TYPE_UNSPECIFIED` (no validation); pick [protocolBuffer] or [avro]
-  /// to enable publisher-side validation of message payloads.
-  enum PubsubSchemaType implements TerraformEnum {
-    /// Default. No payload validation is performed. Equivalent to omitting
-    /// `type` in HCL.
-    typeUnspecified('TYPE_UNSPECIFIED'),
-
-    /// `definition` holds a Protobuf source string with a single
-    /// `message {...}` definition.
-    protocolBuffer('PROTOCOL_BUFFER'),
-
-    /// `definition` holds an Avro JSON schema string.
-    avro('AVRO');
-
-    const PubsubSchemaType(this.terraformValue);
-    @override
-    final String terraformValue;
-  }
