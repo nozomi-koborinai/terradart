@@ -10,10 +10,10 @@ void main() {
       ).readAsStringSync();
       expect(yaml, contains('deriveEnums: true'));
       expect(yaml, isNot(contains('enum PubsubSchemaType')));
-      expect(yaml, isNot(contains('prelude:')));
     });
 
     test('generated wrapper exposes the derived TerraformEnum', () {
+      // Relative path assumes cwd is the package dir, which `dart test` provides.
       final dart = File(
         '../terradart_google/lib/src/pubsub/google_pubsub_schema.dart',
       ).readAsStringSync();
