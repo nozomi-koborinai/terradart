@@ -30,7 +30,8 @@ void main() {
         'google_pubsub_schema':
             const WrapperOverride(outputDir: 'pubsub', deriveEnums: true),
       });
-      final src = emitter.emit(_schemaDef(), providerSource: 'hashicorp/google');
+      final src =
+          emitter.emit(_schemaDef(), providerSource: 'hashicorp/google');
       expect(src, contains('enum PubsubSchemaType implements TerraformEnum {'));
       expect(src, contains("typeUnspecified('TYPE_UNSPECIFIED'),"));
       expect(src, contains("avro('AVRO');"));
@@ -39,10 +40,10 @@ void main() {
 
     test('does NOT emit a derived enum when deriveEnums is false', () {
       final emitter = WrapperEmitter(overrides: {
-        'google_pubsub_schema':
-            const WrapperOverride(outputDir: 'pubsub'),
+        'google_pubsub_schema': const WrapperOverride(outputDir: 'pubsub'),
       });
-      final src = emitter.emit(_schemaDef(), providerSource: 'hashicorp/google');
+      final src =
+          emitter.emit(_schemaDef(), providerSource: 'hashicorp/google');
       expect(src, isNot(contains('enum PubsubSchemaType')));
     });
   });

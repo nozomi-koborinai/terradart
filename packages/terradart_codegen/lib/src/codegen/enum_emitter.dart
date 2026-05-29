@@ -23,7 +23,8 @@ String emitEnumDeclaration(EnumName name) {
     ..writeln('enum ${name.dartName} implements TerraformEnum {');
   for (var i = 0; i < name.dartMembers.length; i++) {
     final isLast = i == name.dartMembers.length - 1;
-    buf.writeln("  ${name.dartMembers[i]}('${name.rawValues[i]}')${isLast ? ';' : ','}");
+    buf.writeln(
+        "  ${name.dartMembers[i]}('${name.rawValues[i]}')${isLast ? ';' : ','}");
   }
   buf
     ..writeln()
