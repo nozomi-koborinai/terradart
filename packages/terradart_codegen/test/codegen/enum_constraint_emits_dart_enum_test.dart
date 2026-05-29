@@ -3,8 +3,9 @@ import 'package:terradart_codegen/src/codegen/naming.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('emitEnumDeclaration (spec §9.2 #3)', () {
-    test('emits Dart enum with camelCase members preserving order', () {
+  group('emitEnumDeclaration', () {
+    test('emits a complete TerraformEnum with raw values and terraformValue',
+        () {
       final name = enumName(
         resourceType: 'google_pubsub_topic',
         fieldPath: 'schema_settings.encoding',
@@ -13,23 +14,33 @@ void main() {
       final src = emitEnumDeclaration(name);
       expect(src, equals('''
 /// Pubsub Topic enum for `encoding`.
-enum PubsubTopicEncoding implements TerraformEnum { encodingUnspecified, json, binary }
+enum PubsubTopicEncoding implements TerraformEnum {
+  encodingUnspecified('ENCODING_UNSPECIFIED'),
+  json('JSON'),
+  binary('BINARY');
+
+  const PubsubTopicEncoding(this.terraformValue);
+  @override
+  final String terraformValue;
+}
 '''));
     });
 
-    test('a single-member enum is still emitted', () {
+    test('a single-member enum is still emitted with its raw value', () {
       final name = enumName(
         resourceType: 'google_x',
         fieldPath: 'mode',
         members: const ['ALL'],
       );
       final src = emitEnumDeclaration(name);
-      expect(src, contains('enum XMode implements TerraformEnum { all }'));
+      expect(src, contains("all('ALL');"));
+      expect(src, contains('enum XMode implements TerraformEnum {'));
+      expect(src, contains('final String terraformValue;'));
     });
   });
 
-  group('uses-the-enum field rendering', () {
-    test('writeEnumDartType returns the enum class name', () {
+  group('writeEnumDartType', () {
+    test('returns the enum class name', () {
       final name = enumName(
         resourceType: 'google_pubsub_topic',
         fieldPath: 'schema_settings.encoding',
