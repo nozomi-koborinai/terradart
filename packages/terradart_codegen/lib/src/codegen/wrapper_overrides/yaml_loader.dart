@@ -297,7 +297,7 @@ class YamlOverrideLoader {
       extraSensitiveFields:
           _readStringList(yaml, 'extraSensitiveFields', filePath),
       prelude: _readString(yaml, 'prelude', filePath),
-      deriveEnums: yaml['deriveEnums'] as bool? ?? false,
+      deriveEnums: _readBool(yaml, 'deriveEnums', filePath) ?? false,
       customSlots: _readCustomSlots(yaml, filePath),
     );
   }
@@ -506,6 +506,17 @@ class YamlOverrideLoader {
     if (v is! String) {
       throw FormatException(
         '$filePath: "$key" must be a string',
+      );
+    }
+    return v;
+  }
+
+  bool? _readBool(YamlMap yaml, String key, String filePath) {
+    final v = yaml[key];
+    if (v == null) return null;
+    if (v is! bool) {
+      throw FormatException(
+        '$filePath: "$key" must be a boolean (true or false)',
       );
     }
     return v;

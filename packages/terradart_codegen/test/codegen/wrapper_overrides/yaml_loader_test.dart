@@ -287,6 +287,19 @@ schemaStubComment: |-
         );
       });
 
+      test('deriveEnums not a boolean -> FormatException', () {
+        final loader = YamlOverrideLoader(
+          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+              'derive_enums_not_bool',
+        );
+        expect(
+          loader.load,
+          throwsFormatExceptionWith(
+            '"deriveEnums" must be a boolean (true or false)',
+          ),
+        );
+      });
+
       test('deprecatedParams value not string -> FormatException', () {
         final loader = YamlOverrideLoader(
           rootDir: 'test/fixtures/semantic_hints_loader/failure/'
