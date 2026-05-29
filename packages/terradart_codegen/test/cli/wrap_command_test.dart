@@ -344,6 +344,50 @@ void main() {
     });
   });
 
+  group('WrapCommand MM YAML', () {
+    test('malformed MM YAML exits with dataError (E405)', () async {
+      // Build a synthetic --source: a valid schema.json (copied from the
+      // real fixture so the schema parse succeeds) plus an mm/ directory
+      // holding one intentionally malformed YAML file. The wrap pipeline
+      // must surface the parse failure rather than silently dropping the
+      // file (which would make `deriveEnums` emit nothing).
+      final tmpSrc = await Directory.systemTemp.createTemp('phase4_mm_bad_');
+      final tmpOut = await Directory.systemTemp.createTemp('phase4_mm_out_');
+      try {
+        final fixtureSchema = File(
+          p.join('test', 'fixtures', 'wrap', 'source', 'schema.json'),
+        );
+        File(p.join(tmpSrc.path, 'schema.json'))
+            .writeAsStringSync(fixtureSchema.readAsStringSync());
+        final mmDir = Directory(p.join(tmpSrc.path, 'mm'));
+        mmDir.createSync(recursive: true);
+        // Unclosed YAML flow mapping → YamlException from loadYaml.
+        File(p.join(mmDir.path, 'google_pubsub_schema.yaml'))
+            .writeAsStringSync('{ : : :');
+
+        final errBuf = StringBuffer();
+        final code = await IOOverrides.runZoned(
+          () => buildCliRunner().run([
+            'wrap',
+            '--provider',
+            'hashicorp/google',
+            '--source',
+            tmpSrc.path,
+            '--output',
+            tmpOut.path,
+          ]),
+          stderr: () => _BufferSink(errBuf),
+        );
+        expect(code, CliExitCodes.dataError);
+        expect(errBuf.toString(), contains('[E405]'));
+        expect(errBuf.toString(), contains('malformed MM YAML'));
+      } finally {
+        await tmpSrc.delete(recursive: true);
+        await tmpOut.delete(recursive: true);
+      }
+    });
+  });
+
   group('WrapCommand fixture-driven', () {
     // Fixture files are stored with a `.dart.golden` suffix (matching the
     // project-wide golden naming convention under `test/golden/`) so they
@@ -396,4 +440,37 @@ void main() {
       }
     });
   });
+}
+
+/// Minimal [Stdout] stand-in that appends every `write*` call to a
+/// [StringBuffer], so in-process tests can capture what `stderr.writeln` would
+/// have printed. `IOOverrides.runZoned`'s `stderr` factory must return a
+/// [Stdout]; only the text-writing surface is exercised by the CLI, so the
+/// remainder is routed through `noSuchMethod`.
+class _BufferSink implements Stdout {
+  _BufferSink(this._buf);
+
+  final StringBuffer _buf;
+
+  @override
+  void write(Object? object) => _buf.write(object);
+
+  @override
+  void writeln([Object? object = '']) => _buf.writeln(object);
+
+  @override
+  void writeAll(Iterable<dynamic> objects, [String separator = '']) =>
+      _buf.writeAll(objects, separator);
+
+  @override
+  void writeCharCode(int charCode) => _buf.writeCharCode(charCode);
+
+  @override
+  Future<void> close() async {}
+
+  @override
+  Future<void> flush() async {}
+
+  @override
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }

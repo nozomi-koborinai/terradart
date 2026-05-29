@@ -134,6 +134,9 @@ class WrapCommand extends Command<int> {
     final mmDir = Directory(p.join(source, 'mm'));
     final mmOverrides = <String, MmResourceOverrides>{};
     if (mmDir.existsSync()) {
+      // Insertion order is irrelevant: `mmOverrides` is consumed by keyed
+      // lookup in `IrMerger.merge`, so no `..sort()` is needed (unlike
+      // `yaml_loader`, whose registry order is observable).
       for (final entity in mmDir.listSync()) {
         if (entity is! File) continue;
         final basename = p.basename(entity.path);
@@ -142,8 +145,15 @@ class WrapCommand extends Command<int> {
         try {
           mmOverrides[resourceType] =
               const MmYamlParser().parseString(entity.readAsStringSync());
-        } catch (_) {
-          // Malformed MM YAML: skip silently (schema IR is still usable).
+        } catch (e) {
+          // Surface malformed MM YAML rather than silently dropping it: a
+          // dropped file would make the `deriveEnums` gate emit nothing,
+          // which is a confusing failure. Mirror the bracketed E-code
+          // convention used by the other input-error paths in this command.
+          stderr.writeln(
+            '[E405] terradart wrap: malformed MM YAML ${entity.path}: $e',
+          );
+          return CliExitCodes.dataError;
         }
       }
     }
