@@ -386,6 +386,71 @@ void main() {
         await tmpOut.delete(recursive: true);
       }
     });
+
+    test(
+        'valid MM enum_values flow through wrap into a derived Dart enum '
+        '(happy path)', () async {
+      // Positive complement to the malformed-MM test above.
+      // Proves: valid enum_values in MM YAML → IrMerger → deriveEnums gate
+      // → derived Dart enum in wrap output.
+      //
+      // The override registry (google_pubsub_schema.yaml with deriveEnums:true)
+      // is loaded from the package, not from --source, so the gate is active.
+      // We use --only to limit output to a single file and keep the test fast.
+      final tmpSrc = await Directory.systemTemp.createTemp('phase4_mm_ok_src_');
+      final tmpOut = await Directory.systemTemp.createTemp('phase4_mm_ok_out_');
+      try {
+        // Copy the real schema.json fixture so schema parse succeeds.
+        final fixtureSchema = File(
+          p.join('test', 'fixtures', 'wrap', 'source', 'schema.json'),
+        );
+        File(p.join(tmpSrc.path, 'schema.json'))
+            .writeAsStringSync(fixtureSchema.readAsStringSync());
+
+        // Copy the real MM YAML fixture (has enum_values for PubsubSchemaType).
+        final fixtureMm = File(
+          p.join(
+            'test',
+            'fixtures',
+            'wrap',
+            'source',
+            'mm',
+            'google_pubsub_schema.yaml',
+          ),
+        );
+        final mmDir = Directory(p.join(tmpSrc.path, 'mm'));
+        mmDir.createSync(recursive: true);
+        File(p.join(mmDir.path, 'google_pubsub_schema.yaml'))
+            .writeAsStringSync(fixtureMm.readAsStringSync());
+
+        final code = await buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          tmpSrc.path,
+          '--output',
+          tmpOut.path,
+          '--only',
+          'google_pubsub_schema',
+        ]);
+        expect(code, CliExitCodes.success);
+
+        final outFile = File(
+          p.join(tmpOut.path, 'pubsub', 'google_pubsub_schema.dart'),
+        );
+        expect(outFile.existsSync(), isTrue);
+        final contents = outFile.readAsStringSync();
+        expect(
+          contents,
+          contains('enum PubsubSchemaType implements TerraformEnum {'),
+        );
+        expect(contents, contains("typeUnspecified('TYPE_UNSPECIFIED'),"));
+      } finally {
+        await tmpSrc.delete(recursive: true);
+        await tmpOut.delete(recursive: true);
+      }
+    });
   });
 
   group('WrapCommand fixture-driven', () {
