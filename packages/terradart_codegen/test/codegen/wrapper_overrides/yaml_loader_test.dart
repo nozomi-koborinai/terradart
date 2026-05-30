@@ -34,6 +34,8 @@ void main() {
         expect(override.customSlots, isNull);
         expect(override.deriveEnums, isFalse);
         expect(override.deriveOutputGetters, isFalse);
+        expect(override.deriveClassDoc, isFalse);
+        expect(override.curatedDoc, isNull);
       });
 
       test('derive_enums_on -> deriveEnums true', () {
@@ -53,6 +55,21 @@ void main() {
         final result = loader.load().resources;
         final o = result['derive_getters_on']!;
         expect(o.deriveOutputGetters, isTrue);
+        expect(o.outputDir, 'test_out');
+      });
+
+      test('derive_class_doc_on -> deriveClassDoc true + curatedDoc parsed',
+          () {
+        final loader = YamlOverrideLoader(
+          rootDir: 'test/fixtures/semantic_hints_loader/happy',
+        );
+        final result = loader.load().resources;
+        final o = result['derive_class_doc_on']!;
+        expect(o.deriveClassDoc, isTrue);
+        // `equals` (not `contains`) pins the curatedDoc contract: the `|-`
+        // chomp strips the trailing newline, so the parsed value is exactly
+        // the single `///` line with no leading separator or trailing `\n`.
+        expect(o.curatedDoc, equals('/// Curated example block.'));
         expect(o.outputDir, 'test_out');
       });
 

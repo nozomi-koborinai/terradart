@@ -77,6 +77,8 @@ class YamlOverrideLoader {
     'prelude',
     'deriveEnums',
     'deriveOutputGetters',
+    'deriveClassDoc',
+    'curatedDoc',
     'customSlots',
     // 4 Phase 4.1 axes (kind dispatch + emitter routing).
     'kind',
@@ -301,6 +303,8 @@ class YamlOverrideLoader {
       deriveEnums: _readBool(yaml, 'deriveEnums', filePath) ?? false,
       deriveOutputGetters:
           _readBool(yaml, 'deriveOutputGetters', filePath) ?? false,
+      deriveClassDoc: _readBool(yaml, 'deriveClassDoc', filePath) ?? false,
+      curatedDoc: _readString(yaml, 'curatedDoc', filePath),
       customSlots: _readCustomSlots(yaml, filePath),
     );
   }

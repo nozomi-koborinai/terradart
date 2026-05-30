@@ -1,0 +1,4 @@
+outputDir: test_out
+deriveClassDoc: true
+curatedDoc: |-
+  /// Curated example block.
