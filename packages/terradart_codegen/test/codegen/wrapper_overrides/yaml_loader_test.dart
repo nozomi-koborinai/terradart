@@ -33,6 +33,7 @@ void main() {
         expect(override.prelude, isNull);
         expect(override.customSlots, isNull);
         expect(override.deriveEnums, isFalse);
+        expect(override.deriveOutputGetters, isFalse);
       });
 
       test('derive_enums_on -> deriveEnums true', () {
@@ -42,6 +43,16 @@ void main() {
         final result = loader.load().resources;
         final o = result['derive_enums_on']!;
         expect(o.deriveEnums, isTrue);
+        expect(o.outputDir, 'test_out');
+      });
+
+      test('derive_getters_on -> deriveOutputGetters true', () {
+        final loader = YamlOverrideLoader(
+          rootDir: 'test/fixtures/semantic_hints_loader/happy',
+        );
+        final result = loader.load().resources;
+        final o = result['derive_getters_on']!;
+        expect(o.deriveOutputGetters, isTrue);
         expect(o.outputDir, 'test_out');
       });
 
@@ -296,6 +307,19 @@ schemaStubComment: |-
           loader.load,
           throwsFormatExceptionWith(
             '"deriveEnums" must be a boolean (true or false)',
+          ),
+        );
+      });
+
+      test('deriveOutputGetters not a boolean -> FormatException', () {
+        final loader = YamlOverrideLoader(
+          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+              'derive_getters_not_bool',
+        );
+        expect(
+          loader.load,
+          throwsFormatExceptionWith(
+            '"deriveOutputGetters" must be a boolean (true or false)',
           ),
         );
       });

@@ -47,6 +47,12 @@ final class Constraints {
 
   bool get optionalAndComputed => optional && computed;
 
+  /// Output-only attribute: the provider computes it and the user cannot set
+  /// it (`computed` with neither `optional` nor `required`). These are
+  /// excluded from the constructor and exposed as `TfRef` output getters
+  /// (Phase A3).
+  bool get computedOnly => computed && !optional && !required;
+
   Constraints copyWith({
     bool? required,
     bool? optional,

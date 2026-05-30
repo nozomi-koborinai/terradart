@@ -4,6 +4,7 @@ import '../ir/resource_def.dart';
 import 'constructor_params.dart';
 import 'dart_type_writer.dart';
 import 'enum_emitter.dart';
+import 'getter_emitter.dart';
 import 'naming.dart';
 import 'sensitive_set_emitter.dart';
 import 'wrapper_overrides/wrapper_override.dart';
@@ -243,10 +244,24 @@ class WrapperEmitter {
       buf.writeln('  bool get supportsDeletionProtection => true;');
     }
 
+    // Phase A3: derive output-attribute getters (nameRef, id, pure
+    // computed-only) from the IR when the override opts in via
+    // `deriveOutputGetters: true`. Hand-written `extraGetters` remain for
+    // genuine exceptions (e.g. semantic renames like `member` -> `iamMember`)
+    // and are emitted after this derived block. A later `lint-override` gate
+    // (A5) will forbid hand-encoding a getter that derivation already produces.
+    if (override?.deriveOutputGetters ?? false) {
+      final derived = emitDerivedOutputGetters(def);
+      if (derived.isNotEmpty) {
+        buf.writeln();
+        buf.write(derived);
+      }
+    }
+
     // Extra getters (TfRef shortcuts, etc.) inserted from the override.
     // The override snippet already carries indent and trailing newline, so
-    // we use `write`, not `writeln`. A blank line separates them from the
-    // sensitive-fields getter.
+    // we use `write`, not `writeln`. A blank line separator is emitted before
+    // this block.
     final extraGetters = override?.extraGetters;
     if (extraGetters != null) {
       buf.writeln();

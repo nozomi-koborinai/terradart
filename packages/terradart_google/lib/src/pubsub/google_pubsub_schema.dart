@@ -90,12 +90,9 @@ final class GooglePubsubSchema extends Resource {
   @override
   Set<String> get sensitiveFields => _googlePubsubSchemaSensitive;
 
-  /// Reference to `name` attribute. Use for interpolations like
-  /// `schema.nameRef` -> `${google_pubsub_schema.<localName>.name}`.
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/schemas/{name}`). Topics' `schema_settings.schema`
-  /// expects this full-path form -- pass `TfArg.ref(schema.id)`.
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

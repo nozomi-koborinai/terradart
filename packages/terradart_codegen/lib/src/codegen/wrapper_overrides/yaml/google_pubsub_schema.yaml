@@ -1,5 +1,6 @@
 outputDir: pubsub
 deriveEnums: true
+deriveOutputGetters: true
 
 classDocComment: |-
   /// Factory wrapper for `google_pubsub_schema` (provider
@@ -64,13 +65,3 @@ paramOrder:
 
 dartTypeOverrides:
   type: PubsubSchemaType
-
-extraGetters: |2
-    /// Reference to `name` attribute. Use for interpolations like
-    /// `schema.nameRef` -> `${google_pubsub_schema.<localName>.name}`.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute (full path
-    /// `projects/{project}/schemas/{name}`). Topics' `schema_settings.schema`
-    /// expects this full-path form -- pass `TfArg.ref(schema.id)`.
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');

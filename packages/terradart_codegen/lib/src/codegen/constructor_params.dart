@@ -28,7 +28,7 @@ import '../ir/resource_def.dart';
 ///    order (also alphabetical).
 ///
 /// **Filtering rules** (applied only when [paramOrder] is null):
-/// - Attributes are excluded if: `computed && !optional && !required`
+/// - Attributes are excluded if: [Constraints.computedOnly] holds
 ///   (computed-only — no input role) or `name == 'id'` (identity field
 ///   exposed via TfRef getter, not a constructor arg).
 /// - Nested blocks are excluded if: `name == 'timeouts'` (Terraform-internal
@@ -57,15 +57,13 @@ List<String> _naturalOrderNames(ResourceDef def) {
 
 /// Returns true when [attr] must be excluded from the constructor / catalog.
 ///
-/// Excludes computed-only attributes (`computed && !optional && !required` —
-/// no input role) and the synthetic `id` identity field (exposed via a TfRef
-/// getter, not as a constructor arg). Shared with [WrapperEmitter] (and the
-/// catalog metadata emitter) so all surfaces filter identically.
+/// Excludes computed-only attributes ([Constraints.computedOnly] — no input
+/// role) and the synthetic `id` identity field (exposed via a TfRef getter,
+/// not as a constructor arg). Shared with [WrapperEmitter] (and the catalog
+/// metadata emitter) so all surfaces filter identically.
 bool skipAttribute(Attribute attr) {
-  final c = attr.constraints;
-  final isComputedOnly = c.computed && !c.optional && !c.required;
   final isIdAttribute = attr.name == 'id';
-  return isComputedOnly || isIdAttribute;
+  return attr.constraints.computedOnly || isIdAttribute;
 }
 
 /// Returns true when [block] must be excluded from the constructor / catalog.
