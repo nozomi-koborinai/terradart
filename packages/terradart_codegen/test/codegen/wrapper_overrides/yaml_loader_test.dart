@@ -58,7 +58,8 @@ void main() {
         expect(o.outputDir, 'test_out');
       });
 
-      test('derive_class_doc_on -> deriveClassDoc true + curatedDoc parsed', () {
+      test('derive_class_doc_on -> deriveClassDoc true + curatedDoc parsed',
+          () {
         final loader = YamlOverrideLoader(
           rootDir: 'test/fixtures/semantic_hints_loader/happy',
         );
