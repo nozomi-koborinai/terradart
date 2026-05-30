@@ -207,6 +207,25 @@ final class WrapperOverride {
   /// `false` so un-migrated resources are unaffected.
   final bool deriveOutputGetters;
 
+  /// Phase A4 migration gate. When `true`, the emitter derives the class-level
+  /// doc comment from the IR via `buildClassDocComment` (a
+  /// `Factory wrapper for <type>` line, then the resource summary rewrapped
+  /// from `ResourceDef.description`, then [curatedDoc] verbatim), and the
+  /// hand-written [classDocComment] is ignored. Defaults to `false` so
+  /// un-migrated resources keep their verbatim [classDocComment].
+  final bool deriveClassDoc;
+
+  /// Phase A4 ③ frozen asset: artisanal doc prose (ASCII diagrams, variant
+  /// guidance, worked `Example` blocks) that the IR cannot derive. Appended
+  /// verbatim after the generated summary when [deriveClassDoc] is `true`.
+  ///
+  /// Each line MUST already start with `///` (it is emitted verbatim). The
+  /// string MUST NOT carry a leading `///` separator line or a trailing
+  /// newline — the builder inserts the blank `///` separator before it.
+  ///
+  /// `null` means "no curated doc fragment".
+  final String? curatedDoc;
+
   /// Snake-case slot name → custom constructor / argMap snippets.
   ///
   /// Two use cases:
@@ -286,6 +305,8 @@ final class WrapperOverride {
     this.customSlots,
     this.deriveEnums = false,
     this.deriveOutputGetters = false,
+    this.deriveClassDoc = false,
+    this.curatedDoc,
   });
 }
 
