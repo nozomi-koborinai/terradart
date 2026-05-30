@@ -34,10 +34,11 @@ void main() {
   group('derived output-getter emission', () {
     test('emits nameRef and id when deriveOutputGetters is true', () {
       final emitter = WrapperEmitter(overrides: {
-        'google_pubsub_schema':
-            const WrapperOverride(outputDir: 'pubsub', deriveOutputGetters: true),
+        'google_pubsub_schema': const WrapperOverride(
+            outputDir: 'pubsub', deriveOutputGetters: true),
       });
-      final src = emitter.emit(_schemaDef(), providerSource: 'hashicorp/google');
+      final src =
+          emitter.emit(_schemaDef(), providerSource: 'hashicorp/google');
       expect(
         src,
         contains(
@@ -46,7 +47,8 @@ void main() {
       );
       expect(
         src,
-        contains("TfRef<String> get id => TfRef.attribute<String>(this, 'id');"),
+        contains(
+            "TfRef<String> get id => TfRef.attribute<String>(this, 'id');"),
       );
       // `project` is optional+computed: a constructor input, not a getter.
       expect(src, isNot(contains('get project =>')));
@@ -56,7 +58,8 @@ void main() {
       final emitter = WrapperEmitter(overrides: {
         'google_pubsub_schema': const WrapperOverride(outputDir: 'pubsub'),
       });
-      final src = emitter.emit(_schemaDef(), providerSource: 'hashicorp/google');
+      final src =
+          emitter.emit(_schemaDef(), providerSource: 'hashicorp/google');
       expect(src, isNot(contains('get nameRef')));
       expect(src, isNot(contains('get id =>')));
     });
@@ -70,7 +73,8 @@ void main() {
               "  TfRef<String> get iamMember => TfRef.attribute<String>(this, 'member');\n",
         ),
       });
-      final src = emitter.emit(_schemaDef(), providerSource: 'hashicorp/google');
+      final src =
+          emitter.emit(_schemaDef(), providerSource: 'hashicorp/google');
       expect(src, contains('get nameRef'));
       expect(src, contains('get iamMember'));
       expect(

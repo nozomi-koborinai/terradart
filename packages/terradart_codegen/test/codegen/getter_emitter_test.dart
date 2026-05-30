@@ -34,7 +34,8 @@ void main() {
       );
       expect(
         src,
-        contains("TfRef<String> get id => TfRef.attribute<String>(this, 'id');"),
+        contains(
+            "TfRef<String> get id => TfRef.attribute<String>(this, 'id');"),
       );
       expect(src.indexOf('get nameRef'), lessThan(src.indexOf('get id')));
     });
@@ -66,7 +67,8 @@ void main() {
           "TfRef.attribute<int>(this, 'generated_id');",
         ),
       );
-      expect(src.indexOf('get selfLink'), lessThan(src.indexOf('get generatedId')));
+      expect(src.indexOf('get selfLink'),
+          lessThan(src.indexOf('get generatedId')));
     });
 
     test('emits nameRef exactly once when name is itself computed-only', () {
