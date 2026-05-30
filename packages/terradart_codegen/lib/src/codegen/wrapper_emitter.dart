@@ -3,6 +3,7 @@ import '../ir/nested_block.dart';
 import '../ir/resource_def.dart';
 import 'constructor_params.dart';
 import 'dart_type_writer.dart';
+import 'doc_comment_builder.dart';
 import 'enum_emitter.dart';
 import 'getter_emitter.dart';
 import 'naming.dart';
@@ -144,12 +145,20 @@ class WrapperEmitter {
       buf.writeln();
     }
 
-    // Class-level doc comment from the override (if any). Hand-curated
-    // because the comment carries per-resource specifics (Example block,
-    // provider version range, etc.) the IR cannot infer.
-    final docComment = override?.classDocComment;
-    if (docComment != null) {
-      buf.writeln(docComment);
+    // Class-level doc comment. Phase A4: when the override opts in via
+    // `deriveClassDoc: true`, the comment is derived deterministically from
+    // the IR — `Factory wrapper for <type>`, then the resource summary
+    // rewrapped from `ResourceDef.description` (merged from the MM YAML), then
+    // any artisanal `curatedDoc` (③ frozen) verbatim. Otherwise the legacy
+    // hand-written `classDocComment` is emitted verbatim (un-migrated
+    // resources). A later `lint-override` gate (A5) will forbid setting both.
+    if (override?.deriveClassDoc ?? false) {
+      buf.writeln(buildClassDocComment(def, curatedDoc: override?.curatedDoc));
+    } else {
+      final docComment = override?.classDocComment;
+      if (docComment != null) {
+        buf.writeln(docComment);
+      }
     }
 
     // Wrapper class header. Plan 5.X: `extends Resource` (no `<S>` generic).
