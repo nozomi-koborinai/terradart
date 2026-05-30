@@ -200,6 +200,13 @@ final class WrapperOverride {
   /// [prelude]. Defaults to `false` so un-migrated resources are unaffected.
   final bool deriveEnums;
 
+  /// Phase A3 migration gate. When `true`, the emitter derives output-attribute
+  /// `TfRef` getters (`nameRef`, `id`, and pure computed-only attributes) for
+  /// this resource from the IR, and the corresponding hand-written getters must
+  /// be removed from [extraGetters] (genuine exceptions may remain). Defaults to
+  /// `false` so un-migrated resources are unaffected.
+  final bool deriveOutputGetters;
+
   /// Snake-case slot name → custom constructor / argMap snippets.
   ///
   /// Two use cases:
@@ -278,6 +285,7 @@ final class WrapperOverride {
     this.prelude,
     this.customSlots,
     this.deriveEnums = false,
+    this.deriveOutputGetters = false,
   });
 }
 

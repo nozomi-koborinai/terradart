@@ -76,6 +76,7 @@ class YamlOverrideLoader {
     'extraSensitiveFields',
     'prelude',
     'deriveEnums',
+    'deriveOutputGetters',
     'customSlots',
     // 4 Phase 4.1 axes (kind dispatch + emitter routing).
     'kind',
@@ -298,6 +299,8 @@ class YamlOverrideLoader {
           _readStringList(yaml, 'extraSensitiveFields', filePath),
       prelude: _readString(yaml, 'prelude', filePath),
       deriveEnums: _readBool(yaml, 'deriveEnums', filePath) ?? false,
+      deriveOutputGetters:
+          _readBool(yaml, 'deriveOutputGetters', filePath) ?? false,
       customSlots: _readCustomSlots(yaml, filePath),
     );
   }
