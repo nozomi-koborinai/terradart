@@ -331,5 +331,44 @@ class DemoHelper {}
       expect(entry.sensitiveFields, isEmpty);
       expect(entry.nestedTypes, isEmpty);
     });
+
+    test(
+        'deriveClassDoc derives docComment from buildClassDocComment + '
+        'curatedDoc and ignores classDocComment', () {
+      // Phase A4: when `deriveClassDoc` is true the catalog must mirror the
+      // emitted wrapper doc (factory line + rewrapped IR description +
+      // curatedDoc verbatim), NOT the legacy `classDocComment` — which is set
+      // here only to prove it is ignored. `summary` is the first sentence,
+      // which `firstSentence` terminates at the period after the backticked
+      // tfType, so it is the complete factory line.
+      final def = _def(
+        tfType: 'google_pubsub_schema',
+        attributes: [_attr('name')],
+        description: 'A schema is a format. Messages follow it.',
+      );
+      const override = WrapperOverride(
+        outputDir: 'pubsub',
+        deriveClassDoc: true,
+        curatedDoc: '/// Curated tail.',
+        classDocComment: '/// SHOULD NOT APPEAR.',
+      );
+
+      final entry = buildCatalogEntry(
+        tfType: 'google_pubsub_schema',
+        override: override,
+        def: def,
+        kind: 'resource',
+        emittedSource: 'final class GooglePubsubSchema extends Resource {}',
+      );
+
+      expect(
+        entry.docComment,
+        startsWith('Factory wrapper for `google_pubsub_schema`.'),
+      );
+      expect(entry.docComment, contains('A schema is a format.'));
+      expect(entry.docComment, contains('Curated tail.'));
+      expect(entry.docComment, isNot(contains('SHOULD NOT APPEAR')));
+      expect(entry.summary, 'Factory wrapper for `google_pubsub_schema`.');
+    });
   });
 }

@@ -3,6 +3,7 @@ import 'package:meta/meta.dart';
 import '../ir/resource_def.dart';
 import 'catalog_metadata_emitter.dart';
 import 'constructor_params.dart';
+import 'doc_comment_builder.dart';
 import 'naming.dart';
 import 'sensitive_set_emitter.dart';
 import 'wrapper_overrides/wrapper_override.dart';
@@ -19,8 +20,10 @@ import 'wrapper_overrides/wrapper_override.dart';
 ///
 /// Field derivation:
 /// - `className` / `barrel`: trivially from the IR + override.
-/// - `docComment` / `summary`: [_stripDocMarkers] of the override's
-///   `classDocComment` (which is stored verbatim WITH `///` markers) or the
+/// - `docComment` / `summary`: when `deriveClassDoc` is true, the assembled
+///   doc from [buildClassDocComment] (stripped of `///` markers) is used so
+///   the catalog mirrors the emitted wrapper doc exactly; otherwise
+///   [_stripDocMarkers] of `classDocComment` (verbatim WITH markers) or the
 ///   IR's marker-free `description`; `summary` is its [firstSentence].
 /// - `constructorParams`: [catalogConstructorParams] — the emitter's resolved
 ///   slot order, mapped to actual Dart identifiers.
@@ -43,9 +46,18 @@ CatalogEntryData buildCatalogEntry({
   // schema prose with no markers. For the catalog we want clean markdown
   // either way, so strip the `///` line prefixes from the override form
   // before recording it / extracting the summary.
-  final docComment = override.classDocComment != null
-      ? _stripDocMarkers(override.classDocComment!)
-      : (def.description ?? '');
+  //
+  // Phase A4: when `deriveClassDoc` is true, the assembled doc is built by
+  // `buildClassDocComment` (same function the WrapperEmitter calls) and then
+  // stripped of markers — so the catalog entry mirrors the emitted wrapper
+  // doc exactly and never drifts.
+  final docComment = override.deriveClassDoc
+      ? _stripDocMarkers(
+          buildClassDocComment(def, curatedDoc: override.curatedDoc),
+        )
+      : override.classDocComment != null
+          ? _stripDocMarkers(override.classDocComment!)
+          : (def.description ?? '');
   return CatalogEntryData(
     tfType: tfType,
     className: className,
