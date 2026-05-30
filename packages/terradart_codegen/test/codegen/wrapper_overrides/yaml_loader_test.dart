@@ -311,6 +311,19 @@ schemaStubComment: |-
         );
       });
 
+      test('deriveOutputGetters not a boolean -> FormatException', () {
+        final loader = YamlOverrideLoader(
+          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+              'derive_getters_not_bool',
+        );
+        expect(
+          loader.load,
+          throwsFormatExceptionWith(
+            '"deriveOutputGetters" must be a boolean (true or false)',
+          ),
+        );
+      });
+
       test('deprecatedParams value not string -> FormatException', () {
         final loader = YamlOverrideLoader(
           rootDir: 'test/fixtures/semantic_hints_loader/failure/'
