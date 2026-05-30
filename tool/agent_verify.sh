@@ -63,6 +63,12 @@ echo ">> terradart wrap --check"
     --check
 )
 
+echo ">> terradart lint-override"
+(
+  cd packages/terradart_codegen
+  dart run bin/terradart.dart lint-override
+)
+
 echo ">> smoke_quickstart"
 chmod +x tool/smoke_quickstart.sh
 tool/smoke_quickstart.sh
