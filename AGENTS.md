@@ -97,13 +97,19 @@ Cloud agents such as Devin, Cursor Cloud Agent, and Claude Code on the Web shoul
 
 ### Add Or Update A Curated Google Resource
 
-1. Use a checked-in or task-provided `schema.json`; do not assume `terraform` is installed or fetch schemas ad hoc.
-2. Confirm the Terraform type exists in that schema. If the schema is missing or stale, stop and report the missing input.
-3. Check `tool/mm_yaml_sources.yaml` for the expected Magic Modules source when semantic hints are needed. If MM YAML is unavailable, proceed schema-only or report the missing hints.
-4. Create or update only the required `wrapper_overrides/yaml/<terraform_type>.yaml` entries.
-5. Run `terradart wrap` for the target resource when the source inputs are available, then run full `wrap --check`.
-6. Inspect generated `terradart_google` API diffs for constructor names, helper types, getters, enum use, sealed types, and sensitive-field behavior.
-7. Run targeted tests first, then `tool/agent_verify.sh` (or `--maintainer` when touching wrap-init/promote).
+Inputs: a checked-in or task-provided `schema.json` (plus Magic Modules YAML when semantic hints are needed). Do not assume `terraform` is installed or fetch schemas ad hoc. Exact CLI flags are in **Useful Commands**; override rules are in **Generation Policy**.
+
+1. **Confirm inputs.** Verify the Terraform type exists in `schema.json`; if the schema is missing or stale, stop and report the missing input. Check `tool/mm_yaml_sources.yaml` for the Magic Modules source; if MM YAML is unavailable, proceed schema-only or report the missing hints.
+2. **Scaffold a new override with `terradart wrap-init`** (skip when you are only editing an existing resource). It fills `kind`, `outputDir`, and `schemaStubBodyMode` as real values and seeds the remaining axes as commented TODOs.
+3. **Edit `wrapper_overrides/yaml/<terraform_type>.yaml`, keeping it thin.** Review against this checklist before saving:
+   - **Leave `paramOrder` / `requiredParams` out unless you are intentionally deviating from the schema default** (reordering parameters, or promoting an `optional + computed` slot to required). `wrap` derives both from the schema when the override omits them; writing the schema-default value is dead, stale-prone config.
+   - **Do not hand-write an enum or output getter that a derivation gate produces** — turn on `deriveEnums` / `deriveOutputGetters` instead. A forgotten hand-written duplicate is caught by `dart analyze`, not `lint-override`.
+   - **Keep sealed types hand-written in `prelude`.** They are frozen assets guarded by `wrap --check`, not derived; do not try to generate them.
+   - **No dead derivation config:** a `deriveClassDoc: true` override must not also set `classDocComment`, and `curatedDoc` is valid only under `deriveClassDoc: true`.
+4. **Lint the override:** run `terradart lint-override` (must exit 0; it also runs inside `tool/agent_verify.sh`).
+5. **Regenerate:** run `terradart wrap` for the target resource, then run full `terradart wrap --check`.
+6. **Inspect the generated `terradart_google` API diff** for constructor names, helper types, getters, enum use, sealed types, and sensitive-field behavior. Accept intentional public-API changes; investigate anything unexpected.
+7. **Test:** targeted tests first, then `tool/agent_verify.sh` (add `--maintainer` when touching wrap-init / wrap-promote).
 
 ### Handle Provider Schema Or MM YAML Drift
 
