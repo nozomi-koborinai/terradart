@@ -21,5 +21,8 @@ tags:
   # default loop -- declared here only to silence the
   # "tag wasn't specified" warning.
   integration:
+  # `convergence` tags the wrap-init anchor test. Declared (no skip) so it runs
+  # in the default loop and the "tag wasn't specified" warning is silenced.
+  convergence:
   e2e:
     skip: "e2e tests are opt-in; run with `dart test -t e2e --run-skipped`"
