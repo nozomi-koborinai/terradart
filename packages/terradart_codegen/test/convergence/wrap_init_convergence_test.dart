@@ -109,24 +109,24 @@ void main() {
       // ignore: avoid_print
       print('  MISMATCH $m');
     }
-    // Tracer never fails — it only measures. The asserting test below guards the
-    // axes that are convergent today (kind + schemaStubBodyMode); outputDir is a
-    // known resolver gap tracked separately (see test below + spec Phase D).
+    // Tracer never fails — it only measures. The asserting test below now guards
+    // all three axes (kind + outputDir + schemaStubBodyMode). The one residual
+    // tracer mismatch is google_project's raw kind spelling (committed
+    // `dataSource` vs wrap-init emit `data_source`); the assertion normalizes it
+    // via `_committedKind`, so it is not a real drift.
     expect(true, isTrue);
   });
 
-  // Phase D assertion. Scope: kind + schemaStubBodyMode only.
+  // Phase D assertion. Scope: kind + outputDir + schemaStubBodyMode.
   //
-  // outputDir is intentionally EXCLUDED: the tracer measured 29 overrides whose
-  // committed outputDir folds a resource into its product directory (e.g.
-  // `cloud_run`, `firebase_app_check`, `artifact_registry`) while the current
-  // `OutputDirResolver` derives the bare first segment (`cloud`, `firebase`,
-  // `artifact`). That is a resolver gap to close before outputDir can join this
-  // assertion — not a per-override drift to "fix" by rewriting 29 hand-curated
-  // values. Tracked as a follow-up (spec Phase D). kind + schemaStubBodyMode are
-  // fully convergent across all committed overrides today.
+  // outputDir joins the anchor here: OutputDirResolver folds each resource into
+  // its product directory (e.g. `cloud_run`, `firebase_app_check`,
+  // `artifact_registry`) via the GoogleProviderRules alias map, matching the
+  // committed outputDir of every override. A regression in the resolver or the
+  // alias map (or a new product whose prefix is missing) trips this assertion
+  // even though `wrap --check` stays green (it reads the override as truth).
   test(
-      'committed overrides match the wrap-init anchor (kind + schemaStubBodyMode)',
+      'committed overrides match the wrap-init anchor (kind + outputDir + schemaStubBodyMode)',
       () {
     final offenders = <String>[];
     var skipped = 0;
@@ -161,6 +161,10 @@ void main() {
         diffs.add('kind: committed=${_committedKind(committed.kind)} '
             'derived=${_derivedKind(draft)}');
       }
+      if (committed.outputDir != _derivedOutputDir(draft)) {
+        diffs.add('outputDir: committed=${committed.outputDir} '
+            'derived=${_derivedOutputDir(draft)}');
+      }
       if (committed.schemaStubBodyMode.name != _derivedStub(draft)) {
         diffs.add(
             'schemaStubBodyMode: committed=${committed.schemaStubBodyMode.name} '
@@ -170,7 +174,8 @@ void main() {
     }
 
     // ignore: avoid_print
-    print('CONVERGENCE (kind+stub): skipped=$skipped (no schema fixture)');
+    print('CONVERGENCE (kind+outputDir+stub): skipped=$skipped '
+        '(no schema fixture)');
     expect(
       offenders,
       isEmpty,
