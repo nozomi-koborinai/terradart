@@ -44,5 +44,20 @@ final class GoogleProviderRules extends ProviderRules {
 
     // Phase 4.5 pilot — additional MM-product alias.
     'cloudrunv2': 'cloud_run',
+
+    // Phase D — product folding: terraform-type prefix -> product directory.
+    // Closes the convergence outputDir gap via resolver Step 2 (longest-prefix)
+    // / Step 3 (segment-1). Keys verified against the tracer.
+    'artifact_registry': 'artifact_registry',
+    'cloud_run': 'cloud_run',
+    'cloudbuild': 'cloud_build',
+    'cloudbuildv2': 'cloud_build',
+    'cloudfunctions2': 'cloud_functions',
+    'firebase_app_check': 'firebase_app_check',
+    'firebase_app_hosting': 'firebase_app_hosting',
+    'firebase_data_connect': 'firebase_data_connect',
+    'firebase_remote_config': 'firebase_remote_config',
+    'project_iam': 'iam',
+    'service_networking': 'service_networking',
   };
 }
