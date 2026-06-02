@@ -150,4 +150,98 @@ void main() {
         equals({'nameRef', 'id'}),
         reason: 'nameRef and id must be derivable for google_pubsub_topic');
   });
+
+  // -------------------------------------------------------------------------
+  // Task 3 — all-override sweep → TSV report
+  // -------------------------------------------------------------------------
+  test('emit de-fatten discovery report', () {
+    final result = _setup();
+
+    final rows = <String>[];
+    var skipped = 0;
+
+    // TSV header
+    rows.add([
+      'type',
+      'outputDir',
+      'enumsCoveredOfTotal',
+      'curatedOnlyEnums',
+      'gettersCoveredOfTotal',
+      'renameKeepGetters',
+      'doc',
+    ].join('\t'));
+
+    for (final entry in result.loaded.all.entries) {
+      final type = entry.key;
+      final override = entry.value;
+
+      final def = result.resources[type];
+      if (def == null) {
+        // No schema fixture entry for this override — skip and count it
+        // (no silent caps; rows + skipped must reconcile to the total).
+        skipped++;
+        continue;
+      }
+
+      // Enum classification (prelude enums vs IR-derivable enums).
+      final hwEnums = handwrittenEnumNames(override.prelude);
+      final derivEnums = derivableEnumNames(def);
+      final coveredEnums = hwEnums.intersection(derivEnums);
+      final curatedOnlyEnums = hwEnums.difference(derivEnums);
+
+      // Getter classification (extraGetters vs IR-derivable getters).
+      final hwGetters = handwrittenGetterNames(override.extraGetters);
+      final derivGetters = derivableGetterNames(def);
+      final coveredGetters = hwGetters.intersection(derivGetters);
+      final renameKeepGetters = hwGetters.difference(derivGetters);
+
+      // Doc classification:
+      // - curatedDoc: classDocComment carries a fenced code block (```) or an
+      //   (case-insensitive) "example" — i.e. artisanal prose the IR cannot
+      //   derive, which must stay frozen (③).
+      // - boilerplate: classDocComment is non-null but meets neither criterion
+      //   (a candidate for A4 derivation).
+      // - none: classDocComment is null.
+      final docComment = override.classDocComment;
+      final String docClass;
+      if (docComment == null) {
+        docClass = 'none';
+      } else if (docComment.contains('```') ||
+          docComment.toLowerCase().contains('example')) {
+        docClass = 'curatedDoc';
+      } else {
+        docClass = 'boilerplate';
+      }
+
+      rows.add([
+        type,
+        override.outputDir,
+        '${coveredEnums.length}/${hwEnums.length}',
+        curatedOnlyEnums.isEmpty ? '-' : (curatedOnlyEnums.toList()..sort()).join(';'),
+        '${coveredGetters.length}/${hwGetters.length}',
+        renameKeepGetters.isEmpty
+            ? '-'
+            : (renameKeepGetters.toList()..sort()).join(';'),
+        docClass,
+      ].join('\t'));
+    }
+
+    final tsvPath = p.join(Directory.systemTemp.path, 'defatten_discovery.tsv');
+    File(tsvPath).writeAsStringSync(rows.join('\n'));
+
+    // ignore: avoid_print
+    print(
+      'DEFATTEN DISCOVERY: checked=${rows.length - 1} skipped=$skipped '
+      'report=$tsvPath',
+    );
+
+    // The data rows (rows.length - 1, excluding the header) plus the skipped
+    // overrides must reconcile exactly to the total number of loaded overrides
+    // — proof the sweep visited every override with no silent caps.
+    expect(
+      (rows.length - 1) + skipped,
+      equals(result.loaded.all.length),
+      reason: 'rows + skipped must equal total loaded overrides',
+    );
+  });
 }
