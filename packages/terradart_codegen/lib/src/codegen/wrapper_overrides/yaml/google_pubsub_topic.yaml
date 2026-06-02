@@ -1,13 +1,8 @@
 outputDir: pubsub
-classDocComment: |-
-  /// Factory wrapper for `google_pubsub_topic` (provider `hashicorp/google ~> 7.0`).
-  ///
-  /// Required identity:
-  /// - [localName]: Terraform local name (the address segment after
-  ///   `google_pubsub_topic.`).
-  /// - `name`: GCP topic name. Pass `TfArg.literal('orders-prod')` or
-  ///   `TfArg.ref(otherTopic.nameRef)` to interpolate.
-  ///
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// Example:
   /// ```dart
   /// final orders = GooglePubsubTopic(
@@ -16,13 +11,8 @@ classDocComment: |-
   ///   messageRetentionDuration:
   ///       TfArg.literal(const Duration(days: 7).toTfDurationString()),
   ///   lifecycle: const LifecycleOptions(preventDestroy: true),
-  /// );
+  ///   );
   /// ```
-  ///
-  /// Composition pattern: extends `Resource` for runtime
-  /// behavior. `argMap` stores `TfArg<dynamic>?` entries directly. Synth's
-  /// JSON-encoding pass walks them and calls `arg.toTfJson()` to encode at
-  /// write time.
 
 paramOrder:
   - name
@@ -35,13 +25,3 @@ paramOrder:
   - message_transforms
   - tags
   - project
-
-extraGetters: |2
-    /// Reference to `name` attribute. Use for interpolations like
-    /// `topic.nameRef` → `${google_pubsub_topic.<localName>.name}`.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute (full path
-    /// `projects/{project}/topics/{name}`). Use this when the consumer expects
-    /// the full resource path (e.g. `google_pubsub_subscription.topic`).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
