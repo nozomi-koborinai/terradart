@@ -187,19 +187,12 @@ class PubsubSubscriptionExpirationPolicy {
 
 /// Factory wrapper for `google_pubsub_subscription`.
 ///
-/// Required identity:
-/// - [localName]: Terraform local name.
-/// - `name`: GCP subscription name.
-/// - `topic`: full topic path. Pass `TfArg.ref(otherTopic.id)` (NOT
-///   `topic.nameRef`) so the value resolves to
-///   `projects/{project}/topics/{name}`.
+/// Pass `topic` as the full topic path via `TfArg.ref(otherTopic.id)`
+/// (NOT `topic.nameRef`) so it resolves to
+/// `projects/{project}/topics/{name}`.
 ///
-/// Example (push subscription, §1.3 narrative):
+/// Example (push subscription):
 /// ```dart
-/// final orders = GooglePubsubTopic(
-///   localName: 'orders',
-///   name: TfArg.literal('orders-prod'),
-/// );
 /// final push = GooglePubsubSubscription(
 ///   localName: 'orders_push',
 ///   name: TfArg.literal('orders-push'),
@@ -273,9 +266,17 @@ final class GooglePubsubSubscription extends Resource {
   @override
   Set<String> get sensitiveFields => _googlePubsubSubscriptionSensitive;
 
-  /// Reference to `name` attribute (`google_pubsub_subscription.<id>.name`).
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full subscription path).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 }

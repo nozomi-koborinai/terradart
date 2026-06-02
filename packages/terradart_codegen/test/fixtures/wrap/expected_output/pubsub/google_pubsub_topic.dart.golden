@@ -6,13 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_pubsub_topic`.
 const Set<String> _googlePubsubTopicSensitive = <String>{};
 
-/// Factory wrapper for `google_pubsub_topic` (provider `hashicorp/google ~> 7.0`).
-///
-/// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_pubsub_topic.`).
-/// - `name`: GCP topic name. Pass `TfArg.literal('orders-prod')` or
-///   `TfArg.ref(otherTopic.nameRef)` to interpolate.
+/// Factory wrapper for `google_pubsub_topic`.
 ///
 /// Example:
 /// ```dart
@@ -24,11 +18,6 @@ const Set<String> _googlePubsubTopicSensitive = <String>{};
 ///   lifecycle: const LifecycleOptions(preventDestroy: true),
 /// );
 /// ```
-///
-/// Composition pattern: extends `Resource` for runtime
-/// behavior. `argMap` stores `TfArg<dynamic>?` entries directly. Synth's
-/// JSON-encoding pass walks them and calls `arg.toTfJson()` to encode at
-/// write time.
 final class GooglePubsubTopic extends Resource {
   static const String tfType = 'google_pubsub_topic';
 
@@ -69,12 +58,17 @@ final class GooglePubsubTopic extends Resource {
   @override
   Set<String> get sensitiveFields => _googlePubsubTopicSensitive;
 
-  /// Reference to `name` attribute. Use for interpolations like
-  /// `topic.nameRef` → `${google_pubsub_topic.<localName>.name}`.
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/topics/{name}`). Use this when the consumer expects
-  /// the full resource path (e.g. `google_pubsub_subscription.topic`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 }

@@ -1,10 +1,11 @@
 outputDir: pubsub
-classDocComment: |-
-  /// Factory wrapper for `google_pubsub_topic_iam_member`.
-  ///
-  /// Adds a single IAM `role` → `member` binding on a topic. For
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Adds a single IAM `role` -> `member` binding on a topic. For
   /// multi-member binding semantics, prefer `google_pubsub_topic_iam_binding`
-  /// (not yet a curated factory — open an issue to request curation).
+  /// (not yet a curated factory -- open an issue to request curation).
 
 paramOrder:
   - topic
@@ -12,7 +13,3 @@ paramOrder:
   - member
   - condition
   - project
-
-extraGetters: |2
-    /// Reference to `etag` attribute (concurrency token written by the API).
-    TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');

@@ -787,8 +787,13 @@ void main() {
               'constructor must be emitted; otherwise exclusion checks pass vacuously',
         );
 
-        expect(out, isNot(contains('effectiveLabels')));
-        expect(out, isNot(contains('terraformLabels')));
+        // effectiveLabels / terraformLabels MUST NOT appear as constructor
+        // params (computed-only, emitted as TfRef getters, not inputs).
+        // Match the param-slot shapes; the getter declarations are fine.
+        expect(out,
+            isNot(contains('TfArg<Map<String, String>>? effectiveLabels,')));
+        expect(out,
+            isNot(contains('TfArg<Map<String, String>>? terraformLabels,')));
         // `id` cannot be matched as a bare substring — it appears inside
         // `localName`, comments, etc. Match the constructor-param shape.
         expect(out, isNot(contains('TfArg<String>? id,')));

@@ -9,7 +9,7 @@ const Set<String> _googlePubsubSubscriptionIamMemberSensitive = <String>{};
 /// Factory wrapper for `google_pubsub_subscription_iam_member`.
 ///
 /// Pub/Sub Subscription IAM is part of the curated surface. (Cloud
-/// Scheduler IAM is not in the curated surface — open an issue to request
+/// Scheduler IAM is not in the curated surface -- open an issue to request
 /// curation.)
 final class GooglePubsubSubscriptionIamMember extends Resource {
   static const String tfType = 'google_pubsub_subscription_iam_member';
@@ -37,6 +37,9 @@ final class GooglePubsubSubscriptionIamMember extends Resource {
   @override
   Set<String> get sensitiveFields =>
       _googlePubsubSubscriptionIamMemberSensitive;
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
