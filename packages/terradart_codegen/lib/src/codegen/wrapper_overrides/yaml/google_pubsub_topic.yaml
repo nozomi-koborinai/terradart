@@ -11,7 +11,7 @@ curatedDoc: |-
   ///   messageRetentionDuration:
   ///       TfArg.literal(const Duration(days: 7).toTfDurationString()),
   ///   lifecycle: const LifecycleOptions(preventDestroy: true),
-  ///   );
+  /// );
   /// ```
 
 paramOrder:

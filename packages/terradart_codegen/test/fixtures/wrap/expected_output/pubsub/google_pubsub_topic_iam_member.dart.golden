@@ -8,9 +8,9 @@ const Set<String> _googlePubsubTopicIamMemberSensitive = <String>{};
 
 /// Factory wrapper for `google_pubsub_topic_iam_member`.
 ///
-/// Adds a single IAM `role` → `member` binding on a topic. For
+/// Adds a single IAM `role` -> `member` binding on a topic. For
 /// multi-member binding semantics, prefer `google_pubsub_topic_iam_binding`
-/// (not yet a curated factory — open an issue to request curation).
+/// (not yet a curated factory -- open an issue to request curation).
 final class GooglePubsubTopicIamMember extends Resource {
   static const String tfType = 'google_pubsub_topic_iam_member';
 
@@ -37,6 +37,9 @@ final class GooglePubsubTopicIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googlePubsubTopicIamMemberSensitive;
 
-  /// Reference to `etag` attribute (concurrency token written by the API).
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }

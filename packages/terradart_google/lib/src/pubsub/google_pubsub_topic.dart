@@ -16,7 +16,7 @@ const Set<String> _googlePubsubTopicSensitive = <String>{};
 ///   messageRetentionDuration:
 ///       TfArg.literal(const Duration(days: 7).toTfDurationString()),
 ///   lifecycle: const LifecycleOptions(preventDestroy: true),
-///   );
+/// );
 /// ```
 final class GooglePubsubTopic extends Resource {
   static const String tfType = 'google_pubsub_topic';

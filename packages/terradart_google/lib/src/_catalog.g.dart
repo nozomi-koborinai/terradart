@@ -3351,7 +3351,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_pubsub_subscription`.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `name`: GCP subscription name.\n- `topic`: full topic path. Pass `TfArg.ref(otherTopic.id)` (NOT\n  `topic.nameRef`) so the value resolves to\n  `projects/{project}/topics/{name}`.\n\nExample (push subscription, §1.3 narrative):\n```dart\nfinal orders = GooglePubsubTopic(\n  localName: \'orders\',\n  name: TfArg.literal(\'orders-prod\'),\n);\nfinal push = GooglePubsubSubscription(\n  localName: \'orders_push\',\n  name: TfArg.literal(\'orders-push\'),\n  topic: TfArg.ref(orders.id),\n  pushConfig: const PubsubSubscriptionPushConfig(\n    pushEndpoint: TfArgLiteral(\'https://app.example.com/push\'),\n  ),\n);\n```',
+        'Factory wrapper for `google_pubsub_subscription`.\n\nPass `topic` as the full topic path via `TfArg.ref(otherTopic.id)`\n(NOT `topic.nameRef`) so it resolves to\n`projects/{project}/topics/{name}`.\n\nExample (push subscription):\n```dart\nfinal push = GooglePubsubSubscription(\n  localName: \'orders_push\',\n  name: TfArg.literal(\'orders-push\'),\n  topic: TfArg.ref(orders.id),\n  pushConfig: const PubsubSubscriptionPushConfig(\n    pushEndpoint: TfArgLiteral(\'https://app.example.com/push\'),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_pubsub_subscription_iam_member',
@@ -3370,15 +3370,14 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_pubsub_subscription_iam_member`.\n\nPub/Sub Subscription IAM is part of the curated surface. (Cloud\nScheduler IAM is not in the curated surface — open an issue to request\ncuration.)',
+        'Factory wrapper for `google_pubsub_subscription_iam_member`.\n\nPub/Sub Subscription IAM is part of the curated surface. (Cloud\nScheduler IAM is not in the curated surface -- open an issue to request\ncuration.)',
   ),
   CatalogEntry(
     tfType: 'google_pubsub_topic',
     className: 'GooglePubsubTopic',
     barrel: 'pubsub',
     kind: CatalogKind.resource,
-    summary:
-        'Factory wrapper for `google_pubsub_topic` (provider `hashicorp/google ~> 7.0`).',
+    summary: 'Factory wrapper for `google_pubsub_topic`.',
     constructorParams: <String>[
       'localName',
       'name',
@@ -3395,7 +3394,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_pubsub_topic` (provider `hashicorp/google ~> 7.0`).\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_pubsub_topic.`).\n- `name`: GCP topic name. Pass `TfArg.literal(\'orders-prod\')` or\n  `TfArg.ref(otherTopic.nameRef)` to interpolate.\n\nExample:\n```dart\nfinal orders = GooglePubsubTopic(\n  localName: \'orders\',\n  name: TfArg.literal(\'orders-prod\'),\n  messageRetentionDuration:\n      TfArg.literal(const Duration(days: 7).toTfDurationString()),\n  lifecycle: const LifecycleOptions(preventDestroy: true),\n);\n```\n\nComposition pattern: extends `Resource` for runtime\nbehavior. `argMap` stores `TfArg<dynamic>?` entries directly. Synth\'s\nJSON-encoding pass walks them and calls `arg.toTfJson()` to encode at\nwrite time.',
+        'Factory wrapper for `google_pubsub_topic`.\n\nExample:\n```dart\nfinal orders = GooglePubsubTopic(\n  localName: \'orders\',\n  name: TfArg.literal(\'orders-prod\'),\n  messageRetentionDuration:\n      TfArg.literal(const Duration(days: 7).toTfDurationString()),\n  lifecycle: const LifecycleOptions(preventDestroy: true),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_pubsub_topic_iam_member',
@@ -3414,7 +3413,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_pubsub_topic_iam_member`.\n\nAdds a single IAM `role` → `member` binding on a topic. For\nmulti-member binding semantics, prefer `google_pubsub_topic_iam_binding`\n(not yet a curated factory — open an issue to request curation).',
+        'Factory wrapper for `google_pubsub_topic_iam_member`.\n\nAdds a single IAM `role` -> `member` binding on a topic. For\nmulti-member binding semantics, prefer `google_pubsub_topic_iam_binding`\n(not yet a curated factory -- open an issue to request curation).',
   ),
   CatalogEntry(
     tfType: 'google_secret_manager_secret',
