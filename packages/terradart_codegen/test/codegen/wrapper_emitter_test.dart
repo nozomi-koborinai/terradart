@@ -790,8 +790,10 @@ void main() {
         // effectiveLabels / terraformLabels MUST NOT appear as constructor
         // params (computed-only, emitted as TfRef getters, not inputs).
         // Match the param-slot shapes; the getter declarations are fine.
-        expect(out, isNot(contains('TfArg<Map<String, String>>? effectiveLabels,')));
-        expect(out, isNot(contains('TfArg<Map<String, String>>? terraformLabels,')));
+        expect(out,
+            isNot(contains('TfArg<Map<String, String>>? effectiveLabels,')));
+        expect(out,
+            isNot(contains('TfArg<Map<String, String>>? terraformLabels,')));
         // `id` cannot be matched as a bare substring — it appears inside
         // `localName`, comments, etc. Match the constructor-param shape.
         expect(out, isNot(contains('TfArg<String>? id,')));

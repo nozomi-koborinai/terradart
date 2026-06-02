@@ -38,9 +38,8 @@ _Setup _setup() {
     }
   }
 
-  final ir = mm.isEmpty
-      ? baseIr
-      : const IrMerger().merge(base: baseIr, overrides: mm);
+  final ir =
+      mm.isEmpty ? baseIr : const IrMerger().merge(base: baseIr, overrides: mm);
   final loaded = loadWrapperOverrides(rootDir: _overrideRoot);
   return (resources: ir.resources, loaded: loaded);
 }
@@ -217,7 +216,9 @@ void main() {
         type,
         override.outputDir,
         '${coveredEnums.length}/${hwEnums.length}',
-        curatedOnlyEnums.isEmpty ? '-' : (curatedOnlyEnums.toList()..sort()).join(';'),
+        curatedOnlyEnums.isEmpty
+            ? '-'
+            : (curatedOnlyEnums.toList()..sort()).join(';'),
         '${coveredGetters.length}/${hwGetters.length}',
         renameKeepGetters.isEmpty
             ? '-'
