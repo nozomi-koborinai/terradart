@@ -689,8 +689,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'CloudTasksQueueQueueOidcToken',
     ],
     sensitiveFields: <String>[],
-    docComment:
-        'Factory wrapper for `google_cloud_tasks_queue`.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `name`: queue name (project-relative; provider expands to full path).\n- `location`: GCP region (e.g. `us-central1`). v0.0.x treats this as\n  Required for ergonomic clarity even though the underlying provider\n  attribute is technically Optional.',
+    docComment: 'Factory wrapper for `google_cloud_tasks_queue`.',
   ),
   CatalogEntry(
     tfType: 'google_cloud_tasks_queue_iam_member',
@@ -709,8 +708,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment:
-        'Factory wrapper for `google_cloud_tasks_queue_iam_member`.\n\nIdentity: `name` + `location` + `role` + `member` (project optional).',
+    docComment: 'Factory wrapper for `google_cloud_tasks_queue_iam_member`.',
   ),
   CatalogEntry(
     tfType: 'google_cloudbuild_trigger',
