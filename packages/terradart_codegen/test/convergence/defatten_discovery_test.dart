@@ -184,18 +184,21 @@ void main() {
         reason:
             'migrated + curatedDoc must classify as derived+frozen, not none');
 
-    // Un-migrated boilerplate: an IAM member with no fenced/example doc.
-    final iam = result.loaded.resources['google_cloud_tasks_queue_iam_member'];
+    // Un-migrated boilerplate: an IAM custom role with no fenced/example doc.
+    // Pinned to the `iam` product, which is out of Wave 1 scope, so this
+    // fixture stays un-migrated for the duration of the de-fatten wave.
+    final iam = result.loaded.resources['google_project_iam_custom_role'];
     expect(iam, isNotNull);
     expect(iam!.deriveClassDoc, isFalse);
     expect(classifyDoc(iam), 'boilerplate');
 
-    // Un-migrated artisanal: carries a fenced ```dart example.
-    final conn =
-        result.loaded.resources['google_service_networking_connection'];
-    expect(conn, isNotNull);
-    expect(conn!.deriveClassDoc, isFalse);
-    expect(classifyDoc(conn), 'curatedDoc');
+    // Un-migrated artisanal: classDocComment carries the substring "example"
+    // (the member-string docs reference `user:alice@example.com`). Also pinned
+    // to the out-of-scope `iam` product so it stays un-migrated.
+    final member = result.loaded.resources['google_project_iam_member'];
+    expect(member, isNotNull);
+    expect(member!.deriveClassDoc, isFalse);
+    expect(classifyDoc(member), 'curatedDoc');
   });
 
   // -------------------------------------------------------------------------

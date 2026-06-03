@@ -1,9 +1,9 @@
 outputDir: service_networking
 
-classDocComment: |-
-  /// Factory wrapper for `google_service_networking_connection` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// Creates a private services peering connection between the user's VPC
   /// network and one of Google's service producer VPCs. This is the
   /// "private connectivity" hop required for managed services (Cloud SQL
@@ -52,9 +52,6 @@ classDocComment: |-
   ///   ]),
   /// );
   /// ```
-  ///
-  /// Composition pattern: extends
-  /// `Resource` for runtime behavior.
 
 paramOrder:
   - network
@@ -62,15 +59,3 @@ paramOrder:
   - reserved_peering_ranges
   - deletion_policy
   - update_on_creation_fail
-
-extraGetters: |2
-    /// Reference to `id` attribute. The provider's `id` is composed from
-    /// the network + service pair; useful only as an opaque handle.
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to the computed `peering` attribute — the name of the
-    /// underlying VPC peering connection between the consumer and
-    /// producer networks. Visible in the `gcloud compute networks
-    /// peerings list` output.
-    TfRef<String> get peering =>
-        TfRef.attribute<String>(this, 'peering');
