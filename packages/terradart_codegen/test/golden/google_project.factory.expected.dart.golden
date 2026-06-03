@@ -17,11 +17,12 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_project`.
 const Set<String> _googleProjectSensitive = <String>{};
 
-/// Data source for `data.google_project`.
+/// Factory wrapper for `google_project`.
 ///
 /// Use to look up the active project's `number`, `name`, etc., for
 /// downstream references (e.g. CMEK service-account email composition).
 ///
+/// Example:
 /// ```dart
 /// final current = stack.addData(GoogleProject(localName: 'current'));
 /// final cmekBinding = GooglePubsubTopicIamMember(
@@ -33,10 +34,6 @@ const Set<String> _googleProjectSensitive = <String>{};
 ///   ),
 /// );
 /// ```
-///
-/// Composition: extends `Data<$GoogleProject>` (the `Data<S>` base in
-/// `terradart`). Synth emits this under `data.google_project.<localName>`
-/// (vs `resource.…` for `Resource<S>`).
 final class GoogleProject extends Data {
   static const String tfType = 'google_project';
 
@@ -49,8 +46,15 @@ final class GoogleProject extends Data {
   @override
   Set<String> get sensitiveFields => _googleProjectSensitive;
 
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `number` attribute.
   TfRef<String> get number => TfRef.attribute<String>(this, 'number');
+
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');
   TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
-  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

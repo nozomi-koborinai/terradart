@@ -3229,12 +3229,12 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     className: 'GoogleProject',
     barrel: 'data',
     kind: CatalogKind.dataSource,
-    summary: 'Data source for `data.google_project`.',
+    summary: 'Factory wrapper for `google_project`.',
     constructorParams: <String>['localName', 'projectId'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Data source for `data.google_project`.\n\nUse to look up the active project\'s `number`, `name`, etc., for\ndownstream references (e.g. CMEK service-account email composition).\n\n```dart\nfinal current = stack.addData(GoogleProject(localName: \'current\'));\nfinal cmekBinding = GooglePubsubTopicIamMember(\n  localName: \'pubsub_cmek\',\n  topic: TfArg.ref(topic.nameRef),\n  role: TfArg.literal(\'roles/cloudkms.cryptoKeyEncrypterDecrypter\'),\n  member: TfArg.literal(\n    \'serviceAccount:service-\${current.number.interpolation}@gcp-sa-pubsub.iam.gserviceaccount.com\',\n  ),\n);\n```\n\nComposition: extends `Data<\$GoogleProject>` (the `Data<S>` base in\n`terradart`). Synth emits this under `data.google_project.<localName>`\n(vs `resource.…` for `Resource<S>`).',
+        'Factory wrapper for `google_project`.\n\nUse to look up the active project\'s `number`, `name`, etc., for\ndownstream references (e.g. CMEK service-account email composition).\n\nExample:\n```dart\nfinal current = stack.addData(GoogleProject(localName: \'current\'));\nfinal cmekBinding = GooglePubsubTopicIamMember(\n  localName: \'pubsub_cmek\',\n  topic: TfArg.ref(topic.nameRef),\n  role: TfArg.literal(\'roles/cloudkms.cryptoKeyEncrypterDecrypter\'),\n  member: TfArg.literal(\n    \'serviceAccount:service-\${current.number.interpolation}@gcp-sa-pubsub.iam.gserviceaccount.com\',\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_project_iam_custom_role',
