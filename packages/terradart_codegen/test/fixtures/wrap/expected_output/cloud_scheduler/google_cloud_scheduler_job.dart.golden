@@ -218,6 +218,7 @@ class CloudSchedulerJobSchedulerRetryConfig {
 /// - [CloudSchedulerJobHttpTarget] — generic HTTP webhook.
 /// - [CloudSchedulerJobAppEngineHttpTarget] — App Engine routing.
 ///
+/// Example:
 /// ```dart
 /// final orders = GooglePubsubTopic(
 ///   localName: 'orders',
@@ -271,6 +272,12 @@ final class GoogleCloudSchedulerJob extends Resource {
   @override
   Set<String> get sensitiveFields => _googleCloudSchedulerJobSensitive;
 
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 }

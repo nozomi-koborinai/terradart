@@ -1,7 +1,8 @@
 outputDir: cloud_scheduler
-classDocComment: |-
-  /// Factory wrapper for `google_cloud_scheduler_job`.
-  ///
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// `region` is treated as Required for ergonomic clarity in v0.0.x, even
   /// though the underlying provider attribute is technically Optional (it
   /// falls back to the provider default). This avoids subtle issues where a
@@ -12,6 +13,7 @@ classDocComment: |-
   /// - [CloudSchedulerJobHttpTarget] — generic HTTP webhook.
   /// - [CloudSchedulerJobAppEngineHttpTarget] — App Engine routing.
   ///
+  /// Example:
   /// ```dart
   /// final orders = GooglePubsubTopic(
   ///   localName: 'orders',
@@ -268,10 +270,6 @@ customSlots:
   retry_config:
     paramDeclaration: 'CloudSchedulerJobSchedulerRetryConfig? retryConfig'
     argMapEntry: "if (retryConfig != null) 'retry_config': TfArg.literal(retryConfig.encode()),"
-
-extraGetters: |2
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
 # Hand-written tightens `region` from `optional + computed` to required
 # for ergonomic clarity; matches the existing IAM-member precedent
