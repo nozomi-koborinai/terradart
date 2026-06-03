@@ -211,14 +211,29 @@ class DnsManagedZoneCloudLoggingConfig {
   Map<String, Object?> toArgMap() => {'enable_logging': enableLogging};
 }
 
-/// Factory wrapper for `google_dns_managed_zone` (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_dns_managed_zone`.
+///
+/// A zone is a subtree of the DNS namespace under one administrative
+/// responsibility. A ManagedZone is a resource that represents a DNS zone
+/// hosted by the Cloud DNS service.
+///
+/// Manages a Cloud DNS **managed zone** — the container that holds DNS
+/// records for a single DNS name (e.g. `example.com.`). Zones can be
+/// public (served to the internet) or private (visible only within
+/// specified VPC networks or GKE clusters).
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
 ///   `google_dns_managed_zone.`).
 /// - `name`: GCP-internal zone name (forces replacement when changed).
-/// - `dns_name`: DNS name of the zone, must end with a trailing dot
+/// - `dns_name`: DNS name of the zone; must end with a trailing dot
 ///   (e.g. `'example.com.'`).
+///
+/// The 5 nested blocks (`private_visibility_config` / `dnssec_config` /
+/// `peering_config` / `forwarding_config` / `cloud_logging_config`) are
+/// modeled as helper classes in the prelude; each block has `max_items=1`,
+/// so the factory wraps the encoded map in a single-element list before
+/// passing it to Terraform.
 ///
 /// Example (public zone):
 /// ```dart
@@ -230,13 +245,6 @@ class DnsManagedZoneCloudLoggingConfig {
 ///   visibility: TfArg.literal(DnsZoneVisibility.public),
 /// );
 /// ```
-///
-/// Manages a DNS Managed Zone. The 5 nested blocks
-/// (`private_visibility_config` / `dnssec_config` / `peering_config` /
-/// `forwarding_config` / `cloud_logging_config`) are modeled as helper
-/// classes in the `prelude` below; each block has `max_items=1`, so the
-/// factory wraps the encoded map in a single-element list before passing
-/// it to Terraform.
 final class GoogleDnsManagedZone extends Resource {
   static const String tfType = 'google_dns_managed_zone';
 
@@ -286,12 +294,30 @@ final class GoogleDnsManagedZone extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDnsManagedZoneSensitive;
 
-  /// Reference to `id` attribute (`projects/{project}/managedZones/{name}`).
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `name` attribute. Most DNS-record / IAM resources expect
-  /// the zone reference as its `name`, not its full `id`.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  /// Reference to `creation_time` attribute.
+  TfRef<String> get creationTime =>
+      TfRef.attribute<String>(this, 'creation_time');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `managed_zone_id` attribute.
+  TfRef<num> get managedZoneId => TfRef.attribute<num>(this, 'managed_zone_id');
+
+  /// Reference to `name_servers` attribute.
+  TfRef<List<String>> get nameServers =>
+      TfRef.attribute<List<String>>(this, 'name_servers');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to `dns_name` attribute (the trailing-dot DNS name).
   TfRef<String> get dnsNameRef => TfRef.attribute<String>(this, 'dns_name');

@@ -1,7 +1,9 @@
 outputDir: dns
-classDocComment: |-
-  /// Factory wrapper for `google_dns_managed_zone_iam_member`.
-  ///
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// Grants a single (`role`, `member`) IAM binding **on a Cloud DNS
   /// managed zone** — i.e. who can read or change the records inside this
   /// one zone. Zone-scoped IAM is the right granularity when different
@@ -36,6 +38,16 @@ classDocComment: |-
   ///
   /// Optional `condition` is a single IAM Condition block (CEL
   /// `expression`, `title`, optional `description`).
+  ///
+  /// Example:
+  /// ```dart
+  /// final zoneAdmin = GoogleDnsManagedZoneIamMember(
+  ///   localName: 'zone_admin',
+  ///   managedZone: TfArg.ref(zone.nameRef),
+  ///   role: TfArg.literal('roles/dns.admin'),
+  ///   member: TfArg.literal('group:sre-team-a@example.com'),
+  /// );
+  /// ```
 
 paramOrder:
   - managed_zone
@@ -43,7 +55,3 @@ paramOrder:
   - member
   - condition
   - project
-
-extraGetters: |2
-    /// Reference to `etag` attribute (concurrency token written by the API).
-    TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
