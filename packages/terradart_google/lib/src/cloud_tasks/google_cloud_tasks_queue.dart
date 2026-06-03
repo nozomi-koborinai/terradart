@@ -155,13 +155,6 @@ class CloudTasksQueueQueueOidcToken {
 // ===========================================================================
 
 /// Factory wrapper for `google_cloud_tasks_queue`.
-///
-/// Required identity:
-/// - [localName]: Terraform local name.
-/// - `name`: queue name (project-relative; provider expands to full path).
-/// - `location`: GCP region (e.g. `us-central1`). v0.0.x treats this as
-///   Required for ergonomic clarity even though the underlying provider
-///   attribute is technically Optional.
 final class GoogleCloudTasksQueue extends Resource {
   static const String tfType = 'google_cloud_tasks_queue';
 
@@ -205,7 +198,14 @@ final class GoogleCloudTasksQueue extends Resource {
   @override
   Set<String> get sensitiveFields => _googleCloudTasksQueueSensitive;
 
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
+
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
 }

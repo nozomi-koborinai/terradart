@@ -6,8 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_service_networking_connection`.
 const Set<String> _googleServiceNetworkingConnectionSensitive = <String>{};
 
-/// Factory wrapper for `google_service_networking_connection` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_service_networking_connection`.
 ///
 /// Creates a private services peering connection between the user's VPC
 /// network and one of Google's service producer VPCs. This is the
@@ -57,9 +56,6 @@ const Set<String> _googleServiceNetworkingConnectionSensitive = <String>{};
 ///   ]),
 /// );
 /// ```
-///
-/// Composition pattern: extends
-/// `Resource` for runtime behavior.
 final class GoogleServiceNetworkingConnection extends Resource {
   static const String tfType = 'google_service_networking_connection';
 
@@ -88,13 +84,9 @@ final class GoogleServiceNetworkingConnection extends Resource {
   Set<String> get sensitiveFields =>
       _googleServiceNetworkingConnectionSensitive;
 
-  /// Reference to `id` attribute. The provider's `id` is composed from
-  /// the network + service pair; useful only as an opaque handle.
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to the computed `peering` attribute — the name of the
-  /// underlying VPC peering connection between the consumer and
-  /// producer networks. Visible in the `gcloud compute networks
-  /// peerings list` output.
+  /// Reference to `peering` attribute.
   TfRef<String> get peering => TfRef.attribute<String>(this, 'peering');
 }

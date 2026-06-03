@@ -7,18 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleCloudfunctions2FunctionIamMemberSensitive = <String>{};
 
 /// Factory wrapper for `google_cloudfunctions2_function_iam_member`.
-///
-/// Adds a single IAM `role` -> `member` binding on one Cloud Functions
-/// Gen 2 function. The `cloudFunction` slot is the function's
-/// `name` attribute (or `id` -- they coincide for this resource), not
-/// the short local name. For the typical public-invoker use case use
-/// `'roles/cloudfunctions.invoker'` plus `'allUsers'`.
-///
-/// Note: Cloud Functions Gen 2 dispatches at runtime through the
-/// underlying Cloud Run service, so the **invoker IAM grant must be on
-/// the Cloud Run service**, not on the function. Use this resource for
-/// admin-level roles (e.g. `roles/cloudfunctions.viewer`) and pair with
-/// `google_cloud_run_service_iam_member` for invocation.
 final class GoogleCloudfunctions2FunctionIamMember extends Resource {
   static const String tfType = 'google_cloudfunctions2_function_iam_member';
 
@@ -48,6 +36,9 @@ final class GoogleCloudfunctions2FunctionIamMember extends Resource {
   Set<String> get sensitiveFields =>
       _googleCloudfunctions2FunctionIamMemberSensitive;
 
-  /// Reference to `etag` attribute (concurrency token written by the API).
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }

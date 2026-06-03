@@ -1,9 +1,9 @@
 outputDir: eventarc
 
-classDocComment: |-
-  /// Factory wrapper for `google_eventarc_trigger` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// Manages an **Eventarc trigger** -- a routing rule that delivers
   /// CloudEvents (from Cloud Storage, Pub/Sub, Audit Logs, third-party SaaS
   /// partners via Eventarc channels, etc.) to a destination workload such as
@@ -74,9 +74,6 @@ classDocComment: |-
   /// avoid colliding with similarly-named structures in sibling Eventarc
   /// resources (channels, connections) and other event-delivery wrappers
   /// (Pub/Sub subscriptions, Cloud Scheduler).
-  ///
-  /// Composition pattern: extends `Resource` for
-  /// runtime behavior.
 
 paramOrder:
   - name
@@ -93,28 +90,6 @@ paramOrder:
 
 extraImports:
   - "import 'package:meta/meta.dart';"
-
-extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute (full path
-    /// `projects/{project}/locations/{location}/triggers/{name}`).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `uid` (server-assigned unique identifier).
-    TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
-
-    /// Reference to `etag` (optimistic-concurrency token).
-    TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
-
-    /// Reference to `create_time` (RFC3339 creation timestamp).
-    TfRef<String> get createTime =>
-        TfRef.attribute<String>(this, 'create_time');
-
-    /// Reference to `update_time` (RFC3339 last-modified timestamp).
-    TfRef<String> get updateTime =>
-        TfRef.attribute<String>(this, 'update_time');
 
 prelude: |
   // ===========================================================================

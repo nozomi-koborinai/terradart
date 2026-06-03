@@ -42,6 +42,16 @@ const Set<String> _googleDnsManagedZoneIamMemberSensitive = <String>{};
 ///
 /// Optional `condition` is a single IAM Condition block (CEL
 /// `expression`, `title`, optional `description`).
+///
+/// Example:
+/// ```dart
+/// final zoneAdmin = GoogleDnsManagedZoneIamMember(
+///   localName: 'zone_admin',
+///   managedZone: TfArg.ref(zone.nameRef),
+///   role: TfArg.literal('roles/dns.admin'),
+///   member: TfArg.literal('group:sre-team-a@example.com'),
+/// );
+/// ```
 final class GoogleDnsManagedZoneIamMember extends Resource {
   static const String tfType = 'google_dns_managed_zone_iam_member';
 
@@ -68,6 +78,9 @@ final class GoogleDnsManagedZoneIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googleDnsManagedZoneIamMemberSensitive;
 
-  /// Reference to `etag` attribute (concurrency token written by the API).
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }

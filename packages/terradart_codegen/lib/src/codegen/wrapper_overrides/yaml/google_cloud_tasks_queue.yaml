@@ -1,13 +1,6 @@
 outputDir: cloud_tasks
-classDocComment: |-
-  /// Factory wrapper for `google_cloud_tasks_queue`.
-  ///
-  /// Required identity:
-  /// - [localName]: Terraform local name.
-  /// - `name`: queue name (project-relative; provider expands to full path).
-  /// - `location`: GCP region (e.g. `us-central1`). v0.0.x treats this as
-  ///   Required for ergonomic clarity even though the underlying provider
-  ///   attribute is technically Optional.
+deriveClassDoc: true
+deriveOutputGetters: true
 
 # Slot order chosen to mirror the hand-written constructor: identity
 # (name, location) first, then the five helper-typed nested-block slots
@@ -181,9 +174,7 @@ customSlots:
     argMapEntry: "if (httpTarget != null) 'http_target': TfArg.literal(httpTarget.encode()),"
 
 extraGetters: |2
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
     TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
 # Hand-written tightens `location` from `optional + computed` to required
 # for ergonomic clarity; matches the IAM-member precedent (e.g.

@@ -304,8 +304,9 @@ class EventarcTriggerRetryPolicy {
   };
 }
 
-/// Factory wrapper for `google_eventarc_trigger` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_eventarc_trigger`.
+///
+/// The Eventarc Trigger resource
 ///
 /// Manages an **Eventarc trigger** -- a routing rule that delivers
 /// CloudEvents (from Cloud Storage, Pub/Sub, Audit Logs, third-party SaaS
@@ -377,9 +378,6 @@ class EventarcTriggerRetryPolicy {
 /// avoid colliding with similarly-named structures in sibling Eventarc
 /// resources (channels, connections) and other event-delivery wrappers
 /// (Pub/Sub subscriptions, Cloud Scheduler).
-///
-/// Composition pattern: extends `Resource` for
-/// runtime behavior.
 final class GoogleEventarcTrigger extends Resource {
   static const String tfType = 'google_eventarc_trigger';
 
@@ -426,19 +424,30 @@ final class GoogleEventarcTrigger extends Resource {
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/locations/{location}/triggers/{name}`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `uid` (server-assigned unique identifier).
-  TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
+  /// Reference to `conditions` attribute.
+  TfRef<Map<String, String>> get conditions =>
+      TfRef.attribute<Map<String, String>>(this, 'conditions');
 
-  /// Reference to `etag` (optimistic-concurrency token).
-  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
-
-  /// Reference to `create_time` (RFC3339 creation timestamp).
+  /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
-  /// Reference to `update_time` (RFC3339 last-modified timestamp).
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `uid` attribute.
+  TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
+
+  /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 }

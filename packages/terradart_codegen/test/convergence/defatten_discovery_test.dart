@@ -7,6 +7,7 @@ import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/getter_emitter.dart';
 import 'package:terradart_codegen/src/codegen/naming.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
 import 'package:terradart_codegen/src/ir/resource_def.dart';
 import 'package:terradart_codegen/src/parser/ir_merger.dart';
@@ -96,6 +97,27 @@ Set<String> handwrittenGetterNames(String? extra) => extra == null
     ? <String>{}
     : RegExp(r'\bget (\w+)').allMatches(extra).map((m) => m.group(1)!).toSet();
 
+/// Classifies an override's class-doc disposition for the discovery report.
+///
+/// Keyed on the derive gate first: a migrated override deletes
+/// `classDocComment` (lint-override forbids it alongside `deriveClassDoc`) and
+/// moves artisanal prose to `curatedDoc`, so a null-`classDocComment` test
+/// alone would mis-file every migrated override as 'none'.
+/// - deriveClassDoc + curatedDoc present -> 'derived+frozen'
+/// - deriveClassDoc, no curatedDoc       -> 'derived'
+/// - else: the legacy un-migrated heuristic on classDocComment.
+String classifyDoc(WrapperOverride o) {
+  if (o.deriveClassDoc) {
+    return o.curatedDoc != null ? 'derived+frozen' : 'derived';
+  }
+  final doc = o.classDocComment;
+  if (doc == null) return 'none';
+  if (doc.contains('```') || doc.toLowerCase().contains('example')) {
+    return 'curatedDoc';
+  }
+  return 'boilerplate';
+}
+
 void main() {
   // -------------------------------------------------------------------------
   // Task 1 — harness loads overrides and IR
@@ -150,6 +172,35 @@ void main() {
         reason: 'nameRef and id must be derivable for google_pubsub_topic');
   });
 
+  test('classifyDoc keys on derive gates, not null classDocComment', () {
+    final result = _setup();
+
+    // Migrated (Wave 0): google_pubsub_schema has deriveClassDoc + curatedDoc.
+    final schema = result.loaded.resources['google_pubsub_schema'];
+    expect(schema, isNotNull, reason: 'pubsub schema override must load');
+    expect(schema!.deriveClassDoc, isTrue, reason: 'pubsub schema is migrated');
+    expect(schema.curatedDoc, isNotNull);
+    expect(classifyDoc(schema), 'derived+frozen',
+        reason:
+            'migrated + curatedDoc must classify as derived+frozen, not none');
+
+    // Un-migrated boilerplate: an IAM custom role with no fenced/example doc.
+    // Pinned to the `iam` product, which is out of Wave 1 scope, so this
+    // fixture stays un-migrated for the duration of the de-fatten wave.
+    final iam = result.loaded.resources['google_project_iam_custom_role'];
+    expect(iam, isNotNull);
+    expect(iam!.deriveClassDoc, isFalse);
+    expect(classifyDoc(iam), 'boilerplate');
+
+    // Un-migrated artisanal: classDocComment carries the substring "example"
+    // (the member-string docs reference `user:alice@example.com`). Also pinned
+    // to the out-of-scope `iam` product so it stays un-migrated.
+    final member = result.loaded.resources['google_project_iam_member'];
+    expect(member, isNotNull);
+    expect(member!.deriveClassDoc, isFalse);
+    expect(classifyDoc(member), 'curatedDoc');
+  });
+
   // -------------------------------------------------------------------------
   // Task 3 — all-override sweep → TSV report
   // -------------------------------------------------------------------------
@@ -194,23 +245,10 @@ void main() {
       final coveredGetters = hwGetters.intersection(derivGetters);
       final renameKeepGetters = hwGetters.difference(derivGetters);
 
-      // Doc classification:
-      // - curatedDoc: classDocComment carries a fenced code block (```) or an
-      //   (case-insensitive) "example" — i.e. artisanal prose the IR cannot
-      //   derive, which must stay frozen (③).
-      // - boilerplate: classDocComment is non-null but meets neither criterion
-      //   (a candidate for A4 derivation).
-      // - none: classDocComment is null.
-      final docComment = override.classDocComment;
-      final String docClass;
-      if (docComment == null) {
-        docClass = 'none';
-      } else if (docComment.contains('```') ||
-          docComment.toLowerCase().contains('example')) {
-        docClass = 'curatedDoc';
-      } else {
-        docClass = 'boilerplate';
-      }
+      // Doc classification: keyed on derive gates first so migrated overrides
+      // (deriveClassDoc + curatedDoc, no classDocComment) are not mis-filed
+      // as 'none'. See [classifyDoc] for the full decision tree.
+      final docClass = classifyDoc(override);
 
       rows.add([
         type,

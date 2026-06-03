@@ -587,18 +587,12 @@ class Cloudfunctions2FunctionDirectVpcNetworkInterface {
   };
 }
 
-/// Factory wrapper for `google_cloudfunctions2_function` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_cloudfunctions2_function`.
 ///
-/// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_cloudfunctions2_function.`).
-/// - `name`: function name. Must be unique within the project + location.
-/// - `location`: GCP region (e.g. `'asia-northeast1'`).
-///
-/// At least one of [buildConfig] / [eventTrigger] / [serviceConfig] is
-/// usually set; an empty function is a valid (no-op) resource so none are
-/// marked required at the type level.
+/// Cloud Functions Gen 2 function. Gen 2 runs on Cloud Run + Eventarc +
+/// Cloud Build; this resource owns the build step (source archive + runtime),
+/// the runtime service config (memory / CPU / scaling), and optionally an
+/// event-trigger binding.
 ///
 /// Example (HTTP-triggered Python function backed by a GCS source archive):
 /// ```dart
@@ -643,12 +637,6 @@ class Cloudfunctions2FunctionDirectVpcNetworkInterface {
 ///   ),
 /// );
 /// ```
-///
-/// Manages a Cloud Functions Gen 2 function. Gen 2 functions run on top of
-/// Cloud Run + Eventarc + Cloud Build under the hood; this resource is the
-/// single source of truth for the build step (source archive + runtime),
-/// the runtime service config (memory / CPU / scaling), and (optionally)
-/// the event-trigger binding.
 final class GoogleCloudfunctions2Function extends Resource {
   static const String tfType = 'google_cloudfunctions2_function';
 
@@ -689,23 +677,26 @@ final class GoogleCloudfunctions2Function extends Resource {
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/locations/{location}/functions/{name}`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `url` attribute -- the public HTTPS URL of the deployed
-  /// function (populated only for HTTP-triggered functions).
-  TfRef<String> get url => TfRef.attribute<String>(this, 'url');
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
 
-  /// Reference to `state` attribute. One of `ACTIVE`, `FAILED`, `DEPLOYING`,
-  /// `DELETING`, `UNKNOWN`.
-  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
-
-  /// Reference to `environment` attribute. Always `'GEN_2'` for resources
-  /// emitted by this wrapper (Gen 1 has its own resource type).
+  /// Reference to `environment` attribute.
   TfRef<String> get environment => TfRef.attribute<String>(this, 'environment');
 
-  /// Reference to `update_time` attribute (RFC3339 timestamp of the last
-  /// deployment).
+  /// Reference to `state` attribute.
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `url` attribute.
+  TfRef<String> get url => TfRef.attribute<String>(this, 'url');
 }

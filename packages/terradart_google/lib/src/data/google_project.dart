@@ -17,11 +17,12 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_project`.
 const Set<String> _googleProjectSensitive = <String>{};
 
-/// Data source for `data.google_project`.
+/// Factory wrapper for `google_project`.
 ///
 /// Use to look up the active project's `number`, `name`, etc., for
 /// downstream references (e.g. CMEK service-account email composition).
 ///
+/// Example:
 /// ```dart
 /// final current = stack.addData(GoogleProject(localName: 'current'));
 /// final cmekBinding = GooglePubsubTopicIamMember(
@@ -33,10 +34,6 @@ const Set<String> _googleProjectSensitive = <String>{};
 ///   ),
 /// );
 /// ```
-///
-/// Composition: extends `Data<$GoogleProject>` (the `Data<S>` base in
-/// `terradart`). Synth emits this under `data.google_project.<localName>`
-/// (vs `resource.…` for `Resource<S>`).
 final class GoogleProject extends Data {
   static const String tfType = 'google_project';
 
@@ -49,8 +46,49 @@ final class GoogleProject extends Data {
   @override
   Set<String> get sensitiveFields => _googleProjectSensitive;
 
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `auto_create_network` attribute.
+  TfRef<bool> get autoCreateNetwork =>
+      TfRef.attribute<bool>(this, 'auto_create_network');
+
+  /// Reference to `billing_account` attribute.
+  TfRef<String> get billingAccount =>
+      TfRef.attribute<String>(this, 'billing_account');
+
+  /// Reference to `deletion_policy` attribute.
+  TfRef<String> get deletionPolicy =>
+      TfRef.attribute<String>(this, 'deletion_policy');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `folder_id` attribute.
+  TfRef<String> get folderId => TfRef.attribute<String>(this, 'folder_id');
+
+  /// Reference to `labels` attribute.
+  TfRef<Map<String, String>> get labels =>
+      TfRef.attribute<Map<String, String>>(this, 'labels');
+
+  /// Reference to `number` attribute.
   TfRef<String> get number => TfRef.attribute<String>(this, 'number');
+
+  /// Reference to `org_id` attribute.
+  TfRef<String> get orgId => TfRef.attribute<String>(this, 'org_id');
+
+  /// Reference to `tags` attribute.
+  TfRef<Map<String, String>> get tags =>
+      TfRef.attribute<Map<String, String>>(this, 'tags');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
   TfRef<String> get name => TfRef.attribute<String>(this, 'name');
   TfRef<String> get projectIdRef => TfRef.attribute<String>(this, 'project_id');
-  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

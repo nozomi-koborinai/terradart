@@ -7,8 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleCloudTasksQueueIamMemberSensitive = <String>{};
 
 /// Factory wrapper for `google_cloud_tasks_queue_iam_member`.
-///
-/// Identity: `name` + `location` + `role` + `member` (project optional).
 final class GoogleCloudTasksQueueIamMember extends Resource {
   static const String tfType = 'google_cloud_tasks_queue_iam_member';
 
@@ -37,5 +35,12 @@ final class GoogleCloudTasksQueueIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googleCloudTasksQueueIamMemberSensitive;
 
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }

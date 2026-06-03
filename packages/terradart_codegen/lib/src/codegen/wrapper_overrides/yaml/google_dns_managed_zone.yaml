@@ -1,14 +1,26 @@
 outputDir: dns
 
-classDocComment: |-
-  /// Factory wrapper for `google_dns_managed_zone` (provider `hashicorp/google ~> 7.0`).
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Manages a Cloud DNS **managed zone** — the container that holds DNS
+  /// records for a single DNS name (e.g. `example.com.`). Zones can be
+  /// public (served to the internet) or private (visible only within
+  /// specified VPC networks or GKE clusters).
   ///
   /// Required identity:
   /// - [localName]: Terraform local name (the address segment after
   ///   `google_dns_managed_zone.`).
   /// - `name`: GCP-internal zone name (forces replacement when changed).
-  /// - `dns_name`: DNS name of the zone, must end with a trailing dot
+  /// - `dns_name`: DNS name of the zone; must end with a trailing dot
   ///   (e.g. `'example.com.'`).
+  ///
+  /// The 5 nested blocks (`private_visibility_config` / `dnssec_config` /
+  /// `peering_config` / `forwarding_config` / `cloud_logging_config`) are
+  /// modeled as helper classes in the prelude; each block has `max_items=1`,
+  /// so the factory wraps the encoded map in a single-element list before
+  /// passing it to Terraform.
   ///
   /// Example (public zone):
   /// ```dart
@@ -20,13 +32,6 @@ classDocComment: |-
   ///   visibility: TfArg.literal(DnsZoneVisibility.public),
   /// );
   /// ```
-  ///
-  /// Manages a DNS Managed Zone. The 5 nested blocks
-  /// (`private_visibility_config` / `dnssec_config` / `peering_config` /
-  /// `forwarding_config` / `cloud_logging_config`) are modeled as helper
-  /// classes in the `prelude` below; each block has `max_items=1`, so the
-  /// factory wraps the encoded map in a single-element list before passing
-  /// it to Terraform.
 
 paramOrder:
   - name
@@ -43,13 +48,6 @@ paramOrder:
   - project
 
 extraGetters: |2
-    /// Reference to `id` attribute (`projects/{project}/managedZones/{name}`).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `name` attribute. Most DNS-record / IAM resources expect
-    /// the zone reference as its `name`, not its full `id`.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
     /// Reference to `dns_name` attribute (the trailing-dot DNS name).
     TfRef<String> get dnsNameRef => TfRef.attribute<String>(this, 'dns_name');
 

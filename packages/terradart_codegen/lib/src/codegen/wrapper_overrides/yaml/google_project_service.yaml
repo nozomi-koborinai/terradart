@@ -1,8 +1,8 @@
 outputDir: project
-classDocComment: |-
-  /// Factory wrapper for `google_project_service`
-  /// (provider `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// Enables a single Google Cloud API on a project. Each GCP API (Pub/Sub,
   /// Cloud Tasks, Secret Manager, Cloud Scheduler, …) requires its matching
   /// `google_project_service` resource to be enabled before its resources
@@ -39,21 +39,9 @@ classDocComment: |-
   ///   dependsOn: [pubsubApi],
   /// );
   /// ```
-  ///
-  /// Composition pattern: extends `Resource` for
-  /// runtime behavior, implements `$GoogleProjectService` for the schemantic
-  /// schema surface. `argMap` stores `TfArg<dynamic>?` entries directly;
-  /// synth's JSON-encoding pass walks them and calls `arg.toTfJson()` to
-  /// encode at write time.
 
 paramOrder:
   - service
   - project
   - disable_on_destroy
   - disable_dependent_services
-
-extraGetters: |2
-    /// Reference to `id` attribute (full path `[project]/services/[service]`).
-    /// Use this when another resource needs to reference the enablement, e.g.
-    /// as a dependency interpolation target.
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');

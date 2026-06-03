@@ -6,8 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_project_service`.
 const Set<String> _googleProjectServiceSensitive = <String>{};
 
-/// Factory wrapper for `google_project_service`
-/// (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_project_service`.
 ///
 /// Enables a single Google Cloud API on a project. Each GCP API (Pub/Sub,
 /// Cloud Tasks, Secret Manager, Cloud Scheduler, …) requires its matching
@@ -45,12 +44,6 @@ const Set<String> _googleProjectServiceSensitive = <String>{};
 ///   dependsOn: [pubsubApi],
 /// );
 /// ```
-///
-/// Composition pattern: extends `Resource` for
-/// runtime behavior, implements `$GoogleProjectService` for the schemantic
-/// schema surface. `argMap` stores `TfArg<dynamic>?` entries directly;
-/// synth's JSON-encoding pass walks them and calls `arg.toTfJson()` to
-/// encode at write time.
 final class GoogleProjectService extends Resource {
   static const String tfType = 'google_project_service';
 
@@ -76,8 +69,6 @@ final class GoogleProjectService extends Resource {
   @override
   Set<String> get sensitiveFields => _googleProjectServiceSensitive;
 
-  /// Reference to `id` attribute (full path `[project]/services/[service]`).
-  /// Use this when another resource needs to reference the enablement, e.g.
-  /// as a dependency interpolation target.
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }
