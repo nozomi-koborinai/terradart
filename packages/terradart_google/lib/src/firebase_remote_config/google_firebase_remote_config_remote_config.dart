@@ -265,21 +265,13 @@ class FirebaseRemoteConfigRemoteConfigRemoteConfigParameterGroup {
   };
 }
 
-/// Factory wrapper for `google_firebase_remote_config_remote_config`
-/// (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_firebase_remote_config_remote_config`.
 ///
-/// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_firebase_remote_config_remote_config.`).
-/// - `project`: optional override of the provider's default project
-///   (Remote Config templates are scoped to a single Firebase project).
-///
-/// All three composition surfaces ([parameters], [parameterGroups],
-/// [conditions]) are individually optional, but in practice at least one
-/// of [parameters] or [parameterGroups] is what makes a template useful;
-/// the resource is the project-level container for the entire template.
-/// Only one Remote Config template exists per Firebase project (the
-/// `name` is server-fixed as
+/// Manages the project-level Firebase Remote Config template. Required
+/// identity: [localName] is the Terraform local name; `project` is an
+/// optional override of the provider's default project (templates are
+/// scoped to a single Firebase project). Only one Remote Config template
+/// exists per Firebase project (the `name` is server-fixed as
 /// `projects/{project}/namespaces/{namespace}/remoteConfig`), so this
 /// resource is effectively a singleton.
 ///
@@ -330,16 +322,6 @@ class FirebaseRemoteConfigRemoteConfigRemoteConfigParameterGroup {
 ///   ],
 /// );
 /// ```
-///
-/// Manages the project-level Firebase Remote Config template. The
-/// template's payload is composed of three orthogonal collections:
-/// [conditions] (boolean predicates evaluated at client fetch time),
-/// [parameters] (top-level parameter map, keyed by [FirebaseRemoteConfigRemoteConfigRemoteConfigParameter.parameterName]),
-/// and [parameterGroups] (named buckets of parameters, see
-/// [FirebaseRemoteConfigRemoteConfigRemoteConfigParameterGroup]). Conditional values inside each
-/// parameter reference conditions by name -- the wrapper does not (and
-/// cannot) cross-validate these references at compile time; mismatches
-/// surface at apply time from the Remote Config API.
 final class GoogleFirebaseRemoteConfigRemoteConfig extends Resource {
   static const String tfType = 'google_firebase_remote_config_remote_config';
 
@@ -375,11 +357,13 @@ final class GoogleFirebaseRemoteConfigRemoteConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleFirebaseRemoteConfigRemoteConfigSensitive;
 
-  /// Reference to `name` attribute (full resource path, of the shape
-  /// `projects/{project}/namespaces/{namespace}/remoteConfig`).
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute. Same shape as [nameRef] for this
-  /// resource.
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `version` attribute.
+  TfRef<List<Map<String, Object?>>> get version =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'version');
 }
