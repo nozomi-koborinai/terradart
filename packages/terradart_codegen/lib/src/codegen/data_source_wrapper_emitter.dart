@@ -2,6 +2,8 @@ import '../ir/attribute.dart';
 import '../ir/nested_block.dart';
 import '../ir/resource_def.dart';
 import 'dart_type_writer.dart';
+import 'doc_comment_builder.dart';
+import 'getter_emitter.dart';
 import 'naming.dart';
 import 'sensitive_set_emitter.dart';
 import 'wrapper_overrides/wrapper_override.dart';
@@ -133,11 +135,18 @@ class DataSourceWrapperEmitter {
     );
     buf.writeln();
 
-    // Class-level doc comment (verbatim). Hand-curated because the comment
-    // carries the per-resource example block + composition note.
-    final docComment = override.classDocComment;
-    if (docComment != null) {
-      buf.writeln(docComment);
+    // Class-level doc comment. Phase A4: when the override opts in via
+    // `deriveClassDoc: true`, the comment is derived deterministically from
+    // the IR (same path as WrapperEmitter), with any artisanal `curatedDoc`
+    // appended verbatim. Otherwise the legacy hand-written `classDocComment`
+    // is emitted verbatim (un-migrated resources).
+    if (override.deriveClassDoc) {
+      buf.writeln(buildClassDocComment(def, curatedDoc: override.curatedDoc));
+    } else {
+      final docComment = override.classDocComment;
+      if (docComment != null) {
+        buf.writeln(docComment);
+      }
     }
 
     // Wrapper class header — Plan 5.X: `extends Data` (no `<S>` generic).
@@ -203,6 +212,17 @@ class DataSourceWrapperEmitter {
     // plain `sensitiveFields`, no `// ignore` directive required.
     buf.writeln('  @override');
     buf.writeln('  Set<String> get sensitiveFields => $sensitiveConst;');
+
+    // Phase A3: derive output-attribute getters (nameRef, id, pure
+    // computed-only) from the IR when the override opts in via
+    // `deriveOutputGetters: true`. Mirrors WrapperEmitter's path exactly.
+    if (override.deriveOutputGetters) {
+      final derived = emitDerivedOutputGetters(def);
+      if (derived.isNotEmpty) {
+        buf.writeln();
+        buf.write(derived);
+      }
+    }
 
     // Extra getters (TfRef shortcuts). Same verbatim-with-trailing-newline
     // contract as [WrapperEmitter] — `write`, not `writeln`, with a blank
