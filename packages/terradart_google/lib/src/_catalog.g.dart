@@ -2597,8 +2597,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     className: 'GoogleFirebaseDataConnectService',
     barrel: 'firebase_data_connect',
     kind: CatalogKind.resource,
-    summary:
-        'Factory wrapper for `google_firebase_data_connect_service` (provider `hashicorp/google ~> 7.0`).',
+    summary: 'Factory wrapper for `google_firebase_data_connect_service`.',
     constructorParams: <String>[
       'localName',
       'serviceId',
@@ -2612,7 +2611,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['DataConnectDeletionPolicy'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_firebase_data_connect_service` (provider\n`hashicorp/google ~> 7.0`).\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_firebase_data_connect_service.`).\n- `service_id`: stable user-chosen identifier. Becomes the final\n  segment of the service\'s full resource name. Note (per the schema\'s\n  own warning): this ID is specific to the Data Connect service itself\n  and is NOT the ID of the underlying Cloud SQL instance.\n- `location`: GCP region (e.g. `\'us-central1\'`, `\'asia-east1\'`).\n\nExample (minimal):\n```dart\nfinal svc = GoogleFirebaseDataConnectService(\n  localName: \'web\',\n  serviceId: TfArg.literal(\'web-svc\'),\n  location: TfArg.literal(\'us-central1\'),\n  displayName: TfArg.literal(\'Web app data connect\'),\n);\n```\n\nManages a Firebase Data Connect service -- the serverless GraphQL\nbackend that fronts a Cloud SQL (PostgreSQL) instance. This resource\nis the top-level container only; the GraphQL schema and connectors\nthat bind it to a specific Cloud SQL instance live in separate\ndownstream resources (e.g. `google_firebase_data_connect_schema`,\n`google_firebase_data_connect_connector`) which are NOT covered by\nthe v0.0.x wrapper surface. Consequently, the\n`<service>.cloudSqlInstance` linkage is NOT modelled here -- the\nservice-level schema in provider v7.31.0 does not expose it.\n\nSetting [deletionPolicy] to [DataConnectDeletionPolicy.force] allows\n`terraform destroy` to remove the service even when downstream\nschemas / connectors still exist; the default leaves the service in\nplace if any are present.',
+        'Factory wrapper for `google_firebase_data_connect_service`.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_firebase_data_connect_service.`).\n- `service_id`: stable user-chosen identifier. Becomes the final\n  segment of the service\'s full resource name. Note (per the schema\'s\n  own warning): this ID is specific to the Data Connect service itself\n  and is NOT the ID of the underlying Cloud SQL instance.\n- `location`: GCP region (e.g. `\'us-central1\'`, `\'asia-east1\'`).\n\nExample:\n```dart\nfinal svc = GoogleFirebaseDataConnectService(\n  localName: \'web\',\n  serviceId: TfArg.literal(\'web-svc\'),\n  location: TfArg.literal(\'us-central1\'),\n  displayName: TfArg.literal(\'Web app data connect\'),\n);\n```\n\nSetting [deletionPolicy] to [DataConnectDeletionPolicy.force] allows\n`terraform destroy` to remove the service even when downstream\nschemas / connectors still exist; the default leaves the service in\nplace if any are present.',
   ),
   CatalogEntry(
     tfType: 'google_firebase_remote_config_remote_config',
