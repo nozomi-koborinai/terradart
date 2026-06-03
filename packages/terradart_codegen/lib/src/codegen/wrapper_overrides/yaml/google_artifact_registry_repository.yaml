@@ -1,79 +1,6 @@
 outputDir: artifact_registry
 
-classDocComment: |-
-  /// Factory wrapper for `google_artifact_registry_repository` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
-  /// An Artifact Registry repository stores artifacts (container images,
-  /// language packages, OS packages) in a single location + format. The
-  /// resource has three "shapes" controlled by [mode]:
-  ///
-  /// - [ArtifactRegistryMode.standardRepository] -- the default; you push
-  ///   artifacts to this repo and clients pull from it.
-  /// - [ArtifactRegistryMode.virtualRepository] -- a federated view over
-  ///   other repositories, configured via [virtualRepositoryConfig].
-  ///   Mutually exclusive with [remoteRepositoryConfig].
-  /// - [ArtifactRegistryMode.remoteRepository] -- a pull-through cache of
-  ///   an upstream registry (Docker Hub, Maven Central, ...), configured
-  ///   via [remoteRepositoryConfig]. Mutually exclusive with
-  ///   [virtualRepositoryConfig].
-  ///
-  /// Required identity:
-  /// - [localName]: Terraform local name.
-  /// - `repositoryId`: short user-facing repo ID (e.g. `'my-images'`).
-  ///   Becomes the last path segment of the repository's full name. The
-  ///   short form `name` attribute (also `repository_id`) is what sibling
-  ///   `*_iam_member` resources reference -- pass
-  ///   `TfArg.ref(repo.repositoryIdRef)`.
-  /// - `format`: package format (`'DOCKER'`, `'MAVEN'`, `'NPM'`,
-  ///   `'PYTHON'`, `'APT'`, `'YUM'`, `'GO'`, `'GENERIC'`, `'KFP'`, ...).
-  ///   The schema models this as a free-form String -- the supported set
-  ///   is documented at
-  ///   https://cloud.google.com/artifact-registry/docs/supported-formats.
-  ///   Immutable after create.
-  ///
-  /// `location` is optional and defaults to the provider region. Multi-
-  /// region values `'us'`, `'europe'`, `'asia'` are accepted in addition
-  /// to specific regions.
-  ///
-  /// Format-specific config:
-  /// - [dockerConfig] applies only when `format == 'DOCKER'`. Enables
-  ///   immutable tags.
-  /// - [mavenConfig] applies only when `format == 'MAVEN'`. Toggles
-  ///   snapshot overwrites and pins [ArtifactRegistryMavenVersionPolicy].
-  ///
-  /// Cleanup automation:
-  /// - [cleanupPolicies] is a map keyed by policy id. Each entry pairs an
-  ///   action (`KEEP` / `DELETE`) with a `condition` (match versions by
-  ///   tag / age / prefix) OR a `most_recent_versions` rule (keep N most
-  ///   recent versions). Use [cleanupPolicyDryRun] = `true` to preview
-  ///   what would be deleted without actually deleting.
-  ///
-  /// CMEK:
-  /// - [kmsKeyName] pins the Cloud KMS key used to encrypt repository
-  ///   contents. Self-link form
-  ///   `projects/<p>/locations/<l>/keyRings/<kr>/cryptoKeys/<k>`. Pass
-  ///   `TfArg.ref(cryptoKey.id)` to keep the wiring symbolic.
-  ///
-  /// Deep nested blocks ([remoteRepositoryConfig].apt/docker/maven/npm/
-  /// python/yum sub-blocks and their `public_repository` /
-  /// `custom_repository` variants) are exposed via the [advancedExtra]
-  /// escape hatch on [ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig] -- the
-  /// surface is large (7+ upstream-type variants, deprecated
-  /// `customRepository` paths, enum-keyed public repository bases) and
-  /// would dominate the curated API for niche pull-through-cache use
-  /// cases. The typed helper covers the common fields
-  /// ([commonRepository], [upstreamCredentials], [description],
-  /// [disableUpstreamValidation]); reach for [advancedExtra] when you
-  /// need the format-specific public-repository helpers.
-  ///
-  /// Sensitive fields (round-trip through the generated `sensitiveFields`
-  /// set when marked by the schema): the
-  /// `remote_repository_config.upstream_credentials
-  /// .username_password_credentials.password_secret_version` field points
-  /// at a Secret Manager version (`projects/<p>/secrets/<s>/versions/<v>`)
-  /// -- the credential itself stays in Secret Manager and never lands in
-  /// the Terraform state in plaintext.
+deriveClassDoc: true
 
 # User-settable params first; nested blocks in the middle; computed-only
 # attrs (create_time, update_time, name, registry_uri, terraform_labels,
@@ -104,33 +31,14 @@ dartTypeOverrides:
 extraImports:
   - "import 'package:meta/meta.dart';"
 
+deriveOutputGetters: true
+
 extraGetters: |2
     /// Reference to `repository_id` attribute (short id; sibling
     /// `*_iam_member` resources consume this as their `repository`
     /// argument).
     TfRef<String> get repositoryIdRef =>
         TfRef.attribute<String>(this, 'repository_id');
-
-    /// Reference to `name` attribute (short repo name returned by the API
-    /// -- after a custom-flatten it is the same as `repository_id`).
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute (full repo path
-    /// `projects/<p>/locations/<l>/repositories/<repository_id>`).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `registry_uri` attribute -- the public endpoint clients
-    /// pull from, e.g. `us-docker.pkg.dev/<project>/<repo>`.
-    TfRef<String> get registryUri =>
-        TfRef.attribute<String>(this, 'registry_uri');
-
-    /// Reference to `create_time` (RFC3339).
-    TfRef<String> get createTime =>
-        TfRef.attribute<String>(this, 'create_time');
-
-    /// Reference to `update_time` (RFC3339).
-    TfRef<String> get updateTime =>
-        TfRef.attribute<String>(this, 'update_time');
 
 prelude: |
   // ===========================================================================
