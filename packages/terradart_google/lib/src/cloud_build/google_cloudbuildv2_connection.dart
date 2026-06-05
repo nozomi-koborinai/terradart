@@ -289,8 +289,10 @@ class Cloudbuildv2ConnectionBitbucketCloudConfig {
   };
 }
 
-/// Factory wrapper for `google_cloudbuildv2_connection` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_cloudbuildv2_connection`.
+///
+/// A connection to a SCM like GitHub, GitHub Enterprise, Bitbucket Data
+/// Center/Cloud or GitLab.
 ///
 /// A Cloud Build v2 (2nd-gen) **connection** binds a Google Cloud project
 /// to a source-code-management host (GitHub, GitHub Enterprise, GitLab,
@@ -298,14 +300,6 @@ class Cloudbuildv2ConnectionBitbucketCloudConfig {
 /// the Cloud Build control plane uses to enumerate repositories, fetch
 /// source, and register webhooks — every `google_cloudbuildv2_repository`
 /// (see [GoogleCloudbuildv2Repository]) hangs off exactly one connection.
-///
-/// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_cloudbuildv2_connection.`).
-/// - `name`: connection resource name. Immutable.
-/// - `location`: GCP region (e.g. `'us-central1'`, `'asia-northeast1'`).
-///   Cloud Build v2 connections are regional — repositories created from
-///   this connection live in the same region.
 ///
 /// **SCM one-of**: pick **at most one** of [githubConfig],
 /// [githubEnterpriseConfig], [gitlabConfig], [bitbucketDataCenterConfig],
@@ -348,9 +342,6 @@ class Cloudbuildv2ConnectionBitbucketCloudConfig {
 ///   `PENDING_INSTALL_APP` / `COMPLETE`).
 /// - [reconciling]: server-side reconciliation flag.
 /// - [etag]: optimistic-concurrency token.
-///
-/// Composition pattern: extends `Resource`
-/// for runtime behavior.
 final class GoogleCloudbuildv2Connection extends Resource {
   static const String tfType = 'google_cloudbuildv2_connection';
 
@@ -398,28 +389,31 @@ final class GoogleCloudbuildv2Connection extends Resource {
   @override
   Set<String> get sensitiveFields => _googleCloudbuildv2ConnectionSensitive;
 
-  /// Reference to `name` attribute (the bare connection name).
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/locations/{location}/connections/{name}`).
-  /// This is the value `google_cloudbuildv2_repository.parent_connection`
-  /// expects when bound via self-link form.
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `create_time` attribute (RFC 3339 timestamp).
+  /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
-  /// Reference to `update_time` attribute (RFC 3339 timestamp).
-  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+  /// Reference to `effective_annotations` attribute.
+  TfRef<Map<String, String>> get effectiveAnnotations =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_annotations');
 
-  /// Reference to the computed `reconciling` attribute. `true` while the
-  /// connection is being set up or updated server-side.
+  /// Reference to `etag` attribute.
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `installation_state` attribute.
+  TfRef<List<Map<String, Object?>>> get installationState =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'installation_state');
+
+  /// Reference to `reconciling` attribute.
   TfRef<bool> get reconciling => TfRef.attribute<bool>(this, 'reconciling');
 
-  /// Reference to the computed `etag` attribute — optimistic-concurrency
-  /// token used by the API on update / delete.
-  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to the computed `installation_state` block. Surfaced as a
   /// dynamic ref because the underlying type is a list of objects

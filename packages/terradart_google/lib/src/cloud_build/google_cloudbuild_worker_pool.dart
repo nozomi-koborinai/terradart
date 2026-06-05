@@ -115,8 +115,7 @@ class CloudbuildWorkerPoolPrivateServiceConnect {
   };
 }
 
-/// Factory wrapper for `google_cloudbuild_worker_pool` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_cloudbuild_worker_pool`.
 ///
 /// A **private pool** runs Cloud Build jobs on dedicated worker VMs inside
 /// a project-private network, providing isolation from the shared default
@@ -129,12 +128,6 @@ class CloudbuildWorkerPoolPrivateServiceConnect {
 /// or [privateServiceConnect] (newer Private Service Connect form, uses
 /// `private_service_connect.network_attachment`). Omitting both leaves
 /// workers on Google's service-producer network (no VPC reach).
-///
-/// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_cloudbuild_worker_pool.`).
-/// - `name`: pool name (1-63 chars). Forces replacement when changed.
-/// - `location`: GCP region (e.g. `'asia-northeast1'`). Required.
 ///
 /// Example (minimal regional pool on the service-producer network):
 /// ```dart
@@ -171,9 +164,6 @@ class CloudbuildWorkerPoolPrivateServiceConnect {
 /// - Consumed by `google_cloudbuild_trigger` via
 ///   `build.options.pool = <pool.id>` (regional pools require the trigger
 ///   to be in the same `location`).
-///
-/// Composition pattern: extends `Resource`
-/// for runtime behavior.
 final class GoogleCloudbuildWorkerPool extends Resource {
   static const String tfType = 'google_cloudbuild_worker_pool';
 
@@ -211,26 +201,33 @@ final class GoogleCloudbuildWorkerPool extends Resource {
   @override
   Set<String> get sensitiveFields => _googleCloudbuildWorkerPoolSensitive;
 
-  /// Reference to `name` attribute. Pass to triggers as the short pool
-  /// name when interpolating into descriptive fields.
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/locations/{location}/workerPools/{name}`). This
-  /// is the value `google_cloudbuild_trigger.build.options.pool` expects.
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `uid` attribute (server-assigned unique identifier).
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `delete_time` attribute.
+  TfRef<String> get deleteTime => TfRef.attribute<String>(this, 'delete_time');
+
+  /// Reference to `effective_annotations` attribute.
+  TfRef<Map<String, String>> get effectiveAnnotations =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_annotations');
+
+  /// Reference to `state` attribute.
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `uid` attribute.
   TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 
   /// Reference to `state` attribute. One of `STATE_UNSPECIFIED`,
   /// `PENDING`, `APPROVED`, `REJECTED`, `CANCELLED` (Output-only on the
   /// provider; surfaced as a string for interpolation into outputs).
   TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
-
-  /// Reference to `create_time` attribute (RFC 3339 timestamp).
-  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
-
-  /// Reference to `update_time` attribute (RFC 3339 timestamp).
-  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 }

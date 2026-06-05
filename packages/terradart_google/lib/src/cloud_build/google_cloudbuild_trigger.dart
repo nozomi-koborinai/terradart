@@ -895,11 +895,11 @@ class CloudbuildTriggerBuildOptions {
   };
 }
 
-/// Factory wrapper for `google_cloudbuild_trigger` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_cloudbuild_trigger`.
 ///
-/// A Cloud Build trigger fires a build in response to a source event
-/// (SCM push / pull request, Pub/Sub message, webhook, or manual run).
+/// Configuration for an automated build in response to source repository
+/// changes.
+///
 /// The resource has **two competing repository-connection forms** that
 /// callers must pick between:
 ///
@@ -929,10 +929,6 @@ class CloudbuildTriggerBuildOptions {
 /// - [gitFileSource] — fetch the build config from an arbitrary repo /
 ///   ref. Use with Pub/Sub, Webhook, Manual, or v2 triggers.
 /// - [build] — inline build steps + options, fully defined in HCL.
-///
-/// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_cloudbuild_trigger.`).
 ///
 /// Optional but commonly set:
 /// - `location`: Cloud Build region (e.g. `'asia-northeast1'`).
@@ -1012,9 +1008,6 @@ class CloudbuildTriggerBuildOptions {
 /// - [repositoryEventConfig].`repository` accepts a
 ///   `google_cloudbuildv2_repository` id (typically passed as
 ///   `var.cloudbuildv2_repository_id`).
-///
-/// Composition pattern: extends `Resource`
-/// for runtime behavior.
 final class GoogleCloudbuildTrigger extends Resource {
   static const String tfType = 'google_cloudbuild_trigger';
 
@@ -1097,17 +1090,12 @@ final class GoogleCloudbuildTrigger extends Resource {
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute. The id format is
-  /// `projects/{project}/locations/{location}/triggers/{trigger_id}`
-  /// for regional triggers, or `projects/{project}/triggers/{trigger_id}`
-  /// for the legacy `global` location.
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to the server-assigned `trigger_id` — the stable
-  /// identifier in the API path. Populated after apply.
-  TfRef<String> get triggerId => TfRef.attribute<String>(this, 'trigger_id');
-
-  /// Reference to the `create_time` attribute (RFC 3339 timestamp).
-  /// Populated after apply.
+  /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `trigger_id` attribute.
+  TfRef<String> get triggerId => TfRef.attribute<String>(this, 'trigger_id');
 }
