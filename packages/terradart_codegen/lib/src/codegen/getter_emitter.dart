@@ -24,15 +24,27 @@ import 'naming.dart';
 /// A multi-provider generalisation (e.g. AWS `arn→arnRef`) is deferred until
 /// a second provider adapter exists.
 ///
+/// [excludeNames] is the set of Dart getter names already hand-written in the
+/// override's `extraGetters`. Any derived getter whose Dart name is in this set
+/// is skipped, so the hand-written one wins (no `duplicate_definition`). This
+/// lets an override KEEP a narrower attribute type than the schema implies
+/// (e.g. `TfRef<int> get executionCount` where the schema's number widens to
+/// `TfRef<num>`) without colliding with derivation.
+///
 /// Output is **unformatted** Dart source (two-space indented, one blank line
 /// after each getter); the caller feeds the whole wrapper through
 /// `dart_style`. Returns an empty string when nothing is derivable.
-String emitDerivedOutputGetters(ResourceDef def) {
+String emitDerivedOutputGetters(
+  ResourceDef def, {
+  Set<String> excludeNames = const {},
+}) {
   final buf = StringBuffer();
   final attrNames = {for (final a in def.root.attributes) a.name};
   final emitted = <String>{};
 
   void writeGetter(String snake, String getter, String dartType) {
+    emitted.add(snake);
+    if (excludeNames.contains(getter)) return;
     buf
       ..writeln('  /// Reference to `$snake` attribute.')
       ..writeln(
@@ -40,7 +52,6 @@ String emitDerivedOutputGetters(ResourceDef def) {
         "TfRef.attribute<$dartType>(this, '$snake');",
       )
       ..writeln();
-    emitted.add(snake);
   }
 
   if (attrNames.contains('name')) {
