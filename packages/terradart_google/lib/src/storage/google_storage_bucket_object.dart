@@ -160,21 +160,16 @@ class StorageBucketObjectBucketObjectRetention {
   };
 }
 
-/// Factory wrapper for `google_storage_bucket_object` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_storage_bucket_object`.
 ///
-/// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_storage_bucket_object.`).
-/// - `bucket`: name of the parent bucket — pass `TfArg.ref(bucket.nameRef)`
-///   (NOT `bucket.id`; `id` is `{bucket-name}` for buckets but the API
-///   here wants just the name).
-/// - `name`: GCS object name (path within the bucket, e.g. `'config/app.json'`).
-/// - `body`: object payload — choose exactly one of:
-///   - [StorageBucketObjectBucketObjectFromSource] — upload from a local file path.
-///   - [StorageBucketObjectBucketObjectFromContent] — inline string payload.
-///   The sealed [StorageBucketObjectBucketObjectContent] type makes the `source` / `content`
-///   `exactly_one_of` constraint exhaustive at the type level.
+/// Pass `TfArg.ref(bucket.nameRef)` for `bucket` — NOT `bucket.id`
+/// (`id` is `{bucket-name}` for buckets but the API wants just the name).
+///
+/// `body`: object payload — choose exactly one of:
+/// - [StorageBucketObjectBucketObjectFromSource] — upload from a local file path.
+/// - [StorageBucketObjectBucketObjectFromContent] — inline string payload.
+/// The sealed [StorageBucketObjectBucketObjectContent] type makes the `source` / `content`
+/// `exactly_one_of` constraint exhaustive at the type level.
 ///
 /// Example (inline content):
 /// ```dart
@@ -265,31 +260,30 @@ final class GoogleStorageBucketObject extends Resource {
   @override
   Set<String> get sensitiveFields => _googleStorageBucketObjectSensitive;
 
-  /// Reference to `id` attribute (composite `{bucket}-{name}`).
-  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute (the object name within the bucket).
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `output_name` (computed; equals `name` post-apply,
-  /// useful for downstream references that should wait for create).
-  TfRef<String> get outputName => TfRef.attribute<String>(this, 'output_name');
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `self_link` (HTTPS API path for the object).
-  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+  /// Reference to `crc32c` attribute.
+  TfRef<String> get crc32c => TfRef.attribute<String>(this, 'crc32c');
 
-  /// Reference to `media_link` (HTTPS download URL).
-  TfRef<String> get mediaLink => TfRef.attribute<String>(this, 'media_link');
-
-  /// Reference to `generation` (server-side object generation number).
+  /// Reference to `generation` attribute.
   TfRef<num> get generation => TfRef.attribute<num>(this, 'generation');
 
-  /// Reference to `md5hash` (Base64-encoded MD5 of the object).
+  /// Reference to `md5hash` attribute.
   TfRef<String> get md5hash => TfRef.attribute<String>(this, 'md5hash');
 
-  /// Reference to `md5hexhash` (hex-encoded MD5 of the object).
+  /// Reference to `md5hexhash` attribute.
   TfRef<String> get md5hexhash => TfRef.attribute<String>(this, 'md5hexhash');
 
-  /// Reference to `crc32c` (Base64-encoded CRC32C of the object).
-  TfRef<String> get crc32c => TfRef.attribute<String>(this, 'crc32c');
+  /// Reference to `media_link` attribute.
+  TfRef<String> get mediaLink => TfRef.attribute<String>(this, 'media_link');
+
+  /// Reference to `output_name` attribute.
+  TfRef<String> get outputName => TfRef.attribute<String>(this, 'output_name');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 }

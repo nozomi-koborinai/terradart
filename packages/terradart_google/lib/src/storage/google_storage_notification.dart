@@ -47,13 +47,10 @@ enum StorageNotificationEventType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Factory wrapper for `google_storage_notification` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_storage_notification`.
 ///
-/// Configures a notification subscription on a Cloud Storage bucket
-/// that publishes object-mutation events (create / metadata update /
-/// delete / archive) to a Pub/Sub topic. One bucket can hold multiple
-/// notification configs (with different filters / payload formats).
+/// Creates a new notification configuration on a specified bucket, establishing
+/// a flow of event notifications from GCS to a Cloud Pub/Sub topic.
 ///
 /// ### IAM precondition
 /// Before applying this resource, the GCS service account
@@ -64,30 +61,11 @@ enum StorageNotificationEventType implements TerraformEnum {
 /// `google_storage_project_service_account` data source feeding into
 /// the IAM binding) and add it to the resource's `dependsOn`.
 ///
-/// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_storage_notification.`).
-/// - `bucket`: GCS bucket **name** (NOT a self-link / URL). Typically
-///   pass `TfArg.ref(bucket.nameRef)` against a sibling
-///   [GoogleStorageBucket], or `TfArg.literal('my-bucket')`.
-/// - `topic`: **fully-qualified** Pub/Sub topic resource path
-///   `'projects/{project_id}/topics/{topic_name}'`. The provider
-///   rejects a bare topic name. Pass `TfArg.ref(topic.id)` against a
-///   sibling `GooglePubsubTopic` (the `id` getter exposes the full
-///   path), or build the literal yourself.
-/// - `payload_format`: message body format —
-///   [StorageNotificationPayloadFormat.jsonApiV1] for the full GCS
-///   Object resource JSON, or [StorageNotificationPayloadFormat.none]
-///   for a header-only notification.
-///
-/// Optional filters:
-/// - `event_types`: subset of
-///   [StorageNotificationEventType] values to subscribe to (defaults
-///   to all four when omitted).
-/// - `object_name_prefix`: prefix path filter — only objects whose
-///   names start with this string emit events.
-/// - `custom_attributes`: free-form key/value attributes attached to
-///   every published Pub/Sub message.
+/// `topic` must be a **fully-qualified** Pub/Sub topic resource path
+/// `'projects/{project_id}/topics/{topic_name}'`. The provider rejects
+/// a bare topic name. Pass `TfArg.ref(topic.id)` against a sibling
+/// `GooglePubsubTopic` (the `id` getter exposes the full path), or
+/// build the literal yourself.
 ///
 /// ### Example — full-fidelity notifications on a sibling bucket,
 /// scoped to object writes under `incoming/`:
@@ -133,14 +111,6 @@ enum StorageNotificationEventType implements TerraformEnum {
 ///   ),
 /// );
 /// ```
-///
-/// Composition pattern: extends `Resource`
-/// for runtime behavior. `argMap` stores `TfArg<dynamic>?` entries
-/// directly. Synth's JSON-encoding pass walks them and calls
-/// `arg.toTfJson()` to encode at write time. The `event_types`
-/// parameter is a typed `List<StorageNotificationEventType>` — the
-/// enum-to-Terraform-string conversion happens in this wrapper before
-/// the values reach the JSON encoder.
 final class GoogleStorageNotification extends Resource {
   static const String tfType = 'google_storage_notification';
 
@@ -172,16 +142,13 @@ final class GoogleStorageNotification extends Resource {
   @override
   Set<String> get sensitiveFields => _googleStorageNotificationSensitive;
 
-  /// Reference to `id` attribute. Format:
-  /// `{bucket}/notificationConfigs/{notification_id}`.
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `notification_id` attribute — the numeric id the
-  /// API assigns after create. Populated after apply.
+  /// Reference to `notification_id` attribute.
   TfRef<String> get notificationId =>
       TfRef.attribute<String>(this, 'notification_id');
 
-  /// Reference to `self_link` attribute (HTTPS API URI of the
-  /// notification config). Populated after apply.
+  /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 }

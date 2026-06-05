@@ -1,14 +1,8 @@
 outputDir: storage
+deriveClassDoc: true
+deriveOutputGetters: true
 
-classDocComment: |-
-  /// Factory wrapper for `google_storage_bucket` (provider `hashicorp/google ~> 7.0`).
-  ///
-  /// Required identity:
-  /// - [localName]: Terraform local name (the address segment after
-  ///   `google_storage_bucket.`).
-  /// - `name`: GCS bucket name (globally unique, immutable).
-  /// - `location`: GCS location (e.g. `'ASIA-NORTHEAST1'`, `'US'`, `'EU'`).
-  ///
+curatedDoc: |-
   /// Example:
   /// ```dart
   /// final assets = GoogleStorageBucket(
@@ -21,11 +15,6 @@ classDocComment: |-
   ///   uniformBucketLevelAccess: TfArg.literal(true),
   /// );
   /// ```
-  ///
-  /// Manages a Cloud Storage bucket. Composition pattern: extends
-  /// `Resource` for runtime behavior. The 13 nested
-  /// blocks (lifecycle_rule / versioning / cors / encryption / etc.) are
-  /// modeled as helper classes in the `prelude` below.
 
 paramOrder:
   - name
@@ -52,20 +41,6 @@ paramOrder:
   - ip_filter
   - soft_delete_policy
   - project
-
-extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute (the bucket name, since GCS bucket
-    /// names are globally unique).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `url` attribute (`gs://<name>`).
-    TfRef<String> get url => TfRef.attribute<String>(this, 'url');
-
-    /// Reference to `self_link` attribute (HTTPS API path).
-    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
 dartTypeOverrides:
   storage_class: BucketStorageClass
