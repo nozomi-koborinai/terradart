@@ -3439,8 +3439,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'SecretManagerSecretRotation',
     ],
     sensitiveFields: <String>[],
-    docComment:
-        'Factory wrapper for `google_secret_manager_secret`.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `secretId`: GCP secret ID.\n- `replication`: sealed [SecretManagerSecretReplication] (`SecretManagerSecretReplication.auto()` or\n  `SecretManagerSecretReplication.userManaged([...])`).',
+    docComment: 'Factory wrapper for `google_secret_manager_secret`.',
   ),
   CatalogEntry(
     tfType: 'google_secret_manager_secret_iam_member',
@@ -3459,7 +3458,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_secret_manager_secret_iam_member`.\n\nIdentity: `secretId` + `role` + `member`. The provider attribute is\n`secret_id` (snake_case) — the factory translates `secretId` ↔ that key.',
+        'Factory wrapper for `google_secret_manager_secret_iam_member`.',
   ),
   CatalogEntry(
     tfType: 'google_secret_manager_secret_version',
@@ -3480,8 +3479,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>['secret_data'],
-    docComment:
-        'Factory wrapper for `google_secret_manager_secret_version`.\n\n**Per spec §10.4 (write-only API):** prefer `secretDataWo` +\n`secretDataWoVersion` over `secretData`. The write-only path keeps the\nplaintext value out of Terraform state. Bump `secretDataWoVersion` to\ntrigger rotation.\n\n`secret_data` is `@Deprecated`; using it logs an analyzer warning at\nevery call site.',
+    docComment: 'Factory wrapper for `google_secret_manager_secret_version`.',
   ),
   CatalogEntry(
     tfType: 'google_service_account',
