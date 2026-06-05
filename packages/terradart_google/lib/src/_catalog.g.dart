@@ -2825,8 +2825,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     className: 'GoogleKmsCryptoKey',
     barrel: 'kms',
     kind: CatalogKind.resource,
-    summary:
-        'Factory wrapper for `google_kms_crypto_key` (provider `hashicorp/google ~> 7.0`).',
+    summary: 'Factory wrapper for `google_kms_crypto_key`.',
     constructorParams: <String>[
       'localName',
       'name',
@@ -2847,7 +2846,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_kms_crypto_key` (provider `hashicorp/google ~> 7.0`).\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_kms_crypto_key.`).\n- `name`: KMS crypto key name (immutable). Pass `TfArg.literal(\'payments\')`.\n- `keyRing`: The parent KeyRing\'s full resource id. Pass\n  `TfArg.ref(keyRing.id)` where `keyRing` is a `GoogleKmsKeyRing`.\n\nExample:\n```dart\nfinal ring = GoogleKmsKeyRing(\n  localName: \'main\',\n  name: TfArg.literal(\'main-ring\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n);\n\nfinal cryptoKey = GoogleKmsCryptoKey(\n  localName: \'payments\',\n  name: TfArg.literal(\'payments\'),\n  keyRing: TfArg.ref(ring.id),\n  purpose: TfArg.literal(KmsKeyPurpose.encryptDecrypt),\n  // Must be > 86400s (1 day). `TfArg.duration` converts the\n  // Duration into the `"{seconds}s"` form Terraform expects.\n  rotationPeriod: TfArg.duration(const Duration(days: 90)),\n  versionTemplate: const KmsCryptoKeyVersionTemplate(\n    algorithm: \'GOOGLE_SYMMETRIC_ENCRYPTION\',\n    protectionLevel: KmsProtectionLevel.software,\n  ),\n);\n```\n\n**Note:** CryptoKeys cannot be deleted from GCP. Destroying a\nTerraform-managed CryptoKey removes it from state and renders all\nCryptoKeyVersions unusable but does not delete the resource from the\nproject. Consider attaching `lifecycle { prevent_destroy = true }` for\nproduction keys.',
+        'Factory wrapper for `google_kms_crypto_key`.\n\nA `CryptoKey` represents a logical key that can be used for cryptographic\noperations.\n\n~> **Note:** CryptoKeys cannot be deleted from Google Cloud Platform.\nDestroying a Terraform-managed CryptoKey will remove it from state and\ndelete all CryptoKeyVersions, rendering the key unusable, but *will not\ndelete the resource from the project.* When Terraform destroys these keys,\nany data previously encrypted with these keys will be irrecoverable. For\nthis reason, it is strongly recommended that you add\n[lifecycle](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle)\nhooks to the resource to prevent accidental destruction.\n\n\nExample:\n```dart\nfinal ring = GoogleKmsKeyRing(\n  localName: \'main\',\n  name: TfArg.literal(\'main-ring\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n);\n\nfinal cryptoKey = GoogleKmsCryptoKey(\n  localName: \'payments\',\n  name: TfArg.literal(\'payments\'),\n  keyRing: TfArg.ref(ring.id),\n  purpose: TfArg.literal(KmsKeyPurpose.encryptDecrypt),\n  // Must be > 86400s (1 day). `TfArg.duration` converts the\n  // Duration into the `"{seconds}s"` form Terraform expects.\n  rotationPeriod: TfArg.duration(const Duration(days: 90)),\n  versionTemplate: const KmsCryptoKeyVersionTemplate(\n    algorithm: \'GOOGLE_SYMMETRIC_ENCRYPTION\',\n    protectionLevel: KmsProtectionLevel.software,\n  ),\n);\n```\n\n**Note:** CryptoKeys cannot be deleted from GCP. Destroying a\nTerraform-managed CryptoKey removes it from state and renders all\nCryptoKeyVersions unusable but does not delete the resource from the\nproject. Consider attaching `lifecycle { prevent_destroy = true }` for\nproduction keys.',
   ),
   CatalogEntry(
     tfType: 'google_kms_crypto_key_iam_member',
@@ -2864,21 +2863,19 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment:
-        'Factory wrapper for `google_kms_crypto_key_iam_member`.\n\nGrants a single (`role`, `member`) IAM binding **on a KMS crypto\nkey** — i.e. who can use this key for encryption/decryption or sign\noperations. Typical use: bind `roles/cloudkms.cryptoKeyEncrypter` to\na workload SA so it can wrap/unwrap data via this key.\n\nPicking the right `*_iam_*` variant:\n\n- `*_iam_member` (this resource) — **additive**: grants ONE\n  (role, member) tuple. Does not touch other principals\' bindings.\n  Safe in 95% of cases; prefer this unless you have a concrete reason\n  to use one of the authoritative variants below.\n- `*_iam_binding` — **authoritative per role**: takes a list of\n  members and *replaces* the entire member list for that role. Will\n  silently erase any other principal previously bound to that role\n  on this KMS crypto key.\n- `*_iam_policy` — **authoritative for the entire resource**: replaces\n  the crypto key\'s whole IAM policy. Will erase **all** existing\n  bindings.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `cryptoKeyId`: the target crypto key\'s **fully-qualified resource\n  path**, i.e.\n  `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{name}`.\n  Pass `TfArg.ref(cryptoKey.id)` rather than hand-formatting the\n  string.\n- `role`: role name, typically\n  `\'roles/cloudkms.cryptoKeyEncrypter\'`,\n  `\'roles/cloudkms.cryptoKeyDecrypter\'`, or\n  `\'roles/cloudkms.cryptoKeyEncrypterDecrypter\'` (both).\n- `member`: principal in IAM v1 string form.\n\nOptional `condition` is a single IAM Condition block (CEL\n`expression`, `title`, optional `description`).',
+    docComment: 'Factory wrapper for `google_kms_crypto_key_iam_member`.',
   ),
   CatalogEntry(
     tfType: 'google_kms_key_ring',
     className: 'GoogleKmsKeyRing',
     barrel: 'kms',
     kind: CatalogKind.resource,
-    summary:
-        'Factory wrapper for `google_kms_key_ring` (provider `hashicorp/google ~> 7.0`).',
+    summary: 'Factory wrapper for `google_kms_key_ring`.',
     constructorParams: <String>['localName', 'name', 'location', 'project'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_kms_key_ring` (provider `hashicorp/google ~> 7.0`).\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_kms_key_ring.`).\n- `name`: KMS key ring name (immutable). Pass `TfArg.literal(\'main-ring\')`.\n- `location`: GCP location (e.g. `\'global\'` or `\'asia-northeast1\'`),\n  immutable.\n\nExample:\n```dart\nfinal ring = GoogleKmsKeyRing(\n  localName: \'main\',\n  name: TfArg.literal(\'main-ring\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n);\n```\n\n**Note:** KeyRings cannot be deleted from GCP. Destroying a\nTerraform-managed KeyRing removes it from state but does not delete the\nresource from the project (per GCP policy).',
+        'Factory wrapper for `google_kms_key_ring`.\n\nA `KeyRing` is a toplevel logical grouping of `CryptoKeys`.\n\n~> **Note:** KeyRings cannot be deleted from Google Cloud Platform.\nDestroying a Terraform-managed KeyRing will remove it from state but *will\nnot delete the resource from the project.*\n\n\nExample:\n```dart\nfinal ring = GoogleKmsKeyRing(\n  localName: \'main\',\n  name: TfArg.literal(\'main-ring\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n);\n```\n\n**Note:** KeyRings cannot be deleted from GCP. Destroying a\nTerraform-managed KeyRing removes it from state but does not delete the\nresource from the project (per GCP policy).',
   ),
   CatalogEntry(
     tfType: 'google_kms_key_ring_iam_member',
@@ -2895,8 +2892,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment:
-        'Factory wrapper for `google_kms_key_ring_iam_member`.\n\nGrants a single (`role`, `member`) IAM binding **on a KMS key ring** —\ni.e. who can manage the ring or create/list crypto keys under it.\nRing-scoped IAM is the right granularity when several keys share the\nsame operator group; bind a `roles/cloudkms.admin` here rather than\nre-stating the same binding on every key in the ring. For runtime\nencrypt/decrypt permissions, prefer the narrower\n`google_kms_crypto_key_iam_member` on the individual key.\n\nPicking the right `*_iam_*` variant:\n\n- `*_iam_member` (this resource) — **additive**: grants ONE\n  (role, member) tuple. Does not touch other principals\' bindings.\n  Safe in 95% of cases; prefer this unless you have a concrete reason\n  to use one of the authoritative variants below.\n- `*_iam_binding` — **authoritative per role**: takes a list of\n  members and *replaces* the entire member list for that role. Will\n  silently erase any other principal previously bound to that role\n  on this key ring.\n- `*_iam_policy` — **authoritative for the entire resource**: replaces\n  the key ring\'s whole IAM policy. Will erase **all** existing\n  bindings.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `keyRingId`: the target key ring\'s **fully-qualified resource path**,\n  i.e. `projects/{project}/locations/{location}/keyRings/{name}`.\n  Pass `TfArg.ref(keyRing.id)` rather than hand-formatting the string.\n- `role`: role name, typically `\'roles/cloudkms.admin\'` (full ring\n  admin) or `\'roles/cloudkms.viewer\'` (read-only inventory).\n- `member`: principal in IAM v1 string form.\n\nOptional `condition` is a single IAM Condition block (CEL\n`expression`, `title`, optional `description`).',
+    docComment: 'Factory wrapper for `google_kms_key_ring_iam_member`.',
   ),
   CatalogEntry(
     tfType: 'google_logging_folder_sink',

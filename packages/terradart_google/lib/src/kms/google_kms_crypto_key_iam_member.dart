@@ -7,41 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleKmsCryptoKeyIamMemberSensitive = <String>{};
 
 /// Factory wrapper for `google_kms_crypto_key_iam_member`.
-///
-/// Grants a single (`role`, `member`) IAM binding **on a KMS crypto
-/// key** — i.e. who can use this key for encryption/decryption or sign
-/// operations. Typical use: bind `roles/cloudkms.cryptoKeyEncrypter` to
-/// a workload SA so it can wrap/unwrap data via this key.
-///
-/// Picking the right `*_iam_*` variant:
-///
-/// - `*_iam_member` (this resource) — **additive**: grants ONE
-///   (role, member) tuple. Does not touch other principals' bindings.
-///   Safe in 95% of cases; prefer this unless you have a concrete reason
-///   to use one of the authoritative variants below.
-/// - `*_iam_binding` — **authoritative per role**: takes a list of
-///   members and *replaces* the entire member list for that role. Will
-///   silently erase any other principal previously bound to that role
-///   on this KMS crypto key.
-/// - `*_iam_policy` — **authoritative for the entire resource**: replaces
-///   the crypto key's whole IAM policy. Will erase **all** existing
-///   bindings.
-///
-/// Required identity:
-/// - [localName]: Terraform local name.
-/// - `cryptoKeyId`: the target crypto key's **fully-qualified resource
-///   path**, i.e.
-///   `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{name}`.
-///   Pass `TfArg.ref(cryptoKey.id)` rather than hand-formatting the
-///   string.
-/// - `role`: role name, typically
-///   `'roles/cloudkms.cryptoKeyEncrypter'`,
-///   `'roles/cloudkms.cryptoKeyDecrypter'`, or
-///   `'roles/cloudkms.cryptoKeyEncrypterDecrypter'` (both).
-/// - `member`: principal in IAM v1 string form.
-///
-/// Optional `condition` is a single IAM Condition block (CEL
-/// `expression`, `title`, optional `description`).
 final class GoogleKmsCryptoKeyIamMember extends Resource {
   static const String tfType = 'google_kms_crypto_key_iam_member';
 
@@ -66,6 +31,9 @@ final class GoogleKmsCryptoKeyIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googleKmsCryptoKeyIamMemberSensitive;
 
-  /// Reference to `etag` attribute (concurrency token written by the API).
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }
