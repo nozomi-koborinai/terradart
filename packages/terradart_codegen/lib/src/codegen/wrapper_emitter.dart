@@ -256,11 +256,16 @@ class WrapperEmitter {
     // Phase A3: derive output-attribute getters (nameRef, id, pure
     // computed-only) from the IR when the override opts in via
     // `deriveOutputGetters: true`. Hand-written `extraGetters` remain for
-    // genuine exceptions (e.g. semantic renames like `member` -> `iamMember`)
-    // and are emitted after this derived block. A later `lint-override` gate
-    // (A5) will forbid hand-encoding a getter that derivation already produces.
+    // genuine exceptions (e.g. semantic renames like `member` -> `iamMember`,
+    // or a kept narrower type like `TfRef<int> get executionCount`) and are
+    // emitted after this derived block. Any getter name already hand-written
+    // in `extraGetters` is excluded from derivation so the hand-written one
+    // wins (no `duplicate_definition`).
     if (override?.deriveOutputGetters ?? false) {
-      final derived = emitDerivedOutputGetters(def);
+      final derived = emitDerivedOutputGetters(
+        def,
+        excludeNames: _extraGetterNames(override?.extraGetters),
+      );
       if (derived.isNotEmpty) {
         buf.writeln();
         buf.write(derived);
@@ -281,6 +286,19 @@ class WrapperEmitter {
     buf.writeln('}');
 
     return buf.toString();
+  }
+
+  /// Extracts the Dart getter names declared in a hand-written `extraGetters`
+  /// snippet (e.g. `executionCount` from `TfRef<int> get executionCount =>`).
+  /// These are excluded from output-getter derivation so a hand-written getter
+  /// (kept for a semantic rename or a narrower type) shadows the derived one
+  /// instead of colliding with it.
+  static Set<String> _extraGetterNames(String? extraGetters) {
+    if (extraGetters == null) return const {};
+    return RegExp(r'\bget (\w+)')
+        .allMatches(extraGetters)
+        .map((m) => m.group(1)!)
+        .toSet();
   }
 
   // ---------------------------------------------------------------------

@@ -6,8 +6,10 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_sql_database`.
 const Set<String> _googleSqlDatabaseSensitive = <String>{};
 
-/// Factory wrapper for `google_sql_database` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_sql_database`.
+///
+/// Represents a SQL database inside the Cloud SQL instance, hosted in Google's
+/// cloud.
 ///
 /// Represents one logical database living inside a Cloud SQL instance
 /// ([GoogleSqlDatabaseInstance]). For MySQL this is a schema; for
@@ -31,9 +33,6 @@ const Set<String> _googleSqlDatabaseSensitive = <String>{};
 ///   charset: TfArg.literal('UTF8'),
 /// );
 /// ```
-///
-/// Composition pattern: extends `Resource` for
-/// runtime behavior.
 final class GoogleSqlDatabase extends Resource {
   static const String tfType = 'google_sql_database';
 
@@ -62,13 +61,12 @@ final class GoogleSqlDatabase extends Resource {
   @override
   Set<String> get sensitiveFields => _googleSqlDatabaseSensitive;
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/instances/{instance}/databases/{name}`).
-  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute (the bare database name).
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `self_link` attribute (HTTPS API path).
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 }

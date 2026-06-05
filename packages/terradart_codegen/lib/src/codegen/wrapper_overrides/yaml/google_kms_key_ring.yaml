@@ -1,14 +1,7 @@
 outputDir: kms
 
-classDocComment: |-
-  /// Factory wrapper for `google_kms_key_ring` (provider `hashicorp/google ~> 7.0`).
-  ///
-  /// Required identity:
-  /// - [localName]: Terraform local name (the address segment after
-  ///   `google_kms_key_ring.`).
-  /// - `name`: KMS key ring name (immutable). Pass `TfArg.literal('main-ring')`.
-  /// - `location`: GCP location (e.g. `'global'` or `'asia-northeast1'`),
-  ///   immutable.
+deriveClassDoc: true
+curatedDoc: |-
   ///
   /// Example:
   /// ```dart
@@ -28,12 +21,4 @@ paramOrder:
   - location
   - project
 
-extraGetters: |2
-    /// Reference to `name` attribute. Use for interpolations like
-    /// `keyRing.nameRef` → `${google_kms_key_ring.<localName>.name}`.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute (full path
-    /// `projects/{project}/locations/{location}/keyRings/{name}`). Use this
-    /// when declaring `google_kms_crypto_key.key_ring`.
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+deriveOutputGetters: true

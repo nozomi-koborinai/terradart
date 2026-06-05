@@ -121,5 +121,64 @@ void main() {
       ]));
       expect(src, isEmpty);
     });
+
+    test('skips a computed-only getter whose Dart name is in excludeNames', () {
+      final src = emitDerivedOutputGetters(
+        _def(const [
+          Attribute(
+            name: 'execution_count',
+            type: IntType(),
+            constraints: Constraints(computed: true),
+          ),
+          Attribute(
+            name: 'self_link',
+            type: StringType(),
+            constraints: Constraints(computed: true),
+          ),
+        ]),
+        excludeNames: {'executionCount'},
+      );
+      // The excluded camelCase getter is omitted entirely...
+      expect(src, isNot(contains('get executionCount')));
+      // ...while non-excluded computed-only getters are still derived.
+      expect(
+        src,
+        contains(
+          "TfRef<String> get selfLink => "
+          "TfRef.attribute<String>(this, 'self_link');",
+        ),
+      );
+    });
+
+    test('skips the special-cased identity getters (nameRef/id) when excluded',
+        () {
+      final src = emitDerivedOutputGetters(
+        _def(const [
+          Attribute(
+            name: 'name',
+            type: StringType(),
+            constraints: Constraints(required: true),
+          ),
+          Attribute(
+            name: 'id',
+            type: StringType(),
+            constraints: Constraints(computed: true),
+          ),
+        ]),
+        excludeNames: {'nameRef', 'id'},
+      );
+      expect(src, isEmpty);
+    });
+
+    test('defaults to deriving everything when excludeNames is omitted', () {
+      final src = emitDerivedOutputGetters(_def(const [
+        Attribute(
+          name: 'execution_count',
+          type: IntType(),
+          constraints: Constraints(computed: true),
+        ),
+      ]));
+      expect(src, contains('get executionCount'));
+    });
   });
 }

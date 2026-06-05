@@ -657,8 +657,7 @@ class SqlDatabaseInstanceReplicaConfiguration {
   };
 }
 
-/// Factory wrapper for `google_sql_database_instance` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_sql_database_instance`.
 ///
 /// Manages a Cloud SQL instance — a managed MySQL, PostgreSQL, or SQL
 /// Server engine. The schema is large; this wrapper exposes the
@@ -731,9 +730,6 @@ class SqlDatabaseInstanceReplicaConfiguration {
 /// the generated `sensitiveFields` set — synth masks it. Prefer
 /// `root_password_wo` (write-only, never stored in state, requires
 /// Terraform >= 1.11) for new deployments.
-///
-/// Composition pattern: extends `Resource`
-/// for runtime behavior.
 final class GoogleSqlDatabaseInstance extends Resource {
   static const String tfType = 'google_sql_database_instance';
 
@@ -799,44 +795,55 @@ final class GoogleSqlDatabaseInstance extends Resource {
   @override
   bool get supportsDeletionProtection => true;
 
-  /// Reference to `name` attribute. Use this when downstream resources
-  /// like [GoogleSqlDatabase] / [GoogleSqlUser] need the bare instance
-  /// name (NOT the full `id`).
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute. The provider sets `id == name`, but
-  /// downstream consumers should prefer [nameRef] for clarity.
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to the computed `connection_name` attribute
-  /// (`{project}:{region}:{instance}`). Required by the Cloud SQL Auth
-  /// Proxy and as a `cloud_sql_instance.instances[]` entry on Cloud Run
-  /// volume mounts.
+  /// Reference to `available_maintenance_versions` attribute.
+  TfRef<List<String>> get availableMaintenanceVersions =>
+      TfRef.attribute<List<String>>(this, 'available_maintenance_versions');
+
+  /// Reference to `connection_name` attribute.
   TfRef<String> get connectionName =>
       TfRef.attribute<String>(this, 'connection_name');
 
-  /// Reference to the computed `private_ip_address` — populated when
-  /// the instance has `ipv4_enabled = false` and a `private_network`
-  /// set. Empty otherwise.
+  /// Reference to `dns_name` attribute.
+  TfRef<String> get dnsName => TfRef.attribute<String>(this, 'dns_name');
+
+  /// Reference to `dns_names` attribute.
+  TfRef<List<Map<String, Object?>>> get dnsNames =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'dns_names');
+
+  /// Reference to `first_ip_address` attribute.
+  TfRef<String> get firstIpAddress =>
+      TfRef.attribute<String>(this, 'first_ip_address');
+
+  /// Reference to `ip_address` attribute.
+  TfRef<List<Map<String, Object?>>> get ipAddress =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'ip_address');
+
+  /// Reference to `private_ip_address` attribute.
   TfRef<String> get privateIpAddress =>
       TfRef.attribute<String>(this, 'private_ip_address');
 
-  /// Reference to the computed `public_ip_address` — populated when
-  /// `ipv4_enabled` is true. Empty otherwise.
+  /// Reference to `psc_service_attachment_link` attribute.
+  TfRef<String> get pscServiceAttachmentLink =>
+      TfRef.attribute<String>(this, 'psc_service_attachment_link');
+
+  /// Reference to `public_ip_address` attribute.
   TfRef<String> get publicIpAddress =>
       TfRef.attribute<String>(this, 'public_ip_address');
 
-  /// Reference to the auto-managed runtime service-account email
-  /// (`p<projectNumber>-<hash>@gcp-sa-cloud-sql.iam.gserviceaccount.com`).
-  /// Grant it `roles/cloudkms.cryptoKeyEncrypterDecrypter` on the CMEK
-  /// key when [encryptionKeyName] is set.
-  TfRef<String> get serviceAccountEmailAddress =>
-      TfRef.attribute<String>(this, 'service_account_email_address');
-
-  /// Reference to `self_link` attribute (HTTPS API path).
+  /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
-  /// Reference to the computed `dns_name` attribute. Populated for PSC
-  /// instances and public-IP CAS instances; empty otherwise.
-  TfRef<String> get dnsName => TfRef.attribute<String>(this, 'dns_name');
+  /// Reference to `server_ca_cert` attribute.
+  TfRef<List<Map<String, Object?>>> get serverCaCert =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'server_ca_cert');
+
+  /// Reference to `service_account_email_address` attribute.
+  TfRef<String> get serviceAccountEmailAddress =>
+      TfRef.attribute<String>(this, 'service_account_email_address');
 }

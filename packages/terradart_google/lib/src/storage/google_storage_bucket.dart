@@ -322,13 +322,17 @@ class StorageBucketSoftDeletePolicy {
   };
 }
 
-/// Factory wrapper for `google_storage_bucket` (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_storage_bucket`.
 ///
-/// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_storage_bucket.`).
-/// - `name`: GCS bucket name (globally unique, immutable).
-/// - `location`: GCS location (e.g. `'ASIA-NORTHEAST1'`, `'US'`, `'EU'`).
+/// The Buckets resource represents a bucket in Google Cloud Storage. There is a
+/// single global namespace shared by all buckets. For more information, see
+/// Bucket Name Requirements.
+///
+/// Buckets contain objects which can be accessed by their own methods. In
+/// addition to the acl property, buckets contain bucketAccessControls, for use
+/// in fine-grained manipulation of an existing bucket's access controls.
+///
+/// A bucket is always owned by the project team owners group.
 ///
 /// Example:
 /// ```dart
@@ -342,11 +346,6 @@ class StorageBucketSoftDeletePolicy {
 ///   uniformBucketLevelAccess: TfArg.literal(true),
 /// );
 /// ```
-///
-/// Manages a Cloud Storage bucket. Composition pattern: extends
-/// `Resource` for runtime behavior. The 13 nested
-/// blocks (lifecycle_rule / versioning / cors / encryption / etc.) are
-/// modeled as helper classes in the `prelude` below.
 final class GoogleStorageBucket extends Resource {
   static const String tfType = 'google_storage_bucket';
 
@@ -434,13 +433,30 @@ final class GoogleStorageBucket extends Resource {
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (the bucket name, since GCS bucket
-  /// names are globally unique).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `url` attribute (`gs://<name>`).
-  TfRef<String> get url => TfRef.attribute<String>(this, 'url');
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
 
-  /// Reference to `self_link` attribute (HTTPS API path).
+  /// Reference to `project_number` attribute.
+  TfRef<num> get projectNumber => TfRef.attribute<num>(this, 'project_number');
+
+  /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `time_created` attribute.
+  TfRef<String> get timeCreated =>
+      TfRef.attribute<String>(this, 'time_created');
+
+  /// Reference to `updated` attribute.
+  TfRef<String> get updated => TfRef.attribute<String>(this, 'updated');
+
+  /// Reference to `url` attribute.
+  TfRef<String> get url => TfRef.attribute<String>(this, 'url');
 }

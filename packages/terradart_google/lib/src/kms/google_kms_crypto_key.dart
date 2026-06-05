@@ -56,14 +56,20 @@ class KmsCryptoKeyVersionTemplate {
   };
 }
 
-/// Factory wrapper for `google_kms_crypto_key` (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_kms_crypto_key`.
 ///
-/// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_kms_crypto_key.`).
-/// - `name`: KMS crypto key name (immutable). Pass `TfArg.literal('payments')`.
-/// - `keyRing`: The parent KeyRing's full resource id. Pass
-///   `TfArg.ref(keyRing.id)` where `keyRing` is a `GoogleKmsKeyRing`.
+/// A `CryptoKey` represents a logical key that can be used for cryptographic
+/// operations.
+///
+/// ~> **Note:** CryptoKeys cannot be deleted from Google Cloud Platform.
+/// Destroying a Terraform-managed CryptoKey will remove it from state and
+/// delete all CryptoKeyVersions, rendering the key unusable, but *will not
+/// delete the resource from the project.* When Terraform destroys these keys,
+/// any data previously encrypted with these keys will be irrecoverable. For
+/// this reason, it is strongly recommended that you add
+/// [lifecycle](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle)
+/// hooks to the resource to prevent accidental destruction.
+///
 ///
 /// Example:
 /// ```dart
@@ -135,9 +141,18 @@ final class GoogleKmsCryptoKey extends Resource {
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{name}`).
-  /// Use this when declaring `google_kms_crypto_key_iam_member.crypto_key_id`
-  /// or any other resource that references a crypto key.
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `primary` attribute.
+  TfRef<List<Map<String, Object?>>> get primary =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'primary');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 }

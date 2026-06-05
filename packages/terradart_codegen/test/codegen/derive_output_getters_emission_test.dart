@@ -83,5 +83,39 @@ void main() {
         reason: 'derived getters must precede hand-written extraGetters',
       );
     });
+
+    test(
+        'a hand-written extraGetters getter shadows the derived one '
+        '(exactly one, hand-written type wins)', () {
+      // `count` is a pure computed-only int attribute that derivation would
+      // emit as `TfRef<int> get count`. The override re-declares it in
+      // extraGetters with a deliberately distinct body to prove the derived
+      // one is skipped (no duplicate_definition).
+      const def = ResourceDef(
+        terraformType: 'google_pubsub_schema',
+        root: BlockDef(
+          attributes: [
+            Attribute(
+              name: 'count',
+              type: IntType(),
+              constraints: Constraints(computed: true),
+            ),
+          ],
+        ),
+      );
+      final emitter = WrapperEmitter(overrides: {
+        'google_pubsub_schema': const WrapperOverride(
+          outputDir: 'pubsub',
+          deriveOutputGetters: true,
+          extraGetters:
+              "  /// Hand-written.\n  TfRef<int> get count => TfRef.attribute<int>(this, 'count');\n",
+        ),
+      });
+      final src = emitter.emit(def, providerSource: 'hashicorp/google');
+      // Exactly one declaration of `get count` — the derived one was skipped.
+      expect('get count'.allMatches(src).length, 1);
+      // ...and it is the hand-written one (carries its bespoke doc comment).
+      expect(src, contains('/// Hand-written.'));
+    });
   });
 }

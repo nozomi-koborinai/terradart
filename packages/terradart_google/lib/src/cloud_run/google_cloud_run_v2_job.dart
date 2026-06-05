@@ -724,25 +724,10 @@ final class CloudRunV2JobNfsVolume extends CloudRunV2JobVolumeSource {
   };
 }
 
-/// Factory wrapper for `google_cloud_run_v2_job` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_cloud_run_v2_job`.
 ///
-/// Cloud Run v2 **Job** — a containerized batch workload that runs to
-/// completion. Each apply provisions the Job definition; executions are
-/// triggered separately (`gcloud run jobs execute`, Cloud Scheduler,
-/// Eventarc, or the API). Unlike a [GoogleCloudRunV2Service], a Job has
-/// no public URL and no traffic split — the unit of execution is a Task
-/// (one container instance) replicated according to
-/// [CloudRunV2JobTemplate.parallelism] and [CloudRunV2JobTemplate.taskCount].
-///
-/// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_cloud_run_v2_job.`).
-/// - `name`: Job name (DNS_LABEL, lowercase, ≤63 chars).
-/// - `location`: GCP region (e.g. `'asia-northeast1'`).
-/// - `template`: required Job template ([CloudRunV2JobTemplate]). Wraps the inner
-///   Task template ([CloudRunV2JobTemplate.template], a [CloudRunV2JobTaskTemplate]) which
-///   itself holds the container set, volumes, VPC access, retries, etc.
+/// A Cloud Run Job resource that references a container image which is run to
+/// completion.
 ///
 /// Example (minimal one-shot batch job):
 /// ```dart
@@ -767,9 +752,6 @@ final class CloudRunV2JobNfsVolume extends CloudRunV2JobVolumeSource {
 /// (`CloudRunV2JobTemplate`, `CloudRunV2JobTaskTemplate`, `CloudRunV2JobContainer`,
 /// `CloudRunV2JobBinaryAuthorization`, `CloudRunV2JobVolume`, `CloudRunV2JobVolumeSource`, ...) to
 /// stay barrel-exportable alongside the Service helpers.
-///
-/// Composition pattern: extends `Resource` for
-/// runtime behavior.
 final class GoogleCloudRunV2Job extends Resource {
   static const String tfType = 'google_cloud_run_v2_job';
 
@@ -818,33 +800,75 @@ final class GoogleCloudRunV2Job extends Resource {
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/locations/{location}/jobs/{name}`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to the `generation` attribute (server-side revision count).
+  /// Reference to `conditions` attribute.
+  TfRef<List<Map<String, Object?>>> get conditions =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'conditions');
+
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `creator` attribute.
+  TfRef<String> get creator => TfRef.attribute<String>(this, 'creator');
+
+  /// Reference to `delete_time` attribute.
+  TfRef<String> get deleteTime => TfRef.attribute<String>(this, 'delete_time');
+
+  /// Reference to `effective_annotations` attribute.
+  TfRef<Map<String, String>> get effectiveAnnotations =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_annotations');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `expire_time` attribute.
+  TfRef<String> get expireTime => TfRef.attribute<String>(this, 'expire_time');
+
+  /// Reference to `generation` attribute.
   TfRef<String> get generation => TfRef.attribute<String>(this, 'generation');
 
-  /// Reference to `observed_generation` (latest generation observed by
-  /// the controller).
+  /// Reference to `last_modifier` attribute.
+  TfRef<String> get lastModifier =>
+      TfRef.attribute<String>(this, 'last_modifier');
+
+  /// Reference to `observed_generation` attribute.
   TfRef<String> get observedGeneration =>
       TfRef.attribute<String>(this, 'observed_generation');
 
+  /// Reference to `reconciling` attribute.
+  TfRef<bool> get reconciling => TfRef.attribute<bool>(this, 'reconciling');
+
+  /// Reference to `terminal_condition` attribute.
+  TfRef<List<Map<String, Object?>>> get terminalCondition =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'terminal_condition');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `uid` attribute.
+  TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
   /// Reference to `execution_count` — total number of executions that
-  /// have ever run.
+  /// have ever run. Kept (not derived) to preserve the `int` type; the
+  /// schema's `number` would widen the derived getter to `TfRef<num>`.
   TfRef<int> get executionCount =>
       TfRef.attribute<int>(this, 'execution_count');
 
   /// Reference to `latest_created_execution` — `{name, create_time,
   /// completion_time}` triple for the most recently created execution.
+  /// Kept (not derived) to preserve the `List<Object?>` element type.
   TfRef<List<Object?>> get latestCreatedExecution =>
       TfRef.attribute<List<Object?>>(this, 'latest_created_execution');
-
-  /// Reference to `uid` (server-assigned unique identifier).
-  TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
-
-  /// Reference to `etag` (used for optimistic concurrency).
-  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
   /// Reference to `location` attribute — region the job is deployed in.
   TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');

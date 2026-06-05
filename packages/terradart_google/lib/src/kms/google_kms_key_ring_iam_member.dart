@@ -7,40 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleKmsKeyRingIamMemberSensitive = <String>{};
 
 /// Factory wrapper for `google_kms_key_ring_iam_member`.
-///
-/// Grants a single (`role`, `member`) IAM binding **on a KMS key ring** —
-/// i.e. who can manage the ring or create/list crypto keys under it.
-/// Ring-scoped IAM is the right granularity when several keys share the
-/// same operator group; bind a `roles/cloudkms.admin` here rather than
-/// re-stating the same binding on every key in the ring. For runtime
-/// encrypt/decrypt permissions, prefer the narrower
-/// `google_kms_crypto_key_iam_member` on the individual key.
-///
-/// Picking the right `*_iam_*` variant:
-///
-/// - `*_iam_member` (this resource) — **additive**: grants ONE
-///   (role, member) tuple. Does not touch other principals' bindings.
-///   Safe in 95% of cases; prefer this unless you have a concrete reason
-///   to use one of the authoritative variants below.
-/// - `*_iam_binding` — **authoritative per role**: takes a list of
-///   members and *replaces* the entire member list for that role. Will
-///   silently erase any other principal previously bound to that role
-///   on this key ring.
-/// - `*_iam_policy` — **authoritative for the entire resource**: replaces
-///   the key ring's whole IAM policy. Will erase **all** existing
-///   bindings.
-///
-/// Required identity:
-/// - [localName]: Terraform local name.
-/// - `keyRingId`: the target key ring's **fully-qualified resource path**,
-///   i.e. `projects/{project}/locations/{location}/keyRings/{name}`.
-///   Pass `TfArg.ref(keyRing.id)` rather than hand-formatting the string.
-/// - `role`: role name, typically `'roles/cloudkms.admin'` (full ring
-///   admin) or `'roles/cloudkms.viewer'` (read-only inventory).
-/// - `member`: principal in IAM v1 string form.
-///
-/// Optional `condition` is a single IAM Condition block (CEL
-/// `expression`, `title`, optional `description`).
 final class GoogleKmsKeyRingIamMember extends Resource {
   static const String tfType = 'google_kms_key_ring_iam_member';
 
@@ -65,6 +31,9 @@ final class GoogleKmsKeyRingIamMember extends Resource {
   @override
   Set<String> get sensitiveFields => _googleKmsKeyRingIamMemberSensitive;
 
-  /// Reference to `etag` attribute (concurrency token written by the API).
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }

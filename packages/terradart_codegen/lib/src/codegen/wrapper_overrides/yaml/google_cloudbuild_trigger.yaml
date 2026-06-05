@@ -1,11 +1,8 @@
 outputDir: cloud_build
 
-classDocComment: |-
-  /// Factory wrapper for `google_cloudbuild_trigger` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
-  /// A Cloud Build trigger fires a build in response to a source event
-  /// (SCM push / pull request, Pub/Sub message, webhook, or manual run).
+deriveClassDoc: true
+
+curatedDoc: |-
   /// The resource has **two competing repository-connection forms** that
   /// callers must pick between:
   ///
@@ -35,10 +32,6 @@ classDocComment: |-
   /// - [gitFileSource] — fetch the build config from an arbitrary repo /
   ///   ref. Use with Pub/Sub, Webhook, Manual, or v2 triggers.
   /// - [build] — inline build steps + options, fully defined in HCL.
-  ///
-  /// Required identity:
-  /// - [localName]: Terraform local name (the address segment after
-  ///   `google_cloudbuild_trigger.`).
   ///
   /// Optional but commonly set:
   /// - `location`: Cloud Build region (e.g. `'asia-northeast1'`).
@@ -118,9 +111,6 @@ classDocComment: |-
   /// - [repositoryEventConfig].`repository` accepts a
   ///   `google_cloudbuildv2_repository` id (typically passed as
   ///   `var.cloudbuildv2_repository_id`).
-  ///
-  /// Composition pattern: extends `Resource`
-  /// for runtime behavior.
 
 paramOrder:
   - name
@@ -148,28 +138,10 @@ paramOrder:
   - build
   - project
 
+deriveOutputGetters: true
+
 extraImports:
   - "import 'package:meta/meta.dart';"
-
-extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute. The id format is
-    /// `projects/{project}/locations/{location}/triggers/{trigger_id}`
-    /// for regional triggers, or `projects/{project}/triggers/{trigger_id}`
-    /// for the legacy `global` location.
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to the server-assigned `trigger_id` — the stable
-    /// identifier in the API path. Populated after apply.
-    TfRef<String> get triggerId =>
-        TfRef.attribute<String>(this, 'trigger_id');
-
-    /// Reference to the `create_time` attribute (RFC 3339 timestamp).
-    /// Populated after apply.
-    TfRef<String> get createTime =>
-        TfRef.attribute<String>(this, 'create_time');
 
 dartTypeOverrides:
   include_build_logs: CloudBuildTriggerIncludeBuildLogs

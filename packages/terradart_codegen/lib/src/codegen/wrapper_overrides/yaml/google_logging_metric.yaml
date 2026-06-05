@@ -1,19 +1,8 @@
 outputDir: logging
+deriveClassDoc: true
+deriveOutputGetters: true
 
-classDocComment: |-
-  /// Factory wrapper for `google_logging_metric` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
-  /// Required identity:
-  /// - [localName]: Terraform local name (the address segment after
-  ///   `google_logging_metric.`).
-  /// - `name`: client-assigned metric identifier, e.g. `'error_count'` or
-  ///   `'nginx/requests'`. Limited to 100 characters and the alphabet
-  ///   `[A-Za-z0-9_-.,+!*'()%/]` (the forward slash denotes hierarchy and
-  ///   cannot be the first character).
-  /// - `filter`: an [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced-filters)
-  ///   that selects log entries the metric counts / extracts values from.
-  ///
+curatedDoc: |-
   /// Modeling notes:
   /// - `metric_descriptor` is a `max_items: 1` block. When omitted, the API
   ///   defaults to a `DELTA` / `INT64` counter with unit `"1"`. Provide a
@@ -64,12 +53,6 @@ classDocComment: |-
   ///   ),
   /// );
   /// ```
-  ///
-  /// Manages a Cloud Logging logs-based metric. Composition pattern: extends
-  /// `Resource` for runtime behavior. The nested-block
-  /// helpers ([LoggingMetricDescriptor], [LoggingMetricLabel],
-  /// [LoggingMetricBucketOptions], plus the three bucket-variant classes)
-  /// live in the `prelude` below.
 
 # Required identity first (name, filter), then optional metadata, then the
 # nested blocks (metric_descriptor + bucket_options), then bucket scoping and
@@ -86,13 +69,6 @@ paramOrder:
   - bucket_options
   - bucket_name
   - project
-
-extraGetters: |2
-    /// Reference to `id` attribute (`projects/{project}/metrics/{name}`).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
 prelude: |
   // ===========================================================================

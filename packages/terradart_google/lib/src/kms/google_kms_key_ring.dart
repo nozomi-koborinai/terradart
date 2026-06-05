@@ -6,14 +6,14 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_kms_key_ring`.
 const Set<String> _googleKmsKeyRingSensitive = <String>{};
 
-/// Factory wrapper for `google_kms_key_ring` (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_kms_key_ring`.
 ///
-/// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_kms_key_ring.`).
-/// - `name`: KMS key ring name (immutable). Pass `TfArg.literal('main-ring')`.
-/// - `location`: GCP location (e.g. `'global'` or `'asia-northeast1'`),
-///   immutable.
+/// A `KeyRing` is a toplevel logical grouping of `CryptoKeys`.
+///
+/// ~> **Note:** KeyRings cannot be deleted from Google Cloud Platform.
+/// Destroying a Terraform-managed KeyRing will remove it from state but *will
+/// not delete the resource from the project.*
+///
 ///
 /// Example:
 /// ```dart
@@ -49,12 +49,9 @@ final class GoogleKmsKeyRing extends Resource {
   @override
   Set<String> get sensitiveFields => _googleKmsKeyRingSensitive;
 
-  /// Reference to `name` attribute. Use for interpolations like
-  /// `keyRing.nameRef` → `${google_kms_key_ring.<localName>.name}`.
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/locations/{location}/keyRings/{name}`). Use this
-  /// when declaring `google_kms_crypto_key.key_ring`.
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

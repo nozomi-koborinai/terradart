@@ -1,9 +1,8 @@
 outputDir: cloud_build
 
-classDocComment: |-
-  /// Factory wrapper for `google_cloudbuild_worker_pool` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+
+curatedDoc: |-
   /// A **private pool** runs Cloud Build jobs on dedicated worker VMs inside
   /// a project-private network, providing isolation from the shared default
   /// pool. Triggers reference a pool via `build.options.pool` (the worker
@@ -15,12 +14,6 @@ classDocComment: |-
   /// or [privateServiceConnect] (newer Private Service Connect form, uses
   /// `private_service_connect.network_attachment`). Omitting both leaves
   /// workers on Google's service-producer network (no VPC reach).
-  ///
-  /// Required identity:
-  /// - [localName]: Terraform local name (the address segment after
-  ///   `google_cloudbuild_worker_pool.`).
-  /// - `name`: pool name (1-63 chars). Forces replacement when changed.
-  /// - `location`: GCP region (e.g. `'asia-northeast1'`). Required.
   ///
   /// Example (minimal regional pool on the service-producer network):
   /// ```dart
@@ -57,9 +50,6 @@ classDocComment: |-
   /// - Consumed by `google_cloudbuild_trigger` via
   ///   `build.options.pool = <pool.id>` (regional pools require the trigger
   ///   to be in the same `location`).
-  ///
-  /// Composition pattern: extends `Resource`
-  /// for runtime behavior.
 
 paramOrder:
   - name
@@ -71,34 +61,16 @@ paramOrder:
   - private_service_connect
   - project
 
+deriveOutputGetters: true
+
 extraImports:
   - "import 'package:meta/meta.dart';"
 
 extraGetters: |2
-    /// Reference to `name` attribute. Pass to triggers as the short pool
-    /// name when interpolating into descriptive fields.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute (full path
-    /// `projects/{project}/locations/{location}/workerPools/{name}`). This
-    /// is the value `google_cloudbuild_trigger.build.options.pool` expects.
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `uid` attribute (server-assigned unique identifier).
-    TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
-
     /// Reference to `state` attribute. One of `STATE_UNSPECIFIED`,
     /// `PENDING`, `APPROVED`, `REJECTED`, `CANCELLED` (Output-only on the
     /// provider; surfaced as a string for interpolation into outputs).
     TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');
-
-    /// Reference to `create_time` attribute (RFC 3339 timestamp).
-    TfRef<String> get createTime =>
-        TfRef.attribute<String>(this, 'create_time');
-
-    /// Reference to `update_time` attribute (RFC 3339 timestamp).
-    TfRef<String> get updateTime =>
-        TfRef.attribute<String>(this, 'update_time');
 
 prelude: |
   // ===========================================================================
