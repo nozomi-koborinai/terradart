@@ -1,17 +1,8 @@
 outputDir: cloud_run
 
-classDocComment: |-
-  /// Factory wrapper for `google_cloud_run_v2_service` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
-  /// Required identity:
-  /// - [localName]: Terraform local name (the address segment after
-  ///   `google_cloud_run_v2_service.`).
-  /// - `name`: Cloud Run service name (DNS_LABEL, lowercase, ≤63 chars).
-  /// - `location`: GCP region (e.g. `'asia-northeast1'`).
-  /// - `template`: required revision template ([CloudRunV2ServiceTemplate]). Holds the
-  ///   container set, scaling, VPC access, volumes, etc.
-  ///
+deriveClassDoc: true
+
+curatedDoc: |-
   /// Example (minimal hello-world service):
   /// ```dart
   /// final svc = GoogleCloudRunV2Service(
@@ -66,9 +57,6 @@ classDocComment: |-
   ///   ),
   /// );
   /// ```
-  ///
-  /// Manages a Cloud Run v2 fully-managed service. Composition pattern:
-  /// extends `Resource` for runtime behavior.
 
 paramOrder:
   - name
@@ -94,37 +82,9 @@ paramOrder:
 extraImports:
   - "import 'package:meta/meta.dart';"
 
+deriveOutputGetters: true
+
 extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute (full path
-    /// `projects/{project}/locations/{location}/services/{name}`).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to the auto-assigned default URL (`https://...run.app`).
-    TfRef<String> get uri => TfRef.attribute<String>(this, 'uri');
-
-    /// Reference to the `generation` attribute (server-side revision count).
-    TfRef<String> get generation =>
-        TfRef.attribute<String>(this, 'generation');
-
-    /// Reference to `latest_ready_revision` (name of the latest revision
-    /// that has been marked Ready).
-    TfRef<String> get latestReadyRevision =>
-        TfRef.attribute<String>(this, 'latest_ready_revision');
-
-    /// Reference to `latest_created_revision` (name of the most recently
-    /// created revision regardless of readiness).
-    TfRef<String> get latestCreatedRevision =>
-        TfRef.attribute<String>(this, 'latest_created_revision');
-
-    /// Reference to `uid` (server-assigned unique identifier).
-    TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
-
-    /// Reference to `etag` (used for optimistic concurrency).
-    TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
-
     /// Reference to `location` attribute — region the service is deployed in.
     TfRef<String> get locationRef => TfRef.attribute<String>(this, 'location');
 
