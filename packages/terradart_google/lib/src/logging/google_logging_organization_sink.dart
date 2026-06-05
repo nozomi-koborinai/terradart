@@ -42,20 +42,7 @@ class LoggingOrganizationSinkExclusion {
   };
 }
 
-/// Factory wrapper for `google_logging_organization_sink` (provider
-/// `hashicorp/google ~> 7.0`).
-///
-/// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_logging_organization_sink.`).
-/// - `name`: sink name. Pass `TfArg.literal('audit-to-bq')`.
-/// - `orgId`: numeric ID of the organization to be exported. Pass
-///   `TfArg.literal('123456789012')`.
-/// - `destination`: URI of the routing target. Supported forms:
-///   - `bigquery.googleapis.com/projects/<p>/datasets/<ds>`
-///   - `storage.googleapis.com/<bucket>`
-///   - `pubsub.googleapis.com/projects/<p>/topics/<t>`
-///   - `logging.googleapis.com/projects/<p>/locations/<l>/buckets/<b>`
+/// Factory wrapper for `google_logging_organization_sink`.
 ///
 /// Organization-scoped sinks always mint a unique writer service account;
 /// grant it the destination-side IAM role (e.g. `roles/bigquery.dataEditor`)
@@ -75,13 +62,6 @@ class LoggingOrganizationSinkExclusion {
 ///   includeChildren: TfArg.literal(true),
 /// );
 /// ```
-///
-/// Routes log entries from an organization (and optionally its descendant
-/// folders and projects) to a destination (BigQuery, GCS, Pub/Sub, or
-/// Logging bucket). Composition pattern: extends
-/// `Resource` for runtime behavior. The
-/// `bigquery_options` block and `exclusions` list are modeled as helper
-/// classes in the `prelude` below.
 final class GoogleLoggingOrganizationSink extends Resource {
   static const String tfType = 'google_logging_organization_sink';
 
@@ -123,11 +103,15 @@ final class GoogleLoggingOrganizationSink extends Resource {
   @override
   Set<String> get sensitiveFields => _googleLoggingOrganizationSinkSensitive;
 
-  /// Reference to `id` attribute (`organizations/{org_id}/sinks/{name}`).
-  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `writer_identity` attribute.
+  TfRef<String> get writerIdentity =>
+      TfRef.attribute<String>(this, 'writer_identity');
 
   /// Reference to `writer_identity` attribute. Auto-populated by the
   /// provider; pass via `TfArg.ref(sink.writerIdentityRef)` to the

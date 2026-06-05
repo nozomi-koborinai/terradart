@@ -183,18 +183,12 @@ class LoggingMetricBucketOptions {
   };
 }
 
-/// Factory wrapper for `google_logging_metric` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_logging_metric`.
 ///
-/// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_logging_metric.`).
-/// - `name`: client-assigned metric identifier, e.g. `'error_count'` or
-///   `'nginx/requests'`. Limited to 100 characters and the alphabet
-///   `[A-Za-z0-9_-.,+!*'()%/]` (the forward slash denotes hierarchy and
-///   cannot be the first character).
-/// - `filter`: an [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced-filters)
-///   that selects log entries the metric counts / extracts values from.
+/// Logs-based metric can also be used to extract values from logs and create a
+/// a distribution of the values. The distribution records the statistics of the
+/// extracted values along with an optional histogram of the values as specified
+/// by the bucket options.
 ///
 /// Modeling notes:
 /// - `metric_descriptor` is a `max_items: 1` block. When omitted, the API
@@ -246,12 +240,6 @@ class LoggingMetricBucketOptions {
 ///   ),
 /// );
 /// ```
-///
-/// Manages a Cloud Logging logs-based metric. Composition pattern: extends
-/// `Resource` for runtime behavior. The nested-block
-/// helpers ([LoggingMetricDescriptor], [LoggingMetricLabel],
-/// [LoggingMetricBucketOptions], plus the three bucket-variant classes)
-/// live in the `prelude` below.
 final class GoogleLoggingMetric extends Resource {
   static const String tfType = 'google_logging_metric';
 
@@ -290,9 +278,9 @@ final class GoogleLoggingMetric extends Resource {
   @override
   Set<String> get sensitiveFields => _googleLoggingMetricSensitive;
 
-  /// Reference to `id` attribute (`projects/{project}/metrics/{name}`).
-  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

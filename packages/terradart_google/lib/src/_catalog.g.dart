@@ -2903,8 +2903,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     className: 'GoogleLoggingFolderSink',
     barrel: 'logging',
     kind: CatalogKind.resource,
-    summary:
-        'Factory wrapper for `google_logging_folder_sink` (provider `hashicorp/google ~> 7.0`).',
+    summary: 'Factory wrapper for `google_logging_folder_sink`.',
     constructorParams: <String>[
       'localName',
       'name',
@@ -2924,15 +2923,14 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_logging_folder_sink` (provider\n`hashicorp/google ~> 7.0`).\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_logging_folder_sink.`).\n- `name`: sink name. Pass `TfArg.literal(\'audit-to-bq\')`.\n- `folder`: folder to be exported. Either `[FOLDER_ID]` or\n  `"folders/[FOLDER_ID]"` is accepted.\n- `destination`: URI of the routing target. Supported forms:\n  - `bigquery.googleapis.com/projects/<p>/datasets/<ds>`\n  - `storage.googleapis.com/<bucket>`\n  - `pubsub.googleapis.com/projects/<p>/topics/<t>`\n  - `logging.googleapis.com/projects/<p>/locations/<l>/buckets/<b>`\n\nFolder-scoped sinks always mint a unique writer service account; grant\nit the destination-side IAM role (e.g. `roles/bigquery.dataEditor`) by\npassing `TfArg.ref(sink.writerIdentityRef)` to the IAM member resource.\n\nExample:\n```dart\nfinal sink = GoogleLoggingFolderSink(\n  localName: \'folder_audit_to_bq\',\n  name: TfArg.literal(\'folder-audit-to-bq\'),\n  folder: TfArg.literal(\'folders/123456789012\'),\n  destination: TfArg.literal(\n    \'bigquery.googleapis.com/projects/my-proj/datasets/audit_logs\',\n  ),\n  filter: TfArg.literal(\'logName:"cloudaudit.googleapis.com"\'),\n  includeChildren: TfArg.literal(true),\n);\n```\n\nRoutes log entries from a folder (and optionally its descendants) to a\ndestination (BigQuery, GCS, Pub/Sub, or Logging bucket). Composition\npattern: extends `Resource` for runtime\nbehavior. The `bigquery_options` block and `exclusions` list are\nmodeled as helper classes in the `prelude` below.',
+        'Factory wrapper for `google_logging_folder_sink`.\n\nFolder-scoped sinks always mint a unique writer service account; grant\nit the destination-side IAM role (e.g. `roles/bigquery.dataEditor`) by\npassing `TfArg.ref(sink.writerIdentityRef)` to the IAM member resource.\n\nExample:\n```dart\nfinal sink = GoogleLoggingFolderSink(\n  localName: \'folder_audit_to_bq\',\n  name: TfArg.literal(\'folder-audit-to-bq\'),\n  folder: TfArg.literal(\'folders/123456789012\'),\n  destination: TfArg.literal(\n    \'bigquery.googleapis.com/projects/my-proj/datasets/audit_logs\',\n  ),\n  filter: TfArg.literal(\'logName:"cloudaudit.googleapis.com"\'),\n  includeChildren: TfArg.literal(true),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_logging_metric',
     className: 'GoogleLoggingMetric',
     barrel: 'logging',
     kind: CatalogKind.resource,
-    summary:
-        'Factory wrapper for `google_logging_metric` (provider `hashicorp/google ~> 7.0`).',
+    summary: 'Factory wrapper for `google_logging_metric`.',
     constructorParams: <String>[
       'localName',
       'name',
@@ -2959,15 +2957,14 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_logging_metric` (provider\n`hashicorp/google ~> 7.0`).\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_logging_metric.`).\n- `name`: client-assigned metric identifier, e.g. `\'error_count\'` or\n  `\'nginx/requests\'`. Limited to 100 characters and the alphabet\n  `[A-Za-z0-9_-.,+!*\'()%/]` (the forward slash denotes hierarchy and\n  cannot be the first character).\n- `filter`: an [advanced logs filter](https://cloud.google.com/logging/docs/view/advanced-filters)\n  that selects log entries the metric counts / extracts values from.\n\nModeling notes:\n- `metric_descriptor` is a `max_items: 1` block. When omitted, the API\n  defaults to a `DELTA` / `INT64` counter with unit `"1"`. Provide a\n  [LoggingMetricDescriptor] to set the metric kind / value type, a\n  user-visible display name, a UCUM unit, or extracted labels.\n- `bucket_options` is required when [LoggingMetricDescriptor.valueType]\n  is [LoggingMetricValueType.distribution] and describes the histogram\n  bucket boundaries. Exactly one of `linearBuckets`, `exponentialBuckets`,\n  or `explicitBuckets` should be set; Terraform enforces this at apply\n  time.\n- `bucket_name` scopes the metric to a specific Log Bucket (in the same\n  project). Leave unset for the project-default `_Default` bucket.\n\nExample (DELTA counter on error log entries):\n```dart\nfinal errors = GoogleLoggingMetric(\n  localName: \'error_count\',\n  name: TfArg.literal(\'error_count\'),\n  filter: TfArg.literal(\n    \'resource.type="k8s_container" AND severity>=ERROR\',\n  ),\n  metricDescriptor: LoggingMetricDescriptor(\n    metricKind: TfArgLiteral(LoggingMetricKind.delta),\n    valueType: TfArgLiteral(LoggingMetricValueType.int64),\n    displayName: TfArgLiteral(\'Container errors\'),\n  ),\n);\n```\n\nExample (DISTRIBUTION metric with extracted latency):\n```dart\nfinal latency = GoogleLoggingMetric(\n  localName: \'request_latency\',\n  name: TfArg.literal(\'request_latency\'),\n  filter: TfArg.literal(\'resource.type="http_load_balancer"\'),\n  valueExtractor: TfArg.literal(\'EXTRACT(httpRequest.latency)\'),\n  metricDescriptor: LoggingMetricDescriptor(\n    metricKind: TfArgLiteral(LoggingMetricKind.delta),\n    valueType: TfArgLiteral(LoggingMetricValueType.distribution),\n    unit: TfArgLiteral(\'s\'),\n  ),\n  bucketOptions: const LoggingMetricBucketOptions(\n    exponentialBuckets: LoggingMetricExponentialBuckets(\n      numFiniteBuckets: TfArgLiteral(64),\n      growthFactor: TfArgLiteral(2),\n      scale: TfArgLiteral(0.01),\n    ),\n  ),\n);\n```\n\nManages a Cloud Logging logs-based metric. Composition pattern: extends\n`Resource` for runtime behavior. The nested-block\nhelpers ([LoggingMetricDescriptor], [LoggingMetricLabel],\n[LoggingMetricBucketOptions], plus the three bucket-variant classes)\nlive in the `prelude` below.',
+        'Factory wrapper for `google_logging_metric`.\n\nLogs-based metric can also be used to extract values from logs and create a\na distribution of the values. The distribution records the statistics of the\nextracted values along with an optional histogram of the values as specified\nby the bucket options.\n\nModeling notes:\n- `metric_descriptor` is a `max_items: 1` block. When omitted, the API\n  defaults to a `DELTA` / `INT64` counter with unit `"1"`. Provide a\n  [LoggingMetricDescriptor] to set the metric kind / value type, a\n  user-visible display name, a UCUM unit, or extracted labels.\n- `bucket_options` is required when [LoggingMetricDescriptor.valueType]\n  is [LoggingMetricValueType.distribution] and describes the histogram\n  bucket boundaries. Exactly one of `linearBuckets`, `exponentialBuckets`,\n  or `explicitBuckets` should be set; Terraform enforces this at apply\n  time.\n- `bucket_name` scopes the metric to a specific Log Bucket (in the same\n  project). Leave unset for the project-default `_Default` bucket.\n\nExample (DELTA counter on error log entries):\n```dart\nfinal errors = GoogleLoggingMetric(\n  localName: \'error_count\',\n  name: TfArg.literal(\'error_count\'),\n  filter: TfArg.literal(\n    \'resource.type="k8s_container" AND severity>=ERROR\',\n  ),\n  metricDescriptor: LoggingMetricDescriptor(\n    metricKind: TfArgLiteral(LoggingMetricKind.delta),\n    valueType: TfArgLiteral(LoggingMetricValueType.int64),\n    displayName: TfArgLiteral(\'Container errors\'),\n  ),\n);\n```\n\nExample (DISTRIBUTION metric with extracted latency):\n```dart\nfinal latency = GoogleLoggingMetric(\n  localName: \'request_latency\',\n  name: TfArg.literal(\'request_latency\'),\n  filter: TfArg.literal(\'resource.type="http_load_balancer"\'),\n  valueExtractor: TfArg.literal(\'EXTRACT(httpRequest.latency)\'),\n  metricDescriptor: LoggingMetricDescriptor(\n    metricKind: TfArgLiteral(LoggingMetricKind.delta),\n    valueType: TfArgLiteral(LoggingMetricValueType.distribution),\n    unit: TfArgLiteral(\'s\'),\n  ),\n  bucketOptions: const LoggingMetricBucketOptions(\n    exponentialBuckets: LoggingMetricExponentialBuckets(\n      numFiniteBuckets: TfArgLiteral(64),\n      growthFactor: TfArgLiteral(2),\n      scale: TfArgLiteral(0.01),\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_logging_organization_sink',
     className: 'GoogleLoggingOrganizationSink',
     barrel: 'logging',
     kind: CatalogKind.resource,
-    summary:
-        'Factory wrapper for `google_logging_organization_sink` (provider `hashicorp/google ~> 7.0`).',
+    summary: 'Factory wrapper for `google_logging_organization_sink`.',
     constructorParams: <String>[
       'localName',
       'name',
@@ -2987,15 +2984,14 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_logging_organization_sink` (provider\n`hashicorp/google ~> 7.0`).\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_logging_organization_sink.`).\n- `name`: sink name. Pass `TfArg.literal(\'audit-to-bq\')`.\n- `orgId`: numeric ID of the organization to be exported. Pass\n  `TfArg.literal(\'123456789012\')`.\n- `destination`: URI of the routing target. Supported forms:\n  - `bigquery.googleapis.com/projects/<p>/datasets/<ds>`\n  - `storage.googleapis.com/<bucket>`\n  - `pubsub.googleapis.com/projects/<p>/topics/<t>`\n  - `logging.googleapis.com/projects/<p>/locations/<l>/buckets/<b>`\n\nOrganization-scoped sinks always mint a unique writer service account;\ngrant it the destination-side IAM role (e.g. `roles/bigquery.dataEditor`)\nby passing `TfArg.ref(sink.writerIdentityRef)` to the IAM member\nresource.\n\nExample:\n```dart\nfinal sink = GoogleLoggingOrganizationSink(\n  localName: \'org_audit_to_bq\',\n  name: TfArg.literal(\'org-audit-to-bq\'),\n  orgId: TfArg.literal(\'123456789012\'),\n  destination: TfArg.literal(\n    \'bigquery.googleapis.com/projects/my-proj/datasets/audit_logs\',\n  ),\n  filter: TfArg.literal(\'logName:"cloudaudit.googleapis.com"\'),\n  includeChildren: TfArg.literal(true),\n);\n```\n\nRoutes log entries from an organization (and optionally its descendant\nfolders and projects) to a destination (BigQuery, GCS, Pub/Sub, or\nLogging bucket). Composition pattern: extends\n`Resource` for runtime behavior. The\n`bigquery_options` block and `exclusions` list are modeled as helper\nclasses in the `prelude` below.',
+        'Factory wrapper for `google_logging_organization_sink`.\n\nOrganization-scoped sinks always mint a unique writer service account;\ngrant it the destination-side IAM role (e.g. `roles/bigquery.dataEditor`)\nby passing `TfArg.ref(sink.writerIdentityRef)` to the IAM member\nresource.\n\nExample:\n```dart\nfinal sink = GoogleLoggingOrganizationSink(\n  localName: \'org_audit_to_bq\',\n  name: TfArg.literal(\'org-audit-to-bq\'),\n  orgId: TfArg.literal(\'123456789012\'),\n  destination: TfArg.literal(\n    \'bigquery.googleapis.com/projects/my-proj/datasets/audit_logs\',\n  ),\n  filter: TfArg.literal(\'logName:"cloudaudit.googleapis.com"\'),\n  includeChildren: TfArg.literal(true),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_logging_project_sink',
     className: 'GoogleLoggingProjectSink',
     barrel: 'logging',
     kind: CatalogKind.resource,
-    summary:
-        'Factory wrapper for `google_logging_project_sink` (provider `hashicorp/google ~> 7.0`).',
+    summary: 'Factory wrapper for `google_logging_project_sink`.',
     constructorParams: <String>[
       'localName',
       'name',
@@ -3015,7 +3011,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_logging_project_sink` (provider\n`hashicorp/google ~> 7.0`).\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_logging_project_sink.`).\n- `name`: sink name. Pass `TfArg.literal(\'audit-to-bq\')`.\n- `destination`: URI of the routing target. Supported forms:\n  - `bigquery.googleapis.com/projects/<p>/datasets/<ds>`\n  - `storage.googleapis.com/<bucket>`\n  - `pubsub.googleapis.com/projects/<p>/topics/<t>`\n  - `logging.googleapis.com/projects/<p>/locations/<l>/buckets/<b>`\n\nSet `uniqueWriterIdentity: TfArg.literal(true)` to make GCP mint a\ndedicated writer service account; grant it the destination-side IAM\nrole (e.g. `roles/bigquery.dataEditor`) by passing\n`TfArg.ref(sink.writerIdentityRef)` to the IAM member resource.\n\nExample:\n```dart\nfinal sink = GoogleLoggingProjectSink(\n  localName: \'audit_to_bq\',\n  name: TfArg.literal(\'audit-to-bq\'),\n  destination: TfArg.literal(\n    \'bigquery.googleapis.com/projects/my-proj/datasets/audit_logs\',\n  ),\n  filter: TfArg.literal(\'logName:"cloudaudit.googleapis.com"\'),\n  uniqueWriterIdentity: TfArg.literal(true),\n);\n```\n\nRoutes log entries to a destination (BigQuery, GCS, Pub/Sub, or\nLogging bucket). Composition pattern: extends\n`Resource` for runtime behavior. The\n`bigquery_options` block and `exclusions` list are modeled as helper\nclasses in the `prelude` below.',
+        'Factory wrapper for `google_logging_project_sink`.\n\nSet `uniqueWriterIdentity: TfArg.literal(true)` to make GCP mint a\ndedicated writer service account; grant it the destination-side IAM\nrole (e.g. `roles/bigquery.dataEditor`) by passing\n`TfArg.ref(sink.writerIdentityRef)` to the IAM member resource.\n\nExample:\n```dart\nfinal sink = GoogleLoggingProjectSink(\n  localName: \'audit_to_bq\',\n  name: TfArg.literal(\'audit-to-bq\'),\n  destination: TfArg.literal(\n    \'bigquery.googleapis.com/projects/my-proj/datasets/audit_logs\',\n  ),\n  filter: TfArg.literal(\'logName:"cloudaudit.googleapis.com"\'),\n  uniqueWriterIdentity: TfArg.literal(true),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_monitoring_alert_policy',
