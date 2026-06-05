@@ -30,8 +30,7 @@ enum SqlUserType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Factory wrapper for `google_sql_user` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_sql_user`.
 ///
 /// Represents a database user inside a Cloud SQL instance. The exact
 /// semantics depend on the parent instance's `database_version` (MySQL,
@@ -81,9 +80,6 @@ enum SqlUserType implements TerraformEnum {
 ///   type: TfArg.literal(SqlUserType.cloudIamServiceAccount),
 /// );
 /// ```
-///
-/// Composition pattern: extends `Resource` for runtime
-/// behavior.
 final class GoogleSqlUser extends Resource {
   static const String tfType = 'google_sql_user';
 
@@ -121,16 +117,19 @@ final class GoogleSqlUser extends Resource {
   @override
   Set<String> get sensitiveFields => _googleSqlUserSensitive;
 
-  /// Reference to `id` attribute (full path
-  /// `{project}/{instance}/{host}/{name}` on MySQL, or
-  /// `{project}/{instance}/{name}` on Postgres / SQL Server).
-  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute (the bare username).
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to the computed `iam_email` attribute. Set for Cloud IAM
-  /// MySQL users; format `<user>@<project>.iam.gserviceaccount.com` for
-  /// service accounts. Empty for built-in users.
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `iam_email` attribute.
   TfRef<String> get iamEmail => TfRef.attribute<String>(this, 'iam_email');
+
+  /// Reference to `sql_server_user_details` attribute.
+  TfRef<List<Map<String, Object?>>> get sqlServerUserDetails =>
+      TfRef.attribute<List<Map<String, Object?>>>(
+        this,
+        'sql_server_user_details',
+      );
 }

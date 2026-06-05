@@ -1,9 +1,9 @@
 outputDir: sql
 
-classDocComment: |-
-  /// Factory wrapper for `google_sql_database_instance` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// Manages a Cloud SQL instance — a managed MySQL, PostgreSQL, or SQL
   /// Server engine. The schema is large; this wrapper exposes the
   /// commonly-used fields as typed helpers ([SqlDatabaseInstanceSettings], [SqlDatabaseInstanceIpConfiguration],
@@ -75,9 +75,6 @@ classDocComment: |-
   /// the generated `sensitiveFields` set — synth masks it. Prefer
   /// `root_password_wo` (write-only, never stored in state, requires
   /// Terraform >= 1.11) for new deployments.
-  ///
-  /// Composition pattern: extends `Resource`
-  /// for runtime behavior.
 
 paramOrder:
   - database_version
@@ -98,48 +95,6 @@ paramOrder:
   - final_backup_description
   - backupdr_backup
   - project
-
-extraGetters: |2
-    /// Reference to `name` attribute. Use this when downstream resources
-    /// like [GoogleSqlDatabase] / [GoogleSqlUser] need the bare instance
-    /// name (NOT the full `id`).
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute. The provider sets `id == name`, but
-    /// downstream consumers should prefer [nameRef] for clarity.
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to the computed `connection_name` attribute
-    /// (`{project}:{region}:{instance}`). Required by the Cloud SQL Auth
-    /// Proxy and as a `cloud_sql_instance.instances[]` entry on Cloud Run
-    /// volume mounts.
-    TfRef<String> get connectionName =>
-        TfRef.attribute<String>(this, 'connection_name');
-
-    /// Reference to the computed `private_ip_address` — populated when
-    /// the instance has `ipv4_enabled = false` and a `private_network`
-    /// set. Empty otherwise.
-    TfRef<String> get privateIpAddress =>
-        TfRef.attribute<String>(this, 'private_ip_address');
-
-    /// Reference to the computed `public_ip_address` — populated when
-    /// `ipv4_enabled` is true. Empty otherwise.
-    TfRef<String> get publicIpAddress =>
-        TfRef.attribute<String>(this, 'public_ip_address');
-
-    /// Reference to the auto-managed runtime service-account email
-    /// (`p<projectNumber>-<hash>@gcp-sa-cloud-sql.iam.gserviceaccount.com`).
-    /// Grant it `roles/cloudkms.cryptoKeyEncrypterDecrypter` on the CMEK
-    /// key when [encryptionKeyName] is set.
-    TfRef<String> get serviceAccountEmailAddress =>
-        TfRef.attribute<String>(this, 'service_account_email_address');
-
-    /// Reference to `self_link` attribute (HTTPS API path).
-    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-    /// Reference to the computed `dns_name` attribute. Populated for PSC
-    /// instances and public-IP CAS instances; empty otherwise.
-    TfRef<String> get dnsName => TfRef.attribute<String>(this, 'dns_name');
 
 extraImports:
   - "import 'package:meta/meta.dart';"

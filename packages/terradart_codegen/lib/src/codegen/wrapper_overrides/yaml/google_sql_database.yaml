@@ -1,9 +1,9 @@
 outputDir: sql
 
-classDocComment: |-
-  /// Factory wrapper for `google_sql_database` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// Represents one logical database living inside a Cloud SQL instance
   /// ([GoogleSqlDatabaseInstance]). For MySQL this is a schema; for
   /// PostgreSQL a database; for SQL Server a database.
@@ -26,9 +26,6 @@ classDocComment: |-
   ///   charset: TfArg.literal('UTF8'),
   /// );
   /// ```
-  ///
-  /// Composition pattern: extends `Resource` for
-  /// runtime behavior.
 
 paramOrder:
   - name
@@ -38,13 +35,4 @@ paramOrder:
   - deletion_policy
   - project
 
-extraGetters: |2
-    /// Reference to `id` attribute (full path
-    /// `projects/{project}/instances/{instance}/databases/{name}`).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-    /// Reference to `name` attribute (the bare database name).
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `self_link` attribute (HTTPS API path).
-    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
