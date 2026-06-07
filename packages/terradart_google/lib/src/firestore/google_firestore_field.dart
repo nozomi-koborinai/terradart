@@ -181,10 +181,9 @@ final class GoogleFirestoreField extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFirestoreFieldSensitive;
 
-  /// Reference to `name` attribute (the full path
-  /// `projects/{p}/databases/{db}/collectionGroups/{c}/fields/{f}`).
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute. Same as [nameRef] for this resource.
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

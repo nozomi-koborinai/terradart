@@ -1,9 +1,9 @@
 outputDir: firestore
 
-classDocComment: |-
-  /// Factory wrapper for `google_firestore_database` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// Required identity:
   /// - [localName]: Terraform local name (the address segment after
   ///   `google_firestore_database.`).
@@ -57,34 +57,6 @@ paramOrder:
 
 extraImports:
   - "import 'package:meta/meta.dart';"
-
-extraGetters: |2
-    /// Reference to `name` attribute (`google_firestore_database.<id>.name`).
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute (full path
-    /// `projects/{project}/databases/{name}`).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `uid` attribute (server-assigned UUID4 for the database).
-    TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
-
-    /// Reference to `etag` attribute (used for optimistic concurrency).
-    TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
-
-    /// Reference to `create_time` attribute (RFC3339).
-    TfRef<String> get createTime =>
-        TfRef.attribute<String>(this, 'create_time');
-
-    /// Reference to `key_prefix` attribute -- the Datastore-style
-    /// application-ID key prefix for this database.
-    TfRef<String> get keyPrefix =>
-        TfRef.attribute<String>(this, 'key_prefix');
-
-    /// Reference to `earliest_version_time` attribute. RFC3339; the
-    /// oldest timestamp from which point-in-time reads are supported.
-    TfRef<String> get earliestVersionTime =>
-        TfRef.attribute<String>(this, 'earliest_version_time');
 
 dartTypeOverrides:
   type: FirestoreDatabaseType

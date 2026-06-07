@@ -138,8 +138,7 @@ class FirestoreDatabaseCmekConfig {
   Map<String, Object?> encode() => {'kms_key_name': kmsKeyName.toTfJson()};
 }
 
-/// Factory wrapper for `google_firestore_database` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_firestore_database`.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
@@ -228,28 +227,32 @@ final class GoogleFirestoreDatabase extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFirestoreDatabaseSensitive;
 
-  /// Reference to `name` attribute (`google_firestore_database.<id>.name`).
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/databases/{name}`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `uid` attribute (server-assigned UUID4 for the database).
-  TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
-
-  /// Reference to `etag` attribute (used for optimistic concurrency).
-  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
-
-  /// Reference to `create_time` attribute (RFC3339).
+  /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
-  /// Reference to `key_prefix` attribute -- the Datastore-style
-  /// application-ID key prefix for this database.
-  TfRef<String> get keyPrefix => TfRef.attribute<String>(this, 'key_prefix');
-
-  /// Reference to `earliest_version_time` attribute. RFC3339; the
-  /// oldest timestamp from which point-in-time reads are supported.
+  /// Reference to `earliest_version_time` attribute.
   TfRef<String> get earliestVersionTime =>
       TfRef.attribute<String>(this, 'earliest_version_time');
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `key_prefix` attribute.
+  TfRef<String> get keyPrefix => TfRef.attribute<String>(this, 'key_prefix');
+
+  /// Reference to `uid` attribute.
+  TfRef<String> get uid => TfRef.attribute<String>(this, 'uid');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+
+  /// Reference to `version_retention_period` attribute.
+  TfRef<String> get versionRetentionPeriod =>
+      TfRef.attribute<String>(this, 'version_retention_period');
 }

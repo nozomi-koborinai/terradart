@@ -1,9 +1,9 @@
 outputDir: firestore
 
-classDocComment: |-
-  /// Factory wrapper for `google_firestore_document` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// Manages a single document in a Cloud Firestore collection as an
   /// Infrastructure-as-Code resource. Intended for **small fixed
   /// master-data sets** (feature flags, pricing tiers, lookup tables,
@@ -53,23 +53,3 @@ paramOrder:
   - fields
   - database
   - project
-
-extraGetters: |2
-    /// Reference to `id` attribute (full path within the database).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `name` attribute (server-set, full resource path:
-    /// `projects/{p}/databases/{db}/documents/{collection}/{docId}`).
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `path` attribute (the relative path to the
-    /// collection this document exists within).
-    TfRef<String> get path => TfRef.attribute<String>(this, 'path');
-
-    /// Reference to `create_time` attribute (RFC3339).
-    TfRef<String> get createTime =>
-        TfRef.attribute<String>(this, 'create_time');
-
-    /// Reference to `update_time` attribute (RFC3339).
-    TfRef<String> get updateTime =>
-        TfRef.attribute<String>(this, 'update_time');
