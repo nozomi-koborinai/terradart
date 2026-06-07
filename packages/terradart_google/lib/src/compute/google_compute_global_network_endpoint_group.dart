@@ -30,16 +30,21 @@ enum GlobalNetworkEndpointGroupType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Factory wrapper for `google_compute_global_network_endpoint_group`
-/// (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_global_network_endpoint_group`.
 ///
-/// A **global** Network Endpoint Group (NEG) attached to an external HTTP(S)
-/// load balancer. Unlike regional NEGs, the global flavour only describes
-/// endpoints that live *outside* Google Cloud — either resolved by FQDN +
-/// port ([GlobalNetworkEndpointGroupType.internetFqdnPort]) or referenced
-/// by raw IP + port ([GlobalNetworkEndpointGroupType.internetIpPort]).
-/// Private Service Connect NEGs are modelled by the regional
-/// `google_compute_region_network_endpoint_group` resource, not this one.
+/// A global network endpoint group contains endpoints that reside outside of
+/// Google Cloud. Currently a global network endpoint group can only support a
+/// single endpoint.
+///
+/// Recreating a global network endpoint group that's in use by another resource
+/// will give a `resourceInUseByAnotherResource` error. Use
+/// `lifecycle.create_before_destroy` to avoid this type of error.
+///
+/// Endpoints are resolved by FQDN + port
+/// ([GlobalNetworkEndpointGroupType.internetFqdnPort]) or referenced by raw
+/// IP + port ([GlobalNetworkEndpointGroupType.internetIpPort]). Private
+/// Service Connect NEGs are modelled by
+/// `google_compute_region_network_endpoint_group`, not this resource.
 ///
 /// A global NEG is a leaf in the external Application LB chain:
 ///
@@ -52,22 +57,13 @@ enum GlobalNetworkEndpointGroupType implements TerraformEnum {
 /// ```
 ///
 /// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_compute_global_network_endpoint_group.`).
+/// - [localName]: Terraform local name.
 /// - `name`: GCP NEG resource name. 1-63 chars, RFC1035.
 /// - `networkEndpointType`: one of [GlobalNetworkEndpointGroupType].
 ///
-/// Strongly recommended:
-/// - `defaultPort`: default TCP port used when individual
-///   `google_compute_global_network_endpoint` entries omit `port`. Match
-///   the backend port your origin actually listens on (typically `443` for
-///   HTTPS origins, `80` for HTTP). Leave `null` only when every endpoint
-///   sets its own port.
-///
-/// Recreating an in-use global NEG yields a
-/// `resourceInUseByAnotherResource` error because the upstream backend
-/// service holds a reference. Apply `lifecycle.create_before_destroy` on
-/// the NEG when name / type changes are needed.
+/// Strongly recommended: set `defaultPort` to the backend port your origin
+/// listens on (typically `443` for HTTPS, `80` for HTTP). Leave `null` only
+/// when every endpoint sets its own port.
 ///
 /// Example (FQDN + port external origin):
 /// ```dart
@@ -79,10 +75,6 @@ enum GlobalNetworkEndpointGroupType implements TerraformEnum {
 ///   defaultPort: TfArg.literal(443),
 /// );
 /// ```
-///
-/// Composition pattern: extends
-/// `Resource` for runtime
-/// behavior.
 final class GoogleComputeGlobalNetworkEndpointGroup extends Resource {
   static const String tfType = 'google_compute_global_network_endpoint_group';
 
@@ -110,17 +102,12 @@ final class GoogleComputeGlobalNetworkEndpointGroup extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeGlobalNetworkEndpointGroupSensitive;
 
-  /// Reference to `name` attribute. Use for interpolations like
-  /// `neg.nameRef` →
-  /// `${google_compute_global_network_endpoint_group.<localName>.name}`.
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/global/networkEndpointGroups/{name}`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `self_link` attribute. Wire this into a backend
-  /// service's `backend.group` slot when composing an external HTTP(S)
-  /// LB.
+  /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 }

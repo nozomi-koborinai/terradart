@@ -39,32 +39,38 @@ enum NetworkEndpointGroupType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Factory wrapper for `google_compute_network_endpoint_group` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_network_endpoint_group`.
 ///
-/// Manages a **zonal** Network Endpoint Group (NEG). A NEG is a collection
-/// of IP+port combinations that backend services in HTTP(S), TCP proxy, and
-/// SSL proxy load balancers can target at a granularity finer than whole
-/// VM instances.
+/// Network endpoint groups (NEGs) are zonal resources that represent
+/// collections of IP address and port combinations for GCP resources within a
+/// single subnet. Each IP address and port combination is called a network
+/// endpoint.
 ///
-/// Use this resource for the dominant L7 LB pattern: zonal VM-IP+port
-/// endpoints in a single subnet, attached to a backend service. For
-/// internet-fronted (hybrid) endpoints with no GCP backing VM, see
-/// `GoogleComputeGlobalNetworkEndpointGroup`. For regional Serverless / PSC
-/// NEGs, see `GoogleComputeRegionNetworkEndpointGroup`.
+/// Network endpoint groups can be used as backends in backend services for
+/// HTTP(S), TCP proxy, and SSL proxy load balancers. You cannot use NEGs as a
+/// backend with internal load balancers. Because NEG backends allow you to
+/// specify IP addresses and ports, you can distribute traffic in a granular
+/// fashion among applications or containers running within VM instances.
+///
+/// Recreating a network endpoint group that's in use by another resource will
+/// give a `resourceInUseByAnotherResource` error. Use
+/// `lifecycle.create_before_destroy` to avoid this type of error.
+///
+/// Dominant L7 LB pattern: zonal VM-IP+port endpoints in a single subnet,
+/// attached to a backend service. For internet-fronted (hybrid) endpoints
+/// with no GCP backing VM, see `GoogleComputeGlobalNetworkEndpointGroup`.
+/// For regional Serverless / PSC NEGs, see
+/// `GoogleComputeRegionNetworkEndpointGroup`.
 ///
 /// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_compute_network_endpoint_group.`).
+/// - [localName]: Terraform local name.
 /// - `name`: GCP-internal NEG resource name. Must comply with RFC1035.
 /// - `zone`: the zone the NEG (and its member endpoints) lives in.
 /// - `network`: self-link of the VPC the endpoints belong to. Pass
 ///   `TfArg.ref(vpc.selfLink)`.
 ///
-/// Recreating a NEG that is already attached to a backend service produces
-/// a `resourceInUseByAnotherResource` error; use
-/// `lifecycle.create_before_destroy` (or detach first) when destructive
-/// changes are unavoidable.
+/// When renaming or recreating an in-use NEG, detaching it from the backend
+/// service first avoids the `create_before_destroy` cascade to dependents.
 ///
 /// Example (zonal VM-IP+port NEG fronting a regional internal L7 LB):
 /// ```dart
@@ -79,9 +85,6 @@ enum NetworkEndpointGroupType implements TerraformEnum {
 ///   defaultPort: TfArg.literal(8080),
 /// );
 /// ```
-///
-/// Composition pattern: extends `Resource`
-/// for runtime behavior.
 final class GoogleComputeNetworkEndpointGroup extends Resource {
   static const String tfType = 'google_compute_network_endpoint_group';
 
@@ -116,21 +119,18 @@ final class GoogleComputeNetworkEndpointGroup extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeNetworkEndpointGroupSensitive;
 
-  /// Reference to `name` attribute. Use this when downstream consumers
-  /// (e.g. `google_compute_backend_service.backend[*].group`) need the
-  /// NEG by name rather than full self_link.
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/zones/{zone}/networkEndpointGroups/{name}`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `self_link` attribute. Pass this as the
-  /// `group` argument of a `google_compute_backend_service` backend block
-  /// when wiring the NEG into a load balancer.
+  /// Reference to `generated_id` attribute.
+  TfRef<num> get generatedId => TfRef.attribute<num>(this, 'generated_id');
+
+  /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
-  /// Reference to `size` attribute — the live count of endpoints registered
-  /// in the group. Available after apply.
-  TfRef<num> get sizeRef => TfRef.attribute<num>(this, 'size');
+  /// Reference to `size` attribute.
+  TfRef<num> get size => TfRef.attribute<num>(this, 'size');
 }

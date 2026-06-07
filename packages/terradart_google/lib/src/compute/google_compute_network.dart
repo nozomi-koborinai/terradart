@@ -53,11 +53,12 @@ enum NetworkFirewallPolicyEnforcementOrder implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Factory wrapper for `google_compute_network` (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_network`.
+///
+/// Manages a VPC network or legacy network resource on GCP.
 ///
 /// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_compute_network.`).
+/// - [localName]: Terraform local name.
 /// - `name`: GCP VPC network name. Pass `TfArg.literal('main-vpc')` or
 ///   `TfArg.ref(otherNetwork.nameRef)`.
 ///
@@ -70,9 +71,6 @@ enum NetworkFirewallPolicyEnforcementOrder implements TerraformEnum {
 ///   routingMode: TfArg.literal(RoutingMode.regional),
 /// );
 /// ```
-///
-/// Manages a VPC network or legacy network resource on GCP. Composition
-/// pattern: extends `Resource` for runtime behavior.
 final class GoogleComputeNetwork extends Resource {
   static const String tfType = 'google_compute_network';
 
@@ -130,15 +128,22 @@ final class GoogleComputeNetwork extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeNetworkSensitive;
 
-  /// Reference to `name` attribute. Use for interpolations like
-  /// `network.nameRef` → `${google_compute_network.<localName>.name}`.
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/global/networks/{name}`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `self_link` attribute. Frequently used as the `network`
-  /// param of downstream resources like `google_compute_subnetwork`.
+  /// Reference to `gateway_ipv4` attribute.
+  TfRef<String> get gatewayIpv4 =>
+      TfRef.attribute<String>(this, 'gateway_ipv4');
+
+  /// Reference to `network_id` attribute.
+  TfRef<String> get networkId => TfRef.attribute<String>(this, 'network_id');
+
+  /// Reference to `numeric_id` attribute.
+  TfRef<String> get numericId => TfRef.attribute<String>(this, 'numeric_id');
+
+  /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 }
