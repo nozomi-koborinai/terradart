@@ -94,18 +94,35 @@ class MonitoringNotificationChannelSensitiveLabels {
   };
 }
 
-/// Factory wrapper for `google_monitoring_notification_channel` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_monitoring_notification_channel`.
 ///
-/// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_monitoring_notification_channel.`).
-/// - `type`: the notification channel **type registry key**. Google
-///   maintains the canonical list server-side (the API returns it from
-///   `projects.notificationChannelDescriptors.list`) and adds new
-///   transports asynchronously, so this slot is intentionally a free-form
-///   `String` rather than a Dart enum — pinning an enum here would force
-///   a terradart release every time Google ships a new descriptor.
+/// A NotificationChannel is a medium through which an alert is delivered when a
+/// policy violation is detected. Examples of channels include email, SMS, and
+/// third-party messaging applications. Fields containing sensitive information
+/// like authentication tokens or contact info are only partially populated on
+/// retrieval.
+///
+/// Notification Channels are designed to be flexible and are made up of a
+/// supported `type` and labels to configure that channel. Each `type` has
+/// specific labels that need to be present for that channel to be correctly
+/// configured. The labels that are required to be present for one channel
+/// `type` are often different than those required for another. Due to these
+/// loose constraints it's often best to set up a channel through the UI and
+/// import to Terraform when setting up a brand new channel type to determine
+/// which labels are required.
+///
+/// A list of supported channels per project the `list` endpoint can be accessed
+/// programmatically or through the api explorer at
+/// https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.notificationChannelDescriptors/list
+/// . This provides the channel type and all of the required labels that must be
+/// passed.
+///
+/// `type` is the notification channel **type registry key**. Google
+/// maintains the canonical list server-side (the API returns it from
+/// `projects.notificationChannelDescriptors.list`) and adds new
+/// transports asynchronously, so this slot is intentionally a free-form
+/// `String` rather than a Dart enum — pinning an enum here would force
+/// a terradart release every time Google ships a new descriptor.
 ///
 /// Common `type` values and the channel-specific keys they expect in
 /// [labels] (the canonical reference is the `NotificationChannelDescriptor`
@@ -165,11 +182,6 @@ class MonitoringNotificationChannelSensitiveLabels {
 ///   userLabels: TfArg.literal(const {'team': 'platform'}),
 /// );
 /// ```
-///
-/// Manages a Cloud Monitoring notification channel. Composition pattern:
-/// extends `Resource` for runtime
-/// behavior. The nested [MonitoringNotificationChannelSensitiveLabels]
-/// helper is modeled in the `prelude` below.
 final class GoogleMonitoringNotificationChannel extends Resource {
   static const String tfType = 'google_monitoring_notification_channel';
 
@@ -206,20 +218,13 @@ final class GoogleMonitoringNotificationChannel extends Resource {
   Set<String> get sensitiveFields =>
       _googleMonitoringNotificationChannelSensitive;
 
-  /// Reference to `id` attribute (the channel's full REST resource name,
-  /// `projects/{project}/notificationChannels/{channel_id}`). Alert
-  /// policies consume this value via their `notification_channels` list.
-  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute. Identical in shape to [id]; the
-  /// provider populates both with the same full resource name on create.
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to the computed `verification_status` attribute. One of
-  /// `STATE_UNSPECIFIED`, `UNVERIFIED`, `VERIFIED`. Channels with
-  /// `UNVERIFIED` status do not deliver notifications — kick off
-  /// verification out-of-band (`gcloud alpha monitoring channels verify`
-  /// or the REST `verify` endpoint) after apply.
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `verification_status` attribute.
   TfRef<String> get verificationStatus =>
       TfRef.attribute<String>(this, 'verification_status');
 }

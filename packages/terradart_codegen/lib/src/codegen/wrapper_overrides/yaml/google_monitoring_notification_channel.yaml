@@ -1,18 +1,15 @@
 outputDir: monitoring
 
-classDocComment: |-
-  /// Factory wrapper for `google_monitoring_notification_channel` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
-  /// Required identity:
-  /// - [localName]: Terraform local name (the address segment after
-  ///   `google_monitoring_notification_channel.`).
-  /// - `type`: the notification channel **type registry key**. Google
-  ///   maintains the canonical list server-side (the API returns it from
-  ///   `projects.notificationChannelDescriptors.list`) and adds new
-  ///   transports asynchronously, so this slot is intentionally a free-form
-  ///   `String` rather than a Dart enum — pinning an enum here would force
-  ///   a terradart release every time Google ships a new descriptor.
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// `type` is the notification channel **type registry key**. Google
+  /// maintains the canonical list server-side (the API returns it from
+  /// `projects.notificationChannelDescriptors.list`) and adds new
+  /// transports asynchronously, so this slot is intentionally a free-form
+  /// `String` rather than a Dart enum — pinning an enum here would force
+  /// a terradart release every time Google ships a new descriptor.
   ///
   /// Common `type` values and the channel-specific keys they expect in
   /// [labels] (the canonical reference is the `NotificationChannelDescriptor`
@@ -72,11 +69,6 @@ classDocComment: |-
   ///   userLabels: TfArg.literal(const {'team': 'platform'}),
   /// );
   /// ```
-  ///
-  /// Manages a Cloud Monitoring notification channel. Composition pattern:
-  /// extends `Resource` for runtime
-  /// behavior. The nested [MonitoringNotificationChannelSensitiveLabels]
-  /// helper is modeled in the `prelude` below.
 
 # User-settable attrs first (type is the only schema-required slot;
 # display_name is technically optional but operationally required for
@@ -107,24 +99,6 @@ extraSensitiveFields:
   - sensitive_labels.auth_token
   - sensitive_labels.password
   - sensitive_labels.service_key
-
-extraGetters: |2
-    /// Reference to `id` attribute (the channel's full REST resource name,
-    /// `projects/{project}/notificationChannels/{channel_id}`). Alert
-    /// policies consume this value via their `notification_channels` list.
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `name` attribute. Identical in shape to [id]; the
-    /// provider populates both with the same full resource name on create.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to the computed `verification_status` attribute. One of
-    /// `STATE_UNSPECIFIED`, `UNVERIFIED`, `VERIFIED`. Channels with
-    /// `UNVERIFIED` status do not deliver notifications — kick off
-    /// verification out-of-band (`gcloud alpha monitoring channels verify`
-    /// or the REST `verify` endpoint) after apply.
-    TfRef<String> get verificationStatus =>
-        TfRef.attribute<String>(this, 'verification_status');
 
 prelude: |
   // ===========================================================================

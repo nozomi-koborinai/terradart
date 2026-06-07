@@ -1,20 +1,15 @@
 outputDir: monitoring
 
-classDocComment: |-
-  /// Factory wrapper for `google_monitoring_uptime_check_config` (provider
-  /// `hashicorp/google ~> 7.0`).
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// An uptime check is a periodic probe (HTTP / HTTPS, plain TCP, or a
+  /// Synthetic Monitor Cloud Function) launched from Google-managed checker
+  /// pools (or your own VPC checkers) against a target resource.
   ///
-  /// Manages a Cloud Monitoring **uptime check** — a periodic probe (HTTP /
-  /// HTTPS, plain TCP, or a Synthetic Monitor Cloud Function) launched from
-  /// Google-managed checker pools (or your own VPC checkers) against a
-  /// target resource.
-  ///
-  /// Required identity:
-  /// - [localName]: Terraform local name (the address segment after
-  ///   `google_monitoring_uptime_check_config.`).
-  /// - `displayName`: human-friendly label shown in the Monitoring console.
-  /// - `timeout`: Duration string for the per-probe budget (e.g. `'10s'`).
-  ///   Valid range 1-60 seconds.
+  /// `timeout` is a Duration string for the per-probe budget (e.g. `'10s'`,
+  /// valid range 1-60 seconds).
   ///
   /// ## Probe shape — pick exactly one
   ///
@@ -82,13 +77,6 @@ classDocComment: |-
   ///   ],
   /// );
   /// ```
-  ///
-  /// Composition pattern: extends `Resource`
-  /// for runtime behavior. Nested-block helpers ([MonitoringUptimeCheckConfigHttpCheck],
-  /// [MonitoringUptimeCheckConfigTcpCheck], [MonitoringUptimeCheckConfigContentMatcher],
-  /// [MonitoringUptimeCheckConfigMonitoredResource], [MonitoringUptimeCheckConfigResourceGroup],
-  /// [MonitoringUptimeCheckConfigSyntheticMonitor], etc.) are modeled in the
-  /// `prelude` below.
 
 # Required attrs first (display_name + timeout), then probe-target identity
 # (monitored_resource / resource_group), then probe-type configs
@@ -113,14 +101,6 @@ paramOrder:
   - project
 
 extraGetters: |2
-    /// Reference to `id` attribute (the uptime check's full resource name,
-    /// `projects/{project}/uptimeCheckConfigs/{uptime_check_id}`).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `name` attribute (same shape as [id]; populated by
-    /// Cloud Monitoring on create).
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
     /// Reference to `uptime_check_id` (the bare ID segment, without the
     /// `projects/.../uptimeCheckConfigs/` prefix).
     TfRef<String> get uptimeCheckIdRef =>

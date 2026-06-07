@@ -609,12 +609,13 @@ class MonitoringAlertPolicyDocumentation {
   };
 }
 
-/// Factory wrapper for `google_monitoring_alert_policy` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_monitoring_alert_policy`.
 ///
-/// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_monitoring_alert_policy.`).
+/// A description of the conditions under which some aspect of your system is
+/// considered to be "unhealthy" and the ways to notify people or services about
+/// this state.
+///
+/// Required identity beyond [localName]:
 /// - `displayName`: human-readable label shown in dashboards / notifications
 ///   (<= 512 Unicode characters).
 /// - `combiner`: how multiple [conditions] combine into an incident. Use
@@ -656,12 +657,6 @@ class MonitoringAlertPolicyDocumentation {
 ///   severity: TfArg.literal(AlertSeverity.warning),
 /// );
 /// ```
-///
-/// Manages a Cloud Monitoring alert policy. Composition pattern: extends
-/// `Resource` for runtime behavior. The
-/// nested-block helpers ([MonitoringAlertPolicyAlertCondition], [MonitoringAlertPolicyConditionThreshold],
-/// [MonitoringAlertPolicyAggregation], [MonitoringAlertPolicyAlertStrategy], [MonitoringAlertPolicyDocumentation], etc.) are modeled in
-/// the `prelude` below.
 final class GoogleMonitoringAlertPolicy extends Resource {
   static const String tfType = 'google_monitoring_alert_policy';
 
@@ -703,11 +698,13 @@ final class GoogleMonitoringAlertPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleMonitoringAlertPolicySensitive;
 
-  /// Reference to `id` attribute (the alert policy's full resource name,
-  /// `projects/{project}/alertPolicies/{policy_id}`).
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `name` attribute (same shape as [id]; populated by
-  /// Cloud Monitoring on create).
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  /// Reference to `creation_record` attribute.
+  TfRef<List<Map<String, Object?>>> get creationRecord =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'creation_record');
 }

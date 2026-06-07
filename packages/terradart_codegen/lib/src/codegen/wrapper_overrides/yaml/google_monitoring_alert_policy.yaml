@@ -1,12 +1,10 @@
 outputDir: monitoring
 
-classDocComment: |-
-  /// Factory wrapper for `google_monitoring_alert_policy` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
-  /// Required identity:
-  /// - [localName]: Terraform local name (the address segment after
-  ///   `google_monitoring_alert_policy.`).
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Required identity beyond [localName]:
   /// - `displayName`: human-readable label shown in dashboards / notifications
   ///   (<= 512 Unicode characters).
   /// - `combiner`: how multiple [conditions] combine into an incident. Use
@@ -48,12 +46,6 @@ classDocComment: |-
   ///   severity: TfArg.literal(AlertSeverity.warning),
   /// );
   /// ```
-  ///
-  /// Manages a Cloud Monitoring alert policy. Composition pattern: extends
-  /// `Resource` for runtime behavior. The
-  /// nested-block helpers ([MonitoringAlertPolicyAlertCondition], [MonitoringAlertPolicyConditionThreshold],
-  /// [MonitoringAlertPolicyAggregation], [MonitoringAlertPolicyAlertStrategy], [MonitoringAlertPolicyDocumentation], etc.) are modeled in
-  /// the `prelude` below.
 
 # User-settable attrs first (display_name / combiner are required), then
 # the conditions list, then alert_strategy / documentation / notification_channels,
@@ -71,15 +63,6 @@ paramOrder:
   - severity
   - user_labels
   - project
-
-extraGetters: |2
-    /// Reference to `id` attribute (the alert policy's full resource name,
-    /// `projects/{project}/alertPolicies/{policy_id}`).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `name` attribute (same shape as [id]; populated by
-    /// Cloud Monitoring on create).
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
 dartTypeOverrides:
   combiner: AlertCombiner
