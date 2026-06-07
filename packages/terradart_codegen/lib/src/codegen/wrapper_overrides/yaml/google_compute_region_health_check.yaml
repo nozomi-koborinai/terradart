@@ -1,9 +1,8 @@
 outputDir: compute
 
-classDocComment: |-
-  /// Factory wrapper for `google_compute_region_health_check` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+
+curatedDoc: |-
   /// A **regional** health check polls instances behind a regional load
   /// balancer at a configurable interval. Required by regional internal
   /// (`INTERNAL`) and internal-managed (`INTERNAL_MANAGED`) load
@@ -15,9 +14,9 @@ classDocComment: |-
   /// ([httpHealthCheck], [httpsHealthCheck], [http2HealthCheck],
   /// [tcpHealthCheck], [sslHealthCheck], [grpcHealthCheck]) must be set,
   /// and the choice determines the value the GCP API will compute for
-  /// `type` (which is read-only on this resource — surface it via
-  /// [typeRef]). The Terraform provider rejects configurations with
-  /// multiple blocks or none.
+  /// `type` (which is read-only on this resource — accessible via the
+  /// derived `type` getter). The Terraform provider rejects configurations
+  /// with multiple blocks or none.
   ///
   /// Required identity:
   /// - [localName]: Terraform local name (the address segment after
@@ -78,30 +77,17 @@ paramOrder:
 extraImports:
   - "import 'package:meta/meta.dart';"
 
+deriveOutputGetters: true
+
 extraGetters: |2
     /// Reference to `name` attribute.
     TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-    /// Reference to `id` attribute (full path
-    /// `projects/{project}/regions/{region}/healthChecks/{name}`).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `self_link` attribute. This is the value
-    /// `google_compute_region_backend_service.health_checks` expects.
-    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-    /// Reference to the computed `type` attribute (the
-    /// [RegionHealthCheckType] the API inferred from which per-protocol
-    /// block was set). Available after apply.
-    TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
-
     /// Reference to the computed server-assigned numeric `health_check_id`.
+    /// Kept at `TfRef<int>` — schema type is `number` (derived would widen
+    /// to `TfRef<num>`).
     TfRef<int> get healthCheckId =>
         TfRef.attribute<int>(this, 'health_check_id');
-
-    /// Reference to `creation_timestamp` (RFC3339).
-    TfRef<String> get creationTimestamp =>
-        TfRef.attribute<String>(this, 'creation_timestamp');
 
 prelude: |
   // ===========================================================================
@@ -117,7 +103,7 @@ prelude: |
   /// resource (the GCP API derives it from which per-protocol config
   /// block was set), so callers don't set this directly — they pick the
   /// matching `*HealthCheck` block. Listed here for use in `==`
-  /// comparisons against [typeRef] reads.
+  /// comparisons against the derived `type` getter.
   enum RegionHealthCheckType implements TerraformEnum {
     http('HTTP'),
     https('HTTPS'),

@@ -1,9 +1,8 @@
 outputDir: compute
 
-classDocComment: |-
-  /// Factory wrapper for `google_compute_backend_bucket` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+
+curatedDoc: |-
   /// A **global** backend bucket — the load-balancing target that points
   /// an HTTPS load balancer at a Google Cloud Storage bucket of static
   /// objects. Use this when the load balancer needs to serve static
@@ -105,22 +104,11 @@ paramOrder:
 extraImports:
   - "import 'package:meta/meta.dart';"
 
+deriveOutputGetters: true
+
 extraGetters: |2
     /// Reference to `name` attribute.
     TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute (full path
-    /// `projects/{project}/global/backendBuckets/{name}`).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `self_link` attribute (HTTPS API path). The canonical
-    /// reference a downstream `google_compute_url_map` uses to bind a
-    /// path rule to this bucket.
-    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-    /// Reference to `creation_timestamp` (RFC3339).
-    TfRef<String> get creationTimestamp =>
-        TfRef.attribute<String>(this, 'creation_timestamp');
 
 dartTypeOverrides:
   compression_mode: BackendBucketCompressionMode

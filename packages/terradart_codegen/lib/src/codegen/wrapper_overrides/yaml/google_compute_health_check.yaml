@@ -1,9 +1,8 @@
 outputDir: compute
 
-classDocComment: |-
-  /// Factory wrapper for `google_compute_health_check` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+
+curatedDoc: |-
   /// A **global** health check polls instances behind a load balancer at a
   /// configurable interval. Once attached to a backend service (see
   /// [GoogleComputeBackendService.healthChecks]) it gates which backends
@@ -19,9 +18,9 @@ classDocComment: |-
   /// ([httpHealthCheck], [httpsHealthCheck], [http2HealthCheck],
   /// [tcpHealthCheck], [sslHealthCheck], [grpcHealthCheck]) must be set,
   /// and the choice determines the value the GCP API will compute for
-  /// `type` (which is read-only on this resource — surface it via
-  /// [typeRef]). The Terraform provider rejects configurations with
-  /// multiple blocks or none.
+  /// `type` (which is read-only on this resource — accessible via the
+  /// derived `type` getter). The Terraform provider rejects configurations
+  /// with multiple blocks or none.
   ///
   /// Required identity:
   /// - [localName]: Terraform local name (the address segment after
@@ -88,26 +87,11 @@ paramOrder:
 extraImports:
   - "import 'package:meta/meta.dart';"
 
+deriveOutputGetters: true
+
 extraGetters: |2
     /// Reference to `name` attribute.
     TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute (full path
-    /// `projects/{project}/global/healthChecks/{name}`).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `self_link` attribute. This is the value
-    /// [GoogleComputeBackendService.healthChecks] expects.
-    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-    /// Reference to the computed `type` attribute (the [HealthCheckType]
-    /// the API inferred from which per-protocol block was set). Available
-    /// after apply.
-    TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
-
-    /// Reference to `creation_timestamp` (RFC3339).
-    TfRef<String> get creationTimestamp =>
-        TfRef.attribute<String>(this, 'creation_timestamp');
 
 prelude: |
   // ===========================================================================
@@ -117,7 +101,8 @@ prelude: |
   /// Health-check protocol. Computed on the resource (the GCP API derives
   /// it from which per-protocol config block was set), so callers don't
   /// set this directly — they pick the matching `*HealthCheck` block.
-  /// Listed here for use in `==` comparisons against [typeRef] reads.
+  /// Listed here for use in `==` comparisons against the derived `type`
+  /// getter.
   enum HealthCheckType implements TerraformEnum {
     http('HTTP'),
     https('HTTPS'),
