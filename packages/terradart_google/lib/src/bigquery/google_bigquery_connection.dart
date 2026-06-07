@@ -482,8 +482,9 @@ class BigqueryConnectionConfiguration {
 // Factory
 // ===========================================================================
 
-/// Factory wrapper for `google_bigquery_connection` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_bigquery_connection`.
+///
+/// A connection allows BigQuery connections to external data sources..
 ///
 /// A BigQuery **connection** stores the credentials and configuration
 /// BigQuery uses to read data from sources that live outside BigQuery
@@ -579,7 +580,7 @@ class BigqueryConnectionConfiguration {
 ///   sensitive variable rather than literals.
 ///
 /// Output-only state:
-/// - [name]: full resource name
+/// - [nameRef]: full resource name
 ///   (`projects/{project}/locations/{location}/connections/{id}`).
 /// - [hasCredential]: `true` once the credential block is materialized
 ///   server-side.
@@ -629,18 +630,13 @@ final class GoogleBigqueryConnection extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigqueryConnectionSensitive;
 
-  /// Reference to `name` attribute — the full resource name
-  /// (`projects/{project}/locations/{location}/connections/{id}`). This
-  /// is the value SQL `EXTERNAL_QUERY` calls reference.
-  TfRef<String> get name => TfRef.attribute<String>(this, 'name');
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute. For this resource the API returns the
-  /// full resource path here.
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to the computed `has_credential` attribute. `true` once
-  /// the connection's credential block has been materialized server-
-  /// side.
+  /// Reference to `has_credential` attribute.
   TfRef<bool> get hasCredential =>
       TfRef.attribute<bool>(this, 'has_credential');
 }

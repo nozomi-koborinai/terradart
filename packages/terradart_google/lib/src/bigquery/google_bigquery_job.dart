@@ -693,8 +693,11 @@ class BigqueryJobCopy {
   };
 }
 
-/// Factory wrapper for `google_bigquery_job` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_bigquery_job`.
+///
+/// Jobs are actions that BigQuery runs on your behalf to load data, export
+/// data, query data, or copy data. Once a BigQuery job is created, it cannot be
+/// changed or deleted.
 ///
 /// **Ephemeral — one-shot, not re-run on apply.** A BigQuery job is a
 /// single, immutable execution of work (query / load / extract / copy).
@@ -818,16 +821,21 @@ final class GoogleBigqueryJob extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigqueryJobSensitive;
 
-  /// Reference to `id` attribute
-  /// (`projects/{project}/jobs/{job_id}` — full job path).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `job_type` attribute — server-classified bucket
-  /// (`QUERY` / `LOAD` / `EXTRACT` / `COPY`). Computed after apply.
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `job_type` attribute.
   TfRef<String> get jobType => TfRef.attribute<String>(this, 'job_type');
 
-  /// Reference to `user_email` — the principal BigQuery saw running
-  /// the job (the Terraform service account, in the usual case).
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `user_email` attribute.
   TfRef<String> get userEmail => TfRef.attribute<String>(this, 'user_email');
 
   /// Reference to `status` — server-computed terminal status of the
@@ -836,6 +844,13 @@ final class GoogleBigqueryJob extends Resource {
   /// `RUNNING`. Note: by the time Terraform records this, the job
   /// has already settled (Terraform waits for the job to finish at
   /// apply time).
+  ///
+  /// Kept hand-written (not derived) to pin the loose
+  /// `TfRef<List<Object?>>` shape: the schema types `status` as a
+  /// `list(object(...))`, which the output-getter gate would widen to
+  /// `TfRef<List<Map<String, Object?>>>`. Holding the narrower element
+  /// type here keeps the public surface stable; the gate skips `status`
+  /// because the name is present in `extraGetters`.
   TfRef<List<Object?>> get status =>
       TfRef.attribute<List<Object?>>(this, 'status');
 }

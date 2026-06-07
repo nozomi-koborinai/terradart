@@ -52,15 +52,15 @@ class MonitoringServiceTelemetry {
   };
 }
 
-/// Factory wrapper for `google_monitoring_service` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_monitoring_service`.
 ///
-/// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_monitoring_service.`).
-/// - `serviceId`: user-supplied service identifier. The full resource name
-///   exposed by Cloud Monitoring will be
-///   `projects/{project}/services/{serviceId}`.
+/// A Service is a discrete, autonomous, and network-accessible unit, designed
+/// to solve an individual concern. In Cloud Monitoring, a Service acts as the
+/// root resource under which operational aspects of the service are accessible
+///
+/// `serviceId` is the user-supplied service identifier; the full resource
+/// name exposed by Cloud Monitoring will be
+/// `projects/{project}/services/{serviceId}`.
 ///
 /// Modeling notes:
 /// - The Cloud Monitoring API has multiple service-type variants
@@ -100,12 +100,6 @@ class MonitoringServiceTelemetry {
 ///   ),
 /// );
 /// ```
-///
-/// Manages a Cloud Monitoring [Service](https://cloud.google.com/monitoring/api/ref_v3/rest/v3/services).
-/// Composition pattern: extends `Resource` for
-/// runtime behavior. The nested-block helper
-/// ([MonitoringServiceBasicService]) and the telemetry view-model
-/// ([MonitoringServiceTelemetry]) live in the `prelude` below.
 final class GoogleMonitoringService extends Resource {
   static const String tfType = 'google_monitoring_service';
 
@@ -133,18 +127,13 @@ final class GoogleMonitoringService extends Resource {
   @override
   Set<String> get sensitiveFields => _googleMonitoringServiceSensitive;
 
-  /// Reference to `id` attribute (the service's full resource name,
-  /// `projects/{project}/services/{service_id}`).
-  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute (same shape as [id]; populated by
-  /// Cloud Monitoring on create).
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to the server-populated `telemetry` block. The Cloud
-  /// Monitoring API derives the monitored resource name from the chosen
-  /// service-type variant, so this is exposed as a read-only reference
-  /// rather than a constructor input.
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `telemetry` attribute.
   TfRef<List<Map<String, Object?>>> get telemetry =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'telemetry');
 }

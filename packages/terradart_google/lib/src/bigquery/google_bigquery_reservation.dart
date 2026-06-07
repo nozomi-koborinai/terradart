@@ -54,8 +54,9 @@ class BigqueryReservationAutoscale {
 // Factory
 // ===========================================================================
 
-/// Factory wrapper for `google_bigquery_reservation` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_bigquery_reservation`.
+///
+/// A reservation is a mechanism used to guarantee BigQuery slots to users.
 ///
 /// A BigQuery **reservation** carves out dedicated slot capacity (the
 /// unit of BigQuery parallelism) within an admin project / location.
@@ -127,12 +128,21 @@ final class GoogleBigqueryReservation extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigqueryReservationSensitive;
 
-  /// Reference to `name` attribute. Use this when wiring
-  /// `google_bigquery_reservation_assignment.reservation` to bind this
-  /// reservation to a project / folder / org.
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full reservation path
-  /// `projects/{project}/locations/{location}/reservations/{name}`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `original_primary_location` attribute.
+  TfRef<String> get originalPrimaryLocation =>
+      TfRef.attribute<String>(this, 'original_primary_location');
+
+  /// Reference to `primary_location` attribute.
+  TfRef<String> get primaryLocation =>
+      TfRef.attribute<String>(this, 'primary_location');
+
+  /// Reference to `replication_status` attribute.
+  TfRef<List<Map<String, Object?>>> get replicationStatus =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'replication_status');
 }

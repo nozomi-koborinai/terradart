@@ -230,8 +230,7 @@ final class FirestoreIndexIndexFieldVectorConfig
   };
 }
 
-/// Factory wrapper for `google_firestore_index` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_firestore_index`.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
@@ -319,11 +318,9 @@ final class GoogleFirestoreIndex extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFirestoreIndexSensitive;
 
-  /// Reference to `name` attribute (server-assigned full path:
-  /// `projects/{p}/databases/{db}/collectionGroups/{collection}/indexes/{id}`).
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute. Same as `nameRef` for this resource --
-  /// indexes have no separate id distinct from their full path.
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

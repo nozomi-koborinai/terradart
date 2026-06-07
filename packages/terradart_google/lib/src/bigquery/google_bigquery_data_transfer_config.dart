@@ -165,8 +165,10 @@ class BigqueryDataTransferConfigEncryptionConfiguration {
   Map<String, Object?> toArgMap() => {'kms_key_name': kmsKeyName.toTfJson()};
 }
 
-/// Factory wrapper for `google_bigquery_data_transfer_config` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_bigquery_data_transfer_config`.
+///
+/// Represents a data transfer configuration. A transfer configuration contains
+/// all metadata needed to perform a data transfer.
 ///
 /// Manages a BigQuery Data Transfer Service (DTS) configuration — a
 /// recurring import job that lands data into a BigQuery dataset from a
@@ -279,15 +281,6 @@ class BigqueryDataTransferConfigEncryptionConfiguration {
 ///   ),
 /// );
 /// ```
-///
-/// Composition pattern: extends
-/// `Resource` for runtime behavior.
-/// The nested helpers
-/// ([BigqueryDataTransferConfigScheduleOptions],
-/// [BigqueryDataTransferConfigEmailPreferences],
-/// [BigqueryDataTransferConfigSensitiveParams],
-/// [BigqueryDataTransferConfigEncryptionConfiguration]) are modeled in
-/// the `prelude` below.
 final class GoogleBigqueryDataTransferConfig extends Resource {
   static const String tfType = 'google_bigquery_data_transfer_config';
 
@@ -344,15 +337,9 @@ final class GoogleBigqueryDataTransferConfig extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigqueryDataTransferConfigSensitive;
 
-  /// Reference to `id` attribute (the transfer config's full resource
-  /// name, `projects/{project}/locations/{location}/transferConfigs/{configId}`
-  /// or `projects/{project}/transferConfigs/{configId}` for global
-  /// configs). Downstream consumers (e.g. monitoring policies that
-  /// alert on transfer-run failures) consume this value.
-  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to the computed `name` attribute. Identical in shape to
-  /// [id]; the provider populates both with the same full resource
-  /// name on create.
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

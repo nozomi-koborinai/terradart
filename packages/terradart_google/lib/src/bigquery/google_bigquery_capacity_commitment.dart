@@ -73,18 +73,22 @@ enum BigqueryCapacityCommitmentEdition implements TerraformEnum {
 // Factory
 // ===========================================================================
 
-/// Factory wrapper for `google_bigquery_capacity_commitment` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_bigquery_capacity_commitment`.
 ///
-/// A BigQuery **capacity commitment** purchases a fixed pool of slots
-/// (the unit of BigQuery parallelism) for a billing term (`MONTHLY`,
-/// `ANNUAL`, etc.). Commitments are sliced into [Reservation] buckets
-/// via `google_bigquery_reservation`, which are then bound to
-/// projects / folders / orgs via
-/// `google_bigquery_reservation_assignment`. The [plan] determines the
-/// commitment term; [renewalPlan] picks what the commitment converts
-/// to when the term ends. [edition] selects the BigQuery feature tier
-/// (`STANDARD` / `ENTERPRISE` / `ENTERPRISE_PLUS`).
+/// Capacity commitment is a way to purchase compute capacity for BigQuery jobs
+/// (in the form of slots) with some committed period of usage. Annual
+/// commitments renew by default. Commitments can be removed after their
+/// commitment end time passes.
+///
+/// In order to remove annual commitment, its plan needs to be changed to
+/// monthly or flex first.
+///
+/// Commitments are sliced into [Reservation] buckets via
+/// `google_bigquery_reservation`, which are then bound to projects /
+/// folders / orgs via `google_bigquery_reservation_assignment`. The
+/// [plan] determines the commitment term; [renewalPlan] picks what the
+/// commitment converts to when the term ends. [edition] selects the
+/// BigQuery feature tier (`STANDARD` / `ENTERPRISE` / `ENTERPRISE_PLUS`).
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
@@ -145,17 +149,20 @@ final class GoogleBigqueryCapacityCommitment extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigqueryCapacityCommitmentSensitive;
 
-  /// Reference to `name` attribute — the full commitment resource path
-  /// (`projects/{project}/locations/{location}/capacityCommitments/{id}`).
-  /// Use this when wiring downstream resources that need the resolved
-  /// API name.
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (Terraform identifier).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `state` attribute (e.g. `PENDING`, `ACTIVE`,
-  /// `FAILED`). Useful for waiting on commitment activation in
-  /// downstream resources.
+  /// Reference to `commitment_end_time` attribute.
+  TfRef<String> get commitmentEndTime =>
+      TfRef.attribute<String>(this, 'commitment_end_time');
+
+  /// Reference to `commitment_start_time` attribute.
+  TfRef<String> get commitmentStartTime =>
+      TfRef.attribute<String>(this, 'commitment_start_time');
+
+  /// Reference to `state` attribute.
   TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 }

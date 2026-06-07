@@ -517,20 +517,17 @@ class MonitoringUptimeCheckConfigContentMatcher {
   };
 }
 
-/// Factory wrapper for `google_monitoring_uptime_check_config` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_monitoring_uptime_check_config`.
 ///
-/// Manages a Cloud Monitoring **uptime check** — a periodic probe (HTTP /
-/// HTTPS, plain TCP, or a Synthetic Monitor Cloud Function) launched from
-/// Google-managed checker pools (or your own VPC checkers) against a
-/// target resource.
+/// This message configures which resources and services to monitor for
+/// availability.
 ///
-/// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_monitoring_uptime_check_config.`).
-/// - `displayName`: human-friendly label shown in the Monitoring console.
-/// - `timeout`: Duration string for the per-probe budget (e.g. `'10s'`).
-///   Valid range 1-60 seconds.
+/// An uptime check is a periodic probe (HTTP / HTTPS, plain TCP, or a
+/// Synthetic Monitor Cloud Function) launched from Google-managed checker
+/// pools (or your own VPC checkers) against a target resource.
+///
+/// `timeout` is a Duration string for the per-probe budget (e.g. `'10s'`,
+/// valid range 1-60 seconds).
 ///
 /// ## Probe shape — pick exactly one
 ///
@@ -598,13 +595,6 @@ class MonitoringUptimeCheckConfigContentMatcher {
 ///   ],
 /// );
 /// ```
-///
-/// Composition pattern: extends `Resource`
-/// for runtime behavior. Nested-block helpers ([MonitoringUptimeCheckConfigHttpCheck],
-/// [MonitoringUptimeCheckConfigTcpCheck], [MonitoringUptimeCheckConfigContentMatcher],
-/// [MonitoringUptimeCheckConfigMonitoredResource], [MonitoringUptimeCheckConfigResourceGroup],
-/// [MonitoringUptimeCheckConfigSyntheticMonitor], etc.) are modeled in the
-/// `prelude` below.
 final class GoogleMonitoringUptimeCheckConfig extends Resource {
   static const String tfType = 'google_monitoring_uptime_check_config';
 
@@ -663,13 +653,15 @@ final class GoogleMonitoringUptimeCheckConfig extends Resource {
   Set<String> get sensitiveFields =>
       _googleMonitoringUptimeCheckConfigSensitive;
 
-  /// Reference to `id` attribute (the uptime check's full resource name,
-  /// `projects/{project}/uptimeCheckConfigs/{uptime_check_id}`).
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `name` attribute (same shape as [id]; populated by
-  /// Cloud Monitoring on create).
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+  /// Reference to `uptime_check_id` attribute.
+  TfRef<String> get uptimeCheckId =>
+      TfRef.attribute<String>(this, 'uptime_check_id');
 
   /// Reference to `uptime_check_id` (the bare ID segment, without the
   /// `projects/.../uptimeCheckConfigs/` prefix).

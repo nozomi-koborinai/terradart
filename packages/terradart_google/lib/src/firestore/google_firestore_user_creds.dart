@@ -50,28 +50,26 @@ final class GoogleFirestoreUserCreds extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFirestoreUserCredsSensitive;
 
-  /// Reference to `id` attribute. Same as `name` for this resource --
-  /// user creds have no separate id distinct from their resource path.
-  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute (the full resource path
-  /// `projects/{p}/databases/{db}/userCreds/{name}`).
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `state` attribute (lifecycle state of the creds:
-  /// `ENABLED`, `DISABLED`, etc. -- the provider does not enumerate
-  /// the full set).
-  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to the server-generated `secure_password` attribute.
-  /// **Marked sensitive in the schema** -- terradart's `sensitiveFields`
-  /// set already includes this attribute; masking is automatic.
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `resource_identity` attribute.
+  TfRef<List<Map<String, Object?>>> get resourceIdentity =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'resource_identity');
+
+  /// Reference to `secure_password` attribute.
   TfRef<String> get securePassword =>
       TfRef.attribute<String>(this, 'secure_password');
 
-  /// Reference to `create_time` attribute (RFC3339).
-  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+  /// Reference to `state` attribute.
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 
-  /// Reference to `update_time` attribute (RFC3339).
+  /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 }

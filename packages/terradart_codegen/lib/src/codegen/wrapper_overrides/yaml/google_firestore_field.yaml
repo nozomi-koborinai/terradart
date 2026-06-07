@@ -1,8 +1,9 @@
 outputDir: firestore
 
-classDocComment: |-
-  /// Factory wrapper for `google_firestore_field`.
-  ///
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// Configures a single field within one Firestore collection group --
   /// either to override the database's automatic single-field indexing or
   /// to enable a TTL policy on the field. Composite indexes live in a
@@ -54,14 +55,6 @@ paramOrder:
 
 extraImports:
   - "import 'package:meta/meta.dart';"
-
-extraGetters: |2
-    /// Reference to `name` attribute (the full path
-    /// `projects/{p}/databases/{db}/collectionGroups/{c}/fields/{f}`).
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute. Same as [nameRef] for this resource.
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
 prelude: |
   // ===========================================================================

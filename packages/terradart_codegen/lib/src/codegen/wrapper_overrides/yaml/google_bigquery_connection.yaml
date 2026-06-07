@@ -1,9 +1,9 @@
 outputDir: bigquery
 
-classDocComment: |-
-  /// Factory wrapper for `google_bigquery_connection` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// A BigQuery **connection** stores the credentials and configuration
   /// BigQuery uses to read data from sources that live outside BigQuery
   /// storage. Federated queries (`EXTERNAL_QUERY`), BigQuery Omni (multi-
@@ -98,7 +98,7 @@ classDocComment: |-
   ///   sensitive variable rather than literals.
   ///
   /// Output-only state:
-  /// - [name]: full resource name
+  /// - [nameRef]: full resource name
   ///   (`projects/{project}/locations/{location}/connections/{id}`).
   /// - [hasCredential]: `true` once the credential block is materialized
   ///   server-side.
@@ -134,22 +134,6 @@ extraImports:
 extraSensitiveFields:
   - cloud_sql.credential.password
   - configuration.authentication.username_password.password.plaintext
-
-extraGetters: |2
-    /// Reference to `name` attribute — the full resource name
-    /// (`projects/{project}/locations/{location}/connections/{id}`). This
-    /// is the value SQL `EXTERNAL_QUERY` calls reference.
-    TfRef<String> get name => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute. For this resource the API returns the
-    /// full resource path here.
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to the computed `has_credential` attribute. `true` once
-    /// the connection's credential block has been materialized server-
-    /// side.
-    TfRef<bool> get hasCredential =>
-        TfRef.attribute<bool>(this, 'has_credential');
 
 # Note: `cloud_sql.type` surfaces as the typed enum
 # [BigqueryConnectionCloudSqlType] on the nested

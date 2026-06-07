@@ -1,9 +1,9 @@
 outputDir: firestore
 
-classDocComment: |-
-  /// Factory wrapper for `google_firestore_index` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// Required identity:
   /// - [localName]: Terraform local name (the address segment after
   ///   `google_firestore_index.`).
@@ -68,15 +68,6 @@ paramOrder:
 
 extraImports:
   - "import 'package:meta/meta.dart';"
-
-extraGetters: |2
-    /// Reference to `name` attribute (server-assigned full path:
-    /// `projects/{p}/databases/{db}/collectionGroups/{collection}/indexes/{id}`).
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute. Same as `nameRef` for this resource --
-    /// indexes have no separate id distinct from their full path.
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
 dartTypeOverrides:
   query_scope: FirestoreIndexQueryScope

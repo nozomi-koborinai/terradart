@@ -6,23 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_monitoring_dashboard`.
 const Set<String> _googleMonitoringDashboardSensitive = <String>{};
 
-/// Factory wrapper for `google_monitoring_dashboard` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_monitoring_dashboard`.
 ///
-/// Manages a Cloud Monitoring dashboard. Dashboards in this version are
-/// modeled **deliberately minimally**: the entire dashboard layout — rows,
-/// columns, mosaics, widgets, charts, thresholds, etc. — is passed as a
-/// **single JSON string** via [dashboardJson]. There is no typed Dart
-/// widget model in v0.0.x; the Cloud Console UI is the source of truth
-/// for the dashboard schema, which is large, fluid, and well-supported
-/// by the in-product editor.
+/// Dashboards in this version are modeled **deliberately minimally**: the
+/// entire dashboard layout — rows, columns, mosaics, widgets, charts,
+/// thresholds, etc. — is passed as a **single JSON string** via
+/// [dashboardJson]. There is no typed Dart widget model in v0.0.x; the
+/// Cloud Console UI is the source of truth for the dashboard schema, which
+/// is large, fluid, and well-supported by the in-product editor.
 ///
-/// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_monitoring_dashboard.`).
-/// - `dashboardJson`: full dashboard JSON payload as a Dart `String`. Must
-///   conform to
-///   <https://cloud.google.com/monitoring/api/ref_v3/rest/v1/projects.dashboards>.
+/// `dashboardJson` must conform to
+/// <https://cloud.google.com/monitoring/api/ref_v3/rest/v1/projects.dashboards>.
 ///
 /// ## Authoring workflow
 ///
@@ -89,10 +83,6 @@ const Set<String> _googleMonitoringDashboardSensitive = <String>{};
 ///   })),
 /// );
 /// ```
-///
-/// Composition pattern: extends `Resource` for
-/// runtime behavior. There are no nested helper classes — the entire
-/// dashboard body lives inside the [dashboardJson] String.
 final class GoogleMonitoringDashboard extends Resource {
   static const String tfType = 'google_monitoring_dashboard';
 
@@ -112,4 +102,7 @@ final class GoogleMonitoringDashboard extends Resource {
 
   @override
   Set<String> get sensitiveFields => _googleMonitoringDashboardSensitive;
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

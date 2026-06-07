@@ -6,8 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_firestore_document`.
 const Set<String> _googleFirestoreDocumentSensitive = <String>{};
 
-/// Factory wrapper for `google_firestore_document` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_firestore_document`.
 ///
 /// Manages a single document in a Cloud Firestore collection as an
 /// Infrastructure-as-Code resource. Intended for **small fixed
@@ -77,20 +76,18 @@ final class GoogleFirestoreDocument extends Resource {
   @override
   Set<String> get sensitiveFields => _googleFirestoreDocumentSensitive;
 
-  /// Reference to `id` attribute (full path within the database).
-  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute (server-set, full resource path:
-  /// `projects/{p}/databases/{db}/documents/{collection}/{docId}`).
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `path` attribute (the relative path to the
-  /// collection this document exists within).
-  TfRef<String> get path => TfRef.attribute<String>(this, 'path');
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `create_time` attribute (RFC3339).
+  /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
-  /// Reference to `update_time` attribute (RFC3339).
+  /// Reference to `path` attribute.
+  TfRef<String> get path => TfRef.attribute<String>(this, 'path');
+
+  /// Reference to `update_time` attribute.
   TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
 }

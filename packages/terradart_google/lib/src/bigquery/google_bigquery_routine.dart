@@ -213,7 +213,9 @@ class BigqueryRoutineSparkOptions {
   };
 }
 
-/// Factory wrapper for `google_bigquery_routine` (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_bigquery_routine`.
+///
+/// A user-defined function or a stored procedure that belongs to a Dataset
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
@@ -319,17 +321,16 @@ final class GoogleBigqueryRoutine extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigqueryRoutineSensitive;
 
-  /// Reference to `routine_id` attribute.
-  TfRef<String> get routineIdRef => TfRef.attribute<String>(this, 'routine_id');
-
-  /// Reference to `id` attribute (full routine path
-  /// `projects/{project}/datasets/{dataset_id}/routines/{routine_id}`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `creation_time` attribute (epoch milliseconds).
+  /// Reference to `creation_time` attribute.
   TfRef<num> get creationTime => TfRef.attribute<num>(this, 'creation_time');
 
-  /// Reference to `last_modified_time` attribute (epoch milliseconds).
+  /// Reference to `last_modified_time` attribute.
   TfRef<num> get lastModifiedTime =>
       TfRef.attribute<num>(this, 'last_modified_time');
+
+  /// Reference to `routine_id` attribute.
+  TfRef<String> get routineIdRef => TfRef.attribute<String>(this, 'routine_id');
 }

@@ -1,9 +1,9 @@
 outputDir: bigquery
 
-classDocComment: |-
-  /// Factory wrapper for `google_bigquery_reservation` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// A BigQuery **reservation** carves out dedicated slot capacity (the
   /// unit of BigQuery parallelism) within an admin project / location.
   /// Reservations partition committed slot pools (see
@@ -52,16 +52,6 @@ paramOrder:
   - reservation_group
   - autoscale
   - project
-
-extraGetters: |2
-    /// Reference to `name` attribute. Use this when wiring
-    /// `google_bigquery_reservation_assignment.reservation` to bind this
-    /// reservation to a project / folder / org.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute (full reservation path
-    /// `projects/{project}/locations/{location}/reservations/{name}`).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
 dartTypeOverrides:
   edition: BigqueryReservationEdition

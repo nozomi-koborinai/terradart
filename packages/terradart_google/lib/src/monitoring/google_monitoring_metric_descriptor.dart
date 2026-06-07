@@ -121,12 +121,13 @@ class MonitoringMetricDescriptorMetadata {
   };
 }
 
-/// Factory wrapper for `google_monitoring_metric_descriptor` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_monitoring_metric_descriptor`.
 ///
-/// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_monitoring_metric_descriptor.`).
+/// Defines a metric type and its schema. Once a metric descriptor is created,
+/// deleting or altering it stops data collection and makes the metric type's
+/// existing data unusable.
+///
+/// Required identity beyond [localName]:
 /// - `type`: the fully-qualified metric type. User-defined metrics must use
 ///   one of the reserved DNS prefixes (`custom.googleapis.com/`,
 ///   `external.googleapis.com/`, or `logging.googleapis.com/user/`), e.g.
@@ -171,15 +172,6 @@ class MonitoringMetricDescriptorMetadata {
 ///   ],
 /// );
 /// ```
-///
-/// Manages a Cloud Monitoring user-defined metric descriptor. Composition
-/// pattern: extends `Resource` for
-/// runtime behavior. The nested-block helpers
-/// ([MonitoringMetricDescriptorLabel],
-/// [MonitoringMetricDescriptorMetadata]) and the enum wrappers
-/// ([MonitoringMetricKind], [MonitoringValueType],
-/// [MonitoringMetricLabelValueType], [MonitoringMetricLaunchStage]) live
-/// in the `prelude` below.
 final class GoogleMonitoringMetricDescriptor extends Resource {
   static const String tfType = 'google_monitoring_metric_descriptor';
 
@@ -218,16 +210,13 @@ final class GoogleMonitoringMetricDescriptor extends Resource {
   @override
   Set<String> get sensitiveFields => _googleMonitoringMetricDescriptorSensitive;
 
-  /// Reference to `id` attribute (the metric descriptor's full resource
-  /// name, `projects/{project}/metricDescriptors/{type}`).
-  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `name` attribute (same shape as [id]; populated by Cloud
-  /// Monitoring on create).
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `monitored_resource_types` — the set of monitored
-  /// resource types this descriptor may be associated with. Server-managed.
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `monitored_resource_types` attribute.
   TfRef<List<String>> get monitoredResourceTypes =>
       TfRef.attribute<List<String>>(this, 'monitored_resource_types');
 }
