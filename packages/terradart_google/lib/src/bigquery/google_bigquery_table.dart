@@ -619,7 +619,9 @@ class BigqueryTableBiglakeConfiguration {
   };
 }
 
-/// Factory wrapper for `google_bigquery_table` (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_bigquery_table`.
+///
+/// A Table that belongs to a Dataset
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
@@ -656,13 +658,6 @@ class BigqueryTableBiglakeConfiguration {
 ///   deletionProtection: TfArg.literal(false),
 /// );
 /// ```
-///
-/// Manages a BigQuery table. Composition pattern: extends
-/// `Resource` for runtime behavior. The nested
-/// blocks (time_partitioning / range_partitioning / materialized_view /
-/// view / external_data_configuration / encryption_configuration /
-/// table_constraints / table_replication_info / biglake_configuration)
-/// are modeled as helper classes in the `prelude` below.
 final class GoogleBigqueryTable extends Resource {
   static const String tfType = 'google_bigquery_table';
 
@@ -755,25 +750,49 @@ final class GoogleBigqueryTable extends Resource {
   @override
   bool get supportsDeletionProtection => true;
 
-  /// Reference to `table_id` attribute.
-  TfRef<String> get tableIdRef => TfRef.attribute<String>(this, 'table_id');
-
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/datasets/{dataset_id}/tables/{table_id}`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `self_link` attribute (HTTPS API path).
-  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
 
-  /// Reference to `location` attribute (inherited from the parent dataset).
+  /// Reference to `etag` attribute.
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `generated_schema_columns` attribute.
+  TfRef<String> get generatedSchemaColumns =>
+      TfRef.attribute<String>(this, 'generated_schema_columns');
+
+  /// Reference to `location` attribute.
   TfRef<String> get location => TfRef.attribute<String>(this, 'location');
 
-  /// Reference to `type` attribute (e.g. `TABLE`, `VIEW`, `MATERIALIZED_VIEW`).
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
+  /// Reference to `num_long_term_bytes` attribute.
+  TfRef<num> get numLongTermBytes =>
+      TfRef.attribute<num>(this, 'num_long_term_bytes');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `table_id` attribute.
+  TfRef<String> get tableIdRef => TfRef.attribute<String>(this, 'table_id');
 
   /// Reference to `num_rows` attribute. Number of rows in the table at
   /// the last refresh (string-encoded int64 in the provider; exposed as
   /// `TfRef<String>` for direct interpolation).
+  ///
+  /// `num_rows` / `num_bytes` / `creation_time` / `last_modified_time` are
+  /// kept hand-written (not derived) to pin them at `TfRef<String>`: the
+  /// schema types them as `number`, which the output-getter gate would emit
+  /// as `TfRef<num>`. Holding `String` here keeps the public surface stable;
+  /// the gate skips these names because they are present in `extraGetters`.
   TfRef<String> get numRows => TfRef.attribute<String>(this, 'num_rows');
 
   /// Reference to `num_bytes` attribute. Logical size in bytes.
@@ -786,7 +805,4 @@ final class GoogleBigqueryTable extends Resource {
   /// Reference to `last_modified_time` attribute (epoch milliseconds).
   TfRef<String> get lastModifiedTime =>
       TfRef.attribute<String>(this, 'last_modified_time');
-
-  /// Reference to `etag` attribute (resource hash).
-  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 }

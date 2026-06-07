@@ -1,8 +1,9 @@
 outputDir: bigquery
 
-classDocComment: |-
-  /// Factory wrapper for `google_bigquery_routine` (provider `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// Required identity:
   /// - [localName]: Terraform local name (the address segment after
   ///   `google_bigquery_routine.`).
@@ -76,17 +77,6 @@ extraGetters: |2
     /// Reference to `routine_id` attribute.
     TfRef<String> get routineIdRef =>
         TfRef.attribute<String>(this, 'routine_id');
-
-    /// Reference to `id` attribute (full routine path
-    /// `projects/{project}/datasets/{dataset_id}/routines/{routine_id}`).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `creation_time` attribute (epoch milliseconds).
-    TfRef<num> get creationTime => TfRef.attribute<num>(this, 'creation_time');
-
-    /// Reference to `last_modified_time` attribute (epoch milliseconds).
-    TfRef<num> get lastModifiedTime =>
-        TfRef.attribute<num>(this, 'last_modified_time');
 
 extraImports:
   - "import 'package:meta/meta.dart';"

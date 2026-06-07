@@ -1,9 +1,9 @@
 outputDir: bigquery
 
-classDocComment: |-
-  /// Factory wrapper for `google_bigquery_job` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// **Ephemeral — one-shot, not re-run on apply.** A BigQuery job is a
   /// single, immutable execution of work (query / load / extract / copy).
   /// Terraform creates the job record on first apply and records the
@@ -112,25 +112,19 @@ extraImports:
   - "import 'package:meta/meta.dart';"
 
 extraGetters: |2
-    /// Reference to `id` attribute
-    /// (`projects/{project}/jobs/{job_id}` — full job path).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `job_type` attribute — server-classified bucket
-    /// (`QUERY` / `LOAD` / `EXTRACT` / `COPY`). Computed after apply.
-    TfRef<String> get jobType => TfRef.attribute<String>(this, 'job_type');
-
-    /// Reference to `user_email` — the principal BigQuery saw running
-    /// the job (the Terraform service account, in the usual case).
-    TfRef<String> get userEmail =>
-        TfRef.attribute<String>(this, 'user_email');
-
     /// Reference to `status` — server-computed terminal status of the
     /// job (a list-of-object with `state`, `error_result`, `errors`).
     /// Use `.state` downstream to inspect `DONE` vs `PENDING` /
     /// `RUNNING`. Note: by the time Terraform records this, the job
     /// has already settled (Terraform waits for the job to finish at
     /// apply time).
+    ///
+    /// Kept hand-written (not derived) to pin the loose
+    /// `TfRef<List<Object?>>` shape: the schema types `status` as a
+    /// `list(object(...))`, which the output-getter gate would widen to
+    /// `TfRef<List<Map<String, Object?>>>`. Holding the narrower element
+    /// type here keeps the public surface stable; the gate skips `status`
+    /// because the name is present in `extraGetters`.
     TfRef<List<Object?>> get status =>
         TfRef.attribute<List<Object?>>(this, 'status');
 

@@ -1,8 +1,9 @@
 outputDir: bigquery
 
-classDocComment: |-
-  /// Factory wrapper for `google_bigquery_dataset` (provider `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// Required identity:
   /// - [localName]: Terraform local name (the address segment after
   ///   `google_bigquery_dataset.`).
@@ -69,13 +70,6 @@ extraGetters: |2
     /// `google_bigquery_table.dataset_id`).
     TfRef<String> get datasetIdRef =>
         TfRef.attribute<String>(this, 'dataset_id');
-
-    /// Reference to `id` attribute (full dataset path
-    /// `projects/{project}/datasets/{dataset_id}`).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `self_link` attribute (HTTPS API path).
-    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
 dartTypeOverrides:
   storage_billing_model: DatasetStorageBillingModel

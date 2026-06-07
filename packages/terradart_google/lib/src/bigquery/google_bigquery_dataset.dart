@@ -362,7 +362,9 @@ class BigqueryDatasetExternalCatalogDatasetOptions {
 // Factory
 // ===========================================================================
 
-/// Factory wrapper for `google_bigquery_dataset` (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_bigquery_dataset`.
+///
+/// Datasets allow you to organize and control access to your tables.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
@@ -467,15 +469,32 @@ final class GoogleBigqueryDataset extends Resource {
   @override
   Set<String> get sensitiveFields => _googleBigqueryDatasetSensitive;
 
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `creation_time` attribute.
+  TfRef<num> get creationTime => TfRef.attribute<num>(this, 'creation_time');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `last_modified_time` attribute.
+  TfRef<num> get lastModifiedTime =>
+      TfRef.attribute<num>(this, 'last_modified_time');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
   /// Reference to `dataset_id` attribute. BigQuery tables reference their
   /// parent dataset via this value (e.g. `dataset.datasetIdRef` passed to
   /// `google_bigquery_table.dataset_id`).
   TfRef<String> get datasetIdRef => TfRef.attribute<String>(this, 'dataset_id');
-
-  /// Reference to `id` attribute (full dataset path
-  /// `projects/{project}/datasets/{dataset_id}`).
-  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `self_link` attribute (HTTPS API path).
-  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 }

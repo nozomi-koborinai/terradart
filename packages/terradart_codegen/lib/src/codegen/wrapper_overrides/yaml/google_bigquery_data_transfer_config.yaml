@@ -1,9 +1,9 @@
 outputDir: bigquery
 
-classDocComment: |-
-  /// Factory wrapper for `google_bigquery_data_transfer_config` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// Manages a BigQuery Data Transfer Service (DTS) configuration — a
   /// recurring import job that lands data into a BigQuery dataset from a
   /// Google-owned source (`scheduled_query`, `google_cloud_storage`,
@@ -115,15 +115,6 @@ classDocComment: |-
   ///   ),
   /// );
   /// ```
-  ///
-  /// Composition pattern: extends
-  /// `Resource` for runtime behavior.
-  /// The nested helpers
-  /// ([BigqueryDataTransferConfigScheduleOptions],
-  /// [BigqueryDataTransferConfigEmailPreferences],
-  /// [BigqueryDataTransferConfigSensitiveParams],
-  /// [BigqueryDataTransferConfigEncryptionConfiguration]) are modeled in
-  /// the `prelude` below.
 
 # User-settable attrs first (display_name + data_source_id are
 # schema-required; params is also required). Schedule + nested blocks in
@@ -157,19 +148,6 @@ paramOrder:
 # schema-sensitive (write-only semantics keep them out of state entirely).
 extraSensitiveFields:
   - sensitive_params.secret_access_key
-
-extraGetters: |2
-    /// Reference to `id` attribute (the transfer config's full resource
-    /// name, `projects/{project}/locations/{location}/transferConfigs/{configId}`
-    /// or `projects/{project}/transferConfigs/{configId}` for global
-    /// configs). Downstream consumers (e.g. monitoring policies that
-    /// alert on transfer-run failures) consume this value.
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to the computed `name` attribute. Identical in shape to
-    /// [id]; the provider populates both with the same full resource
-    /// name on create.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
 prelude: |
   // ===========================================================================
