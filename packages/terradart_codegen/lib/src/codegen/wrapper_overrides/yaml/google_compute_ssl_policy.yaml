@@ -1,16 +1,14 @@
 outputDir: compute
 
-classDocComment: |-
-  /// Factory wrapper for `google_compute_ssl_policy` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
-  /// An SSL policy controls which TLS protocol versions and cipher suites
-  /// an HTTPS / SSL-proxy load balancer is willing to negotiate with
-  /// clients. Attach it to a [GoogleComputeTargetHttpsProxy] (or the SSL
-  /// proxy variant) via that proxy's `sslPolicy` self-link argument; the
-  /// policy itself is a free-floating *global* resource (the regional
-  /// equivalent does not exist — both global and regional HTTPS proxies
-  /// reference a global SSL policy).
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Controls which TLS protocol versions and cipher suites an HTTPS /
+  /// SSL-proxy load balancer negotiates. Attach to a
+  /// [GoogleComputeTargetHttpsProxy] via its `sslPolicy` self-link. A
+  /// free-floating *global* resource — both global and regional HTTPS
+  /// proxies reference a global SSL policy.
   ///
   /// Required identity:
   /// - [localName]: Terraform local name (the address segment after
@@ -18,39 +16,30 @@ classDocComment: |-
   /// - `name`: GCP resource name (1-63 chars, lowercase RFC1035).
   ///
   /// Profile vs. minimum TLS version:
-  /// - [profile] selects a curated set of cipher suites. The Google-managed
-  ///   profiles in ascending order of strictness are
-  ///   [SslPolicyProfile.compatible], [SslPolicyProfile.modern],
-  ///   [SslPolicyProfile.restricted] (and [SslPolicyProfile.fips202205]
-  ///   for FIPS-mode workloads). Choose [SslPolicyProfile.custom] to opt
-  ///   into the [customFeatures] override — required for that profile,
-  ///   forbidden for every other.
-  /// - [minTlsVersion] sets the protocol-version floor. TLS 1.3 is always
-  ///   offered and is **not configurable** as the minimum here (the API
-  ///   only exposes `TLS_1_0` / `TLS_1_1` / `TLS_1_2`); to *force* TLS 1.3
-  ///   only, combine [SslPolicyMinTlsVersion.tls12] with
-  ///   [SslPolicyProfile.restricted] (which drops the legacy 1.0/1.1
-  ///   suites from the negotiated set).
+  /// - [profile] selects a curated cipher suite. Profiles in ascending
+  ///   strictness: [SslPolicyProfile.compatible], [SslPolicyProfile.modern],
+  ///   [SslPolicyProfile.restricted], [SslPolicyProfile.fips202205].
+  ///   Use [SslPolicyProfile.custom] with [customFeatures] — required for
+  ///   that profile, forbidden for every other.
+  /// - [minTlsVersion] sets the protocol-version floor (TLS 1.0/1.1/1.2
+  ///   only — TLS 1.3 is always offered and not configurable as minimum).
+  ///   To force TLS 1.3 only: [SslPolicyMinTlsVersion.tls12] +
+  ///   [SslPolicyProfile.restricted].
   ///
   /// Security guidance:
-  /// - [SslPolicyProfile.restricted] is the right default for
-  ///   compliance-sensitive workloads (PCI-DSS, SOC 2, HIPAA): it disables
-  ///   the weakest cipher suites and is updated by Google as suites are
-  ///   broken or deprecated.
+  /// - [SslPolicyProfile.restricted] is the right default for PCI-DSS /
+  ///   SOC 2 / HIPAA: disables weak suites, updated by Google.
   /// - [SslPolicyProfile.compatible] is intentionally permissive (the
-  ///   default if you omit a profile) and exists for backwards
-  ///   compatibility with legacy clients. Avoid it for any new endpoint.
-  /// - [SslPolicyProfile.fips202205] freezes the suite list to FIPS
-  ///   202205 — required when the federal-information-processing-standard
-  ///   compliance gate applies. Pair it with
-  ///   [SslPolicyMinTlsVersion.tls12].
+  ///   provider default). Avoid for new endpoints.
+  /// - [SslPolicyProfile.fips202205] freezes the suite list to FIPS 202205.
+  ///   Pair with [SslPolicyMinTlsVersion.tls12].
   ///
   /// [customFeatures] is a list of cipher-suite identifiers (see the
   /// [official cipher catalog](https://cloud.google.com/compute/docs/load-balancing/ssl-policies#profilefeaturesupport)).
   /// Only honored when [profile] is [SslPolicyProfile.custom]; the provider
   /// rejects the apply if it appears under any other profile.
   ///
-  /// Example (TLS 1.2-only, compliance-grade profile):
+  /// Example (TLS 1.2-only, compliance-grade):
   /// ```dart
   /// final policy = GoogleComputeSslPolicy(
   ///   localName: 'prod_ssl',
@@ -74,11 +63,9 @@ classDocComment: |-
   /// );
   /// ```
   ///
-  /// Lifecycle: SSL policies are mutable in place (the resource uses
-  /// `PATCH` for updates). Profile / minimum-TLS-version flips take effect
-  /// after the next handshake — long-lived sessions are not torn down.
-  /// Composition pattern: extends `Resource` for
-  /// runtime behavior.
+  /// Lifecycle: mutable in place (`PATCH`). Profile / TLS-version flips
+  /// take effect after the next handshake; long-lived sessions are not torn
+  /// down.
 
 paramOrder:
   - name
@@ -87,36 +74,6 @@ paramOrder:
   - min_tls_version
   - custom_features
   - project
-
-extraGetters: |2
-    /// Reference to `name` attribute. Use for interpolations like
-    /// `policy.nameRef` →
-    /// `${google_compute_ssl_policy.<localName>.name}`.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute (full path
-    /// `projects/{project}/global/sslPolicies/{name}`).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `self_link` attribute. This is the value passed to a
-    /// downstream [GoogleComputeTargetHttpsProxy]'s `sslPolicy` argument.
-    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-    /// Reference to the computed `fingerprint` — used by the API for
-    /// optimistic locking on `PATCH`.
-    TfRef<String> get fingerprint =>
-        TfRef.attribute<String>(this, 'fingerprint');
-
-    /// Reference to the computed `creation_timestamp` (RFC3339).
-    TfRef<String> get creationTimestamp =>
-        TfRef.attribute<String>(this, 'creation_timestamp');
-
-    /// Reference to the computed `enabled_features` — the cipher-suite
-    /// list Google actually negotiated for this policy after applying the
-    /// chosen [profile] / [minTlsVersion] / [customFeatures]. Useful for
-    /// post-apply auditing.
-    TfRef<List<String>> get enabledFeatures =>
-        TfRef.attribute<List<String>>(this, 'enabled_features');
 
 dartTypeOverrides:
   profile: SslPolicyProfile

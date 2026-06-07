@@ -46,45 +46,43 @@ class ComputeManagedSslCertificateManagedSslCertificateConfig {
   Map<String, Object?> toArgMap() => {'domains': domains};
 }
 
-/// Factory wrapper for `google_compute_managed_ssl_certificate` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_managed_ssl_certificate`.
+///
+/// An SslCertificate resource, used for HTTPS load balancing. This resource
+/// represents a certificate for which the certificate secrets are created and
+/// managed by Google.
+///
+/// For a resource where you provide the key, see the SSL Certificate resource.
 ///
 /// A Google-managed SSL certificate for HTTPS load balancing. Unlike
-/// [GoogleComputeSslCertificate] (which takes a self-managed PEM cert +
-/// private key), this resource asks Google to provision and rotate the
-/// certificate for you — you only supply the list of domain names.
+/// [GoogleComputeSslCertificate] (self-managed PEM + key), this resource
+/// asks Google to provision and rotate the certificate — you only supply
+/// the list of domain names.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
 ///   `google_compute_managed_ssl_certificate.`).
-/// - `name`: GCP resource name. Pass `TfArg.literal('lb-managed-cert')` or
-///   `TfArg.ref(otherCert.nameRef)`. Managed and self-managed SSL
-///   certificates share a single namespace, so this name must be unique
-///   across both resource types in the project.
-/// - `managed`: one [ComputeManagedSslCertificateManagedSslCertificateConfig] carrying the list of
-///   domains. Required in practice — without it Google has nothing to
-///   request a certificate for.
+/// - `name`: GCP resource name. Managed and self-managed SSL certificates
+///   share a single namespace — must be unique across both resource types
+///   in the project.
+/// - `managed`: one [ComputeManagedSslCertificateManagedSslCertificateConfig]
+///   carrying the list of domains. Required in practice.
 ///
 /// Provisioning notes:
 /// - Up to 100 domains per certificate (GCP-side limit).
-/// - Each domain must point (via DNS) at a load balancer that fronts this
-///   certificate before Google will issue. DNS validation typically takes
-///   30-60 minutes per domain; the full chain (DNS propagation + ACME
-///   challenge) can stretch to several hours.
-/// - The resource itself returns immediately after the API call; the
-///   certificate object then transitions through `PROVISIONING` →
-///   `ACTIVE` (or `FAILED_*`). Watch `expireTime` or the GCP console for
-///   real status. Plan rotations carefully — migrating from self-managed
-///   to managed can entail downtime.
-/// - Lifecycle: soft-deleted by default. Recreating with the same name
-///   immediately after a destroy may collide; either change the name or
-///   wait out the soft-delete window.
+/// - Each domain must resolve (DNS) to the load balancer before Google
+///   issues. DNS validation typically takes 30-60 minutes per domain; the
+///   full ACME flow can stretch to several hours.
+/// - The resource returns immediately; the cert transitions
+///   `PROVISIONING` → `ACTIVE` (or `FAILED_*`) asynchronously. Watch the
+///   `expireTime` output or the GCP console for real status. Plan
+///   rotations carefully — migrating from self-managed to managed can
+///   entail downtime.
+/// - Soft-deleted by default — recreating with the same name immediately
+///   after a destroy may collide.
 ///
-/// `type` is redundant for this resource — the schema only accepts
-/// `MANAGED`, and that is the default. The enum exists for symmetry with
-/// the legacy unified `google_compute_ssl_certificate` resource (which
-/// historically accepted both `MANAGED` and `SELF_MANAGED`). Callers
-/// should normally omit it.
+/// `type` is redundant (schema only accepts `MANAGED`); the enum exists
+/// for symmetry with the legacy unified resource. Callers should omit it.
 ///
 /// Example:
 /// ```dart
@@ -96,10 +94,6 @@ class ComputeManagedSslCertificateManagedSslCertificateConfig {
 ///   ),
 /// );
 /// ```
-///
-/// Composition pattern: extends `Resource`
-/// for runtime behavior. The single `managed` nested block (max_items=1)
-/// is modeled as a helper class in the `prelude` below.
 final class GoogleComputeManagedSslCertificate extends Resource {
   static const String tfType = 'google_compute_managed_ssl_certificate';
 
@@ -127,35 +121,26 @@ final class GoogleComputeManagedSslCertificate extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeManagedSslCertificateSensitive;
 
-  /// Reference to `name` attribute. Use for interpolations like
-  /// `cert.nameRef` →
-  /// `${google_compute_managed_ssl_certificate.<localName>.name}`.
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/global/sslCertificates/{name}` — managed and
-  /// self-managed certificates share the `sslCertificates` collection).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `self_link` attribute. Frequently used as one entry of
-  /// the `sslCertificates` list on a downstream
-  /// [GoogleComputeTargetHttpsProxy].
+  /// Reference to `certificate_id` attribute.
+  TfRef<num> get certificateId => TfRef.attribute<num>(this, 'certificate_id');
+
+  /// Reference to `creation_timestamp` attribute.
+  TfRef<String> get creationTimestamp =>
+      TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `expire_time` attribute.
+  TfRef<String> get expireTime => TfRef.attribute<String>(this, 'expire_time');
+
+  /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
-  /// Reference to the computed `certificate_id` attribute — the numeric
-  /// GCP resource identifier. Available after apply.
-  TfRef<num> get certificateIdRef =>
-      TfRef.attribute<num>(this, 'certificate_id');
-
-  /// Reference to the computed `expire_time` attribute (RFC3339). Useful
-  /// for alerting on impending expiry, though for managed certificates
-  /// Google rotates automatically before this fires.
-  TfRef<String> get expireTimeRef =>
-      TfRef.attribute<String>(this, 'expire_time');
-
-  /// Reference to the computed `subject_alternative_names` attribute —
-  /// the SAN list Google actually placed on the issued cert. Should
-  /// match the input `domains` once provisioning completes.
+  /// Reference to `subject_alternative_names` attribute.
   TfRef<List<String>> get subjectAlternativeNames =>
       TfRef.attribute<List<String>>(this, 'subject_alternative_names');
 }

@@ -46,20 +46,21 @@ enum GlobalAddressIpVersion implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Factory wrapper for `google_compute_global_address` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_global_address`.
+///
+/// Represents a Global Address resource. Global addresses are used for HTTP(S)
+/// load balancing.
 ///
 /// Reserves a global (regionless) IP range. Two complementary use cases:
 ///
-/// 1. **HTTP(S) load balancer VIP** — `addressType: external`, `purpose`
-///    unset, no `network`. The provider allocates a single anycast IPv4
-///    (or IPv6 when [ipVersion] is set) routed across Google's edge.
-/// 2. **Private services peering range** — `addressType: internal`,
-///    `purpose: vpcPeering`, `network` pointing at a
-///    [GoogleComputeNetwork]. Reserves an internal CIDR block on the
-///    user's VPC that [GoogleServiceNetworkingConnection] then peers with
-///    Google's service producer VPC (for Cloud SQL private IP, Memorystore,
-///    etc).
+/// 1. **HTTP(S) LB VIP** — `addressType: GlobalAddressType.external`,
+///    `purpose` unset. Allocates a single anycast IPv4 (or IPv6) routed
+///    across Google's edge.
+/// 2. **Private-services peering range** — `addressType: internal`,
+///    `purpose: GlobalAddressPurpose.vpcPeering`, `network` pointing at a
+///    [GoogleComputeNetwork]. Reserves an internal CIDR that
+///    [GoogleServiceNetworkingConnection] peers with Google's service
+///    producer VPC (Cloud SQL private IP, Memorystore, etc.).
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
@@ -67,8 +68,8 @@ enum GlobalAddressIpVersion implements TerraformEnum {
 /// - `name`: GCP-internal address resource name. Forces replacement when
 ///   changed.
 ///
-/// Example (Cloud SQL private-IP peering range, the canonical Wave 5
-/// chain): see also [GoogleServiceNetworkingConnection].
+/// Example (Cloud SQL private-IP peering range): see also
+/// [GoogleServiceNetworkingConnection].
 /// ```dart
 /// final psaRange = GoogleComputeGlobalAddress(
 ///   localName: 'psa_range',
@@ -89,9 +90,6 @@ enum GlobalAddressIpVersion implements TerraformEnum {
 ///   ipVersion: TfArg.literal(GlobalAddressIpVersion.ipv4),
 /// );
 /// ```
-///
-/// Composition pattern: extends `Resource` for
-/// runtime behavior.
 final class GoogleComputeGlobalAddress extends Resource {
   static const String tfType = 'google_compute_global_address';
 
@@ -128,21 +126,34 @@ final class GoogleComputeGlobalAddress extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeGlobalAddressSensitive;
 
-  /// Reference to `name` attribute. Use this when downstream consumers
-  /// (notably [GoogleServiceNetworkingConnection.reservedPeeringRanges])
-  /// require the address by name, not full self_link.
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/global/addresses/{name}`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `creation_timestamp` attribute.
+  TfRef<String> get creationTimestamp =>
+      TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `label_fingerprint` attribute.
+  TfRef<String> get labelFingerprint =>
+      TfRef.attribute<String>(this, 'label_fingerprint');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 
   /// Reference to the allocated `address` attribute (the actual IP or
   /// CIDR base GCP picks when [address] is omitted). Available after
   /// apply. Use this to pass the IP to downstream resources like load
   /// balancer forwarding rules.
   TfRef<String> get addressRef => TfRef.attribute<String>(this, 'address');
-
-  /// Reference to `self_link` attribute.
-  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 }

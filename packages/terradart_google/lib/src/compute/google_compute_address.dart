@@ -51,13 +51,29 @@ enum Ipv6EndpointType implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Factory wrapper for `google_compute_address` (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_address`.
+///
+/// Represents an Address resource.
+///
+/// Each virtual machine instance has an ephemeral internal IP address and,
+/// optionally, an external IP address. To communicate between instances on the
+/// same network, you can use an instance's internal IP address. To communicate
+/// with the Internet and instances outside of the same network, you must
+/// specify the instance's external IP address.
+///
+/// Internal IP addresses are ephemeral and only belong to an instance for the
+/// lifetime of the instance; if the instance is deleted and recreated, the
+/// instance is assigned a new internal IP address, either by Compute Engine or
+/// by you. External IP addresses can be either ephemeral or static.
+///
+/// Use `addressType: AddressType.internal` for VPC-private addresses,
+/// `AddressType.external` for public IPs. Regional resources live under a
+/// `region`; the global counterpart is [GoogleComputeGlobalAddress].
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
 ///   `google_compute_address.`).
-/// - `name`: GCP address resource name. Pass `TfArg.literal('lb-vip')` or
-///   `TfArg.ref(otherAddr.nameRef)`.
+/// - `name`: GCP address resource name.
 ///
 /// Example:
 /// ```dart
@@ -69,9 +85,6 @@ enum Ipv6EndpointType implements TerraformEnum {
 ///   networkTier: TfArg.literal(NetworkTier.premium),
 /// );
 /// ```
-///
-/// Represents an IP address resource (regional or global). Use `addressType:
-/// 'INTERNAL'` for VPC-internal addresses, `'EXTERNAL'` for public IPs.
 final class GoogleComputeAddress extends Resource {
   static const String tfType = 'google_compute_address';
 
@@ -121,16 +134,33 @@ final class GoogleComputeAddress extends Resource {
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/regions/{region}/addresses/{name}` for regional
-  /// addresses, or `.../global/addresses/{name}` for global).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `creation_timestamp` attribute.
+  TfRef<String> get creationTimestamp =>
+      TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `label_fingerprint` attribute.
+  TfRef<String> get labelFingerprint =>
+      TfRef.attribute<String>(this, 'label_fingerprint');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `users` attribute.
+  TfRef<List<String>> get users => TfRef.attribute<List<String>>(this, 'users');
 
   /// Reference to `address` attribute (the actual IP allocated by GCP,
   /// available after apply). Use this to pass the IP to downstream
   /// resources like load balancer forwarding rules.
   TfRef<String> get addressRef => TfRef.attribute<String>(this, 'address');
-
-  /// Reference to `self_link` attribute.
-  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 }
