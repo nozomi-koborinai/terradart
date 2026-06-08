@@ -359,8 +359,12 @@ class ComputeAutoscalerAutoscalerScalingSchedule {
 // Factory
 // ===========================================================================
 
-/// Factory wrapper for `google_compute_autoscaler` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_autoscaler`.
+///
+/// Represents an Autoscaler resource.
+///
+/// Autoscalers allow you to automatically scale virtual machine instances in
+/// managed instance groups according to an autoscaling policy that you define.
 ///
 /// A **zonal** autoscaler attached to a
 /// `google_compute_instance_group_manager` (zonal MIG). The autoscaler
@@ -427,9 +431,6 @@ class ComputeAutoscalerAutoscalerScalingSchedule {
 /// [ComputeAutoscalerAutoscalerMetric], [ComputeAutoscalerAutoscalerScalingSchedule]) to avoid colliding
 /// with the parallel `RegionAutoscaler...` family on the regional
 /// sibling.
-///
-/// Composition pattern: extends `Resource` for
-/// runtime behavior.
 final class GoogleComputeAutoscaler extends Resource {
   static const String tfType = 'google_compute_autoscaler';
 
@@ -458,17 +459,17 @@ final class GoogleComputeAutoscaler extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeAutoscalerSensitive;
 
+  /// Reference to `creation_timestamp` attribute.
+  TfRef<String> get creationTimestamp =>
+      TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute (full path
   /// `projects/{project}/zones/{zone}/autoscalers/{name}`).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `self_link` attribute.
-  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-  /// Reference to the computed `creation_timestamp` attribute (RFC3339).
-  TfRef<String> get creationTimestamp =>
-      TfRef.attribute<String>(this, 'creation_timestamp');
 }

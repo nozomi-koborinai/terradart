@@ -1,9 +1,9 @@
 outputDir: compute
 
-classDocComment: |-
-  /// Factory wrapper for `google_compute_instance` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// Required identity:
   /// - [localName]: Terraform local name (the address segment after
   ///   `google_compute_instance.`).
@@ -36,7 +36,7 @@ classDocComment: |-
   /// );
   /// ```
   ///
-  /// Manages a Google Compute Engine virtual machine. The 12 nested blocks
+  /// The 12 nested blocks
   /// (`boot_disk` / `network_interface` / `attached_disk` / `scratch_disk` /
   /// `service_account` / `scheduling` / `shielded_instance_config` /
   /// `confidential_instance_config` / `guest_accelerator` /
@@ -87,25 +87,6 @@ extraGetters: |2
     /// Reference to `name` attribute. Use for interpolations like
     /// `vm.nameRef` -> `${google_compute_instance.<localName>.name}`.
     TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `self_link` attribute (HTTPS API path).
-    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-    /// Reference to `instance_id` attribute (numeric GCP instance ID, assigned
-    /// at create time).
-    TfRef<String> get instanceIdRef =>
-        TfRef.attribute<String>(this, 'instance_id');
-
-    /// Reference to `cpu_platform` attribute (the actual CPU platform the
-    /// instance is running on, e.g. `Intel Cascade Lake`).
-    TfRef<String> get cpuPlatformRef =>
-        TfRef.attribute<String>(this, 'cpu_platform');
-
-    /// Reference to `current_status` attribute (one of `PROVISIONING`,
-    /// `STAGING`, `RUNNING`, `STOPPING`, `SUSPENDING`, `SUSPENDED`,
-    /// `REPAIRING`, or `TERMINATED`).
-    TfRef<String> get currentStatusRef =>
-        TfRef.attribute<String>(this, 'current_status');
 
 extraImports:
   - "import 'package:meta/meta.dart';"

@@ -1,9 +1,9 @@
 outputDir: compute
 
-classDocComment: |-
-  /// Factory wrapper for `google_compute_region_autoscaler` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// A **regional** autoscaler attached to a
   /// `google_compute_region_instance_group_manager` (regional MIG). The
   /// autoscaler observes one or more signals (CPU utilization,
@@ -79,9 +79,6 @@ classDocComment: |-
   /// [ComputeRegionAutoscalerRegionAutoscalerScaleInControl], [ComputeRegionAutoscalerRegionAutoscalerMetric],
   /// [ComputeRegionAutoscalerRegionAutoscalerScalingSchedule]) to avoid colliding with the
   /// parallel `Autoscaler...` family on the zonal sibling.
-  ///
-  /// Composition pattern: extends
-  /// `Resource` for runtime behavior.
 
 # Slot order chosen for ergonomic clarity:
 # identity (name, region) first, then `target` (the regional MIG
@@ -105,13 +102,6 @@ extraGetters: |2
     /// Reference to `id` attribute (full path
     /// `projects/{project}/regions/{region}/autoscalers/{name}`).
     TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `self_link` attribute.
-    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-    /// Reference to the computed `creation_timestamp` attribute (RFC3339).
-    TfRef<String> get creationTimestamp =>
-        TfRef.attribute<String>(this, 'creation_timestamp');
 
 # Hand-written tightens `region` from `optional + computed` to required
 # for ergonomic clarity; matches the zonal sibling's [zone] treatment and

@@ -1,9 +1,9 @@
 outputDir: compute
 
-classDocComment: |-
-  /// Factory wrapper for `google_compute_autoscaler` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
   /// A **zonal** autoscaler attached to a
   /// `google_compute_instance_group_manager` (zonal MIG). The autoscaler
   /// observes one or more signals (CPU utilization, load-balancing
@@ -69,9 +69,6 @@ classDocComment: |-
   /// [ComputeAutoscalerAutoscalerMetric], [ComputeAutoscalerAutoscalerScalingSchedule]) to avoid colliding
   /// with the parallel `RegionAutoscaler...` family on the regional
   /// sibling.
-  ///
-  /// Composition pattern: extends `Resource` for
-  /// runtime behavior.
 
 # Slot order chosen for ergonomic clarity:
 # identity (name, zone) first, then `target` (the MIG self-link), the
@@ -94,13 +91,6 @@ extraGetters: |2
     /// Reference to `id` attribute (full path
     /// `projects/{project}/zones/{zone}/autoscalers/{name}`).
     TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `self_link` attribute.
-    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-    /// Reference to the computed `creation_timestamp` attribute (RFC3339).
-    TfRef<String> get creationTimestamp =>
-        TfRef.attribute<String>(this, 'creation_timestamp');
 
 # Hand-written tightens `zone` from `optional + computed` to required for
 # ergonomic clarity; without an explicit zone the provider silently picks

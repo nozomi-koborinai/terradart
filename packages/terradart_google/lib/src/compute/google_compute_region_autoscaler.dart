@@ -365,8 +365,12 @@ class ComputeRegionAutoscalerRegionAutoscalerScalingSchedule {
 // Factory
 // ===========================================================================
 
-/// Factory wrapper for `google_compute_region_autoscaler` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_region_autoscaler`.
+///
+/// Represents an Autoscaler resource.
+///
+/// Autoscalers allow you to automatically scale virtual machine instances in
+/// managed instance groups according to an autoscaling policy that you define.
 ///
 /// A **regional** autoscaler attached to a
 /// `google_compute_region_instance_group_manager` (regional MIG). The
@@ -443,9 +447,6 @@ class ComputeRegionAutoscalerRegionAutoscalerScalingSchedule {
 /// [ComputeRegionAutoscalerRegionAutoscalerScaleInControl], [ComputeRegionAutoscalerRegionAutoscalerMetric],
 /// [ComputeRegionAutoscalerRegionAutoscalerScalingSchedule]) to avoid colliding with the
 /// parallel `Autoscaler...` family on the zonal sibling.
-///
-/// Composition pattern: extends
-/// `Resource` for runtime behavior.
 final class GoogleComputeRegionAutoscaler extends Resource {
   static const String tfType = 'google_compute_region_autoscaler';
 
@@ -475,17 +476,17 @@ final class GoogleComputeRegionAutoscaler extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeRegionAutoscalerSensitive;
 
+  /// Reference to `creation_timestamp` attribute.
+  TfRef<String> get creationTimestamp =>
+      TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
   /// Reference to `id` attribute (full path
   /// `projects/{project}/regions/{region}/autoscalers/{name}`).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `self_link` attribute.
-  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-  /// Reference to the computed `creation_timestamp` attribute (RFC3339).
-  TfRef<String> get creationTimestamp =>
-      TfRef.attribute<String>(this, 'creation_timestamp');
 }

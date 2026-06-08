@@ -732,8 +732,9 @@ class ComputeInstanceNetworkPerformanceConfig {
   };
 }
 
-/// Factory wrapper for `google_compute_instance` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_instance`.
+///
+/// An instance is a virtual machine (VM) hosted on Google's infrastructure.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
@@ -767,7 +768,7 @@ class ComputeInstanceNetworkPerformanceConfig {
 /// );
 /// ```
 ///
-/// Manages a Google Compute Engine virtual machine. The 12 nested blocks
+/// The 12 nested blocks
 /// (`boot_disk` / `network_interface` / `attached_disk` / `scratch_disk` /
 /// `service_account` / `scheduling` / `shielded_instance_config` /
 /// `confidential_instance_config` / `guest_accelerator` /
@@ -889,6 +890,44 @@ final class GoogleComputeInstance extends Resource {
   @override
   bool get supportsDeletionProtection => true;
 
+  /// Reference to `cpu_platform` attribute.
+  TfRef<String> get cpuPlatform =>
+      TfRef.attribute<String>(this, 'cpu_platform');
+
+  /// Reference to `creation_timestamp` attribute.
+  TfRef<String> get creationTimestamp =>
+      TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `current_status` attribute.
+  TfRef<String> get currentStatus =>
+      TfRef.attribute<String>(this, 'current_status');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `instance_id` attribute.
+  TfRef<String> get instanceId => TfRef.attribute<String>(this, 'instance_id');
+
+  /// Reference to `label_fingerprint` attribute.
+  TfRef<String> get labelFingerprint =>
+      TfRef.attribute<String>(this, 'label_fingerprint');
+
+  /// Reference to `metadata_fingerprint` attribute.
+  TfRef<String> get metadataFingerprint =>
+      TfRef.attribute<String>(this, 'metadata_fingerprint');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `tags_fingerprint` attribute.
+  TfRef<String> get tagsFingerprint =>
+      TfRef.attribute<String>(this, 'tags_fingerprint');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
   /// Reference to `id` attribute (full path
   /// `projects/{project}/zones/{zone}/instances/{name}`).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -896,23 +935,4 @@ final class GoogleComputeInstance extends Resource {
   /// Reference to `name` attribute. Use for interpolations like
   /// `vm.nameRef` -> `${google_compute_instance.<localName>.name}`.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `self_link` attribute (HTTPS API path).
-  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-  /// Reference to `instance_id` attribute (numeric GCP instance ID, assigned
-  /// at create time).
-  TfRef<String> get instanceIdRef =>
-      TfRef.attribute<String>(this, 'instance_id');
-
-  /// Reference to `cpu_platform` attribute (the actual CPU platform the
-  /// instance is running on, e.g. `Intel Cascade Lake`).
-  TfRef<String> get cpuPlatformRef =>
-      TfRef.attribute<String>(this, 'cpu_platform');
-
-  /// Reference to `current_status` attribute (one of `PROVISIONING`,
-  /// `STAGING`, `RUNNING`, `STOPPING`, `SUSPENDING`, `SUSPENDED`,
-  /// `REPAIRING`, or `TERMINATED`).
-  TfRef<String> get currentStatusRef =>
-      TfRef.attribute<String>(this, 'current_status');
 }
