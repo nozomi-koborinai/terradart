@@ -128,8 +128,11 @@ class ComputeForwardingRuleForwardingRuleServiceDirectoryRegistration {
   };
 }
 
-/// Factory wrapper for `google_compute_forwarding_rule` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_forwarding_rule`.
+///
+/// A ForwardingRule resource. A ForwardingRule resource specifies which pool of
+/// target virtual machines to forward a packet to if it matches the given
+/// [IPAddress, IPProtocol, portRange] tuple.
 ///
 /// The entry point ("frontend") of a GCP **regional** load balancer. A
 /// regional forwarding rule binds a VIP + port range (or port list) to
@@ -205,6 +208,22 @@ class ComputeForwardingRuleForwardingRuleServiceDirectoryRegistration {
 /// rules (unlike global rules, which only accept `PREMIUM`). When
 /// `ipAddress` is set, the network tier must match the address's tier.
 /// Leave `null` for the provider default (`PREMIUM`).
+///
+/// [ipAddressRef] is the output reference to `ip_address` — populated
+/// with the actual VIP after apply. Useful when [ipAddress] was left
+/// unset and GCP allocated an ephemeral IP, or when downstream DNS
+/// records need the resolved address. (`ip_address` is
+/// `optional + computed`; the derive gate skips it, so [ipAddressRef]
+/// is the sole reference accessor.)
+///
+/// [pscConnectionId] is populated only for Private Service Connect
+/// consumer forwarding rules; empty otherwise. [pscConnectionStatus]
+/// values: `STATUS_UNSPECIFIED` / `PENDING` / `ACCEPTED` / `REJECTED` /
+/// `CLOSED`. [baseForwardingRule] is set when this rule has
+/// `source_ip_ranges` and shares an `[ip, protocol, port]` tuple with a
+/// sibling rule without source ranges. [serviceName] is the internal
+/// fully qualified service name; populated only for `INTERNAL` load
+/// balancing rules that set [serviceLabel].
 ///
 /// Example (Regional Internal Application LB frontend):
 /// ```dart
@@ -303,54 +322,53 @@ final class GoogleComputeForwardingRule extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeForwardingRuleSensitive;
 
-  /// Reference to `name` attribute. Use for interpolations like
-  /// `fwd.nameRef` →
-  /// `${google_compute_forwarding_rule.<localName>.name}`.
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/regions/{region}/forwardingRules/{name}`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `base_forwarding_rule` attribute.
+  TfRef<String> get baseForwardingRule =>
+      TfRef.attribute<String>(this, 'base_forwarding_rule');
+
+  /// Reference to `creation_timestamp` attribute.
+  TfRef<String> get creationTimestamp =>
+      TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `forwarding_rule_id` attribute.
+  TfRef<num> get forwardingRuleId =>
+      TfRef.attribute<num>(this, 'forwarding_rule_id');
+
+  /// Reference to `label_fingerprint` attribute.
+  TfRef<String> get labelFingerprint =>
+      TfRef.attribute<String>(this, 'label_fingerprint');
+
+  /// Reference to `psc_connection_id` attribute.
+  TfRef<String> get pscConnectionId =>
+      TfRef.attribute<String>(this, 'psc_connection_id');
+
+  /// Reference to `psc_connection_status` attribute.
+  TfRef<String> get pscConnectionStatus =>
+      TfRef.attribute<String>(this, 'psc_connection_status');
 
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
-  /// Reference to the computed `ip_address` — populated with the actual
-  /// VIP after apply. Useful when [ipAddress] was left unset and GCP
-  /// allocated an ephemeral IP, or when downstream DNS records need the
-  /// resolved address.
-  TfRef<String> get ipAddressRef => TfRef.attribute<String>(this, 'ip_address');
-
-  /// Reference to the computed `forwarding_rule_id` (numeric server-side
-  /// resource identifier). Available after apply.
-  TfRef<num> get forwardingRuleId =>
-      TfRef.attribute<num>(this, 'forwarding_rule_id');
-
-  /// Reference to the computed `psc_connection_id`. Populated only for
-  /// Private Service Connect consumer forwarding rules; empty otherwise.
-  TfRef<String> get pscConnectionId =>
-      TfRef.attribute<String>(this, 'psc_connection_id');
-
-  /// Reference to the computed `psc_connection_status`
-  /// (`STATUS_UNSPECIFIED` / `PENDING` / `ACCEPTED` / `REJECTED` /
-  /// `CLOSED`). Populated only for PSC consumer rules.
-  TfRef<String> get pscConnectionStatus =>
-      TfRef.attribute<String>(this, 'psc_connection_status');
-
-  /// Reference to the computed `base_forwarding_rule` — set when this
-  /// rule has `source_ip_ranges` and shares an `[ip, protocol, port]`
-  /// tuple with a sibling rule without source ranges.
-  TfRef<String> get baseForwardingRule =>
-      TfRef.attribute<String>(this, 'base_forwarding_rule');
-
-  /// Reference to the computed `service_name` — the internal fully
-  /// qualified service name. Populated only for `INTERNAL` load
-  /// balancing rules that set [serviceLabel].
+  /// Reference to `service_name` attribute.
   TfRef<String> get serviceName =>
       TfRef.attribute<String>(this, 'service_name');
 
-  /// Reference to the computed `label_fingerprint` for optimistic
-  /// locking on label updates.
-  TfRef<String> get labelFingerprint =>
-      TfRef.attribute<String>(this, 'label_fingerprint');
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `ip_address` — populated with the actual VIP after
+  /// apply. (`ip_address` is `optional + computed`; the derive gate
+  /// skips it, so this is the sole reference accessor.)
+  TfRef<String> get ipAddressRef => TfRef.attribute<String>(this, 'ip_address');
 }

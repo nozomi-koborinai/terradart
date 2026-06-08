@@ -181,17 +181,46 @@ class ComputeSubnetworkSubnetworkLogConfig {
   };
 }
 
-/// Factory wrapper for `google_compute_subnetwork` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_subnetwork`.
+///
+/// A VPC network is a virtual version of the traditional physical networks that
+/// exist within and between physical data centers. A VPC network provides
+/// connectivity for your Compute Engine virtual machine (VM) instances,
+/// Container Engine containers, App Engine Flex services, and other
+/// network-related resources.
+///
+/// Each GCP project contains one or more VPC networks. Each VPC network is a
+/// global entity spanning all GCP regions. This global VPC network allows VM
+/// instances and other resources to communicate with each other via internal,
+/// private IP addresses.
+///
+/// Each VPC network is subdivided into subnets, and each subnet is contained
+/// within a single region. You can have more than one subnet in a region for a
+/// given VPC network. Each subnet has a contiguous private RFC1918 IP space.
+/// You create instances, containers, and the like in these subnets. When you
+/// create an instance, you must create it in a subnet, and the instance draws
+/// its internal IP address from that subnet.
+///
+/// Virtual machine (VM) instances in a VPC network can communicate with
+/// instances in all other subnets of the same VPC network, regardless of
+/// region, using their RFC1918 private IP addresses. You can isolate portions
+/// of the network, even entire subnets, using firewall rules.
+///
+/// This resource models a regional subnetwork within a VPC.
 ///
 /// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_compute_subnetwork.`).
+/// - [localName]: Terraform local name.
 /// - `name`: GCP subnetwork name. Pass `TfArg.literal('main-subnet')` or
 ///   `TfArg.ref(otherSubnet.nameRef)`.
 /// - `network`: full self-link of the parent VPC. Pass
 ///   `TfArg.ref(vpc.selfLink)` so the value resolves to
 ///   `${google_compute_network.<localName>.self_link}`.
+///
+/// Secondary ranges ([secondaryIpRange]) define alias IP ranges consumed by
+/// GKE pods/services. Flow logs are configured via [logConfig]; not supported
+/// when `purpose` is `REGIONAL_MANAGED_PROXY` or `GLOBAL_MANAGED_PROXY`.
+/// Enable `privateIpGoogleAccess` to allow VMs without external IPs to reach
+/// Google APIs.
 ///
 /// Example:
 /// ```dart
@@ -209,9 +238,6 @@ class ComputeSubnetworkSubnetworkLogConfig {
 ///   privateIpGoogleAccess: TfArg.literal(true),
 /// );
 /// ```
-///
-/// Manages a regional subnetwork within a VPC. Composition pattern:
-/// extends `Resource` for runtime behavior.
 final class GoogleComputeSubnetwork extends Resource {
   static const String tfType = 'google_compute_subnetwork';
 
@@ -282,20 +308,37 @@ final class GoogleComputeSubnetwork extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeSubnetworkSensitive;
 
-  /// Reference to `name` attribute. Use for interpolations like
-  /// `subnet.nameRef` → `${google_compute_subnetwork.<localName>.name}`.
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/regions/{region}/subnetworks/{name}`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `self_link` attribute. Frequently used as the `subnetwork`
-  /// param of downstream resources like `google_compute_instance`.
+  /// Reference to `creation_timestamp` attribute.
+  TfRef<String> get creationTimestamp =>
+      TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `fingerprint` attribute.
+  TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
+
+  /// Reference to `gateway_address` attribute.
+  TfRef<String> get gatewayAddress =>
+      TfRef.attribute<String>(this, 'gateway_address');
+
+  /// Reference to `ipv6_cidr_range` attribute.
+  TfRef<String> get ipv6CidrRange =>
+      TfRef.attribute<String>(this, 'ipv6_cidr_range');
+
+  /// Reference to `ipv6_gce_endpoint` attribute.
+  TfRef<String> get ipv6GceEndpoint =>
+      TfRef.attribute<String>(this, 'ipv6_gce_endpoint');
+
+  /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
-  /// Reference to `gateway_address` attribute (the gateway IP within
-  /// `ip_cidr_range`, auto-assigned by GCP).
-  TfRef<String> get gatewayAddressRef =>
-      TfRef.attribute<String>(this, 'gateway_address');
+  /// Reference to `state` attribute.
+  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
+
+  /// Reference to `subnetwork_id` attribute.
+  TfRef<num> get subnetworkId => TfRef.attribute<num>(this, 'subnetwork_id');
 }

@@ -644,8 +644,10 @@ class ComputeRegionUrlMapRegionUrlMapTestHeader {
   };
 }
 
-/// Factory wrapper for `google_compute_region_url_map` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_region_url_map`.
+///
+/// UrlMaps are used to route requests to a backend service based on rules that
+/// you define for the host and path of an incoming URL.
 ///
 /// Manages a **regional** Cloud Load Balancing URL map -- the layer that
 /// routes incoming HTTP(S) requests to one of several
@@ -807,29 +809,22 @@ final class GoogleComputeRegionUrlMap extends Resource {
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `region` attribute.
-  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
-
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/regions/{region}/urlMaps/{name}`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `self_link` attribute. Downstream
-  /// `google_compute_region_target_http_proxy` /
-  /// `google_compute_region_target_https_proxy` resources consume this as
-  /// their `url_map` argument.
-  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-  /// Reference to the computed `map_id` -- numeric server-assigned ID for
-  /// the URL map. Rarely needed; prefer [selfLink] / [nameRef].
-  TfRef<num> get mapId => TfRef.attribute<num>(this, 'map_id');
-
-  /// Reference to the computed `fingerprint` attribute. Used by the API
-  /// for optimistic concurrency control on updates; surfaced here for
-  /// consumers that pipe it through state-inspection tooling.
-  TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
-
-  /// Reference to the computed `creation_timestamp` attribute (RFC3339).
+  /// Reference to `creation_timestamp` attribute.
   TfRef<String> get creationTimestamp =>
       TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `fingerprint` attribute.
+  TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
+
+  /// Reference to `map_id` attribute.
+  TfRef<num> get mapId => TfRef.attribute<num>(this, 'map_id');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `region` attribute.
+  TfRef<String> get regionRef => TfRef.attribute<String>(this, 'region');
 }

@@ -14,7 +14,8 @@ const Set<String> _googleComputeHealthCheckSensitive = <String>{};
 /// Health-check protocol. Computed on the resource (the GCP API derives
 /// it from which per-protocol config block was set), so callers don't
 /// set this directly — they pick the matching `*HealthCheck` block.
-/// Listed here for use in `==` comparisons against [typeRef] reads.
+/// Listed here for use in `==` comparisons against the derived `type`
+/// getter.
 enum HealthCheckType implements TerraformEnum {
   http('HTTP'),
   https('HTTPS'),
@@ -305,8 +306,24 @@ class ComputeHealthCheckHealthCheckLogConfig {
   };
 }
 
-/// Factory wrapper for `google_compute_health_check` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_health_check`.
+///
+/// Health Checks determine whether instances are responsive and able to do
+/// work. They are an important part of a comprehensive load balancing
+/// configuration, as they enable monitoring instances behind load balancers.
+///
+/// Health Checks poll instances at a specified interval. Instances that do not
+/// respond successfully to some number of probes in a row are marked as
+/// unhealthy. No new connections are sent to unhealthy instances, though
+/// existing connections will continue. The health check will continue to poll
+/// unhealthy instances. If an instance later responds successfully to some
+/// number of consecutive probes, it is marked healthy again and can receive new
+/// connections.
+///
+/// ~>**NOTE**: Legacy HTTP(S) health checks must be used for target pool-based
+/// network load balancers. See the [official
+/// guide](https://cloud.google.com/load-balancing/docs/health-check-concepts#selecting_hc)
+/// for choosing a type of health check.
 ///
 /// A **global** health check polls instances behind a load balancer at a
 /// configurable interval. Once attached to a backend service (see
@@ -323,9 +340,9 @@ class ComputeHealthCheckHealthCheckLogConfig {
 /// ([httpHealthCheck], [httpsHealthCheck], [http2HealthCheck],
 /// [tcpHealthCheck], [sslHealthCheck], [grpcHealthCheck]) must be set,
 /// and the choice determines the value the GCP API will compute for
-/// `type` (which is read-only on this resource — surface it via
-/// [typeRef]). The Terraform provider rejects configurations with
-/// multiple blocks or none.
+/// `type` (which is read-only on this resource — accessible via the
+/// derived `type` getter). The Terraform provider rejects configurations
+/// with multiple blocks or none.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
@@ -425,23 +442,19 @@ final class GoogleComputeHealthCheck extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeHealthCheckSensitive;
 
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/global/healthChecks/{name}`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `self_link` attribute. This is the value
-  /// [GoogleComputeBackendService.healthChecks] expects.
-  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-  /// Reference to the computed `type` attribute (the [HealthCheckType]
-  /// the API inferred from which per-protocol block was set). Available
-  /// after apply.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
-
-  /// Reference to `creation_timestamp` (RFC3339).
+  /// Reference to `creation_timestamp` attribute.
   TfRef<String> get creationTimestamp =>
       TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

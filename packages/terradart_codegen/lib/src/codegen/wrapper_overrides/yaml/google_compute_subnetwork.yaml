@@ -1,17 +1,23 @@
 outputDir: compute
 
-classDocComment: |-
-  /// Factory wrapper for `google_compute_subnetwork` (provider
-  /// `hashicorp/google ~> 7.0`).
+deriveClassDoc: true
+
+curatedDoc: |-
+  /// This resource models a regional subnetwork within a VPC.
   ///
   /// Required identity:
-  /// - [localName]: Terraform local name (the address segment after
-  ///   `google_compute_subnetwork.`).
+  /// - [localName]: Terraform local name.
   /// - `name`: GCP subnetwork name. Pass `TfArg.literal('main-subnet')` or
   ///   `TfArg.ref(otherSubnet.nameRef)`.
   /// - `network`: full self-link of the parent VPC. Pass
   ///   `TfArg.ref(vpc.selfLink)` so the value resolves to
   ///   `${google_compute_network.<localName>.self_link}`.
+  ///
+  /// Secondary ranges ([secondaryIpRange]) define alias IP ranges consumed by
+  /// GKE pods/services. Flow logs are configured via [logConfig]; not supported
+  /// when `purpose` is `REGIONAL_MANAGED_PROXY` or `GLOBAL_MANAGED_PROXY`.
+  /// Enable `privateIpGoogleAccess` to allow VMs without external IPs to reach
+  /// Google APIs.
   ///
   /// Example:
   /// ```dart
@@ -29,9 +35,8 @@ classDocComment: |-
   ///   privateIpGoogleAccess: TfArg.literal(true),
   /// );
   /// ```
-  ///
-  /// Manages a regional subnetwork within a VPC. Composition pattern:
-  /// extends `Resource` for runtime behavior.
+
+deriveOutputGetters: true
 
 paramOrder:
   - name
@@ -55,24 +60,6 @@ paramOrder:
   - allow_subnet_cidr_routes_overlap
   - description
   - project
-
-extraGetters: |2
-    /// Reference to `name` attribute. Use for interpolations like
-    /// `subnet.nameRef` → `${google_compute_subnetwork.<localName>.name}`.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute (full path
-    /// `projects/{project}/regions/{region}/subnetworks/{name}`).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `self_link` attribute. Frequently used as the `subnetwork`
-    /// param of downstream resources like `google_compute_instance`.
-    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-    /// Reference to `gateway_address` attribute (the gateway IP within
-    /// `ip_cidr_range`, auto-assigned by GCP).
-    TfRef<String> get gatewayAddressRef =>
-        TfRef.attribute<String>(this, 'gateway_address');
 
 dartTypeOverrides:
   purpose: SubnetworkPurpose

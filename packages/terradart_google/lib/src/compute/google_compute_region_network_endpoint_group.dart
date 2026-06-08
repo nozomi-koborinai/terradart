@@ -163,18 +163,22 @@ class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine {
   };
 }
 
-/// Factory wrapper for `google_compute_region_network_endpoint_group`
-/// (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_region_network_endpoint_group`.
 ///
-/// A **regional** Network Endpoint Group (NEG). The dominant Wave 6 use
-/// case is fronting a serverless runtime —
-/// [RegionNetworkEndpointGroupType.serverless] — so an HTTPS Application
-/// Load Balancer can route traffic into Cloud Run, Cloud Functions
-/// (Gen 2), or App Engine flex. Beyond serverless, the same resource also
-/// models Private Service Connect consumers and INTERNET origins that
-/// must be expressed regionally rather than globally.
+/// A regional NEG that can support Serverless Products, proxying traffic to
+/// external backends and providing traffic to the PSC port mapping endpoints.
 ///
-/// A serverless NEG slots into the L7 Application LB chain as the leaf:
+/// When in use by a resource that can be updated, recreating a
+/// RegionNetworkEndpointGroup will give a `resourceInUseByAnotherResource`
+/// error because Terraform will attempt to delete the
+/// RegionNetworkEndpointGroup first, but an in-use RegionNetworkEndpointGroup
+/// can't be deleted in the API. Use `lifecycle.create_before_destroy` to
+/// reorder the plan and create the new resource first, allowing the deletion to
+/// go through successfully. This is only recommended when strictly necessary,
+/// as the `create_before_destroy` directive can be passed onto further
+/// dependencies, creating unexpected plans.
+///
+/// Slots into the L7 Application LB chain as the backend leaf:
 ///
 /// ```
 /// google_compute_global_forwarding_rule
@@ -185,33 +189,25 @@ class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine {
 /// ```
 ///
 /// Required identity:
-/// - [localName]: Terraform local name (the address segment after
-///   `google_compute_region_network_endpoint_group.`).
+/// - [localName]: Terraform local name.
 /// - `name`: GCP NEG resource name. 1-63 chars, RFC1035.
-/// - `region`: GCP region the NEG (and its target service) lives in. For
-///   serverless NEGs the region must match the Cloud Run / Cloud Function
-///   region; the LB backend service then aggregates per-region NEGs into
-///   one global backend.
+/// - `region`: GCP region the NEG lives in. For serverless NEGs the region
+///   must match the Cloud Run / Cloud Function region; a backend service
+///   aggregates per-region NEGs into one global backend.
 ///
 /// `networkEndpointType` defaults to
-/// [RegionNetworkEndpointGroupType.serverless] (provider default), which
-/// is the right value for Cloud Run / Cloud Functions Gen 2 / App Engine
-/// flex hookup — by far the dominant Wave 6 use case. Leave `null` to
-/// inherit that default, or pass an explicit value for PSC / INTERNET /
-/// portmap NEGs.
+/// [RegionNetworkEndpointGroupType.serverless] (provider default). Leave
+/// `null` to inherit that default, or pass an explicit value for PSC /
+/// INTERNET / portmap NEGs.
 ///
-/// Serverless target (exactly one of `cloudRun` / `cloudFunction` /
-/// `appEngine`): use the inline nested classes
-/// [ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun],
-/// [ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction], or
-/// [ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine]. Setting more than one is
+/// Serverless target — exactly one of `cloudRun` / `cloudFunction` /
+/// `appEngine` via the inline nested classes; setting more than one is
 /// rejected at apply time.
 ///
 /// PSC consumer NEG: set
 /// `networkEndpointType: RegionNetworkEndpointGroupType.privateServiceConnect`,
-/// `pscTargetService` (Google API bundle name or producer Service
-/// Attachment self-link), and typically also `network` (and optionally
-/// `subnetwork` for explicit subnet selection).
+/// `pscTargetService` (Google API bundle name or producer Service Attachment
+/// self-link), and typically also `network` (optionally `subnetwork`).
 ///
 /// INTERNET regional NEGs
 /// ([RegionNetworkEndpointGroupType.internetIpPort] or
@@ -230,10 +226,6 @@ class ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupAppEngine {
 ///   ),
 /// );
 /// ```
-///
-/// Composition pattern: extends
-/// `Resource` for runtime
-/// behavior.
 final class GoogleComputeRegionNetworkEndpointGroup extends Resource {
   static const String tfType = 'google_compute_region_network_endpoint_group';
 
@@ -280,16 +272,12 @@ final class GoogleComputeRegionNetworkEndpointGroup extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeRegionNetworkEndpointGroupSensitive;
 
-  /// Reference to `name` attribute. Use for interpolations like
-  /// `neg.nameRef` →
-  /// `${google_compute_region_network_endpoint_group.<localName>.name}`.
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/regions/{region}/networkEndpointGroups/{name}`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `self_link` attribute. Wire this into a backend
-  /// service's `backend.group` slot when composing the Application LB.
+  /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 }

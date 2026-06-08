@@ -832,8 +832,11 @@ class ComputeInstanceTemplateInstanceTemplateNetworkPerformanceConfig {
   };
 }
 
-/// Factory wrapper for `google_compute_instance_template` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_instance_template`.
+///
+/// Resource that enables a convenient way to save a virtual machine (VM)
+/// instance's configuration that includes all of its properties and allows you
+/// to create a new instance from it.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
@@ -875,16 +878,19 @@ class ComputeInstanceTemplateInstanceTemplateNetworkPerformanceConfig {
 /// );
 /// ```
 ///
-/// Manages a Google Compute Engine instance template. Instance templates are
-/// global resources (no `zone`) consumed by managed instance groups and
-/// regional MIGs. The nested blocks (`disk` / `network_interface` /
-/// `service_account` / `scheduling` / `shielded_instance_config` /
-/// `confidential_instance_config` / `guest_accelerator` /
-/// `advanced_machine_features` / `reservation_affinity` /
-/// `network_performance_config`) are modeled as helper classes in the
-/// `prelude` below. Single-instance blocks (`max_items=1`) are wrapped in a
-/// `[map]` list before being passed to Terraform; list-typed blocks are
-/// passed through as `List<Map>`.
+/// Instance templates are global resources (no `zone`) consumed by managed
+/// instance groups and regional MIGs. The nested blocks (`disk` /
+/// `network_interface` / `service_account` / `scheduling` /
+/// `shielded_instance_config` / `confidential_instance_config` /
+/// `guest_accelerator` / `advanced_machine_features` /
+/// `reservation_affinity` / `network_performance_config`) are modeled as
+/// helper classes in the `prelude` below. Single-instance blocks
+/// (`max_items=1`) are wrapped in a `[map]` list before being passed to
+/// Terraform; list-typed blocks are passed through as `List<Map>`.
+///
+/// `selfLinkUnique` disambiguates templates that share a `name_prefix`;
+/// prefer it over `selfLink` when referencing from a MIG that recreates
+/// templates frequently.
 ///
 /// All nested helper types are prefixed `InstanceTemplate` to avoid name
 /// collisions with the corresponding helpers in `google_compute_instance`
@@ -990,6 +996,36 @@ final class GoogleComputeInstanceTemplate extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeInstanceTemplateSensitive;
 
+  /// Reference to `creation_timestamp` attribute.
+  TfRef<String> get creationTimestamp =>
+      TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `metadata_fingerprint` attribute.
+  TfRef<String> get metadataFingerprint =>
+      TfRef.attribute<String>(this, 'metadata_fingerprint');
+
+  /// Reference to `numeric_id` attribute.
+  TfRef<String> get numericId => TfRef.attribute<String>(this, 'numeric_id');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `self_link_unique` attribute.
+  TfRef<String> get selfLinkUnique =>
+      TfRef.attribute<String>(this, 'self_link_unique');
+
+  /// Reference to `tags_fingerprint` attribute.
+  TfRef<String> get tagsFingerprint =>
+      TfRef.attribute<String>(this, 'tags_fingerprint');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
   /// Reference to `id` attribute (full path
   /// `projects/{project}/global/instanceTemplates/{name}`).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
@@ -998,29 +1034,4 @@ final class GoogleComputeInstanceTemplate extends Resource {
   /// `tmpl.nameRef` ->
   /// `${google_compute_instance_template.<localName>.name}`.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `self_link` attribute (HTTPS API path). Use this when
-  /// wiring the template into a `google_compute_instance_group_manager` or
-  /// `google_compute_region_instance_group_manager`.
-  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-  /// Reference to `self_link_unique` attribute. A special self-link that
-  /// disambiguates between templates that share a `name_prefix`; safer to
-  /// reference from a MIG when templates are recreated frequently.
-  TfRef<String> get selfLinkUnique =>
-      TfRef.attribute<String>(this, 'self_link_unique');
-
-  /// Reference to `numeric_id` attribute (numeric GCP template ID, assigned
-  /// at create time).
-  TfRef<String> get numericIdRef => TfRef.attribute<String>(this, 'numeric_id');
-
-  /// Reference to `metadata_fingerprint` attribute (used internally by GCP
-  /// for optimistic locking on metadata updates).
-  TfRef<String> get metadataFingerprintRef =>
-      TfRef.attribute<String>(this, 'metadata_fingerprint');
-
-  /// Reference to `tags_fingerprint` attribute (used internally by GCP for
-  /// optimistic locking on tag updates).
-  TfRef<String> get tagsFingerprintRef =>
-      TfRef.attribute<String>(this, 'tags_fingerprint');
 }

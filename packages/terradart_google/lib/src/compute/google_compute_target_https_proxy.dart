@@ -45,8 +45,10 @@ enum TlsEarlyData implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Factory wrapper for `google_compute_target_https_proxy` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_target_https_proxy`.
+///
+/// Represents a TargetHttpsProxy resource, which is used by one or more global
+/// forwarding rule to route incoming HTTPS requests to a URL map.
 ///
 /// A global HTTPS target proxy — the TLS-terminating node in the GCP
 /// external HTTP(S) load-balancer chain. The full chain is:
@@ -147,6 +149,16 @@ final class GoogleComputeTargetHttpsProxy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeTargetHttpsProxySensitive;
 
+  /// Reference to `creation_timestamp` attribute.
+  TfRef<String> get creationTimestamp =>
+      TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `fingerprint` attribute.
+  TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
+
+  /// Reference to `proxy_id` attribute.
+  TfRef<num> get proxyId => TfRef.attribute<num>(this, 'proxy_id');
+
   /// Reference to `name` attribute. Use for interpolations like
   /// `proxy.nameRef` →
   /// `${google_compute_target_https_proxy.<localName>.name}`.
@@ -160,8 +172,4 @@ final class GoogleComputeTargetHttpsProxy extends Resource {
   /// param of downstream resources like
   /// `google_compute_global_forwarding_rule`.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-  /// Reference to the computed `proxy_id` attribute — the numeric GCP
-  /// resource identifier. Available after apply.
-  TfRef<num> get proxyIdRef => TfRef.attribute<num>(this, 'proxy_id');
 }

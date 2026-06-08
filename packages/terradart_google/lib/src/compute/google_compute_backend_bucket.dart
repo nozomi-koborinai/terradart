@@ -233,8 +233,15 @@ class ComputeBackendBucketBackendBucketParams {
   };
 }
 
-/// Factory wrapper for `google_compute_backend_bucket` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_backend_bucket`.
+///
+/// Backend buckets allow you to use Google Cloud Storage buckets with HTTP(S)
+/// load balancing.
+///
+/// An HTTP(S) load balancer can direct traffic to specified URLs to a backend
+/// bucket rather than a backend service. It can send requests for static
+/// content to a Cloud Storage bucket and requests for dynamic content to a
+/// virtual machine instance.
 ///
 /// A **global** backend bucket — the load-balancing target that points
 /// an HTTPS load balancer at a Google Cloud Storage bucket of static
@@ -362,19 +369,16 @@ final class GoogleComputeBackendBucket extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeBackendBucketSensitive;
 
-  /// Reference to `name` attribute.
-  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/global/backendBuckets/{name}`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `self_link` attribute (HTTPS API path). The canonical
-  /// reference a downstream `google_compute_url_map` uses to bind a
-  /// path rule to this bucket.
-  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-  /// Reference to `creation_timestamp` (RFC3339).
+  /// Reference to `creation_timestamp` attribute.
   TfRef<String> get creationTimestamp =>
       TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 }

@@ -1,13 +1,17 @@
 outputDir: compute
 
-classDocComment: |-
-  /// Factory wrapper for `google_compute_address` (provider `hashicorp/google ~> 7.0`).
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Use `addressType: AddressType.internal` for VPC-private addresses,
+  /// `AddressType.external` for public IPs. Regional resources live under a
+  /// `region`; the global counterpart is [GoogleComputeGlobalAddress].
   ///
   /// Required identity:
   /// - [localName]: Terraform local name (the address segment after
   ///   `google_compute_address.`).
-  /// - `name`: GCP address resource name. Pass `TfArg.literal('lb-vip')` or
-  ///   `TfArg.ref(otherAddr.nameRef)`.
+  /// - `name`: GCP address resource name.
   ///
   /// Example:
   /// ```dart
@@ -19,9 +23,6 @@ classDocComment: |-
   ///   networkTier: TfArg.literal(NetworkTier.premium),
   /// );
   /// ```
-  ///
-  /// Represents an IP address resource (regional or global). Use `addressType:
-  /// 'INTERNAL'` for VPC-internal addresses, `'EXTERNAL'` for public IPs.
 
 paramOrder:
   - name
@@ -41,21 +42,10 @@ paramOrder:
   - project
 
 extraGetters: |2
-    /// Reference to `name` attribute.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute (full path
-    /// `projects/{project}/regions/{region}/addresses/{name}` for regional
-    /// addresses, or `.../global/addresses/{name}` for global).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
     /// Reference to `address` attribute (the actual IP allocated by GCP,
     /// available after apply). Use this to pass the IP to downstream
     /// resources like load balancer forwarding rules.
     TfRef<String> get addressRef => TfRef.attribute<String>(this, 'address');
-
-    /// Reference to `self_link` attribute.
-    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
 dartTypeOverrides:
   address_type: AddressType

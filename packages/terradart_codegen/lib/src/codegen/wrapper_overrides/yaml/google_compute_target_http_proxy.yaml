@@ -1,9 +1,8 @@
 outputDir: compute
 
-classDocComment: |-
-  /// Factory wrapper for `google_compute_target_http_proxy` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+
+curatedDoc: |-
   /// A global HTTP target proxy — one node in the GCP external HTTP(S)
   /// load-balancer chain. The full chain is:
   ///
@@ -45,6 +44,8 @@ paramOrder:
   - description
   - project
 
+deriveOutputGetters: true
+
 extraGetters: |2
     /// Reference to `name` attribute. Use for interpolations like
     /// `proxy.nameRef` →
@@ -59,7 +60,3 @@ extraGetters: |2
     /// param of downstream resources like
     /// `google_compute_global_forwarding_rule`.
     TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-    /// Reference to the computed `proxy_id` attribute — the numeric GCP
-    /// resource identifier. Available after apply.
-    TfRef<num> get proxyIdRef => TfRef.attribute<num>(this, 'proxy_id');

@@ -6,8 +6,10 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_region_target_https_proxy`.
 const Set<String> _googleComputeRegionTargetHttpsProxySensitive = <String>{};
 
-/// Factory wrapper for `google_compute_region_target_https_proxy`
-/// (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_region_target_https_proxy`.
+///
+/// Represents a RegionTargetHttpsProxy resource, which is used by one or more
+/// forwarding rules to route incoming HTTPS requests to a URL map.
 ///
 /// A regional HTTPS target proxy — the TLS-terminating node in the GCP
 /// regional external or internal HTTP(S) load-balancer chain. The full
@@ -122,6 +124,13 @@ final class GoogleComputeRegionTargetHttpsProxy extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeRegionTargetHttpsProxySensitive;
 
+  /// Reference to `creation_timestamp` attribute.
+  TfRef<String> get creationTimestamp =>
+      TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `proxy_id` attribute.
+  TfRef<num> get proxyId => TfRef.attribute<num>(this, 'proxy_id');
+
   /// Reference to `name` attribute. Use for interpolations like
   /// `proxy.nameRef` →
   /// `${google_compute_region_target_https_proxy.<localName>.name}`.
@@ -135,8 +144,4 @@ final class GoogleComputeRegionTargetHttpsProxy extends Resource {
   /// `target` param of downstream resources like
   /// `google_compute_forwarding_rule`.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-  /// Reference to the computed `proxy_id` attribute — the numeric GCP
-  /// resource identifier. Available after apply.
-  TfRef<num> get proxyIdRef => TfRef.attribute<num>(this, 'proxy_id');
 }

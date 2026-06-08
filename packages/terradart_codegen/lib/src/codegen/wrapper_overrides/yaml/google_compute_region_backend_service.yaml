@@ -1,9 +1,8 @@
 outputDir: compute
 
-classDocComment: |-
-  /// Factory wrapper for `google_compute_region_backend_service` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+
+curatedDoc: |-
   /// A **regional** backend service is the load-balancing target for
   /// Internal Application LBs, Internal Proxy NLBs, Regional External
   /// Application LBs, Regional External Proxy NLBs, and Internal /
@@ -144,29 +143,16 @@ paramOrder:
 extraImports:
   - "import 'package:meta/meta.dart';"
 
+deriveOutputGetters: true
+
 extraGetters: |2
     /// Reference to `name` attribute.
     TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-    /// Reference to `id` attribute
-    /// (`projects/{project}/regions/{region}/backendServices/{name}`).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `self_link` attribute (HTTPS API path). The canonical
-    /// reference downstream `google_compute_region_url_map` /
-    /// `google_compute_region_target_*_proxy` resources expect.
-    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
     /// Reference to the server-assigned numeric `generated_id`.
+    /// Kept at `TfRef<int>` — schema type is `number` (derived would widen
+    /// to `TfRef<num>`).
     TfRef<int> get generatedId => TfRef.attribute<int>(this, 'generated_id');
-
-    /// Reference to `fingerprint` — used by the API for optimistic locking.
-    TfRef<String> get fingerprint =>
-        TfRef.attribute<String>(this, 'fingerprint');
-
-    /// Reference to `creation_timestamp` (RFC3339).
-    TfRef<String> get creationTimestamp =>
-        TfRef.attribute<String>(this, 'creation_timestamp');
 
 dartTypeOverrides:
   protocol: RegionBackendServiceProtocol

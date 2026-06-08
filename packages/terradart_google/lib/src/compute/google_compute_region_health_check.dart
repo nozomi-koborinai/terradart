@@ -20,7 +20,7 @@ const Set<String> _googleComputeRegionHealthCheckSensitive = <String>{};
 /// resource (the GCP API derives it from which per-protocol config
 /// block was set), so callers don't set this directly — they pick the
 /// matching `*HealthCheck` block. Listed here for use in `==`
-/// comparisons against [typeRef] reads.
+/// comparisons against the derived `type` getter.
 enum RegionHealthCheckType implements TerraformEnum {
   http('HTTP'),
   https('HTTPS'),
@@ -309,8 +309,19 @@ class ComputeRegionHealthCheckRegionHealthCheckLogConfig {
   };
 }
 
-/// Factory wrapper for `google_compute_region_health_check` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_region_health_check`.
+///
+/// Health Checks determine whether instances are responsive and able to do
+/// work. They are an important part of a comprehensive load balancing
+/// configuration, as they enable monitoring instances behind load balancers.
+///
+/// Health Checks poll instances at a specified interval. Instances that do not
+/// respond successfully to some number of probes in a row are marked as
+/// unhealthy. No new connections are sent to unhealthy instances, though
+/// existing connections will continue. The health check will continue to poll
+/// unhealthy instances. If an instance later responds successfully to some
+/// number of consecutive probes, it is marked healthy again and can receive new
+/// connections.
 ///
 /// A **regional** health check polls instances behind a regional load
 /// balancer at a configurable interval. Required by regional internal
@@ -323,9 +334,9 @@ class ComputeRegionHealthCheckRegionHealthCheckLogConfig {
 /// ([httpHealthCheck], [httpsHealthCheck], [http2HealthCheck],
 /// [tcpHealthCheck], [sslHealthCheck], [grpcHealthCheck]) must be set,
 /// and the choice determines the value the GCP API will compute for
-/// `type` (which is read-only on this resource — surface it via
-/// [typeRef]). The Terraform provider rejects configurations with
-/// multiple blocks or none.
+/// `type` (which is read-only on this resource — accessible via the
+/// derived `type` getter). The Terraform provider rejects configurations
+/// with multiple blocks or none.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
@@ -419,26 +430,24 @@ final class GoogleComputeRegionHealthCheck extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeRegionHealthCheckSensitive;
 
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `creation_timestamp` attribute.
+  TfRef<String> get creationTimestamp =>
+      TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `type` attribute.
+  TfRef<String> get type => TfRef.attribute<String>(this, 'type');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/regions/{region}/healthChecks/{name}`).
-  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `self_link` attribute. This is the value
-  /// `google_compute_region_backend_service.health_checks` expects.
-  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-  /// Reference to the computed `type` attribute (the
-  /// [RegionHealthCheckType] the API inferred from which per-protocol
-  /// block was set). Available after apply.
-  TfRef<String> get typeRef => TfRef.attribute<String>(this, 'type');
-
   /// Reference to the computed server-assigned numeric `health_check_id`.
+  /// Kept at `TfRef<int>` — schema type is `number` (derived would widen
+  /// to `TfRef<num>`).
   TfRef<int> get healthCheckId => TfRef.attribute<int>(this, 'health_check_id');
-
-  /// Reference to `creation_timestamp` (RFC3339).
-  TfRef<String> get creationTimestamp =>
-      TfRef.attribute<String>(this, 'creation_timestamp');
 }

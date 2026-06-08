@@ -396,8 +396,16 @@ class ComputeInstanceGroupManagerInstanceGroupManagerResourcePolicies {
   };
 }
 
-/// Factory wrapper for `google_compute_instance_group_manager` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_instance_group_manager`.
+///
+/// Creates a managed instance group using the information that you specify in
+/// the request. After the group is created, it schedules an action to create
+/// instances in the group using the specified instance template. This operation
+/// is marked as DONE when the group is created even if the instances in the
+/// group have not yet been created. You must separately verify the status of
+/// the individual instances.
+///
+/// A managed instance group can have up to 1000 VM instances per group.
 ///
 /// A **zonal** Managed Instance Group (MIG). The MIG schedules and
 /// maintains a fleet of VM instances inside a single GCP zone using one
@@ -441,6 +449,9 @@ class ComputeInstanceGroupManagerInstanceGroupManagerResourcePolicies {
 /// - [targetPools]: self-links of `google_compute_target_pool`. New VMs
 ///   are added to these target pools; pre-existing VMs are not
 ///   retroactively rebalanced.
+/// - Outbound: reference `instanceGroup` as the `backend.group` of a
+///   `google_compute_backend_service` to put the MIG behind a load
+///   balancer.
 ///
 /// Example (single-version zonal MIG with autohealing and a rolling
 /// proactive update policy):
@@ -587,6 +598,27 @@ final class GoogleComputeInstanceGroupManager extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeInstanceGroupManagerSensitive;
 
+  /// Reference to `creation_timestamp` attribute.
+  TfRef<String> get creationTimestamp =>
+      TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `fingerprint` attribute.
+  TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
+
+  /// Reference to `instance_group` attribute.
+  TfRef<String> get instanceGroup =>
+      TfRef.attribute<String>(this, 'instance_group');
+
+  /// Reference to `operation` attribute.
+  TfRef<String> get operation => TfRef.attribute<String>(this, 'operation');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+  /// Reference to `status` attribute.
+  TfRef<List<Map<String, Object?>>> get status =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'status');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
@@ -594,25 +626,9 @@ final class GoogleComputeInstanceGroupManager extends Resource {
   /// (`projects/{project}/zones/{zone}/instanceGroupManagers/{name}`).
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `self_link` (HTTPS API path). Use this when wiring the
-  /// MIG into a backend service or an autoscaler.
-  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-  /// Reference to `instance_group` — self-link of the underlying
-  /// `google_compute_instance_group` the MIG manages. Use this when
-  /// adding the MIG as a `backend.group` on a
-  /// `google_compute_backend_service`.
-  TfRef<String> get instanceGroup =>
-      TfRef.attribute<String>(this, 'instance_group');
-
   /// Reference to the server-assigned numeric `instance_group_manager_id`.
+  /// Kept at `TfRef<int>` — schema type is `number` (derived would widen
+  /// to `TfRef<num>`).
   TfRef<int> get instanceGroupManagerId =>
       TfRef.attribute<int>(this, 'instance_group_manager_id');
-
-  /// Reference to `fingerprint` — used by the API for optimistic locking.
-  TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
-
-  /// Reference to `creation_timestamp` (RFC3339).
-  TfRef<String> get creationTimestamp =>
-      TfRef.attribute<String>(this, 'creation_timestamp');
 }

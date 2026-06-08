@@ -981,8 +981,22 @@ class ComputeBackendServiceBackendServiceParams {
   };
 }
 
-/// Factory wrapper for `google_compute_backend_service` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_backend_service`.
+///
+/// A Backend Service defines a group of virtual machines that will serve
+/// traffic for load balancing. This resource is a global backend service,
+/// appropriate for external load balancing or self-managed internal load
+/// balancing. For managed internal load balancing, use a regional backend
+/// service instead.
+///
+/// Currently self-managed internal load balancing is only available in beta.
+///
+/// ~> **Note:** Recreating a `google_compute_backend_service` that references
+/// other dependent resources like `google_compute_url_map` will give a
+/// `resourceInUseByAnotherResource` error, when modifying the number of other
+/// dependent resources. Use `lifecycle.create_before_destroy` on the dependent
+/// resources to avoid this type of error as shown in the Dynamic Backends
+/// example.
 ///
 /// A **global** backend service is the load-balancing target for global
 /// external HTTP(S) load balancers and for Traffic Director's self-managed
@@ -1179,24 +1193,24 @@ final class GoogleComputeBackendService extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeBackendServiceSensitive;
 
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `creation_timestamp` attribute.
+  TfRef<String> get creationTimestamp =>
+      TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `fingerprint` attribute.
+  TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
+
+  /// Reference to `self_link` attribute.
+  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
   /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (`projects/{project}/global/backendServices/{name}`).
-  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `self_link` attribute (HTTPS API path). The canonical
-  /// reference downstream `google_compute_url_map` /
-  /// `google_compute_target_*_proxy` resources expect.
-  TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
   /// Reference to the server-assigned numeric `generated_id`.
+  /// Kept at `TfRef<int>` — schema type is `number` (derived would widen
+  /// to `TfRef<num>`).
   TfRef<int> get generatedId => TfRef.attribute<int>(this, 'generated_id');
-
-  /// Reference to `fingerprint` — used by the API for optimistic locking.
-  TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
-
-  /// Reference to `creation_timestamp` (RFC3339).
-  TfRef<String> get creationTimestamp =>
-      TfRef.attribute<String>(this, 'creation_timestamp');
 }

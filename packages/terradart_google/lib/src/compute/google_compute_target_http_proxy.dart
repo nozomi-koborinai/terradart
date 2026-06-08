@@ -6,8 +6,10 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_target_http_proxy`.
 const Set<String> _googleComputeTargetHttpProxySensitive = <String>{};
 
-/// Factory wrapper for `google_compute_target_http_proxy` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_target_http_proxy`.
+///
+/// Represents a TargetHttpProxy resource, which is used by one or more global
+/// forwarding rule to route incoming HTTP requests to a URL map.
 ///
 /// A global HTTP target proxy — one node in the GCP external HTTP(S)
 /// load-balancer chain. The full chain is:
@@ -70,6 +72,16 @@ final class GoogleComputeTargetHttpProxy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeTargetHttpProxySensitive;
 
+  /// Reference to `creation_timestamp` attribute.
+  TfRef<String> get creationTimestamp =>
+      TfRef.attribute<String>(this, 'creation_timestamp');
+
+  /// Reference to `fingerprint` attribute.
+  TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
+
+  /// Reference to `proxy_id` attribute.
+  TfRef<num> get proxyId => TfRef.attribute<num>(this, 'proxy_id');
+
   /// Reference to `name` attribute. Use for interpolations like
   /// `proxy.nameRef` →
   /// `${google_compute_target_http_proxy.<localName>.name}`.
@@ -83,8 +95,4 @@ final class GoogleComputeTargetHttpProxy extends Resource {
   /// param of downstream resources like
   /// `google_compute_global_forwarding_rule`.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
-
-  /// Reference to the computed `proxy_id` attribute — the numeric GCP
-  /// resource identifier. Available after apply.
-  TfRef<num> get proxyIdRef => TfRef.attribute<num>(this, 'proxy_id');
 }
