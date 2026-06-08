@@ -700,11 +700,12 @@ class ComputeSecurityPolicySecurityPolicyRecaptchaOptionsConfig {
   };
 }
 
-/// Factory wrapper for `google_compute_security_policy` (provider
-/// `hashicorp/google ~> 7.0`). This is Google Cloud Armor: a layer-7
-/// WAF / DDoS / rate-limiting policy that attaches to one or more
-/// `google_compute_backend_service` (via that resource's
-/// `securityPolicy` field) or to backend buckets for edge variants.
+/// Factory wrapper for `google_compute_security_policy`.
+///
+/// Google Cloud Armor: a layer-7 WAF / DDoS / rate-limiting policy that
+/// attaches to one or more `google_compute_backend_service` (via that
+/// resource's `securityPolicy` field) or to backend buckets for edge
+/// variants.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
@@ -717,11 +718,16 @@ class ComputeSecurityPolicySecurityPolicyRecaptchaOptionsConfig {
 ///   for edge policies that filter at Google's cache layer (cache-bypass
 ///   protection, applied to backend services and backend buckets), or
 ///   [SecurityPolicyType.cloudArmorNetwork] for Network Load Balancing.
-/// - [rules]: at least one [ComputeSecurityPolicySecurityPolicyRule]. Cloud Armor always
-///   needs a default rule (priority `2147483647`, match `'*'`) -- if
-///   you omit it the provider auto-injects one with action `allow`,
-///   which is rarely what you want for a deny-list policy. Author
-///   the default-deny explicitly.
+/// - [rules]: at least one [ComputeSecurityPolicySecurityPolicyRule]. Cloud Armor
+///   always needs a default rule (priority `2147483647`, match `'*'`) --
+///   if you omit it the provider auto-injects one with action `allow`,
+///   which is rarely what you want for a deny-list policy. Author the
+///   default-deny explicitly.
+///
+/// [selfLink] is the canonical reference
+/// `google_compute_backend_service.security_policy` expects. Use
+/// [nameRef] when wiring the policy name. [fingerprint] is used by the
+/// API for optimistic locking on updates.
 ///
 /// Example (deny-by-default with a JP allow-list):
 /// ```dart
@@ -829,19 +835,27 @@ final class GoogleComputeSecurityPolicy extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeSecurityPolicySensitive;
 
-  /// Reference to `name` attribute. Use `policy.nameRef` when wiring a
-  /// `google_compute_backend_service.securityPolicy`.
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/global/securityPolicies/{name}`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
-  /// Reference to `self_link` attribute. The canonical reference
-  /// `google_compute_backend_service.security_policy` expects.
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `fingerprint` attribute.
+  TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
+
+  /// Reference to `label_fingerprint` attribute.
+  TfRef<String> get labelFingerprint =>
+      TfRef.attribute<String>(this, 'label_fingerprint');
+
+  /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
-  /// Reference to `fingerprint` attribute -- used by the API for
-  /// optimistic locking on updates.
-  TfRef<String> get fingerprint => TfRef.attribute<String>(this, 'fingerprint');
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 }

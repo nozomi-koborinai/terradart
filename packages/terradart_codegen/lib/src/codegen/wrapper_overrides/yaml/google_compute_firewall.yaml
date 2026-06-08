@@ -1,7 +1,9 @@
 outputDir: compute
 
-classDocComment: |-
-  /// Factory wrapper for `google_compute_firewall` (provider `hashicorp/google ~> 7.0`).
+deriveClassDoc: true
+
+curatedDoc: |-
+  /// This resource models a VPC firewall rule.
   ///
   /// Required identity:
   /// - [localName]: Terraform local name (the address segment after
@@ -25,10 +27,9 @@ classDocComment: |-
   /// );
   /// ```
   ///
-  /// Manages a VPC firewall rule on GCP. Composition pattern: extends
-  /// `Resource` for runtime behavior. The `allow` /
-  /// `deny` list-typed blocks and the single `log_config` block are modeled
-  /// as helper classes in the `prelude` below.
+  /// Composition pattern: extends `Resource` for runtime behavior. The
+  /// `allow` / `deny` list-typed blocks and the single `log_config` block
+  /// are modeled as helper classes in the `prelude` below.
 
 paramOrder:
   - name
@@ -49,17 +50,7 @@ paramOrder:
   - description
   - project
 
-extraGetters: |2
-    /// Reference to `name` attribute. Use for interpolations like
-    /// `fw.nameRef` → `${google_compute_firewall.<localName>.name}`.
-    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-    /// Reference to `id` attribute (full path
-    /// `projects/{project}/global/firewalls/{name}`).
-    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-    /// Reference to `self_link` attribute.
-    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+deriveOutputGetters: true
 
 dartTypeOverrides:
   direction: FirewallDirection

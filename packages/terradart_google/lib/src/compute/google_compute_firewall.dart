@@ -72,7 +72,21 @@ class ComputeFirewallFirewallLogConfig {
   Map<String, Object?> toArgMap() => {'metadata': metadata.terraformValue};
 }
 
-/// Factory wrapper for `google_compute_firewall` (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_firewall`.
+///
+/// Each network has its own firewall controlling access to and from the
+/// instances.
+///
+/// All traffic to instances, even from other instances, is blocked by the
+/// firewall unless firewall rules are created to allow it.
+///
+/// The default network has automatically created firewall rules that are shown
+/// in default firewall rules. No manually created network has automatically
+/// created firewall rules except for a default "allow" rule for outgoing
+/// traffic and a default "deny" for incoming traffic. For all networks except
+/// the default network, you must create any firewall rules you need.
+///
+/// This resource models a VPC firewall rule.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
@@ -96,10 +110,9 @@ class ComputeFirewallFirewallLogConfig {
 /// );
 /// ```
 ///
-/// Manages a VPC firewall rule on GCP. Composition pattern: extends
-/// `Resource` for runtime behavior. The `allow` /
-/// `deny` list-typed blocks and the single `log_config` block are modeled
-/// as helper classes in the `prelude` below.
+/// Composition pattern: extends `Resource` for runtime behavior. The
+/// `allow` / `deny` list-typed blocks and the single `log_config` block
+/// are modeled as helper classes in the `prelude` below.
 final class GoogleComputeFirewall extends Resource {
   static const String tfType = 'google_compute_firewall';
 
@@ -156,13 +169,15 @@ final class GoogleComputeFirewall extends Resource {
   @override
   Set<String> get sensitiveFields => _googleComputeFirewallSensitive;
 
-  /// Reference to `name` attribute. Use for interpolations like
-  /// `fw.nameRef` → `${google_compute_firewall.<localName>.name}`.
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/global/firewalls/{name}`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `creation_timestamp` attribute.
+  TfRef<String> get creationTimestamp =>
+      TfRef.attribute<String>(this, 'creation_timestamp');
 
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');

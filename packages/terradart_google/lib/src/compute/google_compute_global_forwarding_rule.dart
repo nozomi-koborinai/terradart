@@ -216,8 +216,14 @@ class ComputeGlobalForwardingRuleGlobalForwardingRuleServiceDirectoryRegistratio
   };
 }
 
-/// Factory wrapper for `google_compute_global_forwarding_rule` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_compute_global_forwarding_rule`.
+///
+/// Represents a GlobalForwardingRule resource. Global forwarding rules are used
+/// to forward traffic to the correct load balancer for HTTP load balancing.
+/// Global forwarding rules can only be used for HTTP load balancing.
+///
+/// For more information, see
+/// https://cloud.google.com/compute/docs/load-balancing/http/
 ///
 /// The entry point ("frontend") of a GCP global load balancer. A global
 /// forwarding rule binds a public anycast VIP + port range to a target
@@ -255,6 +261,29 @@ class ComputeGlobalForwardingRuleGlobalForwardingRuleServiceDirectoryRegistratio
 /// - `portRange`: a single port (e.g. `'443'`) or a range
 ///   (e.g. `'80-443'`). Required for proxy / Application Load Balancers.
 ///
+/// [ipAddressRef] is the output reference to `ip_address` — populated
+/// with the actual VIP after apply. Useful when [ipAddress] was left
+/// unset and GCP allocated an ephemeral IP, or when downstream DNS
+/// records need the resolved address. (`ip_address` is
+/// `optional + computed`; the derive gate skips it, so [ipAddressRef]
+/// is the sole reference accessor.)
+///
+/// [pscConnectionId] is populated only for Private Service Connect
+/// consumer forwarding rules; empty otherwise. [pscConnectionStatus]
+/// values: `STATUS_UNSPECIFIED` / `PENDING` / `ACCEPTED` / `REJECTED` /
+/// `CLOSED`. [baseForwardingRule] is set when this rule has
+/// `source_ip_ranges` and shares an `[ip, protocol, port]` tuple with a
+/// sibling rule without source ranges.
+///
+/// `networkTier` is `PREMIUM`-only for global rules per GCP — the schema
+/// declares both values for symmetry with the regional resource, but
+/// `STANDARD` is rejected at apply time for global. Leave the field
+/// `null` (provider default) unless you need to override.
+///
+/// `metadataFilters` only applies to forwarding rules whose
+/// `loadBalancingScheme` is `INTERNAL_SELF_MANAGED` (Traffic Director).
+/// Skip the field for normal Application LB frontends.
+///
 /// Example (external HTTPS L7 Application LB frontend):
 /// ```dart
 /// final feFwd = GoogleComputeGlobalForwardingRule(
@@ -268,15 +297,6 @@ class ComputeGlobalForwardingRuleGlobalForwardingRuleServiceDirectoryRegistratio
 ///       TfArg.literal(GlobalForwardingRuleLoadBalancingScheme.externalManaged),
 /// );
 /// ```
-///
-/// `networkTier` is `PREMIUM`-only for global rules per GCP — the schema
-/// declares both values for symmetry with the regional resource, but
-/// `STANDARD` is rejected at apply time for global. Leave the field
-/// `null` (provider default) unless you need to override.
-///
-/// `metadataFilters` only applies to forwarding rules whose
-/// `loadBalancingScheme` is `INTERNAL_SELF_MANAGED` (Traffic Director).
-/// Skip the field for normal Application LB frontends.
 ///
 /// Composition pattern: extends `Resource`
 /// for runtime behavior.
@@ -352,48 +372,45 @@ final class GoogleComputeGlobalForwardingRule extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeGlobalForwardingRuleSensitive;
 
-  /// Reference to `name` attribute. Use for interpolations like
-  /// `fwd.nameRef` →
-  /// `${google_compute_global_forwarding_rule.<localName>.name}`.
+  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
 
-  /// Reference to `id` attribute (full path
-  /// `projects/{project}/global/forwardingRules/{name}`).
+  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `base_forwarding_rule` attribute.
+  TfRef<String> get baseForwardingRule =>
+      TfRef.attribute<String>(this, 'base_forwarding_rule');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `forwarding_rule_id` attribute.
+  TfRef<num> get forwardingRuleId =>
+      TfRef.attribute<num>(this, 'forwarding_rule_id');
+
+  /// Reference to `label_fingerprint` attribute.
+  TfRef<String> get labelFingerprint =>
+      TfRef.attribute<String>(this, 'label_fingerprint');
+
+  /// Reference to `psc_connection_id` attribute.
+  TfRef<String> get pscConnectionId =>
+      TfRef.attribute<String>(this, 'psc_connection_id');
+
+  /// Reference to `psc_connection_status` attribute.
+  TfRef<String> get pscConnectionStatus =>
+      TfRef.attribute<String>(this, 'psc_connection_status');
 
   /// Reference to `self_link` attribute.
   TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
 
-  /// Reference to the computed `ip_address` — populated with the actual
-  /// VIP after apply. Useful when [ipAddress] was left unset and GCP
-  /// allocated an ephemeral IP, or when downstream DNS records need the
-  /// resolved address.
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `ip_address` — populated with the actual VIP after
+  /// apply. (`ip_address` is `optional + computed`; the derive gate
+  /// skips it, so this is the sole reference accessor.)
   TfRef<String> get ipAddressRef => TfRef.attribute<String>(this, 'ip_address');
-
-  /// Reference to the computed `forwarding_rule_id` (numeric server-side
-  /// resource identifier). Available after apply.
-  TfRef<num> get forwardingRuleId =>
-      TfRef.attribute<num>(this, 'forwarding_rule_id');
-
-  /// Reference to the computed `psc_connection_id`. Populated only for
-  /// Private Service Connect consumer forwarding rules; empty otherwise.
-  TfRef<String> get pscConnectionId =>
-      TfRef.attribute<String>(this, 'psc_connection_id');
-
-  /// Reference to the computed `psc_connection_status`
-  /// (`STATUS_UNSPECIFIED` / `PENDING` / `ACCEPTED` / `REJECTED` /
-  /// `CLOSED`). Populated only for PSC consumer rules.
-  TfRef<String> get pscConnectionStatus =>
-      TfRef.attribute<String>(this, 'psc_connection_status');
-
-  /// Reference to the computed `base_forwarding_rule` — set when this
-  /// rule has `source_ip_ranges` and shares an `[ip, protocol, port]`
-  /// tuple with a sibling rule without source ranges.
-  TfRef<String> get baseForwardingRule =>
-      TfRef.attribute<String>(this, 'base_forwarding_rule');
-
-  /// Reference to the computed `label_fingerprint` for optimistic
-  /// locking on label updates.
-  TfRef<String> get labelFingerprint =>
-      TfRef.attribute<String>(this, 'label_fingerprint');
 }
