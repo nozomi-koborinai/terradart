@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.4
+
+No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.4 (Wave 8 GKE core curated factories).
+
 ## 0.12.3
 
 No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.3 (WIF provider sealed trust-source breaking fix).

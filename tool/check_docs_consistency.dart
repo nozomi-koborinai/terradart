@@ -42,7 +42,7 @@ void main() {
   _checkPhrase(
     errors,
     'website/src/content/docs/docs/agent/tools-reference.md',
-    'list all 122',
+    'list all 124',
     listBarrelsOutputCountPhrase,
   );
   _checkPhrase(

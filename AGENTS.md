@@ -93,6 +93,7 @@ Avoid vague subjects (`update`, `fix stuff`, `WIP`). Prefer one logical change p
 Targeted checks when `agent_verify.sh` is too broad:
 
 ```bash
+dart tool/batch_wrap_init.dart --resources=google_foo,google_bar  # maintainer: batch wrap-init
 dart tool/check_docs_consistency.dart
 tool/smoke_quickstart.sh
 cd packages/terradart_codegen && dart run bin/terradart.dart wrap \

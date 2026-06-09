@@ -4,6 +4,15 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## [0.12.4] - 2026-06-09
+
+Lockstep patch across the workspace. **No breaking changes** vs `0.12.3`.
+
+### Added
+
+- **`terradart_google`** — Wave 8 GKE core: `google_container_cluster` and `google_container_node_pool`; new `package:terradart_google/container.dart` barrel. Catalog: **123 curated resource factories + 1 data source** (124 entries).
+- **`tool/batch_wrap_init.dart`** — maintainer helper to scaffold multiple `wrap-init` overrides in one run.
+
 ## [0.12.3] - 2026-06-09
 
 Lockstep patch across the workspace.

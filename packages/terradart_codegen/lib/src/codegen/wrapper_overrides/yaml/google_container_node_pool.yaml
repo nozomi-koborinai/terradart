@@ -1,0 +1,36 @@
+outputDir: container
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Example (node pool on an existing cluster):
+  /// ```dart
+  /// final pool = GoogleContainerNodePool(
+  ///   localName: 'primary',
+  ///   name: TfArg.literal('primary-pool'),
+  ///   location: TfArg.literal('asia-northeast1'),
+  ///   cluster: TfArg.ref(cluster.nameRef),
+  ///   nodeCount: TfArg.literal(3),
+  /// );
+  /// ```
+
+paramOrder:
+  - cluster
+  - initial_node_count
+  - location
+  - max_pods_per_node
+  - name
+  - name_prefix
+  - node_count
+  - node_locations
+  - project
+  - version
+  - autoscaling
+  - management
+  - network_config
+  - node_config
+  - node_drain_config
+  - placement_policy
+  - queued_provisioning
+  - upgrade_settings

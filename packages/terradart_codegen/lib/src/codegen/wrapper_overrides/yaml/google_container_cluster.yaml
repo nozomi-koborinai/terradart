@@ -1,0 +1,100 @@
+outputDir: container
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Example (GKE Standard on an existing VPC / subnetwork):
+  /// ```dart
+  /// final cluster = GoogleContainerCluster(
+  ///   localName: 'main',
+  ///   name: TfArg.literal('main-gke'),
+  ///   location: TfArg.literal('asia-northeast1'),
+  ///   initialNodeCount: TfArg.literal(1),
+  ///   removeDefaultNodePool: TfArg.literal(true),
+  ///   network: TfArg.ref(vpc.nameRef),
+  ///   subnetwork: TfArg.ref(subnet.nameRef),
+  /// );
+  /// ```
+  ///
+  /// Pair with [GoogleContainerNodePool] when `removeDefaultNodePool` is
+  /// true — the default pool is deleted after cluster creation.
+
+paramOrder:
+  - allow_net_admin
+  - autopilot_privileged_admission
+  - cluster_ipv4_cidr
+  - datapath_provider
+  - default_max_pods_per_node
+  - deletion_protection
+  - description
+  - disable_l4_lb_firewall_reconciliation
+  - enable_autopilot
+  - enable_cilium_clusterwide_network_policy
+  - enable_fqdn_network_policy
+  - enable_intranode_visibility
+  - enable_kubernetes_alpha
+  - enable_l4_ilb_subsetting
+  - enable_legacy_abac
+  - enable_multi_networking
+  - enable_shielded_nodes
+  - enable_tpu
+  - in_transit_encryption_config
+  - initial_node_count
+  - location
+  - logging_service
+  - min_master_version
+  - monitoring_service
+  - name
+  - network
+  - networking_mode
+  - node_locations
+  - node_version
+  - private_ipv6_google_access
+  - project
+  - remove_default_node_pool
+  - resource_labels
+  - subnetwork
+  - addons_config
+  - anonymous_authentication_config
+  - authenticator_groups_config
+  - autopilot_cluster_policy_config
+  - binary_authorization
+  - cluster_autoscaling
+  - confidential_nodes
+  - control_plane_endpoints_config
+  - cost_management_config
+  - database_encryption
+  - default_snat_status
+  - dns_config
+  - enable_k8s_beta_apis
+  - enterprise_config
+  - fleet
+  - gateway_api_config
+  - gke_auto_upgrade_config
+  - identity_service_config
+  - ip_allocation_policy
+  - logging_config
+  - maintenance_policy
+  - master_auth
+  - master_authorized_networks_config
+  - mesh_certificates
+  - monitoring_config
+  - network_performance_config
+  - network_policy
+  - node_config
+  - node_pool
+  - node_pool_auto_config
+  - node_pool_defaults
+  - notification_config
+  - pod_autoscaling
+  - private_cluster_config
+  - rbac_binding_config
+  - release_channel
+  - resource_usage_export_config
+  - secret_manager_config
+  - security_posture_config
+  - service_external_ips_config
+  - user_managed_keys_config
+  - vertical_pod_autoscaling
+  - workload_identity_config
