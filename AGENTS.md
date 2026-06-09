@@ -30,6 +30,17 @@ The supported maintainer generation path is `terradart wrap`.
 - Root `CONTEXT.md` is a glossary only. Do not put implementation plans, chat transcripts, or ADR content there.
 - Public website docs live under `website/src/content/docs/docs/`.
 
+## Agent Skills
+
+Committed maintainer skills live under [`.agents/skills/`](.agents/skills/) (Agent Skills format: `name` / `description` frontmatter + task checklists). They complement this file with **progressive disclosure** for specific jobs — they do not replace `AGENTS.md` policy.
+
+| Skill | Use when |
+|-------|----------|
+| [`terradart-agent-verify`](.agents/skills/terradart-agent-verify/SKILL.md) | Finishing any agent or maintainer change |
+| [`terradart-add-curated-resource`](.agents/skills/terradart-add-curated-resource/SKILL.md) | Adding or updating a curated `google_*` factory |
+
+Optional generic Dart skills from [dart-lang/skills](https://github.com/dart-lang/skills) (`npx skills add dart-lang/skills --skill '*' --agent universal --yes`) are not committed here. [flutter/skills](https://github.com/flutter/skills) targets Flutter apps and is not applicable to TerraDart.
+
 ## Agent verification
 
 Before claiming work is done, run from the repository root:

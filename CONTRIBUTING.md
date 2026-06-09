@@ -43,6 +43,8 @@ tool/smoke_quickstart.sh
 dart format --set-exit-if-changed .
 ```
 
+**Agent skills (optional):** TerraDart maintainer workflows are committed under [`.agents/skills/`](.agents/skills/). Compatible agents discover them automatically. For generic Dart analyze/test workflows you may also install [dart-lang/skills](https://github.com/dart-lang/skills) with Node.js: `npx skills add dart-lang/skills --skill '*' --agent universal --yes`.
+
 For a CI-equivalent local run (per-package iteration with build_runner gating):
 
 ```bash

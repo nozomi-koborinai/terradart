@@ -284,7 +284,7 @@ class WrapCommand extends Command<int> {
     // marker).
     //
     // `--only` is skipped: the catalog is a WHOLE-registry artifact, so a
-    // single-resource regen must not clobber the full 120-entry catalog with
+    // single-resource regen must not clobber the full 122-entry catalog with
     // a 1-entry partial. `--only` callers regenerate one wrapper; the catalog
     // is refreshed by the canonical full `terradart wrap`.
     if (only == null) {
