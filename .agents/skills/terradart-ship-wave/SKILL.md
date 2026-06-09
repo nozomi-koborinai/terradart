@@ -8,6 +8,16 @@ metadata:
 
 Read [`CONTEXT.md`](../../../CONTEXT.md) for vocabulary. Generation policy is in [`AGENTS.md`](../../../AGENTS.md). For each new `google_*` factory, follow [`terradart-add-curated-resource`](../terradart-add-curated-resource/SKILL.md) first; this skill covers the **release boundary** around a Wave.
 
+## PR scope
+
+Ship **one Wave per PR** when possible. Do not bundle:
+
+- unrelated example `pubspec.yaml` / workspace version-debt sweeps
+- release version bumps for a different Wave
+- agent-guide-only edits with factory work
+
+If example debt must land with a Wave, limit changes to the quickstart that exercises the new factories. See **PR granularity** in [`AGENTS.md`](../../../AGENTS.md).
+
 ## Wave complete definition
 
 A Wave PR is **not done** when wrappers and `curatedDoc` land alone. It is done when:

@@ -76,6 +76,60 @@ void main() {
       expect(violations.single.rule, 'exactly-one-optional-fanout');
     });
 
+    test('flags exactly_one paramOrder fanout (phase 2b)', () {
+      const mm = MmResourceOverrides(
+        fieldOverrides: {},
+        exactlyOneOfGroups: [
+          ['copy.copy', 'copy.extract', 'copy.load', 'copy.query'],
+        ],
+      );
+      const o = WrapperOverride(
+        outputDir: 'bigquery',
+        paramOrder: ['copy', 'extract', 'load', 'query'],
+      );
+      final violations = lintOverride('google_x', o, mm: mm);
+      expect(violations, hasLength(1));
+      expect(violations.single.rule, 'exactly-one-paramorder-fanout');
+    });
+
+    test('clean: paramOrder mixes customSlot with schema slot in group', () {
+      const mm = MmResourceOverrides(
+        fieldOverrides: {},
+        exactlyOneOfGroups: [
+          [
+            'default_service.default_service',
+            'default_service.default_url_redirect',
+          ],
+        ],
+      );
+      const o = WrapperOverride(
+        outputDir: 'compute',
+        paramOrder: ['name', 'default_service', 'default_url_redirect'],
+        customSlots: {
+          'default_url_redirect': CustomSlot(
+            paramDeclaration:
+                'ComputeUrlMapUrlMapUrlRedirect? defaultUrlRedirect',
+            argMapEntry:
+                "if (defaultUrlRedirect != null) 'default_url_redirect': "
+                'TfArg.literal([defaultUrlRedirect.toArgMap()]),',
+          ),
+        },
+      );
+      expect(lintOverride('google_x', o, mm: mm), isEmpty);
+    });
+
+    test('canonicalExactlyOneOfGroups collapses sibling MM duplicates', () {
+      expect(
+        canonicalExactlyOneOfGroups([
+          ['aws.aws', 'aws.oidc', 'aws.saml'],
+          ['oidc.aws', 'oidc.oidc', 'oidc.saml'],
+        ]),
+        [
+          ['aws', 'oidc', 'saml'],
+        ],
+      );
+    });
+
     test('clean: sealed virtual slot satisfies exactly_one', () {
       const mm = MmResourceOverrides(
         fieldOverrides: {},
