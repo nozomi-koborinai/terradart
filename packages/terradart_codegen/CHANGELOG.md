@@ -4,6 +4,12 @@
 
 **BREAKING** — removes the `terradart codegen` CLI subcommand, `runCodegen`, `CodegenResult`, and `FileEmitter`. Maintainer generation is `terradart wrap` only. See [MIGRATING.md](../../MIGRATING.md).
 
+## 0.12.5
+
+Maintainer:
+
+- **Added** — Wave 9 GKE Hub overrides (`google_gke_hub_fleet`, `google_gke_hub_membership`).
+
 ## 0.12.4
 
 Maintainer:

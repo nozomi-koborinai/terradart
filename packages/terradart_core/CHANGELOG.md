@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.5
+
+No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.5 (Wave 9 GKE Hub + example/docs debt).
+
 ## 0.12.4
 
 No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.4 (Wave 8 GKE core curated factories).

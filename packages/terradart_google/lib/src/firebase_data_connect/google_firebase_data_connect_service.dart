@@ -25,6 +25,8 @@ enum DataConnectDeletionPolicy implements TerraformEnum {
 
 /// Factory wrapper for `google_firebase_data_connect_service`.
 ///
+/// A Firebase Data Connect service.
+///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
 ///   `google_firebase_data_connect_service.`).

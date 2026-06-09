@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.12.5 - 2026-06-09
+
+**ADDED** — Wave 9 (GKE Hub):
+
+- `google_gke_hub_fleet` — project default fleet.
+- `google_gke_hub_membership` — enroll a [GoogleContainerCluster] in the fleet.
+- `container.dart` barrel extended (4 factories total).
+
+Catalog: **125 curated resource factories + 1 data source** (126 entries). Additive; no breaking API changes vs `0.12.4`.
+
 ## 0.12.4 - 2026-06-09
 
 **ADDED** — Wave 8 (GKE core):

@@ -34,7 +34,8 @@ Read [`CONTEXT.md`](../../../CONTEXT.md) for vocabulary. Generation policy and p
 - [ ] 7. **Regenerate:** `dart run bin/terradart.dart wrap --only <terraform_type> ...` then full `wrap --check` against the fixture paths in `AGENTS.md` **Useful Commands**.
 - [ ] 8. **Review** the generated `terradart_google` diff (constructors, enums, sealed types, sensitive fields, barrel export).
 - [ ] 9. **Counts:** if catalog size changed, update `tool/doc_expectations.dart`, `catalog_count_test.dart`, and `wrap_command_test.dart` file-count assertions in the same PR.
-- [ ] 10. **Verify:** run the [`terradart-agent-verify`](../terradart-agent-verify/SKILL.md) workflow (`tool/agent_verify.sh`; add `--maintainer` when touching wrap-init / wrap-promote).
+- [ ] 10. **Wave / example:** if this resource is part of a Wave release, follow [`terradart-ship-wave`](../terradart-ship-wave/SKILL.md) — add or extend a quickstart and README Examples; `curatedDoc` alone is not enough.
+- [ ] 11. **Verify:** run the [`terradart-agent-verify`](../terradart-agent-verify/SKILL.md) workflow (`tool/agent_verify.sh`; add `--maintainer` when touching wrap-init / wrap-promote).
 
 ## Override checklist
 

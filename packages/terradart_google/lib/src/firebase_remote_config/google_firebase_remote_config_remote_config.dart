@@ -267,6 +267,8 @@ class FirebaseRemoteConfigRemoteConfigRemoteConfigParameterGroup {
 
 /// Factory wrapper for `google_firebase_remote_config_remote_config`.
 ///
+/// A RemoteConfig represents a Remote Config template.
+///
 /// Manages the project-level Firebase Remote Config template. Required
 /// identity: [localName] is the Terraform local name; `project` is an
 /// optional override of the provider's default project (templates are

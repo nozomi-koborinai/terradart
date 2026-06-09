@@ -1,4 +1,4 @@
-/// IAM quickstart -- a `GoogleIamWorkloadIdentityPool` for keyless CI auth,
+/// IAM quickstart -- Workload Identity Federation (pool + GitHub OIDC provider),
 /// all four curated `_iam_member` resources in one Stack, plus the
 /// [GoogleServiceAccount] they bind to. Wave 5 Batch 2 extends the stack
 /// with the IAM-core surface (custom role + project-level grant +
@@ -21,6 +21,9 @@
 ///   8. `google_service_account_key` -- emits a long-lived JSON key for
 ///      the demo SA. The `private_key` output is marked sensitive and
 ///      masked at synth time.
+///
+/// WIF (0.12.5 debt): `google_iam_workload_identity_pool_provider` with
+/// sealed [IamWorkloadIdentityPoolProviderOidcTrust] for GitHub Actions.
 ///
 /// Each IAM resource has a slightly different identity surface (topic name
 /// vs. subscription name vs. queue name+location vs. secret_id) -- this
@@ -46,19 +49,39 @@ final class IamShowcaseStack extends Stack {
             GoogleProvider(project: projectId, region: 'us-central1'),
           ],
         ) {
-    // ---- Workload Identity Federation pool -------------------------------
+    // ---- Workload Identity Federation pool + provider --------------------
     //
-    // Logical grouping for external identities (e.g. GitHub Actions
-    // OIDC) that will be allowed to impersonate the demo SA below. The
-    // companion `_provider` resource (which wires up the actual trust
-    // binding) is deferred to a future wave -- the pool on its own is
-    // still meaningful as a namespace.
+    // Pool namespace plus GitHub Actions OIDC trust binding (sealed
+    // `trustSource` API from terradart 0.12.3+).
 
-    add(
+    final wifPool = add(
       GoogleIamWorkloadIdentityPool(
         localName: 'ci',
         workloadIdentityPoolId: TfArg.literal('github-actions'),
         displayName: TfArg.literal('GitHub Actions CI/CD'),
+      ),
+    );
+
+    add(
+      GoogleIamWorkloadIdentityPoolProvider(
+        localName: 'github_provider',
+        workloadIdentityPoolId: TfArg.ref(wifPool.nameRef),
+        workloadIdentityPoolProviderId: TfArg.literal('github-actions'),
+        displayName: TfArg.literal('GitHub Actions OIDC'),
+        attributeCondition: TfArg.literal(
+          'assertion.repository_owner == "my-org"',
+        ),
+        attributeMapping: TfArg.literal({
+          'google.subject': 'assertion.repository',
+          'attribute.repository_owner': 'assertion.repository_owner',
+        }),
+        trustSource: IamWorkloadIdentityPoolProviderOidcTrust(
+          allowedAudiences: [TfArg.literal('https://github.com/my-org')],
+          issuerUri: TfArg.literal(
+            'https://token.actions.githubusercontent.com',
+          ),
+        ),
+        dependsOn: [ResourceDependency(wifPool)],
       ),
     );
 

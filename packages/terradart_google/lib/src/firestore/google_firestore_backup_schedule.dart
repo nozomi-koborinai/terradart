@@ -86,6 +86,10 @@ enum BackupDayOfWeek implements TerraformEnum {
 
 /// Factory wrapper for `google_firestore_backup_schedule`.
 ///
+/// A backup schedule for a Cloud Firestore Database. This resource is owned by
+/// the database it is backing up, and is deleted along with the database. The
+/// actual backups are not though.
+///
 /// Configures a periodic backup for one Cloud Firestore database. Each
 /// schedule has a single [retention] window and exactly one
 /// [recurrence]: either [FirestoreBackupScheduleDailyRecurrence] (every day) or

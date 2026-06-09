@@ -124,6 +124,8 @@ class SecretManagerSecretRotation {
 // ===========================================================================
 
 /// Factory wrapper for `google_secret_manager_secret`.
+///
+/// A Secret is a logical secret whose value and versions can be accessed.
 final class GoogleSecretManagerSecret extends Resource {
   static const String tfType = 'google_secret_manager_secret';
 

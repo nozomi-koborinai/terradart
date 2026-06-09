@@ -155,6 +155,8 @@ class CloudTasksQueueQueueOidcToken {
 // ===========================================================================
 
 /// Factory wrapper for `google_cloud_tasks_queue`.
+///
+/// A named resource to which messages are sent by publishers.
 final class GoogleCloudTasksQueue extends Resource {
   static const String tfType = 'google_cloud_tasks_queue';
 

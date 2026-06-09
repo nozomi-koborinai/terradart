@@ -231,6 +231,11 @@ files:
     upstream: mmv1/products/container/Cluster.yaml
   google_container_node_pool:
     upstream: mmv1/products/container/NodePool.yaml
+  # Wave 9 (GKE Hub)
+  google_gke_hub_fleet:
+    upstream: null  # no Fleet.yaml in magic-modules main (404 as of 2026-06)
+  google_gke_hub_membership:
+    upstream: mmv1/products/gkehub/Membership.yaml
   google_compute_disk_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_firebase_app_check_app_attest_config:

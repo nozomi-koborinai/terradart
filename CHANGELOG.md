@@ -4,6 +4,20 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## [0.12.5] - 2026-06-09
+
+Lockstep patch across the workspace. **No breaking changes** vs `0.12.4`.
+
+### Added
+
+- **`terradart_google`** — Wave 9 GKE Hub: `google_gke_hub_fleet` and `google_gke_hub_membership` in the `container` barrel. Catalog: **125 curated resource factories + 1 data source** (126 entries).
+- **`examples/gke_quickstart`** — VPC, cluster, node pool, fleet, and membership; CI `terraform_validate` matrix entry.
+- **Agent policy** — Wave shipping checklist in `AGENTS.md`, [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md), and extended `CONTRIBUTING.md` PR checklist.
+
+### Changed
+
+- **`examples/iam_quickstart`** — adds `GoogleIamWorkloadIdentityPoolProvider` with sealed `trustSource` (0.12.3 API debt).
+
 ## [0.12.4] - 2026-06-09
 
 Lockstep patch across the workspace. **No breaking changes** vs `0.12.3`.
