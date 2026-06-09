@@ -187,6 +187,9 @@ class PubsubSubscriptionExpirationPolicy {
 
 /// Factory wrapper for `google_pubsub_subscription`.
 ///
+/// A named resource representing the stream of messages from a single, specific
+/// topic, to be delivered to the subscribing application.
+///
 /// Pass `topic` as the full topic path via `TfArg.ref(otherTopic.id)`
 /// (NOT `topic.nameRef`) so it resolves to
 /// `projects/{project}/topics/{name}`.

@@ -111,6 +111,10 @@ class FirestoreFieldTtlConfig {
 
 /// Factory wrapper for `google_firestore_field`.
 ///
+/// Represents a single field in the database. Fields are grouped by their
+/// "Collection Group", which represent all collections in the database with the
+/// same id.
+///
 /// Configures a single field within one Firestore collection group --
 /// either to override the database's automatic single-field indexing or
 /// to enable a TTL policy on the field. Composite indexes live in a

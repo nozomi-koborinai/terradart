@@ -1,0 +1,48 @@
+outputDir: container
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Enrolls a GKE cluster in a **GKE Hub fleet** via
+  /// [GoogleGkeHubMembership].
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - `membershipId`: unique membership ID within the project/location.
+  ///
+  /// Required blocks (schema):
+  /// - `endpoint.gkeCluster.resourceLink` — typically
+  ///   `TfArg.ref(cluster.id)` from [GoogleContainerCluster].
+  /// - `authority.issuer` — issuer URL for the cluster's hub authority;
+  ///   commonly `https://container.googleapis.com/v1/${cluster.id}`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final membership = GoogleGkeHubMembership(
+  ///   localName: 'main',
+  ///   membershipId: TfArg.literal('main-cluster'),
+  ///   endpoint: {
+  ///     'gke_cluster': {
+  ///       'resource_link': TfArg.ref(cluster.id),
+  ///     },
+  ///   },
+  ///   authority: {
+  ///     'issuer': TfArg.literal(
+  ///       'https://container.googleapis.com/v1/${cluster.id}',
+  ///     ),
+  ///   },
+  /// );
+  /// ```
+
+paramOrder:
+  - membership_id
+  - location
+  - labels
+  - endpoint
+  - authority
+  - project
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

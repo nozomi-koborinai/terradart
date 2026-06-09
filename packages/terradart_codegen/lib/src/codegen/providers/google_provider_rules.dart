@@ -59,5 +59,8 @@ final class GoogleProviderRules extends ProviderRules {
     'firebase_remote_config': 'firebase_remote_config',
     'project_iam': 'iam',
     'service_networking': 'service_networking',
+
+    // Wave 9 — GKE Hub factories share the `container` barrel with GKE core.
+    'gke': 'container',
   };
 }

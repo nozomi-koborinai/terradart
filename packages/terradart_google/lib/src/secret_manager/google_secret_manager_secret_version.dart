@@ -9,6 +9,8 @@ const Set<String> _googleSecretManagerSecretVersionSensitive = <String>{
 };
 
 /// Factory wrapper for `google_secret_manager_secret_version`.
+///
+/// A secret version resource.
 final class GoogleSecretManagerSecretVersion extends Resource {
   static const String tfType = 'google_secret_manager_secret_version';
 

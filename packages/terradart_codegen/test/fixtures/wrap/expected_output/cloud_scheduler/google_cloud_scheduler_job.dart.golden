@@ -208,6 +208,9 @@ class CloudSchedulerJobSchedulerRetryConfig {
 
 /// Factory wrapper for `google_cloud_scheduler_job`.
 ///
+/// A scheduled job that can publish a PubSub message or an HTTP request every X
+/// interval of time, using a crontab format string.
+///
 /// `region` is treated as Required for ergonomic clarity in v0.0.x, even
 /// though the underlying provider attribute is technically Optional (it
 /// falls back to the provider default). This avoids subtle issues where a

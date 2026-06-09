@@ -589,6 +589,9 @@ class Cloudfunctions2FunctionDirectVpcNetworkInterface {
 
 /// Factory wrapper for `google_cloudfunctions2_function`.
 ///
+/// A Cloud Function that contains user computation executed in response to an
+/// event.
+///
 /// Cloud Functions Gen 2 function. Gen 2 runs on Cloud Run + Eventarc +
 /// Cloud Build; this resource owns the build step (source archive + runtime),
 /// the runtime service config (memory / CPU / scaling), and optionally an

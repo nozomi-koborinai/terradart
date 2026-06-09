@@ -1,0 +1,27 @@
+outputDir: container
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Registers the **default GKE Hub fleet** for a project. Every project has
+  /// at most one fleet; this resource creates it when absent.
+  ///
+  /// Pair with [GoogleGkeHubMembership] to enroll a [GoogleContainerCluster]
+  /// in fleet management (config sync, multi-cluster services, etc.).
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name (the address segment after
+  ///   `google_gke_hub_fleet.`).
+  ///
+  /// Optional:
+  /// - `displayName`: human-readable fleet label in the GCP console.
+  /// - `project`: defaults to the provider's `project` when omitted.
+  ///
+  /// Example:
+  /// ```dart
+  /// final fleet = GoogleGkeHubFleet(
+  ///   localName: 'default',
+  ///   displayName: TfArg.literal('Production fleet'),
+  /// );
+  /// ```

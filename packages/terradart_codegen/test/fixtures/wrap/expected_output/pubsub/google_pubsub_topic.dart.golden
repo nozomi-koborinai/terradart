@@ -8,6 +8,8 @@ const Set<String> _googlePubsubTopicSensitive = <String>{};
 
 /// Factory wrapper for `google_pubsub_topic`.
 ///
+/// A named resource to which messages are sent by publishers.
+///
 /// Example:
 /// ```dart
 /// final orders = GooglePubsubTopic(

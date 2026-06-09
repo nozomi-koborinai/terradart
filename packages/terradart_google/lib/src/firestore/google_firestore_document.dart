@@ -8,6 +8,10 @@ const Set<String> _googleFirestoreDocumentSensitive = <String>{};
 
 /// Factory wrapper for `google_firestore_document`.
 ///
+/// In Cloud Firestore, the unit of storage is the document. A document is a
+/// lightweight record that contains fields, which map to values. Each document
+/// is identified by a name.
+///
 /// Manages a single document in a Cloud Firestore collection as an
 /// Infrastructure-as-Code resource. Intended for **small fixed
 /// master-data sets** (feature flags, pricing tiers, lookup tables,

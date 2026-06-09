@@ -10,6 +10,10 @@ const Set<String> _googleFirestoreUserCredsSensitive = <String>{
 
 /// Factory wrapper for `google_firestore_user_creds`.
 ///
+/// User credentials for a Cloud Firestore with MongoDB compatibility database.
+/// The resource is owned by the database and is deleted along with the
+/// database.
+///
 /// Provisions a database-level credential (username + server-generated
 /// password) for a Cloud Firestore database. The credential is scoped
 /// to one [database] and identified by [name] (4-63 chars,
