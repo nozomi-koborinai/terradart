@@ -27,6 +27,7 @@ export 'firebase_app_hosting.dart';
 export 'firebase_data_connect.dart';
 export 'firebase_remote_config.dart';
 export 'firestore.dart';
+export 'iap.dart';
 export 'iam.dart';
 export 'kms.dart';
 export 'logging.dart';

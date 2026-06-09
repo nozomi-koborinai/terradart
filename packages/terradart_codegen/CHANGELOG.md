@@ -4,6 +4,10 @@
 
 **BREAKING** — removes the `terradart codegen` CLI subcommand, `runCodegen`, `CodegenResult`, and `FileEmitter`. Maintainer generation is `terradart wrap` only. See [MIGRATING.md](../../MIGRATING.md).
 
+## 0.12.2
+
+Maintainer-only: wrapper overrides for `google_iam_workload_identity_pool_provider` and `google_iap_web_backend_service_iam_binding`, plus synced MM YAML fixture for the WIF provider. No CLI changes. Lockstep bump; `terradart_core` constraint `^0.12.2`.
+
 ## 0.12.1
 
 No user-facing changes. Lockstep version bump alongside the `terradart_agent` v0.12.1 fix. `terradart_core` constraint bumped to `^0.12.1`.

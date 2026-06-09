@@ -30,13 +30,22 @@ dependencies:
 dart pub global activate terradart_codegen ^0.12.0
 ```
 
-(`0.12.1` is a lockstep patch for `terradart_agent` / MCP — same steps.)
+(`0.12.1` / `0.12.2` are lockstep patches — same caret bump steps.)
+
+### Additive in 0.12.2
+
+- **`terradart_google`** — two new curated factories:
+  `google_iam_workload_identity_pool_provider`,
+  `google_iap_web_backend_service_iam_binding`, plus `package:terradart_google/iap.dart`.
+  Catalog grows to **121 curated resource factories + 1 data source** (122 entries).
+  No changes to existing factory signatures.
 
 ### Additive in 0.12.0
 
 - **`terradart_google`** — static `terradartCatalog` in
   `package:terradart_google/catalog.dart` (metadata only; factory APIs unchanged).
-  Still **119 curated resource factories + 1 data source**.
+  **118** curated resource factories + 1 data source at initial `0.12.0` ship
+  (grew to **121** + 1 in `0.12.2`).
 - **`terradart-mcp`** (optional) — MCP catalog server binary; not on pub.dev.
   See [Agent install](https://terradart.dev/docs/agent/install/).
 

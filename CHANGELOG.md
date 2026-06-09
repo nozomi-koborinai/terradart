@@ -4,6 +4,14 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## [0.12.2] - 2026-06-09
+
+Lockstep patch across the workspace. **No breaking changes** to `terradart_core` or existing `terradart_google` factory APIs.
+
+### Added
+
+- **`terradart_google`** — `google_iam_workload_identity_pool_provider` and `google_iap_web_backend_service_iam_binding` curated factories; new `package:terradart_google/iap.dart` barrel. Catalog: **121 curated resource factories + 1 data source** (122 entries).
+
 ## [0.12.1] - 2026-05-25
 
 Lockstep patch across the workspace. **No breaking changes** to `terradart_core` or `terradart_google`.

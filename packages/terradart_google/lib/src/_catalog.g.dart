@@ -2766,7 +2766,61 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['WorkloadIdentityPoolMode'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_iam_workload_identity_pool` (provider\n`hashicorp/google ~> 7.0`).\n\nRepresents a Workload Identity Federation (WIF) pool — a container for\nexternal workload identities (GitHub Actions, AWS, Azure, generic OIDC\nIdPs) that map to GCP service accounts without long-lived JSON keys.\n\nThis wrapper covers the pool resource itself. The companion provider\nresource (`google_iam_workload_identity_pool_provider`, which\nconfigures the actual OIDC / AWS / SAML trust binding) is deferred\nto a future wave. A pool without a provider is still meaningful as a\nlogical grouping namespace for future providers.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_iam_workload_identity_pool.`).\n- `workloadIdentityPoolId`: user-facing pool ID. Must be 4-32 chars,\n  `[a-z0-9-]`. The prefix `gcp-` is reserved by Google and is rejected.\n  Forms the final segment of the pool\'s resource name (e.g.\n  `projects/{n}/locations/global/workloadIdentityPools/{poolId}`).\n  Immutable after creation.\n\nExample (CI/CD federation for GitHub Actions):\n```dart\nfinal ciPool = GoogleIamWorkloadIdentityPool(\n  localName: \'ci\',\n  workloadIdentityPoolId: TfArg.literal(\'github-actions\'),\n  displayName: TfArg.literal(\'GitHub Actions CI/CD\'),\n  description: TfArg.literal(\n    \'WIF pool for the deploy pipeline; provider configured separately.\',\n  ),\n);\n```\n\nComposition pattern: extends `Resource`\nfor runtime behavior.',
+        'Factory wrapper for `google_iam_workload_identity_pool` (provider\n`hashicorp/google ~> 7.0`).\n\nRepresents a Workload Identity Federation (WIF) pool — a container for\nexternal workload identities (GitHub Actions, AWS, Azure, generic OIDC\nIdPs) that map to GCP service accounts without long-lived JSON keys.\n\nThis wrapper covers the pool resource itself. Pair with\n[GoogleIamWorkloadIdentityPoolProvider] to configure the OIDC / AWS /\nSAML / X.509 trust binding that actually federates external identities.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_iam_workload_identity_pool.`).\n- `workloadIdentityPoolId`: user-facing pool ID. Must be 4-32 chars,\n  `[a-z0-9-]`. The prefix `gcp-` is reserved by Google and is rejected.\n  Forms the final segment of the pool\'s resource name (e.g.\n  `projects/{n}/locations/global/workloadIdentityPools/{poolId}`).\n  Immutable after creation.\n\nExample (CI/CD federation for GitHub Actions):\n```dart\nfinal ciPool = GoogleIamWorkloadIdentityPool(\n  localName: \'ci\',\n  workloadIdentityPoolId: TfArg.literal(\'github-actions\'),\n  displayName: TfArg.literal(\'GitHub Actions CI/CD\'),\n  description: TfArg.literal(\n    \'WIF pool for the deploy pipeline; provider configured separately.\',\n  ),\n);\n```\n\nComposition pattern: extends `Resource`\nfor runtime behavior.',
+  ),
+  CatalogEntry(
+    tfType: 'google_iam_workload_identity_pool_provider',
+    className: 'GoogleIamWorkloadIdentityPoolProvider',
+    barrel: 'iam',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iam_workload_identity_pool_provider`.',
+    constructorParams: <String>[
+      'localName',
+      'workloadIdentityPoolId',
+      'workloadIdentityPoolProviderId',
+      'displayName',
+      'description',
+      'disabled',
+      'attributeCondition',
+      'attributeMapping',
+      'oidc',
+      'aws',
+      'saml',
+      'x509',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'IamWorkloadIdentityPoolProviderOidc',
+      'IamWorkloadIdentityPoolProviderAws',
+      'IamWorkloadIdentityPoolProviderSaml',
+      'IamWorkloadIdentityPoolProviderX509',
+      'IamWorkloadIdentityPoolProviderX509TrustStore',
+      'IamWorkloadIdentityPoolProviderX509PemCertificate',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iam_workload_identity_pool_provider`.\n\nA configuration for an external identity provider.\n\nConfigures a **Workload Identity Federation provider** inside an existing\n[GoogleIamWorkloadIdentityPool] — the trust binding that maps external\nidentities (GitHub Actions OIDC, AWS, SAML, X.509) into GCP subjects.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `workloadIdentityPoolId`: pool ID string **or**\n  `TfArg.ref(pool.nameRef)` from [GoogleIamWorkloadIdentityPool].\n- `workloadIdentityPoolProviderId`: provider ID (4–32 chars, `[a-z0-9-]`).\n\nTrust source — set **exactly one** of [oidc], [aws], [saml], or [x509]\n(mutually exclusive at the API level):\n- [IamWorkloadIdentityPoolProviderOidc] — generic OIDC / GitHub Actions.\n- [IamWorkloadIdentityPoolProviderAws] — AWS account federation.\n- [IamWorkloadIdentityPoolProviderSaml] — SAML 2.0 IdP metadata.\n- [IamWorkloadIdentityPoolProviderX509] — X.509 certificate trust store.\n\nExample (GitHub Actions OIDC):\n```dart\nfinal githubProvider = GoogleIamWorkloadIdentityPoolProvider(\n  localName: \'github_provider\',\n  workloadIdentityPoolId: TfArg.ref(pool.nameRef),\n  workloadIdentityPoolProviderId: TfArg.literal(\'github-actions\'),\n  displayName: TfArg.literal(\'GitHub Actions\'),\n  attributeCondition: TfArg.literal(\n    \'assertion.repository_owner == "my-org"\',\n  ),\n  attributeMapping: {\n    \'google.subject\': TfArg.literal(\'assertion.repository\'),\n    \'attribute.repository_owner\': TfArg.literal(\n      \'assertion.repository_owner\',\n    ),\n  },\n  oidc: IamWorkloadIdentityPoolProviderOidc(\n    issuerUri: TfArg.literal(\n      \'https://token.actions.githubusercontent.com\',\n    ),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_web_backend_service_iam_binding',
+    className: 'GoogleIapWebBackendServiceIamBinding',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iap_web_backend_service_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'webBackendService',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_web_backend_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an **external HTTPS\nload balancer backend service** protected by Identity-Aware Proxy (IAP).\n\nGrants `roles/iap.httpsResourceAccessor` (or another IAP role) to the\nlisted `members` and **replaces** the entire member list for that role\non the backend service. Prefer `google_iap_web_backend_service_iam_member`\nwhen you only need to add one principal without touching existing\nbindings (not yet a curated factory).\n\nRequired identity:\n- [localName]: Terraform local name.\n- `webBackendService`: short backend service name (e.g.\n  `\'koborin-ai-dev-backend\'`). Pass `TfArg.ref(backend.nameRef)` from\n  [GoogleComputeBackendService].\n- `role`: typically `\'roles/iap.httpsResourceAccessor\'`.\n- `members`: IAM principal strings (`user:…`, `group:…`, `domain:…`).\n\n`project` is optional and defaults to the provider project.\n\nOptional `condition` is a single IAM Condition block (CEL\n`expression`, `title`, optional `description`).\n\nPair with IAP enabled on the backend service itself via\n[GoogleComputeBackendService]\'s `iap` block (OAuth client ID/secret).',
   ),
   CatalogEntry(
     tfType: 'google_kms_crypto_key',

@@ -7,8 +7,11 @@
 # Sync direction is one-way: upstream → local. Conflicts surface as drift in
 # the weekly schema-bump PR — never auto-resolved.
 #
-# Updating this manifest is a manual maintainer action (when curating a new
-# resource that needs an MM YAML overlay, add an entry here).
+# Every curated wrapper override MUST have exactly one entry below.
+# Set `upstream` to the magic-modules path when sync applies, or `null` with a
+# short reason when MM YAML does not exist (IAM bindings, handwritten provider
+# resources, data sources). `dart tool/sync_mm_yaml.dart` only fetches non-null
+# upstream paths into packages/terradart_codegen/test/fixtures/wrap/source/mm/.
 
 upstream_repo: GoogleCloudPlatform/magic-modules
 upstream_branch: main
@@ -61,6 +64,12 @@ files:
     upstream: null  # handwritten in terraform provider; no MM YAML
   google_iam_workload_identity_pool:
     upstream: mmv1/products/iambeta/WorkloadIdentityPool.yaml
+  google_iam_workload_identity_pool_provider:
+    # MM YAML enriches merged IR (descriptions, hints); typed nested blocks still
+    # come from the wrapper override prelude/customSlots, not from MM alone.
+    upstream: mmv1/products/iambeta/WorkloadIdentityPoolProvider.yaml
+  google_iap_web_backend_service_iam_binding:
+    upstream: null  # handwritten IAM binding in terraform provider; no MM YAML
 
   # Cloud SQL
   google_sql_database_instance:
@@ -94,8 +103,6 @@ files:
   google_kms_key_ring_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_compute_instance_iam_member:
-    upstream: null  # MM templates IAM bindings; schema-only curation
-  google_compute_network_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_compute_subnetwork_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
@@ -165,8 +172,6 @@ files:
     upstream: mmv1/products/artifactregistry/Repository.yaml
   google_artifact_registry_repository_iam_member:
     upstream: null  # IAM templates are schema-only curation (Wave 5 precedent)
-  google_artifact_registry_vpcsc_config:
-    upstream: null  # beta-only resource; not in GA-pinned schema fixture. Wave 7 follow-up PR will extend the schema fixture against terraform-provider-google-beta and curate this resource. yaml override authored in Wave 7 specialist work, parked at packages/terradart_codegen/lib/src/codegen/wrapper_overrides/yaml/google_artifact_registry_vpcsc_config.yaml on a side branch.
   google_bigquery_capacity_commitment:
     upstream: mmv1/products/bigqueryreservation/CapacityCommitment.yaml
   google_bigquery_connection:
@@ -209,3 +214,77 @@ files:
     upstream: mmv1/products/pubsub/Schema.yaml
   google_storage_notification:
     upstream: null  # handwritten in terraform-provider-google (probe 404)
+
+  # Manifest completion (0.12.2) — entries for curated overrides added after Wave 7.
+  google_cloud_scheduler_job:
+    upstream: mmv1/products/cloudscheduler/Job.yaml
+  google_cloud_tasks_queue:
+    upstream: mmv1/products/cloudtasks/Queue.yaml
+  google_cloud_tasks_queue_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloudfunctions2_function:
+    upstream: mmv1/products/cloudfunctions2/Function.yaml
+  google_cloudfunctions2_function_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_disk_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_firebase_app_check_app_attest_config:
+    upstream: mmv1/products/firebaseappcheck/AppAttestConfig.yaml
+  google_firebase_app_check_debug_token:
+    upstream: mmv1/products/firebaseappcheck/DebugToken.yaml
+  google_firebase_app_check_device_check_config:
+    upstream: mmv1/products/firebaseappcheck/DeviceCheckConfig.yaml
+  google_firebase_app_check_play_integrity_config:
+    upstream: mmv1/products/firebaseappcheck/PlayIntegrityConfig.yaml
+  google_firebase_app_check_recaptcha_enterprise_config:
+    upstream: mmv1/products/firebaseappcheck/RecaptchaEnterpriseConfig.yaml
+  google_firebase_app_check_resource_policy:
+    upstream: mmv1/products/firebaseappcheck/ResourcePolicy.yaml
+  google_firebase_app_check_service_config:
+    upstream: mmv1/products/firebaseappcheck/ServiceConfig.yaml
+  google_firebase_app_hosting_backend:
+    upstream: mmv1/products/firebaseapphosting/Backend.yaml
+  google_firebase_app_hosting_build:
+    upstream: mmv1/products/firebaseapphosting/Build.yaml
+  google_firebase_app_hosting_default_domain:
+    upstream: mmv1/products/firebaseapphosting/DefaultDomain.yaml
+  google_firebase_app_hosting_domain:
+    upstream: mmv1/products/firebaseapphosting/Domain.yaml
+  google_firebase_app_hosting_traffic:
+    upstream: mmv1/products/firebaseapphosting/Traffic.yaml
+  google_firebase_data_connect_service:
+    upstream: mmv1/products/firebasedataconnect/Service.yaml
+  google_firebase_remote_config_remote_config:
+    upstream: mmv1/products/firebaseremoteconfig/RemoteConfig.yaml
+  google_firestore_backup_schedule:
+    upstream: mmv1/products/firestore/BackupSchedule.yaml
+  google_firestore_database:
+    upstream: mmv1/products/firestore/Database.yaml
+  google_firestore_document:
+    upstream: mmv1/products/firestore/Document.yaml
+  google_firestore_field:
+    upstream: mmv1/products/firestore/Field.yaml
+  google_firestore_index:
+    upstream: mmv1/products/firestore/Index.yaml
+  google_firestore_user_creds:
+    upstream: mmv1/products/firestore/UserCreds.yaml
+  google_project:
+    upstream: null  # data source; handwritten in terraform provider; no MM YAML
+  google_project_service:
+    upstream: null  # handwritten in terraform provider; no MM YAML (probe 404)
+  google_pubsub_subscription:
+    upstream: mmv1/products/pubsub/Subscription.yaml
+  google_pubsub_subscription_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_pubsub_topic:
+    upstream: mmv1/products/pubsub/Topic.yaml
+  google_pubsub_topic_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_secret_manager_secret:
+    upstream: mmv1/products/secretmanager/Secret.yaml
+  google_secret_manager_secret_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_secret_manager_secret_version:
+    upstream: mmv1/products/secretmanager/SecretVersion.yaml
+  google_service_account:
+    upstream: null  # handwritten in terraform provider; no MM YAML (probe 404)

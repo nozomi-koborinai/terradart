@@ -6,6 +6,15 @@ library;
 
 export 'src/iam/google_iam_workload_identity_pool.dart'
     show GoogleIamWorkloadIdentityPool, WorkloadIdentityPoolMode;
+export 'src/iam/google_iam_workload_identity_pool_provider.dart'
+    show
+        GoogleIamWorkloadIdentityPoolProvider,
+        IamWorkloadIdentityPoolProviderAws,
+        IamWorkloadIdentityPoolProviderOidc,
+        IamWorkloadIdentityPoolProviderSaml,
+        IamWorkloadIdentityPoolProviderX509,
+        IamWorkloadIdentityPoolProviderX509PemCertificate,
+        IamWorkloadIdentityPoolProviderX509TrustStore;
 export 'src/iam/google_project_iam_custom_role.dart'
     show CustomRoleStage, GoogleProjectIamCustomRole;
 export 'src/iam/google_project_iam_member.dart' show GoogleProjectIamMember;

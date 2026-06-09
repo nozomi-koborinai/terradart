@@ -11,7 +11,8 @@ void main() {
   final errors = <String>[];
 
   final minor = _workspaceMinor();
-  print('Workspace minor: 0.$minor.x (from packages/terradart_core/pubspec.yaml)');
+  print(
+      'Workspace minor: 0.$minor.x (from packages/terradart_core/pubspec.yaml)');
 
   _checkCaretMinor(
     errors,
@@ -19,15 +20,37 @@ void main() {
     'README.md',
     mustContain: [curatedCatalogPhrase, catalogEntriesPhrase],
   );
-  _checkCaretMinor(errors, minor, 'CONTRIBUTING.md', mustContain: [curatedCatalogPhrase]);
+  _checkCaretMinor(errors, minor, 'CONTRIBUTING.md',
+      mustContain: [curatedCatalogPhrase]);
   _checkCaretMinor(errors, minor, 'SECURITY.md');
   _checkCaretMinor(errors, minor, 'packages/terradart_core/README.md');
-  _checkCaretMinor(errors, minor, 'packages/terradart_google/README.md', mustContain: [curatedCatalogPhrase]);
+  _checkCaretMinor(errors, minor, 'packages/terradart_google/README.md',
+      mustContain: [curatedCatalogPhrase]);
   _checkCaretMinor(errors, minor, 'packages/terradart_codegen/README.md');
   _checkCaretMinor(
     errors,
     minor,
     'website/src/content/docs/docs/getting-started.md',
+  );
+  _checkPhrase(
+    errors,
+    'website/src/content/docs/docs/agent/index.md',
+    agentCatalogEntriesPhrase,
+    agentResourceFactoriesPhrase,
+    serviceBarrelCountPhrase,
+  );
+  _checkPhrase(
+    errors,
+    'website/src/content/docs/docs/agent/tools-reference.md',
+    'list all 122',
+    listBarrelsOutputCountPhrase,
+  );
+  _checkPhrase(
+    errors,
+    'packages/terradart_agent/README.md',
+    agentCatalogEntriesPhrase,
+    agentResourceFactoriesPhrase,
+    serviceBarrelCountPhrase,
   );
   for (final template in [
     '.github/ISSUE_TEMPLATE/bug.yml',
@@ -52,8 +75,8 @@ void main() {
       errors.add('$readme: stale ^0.x.0-dev constraint');
     }
     if (text.contains('^0.') && !text.contains('^0.$minor.')) {
-      final hasOld =
-          RegExp(r'\^0\.(10|11|1)\.').hasMatch(text) || text.contains('^0.1.0-dev');
+      final hasOld = RegExp(r'\^0\.(10|11|1)\.').hasMatch(text) ||
+          text.contains('^0.1.0-dev');
       if (hasOld) {
         errors.add('$readme: caret minor should be ^0.$minor.x');
       }
@@ -72,13 +95,36 @@ void main() {
 }
 
 int _workspaceMinor() {
-  final pubspec = File('packages/terradart_core/pubspec.yaml').readAsStringSync();
-  final match = RegExp(r'^version:\s*0\.(\d+)\.\d+', multiLine: true).firstMatch(pubspec);
+  final pubspec =
+      File('packages/terradart_core/pubspec.yaml').readAsStringSync();
+  final match =
+      RegExp(r'^version:\s*0\.(\d+)\.\d+', multiLine: true).firstMatch(pubspec);
   if (match == null) {
-    stderr.writeln('Could not parse packages/terradart_core/pubspec.yaml version');
+    stderr.writeln(
+        'Could not parse packages/terradart_core/pubspec.yaml version');
     exit(2);
   }
   return int.parse(match.group(1)!);
+}
+
+void _checkPhrase(
+  List<String> errors,
+  String path,
+  String phrase, [
+  String? phrase2,
+  String? phrase3,
+]) {
+  final file = File(path);
+  if (!file.existsSync()) {
+    errors.add('Missing file: $path');
+    return;
+  }
+  final text = file.readAsStringSync();
+  for (final p in [phrase, phrase2, phrase3]) {
+    if (p != null && !text.contains(p)) {
+      errors.add('$path: expected phrase "$p"');
+    }
+  }
 }
 
 void _checkCaretMinor(
