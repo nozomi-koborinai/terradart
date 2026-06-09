@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.3
+
+No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.3 (WIF provider sealed trust-source breaking fix).
+
 ## 0.12.2
 
 No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.2 (two new curated factories). The `terradart_core` public surface is unchanged from 0.12.1.

@@ -7,10 +7,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_iam_workload_identity_pool_provider`.
 const Set<String> _googleIamWorkloadIdentityPoolProviderSensitive = <String>{};
 
-/// OIDC trust configuration for a workload identity pool provider.
+// ===========================================================================
+// IamWorkloadIdentityPoolProviderTrustSource — sealed (Oidc | Aws | Saml | X509)
+// ===========================================================================
+
+/// Trust binding for [GoogleIamWorkloadIdentityPoolProvider]. Sealed so the
+/// provider's `exactly_one_of` across `oidc` / `aws` / `saml` / `x509` is
+/// exhaustive at the type level.
+sealed class IamWorkloadIdentityPoolProviderTrustSource {
+  const IamWorkloadIdentityPoolProviderTrustSource();
+
+  /// argMap key under which this trust source is emitted.
+  String get blockKey;
+
+  /// JSON fragment for the block value (single-element list — all four
+  /// underlying blocks are `nesting_mode: list, max_items: 1`).
+  List<Map<String, Object?>> encode();
+}
+
+/// OIDC trust configuration (generic OIDC / GitHub Actions).
 @immutable
-class IamWorkloadIdentityPoolProviderOidc {
-  const IamWorkloadIdentityPoolProviderOidc({
+final class IamWorkloadIdentityPoolProviderOidcTrust
+    extends IamWorkloadIdentityPoolProviderTrustSource {
+  const IamWorkloadIdentityPoolProviderOidcTrust({
     this.allowedAudiences,
     required this.issuerUri,
     this.jwksJson,
@@ -20,51 +39,78 @@ class IamWorkloadIdentityPoolProviderOidc {
   final TfArg<String> issuerUri;
   final TfArg<String>? jwksJson;
 
-  Map<String, Object?> encode() => {
-    if (allowedAudiences != null)
-      'allowed_audiences': allowedAudiences!.map((a) => a.toTfJson()).toList(),
-    'issuer_uri': issuerUri.toTfJson(),
-    if (jwksJson != null) 'jwks_json': jwksJson!.toTfJson(),
-  };
+  @override
+  String get blockKey => 'oidc';
+
+  @override
+  List<Map<String, Object?>> encode() => [
+    {
+      if (allowedAudiences != null)
+        'allowed_audiences': allowedAudiences!
+            .map((a) => a.toTfJson())
+            .toList(),
+      'issuer_uri': issuerUri.toTfJson(),
+      if (jwksJson != null) 'jwks_json': jwksJson!.toTfJson(),
+    },
+  ];
 }
 
-/// AWS trust configuration for a workload identity pool provider.
+/// AWS trust configuration.
 @immutable
-class IamWorkloadIdentityPoolProviderAws {
-  const IamWorkloadIdentityPoolProviderAws({this.accountId});
+final class IamWorkloadIdentityPoolProviderAwsTrust
+    extends IamWorkloadIdentityPoolProviderTrustSource {
+  const IamWorkloadIdentityPoolProviderAwsTrust({this.accountId});
 
   final TfArg<String>? accountId;
 
-  Map<String, Object?> encode() => {
-    if (accountId != null) 'account_id': accountId!.toTfJson(),
-  };
+  @override
+  String get blockKey => 'aws';
+
+  @override
+  List<Map<String, Object?>> encode() => [
+    {if (accountId != null) 'account_id': accountId!.toTfJson()},
+  ];
 }
 
-/// SAML 2.0 trust configuration for a workload identity pool provider.
+/// SAML 2.0 trust configuration.
 @immutable
-class IamWorkloadIdentityPoolProviderSaml {
-  const IamWorkloadIdentityPoolProviderSaml({required this.idpMetadataXml});
+final class IamWorkloadIdentityPoolProviderSamlTrust
+    extends IamWorkloadIdentityPoolProviderTrustSource {
+  const IamWorkloadIdentityPoolProviderSamlTrust({
+    required this.idpMetadataXml,
+  });
 
   final TfArg<String> idpMetadataXml;
 
-  Map<String, Object?> encode() => {
-    'idp_metadata_xml': idpMetadataXml.toTfJson(),
-  };
+  @override
+  String get blockKey => 'saml';
+
+  @override
+  List<Map<String, Object?>> encode() => [
+    {'idp_metadata_xml': idpMetadataXml.toTfJson()},
+  ];
 }
 
-/// X.509 certificate trust configuration for a workload identity pool provider.
+/// X.509 certificate trust configuration.
 @immutable
-class IamWorkloadIdentityPoolProviderX509 {
-  const IamWorkloadIdentityPoolProviderX509({this.trustStore});
+final class IamWorkloadIdentityPoolProviderX509Trust
+    extends IamWorkloadIdentityPoolProviderTrustSource {
+  const IamWorkloadIdentityPoolProviderX509Trust({this.trustStore});
 
   final IamWorkloadIdentityPoolProviderX509TrustStore? trustStore;
 
-  Map<String, Object?> encode() => {
-    if (trustStore != null) 'trust_store': [trustStore!.encode()],
-  };
+  @override
+  String get blockKey => 'x509';
+
+  @override
+  List<Map<String, Object?>> encode() => [
+    {
+      if (trustStore != null) 'trust_store': [trustStore!.encode()],
+    },
+  ];
 }
 
-/// Trust store for [IamWorkloadIdentityPoolProviderX509].
+/// Trust store for [IamWorkloadIdentityPoolProviderX509Trust].
 @immutable
 class IamWorkloadIdentityPoolProviderX509TrustStore {
   const IamWorkloadIdentityPoolProviderX509TrustStore({
@@ -111,13 +157,9 @@ class IamWorkloadIdentityPoolProviderX509PemCertificate {
 /// - `workloadIdentityPoolId`: pool ID string **or**
 ///   `TfArg.ref(pool.nameRef)` from [GoogleIamWorkloadIdentityPool].
 /// - `workloadIdentityPoolProviderId`: provider ID (4–32 chars, `[a-z0-9-]`).
-///
-/// Trust source — set **exactly one** of [oidc], [aws], [saml], or [x509]
-/// (mutually exclusive at the API level):
-/// - [IamWorkloadIdentityPoolProviderOidc] — generic OIDC / GitHub Actions.
-/// - [IamWorkloadIdentityPoolProviderAws] — AWS account federation.
-/// - [IamWorkloadIdentityPoolProviderSaml] — SAML 2.0 IdP metadata.
-/// - [IamWorkloadIdentityPoolProviderX509] — X.509 certificate trust store.
+/// - [trustSource]: exactly one trust binding — sealed so the API's
+///   `exactly_one_of` (`oidc` / `aws` / `saml` / `x509`) is enforced at
+///   compile time.
 ///
 /// Example (GitHub Actions OIDC):
 /// ```dart
@@ -135,7 +177,8 @@ class IamWorkloadIdentityPoolProviderX509PemCertificate {
 ///       'assertion.repository_owner',
 ///     ),
 ///   },
-///   oidc: IamWorkloadIdentityPoolProviderOidc(
+///   trustSource: IamWorkloadIdentityPoolProviderOidcTrust(
+///     allowedAudiences: [TfArg.literal('https://github.com/my-org')],
 ///     issuerUri: TfArg.literal(
 ///       'https://token.actions.githubusercontent.com',
 ///     ),
@@ -154,10 +197,7 @@ final class GoogleIamWorkloadIdentityPoolProvider extends Resource {
     TfArg<bool>? disabled,
     TfArg<String>? attributeCondition,
     TfArg<Map<String, String>>? attributeMapping,
-    IamWorkloadIdentityPoolProviderOidc? oidc,
-    IamWorkloadIdentityPoolProviderAws? aws,
-    IamWorkloadIdentityPoolProviderSaml? saml,
-    IamWorkloadIdentityPoolProviderX509? x509,
+    required IamWorkloadIdentityPoolProviderTrustSource trustSource,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -172,11 +212,8 @@ final class GoogleIamWorkloadIdentityPoolProvider extends Resource {
            if (attributeCondition != null)
              'attribute_condition': attributeCondition,
            if (attributeMapping != null) 'attribute_mapping': attributeMapping,
-           if (oidc != null) 'oidc': TfArg.literal([oidc.encode()]),
-           if (aws != null) 'aws': TfArg.literal([aws.encode()]),
-           if (saml != null) 'saml': TfArg.literal([saml.encode()]),
-           if (x509 != null) 'x509': TfArg.literal([x509.encode()]),
            if (project != null) 'project': project,
+           trustSource.blockKey: TfArg.literal(trustSource.encode()),
          },
        );
 

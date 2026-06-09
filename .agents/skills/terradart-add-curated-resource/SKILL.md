@@ -44,6 +44,20 @@ Read [`CONTEXT.md`](../../../CONTEXT.md) for vocabulary. Generation policy and p
 - No dead derivation config: `deriveClassDoc: true` must not also set `classDocComment`; `curatedDoc` only under `deriveClassDoc: true`.
 - `wrap --only <type>` does not regenerate unrelated factories.
 
+## Exactly-one blocks (`exactly_one_of`)
+
+When the synced MM fixture (`test/fixtures/wrap/source/mm/<type>.yaml`) declares a **top-level** `exactly_one_of` group (sibling nested blocks such as `oidc` / `aws` / `saml` / `x509`):
+
+1. **Do not** model each member as a separate optional `customSlot` (doc-only “pick exactly one” is not enough — compile time must enforce it).
+2. **Do** add a `sealed class` hierarchy in `prelude` (one `final class` per member, each with `blockKey` + `encode()`).
+3. **Do** add one **required** virtual `customSlot` (e.g. `trust_source`, `target`, `recurrence`) whose `argMapEntry` uses `slot.blockKey: TfArg.literal(slot.encode())`.
+4. **Do** list only the virtual slot in `paramOrder` — omit the IR nested-block names the virtual slot replaces.
+5. Run `terradart lint-override` — rule `exactly-one-optional-fanout` catches the anti-pattern.
+
+**Reference overrides:** `google_cloud_scheduler_job.yaml`, `google_firestore_backup_schedule.yaml`, `google_iam_workload_identity_pool_provider.yaml`, `google_storage_bucket_object.yaml`.
+
+Optional: `terradart wrap-promote <type>` can scaffold sealed skeletons from MM `exactly_one_of`; still requires human review of `encode()` bodies.
+
 ## Verification
 
 ```bash

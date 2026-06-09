@@ -9,11 +9,12 @@ export 'src/iam/google_iam_workload_identity_pool.dart'
 export 'src/iam/google_iam_workload_identity_pool_provider.dart'
     show
         GoogleIamWorkloadIdentityPoolProvider,
-        IamWorkloadIdentityPoolProviderAws,
-        IamWorkloadIdentityPoolProviderOidc,
-        IamWorkloadIdentityPoolProviderSaml,
-        IamWorkloadIdentityPoolProviderX509,
+        IamWorkloadIdentityPoolProviderAwsTrust,
+        IamWorkloadIdentityPoolProviderOidcTrust,
+        IamWorkloadIdentityPoolProviderSamlTrust,
+        IamWorkloadIdentityPoolProviderTrustSource,
         IamWorkloadIdentityPoolProviderX509PemCertificate,
+        IamWorkloadIdentityPoolProviderX509Trust,
         IamWorkloadIdentityPoolProviderX509TrustStore;
 export 'src/iam/google_project_iam_custom_role.dart'
     show CustomRoleStage, GoogleProjectIamCustomRole;

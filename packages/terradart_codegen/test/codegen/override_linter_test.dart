@@ -1,5 +1,6 @@
 import 'package:terradart_codegen/src/codegen/override_linter.dart';
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
+import 'package:terradart_codegen/src/parser/mm_yaml_parser.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -46,6 +47,53 @@ void main() {
     test('clean: bare override with only outputDir', () {
       const o = WrapperOverride(outputDir: 'x');
       expect(lintOverride('google_x', o), isEmpty);
+    });
+
+    test('flags exactly_one optional fanout (phase 2)', () {
+      const mm = MmResourceOverrides(
+        fieldOverrides: {},
+        exactlyOneOfGroups: [
+          ['oidc', 'aws', 'saml', 'x509'],
+        ],
+      );
+      const o = WrapperOverride(
+        outputDir: 'iam',
+        customSlots: {
+          'oidc': CustomSlot(
+            paramDeclaration: 'Oidc? oidc',
+            argMapEntry:
+                "if (oidc != null) 'oidc': TfArg.literal([oidc.encode()]),",
+          ),
+          'aws': CustomSlot(
+            paramDeclaration: 'Aws? aws',
+            argMapEntry:
+                "if (aws != null) 'aws': TfArg.literal([aws.encode()]),",
+          ),
+        },
+      );
+      final violations = lintOverride('google_x', o, mm: mm);
+      expect(violations, hasLength(1));
+      expect(violations.single.rule, 'exactly-one-optional-fanout');
+    });
+
+    test('clean: sealed virtual slot satisfies exactly_one', () {
+      const mm = MmResourceOverrides(
+        fieldOverrides: {},
+        exactlyOneOfGroups: [
+          ['oidc', 'aws'],
+        ],
+      );
+      const o = WrapperOverride(
+        outputDir: 'iam',
+        customSlots: {
+          'trust_source': CustomSlot(
+            paramDeclaration: 'required TrustSource trustSource',
+            argMapEntry:
+                'trustSource.blockKey: TfArg.literal(trustSource.encode()),',
+          ),
+        },
+      );
+      expect(lintOverride('google_x', o, mm: mm), isEmpty);
     });
 
     test('reports both rules when both dead configs are present', () {
