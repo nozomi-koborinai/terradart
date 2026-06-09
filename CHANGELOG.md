@@ -4,6 +4,15 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## [0.12.6] - 2026-06-09
+
+Lockstep patch across the workspace. **No breaking changes** vs `0.12.5`.
+
+### Added
+
+- **`terradart_google`** — Wave 10 GKE Backup: all ten `google_gke_backup_*` factories (backup/restore plans and channels + plan-scoped IAM); new `package:terradart_google/gke_backup.dart` barrel. Catalog: **135 curated resource factories + 1 data source** (136 entries).
+- **`examples/gke_quickstart`** — extended with GKE Backup API, channels, plans, and IAM bindings/members.
+
 ## [0.12.5] - 2026-06-09
 
 Lockstep patch across the workspace. **No breaking changes** vs `0.12.4`.

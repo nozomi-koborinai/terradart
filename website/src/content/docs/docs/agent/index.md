@@ -3,7 +3,7 @@ title: terradart-mcp
 description: An MCP server that exposes TerraDart's curated Google Cloud catalog to coding agents.
 ---
 
-`terradart-mcp` is a [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server that exposes TerraDart's curated Google Cloud factory **catalog** to coding agents. The catalog covers 126 entries (125 curated resource factories + 1 data source) across 27 service barrels (`compute`, `container`, `pubsub`, `cloud_run`, `iap`, `firestore`, and more). With the server connected, an agent can look up the exact constructor signatures, nested types, and ready-made `Stack` templates it needs to author correct TerraDart Dart code — instead of guessing factory names from memory.
+`terradart-mcp` is a [Model Context Protocol](https://modelcontextprotocol.io) (MCP) server that exposes TerraDart's curated Google Cloud factory **catalog** to coding agents. The catalog covers 136 entries (135 curated resource factories + 1 data source) across 28 service barrels (`compute`, `container`, `pubsub`, `cloud_run`, `iap`, `firestore`, and more). With the server connected, an agent can look up the exact constructor signatures, nested types, and ready-made `Stack` templates it needs to author correct TerraDart Dart code — instead of guessing factory names from memory.
 
 It is built with [genkit_mcp](https://pub.dev/packages/genkit_mcp) (Genkit's MCP server library) and ships as a single compiled binary. Coding agents connect via Claude Code, Claude Desktop, or Cursor; a Genkit Dart app can host the server as an MCP client too ([Connecting clients](/docs/agent/clients/#genkit-dart)).
 
@@ -13,7 +13,7 @@ It is built with [genkit_mcp](https://pub.dev/packages/genkit_mcp) (Genkit's MCP
 graph LR
   agent["coding agent<br/>(Claude Code / Cursor / Claude Desktop)"]
   mcp["terradart-mcp<br/>list_barrels · list_resources<br/>get_resource_schema · get_quickstart"]
-  catalog["static catalog in terradart_google<br/>126 entries · 27 service barrels"]
+  catalog["static catalog in terradart_google<br/>136 entries · 28 service barrels"]
   agent -->|stdio JSON-RPC MCP| mcp
   mcp -->|reads in-process| catalog
 ```

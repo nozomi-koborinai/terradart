@@ -1,0 +1,12 @@
+outputDir: gke_backup
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - role
+  - member
+  - location
+  - condition
+  - project
