@@ -4,6 +4,13 @@
 
 **BREAKING** — removes the `terradart codegen` CLI subcommand, `runCodegen`, `CodegenResult`, and `FileEmitter`. Maintainer generation is `terradart wrap` only. See [MIGRATING.md](../../MIGRATING.md).
 
+## 0.12.3
+
+Maintainer:
+
+- **Changed** — `google_iam_workload_identity_pool_provider` override uses sealed `trust_source` virtual slot (matches scheduler / firestore convention).
+- **Added** — `lint-override` phase-2 rule `exactly-one-optional-fanout` when MM YAML declares top-level `exactly_one_of` but the override fans out optional member `customSlots`.
+
 ## 0.12.2
 
 Maintainer-only: wrapper overrides for `google_iam_workload_identity_pool_provider` and `google_iap_web_backend_service_iam_binding`, plus synced MM YAML fixture for the WIF provider. No CLI changes. Lockstep bump; `terradart_core` constraint `^0.12.2`.

@@ -4,6 +4,19 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## [0.12.3] - 2026-06-09
+
+Lockstep patch across the workspace.
+
+### Changed
+
+- **`terradart_google`** — **breaking:** `GoogleIamWorkloadIdentityPoolProvider` trust binding is now required `trustSource: IamWorkloadIdentityPoolProviderTrustSource` (sealed oneof) instead of optional `oidc` / `aws` / `saml` / `x509` params. See `MIGRATING.md` (0.12.2 → 0.12.3).
+
+### Added
+
+- **`terradart_codegen`** — `lint-override` phase-2 rule `exactly-one-optional-fanout` (MM `exactly_one_of` vs optional customSlot fanout).
+- **Agent docs** — sealed `exactly_one_of` convention in `AGENTS.md` and `terradart-add-curated-resource` skill.
+
 ## [0.12.2] - 2026-06-09
 
 Lockstep patch across the workspace. **No breaking changes** to `terradart_core` or existing `terradart_google` factory APIs.

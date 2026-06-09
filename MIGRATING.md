@@ -1,5 +1,47 @@
 # Migrating terradart
 
+## 0.12.2 → 0.12.3
+
+**Breaking change** in `terradart_google` for users of
+`GoogleIamWorkloadIdentityPoolProvider` (shipped in 0.12.2).
+
+The trust-binding oneof (`oidc` / `aws` / `saml` / `x509`) is now a **sealed**
+`IamWorkloadIdentityPoolProviderTrustSource` passed as required `trustSource`,
+matching the convention used by `GoogleCloudSchedulerJob` and
+`GoogleFirestoreBackupSchedule`.
+
+```dart
+// 0.12.2
+GoogleIamWorkloadIdentityPoolProvider(
+  // ...
+  oidc: IamWorkloadIdentityPoolProviderOidc(
+    issuerUri: TfArg.literal('https://token.actions.githubusercontent.com'),
+  ),
+);
+
+// 0.12.3
+GoogleIamWorkloadIdentityPoolProvider(
+  // ...
+  trustSource: IamWorkloadIdentityPoolProviderOidcTrust(
+    issuerUri: TfArg.literal('https://token.actions.githubusercontent.com'),
+  ),
+);
+```
+
+Renamed helper types: `…Oidc` → `…OidcTrust`, `…Aws` → `…AwsTrust`,
+`…Saml` → `…SamlTrust`, `…X509` → `…X509Trust`. Import from
+`package:terradart_google/iam.dart`.
+
+Bump lockstep:
+
+```yaml
+dependencies:
+  terradart_core: ^0.12.3
+  terradart_google: ^0.12.3
+```
+
+---
+
 ## Unreleased — `terradart codegen` removed
 
 The `terradart codegen` CLI subcommand and `runCodegen` library export are **removed**.

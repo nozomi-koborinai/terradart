@@ -1,3 +1,4 @@
+import '../parser/mm_yaml_parser.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 
 /// A single dead/conflicting-config finding for one override.
@@ -38,7 +39,11 @@ final class LintViolation {
 /// compute the derived symbol names, and a same-named hand-written duplicate is
 /// already caught by `dart analyze` (duplicate definition). They are deferred
 /// to phase 2.
-List<LintViolation> lintOverride(String tfType, WrapperOverride override) {
+List<LintViolation> lintOverride(
+  String tfType,
+  WrapperOverride override, {
+  MmResourceOverrides? mm,
+}) {
   final violations = <LintViolation>[];
 
   if (override.deriveClassDoc && override.classDocComment != null) {
@@ -61,15 +66,80 @@ List<LintViolation> lintOverride(String tfType, WrapperOverride override) {
     ));
   }
 
+  violations.addAll(
+    lintExactlyOneMutualExclusion(tfType, override, mm: mm),
+  );
+
   return violations;
 }
+
+/// Flags MM `exactly_one_of` groups modeled as multiple optional member
+/// [customSlots] instead of a sealed virtual slot.
+///
+/// Phase A5 phase 2: requires [MmResourceOverrides.exactlyOneOfGroups] from
+/// the synced MM fixture. Top-level groups only (member names without `.`).
+List<LintViolation> lintExactlyOneMutualExclusion(
+  String tfType,
+  WrapperOverride override, {
+  MmResourceOverrides? mm,
+}) {
+  if (mm == null) return const [];
+
+  final violations = <LintViolation>[];
+  final slots = override.customSlots ?? const {};
+
+  for (final group in mm.exactlyOneOfGroups) {
+    if (group.length < 2) continue;
+    if (!group.every((m) => !m.contains('.'))) continue;
+
+    final optionalDirectMemberSlots = <String>[
+      for (final member in group)
+        if (slots.containsKey(member) &&
+            _paramDeclarationIsOptional(slots[member]!.paramDeclaration))
+          member,
+    ];
+    if (optionalDirectMemberSlots.length < 2) continue;
+
+    final hasSealedVirtualSlot = slots.entries.any((entry) {
+      if (group.contains(entry.key)) return false;
+      final slot = entry.value;
+      return _paramDeclarationIsRequired(slot.paramDeclaration) &&
+          slot.argMapEntry.contains('.blockKey');
+    });
+    if (hasSealedVirtualSlot) continue;
+
+    violations.add(LintViolation(
+      tfType: tfType,
+      rule: 'exactly-one-optional-fanout',
+      detail: 'MM YAML declares exactly_one_of on [${group.join(', ')}] but '
+          'this override exposes [${optionalDirectMemberSlots.join(', ')}] as '
+          'separate optional customSlots. Model the group as a sealed class '
+          'plus one required virtual customSlot that dispatches via '
+          '`.blockKey` (see google_cloud_scheduler_job.yaml and '
+          'google_firestore_backup_schedule.yaml).',
+    ));
+  }
+
+  return violations;
+}
+
+bool _paramDeclarationIsOptional(String paramDeclaration) =>
+    paramDeclaration.contains('?');
+
+bool _paramDeclarationIsRequired(String paramDeclaration) =>
+    paramDeclaration.startsWith('required ');
 
 /// Lints every entry of [overrides], aggregating violations across the
 /// registry. Results are ordered by `tfType` (then by rule-discovery order
 /// within a type) for deterministic output.
-List<LintViolation> lintOverrides(Map<String, WrapperOverride> overrides) {
+///
+/// When [mmByType] is supplied, phase-2 rules (MM-backed) run per entry.
+List<LintViolation> lintOverrides(
+  Map<String, WrapperOverride> overrides, {
+  Map<String, MmResourceOverrides>? mmByType,
+}) {
   final keys = overrides.keys.toList()..sort();
   return [
-    for (final k in keys) ...lintOverride(k, overrides[k]!),
+    for (final k in keys) ...lintOverride(k, overrides[k]!, mm: mmByType?[k]),
   ];
 }

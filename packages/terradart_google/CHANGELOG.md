@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.12.3 - 2026-06-09
+
+**CHANGED** — breaking API fix for WIF provider oneof typing:
+
+- `GoogleIamWorkloadIdentityPoolProvider` now takes required
+  `trustSource: IamWorkloadIdentityPoolProviderTrustSource` (sealed) instead
+  of optional `oidc` / `aws` / `saml` / `x509` constructor params.
+- Trust helper types renamed: `IamWorkloadIdentityPoolProviderOidcTrust`,
+  `…AwsTrust`, `…SamlTrust`, `…X509Trust` (+ `IamWorkloadIdentityPoolProviderTrustSource`).
+
+See root `MIGRATING.md` (0.12.2 → 0.12.3). Catalog size unchanged (122 entries).
+
 ## 0.12.2 - 2026-06-09
 
 **ADDED** — two curated factories for external HTTPS LB + GitHub Actions federation paths:

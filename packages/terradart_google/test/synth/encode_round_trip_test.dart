@@ -20,7 +20,7 @@
 //
 // Component B-3-a shipped the FRAMEWORK only — the lookup table was empty
 // and the whole group was marked `skip:`. Component B-3-b (this commit)
-// fills the table for all 34 sealed-class members and removes the skip.
+// fills the table for all sealed-class members and removes the skip.
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
@@ -32,6 +32,7 @@ import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/cloud_scheduler.dart';
 import 'package:terradart_google/firebase_app_hosting.dart';
 import 'package:terradart_google/firestore.dart';
+import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/secret_manager.dart';
 import 'package:terradart_google/storage.dart';
 import 'package:test/test.dart';
@@ -147,6 +148,16 @@ final Map<String, Object Function()> _syntheticInstances = {
   // unwraps to the single inner map for the structural assertions.
   'FirestoreBackupScheduleDailyRecurrence': () => const FirestoreBackupScheduleDailyRecurrence(),
   'FirestoreBackupScheduleWeeklyRecurrence': () => const FirestoreBackupScheduleWeeklyRecurrence(),
+
+  // --- IamWorkloadIdentityPoolProviderTrustSource (4) — iam WIF provider ---
+  'IamWorkloadIdentityPoolProviderOidcTrust': () => IamWorkloadIdentityPoolProviderOidcTrust(
+        issuerUri: TfArg.literal('https://token.actions.githubusercontent.com'),
+      ),
+  'IamWorkloadIdentityPoolProviderAwsTrust': () => const IamWorkloadIdentityPoolProviderAwsTrust(),
+  'IamWorkloadIdentityPoolProviderSamlTrust': () => IamWorkloadIdentityPoolProviderSamlTrust(
+        idpMetadataXml: TfArg.literal('<xml/>'),
+      ),
+  'IamWorkloadIdentityPoolProviderX509Trust': () => const IamWorkloadIdentityPoolProviderX509Trust(),
 
   // --- IndexFieldSpec (4) — firestore_index --------------------------------
   'FirestoreIndexIndexFieldOrder': () => const FirestoreIndexIndexFieldOrder(FirestoreIndexOrder.ascending),

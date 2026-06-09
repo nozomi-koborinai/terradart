@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.3
+
+Lockstep version bump for `terradart_google` v0.12.3. MCP catalog metadata for `GoogleIamWorkloadIdentityPoolProvider` reflects the sealed `trustSource` constructor (no new catalog entries).
+
 ## 0.12.2
 
 Lockstep version bump for `terradart_google` v0.12.2. MCP catalog picks up two new entries (`google_iam_workload_identity_pool_provider`, `google_iap_web_backend_service_iam_binding`) and the new `iap` barrel via the static `terradartCatalog`.
