@@ -56,7 +56,19 @@ jobs:
       - name: Pre-publish pubspec mutations
         run: tool/prepare_publish.sh "${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}" ${{ matrix.package }}
 
+      - name: Check if already on pub.dev
+        id: pub
+        run: |
+          TAG="${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}"
+          VERSION="${TAG#v}"
+          if tool/skip_if_published.sh "${{ matrix.package }}" "$VERSION"; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Publish to pub.dev
+        if: steps.pub.outputs.skip != 'true'
         run: dart pub publish --force
         working-directory: packages/${{ matrix.package }}
 
@@ -84,7 +96,19 @@ jobs:
       - name: Pre-publish pubspec mutations
         run: tool/prepare_publish.sh "${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}" terradart_codegen
 
+      - name: Check if already on pub.dev
+        id: pub
+        run: |
+          TAG="${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}"
+          VERSION="${TAG#v}"
+          if tool/skip_if_published.sh terradart_codegen "$VERSION"; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Publish to pub.dev
+        if: steps.pub.outputs.skip != 'true'
         run: dart pub publish --force
         working-directory: packages/terradart_codegen
 
@@ -123,6 +147,18 @@ jobs:
       - name: Pre-publish pubspec mutations
         run: tool/prepare_publish.sh "${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}" terradart_google
 
+      - name: Check if already on pub.dev
+        id: pub
+        run: |
+          TAG="${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}"
+          VERSION="${TAG#v}"
+          if tool/skip_if_published.sh terradart_google "$VERSION"; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Publish to pub.dev
+        if: steps.pub.outputs.skip != 'true'
         run: dart pub publish --force
         working-directory: packages/terradart_google

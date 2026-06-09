@@ -15,6 +15,11 @@ topics:
 environment:
   sdk: ^3.6.0
 
+# Upstream Magic Modules test fixtures include reCAPTCHA site keys that trip
+# pub.dev's secret scanner (false positive: "AWS Secret Key").
+false_secrets:
+  - /test/fixtures/**
+
 resolution: workspace
 
 executables:
