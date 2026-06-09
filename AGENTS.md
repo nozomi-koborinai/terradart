@@ -99,7 +99,7 @@ Cloud agents such as Devin, Cursor Cloud Agent, and Claude Code on the Web shoul
 
 Inputs: a checked-in or task-provided `schema.json` (plus Magic Modules YAML when semantic hints are needed). Do not assume `terraform` is installed or fetch schemas ad hoc. Exact CLI flags are in **Useful Commands**; override rules are in **Generation Policy**.
 
-1. **Confirm inputs.** Verify the Terraform type exists in `schema.json`; if the schema is missing or stale, stop and report the missing input. Check `tool/mm_yaml_sources.yaml` for the Magic Modules source; if MM YAML is unavailable, proceed schema-only or report the missing hints.
+1. **Confirm inputs.** Verify the Terraform type exists in `schema.json`; if the schema is missing or stale, stop and report the missing input. Add or update **one** `tool/mm_yaml_sources.yaml` entry per curated override (`upstream` path or `null` with reason). If MM YAML is unavailable, proceed schema-only; run `dart tool/sync_mm_yaml.dart` when `upstream` is non-null.
 2. **Scaffold a new override with `terradart wrap-init`** (skip when you are only editing an existing resource). It fills `kind`, `outputDir`, and `schemaStubBodyMode` as real values and seeds the remaining axes as commented TODOs.
 3. **Edit `wrapper_overrides/yaml/<terraform_type>.yaml`, keeping it thin.** Review against this checklist before saving:
    - **Leave `paramOrder` / `requiredParams` out unless you are intentionally deviating from the schema default** (reordering parameters, or promoting an `optional + computed` slot to required). `wrap` derives both from the schema when the override omits them; writing the schema-default value is dead, stale-prone config.
