@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.12.4 - 2026-06-09
+
+**ADDED** — Wave 8 (GKE core):
+
+- `google_container_cluster` — GKE cluster on an existing VPC / subnetwork.
+- `google_container_node_pool` — node pool attached to a cluster.
+- New `package:terradart_google/container.dart` barrel.
+
+Catalog: **123 curated resource factories + 1 data source** (124 entries). Additive; no breaking API changes vs `0.12.3`.
+
 ## 0.12.3 - 2026-06-09
 
 **CHANGED** — breaking API fix for WIF provider oneof typing:

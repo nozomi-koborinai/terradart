@@ -19,6 +19,7 @@ export 'cloud_scheduler.dart';
 export 'cloud_sql.dart';
 export 'cloud_tasks.dart';
 export 'compute.dart';
+export 'container.dart';
 export 'data.dart';
 export 'dns.dart';
 export 'eventarc.dart';

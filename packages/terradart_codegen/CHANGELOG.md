@@ -4,6 +4,12 @@
 
 **BREAKING** — removes the `terradart codegen` CLI subcommand, `runCodegen`, `CodegenResult`, and `FileEmitter`. Maintainer generation is `terradart wrap` only. See [MIGRATING.md](../../MIGRATING.md).
 
+## 0.12.4
+
+Maintainer:
+
+- **Added** — Wave 8 GKE overrides (`google_container_cluster`, `google_container_node_pool`) and `tool/batch_wrap_init.dart`.
+
 ## 0.12.3
 
 Maintainer:

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.4
+
+Lockstep version bump for `terradart_google` v0.12.4. MCP catalog grows by two GKE entries (`google_container_cluster`, `google_container_node_pool`) and the new `container` barrel (124 entries total).
+
 ## 0.12.3
 
 Lockstep version bump for `terradart_google` v0.12.3. MCP catalog metadata for `GoogleIamWorkloadIdentityPoolProvider` reflects the sealed `trustSource` constructor (no new catalog entries).
