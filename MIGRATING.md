@@ -36,7 +36,7 @@ dart pub global activate terradart_codegen ^0.12.0
 
 - **`terradart_google`** — static `terradartCatalog` in
   `package:terradart_google/catalog.dart` (metadata only; factory APIs unchanged).
-  Still **119 curated resource factories + 1 data source**.
+  Still **121 curated resource factories + 1 data source**.
 - **`terradart-mcp`** (optional) — MCP catalog server binary; not on pub.dev.
   See [Agent install](https://terradart.dev/docs/agent/install/).
 

@@ -8,11 +8,9 @@ classDocComment: |-
   /// external workload identities (GitHub Actions, AWS, Azure, generic OIDC
   /// IdPs) that map to GCP service accounts without long-lived JSON keys.
   ///
-  /// This wrapper covers the pool resource itself. The companion provider
-  /// resource (`google_iam_workload_identity_pool_provider`, which
-  /// configures the actual OIDC / AWS / SAML trust binding) is deferred
-  /// to a future wave. A pool without a provider is still meaningful as a
-  /// logical grouping namespace for future providers.
+  /// This wrapper covers the pool resource itself. Pair with
+  /// [GoogleIamWorkloadIdentityPoolProvider] to configure the OIDC / AWS /
+  /// SAML / X.509 trust binding that actually federates external identities.
   ///
   /// Required identity:
   /// - [localName]: Terraform local name (the address segment after

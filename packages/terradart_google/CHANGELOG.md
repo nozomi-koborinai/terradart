@@ -1,5 +1,15 @@
 # Changelog
 
+## Unreleased
+
+**ADDED** — two curated factories for external HTTPS LB + GitHub Actions federation paths:
+
+- `google_iam_workload_identity_pool_provider` — OIDC / AWS / SAML / X.509 trust bindings for [GoogleIamWorkloadIdentityPool].
+- `google_iap_web_backend_service_iam_binding` — authoritative IAP access on external HTTPS load balancer backend services.
+- New `package:terradart_google/iap.dart` barrel.
+
+Catalog: **121 curated resource factories + 1 data source** (122 entries).
+
 ## 0.12.1
 
 No user-facing changes. Lockstep version bump alongside the `terradart_agent` v0.12.1 fix. The generated catalog and public surface are unchanged from 0.12.0.

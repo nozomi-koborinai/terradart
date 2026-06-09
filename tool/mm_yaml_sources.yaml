@@ -61,6 +61,10 @@ files:
     upstream: null  # handwritten in terraform provider; no MM YAML
   google_iam_workload_identity_pool:
     upstream: mmv1/products/iambeta/WorkloadIdentityPool.yaml
+  google_iam_workload_identity_pool_provider:
+    upstream: null  # schema-only curation; MM YAML optional
+  google_iap_web_backend_service_iam_binding:
+    upstream: null  # IAM binding; schema-only curation
 
   # Cloud SQL
   google_sql_database_instance:

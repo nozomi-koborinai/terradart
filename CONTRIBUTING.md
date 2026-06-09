@@ -6,7 +6,7 @@ Thanks for taking time to look at this. terradart is a **pre-alpha** single-main
 
 terradart ships one consumer surface:
 
-- **Curated factories** — the `google_*` factory wrappers in [`terradart_google`](packages/terradart_google/README.md) (**119 curated resource factories + 1 data source** as of 0.12.x). Bug fixes, tests, and doc improvements welcome. New resources land via `terradart wrap` overrides — open an issue first to discuss scope.
+- **Curated factories** — the `google_*` factory wrappers in [`terradart_google`](packages/terradart_google/README.md) (**121 curated resource factories + 1 data source** as of 0.12.x). Bug fixes, tests, and doc improvements welcome. New resources land via `terradart wrap` overrides — open an issue first to discuss scope.
 
 Within a **minor** line (`^0.12.x`), we aim to avoid breaking public API changes. Across **minors**, breaking changes are allowed with `MIGRATING.md` coverage (stricter from v0.13.0 beta — see [status](https://terradart.dev/docs/status/)).
 
