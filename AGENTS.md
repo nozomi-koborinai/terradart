@@ -136,6 +136,22 @@ Inputs: a checked-in or task-provided `schema.json` (plus Magic Modules YAML whe
 - When bumping versions, check inter-package caret constraints with per-package CI in mind; workspace resolution can hide stale constraints locally.
 - Release tags and GitHub releases are created manually by the maintainer.
 
+## Cursor Cloud specific instructions
+
+Cloud VM images should have **Dart SDK stable** (≥ 3.10; workspace root requires ^3.6, `terradart_agent` requires ^3.10) and **Terraform** (≥ 1.11) on `PATH`. The update script only runs `dart pub get`; system packages are baked into the snapshot (Ubuntu: `dart` from `storage.googleapis.com/download.dartlang.org/linux/debian stable`, `terraform` from HashiCorp apt).
+
+There is no long-running dev server for core work. Primary flows:
+
+| Goal | Command (repo root) |
+|------|---------------------|
+| Agent gate (lint, tests, wrap check, smoke) | `tool/agent_verify.sh` |
+| Synth example stack | `cd examples/pubsub_quickstart && GCP_PROJECT_ID=ci-test-project-id dart run bin/infra.dart` |
+| Validate synth output | `cd examples/pubsub_quickstart/tf-out && terraform init -backend=false && terraform validate` |
+| MCP catalog server (stdio) | `cd packages/terradart_agent && dart run terradart-mcp` |
+| Docs site (optional) | `cd website && bun install && bun run dev` (needs Bun + Node ≥ 22) |
+
+`tool/agent_verify.sh` does **not** run the full `terraform_validate` example matrix; GitHub Actions enforces that on merge. Examples use `GCP_PROJECT_ID` (or `ci-test-project-id` for local smoke) — no live GCP credentials are required for synth or `terraform validate`.
+
 ## Working Rules
 
 - Prefer small, reviewable changes. Keep unrelated cleanup out of feature work.
