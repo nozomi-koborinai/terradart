@@ -100,6 +100,8 @@ class IamWorkloadIdentityPoolProviderX509PemCertificate {
 
 /// Factory wrapper for `google_iam_workload_identity_pool_provider`.
 ///
+/// A configuration for an external identity provider.
+///
 /// Configures a **Workload Identity Federation provider** inside an existing
 /// [GoogleIamWorkloadIdentityPool] — the trust binding that maps external
 /// identities (GitHub Actions OIDC, AWS, SAML, X.509) into GCP subjects.

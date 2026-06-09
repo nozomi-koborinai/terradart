@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.12.2 - 2026-06-09
 
 **ADDED** — two curated factories for external HTTPS LB + GitHub Actions federation paths:
 
@@ -8,7 +8,7 @@
 - `google_iap_web_backend_service_iam_binding` — authoritative IAP access on external HTTPS load balancer backend services.
 - New `package:terradart_google/iap.dart` barrel.
 
-Catalog: **121 curated resource factories + 1 data source** (122 entries).
+Catalog: **121 curated resource factories + 1 data source** (122 entries). Additive; no breaking API changes vs `0.12.1`.
 
 ## 0.12.1
 

@@ -62,9 +62,11 @@ files:
   google_iam_workload_identity_pool:
     upstream: mmv1/products/iambeta/WorkloadIdentityPool.yaml
   google_iam_workload_identity_pool_provider:
-    upstream: null  # schema-only curation; MM YAML optional
+    # MM YAML enriches merged IR (descriptions, hints); typed nested blocks still
+    # come from the wrapper override prelude/customSlots, not from MM alone.
+    upstream: mmv1/products/iambeta/WorkloadIdentityPoolProvider.yaml
   google_iap_web_backend_service_iam_binding:
-    upstream: null  # IAM binding; schema-only curation
+    upstream: null  # handwritten IAM binding in terraform provider; no MM YAML
 
   # Cloud SQL
   google_sql_database_instance:

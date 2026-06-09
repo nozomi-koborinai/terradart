@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.2
+
+No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.2 (two new curated factories). The `terradart_core` public surface is unchanged from 0.12.1.
+
 ## 0.12.1
 
 No user-facing API changes. Lockstep version bump alongside the `terradart_agent` v0.12.1 fix (MCP `structuredContent` object shape). The `terradart_core` public surface is unchanged from 0.12.0.

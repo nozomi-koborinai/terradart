@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.2
+
+Lockstep version bump for `terradart_google` v0.12.2. MCP catalog picks up two new entries (`google_iam_workload_identity_pool_provider`, `google_iap_web_backend_service_iam_binding`) and the new `iap` barrel via the static `terradartCatalog`.
+
 ## 0.12.1
 
 - **Fixed** — `list_resources` and `list_barrels` now return a JSON object (`{"resources": [...]}` / `{"barrels": [...]}`) instead of a bare array. MCP requires a tool result's `structuredContent` to be an object (record), so strict clients (e.g. Cursor) rejected the previous array form with "expected record, received array".
