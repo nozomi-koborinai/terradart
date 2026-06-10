@@ -4,6 +4,10 @@
 
 **BREAKING** — removes the `terradart codegen` CLI subcommand, `runCodegen`, `CodegenResult`, and `FileEmitter`. Maintainer generation is `terradart wrap` only. See [MIGRATING.md](../../MIGRATING.md).
 
+Maintainer:
+
+- **Added** — `lint-override` phase-2 rule `exactly-one-paramorder-fanout` when MM YAML declares an `exactly_one_of` sibling group but the override lists two or more **schema-default** members in `paramOrder` without a sealed virtual `customSlot` (closes the `customSlots`-less escape hatch).
+
 ## 0.12.6
 
 Maintainer:

@@ -1,3 +1,5 @@
+import 'package:meta/meta.dart';
+
 import '../parser/mm_yaml_parser.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 
@@ -73,11 +75,47 @@ List<LintViolation> lintOverride(
   return violations;
 }
 
-/// Flags MM `exactly_one_of` groups modeled as multiple optional member
-/// [customSlots] instead of a sealed virtual slot.
+/// Normalizes MM `exactly_one_of` groups into canonical sibling sets.
+///
+/// Magic Modules repeats the same sibling `exactly_one_of` list on each
+/// property in the group, and the parser prefixes each member with the
+/// declaring property path (e.g. `[aws.aws, aws.oidc, …]`). This helper
+/// collapses those duplicates into one sorted set per sibling group
+/// (e.g. `[aws, oidc, saml, x509]`).
+@visibleForTesting
+List<List<String>> canonicalExactlyOneOfGroups(List<List<String>> raw) {
+  final seen = <String>{};
+  final out = <List<String>>[];
+  for (final group in raw) {
+    if (group.length < 2) continue;
+    if (group.every((m) => !m.contains('.'))) {
+      final sorted = List<String>.from(group)..sort();
+      final key = sorted.join(',');
+      if (seen.add(key)) out.add(sorted);
+      continue;
+    }
+    final suffixes = <String>{
+      for (final m in group) m.contains('.') ? m.split('.').last : m,
+    };
+    if (suffixes.length < 2 || suffixes.length != group.length) continue;
+    final sorted = suffixes.toList()..sort();
+    final key = sorted.join(',');
+    if (seen.add(key)) out.add(sorted);
+  }
+  return out;
+}
+
+/// Flags MM `exactly_one_of` groups modeled without a sealed virtual slot.
 ///
 /// Phase A5 phase 2: requires [MmResourceOverrides.exactlyOneOfGroups] from
-/// the synced MM fixture. Top-level groups only (member names without `.`).
+/// the synced MM fixture.
+///
+/// - `exactly-one-optional-fanout` — top-level MM groups (member names
+///   without `.`) exposed as multiple optional member [customSlots].
+/// - `exactly-one-paramorder-fanout` — canonical sibling groups with two or
+///   more members listed in [WrapperOverride.paramOrder] (the escape hatch
+///   when an override omits customSlots and relies on schema-default optional
+///   nested blocks).
 List<LintViolation> lintExactlyOneMutualExclusion(
   String tfType,
   WrapperOverride override, {
@@ -87,40 +125,95 @@ List<LintViolation> lintExactlyOneMutualExclusion(
 
   final violations = <LintViolation>[];
   final slots = override.customSlots ?? const {};
+  final paramOrder = override.paramOrder ?? const [];
 
   for (final group in mm.exactlyOneOfGroups) {
     if (group.length < 2) continue;
     if (!group.every((m) => !m.contains('.'))) continue;
 
-    final optionalDirectMemberSlots = <String>[
-      for (final member in group)
-        if (slots.containsKey(member) &&
-            _paramDeclarationIsOptional(slots[member]!.paramDeclaration))
-          member,
-    ];
+    final optionalDirectMemberSlots = _optionalMemberSlots(group, slots);
     if (optionalDirectMemberSlots.length < 2) continue;
+    if (_hasSealedVirtualSlot(group, slots)) continue;
 
-    final hasSealedVirtualSlot = slots.entries.any((entry) {
-      if (group.contains(entry.key)) return false;
-      final slot = entry.value;
-      return _paramDeclarationIsRequired(slot.paramDeclaration) &&
-          slot.argMapEntry.contains('.blockKey');
-    });
-    if (hasSealedVirtualSlot) continue;
+    violations.add(
+      _exactlyOneViolation(
+        tfType: tfType,
+        rule: 'exactly-one-optional-fanout',
+        group: group,
+        detail:
+            'this override exposes [${optionalDirectMemberSlots.join(', ')}] as '
+            'separate optional customSlots. Model the group as a sealed class '
+            'plus one required virtual customSlot that dispatches via '
+            '`.blockKey` (see google_cloud_scheduler_job.yaml and '
+            'google_firestore_backup_schedule.yaml).',
+      ),
+    );
+  }
 
-    violations.add(LintViolation(
-      tfType: tfType,
-      rule: 'exactly-one-optional-fanout',
-      detail: 'MM YAML declares exactly_one_of on [${group.join(', ')}] but '
-          'this override exposes [${optionalDirectMemberSlots.join(', ')}] as '
-          'separate optional customSlots. Model the group as a sealed class '
-          'plus one required virtual customSlot that dispatches via '
-          '`.blockKey` (see google_cloud_scheduler_job.yaml and '
-          'google_firestore_backup_schedule.yaml).',
-    ));
+  for (final group in canonicalExactlyOneOfGroups(mm.exactlyOneOfGroups)) {
+    if (_hasSealedVirtualSlot(group, slots)) continue;
+
+    final optionalDirectMemberSlots = _optionalMemberSlots(group, slots);
+    // IR/schema slots only — customSlot keys in paramOrder are curated
+    // replacements, not schema-default fanout.
+    final schemaSlotsInParamOrder = [
+      for (final member in group)
+        if (paramOrder.contains(member) && !slots.containsKey(member)) member,
+    ];
+    if (schemaSlotsInParamOrder.length < 2) continue;
+    if (optionalDirectMemberSlots.length >= 2) continue;
+
+    violations.add(
+      _exactlyOneViolation(
+        tfType: tfType,
+        rule: 'exactly-one-paramorder-fanout',
+        group: group,
+        detail:
+            'this override lists [${schemaSlotsInParamOrder.join(', ')}] in '
+            'paramOrder as schema-default slots without a sealed virtual '
+            'customSlot. Omit those IR member slots from paramOrder and model '
+            'the group as a sealed class plus one required virtual customSlot '
+            '(see google_cloud_scheduler_job.yaml).',
+      ),
+    );
   }
 
   return violations;
+}
+
+List<String> _optionalMemberSlots(
+  List<String> group,
+  Map<String, CustomSlot> slots,
+) {
+  return [
+    for (final member in group)
+      if (slots.containsKey(member) &&
+          _paramDeclarationIsOptional(slots[member]!.paramDeclaration))
+        member,
+  ];
+}
+
+bool _hasSealedVirtualSlot(List<String> group, Map<String, CustomSlot> slots) {
+  return slots.entries.any((entry) {
+    if (group.contains(entry.key)) return false;
+    final slot = entry.value;
+    return _paramDeclarationIsRequired(slot.paramDeclaration) &&
+        slot.argMapEntry.contains('.blockKey');
+  });
+}
+
+LintViolation _exactlyOneViolation({
+  required String tfType,
+  required String rule,
+  required List<String> group,
+  required String detail,
+}) {
+  return LintViolation(
+    tfType: tfType,
+    rule: rule,
+    detail: 'MM YAML declares exactly_one_of on [${group.join(', ')}] but '
+        '$detail',
+  );
 }
 
 bool _paramDeclarationIsOptional(String paramDeclaration) =>

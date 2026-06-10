@@ -35,6 +35,34 @@ A **Wave** is a user-visible release batch of related curated factories. A Wave 
 
 `curatedDoc` on the override is not sufficient on its own. Use the [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md) skill for the full checklist.
 
+## PR granularity
+
+Keep pull requests **single-purpose** so humans and agents can review them. Do not bundle unrelated work into one PR.
+
+| Concern | Keep separate from |
+|---------|-------------------|
+| New curated Wave (factories + example for that Wave) | Example version-debt sweep, workspace lockstep version bumps, unrelated docs |
+| Release version bump + CHANGELOG | Unrelated factory curation |
+| CI / publish hotfix | Feature work (open a PR even when urgent) |
+| Agent-guide / policy-only edits | Runtime or API changes |
+
+When a Wave also pays down example `pubspec.yaml` carets or docs debt, **prefer a follow-up PR** unless the debt is required for that Wave's example to build. If you must combine concerns, state each in the PR title/body and keep the diff reviewable (target well under ~50 hand-written files outside generated wrappers).
+
+## Branch and merge policy
+
+- **Never push directly to `main`.** All changes land through a pull request, including CI/publish hotfixes. Branch protection should enforce this for maintainers and automation alike.
+- Cloud agents: create `cursor/<descriptive-name>-fc7b` (or the repo's active agent suffix), commit, push, and open/update a PR before claiming work is done.
+- Emergency publish fixes still get a PR (can merge immediately after CI green); do not bypass review habit.
+
+## Override lint coverage (`exactly_one_of`)
+
+`terradart lint-override` enforces MM YAML `exactly_one_of` groups via:
+
+- `exactly-one-optional-fanout` — multiple optional member `customSlots` without a sealed virtual slot.
+- `exactly-one-paramorder-fanout` — two or more group members listed in `paramOrder` without a sealed virtual slot (the path used when an override skips `customSlots`).
+
+`lint-override` clean does **not** guarantee every optional nested block is type-enforced: resources without MM `exactly_one_of` metadata (e.g. large schema-only surfaces) may still fan out at the Dart API until sealed. Prefer sealed virtual slots + `wrap-promote` when curating new `exactly_one_of` groups.
+
 ## Documentation Policy
 
 - `AGENTS.md` is the committed operational guide for agents.
