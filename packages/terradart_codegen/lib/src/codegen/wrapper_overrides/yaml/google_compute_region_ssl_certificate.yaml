@@ -1,0 +1,30 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - certificate
+  - private_key
+  - name
+  - description
+  - region
+  - project
+
+curatedDoc: |-
+  /// Regional self-managed SSL certificate for regional HTTPS load balancers.
+  /// Pair with [GoogleComputeRegionTargetHttpsProxy].
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleComputeRegionSslCertificate(
+  ///   localName: 'regional_cert',
+  ///   name: TfArg.literal('regional-cert'),
+  ///   certificate: TfArg.literal(pemCertificate),
+  ///   privateKey: TfArg.literal(pemPrivateKey),
+  ///   region: TfArg.literal('asia-northeast1'),
+  /// );
+  /// ```
+
+extraGetters: |2
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get selfLinkRef => TfRef.attribute<String>(this, 'self_link');

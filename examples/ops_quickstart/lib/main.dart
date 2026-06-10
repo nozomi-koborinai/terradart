@@ -64,6 +64,33 @@ final class AuditPipelineStack extends Stack {
     );
     add(auditBucket);
 
+    add(
+      GoogleLoggingLogScope(
+        localName: 'audit_scope',
+        name: TfArg.literal('audit-scope'),
+        resourceNames: TfArg.literal([
+          'projects/$projectId/locations/$location/buckets/$bucketId',
+        ]),
+        description: TfArg.literal('Scope for audit log analytics.'),
+        dependsOn: [ResourceDependency(auditBucket)],
+      ),
+    );
+
+    add(
+      GoogleLoggingLinkedDataset(
+        localName: 'audit_analytics',
+        bucket: TfArg.ref(auditBucket.bucketIdRef),
+        linkId: TfArg.literal('audit-analytics'),
+        bigqueryDataset: LoggingLinkedDatasetBigqueryDataset(
+          datasetId: TfArg.ref(dataset.datasetIdRef),
+        ),
+        dependsOn: [
+          ResourceDependency(auditBucket),
+          ResourceDependency(dataset)
+        ],
+      ),
+    );
+
     final auditView = GoogleLoggingLogView(
       localName: 'audit_view',
       bucket: TfArg.ref(auditBucket.bucketIdRef),

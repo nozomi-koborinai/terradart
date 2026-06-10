@@ -1613,6 +1613,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_compute_network`.\n\nManages a VPC network or legacy network resource on GCP.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `name`: GCP VPC network name. Pass `TfArg.literal(\'main-vpc\')` or\n  `TfArg.ref(otherNetwork.nameRef)`.\n\nExample:\n```dart\nfinal vpc = GoogleComputeNetwork(\n  localName: \'main\',\n  name: TfArg.literal(\'main-vpc\'),\n  autoCreateSubnetworks: TfArg.literal(false),\n  routingMode: TfArg.literal(RoutingMode.regional),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_compute_network_endpoint',
+    className: 'GoogleComputeNetworkEndpoint',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_network_endpoint`.',
+    constructorParams: <String>[
+      'localName',
+      'networkEndpointGroup',
+      'ipAddress',
+      'port',
+      'instance',
+      'zone',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_network_endpoint`.\n\nRegisters an IP/port endpoint on a zonal [GoogleComputeNetworkEndpointGroup].\nUsed for hybrid / on-prem backends behind an L7 LB.\n\nExample:\n```dart\nGoogleComputeNetworkEndpoint(\n  localName: \'onprem_vm\',\n  networkEndpointGroup: TfArg.ref(neg.id),\n  ipAddress: TfArg.literal(\'10.0.0.5\'),\n  port: TfArg.literal(8080),\n  zone: TfArg.literal(\'asia-northeast1-a\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_network_endpoint_group',
     className: 'GoogleComputeNetworkEndpointGroup',
     barrel: 'compute',
@@ -1879,6 +1899,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_region_network_endpoint_group`.\n\nA regional NEG that can support Serverless Products, proxying traffic to\nexternal backends and providing traffic to the PSC port mapping endpoints.\n\nWhen in use by a resource that can be updated, recreating a\nRegionNetworkEndpointGroup will give a `resourceInUseByAnotherResource`\nerror because Terraform will attempt to delete the\nRegionNetworkEndpointGroup first, but an in-use RegionNetworkEndpointGroup\ncan\'t be deleted in the API. Use `lifecycle.create_before_destroy` to\nreorder the plan and create the new resource first, allowing the deletion to\ngo through successfully. This is only recommended when strictly necessary,\nas the `create_before_destroy` directive can be passed onto further\ndependencies, creating unexpected plans.\n\nSlots into the L7 Application LB chain as the backend leaf:\n\n```\ngoogle_compute_global_forwarding_rule\n  → google_compute_target_https_proxy\n    → google_compute_url_map\n      → google_compute_backend_service\n        → google_compute_region_network_endpoint_group   (this resource)\n```\n\nRequired identity:\n- [localName]: Terraform local name.\n- `name`: GCP NEG resource name. 1-63 chars, RFC1035.\n- `region`: GCP region the NEG lives in. For serverless NEGs the region\n  must match the Cloud Run / Cloud Function region; a backend service\n  aggregates per-region NEGs into one global backend.\n\n`networkEndpointType` defaults to\n[RegionNetworkEndpointGroupType.serverless] (provider default). Leave\n`null` to inherit that default, or pass an explicit value for PSC /\nINTERNET / portmap NEGs.\n\nServerless target — exactly one of `cloudRun` / `cloudFunction` /\n`appEngine` via the inline nested classes; setting more than one is\nrejected at apply time.\n\nPSC consumer NEG: set\n`networkEndpointType: RegionNetworkEndpointGroupType.privateServiceConnect`,\n`pscTargetService` (Google API bundle name or producer Service Attachment\nself-link), and typically also `network` (optionally `subnetwork`).\n\nINTERNET regional NEGs\n([RegionNetworkEndpointGroupType.internetIpPort] or\n[RegionNetworkEndpointGroupType.internetFqdnPort]) describe off-Google\norigins expressed regionally; pair with a regional external Application\nLoad Balancer.\n\nExample (serverless NEG fronting a Cloud Run service):\n```dart\nfinal crNeg = GoogleComputeRegionNetworkEndpointGroup(\n  localName: \'cr_neg\',\n  name: TfArg.literal(\'cloudrun-neg\'),\n  region: TfArg.literal(\'asia-northeast1\'),\n  cloudRun: ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(\n    service: TfArg.ref(cloudRunService.nameRef),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_compute_region_ssl_certificate',
+    className: 'GoogleComputeRegionSslCertificate',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_region_ssl_certificate`.',
+    constructorParams: <String>[
+      'localName',
+      'certificate',
+      'privateKey',
+      'name',
+      'description',
+      'region',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>['certificate', 'private_key'],
+    docComment:
+        'Factory wrapper for `google_compute_region_ssl_certificate`.\n\nRegional self-managed SSL certificate for regional HTTPS load balancers.\nPair with [GoogleComputeRegionTargetHttpsProxy].\n\nExample:\n```dart\nGoogleComputeRegionSslCertificate(\n  localName: \'regional_cert\',\n  name: TfArg.literal(\'regional-cert\'),\n  certificate: TfArg.literal(pemCertificate),\n  privateKey: TfArg.literal(pemPrivateKey),\n  region: TfArg.literal(\'asia-northeast1\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_compute_region_target_http_proxy',
@@ -3153,6 +3193,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_kms_crypto_key_iam_member`.',
   ),
   CatalogEntry(
+    tfType: 'google_kms_crypto_key_version',
+    className: 'GoogleKmsCryptoKeyVersion',
+    barrel: 'kms',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_kms_crypto_key_version`.',
+    constructorParams: <String>['localName', 'cryptoKey', 'state'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_kms_crypto_key_version`.\n\nManages a [GoogleKmsCryptoKey] version (rotation / destroy lifecycle).\nPass `cryptoKey` as the parent key id path or `TfArg.ref(key.id)`.\n\nExample:\n```dart\nGoogleKmsCryptoKeyVersion(\n  localName: \'v1\',\n  cryptoKey: TfArg.ref(ringKey.id),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_kms_key_ring',
     className: 'GoogleKmsKeyRing',
     barrel: 'kms',
@@ -3207,6 +3259,43 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_logging_folder_sink`.\n\nFolder-scoped sinks always mint a unique writer service account; grant\nit the destination-side IAM role (e.g. `roles/bigquery.dataEditor`) by\npassing `TfArg.ref(sink.writerIdentityRef)` to the IAM member resource.\n\nExample:\n```dart\nfinal sink = GoogleLoggingFolderSink(\n  localName: \'folder_audit_to_bq\',\n  name: TfArg.literal(\'folder-audit-to-bq\'),\n  folder: TfArg.literal(\'folders/123456789012\'),\n  destination: TfArg.literal(\n    \'bigquery.googleapis.com/projects/my-proj/datasets/audit_logs\',\n  ),\n  filter: TfArg.literal(\'logName:"cloudaudit.googleapis.com"\'),\n  includeChildren: TfArg.literal(true),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_logging_linked_dataset',
+    className: 'GoogleLoggingLinkedDataset',
+    barrel: 'logging',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_logging_linked_dataset`.',
+    constructorParams: <String>[
+      'localName',
+      'bucket',
+      'linkId',
+      'description',
+      'bigqueryDataset',
+    ],
+    nestedTypes: <String>['LoggingLinkedDatasetBigqueryDataset'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_logging_linked_dataset`.\n\nLinks a log bucket to a BigQuery dataset for Log Analytics. Pair with\n[GoogleLoggingProjectBucketConfig] and [GoogleBigqueryDataset].\n\nExample:\n```dart\nGoogleLoggingLinkedDataset(\n  localName: \'audit_analytics\',\n  bucket: TfArg.ref(auditBucket.bucketIdRef),\n  linkId: TfArg.literal(\'audit-analytics\'),\n  bigqueryDataset: LoggingLinkedDatasetBigqueryDataset(\n    datasetId: TfArg.ref(dataset.datasetIdRef),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_logging_log_scope',
+    className: 'GoogleLoggingLogScope',
+    barrel: 'logging',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_logging_log_scope`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'resourceNames',
+      'description',
+      'location',
+      'parent',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_logging_log_scope`.\n\nProject log scope limiting which resources a linked analytics dataset\ncan query.\n\nExample:\n```dart\nGoogleLoggingLogScope(\n  localName: \'audit_scope\',\n  name: TfArg.literal(\'audit-scope\'),\n  resourceNames: TfArg.literal([\n    \'projects/my-proj/locations/global/buckets/audit-logs\',\n  ]),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_logging_log_view',
@@ -3455,6 +3544,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_monitoring_alert_policy`.\n\nA description of the conditions under which some aspect of your system is\nconsidered to be "unhealthy" and the ways to notify people or services about\nthis state.\n\nRequired identity beyond [localName]:\n- `displayName`: human-readable label shown in dashboards / notifications\n  (<= 512 Unicode characters).\n- `combiner`: how multiple [conditions] combine into an incident. Use\n  [AlertCombiner.and] / [AlertCombiner.or] / [AlertCombiner.andWithMatchingResource].\n- `conditions`: non-empty list. Each [MonitoringAlertPolicyAlertCondition] carries a\n  `displayName` plus EXACTLY one of the 6 condition-type sub-blocks\n  ([MonitoringAlertPolicyAlertCondition.conditionThreshold], `conditionAbsent`,\n  `conditionMatchedLog`, `conditionMonitoringQueryLanguage`,\n  `conditionPrometheusQueryLanguage`, `conditionSql`).\n\nModeling choice for `conditions`: each entry is a single [MonitoringAlertPolicyAlertCondition]\nhelper with one required `displayName` plus 6 mutually-exclusive nullable\nsub-fields. Terraform enforces the exactly_one_of contract at apply time,\nso we keep the Dart shape flat (and the count of generated classes\nmanageable) instead of introducing a 6-variant sealed type.\n\nExample (threshold on Compute Engine instance uptime):\n```dart\nfinal policy = GoogleMonitoringAlertPolicy(\n  localName: \'compute_uptime\',\n  displayName: TfArg.literal(\'Compute instance uptime SLO\'),\n  combiner: TfArg.literal(AlertCombiner.or),\n  conditions: const [\n    MonitoringAlertPolicyAlertCondition(\n      displayName: TfArgLiteral(\'uptime < 95% over 5 min\'),\n      conditionThreshold: MonitoringAlertPolicyConditionThreshold(\n        filter: TfArgLiteral(\n          \'metric.type="compute.googleapis.com/instance/uptime" \'\n          \'resource.type="gce_instance"\',\n        ),\n        comparison: TfArgLiteral(Comparison.lessThan),\n        thresholdValue: TfArgLiteral(0.95),\n        duration: TfArgLiteral(\'300s\'),\n      ),\n    ),\n  ],\n  notificationChannels: TfArg.literal(const <String>[]),\n  alertStrategy: const MonitoringAlertPolicyAlertStrategy(autoClose: TfArgLiteral(\'1800s\')),\n  severity: TfArg.literal(AlertSeverity.warning),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_monitoring_custom_service',
+    className: 'GoogleMonitoringCustomService',
+    barrel: 'monitoring',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_monitoring_custom_service`.',
+    constructorParams: <String>[
+      'localName',
+      'serviceId',
+      'displayName',
+      'userLabels',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_monitoring_custom_service`.\n\nLightweight custom Monitoring service (distinct from\n[GoogleMonitoringService] which models typed `basic_service` variants).\n\nExample:\n```dart\nGoogleMonitoringCustomService(\n  localName: \'checkout_api\',\n  serviceId: TfArg.literal(\'checkout-api\'),\n  displayName: TfArg.literal(\'Checkout API\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_monitoring_dashboard',
     className: 'GoogleMonitoringDashboard',
     barrel: 'monitoring',
@@ -3465,6 +3572,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_monitoring_dashboard`.\n\nDashboards in this version are modeled **deliberately minimally**: the\nentire dashboard layout — rows, columns, mosaics, widgets, charts,\nthresholds, etc. — is passed as a **single JSON string** via\n[dashboardJson]. There is no typed Dart widget model in v0.0.x; the\nCloud Console UI is the source of truth for the dashboard schema, which\nis large, fluid, and well-supported by the in-product editor.\n\n`dashboardJson` must conform to\n<https://cloud.google.com/monitoring/api/ref_v3/rest/v1/projects.dashboards>.\n\n## Authoring workflow\n\n1. Build the dashboard interactively in the Cloud Console\n   (Monitoring -> Dashboards -> Create dashboard).\n2. Once it looks right, open `Settings -> JSON` and copy the full JSON\n   body. (Equivalently, run\n   `gcloud monitoring dashboards describe DASHBOARD_ID --format=json`\n   against an existing dashboard, replacing `DASHBOARD_ID` with the\n   resource ID.)\n3. Paste the JSON into your Dart source as a raw String and pass it via\n   `dashboardJson: TfArg.literal(...)`.\n\nProgrammatic assembly is also fine — `jsonEncode(Map<String, dynamic>)`\nfrom `dart:convert` produces an equivalent String. Both forms are\nbyte-identical at the Terraform layer; pick whichever the codebase\nprefers (raw multi-line String for diff stability, `jsonEncode` when\nthe dashboard is parameterized by Dart values).\n\nExample (raw String, exported from Cloud Console):\n```dart\nfinal overview = GoogleMonitoringDashboard(\n  localName: \'service_overview\',\n  dashboardJson: TfArg.literal(\'\'\'\n{\n  "displayName": "Service overview",\n  "mosaicLayout": {\n    "columns": 12,\n    "tiles": [\n      {\n        "width": 6,\n        "height": 4,\n        "widget": {\n          "title": "Request rate",\n          "xyChart": {\n            "dataSets": [\n              {\n                "timeSeriesQuery": {\n                  "timeSeriesFilter": {\n                    "filter": "metric.type=\\\\"run.googleapis.com/request_count\\\\""\n                  }\n                }\n              }\n            ]\n          }\n        }\n      }\n    ]\n  }\n}\n\'\'\'),\n);\n```\n\nExample (programmatic assembly via `dart:convert`):\n```dart\nimport \'dart:convert\';\n\nfinal dashboard = GoogleMonitoringDashboard(\n  localName: \'service_overview\',\n  dashboardJson: TfArg.literal(jsonEncode(<String, dynamic>{\n    \'displayName\': \'Service overview\',\n    \'mosaicLayout\': {\'columns\': 12, \'tiles\': <Map<String, dynamic>>[]},\n  })),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_monitoring_group',
+    className: 'GoogleMonitoringGroup',
+    barrel: 'monitoring',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_monitoring_group`.',
+    constructorParams: <String>[
+      'localName',
+      'displayName',
+      'filter',
+      'isCluster',
+      'parentName',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_monitoring_group`.\n\nA dynamic monitored-resource group used as an uptime-check or alert\ntarget. Pair with [GoogleMonitoringUptimeCheckConfig.resourceGroup].\n\nExample:\n```dart\nfinal urls = GoogleMonitoringGroup(\n  localName: \'public_urls\',\n  displayName: TfArg.literal(\'Public URLs\'),\n  filter: TfArg.literal(\'resource.type="uptime_url"\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_monitoring_metric_descriptor',
@@ -3496,6 +3622,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_monitoring_metric_descriptor`.\n\nDefines a metric type and its schema. Once a metric descriptor is created,\ndeleting or altering it stops data collection and makes the metric type\'s\nexisting data unusable.\n\nRequired identity beyond [localName]:\n- `type`: the fully-qualified metric type. User-defined metrics must use\n  one of the reserved DNS prefixes (`custom.googleapis.com/`,\n  `external.googleapis.com/`, or `logging.googleapis.com/user/`), e.g.\n  `\'custom.googleapis.com/myapp/requests\'`. The relative part is limited\n  to 100 characters of `[A-Za-z0-9_/]`.\n- `metricKind`: whether the metric records instantaneous values\n  ([MonitoringMetricKind.gauge]), deltas\n  ([MonitoringMetricKind.delta]), or running totals\n  ([MonitoringMetricKind.cumulative]). Not every\n  `(metricKind, valueType)` combination is supported by the API; consult\n  the [Cloud Monitoring docs](https://cloud.google.com/monitoring/api/v3/kinds-and-types).\n- `valueType`: the value kind recorded per data point. See\n  [MonitoringValueType].\n- `description`: human-readable description shown in documentation /\n  metric pickers (required by the API).\n\nModeling notes:\n- `labels` is a nested-block set. Use [MonitoringMetricDescriptorLabel]\n  entries to declare the label schema; per-label `valueType` is a\n  narrower enum than the descriptor\'s (no `DOUBLE` / `DISTRIBUTION`).\n- `metadata` is a `max_items: 1` block exposing the sampling /\n  ingest-delay hints (Duration strings, e.g. `\'60s\'`).\n- `monitoredResourceTypes` is a server-populated set and not a\n  constructor input.\n\nExample (custom DELTA / INT64 counter):\n```dart\nfinal descriptor = GoogleMonitoringMetricDescriptor(\n  localName: \'app_requests\',\n  type: TfArg.literal(\'custom.googleapis.com/myapp/requests\'),\n  metricKind: TfArg.literal(MonitoringMetricKind.delta),\n  valueType: TfArg.literal(MonitoringValueType.int64),\n  description: TfArg.literal(\'Number of requests received by myapp.\'),\n  displayName: TfArg.literal(\'App requests\'),\n  unit: TfArg.literal(\'1\'),\n  labels: const [\n    MonitoringMetricDescriptorLabel(\n      key: TfArgLiteral(\'route\'),\n      valueType: TfArgLiteral(MonitoringMetricLabelValueType.string),\n      description: TfArgLiteral(\'HTTP route template.\'),\n    ),\n  ],\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_monitoring_monitored_project',
+    className: 'GoogleMonitoringMonitoredProject',
+    barrel: 'monitoring',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_monitoring_monitored_project`.',
+    constructorParams: <String>['localName', 'metricsScope', 'name'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_monitoring_monitored_project`.\n\nAdds a project to a metrics scope (multi-project observability).\nFor the default scope created with a project, `metrics_scope` is\n`locations/global/metricsScopes/{scopeId}`.\n\nExample:\n```dart\nGoogleMonitoringMonitoredProject(\n  localName: \'child_project\',\n  metricsScope: TfArg.literal(\n    \'locations/global/metricsScopes/my-metrics-scope\',\n  ),\n  name: TfArg.literal(\'my-child-project-id\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_monitoring_notification_channel',
@@ -3545,6 +3683,38 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_monitoring_service`.\n\nA Service is a discrete, autonomous, and network-accessible unit, designed\nto solve an individual concern. In Cloud Monitoring, a Service acts as the\nroot resource under which operational aspects of the service are accessible\n\n`serviceId` is the user-supplied service identifier; the full resource\nname exposed by Cloud Monitoring will be\n`projects/{project}/services/{serviceId}`.\n\nModeling notes:\n- The Cloud Monitoring API has multiple service-type variants\n  (`basic_service`, `cloud_endpoints`, `app_engine`, `mesh_istio`,\n  `cluster_istio`, `cloud_run`, `gke_namespace`, `gke_workload`,\n  `gke_service`), but the terraform-provider-google schema for this\n  resource only surfaces [basicService]. Use the auto-detected\n  variants by creating the service through the GCP API directly, or\n  omit [basicService] entirely to register an opaque "custom" service\n  identified solely by [serviceId].\n- [telemetry] is server-populated (the underlying API derives the\n  monitored resource name on create) and is therefore exposed as a\n  getter, not a constructor input. See [telemetry].\n- `userLabels` accepts up to 64 entries; both keys and values are\n  capped at 63 characters (and 128 bytes).\n\nExample (custom service identified by [serviceId] only):\n```dart\nfinal svc = GoogleMonitoringService(\n  localName: \'checkout_api\',\n  serviceId: TfArg.literal(\'checkout-api\'),\n  displayName: TfArg.literal(\'Checkout API\'),\n  userLabels: TfArg.literal(const {\'team\': \'payments\'}),\n);\n```\n\nExample (well-known basic service with labels — selecting the service\ninstance that emits the monitoring data):\n```dart\nfinal svc = GoogleMonitoringService(\n  localName: \'app_engine_default\',\n  serviceId: TfArg.literal(\'appengine-default\'),\n  displayName: TfArg.literal(\'App Engine default service\'),\n  basicService: MonitoringServiceBasicService(\n    serviceType: TfArgLiteral(\'APP_ENGINE\'),\n    serviceLabels: TfArgLiteral(const {\'module_id\': \'default\'}),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_monitoring_slo',
+    className: 'GoogleMonitoringSlo',
+    barrel: 'monitoring',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_monitoring_slo`.',
+    constructorParams: <String>[
+      'localName',
+      'service',
+      'goal',
+      'displayName',
+      'sli',
+      'calendarPeriod',
+      'rollingPeriodDays',
+      'sloId',
+      'userLabels',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'MonitoringSloSli',
+      'MonitoringSloBasicSliAvailability',
+      'MonitoringSloBasicSliLatency',
+      'MonitoringSloBasicSli',
+      'MonitoringSloGoodTotalRatio',
+      'MonitoringSloRequestBasedSli',
+      'MonitoringSloWindowsGoodTotalRatioThreshold',
+      'MonitoringSloWindowsBasedSli',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_monitoring_slo`.\n\nService-level objective on a [GoogleMonitoringService]. Provide exactly\none [sli] variant (`basic_sli`, `request_based_sli`, or\n`windows_based_sli`).\n\nExample (availability basic SLI):\n```dart\nGoogleMonitoringSlo(\n  localName: \'api_availability\',\n  service: TfArg.ref(apiService.nameRef),\n  goal: TfArg.literal(0.99),\n  displayName: TfArg.literal(\'API availability\'),\n  rollingPeriodDays: TfArg.literal(30),\n  sli: MonitoringSloBasicSli(\n    availability: MonitoringSloBasicSliAvailability(\n      enabled: TfArg.literal(true),\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_monitoring_uptime_check_config',
@@ -3681,6 +3851,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_pubsub_schema`.\n\nA schema is a format that messages must follow, creating a contract between\npublisher and subscriber that Pub/Sub will enforce.\n\nTwo payload shapes are supported via [type]:\n- [PubsubSchemaType.protocolBuffer] -- [definition] holds a `.proto`\n  source string (a single `message {...}` definition).\n- [PubsubSchemaType.avro] -- [definition] holds an Avro JSON schema\n  string (`{"type":"record","name":...,"fields":[...]}`).\n\nThe schema also exposes [PubsubSchemaType.typeUnspecified] for\ncompleteness (Terraform\'s default when [type] is omitted) -- in\npractice prefer one of the typed variants so that the publisher API\ncan validate messages.\n\nSchemas are versioned: changing [definition] commits a new revision\n(up to 20 per schema). Topics that reference the schema can pin to a\nrevision range via [GooglePubsubTopic.schemaSettings]; otherwise the\nlatest revision is used.\n\nExample (Avro schema for an order event):\n```dart\nfinal orderSchema = GooglePubsubSchema(\n  localName: \'orders_v1\',\n  name: TfArg.literal(\'orders-v1\'),\n  type: TfArg.literal(PubsubSchemaType.avro),\n  definition: TfArg.literal(\n    \'{"type":"record","name":"Order","fields":[\'\n    \'{"name":"order_id","type":"string"},\'\n    \'{"name":"total_cents","type":"long"}\'\n    \']}\',\n  ),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_pubsub_schema_iam_member',
+    className: 'GooglePubsubSchemaIamMember',
+    barrel: 'pubsub',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_pubsub_schema_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'schema',
+      'role',
+      'member',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment: 'Factory wrapper for `google_pubsub_schema_iam_member`.',
   ),
   CatalogEntry(
     tfType: 'google_pubsub_subscription',
@@ -4149,6 +4337,23 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>['content', 'customer_encryption.encryption_key'],
     docComment:
         'Factory wrapper for `google_storage_bucket_object`.\n\nPass `TfArg.ref(bucket.nameRef)` for `bucket` — NOT `bucket.id`\n(`id` is `{bucket-name}` for buckets but the API wants just the name).\n\n`body`: object payload — choose exactly one of:\n- [StorageBucketObjectBucketObjectFromSource] — upload from a local file path.\n- [StorageBucketObjectBucketObjectFromContent] — inline string payload.\nThe sealed [StorageBucketObjectBucketObjectContent] type makes the `source` / `content`\n`exactly_one_of` constraint exhaustive at the type level.\n\nExample (inline content):\n```dart\nfinal assets = GoogleStorageBucket(\n  localName: \'assets\',\n  name: TfArg.literal(\'my-app-assets-prod\'),\n  location: TfArg.literal(\'ASIA-NORTHEAST1\'),\n);\nfinal config = GoogleStorageBucketObject(\n  localName: \'config\',\n  bucket: TfArg.ref(assets.nameRef),\n  name: TfArg.literal(\'config/app.json\'),\n  body: StorageBucketObjectBucketObjectFromContent(\n    content: TfArg.literal(\'{"feature_x": true}\'),\n  ),\n  contentType: TfArg.literal(\'application/json\'),\n  storageClass: TfArg.literal(BucketObjectStorageClass.standard),\n);\n```\n\nExample (file upload):\n```dart\nfinal logo = GoogleStorageBucketObject(\n  localName: \'logo\',\n  bucket: TfArg.ref(assets.nameRef),\n  name: TfArg.literal(\'static/logo.png\'),\n  body: StorageBucketObjectBucketObjectFromSource(source: TfArg.literal(\'./assets/logo.png\')),\n  contentType: TfArg.literal(\'image/png\'),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_storage_hmac_key',
+    className: 'GoogleStorageHmacKey',
+    barrel: 'storage',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_storage_hmac_key`.',
+    constructorParams: <String>[
+      'localName',
+      'serviceAccountEmail',
+      'state',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>['secret'],
+    docComment:
+        'Factory wrapper for `google_storage_hmac_key`.\n\nHMAC key for S3-compatible interop access to GCS. Bind to a service\naccount email; the secret is available only at create time via the\n`secret` output attribute.\n\nExample:\n```dart\nGoogleStorageHmacKey(\n  localName: \'backup_hmac\',\n  serviceAccountEmail: TfArg.ref(sa.emailRef),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_storage_notification',

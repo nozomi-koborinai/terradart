@@ -1,0 +1,24 @@
+outputDir: storage
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - service_account_email
+  - state
+  - project
+
+curatedDoc: |-
+  /// HMAC key for S3-compatible interop access to GCS. Bind to a service
+  /// account email; the secret is available only at create time via the
+  /// `secret` output attribute.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleStorageHmacKey(
+  ///   localName: 'backup_hmac',
+  ///   serviceAccountEmail: TfArg.ref(sa.emailRef),
+  /// );
+  /// ```
+
+extraGetters: |2
+    TfRef<String> get accessIdRef => TfRef.attribute<String>(this, 'access_id');

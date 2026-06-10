@@ -1,0 +1,26 @@
+outputDir: monitoring
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - display_name
+  - filter
+  - is_cluster
+  - parent_name
+  - project
+
+curatedDoc: |-
+  /// A dynamic monitored-resource group used as an uptime-check or alert
+  /// target. Pair with [GoogleMonitoringUptimeCheckConfig.resourceGroup].
+  ///
+  /// Example:
+  /// ```dart
+  /// final urls = GoogleMonitoringGroup(
+  ///   localName: 'public_urls',
+  ///   displayName: TfArg.literal('Public URLs'),
+  ///   filter: TfArg.literal('resource.type="uptime_url"'),
+  /// );
+  /// ```
+
+extraGetters: |2
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

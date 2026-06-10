@@ -25,6 +25,27 @@ final class OrdersStack extends Stack {
             GoogleProvider(project: projectId, region: 'us-central1'),
           ],
         ) {
+    final ordersSchema = add(
+      GooglePubsubSchema(
+        localName: 'orders_proto',
+        name: TfArg.literal('orders-proto'),
+        type: TfArg.literal(PubsubSchemaType.protocolBuffer),
+        definition: TfArg.literal(
+          'syntax = "proto3"; message Order { string id = 1; }',
+        ),
+      ),
+    );
+
+    add(
+      GooglePubsubSchemaIamMember(
+        localName: 'orders_schema_publisher',
+        schema: TfArg.ref(ordersSchema.id),
+        role: TfArg.literal('roles/pubsub.schemaAdmin'),
+        member: TfArg.literal('serviceAccount:orders-publisher@example.com'),
+        dependsOn: [ResourceDependency(ordersSchema)],
+      ),
+    );
+
     final topic = add(
       GooglePubsubTopic(
         localName: 'orders',

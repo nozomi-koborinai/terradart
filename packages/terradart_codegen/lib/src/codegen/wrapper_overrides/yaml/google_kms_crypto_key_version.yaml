@@ -1,0 +1,22 @@
+outputDir: kms
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - crypto_key
+  - state
+
+curatedDoc: |-
+  /// Manages a [GoogleKmsCryptoKey] version (rotation / destroy lifecycle).
+  /// Pass `cryptoKey` as the parent key id path or `TfArg.ref(key.id)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleKmsCryptoKeyVersion(
+  ///   localName: 'v1',
+  ///   cryptoKey: TfArg.ref(ringKey.id),
+  /// );
+  /// ```
+
+extraGetters: |2
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

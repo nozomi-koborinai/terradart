@@ -52,6 +52,14 @@ final class CryptoStack extends Stack {
     );
     add(paymentsKey);
 
+    add(
+      GoogleKmsCryptoKeyVersion(
+        localName: 'payments_primary',
+        cryptoKey: TfArg.ref(paymentsKey.id),
+        dependsOn: [ResourceDependency(paymentsKey)],
+      ),
+    );
+
     // ---- IAM: encrypter SA on the payments key ----------------------------
     //
     // The workload SA that wraps DEKs with this KEK. Pair with

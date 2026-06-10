@@ -1,0 +1,25 @@
+outputDir: logging
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - resource_names
+  - description
+  - location
+  - parent
+
+curatedDoc: |-
+  /// Project log scope limiting which resources a linked analytics dataset
+  /// can query.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleLoggingLogScope(
+  ///   localName: 'audit_scope',
+  ///   name: TfArg.literal('audit-scope'),
+  ///   resourceNames: TfArg.literal([
+  ///     'projects/my-proj/locations/global/buckets/audit-logs',
+  ///   ]),
+  /// );
+  /// ```

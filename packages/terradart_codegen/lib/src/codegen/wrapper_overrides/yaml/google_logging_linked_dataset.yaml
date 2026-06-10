@@ -1,0 +1,38 @@
+outputDir: logging
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - bucket
+  - link_id
+  - description
+  - bigquery_dataset
+
+prelude: |
+  /// `bigquery_dataset` block — destination dataset for log analytics.
+  class LoggingLinkedDatasetBigqueryDataset {
+    const LoggingLinkedDatasetBigqueryDataset({required this.datasetId});
+    final TfArg<String> datasetId;
+    Map<String, Object?> toArgMap() => {'dataset_id': datasetId.toTfJson()};
+  }
+
+customSlots:
+  bigquery_dataset:
+    paramDeclaration: 'LoggingLinkedDatasetBigqueryDataset? bigqueryDataset'
+    argMapEntry: "if (bigqueryDataset != null) 'bigquery_dataset': TfArg.literal([bigqueryDataset.toArgMap()]),"
+
+curatedDoc: |-
+  /// Links a log bucket to a BigQuery dataset for Log Analytics. Pair with
+  /// [GoogleLoggingProjectBucketConfig] and [GoogleBigqueryDataset].
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleLoggingLinkedDataset(
+  ///   localName: 'audit_analytics',
+  ///   bucket: TfArg.ref(auditBucket.bucketIdRef),
+  ///   linkId: TfArg.literal('audit-analytics'),
+  ///   bigqueryDataset: LoggingLinkedDatasetBigqueryDataset(
+  ///     datasetId: TfArg.ref(dataset.datasetIdRef),
+  ///   ),
+  /// );
+  /// ```

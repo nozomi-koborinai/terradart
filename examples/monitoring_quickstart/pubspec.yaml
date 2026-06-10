@@ -1,5 +1,5 @@
 name: terradart_example_monitoring_quickstart
-description: Phase 4.5 Wave 3 quickstart -- alert policy with typed condition_threshold + Aligner/Reducer enums + alert_strategy.
+description: Monitoring quickstart — Wave 3 + Wave 12 (channel, uptime, SLO, dashboard, alert).
 publish_to: none
 
 environment:

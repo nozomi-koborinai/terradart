@@ -236,6 +236,33 @@ files:
     upstream: null  # no Fleet.yaml in magic-modules main (404 as of 2026-06)
   google_gke_hub_membership:
     upstream: mmv1/products/gkehub/Membership.yaml
+  # Wave 16 (Logging analytics extension)
+  google_logging_log_scope:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)
+  google_logging_linked_dataset:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)
+  # Wave 12 (Monitoring completion)
+  google_monitoring_slo:
+    upstream: mmv1/products/monitoring/Slo.yaml
+  google_monitoring_group:
+    upstream: mmv1/products/monitoring/Group.yaml
+  google_monitoring_custom_service:
+    upstream: mmv1/products/monitoring/CustomService.yaml
+  google_monitoring_monitored_project:
+    upstream: mmv1/products/monitoring/MonitoredProject.yaml
+  # Wave 13 (Compute LB follow-up)
+  google_compute_region_ssl_certificate:
+    upstream: mmv1/products/compute/RegionSslCertificate.yaml
+  google_compute_network_endpoint:
+    upstream: mmv1/products/compute/NetworkEndpoint.yaml
+  # Wave 14 (KMS)
+  google_kms_crypto_key_version:
+    upstream: mmv1/products/kms/CryptoKeyVersion.yaml
+  # Wave 15 (adjacent IAM / Storage)
+  google_pubsub_schema_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_storage_hmac_key:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)
   # Wave 11 (Logging project ops)
   google_logging_project_bucket_config:
     upstream: null  # handwritten in terraform-provider-google (probe 404)

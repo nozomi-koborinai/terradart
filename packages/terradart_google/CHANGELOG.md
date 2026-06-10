@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.12.7 - 2026-06-10
+
+**ADDED** — Waves 12–15:
+
+- **Wave 12 (Monitoring):** `google_monitoring_slo`, `google_monitoring_group`, `google_monitoring_custom_service`, `google_monitoring_monitored_project`; `monitoring.dart` extended (10 factories total).
+- **Wave 13 (Compute LB):** `google_compute_region_ssl_certificate`, `google_compute_network_endpoint`.
+- **Wave 14 (KMS):** `google_kms_crypto_key_version`.
+- **Wave 15:** `google_pubsub_schema_iam_member`, `google_storage_hmac_key`.
+- **Wave 16 (Logging analytics):** `google_logging_log_scope`, `google_logging_linked_dataset`; `logging.dart` extended (11 factories total).
+
+Catalog: **147 curated resource factories + 1 data source** (148 entries). Additive; no breaking API changes vs `0.12.6`.
+
 ## 0.12.6 - 2026-06-09
 
 **ADDED** — Wave 10 (GKE Backup):

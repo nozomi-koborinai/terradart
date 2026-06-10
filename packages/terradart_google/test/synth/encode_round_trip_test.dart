@@ -33,6 +33,7 @@ import 'package:terradart_google/cloud_scheduler.dart';
 import 'package:terradart_google/firebase_app_hosting.dart';
 import 'package:terradart_google/firestore.dart';
 import 'package:terradart_google/iam.dart';
+import 'package:terradart_google/monitoring.dart';
 import 'package:terradart_google/secret_manager.dart';
 import 'package:terradart_google/storage.dart';
 import 'package:test/test.dart';
@@ -148,6 +149,25 @@ final Map<String, Object Function()> _syntheticInstances = {
   // unwraps to the single inner map for the structural assertions.
   'FirestoreBackupScheduleDailyRecurrence': () => const FirestoreBackupScheduleDailyRecurrence(),
   'FirestoreBackupScheduleWeeklyRecurrence': () => const FirestoreBackupScheduleWeeklyRecurrence(),
+
+  // --- MonitoringSloSli (3) — monitoring_slo ---------------------------------
+  'MonitoringSloBasicSli': () => MonitoringSloBasicSli(
+        availability: MonitoringSloBasicSliAvailability(
+          enabled: TfArg.literal(true),
+        ),
+      ),
+  'MonitoringSloRequestBasedSli': () => MonitoringSloRequestBasedSli(
+        goodTotalRatio: MonitoringSloGoodTotalRatio(
+          goodServiceFilter: TfArg.literal('metric.type="test"'),
+        ),
+      ),
+  'MonitoringSloWindowsBasedSli': () => MonitoringSloWindowsBasedSli(
+        goodBadMetricFilter: TfArg.literal('metric.type="test"'),
+        windowPeriod: TfArg.literal('3600s'),
+        goodTotalRatioThreshold: MonitoringSloWindowsGoodTotalRatioThreshold(
+          threshold: TfArg.literal(0.95),
+        ),
+      ),
 
   // --- IamWorkloadIdentityPoolProviderTrustSource (4) — iam WIF provider ---
   'IamWorkloadIdentityPoolProviderOidcTrust': () => IamWorkloadIdentityPoolProviderOidcTrust(

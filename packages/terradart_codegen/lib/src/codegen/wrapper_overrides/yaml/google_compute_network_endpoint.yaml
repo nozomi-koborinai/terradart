@@ -1,0 +1,26 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - network_endpoint_group
+  - ip_address
+  - port
+  - instance
+  - zone
+  - project
+
+curatedDoc: |-
+  /// Registers an IP/port endpoint on a zonal [GoogleComputeNetworkEndpointGroup].
+  /// Used for hybrid / on-prem backends behind an L7 LB.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleComputeNetworkEndpoint(
+  ///   localName: 'onprem_vm',
+  ///   networkEndpointGroup: TfArg.ref(neg.id),
+  ///   ipAddress: TfArg.literal('10.0.0.5'),
+  ///   port: TfArg.literal(8080),
+  ///   zone: TfArg.literal('asia-northeast1-a'),
+  /// );
+  /// ```

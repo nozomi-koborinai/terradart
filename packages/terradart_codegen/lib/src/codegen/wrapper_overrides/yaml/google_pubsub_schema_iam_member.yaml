@@ -1,0 +1,10 @@
+outputDir: pubsub
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - schema
+  - role
+  - member
+  - condition
+  - project

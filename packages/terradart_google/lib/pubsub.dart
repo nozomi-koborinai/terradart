@@ -4,6 +4,8 @@ library;
 
 export 'src/pubsub/google_pubsub_schema.dart'
     show GooglePubsubSchema, PubsubSchemaType;
+export 'src/pubsub/google_pubsub_schema_iam_member.dart'
+    show GooglePubsubSchemaIamMember;
 export 'src/pubsub/google_pubsub_subscription.dart'
     show
         PubsubSubscriptionBigQueryConfig,
