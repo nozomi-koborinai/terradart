@@ -2889,7 +2889,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_gke_backup_backup_channel`.\n\nA BackupChannel imposes constraints on where clusters can be backed up. The\nBackupChannel should be in the same project and region as the cluster being\nbacked up. The backup can be created only in destination_project.\n\nA **backup channel** routes GKE Backup data to a destination project.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `name`: channel ID (unique per project/location).\n- `location`: GCP region.\n- `destinationProject`: project ID receiving backup data.',
+        'Factory wrapper for `google_gke_backup_backup_channel`.\n\nA BackupChannel imposes constraints on where clusters can be backed up. The\nBackupChannel should be in the same project and region as the cluster being\nbacked up. The backup can be created only in destination_project.\n\nA **backup channel** routes GKE Backup data to a destination project.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `name`: channel ID (unique per project/location).\n- `location`: GCP region.\n- `destinationProject`: project where backups are stored, in\n  `projects/{project}` form (bare project IDs are rejected).',
   ),
   CatalogEntry(
     tfType: 'google_gke_backup_backup_plan',
@@ -2916,26 +2916,6 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_gke_backup_backup_plan`.\n\nRepresents a Backup Plan instance.\n\nDefines a **GKE Backup plan** — scheduled backups of a\n[GoogleContainerCluster] into a backup store.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `name`: backup plan ID (unique per project/location).\n- `location`: GCP region (e.g. `\'asia-northeast1\'`).\n- `cluster`: target cluster — typically `TfArg.ref(cluster.id)`.\n\nPair with [GoogleGkeBackupRestorePlan] for restore workflows.',
   ),
   CatalogEntry(
-    tfType: 'google_gke_backup_backup_plan_iam_binding',
-    className: 'GoogleGkeBackupBackupPlanIamBinding',
-    barrel: 'gke_backup',
-    kind: CatalogKind.resource,
-    summary: 'Factory wrapper for `google_gke_backup_backup_plan_iam_binding`.',
-    constructorParams: <String>[
-      'localName',
-      'name',
-      'role',
-      'members',
-      'location',
-      'condition',
-      'project',
-    ],
-    nestedTypes: <String>[],
-    sensitiveFields: <String>[],
-    docComment:
-        'Factory wrapper for `google_gke_backup_backup_plan_iam_binding`.',
-  ),
-  CatalogEntry(
     tfType: 'google_gke_backup_backup_plan_iam_member',
     className: 'GoogleGkeBackupBackupPlanIamMember',
     barrel: 'gke_backup',
@@ -2956,24 +2936,6 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_gke_backup_backup_plan_iam_member`.',
   ),
   CatalogEntry(
-    tfType: 'google_gke_backup_backup_plan_iam_policy',
-    className: 'GoogleGkeBackupBackupPlanIamPolicy',
-    barrel: 'gke_backup',
-    kind: CatalogKind.resource,
-    summary: 'Factory wrapper for `google_gke_backup_backup_plan_iam_policy`.',
-    constructorParams: <String>[
-      'localName',
-      'name',
-      'policyData',
-      'location',
-      'project',
-    ],
-    nestedTypes: <String>[],
-    sensitiveFields: <String>[],
-    docComment:
-        'Factory wrapper for `google_gke_backup_backup_plan_iam_policy`.',
-  ),
-  CatalogEntry(
     tfType: 'google_gke_backup_restore_channel',
     className: 'GoogleGkeBackupRestoreChannel',
     barrel: 'gke_backup',
@@ -2991,7 +2953,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_gke_backup_restore_channel`.\n\nA RestoreChannel imposes constraints on where backups can be restored. The\nRestoreChannel should be in the same project and region as the backups. The\nbackups can only be restored in the destination_project.\n\nA **restore channel** routes restore data from a source project.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `name`: channel ID (unique per project/location).\n- `location`: GCP region.\n- `destinationProject`: project ID hosting the backup store to read from.',
+        'Factory wrapper for `google_gke_backup_restore_channel`.\n\nA RestoreChannel imposes constraints on where backups can be restored. The\nRestoreChannel should be in the same project and region as the backups. The\nbackups can only be restored in the destination_project.\n\nA **restore channel** routes restore data from a source project.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `name`: channel ID (unique per project/location).\n- `location`: GCP region.\n- `destinationProject`: project restores are delivered to, in\n  `projects/{project}` form (bare project IDs are rejected).',
   ),
   CatalogEntry(
     tfType: 'google_gke_backup_restore_plan',
@@ -3016,27 +2978,6 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_gke_backup_restore_plan`.\n\nRepresents a Restore Plan instance.\n\nDefines a **GKE restore plan** — restores workloads from a\n[GoogleGkeBackupBackupPlan] into a [GoogleContainerCluster].\n\nRequired identity:\n- [localName]: Terraform local name.\n- `name`: restore plan ID (unique per project/location).\n- `location`: GCP region (e.g. `\'asia-northeast1\'`).\n- `backupPlan`: source plan — `TfArg.ref(backupPlan.nameRef)`.\n- `cluster`: target cluster — `TfArg.ref(cluster.id)`.',
   ),
   CatalogEntry(
-    tfType: 'google_gke_backup_restore_plan_iam_binding',
-    className: 'GoogleGkeBackupRestorePlanIamBinding',
-    barrel: 'gke_backup',
-    kind: CatalogKind.resource,
-    summary:
-        'Factory wrapper for `google_gke_backup_restore_plan_iam_binding`.',
-    constructorParams: <String>[
-      'localName',
-      'name',
-      'role',
-      'members',
-      'location',
-      'condition',
-      'project',
-    ],
-    nestedTypes: <String>[],
-    sensitiveFields: <String>[],
-    docComment:
-        'Factory wrapper for `google_gke_backup_restore_plan_iam_binding`.',
-  ),
-  CatalogEntry(
     tfType: 'google_gke_backup_restore_plan_iam_member',
     className: 'GoogleGkeBackupRestorePlanIamMember',
     barrel: 'gke_backup',
@@ -3055,24 +2996,6 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_gke_backup_restore_plan_iam_member`.',
-  ),
-  CatalogEntry(
-    tfType: 'google_gke_backup_restore_plan_iam_policy',
-    className: 'GoogleGkeBackupRestorePlanIamPolicy',
-    barrel: 'gke_backup',
-    kind: CatalogKind.resource,
-    summary: 'Factory wrapper for `google_gke_backup_restore_plan_iam_policy`.',
-    constructorParams: <String>[
-      'localName',
-      'name',
-      'policyData',
-      'location',
-      'project',
-    ],
-    nestedTypes: <String>[],
-    sensitiveFields: <String>[],
-    docComment:
-        'Factory wrapper for `google_gke_backup_restore_plan_iam_policy`.',
   ),
   CatalogEntry(
     tfType: 'google_gke_hub_fleet',

@@ -1,6 +1,6 @@
 # GKE quickstart
 
-End-to-end terradart example for Google Kubernetes Engine, GKE Hub, and GKE Backup. Provisions a custom-mode VPC, cluster + node pool, Hub fleet membership, backup/restore channels and plans, and plan-scoped IAM bindings/members.
+End-to-end terradart example for Google Kubernetes Engine, GKE Hub, and GKE Backup. Provisions a custom-mode VPC, cluster + node pool, Hub fleet membership, backup/restore channels and plans, and plan-scoped IAM members.
 
 ## Prerequisites
 
@@ -36,7 +36,7 @@ terraform apply
 - Regional cluster `main-gke` with `remove_default_node_pool = true`.
 - Node pool `primary-pool` attached to the cluster.
 - Default GKE Hub fleet and membership `main-cluster`.
-- GKE Backup channels, backup plan `main-backup-plan`, restore plan `main-restore-plan`, and IAM bindings/members.
+- GKE Backup channels, backup plan `main-backup-plan`, restore plan `main-restore-plan`, and plan IAM members.
 
 ## Related examples
 

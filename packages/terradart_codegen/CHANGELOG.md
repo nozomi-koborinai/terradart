@@ -8,7 +8,7 @@
 
 Maintainer:
 
-- **Added** — Wave 10 GKE Backup overrides (ten `google_gke_backup_*` types).
+- **Added** — Wave 10 GKE Backup overrides (six `google_gke_backup_*` types; plan IAM is `iam_member`-only).
 
 ## 0.12.5
 

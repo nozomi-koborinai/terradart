@@ -18,7 +18,8 @@ const Set<String> _googleGkeBackupBackupChannelSensitive = <String>{};
 /// - [localName]: Terraform local name.
 /// - `name`: channel ID (unique per project/location).
 /// - `location`: GCP region.
-/// - `destinationProject`: project ID receiving backup data.
+/// - `destinationProject`: project where backups are stored, in
+///   `projects/{project}` form (bare project IDs are rejected).
 final class GoogleGkeBackupBackupChannel extends Resource {
   static const String tfType = 'google_gke_backup_backup_channel';
 

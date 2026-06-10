@@ -749,15 +749,41 @@ classDocComment: |-
       'production round-trip (71 entries — Phase 4.1 13 + Phase 4.5 Wave 0+1+2+3 15 + Plan 5.C Wave 4 Round 1 3 + Plan 5.C Wave 4 Round 2 9 + Plan 5.C Wave 4 Round 3 9 + Plan 5.F Wave 5 Batch 1 +6 + Plan 5.F Wave 5 Batch 2 +5 + Plan 5.F Wave 5 Batch 3 +6 + Plan 5.F Wave 5 Batch 4 +5 new)',
       () {
     test(
-      'lib/src/codegen/wrapper_overrides/yaml/ loads 135 resources + 1 data source',
+      'lib/src/codegen/wrapper_overrides/yaml/ loads 131 resources + 1 data source',
       () {
         final loaded = loadWrapperOverrides(
           rootDir:
               p.absolute('lib', 'src', 'codegen', 'wrapper_overrides', 'yaml'),
         );
-        expect(loaded.resources.length, 135);
+        expect(loaded.resources.length, 131);
         expect(loaded.dataSources.length, 1);
         expect(loaded.dataSources.keys.first, 'google_project');
+      },
+    );
+
+    test(
+      'IAM adjuncts are iam_member-only (binding/policy need an explicit '
+      'allowlist entry — AGENTS.md Generation Policy)',
+      () {
+        final loaded = loadWrapperOverrides(
+          rootDir:
+              p.absolute('lib', 'src', 'codegen', 'wrapper_overrides', 'yaml'),
+        );
+        const allowedBindingsAndPolicies = {
+          'google_iap_web_backend_service_iam_binding',
+        };
+        final unexpected = loaded.resources.keys
+            .where(
+                (t) => t.endsWith('_iam_binding') || t.endsWith('_iam_policy'))
+            .where((t) => !allowedBindingsAndPolicies.contains(t))
+            .toList();
+        expect(
+          unexpected,
+          isEmpty,
+          reason: 'Curated IAM is *_iam_member-only by default. Curating a '
+              'binding/policy is an explicit maintainer decision: add the '
+              'type to allowedBindingsAndPolicies in the same PR.',
+        );
       },
     );
   });

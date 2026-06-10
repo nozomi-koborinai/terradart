@@ -10,8 +10,8 @@ Lockstep patch across the workspace. **No breaking changes** vs `0.12.5`.
 
 ### Added
 
-- **`terradart_google`** — Wave 10 GKE Backup: all ten `google_gke_backup_*` factories (backup/restore plans and channels + plan-scoped IAM); new `package:terradart_google/gke_backup.dart` barrel. Catalog: **135 curated resource factories + 1 data source** (136 entries).
-- **`examples/gke_quickstart`** — extended with GKE Backup API, channels, plans, and IAM bindings/members.
+- **`terradart_google`** — Wave 10 GKE Backup: six `google_gke_backup_*` factories (backup/restore plans and channels + plan IAM members; binding/policy stay uncurated per the member-only IAM policy); new `package:terradart_google/gke_backup.dart` barrel. Catalog: **131 curated resource factories + 1 data source** (132 entries).
+- **`examples/gke_quickstart`** — extended with GKE Backup API enablement, the cluster backup agent addon, channels, plans, and plan IAM members.
 
 ## [0.12.5] - 2026-06-09
 

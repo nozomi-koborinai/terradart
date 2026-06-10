@@ -3,10 +3,11 @@
 /// Provisions:
 /// - API enablement for Compute, GKE, GKE Hub, and GKE Backup;
 /// - a custom-mode VPC + regional subnet;
-/// - a regional GKE cluster with the default node pool removed;
+/// - a regional GKE cluster (Backup for GKE agent enabled, default node
+///   pool removed);
 /// - a dedicated node pool on that cluster;
 /// - the project default GKE Hub fleet + membership;
-/// - backup/restore channels, backup + restore plans, and a plan IAM member.
+/// - backup/restore channels, backup + restore plans, and plan IAM members.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -79,6 +80,12 @@ final class GkeQuickstartStack extends Stack {
         removeDefaultNodePool: TfArg.literal(true),
         network: TfArg.ref(vpc.nameRef),
         subnetwork: TfArg.ref(subnet.nameRef),
+        // Backup for GKE (Wave 10) requires the agent addon on the cluster.
+        addonsConfig: TfArg.literal({
+          'gke_backup_agent_config': {
+            'enabled': TfArg.literal(true),
+          },
+        }),
         dependsOn: [
           ResourceDependency(apiContainer),
           ResourceDependency(subnet),
@@ -141,7 +148,8 @@ final class GkeQuickstartStack extends Stack {
         localName: 'default',
         name: TfArg.literal('default-backup-channel'),
         location: TfArg.literal(region),
-        destinationProject: TfArg.literal(projectId),
+        // The API requires the `projects/{project}` form, not a bare ID.
+        destinationProject: TfArg.literal('projects/$projectId'),
         dependsOn: [ResourceDependency(apiGkeBackup)],
       ),
     );
@@ -151,7 +159,7 @@ final class GkeQuickstartStack extends Stack {
         localName: 'default',
         name: TfArg.literal('default-restore-channel'),
         location: TfArg.literal(region),
-        destinationProject: TfArg.literal(projectId),
+        destinationProject: TfArg.literal('projects/$projectId'),
         dependsOn: [ResourceDependency(apiGkeBackup)],
       ),
     );
@@ -168,7 +176,10 @@ final class GkeQuickstartStack extends Stack {
         retentionPolicy: TfArg.literal({
           'backup_retain_days': TfArg.literal(7),
         }),
-        dependsOn: [ResourceDependency(cluster)],
+        dependsOn: [
+          ResourceDependency(apiGkeBackup),
+          ResourceDependency(cluster),
+        ],
       ),
     );
 
@@ -180,9 +191,10 @@ final class GkeQuickstartStack extends Stack {
         backupPlan: TfArg.ref(backupPlan.nameRef),
         cluster: TfArg.ref(cluster.id),
         restoreConfig: TfArg.literal({
-          'all_namespaces': true,
+          'all_namespaces': TfArg.literal(true),
         }),
         dependsOn: [
+          ResourceDependency(apiGkeBackup),
           ResourceDependency(backupPlan),
           ResourceDependency(cluster),
         ],
@@ -206,30 +218,6 @@ final class GkeQuickstartStack extends Stack {
         location: TfArg.literal(region),
         role: TfArg.literal('roles/gkebackup.restoreOperator'),
         member: TfArg.literal('group:platform-admins@example.com'),
-      ),
-    );
-
-    add(
-      GoogleGkeBackupBackupPlanIamBinding(
-        localName: 'admin',
-        name: TfArg.ref(backupPlan.nameRef),
-        location: TfArg.literal(region),
-        role: TfArg.literal('roles/gkebackup.admin'),
-        members: TfArg.literal([
-          'group:platform-admins@example.com',
-        ]),
-      ),
-    );
-
-    add(
-      GoogleGkeBackupRestorePlanIamBinding(
-        localName: 'admin',
-        name: TfArg.ref(restorePlan.nameRef),
-        location: TfArg.literal(region),
-        role: TfArg.literal('roles/gkebackup.admin'),
-        members: TfArg.literal([
-          'group:platform-admins@example.com',
-        ]),
       ),
     );
   }
