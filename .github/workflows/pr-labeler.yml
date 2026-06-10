@@ -18,6 +18,7 @@ on:
 permissions:
   contents: read
   pull-requests: write
+  issues: write
 
 concurrency:
   group: pr-labeler-${{ github.event.pull_request.number || format('backfill-{0}', github.run_id) }}
