@@ -1,0 +1,32 @@
+outputDir: gke_backup
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Defines a **GKE Backup plan** — scheduled backups of a
+  /// [GoogleContainerCluster] into a backup store.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - `name`: backup plan ID (unique per project/location).
+  /// - `location`: GCP region (e.g. `'asia-northeast1'`).
+  /// - `cluster`: target cluster — typically `TfArg.ref(cluster.id)`.
+  ///
+  /// Pair with [GoogleGkeBackupRestorePlan] for restore workflows.
+
+paramOrder:
+  - name
+  - location
+  - cluster
+  - description
+  - deactivated
+  - labels
+  - backup_config
+  - backup_schedule
+  - retention_policy
+  - project
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

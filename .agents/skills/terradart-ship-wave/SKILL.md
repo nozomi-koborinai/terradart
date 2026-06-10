@@ -23,7 +23,7 @@ If example debt must land with a Wave, limit changes to the quickstart that exer
 A Wave PR is **not done** when wrappers and `curatedDoc` land alone. It is done when:
 
 1. **Curated factories** — overrides linted, `terradart wrap` regenerated, API diff reviewed.
-2. **Runnable example** — new `examples/<name>_quickstart` **or** extend an existing example so every new/breaking factory appears in synth output.
+2. **Runnable example** — new `examples/<name>_quickstart` **or** extend an existing example so every new/breaking factory appears in synth output. Machine-checked by `tool/check_docs_consistency.dart`; a factory may instead get a reasoned `tool/example_debt.yaml` entry, but that is an explicit reviewed decision.
 3. **Breaking changes** — `MIGRATING.md` entry **and** example updated to the new API.
 4. **Counts & docs** — `tool/doc_expectations.dart`, `catalog_count_test.dart`, `wrap_command_test.dart`, README curated list, agent/website catalog phrases, example `pubspec.yaml` carets.
 5. **CI matrix** — add the example slug to `.github/workflows/ci.yml` `terraform_validate` matrix when introducing a new quickstart.
@@ -35,7 +35,7 @@ A Wave PR is **not done** when wrappers and `curatedDoc` land alone. It is done 
 
 - [ ] 1. **Scope the Wave** — list Terraform types, target barrel(s), and which example will exercise them.
 - [ ] 2. **Curate each resource** — `terradart-add-curated-resource` workflow per type (`mm_yaml_sources.yaml`, override, lint, wrap).
-- [ ] 3. **Example / docs debt** — implement or extend quickstart; update README Examples section; website counts if the minor bumps.
+- [ ] 3. **Example / docs debt** — implement or extend quickstart; update README Examples section; website counts if the minor bumps; sync `tool/example_debt.yaml` (remove covered entries, add reasoned ones only when deferring an example on purpose).
 - [ ] 4. **Breaking API** — `MIGRATING.md` + migrate any affected examples in the same PR.
 - [ ] 5. **Counts** — bump `catalogEntryCount` / `curatedFactoryCount` and every phrase in `tool/doc_expectations.dart`; sync tests.
 - [ ] 6. **Version & CHANGELOG** — lockstep `0.N.P` across four packages; root + per-package CHANGELOG entries.

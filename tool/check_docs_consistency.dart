@@ -42,7 +42,7 @@ void main() {
   _checkPhrase(
     errors,
     'website/src/content/docs/docs/agent/tools-reference.md',
-    'list all 126',
+    'list all 132',
     listBarrelsOutputCountPhrase,
   );
   _checkPhrase(
@@ -83,6 +83,8 @@ void main() {
     }
   }
 
+  _checkExampleCoverage(errors);
+
   if (errors.isEmpty) {
     print('check_docs_consistency: OK');
     exit(0);
@@ -92,6 +94,85 @@ void main() {
     stderr.writeln('  - $e');
   }
   exit(1);
+}
+
+/// Every curated factory must be exercised by at least one example
+/// (`terradart-ship-wave` Wave complete definition 2) or be listed in
+/// `tool/example_debt.yaml` with a reason. Usage is approximated as a
+/// `ClassName(` constructor call anywhere under `examples/*/lib/`; entries
+/// that become covered must be removed from the debt file (stale entries
+/// fail too, so the allowlist self-cleans).
+void _checkExampleCoverage(List<String> errors) {
+  final catalog = File('packages/terradart_google/lib/src/_catalog.g.dart');
+  if (!catalog.existsSync()) {
+    errors.add('Missing file: ${catalog.path}');
+    return;
+  }
+  final classNames = RegExp(r"className: '([A-Za-z0-9_]+)'")
+      .allMatches(catalog.readAsStringSync())
+      .map((m) => m.group(1)!)
+      .toSet();
+
+  final source = StringBuffer();
+  for (final example in _exampleDirs()) {
+    final lib = Directory('examples/$example/lib');
+    if (!lib.existsSync()) continue;
+    for (final entity in lib.listSync(recursive: true)) {
+      if (entity is File && entity.path.endsWith('.dart')) {
+        source.write(entity.readAsStringSync());
+      }
+    }
+  }
+  final exampleSource = source.toString();
+
+  final debt = _exampleDebt(errors);
+
+  var covered = 0;
+  for (final name in classNames) {
+    final used =
+        RegExp('\\b${RegExp.escape(name)}\\s*\\(').hasMatch(exampleSource);
+    if (used) covered++;
+    final listed = debt.containsKey(name);
+    if (!used && !listed) {
+      errors.add(
+          'example coverage: $name is exercised by no example; extend a '
+          'quickstart or add a reasoned entry to tool/example_debt.yaml');
+    } else if (used && listed) {
+      errors.add('tool/example_debt.yaml: stale entry $name '
+          '(now covered by an example — remove the line)');
+    }
+  }
+  for (final name in debt.keys) {
+    if (!classNames.contains(name)) {
+      errors.add('tool/example_debt.yaml: unknown factory $name '
+          '(not in _catalog.g.dart)');
+    }
+  }
+  print('example coverage: ${classNames.length} catalog classes, '
+      '$covered covered, ${debt.length} listed in tool/example_debt.yaml');
+}
+
+Map<String, String> _exampleDebt(List<String> errors) {
+  final file = File('tool/example_debt.yaml');
+  if (!file.existsSync()) return const {};
+  final entries = <String, String>{};
+  for (final raw in file.readAsLinesSync()) {
+    final line = raw.trim();
+    if (line.isEmpty || line.startsWith('#')) continue;
+    final sep = line.indexOf(':');
+    if (sep <= 0) {
+      errors.add('tool/example_debt.yaml: unparsable line "$raw"');
+      continue;
+    }
+    final name = line.substring(0, sep).trim();
+    final reason = line.substring(sep + 1).trim();
+    if (reason.isEmpty) {
+      errors.add('tool/example_debt.yaml: $name needs a reason');
+      continue;
+    }
+    entries[name] = reason;
+  }
+  return entries;
 }
 
 int _workspaceMinor() {

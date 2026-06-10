@@ -1,0 +1,26 @@
+outputDir: gke_backup
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// A **restore channel** routes restore data from a source project.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - `name`: channel ID (unique per project/location).
+  /// - `location`: GCP region.
+  /// - `destinationProject`: project restores are delivered to, in
+  ///   `projects/{project}` form (bare project IDs are rejected).
+
+paramOrder:
+  - name
+  - location
+  - destination_project
+  - description
+  - labels
+  - project
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

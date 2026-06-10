@@ -62,5 +62,8 @@ final class GoogleProviderRules extends ProviderRules {
 
     // Wave 9 — GKE Hub factories share the `container` barrel with GKE core.
     'gke': 'container',
+
+    // Wave 10 — GKE Backup (distinct from Hub / core GKE).
+    'gke_backup': 'gke_backup',
   };
 }
