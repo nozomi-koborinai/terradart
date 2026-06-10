@@ -1,0 +1,11 @@
+outputDir: bigquery
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - connection_id
+  - location
+  - member
+  - project
+  - role
+  - condition

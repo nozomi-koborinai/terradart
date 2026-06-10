@@ -98,6 +98,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_bigquery_analytics_hub_data_exchange`.',
   ),
   CatalogEntry(
+    tfType: 'google_bigquery_analytics_hub_data_exchange_iam_member',
+    className: 'GoogleBigqueryAnalyticsHubDataExchangeIamMember',
+    barrel: 'bigquery',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_bigquery_analytics_hub_data_exchange_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'dataExchangeId',
+      'location',
+      'member',
+      'project',
+      'role',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigquery_analytics_hub_data_exchange_iam_member`.',
+  ),
+  CatalogEntry(
     tfType: 'google_bigquery_analytics_hub_listing',
     className: 'GoogleBigqueryAnalyticsHubListing',
     barrel: 'bigquery',
@@ -129,6 +150,48 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_bigquery_analytics_hub_listing`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_bigquery_analytics_hub_listing_iam_member',
+    className: 'GoogleBigqueryAnalyticsHubListingIamMember',
+    barrel: 'bigquery',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_bigquery_analytics_hub_listing_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'dataExchangeId',
+      'listingId',
+      'location',
+      'member',
+      'project',
+      'role',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigquery_analytics_hub_listing_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_bigquery_analytics_hub_listing_subscription',
+    className: 'GoogleBigqueryAnalyticsHubListingSubscription',
+    barrel: 'bigquery',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_bigquery_analytics_hub_listing_subscription`.',
+    constructorParams: <String>[
+      'localName',
+      'dataExchangeId',
+      'listingId',
+      'location',
+      'project',
+      'destinationDataset',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigquery_analytics_hub_listing_subscription`.',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_bi_reservation',
@@ -222,6 +285,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     docComment:
         'Factory wrapper for `google_bigquery_connection`.\n\nA connection allows BigQuery connections to external data sources..\n\nA BigQuery **connection** stores the credentials and configuration\nBigQuery uses to read data from sources that live outside BigQuery\nstorage. Federated queries (`EXTERNAL_QUERY`), BigQuery Omni (multi-\ncloud reads), BigLake tables, stored procedures for Apache Spark, and\ngeneric Connector framework integrations all hang off a connection.\nThe credentials never travel through BigQuery query state — at query\ntime BigQuery loads them via the connection\'s service identity.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_bigquery_connection.`).\n- [connectionId]: optional. When omitted the API auto-generates a\n  UUID-shaped id. Pin it explicitly for stable references from SQL\n  (`EXTERNAL_QUERY(\'projects/.../locations/.../connections/<id>\', ...)`).\n- [location]: BigQuery region (`US`, `EU`, `asia-northeast1`,\n  `us-central1`, ...). The connection target must be reachable from\n  this region. Cloud SQL `us-central1` maps to BigQuery `US`; Cloud\n  SQL `europe-west1` maps to BigQuery `EU`; AWS connections must be\n  in `aws-us-east-1`; Azure connections in `azure-eastus2`. Schema\n  marks `location` optional — set it for any non-default deployment.\n\n**Connection-type one-of**: pick **at most one** of [cloudSql],\n[cloudSpanner], [aws], [azure], [cloudResource], [spark], or\n[configuration]. Supplying more than one errors at apply time. Use\ncase per variant:\n- [cloudSql] — federated queries against Cloud SQL Postgres / MySQL\n  (the most common BigQuery federation pattern). Credentials live\n  inside the [BigqueryConnectionCloudSqlCredential] block.\n- [cloudSpanner] — federated reads against a Cloud Spanner database,\n  optionally via Spanner Data Boost / independent compute.\n- [aws] — BigQuery Omni federation into Amazon S3 / Glue (BigLake\n  on AWS). The Google-side identity (output-only) trusts a\n  customer-owned IAM role.\n- [azure] — BigQuery Omni federation into Azure Data Lake Storage.\n  Uses Azure AD federation; most fields are computed and consumed by\n  the Azure side of the bridge.\n- [cloudResource] — generic GCP delegation. Surfaces an output-only\n  service account id that the connection acts as for cross-project\n  reads (e.g. BigLake tables over Cloud Storage in a different\n  project).\n- [spark] — stored procedures for Apache Spark on BigQuery. Optional\n  wiring to a Dataproc Metastore and Spark History Server.\n- [configuration] — the BigQuery Connector framework (AlloyDB,\n  `google-cloudsql-mysql`, `google-cloudsql-postgres`, and other\n  connector ids). Includes its own nested asset / authentication /\n  endpoint / network configuration.\n\nVariants the plan mentioned but the schema does not yet expose:\n`vertex_ai`, `salesforce_data_cloud`. These are gated behind the\nbeta provider as of the pinned `~> 7.0` GA schema and will surface\nonce the upstream MagicModules definitions promote to GA.\n\nExample (Cloud SQL — federated queries against a Postgres replica):\n```dart\nfinal pg = GoogleBigqueryConnection(\n  localName: \'analytics_pg\',\n  connectionId: TfArg.literal(\'analytics-pg\'),\n  location: TfArg.literal(\'US\'),\n  friendlyName: TfArg.literal(\'Analytics Postgres (read-replica)\'),\n  cloudSql: BigqueryConnectionCloudSql(\n    instanceId: TfArg.literal(\'my-project:us-central1:analytics-ro\'),\n    database: TfArg.literal(\'analytics\'),\n    type: BigqueryConnectionCloudSqlType.postgres,\n    credential: BigqueryConnectionCloudSqlCredential(\n      username: TfArg.literal(\'bq_federation\'),\n      password: TfArg.ref(pgPasswordVar),\n    ),\n  ),\n);\n```\n\nExample (AWS — BigLake federation against S3 / Glue):\n```dart\nfinal s3 = GoogleBigqueryConnection(\n  localName: \'biglake_s3\',\n  connectionId: TfArg.literal(\'biglake-s3\'),\n  location: TfArg.literal(\'aws-us-east-1\'),\n  aws: BigqueryConnectionAws(\n    accessRole: BigqueryConnectionAwsAccessRole(\n      iamRoleId:\n          TfArg.literal(\'arn:aws:iam::111122223333:role/biglake-bq\'),\n    ),\n  ),\n);\n```\n\nSensitive fields (round-trip through the generated `sensitiveFields`\nset; masked in serialized state by Terraform):\n- `cloud_sql.credential.password` — schema-flagged.\n- `configuration.authentication.username_password.password.plaintext`\n  — schema-flagged. Wire both via [TfArg.ref] to a secret resource or\n  sensitive variable rather than literals.\n\nOutput-only state:\n- [nameRef]: full resource name\n  (`projects/{project}/locations/{location}/connections/{id}`).\n- [hasCredential]: `true` once the credential block is materialized\n  server-side.',
+  ),
+  CatalogEntry(
+    tfType: 'google_bigquery_connection_iam_member',
+    className: 'GoogleBigqueryConnectionIamMember',
+    barrel: 'bigquery',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_bigquery_connection_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'connectionId',
+      'location',
+      'member',
+      'project',
+      'role',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment: 'Factory wrapper for `google_bigquery_connection_iam_member`.',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_data_transfer_config',
@@ -2092,6 +2174,32 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_compute_region_security_policy`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_compute_region_security_policy_rule',
+    className: 'GoogleComputeRegionSecurityPolicyRule',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_compute_region_security_policy_rule`.',
+    constructorParams: <String>[
+      'localName',
+      'action',
+      'description',
+      'preview',
+      'priority',
+      'project',
+      'region',
+      'securityPolicy',
+      'match',
+      'networkMatch',
+      'preconfiguredWafConfig',
+      'rateLimitOptions',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_region_security_policy_rule`.',
   ),
   CatalogEntry(
     tfType: 'google_compute_region_ssl_certificate',

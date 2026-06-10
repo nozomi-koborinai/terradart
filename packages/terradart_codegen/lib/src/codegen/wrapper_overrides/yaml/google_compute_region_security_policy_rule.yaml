@@ -1,0 +1,16 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - action
+  - description
+  - preview
+  - priority
+  - project
+  - region
+  - security_policy
+  - match
+  - network_match
+  - preconfigured_waf_config
+  - rate_limit_options

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.12.9 - 2026-06-09
+
+### Added
+
+- Wave 22 BigQuery (4): Analytics Hub data-exchange IAM member, listing IAM member, listing subscription, connection IAM member.
+- Wave 22 Compute (1): regional security policy rule.
+
+Catalog: **176 curated resource factories + 1 data source** (177 entries). Additive; no breaking API changes vs `0.12.8`.
+
 ## 0.12.8 - 2026-06-10
 
 ### Added

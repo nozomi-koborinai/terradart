@@ -4,6 +4,17 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## [0.12.9] - 2026-06-09
+
+Lockstep patch across the workspace. **No breaking changes** vs `0.12.8`.
+
+### Added
+
+- **`terradart_google`** — Wave 22 BigQuery Analytics Hub + connection IAM: four factories (`google_bigquery_analytics_hub_data_exchange_iam_member`, `google_bigquery_analytics_hub_listing_iam_member`, `google_bigquery_analytics_hub_listing_subscription`, `google_bigquery_connection_iam_member`).
+- **`terradart_google`** — Wave 22 Compute regional Armor: `google_compute_region_security_policy_rule`.
+- Catalog: **176 curated resource factories + 1 data source** (177 entries).
+- Extended **`bigquery_quickstart`** (Analytics Hub IAM, listing subscription, connection + connection IAM) and **`compute_lb_quickstart`** (regional security policy rule).
+
 ## [0.12.8] - 2026-06-10
 
 Lockstep patch across the workspace. **No breaking changes** vs `0.12.7`.

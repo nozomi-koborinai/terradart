@@ -185,5 +185,59 @@ final class AnalyticsStack extends Stack {
         filterPredicate: TfArg.literal('tenant_id = SESSION_USER()'),
       ),
     );
+
+    // ---- Wave 22: Analytics Hub IAM + connection IAM ----------------------
+
+    add(
+      GoogleBigqueryAnalyticsHubDataExchangeIamMember(
+        localName: 'exchange_subscriber',
+        dataExchangeId: TfArg.literal('shared-exchange'),
+        location: TfArg.literal('asia-northeast1'),
+        role: TfArg.literal('roles/analyticshub.subscriber'),
+        member: TfArg.ref(reader.iamMember),
+      ),
+    );
+
+    add(
+      GoogleBigqueryAnalyticsHubListingIamMember(
+        localName: 'listing_viewer',
+        dataExchangeId: TfArg.literal('shared-exchange'),
+        listingId: TfArg.literal('events-listing'),
+        location: TfArg.literal('asia-northeast1'),
+        role: TfArg.literal('roles/analyticshub.viewer'),
+        member: TfArg.ref(reader.iamMember),
+      ),
+    );
+
+    add(
+      GoogleBigqueryAnalyticsHubListingSubscription(
+        localName: 'events_subscription',
+        dataExchangeId: TfArg.literal('shared-exchange'),
+        listingId: TfArg.literal('events-listing'),
+        location: TfArg.literal('asia-northeast1'),
+        destinationDataset: TfArg.literal({
+          'dataset': 'projects/$projectId/datasets/analytics_prod',
+        }),
+      ),
+    );
+
+    add(
+      GoogleBigqueryConnection(
+        localName: 'cloud_resource_link',
+        connectionId: TfArg.literal('cloud-resource-link'),
+        location: TfArg.literal('asia-northeast1'),
+        cloudResource: BigqueryConnectionCloudResource(),
+      ),
+    );
+
+    add(
+      GoogleBigqueryConnectionIamMember(
+        localName: 'connection_user',
+        connectionId: TfArg.literal('cloud-resource-link'),
+        location: TfArg.literal('asia-northeast1'),
+        role: TfArg.literal('roles/bigquery.connectionUser'),
+        member: TfArg.ref(ingestor.iamMember),
+      ),
+    );
   }
 }
