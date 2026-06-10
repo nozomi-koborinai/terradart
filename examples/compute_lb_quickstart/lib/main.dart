@@ -171,6 +171,18 @@ final class ComputeLbStack extends Stack {
       ),
     );
 
+    add(
+      GoogleComputeNetworkEndpoint(
+        localName: 'lb_neg_endpoint',
+        networkEndpointGroup: TfArg.ref(lbNeg.id),
+        instance: TfArg.ref(lbBackendVm.selfLink),
+        ipAddress: TfArg.literal('10.20.0.2'),
+        port: TfArg.literal(443),
+        zone: TfArg.literal(zone),
+        dependsOn: [ResourceDependency(lbNeg), ResourceDependency(lbBackendVm)],
+      ),
+    );
+
     // ---- 3c. Cloud Armor security policy ---------------------------------
     //
     // A minimal Cloud Armor policy with a single allow-all default rule.

@@ -45,11 +45,6 @@ GoogleFirestoreUserCreds: pre-existing gap (Waves 1-9) — backfill candidate
 GoogleIapWebBackendServiceIamBinding: pre-existing gap (Waves 1-9) — backfill candidate
 GoogleLoggingFolderSink: needs folder-level permissions beyond a quickstart project
 GoogleLoggingOrganizationSink: needs org-level permissions beyond a quickstart project
-GoogleMonitoringDashboard: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleMonitoringMetricDescriptor: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleMonitoringNotificationChannel: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleMonitoringService: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleMonitoringUptimeCheckConfig: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleComputeRegionSslCertificate: regional ILB follow-up; compute_lb uses global managed cert
 GoogleProject: creating projects needs org/billing scope beyond a quickstart project
-GooglePubsubSchema: pre-existing gap (Waves 1-9) — backfill candidate
 GoogleStorageNotification: pre-existing gap (Waves 1-9) — backfill candidate

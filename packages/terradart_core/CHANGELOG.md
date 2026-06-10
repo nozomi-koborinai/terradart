@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.7
+
+No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.7 (Waves 12–15 Monitoring + Compute/KMS/Pub/Sub/Storage).
+
 ## 0.12.6
 
 No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.6 (Wave 10 GKE Backup + Wave 11 Logging project ops).

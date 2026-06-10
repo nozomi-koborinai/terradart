@@ -81,5 +81,13 @@ final class AssetsStack extends Stack {
         member: TfArg.ref(reader.iamMember),
       ),
     );
+
+    add(
+      GoogleStorageHmacKey(
+        localName: 'interop_hmac',
+        serviceAccountEmail: TfArg.ref(reader.email),
+        dependsOn: [ResourceDependency(reader)],
+      ),
+    );
   }
 }

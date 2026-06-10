@@ -1,0 +1,26 @@
+outputDir: monitoring
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - service_id
+  - display_name
+  - user_labels
+  - project
+
+curatedDoc: |-
+  /// Lightweight custom Monitoring service (distinct from
+  /// [GoogleMonitoringService] which models typed `basic_service` variants).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleMonitoringCustomService(
+  ///   localName: 'checkout_api',
+  ///   serviceId: TfArg.literal('checkout-api'),
+  ///   displayName: TfArg.literal('Checkout API'),
+  /// );
+  /// ```
+
+extraGetters: |2
+    TfRef<String> get serviceIdRef => TfRef.attribute<String>(this, 'service_id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

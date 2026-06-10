@@ -11,6 +11,13 @@ Maintainer:
 - **Added** — `tool/example_synth_gates.dart` (synth-based example coverage + API-enablement dependency checker, #108).
 - **Added** — label-gated `apply-smoke` GitHub workflow + `tool/apply_smoke.sh` (#109).
 
+## 0.12.7
+
+Maintainer:
+
+- **Added** — Wave 12 Monitoring overrides (four types; SLO uses sealed `MonitoringSloSli`).
+- **Added** — Waves 13–16 overrides (Compute region SSL + NEG endpoint, KMS key version, Pub/Sub schema IAM member, Storage HMAC key, Logging log scope + linked dataset).
+
 ## 0.12.6
 
 Maintainer:

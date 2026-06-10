@@ -15,6 +15,10 @@ export 'src/logging/google_logging_folder_sink.dart'
         GoogleLoggingFolderSink,
         LoggingFolderSinkBigqueryOptions,
         LoggingFolderSinkExclusion;
+export 'src/logging/google_logging_linked_dataset.dart'
+    show GoogleLoggingLinkedDataset, LoggingLinkedDatasetBigqueryDataset;
+export 'src/logging/google_logging_log_scope.dart'
+    show GoogleLoggingLogScope;
 export 'src/logging/google_logging_log_view.dart'
     show GoogleLoggingLogView;
 export 'src/logging/google_logging_log_view_iam_member.dart'

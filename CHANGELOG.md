@@ -4,6 +4,22 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## [0.12.7] - 2026-06-10
+
+Lockstep patch across the workspace. **No breaking changes** vs `0.12.6`.
+
+### Added
+
+- **`terradart_google`** — Wave 12 Monitoring completion: four factories (`google_monitoring_slo`, `google_monitoring_group`, `google_monitoring_custom_service`, `google_monitoring_monitored_project`).
+- **`terradart_google`** — Wave 13 Compute LB follow-up: `google_compute_region_ssl_certificate`, `google_compute_network_endpoint`.
+- **`terradart_google`** — Wave 14 KMS: `google_kms_crypto_key_version`.
+- **`terradart_google`** — Wave 15 adjacent IAM/Storage: `google_pubsub_schema_iam_member`, `google_storage_hmac_key`.
+- **`terradart_google`** — Wave 16 Logging analytics: `google_logging_log_scope`, `google_logging_linked_dataset`.
+- Catalog: **147 curated resource factories + 1 data source** (148 entries).
+- **`examples/monitoring_quickstart`** — full observability chain (channel, uptime, metric descriptor, dashboard, service, SLO, alert).
+- **`examples/kms_quickstart`**, **`storage_quickstart`**, **`pubsub_quickstart`**, **`compute_lb_quickstart`** — extended for new factories.
+- **`examples/ops_quickstart`** — log scope + linked dataset for Log Analytics.
+
 ## [0.12.6] - 2026-06-09
 
 Lockstep patch across the workspace. **No breaking changes** vs `0.12.5`.

@@ -221,6 +221,8 @@ export 'src/compute/google_compute_network.dart'
         GoogleComputeNetwork,
         NetworkFirewallPolicyEnforcementOrder,
         RoutingMode;
+export 'src/compute/google_compute_network_endpoint.dart'
+    show GoogleComputeNetworkEndpoint;
 export 'src/compute/google_compute_network_endpoint_group.dart'
     show GoogleComputeNetworkEndpointGroup, NetworkEndpointGroupType;
 export 'src/compute/google_compute_region_autoscaler.dart'
@@ -316,6 +318,8 @@ export 'src/compute/google_compute_region_network_endpoint_group.dart'
         RegionNetworkEndpointGroupType;
 export 'src/compute/google_compute_region_target_http_proxy.dart'
     show GoogleComputeRegionTargetHttpProxy;
+export 'src/compute/google_compute_region_ssl_certificate.dart'
+    show GoogleComputeRegionSslCertificate;
 export 'src/compute/google_compute_region_target_https_proxy.dart'
     show GoogleComputeRegionTargetHttpsProxy;
 export 'src/compute/google_compute_region_url_map.dart'

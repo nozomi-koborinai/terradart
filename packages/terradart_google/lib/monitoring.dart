@@ -49,11 +49,28 @@ export 'src/monitoring/google_monitoring_notification_channel.dart'
     show
         GoogleMonitoringNotificationChannel,
         MonitoringNotificationChannelSensitiveLabels;
+export 'src/monitoring/google_monitoring_custom_service.dart'
+    show GoogleMonitoringCustomService;
+export 'src/monitoring/google_monitoring_group.dart'
+    show GoogleMonitoringGroup;
+export 'src/monitoring/google_monitoring_monitored_project.dart'
+    show GoogleMonitoringMonitoredProject;
 export 'src/monitoring/google_monitoring_service.dart'
     show
         GoogleMonitoringService,
         MonitoringServiceBasicService,
         MonitoringServiceTelemetry;
+export 'src/monitoring/google_monitoring_slo.dart'
+    show
+        GoogleMonitoringSlo,
+        MonitoringSloBasicSli,
+        MonitoringSloBasicSliAvailability,
+        MonitoringSloBasicSliLatency,
+        MonitoringSloGoodTotalRatio,
+        MonitoringSloRequestBasedSli,
+        MonitoringSloSli,
+        MonitoringSloWindowsBasedSli,
+        MonitoringSloWindowsGoodTotalRatioThreshold;
 export 'src/monitoring/google_monitoring_uptime_check_config.dart'
     show
         GoogleMonitoringUptimeCheckConfig,

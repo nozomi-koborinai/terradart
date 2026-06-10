@@ -1,0 +1,23 @@
+outputDir: monitoring
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - metrics_scope
+  - name
+
+curatedDoc: |-
+  /// Adds a project to a metrics scope (multi-project observability).
+  /// For the default scope created with a project, `metrics_scope` is
+  /// `locations/global/metricsScopes/{scopeId}`.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleMonitoringMonitoredProject(
+  ///   localName: 'child_project',
+  ///   metricsScope: TfArg.literal(
+  ///     'locations/global/metricsScopes/my-metrics-scope',
+  ///   ),
+  ///   name: TfArg.literal('my-child-project-id'),
+  /// );
+  /// ```
