@@ -1,0 +1,12 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - custom_features
+  - description
+  - min_tls_version
+  - name
+  - profile
+  - project
+  - region

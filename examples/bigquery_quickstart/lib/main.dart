@@ -112,5 +112,78 @@ final class AnalyticsStack extends Stack {
         member: TfArg.ref(ingestor.iamMember),
       ),
     );
+
+    // ---- Wave 19: governance + reservations ---------------------------------
+
+    add(
+      GoogleBigqueryBiReservation(
+        localName: 'bi_engine',
+        location: TfArg.literal('asia-northeast1'),
+        size: TfArg.literal(1),
+      ),
+    );
+
+    add(
+      GoogleBigqueryDatapolicyDataPolicy(
+        localName: 'email_mask',
+        location: TfArg.literal('asia-northeast1'),
+        dataPolicyId: TfArg.literal('mask-email'),
+        dataPolicyType: TfArg.literal('DATA_MASKING_POLICY'),
+        policyTag: TfArg.literal(
+            'projects/$projectId/locations/asia-northeast1/taxonomies/1/policyTags/1'),
+      ),
+    );
+
+    final exchange = add(
+      GoogleBigqueryAnalyticsHubDataExchange(
+        localName: 'shared_exchange',
+        location: TfArg.literal('asia-northeast1'),
+        dataExchangeId: TfArg.literal('shared-exchange'),
+        displayName: TfArg.literal('Shared analytics exchange'),
+      ),
+    );
+
+    add(
+      GoogleBigqueryAnalyticsHubListing(
+        localName: 'events_listing',
+        location: TfArg.literal('asia-northeast1'),
+        dataExchangeId: TfArg.literal('shared-exchange'),
+        listingId: TfArg.literal('events-listing'),
+        displayName: TfArg.literal('Events dataset listing'),
+        bigqueryDataset: TfArg.literal({
+          'dataset': 'projects/$projectId/datasets/analytics_prod',
+        }),
+        dependsOn: [ResourceDependency(exchange)],
+      ),
+    );
+
+    final slotsReservation = add(
+      GoogleBigqueryReservation(
+        localName: 'analytics_slots',
+        name: TfArg.literal('analytics-slots'),
+        location: TfArg.literal('asia-northeast1'),
+        slotCapacity: TfArg.literal(50),
+      ),
+    );
+
+    add(
+      GoogleBigqueryReservationAssignment(
+        localName: 'project_slots',
+        assignee: TfArg.literal('projects/$projectId'),
+        jobType: TfArg.literal('QUERY'),
+        location: TfArg.literal('asia-northeast1'),
+        reservation: TfArg.ref(slotsReservation.nameRef),
+      ),
+    );
+
+    add(
+      GoogleBigqueryRowAccessPolicy(
+        localName: 'events_tenant_filter',
+        datasetId: TfArg.ref(dataset.datasetIdRef),
+        tableId: TfArg.ref(eventsTable.tableIdRef),
+        policyId: TfArg.literal('tenant-filter'),
+        filterPredicate: TfArg.literal('tenant_id = SESSION_USER()'),
+      ),
+    );
   }
 }

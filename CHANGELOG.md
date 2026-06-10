@@ -4,6 +4,21 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## [0.12.8] - 2026-06-10
+
+Lockstep patch across the workspace. **No breaking changes** vs `0.12.7`.
+
+### Added
+
+- **`terradart_google`** — Wave 17 Eventarc completion: five factories (`google_eventarc_channel`, `google_eventarc_enrollment`, `google_eventarc_google_api_source`, `google_eventarc_message_bus`, `google_eventarc_pipeline`).
+- **`terradart_google`** — Wave 18 Compute LB internals: nine factories (SSL/TCP proxies, PSC service attachment, regional Armor/SSL policy, global/regional network endpoints, standalone security policy rule).
+- **`terradart_google`** — Wave 19 BigQuery governance: six factories (reservation assignment, row access policy, data policy, Analytics Hub exchange/listing, BI reservation).
+- **`terradart_google`** — Wave 20 Storage + Cloud SQL: `google_storage_managed_folder`, `google_sql_ssl_cert`, `google_sql_source_representation_instance`.
+- **`terradart_google`** — Wave 21 Firebase App Check: `google_firebase_app_check_recaptcha_v3_config`.
+- Catalog: **171 curated resource factories + 1 data source** (172 entries).
+- **`examples/eventarc_quickstart`** — message bus, API source, enrollment, channel, pipeline, and Pub/Sub → HTTP trigger.
+- Extended **`compute_lb_quickstart`**, **`bigquery_quickstart`**, **`storage_quickstart`**, **`cloud_sql_quickstart`**, **`firebase_app_check_quickstart`**.
+
 ## [0.12.7] - 2026-06-10
 
 Lockstep patch across the workspace. **No breaking changes** vs `0.12.6`.

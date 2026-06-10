@@ -349,3 +349,56 @@ files:
     upstream: mmv1/products/secretmanager/SecretVersion.yaml
   google_service_account:
     upstream: null  # handwritten in terraform provider; no MM YAML (probe 404)
+  # Wave 17 (Eventarc completion)
+  google_eventarc_channel:
+    upstream: mmv1/products/eventarc/Channel.yaml
+  google_eventarc_enrollment:
+    upstream: mmv1/products/eventarc/Enrollment.yaml
+  google_eventarc_google_api_source:
+    upstream: mmv1/products/eventarc/GoogleApiSource.yaml
+  google_eventarc_message_bus:
+    upstream: mmv1/products/eventarc/MessageBus.yaml
+  google_eventarc_pipeline:
+    upstream: mmv1/products/eventarc/Pipeline.yaml
+  # Wave 18 (Compute LB internals)
+  google_compute_target_ssl_proxy:
+    upstream: mmv1/products/compute/TargetSslProxy.yaml
+  google_compute_target_tcp_proxy:
+    upstream: mmv1/products/compute/TargetTcpProxy.yaml
+  google_compute_region_target_tcp_proxy:
+    upstream: mmv1/products/compute/RegionTargetTcpProxy.yaml
+  google_compute_service_attachment:
+    upstream: mmv1/products/compute/ServiceAttachment.yaml
+  google_compute_region_ssl_policy:
+    upstream: mmv1/products/compute/RegionSslPolicy.yaml
+  google_compute_region_security_policy:
+    upstream: mmv1/products/compute/RegionSecurityPolicy.yaml
+  google_compute_global_network_endpoint:
+    upstream: mmv1/products/compute/GlobalNetworkEndpoint.yaml
+  google_compute_region_network_endpoint:
+    upstream: mmv1/products/compute/RegionNetworkEndpoint.yaml
+  google_compute_security_policy_rule:
+    upstream: mmv1/products/compute/SecurityPolicyRule.yaml
+  # Wave 19 (BigQuery governance)
+  google_bigquery_reservation_assignment:
+    upstream: mmv1/products/bigqueryreservation/ReservationAssignment.yaml
+  google_bigquery_row_access_policy:
+    upstream: mmv1/products/bigquery/RowAccessPolicy.yaml
+  google_bigquery_datapolicy_data_policy:
+    upstream: mmv1/products/bigquerydatapolicy/DataPolicy.yaml
+  google_bigquery_analytics_hub_data_exchange:
+    upstream: mmv1/products/analyticshub/DataExchange.yaml
+  google_bigquery_analytics_hub_listing:
+    upstream: mmv1/products/analyticshub/Listing.yaml
+  google_bigquery_bi_reservation:
+    upstream: mmv1/products/bigqueryreservation/BiReservation.yaml
+  # Wave 20 (Storage + Cloud SQL)
+  google_storage_managed_folder:
+    upstream: mmv1/products/storage/ManagedFolder.yaml
+  google_sql_ssl_cert:
+    upstream: mmv1/products/sql/SslCert.yaml
+  google_sql_source_representation_instance:
+    upstream: mmv1/products/sql/SourceRepresentationInstance.yaml
+  # Wave 21 (Firebase App Check)
+  google_firebase_app_check_recaptcha_v3_config:
+    upstream: mmv1/products/firebaseappcheck/RecaptchaV3Config.yaml

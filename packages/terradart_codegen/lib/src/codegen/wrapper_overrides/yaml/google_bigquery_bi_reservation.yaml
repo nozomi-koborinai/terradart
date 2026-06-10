@@ -1,0 +1,9 @@
+outputDir: bigquery
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - location
+  - project
+  - size
+  - preferred_tables

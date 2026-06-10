@@ -1,0 +1,13 @@
+outputDir: eventarc
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - annotations
+  - crypto_key_name
+  - display_name
+  - labels
+  - location
+  - message_bus_id
+  - project
+  - logging_config

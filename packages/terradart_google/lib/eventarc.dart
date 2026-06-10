@@ -1,12 +1,19 @@
 // packages/terradart_google/lib/eventarc.dart
-/// Eventarc triggers — fan out Google Cloud events (Storage object writes,
-/// Pub/Sub publishes, Audit Log entries, etc.) to Cloud Run services,
-/// Cloud Run functions, Workflows, GKE pods, or arbitrary HTTP endpoints.
-///
-/// Single-resource barrel today (`GoogleEventarcTrigger`); future waves may
-/// add `eventarc_channel` (Advanced edition) and similar siblings.
+/// Eventarc — channels, triggers, pipelines, message buses, and API sources
+/// for routing CloudEvents to Cloud Run, Cloud Functions, Workflows, GKE,
+/// and HTTP endpoints.
 library;
 
+export 'src/eventarc/google_eventarc_channel.dart'
+    show GoogleEventarcChannel;
+export 'src/eventarc/google_eventarc_enrollment.dart'
+    show GoogleEventarcEnrollment;
+export 'src/eventarc/google_eventarc_google_api_source.dart'
+    show GoogleEventarcGoogleApiSource;
+export 'src/eventarc/google_eventarc_message_bus.dart'
+    show GoogleEventarcMessageBus;
+export 'src/eventarc/google_eventarc_pipeline.dart'
+    show GoogleEventarcPipeline;
 export 'src/eventarc/google_eventarc_trigger.dart'
     show
         EventarcTriggerCloudRunService,

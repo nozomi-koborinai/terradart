@@ -130,5 +130,26 @@ final class CloudSqlStack extends Stack {
         passwordWoVersion: TfArg.literal(1),
       ),
     );
+
+    add(
+      GoogleSqlSslCert(
+        localName: 'client_cert',
+        instance: TfArg.ref(primary.nameRef),
+        commonName: TfArg.literal('app-client'),
+      ),
+    );
+
+    add(
+      GoogleSqlSourceRepresentationInstance(
+        localName: 'legacy_mysql',
+        name: TfArg.literal('legacy-mysql'),
+        region: TfArg.literal('asia-northeast1'),
+        databaseVersion: TfArg.literal('MYSQL_8_0'),
+        host: TfArg.literal('203.0.113.50'),
+        port: TfArg.literal(3306),
+        username: TfArg.literal('replica'),
+        password: TfArg.variable('source_rep_password'),
+      ),
+    );
   }
 }

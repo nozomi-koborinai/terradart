@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.8
+
+No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.8 (Waves 17–21 Eventarc + Compute/BigQuery/Storage/SQL/Firebase).
+
 ## 0.12.7
 
 No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.7 (Waves 12–15 Monitoring + Compute/KMS/Pub/Sub/Storage).

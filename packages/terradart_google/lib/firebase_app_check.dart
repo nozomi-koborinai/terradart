@@ -6,6 +6,8 @@ library;
 
 export 'src/firebase_app_check/google_firebase_app_check_recaptcha_enterprise_config.dart'
     show GoogleFirebaseAppCheckRecaptchaEnterpriseConfig;
+export 'src/firebase_app_check/google_firebase_app_check_recaptcha_v3_config.dart'
+    show GoogleFirebaseAppCheckRecaptchaV3Config;
 export 'src/firebase_app_check/google_firebase_app_check_play_integrity_config.dart'
     show GoogleFirebaseAppCheckPlayIntegrityConfig;
 export 'src/firebase_app_check/google_firebase_app_check_app_attest_config.dart'

@@ -1,0 +1,20 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - connection_preference
+  - consumer_reject_lists
+  - description
+  - domain_names
+  - enable_proxy_protocol
+  - name
+  - nat_subnets
+  - project
+  - propagated_connection_limit
+  - reconcile_connections
+  - region
+  - send_propagated_connection_limit_if_zero
+  - show_nat_ips
+  - target_service
+  - consumer_accept_lists

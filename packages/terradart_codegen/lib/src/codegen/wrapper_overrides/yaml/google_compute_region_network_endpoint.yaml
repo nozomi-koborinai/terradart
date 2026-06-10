@@ -1,0 +1,13 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - client_destination_port
+  - fqdn
+  - instance
+  - ip_address
+  - port
+  - project
+  - region
+  - region_network_endpoint_group

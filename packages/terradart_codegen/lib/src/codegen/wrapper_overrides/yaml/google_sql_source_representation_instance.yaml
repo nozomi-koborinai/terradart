@@ -1,0 +1,17 @@
+outputDir: sql
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - ca_certificate
+  - client_certificate
+  - client_key
+  - database_version
+  - dump_file_path
+  - host
+  - name
+  - password
+  - port
+  - project
+  - region
+  - username

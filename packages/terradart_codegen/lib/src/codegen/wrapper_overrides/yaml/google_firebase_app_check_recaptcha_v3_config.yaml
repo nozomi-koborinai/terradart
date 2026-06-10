@@ -1,0 +1,9 @@
+outputDir: firebase_app_check
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - app_id
+  - project
+  - site_secret
+  - token_ttl

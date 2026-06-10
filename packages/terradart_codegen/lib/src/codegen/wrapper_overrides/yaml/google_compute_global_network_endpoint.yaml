@@ -1,0 +1,10 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - fqdn
+  - global_network_endpoint_group
+  - ip_address
+  - port
+  - project

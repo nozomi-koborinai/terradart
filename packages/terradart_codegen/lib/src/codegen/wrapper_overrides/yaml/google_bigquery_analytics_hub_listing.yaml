@@ -1,0 +1,25 @@
+outputDir: bigquery
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - allow_only_metadata_sharing
+  - categories
+  - data_exchange_id
+  - delete_commercial
+  - description
+  - discovery_type
+  - display_name
+  - documentation
+  - icon
+  - listing_id
+  - location
+  - log_linked_dataset_query_user_email
+  - primary_contact
+  - project
+  - request_access
+  - bigquery_dataset
+  - data_provider
+  - publisher
+  - pubsub_topic
+  - restricted_export_config

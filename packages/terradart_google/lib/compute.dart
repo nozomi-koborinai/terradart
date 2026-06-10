@@ -108,6 +108,8 @@ export 'src/compute/google_compute_global_forwarding_rule.dart'
         GlobalForwardingRuleNetworkTier,
         ComputeGlobalForwardingRuleGlobalForwardingRuleServiceDirectoryRegistration,
         GoogleComputeGlobalForwardingRule;
+export 'src/compute/google_compute_global_network_endpoint.dart'
+    show GoogleComputeGlobalNetworkEndpoint;
 export 'src/compute/google_compute_global_network_endpoint_group.dart'
     show
         GlobalNetworkEndpointGroupType,
@@ -309,6 +311,8 @@ export 'src/compute/google_compute_region_instance_group_manager.dart'
         RegionInstanceGroupManagerUpdatePolicyType,
         ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion,
         ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersionTargetSize;
+export 'src/compute/google_compute_region_network_endpoint.dart'
+    show GoogleComputeRegionNetworkEndpoint;
 export 'src/compute/google_compute_region_network_endpoint_group.dart'
     show
         GoogleComputeRegionNetworkEndpointGroup,
@@ -316,8 +320,14 @@ export 'src/compute/google_compute_region_network_endpoint_group.dart'
         ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudFunction,
         ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun,
         RegionNetworkEndpointGroupType;
+export 'src/compute/google_compute_region_security_policy.dart'
+    show GoogleComputeRegionSecurityPolicy;
+export 'src/compute/google_compute_region_ssl_policy.dart'
+    show GoogleComputeRegionSslPolicy;
 export 'src/compute/google_compute_region_target_http_proxy.dart'
     show GoogleComputeRegionTargetHttpProxy;
+export 'src/compute/google_compute_region_target_tcp_proxy.dart'
+    show GoogleComputeRegionTargetTcpProxy;
 export 'src/compute/google_compute_region_ssl_certificate.dart'
     show GoogleComputeRegionSslCertificate;
 export 'src/compute/google_compute_region_target_https_proxy.dart'
@@ -339,6 +349,10 @@ export 'src/compute/google_compute_region_url_map.dart'
         ComputeRegionUrlMapRegionUrlMapTest,
         ComputeRegionUrlMapRegionUrlMapTestHeader,
         ComputeRegionUrlMapRegionUrlMapUrlRedirect;
+export 'src/compute/google_compute_security_policy_rule.dart'
+    show GoogleComputeSecurityPolicyRule;
+export 'src/compute/google_compute_service_attachment.dart'
+    show GoogleComputeServiceAttachment;
 export 'src/compute/google_compute_security_policy.dart'
     show
         GoogleComputeSecurityPolicy,
@@ -386,6 +400,10 @@ export 'src/compute/google_compute_target_http_proxy.dart'
     show GoogleComputeTargetHttpProxy;
 export 'src/compute/google_compute_target_https_proxy.dart'
     show GoogleComputeTargetHttpsProxy, QuicOverride, TlsEarlyData;
+export 'src/compute/google_compute_target_ssl_proxy.dart'
+    show GoogleComputeTargetSslProxy;
+export 'src/compute/google_compute_target_tcp_proxy.dart'
+    show GoogleComputeTargetTcpProxy;
 export 'src/compute/google_compute_url_map.dart'
     show
         GoogleComputeUrlMap,

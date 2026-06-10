@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.8
+
+Lockstep version bump for `terradart_google` v0.12.8. MCP catalog grows by twenty-four entries across Eventarc, Compute, BigQuery, Storage, Cloud SQL, and Firebase App Check (172 entries total).
+
 ## 0.12.7
 
 Lockstep version bump for `terradart_google` v0.12.7. MCP catalog grows by eleven entries across Monitoring, Compute, KMS, Pub/Sub, Storage, and Logging (148 entries total).

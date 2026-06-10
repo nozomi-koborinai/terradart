@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.12.8 - 2026-06-10
+
+### Added
+
+- Wave 17 Eventarc (5): channel, enrollment, google API source, message bus, pipeline.
+- Wave 18 Compute LB internals (9): target SSL/TCP proxies, regional TCP proxy, service attachment, regional SSL/Armor policies, global/regional network endpoints, security policy rule.
+- Wave 19 BigQuery governance (6): reservation assignment, row access policy, data policy, Analytics Hub exchange/listing, BI reservation.
+- Wave 20 Storage + Cloud SQL (3): managed folder, SSL cert, source representation instance.
+- Wave 21 Firebase App Check (1): reCAPTCHA v3 config.
+
+Catalog: **171 curated resource factories + 1 data source** (172 entries). Additive; no breaking API changes vs `0.12.7`.
+
 ## 0.12.7 - 2026-06-10
 
 **ADDED** — Waves 12–15:

@@ -1,0 +1,13 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - backend_service
+  - certificate_map
+  - description
+  - name
+  - project
+  - proxy_header
+  - ssl_certificates
+  - ssl_policy
