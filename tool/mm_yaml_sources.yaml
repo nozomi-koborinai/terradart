@@ -236,6 +236,17 @@ files:
     upstream: null  # no Fleet.yaml in magic-modules main (404 as of 2026-06)
   google_gke_hub_membership:
     upstream: mmv1/products/gkehub/Membership.yaml
+  # Wave 11 (Logging project ops)
+  google_logging_project_bucket_config:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)
+  google_logging_log_view:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)
+  google_logging_log_view_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_logging_project_exclusion:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)
+  google_logging_saved_query:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)
   # Wave 10 (GKE Backup)
   google_gke_backup_backup_channel:
     upstream: mmv1/products/gkebackup/BackupChannel.yaml

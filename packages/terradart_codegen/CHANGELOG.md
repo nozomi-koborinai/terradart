@@ -16,6 +16,7 @@ Maintainer:
 Maintainer:
 
 - **Added** — Wave 10 GKE Backup overrides (six `google_gke_backup_*` types; plan IAM is `iam_member`-only).
+- **Added** — Wave 11 Logging project ops overrides (five `google_logging_*` types; log view IAM is `iam_member`-only).
 
 ## 0.12.5
 

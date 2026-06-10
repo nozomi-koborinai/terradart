@@ -15,6 +15,19 @@ export 'src/logging/google_logging_folder_sink.dart'
         GoogleLoggingFolderSink,
         LoggingFolderSinkBigqueryOptions,
         LoggingFolderSinkExclusion;
+export 'src/logging/google_logging_log_view.dart'
+    show GoogleLoggingLogView;
+export 'src/logging/google_logging_log_view_iam_member.dart'
+    show GoogleLoggingLogViewIamMember;
+export 'src/logging/google_logging_project_bucket_config.dart'
+    show GoogleLoggingProjectBucketConfig;
+export 'src/logging/google_logging_project_exclusion.dart'
+    show GoogleLoggingProjectExclusion;
+export 'src/logging/google_logging_saved_query.dart'
+    show
+        GoogleLoggingSavedQuery,
+        LoggingSavedQueryLoggingQuery,
+        LoggingSavedQueryOpsAnalyticsQuery;
 export 'src/logging/google_logging_metric.dart'
     show
         GoogleLoggingMetric,

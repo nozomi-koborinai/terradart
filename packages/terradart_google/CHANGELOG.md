@@ -9,7 +9,16 @@
 - Plan-scoped IAM: `*_iam_member` (×2; binding/policy stay uncurated — member-only IAM policy)
 - New `package:terradart_google/gke_backup.dart` barrel (28 service barrels total).
 
-Catalog: **131 curated resource factories + 1 data source** (132 entries). Additive; no breaking API changes vs `0.12.5`.
+**ADDED** — Wave 11 (Logging project ops):
+
+- `google_logging_project_bucket_config` — project log bucket (retention, analytics).
+- `google_logging_log_view` — filtered view into a log bucket.
+- `google_logging_log_view_iam_member` — additive IAM on a log view (`*_binding` / `*_policy` stay uncurated).
+- `google_logging_project_exclusion` — project-wide log exclusion.
+- `google_logging_saved_query` — saved Logs Explorer / Ops Analytics query.
+- `logging.dart` barrel extended (9 factories total).
+
+Catalog: **136 curated resource factories + 1 data source** (137 entries). Additive; no breaking API changes vs `0.12.5`.
 
 ## 0.12.5 - 2026-06-09
 

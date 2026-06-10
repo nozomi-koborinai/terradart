@@ -44,7 +44,6 @@ GoogleFirestoreField: pre-existing gap (Waves 1-9) — backfill candidate
 GoogleFirestoreUserCreds: pre-existing gap (Waves 1-9) — backfill candidate
 GoogleIapWebBackendServiceIamBinding: pre-existing gap (Waves 1-9) — backfill candidate
 GoogleLoggingFolderSink: needs folder-level permissions beyond a quickstart project
-GoogleLoggingMetric: pre-existing gap (Waves 1-9) — backfill candidate
 GoogleLoggingOrganizationSink: needs org-level permissions beyond a quickstart project
 GoogleMonitoringDashboard: pre-existing gap (Waves 1-9) — backfill candidate
 GoogleMonitoringMetricDescriptor: pre-existing gap (Waves 1-9) — backfill candidate
