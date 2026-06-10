@@ -78,10 +78,8 @@ final class EventarcStack extends Stack {
         pipelineId: TfArg.literal('ingest-pipeline'),
         destinations: TfArg.literal([
           {
-            'workflow': {
-              'workflow':
-                  'projects/$projectId/locations/$location/workflows/ingest',
-            },
+            'workflow':
+                'projects/$projectId/locations/$location/workflows/ingest',
           },
         ]),
         dependsOn: eventarcDeps,
