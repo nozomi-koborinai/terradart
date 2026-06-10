@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.7
+
+Lockstep version bump for `terradart_google` v0.12.7. MCP catalog grows by five Logging project-ops entries in the `logging` barrel (137 entries total).
+
 ## 0.12.6
 
 Lockstep version bump for `terradart_google` v0.12.6. MCP catalog grows by six GKE Backup entries and the new `gke_backup` barrel (132 entries total).

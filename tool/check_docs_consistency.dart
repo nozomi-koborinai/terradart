@@ -43,7 +43,7 @@ Future<void> main() async {
   _checkPhrase(
     errors,
     'website/src/content/docs/docs/agent/tools-reference.md',
-    'list all 132',
+    "list all $catalogEntryCount",
     listBarrelsOutputCountPhrase,
   );
   _checkPhrase(

@@ -1,0 +1,72 @@
+outputDir: logging
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+paramOrder:
+  - name
+  - display_name
+  - parent
+  - location
+  - visibility
+  - description
+  - logging_query
+  - ops_analytics_query
+
+curatedDoc: |-
+  /// Saved Logging query (Logs Explorer or Ops Analytics). Provide exactly
+  /// one of [loggingQuery] or [opsAnalyticsQuery] — Terraform validates at
+  /// apply time.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleLoggingSavedQuery(
+  ///   localName: 'audit_errors',
+  ///   name: TfArg.literal('audit-errors'),
+  ///   displayName: TfArg.literal('Audit errors (7d)'),
+  ///   parent: TfArg.literal('projects/my-proj/locations/global'),
+  ///   location: TfArg.literal('global'),
+  ///   visibility: TfArg.literal('PRIVATE'),
+  ///   loggingQuery: LoggingSavedQueryLoggingQuery(
+  ///     filter: TfArg.literal(
+  ///       'logName:"cloudaudit.googleapis.com" AND severity>=ERROR',
+  ///     ),
+  ///   ),
+  /// );
+  /// ```
+
+prelude: |
+  /// `logging_query` block — standard Logs Explorer filter.
+  class LoggingSavedQueryLoggingQuery {
+    const LoggingSavedQueryLoggingQuery({
+      required this.filter,
+      this.summaryFieldStart,
+      this.summaryFieldEnd,
+    });
+    final TfArg<String> filter;
+    final TfArg<String>? summaryFieldStart;
+    final TfArg<String>? summaryFieldEnd;
+    Map<String, Object?> toArgMap() => {
+          'filter': filter.toTfJson(),
+          if (summaryFieldStart != null)
+            'summary_field_start': summaryFieldStart!.toTfJson(),
+          if (summaryFieldEnd != null)
+            'summary_field_end': summaryFieldEnd!.toTfJson(),
+        };
+  }
+
+  /// `ops_analytics_query` block — SQL against log analytics tables.
+  class LoggingSavedQueryOpsAnalyticsQuery {
+    const LoggingSavedQueryOpsAnalyticsQuery({required this.sqlQueryText});
+    final TfArg<String> sqlQueryText;
+    Map<String, Object?> toArgMap() =>
+        {'sql_query_text': sqlQueryText.toTfJson()};
+  }
+
+customSlots:
+  logging_query:
+    paramDeclaration: 'LoggingSavedQueryLoggingQuery? loggingQuery'
+    argMapEntry: "if (loggingQuery != null) 'logging_query': TfArg.literal([loggingQuery.toArgMap()]),"
+  ops_analytics_query:
+    paramDeclaration: 'LoggingSavedQueryOpsAnalyticsQuery? opsAnalyticsQuery'
+    argMapEntry: "if (opsAnalyticsQuery != null) 'ops_analytics_query': TfArg.literal([opsAnalyticsQuery.toArgMap()]),"

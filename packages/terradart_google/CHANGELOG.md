@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.12.7 - 2026-06-10
+
+**ADDED** — Wave 11 (Logging project ops):
+
+- `google_logging_project_bucket_config` — project log bucket (retention, analytics).
+- `google_logging_log_view` — filtered view into a log bucket.
+- `google_logging_log_view_iam_member` — additive IAM on a log view (`*_binding` / `*_policy` stay uncurated).
+- `google_logging_project_exclusion` — project-wide log exclusion.
+- `google_logging_saved_query` — saved Logs Explorer / Ops Analytics query.
+- `logging.dart` barrel extended (9 factories total).
+
+Catalog: **136 curated resource factories + 1 data source** (137 entries). Additive; no breaking API changes vs `0.12.6`.
+
 ## 0.12.6 - 2026-06-09
 
 **ADDED** — Wave 10 (GKE Backup):

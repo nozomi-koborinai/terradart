@@ -1,0 +1,12 @@
+outputDir: logging
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - bucket
+  - location
+  - name
+  - parent
+  - role
+  - member
+  - condition

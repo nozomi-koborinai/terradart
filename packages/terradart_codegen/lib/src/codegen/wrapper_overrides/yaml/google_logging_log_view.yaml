@@ -1,0 +1,31 @@
+outputDir: logging
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - bucket
+  - name
+  - filter
+  - description
+  - location
+  - parent
+
+curatedDoc: |-
+  /// A filtered view into a log bucket. Pass `bucket` as the bucket id
+  /// (same value as [GoogleLoggingProjectBucketConfig.bucketId]) and wire
+  /// IAM via [GoogleLoggingLogViewIamMember].
+  ///
+  /// Example:
+  /// ```dart
+  /// final auditView = GoogleLoggingLogView(
+  ///   localName: 'audit_view',
+  ///   bucket: TfArg.ref(auditBucket.bucketIdRef),
+  ///   name: TfArg.literal('audit-only'),
+  ///   filter: TfArg.literal('logName:"cloudaudit.googleapis.com"'),
+  /// );
+  /// ```
+
+extraGetters: |2
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+    TfRef<String> get parentRef => TfRef.attribute<String>(this, 'parent');

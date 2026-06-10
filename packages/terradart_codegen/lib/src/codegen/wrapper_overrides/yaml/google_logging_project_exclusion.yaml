@@ -1,0 +1,27 @@
+outputDir: logging
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - filter
+  - description
+  - disabled
+  - project
+
+curatedDoc: |-
+  /// Project-wide log exclusion (drops matching entries before sinks /
+  /// metrics). Complements inline exclusions on [GoogleLoggingProjectSink].
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleLoggingProjectExclusion(
+  ///   localName: 'drop_dns_noise',
+  ///   name: TfArg.literal('drop-dns-noise'),
+  ///   filter: TfArg.literal('resource.type="dns_query"'),
+  ///   description: TfArg.literal('Skip high-volume DNS query logs.'),
+  /// );
+  /// ```
+
+extraGetters: |2
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

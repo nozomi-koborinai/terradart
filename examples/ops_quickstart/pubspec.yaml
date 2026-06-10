@@ -1,5 +1,5 @@
 name: terradart_example_ops_quickstart
-description: Phase 4.5 Wave 2 quickstart -- logging_project_sink routing audit logs to BigQuery with typed helpers.
+description: Ops quickstart — Wave 2 + Wave 11 logging project ops (sink, bucket, log view, metric).
 publish_to: none
 
 environment:

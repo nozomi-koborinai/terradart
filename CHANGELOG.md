@@ -4,6 +4,15 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## [0.12.7] - 2026-06-10
+
+Lockstep patch across the workspace. **No breaking changes** vs `0.12.6`.
+
+### Added
+
+- **`terradart_google`** — Wave 11 Logging project ops: five factories (`google_logging_project_bucket_config`, `google_logging_log_view`, `google_logging_log_view_iam_member`, `google_logging_project_exclusion`, `google_logging_saved_query`) in the `logging` barrel. Catalog: **136 curated resource factories + 1 data source** (137 entries).
+- **`examples/ops_quickstart`** — extended with log bucket, log view + IAM member, project exclusion, saved query, logs-based metric, and API enablement.
+
 ## [0.12.6] - 2026-06-09
 
 Lockstep patch across the workspace. **No breaking changes** vs `0.12.5`.

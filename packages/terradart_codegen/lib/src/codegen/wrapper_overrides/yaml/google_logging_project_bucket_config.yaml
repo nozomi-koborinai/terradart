@@ -1,0 +1,32 @@
+outputDir: logging
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - bucket_id
+  - location
+  - project
+  - description
+  - enable_analytics
+  - retention_days
+  - locked
+
+curatedDoc: |-
+  /// Project-scoped log bucket configuration (retention, analytics, CMEK).
+  /// Pair with [GoogleLoggingLogView] on the same `bucket_id` / `location`.
+  ///
+  /// Example:
+  /// ```dart
+  /// final auditBucket = GoogleLoggingProjectBucketConfig(
+  ///   localName: 'audit_bucket',
+  ///   bucketId: TfArg.literal('audit-logs'),
+  ///   location: TfArg.literal('global'),
+  ///   retentionDays: TfArg.literal(30),
+  ///   enableAnalytics: TfArg.literal(true),
+  /// );
+  /// ```
+
+extraGetters: |2
+    TfRef<String> get bucketIdRef =>
+        TfRef.attribute<String>(this, 'bucket_id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
