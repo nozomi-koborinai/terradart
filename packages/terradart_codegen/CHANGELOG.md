@@ -11,17 +11,12 @@ Maintainer:
 - **Added** — `tool/example_synth_gates.dart` (synth-based example coverage + API-enablement dependency checker, #108).
 - **Added** — label-gated `apply-smoke` GitHub workflow + `tool/apply_smoke.sh` (#109).
 
-## 0.12.7
-
-Maintainer:
-
-- **Added** — Wave 11 Logging project ops overrides (five `google_logging_*` types; log view IAM is `iam_member`-only).
-
 ## 0.12.6
 
 Maintainer:
 
 - **Added** — Wave 10 GKE Backup overrides (six `google_gke_backup_*` types; plan IAM is `iam_member`-only).
+- **Added** — Wave 11 Logging project ops overrides (five `google_logging_*` types; log view IAM is `iam_member`-only).
 
 ## 0.12.5
 
