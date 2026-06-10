@@ -23,7 +23,7 @@ If example debt must land with a Wave, limit changes to the quickstart that exer
 A Wave PR is **not done** when wrappers and `curatedDoc` land alone. It is done when:
 
 1. **Curated factories** — overrides linted, `terradart wrap` regenerated, API diff reviewed.
-2. **Runnable example** — new `examples/<name>_quickstart` **or** extend an existing example so every new/breaking factory appears in synth output. Machine-checked by `tool/check_docs_consistency.dart`; a factory may instead get a reasoned `tool/example_debt.yaml` entry, but that is an explicit reviewed decision.
+2. **Runnable example** — new `examples/<name>_quickstart` **or** extend an existing example so every new/breaking factory appears in synth output. Machine-checked by `tool/check_docs_consistency.dart` (synth-based `tfType` coverage + API-enablement deps); a factory may instead get a reasoned `tool/example_debt.yaml` entry, but that is an explicit reviewed decision. Label `apply-smoke` on the PR when apply-time verification is needed.
 3. **Breaking changes** — `MIGRATING.md` entry **and** example updated to the new API.
 4. **Counts & docs** — `tool/doc_expectations.dart`, `catalog_count_test.dart`, `wrap_command_test.dart`, README curated list, agent/website catalog phrases, example `pubspec.yaml` carets.
 5. **CI matrix** — add the example slug to `.github/workflows/ci.yml` `terraform_validate` matrix when introducing a new quickstart.

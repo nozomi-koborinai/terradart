@@ -1,0 +1,12 @@
+# Overrides exempt from `exactly-one-optional-fanout` (canonical MM groups).
+#
+# Each line is `google_<type>: reason`. Stale entries (override no longer
+# violates) fail `terradart lint-override`. New entries are a reviewed
+# maintainer decision — prefer sealed virtual slots (see #107).
+google_bigquery_connection: Waves 1-7 legacy — multi-source connection oneof; sealed refactor deferred (large prelude)
+google_bigquery_job: Waves 1-7 legacy — copy/extract/load/query job oneof; sealed refactor deferred
+google_cloudbuild_trigger: Waves 1-7 legacy — build/filename/git_file_source oneof; sealed refactor deferred
+google_compute_firewall: Waves 1-7 legacy — allow/deny rule oneof; sealed refactor deferred
+google_compute_health_check: Waves 1-7 legacy — protocol oneof (6 members); sealed refactor deferred
+google_compute_region_health_check: Waves 1-7 legacy — protocol oneof (6 members); sealed refactor deferred
+google_monitoring_uptime_check_config: Waves 1-7 legacy — target selector oneof; sealed refactor deferred

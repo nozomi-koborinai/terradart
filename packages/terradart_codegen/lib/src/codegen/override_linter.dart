@@ -45,6 +45,7 @@ List<LintViolation> lintOverride(
   String tfType,
   WrapperOverride override, {
   MmResourceOverrides? mm,
+  Set<String> exactlyOneOptionalFanoutDebt = const {},
 }) {
   final violations = <LintViolation>[];
 
@@ -69,7 +70,12 @@ List<LintViolation> lintOverride(
   }
 
   violations.addAll(
-    lintExactlyOneMutualExclusion(tfType, override, mm: mm),
+    lintExactlyOneMutualExclusion(
+      tfType,
+      override,
+      mm: mm,
+      exactlyOneOptionalFanoutDebt: exactlyOneOptionalFanoutDebt,
+    ),
   );
 
   return violations;
@@ -120,6 +126,7 @@ List<LintViolation> lintExactlyOneMutualExclusion(
   String tfType,
   WrapperOverride override, {
   MmResourceOverrides? mm,
+  Set<String> exactlyOneOptionalFanoutDebt = const {},
 }) {
   if (mm == null) return const [];
 
@@ -127,9 +134,8 @@ List<LintViolation> lintExactlyOneMutualExclusion(
   final slots = override.customSlots ?? const {};
   final paramOrder = override.paramOrder ?? const [];
 
-  for (final group in mm.exactlyOneOfGroups) {
-    if (group.length < 2) continue;
-    if (!group.every((m) => !m.contains('.'))) continue;
+  for (final group in canonicalExactlyOneOfGroups(mm.exactlyOneOfGroups)) {
+    if (exactlyOneOptionalFanoutDebt.contains(tfType)) continue;
 
     final optionalDirectMemberSlots = _optionalMemberSlots(group, slots);
     if (optionalDirectMemberSlots.length < 2) continue;
@@ -145,7 +151,8 @@ List<LintViolation> lintExactlyOneMutualExclusion(
             'separate optional customSlots. Model the group as a sealed class '
             'plus one required virtual customSlot that dispatches via '
             '`.blockKey` (see google_cloud_scheduler_job.yaml and '
-            'google_firestore_backup_schedule.yaml).',
+            'google_firestore_backup_schedule.yaml), or add a reasoned entry to '
+            'tool/exactly_one_lint_debt.yaml.',
       ),
     );
   }
@@ -227,12 +234,45 @@ bool _paramDeclarationIsRequired(String paramDeclaration) =>
 /// within a type) for deterministic output.
 ///
 /// When [mmByType] is supplied, phase-2 rules (MM-backed) run per entry.
+/// Flags [debt] entries that no longer suppress a violation (override was fixed).
+List<String> staleExactlyOneOptionalFanoutDebt(
+  Map<String, WrapperOverride> overrides, {
+  Map<String, MmResourceOverrides>? mmByType,
+  required Set<String> debt,
+}) {
+  final stale = <String>[];
+  for (final tfType in debt) {
+    final override = overrides[tfType];
+    final mm = mmByType?[tfType];
+    if (override == null || mm == null) {
+      stale.add(tfType);
+      continue;
+    }
+    final wouldViolate = lintExactlyOneMutualExclusion(
+      tfType,
+      override,
+      mm: mm,
+      exactlyOneOptionalFanoutDebt: const {},
+    ).any((v) => v.rule == 'exactly-one-optional-fanout');
+    if (!wouldViolate) stale.add(tfType);
+  }
+  stale.sort();
+  return stale;
+}
+
 List<LintViolation> lintOverrides(
   Map<String, WrapperOverride> overrides, {
   Map<String, MmResourceOverrides>? mmByType,
+  Set<String> exactlyOneOptionalFanoutDebt = const {},
 }) {
   final keys = overrides.keys.toList()..sort();
   return [
-    for (final k in keys) ...lintOverride(k, overrides[k]!, mm: mmByType?[k]),
+    for (final k in keys)
+      ...lintOverride(
+        k,
+        overrides[k]!,
+        mm: mmByType?[k],
+        exactlyOneOptionalFanoutDebt: exactlyOneOptionalFanoutDebt,
+      ),
   ];
 }

@@ -29,7 +29,8 @@ The supported maintainer generation path is `terradart wrap`.
 A **Wave** is a user-visible release batch of related curated factories. A Wave PR is complete only when:
 
 - Every new or breaking factory has a **runnable example** (new `examples/*_quickstart` or an extended existing example).
-- Example coverage is machine-checked: `dart tool/check_docs_consistency.dart` fails when a curated factory is exercised by no example and not listed in [`tool/example_debt.yaml`](tool/example_debt.yaml) with a reason. Stale entries (factory now covered) also fail — adding a debt line is a reviewed decision, not a default.
+- Example coverage is machine-checked: `dart tool/check_docs_consistency.dart` synthesizes every quickstart and fails when a curated factory `tfType` is absent from synth output and not listed in [`tool/example_debt.yaml`](tool/example_debt.yaml) with a reason. Stale debt entries fail — adding a line is a reviewed decision, not a default.
+- When an example enables a GCP API via `google_project_service`, every other resource in that example requiring the same API must transitively `depends_on` / reference that enablement (`tool/example_synth_gates.dart`).
 - Breaking API changes include **`MIGRATING.md`** and updated examples in the same PR.
 - Catalog counts, README Examples list, and CI `terraform_validate` matrix (for new quickstarts) move in lockstep.
 
@@ -61,7 +62,17 @@ When a Wave also pays down example `pubspec.yaml` carets or docs debt, **prefer 
 - `exactly-one-optional-fanout` — multiple optional member `customSlots` without a sealed virtual slot.
 - `exactly-one-paramorder-fanout` — two or more group members listed in `paramOrder` without a sealed virtual slot (the path used when an override skips `customSlots`).
 
-`lint-override` clean does **not** guarantee every optional nested block is type-enforced: resources without MM `exactly_one_of` metadata (e.g. large schema-only surfaces) may still fan out at the Dart API until sealed. Prefer sealed virtual slots + `wrap-promote` when curating new `exactly_one_of` groups.
+`lint-override` clean does **not** guarantee every optional nested block is type-enforced: resources without MM `exactly_one_of` metadata (e.g. large schema-only surfaces) may still fan out at the Dart API until sealed. Prefer sealed virtual slots + `wrap-promote` when curating new `exactly_one_of` groups. Pre-existing optional-fanout overrides may be listed in [`tool/exactly_one_lint_debt.yaml`](tool/exactly_one_lint_debt.yaml) with a reason until sealed (#107).
+
+### Apply smoke (dynamic example verification)
+
+`terraform validate` does not catch API format mistakes, missing service enablement at apply time, or addon prerequisites. For PRs that change example quickstarts in ways that need real GCP:
+
+1. Add the `apply-smoke` label to the PR (or run the **Apply smoke** workflow manually).
+2. Workflow applies then destroys changed `examples/*_quickstart` stacks in the `terradart-validate` project via Workload Identity Federation (no long-lived keys in the repo).
+3. Read failures as apply-time regressions; fix before merge.
+
+Maintainer prerequisite: GCP WIF pool + `terradart-validate` project (bootstrap is not cloud-agent automatable). A scheduled janitor workflow destroys orphaned resources from failed runs.
 
 ## Documentation Policy
 
