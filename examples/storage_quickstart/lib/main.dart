@@ -34,6 +34,8 @@ final class AssetsStack extends Stack {
       storageClass: TfArg.literal(BucketStorageClass.standard),
       forceDestroy: TfArg.literal(false),
       uniformBucketLevelAccess: TfArg.literal(true),
+      hierarchicalNamespace:
+          StorageBucketHierarchicalNamespace(enabled: TfArg.literal(true)),
       versioning: StorageBucketVersioning(enabled: TfArg.literal(true)),
       lifecycleRule: [
         StorageBucketLifecycleRule(
@@ -87,6 +89,14 @@ final class AssetsStack extends Stack {
         localName: 'interop_hmac',
         serviceAccountEmail: TfArg.ref(reader.email),
         dependsOn: [ResourceDependency(reader)],
+      ),
+    );
+
+    add(
+      GoogleStorageManagedFolder(
+        localName: 'config_folder',
+        bucket: TfArg.ref(assets.nameRef),
+        name: TfArg.literal('config/'),
       ),
     );
   }

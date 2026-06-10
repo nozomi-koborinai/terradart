@@ -1,0 +1,14 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - description
+  - name
+  - project
+  - region
+  - type
+  - advanced_options_config
+  - ddos_protection_config
+  - rules
+  - user_defined_fields

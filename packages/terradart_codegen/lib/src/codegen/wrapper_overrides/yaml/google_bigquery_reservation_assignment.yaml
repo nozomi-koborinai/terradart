@@ -1,0 +1,10 @@
+outputDir: bigquery
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - assignee
+  - job_type
+  - location
+  - project
+  - reservation

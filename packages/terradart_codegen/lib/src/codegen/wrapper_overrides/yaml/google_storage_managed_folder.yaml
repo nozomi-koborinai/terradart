@@ -1,0 +1,8 @@
+outputDir: storage
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - bucket
+  - force_destroy
+  - name

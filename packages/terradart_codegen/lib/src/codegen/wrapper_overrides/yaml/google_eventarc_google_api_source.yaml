@@ -1,0 +1,14 @@
+outputDir: eventarc
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - annotations
+  - crypto_key_name
+  - destination
+  - display_name
+  - google_api_source_id
+  - labels
+  - location
+  - project
+  - logging_config

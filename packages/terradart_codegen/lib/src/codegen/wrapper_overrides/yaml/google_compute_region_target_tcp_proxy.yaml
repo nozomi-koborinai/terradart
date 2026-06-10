@@ -1,0 +1,12 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - backend_service
+  - description
+  - name
+  - project
+  - proxy_bind
+  - proxy_header
+  - region

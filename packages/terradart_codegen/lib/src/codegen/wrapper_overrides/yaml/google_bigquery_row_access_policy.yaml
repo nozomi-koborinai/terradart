@@ -1,0 +1,11 @@
+outputDir: bigquery
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - dataset_id
+  - filter_predicate
+  - grantees
+  - policy_id
+  - project
+  - table_id

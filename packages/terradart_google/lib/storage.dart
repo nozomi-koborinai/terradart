@@ -27,6 +27,8 @@ export 'src/storage/google_storage_bucket.dart'
         StorageBucketVpcNetworkSource;
 export 'src/storage/google_storage_hmac_key.dart'
     show GoogleStorageHmacKey;
+export 'src/storage/google_storage_managed_folder.dart'
+    show GoogleStorageManagedFolder;
 export 'src/storage/google_storage_bucket_iam_member.dart'
     show GoogleStorageBucketIamMember;
 export 'src/storage/google_storage_bucket_object.dart'

@@ -1,0 +1,14 @@
+outputDir: eventarc
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - annotations
+  - cel_match
+  - destination
+  - display_name
+  - enrollment_id
+  - labels
+  - location
+  - message_bus
+  - project

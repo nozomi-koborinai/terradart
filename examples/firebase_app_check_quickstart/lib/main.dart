@@ -34,6 +34,14 @@ final class AppCheckStack extends Stack {
       ),
     );
 
+    add(
+      GoogleFirebaseAppCheckRecaptchaV3Config(
+        localName: 'web_recaptcha_v3',
+        appId: TfArg.literal('1:1234567890:web:abcdef'),
+        siteSecret: TfArg.variable('recaptcha_v3_site_secret'),
+      ),
+    );
+
     // Enable enforced App Check on Cloud Firestore for the project.
     // Requests without a valid App Check token are rejected.
     // Tip: run with AppCheckEnforcementMode.unenforced first to collect

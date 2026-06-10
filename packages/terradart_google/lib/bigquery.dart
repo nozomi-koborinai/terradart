@@ -4,6 +4,12 @@
 /// bindings.
 library;
 
+export 'src/bigquery/google_bigquery_analytics_hub_data_exchange.dart'
+    show GoogleBigqueryAnalyticsHubDataExchange;
+export 'src/bigquery/google_bigquery_analytics_hub_listing.dart'
+    show GoogleBigqueryAnalyticsHubListing;
+export 'src/bigquery/google_bigquery_bi_reservation.dart'
+    show GoogleBigqueryBiReservation;
 export 'src/bigquery/google_bigquery_capacity_commitment.dart'
     show
         BigqueryCapacityCommitmentEdition,
@@ -32,6 +38,8 @@ export 'src/bigquery/google_bigquery_connection.dart'
         BigqueryConnectionSparkMetastoreServiceConfig,
         BigqueryConnectionSparkSparkHistoryServerConfig,
         GoogleBigqueryConnection;
+export 'src/bigquery/google_bigquery_datapolicy_data_policy.dart'
+    show GoogleBigqueryDatapolicyDataPolicy;
 export 'src/bigquery/google_bigquery_data_transfer_config.dart'
     show
         BigqueryDataTransferConfigEmailPreferences,
@@ -91,6 +99,10 @@ export 'src/bigquery/google_bigquery_reservation.dart'
         BigqueryReservationAutoscale,
         BigqueryReservationEdition,
         GoogleBigqueryReservation;
+export 'src/bigquery/google_bigquery_reservation_assignment.dart'
+    show GoogleBigqueryReservationAssignment;
+export 'src/bigquery/google_bigquery_row_access_policy.dart'
+    show GoogleBigqueryRowAccessPolicy;
 export 'src/bigquery/google_bigquery_routine.dart'
     show
         BigqueryRoutineArgument,

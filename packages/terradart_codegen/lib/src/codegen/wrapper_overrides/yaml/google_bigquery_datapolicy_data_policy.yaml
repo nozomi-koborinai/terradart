@@ -1,0 +1,11 @@
+outputDir: bigquery
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - data_policy_id
+  - data_policy_type
+  - location
+  - policy_tag
+  - project
+  - data_masking_policy

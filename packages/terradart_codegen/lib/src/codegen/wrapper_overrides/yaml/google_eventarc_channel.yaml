@@ -1,0 +1,11 @@
+outputDir: eventarc
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - crypto_key_name
+  - labels
+  - location
+  - name
+  - project
+  - third_party_provider

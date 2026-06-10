@@ -8,8 +8,8 @@ environment:
 resolution: workspace
 
 dependencies:
-  terradart_core: ^0.12.6
-  terradart_google: ^0.12.6
+  terradart_core: ^0.12.8
+  terradart_google: ^0.12.8
 
 dev_dependencies:
   lints: ^6.0.0

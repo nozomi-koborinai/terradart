@@ -1,0 +1,8 @@
+outputDir: sql
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - common_name
+  - instance
+  - project

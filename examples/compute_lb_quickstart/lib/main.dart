@@ -296,5 +296,138 @@ final class ComputeLbStack extends Stack {
         target: TfArg.ref(lbHttpsProxy.selfLink),
       ),
     );
+
+    // ---- Wave 18: additional LB / PSC factories ---------------------------
+
+    add(
+      GoogleComputeTargetSslProxy(
+        localName: 'lb_ssl_proxy',
+        name: TfArg.literal('app-lb-ssl-proxy'),
+        backendService: TfArg.ref(lbBackend.selfLink),
+        sslCertificates: TfArg.literal([lbCert.selfLink.interpolation]),
+      ),
+    );
+
+    add(
+      GoogleComputeTargetTcpProxy(
+        localName: 'lb_tcp_proxy',
+        name: TfArg.literal('app-lb-tcp-proxy'),
+        backendService: TfArg.ref(lbBackend.selfLink),
+      ),
+    );
+
+    add(
+      GoogleComputeSecurityPolicyRule(
+        localName: 'lb_armor_deny_rule',
+        securityPolicy: TfArg.ref(lbArmor.nameRef),
+        priority: TfArg.literal(1000),
+        action: TfArg.literal('deny(403)'),
+        description: TfArg.literal('Block example CIDR'),
+        match: TfArg.literal({
+          'versioned_expr': 'SRC_IPS_V1',
+          'config': {
+            'src_ip_ranges': ['203.0.113.0/24']
+          },
+        }),
+      ),
+    );
+
+    add(
+      GoogleComputeServiceAttachment(
+        localName: 'lb_psc_attachment',
+        name: TfArg.literal('app-lb-psc'),
+        region: TfArg.literal(region),
+        connectionPreference: TfArg.literal('ACCEPT_AUTOMATIC'),
+        enableProxyProtocol: TfArg.literal(false),
+        natSubnets: TfArg.literal([lbSubnet.selfLink.interpolation]),
+        targetService: TfArg.ref(lbBackend.selfLink),
+      ),
+    );
+
+    final regionalBackend = add(
+      GoogleComputeRegionBackendService(
+        localName: 'regional_backend',
+        name: TfArg.literal('app-regional-backend'),
+        region: TfArg.literal(region),
+        protocol: TfArg.literal(RegionBackendServiceProtocol.tcp),
+        loadBalancingScheme:
+            TfArg.literal(RegionBackendServiceLoadBalancingScheme.internal),
+        backends: [
+          ComputeRegionBackendServiceRegionBackendServiceBackend(
+            group: TfArg.ref(lbNeg.selfLink),
+            balancingMode: RegionBackendServiceBalancingMode.connection,
+          ),
+        ],
+      ),
+    );
+
+    final regionalNeg = add(
+      GoogleComputeRegionNetworkEndpointGroup(
+        localName: 'regional_neg',
+        name: TfArg.literal('app-regional-neg'),
+        region: TfArg.literal(region),
+        networkEndpointType: TfArg.literal(
+          RegionNetworkEndpointGroupType.internetIpPort,
+        ),
+        network: TfArg.ref(lbVpc.selfLink),
+      ),
+    );
+
+    add(
+      GoogleComputeRegionNetworkEndpoint(
+        localName: 'regional_neg_endpoint',
+        regionNetworkEndpointGroup: TfArg.ref(regionalNeg.id),
+        ipAddress: TfArg.literal('10.20.0.3'),
+        port: TfArg.literal(443),
+        region: TfArg.literal(region),
+      ),
+    );
+
+    add(
+      GoogleComputeRegionSslPolicy(
+        localName: 'regional_ssl_policy',
+        name: TfArg.literal('app-regional-ssl-policy'),
+        region: TfArg.literal(region),
+        profile: TfArg.literal('MODERN'),
+        minTlsVersion: TfArg.literal('TLS_1_2'),
+      ),
+    );
+
+    add(
+      GoogleComputeRegionSecurityPolicy(
+        localName: 'regional_armor',
+        name: TfArg.literal('app-regional-armor'),
+        region: TfArg.literal(region),
+        type: TfArg.literal('CLOUD_ARMOR'),
+      ),
+    );
+
+    add(
+      GoogleComputeRegionTargetTcpProxy(
+        localName: 'regional_tcp_proxy',
+        name: TfArg.literal('app-regional-tcp-proxy'),
+        region: TfArg.literal(region),
+        backendService: TfArg.ref(regionalBackend.selfLink),
+      ),
+    );
+
+    final globalInternetNeg = add(
+      GoogleComputeGlobalNetworkEndpointGroup(
+        localName: 'global_internet_neg',
+        name: TfArg.literal('app-global-internet-neg'),
+        networkEndpointType:
+            TfArg.literal(GlobalNetworkEndpointGroupType.internetIpPort),
+        defaultPort: TfArg.literal(443),
+      ),
+    );
+
+    add(
+      GoogleComputeGlobalNetworkEndpoint(
+        localName: 'global_internet_endpoint',
+        globalNetworkEndpointGroup: TfArg.ref(globalInternetNeg.id),
+        ipAddress: TfArg.literal('203.0.113.10'),
+        port: TfArg.literal(443),
+      ),
+    );
   }
 }

@@ -1,0 +1,15 @@
+name: terradart_example_eventarc_quickstart
+description: Eventarc quickstart — Waves 17 (channel, message bus, pipeline, trigger).
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.12.8
+  terradart_google: ^0.12.8
+
+dev_dependencies:
+  lints: ^6.0.0
