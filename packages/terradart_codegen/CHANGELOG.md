@@ -4,6 +4,12 @@
 
 **BREAKING** — removes the `terradart codegen` CLI subcommand, `runCodegen`, `CodegenResult`, and `FileEmitter`. Maintainer generation is `terradart wrap` only. See [MIGRATING.md](../../MIGRATING.md).
 
+## 0.12.6
+
+Maintainer:
+
+- **Added** — Wave 10 GKE Backup overrides (six `google_gke_backup_*` types; plan IAM is `iam_member`-only).
+
 ## 0.12.5
 
 Maintainer:

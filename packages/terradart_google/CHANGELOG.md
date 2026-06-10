@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.12.6 - 2026-06-09
+
+**ADDED** — Wave 10 (GKE Backup):
+
+- `google_gke_backup_backup_plan` / `google_gke_backup_restore_plan`
+- `google_gke_backup_backup_channel` / `google_gke_backup_restore_channel`
+- Plan-scoped IAM: `*_iam_member` (×2; binding/policy stay uncurated — member-only IAM policy)
+- New `package:terradart_google/gke_backup.dart` barrel (28 service barrels total).
+
+Catalog: **131 curated resource factories + 1 data source** (132 entries). Additive; no breaking API changes vs `0.12.5`.
+
 ## 0.12.5 - 2026-06-09
 
 **ADDED** — Wave 9 (GKE Hub):
