@@ -25,7 +25,7 @@ Read [`CONTEXT.md`](../../../CONTEXT.md) for vocabulary. Generation policy and p
 
 **Task progress:**
 
-- [ ] 1. **Confirm the type** exists in `schema.json`. Note the exact `google_*` key (do not infer from MM product file names).
+- [ ] 1. **Confirm the type** exists in `schema.json`. Note the exact `google_*` key (do not infer from MM product file names). For IAM adjuncts, curate `*_iam_member` only — `*_iam_binding` / `*_iam_policy` are authoritative and land only on an explicit maintainer decision (allowlist-gated in `yaml_loader_test.dart`).
 - [ ] 2. **Manifest:** add or update **one** row in `tool/mm_yaml_sources.yaml` (`upstream` path or `null` with reason). Every curated override must have a manifest entry.
 - [ ] 3. **MM fixture (when `upstream` is set):** run `dart tool/sync_mm_yaml.dart` for that type only if you intend to consume new MM hints in this PR.
 - [ ] 4. **New resource only:** scaffold with `terradart wrap-init` (skip when editing an existing override).
