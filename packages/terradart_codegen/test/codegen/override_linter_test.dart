@@ -49,11 +49,11 @@ void main() {
       expect(lintOverride('google_x', o), isEmpty);
     });
 
-    test('flags exactly_one optional fanout (phase 2)', () {
+    test('flags exactly_one optional fanout on canonical sibling groups', () {
       const mm = MmResourceOverrides(
         fieldOverrides: {},
         exactlyOneOfGroups: [
-          ['oidc', 'aws', 'saml', 'x509'],
+          ['oidc.oidc', 'oidc.aws', 'oidc.saml'],
         ],
       );
       const o = WrapperOverride(
@@ -127,6 +127,37 @@ void main() {
         [
           ['aws', 'oidc', 'saml'],
         ],
+      );
+    });
+
+    test('clean: exactly-one optional fanout suppressed by debt allowlist', () {
+      const mm = MmResourceOverrides(
+        fieldOverrides: {},
+        exactlyOneOfGroups: [
+          ['oidc', 'aws'],
+        ],
+      );
+      const o = WrapperOverride(
+        outputDir: 'iam',
+        customSlots: {
+          'oidc': CustomSlot(
+            paramDeclaration: 'Oidc? oidc',
+            argMapEntry: "if (oidc != null) 'oidc': TfArg.literal([]),",
+          ),
+          'aws': CustomSlot(
+            paramDeclaration: 'Aws? aws',
+            argMapEntry: "if (aws != null) 'aws': TfArg.literal([]),",
+          ),
+        },
+      );
+      expect(
+        lintOverride(
+          'google_x',
+          o,
+          mm: mm,
+          exactlyOneOptionalFanoutDebt: {'google_x'},
+        ),
+        isEmpty,
       );
     });
 

@@ -82,7 +82,35 @@ class LintOverrideCommand extends Command<int> {
         ? mmDirArg
         : defaultMmFixtureDirForOverrideRoot(rootDir);
     final mmByType = loadMmFixtures(mmDir, loaded.all.keys);
-    final violations = lintOverrides(loaded.all, mmByType: mmByType);
+    final debtPath = exactlyOneLintDebtPathForOverrideRoot(rootDir);
+    final debt = loadExactlyOneLintDebt(debtPath);
+    final staleDebt = staleExactlyOneOptionalFanoutDebt(
+      loaded.all,
+      mmByType: mmByType,
+      debt: debt.keys.toSet(),
+    );
+    if (staleDebt.isNotEmpty) {
+      stderr.writeln(
+          'lint-override: stale tool/exactly_one_lint_debt.yaml entries:');
+      for (final tf in staleDebt) {
+        stderr.writeln(
+            '  $tf (override no longer violates exactly-one-optional-fanout)');
+      }
+      return CliExitCodes.dataError;
+    }
+    for (final tf in debt.keys) {
+      if (!loaded.all.containsKey(tf)) {
+        stderr.writeln(
+          'lint-override: tool/exactly_one_lint_debt.yaml lists unknown override $tf',
+        );
+        return CliExitCodes.dataError;
+      }
+    }
+    final violations = lintOverrides(
+      loaded.all,
+      mmByType: mmByType,
+      exactlyOneOptionalFanoutDebt: debt.keys.toSet(),
+    );
 
     if (violations.isEmpty) {
       stdout.writeln(
@@ -109,6 +137,39 @@ String defaultMmFixtureDirForOverrideRoot(String overrideYamlRoot) {
     p.join(overrideYamlRoot, '..', '..', '..', '..', '..'),
   );
   return p.join(codegenPackageRoot, 'test', 'fixtures', 'wrap', 'source', 'mm');
+}
+
+@visibleForTesting
+String exactlyOneLintDebtPathForOverrideRoot(String overrideYamlRoot) {
+  final codegenPackageRoot = p.normalize(
+    p.join(overrideYamlRoot, '..', '..', '..', '..', '..'),
+  );
+  final repoRoot = p.normalize(p.join(codegenPackageRoot, '..', '..'));
+  return p.join(repoRoot, 'tool', 'exactly_one_lint_debt.yaml');
+}
+
+@visibleForTesting
+Map<String, String> loadExactlyOneLintDebt(String path) {
+  final file = File(path);
+  if (!file.existsSync()) return const {};
+  final entries = <String, String>{};
+  for (final raw in file.readAsLinesSync()) {
+    final line = raw.trim();
+    if (line.isEmpty || line.startsWith('#')) continue;
+    final sep = line.indexOf(':');
+    if (sep <= 0) {
+      throw FormatException(
+          'tool/exactly_one_lint_debt.yaml: unparsable line "$raw"');
+    }
+    final name = line.substring(0, sep).trim();
+    final reason = line.substring(sep + 1).trim();
+    if (reason.isEmpty) {
+      throw FormatException(
+          'tool/exactly_one_lint_debt.yaml: $name needs a reason');
+    }
+    entries[name] = reason;
+  }
+  return entries;
 }
 
 @visibleForTesting

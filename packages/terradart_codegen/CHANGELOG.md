@@ -7,6 +7,9 @@
 Maintainer:
 
 - **Added** — `lint-override` phase-2 rule `exactly-one-paramorder-fanout` when MM YAML declares an `exactly_one_of` sibling group but the override lists two or more **schema-default** members in `paramOrder` without a sealed virtual `customSlot` (closes the `customSlots`-less escape hatch).
+- **Changed** — `exactly-one-optional-fanout` now uses canonical MM sibling groups; pre-existing violations are listed in `tool/exactly_one_lint_debt.yaml` (#107).
+- **Added** — `tool/example_synth_gates.dart` (synth-based example coverage + API-enablement dependency checker, #108).
+- **Added** — label-gated `apply-smoke` GitHub workflow + `tool/apply_smoke.sh` (#109).
 
 ## 0.12.6
 
