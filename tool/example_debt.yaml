@@ -1,0 +1,56 @@
+# Curated factories not yet exercised by any example quickstart.
+#
+# Policy (AGENTS.md "Wave shipping policy"): every NEW factory must appear in
+# an example within its Wave PR. Pre-existing gaps live here explicitly, one
+# `ClassName: reason` line each. `tool/check_docs_consistency.dart` fails when
+# a factory is neither covered nor listed, and when a listed factory becomes
+# covered (remove the line) — adding a line is a reviewed decision, not a
+# default.
+GoogleBigqueryCapacityCommitment: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleBigqueryConnection: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleBigqueryDataTransferConfig: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleBigqueryJob: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleBigqueryReservation: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleBigqueryRoutine: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleCloudfunctions2FunctionIamMember: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleComputeAutoscaler: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleComputeBackendBucket: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleComputeFirewall: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleComputeForwardingRule: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleComputeGlobalNetworkEndpointGroup: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleComputeInstanceGroupManager: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleComputeInstanceTemplate: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleComputeRegionAutoscaler: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleComputeRegionBackendService: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleComputeRegionHealthCheck: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleComputeRegionInstanceGroupManager: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleComputeRegionNetworkEndpointGroup: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleComputeRegionTargetHttpProxy: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleComputeRegionTargetHttpsProxy: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleComputeRegionUrlMap: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleComputeSslCertificate: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleComputeTargetHttpProxy: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleEventarcTrigger: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleFirebaseAppCheckAppAttestConfig: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleFirebaseAppCheckDebugToken: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleFirebaseAppCheckDeviceCheckConfig: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleFirebaseAppCheckPlayIntegrityConfig: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleFirebaseAppCheckResourcePolicy: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleFirebaseAppHostingBuild: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleFirebaseAppHostingDefaultDomain: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleFirebaseAppHostingTraffic: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleFirestoreBackupSchedule: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleFirestoreField: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleFirestoreUserCreds: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleIapWebBackendServiceIamBinding: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleLoggingFolderSink: needs folder-level permissions beyond a quickstart project
+GoogleLoggingMetric: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleLoggingOrganizationSink: needs org-level permissions beyond a quickstart project
+GoogleMonitoringDashboard: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleMonitoringMetricDescriptor: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleMonitoringNotificationChannel: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleMonitoringService: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleMonitoringUptimeCheckConfig: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleProject: creating projects needs org/billing scope beyond a quickstart project
+GooglePubsubSchema: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleStorageNotification: pre-existing gap (Waves 1-9) — backfill candidate

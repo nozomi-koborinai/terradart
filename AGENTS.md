@@ -28,6 +28,7 @@ The supported maintainer generation path is `terradart wrap`.
 A **Wave** is a user-visible release batch of related curated factories. A Wave PR is complete only when:
 
 - Every new or breaking factory has a **runnable example** (new `examples/*_quickstart` or an extended existing example).
+- Example coverage is machine-checked: `dart tool/check_docs_consistency.dart` fails when a curated factory is exercised by no example and not listed in [`tool/example_debt.yaml`](tool/example_debt.yaml) with a reason. Stale entries (factory now covered) also fail — adding a debt line is a reviewed decision, not a default.
 - Breaking API changes include **`MIGRATING.md`** and updated examples in the same PR.
 - Catalog counts, README Examples list, and CI `terraform_validate` matrix (for new quickstarts) move in lockstep.
 
@@ -181,5 +182,6 @@ There is no long-running dev server for core work. Primary flows:
 - Prefer small, reviewable changes. Keep unrelated cleanup out of feature work.
 - Do not rely on Gitignored `docs/` as authoritative context for cloud-agent work.
 - If a cloud agent needs durable guidance, prefer checked-in tooling/CI; otherwise add concise guidance to `AGENTS.md` or vocabulary to `CONTEXT.md`.
+- When human review finds an agent deviation, close it with a machine gate (lint rule, `tool/` check, or an explicit allowlist) rather than prose-only guidance — prose rules drift; gates converge.
 - Keep long-form design notes in `docs/` unless they are intentionally being promoted into public docs or committed agent guidance.
 - After substantive edits, run `tool/agent_verify.sh` when feasible and report what did or did not run.
