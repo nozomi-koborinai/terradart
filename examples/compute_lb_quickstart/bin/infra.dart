@@ -20,6 +20,8 @@ Future<void> main() async {
       'variable': {
         'lb_self_managed_certificate': {'type': 'string', 'sensitive': true},
         'lb_self_managed_private_key': {'type': 'string', 'sensitive': true},
+        'lb_regional_certificate': {'type': 'string', 'sensitive': true},
+        'lb_regional_private_key': {'type': 'string', 'sensitive': true},
       },
     }),
   );

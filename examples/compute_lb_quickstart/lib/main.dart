@@ -125,6 +125,15 @@ final class ComputeLbStack extends Stack {
       ),
     );
 
+    final selfManagedCert = add(
+      GoogleComputeSslCertificate(
+        localName: 'self_managed_cert',
+        name: TfArg.literal('app-self-managed-cert'),
+        certificate: TfArg.variable('lb_self_managed_certificate'),
+        privateKey: TfArg.variable('lb_self_managed_private_key'),
+      ),
+    );
+
     // ---- 3a. Health check ------------------------------------------------
     //
     // An HTTPS probe on `/healthz` that the backend service consults to
@@ -304,7 +313,9 @@ final class ComputeLbStack extends Stack {
         localName: 'lb_ssl_proxy',
         name: TfArg.literal('app-lb-ssl-proxy'),
         backendService: TfArg.ref(lbBackend.selfLink),
-        sslCertificates: TfArg.literal([lbCert.selfLink.interpolation]),
+        sslCertificates:
+            TfArg.literal([selfManagedCert.selfLink.interpolation]),
+        dependsOn: [ResourceDependency(selfManagedCert)],
       ),
     );
 
@@ -344,6 +355,19 @@ final class ComputeLbStack extends Stack {
       ),
     );
 
+    final regionalHealthCheck = add(
+      GoogleComputeRegionHealthCheck(
+        localName: 'regional_hc',
+        name: TfArg.literal('app-regional-hc'),
+        region: TfArg.literal(region),
+        httpsHealthCheck: ComputeRegionHealthCheckRegionHealthCheckHttpsConfig(
+          port: TfArg.literal(443),
+          requestPath: TfArg.literal('/healthz'),
+          portSpecification: RegionHealthCheckPortSpecification.useFixedPort,
+        ),
+      ),
+    );
+
     final regionalBackend = add(
       GoogleComputeRegionBackendService(
         localName: 'regional_backend',
@@ -352,12 +376,15 @@ final class ComputeLbStack extends Stack {
         protocol: TfArg.literal(RegionBackendServiceProtocol.tcp),
         loadBalancingScheme:
             TfArg.literal(RegionBackendServiceLoadBalancingScheme.internal),
+        healthChecks:
+            TfArg.literal([regionalHealthCheck.selfLink.interpolation]),
         backends: [
           ComputeRegionBackendServiceRegionBackendServiceBackend(
             group: TfArg.ref(lbNeg.selfLink),
             balancingMode: RegionBackendServiceBalancingMode.connection,
           ),
         ],
+        dependsOn: [ResourceDependency(regionalHealthCheck)],
       ),
     );
 
@@ -383,13 +410,23 @@ final class ComputeLbStack extends Stack {
       ),
     );
 
-    add(
+    final regionalSslPolicy = add(
       GoogleComputeRegionSslPolicy(
         localName: 'regional_ssl_policy',
         name: TfArg.literal('app-regional-ssl-policy'),
         region: TfArg.literal(region),
         profile: TfArg.literal('MODERN'),
         minTlsVersion: TfArg.literal('TLS_1_2'),
+      ),
+    );
+
+    final regionalSslCert = add(
+      GoogleComputeRegionSslCertificate(
+        localName: 'regional_cert',
+        name: TfArg.literal('app-regional-cert'),
+        region: TfArg.literal(region),
+        certificate: TfArg.variable('lb_regional_certificate'),
+        privateKey: TfArg.variable('lb_regional_private_key'),
       ),
     );
 
@@ -527,7 +564,7 @@ final class ComputeLbStack extends Stack {
       ),
     );
 
-    add(
+    final httpProxy = add(
       GoogleComputeTargetHttpProxy(
         localName: 'http_proxy',
         name: TfArg.literal('app-http-proxy'),
@@ -536,11 +573,16 @@ final class ComputeLbStack extends Stack {
     );
 
     add(
-      GoogleComputeSslCertificate(
-        localName: 'self_managed_cert',
-        name: TfArg.literal('app-self-managed-cert'),
-        certificate: TfArg.variable('lb_self_managed_certificate'),
-        privateKey: TfArg.variable('lb_self_managed_private_key'),
+      GoogleComputeGlobalForwardingRule(
+        localName: 'lb_http_forwarding_rule',
+        name: TfArg.literal('app-lb-http-forwarding-rule'),
+        ipAddress: TfArg.ref(lbVip.addressRef),
+        ipProtocol: TfArg.literal(GlobalForwardingRuleIpProtocol.tcp),
+        portRange: TfArg.literal('80'),
+        loadBalancingScheme: TfArg.literal(
+          GlobalForwardingRuleLoadBalancingScheme.externalManaged,
+        ),
+        target: TfArg.ref(httpProxy.selfLink),
       ),
     );
 
@@ -554,19 +596,6 @@ final class ComputeLbStack extends Stack {
       ),
     );
 
-    add(
-      GoogleComputeRegionHealthCheck(
-        localName: 'regional_hc',
-        name: TfArg.literal('app-regional-hc'),
-        region: TfArg.literal(region),
-        httpsHealthCheck: ComputeRegionHealthCheckRegionHealthCheckHttpsConfig(
-          port: TfArg.literal(443),
-          requestPath: TfArg.literal('/healthz'),
-          portSpecification: RegionHealthCheckPortSpecification.useFixedPort,
-        ),
-      ),
-    );
-
     final regionUrlMap = add(
       GoogleComputeRegionUrlMap(
         localName: 'regional_url_map',
@@ -576,7 +605,7 @@ final class ComputeLbStack extends Stack {
       ),
     );
 
-    add(
+    final regionHttpProxy = add(
       GoogleComputeRegionTargetHttpProxy(
         localName: 'regional_http_proxy',
         name: TfArg.literal('app-regional-http-proxy'),
@@ -591,12 +620,13 @@ final class ComputeLbStack extends Stack {
         name: TfArg.literal('app-regional-https-proxy'),
         region: TfArg.literal(region),
         urlMap: TfArg.ref(regionUrlMap.selfLink),
-        sslCertificates: TfArg.literal([
-          'projects/$projectId/regions/$region/sslCertificates/regional-placeholder',
-        ]),
-        sslPolicy: TfArg.literal(
-          'projects/$projectId/regions/$region/sslPolicies/app-regional-ssl-policy',
-        ),
+        sslCertificates:
+            TfArg.literal([regionalSslCert.selfLink.interpolation]),
+        sslPolicy: TfArg.ref(regionalSslPolicy.selfLink),
+        dependsOn: [
+          ResourceDependency(regionalSslCert),
+          ResourceDependency(regionalSslPolicy),
+        ],
       ),
     );
 
@@ -645,6 +675,23 @@ final class ComputeLbStack extends Stack {
         ipAddress: TfArg.ref(ilbAddress.selfLink),
         ipProtocol: TfArg.literal(ForwardingRuleIpProtocol.tcp),
         portRange: TfArg.literal('443'),
+        loadBalancingScheme: TfArg.literal(
+          ForwardingRuleLoadBalancingScheme.internalManaged,
+        ),
+      ),
+    );
+
+    add(
+      GoogleComputeForwardingRule(
+        localName: 'ilb_http',
+        name: TfArg.literal('app-ilb-http'),
+        region: TfArg.literal(region),
+        target: TfArg.ref(regionHttpProxy.selfLink),
+        network: TfArg.ref(lbVpc.selfLink),
+        subnetwork: TfArg.ref(lbSubnet.selfLink),
+        ipAddress: TfArg.ref(ilbAddress.selfLink),
+        ipProtocol: TfArg.literal(ForwardingRuleIpProtocol.tcp),
+        portRange: TfArg.literal('80'),
         loadBalancingScheme: TfArg.literal(
           ForwardingRuleLoadBalancingScheme.internalManaged,
         ),

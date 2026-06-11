@@ -26,7 +26,7 @@ Policy and pitfalls live in [`AGENTS.md`](../../../AGENTS.md) at the repo root. 
 **Task progress:**
 
 - [ ] 1. From the **repository root**, run `dart pub get` if dependencies changed.
-- [ ] 2. Run `tool/agent_verify.sh` and confirm it exits 0 (`agent_verify: OK`).
+- [ ] 2. Run `tool/agent_verify.sh` and confirm it exits 0 (`agent_verify: OK`). This includes `check_example_topology` (strict quickstarts only).
 - [ ] 3. `check_docs_consistency` (step 2) already synths all quickstarts and runs `terraform validate` per example when `terraform` is on `PATH`.
 - [ ] 4. If you touched `pubsub_quickstart` or synth/export paths, run `tool/smoke_quickstart.sh`.
 - [ ] 5. Report which commands ran in the PR or task summary.
