@@ -45,10 +45,65 @@ Future<void> runExampleSynthGates(List<String> errors) async {
   for (final entry in synthByExample.entries) {
     checkApiEnablement(entry.key, entry.value, errors);
   }
+  await _checkTerraformValidate(errors, quickstarts);
 
   print(
     'example synth: ${quickstarts.length} quickstarts, '
     '${allTfTypes.length} distinct tfTypes in synth output',
+  );
+}
+
+/// Runs `terraform init` + `terraform validate` on each quickstart's synth
+/// output. Catches nested-block shape mistakes that synth-only coverage
+/// misses (e.g. wrong keys inside `destination_dataset`).
+Future<void> _checkTerraformValidate(
+  List<String> errors,
+  List<String> quickstarts,
+) async {
+  final which = await Process.run('which', ['terraform']);
+  if (which.exitCode != 0) {
+    print('example terraform validate: skipped (terraform not on PATH)');
+    return;
+  }
+
+  var validated = 0;
+  for (final slug in quickstarts) {
+    final tfOut = Directory('examples/$slug/tf-out');
+    final mainTf = File('${tfOut.path}/main.tf.json');
+    if (!mainTf.existsSync()) {
+      errors.add(
+        'examples/$slug: missing tf-out/main.tf.json before terraform validate',
+      );
+      continue;
+    }
+    final init = await Process.run(
+      'terraform',
+      ['init', '-backend=false', '-input=false', '-reconfigure'],
+      workingDirectory: tfOut.path,
+    );
+    if (init.exitCode != 0) {
+      errors.add(
+        'examples/$slug: terraform init failed (exit ${init.exitCode})\n'
+        '${init.stderr}',
+      );
+      continue;
+    }
+    final validate = await Process.run(
+      'terraform',
+      ['validate'],
+      workingDirectory: tfOut.path,
+    );
+    if (validate.exitCode != 0) {
+      errors.add(
+        'examples/$slug: terraform validate failed (exit ${validate.exitCode})\n'
+        '${validate.stderr}',
+      );
+      continue;
+    }
+    validated++;
+  }
+  print(
+    'example terraform validate: $validated/${quickstarts.length} quickstarts OK',
   );
 }
 

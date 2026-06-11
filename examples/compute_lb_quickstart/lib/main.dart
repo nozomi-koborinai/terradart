@@ -446,5 +446,209 @@ final class ComputeLbStack extends Stack {
         port: TfArg.literal(443),
       ),
     );
+
+    // ---- Backfill: fleet, firewall, HTTP path, backend bucket, regional ILB ---
+
+    add(
+      GoogleComputeFirewall(
+        localName: 'allow_lb_health',
+        name: TfArg.literal('app-allow-lb-health'),
+        network: TfArg.ref(lbVpc.selfLink),
+        direction: TfArg.literal(FirewallDirection.ingress),
+        allow: [
+          ComputeFirewallFirewallAllowRule(
+            protocol: TfArg.literal('tcp'),
+            ports: ['443'],
+          ),
+        ],
+        sourceRanges: TfArg.literal(['130.211.0.0/22', '35.191.0.0/16']),
+      ),
+    );
+
+    final webTemplate = add(
+      GoogleComputeInstanceTemplate(
+        localName: 'web_template',
+        namePrefix: TfArg.literal('app-web-'),
+        machineType: TfArg.literal('e2-small'),
+        disk: [
+          ComputeInstanceTemplateInstanceTemplateDisk(
+            boot: TfArg.literal(true),
+            sourceImage: TfArg.literal('debian-cloud/debian-12'),
+            autoDelete: TfArg.literal(true),
+          ),
+        ],
+        networkInterface: [
+          ComputeInstanceTemplateInstanceTemplateNetworkInterface(
+            network: TfArg.ref(lbVpc.selfLink),
+            subnetwork: TfArg.ref(lbSubnet.selfLink),
+          ),
+        ],
+      ),
+    );
+
+    final webMig = add(
+      GoogleComputeInstanceGroupManager(
+        localName: 'web_mig',
+        name: TfArg.literal('app-web-mig'),
+        zone: TfArg.literal(zone),
+        baseInstanceName: TfArg.literal('app-web'),
+        targetSize: TfArg.literal(1),
+        versions: [
+          ComputeInstanceGroupManagerInstanceGroupManagerVersion(
+            name: TfArg.literal('default'),
+            instanceTemplate: TfArg.ref(webTemplate.selfLink),
+          ),
+        ],
+      ),
+    );
+
+    add(
+      GoogleComputeAutoscaler(
+        localName: 'web_autoscaler',
+        name: TfArg.literal('app-web-autoscaler'),
+        zone: TfArg.literal(zone),
+        target: TfArg.ref(webMig.selfLink),
+        autoscalingPolicy: ComputeAutoscalerAutoscalerAutoscalingPolicy(
+          minReplicas: TfArg.literal(1),
+          maxReplicas: TfArg.literal(3),
+          cpuUtilization: ComputeAutoscalerAutoscalerCpuUtilization(
+            target: TfArg.literal(0.7),
+          ),
+        ),
+      ),
+    );
+
+    add(
+      GoogleComputeBackendBucket(
+        localName: 'static_assets',
+        name: TfArg.literal('app-static-assets'),
+        bucketName: TfArg.literal('my-app-static-assets'),
+        enableCdn: TfArg.literal(true),
+      ),
+    );
+
+    add(
+      GoogleComputeTargetHttpProxy(
+        localName: 'http_proxy',
+        name: TfArg.literal('app-http-proxy'),
+        urlMap: TfArg.ref(lbUrlMap.selfLink),
+      ),
+    );
+
+    add(
+      GoogleComputeSslCertificate(
+        localName: 'self_managed_cert',
+        name: TfArg.literal('app-self-managed-cert'),
+        certificate: TfArg.variable('lb_self_managed_certificate'),
+        privateKey: TfArg.variable('lb_self_managed_private_key'),
+      ),
+    );
+
+    final ilbAddress = add(
+      GoogleComputeAddress(
+        localName: 'ilb_vip',
+        name: TfArg.literal('app-ilb-vip'),
+        region: TfArg.literal(region),
+        subnetwork: TfArg.ref(lbSubnet.selfLink),
+        addressType: TfArg.literal(AddressType.internal),
+      ),
+    );
+
+    add(
+      GoogleComputeRegionHealthCheck(
+        localName: 'regional_hc',
+        name: TfArg.literal('app-regional-hc'),
+        region: TfArg.literal(region),
+        httpsHealthCheck: ComputeRegionHealthCheckRegionHealthCheckHttpsConfig(
+          port: TfArg.literal(443),
+          requestPath: TfArg.literal('/healthz'),
+          portSpecification: RegionHealthCheckPortSpecification.useFixedPort,
+        ),
+      ),
+    );
+
+    final regionUrlMap = add(
+      GoogleComputeRegionUrlMap(
+        localName: 'regional_url_map',
+        name: TfArg.literal('app-regional-url-map'),
+        region: TfArg.literal(region),
+        defaultService: TfArg.ref(regionalBackend.selfLink),
+      ),
+    );
+
+    add(
+      GoogleComputeRegionTargetHttpProxy(
+        localName: 'regional_http_proxy',
+        name: TfArg.literal('app-regional-http-proxy'),
+        region: TfArg.literal(region),
+        urlMap: TfArg.ref(regionUrlMap.selfLink),
+      ),
+    );
+
+    final regionHttpsProxy = add(
+      GoogleComputeRegionTargetHttpsProxy(
+        localName: 'regional_https_proxy',
+        name: TfArg.literal('app-regional-https-proxy'),
+        region: TfArg.literal(region),
+        urlMap: TfArg.ref(regionUrlMap.selfLink),
+        sslCertificates: TfArg.literal([
+          'projects/$projectId/regions/$region/sslCertificates/regional-placeholder',
+        ]),
+        sslPolicy: TfArg.literal(
+          'projects/$projectId/regions/$region/sslPolicies/app-regional-ssl-policy',
+        ),
+      ),
+    );
+
+    final regionalMig = add(
+      GoogleComputeRegionInstanceGroupManager(
+        localName: 'regional_web_mig',
+        name: TfArg.literal('app-regional-web-mig'),
+        region: TfArg.literal(region),
+        baseInstanceName: TfArg.literal('app-regional-web'),
+        targetSize: TfArg.literal(2),
+        distributionPolicyZones: TfArg.literal([zone]),
+        versions: [
+          ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion(
+            name: TfArg.literal('default'),
+            instanceTemplate: TfArg.ref(webTemplate.selfLink),
+          ),
+        ],
+      ),
+    );
+
+    add(
+      GoogleComputeRegionAutoscaler(
+        localName: 'regional_web_autoscaler',
+        name: TfArg.literal('app-regional-web-autoscaler'),
+        region: TfArg.literal(region),
+        target: TfArg.ref(regionalMig.selfLink),
+        autoscalingPolicy:
+            ComputeRegionAutoscalerRegionAutoscalerAutoscalingPolicy(
+          minReplicas: TfArg.literal(2),
+          maxReplicas: TfArg.literal(6),
+          cpuUtilization: ComputeRegionAutoscalerRegionAutoscalerCpuUtilization(
+            target: TfArg.literal(0.65),
+          ),
+        ),
+      ),
+    );
+
+    add(
+      GoogleComputeForwardingRule(
+        localName: 'ilb_https',
+        name: TfArg.literal('app-ilb-https'),
+        region: TfArg.literal(region),
+        target: TfArg.ref(regionHttpsProxy.selfLink),
+        network: TfArg.ref(lbVpc.selfLink),
+        subnetwork: TfArg.ref(lbSubnet.selfLink),
+        ipAddress: TfArg.ref(ilbAddress.selfLink),
+        ipProtocol: TfArg.literal(ForwardingRuleIpProtocol.tcp),
+        portRange: TfArg.literal('443'),
+        loadBalancingScheme: TfArg.literal(
+          ForwardingRuleLoadBalancingScheme.internalManaged,
+        ),
+      ),
+    );
   }
 }

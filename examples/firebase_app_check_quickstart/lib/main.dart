@@ -53,5 +53,50 @@ final class AppCheckStack extends Stack {
         enforcementMode: TfArg.literal(AppCheckEnforcementMode.enforced),
       ),
     );
+
+    // ---- Backfill: per-platform providers + debug token + resource policy ----
+
+    add(
+      GoogleFirebaseAppCheckAppAttestConfig(
+        localName: 'ios_app_attest',
+        appId: TfArg.literal('1:1234567890:ios:abcdef'),
+      ),
+    );
+
+    add(
+      GoogleFirebaseAppCheckDeviceCheckConfig(
+        localName: 'ios_device_check',
+        appId: TfArg.literal('1:1234567890:ios:legacy'),
+        keyId: TfArg.literal('ABCDEFGHIJ'),
+        privateKey: TfArg.variable('device_check_private_key'),
+      ),
+    );
+
+    add(
+      GoogleFirebaseAppCheckPlayIntegrityConfig(
+        localName: 'android_play_integrity',
+        appId: TfArg.literal('1:1234567890:android:abcdef'),
+      ),
+    );
+
+    add(
+      GoogleFirebaseAppCheckDebugToken(
+        localName: 'ci_debug_token',
+        appId: TfArg.literal('1:1234567890:web:abcdef'),
+        displayName: TfArg.literal('CI debug token'),
+        token: TfArg.variable('app_check_debug_token'),
+      ),
+    );
+
+    add(
+      GoogleFirebaseAppCheckResourcePolicy(
+        localName: 'ios_oauth_policy',
+        serviceId: TfArg.literal('oauth2.googleapis.com'),
+        targetResource: TfArg.literal(
+          '//oauth2.googleapis.com/projects/123456789/oauthClients/example-client',
+        ),
+        enforcementMode: TfArg.literal(AppCheckEnforcementMode.unenforced),
+      ),
+    );
   }
 }

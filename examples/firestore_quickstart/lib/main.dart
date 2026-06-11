@@ -54,5 +54,34 @@ final class MessagesStack extends Stack {
         ],
       ),
     );
+
+    // ---- Backfill: field overrides, backup schedule, user creds -------------
+
+    add(
+      GoogleFirestoreField(
+        localName: 'expires_at_ttl',
+        collection: TfArg.literal('messages'),
+        field: TfArg.literal('expires_at'),
+        database: TfArg.ref(db.nameRef),
+        ttlConfig: const FirestoreFieldTtlConfig(),
+      ),
+    );
+
+    add(
+      GoogleFirestoreBackupSchedule(
+        localName: 'daily_backup',
+        database: TfArg.ref(db.nameRef),
+        retention: TfArg.literal('604800s'),
+        recurrence: const FirestoreBackupScheduleDailyRecurrence(),
+      ),
+    );
+
+    add(
+      GoogleFirestoreUserCreds(
+        localName: 'analytics_reader',
+        database: TfArg.ref(db.nameRef),
+        name: TfArg.literal('analytics-reader'),
+      ),
+    );
   }
 }

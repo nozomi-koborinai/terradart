@@ -19,6 +19,8 @@ Future<void> main() async {
     const JsonEncoder.withIndent('  ').convert({
       'variable': {
         'recaptcha_v3_site_secret': {'type': 'string', 'sensitive': true},
+        'app_check_debug_token': {'type': 'string', 'sensitive': true},
+        'device_check_private_key': {'type': 'string', 'sensitive': true},
       },
     }),
   );

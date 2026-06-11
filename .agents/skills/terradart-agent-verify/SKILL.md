@@ -27,7 +27,7 @@ Policy and pitfalls live in [`AGENTS.md`](../../../AGENTS.md) at the repo root. 
 
 - [ ] 1. From the **repository root**, run `dart pub get` if dependencies changed.
 - [ ] 2. Run `tool/agent_verify.sh` and confirm it exits 0 (`agent_verify: OK`).
-- [ ] 3. If you changed versions or catalog counts, also run `dart tool/check_docs_consistency.dart`.
+- [ ] 3. `check_docs_consistency` (step 2) already synths all quickstarts and runs `terraform validate` per example when `terraform` is on `PATH`.
 - [ ] 4. If you touched `pubsub_quickstart` or synth/export paths, run `tool/smoke_quickstart.sh`.
 - [ ] 5. Report which commands ran in the PR or task summary.
 
@@ -42,6 +42,6 @@ Use `--maintainer` when changing `wrap-init`, `wrap-promote`, or their tests.
 
 ## What this does not cover
 
-- Full `terraform validate` across every example (GitHub Actions enforces that on merge).
+- Parallel CI `terraform_validate` matrix fan-out (local gate validates sequentially via `example_synth_gates.dart`).
 - Live GCP `terraform apply`.
 - Publishing to pub.dev or cutting release tags (maintainer manual steps after merge).

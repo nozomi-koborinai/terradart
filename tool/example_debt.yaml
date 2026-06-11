@@ -6,39 +6,8 @@
 # a factory is neither covered nor listed, and when a listed factory becomes
 # covered (remove the line) — adding a line is a reviewed decision, not a
 # default.
-GoogleBigqueryCapacityCommitment: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleBigqueryDataTransferConfig: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleBigqueryJob: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleBigqueryRoutine: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleCloudfunctions2FunctionIamMember: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleComputeAutoscaler: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleComputeBackendBucket: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleComputeFirewall: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleComputeForwardingRule: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleComputeInstanceGroupManager: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleComputeInstanceTemplate: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleComputeRegionAutoscaler: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleComputeRegionHealthCheck: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleComputeRegionInstanceGroupManager: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleComputeRegionTargetHttpProxy: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleComputeRegionTargetHttpsProxy: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleComputeRegionUrlMap: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleComputeSslCertificate: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleComputeTargetHttpProxy: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleFirebaseAppCheckAppAttestConfig: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleFirebaseAppCheckDebugToken: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleFirebaseAppCheckDeviceCheckConfig: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleFirebaseAppCheckPlayIntegrityConfig: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleFirebaseAppCheckResourcePolicy: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleFirebaseAppHostingBuild: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleFirebaseAppHostingDefaultDomain: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleFirebaseAppHostingTraffic: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleFirestoreBackupSchedule: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleFirestoreField: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleFirestoreUserCreds: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleIapWebBackendServiceIamBinding: pre-existing gap (Waves 1-9) — backfill candidate
+GoogleIapWebBackendServiceIamBinding: pre-existing gap (Waves 1-9) — backfill candidate; curate *_iam_member only per IAM policy — binding deferred
 GoogleLoggingFolderSink: needs folder-level permissions beyond a quickstart project
 GoogleLoggingOrganizationSink: needs org-level permissions beyond a quickstart project
-GoogleComputeRegionSslCertificate: regional ILB follow-up; compute_lb uses global managed cert
+GoogleComputeRegionSslCertificate: regional ILB follow-up; compute_lb uses placeholder regional cert self-link for validate-only ILB chain
 GoogleProject: creating projects needs org/billing scope beyond a quickstart project
-GoogleStorageNotification: pre-existing gap (Waves 1-9) — backfill candidate
