@@ -2,6 +2,24 @@ outputDir: kms
 deriveClassDoc: true
 deriveOutputGetters: true
 
+dartTypeOverrides:
+  state: KmsCryptoKeyVersionState
+
+prelude: |
+  /// Operational state for `google_kms_crypto_key_version.state`. Usually
+  /// read-only; set only to manually `ENABLE` or `DISABLE` a version.
+  enum KmsCryptoKeyVersionState implements TerraformEnum {
+    pendingGeneration('PENDING_GENERATION'),
+    enabled('ENABLED'),
+    disabled('DISABLED'),
+    destroyed('DESTROYED'),
+    destroyScheduled('DESTROY_SCHEDULED');
+
+    const KmsCryptoKeyVersionState(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
 paramOrder:
   - crypto_key
   - state

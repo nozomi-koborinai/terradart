@@ -1,5 +1,38 @@
 # Changelog
 
+## 0.12.10 - 2026-06-09
+
+### Breaking
+
+Finite schema fields across many existing factories now use typed enums and
+nested helpers instead of `TfArg<String>` / raw maps. New Wave 23–24 factories
+ship with enums from day one. Full migration table:
+[MIGRATING.md](../../MIGRATING.md) (`0.12.9 → 0.12.10`).
+
+Highlights:
+
+- Top-level enum conversions (e.g. `ServiceAttachmentConnectionPreference`,
+  `RegionSecurityPolicyType`, `BigqueryDatapolicyDataPolicyType`, …).
+- Nested helper conversions (Armor WAF/rate-limit blocks, URL map cache policy /
+  metadata filters, DNS routing policy, Pub/Sub schema settings, GKE backup
+  restore config, Cloud Run worker pool template, Artifact Registry APT/YUM
+  remote bases, …).
+- `GoogleComputeRegionSecurityPolicy` now requires embedded `rules` (standalone
+  `GoogleComputeRegionSecurityPolicyRule` remains for additional rules).
+
+### Added
+
+- Wave 23 DNS (2): record set, project policy.
+- Wave 23 Eventarc (1): Google channel config.
+- Wave 23 Cloud Run (1): v2 worker pool.
+- Wave 23 IAP (1): web backend service IAM member.
+- Wave 24 DNS (2): response policy, response policy rule.
+- Wave 24 Cloud Run (1): v2 worker pool IAM member.
+- Wave 24 Compute (1): Cloud Router.
+- Wave 24 BigQuery (1): datapolicy data policy IAM member.
+
+Catalog: **186 curated resource factories + 1 data source** (187 entries).
+
 ## 0.12.9 - 2026-06-09
 
 ### Added

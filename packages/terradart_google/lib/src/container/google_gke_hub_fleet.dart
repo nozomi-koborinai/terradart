@@ -1,10 +1,84 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_gke_hub_fleet`.
 const Set<String> _googleGkeHubFleetSensitive = <String>{};
+
+enum GkeHubFleetBinaryAuthorizationEvaluationMode implements TerraformEnum {
+  disabled('DISABLED'),
+  policyBindings('POLICY_BINDINGS');
+
+  const GkeHubFleetBinaryAuthorizationEvaluationMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+enum GkeHubFleetSecurityPostureMode implements TerraformEnum {
+  disabled('DISABLED'),
+  basic('BASIC'),
+  enterprise('ENTERPRISE');
+
+  const GkeHubFleetSecurityPostureMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+enum GkeHubFleetSecurityPostureVulnerabilityMode implements TerraformEnum {
+  vulnerabilityDisabled('VULNERABILITY_DISABLED'),
+  vulnerabilityBasic('VULNERABILITY_BASIC'),
+  vulnerabilityEnterprise('VULNERABILITY_ENTERPRISE');
+
+  const GkeHubFleetSecurityPostureVulnerabilityMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+@immutable
+class GkeHubFleetBinaryAuthorizationConfig {
+  const GkeHubFleetBinaryAuthorizationConfig({this.evaluationMode});
+
+  final GkeHubFleetBinaryAuthorizationEvaluationMode? evaluationMode;
+
+  Map<String, Object?> encode() => {
+    if (evaluationMode != null)
+      'evaluation_mode': evaluationMode!.terraformValue,
+  };
+}
+
+@immutable
+class GkeHubFleetSecurityPostureConfig {
+  const GkeHubFleetSecurityPostureConfig({this.mode, this.vulnerabilityMode});
+
+  final GkeHubFleetSecurityPostureMode? mode;
+  final GkeHubFleetSecurityPostureVulnerabilityMode? vulnerabilityMode;
+
+  Map<String, Object?> encode() => {
+    if (mode != null) 'mode': mode!.terraformValue,
+    if (vulnerabilityMode != null)
+      'vulnerability_mode': vulnerabilityMode!.terraformValue,
+  };
+}
+
+@immutable
+class GkeHubFleetDefaultClusterConfig {
+  const GkeHubFleetDefaultClusterConfig({
+    this.binaryAuthorizationConfig,
+    this.securityPostureConfig,
+  });
+
+  final GkeHubFleetBinaryAuthorizationConfig? binaryAuthorizationConfig;
+  final GkeHubFleetSecurityPostureConfig? securityPostureConfig;
+
+  Map<String, Object?> encode() => {
+    if (binaryAuthorizationConfig != null)
+      'binary_authorization_config': [binaryAuthorizationConfig!.encode()],
+    if (securityPostureConfig != null)
+      'security_posture_config': [securityPostureConfig!.encode()],
+  };
+}
 
 /// Factory wrapper for `google_gke_hub_fleet`.
 ///
@@ -27,6 +101,11 @@ const Set<String> _googleGkeHubFleetSensitive = <String>{};
 /// final fleet = GoogleGkeHubFleet(
 ///   localName: 'default',
 ///   displayName: TfArg.literal('Production fleet'),
+///   defaultClusterConfig: GkeHubFleetDefaultClusterConfig(
+///     securityPostureConfig: GkeHubFleetSecurityPostureConfig(
+///       mode: GkeHubFleetSecurityPostureMode.basic,
+///     ),
+///   ),
 /// );
 /// ```
 final class GoogleGkeHubFleet extends Resource {
@@ -36,7 +115,7 @@ final class GoogleGkeHubFleet extends Resource {
     required super.localName,
     TfArg<String>? displayName,
     TfArg<String>? project,
-    TfArg<Map<String, dynamic>>? defaultClusterConfig,
+    GkeHubFleetDefaultClusterConfig? defaultClusterConfig,
     super.lifecycle,
     super.dependsOn,
   }) : super(
@@ -45,7 +124,9 @@ final class GoogleGkeHubFleet extends Resource {
            if (displayName != null) 'display_name': displayName,
            if (project != null) 'project': project,
            if (defaultClusterConfig != null)
-             'default_cluster_config': defaultClusterConfig,
+             'default_cluster_config': TfArg.literal([
+               defaultClusterConfig.encode(),
+             ]),
          },
        );
 

@@ -2,6 +2,19 @@ outputDir: compute
 deriveClassDoc: true
 deriveOutputGetters: true
 
+dartTypeOverrides:
+  proxy_header: RegionTargetTcpProxyProxyHeader
+
+prelude: |
+  enum RegionTargetTcpProxyProxyHeader implements TerraformEnum {
+    none('NONE'),
+    proxyV1('PROXY_V1');
+
+    const RegionTargetTcpProxyProxyHeader(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
 paramOrder:
   - backend_service
   - description

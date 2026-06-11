@@ -8,6 +8,17 @@ const Set<String> _googleSecretManagerSecretVersionSensitive = <String>{
   'secret_data',
 };
 
+/// Destroy behaviour for `google_secret_manager_secret_version`.
+enum SecretManagerSecretVersionDeletionPolicy implements TerraformEnum {
+  delete('DELETE'),
+  disable('DISABLE'),
+  abandon('ABANDON');
+
+  const SecretManagerSecretVersionDeletionPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_secret_manager_secret_version`.
 ///
 /// A secret version resource.
@@ -23,7 +34,7 @@ final class GoogleSecretManagerSecretVersion extends Resource {
     TfArg<String>? secretData,
     TfArg<bool>? enabled,
     TfArg<bool>? isSecretDataBase64,
-    TfArg<String>? deletionPolicy,
+    TfArg<SecretManagerSecretVersionDeletionPolicy>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

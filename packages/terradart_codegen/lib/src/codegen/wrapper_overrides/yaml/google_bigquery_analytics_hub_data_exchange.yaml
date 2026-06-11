@@ -2,6 +2,19 @@ outputDir: bigquery
 deriveClassDoc: true
 deriveOutputGetters: true
 
+dartTypeOverrides:
+  discovery_type: BigqueryAnalyticsHubDataExchangeDiscoveryType
+
+prelude: |
+  enum BigqueryAnalyticsHubDataExchangeDiscoveryType implements TerraformEnum {
+    privateDiscovery('DISCOVERY_TYPE_PRIVATE'),
+    publicDiscovery('DISCOVERY_TYPE_PUBLIC');
+
+    const BigqueryAnalyticsHubDataExchangeDiscoveryType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
 paramOrder:
   - data_exchange_id
   - description

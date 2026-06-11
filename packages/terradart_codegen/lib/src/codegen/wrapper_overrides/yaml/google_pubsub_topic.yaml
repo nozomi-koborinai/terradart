@@ -10,6 +10,9 @@ curatedDoc: |-
   ///   name: TfArg.literal('orders-prod'),
   ///   messageRetentionDuration:
   ///       TfArg.literal(const Duration(days: 7).toTfDurationString()),
+  ///   schemaSettings: const PubsubTopicSchemaSettings(
+  ///     encoding: PubsubTopicSchemaEncoding.json,
+  ///   ),
   ///   lifecycle: const LifecycleOptions(preventDestroy: true),
   /// );
   /// ```
@@ -25,3 +28,85 @@ paramOrder:
   - message_transforms
   - tags
   - project
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+prelude: |
+  enum PubsubTopicSchemaEncoding implements TerraformEnum {
+    encodingUnspecified('ENCODING_UNSPECIFIED'),
+    json('JSON'),
+    binary('BINARY');
+
+    const PubsubTopicSchemaEncoding(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  enum PubsubTopicPlatformLogsSeverity implements TerraformEnum {
+    severityUnspecified('SEVERITY_UNSPECIFIED'),
+    disabled('DISABLED'),
+    debug('DEBUG'),
+    info('INFO'),
+    warning('WARNING'),
+    error('ERROR');
+
+    const PubsubTopicPlatformLogsSeverity(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  @immutable
+  class PubsubTopicSchemaSettings {
+    const PubsubTopicSchemaSettings({
+      this.schema,
+      this.encoding,
+      this.firstRevisionId,
+      this.lastRevisionId,
+    });
+
+    final TfArg<String>? schema;
+    final PubsubTopicSchemaEncoding? encoding;
+    final TfArg<String>? firstRevisionId;
+    final TfArg<String>? lastRevisionId;
+
+    Map<String, Object?> encode() => {
+      if (schema != null) 'schema': schema!.toTfJson(),
+      if (encoding != null) 'encoding': encoding!.terraformValue,
+      if (firstRevisionId != null) 'first_revision_id': firstRevisionId!.toTfJson(),
+      if (lastRevisionId != null) 'last_revision_id': lastRevisionId!.toTfJson(),
+    };
+  }
+
+  @immutable
+  class PubsubTopicPlatformLogsSettings {
+    const PubsubTopicPlatformLogsSettings({this.severity});
+
+    final PubsubTopicPlatformLogsSeverity? severity;
+
+    Map<String, Object?> encode() => {
+      if (severity != null) 'severity': severity!.terraformValue,
+    };
+  }
+
+  @immutable
+  class PubsubTopicIngestionDataSourceSettings {
+    const PubsubTopicIngestionDataSourceSettings({
+      this.platformLogsSettings,
+    });
+
+    final PubsubTopicPlatformLogsSettings? platformLogsSettings;
+
+    Map<String, Object?> encode() => {
+      if (platformLogsSettings != null)
+        'platform_logs_settings': [platformLogsSettings!.encode()],
+    };
+  }
+
+customSlots:
+  schema_settings:
+    paramDeclaration: 'PubsubTopicSchemaSettings? schemaSettings'
+    argMapEntry: "if (schemaSettings != null) 'schema_settings': TfArg.literal([schemaSettings.encode()]),"
+  ingestion_data_source_settings:
+    paramDeclaration: 'PubsubTopicIngestionDataSourceSettings? ingestionDataSourceSettings'
+    argMapEntry: "if (ingestionDataSourceSettings != null) 'ingestion_data_source_settings': TfArg.literal([ingestionDataSourceSettings.encode()]),"

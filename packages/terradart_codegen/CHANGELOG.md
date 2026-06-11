@@ -11,6 +11,14 @@ Maintainer:
 - **Added** — `tool/example_synth_gates.dart` (synth-based example coverage + API-enablement dependency checker, #108).
 - **Added** — label-gated `apply-smoke` GitHub workflow + `tool/apply_smoke.sh` (#109).
 
+## 0.12.10
+
+Ten new wrapper overrides (Waves 23–24). Maintainer enum-gap gate extended:
+
+- **Added** — `check_override_enum_gaps.dart` nested scan (`NESTED_PARTIAL` fails
+  CI; `NESTED_THIN` fails when `--strict-nested` is passed).
+- **Changed** — `tool/agent_verify.sh` runs the enum gate with `--strict-nested`.
+
 ## 0.12.9
 
 Five new wrapper overrides (Wave 22). No CLI changes.

@@ -128,9 +128,24 @@ final class AnalyticsStack extends Stack {
         localName: 'email_mask',
         location: TfArg.literal('asia-northeast1'),
         dataPolicyId: TfArg.literal('mask-email'),
-        dataPolicyType: TfArg.literal('DATA_MASKING_POLICY'),
+        dataPolicyType:
+            TfArg.literal(BigqueryDatapolicyDataPolicyType.dataMaskingPolicy),
+        dataMaskingPolicy: const BigqueryDatapolicyDataPolicyDataMaskingPolicy(
+          predefinedExpression:
+              BigqueryDatapolicyDataPolicyPredefinedExpression.emailMask,
+        ),
         policyTag: TfArg.literal(
             'projects/$projectId/locations/asia-northeast1/taxonomies/1/policyTags/1'),
+      ),
+    );
+
+    add(
+      GoogleBigqueryDatapolicyDataPolicyIamMember(
+        localName: 'mask_email_reader',
+        dataPolicyId: TfArg.literal('mask-email'),
+        location: TfArg.literal('asia-northeast1'),
+        role: TfArg.literal('roles/bigquerydatapolicy.maskedReader'),
+        member: TfArg.ref(reader.iamMember),
       ),
     );
 
@@ -170,7 +185,7 @@ final class AnalyticsStack extends Stack {
       GoogleBigqueryReservationAssignment(
         localName: 'project_slots',
         assignee: TfArg.literal('projects/$projectId'),
-        jobType: TfArg.literal('QUERY'),
+        jobType: TfArg.literal(BigqueryReservationAssignmentJobType.query),
         location: TfArg.literal('asia-northeast1'),
         reservation: TfArg.ref(slotsReservation.nameRef),
       ),

@@ -6,6 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_target_ssl_proxy`.
 const Set<String> _googleComputeTargetSslProxySensitive = <String>{};
 
+enum TargetSslProxyProxyHeader implements TerraformEnum {
+  none('NONE'),
+  proxyV1('PROXY_V1');
+
+  const TargetSslProxyProxyHeader(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_compute_target_ssl_proxy`.
 final class GoogleComputeTargetSslProxy extends Resource {
   static const String tfType = 'google_compute_target_ssl_proxy';
@@ -17,7 +26,7 @@ final class GoogleComputeTargetSslProxy extends Resource {
     TfArg<String>? description,
     required TfArg<String> name,
     TfArg<String>? project,
-    TfArg<String>? proxyHeader,
+    TfArg<TargetSslProxyProxyHeader>? proxyHeader,
     TfArg<List<String>>? sslCertificates,
     TfArg<String>? sslPolicy,
     super.lifecycle,

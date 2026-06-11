@@ -21,7 +21,19 @@ paramOrder:
 extraImports:
   - "import 'package:meta/meta.dart';"
 
+dartTypeOverrides:
+  desired_state: CloudTasksQueueDesiredState
+
 prelude: |
+  enum CloudTasksQueueDesiredState implements TerraformEnum {
+    running('RUNNING'),
+    paused('PAUSED');
+
+    const CloudTasksQueueDesiredState(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
   // ===========================================================================
   // Nested-block helpers
   // ===========================================================================

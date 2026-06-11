@@ -916,11 +916,10 @@ class ComputeBackendServiceBackendServiceLocalityLbBuiltinPolicy {
     required this.name,
   });
 
-  /// Policy name — same vocabulary as the top-level
-  /// [LocalityLbPolicy] string values (`ROUND_ROBIN`, `RING_HASH`, ...).
-  final TfArg<String> name;
+  /// Built-in locality LB policy algorithm.
+  final LocalityLbPolicy name;
 
-  Map<String, Object?> toArgMap() => {'name': name.toTfJson()};
+  Map<String, Object?> toArgMap() => {'name': name.terraformValue};
 }
 
 /// Caller-supplied xDS `locality_lb_policies[].custom_policy`

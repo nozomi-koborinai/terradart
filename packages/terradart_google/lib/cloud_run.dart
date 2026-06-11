@@ -78,3 +78,16 @@ export 'src/cloud_run/google_cloud_run_v2_service.dart'
         CloudRunV2ServiceVpcNetworkInterface;
 export 'src/cloud_run/google_cloud_run_v2_service_iam_member.dart'
     show GoogleCloudRunV2ServiceIamMember;
+export 'src/cloud_run/google_cloud_run_v2_worker_pool.dart'
+    show
+        CloudRunV2WorkerPoolEmptyDirVolume,
+        CloudRunV2WorkerPoolEncryptionKeyRevocationAction,
+        CloudRunV2WorkerPoolInstanceSplit,
+        CloudRunV2WorkerPoolInstanceSplitType,
+        CloudRunV2WorkerPoolLaunchStage,
+        CloudRunV2WorkerPoolScaling,
+        CloudRunV2WorkerPoolTemplate,
+        CloudRunV2WorkerPoolVolume,
+        GoogleCloudRunV2WorkerPool;
+export 'src/cloud_run/google_cloud_run_v2_worker_pool_iam_member.dart'
+    show GoogleCloudRunV2WorkerPoolIamMember;

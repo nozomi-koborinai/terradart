@@ -262,13 +262,12 @@ void main() {
         expect(out, contains('    TfArg<String>? project,'));
         expect(out, contains('    TfArg<Map<String, String>>? tags,'));
 
-        // Nested blocks: max_items=1 (or nesting=single) collapses to
-        // Map<String, dynamic>; everything else becomes List<Map<...>>.
+        // Nested blocks: customSlot overrides surface typed helpers; uncurated
+        // blocks remain TfArg<Map<...>>.
         expect(
           out,
           contains(
-            '    TfArg<Map<String, dynamic>>? ingestionDataSourceSettings,',
-          ),
+              '    PubsubTopicIngestionDataSourceSettings? ingestionDataSourceSettings,'),
         );
         expect(
           out,
@@ -280,10 +279,7 @@ void main() {
             '    TfArg<List<Map<String, dynamic>>>? messageTransforms,',
           ),
         );
-        expect(
-          out,
-          contains('    TfArg<Map<String, dynamic>>? schemaSettings,'),
-        );
+        expect(out, contains('    PubsubTopicSchemaSettings? schemaSettings,'));
 
         // Lifecycle / dependsOn close the parameter list as super-parameters.
         expect(out, contains('    super.lifecycle,'));
@@ -323,11 +319,11 @@ void main() {
       expect(out, contains("if (project != null) 'project': project,"));
       expect(out, contains("if (tags != null) 'tags': tags,"));
 
-      // Optional nested blocks follow the same `if`-guarded pattern.
+      // Optional nested blocks: customSlot helpers wrap with TfArg.literal.
       expect(
         out,
         contains(
-          "if (ingestionDataSourceSettings != null) 'ingestion_data_source_settings': ingestionDataSourceSettings,",
+          "if (ingestionDataSourceSettings != null) 'ingestion_data_source_settings': TfArg.literal([",
         ),
       );
       expect(
@@ -345,7 +341,7 @@ void main() {
       expect(
         out,
         contains(
-          "if (schemaSettings != null) 'schema_settings': schemaSettings,",
+          "if (schemaSettings != null) 'schema_settings': TfArg.literal([",
         ),
       );
 

@@ -2,6 +2,19 @@ outputDir: storage
 deriveClassDoc: true
 deriveOutputGetters: true
 
+dartTypeOverrides:
+  state: StorageHmacKeyState
+
+prelude: |
+  enum StorageHmacKeyState implements TerraformEnum {
+    active('ACTIVE'),
+    inactive('INACTIVE');
+
+    const StorageHmacKeyState(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
 paramOrder:
   - service_account_email
   - state

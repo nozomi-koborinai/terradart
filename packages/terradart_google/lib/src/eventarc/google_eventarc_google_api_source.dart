@@ -1,6 +1,8 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:terradart_google/src/eventarc/google_eventarc_message_bus.dart'
+    show EventarcMessageBusLoggingConfig;
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_eventarc_google_api_source`.
@@ -20,7 +22,7 @@ final class GoogleEventarcGoogleApiSource extends Resource {
     TfArg<Map<String, String>>? labels,
     required TfArg<String> location,
     TfArg<String>? project,
-    TfArg<Map<String, dynamic>>? loggingConfig,
+    EventarcMessageBusLoggingConfig? loggingConfig,
     super.lifecycle,
     super.dependsOn,
   }) : super(
@@ -34,7 +36,8 @@ final class GoogleEventarcGoogleApiSource extends Resource {
            if (labels != null) 'labels': labels,
            'location': location,
            if (project != null) 'project': project,
-           if (loggingConfig != null) 'logging_config': loggingConfig,
+           if (loggingConfig != null)
+             'logging_config': TfArg.literal([loggingConfig.encode()]),
          },
        );
 

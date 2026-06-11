@@ -92,5 +92,57 @@ final class InternalDnsStack extends Stack {
         member: TfArg.ref(zoneAdmin.iamMember),
       ),
     );
+
+    // ---- Wave 23: project policy + A record ---------------------------------
+
+    add(
+      GoogleDnsPolicy(
+        localName: 'internal_logging',
+        name: TfArg.literal('internal-logging-policy'),
+        enableLogging: TfArg.literal(true),
+      ),
+    );
+
+    add(
+      GoogleDnsRecordSet(
+        localName: 'api_a',
+        managedZone: TfArg.ref(internalZone.nameRef),
+        name: TfArg.literal('api.internal.corp.'),
+        type: TfArg.literal(DnsRecordSetType.a),
+        ttl: TfArg.literal(300),
+        rrdatas: TfArg.literal(['10.0.0.10']),
+      ),
+    );
+
+    // ---- Wave 24: response policy + override rule ---------------------------
+
+    add(
+      GoogleDnsResponsePolicy(
+        localName: 'internal_overrides',
+        responsePolicyName: TfArg.literal('internal-overrides'),
+        description: TfArg.literal(
+          'Local DNS overrides for hybrid resolution in gnd-vpc.',
+        ),
+      ),
+    );
+
+    add(
+      GoogleDnsResponsePolicyRule(
+        localName: 'legacy_fallback',
+        responsePolicy: TfArg.literal('internal-overrides'),
+        ruleName: TfArg.literal('legacy-fallback'),
+        dnsName: TfArg.literal('legacy.internal.corp.'),
+        localData: DnsResponsePolicyRuleLocalData(
+          localDatas: [
+            DnsResponsePolicyRuleLocalDataEntry(
+              name: TfArg.literal('legacy'),
+              type: DnsResponsePolicyRuleRecordType.a,
+              ttl: TfArg.literal(300),
+              rrdatas: const ['10.0.0.20'],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -2,6 +2,20 @@ outputDir: compute
 deriveClassDoc: true
 deriveOutputGetters: true
 
+dartTypeOverrides:
+  connection_preference: ServiceAttachmentConnectionPreference
+
+prelude: |
+  /// Connection preference for `google_compute_service_attachment.connection_preference`.
+  enum ServiceAttachmentConnectionPreference implements TerraformEnum {
+    acceptAutomatic('ACCEPT_AUTOMATIC'),
+    acceptManual('ACCEPT_MANUAL');
+
+    const ServiceAttachmentConnectionPreference(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
 paramOrder:
   - connection_preference
   - consumer_reject_lists

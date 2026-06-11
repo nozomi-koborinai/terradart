@@ -91,6 +91,20 @@ final class ApiServiceStack extends Stack {
     );
     add(apiService);
 
+    final batchWorkers = add(
+      GoogleCloudRunV2WorkerPool(
+        localName: 'batch_workers',
+        name: TfArg.literal('batch-workers'),
+        location: TfArg.literal('asia-northeast1'),
+        launchStage: TfArg.literal(CloudRunV2WorkerPoolLaunchStage.ga),
+        template: CloudRunV2WorkerPoolTemplate(
+          containers: const [
+            {'image': 'gcr.io/cloudrun/hello'},
+          ],
+        ),
+      ),
+    );
+
     // ---- Cloud Run v2 Job: nightly cleanup --------------------------------
     //
     // One-shot batch container, run to completion. Triggered externally
@@ -161,6 +175,18 @@ final class ApiServiceStack extends Stack {
       GoogleCloudRunV2JobIamMember(
         localName: 'nightly_cleanup_invoker',
         name: TfArg.ref(nightlyJob.nameRef),
+        role: TfArg.literal('roles/run.invoker'),
+        member: TfArg.ref(schedulerSa.iamMember),
+        location: TfArg.literal('asia-northeast1'),
+      ),
+    );
+
+    // ---- Wave 24: worker pool invoker -------------------------------------
+
+    add(
+      GoogleCloudRunV2WorkerPoolIamMember(
+        localName: 'batch_workers_invoker',
+        name: TfArg.ref(batchWorkers.nameRef),
         role: TfArg.literal('roles/run.invoker'),
         member: TfArg.ref(schedulerSa.iamMember),
         location: TfArg.literal('asia-northeast1'),

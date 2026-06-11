@@ -6,6 +6,20 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_kms_crypto_key_version`.
 const Set<String> _googleKmsCryptoKeyVersionSensitive = <String>{};
 
+/// Operational state for `google_kms_crypto_key_version.state`. Usually
+/// read-only; set only to manually `ENABLE` or `DISABLE` a version.
+enum KmsCryptoKeyVersionState implements TerraformEnum {
+  pendingGeneration('PENDING_GENERATION'),
+  enabled('ENABLED'),
+  disabled('DISABLED'),
+  destroyed('DESTROYED'),
+  destroyScheduled('DESTROY_SCHEDULED');
+
+  const KmsCryptoKeyVersionState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_kms_crypto_key_version`.
 ///
 /// Manages a [GoogleKmsCryptoKey] version (rotation / destroy lifecycle).
@@ -24,7 +38,7 @@ final class GoogleKmsCryptoKeyVersion extends Resource {
   GoogleKmsCryptoKeyVersion({
     required super.localName,
     required TfArg<String> cryptoKey,
-    TfArg<String>? state,
+    TfArg<KmsCryptoKeyVersionState>? state,
     super.lifecycle,
     super.dependsOn,
   }) : super(

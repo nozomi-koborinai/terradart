@@ -134,9 +134,21 @@ extraGetters: |2
     TfRef<int> get instanceGroupManagerId =>
         TfRef.attribute<int>(this, 'instance_group_manager_id');
 
-dartTypeOverrides: {}
+dartTypeOverrides:
+  list_managed_instances_results: InstanceGroupManagerListManagedInstancesResults
 
 prelude: |
+  /// `list_managed_instances_results` — pagination for the
+  /// `listManagedInstances` API on this MIG.
+  enum InstanceGroupManagerListManagedInstancesResults implements TerraformEnum {
+    pageless('PAGELESS'),
+    paginated('PAGINATED');
+
+    const InstanceGroupManagerListManagedInstancesResults(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
   // ===========================================================================
   // Enums for update_policy
   // ===========================================================================

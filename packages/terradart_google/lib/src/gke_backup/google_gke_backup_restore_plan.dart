@@ -1,10 +1,131 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_gke_backup_restore_plan`.
 const Set<String> _googleGkeBackupRestorePlanSensitive = <String>{};
+
+enum GkeBackupRestorePlanClusterResourceConflictPolicy
+    implements TerraformEnum {
+  useExistingVersion('USE_EXISTING_VERSION'),
+  useBackupVersion('USE_BACKUP_VERSION');
+
+  const GkeBackupRestorePlanClusterResourceConflictPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+enum GkeBackupRestorePlanNamespacedResourceRestoreMode
+    implements TerraformEnum {
+  deleteAndRestore('DELETE_AND_RESTORE'),
+  failOnConflict('FAIL_ON_CONFLICT'),
+  mergeSkipOnConflict('MERGE_SKIP_ON_CONFLICT'),
+  mergeReplaceVolumeOnConflict('MERGE_REPLACE_VOLUME_ON_CONFLICT'),
+  mergeReplaceOnConflict('MERGE_REPLACE_ON_CONFLICT');
+
+  const GkeBackupRestorePlanNamespacedResourceRestoreMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+enum GkeBackupRestorePlanVolumeDataRestorePolicy implements TerraformEnum {
+  restoreVolumeDataFromBackup('RESTORE_VOLUME_DATA_FROM_BACKUP'),
+  reuseVolumeHandleFromBackup('REUSE_VOLUME_HANDLE_FROM_BACKUP'),
+  noVolumeDataRestoration('NO_VOLUME_DATA_RESTORATION');
+
+  const GkeBackupRestorePlanVolumeDataRestorePolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+enum GkeBackupRestorePlanTransformationFieldActionOp implements TerraformEnum {
+  remove('REMOVE'),
+  move('MOVE'),
+  copy('COPY'),
+  add('ADD'),
+  test('TEST'),
+  replace('REPLACE');
+
+  const GkeBackupRestorePlanTransformationFieldActionOp(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+@immutable
+class GkeBackupRestorePlanTransformationFieldAction {
+  const GkeBackupRestorePlanTransformationFieldAction({this.op});
+
+  final GkeBackupRestorePlanTransformationFieldActionOp? op;
+
+  Map<String, Object?> toArgMap() => {if (op != null) 'op': op!.terraformValue};
+}
+
+@immutable
+class GkeBackupRestorePlanTransformationRule {
+  const GkeBackupRestorePlanTransformationRule({this.fieldActions});
+
+  final List<GkeBackupRestorePlanTransformationFieldAction>? fieldActions;
+
+  Map<String, Object?> toArgMap() => {
+    if (fieldActions != null)
+      'field_actions': fieldActions!.map((a) => a.toArgMap()).toList(),
+  };
+}
+
+@immutable
+class GkeBackupRestorePlanVolumeDataRestorePolicyBinding {
+  const GkeBackupRestorePlanVolumeDataRestorePolicyBinding({this.policy});
+
+  final GkeBackupRestorePlanVolumeDataRestorePolicy? policy;
+
+  Map<String, Object?> toArgMap() => {
+    if (policy != null) 'policy': policy!.terraformValue,
+  };
+}
+
+@immutable
+class GkeBackupRestorePlanRestoreConfig {
+  const GkeBackupRestorePlanRestoreConfig({
+    this.allNamespaces,
+    this.clusterResourceConflictPolicy,
+    this.namespacedResourceRestoreMode,
+    this.volumeDataRestorePolicy,
+    this.transformationRules,
+    this.volumeDataRestorePolicyBindings,
+  });
+
+  final TfArg<bool>? allNamespaces;
+  final GkeBackupRestorePlanClusterResourceConflictPolicy?
+  clusterResourceConflictPolicy;
+  final GkeBackupRestorePlanNamespacedResourceRestoreMode?
+  namespacedResourceRestoreMode;
+  final GkeBackupRestorePlanVolumeDataRestorePolicy? volumeDataRestorePolicy;
+  final List<GkeBackupRestorePlanTransformationRule>? transformationRules;
+  final List<GkeBackupRestorePlanVolumeDataRestorePolicyBinding>?
+  volumeDataRestorePolicyBindings;
+
+  Map<String, Object?> encode() => {
+    if (allNamespaces != null) 'all_namespaces': allNamespaces!.toTfJson(),
+    if (clusterResourceConflictPolicy != null)
+      'cluster_resource_conflict_policy':
+          clusterResourceConflictPolicy!.terraformValue,
+    if (namespacedResourceRestoreMode != null)
+      'namespaced_resource_restore_mode':
+          namespacedResourceRestoreMode!.terraformValue,
+    if (volumeDataRestorePolicy != null)
+      'volume_data_restore_policy': volumeDataRestorePolicy!.terraformValue,
+    if (transformationRules != null)
+      'transformation_rules': transformationRules!
+          .map((r) => r.toArgMap())
+          .toList(),
+    if (volumeDataRestorePolicyBindings != null)
+      'volume_data_restore_policy_bindings': volumeDataRestorePolicyBindings!
+          .map((b) => b.toArgMap())
+          .toList(),
+  };
+}
 
 /// Factory wrapper for `google_gke_backup_restore_plan`.
 ///
@@ -30,7 +151,7 @@ final class GoogleGkeBackupRestorePlan extends Resource {
     required TfArg<String> cluster,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
-    required TfArg<Map<String, dynamic>> restoreConfig,
+    GkeBackupRestorePlanRestoreConfig? restoreConfig,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -43,7 +164,8 @@ final class GoogleGkeBackupRestorePlan extends Resource {
            'cluster': cluster,
            if (description != null) 'description': description,
            if (labels != null) 'labels': labels,
-           'restore_config': restoreConfig,
+           if (restoreConfig != null)
+             'restore_config': TfArg.literal([restoreConfig.encode()]),
            if (project != null) 'project': project,
          },
        );

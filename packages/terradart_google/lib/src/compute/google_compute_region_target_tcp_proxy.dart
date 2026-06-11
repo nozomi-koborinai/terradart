@@ -6,6 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_region_target_tcp_proxy`.
 const Set<String> _googleComputeRegionTargetTcpProxySensitive = <String>{};
 
+enum RegionTargetTcpProxyProxyHeader implements TerraformEnum {
+  none('NONE'),
+  proxyV1('PROXY_V1');
+
+  const RegionTargetTcpProxyProxyHeader(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_compute_region_target_tcp_proxy`.
 final class GoogleComputeRegionTargetTcpProxy extends Resource {
   static const String tfType = 'google_compute_region_target_tcp_proxy';
@@ -17,7 +26,7 @@ final class GoogleComputeRegionTargetTcpProxy extends Resource {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<bool>? proxyBind,
-    TfArg<String>? proxyHeader,
+    TfArg<RegionTargetTcpProxyProxyHeader>? proxyHeader,
     TfArg<String>? region,
     super.lifecycle,
     super.dependsOn,

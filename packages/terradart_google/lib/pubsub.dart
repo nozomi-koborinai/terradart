@@ -19,6 +19,13 @@ export 'src/pubsub/google_pubsub_subscription.dart'
         PubsubSubscriptionRetryPolicy;
 export 'src/pubsub/google_pubsub_subscription_iam_member.dart'
     show GooglePubsubSubscriptionIamMember;
-export 'src/pubsub/google_pubsub_topic.dart' show GooglePubsubTopic;
+export 'src/pubsub/google_pubsub_topic.dart'
+    show
+        GooglePubsubTopic,
+        PubsubTopicIngestionDataSourceSettings,
+        PubsubTopicPlatformLogsSettings,
+        PubsubTopicPlatformLogsSeverity,
+        PubsubTopicSchemaEncoding,
+        PubsubTopicSchemaSettings;
 export 'src/pubsub/google_pubsub_topic_iam_member.dart'
     show GooglePubsubTopicIamMember;

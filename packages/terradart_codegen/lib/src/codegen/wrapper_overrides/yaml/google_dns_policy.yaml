@@ -1,0 +1,54 @@
+outputDir: dns
+deriveClassDoc: true
+deriveOutputGetters: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+  - "import 'package:terradart_google/src/dns/google_dns_managed_zone.dart' show ForwardingPath;"
+
+prelude: |
+  @immutable
+  class DnsPolicyAlternativeNameServerTargetNameServer {
+    const DnsPolicyAlternativeNameServerTargetNameServer({
+      required this.ipv4Address,
+      this.forwardingPath,
+    });
+
+    final TfArg<String> ipv4Address;
+    final ForwardingPath? forwardingPath;
+
+    Map<String, Object?> toArgMap() => {
+      'ipv4_address': ipv4Address.toTfJson(),
+      if (forwardingPath != null)
+        'forwarding_path': forwardingPath!.terraformValue,
+    };
+  }
+
+  @immutable
+  class DnsPolicyAlternativeNameServerConfig {
+    const DnsPolicyAlternativeNameServerConfig({
+      required this.targetNameServers,
+    });
+
+    final List<DnsPolicyAlternativeNameServerTargetNameServer> targetNameServers;
+
+    Map<String, Object?> encode() => {
+      'target_name_servers':
+          targetNameServers.map((s) => s.toArgMap()).toList(),
+    };
+  }
+
+customSlots:
+  alternative_name_server_config:
+    paramDeclaration: 'DnsPolicyAlternativeNameServerConfig? alternativeNameServerConfig'
+    argMapEntry: "if (alternativeNameServerConfig != null) 'alternative_name_server_config': TfArg.literal([alternativeNameServerConfig.encode()]),"
+
+paramOrder:
+- description
+- enable_inbound_forwarding
+- enable_logging
+- name
+- project
+- alternative_name_server_config
+- dns64_config
+- networks

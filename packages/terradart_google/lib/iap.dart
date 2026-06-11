@@ -5,3 +5,5 @@ library;
 
 export 'src/iap/google_iap_web_backend_service_iam_binding.dart'
     show GoogleIapWebBackendServiceIamBinding;
+export 'src/iap/google_iap_web_backend_service_iam_member.dart'
+    show GoogleIapWebBackendServiceIamMember;

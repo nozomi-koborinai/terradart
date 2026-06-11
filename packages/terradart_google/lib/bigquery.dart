@@ -5,11 +5,15 @@
 library;
 
 export 'src/bigquery/google_bigquery_analytics_hub_data_exchange.dart'
-    show GoogleBigqueryAnalyticsHubDataExchange;
+    show
+        BigqueryAnalyticsHubDataExchangeDiscoveryType,
+        GoogleBigqueryAnalyticsHubDataExchange;
 export 'src/bigquery/google_bigquery_analytics_hub_data_exchange_iam_member.dart'
     show GoogleBigqueryAnalyticsHubDataExchangeIamMember;
 export 'src/bigquery/google_bigquery_analytics_hub_listing.dart'
-    show GoogleBigqueryAnalyticsHubListing;
+    show
+        BigqueryAnalyticsHubListingDiscoveryType,
+        GoogleBigqueryAnalyticsHubListing;
 export 'src/bigquery/google_bigquery_analytics_hub_listing_iam_member.dart'
     show GoogleBigqueryAnalyticsHubListingIamMember;
 export 'src/bigquery/google_bigquery_analytics_hub_listing_subscription.dart'
@@ -47,7 +51,13 @@ export 'src/bigquery/google_bigquery_connection.dart'
         BigqueryConnectionSparkSparkHistoryServerConfig,
         GoogleBigqueryConnection;
 export 'src/bigquery/google_bigquery_datapolicy_data_policy.dart'
-    show GoogleBigqueryDatapolicyDataPolicy;
+    show
+        BigqueryDatapolicyDataPolicyDataMaskingPolicy,
+        BigqueryDatapolicyDataPolicyPredefinedExpression,
+        BigqueryDatapolicyDataPolicyType,
+        GoogleBigqueryDatapolicyDataPolicy;
+export 'src/bigquery/google_bigquery_datapolicy_data_policy_iam_member.dart'
+    show GoogleBigqueryDatapolicyDataPolicyIamMember;
 export 'src/bigquery/google_bigquery_data_transfer_config.dart'
     show
         BigqueryDataTransferConfigEmailPreferences,
@@ -108,7 +118,9 @@ export 'src/bigquery/google_bigquery_reservation.dart'
         BigqueryReservationEdition,
         GoogleBigqueryReservation;
 export 'src/bigquery/google_bigquery_reservation_assignment.dart'
-    show GoogleBigqueryReservationAssignment;
+    show
+        BigqueryReservationAssignmentJobType,
+        GoogleBigqueryReservationAssignment;
 export 'src/bigquery/google_bigquery_row_access_policy.dart'
     show GoogleBigqueryRowAccessPolicy;
 export 'src/bigquery/google_bigquery_routine.dart'

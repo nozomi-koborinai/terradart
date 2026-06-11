@@ -2,6 +2,19 @@ outputDir: compute
 deriveClassDoc: true
 deriveOutputGetters: true
 
+dartTypeOverrides:
+  proxy_header: TargetSslProxyProxyHeader
+
+prelude: |
+  enum TargetSslProxyProxyHeader implements TerraformEnum {
+    none('NONE'),
+    proxyV1('PROXY_V1');
+
+    const TargetSslProxyProxyHeader(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
 paramOrder:
   - backend_service
   - certificate_map

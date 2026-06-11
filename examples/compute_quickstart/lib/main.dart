@@ -60,6 +60,20 @@ final class NetworkStack extends Stack {
     );
     add(workloadSubnet);
 
+    add(
+      GoogleComputeRouter(
+        localName: 'edge_router',
+        name: TfArg.literal('edge-router'),
+        region: TfArg.literal('asia-northeast1'),
+        network: TfArg.ref(mainVpc.id),
+        description: TfArg.literal('Cloud Router for private egress'),
+        bgp: ComputeRouterBgp(
+          advertiseMode: ComputeRouterBgpAdvertiseMode.defaultMode,
+          asn: TfArg.literal(64514),
+        ),
+      ),
+    );
+
     // ---- IAM: subnetwork-scoped networkUser (Shared VPC) ------------------
     //
     // The classic Shared-VPC pattern: each service project's compute SA
@@ -99,6 +113,11 @@ final class NetworkStack extends Stack {
           subnetwork: TfArg.ref(workloadSubnet.selfLink),
         ),
       ],
+      networkPerformanceConfig: const ComputeInstanceNetworkPerformanceConfig(
+        totalEgressBandwidthTier:
+            ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier
+                .platformDefault,
+      ),
     );
     add(bastion);
 

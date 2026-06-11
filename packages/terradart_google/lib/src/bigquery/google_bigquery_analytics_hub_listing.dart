@@ -6,6 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_bigquery_analytics_hub_listing`.
 const Set<String> _googleBigqueryAnalyticsHubListingSensitive = <String>{};
 
+enum BigqueryAnalyticsHubListingDiscoveryType implements TerraformEnum {
+  privateDiscovery('DISCOVERY_TYPE_PRIVATE'),
+  publicDiscovery('DISCOVERY_TYPE_PUBLIC');
+
+  const BigqueryAnalyticsHubListingDiscoveryType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_bigquery_analytics_hub_listing`.
 final class GoogleBigqueryAnalyticsHubListing extends Resource {
   static const String tfType = 'google_bigquery_analytics_hub_listing';
@@ -17,7 +26,7 @@ final class GoogleBigqueryAnalyticsHubListing extends Resource {
     required TfArg<String> dataExchangeId,
     TfArg<bool>? deleteCommercial,
     TfArg<String>? description,
-    TfArg<String>? discoveryType,
+    TfArg<BigqueryAnalyticsHubListingDiscoveryType>? discoveryType,
     required TfArg<String> displayName,
     TfArg<String>? documentation,
     TfArg<String>? icon,

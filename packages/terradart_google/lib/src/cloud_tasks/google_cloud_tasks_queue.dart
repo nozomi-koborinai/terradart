@@ -7,6 +7,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_cloud_tasks_queue`.
 const Set<String> _googleCloudTasksQueueSensitive = <String>{};
 
+enum CloudTasksQueueDesiredState implements TerraformEnum {
+  running('RUNNING'),
+  paused('PAUSED');
+
+  const CloudTasksQueueDesiredState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 // ===========================================================================
 // Nested-block helpers
 // ===========================================================================
@@ -170,7 +179,7 @@ final class GoogleCloudTasksQueue extends Resource {
     CloudTasksQueueStackdriverLoggingConfig? stackdriverLoggingConfig,
     CloudTasksQueueQueueHttpTarget? httpTarget,
     TfArg<String>? project,
-    TfArg<String>? desiredState,
+    TfArg<CloudTasksQueueDesiredState>? desiredState,
     super.lifecycle,
     super.dependsOn,
   }) : super(

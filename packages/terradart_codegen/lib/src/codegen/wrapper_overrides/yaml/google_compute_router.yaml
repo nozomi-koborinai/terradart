@@ -1,0 +1,78 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - network
+  - region
+  - project
+  - description
+  - encrypted_interconnect_router
+  - bgp
+  - md5_authentication_keys
+  - params
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+prelude: |
+  /// `bgp.advertise_mode` — which BGP prefix advertisement mode the router
+  /// uses. Default (when unset) is [ComputeRouterBgpAdvertiseMode.defaultMode].
+  enum ComputeRouterBgpAdvertiseMode implements TerraformEnum {
+    defaultMode('DEFAULT'),
+    custom('CUSTOM');
+
+    const ComputeRouterBgpAdvertiseMode(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `bgp` block — local BGP session parameters for a Cloud Router.
+  @immutable
+  class ComputeRouterBgp {
+    const ComputeRouterBgp({
+      this.advertiseMode,
+      this.advertisedGroups,
+      this.asn,
+      this.identifierRange,
+      this.keepaliveInterval,
+    });
+
+    /// Advertisement mode. [ComputeRouterBgpAdvertiseMode.custom] requires
+    /// [advertisedGroups].
+    final ComputeRouterBgpAdvertiseMode? advertiseMode;
+
+    /// Prefix groups to advertise when [advertiseMode] is
+    /// [ComputeRouterBgpAdvertiseMode.custom].
+    final List<String>? advertisedGroups;
+
+    /// Local BGP ASN (RFC6996 private range).
+    final TfArg<int>? asn;
+
+    /// Link-local IPv4 range for valid BGP identifiers on this router.
+    final TfArg<String>? identifierRange;
+
+    /// Seconds between BGP keepalive messages (hold time is 3× this value).
+    final TfArg<int>? keepaliveInterval;
+
+    Map<String, Object?> encode() => {
+      if (advertiseMode != null)
+        'advertise_mode': advertiseMode!.terraformValue,
+      if (advertisedGroups != null) 'advertised_groups': advertisedGroups,
+      if (asn != null) 'asn': asn!.toTfJson(),
+      if (identifierRange != null) 'identifier_range': identifierRange!.toTfJson(),
+      if (keepaliveInterval != null)
+        'keepalive_interval': keepaliveInterval!.toTfJson(),
+    };
+  }
+
+customSlots:
+  bgp:
+    paramDeclaration: 'ComputeRouterBgp? bgp'
+    argMapEntry: "if (bgp != null) 'bgp': TfArg.literal([bgp.encode()]),"
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

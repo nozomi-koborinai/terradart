@@ -5,6 +5,7 @@ library;
 export 'src/cloud_tasks/google_cloud_tasks_queue.dart'
     show
         CloudTasksQueueAppEngineRoutingOverride,
+        CloudTasksQueueDesiredState,
         GoogleCloudTasksQueue,
         CloudTasksQueueQueueHttpTarget,
         CloudTasksQueueQueueOauthToken,

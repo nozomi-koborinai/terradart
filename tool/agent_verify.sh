@@ -72,6 +72,9 @@ echo ">> terradart lint-override"
   dart run bin/terradart.dart lint-override
 )
 
+echo ">> check_override_enum_gaps"
+dart tool/check_override_enum_gaps.dart --strict-nested
+
 echo ">> smoke_quickstart"
 chmod +x tool/smoke_quickstart.sh
 tool/smoke_quickstart.sh

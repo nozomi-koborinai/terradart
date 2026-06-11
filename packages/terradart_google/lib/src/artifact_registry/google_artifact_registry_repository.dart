@@ -72,6 +72,31 @@ enum ArtifactRegistryVulnerabilityEnablementConfig implements TerraformEnum {
   final String terraformValue;
 }
 
+/// `remote_repository_config.apt_repository.public_repository.repository_base`.
+enum ArtifactRegistryAptRepositoryBase implements TerraformEnum {
+  debian('DEBIAN'),
+  ubuntu('UBUNTU'),
+  debianSnapshot('DEBIAN_SNAPSHOT');
+
+  const ArtifactRegistryAptRepositoryBase(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `remote_repository_config.yum_repository.public_repository.repository_base`.
+enum ArtifactRegistryYumRepositoryBase implements TerraformEnum {
+  centos('CENTOS'),
+  centosDebug('CENTOS_DEBUG'),
+  centosVault('CENTOS_VAULT'),
+  centosStream('CENTOS_STREAM'),
+  rocky('ROCKY'),
+  epel('EPEL');
+
+  const ArtifactRegistryYumRepositoryBase(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 // ===========================================================================
 // docker_config (max_items=1)
 // ===========================================================================
@@ -193,17 +218,16 @@ class ArtifactRegistryRepositoryArtifactRegistryVirtualUpstreamPolicy {
 /// (Docker Hub, Maven Central, PyPI, npm, APT/YUM mirrors, or any
 /// "common" URI). The typed surface here covers the most common path
 /// -- a `common_repository` upstream + optional username/password
-/// credentials. Format-specific public-repository helpers
-/// (`docker_repository.public_repository`, `apt_repository.repository_base`,
-/// ...) and the deprecated per-format `custom_repository` paths are
-/// exposed via [advancedExtra] rather than typed fields: the schema
-/// has 7+ upstream-type variants with enum-keyed public bases, and
-/// curating all of them would crowd out the common case.
+/// credentials. APT/YUM public-repository bases are typed on
+/// [aptRepository] / [yumRepository]; other format-specific upstreams
+/// and deprecated `custom_repository` paths remain on [advancedExtra].
 @immutable
 class ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig {
   const ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig({
     this.description,
     this.commonRepository,
+    this.aptRepository,
+    this.yumRepository,
     this.upstreamCredentials,
     this.disableUpstreamValidation,
     this.advancedExtra,
@@ -220,6 +244,14 @@ class ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig {
   final ArtifactRegistryRepositoryArtifactRegistryRemoteCommonRepository?
   commonRepository;
 
+  /// APT-format remote upstream (`format == APT`, `mode == REMOTE_REPOSITORY`).
+  final ArtifactRegistryRepositoryArtifactRegistryRemoteAptRepository?
+  aptRepository;
+
+  /// YUM-format remote upstream (`format == YUM`, `mode == REMOTE_REPOSITORY`).
+  final ArtifactRegistryRepositoryArtifactRegistryRemoteYumRepository?
+  yumRepository;
+
   /// Credentials used when pulling from a private upstream. Set this
   /// when the upstream requires authentication (e.g. a private Docker
   /// Hub org, a self-hosted Nexus).
@@ -234,8 +266,6 @@ class ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig {
 
   /// Escape hatch for the format-specific upstream blocks not modeled
   /// as typed fields:
-  /// - `apt_repository` (`public_repository.repository_base` /
-  ///   `repository_path`)
   /// - `docker_repository` (`public_repository: 'DOCKER_HUB'` /
   ///   deprecated `custom_repository.uri`)
   /// - `maven_repository` (`public_repository: 'MAVEN_CENTRAL'` /
@@ -244,8 +274,6 @@ class ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig {
   ///   `custom_repository.uri`)
   /// - `python_repository` (`public_repository: 'PYPI'` / deprecated
   ///   `custom_repository.uri`)
-  /// - `yum_repository` (`public_repository.repository_base` of
-  ///   `CENTOS`/`ROCKY`/... / `repository_path`)
   ///
   /// Keys are Terraform block names; values are the block payload
   /// (single block -> `[{...}]`, list of blocks -> list of maps).
@@ -258,11 +286,81 @@ class ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig {
     if (description != null) 'description': description!.toTfJson(),
     if (commonRepository != null)
       'common_repository': [commonRepository!.toArgMap()],
+    if (aptRepository != null) 'apt_repository': [aptRepository!.toArgMap()],
+    if (yumRepository != null) 'yum_repository': [yumRepository!.toArgMap()],
     if (upstreamCredentials != null)
       'upstream_credentials': [upstreamCredentials!.toArgMap()],
     if (disableUpstreamValidation != null)
       'disable_upstream_validation': disableUpstreamValidation!.toTfJson(),
     if (advancedExtra != null) ...advancedExtra!,
+  };
+}
+
+/// `remote_repository_config.apt_repository` block.
+@immutable
+class ArtifactRegistryRepositoryArtifactRegistryRemoteAptRepository {
+  const ArtifactRegistryRepositoryArtifactRegistryRemoteAptRepository({
+    this.publicRepository,
+  });
+
+  final ArtifactRegistryRepositoryArtifactRegistryRemoteAptPublicRepository?
+  publicRepository;
+
+  Map<String, Object?> toArgMap() => {
+    if (publicRepository != null)
+      'public_repository': [publicRepository!.toArgMap()],
+  };
+}
+
+/// `remote_repository_config.apt_repository.public_repository`.
+@immutable
+class ArtifactRegistryRepositoryArtifactRegistryRemoteAptPublicRepository {
+  const ArtifactRegistryRepositoryArtifactRegistryRemoteAptPublicRepository({
+    this.repositoryBase,
+    this.repositoryPath,
+  });
+
+  final ArtifactRegistryAptRepositoryBase? repositoryBase;
+  final TfArg<String>? repositoryPath;
+
+  Map<String, Object?> toArgMap() => {
+    if (repositoryBase != null)
+      'repository_base': repositoryBase!.terraformValue,
+    if (repositoryPath != null) 'repository_path': repositoryPath!.toTfJson(),
+  };
+}
+
+/// `remote_repository_config.yum_repository` block.
+@immutable
+class ArtifactRegistryRepositoryArtifactRegistryRemoteYumRepository {
+  const ArtifactRegistryRepositoryArtifactRegistryRemoteYumRepository({
+    this.publicRepository,
+  });
+
+  final ArtifactRegistryRepositoryArtifactRegistryRemoteYumPublicRepository?
+  publicRepository;
+
+  Map<String, Object?> toArgMap() => {
+    if (publicRepository != null)
+      'public_repository': [publicRepository!.toArgMap()],
+  };
+}
+
+/// `remote_repository_config.yum_repository.public_repository`.
+@immutable
+class ArtifactRegistryRepositoryArtifactRegistryRemoteYumPublicRepository {
+  const ArtifactRegistryRepositoryArtifactRegistryRemoteYumPublicRepository({
+    this.repositoryBase,
+    this.repositoryPath,
+  });
+
+  final ArtifactRegistryYumRepositoryBase? repositoryBase;
+  final TfArg<String>? repositoryPath;
+
+  Map<String, Object?> toArgMap() => {
+    if (repositoryBase != null)
+      'repository_base': repositoryBase!.terraformValue,
+    if (repositoryPath != null) 'repository_path': repositoryPath!.toTfJson(),
   };
 }
 

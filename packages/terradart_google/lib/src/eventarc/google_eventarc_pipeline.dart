@@ -1,6 +1,8 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:terradart_google/src/eventarc/google_eventarc_message_bus.dart'
+    show EventarcMessageBusLoggingConfig;
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_eventarc_pipeline`.
@@ -21,7 +23,7 @@ final class GoogleEventarcPipeline extends Resource {
     TfArg<String>? project,
     required TfArg<List<Map<String, dynamic>>> destinations,
     TfArg<Map<String, dynamic>>? inputPayloadFormat,
-    TfArg<Map<String, dynamic>>? loggingConfig,
+    EventarcMessageBusLoggingConfig? loggingConfig,
     TfArg<List<Map<String, dynamic>>>? mediations,
     TfArg<Map<String, dynamic>>? retryPolicy,
     super.lifecycle,
@@ -39,7 +41,8 @@ final class GoogleEventarcPipeline extends Resource {
            'destinations': destinations,
            if (inputPayloadFormat != null)
              'input_payload_format': inputPayloadFormat,
-           if (loggingConfig != null) 'logging_config': loggingConfig,
+           if (loggingConfig != null)
+             'logging_config': TfArg.literal([loggingConfig.encode()]),
            if (mediations != null) 'mediations': mediations,
            if (retryPolicy != null) 'retry_policy': retryPolicy,
          },

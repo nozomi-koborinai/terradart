@@ -146,8 +146,20 @@ extraGetters: |2
 
 dartTypeOverrides:
   distribution_policy_target_shape: RegionInstanceGroupManagerDistributionPolicyTargetShape
+  list_managed_instances_results: RegionInstanceGroupManagerListManagedInstancesResults
 
 prelude: |
+  /// `list_managed_instances_results` — pagination for the
+  /// `listManagedInstances` API on this regional MIG.
+  enum RegionInstanceGroupManagerListManagedInstancesResults implements TerraformEnum {
+    pageless('PAGELESS'),
+    paginated('PAGINATED');
+
+    const RegionInstanceGroupManagerListManagedInstancesResults(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
   // ===========================================================================
   // Top-level enums
   // ===========================================================================

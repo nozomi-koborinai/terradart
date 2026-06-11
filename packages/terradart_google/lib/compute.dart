@@ -145,6 +145,7 @@ export 'src/compute/google_compute_instance.dart'
         ComputeInstanceIpv6AccessConfig,
         ComputeInstanceNetworkInterface,
         ComputeInstanceNetworkPerformanceConfig,
+        ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier,
         NicType,
         ComputeInstanceNodeAffinity,
         OnHostMaintenance,
@@ -172,6 +173,7 @@ export 'src/compute/google_compute_instance_group_manager.dart'
         ComputeInstanceGroupManagerInstanceGroupManagerStatefulIp,
         ComputeInstanceGroupManagerInstanceGroupManagerTargetSizePolicy,
         ComputeInstanceGroupManagerInstanceGroupManagerUpdatePolicy,
+        InstanceGroupManagerListManagedInstancesResults,
         InstanceGroupManagerUpdatePolicyAction,
         InstanceGroupManagerUpdatePolicyReplacementMethod,
         InstanceGroupManagerUpdatePolicyType,
@@ -295,6 +297,7 @@ export 'src/compute/google_compute_region_instance_group_manager.dart'
         ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAllInstancesConfig,
         ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAutoHealingPolicy,
         RegionInstanceGroupManagerDistributionPolicyTargetShape,
+        RegionInstanceGroupManagerListManagedInstancesResults,
         ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceFlexibilityPolicy,
         ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerInstanceLifecyclePolicy,
         RegionInstanceGroupManagerInstanceRedistributionType,
@@ -321,40 +324,90 @@ export 'src/compute/google_compute_region_network_endpoint_group.dart'
         ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun,
         RegionNetworkEndpointGroupType;
 export 'src/compute/google_compute_region_security_policy.dart'
-    show GoogleComputeRegionSecurityPolicy;
+    show
+        ComputeRegionSecurityPolicyRegionSecurityPolicyAdvancedOptionsConfig,
+        ComputeRegionSecurityPolicyRegionSecurityPolicyDdosProtectionConfig,
+        ComputeRegionSecurityPolicyRegionSecurityPolicyJsonCustomConfig,
+        ComputeRegionSecurityPolicyRegionSecurityPolicyRule,
+        ComputeRegionSecurityPolicyRegionSecurityPolicyRuleEnforceOnKeyConfig,
+        ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatch,
+        ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatchConfig,
+        ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatchExpr,
+        ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafConfig,
+        ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusion,
+        ComputeRegionSecurityPolicyRegionSecurityPolicyRulePreconfiguredWafExclusionMatch,
+        ComputeRegionSecurityPolicyRegionSecurityPolicyRuleRateLimitOptions,
+        ComputeRegionSecurityPolicyRegionSecurityPolicyRuleRateLimitThreshold,
+        ComputeRegionSecurityPolicyRegionSecurityPolicyUserDefinedField,
+        GoogleComputeRegionSecurityPolicy,
+        RegionSecurityPolicyDdosProtection,
+        RegionSecurityPolicyJsonParsing,
+        RegionSecurityPolicyType,
+        RegionSecurityPolicyUserDefinedFieldBase;
 export 'src/compute/google_compute_region_security_policy_rule.dart'
-    show GoogleComputeRegionSecurityPolicyRule;
+    show
+        ComputeRegionSecurityPolicyRuleMatch,
+        ComputeRegionSecurityPolicyRuleMatchConfig,
+        ComputeRegionSecurityPolicyRulePreconfiguredWafConfig,
+        ComputeRegionSecurityPolicyRulePreconfiguredWafExclusion,
+        ComputeRegionSecurityPolicyRulePreconfiguredWafExclusionMatch,
+        ComputeRegionSecurityPolicyRuleRateLimitEnforceOnKeyConfig,
+        ComputeRegionSecurityPolicyRuleRateLimitOptions,
+        GoogleComputeRegionSecurityPolicyRule;
 export 'src/compute/google_compute_region_ssl_policy.dart'
-    show GoogleComputeRegionSslPolicy;
+    show
+        GoogleComputeRegionSslPolicy,
+        RegionSslPolicyMinTlsVersion,
+        RegionSslPolicyProfile;
 export 'src/compute/google_compute_region_target_http_proxy.dart'
     show GoogleComputeRegionTargetHttpProxy;
 export 'src/compute/google_compute_region_target_tcp_proxy.dart'
-    show GoogleComputeRegionTargetTcpProxy;
+    show GoogleComputeRegionTargetTcpProxy, RegionTargetTcpProxyProxyHeader;
 export 'src/compute/google_compute_region_ssl_certificate.dart'
     show GoogleComputeRegionSslCertificate;
 export 'src/compute/google_compute_region_target_https_proxy.dart'
     show GoogleComputeRegionTargetHttpsProxy;
+export 'src/compute/google_compute_router.dart'
+    show
+        ComputeRouterBgp,
+        ComputeRouterBgpAdvertiseMode,
+        GoogleComputeRouter;
 export 'src/compute/google_compute_region_url_map.dart'
     show
-        GoogleComputeRegionUrlMap,
+        ComputeRegionUrlMapRegionUrlMapCachePolicy,
         ComputeRegionUrlMapRegionUrlMapHeaderAction,
         ComputeRegionUrlMapRegionUrlMapHeaderMatch,
         ComputeRegionUrlMapRegionUrlMapHeaderMatchRange,
         ComputeRegionUrlMapRegionUrlMapHeaderToAdd,
         ComputeRegionUrlMapRegionUrlMapHostRule,
+        ComputeRegionUrlMapRegionUrlMapMetadataFilter,
         ComputeRegionUrlMapRegionUrlMapPathMatcher,
         ComputeRegionUrlMapRegionUrlMapPathRule,
         ComputeRegionUrlMapRegionUrlMapQueryParameterMatch,
-        RegionUrlMapRedirectResponseCode,
+        ComputeRegionUrlMapRegionUrlMapRouteAction,
         ComputeRegionUrlMapRegionUrlMapRouteRule,
         ComputeRegionUrlMapRegionUrlMapRouteRuleMatch,
         ComputeRegionUrlMapRegionUrlMapTest,
         ComputeRegionUrlMapRegionUrlMapTestHeader,
-        ComputeRegionUrlMapRegionUrlMapUrlRedirect;
+        ComputeRegionUrlMapRegionUrlMapUrlRedirect,
+        GoogleComputeRegionUrlMap,
+        RegionUrlMapCacheMode,
+        RegionUrlMapMetadataFilterMatchCriteria,
+        RegionUrlMapRedirectResponseCode;
 export 'src/compute/google_compute_security_policy_rule.dart'
-    show GoogleComputeSecurityPolicyRule;
+    show
+        ComputeSecurityPolicyRuleMatch,
+        ComputeSecurityPolicyRuleMatchConfig,
+        ComputeSecurityPolicyRulePreconfiguredWafConfig,
+        ComputeSecurityPolicyRulePreconfiguredWafExclusion,
+        ComputeSecurityPolicyRulePreconfiguredWafExclusionMatch,
+        ComputeSecurityPolicyRuleRateLimitEnforceOnKeyConfig,
+        ComputeSecurityPolicyRuleRateLimitOptions,
+        GoogleComputeSecurityPolicyRule;
 export 'src/compute/google_compute_service_attachment.dart'
-    show GoogleComputeServiceAttachment;
+    show
+        GoogleComputeServiceAttachment,
+        ServiceAttachmentConnectionPreference;
 export 'src/compute/google_compute_security_policy.dart'
     show
         GoogleComputeSecurityPolicy,
@@ -379,7 +432,9 @@ export 'src/compute/google_compute_security_policy.dart'
         ComputeSecurityPolicySecurityPolicyRuleRateLimitThreshold,
         ComputeSecurityPolicySecurityPolicyRuleRedirectOptions,
         ComputeSecurityPolicySecurityPolicyTrafficGranularityConfig,
-        SecurityPolicyType;
+        SecurityPolicyRuleRateLimitEnforceOnKey,
+        SecurityPolicyType,
+        SecurityPolicyWafExclusionOperator;
 export 'src/compute/google_compute_ssl_certificate.dart'
     show GoogleComputeSslCertificate;
 export 'src/compute/google_compute_ssl_policy.dart'
@@ -403,23 +458,28 @@ export 'src/compute/google_compute_target_http_proxy.dart'
 export 'src/compute/google_compute_target_https_proxy.dart'
     show GoogleComputeTargetHttpsProxy, QuicOverride, TlsEarlyData;
 export 'src/compute/google_compute_target_ssl_proxy.dart'
-    show GoogleComputeTargetSslProxy;
+    show GoogleComputeTargetSslProxy, TargetSslProxyProxyHeader;
 export 'src/compute/google_compute_target_tcp_proxy.dart'
-    show GoogleComputeTargetTcpProxy;
+    show GoogleComputeTargetTcpProxy, TargetTcpProxyProxyHeader;
 export 'src/compute/google_compute_url_map.dart'
     show
-        GoogleComputeUrlMap,
+        ComputeUrlMapUrlMapCachePolicy,
         ComputeUrlMapUrlMapHeaderAction,
         ComputeUrlMapUrlMapHeaderMatch,
         ComputeUrlMapUrlMapHeaderMatchRange,
         ComputeUrlMapUrlMapHeaderToAdd,
         ComputeUrlMapUrlMapHostRule,
+        ComputeUrlMapUrlMapMetadataFilter,
         ComputeUrlMapUrlMapPathMatcher,
         ComputeUrlMapUrlMapPathRule,
         ComputeUrlMapUrlMapQueryParameterMatch,
-        UrlMapRedirectResponseCode,
+        ComputeUrlMapUrlMapRouteAction,
         ComputeUrlMapUrlMapRouteRule,
         ComputeUrlMapUrlMapRouteRuleMatch,
         ComputeUrlMapUrlMapTest,
         ComputeUrlMapUrlMapTestHeader,
-        ComputeUrlMapUrlMapUrlRedirect;
+        ComputeUrlMapUrlMapUrlRedirect,
+        GoogleComputeUrlMap,
+        UrlMapCacheMode,
+        UrlMapMetadataFilterMatchCriteria,
+        UrlMapRedirectResponseCode;

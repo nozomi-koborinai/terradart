@@ -8,6 +8,20 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleComputeRegionInstanceGroupManagerSensitive =
     <String>{};
 
+/// `list_managed_instances_results` — pagination for the
+/// `listManagedInstances` API on this regional MIG.
+enum RegionInstanceGroupManagerListManagedInstancesResults
+    implements TerraformEnum {
+  pageless('PAGELESS'),
+  paginated('PAGINATED');
+
+  const RegionInstanceGroupManagerListManagedInstancesResults(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 // ===========================================================================
 // Top-level enums
 // ===========================================================================
@@ -635,7 +649,8 @@ final class GoogleComputeRegionInstanceGroupManager extends Resource {
     TfArg<num>? targetSize,
     TfArg<num>? targetStoppedSize,
     TfArg<num>? targetSuspendedSize,
-    TfArg<String>? listManagedInstancesResults,
+    TfArg<RegionInstanceGroupManagerListManagedInstancesResults>?
+    listManagedInstancesResults,
     TfArg<bool>? waitForInstances,
     TfArg<String>? waitForInstancesStatus,
     TfArg<List<String>>? distributionPolicyZones,

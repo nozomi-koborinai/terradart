@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_monitoring_slo`.
 const Set<String> _googleMonitoringSloSensitive = <String>{};
 
+enum MonitoringSloCalendarPeriod implements TerraformEnum {
+  day('DAY'),
+  week('WEEK'),
+  fortnight('FORTNIGHT'),
+  month('MONTH');
+
+  const MonitoringSloCalendarPeriod(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 sealed class MonitoringSloSli {
   const MonitoringSloSli();
   String get blockKey;
@@ -136,7 +147,7 @@ final class GoogleMonitoringSlo extends Resource {
     required TfArg<num> goal,
     TfArg<String>? displayName,
     required MonitoringSloSli sli,
-    TfArg<String>? calendarPeriod,
+    TfArg<MonitoringSloCalendarPeriod>? calendarPeriod,
     TfArg<num>? rollingPeriodDays,
     TfArg<String>? sloId,
     TfArg<Map<String, String>>? userLabels,

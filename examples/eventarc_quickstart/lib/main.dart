@@ -33,6 +33,9 @@ final class EventarcStack extends Stack {
         location: TfArg.literal(location),
         messageBusId: TfArg.literal('ops-bus'),
         displayName: TfArg.literal('Ops message bus'),
+        loggingConfig: const EventarcMessageBusLoggingConfig(
+          logSeverity: EventarcMessageBusLogSeverity.info,
+        ),
         dependsOn: eventarcDeps,
       ),
     );
@@ -44,6 +47,9 @@ final class EventarcStack extends Stack {
         googleApiSourceId: TfArg.literal('audit-source'),
         destination: TfArg.ref(messageBus.nameRef),
         displayName: TfArg.literal('Audit log API source'),
+        loggingConfig: const EventarcMessageBusLoggingConfig(
+          logSeverity: EventarcMessageBusLogSeverity.warning,
+        ),
         dependsOn: eventarcDeps,
       ),
     );
@@ -72,6 +78,15 @@ final class EventarcStack extends Stack {
     );
 
     add(
+      GoogleEventarcGoogleChannelConfig(
+        localName: 'channel_config',
+        location: TfArg.literal(location),
+        name: TfArg.literal('default'),
+        dependsOn: eventarcDeps,
+      ),
+    );
+
+    add(
       GoogleEventarcPipeline(
         localName: 'ingest_pipeline',
         location: TfArg.literal(location),
@@ -82,6 +97,9 @@ final class EventarcStack extends Stack {
                 'projects/$projectId/locations/$location/workflows/ingest',
           },
         ]),
+        loggingConfig: const EventarcMessageBusLoggingConfig(
+          logSeverity: EventarcMessageBusLogSeverity.notice,
+        ),
         dependsOn: eventarcDeps,
       ),
     );

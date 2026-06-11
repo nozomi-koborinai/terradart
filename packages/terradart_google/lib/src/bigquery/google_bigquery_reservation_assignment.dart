@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_bigquery_reservation_assignment`.
 const Set<String> _googleBigqueryReservationAssignmentSensitive = <String>{};
 
+enum BigqueryReservationAssignmentJobType implements TerraformEnum {
+  unspecified('JOB_TYPE_UNSPECIFIED'),
+  pipeline('PIPELINE'),
+  query('QUERY'),
+  continuous('CONTINUOUS');
+
+  const BigqueryReservationAssignmentJobType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_bigquery_reservation_assignment`.
 final class GoogleBigqueryReservationAssignment extends Resource {
   static const String tfType = 'google_bigquery_reservation_assignment';
@@ -13,7 +24,7 @@ final class GoogleBigqueryReservationAssignment extends Resource {
   GoogleBigqueryReservationAssignment({
     required super.localName,
     required TfArg<String> assignee,
-    required TfArg<String> jobType,
+    required TfArg<BigqueryReservationAssignmentJobType> jobType,
     TfArg<String>? location,
     TfArg<String>? project,
     required TfArg<String> reservation,
