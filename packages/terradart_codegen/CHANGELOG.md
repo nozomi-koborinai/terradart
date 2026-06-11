@@ -13,7 +13,7 @@ Maintainer:
 
 ## 0.12.10
 
-Five new wrapper overrides (Wave 23). No CLI changes.
+Ten new wrapper overrides (Waves 23–24). No CLI changes.
 
 ## 0.12.9
 

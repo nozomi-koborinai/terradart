@@ -1,0 +1,11 @@
+outputDir: dns
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - response_policy_name
+  - description
+  - project
+  - networks
+  - gke_clusters

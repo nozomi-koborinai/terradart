@@ -48,6 +48,8 @@ export 'src/bigquery/google_bigquery_connection.dart'
         GoogleBigqueryConnection;
 export 'src/bigquery/google_bigquery_datapolicy_data_policy.dart'
     show GoogleBigqueryDatapolicyDataPolicy;
+export 'src/bigquery/google_bigquery_datapolicy_data_policy_iam_member.dart'
+    show GoogleBigqueryDatapolicyDataPolicyIamMember;
 export 'src/bigquery/google_bigquery_data_transfer_config.dart'
     show
         BigqueryDataTransferConfigEmailPreferences,

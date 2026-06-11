@@ -113,5 +113,36 @@ final class InternalDnsStack extends Stack {
         rrdatas: TfArg.literal(['10.0.0.10']),
       ),
     );
+
+    // ---- Wave 24: response policy + override rule ---------------------------
+
+    add(
+      GoogleDnsResponsePolicy(
+        localName: 'internal_overrides',
+        responsePolicyName: TfArg.literal('internal-overrides'),
+        description: TfArg.literal(
+          'Local DNS overrides for hybrid resolution in gnd-vpc.',
+        ),
+      ),
+    );
+
+    add(
+      GoogleDnsResponsePolicyRule(
+        localName: 'legacy_fallback',
+        responsePolicy: TfArg.literal('internal-overrides'),
+        ruleName: TfArg.literal('legacy-fallback'),
+        dnsName: TfArg.literal('legacy.internal.corp.'),
+        localData: TfArg.literal({
+          'local_datas': [
+            {
+              'name': 'legacy',
+              'type': 'A',
+              'ttl': 300,
+              'rrdatas': ['10.0.0.20'],
+            },
+          ],
+        }),
+      ),
+    );
   }
 }

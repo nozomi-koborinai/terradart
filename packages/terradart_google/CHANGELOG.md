@@ -8,8 +8,12 @@
 - Wave 23 Eventarc (1): Google channel config.
 - Wave 23 Cloud Run (1): v2 worker pool.
 - Wave 23 IAP (1): web backend service IAM member.
+- Wave 24 DNS (2): response policy, response policy rule.
+- Wave 24 Cloud Run (1): v2 worker pool IAM member.
+- Wave 24 Compute (1): Cloud Router.
+- Wave 24 BigQuery (1): datapolicy data policy IAM member.
 
-Catalog: **181 curated resource factories + 1 data source** (182 entries). Additive; no breaking API changes vs `0.12.9`.
+Catalog: **186 curated resource factories + 1 data source** (187 entries). Additive; no breaking API changes vs `0.12.9`.
 
 ## 0.12.9 - 2026-06-09
 

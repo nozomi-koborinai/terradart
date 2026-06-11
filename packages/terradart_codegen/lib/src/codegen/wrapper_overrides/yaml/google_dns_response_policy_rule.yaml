@@ -1,0 +1,11 @@
+outputDir: dns
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - response_policy
+  - rule_name
+  - dns_name
+  - project
+  - local_data

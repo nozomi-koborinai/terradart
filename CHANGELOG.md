@@ -14,8 +14,12 @@ Lockstep patch across the workspace. **No breaking changes** vs `0.12.9`.
 - **`terradart_google`** — Wave 23 Eventarc: `google_eventarc_google_channel_config`.
 - **`terradart_google`** — Wave 23 Cloud Run: `google_cloud_run_v2_worker_pool`.
 - **`terradart_google`** — Wave 23 IAP: `google_iap_web_backend_service_iam_member`.
-- Catalog: **181 curated resource factories + 1 data source** (182 entries).
-- Extended **`dns_quickstart`** (policy + A record), **`eventarc_quickstart`** (channel config), **`cloud_run_quickstart`** (worker pool), and **`compute_lb_quickstart`** (IAP member on backend service).
+- **`terradart_google`** — Wave 24 DNS: `google_dns_response_policy`, `google_dns_response_policy_rule`.
+- **`terradart_google`** — Wave 24 Cloud Run: `google_cloud_run_v2_worker_pool_iam_member`.
+- **`terradart_google`** — Wave 24 Compute: `google_compute_router`.
+- **`terradart_google`** — Wave 24 BigQuery: `google_bigquery_datapolicy_data_policy_iam_member`.
+- Catalog: **186 curated resource factories + 1 data source** (187 entries).
+- Extended **`dns_quickstart`** (policy, A record, response policy), **`eventarc_quickstart`** (channel config), **`cloud_run_quickstart`** (worker pool + IAM), **`compute_lb_quickstart`** (IAP member), **`compute_quickstart`** (Cloud Router), and **`bigquery_quickstart`** (datapolicy IAM).
 
 ## [0.12.9] - 2026-06-09
 

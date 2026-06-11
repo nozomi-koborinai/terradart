@@ -424,3 +424,14 @@ files:
     upstream: mmv1/products/cloudrun/WorkerPool.yaml
   google_iap_web_backend_service_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  # Wave 24 (DNS response policy, Cloud Run worker pool IAM, Compute router, BigQuery datapolicy IAM)
+  google_dns_response_policy:
+    upstream: mmv1/products/dns/ResponsePolicy.yaml
+  google_dns_response_policy_rule:
+    upstream: mmv1/products/dns/ResponsePolicyRule.yaml
+  google_cloud_run_v2_worker_pool_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_router:
+    upstream: mmv1/products/compute/Router.yaml
+  google_bigquery_datapolicy_data_policy_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation

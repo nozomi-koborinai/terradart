@@ -91,7 +91,7 @@ final class ApiServiceStack extends Stack {
     );
     add(apiService);
 
-    add(
+    final batchWorkers = add(
       GoogleCloudRunV2WorkerPool(
         localName: 'batch_workers',
         name: TfArg.literal('batch-workers'),
@@ -174,6 +174,18 @@ final class ApiServiceStack extends Stack {
       GoogleCloudRunV2JobIamMember(
         localName: 'nightly_cleanup_invoker',
         name: TfArg.ref(nightlyJob.nameRef),
+        role: TfArg.literal('roles/run.invoker'),
+        member: TfArg.ref(schedulerSa.iamMember),
+        location: TfArg.literal('asia-northeast1'),
+      ),
+    );
+
+    // ---- Wave 24: worker pool invoker -------------------------------------
+
+    add(
+      GoogleCloudRunV2WorkerPoolIamMember(
+        localName: 'batch_workers_invoker',
+        name: TfArg.ref(batchWorkers.nameRef),
         role: TfArg.literal('roles/run.invoker'),
         member: TfArg.ref(schedulerSa.iamMember),
         location: TfArg.literal('asia-northeast1'),

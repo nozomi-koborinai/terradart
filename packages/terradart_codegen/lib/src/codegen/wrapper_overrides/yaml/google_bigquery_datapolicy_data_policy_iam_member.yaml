@@ -1,0 +1,12 @@
+outputDir: bigquery
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - data_policy_id
+  - role
+  - member
+  - condition
+  - location
+  - project

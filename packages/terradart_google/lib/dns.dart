@@ -25,3 +25,7 @@ export 'src/dns/google_dns_managed_zone_iam_member.dart'
     show GoogleDnsManagedZoneIamMember;
 export 'src/dns/google_dns_policy.dart' show GoogleDnsPolicy;
 export 'src/dns/google_dns_record_set.dart' show GoogleDnsRecordSet;
+export 'src/dns/google_dns_response_policy.dart'
+    show GoogleDnsResponsePolicy;
+export 'src/dns/google_dns_response_policy_rule.dart'
+    show GoogleDnsResponsePolicyRule;

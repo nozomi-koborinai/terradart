@@ -334,6 +334,7 @@ export 'src/compute/google_compute_region_ssl_certificate.dart'
     show GoogleComputeRegionSslCertificate;
 export 'src/compute/google_compute_region_target_https_proxy.dart'
     show GoogleComputeRegionTargetHttpsProxy;
+export 'src/compute/google_compute_router.dart' show GoogleComputeRouter;
 export 'src/compute/google_compute_region_url_map.dart'
     show
         GoogleComputeRegionUrlMap,

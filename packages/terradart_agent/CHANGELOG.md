@@ -2,7 +2,7 @@
 
 ## 0.12.10
 
-Lockstep version bump for `terradart_google` v0.12.10. MCP catalog grows by five entries across DNS, Eventarc, Cloud Run worker pool, and IAP (182 entries total).
+Lockstep version bump for `terradart_google` v0.12.10. MCP catalog grows by ten entries across DNS, Eventarc, Cloud Run, IAP, Compute, and BigQuery (187 entries total).
 
 ## 0.12.9
 

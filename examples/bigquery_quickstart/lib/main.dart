@@ -134,6 +134,16 @@ final class AnalyticsStack extends Stack {
       ),
     );
 
+    add(
+      GoogleBigqueryDatapolicyDataPolicyIamMember(
+        localName: 'mask_email_reader',
+        dataPolicyId: TfArg.literal('mask-email'),
+        location: TfArg.literal('asia-northeast1'),
+        role: TfArg.literal('roles/bigquerydatapolicy.maskedReader'),
+        member: TfArg.ref(reader.iamMember),
+      ),
+    );
+
     final exchange = add(
       GoogleBigqueryAnalyticsHubDataExchange(
         localName: 'shared_exchange',

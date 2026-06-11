@@ -60,6 +60,16 @@ final class NetworkStack extends Stack {
     );
     add(workloadSubnet);
 
+    add(
+      GoogleComputeRouter(
+        localName: 'edge_router',
+        name: TfArg.literal('edge-router'),
+        region: TfArg.literal('asia-northeast1'),
+        network: TfArg.ref(mainVpc.id),
+        description: TfArg.literal('Cloud Router for private egress'),
+      ),
+    );
+
     // ---- IAM: subnetwork-scoped networkUser (Shared VPC) ------------------
     //
     // The classic Shared-VPC pattern: each service project's compute SA
