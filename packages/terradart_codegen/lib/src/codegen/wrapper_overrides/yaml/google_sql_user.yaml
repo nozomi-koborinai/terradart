@@ -67,8 +67,19 @@ paramOrder:
 
 dartTypeOverrides:
   type: SqlUserType
+  deletion_policy: SqlUserDeletionPolicy
 
 prelude: |
+  /// `deletion_policy` — Postgres users with granted SQL roles cannot be
+  /// deleted via the API; `ABANDON` drops them from Terraform state only.
+  enum SqlUserDeletionPolicy implements TerraformEnum {
+    abandon('ABANDON');
+
+    const SqlUserDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
   /// Authentication mechanism for a `google_sql_user`.
   ///
   /// - [builtIn]: classic username/password user owned by the database

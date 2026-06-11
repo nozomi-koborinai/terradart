@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_instance_group_manager`.
 const Set<String> _googleComputeInstanceGroupManagerSensitive = <String>{};
 
+/// `list_managed_instances_results` — pagination for the
+/// `listManagedInstances` API on this MIG.
+enum InstanceGroupManagerListManagedInstancesResults implements TerraformEnum {
+  pageless('PAGELESS'),
+  paginated('PAGINATED');
+
+  const InstanceGroupManagerListManagedInstancesResults(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 // ===========================================================================
 // Enums for update_policy
 // ===========================================================================
@@ -505,7 +516,8 @@ final class GoogleComputeInstanceGroupManager extends Resource {
     TfArg<num>? targetSize,
     TfArg<num>? targetStoppedSize,
     TfArg<num>? targetSuspendedSize,
-    TfArg<String>? listManagedInstancesResults,
+    TfArg<InstanceGroupManagerListManagedInstancesResults>?
+    listManagedInstancesResults,
     TfArg<bool>? waitForInstances,
     TfArg<String>? waitForInstancesStatus,
     TfArg<List<String>>? targetPools,

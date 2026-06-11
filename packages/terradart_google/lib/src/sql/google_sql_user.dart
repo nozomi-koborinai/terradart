@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_sql_user`.
 const Set<String> _googleSqlUserSensitive = <String>{'password'};
 
+/// `deletion_policy` — Postgres users with granted SQL roles cannot be
+/// deleted via the API; `ABANDON` drops them from Terraform state only.
+enum SqlUserDeletionPolicy implements TerraformEnum {
+  abandon('ABANDON');
+
+  const SqlUserDeletionPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Authentication mechanism for a `google_sql_user`.
 ///
 /// - [builtIn]: classic username/password user owned by the database
@@ -93,7 +103,7 @@ final class GoogleSqlUser extends Resource {
     TfArg<num>? passwordWoVersion,
     TfArg<String>? host,
     TfArg<List<String>>? databaseRoles,
-    TfArg<String>? deletionPolicy,
+    TfArg<SqlUserDeletionPolicy>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

@@ -1744,6 +1744,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
     ],
     nestedTypes: <String>[
+      'InstanceGroupManagerListManagedInstancesResults',
       'InstanceGroupManagerUpdatePolicyType',
       'InstanceGroupManagerUpdatePolicyAction',
       'InstanceGroupManagerUpdatePolicyReplacementMethod',
@@ -2148,6 +2149,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
     ],
     nestedTypes: <String>[
+      'RegionInstanceGroupManagerListManagedInstancesResults',
       'RegionInstanceGroupManagerDistributionPolicyTargetShape',
       'RegionInstanceGroupManagerUpdatePolicyType',
       'RegionInstanceGroupManagerInstanceRedistributionType',
@@ -3969,7 +3971,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `google_kms_crypto_key_version`.',
     constructorParams: <String>['localName', 'cryptoKey', 'state'],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['KmsCryptoKeyVersionState'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_kms_crypto_key_version`.\n\nManages a [GoogleKmsCryptoKey] version (rotation / destroy lifecycle).\nPass `cryptoKey` as the parent key id path or `TfArg.ref(key.id)`.\n\nExample:\n```dart\nGoogleKmsCryptoKeyVersion(\n  localName: \'v1\',\n  cryptoKey: TfArg.ref(ringKey.id),\n);\n```',
@@ -4816,7 +4818,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'deletionPolicy',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SecretManagerSecretVersionDeletionPolicy'],
     sensitiveFields: <String>['secret_data'],
     docComment:
         'Factory wrapper for `google_secret_manager_secret_version`.\n\nA secret version resource.',
@@ -5032,7 +5034,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'deletionPolicy',
       'project',
     ],
-    nestedTypes: <String>['SqlUserType'],
+    nestedTypes: <String>['SqlUserDeletionPolicy', 'SqlUserType'],
     sensitiveFields: <String>['password'],
     docComment:
         'Factory wrapper for `google_sql_user`.\n\nRepresents a database user inside a Cloud SQL instance. The exact\nsemantics depend on the parent instance\'s `database_version` (MySQL,\nPostgreSQL, SQL Server) and the user\'s [type] — a built-in DB user,\na Cloud IAM user, a Cloud IAM service account, or a Cloud IAM group.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_sql_user.`).\n- `instance`: parent Cloud SQL instance name. Typically\n  `TfArg.ref(sqlInstance.nameRef)`. Immutable.\n- `name`: database username. Immutable.\n\nOptional knobs:\n- [type]: authentication mechanism. Defaults to the database\'s built-in\n  user when omitted.\n- [password] / [passwordWo]: only for [SqlUserType.builtIn] users on\n  MySQL / SQL Server, and required for PostgreSQL built-ins. Cloud IAM\n  users authenticate via IAM tokens — leave both `null`.\n  * `password` is sensitive in the schema and round-trips through\n    state; the generated `sensitiveFields` set masks it at synth time.\n  * `password_wo` is the write-only variant (TF 1.11+). Write-only\n    fields never enter Terraform state, so the wrapper\'s\n    `sensitiveFields` set masks only the state-stored `password` —\n    `password_wo` does not need to appear there. Bump\n    `passwordWoVersion` to force a rotation.\n- [host]: MySQL-only — restricts which client hosts may authenticate\n  with these credentials. Ignored on Postgres / SQL Server.\n\nExample (built-in PostgreSQL user):\n```dart\nfinal appUser = GoogleSqlUser(\n  localName: \'app\',\n  instance: TfArg.ref(primary.nameRef),\n  name: TfArg.literal(\'app\'),\n  type: TfArg.literal(SqlUserType.builtIn),\n  password: TfArg.literal(Platform.environment[\'DB_PASSWORD\']!),\n);\n```\n\nExample (Cloud IAM service-account user, no password):\n```dart\nfinal ciUser = GoogleSqlUser(\n  localName: \'ci\',\n  instance: TfArg.ref(primary.nameRef),\n  name: TfArg.literal(\'ci-runner@my-project.iam.gserviceaccount.com\'),\n  type: TfArg.literal(SqlUserType.cloudIamServiceAccount),\n);\n```',

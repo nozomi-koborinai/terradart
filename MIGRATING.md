@@ -19,6 +19,11 @@ enums instead of `TfArg<String>`:
 | `GoogleLoggingSavedQuery` | `visibility` | `LoggingSavedQueryVisibility` |
 | `GoogleMonitoringSlo` | `calendarPeriod` | `MonitoringSloCalendarPeriod` |
 | `GoogleStorageHmacKey` | `state` | `StorageHmacKeyState` |
+| `GoogleKmsCryptoKeyVersion` | `state` | `KmsCryptoKeyVersionState` |
+| `GoogleSecretManagerSecretVersion` | `deletionPolicy` | `SecretManagerSecretVersionDeletionPolicy` |
+| `GoogleComputeInstanceGroupManager` | `listManagedInstancesResults` | `InstanceGroupManagerListManagedInstancesResults` |
+| `GoogleComputeRegionInstanceGroupManager` | `listManagedInstancesResults` | `RegionInstanceGroupManagerListManagedInstancesResults` |
+| `GoogleSqlUser` | `deletionPolicy` | `SqlUserDeletionPolicy` |
 
 Optional Analytics Hub `discoveryType` fields use
 `BigqueryAnalyticsHubDataExchangeDiscoveryType` /
