@@ -13,7 +13,7 @@ Maintainer:
 
 ## 0.12.11
 
-One new wrapper override (Wave 25 `google_vpc_access_connector`). `terraform_api_requirements.dart` maps `google_vpc_access_` → `vpcaccess.googleapis.com`.
+Wave 25 `google_vpc_access_connector` override; `terraform_api_requirements.dart` maps `google_vpc_access_` → `vpcaccess.googleapis.com`. `google_artifact_registry_repository` override: typed remote `docker_repository` / `maven_repository` / `npm_repository` helpers and public-registry enums.
 
 ## 0.12.10
 

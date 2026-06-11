@@ -8,6 +8,10 @@
 
 Catalog: **187 curated resource factories + 1 data source** (188 entries).
 
+### Changed
+
+- `GoogleArtifactRegistryRepository` — `remoteRepositoryConfig` now exposes typed `dockerRepository`, `mavenRepository`, and `npmRepository` blocks with public-registry enums (`ArtifactRegistryDockerPublicRepository`, `ArtifactRegistryMavenPublicRepository`, `ArtifactRegistryNpmPublicRepository`) and a shared deprecated `ArtifactRegistryRepositoryArtifactRegistryRemoteCustomRepository` helper. `advancedExtra` remains for `python_repository` and other rare upstreams.
+
 ## 0.12.10 - 2026-06-09
 
 ### Breaking

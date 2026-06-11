@@ -97,6 +97,33 @@ enum ArtifactRegistryYumRepositoryBase implements TerraformEnum {
   final String terraformValue;
 }
 
+/// `remote_repository_config.docker_repository.public_repository`.
+enum ArtifactRegistryDockerPublicRepository implements TerraformEnum {
+  dockerHub('DOCKER_HUB');
+
+  const ArtifactRegistryDockerPublicRepository(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `remote_repository_config.maven_repository.public_repository`.
+enum ArtifactRegistryMavenPublicRepository implements TerraformEnum {
+  mavenCentral('MAVEN_CENTRAL');
+
+  const ArtifactRegistryMavenPublicRepository(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `remote_repository_config.npm_repository.public_repository`.
+enum ArtifactRegistryNpmPublicRepository implements TerraformEnum {
+  npmJs('NPMJS');
+
+  const ArtifactRegistryNpmPublicRepository(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 // ===========================================================================
 // docker_config (max_items=1)
 // ===========================================================================
@@ -218,14 +245,18 @@ class ArtifactRegistryRepositoryArtifactRegistryVirtualUpstreamPolicy {
 /// (Docker Hub, Maven Central, PyPI, npm, APT/YUM mirrors, or any
 /// "common" URI). The typed surface here covers the most common path
 /// -- a `common_repository` upstream + optional username/password
-/// credentials. APT/YUM public-repository bases are typed on
-/// [aptRepository] / [yumRepository]; other format-specific upstreams
-/// and deprecated `custom_repository` paths remain on [advancedExtra].
+/// credentials. Docker / Maven / npm / APT / YUM public-repository paths
+/// are typed on [dockerRepository] / [mavenRepository] / [npmRepository] /
+/// [aptRepository] / [yumRepository]; [pythonRepository] and other rare
+/// upstreams remain on [advancedExtra].
 @immutable
 class ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig {
   const ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig({
     this.description,
     this.commonRepository,
+    this.dockerRepository,
+    this.mavenRepository,
+    this.npmRepository,
     this.aptRepository,
     this.yumRepository,
     this.upstreamCredentials,
@@ -243,6 +274,22 @@ class ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig {
   /// (`https://<region>-docker.pkg.dev/<project>/<repo>`).
   final ArtifactRegistryRepositoryArtifactRegistryRemoteCommonRepository?
   commonRepository;
+
+  /// Docker-format remote upstream (`format == DOCKER`,
+  /// `mode == REMOTE_REPOSITORY`). Mutually exclusive with
+  /// [commonRepository] and the other `*_repository` blocks.
+  final ArtifactRegistryRepositoryArtifactRegistryRemoteDockerRepository?
+  dockerRepository;
+
+  /// Maven-format remote upstream (`format == MAVEN`,
+  /// `mode == REMOTE_REPOSITORY`).
+  final ArtifactRegistryRepositoryArtifactRegistryRemoteMavenRepository?
+  mavenRepository;
+
+  /// npm-format remote upstream (`format == NPM`,
+  /// `mode == REMOTE_REPOSITORY`).
+  final ArtifactRegistryRepositoryArtifactRegistryRemoteNpmRepository?
+  npmRepository;
 
   /// APT-format remote upstream (`format == APT`, `mode == REMOTE_REPOSITORY`).
   final ArtifactRegistryRepositoryArtifactRegistryRemoteAptRepository?
@@ -264,21 +311,12 @@ class ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig {
   /// path.
   final TfArg<bool>? disableUpstreamValidation;
 
-  /// Escape hatch for the format-specific upstream blocks not modeled
-  /// as typed fields:
-  /// - `docker_repository` (`public_repository: 'DOCKER_HUB'` /
-  ///   deprecated `custom_repository.uri`)
-  /// - `maven_repository` (`public_repository: 'MAVEN_CENTRAL'` /
-  ///   deprecated `custom_repository.uri`)
-  /// - `npm_repository` (`public_repository: 'NPMJS'` / deprecated
-  ///   `custom_repository.uri`)
-  /// - `python_repository` (`public_repository: 'PYPI'` / deprecated
-  ///   `custom_repository.uri`)
-  ///
-  /// Keys are Terraform block names; values are the block payload
-  /// (single block -> `[{...}]`, list of blocks -> list of maps).
-  /// The map is spread into the emitted Terraform args as-is and is
-  /// mutually exclusive with [commonRepository] at the API level
+  /// Escape hatch for format-specific upstream blocks not modeled as
+  /// typed fields (e.g. `python_repository` with `public_repository:
+  /// 'PYPI'`). Keys are Terraform block names; values are the block
+  /// payload (single block -> `[{...}]`, list of blocks -> list of
+  /// maps). The map is spread into the emitted Terraform args as-is and
+  /// is mutually exclusive with [commonRepository] at the API level
   /// (`exactly_one_of` -- enforced by Terraform at plan time).
   final Map<String, Object?>? advancedExtra;
 
@@ -286,6 +324,11 @@ class ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig {
     if (description != null) 'description': description!.toTfJson(),
     if (commonRepository != null)
       'common_repository': [commonRepository!.toArgMap()],
+    if (dockerRepository != null)
+      'docker_repository': [dockerRepository!.toArgMap()],
+    if (mavenRepository != null)
+      'maven_repository': [mavenRepository!.toArgMap()],
+    if (npmRepository != null) 'npm_repository': [npmRepository!.toArgMap()],
     if (aptRepository != null) 'apt_repository': [aptRepository!.toArgMap()],
     if (yumRepository != null) 'yum_repository': [yumRepository!.toArgMap()],
     if (upstreamCredentials != null)
@@ -293,6 +336,83 @@ class ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig {
     if (disableUpstreamValidation != null)
       'disable_upstream_validation': disableUpstreamValidation!.toTfJson(),
     if (advancedExtra != null) ...advancedExtra!,
+  };
+}
+
+/// Deprecated `custom_repository` nested under docker / maven / npm
+/// remote blocks. Prefer [commonRepository] for new stacks.
+@immutable
+class ArtifactRegistryRepositoryArtifactRegistryRemoteCustomRepository {
+  const ArtifactRegistryRepositoryArtifactRegistryRemoteCustomRepository({
+    required this.uri,
+  });
+
+  final TfArg<String> uri;
+
+  Map<String, Object?> toArgMap() => {'uri': uri.toTfJson()};
+}
+
+/// `remote_repository_config.docker_repository` block.
+@immutable
+class ArtifactRegistryRepositoryArtifactRegistryRemoteDockerRepository {
+  const ArtifactRegistryRepositoryArtifactRegistryRemoteDockerRepository({
+    this.publicRepository,
+    this.customRepository,
+  });
+
+  /// Public Docker Hub pull-through cache. Conflicts with
+  /// [customRepository].
+  final ArtifactRegistryDockerPublicRepository? publicRepository;
+
+  /// Deprecated custom URI upstream. Conflicts with [publicRepository].
+  final ArtifactRegistryRepositoryArtifactRegistryRemoteCustomRepository?
+  customRepository;
+
+  Map<String, Object?> toArgMap() => {
+    if (publicRepository != null)
+      'public_repository': publicRepository!.terraformValue,
+    if (customRepository != null)
+      'custom_repository': [customRepository!.toArgMap()],
+  };
+}
+
+/// `remote_repository_config.maven_repository` block.
+@immutable
+class ArtifactRegistryRepositoryArtifactRegistryRemoteMavenRepository {
+  const ArtifactRegistryRepositoryArtifactRegistryRemoteMavenRepository({
+    this.publicRepository,
+    this.customRepository,
+  });
+
+  final ArtifactRegistryMavenPublicRepository? publicRepository;
+  final ArtifactRegistryRepositoryArtifactRegistryRemoteCustomRepository?
+  customRepository;
+
+  Map<String, Object?> toArgMap() => {
+    if (publicRepository != null)
+      'public_repository': publicRepository!.terraformValue,
+    if (customRepository != null)
+      'custom_repository': [customRepository!.toArgMap()],
+  };
+}
+
+/// `remote_repository_config.npm_repository` block.
+@immutable
+class ArtifactRegistryRepositoryArtifactRegistryRemoteNpmRepository {
+  const ArtifactRegistryRepositoryArtifactRegistryRemoteNpmRepository({
+    this.publicRepository,
+    this.customRepository,
+  });
+
+  final ArtifactRegistryNpmPublicRepository? publicRepository;
+  final ArtifactRegistryRepositoryArtifactRegistryRemoteCustomRepository?
+  customRepository;
+
+  Map<String, Object?> toArgMap() => {
+    if (publicRepository != null)
+      'public_repository': publicRepository!.terraformValue,
+    if (customRepository != null)
+      'custom_repository': [customRepository!.toArgMap()],
   };
 }
 
