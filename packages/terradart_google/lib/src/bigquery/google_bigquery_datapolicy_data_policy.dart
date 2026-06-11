@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_bigquery_datapolicy_data_policy`.
 const Set<String> _googleBigqueryDatapolicyDataPolicySensitive = <String>{};
 
+/// Enrollment level for `google_bigquery_datapolicy_data_policy.data_policy_type`.
+enum BigqueryDatapolicyDataPolicyType implements TerraformEnum {
+  columnLevelSecurityPolicy('COLUMN_LEVEL_SECURITY_POLICY'),
+  dataMaskingPolicy('DATA_MASKING_POLICY');
+
+  const BigqueryDatapolicyDataPolicyType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_bigquery_datapolicy_data_policy`.
 final class GoogleBigqueryDatapolicyDataPolicy extends Resource {
   static const String tfType = 'google_bigquery_datapolicy_data_policy';
@@ -13,7 +23,7 @@ final class GoogleBigqueryDatapolicyDataPolicy extends Resource {
   GoogleBigqueryDatapolicyDataPolicy({
     required super.localName,
     required TfArg<String> dataPolicyId,
-    required TfArg<String> dataPolicyType,
+    required TfArg<BigqueryDatapolicyDataPolicyType> dataPolicyType,
     required TfArg<String> location,
     required TfArg<String> policyTag,
     TfArg<String>? project,

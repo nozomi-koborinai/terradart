@@ -349,7 +349,8 @@ final class ComputeLbStack extends Stack {
         localName: 'lb_psc_attachment',
         name: TfArg.literal('app-lb-psc'),
         region: TfArg.literal(region),
-        connectionPreference: TfArg.literal('ACCEPT_AUTOMATIC'),
+        connectionPreference: TfArg.literal(
+            ServiceAttachmentConnectionPreference.acceptAutomatic),
         enableProxyProtocol: TfArg.literal(false),
         natSubnets: TfArg.literal([lbSubnet.selfLink.interpolation]),
         targetService: TfArg.ref(lbBackend.selfLink),

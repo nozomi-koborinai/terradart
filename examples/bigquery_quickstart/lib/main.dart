@@ -128,7 +128,8 @@ final class AnalyticsStack extends Stack {
         localName: 'email_mask',
         location: TfArg.literal('asia-northeast1'),
         dataPolicyId: TfArg.literal('mask-email'),
-        dataPolicyType: TfArg.literal('DATA_MASKING_POLICY'),
+        dataPolicyType:
+            TfArg.literal(BigqueryDatapolicyDataPolicyType.dataMaskingPolicy),
         policyTag: TfArg.literal(
             'projects/$projectId/locations/asia-northeast1/taxonomies/1/policyTags/1'),
       ),

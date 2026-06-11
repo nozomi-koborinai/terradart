@@ -6,13 +6,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_service_attachment`.
 const Set<String> _googleComputeServiceAttachmentSensitive = <String>{};
 
+/// Connection preference for `google_compute_service_attachment.connection_preference`.
+enum ServiceAttachmentConnectionPreference implements TerraformEnum {
+  acceptAutomatic('ACCEPT_AUTOMATIC'),
+  acceptManual('ACCEPT_MANUAL');
+
+  const ServiceAttachmentConnectionPreference(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_compute_service_attachment`.
 final class GoogleComputeServiceAttachment extends Resource {
   static const String tfType = 'google_compute_service_attachment';
 
   GoogleComputeServiceAttachment({
     required super.localName,
-    required TfArg<String> connectionPreference,
+    required TfArg<ServiceAttachmentConnectionPreference> connectionPreference,
     TfArg<List<String>>? consumerRejectLists,
     TfArg<String>? description,
     TfArg<List<String>>? domainNames,

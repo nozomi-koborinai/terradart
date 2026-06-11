@@ -1,6 +1,28 @@
 outputDir: cloud_run
 deriveClassDoc: true
 deriveOutputGetters: true
+
+dartTypeOverrides:
+  launch_stage: CloudRunV2WorkerPoolLaunchStage
+
+prelude: |
+  /// Launch stage for `google_cloud_run_v2_worker_pool.launch_stage`. Shares
+  /// Terraform values with [LaunchStage] / [CloudRunV2JobLaunchStage] but uses
+  /// a worker-pool-specific name so `cloud_run.dart` can export all three.
+  enum CloudRunV2WorkerPoolLaunchStage implements TerraformEnum {
+    unimplemented('UNIMPLEMENTED'),
+    prelaunch('PRELAUNCH'),
+    earlyAccess('EARLY_ACCESS'),
+    alpha('ALPHA'),
+    beta('BETA'),
+    ga('GA'),
+    deprecatedStage('DEPRECATED');
+
+    const CloudRunV2WorkerPoolLaunchStage(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
 paramOrder:
 - annotations
 - client

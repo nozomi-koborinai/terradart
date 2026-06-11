@@ -47,7 +47,9 @@ export 'src/bigquery/google_bigquery_connection.dart'
         BigqueryConnectionSparkSparkHistoryServerConfig,
         GoogleBigqueryConnection;
 export 'src/bigquery/google_bigquery_datapolicy_data_policy.dart'
-    show GoogleBigqueryDatapolicyDataPolicy;
+    show
+        BigqueryDatapolicyDataPolicyType,
+        GoogleBigqueryDatapolicyDataPolicy;
 export 'src/bigquery/google_bigquery_datapolicy_data_policy_iam_member.dart'
     show GoogleBigqueryDatapolicyDataPolicyIamMember;
 export 'src/bigquery/google_bigquery_data_transfer_config.dart'

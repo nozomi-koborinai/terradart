@@ -1,5 +1,29 @@
 # Migrating terradart
 
+## 0.12.9 → 0.12.10
+
+**Breaking changes** in `terradart_google` — finite schema fields now use typed
+enums instead of `TfArg<String>`:
+
+| Factory | Field | Enum |
+|---------|-------|------|
+| `GoogleBigqueryDatapolicyDataPolicy` | `dataPolicyType` | `BigqueryDatapolicyDataPolicyType` |
+| `GoogleComputeServiceAttachment` | `connectionPreference` | `ServiceAttachmentConnectionPreference` |
+
+`GoogleDnsRecordSet.type` and `GoogleCloudRunV2WorkerPool.launchStage` ship as
+enums in `0.12.10` (new factories); no prior `String` API.
+
+```dart
+// 0.12.9
+dataPolicyType: TfArg.literal('DATA_MASKING_POLICY'),
+connectionPreference: TfArg.literal('ACCEPT_AUTOMATIC'),
+
+// 0.12.10
+dataPolicyType: TfArg.literal(BigqueryDatapolicyDataPolicyType.dataMaskingPolicy),
+connectionPreference:
+    TfArg.literal(ServiceAttachmentConnectionPreference.acceptAutomatic),
+```
+
 ## 0.12.2 → 0.12.3
 
 **Breaking change** in `terradart_google` for users of

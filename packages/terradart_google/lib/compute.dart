@@ -355,7 +355,9 @@ export 'src/compute/google_compute_region_url_map.dart'
 export 'src/compute/google_compute_security_policy_rule.dart'
     show GoogleComputeSecurityPolicyRule;
 export 'src/compute/google_compute_service_attachment.dart'
-    show GoogleComputeServiceAttachment;
+    show
+        GoogleComputeServiceAttachment,
+        ServiceAttachmentConnectionPreference;
 export 'src/compute/google_compute_security_policy.dart'
     show
         GoogleComputeSecurityPolicy,

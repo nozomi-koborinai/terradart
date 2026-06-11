@@ -6,6 +6,23 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_cloud_run_v2_worker_pool`.
 const Set<String> _googleCloudRunV2WorkerPoolSensitive = <String>{};
 
+/// Launch stage for `google_cloud_run_v2_worker_pool.launch_stage`. Shares
+/// Terraform values with [LaunchStage] / [CloudRunV2JobLaunchStage] but uses
+/// a worker-pool-specific name so `cloud_run.dart` can export all three.
+enum CloudRunV2WorkerPoolLaunchStage implements TerraformEnum {
+  unimplemented('UNIMPLEMENTED'),
+  prelaunch('PRELAUNCH'),
+  earlyAccess('EARLY_ACCESS'),
+  alpha('ALPHA'),
+  beta('BETA'),
+  ga('GA'),
+  deprecatedStage('DEPRECATED');
+
+  const CloudRunV2WorkerPoolLaunchStage(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_cloud_run_v2_worker_pool`.
 final class GoogleCloudRunV2WorkerPool extends Resource {
   static const String tfType = 'google_cloud_run_v2_worker_pool';
@@ -19,7 +36,7 @@ final class GoogleCloudRunV2WorkerPool extends Resource {
     TfArg<bool>? deletionProtection,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
-    TfArg<String>? launchStage,
+    TfArg<CloudRunV2WorkerPoolLaunchStage>? launchStage,
     required TfArg<String> location,
     required TfArg<String> name,
     TfArg<String>? project,

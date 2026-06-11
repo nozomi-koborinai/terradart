@@ -108,7 +108,7 @@ final class InternalDnsStack extends Stack {
         localName: 'api_a',
         managedZone: TfArg.ref(internalZone.nameRef),
         name: TfArg.literal('api.internal.corp.'),
-        type: TfArg.literal('A'),
+        type: TfArg.literal(DnsRecordSetType.a),
         ttl: TfArg.literal(300),
         rrdatas: TfArg.literal(['10.0.0.10']),
       ),

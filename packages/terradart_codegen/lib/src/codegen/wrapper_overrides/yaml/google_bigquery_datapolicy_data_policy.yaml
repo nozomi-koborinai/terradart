@@ -2,6 +2,20 @@ outputDir: bigquery
 deriveClassDoc: true
 deriveOutputGetters: true
 
+dartTypeOverrides:
+  data_policy_type: BigqueryDatapolicyDataPolicyType
+
+prelude: |
+  /// Enrollment level for `google_bigquery_datapolicy_data_policy.data_policy_type`.
+  enum BigqueryDatapolicyDataPolicyType implements TerraformEnum {
+    columnLevelSecurityPolicy('COLUMN_LEVEL_SECURITY_POLICY'),
+    dataMaskingPolicy('DATA_MASKING_POLICY');
+
+    const BigqueryDatapolicyDataPolicyType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
 paramOrder:
   - data_policy_id
   - data_policy_type

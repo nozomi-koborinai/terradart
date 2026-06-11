@@ -1,6 +1,29 @@
 outputDir: dns
 deriveClassDoc: true
 deriveOutputGetters: true
+
+dartTypeOverrides:
+  type: DnsRecordSetType
+
+prelude: |
+  /// DNS resource record type for `google_dns_record_set.type`.
+  enum DnsRecordSetType implements TerraformEnum {
+    a('A'),
+    aaaa('AAAA'),
+    cname('CNAME'),
+    mx('MX'),
+    txt('TXT'),
+    ns('NS'),
+    soa('SOA'),
+    ptr('PTR'),
+    srv('SRV'),
+    caa('CAA');
+
+    const DnsRecordSetType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
 paramOrder:
 - managed_zone
 - name

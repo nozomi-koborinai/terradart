@@ -6,6 +6,24 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_dns_record_set`.
 const Set<String> _googleDnsRecordSetSensitive = <String>{};
 
+/// DNS resource record type for `google_dns_record_set.type`.
+enum DnsRecordSetType implements TerraformEnum {
+  a('A'),
+  aaaa('AAAA'),
+  cname('CNAME'),
+  mx('MX'),
+  txt('TXT'),
+  ns('NS'),
+  soa('SOA'),
+  ptr('PTR'),
+  srv('SRV'),
+  caa('CAA');
+
+  const DnsRecordSetType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_dns_record_set`.
 final class GoogleDnsRecordSet extends Resource {
   static const String tfType = 'google_dns_record_set';
@@ -17,7 +35,7 @@ final class GoogleDnsRecordSet extends Resource {
     TfArg<String>? project,
     TfArg<List<String>>? rrdatas,
     TfArg<num>? ttl,
-    required TfArg<String> type,
+    required TfArg<DnsRecordSetType> type,
     TfArg<Map<String, dynamic>>? routingPolicy,
     super.lifecycle,
     super.dependsOn,
