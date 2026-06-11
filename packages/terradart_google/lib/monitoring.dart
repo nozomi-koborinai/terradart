@@ -63,6 +63,7 @@ export 'src/monitoring/google_monitoring_service.dart'
 export 'src/monitoring/google_monitoring_slo.dart'
     show
         GoogleMonitoringSlo,
+        MonitoringSloCalendarPeriod,
         MonitoringSloBasicSli,
         MonitoringSloBasicSliAvailability,
         MonitoringSloBasicSliLatency,

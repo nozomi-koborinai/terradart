@@ -2,6 +2,21 @@ outputDir: bigquery
 deriveClassDoc: true
 deriveOutputGetters: true
 
+dartTypeOverrides:
+  job_type: BigqueryReservationAssignmentJobType
+
+prelude: |
+  enum BigqueryReservationAssignmentJobType implements TerraformEnum {
+    unspecified('JOB_TYPE_UNSPECIFIED'),
+    pipeline('PIPELINE'),
+    query('QUERY'),
+    continuous('CONTINUOUS');
+
+    const BigqueryReservationAssignmentJobType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
 paramOrder:
   - assignee
   - job_type

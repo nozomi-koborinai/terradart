@@ -26,7 +26,7 @@ export 'src/storage/google_storage_bucket.dart'
         StorageBucketVersioning,
         StorageBucketVpcNetworkSource;
 export 'src/storage/google_storage_hmac_key.dart'
-    show GoogleStorageHmacKey;
+    show GoogleStorageHmacKey, StorageHmacKeyState;
 export 'src/storage/google_storage_managed_folder.dart'
     show GoogleStorageManagedFolder;
 export 'src/storage/google_storage_bucket_iam_member.dart'

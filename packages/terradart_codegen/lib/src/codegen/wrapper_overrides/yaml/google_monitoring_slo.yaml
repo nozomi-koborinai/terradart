@@ -23,6 +23,9 @@ curatedDoc: |-
   /// );
   /// ```
 
+dartTypeOverrides:
+  calendar_period: MonitoringSloCalendarPeriod
+
 paramOrder:
   - service
   - goal
@@ -46,6 +49,17 @@ argMapOrder:
   - sli
 
 prelude: |
+  enum MonitoringSloCalendarPeriod implements TerraformEnum {
+    day('DAY'),
+    week('WEEK'),
+    fortnight('FORTNIGHT'),
+    month('MONTH');
+
+    const MonitoringSloCalendarPeriod(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
   sealed class MonitoringSloSli {
     const MonitoringSloSli();
     String get blockKey;

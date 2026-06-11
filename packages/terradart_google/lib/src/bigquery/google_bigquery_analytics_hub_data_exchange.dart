@@ -6,6 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_bigquery_analytics_hub_data_exchange`.
 const Set<String> _googleBigqueryAnalyticsHubDataExchangeSensitive = <String>{};
 
+enum BigqueryAnalyticsHubDataExchangeDiscoveryType implements TerraformEnum {
+  privateDiscovery('DISCOVERY_TYPE_PRIVATE'),
+  publicDiscovery('DISCOVERY_TYPE_PUBLIC');
+
+  const BigqueryAnalyticsHubDataExchangeDiscoveryType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_bigquery_analytics_hub_data_exchange`.
 final class GoogleBigqueryAnalyticsHubDataExchange extends Resource {
   static const String tfType = 'google_bigquery_analytics_hub_data_exchange';
@@ -14,7 +23,7 @@ final class GoogleBigqueryAnalyticsHubDataExchange extends Resource {
     required super.localName,
     required TfArg<String> dataExchangeId,
     TfArg<String>? description,
-    TfArg<String>? discoveryType,
+    TfArg<BigqueryAnalyticsHubDataExchangeDiscoveryType>? discoveryType,
     required TfArg<String> displayName,
     TfArg<String>? documentation,
     TfArg<String>? icon,

@@ -6,6 +6,29 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_region_ssl_policy`.
 const Set<String> _googleComputeRegionSslPolicySensitive = <String>{};
 
+enum RegionSslPolicyProfile implements TerraformEnum {
+  compatible('COMPATIBLE'),
+  modern('MODERN'),
+  restricted('RESTRICTED'),
+  custom('CUSTOM'),
+  fips202205('FIPS_202205');
+
+  const RegionSslPolicyProfile(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+enum RegionSslPolicyMinTlsVersion implements TerraformEnum {
+  tls10('TLS_1_0'),
+  tls11('TLS_1_1'),
+  tls12('TLS_1_2'),
+  tls13('TLS_1_3');
+
+  const RegionSslPolicyMinTlsVersion(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_compute_region_ssl_policy`.
 final class GoogleComputeRegionSslPolicy extends Resource {
   static const String tfType = 'google_compute_region_ssl_policy';
@@ -14,9 +37,9 @@ final class GoogleComputeRegionSslPolicy extends Resource {
     required super.localName,
     TfArg<List<String>>? customFeatures,
     TfArg<String>? description,
-    TfArg<String>? minTlsVersion,
+    TfArg<RegionSslPolicyMinTlsVersion>? minTlsVersion,
     required TfArg<String> name,
-    TfArg<String>? profile,
+    TfArg<RegionSslPolicyProfile>? profile,
     TfArg<String>? project,
     TfArg<String>? region,
     super.lifecycle,

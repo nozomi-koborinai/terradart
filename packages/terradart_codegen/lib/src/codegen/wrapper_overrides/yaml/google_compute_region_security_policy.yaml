@@ -2,6 +2,20 @@ outputDir: compute
 deriveClassDoc: true
 deriveOutputGetters: true
 
+dartTypeOverrides:
+  type: RegionSecurityPolicyType
+
+prelude: |
+  enum RegionSecurityPolicyType implements TerraformEnum {
+    cloudArmor('CLOUD_ARMOR'),
+    cloudArmorEdge('CLOUD_ARMOR_EDGE'),
+    cloudArmorNetwork('CLOUD_ARMOR_NETWORK');
+
+    const RegionSecurityPolicyType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
 paramOrder:
   - description
   - name

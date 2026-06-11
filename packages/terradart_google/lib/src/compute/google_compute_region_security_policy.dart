@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_region_security_policy`.
 const Set<String> _googleComputeRegionSecurityPolicySensitive = <String>{};
 
+enum RegionSecurityPolicyType implements TerraformEnum {
+  cloudArmor('CLOUD_ARMOR'),
+  cloudArmorEdge('CLOUD_ARMOR_EDGE'),
+  cloudArmorNetwork('CLOUD_ARMOR_NETWORK');
+
+  const RegionSecurityPolicyType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_compute_region_security_policy`.
 final class GoogleComputeRegionSecurityPolicy extends Resource {
   static const String tfType = 'google_compute_region_security_policy';
@@ -16,7 +26,7 @@ final class GoogleComputeRegionSecurityPolicy extends Resource {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<String>? region,
-    TfArg<String>? type,
+    TfArg<RegionSecurityPolicyType>? type,
     TfArg<Map<String, dynamic>>? advancedOptionsConfig,
     TfArg<Map<String, dynamic>>? ddosProtectionConfig,
     TfArg<List<Map<String, dynamic>>>? rules,

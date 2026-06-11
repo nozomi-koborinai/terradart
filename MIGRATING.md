@@ -8,7 +8,21 @@ enums instead of `TfArg<String>`:
 | Factory | Field | Enum |
 |---------|-------|------|
 | `GoogleBigqueryDatapolicyDataPolicy` | `dataPolicyType` | `BigqueryDatapolicyDataPolicyType` |
+| `GoogleBigqueryReservationAssignment` | `jobType` | `BigqueryReservationAssignmentJobType` |
 | `GoogleComputeServiceAttachment` | `connectionPreference` | `ServiceAttachmentConnectionPreference` |
+| `GoogleComputeRegionSecurityPolicy` | `type` | `RegionSecurityPolicyType` |
+| `GoogleComputeRegionSslPolicy` | `profile` / `minTlsVersion` | `RegionSslPolicyProfile` / `RegionSslPolicyMinTlsVersion` |
+| `GoogleComputeTargetTcpProxy` | `proxyHeader` | `TargetTcpProxyProxyHeader` |
+| `GoogleComputeTargetSslProxy` | `proxyHeader` | `TargetSslProxyProxyHeader` |
+| `GoogleComputeRegionTargetTcpProxy` | `proxyHeader` | `RegionTargetTcpProxyProxyHeader` |
+| `GoogleCloudTasksQueue` | `desiredState` | `CloudTasksQueueDesiredState` |
+| `GoogleLoggingSavedQuery` | `visibility` | `LoggingSavedQueryVisibility` |
+| `GoogleMonitoringSlo` | `calendarPeriod` | `MonitoringSloCalendarPeriod` |
+| `GoogleStorageHmacKey` | `state` | `StorageHmacKeyState` |
+
+Optional Analytics Hub `discoveryType` fields use
+`BigqueryAnalyticsHubDataExchangeDiscoveryType` /
+`BigqueryAnalyticsHubListingDiscoveryType`.
 
 `GoogleDnsRecordSet.type` and `GoogleCloudRunV2WorkerPool.launchStage` ship as
 enums in `0.12.10` (new factories); no prior `String` API.

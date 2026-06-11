@@ -6,6 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_storage_hmac_key`.
 const Set<String> _googleStorageHmacKeySensitive = <String>{'secret'};
 
+enum StorageHmacKeyState implements TerraformEnum {
+  active('ACTIVE'),
+  inactive('INACTIVE');
+
+  const StorageHmacKeyState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_storage_hmac_key`.
 ///
 /// HMAC key for S3-compatible interop access to GCS. Bind to a service
@@ -25,7 +34,7 @@ final class GoogleStorageHmacKey extends Resource {
   GoogleStorageHmacKey({
     required super.localName,
     required TfArg<String> serviceAccountEmail,
-    TfArg<String>? state,
+    TfArg<StorageHmacKeyState>? state,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

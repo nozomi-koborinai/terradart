@@ -31,7 +31,8 @@ export 'src/logging/google_logging_saved_query.dart'
     show
         GoogleLoggingSavedQuery,
         LoggingSavedQueryLoggingQuery,
-        LoggingSavedQueryOpsAnalyticsQuery;
+        LoggingSavedQueryOpsAnalyticsQuery,
+        LoggingSavedQueryVisibility;
 export 'src/logging/google_logging_metric.dart'
     show
         GoogleLoggingMetric,

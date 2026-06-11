@@ -417,8 +417,8 @@ final class ComputeLbStack extends Stack {
         localName: 'regional_ssl_policy',
         name: TfArg.literal('app-regional-ssl-policy'),
         region: TfArg.literal(region),
-        profile: TfArg.literal('MODERN'),
-        minTlsVersion: TfArg.literal('TLS_1_2'),
+        profile: TfArg.literal(RegionSslPolicyProfile.modern),
+        minTlsVersion: TfArg.literal(RegionSslPolicyMinTlsVersion.tls12),
       ),
     );
 
@@ -437,7 +437,7 @@ final class ComputeLbStack extends Stack {
         localName: 'regional_armor',
         name: TfArg.literal('app-regional-armor'),
         region: TfArg.literal(region),
-        type: TfArg.literal('CLOUD_ARMOR'),
+        type: TfArg.literal(RegionSecurityPolicyType.cloudArmor),
       ),
     );
 

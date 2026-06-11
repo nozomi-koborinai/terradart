@@ -6,6 +6,15 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_logging_saved_query`.
 const Set<String> _googleLoggingSavedQuerySensitive = <String>{};
 
+enum LoggingSavedQueryVisibility implements TerraformEnum {
+  shared('SHARED'),
+  privateVisibility('PRIVATE');
+
+  const LoggingSavedQueryVisibility(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// `logging_query` block — standard Logs Explorer filter.
 class LoggingSavedQueryLoggingQuery {
   const LoggingSavedQueryLoggingQuery({
@@ -48,7 +57,7 @@ class LoggingSavedQueryOpsAnalyticsQuery {
 ///   displayName: TfArg.literal('Audit errors (7d)'),
 ///   parent: TfArg.literal('projects/my-proj/locations/global'),
 ///   location: TfArg.literal('global'),
-///   visibility: TfArg.literal('PRIVATE'),
+///   visibility: TfArg.literal(LoggingSavedQueryVisibility.privateVisibility),
 ///   loggingQuery: LoggingSavedQueryLoggingQuery(
 ///     filter: TfArg.literal(
 ///       'logName:"cloudaudit.googleapis.com" AND severity>=ERROR',
@@ -65,7 +74,7 @@ final class GoogleLoggingSavedQuery extends Resource {
     required TfArg<String> displayName,
     required TfArg<String> parent,
     required TfArg<String> location,
-    required TfArg<String> visibility,
+    required TfArg<LoggingSavedQueryVisibility> visibility,
     TfArg<String>? description,
     LoggingSavedQueryLoggingQuery? loggingQuery,
     LoggingSavedQueryOpsAnalyticsQuery? opsAnalyticsQuery,

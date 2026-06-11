@@ -321,15 +321,18 @@ export 'src/compute/google_compute_region_network_endpoint_group.dart'
         ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun,
         RegionNetworkEndpointGroupType;
 export 'src/compute/google_compute_region_security_policy.dart'
-    show GoogleComputeRegionSecurityPolicy;
+    show GoogleComputeRegionSecurityPolicy, RegionSecurityPolicyType;
 export 'src/compute/google_compute_region_security_policy_rule.dart'
     show GoogleComputeRegionSecurityPolicyRule;
 export 'src/compute/google_compute_region_ssl_policy.dart'
-    show GoogleComputeRegionSslPolicy;
+    show
+        GoogleComputeRegionSslPolicy,
+        RegionSslPolicyMinTlsVersion,
+        RegionSslPolicyProfile;
 export 'src/compute/google_compute_region_target_http_proxy.dart'
     show GoogleComputeRegionTargetHttpProxy;
 export 'src/compute/google_compute_region_target_tcp_proxy.dart'
-    show GoogleComputeRegionTargetTcpProxy;
+    show GoogleComputeRegionTargetTcpProxy, RegionTargetTcpProxyProxyHeader;
 export 'src/compute/google_compute_region_ssl_certificate.dart'
     show GoogleComputeRegionSslCertificate;
 export 'src/compute/google_compute_region_target_https_proxy.dart'
@@ -406,9 +409,9 @@ export 'src/compute/google_compute_target_http_proxy.dart'
 export 'src/compute/google_compute_target_https_proxy.dart'
     show GoogleComputeTargetHttpsProxy, QuicOverride, TlsEarlyData;
 export 'src/compute/google_compute_target_ssl_proxy.dart'
-    show GoogleComputeTargetSslProxy;
+    show GoogleComputeTargetSslProxy, TargetSslProxyProxyHeader;
 export 'src/compute/google_compute_target_tcp_proxy.dart'
-    show GoogleComputeTargetTcpProxy;
+    show GoogleComputeTargetTcpProxy, TargetTcpProxyProxyHeader;
 export 'src/compute/google_compute_url_map.dart'
     show
         GoogleComputeUrlMap,

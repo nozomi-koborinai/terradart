@@ -2,6 +2,34 @@ outputDir: compute
 deriveClassDoc: true
 deriveOutputGetters: true
 
+dartTypeOverrides:
+  profile: RegionSslPolicyProfile
+  min_tls_version: RegionSslPolicyMinTlsVersion
+
+prelude: |
+  enum RegionSslPolicyProfile implements TerraformEnum {
+    compatible('COMPATIBLE'),
+    modern('MODERN'),
+    restricted('RESTRICTED'),
+    custom('CUSTOM'),
+    fips202205('FIPS_202205');
+
+    const RegionSslPolicyProfile(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  enum RegionSslPolicyMinTlsVersion implements TerraformEnum {
+    tls10('TLS_1_0'),
+    tls11('TLS_1_1'),
+    tls12('TLS_1_2'),
+    tls13('TLS_1_3');
+
+    const RegionSslPolicyMinTlsVersion(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
 paramOrder:
   - custom_features
   - description
