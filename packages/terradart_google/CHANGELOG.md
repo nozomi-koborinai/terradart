@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.12.11 - 2026-06-09
+
+### Added
+
+- Wave 25 Service Networking (1): VPC Access connector (`VpcAccessConnectorSubnet` helper for subnet mode).
+
+Catalog: **187 curated resource factories + 1 data source** (188 entries).
+
 ## 0.12.10 - 2026-06-09
 
 ### Breaking

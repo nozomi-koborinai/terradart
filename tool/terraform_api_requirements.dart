@@ -32,6 +32,7 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry('google_cloud_scheduler_', 'cloudscheduler.googleapis.com'),
   MapEntry('google_eventarc_', 'eventarc.googleapis.com'),
   MapEntry('google_service_networking_', 'servicenetworking.googleapis.com'),
+  MapEntry('google_vpc_access_', 'vpcaccess.googleapis.com'),
 ];
 
 /// Returns the API endpoint a [terraformType] needs, or null when unchecked.

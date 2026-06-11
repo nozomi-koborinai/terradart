@@ -60,6 +60,9 @@ final class GoogleProviderRules extends ProviderRules {
     'project_iam': 'iam',
     'service_networking': 'service_networking',
 
+    // Wave 25 — Serverless VPC Access shares the service_networking barrel.
+    'vpc_access': 'service_networking',
+
     // Wave 9 — GKE Hub factories share the `container` barrel with GKE core.
     'gke': 'container',
 

@@ -4,6 +4,16 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## [0.12.11] - 2026-06-09
+
+Lockstep release across the workspace. **No breaking changes** vs `0.12.10`.
+
+### Added
+
+- **`terradart_google`** — Wave 25 Service Networking: `google_vpc_access_connector` (`VpcAccessConnectorSubnet` helper).
+- Catalog: **187 curated resource factories + 1 data source** (188 entries).
+- Extended **`cloud_run_quickstart`** (VPC Access connector + `template.vpcAccess` on the service).
+
 ## [0.12.10] - 2026-06-09
 
 Lockstep release across the workspace.
