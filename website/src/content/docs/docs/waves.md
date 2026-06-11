@@ -49,7 +49,7 @@ If you are upgrading from `0.12.9`, read [Migrating](/docs/migrating/) first —
 
 **v0.12.11** adds five more curated factories (Serverless VPC Access + Certificate Manager). All are **additive** — no breaking changes vs `0.12.10`.
 
-Catalog after `0.12.11`: **190 curated resource factories + 1 data source** (191 catalog entries). Wave 25 (`GoogleVpcAccessConnector`) ships in the same release line and adds one more factory when merged alongside Wave 26.
+Catalog after `0.12.11`: **191 curated resource factories + 1 data source** (192 catalog entries).
 
 ### Wave 25 — Serverless VPC Access
 

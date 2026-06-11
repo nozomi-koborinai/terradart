@@ -44,11 +44,7 @@ Use this first to see what services TerraDart covers and how large each one is.
 
 ## `list_resources`
 
-<<<<<<< HEAD
-Lists curated resources and data sources. Pass `barrel` to filter to one service, or omit it to list all 188.
-=======
-Lists curated resources and data sources. Pass `barrel` to filter to one service, or omit it to list all 191.
->>>>>>> a2c97f4 (feat(google): Wave 26 Certificate Manager (v0.12.11))
+Lists curated resources and data sources. Pass `barrel` to filter to one service, or omit it to list all 192.
 
 **Input** (filter to one barrel)
 
