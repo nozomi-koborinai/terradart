@@ -4,7 +4,15 @@
 // TfArg<String> when the wrapper override lacks dartTypeOverrides / prelude
 // enum coverage.
 //
-// Usage: dart tool/check_override_enum_gaps.dart
+// Top-level gaps (THIN / PARTIAL) fail CI by default. Nested gaps
+// (NESTED_PARTIAL on customSlot blocks still using TfArg<String>, and
+// NESTED_THIN on TfArg<Map> blocks) print as advisory. Pass
+// --strict-nested to fail on nested gaps too (tighten once the backlog is
+// cleared).
+//
+// Usage:
+//   dart tool/check_override_enum_gaps.dart
+//   dart tool/check_override_enum_gaps.dart --strict-nested
 
 import 'dart:convert';
 import 'dart:io';
@@ -41,6 +49,12 @@ final _overrideDir = Directory(
 final _genDir = Directory(
   p.join(_root.path, 'packages/terradart_google/lib/src'),
 );
+
+typedef _NestedEnumSite = ({
+  List<String> blockPath,
+  String attr,
+  List<String> values,
+});
 
 Map<String, dynamic> _loadOverride(String tfType) {
   final file = File(p.join(_overrideDir.path, '$tfType.yaml'));
@@ -113,6 +127,9 @@ String _camel(String snake) {
       parts.skip(1).map((p) => p[0].toUpperCase() + p.substring(1)).join();
 }
 
+String _blockPathLabel(List<String> blockPath, String attr) =>
+    '${blockPath.join('.')}.$attr';
+
 Set<String> _ctorStringFields(String tfType, Map<String, dynamic> ov) {
   final outDir = ov['outputDir'] as String?;
   if (outDir == null) return {};
@@ -132,8 +149,61 @@ Set<String> _ctorStringFields(String tfType, Map<String, dynamic> ov) {
   return fields;
 }
 
-void main() {
-  final gaps = <String>[];
+String? _generatedSource(String tfType, Map<String, dynamic> ov) {
+  final outDir = ov['outputDir'] as String?;
+  if (outDir == null) return null;
+  final genFile = File(p.join(_genDir.path, outDir, '$tfType.dart'));
+  if (!genFile.existsSync()) return null;
+  return genFile.readAsStringSync();
+}
+
+bool _customSlotCoversBlock(Map<String, dynamic> ov, List<String> blockPath) {
+  if (blockPath.isEmpty) return false;
+  final slots = Map<String, dynamic>.from(
+    ov['customSlots'] as YamlMap? ?? {},
+  );
+  return slots.containsKey(blockPath.last);
+}
+
+bool _nestedFieldStillTfArgString(String genText, String camel) {
+  return RegExp('final TfArg<String>\\??\\s+$camel\\s*;').hasMatch(genText);
+}
+
+List<_NestedEnumSite> _collectNestedEnumSites(Map<String, dynamic> block) {
+  final sites = <_NestedEnumSite>[];
+
+  void walk(Map<String, dynamic> node, List<String> path) {
+    final blockTypes = node['block_types'] as Map<String, dynamic>? ?? {};
+    for (final entry in blockTypes.entries) {
+      final name = entry.key;
+      final nested = Map<String, dynamic>.from(
+        (entry.value as Map)['block'] as Map,
+      );
+      final nextPath = [...path, name];
+
+      final attrs = nested['attributes'] as Map<String, dynamic>? ?? {};
+      for (final attrEntry in attrs.entries) {
+        final meta = Map<String, dynamic>.from(attrEntry.value as Map);
+        if (meta['computed'] == true) continue;
+        final vals = _parseEnumValues(meta['description'] as String?);
+        if (vals == null) continue;
+        sites.add((blockPath: nextPath, attr: attrEntry.key, values: vals));
+      }
+
+      walk(nested, nextPath);
+    }
+  }
+
+  walk(block, []);
+  return sites;
+}
+
+void main(List<String> args) {
+  final strictNested = args.contains('--strict-nested');
+
+  final topLevelGaps = <String>[];
+  final nestedPartialGaps = <String>[];
+  final nestedThinGaps = <String>[];
 
   for (final ent in _overrideDir.listSync().whereType<File>()) {
     if (!ent.path.endsWith('.yaml')) continue;
@@ -148,6 +218,7 @@ void main() {
     );
     final thin = _isThin(ov);
     final stringFields = _ctorStringFields(tfType, ov);
+    final genText = _generatedSource(tfType, ov);
 
     final attrs =
         ((schema as Map)['block'] as Map)['attributes'] as Map<String, dynamic>;
@@ -163,20 +234,67 @@ void main() {
       if (!stringFields.contains(camel)) continue;
       if (dto.containsKey(attr)) continue;
 
-      gaps.add(
+      topLevelGaps.add(
         '${thin ? "THIN" : "PARTIAL"}\t$tfType.$attr\t${vals.join(", ")}',
+      );
+    }
+
+    if (genText == null) continue;
+
+    final block = Map<String, dynamic>.from(
+      ((schema as Map)['block'] as Map),
+    );
+    for (final site in _collectNestedEnumSites(block)) {
+      final label = _blockPathLabel(site.blockPath, site.attr);
+      final camel = _camel(site.attr);
+
+      if (_customSlotCoversBlock(ov, site.blockPath)) {
+        if (_nestedFieldStillTfArgString(genText, camel)) {
+          nestedPartialGaps.add(
+            'NESTED_PARTIAL\t$tfType.$label\t${site.values.join(", ")}',
+          );
+        }
+        continue;
+      }
+
+      nestedThinGaps.add(
+        'NESTED_THIN\t$tfType.$label\t${site.values.join(", ")}',
       );
     }
   }
 
-  if (gaps.isEmpty) {
-    print('check_override_enum_gaps: OK (0 gaps)');
+  final nestedAdvisory = [...nestedPartialGaps, ...nestedThinGaps];
+  final failing =
+      strictNested ? [...topLevelGaps, ...nestedAdvisory] : [...topLevelGaps];
+
+  if (failing.isEmpty && nestedAdvisory.isEmpty) {
+    print('check_override_enum_gaps: OK (0 top-level, 0 nested advisory)');
     exit(0);
   }
 
-  print('check_override_enum_gaps: ${gaps.length} gap(s):');
-  for (final g in gaps) {
+  if (failing.isEmpty) {
+    print(
+      'check_override_enum_gaps: OK (0 top-level; '
+      '${nestedPartialGaps.length} nested partial, '
+      '${nestedThinGaps.length} nested thin advisory)',
+    );
+    for (final g in nestedAdvisory) {
+      print('  [advisory] $g');
+    }
+    exit(0);
+  }
+
+  print('check_override_enum_gaps: ${failing.length} gap(s):');
+  for (final g in failing) {
     print('  $g');
+  }
+  if (!strictNested && nestedAdvisory.isNotEmpty) {
+    print(
+      '  (${nestedAdvisory.length} nested advisory — pass --strict-nested to fail)',
+    );
+    for (final g in nestedAdvisory) {
+      print('  [advisory] $g');
+    }
   }
   exit(1);
 }
