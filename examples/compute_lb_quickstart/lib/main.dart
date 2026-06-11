@@ -522,6 +522,12 @@ final class ComputeLbStack extends Stack {
             subnetwork: TfArg.ref(lbSubnet.selfLink),
           ),
         ],
+        networkPerformanceConfig:
+            const ComputeInstanceTemplateInstanceTemplateNetworkPerformanceConfig(
+          totalEgressBandwidthTier:
+              ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier
+                  .tier1,
+        ),
       ),
     );
 

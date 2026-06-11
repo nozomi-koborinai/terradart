@@ -102,6 +102,7 @@ extraGetters: |2
 
 extraImports:
   - "import 'package:meta/meta.dart';"
+  - "import 'package:terradart_google/src/compute/google_compute_instance.dart' show ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier;"
 
 # `metadata_startup_script` is not schema-flagged as sensitive but
 # frequently holds bootstrap credentials in practice. Mask it on synth so
@@ -914,12 +915,15 @@ prelude: |
       required this.totalEgressBandwidthTier,
     });
 
-    /// Egress tier. `'TIER_1'` enables higher per-VM egress bandwidth;
-    /// `'DEFAULT'` keeps the platform default.
-    final TfArg<String> totalEgressBandwidthTier;
+    /// Egress tier. [ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier.tier1]
+    /// enables higher per-VM egress bandwidth;
+    /// [ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier.platformDefault]
+    /// keeps the platform default.
+    final ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier
+        totalEgressBandwidthTier;
 
     Map<String, Object?> toArgMap() => {
-          'total_egress_bandwidth_tier': totalEgressBandwidthTier.toTfJson(),
+          'total_egress_bandwidth_tier': totalEgressBandwidthTier.terraformValue,
         };
   }
 

@@ -4,11 +4,10 @@
 // TfArg<String> when the wrapper override lacks dartTypeOverrides / prelude
 // enum coverage.
 //
-// Top-level gaps (THIN / PARTIAL) fail CI by default. Nested gaps
-// (NESTED_PARTIAL on customSlot blocks still using TfArg<String>, and
-// NESTED_THIN on TfArg<Map> blocks) print as advisory. Pass
-// --strict-nested to fail on nested gaps too (tighten once the backlog is
-// cleared).
+// Top-level gaps (THIN / PARTIAL) and NESTED_PARTIAL (customSlot helpers
+// still using TfArg<String> for schema enums) fail CI by default.
+// NESTED_THIN (whole block still TfArg<Map>) prints as advisory unless
+// --strict-nested is passed.
 //
 // Usage:
 //   dart tool/check_override_enum_gaps.dart
@@ -263,22 +262,26 @@ void main(List<String> args) {
     }
   }
 
-  final nestedAdvisory = [...nestedPartialGaps, ...nestedThinGaps];
-  final failing =
-      strictNested ? [...topLevelGaps, ...nestedAdvisory] : [...topLevelGaps];
+  final nestedThinAdvisory = nestedThinGaps;
+  final failing = [
+    ...topLevelGaps,
+    ...nestedPartialGaps,
+    if (strictNested) ...nestedThinAdvisory,
+  ];
+  final nestedAdvisory = [...nestedPartialGaps, ...nestedThinAdvisory];
 
-  if (failing.isEmpty && nestedAdvisory.isEmpty) {
-    print('check_override_enum_gaps: OK (0 top-level, 0 nested advisory)');
+  if (failing.isEmpty && nestedThinAdvisory.isEmpty) {
+    print(
+        'check_override_enum_gaps: OK (0 top-level, 0 nested partial, 0 nested thin)');
     exit(0);
   }
 
   if (failing.isEmpty) {
     print(
-      'check_override_enum_gaps: OK (0 top-level; '
-      '${nestedPartialGaps.length} nested partial, '
-      '${nestedThinGaps.length} nested thin advisory)',
+      'check_override_enum_gaps: OK (0 top-level, 0 nested partial; '
+      '${nestedThinAdvisory.length} nested thin advisory)',
     );
-    for (final g in nestedAdvisory) {
+    for (final g in nestedThinAdvisory) {
       print('  [advisory] $g');
     }
     exit(0);
@@ -288,11 +291,11 @@ void main(List<String> args) {
   for (final g in failing) {
     print('  $g');
   }
-  if (!strictNested && nestedAdvisory.isNotEmpty) {
+  if (!strictNested && nestedThinAdvisory.isNotEmpty) {
     print(
-      '  (${nestedAdvisory.length} nested advisory — pass --strict-nested to fail)',
+      '  (${nestedThinAdvisory.length} NESTED_THIN advisory — pass --strict-nested to fail)',
     );
-    for (final g in nestedAdvisory) {
+    for (final g in nestedThinAdvisory) {
       print('  [advisory] $g');
     }
   }

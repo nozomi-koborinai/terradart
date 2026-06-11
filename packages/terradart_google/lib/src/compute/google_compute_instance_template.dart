@@ -2,6 +2,8 @@
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
+import 'package:terradart_google/src/compute/google_compute_instance.dart'
+    show ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier;
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_instance_template`.
@@ -823,12 +825,15 @@ class ComputeInstanceTemplateInstanceTemplateNetworkPerformanceConfig {
     required this.totalEgressBandwidthTier,
   });
 
-  /// Egress tier. `'TIER_1'` enables higher per-VM egress bandwidth;
-  /// `'DEFAULT'` keeps the platform default.
-  final TfArg<String> totalEgressBandwidthTier;
+  /// Egress tier. [ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier.tier1]
+  /// enables higher per-VM egress bandwidth;
+  /// [ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier.platformDefault]
+  /// keeps the platform default.
+  final ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier
+  totalEgressBandwidthTier;
 
   Map<String, Object?> toArgMap() => {
-    'total_egress_bandwidth_tier': totalEgressBandwidthTier.toTfJson(),
+    'total_egress_bandwidth_tier': totalEgressBandwidthTier.terraformValue,
   };
 }
 

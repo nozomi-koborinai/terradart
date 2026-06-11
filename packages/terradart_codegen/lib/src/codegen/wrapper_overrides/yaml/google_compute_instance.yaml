@@ -794,18 +794,37 @@ prelude: |
         };
   }
 
+  /// `network_performance_config.total_egress_bandwidth_tier` — VM egress
+  /// bandwidth profile.
+  enum ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier
+      implements TerraformEnum {
+    tier1('TIER_1'),
+    platformDefault('DEFAULT');
+
+    const ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier(
+      this.terraformValue,
+    );
+    @override
+    final String terraformValue;
+  }
+
   /// `network_performance_config` block (max_items=1). Selects the Tier 1
   /// network egress profile.
   @immutable
   class ComputeInstanceNetworkPerformanceConfig {
-    const ComputeInstanceNetworkPerformanceConfig({required this.totalEgressBandwidthTier});
+    const ComputeInstanceNetworkPerformanceConfig({
+      required this.totalEgressBandwidthTier,
+    });
 
-    /// Egress tier. `'TIER_1'` enables higher per-VM egress bandwidth;
-    /// `'DEFAULT'` keeps the platform default.
-    final TfArg<String> totalEgressBandwidthTier;
+    /// Egress tier. [ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier.tier1]
+    /// enables higher per-VM egress bandwidth;
+    /// [ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier.platformDefault]
+    /// keeps the platform default.
+    final ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier
+        totalEgressBandwidthTier;
 
     Map<String, Object?> toArgMap() => {
-          'total_egress_bandwidth_tier': totalEgressBandwidthTier.toTfJson(),
+          'total_egress_bandwidth_tier': totalEgressBandwidthTier.terraformValue,
         };
   }
 

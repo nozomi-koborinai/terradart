@@ -113,6 +113,11 @@ final class NetworkStack extends Stack {
           subnetwork: TfArg.ref(workloadSubnet.selfLink),
         ),
       ],
+      networkPerformanceConfig: const ComputeInstanceNetworkPerformanceConfig(
+        totalEgressBandwidthTier:
+            ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier
+                .platformDefault,
+      ),
     );
     add(bastion);
 

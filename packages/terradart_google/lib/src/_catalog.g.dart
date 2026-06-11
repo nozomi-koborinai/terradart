@@ -1694,6 +1694,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ComputeInstanceSpecificReservation',
       'ComputeInstanceReservationAffinity',
       'ComputeInstanceInstanceParams',
+      'ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier',
       'ComputeInstanceNetworkPerformanceConfig',
     ],
     sensitiveFields: <String>[

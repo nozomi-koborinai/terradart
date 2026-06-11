@@ -145,6 +145,7 @@ export 'src/compute/google_compute_instance.dart'
         ComputeInstanceIpv6AccessConfig,
         ComputeInstanceNetworkInterface,
         ComputeInstanceNetworkPerformanceConfig,
+        ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier,
         NicType,
         ComputeInstanceNodeAffinity,
         OnHostMaintenance,
