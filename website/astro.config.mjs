@@ -43,6 +43,8 @@ export default defineConfig({
             "docs/getting-started",
             "docs/why-terradart",
             "docs/architecture",
+            "docs/waves",
+            "docs/migrating",
             "docs/status",
           ],
         },
