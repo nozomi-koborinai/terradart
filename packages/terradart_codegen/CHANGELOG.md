@@ -11,6 +11,10 @@ Maintainer:
 - **Added** — `tool/example_synth_gates.dart` (synth-based example coverage + API-enablement dependency checker, #108).
 - **Added** — label-gated `apply-smoke` GitHub workflow + `tool/apply_smoke.sh` (#109).
 
+## 0.12.11
+
+One new wrapper override (Wave 25 `google_vpc_access_connector`). `terraform_api_requirements.dart` maps `google_vpc_access_` → `vpcaccess.googleapis.com`.
+
 ## 0.12.10
 
 Ten new wrapper overrides (Waves 23–24). Maintainer enum-gap gate extended:

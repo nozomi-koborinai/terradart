@@ -5320,4 +5320,29 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment:
         'Factory wrapper for `google_storage_notification`.\n\nCreates a new notification configuration on a specified bucket, establishing\na flow of event notifications from GCS to a Cloud Pub/Sub topic.\n\n### IAM precondition\nBefore applying this resource, the GCS service account\n(`service-{PROJECT_NUMBER}@gs-project-accounts.iam.gserviceaccount.com`)\nMUST hold the `roles/pubsub.publisher` role on the destination\n[topic]. The provider does NOT manage this binding for you — wire\nit up via a sibling `google_pubsub_topic_iam_member` (or the\n`google_storage_project_service_account` data source feeding into\nthe IAM binding) and add it to the resource\'s `dependsOn`.\n\n`topic` must be a **fully-qualified** Pub/Sub topic resource path\n`\'projects/{project_id}/topics/{topic_name}\'`. The provider rejects\na bare topic name. Pass `TfArg.ref(topic.id)` against a sibling\n`GooglePubsubTopic` (the `id` getter exposes the full path), or\nbuild the literal yourself.\n\n### Example — full-fidelity notifications on a sibling bucket,\nscoped to object writes under `incoming/`:\n```dart\nfinal ingestTopic = GooglePubsubTopic(\n  localName: \'ingest\',\n  name: TfArg.literal(\'gcs-ingest\'),\n);\nfinal assets = GoogleStorageBucket(\n  localName: \'assets\',\n  name: TfArg.literal(\'my-app-assets-prod\'),\n  location: TfArg.literal(\'ASIA-NORTHEAST1\'),\n);\nfinal notif = GoogleStorageNotification(\n  localName: \'assets_ingest\',\n  bucket: TfArg.ref(assets.nameRef),\n  // `ingestTopic.id` resolves to\n  // `projects/{project}/topics/gcs-ingest` — the full path the API\n  // expects. Passing `ingestTopic.nameRef` (just `gcs-ingest`)\n  // would fail at apply.\n  topic: TfArg.ref(ingestTopic.id),\n  payloadFormat: TfArg.literal(\n    StorageNotificationPayloadFormat.jsonApiV1,\n  ),\n  eventTypes: const [\n    StorageNotificationEventType.objectFinalize,\n    StorageNotificationEventType.objectMetadataUpdate,\n  ],\n  objectNamePrefix: TfArg.literal(\'incoming/\'),\n  customAttributes: TfArg.literal(const {\'source\': \'gcs-ingest\'}),\n);\n```\n\n### Example — pre-built literal topic path (e.g. when the topic\nlives in another project / is provisioned outside Terraform):\n```dart\nfinal notif = GoogleStorageNotification(\n  localName: \'audit\',\n  bucket: TfArg.literal(\'my-bucket\'),\n  topic: TfArg.literal(\'projects/my-proj/topics/my-topic\'),\n  payloadFormat: TfArg.literal(\n    StorageNotificationPayloadFormat.jsonApiV1,\n  ),\n);\n```',
   ),
+  CatalogEntry(
+    tfType: 'google_vpc_access_connector',
+    className: 'GoogleVpcAccessConnector',
+    barrel: 'service_networking',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_vpc_access_connector`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'region',
+      'ipCidrRange',
+      'network',
+      'subnet',
+      'machineType',
+      'minInstances',
+      'maxInstances',
+      'minThroughput',
+      'maxThroughput',
+      'project',
+    ],
+    nestedTypes: <String>['VpcAccessConnectorSubnet'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_vpc_access_connector`.\n\nServerless VPC Access connector — a managed proxy that lets Cloud Run,\nCloud Functions, and App Engine reach resources on a VPC (private IPs,\nMemorystore, Cloud SQL private IP, etc.) without public endpoints.\n\nTwo placement modes (mutually exclusive at the provider level):\n\n1. **Dedicated CIDR** — set [ipCidrRange] (a `/28` RFC 4632 range) and\n   [network] (VPC name or self_link). GCP creates a connector subnet.\n2. **Existing subnet** — set [subnet] ([VpcAccessConnectorSubnet]) with\n   the relative subnet name (and optional host [projectId] for Shared VPC).\n\nDownstream serverless resources reference the connector\'s [selfLink]\n(full `projects/.../locations/.../connectors/...` path). For example,\n[GoogleCloudRunV2Service] accepts it on\n`template.vpcAccess.connector` via [CloudRunV2ServiceVpcAccess].\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_vpc_access_connector.`).\n- [name]: connector ID (max 25 characters).\n\nExample (CIDR mode — see also `cloud_run_quickstart`):\n```dart\nfinal connector = GoogleVpcAccessConnector(\n  localName: \'run_vpc\',\n  name: TfArg.literal(\'run-vpc\'),\n  region: TfArg.literal(\'asia-northeast1\'),\n  ipCidrRange: TfArg.literal(\'10.8.0.0/28\'),\n  network: TfArg.literal(\'default\'),\n);\n```',
+  ),
 ];

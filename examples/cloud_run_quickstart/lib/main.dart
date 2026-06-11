@@ -22,13 +22,18 @@
 /// `allUsers` on the service (public HTTPS endpoint) and the same role to
 /// a dedicated SA on the job (the standard Cloud Scheduler trigger
 /// pattern).
+///
+/// Wave 25 adds a Serverless VPC Access connector and pins the service
+/// revision to it via `template.vpcAccess` (`VpcAccessEgress.privateRangesOnly`).
 library;
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/iam.dart';
+import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/secret_manager.dart';
+import 'package:terradart_google/service_networking.dart';
 
 final class ApiServiceStack extends Stack {
   ApiServiceStack({required String projectId})
@@ -49,12 +54,39 @@ final class ApiServiceStack extends Stack {
       ),
     );
 
+    // ---- Wave 25: Serverless VPC Access connector -------------------------
+    //
+    // Dedicated /28 on the default VPC; the service revision below routes
+    // private-range egress through this connector.
+
+    final apiVpcAccess = add(
+      GoogleProjectService(
+        localName: 'api_vpcaccess',
+        service: TfArg.literal('vpcaccess.googleapis.com'),
+        disableOnDestroy: TfArg.literal(false),
+      ),
+    );
+
+    final runConnector = GoogleVpcAccessConnector(
+      localName: 'run_vpc',
+      name: TfArg.literal('run-vpc'),
+      region: TfArg.literal('asia-northeast1'),
+      ipCidrRange: TfArg.literal('10.8.0.0/28'),
+      network: TfArg.literal('default'),
+      dependsOn: [ResourceDependency(apiVpcAccess)],
+    );
+    add(runConnector);
+
     final apiService = GoogleCloudRunV2Service(
       localName: 'api',
       name: TfArg.literal('api'),
       location: TfArg.literal('asia-northeast1'),
       ingress: TfArg.literal(Ingress.internalLoadBalancer),
       template: CloudRunV2ServiceTemplate(
+        vpcAccess: CloudRunV2ServiceVpcAccess(
+          connector: TfArg.ref(runConnector.selfLink),
+          egress: TfArg.literal(VpcAccessEgress.privateRangesOnly),
+        ),
         containers: [
           CloudRunV2ServiceServiceContainer(
             image: TfArg.literal('gcr.io/cloudrun/hello'),

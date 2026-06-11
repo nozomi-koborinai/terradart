@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.11
+
+Lockstep version bump for `terradart_google` v0.12.11. MCP catalog grows by one entry: Serverless VPC Access connector (188 entries total).
+
 ## 0.12.10
 
 Lockstep version bump for `terradart_google` v0.12.10. MCP catalog grows by ten entries across DNS, Eventarc, Cloud Run, IAP, Compute, and BigQuery (187 entries total).
