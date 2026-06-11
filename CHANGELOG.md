@@ -4,6 +4,16 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## [0.12.11] - 2026-06-09
+
+Lockstep release across the workspace. **No breaking changes** vs `0.12.10`.
+
+### Added
+
+- **`terradart_google`** — Wave 26 Certificate Manager (4): DNS authorization, certificate (sealed managed/self-managed provisioning), certificate map, certificate map entry.
+- Catalog: **190 curated resource factories + 1 data source** (191 entries); new `certificate_manager` barrel (29 service barrels).
+- Extended **`compute_lb_quickstart`** (Certificate Manager chain alongside the existing Compute SSL cert).
+
 ## [0.12.10] - 2026-06-09
 
 Lockstep release across the workspace.

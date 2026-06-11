@@ -1,0 +1,40 @@
+outputDir: certificate_manager
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - map
+  - certificates
+  - hostname
+  - matcher
+  - description
+  - labels
+
+curatedDoc: |-
+  /// One hostname (or matcher) row inside a [GoogleCertificateManagerCertificateMap].
+  ///
+  /// Binds up to fifteen [GoogleCertificateManagerCertificate] resources to
+  /// a Server Name Indication (SNI) hostname or a predefined matcher.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [name]: entry ID unique within the parent map.
+  /// - [map]: full resource name of the parent map — pass
+  ///   `TfArg.ref(certMap.id)`.
+  /// - [certificates]: one or more certificate resource names — pass
+  ///   `TfArg.literal([cert.id.interpolation])` or `TfArg.ref(cert.id)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleCertificateManagerCertificateMapEntry(
+  ///   localName: 'app_entry',
+  ///   name: TfArg.literal('app-entry'),
+  ///   map: TfArg.ref(certMap.id),
+  ///   hostname: TfArg.literal('app.example.com'),
+  ///   certificates: TfArg.literal([
+  ///     '\${google_certificate_manager_certificate.app_cert.id}',
+  ///   ]),
+  /// );
+  /// ```

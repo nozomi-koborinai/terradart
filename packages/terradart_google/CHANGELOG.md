@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.12.11 - 2026-06-09
+
+### Added
+
+- Wave 26 Certificate Manager (4): DNS authorization, certificate (`CertificateManagerCertificateProvisioningSource` sealed managed/self-managed), certificate map, certificate map entry.
+
+New barrel: `certificate_manager.dart` (29 service barrels total).
+
+Catalog: **190 curated resource factories + 1 data source** (191 entries).
+
 ## 0.12.10 - 2026-06-09
 
 ### Breaking

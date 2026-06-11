@@ -1,0 +1,30 @@
+outputDir: certificate_manager
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - description
+  - labels
+
+curatedDoc: |-
+  /// Certificate map — a hostname → certificate routing table consumed by
+  /// global external HTTPS load balancers via
+  /// [GoogleComputeTargetHttpsProxy.certificateMap].
+  ///
+  /// Pair with [GoogleCertificateManagerCertificateMapEntry] rows (one per
+  /// hostname or matcher) and a [GoogleCertificateManagerCertificate] per
+  /// entry.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [name]: map ID (`[a-zA-Z][a-zA-Z0-9_-]*`).
+  ///
+  /// Example:
+  /// ```dart
+  /// final certMap = GoogleCertificateManagerCertificateMap(
+  ///   localName: 'app_map',
+  ///   name: TfArg.literal('app-cert-map'),
+  /// );
+  /// ```

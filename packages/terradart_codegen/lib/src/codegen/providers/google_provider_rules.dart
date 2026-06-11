@@ -49,6 +49,8 @@ final class GoogleProviderRules extends ProviderRules {
     // Closes the convergence outputDir gap via resolver Step 2 (longest-prefix)
     // / Step 3 (segment-1). Keys verified against the tracer.
     'artifact_registry': 'artifact_registry',
+    'certificate': 'certificate_manager',
+    'certificate_manager': 'certificate_manager',
     'cloud_run': 'cloud_run',
     'cloudbuild': 'cloud_build',
     'cloudbuildv2': 'cloud_build',

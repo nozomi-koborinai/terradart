@@ -7,7 +7,7 @@ void main() {
     // Sync catalogEntryCount in tool/doc_expectations.dart (also checked by
     // tool/check_docs_consistency.dart). Must move in lockstep with wrap
     // file-count in terradart_codegen/test/cli/wrap_command_test.dart.
-    expect(terradartCatalog, hasLength(187)); // catalogEntryCount
+    expect(terradartCatalog, hasLength(191)); // catalogEntryCount
   });
 
   test('every catalog entry is well-formed', () {
