@@ -402,3 +402,14 @@ files:
   # Wave 21 (Firebase App Check)
   google_firebase_app_check_recaptcha_v3_config:
     upstream: mmv1/products/firebaseappcheck/RecaptchaV3Config.yaml
+  # Wave 22 (BigQuery Analytics Hub + connection IAM, regional Armor rule)
+  google_bigquery_analytics_hub_data_exchange_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_analytics_hub_listing_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_analytics_hub_listing_subscription:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)
+  google_bigquery_connection_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_region_security_policy_rule:
+    upstream: mmv1/products/compute/RegionSecurityPolicyRule.yaml

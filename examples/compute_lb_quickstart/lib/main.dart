@@ -393,12 +393,29 @@ final class ComputeLbStack extends Stack {
       ),
     );
 
-    add(
+    final regionalArmor = add(
       GoogleComputeRegionSecurityPolicy(
         localName: 'regional_armor',
         name: TfArg.literal('app-regional-armor'),
         region: TfArg.literal(region),
         type: TfArg.literal('CLOUD_ARMOR'),
+      ),
+    );
+
+    add(
+      GoogleComputeRegionSecurityPolicyRule(
+        localName: 'regional_armor_deny',
+        securityPolicy: TfArg.ref(regionalArmor.nameRef),
+        region: TfArg.literal(region),
+        priority: TfArg.literal(2000),
+        action: TfArg.literal('deny(403)'),
+        description: TfArg.literal('Block example CIDR (regional)'),
+        match: TfArg.literal({
+          'versioned_expr': 'SRC_IPS_V1',
+          'config': {
+            'src_ip_ranges': ['198.51.100.0/24']
+          },
+        }),
       ),
     );
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.9
+
+No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.9 (Wave 22 BigQuery Analytics Hub IAM + Compute regional Armor).
+
 ## 0.12.8
 
 No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.8 (Waves 17–21 Eventarc + Compute/BigQuery/Storage/SQL/Firebase).

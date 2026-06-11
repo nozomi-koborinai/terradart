@@ -322,6 +322,8 @@ export 'src/compute/google_compute_region_network_endpoint_group.dart'
         RegionNetworkEndpointGroupType;
 export 'src/compute/google_compute_region_security_policy.dart'
     show GoogleComputeRegionSecurityPolicy;
+export 'src/compute/google_compute_region_security_policy_rule.dart'
+    show GoogleComputeRegionSecurityPolicyRule;
 export 'src/compute/google_compute_region_ssl_policy.dart'
     show GoogleComputeRegionSslPolicy;
 export 'src/compute/google_compute_region_target_http_proxy.dart'

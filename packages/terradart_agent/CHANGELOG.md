@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.9
+
+Lockstep version bump for `terradart_google` v0.12.9. MCP catalog grows by five entries across BigQuery Analytics Hub IAM and Compute regional Armor (177 entries total).
+
 ## 0.12.8
 
 Lockstep version bump for `terradart_google` v0.12.8. MCP catalog grows by twenty-four entries across Eventarc, Compute, BigQuery, Storage, Cloud SQL, and Firebase App Check (172 entries total).

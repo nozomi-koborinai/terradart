@@ -7,7 +7,6 @@
 # covered (remove the line) — adding a line is a reviewed decision, not a
 # default.
 GoogleBigqueryCapacityCommitment: pre-existing gap (Waves 1-9) — backfill candidate
-GoogleBigqueryConnection: pre-existing gap (Waves 1-9) — backfill candidate
 GoogleBigqueryDataTransferConfig: pre-existing gap (Waves 1-9) — backfill candidate
 GoogleBigqueryJob: pre-existing gap (Waves 1-9) — backfill candidate
 GoogleBigqueryRoutine: pre-existing gap (Waves 1-9) — backfill candidate

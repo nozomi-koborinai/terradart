@@ -6,8 +6,16 @@ library;
 
 export 'src/bigquery/google_bigquery_analytics_hub_data_exchange.dart'
     show GoogleBigqueryAnalyticsHubDataExchange;
+export 'src/bigquery/google_bigquery_analytics_hub_data_exchange_iam_member.dart'
+    show GoogleBigqueryAnalyticsHubDataExchangeIamMember;
 export 'src/bigquery/google_bigquery_analytics_hub_listing.dart'
     show GoogleBigqueryAnalyticsHubListing;
+export 'src/bigquery/google_bigquery_analytics_hub_listing_iam_member.dart'
+    show GoogleBigqueryAnalyticsHubListingIamMember;
+export 'src/bigquery/google_bigquery_analytics_hub_listing_subscription.dart'
+    show GoogleBigqueryAnalyticsHubListingSubscription;
+export 'src/bigquery/google_bigquery_connection_iam_member.dart'
+    show GoogleBigqueryConnectionIamMember;
 export 'src/bigquery/google_bigquery_bi_reservation.dart'
     show GoogleBigqueryBiReservation;
 export 'src/bigquery/google_bigquery_capacity_commitment.dart'
