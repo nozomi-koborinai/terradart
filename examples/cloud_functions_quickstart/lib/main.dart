@@ -51,7 +51,7 @@ final class HttpFunctionStack extends Stack {
     );
     add(runtimeSa);
 
-    add(
+    final helloHttp = add(
       GoogleCloudfunctions2Function(
         localName: 'hello_http',
         name: TfArg.literal('hello-http'),
@@ -78,6 +78,16 @@ final class HttpFunctionStack extends Stack {
           serviceAccountEmail: TfArg.ref(runtimeSa.email),
           environmentVariables: TfArg.literal({'LOG_LEVEL': 'info'}),
         ),
+      ),
+    );
+
+    add(
+      GoogleCloudfunctions2FunctionIamMember(
+        localName: 'hello_http_invoker',
+        cloudFunction: TfArg.ref(helloHttp.nameRef),
+        location: TfArg.literal('asia-northeast1'),
+        role: TfArg.literal('roles/cloudfunctions.invoker'),
+        member: TfArg.literal('allAuthenticatedUsers'),
       ),
     );
   }

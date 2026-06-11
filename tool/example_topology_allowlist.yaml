@@ -1,0 +1,15 @@
+# Rules for tool/check_example_topology.dart.
+#
+# `must_be_referenced`: when a quickstart synths one of these Terraform types,
+# its address must appear at least twice in main.tf.json (referenced by a
+# sibling). Natural leaf types (forwarding rules, IAM members, one-shot jobs)
+# are intentionally omitted.
+strict:
+  - compute_lb_quickstart
+
+must_be_referenced:
+  - google_compute_ssl_certificate
+  - google_compute_region_ssl_certificate
+  - google_compute_region_health_check
+  - google_compute_target_http_proxy
+  - google_compute_region_target_http_proxy

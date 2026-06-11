@@ -36,6 +36,9 @@ dart pub get
 echo ">> check_docs_consistency"
 dart tool/check_docs_consistency.dart
 
+echo ">> check_example_topology"
+dart tool/check_example_topology.dart
+
 echo ">> dart analyze"
 dart analyze packages/ --fatal-infos --fatal-warnings
 

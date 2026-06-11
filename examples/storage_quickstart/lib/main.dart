@@ -18,6 +18,7 @@ library;
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/pubsub.dart';
 import 'package:terradart_google/storage.dart';
 
 final class AssetsStack extends Stack {
@@ -97,6 +98,31 @@ final class AssetsStack extends Stack {
         localName: 'config_folder',
         bucket: TfArg.ref(assets.nameRef),
         name: TfArg.literal('config/'),
+      ),
+    );
+
+    // ---- Backfill: GCS -> Pub/Sub object notifications ----------------------
+
+    final objectEventsTopic = add(
+      GooglePubsubTopic(
+        localName: 'object_events',
+        name: TfArg.literal('gcs-object-events'),
+      ),
+    );
+
+    add(
+      GoogleStorageNotification(
+        localName: 'assets_object_events',
+        bucket: TfArg.ref(assets.nameRef),
+        topic: TfArg.ref(objectEventsTopic.id),
+        payloadFormat:
+            TfArg.literal(StorageNotificationPayloadFormat.jsonApiV1),
+        eventTypes: const [
+          StorageNotificationEventType.objectFinalize,
+          StorageNotificationEventType.objectDelete,
+        ],
+        objectNamePrefix: TfArg.literal('config/'),
+        dependsOn: [ResourceDependency(objectEventsTopic)],
       ),
     );
   }

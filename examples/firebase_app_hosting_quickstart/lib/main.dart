@@ -59,5 +59,47 @@ final class AppHostingStack extends Stack {
         domainId: TfArg.literal('apphosting.example.com'),
       ),
     );
+
+    // ---- Backfill: default domain, build, traffic ---------------------------
+
+    add(
+      GoogleFirebaseAppHostingDefaultDomain(
+        localName: 'default_domain',
+        backend: TfArg.ref(backend.backendIdRef),
+        location: TfArg.literal('us-central1'),
+        domainId: TfArg.literal(
+          'quickstart-backend--$projectId.us-central1.hosted.app',
+        ),
+      ),
+    );
+
+    final releaseBuild = add(
+      GoogleFirebaseAppHostingBuild(
+        localName: 'release_build',
+        backend: TfArg.ref(backend.backendIdRef),
+        location: TfArg.literal('us-central1'),
+        buildId: TfArg.literal('release-1'),
+        source: FirebaseAppHostingBuildAppHostingBuildSourceCodebase(
+          branch: TfArg.literal('main'),
+        ),
+        displayName: TfArg.literal('Initial release build'),
+      ),
+    );
+
+    add(
+      GoogleFirebaseAppHostingTraffic(
+        localName: 'live_traffic',
+        backend: TfArg.ref(backend.backendIdRef),
+        location: TfArg.literal('us-central1'),
+        target: FirebaseAppHostingTrafficAppHostingTrafficTarget(
+          splits: [
+            FirebaseAppHostingTrafficAppHostingTrafficSplit(
+              build: TfArg.ref(releaseBuild.buildIdRef),
+              percent: TfArg.literal(100),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

@@ -245,5 +245,74 @@ final class AnalyticsStack extends Stack {
         member: TfArg.ref(ingestor.iamMember),
       ),
     );
+
+    // ---- Backfill: job, routine, capacity commitment, data transfer --------
+
+    add(
+      GoogleBigqueryJob(
+        localName: 'events_count_job',
+        jobId: TfArg.literal('events-count-backfill'),
+        location: TfArg.literal('asia-northeast1'),
+        query: BigqueryJobQuery(
+          query: TfArg.literal(
+            'SELECT COUNT(*) AS event_count FROM analytics_prod.events',
+          ),
+          useLegacySql: TfArg.literal(false),
+          destinationTable: BigqueryJobDestinationTable(
+            projectId: TfArg.literal(projectId),
+            datasetId: TfArg.ref(dataset.datasetIdRef),
+            tableId: TfArg.literal('events_daily_count'),
+          ),
+          writeDisposition: BigqueryJobWriteDisposition.writeTruncate,
+          createDisposition: BigqueryJobCreateDisposition.createIfNeeded,
+        ),
+      ),
+    );
+
+    add(
+      GoogleBigqueryRoutine(
+        localName: 'add_one',
+        datasetId: TfArg.ref(dataset.datasetIdRef),
+        routineId: TfArg.literal('add_one'),
+        routineType: TfArg.literal(BigqueryRoutineType.scalarFunction),
+        definitionBody: TfArg.literal('x + 1'),
+        language: TfArg.literal(BigqueryRoutineLanguage.sql),
+        arguments: [
+          BigqueryRoutineArgument(
+            name: TfArg.literal('x'),
+            dataType: TfArg.literal('{"typeKind":"INT64"}'),
+          ),
+        ],
+        returnType: TfArg.literal('{"typeKind":"INT64"}'),
+      ),
+    );
+
+    add(
+      GoogleBigqueryCapacityCommitment(
+        localName: 'analytics_trial',
+        capacityCommitmentId: TfArg.literal('analytics-trial'),
+        location: TfArg.literal('asia-northeast1'),
+        slotCount: TfArg.literal(50),
+        plan: TfArg.literal(BigqueryCapacityCommitmentPlan.trial),
+        renewalPlan: TfArg.literal(BigqueryCapacityCommitmentRenewalPlan.none),
+      ),
+    );
+
+    add(
+      GoogleBigqueryDataTransferConfig(
+        localName: 'daily_events_rollup',
+        displayName: TfArg.literal('Daily events rollup'),
+        dataSourceId: TfArg.literal('scheduled_query'),
+        destinationDatasetId: TfArg.ref(dataset.datasetIdRef),
+        location: TfArg.literal('asia-northeast1'),
+        schedule: TfArg.literal('every 24 hours'),
+        params: TfArg.literal({
+          'query':
+              'SELECT event_id, ts FROM `analytics_prod.events` LIMIT 1000',
+          'destination_table_name_template': 'events_rollup',
+          'write_disposition': 'WRITE_TRUNCATE',
+        }),
+      ),
+    );
   }
 }

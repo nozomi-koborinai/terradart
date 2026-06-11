@@ -90,6 +90,8 @@ Committed maintainer skills live under [`.agents/skills/`](.agents/skills/) (Age
 | [`terradart-agent-verify`](.agents/skills/terradart-agent-verify/SKILL.md) | Finishing any agent or maintainer change |
 | [`terradart-add-curated-resource`](.agents/skills/terradart-add-curated-resource/SKILL.md) | Adding or updating a curated `google_*` factory |
 | [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md) | Landing a Wave release (curated + example/docs + counts + CHANGELOG) |
+| [`terradart-backfill-examples`](.agents/skills/terradart-backfill-examples/SKILL.md) | Covering `tool/example_debt.yaml` gaps in existing quickstarts |
+| [`terradart-tighten-example-topology`](.agents/skills/terradart-tighten-example-topology/SKILL.md) | Wiring backfilled factories into sibling refs; `tool/check_example_topology.dart` |
 
 Optional generic Dart skills from [dart-lang/skills](https://github.com/dart-lang/skills) (`npx skills add dart-lang/skills --skill '*' --agent universal --yes`) are not committed here. [flutter/skills](https://github.com/flutter/skills) targets Flutter apps and is not applicable to TerraDart.
 
@@ -215,7 +217,7 @@ There is no long-running dev server for core work. Primary flows:
 | MCP catalog server (stdio) | `cd packages/terradart_agent && dart run terradart-mcp` |
 | Docs site (optional) | `cd website && bun install && bun run dev` (needs Bun + Node ≥ 22) |
 
-`tool/agent_verify.sh` does **not** run the full `terraform_validate` example matrix; GitHub Actions enforces that on merge. Examples use `GCP_PROJECT_ID` (or `ci-test-project-id` for local smoke) — no live GCP credentials are required for synth or `terraform validate`.
+`dart tool/check_docs_consistency.dart` (inside `tool/agent_verify.sh`) synths every quickstart and runs `terraform validate` on each `tf-out/` when `terraform` is on `PATH`. It does **not** replace the parallel `terraform_validate` CI matrix on merge. Examples use `GCP_PROJECT_ID` (or `ci-test-project-id` for local smoke) — no live GCP credentials are required for synth or `terraform validate`.
 
 ## Working Rules
 
