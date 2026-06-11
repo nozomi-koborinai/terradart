@@ -2,7 +2,7 @@
 
 ## 0.12.11
 
-Lockstep version bump for `terradart_google` v0.12.11. MCP catalog grows by one entry: Serverless VPC Access connector (188 entries total).
+Lockstep version bump for `terradart_google` v0.12.11. MCP catalog grows by one entry: Serverless VPC Access connector (188 entries total). Artifact Registry remote helper types expanded.
 
 ## 0.12.10
 

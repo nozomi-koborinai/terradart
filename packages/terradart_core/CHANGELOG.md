@@ -2,7 +2,7 @@
 
 ## 0.12.11
 
-No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.11 (Wave 25 VPC Access connector).
+No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.11 (Wave 25 VPC Access connector; Artifact Registry remote docker/maven/npm enums).
 
 ## 0.12.10
 

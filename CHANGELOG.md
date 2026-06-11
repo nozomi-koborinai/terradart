@@ -14,6 +14,10 @@ Lockstep release across the workspace. **No breaking changes** vs `0.12.10`.
 - Catalog: **187 curated resource factories + 1 data source** (188 entries).
 - Extended **`cloud_run_quickstart`** (VPC Access connector + `template.vpcAccess` on the service).
 
+### Changed
+
+- **`terradart_google`** — `GoogleArtifactRegistryRepository` remote config: typed `dockerRepository` / `mavenRepository` / `npmRepository` helpers with `ArtifactRegistryDockerPublicRepository`, `ArtifactRegistryMavenPublicRepository`, and `ArtifactRegistryNpmPublicRepository` enums (replacing `advancedExtra` for the common public-registry path).
+
 ## [0.12.10] - 2026-06-09
 
 Lockstep release across the workspace.
