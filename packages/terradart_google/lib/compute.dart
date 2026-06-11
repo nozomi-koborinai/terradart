@@ -325,7 +325,12 @@ export 'src/compute/google_compute_region_network_endpoint_group.dart'
 export 'src/compute/google_compute_region_security_policy.dart'
     show GoogleComputeRegionSecurityPolicy, RegionSecurityPolicyType;
 export 'src/compute/google_compute_region_security_policy_rule.dart'
-    show GoogleComputeRegionSecurityPolicyRule;
+    show
+        ComputeRegionSecurityPolicyRuleMatch,
+        ComputeRegionSecurityPolicyRuleMatchConfig,
+        ComputeRegionSecurityPolicyRuleRateLimitEnforceOnKey,
+        ComputeRegionSecurityPolicyRuleRateLimitOptions,
+        GoogleComputeRegionSecurityPolicyRule;
 export 'src/compute/google_compute_region_ssl_policy.dart'
     show
         GoogleComputeRegionSslPolicy,
@@ -339,7 +344,11 @@ export 'src/compute/google_compute_region_ssl_certificate.dart'
     show GoogleComputeRegionSslCertificate;
 export 'src/compute/google_compute_region_target_https_proxy.dart'
     show GoogleComputeRegionTargetHttpsProxy;
-export 'src/compute/google_compute_router.dart' show GoogleComputeRouter;
+export 'src/compute/google_compute_router.dart'
+    show
+        ComputeRouterBgp,
+        ComputeRouterBgpAdvertiseMode,
+        GoogleComputeRouter;
 export 'src/compute/google_compute_region_url_map.dart'
     show
         GoogleComputeRegionUrlMap,
@@ -358,7 +367,12 @@ export 'src/compute/google_compute_region_url_map.dart'
         ComputeRegionUrlMapRegionUrlMapTestHeader,
         ComputeRegionUrlMapRegionUrlMapUrlRedirect;
 export 'src/compute/google_compute_security_policy_rule.dart'
-    show GoogleComputeSecurityPolicyRule;
+    show
+        ComputeSecurityPolicyRuleMatch,
+        ComputeSecurityPolicyRuleMatchConfig,
+        ComputeSecurityPolicyRuleRateLimitEnforceOnKey,
+        ComputeSecurityPolicyRuleRateLimitOptions,
+        GoogleComputeSecurityPolicyRule;
 export 'src/compute/google_compute_service_attachment.dart'
     show
         GoogleComputeServiceAttachment,

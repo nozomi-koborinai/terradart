@@ -1,10 +1,42 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_eventarc_message_bus`.
 const Set<String> _googleEventarcMessageBusSensitive = <String>{};
+
+/// `logging_config.log_severity` — minimum log severity forwarded to
+/// Cloud Logging / Platform Telemetry.
+enum EventarcMessageBusLogSeverity implements TerraformEnum {
+  none('NONE'),
+  debug('DEBUG'),
+  info('INFO'),
+  notice('NOTICE'),
+  warning('WARNING'),
+  error('ERROR'),
+  critical('CRITICAL'),
+  alert('ALERT'),
+  emergency('EMERGENCY');
+
+  const EventarcMessageBusLogSeverity(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `logging_config` block — shared across Eventarc message buses, API
+/// sources, and pipelines.
+@immutable
+class EventarcMessageBusLoggingConfig {
+  const EventarcMessageBusLoggingConfig({this.logSeverity});
+
+  final EventarcMessageBusLogSeverity? logSeverity;
+
+  Map<String, Object?> encode() => {
+    if (logSeverity != null) 'log_severity': logSeverity!.terraformValue,
+  };
+}
 
 /// Factory wrapper for `google_eventarc_message_bus`.
 final class GoogleEventarcMessageBus extends Resource {
@@ -19,7 +51,7 @@ final class GoogleEventarcMessageBus extends Resource {
     required TfArg<String> location,
     required TfArg<String> messageBusId,
     TfArg<String>? project,
-    TfArg<Map<String, dynamic>>? loggingConfig,
+    EventarcMessageBusLoggingConfig? loggingConfig,
     super.lifecycle,
     super.dependsOn,
   }) : super(
@@ -32,7 +64,8 @@ final class GoogleEventarcMessageBus extends Resource {
            'location': location,
            'message_bus_id': messageBusId,
            if (project != null) 'project': project,
-           if (loggingConfig != null) 'logging_config': loggingConfig,
+           if (loggingConfig != null)
+             'logging_config': TfArg.literal([loggingConfig.encode()]),
          },
        );
 

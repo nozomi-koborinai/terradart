@@ -13,7 +13,10 @@ export 'src/eventarc/google_eventarc_enrollment.dart'
 export 'src/eventarc/google_eventarc_google_api_source.dart'
     show GoogleEventarcGoogleApiSource;
 export 'src/eventarc/google_eventarc_message_bus.dart'
-    show GoogleEventarcMessageBus;
+    show
+        EventarcMessageBusLoggingConfig,
+        EventarcMessageBusLogSeverity,
+        GoogleEventarcMessageBus;
 export 'src/eventarc/google_eventarc_pipeline.dart'
     show GoogleEventarcPipeline;
 export 'src/eventarc/google_eventarc_trigger.dart'

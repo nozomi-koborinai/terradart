@@ -335,12 +335,12 @@ final class ComputeLbStack extends Stack {
         priority: TfArg.literal(1000),
         action: TfArg.literal('deny(403)'),
         description: TfArg.literal('Block example CIDR'),
-        match: TfArg.literal({
-          'versioned_expr': 'SRC_IPS_V1',
-          'config': {
-            'src_ip_ranges': ['203.0.113.0/24']
-          },
-        }),
+        match: const ComputeSecurityPolicyRuleMatch(
+          versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
+          config: ComputeSecurityPolicyRuleMatchConfig(
+            srcIpRanges: ['203.0.113.0/24'],
+          ),
+        ),
       ),
     );
 
@@ -449,12 +449,12 @@ final class ComputeLbStack extends Stack {
         priority: TfArg.literal(2000),
         action: TfArg.literal('deny(403)'),
         description: TfArg.literal('Block example CIDR (regional)'),
-        match: TfArg.literal({
-          'versioned_expr': 'SRC_IPS_V1',
-          'config': {
-            'src_ip_ranges': ['198.51.100.0/24']
-          },
-        }),
+        match: const ComputeRegionSecurityPolicyRuleMatch(
+          versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
+          config: ComputeRegionSecurityPolicyRuleMatchConfig(
+            srcIpRanges: ['198.51.100.0/24'],
+          ),
+        ),
       ),
     );
 

@@ -32,6 +32,17 @@ Optional Analytics Hub `discoveryType` fields use
 `GoogleDnsRecordSet.type` and `GoogleCloudRunV2WorkerPool.launchStage` ship as
 enums in `0.12.10` (new factories); no prior `String` API.
 
+Nested blocks that previously accepted `TfArg<Map<String, dynamic>>?` now use
+typed helpers:
+
+| Factory | Slot | Helper / enum |
+|---------|------|----------------|
+| `GoogleComputeRouter` | `bgp` | `ComputeRouterBgp` / `ComputeRouterBgpAdvertiseMode` |
+| `GoogleComputeSecurityPolicyRule` | `match` | `ComputeSecurityPolicyRuleMatch` (reuses `SecurityPolicyRuleMatchVersionedExpr`) |
+| `GoogleComputeSecurityPolicyRule` | `rateLimitOptions` | `ComputeSecurityPolicyRuleRateLimitOptions` / `ComputeSecurityPolicyRuleRateLimitEnforceOnKey` |
+| `GoogleComputeRegionSecurityPolicyRule` | `match` / `rateLimitOptions` | `ComputeRegionSecurityPolicyRule*` types |
+| `GoogleEventarcMessageBus` / `GoogleEventarcGoogleApiSource` / `GoogleEventarcPipeline` | `loggingConfig` | `EventarcMessageBusLoggingConfig` / `EventarcMessageBusLogSeverity` |
+
 ```dart
 // 0.12.9
 dataPolicyType: TfArg.literal('DATA_MASKING_POLICY'),

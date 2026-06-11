@@ -67,6 +67,10 @@ final class NetworkStack extends Stack {
         region: TfArg.literal('asia-northeast1'),
         network: TfArg.ref(mainVpc.id),
         description: TfArg.literal('Cloud Router for private egress'),
+        bgp: ComputeRouterBgp(
+          advertiseMode: ComputeRouterBgpAdvertiseMode.defaultMode,
+          asn: TfArg.literal(64514),
+        ),
       ),
     );
 
