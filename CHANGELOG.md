@@ -6,7 +6,11 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ## [0.12.10] - 2026-06-09
 
-Lockstep patch across the workspace. **No breaking changes** vs `0.12.9`.
+Lockstep release across the workspace.
+
+### Breaking
+
+- **`terradart_google`** — Many existing factories now use typed `TerraformEnum` values and nested helpers instead of `TfArg<String>` / `TfArg<Map<String, dynamic>>` for schema-finite fields. See [MIGRATING.md](MIGRATING.md) (`0.12.9 → 0.12.10`).
 
 ### Added
 
@@ -20,6 +24,10 @@ Lockstep patch across the workspace. **No breaking changes** vs `0.12.9`.
 - **`terradart_google`** — Wave 24 BigQuery: `google_bigquery_datapolicy_data_policy_iam_member`.
 - Catalog: **186 curated resource factories + 1 data source** (187 entries).
 - Extended **`dns_quickstart`** (policy, A record, response policy), **`eventarc_quickstart`** (channel config), **`cloud_run_quickstart`** (worker pool + IAM), **`compute_lb_quickstart`** (IAP member), **`compute_quickstart`** (Cloud Router), and **`bigquery_quickstart`** (datapolicy IAM).
+
+### Changed (maintainer)
+
+- **`terradart_codegen`** — `tool/agent_verify.sh` runs `check_override_enum_gaps.dart --strict-nested`.
 
 ## [0.12.9] - 2026-06-09
 
