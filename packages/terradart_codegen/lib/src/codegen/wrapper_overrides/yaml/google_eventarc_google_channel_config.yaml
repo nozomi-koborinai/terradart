@@ -1,0 +1,8 @@
+outputDir: eventarc
+deriveClassDoc: true
+deriveOutputGetters: true
+paramOrder:
+- crypto_key_name
+- location
+- name
+- project

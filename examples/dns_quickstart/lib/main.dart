@@ -92,5 +92,26 @@ final class InternalDnsStack extends Stack {
         member: TfArg.ref(zoneAdmin.iamMember),
       ),
     );
+
+    // ---- Wave 23: project policy + A record ---------------------------------
+
+    add(
+      GoogleDnsPolicy(
+        localName: 'internal_logging',
+        name: TfArg.literal('internal-logging-policy'),
+        enableLogging: TfArg.literal(true),
+      ),
+    );
+
+    add(
+      GoogleDnsRecordSet(
+        localName: 'api_a',
+        managedZone: TfArg.ref(internalZone.nameRef),
+        name: TfArg.literal('api.internal.corp.'),
+        type: TfArg.literal('A'),
+        ttl: TfArg.literal(300),
+        rrdatas: TfArg.literal(['10.0.0.10']),
+      ),
+    );
   }
 }

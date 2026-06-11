@@ -413,3 +413,14 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_compute_region_security_policy_rule:
     upstream: mmv1/products/compute/RegionSecurityPolicyRule.yaml
+  # Wave 23 (DNS, Eventarc, Cloud Run worker pool, IAP)
+  google_dns_record_set:
+    upstream: mmv1/products/dns/ResourceRecordSet.yaml
+  google_dns_policy:
+    upstream: mmv1/products/dns/Policy.yaml
+  google_eventarc_google_channel_config:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)
+  google_cloud_run_v2_worker_pool:
+    upstream: mmv1/products/cloudrun/WorkerPool.yaml
+  google_iap_web_backend_service_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation

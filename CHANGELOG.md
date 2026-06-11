@@ -4,6 +4,19 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## [0.12.10] - 2026-06-09
+
+Lockstep patch across the workspace. **No breaking changes** vs `0.12.9`.
+
+### Added
+
+- **`terradart_google`** — Wave 23 DNS: `google_dns_record_set`, `google_dns_policy`.
+- **`terradart_google`** — Wave 23 Eventarc: `google_eventarc_google_channel_config`.
+- **`terradart_google`** — Wave 23 Cloud Run: `google_cloud_run_v2_worker_pool`.
+- **`terradart_google`** — Wave 23 IAP: `google_iap_web_backend_service_iam_member`.
+- Catalog: **181 curated resource factories + 1 data source** (182 entries).
+- Extended **`dns_quickstart`** (policy + A record), **`eventarc_quickstart`** (channel config), **`cloud_run_quickstart`** (worker pool), and **`compute_lb_quickstart`** (IAP member on backend service).
+
 ## [0.12.9] - 2026-06-09
 
 Lockstep patch across the workspace. **No breaking changes** vs `0.12.8`.

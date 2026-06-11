@@ -1,0 +1,11 @@
+outputDir: dns
+deriveClassDoc: true
+deriveOutputGetters: true
+paramOrder:
+- managed_zone
+- name
+- project
+- rrdatas
+- ttl
+- type
+- routing_policy

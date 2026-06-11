@@ -1,0 +1,9 @@
+outputDir: iap
+deriveClassDoc: true
+deriveOutputGetters: true
+paramOrder:
+- member
+- project
+- role
+- web_backend_service
+- condition

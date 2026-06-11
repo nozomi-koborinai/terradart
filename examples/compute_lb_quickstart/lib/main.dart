@@ -39,6 +39,7 @@ library;
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
+import 'package:terradart_google/iap.dart';
 import 'package:terradart_google/provider.dart';
 
 final class ComputeLbStack extends Stack {
@@ -695,6 +696,17 @@ final class ComputeLbStack extends Stack {
         loadBalancingScheme: TfArg.literal(
           ForwardingRuleLoadBalancingScheme.internalManaged,
         ),
+      ),
+    );
+
+    // ---- Wave 23: IAP accessor on the global HTTPS backend ------------------
+
+    add(
+      GoogleIapWebBackendServiceIamMember(
+        localName: 'lb_iap_accessor',
+        webBackendService: TfArg.ref(lbBackend.nameRef),
+        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+        member: TfArg.literal('allAuthenticatedUsers'),
       ),
     );
   }

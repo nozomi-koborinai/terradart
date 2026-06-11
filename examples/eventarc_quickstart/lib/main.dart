@@ -72,6 +72,15 @@ final class EventarcStack extends Stack {
     );
 
     add(
+      GoogleEventarcGoogleChannelConfig(
+        localName: 'channel_config',
+        location: TfArg.literal(location),
+        name: TfArg.literal('default'),
+        dependsOn: eventarcDeps,
+      ),
+    );
+
+    add(
       GoogleEventarcPipeline(
         localName: 'ingest_pipeline',
         location: TfArg.literal(location),

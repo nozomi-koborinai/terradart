@@ -91,6 +91,19 @@ final class ApiServiceStack extends Stack {
     );
     add(apiService);
 
+    add(
+      GoogleCloudRunV2WorkerPool(
+        localName: 'batch_workers',
+        name: TfArg.literal('batch-workers'),
+        location: TfArg.literal('asia-northeast1'),
+        template: TfArg.literal({
+          'containers': [
+            {'image': 'gcr.io/cloudrun/hello'},
+          ],
+        }),
+      ),
+    );
+
     // ---- Cloud Run v2 Job: nightly cleanup --------------------------------
     //
     // One-shot batch container, run to completion. Triggered externally

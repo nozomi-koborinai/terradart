@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.12.10 - 2026-06-09
+
+### Added
+
+- Wave 23 DNS (2): record set, project policy.
+- Wave 23 Eventarc (1): Google channel config.
+- Wave 23 Cloud Run (1): v2 worker pool.
+- Wave 23 IAP (1): web backend service IAM member.
+
+Catalog: **181 curated resource factories + 1 data source** (182 entries). Additive; no breaking API changes vs `0.12.9`.
+
 ## 0.12.9 - 2026-06-09
 
 ### Added

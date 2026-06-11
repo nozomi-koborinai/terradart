@@ -11,6 +11,10 @@ Maintainer:
 - **Added** — `tool/example_synth_gates.dart` (synth-based example coverage + API-enablement dependency checker, #108).
 - **Added** — label-gated `apply-smoke` GitHub workflow + `tool/apply_smoke.sh` (#109).
 
+## 0.12.10
+
+Five new wrapper overrides (Wave 23). No CLI changes.
+
 ## 0.12.9
 
 Five new wrapper overrides (Wave 22). No CLI changes.

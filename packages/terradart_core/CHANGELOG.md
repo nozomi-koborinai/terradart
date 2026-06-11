@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.10
+
+No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.10 (Wave 23 DNS, Eventarc, Cloud Run worker pool, IAP).
+
 ## 0.12.9
 
 No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.9 (Wave 22 BigQuery Analytics Hub IAM + Compute regional Armor).

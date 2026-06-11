@@ -1,0 +1,12 @@
+outputDir: dns
+deriveClassDoc: true
+deriveOutputGetters: true
+paramOrder:
+- description
+- enable_inbound_forwarding
+- enable_logging
+- name
+- project
+- alternative_name_server_config
+- dns64_config
+- networks

@@ -78,3 +78,5 @@ export 'src/cloud_run/google_cloud_run_v2_service.dart'
         CloudRunV2ServiceVpcNetworkInterface;
 export 'src/cloud_run/google_cloud_run_v2_service_iam_member.dart'
     show GoogleCloudRunV2ServiceIamMember;
+export 'src/cloud_run/google_cloud_run_v2_worker_pool.dart'
+    show GoogleCloudRunV2WorkerPool;

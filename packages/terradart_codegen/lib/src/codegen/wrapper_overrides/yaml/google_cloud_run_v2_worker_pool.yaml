@@ -1,0 +1,19 @@
+outputDir: cloud_run
+deriveClassDoc: true
+deriveOutputGetters: true
+paramOrder:
+- annotations
+- client
+- client_version
+- custom_audiences
+- deletion_protection
+- description
+- labels
+- launch_stage
+- location
+- name
+- project
+- binary_authorization
+- instance_splits
+- scaling
+- template
