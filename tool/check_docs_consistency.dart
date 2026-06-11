@@ -35,6 +35,18 @@ Future<void> main() async {
   );
   _checkPhrase(
     errors,
+    'website/src/content/docs/docs/status.md',
+    '$curatedFactoryCount curated resource factories + 1 data source',
+    '($catalogEntryCount catalog entries)',
+  );
+  _checkPhrase(
+    errors,
+    'website/src/content/docs/docs/waves.md',
+    '$curatedFactoryCount curated resource factories + 1 data source',
+    '($catalogEntryCount catalog entries)',
+  );
+  _checkPhrase(
+    errors,
     'website/src/content/docs/docs/agent/index.md',
     agentCatalogEntriesPhrase,
     agentResourceFactoriesPhrase,
