@@ -1,6 +1,9 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
+import 'package:terradart_google/src/cloud_run/google_cloud_run_v2_service.dart'
+    show EmptyDirMedium, ScalingMode;
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_cloud_run_v2_worker_pool`.
@@ -23,6 +26,118 @@ enum CloudRunV2WorkerPoolLaunchStage implements TerraformEnum {
   final String terraformValue;
 }
 
+enum CloudRunV2WorkerPoolInstanceSplitType implements TerraformEnum {
+  latest('INSTANCE_SPLIT_ALLOCATION_TYPE_LATEST'),
+  revision('INSTANCE_SPLIT_ALLOCATION_TYPE_REVISION');
+
+  const CloudRunV2WorkerPoolInstanceSplitType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+enum CloudRunV2WorkerPoolEncryptionKeyRevocationAction
+    implements TerraformEnum {
+  preventNew('PREVENT_NEW'),
+  shutdown('SHUTDOWN');
+
+  const CloudRunV2WorkerPoolEncryptionKeyRevocationAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+@immutable
+class CloudRunV2WorkerPoolInstanceSplit {
+  const CloudRunV2WorkerPoolInstanceSplit({
+    this.percent,
+    this.revision,
+    this.type,
+  });
+
+  final TfArg<int>? percent;
+  final TfArg<String>? revision;
+  final CloudRunV2WorkerPoolInstanceSplitType? type;
+
+  Map<String, Object?> toArgMap() => {
+    if (percent != null) 'percent': percent!.toTfJson(),
+    if (revision != null) 'revision': revision!.toTfJson(),
+    if (type != null) 'type': type!.terraformValue,
+  };
+}
+
+@immutable
+class CloudRunV2WorkerPoolScaling {
+  const CloudRunV2WorkerPoolScaling({
+    this.manualInstanceCount,
+    this.maxInstanceCount,
+    this.minInstanceCount,
+    this.scalingMode,
+  });
+
+  final TfArg<int>? manualInstanceCount;
+  final TfArg<int>? maxInstanceCount;
+  final TfArg<int>? minInstanceCount;
+  final ScalingMode? scalingMode;
+
+  Map<String, Object?> encode() => {
+    if (manualInstanceCount != null)
+      'manual_instance_count': manualInstanceCount!.toTfJson(),
+    if (maxInstanceCount != null)
+      'max_instance_count': maxInstanceCount!.toTfJson(),
+    if (minInstanceCount != null)
+      'min_instance_count': minInstanceCount!.toTfJson(),
+    if (scalingMode != null) 'scaling_mode': scalingMode!.terraformValue,
+  };
+}
+
+@immutable
+class CloudRunV2WorkerPoolEmptyDirVolume {
+  const CloudRunV2WorkerPoolEmptyDirVolume({this.medium, this.sizeLimit});
+
+  final EmptyDirMedium? medium;
+  final TfArg<String>? sizeLimit;
+
+  Map<String, Object?> encode() => {
+    if (medium != null) 'medium': medium!.terraformValue,
+    if (sizeLimit != null) 'size_limit': sizeLimit!.toTfJson(),
+  };
+}
+
+@immutable
+class CloudRunV2WorkerPoolVolume {
+  const CloudRunV2WorkerPoolVolume({required this.name, this.emptyDir});
+
+  final TfArg<String> name;
+  final CloudRunV2WorkerPoolEmptyDirVolume? emptyDir;
+
+  Map<String, Object?> toArgMap() => {
+    'name': name.toTfJson(),
+    if (emptyDir != null) 'empty_dir': [emptyDir!.encode()],
+  };
+}
+
+@immutable
+class CloudRunV2WorkerPoolTemplate {
+  const CloudRunV2WorkerPoolTemplate({
+    this.containers,
+    this.encryptionKeyRevocationAction,
+    this.volumes,
+  });
+
+  /// Container specs — pass literal maps when full container typing is not needed.
+  final List<Map<String, Object?>>? containers;
+  final CloudRunV2WorkerPoolEncryptionKeyRevocationAction?
+  encryptionKeyRevocationAction;
+  final List<CloudRunV2WorkerPoolVolume>? volumes;
+
+  Map<String, Object?> encode() => {
+    if (containers != null) 'containers': containers,
+    if (encryptionKeyRevocationAction != null)
+      'encryption_key_revocation_action':
+          encryptionKeyRevocationAction!.terraformValue,
+    if (volumes != null) 'volumes': volumes!.map((v) => v.toArgMap()).toList(),
+  };
+}
+
 /// Factory wrapper for `google_cloud_run_v2_worker_pool`.
 final class GoogleCloudRunV2WorkerPool extends Resource {
   static const String tfType = 'google_cloud_run_v2_worker_pool';
@@ -41,9 +156,9 @@ final class GoogleCloudRunV2WorkerPool extends Resource {
     required TfArg<String> name,
     TfArg<String>? project,
     TfArg<Map<String, dynamic>>? binaryAuthorization,
-    TfArg<List<Map<String, dynamic>>>? instanceSplits,
-    TfArg<Map<String, dynamic>>? scaling,
-    required TfArg<Map<String, dynamic>> template,
+    List<CloudRunV2WorkerPoolInstanceSplit>? instanceSplits,
+    CloudRunV2WorkerPoolScaling? scaling,
+    CloudRunV2WorkerPoolTemplate? template,
     super.lifecycle,
     super.dependsOn,
   }) : super(
@@ -63,9 +178,12 @@ final class GoogleCloudRunV2WorkerPool extends Resource {
            if (project != null) 'project': project,
            if (binaryAuthorization != null)
              'binary_authorization': binaryAuthorization,
-           if (instanceSplits != null) 'instance_splits': instanceSplits,
-           if (scaling != null) 'scaling': scaling,
-           'template': template,
+           if (instanceSplits != null)
+             'instance_splits': TfArg.literal(
+               instanceSplits.map((s) => s.toArgMap()).toList(),
+             ),
+           if (scaling != null) 'scaling': TfArg.literal([scaling.encode()]),
+           if (template != null) 'template': TfArg.literal([template.encode()]),
          },
        );
 

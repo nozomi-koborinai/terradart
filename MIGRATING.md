@@ -44,6 +44,19 @@ typed helpers:
 | `GoogleEventarcMessageBus` / `GoogleEventarcGoogleApiSource` / `GoogleEventarcPipeline` | `loggingConfig` | `EventarcMessageBusLoggingConfig` / `EventarcMessageBusLogSeverity` |
 | `GoogleComputeInstance` | `networkPerformanceConfig.totalEgressBandwidthTier` | `ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier` |
 | `GoogleComputeInstanceTemplate` | `networkPerformanceConfig.totalEgressBandwidthTier` | same enum (imported from instance wrapper) |
+| `GoogleComputeBackendService` | `localityLbPolicies[].policy.name` | `LocalityLbPolicy` (nested builtin policy) |
+| `GoogleComputeSecurityPolicyRule` / `GoogleComputeRegionSecurityPolicyRule` | `preconfiguredWafConfig` / `rateLimitOptions` | WAF exclusion + enforce-on-key helpers / `SecurityPolicyWafExclusionOperator` |
+| `GoogleComputeRegionSecurityPolicy` | `rules` / `advancedOptionsConfig` / `ddosProtectionConfig` / `userDefinedFields` | `ComputeRegionSecurityPolicyRegionSecurityPolicy*` helpers |
+| `GoogleComputeUrlMap` / `GoogleComputeRegionUrlMap` | `defaultRouteAction` / `routeAction.cachePolicy` / `metadataFilters` | `*UrlMapRouteAction` / `*UrlMapCacheMode` / `*UrlMapMetadataFilterMatchCriteria` |
+| `GoogleDnsPolicy` | `alternativeNameServerConfig` | `DnsPolicyAlternativeNameServerConfig` (reuses `ForwardingPath`) |
+| `GoogleDnsRecordSet` | `routingPolicy` | `DnsRecordSetRoutingPolicy*` / ILB enums |
+| `GoogleDnsResponsePolicyRule` | `localData` | `DnsResponsePolicyRuleLocalData` / `DnsResponsePolicyRuleRecordType` |
+| `GooglePubsubTopic` | `schemaSettings` / `ingestionDataSourceSettings` | `PubsubTopicSchemaSettings` / `PubsubTopicIngestionDataSourceSettings` |
+| `GoogleGkeHubFleet` | `defaultClusterConfig` | `GkeHubFleetDefaultClusterConfig` + posture / binary-auth enums |
+| `GoogleGkeBackupBackupPlan` | `backupSchedule` | `GkeBackupBackupPlanBackupSchedule` / `GkeBackupBackupPlanDayOfWeek` |
+| `GoogleGkeBackupRestorePlan` | `restoreConfig` | `GkeBackupRestorePlanRestoreConfig` + conflict / restore-mode enums |
+| `GoogleCloudRunV2WorkerPool` | `instanceSplits` / `scaling` / `template` | `CloudRunV2WorkerPool*` helpers (reuses `EmptyDirMedium` / `ScalingMode`) |
+| `GoogleBigqueryDatapolicyDataPolicy` | `dataMaskingPolicy` | `BigqueryDatapolicyDataPolicyDataMaskingPolicy` / `BigqueryDatapolicyDataPolicyPredefinedExpression` |
 
 ```dart
 // 0.12.9

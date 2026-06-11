@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_bigquery_datapolicy_data_policy`.
@@ -16,6 +17,33 @@ enum BigqueryDatapolicyDataPolicyType implements TerraformEnum {
   final String terraformValue;
 }
 
+enum BigqueryDatapolicyDataPolicyPredefinedExpression implements TerraformEnum {
+  sha256('SHA256'),
+  alwaysNull('ALWAYS_NULL'),
+  defaultMaskingValue('DEFAULT_MASKING_VALUE'),
+  lastFourCharacters('LAST_FOUR_CHARACTERS'),
+  firstFourCharacters('FIRST_FOUR_CHARACTERS'),
+  emailMask('EMAIL_MASK'),
+  dateYearMask('DATE_YEAR_MASK');
+
+  const BigqueryDatapolicyDataPolicyPredefinedExpression(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+@immutable
+class BigqueryDatapolicyDataPolicyDataMaskingPolicy {
+  const BigqueryDatapolicyDataPolicyDataMaskingPolicy({
+    required this.predefinedExpression,
+  });
+
+  final BigqueryDatapolicyDataPolicyPredefinedExpression predefinedExpression;
+
+  Map<String, Object?> encode() => {
+    'predefined_expression': predefinedExpression.terraformValue,
+  };
+}
+
 /// Factory wrapper for `google_bigquery_datapolicy_data_policy`.
 final class GoogleBigqueryDatapolicyDataPolicy extends Resource {
   static const String tfType = 'google_bigquery_datapolicy_data_policy';
@@ -27,7 +55,7 @@ final class GoogleBigqueryDatapolicyDataPolicy extends Resource {
     required TfArg<String> location,
     required TfArg<String> policyTag,
     TfArg<String>? project,
-    TfArg<Map<String, dynamic>>? dataMaskingPolicy,
+    BigqueryDatapolicyDataPolicyDataMaskingPolicy? dataMaskingPolicy,
     super.lifecycle,
     super.dependsOn,
   }) : super(
@@ -39,7 +67,7 @@ final class GoogleBigqueryDatapolicyDataPolicy extends Resource {
            'policy_tag': policyTag,
            if (project != null) 'project': project,
            if (dataMaskingPolicy != null)
-             'data_masking_policy': dataMaskingPolicy,
+             'data_masking_policy': TfArg.literal([dataMaskingPolicy.encode()]),
          },
        );
 

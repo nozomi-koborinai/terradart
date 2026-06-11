@@ -52,6 +52,8 @@ export 'src/bigquery/google_bigquery_connection.dart'
         GoogleBigqueryConnection;
 export 'src/bigquery/google_bigquery_datapolicy_data_policy.dart'
     show
+        BigqueryDatapolicyDataPolicyDataMaskingPolicy,
+        BigqueryDatapolicyDataPolicyPredefinedExpression,
         BigqueryDatapolicyDataPolicyType,
         GoogleBigqueryDatapolicyDataPolicy;
 export 'src/bigquery/google_bigquery_datapolicy_data_policy_iam_member.dart'

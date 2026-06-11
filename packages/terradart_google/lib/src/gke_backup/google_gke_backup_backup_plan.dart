@@ -1,10 +1,73 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_gke_backup_backup_plan`.
 const Set<String> _googleGkeBackupBackupPlanSensitive = <String>{};
+
+enum GkeBackupBackupPlanDayOfWeek implements TerraformEnum {
+  monday('MONDAY'),
+  tuesday('TUESDAY'),
+  wednesday('WEDNESDAY'),
+  thursday('THURSDAY'),
+  friday('FRIDAY'),
+  saturday('SATURDAY'),
+  sunday('SUNDAY');
+
+  const GkeBackupBackupPlanDayOfWeek(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+@immutable
+class GkeBackupBackupPlanExclusionWindowDaysOfWeek {
+  const GkeBackupBackupPlanExclusionWindowDaysOfWeek({this.daysOfWeek});
+
+  final List<GkeBackupBackupPlanDayOfWeek>? daysOfWeek;
+
+  Map<String, Object?> toArgMap() => {
+    if (daysOfWeek != null)
+      'days_of_week': daysOfWeek!.map((d) => d.terraformValue).toList(),
+  };
+}
+
+@immutable
+class GkeBackupBackupPlanExclusionWindow {
+  const GkeBackupBackupPlanExclusionWindow({this.daysOfWeek});
+
+  final GkeBackupBackupPlanExclusionWindowDaysOfWeek? daysOfWeek;
+
+  Map<String, Object?> toArgMap() => {
+    if (daysOfWeek != null) 'days_of_week': [daysOfWeek!.toArgMap()],
+  };
+}
+
+@immutable
+class GkeBackupBackupPlanRpoConfig {
+  const GkeBackupBackupPlanRpoConfig({this.exclusionWindows});
+
+  final List<GkeBackupBackupPlanExclusionWindow>? exclusionWindows;
+
+  Map<String, Object?> toArgMap() => {
+    if (exclusionWindows != null)
+      'exclusion_windows': exclusionWindows!.map((w) => w.toArgMap()).toList(),
+  };
+}
+
+@immutable
+class GkeBackupBackupPlanBackupSchedule {
+  const GkeBackupBackupPlanBackupSchedule({this.cronSchedule, this.rpoConfig});
+
+  final TfArg<String>? cronSchedule;
+  final GkeBackupBackupPlanRpoConfig? rpoConfig;
+
+  Map<String, Object?> encode() => {
+    if (cronSchedule != null) 'cron_schedule': cronSchedule!.toTfJson(),
+    if (rpoConfig != null) 'rpo_config': [rpoConfig!.toArgMap()],
+  };
+}
 
 /// Factory wrapper for `google_gke_backup_backup_plan`.
 ///
@@ -32,7 +95,7 @@ final class GoogleGkeBackupBackupPlan extends Resource {
     TfArg<bool>? deactivated,
     TfArg<Map<String, String>>? labels,
     TfArg<Map<String, dynamic>>? backupConfig,
-    TfArg<Map<String, dynamic>>? backupSchedule,
+    GkeBackupBackupPlanBackupSchedule? backupSchedule,
     TfArg<Map<String, dynamic>>? retentionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -47,7 +110,8 @@ final class GoogleGkeBackupBackupPlan extends Resource {
            if (deactivated != null) 'deactivated': deactivated,
            if (labels != null) 'labels': labels,
            if (backupConfig != null) 'backup_config': backupConfig,
-           if (backupSchedule != null) 'backup_schedule': backupSchedule,
+           if (backupSchedule != null)
+             'backup_schedule': TfArg.literal([backupSchedule.encode()]),
            if (retentionPolicy != null) 'retention_policy': retentionPolicy,
            if (project != null) 'project': project,
          },

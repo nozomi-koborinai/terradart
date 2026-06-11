@@ -97,11 +97,11 @@ final class ApiServiceStack extends Stack {
         name: TfArg.literal('batch-workers'),
         location: TfArg.literal('asia-northeast1'),
         launchStage: TfArg.literal(CloudRunV2WorkerPoolLaunchStage.ga),
-        template: TfArg.literal({
-          'containers': [
+        template: CloudRunV2WorkerPoolTemplate(
+          containers: const [
             {'image': 'gcr.io/cloudrun/hello'},
           ],
-        }),
+        ),
       ),
     );
 

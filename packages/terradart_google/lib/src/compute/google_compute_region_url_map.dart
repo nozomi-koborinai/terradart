@@ -32,6 +32,63 @@ enum RegionUrlMapRedirectResponseCode implements TerraformEnum {
   final String terraformValue;
 }
 
+/// `route_action.cache_policy.cache_mode` and nested cache policy blocks.
+enum RegionUrlMapCacheMode implements TerraformEnum {
+  useOriginHeaders('USE_ORIGIN_HEADERS'),
+  forceCacheAll('FORCE_CACHE_ALL'),
+  cacheAllStatic('CACHE_ALL_STATIC');
+
+  const RegionUrlMapCacheMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `match_rules.metadata_filters.filter_match_criteria`.
+enum RegionUrlMapMetadataFilterMatchCriteria implements TerraformEnum {
+  matchAll('MATCH_ALL'),
+  matchAny('MATCH_ANY');
+
+  const RegionUrlMapMetadataFilterMatchCriteria(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+@immutable
+class ComputeRegionUrlMapRegionUrlMapCachePolicy {
+  const ComputeRegionUrlMapRegionUrlMapCachePolicy({this.cacheMode});
+
+  final RegionUrlMapCacheMode? cacheMode;
+
+  Map<String, Object?> toArgMap() => {
+    if (cacheMode != null) 'cache_mode': cacheMode!.terraformValue,
+  };
+}
+
+@immutable
+class ComputeRegionUrlMapRegionUrlMapRouteAction {
+  const ComputeRegionUrlMapRegionUrlMapRouteAction({this.cachePolicy});
+
+  final ComputeRegionUrlMapRegionUrlMapCachePolicy? cachePolicy;
+
+  Map<String, Object?> toArgMap() => {
+    if (cachePolicy != null) 'cache_policy': [cachePolicy!.toArgMap()],
+  };
+}
+
+@immutable
+class ComputeRegionUrlMapRegionUrlMapMetadataFilter {
+  const ComputeRegionUrlMapRegionUrlMapMetadataFilter({
+    this.filterMatchCriteria,
+  });
+
+  final RegionUrlMapMetadataFilterMatchCriteria? filterMatchCriteria;
+
+  Map<String, Object?> toArgMap() => {
+    if (filterMatchCriteria != null)
+      'filter_match_criteria': filterMatchCriteria!.terraformValue,
+  };
+}
+
 // ===========================================================================
 // host_rule (set, unbounded)
 // ===========================================================================
@@ -97,6 +154,7 @@ class ComputeRegionUrlMapRegionUrlMapPathMatcher {
     this.pathRules,
     this.routeRules,
     this.defaultUrlRedirect,
+    this.defaultRouteAction,
     this.advancedExtra,
   });
 
@@ -127,6 +185,9 @@ class ComputeRegionUrlMapRegionUrlMapPathMatcher {
   /// Mutually exclusive with [defaultService].
   final ComputeRegionUrlMapRegionUrlMapUrlRedirect? defaultUrlRedirect;
 
+  /// Fallback Envoy-style traffic policy for unmatched requests.
+  final ComputeRegionUrlMapRegionUrlMapRouteAction? defaultRouteAction;
+
   /// Escape hatch for the uncurated nested blocks of `path_matcher`:
   /// - `default_route_action` (Envoy-style traffic policy)
   /// - `default_custom_error_response_policy`
@@ -146,6 +207,8 @@ class ComputeRegionUrlMapRegionUrlMapPathMatcher {
       'route_rules': routeRules!.map((r) => r.toArgMap()).toList(),
     if (defaultUrlRedirect != null)
       'default_url_redirect': [defaultUrlRedirect!.toArgMap()],
+    if (defaultRouteAction != null)
+      'default_route_action': [defaultRouteAction!.toArgMap()],
     if (advancedExtra != null) ...advancedExtra!,
   };
 }
@@ -155,15 +218,15 @@ class ComputeRegionUrlMapRegionUrlMapPathMatcher {
 /// either a [service] OR an inline [urlRedirect] -- exactly one of the two
 /// must be set per the GCP API.
 ///
-/// The deep `route_action` sub-block is exposed via the [advancedExtra]
-/// escape hatch rather than as a typed helper (see
-/// [ComputeRegionUrlMapRegionUrlMapPathMatcher.advancedExtra] for the rationale).
+/// Typed [routeAction] covers cache policy; deeper Envoy sub-blocks remain
+/// on [advancedExtra].
 @immutable
 class ComputeRegionUrlMapRegionUrlMapPathRule {
   const ComputeRegionUrlMapRegionUrlMapPathRule({
     required this.paths,
     this.service,
     this.urlRedirect,
+    this.routeAction,
     this.advancedExtra,
   });
 
@@ -179,6 +242,9 @@ class ComputeRegionUrlMapRegionUrlMapPathRule {
   /// [service].
   final ComputeRegionUrlMapRegionUrlMapUrlRedirect? urlRedirect;
 
+  /// Envoy-style traffic policy for matching paths.
+  final ComputeRegionUrlMapRegionUrlMapRouteAction? routeAction;
+
   /// Escape hatch for the uncurated nested blocks:
   /// - `route_action` (Envoy-style traffic policy)
   /// - `custom_error_response_policy`
@@ -188,6 +254,7 @@ class ComputeRegionUrlMapRegionUrlMapPathRule {
     'paths': paths,
     if (service != null) 'service': service!.toTfJson(),
     if (urlRedirect != null) 'url_redirect': [urlRedirect!.toArgMap()],
+    if (routeAction != null) 'route_action': [routeAction!.toArgMap()],
     if (advancedExtra != null) ...advancedExtra!,
   };
 }
@@ -206,6 +273,7 @@ class ComputeRegionUrlMapRegionUrlMapRouteRule {
     this.matchRules,
     this.headerAction,
     this.urlRedirect,
+    this.routeAction,
     this.advancedExtra,
   });
 
@@ -231,6 +299,9 @@ class ComputeRegionUrlMapRegionUrlMapRouteRule {
   /// [service].
   final ComputeRegionUrlMapRegionUrlMapUrlRedirect? urlRedirect;
 
+  /// Envoy-style traffic policy for matching requests.
+  final ComputeRegionUrlMapRegionUrlMapRouteAction? routeAction;
+
   /// Escape hatch for the uncurated nested blocks:
   /// - `route_action` (Envoy-style traffic policy)
   /// - `custom_error_response_policy`
@@ -243,6 +314,7 @@ class ComputeRegionUrlMapRegionUrlMapRouteRule {
       'match_rules': matchRules!.map((m) => m.toArgMap()).toList(),
     if (headerAction != null) 'header_action': [headerAction!.toArgMap()],
     if (urlRedirect != null) 'url_redirect': [urlRedirect!.toArgMap()],
+    if (routeAction != null) 'route_action': [routeAction!.toArgMap()],
     if (advancedExtra != null) ...advancedExtra!,
   };
 }
@@ -268,6 +340,7 @@ class ComputeRegionUrlMapRegionUrlMapRouteRuleMatch {
     this.ignoreCase,
     this.headerMatches,
     this.queryParameterMatches,
+    this.metadataFilters,
     this.advancedExtra,
   });
 
@@ -296,6 +369,9 @@ class ComputeRegionUrlMapRegionUrlMapRouteRuleMatch {
   final List<ComputeRegionUrlMapRegionUrlMapQueryParameterMatch>?
   queryParameterMatches;
 
+  /// xDS / Traffic Director metadata match predicates.
+  final List<ComputeRegionUrlMapRegionUrlMapMetadataFilter>? metadataFilters;
+
   /// Escape hatch for the uncurated nested blocks of `match_rules`:
   /// - `metadata_filters` (xDS / Traffic Director match predicates)
   ///
@@ -317,6 +393,8 @@ class ComputeRegionUrlMapRegionUrlMapRouteRuleMatch {
       'query_parameter_matches': queryParameterMatches!
           .map((q) => q.toArgMap())
           .toList(),
+    if (metadataFilters != null)
+      'metadata_filters': metadataFilters!.map((f) => f.toArgMap()).toList(),
     if (advancedExtra != null) ...advancedExtra!,
   };
 }

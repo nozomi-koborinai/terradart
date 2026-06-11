@@ -15,6 +15,82 @@ curatedDoc: |-
   ///
   /// Pair with [GoogleGkeBackupRestorePlan] for restore workflows.
 
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+prelude: |
+  enum GkeBackupBackupPlanDayOfWeek implements TerraformEnum {
+    monday('MONDAY'),
+    tuesday('TUESDAY'),
+    wednesday('WEDNESDAY'),
+    thursday('THURSDAY'),
+    friday('FRIDAY'),
+    saturday('SATURDAY'),
+    sunday('SUNDAY');
+
+    const GkeBackupBackupPlanDayOfWeek(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  @immutable
+  class GkeBackupBackupPlanExclusionWindowDaysOfWeek {
+    const GkeBackupBackupPlanExclusionWindowDaysOfWeek({this.daysOfWeek});
+
+    final List<GkeBackupBackupPlanDayOfWeek>? daysOfWeek;
+
+    Map<String, Object?> toArgMap() => {
+      if (daysOfWeek != null)
+        'days_of_week': daysOfWeek!.map((d) => d.terraformValue).toList(),
+    };
+  }
+
+  @immutable
+  class GkeBackupBackupPlanExclusionWindow {
+    const GkeBackupBackupPlanExclusionWindow({
+      this.daysOfWeek,
+    });
+
+    final GkeBackupBackupPlanExclusionWindowDaysOfWeek? daysOfWeek;
+
+    Map<String, Object?> toArgMap() => {
+      if (daysOfWeek != null) 'days_of_week': [daysOfWeek!.toArgMap()],
+    };
+  }
+
+  @immutable
+  class GkeBackupBackupPlanRpoConfig {
+    const GkeBackupBackupPlanRpoConfig({this.exclusionWindows});
+
+    final List<GkeBackupBackupPlanExclusionWindow>? exclusionWindows;
+
+    Map<String, Object?> toArgMap() => {
+      if (exclusionWindows != null)
+        'exclusion_windows': exclusionWindows!.map((w) => w.toArgMap()).toList(),
+    };
+  }
+
+  @immutable
+  class GkeBackupBackupPlanBackupSchedule {
+    const GkeBackupBackupPlanBackupSchedule({
+      this.cronSchedule,
+      this.rpoConfig,
+    });
+
+    final TfArg<String>? cronSchedule;
+    final GkeBackupBackupPlanRpoConfig? rpoConfig;
+
+    Map<String, Object?> encode() => {
+      if (cronSchedule != null) 'cron_schedule': cronSchedule!.toTfJson(),
+      if (rpoConfig != null) 'rpo_config': [rpoConfig!.toArgMap()],
+    };
+  }
+
+customSlots:
+  backup_schedule:
+    paramDeclaration: 'GkeBackupBackupPlanBackupSchedule? backupSchedule'
+    argMapEntry: "if (backupSchedule != null) 'backup_schedule': TfArg.literal([backupSchedule.encode()]),"
+
 paramOrder:
   - name
   - location

@@ -156,15 +156,45 @@ String? _generatedSource(String tfType, Map<String, dynamic> ov) {
   return genFile.readAsStringSync();
 }
 
-bool _customSlotCoversBlock(Map<String, dynamic> ov, List<String> blockPath) {
-  if (blockPath.isEmpty) return false;
+Set<String> _customSlotTerraformKeys(Map<String, dynamic> ov) {
   final slots = Map<String, dynamic>.from(
     ov['customSlots'] as YamlMap? ?? {},
   );
-  return slots.containsKey(blockPath.last);
+  final keys = <String>{};
+  for (final entry in slots.entries) {
+    keys.add(entry.key);
+    final slot = Map<String, dynamic>.from(entry.value as Map);
+    final argMapEntry = slot['argMapEntry'] as String? ?? '';
+    for (final m in RegExp("'([^']+)'\\s*:").allMatches(argMapEntry)) {
+      keys.add(m.group(1)!);
+    }
+  }
+  return keys;
 }
 
-bool _nestedFieldStillTfArgString(String genText, String camel) {
+bool _customSlotCoversBlock(Map<String, dynamic> ov, List<String> blockPath) {
+  if (blockPath.isEmpty) return false;
+  final slotKeys = _customSlotTerraformKeys(ov);
+  // A top-level customSlot (e.g. `rules` → schema `rule`) types the subtree.
+  for (var i = blockPath.length; i > 0; i--) {
+    if (slotKeys.contains(blockPath[i - 1])) return true;
+  }
+  return false;
+}
+
+bool _nestedFieldDeclared(String genText, String camel) {
+  return RegExp('final \\S+\\??\\s+$camel\\s*;').hasMatch(genText);
+}
+
+bool _nestedEnumFieldIsGap(String genText, String camel) {
+  // A typed non-string field (enum / helper) with this name means covered,
+  // even when another unrelated `TfArg<String> foo` shares the same name
+  // elsewhere in the generated file (e.g. top-level `type` vs nested `type`).
+  if (RegExp('final (?!TfArg<String>)\\S+\\??\\s+$camel\\s*;').hasMatch(
+    genText,
+  )) {
+    return false;
+  }
   return RegExp('final TfArg<String>\\??\\s+$camel\\s*;').hasMatch(genText);
 }
 
@@ -247,18 +277,26 @@ void main(List<String> args) {
       final label = _blockPathLabel(site.blockPath, site.attr);
       final camel = _camel(site.attr);
 
-      if (_customSlotCoversBlock(ov, site.blockPath)) {
-        if (_nestedFieldStillTfArgString(genText, camel)) {
-          nestedPartialGaps.add(
-            'NESTED_PARTIAL\t$tfType.$label\t${site.values.join(", ")}',
-          );
-        }
+      if (!_nestedFieldDeclared(genText, camel)) {
+        nestedThinGaps.add(
+          'NESTED_THIN\t$tfType.$label\t${site.values.join(", ")}',
+        );
         continue;
       }
 
-      nestedThinGaps.add(
-        'NESTED_THIN\t$tfType.$label\t${site.values.join(", ")}',
-      );
+      if (!_nestedEnumFieldIsGap(genText, camel)) {
+        continue;
+      }
+
+      if (_customSlotCoversBlock(ov, site.blockPath)) {
+        nestedPartialGaps.add(
+          'NESTED_PARTIAL\t$tfType.$label\t${site.values.join(", ")}',
+        );
+      } else {
+        nestedThinGaps.add(
+          'NESTED_THIN\t$tfType.$label\t${site.values.join(", ")}',
+        );
+      }
     }
   }
 

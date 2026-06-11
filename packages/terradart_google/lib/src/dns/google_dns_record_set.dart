@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_dns_record_set`.
@@ -24,6 +25,139 @@ enum DnsRecordSetType implements TerraformEnum {
   final String terraformValue;
 }
 
+enum DnsRecordSetRoutingPolicyIlbIpProtocol implements TerraformEnum {
+  tcp('tcp'),
+  udp('udp');
+
+  const DnsRecordSetRoutingPolicyIlbIpProtocol(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+enum DnsRecordSetRoutingPolicyIlbType implements TerraformEnum {
+  regionalL4ilb('regionalL4ilb'),
+  regionalL7ilb('regionalL7ilb'),
+  globalL7ilb('globalL7ilb');
+
+  const DnsRecordSetRoutingPolicyIlbType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+@immutable
+class DnsRecordSetRoutingPolicyInternalLoadBalancer {
+  const DnsRecordSetRoutingPolicyInternalLoadBalancer({
+    required this.ipAddress,
+    this.ipProtocol,
+    this.loadBalancerType,
+    this.networkUrl,
+    this.port,
+    this.project,
+    this.region,
+  });
+
+  final TfArg<String> ipAddress;
+  final DnsRecordSetRoutingPolicyIlbIpProtocol? ipProtocol;
+  final DnsRecordSetRoutingPolicyIlbType? loadBalancerType;
+  final TfArg<String>? networkUrl;
+  final TfArg<String>? port;
+  final TfArg<String>? project;
+  final TfArg<String>? region;
+
+  Map<String, Object?> toArgMap() => {
+    'ip_address': ipAddress.toTfJson(),
+    if (ipProtocol != null) 'ip_protocol': ipProtocol!.terraformValue,
+    if (loadBalancerType != null)
+      'load_balancer_type': loadBalancerType!.terraformValue,
+    if (networkUrl != null) 'network_url': networkUrl!.toTfJson(),
+    if (port != null) 'port': port!.toTfJson(),
+    if (project != null) 'project': project!.toTfJson(),
+    if (region != null) 'region': region!.toTfJson(),
+  };
+}
+
+@immutable
+class DnsRecordSetRoutingPolicyHealthCheckedTargets {
+  const DnsRecordSetRoutingPolicyHealthCheckedTargets({
+    this.internalLoadBalancers,
+  });
+
+  final List<DnsRecordSetRoutingPolicyInternalLoadBalancer>?
+  internalLoadBalancers;
+
+  Map<String, Object?> toArgMap() => {
+    if (internalLoadBalancers != null)
+      'internal_load_balancers': internalLoadBalancers!
+          .map((b) => b.toArgMap())
+          .toList(),
+  };
+}
+
+@immutable
+class DnsRecordSetRoutingPolicyGeoRouting {
+  const DnsRecordSetRoutingPolicyGeoRouting({
+    this.healthCheckedTargets,
+    this.location,
+  });
+
+  final DnsRecordSetRoutingPolicyHealthCheckedTargets? healthCheckedTargets;
+  final TfArg<String>? location;
+
+  Map<String, Object?> toArgMap() => {
+    if (healthCheckedTargets != null)
+      'health_checked_targets': [healthCheckedTargets!.toArgMap()],
+    if (location != null) 'location': location!.toTfJson(),
+  };
+}
+
+@immutable
+class DnsRecordSetRoutingPolicyWrrRouting {
+  const DnsRecordSetRoutingPolicyWrrRouting({
+    this.healthCheckedTargets,
+    this.weight,
+  });
+
+  final DnsRecordSetRoutingPolicyHealthCheckedTargets? healthCheckedTargets;
+  final TfArg<num>? weight;
+
+  Map<String, Object?> toArgMap() => {
+    if (healthCheckedTargets != null)
+      'health_checked_targets': [healthCheckedTargets!.toArgMap()],
+    if (weight != null) 'weight': weight!.toTfJson(),
+  };
+}
+
+@immutable
+class DnsRecordSetRoutingPolicyPrimaryBackupRouting {
+  const DnsRecordSetRoutingPolicyPrimaryBackupRouting({
+    this.primary,
+    this.backupGeo,
+  });
+
+  final DnsRecordSetRoutingPolicyGeoRouting? primary;
+  final DnsRecordSetRoutingPolicyGeoRouting? backupGeo;
+
+  Map<String, Object?> toArgMap() => {
+    if (primary != null) 'primary': [primary!.toArgMap()],
+    if (backupGeo != null) 'backup_geo': [backupGeo!.toArgMap()],
+  };
+}
+
+@immutable
+class DnsRecordSetRoutingPolicy {
+  const DnsRecordSetRoutingPolicy({this.geo, this.wrr, this.primaryBackup});
+
+  final List<DnsRecordSetRoutingPolicyGeoRouting>? geo;
+  final List<DnsRecordSetRoutingPolicyWrrRouting>? wrr;
+  final DnsRecordSetRoutingPolicyPrimaryBackupRouting? primaryBackup;
+
+  Map<String, Object?> encode() => {
+    if (geo != null) 'geo': geo!.map((g) => g.toArgMap()).toList(),
+    if (wrr != null) 'wrr': wrr!.map((w) => w.toArgMap()).toList(),
+    if (primaryBackup != null) 'primary_backup': [primaryBackup!.toArgMap()],
+  };
+}
+
 /// Factory wrapper for `google_dns_record_set`.
 final class GoogleDnsRecordSet extends Resource {
   static const String tfType = 'google_dns_record_set';
@@ -36,7 +170,7 @@ final class GoogleDnsRecordSet extends Resource {
     TfArg<List<String>>? rrdatas,
     TfArg<num>? ttl,
     required TfArg<DnsRecordSetType> type,
-    TfArg<Map<String, dynamic>>? routingPolicy,
+    DnsRecordSetRoutingPolicy? routingPolicy,
     super.lifecycle,
     super.dependsOn,
   }) : super(
@@ -48,7 +182,8 @@ final class GoogleDnsRecordSet extends Resource {
            if (rrdatas != null) 'rrdatas': rrdatas,
            if (ttl != null) 'ttl': ttl,
            'type': type,
-           if (routingPolicy != null) 'routing_policy': routingPolicy,
+           if (routingPolicy != null)
+             'routing_policy': TfArg.literal([routingPolicy.encode()]),
          },
        );
 

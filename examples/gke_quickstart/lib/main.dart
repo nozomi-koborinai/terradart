@@ -170,9 +170,9 @@ final class GkeQuickstartStack extends Stack {
         name: TfArg.literal('main-backup-plan'),
         location: TfArg.literal(region),
         cluster: TfArg.ref(cluster.id),
-        backupSchedule: TfArg.literal({
-          'cron_schedule': TfArg.literal('0 3 * * *'),
-        }),
+        backupSchedule: GkeBackupBackupPlanBackupSchedule(
+          cronSchedule: TfArg.literal('0 3 * * *'),
+        ),
         retentionPolicy: TfArg.literal({
           'backup_retain_days': TfArg.literal(7),
         }),
@@ -190,9 +190,9 @@ final class GkeQuickstartStack extends Stack {
         location: TfArg.literal(region),
         backupPlan: TfArg.ref(backupPlan.nameRef),
         cluster: TfArg.ref(cluster.id),
-        restoreConfig: TfArg.literal({
-          'all_namespaces': TfArg.literal(true),
-        }),
+        restoreConfig: GkeBackupRestorePlanRestoreConfig(
+          allNamespaces: TfArg.literal(true),
+        ),
         dependsOn: [
           ResourceDependency(apiGkeBackup),
           ResourceDependency(backupPlan),

@@ -132,16 +132,16 @@ final class InternalDnsStack extends Stack {
         responsePolicy: TfArg.literal('internal-overrides'),
         ruleName: TfArg.literal('legacy-fallback'),
         dnsName: TfArg.literal('legacy.internal.corp.'),
-        localData: TfArg.literal({
-          'local_datas': [
-            {
-              'name': 'legacy',
-              'type': 'A',
-              'ttl': 300,
-              'rrdatas': ['10.0.0.20'],
-            },
+        localData: DnsResponsePolicyRuleLocalData(
+          localDatas: [
+            DnsResponsePolicyRuleLocalDataEntry(
+              name: TfArg.literal('legacy'),
+              type: DnsResponsePolicyRuleRecordType.a,
+              ttl: TfArg.literal(300),
+              rrdatas: const ['10.0.0.20'],
+            ),
           ],
-        }),
+        ),
       ),
     );
   }

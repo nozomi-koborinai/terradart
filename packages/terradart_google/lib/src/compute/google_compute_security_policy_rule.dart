@@ -3,41 +3,21 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_google/src/compute/google_compute_security_policy.dart'
-    show SecurityPolicyRuleMatchVersionedExpr;
+    show
+        SecurityPolicyRuleMatchVersionedExpr,
+        SecurityPolicyRuleRateLimitEnforceOnKey,
+        SecurityPolicyWafExclusionOperator;
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_security_policy_rule`.
 const Set<String> _googleComputeSecurityPolicyRuleSensitive = <String>{};
-
-/// `rate_limit_options.enforce_on_key` — request attribute the rate-limit
-/// threshold is keyed on.
-enum ComputeSecurityPolicyRuleRateLimitEnforceOnKey implements TerraformEnum {
-  all('ALL'),
-  ip('IP'),
-  httpHeader('HTTP_HEADER'),
-  xffIp('XFF_IP'),
-  httpCookie('HTTP_COOKIE'),
-  httpPath('HTTP_PATH'),
-  sni('SNI'),
-  regionCode('REGION_CODE'),
-  tlsJa3Fingerprint('TLS_JA3_FINGERPRINT'),
-  tlsJa4Fingerprint('TLS_JA4_FINGERPRINT'),
-  userIp('USER_IP');
-
-  const ComputeSecurityPolicyRuleRateLimitEnforceOnKey(this.terraformValue);
-  @override
-  final String terraformValue;
-}
 
 /// `match` block — condition that fires this standalone rule.
 @immutable
 class ComputeSecurityPolicyRuleMatch {
   const ComputeSecurityPolicyRuleMatch({this.versionedExpr, this.config});
 
-  /// Built-in predicate (pair with [config]).
   final SecurityPolicyRuleMatchVersionedExpr? versionedExpr;
-
-  /// Source-IP ranges for [SecurityPolicyRuleMatchVersionedExpr.srcIpsV1].
   final ComputeSecurityPolicyRuleMatchConfig? config;
 
   Map<String, Object?> toArgMap() => {
@@ -46,7 +26,6 @@ class ComputeSecurityPolicyRuleMatch {
   };
 }
 
-/// `match.config` — payload for the `SRC_IPS_V1` predicate.
 @immutable
 class ComputeSecurityPolicyRuleMatchConfig {
   const ComputeSecurityPolicyRuleMatchConfig({required this.srcIpRanges});
@@ -56,24 +35,97 @@ class ComputeSecurityPolicyRuleMatchConfig {
   Map<String, Object?> toArgMap() => {'src_ip_ranges': srcIpRanges};
 }
 
-/// `rate_limit_options` block for throttle / rate-based-ban actions.
 @immutable
 class ComputeSecurityPolicyRuleRateLimitOptions {
   const ComputeSecurityPolicyRuleRateLimitOptions({
     this.enforceOnKey,
     this.enforceOnKeyName,
+    this.enforceOnKeyConfigs,
   });
 
-  final ComputeSecurityPolicyRuleRateLimitEnforceOnKey? enforceOnKey;
-
-  /// Header or cookie name when [enforceOnKey] is [ComputeSecurityPolicyRuleRateLimitEnforceOnKey.httpHeader]
-  /// or [ComputeSecurityPolicyRuleRateLimitEnforceOnKey.httpCookie].
+  final SecurityPolicyRuleRateLimitEnforceOnKey? enforceOnKey;
   final TfArg<String>? enforceOnKeyName;
+  final List<ComputeSecurityPolicyRuleRateLimitEnforceOnKeyConfig>?
+  enforceOnKeyConfigs;
 
   Map<String, Object?> toArgMap() => {
     if (enforceOnKey != null) 'enforce_on_key': enforceOnKey!.terraformValue,
     if (enforceOnKeyName != null)
       'enforce_on_key_name': enforceOnKeyName!.toTfJson(),
+    if (enforceOnKeyConfigs != null)
+      'enforce_on_key_configs': enforceOnKeyConfigs!
+          .map((c) => c.toArgMap())
+          .toList(),
+  };
+}
+
+@immutable
+class ComputeSecurityPolicyRuleRateLimitEnforceOnKeyConfig {
+  const ComputeSecurityPolicyRuleRateLimitEnforceOnKeyConfig({
+    this.enforceOnKeyType,
+    this.enforceOnKeyName,
+  });
+
+  final SecurityPolicyRuleRateLimitEnforceOnKey? enforceOnKeyType;
+  final TfArg<String>? enforceOnKeyName;
+
+  Map<String, Object?> toArgMap() => {
+    if (enforceOnKeyType != null)
+      'enforce_on_key_type': enforceOnKeyType!.terraformValue,
+    if (enforceOnKeyName != null)
+      'enforce_on_key_name': enforceOnKeyName!.toTfJson(),
+  };
+}
+
+@immutable
+class ComputeSecurityPolicyRulePreconfiguredWafConfig {
+  const ComputeSecurityPolicyRulePreconfiguredWafConfig({this.exclusion});
+
+  final List<ComputeSecurityPolicyRulePreconfiguredWafExclusion>? exclusion;
+
+  Map<String, Object?> toArgMap() => {
+    if (exclusion != null)
+      'exclusion': exclusion!.map((e) => e.toArgMap()).toList(),
+  };
+}
+
+@immutable
+class ComputeSecurityPolicyRulePreconfiguredWafExclusion {
+  const ComputeSecurityPolicyRulePreconfiguredWafExclusion({
+    this.requestCookie,
+    this.requestHeader,
+    this.requestQueryParam,
+    this.requestUri,
+  });
+
+  final ComputeSecurityPolicyRulePreconfiguredWafExclusionMatch? requestCookie;
+  final ComputeSecurityPolicyRulePreconfiguredWafExclusionMatch? requestHeader;
+  final ComputeSecurityPolicyRulePreconfiguredWafExclusionMatch?
+  requestQueryParam;
+  final ComputeSecurityPolicyRulePreconfiguredWafExclusionMatch? requestUri;
+
+  Map<String, Object?> toArgMap() => {
+    if (requestCookie != null) 'request_cookie': [requestCookie!.toArgMap()],
+    if (requestHeader != null) 'request_header': [requestHeader!.toArgMap()],
+    if (requestQueryParam != null)
+      'request_query_param': [requestQueryParam!.toArgMap()],
+    if (requestUri != null) 'request_uri': [requestUri!.toArgMap()],
+  };
+}
+
+@immutable
+class ComputeSecurityPolicyRulePreconfiguredWafExclusionMatch {
+  const ComputeSecurityPolicyRulePreconfiguredWafExclusionMatch({
+    this.operator,
+    this.value,
+  });
+
+  final SecurityPolicyWafExclusionOperator? operator;
+  final TfArg<String>? value;
+
+  Map<String, Object?> toArgMap() => {
+    if (operator != null) 'operator': operator!.terraformValue,
+    if (value != null) 'value': value!.toTfJson(),
   };
 }
 
@@ -91,7 +143,7 @@ final class GoogleComputeSecurityPolicyRule extends Resource {
     required TfArg<String> securityPolicy,
     TfArg<Map<String, dynamic>>? headerAction,
     ComputeSecurityPolicyRuleMatch? match,
-    TfArg<Map<String, dynamic>>? preconfiguredWafConfig,
+    ComputeSecurityPolicyRulePreconfiguredWafConfig? preconfiguredWafConfig,
     ComputeSecurityPolicyRuleRateLimitOptions? rateLimitOptions,
     TfArg<Map<String, dynamic>>? redirectOptions,
     super.lifecycle,
@@ -108,7 +160,9 @@ final class GoogleComputeSecurityPolicyRule extends Resource {
            if (headerAction != null) 'header_action': headerAction,
            if (match != null) 'match': TfArg.literal([match.toArgMap()]),
            if (preconfiguredWafConfig != null)
-             'preconfigured_waf_config': preconfiguredWafConfig,
+             'preconfigured_waf_config': TfArg.literal([
+               preconfiguredWafConfig.toArgMap(),
+             ]),
            if (rateLimitOptions != null)
              'rate_limit_options': TfArg.literal([rateLimitOptions.toArgMap()]),
            if (redirectOptions != null) 'redirect_options': redirectOptions,

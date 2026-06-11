@@ -115,6 +115,38 @@ enum SecurityPolicyLogLevel implements TerraformEnum {
   final String terraformValue;
 }
 
+/// `rate_limit_options.enforce_on_key` / `enforce_on_key_configs.enforce_on_key_type`.
+enum SecurityPolicyRuleRateLimitEnforceOnKey implements TerraformEnum {
+  all('ALL'),
+  ip('IP'),
+  httpHeader('HTTP_HEADER'),
+  xffIp('XFF_IP'),
+  httpCookie('HTTP_COOKIE'),
+  httpPath('HTTP_PATH'),
+  sni('SNI'),
+  regionCode('REGION_CODE'),
+  tlsJa3Fingerprint('TLS_JA3_FINGERPRINT'),
+  tlsJa4Fingerprint('TLS_JA4_FINGERPRINT'),
+  userIp('USER_IP');
+
+  const SecurityPolicyRuleRateLimitEnforceOnKey(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Operator for preconfigured WAF exclusion match clauses.
+enum SecurityPolicyWafExclusionOperator implements TerraformEnum {
+  contains('CONTAINS'),
+  endsWith('ENDS_WITH'),
+  equals('EQUALS'),
+  equalsAny('EQUALS_ANY'),
+  startsWith('STARTS_WITH');
+
+  const SecurityPolicyWafExclusionOperator(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 // ===========================================================================
 // rules[] -- the heart of the policy
 // ===========================================================================
@@ -317,10 +349,8 @@ class ComputeSecurityPolicySecurityPolicyRuleRateLimitOptions {
   /// converting a throttle into a ban.
   final ComputeSecurityPolicySecurityPolicyRuleRateLimitThreshold? banThreshold;
 
-  /// Which request attribute the threshold is keyed on (e.g. `'IP'`,
-  /// `'HTTP_HEADER'`, `'HTTP_COOKIE'`, `'XFF_IP'`, ...). See the Cloud
-  /// Armor docs for the full list.
-  final TfArg<String>? enforceOnKey;
+  /// Which request attribute the threshold is keyed on.
+  final SecurityPolicyRuleRateLimitEnforceOnKey? enforceOnKey;
 
   /// Header / cookie name when [enforceOnKey] is `HTTP_HEADER` or
   /// `HTTP_COOKIE`.
@@ -341,7 +371,7 @@ class ComputeSecurityPolicySecurityPolicyRuleRateLimitOptions {
     'rate_limit_threshold': [rateLimitThreshold.toArgMap()],
     if (banDurationSec != null) 'ban_duration_sec': banDurationSec!.toTfJson(),
     if (banThreshold != null) 'ban_threshold': [banThreshold!.toArgMap()],
-    if (enforceOnKey != null) 'enforce_on_key': enforceOnKey!.toTfJson(),
+    if (enforceOnKey != null) 'enforce_on_key': enforceOnKey!.terraformValue,
     if (enforceOnKeyName != null)
       'enforce_on_key_name': enforceOnKeyName!.toTfJson(),
     if (enforceOnKeyConfigs != null)
@@ -380,8 +410,8 @@ class ComputeSecurityPolicySecurityPolicyRuleEnforceOnKeyConfig {
     this.enforceOnKeyName,
   });
 
-  /// Attribute type (`'IP'`, `'HTTP_HEADER'`, `'HTTP_COOKIE'`, ...).
-  final TfArg<String>? enforceOnKeyType;
+  /// Attribute type for composite rate-limit keys.
+  final SecurityPolicyRuleRateLimitEnforceOnKey? enforceOnKeyType;
 
   /// Header / cookie name when [enforceOnKeyType] is `HTTP_HEADER` or
   /// `HTTP_COOKIE`.
@@ -389,7 +419,7 @@ class ComputeSecurityPolicySecurityPolicyRuleEnforceOnKeyConfig {
 
   Map<String, Object?> toArgMap() => {
     if (enforceOnKeyType != null)
-      'enforce_on_key_type': enforceOnKeyType!.toTfJson(),
+      'enforce_on_key_type': enforceOnKeyType!.terraformValue,
     if (enforceOnKeyName != null)
       'enforce_on_key_name': enforceOnKeyName!.toTfJson(),
   };

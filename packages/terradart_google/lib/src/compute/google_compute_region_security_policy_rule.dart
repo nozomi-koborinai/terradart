@@ -3,36 +3,15 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:meta/meta.dart';
 import 'package:terradart_google/src/compute/google_compute_security_policy.dart'
-    show SecurityPolicyRuleMatchVersionedExpr;
+    show
+        SecurityPolicyRuleMatchVersionedExpr,
+        SecurityPolicyRuleRateLimitEnforceOnKey,
+        SecurityPolicyWafExclusionOperator;
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_region_security_policy_rule`.
 const Set<String> _googleComputeRegionSecurityPolicyRuleSensitive = <String>{};
 
-/// `rate_limit_options.enforce_on_key` — request attribute the rate-limit
-/// threshold is keyed on (regional Cloud Armor standalone rule).
-enum ComputeRegionSecurityPolicyRuleRateLimitEnforceOnKey
-    implements TerraformEnum {
-  all('ALL'),
-  ip('IP'),
-  httpHeader('HTTP_HEADER'),
-  xffIp('XFF_IP'),
-  httpCookie('HTTP_COOKIE'),
-  httpPath('HTTP_PATH'),
-  sni('SNI'),
-  regionCode('REGION_CODE'),
-  tlsJa3Fingerprint('TLS_JA3_FINGERPRINT'),
-  tlsJa4Fingerprint('TLS_JA4_FINGERPRINT'),
-  userIp('USER_IP');
-
-  const ComputeRegionSecurityPolicyRuleRateLimitEnforceOnKey(
-    this.terraformValue,
-  );
-  @override
-  final String terraformValue;
-}
-
-/// `match` block — condition that fires this regional standalone rule.
 @immutable
 class ComputeRegionSecurityPolicyRuleMatch {
   const ComputeRegionSecurityPolicyRuleMatch({this.versionedExpr, this.config});
@@ -60,15 +39,96 @@ class ComputeRegionSecurityPolicyRuleRateLimitOptions {
   const ComputeRegionSecurityPolicyRuleRateLimitOptions({
     this.enforceOnKey,
     this.enforceOnKeyName,
+    this.enforceOnKeyConfigs,
   });
 
-  final ComputeRegionSecurityPolicyRuleRateLimitEnforceOnKey? enforceOnKey;
+  final SecurityPolicyRuleRateLimitEnforceOnKey? enforceOnKey;
   final TfArg<String>? enforceOnKeyName;
+  final List<ComputeRegionSecurityPolicyRuleRateLimitEnforceOnKeyConfig>?
+  enforceOnKeyConfigs;
 
   Map<String, Object?> toArgMap() => {
     if (enforceOnKey != null) 'enforce_on_key': enforceOnKey!.terraformValue,
     if (enforceOnKeyName != null)
       'enforce_on_key_name': enforceOnKeyName!.toTfJson(),
+    if (enforceOnKeyConfigs != null)
+      'enforce_on_key_configs': enforceOnKeyConfigs!
+          .map((c) => c.toArgMap())
+          .toList(),
+  };
+}
+
+@immutable
+class ComputeRegionSecurityPolicyRuleRateLimitEnforceOnKeyConfig {
+  const ComputeRegionSecurityPolicyRuleRateLimitEnforceOnKeyConfig({
+    this.enforceOnKeyType,
+    this.enforceOnKeyName,
+  });
+
+  final SecurityPolicyRuleRateLimitEnforceOnKey? enforceOnKeyType;
+  final TfArg<String>? enforceOnKeyName;
+
+  Map<String, Object?> toArgMap() => {
+    if (enforceOnKeyType != null)
+      'enforce_on_key_type': enforceOnKeyType!.terraformValue,
+    if (enforceOnKeyName != null)
+      'enforce_on_key_name': enforceOnKeyName!.toTfJson(),
+  };
+}
+
+@immutable
+class ComputeRegionSecurityPolicyRulePreconfiguredWafConfig {
+  const ComputeRegionSecurityPolicyRulePreconfiguredWafConfig({this.exclusion});
+
+  final List<ComputeRegionSecurityPolicyRulePreconfiguredWafExclusion>?
+  exclusion;
+
+  Map<String, Object?> toArgMap() => {
+    if (exclusion != null)
+      'exclusion': exclusion!.map((e) => e.toArgMap()).toList(),
+  };
+}
+
+@immutable
+class ComputeRegionSecurityPolicyRulePreconfiguredWafExclusion {
+  const ComputeRegionSecurityPolicyRulePreconfiguredWafExclusion({
+    this.requestCookie,
+    this.requestHeader,
+    this.requestQueryParam,
+    this.requestUri,
+  });
+
+  final ComputeRegionSecurityPolicyRulePreconfiguredWafExclusionMatch?
+  requestCookie;
+  final ComputeRegionSecurityPolicyRulePreconfiguredWafExclusionMatch?
+  requestHeader;
+  final ComputeRegionSecurityPolicyRulePreconfiguredWafExclusionMatch?
+  requestQueryParam;
+  final ComputeRegionSecurityPolicyRulePreconfiguredWafExclusionMatch?
+  requestUri;
+
+  Map<String, Object?> toArgMap() => {
+    if (requestCookie != null) 'request_cookie': [requestCookie!.toArgMap()],
+    if (requestHeader != null) 'request_header': [requestHeader!.toArgMap()],
+    if (requestQueryParam != null)
+      'request_query_param': [requestQueryParam!.toArgMap()],
+    if (requestUri != null) 'request_uri': [requestUri!.toArgMap()],
+  };
+}
+
+@immutable
+class ComputeRegionSecurityPolicyRulePreconfiguredWafExclusionMatch {
+  const ComputeRegionSecurityPolicyRulePreconfiguredWafExclusionMatch({
+    this.operator,
+    this.value,
+  });
+
+  final SecurityPolicyWafExclusionOperator? operator;
+  final TfArg<String>? value;
+
+  Map<String, Object?> toArgMap() => {
+    if (operator != null) 'operator': operator!.terraformValue,
+    if (value != null) 'value': value!.toTfJson(),
   };
 }
 
@@ -87,7 +147,8 @@ final class GoogleComputeRegionSecurityPolicyRule extends Resource {
     required TfArg<String> securityPolicy,
     ComputeRegionSecurityPolicyRuleMatch? match,
     TfArg<Map<String, dynamic>>? networkMatch,
-    TfArg<Map<String, dynamic>>? preconfiguredWafConfig,
+    ComputeRegionSecurityPolicyRulePreconfiguredWafConfig?
+    preconfiguredWafConfig,
     ComputeRegionSecurityPolicyRuleRateLimitOptions? rateLimitOptions,
     super.lifecycle,
     super.dependsOn,
@@ -104,7 +165,9 @@ final class GoogleComputeRegionSecurityPolicyRule extends Resource {
            if (match != null) 'match': TfArg.literal([match.toArgMap()]),
            if (networkMatch != null) 'network_match': networkMatch,
            if (preconfiguredWafConfig != null)
-             'preconfigured_waf_config': preconfiguredWafConfig,
+             'preconfigured_waf_config': TfArg.literal([
+               preconfiguredWafConfig.toArgMap(),
+             ]),
            if (rateLimitOptions != null)
              'rate_limit_options': TfArg.literal([rateLimitOptions.toArgMap()]),
          },

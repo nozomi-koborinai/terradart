@@ -438,6 +438,21 @@ final class ComputeLbStack extends Stack {
         name: TfArg.literal('app-regional-armor'),
         region: TfArg.literal(region),
         type: TfArg.literal(RegionSecurityPolicyType.cloudArmor),
+        rules: [
+          ComputeRegionSecurityPolicyRegionSecurityPolicyRule(
+            priority: TfArg.literal(2147483647),
+            action: TfArg.literal('allow'),
+            match:
+                ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatch.config(
+              versionedExpr: SecurityPolicyRuleMatchVersionedExpr.srcIpsV1,
+              config:
+                  ComputeRegionSecurityPolicyRegionSecurityPolicyRuleMatchConfig(
+                srcIpRanges: const ['*'],
+              ),
+            ),
+            description: TfArg.literal('default allow-all'),
+          ),
+        ],
       ),
     );
 

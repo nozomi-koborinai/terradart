@@ -32,6 +32,61 @@ enum UrlMapRedirectResponseCode implements TerraformEnum {
   final String terraformValue;
 }
 
+/// `route_action.cache_policy.cache_mode` and nested cache policy blocks.
+enum UrlMapCacheMode implements TerraformEnum {
+  useOriginHeaders('USE_ORIGIN_HEADERS'),
+  forceCacheAll('FORCE_CACHE_ALL'),
+  cacheAllStatic('CACHE_ALL_STATIC');
+
+  const UrlMapCacheMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `match_rules.metadata_filters.filter_match_criteria`.
+enum UrlMapMetadataFilterMatchCriteria implements TerraformEnum {
+  matchAll('MATCH_ALL'),
+  matchAny('MATCH_ANY');
+
+  const UrlMapMetadataFilterMatchCriteria(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+@immutable
+class ComputeUrlMapUrlMapCachePolicy {
+  const ComputeUrlMapUrlMapCachePolicy({this.cacheMode});
+
+  final UrlMapCacheMode? cacheMode;
+
+  Map<String, Object?> toArgMap() => {
+    if (cacheMode != null) 'cache_mode': cacheMode!.terraformValue,
+  };
+}
+
+@immutable
+class ComputeUrlMapUrlMapRouteAction {
+  const ComputeUrlMapUrlMapRouteAction({this.cachePolicy});
+
+  final ComputeUrlMapUrlMapCachePolicy? cachePolicy;
+
+  Map<String, Object?> toArgMap() => {
+    if (cachePolicy != null) 'cache_policy': [cachePolicy!.toArgMap()],
+  };
+}
+
+@immutable
+class ComputeUrlMapUrlMapMetadataFilter {
+  const ComputeUrlMapUrlMapMetadataFilter({this.filterMatchCriteria});
+
+  final UrlMapMetadataFilterMatchCriteria? filterMatchCriteria;
+
+  Map<String, Object?> toArgMap() => {
+    if (filterMatchCriteria != null)
+      'filter_match_criteria': filterMatchCriteria!.terraformValue,
+  };
+}
+
 // ===========================================================================
 // host_rule (set, unbounded)
 // ===========================================================================
@@ -97,6 +152,7 @@ class ComputeUrlMapUrlMapPathMatcher {
     this.pathRules,
     this.routeRules,
     this.defaultUrlRedirect,
+    this.defaultRouteAction,
     this.advancedExtra,
   });
 
@@ -127,6 +183,9 @@ class ComputeUrlMapUrlMapPathMatcher {
   /// Mutually exclusive with [defaultService].
   final ComputeUrlMapUrlMapUrlRedirect? defaultUrlRedirect;
 
+  /// Fallback Envoy-style traffic policy for unmatched requests.
+  final ComputeUrlMapUrlMapRouteAction? defaultRouteAction;
+
   /// Escape hatch for the uncurated nested blocks of `path_matcher`:
   /// - `default_route_action` (Envoy-style traffic policy)
   /// - `default_custom_error_response_policy`
@@ -146,6 +205,8 @@ class ComputeUrlMapUrlMapPathMatcher {
       'route_rules': routeRules!.map((r) => r.toArgMap()).toList(),
     if (defaultUrlRedirect != null)
       'default_url_redirect': [defaultUrlRedirect!.toArgMap()],
+    if (defaultRouteAction != null)
+      'default_route_action': [defaultRouteAction!.toArgMap()],
     if (advancedExtra != null) ...advancedExtra!,
   };
 }
@@ -164,6 +225,7 @@ class ComputeUrlMapUrlMapPathRule {
     required this.paths,
     this.service,
     this.urlRedirect,
+    this.routeAction,
     this.advancedExtra,
   });
 
@@ -179,6 +241,9 @@ class ComputeUrlMapUrlMapPathRule {
   /// [service].
   final ComputeUrlMapUrlMapUrlRedirect? urlRedirect;
 
+  /// Envoy-style traffic policy for matching paths.
+  final ComputeUrlMapUrlMapRouteAction? routeAction;
+
   /// Escape hatch for the uncurated nested blocks:
   /// - `route_action` (Envoy-style traffic policy)
   /// - `custom_error_response_policy`
@@ -188,6 +253,7 @@ class ComputeUrlMapUrlMapPathRule {
     'paths': paths,
     if (service != null) 'service': service!.toTfJson(),
     if (urlRedirect != null) 'url_redirect': [urlRedirect!.toArgMap()],
+    if (routeAction != null) 'route_action': [routeAction!.toArgMap()],
     if (advancedExtra != null) ...advancedExtra!,
   };
 }
@@ -206,6 +272,7 @@ class ComputeUrlMapUrlMapRouteRule {
     this.matchRules,
     this.headerAction,
     this.urlRedirect,
+    this.routeAction,
     this.advancedExtra,
   });
 
@@ -230,6 +297,9 @@ class ComputeUrlMapUrlMapRouteRule {
   /// [service].
   final ComputeUrlMapUrlMapUrlRedirect? urlRedirect;
 
+  /// Envoy-style traffic policy for matching requests.
+  final ComputeUrlMapUrlMapRouteAction? routeAction;
+
   /// Escape hatch for the uncurated nested blocks:
   /// - `route_action` (Envoy-style traffic policy)
   /// - `custom_error_response_policy`
@@ -242,6 +312,7 @@ class ComputeUrlMapUrlMapRouteRule {
       'match_rules': matchRules!.map((m) => m.toArgMap()).toList(),
     if (headerAction != null) 'header_action': [headerAction!.toArgMap()],
     if (urlRedirect != null) 'url_redirect': [urlRedirect!.toArgMap()],
+    if (routeAction != null) 'route_action': [routeAction!.toArgMap()],
     if (advancedExtra != null) ...advancedExtra!,
   };
 }
@@ -267,6 +338,7 @@ class ComputeUrlMapUrlMapRouteRuleMatch {
     this.ignoreCase,
     this.headerMatches,
     this.queryParameterMatches,
+    this.metadataFilters,
     this.advancedExtra,
   });
 
@@ -294,6 +366,9 @@ class ComputeUrlMapUrlMapRouteRuleMatch {
   /// Per-query-parameter match predicates.
   final List<ComputeUrlMapUrlMapQueryParameterMatch>? queryParameterMatches;
 
+  /// xDS / Traffic Director metadata match predicates.
+  final List<ComputeUrlMapUrlMapMetadataFilter>? metadataFilters;
+
   /// Escape hatch for the uncurated nested blocks of `match_rules`:
   /// - `metadata_filters` (xDS / Traffic Director match predicates)
   ///
@@ -315,6 +390,8 @@ class ComputeUrlMapUrlMapRouteRuleMatch {
       'query_parameter_matches': queryParameterMatches!
           .map((q) => q.toArgMap())
           .toList(),
+    if (metadataFilters != null)
+      'metadata_filters': metadataFilters!.map((f) => f.toArgMap()).toList(),
     if (advancedExtra != null) ...advancedExtra!,
   };
 }
