@@ -16,6 +16,7 @@ export 'cloud_build.dart';
 export 'cloud_functions.dart';
 export 'cloud_run.dart';
 export 'cloud_scheduler.dart';
+export 'certificate_manager.dart';
 export 'cloud_sql.dart';
 export 'cloud_tasks.dart';
 export 'compute.dart';

@@ -11,8 +11,10 @@ Lockstep release across the workspace. **No breaking changes** vs `0.12.10`.
 ### Added
 
 - **`terradart_google`** — Wave 25 Service Networking: `google_vpc_access_connector` (`VpcAccessConnectorSubnet` helper).
-- Catalog: **187 curated resource factories + 1 data source** (188 entries).
+- **`terradart_google`** — Wave 26 Certificate Manager (4): DNS authorization, certificate (sealed managed/self-managed provisioning), certificate map, certificate map entry.
+- Catalog: **191 curated resource factories + 1 data source** (192 entries); new `certificate_manager` barrel (29 service barrels).
 - Extended **`cloud_run_quickstart`** (VPC Access connector + `template.vpcAccess` on the service).
+- Extended **`compute_lb_quickstart`** (Certificate Manager chain alongside the existing Compute SSL cert).
 
 ### Changed
 

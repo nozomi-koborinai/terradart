@@ -702,6 +702,90 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_bigquery_table_iam_member`.',
   ),
   CatalogEntry(
+    tfType: 'google_certificate_manager_certificate',
+    className: 'GoogleCertificateManagerCertificate',
+    barrel: 'certificate_manager',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_certificate_manager_certificate`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'provisioning',
+      'description',
+      'location',
+      'scope',
+      'labels',
+    ],
+    nestedTypes: <String>[
+      'CertificateManagerCertificateScope',
+      'CertificateManagerCertificateProvisioningSource',
+      'CertificateManagerCertificateManagedProvisioning',
+      'CertificateManagerCertificateSelfManagedProvisioning',
+    ],
+    sensitiveFields: <String>[
+      'self_managed.certificate_pem',
+      'self_managed.pem_private_key',
+      'self_managed.private_key_pem',
+    ],
+    docComment:
+        'Factory wrapper for `google_certificate_manager_certificate`.\n\nCertificate Manager certificate — Google-managed (auto-renewed) or\nself-managed (user-uploaded PEM).\n\nThe managed path pairs with [GoogleCertificateManagerDnsAuthorization]\nvia [CertificateManagerCertificateManagedProvisioning.dnsAuthorizations].\nAttach issued certs to a load balancer either directly\n(`certificate_manager_certificates` on internal HTTPS proxies) or via a\n[GoogleCertificateManagerCertificateMap] + map entry on external HTTPS\nproxies.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: certificate ID.\n- [provisioning]: sealed [CertificateManagerCertificateProvisioningSource]\n  — exactly one of managed or self-managed.\n\nExample (managed + DNS authorization):\n```dart\nGoogleCertificateManagerCertificate(\n  localName: \'app_cert\',\n  name: TfArg.literal(\'app-cert\'),\n  provisioning: CertificateManagerCertificateManagedProvisioning(\n    domains: [\'app.example.com\'],\n    dnsAuthorizations: [TfArg.ref(dnsAuth.id)],\n  ),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_certificate_manager_certificate_map',
+    className: 'GoogleCertificateManagerCertificateMap',
+    barrel: 'certificate_manager',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_certificate_manager_certificate_map`.',
+    constructorParams: <String>['localName', 'name', 'description', 'labels'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_certificate_manager_certificate_map`.\n\nCertificate map — a hostname → certificate routing table consumed by\nglobal external HTTPS load balancers via\n[GoogleComputeTargetHttpsProxy.certificateMap].\n\nPair with [GoogleCertificateManagerCertificateMapEntry] rows (one per\nhostname or matcher) and a [GoogleCertificateManagerCertificate] per\nentry.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: map ID (`[a-zA-Z][a-zA-Z0-9_-]*`).\n\nExample:\n```dart\nfinal certMap = GoogleCertificateManagerCertificateMap(\n  localName: \'app_map\',\n  name: TfArg.literal(\'app-cert-map\'),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_certificate_manager_certificate_map_entry',
+    className: 'GoogleCertificateManagerCertificateMapEntry',
+    barrel: 'certificate_manager',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_certificate_manager_certificate_map_entry`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'map',
+      'certificates',
+      'hostname',
+      'matcher',
+      'description',
+      'labels',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_certificate_manager_certificate_map_entry`.\n\nOne hostname (or matcher) row inside a [GoogleCertificateManagerCertificateMap].\n\nBinds up to fifteen [GoogleCertificateManagerCertificate] resources to\na Server Name Indication (SNI) hostname or a predefined matcher.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: entry ID unique within the parent map.\n- [map]: full resource name of the parent map — pass\n  `TfArg.ref(certMap.id)`.\n- [certificates]: one or more certificate resource names — pass\n  `TfArg.literal([cert.id.interpolation])` or `TfArg.ref(cert.id)`.\n\nExample:\n```dart\nGoogleCertificateManagerCertificateMapEntry(\n  localName: \'app_entry\',\n  name: TfArg.literal(\'app-entry\'),\n  map: TfArg.ref(certMap.id),\n  hostname: TfArg.literal(\'app.example.com\'),\n  certificates: TfArg.literal([\n    \'\\\${google_certificate_manager_certificate.app_cert.id}\',\n  ]),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_certificate_manager_dns_authorization',
+    className: 'GoogleCertificateManagerDnsAuthorization',
+    barrel: 'certificate_manager',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_certificate_manager_dns_authorization`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'domain',
+      'description',
+      'location',
+      'labels',
+    ],
+    nestedTypes: <String>['CertificateManagerDnsAuthorizationType'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_certificate_manager_dns_authorization`.\n\nDNS authorization for a Google-managed Certificate Manager certificate.\n\nProves domain control via a DNS-01 challenge. After apply, read\n[dnsResourceRecord] and publish the returned CNAME/TXT at your DNS\nhost before the linked [GoogleCertificateManagerCertificate] can\nprovision.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: authorization ID (`[a-zA-Z][a-zA-Z0-9_-]*`).\n- [domain]: apex or wildcard domain (e.g. `app.example.com` or\n  `*.example.com`).\n\nExample:\n```dart\nfinal dnsAuth = GoogleCertificateManagerDnsAuthorization(\n  localName: \'app_dns\',\n  name: TfArg.literal(\'app-dns\'),\n  domain: TfArg.literal(\'app.example.com\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_cloud_run_v2_job',
     className: 'GoogleCloudRunV2Job',
     barrel: 'cloud_run',

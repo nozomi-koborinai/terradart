@@ -1,0 +1,46 @@
+outputDir: certificate_manager
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - domain
+  - description
+  - location
+  - labels
+
+curatedDoc: |-
+  /// DNS authorization for a Google-managed Certificate Manager certificate.
+  ///
+  /// Proves domain control via a DNS-01 challenge. After apply, read
+  /// [dnsResourceRecord] and publish the returned CNAME/TXT at your DNS
+  /// host before the linked [GoogleCertificateManagerCertificate] can
+  /// provision.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [name]: authorization ID (`[a-zA-Z][a-zA-Z0-9_-]*`).
+  /// - [domain]: apex or wildcard domain (e.g. `app.example.com` or
+  ///   `*.example.com`).
+  ///
+  /// Example:
+  /// ```dart
+  /// final dnsAuth = GoogleCertificateManagerDnsAuthorization(
+  ///   localName: 'app_dns',
+  ///   name: TfArg.literal('app-dns'),
+  ///   domain: TfArg.literal('app.example.com'),
+  /// );
+  /// ```
+
+prelude: |
+  /// `type` — DNS authorization record strategy. When unset the API
+  /// picks `FIXED_RECORD` for global resources.
+  enum CertificateManagerDnsAuthorizationType implements TerraformEnum {
+    fixedRecord('FIXED_RECORD'),
+    perProjectRecord('PER_PROJECT_RECORD');
+
+    const CertificateManagerDnsAuthorizationType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
