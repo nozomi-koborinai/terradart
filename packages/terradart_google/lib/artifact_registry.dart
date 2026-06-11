@@ -14,6 +14,7 @@ library;
 
 export 'src/artifact_registry/google_artifact_registry_repository.dart'
     show
+        ArtifactRegistryAptRepositoryBase,
         ArtifactRegistryCleanupAction,
         ArtifactRegistryRepositoryArtifactRegistryCleanupCondition,
         ArtifactRegistryRepositoryArtifactRegistryCleanupMostRecentVersions,
@@ -23,14 +24,19 @@ export 'src/artifact_registry/google_artifact_registry_repository.dart'
         ArtifactRegistryRepositoryArtifactRegistryMavenConfig,
         ArtifactRegistryMavenVersionPolicy,
         ArtifactRegistryMode,
+        ArtifactRegistryRepositoryArtifactRegistryRemoteAptPublicRepository,
+        ArtifactRegistryRepositoryArtifactRegistryRemoteAptRepository,
         ArtifactRegistryRepositoryArtifactRegistryRemoteCommonRepository,
         ArtifactRegistryRepositoryArtifactRegistryRemoteRepositoryConfig,
         ArtifactRegistryRepositoryArtifactRegistryRemoteUpstreamCredentials,
         ArtifactRegistryRepositoryArtifactRegistryRemoteUsernamePasswordCredentials,
+        ArtifactRegistryRepositoryArtifactRegistryRemoteYumPublicRepository,
+        ArtifactRegistryRepositoryArtifactRegistryRemoteYumRepository,
         ArtifactRegistryRepositoryArtifactRegistryVirtualRepositoryConfig,
         ArtifactRegistryRepositoryArtifactRegistryVirtualUpstreamPolicy,
         ArtifactRegistryVulnerabilityEnablementConfig,
         ArtifactRegistryRepositoryArtifactRegistryVulnerabilityScanningConfig,
+        ArtifactRegistryYumRepositoryBase,
         GoogleArtifactRegistryRepository;
 export 'src/artifact_registry/google_artifact_registry_repository_iam_member.dart'
     show GoogleArtifactRegistryRepositoryIamMember;
