@@ -216,7 +216,13 @@ final class AnalyticsStack extends Stack {
         listingId: TfArg.literal('events-listing'),
         location: TfArg.literal('asia-northeast1'),
         destinationDataset: TfArg.literal({
-          'dataset': 'projects/$projectId/datasets/analytics_prod',
+          'location': 'asia-northeast1',
+          'dataset_reference': [
+            {
+              'dataset_id': 'analytics_prod',
+              'project_id': projectId,
+            },
+          ],
         }),
       ),
     );
