@@ -13,7 +13,7 @@ Maintainer:
 
 ## 0.12.11
 
-Wave 25 `google_vpc_access_connector` override; `terraform_api_requirements.dart` maps `google_vpc_access_` → `vpcaccess.googleapis.com`. `google_artifact_registry_repository` override: typed remote `docker_repository` / `maven_repository` / `npm_repository` helpers and public-registry enums.
+Wave 25 `google_vpc_access_connector` override (`google_vpc_access_` → `vpcaccess.googleapis.com`). Four Wave 26 Certificate Manager overrides (`google_certificate_manager_` → `certificatemanager.googleapis.com`). `google_artifact_registry_repository` override: typed remote `docker_repository` / `maven_repository` / `npm_repository` helpers and public-registry enums.
 
 ## 0.12.10
 

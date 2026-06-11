@@ -5,8 +5,11 @@
 ### Added
 
 - Wave 25 Service Networking (1): VPC Access connector (`VpcAccessConnectorSubnet` helper for subnet mode).
+- Wave 26 Certificate Manager (4): DNS authorization, certificate (`CertificateManagerCertificateProvisioningSource` sealed managed/self-managed), certificate map, certificate map entry.
 
-Catalog: **187 curated resource factories + 1 data source** (188 entries).
+New barrel: `certificate_manager.dart` (29 service barrels total).
+
+Catalog: **191 curated resource factories + 1 data source** (192 entries).
 
 ### Changed
 

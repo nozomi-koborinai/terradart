@@ -12,6 +12,8 @@ Guides track the **0.12.x** line on pub.dev. The repo [README](https://github.co
 - [Getting Started](/docs/getting-started/) — install, first `*.tf.json`, boundary export
 - [Why TerraDart](/docs/why-terradart/) — motivation, comparison, and curated coverage
 - [Architecture](/docs/architecture/) — generate `*.tf.json`, `synth()` / `writeTo()`, AppExport
+- [Waves 23–26](/docs/waves/) — curated factory waves (v0.12.10–0.12.11) and example pointers
+- [Migrating](/docs/migrating/) — upgrade from 0.12.9 (enum / nested-helper breaking changes)
 - [Status & versioning](/docs/status/) — pre-alpha, beta readiness (from v0.13.0), 1.0
 
 ## For AI assistants

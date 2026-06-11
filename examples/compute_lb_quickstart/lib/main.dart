@@ -38,8 +38,10 @@
 library;
 
 import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/certificate_manager.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/iap.dart';
+import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 
 final class ComputeLbStack extends Stack {
@@ -132,6 +134,63 @@ final class ComputeLbStack extends Stack {
         name: TfArg.literal('app-self-managed-cert'),
         certificate: TfArg.variable('lb_self_managed_certificate'),
         privateKey: TfArg.variable('lb_self_managed_private_key'),
+      ),
+    );
+
+    // ---- 2b. Wave 26: Certificate Manager chain -------------------------
+    //
+    // Parallel to the classic `google_compute_managed_ssl_certificate`
+    // above — DNS authorization, managed cert, map + entry. Wire
+    // [GoogleComputeTargetHttpsProxy.certificateMap] to `cmMap.id` at
+    // apply time when migrating off Compute SSL certificates.
+
+    final apiCertificateManager = add(
+      GoogleProjectService(
+        localName: 'api_certificate_manager',
+        service: TfArg.literal('certificatemanager.googleapis.com'),
+        disableOnDestroy: TfArg.literal(false),
+      ),
+    );
+
+    final cmDnsAuth = GoogleCertificateManagerDnsAuthorization(
+      localName: 'cm_dns_auth',
+      name: TfArg.literal('app-cm-dns'),
+      domain: TfArg.literal('app.example.com'),
+      dependsOn: [ResourceDependency(apiCertificateManager)],
+    );
+    add(cmDnsAuth);
+
+    final cmCert = GoogleCertificateManagerCertificate(
+      localName: 'cm_cert',
+      name: TfArg.literal('app-cm-cert'),
+      provisioning: CertificateManagerCertificateManagedProvisioning(
+        domains: ['app.example.com'],
+        dnsAuthorizations: [TfArg.ref(cmDnsAuth.id)],
+      ),
+      dependsOn: [ResourceDependency(cmDnsAuth)],
+    );
+    add(cmCert);
+
+    final cmMap = GoogleCertificateManagerCertificateMap(
+      localName: 'cm_map',
+      name: TfArg.literal('app-cm-map'),
+      dependsOn: [ResourceDependency(apiCertificateManager)],
+    );
+    add(cmMap);
+
+    add(
+      GoogleCertificateManagerCertificateMapEntry(
+        localName: 'cm_map_entry',
+        name: TfArg.literal('app-cm-entry'),
+        map: TfArg.ref(cmMap.id),
+        hostname: TfArg.literal('app.example.com'),
+        certificates: TfArg.literal([
+          cmCert.id.interpolation,
+        ]),
+        dependsOn: [
+          ResourceDependency(cmMap),
+          ResourceDependency(cmCert),
+        ],
       ),
     );
 

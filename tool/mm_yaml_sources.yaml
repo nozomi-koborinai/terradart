@@ -438,3 +438,12 @@ files:
   # Wave 25 (Serverless VPC Access connector)
   google_vpc_access_connector:
     upstream: null  # handwritten in terraform-provider-google; no MM YAML
+  # Wave 26 (Certificate Manager — core HTTPS LB integration chain)
+  google_certificate_manager_dns_authorization:
+    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+  google_certificate_manager_certificate:
+    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+  google_certificate_manager_certificate_map:
+    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+  google_certificate_manager_certificate_map_entry:
+    upstream: null  # handwritten in terraform-provider-google; no MM YAML

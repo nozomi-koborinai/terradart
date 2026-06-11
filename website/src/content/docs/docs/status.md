@@ -40,12 +40,12 @@ We will label the project **beta** starting with **v0.13.0** when every **requir
 - [x] **`tool/smoke_quickstart.sh`** runs in CI and passes (`pubsub_quickstart`: pub get → synth → analyze including export consumer stub).
 - [x] **Examples matrix** on `main` stays green (per-example synth + `terraform validate` on `tf-out/`).
 - [x] **Boundary demo**: [pubsub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) documents `addExport` / generated `.app.dart` and includes a subscriber stub that `dart analyze` accepts.
-- [x] **Meta docs aligned** with the current minor: CONTRIBUTING, SECURITY, issue templates, package READMEs, and root README agree on pre-alpha/beta wording, `^0.N.x` pins, and **147 curated factories + 1 data source**.
+- [x] **Meta docs aligned** with the current minor: CONTRIBUTING, SECURITY, issue templates, package READMEs, and root README agree on pre-alpha/beta wording, `^0.N.x` pins, and **191 curated resource factories + 1 data source** (192 catalog entries).
 - [x] **Beta change policy** published on this page (see [Beta change policy](#beta-change-policy-applies-from-v0130)).
 
 ### Optional (does not block beta)
 
-- [ ] **`MIGRATING.md` covers the last two minors** (e.g. 0.11→0.12 and 0.12→0.13). *Each new minor must add a section; two-minor depth is a quality bar.*
+- [x] **`MIGRATING.md` / site migration guide** — [Migrating](/docs/migrating/) mirrors the `0.12.9 → 0.12.10` breaking changes; [MIGRATING.md on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md) remains canonical for older releases. *Two-minor depth across minors is still a beta quality bar when `0.13.0` ships.*
 - [ ] **External quickstart**: someone outside the core team completes the README path once; feedback captured in an issue or discussion.
 - [ ] **Real apply dogfood** via [terradart-cookbook](https://github.com/nozomi-koborinai/terradart-cookbook): at least one non-trivial recipe documents a successful `terraform apply`.
 - [ ] **`terradart-mcp`**: [Agent install](/docs/agent/install/) verified on a clean machine (Homebrew or release binary + four tools).

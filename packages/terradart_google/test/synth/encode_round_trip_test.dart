@@ -27,6 +27,7 @@ import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/universal_invariants/sealed_class_extractor.dart';
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/bigquery.dart';
+import 'package:terradart_google/certificate_manager.dart';
 import 'package:terradart_google/cloud_functions.dart';
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/cloud_scheduler.dart';
@@ -198,6 +199,24 @@ final Map<String, Object Function()> _syntheticInstances = {
       StorageBucketObjectBucketObjectFromSource(source: TfArg.literal('./mock/path.bin')),
   'StorageBucketObjectBucketObjectFromContent': () =>
       StorageBucketObjectBucketObjectFromContent(content: TfArg.literal('mock-inline-payload')),
+
+  // --- CertificateManagerCertificateProvisioningSource (2) — certificate_manager_certificate
+  'CertificateManagerCertificateManagedProvisioning': () =>
+      CertificateManagerCertificateManagedProvisioning(
+        domains: ['app.example.com'],
+        dnsAuthorizations: [
+          TfArg.literal('projects/p/locations/global/dnsAuthorizations/auth'),
+        ],
+      ),
+  'CertificateManagerCertificateSelfManagedProvisioning': () =>
+      CertificateManagerCertificateSelfManagedProvisioning(
+        pemCertificate: TfArg.literal(
+          '-----BEGIN CERTIFICATE-----\nMOCK\n-----END CERTIFICATE-----',
+        ),
+        pemPrivateKey: TfArg.literal(
+          '-----BEGIN PRIVATE KEY-----\nMOCK\n-----END PRIVATE KEY-----',
+        ),
+      ),
 };
 
 void main() {
