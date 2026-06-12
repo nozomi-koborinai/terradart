@@ -4,13 +4,13 @@
 /// `packages/terradart_google/test/catalog/catalog_count_test.dart`.
 library;
 
-const catalogEntryCount = 197;
-const curatedFactoryCount = 196;
-const curatedCatalogPhrase = '196 curated';
-const catalogEntriesPhrase = '197 catalog';
+const catalogEntryCount = 199;
+const curatedFactoryCount = 198;
+const curatedCatalogPhrase = '198 curated';
+const catalogEntriesPhrase = '199 catalog';
 
 /// MCP / agent docs (terradart-mcp catalog intros).
-const agentCatalogEntriesPhrase = '197 entries';
-const agentResourceFactoriesPhrase = '196 curated resource factories';
+const agentCatalogEntriesPhrase = '199 entries';
+const agentResourceFactoriesPhrase = '198 curated resource factories';
 const serviceBarrelCountPhrase = '30 service barrels';
 const listBarrelsOutputCountPhrase = '31 in total';

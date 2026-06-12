@@ -257,9 +257,46 @@ GooglePrivatecaCertificate(
 );
 ```
 
+## v0.12.18 — Wave 31
+
+**v0.12.18** adds CAS certificate template + pool IAM member factories and upgrades `compute_lb_quickstart` to an **ENTERPRISE** CAS pool (required for leaf cert apply). **Additive** — no breaking changes vs `0.12.17`.
+
+Catalog after `0.12.18`: **198 curated resource factories + 1 data source** (199 catalog entries). 30 service barrels.
+
+### Wave 31 — Private CA (template + pool IAM)
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_privateca_certificate_template` | `GooglePrivatecaCertificateTemplate` | `privateca` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
+| `google_privateca_ca_pool_iam_member` | `GooglePrivatecaCaPoolIamMember` | `privateca` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
+
+**Highlights**
+
+- **Template** — `PrivatecaCertificateTemplateIdentityConstraints` + `PrivatecaCertificateTemplateCelExpression` for reusable issuance profiles.
+- **Pool IAM** — additive `roles/privateca.auditor` (or similar) on [GooglePrivatecaCaPool].
+- **ENTERPRISE pool** — `PrivatecaCaPoolTier.enterprise` so [GooglePrivatecaCertificate] can apply against the pool.
+
+```dart
+GooglePrivatecaCertificateTemplate(
+  localName: 'leaf_template',
+  name: TfArg.literal('app-template'),
+  location: TfArg.literal('us-central1'),
+  identityConstraints: PrivatecaCertificateTemplateIdentityConstraints(
+    allowSubjectAltNamesPassthrough: TfArg.literal(true),
+    allowSubjectPassthrough: TfArg.literal(true),
+    celExpression: PrivatecaCertificateTemplateCelExpression(
+      expression: TfArg.literal('true'),
+      title: TfArg.literal('allow-all'),
+      location: TfArg.literal('any.file.anywhere'),
+      description: TfArg.literal('Always true'),
+    ),
+  ),
+);
+```
+
 ## Full catalog example coverage
 
-As of PR [#127](https://github.com/nozomi-koborinai/terradart/pull/127), **`tool/example_debt.yaml` is empty** — every curated factory and the `GoogleProject` data source appears in at least one quickstart synth output (machine-checked by `dart tool/check_docs_consistency.dart`). Catalog size grows with later Waves (e.g. Wave 30 → **197 entries**).
+As of PR [#127](https://github.com/nozomi-koborinai/terradart/pull/127), **`tool/example_debt.yaml` is empty** — every curated factory and the `GoogleProject` data source appears in at least one quickstart synth output (machine-checked by `dart tool/check_docs_consistency.dart`). Catalog size grows with later Waves (e.g. Wave 31 → **199 entries**).
 
 Final backfill (no new catalog entries):
 

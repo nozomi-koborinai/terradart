@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.18
+
+Lockstep version bump for `terradart_google` v0.12.18. MCP catalog grows by two Private CA factories (199 entries).
+
 ## 0.12.17
 
 Lockstep version bump for `terradart_google` v0.12.17 (`Apis.required` / `Barrels` exported from `project.dart`).

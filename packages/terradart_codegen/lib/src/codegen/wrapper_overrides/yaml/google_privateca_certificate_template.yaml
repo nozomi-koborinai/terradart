@@ -1,0 +1,91 @@
+outputDir: privateca
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - location
+  - identity_constraints
+  - description
+  - maximum_lifetime
+  - labels
+
+curatedDoc: |-
+  /// Certificate Authority Service (CAS) certificate template — reusable X.509
+  /// profile constraints for [GooglePrivatecaCertificate] issuance.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [name]: template ID.
+  /// - [location]: regional location (match the target CA pool).
+  /// - [identityConstraints]: subject / SAN passthrough policy + CEL guard.
+  ///
+  /// Example (permissive template for a DEVOPS/ENTERPRISE pool):
+  /// ```dart
+  /// GooglePrivatecaCertificateTemplate(
+  ///   localName: 'leaf_template',
+  ///   name: TfArg.literal('app-leaf-template'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   identityConstraints: PrivatecaCertificateTemplateIdentityConstraints(
+  ///     allowSubjectAltNamesPassthrough: TfArg.literal(true),
+  ///     allowSubjectPassthrough: TfArg.literal(true),
+  ///     celExpression: PrivatecaCertificateTemplateCelExpression(
+  ///       expression: TfArg.literal('true'),
+  ///       title: TfArg.literal('allow-all'),
+  ///       location: TfArg.literal('any.file.anywhere'),
+  ///       description: TfArg.literal('Always true'),
+  ///     ),
+  ///   ),
+  /// );
+  /// ```
+
+customSlots:
+  identity_constraints:
+    paramDeclaration: >-
+      required PrivatecaCertificateTemplateIdentityConstraints identityConstraints
+    argMapEntry: >-
+      'identity_constraints': TfArg.literal([identityConstraints.encode()]),
+
+prelude: |
+  /// `identity_constraints.cel_expression` block.
+  final class PrivatecaCertificateTemplateCelExpression {
+    const PrivatecaCertificateTemplateCelExpression({
+      this.description,
+      this.expression,
+      this.location,
+      this.title,
+    });
+
+    final TfArg<String>? description;
+    final TfArg<String>? expression;
+    final TfArg<String>? location;
+    final TfArg<String>? title;
+
+    Map<String, Object?> encode() => {
+      if (description != null) 'description': description,
+      if (expression != null) 'expression': expression,
+      if (location != null) 'location': location,
+      if (title != null) 'title': title,
+    };
+  }
+
+  /// `identity_constraints` block — subject / SAN passthrough policy.
+  final class PrivatecaCertificateTemplateIdentityConstraints {
+    const PrivatecaCertificateTemplateIdentityConstraints({
+      required this.allowSubjectAltNamesPassthrough,
+      required this.allowSubjectPassthrough,
+      this.celExpression,
+    });
+
+    final TfArg<bool> allowSubjectAltNamesPassthrough;
+    final TfArg<bool> allowSubjectPassthrough;
+    final PrivatecaCertificateTemplateCelExpression? celExpression;
+
+    Map<String, Object?> encode() => {
+      'allow_subject_alt_names_passthrough': allowSubjectAltNamesPassthrough,
+      'allow_subject_passthrough': allowSubjectPassthrough,
+      if (celExpression != null)
+        'cel_expression': [celExpression!.encode()],
+    };
+  }

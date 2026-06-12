@@ -40,3 +40,10 @@ export 'src/privateca/google_privateca_ca_pool.dart'
         PrivatecaCaPoolPublishingOptions,
         PrivatecaCaPoolPublishingOptionsEncodingFormat,
         PrivatecaCaPoolTier;
+export 'src/privateca/google_privateca_ca_pool_iam_member.dart'
+    show GooglePrivatecaCaPoolIamMember;
+export 'src/privateca/google_privateca_certificate_template.dart'
+    show
+        GooglePrivatecaCertificateTemplate,
+        PrivatecaCertificateTemplateCelExpression,
+        PrivatecaCertificateTemplateIdentityConstraints;

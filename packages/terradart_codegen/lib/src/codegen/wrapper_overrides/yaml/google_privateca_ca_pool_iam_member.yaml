@@ -1,0 +1,29 @@
+outputDir: privateca
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - ca_pool
+  - role
+  - member
+  - condition
+
+curatedDoc: |-
+  /// Additive IAM member on a [GooglePrivatecaCaPool] (Certificate Authority Service).
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [caPool]: pool ID — `TfArg.ref(pool.id)` from [GooglePrivatecaCaPool].
+  /// - [role]: CAS role (e.g. `roles/privateca.auditor`).
+  /// - [member]: IAM principal (`user:…`, `group:…`, `serviceAccount:…`).
+  ///
+  /// Example:
+  /// ```dart
+  /// GooglePrivatecaCaPoolIamMember(
+  ///   localName: 'pool_auditor',
+  ///   caPool: TfArg.ref(caPool.id),
+  ///   role: TfArg.literal('roles/privateca.auditor'),
+  ///   member: TfArg.literal('group:security@example.com'),
+  /// );
+  /// ```

@@ -4808,6 +4808,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_privateca_ca_pool`.\n\nCertificate Authority Service (CAS) CA pool — container for one or more\ncertificate authorities used by [GoogleCertificateManagerCertificateIssuanceConfig].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: pool ID.\n- [location]: regional location (e.g. `us-central1`).\n- [tier]: `ENTERPRISE` or `DEVOPS`.\n\nEnable `privateca.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nfinal pool = GooglePrivatecaCaPool(\n  localName: \'app_pool\',\n  name: TfArg.literal(\'app-pool\'),\n  location: TfArg.literal(\'us-central1\'),\n  tier: TfArg.literal(PrivatecaCaPoolTier.devops),\n);\n\nGoogleCertificateManagerCertificateIssuanceConfig(\n  localName: \'issuance\',\n  name: TfArg.literal(\'app-issuance\'),\n  certificateAuthorityConfig:\n      CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(\n    certificateAuthorityServiceConfig:\n        CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig(\n      caPool: TfArg.ref(pool.id),\n    ),\n  ),\n  keyAlgorithm: TfArg.literal(\n    CertificateManagerCertificateIssuanceConfigKeyAlgorithm.rsa2048,\n  ),\n  lifetime: TfArg.literal(\'2592000s\'),\n  rotationWindowPercentage: TfArg.literal(50),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_privateca_ca_pool_iam_member',
+    className: 'GooglePrivatecaCaPoolIamMember',
+    barrel: 'privateca',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_privateca_ca_pool_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'caPool',
+      'role',
+      'member',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_privateca_ca_pool_iam_member`.\n\nAdditive IAM member on a [GooglePrivatecaCaPool] (Certificate Authority Service).\n\nRequired identity:\n- [localName]: Terraform local name.\n- [caPool]: pool ID — `TfArg.ref(pool.id)` from [GooglePrivatecaCaPool].\n- [role]: CAS role (e.g. `roles/privateca.auditor`).\n- [member]: IAM principal (`user:…`, `group:…`, `serviceAccount:…`).\n\nExample:\n```dart\nGooglePrivatecaCaPoolIamMember(\n  localName: \'pool_auditor\',\n  caPool: TfArg.ref(caPool.id),\n  role: TfArg.literal(\'roles/privateca.auditor\'),\n  member: TfArg.literal(\'group:security@example.com\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_privateca_certificate',
     className: 'GooglePrivatecaCertificate',
     barrel: 'privateca',
@@ -4879,6 +4897,29 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_privateca_certificate_authority`.\n\nCertificate Authority Service (CAS) certificate authority — issues\ncerts inside a [GooglePrivatecaCaPool] for [GoogleCertificateManagerCertificateIssuanceConfig].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [certificateAuthorityId]: short CA ID within the pool.\n- [pool]: full CAS pool ID — `TfArg.ref(pool.id)` from [GooglePrivatecaCaPool].\n- [location]: regional location (match the pool).\n- [config]: subject + X.509 profile ([PrivatecaCertificateAuthorityConfig]).\n- [keySpec]: managed key algorithm ([PrivatecaCertificateAuthorityKeySpec]).\n\nExample (self-signed root in a DEVOPS pool):\n```dart\nGooglePrivatecaCertificateAuthority(\n  localName: \'app_ca\',\n  certificateAuthorityId: TfArg.literal(\'app-root-ca\'),\n  pool: TfArg.ref(caPool.id),\n  location: TfArg.literal(\'us-central1\'),\n  config: PrivatecaCertificateAuthorityConfig(\n    subjectConfig: PrivatecaCertificateAuthoritySubjectConfig(\n      subject: PrivatecaCertificateAuthoritySubject(\n        commonName: TfArg.literal(\'app.example.com\'),\n      ),\n    ),\n    x509Config: PrivatecaCertificateAuthorityX509Config.rootCa(),\n  ),\n  keySpec: PrivatecaCertificateAuthorityKeySpec(\n    algorithm: TfArg.literal(\n      PrivatecaCertificateAuthorityKeyAlgorithm.rsaPkcs14096Sha256,\n    ),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_privateca_certificate_template',
+    className: 'GooglePrivatecaCertificateTemplate',
+    barrel: 'privateca',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_privateca_certificate_template`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'identityConstraints',
+      'description',
+      'maximumLifetime',
+      'labels',
+    ],
+    nestedTypes: <String>[
+      'PrivatecaCertificateTemplateCelExpression',
+      'PrivatecaCertificateTemplateIdentityConstraints',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_privateca_certificate_template`.\n\nCertificate Authority Service (CAS) certificate template — reusable X.509\nprofile constraints for [GooglePrivatecaCertificate] issuance.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: template ID.\n- [location]: regional location (match the target CA pool).\n- [identityConstraints]: subject / SAN passthrough policy + CEL guard.\n\nExample (permissive template for a DEVOPS/ENTERPRISE pool):\n```dart\nGooglePrivatecaCertificateTemplate(\n  localName: \'leaf_template\',\n  name: TfArg.literal(\'app-leaf-template\'),\n  location: TfArg.literal(\'us-central1\'),\n  identityConstraints: PrivatecaCertificateTemplateIdentityConstraints(\n    allowSubjectAltNamesPassthrough: TfArg.literal(true),\n    allowSubjectPassthrough: TfArg.literal(true),\n    celExpression: PrivatecaCertificateTemplateCelExpression(\n      expression: TfArg.literal(\'true\'),\n      title: TfArg.literal(\'allow-all\'),\n      location: TfArg.literal(\'any.file.anywhere\'),\n      description: TfArg.literal(\'Always true\'),\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_project',
