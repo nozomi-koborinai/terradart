@@ -1,18 +1,18 @@
 # Cloud Run v2 quickstart
 
-End-to-end terradart example for a Cloud Run v2 Service with a secret-backed environment variable and Serverless VPC Access. Provisions a Secret Manager secret, a VPC Access connector on the default VPC, then a Cloud Run service that consumes the secret via the sealed `EnvVarFromSecret` variant of `EnvVarSource` and routes private-range egress through the connector.
+End-to-end terradart example for a Cloud Run v2 Service with a secret-backed environment variable, Serverless VPC Access, and Memorystore Redis. Provisions a Secret Manager secret, API enablement with propagation sleep, a VPC Access connector on the default VPC, a Redis cache instance, then a Cloud Run service that consumes the secret via the sealed `EnvVarFromSecret` variant of `EnvVarSource` and routes private-range egress through the connector.
 
 ## Prerequisites
 
 - Dart SDK >= 3.6
 - Terraform CLI >= 1.11.0
-- A GCP project with the Cloud Run Admin API, Secret Manager API, and VPC Access API enabled and credentials configured (`gcloud auth application-default login`).
+- A GCP project with credentials configured (`gcloud auth application-default login`). The stack enables Run, VPC Access, and Redis APIs via `ApisEnablement`.
 
 ## Layout
 
 ```
 examples/cloud_run_quickstart/
-├── lib/main.dart        # ApiServiceStack: secret + VPC connector + Cloud Run service
+├── lib/main.dart        # ApiServiceStack: secret + APIs + VPC connector + Redis + Cloud Run service
 ├── bin/infra.dart       # Synth entry
 ├── tf-out/              # (created on synth) main.tf.json
 └── pubspec.yaml
@@ -32,8 +32,9 @@ terraform apply
 ## What gets created
 
 - A Secret Manager secret `api-db-password` with user-managed replication in `asia-northeast1`.
-- API enablement via [`Apis.required`](../../packages/terradart_google/lib/src/project/apis.dart) (`Barrels.cloudRun`, `Barrels.serviceNetworking` → Run + VPC Access APIs).
+- API enablement via [`ApisEnablement.enable`](../../packages/terradart_google/lib/src/project/api_enablement.dart) (`Barrels.cloudRun`, `Barrels.serviceNetworking`, `Barrels.redis`) with a 60s `TimeSleep` propagation wait (`TimeProvider` on the stack).
 - A Serverless VPC Access connector `run-vpc` (`10.8.0.0/28` on the `default` VPC).
+- A Memorystore Redis instance `api-cache` (1 GiB, basic tier on the `default` VPC).
 - A Cloud Run v2 Service `api` running `gcr.io/cloudrun/hello`:
   - 1 literal env var: `LOG_LEVEL=info` via `EnvVarFromLiteral`.
   - 1 secret-backed env var: `DB_PASSWORD` via `EnvVarFromSecret(secret: 'api-db-password', version: 'latest')`.

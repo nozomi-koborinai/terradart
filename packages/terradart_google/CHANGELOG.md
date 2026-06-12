@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.12.19 - 2026-06-12
+
+### Added
+
+- `ApiEnablement` / `ApisEnablement.enable` — wraps `Apis.required` with optional `TimeSleep` propagation delay (requires `TimeProvider` on the stack).
+- Wave 32 Memorystore: `google_redis_instance` (`RedisInstanceTier`, `RedisInstanceConnectMode`); new `redis` barrel.
+- Extended `cloud_run_quickstart` — Redis cache + `ApisEnablement` with 60s propagation sleep.
+
+Catalog: **199 curated resource factories + 1 data source** (200 entries; 31 service barrels).
+
 ## 0.12.18 - 2026-06-12
 
 ### Added

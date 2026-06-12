@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.19
+
+Lockstep version bump for `terradart_google` v0.12.19. MCP catalog grows by one Memorystore factory (200 entries; 31 service barrels). `TimeProvider` / `TimeSleep` available via `terradart_core`.
+
 ## 0.12.18
 
 Lockstep version bump for `terradart_google` v0.12.18. MCP catalog grows by two Private CA factories (199 entries).

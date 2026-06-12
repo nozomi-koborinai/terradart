@@ -29,6 +29,7 @@ enum Barrels {
   privateca('privateca'),
   project('project'),
   pubsub('pubsub'),
+  redis('redis'),
   secretManager('secret_manager'),
   serviceNetworking('service_networking'),
   sql('sql'),

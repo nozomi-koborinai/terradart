@@ -257,6 +257,41 @@ GooglePrivatecaCertificate(
 );
 ```
 
+## v0.12.19 — Wave 32
+
+**v0.12.19** adds `TimeProvider` / `TimeSleep` (`hashicorp/time`), `ApisEnablement` propagation helper, and Memorystore Redis. **Additive** — no breaking changes vs `0.12.18`.
+
+Catalog after `0.12.19`: **199 curated resource factories + 1 data source** (200 catalog entries). 31 service barrels.
+
+### Wave 32 — Memorystore Redis + API propagation
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `time_sleep` | `TimeSleep` | `terradart_core` | [cloud_run_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloud_run_quickstart) |
+| `google_redis_instance` | `GoogleRedisInstance` | `redis` | [cloud_run_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloud_run_quickstart) |
+
+**Highlights**
+
+- **`ApisEnablement.enable`** — wraps `Apis.required` + optional `TimeSleep` after API enablement (60s default).
+- **Redis** — `RedisInstanceTier` (`basic` / `standardHa`), `RedisInstanceConnectMode` for VPC access patterns.
+- **`cloud_run_quickstart`** — Redis cache on the default VPC alongside the existing VPC Access connector.
+
+```dart
+ApisEnablement.enable(
+  barrels: [Barrels.cloudRun, Barrels.serviceNetworking, Barrels.redis],
+  propagationDelay: const Duration(seconds: 60),
+).registerOn(this);
+
+GoogleRedisInstance(
+  localName: 'api_cache',
+  name: TfArg.literal('api-cache'),
+  memorySizeGb: TfArg.literal(1),
+  region: TfArg.literal('asia-northeast1'),
+  tier: TfArg.literal(RedisInstanceTier.basic),
+  authorizedNetwork: TfArg.literal('default'),
+);
+```
+
 ## v0.12.18 — Wave 31
 
 **v0.12.18** adds CAS certificate template + pool IAM member factories and upgrades `compute_lb_quickstart` to an **ENTERPRISE** CAS pool (required for leaf cert apply). **Additive** — no breaking changes vs `0.12.17`.
@@ -296,7 +331,7 @@ GooglePrivatecaCertificateTemplate(
 
 ## Full catalog example coverage
 
-As of PR [#127](https://github.com/nozomi-koborinai/terradart/pull/127), **`tool/example_debt.yaml` is empty** — every curated factory and the `GoogleProject` data source appears in at least one quickstart synth output (machine-checked by `dart tool/check_docs_consistency.dart`). Catalog size grows with later Waves (e.g. Wave 31 → **199 entries**).
+As of PR [#127](https://github.com/nozomi-koborinai/terradart/pull/127), **`tool/example_debt.yaml` is empty** — every curated factory and the `GoogleProject` data source appears in at least one quickstart synth output (machine-checked by `dart tool/check_docs_consistency.dart`). Catalog size grows with later Waves (e.g. Wave 32 → **200 entries**).
 
 Final backfill (no new catalog entries):
 

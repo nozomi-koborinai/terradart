@@ -4,11 +4,21 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
-## Unreleased
+## [0.12.19] - 2026-06-12
+
+Lockstep release across the workspace. **No breaking changes** vs `0.12.18`.
+
+### Added
+
+- **`terradart_core`** — `TimeProvider` + `TimeSleep` (`hashicorp/time`) for API propagation waits.
+- **`terradart_google`** — `ApiEnablement` / `ApisEnablement.enable` (wraps `Apis.required` + optional `TimeSleep`); Wave 32 `google_redis_instance` + `redis` barrel.
+- Extended **`cloud_run_quickstart`** — Redis cache, `ApisEnablement` with 60s propagation sleep.
 
 ### Changed (examples)
 
-- **`gke_quickstart`**, **`cloud_run_quickstart`**, **`compute_lb_quickstart`** — replace hand-written `GoogleProjectService` blocks with [`Apis.required`](packages/terradart_google/lib/src/project/apis.dart) (`#57` dogfood). Cloud Run quickstart now also enables `run.googleapis.com`.
+- **`gke_quickstart`**, **`compute_lb_quickstart`** — replace hand-written `GoogleProjectService` with `Apis.required` (#57 dogfood).
+
+Catalog: **199 curated resource factories + 1 data source** (200 entries).
 
 ## [0.12.18] - 2026-06-12
 
