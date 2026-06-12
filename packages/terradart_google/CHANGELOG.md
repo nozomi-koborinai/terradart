@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.12.14 - 2026-06-12
+
+### Added
+
+- Wave 28 Private CA (1): `google_privateca_ca_pool` (`PrivatecaCaPoolTier`).
+- New barrel: `privateca.dart` (30 service barrels total).
+- Extended `compute_lb_quickstart` — `GooglePrivatecaCaPool` referenced by issuance config.
+
+Catalog: **194 curated resource factories + 1 data source** (195 entries).
+
 ## 0.12.13 - 2026-06-12
 
 ### Added

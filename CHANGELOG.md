@@ -4,6 +4,17 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## [0.12.14] - 2026-06-12
+
+Lockstep release across the workspace. **No breaking changes** vs `0.12.13`.
+
+### Added
+
+- **`terradart_google`** — Wave 28 Private CA (1): `google_privateca_ca_pool` (`PrivatecaCaPoolTier` enum); new `privateca` barrel.
+- Extended **`compute_lb_quickstart`** — CAS pool wired to Certificate Manager issuance config (replaces placeholder `ca_pool` literal).
+
+Catalog: **194 curated resource factories + 1 data source** (195 entries; 30 service barrels).
+
 ## [0.12.13] - 2026-06-12
 
 Lockstep release across the workspace. **No breaking changes** vs `0.12.12`.

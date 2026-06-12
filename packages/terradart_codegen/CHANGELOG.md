@@ -11,6 +11,10 @@ Maintainer:
 - **Added** — `tool/example_synth_gates.dart` (synth-based example coverage + API-enablement dependency checker, #108).
 - **Added** — label-gated `apply-smoke` GitHub workflow + `tool/apply_smoke.sh` (#109).
 
+## 0.12.14
+
+Wave 28 override: `google_privateca_ca_pool` (`google_privateca_` → `privateca.googleapis.com` in `tool/terraform_api_requirements.dart`).
+
 ## 0.12.13
 
 Wave 27 overrides: `google_certificate_manager_trust_config`, `google_certificate_manager_certificate_issuance_config` (`certificatemanager.googleapis.com` prefix).

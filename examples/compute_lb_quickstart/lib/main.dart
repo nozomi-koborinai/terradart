@@ -42,6 +42,7 @@ import 'package:terradart_google/certificate_manager.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/iap.dart';
 import 'package:terradart_google/project.dart';
+import 'package:terradart_google/privateca.dart';
 import 'package:terradart_google/provider.dart';
 
 final class ComputeLbStack extends Stack {
@@ -160,6 +161,25 @@ final class ComputeLbStack extends Stack {
     );
     add(cmDnsAuth);
 
+    // ---- 2c. Wave 28: Private CA pool (CAS backend for issuance) ---------
+
+    final apiPrivateca = add(
+      GoogleProjectService(
+        localName: 'api_privateca',
+        service: TfArg.literal('privateca.googleapis.com'),
+        disableOnDestroy: TfArg.literal(false),
+      ),
+    );
+
+    final cmCaPool = GooglePrivatecaCaPool(
+      localName: 'cm_ca_pool',
+      name: TfArg.literal('app-cm-pool'),
+      location: TfArg.literal(region),
+      tier: TfArg.literal(PrivatecaCaPoolTier.devops),
+      dependsOn: [ResourceDependency(apiPrivateca)],
+    );
+    add(cmCaPool);
+
     final cmIssuance = GoogleCertificateManagerCertificateIssuanceConfig(
       localName: 'cm_issuance',
       name: TfArg.literal('app-cm-issuance'),
@@ -167,9 +187,7 @@ final class ComputeLbStack extends Stack {
           CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(
         certificateAuthorityServiceConfig:
             CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig(
-          caPool: TfArg.literal(
-            'projects/$projectId/locations/us-central1/caPools/quickstart-pool',
-          ),
+          caPool: TfArg.ref(cmCaPool.id),
         ),
       ),
       keyAlgorithm: TfArg.literal(
@@ -177,7 +195,10 @@ final class ComputeLbStack extends Stack {
       ),
       lifetime: TfArg.literal('2592000s'),
       rotationWindowPercentage: TfArg.literal(50),
-      dependsOn: [ResourceDependency(apiCertificateManager)],
+      dependsOn: [
+        ResourceDependency(apiCertificateManager),
+        ResourceDependency(cmCaPool),
+      ],
     );
     add(cmIssuance);
 

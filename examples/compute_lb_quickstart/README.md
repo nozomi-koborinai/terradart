@@ -50,7 +50,8 @@ Thirteen Wave 6 resources are wired together in `lib/main.dart`:
     certificate map + entry (parallel to step 9; wire `certificate_map` on the
     HTTPS proxy to migrate off Compute SSL certs), plus Wave 27 trust config and
     issuance policy (`google_certificate_manager_trust_config`,
-    `google_certificate_manager_certificate_issuance_config`)
+    `google_certificate_manager_certificate_issuance_config`); Wave 28
+    `google_privateca_ca_pool` (CAS backend referenced by issuance config)
 10. `google_compute_ssl_policy`               -- TLS 1.2 floor + `MODERN` profile
 11. `google_compute_target_https_proxy`       -- terminates HTTPS
 12. `google_compute_global_address`           -- front-end VIP
