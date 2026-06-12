@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.16
+
+Lockstep version bump for `terradart_google` v0.12.16. MCP catalog grows by one Private CA factory (197 entries).
+
 ## 0.12.15
 
 Lockstep version bump for `terradart_google` v0.12.15. MCP catalog grows by one Private CA factory (196 entries).

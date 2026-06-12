@@ -3,6 +3,20 @@
 /// certificate issuance via Certificate Manager.
 library;
 
+export 'src/privateca/google_privateca_certificate.dart'
+    show
+        GooglePrivatecaCertificate,
+        PrivatecaCertificateBaseKeyUsage,
+        PrivatecaCertificateCaOptions,
+        PrivatecaCertificateConfig,
+        PrivatecaCertificateExtendedKeyUsage,
+        PrivatecaCertificateKeyUsage,
+        PrivatecaCertificatePublicKey,
+        PrivatecaCertificatePublicKeyFormat,
+        PrivatecaCertificateSubject,
+        PrivatecaCertificateSubjectAltName,
+        PrivatecaCertificateSubjectConfig,
+        PrivatecaCertificateX509Config;
 export 'src/privateca/google_privateca_certificate_authority.dart'
     show
         GooglePrivatecaCertificateAuthority,

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.12.16 - 2026-06-12
+
+### Added
+
+- Wave 30 Private CA (1): `google_privateca_certificate` with `PrivatecaCertificateConfig`, `PrivatecaCertificateX509Config.serverTls()`, and CSR / inline-config issuance paths.
+- Extended `compute_lb_quickstart` (CAS leaf cert after root CA).
+
+Catalog: **196 curated resource factories + 1 data source** (197 entries).
+
 ## 0.12.15 - 2026-06-12
 
 ### Added

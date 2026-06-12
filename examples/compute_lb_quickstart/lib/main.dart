@@ -202,6 +202,19 @@ final class ComputeLbStack extends Stack {
     );
     add(cmRootCa);
 
+    add(
+      GooglePrivatecaCertificate(
+        localName: 'cm_cas_cert',
+        name: TfArg.literal('app-cas-cert'),
+        pool: TfArg.ref(cmCaPool.id),
+        location: TfArg.literal(region),
+        certificateAuthority: TfArg.literal('app-root-ca'),
+        lifetime: TfArg.literal('86400s'),
+        pemCsr: TfArg.variable('cm_cas_cert_csr_pem'),
+        dependsOn: [ResourceDependency(cmRootCa)],
+      ),
+    );
+
     final cmIssuance = GoogleCertificateManagerCertificateIssuanceConfig(
       localName: 'cm_issuance',
       name: TfArg.literal('app-cm-issuance'),

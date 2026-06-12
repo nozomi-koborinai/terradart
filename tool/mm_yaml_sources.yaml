@@ -457,3 +457,5 @@ files:
     upstream: null  # handwritten in terraform-provider-google; no MM YAML
   google_privateca_certificate_authority:
     upstream: null  # handwritten in terraform-provider-google; no MM YAML
+  google_privateca_certificate:
+    upstream: null  # handwritten in terraform-provider-google; no MM YAML
