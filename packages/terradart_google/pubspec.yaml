@@ -15,6 +15,10 @@ topics:
 environment:
   sdk: ^3.6.0
 
+# Gate 6 round-trip fixtures use mock PEM blocks for self-managed certificates.
+false_secrets:
+  - /test/synth/encode_round_trip_test.dart
+
 resolution: workspace
 
 dependencies:
