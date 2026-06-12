@@ -20,6 +20,7 @@ enum Barrels {
   firebaseAppHosting('firebase_app_hosting'),
   firebaseDataConnect('firebase_data_connect'),
   firebaseRemoteConfig('firebase_remote_config'),
+  filestore('filestore'),
   firestore('firestore'),
   gkeBackup('gke_backup'),
   iamApi('iam'),

@@ -72,6 +72,13 @@ void main() {
       );
     });
 
+    test('filestore barrel includes file.googleapis.com', () {
+      final apis = Apis.required(barrels: [Barrels.filestore]);
+      expect(apis, hasLength(1));
+      expect(apis.single.argMap['service']!.toTfJson(), 'file.googleapis.com');
+      expect(apis.single.localName, 'api_file');
+    });
+
     test('redis barrel includes redis.googleapis.com', () {
       final apis = Apis.required(barrels: [Barrels.redis]);
       expect(apis, hasLength(1));
@@ -85,6 +92,7 @@ void main() {
       expect(Barrels.cloudRun.catalogName, 'cloud_run');
       expect(Barrels.serviceNetworking.catalogName, 'service_networking');
       expect(Barrels.alloydb.catalogName, 'alloydb');
+      expect(Barrels.filestore.catalogName, 'filestore');
       expect(Barrels.redis.catalogName, 'redis');
     });
   });

@@ -356,6 +356,12 @@ files:
     upstream: mmv1/products/eventarc/Enrollment.yaml
   google_eventarc_google_api_source:
     upstream: mmv1/products/eventarc/GoogleApiSource.yaml
+  google_filestore_backup:
+    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+  google_filestore_instance:
+    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+  google_filestore_snapshot:
+    upstream: null  # handwritten in terraform-provider-google; no MM YAML
   google_eventarc_message_bus:
     upstream: mmv1/products/eventarc/MessageBus.yaml
   google_eventarc_pipeline:
