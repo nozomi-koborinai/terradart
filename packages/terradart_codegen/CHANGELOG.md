@@ -11,6 +11,13 @@ Maintainer:
 - **Added** — `tool/example_synth_gates.dart` (synth-based example coverage + API-enablement dependency checker, #108).
 - **Added** — label-gated `apply-smoke` GitHub workflow + `tool/apply_smoke.sh` (#109).
 
+## Unreleased
+
+Maintainer:
+
+- **Added** — `tool/append_curation_backlog.dart` for idempotent schema-bump backlog updates (#35).
+- **Fixed** — schema-bump workflow no longer appends invalid YAML outside `entries:`; excludes `.schema-bump/` from commits.
+
 ## 0.12.17
 
 No codegen changes. Lockstep version bump for `terradart_google` v0.12.17 (`Apis.required` helper).
