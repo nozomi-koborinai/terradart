@@ -29,6 +29,18 @@ enum BigqueryConnectionCloudSqlType implements TerraformEnum {
 }
 
 // ===========================================================================
+// BigqueryConnectionBackend — sealed oneof
+// ===========================================================================
+
+sealed class BigqueryConnectionBackend {
+  const BigqueryConnectionBackend();
+
+  String get blockKey;
+
+  List<Map<String, Object?>> encode();
+}
+
+// ===========================================================================
 // cloud_sql variant
 // ===========================================================================
 
@@ -60,7 +72,7 @@ class BigqueryConnectionCloudSqlCredential {
 /// `cloud_sql` block — federated queries against a Cloud SQL Postgres
 /// or MySQL instance.
 @immutable
-class BigqueryConnectionCloudSql {
+final class BigqueryConnectionCloudSql extends BigqueryConnectionBackend {
   const BigqueryConnectionCloudSql({
     required this.instanceId,
     required this.database,
@@ -91,6 +103,12 @@ class BigqueryConnectionCloudSql {
     'type': type.terraformValue,
     'credential': [credential.toArgMap()],
   };
+
+  @override
+  String get blockKey => 'cloud_sql';
+
+  @override
+  List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
 // ===========================================================================
@@ -101,7 +119,7 @@ class BigqueryConnectionCloudSql {
 /// database. The connection's BigQuery region must match the Spanner
 /// region.
 @immutable
-class BigqueryConnectionCloudSpanner {
+final class BigqueryConnectionCloudSpanner extends BigqueryConnectionBackend {
   const BigqueryConnectionCloudSpanner({
     required this.database,
     this.useParallelism,
@@ -157,6 +175,12 @@ class BigqueryConnectionCloudSpanner {
       // ignore: deprecated_member_use_from_same_package
       'use_serverless_analytics': useServerlessAnalytics!.toTfJson(),
   };
+
+  @override
+  String get blockKey => 'cloud_spanner';
+
+  @override
+  List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
 // ===========================================================================
@@ -181,7 +205,7 @@ class BigqueryConnectionAwsAccessRole {
 /// `aws` block — BigQuery Omni federation into AWS (S3 / Glue, BigLake-
 /// on-AWS). The BigQuery `location` must be `aws-us-east-1`.
 @immutable
-class BigqueryConnectionAws {
+final class BigqueryConnectionAws extends BigqueryConnectionBackend {
   const BigqueryConnectionAws({required this.accessRole});
 
   /// Required. Wraps the customer-side IAM role BigQuery's Google-owned
@@ -191,6 +215,12 @@ class BigqueryConnectionAws {
   Map<String, Object?> toArgMap() => {
     'access_role': [accessRole.toArgMap()],
   };
+
+  @override
+  String get blockKey => 'aws';
+
+  @override
+  List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
 // ===========================================================================
@@ -202,7 +232,7 @@ class BigqueryConnectionAws {
 /// are computed and consumed by the Azure side of the federation
 /// bridge; only [customerTenantId] is required input.
 @immutable
-class BigqueryConnectionAzure {
+final class BigqueryConnectionAzure extends BigqueryConnectionBackend {
   const BigqueryConnectionAzure({
     required this.customerTenantId,
     this.federatedApplicationClientId,
@@ -221,6 +251,12 @@ class BigqueryConnectionAzure {
       'federated_application_client_id': federatedApplicationClientId!
           .toTfJson(),
   };
+
+  @override
+  String get blockKey => 'azure';
+
+  @override
+  List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
 // ===========================================================================
@@ -234,10 +270,16 @@ class BigqueryConnectionAzure {
 /// Google-managed service account, which the consuming project must
 /// grant access to.
 @immutable
-class BigqueryConnectionCloudResource {
+final class BigqueryConnectionCloudResource extends BigqueryConnectionBackend {
   const BigqueryConnectionCloudResource();
 
   Map<String, Object?> toArgMap() => const <String, Object?>{};
+
+  @override
+  String get blockKey => 'cloud_resource';
+
+  @override
+  List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
 // ===========================================================================
@@ -282,7 +324,7 @@ class BigqueryConnectionSparkSparkHistoryServerConfig {
 /// [metastoreServiceConfig] / [sparkHistoryServerConfig] only when the
 /// procedures need to read Hive tables or surface history-server logs.
 @immutable
-class BigqueryConnectionSpark {
+final class BigqueryConnectionSpark extends BigqueryConnectionBackend {
   const BigqueryConnectionSpark({
     this.metastoreServiceConfig,
     this.sparkHistoryServerConfig,
@@ -301,6 +343,12 @@ class BigqueryConnectionSpark {
     if (sparkHistoryServerConfig != null)
       'spark_history_server_config': [sparkHistoryServerConfig!.toArgMap()],
   };
+
+  @override
+  String get blockKey => 'spark';
+
+  @override
+  List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
 // ===========================================================================
@@ -442,7 +490,7 @@ class BigqueryConnectionConfigurationNetwork {
 /// supported by the framework) and wires it through asset /
 /// authentication / endpoint / network blocks.
 @immutable
-class BigqueryConnectionConfiguration {
+final class BigqueryConnectionConfiguration extends BigqueryConnectionBackend {
   const BigqueryConnectionConfiguration({
     required this.connectorId,
     required this.asset,
@@ -476,6 +524,12 @@ class BigqueryConnectionConfiguration {
     if (endpoint != null) 'endpoint': [endpoint!.toArgMap()],
     if (network != null) 'network': [network!.toArgMap()],
   };
+
+  @override
+  String get blockKey => 'configuration';
+
+  @override
+  List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
 // ===========================================================================
@@ -594,13 +648,7 @@ final class GoogleBigqueryConnection extends Resource {
     TfArg<String>? friendlyName,
     TfArg<String>? description,
     TfArg<String>? kmsKeyName,
-    BigqueryConnectionCloudSql? cloudSql,
-    BigqueryConnectionCloudSpanner? cloudSpanner,
-    BigqueryConnectionAws? aws,
-    BigqueryConnectionAzure? azure,
-    BigqueryConnectionCloudResource? cloudResource,
-    BigqueryConnectionSpark? spark,
-    BigqueryConnectionConfiguration? configuration,
+    required BigqueryConnectionBackend backend,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -612,18 +660,8 @@ final class GoogleBigqueryConnection extends Resource {
            if (friendlyName != null) 'friendly_name': friendlyName,
            if (description != null) 'description': description,
            if (kmsKeyName != null) 'kms_key_name': kmsKeyName,
-           if (cloudSql != null)
-             'cloud_sql': TfArg.literal([cloudSql.toArgMap()]),
-           if (cloudSpanner != null)
-             'cloud_spanner': TfArg.literal([cloudSpanner.toArgMap()]),
-           if (aws != null) 'aws': TfArg.literal([aws.toArgMap()]),
-           if (azure != null) 'azure': TfArg.literal([azure.toArgMap()]),
-           if (cloudResource != null)
-             'cloud_resource': TfArg.literal([cloudResource.toArgMap()]),
-           if (spark != null) 'spark': TfArg.literal([spark.toArgMap()]),
-           if (configuration != null)
-             'configuration': TfArg.literal([configuration.toArgMap()]),
            if (project != null) 'project': project,
+           backend.blockKey: TfArg.literal(backend.encode()),
          },
        );
 

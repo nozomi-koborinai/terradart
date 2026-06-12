@@ -247,7 +247,7 @@ final class AnalyticsStack extends Stack {
         localName: 'cloud_resource_link',
         connectionId: TfArg.literal('cloud-resource-link'),
         location: TfArg.literal('asia-northeast1'),
-        cloudResource: BigqueryConnectionCloudResource(),
+        backend: BigqueryConnectionCloudResource(),
       ),
     );
 
@@ -268,7 +268,7 @@ final class AnalyticsStack extends Stack {
         localName: 'events_count_job',
         jobId: TfArg.literal('events-count-backfill'),
         location: TfArg.literal('asia-northeast1'),
-        query: BigqueryJobQuery(
+        jobConfiguration: BigqueryJobQuery(
           query: TfArg.literal(
             'SELECT COUNT(*) AS event_count FROM analytics_prod.events',
           ),

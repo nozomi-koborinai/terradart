@@ -124,8 +124,7 @@ paramOrder:
   - substitutions
   - included_files
   - ignored_files
-  - filename
-  - git_file_source
+  - build_spec
   - source_to_build
   - trigger_template
   - github
@@ -135,8 +134,31 @@ paramOrder:
   - pubsub_config
   - webhook_config
   - approval_config
-  - build
   - project
+
+argMapOrder:
+  - name
+  - location
+  - description
+  - tags
+  - disabled
+  - service_account
+  - include_build_logs
+  - filter
+  - substitutions
+  - included_files
+  - ignored_files
+  - source_to_build
+  - trigger_template
+  - github
+  - bitbucket_server_trigger_config
+  - repository_event_config
+  - developer_connect_event_config
+  - pubsub_config
+  - webhook_config
+  - approval_config
+  - project
+  - build_spec
 
 deriveOutputGetters: true
 
@@ -673,6 +695,66 @@ prelude: |
     };
   }
 
+
+  // ===========================================================================
+  // CloudbuildTriggerBuildSpec — sealed (filename | build | git_file_source)
+  // ===========================================================================
+
+  /// Mutually exclusive build-spec sources per MM `exactly_one_of`.
+  sealed class CloudbuildTriggerBuildSpec {
+    const CloudbuildTriggerBuildSpec();
+
+    String get blockKey;
+
+    /// Value written to [blockKey] in the parent argMap (scalar or block list).
+    TfArg<dynamic> get slotValue;
+
+    Map<String, Object?> encode() => {blockKey: slotValue.toTfJson()};
+  }
+
+  /// Repo-relative `cloudbuild.yaml` path (scalar `filename` attribute).
+  @immutable
+  final class CloudbuildTriggerFilenameSpec extends CloudbuildTriggerBuildSpec {
+    const CloudbuildTriggerFilenameSpec({required this.filename});
+
+    final TfArg<String> filename;
+
+    @override
+    String get blockKey => 'filename';
+
+    @override
+    TfArg<dynamic> get slotValue => filename;
+  }
+
+  /// Inline `build` block.
+  @immutable
+  final class CloudbuildTriggerInlineBuildSpec extends CloudbuildTriggerBuildSpec {
+    const CloudbuildTriggerInlineBuildSpec({required this.build});
+
+    final CloudbuildTriggerBuild build;
+
+    @override
+    String get blockKey => 'build';
+
+    @override
+    TfArg<dynamic> get slotValue => TfArg.literal([build.toArgMap()]);
+  }
+
+  /// `git_file_source` block fetched from an arbitrary repo/ref.
+  @immutable
+  final class CloudbuildTriggerGitFileSourceSpec extends CloudbuildTriggerBuildSpec {
+    const CloudbuildTriggerGitFileSourceSpec({required this.gitFileSource});
+
+    final CloudbuildTriggerGitFileSource gitFileSource;
+
+    @override
+    String get blockKey => 'git_file_source';
+
+    @override
+    TfArg<dynamic> get slotValue =>
+        TfArg.literal([gitFileSource.toArgMap()]);
+  }
+
   /// `git_file_source` block. Fetches the build config (`cloudbuild.yaml`
   /// or similar) from an arbitrary repo and ref. Used by Pub/Sub,
   /// Webhook, Manual, and v2 triggers as a replacement for [filename]
@@ -1066,12 +1148,9 @@ customSlots:
   trigger_template:
     paramDeclaration: 'CloudbuildTriggerTriggerTemplate? triggerTemplate'
     argMapEntry: "if (triggerTemplate != null) 'trigger_template': TfArg.literal([triggerTemplate.toArgMap()]),"
-  git_file_source:
-    paramDeclaration: 'CloudbuildTriggerGitFileSource? gitFileSource'
-    argMapEntry: "if (gitFileSource != null) 'git_file_source': TfArg.literal([gitFileSource.toArgMap()]),"
+  build_spec:
+    paramDeclaration: 'required CloudbuildTriggerBuildSpec buildSpec'
+    argMapEntry: 'buildSpec.blockKey: buildSpec.slotValue,'
   approval_config:
     paramDeclaration: 'CloudbuildTriggerApprovalConfig? approvalConfig'
     argMapEntry: "if (approvalConfig != null) 'approval_config': TfArg.literal([approvalConfig.toArgMap()]),"
-  build:
-    paramDeclaration: 'CloudbuildTriggerBuild? build'
-    argMapEntry: "if (build != null) 'build': TfArg.literal([build.toArgMap()]),"

@@ -208,6 +208,19 @@ class BigqueryJobEncryptionConfiguration {
 // ===========================================================================
 
 /// `query` job-type block. Required field: [query] (the SQL text).
+
+// ===========================================================================
+// BigqueryJobConfiguration — sealed oneof
+// ===========================================================================
+
+sealed class BigqueryJobConfiguration {
+  const BigqueryJobConfiguration();
+
+  String get blockKey;
+
+  List<Map<String, Object?>> encode();
+}
+
 /// All other fields are optional. When [destinationTable] is set,
 /// the query result is materialized to that table according to
 /// [createDisposition] / [writeDisposition].
@@ -218,7 +231,7 @@ class BigqueryJobEncryptionConfiguration {
 /// docs — this wrapper exposes the enums as nullable so callers
 /// can simply omit them for the DML case.
 @immutable
-class BigqueryJobQuery {
+final class BigqueryJobQuery extends BigqueryJobConfiguration {
   const BigqueryJobQuery({
     required this.query,
     this.destinationTable,
@@ -323,6 +336,12 @@ class BigqueryJobQuery {
     if (schemaUpdateOptions != null)
       'schema_update_options': schemaUpdateOptions,
   };
+
+  @override
+  String get blockKey => 'query';
+
+  @override
+  List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
 /// One entry under `query.user_defined_function_resources`. Provide
@@ -409,7 +428,7 @@ class BigqueryJobScriptOptions {
 /// [allowQuotedNewlines], [allowJaggedRows], [encoding],
 /// [nullMarker]) are ignored for non-CSV formats.
 @immutable
-class BigqueryJobLoad {
+final class BigqueryJobLoad extends BigqueryJobConfiguration {
   const BigqueryJobLoad({
     required this.sourceUris,
     required this.destinationTable,
@@ -519,6 +538,12 @@ class BigqueryJobLoad {
     if (nullMarker != null) 'null_marker': nullMarker!.toTfJson(),
     if (jsonExtension != null) 'json_extension': jsonExtension!.toTfJson(),
   };
+
+  @override
+  String get blockKey => 'load';
+
+  @override
+  List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
 /// `load.time_partitioning` (max_items=1) — applies partitioning to
@@ -582,7 +607,7 @@ class BigqueryJobParquetOptions {
 /// `CSV`. For Avro outputs, [useAvroLogicalTypes] controls how
 /// TIMESTAMP / DATETIME / etc. surface in the Avro schema.
 @immutable
-class BigqueryJobExtract {
+final class BigqueryJobExtract extends BigqueryJobConfiguration {
   const BigqueryJobExtract({
     required this.destinationUris,
     this.sourceTable,
@@ -627,6 +652,12 @@ class BigqueryJobExtract {
     if (useAvroLogicalTypes != null)
       'use_avro_logical_types': useAvroLogicalTypes!.toTfJson(),
   };
+
+  @override
+  String get blockKey => 'extract';
+
+  @override
+  List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
 /// `extract.source_model` — fully qualified BigQuery ML model
@@ -659,7 +690,7 @@ class BigqueryJobSourceModel {
 /// `source_tables`. Shares [createDisposition] / [writeDisposition]
 /// semantics with the other job types.
 @immutable
-class BigqueryJobCopy {
+final class BigqueryJobCopy extends BigqueryJobConfiguration {
   const BigqueryJobCopy({
     required this.sourceTables,
     required this.destinationTable,
@@ -691,6 +722,12 @@ class BigqueryJobCopy {
     if (writeDisposition != null)
       'write_disposition': writeDisposition!.terraformValue,
   };
+
+  @override
+  String get blockKey => 'copy';
+
+  @override
+  List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
 /// Factory wrapper for `google_bigquery_job`.
@@ -796,10 +833,7 @@ final class GoogleBigqueryJob extends Resource {
     TfArg<String>? location,
     TfArg<String>? jobTimeoutMs,
     TfArg<Map<String, String>>? labels,
-    BigqueryJobQuery? query,
-    BigqueryJobLoad? load,
-    BigqueryJobExtract? extract,
-    BigqueryJobCopy? copy,
+    required BigqueryJobConfiguration jobConfiguration,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -810,11 +844,8 @@ final class GoogleBigqueryJob extends Resource {
            if (location != null) 'location': location,
            if (jobTimeoutMs != null) 'job_timeout_ms': jobTimeoutMs,
            if (labels != null) 'labels': labels,
-           if (query != null) 'query': TfArg.literal([query.toArgMap()]),
-           if (load != null) 'load': TfArg.literal([load.toArgMap()]),
-           if (extract != null) 'extract': TfArg.literal([extract.toArgMap()]),
-           if (copy != null) 'copy': TfArg.literal([copy.toArgMap()]),
            if (project != null) 'project': project,
+           jobConfiguration.blockKey: TfArg.literal(jobConfiguration.encode()),
          },
        );
 

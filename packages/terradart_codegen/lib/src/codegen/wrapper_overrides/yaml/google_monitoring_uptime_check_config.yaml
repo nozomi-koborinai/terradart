@@ -23,11 +23,11 @@ curatedDoc: |-
   ///
   /// ## Target shape — pick exactly one
   ///
-  /// Also pick **exactly one** target descriptor:
-  /// - [monitoredResource] — directly target a single
-  ///   [MonitoringUptimeCheckConfigMonitoredResource] (e.g. an `uptime_url`).
-  /// - [resourceGroup] — target every member of a `google_monitoring_group`
-  ///   resource (referenced by [MonitoringUptimeCheckConfigResourceGroup.groupId]).
+  /// Also pick **exactly one** [MonitoringUptimeCheckConfigTarget]:
+  /// - [MonitoringUptimeCheckConfigMonitoredResource] (e.g. an `uptime_url`).
+  /// - [MonitoringUptimeCheckConfigResourceGroup] — every member of a
+  ///   `google_monitoring_group`.
+  /// - [MonitoringUptimeCheckConfigSyntheticMonitor] — Cloud Functions V2 probe.
   ///
   /// ## Period / region semantics
   ///
@@ -60,8 +60,8 @@ curatedDoc: |-
   ///     validateSsl: true,
   ///     requestMethod: MonitoringUptimeCheckHttpMethod.get,
   ///   ),
-  ///   monitoredResource: const MonitoringUptimeCheckConfigMonitoredResource(
-  ///     type: 'uptime_url',
+  ///   target: MonitoringUptimeCheckConfigMonitoredResource(
+  ///     type: TfArg.literal('uptime_url'),
   ///     labels: {'host': 'api.example.com', 'project_id': 'my-project'},
   ///   ),
   ///   contentMatchers: const [
@@ -90,15 +90,27 @@ paramOrder:
   - period
   - selected_regions
   - checker_type
-  - monitored_resource
-  - resource_group
+  - target
   - http_check
   - tcp_check
-  - synthetic_monitor
   - content_matchers
   - log_check_failures
   - user_labels
   - project
+
+argMapOrder:
+  - display_name
+  - timeout
+  - period
+  - selected_regions
+  - checker_type
+  - http_check
+  - tcp_check
+  - content_matchers
+  - log_check_failures
+  - user_labels
+  - project
+  - target
 
 extraGetters: |2
     /// Reference to `uptime_check_id` (the bare ID segment, without the
@@ -276,6 +288,19 @@ prelude: |
     final String terraformValue;
   }
 
+
+  // ===========================================================================
+  // MonitoringUptimeCheckConfigTarget — sealed (monitored_resource | resource_group | synthetic_monitor)
+  // ===========================================================================
+
+  sealed class MonitoringUptimeCheckConfigTarget {
+    const MonitoringUptimeCheckConfigTarget();
+
+    String get blockKey;
+
+    List<Map<String, Object?>> encode();
+  }
+
   // ===========================================================================
   // monitored_resource + resource_group (mutually exclusive target descriptors)
   // ===========================================================================
@@ -283,7 +308,7 @@ prelude: |
   /// `monitored_resource` block (max=1). Directly target a single monitored
   /// resource (e.g. an `uptime_url` against a public hostname, or a
   /// `gce_instance`). Mutually exclusive with [MonitoringUptimeCheckConfigResourceGroup].
-  class MonitoringUptimeCheckConfigMonitoredResource {
+  final class MonitoringUptimeCheckConfigMonitoredResource extends MonitoringUptimeCheckConfigTarget {
     const MonitoringUptimeCheckConfigMonitoredResource({
       required this.type,
       required this.labels,
@@ -303,12 +328,18 @@ prelude: |
           'type': type.toTfJson(),
           'labels': labels,
         };
+
+    @override
+    String get blockKey => 'monitored_resource';
+
+    @override
+    List<Map<String, Object?>> encode() => [toArgMap()];
   }
 
   /// `resource_group` block (max=1). Target every member of a Cloud
   /// Monitoring group resource. Mutually exclusive with
   /// [MonitoringUptimeCheckConfigMonitoredResource].
-  class MonitoringUptimeCheckConfigResourceGroup {
+  final class MonitoringUptimeCheckConfigResourceGroup extends MonitoringUptimeCheckConfigTarget {
     const MonitoringUptimeCheckConfigResourceGroup({
       this.groupId,
       this.resourceType,
@@ -325,6 +356,12 @@ prelude: |
           if (resourceType != null)
             'resource_type': resourceType!.terraformValue,
         };
+
+    @override
+    String get blockKey => 'resource_group';
+
+    @override
+    List<Map<String, Object?>> encode() => [toArgMap()];
   }
 
   // ===========================================================================
@@ -563,7 +600,7 @@ prelude: |
 
   /// `synthetic_monitor` block (max=1). Mutually exclusive with
   /// [httpCheck] and [tcpCheck] on the parent resource.
-  class MonitoringUptimeCheckConfigSyntheticMonitor {
+  final class MonitoringUptimeCheckConfigSyntheticMonitor extends MonitoringUptimeCheckConfigTarget {
     const MonitoringUptimeCheckConfigSyntheticMonitor({
       required this.cloudFunctionV2,
     });
@@ -573,6 +610,12 @@ prelude: |
     Map<String, Object?> toArgMap() => {
           'cloud_function_v2': [cloudFunctionV2.toArgMap()],
         };
+
+    @override
+    String get blockKey => 'synthetic_monitor';
+
+    @override
+    List<Map<String, Object?>> encode() => [toArgMap()];
   }
 
   // ===========================================================================
@@ -635,21 +678,15 @@ customSlots:
   selected_regions:
     paramDeclaration: 'List<MonitoringUptimeCheckRegion>? selectedRegions'
     argMapEntry: "if (selectedRegions != null) 'selected_regions': TfArg.literal(selectedRegions.map((r) => r.terraformValue).toList()),"
-  monitored_resource:
-    paramDeclaration: 'MonitoringUptimeCheckConfigMonitoredResource? monitoredResource'
-    argMapEntry: "if (monitoredResource != null) 'monitored_resource': TfArg.literal([monitoredResource.toArgMap()]),"
-  resource_group:
-    paramDeclaration: 'MonitoringUptimeCheckConfigResourceGroup? resourceGroup'
-    argMapEntry: "if (resourceGroup != null) 'resource_group': TfArg.literal([resourceGroup.toArgMap()]),"
+  target:
+    paramDeclaration: 'required MonitoringUptimeCheckConfigTarget target'
+    argMapEntry: 'target.blockKey: TfArg.literal(target.encode()),'
   http_check:
     paramDeclaration: 'MonitoringUptimeCheckConfigHttpCheck? httpCheck'
     argMapEntry: "if (httpCheck != null) 'http_check': TfArg.literal([httpCheck.toArgMap()]),"
   tcp_check:
     paramDeclaration: 'MonitoringUptimeCheckConfigTcpCheck? tcpCheck'
     argMapEntry: "if (tcpCheck != null) 'tcp_check': TfArg.literal([tcpCheck.toArgMap()]),"
-  synthetic_monitor:
-    paramDeclaration: 'MonitoringUptimeCheckConfigSyntheticMonitor? syntheticMonitor'
-    argMapEntry: "if (syntheticMonitor != null) 'synthetic_monitor': TfArg.literal([syntheticMonitor.toArgMap()]),"
   content_matchers:
     paramDeclaration: 'List<MonitoringUptimeCheckConfigContentMatcher>? contentMatchers'
     argMapEntry: "if (contentMatchers != null) 'content_matchers': TfArg.literal(contentMatchers.map((c) => c.toArgMap()).toList()),"

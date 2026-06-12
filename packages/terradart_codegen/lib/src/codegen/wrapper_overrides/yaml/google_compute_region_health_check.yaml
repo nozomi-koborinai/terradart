@@ -65,14 +65,21 @@ paramOrder:
   - timeout_sec
   - healthy_threshold
   - unhealthy_threshold
-  - http_health_check
-  - https_health_check
-  - http2_health_check
-  - tcp_health_check
-  - ssl_health_check
-  - grpc_health_check
+  - protocol
   - log_config
   - project
+
+argMapOrder:
+  - name
+  - region
+  - description
+  - check_interval_sec
+  - timeout_sec
+  - healthy_threshold
+  - unhealthy_threshold
+  - log_config
+  - project
+  - protocol
 
 extraImports:
   - "import 'package:meta/meta.dart';"
@@ -147,6 +154,18 @@ prelude: |
   }
 
   // ===========================================================================
+  // ComputeRegionHealthCheckProtocol — sealed (http | https | http2 | tcp | ssl | grpc)
+  // ===========================================================================
+
+  sealed class ComputeRegionHealthCheckProtocol {
+    const ComputeRegionHealthCheckProtocol();
+
+    String get blockKey;
+
+    List<Map<String, Object?>> encode();
+  }
+
+  // ===========================================================================
   // Per-protocol config blocks (each is max_items=1 in the TF schema).
   // Prefixed with `RegionHealthCheck` to avoid colliding with the global
   // sibling's `HttpHealthCheckConfig` / etc.
@@ -155,7 +174,7 @@ prelude: |
   /// `http_health_check` block. Set this (and only this) to make the
   /// resource an HTTP health check.
   @immutable
-  class ComputeRegionHealthCheckRegionHealthCheckHttpConfig {
+  final class ComputeRegionHealthCheckRegionHealthCheckHttpConfig extends ComputeRegionHealthCheckProtocol {
     const ComputeRegionHealthCheckRegionHealthCheckHttpConfig({
       this.host,
       this.requestPath,
@@ -200,11 +219,17 @@ prelude: |
       if (portSpecification != null)
         'port_specification': portSpecification!.terraformValue,
     };
+
+    @override
+    String get blockKey => 'http_health_check';
+
+    @override
+    List<Map<String, Object?>> encode() => [toArgMap()];
   }
 
   /// `https_health_check` block.
   @immutable
-  class ComputeRegionHealthCheckRegionHealthCheckHttpsConfig {
+  final class ComputeRegionHealthCheckRegionHealthCheckHttpsConfig extends ComputeRegionHealthCheckProtocol {
     const ComputeRegionHealthCheckRegionHealthCheckHttpsConfig({
       this.host,
       this.requestPath,
@@ -235,11 +260,17 @@ prelude: |
       if (portSpecification != null)
         'port_specification': portSpecification!.terraformValue,
     };
+
+    @override
+    String get blockKey => 'https_health_check';
+
+    @override
+    List<Map<String, Object?>> encode() => [toArgMap()];
   }
 
   /// `http2_health_check` block.
   @immutable
-  class ComputeRegionHealthCheckRegionHealthCheckHttp2Config {
+  final class ComputeRegionHealthCheckRegionHealthCheckHttp2Config extends ComputeRegionHealthCheckProtocol {
     const ComputeRegionHealthCheckRegionHealthCheckHttp2Config({
       this.host,
       this.requestPath,
@@ -270,11 +301,17 @@ prelude: |
       if (portSpecification != null)
         'port_specification': portSpecification!.terraformValue,
     };
+
+    @override
+    String get blockKey => 'http2_health_check';
+
+    @override
+    List<Map<String, Object?>> encode() => [toArgMap()];
   }
 
   /// `tcp_health_check` block. Pure TCP connect-or-payload probe.
   @immutable
-  class ComputeRegionHealthCheckRegionHealthCheckTcpConfig {
+  final class ComputeRegionHealthCheckRegionHealthCheckTcpConfig extends ComputeRegionHealthCheckProtocol {
     const ComputeRegionHealthCheckRegionHealthCheckTcpConfig({
       this.request,
       this.response,
@@ -307,11 +344,17 @@ prelude: |
       if (portSpecification != null)
         'port_specification': portSpecification!.terraformValue,
     };
+
+    @override
+    String get blockKey => 'tcp_health_check';
+
+    @override
+    List<Map<String, Object?>> encode() => [toArgMap()];
   }
 
   /// `ssl_health_check` block. Pure SSL/TLS probe.
   @immutable
-  class ComputeRegionHealthCheckRegionHealthCheckSslConfig {
+  final class ComputeRegionHealthCheckRegionHealthCheckSslConfig extends ComputeRegionHealthCheckProtocol {
     const ComputeRegionHealthCheckRegionHealthCheckSslConfig({
       this.request,
       this.response,
@@ -339,12 +382,18 @@ prelude: |
       if (portSpecification != null)
         'port_specification': portSpecification!.terraformValue,
     };
+
+    @override
+    String get blockKey => 'ssl_health_check';
+
+    @override
+    List<Map<String, Object?>> encode() => [toArgMap()];
   }
 
   /// `grpc_health_check` block. Probes via the gRPC Health Checking
   /// Protocol (`grpc.health.v1.Health/Check`).
   @immutable
-  class ComputeRegionHealthCheckRegionHealthCheckGrpcConfig {
+  final class ComputeRegionHealthCheckRegionHealthCheckGrpcConfig extends ComputeRegionHealthCheckProtocol {
     const ComputeRegionHealthCheckRegionHealthCheckGrpcConfig({
       this.port,
       this.portName,
@@ -371,6 +420,12 @@ prelude: |
         'port_specification': portSpecification!.terraformValue,
       if (grpcServiceName != null) 'grpc_service_name': grpcServiceName!.toTfJson(),
     };
+
+    @override
+    String get blockKey => 'grpc_health_check';
+
+    @override
+    List<Map<String, Object?>> encode() => [toArgMap()];
   }
 
   // ===========================================================================
@@ -392,24 +447,9 @@ prelude: |
   }
 
 customSlots:
-  http_health_check:
-    paramDeclaration: 'ComputeRegionHealthCheckRegionHealthCheckHttpConfig? httpHealthCheck'
-    argMapEntry: "if (httpHealthCheck != null) 'http_health_check': TfArg.literal([httpHealthCheck.toArgMap()]),"
-  https_health_check:
-    paramDeclaration: 'ComputeRegionHealthCheckRegionHealthCheckHttpsConfig? httpsHealthCheck'
-    argMapEntry: "if (httpsHealthCheck != null) 'https_health_check': TfArg.literal([httpsHealthCheck.toArgMap()]),"
-  http2_health_check:
-    paramDeclaration: 'ComputeRegionHealthCheckRegionHealthCheckHttp2Config? http2HealthCheck'
-    argMapEntry: "if (http2HealthCheck != null) 'http2_health_check': TfArg.literal([http2HealthCheck.toArgMap()]),"
-  tcp_health_check:
-    paramDeclaration: 'ComputeRegionHealthCheckRegionHealthCheckTcpConfig? tcpHealthCheck'
-    argMapEntry: "if (tcpHealthCheck != null) 'tcp_health_check': TfArg.literal([tcpHealthCheck.toArgMap()]),"
-  ssl_health_check:
-    paramDeclaration: 'ComputeRegionHealthCheckRegionHealthCheckSslConfig? sslHealthCheck'
-    argMapEntry: "if (sslHealthCheck != null) 'ssl_health_check': TfArg.literal([sslHealthCheck.toArgMap()]),"
-  grpc_health_check:
-    paramDeclaration: 'ComputeRegionHealthCheckRegionHealthCheckGrpcConfig? grpcHealthCheck'
-    argMapEntry: "if (grpcHealthCheck != null) 'grpc_health_check': TfArg.literal([grpcHealthCheck.toArgMap()]),"
+  protocol:
+    paramDeclaration: 'required ComputeRegionHealthCheckProtocol protocol'
+    argMapEntry: 'protocol.blockKey: TfArg.literal(protocol.encode()),'
   log_config:
     paramDeclaration: 'ComputeRegionHealthCheckRegionHealthCheckLogConfig? logConfig'
     argMapEntry: "if (logConfig != null) 'log_config': TfArg.literal([logConfig.toArgMap()]),"

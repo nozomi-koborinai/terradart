@@ -1,5 +1,65 @@
 # Migrating terradart
 
+## Unreleased (after 0.12.11)
+
+**Breaking changes** in `terradart_google` — several curated factories now enforce
+GCP / Terraform `exactly_one_of` constraints at compile time via sealed virtual
+slots (closes #107 exactly-one debt):
+
+| Factory | Before | After |
+|---------|--------|-------|
+| `GoogleComputeFirewall` | optional `allow:` / `deny:` | required `rulePolicy:` (`ComputeFirewallAllowPolicy` / `ComputeFirewallDenyPolicy`) |
+| `GoogleComputeHealthCheck` | optional `httpHealthCheck:` / `httpsHealthCheck:` / … | required `protocol:` (`ComputeHealthCheckProtocol` variant) |
+| `GoogleComputeRegionHealthCheck` | optional per-protocol params | required `protocol:` (`ComputeRegionHealthCheckProtocol` variant) |
+| `GoogleMonitoringUptimeCheckConfig` | optional `monitoredResource:` / `resourceGroup:` / `syntheticMonitor:` | required `target:` (`MonitoringUptimeCheckConfigTarget` variant) |
+| `GoogleBigqueryJob` | optional `query:` / `load:` / `extract:` / `copy:` | required `jobConfiguration:` (`BigqueryJobConfiguration` variant) |
+| `GoogleBigqueryConnection` | optional `cloudSql:` / `aws:` / … | required `backend:` (`BigqueryConnectionBackend` variant) |
+| `GoogleCloudbuildTrigger` | optional `filename:` / `build:` / `gitFileSource:` | required `buildSpec:` (`CloudbuildTriggerBuildSpec` variant) |
+
+Example (`GoogleComputeHealthCheck`):
+
+```dart
+// Before
+GoogleComputeHealthCheck(
+  localName: 'api_hc',
+  name: TfArg.literal('api-hc'),
+  httpsHealthCheck: ComputeHealthCheckHttpsHealthCheckConfig(
+    port: TfArg.literal(443),
+    requestPath: TfArg.literal('/healthz'),
+  ),
+);
+
+// After
+GoogleComputeHealthCheck(
+  localName: 'api_hc',
+  name: TfArg.literal('api-hc'),
+  protocol: ComputeHealthCheckHttpsHealthCheckConfig(
+    port: TfArg.literal(443),
+    requestPath: TfArg.literal('/healthz'),
+  ),
+);
+```
+
+Example (`GoogleCloudbuildTrigger` filename path):
+
+```dart
+// Before
+GoogleCloudbuildTrigger(
+  localName: 'main_push',
+  name: TfArg.literal('main-push'),
+  filename: TfArg.literal('cloudbuild.yaml'),
+);
+
+// After
+GoogleCloudbuildTrigger(
+  localName: 'main_push',
+  name: TfArg.literal('main-push'),
+  buildSpec: CloudbuildTriggerFilenameSpec(
+    filename: TfArg.literal('cloudbuild.yaml'),
+  ),
+);
+```
+
 ## 0.12.9 → 0.12.10
 
 **Breaking changes** in `terradart_google` — finite schema fields now use typed

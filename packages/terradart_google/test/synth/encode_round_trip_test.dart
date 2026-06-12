@@ -28,9 +28,11 @@ import 'package:terradart_codegen/src/codegen/universal_invariants/sealed_class_
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/bigquery.dart';
 import 'package:terradart_google/certificate_manager.dart';
+import 'package:terradart_google/cloud_build.dart';
 import 'package:terradart_google/cloud_functions.dart';
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/cloud_scheduler.dart';
+import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/firebase_app_hosting.dart';
 import 'package:terradart_google/firestore.dart';
 import 'package:terradart_google/iam.dart';
@@ -137,6 +139,151 @@ final Map<String, Object Function()> _syntheticInstances = {
   // --- UpdatePolicy (2) — cloudfunctions2_function -------------------------
   'AutomaticUpdatePolicy': () => const AutomaticUpdatePolicy(),
   'OnDeployUpdatePolicy': () => const OnDeployUpdatePolicy(),
+
+  // --- ComputeHealthCheckProtocol (6) — compute_health_check ----------------
+  'ComputeHealthCheckHttpHealthCheckConfig': () =>
+      ComputeHealthCheckHttpHealthCheckConfig(port: TfArg.literal(80)),
+  'ComputeHealthCheckHttpsHealthCheckConfig': () =>
+      ComputeHealthCheckHttpsHealthCheckConfig(port: TfArg.literal(443)),
+  'ComputeHealthCheckHttp2HealthCheckConfig': () =>
+      ComputeHealthCheckHttp2HealthCheckConfig(port: TfArg.literal(443)),
+  'ComputeHealthCheckTcpHealthCheckConfig': () =>
+      ComputeHealthCheckTcpHealthCheckConfig(port: TfArg.literal(443)),
+  'ComputeHealthCheckSslHealthCheckConfig': () =>
+      ComputeHealthCheckSslHealthCheckConfig(port: TfArg.literal(443)),
+  'ComputeHealthCheckGrpcHealthCheckConfig': () =>
+      ComputeHealthCheckGrpcHealthCheckConfig(port: TfArg.literal(50051)),
+
+  // --- ComputeRegionHealthCheckProtocol (6) — region_health_check -----------
+  'ComputeRegionHealthCheckRegionHealthCheckHttpConfig': () =>
+      ComputeRegionHealthCheckRegionHealthCheckHttpConfig(
+        port: TfArg.literal(80),
+      ),
+  'ComputeRegionHealthCheckRegionHealthCheckHttpsConfig': () =>
+      ComputeRegionHealthCheckRegionHealthCheckHttpsConfig(
+        port: TfArg.literal(443),
+      ),
+  'ComputeRegionHealthCheckRegionHealthCheckHttp2Config': () =>
+      ComputeRegionHealthCheckRegionHealthCheckHttp2Config(
+        port: TfArg.literal(443),
+      ),
+  'ComputeRegionHealthCheckRegionHealthCheckTcpConfig': () =>
+      ComputeRegionHealthCheckRegionHealthCheckTcpConfig(
+        port: TfArg.literal(443),
+      ),
+  'ComputeRegionHealthCheckRegionHealthCheckSslConfig': () =>
+      ComputeRegionHealthCheckRegionHealthCheckSslConfig(
+        port: TfArg.literal(443),
+      ),
+  'ComputeRegionHealthCheckRegionHealthCheckGrpcConfig': () =>
+      ComputeRegionHealthCheckRegionHealthCheckGrpcConfig(
+        port: TfArg.literal(50051),
+      ),
+
+  // --- ComputeFirewallRulePolicy (2) — compute_firewall --------------------
+  'ComputeFirewallAllowPolicy': () => ComputeFirewallAllowPolicy(
+        protocol: TfArg.literal('tcp'),
+        ports: ['443'],
+      ),
+  'ComputeFirewallDenyPolicy': () => ComputeFirewallDenyPolicy(
+        protocol: TfArg.literal('tcp'),
+        ports: ['22'],
+      ),
+
+  // --- BigqueryConnectionBackend (7) — bigquery_connection -----------------
+  'BigqueryConnectionCloudSql': () => BigqueryConnectionCloudSql(
+        instanceId: TfArg.literal('p:us:inst'),
+        database: TfArg.literal('db'),
+        type: BigqueryConnectionCloudSqlType.postgres,
+        credential: BigqueryConnectionCloudSqlCredential(
+          username: TfArg.literal('user'),
+          password: TfArg.literal('secret'),
+        ),
+      ),
+  'BigqueryConnectionCloudSpanner': () => BigqueryConnectionCloudSpanner(
+        database: TfArg.literal('db'),
+      ),
+  'BigqueryConnectionAws': () => BigqueryConnectionAws(
+        accessRole: BigqueryConnectionAwsAccessRole(
+          iamRoleId: TfArg.literal('arn:aws:iam::123:role/bq'),
+        ),
+      ),
+  'BigqueryConnectionAzure': () => BigqueryConnectionAzure(
+        customerTenantId: TfArg.literal('tenant'),
+      ),
+  'BigqueryConnectionCloudResource': () =>
+      const BigqueryConnectionCloudResource(),
+  'BigqueryConnectionSpark': () => const BigqueryConnectionSpark(),
+  'BigqueryConnectionConfiguration': () => BigqueryConnectionConfiguration(
+        connectorId: TfArg.literal('google-cloudsql-postgres'),
+        asset: BigqueryConnectionConfigurationAsset(
+          database: TfArg.literal('db'),
+        ),
+      ),
+
+  // --- BigqueryJobConfiguration (4) — bigquery_job -------------------------
+  'BigqueryJobQuery': () => BigqueryJobQuery(
+        query: TfArg.literal('SELECT 1'),
+      ),
+  'BigqueryJobLoad': () => BigqueryJobLoad(
+        sourceUris: TfArg.literal(['gs://bucket/obj']),
+        destinationTable: BigqueryJobDestinationTable(
+          tableId: TfArg.literal('t'),
+        ),
+      ),
+  'BigqueryJobExtract': () => BigqueryJobExtract(
+        destinationUris: TfArg.literal(['gs://bucket/out-*.csv']),
+        sourceTable: BigqueryJobDestinationTable(
+          tableId: TfArg.literal('t'),
+        ),
+      ),
+  'BigqueryJobCopy': () => BigqueryJobCopy(
+        sourceTables: [
+          BigqueryJobDestinationTable(tableId: TfArg.literal('src')),
+        ],
+        destinationTable: BigqueryJobDestinationTable(
+          tableId: TfArg.literal('dst'),
+        ),
+      ),
+
+  // --- CloudbuildTriggerBuildSpec (3) — cloudbuild_trigger -----------------
+  'CloudbuildTriggerFilenameSpec': () => CloudbuildTriggerFilenameSpec(
+        filename: TfArg.literal('cloudbuild.yaml'),
+      ),
+  'CloudbuildTriggerInlineBuildSpec': () => CloudbuildTriggerInlineBuildSpec(
+        build: CloudbuildTriggerBuild(
+          step: [
+            CloudbuildTriggerBuildStep(
+              name: TfArg.literal('gcr.io/cloud-builders/docker'),
+              args: TfArg.literal(['build', '.']),
+            ),
+          ],
+        ),
+      ),
+  'CloudbuildTriggerGitFileSourceSpec': () =>
+      CloudbuildTriggerGitFileSourceSpec(
+        gitFileSource: CloudbuildTriggerGitFileSource(
+          path: TfArg.literal('cloudbuild.yaml'),
+          repoType: TfArg.literal(CloudBuildTriggerRepoType.github),
+        ),
+      ),
+
+  // --- MonitoringUptimeCheckTarget (3) — monitoring_uptime_check_config ----
+  'MonitoringUptimeCheckConfigMonitoredResource': () =>
+      MonitoringUptimeCheckConfigMonitoredResource(
+        type: TfArg.literal('uptime_url'),
+        labels: {'host': 'example.com'},
+      ),
+  'MonitoringUptimeCheckConfigResourceGroup': () =>
+      MonitoringUptimeCheckConfigResourceGroup(
+        groupId: TfArg.literal('my-group'),
+      ),
+  'MonitoringUptimeCheckConfigSyntheticMonitor': () =>
+      MonitoringUptimeCheckConfigSyntheticMonitor(
+        cloudFunctionV2: MonitoringUptimeCheckConfigCloudFunctionV2(
+          name: TfArg.literal('projects/p/locations/us-central1/functions/f'),
+        ),
+      ),
 
   // --- AppHostingBuildSource (2) — firebase_app_hosting_build --------------
   'FirebaseAppHostingBuildAppHostingBuildSourceCodebase': () => const FirebaseAppHostingBuildAppHostingBuildSourceCodebase(),

@@ -59,17 +59,28 @@ enum HealthCheckPortSpecification implements TerraformEnum {
 }
 
 // ===========================================================================
-// Per-protocol config blocks (each is max_items=1 in the TF schema).
-// Naming uses the `Config` suffix to disambiguate from the legacy
-// `google_compute_http_health_check` / `google_compute_https_health_check`
-// resource wrappers. These types are shared across global +
-// regional health checks.
+// ComputeHealthCheckProtocol — sealed (http | https | http2 | tcp | ssl | grpc)
 // ===========================================================================
+
+/// Mutually exclusive per-protocol config block. Each concrete `*Config`
+/// type below is a sealed variant with its own [blockKey].
+sealed class ComputeHealthCheckProtocol {
+  const ComputeHealthCheckProtocol();
+
+  /// Terraform nested-block key (e.g. `https_health_check`).
+  String get blockKey;
+
+  List<Map<String, Object?>> encode();
+}
+
+// ===========================================================================
+// Per-protocol config blocks (each is max_items=1 in the TF schema).
 
 /// `http_health_check` block. Set this (and only this) to make the
 /// resource an HTTP health check.
 @immutable
-class ComputeHealthCheckHttpHealthCheckConfig {
+final class ComputeHealthCheckHttpHealthCheckConfig
+    extends ComputeHealthCheckProtocol {
   const ComputeHealthCheckHttpHealthCheckConfig({
     this.host,
     this.requestPath,
@@ -114,11 +125,18 @@ class ComputeHealthCheckHttpHealthCheckConfig {
     if (portSpecification != null)
       'port_specification': portSpecification!.terraformValue,
   };
+
+  @override
+  String get blockKey => 'http_health_check';
+
+  @override
+  List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
 /// `https_health_check` block.
 @immutable
-class ComputeHealthCheckHttpsHealthCheckConfig {
+final class ComputeHealthCheckHttpsHealthCheckConfig
+    extends ComputeHealthCheckProtocol {
   const ComputeHealthCheckHttpsHealthCheckConfig({
     this.host,
     this.requestPath,
@@ -149,11 +167,18 @@ class ComputeHealthCheckHttpsHealthCheckConfig {
     if (portSpecification != null)
       'port_specification': portSpecification!.terraformValue,
   };
+
+  @override
+  String get blockKey => 'https_health_check';
+
+  @override
+  List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
 /// `http2_health_check` block.
 @immutable
-class ComputeHealthCheckHttp2HealthCheckConfig {
+final class ComputeHealthCheckHttp2HealthCheckConfig
+    extends ComputeHealthCheckProtocol {
   const ComputeHealthCheckHttp2HealthCheckConfig({
     this.host,
     this.requestPath,
@@ -184,11 +209,18 @@ class ComputeHealthCheckHttp2HealthCheckConfig {
     if (portSpecification != null)
       'port_specification': portSpecification!.terraformValue,
   };
+
+  @override
+  String get blockKey => 'http2_health_check';
+
+  @override
+  List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
 /// `tcp_health_check` block. Pure TCP connect-or-payload probe.
 @immutable
-class ComputeHealthCheckTcpHealthCheckConfig {
+final class ComputeHealthCheckTcpHealthCheckConfig
+    extends ComputeHealthCheckProtocol {
   const ComputeHealthCheckTcpHealthCheckConfig({
     this.request,
     this.response,
@@ -221,11 +253,18 @@ class ComputeHealthCheckTcpHealthCheckConfig {
     if (portSpecification != null)
       'port_specification': portSpecification!.terraformValue,
   };
+
+  @override
+  String get blockKey => 'tcp_health_check';
+
+  @override
+  List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
 /// `ssl_health_check` block. Pure SSL/TLS probe.
 @immutable
-class ComputeHealthCheckSslHealthCheckConfig {
+final class ComputeHealthCheckSslHealthCheckConfig
+    extends ComputeHealthCheckProtocol {
   const ComputeHealthCheckSslHealthCheckConfig({
     this.request,
     this.response,
@@ -253,12 +292,19 @@ class ComputeHealthCheckSslHealthCheckConfig {
     if (portSpecification != null)
       'port_specification': portSpecification!.terraformValue,
   };
+
+  @override
+  String get blockKey => 'ssl_health_check';
+
+  @override
+  List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
 /// `grpc_health_check` block. Probes via the gRPC Health Checking
 /// Protocol (`grpc.health.v1.Health/Check`).
 @immutable
-class ComputeHealthCheckGrpcHealthCheckConfig {
+final class ComputeHealthCheckGrpcHealthCheckConfig
+    extends ComputeHealthCheckProtocol {
   const ComputeHealthCheckGrpcHealthCheckConfig({
     this.port,
     this.portName,
@@ -286,6 +332,12 @@ class ComputeHealthCheckGrpcHealthCheckConfig {
     if (grpcServiceName != null)
       'grpc_service_name': grpcServiceName!.toTfJson(),
   };
+
+  @override
+  String get blockKey => 'grpc_health_check';
+
+  @override
+  List<Map<String, Object?>> encode() => [toArgMap()];
 }
 
 // ===========================================================================
@@ -336,13 +388,10 @@ class ComputeHealthCheckHealthCheckLogConfig {
 /// internal-managed load balancers) use
 /// `google_compute_region_health_check` (curated separately).
 ///
-/// **Protocol invariant**: exactly one of the per-protocol config blocks
-/// ([httpHealthCheck], [httpsHealthCheck], [http2HealthCheck],
-/// [tcpHealthCheck], [sslHealthCheck], [grpcHealthCheck]) must be set,
-/// and the choice determines the value the GCP API will compute for
-/// `type` (which is read-only on this resource — accessible via the
-/// derived `type` getter). The Terraform provider rejects configurations
-/// with multiple blocks or none.
+/// Choose exactly one [ComputeHealthCheckProtocol] variant (HTTP, HTTPS,
+/// HTTP2, TCP, SSL, or gRPC). The choice determines the read-only `type`
+/// getter value. The sealed type enforces the GCP / Terraform
+/// exactly-one constraint at compile time.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
@@ -359,9 +408,9 @@ class ComputeHealthCheckHealthCheckLogConfig {
 ///   timeoutSec: TfArg.literal(5),
 ///   healthyThreshold: TfArg.literal(2),
 ///   unhealthyThreshold: TfArg.literal(3),
-///   httpHealthCheck: const ComputeHealthCheckHttpHealthCheckConfig(
-///     port: 8080,
-///     requestPath: '/healthz',
+///   protocol: const ComputeHealthCheckHttpHealthCheckConfig(
+///     port: TfArg.literal(8080),
+///     requestPath: TfArg.literal('/healthz'),
 ///     proxyHeader: HealthCheckProxyHeader.none,
 ///     portSpecification: HealthCheckPortSpecification.useFixedPort,
 ///   ),
@@ -374,9 +423,9 @@ class ComputeHealthCheckHealthCheckLogConfig {
 /// final grpcHc = GoogleComputeHealthCheck(
 ///   localName: 'grpc_hc',
 ///   name: TfArg.literal('grpc-hc'),
-///   grpcHealthCheck: const ComputeHealthCheckGrpcHealthCheckConfig(
-///     port: 50051,
-///     grpcServiceName: 'my.Service',
+///   protocol: const ComputeHealthCheckGrpcHealthCheckConfig(
+///     port: TfArg.literal(50051),
+///     grpcServiceName: TfArg.literal('my.Service'),
 ///     portSpecification: HealthCheckPortSpecification.useFixedPort,
 ///   ),
 /// );
@@ -400,12 +449,7 @@ final class GoogleComputeHealthCheck extends Resource {
     TfArg<num>? healthyThreshold,
     TfArg<num>? unhealthyThreshold,
     TfArg<List<String>>? sourceRegions,
-    ComputeHealthCheckHttpHealthCheckConfig? httpHealthCheck,
-    ComputeHealthCheckHttpsHealthCheckConfig? httpsHealthCheck,
-    ComputeHealthCheckHttp2HealthCheckConfig? http2HealthCheck,
-    ComputeHealthCheckTcpHealthCheckConfig? tcpHealthCheck,
-    ComputeHealthCheckSslHealthCheckConfig? sslHealthCheck,
-    ComputeHealthCheckGrpcHealthCheckConfig? grpcHealthCheck,
+    required ComputeHealthCheckProtocol protocol,
     ComputeHealthCheckHealthCheckLogConfig? logConfig,
     TfArg<String>? project,
     super.lifecycle,
@@ -421,21 +465,10 @@ final class GoogleComputeHealthCheck extends Resource {
            if (unhealthyThreshold != null)
              'unhealthy_threshold': unhealthyThreshold,
            if (sourceRegions != null) 'source_regions': sourceRegions,
-           if (httpHealthCheck != null)
-             'http_health_check': TfArg.literal([httpHealthCheck.toArgMap()]),
-           if (httpsHealthCheck != null)
-             'https_health_check': TfArg.literal([httpsHealthCheck.toArgMap()]),
-           if (http2HealthCheck != null)
-             'http2_health_check': TfArg.literal([http2HealthCheck.toArgMap()]),
-           if (tcpHealthCheck != null)
-             'tcp_health_check': TfArg.literal([tcpHealthCheck.toArgMap()]),
-           if (sslHealthCheck != null)
-             'ssl_health_check': TfArg.literal([sslHealthCheck.toArgMap()]),
-           if (grpcHealthCheck != null)
-             'grpc_health_check': TfArg.literal([grpcHealthCheck.toArgMap()]),
            if (logConfig != null)
              'log_config': TfArg.literal([logConfig.toArgMap()]),
            if (project != null) 'project': project,
+           protocol.blockKey: TfArg.literal(protocol.encode()),
          },
        );
 

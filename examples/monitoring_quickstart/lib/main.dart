@@ -75,7 +75,7 @@ final class LatencyAlertStack extends Stack {
           validateSsl: TfArg.literal(true),
           requestMethod: MonitoringUptimeCheckHttpMethod.get,
         ),
-        monitoredResource: MonitoringUptimeCheckConfigMonitoredResource(
+        target: MonitoringUptimeCheckConfigMonitoredResource(
           type: TfArg.literal('uptime_url'),
           labels: {
             'host': 'api.example.com',
