@@ -227,9 +227,39 @@ GooglePrivatecaCertificateAuthority(
 );
 ```
 
+## v0.12.16 — Wave 30
+
+**v0.12.16** adds the CAS issued-certificate factory and exercises CSR-based issuance in `compute_lb_quickstart` after the root CA. **Additive** — no breaking changes vs `0.12.15`.
+
+Catalog after `0.12.16`: **196 curated resource factories + 1 data source** (197 catalog entries). 30 service barrels.
+
+### Wave 30 — Private CA (certificate)
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_privateca_certificate` | `GooglePrivatecaCertificate` | `privateca` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
+
+**Highlights**
+
+- **CSR or inline config** — issue via `pem_csr` or typed [PrivatecaCertificateConfig] (subject + optional `public_key`).
+- **Leaf profile** — `PrivatecaCertificateX509Config.serverTls()` for server-auth end-entity certs.
+- **Apply note** — parent CA pool must be **ENTERPRISE** tier at apply time (provider constraint); the quickstart uses a CSR variable for `terraform validate`.
+
+```dart
+GooglePrivatecaCertificate(
+  localName: 'leaf_cert',
+  name: TfArg.literal('app-leaf-cert'),
+  pool: TfArg.ref(pool.id),
+  location: TfArg.literal('us-central1'),
+  certificateAuthority: TfArg.literal('app-root-ca'),
+  lifetime: TfArg.literal('86400s'),
+  pemCsr: TfArg.variable('leaf_cert_csr_pem'),
+);
+```
+
 ## Full catalog example coverage
 
-As of PR [#127](https://github.com/nozomi-koborinai/terradart/pull/127), **`tool/example_debt.yaml` is empty** — every curated factory and the `GoogleProject` data source appears in at least one quickstart synth output (machine-checked by `dart tool/check_docs_consistency.dart`). Catalog size grows with later Waves (e.g. Wave 29 → **196 entries**).
+As of PR [#127](https://github.com/nozomi-koborinai/terradart/pull/127), **`tool/example_debt.yaml` is empty** — every curated factory and the `GoogleProject` data source appears in at least one quickstart synth output (machine-checked by `dart tool/check_docs_consistency.dart`). Catalog size grows with later Waves (e.g. Wave 30 → **197 entries**).
 
 Final backfill (no new catalog entries):
 
