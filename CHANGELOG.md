@@ -4,6 +4,14 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## [0.12.17] - 2026-06-12
+
+Lockstep release across the workspace. **No breaking changes** vs `0.12.16`.
+
+### Added
+
+- **`terradart_google`** — `Apis.required(barrels: [...])` and `Barrels` enum derive `GoogleProjectService` enablement from catalog barrels; documents optional `time_sleep` propagation pattern.
+
 ## [0.12.16] - 2026-06-12
 
 Lockstep release across the workspace. **No breaking changes** vs `0.12.15`.

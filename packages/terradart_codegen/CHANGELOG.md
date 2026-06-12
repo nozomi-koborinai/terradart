@@ -11,6 +11,10 @@ Maintainer:
 - **Added** — `tool/example_synth_gates.dart` (synth-based example coverage + API-enablement dependency checker, #108).
 - **Added** — label-gated `apply-smoke` GitHub workflow + `tool/apply_smoke.sh` (#109).
 
+## 0.12.17
+
+No codegen changes. Lockstep version bump for `terradart_google` v0.12.17 (`Apis.required` helper).
+
 ## 0.12.16
 
 Wave 30 override: `google_privateca_certificate` (typed `config` custom slot + `PrivatecaCertificateX509Config.serverTls()`).

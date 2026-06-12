@@ -40,3 +40,5 @@ dev_dependencies:
   pub_semver: any
   http: any
   yaml: any
+  terradart_google:
+    path: packages/terradart_google

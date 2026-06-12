@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.17
+
+No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.17 (`Apis.required` helper).
+
 ## 0.12.16
 
 No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.16 (Wave 30 Private CA certificate).
