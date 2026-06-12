@@ -838,7 +838,10 @@ final class ComputeLbStack extends Stack {
       ),
     );
 
-    // ---- Wave 23: IAP accessor on the global HTTPS backend ------------------
+    // ---- Wave 23: IAP on the global HTTPS backend ------------------------
+    //
+    // Member (additive) is the default pattern. Binding (authoritative per
+    // role) is shown for stacks that fully own the IAP accessor list.
 
     add(
       GoogleIapWebBackendServiceIamMember(
@@ -846,6 +849,19 @@ final class ComputeLbStack extends Stack {
         webBackendService: TfArg.ref(lbBackend.nameRef),
         role: TfArg.literal('roles/iap.httpsResourceAccessor'),
         member: TfArg.literal('allAuthenticatedUsers'),
+        dependsOn: [ResourceDependency(lbBackend)],
+      ),
+    );
+
+    add(
+      GoogleIapWebBackendServiceIamBinding(
+        localName: 'lb_iap_binding',
+        webBackendService: TfArg.ref(lbBackend.nameRef),
+        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+        members: TfArg.literal([
+          'group:platform-admins@example.com',
+        ]),
+        dependsOn: [ResourceDependency(lbBackend)],
       ),
     );
   }

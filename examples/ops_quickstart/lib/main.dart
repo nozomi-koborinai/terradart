@@ -5,7 +5,9 @@
 /// - a BigQuery dataset (`audit_logs`) as the sink destination;
 /// - a custom log bucket + filtered log view (with viewer IAM member);
 /// - a project-wide exclusion, a saved query, and a logs-based metric;
-/// - a `GoogleLoggingProjectSink` routing Cloud Audit Logs to BigQuery.
+/// - a `GoogleLoggingProjectSink` routing Cloud Audit Logs to BigQuery;
+/// - optional folder- and organization-scoped sinks (Terraform variables
+///   for `folder` / `org_id` — apply needs real hierarchy permissions).
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -162,13 +164,15 @@ final class AuditPipelineStack extends Stack {
       ),
     );
 
+    final projectSinkDestination = TfArg.literal(
+      'bigquery.googleapis.com/projects/$projectId/datasets/audit_logs',
+    );
+
     add(
       GoogleLoggingProjectSink(
         localName: 'audit_to_bq',
         name: TfArg.literal('audit-to-bq'),
-        destination: TfArg.literal(
-          'bigquery.googleapis.com/projects/$projectId/datasets/audit_logs',
-        ),
+        destination: projectSinkDestination,
         filter: TfArg.literal('logName:"cloudaudit.googleapis.com"'),
         uniqueWriterIdentity: TfArg.literal(true),
         bigqueryOptions: LoggingProjectSinkBigqueryOptions(
@@ -176,7 +180,43 @@ final class AuditPipelineStack extends Stack {
         ),
         dependsOn: [
           ResourceDependency(dataset),
-          ResourceDependency(apiLogging)
+          ResourceDependency(apiLogging),
+        ],
+      ),
+    );
+
+    add(
+      GoogleLoggingFolderSink(
+        localName: 'folder_audit_to_bq',
+        name: TfArg.literal('folder-audit-to-bq'),
+        folder: TfArg.variable('ops_folder_id'),
+        destination: projectSinkDestination,
+        filter: TfArg.literal('logName:"cloudaudit.googleapis.com"'),
+        includeChildren: TfArg.literal(true),
+        bigqueryOptions: LoggingFolderSinkBigqueryOptions(
+          usePartitionedTables: TfArg.literal(true),
+        ),
+        dependsOn: [
+          ResourceDependency(dataset),
+          ResourceDependency(apiLogging),
+        ],
+      ),
+    );
+
+    add(
+      GoogleLoggingOrganizationSink(
+        localName: 'org_audit_to_bq',
+        name: TfArg.literal('org-audit-to-bq'),
+        orgId: TfArg.variable('ops_organization_id'),
+        destination: projectSinkDestination,
+        filter: TfArg.literal('logName:"cloudaudit.googleapis.com"'),
+        includeChildren: TfArg.literal(true),
+        bigqueryOptions: LoggingOrganizationSinkBigqueryOptions(
+          usePartitionedTables: TfArg.literal(true),
+        ),
+        dependsOn: [
+          ResourceDependency(dataset),
+          ResourceDependency(apiLogging),
         ],
       ),
     );

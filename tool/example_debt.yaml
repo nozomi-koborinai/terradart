@@ -6,6 +6,3 @@
 # a factory is neither covered nor listed, and when a listed factory becomes
 # covered (remove the line) — adding a line is a reviewed decision, not a
 # default.
-GoogleIapWebBackendServiceIamBinding: pre-existing gap (Waves 1-9) — backfill candidate; curate *_iam_member only per IAM policy — binding deferred
-GoogleLoggingFolderSink: needs folder-level permissions beyond a quickstart project
-GoogleLoggingOrganizationSink: needs org-level permissions beyond a quickstart project
