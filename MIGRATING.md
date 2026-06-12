@@ -1,5 +1,43 @@
 # Migrating terradart
 
+## Unreleased (after 0.12.11)
+
+**Breaking change** in `terradart_google` — `GoogleComputeFirewall` now enforces
+the GCP `allow` / `deny` mutual exclusion at compile time:
+
+| Before | After |
+|--------|-------|
+| Optional `allow:` / `deny:` list params (both could be omitted or both set) | Required `rulePolicy:` sealed as [ComputeFirewallRulePolicy] — [ComputeFirewallAllowPolicy] or [ComputeFirewallDenyPolicy] |
+
+```dart
+// Before (0.12.11)
+GoogleComputeFirewall(
+  localName: 'allow_ssh',
+  name: TfArg.literal('allow-ssh'),
+  network: TfArg.ref(vpc.selfLink),
+  allow: [
+    ComputeFirewallFirewallAllowRule(
+      protocol: TfArg.literal('tcp'),
+      ports: ['22'],
+    ),
+  ],
+);
+
+// After (unreleased)
+GoogleComputeFirewall(
+  localName: 'allow_ssh',
+  name: TfArg.literal('allow-ssh'),
+  network: TfArg.ref(vpc.selfLink),
+  rulePolicy: ComputeFirewallAllowPolicy(
+    protocol: TfArg.literal('tcp'),
+    ports: ['22'],
+  ),
+);
+```
+
+Deny rules use [ComputeFirewallDenyPolicy] with [ComputeFirewallFirewallDenyRule]
+entries the same way.
+
 ## 0.12.9 → 0.12.10
 
 **Breaking changes** in `terradart_google` — finite schema fields now use typed

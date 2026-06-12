@@ -568,12 +568,10 @@ final class ComputeLbStack extends Stack {
         name: TfArg.literal('app-allow-lb-health'),
         network: TfArg.ref(lbVpc.selfLink),
         direction: TfArg.literal(FirewallDirection.ingress),
-        allow: [
-          ComputeFirewallFirewallAllowRule(
-            protocol: TfArg.literal('tcp'),
-            ports: ['443'],
-          ),
-        ],
+        rulePolicy: ComputeFirewallAllowPolicy(
+          protocol: TfArg.literal('tcp'),
+          ports: ['443'],
+        ),
         sourceRanges: TfArg.literal(['130.211.0.0/22', '35.191.0.0/16']),
       ),
     );

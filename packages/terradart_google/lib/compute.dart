@@ -76,8 +76,11 @@ export 'src/compute/google_compute_disk_iam_member.dart'
     show GoogleComputeDiskIamMember;
 export 'src/compute/google_compute_firewall.dart'
     show
+        ComputeFirewallAllowPolicy,
+        ComputeFirewallDenyPolicy,
         ComputeFirewallFirewallAllowRule,
         ComputeFirewallFirewallDenyRule,
+        ComputeFirewallRulePolicy,
         FirewallDirection,
         ComputeFirewallFirewallLogConfig,
         FirewallLogMetadata,

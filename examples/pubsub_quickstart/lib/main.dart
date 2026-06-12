@@ -10,6 +10,7 @@
 library;
 
 import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/data.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';
 
@@ -25,6 +26,8 @@ final class OrdersStack extends Stack {
             GoogleProvider(project: projectId, region: 'us-central1'),
           ],
         ) {
+    final current = addData(GoogleProject(localName: 'current'));
+
     final ordersSchema = add(
       GooglePubsubSchema(
         localName: 'orders_proto',
@@ -67,6 +70,19 @@ final class OrdersStack extends Stack {
         pushConfig: PubsubSubscriptionPushConfig(
           pushEndpoint: TfArg.literal('https://app.example.com/push'),
         ),
+      ),
+    );
+
+    // GoogleProject data source: resolve project number for managed SA emails.
+    add(
+      GooglePubsubTopicIamMember(
+        localName: 'orders_pubsub_agent',
+        topic: TfArg.ref(topic.nameRef),
+        role: TfArg.literal('roles/pubsub.publisher'),
+        member: TfArg.literal(
+          'serviceAccount:service-${current.number.interpolation}@gcp-sa-pubsub.iam.gserviceaccount.com',
+        ),
+        dependsOn: [ResourceDependency(topic)],
       ),
     );
 

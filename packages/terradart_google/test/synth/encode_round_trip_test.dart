@@ -31,6 +31,7 @@ import 'package:terradart_google/certificate_manager.dart';
 import 'package:terradart_google/cloud_functions.dart';
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/cloud_scheduler.dart';
+import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/firebase_app_hosting.dart';
 import 'package:terradart_google/firestore.dart';
 import 'package:terradart_google/iam.dart';
@@ -137,6 +138,16 @@ final Map<String, Object Function()> _syntheticInstances = {
   // --- UpdatePolicy (2) — cloudfunctions2_function -------------------------
   'AutomaticUpdatePolicy': () => const AutomaticUpdatePolicy(),
   'OnDeployUpdatePolicy': () => const OnDeployUpdatePolicy(),
+
+  // --- ComputeFirewallRulePolicy (2) — compute_firewall ----------------------
+  'ComputeFirewallAllowPolicy': () => ComputeFirewallAllowPolicy(
+        protocol: TfArg.literal('tcp'),
+        ports: ['443'],
+      ),
+  'ComputeFirewallDenyPolicy': () => ComputeFirewallDenyPolicy(
+        protocol: TfArg.literal('tcp'),
+        ports: ['22'],
+      ),
 
   // --- AppHostingBuildSource (2) — firebase_app_hosting_build --------------
   'FirebaseAppHostingBuildAppHostingBuildSourceCodebase': () => const FirebaseAppHostingBuildAppHostingBuildSourceCodebase(),
