@@ -145,13 +145,16 @@ final class ComputeLbStack extends Stack {
     // [GoogleComputeTargetHttpsProxy.certificateMap] to `cmMap.id` at
     // apply time when migrating off Compute SSL certificates.
 
-    final apiCertificateManager = add(
-      GoogleProjectService(
-        localName: 'api_certificate_manager',
-        service: TfArg.literal('certificatemanager.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
-      ),
-    );
+    final apisByEndpoint = <String, GoogleProjectService>{};
+    for (final api in Apis.required(
+      barrels: [Barrels.certificateManager, Barrels.privateca],
+    )) {
+      final added = add(api);
+      apisByEndpoint[added.argMap['service']!.toTfJson() as String] = added;
+    }
+    final apiCertificateManager =
+        apisByEndpoint['certificatemanager.googleapis.com']!;
+    final apiPrivateca = apisByEndpoint['privateca.googleapis.com']!;
 
     final cmDnsAuth = GoogleCertificateManagerDnsAuthorization(
       localName: 'cm_dns_auth',
@@ -162,14 +165,6 @@ final class ComputeLbStack extends Stack {
     add(cmDnsAuth);
 
     // ---- 2c. Wave 28: Private CA pool (CAS backend for issuance) ---------
-
-    final apiPrivateca = add(
-      GoogleProjectService(
-        localName: 'api_privateca',
-        service: TfArg.literal('privateca.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
-      ),
-    );
 
     final cmCaPool = GooglePrivatecaCaPool(
       localName: 'cm_ca_pool',

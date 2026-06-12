@@ -1,7 +1,7 @@
 /// GKE quickstart — Wave 8 + 9 + 10 end-to-end example.
 ///
 /// Provisions:
-/// - API enablement for Compute, GKE, GKE Hub, and GKE Backup;
+/// - API enablement via [Apis.required] (Compute, GKE, GKE Hub, GKE Backup);
 /// - a custom-mode VPC + regional subnet;
 /// - a regional GKE cluster (Backup for GKE agent enabled, default node
 ///   pool removed);
@@ -27,29 +27,17 @@ final class GkeQuickstartStack extends Stack {
     const region = 'asia-northeast1';
     const clusterName = 'main-gke';
 
-    final apiCompute = add(
-      GoogleProjectService(
-        localName: 'api_compute',
-        service: TfArg.literal('compute.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
-      ),
-    );
-
-    final apiContainer = add(
-      GoogleProjectService(
-        localName: 'api_container',
-        service: TfArg.literal('container.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
-      ),
-    );
-
-    final apiGkeHub = add(
-      GoogleProjectService(
-        localName: 'api_gkehub',
-        service: TfArg.literal('gkehub.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
-      ),
-    );
+    final apisByEndpoint = <String, GoogleProjectService>{};
+    for (final api in Apis.required(
+      barrels: [Barrels.compute, Barrels.container, Barrels.gkeBackup],
+    )) {
+      final added = add(api);
+      apisByEndpoint[added.argMap['service']!.toTfJson() as String] = added;
+    }
+    final apiCompute = apisByEndpoint['compute.googleapis.com']!;
+    final apiContainer = apisByEndpoint['container.googleapis.com']!;
+    final apiGkeHub = apisByEndpoint['gkehub.googleapis.com']!;
+    final apiGkeBackup = apisByEndpoint['gkebackup.googleapis.com']!;
 
     final vpc = add(
       GoogleComputeNetwork(
@@ -134,14 +122,6 @@ final class GkeQuickstartStack extends Stack {
     );
 
     // ---- Wave 10: GKE Backup ------------------------------------------------
-
-    final apiGkeBackup = add(
-      GoogleProjectService(
-        localName: 'api_gkebackup',
-        service: TfArg.literal('gkebackup.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
-      ),
-    );
 
     add(
       GoogleGkeBackupBackupChannel(

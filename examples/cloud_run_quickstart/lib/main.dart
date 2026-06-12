@@ -54,18 +54,21 @@ final class ApiServiceStack extends Stack {
       ),
     );
 
-    // ---- Wave 25: Serverless VPC Access connector -------------------------
+    // ---- API enablement + Wave 25 VPC Access connector --------------------
     //
-    // Dedicated /28 on the default VPC; the service revision below routes
-    // private-range egress through this connector.
+    // [Apis.required] covers Cloud Run + VPC Access (and compute for the
+    // default VPC). Dedicated /28 on the default VPC; the service revision
+    // below routes private-range egress through this connector.
 
-    final apiVpcAccess = add(
-      GoogleProjectService(
-        localName: 'api_vpcaccess',
-        service: TfArg.literal('vpcaccess.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
-      ),
-    );
+    final apisByEndpoint = <String, GoogleProjectService>{};
+    for (final api in Apis.required(
+      barrels: [Barrels.cloudRun, Barrels.serviceNetworking],
+    )) {
+      final added = add(api);
+      apisByEndpoint[added.argMap['service']!.toTfJson() as String] = added;
+    }
+    final apiRun = apisByEndpoint['run.googleapis.com']!;
+    final apiVpcAccess = apisByEndpoint['vpcaccess.googleapis.com']!;
 
     final runConnector = GoogleVpcAccessConnector(
       localName: 'run_vpc',
@@ -120,6 +123,10 @@ final class ApiServiceStack extends Stack {
         maxInstanceCount: TfArg.literal(4),
         scalingMode: TfArg.literal(ScalingMode.automatic),
       ),
+      dependsOn: [
+        ResourceDependency(apiRun),
+        ResourceDependency(runConnector),
+      ],
     );
     add(apiService);
 
@@ -134,6 +141,7 @@ final class ApiServiceStack extends Stack {
             {'image': 'gcr.io/cloudrun/hello'},
           ],
         ),
+        dependsOn: [ResourceDependency(apiRun)],
       ),
     );
 
@@ -168,6 +176,7 @@ final class ApiServiceStack extends Stack {
         parallelism: TfArg.literal(1),
         taskCount: TfArg.literal(1),
       ),
+      dependsOn: [ResourceDependency(apiRun)],
     );
     add(nightlyJob);
 
