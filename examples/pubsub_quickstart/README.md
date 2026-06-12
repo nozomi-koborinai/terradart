@@ -1,6 +1,6 @@
 # Pub/Sub quickstart
 
-The smallest end-to-end terradart example. Provisions a `google_pubsub_topic`, a `google_pubsub_subscription` (push mode), and a `google_pubsub_topic_iam_member` — and exports the topic name as a typed Dart constant for a subscriber to import.
+The smallest end-to-end terradart example. Provisions a `google_pubsub_topic`, a `google_pubsub_subscription` (push mode), a `data.google_project` lookup (project number for the Pub/Sub service agent), and a `google_pubsub_topic_iam_member` — and exports the topic name as a typed Dart constant for a subscriber to import.
 
 ## Prerequisites
 

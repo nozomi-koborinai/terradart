@@ -1,6 +1,6 @@
 ---
-title: Waves 23–26
-description: Curated google_* factories shipped in Waves 23–26 (v0.12.10–0.12.11) with example stack pointers.
+title: Waves 23–27
+description: Curated google_* factories shipped in Waves 23–27 (v0.12.10–0.12.13) with example stack pointers.
 ---
 
 ## v0.12.10 — Waves 23–24
@@ -119,7 +119,46 @@ final cert = GoogleCertificateManagerCertificate(
 );
 ```
 
-Intentionally **not** curated in Wave 26: `google_certificate_manager_trust_config`, `google_certificate_manager_certificate_issuance_config`.
+## v0.12.12 — `exactly_one_of` sealed enforcement
+
+**v0.12.12** is a **breaking** release for seven existing factories (firewall, health checks, uptime check, BigQuery job/connection, Cloud Build trigger). No new catalog entries — compile-time sealed virtual slots replace optional per-block params. See [Migrating](/docs/migrating/) (`0.12.11 → 0.12.12`).
+
+## v0.12.13 — Wave 27
+
+**v0.12.13** adds two Certificate Manager factories and backfills the `GoogleProject` data source in `pubsub_quickstart`. **Additive** — no breaking changes vs `0.12.12`.
+
+Catalog after `0.12.13`: **193 curated resource factories + 1 data source** (194 catalog entries).
+
+### Wave 27 — Certificate Manager (trust + issuance)
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_certificate_manager_trust_config` | `GoogleCertificateManagerTrustConfig` | `certificate_manager` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
+| `google_certificate_manager_certificate_issuance_config` | `GoogleCertificateManagerCertificateIssuanceConfig` | `certificate_manager` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
+
+**Highlights**
+
+- **Trust config** — PEM trust anchors / intermediate CAs and optional allowlists for mTLS and custom trust stores on HTTPS proxies.
+- **Issuance config** — binds managed certificate provisioning to a Certificate Authority Service `ca_pool` with lifetime and rotation policy.
+
+```dart
+import 'package:terradart_google/certificate_manager.dart';
+
+final trust = GoogleCertificateManagerTrustConfig(
+  localName: 'app_trust',
+  name: TfArg.literal('app-trust'),
+  location: TfArg.literal('global'),
+  trustStores: [
+    CertificateManagerTrustConfigTrustStore(
+      trustAnchors: [
+        CertificateManagerTrustConfigTrustAnchor(
+          pemCertificate: TfArg.variable('cm_trust_anchor_pem'),
+        ),
+      ],
+    ),
+  ],
+);
+```
 
 ## Example coverage
 
@@ -135,6 +174,8 @@ Quickstarts extended for these waves:
 | `0.12.10` | [bigquery_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigquery_quickstart) | datapolicy IAM member |
 | `0.12.11` | [cloud_run_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloud_run_quickstart) | VPC Access connector + `template.vpcAccess` |
 | `0.12.11` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) | Certificate Manager chain (parallel to Compute SSL cert) |
+| `0.12.13` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) | trust config + issuance config |
+| `0.12.13` | [pubsub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) | `GoogleProject` data source |
 
 CI runs `terraform validate` on each quickstart's synth output — see [Status — Examples matrix](/docs/status/#beta-readiness-checklist).
 

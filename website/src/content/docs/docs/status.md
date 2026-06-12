@@ -40,7 +40,7 @@ We will label the project **beta** starting with **v0.13.0** when every **requir
 - [x] **`tool/smoke_quickstart.sh`** runs in CI and passes (`pubsub_quickstart`: pub get → synth → analyze including export consumer stub).
 - [x] **Examples matrix** on `main` stays green (per-example synth + `terraform validate` on `tf-out/`).
 - [x] **Boundary demo**: [pubsub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) documents `addExport` / generated `.app.dart` and includes a subscriber stub that `dart analyze` accepts.
-- [x] **Meta docs aligned** with the current minor: CONTRIBUTING, SECURITY, issue templates, package READMEs, and root README agree on pre-alpha/beta wording, `^0.N.x` pins, and **191 curated resource factories + 1 data source** (192 catalog entries).
+- [x] **Meta docs aligned** with the current minor: CONTRIBUTING, SECURITY, issue templates, package READMEs, and root README agree on pre-alpha/beta wording, `^0.N.x` pins, and **193 curated resource factories + 1 data source** (194 catalog entries).
 - [x] **Beta change policy** published on this page (see [Beta change policy](#beta-change-policy-applies-from-v0130)).
 
 ### Optional (does not block beta)

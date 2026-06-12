@@ -1,0 +1,99 @@
+outputDir: certificate_manager
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+dartTypeOverrides:
+  key_algorithm: CertificateManagerCertificateIssuanceConfigKeyAlgorithm
+
+paramOrder:
+  - name
+  - certificate_authority_config
+  - key_algorithm
+  - lifetime
+  - rotation_window_percentage
+  - description
+  - location
+  - labels
+
+curatedDoc: |-
+  /// Certificate issuance policy for Google-managed Certificate Manager certs.
+  ///
+  /// Binds a [GoogleCertificateManagerCertificate] managed provisioning path to
+  /// a Certificate Authority Service pool and defines key algorithm, lifetime,
+  /// and rotation window.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [name]: issuance config ID.
+  /// - [certificateAuthorityConfig]: CA pool reference (CAS `ca_pool` resource).
+  /// - [keyAlgorithm]: `RSA_2048` or `ECDSA_P256`.
+  /// - [lifetime]: certificate lifetime (e.g. `86400s`).
+  /// - [rotationWindowPercentage]: percent of lifetime before rotation (0–100).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleCertificateManagerCertificateIssuanceConfig(
+  ///   localName: 'app_issuance',
+  ///   name: TfArg.literal('app-issuance'),
+  ///   certificateAuthorityConfig:
+  ///       CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(
+  ///     certificateAuthorityServiceConfig:
+  ///         CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig(
+  ///       caPool: TfArg.literal(
+  ///         'projects/my-project/locations/us-central1/caPools/my-pool',
+  ///       ),
+  ///     ),
+  ///   ),
+  ///   keyAlgorithm: TfArg.literal(
+  ///     CertificateManagerCertificateIssuanceConfigKeyAlgorithm.rsa2048,
+  ///   ),
+  ///   lifetime: TfArg.literal('2592000s'),
+  ///   rotationWindowPercentage: TfArg.literal(50),
+  /// );
+  /// ```
+
+prelude: |
+  /// `key_algorithm` — private key algorithm for issued certificates.
+  enum CertificateManagerCertificateIssuanceConfigKeyAlgorithm
+      implements TerraformEnum {
+    rsa2048('RSA_2048'),
+    ecdsaP256('ECDSA_P256');
+
+    const CertificateManagerCertificateIssuanceConfigKeyAlgorithm(
+      this.terraformValue,
+    );
+    @override
+    final String terraformValue;
+  }
+
+  /// CAS pool reference inside [CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig].
+  final class CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig {
+    const CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig({
+      required this.caPool,
+    });
+
+    final TfArg<String> caPool;
+
+    Map<String, Object?> encode() => {'ca_pool': caPool};
+  }
+
+  /// Certificate authority backend for [GoogleCertificateManagerCertificateIssuanceConfig].
+  final class CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig {
+    const CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig({
+      required this.certificateAuthorityServiceConfig,
+    });
+
+    final CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig
+        certificateAuthorityServiceConfig;
+
+    Map<String, Object?> encode() => {
+      'certificate_authority_service_config':
+          certificateAuthorityServiceConfig.encode(),
+    };
+  }
+
+customSlots:
+  certificate_authority_config:
+    paramDeclaration: 'required CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig certificateAuthorityConfig'
+    argMapEntry: "'certificate_authority_config': TfArg.literal([certificateAuthorityConfig.encode()]),"

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.12.13 - 2026-06-12
+
+### Added
+
+- Wave 27 Certificate Manager (2): trust config (`CertificateManagerTrustConfigTrustStore` helpers), certificate issuance config (`CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig` for CAS `ca_pool` references).
+- Extended `compute_lb_quickstart` and `pubsub_quickstart` (`GoogleProject` data source).
+
+Catalog: **193 curated resource factories + 1 data source** (194 entries).
+
 ## 0.12.12 - 2026-06-12
 
 ### Breaking

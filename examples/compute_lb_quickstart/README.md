@@ -46,10 +46,11 @@ Thirteen Wave 6 resources are wired together in `lib/main.dart`:
 7. `google_compute_backend_service`           -- global, `EXTERNAL_MANAGED`
 8. `google_compute_url_map`                   -- routes all traffic to the backend
 9. `google_compute_managed_ssl_certificate`   -- Google-managed TLS cert (classic Compute path)
-9b. Wave 26 Certificate Manager chain — `google_certificate_manager_dns_authorization`,
-    `google_certificate_manager_certificate` (managed), `google_certificate_manager_certificate_map`,
-    `google_certificate_manager_certificate_map_entry` (parallel to step 9; wire
-    `certificate_map` on the HTTPS proxy to migrate off Compute SSL certs)
+9b. Wave 26–27 Certificate Manager — DNS authorization, managed certificate,
+    certificate map + entry (parallel to step 9; wire `certificate_map` on the
+    HTTPS proxy to migrate off Compute SSL certs), plus Wave 27 trust config and
+    issuance policy (`google_certificate_manager_trust_config`,
+    `google_certificate_manager_certificate_issuance_config`)
 10. `google_compute_ssl_policy`               -- TLS 1.2 floor + `MODERN` profile
 11. `google_compute_target_https_proxy`       -- terminates HTTPS
 12. `google_compute_global_address`           -- front-end VIP
