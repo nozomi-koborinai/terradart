@@ -1,5 +1,30 @@
 # Changelog
 
+## 0.12.12 - 2026-06-12
+
+### Breaking
+
+Seven existing factories now use **required sealed virtual slots** instead of
+optional per-block constructor params, enforcing GCP `exactly_one_of` at compile
+time:
+
+| Factory | New required param | Sealed type |
+| --- | --- | --- |
+| `GoogleComputeFirewall` | `rulePolicy` | `ComputeFirewallRulePolicy` |
+| `GoogleComputeHealthCheck` | `protocol` | `ComputeHealthCheckProtocol` |
+| `GoogleComputeRegionHealthCheck` | `protocol` | `ComputeRegionHealthCheckProtocol` |
+| `GoogleMonitoringUptimeCheckConfig` | `target` | `MonitoringUptimeCheckConfigTarget` |
+| `GoogleBigqueryJob` | `jobConfiguration` | `BigqueryJobConfiguration` |
+| `GoogleBigqueryConnection` | `backend` | `BigqueryConnectionBackend` |
+| `GoogleCloudbuildTrigger` | `buildSpec` | `CloudbuildTriggerBuildSpec` |
+
+Migration guide: [MIGRATING.md](../../MIGRATING.md) (`0.12.11 → 0.12.12`).
+
+Updated quickstarts: `compute_lb_quickstart`, `monitoring_quickstart`,
+`bigquery_quickstart`, `cloud_build_quickstart`.
+
+Catalog unchanged: **191 curated resource factories + 1 data source** (192 entries).
+
 ## 0.12.11 - 2026-06-09
 
 ### Added

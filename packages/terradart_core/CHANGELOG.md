@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.12
+
+No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.12 (sealed `exactly_one_of` enforcement on seven factories; see [MIGRATING.md](../../MIGRATING.md)).
+
 ## 0.12.11
 
 No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.11 (Wave 25 VPC Access connector; Wave 26 Certificate Manager; Artifact Registry remote docker/maven/npm enums).

@@ -1,11 +1,41 @@
 ---
 title: Migrating
-description: Upgrade notes for terradart_google — enum and nested-helper breaking changes in v0.12.10.
+description: Upgrade notes for terradart_google — breaking changes in v0.12.10 and v0.12.12.
 ---
 
-Read this page before bumping **`terradart_google` from `0.12.9` to `0.12.10`** (or any `^0.12.10` caret that resolves to `0.12.10+`). Patch releases within `0.12.10` are additive only; the breaking surface below landed in **`0.12.10`**.
+Read this page before bumping **`terradart_google`** across minor lines or when a release note calls out breaking API changes.
 
-The canonical, full migration history lives in the repo: [MIGRATING.md on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md). This page mirrors the **`0.12.9 → 0.12.10`** section for terradart.dev readers.
+The canonical, full migration history lives in the repo: [MIGRATING.md on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md).
+
+## 0.12.11 → 0.12.12 (sealed exactly-one slots)
+
+**`0.12.12`** enforces GCP `exactly_one_of` groups at compile time on seven existing factories. Optional per-block params (`allow` / `deny`, `httpsHealthCheck`, `query`, `filename`, …) become a **single required sealed virtual slot** (`rulePolicy`, `protocol`, `jobConfiguration`, `buildSpec`, …).
+
+Bump lockstep:
+
+```yaml
+dependencies:
+  terradart_core: ^0.12.12
+  terradart_google: ^0.12.12
+```
+
+| Factory | Before | After |
+| --- | --- | --- |
+| `GoogleComputeFirewall` | `allow:` / `deny:` | `rulePolicy:` |
+| `GoogleComputeHealthCheck` | `httpsHealthCheck:` / … | `protocol:` |
+| `GoogleComputeRegionHealthCheck` | per-protocol optional blocks | `protocol:` |
+| `GoogleMonitoringUptimeCheckConfig` | `monitoredResource:` / … | `target:` |
+| `GoogleBigqueryJob` | `query:` / `load:` / … | `jobConfiguration:` |
+| `GoogleBigqueryConnection` | `cloudSql:` / `aws:` / … | `backend:` |
+| `GoogleCloudbuildTrigger` | `filename:` / `build:` / … | `buildSpec:` |
+
+Full tables and before/after examples: [MIGRATING.md — 0.12.11 → 0.12.12](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md#01211--01212).
+
+---
+
+## 0.12.9 → 0.12.10 (typed enums)
+
+Read this section before bumping **`terradart_google` from `0.12.9` to `0.12.10`** (or any `^0.12.10` caret that resolves to `0.12.10+`). Patch releases within `0.12.10` are additive only; the breaking surface below landed in **`0.12.10`**.
 
 ## Lockstep bumps
 

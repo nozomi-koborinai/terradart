@@ -1,6 +1,6 @@
 # Migrating terradart
 
-## Unreleased (after 0.12.11)
+## 0.12.11 → 0.12.12
 
 **Breaking changes** in `terradart_google` — several curated factories now enforce
 GCP / Terraform `exactly_one_of` constraints at compile time via sealed virtual

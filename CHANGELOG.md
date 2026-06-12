@@ -4,6 +4,22 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## [0.12.12] - 2026-06-12
+
+Lockstep release across the workspace.
+
+### Breaking
+
+- **`terradart_google`** — Seven curated factories now enforce GCP / Terraform
+  `exactly_one_of` groups at compile time via sealed virtual slots (firewall
+  `rulePolicy`, health-check `protocol`, uptime-check `target`, BigQuery job
+  `jobConfiguration`, BigQuery connection `backend`, Cloud Build trigger
+  `buildSpec`). See [MIGRATING.md](MIGRATING.md) (`0.12.11 → 0.12.12`).
+
+### Changed (maintainer)
+
+- Cleared `tool/exactly_one_lint_debt.yaml` (#107).
+
 ## [0.12.11] - 2026-06-09
 
 Lockstep release across the workspace. **No breaking changes** vs `0.12.10`.
