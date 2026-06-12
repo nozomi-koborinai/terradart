@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.14
+
+No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.14 (Wave 28 Private CA pool).
+
 ## 0.12.13
 
 No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.13 (Wave 27 Certificate Manager trust + issuance; `GoogleProject` example backfill).

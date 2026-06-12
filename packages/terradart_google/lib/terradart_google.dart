@@ -35,6 +35,7 @@ export 'iam.dart';
 export 'kms.dart';
 export 'logging.dart';
 export 'monitoring.dart';
+export 'privateca.dart';
 export 'project.dart';
 export 'provider.dart';
 export 'pubsub.dart';

@@ -1,6 +1,6 @@
 ---
-title: Waves 23–27
-description: Curated google_* factories shipped in Waves 23–27 (v0.12.10–0.12.13) with example stack pointers.
+title: Waves 23–28
+description: Curated google_* factories shipped in Waves 23–28 (v0.12.10–0.12.14) with example stack pointers.
 ---
 
 ## v0.12.10 — Waves 23–24
@@ -160,6 +160,34 @@ final trust = GoogleCertificateManagerTrustConfig(
 );
 ```
 
+## v0.12.14 — Wave 28
+
+**v0.12.14** adds the CAS CA pool factory and wires it into the Certificate Manager issuance path in `compute_lb_quickstart`. **Additive** — no breaking changes vs `0.12.13`.
+
+Catalog after `0.12.14`: **194 curated resource factories + 1 data source** (195 catalog entries). 30 service barrels.
+
+### Wave 28 — Private CA (CAS pool)
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_privateca_ca_pool` | `GooglePrivatecaCaPool` | `privateca` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
+
+**Highlights**
+
+- **CA pool** — Certificate Authority Service container referenced by [GoogleCertificateManagerCertificateIssuanceConfig] via `caPool: TfArg.ref(pool.id)`.
+- **`PrivatecaCaPoolTier`** — `ENTERPRISE` or `DEVOPS`.
+
+```dart
+import 'package:terradart_google/privateca.dart';
+
+final pool = GooglePrivatecaCaPool(
+  localName: 'app_pool',
+  name: TfArg.literal('app-pool'),
+  location: TfArg.literal('us-central1'),
+  tier: TfArg.literal(PrivatecaCaPoolTier.devops),
+);
+```
+
 ## Example coverage
 
 Quickstarts extended for these waves:
@@ -176,6 +204,7 @@ Quickstarts extended for these waves:
 | `0.12.11` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) | Certificate Manager chain (parallel to Compute SSL cert) |
 | `0.12.13` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) | trust config + issuance config |
 | `0.12.13` | [pubsub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) | `GoogleProject` data source |
+| `0.12.14` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) | Private CA pool → issuance config ref |
 
 CI runs `terraform validate` on each quickstart's synth output — see [Status — Examples matrix](/docs/status/#beta-readiness-checklist).
 
