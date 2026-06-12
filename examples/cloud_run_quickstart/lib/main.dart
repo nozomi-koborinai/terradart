@@ -25,6 +25,9 @@
 ///
 /// Wave 25 adds a Serverless VPC Access connector and pins the service
 /// revision to it via `template.vpcAccess` (`VpcAccessEgress.privateRangesOnly`).
+///
+/// Wave 32 adds Memorystore Redis and [ApisEnablement] propagation
+/// ([TimeSleep] after API enablement).
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -32,6 +35,7 @@ import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/redis.dart';
 import 'package:terradart_google/secret_manager.dart';
 import 'package:terradart_google/service_networking.dart';
 
@@ -40,6 +44,7 @@ final class ApiServiceStack extends Stack {
       : super(
           providers: [
             GoogleProvider(project: projectId, region: 'asia-northeast1'),
+            const TimeProvider(),
           ],
         ) {
     add(
@@ -54,21 +59,15 @@ final class ApiServiceStack extends Stack {
       ),
     );
 
-    // ---- API enablement + Wave 25 VPC Access connector --------------------
+    // ---- API enablement + Wave 25 VPC Access + Wave 32 Redis --------------
     //
-    // [Apis.required] covers Cloud Run + VPC Access (and compute for the
-    // default VPC). Dedicated /28 on the default VPC; the service revision
-    // below routes private-range egress through this connector.
+    // [ApisEnablement] enables Run, VPC Access, Redis APIs and waits 60s for
+    // propagation before dependents apply.
 
-    final apisByEndpoint = <String, GoogleProjectService>{};
-    for (final api in Apis.required(
-      barrels: [Barrels.cloudRun, Barrels.serviceNetworking],
-    )) {
-      final added = add(api);
-      apisByEndpoint[added.argMap['service']!.toTfJson() as String] = added;
-    }
-    final apiRun = apisByEndpoint['run.googleapis.com']!;
-    final apiVpcAccess = apisByEndpoint['vpcaccess.googleapis.com']!;
+    final apiDeps = ApisEnablement.enable(
+      barrels: [Barrels.cloudRun, Barrels.serviceNetworking, Barrels.redis],
+      propagationDelay: const Duration(seconds: 60),
+    ).registerOn(this);
 
     final runConnector = GoogleVpcAccessConnector(
       localName: 'run_vpc',
@@ -76,9 +75,21 @@ final class ApiServiceStack extends Stack {
       region: TfArg.literal('asia-northeast1'),
       ipCidrRange: TfArg.literal('10.8.0.0/28'),
       network: TfArg.literal('default'),
-      dependsOn: [ResourceDependency(apiVpcAccess)],
+      dependsOn: apiDeps,
     );
     add(runConnector);
+
+    add(
+      GoogleRedisInstance(
+        localName: 'api_cache',
+        name: TfArg.literal('api-cache'),
+        memorySizeGb: TfArg.literal(1),
+        region: TfArg.literal('asia-northeast1'),
+        tier: TfArg.literal(RedisInstanceTier.basic),
+        authorizedNetwork: TfArg.literal('default'),
+        dependsOn: apiDeps,
+      ),
+    );
 
     final apiService = GoogleCloudRunV2Service(
       localName: 'api',
@@ -124,7 +135,7 @@ final class ApiServiceStack extends Stack {
         scalingMode: TfArg.literal(ScalingMode.automatic),
       ),
       dependsOn: [
-        ResourceDependency(apiRun),
+        ...apiDeps,
         ResourceDependency(runConnector),
       ],
     );
@@ -141,7 +152,7 @@ final class ApiServiceStack extends Stack {
             {'image': 'gcr.io/cloudrun/hello'},
           ],
         ),
-        dependsOn: [ResourceDependency(apiRun)],
+        dependsOn: apiDeps,
       ),
     );
 
@@ -176,7 +187,7 @@ final class ApiServiceStack extends Stack {
         parallelism: TfArg.literal(1),
         taskCount: TfArg.literal(1),
       ),
-      dependsOn: [ResourceDependency(apiRun)],
+      dependsOn: apiDeps,
     );
     add(nightlyJob);
 

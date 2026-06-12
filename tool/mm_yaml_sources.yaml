@@ -463,3 +463,5 @@ files:
     upstream: null  # handwritten in terraform-provider-google; no MM YAML
   google_privateca_ca_pool_iam_member:
     upstream: null  # handwritten in terraform-provider-google; no MM YAML
+  google_redis_instance:
+    upstream: null  # handwritten in terraform-provider-google; no MM YAML

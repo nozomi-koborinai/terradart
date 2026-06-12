@@ -39,6 +39,7 @@ export 'privateca.dart';
 export 'project.dart';
 export 'provider.dart';
 export 'pubsub.dart';
+export 'redis.dart';
 export 'secret_manager.dart';
 export 'service_networking.dart';
 export 'storage.dart';

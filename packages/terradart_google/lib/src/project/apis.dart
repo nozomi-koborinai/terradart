@@ -32,29 +32,9 @@ abstract final class Apis {
   /// [GoogleProject] data source do not contribute APIs. The `project` barrel
   /// only contains [GoogleProjectService] itself.
   ///
-  /// **API propagation lag:** GCP may report a `google_project_service` as
-  /// enabled before the backend accepts requests (often 30–60 seconds). When
-  /// the first `terraform apply` fails with `SERVICE_DISABLED` on a dependent
-  /// resource, re-apply after a short wait or insert a `time_sleep` resource
-  /// from the HashiCorp `time` provider between enablement and dependents:
-  ///
-  /// ```dart
-  /// // Pseudocode — requires `hashicorp/time` on the stack provider list and
-  /// // a TimeSleep wrapper (not yet curated in terradart_google).
-  /// final apis = Apis.required(barrels: [Barrels.compute]);
-  /// for (final api in apis) {
-  ///   add(api);
-  /// }
-  /// final propagation = TimeSleep(
-  ///   localName: 'api_propagation',
-  ///   dependsOn: apis.map(ResourceDependency.new).toList(),
-  ///   createDuration: TfArg.literal(
-  ///     const Duration(seconds: 60).toTfDurationString(),
-  ///   ),
-  /// );
-  /// add(propagation);
-  /// // downstream factories: dependsOn: [ResourceDependency(propagation), ...]
-  /// ```
+  /// **API propagation lag:** prefer [ApisEnablement.enable] +
+  /// [ApiEnablement.registerOn] with `const TimeProvider()` on the stack —
+  /// inserts [TimeSleep] after the enablement resources automatically.
   static List<GoogleProjectService> required({
     required Iterable<Barrels> barrels,
     TfArg<bool>? disableOnDestroy,

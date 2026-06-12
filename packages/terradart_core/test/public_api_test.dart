@@ -40,8 +40,10 @@ void main() {
       TfJsonEncoder,
       SynthResult,
       DuplicateResourceError,
+      TimeProvider,
+      TimeSleep,
     ];
-    expect(symbols, hasLength(34));
+    expect(symbols, hasLength(36));
   });
 
   test('TerraformDurationExt is accessible (extension method)', () {

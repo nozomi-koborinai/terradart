@@ -43,12 +43,20 @@ void main() {
       final apis = Apis.required(barrels: [Barrels.iamApi]);
       expect(apis, isEmpty);
     });
+
+    test('redis barrel includes redis.googleapis.com', () {
+      final apis = Apis.required(barrels: [Barrels.redis]);
+      expect(apis, hasLength(1));
+      expect(apis.single.argMap['service']!.toTfJson(), 'redis.googleapis.com');
+      expect(apis.single.localName, 'api_redis');
+    });
   });
 
   group('Barrels', () {
     test('catalogName matches terradart outputDir strings', () {
       expect(Barrels.cloudRun.catalogName, 'cloud_run');
       expect(Barrels.serviceNetworking.catalogName, 'service_networking');
+      expect(Barrels.redis.catalogName, 'redis');
     });
   });
 }

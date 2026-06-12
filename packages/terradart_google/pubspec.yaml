@@ -1,6 +1,6 @@
 name: terradart_google
 description: Curated factory wrappers for 118 Google Cloud resources (Compute, BigQuery, Cloud Run, Cloud SQL, Pub/Sub, Monitoring, ...) for Dart-first Terraform stacks.
-version: 0.12.18
+version: 0.12.19
 homepage: https://github.com/nozomi-koborinai/terradart
 repository: https://github.com/nozomi-koborinai/terradart
 issue_tracker: https://github.com/nozomi-koborinai/terradart/issues
@@ -22,11 +22,11 @@ false_secrets:
 resolution: workspace
 
 dependencies:
-  terradart_core: ^0.12.18
+  terradart_core: ^0.12.19
   meta: ^1.15.0
 
 dev_dependencies:
-  terradart_codegen: ^0.12.18
+  terradart_codegen: ^0.12.19
   path: ^1.9.0
   lints: ^6.0.0
   test: ^1.25.6
