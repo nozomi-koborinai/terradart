@@ -10,13 +10,10 @@ Maintainer:
 - **Changed** — `exactly-one-optional-fanout` now uses canonical MM sibling groups; pre-existing violations are listed in `tool/exactly_one_lint_debt.yaml` (#107).
 - **Added** — `tool/example_synth_gates.dart` (synth-based example coverage + API-enablement dependency checker, #108).
 - **Added** — label-gated `apply-smoke` GitHub workflow + `tool/apply_smoke.sh` (#109).
-
-## Unreleased
-
-Maintainer:
-
+- **Added** — `lint-override` dead-customSlots rules `custom-slot-missing-param-order`, `custom-slot-not-in-param-order`, `custom-slot-not-in-arg-map-order`: a customSlot the emitter would silently skip now fails the gate (caught the Wave 32 `google_redis_instance` regression and two latent `url_map` slots that `wrap --check` could not see).
 - **Added** — `tool/append_curation_backlog.dart` for idempotent schema-bump backlog updates (#35).
 - **Fixed** — schema-bump workflow no longer appends invalid YAML outside `entries:`; excludes `.schema-bump/` from commits.
+- **Fixed** — `tool/mm_yaml_sources.yaml` registers `google_redis_instance` against its real Magic Modules upstream (`mmv1/products/redis/Instance.yaml`; it was mislabeled "handwritten"), re-activating MM enum-drift checks for the frozen redis prelude enums.
 
 ## 0.12.19
 

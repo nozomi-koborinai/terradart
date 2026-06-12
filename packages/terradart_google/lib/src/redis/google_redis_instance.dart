@@ -26,6 +26,29 @@ enum RedisInstanceConnectMode implements TerraformEnum {
   final String terraformValue;
 }
 
+/// `transit_encryption_mode` — in-transit TLS mode (provider default
+/// `DISABLED`). When `SERVER_AUTHENTICATION` is set, clients verify the
+/// server against [GoogleRedisInstance.serverCaCerts].
+enum RedisInstanceTransitEncryptionMode implements TerraformEnum {
+  serverAuthentication('SERVER_AUTHENTICATION'),
+  disabled('DISABLED');
+
+  const RedisInstanceTransitEncryptionMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `read_replicas_mode` — read replica support (`STANDARD_HA` tier only;
+/// pair with `replica_count`).
+enum RedisInstanceReadReplicasMode implements TerraformEnum {
+  readReplicasDisabled('READ_REPLICAS_DISABLED'),
+  readReplicasEnabled('READ_REPLICAS_ENABLED');
+
+  const RedisInstanceReadReplicasMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// `weekly_maintenance_window.day` on `google_redis_instance`.
 enum RedisInstanceWeeklyMaintenanceDay implements TerraformEnum {
   dayOfWeekUnspecified('DAY_OF_WEEK_UNSPECIFIED'),
@@ -42,6 +65,16 @@ enum RedisInstanceWeeklyMaintenanceDay implements TerraformEnum {
   final String terraformValue;
 }
 
+/// `persistence_config.persistence_mode` on `google_redis_instance`.
+enum RedisInstancePersistenceMode implements TerraformEnum {
+  disabled('DISABLED'),
+  rdb('RDB');
+
+  const RedisInstancePersistenceMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// `persistence_config.rdb_snapshot_period` on `google_redis_instance`.
 enum RedisInstanceRdbSnapshotPeriod implements TerraformEnum {
   oneHour('ONE_HOUR'),
@@ -54,13 +87,50 @@ enum RedisInstanceRdbSnapshotPeriod implements TerraformEnum {
   final String terraformValue;
 }
 
-/// `weekly_maintenance_window` nested block (max=1).
+/// `weekly_maintenance_window.start_time` nested block (required, max=1) —
+/// UTC time of day the maintenance window opens (`google.type.TimeOfDay`;
+/// unset fields default to 0).
+class RedisInstanceMaintenanceStartTime {
+  const RedisInstanceMaintenanceStartTime({
+    this.hours,
+    this.minutes,
+    this.seconds,
+    this.nanos,
+  });
+
+  /// Hour of day in UTC (0-23).
+  final TfArg<num>? hours;
+
+  /// Minutes of hour (0-59).
+  final TfArg<num>? minutes;
+
+  final TfArg<num>? seconds;
+  final TfArg<num>? nanos;
+
+  Map<String, Object?> toArgMap() => {
+    if (hours != null) 'hours': hours!.toTfJson(),
+    if (minutes != null) 'minutes': minutes!.toTfJson(),
+    if (seconds != null) 'seconds': seconds!.toTfJson(),
+    if (nanos != null) 'nanos': nanos!.toTfJson(),
+  };
+}
+
+/// `weekly_maintenance_window` nested block — the weekly window
+/// maintenance updates may start in. The provider requires [startTime]
+/// (`start_time` carries `min_items = 1`).
 class RedisInstanceWeeklyMaintenanceWindow {
-  const RedisInstanceWeeklyMaintenanceWindow({required this.day});
+  const RedisInstanceWeeklyMaintenanceWindow({
+    required this.day,
+    required this.startTime,
+  });
 
   final TfArg<RedisInstanceWeeklyMaintenanceDay> day;
+  final RedisInstanceMaintenanceStartTime startTime;
 
-  Map<String, Object?> toArgMap() => {'day': day.toTfJson()};
+  Map<String, Object?> toArgMap() => {
+    'day': day.toTfJson(),
+    'start_time': [startTime.toArgMap()],
+  };
 }
 
 /// `maintenance_policy` nested block (max=1).
@@ -75,18 +145,37 @@ class RedisInstanceMaintenancePolicy {
 }
 
 /// `persistence_config` nested block (max=1).
+///
+/// Set [persistenceMode] to [RedisInstancePersistenceMode.rdb] to turn
+/// RDB snapshots on; [rdbSnapshotPeriod] then controls the cadence.
 class RedisInstancePersistenceConfig {
-  const RedisInstancePersistenceConfig({this.rdbSnapshotPeriod});
+  const RedisInstancePersistenceConfig({
+    this.persistenceMode,
+    this.rdbSnapshotPeriod,
+    this.rdbSnapshotStartTime,
+  });
+
+  final TfArg<RedisInstancePersistenceMode>? persistenceMode;
 
   final TfArg<RedisInstanceRdbSnapshotPeriod>? rdbSnapshotPeriod;
 
+  /// RFC3339 timestamp the first snapshot was/will be attempted at, and
+  /// to which future snapshots align.
+  final TfArg<String>? rdbSnapshotStartTime;
+
   Map<String, Object?> toArgMap() => {
+    if (persistenceMode != null)
+      'persistence_mode': persistenceMode!.toTfJson(),
     if (rdbSnapshotPeriod != null)
       'rdb_snapshot_period': rdbSnapshotPeriod!.toTfJson(),
+    if (rdbSnapshotStartTime != null)
+      'rdb_snapshot_start_time': rdbSnapshotStartTime!.toTfJson(),
   };
 }
 
 /// Factory wrapper for `google_redis_instance`.
+///
+/// A Google Cloud Redis instance.
 ///
 /// Memorystore for Redis instance — managed Redis for app caches and sessions.
 ///
@@ -97,6 +186,14 @@ class RedisInstancePersistenceConfig {
 /// - [localName]: Terraform local name.
 /// - [name]: instance ID.
 /// - [memorySizeGb]: memory size in GiB.
+///
+/// Optional hardening / operations:
+/// - [authEnabled] turns Redis AUTH on (read the password via [authString]).
+/// - [transitEncryptionMode] enables in-transit TLS ([serverCaCerts]).
+/// - [replicaCount] / [readReplicasMode] add read replicas on
+///   `STANDARD_HA` instances ([readEndpoint], [readEndpointPort]).
+/// - [maintenancePolicy] pins the weekly maintenance window.
+/// - [persistenceConfig] turns on RDB snapshots.
 ///
 /// Enable `redis.googleapis.com` via [GoogleProjectService] or
 /// [ApisEnablement.enable] before apply.
@@ -123,9 +220,16 @@ final class GoogleRedisInstance extends Resource {
     TfArg<RedisInstanceTier>? tier,
     TfArg<String>? authorizedNetwork,
     TfArg<RedisInstanceConnectMode>? connectMode,
+    TfArg<bool>? authEnabled,
+    TfArg<RedisInstanceTransitEncryptionMode>? transitEncryptionMode,
+    TfArg<num>? replicaCount,
+    TfArg<RedisInstanceReadReplicasMode>? readReplicasMode,
     TfArg<String>? redisVersion,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? labels,
+    TfArg<bool>? deletionProtection,
+    RedisInstanceMaintenancePolicy? maintenancePolicy,
+    RedisInstancePersistenceConfig? persistenceConfig,
     super.lifecycle,
     super.dependsOn,
   }) : super(
@@ -138,9 +242,24 @@ final class GoogleRedisInstance extends Resource {
            if (authorizedNetwork != null)
              'authorized_network': authorizedNetwork,
            if (connectMode != null) 'connect_mode': connectMode,
+           if (authEnabled != null) 'auth_enabled': authEnabled,
+           if (transitEncryptionMode != null)
+             'transit_encryption_mode': transitEncryptionMode,
+           if (replicaCount != null) 'replica_count': replicaCount,
+           if (readReplicasMode != null) 'read_replicas_mode': readReplicasMode,
            if (redisVersion != null) 'redis_version': redisVersion,
            if (displayName != null) 'display_name': displayName,
            if (labels != null) 'labels': labels,
+           if (deletionProtection != null)
+             'deletion_protection': deletionProtection,
+           if (maintenancePolicy != null)
+             'maintenance_policy': TfArg.literal([
+               maintenancePolicy.toArgMap(),
+             ]),
+           if (persistenceConfig != null)
+             'persistence_config': TfArg.literal([
+               persistenceConfig.toArgMap(),
+             ]),
          },
        );
 

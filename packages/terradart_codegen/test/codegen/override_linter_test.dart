@@ -49,6 +49,83 @@ void main() {
       expect(lintOverride('google_x', o), isEmpty);
     });
 
+    test('flags customSlots without any paramOrder (rule e)', () {
+      const o = WrapperOverride(
+        outputDir: 'redis',
+        customSlots: {
+          'maintenance_policy': CustomSlot(
+            paramDeclaration: 'Policy? maintenancePolicy',
+            argMapEntry: "if (maintenancePolicy != null) 'maintenance_policy': "
+                'TfArg.literal([maintenancePolicy.toArgMap()]),',
+          ),
+        },
+      );
+      final violations = lintOverride('google_redis_instance', o);
+      expect(violations, hasLength(1));
+      expect(violations.single.rule, 'custom-slot-missing-param-order');
+      expect(violations.single.detail, contains('maintenance_policy'));
+    });
+
+    test('flags customSlot key absent from paramOrder (rule e)', () {
+      // The Wave 32 regression shape: slots declared, paramOrder present,
+      // but the slot keys never listed -> emitter silently drops both.
+      const o = WrapperOverride(
+        outputDir: 'redis',
+        paramOrder: ['name', 'memory_size_gb'],
+        customSlots: {
+          'maintenance_policy': CustomSlot(
+            paramDeclaration: 'Policy? maintenancePolicy',
+            argMapEntry: "if (maintenancePolicy != null) 'maintenance_policy': "
+                'TfArg.literal([maintenancePolicy.toArgMap()]),',
+          ),
+          'persistence_config': CustomSlot(
+            paramDeclaration: 'Persistence? persistenceConfig',
+            argMapEntry: "if (persistenceConfig != null) 'persistence_config': "
+                'TfArg.literal([persistenceConfig.toArgMap()]),',
+          ),
+        },
+      );
+      final rules =
+          lintOverride('google_redis_instance', o).map((v) => v.rule).toList();
+      expect(rules, [
+        'custom-slot-not-in-param-order',
+        'custom-slot-not-in-param-order',
+      ]);
+    });
+
+    test('flags customSlot key missing from an explicit argMapOrder (rule e)',
+        () {
+      const o = WrapperOverride(
+        outputDir: 'scheduler',
+        paramOrder: ['name', 'target'],
+        argMapOrder: ['name'],
+        customSlots: {
+          'target': CustomSlot(
+            paramDeclaration: 'required Target target',
+            argMapEntry: 'target.blockKey: TfArg.literal([target.toArgMap()]),',
+          ),
+        },
+      );
+      final violations = lintOverride('google_x', o);
+      expect(violations, hasLength(1));
+      expect(violations.single.rule, 'custom-slot-not-in-arg-map-order');
+    });
+
+    test('clean: customSlot keys listed in paramOrder and argMapOrder', () {
+      const o = WrapperOverride(
+        outputDir: 'scheduler',
+        paramOrder: ['name', 'target'],
+        argMapOrder: ['name', 'target'],
+        customSlots: {
+          'target': CustomSlot(
+            paramDeclaration: 'required Target target',
+            argMapEntry: 'target.blockKey: TfArg.literal([target.toArgMap()]),',
+          ),
+        },
+      );
+      expect(lintOverride('google_x', o), isEmpty);
+    });
+
     test('flags exactly_one optional fanout on canonical sibling groups', () {
       const mm = MmResourceOverrides(
         fieldOverrides: {},
@@ -58,6 +135,7 @@ void main() {
       );
       const o = WrapperOverride(
         outputDir: 'iam',
+        paramOrder: ['oidc', 'aws'],
         customSlots: {
           'oidc': CustomSlot(
             paramDeclaration: 'Oidc? oidc',
@@ -139,6 +217,7 @@ void main() {
       );
       const o = WrapperOverride(
         outputDir: 'iam',
+        paramOrder: ['oidc', 'aws'],
         customSlots: {
           'oidc': CustomSlot(
             paramDeclaration: 'Oidc? oidc',
@@ -170,6 +249,7 @@ void main() {
       );
       const o = WrapperOverride(
         outputDir: 'iam',
+        paramOrder: ['trust_source'],
         customSlots: {
           'trust_source': CustomSlot(
             paramDeclaration: 'required TrustSource trustSource',

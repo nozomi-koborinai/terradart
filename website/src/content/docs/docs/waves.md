@@ -277,18 +277,22 @@ Catalog after `0.12.19`: **199 curated resource factories + 1 data source** (200
 - **`cloud_run_quickstart`** — Redis cache on the default VPC alongside the existing VPC Access connector.
 
 ```dart
-ApisEnablement.enable(
+// Requires `const TimeProvider()` in Stack.providers.
+final apiDeps = ApisEnablement.enable(
   barrels: [Barrels.cloudRun, Barrels.serviceNetworking, Barrels.redis],
   propagationDelay: const Duration(seconds: 60),
 ).registerOn(this);
 
-GoogleRedisInstance(
-  localName: 'api_cache',
-  name: TfArg.literal('api-cache'),
-  memorySizeGb: TfArg.literal(1),
-  region: TfArg.literal('asia-northeast1'),
-  tier: TfArg.literal(RedisInstanceTier.basic),
-  authorizedNetwork: TfArg.literal('default'),
+add(
+  GoogleRedisInstance(
+    localName: 'api_cache',
+    name: TfArg.literal('api-cache'),
+    memorySizeGb: TfArg.literal(1),
+    region: TfArg.literal('asia-northeast1'),
+    tier: TfArg.literal(RedisInstanceTier.basic),
+    authorizedNetwork: TfArg.literal('default'),
+    dependsOn: apiDeps,
+  ),
 );
 ```
 

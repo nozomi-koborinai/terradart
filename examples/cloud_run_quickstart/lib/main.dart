@@ -27,7 +27,8 @@
 /// revision to it via `template.vpcAccess` (`VpcAccessEgress.privateRangesOnly`).
 ///
 /// Wave 32 adds Memorystore Redis and [ApisEnablement] propagation
-/// ([TimeSleep] after API enablement).
+/// ([TimeSleep] after API enablement), wiring the cache's typed `host` ref
+/// into the service env (`REDIS_HOST`).
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -47,6 +48,21 @@ final class ApiServiceStack extends Stack {
             const TimeProvider(),
           ],
         ) {
+    // ---- API enablement + Wave 25 VPC Access + Wave 32 Redis --------------
+    //
+    // [ApisEnablement] enables the Run, Secret Manager, VPC Access, and
+    // Redis APIs and waits 60s for propagation before dependents apply.
+
+    final apiDeps = ApisEnablement.enable(
+      barrels: [
+        Barrels.cloudRun,
+        Barrels.secretManager,
+        Barrels.serviceNetworking,
+        Barrels.redis,
+      ],
+      propagationDelay: const Duration(seconds: 60),
+    ).registerOn(this);
+
     add(
       GoogleSecretManagerSecret(
         localName: 'db_password',
@@ -56,18 +72,9 @@ final class ApiServiceStack extends Stack {
             location: TfArg.literal('asia-northeast1'),
           ),
         ]),
+        dependsOn: apiDeps,
       ),
     );
-
-    // ---- API enablement + Wave 25 VPC Access + Wave 32 Redis --------------
-    //
-    // [ApisEnablement] enables Run, VPC Access, Redis APIs and waits 60s for
-    // propagation before dependents apply.
-
-    final apiDeps = ApisEnablement.enable(
-      barrels: [Barrels.cloudRun, Barrels.serviceNetworking, Barrels.redis],
-      propagationDelay: const Duration(seconds: 60),
-    ).registerOn(this);
 
     final runConnector = GoogleVpcAccessConnector(
       localName: 'run_vpc',
@@ -79,7 +86,7 @@ final class ApiServiceStack extends Stack {
     );
     add(runConnector);
 
-    add(
+    final cache = add(
       GoogleRedisInstance(
         localName: 'api_cache',
         name: TfArg.literal('api-cache'),
@@ -115,6 +122,15 @@ final class ApiServiceStack extends Stack {
                 source: CloudRunV2ServiceEnvVarFromSecret(
                   secret: TfArg.literal('api-db-password'),
                   version: TfArg.literal('latest'),
+                ),
+              ),
+              // Reaches the cache through the VPC connector below; the
+              // interpolation also gives Terraform the redis -> service
+              // ordering without an explicit dependsOn entry.
+              CloudRunV2ServiceEnvVar(
+                name: TfArg.literal('REDIS_HOST'),
+                source: CloudRunV2ServiceEnvVarFromLiteral(
+                  TfArg.ref(cache.host),
                 ),
               ),
             ],
