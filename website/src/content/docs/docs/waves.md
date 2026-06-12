@@ -257,6 +257,38 @@ GooglePrivatecaCertificate(
 );
 ```
 
+## v0.12.20 — Wave 33
+
+**v0.12.20** adds AlloyDB cluster, instance, and user factories on a new `alloydb` barrel. **Additive** — no breaking changes vs `0.12.19`.
+
+Catalog after `0.12.20`: **202 curated resource factories + 1 data source** (203 catalog entries). 32 service barrels.
+
+### Wave 33 — AlloyDB
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_alloydb_cluster` | `GoogleAlloydbCluster` | `alloydb` | [cloud_sql_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloud_sql_quickstart) |
+| `google_alloydb_instance` | `GoogleAlloydbInstance` | `alloydb` | [cloud_sql_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloud_sql_quickstart) |
+| `google_alloydb_user` | `GoogleAlloydbUser` | `alloydb` | [cloud_sql_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloud_sql_quickstart) |
+
+**Highlights**
+
+- **PSA reuse** — [AlloydbClusterNetworkConfig] pins the same VPC + allocated range as private Cloud SQL.
+- **Typed helpers** — `AlloydbInstanceMachineConfig`, `AlloydbClusterInitialUser`, day-of-week enums for backup/maintenance windows.
+
+```dart
+GoogleAlloydbCluster(
+  localName: 'alloydb',
+  clusterId: TfArg.literal('app-alloydb'),
+  location: TfArg.literal('asia-northeast1'),
+  networkConfig: AlloydbClusterNetworkConfig(
+    network: TfArg.ref(vpc.selfLink),
+    allocatedIpRange: TfArg.ref(psaRange.nameRef),
+  ),
+  dependsOn: [ResourceDependency(psaConnection)],
+);
+```
+
 ## v0.12.19 — Wave 32
 
 **v0.12.19** adds `TimeProvider` / `TimeSleep` (`hashicorp/time`), `ApisEnablement` propagation helper, and Memorystore Redis. **Additive** — no breaking changes vs `0.12.18`.
@@ -331,7 +363,7 @@ GooglePrivatecaCertificateTemplate(
 
 ## Full catalog example coverage
 
-As of PR [#127](https://github.com/nozomi-koborinai/terradart/pull/127), **`tool/example_debt.yaml` is empty** — every curated factory and the `GoogleProject` data source appears in at least one quickstart synth output (machine-checked by `dart tool/check_docs_consistency.dart`). Catalog size grows with later Waves (e.g. Wave 32 → **200 entries**).
+As of PR [#127](https://github.com/nozomi-koborinai/terradart/pull/127), **`tool/example_debt.yaml` is empty** — every curated factory and the `GoogleProject` data source appears in at least one quickstart synth output (machine-checked by `dart tool/check_docs_consistency.dart`). Catalog size grows with later Waves (e.g. Wave 33 → **203 entries**).
 
 Final backfill (no new catalog entries):
 

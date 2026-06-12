@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.20
+
+No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.20 (Wave 33 AlloyDB).
+
 ## 0.12.19
 
 ### Added

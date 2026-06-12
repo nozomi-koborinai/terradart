@@ -15,9 +15,13 @@
 ///    instance.
 /// 6. `google_sql_user` -- one built-in DB user. The password is sourced
 ///    from `DB_PASSWORD`; it is sensitive and masked at synth time.
+///
+/// Wave 33 adds AlloyDB on the same PSA chain: cluster, primary instance,
+/// and an application user.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/alloydb.dart';
 import 'package:terradart_google/cloud_sql.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/provider.dart';
@@ -149,6 +153,51 @@ final class CloudSqlStack extends Stack {
         port: TfArg.literal(3306),
         username: TfArg.literal('replica'),
         password: TfArg.variable('source_rep_password'),
+      ),
+    );
+
+    // ---- 7. AlloyDB cluster + primary (Wave 33) ---------------------------
+    //
+    // Reuses the same VPC + PSA range as Cloud SQL private IP.
+
+    final alloyCluster = add(
+      GoogleAlloydbCluster(
+        localName: 'alloydb',
+        clusterId: TfArg.literal('app-alloydb'),
+        location: TfArg.literal('asia-northeast1'),
+        networkConfig: AlloydbClusterNetworkConfig(
+          network: TfArg.ref(vpc.selfLink),
+          allocatedIpRange: TfArg.ref(psaRange.nameRef),
+        ),
+        initialUser: AlloydbClusterInitialUser(
+          user: TfArg.literal('postgres'),
+          passwordWo: TfArg.literal(dbPassword),
+          passwordWoVersion: TfArg.literal(1),
+        ),
+        dependsOn: [ResourceDependency(psaConnection)],
+      ),
+    );
+
+    add(
+      GoogleAlloydbInstance(
+        localName: 'alloydb_primary',
+        cluster: TfArg.ref(alloyCluster.id),
+        instanceId: TfArg.literal('primary'),
+        instanceType: TfArg.literal(AlloydbInstanceType.primary),
+        machineConfig: AlloydbInstanceMachineConfig(
+          cpuCount: TfArg.literal(2),
+        ),
+      ),
+    );
+
+    add(
+      GoogleAlloydbUser(
+        localName: 'alloydb_app',
+        cluster: TfArg.ref(alloyCluster.id),
+        userId: TfArg.literal('app'),
+        userType: TfArg.literal(AlloydbUserType.alloydbBuiltIn),
+        passwordWo: TfArg.literal(dbPassword),
+        passwordWoVersion: TfArg.literal('1'),
       ),
     );
   }

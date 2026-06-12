@@ -18,6 +18,10 @@ Maintainer:
 - **Added** — `tool/append_curation_backlog.dart` for idempotent schema-bump backlog updates (#35).
 - **Fixed** — schema-bump workflow no longer appends invalid YAML outside `entries:`; excludes `.schema-bump/` from commits.
 
+## 0.12.20
+
+Wave 33 overrides: `google_alloydb_cluster` (network/backup/maintenance helpers), `google_alloydb_instance`, `google_alloydb_user`.
+
 ## 0.12.19
 
 Wave 32 override: `google_redis_instance` (`RedisInstanceTier`, `RedisInstanceConnectMode` enums).

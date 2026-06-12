@@ -1,9 +1,10 @@
 # Cloud SQL quickstart
 
 End-to-end terradart example for Cloud SQL with **private-IP only**
-connectivity. Provisions the full private-services peering chain (VPC +
-reserved global address + service networking connection) and then a
-PostgreSQL primary, one database, and one DB user inside it.
+connectivity, plus AlloyDB on the same PSA chain. Provisions the full
+private-services peering chain (VPC + reserved global address + service
+networking connection), a PostgreSQL primary with database and user, and
+an AlloyDB cluster with primary instance and app user.
 
 ## Prerequisites
 
@@ -50,6 +51,9 @@ terraform apply
 5. `orders` -- one logical database inside the instance.
 6. `app` -- one `BUILT_IN` user whose password is sourced from
    `DB_PASSWORD` and masked at synth time.
+7. `app-alloydb` -- AlloyDB cluster on the same VPC + PSA range (Wave 33).
+8. `primary` -- AlloyDB primary instance (2 vCPU).
+9. `app` -- AlloyDB built-in user (`AlloydbUserType.alloydbBuiltIn`).
 
 `SqlUserType.builtIn` is the right choice for password-based access.
 Switch to `SqlUserType.cloudIamServiceAccount` and drop the `password`

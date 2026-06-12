@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.12.20 - 2026-06-12
+
+### Added
+
+- Wave 33 AlloyDB (3): `google_alloydb_cluster` (network + initial user helpers), `google_alloydb_instance` (machine config), `google_alloydb_user`.
+- New `alloydb` barrel; `Barrels.alloydb` → `alloydb.googleapis.com`.
+- Extended `cloud_sql_quickstart` — AlloyDB on the same PSA chain as private Cloud SQL.
+
+Catalog: **202 curated resource factories + 1 data source** (203 entries; 32 service barrels).
+
 ## 0.12.19 - 2026-06-12
 
 ### Added

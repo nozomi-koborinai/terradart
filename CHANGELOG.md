@@ -4,6 +4,17 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## [0.12.20] - 2026-06-12
+
+Lockstep release across the workspace. **No breaking changes** vs `0.12.19`.
+
+### Added
+
+- **`terradart_google`** — Wave 33 AlloyDB (3): `google_alloydb_cluster`, `google_alloydb_instance`, `google_alloydb_user`; new `alloydb` barrel.
+- Extended **`cloud_sql_quickstart`** — AlloyDB cluster + primary instance + app user on the existing PSA VPC chain.
+
+Catalog: **202 curated resource factories + 1 data source** (203 entries; 32 service barrels).
+
 ## [0.12.19] - 2026-06-12
 
 Lockstep release across the workspace. **No breaking changes** vs `0.12.18`.

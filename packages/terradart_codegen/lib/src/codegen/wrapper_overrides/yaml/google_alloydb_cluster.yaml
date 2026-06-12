@@ -1,0 +1,179 @@
+outputDir: alloydb
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - cluster_id
+  - location
+  - network_config
+  - initial_user
+  - cluster_type
+  - display_name
+  - labels
+
+dartTypeOverrides:
+  cluster_type: AlloydbClusterType
+
+curatedDoc: |-
+  /// AlloyDB cluster — regional Postgres-compatible database cluster.
+  ///
+  /// Private-IP wiring reuses the same PSA chain as Cloud SQL:
+  /// [GoogleComputeNetwork] → [GoogleComputeGlobalAddress] →
+  /// [GoogleServiceNetworkingConnection] → [AlloydbClusterNetworkConfig].
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [clusterId]: short cluster ID.
+  /// - [location]: regional location (e.g. `asia-northeast1`).
+  /// - [networkConfig]: VPC + optional allocated PSA range name.
+  ///
+  /// Enable `alloydb.googleapis.com` via [GoogleProjectService] or
+  /// [ApisEnablement.enable] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleAlloydbCluster(
+  ///   localName: 'app',
+  ///   clusterId: TfArg.literal('app-cluster'),
+  ///   location: TfArg.literal('asia-northeast1'),
+  ///   networkConfig: AlloydbClusterNetworkConfig(
+  ///     network: TfArg.ref(vpc.selfLink),
+  ///     allocatedIpRange: TfArg.ref(psaRange.nameRef),
+  ///   ),
+  ///   initialUser: AlloydbClusterInitialUser(
+  ///     user: TfArg.literal('postgres'),
+  ///     passwordWo: TfArg.literal(dbPassword),
+  ///     passwordWoVersion: TfArg.literal(1),
+  ///   ),
+  ///   dependsOn: [ResourceDependency(psaConnection)],
+  /// );
+  /// ```
+
+prelude: |
+  /// `cluster_type` — primary vs secondary cluster role.
+  enum AlloydbClusterType implements TerraformEnum {
+    primary('PRIMARY'),
+    secondary('SECONDARY');
+
+    const AlloydbClusterType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `network_config` nested block (max=1).
+  class AlloydbClusterNetworkConfig {
+    const AlloydbClusterNetworkConfig({
+      this.network,
+      this.allocatedIpRange,
+    });
+
+    final TfArg<String>? network;
+    final TfArg<String>? allocatedIpRange;
+
+    Map<String, Object?> toArgMap() => {
+          if (network != null) 'network': network!.toTfJson(),
+          if (allocatedIpRange != null)
+            'allocated_ip_range': allocatedIpRange!.toTfJson(),
+        };
+  }
+
+  /// Day-of-week values shared by backup and maintenance windows.
+  enum AlloydbClusterDayOfWeek implements TerraformEnum {
+    monday('MONDAY'),
+    tuesday('TUESDAY'),
+    wednesday('WEDNESDAY'),
+    thursday('THURSDAY'),
+    friday('FRIDAY'),
+    saturday('SATURDAY'),
+    sunday('SUNDAY');
+
+    const AlloydbClusterDayOfWeek(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `automated_backup_policy.weekly_schedule` nested block.
+  class AlloydbClusterWeeklySchedule {
+    const AlloydbClusterWeeklySchedule({this.daysOfWeek});
+
+    final List<AlloydbClusterDayOfWeek>? daysOfWeek;
+
+    Map<String, Object?> toArgMap() => {
+          if (daysOfWeek != null)
+            'days_of_week':
+                daysOfWeek!.map((d) => d.terraformValue).toList(),
+        };
+  }
+
+  /// `automated_backup_policy` nested block (max=1).
+  class AlloydbClusterAutomatedBackupPolicy {
+    const AlloydbClusterAutomatedBackupPolicy({this.weeklySchedule});
+
+    final AlloydbClusterWeeklySchedule? weeklySchedule;
+
+    Map<String, Object?> toArgMap() => {
+          if (weeklySchedule != null)
+            'weekly_schedule': [weeklySchedule!.toArgMap()],
+        };
+  }
+
+  /// `maintenance_update_policy.maintenance_windows` nested block.
+  class AlloydbClusterMaintenanceWindow {
+    const AlloydbClusterMaintenanceWindow({this.day});
+
+    final AlloydbClusterDayOfWeek? day;
+
+    Map<String, Object?> toArgMap() => {
+          if (day != null) 'day': day!.terraformValue,
+        };
+  }
+
+  /// `maintenance_update_policy` nested block (max=1).
+  class AlloydbClusterMaintenanceUpdatePolicy {
+    const AlloydbClusterMaintenanceUpdatePolicy({this.maintenanceWindows});
+
+    final AlloydbClusterMaintenanceWindow? maintenanceWindows;
+
+    Map<String, Object?> toArgMap() => {
+          if (maintenanceWindows != null)
+            'maintenance_windows': [maintenanceWindows!.toArgMap()],
+        };
+  }
+
+  /// `initial_user` nested block (max=1) — bootstrap credentials.
+  class AlloydbClusterInitialUser {
+    const AlloydbClusterInitialUser({
+      required this.user,
+      this.password,
+      this.passwordWo,
+      this.passwordWoVersion,
+    });
+
+    final TfArg<String> user;
+    final TfArg<String>? password;
+    final TfArg<String>? passwordWo;
+    final TfArg<int>? passwordWoVersion;
+
+    Map<String, Object?> toArgMap() => {
+          'user': user.toTfJson(),
+          if (password != null) 'password': password!.toTfJson(),
+          if (passwordWo != null) 'password_wo': passwordWo!.toTfJson(),
+          if (passwordWoVersion != null)
+            'password_wo_version': passwordWoVersion!.toTfJson(),
+        };
+  }
+
+customSlots:
+  network_config:
+    paramDeclaration: 'AlloydbClusterNetworkConfig? networkConfig'
+    argMapEntry: "if (networkConfig != null) 'network_config': TfArg.literal([networkConfig.toArgMap()]),"
+  initial_user:
+    paramDeclaration: 'AlloydbClusterInitialUser? initialUser'
+    argMapEntry: "if (initialUser != null) 'initial_user': TfArg.literal([initialUser.toArgMap()]),"
+  automated_backup_policy:
+    paramDeclaration: 'AlloydbClusterAutomatedBackupPolicy? automatedBackupPolicy'
+    argMapEntry: "if (automatedBackupPolicy != null) 'automated_backup_policy': TfArg.literal([automatedBackupPolicy.toArgMap()]),"
+  maintenance_update_policy:
+    paramDeclaration: 'AlloydbClusterMaintenanceUpdatePolicy? maintenanceUpdatePolicy'
+    argMapEntry: "if (maintenanceUpdatePolicy != null) 'maintenance_update_policy': TfArg.literal([maintenanceUpdatePolicy.toArgMap()]),"
