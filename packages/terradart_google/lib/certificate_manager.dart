@@ -12,9 +12,22 @@ export 'src/certificate_manager/google_certificate_manager_certificate.dart'
         GoogleCertificateManagerCertificate;
 export 'src/certificate_manager/google_certificate_manager_certificate_map.dart'
     show GoogleCertificateManagerCertificateMap;
+export 'src/certificate_manager/google_certificate_manager_certificate_issuance_config.dart'
+    show
+        CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig,
+        CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig,
+        CertificateManagerCertificateIssuanceConfigKeyAlgorithm,
+        GoogleCertificateManagerCertificateIssuanceConfig;
 export 'src/certificate_manager/google_certificate_manager_certificate_map_entry.dart'
     show GoogleCertificateManagerCertificateMapEntry;
 export 'src/certificate_manager/google_certificate_manager_dns_authorization.dart'
     show
         CertificateManagerDnsAuthorizationType,
         GoogleCertificateManagerDnsAuthorization;
+export 'src/certificate_manager/google_certificate_manager_trust_config.dart'
+    show
+        CertificateManagerTrustConfigAllowlistedCertificate,
+        CertificateManagerTrustConfigIntermediateCa,
+        CertificateManagerTrustConfigTrustAnchor,
+        CertificateManagerTrustConfigTrustStore,
+        GoogleCertificateManagerTrustConfig;

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.13
+
+No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.13 (Wave 27 Certificate Manager trust + issuance; `GoogleProject` example backfill).
+
 ## 0.12.12
 
 No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.12 (sealed `exactly_one_of` enforcement on seven factories; see [MIGRATING.md](../../MIGRATING.md)).

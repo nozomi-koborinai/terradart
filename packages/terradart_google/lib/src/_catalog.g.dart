@@ -724,6 +724,33 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_certificate_manager_certificate`.\n\nCertificate Manager certificate — Google-managed (auto-renewed) or\nself-managed (user-uploaded PEM).\n\nThe managed path pairs with [GoogleCertificateManagerDnsAuthorization]\nvia [CertificateManagerCertificateManagedProvisioning.dnsAuthorizations].\nAttach issued certs to a load balancer either directly\n(`certificate_manager_certificates` on internal HTTPS proxies) or via a\n[GoogleCertificateManagerCertificateMap] + map entry on external HTTPS\nproxies.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: certificate ID.\n- [provisioning]: sealed [CertificateManagerCertificateProvisioningSource]\n  — exactly one of managed or self-managed.\n\nExample (managed + DNS authorization):\n```dart\nGoogleCertificateManagerCertificate(\n  localName: \'app_cert\',\n  name: TfArg.literal(\'app-cert\'),\n  provisioning: CertificateManagerCertificateManagedProvisioning(\n    domains: [\'app.example.com\'],\n    dnsAuthorizations: [TfArg.ref(dnsAuth.id)],\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_certificate_manager_certificate_issuance_config',
+    className: 'GoogleCertificateManagerCertificateIssuanceConfig',
+    barrel: 'certificate_manager',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_certificate_manager_certificate_issuance_config`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'certificateAuthorityConfig',
+      'keyAlgorithm',
+      'lifetime',
+      'rotationWindowPercentage',
+      'description',
+      'location',
+      'labels',
+    ],
+    nestedTypes: <String>[
+      'CertificateManagerCertificateIssuanceConfigKeyAlgorithm',
+      'CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig',
+      'CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_certificate_manager_certificate_issuance_config`.\n\nCertificate issuance policy for Google-managed Certificate Manager certs.\n\nBinds a [GoogleCertificateManagerCertificate] managed provisioning path to\na Certificate Authority Service pool and defines key algorithm, lifetime,\nand rotation window.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: issuance config ID.\n- [certificateAuthorityConfig]: CA pool reference (CAS `ca_pool` resource).\n- [keyAlgorithm]: `RSA_2048` or `ECDSA_P256`.\n- [lifetime]: certificate lifetime (e.g. `86400s`).\n- [rotationWindowPercentage]: percent of lifetime before rotation (0–100).\n\nExample:\n```dart\nGoogleCertificateManagerCertificateIssuanceConfig(\n  localName: \'app_issuance\',\n  name: TfArg.literal(\'app-issuance\'),\n  certificateAuthorityConfig:\n      CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(\n    certificateAuthorityServiceConfig:\n        CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig(\n      caPool: TfArg.literal(\n        \'projects/my-project/locations/us-central1/caPools/my-pool\',\n      ),\n    ),\n  ),\n  keyAlgorithm: TfArg.literal(\n    CertificateManagerCertificateIssuanceConfigKeyAlgorithm.rsa2048,\n  ),\n  lifetime: TfArg.literal(\'2592000s\'),\n  rotationWindowPercentage: TfArg.literal(50),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_certificate_manager_certificate_map',
     className: 'GoogleCertificateManagerCertificateMap',
     barrel: 'certificate_manager',
@@ -777,6 +804,34 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_certificate_manager_dns_authorization`.\n\nDNS authorization for a Google-managed Certificate Manager certificate.\n\nProves domain control via a DNS-01 challenge. After apply, read\n[dnsResourceRecord] and publish the returned CNAME/TXT at your DNS\nhost before the linked [GoogleCertificateManagerCertificate] can\nprovision.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: authorization ID (`[a-zA-Z][a-zA-Z0-9_-]*`).\n- [domain]: apex or wildcard domain (e.g. `app.example.com` or\n  `*.example.com`).\n\nExample:\n```dart\nfinal dnsAuth = GoogleCertificateManagerDnsAuthorization(\n  localName: \'app_dns\',\n  name: TfArg.literal(\'app-dns\'),\n  domain: TfArg.literal(\'app.example.com\'),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_certificate_manager_trust_config',
+    className: 'GoogleCertificateManagerTrustConfig',
+    barrel: 'certificate_manager',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_certificate_manager_trust_config`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'trustStores',
+      'allowlistedCertificates',
+      'description',
+      'labels',
+    ],
+    nestedTypes: <String>[
+      'CertificateManagerTrustConfigTrustAnchor',
+      'CertificateManagerTrustConfigIntermediateCa',
+      'CertificateManagerTrustConfigTrustStore',
+      'CertificateManagerTrustConfigAllowlistedCertificate',
+    ],
+    sensitiveFields: <String>[
+      'trust_stores.intermediate_cas.pem_certificate',
+      'trust_stores.trust_anchors.pem_certificate',
+    ],
+    docComment:
+        'Factory wrapper for `google_certificate_manager_trust_config`.\n\nTrust configuration for Certificate Manager mTLS and custom trust stores.\n\nDefines trust anchors / intermediate CAs and optional PEM allowlists used\nwhen validating client or server certificates (e.g. regional HTTPS proxies\nwith `trust_config`).\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: trust config ID (`[a-zA-Z][a-zA-Z0-9_-]*`).\n- [location]: regional location (e.g. `global` or `us-central1`).\n\nExample:\n```dart\nGoogleCertificateManagerTrustConfig(\n  localName: \'app_trust\',\n  name: TfArg.literal(\'app-trust\'),\n  location: TfArg.literal(\'global\'),\n  trustStores: [\n    CertificateManagerTrustConfigTrustStore(\n      trustAnchors: [\n        CertificateManagerTrustConfigTrustAnchor(\n          pemCertificate: TfArg.variable(\'cm_trust_anchor_pem\'),\n        ),\n      ],\n    ),\n  ],\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_cloud_run_v2_job',

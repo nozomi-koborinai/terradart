@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.13
+
+Lockstep version bump for `terradart_google` v0.12.13. MCP catalog grows by two Certificate Manager factories (194 entries total).
+
 ## 0.12.12
 
 Lockstep version bump for `terradart_google` v0.12.12. MCP catalog unchanged (192 entries). Sealed-type metadata for seven factories with `exactly_one_of` enforcement.

@@ -4,6 +4,22 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## [0.12.13] - 2026-06-12
+
+Lockstep release across the workspace. **No breaking changes** vs `0.12.12`.
+
+### Added
+
+- **`terradart_google`** — Wave 27 Certificate Manager (2): `google_certificate_manager_trust_config`, `google_certificate_manager_certificate_issuance_config` (typed trust-store / CA-pool helpers).
+- Extended **`compute_lb_quickstart`** (trust config + issuance policy alongside the Wave 26 chain).
+- **`pubsub_quickstart`** — exercises the `GoogleProject` data source (Pub/Sub service-agent IAM member via project number).
+
+### Changed (maintainer)
+
+- `tool/example_debt.yaml`: removed stale `GoogleProject` entry (data source backfill).
+
+Catalog: **193 curated resource factories + 1 data source** (194 entries).
+
 ## [0.12.12] - 2026-06-12
 
 Lockstep release across the workspace.

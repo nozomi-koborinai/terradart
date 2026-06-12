@@ -22,6 +22,7 @@ Future<void> main() async {
         'lb_self_managed_private_key': {'type': 'string', 'sensitive': true},
         'lb_regional_certificate': {'type': 'string', 'sensitive': true},
         'lb_regional_private_key': {'type': 'string', 'sensitive': true},
+        'cm_trust_anchor_pem': {'type': 'string', 'sensitive': true},
       },
     }),
   );

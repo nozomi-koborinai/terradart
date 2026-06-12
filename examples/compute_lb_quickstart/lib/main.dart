@@ -160,6 +160,45 @@ final class ComputeLbStack extends Stack {
     );
     add(cmDnsAuth);
 
+    final cmIssuance = GoogleCertificateManagerCertificateIssuanceConfig(
+      localName: 'cm_issuance',
+      name: TfArg.literal('app-cm-issuance'),
+      certificateAuthorityConfig:
+          CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(
+        certificateAuthorityServiceConfig:
+            CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig(
+          caPool: TfArg.literal(
+            'projects/$projectId/locations/us-central1/caPools/quickstart-pool',
+          ),
+        ),
+      ),
+      keyAlgorithm: TfArg.literal(
+        CertificateManagerCertificateIssuanceConfigKeyAlgorithm.rsa2048,
+      ),
+      lifetime: TfArg.literal('2592000s'),
+      rotationWindowPercentage: TfArg.literal(50),
+      dependsOn: [ResourceDependency(apiCertificateManager)],
+    );
+    add(cmIssuance);
+
+    add(
+      GoogleCertificateManagerTrustConfig(
+        localName: 'cm_trust',
+        name: TfArg.literal('app-cm-trust'),
+        location: TfArg.literal('global'),
+        trustStores: [
+          CertificateManagerTrustConfigTrustStore(
+            trustAnchors: [
+              CertificateManagerTrustConfigTrustAnchor(
+                pemCertificate: TfArg.variable('cm_trust_anchor_pem'),
+              ),
+            ],
+          ),
+        ],
+        dependsOn: [ResourceDependency(apiCertificateManager)],
+      ),
+    );
+
     final cmCert = GoogleCertificateManagerCertificate(
       localName: 'cm_cert',
       name: TfArg.literal('app-cm-cert'),

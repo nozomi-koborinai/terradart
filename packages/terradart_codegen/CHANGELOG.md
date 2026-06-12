@@ -11,6 +11,10 @@ Maintainer:
 - **Added** — `tool/example_synth_gates.dart` (synth-based example coverage + API-enablement dependency checker, #108).
 - **Added** — label-gated `apply-smoke` GitHub workflow + `tool/apply_smoke.sh` (#109).
 
+## 0.12.13
+
+Wave 27 overrides: `google_certificate_manager_trust_config`, `google_certificate_manager_certificate_issuance_config` (`certificatemanager.googleapis.com` prefix).
+
 ## 0.12.12
 
 Maintainer: sealed virtual slots for seven `exactly_one_of` overrides (firewall,
