@@ -256,7 +256,7 @@ Data & storage
 Application platform & operations
 
 - [Cloud Run v2 service (sealed `EnvVarSource`)](examples/cloud_run_quickstart/)
-- [Logging project sink → BigQuery](examples/ops_quickstart/)
+- [Logging sinks (project / folder / org) → BigQuery](examples/ops_quickstart/)
 - [Monitoring alert policy with typed `Aligner` / `Reducer`](examples/monitoring_quickstart/)
 - [Eventarc message bus + pipeline + Pub/Sub trigger](examples/eventarc_quickstart/)
 

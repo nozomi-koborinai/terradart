@@ -56,6 +56,8 @@ Thirteen Wave 6 resources are wired together in `lib/main.dart`:
 11. `google_compute_target_https_proxy`       -- terminates HTTPS
 12. `google_compute_global_address`           -- front-end VIP
 13. `google_compute_global_forwarding_rule`   -- VIP:443 -> HTTPS proxy
+14. `google_iap_web_backend_service_iam_member` + `google_iap_web_backend_service_iam_binding`
+    -- IAP accessor grant (additive member + authoritative binding demo)
 
 Wave 6 ships additional curated resources that pair with this stack but
 are out of scope for a single quickstart -- pick them up as the design

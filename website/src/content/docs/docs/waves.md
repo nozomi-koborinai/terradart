@@ -188,6 +188,17 @@ final pool = GooglePrivatecaCaPool(
 );
 ```
 
+## Full catalog example coverage
+
+As of PR [#127](https://github.com/nozomi-koborinai/terradart/pull/127), **`tool/example_debt.yaml` is empty** — every curated factory and the `GoogleProject` data source appears in at least one quickstart synth output (machine-checked by `dart tool/check_docs_consistency.dart`).
+
+Final backfill (no new catalog entries):
+
+| Quickstart | Factories added |
+| --- | --- |
+| [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) | `GoogleIapWebBackendServiceIamBinding` (authoritative IAP accessor list; shown alongside the additive `*_iam_member`) |
+| [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) | `GoogleLoggingFolderSink`, `GoogleLoggingOrganizationSink` (`ops_folder_id` / `ops_organization_id` Terraform variables — apply needs folder/org permissions) |
+
 ## Example coverage
 
 Quickstarts extended for these waves:
@@ -205,6 +216,8 @@ Quickstarts extended for these waves:
 | `0.12.13` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) | trust config + issuance config |
 | `0.12.13` | [pubsub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) | `GoogleProject` data source |
 | `0.12.14` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) | Private CA pool → issuance config ref |
+| *(backfill)* | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) | IAP binding (`*_iam_binding` alongside member) |
+| *(backfill)* | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) | folder + organization logging sinks |
 
 CI runs `terraform validate` on each quickstart's synth output — see [Status — Examples matrix](/docs/status/#beta-readiness-checklist).
 
