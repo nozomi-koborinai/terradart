@@ -54,3 +54,5 @@ RESUME.md
 
 # sed -i.bak residue (tool/prepare_publish.sh generates these during swap).
 *.bak
+# schema-bump workflow drift report (PR body only; not committed)
+.schema-bump/

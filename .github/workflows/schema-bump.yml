@@ -197,13 +197,11 @@ jobs:
           fi
           today=$(date -u +%Y-%m-%d)
           v7_latest=$(jq -r '.v7_latest' /tmp/state.json)
-          jq -r '.added_resources[]' /tmp/schema_diff.json | while read -r r; do
-            # Append: shell mutation, idempotent for this run only.
-            printf '  - resource: %s\n    detected_at: %s\n    provider_version: %s\n' \
-              "$r" "$today" "$v7_latest" >> tool/curation_backlog.yaml
-          done
-          # Validate post-append.
-          python3 -c "import yaml; yaml.safe_load(open('tool/curation_backlog.yaml'))"
+          dart tool/append_curation_backlog.dart \
+            --backlog=tool/curation_backlog.yaml \
+            --diff=/tmp/schema_diff.json \
+            --detected-at="$today" \
+            --provider-version="$v7_latest"
 
       - name: Skip if nothing changed
         id: skip_check
@@ -228,7 +226,12 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch -c "$branch"
-          git add -A
+          git add \
+            tool/curation_backlog.yaml \
+            packages/terradart_codegen/test/fixtures/wrap/source/schema.json \
+            packages/terradart_codegen/test/fixtures/wrap/source/mm \
+            packages/terradart_google/lib/src/_provider_meta.dart \
+            packages/terradart_google/lib/src
           git commit -m "chore(schema): weekly bump $today"
           git push -u origin "$branch"
           gh pr create \
