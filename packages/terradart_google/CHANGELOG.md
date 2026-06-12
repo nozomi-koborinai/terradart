@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.12.18 - 2026-06-12
+
+### Added
+
+- Wave 31 Private CA (2): `google_privateca_certificate_template` (identity constraints helpers), `google_privateca_ca_pool_iam_member`.
+- Extended `compute_lb_quickstart` — ENTERPRISE pool tier, template + IAM member wired into CAS chain.
+
+Catalog: **198 curated resource factories + 1 data source** (199 entries).
+
 ## 0.12.17 - 2026-06-12
 
 ### Added

@@ -4,6 +4,17 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## [0.12.18] - 2026-06-12
+
+Lockstep release across the workspace. **No breaking changes** vs `0.12.17`.
+
+### Added
+
+- **`terradart_google`** — Wave 31 Private CA (2): `google_privateca_certificate_template`, `google_privateca_ca_pool_iam_member`.
+- Extended **`compute_lb_quickstart`** — ENTERPRISE CAS pool, certificate template, pool IAM auditor member, template ref on leaf cert.
+
+Catalog: **198 curated resource factories + 1 data source** (199 entries).
+
 ## [0.12.17] - 2026-06-12
 
 Lockstep release across the workspace. **No breaking changes** vs `0.12.16`.

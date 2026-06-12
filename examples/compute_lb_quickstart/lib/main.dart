@@ -175,10 +175,38 @@ final class ComputeLbStack extends Stack {
       localName: 'cm_ca_pool',
       name: TfArg.literal('app-cm-pool'),
       location: TfArg.literal(region),
-      tier: TfArg.literal(PrivatecaCaPoolTier.devops),
+      tier: TfArg.literal(PrivatecaCaPoolTier.enterprise),
       dependsOn: [ResourceDependency(apiPrivateca)],
     );
     add(cmCaPool);
+
+    final cmCertTemplate = GooglePrivatecaCertificateTemplate(
+      localName: 'cm_cert_template',
+      name: TfArg.literal('app-cm-template'),
+      location: TfArg.literal(region),
+      identityConstraints: PrivatecaCertificateTemplateIdentityConstraints(
+        allowSubjectAltNamesPassthrough: TfArg.literal(true),
+        allowSubjectPassthrough: TfArg.literal(true),
+        celExpression: PrivatecaCertificateTemplateCelExpression(
+          expression: TfArg.literal('true'),
+          title: TfArg.literal('allow-all'),
+          location: TfArg.literal('any.file.anywhere'),
+          description: TfArg.literal('Always true'),
+        ),
+      ),
+      dependsOn: [ResourceDependency(cmCaPool)],
+    );
+    add(cmCertTemplate);
+
+    add(
+      GooglePrivatecaCaPoolIamMember(
+        localName: 'cm_ca_pool_auditor',
+        caPool: TfArg.ref(cmCaPool.id),
+        role: TfArg.literal('roles/privateca.auditor'),
+        member: TfArg.literal('group:security-admins@example.com'),
+        dependsOn: [ResourceDependency(cmCaPool)],
+      ),
+    );
 
     final cmRootCa = GooglePrivatecaCertificateAuthority(
       localName: 'cm_root_ca',
@@ -211,7 +239,11 @@ final class ComputeLbStack extends Stack {
         certificateAuthority: TfArg.literal('app-root-ca'),
         lifetime: TfArg.literal('86400s'),
         pemCsr: TfArg.variable('cm_cas_cert_csr_pem'),
-        dependsOn: [ResourceDependency(cmRootCa)],
+        certificateTemplate: TfArg.ref(cmCertTemplate.id),
+        dependsOn: [
+          ResourceDependency(cmRootCa),
+          ResourceDependency(cmCertTemplate),
+        ],
       ),
     );
 
