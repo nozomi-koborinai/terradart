@@ -11,6 +11,12 @@ Maintainer:
 - **Added** — `tool/example_synth_gates.dart` (synth-based example coverage + API-enablement dependency checker, #108).
 - **Added** — label-gated `apply-smoke` GitHub workflow + `tool/apply_smoke.sh` (#109).
 
+## 0.12.12
+
+Maintainer: sealed virtual slots for seven `exactly_one_of` overrides (firewall,
+health check ×2, uptime check, BigQuery job/connection, Cloud Build trigger).
+`tool/exactly_one_lint_debt.yaml` is now empty (#107).
+
 ## 0.12.11
 
 Wave 25 `google_vpc_access_connector` override (`google_vpc_access_` → `vpcaccess.googleapis.com`). Four Wave 26 Certificate Manager overrides (`google_certificate_manager_` → `certificatemanager.googleapis.com`). `google_artifact_registry_repository` override: typed remote `docker_repository` / `maven_repository` / `npm_repository` helpers and public-registry enums.

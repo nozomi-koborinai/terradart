@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.12.12
+
+Lockstep version bump for `terradart_google` v0.12.12. MCP catalog unchanged (192 entries). Sealed-type metadata for seven factories with `exactly_one_of` enforcement.
+
 ## 0.12.11
 
 Lockstep version bump for `terradart_google` v0.12.11. MCP catalog grows by five entries (VPC Access connector + four Certificate Manager factories; 192 entries total, 29 service barrels). Artifact Registry remote helper types expanded.

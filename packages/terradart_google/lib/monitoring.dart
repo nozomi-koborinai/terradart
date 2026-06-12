@@ -95,4 +95,5 @@ export 'src/monitoring/google_monitoring_uptime_check_config.dart'
         MonitoringUptimeCheckConfigServiceAgentAuthentication,
         MonitoringUptimeCheckStatusClass,
         MonitoringUptimeCheckConfigSyntheticMonitor,
-        MonitoringUptimeCheckConfigTcpCheck;
+        MonitoringUptimeCheckConfigTcpCheck,
+        MonitoringUptimeCheckConfigTarget;

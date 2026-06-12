@@ -49,6 +49,7 @@ export 'src/bigquery/google_bigquery_connection.dart'
         BigqueryConnectionSpark,
         BigqueryConnectionSparkMetastoreServiceConfig,
         BigqueryConnectionSparkSparkHistoryServerConfig,
+        BigqueryConnectionBackend,
         GoogleBigqueryConnection;
 export 'src/bigquery/google_bigquery_datapolicy_data_policy.dart'
     show
@@ -111,6 +112,7 @@ export 'src/bigquery/google_bigquery_job.dart'
         BigqueryJobTimePartitioning,
         BigqueryJobUserDefinedFunctionResource,
         BigqueryJobWriteDisposition,
+        BigqueryJobConfiguration,
         GoogleBigqueryJob;
 export 'src/bigquery/google_bigquery_reservation.dart'
     show

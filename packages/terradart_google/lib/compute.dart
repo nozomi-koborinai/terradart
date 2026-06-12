@@ -76,8 +76,11 @@ export 'src/compute/google_compute_disk_iam_member.dart'
     show GoogleComputeDiskIamMember;
 export 'src/compute/google_compute_firewall.dart'
     show
+        ComputeFirewallAllowPolicy,
+        ComputeFirewallDenyPolicy,
         ComputeFirewallFirewallAllowRule,
         ComputeFirewallFirewallDenyRule,
+        ComputeFirewallRulePolicy,
         FirewallDirection,
         ComputeFirewallFirewallLogConfig,
         FirewallLogMetadata,
@@ -117,6 +120,7 @@ export 'src/compute/google_compute_global_network_endpoint_group.dart'
 export 'src/compute/google_compute_health_check.dart'
     show
         GoogleComputeHealthCheck,
+        ComputeHealthCheckProtocol,
         ComputeHealthCheckGrpcHealthCheckConfig,
         ComputeHealthCheckHealthCheckLogConfig,
         HealthCheckPortSpecification,
@@ -281,6 +285,7 @@ export 'src/compute/google_compute_region_backend_service.dart'
 export 'src/compute/google_compute_region_health_check.dart'
     show
         GoogleComputeRegionHealthCheck,
+        ComputeRegionHealthCheckProtocol,
         ComputeRegionHealthCheckRegionHealthCheckGrpcConfig,
         ComputeRegionHealthCheckRegionHealthCheckHttp2Config,
         ComputeRegionHealthCheckRegionHealthCheckHttpConfig,

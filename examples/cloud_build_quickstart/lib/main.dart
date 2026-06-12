@@ -156,7 +156,9 @@ final class CloudBuildStack extends Stack {
           repository: TfArg.ref<String>(lbRepo.id),
           push: CloudbuildTriggerPushFilter(branch: TfArg.literal('^main\$')),
         ),
-        filename: TfArg.literal('cloudbuild.yaml'),
+        buildSpec: CloudbuildTriggerFilenameSpec(
+          filename: TfArg.literal('cloudbuild.yaml'),
+        ),
         serviceAccount: TfArg.literal(
           'projects/$projectId/serviceAccounts/cloud-build-sa@$projectId.iam.gserviceaccount.com',
         ),

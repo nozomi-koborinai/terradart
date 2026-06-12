@@ -102,11 +102,16 @@ paramOrder:
   - location
   - job_timeout_ms
   - labels
-  - query
-  - load
-  - extract
-  - copy
+  - job_configuration
   - project
+
+argMapOrder:
+  - job_id
+  - location
+  - job_timeout_ms
+  - labels
+  - project
+  - job_configuration
 
 extraImports:
   - "import 'package:meta/meta.dart';"
@@ -337,6 +342,19 @@ prelude: |
   // ===========================================================================
 
   /// `query` job-type block. Required field: [query] (the SQL text).
+
+  // ===========================================================================
+  // BigqueryJobConfiguration — sealed oneof
+  // ===========================================================================
+
+  sealed class BigqueryJobConfiguration {
+    const BigqueryJobConfiguration();
+
+    String get blockKey;
+
+    List<Map<String, Object?>> encode();
+  }
+
   /// All other fields are optional. When [destinationTable] is set,
   /// the query result is materialized to that table according to
   /// [createDisposition] / [writeDisposition].
@@ -347,7 +365,7 @@ prelude: |
   /// docs — this wrapper exposes the enums as nullable so callers
   /// can simply omit them for the DML case.
   @immutable
-  class BigqueryJobQuery {
+  final class BigqueryJobQuery extends BigqueryJobConfiguration {
     const BigqueryJobQuery({
       required this.query,
       this.destinationTable,
@@ -455,6 +473,12 @@ prelude: |
       if (schemaUpdateOptions != null)
         'schema_update_options': schemaUpdateOptions,
     };
+
+    @override
+    String get blockKey => 'query';
+
+    @override
+    List<Map<String, Object?>> encode() => [toArgMap()];
   }
 
   /// One entry under `query.user_defined_function_resources`. Provide
@@ -541,7 +565,7 @@ prelude: |
   /// [allowQuotedNewlines], [allowJaggedRows], [encoding],
   /// [nullMarker]) are ignored for non-CSV formats.
   @immutable
-  class BigqueryJobLoad {
+  final class BigqueryJobLoad extends BigqueryJobConfiguration {
     const BigqueryJobLoad({
       required this.sourceUris,
       required this.destinationTable,
@@ -654,6 +678,12 @@ prelude: |
       if (jsonExtension != null)
         'json_extension': jsonExtension!.toTfJson(),
     };
+
+    @override
+    String get blockKey => 'load';
+
+    @override
+    List<Map<String, Object?>> encode() => [toArgMap()];
   }
 
   /// `load.time_partitioning` (max_items=1) — applies partitioning to
@@ -718,7 +748,7 @@ prelude: |
   /// `CSV`. For Avro outputs, [useAvroLogicalTypes] controls how
   /// TIMESTAMP / DATETIME / etc. surface in the Avro schema.
   @immutable
-  class BigqueryJobExtract {
+  final class BigqueryJobExtract extends BigqueryJobConfiguration {
     const BigqueryJobExtract({
       required this.destinationUris,
       this.sourceTable,
@@ -767,6 +797,12 @@ prelude: |
       if (useAvroLogicalTypes != null)
         'use_avro_logical_types': useAvroLogicalTypes!.toTfJson(),
     };
+
+    @override
+    String get blockKey => 'extract';
+
+    @override
+    List<Map<String, Object?>> encode() => [toArgMap()];
   }
 
   /// `extract.source_model` — fully qualified BigQuery ML model
@@ -799,7 +835,7 @@ prelude: |
   /// `source_tables`. Shares [createDisposition] / [writeDisposition]
   /// semantics with the other job types.
   @immutable
-  class BigqueryJobCopy {
+  final class BigqueryJobCopy extends BigqueryJobConfiguration {
     const BigqueryJobCopy({
       required this.sourceTables,
       required this.destinationTable,
@@ -832,18 +868,15 @@ prelude: |
       if (writeDisposition != null)
         'write_disposition': writeDisposition!.terraformValue,
     };
+
+    @override
+    String get blockKey => 'copy';
+
+    @override
+    List<Map<String, Object?>> encode() => [toArgMap()];
   }
 
 customSlots:
-  query:
-    paramDeclaration: 'BigqueryJobQuery? query'
-    argMapEntry: "if (query != null) 'query': TfArg.literal([query.toArgMap()]),"
-  load:
-    paramDeclaration: 'BigqueryJobLoad? load'
-    argMapEntry: "if (load != null) 'load': TfArg.literal([load.toArgMap()]),"
-  extract:
-    paramDeclaration: 'BigqueryJobExtract? extract'
-    argMapEntry: "if (extract != null) 'extract': TfArg.literal([extract.toArgMap()]),"
-  copy:
-    paramDeclaration: 'BigqueryJobCopy? copy'
-    argMapEntry: "if (copy != null) 'copy': TfArg.literal([copy.toArgMap()]),"
+  job_configuration:
+    paramDeclaration: 'required BigqueryJobConfiguration jobConfiguration'
+    argMapEntry: 'jobConfiguration.blockKey: TfArg.literal(jobConfiguration.encode()),'

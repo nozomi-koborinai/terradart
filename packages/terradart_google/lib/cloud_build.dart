@@ -34,6 +34,10 @@ export 'src/cloud_build/google_cloudbuild_trigger.dart'
         CloudBuildTriggerSubstitutionOption,
         CloudbuildTriggerTriggerTemplate,
         CloudbuildTriggerWebhookConfig,
+        CloudbuildTriggerBuildSpec,
+        CloudbuildTriggerFilenameSpec,
+        CloudbuildTriggerGitFileSourceSpec,
+        CloudbuildTriggerInlineBuildSpec,
         GoogleCloudbuildTrigger;
 export 'src/cloud_build/google_cloudbuild_worker_pool.dart'
     show
