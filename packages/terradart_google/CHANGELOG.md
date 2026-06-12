@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.12.17 - 2026-06-12
+
+### Added
+
+- `Apis.required(barrels: [...])` — derives distinct `GoogleProjectService` resources from [Barrels] catalog names.
+- `Barrels` enum — typed barrel selectors aligned with per-service `package:terradart_google/<barrel>.dart` imports.
+- Shared `requiredApiForTerraformType` moved into the package (re-exported for `tool/` gates).
+
 ## 0.12.16 - 2026-06-12
 
 ### Added
