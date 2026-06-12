@@ -4,6 +4,17 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## [0.12.15] - 2026-06-12
+
+Lockstep release across the workspace. **No breaking changes** vs `0.12.14`.
+
+### Added
+
+- **`terradart_google`** — Wave 29 Private CA (1): `google_privateca_certificate_authority` (typed `config` / `keySpec` helpers, `PrivatecaCertificateAuthorityX509Config.rootCa()`).
+- Extended **`compute_lb_quickstart`** — root CA in the CAS pool before Certificate Manager issuance.
+
+Catalog: **195 curated resource factories + 1 data source** (196 entries).
+
 ## [0.12.14] - 2026-06-12
 
 Lockstep release across the workspace. **No breaking changes** vs `0.12.13`.

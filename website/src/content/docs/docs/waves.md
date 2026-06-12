@@ -1,6 +1,6 @@
 ---
-title: Waves 23–28
-description: Curated google_* factories shipped in Waves 23–28 (v0.12.10–0.12.14) with example stack pointers.
+title: Waves 23–29
+description: Curated google_* factories shipped in Waves 23–29 (v0.12.10–0.12.15) with example stack pointers.
 ---
 
 ## v0.12.10 — Waves 23–24
@@ -188,9 +188,48 @@ final pool = GooglePrivatecaCaPool(
 );
 ```
 
+## v0.12.15 — Wave 29
+
+**v0.12.15** adds the CAS certificate authority factory and wires a self-signed root CA into `compute_lb_quickstart` before the issuance config. **Additive** — no breaking changes vs `0.12.14`.
+
+Catalog after `0.12.15`: **195 curated resource factories + 1 data source** (196 catalog entries). 30 service barrels.
+
+### Wave 29 — Private CA (certificate authority)
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_privateca_certificate_authority` | `GooglePrivatecaCertificateAuthority` | `privateca` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
+
+**Highlights**
+
+- **Root CA** — `PrivatecaCertificateAuthorityConfig` + `PrivatecaCertificateAuthorityX509Config.rootCa()` for a cert-signing profile inside a [GooglePrivatecaCaPool].
+- **Key spec** — `PrivatecaCertificateAuthorityKeySpec` with `PrivatecaCertificateAuthorityKeyAlgorithm` enum.
+
+```dart
+GooglePrivatecaCertificateAuthority(
+  localName: 'root_ca',
+  certificateAuthorityId: TfArg.literal('app-root-ca'),
+  pool: TfArg.ref(pool.id),
+  location: TfArg.literal('us-central1'),
+  config: PrivatecaCertificateAuthorityConfig(
+    subjectConfig: PrivatecaCertificateAuthoritySubjectConfig(
+      subject: PrivatecaCertificateAuthoritySubject(
+        commonName: TfArg.literal('app.example.com'),
+      ),
+    ),
+    x509Config: PrivatecaCertificateAuthorityX509Config.rootCa(),
+  ),
+  keySpec: PrivatecaCertificateAuthorityKeySpec(
+    algorithm: TfArg.literal(
+      PrivatecaCertificateAuthorityKeyAlgorithm.rsaPkcs14096Sha256,
+    ),
+  ),
+);
+```
+
 ## Full catalog example coverage
 
-As of PR [#127](https://github.com/nozomi-koborinai/terradart/pull/127), **`tool/example_debt.yaml` is empty** — every curated factory and the `GoogleProject` data source appears in at least one quickstart synth output (machine-checked by `dart tool/check_docs_consistency.dart`).
+As of PR [#127](https://github.com/nozomi-koborinai/terradart/pull/127), **`tool/example_debt.yaml` is empty** — every curated factory and the `GoogleProject` data source appears in at least one quickstart synth output (machine-checked by `dart tool/check_docs_consistency.dart`). Catalog size grows with later Waves (e.g. Wave 29 → **196 entries**).
 
 Final backfill (no new catalog entries):
 
@@ -216,6 +255,7 @@ Quickstarts extended for these waves:
 | `0.12.13` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) | trust config + issuance config |
 | `0.12.13` | [pubsub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) | `GoogleProject` data source |
 | `0.12.14` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) | Private CA pool → issuance config ref |
+| `0.12.15` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) | Private CA root authority in pool |
 | *(backfill)* | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) | IAP binding (`*_iam_binding` alongside member) |
 | *(backfill)* | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) | folder + organization logging sinks |
 

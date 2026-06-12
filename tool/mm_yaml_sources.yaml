@@ -455,3 +455,5 @@ files:
   # Wave 28 (Private CA — CAS pool for Certificate Manager issuance)
   google_privateca_ca_pool:
     upstream: null  # handwritten in terraform-provider-google; no MM YAML
+  google_privateca_certificate_authority:
+    upstream: null  # handwritten in terraform-provider-google; no MM YAML

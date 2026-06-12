@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.12.15 - 2026-06-12
+
+### Added
+
+- Wave 29 Private CA (1): `google_privateca_certificate_authority` with `PrivatecaCertificateAuthorityConfig`, `PrivatecaCertificateAuthorityKeySpec`, and X.509 / key-algorithm enums.
+- Extended `compute_lb_quickstart` (root CA → pool → issuance chain).
+
+Catalog: **195 curated resource factories + 1 data source** (196 entries).
+
 ## 0.12.14 - 2026-06-12
 
 ### Added
