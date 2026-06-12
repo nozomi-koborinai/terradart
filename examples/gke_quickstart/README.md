@@ -31,7 +31,7 @@ terraform apply
 
 ## What gets created
 
-- API enablement for `compute.googleapis.com`, `container.googleapis.com`, and `gkehub.googleapis.com`.
+- API enablement via [`Apis.required`](../../packages/terradart_google/lib/src/project/apis.dart) (`Barrels.compute`, `Barrels.container`, `Barrels.gkeBackup` → Compute, GKE, GKE Hub, GKE Backup APIs).
 - VPC `gke-vpc` and subnet `gke-subnet` in `asia-northeast1`.
 - Regional cluster `main-gke` with `remove_default_node_pool = true`.
 - Node pool `primary-pool` attached to the cluster.

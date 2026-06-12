@@ -32,7 +32,8 @@ terraform apply
 ## What gets created
 
 - A Secret Manager secret `api-db-password` with user-managed replication in `asia-northeast1`.
-- A Serverless VPC Access connector `run-vpc` (`10.8.0.0/28` on the `default` VPC) with `vpcaccess.googleapis.com` enabled via `google_project_service`.
+- API enablement via [`Apis.required`](../../packages/terradart_google/lib/src/project/apis.dart) (`Barrels.cloudRun`, `Barrels.serviceNetworking` → Run + VPC Access APIs).
+- A Serverless VPC Access connector `run-vpc` (`10.8.0.0/28` on the `default` VPC).
 - A Cloud Run v2 Service `api` running `gcr.io/cloudrun/hello`:
   - 1 literal env var: `LOG_LEVEL=info` via `EnvVarFromLiteral`.
   - 1 secret-backed env var: `DB_PASSWORD` via `EnvVarFromSecret(secret: 'api-db-password', version: 'latest')`.
