@@ -4,6 +4,12 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## Unreleased
+
+### Changed (examples)
+
+- **`gke_quickstart`**, **`cloud_run_quickstart`**, **`compute_lb_quickstart`** — replace hand-written `GoogleProjectService` blocks with [`Apis.required`](packages/terradart_google/lib/src/project/apis.dart) (`#57` dogfood). Cloud Run quickstart now also enables `run.googleapis.com`.
+
 ## [0.12.18] - 2026-06-12
 
 Lockstep release across the workspace. **No breaking changes** vs `0.12.17`.
