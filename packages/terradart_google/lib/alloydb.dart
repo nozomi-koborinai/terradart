@@ -2,6 +2,7 @@
 /// AlloyDB — Postgres-compatible managed database clusters and instances.
 library;
 
+export 'src/alloydb/google_alloydb_backup.dart' show GoogleAlloydbBackup;
 export 'src/alloydb/google_alloydb_cluster.dart'
     show
         AlloydbClusterAutomatedBackupPolicy,

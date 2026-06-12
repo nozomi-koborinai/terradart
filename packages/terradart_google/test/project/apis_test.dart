@@ -54,6 +54,24 @@ void main() {
       expect(apis.single.localName, 'api_alloydb');
     });
 
+    test('memcache barrel includes memcache.googleapis.com', () {
+      final apis = Apis.required(barrels: [Barrels.memcache]);
+      expect(apis, hasLength(1));
+      expect(
+        apis.single.argMap['service']!.toTfJson(),
+        'memcache.googleapis.com',
+      );
+    });
+
+    test('spanner barrel includes spanner.googleapis.com', () {
+      final apis = Apis.required(barrels: [Barrels.spanner]);
+      expect(apis, hasLength(1));
+      expect(
+        apis.single.argMap['service']!.toTfJson(),
+        'spanner.googleapis.com',
+      );
+    });
+
     test('redis barrel includes redis.googleapis.com', () {
       final apis = Apis.required(barrels: [Barrels.redis]);
       expect(apis, hasLength(1));

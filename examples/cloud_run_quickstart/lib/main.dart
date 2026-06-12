@@ -36,6 +36,7 @@ import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/memcache.dart';
 import 'package:terradart_google/redis.dart';
 import 'package:terradart_google/secret_manager.dart';
 import 'package:terradart_google/service_networking.dart';
@@ -59,6 +60,7 @@ final class ApiServiceStack extends Stack {
         Barrels.secretManager,
         Barrels.serviceNetworking,
         Barrels.redis,
+        Barrels.memcache,
       ],
       propagationDelay: const Duration(seconds: 60),
     ).registerOn(this);
@@ -93,6 +95,21 @@ final class ApiServiceStack extends Stack {
         memorySizeGb: TfArg.literal(1),
         region: TfArg.literal('asia-northeast1'),
         tier: TfArg.literal(RedisInstanceTier.basic),
+        authorizedNetwork: TfArg.literal('default'),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleMemcacheInstance(
+        localName: 'api_sessions',
+        name: TfArg.literal('api-sessions'),
+        nodeCount: TfArg.literal(1),
+        nodeConfig: MemcacheInstanceNodeConfig(
+          cpuCount: TfArg.literal(1),
+          memorySizeMb: TfArg.literal(1024),
+        ),
+        region: TfArg.literal('asia-northeast1'),
         authorizedNetwork: TfArg.literal('default'),
         dependsOn: apiDeps,
       ),
