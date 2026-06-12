@@ -1,6 +1,7 @@
 /// Synth entry. `dart run bin/infra.dart` → `tf-out/main.tf.json`.
 library;
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:terradart_example_ops_quickstart/main.dart';
@@ -13,5 +14,14 @@ Future<void> main() async {
   }
   final stack = AuditPipelineStack(projectId: projectId);
   await stack.writeTo('tf-out');
+  // Folder/org sinks need hierarchy IDs at apply time (not required for synth).
+  await File('tf-out/variables.tf.json').writeAsString(
+    const JsonEncoder.withIndent('  ').convert({
+      'variable': {
+        'ops_folder_id': {'type': 'string'},
+        'ops_organization_id': {'type': 'string'},
+      },
+    }),
+  );
   print('synthesized to tf-out/main.tf.json');
 }
