@@ -180,6 +180,28 @@ final class ComputeLbStack extends Stack {
     );
     add(cmCaPool);
 
+    final cmRootCa = GooglePrivatecaCertificateAuthority(
+      localName: 'cm_root_ca',
+      certificateAuthorityId: TfArg.literal('app-root-ca'),
+      pool: TfArg.ref(cmCaPool.id),
+      location: TfArg.literal(region),
+      config: PrivatecaCertificateAuthorityConfig(
+        subjectConfig: PrivatecaCertificateAuthoritySubjectConfig(
+          subject: PrivatecaCertificateAuthoritySubject(
+            commonName: TfArg.literal('app.example.com'),
+          ),
+        ),
+        x509Config: PrivatecaCertificateAuthorityX509Config.rootCa(),
+      ),
+      keySpec: PrivatecaCertificateAuthorityKeySpec(
+        algorithm: TfArg.literal(
+          PrivatecaCertificateAuthorityKeyAlgorithm.rsaPkcs14096Sha256,
+        ),
+      ),
+      dependsOn: [ResourceDependency(cmCaPool)],
+    );
+    add(cmRootCa);
+
     final cmIssuance = GoogleCertificateManagerCertificateIssuanceConfig(
       localName: 'cm_issuance',
       name: TfArg.literal('app-cm-issuance'),
@@ -198,6 +220,7 @@ final class ComputeLbStack extends Stack {
       dependsOn: [
         ResourceDependency(apiCertificateManager),
         ResourceDependency(cmCaPool),
+        ResourceDependency(cmRootCa),
       ],
     );
     add(cmIssuance);
