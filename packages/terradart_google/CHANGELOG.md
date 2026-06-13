@@ -1,5 +1,22 @@
 # Changelog
 
+## Unreleased
+
+### Breaking
+
+- `Apis.enable(stack, barrels: ...)` replaces `ApisEnablement.enable(...).registerOn(stack)` and the `ApiEnablement` bundle — one call registers the services plus the propagation `TimeSleep` and returns the dependency list. See [MIGRATING.md](../../MIGRATING.md).
+- `TimeProvider` / `TimeSleep` moved here from `terradart_core` — import `package:terradart_google/time.dart`.
+- `GoogleProvider.providerAlias` removed (a silent no-op: synth never emitted the alias).
+
+### Fixed
+
+- `secret_manager` barrel exports the sealed replication variants (`SecretManagerSecretAutoReplication` / `SecretManagerSecretUserManagedReplication`) that the catalog already advertised.
+- `google_alloydb_cluster` / `google_memcache_instance` — `deletionProtection` input wired (the schema capability was advertised with no setter; caught by the new parity gate).
+
+### Added (maintainer)
+
+- Barrel completeness gate: every public type of a generated wrapper must appear in its barrel's `show` clause (`per_service_barrel_test`).
+
 ## 0.12.20 - 2026-06-12
 
 ### Added

@@ -1,5 +1,59 @@
 # Migrating terradart
 
+## 0.12.20 → next release
+
+**Breaking changes** — API-enablement collapse, time-wrapper relocation, and
+removal of the unimplemented provider-aliasing surface.
+
+### `Apis.enable` replaces `ApisEnablement` / `ApiEnablement`
+
+The two-layer bundle API is gone; one static call registers the services plus
+the propagation `TimeSleep` and returns the dependency list:
+
+```dart
+// Before
+final apiDeps = ApisEnablement.enable(
+  barrels: [Barrels.cloudRun, Barrels.redis],
+).registerOn(this);
+
+// After
+final apiDeps = Apis.enable(
+  this,
+  barrels: [Barrels.cloudRun, Barrels.redis],
+);
+```
+
+Defaults are unchanged (60s propagation, `api` prefix). Callers that built
+`ApiEnablement(services: ...)` directly should register the `Apis.required`
+list themselves and wire `ResourceDependency` manually.
+
+### `TimeProvider` / `TimeSleep` moved to `terradart_google`
+
+`terradart_core` is provider-neutral again. Import the `time` barrel instead:
+
+```dart
+// Before: exported by package:terradart_core/terradart_core.dart
+// After:
+import 'package:terradart_google/time.dart';
+```
+
+### Provider-aliasing surface removed
+
+`GoogleProvider.providerAlias`, `StackProvider.providerAlias`,
+`ProviderBinding`, and `Resource.provider` are removed. None of them ever
+reached the synthesized Terraform JSON — synth ignored the alias and never
+emitted a `provider` meta-argument — so any code passing them was a silent
+no-op. Aliasing returns as an end-to-end feature when multi-provider stacks
+land.
+
+### Synth validates provider coverage
+
+`Stack.synth()` now throws `StateError` when a registered resource or data
+source has no matching provider in `Stack.providers` (matched by the type's
+prefix before the first `_`, e.g. `time_sleep` → `time`). Previously Terraform
+silently fell back to an unpinned implied provider. Fix: add the missing
+provider (e.g. `const TimeProvider()`).
+
 ## 0.12.11 → 0.12.12
 
 **Breaking changes** in `terradart_google` — several curated factories now enforce

@@ -121,4 +121,46 @@ void main() {
       });
     }
   });
+
+  group('Per-service barrels: generated files are exported completely', () {
+    // The reverse direction of the group above, limited to GENERATED
+    // wrapper files: every public top-level declaration must appear in the
+    // barrel's show clause. The catalog advertises all nested types of a
+    // generated wrapper to MCP agents (`nestedTypes`), so a hidden public
+    // type is a compile error waiting for whoever follows that advertised
+    // surface (Wave 32 shipped the redis barrel exporting 3 of 7 types).
+    final libDir = Directory('lib');
+    final barrels = libDir.existsSync()
+        ? libDir
+            .listSync()
+            .whereType<File>()
+            .where((f) => f.path.endsWith('.dart'))
+            .where((f) => p.basename(f.path) != 'terradart_google.dart')
+            .toList()
+        : <File>[];
+
+    for (final barrel in barrels) {
+      final barrelName = p.basenameWithoutExtension(barrel.path);
+      test('$barrelName.dart: every generated public type is shown', () {
+        final exports = _parseExports(barrel.readAsStringSync());
+        for (final directive in exports) {
+          final sourceFile = File(p.join('lib', directive.sourcePath));
+          if (!sourceFile.existsSync()) continue; // covered by group above
+          final source = sourceFile.readAsStringSync();
+          if (!source.startsWith('// GENERATED FILE')) continue;
+          final public = _topLevelDeclarations(source)
+              .where((n) => !n.startsWith('_'))
+              .toSet();
+          final shown = directive.shownNames.toSet();
+          expect(
+            public.difference(shown),
+            isEmpty,
+            reason: '$barrelName.dart hides public types of generated '
+                '${directive.sourcePath}. The catalog advertises every '
+                'nested type, so add the missing names to the show clause.',
+          );
+        }
+      });
+    }
+  });
 }

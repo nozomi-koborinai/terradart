@@ -18,7 +18,6 @@ final class GoogleProvider implements StackProvider {
     this.project,
     this.region,
     this.zone,
-    this.providerAlias,
   });
 
   /// Default GCP project ID.
@@ -29,9 +28,6 @@ final class GoogleProvider implements StackProvider {
 
   /// Default GCP zone (e.g. `us-central1-a`).
   final String? zone;
-
-  @override
-  final String? providerAlias;
 
   @override
   String get providerName => 'google';

@@ -26,7 +26,7 @@
 /// Wave 25 adds a Serverless VPC Access connector and pins the service
 /// revision to it via `template.vpcAccess` (`VpcAccessEgress.privateRangesOnly`).
 ///
-/// Wave 32 adds Memorystore Redis and [ApisEnablement] propagation
+/// Wave 32 adds Memorystore Redis and [Apis.enable] propagation
 /// ([TimeSleep] after API enablement), wiring the cache's typed `host` ref
 /// into the service env (`REDIS_HOST`).
 library;
@@ -40,6 +40,7 @@ import 'package:terradart_google/memcache.dart';
 import 'package:terradart_google/redis.dart';
 import 'package:terradart_google/secret_manager.dart';
 import 'package:terradart_google/service_networking.dart';
+import 'package:terradart_google/time.dart';
 
 final class ApiServiceStack extends Stack {
   ApiServiceStack({required String projectId})
@@ -51,10 +52,12 @@ final class ApiServiceStack extends Stack {
         ) {
     // ---- API enablement + Wave 25 VPC Access + Wave 32 Redis --------------
     //
-    // [ApisEnablement] enables the Run, Secret Manager, VPC Access, and
-    // Redis APIs and waits 60s for propagation before dependents apply.
+    // [Apis.enable] enables the Run, Secret Manager, VPC Access, Redis,
+    // and Memcache APIs and waits 60s for propagation before dependents
+    // apply.
 
-    final apiDeps = ApisEnablement.enable(
+    final apiDeps = Apis.enable(
+      this,
       barrels: [
         Barrels.cloudRun,
         Barrels.secretManager,
@@ -63,7 +66,7 @@ final class ApiServiceStack extends Stack {
         Barrels.memcache,
       ],
       propagationDelay: const Duration(seconds: 60),
-    ).registerOn(this);
+    );
 
     add(
       GoogleSecretManagerSecret(

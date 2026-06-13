@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+### Breaking
+
+- `TimeProvider` / `TimeSleep` moved to `terradart_google` (`package:terradart_google/time.dart`) — core is provider-neutral again. See [MIGRATING.md](../../MIGRATING.md).
+- Removed the unimplemented provider-aliasing surface: `StackProvider.providerAlias`, `ProviderBinding`, and `Resource.provider`. None of it ever reached the synthesized JSON; aliasing returns as an end-to-end feature when multi-provider stacks land.
+- `Stack.synth()` validates provider coverage: every registered resource / data source type prefix (segment before the first `_`) must match a registered provider's `providerName`, otherwise synth throws `StateError`. Previously Terraform silently fell back to an unpinned implied provider.
+
 ## 0.12.20
 
 ### Added

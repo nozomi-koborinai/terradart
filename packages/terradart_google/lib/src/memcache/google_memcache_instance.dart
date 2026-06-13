@@ -84,7 +84,7 @@ class MemcacheInstanceMaintenancePolicy {
 /// - [nodeCount]: number of Memcached nodes.
 ///
 /// Enable `memcache.googleapis.com` via [GoogleProjectService] or
-/// [ApisEnablement.enable] before apply.
+/// [Apis.enable] before apply.
 ///
 /// Example:
 /// ```dart
@@ -114,6 +114,7 @@ final class GoogleMemcacheInstance extends Resource {
     TfArg<String>? displayName,
     MemcacheInstanceMaintenancePolicy? maintenancePolicy,
     TfArg<Map<String, String>>? labels,
+    TfArg<bool>? deletionProtection,
     super.lifecycle,
     super.dependsOn,
   }) : super(
@@ -132,6 +133,8 @@ final class GoogleMemcacheInstance extends Resource {
                maintenancePolicy.toArgMap(),
              ]),
            if (labels != null) 'labels': labels,
+           if (deletionProtection != null)
+             'deletion_protection': deletionProtection,
          },
        );
 

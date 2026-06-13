@@ -1,5 +1,8 @@
 import 'package:terradart_google/project.dart';
+import 'package:terradart_google/time.dart';
 import 'package:test/test.dart';
+
+import '../_helpers.dart';
 
 void main() {
   group('Apis.required', () {
@@ -31,7 +34,8 @@ void main() {
     test('pubsub barrel is a single API', () {
       final apis = Apis.required(barrels: [Barrels.pubsub]);
       expect(apis, hasLength(1));
-      expect(apis.single.argMap['service']!.toTfJson(), 'pubsub.googleapis.com');
+      expect(
+          apis.single.argMap['service']!.toTfJson(), 'pubsub.googleapis.com');
     });
 
     test('project barrel alone yields no APIs', () {
@@ -84,6 +88,108 @@ void main() {
       expect(apis, hasLength(1));
       expect(apis.single.argMap['service']!.toTfJson(), 'redis.googleapis.com');
       expect(apis.single.localName, 'api_redis');
+    });
+  });
+
+  group('Apis.enable', () {
+    test('zero propagation delay registers services only', () {
+      final stack = TestStack();
+      final deps = Apis.enable(
+        stack,
+        barrels: [Barrels.pubsub],
+        propagationDelay: Duration.zero,
+      );
+      expect(deps, hasLength(1));
+      expect(
+        stack.resources.map((r) => r.terraformType),
+        ['google_project_service'],
+      );
+    });
+
+    test('negative delay also skips the sleep', () {
+      final stack = TestStack();
+      final deps = Apis.enable(
+        stack,
+        barrels: [Barrels.pubsub],
+        propagationDelay: const Duration(seconds: -1),
+      );
+      expect(deps, hasLength(1));
+      expect(
+        stack.resources.map((r) => r.terraformType),
+        ['google_project_service'],
+      );
+    });
+
+    test('adds time_sleep with service-keyed triggers when delay is set', () {
+      final stack = TestStack(providers: const [TimeProvider()]);
+      final deps = Apis.enable(
+        stack,
+        barrels: [Barrels.pubsub],
+        propagationDelay: const Duration(seconds: 45),
+      );
+      expect(
+        stack.resources.map((r) => r.terraformType),
+        ['google_project_service', 'time_sleep'],
+      );
+      final sleep = stack.resources.whereType<TimeSleep>().single;
+      // The returned dependency targets the sleep (not the services), and
+      // the sleep itself depends on every service — the services -> sleep ->
+      // dependents ordering is the whole contract of this helper.
+      expect(deps.single.target, same(sleep));
+      expect(
+        sleep.dependsOn!.map((d) => d.bareAddress),
+        ['google_project_service.api_pubsub'],
+      );
+      expect(sleep.localName, 'api_propagation');
+      expect(sleep.argMap['create_duration']!.toTfJson(), '45s');
+      expect(sleep.argMap['triggers']!.toTfJson(), {
+        'api_pubsub': r'${google_project_service.api_pubsub.id}',
+      });
+    });
+
+    test('derives the sleep local name from localNamePrefix', () {
+      final stack = TestStack(providers: const [TimeProvider()]);
+      Apis.enable(stack, barrels: [Barrels.pubsub], localNamePrefix: 'apis_a');
+      Apis.enable(stack, barrels: [Barrels.redis], localNamePrefix: 'apis_b');
+      expect(
+        stack.resources.whereType<TimeSleep>().map((s) => s.localName),
+        ['apis_a_propagation', 'apis_b_propagation'],
+      );
+    });
+
+    test(
+        'throws StateError before mutating the stack when TimeProvider '
+        'is missing', () {
+      final stack = TestStack();
+      expect(
+        () => Apis.enable(stack, barrels: [Barrels.pubsub]),
+        throwsStateError,
+      );
+      expect(stack.resources, isEmpty);
+    });
+
+    test(
+        'throws ArgumentError before mutating the stack for sub-second '
+        'delays', () {
+      final stack = TestStack(providers: const [TimeProvider()]);
+      expect(
+        () => Apis.enable(
+          stack,
+          barrels: [Barrels.pubsub],
+          propagationDelay: const Duration(milliseconds: 500),
+        ),
+        throwsArgumentError,
+      );
+      expect(stack.resources, isEmpty);
+    });
+
+    test('empty barrels register nothing and return no deps', () {
+      final stack = TestStack();
+      // Barrels.iamApi contributes no API endpoints (IAM-only adjuncts), so
+      // there is nothing to enable and nothing to wait for.
+      final deps = Apis.enable(stack, barrels: [Barrels.iamApi]);
+      expect(deps, isEmpty);
+      expect(stack.resources, isEmpty);
     });
   });
 

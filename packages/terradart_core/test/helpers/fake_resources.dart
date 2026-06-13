@@ -20,7 +20,6 @@ class FakeStackProvider implements StackProvider {
     required this.source,
     required this.versionConstraint,
     this.configArgs = const {},
-    this.providerAlias,
   });
 
   @override
@@ -34,9 +33,6 @@ class FakeStackProvider implements StackProvider {
 
   @override
   final Map<String, Object?> configArgs;
-
-  @override
-  final String? providerAlias;
 
   @override
   Map<String, Object?> toTfJson() => Map<String, Object?>.from(configArgs);

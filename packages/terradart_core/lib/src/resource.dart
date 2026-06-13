@@ -24,7 +24,6 @@ abstract base class Resource implements TfAddressed {
     required this.argMap,
     this.lifecycle,
     this.dependsOn,
-    this.provider,
   });
 
   /// Terraform resource type, e.g. `google_pubsub_topic`.
@@ -45,11 +44,6 @@ abstract base class Resource implements TfAddressed {
   /// either a wholesale resource (rendered as bare address) or an explicit
   /// `TfRef` (rendered via `bareAddress`).
   final List<DependencyTarget>? dependsOn;
-
-  /// Optional explicit provider binding. Only the type is referenced here;
-  /// the concrete `Provider` class lives in `terradart_google` (provider
-  /// classes are defined per-provider, outside the core runtime).
-  final ProviderBinding? provider;
 
   @override
   String get tfAddress => '$terraformType.$localName';
@@ -80,15 +74,4 @@ abstract base class Resource implements TfAddressed {
   /// the user-facing wrapper API.
   @protected
   bool get supportsDeletionProtection => false;
-}
-
-/// Lightweight type stand-in for the provider binding so the core runtime
-/// stays independent of provider-specific packages. Concrete `Provider`
-/// classes (e.g. `GoogleProvider` in `terradart_google`) implement this.
-abstract interface class ProviderBinding {
-  /// Provider name, e.g. `'google'`.
-  String get providerName;
-
-  /// Provider alias for multi-provider scenarios. Null in v0.0.x.
-  String? get providerAlias;
 }

@@ -16,6 +16,7 @@ paramOrder:
   - display_name
   - maintenance_policy
   - labels
+  - deletion_protection
 
 curatedDoc: |-
   /// Memorystore for Memcached instance — managed Memcached for session caches.
@@ -29,7 +30,7 @@ curatedDoc: |-
   /// - [nodeCount]: number of Memcached nodes.
   ///
   /// Enable `memcache.googleapis.com` via [GoogleProjectService] or
-  /// [ApisEnablement.enable] before apply.
+  /// [Apis.enable] before apply.
   ///
   /// Example:
   /// ```dart
