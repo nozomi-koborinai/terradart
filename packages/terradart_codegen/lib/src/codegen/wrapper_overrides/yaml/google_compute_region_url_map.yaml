@@ -124,6 +124,7 @@ paramOrder:
   - test
   - default_url_redirect
   - header_action
+  - default_route_action
   - project
 
 extraImports:

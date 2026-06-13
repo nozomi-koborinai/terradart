@@ -28,13 +28,21 @@ final class LintViolation {
 
 /// Lints a single [override] for phase-1 dead-config rules. Pure: no I/O.
 ///
-/// Phase-1 rules (both decidable from [WrapperOverride] fields alone, no
+/// Phase-1 rules (all decidable from [WrapperOverride] fields alone, no
 /// schema/MM/IR load):
 ///
 /// - (a) `deriveClassDoc == true && classDocComment != null`: the emitter uses
 ///   the derived doc (A4 precedence), so `classDocComment` is dead.
 /// - (d) `curatedDoc != null && deriveClassDoc == false`: `curatedDoc` is only
 ///   emitted when `deriveClassDoc` is on, so it is dead.
+/// - (e) `customSlots` keys never referenced by `paramOrder` /
+///   `argMapOrder`: the emitter resolves slot names from those lists, so an
+///   unreferenced slot is silently skipped — the declared parameter never
+///   reaches the generated constructor (Wave 32 shipped
+///   `google_redis_instance` with both nested-block slots dropped this way,
+///   while `wrap --check` stayed green). When `paramOrder` is omitted the
+///   emitter walks IR-natural names, which can never include a *virtual*
+///   slot, so customSlots without an explicit paramOrder is flagged too.
 ///
 /// enum-in-`prelude` (vs `deriveEnums`) and `nameRef`/`id` in `extraGetters`
 /// (vs `deriveOutputGetters`) are NOT phase-1 rules: they need the IR to
@@ -69,6 +77,8 @@ List<LintViolation> lintOverride(
     ));
   }
 
+  violations.addAll(lintDeadCustomSlots(tfType, override));
+
   violations.addAll(
     lintExactlyOneMutualExclusion(
       tfType,
@@ -78,6 +88,73 @@ List<LintViolation> lintOverride(
     ),
   );
 
+  return violations;
+}
+
+/// Flags `customSlots` entries the emitter can never emit.
+///
+/// The emitter resolves [WrapperOverride.paramOrder] (constructor side) and
+/// [WrapperOverride.argMapOrder] (argMap side, falling back to `paramOrder`)
+/// names against [WrapperOverride.customSlots] first; a slot key absent from
+/// the relevant list is silently skipped, leaving the declared
+/// `paramDeclaration` / `argMapEntry` as dead config and any prelude helper
+/// types as unreachable public API.
+///
+/// - `custom-slot-missing-param-order` — customSlots present but the
+///   override omits `paramOrder` entirely. IR-natural ordering can only
+///   resolve IR-derived names, so virtual slots are guaranteed dropped;
+///   overrides that use customSlots must spell out `paramOrder`.
+/// - `custom-slot-not-in-param-order` — a slot key is missing from
+///   `paramOrder`, so no constructor parameter is emitted for it.
+/// - `custom-slot-not-in-arg-map-order` — `argMapOrder` is set but omits a
+///   slot key, so the constructor parameter exists while its argMap entry is
+///   dropped (the generated wrapper would silently ignore the argument).
+List<LintViolation> lintDeadCustomSlots(
+  String tfType,
+  WrapperOverride override,
+) {
+  final slots = override.customSlots;
+  if (slots == null || slots.isEmpty) return const [];
+
+  final paramOrder = override.paramOrder;
+  if (paramOrder == null) {
+    return [
+      LintViolation(
+        tfType: tfType,
+        rule: 'custom-slot-missing-param-order',
+        detail: 'customSlots [${slots.keys.join(', ')}] are declared but '
+            'paramOrder is omitted. The emitter only resolves customSlots '
+            'through paramOrder/argMapOrder names, so virtual slots are '
+            'silently dropped from the generated constructor. Declare '
+            'paramOrder listing every slot key.',
+      ),
+    ];
+  }
+
+  final violations = <LintViolation>[];
+  final argMapOrder = override.argMapOrder;
+  for (final key in slots.keys) {
+    if (!paramOrder.contains(key)) {
+      violations.add(LintViolation(
+        tfType: tfType,
+        rule: 'custom-slot-not-in-param-order',
+        detail: 'customSlots["$key"] is not listed in paramOrder, so the '
+            'emitter silently skips it: the generated constructor has no '
+            'matching parameter and the argMapEntry is dead config. Add '
+            '"$key" to paramOrder (and argMapOrder when set) or delete the '
+            'slot and its prelude helper types.',
+      ));
+    } else if (argMapOrder != null && !argMapOrder.contains(key)) {
+      violations.add(LintViolation(
+        tfType: tfType,
+        rule: 'custom-slot-not-in-arg-map-order',
+        detail: 'customSlots["$key"] is listed in paramOrder but missing '
+            'from argMapOrder, so the constructor parameter is emitted while '
+            'its argMap entry is dropped — the argument would be silently '
+            'ignored at synth time. Add "$key" to argMapOrder.',
+      ));
+    }
+  }
   return violations;
 }
 

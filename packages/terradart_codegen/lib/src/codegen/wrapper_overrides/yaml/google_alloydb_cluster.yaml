@@ -8,6 +8,8 @@ paramOrder:
   - location
   - network_config
   - initial_user
+  - automated_backup_policy
+  - maintenance_update_policy
   - cluster_type
   - display_name
   - labels

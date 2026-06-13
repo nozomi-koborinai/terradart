@@ -7,6 +7,20 @@
 - Wave 33 AlloyDB (3): `google_alloydb_cluster` (network + initial user helpers), `google_alloydb_instance` (machine config), `google_alloydb_user`.
 - New `alloydb` barrel; `Barrels.alloydb` → `alloydb.googleapis.com`.
 - Extended `cloud_sql_quickstart` — AlloyDB on the same PSA chain as private Cloud SQL.
+- `GoogleRedisInstance` — `authEnabled`, `transitEncryptionMode`, `replicaCount`, `readReplicasMode` inputs plus `RedisInstanceTransitEncryptionMode`, `RedisInstanceReadReplicasMode`, `RedisInstancePersistenceMode`, `RedisInstanceMaintenanceStartTime`, backing the previously input-less `authString` / `serverCaCerts` / `readEndpoint` / `readEndpointPort` getters.
+- `GoogleRedisInstance` — `deletionProtection` input, matching every other `supportsDeletionProtection` wrapper (the capability was advertised with no way to set the flag).
+- `GoogleComputeUrlMap` / `GoogleComputeRegionUrlMap` — `defaultRouteAction` parameter (the customSlot existed in both specs but was dropped from both constructors).
+
+### Fixed
+
+- `GoogleRedisInstance` — the Wave 32 `maintenancePolicy` / `persistenceConfig` customSlots were silently dropped (missing from `paramOrder`), so neither block could ever be configured; both now reach the constructor. `RedisInstanceWeeklyMaintenanceWindow` requires `startTime` (`start_time` is `min_items = 1` in the provider schema) and `RedisInstancePersistenceConfig` gains `persistenceMode` / `rdbSnapshotStartTime` so RDB persistence can actually be turned on.
+- `redis` barrel — exports every nested helper type (previously 3 of 7; the catalog `nestedTypes` advertised symbols the barrel hid from importers).
+- `ApiEnablement.registerOn` — validates before mutating the stack: throws `StateError` when the stack has no `time` provider (previously synthesized `time_sleep` with an unpinned implied `hashicorp/time`) and `ArgumentError` for positive sub-second delays; non-positive delays skip the sleep (now documented).
+- `ApiEnablement.registerOn` — the propagation `TimeSleep` carries a `triggers` map keyed to the service set, so APIs enabled in later applies get the same propagation wait instead of racing `SERVICE_DISABLED`.
+- `ApisEnablement.enable` — `propagationLocalName` defaults to `'<localNamePrefix>_propagation'`, so two enablement groups with distinct prefixes no longer collide on `time_sleep.api_propagation`.
+- `cloud_run_quickstart` — enables `secretmanager.googleapis.com` via `Barrels.secretManager` (the README already claimed credentials-only setup) and wires `REDIS_HOST` into the service env from the cache's typed `host` ref.
+- `ApiEnablement.registerOn` — an empty `services` list registers nothing and returns no deps (previously a barrel set contributing no APIs still gated all dependents behind a 60s no-op `time_sleep`).
+- pubspec description no longer hardcodes a resource count (was stale at 118).
 
 Catalog: **202 curated resource factories + 1 data source** (203 entries; 32 service barrels).
 

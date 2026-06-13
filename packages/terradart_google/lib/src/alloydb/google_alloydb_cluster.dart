@@ -160,6 +160,8 @@ final class GoogleAlloydbCluster extends Resource {
     required TfArg<String> location,
     AlloydbClusterNetworkConfig? networkConfig,
     AlloydbClusterInitialUser? initialUser,
+    AlloydbClusterAutomatedBackupPolicy? automatedBackupPolicy,
+    AlloydbClusterMaintenanceUpdatePolicy? maintenanceUpdatePolicy,
     TfArg<AlloydbClusterType>? clusterType,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? labels,
@@ -174,6 +176,14 @@ final class GoogleAlloydbCluster extends Resource {
              'network_config': TfArg.literal([networkConfig.toArgMap()]),
            if (initialUser != null)
              'initial_user': TfArg.literal([initialUser.toArgMap()]),
+           if (automatedBackupPolicy != null)
+             'automated_backup_policy': TfArg.literal([
+               automatedBackupPolicy.toArgMap(),
+             ]),
+           if (maintenanceUpdatePolicy != null)
+             'maintenance_update_policy': TfArg.literal([
+               maintenanceUpdatePolicy.toArgMap(),
+             ]),
            if (clusterType != null) 'cluster_type': clusterType,
            if (displayName != null) 'display_name': displayName,
            if (labels != null) 'labels': labels,

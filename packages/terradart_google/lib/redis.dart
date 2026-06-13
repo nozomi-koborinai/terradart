@@ -6,4 +6,13 @@ export 'src/redis/google_redis_instance.dart'
     show
         GoogleRedisInstance,
         RedisInstanceConnectMode,
-        RedisInstanceTier;
+        RedisInstanceMaintenancePolicy,
+        RedisInstanceMaintenanceStartTime,
+        RedisInstancePersistenceConfig,
+        RedisInstancePersistenceMode,
+        RedisInstanceRdbSnapshotPeriod,
+        RedisInstanceReadReplicasMode,
+        RedisInstanceTier,
+        RedisInstanceTransitEncryptionMode,
+        RedisInstanceWeeklyMaintenanceDay,
+        RedisInstanceWeeklyMaintenanceWindow;

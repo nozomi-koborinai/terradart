@@ -831,6 +831,7 @@ final class GoogleComputeUrlMap extends Resource {
     List<ComputeUrlMapUrlMapTest>? tests,
     ComputeUrlMapUrlMapUrlRedirect? defaultUrlRedirect,
     ComputeUrlMapUrlMapHeaderAction? headerAction,
+    ComputeUrlMapUrlMapRouteAction? defaultRouteAction,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -856,6 +857,10 @@ final class GoogleComputeUrlMap extends Resource {
              ]),
            if (headerAction != null)
              'header_action': TfArg.literal([headerAction.toArgMap()]),
+           if (defaultRouteAction != null)
+             'default_route_action': TfArg.literal([
+               defaultRouteAction.toArgMap(),
+             ]),
            if (project != null) 'project': project,
          },
        );

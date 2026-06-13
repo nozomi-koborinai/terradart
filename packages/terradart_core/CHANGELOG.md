@@ -2,7 +2,15 @@
 
 ## 0.12.20
 
-No user-facing API changes. Lockstep version bump for `terradart_google` v0.12.20 (Wave 33 AlloyDB).
+### Added
+
+- `TimeSleep.id` — typed ref to the completed-wait timestamp, matching the curated-wrapper getter convention.
+
+### Fixed
+
+- `TimeSleep` docs: removed a dartdoc reference to a symbol outside this package; duration guidance now points at `TfArg.duration`, and `triggers` semantics are documented.
+
+Lockstep version bump for `terradart_google` v0.12.20 (Wave 33 AlloyDB).
 
 ## 0.12.19
 

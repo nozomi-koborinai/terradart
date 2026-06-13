@@ -6,7 +6,7 @@ End-to-end terradart example for a Cloud Run v2 Service with a secret-backed env
 
 - Dart SDK >= 3.6
 - Terraform CLI >= 1.11.0
-- A GCP project with credentials configured (`gcloud auth application-default login`). The stack enables Run, VPC Access, and Redis APIs via `ApisEnablement`.
+- A GCP project with credentials configured (`gcloud auth application-default login`). The stack enables the Run, Secret Manager, VPC Access, and Redis APIs via `ApisEnablement`.
 
 ## Layout
 
@@ -31,13 +31,14 @@ terraform apply
 
 ## What gets created
 
+- API enablement via [`ApisEnablement.enable`](../../packages/terradart_google/lib/src/project/api_enablement.dart) (`Barrels.cloudRun`, `Barrels.secretManager`, `Barrels.serviceNetworking`, `Barrels.redis`) with a 60s `TimeSleep` propagation wait (`TimeProvider` on the stack).
 - A Secret Manager secret `api-db-password` with user-managed replication in `asia-northeast1`.
-- API enablement via [`ApisEnablement.enable`](../../packages/terradart_google/lib/src/project/api_enablement.dart) (`Barrels.cloudRun`, `Barrels.serviceNetworking`, `Barrels.redis`) with a 60s `TimeSleep` propagation wait (`TimeProvider` on the stack).
 - A Serverless VPC Access connector `run-vpc` (`10.8.0.0/28` on the `default` VPC).
 - A Memorystore Redis instance `api-cache` (1 GiB, basic tier on the `default` VPC).
 - A Cloud Run v2 Service `api` running `gcr.io/cloudrun/hello`:
   - 1 literal env var: `LOG_LEVEL=info` via `EnvVarFromLiteral`.
   - 1 secret-backed env var: `DB_PASSWORD` via `EnvVarFromSecret(secret: 'api-db-password', version: 'latest')`.
+  - 1 referenced env var: `REDIS_HOST` from the cache's typed `host` ref (`${google_redis_instance.api_cache.host}`).
   - 1 HTTP port (8080), `ContainerResources(limits: {'cpu': '1', 'memory': '512Mi'}, ...)`.
   - `ServiceScaling(minInstanceCount: 0, maxInstanceCount: 4, scalingMode: ScalingMode.automatic)`.
   - `Ingress.internalLoadBalancer` restricting traffic to internal + load balancer sources.

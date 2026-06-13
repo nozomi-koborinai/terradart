@@ -1,10 +1,26 @@
 import 'resource.dart';
 import 'tf_arg.dart';
+import 'tf_ref.dart';
 
 /// Hand-written wrapper for `time_sleep` (`hashicorp/time`).
 ///
 /// Waits after create (and optionally before destroy) — commonly inserted
-/// after [GoogleProjectService] enablement to absorb GCP API propagation lag.
+/// after `google_project_service` enablement to absorb GCP API propagation
+/// lag.
+///
+/// Durations are Terraform duration strings; use [TfArg.duration] to convert
+/// from a Dart [Duration]:
+///
+/// ```dart
+/// TimeSleep(
+///   localName: 'wait',
+///   createDuration: TfArg.duration(const Duration(seconds: 60)),
+/// );
+/// ```
+///
+/// [triggers] re-creates the sleep (and so re-runs the wait) whenever any
+/// map value changes; use upstream attribute interpolations
+/// (`ref.interpolation`) as values to key the wait to those resources.
 final class TimeSleep extends Resource {
   TimeSleep({
     required super.localName,
@@ -24,4 +40,7 @@ final class TimeSleep extends Resource {
 
   @override
   Set<String> get sensitiveFields => const {};
+
+  /// Reference to `id` (RFC3339 timestamp of the completed wait).
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 }

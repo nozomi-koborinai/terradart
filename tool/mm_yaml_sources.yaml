@@ -470,4 +470,4 @@ files:
   google_alloydb_user:
     upstream: null  # handwritten in terraform-provider-google; no MM YAML
   google_redis_instance:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/redis/Instance.yaml
