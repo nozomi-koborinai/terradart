@@ -36,7 +36,7 @@ jobs:
       - if: matrix.package == 'terradart_core'
         run: dart format --output=none --set-exit-if-changed packages/terradart_core/ packages/terradart_codegen/ packages/terradart_agent/
       - if: matrix.package == 'terradart_core'
-        run: dart analyze packages/ --fatal-infos --fatal-warnings
+        run: dart analyze packages/ tool/ --fatal-infos --fatal-warnings
       - run: dart test --reporter=github
         working-directory: packages/${{ matrix.package }}
 
@@ -58,6 +58,28 @@ jobs:
             --source test/fixtures/wrap/source \
             --output ../terradart_google/lib/src \
             --check
+
+  publish_dry_run:
+    name: pub publish --dry-run (${{ matrix.package }})
+    runs-on: ubuntu-latest
+    needs: test
+    # Pre-merge dry-run catches what previously broke publish AFTER merge:
+    # MM/cert fixtures tripping pub.dev's secret scanner (fixed reactively in
+    # 0.12.5 and 0.12.11 by adding false_secrets). terradart_agent is excluded
+    # — it ships as a brew binary, not a pub.dev package.
+    strategy:
+      fail-fast: false
+      matrix:
+        package: [terradart_core, terradart_codegen, terradart_google]
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
+      - name: pub publish --dry-run
+        working-directory: packages/${{ matrix.package }}
+        run: dart pub publish --dry-run
 
   wrap_init_check:
     name: terradart wrap-init smoke

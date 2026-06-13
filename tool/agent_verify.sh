@@ -33,7 +33,12 @@ done
 echo ">> dart pub get"
 dart pub get
 
+echo ">> example_synth_gates_test (unit)"
+dart --enable-asserts tool/example_synth_gates_test.dart
+
 echo ">> check_docs_consistency"
+# Also runs the example synth gates (coverage + API-enablement ratchet) over
+# every quickstart via runExampleSynthGates.
 dart tool/check_docs_consistency.dart
 
 echo ">> check_example_topology"
@@ -41,6 +46,9 @@ dart tool/check_example_topology.dart
 
 echo ">> dart analyze"
 dart analyze packages/ --fatal-infos --fatal-warnings
+
+echo ">> dart analyze tool/"
+dart analyze tool/ --fatal-infos --fatal-warnings
 
 if [[ "$WITH_FORMAT" == "1" ]]; then
   echo ">> dart format (terradart_core, terradart_codegen, terradart_agent)"
@@ -74,6 +82,9 @@ echo ">> terradart lint-override"
 
 echo ">> check_override_enum_gaps"
 dart tool/check_override_enum_gaps.dart --strict-nested
+
+echo ">> check_mm_upstream_fingerprint"
+dart tool/check_mm_upstream_fingerprint.dart
 
 echo ">> smoke_quickstart"
 chmod +x tool/smoke_quickstart.sh

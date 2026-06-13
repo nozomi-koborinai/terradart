@@ -2,10 +2,16 @@
 //
 // - Coverage v2: curated factory tfTypes must appear in synth output (or
 //   tool/example_debt.yaml by className).
-// - API enablement: when an example enables an API via google_project_service,
-//   every other resource requiring that API must transitively depend on it.
+// - API enablement: when an example enables APIs via google_project_service,
+//   EVERY resource requiring an API must have its API enabled in the same
+//   stack (or be listed in tool/example_api_debt.yaml) and transitively
+//   depend on the enabling service. Examples that enable nothing are exempt
+//   (documented manual-enablement mode) — the gate ratchets as examples
+//   migrate to `Apis.enable`.
 //
 // Run from repo root: dart tool/example_synth_gates.dart
+// Pass --skip-validate to skip the terraform init/validate pass (CI runs the
+// per-example terraform validate matrix separately).
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
@@ -15,9 +21,12 @@ import 'terraform_api_requirements.dart';
 
 const _projectId = 'ci-test-project-id';
 
-Future<void> main() async {
+Future<void> main(List<String> args) async {
   final errors = <String>[];
-  await runExampleSynthGates(errors);
+  await runExampleSynthGates(
+    errors,
+    skipValidate: args.contains('--skip-validate'),
+  );
   if (errors.isEmpty) {
     print('example_synth_gates: OK');
     exit(0);
@@ -29,7 +38,10 @@ Future<void> main() async {
   exit(1);
 }
 
-Future<void> runExampleSynthGates(List<String> errors) async {
+Future<void> runExampleSynthGates(
+  List<String> errors, {
+  bool skipValidate = false,
+}) async {
   final quickstarts = _quickstartSlugs();
   final synthByExample = <String, Map<String, dynamic>>{};
   final allTfTypes = <String>{};
@@ -42,10 +54,16 @@ Future<void> runExampleSynthGates(List<String> errors) async {
   }
 
   _checkSynthCoverage(errors, allTfTypes);
+  final apiDebt = _apiEnablementDebt(errors);
   for (final entry in synthByExample.entries) {
-    checkApiEnablement(entry.key, entry.value, errors);
+    checkApiEnablement(entry.key, entry.value, errors, apiDebt: apiDebt);
   }
-  await _checkTerraformValidate(errors, quickstarts);
+  _checkStaleApiDebt(errors, synthByExample, apiDebt);
+  if (skipValidate) {
+    print('example terraform validate: skipped (--skip-validate)');
+  } else {
+    await _checkTerraformValidate(errors, quickstarts);
+  }
 
   print(
     'example synth: ${quickstarts.length} quickstarts, '
@@ -232,8 +250,9 @@ Map<String, String> _exampleDebt(List<String> errors) {
 void checkApiEnablement(
   String slug,
   Map<String, dynamic> root,
-  List<String> errors,
-) {
+  List<String> errors, {
+  Map<String, String> apiDebt = const {},
+}) {
   final resources = root['resource'];
   if (resources is! Map) return;
 
@@ -287,7 +306,22 @@ void checkApiEnablement(
     final api = requiredApiForTerraformType(tfType);
     if (api == null) continue;
     final enablers = enabledApis[api];
-    if (enablers == null || enablers.isEmpty) continue;
+    if (enablers == null || enablers.isEmpty) {
+      // Ratchet: examples that enable nothing run in documented
+      // manual-enablement mode and are exempt. An example that enables SOME
+      // APIs claims self-sufficiency, so every API-gated resource must have
+      // its API enabled too — a partial barrel list otherwise fails only at
+      // first apply with SERVICE_DISABLED (the Wave 32 secretmanager gap).
+      if (enabledApis.isNotEmpty && !apiDebt.containsKey('$slug:$api')) {
+        errors.add(
+          'examples/$slug: $address requires $api but the example does not '
+          'enable it (it enables ${enabledApis.keys.join(', ')}). Add the '
+          'matching barrel to Apis.enable, or record '
+          '"$slug:$api: <reason>" in tool/example_api_debt.yaml',
+        );
+      }
+      continue;
+    }
 
     final reachable = _reachableFrom(address, edges);
     if (!enablers.any(reachable.contains)) {
@@ -298,6 +332,86 @@ void checkApiEnablement(
       );
     }
   }
+}
+
+/// Parses `tool/example_api_debt.yaml` (`<slug>:<api>: <reason>` lines).
+Map<String, String> _apiEnablementDebt(List<String> errors) {
+  final file = File('tool/example_api_debt.yaml');
+  if (!file.existsSync()) return const {};
+  final entries = <String, String>{};
+  for (final raw in file.readAsLinesSync()) {
+    final line = raw.trim();
+    if (line.isEmpty || line.startsWith('#')) continue;
+    // Key itself contains one ':' (slug:api), so split on the LAST ':'.
+    final sep = line.lastIndexOf(': ');
+    if (sep <= 0) {
+      errors.add('tool/example_api_debt.yaml: unparsable line "$raw"');
+      continue;
+    }
+    final key = line.substring(0, sep).trim();
+    final reason = line.substring(sep + 1).trim();
+    if (!key.contains(':') || reason.isEmpty) {
+      errors.add(
+        'tool/example_api_debt.yaml: entry must be "<slug>:<api>: <reason>" '
+        '(got "$raw")',
+      );
+      continue;
+    }
+    entries[key] = reason;
+  }
+  return entries;
+}
+
+/// Flags debt entries that no longer suppress anything (the example now
+/// enables the API, or stopped using resources that need it).
+void _checkStaleApiDebt(
+  List<String> errors,
+  Map<String, Map<String, dynamic>> synthByExample,
+  Map<String, String> apiDebt,
+) {
+  for (final key in apiDebt.keys) {
+    final sep = key.indexOf(':');
+    final slug = key.substring(0, sep);
+    final api = key.substring(sep + 1);
+    final root = synthByExample[slug];
+    if (root == null) {
+      errors.add('tool/example_api_debt.yaml: unknown example in "$key"');
+      continue;
+    }
+    if (!_wouldMandate(root, api)) {
+      errors.add(
+        'tool/example_api_debt.yaml: stale entry "$key" '
+        '(the example now satisfies it — remove the line)',
+      );
+    }
+  }
+}
+
+/// True when [root] contains an API-gated resource needing [api] while the
+/// example enables other APIs but not [api] — i.e. the debt entry still
+/// suppresses a real mandate.
+bool _wouldMandate(Map<String, dynamic> root, String api) {
+  final resources = root['resource'];
+  if (resources is! Map) return false;
+  var enablesAny = false;
+  var enablesThis = false;
+  var needsThis = false;
+  for (final typeEntry in resources.entries) {
+    final tfType = typeEntry.key.toString();
+    if (tfType == 'google_project_service') {
+      final instances = typeEntry.value;
+      if (instances is Map) {
+        for (final body in instances.values) {
+          if (body is! Map) continue;
+          enablesAny = true;
+          if (body['service']?.toString() == api) enablesThis = true;
+        }
+      }
+      continue;
+    }
+    if (requiredApiForTerraformType(tfType) == api) needsThis = true;
+  }
+  return enablesAny && needsThis && !enablesThis;
 }
 
 void _walkRefs(dynamic node, void Function(String ref) emit) {
@@ -322,7 +436,7 @@ Set<String> _reachableFrom(String start, Map<String, Set<String>> edges) {
   final queue = [start];
   while (queue.isNotEmpty) {
     final current = queue.removeLast();
-    for (final next in edges[current] ?? const {}) {
+    for (final next in edges[current] ?? const <String>{}) {
       if (seen.add(next)) queue.add(next);
     }
   }

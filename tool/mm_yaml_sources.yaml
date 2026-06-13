@@ -207,7 +207,7 @@ files:
   google_monitoring_notification_channel:
     upstream: mmv1/products/monitoring/NotificationChannel.yaml
   google_monitoring_service:
-    upstream: mmv1/products/monitoring/Service.yaml
+    upstream: mmv1/products/monitoring/GenericService.yaml
   google_monitoring_uptime_check_config:
     upstream: mmv1/products/monitoring/UptimeCheckConfig.yaml
   google_pubsub_schema:
@@ -233,21 +233,21 @@ files:
     upstream: mmv1/products/container/NodePool.yaml
   # Wave 9 (GKE Hub)
   google_gke_hub_fleet:
-    upstream: null  # no Fleet.yaml in magic-modules main (404 as of 2026-06)
+    upstream: mmv1/products/gkehub2/Fleet.yaml
   google_gke_hub_membership:
     upstream: mmv1/products/gkehub/Membership.yaml
   # Wave 16 (Logging analytics extension)
   google_logging_log_scope:
-    upstream: null  # handwritten in terraform-provider-google (probe 404)
+    upstream: mmv1/products/logging/LogScope.yaml
   google_logging_linked_dataset:
-    upstream: null  # handwritten in terraform-provider-google (probe 404)
+    upstream: mmv1/products/logging/LinkedDataset.yaml
   # Wave 12 (Monitoring completion)
   google_monitoring_slo:
     upstream: mmv1/products/monitoring/Slo.yaml
   google_monitoring_group:
     upstream: mmv1/products/monitoring/Group.yaml
   google_monitoring_custom_service:
-    upstream: mmv1/products/monitoring/CustomService.yaml
+    upstream: mmv1/products/monitoring/Service.yaml
   google_monitoring_monitored_project:
     upstream: mmv1/products/monitoring/MonitoredProject.yaml
   # Wave 13 (Compute LB follow-up)
@@ -262,18 +262,18 @@ files:
   google_pubsub_schema_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_storage_hmac_key:
-    upstream: null  # handwritten in terraform-provider-google (probe 404)
+    upstream: mmv1/products/storage/HmacKey.yaml
   # Wave 11 (Logging project ops)
   google_logging_project_bucket_config:
     upstream: null  # handwritten in terraform-provider-google (probe 404)
   google_logging_log_view:
-    upstream: null  # handwritten in terraform-provider-google (probe 404)
+    upstream: mmv1/products/logging/LogView.yaml
   google_logging_log_view_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_logging_project_exclusion:
     upstream: null  # handwritten in terraform-provider-google (probe 404)
   google_logging_saved_query:
-    upstream: null  # handwritten in terraform-provider-google (probe 404)
+    upstream: mmv1/products/logging/SavedQuery.yaml
   # Wave 10 (GKE Backup)
   google_gke_backup_backup_channel:
     upstream: mmv1/products/gkebackup/BackupChannel.yaml
@@ -357,11 +357,11 @@ files:
   google_eventarc_google_api_source:
     upstream: mmv1/products/eventarc/GoogleApiSource.yaml
   google_filestore_backup:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/filestore/Backup.yaml
   google_filestore_instance:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/filestore/Instance.yaml
   google_filestore_snapshot:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/filestore/Snapshot.yaml
   google_eventarc_message_bus:
     upstream: mmv1/products/eventarc/MessageBus.yaml
   google_eventarc_pipeline:
@@ -393,16 +393,16 @@ files:
   google_bigquery_datapolicy_data_policy:
     upstream: mmv1/products/bigquerydatapolicy/DataPolicy.yaml
   google_bigquery_analytics_hub_data_exchange:
-    upstream: mmv1/products/analyticshub/DataExchange.yaml
+    upstream: mmv1/products/bigqueryanalyticshub/DataExchange.yaml
   google_bigquery_analytics_hub_listing:
-    upstream: mmv1/products/analyticshub/Listing.yaml
+    upstream: mmv1/products/bigqueryanalyticshub/Listing.yaml
   google_bigquery_bi_reservation:
     upstream: mmv1/products/bigqueryreservation/BiReservation.yaml
   # Wave 20 (Storage + Cloud SQL)
   google_storage_managed_folder:
     upstream: mmv1/products/storage/ManagedFolder.yaml
   google_sql_ssl_cert:
-    upstream: mmv1/products/sql/SslCert.yaml
+    upstream: null  # handwritten in terraform provider; no MM YAML (sql dir has no SslCert, probe 404)
   google_sql_source_representation_instance:
     upstream: mmv1/products/sql/SourceRepresentationInstance.yaml
   # Wave 21 (Firebase App Check)
@@ -414,7 +414,7 @@ files:
   google_bigquery_analytics_hub_listing_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_bigquery_analytics_hub_listing_subscription:
-    upstream: null  # handwritten in terraform-provider-google (probe 404)
+    upstream: mmv1/products/bigqueryanalyticshub/ListingSubscription.yaml
   google_bigquery_connection_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_compute_region_security_policy_rule:
@@ -425,9 +425,9 @@ files:
   google_dns_policy:
     upstream: mmv1/products/dns/Policy.yaml
   google_eventarc_google_channel_config:
-    upstream: null  # handwritten in terraform-provider-google (probe 404)
+    upstream: mmv1/products/eventarc/GoogleChannelConfig.yaml
   google_cloud_run_v2_worker_pool:
-    upstream: mmv1/products/cloudrun/WorkerPool.yaml
+    upstream: mmv1/products/cloudrunv2/WorkerPool.yaml
   google_iap_web_backend_service_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   # Wave 24 (DNS response policy, Cloud Run worker pool IAM, Compute router, BigQuery datapolicy IAM)
@@ -443,45 +443,45 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   # Wave 25 (Serverless VPC Access connector)
   google_vpc_access_connector:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/vpcaccess/Connector.yaml
   # Wave 26 (Certificate Manager — core HTTPS LB integration chain)
   google_certificate_manager_dns_authorization:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/certificatemanager/DnsAuthorization.yaml
   google_certificate_manager_certificate:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/certificatemanager/Certificate.yaml
   google_certificate_manager_certificate_map:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/certificatemanager/CertificateMap.yaml
   google_certificate_manager_certificate_map_entry:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/certificatemanager/CertificateMapEntry.yaml
   # Wave 27 (Certificate Manager — trust + issuance policy)
   google_certificate_manager_trust_config:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/certificatemanager/TrustConfig.yaml
   google_certificate_manager_certificate_issuance_config:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/certificatemanager/CertificateIssuanceConfig.yaml
   # Wave 28 (Private CA — CAS pool for Certificate Manager issuance)
   google_privateca_ca_pool:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/privateca/CaPool.yaml
   google_privateca_certificate_authority:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/privateca/CertificateAuthority.yaml
   google_privateca_certificate:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/privateca/Certificate.yaml
   google_privateca_certificate_template:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/privateca/CertificateTemplate.yaml
   google_privateca_ca_pool_iam_member:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_alloydb_backup:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/alloydb/Backup.yaml
   google_alloydb_cluster:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/alloydb/Cluster.yaml
   google_alloydb_instance:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/alloydb/Instance.yaml
   google_alloydb_user:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/alloydb/User.yaml
   google_memcache_instance:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/memcache/Instance.yaml
   google_redis_instance:
     upstream: mmv1/products/redis/Instance.yaml
   google_spanner_database:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/spanner/Database.yaml
   google_spanner_instance:
-    upstream: null  # handwritten in terraform-provider-google; no MM YAML
+    upstream: mmv1/products/spanner/Instance.yaml
