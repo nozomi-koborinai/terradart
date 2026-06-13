@@ -58,6 +58,8 @@ class ComputeRouterBgp {
 }
 
 /// Factory wrapper for `google_compute_router`.
+///
+/// Represents a Router resource.
 final class GoogleComputeRouter extends Resource {
   static const String tfType = 'google_compute_router';
 

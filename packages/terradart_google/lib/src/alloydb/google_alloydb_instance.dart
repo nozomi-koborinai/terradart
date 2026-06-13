@@ -32,6 +32,8 @@ class AlloydbInstanceMachineConfig {
 
 /// Factory wrapper for `google_alloydb_instance`.
 ///
+/// A managed alloydb cluster instance.
+///
 /// AlloyDB instance — primary or read-pool node inside a
 /// [GoogleAlloydbCluster].
 ///

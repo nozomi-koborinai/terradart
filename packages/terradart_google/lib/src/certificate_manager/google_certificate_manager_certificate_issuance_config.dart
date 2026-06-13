@@ -48,6 +48,8 @@ final class CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfi
 
 /// Factory wrapper for `google_certificate_manager_certificate_issuance_config`.
 ///
+/// Certificate represents a HTTP-reachable backend for a Certificate.
+///
 /// Certificate issuance policy for Google-managed Certificate Manager certs.
 ///
 /// Binds a [GoogleCertificateManagerCertificate] managed provisioning path to

@@ -11,6 +11,10 @@ const Set<String> _googleComputeRegionSslCertificateSensitive = <String>{
 
 /// Factory wrapper for `google_compute_region_ssl_certificate`.
 ///
+/// A RegionSslCertificate resource, used for HTTPS load balancing. This
+/// resource provides a mechanism to upload an SSL key and certificate to the
+/// load balancer to serve secure connections from the user.
+///
 /// Regional self-managed SSL certificate for regional HTTPS load balancers.
 /// Pair with [GoogleComputeRegionTargetHttpsProxy].
 ///

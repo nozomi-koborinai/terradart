@@ -118,6 +118,8 @@ class AlloydbClusterInitialUser {
 
 /// Factory wrapper for `google_alloydb_cluster`.
 ///
+/// A managed alloydb cluster.
+///
 /// AlloyDB cluster — regional Postgres-compatible database cluster.
 ///
 /// Private-IP wiring reuses the same PSA chain as Cloud SQL:

@@ -9,6 +9,12 @@ const Set<String> _googleSqlSourceRepresentationInstanceSensitive = <String>{
 };
 
 /// Factory wrapper for `google_sql_source_representation_instance`.
+///
+/// A source representation instance is a Cloud SQL instance that represents the
+/// source database server to the Cloud SQL replica. It is visible in the Cloud
+/// Console and appears the same as a regular Cloud SQL instance, but it
+/// contains no data, requires no configuration or maintenance, and does not
+/// affect billing. You cannot update the source representation instance.
 final class GoogleSqlSourceRepresentationInstance extends Resource {
   static const String tfType = 'google_sql_source_representation_instance';
 

@@ -144,6 +144,8 @@ class FilestoreInstanceInitialReplication {
 
 /// Factory wrapper for `google_filestore_instance`.
 ///
+/// A Google Cloud Filestore instance.
+///
 /// Cloud Filestore instance — managed NFS file shares on a VPC.
 ///
 /// Required identity:

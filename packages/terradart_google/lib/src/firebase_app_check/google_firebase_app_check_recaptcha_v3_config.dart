@@ -9,6 +9,8 @@ const Set<String> _googleFirebaseAppCheckRecaptchaV3ConfigSensitive = <String>{
 };
 
 /// Factory wrapper for `google_firebase_app_check_recaptcha_v3_config`.
+///
+/// An app's reCAPTCHA V3 configuration object.
 final class GoogleFirebaseAppCheckRecaptchaV3Config extends Resource {
   static const String tfType = 'google_firebase_app_check_recaptcha_v3_config';
 

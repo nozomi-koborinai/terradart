@@ -401,6 +401,8 @@ class ComputeRegionSecurityPolicyRegionSecurityPolicyUserDefinedField {
 }
 
 /// Factory wrapper for `google_compute_region_security_policy`.
+///
+/// Represents a Region Cloud Armor Security Policy resource.
 final class GoogleComputeRegionSecurityPolicy extends Resource {
   static const String tfType = 'google_compute_region_security_policy';
 

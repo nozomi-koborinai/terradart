@@ -7,6 +7,10 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleBigqueryRowAccessPolicySensitive = <String>{};
 
 /// Factory wrapper for `google_bigquery_row_access_policy`.
+///
+/// Represents access on a subset of rows on the specified table, defined by its
+/// filter predicate. Access to the subset of rows is controlled by its IAM
+/// policy.
 final class GoogleBigqueryRowAccessPolicy extends Resource {
   static const String tfType = 'google_bigquery_row_access_policy';
 

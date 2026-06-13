@@ -20,6 +20,11 @@ Per-package changelogs live alongside each package and are the system of record 
 - **Pre-merge `pub publish --dry-run`** — catches fixture secret-scanner trips before they break publish (previously fixed reactively in 0.12.5 and 0.12.11).
 - **`dart analyze tool/`** — the gate scripts themselves are now analyzed (two latent errors fixed).
 
+**MM fixture sync** — fetched the 73 now-correct MM fixtures, activating the enum-drift checks that were vacuous without them (zero drift across the frozen prelude enums). Surfacing the real fixtures exposed two design issues, fixed as breaking changes:
+
+- **`terradart_google`** — `google_certificate_manager_certificate_map_entry`: `hostname` / `matcher` collapse into a required sealed `match` (the provider's `exactly_one_of`); `google_logging_saved_query`: `LoggingSavedQueryVisibility.privateVisibility` → `.private` (the derived enum is now canonical; the hand-written duplicate that shadowed it is removed).
+- **`terradart_codegen`** — `canonicalExactlyOneOfGroups` no longer mis-collapses a nested-block member like `subnet.0.name` into a bogus sibling group; `google_dns_record_set` corrected to `upstream: null` (no `mmv1` source exists).
+
 ## [0.12.20] - 2026-06-12
 
 Lockstep release across the workspace. **No breaking changes** for reachable API (the previously unreachable `RedisInstanceWeeklyMaintenanceWindow` gains a required `startTime`).

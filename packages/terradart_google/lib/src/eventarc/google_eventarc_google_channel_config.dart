@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleEventarcGoogleChannelConfigSensitive = <String>{};
 
 /// Factory wrapper for `google_eventarc_google_channel_config`.
+///
+/// The Eventarc GoogleChannelConfig resource
 final class GoogleEventarcGoogleChannelConfig extends Resource {
   static const String tfType = 'google_eventarc_google_channel_config';
 

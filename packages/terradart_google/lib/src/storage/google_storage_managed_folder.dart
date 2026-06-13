@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleStorageManagedFolderSensitive = <String>{};
 
 /// Factory wrapper for `google_storage_managed_folder`.
+///
+/// A Google Cloud Storage Managed Folder.
+///
+/// You can apply Identity and Access Management (IAM) policies to managed
+/// folders to grant principals access only to the objects within the managed
+/// folder, which lets you more finely control access for specific data sets and
+/// tables within a bucket. You can nest managed folders up to 15 levels deep,
+/// including the parent managed folder.
+///
+/// Managed folders can only be created in buckets that have uniform
+/// bucket-level access enabled.
 final class GoogleStorageManagedFolder extends Resource {
   static const String tfType = 'google_storage_managed_folder';
 

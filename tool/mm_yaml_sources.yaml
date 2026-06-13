@@ -421,7 +421,7 @@ files:
     upstream: mmv1/products/compute/RegionSecurityPolicyRule.yaml
   # Wave 23 (DNS, Eventarc, Cloud Run worker pool, IAP)
   google_dns_record_set:
-    upstream: mmv1/products/dns/ResourceRecordSet.yaml
+    upstream: null  # handwritten in terraform provider; no MM YAML (dns dir has no ResourceRecordSet, probe 404)
   google_dns_policy:
     upstream: mmv1/products/dns/Policy.yaml
   google_eventarc_google_channel_config:

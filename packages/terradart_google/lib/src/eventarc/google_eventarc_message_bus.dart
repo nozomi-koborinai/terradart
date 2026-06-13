@@ -39,6 +39,8 @@ class EventarcMessageBusLoggingConfig {
 }
 
 /// Factory wrapper for `google_eventarc_message_bus`.
+///
+/// The Eventarc MessageBus resource
 final class GoogleEventarcMessageBus extends Resource {
   static const String tfType = 'google_eventarc_message_bus';
 

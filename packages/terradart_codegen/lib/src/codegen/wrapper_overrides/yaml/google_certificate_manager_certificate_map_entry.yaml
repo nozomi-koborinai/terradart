@@ -7,22 +7,37 @@ paramOrder:
   - name
   - map
   - certificates
-  - hostname
-  - matcher
+  - match
   - description
   - labels
+
+# `match` carries a dynamic argMap key (`match.blockKey`), so it is emitted
+# last, after the static-keyed entries, for readability.
+argMapOrder:
+  - name
+  - map
+  - certificates
+  - description
+  - labels
+  - match
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
 
 curatedDoc: |-
   /// One hostname (or matcher) row inside a [GoogleCertificateManagerCertificateMap].
   ///
   /// Binds up to fifteen [GoogleCertificateManagerCertificate] resources to
-  /// a Server Name Indication (SNI) hostname or a predefined matcher.
+  /// a Server Name Indication (SNI) hostname or a predefined matcher. The
+  /// provider requires **exactly one** of hostname / matcher, modeled here as
+  /// the sealed [CertificateManagerCertificateMapEntryMatch].
   ///
   /// Required identity:
   /// - [localName]: Terraform local name.
   /// - [name]: entry ID unique within the parent map.
   /// - [map]: full resource name of the parent map — pass
   ///   `TfArg.ref(certMap.id)`.
+  /// - [match]: the SNI hostname or predefined matcher this entry selects.
   /// - [certificates]: one or more certificate resource names — pass
   ///   `TfArg.literal([cert.id.interpolation])` or `TfArg.ref(cert.id)`.
   ///
@@ -32,9 +47,72 @@ curatedDoc: |-
   ///   localName: 'app_entry',
   ///   name: TfArg.literal('app-entry'),
   ///   map: TfArg.ref(certMap.id),
-  ///   hostname: TfArg.literal('app.example.com'),
+  ///   match: CertificateManagerCertificateMapEntryMatch.hostname(
+  ///     TfArg.literal('app.example.com'),
+  ///   ),
   ///   certificates: TfArg.literal([
   ///     '\${google_certificate_manager_certificate.app_cert.id}',
   ///   ]),
   /// );
   /// ```
+
+prelude: |
+  /// Selects which traffic a [GoogleCertificateManagerCertificateMapEntry]
+  /// matches. The provider's `exactly_one_of` on `hostname` / `matcher` is
+  /// enforced at compile time: pass exactly one variant.
+  sealed class CertificateManagerCertificateMapEntryMatch {
+    const CertificateManagerCertificateMapEntryMatch();
+
+    /// Match by SNI hostname — an FQDN (`app.example.com`) or a wildcard
+    /// suffix expression (`*.example.com`).
+    const factory CertificateManagerCertificateMapEntryMatch.hostname(
+      TfArg<String> hostname,
+    ) = CertificateManagerCertificateMapEntryHostname;
+
+    /// Match by a predefined matcher (e.g. `PRIMARY` — the fallback entry
+    /// used when no hostname matches).
+    const factory CertificateManagerCertificateMapEntryMatch.matcher(
+      TfArg<String> matcher,
+    ) = CertificateManagerCertificateMapEntryMatcher;
+
+    /// argMap key this variant emits under (`hostname` or `matcher`).
+    String get blockKey;
+
+    /// Value emitted under [blockKey].
+    TfArg<String> get value;
+
+    /// Flat `{blockKey: value}` payload, value unwrapped via `toTfJson()`
+    /// (the Gate 6 encode round-trip shape).
+    Map<String, Object?> encode() => {blockKey: value.toTfJson()};
+  }
+
+  /// `hostname` variant of [CertificateManagerCertificateMapEntryMatch].
+  @immutable
+  final class CertificateManagerCertificateMapEntryHostname
+      extends CertificateManagerCertificateMapEntryMatch {
+    const CertificateManagerCertificateMapEntryHostname(this.value);
+
+    @override
+    final TfArg<String> value;
+
+    @override
+    String get blockKey => 'hostname';
+  }
+
+  /// `matcher` variant of [CertificateManagerCertificateMapEntryMatch].
+  @immutable
+  final class CertificateManagerCertificateMapEntryMatcher
+      extends CertificateManagerCertificateMapEntryMatch {
+    const CertificateManagerCertificateMapEntryMatcher(this.value);
+
+    @override
+    final TfArg<String> value;
+
+    @override
+    String get blockKey => 'matcher';
+  }
+
+customSlots:
+  match:
+    paramDeclaration: 'required CertificateManagerCertificateMapEntryMatch match'
+    argMapEntry: 'match.blockKey: match.value,'

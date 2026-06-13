@@ -20,6 +20,8 @@ enum SpannerInstanceEdition implements TerraformEnum {
 
 /// Factory wrapper for `google_spanner_instance`.
 ///
+/// An isolated set of Cloud Spanner resources on which databases can be hosted.
+///
 /// Cloud Spanner instance — horizontally scalable relational database.
 ///
 /// Required identity:

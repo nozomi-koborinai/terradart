@@ -18,6 +18,8 @@ enum BigqueryReservationAssignmentJobType implements TerraformEnum {
 }
 
 /// Factory wrapper for `google_bigquery_reservation_assignment`.
+///
+/// The BigqueryReservation Assignment resource.
 final class GoogleBigqueryReservationAssignment extends Resource {
   static const String tfType = 'google_bigquery_reservation_assignment';
 

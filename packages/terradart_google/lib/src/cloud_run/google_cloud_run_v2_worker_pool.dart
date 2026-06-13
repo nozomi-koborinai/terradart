@@ -139,6 +139,12 @@ class CloudRunV2WorkerPoolTemplate {
 }
 
 /// Factory wrapper for `google_cloud_run_v2_worker_pool`.
+///
+/// WorkerPool acts as a top-level container that manages a set of
+/// configurations and revision templates which implement a pull-based workload.
+/// WorkerPool exists to provide a singular abstraction which can be access
+/// controlled, reasoned about, and which encapsulates software lifecycle
+/// decisions such as rollout policy and team resource ownership.
 final class GoogleCloudRunV2WorkerPool extends Resource {
   static const String tfType = 'google_cloud_run_v2_worker_pool';
 

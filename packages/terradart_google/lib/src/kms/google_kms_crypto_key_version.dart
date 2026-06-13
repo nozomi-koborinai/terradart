@@ -22,6 +22,11 @@ enum KmsCryptoKeyVersionState implements TerraformEnum {
 
 /// Factory wrapper for `google_kms_crypto_key_version`.
 ///
+/// A `CryptoKeyVersion` represents an individual cryptographic key, and the
+/// associated key material.
+///
+/// Destroying a cryptoKeyVersion will not delete the resource from the project.
+///
 /// Manages a [GoogleKmsCryptoKey] version (rotation / destroy lifecycle).
 /// Pass `cryptoKey` as the parent key id path or `TfArg.ref(key.id)`.
 ///

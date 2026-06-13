@@ -7,11 +7,14 @@
 - `Apis.enable(stack, barrels: ...)` replaces `ApisEnablement.enable(...).registerOn(stack)` and the `ApiEnablement` bundle — one call registers the services plus the propagation `TimeSleep` and returns the dependency list. See [MIGRATING.md](../../MIGRATING.md).
 - `TimeProvider` / `TimeSleep` moved here from `terradart_core` — import `package:terradart_google/time.dart`.
 - `GoogleProvider.providerAlias` removed (a silent no-op: synth never emitted the alias).
+- `google_certificate_manager_certificate_map_entry` — `hostname` / `matcher` replaced by a required sealed `match` (`CertificateManagerCertificateMapEntryMatch.hostname(...)` / `.matcher(...)`), enforcing the provider's `exactly_one_of` at compile time.
+- `google_logging_saved_query` — `LoggingSavedQueryVisibility.privateVisibility` renamed to `.private` (now derived from Magic Modules; the hand-written prelude enum that shadowed it is removed).
 
 ### Fixed
 
 - `secret_manager` barrel exports the sealed replication variants (`SecretManagerSecretAutoReplication` / `SecretManagerSecretUserManagedReplication`) that the catalog already advertised.
 - `google_alloydb_cluster` / `google_memcache_instance` — `deletionProtection` input wired (the schema capability was advertised with no setter; caught by the new parity gate).
+- `google_vpc_access_connector` / `google_storage_hmac_key` / `google_storage_managed_folder` — class docs now carry the upstream Magic Modules descriptions (their MM fixtures were synced for the first time).
 
 ### Added (maintainer)
 

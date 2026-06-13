@@ -17,6 +17,10 @@ enum StorageHmacKeyState implements TerraformEnum {
 
 /// Factory wrapper for `google_storage_hmac_key`.
 ///
+/// The hmacKeys resource represents an HMAC key within Cloud Storage. The
+/// resource consists of a secret and HMAC key metadata. HMAC keys can be used
+/// as credentials for service accounts.
+///
 /// HMAC key for S3-compatible interop access to GCS. Bind to a service
 /// account email; the secret is available only at create time via the
 /// `secret` output attribute.

@@ -18,6 +18,8 @@ enum AlloydbUserType implements TerraformEnum {
 
 /// Factory wrapper for `google_alloydb_user`.
 ///
+/// A database user in an AlloyDB cluster.
+///
 /// AlloyDB database user inside a [GoogleAlloydbCluster].
 ///
 /// Required identity:

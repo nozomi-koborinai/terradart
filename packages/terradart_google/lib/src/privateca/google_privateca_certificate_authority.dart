@@ -203,6 +203,9 @@ final class PrivatecaCertificateAuthorityKeySpec {
 
 /// Factory wrapper for `google_privateca_certificate_authority`.
 ///
+/// A CertificateAuthority represents an individual Certificate Authority. A
+/// CertificateAuthority can be used to create Certificates.
+///
 /// Certificate Authority Service (CAS) certificate authority — issues
 /// certs inside a [GooglePrivatecaCaPool] for [GoogleCertificateManagerCertificateIssuanceConfig].
 ///

@@ -8,6 +8,9 @@ const Set<String> _googleCertificateManagerCertificateMapSensitive = <String>{};
 
 /// Factory wrapper for `google_certificate_manager_certificate_map`.
 ///
+/// CertificateMap defines a collection of certificate configurations, which are
+/// usable by any associated target proxies
+///
 /// Certificate map — a hostname → certificate routing table consumed by
 /// global external HTTPS load balancers via
 /// [GoogleComputeTargetHttpsProxy.certificateMap].

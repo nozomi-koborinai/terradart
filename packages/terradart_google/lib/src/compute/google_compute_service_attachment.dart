@@ -17,6 +17,8 @@ enum ServiceAttachmentConnectionPreference implements TerraformEnum {
 }
 
 /// Factory wrapper for `google_compute_service_attachment`.
+///
+/// Represents a ServiceAttachment resource.
 final class GoogleComputeServiceAttachment extends Resource {
   static const String tfType = 'google_compute_service_attachment';
 

@@ -29,7 +29,7 @@ curatedDoc: |-
   ///   displayName: TfArg.literal('Audit errors (7d)'),
   ///   parent: TfArg.literal('projects/my-proj/locations/global'),
   ///   location: TfArg.literal('global'),
-  ///   visibility: TfArg.literal(LoggingSavedQueryVisibility.privateVisibility),
+  ///   visibility: TfArg.literal(LoggingSavedQueryVisibility.private),
   ///   loggingQuery: LoggingSavedQueryLoggingQuery(
   ///     filter: TfArg.literal(
   ///       'logName:"cloudaudit.googleapis.com" AND severity>=ERROR',
@@ -39,15 +39,6 @@ curatedDoc: |-
   /// ```
 
 prelude: |
-  enum LoggingSavedQueryVisibility implements TerraformEnum {
-    shared('SHARED'),
-    privateVisibility('PRIVATE');
-
-    const LoggingSavedQueryVisibility(this.terraformValue);
-    @override
-    final String terraformValue;
-  }
-
   /// `logging_query` block — standard Logs Explorer filter.
   class LoggingSavedQueryLoggingQuery {
     const LoggingSavedQueryLoggingQuery({

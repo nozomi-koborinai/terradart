@@ -15,6 +15,8 @@ class LoggingLinkedDatasetBigqueryDataset {
 
 /// Factory wrapper for `google_logging_linked_dataset`.
 ///
+/// Describes a BigQuery linked dataset
+///
 /// Links a log bucket to a BigQuery dataset for Log Analytics. Pair with
 /// [GoogleLoggingProjectBucketConfig] and [GoogleBigqueryDataset].
 ///

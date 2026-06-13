@@ -8,6 +8,10 @@ const Set<String> _googleMonitoringCustomServiceSensitive = <String>{};
 
 /// Factory wrapper for `google_monitoring_custom_service`.
 ///
+/// A Service is a discrete, autonomous, and network-accessible unit, designed
+/// to solve an individual concern. In Cloud Monitoring, a Service acts as the
+/// root resource under which operational aspects of the service are accessible
+///
 /// Lightweight custom Monitoring service (distinct from
 /// [GoogleMonitoringService] which models typed `basic_service` variants).
 ///

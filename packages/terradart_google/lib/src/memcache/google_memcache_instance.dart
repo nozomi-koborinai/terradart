@@ -73,6 +73,8 @@ class MemcacheInstanceMaintenancePolicy {
 
 /// Factory wrapper for `google_memcache_instance`.
 ///
+/// A Google Cloud Memcache instance.
+///
 /// Memorystore for Memcached instance — managed Memcached for session caches.
 ///
 /// Pair with [GoogleVpcAccessConnector] or GCE/GKE on the same VPC via

@@ -8,6 +8,8 @@ const Set<String> _googleLoggingLogViewSensitive = <String>{};
 
 /// Factory wrapper for `google_logging_log_view`.
 ///
+/// Describes a view over log entries in a bucket.
+///
 /// A filtered view into a log bucket. Pass `bucket` as the bucket id
 /// (same value as [GoogleLoggingProjectBucketConfig.bucketId]) and wire
 /// IAM via [GoogleLoggingLogViewIamMember].

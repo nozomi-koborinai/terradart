@@ -165,12 +165,23 @@ List<LintViolation> lintDeadCustomSlots(
 /// declaring property path (e.g. `[aws.aws, aws.oidc, …]`). This helper
 /// collapses those duplicates into one sorted set per sibling group
 /// (e.g. `[aws, oidc, saml, x509]`).
+///
+/// Groups that reference a field *inside* a nested block via a list index
+/// (e.g. `[network, subnet.0.name]` on `google_vpc_access_connector`) are
+/// skipped: those express top-level-property-vs-nested-block exclusivity,
+/// not a flat sibling group, and collapsing `subnet.0.name` to its last
+/// segment (`name`) would fabricate a bogus `[name, network]` group. The
+/// flat-sibling rules this feeds (paramOrder / customSlot fanout) only model
+/// flat groups; a nested-block exclusivity needs a different shape.
 @visibleForTesting
 List<List<String>> canonicalExactlyOneOfGroups(List<List<String>> raw) {
   final seen = <String>{};
   final out = <List<String>>[];
   for (final group in raw) {
     if (group.length < 2) continue;
+    // A `.<digits>.` segment marks a list-indexed nested-block field
+    // reference, not a declaring-property prefix.
+    if (group.any((m) => RegExp(r'\.\d+\.').hasMatch(m))) continue;
     if (group.every((m) => !m.contains('.'))) {
       final sorted = List<String>.from(group)..sort();
       final key = sorted.join(',');
@@ -281,8 +292,12 @@ bool _hasSealedVirtualSlot(List<String> group, Map<String, CustomSlot> slots) {
   return slots.entries.any((entry) {
     if (group.contains(entry.key)) return false;
     final slot = entry.value;
-    return _paramDeclarationIsRequired(slot.paramDeclaration) &&
-        slot.argMapEntry.contains('.blockKey');
+    if (!_paramDeclarationIsRequired(slot.paramDeclaration)) return false;
+    // Sealed dispatch is signalled by a dynamic `<slot>.blockKey:` argMap key
+    // — used by both nested-block groups (scheduler `target`) and scalar
+    // groups where each variant emits one `{blockKey: value}` pair (cert map
+    // entry `match`).
+    return slot.argMapEntry.contains('.blockKey');
   });
 }
 

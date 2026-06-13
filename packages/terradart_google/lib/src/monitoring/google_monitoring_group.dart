@@ -8,6 +8,11 @@ const Set<String> _googleMonitoringGroupSensitive = <String>{};
 
 /// Factory wrapper for `google_monitoring_group`.
 ///
+/// The description of a dynamic collection of monitored resources. Each group
+/// has a filter that is matched against monitored resources and their
+/// associated metadata. If a group's filter matches an available monitored
+/// resource, then that resource is a member of that group.
+///
 /// A dynamic monitored-resource group used as an uptime-check or alert
 /// target. Pair with [GoogleMonitoringUptimeCheckConfig.resourceGroup].
 ///
