@@ -1,0 +1,33 @@
+outputDir: filestore
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - location
+  - source_instance
+  - source_file_share
+  - description
+  - labels
+
+curatedDoc: |-
+  /// Cloud Filestore backup — point-in-time copy of a file share.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [name]: backup ID (unique within the instance).
+  /// - [location]: region matching the source instance.
+  /// - [sourceInstance]: full instance name — `TfArg.ref(instance.id)`.
+  /// - [sourceFileShare]: export name from [GoogleFilestoreInstance].
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleFilestoreBackup(
+  ///   localName: 'share_backup',
+  ///   name: TfArg.literal('share-backup-1'),
+  ///   location: TfArg.literal('asia-northeast1'),
+  ///   sourceInstance: TfArg.ref(nfs.id),
+  ///   sourceFileShare: TfArg.literal('share1'),
+  /// );
+  /// ```

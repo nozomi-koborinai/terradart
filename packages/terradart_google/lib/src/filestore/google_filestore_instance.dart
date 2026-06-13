@@ -1,0 +1,238 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
+import 'package:terradart_core/terradart_core.dart';
+
+/// Sensitive field paths for `google_filestore_instance`.
+const Set<String> _googleFilestoreInstanceSensitive = <String>{};
+
+/// `tier` — Filestore service tier.
+enum FilestoreInstanceTier implements TerraformEnum {
+  standard('STANDARD'),
+  premium('PREMIUM'),
+  basicHdd('BASIC_HDD'),
+  basicSsd('BASIC_SSD'),
+  highScaleSsd('HIGH_SCALE_SSD'),
+  zonal('ZONAL'),
+  regional('REGIONAL'),
+  enterprise('ENTERPRISE');
+
+  const FilestoreInstanceTier(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `networks.modes` — assigned IP address modes.
+enum FilestoreInstanceNetworkMode implements TerraformEnum {
+  addressModeUnspecified('ADDRESS_MODE_UNSPECIFIED'),
+  modeIpv4('MODE_IPV4'),
+  modeIpv6('MODE_IPV6');
+
+  const FilestoreInstanceNetworkMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `networks.connect_mode` — VPC reachability mode.
+enum FilestoreInstanceConnectMode implements TerraformEnum {
+  directPeering('DIRECT_PEERING'),
+  privateServiceAccess('PRIVATE_SERVICE_ACCESS'),
+  privateServiceConnect('PRIVATE_SERVICE_CONNECT');
+
+  const FilestoreInstanceConnectMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `file_shares.nfs_export_options.access_mode`.
+enum FilestoreInstanceNfsExportAccessMode implements TerraformEnum {
+  readOnly('READ_ONLY'),
+  readWrite('READ_WRITE');
+
+  const FilestoreInstanceNfsExportAccessMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `file_shares.nfs_export_options.squash_mode`.
+enum FilestoreInstanceNfsSquashMode implements TerraformEnum {
+  noRootSquash('NO_ROOT_SQUASH'),
+  rootSquash('ROOT_SQUASH');
+
+  const FilestoreInstanceNfsSquashMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `file_shares.nfs_export_options` nested block.
+class FilestoreInstanceNfsExportOptions {
+  const FilestoreInstanceNfsExportOptions({this.accessMode, this.squashMode});
+
+  final FilestoreInstanceNfsExportAccessMode? accessMode;
+  final FilestoreInstanceNfsSquashMode? squashMode;
+
+  Map<String, Object?> toArgMap() => {
+    if (accessMode != null) 'access_mode': accessMode!.terraformValue,
+    if (squashMode != null) 'squash_mode': squashMode!.terraformValue,
+  };
+}
+
+/// `file_shares` nested block (required, max=1).
+class FilestoreInstanceFileShare {
+  const FilestoreInstanceFileShare({
+    required this.name,
+    required this.capacityGb,
+    this.nfsExportOptions,
+  });
+
+  final TfArg<String> name;
+  final TfArg<num> capacityGb;
+  final List<FilestoreInstanceNfsExportOptions>? nfsExportOptions;
+
+  Map<String, Object?> toArgMap() => {
+    'name': name.toTfJson(),
+    'capacity_gb': capacityGb.toTfJson(),
+    if (nfsExportOptions != null)
+      'nfs_export_options': nfsExportOptions!.map((o) => o.toArgMap()).toList(),
+  };
+}
+
+/// `networks` nested block (required).
+class FilestoreInstanceNetwork {
+  const FilestoreInstanceNetwork({
+    required this.network,
+    required this.modes,
+    this.connectMode,
+    this.reservedIpRange,
+  });
+
+  final TfArg<String> network;
+  final List<FilestoreInstanceNetworkMode> modes;
+  final FilestoreInstanceConnectMode? connectMode;
+  final TfArg<String>? reservedIpRange;
+
+  Map<String, Object?> toArgMap() => {
+    'network': network.toTfJson(),
+    'modes': modes.map((m) => m.terraformValue).toList(),
+    if (connectMode != null) 'connect_mode': connectMode!.terraformValue,
+    if (reservedIpRange != null)
+      'reserved_ip_range': reservedIpRange!.toTfJson(),
+  };
+}
+
+/// `initial_replication.role`.
+enum FilestoreInstanceReplicationRole implements TerraformEnum {
+  roleUnspecified('ROLE_UNSPECIFIED'),
+  active('ACTIVE'),
+  standby('STANDBY');
+
+  const FilestoreInstanceReplicationRole(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `initial_replication` nested block (max=1).
+class FilestoreInstanceInitialReplication {
+  const FilestoreInstanceInitialReplication({this.role});
+
+  final FilestoreInstanceReplicationRole? role;
+
+  Map<String, Object?> toArgMap() => {
+    if (role != null) 'role': role!.terraformValue,
+  };
+}
+
+/// Factory wrapper for `google_filestore_instance`.
+///
+/// Cloud Filestore instance — managed NFS file shares on a VPC.
+///
+/// Required identity:
+/// - [localName]: Terraform local name.
+/// - [name]: instance ID.
+/// - [tier]: service tier ([FilestoreInstanceTier]).
+/// - [fileShares]: NFS export (name + capacity in GiB).
+/// - [networks]: VPC attachment ([FilestoreInstanceNetwork]).
+///
+/// Enable `file.googleapis.com` via [GoogleProjectService] before apply.
+///
+/// Example (basic HDD on an existing VPC):
+/// ```dart
+/// GoogleFilestoreInstance(
+///   localName: 'nfs',
+///   name: TfArg.literal('shared-nfs'),
+///   tier: TfArg.literal(FilestoreInstanceTier.basicHdd),
+///   location: TfArg.literal('asia-northeast1'),
+///   fileShares: FilestoreInstanceFileShare(
+///     name: TfArg.literal('share1'),
+///     capacityGb: TfArg.literal(1024),
+///   ),
+///   networks: FilestoreInstanceNetwork(
+///     network: TfArg.ref(vpc.id),
+///     modes: const [FilestoreInstanceNetworkMode.modeIpv4],
+///   ),
+/// );
+/// ```
+final class GoogleFilestoreInstance extends Resource {
+  static const String tfType = 'google_filestore_instance';
+
+  GoogleFilestoreInstance({
+    required super.localName,
+    required TfArg<String> name,
+    required TfArg<FilestoreInstanceTier> tier,
+    TfArg<String>? location,
+    FilestoreInstanceFileShare? fileShares,
+    List<FilestoreInstanceNetwork>? networks,
+    FilestoreInstanceInitialReplication? initialReplication,
+    TfArg<Map<String, String>>? labels,
+    super.lifecycle,
+    super.dependsOn,
+  }) : super(
+         terraformType: tfType,
+         argMap: {
+           'name': name,
+           'tier': tier,
+           if (location != null) 'location': location,
+           if (fileShares != null)
+             'file_shares': TfArg.literal([fileShares.toArgMap()]),
+           if (networks != null)
+             'networks': TfArg.literal(
+               networks.map((n) => n.toArgMap()).toList(),
+             ),
+           if (initialReplication != null)
+             'initial_replication': TfArg.literal([
+               initialReplication.toArgMap(),
+             ]),
+           if (labels != null) 'labels': labels,
+         },
+       );
+
+  @override
+  Set<String> get sensitiveFields => _googleFilestoreInstanceSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `effective_replication` attribute.
+  TfRef<List<Map<String, Object?>>> get effectiveReplication =>
+      TfRef.attribute<List<Map<String, Object?>>>(
+        this,
+        'effective_replication',
+      );
+
+  /// Reference to `etag` attribute.
+  TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+}

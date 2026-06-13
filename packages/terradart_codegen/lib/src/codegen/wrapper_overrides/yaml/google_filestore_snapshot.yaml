@@ -1,0 +1,30 @@
+outputDir: filestore
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - location
+  - instance
+  - description
+  - labels
+
+curatedDoc: |-
+  /// Cloud Filestore snapshot — lightweight share snapshot.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [name]: snapshot ID (unique within the instance).
+  /// - [location]: region matching the source instance.
+  /// - [instance]: parent instance — `TfArg.ref(nfs.id)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleFilestoreSnapshot(
+  ///   localName: 'share_snap',
+  ///   name: TfArg.literal('share-snap-1'),
+  ///   location: TfArg.literal('asia-northeast1'),
+  ///   instance: TfArg.ref(nfs.id),
+  /// );
+  /// ```

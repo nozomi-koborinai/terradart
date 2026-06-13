@@ -29,6 +29,7 @@ export 'firebase_app_check.dart';
 export 'firebase_app_hosting.dart';
 export 'firebase_data_connect.dart';
 export 'firebase_remote_config.dart';
+export 'filestore.dart';
 export 'firestore.dart';
 export 'gke_backup.dart';
 export 'iap.dart';

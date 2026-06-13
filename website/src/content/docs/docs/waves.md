@@ -257,6 +257,7 @@ GooglePrivatecaCertificate(
 );
 ```
 
+
 ## v0.12.20 — Wave 33
 
 **v0.12.20** adds AlloyDB cluster, instance, and user factories on a new `alloydb` barrel. **Additive** — no breaking changes vs `0.12.19`.
@@ -301,6 +302,18 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_memcache_instance` | `GoogleMemcacheInstance` | `memcache` | [cloud_run_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloud_run_quickstart) |
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
+
+## Wave 34 — Cloud Filestore (unreleased)
+
+Adds managed NFS (`google_filestore_instance`) plus backup and snapshot adjuncts on a new `filestore` barrel. Extends [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart).
+
+Catalog after Wave 34 (stacked on Wave 35): **209 curated resource factories + 1 data source** (210 catalog entries). 35 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_filestore_instance` | `GoogleFilestoreInstance` | `filestore` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
+| `google_filestore_backup` | `GoogleFilestoreBackup` | `filestore` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
+| `google_filestore_snapshot` | `GoogleFilestoreSnapshot` | `filestore` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 
 ## v0.12.19 — Wave 32
 
