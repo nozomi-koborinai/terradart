@@ -1,0 +1,29 @@
+outputDir: alloydb
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - backup_id
+  - cluster_name
+  - location
+  - labels
+
+curatedDoc: |-
+  /// AlloyDB backup — on-demand or scheduled backup of a cluster.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [backupId]: short backup ID.
+  /// - [clusterName]: full cluster resource name — `TfArg.ref(cluster.id)`.
+  /// - [location]: region matching the cluster.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleAlloydbBackup(
+  ///   localName: 'nightly',
+  ///   backupId: TfArg.literal('nightly-backup'),
+  ///   clusterName: TfArg.ref(alloyCluster.id),
+  ///   location: TfArg.literal('asia-northeast1'),
+  /// );
+  /// ```

@@ -1,0 +1,44 @@
+outputDir: spanner
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - instance
+  - name
+  - database_dialect
+  - version_retention_period
+  - ddl
+  - deletion_protection
+
+dartTypeOverrides:
+  database_dialect: SpannerDatabaseDialect
+
+curatedDoc: |-
+  /// Cloud Spanner database inside a [GoogleSpannerInstance].
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [instance]: parent instance — `TfArg.ref(spanner.id)` or name.
+  /// - [name]: database ID.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleSpannerDatabase(
+  ///   localName: 'main',
+  ///   instance: TfArg.ref(spanner.nameRef),
+  ///   name: TfArg.literal('main'),
+  ///   versionRetentionPeriod: TfArg.literal('86400s'),
+  /// );
+  /// ```
+
+prelude: |
+  /// `database_dialect` — GoogleSQL vs PostgreSQL interface.
+  enum SpannerDatabaseDialect implements TerraformEnum {
+    googleStandardSql('GOOGLE_STANDARD_SQL'),
+    postgresql('POSTGRESQL');
+
+    const SpannerDatabaseDialect(this.terraformValue);
+    @override
+    final String terraformValue;
+  }

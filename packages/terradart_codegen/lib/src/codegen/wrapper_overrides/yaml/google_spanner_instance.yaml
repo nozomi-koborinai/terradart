@@ -1,0 +1,50 @@
+outputDir: spanner
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - config
+  - display_name
+  - num_nodes
+  - processing_units
+  - edition
+  - labels
+
+dartTypeOverrides:
+  edition: SpannerInstanceEdition
+
+curatedDoc: |-
+  /// Cloud Spanner instance — horizontally scalable relational database.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [config]: instance configuration name (e.g. `regional-asia-northeast1`).
+  /// - [displayName]: user-visible label.
+  ///
+  /// Set exactly one of [numNodes] or [processingUnits] for capacity.
+  ///
+  /// Enable `spanner.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleSpannerInstance(
+  ///   localName: 'app',
+  ///   config: TfArg.literal('regional-asia-northeast1'),
+  ///   displayName: TfArg.literal('App Spanner'),
+  ///   numNodes: TfArg.literal(1),
+  /// );
+  /// ```
+
+prelude: |
+  /// `edition` — Spanner edition / capability tier.
+  enum SpannerInstanceEdition implements TerraformEnum {
+    editionUnspecified('EDITION_UNSPECIFIED'),
+    standard('STANDARD'),
+    enterprise('ENTERPRISE'),
+    enterprisePlus('ENTERPRISE_PLUS');
+
+    const SpannerInstanceEdition(this.terraformValue);
+    @override
+    final String terraformValue;
+  }

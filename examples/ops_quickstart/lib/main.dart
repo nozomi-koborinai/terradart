@@ -15,6 +15,7 @@ import 'package:terradart_google/bigquery.dart';
 import 'package:terradart_google/logging.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/spanner.dart';
 
 final class AuditPipelineStack extends Stack {
   AuditPipelineStack({required String projectId})
@@ -39,6 +40,14 @@ final class AuditPipelineStack extends Stack {
       GoogleProjectService(
         localName: 'api_bigquery',
         service: TfArg.literal('bigquery.googleapis.com'),
+        disableOnDestroy: TfArg.literal(false),
+      ),
+    );
+
+    final apiSpanner = add(
+      GoogleProjectService(
+        localName: 'api_spanner',
+        service: TfArg.literal('spanner.googleapis.com'),
         disableOnDestroy: TfArg.literal(false),
       ),
     );
@@ -218,6 +227,28 @@ final class AuditPipelineStack extends Stack {
           ResourceDependency(dataset),
           ResourceDependency(apiLogging),
         ],
+      ),
+    );
+
+    // ---- Cloud Spanner (Wave 35) ------------------------------------------
+
+    final spanner = add(
+      GoogleSpannerInstance(
+        localName: 'audit_spanner',
+        config: TfArg.literal('regional-asia-northeast1'),
+        displayName: TfArg.literal('Audit metadata store'),
+        numNodes: TfArg.literal(1),
+        dependsOn: [ResourceDependency(apiSpanner)],
+      ),
+    );
+
+    add(
+      GoogleSpannerDatabase(
+        localName: 'audit_meta',
+        instance: TfArg.ref(spanner.nameRef),
+        name: TfArg.literal('audit_meta'),
+        versionRetentionPeriod: TfArg.literal('86400s'),
+        dependsOn: [ResourceDependency(spanner)],
       ),
     );
   }

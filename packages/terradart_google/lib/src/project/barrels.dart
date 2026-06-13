@@ -27,6 +27,8 @@ enum Barrels {
   kmsApi('kms'),
   logging('logging'),
   monitoring('monitoring'),
+  spanner('spanner'),
+  memcache('memcache'),
   privateca('privateca'),
   project('project'),
   pubsub('pubsub'),

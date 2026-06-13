@@ -1,0 +1,121 @@
+outputDir: memcache
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+dartTypeOverrides:
+  memcache_version: MemcacheInstanceVersion
+
+paramOrder:
+  - name
+  - node_count
+  - node_config
+  - region
+  - authorized_network
+  - memcache_version
+  - display_name
+  - maintenance_policy
+  - labels
+
+curatedDoc: |-
+  /// Memorystore for Memcached instance — managed Memcached for session caches.
+  ///
+  /// Pair with [GoogleVpcAccessConnector] or GCE/GKE on the same VPC via
+  /// [authorizedNetwork].
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [name]: instance ID.
+  /// - [nodeCount]: number of Memcached nodes.
+  ///
+  /// Enable `memcache.googleapis.com` via [GoogleProjectService] or
+  /// [ApisEnablement.enable] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleMemcacheInstance(
+  ///   localName: 'sessions',
+  ///   name: TfArg.literal('api-sessions'),
+  ///   nodeCount: TfArg.literal(1),
+  ///   nodeConfig: MemcacheInstanceNodeConfig(
+  ///     cpuCount: TfArg.literal(1),
+  ///     memorySizeMb: TfArg.literal(1024),
+  ///   ),
+  ///   region: TfArg.literal('asia-northeast1'),
+  ///   authorizedNetwork: TfArg.literal('default'),
+  /// );
+  /// ```
+
+prelude: |
+  /// `memcache_version` — major Memcached software version.
+  enum MemcacheInstanceVersion implements TerraformEnum {
+    memcache15('MEMCACHE_1_5'),
+    memcache1615('MEMCACHE_1_6_15');
+
+    const MemcacheInstanceVersion(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `weekly_maintenance_window.day` on `google_memcache_instance`.
+  enum MemcacheInstanceWeeklyMaintenanceDay implements TerraformEnum {
+    dayOfWeekUnspecified('DAY_OF_WEEK_UNSPECIFIED'),
+    monday('MONDAY'),
+    tuesday('TUESDAY'),
+    wednesday('WEDNESDAY'),
+    thursday('THURSDAY'),
+    friday('FRIDAY'),
+    saturday('SATURDAY'),
+    sunday('SUNDAY');
+
+    const MemcacheInstanceWeeklyMaintenanceDay(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `maintenance_policy.weekly_maintenance_window` nested block.
+  class MemcacheInstanceWeeklyMaintenanceWindow {
+    const MemcacheInstanceWeeklyMaintenanceWindow({this.day});
+
+    final MemcacheInstanceWeeklyMaintenanceDay? day;
+
+    Map<String, Object?> toArgMap() => {
+          if (day != null) 'day': day!.terraformValue,
+        };
+  }
+
+  /// `node_config` nested block (required, max=1).
+  class MemcacheInstanceNodeConfig {
+    const MemcacheInstanceNodeConfig({
+      required this.cpuCount,
+      required this.memorySizeMb,
+    });
+
+    final TfArg<num> cpuCount;
+    final TfArg<num> memorySizeMb;
+
+    Map<String, Object?> toArgMap() => {
+          'cpu_count': cpuCount.toTfJson(),
+          'memory_size_mb': memorySizeMb.toTfJson(),
+        };
+  }
+
+  /// `maintenance_policy` nested block (max=1).
+  class MemcacheInstanceMaintenancePolicy {
+    const MemcacheInstanceMaintenancePolicy({this.weeklyMaintenanceWindow});
+
+    final MemcacheInstanceWeeklyMaintenanceWindow? weeklyMaintenanceWindow;
+
+    Map<String, Object?> toArgMap() => {
+          if (weeklyMaintenanceWindow != null)
+            'weekly_maintenance_window': [weeklyMaintenanceWindow!.toArgMap()],
+        };
+  }
+
+customSlots:
+  node_config:
+    paramDeclaration: 'required MemcacheInstanceNodeConfig nodeConfig'
+    argMapEntry: "'node_config': TfArg.literal([nodeConfig.toArgMap()]),"
+  maintenance_policy:
+    paramDeclaration: 'MemcacheInstanceMaintenancePolicy? maintenancePolicy'
+    argMapEntry: "if (maintenancePolicy != null) 'maintenance_policy': TfArg.literal([maintenancePolicy.toArgMap()]),"

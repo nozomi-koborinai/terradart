@@ -200,5 +200,14 @@ final class CloudSqlStack extends Stack {
         passwordWoVersion: TfArg.literal('1'),
       ),
     );
+
+    add(
+      GoogleAlloydbBackup(
+        localName: 'alloydb_nightly',
+        backupId: TfArg.literal('nightly-backup'),
+        clusterName: TfArg.ref(alloyCluster.id),
+        location: TfArg.literal('asia-northeast1'),
+      ),
+    );
   }
 }

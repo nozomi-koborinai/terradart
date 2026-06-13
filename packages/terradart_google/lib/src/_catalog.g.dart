@@ -4,6 +4,24 @@ import 'catalog_entry.dart';
 
 const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
   CatalogEntry(
+    tfType: 'google_alloydb_backup',
+    className: 'GoogleAlloydbBackup',
+    barrel: 'alloydb',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_alloydb_backup`.',
+    constructorParams: <String>[
+      'localName',
+      'backupId',
+      'clusterName',
+      'location',
+      'labels',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_alloydb_backup`.\n\nAlloyDB backup — on-demand or scheduled backup of a cluster.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [backupId]: short backup ID.\n- [clusterName]: full cluster resource name — `TfArg.ref(cluster.id)`.\n- [location]: region matching the cluster.\n\nExample:\n```dart\nGoogleAlloydbBackup(\n  localName: \'nightly\',\n  backupId: TfArg.literal(\'nightly-backup\'),\n  clusterName: TfArg.ref(alloyCluster.id),\n  location: TfArg.literal(\'asia-northeast1\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_alloydb_cluster',
     className: 'GoogleAlloydbCluster',
     barrel: 'alloydb',
@@ -4585,6 +4603,35 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_logging_saved_query`.\n\nSaved Logging query (Logs Explorer or Ops Analytics). Provide exactly\none of [loggingQuery] or [opsAnalyticsQuery] — Terraform validates at\napply time.\n\nExample:\n```dart\nGoogleLoggingSavedQuery(\n  localName: \'audit_errors\',\n  name: TfArg.literal(\'audit-errors\'),\n  displayName: TfArg.literal(\'Audit errors (7d)\'),\n  parent: TfArg.literal(\'projects/my-proj/locations/global\'),\n  location: TfArg.literal(\'global\'),\n  visibility: TfArg.literal(LoggingSavedQueryVisibility.privateVisibility),\n  loggingQuery: LoggingSavedQueryLoggingQuery(\n    filter: TfArg.literal(\n      \'logName:"cloudaudit.googleapis.com" AND severity>=ERROR\',\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_memcache_instance',
+    className: 'GoogleMemcacheInstance',
+    barrel: 'memcache',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_memcache_instance`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'nodeCount',
+      'nodeConfig',
+      'region',
+      'authorizedNetwork',
+      'memcacheVersion',
+      'displayName',
+      'maintenancePolicy',
+      'labels',
+    ],
+    nestedTypes: <String>[
+      'MemcacheInstanceVersion',
+      'MemcacheInstanceWeeklyMaintenanceDay',
+      'MemcacheInstanceWeeklyMaintenanceWindow',
+      'MemcacheInstanceNodeConfig',
+      'MemcacheInstanceMaintenancePolicy',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_memcache_instance`.\n\nMemorystore for Memcached instance — managed Memcached for session caches.\n\nPair with [GoogleVpcAccessConnector] or GCE/GKE on the same VPC via\n[authorizedNetwork].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: instance ID.\n- [nodeCount]: number of Memcached nodes.\n\nEnable `memcache.googleapis.com` via [GoogleProjectService] or\n[ApisEnablement.enable] before apply.\n\nExample:\n```dart\nGoogleMemcacheInstance(\n  localName: \'sessions\',\n  name: TfArg.literal(\'api-sessions\'),\n  nodeCount: TfArg.literal(1),\n  nodeConfig: MemcacheInstanceNodeConfig(\n    cpuCount: TfArg.literal(1),\n    memorySizeMb: TfArg.literal(1024),\n  ),\n  region: TfArg.literal(\'asia-northeast1\'),\n  authorizedNetwork: TfArg.literal(\'default\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_monitoring_alert_policy',
     className: 'GoogleMonitoringAlertPolicy',
     barrel: 'monitoring',
@@ -5406,6 +5453,46 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_service_networking_connection`.\n\nCreates a private services peering connection between the user\'s VPC\nnetwork and one of Google\'s service producer VPCs. This is the\n"private connectivity" hop required for managed services (Cloud SQL\nprivate IP, Memorystore private IP, AlloyDB, etc) to be reachable\nonly from inside the consumer VPC.\n\nThe pipeline is a three-resource chain:\n\n1. [GoogleComputeNetwork] — the consumer VPC.\n2. [GoogleComputeGlobalAddress] with `purpose: vpcPeering` —\n   pre-reserves an internal CIDR on that VPC for Google\'s services\n   to peer into.\n3. [GoogleServiceNetworkingConnection] (this resource) — peers\n   Google\'s `servicenetworking.googleapis.com` producer VPC into the\n   consumer VPC against the reserved range(s).\n\nOnce apply succeeds, downstream resources like\n[GoogleSqlDatabaseInstance] can set\n`settings.ip_configuration.private_network` to the same network and\nreceive a private-only IP allocated from the reserved range.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_service_networking_connection.`).\n- `network`: full self_link of a [GoogleComputeNetwork]\n  (`TfArg.ref(vpc.selfLink)`). The provider rejects short network\n  names here.\n- `service`: the producer service ID. The only documented value at\n  the time of writing is `\'servicenetworking.googleapis.com\'`; passed\n  as a plain string so callers can target other producer services\n  should Google introduce them.\n- `reservedPeeringRanges`: one or more `name` values from\n  [GoogleComputeGlobalAddress] resources with\n  `purpose: vpcPeering`. The provider rejects full self_links here —\n  pass `TfArg.ref(psaRange.nameRef)`.\n\nExample (full Cloud SQL private-IP chain — see also the\n`cloud_sql_quickstart` example):\n```dart\nfinal psaPeering = GoogleServiceNetworkingConnection(\n  localName: \'psa\',\n  network: TfArg.ref(vpc.selfLink),\n  service: TfArg.literal(\'servicenetworking.googleapis.com\'),\n  reservedPeeringRanges: TfArg.literal([\n    \'\\\${google_compute_global_address.psa_range.name}\',\n  ]),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_spanner_database',
+    className: 'GoogleSpannerDatabase',
+    barrel: 'spanner',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_spanner_database`.',
+    constructorParams: <String>[
+      'localName',
+      'instance',
+      'name',
+      'databaseDialect',
+      'versionRetentionPeriod',
+      'ddl',
+      'deletionProtection',
+    ],
+    nestedTypes: <String>['SpannerDatabaseDialect'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_spanner_database`.\n\nCloud Spanner database inside a [GoogleSpannerInstance].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [instance]: parent instance — `TfArg.ref(spanner.id)` or name.\n- [name]: database ID.\n\nExample:\n```dart\nGoogleSpannerDatabase(\n  localName: \'main\',\n  instance: TfArg.ref(spanner.nameRef),\n  name: TfArg.literal(\'main\'),\n  versionRetentionPeriod: TfArg.literal(\'86400s\'),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_spanner_instance',
+    className: 'GoogleSpannerInstance',
+    barrel: 'spanner',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_spanner_instance`.',
+    constructorParams: <String>[
+      'localName',
+      'config',
+      'displayName',
+      'numNodes',
+      'processingUnits',
+      'edition',
+      'labels',
+    ],
+    nestedTypes: <String>['SpannerInstanceEdition'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_spanner_instance`.\n\nCloud Spanner instance — horizontally scalable relational database.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [config]: instance configuration name (e.g. `regional-asia-northeast1`).\n- [displayName]: user-visible label.\n\nSet exactly one of [numNodes] or [processingUnits] for capacity.\n\nEnable `spanner.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleSpannerInstance(\n  localName: \'app\',\n  config: TfArg.literal(\'regional-asia-northeast1\'),\n  displayName: TfArg.literal(\'App Spanner\'),\n  numNodes: TfArg.literal(1),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_sql_database',
