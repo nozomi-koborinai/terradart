@@ -23,6 +23,10 @@ jobs:
         with:
           sdk: stable
       - run: dart pub get
+      - name: Synth-gate logic unit tests
+        # Guards the coverage / API-enablement-ratchet logic itself; the gate
+        # runs over the real examples inside check_docs_consistency below.
+        run: dart --enable-asserts tool/example_synth_gates_test.dart
       - name: Docs caret + catalog count
         run: dart tool/check_docs_consistency.dart
       - name: Pub/Sub quickstart smoke

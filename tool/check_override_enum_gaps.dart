@@ -271,7 +271,7 @@ void main(List<String> args) {
     if (genText == null) continue;
 
     final block = Map<String, dynamic>.from(
-      ((schema as Map)['block'] as Map),
+      ((schema)['block'] as Map),
     );
     for (final site in _collectNestedEnumSites(block)) {
       final label = _blockPathLabel(site.blockPath, site.attr);
@@ -306,11 +306,10 @@ void main(List<String> args) {
     ...nestedPartialGaps,
     if (strictNested) ...nestedThinAdvisory,
   ];
-  final nestedAdvisory = [...nestedPartialGaps, ...nestedThinAdvisory];
-
   if (failing.isEmpty && nestedThinAdvisory.isEmpty) {
     print(
-        'check_override_enum_gaps: OK (0 top-level, 0 nested partial, 0 nested thin)');
+      'check_override_enum_gaps: OK (0 top-level, 0 nested partial, 0 nested thin)',
+    );
     exit(0);
   }
 

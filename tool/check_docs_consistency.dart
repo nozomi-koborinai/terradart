@@ -13,7 +13,8 @@ Future<void> main() async {
 
   final minor = _workspaceMinor();
   print(
-      'Workspace minor: 0.$minor.x (from packages/terradart_core/pubspec.yaml)');
+    'Workspace minor: 0.$minor.x (from packages/terradart_core/pubspec.yaml)',
+  );
 
   _checkCaretMinor(
     errors,
@@ -21,12 +22,20 @@ Future<void> main() async {
     'README.md',
     mustContain: [curatedCatalogPhrase, catalogEntriesPhrase],
   );
-  _checkCaretMinor(errors, minor, 'CONTRIBUTING.md',
-      mustContain: [curatedCatalogPhrase]);
+  _checkCaretMinor(
+    errors,
+    minor,
+    'CONTRIBUTING.md',
+    mustContain: [curatedCatalogPhrase],
+  );
   _checkCaretMinor(errors, minor, 'SECURITY.md');
   _checkCaretMinor(errors, minor, 'packages/terradart_core/README.md');
-  _checkCaretMinor(errors, minor, 'packages/terradart_google/README.md',
-      mustContain: [curatedCatalogPhrase]);
+  _checkCaretMinor(
+    errors,
+    minor,
+    'packages/terradart_google/README.md',
+    mustContain: [curatedCatalogPhrase],
+  );
   _checkCaretMinor(errors, minor, 'packages/terradart_codegen/README.md');
   _checkCaretMinor(
     errors,
@@ -116,7 +125,8 @@ int _workspaceMinor() {
       RegExp(r'^version:\s*0\.(\d+)\.\d+', multiLine: true).firstMatch(pubspec);
   if (match == null) {
     stderr.writeln(
-        'Could not parse packages/terradart_core/pubspec.yaml version');
+      'Could not parse packages/terradart_core/pubspec.yaml version',
+    );
     exit(2);
   }
   return int.parse(match.group(1)!);

@@ -1,0 +1,10 @@
+# API-enablement debt for tool/example_synth_gates.dart.
+#
+# Format: <example_slug>:<api>: <reason>
+#
+# Each entry suppresses the "example enables APIs but not <api>" mandate for
+# one example. Entries must carry a reason and are flagged as stale once the
+# example enables the API (or stops needing it). Burn this list down by
+# migrating examples to `Apis.enable` with the full barrel set.
+
+compute_lb_quickstart:compute.googleapis.com: pre-gate partial enablement (Apis.required covers only certificatemanager + privateca); migrate the LB stack to Apis.enable with Barrels.compute in a follow-up

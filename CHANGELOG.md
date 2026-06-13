@@ -12,6 +12,14 @@ Per-package changelogs live alongside each package and are the system of record 
 - **`terradart_core`** — provider-aliasing dead surface removed (`StackProvider.providerAlias`, `ProviderBinding`, `Resource.provider`); `Stack.synth()` now fails fast when a resource's provider is not registered.
 - New machine gates: barrel-completeness test for generated wrappers and a `deletion_protection` parity invariant (both immediately caught live instances in Waves 33–35 output).
 
+**Maintenance hardening** — turning recurring Cursor-agent correction classes into pre-merge gates (mined from the `cursor/*` Wave PR history, where the repair loop ran entirely through fixup commits with no human review comments):
+
+- **API-enablement ratchet** — the example synth gate (which already ran via `check_docs_consistency`) now fails when an example enables some APIs but not every API its resources need, not just when an enabled API lacks a dependency edge. This is the exact Wave 32 secretmanager class. `tool/example_api_debt.yaml` is the audited escape hatch.
+- **MM upstream fingerprint gate** — flags `upstream: null` manifest entries that look Magic-Modules-generated; 29 mislabeled entries (+6 broken paths) corrected, re-activating enum-drift checks across certificatemanager / privateca / alloydb / memcache / spanner / filestore / logging and more.
+- **Catalog counts derived from `_catalog.g.dart`** — kills the parallel-wave count race that forced a reconcile cycle in each of #136/#137/#138.
+- **Pre-merge `pub publish --dry-run`** — catches fixture secret-scanner trips before they break publish (previously fixed reactively in 0.12.5 and 0.12.11).
+- **`dart analyze tool/`** — the gate scripts themselves are now analyzed (two latent errors fixed).
+
 ## [0.12.20] - 2026-06-12
 
 Lockstep release across the workspace. **No breaking changes** for reachable API (the previously unreachable `RedisInstanceWeeklyMaintenanceWindow` gains a required `startTime`).

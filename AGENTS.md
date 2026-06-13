@@ -104,7 +104,7 @@ Before claiming work is done, run from the repository root:
 tool/agent_verify.sh
 ```
 
-This is the shared agent gate (docs consistency, analyze, four-package tests, `terradart wrap --check`, pubsub smoke). It does **not** run the full `terraform_validate` example matrix; GitHub Actions still enforces that on merge.
+This is the shared agent gate (docs consistency, analyze incl. `tool/`, four-package tests, `terradart wrap --check`, `lint-override`, enum gaps, example synth gates, pubsub smoke). The example synth gates synth every quickstart and enforce catalog coverage plus the API-enablement dependency graph: an example that enables any API must enable **every** API its resources need (`tool/example_api_debt.yaml` is the audited escape hatch). The gate does **not** run the full `terraform_validate` example matrix; GitHub Actions still enforces that on merge.
 
 Optional flags:
 
@@ -219,6 +219,9 @@ There is no long-running dev server for core work. Primary flows:
 | Goal | Command (repo root) |
 |------|---------------------|
 | Agent gate (lint, tests, wrap check, smoke) | `tool/agent_verify.sh` |
+| Suspected mislabeled `upstream: null` | `dart tool/check_mm_upstream_fingerprint.dart` |
+| Example coverage + API-enablement ratchet | `dart tool/check_docs_consistency.dart` (runs the synth gate) |
+| Publish readiness (per package) | `cd packages/<pkg> && dart pub publish --dry-run` |
 | Synth example stack | `cd examples/pubsub_quickstart && GCP_PROJECT_ID=ci-test-project-id dart run bin/infra.dart` |
 | Validate synth output | `cd examples/pubsub_quickstart/tf-out && terraform init -backend=false && terraform validate` |
 | MCP catalog server (stdio) | `cd packages/terradart_agent && dart run terradart-mcp` |

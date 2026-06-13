@@ -2,12 +2,21 @@ import 'package:terradart_google/catalog.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('terradartCatalog holds one entry per curated resource + data source',
+  test('catalog entry count is internally consistent (no hand-pinned total)',
       () {
-    // Sync catalogEntryCount in tool/doc_expectations.dart (also checked by
-    // tool/check_docs_consistency.dart). Must move in lockstep with wrap
-    // file-count in terradart_codegen/test/cli/wrap_command_test.dart.
-    expect(terradartCatalog, hasLength(210)); // catalogEntryCount
+    // The catalog total is DERIVED from the wrap-generated catalog, not pinned
+    // to a constant here — that constant was the source of the parallel-wave
+    // count race (#136/#137/#138). tool/doc_expectations.dart reads the same
+    // file and tool/check_docs_consistency.dart asserts the prose matches.
+    final resources =
+        terradartCatalog.where((e) => e.kind == CatalogKind.resource).length;
+    final dataSources =
+        terradartCatalog.where((e) => e.kind == CatalogKind.dataSource).length;
+    expect(resources + dataSources, terradartCatalog.length);
+    expect(terradartCatalog, isNotEmpty);
+    // Every doc phrase hardcodes "+ 1 data source"; guard that assumption so a
+    // second data source forces a deliberate prose update.
+    expect(dataSources, 1);
   });
 
   test('every catalog entry is well-formed', () {
