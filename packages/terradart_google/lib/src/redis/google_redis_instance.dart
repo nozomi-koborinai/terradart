@@ -196,7 +196,7 @@ class RedisInstancePersistenceConfig {
 /// - [persistenceConfig] turns on RDB snapshots.
 ///
 /// Enable `redis.googleapis.com` via [GoogleProjectService] or
-/// [ApisEnablement.enable] before apply.
+/// [Apis.enable] before apply.
 ///
 /// Example (basic tier on the default VPC):
 /// ```dart

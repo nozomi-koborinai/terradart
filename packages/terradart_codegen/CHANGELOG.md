@@ -13,6 +13,7 @@ Maintainer:
 - **Added** — `lint-override` dead-customSlots rules `custom-slot-missing-param-order`, `custom-slot-not-in-param-order`, `custom-slot-not-in-arg-map-order`: a customSlot the emitter would silently skip now fails the gate (caught the Wave 32 `google_redis_instance` regression and two latent `url_map` slots that `wrap --check` could not see).
 - **Added** — `tool/append_curation_backlog.dart` for idempotent schema-bump backlog updates (#35).
 - **Fixed** — schema-bump workflow no longer appends invalid YAML outside `entries:`; excludes `.schema-bump/` from commits.
+- **Added** — universal invariant `deletion_protection` parity: a curated resource whose schema exposes `deletion_protection` must list it in an explicit `paramOrder` (immediately caught `google_alloydb_cluster` and `google_memcache_instance` from Waves 33/35).
 - **Fixed** — `tool/mm_yaml_sources.yaml` registers `google_redis_instance` against its real Magic Modules upstream (`mmv1/products/redis/Instance.yaml`; it was mislabeled "handwritten"), re-activating MM enum-drift checks for the frozen redis prelude enums.
 
 ## 0.12.20

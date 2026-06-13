@@ -1,14 +1,10 @@
 import 'package:meta/meta.dart';
+import 'package:terradart_core/terradart_core.dart';
 
-import 'stack.dart';
-
-/// Concrete [StackProvider] for `hashicorp/time` (used by [TimeSleep]).
+/// Concrete [StackProvider] for `hashicorp/time` (used by `TimeSleep`).
 @immutable
 final class TimeProvider implements StackProvider {
-  const TimeProvider({this.providerAlias});
-
-  @override
-  final String? providerAlias;
+  const TimeProvider();
 
   @override
   String get providerName => 'time';
@@ -18,10 +14,9 @@ final class TimeProvider implements StackProvider {
 
   /// Pinned for `time_sleep` — independent of the Google provider pin.
   ///
-  /// Maintained by hand: unlike the Google pin in
-  /// `terradart_google/lib/src/_provider_meta.dart`, no schema-bump
-  /// automation tracks `hashicorp/time` releases. Bump deliberately when
-  /// upstream ships a new major.
+  /// Maintained by hand: unlike the Google pin in `_provider_meta.dart`,
+  /// no schema-bump automation tracks `hashicorp/time` releases. Bump
+  /// deliberately when upstream ships a new major.
   @override
   String get versionConstraint => '~> 0.12';
 

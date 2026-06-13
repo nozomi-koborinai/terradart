@@ -11,7 +11,6 @@ abstract base class Data extends Resource {
     required super.localName,
     required super.argMap,
     super.dependsOn,
-    super.provider,
   }) : super(lifecycle: null);
 
   @override

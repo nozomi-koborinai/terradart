@@ -13,6 +13,7 @@ paramOrder:
   - cluster_type
   - display_name
   - labels
+  - deletion_protection
 
 dartTypeOverrides:
   cluster_type: AlloydbClusterType
@@ -31,7 +32,7 @@ curatedDoc: |-
   /// - [networkConfig]: VPC + optional allocated PSA range name.
   ///
   /// Enable `alloydb.googleapis.com` via [GoogleProjectService] or
-  /// [ApisEnablement.enable] before apply.
+  /// [Apis.enable] before apply.
   ///
   /// Example:
   /// ```dart

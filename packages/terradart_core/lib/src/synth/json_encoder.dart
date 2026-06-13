@@ -22,12 +22,41 @@ class TfJsonEncoder {
 
   /// The top-level `terraform { ... }` block: `required_version`,
   /// `required_providers`, optional `backend`.
+  ///
+  /// Validates provider coverage: every registered resource / data source
+  /// must have a [StackProvider] whose `providerName` equals the resource
+  /// type's provider prefix (the segment before the first `_`, e.g.
+  /// `google_redis_instance` → `google`, `time_sleep` → `time`). Without
+  /// this, Terraform silently falls back to an unpinned implied
+  /// `hashicorp/<prefix>` provider, bypassing the version pin the concrete
+  /// provider class promises.
   static Map<String, dynamic> terraformBlock(Stack stack) {
     if (stack.providers.isEmpty) {
       throw StateError(
         'Stack has no providers registered. '
         'Pass at least one StackProvider in `Stack(providers: [...])` '
         'before calling synth().',
+      );
+    }
+
+    final providerNames = <String>{
+      for (final p in stack.providers) p.providerName,
+    };
+    final missingByPrefix = <String, List<String>>{};
+    for (final r in [...stack.resources, ...stack.dataSources]) {
+      final prefix = r.terraformType.split('_').first;
+      if (providerNames.contains(prefix)) continue;
+      missingByPrefix.putIfAbsent(prefix, () => []).add(r.tfAddress);
+    }
+    if (missingByPrefix.isNotEmpty) {
+      final detail = missingByPrefix.entries
+          .map((e) => '"${e.key}" (required by ${e.value.join(', ')})')
+          .join('; ');
+      throw StateError(
+        'Stack.providers declares no provider named $detail. Terraform '
+        'would fall back to an unpinned implied provider for these '
+        'resources. Add the matching StackProvider to '
+        '`Stack(providers: [...])`.',
       );
     }
 

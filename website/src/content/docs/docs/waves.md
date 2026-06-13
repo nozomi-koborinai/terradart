@@ -330,16 +330,18 @@ Catalog after `0.12.19`: **199 curated resource factories + 1 data source** (200
 
 **Highlights**
 
-- **`ApisEnablement.enable`** — wraps `Apis.required` + optional `TimeSleep` after API enablement (60s default).
+- **`Apis.enable`** — registers `Apis.required` services + a `TimeSleep` propagation wait in one call (60s default; renamed from `ApisEnablement.enable` post-`0.12.20`).
 - **Redis** — `RedisInstanceTier` (`basic` / `standardHa`), `RedisInstanceConnectMode` for VPC access patterns.
 - **`cloud_run_quickstart`** — Redis cache on the default VPC alongside the existing VPC Access connector.
 
 ```dart
-// Requires `const TimeProvider()` in Stack.providers.
-final apiDeps = ApisEnablement.enable(
+// Requires `const TimeProvider()` in Stack.providers
+// (package:terradart_google/time.dart).
+final apiDeps = Apis.enable(
+  this,
   barrels: [Barrels.cloudRun, Barrels.serviceNetworking, Barrels.redis],
   propagationDelay: const Duration(seconds: 60),
-).registerOn(this);
+);
 
 add(
   GoogleRedisInstance(

@@ -4,6 +4,14 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
+## [Unreleased]
+
+**Breaking** — design pass for AI-autonomous maintenance (see [MIGRATING.md](MIGRATING.md)):
+
+- **`terradart_google`** — `Apis.enable(stack, barrels: ...)` replaces the `ApisEnablement` / `ApiEnablement` two-layer API; `TimeProvider` / `TimeSleep` move in from core under the new `time` barrel; `GoogleProvider.providerAlias` removed.
+- **`terradart_core`** — provider-aliasing dead surface removed (`StackProvider.providerAlias`, `ProviderBinding`, `Resource.provider`); `Stack.synth()` now fails fast when a resource's provider is not registered.
+- New machine gates: barrel-completeness test for generated wrappers and a `deletion_protection` parity invariant (both immediately caught live instances in Waves 33–35 output).
+
 ## [0.12.20] - 2026-06-12
 
 Lockstep release across the workspace. **No breaking changes** for reachable API (the previously unreachable `RedisInstanceWeeklyMaintenanceWindow` gains a required `startTime`).

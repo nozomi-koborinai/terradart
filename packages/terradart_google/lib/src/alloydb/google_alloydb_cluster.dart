@@ -131,7 +131,7 @@ class AlloydbClusterInitialUser {
 /// - [networkConfig]: VPC + optional allocated PSA range name.
 ///
 /// Enable `alloydb.googleapis.com` via [GoogleProjectService] or
-/// [ApisEnablement.enable] before apply.
+/// [Apis.enable] before apply.
 ///
 /// Example:
 /// ```dart
@@ -165,6 +165,7 @@ final class GoogleAlloydbCluster extends Resource {
     TfArg<AlloydbClusterType>? clusterType,
     TfArg<String>? displayName,
     TfArg<Map<String, String>>? labels,
+    TfArg<bool>? deletionProtection,
     super.lifecycle,
     super.dependsOn,
   }) : super(
@@ -187,6 +188,8 @@ final class GoogleAlloydbCluster extends Resource {
            if (clusterType != null) 'cluster_type': clusterType,
            if (displayName != null) 'display_name': displayName,
            if (labels != null) 'labels': labels,
+           if (deletionProtection != null)
+             'deletion_protection': deletionProtection,
          },
        );
 

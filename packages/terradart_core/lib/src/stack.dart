@@ -45,11 +45,6 @@ abstract interface class StackProvider {
   /// providers.
   Map<String, Object?> get configArgs;
 
-  /// Optional alias for multi-provider scenarios (e.g.
-  /// `provider "google" { alias = "secondary" }`). v0.0.x returns null = no
-  /// alias.
-  String? get providerAlias => null;
-
   /// Backwards-compat shim for tests / earlier callers that invoked
   /// `toTfJson()` directly. Returns the same map as `configArgs`.
   Map<String, Object?> toTfJson() => configArgs;

@@ -14,10 +14,8 @@ export 'src/duplicate_resource_error.dart' show DuplicateResourceError;
 export 'src/duration_helper.dart' show TerraformDurationExt;
 export 'src/lifecycle.dart'
     show DependencyTarget, LifecycleOptions, RefDependency, ResourceDependency;
-export 'src/resource.dart' show ProviderBinding, Resource, ResourceKind;
+export 'src/resource.dart' show Resource, ResourceKind;
 export 'src/stack.dart' show Stack, StackBackend, StackProvider;
-export 'src/time_provider.dart' show TimeProvider;
-export 'src/time_sleep.dart' show TimeSleep;
 export 'src/synth/dart_constants_emitter.dart' show DartConstantsEmitter;
 export 'src/synth/json_encoder.dart' show TfJsonEncoder;
 export 'src/synth/literal_resolver.dart' show LiteralResolver;

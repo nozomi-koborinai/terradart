@@ -38,6 +38,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'clusterType',
       'displayName',
       'labels',
+      'deletionProtection',
     ],
     nestedTypes: <String>[
       'AlloydbClusterType',
@@ -51,7 +52,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>['initial_user.password'],
     docComment:
-        'Factory wrapper for `google_alloydb_cluster`.\n\nAlloyDB cluster — regional Postgres-compatible database cluster.\n\nPrivate-IP wiring reuses the same PSA chain as Cloud SQL:\n[GoogleComputeNetwork] → [GoogleComputeGlobalAddress] →\n[GoogleServiceNetworkingConnection] → [AlloydbClusterNetworkConfig].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [clusterId]: short cluster ID.\n- [location]: regional location (e.g. `asia-northeast1`).\n- [networkConfig]: VPC + optional allocated PSA range name.\n\nEnable `alloydb.googleapis.com` via [GoogleProjectService] or\n[ApisEnablement.enable] before apply.\n\nExample:\n```dart\nGoogleAlloydbCluster(\n  localName: \'app\',\n  clusterId: TfArg.literal(\'app-cluster\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  networkConfig: AlloydbClusterNetworkConfig(\n    network: TfArg.ref(vpc.selfLink),\n    allocatedIpRange: TfArg.ref(psaRange.nameRef),\n  ),\n  initialUser: AlloydbClusterInitialUser(\n    user: TfArg.literal(\'postgres\'),\n    passwordWo: TfArg.literal(dbPassword),\n    passwordWoVersion: TfArg.literal(1),\n  ),\n  dependsOn: [ResourceDependency(psaConnection)],\n);\n```',
+        'Factory wrapper for `google_alloydb_cluster`.\n\nAlloyDB cluster — regional Postgres-compatible database cluster.\n\nPrivate-IP wiring reuses the same PSA chain as Cloud SQL:\n[GoogleComputeNetwork] → [GoogleComputeGlobalAddress] →\n[GoogleServiceNetworkingConnection] → [AlloydbClusterNetworkConfig].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [clusterId]: short cluster ID.\n- [location]: regional location (e.g. `asia-northeast1`).\n- [networkConfig]: VPC + optional allocated PSA range name.\n\nEnable `alloydb.googleapis.com` via [GoogleProjectService] or\n[Apis.enable] before apply.\n\nExample:\n```dart\nGoogleAlloydbCluster(\n  localName: \'app\',\n  clusterId: TfArg.literal(\'app-cluster\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  networkConfig: AlloydbClusterNetworkConfig(\n    network: TfArg.ref(vpc.selfLink),\n    allocatedIpRange: TfArg.ref(psaRange.nameRef),\n  ),\n  initialUser: AlloydbClusterInitialUser(\n    user: TfArg.literal(\'postgres\'),\n    passwordWo: TfArg.literal(dbPassword),\n    passwordWoVersion: TfArg.literal(1),\n  ),\n  dependsOn: [ResourceDependency(psaConnection)],\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_alloydb_instance',
@@ -4690,6 +4691,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'displayName',
       'maintenancePolicy',
       'labels',
+      'deletionProtection',
     ],
     nestedTypes: <String>[
       'MemcacheInstanceVersion',
@@ -4700,7 +4702,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_memcache_instance`.\n\nMemorystore for Memcached instance — managed Memcached for session caches.\n\nPair with [GoogleVpcAccessConnector] or GCE/GKE on the same VPC via\n[authorizedNetwork].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: instance ID.\n- [nodeCount]: number of Memcached nodes.\n\nEnable `memcache.googleapis.com` via [GoogleProjectService] or\n[ApisEnablement.enable] before apply.\n\nExample:\n```dart\nGoogleMemcacheInstance(\n  localName: \'sessions\',\n  name: TfArg.literal(\'api-sessions\'),\n  nodeCount: TfArg.literal(1),\n  nodeConfig: MemcacheInstanceNodeConfig(\n    cpuCount: TfArg.literal(1),\n    memorySizeMb: TfArg.literal(1024),\n  ),\n  region: TfArg.literal(\'asia-northeast1\'),\n  authorizedNetwork: TfArg.literal(\'default\'),\n);\n```',
+        'Factory wrapper for `google_memcache_instance`.\n\nMemorystore for Memcached instance — managed Memcached for session caches.\n\nPair with [GoogleVpcAccessConnector] or GCE/GKE on the same VPC via\n[authorizedNetwork].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: instance ID.\n- [nodeCount]: number of Memcached nodes.\n\nEnable `memcache.googleapis.com` via [GoogleProjectService] or\n[Apis.enable] before apply.\n\nExample:\n```dart\nGoogleMemcacheInstance(\n  localName: \'sessions\',\n  name: TfArg.literal(\'api-sessions\'),\n  nodeCount: TfArg.literal(1),\n  nodeConfig: MemcacheInstanceNodeConfig(\n    cpuCount: TfArg.literal(1),\n    memorySizeMb: TfArg.literal(1024),\n  ),\n  region: TfArg.literal(\'asia-northeast1\'),\n  authorizedNetwork: TfArg.literal(\'default\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_monitoring_alert_policy',
@@ -5369,7 +5371,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>['auth_string'],
     docComment:
-        'Factory wrapper for `google_redis_instance`.\n\nA Google Cloud Redis instance.\n\nMemorystore for Redis instance — managed Redis for app caches and sessions.\n\nPair with [GoogleVpcAccessConnector] (Cloud Run) or GCE/GKE workloads on\nthe same VPC via [authorizedNetwork].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: instance ID.\n- [memorySizeGb]: memory size in GiB.\n\nOptional hardening / operations:\n- [authEnabled] turns Redis AUTH on (read the password via [authString]).\n- [transitEncryptionMode] enables in-transit TLS ([serverCaCerts]).\n- [replicaCount] / [readReplicasMode] add read replicas on\n  `STANDARD_HA` instances ([readEndpoint], [readEndpointPort]).\n- [maintenancePolicy] pins the weekly maintenance window.\n- [persistenceConfig] turns on RDB snapshots.\n\nEnable `redis.googleapis.com` via [GoogleProjectService] or\n[ApisEnablement.enable] before apply.\n\nExample (basic tier on the default VPC):\n```dart\nGoogleRedisInstance(\n  localName: \'cache\',\n  name: TfArg.literal(\'api-cache\'),\n  memorySizeGb: TfArg.literal(1),\n  region: TfArg.literal(\'us-central1\'),\n  tier: TfArg.literal(RedisInstanceTier.basic),\n  authorizedNetwork: TfArg.literal(\'default\'),\n);\n```',
+        'Factory wrapper for `google_redis_instance`.\n\nA Google Cloud Redis instance.\n\nMemorystore for Redis instance — managed Redis for app caches and sessions.\n\nPair with [GoogleVpcAccessConnector] (Cloud Run) or GCE/GKE workloads on\nthe same VPC via [authorizedNetwork].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: instance ID.\n- [memorySizeGb]: memory size in GiB.\n\nOptional hardening / operations:\n- [authEnabled] turns Redis AUTH on (read the password via [authString]).\n- [transitEncryptionMode] enables in-transit TLS ([serverCaCerts]).\n- [replicaCount] / [readReplicasMode] add read replicas on\n  `STANDARD_HA` instances ([readEndpoint], [readEndpointPort]).\n- [maintenancePolicy] pins the weekly maintenance window.\n- [persistenceConfig] turns on RDB snapshots.\n\nEnable `redis.googleapis.com` via [GoogleProjectService] or\n[Apis.enable] before apply.\n\nExample (basic tier on the default VPC):\n```dart\nGoogleRedisInstance(\n  localName: \'cache\',\n  name: TfArg.literal(\'api-cache\'),\n  memorySizeGb: TfArg.literal(1),\n  region: TfArg.literal(\'us-central1\'),\n  tier: TfArg.literal(RedisInstanceTier.basic),\n  authorizedNetwork: TfArg.literal(\'default\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_secret_manager_secret',

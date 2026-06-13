@@ -23,7 +23,6 @@ void main() {
       Stack,
       StackBackend,
       StackProvider,
-      ProviderBinding,
       AppExport,
       // AppExport variants:
       StringExport,
@@ -40,10 +39,8 @@ void main() {
       TfJsonEncoder,
       SynthResult,
       DuplicateResourceError,
-      TimeProvider,
-      TimeSleep,
     ];
-    expect(symbols, hasLength(36));
+    expect(symbols, hasLength(33));
   });
 
   test('TerraformDurationExt is accessible (extension method)', () {

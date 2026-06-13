@@ -45,8 +45,6 @@ class _FakeProvider implements StackProvider {
   @override
   Map<String, Object?> get configArgs => const {'project': 'demo'};
   @override
-  String? get providerAlias => null;
-  @override
   Map<String, Object?> toTfJson() => configArgs;
 }
 
@@ -61,9 +59,6 @@ void main() {
       expect(p.source, 'hashicorp/google');
       expect(p.versionConstraint, '~> 7.0');
       expect(p.configArgs, {'project': 'demo'});
-    });
-    test('providerAlias defaults to null', () {
-      expect(p.providerAlias, isNull);
     });
     test('toTfJson() backwards-compat returns the same as configArgs', () {
       expect(p.toTfJson(), p.configArgs);
