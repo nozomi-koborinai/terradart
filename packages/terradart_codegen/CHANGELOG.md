@@ -15,6 +15,10 @@ Maintainer:
 - **Fixed** — schema-bump workflow no longer appends invalid YAML outside `entries:`; excludes `.schema-bump/` from commits.
 - **Fixed** — `tool/mm_yaml_sources.yaml` registers `google_redis_instance` against its real Magic Modules upstream (`mmv1/products/redis/Instance.yaml`; it was mislabeled "handwritten"), re-activating MM enum-drift checks for the frozen redis prelude enums.
 
+## 0.12.20
+
+Wave 33 overrides: `google_alloydb_cluster` (network/backup/maintenance helpers), `google_alloydb_instance`, `google_alloydb_user`.
+
 ## 0.12.19
 
 Wave 32 override: `google_redis_instance` (`RedisInstanceTier`, `RedisInstanceConnectMode` enums).

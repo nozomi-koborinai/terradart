@@ -1,0 +1,47 @@
+outputDir: alloydb
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - cluster
+  - user_id
+  - user_type
+  - password
+  - password_wo
+  - password_wo_version
+
+dartTypeOverrides:
+  user_type: AlloydbUserType
+
+curatedDoc: |-
+  /// AlloyDB database user inside a [GoogleAlloydbCluster].
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [cluster]: parent cluster — `TfArg.ref(cluster.id)`.
+  /// - [userId]: username.
+  /// - [userType]: [AlloydbUserType.alloydbBuiltIn] or IAM user.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleAlloydbUser(
+  ///   localName: 'app',
+  ///   cluster: TfArg.ref(cluster.id),
+  ///   userId: TfArg.literal('app'),
+  ///   userType: TfArg.literal(AlloydbUserType.alloydbBuiltIn),
+  ///   passwordWo: TfArg.literal(dbPassword),
+  ///   passwordWoVersion: TfArg.literal('1'),
+  /// );
+  /// ```
+
+prelude: |
+  /// `user_type` — built-in vs IAM-authenticated user.
+  enum AlloydbUserType implements TerraformEnum {
+    alloydbBuiltIn('ALLOYDB_BUILT_IN'),
+    alloydbIamUser('ALLOYDB_IAM_USER');
+
+    const AlloydbUserType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }

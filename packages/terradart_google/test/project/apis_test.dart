@@ -44,6 +44,16 @@ void main() {
       expect(apis, isEmpty);
     });
 
+    test('alloydb barrel includes alloydb.googleapis.com', () {
+      final apis = Apis.required(barrels: [Barrels.alloydb]);
+      expect(apis, hasLength(1));
+      expect(
+        apis.single.argMap['service']!.toTfJson(),
+        'alloydb.googleapis.com',
+      );
+      expect(apis.single.localName, 'api_alloydb');
+    });
+
     test('redis barrel includes redis.googleapis.com', () {
       final apis = Apis.required(barrels: [Barrels.redis]);
       expect(apis, hasLength(1));
@@ -56,6 +66,7 @@ void main() {
     test('catalogName matches terradart outputDir strings', () {
       expect(Barrels.cloudRun.catalogName, 'cloud_run');
       expect(Barrels.serviceNetworking.catalogName, 'service_networking');
+      expect(Barrels.alloydb.catalogName, 'alloydb');
       expect(Barrels.redis.catalogName, 'redis');
     });
   });

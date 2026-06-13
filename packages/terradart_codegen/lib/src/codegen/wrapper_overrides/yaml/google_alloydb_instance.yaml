@@ -1,0 +1,72 @@
+outputDir: alloydb
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - cluster
+  - instance_id
+  - instance_type
+  - machine_config
+  - display_name
+  - labels
+
+dartTypeOverrides:
+  instance_type: AlloydbInstanceType
+
+curatedDoc: |-
+  /// AlloyDB instance — primary or read-pool node inside a
+  /// [GoogleAlloydbCluster].
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [cluster]: parent cluster ID — `TfArg.ref(cluster.id)`.
+  /// - [instanceId]: short instance ID within the cluster.
+  /// - [instanceType]: [AlloydbInstanceType.primary] for the first node.
+  /// - [machineConfig]: CPU count (and optional machine type).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleAlloydbInstance(
+  ///   localName: 'primary',
+  ///   cluster: TfArg.ref(cluster.id),
+  ///   instanceId: TfArg.literal('primary'),
+  ///   instanceType: TfArg.literal(AlloydbInstanceType.primary),
+  ///   machineConfig: AlloydbInstanceMachineConfig(
+  ///     cpuCount: TfArg.literal(2),
+  ///   ),
+  /// );
+  /// ```
+
+prelude: |
+  /// `instance_type` — primary, read pool, or secondary.
+  enum AlloydbInstanceType implements TerraformEnum {
+    primary('PRIMARY'),
+    readPool('READ_POOL'),
+    secondary('SECONDARY');
+
+    const AlloydbInstanceType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `machine_config` nested block (max=1).
+  class AlloydbInstanceMachineConfig {
+    const AlloydbInstanceMachineConfig({
+      this.cpuCount,
+      this.machineType,
+    });
+
+    final TfArg<num>? cpuCount;
+    final TfArg<String>? machineType;
+
+    Map<String, Object?> toArgMap() => {
+          if (cpuCount != null) 'cpu_count': cpuCount!.toTfJson(),
+          if (machineType != null) 'machine_type': machineType!.toTfJson(),
+        };
+  }
+
+customSlots:
+  machine_config:
+    paramDeclaration: 'AlloydbInstanceMachineConfig? machineConfig'
+    argMapEntry: "if (machineConfig != null) 'machine_config': TfArg.literal([machineConfig.toArgMap()]),"

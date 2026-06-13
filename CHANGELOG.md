@@ -4,15 +4,25 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
-## [Unreleased]
+## [0.12.20] - 2026-06-12
 
-Post-`0.12.19` review fixes. **No breaking changes** for reachable API (the previously unreachable `RedisInstanceWeeklyMaintenanceWindow` gains a required `startTime`).
+Lockstep release across the workspace. **No breaking changes** for reachable API (the previously unreachable `RedisInstanceWeeklyMaintenanceWindow` gains a required `startTime`).
+
+### Added
+
+- **`terradart_google`** — Wave 33 AlloyDB (3): `google_alloydb_cluster`, `google_alloydb_instance`, `google_alloydb_user`; new `alloydb` barrel.
+- Extended **`cloud_sql_quickstart`** — AlloyDB cluster + primary instance + app user on the existing PSA VPC chain.
+- **`terradart_core`** — `TimeSleep.id` — typed ref to the completed-wait timestamp.
 
 ### Fixed
 
 - **`terradart_google`** — `GoogleRedisInstance` `maintenancePolicy` / `persistenceConfig` were declared but never wired into the constructor (customSlots missing from `paramOrder`); blocks are now reachable, schema-complete (`start_time`, `persistence_mode`), and fully exported from the `redis` barrel. `ApiEnablement.registerOn` now fail-fasts on a missing `TimeProvider`, keys the propagation `TimeSleep` to the service set via `triggers`, and derives the sleep name from `localNamePrefix`.
 - **`terradart_codegen`** — `lint-override` gains dead-customSlots rules so a spec can no longer ship constructor params that the emitter silently drops; `google_compute_url_map` / `google_compute_region_url_map` regain their dropped `defaultRouteAction` param.
 - **`cloud_run_quickstart`** — enables the Secret Manager API it depends on and consumes the Redis cache via a typed `host` ref (`REDIS_HOST`).
+
+Catalog: **202 curated resource factories + 1 data source** (203 entries; 32 service barrels).
+
+## [0.12.19] - 2026-06-12
 
 Lockstep release across the workspace. **No breaking changes** vs `0.12.18`.
 

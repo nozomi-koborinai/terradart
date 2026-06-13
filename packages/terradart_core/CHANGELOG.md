@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.12.20
 
 ### Added
 
@@ -9,6 +9,8 @@
 ### Fixed
 
 - `TimeSleep` docs: removed a dartdoc reference to a symbol outside this package; duration guidance now points at `TfArg.duration`, and `triggers` semantics are documented.
+
+Lockstep version bump for `terradart_google` v0.12.20 (Wave 33 AlloyDB).
 
 ## 0.12.19
 

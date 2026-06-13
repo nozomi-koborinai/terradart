@@ -1,6 +1,15 @@
 # Changelog
 
-## Unreleased
+## 0.12.20 - 2026-06-12
+
+### Added
+
+- Wave 33 AlloyDB (3): `google_alloydb_cluster` (network + initial user helpers), `google_alloydb_instance` (machine config), `google_alloydb_user`.
+- New `alloydb` barrel; `Barrels.alloydb` → `alloydb.googleapis.com`.
+- Extended `cloud_sql_quickstart` — AlloyDB on the same PSA chain as private Cloud SQL.
+- `GoogleRedisInstance` — `authEnabled`, `transitEncryptionMode`, `replicaCount`, `readReplicasMode` inputs plus `RedisInstanceTransitEncryptionMode`, `RedisInstanceReadReplicasMode`, `RedisInstancePersistenceMode`, `RedisInstanceMaintenanceStartTime`, backing the previously input-less `authString` / `serverCaCerts` / `readEndpoint` / `readEndpointPort` getters.
+- `GoogleRedisInstance` — `deletionProtection` input, matching every other `supportsDeletionProtection` wrapper (the capability was advertised with no way to set the flag).
+- `GoogleComputeUrlMap` / `GoogleComputeRegionUrlMap` — `defaultRouteAction` parameter (the customSlot existed in both specs but was dropped from both constructors).
 
 ### Fixed
 
@@ -13,11 +22,7 @@
 - `ApiEnablement.registerOn` — an empty `services` list registers nothing and returns no deps (previously a barrel set contributing no APIs still gated all dependents behind a 60s no-op `time_sleep`).
 - pubspec description no longer hardcodes a resource count (was stale at 118).
 
-### Added
-
-- `GoogleRedisInstance` — `authEnabled`, `transitEncryptionMode`, `replicaCount`, `readReplicasMode` inputs plus `RedisInstanceTransitEncryptionMode`, `RedisInstanceReadReplicasMode`, `RedisInstancePersistenceMode`, `RedisInstanceMaintenanceStartTime`, backing the previously input-less `authString` / `serverCaCerts` / `readEndpoint` / `readEndpointPort` getters.
-- `GoogleRedisInstance` — `deletionProtection` input, matching every other `supportsDeletionProtection` wrapper (the capability was advertised with no way to set the flag).
-- `GoogleComputeUrlMap` / `GoogleComputeRegionUrlMap` — `defaultRouteAction` parameter (the customSlot existed in both specs but was dropped from both constructors).
+Catalog: **202 curated resource factories + 1 data source** (203 entries; 32 service barrels).
 
 ## 0.12.19 - 2026-06-12
 

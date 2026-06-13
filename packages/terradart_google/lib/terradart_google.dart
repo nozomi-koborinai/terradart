@@ -10,6 +10,7 @@
 /// between services.
 library;
 
+export 'alloydb.dart';
 export 'artifact_registry.dart';
 export 'bigquery.dart';
 export 'cloud_build.dart';
