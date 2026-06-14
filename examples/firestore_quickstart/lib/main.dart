@@ -34,6 +34,10 @@ final class MessagesStack extends Stack {
         PointInTimeRecoveryEnablement.enabled,
       ),
       deleteProtectionState: TfArg.literal(DeleteProtectionState.disabled),
+      // DELETE (not the default ABANDON) so `terraform destroy` actually
+      // removes the named database; otherwise it lingers and the next
+      // apply-smoke run fails 409 "Database already exists".
+      deletionPolicy: TfArg.literal('DELETE'),
       concurrencyMode: TfArg.literal(ConcurrencyMode.optimistic),
     );
     add(db);

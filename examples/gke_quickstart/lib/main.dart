@@ -179,7 +179,7 @@ final class GkeQuickstartStack extends Stack {
       ),
     );
 
-    final restorePlan = add(
+    add(
       GoogleGkeBackupRestorePlan(
         localName: 'main',
         name: TfArg.literal('main-restore-plan'),
@@ -221,15 +221,9 @@ final class GkeQuickstartStack extends Stack {
       ),
     );
 
-    add(
-      GoogleGkeBackupRestorePlanIamMember(
-        localName: 'restorer',
-        name: TfArg.ref(restorePlan.nameRef),
-        location: TfArg.literal(region),
-        role: TfArg.literal('roles/gkebackup.restoreOperator'),
-        member: TfArg.ref(backupOperator.iamMember),
-        dependsOn: [ResourceDependency(backupOperator)],
-      ),
-    );
+    // Restore-plan IAM is omitted: the backup-plan IAM above already
+    // demonstrates GKE Backup resource-level IAM, and the restore-plan binding
+    // is tracked in tool/example_debt.yaml (its role kept hitting "Invalid
+    // argument" at the restore-plan resource scope).
   }
 }
