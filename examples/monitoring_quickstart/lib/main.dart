@@ -200,11 +200,13 @@ final class LatencyAlertStack extends Stack {
             ),
           ),
         ],
+        // `notification_rate_limit` is only valid on log-based alert policies
+        // (those with a `condition_matched_log` condition). This is a
+        // metric-threshold policy, so the API rejects it ("only log-based
+        // alert policies may specify a notification rate limit"); keep only
+        // `auto_close`.
         alertStrategy: MonitoringAlertPolicyAlertStrategy(
           autoClose: TfArg.literal('1800s'),
-          notificationRateLimit: MonitoringAlertPolicyNotificationRateLimit(
-            period: TfArg.literal('300s'),
-          ),
         ),
         dependsOn: [
           ResourceDependency(oncallEmail),

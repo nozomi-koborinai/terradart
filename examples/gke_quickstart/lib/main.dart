@@ -6,14 +6,21 @@
 /// - a regional GKE cluster (Backup for GKE agent enabled, default node
 ///   pool removed);
 /// - a dedicated node pool on that cluster;
-/// - the project default GKE Hub fleet + membership;
-/// - backup/restore channels, backup + restore plans, and plan IAM members.
+/// - a GKE Hub membership enrolling the cluster in the project's
+///   auto-created default fleet;
+/// - a backup plan (+ schedule) and a restore plan, each with a
+///   resource-scoped IAM binding to a dedicated service account.
+///
+/// Backup/restore *channels* are intentionally omitted: they connect a
+/// source project to a *different* destination project, so they cannot
+/// apply in a single standalone project (the API rejects source==dest).
 library;
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/container.dart';
 import 'package:terradart_google/gke_backup.dart';
+import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 
@@ -92,14 +99,11 @@ final class GkeQuickstartStack extends Stack {
       ),
     );
 
-    final fleet = add(
-      GoogleGkeHubFleet(
-        localName: 'default',
-        displayName: TfArg.literal('Quickstart fleet'),
-        dependsOn: [ResourceDependency(apiGkeHub)],
-      ),
-    );
-
+    // Every project has exactly one fleet, and it is auto-created on first
+    // use of GKE Hub — creating `google_gke_hub_fleet` for the default fleet
+    // fails with "Resource '.../fleets/default' already exists" (409). So we
+    // skip the fleet resource and enroll the cluster directly; the membership
+    // registers against the auto-created default fleet.
     add(
       GoogleGkeHubMembership(
         localName: 'main',
@@ -115,7 +119,7 @@ final class GkeQuickstartStack extends Stack {
           ),
         }),
         dependsOn: [
-          ResourceDependency(fleet),
+          ResourceDependency(apiGkeHub),
           ResourceDependency(cluster),
         ],
       ),
@@ -123,24 +127,15 @@ final class GkeQuickstartStack extends Stack {
 
     // ---- Wave 10: GKE Backup ------------------------------------------------
 
-    add(
-      GoogleGkeBackupBackupChannel(
-        localName: 'default',
-        name: TfArg.literal('default-backup-channel'),
-        location: TfArg.literal(region),
-        // The API requires the `projects/{project}` form, not a bare ID.
-        destinationProject: TfArg.literal('projects/$projectId'),
-        dependsOn: [ResourceDependency(apiGkeBackup)],
-      ),
-    );
-
-    add(
-      GoogleGkeBackupRestoreChannel(
-        localName: 'default',
-        name: TfArg.literal('default-restore-channel'),
-        location: TfArg.literal(region),
-        destinationProject: TfArg.literal('projects/$projectId'),
-        dependsOn: [ResourceDependency(apiGkeBackup)],
+    // A dedicated service account is the IAM grantee for the backup/restore
+    // plans below. Resource-scoped `setIamPolicy` validates that the member
+    // exists, so binding a fabricated group (e.g. group:...@example.com)
+    // fails with "Invalid argument"; an in-stack SA is a real principal.
+    final backupOperator = add(
+      GoogleServiceAccount(
+        localName: 'backup_operator',
+        accountId: TfArg.literal('gke-backup-operator'),
+        displayName: TfArg.literal('GKE Backup operator'),
       ),
     );
 
@@ -176,7 +171,10 @@ final class GkeQuickstartStack extends Stack {
         localName: 'main',
         name: TfArg.literal('main-restore-plan'),
         location: TfArg.literal(region),
-        backupPlan: TfArg.ref(backupPlan.nameRef),
+        // The API requires the full backup-plan resource name
+        // (`projects/.../locations/.../backupPlans/...`); the bare `name`
+        // attribute is rejected with INVALID_FIELD. `id` is that full path.
+        backupPlan: TfArg.ref(backupPlan.id),
         cluster: TfArg.ref(cluster.id),
         restoreConfig: GkeBackupRestorePlanRestoreConfig(
           allNamespaces: TfArg.literal(true),
@@ -195,7 +193,8 @@ final class GkeQuickstartStack extends Stack {
         name: TfArg.ref(backupPlan.nameRef),
         location: TfArg.literal(region),
         role: TfArg.literal('roles/gkebackup.viewer'),
-        member: TfArg.literal('group:platform-admins@example.com'),
+        member: TfArg.ref(backupOperator.iamMember),
+        dependsOn: [ResourceDependency(backupOperator)],
       ),
     );
 
@@ -205,7 +204,8 @@ final class GkeQuickstartStack extends Stack {
         name: TfArg.ref(restorePlan.nameRef),
         location: TfArg.literal(region),
         role: TfArg.literal('roles/gkebackup.restoreOperator'),
-        member: TfArg.literal('group:platform-admins@example.com'),
+        member: TfArg.ref(backupOperator.iamMember),
+        dependsOn: [ResourceDependency(backupOperator)],
       ),
     );
   }

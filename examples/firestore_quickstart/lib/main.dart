@@ -1,9 +1,11 @@
 /// Firestore quickstart -- Wave 4 Round 1 end-to-end example.
 ///
 /// Defines a `MessagesStack` that provisions:
-/// - the project's `(default)` Firestore database in Native mode, anchored
+/// - a named `quickstart-db` Firestore database in Native mode, anchored
 ///   to `asia-northeast1`, with point-in-time recovery enabled and delete
-///   protection on;
+///   protection off (so the database can be torn down cleanly -- the
+///   `(default)` database cannot be deleted once created, which makes a
+///   create/destroy cycle impossible);
 /// - a composite index on the `messages` collection ordered by `user_id`
 ///   ascending then `created_at` descending (suitable for "show me a given
 ///   user's most recent messages" queries).
@@ -24,14 +26,14 @@ final class MessagesStack extends Stack {
           ],
         ) {
     final db = GoogleFirestoreDatabase(
-      localName: 'default',
-      name: TfArg.literal('(default)'),
+      localName: 'messages',
+      name: TfArg.literal('quickstart-db'),
       locationId: TfArg.literal('asia-northeast1'),
       type: TfArg.literal(FirestoreDatabaseType.firestoreNative),
       pointInTimeRecoveryEnablement: TfArg.literal(
         PointInTimeRecoveryEnablement.enabled,
       ),
-      deleteProtectionState: TfArg.literal(DeleteProtectionState.enabled),
+      deleteProtectionState: TfArg.literal(DeleteProtectionState.disabled),
       concurrencyMode: TfArg.literal(ConcurrencyMode.optimistic),
     );
     add(db);

@@ -17,7 +17,9 @@ library;
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
+import 'package:terradart_google/data.dart';
 import 'package:terradart_google/filestore.dart';
+import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/time.dart';
@@ -38,6 +40,31 @@ final class NetworkStack extends Stack {
       this,
       barrels: [Barrels.compute, Barrels.filestore],
       propagationDelay: const Duration(seconds: 60),
+    );
+
+    // Look up the live project so IAM bindings can reference the real
+    // Google APIs service agent (`<number>@cloudservices.gserviceaccount.com`)
+    // instead of a hardcoded, non-existent project number. The cloudservices
+    // agent always exists for a project, so the binding is valid once the
+    // real number is interpolated. Data source + IAM members are not
+    // API-gated, so no `dependsOn: apiDeps` is required here.
+    final current = addData(
+      GoogleProject(
+        localName: 'current',
+        projectId: TfArg.literal(projectId),
+      ),
+    );
+
+    // Service accounts that the instance- and disk-scoped IAM bindings below
+    // grant access to. We create them in-stack (rather than referencing a
+    // Google Group or an out-of-band SA that does not exist) so apply
+    // succeeds end to end. SAs are not API-gated.
+    final oncallSre = add(
+      GoogleServiceAccount(
+        localName: 'oncall_sre',
+        accountId: TfArg.literal('oncall-sre'),
+        displayName: TfArg.literal('On-call SRE (bastion power-cycle)'),
+      ),
     );
 
     final mainVpc = GoogleComputeNetwork(
@@ -100,7 +127,8 @@ final class NetworkStack extends Stack {
         localName: 'shared_nfs',
         name: TfArg.literal('shared-nfs'),
         tier: TfArg.literal(FilestoreInstanceTier.basicHdd),
-        location: TfArg.literal('asia-northeast1'),
+        // Basic-tier Filestore is zonal — location must be a zone, not a region.
+        location: TfArg.literal('asia-northeast1-a'),
         fileShares: FilestoreInstanceFileShare(
           name: TfArg.literal('share1'),
           capacityGb: TfArg.literal(1024),
@@ -119,7 +147,8 @@ final class NetworkStack extends Stack {
       GoogleFilestoreSnapshot(
         localName: 'share_snap',
         name: TfArg.literal('share-snap-1'),
-        location: TfArg.literal('asia-northeast1'),
+        // Snapshot lives in the source instance's zone.
+        location: TfArg.literal('asia-northeast1-a'),
         instance: TfArg.ref(sharedNfs.id),
       ),
     );
@@ -145,8 +174,12 @@ final class NetworkStack extends Stack {
         localName: 'workload_subnet_user',
         subnetwork: TfArg.ref(workloadSubnet.nameRef),
         role: TfArg.literal('roles/compute.networkUser'),
+        // Google APIs service agent for this project. Interpolate the real
+        // project number from the `google_project` data source so the
+        // member resolves to an identity that actually exists.
         member: TfArg.literal(
-          'serviceAccount:111111111111@cloudservices.gserviceaccount.com',
+          'serviceAccount:${current.number.interpolation}'
+          '@cloudservices.gserviceaccount.com',
         ),
       ),
     );
@@ -187,29 +220,21 @@ final class NetworkStack extends Stack {
         localName: 'bastion_admin',
         instanceName: TfArg.ref(bastion.nameRef),
         role: TfArg.literal('roles/compute.instanceAdmin.v1'),
-        member: TfArg.literal('group:on-call-sre@example.com'),
+        // Google Groups can't be created via Terraform, so a `group:` member
+        // referencing a non-existent group fails apply. Bind an in-stack SA
+        // instead via its pre-formatted `serviceAccount:<email>` member.
+        member: TfArg.ref(oncallSre.iamMember),
         zone: TfArg.literal('asia-northeast1-a'),
+        dependsOn: [ResourceDependency(oncallSre)],
       ),
     );
 
     // ---- Disk-scoped IAM (backup-only access) -----------------------------
     //
-    // A persistent data disk created out-of-band (gcloud / imported); the
-    // backup tooling SA gets `roles/compute.storageAdmin` on *this one
-    // disk* so it can snapshot it without project-wide disk admin. The
-    // disk name is a string literal -- substitute the real disk resource
-    // once it lands in the curated set.
-
-    add(
-      GoogleComputeDiskIamMember(
-        localName: 'data_disk_backup',
-        name: TfArg.literal('persistent-data-disk'),
-        role: TfArg.literal('roles/compute.storageAdmin'),
-        member: TfArg.literal(
-          'serviceAccount:backup@example.iam.gserviceaccount.com',
-        ),
-        zone: TfArg.literal('asia-northeast1-a'),
-      ),
-    );
+    // Disk-scoped IAM (`google_compute_disk_iam_member`) needs a real disk to
+    // attach to, but `google_compute_disk` is not curated yet, so there is no
+    // applyable disk to bind in-stack. The binding is tracked in
+    // tool/example_debt.yaml until a curated disk resource lands; re-add it
+    // here (pointing at the in-stack disk) then.
   }
 }

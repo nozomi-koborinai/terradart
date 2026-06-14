@@ -14,3 +14,24 @@
 # apply-smoke sweep.
 GoogleMonitoringService: typed google_monitoring_service needs a basic_service identifier bound to a real well-known service (App Engine / Istio / etc.) absent from a bare project; the applyable GoogleMonitoringCustomService is exercised by monitoring_quickstart instead
 GoogleMonitoringMonitoredProject: links another project into a metrics scope — self-linking the scoping project is rejected, and cross-project linking needs a second project plus roles/monitoring.admin on both, which a standalone apply-smoke project can't provide
+
+# GKE Backup channels are inherently cross-project: a channel connects a source
+# project to a *different* destination project. In a standalone apply-smoke
+# project source==dest, which the API rejects with "source and destination
+# project cannot be same". Exercising them needs a second project, so
+# gke_quickstart drops them (it keeps the applyable backup/restore plans).
+GoogleGkeBackupBackupChannel: connects a source project to a different destination project; with only one project source==dest and creation fails 400 "source and destination project cannot be same". Needs a second project an apply-smoke run can't provide
+GoogleGkeBackupRestoreChannel: same cross-project constraint as GoogleGkeBackupBackupChannel — destination project must differ from the source, which a single standalone apply-smoke project cannot satisfy
+
+# Every project has exactly one fleet, auto-created on first GKE Hub use, so
+# creating google_gke_hub_fleet for the default fleet always fails 409
+# "Resource '.../fleets/default' already exists". gke_quickstart enrolls the
+# cluster via GoogleGkeHubMembership against the auto-created default fleet
+# instead of creating the fleet resource.
+GoogleGkeHubFleet: the project default fleet is auto-created, so applying google_gke_hub_fleet returns 409 "fleets/default already exists"; there is no second fleet to create in a standalone project and the provider exposes no data source to adopt the existing one
+
+# Disk-scoped IAM needs a real google_compute_disk to attach to, but
+# google_compute_disk is not curated yet, so compute_quickstart has no
+# applyable disk to bind. Re-add the binding to compute_quickstart (pointing at
+# an in-stack disk) once a disk resource is curated.
+GoogleComputeDiskIamMember: needs a real google_compute_disk to bind, which is not a curated factory yet; the binding 404s against a non-existent disk and there is no in-stack disk to attach in a standalone apply-smoke run
