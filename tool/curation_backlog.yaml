@@ -16,4 +16,118 @@
 #       provider_version: 7.X.Y (the v7 release that introduced it)
 #       note: (optional, maintainer-added)
 
-entries: []
+entries:
+  - resource: google_apigee_data_collector
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_apigee_datastore
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_bigquery_routine_iam_binding
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_bigquery_routine_iam_member
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_bigquery_routine_iam_policy
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_chronicle_custom_list
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_chronicle_dashboard_chart
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_chronicle_native_dashboard
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_compute_region_instant_snapshot
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_compute_region_instant_snapshot_iam_binding
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_compute_region_instant_snapshot_iam_member
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_compute_region_instant_snapshot_iam_policy
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_config_deployment
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_contact_center_insights_encryption_spec
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_dataplex_data_product
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_dataplex_data_product_data_asset
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_dataplex_data_product_iam_binding
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_dataplex_data_product_iam_member
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_dataplex_data_product_iam_policy
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_dialogflow_sip_trunk
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_discovery_engine_search_engine_iam_binding
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_discovery_engine_search_engine_iam_member
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_discovery_engine_search_engine_iam_policy
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_license_manager_configuration
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_migration_center_assets_export_job
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_migration_center_discovery_client
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_migration_center_import_job
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_migration_center_report
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_migration_center_report_config
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_migration_center_settings
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_migration_center_source
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_network_connectivity_transport
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_network_security_ull_mirroring_collector
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_network_security_ull_mirroring_collector_rule
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_network_security_ull_mirroring_engine
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_oracle_database_goldengate_connection
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_oracle_database_goldengate_connection_assignment
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
+  - resource: google_oracle_database_goldengate_deployment
+    detected_at: 2026-06-14
+    provider_version: 7.36.0
