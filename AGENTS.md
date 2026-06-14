@@ -75,6 +75,8 @@ When a Wave also pays down example `pubspec.yaml` carets or docs debt, **prefer 
 
 Maintainer prerequisite: GCP WIF pool + `terradart-validate` project (bootstrap is not cloud-agent automatable). A scheduled janitor workflow destroys orphaned resources from failed runs.
 
+**Skip-list.** [`tool/apply_smoke_skip.yaml`](tool/apply_smoke_skip.yaml) records the examples the sweep does **not** `terraform apply` — org-only resources, examples needing real external secrets/certs/ids, Firebase project registration, or a local source artifact that `terradart-validate` (a standalone project) can't supply. Listed examples still synth + `terraform validate` via the synth gate; they're excluded only from real apply. `apply_smoke.sh` honors it in `--all` and the PR change-gate; `--example <slug>` overrides it (applies anyway), and `--destroy-only` (the janitor) ignores it so leftover state is always reclaimable. Treat the file as a coverage-debt ledger — deleting an entry re-includes that example. `tool/apply_smoke_test.sh` (run by `agent_verify`) asserts the partition stays consistent.
+
 ## Documentation Policy
 
 - `AGENTS.md` is the committed operational guide for agents.
@@ -184,7 +186,7 @@ Inputs: a checked-in or task-provided `schema.json` (plus Magic Modules YAML whe
 7. **Export the full public surface from the per-service barrel.** `lib/<service>.dart` must `show` every public type the generated wrapper declares — the catalog advertises all of them to MCP agents (enforced by the barrel-completeness group in `per_service_barrel_test`).
 8. **Wire API enablement in examples through `Apis.enable`** (`package:terradart_google/project.dart`; the propagation `TimeSleep` needs `const TimeProvider()` from `package:terradart_google/time.dart` on the stack). Synth fails fast when any resource's provider is missing from `Stack.providers`.
 9. **Test:** targeted tests first, then `tool/agent_verify.sh` (add `--maintainer` when touching wrap-init / wrap-promote).
-10. **For real-apply coverage, add the `apply-smoke` label to the PR** when it adds or changes a curated resource or an example. The label runs `apply-smoke.yml`, which applies the changed examples to `terradart-validate` and blocks merge on failure. Every example is also applied nightly by `apply-smoke-nightly.yml` (`tool/apply_smoke.sh --all`), which opens a dedup'd issue on failure — so a resource that only `validate`s but cannot `apply` is caught within a day even without the label. `terraform validate` (synth gate) does **not** prove a resource applies.
+10. **For real-apply coverage, add the `apply-smoke` label to the PR** when it adds or changes a curated resource or an example. The label runs `apply-smoke.yml`, which applies the changed examples to `terradart-validate` and blocks merge on failure. Every example is also applied nightly by `apply-smoke-nightly.yml` (`tool/apply_smoke.sh --all`), which opens a dedup'd issue on failure — so a resource that only `validate`s but cannot `apply` is caught within a day even without the label. `terraform validate` (synth gate) does **not** prove a resource applies. If a new example fundamentally can't apply against a standalone project (needs an org, real external secrets/certs, Firebase registration, or a staged source artifact), record it in [`tool/apply_smoke_skip.yaml`](tool/apply_smoke_skip.yaml) with a reason rather than leaving the sweep red.
 
 ### Handle Provider Schema Or MM YAML Drift
 
