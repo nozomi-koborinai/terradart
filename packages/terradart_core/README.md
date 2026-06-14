@@ -36,7 +36,7 @@ enum RoutingMode implements TerraformEnum {
 
 ```yaml
 dependencies:
-  terradart_core: ^0.12.x
+  terradart_core: ^0.13.x
 ```
 
 Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch. Read [MIGRATING.md](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md) before minor bumps.

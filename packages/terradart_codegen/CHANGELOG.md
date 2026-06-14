@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.13.0 - 2026-06-14
 
 **BREAKING** — removes the `terradart codegen` CLI subcommand, `runCodegen`, `CodegenResult`, and `FileEmitter`. Maintainer generation is `terradart wrap` only. See [MIGRATING.md](../../MIGRATING.md).
 
@@ -24,9 +24,7 @@ Maintainer:
 - **Changed** — catalog counts in `tool/doc_expectations.dart` are now DERIVED from `_catalog.g.dart` instead of hand-bumped constants, removing the parallel-wave count race that forced reconcile cycles in #136/#137/#138. `catalog_count_test` no longer pins a literal total; only human-readable prose still needs syncing (and `check_docs_consistency` enforces it).
 - **Added** — pre-merge `pub publish --dry-run` CI job for `terradart_core` / `terradart_codegen` / `terradart_google`, catching fixture secret-scanner trips before they break publish (the reactive 0.12.5 and 0.12.11 false-secret fixes).
 
-## 0.12.20
-
-Wave 33 overrides: `google_alloydb_cluster` (network/backup/maintenance helpers), `google_alloydb_instance`, `google_alloydb_user`.
+- **Added** — Wave 33–35 wrapper overrides: AlloyDB (`google_alloydb_cluster` / `_instance` / `_user` / `_backup`), Cloud Filestore (`google_filestore_instance` / `_backup` / `_snapshot`), `google_memcache_instance`, Spanner (`google_spanner_instance` / `_database`); new `alloydb` / `filestore` / `memcache` / `spanner` MM manifest entries.
 
 ## 0.12.19
 

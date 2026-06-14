@@ -4,44 +4,33 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
 
-## [Unreleased]
+## [0.13.0] - 2026-06-14
 
-**Breaking** — design pass for AI-autonomous maintenance (see [MIGRATING.md](MIGRATING.md)):
-
-- **`terradart_google`** — `Apis.enable(stack, barrels: ...)` replaces the `ApisEnablement` / `ApiEnablement` two-layer API; `TimeProvider` / `TimeSleep` move in from core under the new `time` barrel; `GoogleProvider.providerAlias` removed.
-- **`terradart_core`** — provider-aliasing dead surface removed (`StackProvider.providerAlias`, `ProviderBinding`, `Resource.provider`); `Stack.synth()` now fails fast when a resource's provider is not registered.
-- New machine gates: barrel-completeness test for generated wrappers and a `deletion_protection` parity invariant (both immediately caught live instances in Waves 33–35 output).
-
-**Maintenance hardening** — turning recurring Cursor-agent correction classes into pre-merge gates (mined from the `cursor/*` Wave PR history, where the repair loop ran entirely through fixup commits with no human review comments):
-
-- **API-enablement ratchet** — the example synth gate (which already ran via `check_docs_consistency`) now fails when an example enables some APIs but not every API its resources need, not just when an enabled API lacks a dependency edge. This is the exact Wave 32 secretmanager class. `tool/example_api_debt.yaml` is the audited escape hatch.
-- **MM upstream fingerprint gate** — flags `upstream: null` manifest entries that look Magic-Modules-generated; 29 mislabeled entries (+6 broken paths) corrected, re-activating enum-drift checks across certificatemanager / privateca / alloydb / memcache / spanner / filestore / logging and more.
-- **Catalog counts derived from `_catalog.g.dart`** — kills the parallel-wave count race that forced a reconcile cycle in each of #136/#137/#138.
-- **Pre-merge `pub publish --dry-run`** — catches fixture secret-scanner trips before they break publish (previously fixed reactively in 0.12.5 and 0.12.11).
-- **`dart analyze tool/`** — the gate scripts themselves are now analyzed (two latent errors fixed).
-
-**MM fixture sync** — fetched the 73 now-correct MM fixtures, activating the enum-drift checks that were vacuous without them (zero drift across the frozen prelude enums). Surfacing the real fixtures exposed two design issues, fixed as breaking changes:
-
-- **`terradart_google`** — `google_certificate_manager_certificate_map_entry`: `hostname` / `matcher` collapse into a required sealed `match` (the provider's `exactly_one_of`); `google_logging_saved_query`: `LoggingSavedQueryVisibility.privateVisibility` → `.private` (the derived enum is now canonical; the hand-written duplicate that shadowed it is removed).
-- **`terradart_codegen`** — `canonicalExactlyOneOfGroups` no longer mis-collapses a nested-block member like `subnet.0.name` into a bogus sibling group; `google_dns_record_set` corrected to `upstream: null` (no `mmv1` source exists).
-
-## [0.12.20] - 2026-06-12
-
-Lockstep release across the workspace. **No breaking changes** for reachable API (the previously unreachable `RedisInstanceWeeklyMaintenanceWindow` gains a required `startTime`).
+Lockstep release folding in the unreleased 0.12.20 (Waves 33–35) plus the
+AI-autonomous-maintenance design pass and harness hardening. **Breaking** —
+see [MIGRATING.md](MIGRATING.md).
 
 ### Added
 
-- **`terradart_google`** — Wave 33 AlloyDB (3): `google_alloydb_cluster`, `google_alloydb_instance`, `google_alloydb_user`; new `alloydb` barrel.
-- Extended **`cloud_sql_quickstart`** — AlloyDB cluster + primary instance + app user on the existing PSA VPC chain.
-- **`terradart_core`** — `TimeSleep.id` — typed ref to the completed-wait timestamp.
+- **`terradart_google`** — Waves 33–35: AlloyDB (cluster / instance / user / backup), Cloud Filestore (instance / backup / snapshot), Memorystore for Memcached, Spanner (instance / database); new `alloydb` / `filestore` / `memcache` / `spanner` barrels.
 
-### Fixed
+### Breaking — design pass for AI-autonomous maintenance
 
-- **`terradart_google`** — `GoogleRedisInstance` `maintenancePolicy` / `persistenceConfig` were declared but never wired into the constructor (customSlots missing from `paramOrder`); blocks are now reachable, schema-complete (`start_time`, `persistence_mode`), and fully exported from the `redis` barrel. `ApiEnablement.registerOn` now fail-fasts on a missing `TimeProvider`, keys the propagation `TimeSleep` to the service set via `triggers`, and derives the sleep name from `localNamePrefix`.
-- **`terradart_codegen`** — `lint-override` gains dead-customSlots rules so a spec can no longer ship constructor params that the emitter silently drops; `google_compute_url_map` / `google_compute_region_url_map` regain their dropped `defaultRouteAction` param.
-- **`cloud_run_quickstart`** — enables the Secret Manager API it depends on and consumes the Redis cache via a typed `host` ref (`REDIS_HOST`).
+- **`terradart_google`** — `Apis.enable(stack, barrels: ...)` replaces the `ApisEnablement` / `ApiEnablement` two-layer API; `TimeProvider` / `TimeSleep` move in from core under the new `time` barrel; `GoogleProvider.providerAlias` removed.
+- **`terradart_core`** — provider-aliasing dead surface removed (`StackProvider.providerAlias`, `ProviderBinding`, `Resource.provider`); `Stack.synth()` now fails fast when a resource's provider is not registered.
+- **`terradart_google`** — `google_certificate_manager_certificate_map_entry` (`hostname` / `matcher` → required sealed `match`) and `google_logging_saved_query` (`LoggingSavedQueryVisibility.privateVisibility` → `.private`), surfaced by the MM fixture sync.
 
-Catalog: **202 curated resource factories + 1 data source** (203 entries; 32 service barrels).
+### Maintenance hardening — recurring Cursor-agent correction classes as pre-merge gates
+
+Mined from the `cursor/*` Wave PR history (the repair loop ran entirely through fixup commits with no human review comments):
+
+- **API-enablement ratchet** — the example synth gate now fails when an example enables some APIs but not every API its resources need (the Wave 32 secretmanager class). `tool/example_api_debt.yaml` is the audited escape hatch.
+- **MM upstream fingerprint gate** + a 29-entry (+6 broken-path) manifest correction, re-activating enum-drift checks; the **73-fixture sync** then ran them with zero drift.
+- **Barrel-completeness test**, **`deletion_protection` parity invariant**, **dead-customSlots `lint-override` rules**.
+- **Catalog counts derived from `_catalog.g.dart`** — kills the parallel-wave count race (#136/#137/#138).
+- **Pre-merge `pub publish --dry-run`** and **`dart analyze tool/`**.
+
+Catalog: **209 curated resource factories + 1 data source** (210 entries; 35 service barrels).
 
 ## [0.12.19] - 2026-06-12
 

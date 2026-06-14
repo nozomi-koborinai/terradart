@@ -1,48 +1,43 @@
 # Changelog
 
-## Unreleased
+## 0.13.0 - 2026-06-14
+
+Lockstep release. Folds in the unreleased 0.12.20 (Waves 33–35) plus the
+AI-autonomous-maintenance design pass and harness work. **Breaking** — see
+[MIGRATING.md](../../MIGRATING.md).
 
 ### Breaking
 
-- `Apis.enable(stack, barrels: ...)` replaces `ApisEnablement.enable(...).registerOn(stack)` and the `ApiEnablement` bundle — one call registers the services plus the propagation `TimeSleep` and returns the dependency list. See [MIGRATING.md](../../MIGRATING.md).
+- `Apis.enable(stack, barrels: ...)` replaces `ApisEnablement.enable(...).registerOn(stack)` and the `ApiEnablement` bundle — one call registers the services plus the propagation `TimeSleep` and returns the dependency list.
 - `TimeProvider` / `TimeSleep` moved here from `terradart_core` — import `package:terradart_google/time.dart`.
 - `GoogleProvider.providerAlias` removed (a silent no-op: synth never emitted the alias).
-- `google_certificate_manager_certificate_map_entry` — `hostname` / `matcher` replaced by a required sealed `match` (`CertificateManagerCertificateMapEntryMatch.hostname(...)` / `.matcher(...)`), enforcing the provider's `exactly_one_of` at compile time.
-- `google_logging_saved_query` — `LoggingSavedQueryVisibility.privateVisibility` renamed to `.private` (now derived from Magic Modules; the hand-written prelude enum that shadowed it is removed).
-
-### Fixed
-
-- `secret_manager` barrel exports the sealed replication variants (`SecretManagerSecretAutoReplication` / `SecretManagerSecretUserManagedReplication`) that the catalog already advertised.
-- `google_alloydb_cluster` / `google_memcache_instance` — `deletionProtection` input wired (the schema capability was advertised with no setter; caught by the new parity gate).
-- `google_vpc_access_connector` / `google_storage_hmac_key` / `google_storage_managed_folder` — class docs now carry the upstream Magic Modules descriptions (their MM fixtures were synced for the first time).
-
-### Added (maintainer)
-
-- Barrel completeness gate: every public type of a generated wrapper must appear in its barrel's `show` clause (`per_service_barrel_test`).
-
-## 0.12.20 - 2026-06-12
+- `google_certificate_manager_certificate_map_entry` — `hostname` / `matcher` replaced by a required sealed `match` (`CertificateManagerCertificateMapEntryMatch.hostname(...)` / `.matcher(...)`).
+- `google_logging_saved_query` — `LoggingSavedQueryVisibility.privateVisibility` renamed to `.private` (now derived from Magic Modules).
 
 ### Added
 
-- Wave 33 AlloyDB (3): `google_alloydb_cluster` (network + initial user helpers), `google_alloydb_instance` (machine config), `google_alloydb_user`.
-- New `alloydb` barrel; `Barrels.alloydb` → `alloydb.googleapis.com`.
-- Extended `cloud_sql_quickstart` — AlloyDB on the same PSA chain as private Cloud SQL.
-- `GoogleRedisInstance` — `authEnabled`, `transitEncryptionMode`, `replicaCount`, `readReplicasMode` inputs plus `RedisInstanceTransitEncryptionMode`, `RedisInstanceReadReplicasMode`, `RedisInstancePersistenceMode`, `RedisInstanceMaintenanceStartTime`, backing the previously input-less `authString` / `serverCaCerts` / `readEndpoint` / `readEndpointPort` getters.
-- `GoogleRedisInstance` — `deletionProtection` input, matching every other `supportsDeletionProtection` wrapper (the capability was advertised with no way to set the flag).
-- `GoogleComputeUrlMap` / `GoogleComputeRegionUrlMap` — `defaultRouteAction` parameter (the customSlot existed in both specs but was dropped from both constructors).
+- Wave 33 AlloyDB: `google_alloydb_cluster` / `google_alloydb_instance` / `google_alloydb_user`; new `alloydb` barrel.
+- Wave 34 Cloud Filestore: `google_filestore_instance` / `google_filestore_backup` / `google_filestore_snapshot`; new `filestore` barrel.
+- Wave 35: `google_alloydb_backup`; Memorystore for Memcached `google_memcache_instance` (new `memcache` barrel); Spanner `google_spanner_instance` / `google_spanner_database` (new `spanner` barrel).
+- `GoogleRedisInstance` — `authEnabled`, `transitEncryptionMode`, `replicaCount`, `readReplicasMode` (+ `RedisInstanceTransitEncryptionMode` / `RedisInstanceReadReplicasMode` / `RedisInstancePersistenceMode` / `RedisInstanceMaintenanceStartTime`), `deletionProtection`, and reachable `maintenancePolicy` / `persistenceConfig`.
+- `GoogleComputeUrlMap` / `GoogleComputeRegionUrlMap` — `defaultRouteAction` parameter.
+- `TimeSleep.id` — typed ref to the completed-wait timestamp.
+- Extended quickstarts: `cloud_sql_quickstart` (AlloyDB), `cloud_run_quickstart` (Redis cache + `Apis.enable` propagation).
 
 ### Fixed
 
-- `GoogleRedisInstance` — the Wave 32 `maintenancePolicy` / `persistenceConfig` customSlots were silently dropped (missing from `paramOrder`), so neither block could ever be configured; both now reach the constructor. `RedisInstanceWeeklyMaintenanceWindow` requires `startTime` (`start_time` is `min_items = 1` in the provider schema) and `RedisInstancePersistenceConfig` gains `persistenceMode` / `rdbSnapshotStartTime` so RDB persistence can actually be turned on.
-- `redis` barrel — exports every nested helper type (previously 3 of 7; the catalog `nestedTypes` advertised symbols the barrel hid from importers).
-- `ApiEnablement.registerOn` — validates before mutating the stack: throws `StateError` when the stack has no `time` provider (previously synthesized `time_sleep` with an unpinned implied `hashicorp/time`) and `ArgumentError` for positive sub-second delays; non-positive delays skip the sleep (now documented).
-- `ApiEnablement.registerOn` — the propagation `TimeSleep` carries a `triggers` map keyed to the service set, so APIs enabled in later applies get the same propagation wait instead of racing `SERVICE_DISABLED`.
-- `ApisEnablement.enable` — `propagationLocalName` defaults to `'<localNamePrefix>_propagation'`, so two enablement groups with distinct prefixes no longer collide on `time_sleep.api_propagation`.
-- `cloud_run_quickstart` — enables `secretmanager.googleapis.com` via `Barrels.secretManager` (the README already claimed credentials-only setup) and wires `REDIS_HOST` into the service env from the cache's typed `host` ref.
-- `ApiEnablement.registerOn` — an empty `services` list registers nothing and returns no deps (previously a barrel set contributing no APIs still gated all dependents behind a 60s no-op `time_sleep`).
+- `GoogleRedisInstance` — the Wave 32 `maintenancePolicy` / `persistenceConfig` customSlots were silently dropped (missing from `paramOrder`); both now reach the constructor, are schema-complete (`start_time`, `persistence_mode`), and fully exported from the `redis` barrel.
+- `secret_manager` barrel exports the sealed replication variants (`SecretManagerSecretAutoReplication` / `SecretManagerSecretUserManagedReplication`) the catalog already advertised.
+- `google_alloydb_cluster` / `google_memcache_instance` — `deletionProtection` input wired (caught by the new parity gate).
+- `google_vpc_access_connector` / `google_storage_hmac_key` / `google_storage_managed_folder` — class docs now carry the upstream Magic Modules descriptions (their MM fixtures were synced for the first time).
+- `cloud_run_quickstart` — enables `secretmanager.googleapis.com` via `Barrels.secretManager` and wires `REDIS_HOST` into the service env from the cache's typed `host` ref.
 - pubspec description no longer hardcodes a resource count (was stale at 118).
 
-Catalog: **202 curated resource factories + 1 data source** (203 entries; 32 service barrels).
+### Added (maintainer)
+
+- New machine gates: barrel completeness (`per_service_barrel_test`), `deletion_protection` parity invariant, dead-customSlots `lint-override` rules, MM upstream fingerprint gate, the example API-enablement ratchet, pre-merge `pub publish --dry-run`, and `dart analyze tool/`. MM fixtures synced (73; zero enum drift). Catalog counts derived from `_catalog.g.dart`.
+
+Catalog: **209 curated resource factories + 1 data source** (210 entries; 35 service barrels).
 
 ## 0.12.19 - 2026-06-12
 
