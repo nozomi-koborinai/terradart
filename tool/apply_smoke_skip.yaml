@@ -1,0 +1,37 @@
+# Examples the apply-smoke sweep does NOT `terraform apply`, with the reason.
+#
+# These examples still get `dart run bin/infra.dart` (synth) + `terraform
+# validate` via tool/example_synth_gates.dart. They are excluded ONLY from real
+# `terraform apply` because they need inputs that terradart-validate (a
+# standalone project: no organization, no real secrets/certs, not registered
+# with Firebase) cannot provide. The list doubles as a coverage-debt ledger —
+# delete an entry to put that example back in the sweep.
+#
+# Honored by tool/apply_smoke.sh in apply modes (--all and the PR change-gate).
+# `--example <slug>` applies even a listed example (explicit override), and
+# `--destroy-only` (the janitor) never skips, so leftover state stays
+# reclaimable.
+#
+# Format (one per line):  <example_slug>: <reason>
+
+# --- Org-only: the resource requires the project to belong to an organization
+bigquery_quickstart: datapolicy + analyticshub resources require an organization
+
+# --- Need real external secrets / certs / ids
+compute_lb_quickstart: needs a real TLS cert + private key + CAS CSR / trust anchor
+cloud_sql_quickstart: needs a real source-replica password
+ops_quickstart: needs a real organization id / folder id
+firebase_app_check_quickstart: needs real App Check debug token / DeviceCheck key / reCAPTCHA secret
+
+# --- Need the project registered with Firebase (firebase.googleapis.com is not
+#     enough; the project must be added to Firebase, which Terraform can't do here)
+firebase_data_connect_quickstart: needs the project registered with Firebase
+firebase_remote_config_quickstart: needs the project registered with Firebase
+firebase_app_hosting_quickstart: needs the project registered with Firebase + a connected source repo
+
+# --- Need a source artifact staged into the generated tf-out at apply time
+cloud_functions_quickstart: needs a real function source zip staged into tf-out
+storage_quickstart: uploads a local source file (config/app.json) absent from generated tf-out
+
+# --- Need external infra / secrets
+cloud_build_quickstart: needs a real GitHub App OAuth token secret + a peered VPC
