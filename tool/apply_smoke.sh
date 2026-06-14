@@ -102,6 +102,14 @@ apply_one() {
     dart pub get
     dart run bin/infra.dart
     cd tf-out
+    # Placeholder for any input variable the synth references (`${var.X}`), so
+    # `terraform -input=false` doesn't abort on "No value for required
+    # variable". Examples needing a REAL secret / cert / org id still fail at
+    # apply time — those are tracked as example issues, not a tool gap.
+    for _v in $(grep -oE '\$\{var\.[a-zA-Z_][a-zA-Z0-9_]*\}' main.tf.json 2>/dev/null \
+      | sed -E 's/^\$\{var\.//; s/\}$//' | sort -u); do
+      export "TF_VAR_$_v"="apply-smoke-placeholder"
+    done
     # Persist state in GCS so destroy can always reclaim (across runs / janitor).
     printf '{"terraform":{"backend":{"gcs":{"bucket":"%s","prefix":"apply-smoke/%s"}}}}\n' \
       "$STATE_BUCKET" "$slug" > backend.tf.json
