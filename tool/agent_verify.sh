@@ -86,6 +86,10 @@ dart tool/check_override_enum_gaps.dart --strict-nested
 echo ">> check_mm_upstream_fingerprint"
 dart tool/check_mm_upstream_fingerprint.dart
 
+echo ">> apply_smoke_test (selection, no GCP)"
+chmod +x tool/apply_smoke_test.sh
+tool/apply_smoke_test.sh
+
 echo ">> smoke_quickstart"
 chmod +x tool/smoke_quickstart.sh
 tool/smoke_quickstart.sh

@@ -27,6 +27,10 @@ jobs:
         # Guards the coverage / API-enablement-ratchet logic itself; the gate
         # runs over the real examples inside check_docs_consistency below.
         run: dart --enable-asserts tool/example_synth_gates_test.dart
+      - name: apply_smoke selection test (no GCP)
+        run: |
+          chmod +x tool/apply_smoke_test.sh
+          tool/apply_smoke_test.sh
       - name: Docs caret + catalog count
         run: dart tool/check_docs_consistency.dart
       - name: Pub/Sub quickstart smoke
