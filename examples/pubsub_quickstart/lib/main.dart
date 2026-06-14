@@ -12,6 +12,7 @@ library;
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/data.dart';
+import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';
 
@@ -40,6 +41,19 @@ final class OrdersStack extends Stack {
       ),
     );
 
+    // The order publisher's identity. A bare `serviceAccount:...@example.com`
+    // literal fails apply ("Service account ... does not exist") because the
+    // IAM API validates that the principal is real, so provision the service
+    // account in-stack and bind against its `iamMember` ref.
+    final ordersPublisher = add(
+      GoogleServiceAccount(
+        localName: 'orders_publisher',
+        // 6-30 chars, lowercase letters/digits/hyphens.
+        accountId: TfArg.literal('orders-publisher'),
+        displayName: TfArg.literal('Orders Pub/Sub publisher'),
+      ),
+    );
+
     add(
       GooglePubsubSchemaIamMember(
         localName: 'orders_schema_publisher',
@@ -51,8 +65,11 @@ final class OrdersStack extends Stack {
         // schema, which `roles/pubsub.viewer` covers
         // (pubsub.schemas.get/list/validate).
         role: TfArg.literal('roles/pubsub.viewer'),
-        member: TfArg.literal('serviceAccount:orders-publisher@example.com'),
-        dependsOn: [ResourceDependency(ordersSchema)],
+        member: TfArg.ref(ordersPublisher.iamMember),
+        dependsOn: [
+          ResourceDependency(ordersSchema),
+          ResourceDependency(ordersPublisher),
+        ],
       ),
     );
 
