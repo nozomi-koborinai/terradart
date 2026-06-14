@@ -172,9 +172,11 @@ final class LatencyAlertStack extends Stack {
         displayName: TfArg.literal('api-p95-latency'),
         combiner: TfArg.literal(AlertCombiner.or),
         severity: TfArg.literal(AlertSeverity.warning),
-        notificationChannels: TfArg.literal([
-          'projects/$projectId/notificationChannels/oncall-email',
-        ]),
+        // The channel's resource name is `projects/<p>/notificationChannels/
+        // <numeric-id>` (server-assigned), NOT its display name. Reference the
+        // in-stack channel's `id` so the alert policy gets the real path
+        // instead of a hardcoded `.../oncall-email` (404 at apply).
+        notificationChannels: TfArg.literal([oncallEmail.id.interpolation]),
         conditions: [
           MonitoringAlertPolicyAlertCondition(
             displayName: TfArg.literal('p95 > 1500ms for 5m'),

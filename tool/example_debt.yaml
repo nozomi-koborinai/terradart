@@ -35,3 +35,21 @@ GoogleGkeHubFleet: the project default fleet is auto-created, so applying google
 # applyable disk to bind. Re-add the binding to compute_quickstart (pointing at
 # an in-stack disk) once a disk resource is curated.
 GoogleComputeDiskIamMember: needs a real google_compute_disk to bind, which is not a curated factory yet; the binding 404s against a non-existent disk and there is no in-stack disk to attach in a standalone apply-smoke run
+
+# google_firestore_user_creds creates a database-level credential for a Cloud
+# Firestore with MongoDB compatibility (Enterprise-edition) database. Applying
+# it against a Standard-edition database fails 400 "This operation requires an
+# Enterprise database." firestore_quickstart deliberately uses a Standard-edition
+# named database (quickstart-db) so it can be created/destroyed repeatably;
+# switching to Enterprise would change the example's intent (a heavier,
+# cost-different product), so the resource is dropped from the example instead.
+GoogleFirestoreUserCreds: requires an Enterprise-edition (MongoDB-compatible) Firestore database; firestore_quickstart uses a Standard-edition named database, against which creation fails 400 "This operation requires an Enterprise database." Switching the database to Enterprise would change the example's intent, so the resource is dropped
+
+# Filestore snapshots are only supported on the zonal / high-scale-SSD /
+# enterprise tiers — NOT on the basic tiers. compute_quickstart's instance is
+# BASIC_HDD (zonal, the cheapest applyable tier for a smoke run), so creating a
+# snapshot of it fails apply with "Error creating Snapshot: 404". The example
+# keeps the regional GoogleFilestoreBackup, which basic tiers DO support.
+# Re-add a snapshot to an example once a zonal/enterprise-tier instance is
+# exercised (those tiers cost more, so the smoke run uses BASIC_HDD).
+GoogleFilestoreSnapshot: snapshots are unsupported on the BASIC_HDD tier used by compute_quickstart's applyable instance (snapshots require the zonal/high-scale-SSD/enterprise tiers); apply 404s with "Error creating Snapshot". Basic tiers support GoogleFilestoreBackup instead, which the example keeps

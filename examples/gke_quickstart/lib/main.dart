@@ -75,6 +75,15 @@ final class GkeQuickstartStack extends Stack {
         removeDefaultNodePool: TfArg.literal(true),
         network: TfArg.ref(vpc.nameRef),
         subnetwork: TfArg.ref(subnet.nameRef),
+        // GKE clusters default `deletion_protection = true`, which makes
+        // `terraform destroy` refuse to delete the cluster. This is a
+        // short-lived smoke example, so opt out to keep teardown clean.
+        deletionProtection: TfArg.literal(false),
+        // The GKE Hub membership below requires the cluster to have Workload
+        // Identity enabled; the workload pool is always `<project>.svc.id.goog`.
+        workloadIdentityConfig: TfArg.literal({
+          'workload_pool': TfArg.literal('$projectId.svc.id.goog'),
+        }),
         // Backup for GKE (Wave 10) requires the agent addon on the cluster.
         addonsConfig: TfArg.literal({
           'gke_backup_agent_config': {
@@ -176,8 +185,14 @@ final class GkeQuickstartStack extends Stack {
         // attribute is rejected with INVALID_FIELD. `id` is that full path.
         backupPlan: TfArg.ref(backupPlan.id),
         cluster: TfArg.ref(cluster.id),
+        // Selecting namespaced resources (here: every namespace) requires the
+        // restore mode for those resources to be set, otherwise the API
+        // rejects creation with MISSING_NAMESPACED_RESOURCE_RESTORE_MODE.
         restoreConfig: GkeBackupRestorePlanRestoreConfig(
           allNamespaces: TfArg.literal(true),
+          namespacedResourceRestoreMode:
+              GkeBackupRestorePlanNamespacedResourceRestoreMode
+                  .deleteAndRestore,
         ),
         dependsOn: [
           ResourceDependency(apiGkeBackup),

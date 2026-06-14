@@ -73,7 +73,7 @@ final class ApiServiceStack extends Stack {
       propagationDelay: const Duration(seconds: 60),
     );
 
-    add(
+    final dbPassword = add(
       GoogleSecretManagerSecret(
         localName: 'db_password',
         secretId: TfArg.literal('api-db-password'),
@@ -83,6 +83,38 @@ final class ApiServiceStack extends Stack {
           ),
         ]),
         dependsOn: apiDeps,
+      ),
+    );
+
+    // ---- Runtime service account for the Cloud Run service ----------------
+    //
+    // The service mounts `api-db-password` as a secret-backed env var. Cloud
+    // Run reads that secret as the revision's *runtime* service account, not
+    // the deployer. Left unset, the revision runs as the default compute SA
+    // (`<num>-compute@developer.gserviceaccount.com`), which has no access to
+    // the secret, so apply fails with "Permission denied on secret:
+    // api-db-password ... must be granted roles/secretmanager.secretAccessor".
+    // Provision a dedicated runtime SA, pin it via `template.serviceAccount`,
+    // and grant it `roles/secretmanager.secretAccessor` scoped to the secret.
+
+    final runtimeSa = add(
+      GoogleServiceAccount(
+        localName: 'api_runtime',
+        accountId: TfArg.literal('api-runtime'),
+        displayName: TfArg.literal('Cloud Run api runtime'),
+      ),
+    );
+
+    add(
+      GoogleSecretManagerSecretIamMember(
+        localName: 'api_runtime_secret_accessor',
+        secretId: TfArg.ref(dbPassword.secretIdRef),
+        role: TfArg.literal('roles/secretmanager.secretAccessor'),
+        member: TfArg.ref(runtimeSa.iamMember),
+        dependsOn: [
+          ResourceDependency(runtimeSa),
+          ResourceDependency(dbPassword),
+        ],
       ),
     );
 
@@ -194,7 +226,14 @@ final class ApiServiceStack extends Stack {
       name: TfArg.literal('api'),
       location: TfArg.literal('asia-northeast1'),
       ingress: TfArg.literal(Ingress.internalLoadBalancer),
+      // Cloud Run v2 services default deletion_protection=true, which makes
+      // `terraform destroy` fail ("cannot destroy service without setting
+      // deletion_protection=false"). Disable it so the sweep can tear down.
+      deletionProtection: TfArg.literal(false),
       template: CloudRunV2ServiceTemplate(
+        // Runtime identity for the revision — must be able to read the
+        // secret-backed env var below (see the IAM member above).
+        serviceAccount: TfArg.ref(runtimeSa.email),
         vpcAccess: CloudRunV2ServiceVpcAccess(
           connector: TfArg.ref(runConnector.selfLink),
           egress: TfArg.literal(VpcAccessEgress.privateRangesOnly),
@@ -254,6 +293,9 @@ final class ApiServiceStack extends Stack {
         name: TfArg.literal('batch-workers'),
         location: TfArg.literal('asia-northeast1'),
         launchStage: TfArg.literal(CloudRunV2WorkerPoolLaunchStage.ga),
+        // Same deletion_protection=true default as the service — disable so
+        // `terraform destroy` can remove the worker pool.
+        deletionProtection: TfArg.literal(false),
         template: CloudRunV2WorkerPoolTemplate(
           containers: const [
             {'image': 'gcr.io/cloudrun/hello'},
@@ -273,6 +315,10 @@ final class ApiServiceStack extends Stack {
       localName: 'nightly_cleanup',
       name: TfArg.literal('nightly-cleanup'),
       location: TfArg.literal('asia-northeast1'),
+      // Cloud Run v2 jobs default deletion_protection=true, which blocks
+      // `terraform destroy` ("cannot destroy job without setting
+      // deletion_protection=false"). Disable it for the sweep.
+      deletionProtection: TfArg.literal(false),
       template: CloudRunV2JobTemplate(
         template: CloudRunV2JobTaskTemplate(
           maxRetries: TfArg.literal(2),

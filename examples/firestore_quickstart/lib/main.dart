@@ -57,7 +57,7 @@ final class MessagesStack extends Stack {
       ),
     );
 
-    // ---- Backfill: field overrides, backup schedule, user creds -------------
+    // ---- Backfill: field overrides, backup schedule -------------------------
 
     add(
       GoogleFirestoreField(
@@ -75,14 +75,6 @@ final class MessagesStack extends Stack {
         database: TfArg.ref(db.nameRef),
         retention: TfArg.literal('604800s'),
         recurrence: const FirestoreBackupScheduleDailyRecurrence(),
-      ),
-    );
-
-    add(
-      GoogleFirestoreUserCreds(
-        localName: 'analytics_reader',
-        database: TfArg.ref(db.nameRef),
-        name: TfArg.literal('analytics-reader'),
       ),
     );
   }
