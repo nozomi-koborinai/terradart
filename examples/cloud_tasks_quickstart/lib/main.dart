@@ -8,6 +8,7 @@ library;
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_tasks.dart';
+import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/time.dart';
@@ -51,6 +52,21 @@ final class EmailJobsStack extends Stack {
       ),
     );
 
+    // The service account that enqueues tasks. The IAM binding below grants it
+    // the enqueuer role; without this SA the binding fails with "Service
+    // account ... does not exist". `google_service_account` is not API-gated,
+    // so no Apis dependency is required.
+    final enqueuerSa = add(
+      GoogleServiceAccount(
+        localName: 'enqueuer',
+        accountId: TfArg.literal('enqueuer'),
+        displayName: TfArg.literal('Cloud Tasks enqueuer'),
+      ),
+    );
+
+    // Grant the enqueuer role. The member is derived from the SA's
+    // pre-formatted `serviceAccount:<email>` ref, and dependsOn ensures the SA
+    // exists before the policy is applied.
     add(
       GoogleCloudTasksQueueIamMember(
         localName: 'email_jobs_enqueuer',
@@ -58,9 +74,8 @@ final class EmailJobsStack extends Stack {
         name: TfArg.ref(queue.nameRef),
         location: TfArg.ref(queue.locationRef),
         role: TfArg.literal('roles/cloudtasks.enqueuer'),
-        member: TfArg.literal(
-          'serviceAccount:enqueuer@$projectId.iam.gserviceaccount.com',
-        ),
+        member: TfArg.ref(enqueuerSa.iamMember),
+        dependsOn: [ResourceDependency(enqueuerSa)],
       ),
     );
 

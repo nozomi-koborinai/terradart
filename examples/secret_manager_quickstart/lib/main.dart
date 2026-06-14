@@ -10,6 +10,7 @@
 library;
 
 import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/secret_manager.dart';
 
@@ -47,16 +48,29 @@ final class DbCredentialsStack extends Stack {
       ),
     );
 
-    // 3. Grant accessor to the application service account.
+    // 3. The application service account that reads the secret. The IAM
+    //    binding below grants it accessor; without this SA the binding fails
+    //    with "Service account ... does not exist". Account IDs must be
+    //    6-30 chars, so use `app-runner` (the bare `app` is too short).
+    final appSa = add(
+      GoogleServiceAccount(
+        localName: 'app',
+        accountId: TfArg.literal('app-runner'),
+        displayName: TfArg.literal('Application runtime (secret reader)'),
+      ),
+    );
+
+    // 4. Grant accessor to the application service account. The member is
+    //    derived from the SA's pre-formatted `serviceAccount:<email>` ref, and
+    //    dependsOn ensures the SA exists before the policy is applied.
     add(
       GoogleSecretManagerSecretIamMember(
         localName: 'db_password_accessor',
         // Secret IAM identity is `secret_id` (NOT `id` / `name`).
         secretId: TfArg.ref(secret.secretIdRef),
         role: TfArg.literal('roles/secretmanager.secretAccessor'),
-        member: TfArg.literal(
-          'serviceAccount:app@$projectId.iam.gserviceaccount.com',
-        ),
+        member: TfArg.ref(appSa.iamMember),
+        dependsOn: [ResourceDependency(appSa)],
       ),
     );
 

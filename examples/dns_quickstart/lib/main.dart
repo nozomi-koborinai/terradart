@@ -128,7 +128,11 @@ final class InternalDnsStack extends Stack {
         localData: DnsResponsePolicyRuleLocalData(
           localDatas: [
             DnsResponsePolicyRuleLocalDataEntry(
-              name: TfArg.literal('legacy'),
+              // The local-data rrSet name must be a fully-qualified DNS name
+              // (trailing dot), matching the rule's `dns_name` above. A bare
+              // label such as 'legacy' is rejected at apply time
+              // ("Invalid value for ...localData.rrSet.Name: 'legacy'").
+              name: TfArg.literal('legacy.internal.corp.'),
               type: DnsResponsePolicyRuleRecordType.a,
               ttl: TfArg.literal(300),
               rrdatas: const ['10.0.0.20'],

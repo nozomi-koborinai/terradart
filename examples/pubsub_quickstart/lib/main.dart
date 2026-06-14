@@ -44,7 +44,13 @@ final class OrdersStack extends Stack {
       GooglePubsubSchemaIamMember(
         localName: 'orders_schema_publisher',
         schema: TfArg.ref(ordersSchema.id),
-        role: TfArg.literal('roles/pubsub.schemaAdmin'),
+        // `roles/pubsub.schemaAdmin` is a project-level role and is NOT
+        // grantable on an individual schema resource (apply fails with
+        // "Role ... is not supported for this resource"). At the schema
+        // resource level the publisher only needs to read/validate the
+        // schema, which `roles/pubsub.viewer` covers
+        // (pubsub.schemas.get/list/validate).
+        role: TfArg.literal('roles/pubsub.viewer'),
         member: TfArg.literal('serviceAccount:orders-publisher@example.com'),
         dependsOn: [ResourceDependency(ordersSchema)],
       ),

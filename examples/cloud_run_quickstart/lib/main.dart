@@ -33,6 +33,7 @@ library;
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_run.dart';
+import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
@@ -52,13 +53,17 @@ final class ApiServiceStack extends Stack {
         ) {
     // ---- API enablement + Wave 25 VPC Access + Wave 32 Redis --------------
     //
-    // [Apis.enable] enables the Run, Secret Manager, VPC Access, Redis,
-    // and Memcache APIs and waits 60s for propagation before dependents
-    // apply.
+    // [Apis.enable] enables the Compute, Run, Secret Manager, Service
+    // Networking, VPC Access, Redis, and Memcache APIs and waits 60s for
+    // propagation before dependents apply. Compute + Service Networking back
+    // the Private Service Access (PSA) chain the Memorystore instances peer
+    // into; without them apply fails with "Google private service access is
+    // not enabled".
 
     final apiDeps = Apis.enable(
       this,
       barrels: [
+        Barrels.compute,
         Barrels.cloudRun,
         Barrels.secretManager,
         Barrels.serviceNetworking,
@@ -81,12 +86,58 @@ final class ApiServiceStack extends Stack {
       ),
     );
 
+    // ---- Private Service Access (PSA) for Memorystore ---------------------
+    //
+    // Memorystore Redis (private) and Memcache reach the project over VPC
+    // peering, which requires a Private Service Access connection on a real
+    // VPC. The `default` network has no PSA range, so apply fails with
+    // "Google private service access is not enabled" / "Invalid authorized
+    // network 'default'". Provision the standard three-resource PSA chain
+    // against a dedicated VPC and point both caches at it:
+    //
+    //   1. GoogleComputeNetwork        — the consumer VPC.
+    //   2. GoogleComputeGlobalAddress  — reserves an internal /16 for Google
+    //      services to peer into (purpose VPC_PEERING, address_type INTERNAL).
+    //   3. GoogleServiceNetworkingConnection — peers
+    //      servicenetworking.googleapis.com into the VPC against that range.
+
+    final vpc = add(
+      GoogleComputeNetwork(
+        localName: 'app_vpc',
+        name: TfArg.literal('app-vpc'),
+        autoCreateSubnetworks: TfArg.literal(false),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    final psaRange = add(
+      GoogleComputeGlobalAddress(
+        localName: 'psa_range',
+        name: TfArg.literal('app-psa-range'),
+        addressType: TfArg.literal(GlobalAddressType.internal),
+        purpose: TfArg.literal(GlobalAddressPurpose.vpcPeering),
+        prefixLength: TfArg.literal(16),
+        network: TfArg.ref(vpc.id),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    final psaConnection = add(
+      GoogleServiceNetworkingConnection(
+        localName: 'psa',
+        network: TfArg.ref(vpc.id),
+        service: TfArg.literal('servicenetworking.googleapis.com'),
+        reservedPeeringRanges: TfArg.literal([psaRange.nameRef.interpolation]),
+        dependsOn: apiDeps,
+      ),
+    );
+
     final runConnector = GoogleVpcAccessConnector(
       localName: 'run_vpc',
       name: TfArg.literal('run-vpc'),
       region: TfArg.literal('asia-northeast1'),
       ipCidrRange: TfArg.literal('10.8.0.0/28'),
-      network: TfArg.literal('default'),
+      network: TfArg.ref(vpc.id),
       minInstances: TfArg.literal(2),
       maxInstances: TfArg.literal(3),
       dependsOn: apiDeps,
@@ -100,8 +151,17 @@ final class ApiServiceStack extends Stack {
         memorySizeGb: TfArg.literal(1),
         region: TfArg.literal('asia-northeast1'),
         tier: TfArg.literal(RedisInstanceTier.basic),
-        authorizedNetwork: TfArg.literal('default'),
-        dependsOn: apiDeps,
+        // Private Service Access: peer the instance into the dedicated VPC
+        // over the PSA range reserved above. The provider takes the network
+        // id (projects/<project>/global/networks/<name>), not a short name.
+        authorizedNetwork: TfArg.ref(vpc.id),
+        connectMode: TfArg.literal(
+          RedisInstanceConnectMode.privateServiceAccess,
+        ),
+        dependsOn: [
+          ...apiDeps,
+          ResourceDependency(psaConnection),
+        ],
       ),
     );
 
@@ -115,12 +175,17 @@ final class ApiServiceStack extends Stack {
           memorySizeMb: TfArg.literal(1024),
         ),
         region: TfArg.literal('asia-northeast1'),
-        // Memcache requires the full network path
-        // (projects/<project>/global/networks/<network>); a short name like
-        // 'default' fails apply with "Invalid format for authorized network".
-        authorizedNetwork:
-            TfArg.literal('projects/$projectId/global/networks/default'),
-        dependsOn: apiDeps,
+        // Memcache reaches the project only over Private Service Access, so
+        // it must peer into a VPC that has a PSA connection. Point it at the
+        // dedicated VPC's id (projects/<project>/global/networks/<name>) and
+        // order it after the peering; a short name or the default network
+        // (no PSA range) fails apply with "Google private service access is
+        // not enabled".
+        authorizedNetwork: TfArg.ref(vpc.id),
+        dependsOn: [
+          ...apiDeps,
+          ResourceDependency(psaConnection),
+        ],
       ),
     );
 
@@ -275,13 +340,19 @@ final class ApiServiceStack extends Stack {
       ),
     );
 
-    // ---- Wave 24: worker pool invoker -------------------------------------
+    // ---- Wave 24: worker pool access --------------------------------------
+    //
+    // Worker pools have no request-driven invocation path, so the IAM API
+    // rejects `roles/run.invoker` here ("Role roles/run.invoker is not
+    // supported for this resource"). Grant the resource-scoped Cloud Run
+    // Developer role (`roles/run.developer`) instead -- the documented role
+    // for managing a worker pool and its revisions -- to the same SA.
 
     add(
       GoogleCloudRunV2WorkerPoolIamMember(
-        localName: 'batch_workers_invoker',
+        localName: 'batch_workers_developer',
         name: TfArg.ref(batchWorkers.nameRef),
-        role: TfArg.literal('roles/run.invoker'),
+        role: TfArg.literal('roles/run.developer'),
         member: TfArg.ref(schedulerSa.iamMember),
         location: TfArg.literal('asia-northeast1'),
       ),
