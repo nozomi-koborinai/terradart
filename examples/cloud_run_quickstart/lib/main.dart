@@ -86,6 +86,19 @@ final class ApiServiceStack extends Stack {
       ),
     );
 
+    // The secret needs a VERSION holding the value; without it the service's
+    // `versions/latest` reference 404s ("Secret ... versions/latest was not
+    // found"). Write-only data keeps the value out of Terraform state (§10.4).
+    final dbPasswordV1 = add(
+      GoogleSecretManagerSecretVersion(
+        localName: 'db_password_v1',
+        secret: TfArg.ref(dbPassword.id),
+        secretDataWo: TfArg.literal('apply-smoke-placeholder'),
+        secretDataWoVersion: TfArg.literal(1),
+        dependsOn: [ResourceDependency(dbPassword)],
+      ),
+    );
+
     // ---- Runtime service account for the Cloud Run service ----------------
     //
     // The service mounts `api-db-password` as a secret-backed env var. Cloud
@@ -105,7 +118,7 @@ final class ApiServiceStack extends Stack {
       ),
     );
 
-    add(
+    final secretAccessor = add(
       GoogleSecretManagerSecretIamMember(
         localName: 'api_runtime_secret_accessor',
         secretId: TfArg.ref(dbPassword.secretIdRef),
@@ -283,6 +296,10 @@ final class ApiServiceStack extends Stack {
       dependsOn: [
         ...apiDeps,
         ResourceDependency(runConnector),
+        // The secret version must exist (so `latest` resolves) and the runtime
+        // SA must already have accessor on it, before the revision starts.
+        ResourceDependency(dbPasswordV1),
+        ResourceDependency(secretAccessor),
       ],
     );
     add(apiService);

@@ -97,7 +97,7 @@ final class GkeQuickstartStack extends Stack {
       ),
     );
 
-    add(
+    final primaryPool = add(
       GoogleContainerNodePool(
         localName: 'primary',
         name: TfArg.literal('primary-pool'),
@@ -130,6 +130,10 @@ final class GkeQuickstartStack extends Stack {
         dependsOn: [
           ResourceDependency(apiGkeHub),
           ResourceDependency(cluster),
+          // Wait for the node pool so the cluster isn't mid-operation when the
+          // membership registers ("cluster is currently running another
+          // operation").
+          ResourceDependency(primaryPool),
         ],
       ),
     );
@@ -193,6 +197,10 @@ final class GkeQuickstartStack extends Stack {
           namespacedResourceRestoreMode:
               GkeBackupRestorePlanNamespacedResourceRestoreMode
                   .deleteAndRestore,
+          // Required whenever namespaced resources are selected; this demo has
+          // no persistent volumes to restore.
+          volumeDataRestorePolicy: GkeBackupRestorePlanVolumeDataRestorePolicy
+              .noVolumeDataRestoration,
         ),
         dependsOn: [
           ResourceDependency(apiGkeBackup),
