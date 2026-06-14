@@ -133,6 +133,8 @@ class ComputeRegionSecurityPolicyRulePreconfiguredWafExclusionMatch {
 }
 
 /// Factory wrapper for `google_compute_region_security_policy_rule`.
+///
+/// A rule for the RegionSecurityPolicy.
 final class GoogleComputeRegionSecurityPolicyRule extends Resource {
   static const String tfType = 'google_compute_region_security_policy_rule';
 

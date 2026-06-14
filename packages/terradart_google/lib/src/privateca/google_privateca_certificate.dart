@@ -208,6 +208,12 @@ final class PrivatecaCertificateConfig {
 
 /// Factory wrapper for `google_privateca_certificate`.
 ///
+/// A Certificate corresponds to a signed X.509 certificate issued by a
+/// Certificate.
+///
+/// ~> **Note:** The Certificate Authority that is referenced by this resource
+/// **must** be `tier = "ENTERPRISE"`
+///
 /// Certificate Authority Service (CAS) issued X.509 certificate.
 ///
 /// Issues a cert from a [GooglePrivatecaCertificateAuthority] inside a

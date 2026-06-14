@@ -27,6 +27,8 @@ class VpcAccessConnectorSubnet {
 
 /// Factory wrapper for `google_vpc_access_connector`.
 ///
+/// Serverless VPC Access connector resource.
+///
 /// Serverless VPC Access connector — a managed proxy that lets Cloud Run,
 /// Cloud Functions, and App Engine reach resources on a VPC (private IPs,
 /// Memorystore, Cloud SQL private IP, etc.) without public endpoints.

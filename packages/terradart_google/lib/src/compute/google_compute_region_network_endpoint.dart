@@ -7,6 +7,12 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleComputeRegionNetworkEndpointSensitive = <String>{};
 
 /// Factory wrapper for `google_compute_region_network_endpoint`.
+///
+/// A Region network endpoint represents a IP address/FQDN and port combination
+/// that is part of a specific network endpoint group (NEG).
+///
+/// ~> **NOTE**: Network endpoints cannot be created outside of a network
+/// endpoint group.
 final class GoogleComputeRegionNetworkEndpoint extends Resource {
   static const String tfType = 'google_compute_region_network_endpoint';
 

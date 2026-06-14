@@ -9,6 +9,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleEventarcPipelineSensitive = <String>{};
 
 /// Factory wrapper for `google_eventarc_pipeline`.
+///
+/// The Eventarc Pipeline resource
 final class GoogleEventarcPipeline extends Resource {
   static const String tfType = 'google_eventarc_pipeline';
 

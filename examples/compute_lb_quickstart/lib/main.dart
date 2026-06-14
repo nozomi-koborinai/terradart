@@ -306,7 +306,9 @@ final class ComputeLbStack extends Stack {
         localName: 'cm_map_entry',
         name: TfArg.literal('app-cm-entry'),
         map: TfArg.ref(cmMap.id),
-        hostname: TfArg.literal('app.example.com'),
+        match: CertificateManagerCertificateMapEntryMatch.hostname(
+          TfArg.literal('app.example.com'),
+        ),
         certificates: TfArg.literal([
           cmCert.id.interpolation,
         ]),

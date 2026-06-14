@@ -16,6 +16,9 @@ enum TargetSslProxyProxyHeader implements TerraformEnum {
 }
 
 /// Factory wrapper for `google_compute_target_ssl_proxy`.
+///
+/// Represents a TargetSslProxy resource, which is used by one or more global
+/// forwarding rule to route incoming SSL requests to a backend service.
 final class GoogleComputeTargetSslProxy extends Resource {
   static const String tfType = 'google_compute_target_ssl_proxy';
 

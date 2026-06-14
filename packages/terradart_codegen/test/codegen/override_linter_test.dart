@@ -208,6 +208,29 @@ void main() {
       );
     });
 
+    test('canonicalExactlyOneOfGroups skips nested-block-indexed members', () {
+      // google_vpc_access_connector: exactly_one_of [network, subnet.0.name].
+      // Collapsing `subnet.0.name` to its last segment fabricated a bogus
+      // [name, network] group; the `.0.` index marks a nested-block field
+      // reference, so the whole group must be skipped.
+      expect(
+        canonicalExactlyOneOfGroups([
+          ['network', 'subnet.0.name'],
+          ['subnet.0.name', 'network'],
+        ]),
+        isEmpty,
+      );
+      // A flat top-level group with no index still collapses normally.
+      expect(
+        canonicalExactlyOneOfGroups([
+          ['hostname', 'matcher'],
+        ]),
+        [
+          ['hostname', 'matcher'],
+        ],
+      );
+    });
+
     test('clean: exactly-one optional fanout suppressed by debt allowlist', () {
       const mm = MmResourceOverrides(
         fieldOverrides: {},

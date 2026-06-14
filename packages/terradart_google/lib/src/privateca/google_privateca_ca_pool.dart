@@ -70,6 +70,11 @@ final class PrivatecaCaPoolEllipticCurveKeyType {
 
 /// Factory wrapper for `google_privateca_ca_pool`.
 ///
+/// A CaPool represents a group of CertificateAuthorities that form a trust
+/// anchor. A CaPool can be used to manage issuance policies for one or more
+/// CertificateAuthority resources and to rotate CA certificates in and out of
+/// the trust anchor.
+///
 /// Certificate Authority Service (CAS) CA pool — container for one or more
 /// certificate authorities used by [GoogleCertificateManagerCertificateIssuanceConfig].
 ///

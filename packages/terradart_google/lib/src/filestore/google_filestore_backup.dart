@@ -8,6 +8,8 @@ const Set<String> _googleFilestoreBackupSensitive = <String>{};
 
 /// Factory wrapper for `google_filestore_backup`.
 ///
+/// A Google Cloud Filestore backup.
+///
 /// Cloud Filestore backup — point-in-time copy of a file share.
 ///
 /// Required identity:

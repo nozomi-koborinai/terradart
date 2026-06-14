@@ -45,6 +45,8 @@ class BigqueryDatapolicyDataPolicyDataMaskingPolicy {
 }
 
 /// Factory wrapper for `google_bigquery_datapolicy_data_policy`.
+///
+/// A BigQuery Data Policy
 final class GoogleBigqueryDatapolicyDataPolicy extends Resource {
   static const String tfType = 'google_bigquery_datapolicy_data_policy';
 

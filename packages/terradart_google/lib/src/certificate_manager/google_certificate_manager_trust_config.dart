@@ -62,6 +62,10 @@ final class CertificateManagerTrustConfigAllowlistedCertificate {
 
 /// Factory wrapper for `google_certificate_manager_trust_config`.
 ///
+/// TrustConfig represents a resource that represents your Public Key
+/// Infrastructure (PKI) configuration in Certificate Manager for use in mutual
+/// TLS authentication scenarios.
+///
 /// Trust configuration for Certificate Manager mTLS and custom trust stores.
 ///
 /// Defines trust anchors / intermediate CAs and optional PEM allowlists used

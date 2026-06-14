@@ -8,6 +8,8 @@ const Set<String> _googleAlloydbBackupSensitive = <String>{};
 
 /// Factory wrapper for `google_alloydb_backup`.
 ///
+/// An AlloyDB Backup.
+///
 /// AlloyDB backup — on-demand or scheduled backup of a cluster.
 ///
 /// Required identity:

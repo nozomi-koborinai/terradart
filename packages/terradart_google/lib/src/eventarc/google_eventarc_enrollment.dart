@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleEventarcEnrollmentSensitive = <String>{};
 
 /// Factory wrapper for `google_eventarc_enrollment`.
+///
+/// The Eventarc Enrollment resource
 final class GoogleEventarcEnrollment extends Resource {
   static const String tfType = 'google_eventarc_enrollment';
 

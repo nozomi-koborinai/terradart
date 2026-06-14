@@ -30,6 +30,10 @@ enum RegionSslPolicyMinTlsVersion implements TerraformEnum {
 }
 
 /// Factory wrapper for `google_compute_region_ssl_policy`.
+///
+/// Represents a Regional SSL policy. SSL policies give you the ability to
+/// control the features of SSL that your SSL proxy or HTTPS load balancer
+/// negotiates.
 final class GoogleComputeRegionSslPolicy extends Resource {
   static const String tfType = 'google_compute_region_ssl_policy';
 

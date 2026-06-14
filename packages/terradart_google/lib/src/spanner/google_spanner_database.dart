@@ -18,6 +18,8 @@ enum SpannerDatabaseDialect implements TerraformEnum {
 
 /// Factory wrapper for `google_spanner_database`.
 ///
+/// A Cloud Spanner Database which is hosted on a Spanner instance.
+///
 /// Cloud Spanner database inside a [GoogleSpannerInstance].
 ///
 /// Required identity:

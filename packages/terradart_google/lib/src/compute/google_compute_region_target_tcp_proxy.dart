@@ -16,6 +16,10 @@ enum RegionTargetTcpProxyProxyHeader implements TerraformEnum {
 }
 
 /// Factory wrapper for `google_compute_region_target_tcp_proxy`.
+///
+/// Represents a RegionTargetTcpProxy resource, which is used by one or more
+/// forwarding rules to route incoming TCP requests to a regional TCP proxy load
+/// balancer.
 final class GoogleComputeRegionTargetTcpProxy extends Resource {
   static const String tfType = 'google_compute_region_target_tcp_proxy';
 

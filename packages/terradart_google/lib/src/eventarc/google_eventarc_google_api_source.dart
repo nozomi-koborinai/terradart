@@ -9,6 +9,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleEventarcGoogleApiSourceSensitive = <String>{};
 
 /// Factory wrapper for `google_eventarc_google_api_source`.
+///
+/// The Eventarc GoogleApiSource resource
 final class GoogleEventarcGoogleApiSource extends Resource {
   static const String tfType = 'google_eventarc_google_api_source';
 

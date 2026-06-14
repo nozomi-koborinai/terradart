@@ -8,6 +8,8 @@ const Set<String> _googleBigqueryAnalyticsHubListingSubscriptionSensitive =
     <String>{};
 
 /// Factory wrapper for `google_bigquery_analytics_hub_listing_subscription`.
+///
+/// A Bigquery Analytics Hub listing subscription
 final class GoogleBigqueryAnalyticsHubListingSubscription extends Resource {
   static const String tfType =
       'google_bigquery_analytics_hub_listing_subscription';

@@ -8,6 +8,8 @@ const Set<String> _googleLoggingLogScopeSensitive = <String>{};
 
 /// Factory wrapper for `google_logging_log_scope`.
 ///
+/// Describes a group of resources to read log entries from
+///
 /// Project log scope limiting which resources a linked analytics dataset
 /// can query.
 ///

@@ -16,6 +16,9 @@ enum TargetTcpProxyProxyHeader implements TerraformEnum {
 }
 
 /// Factory wrapper for `google_compute_target_tcp_proxy`.
+///
+/// Represents a TargetTcpProxy resource, which is used by one or more global
+/// forwarding rule to route incoming TCP requests to a Backend service.
 final class GoogleComputeTargetTcpProxy extends Resource {
   static const String tfType = 'google_compute_target_tcp_proxy';
 

@@ -38,6 +38,9 @@ class DnsPolicyAlternativeNameServerConfig {
 }
 
 /// Factory wrapper for `google_dns_policy`.
+///
+/// A policy is a collection of DNS rules applied to one or more Virtual Private
+/// Cloud resources.
 final class GoogleDnsPolicy extends Resource {
   static const String tfType = 'google_dns_policy';
 

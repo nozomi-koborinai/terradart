@@ -19,7 +19,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_alloydb_backup`.\n\nAlloyDB backup — on-demand or scheduled backup of a cluster.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [backupId]: short backup ID.\n- [clusterName]: full cluster resource name — `TfArg.ref(cluster.id)`.\n- [location]: region matching the cluster.\n\nExample:\n```dart\nGoogleAlloydbBackup(\n  localName: \'nightly\',\n  backupId: TfArg.literal(\'nightly-backup\'),\n  clusterName: TfArg.ref(alloyCluster.id),\n  location: TfArg.literal(\'asia-northeast1\'),\n);\n```',
+        'Factory wrapper for `google_alloydb_backup`.\n\nAn AlloyDB Backup.\n\nAlloyDB backup — on-demand or scheduled backup of a cluster.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [backupId]: short backup ID.\n- [clusterName]: full cluster resource name — `TfArg.ref(cluster.id)`.\n- [location]: region matching the cluster.\n\nExample:\n```dart\nGoogleAlloydbBackup(\n  localName: \'nightly\',\n  backupId: TfArg.literal(\'nightly-backup\'),\n  clusterName: TfArg.ref(alloyCluster.id),\n  location: TfArg.literal(\'asia-northeast1\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_alloydb_cluster',
@@ -52,7 +52,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>['initial_user.password'],
     docComment:
-        'Factory wrapper for `google_alloydb_cluster`.\n\nAlloyDB cluster — regional Postgres-compatible database cluster.\n\nPrivate-IP wiring reuses the same PSA chain as Cloud SQL:\n[GoogleComputeNetwork] → [GoogleComputeGlobalAddress] →\n[GoogleServiceNetworkingConnection] → [AlloydbClusterNetworkConfig].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [clusterId]: short cluster ID.\n- [location]: regional location (e.g. `asia-northeast1`).\n- [networkConfig]: VPC + optional allocated PSA range name.\n\nEnable `alloydb.googleapis.com` via [GoogleProjectService] or\n[Apis.enable] before apply.\n\nExample:\n```dart\nGoogleAlloydbCluster(\n  localName: \'app\',\n  clusterId: TfArg.literal(\'app-cluster\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  networkConfig: AlloydbClusterNetworkConfig(\n    network: TfArg.ref(vpc.selfLink),\n    allocatedIpRange: TfArg.ref(psaRange.nameRef),\n  ),\n  initialUser: AlloydbClusterInitialUser(\n    user: TfArg.literal(\'postgres\'),\n    passwordWo: TfArg.literal(dbPassword),\n    passwordWoVersion: TfArg.literal(1),\n  ),\n  dependsOn: [ResourceDependency(psaConnection)],\n);\n```',
+        'Factory wrapper for `google_alloydb_cluster`.\n\nA managed alloydb cluster.\n\nAlloyDB cluster — regional Postgres-compatible database cluster.\n\nPrivate-IP wiring reuses the same PSA chain as Cloud SQL:\n[GoogleComputeNetwork] → [GoogleComputeGlobalAddress] →\n[GoogleServiceNetworkingConnection] → [AlloydbClusterNetworkConfig].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [clusterId]: short cluster ID.\n- [location]: regional location (e.g. `asia-northeast1`).\n- [networkConfig]: VPC + optional allocated PSA range name.\n\nEnable `alloydb.googleapis.com` via [GoogleProjectService] or\n[Apis.enable] before apply.\n\nExample:\n```dart\nGoogleAlloydbCluster(\n  localName: \'app\',\n  clusterId: TfArg.literal(\'app-cluster\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  networkConfig: AlloydbClusterNetworkConfig(\n    network: TfArg.ref(vpc.selfLink),\n    allocatedIpRange: TfArg.ref(psaRange.nameRef),\n  ),\n  initialUser: AlloydbClusterInitialUser(\n    user: TfArg.literal(\'postgres\'),\n    passwordWo: TfArg.literal(dbPassword),\n    passwordWoVersion: TfArg.literal(1),\n  ),\n  dependsOn: [ResourceDependency(psaConnection)],\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_alloydb_instance',
@@ -75,7 +75,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_alloydb_instance`.\n\nAlloyDB instance — primary or read-pool node inside a\n[GoogleAlloydbCluster].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [cluster]: parent cluster ID — `TfArg.ref(cluster.id)`.\n- [instanceId]: short instance ID within the cluster.\n- [instanceType]: [AlloydbInstanceType.primary] for the first node.\n- [machineConfig]: CPU count (and optional machine type).\n\nExample:\n```dart\nGoogleAlloydbInstance(\n  localName: \'primary\',\n  cluster: TfArg.ref(cluster.id),\n  instanceId: TfArg.literal(\'primary\'),\n  instanceType: TfArg.literal(AlloydbInstanceType.primary),\n  machineConfig: AlloydbInstanceMachineConfig(\n    cpuCount: TfArg.literal(2),\n  ),\n);\n```',
+        'Factory wrapper for `google_alloydb_instance`.\n\nA managed alloydb cluster instance.\n\nAlloyDB instance — primary or read-pool node inside a\n[GoogleAlloydbCluster].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [cluster]: parent cluster ID — `TfArg.ref(cluster.id)`.\n- [instanceId]: short instance ID within the cluster.\n- [instanceType]: [AlloydbInstanceType.primary] for the first node.\n- [machineConfig]: CPU count (and optional machine type).\n\nExample:\n```dart\nGoogleAlloydbInstance(\n  localName: \'primary\',\n  cluster: TfArg.ref(cluster.id),\n  instanceId: TfArg.literal(\'primary\'),\n  instanceType: TfArg.literal(AlloydbInstanceType.primary),\n  machineConfig: AlloydbInstanceMachineConfig(\n    cpuCount: TfArg.literal(2),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_alloydb_user',
@@ -95,7 +95,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['AlloydbUserType'],
     sensitiveFields: <String>['password'],
     docComment:
-        'Factory wrapper for `google_alloydb_user`.\n\nAlloyDB database user inside a [GoogleAlloydbCluster].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [cluster]: parent cluster — `TfArg.ref(cluster.id)`.\n- [userId]: username.\n- [userType]: [AlloydbUserType.alloydbBuiltIn] or IAM user.\n\nExample:\n```dart\nGoogleAlloydbUser(\n  localName: \'app\',\n  cluster: TfArg.ref(cluster.id),\n  userId: TfArg.literal(\'app\'),\n  userType: TfArg.literal(AlloydbUserType.alloydbBuiltIn),\n  passwordWo: TfArg.literal(dbPassword),\n  passwordWoVersion: TfArg.literal(\'1\'),\n);\n```',
+        'Factory wrapper for `google_alloydb_user`.\n\nA database user in an AlloyDB cluster.\n\nAlloyDB database user inside a [GoogleAlloydbCluster].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [cluster]: parent cluster — `TfArg.ref(cluster.id)`.\n- [userId]: username.\n- [userType]: [AlloydbUserType.alloydbBuiltIn] or IAM user.\n\nExample:\n```dart\nGoogleAlloydbUser(\n  localName: \'app\',\n  cluster: TfArg.ref(cluster.id),\n  userId: TfArg.literal(\'app\'),\n  userType: TfArg.literal(AlloydbUserType.alloydbBuiltIn),\n  passwordWo: TfArg.literal(dbPassword),\n  passwordWoVersion: TfArg.literal(\'1\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_artifact_registry_repository',
@@ -202,7 +202,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['BigqueryAnalyticsHubDataExchangeDiscoveryType'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_bigquery_analytics_hub_data_exchange`.',
+        'Factory wrapper for `google_bigquery_analytics_hub_data_exchange`.\n\nA Bigquery Analytics Hub data exchange',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_analytics_hub_data_exchange_iam_member',
@@ -256,7 +256,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>['BigqueryAnalyticsHubListingDiscoveryType'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_bigquery_analytics_hub_listing`.',
+    docComment:
+        'Factory wrapper for `google_bigquery_analytics_hub_listing`.\n\nA Bigquery Analytics Hub data exchange listing',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_analytics_hub_listing_iam_member',
@@ -298,7 +299,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_bigquery_analytics_hub_listing_subscription`.',
+        'Factory wrapper for `google_bigquery_analytics_hub_listing_subscription`.\n\nA Bigquery Analytics Hub listing subscription',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_bi_reservation',
@@ -315,7 +316,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_bigquery_bi_reservation`.',
+    docComment:
+        'Factory wrapper for `google_bigquery_bi_reservation`.\n\nRepresents a BI Reservation.',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_capacity_commitment',
@@ -462,7 +464,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'BigqueryDatapolicyDataPolicyDataMaskingPolicy',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_bigquery_datapolicy_data_policy`.',
+    docComment:
+        'Factory wrapper for `google_bigquery_datapolicy_data_policy`.\n\nA BigQuery Data Policy',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_datapolicy_data_policy_iam_member',
@@ -640,7 +643,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>['BigqueryReservationAssignmentJobType'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_bigquery_reservation_assignment`.',
+    docComment:
+        'Factory wrapper for `google_bigquery_reservation_assignment`.\n\nThe BigqueryReservation Assignment resource.',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_routine',
@@ -700,7 +704,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_bigquery_row_access_policy`.',
+    docComment:
+        'Factory wrapper for `google_bigquery_row_access_policy`.\n\nRepresents access on a subset of rows on the specified table, defined by its\nfilter predicate. Access to the subset of rows is controlled by its IAM\npolicy.',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_table',
@@ -815,7 +820,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'self_managed.private_key_pem',
     ],
     docComment:
-        'Factory wrapper for `google_certificate_manager_certificate`.\n\nCertificate Manager certificate — Google-managed (auto-renewed) or\nself-managed (user-uploaded PEM).\n\nThe managed path pairs with [GoogleCertificateManagerDnsAuthorization]\nvia [CertificateManagerCertificateManagedProvisioning.dnsAuthorizations].\nAttach issued certs to a load balancer either directly\n(`certificate_manager_certificates` on internal HTTPS proxies) or via a\n[GoogleCertificateManagerCertificateMap] + map entry on external HTTPS\nproxies.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: certificate ID.\n- [provisioning]: sealed [CertificateManagerCertificateProvisioningSource]\n  — exactly one of managed or self-managed.\n\nExample (managed + DNS authorization):\n```dart\nGoogleCertificateManagerCertificate(\n  localName: \'app_cert\',\n  name: TfArg.literal(\'app-cert\'),\n  provisioning: CertificateManagerCertificateManagedProvisioning(\n    domains: [\'app.example.com\'],\n    dnsAuthorizations: [TfArg.ref(dnsAuth.id)],\n  ),\n);\n```',
+        'Factory wrapper for `google_certificate_manager_certificate`.\n\nCertificate represents a HTTP-reachable backend for a Certificate.\n\nCertificate Manager certificate — Google-managed (auto-renewed) or\nself-managed (user-uploaded PEM).\n\nThe managed path pairs with [GoogleCertificateManagerDnsAuthorization]\nvia [CertificateManagerCertificateManagedProvisioning.dnsAuthorizations].\nAttach issued certs to a load balancer either directly\n(`certificate_manager_certificates` on internal HTTPS proxies) or via a\n[GoogleCertificateManagerCertificateMap] + map entry on external HTTPS\nproxies.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: certificate ID.\n- [provisioning]: sealed [CertificateManagerCertificateProvisioningSource]\n  — exactly one of managed or self-managed.\n\nExample (managed + DNS authorization):\n```dart\nGoogleCertificateManagerCertificate(\n  localName: \'app_cert\',\n  name: TfArg.literal(\'app-cert\'),\n  provisioning: CertificateManagerCertificateManagedProvisioning(\n    domains: [\'app.example.com\'],\n    dnsAuthorizations: [TfArg.ref(dnsAuth.id)],\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_certificate_manager_certificate_issuance_config',
@@ -842,7 +847,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_certificate_manager_certificate_issuance_config`.\n\nCertificate issuance policy for Google-managed Certificate Manager certs.\n\nBinds a [GoogleCertificateManagerCertificate] managed provisioning path to\na Certificate Authority Service pool and defines key algorithm, lifetime,\nand rotation window.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: issuance config ID.\n- [certificateAuthorityConfig]: CA pool reference (CAS `ca_pool` resource).\n- [keyAlgorithm]: `RSA_2048` or `ECDSA_P256`.\n- [lifetime]: certificate lifetime (e.g. `86400s`).\n- [rotationWindowPercentage]: percent of lifetime before rotation (0–100).\n\nExample:\n```dart\nGoogleCertificateManagerCertificateIssuanceConfig(\n  localName: \'app_issuance\',\n  name: TfArg.literal(\'app-issuance\'),\n  certificateAuthorityConfig:\n      CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(\n    certificateAuthorityServiceConfig:\n        CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig(\n      caPool: TfArg.literal(\n        \'projects/my-project/locations/us-central1/caPools/my-pool\',\n      ),\n    ),\n  ),\n  keyAlgorithm: TfArg.literal(\n    CertificateManagerCertificateIssuanceConfigKeyAlgorithm.rsa2048,\n  ),\n  lifetime: TfArg.literal(\'2592000s\'),\n  rotationWindowPercentage: TfArg.literal(50),\n);\n```',
+        'Factory wrapper for `google_certificate_manager_certificate_issuance_config`.\n\nCertificate represents a HTTP-reachable backend for a Certificate.\n\nCertificate issuance policy for Google-managed Certificate Manager certs.\n\nBinds a [GoogleCertificateManagerCertificate] managed provisioning path to\na Certificate Authority Service pool and defines key algorithm, lifetime,\nand rotation window.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: issuance config ID.\n- [certificateAuthorityConfig]: CA pool reference (CAS `ca_pool` resource).\n- [keyAlgorithm]: `RSA_2048` or `ECDSA_P256`.\n- [lifetime]: certificate lifetime (e.g. `86400s`).\n- [rotationWindowPercentage]: percent of lifetime before rotation (0–100).\n\nExample:\n```dart\nGoogleCertificateManagerCertificateIssuanceConfig(\n  localName: \'app_issuance\',\n  name: TfArg.literal(\'app-issuance\'),\n  certificateAuthorityConfig:\n      CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(\n    certificateAuthorityServiceConfig:\n        CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig(\n      caPool: TfArg.literal(\n        \'projects/my-project/locations/us-central1/caPools/my-pool\',\n      ),\n    ),\n  ),\n  keyAlgorithm: TfArg.literal(\n    CertificateManagerCertificateIssuanceConfigKeyAlgorithm.rsa2048,\n  ),\n  lifetime: TfArg.literal(\'2592000s\'),\n  rotationWindowPercentage: TfArg.literal(50),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_certificate_manager_certificate_map',
@@ -855,7 +860,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_certificate_manager_certificate_map`.\n\nCertificate map — a hostname → certificate routing table consumed by\nglobal external HTTPS load balancers via\n[GoogleComputeTargetHttpsProxy.certificateMap].\n\nPair with [GoogleCertificateManagerCertificateMapEntry] rows (one per\nhostname or matcher) and a [GoogleCertificateManagerCertificate] per\nentry.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: map ID (`[a-zA-Z][a-zA-Z0-9_-]*`).\n\nExample:\n```dart\nfinal certMap = GoogleCertificateManagerCertificateMap(\n  localName: \'app_map\',\n  name: TfArg.literal(\'app-cert-map\'),\n);\n```',
+        'Factory wrapper for `google_certificate_manager_certificate_map`.\n\nCertificateMap defines a collection of certificate configurations, which are\nusable by any associated target proxies\n\nCertificate map — a hostname → certificate routing table consumed by\nglobal external HTTPS load balancers via\n[GoogleComputeTargetHttpsProxy.certificateMap].\n\nPair with [GoogleCertificateManagerCertificateMapEntry] rows (one per\nhostname or matcher) and a [GoogleCertificateManagerCertificate] per\nentry.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: map ID (`[a-zA-Z][a-zA-Z0-9_-]*`).\n\nExample:\n```dart\nfinal certMap = GoogleCertificateManagerCertificateMap(\n  localName: \'app_map\',\n  name: TfArg.literal(\'app-cert-map\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_certificate_manager_certificate_map_entry',
@@ -869,15 +874,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'name',
       'map',
       'certificates',
-      'hostname',
-      'matcher',
+      'match',
       'description',
       'labels',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'CertificateManagerCertificateMapEntryMatch',
+      'CertificateManagerCertificateMapEntryHostname',
+      'CertificateManagerCertificateMapEntryMatcher',
+    ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_certificate_manager_certificate_map_entry`.\n\nOne hostname (or matcher) row inside a [GoogleCertificateManagerCertificateMap].\n\nBinds up to fifteen [GoogleCertificateManagerCertificate] resources to\na Server Name Indication (SNI) hostname or a predefined matcher.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: entry ID unique within the parent map.\n- [map]: full resource name of the parent map — pass\n  `TfArg.ref(certMap.id)`.\n- [certificates]: one or more certificate resource names — pass\n  `TfArg.literal([cert.id.interpolation])` or `TfArg.ref(cert.id)`.\n\nExample:\n```dart\nGoogleCertificateManagerCertificateMapEntry(\n  localName: \'app_entry\',\n  name: TfArg.literal(\'app-entry\'),\n  map: TfArg.ref(certMap.id),\n  hostname: TfArg.literal(\'app.example.com\'),\n  certificates: TfArg.literal([\n    \'\\\${google_certificate_manager_certificate.app_cert.id}\',\n  ]),\n);\n```',
+        'Factory wrapper for `google_certificate_manager_certificate_map_entry`.\n\nCertificateMapEntry is a list of certificate configurations, that have been\nissued for a particular hostname\n\nOne hostname (or matcher) row inside a [GoogleCertificateManagerCertificateMap].\n\nBinds up to fifteen [GoogleCertificateManagerCertificate] resources to\na Server Name Indication (SNI) hostname or a predefined matcher. The\nprovider requires **exactly one** of hostname / matcher, modeled here as\nthe sealed [CertificateManagerCertificateMapEntryMatch].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: entry ID unique within the parent map.\n- [map]: full resource name of the parent map — pass\n  `TfArg.ref(certMap.id)`.\n- [match]: the SNI hostname or predefined matcher this entry selects.\n- [certificates]: one or more certificate resource names — pass\n  `TfArg.literal([cert.id.interpolation])` or `TfArg.ref(cert.id)`.\n\nExample:\n```dart\nGoogleCertificateManagerCertificateMapEntry(\n  localName: \'app_entry\',\n  name: TfArg.literal(\'app-entry\'),\n  map: TfArg.ref(certMap.id),\n  match: CertificateManagerCertificateMapEntryMatch.hostname(\n    TfArg.literal(\'app.example.com\'),\n  ),\n  certificates: TfArg.literal([\n    \'\\\${google_certificate_manager_certificate.app_cert.id}\',\n  ]),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_certificate_manager_dns_authorization',
@@ -897,7 +905,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['CertificateManagerDnsAuthorizationType'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_certificate_manager_dns_authorization`.\n\nDNS authorization for a Google-managed Certificate Manager certificate.\n\nProves domain control via a DNS-01 challenge. After apply, read\n[dnsResourceRecord] and publish the returned CNAME/TXT at your DNS\nhost before the linked [GoogleCertificateManagerCertificate] can\nprovision.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: authorization ID (`[a-zA-Z][a-zA-Z0-9_-]*`).\n- [domain]: apex or wildcard domain (e.g. `app.example.com` or\n  `*.example.com`).\n\nExample:\n```dart\nfinal dnsAuth = GoogleCertificateManagerDnsAuthorization(\n  localName: \'app_dns\',\n  name: TfArg.literal(\'app-dns\'),\n  domain: TfArg.literal(\'app.example.com\'),\n);\n```',
+        'Factory wrapper for `google_certificate_manager_dns_authorization`.\n\nDnsAuthorization represents a HTTP-reachable backend for a DnsAuthorization.\n\nDNS authorization for a Google-managed Certificate Manager certificate.\n\nProves domain control via a DNS-01 challenge. After apply, read\n[dnsResourceRecord] and publish the returned CNAME/TXT at your DNS\nhost before the linked [GoogleCertificateManagerCertificate] can\nprovision.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: authorization ID (`[a-zA-Z][a-zA-Z0-9_-]*`).\n- [domain]: apex or wildcard domain (e.g. `app.example.com` or\n  `*.example.com`).\n\nExample:\n```dart\nfinal dnsAuth = GoogleCertificateManagerDnsAuthorization(\n  localName: \'app_dns\',\n  name: TfArg.literal(\'app-dns\'),\n  domain: TfArg.literal(\'app.example.com\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_certificate_manager_trust_config',
@@ -925,7 +933,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'trust_stores.trust_anchors.pem_certificate',
     ],
     docComment:
-        'Factory wrapper for `google_certificate_manager_trust_config`.\n\nTrust configuration for Certificate Manager mTLS and custom trust stores.\n\nDefines trust anchors / intermediate CAs and optional PEM allowlists used\nwhen validating client or server certificates (e.g. regional HTTPS proxies\nwith `trust_config`).\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: trust config ID (`[a-zA-Z][a-zA-Z0-9_-]*`).\n- [location]: regional location (e.g. `global` or `us-central1`).\n\nExample:\n```dart\nGoogleCertificateManagerTrustConfig(\n  localName: \'app_trust\',\n  name: TfArg.literal(\'app-trust\'),\n  location: TfArg.literal(\'global\'),\n  trustStores: [\n    CertificateManagerTrustConfigTrustStore(\n      trustAnchors: [\n        CertificateManagerTrustConfigTrustAnchor(\n          pemCertificate: TfArg.variable(\'cm_trust_anchor_pem\'),\n        ),\n      ],\n    ),\n  ],\n);\n```',
+        'Factory wrapper for `google_certificate_manager_trust_config`.\n\nTrustConfig represents a resource that represents your Public Key\nInfrastructure (PKI) configuration in Certificate Manager for use in mutual\nTLS authentication scenarios.\n\nTrust configuration for Certificate Manager mTLS and custom trust stores.\n\nDefines trust anchors / intermediate CAs and optional PEM allowlists used\nwhen validating client or server certificates (e.g. regional HTTPS proxies\nwith `trust_config`).\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: trust config ID (`[a-zA-Z][a-zA-Z0-9_-]*`).\n- [location]: regional location (e.g. `global` or `us-central1`).\n\nExample:\n```dart\nGoogleCertificateManagerTrustConfig(\n  localName: \'app_trust\',\n  name: TfArg.literal(\'app-trust\'),\n  location: TfArg.literal(\'global\'),\n  trustStores: [\n    CertificateManagerTrustConfigTrustStore(\n      trustAnchors: [\n        CertificateManagerTrustConfigTrustAnchor(\n          pemCertificate: TfArg.variable(\'cm_trust_anchor_pem\'),\n        ),\n      ],\n    ),\n  ],\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_cloud_run_v2_job',
@@ -1126,7 +1134,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'CloudRunV2WorkerPoolTemplate',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_cloud_run_v2_worker_pool`.',
+    docComment:
+        'Factory wrapper for `google_cloud_run_v2_worker_pool`.\n\nWorkerPool acts as a top-level container that manages a set of\nconfigurations and revision templates which implement a pull-based workload.\nWorkerPool exists to provide a singular abstraction which can be access\ncontrolled, reasoned about, and which encapsulates software lifecycle\ndecisions such as rollout policy and team resource ownership.',
   ),
   CatalogEntry(
     tfType: 'google_cloud_run_v2_worker_pool_iam_member',
@@ -1819,7 +1828,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_compute_global_network_endpoint`.',
+    docComment:
+        'Factory wrapper for `google_compute_global_network_endpoint`.\n\nA Global Network endpoint represents a IP address and port combination that\nexists outside of GCP. **NOTE**: Global network endpoints cannot be created\noutside of a global network endpoint group.',
   ),
   CatalogEntry(
     tfType: 'google_compute_global_network_endpoint_group',
@@ -2187,7 +2197,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_compute_network_endpoint`.\n\nRegisters an IP/port endpoint on a zonal [GoogleComputeNetworkEndpointGroup].\nUsed for hybrid / on-prem backends behind an L7 LB.\n\nExample:\n```dart\nGoogleComputeNetworkEndpoint(\n  localName: \'onprem_vm\',\n  networkEndpointGroup: TfArg.ref(neg.id),\n  ipAddress: TfArg.literal(\'10.0.0.5\'),\n  port: TfArg.literal(8080),\n  zone: TfArg.literal(\'asia-northeast1-a\'),\n);\n```',
+        'Factory wrapper for `google_compute_network_endpoint`.\n\nA Network endpoint represents a IP address and port combination that is part\nof a specific network endpoint group (NEG). NEGs are zonal collections of\nthese endpoints for GCP resources within a single subnet. **NOTE**: Network\nendpoints cannot be created outside of a network endpoint group.\n\n-> **NOTE** In case the Endpoint\'s Instance is recreated, it\'s needed to\nperform `apply` twice. To avoid situations like this, please use this\nresource with the lifecycle `replace_triggered_by` method, with the passed\nInstance\'s ID.\n\nRegisters an IP/port endpoint on a zonal [GoogleComputeNetworkEndpointGroup].\nUsed for hybrid / on-prem backends behind an L7 LB.\n\nExample:\n```dart\nGoogleComputeNetworkEndpoint(\n  localName: \'onprem_vm\',\n  networkEndpointGroup: TfArg.ref(neg.id),\n  ipAddress: TfArg.literal(\'10.0.0.5\'),\n  port: TfArg.literal(8080),\n  zone: TfArg.literal(\'asia-northeast1-a\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_compute_network_endpoint_group',
@@ -2442,7 +2452,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_compute_region_network_endpoint`.',
+    docComment:
+        'Factory wrapper for `google_compute_region_network_endpoint`.\n\nA Region network endpoint represents a IP address/FQDN and port combination\nthat is part of a specific network endpoint group (NEG).\n\n~> **NOTE**: Network endpoints cannot be created outside of a network\nendpoint group.',
   ),
   CatalogEntry(
     tfType: 'google_compute_region_network_endpoint_group',
@@ -2514,7 +2525,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ComputeRegionSecurityPolicyRegionSecurityPolicyUserDefinedField',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_compute_region_security_policy`.',
+    docComment:
+        'Factory wrapper for `google_compute_region_security_policy`.\n\nRepresents a Region Cloud Armor Security Policy resource.',
   ),
   CatalogEntry(
     tfType: 'google_compute_region_security_policy_rule',
@@ -2548,7 +2560,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_compute_region_security_policy_rule`.',
+        'Factory wrapper for `google_compute_region_security_policy_rule`.\n\nA rule for the RegionSecurityPolicy.',
   ),
   CatalogEntry(
     tfType: 'google_compute_region_ssl_certificate',
@@ -2568,7 +2580,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>['certificate', 'private_key'],
     docComment:
-        'Factory wrapper for `google_compute_region_ssl_certificate`.\n\nRegional self-managed SSL certificate for regional HTTPS load balancers.\nPair with [GoogleComputeRegionTargetHttpsProxy].\n\nExample:\n```dart\nGoogleComputeRegionSslCertificate(\n  localName: \'regional_cert\',\n  name: TfArg.literal(\'regional-cert\'),\n  certificate: TfArg.literal(pemCertificate),\n  privateKey: TfArg.literal(pemPrivateKey),\n  region: TfArg.literal(\'asia-northeast1\'),\n);\n```',
+        'Factory wrapper for `google_compute_region_ssl_certificate`.\n\nA RegionSslCertificate resource, used for HTTPS load balancing. This\nresource provides a mechanism to upload an SSL key and certificate to the\nload balancer to serve secure connections from the user.\n\nRegional self-managed SSL certificate for regional HTTPS load balancers.\nPair with [GoogleComputeRegionTargetHttpsProxy].\n\nExample:\n```dart\nGoogleComputeRegionSslCertificate(\n  localName: \'regional_cert\',\n  name: TfArg.literal(\'regional-cert\'),\n  certificate: TfArg.literal(pemCertificate),\n  privateKey: TfArg.literal(pemPrivateKey),\n  region: TfArg.literal(\'asia-northeast1\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_compute_region_ssl_policy',
@@ -2591,7 +2603,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'RegionSslPolicyMinTlsVersion',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_compute_region_ssl_policy`.',
+    docComment:
+        'Factory wrapper for `google_compute_region_ssl_policy`.\n\nRepresents a Regional SSL policy. SSL policies give you the ability to\ncontrol the features of SSL that your SSL proxy or HTTPS load balancer\nnegotiates.',
   ),
   CatalogEntry(
     tfType: 'google_compute_region_target_http_proxy',
@@ -2655,7 +2668,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>['RegionTargetTcpProxyProxyHeader'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_compute_region_target_tcp_proxy`.',
+    docComment:
+        'Factory wrapper for `google_compute_region_target_tcp_proxy`.\n\nRepresents a RegionTargetTcpProxy resource, which is used by one or more\nforwarding rules to route incoming TCP requests to a regional TCP proxy load\nbalancer.',
   ),
   CatalogEntry(
     tfType: 'google_compute_region_url_map',
@@ -2722,7 +2736,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>['ComputeRouterBgpAdvertiseMode', 'ComputeRouterBgp'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_compute_router`.',
+    docComment:
+        'Factory wrapper for `google_compute_router`.\n\nRepresents a Router resource.',
   ),
   CatalogEntry(
     tfType: 'google_compute_security_policy',
@@ -2802,7 +2817,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ComputeSecurityPolicyRulePreconfiguredWafExclusionMatch',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_compute_security_policy_rule`.',
+    docComment:
+        'Factory wrapper for `google_compute_security_policy_rule`.\n\nA rule for the SecurityPolicy.',
   ),
   CatalogEntry(
     tfType: 'google_compute_service_attachment',
@@ -2830,7 +2846,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>['ServiceAttachmentConnectionPreference'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_compute_service_attachment`.',
+    docComment:
+        'Factory wrapper for `google_compute_service_attachment`.\n\nRepresents a ServiceAttachment resource.',
   ),
   CatalogEntry(
     tfType: 'google_compute_ssl_certificate',
@@ -3004,7 +3021,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>['TargetSslProxyProxyHeader'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_compute_target_ssl_proxy`.',
+    docComment:
+        'Factory wrapper for `google_compute_target_ssl_proxy`.\n\nRepresents a TargetSslProxy resource, which is used by one or more global\nforwarding rule to route incoming SSL requests to a backend service.',
   ),
   CatalogEntry(
     tfType: 'google_compute_target_tcp_proxy',
@@ -3023,7 +3041,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>['TargetTcpProxyProxyHeader'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_compute_target_tcp_proxy`.',
+    docComment:
+        'Factory wrapper for `google_compute_target_tcp_proxy`.\n\nRepresents a TargetTcpProxy resource, which is used by one or more global\nforwarding rule to route incoming TCP requests to a Backend service.',
   ),
   CatalogEntry(
     tfType: 'google_compute_url_map',
@@ -3276,7 +3295,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'DnsPolicyAlternativeNameServerConfig',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_dns_policy`.',
+    docComment:
+        'Factory wrapper for `google_dns_policy`.\n\nA policy is a collection of DNS rules applied to one or more Virtual Private\nCloud resources.',
   ),
   CatalogEntry(
     tfType: 'google_dns_record_set',
@@ -3324,7 +3344,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_dns_response_policy`.',
+    docComment:
+        'Factory wrapper for `google_dns_response_policy`.\n\nA Response Policy is a collection of selectors that apply to queries made\nagainst one or more Virtual Private Cloud networks.',
   ),
   CatalogEntry(
     tfType: 'google_dns_response_policy_rule',
@@ -3346,7 +3367,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'DnsResponsePolicyRuleLocalData',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_dns_response_policy_rule`.',
+    docComment:
+        'Factory wrapper for `google_dns_response_policy_rule`.\n\nA Response Policy Rule is a selector that applies its behavior to queries\nthat match the selector. Selectors are DNS names, which may be wildcards or\nexact matches. Each DNS query subject to a Response Policy matches at most\none ResponsePolicyRule, as identified by the dns_name field with the longest\nmatching suffix.',
   ),
   CatalogEntry(
     tfType: 'google_eventarc_channel',
@@ -3365,7 +3387,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_eventarc_channel`.',
+    docComment:
+        'Factory wrapper for `google_eventarc_channel`.\n\nThe Eventarc Channel resource',
   ),
   CatalogEntry(
     tfType: 'google_eventarc_enrollment',
@@ -3387,7 +3410,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_eventarc_enrollment`.',
+    docComment:
+        'Factory wrapper for `google_eventarc_enrollment`.\n\nThe Eventarc Enrollment resource',
   ),
   CatalogEntry(
     tfType: 'google_eventarc_google_api_source',
@@ -3409,7 +3433,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_eventarc_google_api_source`.',
+    docComment:
+        'Factory wrapper for `google_eventarc_google_api_source`.\n\nThe Eventarc GoogleApiSource resource',
   ),
   CatalogEntry(
     tfType: 'google_eventarc_google_channel_config',
@@ -3426,7 +3451,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_eventarc_google_channel_config`.',
+    docComment:
+        'Factory wrapper for `google_eventarc_google_channel_config`.\n\nThe Eventarc GoogleChannelConfig resource',
   ),
   CatalogEntry(
     tfType: 'google_eventarc_message_bus',
@@ -3450,7 +3476,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'EventarcMessageBusLoggingConfig',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_eventarc_message_bus`.',
+    docComment:
+        'Factory wrapper for `google_eventarc_message_bus`.\n\nThe Eventarc MessageBus resource',
   ),
   CatalogEntry(
     tfType: 'google_eventarc_pipeline',
@@ -3475,7 +3502,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_eventarc_pipeline`.',
+    docComment:
+        'Factory wrapper for `google_eventarc_pipeline`.\n\nThe Eventarc Pipeline resource',
   ),
   CatalogEntry(
     tfType: 'google_eventarc_trigger',
@@ -3530,7 +3558,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_filestore_backup`.\n\nCloud Filestore backup — point-in-time copy of a file share.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: backup ID (unique within the instance).\n- [location]: region matching the source instance.\n- [sourceInstance]: full instance name — `TfArg.ref(instance.id)`.\n- [sourceFileShare]: export name from [GoogleFilestoreInstance].\n\nExample:\n```dart\nGoogleFilestoreBackup(\n  localName: \'share_backup\',\n  name: TfArg.literal(\'share-backup-1\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  sourceInstance: TfArg.ref(nfs.id),\n  sourceFileShare: TfArg.literal(\'share1\'),\n);\n```',
+        'Factory wrapper for `google_filestore_backup`.\n\nA Google Cloud Filestore backup.\n\nCloud Filestore backup — point-in-time copy of a file share.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: backup ID (unique within the instance).\n- [location]: region matching the source instance.\n- [sourceInstance]: full instance name — `TfArg.ref(instance.id)`.\n- [sourceFileShare]: export name from [GoogleFilestoreInstance].\n\nExample:\n```dart\nGoogleFilestoreBackup(\n  localName: \'share_backup\',\n  name: TfArg.literal(\'share-backup-1\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  sourceInstance: TfArg.ref(nfs.id),\n  sourceFileShare: TfArg.literal(\'share1\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_filestore_instance',
@@ -3562,7 +3590,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_filestore_instance`.\n\nCloud Filestore instance — managed NFS file shares on a VPC.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: instance ID.\n- [tier]: service tier ([FilestoreInstanceTier]).\n- [fileShares]: NFS export (name + capacity in GiB).\n- [networks]: VPC attachment ([FilestoreInstanceNetwork]).\n\nEnable `file.googleapis.com` via [GoogleProjectService] before apply.\n\nExample (basic HDD on an existing VPC):\n```dart\nGoogleFilestoreInstance(\n  localName: \'nfs\',\n  name: TfArg.literal(\'shared-nfs\'),\n  tier: TfArg.literal(FilestoreInstanceTier.basicHdd),\n  location: TfArg.literal(\'asia-northeast1\'),\n  fileShares: FilestoreInstanceFileShare(\n    name: TfArg.literal(\'share1\'),\n    capacityGb: TfArg.literal(1024),\n  ),\n  networks: FilestoreInstanceNetwork(\n    network: TfArg.ref(vpc.id),\n    modes: const [FilestoreInstanceNetworkMode.modeIpv4],\n  ),\n);\n```',
+        'Factory wrapper for `google_filestore_instance`.\n\nA Google Cloud Filestore instance.\n\nCloud Filestore instance — managed NFS file shares on a VPC.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: instance ID.\n- [tier]: service tier ([FilestoreInstanceTier]).\n- [fileShares]: NFS export (name + capacity in GiB).\n- [networks]: VPC attachment ([FilestoreInstanceNetwork]).\n\nEnable `file.googleapis.com` via [GoogleProjectService] before apply.\n\nExample (basic HDD on an existing VPC):\n```dart\nGoogleFilestoreInstance(\n  localName: \'nfs\',\n  name: TfArg.literal(\'shared-nfs\'),\n  tier: TfArg.literal(FilestoreInstanceTier.basicHdd),\n  location: TfArg.literal(\'asia-northeast1\'),\n  fileShares: FilestoreInstanceFileShare(\n    name: TfArg.literal(\'share1\'),\n    capacityGb: TfArg.literal(1024),\n  ),\n  networks: FilestoreInstanceNetwork(\n    network: TfArg.ref(vpc.id),\n    modes: const [FilestoreInstanceNetworkMode.modeIpv4],\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_filestore_snapshot',
@@ -3581,7 +3609,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_filestore_snapshot`.\n\nCloud Filestore snapshot — lightweight share snapshot.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: snapshot ID (unique within the instance).\n- [location]: region matching the source instance.\n- [instance]: parent instance — `TfArg.ref(nfs.id)`.\n\nExample:\n```dart\nGoogleFilestoreSnapshot(\n  localName: \'share_snap\',\n  name: TfArg.literal(\'share-snap-1\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  instance: TfArg.ref(nfs.id),\n);\n```',
+        'Factory wrapper for `google_filestore_snapshot`.\n\nA Google Cloud Filestore snapshot.\n\nCloud Filestore snapshot — lightweight share snapshot.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: snapshot ID (unique within the instance).\n- [location]: region matching the source instance.\n- [instance]: parent instance — `TfArg.ref(nfs.id)`.\n\nExample:\n```dart\nGoogleFilestoreSnapshot(\n  localName: \'share_snap\',\n  name: TfArg.literal(\'share-snap-1\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  instance: TfArg.ref(nfs.id),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_firebase_app_check_app_attest_config',
@@ -3684,7 +3712,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>['site_secret'],
     docComment:
-        'Factory wrapper for `google_firebase_app_check_recaptcha_v3_config`.',
+        'Factory wrapper for `google_firebase_app_check_recaptcha_v3_config`.\n\nAn app\'s reCAPTCHA V3 configuration object.',
   ),
   CatalogEntry(
     tfType: 'google_firebase_app_check_resource_policy',
@@ -4216,7 +4244,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_gke_hub_fleet`.\n\nRegisters the **default GKE Hub fleet** for a project. Every project has\nat most one fleet; this resource creates it when absent.\n\nPair with [GoogleGkeHubMembership] to enroll a [GoogleContainerCluster]\nin fleet management (config sync, multi-cluster services, etc.).\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_gke_hub_fleet.`).\n\nOptional:\n- `displayName`: human-readable fleet label in the GCP console.\n- `project`: defaults to the provider\'s `project` when omitted.\n\nExample:\n```dart\nfinal fleet = GoogleGkeHubFleet(\n  localName: \'default\',\n  displayName: TfArg.literal(\'Production fleet\'),\n  defaultClusterConfig: GkeHubFleetDefaultClusterConfig(\n    securityPostureConfig: GkeHubFleetSecurityPostureConfig(\n      mode: GkeHubFleetSecurityPostureMode.basic,\n    ),\n  ),\n);\n```',
+        'Factory wrapper for `google_gke_hub_fleet`.\n\nFleet contains information about a group of clusters.\n\nRegisters the **default GKE Hub fleet** for a project. Every project has\nat most one fleet; this resource creates it when absent.\n\nPair with [GoogleGkeHubMembership] to enroll a [GoogleContainerCluster]\nin fleet management (config sync, multi-cluster services, etc.).\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_gke_hub_fleet.`).\n\nOptional:\n- `displayName`: human-readable fleet label in the GCP console.\n- `project`: defaults to the provider\'s `project` when omitted.\n\nExample:\n```dart\nfinal fleet = GoogleGkeHubFleet(\n  localName: \'default\',\n  displayName: TfArg.literal(\'Production fleet\'),\n  defaultClusterConfig: GkeHubFleetDefaultClusterConfig(\n    securityPostureConfig: GkeHubFleetSecurityPostureConfig(\n      mode: GkeHubFleetSecurityPostureMode.basic,\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_gke_hub_membership',
@@ -4385,7 +4413,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['KmsCryptoKeyVersionState'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_kms_crypto_key_version`.\n\nManages a [GoogleKmsCryptoKey] version (rotation / destroy lifecycle).\nPass `cryptoKey` as the parent key id path or `TfArg.ref(key.id)`.\n\nExample:\n```dart\nGoogleKmsCryptoKeyVersion(\n  localName: \'v1\',\n  cryptoKey: TfArg.ref(ringKey.id),\n);\n```',
+        'Factory wrapper for `google_kms_crypto_key_version`.\n\nA `CryptoKeyVersion` represents an individual cryptographic key, and the\nassociated key material.\n\nDestroying a cryptoKeyVersion will not delete the resource from the project.\n\nManages a [GoogleKmsCryptoKey] version (rotation / destroy lifecycle).\nPass `cryptoKey` as the parent key id path or `TfArg.ref(key.id)`.\n\nExample:\n```dart\nGoogleKmsCryptoKeyVersion(\n  localName: \'v1\',\n  cryptoKey: TfArg.ref(ringKey.id),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_kms_key_ring',
@@ -4459,7 +4487,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['LoggingLinkedDatasetBigqueryDataset'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_logging_linked_dataset`.\n\nLinks a log bucket to a BigQuery dataset for Log Analytics. Pair with\n[GoogleLoggingProjectBucketConfig] and [GoogleBigqueryDataset].\n\nExample:\n```dart\nGoogleLoggingLinkedDataset(\n  localName: \'audit_analytics\',\n  bucket: TfArg.ref(auditBucket.bucketIdRef),\n  linkId: TfArg.literal(\'audit-analytics\'),\n  bigqueryDataset: LoggingLinkedDatasetBigqueryDataset(\n    datasetId: TfArg.ref(dataset.datasetIdRef),\n  ),\n);\n```',
+        'Factory wrapper for `google_logging_linked_dataset`.\n\nDescribes a BigQuery linked dataset\n\nLinks a log bucket to a BigQuery dataset for Log Analytics. Pair with\n[GoogleLoggingProjectBucketConfig] and [GoogleBigqueryDataset].\n\nExample:\n```dart\nGoogleLoggingLinkedDataset(\n  localName: \'audit_analytics\',\n  bucket: TfArg.ref(auditBucket.bucketIdRef),\n  linkId: TfArg.literal(\'audit-analytics\'),\n  bigqueryDataset: LoggingLinkedDatasetBigqueryDataset(\n    datasetId: TfArg.ref(dataset.datasetIdRef),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_logging_log_scope',
@@ -4478,7 +4506,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_logging_log_scope`.\n\nProject log scope limiting which resources a linked analytics dataset\ncan query.\n\nExample:\n```dart\nGoogleLoggingLogScope(\n  localName: \'audit_scope\',\n  name: TfArg.literal(\'audit-scope\'),\n  resourceNames: TfArg.literal([\n    \'projects/my-proj/locations/global/buckets/audit-logs\',\n  ]),\n);\n```',
+        'Factory wrapper for `google_logging_log_scope`.\n\nDescribes a group of resources to read log entries from\n\nProject log scope limiting which resources a linked analytics dataset\ncan query.\n\nExample:\n```dart\nGoogleLoggingLogScope(\n  localName: \'audit_scope\',\n  name: TfArg.literal(\'audit-scope\'),\n  resourceNames: TfArg.literal([\n    \'projects/my-proj/locations/global/buckets/audit-logs\',\n  ]),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_logging_log_view',
@@ -4498,7 +4526,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_logging_log_view`.\n\nA filtered view into a log bucket. Pass `bucket` as the bucket id\n(same value as [GoogleLoggingProjectBucketConfig.bucketId]) and wire\nIAM via [GoogleLoggingLogViewIamMember].\n\nExample:\n```dart\nfinal auditView = GoogleLoggingLogView(\n  localName: \'audit_view\',\n  bucket: TfArg.ref(auditBucket.bucketIdRef),\n  name: TfArg.literal(\'audit-only\'),\n  filter: TfArg.literal(\'logName:"cloudaudit.googleapis.com"\'),\n);\n```',
+        'Factory wrapper for `google_logging_log_view`.\n\nDescribes a view over log entries in a bucket.\n\nA filtered view into a log bucket. Pass `bucket` as the bucket id\n(same value as [GoogleLoggingProjectBucketConfig.bucketId]) and wire\nIAM via [GoogleLoggingLogViewIamMember].\n\nExample:\n```dart\nfinal auditView = GoogleLoggingLogView(\n  localName: \'audit_view\',\n  bucket: TfArg.ref(auditBucket.bucketIdRef),\n  name: TfArg.literal(\'audit-only\'),\n  filter: TfArg.literal(\'logName:"cloudaudit.googleapis.com"\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_logging_log_view_iam_member',
@@ -4672,7 +4700,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_logging_saved_query`.\n\nSaved Logging query (Logs Explorer or Ops Analytics). Provide exactly\none of [loggingQuery] or [opsAnalyticsQuery] — Terraform validates at\napply time.\n\nExample:\n```dart\nGoogleLoggingSavedQuery(\n  localName: \'audit_errors\',\n  name: TfArg.literal(\'audit-errors\'),\n  displayName: TfArg.literal(\'Audit errors (7d)\'),\n  parent: TfArg.literal(\'projects/my-proj/locations/global\'),\n  location: TfArg.literal(\'global\'),\n  visibility: TfArg.literal(LoggingSavedQueryVisibility.privateVisibility),\n  loggingQuery: LoggingSavedQueryLoggingQuery(\n    filter: TfArg.literal(\n      \'logName:"cloudaudit.googleapis.com" AND severity>=ERROR\',\n    ),\n  ),\n);\n```',
+        'Factory wrapper for `google_logging_saved_query`.\n\nDescribes a query that has been saved by a user.\n\nSaved Logging query (Logs Explorer or Ops Analytics). Provide exactly\none of [loggingQuery] or [opsAnalyticsQuery] — Terraform validates at\napply time.\n\nExample:\n```dart\nGoogleLoggingSavedQuery(\n  localName: \'audit_errors\',\n  name: TfArg.literal(\'audit-errors\'),\n  displayName: TfArg.literal(\'Audit errors (7d)\'),\n  parent: TfArg.literal(\'projects/my-proj/locations/global\'),\n  location: TfArg.literal(\'global\'),\n  visibility: TfArg.literal(LoggingSavedQueryVisibility.private),\n  loggingQuery: LoggingSavedQueryLoggingQuery(\n    filter: TfArg.literal(\n      \'logName:"cloudaudit.googleapis.com" AND severity>=ERROR\',\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_memcache_instance',
@@ -4702,7 +4730,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_memcache_instance`.\n\nMemorystore for Memcached instance — managed Memcached for session caches.\n\nPair with [GoogleVpcAccessConnector] or GCE/GKE on the same VPC via\n[authorizedNetwork].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: instance ID.\n- [nodeCount]: number of Memcached nodes.\n\nEnable `memcache.googleapis.com` via [GoogleProjectService] or\n[Apis.enable] before apply.\n\nExample:\n```dart\nGoogleMemcacheInstance(\n  localName: \'sessions\',\n  name: TfArg.literal(\'api-sessions\'),\n  nodeCount: TfArg.literal(1),\n  nodeConfig: MemcacheInstanceNodeConfig(\n    cpuCount: TfArg.literal(1),\n    memorySizeMb: TfArg.literal(1024),\n  ),\n  region: TfArg.literal(\'asia-northeast1\'),\n  authorizedNetwork: TfArg.literal(\'default\'),\n);\n```',
+        'Factory wrapper for `google_memcache_instance`.\n\nA Google Cloud Memcache instance.\n\nMemorystore for Memcached instance — managed Memcached for session caches.\n\nPair with [GoogleVpcAccessConnector] or GCE/GKE on the same VPC via\n[authorizedNetwork].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: instance ID.\n- [nodeCount]: number of Memcached nodes.\n\nEnable `memcache.googleapis.com` via [GoogleProjectService] or\n[Apis.enable] before apply.\n\nExample:\n```dart\nGoogleMemcacheInstance(\n  localName: \'sessions\',\n  name: TfArg.literal(\'api-sessions\'),\n  nodeCount: TfArg.literal(1),\n  nodeConfig: MemcacheInstanceNodeConfig(\n    cpuCount: TfArg.literal(1),\n    memorySizeMb: TfArg.literal(1024),\n  ),\n  region: TfArg.literal(\'asia-northeast1\'),\n  authorizedNetwork: TfArg.literal(\'default\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_monitoring_alert_policy',
@@ -4773,7 +4801,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_monitoring_custom_service`.\n\nLightweight custom Monitoring service (distinct from\n[GoogleMonitoringService] which models typed `basic_service` variants).\n\nExample:\n```dart\nGoogleMonitoringCustomService(\n  localName: \'checkout_api\',\n  serviceId: TfArg.literal(\'checkout-api\'),\n  displayName: TfArg.literal(\'Checkout API\'),\n);\n```',
+        'Factory wrapper for `google_monitoring_custom_service`.\n\nA Service is a discrete, autonomous, and network-accessible unit, designed\nto solve an individual concern. In Cloud Monitoring, a Service acts as the\nroot resource under which operational aspects of the service are accessible\n\nLightweight custom Monitoring service (distinct from\n[GoogleMonitoringService] which models typed `basic_service` variants).\n\nExample:\n```dart\nGoogleMonitoringCustomService(\n  localName: \'checkout_api\',\n  serviceId: TfArg.literal(\'checkout-api\'),\n  displayName: TfArg.literal(\'Checkout API\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_monitoring_dashboard',
@@ -4804,7 +4832,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_monitoring_group`.\n\nA dynamic monitored-resource group used as an uptime-check or alert\ntarget. Pair with [GoogleMonitoringUptimeCheckConfig.resourceGroup].\n\nExample:\n```dart\nfinal urls = GoogleMonitoringGroup(\n  localName: \'public_urls\',\n  displayName: TfArg.literal(\'Public URLs\'),\n  filter: TfArg.literal(\'resource.type="uptime_url"\'),\n);\n```',
+        'Factory wrapper for `google_monitoring_group`.\n\nThe description of a dynamic collection of monitored resources. Each group\nhas a filter that is matched against monitored resources and their\nassociated metadata. If a group\'s filter matches an available monitored\nresource, then that resource is a member of that group.\n\nA dynamic monitored-resource group used as an uptime-check or alert\ntarget. Pair with [GoogleMonitoringUptimeCheckConfig.resourceGroup].\n\nExample:\n```dart\nfinal urls = GoogleMonitoringGroup(\n  localName: \'public_urls\',\n  displayName: TfArg.literal(\'Public URLs\'),\n  filter: TfArg.literal(\'resource.type="uptime_url"\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_monitoring_metric_descriptor',
@@ -4847,7 +4875,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_monitoring_monitored_project`.\n\nAdds a project to a metrics scope (multi-project observability).\nFor the default scope created with a project, `metrics_scope` is\n`locations/global/metricsScopes/{scopeId}`.\n\nExample:\n```dart\nGoogleMonitoringMonitoredProject(\n  localName: \'child_project\',\n  metricsScope: TfArg.literal(\n    \'locations/global/metricsScopes/my-metrics-scope\',\n  ),\n  name: TfArg.literal(\'my-child-project-id\'),\n);\n```',
+        'Factory wrapper for `google_monitoring_monitored_project`.\n\nA [project being\nmonitored](https://cloud.google.com/monitoring/settings/multiple-projects#create-multi)\nby a Metrics Scope.\n\nAdds a project to a metrics scope (multi-project observability).\nFor the default scope created with a project, `metrics_scope` is\n`locations/global/metricsScopes/{scopeId}`.\n\nExample:\n```dart\nGoogleMonitoringMonitoredProject(\n  localName: \'child_project\',\n  metricsScope: TfArg.literal(\n    \'locations/global/metricsScopes/my-metrics-scope\',\n  ),\n  name: TfArg.literal(\'my-child-project-id\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_monitoring_notification_channel',
@@ -4929,7 +4957,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_monitoring_slo`.\n\nService-level objective on a [GoogleMonitoringService]. Provide exactly\none [sli] variant (`basic_sli`, `request_based_sli`, or\n`windows_based_sli`).\n\nExample (availability basic SLI):\n```dart\nGoogleMonitoringSlo(\n  localName: \'api_availability\',\n  service: TfArg.ref(apiService.nameRef),\n  goal: TfArg.literal(0.99),\n  displayName: TfArg.literal(\'API availability\'),\n  rollingPeriodDays: TfArg.literal(30),\n  sli: MonitoringSloBasicSli(\n    availability: MonitoringSloBasicSliAvailability(\n      enabled: TfArg.literal(true),\n    ),\n  ),\n);\n```',
+        'Factory wrapper for `google_monitoring_slo`.\n\nA Service-Level Objective (SLO) describes the level of desired good service.\nIt consists of a service-level indicator (SLI), a performance goal, and a\nperiod over which the objective is to be evaluated against that goal. The\nSLO can use SLIs defined in a number of different manners. Typical SLOs\nmight include "99% of requests in each rolling week have latency below 200\nmilliseconds" or "99.5% of requests in each calendar month return\nsuccessfully."\n\nService-level objective on a [GoogleMonitoringService]. Provide exactly\none [sli] variant (`basic_sli`, `request_based_sli`, or\n`windows_based_sli`).\n\nExample (availability basic SLI):\n```dart\nGoogleMonitoringSlo(\n  localName: \'api_availability\',\n  service: TfArg.ref(apiService.nameRef),\n  goal: TfArg.literal(0.99),\n  displayName: TfArg.literal(\'API availability\'),\n  rollingPeriodDays: TfArg.literal(30),\n  sli: MonitoringSloBasicSli(\n    availability: MonitoringSloBasicSliAvailability(\n      enabled: TfArg.literal(true),\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_monitoring_uptime_check_config',
@@ -5002,7 +5030,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_privateca_ca_pool`.\n\nCertificate Authority Service (CAS) CA pool — container for one or more\ncertificate authorities used by [GoogleCertificateManagerCertificateIssuanceConfig].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: pool ID.\n- [location]: regional location (e.g. `us-central1`).\n- [tier]: `ENTERPRISE` or `DEVOPS`.\n\nEnable `privateca.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nfinal pool = GooglePrivatecaCaPool(\n  localName: \'app_pool\',\n  name: TfArg.literal(\'app-pool\'),\n  location: TfArg.literal(\'us-central1\'),\n  tier: TfArg.literal(PrivatecaCaPoolTier.devops),\n);\n\nGoogleCertificateManagerCertificateIssuanceConfig(\n  localName: \'issuance\',\n  name: TfArg.literal(\'app-issuance\'),\n  certificateAuthorityConfig:\n      CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(\n    certificateAuthorityServiceConfig:\n        CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig(\n      caPool: TfArg.ref(pool.id),\n    ),\n  ),\n  keyAlgorithm: TfArg.literal(\n    CertificateManagerCertificateIssuanceConfigKeyAlgorithm.rsa2048,\n  ),\n  lifetime: TfArg.literal(\'2592000s\'),\n  rotationWindowPercentage: TfArg.literal(50),\n);\n```',
+        'Factory wrapper for `google_privateca_ca_pool`.\n\nA CaPool represents a group of CertificateAuthorities that form a trust\nanchor. A CaPool can be used to manage issuance policies for one or more\nCertificateAuthority resources and to rotate CA certificates in and out of\nthe trust anchor.\n\nCertificate Authority Service (CAS) CA pool — container for one or more\ncertificate authorities used by [GoogleCertificateManagerCertificateIssuanceConfig].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: pool ID.\n- [location]: regional location (e.g. `us-central1`).\n- [tier]: `ENTERPRISE` or `DEVOPS`.\n\nEnable `privateca.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nfinal pool = GooglePrivatecaCaPool(\n  localName: \'app_pool\',\n  name: TfArg.literal(\'app-pool\'),\n  location: TfArg.literal(\'us-central1\'),\n  tier: TfArg.literal(PrivatecaCaPoolTier.devops),\n);\n\nGoogleCertificateManagerCertificateIssuanceConfig(\n  localName: \'issuance\',\n  name: TfArg.literal(\'app-issuance\'),\n  certificateAuthorityConfig:\n      CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(\n    certificateAuthorityServiceConfig:\n        CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig(\n      caPool: TfArg.ref(pool.id),\n    ),\n  ),\n  keyAlgorithm: TfArg.literal(\n    CertificateManagerCertificateIssuanceConfigKeyAlgorithm.rsa2048,\n  ),\n  lifetime: TfArg.literal(\'2592000s\'),\n  rotationWindowPercentage: TfArg.literal(50),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_privateca_ca_pool_iam_member',
@@ -5055,7 +5083,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_privateca_certificate`.\n\nCertificate Authority Service (CAS) issued X.509 certificate.\n\nIssues a cert from a [GooglePrivatecaCertificateAuthority] inside a\n[GooglePrivatecaCaPool]. The parent CA pool must be **ENTERPRISE** tier\nat apply time (see provider docs).\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: certificate ID within the pool.\n- [pool]: CAS pool — `TfArg.ref(pool.id)` from [GooglePrivatecaCaPool].\n- [location]: regional location (match the pool).\n\nIssue via CSR (`pem_csr`) or inline `config` (subject + public key).\n\nExample (CSR-based issuance from a root CA):\n```dart\nGooglePrivatecaCertificate(\n  localName: \'leaf_cert\',\n  name: TfArg.literal(\'app-leaf-cert\'),\n  pool: TfArg.ref(caPool.id),\n  location: TfArg.literal(\'us-central1\'),\n  certificateAuthority: TfArg.literal(\'app-root-ca\'),\n  lifetime: TfArg.literal(\'86400s\'),\n  pemCsr: TfArg.variable(\'leaf_cert_csr_pem\'),\n);\n```',
+        'Factory wrapper for `google_privateca_certificate`.\n\nA Certificate corresponds to a signed X.509 certificate issued by a\nCertificate.\n\n~> **Note:** The Certificate Authority that is referenced by this resource\n**must** be `tier = "ENTERPRISE"`\n\nCertificate Authority Service (CAS) issued X.509 certificate.\n\nIssues a cert from a [GooglePrivatecaCertificateAuthority] inside a\n[GooglePrivatecaCaPool]. The parent CA pool must be **ENTERPRISE** tier\nat apply time (see provider docs).\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: certificate ID within the pool.\n- [pool]: CAS pool — `TfArg.ref(pool.id)` from [GooglePrivatecaCaPool].\n- [location]: regional location (match the pool).\n\nIssue via CSR (`pem_csr`) or inline `config` (subject + public key).\n\nExample (CSR-based issuance from a root CA):\n```dart\nGooglePrivatecaCertificate(\n  localName: \'leaf_cert\',\n  name: TfArg.literal(\'app-leaf-cert\'),\n  pool: TfArg.ref(caPool.id),\n  location: TfArg.literal(\'us-central1\'),\n  certificateAuthority: TfArg.literal(\'app-root-ca\'),\n  lifetime: TfArg.literal(\'86400s\'),\n  pemCsr: TfArg.variable(\'leaf_cert_csr_pem\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_privateca_certificate_authority',
@@ -5093,7 +5121,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_privateca_certificate_authority`.\n\nCertificate Authority Service (CAS) certificate authority — issues\ncerts inside a [GooglePrivatecaCaPool] for [GoogleCertificateManagerCertificateIssuanceConfig].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [certificateAuthorityId]: short CA ID within the pool.\n- [pool]: full CAS pool ID — `TfArg.ref(pool.id)` from [GooglePrivatecaCaPool].\n- [location]: regional location (match the pool).\n- [config]: subject + X.509 profile ([PrivatecaCertificateAuthorityConfig]).\n- [keySpec]: managed key algorithm ([PrivatecaCertificateAuthorityKeySpec]).\n\nExample (self-signed root in a DEVOPS pool):\n```dart\nGooglePrivatecaCertificateAuthority(\n  localName: \'app_ca\',\n  certificateAuthorityId: TfArg.literal(\'app-root-ca\'),\n  pool: TfArg.ref(caPool.id),\n  location: TfArg.literal(\'us-central1\'),\n  config: PrivatecaCertificateAuthorityConfig(\n    subjectConfig: PrivatecaCertificateAuthoritySubjectConfig(\n      subject: PrivatecaCertificateAuthoritySubject(\n        commonName: TfArg.literal(\'app.example.com\'),\n      ),\n    ),\n    x509Config: PrivatecaCertificateAuthorityX509Config.rootCa(),\n  ),\n  keySpec: PrivatecaCertificateAuthorityKeySpec(\n    algorithm: TfArg.literal(\n      PrivatecaCertificateAuthorityKeyAlgorithm.rsaPkcs14096Sha256,\n    ),\n  ),\n);\n```',
+        'Factory wrapper for `google_privateca_certificate_authority`.\n\nA CertificateAuthority represents an individual Certificate Authority. A\nCertificateAuthority can be used to create Certificates.\n\nCertificate Authority Service (CAS) certificate authority — issues\ncerts inside a [GooglePrivatecaCaPool] for [GoogleCertificateManagerCertificateIssuanceConfig].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [certificateAuthorityId]: short CA ID within the pool.\n- [pool]: full CAS pool ID — `TfArg.ref(pool.id)` from [GooglePrivatecaCaPool].\n- [location]: regional location (match the pool).\n- [config]: subject + X.509 profile ([PrivatecaCertificateAuthorityConfig]).\n- [keySpec]: managed key algorithm ([PrivatecaCertificateAuthorityKeySpec]).\n\nExample (self-signed root in a DEVOPS pool):\n```dart\nGooglePrivatecaCertificateAuthority(\n  localName: \'app_ca\',\n  certificateAuthorityId: TfArg.literal(\'app-root-ca\'),\n  pool: TfArg.ref(caPool.id),\n  location: TfArg.literal(\'us-central1\'),\n  config: PrivatecaCertificateAuthorityConfig(\n    subjectConfig: PrivatecaCertificateAuthoritySubjectConfig(\n      subject: PrivatecaCertificateAuthoritySubject(\n        commonName: TfArg.literal(\'app.example.com\'),\n      ),\n    ),\n    x509Config: PrivatecaCertificateAuthorityX509Config.rootCa(),\n  ),\n  keySpec: PrivatecaCertificateAuthorityKeySpec(\n    algorithm: TfArg.literal(\n      PrivatecaCertificateAuthorityKeyAlgorithm.rsaPkcs14096Sha256,\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_privateca_certificate_template',
@@ -5116,7 +5144,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_privateca_certificate_template`.\n\nCertificate Authority Service (CAS) certificate template — reusable X.509\nprofile constraints for [GooglePrivatecaCertificate] issuance.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: template ID.\n- [location]: regional location (match the target CA pool).\n- [identityConstraints]: subject / SAN passthrough policy + CEL guard.\n\nExample (permissive template for a DEVOPS/ENTERPRISE pool):\n```dart\nGooglePrivatecaCertificateTemplate(\n  localName: \'leaf_template\',\n  name: TfArg.literal(\'app-leaf-template\'),\n  location: TfArg.literal(\'us-central1\'),\n  identityConstraints: PrivatecaCertificateTemplateIdentityConstraints(\n    allowSubjectAltNamesPassthrough: TfArg.literal(true),\n    allowSubjectPassthrough: TfArg.literal(true),\n    celExpression: PrivatecaCertificateTemplateCelExpression(\n      expression: TfArg.literal(\'true\'),\n      title: TfArg.literal(\'allow-all\'),\n      location: TfArg.literal(\'any.file.anywhere\'),\n      description: TfArg.literal(\'Always true\'),\n    ),\n  ),\n);\n```',
+        'Factory wrapper for `google_privateca_certificate_template`.\n\nCertificate Authority Service provides reusable and parameterized templates\nthat you can use for common certificate issuance scenarios. A certificate\ntemplate represents a relatively static and well-defined certificate\nissuance schema within an organization. A certificate template can\nessentially become a full-fledged vertical certificate issuance framework.\n\nCertificate Authority Service (CAS) certificate template — reusable X.509\nprofile constraints for [GooglePrivatecaCertificate] issuance.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: template ID.\n- [location]: regional location (match the target CA pool).\n- [identityConstraints]: subject / SAN passthrough policy + CEL guard.\n\nExample (permissive template for a DEVOPS/ENTERPRISE pool):\n```dart\nGooglePrivatecaCertificateTemplate(\n  localName: \'leaf_template\',\n  name: TfArg.literal(\'app-leaf-template\'),\n  location: TfArg.literal(\'us-central1\'),\n  identityConstraints: PrivatecaCertificateTemplateIdentityConstraints(\n    allowSubjectAltNamesPassthrough: TfArg.literal(true),\n    allowSubjectPassthrough: TfArg.literal(true),\n    celExpression: PrivatecaCertificateTemplateCelExpression(\n      expression: TfArg.literal(\'true\'),\n      title: TfArg.literal(\'allow-all\'),\n      location: TfArg.literal(\'any.file.anywhere\'),\n      description: TfArg.literal(\'Always true\'),\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_project',
@@ -5545,7 +5573,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['SpannerDatabaseDialect'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_spanner_database`.\n\nCloud Spanner database inside a [GoogleSpannerInstance].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [instance]: parent instance — `TfArg.ref(spanner.id)` or name.\n- [name]: database ID.\n\nExample:\n```dart\nGoogleSpannerDatabase(\n  localName: \'main\',\n  instance: TfArg.ref(spanner.nameRef),\n  name: TfArg.literal(\'main\'),\n  versionRetentionPeriod: TfArg.literal(\'86400s\'),\n);\n```',
+        'Factory wrapper for `google_spanner_database`.\n\nA Cloud Spanner Database which is hosted on a Spanner instance.\n\nCloud Spanner database inside a [GoogleSpannerInstance].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [instance]: parent instance — `TfArg.ref(spanner.id)` or name.\n- [name]: database ID.\n\nExample:\n```dart\nGoogleSpannerDatabase(\n  localName: \'main\',\n  instance: TfArg.ref(spanner.nameRef),\n  name: TfArg.literal(\'main\'),\n  versionRetentionPeriod: TfArg.literal(\'86400s\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_spanner_instance',
@@ -5565,7 +5593,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['SpannerInstanceEdition'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_spanner_instance`.\n\nCloud Spanner instance — horizontally scalable relational database.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [config]: instance configuration name (e.g. `regional-asia-northeast1`).\n- [displayName]: user-visible label.\n\nSet exactly one of [numNodes] or [processingUnits] for capacity.\n\nEnable `spanner.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleSpannerInstance(\n  localName: \'app\',\n  config: TfArg.literal(\'regional-asia-northeast1\'),\n  displayName: TfArg.literal(\'App Spanner\'),\n  numNodes: TfArg.literal(1),\n);\n```',
+        'Factory wrapper for `google_spanner_instance`.\n\nAn isolated set of Cloud Spanner resources on which databases can be hosted.\n\nCloud Spanner instance — horizontally scalable relational database.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [config]: instance configuration name (e.g. `regional-asia-northeast1`).\n- [displayName]: user-visible label.\n\nSet exactly one of [numNodes] or [processingUnits] for capacity.\n\nEnable `spanner.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleSpannerInstance(\n  localName: \'app\',\n  config: TfArg.literal(\'regional-asia-northeast1\'),\n  displayName: TfArg.literal(\'App Spanner\'),\n  numNodes: TfArg.literal(1),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_sql_database',
@@ -5663,7 +5691,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>['password'],
     docComment:
-        'Factory wrapper for `google_sql_source_representation_instance`.',
+        'Factory wrapper for `google_sql_source_representation_instance`.\n\nA source representation instance is a Cloud SQL instance that represents the\nsource database server to the Cloud SQL replica. It is visible in the Cloud\nConsole and appears the same as a regular Cloud SQL instance, but it\ncontains no data, requires no configuration or maintenance, and does not\naffect billing. You cannot update the source representation instance.',
   ),
   CatalogEntry(
     tfType: 'google_sql_ssl_cert',
@@ -5835,7 +5863,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['StorageHmacKeyState'],
     sensitiveFields: <String>['secret'],
     docComment:
-        'Factory wrapper for `google_storage_hmac_key`.\n\nHMAC key for S3-compatible interop access to GCS. Bind to a service\naccount email; the secret is available only at create time via the\n`secret` output attribute.\n\nExample:\n```dart\nGoogleStorageHmacKey(\n  localName: \'backup_hmac\',\n  serviceAccountEmail: TfArg.ref(sa.emailRef),\n);\n```',
+        'Factory wrapper for `google_storage_hmac_key`.\n\nThe hmacKeys resource represents an HMAC key within Cloud Storage. The\nresource consists of a secret and HMAC key metadata. HMAC keys can be used\nas credentials for service accounts.\n\nHMAC key for S3-compatible interop access to GCS. Bind to a service\naccount email; the secret is available only at create time via the\n`secret` output attribute.\n\nExample:\n```dart\nGoogleStorageHmacKey(\n  localName: \'backup_hmac\',\n  serviceAccountEmail: TfArg.ref(sa.emailRef),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_storage_managed_folder',
@@ -5846,7 +5874,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     constructorParams: <String>['localName', 'bucket', 'forceDestroy', 'name'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_storage_managed_folder`.',
+    docComment:
+        'Factory wrapper for `google_storage_managed_folder`.\n\nA Google Cloud Storage Managed Folder.\n\nYou can apply Identity and Access Management (IAM) policies to managed\nfolders to grant principals access only to the objects within the managed\nfolder, which lets you more finely control access for specific data sets and\ntables within a bucket. You can nest managed folders up to 15 levels deep,\nincluding the parent managed folder.\n\nManaged folders can only be created in buckets that have uniform\nbucket-level access enabled.',
   ),
   CatalogEntry(
     tfType: 'google_storage_notification',
@@ -5894,6 +5923,6 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['VpcAccessConnectorSubnet'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_vpc_access_connector`.\n\nServerless VPC Access connector — a managed proxy that lets Cloud Run,\nCloud Functions, and App Engine reach resources on a VPC (private IPs,\nMemorystore, Cloud SQL private IP, etc.) without public endpoints.\n\nTwo placement modes (mutually exclusive at the provider level):\n\n1. **Dedicated CIDR** — set [ipCidrRange] (a `/28` RFC 4632 range) and\n   [network] (VPC name or self_link). GCP creates a connector subnet.\n2. **Existing subnet** — set [subnet] ([VpcAccessConnectorSubnet]) with\n   the relative subnet name (and optional host [projectId] for Shared VPC).\n\nDownstream serverless resources reference the connector\'s [selfLink]\n(full `projects/.../locations/.../connectors/...` path). For example,\n[GoogleCloudRunV2Service] accepts it on\n`template.vpcAccess.connector` via [CloudRunV2ServiceVpcAccess].\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_vpc_access_connector.`).\n- [name]: connector ID (max 25 characters).\n\nExample (CIDR mode — see also `cloud_run_quickstart`):\n```dart\nfinal connector = GoogleVpcAccessConnector(\n  localName: \'run_vpc\',\n  name: TfArg.literal(\'run-vpc\'),\n  region: TfArg.literal(\'asia-northeast1\'),\n  ipCidrRange: TfArg.literal(\'10.8.0.0/28\'),\n  network: TfArg.literal(\'default\'),\n);\n```',
+        'Factory wrapper for `google_vpc_access_connector`.\n\nServerless VPC Access connector resource.\n\nServerless VPC Access connector — a managed proxy that lets Cloud Run,\nCloud Functions, and App Engine reach resources on a VPC (private IPs,\nMemorystore, Cloud SQL private IP, etc.) without public endpoints.\n\nTwo placement modes (mutually exclusive at the provider level):\n\n1. **Dedicated CIDR** — set [ipCidrRange] (a `/28` RFC 4632 range) and\n   [network] (VPC name or self_link). GCP creates a connector subnet.\n2. **Existing subnet** — set [subnet] ([VpcAccessConnectorSubnet]) with\n   the relative subnet name (and optional host [projectId] for Shared VPC).\n\nDownstream serverless resources reference the connector\'s [selfLink]\n(full `projects/.../locations/.../connectors/...` path). For example,\n[GoogleCloudRunV2Service] accepts it on\n`template.vpcAccess.connector` via [CloudRunV2ServiceVpcAccess].\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_vpc_access_connector.`).\n- [name]: connector ID (max 25 characters).\n\nExample (CIDR mode — see also `cloud_run_quickstart`):\n```dart\nfinal connector = GoogleVpcAccessConnector(\n  localName: \'run_vpc\',\n  name: TfArg.literal(\'run-vpc\'),\n  region: TfArg.literal(\'asia-northeast1\'),\n  ipCidrRange: TfArg.literal(\'10.8.0.0/28\'),\n  network: TfArg.literal(\'default\'),\n);\n```',
   ),
 ];

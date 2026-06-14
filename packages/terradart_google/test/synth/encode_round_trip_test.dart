@@ -364,6 +364,13 @@ final Map<String, Object Function()> _syntheticInstances = {
           '-----BEGIN PRIVATE KEY-----\nMOCK\n-----END PRIVATE KEY-----',
         ),
       ),
+  // --- CertificateManagerCertificateMapEntryMatch (2) — cert map entry -----
+  'CertificateManagerCertificateMapEntryHostname': () =>
+      CertificateManagerCertificateMapEntryHostname(
+        TfArg.literal('app.example.com'),
+      ),
+  'CertificateManagerCertificateMapEntryMatcher': () =>
+      CertificateManagerCertificateMapEntryMatcher(TfArg.literal('PRIMARY')),
 };
 
 void main() {

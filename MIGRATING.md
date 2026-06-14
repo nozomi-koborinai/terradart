@@ -54,6 +54,34 @@ prefix before the first `_`, e.g. `time_sleep` → `time`). Previously Terraform
 silently fell back to an unpinned implied provider. Fix: add the missing
 provider (e.g. `const TimeProvider()`).
 
+### `GoogleCertificateManagerCertificateMapEntry` — sealed `match`
+
+The provider requires exactly one of `hostname` / `matcher`; both optional
+params are replaced by one required sealed `match`:
+
+```dart
+// Before
+GoogleCertificateManagerCertificateMapEntry(
+  // ...
+  hostname: TfArg.literal('app.example.com'),
+);
+
+// After
+GoogleCertificateManagerCertificateMapEntry(
+  // ...
+  match: CertificateManagerCertificateMapEntryMatch.hostname(
+    TfArg.literal('app.example.com'),
+  ),
+);
+// or .matcher(TfArg.literal('PRIMARY'))
+```
+
+### `LoggingSavedQueryVisibility.privateVisibility` → `.private`
+
+The enum is now derived from Magic Modules; the value's Dart name matches the
+upstream constant directly. Rename `LoggingSavedQueryVisibility.privateVisibility`
+to `LoggingSavedQueryVisibility.private` (`.shared` is unchanged).
+
 ## 0.12.11 → 0.12.12
 
 **Breaking changes** in `terradart_google` — several curated factories now enforce

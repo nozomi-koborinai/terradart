@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleBigqueryBiReservationSensitive = <String>{};
 
 /// Factory wrapper for `google_bigquery_bi_reservation`.
+///
+/// Represents a BI Reservation.
 final class GoogleBigqueryBiReservation extends Resource {
   static const String tfType = 'google_bigquery_bi_reservation';
 

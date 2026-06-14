@@ -7,6 +7,9 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDnsResponsePolicySensitive = <String>{};
 
 /// Factory wrapper for `google_dns_response_policy`.
+///
+/// A Response Policy is a collection of selectors that apply to queries made
+/// against one or more Virtual Private Cloud networks.
 final class GoogleDnsResponsePolicy extends Resource {
   static const String tfType = 'google_dns_response_policy';
 

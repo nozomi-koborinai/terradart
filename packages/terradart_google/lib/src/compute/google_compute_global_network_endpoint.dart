@@ -7,6 +7,10 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleComputeGlobalNetworkEndpointSensitive = <String>{};
 
 /// Factory wrapper for `google_compute_global_network_endpoint`.
+///
+/// A Global Network endpoint represents a IP address and port combination that
+/// exists outside of GCP. **NOTE**: Global network endpoints cannot be created
+/// outside of a global network endpoint group.
 final class GoogleComputeGlobalNetworkEndpoint extends Resource {
   static const String tfType = 'google_compute_global_network_endpoint';
 

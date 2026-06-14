@@ -49,6 +49,12 @@ final class PrivatecaCertificateTemplateIdentityConstraints {
 
 /// Factory wrapper for `google_privateca_certificate_template`.
 ///
+/// Certificate Authority Service provides reusable and parameterized templates
+/// that you can use for common certificate issuance scenarios. A certificate
+/// template represents a relatively static and well-defined certificate
+/// issuance schema within an organization. A certificate template can
+/// essentially become a full-fledged vertical certificate issuance framework.
+///
 /// Certificate Authority Service (CAS) certificate template — reusable X.509
 /// profile constraints for [GooglePrivatecaCertificate] issuance.
 ///

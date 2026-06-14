@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleEventarcChannelSensitive = <String>{};
 
 /// Factory wrapper for `google_eventarc_channel`.
+///
+/// The Eventarc Channel resource
 final class GoogleEventarcChannel extends Resource {
   static const String tfType = 'google_eventarc_channel';
 

@@ -19,7 +19,11 @@ export 'src/certificate_manager/google_certificate_manager_certificate_issuance_
         CertificateManagerCertificateIssuanceConfigKeyAlgorithm,
         GoogleCertificateManagerCertificateIssuanceConfig;
 export 'src/certificate_manager/google_certificate_manager_certificate_map_entry.dart'
-    show GoogleCertificateManagerCertificateMapEntry;
+    show
+        CertificateManagerCertificateMapEntryHostname,
+        CertificateManagerCertificateMapEntryMatch,
+        CertificateManagerCertificateMapEntryMatcher,
+        GoogleCertificateManagerCertificateMapEntry;
 export 'src/certificate_manager/google_certificate_manager_dns_authorization.dart'
     show
         CertificateManagerDnsAuthorizationType,

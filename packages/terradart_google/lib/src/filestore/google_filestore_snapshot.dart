@@ -8,6 +8,8 @@ const Set<String> _googleFilestoreSnapshotSensitive = <String>{};
 
 /// Factory wrapper for `google_filestore_snapshot`.
 ///
+/// A Google Cloud Filestore snapshot.
+///
 /// Cloud Filestore snapshot — lightweight share snapshot.
 ///
 /// Required identity:

@@ -16,6 +16,8 @@ enum BigqueryAnalyticsHubListingDiscoveryType implements TerraformEnum {
 }
 
 /// Factory wrapper for `google_bigquery_analytics_hub_listing`.
+///
+/// A Bigquery Analytics Hub data exchange listing
 final class GoogleBigqueryAnalyticsHubListing extends Resource {
   static const String tfType = 'google_bigquery_analytics_hub_listing';
 

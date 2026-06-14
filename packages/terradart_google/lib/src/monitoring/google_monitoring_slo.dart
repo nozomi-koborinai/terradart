@@ -119,6 +119,14 @@ final class MonitoringSloWindowsBasedSli extends MonitoringSloSli {
 
 /// Factory wrapper for `google_monitoring_slo`.
 ///
+/// A Service-Level Objective (SLO) describes the level of desired good service.
+/// It consists of a service-level indicator (SLI), a performance goal, and a
+/// period over which the objective is to be evaluated against that goal. The
+/// SLO can use SLIs defined in a number of different manners. Typical SLOs
+/// might include "99% of requests in each rolling week have latency below 200
+/// milliseconds" or "99.5% of requests in each calendar month return
+/// successfully."
+///
 /// Service-level objective on a [GoogleMonitoringService]. Provide exactly
 /// one [sli] variant (`basic_sli`, `request_based_sli`, or
 /// `windows_based_sli`).

@@ -91,6 +91,8 @@ final class CertificateManagerCertificateSelfManagedProvisioning
 
 /// Factory wrapper for `google_certificate_manager_certificate`.
 ///
+/// Certificate represents a HTTP-reachable backend for a Certificate.
+///
 /// Certificate Manager certificate — Google-managed (auto-renewed) or
 /// self-managed (user-uploaded PEM).
 ///

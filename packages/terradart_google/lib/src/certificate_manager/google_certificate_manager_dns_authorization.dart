@@ -20,6 +20,8 @@ enum CertificateManagerDnsAuthorizationType implements TerraformEnum {
 
 /// Factory wrapper for `google_certificate_manager_dns_authorization`.
 ///
+/// DnsAuthorization represents a HTTP-reachable backend for a DnsAuthorization.
+///
 /// DNS authorization for a Google-managed Certificate Manager certificate.
 ///
 /// Proves domain control via a DNS-01 challenge. After apply, read

@@ -130,6 +130,8 @@ class ComputeSecurityPolicyRulePreconfiguredWafExclusionMatch {
 }
 
 /// Factory wrapper for `google_compute_security_policy_rule`.
+///
+/// A rule for the SecurityPolicy.
 final class GoogleComputeSecurityPolicyRule extends Resource {
   static const String tfType = 'google_compute_security_policy_rule';
 

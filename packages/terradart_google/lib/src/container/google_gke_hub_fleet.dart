@@ -82,6 +82,8 @@ class GkeHubFleetDefaultClusterConfig {
 
 /// Factory wrapper for `google_gke_hub_fleet`.
 ///
+/// Fleet contains information about a group of clusters.
+///
 /// Registers the **default GKE Hub fleet** for a project. Every project has
 /// at most one fleet; this resource creates it when absent.
 ///
