@@ -63,19 +63,56 @@ select_examples() {
 }
 
 # Collect into an array without `mapfile` (absent on macOS bash 3.2).
-EXAMPLES=()
+SELECTED=()
 while IFS= read -r _slug; do
-  [[ -n "$_slug" ]] && EXAMPLES+=("$_slug")
+  [[ -n "$_slug" ]] && SELECTED+=("$_slug")
 done < <(select_examples)
 
-# --- dry-run: print selection and stop ------------------------------------
+# --- skip-list -------------------------------------------------------------
+# Examples that can't `terraform apply` against terradart-validate (org-only
+# resources, external secrets/certs, Firebase registration, source artifacts)
+# are recorded in tool/apply_smoke_skip.yaml. Honor it in apply modes (--all
+# and the PR change-gate) but NOT for an explicit `--example` (override) or
+# `--destroy-only` (the janitor must reclaim any leftover state).
+SKIP_FILE="tool/apply_smoke_skip.yaml"
+is_skipped() {
+  [[ -f "$SKIP_FILE" ]] || return 1
+  grep -qE "^$1:[[:space:]]" "$SKIP_FILE"
+}
+skip_reason() { grep -E "^$1:[[:space:]]" "$SKIP_FILE" | head -1 | sed -E 's/^[^:]+:[[:space:]]*//'; }
+
+HONOR_SKIP=1
+[[ "$DESTROY_ONLY" == "1" || "$MODE" == "example" ]] && HONOR_SKIP=0
+
+EXAMPLES=()
+SKIPPED=()
+# bash 3.2 + `set -u`: expanding "${arr[@]}" on an empty array errors, so guard
+# every array iteration with a length check.
+if [[ ${#SELECTED[@]} -gt 0 ]]; then
+  for _slug in "${SELECTED[@]}"; do
+    if [[ "$HONOR_SKIP" == "1" ]] && is_skipped "$_slug"; then
+      SKIPPED+=("$_slug")
+    else
+      EXAMPLES+=("$_slug")
+    fi
+  done
+fi
+
+# --- dry-run: print the apply set (post-skip) and stop --------------------
 if [[ "$DRY_RUN" == "1" ]]; then
   [[ ${#EXAMPLES[@]} -gt 0 ]] && printf '%s\n' "${EXAMPLES[@]}"
+  if [[ ${#SKIPPED[@]} -gt 0 ]]; then
+    for _s in "${SKIPPED[@]}"; do echo "skip $_s ($(skip_reason "$_s"))" >&2; done
+  fi
   exit 0
 fi
 
+if [[ ${#SKIPPED[@]} -gt 0 ]]; then
+  for _s in "${SKIPPED[@]}"; do echo ">> skip $_s ($(skip_reason "$_s"))"; done
+fi
+
 if [[ ${#EXAMPLES[@]} -eq 0 ]]; then
-  echo "apply_smoke.sh: no examples selected — skip"
+  echo "apply_smoke.sh: no examples to apply — skip"
   exit 0
 fi
 
