@@ -184,6 +184,7 @@ Inputs: a checked-in or task-provided `schema.json` (plus Magic Modules YAML whe
 7. **Export the full public surface from the per-service barrel.** `lib/<service>.dart` must `show` every public type the generated wrapper declares — the catalog advertises all of them to MCP agents (enforced by the barrel-completeness group in `per_service_barrel_test`).
 8. **Wire API enablement in examples through `Apis.enable`** (`package:terradart_google/project.dart`; the propagation `TimeSleep` needs `const TimeProvider()` from `package:terradart_google/time.dart` on the stack). Synth fails fast when any resource's provider is missing from `Stack.providers`.
 9. **Test:** targeted tests first, then `tool/agent_verify.sh` (add `--maintainer` when touching wrap-init / wrap-promote).
+10. **For real-apply coverage, add the `apply-smoke` label to the PR** when it adds or changes a curated resource or an example. The label runs `apply-smoke.yml`, which applies the changed examples to `terradart-validate` and blocks merge on failure. Every example is also applied nightly by `apply-smoke-nightly.yml` (`tool/apply_smoke.sh --all`), which opens a dedup'd issue on failure — so a resource that only `validate`s but cannot `apply` is caught within a day even without the label. `terraform validate` (synth gate) does **not** prove a resource applies.
 
 ### Handle Provider Schema Or MM YAML Drift
 
@@ -220,6 +221,8 @@ There is no long-running dev server for core work. Primary flows:
 |------|---------------------|
 | Agent gate (lint, tests, wrap check, smoke) | `tool/agent_verify.sh` |
 | Suspected mislabeled `upstream: null` | `dart tool/check_mm_upstream_fingerprint.dart` |
+| Apply-smoke selection (no GCP) | `tool/apply_smoke.sh --all --dry-run` |
+| Apply one example for real | `GCP_PROJECT_ID=terradart-validate tool/apply_smoke.sh --example <slug>` |
 | Example coverage + API-enablement ratchet | `dart tool/check_docs_consistency.dart` (runs the synth gate) |
 | Publish readiness (per package) | `cd packages/<pkg> && dart pub publish --dry-run` |
 | Synth example stack | `cd examples/pubsub_quickstart && GCP_PROJECT_ID=ci-test-project-id dart run bin/infra.dart` |
