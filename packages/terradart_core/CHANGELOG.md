@@ -1,24 +1,14 @@
 # Changelog
 
-## Unreleased
+## 0.13.0 - 2026-06-14
+
+Lockstep release. **Breaking** — see [MIGRATING.md](../../MIGRATING.md).
 
 ### Breaking
 
-- `TimeProvider` / `TimeSleep` moved to `terradart_google` (`package:terradart_google/time.dart`) — core is provider-neutral again. See [MIGRATING.md](../../MIGRATING.md).
-- Removed the unimplemented provider-aliasing surface: `StackProvider.providerAlias`, `ProviderBinding`, and `Resource.provider`. None of it ever reached the synthesized JSON; aliasing returns as an end-to-end feature when multi-provider stacks land.
-- `Stack.synth()` validates provider coverage: every registered resource / data source type prefix (segment before the first `_`) must match a registered provider's `providerName`, otherwise synth throws `StateError`. Previously Terraform silently fell back to an unpinned implied provider.
-
-## 0.12.20
-
-### Added
-
-- `TimeSleep.id` — typed ref to the completed-wait timestamp, matching the curated-wrapper getter convention.
-
-### Fixed
-
-- `TimeSleep` docs: removed a dartdoc reference to a symbol outside this package; duration guidance now points at `TfArg.duration`, and `triggers` semantics are documented.
-
-Lockstep version bump for `terradart_google` v0.12.20 (Wave 33 AlloyDB).
+- `TimeProvider` / `TimeSleep` moved to `terradart_google` (`package:terradart_google/time.dart`) — core is provider-neutral again.
+- Removed the unimplemented provider-aliasing surface: `StackProvider.providerAlias`, `ProviderBinding`, and `Resource.provider`. None of it ever reached the synthesized JSON; aliasing returns when multi-provider stacks land.
+- `Stack.synth()` validates provider coverage: a registered resource / data source whose type prefix (segment before the first `_`) has no matching provider `providerName` now throws `StateError` instead of silently falling back to an unpinned implied provider.
 
 ## 0.12.19
 
