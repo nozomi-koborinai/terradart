@@ -18,15 +18,26 @@ library;
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/firebase_data_connect.dart';
+import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/time.dart';
 
 final class DataConnectStack extends Stack {
   DataConnectStack({required String projectId})
       : super(
           providers: [
             GoogleProvider(project: projectId, region: 'us-central1'),
+            const TimeProvider(),
           ],
         ) {
+    // Enable the Firebase Data Connect API and wait for propagation before
+    // the service applies.
+    final apiDeps = Apis.enable(
+      this,
+      barrels: [Barrels.firebaseDataConnect],
+      propagationDelay: const Duration(seconds: 60),
+    );
+
     // Top-level Data Connect service container.
     // The service_id becomes the final segment of the full resource name and
     // is referenced by downstream schema / connector resources. It is NOT
@@ -41,6 +52,7 @@ final class DataConnectStack extends Stack {
         // schemas or connectors still exist. Omit (or use DEFAULT) in
         // production to guard against accidental teardown.
         deletionPolicy: TfArg.literal(DataConnectDeletionPolicy.force),
+        dependsOn: apiDeps,
       ),
     );
   }

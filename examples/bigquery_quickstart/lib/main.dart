@@ -28,6 +28,16 @@ final class AnalyticsStack extends Stack {
             GoogleProvider(project: projectId, region: 'asia-northeast1'),
           ],
         ) {
+    // The dataset's legacy ACL (below) grants a real in-stack identity, so
+    // `terraform apply` validates the principal exists. Declared ahead of the
+    // dataset so the access entry can reference the SA's email.
+    final reader = GoogleServiceAccount(
+      localName: 'analytics_reader',
+      accountId: TfArg.literal('analytics-reader'),
+      displayName: TfArg.literal('Analytics dataset reader'),
+    );
+    add(reader);
+
     final dataset = GoogleBigqueryDataset(
       localName: 'analytics',
       datasetId: TfArg.literal('analytics_prod'),
@@ -38,8 +48,10 @@ final class AnalyticsStack extends Stack {
       defaultTableExpirationMs: TfArg.literal(30 * 24 * 60 * 60 * 1000),
       storageBillingModel: TfArg.literal(DatasetStorageBillingModel.logical),
       access: [
+        // UserByEmail variant pointed at the in-stack reader SA — a real
+        // identity once applied, not a placeholder address.
         BigqueryDatasetAccessUserByEmail(
-          userByEmail: TfArg.literal('data-eng@example.com'),
+          userByEmail: TfArg.ref(reader.email),
           role: TfArg.literal('OWNER'),
         ),
         BigqueryDatasetAccessSpecialGroup(
@@ -69,16 +81,8 @@ final class AnalyticsStack extends Stack {
 
     // ---- IAM: dataset-scoped reader ---------------------------------------
     //
-    // Wave 5 Batch 3 -- the standard "analytics consumer" pattern: a SA
-    // that needs to query the whole dataset gets `dataViewer` at the
-    // dataset scope.
-
-    final reader = GoogleServiceAccount(
-      localName: 'analytics_reader',
-      accountId: TfArg.literal('analytics-reader'),
-      displayName: TfArg.literal('Analytics dataset reader'),
-    );
-    add(reader);
+    // Wave 5 Batch 3 -- the standard "analytics consumer" pattern: the
+    // `reader` SA (declared above) gets `dataViewer` at the dataset scope.
 
     add(
       GoogleBigqueryDatasetIamMember(
@@ -135,7 +139,8 @@ final class AnalyticsStack extends Stack {
               BigqueryDatapolicyDataPolicyPredefinedExpression.emailMask,
         ),
         policyTag: TfArg.literal(
-            'projects/$projectId/locations/asia-northeast1/taxonomies/1/policyTags/1'),
+          'projects/$projectId/locations/asia-northeast1/taxonomies/1/policyTags/1',
+        ),
       ),
     );
 

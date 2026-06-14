@@ -4,13 +4,11 @@
 /// - a VPC network (`gnd-vpc`) the private zone attaches to,
 /// - a private DNS managed zone (`internal.corp.`) scoped to the VPC via
 ///   `PrivateVisibilityConfig(networks: [PrivateVisibilityNetwork(...)])`,
-/// - DNSSEC enabled via typed enums (`DnssecState.on`,
-///   `DnssecKeyAlgorithm.rsasha256`, `DnssecKeyType.keySigning`),
 ///
-/// demonstrating the 10 nested-block helper classes from
-/// `google_dns_managed_zone` and the 6 schema-faithful enums
-/// (visibility / DNSSEC state / DNSSEC non-existence / DNSSEC algorithm /
-/// DNSSEC key-type / forwarding-path).
+/// demonstrating the nested-block helper classes from
+/// `google_dns_managed_zone` and the schema-faithful enums
+/// (visibility / forwarding-path). DNSSEC is a public-zone-only feature and
+/// is therefore not configured on this private zone.
 ///
 /// Wave 5 Batch 4 adds a `roles/dns.admin` binding on the zone for a
 /// per-zone admin SA -- the standard delegated-DNS pattern where a team
@@ -51,22 +49,10 @@ final class InternalDnsStack extends Stack {
           ),
         ],
       ),
-      dnssecConfig: DnsManagedZoneDnssecConfig(
-        state: DnssecState.on,
-        nonExistence: DnssecNonExistence.nsec3,
-        defaultKeySpecs: [
-          DnsManagedZoneDnssecKeySpec(
-            algorithm: DnssecKeyAlgorithm.rsasha256,
-            keyType: DnssecKeyType.keySigning,
-            keyLength: TfArg.literal(2048),
-          ),
-          DnsManagedZoneDnssecKeySpec(
-            algorithm: DnssecKeyAlgorithm.rsasha256,
-            keyType: DnssecKeyType.zoneSigning,
-            keyLength: TfArg.literal(1024),
-          ),
-        ],
-      ),
+      // NOTE: DNSSEC is a public-internet chain-of-trust feature and is only
+      // valid on PUBLIC managed zones; a PRIVATE zone rejects `dnssec_config`
+      // at apply time ("Private zones do not support DNSSEC"). This zone is
+      // private (visibility above), so no `dnssecConfig` block is set.
     );
     add(internalZone);
 
@@ -116,7 +102,7 @@ final class InternalDnsStack extends Stack {
 
     // ---- Wave 24: response policy + override rule ---------------------------
 
-    add(
+    final overrides = add(
       GoogleDnsResponsePolicy(
         localName: 'internal_overrides',
         responsePolicyName: TfArg.literal('internal-overrides'),
@@ -129,7 +115,14 @@ final class InternalDnsStack extends Stack {
     add(
       GoogleDnsResponsePolicyRule(
         localName: 'legacy_fallback',
+        // `response_policy` takes the policy's `response_policy_name` value.
+        // The wrapper exposes no `response_policy_name` attribute ref, so the
+        // literal (matching the policy above) supplies the value and the
+        // explicit `dependsOn` guarantees the policy is created first
+        // (otherwise apply fails: the rule references a policy that doesn't
+        // exist yet).
         responsePolicy: TfArg.literal('internal-overrides'),
+        dependsOn: [ResourceDependency(overrides)],
         ruleName: TfArg.literal('legacy-fallback'),
         dnsName: TfArg.literal('legacy.internal.corp.'),
         localData: DnsResponsePolicyRuleLocalData(

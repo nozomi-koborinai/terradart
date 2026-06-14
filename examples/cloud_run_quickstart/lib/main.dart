@@ -87,6 +87,8 @@ final class ApiServiceStack extends Stack {
       region: TfArg.literal('asia-northeast1'),
       ipCidrRange: TfArg.literal('10.8.0.0/28'),
       network: TfArg.literal('default'),
+      minInstances: TfArg.literal(2),
+      maxInstances: TfArg.literal(3),
       dependsOn: apiDeps,
     );
     add(runConnector);
@@ -113,7 +115,11 @@ final class ApiServiceStack extends Stack {
           memorySizeMb: TfArg.literal(1024),
         ),
         region: TfArg.literal('asia-northeast1'),
-        authorizedNetwork: TfArg.literal('default'),
+        // Memcache requires the full network path
+        // (projects/<project>/global/networks/<network>); a short name like
+        // 'default' fails apply with "Invalid format for authorized network".
+        authorizedNetwork:
+            TfArg.literal('projects/$projectId/global/networks/default'),
         dependsOn: apiDeps,
       ),
     );
