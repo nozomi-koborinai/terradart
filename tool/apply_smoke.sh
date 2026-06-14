@@ -5,13 +5,20 @@
 #   (default)         apply the examples changed vs GITHUB_BASE_SHA/origin/main
 #   --all             apply every examples/*_quickstart (nightly sweep)
 #   --example <slug>  apply exactly one
+#   --destroy-only    skip apply; just destroy each selected example's state
+#                     (janitor reclaim — relies on the GCS backend below)
 #   --dry-run         print the selected slugs and exit (no terraform, no GCP)
 #
+# State backend:
+#   Each example uses a GCS backend (gs://$TF_STATE_BUCKET/apply-smoke/<slug>)
+#   so state PERSISTS across runs. A failed apply or a killed runner leaves
+#   reclaimable state, and `--destroy-only` (the janitor) can always tear it
+#   down. TF_STATE_BUCKET defaults to terradart-validate-tfstate.
+#
 # Behaviour:
-#   - Each example: synth -> terraform init -> apply -> destroy. destroy ALWAYS
-#     runs (trap), even when apply fails, so a failed run still tears down.
+#   - apply mode: synth -> init -> apply, with destroy on ANY exit (trap).
 #   - --all keeps going past a failing example and exits non-zero at the end
-#     with a summary; default/--example fail fast (small changed set).
+#     with a summary; default/--example fail fast.
 #
 # Requires (non-dry-run): terraform on PATH, WIF auth (CI) or ADC, and
 # GCP_PROJECT_ID or GCP_VALIDATE_PROJECT_ID.
@@ -23,13 +30,15 @@ cd "$ROOT"
 MODE="changed"
 EXPLICIT_EXAMPLE=""
 DRY_RUN=0
+DESTROY_ONLY=0
 while [[ $# -gt 0 ]]; do
   case "$1" in
     --all) MODE="all"; shift ;;
     --example) MODE="example"; EXPLICIT_EXAMPLE="$2"; shift 2 ;;
     --dry-run) DRY_RUN=1; shift ;;
+    --destroy-only) DESTROY_ONLY=1; shift ;;
     -h | --help)
-      sed -n '2,16p' "$0"
+      sed -n '2,24p' "$0"
       exit 0
       ;;
     *)
@@ -38,6 +47,8 @@ while [[ $# -gt 0 ]]; do
       ;;
   esac
 done
+
+STATE_BUCKET="${TF_STATE_BUCKET:-terradart-validate-tfstate}"
 
 # --- select examples -------------------------------------------------------
 select_examples() {
@@ -78,7 +89,7 @@ export DB_PASSWORD="${DB_PASSWORD:-apply-smoke-placeholder}"
 
 dart pub get
 
-# --- apply one example, ALWAYS destroying afterwards ----------------------
+# --- apply (or destroy-only) one example, with a GCS-backed state ----------
 apply_one() {
   local slug="$1"
   local dir="examples/$slug"
@@ -91,17 +102,27 @@ apply_one() {
     dart pub get
     dart run bin/infra.dart
     cd tf-out
-    terraform init -backend=false -input=false
-    # From here on, destroy on ANY exit (apply success or failure).
-    trap 'terraform destroy -auto-approve -input=false >/dev/null 2>&1 || true' EXIT
-    terraform apply -auto-approve -input=false
+    # Persist state in GCS so destroy can always reclaim (across runs / janitor).
+    printf '{"terraform":{"backend":{"gcs":{"bucket":"%s","prefix":"apply-smoke/%s"}}}}\n' \
+      "$STATE_BUCKET" "$slug" > backend.tf.json
+    terraform init -input=false -reconfigure
+    if [[ "$DESTROY_ONLY" == "1" ]]; then
+      terraform destroy -auto-approve -input=false
+    else
+      # destroy on ANY exit after apply starts (apply success or failure).
+      trap 'terraform destroy -auto-approve -input=false >/dev/null 2>&1 || true' EXIT
+      terraform apply -auto-approve -input=false
+    fi
   )
 }
+
+VERB="apply-smoke"
+[[ "$DESTROY_ONLY" == "1" ]] && VERB="destroy-only"
 
 FAILED=()
 for slug in "${EXAMPLES[@]}"; do
   [[ -n "$slug" ]] || continue
-  echo ">> apply-smoke: $slug"
+  echo ">> $VERB: $slug"
   if apply_one "$slug"; then
     echo "  OK: $slug"
   else
@@ -118,4 +139,4 @@ if [[ ${#FAILED[@]} -gt 0 ]]; then
   echo "apply_smoke.sh: ${#FAILED[@]} of ${#EXAMPLES[@]} FAILED: ${FAILED[*]}" >&2
   exit 1
 fi
-echo "apply_smoke.sh: OK (${#EXAMPLES[@]} example(s))"
+echo "apply_smoke.sh: OK (${#EXAMPLES[@]} example(s), $VERB)"
