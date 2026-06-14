@@ -135,10 +135,10 @@ apply_one() {
     return 0
   fi
   (
-    cd "$dir"
-    dart pub get
-    dart run bin/infra.dart
-    cd tf-out
+    cd "$dir" || exit 1
+    dart pub get || exit 1
+    dart run bin/infra.dart || exit 1
+    cd tf-out || exit 1
     # Placeholder for any input variable the synth references (`${var.X}`), so
     # `terraform -input=false` doesn't abort on "No value for required
     # variable". Examples needing a REAL secret / cert / org id still fail at
@@ -150,16 +150,32 @@ apply_one() {
     # Persist state in GCS so destroy can always reclaim (across runs / janitor).
     printf '{"terraform":{"backend":{"gcs":{"bucket":"%s","prefix":"apply-smoke/%s"}}}}\n' \
       "$STATE_BUCKET" "$slug" > backend.tf.json
-    terraform init -input=false -reconfigure
+    terraform init -input=false -reconfigure || exit 1
     if [[ "$DESTROY_ONLY" == "1" ]]; then
       terraform destroy -auto-approve -input=false
-    else
-      # destroy on ANY exit after apply starts (apply success or failure).
-      trap 'terraform destroy -auto-approve -input=false >/dev/null 2>&1 || true' EXIT
-      terraform apply -auto-approve -input=false
+      exit $?
     fi
+    # Apply, then ALWAYS tear down — capturing the apply result separately.
+    # A teardown failure is surfaced LOUDLY and recorded, never swallowed: a
+    # silently-failed destroy once left a running GKE cluster orphaned that
+    # only a manual gcloud sweep caught. Recorded failures fail the run below.
+    apply_rc=0
+    terraform apply -auto-approve -input=false || apply_rc=$?
+    if ! terraform destroy -auto-approve -input=false; then
+      echo "  !! teardown failed for $slug — retrying in 15s" >&2
+      sleep 15
+      if ! terraform destroy -auto-approve -input=false; then
+        echo "  !! TEARDOWN FAILED for $slug after retry — ORPHAN RISK; run tool/apply_smoke_janitor.sh" >&2
+        echo "$slug" >> "$TEARDOWN_FAILS_FILE"
+      fi
+    fi
+    exit "$apply_rc"
   )
 }
+
+# Records examples whose teardown failed (orphan risk) — appended from the
+# apply_one subshell, read in the summary below.
+TEARDOWN_FAILS_FILE="$(mktemp)"
 
 VERB="apply-smoke"
 [[ "$DESTROY_ONLY" == "1" ]] && VERB="destroy-only"
@@ -180,8 +196,18 @@ for slug in "${EXAMPLES[@]}"; do
   fi
 done
 
+TEARDOWN_FAILS="$(tr '\n' ' ' < "$TEARDOWN_FAILS_FILE" 2>/dev/null)"
+rm -f "$TEARDOWN_FAILS_FILE"
+if [[ -n "${TEARDOWN_FAILS// /}" ]]; then
+  echo "apply_smoke.sh: !! TEARDOWN FAILED (orphan risk): ${TEARDOWN_FAILS}— run tool/apply_smoke_janitor.sh" >&2
+fi
+
 if [[ ${#FAILED[@]} -gt 0 ]]; then
   echo "apply_smoke.sh: ${#FAILED[@]} of ${#EXAMPLES[@]} FAILED: ${FAILED[*]}" >&2
+  exit 1
+fi
+# A clean apply run with a failed teardown still fails — orphans must not pass silently.
+if [[ -n "${TEARDOWN_FAILS// /}" ]]; then
   exit 1
 fi
 echo "apply_smoke.sh: OK (${#EXAMPLES[@]} example(s), $VERB)"
