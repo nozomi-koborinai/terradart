@@ -35,8 +35,11 @@ final class LatencyAlertStack extends Stack {
       ),
     );
 
+    // Opaque custom service: `google_monitoring_service` (the typed variant)
+    // requires a `basic_service`/identifier case at the API and cannot be
+    // created with `service_id` alone, so use the custom-service resource.
     final apiService = add(
-      GoogleMonitoringService(
+      GoogleMonitoringCustomService(
         localName: 'api',
         serviceId: TfArg.literal('api'),
         displayName: TfArg.literal('API service'),
@@ -89,7 +92,7 @@ final class LatencyAlertStack extends Stack {
         ],
         dependsOn: [
           ResourceDependency(apiMonitoring),
-          ResourceDependency(publicUrls)
+          ResourceDependency(publicUrls),
         ],
       ),
     );
@@ -126,29 +129,42 @@ final class LatencyAlertStack extends Stack {
     add(
       GoogleMonitoringSlo(
         localName: 'api_availability',
-        service: TfArg.ref(apiService.nameRef),
+        // Custom services have no derived telemetry, so a `basic_sli`
+        // (availability/latency) cannot be evaluated against them; use a
+        // request-based good/total ratio on the Cloud Run request metric.
+        service: TfArg.ref(apiService.serviceIdRef),
         goal: TfArg.literal(0.99),
         displayName: TfArg.literal('API availability'),
         rollingPeriodDays: TfArg.literal(30),
-        sli: MonitoringSloBasicSli(
-          availability: MonitoringSloBasicSliAvailability(
-            enabled: TfArg.literal(true),
+        sli: MonitoringSloRequestBasedSli(
+          goodTotalRatio: MonitoringSloGoodTotalRatio(
+            goodServiceFilter: TfArg.literal(
+              'metric.type="run.googleapis.com/request_count" '
+              'AND resource.type="cloud_run_revision" '
+              'AND metric.label.response_code_class="2xx"',
+            ),
+            totalServiceFilter: TfArg.literal(
+              'metric.type="run.googleapis.com/request_count" '
+              'AND resource.type="cloud_run_revision"',
+            ),
           ),
         ),
         dependsOn: [ResourceDependency(apiService)],
       ),
     );
 
-    add(
-      GoogleMonitoringMonitoredProject(
-        localName: 'metrics_scope_child',
-        metricsScope: TfArg.literal(
-          'locations/global/metricsScopes/$projectId',
-        ),
-        name: TfArg.literal(projectId),
-        dependsOn: [ResourceDependency(apiMonitoring)],
-      ),
-    );
+    // A `google_monitoring_monitored_project` adds *another* project to this
+    // project's metrics scope (multi-project observability). A project is
+    // already a member of its own default metrics scope, so self-linking it
+    // (name == scoping project) is rejected by the API. To dogfood this
+    // resource, set `name` to a different project ID and grant
+    // `roles/monitoring.admin` on both projects:
+    //
+    // GoogleMonitoringMonitoredProject(
+    //   localName: 'metrics_scope_child',
+    //   metricsScope: TfArg.literal('locations/global/metricsScopes/$projectId'),
+    //   name: TfArg.literal('some-other-project-id'),
+    // );
 
     add(
       GoogleMonitoringAlertPolicy(
@@ -165,6 +181,7 @@ final class LatencyAlertStack extends Stack {
             conditionThreshold: MonitoringAlertPolicyConditionThreshold(
               filter: TfArg.literal(
                 'metric.type="run.googleapis.com/request_latencies" '
+                'AND resource.type="cloud_run_revision" '
                 'AND resource.label.service_name="api"',
               ),
               comparison: TfArg.literal(Comparison.greaterThan),
@@ -191,7 +208,7 @@ final class LatencyAlertStack extends Stack {
         ),
         dependsOn: [
           ResourceDependency(oncallEmail),
-          ResourceDependency(apiMonitoring)
+          ResourceDependency(apiMonitoring),
         ],
       ),
     );

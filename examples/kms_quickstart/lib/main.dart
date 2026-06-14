@@ -17,19 +17,35 @@ library;
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/kms.dart';
+import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/time.dart';
 
 final class CryptoStack extends Stack {
   CryptoStack({required String projectId})
       : super(
           providers: [
             GoogleProvider(project: projectId, region: 'asia-northeast1'),
+            const TimeProvider(),
           ],
         ) {
+    // ---- API enablement ---------------------------------------------------
+    //
+    // [Apis.enable] enables the Cloud KMS API and waits 60s for propagation
+    // before the key ring, keys, and versions apply. (Service accounts and
+    // `_iam_member` adjuncts below are not API-gated.)
+
+    final apiDeps = Apis.enable(
+      this,
+      barrels: [Barrels.kmsApi],
+      propagationDelay: const Duration(seconds: 60),
+    );
+
     final ring = GoogleKmsKeyRing(
       localName: 'main',
       name: TfArg.literal('main-ring'),
       location: TfArg.literal('asia-northeast1'),
+      dependsOn: apiDeps,
     );
     add(ring);
 
@@ -49,6 +65,7 @@ final class CryptoStack extends Stack {
         algorithm: TfArg.literal('GOOGLE_SYMMETRIC_ENCRYPTION'),
         protectionLevel: KmsProtectionLevel.software,
       ),
+      dependsOn: apiDeps,
     );
     add(paymentsKey);
 
@@ -56,7 +73,7 @@ final class CryptoStack extends Stack {
       GoogleKmsCryptoKeyVersion(
         localName: 'payments_primary',
         cryptoKey: TfArg.ref(paymentsKey.id),
-        dependsOn: [ResourceDependency(paymentsKey)],
+        dependsOn: [...apiDeps, ResourceDependency(paymentsKey)],
       ),
     );
 
