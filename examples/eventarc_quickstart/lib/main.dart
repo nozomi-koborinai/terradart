@@ -14,10 +14,14 @@ final class EventarcStack extends Stack {
   EventarcStack({required String projectId})
       : super(
           providers: [
-            GoogleProvider(project: projectId, region: 'asia-northeast1'),
+            GoogleProvider(project: projectId, region: 'us-central1'),
           ],
         ) {
-    const location = 'asia-northeast1';
+    // Eventarc Advanced (MessageBus, GoogleApiSource, Enrollment, Pipeline) is
+    // GA only in a limited set of regions; asia-northeast1 is not one of them.
+    // us-central1 supports both Eventarc Advanced and Eventarc Standard, and a
+    // bus + its enrollments/pipelines must all share one region.
+    const location = 'us-central1';
 
     final eventarcApi = add(
       GoogleProjectService(

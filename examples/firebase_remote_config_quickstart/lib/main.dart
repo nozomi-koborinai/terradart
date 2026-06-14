@@ -17,15 +17,26 @@ library;
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/firebase_remote_config.dart';
+import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/time.dart';
 
 final class RemoteConfigStack extends Stack {
   RemoteConfigStack({required String projectId})
       : super(
           providers: [
             GoogleProvider(project: projectId, region: 'us-central1'),
+            const TimeProvider(),
           ],
         ) {
+    // Enable the Firebase Remote Config API and wait for propagation before
+    // the template applies.
+    final apiDeps = Apis.enable(
+      this,
+      barrels: [Barrels.firebaseRemoteConfig],
+      propagationDelay: const Duration(seconds: 60),
+    );
+
     // A condition that fires for users in Japan.
     final japanCondition =
         FirebaseRemoteConfigRemoteConfigRemoteConfigCondition(
@@ -88,6 +99,7 @@ final class RemoteConfigStack extends Stack {
             ],
           ),
         ],
+        dependsOn: apiDeps,
       ),
     );
   }

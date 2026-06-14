@@ -18,7 +18,9 @@ library;
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/filestore.dart';
+import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/time.dart';
 
 /// Network stack: a VPC + a public IP for a load balancer.
 final class NetworkStack extends Stack {
@@ -26,14 +28,25 @@ final class NetworkStack extends Stack {
       : super(
           providers: [
             GoogleProvider(project: projectId, region: 'asia-northeast1'),
+            const TimeProvider(),
           ],
         ) {
+    // Enable the Compute + Filestore APIs and wait for propagation before
+    // the resources below apply; otherwise apply fails with SERVICE_DISABLED.
+    // Every API-gated resource below carries `dependsOn: apiDeps`.
+    final apiDeps = Apis.enable(
+      this,
+      barrels: [Barrels.compute, Barrels.filestore],
+      propagationDelay: const Duration(seconds: 60),
+    );
+
     final mainVpc = GoogleComputeNetwork(
       localName: 'main',
       name: TfArg.literal('main-vpc'),
       // Custom-mode VPC: no auto-subnets, explicit subnetwork resources.
       autoCreateSubnetworks: TfArg.literal(false),
       routingMode: TfArg.literal(RoutingMode.regional),
+      dependsOn: apiDeps,
     );
     add(mainVpc);
 
@@ -45,6 +58,7 @@ final class NetworkStack extends Stack {
         addressType: TfArg.literal(AddressType.external),
         networkTier: TfArg.literal(NetworkTier.premium),
         ipVersion: TfArg.literal(IpVersion.ipv4),
+        dependsOn: apiDeps,
       ),
     );
 
@@ -60,6 +74,7 @@ final class NetworkStack extends Stack {
       region: TfArg.literal('asia-northeast1'),
       network: TfArg.ref(mainVpc.id),
       ipCidrRange: TfArg.literal('10.10.0.0/20'),
+      dependsOn: apiDeps,
     );
     add(workloadSubnet);
 
@@ -74,6 +89,7 @@ final class NetworkStack extends Stack {
           advertiseMode: ComputeRouterBgpAdvertiseMode.defaultMode,
           asn: TfArg.literal(64514),
         ),
+        dependsOn: apiDeps,
       ),
     );
 
@@ -95,6 +111,7 @@ final class NetworkStack extends Stack {
             modes: const [FilestoreInstanceNetworkMode.modeIpv4],
           ),
         ],
+        dependsOn: apiDeps,
       ),
     );
 
@@ -161,6 +178,7 @@ final class NetworkStack extends Stack {
             ComputeInstanceNetworkPerformanceConfigTotalEgressBandwidthTier
                 .platformDefault,
       ),
+      dependsOn: apiDeps,
     );
     add(bastion);
 

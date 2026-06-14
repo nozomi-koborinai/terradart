@@ -27,16 +27,65 @@ library;
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/artifact_registry.dart';
 import 'package:terradart_google/cloud_build.dart';
+import 'package:terradart_google/iam.dart';
+import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/time.dart';
 
 final class CloudBuildStack extends Stack {
   CloudBuildStack({required String projectId})
       : super(
           providers: [
             GoogleProvider(project: projectId, region: 'asia-northeast1'),
+            const TimeProvider(),
           ],
         ) {
     const region = 'asia-northeast1';
+
+    // ---- 0. Enable APIs + the build service account ----------------------
+    //
+    // The Cloud Build worker pool and trigger need `cloudbuild.googleapis.com`;
+    // the Artifact Registry repo needs `artifactregistry.googleapis.com`;
+    // provisioning the runner SA needs `iam.googleapis.com`.
+    // [Apis.enable] registers one `google_project_service` per required API
+    // plus a propagation wait, returned as `dependsOn` entries.
+    final apiDeps = Apis.enable(
+      this,
+      barrels: [Barrels.cloudBuild, Barrels.iamApi, Barrels.artifactRegistry],
+      propagationDelay: const Duration(seconds: 60),
+    );
+
+    // The trigger runs builds as a user-specified service account. A
+    // user-specified SA needs `roles/logging.logWriter` (build logs cannot go
+    // to the default bucket) and `roles/cloudbuild.builds.builder` to execute
+    // build steps; the AR IAM binding below adds `artifactregistry.writer` so
+    // the build can `docker push`.
+    final buildSa = add(
+      GoogleServiceAccount(
+        localName: 'build_sa',
+        accountId: TfArg.literal('cloud-build-sa'),
+        displayName: TfArg.literal('Cloud Build runner'),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    final saLogWriter = add(
+      GoogleProjectIamMember(
+        localName: 'build_sa_log_writer',
+        project: TfArg.literal(projectId),
+        role: TfArg.literal('roles/logging.logWriter'),
+        member: TfArg.ref<String>(buildSa.iamMember),
+      ),
+    );
+
+    final saBuilder = add(
+      GoogleProjectIamMember(
+        localName: 'build_sa_builder',
+        project: TfArg.literal(projectId),
+        role: TfArg.literal('roles/cloudbuild.builds.builder'),
+        member: TfArg.ref<String>(buildSa.iamMember),
+      ),
+    );
 
     // ---- 1. GitHub App connection ----------------------------------------
     //
@@ -62,6 +111,7 @@ final class CloudBuildStack extends Stack {
             ),
           ),
         ),
+        dependsOn: apiDeps,
       ),
     );
 
@@ -78,6 +128,7 @@ final class CloudBuildStack extends Stack {
         name: TfArg.literal('myapp'),
         parentConnection: TfArg.ref<String>(lbConn.id),
         remoteUri: TfArg.literal('https://github.com/example/myapp.git'),
+        dependsOn: apiDeps,
       ),
     );
 
@@ -95,24 +146,24 @@ final class CloudBuildStack extends Stack {
         format: TfArg.literal('DOCKER'),
         mode: TfArg.literal(ArtifactRegistryMode.standardRepository),
         description: TfArg.literal('Container images built by Cloud Build'),
+        dependsOn: apiDeps,
       ),
     );
 
     // ---- 4. AR IAM: grant the build SA writer ----------------------------
     //
-    // The trigger executes as a build service account; that account needs
-    // `artifactregistry.writer` on the destination repo to `docker push` the
-    // resulting image. Substitute the real SA email for your project.
+    // The trigger executes as the build service account from step 0; that
+    // account needs `artifactregistry.writer` on the destination repo to
+    // `docker push` the resulting image. `buildSa.iamMember` is the
+    // pre-formatted `serviceAccount:<email>` binding subject.
 
-    add(
+    final arIam = add(
       GoogleArtifactRegistryRepositoryIamMember(
         localName: 'lb_ar_iam',
         location: TfArg.literal(region),
         repository: TfArg.ref<String>(lbAr.nameRef),
         role: TfArg.literal('roles/artifactregistry.writer'),
-        member: TfArg.literal(
-          'serviceAccount:cloud-build-sa@$projectId.iam.gserviceaccount.com',
-        ),
+        member: TfArg.ref<String>(buildSa.iamMember),
       ),
     );
 
@@ -138,6 +189,7 @@ final class CloudBuildStack extends Stack {
             'projects/PROJECT_ID/global/networks/cloudbuild-peered-vpc',
           ),
         ),
+        dependsOn: apiDeps,
       ),
     );
 
@@ -159,15 +211,25 @@ final class CloudBuildStack extends Stack {
         buildSpec: CloudbuildTriggerFilenameSpec(
           filename: TfArg.literal('cloudbuild.yaml'),
         ),
-        serviceAccount: TfArg.literal(
-          'projects/$projectId/serviceAccounts/cloud-build-sa@$projectId.iam.gserviceaccount.com',
-        ),
+        // `service_account` wants the full SA resource path
+        // `projects/{project}/serviceAccounts/{email}` — `buildSa.id` is
+        // exactly that, so reference it instead of hand-building the string.
+        serviceAccount: TfArg.ref<String>(buildSa.id),
         // Worker pool dispatch is configured inside `cloudbuild.yaml`
         // via `options.pool.name`, fed by the `_WORKER_POOL`
         // substitution exported here. (The trigger schema attaches a
         // pool only through inline `build.options`; the `filename` form
         // delegates pool selection to the in-repo build config.)
         substitutions: TfArg.literal({'_WORKER_POOL': lbPool.id.interpolation}),
+        // The trigger needs `cloudbuild.googleapis.com` enabled and the
+        // runner SA + its role bindings to exist before it can be created.
+        dependsOn: [
+          ...apiDeps,
+          ResourceDependency(buildSa),
+          ResourceDependency(saLogWriter),
+          ResourceDependency(saBuilder),
+          ResourceDependency(arIam),
+        ],
       ),
     );
   }

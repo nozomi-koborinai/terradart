@@ -11,8 +11,10 @@ library;
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_scheduler.dart';
+import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';
+import 'package:terradart_google/time.dart';
 
 /// Cloud Scheduler job + Pub/Sub topic Stack.
 final class NightlyCleanupStack extends Stack {
@@ -20,12 +22,22 @@ final class NightlyCleanupStack extends Stack {
       : super(
           providers: [
             GoogleProvider(project: projectId, region: 'us-central1'),
+            const TimeProvider(),
           ],
         ) {
+    // Enable the Cloud Scheduler and Pub/Sub APIs and wait for propagation
+    // before the topic and job apply.
+    final apiDeps = Apis.enable(
+      this,
+      barrels: [Barrels.cloudScheduler, Barrels.pubsub],
+      propagationDelay: const Duration(seconds: 60),
+    );
+
     final topic = add(
       GooglePubsubTopic(
         localName: 'nightly_cleanup',
         name: TfArg.literal('nightly-cleanup'),
+        dependsOn: apiDeps,
       ),
     );
 
@@ -52,6 +64,7 @@ final class NightlyCleanupStack extends Stack {
           minBackoffDuration: TfArgLiteral<String>('5s'),
           maxBackoffDuration: TfArgLiteral<String>('60s'),
         ),
+        dependsOn: apiDeps,
       ),
     );
 
