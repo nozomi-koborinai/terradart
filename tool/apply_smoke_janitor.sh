@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
-# Destroy leftover Terraform state in the terradart-validate canary project.
+# Reclaim leftover apply-smoke resources in the terradart-validate project.
 #
-# Scheduled by .github/workflows/apply-smoke-janitor.yml after failed apply-smoke runs.
+# Scheduled by .github/workflows/apply-smoke-janitor.yml. State lives in the
+# GCS backend (gs://$TF_STATE_BUCKET/apply-smoke/<slug>), so this re-synths
+# each example's config, points it at that persisted state, and destroys —
+# reclaiming anything a failed apply or a killed runner left behind.
 set -euo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -12,27 +15,7 @@ if [[ -z "$PROJECT_ID" ]]; then
   echo "apply_smoke_janitor.sh: set GCP_PROJECT_ID or GCP_VALIDATE_PROJECT_ID" >&2
   exit 64
 fi
+export GCP_PROJECT_ID="$PROJECT_ID"
 
-if ! command -v gcloud >/dev/null 2>&1; then
-  echo "apply_smoke_janitor.sh: gcloud not on PATH" >&2
-  exit 127
-fi
-
-echo ">> janitor: listing active resources in $PROJECT_ID (manual review project)"
-# Best-effort: enumerate common Wave resources and delete by label if present.
-# Maintainers can extend this script as apply-smoke coverage grows.
-
-for slug in examples/*_quickstart; do
-  [[ -d "$slug/tf-out" ]] || continue
-  name="$(basename "$slug")"
-  echo ">> janitor: terraform destroy $name (if state exists)"
-  (
-    cd "$slug/tf-out"
-    if [[ -f main.tf.json ]]; then
-      terraform init -backend=false -input=false >/dev/null 2>&1 || true
-      terraform destroy -auto-approve -input=false >/dev/null 2>&1 || true
-    fi
-  ) || true
-done
-
-echo "apply_smoke_janitor.sh: done"
+echo ">> janitor: destroy-only sweep over all quickstarts (state from GCS)"
+exec tool/apply_smoke.sh --all --destroy-only

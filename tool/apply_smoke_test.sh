@@ -28,4 +28,8 @@ one_out="$(tool/apply_smoke.sh --example gke_quickstart --dry-run)" || fail "--e
 GCP_PROJECT_ID="" GCP_VALIDATE_PROJECT_ID="" tool/apply_smoke.sh --all --dry-run >/dev/null \
   || fail "--dry-run should not require GCP project"
 
+# 4. --destroy-only is a recognized flag and selects the same set.
+do_out="$(tool/apply_smoke.sh --all --destroy-only --dry-run)" || fail "--destroy-only dry-run non-zero"
+[[ "$do_out" == "$expected" ]] || fail "--destroy-only selection mismatch"
+
 echo "apply_smoke_test: OK"
