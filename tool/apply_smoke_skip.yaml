@@ -35,3 +35,6 @@ storage_quickstart: uploads a local source file (config/app.json) absent from ge
 
 # --- Need external infra / secrets
 cloud_build_quickstart: needs a real GitHub App OAuth token secret + a peered VPC
+
+# --- Provisioning latency / network infra the example doesn't provision
+eventarc_quickstart: Eventarc Advanced bus+pipeline take ~5min and the http_endpoint trigger needs a NetworkAttachment to apply; revisit to add one or retarget the trigger

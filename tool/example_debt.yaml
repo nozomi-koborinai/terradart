@@ -6,3 +6,11 @@
 # a factory is neither covered nor listed, and when a listed factory becomes
 # covered (remove the line) — adding a line is a reviewed decision, not a
 # default.
+
+# Monitoring factories that cannot `terraform apply` against a standalone
+# apply-smoke project, so monitoring_quickstart uses the applyable variants
+# instead (the custom-service resource) and drops the self-linking monitored
+# project. Tracked here rather than forced into an example that would fail the
+# apply-smoke sweep.
+GoogleMonitoringService: typed google_monitoring_service needs a basic_service identifier bound to a real well-known service (App Engine / Istio / etc.) absent from a bare project; the applyable GoogleMonitoringCustomService is exercised by monitoring_quickstart instead
+GoogleMonitoringMonitoredProject: links another project into a metrics scope — self-linking the scoping project is rejected, and cross-project linking needs a second project plus roles/monitoring.admin on both, which a standalone apply-smoke project can't provide

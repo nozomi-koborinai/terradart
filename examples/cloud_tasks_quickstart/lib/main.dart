@@ -8,7 +8,9 @@ library;
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_tasks.dart';
+import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/time.dart';
 
 /// Cloud Tasks queue + IAM enqueuer Stack.
 final class EmailJobsStack extends Stack {
@@ -16,8 +18,20 @@ final class EmailJobsStack extends Stack {
       : super(
           providers: [
             GoogleProvider(project: projectId, region: 'us-central1'),
+            const TimeProvider(),
           ],
         ) {
+    // ---- API enablement ---------------------------------------------------
+    //
+    // [Apis.enable] enables the Cloud Tasks API and waits 60s for propagation
+    // before the queue applies.
+
+    final apiDeps = Apis.enable(
+      this,
+      barrels: [Barrels.cloudTasks],
+      propagationDelay: const Duration(seconds: 60),
+    );
+
     final queue = add(
       GoogleCloudTasksQueue(
         localName: 'email_jobs',
@@ -33,6 +47,7 @@ final class EmailJobsStack extends Stack {
           maxBackoff: TfArg.literal('300s'),
           maxDoublings: TfArg.literal(3),
         ),
+        dependsOn: apiDeps,
       ),
     );
 
