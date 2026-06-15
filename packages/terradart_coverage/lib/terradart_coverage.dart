@@ -8,3 +8,4 @@ library;
 export 'src/tf_reference.dart';
 export 'src/tf_json_parser.dart';
 export 'src/catalog_matcher.dart';
+export 'src/coverage_report.dart';
