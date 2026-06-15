@@ -1,8 +1,11 @@
-name: Apply smoke nightly
+name: Apply smoke weekly
 
 on:
   schedule:
-    - cron: "0 2 * * *"
+    # Weekly: Sunday 02:00 UTC (Sunday 11:00 JST). The PR change-gate
+    # (apply-smoke.yml) verifies changed/new examples per-PR; this full sweep is
+    # the regression backstop for the rest of the set (provider/API drift, etc.).
+    - cron: "0 2 * * 0"
   workflow_dispatch:
 
 concurrency:
@@ -16,7 +19,7 @@ permissions:
 
 jobs:
   sweep:
-    name: nightly apply sweep (terradart-validate)
+    name: weekly apply sweep (terradart-validate)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -48,8 +51,8 @@ jobs:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           summary="$(grep -E 'FAILED:' /tmp/sweep.log | tail -1 || echo 'see run log')"
-          title="nightly apply-smoke failures"
-          body="$(printf 'Nightly apply sweep failed on %s.\n\n%s\n\nRun: %s' \
+          title="weekly apply-smoke failures"
+          body="$(printf 'Weekly apply sweep failed on %s.\n\n%s\n\nRun: %s' \
             "$(date -u +%Y-%m-%d)" "$summary" "$RUN_URL")"
           existing="$(gh issue list --repo "$REPO" --state open \
             --search "$title in:title" --json number --jq '.[0].number')"

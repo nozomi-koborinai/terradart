@@ -234,6 +234,12 @@ jobs:
             packages/terradart_google/lib/src
           git commit -m "chore(schema): weekly bump $today"
           git push -u origin "$branch"
+          # Ensure the PR labels exist (idempotent) so a missing label can't fail
+          # the bump the way it did on 2026-06-14. Best-effort: ignore "already exists".
+          gh label create dependencies --color 0366d6 \
+            --description "Dependency / provider schema bumps" 2>/dev/null || true
+          gh label create schema-bump --color D4C5F9 \
+            --description "Weekly provider schema / MM bump automation" 2>/dev/null || true
           gh pr create \
             --title "chore(schema): weekly bump $today" \
             --body-file .schema-bump/drift_report.md \

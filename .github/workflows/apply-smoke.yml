@@ -2,7 +2,11 @@ name: Apply smoke
 
 on:
   pull_request:
-    types: [labeled, synchronize, opened, reopened]
+    types: [opened, synchronize, reopened]
+    paths:
+      - 'examples/**'
+      - 'tool/apply_smoke.sh'
+      - 'tool/apply_smoke_skip.yaml'
   workflow_dispatch:
 
 concurrency:
@@ -18,9 +22,9 @@ jobs:
   apply_smoke:
     name: apply smoke (terradart-validate)
     runs-on: ubuntu-latest
-    if: |
-      github.event_name == 'workflow_dispatch' ||
-      contains(github.event.pull_request.labels.*.name, 'apply-smoke')
+    # No label gate: the paths filter above already scopes this to PRs that touch
+    # examples or the smoke tooling. apply_smoke.sh (changed mode) then applies
+    # only the examples that differ from the PR base.
     steps:
       - uses: actions/checkout@v6
         with:
