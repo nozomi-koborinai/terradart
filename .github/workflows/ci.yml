@@ -34,9 +34,11 @@ jobs:
       # CLI. wrap CLI output is the authoritative format for generated wrappers
       # and is guarded by the `wrap_check` job (`terradart wrap --check`).
       - if: matrix.package == 'terradart_core'
-        run: dart format --output=none --set-exit-if-changed packages/terradart_core/ packages/terradart_codegen/ packages/terradart_agent/
+        run: dart format --output=none --set-exit-if-changed packages/terradart_core/ packages/terradart_codegen/ packages/terradart_agent/ packages/terradart_coverage/
       - if: matrix.package == 'terradart_core'
         run: dart analyze packages/ tool/ --fatal-infos --fatal-warnings
+      - if: matrix.package == 'terradart_core'
+        run: dart test tool/render_formula_test.dart tool/render_to_file_test.dart
       - run: dart test --reporter=github
         working-directory: packages/${{ matrix.package }}
 

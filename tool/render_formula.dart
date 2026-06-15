@@ -48,8 +48,7 @@ class $className < Formula
   end
 
   test do
-    output = shell_output("#{bin}/$binName $testCmd")
-    assert output.length > 0
+    assert_match "$binName", shell_output("#{bin}/$binName $testCmd")
   end
 end
 ''';

@@ -19,5 +19,6 @@ void main() {
     expect(rb, contains('version "0.13.1"'));
     expect(rb, contains('sha256 "aaa"'));
     expect(rb, contains('=> "terradart-coverage"'));
+    expect(rb, contains('assert_match'));
   });
 }
