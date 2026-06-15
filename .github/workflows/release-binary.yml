@@ -57,3 +57,48 @@ jobs:
           files: |
             ${{ matrix.tool.dir }}/${{ matrix.tool.name }}-${{ matrix.target.suffix }}
             ${{ matrix.tool.dir }}/${{ matrix.tool.name }}-${{ matrix.target.suffix }}.sha256
+
+  update-tap:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with: { sdk: stable }
+      - run: dart pub get
+      - name: Download sha256 sidecars
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REF_NAME: ${{ github.ref_name }}
+          GH_REPOSITORY: ${{ github.repository }}
+        run: |
+          mkdir -p shas
+          gh release download "$GH_REF_NAME" \
+            --repo "$GH_REPOSITORY" \
+            --pattern '*.sha256' --dir shas
+      - name: Checkout tap
+        uses: actions/checkout@v6
+        with:
+          repository: nozomi-koborinai/homebrew-tap
+          token: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+          path: tap
+      - name: Render formulas
+        env:
+          GH_REF_NAME: ${{ github.ref_name }}
+        run: |
+          V="${GH_REF_NAME#v}"
+          dart run tool/render_to_file.dart \
+            --version "$V" \
+            --sha-dir shas \
+            --out-mcp tap/Formula/terradart-mcp.rb \
+            --out-coverage tap/Formula/terradart-coverage.rb
+      - name: Commit + push tap
+        working-directory: tap
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Formula/terradart-mcp.rb Formula/terradart-coverage.rb
+          git commit -m "terradart ${GITHUB_REF_NAME#v}: update formulas" || echo "no changes"
+          git push
+        env:
+          GITHUB_REF_NAME: ${{ github.ref_name }}
