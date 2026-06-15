@@ -44,6 +44,10 @@ Read [`CONTEXT.md`](../../../CONTEXT.md) for vocabulary. Generation policy and p
 - Keep sealed types in `prelude`; do not generate them.
 - No dead derivation config: `deriveClassDoc: true` must not also set `classDocComment`; `curatedDoc` only under `deriveClassDoc: true`.
 - `wrap --only <type>` does not regenerate unrelated factories.
+- **Every `customSlots` key must also appear in `paramOrder`** (and `argMapOrder` when set). The emitter silently skips unlisted slots, so the parameter never reaches the constructor while `wrap --check` stays green. `lint-override`'s `custom-slot-*` rules catch it, but list it the first time (see `google_cloud_scheduler_job.yaml` → `target`).
+- **Outputs need their gating inputs.** Before relying on a derived output getter, curate the input that enables it (`auth_string` ← `auth_enabled`, `server_ca_certs` ← `transit_encryption_mode`, `read_endpoint` ← `replica_count` + `read_replicas_mode`). A getter whose enabling input is uncurated is dead API.
+- **`deletion_protection` parity.** If the schema has a `deletion_protection` attribute and you write an explicit `paramOrder`, include it (enforced by `deletion_protection_parity_test`); otherwise users have no way to set the flag.
+- **Never write `upstream: null # handwritten` without checking the MM fingerprint.** `effective_labels` / `terraform_labels`, or attribute docs ending in `Default value: … Possible values: […]`, mean the resource is Magic-Modules-generated and has an `mmv1/products/<product>/<Resource>.yaml` upstream. A wrong `null` silently disables enum-drift checks; verify with `dart tool/check_mm_upstream_fingerprint.dart` (Wave 32 mislabeled `google_redis_instance` this way).
 
 ## Exactly-one blocks (`exactly_one_of`)
 
