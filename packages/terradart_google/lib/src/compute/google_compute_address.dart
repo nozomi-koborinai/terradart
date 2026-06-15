@@ -137,6 +137,9 @@ final class GoogleComputeAddress extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `address_id` attribute.
+  TfRef<String> get addressId => TfRef.attribute<String>(this, 'address_id');
+
   /// Reference to `creation_timestamp` attribute.
   TfRef<String> get creationTimestamp =>
       TfRef.attribute<String>(this, 'creation_timestamp');
