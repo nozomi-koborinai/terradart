@@ -129,6 +129,7 @@ paramOrder:
   - iap
   - circuit_breakers
   - consistent_hash
+  - connection_tracking_policy
   - outlier_detection
   - log_config
   - custom_metrics
@@ -329,6 +330,30 @@ prelude: |
     zonalAffinityStayWithinZone('ZONAL_AFFINITY_STAY_WITHIN_ZONE');
 
     const RegionBackendServiceZonalAffinitySpillover(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `connection_tracking_policy.connection_persistence_on_unhealthy_backends`.
+  /// Whether existing connections persist on backends that have become
+  /// unhealthy. Default `DEFAULT_FOR_PROTOCOL`.
+  enum RegionBackendServiceConnectionPersistence implements TerraformEnum {
+    defaultForProtocol('DEFAULT_FOR_PROTOCOL'),
+    neverPersist('NEVER_PERSIST'),
+    alwaysPersist('ALWAYS_PERSIST');
+
+    const RegionBackendServiceConnectionPersistence(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `connection_tracking_policy.tracking_mode`. Connection-tracking key:
+  /// [perConnection] tracks 5-tuple (default); [perSession] tracks 3-tuple.
+  enum RegionBackendServiceTrackingMode implements TerraformEnum {
+    perConnection('PER_CONNECTION'),
+    perSession('PER_SESSION');
+
+    const RegionBackendServiceTrackingMode(this.terraformValue);
     @override
     final String terraformValue;
   }
@@ -1094,6 +1119,47 @@ prelude: |
     };
   }
 
+  // ===========================================================================
+  // connection_tracking_policy (max_items=1)
+  // ===========================================================================
+
+  /// `connection_tracking_policy` block — connection-tracking behavior for
+  /// Passthrough Network Load Balancers (and the Internal LB family).
+  @immutable
+  class ComputeRegionBackendServiceRegionBackendServiceConnectionTrackingPolicy {
+    const ComputeRegionBackendServiceRegionBackendServiceConnectionTrackingPolicy({
+      this.connectionPersistenceOnUnhealthyBackends,
+      this.enableStrongAffinity,
+      this.idleTimeoutSec,
+      this.trackingMode,
+    });
+
+    /// Whether connections persist on unhealthy backends.
+    final RegionBackendServiceConnectionPersistence?
+        connectionPersistenceOnUnhealthyBackends;
+
+    /// Enable Strong Session Affinity for NLB (not publicly available).
+    final TfArg<bool>? enableStrongAffinity;
+
+    /// How long to keep a connection-tracking entry with no matching traffic
+    /// (seconds). L4 ILB default 10 min / NLB default 60 s; max 16 h.
+    final TfArg<int>? idleTimeoutSec;
+
+    /// Connection-tracking key (5-tuple vs 3-tuple).
+    final RegionBackendServiceTrackingMode? trackingMode;
+
+    Map<String, Object?> toArgMap() => {
+      if (connectionPersistenceOnUnhealthyBackends != null)
+        'connection_persistence_on_unhealthy_backends':
+            connectionPersistenceOnUnhealthyBackends!.terraformValue,
+      if (enableStrongAffinity != null)
+        'enable_strong_affinity': enableStrongAffinity!.toTfJson(),
+      if (idleTimeoutSec != null)
+        'idle_timeout_sec': idleTimeoutSec!.toTfJson(),
+      if (trackingMode != null) 'tracking_mode': trackingMode!.terraformValue,
+    };
+  }
+
 customSlots:
   backends:
     paramDeclaration: 'List<ComputeRegionBackendServiceRegionBackendServiceBackend>? backends'
@@ -1134,6 +1200,9 @@ customSlots:
   tls_settings:
     paramDeclaration: 'ComputeRegionBackendServiceRegionBackendServiceTlsSettings? tlsSettings'
     argMapEntry: "if (tlsSettings != null) 'tls_settings': TfArg.literal([tlsSettings.toArgMap()]),"
+  connection_tracking_policy:
+    paramDeclaration: 'ComputeRegionBackendServiceRegionBackendServiceConnectionTrackingPolicy? connectionTrackingPolicy'
+    argMapEntry: "if (connectionTrackingPolicy != null) 'connection_tracking_policy': TfArg.literal([connectionTrackingPolicy.toArgMap()]),"
   params:
     paramDeclaration: 'ComputeRegionBackendServiceRegionBackendServiceParams? params'
     argMapEntry: "if (params != null) 'params': TfArg.literal([params.toArgMap()]),"
