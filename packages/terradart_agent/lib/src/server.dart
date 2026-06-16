@@ -3,6 +3,7 @@ import 'package:genkit_mcp/genkit_mcp.dart';
 import 'package:schemantic/schemantic.dart';
 import 'package:terradart_google/catalog.dart';
 
+import 'tools/check_coverage.dart';
 import 'tools/get_quickstart.dart';
 import 'tools/get_resource_schema.dart';
 import 'tools/list_barrels.dart';
@@ -33,11 +34,13 @@ SchemanticType<Map<String, dynamic>> _objectSchema({
 
 /// Builds the `terradart-mcp` MCP server.
 ///
-/// Registers the four read-only catalog tools (`list_resources`,
-/// `list_barrels`, `get_resource_schema`, `get_quickstart`) on a fresh
+/// Registers five read-only tools (`list_resources`, `list_barrels`,
+/// `get_resource_schema`, `get_quickstart`, `check_coverage`) on a fresh
 /// [Genkit] instance and exposes them over the Model Context Protocol via
-/// genkit_mcp. The tools project TerraDart's curated `terradartCatalog`
-/// (from `package:terradart_google`) into agent-friendly JSON.
+/// genkit_mcp. The first four project TerraDart's curated `terradartCatalog`
+/// (from `package:terradart_google`) into agent-friendly JSON; `check_coverage`
+/// analyses `terraform show -json` output against the catalog and reports
+/// coverage metrics.
 Future<GenkitMcpServer> buildTerradartMcpServer() async {
   final ai = Genkit();
 
@@ -131,6 +134,25 @@ Future<GenkitMcpServer> buildTerradartMcpServer() async {
         'gcs_refs': s.gcsRefs,
       };
     },
+  );
+
+  ai.defineTool<Map<String, dynamic>, Object>(
+    name: 'check_coverage',
+    description:
+        'Given `terraform show -json` output (the "tf_json" arg), report how '
+        'much of the Terraform config is covered by curated terradart_google '
+        'factories: coverage %, supported types, not-in-catalog types, and a '
+        'per-module breakdown.',
+    inputSchema: _objectSchema(
+      properties: {
+        'tf_json': $Schema.string(
+          description:
+              'The full `terraform show -json` output (state or plan JSON).',
+        ),
+      },
+      required: ['tf_json'],
+    ),
+    fn: (input, _) async => checkCoverage(input['tf_json'] as String),
   );
 
   return createMcpServer(ai, McpServerOptions(name: 'terradart'));

@@ -18,6 +18,7 @@ executables:
 dependencies:
   terradart_core: ^0.13.0
   terradart_google: ^0.13.0
+  terradart_coverage: ^0.13.0
   genkit: ^0.13.2
   genkit_mcp: ^0.1.7
   schemantic: ^0.1.3
