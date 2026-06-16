@@ -257,6 +257,8 @@ export 'src/compute/google_compute_region_backend_service.dart'
         ComputeRegionBackendServiceRegionBackendServiceCdnNegativeCachingPolicy,
         ComputeRegionBackendServiceRegionBackendServiceCdnPolicy,
         ComputeRegionBackendServiceRegionBackendServiceCircuitBreakers,
+        ComputeRegionBackendServiceRegionBackendServiceConnectionTrackingPolicy,
+        RegionBackendServiceConnectionPersistence,
         ComputeRegionBackendServiceRegionBackendServiceConsistentHash,
         ComputeRegionBackendServiceRegionBackendServiceConsistentHashHttpCookie,
         ComputeRegionBackendServiceRegionBackendServiceCustomMetric,
@@ -281,6 +283,7 @@ export 'src/compute/google_compute_region_backend_service.dart'
         ComputeRegionBackendServiceRegionBackendServiceTlsSettings,
         ComputeRegionBackendServiceRegionBackendServiceTlsSubjectAltName,
         ComputeRegionBackendServiceRegionBackendServiceZonalAffinity,
+        RegionBackendServiceTrackingMode,
         RegionBackendServiceZonalAffinitySpillover;
 export 'src/compute/google_compute_region_health_check.dart'
     show

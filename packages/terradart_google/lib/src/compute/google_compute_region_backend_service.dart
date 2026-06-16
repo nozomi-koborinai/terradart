@@ -181,6 +181,30 @@ enum RegionBackendServiceZonalAffinitySpillover implements TerraformEnum {
   final String terraformValue;
 }
 
+/// `connection_tracking_policy.connection_persistence_on_unhealthy_backends`.
+/// Whether existing connections persist on backends that have become
+/// unhealthy. Default `DEFAULT_FOR_PROTOCOL`.
+enum RegionBackendServiceConnectionPersistence implements TerraformEnum {
+  defaultForProtocol('DEFAULT_FOR_PROTOCOL'),
+  neverPersist('NEVER_PERSIST'),
+  alwaysPersist('ALWAYS_PERSIST');
+
+  const RegionBackendServiceConnectionPersistence(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `connection_tracking_policy.tracking_mode`. Connection-tracking key:
+/// [perConnection] tracks 5-tuple (default); [perSession] tracks 3-tuple.
+enum RegionBackendServiceTrackingMode implements TerraformEnum {
+  perConnection('PER_CONNECTION'),
+  perSession('PER_SESSION');
+
+  const RegionBackendServiceTrackingMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 // ===========================================================================
 // backend block (nesting=set) and its custom_metrics sub-block
 // ===========================================================================
@@ -968,6 +992,46 @@ class ComputeRegionBackendServiceRegionBackendServiceParams {
   };
 }
 
+// ===========================================================================
+// connection_tracking_policy (max_items=1)
+// ===========================================================================
+
+/// `connection_tracking_policy` block — connection-tracking behavior for
+/// Passthrough Network Load Balancers (and the Internal LB family).
+@immutable
+class ComputeRegionBackendServiceRegionBackendServiceConnectionTrackingPolicy {
+  const ComputeRegionBackendServiceRegionBackendServiceConnectionTrackingPolicy({
+    this.connectionPersistenceOnUnhealthyBackends,
+    this.enableStrongAffinity,
+    this.idleTimeoutSec,
+    this.trackingMode,
+  });
+
+  /// Whether connections persist on unhealthy backends.
+  final RegionBackendServiceConnectionPersistence?
+  connectionPersistenceOnUnhealthyBackends;
+
+  /// Enable Strong Session Affinity for NLB (not publicly available).
+  final TfArg<bool>? enableStrongAffinity;
+
+  /// How long to keep a connection-tracking entry with no matching traffic
+  /// (seconds). L4 ILB default 10 min / NLB default 60 s; max 16 h.
+  final TfArg<int>? idleTimeoutSec;
+
+  /// Connection-tracking key (5-tuple vs 3-tuple).
+  final RegionBackendServiceTrackingMode? trackingMode;
+
+  Map<String, Object?> toArgMap() => {
+    if (connectionPersistenceOnUnhealthyBackends != null)
+      'connection_persistence_on_unhealthy_backends':
+          connectionPersistenceOnUnhealthyBackends!.terraformValue,
+    if (enableStrongAffinity != null)
+      'enable_strong_affinity': enableStrongAffinity!.toTfJson(),
+    if (idleTimeoutSec != null) 'idle_timeout_sec': idleTimeoutSec!.toTfJson(),
+    if (trackingMode != null) 'tracking_mode': trackingMode!.terraformValue,
+  };
+}
+
 /// Factory wrapper for `google_compute_region_backend_service`.
 ///
 /// A Region Backend Service defines a regionally-scoped group of virtual
@@ -1112,6 +1176,8 @@ final class GoogleComputeRegionBackendService extends Resource {
     circuitBreakers,
     ComputeRegionBackendServiceRegionBackendServiceConsistentHash?
     consistentHash,
+    ComputeRegionBackendServiceRegionBackendServiceConnectionTrackingPolicy?
+    connectionTrackingPolicy,
     ComputeRegionBackendServiceRegionBackendServiceOutlierDetection?
     outlierDetection,
     ComputeRegionBackendServiceRegionBackendServiceLogConfig? logConfig,
@@ -1163,6 +1229,10 @@ final class GoogleComputeRegionBackendService extends Resource {
              'circuit_breakers': TfArg.literal([circuitBreakers.toArgMap()]),
            if (consistentHash != null)
              'consistent_hash': TfArg.literal([consistentHash.toArgMap()]),
+           if (connectionTrackingPolicy != null)
+             'connection_tracking_policy': TfArg.literal([
+               connectionTrackingPolicy.toArgMap(),
+             ]),
            if (outlierDetection != null)
              'outlier_detection': TfArg.literal([outlierDetection.toArgMap()]),
            if (logConfig != null)
