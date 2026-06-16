@@ -10,6 +10,7 @@ workspace:
   - packages/terradart_codegen
   - packages/terradart_google
   - packages/terradart_agent
+  - packages/terradart_coverage
   - examples/bigquery_quickstart
   - examples/cloud_build_quickstart
   - examples/cloud_functions_quickstart
@@ -36,10 +37,12 @@ workspace:
   - examples/secret_manager_quickstart
   - examples/storage_quickstart
 dev_dependencies:
+  args: any
   meta: any
   pub_semver: any
   http: any
   path: any
+  test: any
   yaml: any
   terradart_google:
     path: packages/terradart_google

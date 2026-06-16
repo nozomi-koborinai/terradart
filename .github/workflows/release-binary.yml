@@ -11,42 +11,94 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - os: macos-14
-            asset: terradart-mcp-darwin-arm64
-            dart_arch: arm64
-          # Intel macOS: Dart has no cross-compile, and GitHub's Intel
-          # (macos-13) runners are scarce, so build the x64 binary on an Apple
-          # Silicon runner using the x64 Dart SDK under Rosetta 2.
-          - os: macos-14
-            asset: terradart-mcp-darwin-amd64
-            dart_arch: x64
-            rosetta: true
-          - os: ubuntu-22.04
-            asset: terradart-mcp-linux-amd64
-            dart_arch: x64
-          - os: windows-latest
-            asset: terradart-mcp-windows-amd64.exe
-            dart_arch: x64
-    runs-on: ${{ matrix.os }}
+        tool:
+          - { name: terradart-mcp,      dir: packages/terradart_agent,    entry: bin/terradart_mcp.dart,      smoke: --version }
+          - { name: terradart-coverage, dir: packages/terradart_coverage,  entry: bin/terradart_coverage.dart, smoke: --help    }
+        target:
+          - { os: macos-14,       suffix: darwin-arm64,  dart_arch: arm64 }
+          - { os: macos-14,       suffix: darwin-amd64,  dart_arch: x64,  rosetta: true }
+          - { os: ubuntu-22.04,   suffix: linux-amd64,   dart_arch: x64 }
+          - { os: windows-latest, suffix: windows-amd64, dart_arch: x64 }
+    runs-on: ${{ matrix.target.os }}
     steps:
       - uses: actions/checkout@v6
       - name: Install Rosetta 2 (for the x64 Dart SDK on Apple Silicon)
-        if: matrix.rosetta
+        if: matrix.target.rosetta
         run: sudo softwareupdate --install-rosetta --agree-to-license
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
-          architecture: ${{ matrix.dart_arch }}
+          architecture: ${{ matrix.target.dart_arch }}
       - run: dart pub get
       - name: Compile binary
-        working-directory: packages/terradart_agent
-        run: dart compile exe bin/terradart_mcp.dart -o ${{ matrix.asset }}
+        working-directory: ${{ matrix.tool.dir }}
+        run: dart compile exe ${{ matrix.tool.entry }} -o ${{ matrix.tool.name }}-${{ matrix.target.suffix }}
       - name: Smoke test
-        working-directory: packages/terradart_agent
+        working-directory: ${{ matrix.tool.dir }}
         shell: bash
-        run: ./${{ matrix.asset }} --version
+        run: ./${{ matrix.tool.name }}-${{ matrix.target.suffix }} ${{ matrix.tool.smoke }}
+      - name: Compute sha256
+        working-directory: ${{ matrix.tool.dir }}
+        shell: bash
+        run: |
+          ASSET="${{ matrix.tool.name }}-${{ matrix.target.suffix }}"
+          if [[ "${{ matrix.target.os }}" == macos-* ]]; then
+            shasum -a 256 "$ASSET" | awk '{print $1}' > "${ASSET}.sha256"
+          elif [[ "${{ matrix.target.os }}" == ubuntu-* ]]; then
+            sha256sum "$ASSET" | awk '{print $1}' > "${ASSET}.sha256"
+          else
+            # Windows (Git Bash)
+            certutil -hashfile "$ASSET" SHA256 | grep -v "^CertUtil" | grep -v "^SHA256" | tr -d ' \r\n' > "${ASSET}.sha256"
+            echo "" >> "${ASSET}.sha256"
+          fi
       - name: Upload to release
         uses: softprops/action-gh-release@v2
         with:
-          files: packages/terradart_agent/${{ matrix.asset }}
+          files: |
+            ${{ matrix.tool.dir }}/${{ matrix.tool.name }}-${{ matrix.target.suffix }}
+            ${{ matrix.tool.dir }}/${{ matrix.tool.name }}-${{ matrix.target.suffix }}.sha256
+
+  update-tap:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with: { sdk: stable }
+      - run: dart pub get
+      - name: Download sha256 sidecars
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REF_NAME: ${{ github.ref_name }}
+          GH_REPOSITORY: ${{ github.repository }}
+        run: |
+          mkdir -p shas
+          gh release download "$GH_REF_NAME" \
+            --repo "$GH_REPOSITORY" \
+            --pattern '*.sha256' --dir shas
+      - name: Checkout tap
+        uses: actions/checkout@v6
+        with:
+          repository: nozomi-koborinai/homebrew-tap
+          token: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+          path: tap
+      - name: Render formulas
+        env:
+          GH_REF_NAME: ${{ github.ref_name }}
+        run: |
+          V="${GH_REF_NAME#v}"
+          dart run tool/render_to_file.dart \
+            --version "$V" \
+            --sha-dir shas \
+            --out-mcp tap/Formula/terradart-mcp.rb \
+            --out-coverage tap/Formula/terradart-coverage.rb
+      - name: Commit + push tap
+        working-directory: tap
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Formula/terradart-mcp.rb Formula/terradart-coverage.rb
+          git commit -m "terradart ${GITHUB_REF_NAME#v}: update formulas" || echo "no changes"
+          git push
+        env:
+          GITHUB_REF_NAME: ${{ github.ref_name }}

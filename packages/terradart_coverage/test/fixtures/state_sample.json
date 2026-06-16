@@ -1,0 +1,11 @@
+{
+  "format_version": "1.0",
+  "values": {
+    "root_module": {
+      "resources": [
+        {"mode": "managed", "type": "google_storage_bucket", "name": "a"},
+        {"mode": "managed", "type": "google_notreal_thing", "name": "b"}
+      ]
+    }
+  }
+}

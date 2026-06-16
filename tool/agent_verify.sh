@@ -51,18 +51,22 @@ echo ">> dart analyze tool/"
 dart analyze tool/ --fatal-infos --fatal-warnings
 
 if [[ "$WITH_FORMAT" == "1" ]]; then
-  echo ">> dart format (terradart_core, terradart_codegen, terradart_agent)"
+  echo ">> dart format (terradart_core, terradart_codegen, terradart_agent, terradart_coverage)"
   dart format --output=none --set-exit-if-changed \
     packages/terradart_core/ \
     packages/terradart_codegen/ \
-    packages/terradart_agent/
+    packages/terradart_agent/ \
+    packages/terradart_coverage/
 fi
 
-PACKAGES=(terradart_core terradart_codegen terradart_google terradart_agent)
+PACKAGES=(terradart_core terradart_codegen terradart_google terradart_agent terradart_coverage)
 for pkg in "${PACKAGES[@]}"; do
   echo ">> dart test packages/$pkg"
   (cd "packages/$pkg" && dart test --reporter=expanded)
 done
+
+echo ">> dart test tool/ (render_formula, render_to_file)"
+dart test tool/render_formula_test.dart tool/render_to_file_test.dart
 
 echo ">> terradart wrap --check"
 (
