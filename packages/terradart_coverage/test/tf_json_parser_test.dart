@@ -33,7 +33,11 @@ void main() {
               {
                 'address': 'module.network',
                 'resources': [
-                  {'mode': 'managed', 'type': 'google_compute_network', 'name': 'n'},
+                  {
+                    'mode': 'managed',
+                    'type': 'google_compute_network',
+                    'name': 'n',
+                  },
                 ],
               },
             ],
@@ -74,9 +78,14 @@ void main() {
       expect(out.unparseable, hasLength(1));
     });
 
-    test('throws FormatException when neither values nor planned_values exist', () {
-      expect(() => parseShowJson({'format_version': '1.0'}),
-          throwsA(isA<FormatException>()));
-    });
+    test(
+      'throws FormatException when neither values nor planned_values exist',
+      () {
+        expect(
+          () => parseShowJson({'format_version': '1.0'}),
+          throwsA(isA<FormatException>()),
+        );
+      },
+    );
   });
 }

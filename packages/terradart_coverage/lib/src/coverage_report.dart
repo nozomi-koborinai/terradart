@@ -103,20 +103,24 @@ CoverageReport buildCoverageReport(ParseOutcome parsed, CatalogIndex index) {
     final hit = index.lookup(type, kind);
     if (hit != null) {
       supportedOccurrences += count;
-      supported.add(SupportedType(
-        type: type,
-        kind: kind,
-        count: count,
-        className: hit.className,
-        barrel: hit.barrel,
-      ));
+      supported.add(
+        SupportedType(
+          type: type,
+          kind: kind,
+          count: count,
+          className: hit.className,
+          barrel: hit.barrel,
+        ),
+      );
     } else {
-      notInCatalog.add(NotInCatalogType(
-        type: type,
-        kind: kind,
-        count: count,
-        product: productOf(type),
-      ));
+      notInCatalog.add(
+        NotInCatalogType(
+          type: type,
+          kind: kind,
+          count: count,
+          product: productOf(type),
+        ),
+      );
     }
   }
 

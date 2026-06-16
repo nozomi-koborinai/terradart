@@ -8,17 +8,20 @@ void main() {
   test('builds summary, supported, and ranked not-in-catalog', () {
     final refs = [
       const TfReference(
-          type: 'google_storage_bucket',
-          kind: CatalogKind.resource,
-          modulePath: 'root'),
+        type: 'google_storage_bucket',
+        kind: CatalogKind.resource,
+        modulePath: 'root',
+      ),
       const TfReference(
-          type: 'google_notreal_thing',
-          kind: CatalogKind.resource,
-          modulePath: 'root'),
+        type: 'google_notreal_thing',
+        kind: CatalogKind.resource,
+        modulePath: 'root',
+      ),
       const TfReference(
-          type: 'google_notreal_thing',
-          kind: CatalogKind.resource,
-          modulePath: 'module.x'),
+        type: 'google_notreal_thing',
+        kind: CatalogKind.resource,
+        modulePath: 'module.x',
+      ),
     ];
     final report = buildCoverageReport(
       ParseOutcome(references: refs, unparseable: const []),

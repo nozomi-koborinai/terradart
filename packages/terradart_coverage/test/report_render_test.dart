@@ -4,14 +4,18 @@ import 'package:terradart_google/catalog.dart';
 import 'package:test/test.dart';
 
 CoverageReport _sample() => buildCoverageReport(
-      const ParseOutcome(references: [
-        TfReference(
-            type: 'google_storage_bucket',
-            kind: CatalogKind.resource,
-            modulePath: 'root'),
-      ], unparseable: []),
-      CatalogIndex(terradartCatalog),
-    );
+  const ParseOutcome(
+    references: [
+      TfReference(
+        type: 'google_storage_bucket',
+        kind: CatalogKind.resource,
+        modulePath: 'root',
+      ),
+    ],
+    unparseable: [],
+  ),
+  CatalogIndex(terradartCatalog),
+);
 
 void main() {
   test('text render contains a coverage summary line', () {
@@ -23,8 +27,16 @@ void main() {
   test('json render is valid and carries expected keys', () {
     final jsonStr = renderJson(_sample());
     final decoded = jsonDecode(jsonStr) as Map<String, dynamic>;
-    expect(decoded.keys,
-        containsAll(['summary', 'supported', 'notInCatalog', 'perModule', 'unparseable']));
+    expect(
+      decoded.keys,
+      containsAll([
+        'summary',
+        'supported',
+        'notInCatalog',
+        'perModule',
+        'unparseable',
+      ]),
+    );
     expect((decoded['summary'] as Map)['distinctTypes'], 1);
   });
 }

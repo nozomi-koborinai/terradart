@@ -37,8 +37,10 @@ void _walk(
       final type = r['type'];
       final mode = r['mode'];
       if (type is! String || type.isEmpty) {
-        unparseable.add('$modulePath: resource entry missing `type` '
-            '(${r['address'] ?? r['name'] ?? 'unknown'})');
+        unparseable.add(
+          '$modulePath: resource entry missing `type` '
+          '(${r['address'] ?? r['name'] ?? 'unknown'})',
+        );
         continue;
       }
       final kind = mode == 'data'

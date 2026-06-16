@@ -2,7 +2,8 @@ import 'dart:convert';
 import 'package:terradart_google/catalog.dart' show CatalogKind;
 import 'coverage_report.dart';
 
-String _kind(CatalogKind k) => k == CatalogKind.dataSource ? 'data' : 'resource';
+String _kind(CatalogKind k) =>
+    k == CatalogKind.dataSource ? 'data' : 'resource';
 
 /// Human-readable report.
 String renderText(CoverageReport r) {
@@ -10,16 +11,20 @@ String renderText(CoverageReport r) {
   final s = r.summary;
   b.writeln('TerraDart coverage');
   b.writeln('==================');
-  b.writeln('Coverage: ${s.coverageByTypePct}% of types '
-      '(${s.supportedTypes}/${s.distinctTypes}), '
-      '${s.coverageByOccurrencePct}% of resources '
-      '(${s.supportedOccurrences}/${s.totalOccurrences})');
+  b.writeln(
+    'Coverage: ${s.coverageByTypePct}% of types '
+    '(${s.supportedTypes}/${s.distinctTypes}), '
+    '${s.coverageByOccurrencePct}% of resources '
+    '(${s.supportedOccurrences}/${s.totalOccurrences})',
+  );
   b.writeln();
 
   b.writeln('Supported (${r.supported.length}):');
   for (final e in r.supported) {
-    b.writeln('  ${e.type} [${_kind(e.kind)}] x${e.count} '
-        '-> ${e.className} (${e.barrel})');
+    b.writeln(
+      '  ${e.type} [${_kind(e.kind)}] x${e.count} '
+      '-> ${e.className} (${e.barrel})',
+    );
   }
   b.writeln();
 
@@ -31,8 +36,10 @@ String renderText(CoverageReport r) {
 
   b.writeln('By module:');
   for (final entry in r.perModule.entries) {
-    b.writeln('  ${entry.key}: ${entry.value.supported} supported, '
-        '${entry.value.notInCatalog} not-in-catalog');
+    b.writeln(
+      '  ${entry.key}: ${entry.value.supported} supported, '
+      '${entry.value.notInCatalog} not-in-catalog',
+    );
   }
 
   if (r.unparseable.isNotEmpty) {
@@ -64,7 +71,7 @@ String renderJson(CoverageReport r) {
           'count': e.count,
           'className': e.className,
           'barrel': e.barrel,
-        }
+        },
     ],
     'notInCatalog': [
       for (final e in r.notInCatalog)
@@ -73,14 +80,14 @@ String renderJson(CoverageReport r) {
           'kind': _kind(e.kind),
           'count': e.count,
           'product': e.product,
-        }
+        },
     ],
     'perModule': {
       for (final entry in r.perModule.entries)
         entry.key: {
           'supported': entry.value.supported,
           'notInCatalog': entry.value.notInCatalog,
-        }
+        },
     },
     'unparseable': r.unparseable,
   };

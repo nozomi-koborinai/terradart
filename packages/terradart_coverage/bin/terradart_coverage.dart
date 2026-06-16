@@ -11,9 +11,13 @@ Future<int> run(List<String> argv) async {
     ..addFlag('help', abbr: 'h', negatable: false);
   final args = parser.parse(argv);
   if (args['help'] as bool) {
-    stdout.writeln('Usage: terradart-coverage [--json] [<terraform-show.json>]');
-    stdout.writeln('Reads `terraform show -json` output from the file arg or '
-        'stdin and reports terradart_google coverage.');
+    stdout.writeln(
+      'Usage: terradart-coverage [--json] [<terraform-show.json>]',
+    );
+    stdout.writeln(
+      'Reads `terraform show -json` output from the file arg or '
+      'stdin and reports terradart_google coverage.',
+    );
     stdout.writeln(parser.usage);
     return 0;
   }
@@ -43,7 +47,9 @@ Future<int> run(List<String> argv) async {
   }
 
   final report = buildCoverageReport(parsed, CatalogIndex(terradartCatalog));
-  stdout.writeln((args['json'] as bool) ? renderJson(report) : renderText(report));
+  stdout.writeln(
+    (args['json'] as bool) ? renderJson(report) : renderText(report),
+  );
   return 0;
 }
 
