@@ -2,7 +2,18 @@
 
 All notable changes to terradart are documented here. The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` — this top-level file summarises cross-cutting milestones.
+Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage` — this top-level file summarises cross-cutting milestones.
+
+## [0.14.0] - 2026-06-16
+
+- Provider bump to `hashicorp/google` 7.36.0 (38 new resources recorded in the
+  curation backlog; `google_compute_address.address_id`).
+- New package **`terradart_coverage`** — a read-only Terraform coverage checker
+  CLI (`terradart-coverage`, brew-distributed) plus brew release automation that
+  auto-pushes the `terradart-mcp` and `terradart-coverage` formulas.
+- `terradart_agent`: new `check_coverage` MCP tool wrapping the coverage core.
+- **Breaking** (`terradart_google`): `connection_tracking_policy` on
+  `google_compute_region_backend_service` is now typed. See MIGRATING.md.
 
 ## [0.13.0] - 2026-06-14
 

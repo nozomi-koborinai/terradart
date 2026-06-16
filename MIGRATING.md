@@ -1,5 +1,32 @@
 # Migrating terradart
 
+## 0.13.0 → 0.14.0
+
+**Breaking** — one curated nested block became typed.
+
+### `connection_tracking_policy` on `google_compute_region_backend_service`
+
+Previously this nested block fell through untyped (`TfArg<Map>`); it is now a
+typed helper class with two enums.
+
+```dart
+// Before
+connectionTrackingPolicy: TfArg.literal({
+  'tracking_mode': 'PER_SESSION',
+  'connection_persistence_on_unhealthy_backends': 'NEVER_PERSIST',
+}),
+
+// After
+connectionTrackingPolicy:
+    const ComputeRegionBackendServiceRegionBackendServiceConnectionTrackingPolicy(
+  trackingMode: RegionBackendServiceTrackingMode.perSession,
+  connectionPersistenceOnUnhealthyBackends:
+      RegionBackendServiceConnectionPersistence.neverPersist,
+),
+```
+
+If you did not set `connection_tracking_policy`, no change is needed.
+
 ## 0.12.20 → next release
 
 **Breaking changes** — API-enablement collapse, time-wrapper relocation, and

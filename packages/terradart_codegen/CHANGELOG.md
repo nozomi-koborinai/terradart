@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.14.0 - 2026-06-16
+
+- Refresh the provider schema fixture to `hashicorp/google` 7.36.0.
+- Type the `google_compute_region_backend_service.connection_tracking_policy`
+  nested block in the wrapper override (2 enums + block class), closing the last
+  `check_override_enum_gaps --strict-nested` gap.
+
 ## 0.13.0 - 2026-06-14
 
 **BREAKING** — removes the `terradart codegen` CLI subcommand, `runCodegen`, `CodegenResult`, and `FileEmitter`. Maintainer generation is `terradart wrap` only. See [MIGRATING.md](../../MIGRATING.md).
