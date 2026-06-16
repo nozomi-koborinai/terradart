@@ -3,7 +3,7 @@ import 'package:terradart_agent/terradart_agent.dart';
 import 'package:test/test.dart';
 
 void main() {
-  test('buildTerradartMcpServer exposes the 4 catalog tools', () async {
+  test('buildTerradartMcpServer exposes the 5 catalog tools', () async {
     final GenkitMcpServer server = await buildTerradartMcpServer();
     final resp = await server.handleRequest(<String, dynamic>{
       'jsonrpc': '2.0',
@@ -20,6 +20,7 @@ void main() {
         'list_barrels',
         'get_resource_schema',
         'get_quickstart',
+        'check_coverage',
       ]),
     );
   });

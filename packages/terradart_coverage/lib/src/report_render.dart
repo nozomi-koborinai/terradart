@@ -52,44 +52,47 @@ String renderText(CoverageReport r) {
   return b.toString();
 }
 
-/// Machine-readable report (also reused as MCP structuredContent later).
-String renderJson(CoverageReport r) {
-  final map = {
-    'summary': {
-      'distinctTypes': r.summary.distinctTypes,
-      'supportedTypes': r.summary.supportedTypes,
-      'totalOccurrences': r.summary.totalOccurrences,
-      'supportedOccurrences': r.summary.supportedOccurrences,
-      'coverageByTypePct': r.summary.coverageByTypePct,
-      'coverageByOccurrencePct': r.summary.coverageByOccurrencePct,
-    },
-    'supported': [
-      for (final e in r.supported)
-        {
-          'type': e.type,
-          'kind': _kind(e.kind),
-          'count': e.count,
-          'className': e.className,
-          'barrel': e.barrel,
-        },
-    ],
-    'notInCatalog': [
-      for (final e in r.notInCatalog)
-        {
-          'type': e.type,
-          'kind': _kind(e.kind),
-          'count': e.count,
-          'product': e.product,
-        },
-    ],
-    'perModule': {
-      for (final entry in r.perModule.entries)
-        entry.key: {
-          'supported': entry.value.supported,
-          'notInCatalog': entry.value.notInCatalog,
-        },
-    },
-    'unparseable': r.unparseable,
-  };
-  return const JsonEncoder.withIndent('  ').convert(map);
-}
+/// Returns the coverage report as a plain [Map] suitable for JSON encoding or
+/// MCP structuredContent. This is the canonical map structure shared by
+/// [renderJson] and `check_coverage` in terradart_agent.
+Map<String, Object?> reportToJsonMap(CoverageReport r) => {
+  'summary': {
+    'distinctTypes': r.summary.distinctTypes,
+    'supportedTypes': r.summary.supportedTypes,
+    'totalOccurrences': r.summary.totalOccurrences,
+    'supportedOccurrences': r.summary.supportedOccurrences,
+    'coverageByTypePct': r.summary.coverageByTypePct,
+    'coverageByOccurrencePct': r.summary.coverageByOccurrencePct,
+  },
+  'supported': [
+    for (final e in r.supported)
+      {
+        'type': e.type,
+        'kind': _kind(e.kind),
+        'count': e.count,
+        'className': e.className,
+        'barrel': e.barrel,
+      },
+  ],
+  'notInCatalog': [
+    for (final e in r.notInCatalog)
+      {
+        'type': e.type,
+        'kind': _kind(e.kind),
+        'count': e.count,
+        'product': e.product,
+      },
+  ],
+  'perModule': {
+    for (final entry in r.perModule.entries)
+      entry.key: {
+        'supported': entry.value.supported,
+        'notInCatalog': entry.value.notInCatalog,
+      },
+  },
+  'unparseable': r.unparseable,
+};
+
+/// Machine-readable report. Encodes [reportToJsonMap] as indented JSON.
+String renderJson(CoverageReport r) =>
+    const JsonEncoder.withIndent('  ').convert(reportToJsonMap(r));
