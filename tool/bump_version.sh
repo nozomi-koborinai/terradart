@@ -15,8 +15,16 @@
 #   - packages/terradart_agent/pubspec.yaml       (version: + terradart_core caret + terradart_google caret)
 #   - packages/terradart_agent/lib/src/version.dart  (packageVersion const — lockstep with its pubspec)
 #   - examples/*/pubspec.yaml                     (terradart_core + terradart_google carets)
-#   - README.md                                   (Quickstart pubspec sample + `dart pub global activate terradart_codegen ^...` line)
-#   - website/src/content/docs/docs/getting-started.md  (pubspec sample caret note)
+#   - README.md                                   (Quickstart pubspec sample + `dart pub global activate terradart_codegen ^...` line + status blurb)
+#   - CONTRIBUTING.md                             (minor-line caret references)
+#   - SECURITY.md                                 (supported-versions pin + table)
+#   - packages/terradart_core/README.md           (pubspec sample caret)
+#   - packages/terradart_google/README.md         (pubspec sample carets)
+#   - packages/terradart_codegen/README.md        (`dart pub global activate` caret)
+#   - website/src/content/docs/docs/getting-started.md  (pubspec sample caret note + version line)
+#   - .github/ISSUE_TEMPLATE/bug.yml              (pre-alpha banner version)
+#   - .github/ISSUE_TEMPLATE/feature.yml          (pre-alpha banner version)
+#   - .github/ISSUE_TEMPLATE/question.yml         (pre-alpha banner version)
 #
 # What it does NOT touch (write these by hand after the bump):
 #   - CHANGELOG.md (root + per-package) — release notes are prose
@@ -133,6 +141,68 @@ for md in README.md website/src/content/docs/docs/getting-started.md; do
   fi
 done
 
+# Extract old/new minor for plain x.y.x-style references (e.g. "0.13.x").
+OLD_MINOR="$(printf '%s' "$OLD" | sed 's/\.[^.]*$//')"
+NEW_MINOR="$(printf '%s' "$NEW" | sed 's/\.[^.]*$//')"
+OLD_MINOR_RE="$(printf '%s' "$OLD_MINOR" | sed 's/[.]/\\./g')"
+
+# 4b. Additional doc/template files that reference the minor line.
+#     Pattern set per file (only the version token is replaced; surrounding
+#     text is left intact so prose stays correct):
+#
+#   CONTRIBUTING.md  — "X.Y.x today", "^X.Y.x" caret, "vX.Y.0 beta" labels
+#   SECURITY.md      — "^X.Y.x" pin + table rows "**X.Y.x**"
+#   package READMEs  — pubspec/activate caret samples (same pattern as above)
+#   getting-started  — "**X.Y.x** line" + "vX.Y.0" planned-label
+#   ISSUE_TEMPLATE   — "**X.Y.x** today" + "vX.Y.0" planned-label in markdown value
+echo "  Additional doc/template files:"
+
+# CONTRIBUTING.md: replace ^X.Y.x and "X.Y.x today" and "vX.Y.0 beta" labels.
+if [ -f CONTRIBUTING.md ]; then
+  sed_inplace "s#\\^${OLD_MINOR_RE}\\.x#^${NEW_MINOR}.x#g" CONTRIBUTING.md
+  sed_inplace "s#${OLD_MINOR_RE}\\.x today#${NEW_MINOR}.x today#g" CONTRIBUTING.md
+  sed_inplace "s#v${OLD_MINOR_RE}\\.0#v${NEW_MINOR}.0#g" CONTRIBUTING.md
+  echo "    - CONTRIBUTING.md"
+fi
+
+# SECURITY.md: replace ^X.Y.x pin and **X.Y.x** table cells and "X.Y.x" upgrade references.
+if [ -f SECURITY.md ]; then
+  sed_inplace "s#\\^${OLD_MINOR_RE}\\.x#^${NEW_MINOR}.x#g" SECURITY.md
+  sed_inplace "s#\\*\\*${OLD_MINOR_RE}\\.x\\*\\*#**${NEW_MINOR}.x**#g" SECURITY.md
+  sed_inplace "s#${OLD_MINOR_RE}\\.x; see#${NEW_MINOR}.x; see#g" SECURITY.md
+  echo "    - SECURITY.md"
+fi
+
+# Package READMEs: pubspec caret samples + activate caret.
+for pkg_readme in packages/terradart_core/README.md \
+                  packages/terradart_google/README.md \
+                  packages/terradart_codegen/README.md; do
+  if [ -f "$pkg_readme" ]; then
+    sed_inplace "s#terradart_(core|codegen|google): \\^${OLD_RE}#terradart_\\1: ^${NEW}#g" "$pkg_readme"
+    sed_inplace "s#(dart pub global activate terradart_codegen) \\^${OLD_RE}#\\1 ^${NEW}#g" "$pkg_readme"
+    echo "    - $pkg_readme"
+  fi
+done
+
+# website/getting-started.md: "**X.Y.x** line" and "vX.Y.0" planned-label.
+GSTART="website/src/content/docs/docs/getting-started.md"
+if [ -f "$GSTART" ]; then
+  sed_inplace "s#\\*\\*${OLD_MINOR_RE}\\.x\\*\\* line#**${NEW_MINOR}.x** line#g" "$GSTART"
+  sed_inplace "s#v${OLD_MINOR_RE}\\.0#v${NEW_MINOR}.0#g" "$GSTART"
+  echo "    - $GSTART"
+fi
+
+# ISSUE_TEMPLATE ymls: "**X.Y.x** today" and "vX.Y.0" planned-label.
+for tpl in .github/ISSUE_TEMPLATE/bug.yml \
+           .github/ISSUE_TEMPLATE/feature.yml \
+           .github/ISSUE_TEMPLATE/question.yml; do
+  if [ -f "$tpl" ]; then
+    sed_inplace "s#\\*\\*${OLD_MINOR_RE}\\.x\\*\\* today#**${NEW_MINOR}.x** today#g" "$tpl"
+    sed_inplace "s#v${OLD_MINOR_RE}\\.0#v${NEW_MINOR}.0#g" "$tpl"
+    echo "    - $tpl"
+  fi
+done
+
 echo
 
 # 5. Verify no stale OLD carets / version lines remain in the scoped files.
@@ -142,10 +212,24 @@ STALE=$(
   grep -nE "^version: ${OLD_RE}\$" packages/*/pubspec.yaml 2>/dev/null
   grep -nE "terradart_(core|codegen|google|coverage): \\^${OLD_RE}([^0-9A-Za-z.-]|\$)" \
     packages/*/pubspec.yaml examples/*/pubspec.yaml \
-    README.md website/src/content/docs/docs/getting-started.md 2>/dev/null
+    README.md website/src/content/docs/docs/getting-started.md \
+    packages/terradart_core/README.md \
+    packages/terradart_google/README.md \
+    packages/terradart_codegen/README.md 2>/dev/null
   grep -nE "dart pub global activate terradart_codegen \\^${OLD_RE}([^0-9A-Za-z.-]|\$)" \
-    README.md website/src/content/docs/docs/getting-started.md 2>/dev/null
+    README.md \
+    website/src/content/docs/docs/getting-started.md \
+    packages/terradart_codegen/README.md 2>/dev/null
   grep -nE "packageVersion = '${OLD_RE}'" packages/terradart_agent/lib/src/version.dart 2>/dev/null
+  grep -nE "\\^${OLD_MINOR_RE}\\.x" \
+    CONTRIBUTING.md SECURITY.md 2>/dev/null
+  grep -nE "\\*\\*${OLD_MINOR_RE}\\.x\\*\\* (today|\\()" \
+    CONTRIBUTING.md SECURITY.md \
+    .github/ISSUE_TEMPLATE/bug.yml \
+    .github/ISSUE_TEMPLATE/feature.yml \
+    .github/ISSUE_TEMPLATE/question.yml 2>/dev/null
+  grep -nE "\\*\\*${OLD_MINOR_RE}\\.x\\*\\* line" \
+    website/src/content/docs/docs/getting-started.md 2>/dev/null
 )
 set -e
 

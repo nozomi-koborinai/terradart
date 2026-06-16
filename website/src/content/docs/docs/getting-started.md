@@ -3,7 +3,7 @@ title: Getting Started
 description: Install TerraDart and generate your first *.tf.json from a Stack.
 ---
 
-This guide matches the [README quickstart](https://github.com/nozomi-koborinai/terradart#quickstart) for the **0.13.x** line. TerraDart is **pre-alpha** until [beta gates](/docs/status/#beta-readiness-checklist) are complete (planned label: **v0.13.0**).
+This guide matches the [README quickstart](https://github.com/nozomi-koborinai/terradart#quickstart) for the **0.14.x** line. TerraDart is **pre-alpha** until [beta gates](/docs/status/#beta-readiness-checklist) are complete (planned label: **v0.14.0**).
 
 ## Prerequisites
 
@@ -16,8 +16,8 @@ This guide matches the [README quickstart](https://github.com/nozomi-koborinai/t
 ```yaml
 # pubspec.yaml
 dependencies:
-  terradart_core: ^0.13.x
-  terradart_google: ^0.13.x
+  terradart_core: ^0.14.x
+  terradart_google: ^0.14.x
 ```
 
 Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch, then run:
