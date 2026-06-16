@@ -82,7 +82,7 @@ sed_inplace() {
 
 # 1. `version:` field on the package pubspecs.
 echo "  Package versions:"
-for pkg in terradart_core terradart_codegen terradart_google terradart_agent; do
+for pkg in terradart_core terradart_codegen terradart_google terradart_agent terradart_coverage; do
   sed_inplace "s#^version: ${OLD_RE}\$#version: ${NEW}#" "packages/$pkg/pubspec.yaml"
   echo "    - packages/$pkg/pubspec.yaml -> $NEW"
 done
@@ -100,6 +100,10 @@ sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terra
 echo "    - terradart_agent.dependencies.terradart_core: ^${NEW}"
 sed_inplace "s#^( *terradart_google): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_agent/pubspec.yaml
 echo "    - terradart_agent.dependencies.terradart_google: ^${NEW}"
+sed_inplace "s#^( *terradart_coverage): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_agent/pubspec.yaml
+echo "    - terradart_agent.dependencies.terradart_coverage: ^${NEW}"
+sed_inplace "s#^( *terradart_google): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_coverage/pubspec.yaml
+echo "    - terradart_coverage.dependencies.terradart_google: ^${NEW}"
 
 # 2b. terradart_agent binary version const (lockstep with its pubspec;
 #     guarded by packages/terradart_agent/test/version_test.dart).
@@ -136,7 +140,7 @@ echo "==> Verifying no stale '$OLD' references remain"
 set +e
 STALE=$(
   grep -nE "^version: ${OLD_RE}\$" packages/*/pubspec.yaml 2>/dev/null
-  grep -nE "terradart_(core|codegen|google): \\^${OLD_RE}([^0-9A-Za-z.-]|\$)" \
+  grep -nE "terradart_(core|codegen|google|coverage): \\^${OLD_RE}([^0-9A-Za-z.-]|\$)" \
     packages/*/pubspec.yaml examples/*/pubspec.yaml \
     README.md website/src/content/docs/docs/getting-started.md 2>/dev/null
   grep -nE "dart pub global activate terradart_codegen \\^${OLD_RE}([^0-9A-Za-z.-]|\$)" \

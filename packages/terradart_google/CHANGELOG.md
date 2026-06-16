@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.14.0 - 2026-06-16
+
+- Provider 7.36.0: `google_compute_address` gains the computed `address_id`
+  getter.
+- **Breaking**: `google_compute_region_backend_service.connection_tracking_policy`
+  is now a typed `ComputeRegionBackendServiceRegionBackendServiceConnectionTrackingPolicy`
+  (with `RegionBackendServiceConnectionPersistence` /
+  `RegionBackendServiceTrackingMode` enums) instead of `TfArg<Map>`. See
+  [MIGRATING.md](../../MIGRATING.md).
+
 ## 0.13.0 - 2026-06-14
 
 Lockstep release. Folds in the unreleased 0.12.20 (Waves 33–35) plus the

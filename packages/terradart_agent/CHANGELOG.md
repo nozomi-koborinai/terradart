@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.14.0 - 2026-06-16
+
+Add the `check_coverage` MCP tool (5th catalog tool): given `terraform show -json`
+output, it reports terradart_google coverage. Wraps the new `terradart_coverage`
+package.
+
 ## 0.13.0 - 2026-06-14
 
 Lockstep version bump for `terradart_google` v0.13.0. MCP catalog: **210 entries** (35 service barrels). `TimeProvider` / `TimeSleep` now come from `package:terradart_google/time.dart` (moved out of `terradart_core`).

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.14.0 - 2026-06-16
+
+Lockstep release. No `terradart_core` API changes.
+
 ## 0.13.0 - 2026-06-14
 
 Lockstep release. **Breaking** — see [MIGRATING.md](../../MIGRATING.md).
