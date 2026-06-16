@@ -39,4 +39,24 @@ void main() {
     );
     expect((decoded['summary'] as Map)['distinctTypes'], 1);
   });
+
+  test('reportToJsonMap returns same structure as json render', () {
+    final sample = _sample();
+    final m = reportToJsonMap(sample);
+    expect(m['summary'], isA<Map>());
+    expect((m['summary'] as Map)['distinctTypes'], 1);
+    expect(
+      m.keys,
+      containsAll([
+        'summary',
+        'supported',
+        'notInCatalog',
+        'perModule',
+        'unparseable',
+      ]),
+    );
+    // Verify the map round-trips to the same JSON as renderJson.
+    final fromMap = const JsonEncoder.withIndent('  ').convert(m);
+    expect(fromMap, equals(renderJson(sample)));
+  });
 }
