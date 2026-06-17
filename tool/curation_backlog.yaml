@@ -26,9 +26,6 @@ entries:
   - resource: google_bigquery_routine_iam_binding
     detected_at: 2026-06-14
     provider_version: 7.36.0
-  - resource: google_bigquery_routine_iam_member
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
   - resource: google_bigquery_routine_iam_policy
     detected_at: 2026-06-14
     provider_version: 7.36.0

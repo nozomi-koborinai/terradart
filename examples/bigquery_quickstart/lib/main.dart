@@ -289,7 +289,7 @@ final class AnalyticsStack extends Stack {
       ),
     );
 
-    add(
+    final addOneRoutine = add(
       GoogleBigqueryRoutine(
         localName: 'add_one',
         datasetId: TfArg.ref(dataset.datasetIdRef),
@@ -304,6 +304,16 @@ final class AnalyticsStack extends Stack {
           ),
         ],
         returnType: TfArg.literal('{"typeKind":"INT64"}'),
+      ),
+    );
+
+    add(
+      GoogleBigqueryRoutineIamMember(
+        localName: 'add_one_reader',
+        datasetId: TfArg.ref(dataset.datasetIdRef),
+        routineId: TfArg.ref(addOneRoutine.routineIdRef),
+        role: TfArg.literal('roles/bigquery.dataViewer'),
+        member: TfArg.ref(reader.iamMember),
       ),
     );
 
