@@ -299,6 +299,18 @@ export 'src/compute/google_compute_region_health_check.dart'
         ComputeRegionHealthCheckRegionHealthCheckSslConfig,
         ComputeRegionHealthCheckRegionHealthCheckTcpConfig,
         RegionHealthCheckType;
+export 'src/compute/google_compute_region_disk.dart'
+    show
+        ComputeRegionDiskGuestOsFeature,
+        ComputeRegionDiskGuestOsFeatureType,
+        GoogleComputeRegionDisk;
+export 'src/compute/google_compute_region_instant_snapshot.dart'
+    show
+        ComputeRegionInstantSnapshotDeletionPolicy,
+        ComputeRegionInstantSnapshotParams,
+        GoogleComputeRegionInstantSnapshot;
+export 'src/compute/google_compute_region_instant_snapshot_iam_member.dart'
+    show GoogleComputeRegionInstantSnapshotIamMember;
 export 'src/compute/google_compute_region_instance_group_manager.dart'
     show
         GoogleComputeRegionInstanceGroupManager,
