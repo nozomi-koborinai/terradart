@@ -139,8 +139,14 @@ files:
     upstream: mmv1/products/compute/RegionAutoscaler.yaml
   google_compute_region_backend_service:
     upstream: mmv1/products/compute/RegionBackendService.yaml
+  google_compute_region_disk:
+    upstream: mmv1/products/compute/RegionDisk.yaml
   google_compute_region_health_check:
     upstream: mmv1/products/compute/RegionHealthCheck.yaml
+  google_compute_region_instant_snapshot:
+    upstream: mmv1/products/compute/RegionInstantSnapshot.yaml
+  google_compute_region_instant_snapshot_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_compute_region_instance_group_manager:
     upstream: mmv1/products/compute/RegionInstanceGroupManager.yaml
   google_compute_region_network_endpoint_group:

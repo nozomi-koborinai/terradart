@@ -1,0 +1,63 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - replica_zones
+  - type
+  - size
+  - image
+  - description
+  - labels
+  - guest_os_features
+  - region
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `self_link` attribute.
+    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+prelude: |
+  /// `guest_os_features[].type` for regional persistent disks.
+  enum ComputeRegionDiskGuestOsFeatureType implements TerraformEnum {
+    multiIpSubnet('MULTI_IP_SUBNET'),
+    secureBoot('SECURE_BOOT'),
+    sevCapable('SEV_CAPABLE'),
+    uefiCompatible('UEFI_COMPATIBLE'),
+    virtioScsiMultiqueue('VIRTIO_SCSI_MULTIQUEUE'),
+    windows('WINDOWS'),
+    gVnic('GVNIC'),
+    sevLiveMigratable('SEV_LIVE_MIGRATABLE'),
+    sevSnpCapable('SEV_SNP_CAPABLE'),
+    suspendResumeCompatible('SUSPEND_RESUME_COMPATIBLE'),
+    tdxCapable('TDX_CAPABLE'),
+    sevLiveMigratableV2('SEV_LIVE_MIGRATABLE_V2'),
+    snpSvsmCapable('SNP_SVSM_CAPABLE');
+
+    const ComputeRegionDiskGuestOsFeatureType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// One entry of the `guest_os_features` block (repeatable list).
+  @immutable
+  class ComputeRegionDiskGuestOsFeature {
+    const ComputeRegionDiskGuestOsFeature({required this.type});
+
+    final ComputeRegionDiskGuestOsFeatureType type;
+
+    Map<String, Object?> toArgMap() => {'type': type.terraformValue};
+  }
+
+customSlots:
+  guest_os_features:
+    paramDeclaration: 'List<ComputeRegionDiskGuestOsFeature>? guestOsFeatures'
+    argMapEntry: "if (guestOsFeatures != null) 'guest_os_features': TfArg.literal(guestOsFeatures.map((f) => f.toArgMap()).toList()),"
+
+extraImports:
+  - "import 'package:meta/meta.dart';"

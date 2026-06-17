@@ -1,0 +1,58 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - source_disk
+  - description
+  - labels
+  - deletion_policy
+  - params
+  - region
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `self_link` attribute.
+    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+prelude: |
+  /// Terraform `deletion_policy` for regional instant snapshots.
+  enum ComputeRegionInstantSnapshotDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const ComputeRegionInstantSnapshotDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `params` block (max=1). Carries request-time metadata such as
+  /// Resource Manager tags applied at create time.
+  @immutable
+  class ComputeRegionInstantSnapshotParams {
+    const ComputeRegionInstantSnapshotParams({this.resourceManagerTags});
+
+    final Map<String, String>? resourceManagerTags;
+
+    Map<String, Object?> toArgMap() => {
+          if (resourceManagerTags != null)
+            'resource_manager_tags': resourceManagerTags,
+        };
+  }
+
+dartTypeOverrides:
+  deletion_policy: ComputeRegionInstantSnapshotDeletionPolicy
+
+customSlots:
+  params:
+    paramDeclaration: 'ComputeRegionInstantSnapshotParams? params'
+    argMapEntry: "if (params != null) 'params': TfArg.literal([params.toArgMap()]),"
+
+extraImports:
+  - "import 'package:meta/meta.dart';"

@@ -228,12 +228,58 @@ final class NetworkStack extends Stack {
       ),
     );
 
+    // ---- Regional disk + instant snapshot IAM --------------------------------
+    //
+    // Regional instant snapshots require a regional persistent disk as their
+    // source (`google_compute_region_disk`). We snapshot the disk, then grant
+    // the on-call SA read access on the snapshot resource itself — the
+    // fine-grained "backup operator can see the snapshot but not mutate the
+    // disk" pattern.
+
+    final backupDisk = add(
+      GoogleComputeRegionDisk(
+        localName: 'backup_data',
+        name: TfArg.literal('backup-data'),
+        region: TfArg.literal('asia-northeast1'),
+        type: TfArg.literal('pd-balanced'),
+        size: TfArg.literal(10),
+        replicaZones: TfArg.literal([
+          'asia-northeast1-a',
+          'asia-northeast1-b',
+        ]),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    final bastionInstant = add(
+      GoogleComputeRegionInstantSnapshot(
+        localName: 'bastion_instant',
+        name: TfArg.literal('bastion-instant-1'),
+        sourceDisk: TfArg.ref(backupDisk.selfLink),
+        region: TfArg.literal('asia-northeast1'),
+        dependsOn: [ResourceDependency(backupDisk)],
+      ),
+    );
+
+    add(
+      GoogleComputeRegionInstantSnapshotIamMember(
+        localName: 'bastion_instant_viewer',
+        name: TfArg.ref(bastionInstant.nameRef),
+        role: TfArg.literal('roles/compute.viewer'),
+        member: TfArg.ref(oncallSre.iamMember),
+        region: TfArg.literal('asia-northeast1'),
+        dependsOn: [
+          ResourceDependency(oncallSre),
+          ResourceDependency(bastionInstant)
+        ],
+      ),
+    );
+
     // ---- Disk-scoped IAM (backup-only access) -----------------------------
     //
-    // Disk-scoped IAM (`google_compute_disk_iam_member`) needs a real disk to
-    // attach to, but `google_compute_disk` is not curated yet, so there is no
-    // applyable disk to bind in-stack. The binding is tracked in
-    // tool/example_debt.yaml until a curated disk resource lands; re-add it
-    // here (pointing at the in-stack disk) then.
+    // Disk-scoped IAM (`google_compute_disk_iam_member`) needs a zonal
+    // `google_compute_disk`, which is not curated yet. The binding is tracked in
+    // tool/example_debt.yaml until a curated zonal disk resource lands; re-add
+    // it here (pointing at the in-stack disk) then.
   }
 }
