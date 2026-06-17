@@ -487,6 +487,10 @@ files:
     upstream: mmv1/products/alloydb/Instance.yaml
   google_alloydb_user:
     upstream: mmv1/products/alloydb/User.yaml
+  google_apigee_data_collector:
+    upstream: mmv1/products/apigee/DataCollector.yaml
+  google_apigee_datastore:
+    upstream: mmv1/products/apigee/Datastore.yaml
   google_memcache_instance:
     upstream: mmv1/products/memcache/Instance.yaml
   google_redis_instance:

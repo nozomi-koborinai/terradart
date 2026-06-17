@@ -8,6 +8,7 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry('google_cloudfunctions2_', 'cloudfunctions.googleapis.com'),
   MapEntry('google_cloud_run_v2_', 'run.googleapis.com'),
   MapEntry('google_alloydb_', 'alloydb.googleapis.com'),
+  MapEntry('google_apigee_', 'apigee.googleapis.com'),
   MapEntry('google_artifact_registry_', 'artifactregistry.googleapis.com'),
   MapEntry('google_certificate_manager_', 'certificatemanager.googleapis.com'),
   MapEntry('google_privateca_', 'privateca.googleapis.com'),
