@@ -72,6 +72,11 @@ export 'src/compute/google_compute_backend_service.dart'
         LoadBalancingScheme,
         LocalityLbPolicy,
         SessionAffinity;
+export 'src/compute/google_compute_disk.dart'
+    show
+        ComputeDiskGuestOsFeature,
+        ComputeDiskGuestOsFeatureType,
+        GoogleComputeDisk;
 export 'src/compute/google_compute_disk_iam_member.dart'
     show GoogleComputeDiskIamMember;
 export 'src/compute/google_compute_firewall.dart'

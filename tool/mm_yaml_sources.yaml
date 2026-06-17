@@ -295,6 +295,8 @@ files:
     upstream: mmv1/products/gkebackup/RestorePlan.yaml
   google_gke_backup_restore_plan_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_disk:
+    upstream: mmv1/products/compute/Disk.yaml
   google_compute_disk_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_firebase_app_check_app_attest_config:
