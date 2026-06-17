@@ -138,6 +138,8 @@ export 'src/bigquery/google_bigquery_routine.dart'
         BigqueryRoutineSparkOptions,
         BigqueryRoutineType,
         GoogleBigqueryRoutine;
+export 'src/bigquery/google_bigquery_routine_iam_member.dart'
+    show GoogleBigqueryRoutineIamMember;
 export 'src/bigquery/google_bigquery_table.dart'
     show
         BigqueryTableAvroOptions,
