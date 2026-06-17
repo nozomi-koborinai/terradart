@@ -15,6 +15,9 @@ permissions:
   id-token: write
   contents: read
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 # Publish ordering rationale.
 #
 # terradart_codegen's published pubspec declares `terradart_core: ^X.Y.Z-dev`,

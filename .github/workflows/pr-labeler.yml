@@ -20,6 +20,9 @@ permissions:
   pull-requests: write
   issues: write
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 concurrency:
   group: pr-labeler-${{ github.event.pull_request.number || format('backfill-{0}', github.run_id) }}
   cancel-in-progress: true

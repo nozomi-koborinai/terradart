@@ -15,6 +15,9 @@ permissions:
   contents: write
   pull-requests: write
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
 jobs:
   detect-and-pr:
     name: detect schema/MM drift and open PR
