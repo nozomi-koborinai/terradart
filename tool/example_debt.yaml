@@ -30,12 +30,6 @@ GoogleGkeBackupRestoreChannel: same cross-project constraint as GoogleGkeBackupB
 # instead of creating the fleet resource.
 GoogleGkeHubFleet: the project default fleet is auto-created, so applying google_gke_hub_fleet returns 409 "fleets/default already exists"; there is no second fleet to create in a standalone project and the provider exposes no data source to adopt the existing one
 
-# Disk-scoped IAM needs a real google_compute_disk to attach to, but
-# google_compute_disk is not curated yet, so compute_quickstart has no
-# applyable disk to bind. Re-add the binding to compute_quickstart (pointing at
-# an in-stack disk) once a disk resource is curated.
-GoogleComputeDiskIamMember: needs a real google_compute_disk to bind, which is not a curated factory yet; the binding 404s against a non-existent disk and there is no in-stack disk to attach in a standalone apply-smoke run
-
 # google_firestore_user_creds creates a database-level credential for a Cloud
 # Firestore with MongoDB compatibility (Enterprise-edition) database. Applying
 # it against a Standard-edition database fails 400 "This operation requires an

@@ -275,11 +275,35 @@ final class NetworkStack extends Stack {
       ),
     );
 
-    // ---- Disk-scoped IAM (backup-only access) -----------------------------
+    // ---- Zonal disk + disk-scoped IAM (backup-only access) ------------------
     //
-    // Disk-scoped IAM (`google_compute_disk_iam_member`) needs a zonal
-    // `google_compute_disk`, which is not curated yet. The binding is tracked in
-    // tool/example_debt.yaml until a curated zonal disk resource lands; re-add
-    // it here (pointing at the in-stack disk) then.
+    // A standalone zonal PD that backup tooling can read without project-wide
+    // compute admin. The binding grants `roles/compute.viewer` on *only* this
+    // disk — the instance-scoped admin above stays untouched.
+
+    final scratchDisk = add(
+      GoogleComputeDisk(
+        localName: 'ops_scratch',
+        name: TfArg.literal('ops-scratch'),
+        zone: TfArg.literal('asia-northeast1-a'),
+        type: TfArg.literal('pd-balanced'),
+        size: TfArg.literal(10),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleComputeDiskIamMember(
+        localName: 'scratch_disk_viewer',
+        name: TfArg.ref(scratchDisk.nameRef),
+        role: TfArg.literal('roles/compute.viewer'),
+        member: TfArg.ref(oncallSre.iamMember),
+        zone: TfArg.literal('asia-northeast1-a'),
+        dependsOn: [
+          ResourceDependency(scratchDisk),
+          ResourceDependency(oncallSre),
+        ],
+      ),
+    );
   }
 }
