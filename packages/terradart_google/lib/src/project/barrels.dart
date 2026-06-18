@@ -10,6 +10,7 @@ enum Barrels {
   certificateManager('certificate_manager'),
   cloudBuild('cloud_build'),
   cloudFunctions('cloud_functions'),
+  config('config'),
   cloudRun('cloud_run'),
   cloudScheduler('cloud_scheduler'),
   cloudTasks('cloud_tasks'),

@@ -53,3 +53,6 @@ iam_quickstart: creates a WIF pool id 'github-actions' that COLLIDES with the ap
 kms_quickstart: KMS key rings (and keys) cannot be deleted, so a re-run fails 409 "KeyRing already exists"; no way to reclaim the name in a reused project
 firestore_document_quickstart: creates the Firestore (default) database, which cannot be deleted, so a re-run fails 409 "Database already exists"
 cloud_tasks_quickstart: a deleted Cloud Tasks queue name is locked ~7 days ("queue cannot be created because a queue with this name existed too recently"), so a daily sweep with a fixed name always 409s
+# --- Infrastructure Manager actuation needs config.agent SA + network admin and applies a live VPC module
+config_deployment_quickstart: needs config.agent and compute.networkAdmin IAM on a dedicated SA plus a long-running Git blueprint apply (terraform-google-network VPC module)
+
