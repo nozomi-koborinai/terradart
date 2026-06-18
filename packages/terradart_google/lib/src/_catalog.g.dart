@@ -4660,6 +4660,28 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_kms_key_ring_iam_member`.',
   ),
   CatalogEntry(
+    tfType: 'google_license_manager_configuration',
+    className: 'GoogleLicenseManagerConfiguration',
+    barrel: 'license_manager',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_license_manager_configuration`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'configurationId',
+      'product',
+      'licenseCount',
+      'active',
+      'labels',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>['LicenseManagerConfigurationDeletionPolicy'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_license_manager_configuration`.\n\nConfiguration resource for License Manager\n\nLicense Manager configuration for third-party software licenses (e.g. Office SPLA)\non Compute Engine workloads in a region.\n\nEnable `licensemanager.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleLicenseManagerConfiguration(\n  localName: \'office_spla\',\n  location: TfArg.literal(\'us-central1\'),\n  configurationId: TfArg.literal(\'office-2021\'),\n  product: TfArg.literal(\'Office2021ProfessionalPlus\'),\n  licenseCount: TfArg.literal(10),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_logging_folder_sink',
     className: 'GoogleLoggingFolderSink',
     barrel: 'logging',

@@ -70,5 +70,8 @@ final class GoogleProviderRules extends ProviderRules {
 
     // Wave 10 — GKE Backup (distinct from Hub / core GKE).
     'gke_backup': 'gke_backup',
+
+    // License Manager (`google_license_manager_*` → segment `license`).
+    'license': 'license_manager',
   };
 }
