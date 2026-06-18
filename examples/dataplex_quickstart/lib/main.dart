@@ -59,7 +59,7 @@ final class DataplexCatalogStack extends Stack {
         localName: 'customer_360_reader',
         dataProductId: TfArg.ref(dataProduct.dataProductIdRef),
         location: TfArg.literal('us-central1'),
-        role: TfArg.literal('roles/dataplex.dataProductViewer'),
+        role: TfArg.literal('roles/dataplex.viewer'),
         member: TfArg.ref(reader.iamMember),
         dependsOn: [
           ResourceDependency(dataProduct),

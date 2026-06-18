@@ -21,4 +21,4 @@ terraform plan
 ## What gets created
 
 - `GoogleDataplexDataProduct` — `customer-360` in `us-central1` owned by an in-stack service account
-- `GoogleDataplexDataProductIamMember` — grants a second SA `roles/dataplex.dataProductViewer` on the product
+- `GoogleDataplexDataProductIamMember` — grants a second SA `roles/dataplex.viewer` on the product
