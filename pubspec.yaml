@@ -39,6 +39,7 @@ workspace:
   - examples/kms_quickstart
   - examples/license_manager_quickstart
   - examples/monitoring_quickstart
+  - examples/network_connectivity_quickstart
   - examples/ops_quickstart
   - examples/pubsub_quickstart
   - examples/secret_manager_quickstart

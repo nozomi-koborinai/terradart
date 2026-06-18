@@ -45,6 +45,7 @@ export 'license_manager.dart';
 export 'logging.dart';
 export 'memcache.dart';
 export 'monitoring.dart';
+export 'network.dart';
 export 'privateca.dart';
 export 'project.dart';
 export 'provider.dart';

@@ -1,0 +1,67 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Partner Cross-Cloud Interconnect (CCI) transport for Network Connectivity.
+  ///
+  /// Enable `networkconnectivity.googleapis.com` via [GoogleProjectService]
+  /// before apply. [network] must reference an existing VPC; [remoteProfile]
+  /// is the full URL of a `remoteTransportProfiles` resource in the same region.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleNetworkConnectivityTransport(
+  ///   localName: 'aws_cci',
+  ///   name: TfArg.literal('my-transport'),
+  ///   region: TfArg.literal('us-east4'),
+  ///   network: TfArg.ref(vpc.nameRef),
+  ///   remoteProfile: TfArg.literal(
+  ///     'https://networkconnectivity.googleapis.com/v1/projects/my-project/locations/us-east4/remoteTransportProfiles/aws-us-east-1',
+  ///   ),
+  ///   bandwidth: TfArg.literal('BPS_1G'),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - region
+  - network
+  - remote_profile
+  - description
+  - bandwidth
+  - remote_account_id
+  - provided_activation_key
+  - advertised_routes
+  - stack_type
+  - mtu_limit
+  - labels
+  - deletion_policy
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for Network Connectivity transports.
+  enum NetworkConnectivityTransportDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const NetworkConnectivityTransportDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// IP stack for `google_network_connectivity_transport.stack_type`.
+  enum NetworkConnectivityTransportStackType implements TerraformEnum {
+    ipv4Ipv6('IPV4_IPV6'),
+    ipv4Only('IPV4_ONLY');
+
+    const NetworkConnectivityTransportStackType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: NetworkConnectivityTransportDeletionPolicy
+  stack_type: NetworkConnectivityTransportStackType

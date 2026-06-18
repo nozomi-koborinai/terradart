@@ -65,9 +65,6 @@ entries:
   - resource: google_migration_center_source
     detected_at: 2026-06-14
     provider_version: 7.36.0
-  - resource: google_network_connectivity_transport
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
   - resource: google_network_security_ull_mirroring_collector
     detected_at: 2026-06-14
     provider_version: 7.36.0

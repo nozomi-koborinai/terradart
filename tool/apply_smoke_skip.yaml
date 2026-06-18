@@ -58,3 +58,6 @@ config_deployment_quickstart: needs config.agent and compute.networkAdmin IAM on
 
 # --- Dialogflow SIP trunking needs a live carrier TLS hostname peer
 dialogflow_quickstart: SIP trunk apply needs a real carrier TLS peer certificate matching expected_hostname — placeholder hostnames fail at apply time
+
+# --- Partner CCI transport needs a live remote profile + partner account
+network_connectivity_quickstart: Partner CCI transport apply needs a real remoteTransportProfile handshake and partner account — placeholder remote_account_id fails at apply time
