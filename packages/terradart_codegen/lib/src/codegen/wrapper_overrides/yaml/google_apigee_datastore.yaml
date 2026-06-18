@@ -1,0 +1,70 @@
+outputDir: apigee
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - org_id
+  - display_name
+  - target_type
+  - datastore_config
+  - deletion_policy
+
+prelude: |
+  /// Target backend for `google_apigee_datastore`.
+  enum ApigeeDatastoreTargetType implements TerraformEnum {
+    gcs('gcs'),
+    bigquery('bigquery');
+
+    const ApigeeDatastoreTargetType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Terraform `deletion_policy` for Apigee datastores.
+  enum ApigeeDatastoreDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    abandon('ABANDON');
+
+    const ApigeeDatastoreDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `datastore_config` block (max=1). Required when [targetType] is set.
+  @immutable
+  class ApigeeDatastoreDatastoreConfig {
+    const ApigeeDatastoreDatastoreConfig({
+      required this.projectId,
+      this.bucketName,
+      this.path,
+      this.datasetName,
+      this.tablePrefix,
+    });
+
+    final TfArg<String> projectId;
+    final TfArg<String>? bucketName;
+    final TfArg<String>? path;
+    final TfArg<String>? datasetName;
+    final TfArg<String>? tablePrefix;
+
+    Map<String, Object?> toArgMap() => {
+          'project_id': projectId,
+          if (bucketName != null) 'bucket_name': bucketName!.toTfJson(),
+          if (path != null) 'path': path!.toTfJson(),
+          if (datasetName != null) 'dataset_name': datasetName!.toTfJson(),
+          if (tablePrefix != null) 'table_prefix': tablePrefix!.toTfJson(),
+        };
+  }
+
+dartTypeOverrides:
+  target_type: ApigeeDatastoreTargetType
+  deletion_policy: ApigeeDatastoreDeletionPolicy
+
+customSlots:
+  datastore_config:
+    paramDeclaration: 'ApigeeDatastoreDatastoreConfig? datastoreConfig'
+    argMapEntry: "if (datastoreConfig != null) 'datastore_config': TfArg.literal([datastoreConfig.toArgMap()]),"
+
+extraImports:
+  - "import 'package:meta/meta.dart';"

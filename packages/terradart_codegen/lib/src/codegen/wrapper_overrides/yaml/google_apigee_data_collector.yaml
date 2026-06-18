@@ -1,0 +1,39 @@
+outputDir: apigee
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - org_id
+  - data_collector_id
+  - type
+  - description
+  - deletion_policy
+
+prelude: |
+  /// Data type collected by `google_apigee_data_collector`.
+  enum ApigeeDataCollectorType implements TerraformEnum {
+    boolean('BOOLEAN'),
+    dateTime('DATETIME'),
+    floatType('FLOAT'),
+    integer('INTEGER'),
+    string('STRING');
+
+    const ApigeeDataCollectorType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Terraform `deletion_policy` for Apigee data collectors.
+  enum ApigeeDataCollectorDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    abandon('ABANDON');
+
+    const ApigeeDataCollectorDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  type: ApigeeDataCollectorType
+  deletion_policy: ApigeeDataCollectorDeletionPolicy
