@@ -44,21 +44,6 @@ entries:
   - resource: google_contact_center_insights_encryption_spec
     detected_at: 2026-06-14
     provider_version: 7.36.0
-  - resource: google_dataplex_data_product
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
-  - resource: google_dataplex_data_product_data_asset
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
-  - resource: google_dataplex_data_product_iam_binding
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
-  - resource: google_dataplex_data_product_iam_member
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
-  - resource: google_dataplex_data_product_iam_policy
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
   - resource: google_dialogflow_sip_trunk
     detected_at: 2026-06-14
     provider_version: 7.36.0

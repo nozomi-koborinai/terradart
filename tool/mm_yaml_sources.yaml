@@ -36,6 +36,10 @@ files:
     upstream: mmv1/products/compute/Network.yaml
   google_compute_subnetwork:
     upstream: mmv1/products/compute/Subnetwork.yaml
+  google_dataplex_data_product:
+    upstream: mmv1/products/dataplex/DataProduct.yaml
+  google_dataplex_data_product_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_dns_managed_zone:
     upstream: mmv1/products/dns/ManagedZone.yaml
   google_kms_crypto_key:

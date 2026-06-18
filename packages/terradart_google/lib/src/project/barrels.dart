@@ -15,6 +15,7 @@ enum Barrels {
   cloudTasks('cloud_tasks'),
   compute('compute'),
   container('container'),
+  dataplex('dataplex'),
   dnsApi('dns'),
   eventarc('eventarc'),
   firebaseAppCheck('firebase_app_check'),

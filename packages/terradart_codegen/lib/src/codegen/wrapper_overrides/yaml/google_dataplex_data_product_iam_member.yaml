@@ -1,0 +1,12 @@
+outputDir: dataplex
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - data_product_id
+  - role
+  - member
+  - condition
+  - location
+  - project
