@@ -35,6 +35,7 @@ enum Barrels {
   licenseManager('license_manager'),
   logging('logging'),
   monitoring('monitoring'),
+  network('network'),
   spanner('spanner'),
   memcache('memcache'),
   privateca('privateca'),
