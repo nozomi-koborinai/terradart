@@ -17,7 +17,7 @@ library;
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/kms.dart';
-import 'package:terradart_google/contact_center_insights.dart';
+import 'package:terradart_google/contact.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/time.dart';
@@ -38,7 +38,7 @@ final class CryptoStack extends Stack {
 
     final apiDeps = Apis.enable(
       this,
-      barrels: [Barrels.kmsApi, Barrels.contactCenterInsights],
+      barrels: [Barrels.kmsApi, Barrels.contact],
       propagationDelay: const Duration(seconds: 60),
     );
 

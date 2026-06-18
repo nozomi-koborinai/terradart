@@ -3301,7 +3301,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
   CatalogEntry(
     tfType: 'google_contact_center_insights_encryption_spec',
     className: 'GoogleContactCenterInsightsEncryptionSpec',
-    barrel: 'contact_center_insights',
+    barrel: 'contact',
     kind: CatalogKind.resource,
     summary:
         'Factory wrapper for `google_contact_center_insights_encryption_spec`.',

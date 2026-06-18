@@ -1,4 +1,4 @@
-outputDir: contact_center_insights
+outputDir: contact
 
 deriveClassDoc: true
 deriveOutputGetters: true
