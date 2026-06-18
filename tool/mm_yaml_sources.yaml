@@ -46,6 +46,8 @@ files:
     upstream: mmv1/products/kms/CryptoKey.yaml
   google_kms_key_ring:
     upstream: mmv1/products/kms/KeyRing.yaml
+  google_license_manager_configuration:
+    upstream: mmv1/products/licensemanager/Configuration.yaml
   google_logging_project_sink:
     upstream: null  # handwritten in terraform provider; no MM YAML (logging dir has no Sink-related yaml)
   google_monitoring_alert_policy:

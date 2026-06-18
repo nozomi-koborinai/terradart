@@ -28,6 +28,7 @@ enum Barrels {
   iamApi('iam'),
   iapApi('iap'),
   kmsApi('kms'),
+  licenseManager('license_manager'),
   logging('logging'),
   monitoring('monitoring'),
   spanner('spanner'),

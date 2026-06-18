@@ -37,6 +37,7 @@ export 'gke_backup.dart';
 export 'iap.dart';
 export 'iam.dart';
 export 'kms.dart';
+export 'license_manager.dart';
 export 'logging.dart';
 export 'memcache.dart';
 export 'monitoring.dart';
