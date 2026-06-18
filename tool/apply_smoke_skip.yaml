@@ -56,3 +56,5 @@ cloud_tasks_quickstart: a deleted Cloud Tasks queue name is locked ~7 days ("que
 # --- Infrastructure Manager actuation needs config.agent SA + network admin and applies a live VPC module
 config_deployment_quickstart: needs config.agent and compute.networkAdmin IAM on a dedicated SA plus a long-running Git blueprint apply (terraform-google-network VPC module)
 
+# --- Dialogflow SIP trunking needs a live carrier TLS hostname peer
+dialogflow_quickstart: SIP trunk apply needs a real carrier TLS peer certificate matching expected_hostname — placeholder hostnames fail at apply time

@@ -19,6 +19,7 @@ enum Barrels {
   contact('contact'),
   dataplex('dataplex'),
   discoveryEngine('discovery_engine'),
+  dialogflow('dialogflow'),
   dnsApi('dns'),
   eventarc('eventarc'),
   firebaseAppCheck('firebase_app_check'),

@@ -24,6 +24,7 @@ workspace:
   - examples/compute_quickstart
   - examples/dataplex_quickstart
   - examples/discovery_engine_quickstart
+  - examples/dialogflow_quickstart
   - examples/dns_quickstart
   - examples/eventarc_quickstart
   - examples/firebase_app_check_quickstart
