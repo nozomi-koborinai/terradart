@@ -8,6 +8,7 @@ enum Barrels {
   artifactRegistry('artifact_registry'),
   bigquery('bigquery'),
   certificateManager('certificate_manager'),
+  chronicle('chronicle'),
   cloudBuild('cloud_build'),
   cloudFunctions('cloud_functions'),
   config('config'),

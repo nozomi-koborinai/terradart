@@ -23,9 +23,6 @@ entries:
   - resource: google_bigquery_routine_iam_policy
     detected_at: 2026-06-14
     provider_version: 7.36.0
-  - resource: google_chronicle_custom_list
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
   - resource: google_chronicle_dashboard_chart
     detected_at: 2026-06-14
     provider_version: 7.36.0

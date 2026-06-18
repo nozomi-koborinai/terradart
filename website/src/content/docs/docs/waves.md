@@ -307,7 +307,7 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 
 Adds managed NFS (`google_filestore_instance`) plus backup and snapshot adjuncts on a new `filestore` barrel. Extends [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart).
 
-Catalog after Wave 34 (stacked on Wave 35): **226 curated resource factories + 1 data source** (227 catalog entries). 43 service barrels.
+Catalog after Wave 34 (stacked on Wave 35): **227 curated resource factories + 1 data source** (228 catalog entries). 44 service barrels.
 
 | Terraform type | Dart factory | Barrel | Example |
 | --- | --- | --- | --- |

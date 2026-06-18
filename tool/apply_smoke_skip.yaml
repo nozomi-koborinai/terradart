@@ -61,3 +61,6 @@ dialogflow_quickstart: SIP trunk apply needs a real carrier TLS peer certificate
 
 # --- Partner CCI transport needs a live remote profile + partner account
 network_connectivity_quickstart: Partner CCI transport apply needs a real remoteTransportProfile handshake and partner account — placeholder remote_account_id fails at apply time
+
+# --- Chronicle requires a provisioned SecOps instance ID
+chronicle_quickstart: needs a real Chronicle (Google SecOps) instance ID — placeholder UUID fails at apply time
