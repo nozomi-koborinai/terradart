@@ -25,6 +25,7 @@ export 'compute.dart';
 export 'container.dart';
 export 'data.dart';
 export 'dataplex.dart';
+export 'discovery_engine.dart';
 export 'dns.dart';
 export 'eventarc.dart';
 export 'firebase_app_check.dart';

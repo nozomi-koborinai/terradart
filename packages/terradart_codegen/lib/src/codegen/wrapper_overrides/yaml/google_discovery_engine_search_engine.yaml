@@ -1,0 +1,54 @@
+outputDir: discovery_engine
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+paramOrder:
+  - location
+  - collection_id
+  - engine_id
+  - display_name
+  - data_store_ids
+  - search_engine_config
+  - industry_vertical
+  - project
+
+extraGetters: |2
+    /// Reference to `engine_id` attribute.
+    TfRef<String> get engineIdRef =>
+        TfRef.attribute<String>(this, 'engine_id');
+
+prelude: |
+  /// `search_engine_config.search_tier`.
+  enum DiscoveryEngineSearchEngineSearchTier implements TerraformEnum {
+    searchTierStandard('SEARCH_TIER_STANDARD'),
+    searchTierEnterprise('SEARCH_TIER_ENTERPRISE');
+
+    const DiscoveryEngineSearchEngineSearchTier(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `search_engine_config` block (required, max=1).
+  @immutable
+  class DiscoveryEngineSearchEngineSearchEngineConfig {
+    const DiscoveryEngineSearchEngineSearchEngineConfig({this.searchTier});
+
+    final TfArg<DiscoveryEngineSearchEngineSearchTier>? searchTier;
+
+    Map<String, Object?> toArgMap() => {
+          if (searchTier != null) 'search_tier': searchTier,
+        };
+  }
+
+dartTypeOverrides:
+  industry_vertical: DiscoveryEngineSearchEngineIndustryVertical
+
+customSlots:
+  search_engine_config:
+    paramDeclaration: 'required DiscoveryEngineSearchEngineSearchEngineConfig searchEngineConfig'
+    argMapEntry: "'search_engine_config': TfArg.literal([searchEngineConfig.toArgMap()]),"
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
