@@ -238,6 +238,8 @@ files:
   # Manifest completion (0.12.2) — entries for curated overrides added after Wave 7.
   google_config_deployment:
     upstream: mmv1/products/config/Deployment.yaml
+  google_contact_center_insights_encryption_spec:
+    upstream: mmv1/products/contactcenterinsights/EncryptionSpec.yaml
   google_cloud_scheduler_job:
     upstream: mmv1/products/cloudscheduler/Job.yaml
   google_cloud_tasks_queue:

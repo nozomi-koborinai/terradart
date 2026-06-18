@@ -24,6 +24,7 @@ export 'cloud_sql.dart';
 export 'cloud_tasks.dart';
 export 'compute.dart';
 export 'container.dart';
+export 'contact.dart';
 export 'data.dart';
 export 'dataplex.dart';
 export 'discovery_engine.dart';

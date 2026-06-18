@@ -26,6 +26,7 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry('google_filestore_', 'file.googleapis.com'),
   MapEntry('google_firestore_', 'firestore.googleapis.com'),
   MapEntry('google_container_', 'container.googleapis.com'),
+  MapEntry('google_contact_center_insights_', 'contactcenterinsights.googleapis.com'),
   MapEntry('google_dataplex_', 'dataplex.googleapis.com'),
   MapEntry('google_discovery_engine_', 'discoveryengine.googleapis.com'),
   MapEntry('google_compute_', 'compute.googleapis.com'),

@@ -1,8 +1,6 @@
 # Cloud KMS quickstart
 
-End-to-end terradart example for a Cloud KMS key ring. Provisions a regional key ring (`main-ring`) in `asia-northeast1`.
-
-CryptoKey support (`GoogleKmsCryptoKey` with the typed `KmsKeyPurpose` / `KmsProtectionLevel` / `VersionTemplate` helpers) lands in `terradart_google` 0.1.0-dev — extend this stack with `GoogleKmsCryptoKey(... keyRing: TfArg.ref(ring.idRef) ...)` to issue keys against the ring.
+End-to-end terradart example for Cloud KMS plus Contact Center AI Insights CMEK. Provisions a regional key ring (`main-ring`) and `payments` crypto key in `asia-northeast1`, IAM bindings, and a `GoogleContactCenterInsightsEncryptionSpec` wired to the payments key.
 
 ## Prerequisites
 
@@ -33,7 +31,8 @@ terraform apply
 
 ## What gets created
 
-- A Cloud KMS key ring `main-ring` in `asia-northeast1`.
+- A Cloud KMS key ring `main-ring`, `payments` crypto key + primary version, and IAM bindings in `asia-northeast1`.
+- A Contact Center AI Insights location-level encryption spec (`GoogleContactCenterInsightsEncryptionSpec`) referencing the payments KMS key.
 
 ## Expected `tf-out/main.tf.json` (excerpt)
 

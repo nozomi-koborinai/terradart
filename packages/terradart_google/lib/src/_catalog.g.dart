@@ -3299,6 +3299,19 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_config_deployment`.\n\nA group of Google Cloud resources described by a Terraform blueprint.\n\nInfrastructure Manager deployment — actuates a Terraform blueprint from\nGCS or a public Git repository using a dedicated service account.\n\nEnable `config.googleapis.com` via [GoogleProjectService] before apply.\nThe actuation service account needs `roles/config.agent` (and any roles\nrequired by resources in the blueprint).\n\nExample (Git blueprint):\n```dart\nGoogleConfigDeployment(\n  localName: \'vpc\',\n  name: TfArg.literal(\'my-vpc-deployment\'),\n  location: TfArg.literal(\'us-central1\'),\n  serviceAccount: TfArg.literal(\n    \'projects/my-project/serviceAccounts/im-sa@my-project.iam.gserviceaccount.com\',\n  ),\n  terraformBlueprint: ConfigDeploymentTerraformBlueprint(\n    source: ConfigDeploymentBlueprintFromGit(\n      repo: TfArg.literal(\n        \'https://github.com/terraform-google-modules/terraform-google-network\',\n      ),\n      directory: TfArg.literal(\'modules/vpc\'),\n      ref: TfArg.literal(\'main\'),\n    ),\n    inputValues: [\n      ConfigDeploymentInputValue(\n        variableName: TfArg.literal(\'project_id\'),\n        inputValue: TfArg.literal(\'"my-project"\'),\n      ),\n    ],\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_contact_center_insights_encryption_spec',
+    className: 'GoogleContactCenterInsightsEncryptionSpec',
+    barrel: 'contact',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_contact_center_insights_encryption_spec`.',
+    constructorParams: <String>['localName', 'location', 'kmsKey', 'project'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_contact_center_insights_encryption_spec`.\n\nInitializes a location-level encryption key specification.\n\nLocation-level CMEK for Contact Center AI Insights.\n\nEnable `contactcenterinsights.googleapis.com` via [GoogleProjectService]\nbefore apply. The [kmsKey] must live in the same region as [location].\n\nExample:\n```dart\nGoogleContactCenterInsightsEncryptionSpec(\n  localName: \'insights_cmek\',\n  location: TfArg.literal(\'asia-northeast1\'),\n  kmsKey: TfArg.ref(paymentsKey.id),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_container_cluster',
     className: 'GoogleContainerCluster',
     barrel: 'container',
