@@ -152,7 +152,7 @@ final class NetworkStack extends Stack {
         tier: TfArg.literal(FilestoreInstanceTier.zonal),
         location: TfArg.literal('asia-northeast1-a'),
         fileShares: FilestoreInstanceFileShare(
-          name: TfArg.literal('zonal-share'),
+          name: TfArg.literal('zonal_share'),
           capacityGb: TfArg.literal(1024),
         ),
         networks: [
