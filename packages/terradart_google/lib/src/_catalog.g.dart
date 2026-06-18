@@ -3476,6 +3476,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_dataplex_data_product_iam_member`.',
   ),
   CatalogEntry(
+    tfType: 'google_dialogflow_sip_trunk',
+    className: 'GoogleDialogflowSipTrunk',
+    barrel: 'dialogflow',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_dialogflow_sip_trunk`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'expectedHostname',
+      'displayName',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>['DialogflowSipTrunkDeletionPolicy'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dialogflow_sip_trunk`.\n\nSipTrunk is the resource that represents a SIP trunk to connect to the\nGoogle Telephony Platform SIP trunking service.\n\nDialogflow CX SIP trunk for Google Telephony Platform trunking.\n\nEnable `dialogflow.googleapis.com` via [GoogleProjectService] before apply.\n[expectedHostname] lists the TLS peer certificate hostnames your carrier presents.\n\nExample:\n```dart\nGoogleDialogflowSipTrunk(\n  localName: \'carrier_trunk\',\n  location: TfArg.literal(\'global\'),\n  expectedHostname: TfArg.literal([\'sip.carrier.example.com\']),\n  displayName: TfArg.literal(\'Primary carrier trunk\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_discovery_engine_data_store',
     className: 'GoogleDiscoveryEngineDataStore',
     barrel: 'discovery_engine',

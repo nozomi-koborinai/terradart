@@ -1,0 +1,42 @@
+outputDir: dialogflow
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Dialogflow CX SIP trunk for Google Telephony Platform trunking.
+  ///
+  /// Enable `dialogflow.googleapis.com` via [GoogleProjectService] before apply.
+  /// [expectedHostname] lists the TLS peer certificate hostnames your carrier presents.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleDialogflowSipTrunk(
+  ///   localName: 'carrier_trunk',
+  ///   location: TfArg.literal('global'),
+  ///   expectedHostname: TfArg.literal(['sip.carrier.example.com']),
+  ///   displayName: TfArg.literal('Primary carrier trunk'),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - expected_hostname
+  - display_name
+  - deletion_policy
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for Dialogflow SIP trunks.
+  enum DialogflowSipTrunkDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const DialogflowSipTrunkDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: DialogflowSipTrunkDeletionPolicy
