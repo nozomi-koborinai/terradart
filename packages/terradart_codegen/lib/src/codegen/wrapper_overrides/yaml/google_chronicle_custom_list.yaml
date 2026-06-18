@@ -1,0 +1,47 @@
+outputDir: chronicle
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Chronicle (Google SecOps) custom list shared across playbooks.
+  ///
+  /// Enable `chronicle.googleapis.com` via [GoogleProjectService] before apply.
+  /// [instance] is the Chronicle instance ID in [location] (e.g. `us`).
+  /// [environments] is a JSON-encoded list of environment names.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleChronicleCustomList(
+  ///   localName: 'approved_files',
+  ///   location: TfArg.literal('us'),
+  ///   instance: TfArg.literal('00000000-0000-0000-0000-000000000000'),
+  ///   entityIdentifier: TfArg.literal('filename.bin'),
+  ///   category: TfArg.literal('Approved Files'),
+  ///   environments: TfArg.literal('["Default Environment"]'),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - instance
+  - entity_identifier
+  - category
+  - environments
+  - deletion_policy
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for Chronicle custom lists.
+  enum ChronicleCustomListDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const ChronicleCustomListDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: ChronicleCustomListDeletionPolicy

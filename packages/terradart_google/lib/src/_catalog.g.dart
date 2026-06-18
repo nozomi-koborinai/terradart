@@ -998,6 +998,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_certificate_manager_trust_config`.\n\nTrustConfig represents a resource that represents your Public Key\nInfrastructure (PKI) configuration in Certificate Manager for use in mutual\nTLS authentication scenarios.\n\nTrust configuration for Certificate Manager mTLS and custom trust stores.\n\nDefines trust anchors / intermediate CAs and optional PEM allowlists used\nwhen validating client or server certificates (e.g. regional HTTPS proxies\nwith `trust_config`).\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: trust config ID (`[a-zA-Z][a-zA-Z0-9_-]*`).\n- [location]: regional location (e.g. `global` or `us-central1`).\n\nExample:\n```dart\nGoogleCertificateManagerTrustConfig(\n  localName: \'app_trust\',\n  name: TfArg.literal(\'app-trust\'),\n  location: TfArg.literal(\'global\'),\n  trustStores: [\n    CertificateManagerTrustConfigTrustStore(\n      trustAnchors: [\n        CertificateManagerTrustConfigTrustAnchor(\n          pemCertificate: TfArg.variable(\'cm_trust_anchor_pem\'),\n        ),\n      ],\n    ),\n  ],\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_chronicle_custom_list',
+    className: 'GoogleChronicleCustomList',
+    barrel: 'chronicle',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_chronicle_custom_list`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'instance',
+      'entityIdentifier',
+      'category',
+      'environments',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>['ChronicleCustomListDeletionPolicy'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_chronicle_custom_list`.\n\nThe custom list is a list of objects, that can be saved as a shared\nresource, and can be used by playbooks.\n\nChronicle (Google SecOps) custom list shared across playbooks.\n\nEnable `chronicle.googleapis.com` via [GoogleProjectService] before apply.\n[instance] is the Chronicle instance ID in [location] (e.g. `us`).\n[environments] is a JSON-encoded list of environment names.\n\nExample:\n```dart\nGoogleChronicleCustomList(\n  localName: \'approved_files\',\n  location: TfArg.literal(\'us\'),\n  instance: TfArg.literal(\'00000000-0000-0000-0000-000000000000\'),\n  entityIdentifier: TfArg.literal(\'filename.bin\'),\n  category: TfArg.literal(\'Approved Files\'),\n  environments: TfArg.literal(\'["Default Environment"]\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_cloud_run_v2_job',
     className: 'GoogleCloudRunV2Job',
     barrel: 'cloud_run',
