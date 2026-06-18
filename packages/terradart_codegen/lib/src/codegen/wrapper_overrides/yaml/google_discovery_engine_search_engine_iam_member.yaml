@@ -1,0 +1,13 @@
+outputDir: discovery_engine
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - location
+  - collection_id
+  - engine_id
+  - role
+  - member
+  - condition
+  - project

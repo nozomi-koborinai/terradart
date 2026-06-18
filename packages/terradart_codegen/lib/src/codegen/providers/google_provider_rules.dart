@@ -73,5 +73,8 @@ final class GoogleProviderRules extends ProviderRules {
 
     // License Manager (`google_license_manager_*` → segment `license`).
     'license': 'license_manager',
+
+    // Vertex AI Search (`google_discovery_engine_*` → segment `discovery`).
+    'discovery': 'discovery_engine',
   };
 }
