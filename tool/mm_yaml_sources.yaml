@@ -42,6 +42,12 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dns_managed_zone:
     upstream: mmv1/products/dns/ManagedZone.yaml
+  google_discovery_engine_data_store:
+    upstream: mmv1/products/discoveryengine/DataStore.yaml
+  google_discovery_engine_search_engine:
+    upstream: mmv1/products/discoveryengine/SearchEngine.yaml
+  google_discovery_engine_search_engine_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_kms_crypto_key:
     upstream: mmv1/products/kms/CryptoKey.yaml
   google_kms_key_ring:

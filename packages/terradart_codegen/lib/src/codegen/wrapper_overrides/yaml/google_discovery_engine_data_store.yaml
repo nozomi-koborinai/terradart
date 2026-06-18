@@ -1,0 +1,23 @@
+outputDir: discovery_engine
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+paramOrder:
+  - location
+  - data_store_id
+  - display_name
+  - industry_vertical
+  - content_config
+  - solution_types
+  - project
+
+extraGetters: |2
+    /// Reference to `data_store_id` attribute.
+    TfRef<String> get dataStoreIdRef =>
+        TfRef.attribute<String>(this, 'data_store_id');
+
+dartTypeOverrides:
+  industry_vertical: DiscoveryEngineDataStoreIndustryVertical
+  content_config: DiscoveryEngineDataStoreContentConfig

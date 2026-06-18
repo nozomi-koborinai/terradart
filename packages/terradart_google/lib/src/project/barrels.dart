@@ -16,6 +16,7 @@ enum Barrels {
   compute('compute'),
   container('container'),
   dataplex('dataplex'),
+  discoveryEngine('discovery_engine'),
   dnsApi('dns'),
   eventarc('eventarc'),
   firebaseAppCheck('firebase_app_check'),
