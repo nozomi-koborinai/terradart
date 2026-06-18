@@ -1,0 +1,41 @@
+outputDir: dataplex
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - location
+  - data_product_id
+  - display_name
+  - owner_emails
+  - description
+  - labels
+  - access_approval_config
+  - project
+
+extraGetters: |2
+    /// Reference to `data_product_id` attribute.
+    TfRef<String> get dataProductIdRef =>
+        TfRef.attribute<String>(this, 'data_product_id');
+
+prelude: |
+  /// `access_approval_config` block (max=1). Lists approver emails for
+  /// access requests on this data product.
+  @immutable
+  class DataplexDataProductAccessApprovalConfig {
+    const DataplexDataProductAccessApprovalConfig({this.approverEmails});
+
+    final List<String>? approverEmails;
+
+    Map<String, Object?> toArgMap() => {
+          if (approverEmails != null) 'approver_emails': approverEmails,
+        };
+  }
+
+customSlots:
+  access_approval_config:
+    paramDeclaration: 'DataplexDataProductAccessApprovalConfig? accessApprovalConfig'
+    argMapEntry: "if (accessApprovalConfig != null) 'access_approval_config': TfArg.literal([accessApprovalConfig.toArgMap()]),"
+
+extraImports:
+  - "import 'package:meta/meta.dart';"

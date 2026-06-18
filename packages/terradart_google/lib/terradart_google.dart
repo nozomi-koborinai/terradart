@@ -24,6 +24,7 @@ export 'cloud_tasks.dart';
 export 'compute.dart';
 export 'container.dart';
 export 'data.dart';
+export 'dataplex.dart';
 export 'dns.dart';
 export 'eventarc.dart';
 export 'firebase_app_check.dart';
