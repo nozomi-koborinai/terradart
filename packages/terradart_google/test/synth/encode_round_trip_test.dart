@@ -30,6 +30,7 @@ import 'package:terradart_google/bigquery.dart';
 import 'package:terradart_google/certificate_manager.dart';
 import 'package:terradart_google/cloud_build.dart';
 import 'package:terradart_google/cloud_functions.dart';
+import 'package:terradart_google/config.dart';
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/cloud_scheduler.dart';
 import 'package:terradart_google/compute.dart';
@@ -266,6 +267,14 @@ final Map<String, Object Function()> _syntheticInstances = {
           path: TfArg.literal('cloudbuild.yaml'),
           repoType: TfArg.literal(CloudBuildTriggerRepoType.github),
         ),
+      ),
+
+  // --- ConfigDeploymentBlueprintSource (2) — google_config_deployment ------
+  'ConfigDeploymentBlueprintFromGcs': () => ConfigDeploymentBlueprintFromGcs(
+        gcsSource: TfArg.literal('gs://mock-bucket/blueprint.zip'),
+      ),
+  'ConfigDeploymentBlueprintFromGit': () => ConfigDeploymentBlueprintFromGit(
+        repo: TfArg.literal('https://github.com/example/terraform-blueprint'),
       ),
 
   // --- MonitoringUptimeCheckTarget (3) — monitoring_uptime_check_config ----
