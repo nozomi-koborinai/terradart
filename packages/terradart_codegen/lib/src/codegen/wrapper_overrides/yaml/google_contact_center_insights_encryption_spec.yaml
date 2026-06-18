@@ -1,0 +1,24 @@
+outputDir: contact_center_insights
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Location-level CMEK for Contact Center AI Insights.
+  ///
+  /// Enable `contactcenterinsights.googleapis.com` via [GoogleProjectService]
+  /// before apply. The [kmsKey] must live in the same region as [location].
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleContactCenterInsightsEncryptionSpec(
+  ///   localName: 'insights_cmek',
+  ///   location: TfArg.literal('asia-northeast1'),
+  ///   kmsKey: TfArg.ref(paymentsKey.id),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - kms_key
+  - project

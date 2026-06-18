@@ -33,7 +33,8 @@ terraform apply
 
 ## What gets created
 
-- A Cloud KMS key ring `main-ring` in `asia-northeast1`.
+- A Cloud KMS key ring `main-ring`, `payments` crypto key + primary version, and IAM bindings in `asia-northeast1`.
+- A Contact Center AI Insights location-level encryption spec (`GoogleContactCenterInsightsEncryptionSpec`) referencing the payments KMS key.
 
 ## Expected `tf-out/main.tf.json` (excerpt)
 

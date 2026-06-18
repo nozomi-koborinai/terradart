@@ -16,6 +16,7 @@ enum Barrels {
   cloudTasks('cloud_tasks'),
   compute('compute'),
   container('container'),
+  contactCenterInsights('contact_center_insights'),
   dataplex('dataplex'),
   discoveryEngine('discovery_engine'),
   dnsApi('dns'),
