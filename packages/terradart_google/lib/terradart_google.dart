@@ -16,6 +16,7 @@ export 'artifact_registry.dart';
 export 'bigquery.dart';
 export 'cloud_build.dart';
 export 'cloud_functions.dart';
+export 'config.dart';
 export 'cloud_run.dart';
 export 'cloud_scheduler.dart';
 export 'certificate_manager.dart';
