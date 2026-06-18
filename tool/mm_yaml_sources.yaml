@@ -244,6 +244,10 @@ files:
     upstream: mmv1/products/config/Deployment.yaml
   google_contact_center_insights_encryption_spec:
     upstream: mmv1/products/contactcenterinsights/EncryptionSpec.yaml
+  google_chronicle_dashboard_chart:
+    upstream: mmv1/products/chronicle/DashboardChart.yaml
+  google_chronicle_native_dashboard:
+    upstream: mmv1/products/chronicle/NativeDashboard.yaml
   google_chronicle_custom_list:
     upstream: mmv1/products/chronicle/CustomList.yaml
   google_cloud_scheduler_job:

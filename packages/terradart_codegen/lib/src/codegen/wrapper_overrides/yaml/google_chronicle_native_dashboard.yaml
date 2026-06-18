@@ -1,0 +1,164 @@
+outputDir: chronicle
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Chronicle native dashboard (Google SecOps).
+  ///
+  /// Enable `chronicle.googleapis.com` before apply. Use [ChronicleNativeDashboardFilter]
+  /// for `filters` blocks.
+  ///
+  /// Pair with [GoogleChronicleDashboardChart] — charts reference [nameRef].
+
+paramOrder:
+  - location
+  - instance
+  - display_name
+  - description
+  - access
+  - type
+  - is_pinned
+  - filters
+  - charts
+  - deletion_policy
+  - project
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  access: ChronicleNativeDashboardAccess
+  type: ChronicleNativeDashboardType
+  deletion_policy: ChronicleNativeDashboardDeletionPolicy
+
+prelude: |
+  /// Dashboard visibility for `google_chronicle_native_dashboard.access`.
+  enum ChronicleNativeDashboardAccess implements TerraformEnum {
+    dashboardPrivate('DASHBOARD_PRIVATE'),
+    dashboardPublic('DASHBOARD_PUBLIC');
+
+    const ChronicleNativeDashboardAccess(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Dashboard type for `google_chronicle_native_dashboard.type`.
+  enum ChronicleNativeDashboardType implements TerraformEnum {
+    curated('CURATED'),
+    privateType('PRIVATE'),
+    publicType('PUBLIC'),
+    custom('CUSTOM'),
+    marketplace('MARKETPLACE');
+
+    const ChronicleNativeDashboardType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Terraform `deletion_policy` for Chronicle native dashboards.
+  enum ChronicleNativeDashboardDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const ChronicleNativeDashboardDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Filter data source for `filters.data_source`.
+  enum ChronicleNativeDashboardFilterDataSource implements TerraformEnum {
+    udm('UDM'),
+    entity('ENTITY'),
+    ingestionMetrics('INGESTION_METRICS'),
+    ruleDetections('RULE_DETECTIONS'),
+    rulesets('RULESETS'),
+    global('GLOBAL'),
+    iocMatches('IOC_MATCHES'),
+    rules('RULES'),
+    soarCases('SOAR_CASES'),
+    soarPlaybooks('SOAR_PLAYBOOKS'),
+    soarCaseHistory('SOAR_CASE_HISTORY'),
+    dataTable('DATA_TABLE'),
+    investigation('INVESTIGATION'),
+    investigationFeedback('INVESTIGATION_FEEDBACK');
+
+    const ChronicleNativeDashboardFilterDataSource(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Filter operator for `filters.filter_operator_and_field_values.filter_operator`.
+  enum ChronicleNativeDashboardFilterOperator implements TerraformEnum {
+    equal('EQUAL'),
+    notEqual('NOT_EQUAL'),
+    in_('IN'),
+    greaterThan('GREATER_THAN'),
+    greaterThanOrEqualTo('GREATER_THAN_OR_EQUAL_TO'),
+    lessThan('LESS_THAN'),
+    lessThanOrEqualTo('LESS_THAN_OR_EQUAL_TO'),
+    between('BETWEEN'),
+    past('PAST'),
+    isNull('IS_NULL'),
+    isNotNull('IS_NOT_NULL'),
+    startsWith('STARTS_WITH'),
+    endsWith('ENDS_WITH'),
+    doesNotStartsWith('DOES_NOT_STARTS_WITH'),
+    doesNotEndsWith('DOES_NOT_ENDS_WITH'),
+    notIn('NOT_IN'),
+    contains('CONTAINS'),
+    doesNotContain('DOES_NOT_CONTAIN');
+
+    const ChronicleNativeDashboardFilterOperator(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `filter_operator_and_field_values` entry on a dashboard filter.
+  @immutable
+  class ChronicleNativeDashboardFilterOperatorAndFieldValue {
+    const ChronicleNativeDashboardFilterOperatorAndFieldValue({
+      this.filterOperator,
+      this.fieldValues,
+    });
+
+    final ChronicleNativeDashboardFilterOperator? filterOperator;
+    final List<TfArg<String>>? fieldValues;
+
+    Map<String, Object?> toArgMap() => {
+      if (filterOperator != null)
+        'filter_operator': filterOperator!.terraformValue,
+      if (fieldValues != null)
+        'field_values': fieldValues!.map((v) => v.toTfJson()).toList(),
+    };
+  }
+
+  /// Global dashboard filter (`filters` block).
+  @immutable
+  class ChronicleNativeDashboardFilter {
+    const ChronicleNativeDashboardFilter({
+      this.displayName,
+      this.dataSource,
+      this.filterOperatorAndFieldValues,
+    });
+
+    final TfArg<String>? displayName;
+    final ChronicleNativeDashboardFilterDataSource? dataSource;
+    final List<ChronicleNativeDashboardFilterOperatorAndFieldValue>?
+        filterOperatorAndFieldValues;
+
+    Map<String, Object?> toArgMap() => {
+      if (displayName != null) 'display_name': displayName!.toTfJson(),
+      if (dataSource != null) 'data_source': dataSource!.terraformValue,
+      if (filterOperatorAndFieldValues != null)
+        'filter_operator_and_field_values': filterOperatorAndFieldValues!
+            .map((v) => v.toArgMap())
+            .toList(),
+    };
+  }
+
+customSlots:
+  filters:
+    paramDeclaration: 'List<ChronicleNativeDashboardFilter>? filters'
+    argMapEntry: "if (filters != null) 'filters': TfArg.literal(filters.map((f) => f.toArgMap()).toList()),"
