@@ -39,15 +39,6 @@ GoogleGkeHubFleet: the project default fleet is auto-created, so applying google
 # cost-different product), so the resource is dropped from the example instead.
 GoogleFirestoreUserCreds: requires an Enterprise-edition (MongoDB-compatible) Firestore database; firestore_quickstart uses a Standard-edition named database, against which creation fails 400 "This operation requires an Enterprise database." Switching the database to Enterprise would change the example's intent, so the resource is dropped
 
-# Filestore snapshots are only supported on the zonal / high-scale-SSD /
-# enterprise tiers — NOT on the basic tiers. compute_quickstart's instance is
-# BASIC_HDD (zonal, the cheapest applyable tier for a smoke run), so creating a
-# snapshot of it fails apply with "Error creating Snapshot: 404". The example
-# keeps the regional GoogleFilestoreBackup, which basic tiers DO support.
-# Re-add a snapshot to an example once a zonal/enterprise-tier instance is
-# exercised (those tiers cost more, so the smoke run uses BASIC_HDD).
-GoogleFilestoreSnapshot: snapshots are unsupported on the BASIC_HDD tier used by compute_quickstart's applyable instance (snapshots require the zonal/high-scale-SSD/enterprise tiers); apply 404s with "Error creating Snapshot". Basic tiers support GoogleFilestoreBackup instead, which the example keeps
-
 # Setting IAM on a restore plan rejected the binding with 400 "Invalid argument"
 # at the restore-plan resource scope. GoogleGkeBackupBackupPlanIamMember already
 # demonstrates GKE Backup resource-level IAM in gke_quickstart, so the redundant

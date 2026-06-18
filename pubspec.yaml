@@ -31,6 +31,7 @@ workspace:
   - examples/firebase_remote_config_quickstart
   - examples/firestore_document_quickstart
   - examples/firestore_quickstart
+  - examples/filestore_quickstart
   - examples/gke_quickstart
   - examples/iam_quickstart
   - examples/kms_quickstart

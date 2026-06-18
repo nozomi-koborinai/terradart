@@ -143,12 +143,11 @@ final class NetworkStack extends Stack {
       ),
     );
 
-    // GoogleFilestoreSnapshot is intentionally omitted: snapshots are not
-    // supported on the BASIC_HDD tier (basic tiers support backups, not
-    // snapshots — snapshots are for the zonal / high-scale-SSD / enterprise
-    // tiers). Creating one 404s. Tracked in tool/example_debt.yaml.
+    // GoogleFilestoreSnapshot lives in filestore_quickstart: snapshot-capable
+    // tiers need High Scale SSD / ZONAL / Enterprise pools that
+    // terradart-validate lacks in asia-northeast1 (quota 0).
     //
-    // Backups, by contrast, ARE supported on basic tiers. A Filestore backup
+    // Backups ARE supported on basic tiers. A Filestore backup is a regional
     // is a regional resource, so its `location` is the region
     // (`asia-northeast1`) that contains the instance's zone
     // (`asia-northeast1-a`), not the zone itself.

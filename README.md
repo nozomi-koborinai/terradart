@@ -256,6 +256,7 @@ Data & storage
 - [Vertex AI Search data store + engine + IAM](examples/discovery_engine_quickstart/)
 - [Cloud KMS keyring + crypto key](examples/kms_quickstart/)
 - [License Manager Office SPLA configuration](examples/license_manager_quickstart/)
+- [Filestore High Scale SSD snapshot](examples/filestore_quickstart/)
 
 Application platform & operations
 
