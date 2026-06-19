@@ -1,5 +1,5 @@
 // packages/terradart_google/lib/oracle.dart
-/// Oracle Database@Google Cloud — Autonomous Database, ODB networking, GoldenGate.
+/// Oracle Database@Google Cloud — Autonomous Database, Base DB, ODB, GoldenGate.
 library;
 
 export 'src/oracle/google_oracle_database_autonomous_database.dart'
@@ -8,6 +8,12 @@ export 'src/oracle/google_oracle_database_autonomous_database.dart'
         OracleDatabaseAutonomousDatabaseDbWorkload,
         OracleDatabaseAutonomousDatabaseDeletionPolicy,
         OracleDatabaseAutonomousDatabaseLicenseType;
+export 'src/oracle/google_oracle_database_db_system.dart'
+    show
+        GoogleOracleDatabaseDbSystem,
+        OracleDatabaseDbSystemDatabaseEdition,
+        OracleDatabaseDbSystemDeletionPolicy,
+        OracleDatabaseDbSystemLicenseModel;
 export 'src/oracle/google_oracle_database_goldengate_connection.dart'
     show
         GoogleOracleDatabaseGoldengateConnection,

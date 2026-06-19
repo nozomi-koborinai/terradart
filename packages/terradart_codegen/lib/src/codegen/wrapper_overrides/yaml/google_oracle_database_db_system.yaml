@@ -1,0 +1,64 @@
+outputDir: oracle
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Oracle Base Database DB System on Oracle Database@Google Cloud.
+  ///
+  /// Enable `oracledatabase.googleapis.com` before apply. Requires
+  /// [odb_subnet] (and typically [GoogleOracleDatabaseOdbSubnet] refs) plus
+  /// [properties] with shape, edition, license model, and SSH public keys.
+
+paramOrder:
+  - location
+  - db_system_id
+  - display_name
+  - odb_subnet
+  - properties
+  - odb_network
+  - gcp_oracle_zone
+  - labels
+  - deletion_policy
+  - deletion_protection
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for DB Systems.
+  enum OracleDatabaseDbSystemDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const OracleDatabaseDbSystemDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// DB System database edition.
+  enum OracleDatabaseDbSystemDatabaseEdition implements TerraformEnum {
+    standardEdition('STANDARD_EDITION'),
+    enterpriseEdition('ENTERPRISE_EDITION');
+
+    const OracleDatabaseDbSystemDatabaseEdition(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// DB System license model.
+  enum OracleDatabaseDbSystemLicenseModel implements TerraformEnum {
+    licenseIncluded('LICENSE_INCLUDED'),
+    bringYourOwnLicense('BRING_YOUR_OWN_LICENSE');
+
+    const OracleDatabaseDbSystemLicenseModel(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: OracleDatabaseDbSystemDeletionPolicy
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
