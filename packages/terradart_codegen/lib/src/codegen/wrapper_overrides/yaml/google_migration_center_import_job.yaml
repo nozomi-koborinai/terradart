@@ -1,0 +1,33 @@
+outputDir: migration
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Migration Center import job that ingests uploaded data into a source.
+  ///
+  /// Set [assetSource] to `TfArg.ref(source.nameRef)`.
+
+paramOrder:
+  - location
+  - import_job_id
+  - asset_source
+  - display_name
+  - labels
+  - deletion_policy
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for Migration Center import jobs.
+  enum MigrationCenterImportJobDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const MigrationCenterImportJobDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: MigrationCenterImportJobDeletionPolicy

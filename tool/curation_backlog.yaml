@@ -35,27 +35,6 @@ entries:
   - resource: google_discovery_engine_search_engine_iam_policy
     detected_at: 2026-06-14
     provider_version: 7.36.0
-  - resource: google_migration_center_assets_export_job
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
-  - resource: google_migration_center_discovery_client
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
-  - resource: google_migration_center_import_job
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
-  - resource: google_migration_center_report
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
-  - resource: google_migration_center_report_config
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
-  - resource: google_migration_center_settings
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
-  - resource: google_migration_center_source
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
   - resource: google_network_security_ull_mirroring_collector
     detected_at: 2026-06-14
     provider_version: 7.36.0

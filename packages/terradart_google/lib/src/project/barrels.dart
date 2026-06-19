@@ -39,6 +39,7 @@ enum Barrels {
   network('network'),
   spanner('spanner'),
   memcache('memcache'),
+  migration('migration'),
   privateca('privateca'),
   project('project'),
   pubsub('pubsub'),

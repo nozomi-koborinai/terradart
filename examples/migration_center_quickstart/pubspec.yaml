@@ -1,0 +1,15 @@
+name: terradart_example_migration_center_quickstart
+description: terradart example — Migration Center sources, jobs, and reports.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.14.0
+  terradart_google: ^0.14.0
+
+dev_dependencies:
+  lints: ^6.0.0
