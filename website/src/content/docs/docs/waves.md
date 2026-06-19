@@ -303,6 +303,18 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 36 — Oracle GoldenGate (unreleased)
+
+Adds Oracle Database@Google Cloud GoldenGate deployment, connection, and connection assignment on a new `oracle` barrel. New [oracle_goldengate_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_goldengate_quickstart).
+
+Catalog after Wave 36: **242 curated resource factories + 1 data source** (243 catalog entries). 46 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_oracle_database_goldengate_deployment` | `GoogleOracleDatabaseGoldengateDeployment` | `oracle` | [oracle_goldengate_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_goldengate_quickstart) |
+| `google_oracle_database_goldengate_connection` | `GoogleOracleDatabaseGoldengateConnection` | `oracle` | [oracle_goldengate_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_goldengate_quickstart) |
+| `google_oracle_database_goldengate_connection_assignment` | `GoogleOracleDatabaseGoldengateConnectionAssignment` | `oracle` | [oracle_goldengate_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_goldengate_quickstart) |
+
 ## Wave 34 — Cloud Filestore (unreleased)
 
 Adds managed NFS (`google_filestore_instance`) plus backup and snapshot adjuncts on a new `filestore` barrel. Extends [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart).

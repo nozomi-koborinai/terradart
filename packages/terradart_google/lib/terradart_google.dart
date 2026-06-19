@@ -48,6 +48,7 @@ export 'memcache.dart';
 export 'migration.dart';
 export 'monitoring.dart';
 export 'network.dart';
+export 'oracle.dart';
 export 'privateca.dart';
 export 'project.dart';
 export 'provider.dart';

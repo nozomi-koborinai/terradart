@@ -37,6 +37,7 @@ enum Barrels {
   logging('logging'),
   monitoring('monitoring'),
   network('network'),
+  oracle('oracle'),
   spanner('spanner'),
   memcache('memcache'),
   migration('migration'),
