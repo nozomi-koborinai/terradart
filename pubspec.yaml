@@ -45,6 +45,7 @@ workspace:
   - examples/network_security_ull_quickstart
   - examples/oracle_autonomous_database_quickstart
   - examples/oracle_db_system_quickstart
+  - examples/oracle_exadata_quickstart
   - examples/oracle_goldengate_quickstart
   - examples/ops_quickstart
   - examples/pubsub_quickstart

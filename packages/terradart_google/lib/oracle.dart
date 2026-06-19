@@ -1,5 +1,5 @@
 // packages/terradart_google/lib/oracle.dart
-/// Oracle Database@Google Cloud — Autonomous Database, Base DB, ODB, GoldenGate.
+/// Oracle Database@Google Cloud — Autonomous Database, Base DB, Exadata, ODB, GoldenGate.
 library;
 
 export 'src/oracle/google_oracle_database_autonomous_database.dart'
@@ -8,12 +8,28 @@ export 'src/oracle/google_oracle_database_autonomous_database.dart'
         OracleDatabaseAutonomousDatabaseDbWorkload,
         OracleDatabaseAutonomousDatabaseDeletionPolicy,
         OracleDatabaseAutonomousDatabaseLicenseType;
+export 'src/oracle/google_oracle_database_cloud_exadata_infrastructure.dart'
+    show
+        GoogleOracleDatabaseCloudExadataInfrastructure,
+        OracleDatabaseCloudExadataInfrastructureDeletionPolicy;
+export 'src/oracle/google_oracle_database_cloud_vm_cluster.dart'
+    show
+        GoogleOracleDatabaseCloudVmCluster,
+        OracleDatabaseCloudVmClusterDeletionPolicy;
 export 'src/oracle/google_oracle_database_db_system.dart'
     show
         GoogleOracleDatabaseDbSystem,
         OracleDatabaseDbSystemDatabaseEdition,
         OracleDatabaseDbSystemDeletionPolicy,
         OracleDatabaseDbSystemLicenseModel;
+export 'src/oracle/google_oracle_database_exadb_vm_cluster.dart'
+    show
+        GoogleOracleDatabaseExadbVmCluster,
+        OracleDatabaseExadbVmClusterDeletionPolicy;
+export 'src/oracle/google_oracle_database_exascale_db_storage_vault.dart'
+    show
+        GoogleOracleDatabaseExascaleDbStorageVault,
+        OracleDatabaseExascaleDbStorageVaultDeletionPolicy;
 export 'src/oracle/google_oracle_database_goldengate_connection.dart'
     show
         GoogleOracleDatabaseGoldengateConnection,

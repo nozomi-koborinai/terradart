@@ -553,6 +553,14 @@ files:
     upstream: mmv1/products/oracledatabase/AutonomousDatabase.yaml
   google_oracle_database_db_system:
     upstream: mmv1/products/oracledatabase/DbSystem.yaml
+  google_oracle_database_cloud_exadata_infrastructure:
+    upstream: mmv1/products/oracledatabase/CloudExadataInfrastructure.yaml
+  google_oracle_database_cloud_vm_cluster:
+    upstream: mmv1/products/oracledatabase/CloudVmCluster.yaml
+  google_oracle_database_exadb_vm_cluster:
+    upstream: mmv1/products/oracledatabase/ExadbVmCluster.yaml
+  google_oracle_database_exascale_db_storage_vault:
+    upstream: mmv1/products/oracledatabase/ExascaleDbStorageVault.yaml
   google_redis_instance:
     upstream: mmv1/products/redis/Instance.yaml
   google_spanner_database:
