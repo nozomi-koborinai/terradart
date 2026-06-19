@@ -1,7 +1,10 @@
 # Oracle GoldenGate quickstart
 
-End-to-end terradart example for Oracle Database@Google Cloud GoldenGate factories:
+End-to-end terradart example for Oracle Database@Google Cloud factories:
 
+- `google_compute_network` (VPC for ODB attachment)
+- `google_oracle_database_odb_network`
+- `google_oracle_database_odb_subnet`
 - `google_oracle_database_goldengate_deployment`
 - `google_oracle_database_goldengate_connection`
 - `google_oracle_database_goldengate_connection_assignment`
@@ -10,7 +13,7 @@ End-to-end terradart example for Oracle Database@Google Cloud GoldenGate factori
 
 - Dart SDK >= 3.6
 - Terraform CLI >= 1.11.0
-- A GCP project with `oracledatabase.googleapis.com` enabled
+- A GCP project with `oracledatabase.googleapis.com` and `compute.googleapis.com` enabled
 
 ## Usage
 
@@ -24,5 +27,4 @@ terraform plan
 
 ## What gets created
 
-- A GoldenGate deployment with placeholder ODB subnet and OGG admin credentials in `us-east4`
-- A generic GoldenGate connection and an assignment linking connection to deployment
+- Custom VPC, ODB network/subnet, GoldenGate deployment, generic connection, and assignment in `us-east4`
