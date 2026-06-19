@@ -1,0 +1,42 @@
+outputDir: oracle
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Oracle GoldenGate deployment on Oracle Database@Google Cloud.
+  ///
+  /// Enable `oracledatabase.googleapis.com` before apply. Requires an
+  /// [odb_subnet] in the target region and [properties] with deployment type
+  /// and OGG admin credentials.
+
+paramOrder:
+  - location
+  - goldengate_deployment_id
+  - display_name
+  - odb_subnet
+  - odb_network
+  - gcp_oracle_zone
+  - properties
+  - labels
+  - deletion_policy
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for GoldenGate deployments (defaults to PREVENT).
+  enum OracleDatabaseGoldengateDeploymentDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const OracleDatabaseGoldengateDeploymentDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: OracleDatabaseGoldengateDeploymentDeletionPolicy
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

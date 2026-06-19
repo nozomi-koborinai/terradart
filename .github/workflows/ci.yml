@@ -121,7 +121,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        example: [pubsub,cloud_tasks,secret_manager,chronicle,cloud_scheduler,iam,compute,gke,kms,storage,bigquery,dns,ops,cloud_run,monitoring,network_connectivity,network_security_ull,cloud_functions,firestore,firestore_document,firebase_app_hosting,firebase_app_check,firebase_data_connect,firebase_remote_config,cloud_sql,compute_lb,cloud_build,config_deployment,eventarc,apigee,dataplex,license_manager,migration_center,discovery_engine,dialogflow,filestore]
+        example: [pubsub,cloud_tasks,secret_manager,chronicle,cloud_scheduler,iam,compute,gke,kms,storage,bigquery,dns,ops,cloud_run,monitoring,network_connectivity,network_security_ull,cloud_functions,firestore,firestore_document,firebase_app_hosting,firebase_app_check,firebase_data_connect,firebase_remote_config,cloud_sql,compute_lb,cloud_build,config_deployment,eventarc,apigee,dataplex,license_manager,migration_center,oracle_goldengate,discovery_engine,dialogflow,filestore]
     steps:
       - name: Job start
         id: job_start

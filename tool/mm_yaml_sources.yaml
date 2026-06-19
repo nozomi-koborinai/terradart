@@ -539,6 +539,12 @@ files:
     upstream: mmv1/products/migrationcenter/Settings.yaml
   google_migration_center_source:
     upstream: mmv1/products/migrationcenter/Source.yaml
+  google_oracle_database_goldengate_connection:
+    upstream: mmv1/products/oracledatabase/GoldengateConnection.yaml
+  google_oracle_database_goldengate_connection_assignment:
+    upstream: mmv1/products/oracledatabase/GoldengateConnectionAssignment.yaml
+  google_oracle_database_goldengate_deployment:
+    upstream: mmv1/products/oracledatabase/GoldengateDeployment.yaml
   google_redis_instance:
     upstream: mmv1/products/redis/Instance.yaml
   google_spanner_database:

@@ -1,0 +1,42 @@
+outputDir: oracle
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Oracle GoldenGate connection metadata for Oracle Database@Google Cloud.
+  ///
+  /// Enable `oracledatabase.googleapis.com` before apply. Set [properties]
+  /// with `connection_type`, `display_name`, and the type-specific connection
+  /// block (for example `generic_connection_properties`).
+
+paramOrder:
+  - location
+  - goldengate_connection_id
+  - properties
+  - odb_subnet
+  - odb_network
+  - gcp_oracle_zone
+  - labels
+  - deletion_policy
+  - deletion_protection
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for GoldenGate connections.
+  enum OracleDatabaseGoldengateConnectionDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const OracleDatabaseGoldengateConnectionDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: OracleDatabaseGoldengateConnectionDeletionPolicy
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

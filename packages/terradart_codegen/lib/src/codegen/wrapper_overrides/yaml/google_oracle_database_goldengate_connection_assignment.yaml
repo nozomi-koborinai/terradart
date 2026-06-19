@@ -1,0 +1,42 @@
+outputDir: oracle
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Assigns a [GoogleOracleDatabaseGoldengateConnection] to a
+  /// [GoogleOracleDatabaseGoldengateDeployment] for replication workloads.
+  ///
+  /// Enable `oracledatabase.googleapis.com` before apply.
+
+paramOrder:
+  - location
+  - goldengate_connection_assignment_id
+  - properties
+  - display_name
+  - labels
+  - deletion_policy
+  - deletion_protection
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for GoldenGate connection assignments.
+  enum OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy
+      implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy(
+      this.terraformValue,
+    );
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: OracleDatabaseGoldengateConnectionAssignmentDeletionPolicy
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
