@@ -1,0 +1,33 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// ULL mirroring engine — logical infrastructure for Ultra Low Latency mirroring.
+  ///
+  /// Enable `networksecurity.googleapis.com` before apply. Pair with
+  /// [GoogleNetworkSecurityUllMirroringCollector] in the same [location] zone
+  /// (e.g. `us-south1-d`).
+
+paramOrder:
+  - location
+  - ull_mirroring_engine_id
+  - labels
+  - deletion_policy
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for ULL mirroring engines.
+  enum NetworkSecurityUllMirroringEngineDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const NetworkSecurityUllMirroringEngineDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: NetworkSecurityUllMirroringEngineDeletionPolicy

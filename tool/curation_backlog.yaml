@@ -35,15 +35,6 @@ entries:
   - resource: google_discovery_engine_search_engine_iam_policy
     detected_at: 2026-06-14
     provider_version: 7.36.0
-  - resource: google_network_security_ull_mirroring_collector
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
-  - resource: google_network_security_ull_mirroring_collector_rule
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
-  - resource: google_network_security_ull_mirroring_engine
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
   - resource: google_oracle_database_goldengate_connection
     detected_at: 2026-06-14
     provider_version: 7.36.0

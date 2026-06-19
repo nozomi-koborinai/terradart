@@ -42,6 +42,7 @@ workspace:
   - examples/migration_center_quickstart
   - examples/monitoring_quickstart
   - examples/network_connectivity_quickstart
+  - examples/network_security_ull_quickstart
   - examples/ops_quickstart
   - examples/pubsub_quickstart
   - examples/secret_manager_quickstart
