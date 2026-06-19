@@ -303,6 +303,16 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 39 — Oracle DB System (unreleased)
+
+Adds `google_oracle_database_db_system` on the `oracle` barrel with [oracle_db_system_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_db_system_quickstart).
+
+Catalog after Wave 39: **246 curated resource factories + 1 data source** (247 catalog entries). 46 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_oracle_database_db_system` | `GoogleOracleDatabaseDbSystem` | `oracle` | [oracle_db_system_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_db_system_quickstart) |
+
 ## Wave 38 — Oracle Autonomous Database (unreleased)
 
 Adds `google_oracle_database_autonomous_database` on the `oracle` barrel with [oracle_autonomous_database_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_autonomous_database_quickstart).

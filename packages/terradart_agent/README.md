@@ -49,7 +49,7 @@ Full walkthroughs: [terradart.dev — terradart-mcp](https://terradart.dev/docs/
 | `get_resource_schema` | Constructor params and nested types for one factory |
 | `get_quickstart` | Ready-made `Stack` template for a resource |
 
-The catalog currently holds 246 entries (245 curated resource factories + 1 data source) across 46 service barrels.
+The catalog currently holds 247 entries (246 curated resource factories + 1 data source) across 46 service barrels.
 
 ## Development
 
