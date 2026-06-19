@@ -5681,6 +5681,74 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_network_connectivity_transport`.\n\nThe Transport resource is a top-level resource used by customers to control\nPartner Cross-Cloud Interconnect (CCI) connections.\n\nPartner Cross-Cloud Interconnect (CCI) transport for Network Connectivity.\n\nEnable `networkconnectivity.googleapis.com` via [GoogleProjectService]\nbefore apply. [network] must reference an existing VPC; [remoteProfile]\nis the full URL of a `remoteTransportProfiles` resource in the same region.\n\nExample:\n```dart\nGoogleNetworkConnectivityTransport(\n  localName: \'aws_cci\',\n  name: TfArg.literal(\'my-transport\'),\n  region: TfArg.literal(\'us-east4\'),\n  network: TfArg.ref(vpc.nameRef),\n  remoteProfile: TfArg.literal(\n    \'https://networkconnectivity.googleapis.com/v1/projects/my-project/locations/us-east4/remoteTransportProfiles/aws-us-east-1\',\n  ),\n  bandwidth: TfArg.literal(\'BPS_1G\'),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_network_security_ull_mirroring_collector',
+    className: 'GoogleNetworkSecurityUllMirroringCollector',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_network_security_ull_mirroring_collector`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'ullMirroringCollectorId',
+      'engine',
+      'forwardingRule',
+      'labels',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>['NetworkSecurityUllMirroringCollectorDeletionPolicy'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_security_ull_mirroring_collector`.\n\nA Mirroring Collector is a logical representation of an appliance that\ncollects mirrored traffic.\n\nULL mirroring collector appliance bound to a [GoogleNetworkSecurityUllMirroringEngine].\n\nSet [engine] to `TfArg.ref(engine.nameRef)` and [forwardingRule] to a regional\ninternal forwarding rule self-link receiving mirrored traffic.',
+  ),
+  CatalogEntry(
+    tfType: 'google_network_security_ull_mirroring_collector_rule',
+    className: 'GoogleNetworkSecurityUllMirroringCollectorRule',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_network_security_ull_mirroring_collector_rule`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'ullMirroringCollector',
+      'ullMirroringCollectorRuleId',
+      'match',
+      'labels',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'NetworkSecurityUllMirroringCollectorRuleDeletionPolicy',
+      'NetworkSecurityUllMirroringCollectorRuleDirection',
+      'NetworkSecurityUllMirroringCollectorRuleMatch',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_security_ull_mirroring_collector_rule`.\n\nUllMirroringCollectorRule is a resource that defines what traffic should be\nmirrored.\n\nULL mirroring collector rule — traffic match criteria on a collector.\n\nSet [ullMirroringCollector] to `TfArg.ref(collector.nameRef)`. Requires a\n[NetworkSecurityUllMirroringCollectorRuleMatch] block.',
+  ),
+  CatalogEntry(
+    tfType: 'google_network_security_ull_mirroring_engine',
+    className: 'GoogleNetworkSecurityUllMirroringEngine',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_network_security_ull_mirroring_engine`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'ullMirroringEngineId',
+      'labels',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>['NetworkSecurityUllMirroringEngineDeletionPolicy'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_security_ull_mirroring_engine`.\n\nA Mirroring Engine is a logical representation of the underlying\ninfrastructure that is used to manage and monitor the ULL Mirroring setup.\n\nULL mirroring engine — logical infrastructure for Ultra Low Latency mirroring.\n\nEnable `networksecurity.googleapis.com` before apply. Pair with\n[GoogleNetworkSecurityUllMirroringCollector] in the same [location] zone\n(e.g. `us-south1-d`).',
+  ),
+  CatalogEntry(
     tfType: 'google_privateca_ca_pool',
     className: 'GooglePrivatecaCaPool',
     barrel: 'privateca',

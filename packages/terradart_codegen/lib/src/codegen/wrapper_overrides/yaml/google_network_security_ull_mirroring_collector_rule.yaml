@@ -1,0 +1,78 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// ULL mirroring collector rule — traffic match criteria on a collector.
+  ///
+  /// Set [ullMirroringCollector] to `TfArg.ref(collector.nameRef)`. Requires a
+  /// [NetworkSecurityUllMirroringCollectorRuleMatch] block.
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+paramOrder:
+  - location
+  - ull_mirroring_collector
+  - ull_mirroring_collector_rule_id
+  - match
+  - labels
+  - deletion_policy
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for ULL mirroring collector rules.
+  enum NetworkSecurityUllMirroringCollectorRuleDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const NetworkSecurityUllMirroringCollectorRuleDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Traffic direction for `match.direction`.
+  enum NetworkSecurityUllMirroringCollectorRuleDirection implements TerraformEnum {
+    ingress('INGRESS'),
+    egress('EGRESS');
+
+    const NetworkSecurityUllMirroringCollectorRuleDirection(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `match` block on a ULL mirroring collector rule.
+  @immutable
+  class NetworkSecurityUllMirroringCollectorRuleMatch {
+    const NetworkSecurityUllMirroringCollectorRuleMatch({
+      this.direction,
+      this.srcIpRanges,
+      this.dstIpRanges,
+      this.ipProtocols,
+    });
+
+    final NetworkSecurityUllMirroringCollectorRuleDirection? direction;
+    final List<TfArg<String>>? srcIpRanges;
+    final List<TfArg<String>>? dstIpRanges;
+    final List<TfArg<String>>? ipProtocols;
+
+    Map<String, Object?> toArgMap() => {
+      if (direction != null) 'direction': direction!.terraformValue,
+      if (srcIpRanges != null)
+        'src_ip_ranges': srcIpRanges!.map((v) => v.toTfJson()).toList(),
+      if (dstIpRanges != null)
+        'dst_ip_ranges': dstIpRanges!.map((v) => v.toTfJson()).toList(),
+      if (ipProtocols != null)
+        'ip_protocols': ipProtocols!.map((v) => v.toTfJson()).toList(),
+    };
+  }
+
+dartTypeOverrides:
+  deletion_policy: NetworkSecurityUllMirroringCollectorRuleDeletionPolicy
+
+customSlots:
+  match:
+    paramDeclaration: 'required NetworkSecurityUllMirroringCollectorRuleMatch match'
+    argMapEntry: "'match': TfArg.literal([match.toArgMap()]),"

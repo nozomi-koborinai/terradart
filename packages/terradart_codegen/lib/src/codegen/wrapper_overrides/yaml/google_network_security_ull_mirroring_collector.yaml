@@ -1,0 +1,34 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// ULL mirroring collector appliance bound to a [GoogleNetworkSecurityUllMirroringEngine].
+  ///
+  /// Set [engine] to `TfArg.ref(engine.nameRef)` and [forwardingRule] to a regional
+  /// internal forwarding rule self-link receiving mirrored traffic.
+
+paramOrder:
+  - location
+  - ull_mirroring_collector_id
+  - engine
+  - forwarding_rule
+  - labels
+  - deletion_policy
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for ULL mirroring collectors.
+  enum NetworkSecurityUllMirroringCollectorDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const NetworkSecurityUllMirroringCollectorDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: NetworkSecurityUllMirroringCollectorDeletionPolicy
