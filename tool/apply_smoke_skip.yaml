@@ -71,5 +71,8 @@ chronicle_quickstart: needs a real Chronicle (Google SecOps) instance ID — pla
 # --- Migration Center report config references external group/preference-set resources
 migration_center_quickstart: report config apply needs real group and preference-set resources plus a live discovery service account — placeholder self-links fail at apply time
 
+# --- Oracle Autonomous Database needs live ODB subnet and subscription entitlement
+oracle_autonomous_database_quickstart: Autonomous Database apply needs Oracle zone entitlement and live ODB subnet provisioning — API rejects placeholder wiring in terradart-validate
+
 # --- Oracle GoldenGate needs live ODB subnet/network and subscription entitlement
 oracle_goldengate_quickstart: GoldenGate apply needs Oracle zone entitlement and live ODB subnet provisioning — API rejects placeholder VPC/ODB wiring in terradart-validate

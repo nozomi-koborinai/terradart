@@ -1,0 +1,71 @@
+outputDir: oracle
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Oracle Autonomous Database on Oracle Database@Google Cloud.
+  ///
+  /// Enable `oracledatabase.googleapis.com` before apply. Set [properties]
+  /// with `db_workload` and `license_type`. For private networking, wire
+  /// [odb_subnet] / [odb_network] to [GoogleOracleDatabaseOdbSubnet] refs.
+
+paramOrder:
+  - location
+  - autonomous_database_id
+  - database
+  - display_name
+  - admin_password
+  - properties
+  - odb_subnet
+  - odb_network
+  - network
+  - cidr
+  - labels
+  - deletion_policy
+  - deletion_protection
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for Autonomous Databases.
+  enum OracleDatabaseAutonomousDatabaseDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const OracleDatabaseAutonomousDatabaseDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Autonomous Database workload type.
+  enum OracleDatabaseAutonomousDatabaseDbWorkload implements TerraformEnum {
+    dbWorkloadUnspecified('DB_WORKLOAD_UNSPECIFIED'),
+    oltp('OLTP'),
+    dw('DW'),
+    ajd('AJD'),
+    apex('APEX');
+
+    const OracleDatabaseAutonomousDatabaseDbWorkload(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Autonomous Database license type.
+  enum OracleDatabaseAutonomousDatabaseLicenseType implements TerraformEnum {
+    licenseTypeUnspecified('LICENSE_TYPE_UNSPECIFIED'),
+    licenseIncluded('LICENSE_INCLUDED'),
+    bringYourOwnLicense('BRING_YOUR_OWN_LICENSE');
+
+    const OracleDatabaseAutonomousDatabaseLicenseType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: OracleDatabaseAutonomousDatabaseDeletionPolicy
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
