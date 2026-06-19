@@ -1,0 +1,37 @@
+outputDir: migration
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Migration Center on-prem discovery client bound to a [GoogleMigrationCenterSource].
+  ///
+  /// Set [source] to `TfArg.ref(source.nameRef)` and [serviceAccount] to the
+  /// discovery agent service account email.
+
+paramOrder:
+  - location
+  - discovery_client_id
+  - source
+  - service_account
+  - display_name
+  - description
+  - ttl
+  - labels
+  - deletion_policy
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for Migration Center discovery clients.
+  enum MigrationCenterDiscoveryClientDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const MigrationCenterDiscoveryClientDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: MigrationCenterDiscoveryClientDeletionPolicy

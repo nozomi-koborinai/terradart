@@ -1,0 +1,51 @@
+outputDir: migration
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Migration Center source — ingestion endpoint for discovery or upload data.
+  ///
+  /// Enable `migrationcenter.googleapis.com` before apply. Pair with
+  /// [GoogleMigrationCenterDiscoveryClient] or [GoogleMigrationCenterImportJob].
+
+paramOrder:
+  - location
+  - source_id
+  - display_name
+  - description
+  - type
+  - priority
+  - managed
+  - deletion_policy
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for Migration Center sources.
+  enum MigrationCenterSourceDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const MigrationCenterSourceDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Data source type for `google_migration_center_source.type`.
+  enum MigrationCenterSourceType implements TerraformEnum {
+    sourceTypeUnknown('SOURCE_TYPE_UNKNOWN'),
+    sourceTypeUpload('SOURCE_TYPE_UPLOAD'),
+    sourceTypeGuestOsScan('SOURCE_TYPE_GUEST_OS_SCAN'),
+    sourceTypeInventoryScan('SOURCE_TYPE_INVENTORY_SCAN'),
+    sourceTypeCustom('SOURCE_TYPE_CUSTOM'),
+    sourceTypeDiscoveryClient('SOURCE_TYPE_DISCOVERY_CLIENT');
+
+    const MigrationCenterSourceType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: MigrationCenterSourceDeletionPolicy
+  type: MigrationCenterSourceType

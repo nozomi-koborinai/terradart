@@ -64,3 +64,6 @@ network_connectivity_quickstart: Partner CCI transport apply needs a real remote
 
 # --- Chronicle requires a provisioned SecOps instance ID
 chronicle_quickstart: needs a real Chronicle (Google SecOps) instance ID — placeholder UUID fails at apply time
+
+# --- Migration Center report config references external group/preference-set resources
+migration_center_quickstart: report config apply needs real group and preference-set resources plus a live discovery service account — placeholder self-links fail at apply time

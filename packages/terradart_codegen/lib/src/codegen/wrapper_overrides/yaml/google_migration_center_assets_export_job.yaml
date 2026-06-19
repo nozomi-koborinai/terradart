@@ -1,0 +1,45 @@
+outputDir: migration
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Migration Center assets export job — batch export to Cloud Storage or signed URI.
+  ///
+  /// Enable `migrationcenter.googleapis.com` before apply.
+
+paramOrder:
+  - location
+  - assets_export_job_id
+  - condition
+  - performance_data
+  - signed_uri_destination
+  - labels
+  - deletion_policy
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for Migration Center assets export jobs.
+  enum MigrationCenterAssetsExportJobDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const MigrationCenterAssetsExportJobDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Export file format for `signed_uri_destination.file_format`.
+  enum MigrationCenterAssetsExportJobFileFormat implements TerraformEnum {
+    fileFormatUnspecified('FILE_FORMAT_UNSPECIFIED'),
+    fileFormatCsv('FILE_FORMAT_CSV'),
+    fileFormatJson('FILE_FORMAT_JSON');
+
+    const MigrationCenterAssetsExportJobFileFormat(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: MigrationCenterAssetsExportJobDeletionPolicy

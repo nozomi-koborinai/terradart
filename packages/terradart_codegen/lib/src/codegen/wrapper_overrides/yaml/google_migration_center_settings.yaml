@@ -1,0 +1,32 @@
+outputDir: migration
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Migration Center regional settings singleton (preference set default, logging).
+  ///
+  /// Enable `migrationcenter.googleapis.com` before apply. One settings resource
+  /// exists per project location.
+
+paramOrder:
+  - location
+  - preference_set
+  - disable_cloud_logging
+  - deletion_policy
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for Migration Center settings.
+  enum MigrationCenterSettingsDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const MigrationCenterSettingsDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: MigrationCenterSettingsDeletionPolicy

@@ -1,0 +1,33 @@
+outputDir: migration
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Migration Center assessment report generated from a [GoogleMigrationCenterReportConfig].
+  ///
+  /// Set [reportConfig] to `TfArg.ref(config.nameRef)`.
+
+paramOrder:
+  - location
+  - report_config
+  - report_id
+  - display_name
+  - description
+  - deletion_policy
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for Migration Center reports.
+  enum MigrationCenterReportDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const MigrationCenterReportDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: MigrationCenterReportDeletionPolicy

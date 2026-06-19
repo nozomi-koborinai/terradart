@@ -1,0 +1,59 @@
+outputDir: migration
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Migration Center report configuration — group/preference-set pairings for reports.
+  ///
+  /// Use [MigrationCenterReportConfigGroupPreferencesetAssignment] for
+  /// `group_preferenceset_assignments` entries.
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+paramOrder:
+  - location
+  - report_config_id
+  - display_name
+  - description
+  - group_preferenceset_assignments
+  - deletion_policy
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for Migration Center report configs.
+  enum MigrationCenterReportConfigDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const MigrationCenterReportConfigDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `group_preferenceset_assignments` entry on a report config.
+  @immutable
+  class MigrationCenterReportConfigGroupPreferencesetAssignment {
+    const MigrationCenterReportConfigGroupPreferencesetAssignment({
+      required this.group,
+      required this.preferenceSet,
+    });
+
+    final TfArg<String> group;
+    final TfArg<String> preferenceSet;
+
+    Map<String, Object?> toArgMap() => {
+      'group': group.toTfJson(),
+      'preference_set': preferenceSet.toTfJson(),
+    };
+  }
+
+dartTypeOverrides:
+  deletion_policy: MigrationCenterReportConfigDeletionPolicy
+
+customSlots:
+  group_preferenceset_assignments:
+    paramDeclaration: 'required List<MigrationCenterReportConfigGroupPreferencesetAssignment> groupPreferencesetAssignments'
+    argMapEntry: "'group_preferenceset_assignments': TfArg.literal(groupPreferencesetAssignments.map((a) => a.toArgMap()).toList()),"
