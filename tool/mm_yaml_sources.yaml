@@ -545,6 +545,10 @@ files:
     upstream: mmv1/products/oracledatabase/GoldengateConnectionAssignment.yaml
   google_oracle_database_goldengate_deployment:
     upstream: mmv1/products/oracledatabase/GoldengateDeployment.yaml
+  google_oracle_database_odb_network:
+    upstream: mmv1/products/oracledatabase/OdbNetwork.yaml
+  google_oracle_database_odb_subnet:
+    upstream: mmv1/products/oracledatabase/OdbSubnet.yaml
   google_redis_instance:
     upstream: mmv1/products/redis/Instance.yaml
   google_spanner_database:

@@ -1,0 +1,40 @@
+outputDir: oracle
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Oracle Database@Google Cloud ODB network — VPC attachment for ODB subnets.
+  ///
+  /// Enable `oracledatabase.googleapis.com` before apply. Pair with
+  /// [GoogleOracleDatabaseOdbSubnet] under the same [location].
+
+paramOrder:
+  - location
+  - odb_network_id
+  - network
+  - gcp_oracle_zone
+  - labels
+  - deletion_policy
+  - deletion_protection
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for ODB networks.
+  enum OracleDatabaseOdbNetworkDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const OracleDatabaseOdbNetworkDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: OracleDatabaseOdbNetworkDeletionPolicy
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

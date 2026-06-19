@@ -72,4 +72,4 @@ chronicle_quickstart: needs a real Chronicle (Google SecOps) instance ID — pla
 migration_center_quickstart: report config apply needs real group and preference-set resources plus a live discovery service account — placeholder self-links fail at apply time
 
 # --- Oracle GoldenGate needs live ODB subnet/network and subscription entitlement
-oracle_goldengate_quickstart: GoldenGate apply needs a real ODB subnet, Oracle zone entitlement, and deployment credentials — placeholder ODB self-links fail at apply time
+oracle_goldengate_quickstart: GoldenGate apply needs Oracle zone entitlement and live ODB subnet provisioning — API rejects placeholder VPC/ODB wiring in terradart-validate
