@@ -1,6 +1,10 @@
 # Chronicle quickstart
 
-End-to-end terradart example for `google_chronicle_custom_list`.
+End-to-end terradart example for Chronicle (Google SecOps) factories:
+
+- `google_chronicle_custom_list`
+- `google_chronicle_native_dashboard`
+- `google_chronicle_dashboard_chart`
 
 ## Prerequisites
 
@@ -21,3 +25,5 @@ terraform plan
 ## What gets created
 
 - `GoogleChronicleCustomList` — approved-files list on a placeholder Chronicle instance in `us`
+- `GoogleChronicleNativeDashboard` — private custom dashboard on the same instance
+- `GoogleChronicleDashboardChart` — DNS-events visualization tile on that dashboard
