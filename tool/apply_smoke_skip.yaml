@@ -73,6 +73,7 @@ migration_center_quickstart: report config apply needs real group and preference
 
 # --- Oracle Base Database DB System needs live ODB subnet and subscription entitlement
 oracle_db_system_quickstart: DB System apply needs Oracle zone entitlement and live ODB subnet provisioning — API rejects placeholder wiring in terradart-validate
+oracle_exadata_quickstart: Exadata/ExaDB apply needs Oracle zone entitlement and live Exascale vault wiring — API rejects placeholder wiring in terradart-validate
 
 # --- Oracle Autonomous Database needs live ODB subnet and subscription entitlement
 oracle_autonomous_database_quickstart: Autonomous Database apply needs Oracle zone entitlement and live ODB subnet provisioning — API rejects placeholder wiring in terradart-validate

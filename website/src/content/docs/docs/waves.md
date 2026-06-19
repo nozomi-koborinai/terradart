@@ -303,11 +303,24 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 40 — Oracle Exadata (unreleased)
+
+Adds four Oracle Exadata factories on the `oracle` barrel with [oracle_exadata_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_exadata_quickstart).
+
+Catalog after Wave 40: **250 curated resource factories + 1 data source** (251 catalog entries). 46 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_oracle_database_cloud_exadata_infrastructure` | `GoogleOracleDatabaseCloudExadataInfrastructure` | `oracle` | [oracle_exadata_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_exadata_quickstart) |
+| `google_oracle_database_cloud_vm_cluster` | `GoogleOracleDatabaseCloudVmCluster` | `oracle` | [oracle_exadata_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_exadata_quickstart) |
+| `google_oracle_database_exadb_vm_cluster` | `GoogleOracleDatabaseExadbVmCluster` | `oracle` | [oracle_exadata_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_exadata_quickstart) |
+| `google_oracle_database_exascale_db_storage_vault` | `GoogleOracleDatabaseExascaleDbStorageVault` | `oracle` | [oracle_exadata_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_exadata_quickstart) |
+
 ## Wave 39 — Oracle DB System (unreleased)
 
 Adds `google_oracle_database_db_system` on the `oracle` barrel with [oracle_db_system_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_db_system_quickstart).
 
-Catalog after Wave 39: **246 curated resource factories + 1 data source** (247 catalog entries). 46 service barrels.
+Catalog after Wave 39: **250 curated resource factories + 1 data source** (251 catalog entries). 46 service barrels.
 
 | Terraform type | Dart factory | Barrel | Example |
 | --- | --- | --- | --- |

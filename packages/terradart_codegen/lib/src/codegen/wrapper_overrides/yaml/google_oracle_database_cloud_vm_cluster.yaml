@@ -1,0 +1,46 @@
+outputDir: oracle
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Oracle Exadata VM cluster on Oracle Database@Google Cloud.
+  ///
+  /// Enable `oracledatabase.googleapis.com` before apply. Requires
+  /// [exadata_infrastructure] from [GoogleOracleDatabaseCloudExadataInfrastructure].
+  /// For ODB networking, wire [odb_network], [odb_subnet], and
+  /// [backup_odb_subnet] to [GoogleOracleDatabaseOdbNetwork] / subnet refs.
+
+paramOrder:
+  - location
+  - cloud_vm_cluster_id
+  - display_name
+  - exadata_infrastructure
+  - odb_network
+  - odb_subnet
+  - backup_odb_subnet
+  - properties
+  - labels
+  - deletion_policy
+  - deletion_protection
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for Cloud VM clusters.
+  enum OracleDatabaseCloudVmClusterDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const OracleDatabaseCloudVmClusterDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: OracleDatabaseCloudVmClusterDeletionPolicy
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

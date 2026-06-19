@@ -1,0 +1,43 @@
+outputDir: oracle
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Oracle Exascale DB storage vault on Oracle Database@Google Cloud.
+  ///
+  /// Enable `oracledatabase.googleapis.com` before apply. Pair with
+  /// [GoogleOracleDatabaseExadbVmCluster] via `properties.exascale_db_storage_vault`.
+
+paramOrder:
+  - location
+  - exascale_db_storage_vault_id
+  - display_name
+  - properties
+  - labels
+  - deletion_policy
+  - deletion_protection
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for Exascale DB storage vaults.
+  enum OracleDatabaseExascaleDbStorageVaultDeletionPolicy
+      implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const OracleDatabaseExascaleDbStorageVaultDeletionPolicy(
+      this.terraformValue,
+    );
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: OracleDatabaseExascaleDbStorageVaultDeletionPolicy
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
