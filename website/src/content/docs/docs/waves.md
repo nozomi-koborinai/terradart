@@ -303,6 +303,16 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 38 — Oracle Autonomous Database (unreleased)
+
+Adds `google_oracle_database_autonomous_database` on the `oracle` barrel with [oracle_autonomous_database_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_autonomous_database_quickstart).
+
+Catalog after Wave 38: **245 curated resource factories + 1 data source** (246 catalog entries). 46 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_oracle_database_autonomous_database` | `GoogleOracleDatabaseAutonomousDatabase` | `oracle` | [oracle_autonomous_database_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_autonomous_database_quickstart) |
+
 ## Wave 37 — Oracle ODB networking (unreleased)
 
 Extends the `oracle` barrel with ODB network and subnet factories and tightens [oracle_goldengate_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_goldengate_quickstart) to provision VPC → ODB network → subnet before GoldenGate resources.
