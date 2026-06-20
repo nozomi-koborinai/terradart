@@ -303,6 +303,16 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 43 — Essential Contacts
+
+Adds `google_essential_contacts_contact` on a new `essential_contacts` barrel. Exercised by extending [monitoring_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/monitoring_quickstart) with the Essential Contacts API enablement + a technical-notifications contact.
+
+Catalog after Wave 43: **262 curated resource factories + 1 data source** (263 catalog entries). 48 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_essential_contacts_contact` | `GoogleEssentialContactsContact` | `essential_contacts` | [monitoring_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/monitoring_quickstart) |
+
 ## Wave 42 — Resource Manager Tags
 
 Adds five `google_tags_*` factories on a new `tags` barrel with [tags_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/tags_quickstart): a project-scoped tag key + value, a tag binding on the project, and the tag key/value `*_iam_member` adjuncts.

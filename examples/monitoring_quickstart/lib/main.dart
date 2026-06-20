@@ -1,11 +1,13 @@
 /// Monitoring quickstart — Wave 3 + Wave 12 observability stack.
 ///
 /// Provisions notification channel, uptime check, custom metric descriptor,
-/// dashboard, Monitoring service + SLO, and a latency alert policy wired to
-/// the channel.
+/// dashboard, Monitoring service + SLO, a latency alert policy wired to
+/// the channel, and an Essential Contacts contact that receives technical
+/// notifications for the project.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/essential_contacts.dart';
 import 'package:terradart_google/monitoring.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
@@ -214,6 +216,29 @@ final class LatencyAlertStack extends Stack {
           ResourceDependency(oncallEmail),
           ResourceDependency(apiMonitoring),
         ],
+      ),
+    );
+
+    // Essential Contacts: register a team to receive Google Cloud
+    // notifications for this project. Distinct from a Monitoring notification
+    // channel (alerts) — these are platform notices (security, technical,
+    // suspension, …). Enable the API and depend on it so apply ordering holds.
+    final apiEssentialContacts = add(
+      GoogleProjectService(
+        localName: 'api_essentialcontacts',
+        service: TfArg.literal('essentialcontacts.googleapis.com'),
+        disableOnDestroy: TfArg.literal(false),
+      ),
+    );
+
+    add(
+      GoogleEssentialContactsContact(
+        localName: 'platform_technical',
+        parent: TfArg.literal('projects/$projectId'),
+        email: TfArg.literal('platform-notices@example.com'),
+        languageTag: TfArg.literal('en-US'),
+        notificationCategorySubscriptions: TfArg.literal(const ['TECHNICAL']),
+        dependsOn: [ResourceDependency(apiEssentialContacts)],
       ),
     );
   }

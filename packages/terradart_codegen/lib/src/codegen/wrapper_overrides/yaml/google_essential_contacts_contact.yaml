@@ -1,0 +1,10 @@
+outputDir: essential_contacts
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - parent
+  - email
+  - language_tag
+  - notification_category_subscriptions
+  - deletion_policy
