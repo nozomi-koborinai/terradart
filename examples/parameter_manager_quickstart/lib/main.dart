@@ -48,7 +48,7 @@ final class ParamsStack extends Stack {
     add(
       GoogleParameterManagerRegionalParameter(
         localName: 'app_config_regional',
-        parameterId: TfArg.literal('terradart-app-config-regional'),
+        parameterId: TfArg.literal('terradart-app-config-rgnl'),
         location: TfArg.literal('us-central1'),
         format: TfArg.literal(ParameterManagerRegionalParameterFormat.yaml),
         labels: TfArg.literal(const {'managed-by': 'terradart'}),
