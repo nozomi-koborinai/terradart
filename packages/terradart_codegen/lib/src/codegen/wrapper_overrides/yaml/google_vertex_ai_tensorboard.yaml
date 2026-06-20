@@ -1,0 +1,12 @@
+outputDir: vertex_ai
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - display_name
+  - description
+  - region
+  - encryption_spec
+  - labels
+  - deletion_policy
+  - project

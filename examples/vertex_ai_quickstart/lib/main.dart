@@ -91,6 +91,32 @@ final class FeatureStack extends Stack {
       ),
     );
 
+    // A managed Vertex AI dataset (image dataset; the metadata schema URI is
+    // a public Google-hosted schema). Free to define.
+    add(
+      GoogleVertexAiDataset(
+        localName: 'images',
+        displayName: TfArg.literal('terradart-image-dataset'),
+        metadataSchemaUri: TfArg.literal(
+          'gs://google-cloud-aiplatform/schema/dataset/metadata/image_1.0.0.yaml',
+        ),
+        region: TfArg.literal('us-central1'),
+        dependsOn: [ResourceDependency(apiVertex)],
+      ),
+    );
+
+    // A Vertex AI Tensorboard for experiment visualization. Empty Tensorboards
+    // are free; created and destroyed cleanly.
+    add(
+      GoogleVertexAiTensorboard(
+        localName: 'experiments',
+        displayName: TfArg.literal('terradart-experiments'),
+        description: TfArg.literal('Experiment metrics (demo)'),
+        region: TfArg.literal('us-central1'),
+        dependsOn: [ResourceDependency(apiVertex)],
+      ),
+    );
+
     // Literal feature-group name -- emitted as a Dart constant at synth time.
     addExport(
       'FEATURE_GROUP_NAME',
