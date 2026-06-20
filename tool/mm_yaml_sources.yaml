@@ -334,6 +334,10 @@ files:
   # Wave 9 (GKE Hub)
   google_gke_hub_fleet:
     upstream: mmv1/products/gkehub2/Fleet.yaml
+  google_gke_hub_scope:
+    upstream: mmv1/products/gkehub/Scope.yaml
+  google_gke_hub_namespace:
+    upstream: mmv1/products/gkehub/Namespace.yaml
   google_gke_hub_membership:
     upstream: mmv1/products/gkehub/Membership.yaml
   # Wave 16 (Logging analytics extension)

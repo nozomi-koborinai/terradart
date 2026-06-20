@@ -37,6 +37,7 @@ workspace:
   - examples/firestore_document_quickstart
   - examples/firestore_quickstart
   - examples/filestore_quickstart
+  - examples/gke_hub_quickstart
   - examples/gke_quickstart
   - examples/healthcare_quickstart
   - examples/iam_quickstart

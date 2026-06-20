@@ -303,6 +303,17 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 60 — GKE Hub fleet scope + namespace
+
+Adds `google_gke_hub_scope` and `google_gke_hub_namespace` on the existing `container` barrel — fleet team-management scaffolding that needs no cluster — with a new lightweight [gke_hub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gke_hub_quickstart).
+
+Catalog after Wave 60: **305 curated resource factories + 1 data source** (306 catalog entries). 54 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_gke_hub_scope` | `GoogleGkeHubScope` | `container` | [gke_hub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gke_hub_quickstart) |
+| `google_gke_hub_namespace` | `GoogleGkeHubNamespace` | `container` | [gke_hub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gke_hub_quickstart) |
+
 ## Wave 59 — Cloud Healthcare store IAM members
 
 Adds the store-level `*_iam_member` adjuncts on the existing `healthcare` barrel — `google_healthcare_dicom_store_iam_member`, `google_healthcare_hl7_v2_store_iam_member`, `google_healthcare_consent_store_iam_member` — exercised by extending [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) with per-store viewer grants.

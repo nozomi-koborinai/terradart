@@ -1,0 +1,9 @@
+outputDir: container
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - scope_id
+  - labels
+  - namespace_labels
+  - project
