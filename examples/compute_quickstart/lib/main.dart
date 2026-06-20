@@ -285,7 +285,7 @@ final class NetworkStack extends Stack {
         region: TfArg.literal('asia-northeast1'),
         dependsOn: [
           ResourceDependency(oncallSre),
-          ResourceDependency(bastionInstant)
+          ResourceDependency(bastionInstant),
         ],
       ),
     );

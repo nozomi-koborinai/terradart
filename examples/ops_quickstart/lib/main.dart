@@ -97,7 +97,7 @@ final class AuditPipelineStack extends Stack {
         ),
         dependsOn: [
           ResourceDependency(auditBucket),
-          ResourceDependency(dataset)
+          ResourceDependency(dataset),
         ],
       ),
     );
