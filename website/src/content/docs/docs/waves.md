@@ -303,6 +303,16 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 58 — BigQuery standalone dataset access
+
+Adds `google_bigquery_dataset_access` on the existing `bigquery` barrel — the standalone (non-inline) counterpart of `GoogleBigqueryDataset.access`, with typed sealed-style helpers (`BigqueryDatasetAccessPredefinedGroup` enum, authorized view / routine / dataset blocks). Exercised by extending [bigquery_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigquery_quickstart) (synth + `terraform validate`; bigquery_quickstart is apply-smoke-skip-listed for org-gated datapolicy/analyticshub resources).
+
+Catalog after Wave 58: **300 curated resource factories + 1 data source** (301 catalog entries). 54 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_bigquery_dataset_access` | `GoogleBigqueryDatasetAccess` | `bigquery` | [bigquery_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigquery_quickstart) |
+
 ## Wave 57 — Cloud Healthcare HL7v2 store
 
 Adds `google_healthcare_hl7_v2_store` (with a typed `Hl7V2StoreParserConfig` block + `Hl7V2StoreParserConfigVersion` enum) on the existing `healthcare` barrel, exercised by extending [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart).

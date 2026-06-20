@@ -1,0 +1,165 @@
+outputDir: bigquery
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// A single access entry on a BigQuery dataset, managed as a standalone
+  /// resource (the non-inline counterpart of `GoogleBigqueryDataset.access`).
+  ///
+  /// Provide **exactly one** principal/target per entry:
+  /// - a principal — [userByEmail] / [groupByEmail] / [domain] /
+  ///   [specialGroup] / [iamMember] — paired with [role]; **or**
+  /// - an authorized resource — [view] / [routine] / [authorizedDataset]
+  ///   (these do **not** take a [role]).
+  ///
+  /// Example (grant a group READER):
+  /// ```dart
+  /// GoogleBigqueryDatasetAccess(
+  ///   localName: 'analysts_reader',
+  ///   datasetId: TfArg.ref(dataset.datasetIdRef),
+  ///   role: TfArg.literal('READER'),
+  ///   groupByEmail: TfArg.literal('analysts@example.com'),
+  /// );
+  /// ```
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  special_group: BigqueryDatasetAccessPredefinedGroup
+
+prelude: |
+  /// Predefined BigQuery special group for [GoogleBigqueryDatasetAccess].
+  enum BigqueryDatasetAccessPredefinedGroup implements TerraformEnum {
+    /// Owners of the enclosing project.
+    projectOwners('projectOwners'),
+
+    /// Readers of the enclosing project.
+    projectReaders('projectReaders'),
+
+    /// Writers of the enclosing project.
+    projectWriters('projectWriters'),
+
+    /// All authenticated BigQuery users.
+    allAuthenticatedUsers('allAuthenticatedUsers');
+
+    const BigqueryDatasetAccessPredefinedGroup(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Target resource types an authorized [BigqueryDatasetAccessAuthorizedDataset]
+  /// applies to. Currently only views are supported.
+  enum BigqueryDatasetAccessDatasetTargetType implements TerraformEnum {
+    /// The entry applies to views in the dataset.
+    views('VIEWS');
+
+    const BigqueryDatasetAccessDatasetTargetType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// A reference to a BigQuery dataset (`project_id` + `dataset_id`).
+  @immutable
+  class BigqueryDatasetAccessAuthDatasetReference {
+    const BigqueryDatasetAccessAuthDatasetReference({
+      required this.datasetId,
+      required this.projectId,
+    });
+
+    final TfArg<String> datasetId;
+    final TfArg<String> projectId;
+
+    Map<String, Object?> encode() => {
+          'dataset_id': datasetId.toTfJson(),
+          'project_id': projectId.toTfJson(),
+        };
+  }
+
+  /// `dataset` access block — grants another dataset's resources access to
+  /// this dataset (an "authorized dataset").
+  @immutable
+  class BigqueryDatasetAccessAuthorizedDataset {
+    const BigqueryDatasetAccessAuthorizedDataset({
+      required this.dataset,
+      required this.targetTypes,
+    });
+
+    /// The dataset being authorized.
+    final BigqueryDatasetAccessAuthDatasetReference dataset;
+
+    /// Which resource types the entry applies to (currently
+    /// [BigqueryDatasetAccessDatasetTargetType.views]).
+    final List<BigqueryDatasetAccessDatasetTargetType> targetTypes;
+
+    Map<String, Object?> encode() => {
+          'dataset': dataset.encode(),
+          'target_types': targetTypes.map((t) => t.terraformValue).toList(),
+        };
+  }
+
+  /// `view` access block — an authorized view that may query this dataset.
+  @immutable
+  class BigqueryDatasetAccessAuthorizedView {
+    const BigqueryDatasetAccessAuthorizedView({
+      required this.datasetId,
+      required this.projectId,
+      required this.tableId,
+    });
+
+    final TfArg<String> datasetId;
+    final TfArg<String> projectId;
+    final TfArg<String> tableId;
+
+    Map<String, Object?> encode() => {
+          'dataset_id': datasetId.toTfJson(),
+          'project_id': projectId.toTfJson(),
+          'table_id': tableId.toTfJson(),
+        };
+  }
+
+  /// `routine` access block — an authorized routine that may access this
+  /// dataset.
+  @immutable
+  class BigqueryDatasetAccessAuthorizedRoutine {
+    const BigqueryDatasetAccessAuthorizedRoutine({
+      required this.datasetId,
+      required this.projectId,
+      required this.routineId,
+    });
+
+    final TfArg<String> datasetId;
+    final TfArg<String> projectId;
+    final TfArg<String> routineId;
+
+    Map<String, Object?> encode() => {
+          'dataset_id': datasetId.toTfJson(),
+          'project_id': projectId.toTfJson(),
+          'routine_id': routineId.toTfJson(),
+        };
+  }
+
+customSlots:
+  view:
+    paramDeclaration: "BigqueryDatasetAccessAuthorizedView? view"
+    argMapEntry: "if (view != null) 'view': TfArg.literal(view.encode()),"
+  routine:
+    paramDeclaration: "BigqueryDatasetAccessAuthorizedRoutine? routine"
+    argMapEntry: "if (routine != null) 'routine': TfArg.literal(routine.encode()),"
+  dataset:
+    paramDeclaration: "BigqueryDatasetAccessAuthorizedDataset? authorizedDataset"
+    argMapEntry: "if (authorizedDataset != null) 'dataset': TfArg.literal(authorizedDataset.encode()),"
+
+paramOrder:
+  - dataset_id
+  - role
+  - user_by_email
+  - group_by_email
+  - domain
+  - special_group
+  - iam_member
+  - view
+  - routine
+  - dataset
+  - deletion_policy
+  - project
