@@ -303,6 +303,17 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 53 — Network Security lists
+
+Adds `google_network_security_address_group` (+ `NetworkSecurityAddressGroupType` enum) and `google_network_security_url_lists` on the existing `network` barrel, with a new [network_security_lists_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_security_lists_quickstart) (an IPv4 address group + a URL list).
+
+Catalog after Wave 53: **292 curated resource factories + 1 data source** (293 catalog entries). 52 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_network_security_address_group` | `GoogleNetworkSecurityAddressGroup` | `network` | [network_security_lists_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_security_lists_quickstart) |
+| `google_network_security_url_lists` | `GoogleNetworkSecurityUrlLists` | `network` | [network_security_lists_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_security_lists_quickstart) |
+
 ## Wave 52 — Parameter Manager
 
 Adds four Parameter Manager factories on a new `parameter_manager` barrel — global parameter (+ `ParameterManagerParameterFormat` enum), parameter version, regional parameter (+ enum), and regional parameter version — and a new [parameter_manager_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/parameter_manager_quickstart) with a global + regional parameter. (The two version factories are tracked in `tool/example_debt.yaml`: their `parameter_data` is sensitive, so a literal is rejected by synth and a TF variable would break the applyable example.)

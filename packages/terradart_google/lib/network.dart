@@ -1,6 +1,12 @@
 // packages/terradart_google/lib/network.dart
-/// Network Connectivity transports and Network Security ULL mirroring.
+/// Network Connectivity transports, Network Security ULL mirroring, address
+/// groups, and URL lists.
 library;
+
+export 'src/network/google_network_security_address_group.dart'
+    show GoogleNetworkSecurityAddressGroup, NetworkSecurityAddressGroupType;
+export 'src/network/google_network_security_url_lists.dart'
+    show GoogleNetworkSecurityUrlLists;
 
 export 'src/network/google_network_connectivity_transport.dart'
     show

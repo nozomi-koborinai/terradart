@@ -609,6 +609,10 @@ files:
     upstream: mmv1/products/parametermanagerregional/RegionalParameter.yaml
   google_parameter_manager_regional_parameter_version:
     upstream: mmv1/products/parametermanagerregional/RegionalParameterVersion.yaml
+  google_network_security_address_group:
+    upstream: mmv1/products/networksecurity/AddressGroup.yaml
+  google_network_security_url_lists:
+    upstream: mmv1/products/networksecurity/UrlList.yaml
   google_redis_instance:
     upstream: mmv1/products/redis/Instance.yaml
   google_spanner_database:
