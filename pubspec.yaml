@@ -23,6 +23,7 @@ workspace:
   - examples/cloud_tasks_quickstart
   - examples/compute_lb_quickstart
   - examples/compute_quickstart
+  - examples/compute_route_quickstart
   - examples/dataplex_quickstart
   - examples/discovery_engine_quickstart
   - examples/dialogflow_quickstart

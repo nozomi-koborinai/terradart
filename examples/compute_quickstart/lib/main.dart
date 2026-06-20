@@ -353,32 +353,5 @@ final class NetworkStack extends Stack {
         ],
       ),
     );
-
-    // A custom static route on the VPC: send an unused RFC-1918 range to the
-    // default internet gateway (a free, no-op route that exercises the
-    // `google_compute_route` factory end-to-end).
-    add(
-      GoogleComputeRoute(
-        localName: 'egress_demo',
-        name: TfArg.literal('ops-egress-demo'),
-        network: TfArg.ref(mainVpc.id),
-        destRange: TfArg.literal('192.168.255.0/24'),
-        description: TfArg.literal('Demo egress route to the internet gateway'),
-        priority: TfArg.literal(1000),
-        nextHopGateway: TfArg.literal('default-internet-gateway'),
-        dependsOn: [...apiDeps, ResourceDependency(mainVpc)],
-      ),
-    );
-
-    // A project-wide compute metadata item (free key/value; e.g. an ops owner
-    // tag surfaced on the project's common instance metadata).
-    add(
-      GoogleComputeProjectMetadataItem(
-        localName: 'ops_owner',
-        key: TfArg.literal('terradart-ops-owner'),
-        value: TfArg.literal('platform-team'),
-        dependsOn: apiDeps,
-      ),
-    );
   }
 }

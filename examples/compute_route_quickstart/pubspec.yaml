@@ -1,0 +1,15 @@
+name: terradart_example_compute_route_quickstart
+description: Compute networking extras example -- a custom-mode VPC, a static route to the internet gateway, and a project metadata item (all free, no VMs).
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.15.0
+  terradart_google: ^0.15.0
+
+dev_dependencies:
+  lints: ^6.0.0

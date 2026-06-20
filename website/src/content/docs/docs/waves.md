@@ -305,14 +305,14 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 
 ## Wave 48 — Compute static route + project metadata
 
-Adds `google_compute_route` and `google_compute_project_metadata_item` on the existing `compute` barrel, exercised by extending [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) with a free demo egress route and a project-wide metadata item.
+Adds `google_compute_route` and `google_compute_project_metadata_item` on the existing `compute` barrel, exercised by a new lightweight [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart) (a custom-mode VPC + static route + project metadata item — all free, no VMs).
 
 Catalog after Wave 48: **280 curated resource factories + 1 data source** (281 catalog entries). 50 service barrels.
 
 | Terraform type | Dart factory | Barrel | Example |
 | --- | --- | --- | --- |
-| `google_compute_route` | `GoogleComputeRoute` | `compute` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
-| `google_compute_project_metadata_item` | `GoogleComputeProjectMetadataItem` | `compute` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
+| `google_compute_route` | `GoogleComputeRoute` | `compute` | [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart) |
+| `google_compute_project_metadata_item` | `GoogleComputeProjectMetadataItem` | `compute` | [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart) |
 
 ## Wave 47 — Workflows
 
