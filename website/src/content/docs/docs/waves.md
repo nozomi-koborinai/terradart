@@ -303,6 +303,16 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 56 — Dialogflow agent
+
+Adds `google_dialogflow_agent` (+ `DialogflowAgentApiVersion` / `DialogflowAgentMatchMode` / `DialogflowAgentTier` enums) on the existing `dialogflow` barrel, exercised by extending [dialogflow_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dialogflow_quickstart) with the project's Dialogflow ES agent.
+
+Catalog after Wave 56: **298 curated resource factories + 1 data source** (299 catalog entries). 54 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_dialogflow_agent` | `GoogleDialogflowAgent` | `dialogflow` | [dialogflow_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dialogflow_quickstart) |
+
 ## Wave 55 — Cloud Observability
 
 Adds `google_observability_trace_scope` on a new `observability` barrel and a new [observability_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/observability_quickstart) (a Trace scope over the current project).

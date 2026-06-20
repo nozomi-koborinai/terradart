@@ -1,0 +1,68 @@
+outputDir: dialogflow
+deriveClassDoc: true
+deriveOutputGetters: true
+
+dartTypeOverrides:
+  api_version: DialogflowAgentApiVersion
+  match_mode: DialogflowAgentMatchMode
+  tier: DialogflowAgentTier
+
+prelude: |
+  /// Dialogflow API version surfaced for a [GoogleDialogflowAgent].
+  enum DialogflowAgentApiVersion implements TerraformEnum {
+    /// Legacy V1 API.
+    v1('API_VERSION_V1'),
+
+    /// V2 API (default).
+    v2('API_VERSION_V2'),
+
+    /// V2beta1 API.
+    v2Beta1('API_VERSION_V2_BETA_1');
+
+    const DialogflowAgentApiVersion(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// How intents are matched from user queries for a [GoogleDialogflowAgent].
+  enum DialogflowAgentMatchMode implements TerraformEnum {
+    /// Hybrid (rules + ML) — best for small intent sets / templates.
+    hybrid('MATCH_MODE_HYBRID'),
+
+    /// ML-only — best for large intent sets.
+    mlOnly('MATCH_MODE_ML_ONLY');
+
+    const DialogflowAgentMatchMode(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Service tier of a [GoogleDialogflowAgent].
+  enum DialogflowAgentTier implements TerraformEnum {
+    /// Standard tier (default).
+    standard('TIER_STANDARD'),
+
+    /// Enterprise tier (Essentials).
+    enterprise('TIER_ENTERPRISE'),
+
+    /// Enterprise tier (Plus).
+    enterprisePlus('TIER_ENTERPRISE_PLUS');
+
+    const DialogflowAgentTier(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+paramOrder:
+  - display_name
+  - default_language_code
+  - time_zone
+  - description
+  - avatar_uri
+  - enable_logging
+  - match_mode
+  - classification_threshold
+  - api_version
+  - tier
+  - supported_language_codes
+  - project

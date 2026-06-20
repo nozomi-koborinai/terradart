@@ -72,6 +72,8 @@ files:
     upstream: mmv1/products/dns/ManagedZone.yaml
   google_discovery_engine_data_store:
     upstream: mmv1/products/discoveryengine/DataStore.yaml
+  google_dialogflow_agent:
+    upstream: mmv1/products/dialogflow/Agent.yaml
   google_dialogflow_sip_trunk:
     upstream: mmv1/products/dialogflow/SipTrunk.yaml
   google_discovery_engine_search_engine:
