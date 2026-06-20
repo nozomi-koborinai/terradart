@@ -38,6 +38,8 @@ files:
     upstream: mmv1/products/compute/Address.yaml
   google_compute_firewall:
     upstream: mmv1/products/compute/Firewall.yaml
+  google_compute_network_firewall_policy:
+    upstream: mmv1/products/compute/NetworkFirewallPolicy.yaml
   google_compute_route:
     upstream: mmv1/products/compute/Route.yaml
   google_compute_project_metadata_item:

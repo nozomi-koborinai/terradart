@@ -2563,6 +2563,23 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_compute_network_endpoint_group`.\n\nNetwork endpoint groups (NEGs) are zonal resources that represent\ncollections of IP address and port combinations for GCP resources within a\nsingle subnet. Each IP address and port combination is called a network\nendpoint.\n\nNetwork endpoint groups can be used as backends in backend services for\nHTTP(S), TCP proxy, and SSL proxy load balancers. You cannot use NEGs as a\nbackend with internal load balancers. Because NEG backends allow you to\nspecify IP addresses and ports, you can distribute traffic in a granular\nfashion among applications or containers running within VM instances.\n\nRecreating a network endpoint group that\'s in use by another resource will\ngive a `resourceInUseByAnotherResource` error. Use\n`lifecycle.create_before_destroy` to avoid this type of error.\n\nDominant L7 LB pattern: zonal VM-IP+port endpoints in a single subnet,\nattached to a backend service. For internet-fronted (hybrid) endpoints\nwith no GCP backing VM, see `GoogleComputeGlobalNetworkEndpointGroup`.\nFor regional Serverless / PSC NEGs, see\n`GoogleComputeRegionNetworkEndpointGroup`.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `name`: GCP-internal NEG resource name. Must comply with RFC1035.\n- `zone`: the zone the NEG (and its member endpoints) lives in.\n- `network`: self-link of the VPC the endpoints belong to. Pass\n  `TfArg.ref(vpc.selfLink)`.\n\nWhen renaming or recreating an in-use NEG, detaching it from the backend\nservice first avoids the `create_before_destroy` cascade to dependents.\n\nExample (zonal VM-IP+port NEG fronting a regional internal L7 LB):\n```dart\nfinal neg = GoogleComputeNetworkEndpointGroup(\n  localName: \'app_neg\',\n  name: TfArg.literal(\'app-neg-usc1a\'),\n  zone: TfArg.literal(\'us-central1-a\'),\n  network: TfArg.ref(vpc.selfLink),\n  subnetwork: TfArg.ref(subnet.selfLink),\n  networkEndpointType:\n      TfArg.literal(NetworkEndpointGroupType.gceVmIpPort),\n  defaultPort: TfArg.literal(8080),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_compute_network_firewall_policy',
+    className: 'GoogleComputeNetworkFirewallPolicy',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_network_firewall_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'description',
+      'policyType',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment: 'Factory wrapper for `google_compute_network_firewall_policy`.',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_project_metadata_item',
     className: 'GoogleComputeProjectMetadataItem',
     barrel: 'compute',

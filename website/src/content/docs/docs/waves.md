@@ -303,6 +303,16 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 62 — Compute network firewall policy
+
+Adds `google_compute_network_firewall_policy` on the existing `compute` barrel — the modern policy-based replacement for standalone VPC firewall rules — exercised by extending [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart).
+
+Catalog after Wave 62: **309 curated resource factories + 1 data source** (310 catalog entries). 55 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_compute_network_firewall_policy` | `GoogleComputeNetworkFirewallPolicy` | `compute` | [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart) |
+
 ## Wave 61 — Cloud Deploy
 
 Adds three Cloud Deploy factories on a new `clouddeploy` barrel — delivery pipeline, target, and custom target type (nested config passed as structured maps) — and a new [clouddeploy_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/clouddeploy_quickstart) (a Cloud Run target + pipeline + custom target type).

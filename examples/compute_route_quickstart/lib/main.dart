@@ -67,6 +67,17 @@ final class NetworkRouteStack extends Stack {
       ),
     );
 
+    // A global network firewall policy (the modern, policy-based replacement
+    // for standalone VPC firewall rules; rules/associations attach separately).
+    add(
+      GoogleComputeNetworkFirewallPolicy(
+        localName: 'edge_policy',
+        name: TfArg.literal('terradart-edge-policy'),
+        description: TfArg.literal('Global network firewall policy (demo)'),
+        dependsOn: [ResourceDependency(apiCompute)],
+      ),
+    );
+
     // Literal VPC name -- emitted as a Dart constant at synth time.
     addExport('DEMO_VPC_NAME', StringExport('terradart-route-demo'));
 
