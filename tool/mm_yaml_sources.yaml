@@ -122,6 +122,8 @@ files:
     upstream: mmv1/products/iambeta/WorkloadIdentityPool.yaml
   google_healthcare_dataset:
     upstream: mmv1/products/healthcare/Dataset.yaml
+  google_healthcare_hl7_v2_store:
+    upstream: mmv1/products/healthcare/Hl7V2Store.yaml
   google_healthcare_dicom_store:
     upstream: mmv1/products/healthcare/DicomStore.yaml
   google_healthcare_consent_store:

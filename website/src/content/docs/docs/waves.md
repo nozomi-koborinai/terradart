@@ -303,6 +303,16 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 57 — Cloud Healthcare HL7v2 store
+
+Adds `google_healthcare_hl7_v2_store` (with a typed `Hl7V2StoreParserConfig` block + `Hl7V2StoreParserConfigVersion` enum) on the existing `healthcare` barrel, exercised by extending [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart).
+
+Catalog after Wave 57: **299 curated resource factories + 1 data source** (300 catalog entries). 54 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_healthcare_hl7_v2_store` | `GoogleHealthcareHl7V2Store` | `healthcare` | [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) |
+
 ## Wave 56 — Dialogflow agent
 
 Adds `google_dialogflow_agent` (+ `DialogflowAgentApiVersion` / `DialogflowAgentMatchMode` / `DialogflowAgentTier` enums) on the existing `dialogflow` barrel, exercised by extending [dialogflow_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dialogflow_quickstart) with the project's Dialogflow ES agent.

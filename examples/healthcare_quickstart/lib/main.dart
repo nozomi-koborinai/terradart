@@ -77,6 +77,20 @@ final class HealthcareStack extends Stack {
     );
 
     add(
+      GoogleHealthcareHl7V2Store(
+        localName: 'messages',
+        name: TfArg.literal('terradart-hl7'),
+        dataset: TfArg.ref(dataset.id),
+        rejectDuplicateMessage: TfArg.literal(true),
+        parserConfig: HealthcareHl7V2StoreParserConfig(
+          version: TfArg.literal(HealthcareHl7V2StoreParserConfigVersion.v3),
+          allowNullHeader: TfArg.literal(false),
+        ),
+        dependsOn: [ResourceDependency(dataset)],
+      ),
+    );
+
+    add(
       GoogleHealthcareDatasetIamMember(
         localName: 'dataset_viewer',
         datasetId: TfArg.ref(dataset.id),

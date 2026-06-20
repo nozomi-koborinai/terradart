@@ -11,3 +11,8 @@ export 'src/healthcare/google_healthcare_consent_store.dart'
     show GoogleHealthcareConsentStore;
 export 'src/healthcare/google_healthcare_dataset_iam_member.dart'
     show GoogleHealthcareDatasetIamMember;
+export 'src/healthcare/google_healthcare_hl7_v2_store.dart'
+    show
+        GoogleHealthcareHl7V2Store,
+        HealthcareHl7V2StoreParserConfig,
+        HealthcareHl7V2StoreParserConfigVersion;

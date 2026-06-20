@@ -5251,6 +5251,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_healthcare_dicom_store`.',
   ),
   CatalogEntry(
+    tfType: 'google_healthcare_hl7_v2_store',
+    className: 'GoogleHealthcareHl7V2Store',
+    barrel: 'healthcare',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_healthcare_hl7_v2_store`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'dataset',
+      'rejectDuplicateMessage',
+      'parserConfig',
+      'labels',
+    ],
+    nestedTypes: <String>[
+      'HealthcareHl7V2StoreParserConfigVersion',
+      'HealthcareHl7V2StoreParserConfig',
+    ],
+    sensitiveFields: <String>[],
+    docComment: 'Factory wrapper for `google_healthcare_hl7_v2_store`.',
+  ),
+  CatalogEntry(
     tfType: 'google_iam_workload_identity_pool',
     className: 'GoogleIamWorkloadIdentityPool',
     barrel: 'iam',
