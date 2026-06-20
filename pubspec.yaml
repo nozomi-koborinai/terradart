@@ -38,6 +38,7 @@ workspace:
   - examples/firestore_quickstart
   - examples/filestore_quickstart
   - examples/gke_quickstart
+  - examples/healthcare_quickstart
   - examples/iam_quickstart
   - examples/kms_quickstart
   - examples/license_manager_quickstart

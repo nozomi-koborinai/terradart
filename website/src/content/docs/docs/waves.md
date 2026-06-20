@@ -303,6 +303,19 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 54 — Cloud Healthcare
+
+Adds four Cloud Healthcare factories on a new `healthcare` barrel — dataset, DICOM store, consent store, and the dataset `*_iam_member` adjunct — and a new [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart).
+
+Catalog after Wave 54: **296 curated resource factories + 1 data source** (297 catalog entries). 53 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_healthcare_dataset` | `GoogleHealthcareDataset` | `healthcare` | [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) |
+| `google_healthcare_dicom_store` | `GoogleHealthcareDicomStore` | `healthcare` | [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) |
+| `google_healthcare_consent_store` | `GoogleHealthcareConsentStore` | `healthcare` | [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) |
+| `google_healthcare_dataset_iam_member` | `GoogleHealthcareDatasetIamMember` | `healthcare` | [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) |
+
 ## Wave 53 — Network Security lists
 
 Adds `google_network_security_address_group` (+ `NetworkSecurityAddressGroupType` enum) and `google_network_security_url_lists` on the existing `network` barrel, with a new [network_security_lists_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_security_lists_quickstart) (an IPv4 address group + a URL list).

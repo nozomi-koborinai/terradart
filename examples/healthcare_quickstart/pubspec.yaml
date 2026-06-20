@@ -1,0 +1,15 @@
+name: terradart_example_healthcare_quickstart
+description: Cloud Healthcare end-to-end example -- a dataset, a DICOM store, a consent store, and a dataset IAM member, with a typed Dart export.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.15.0
+  terradart_google: ^0.15.0
+
+dev_dependencies:
+  lints: ^6.0.0

@@ -118,6 +118,14 @@ files:
     upstream: null  # handwritten in terraform provider; no MM YAML
   google_iam_workload_identity_pool:
     upstream: mmv1/products/iambeta/WorkloadIdentityPool.yaml
+  google_healthcare_dataset:
+    upstream: mmv1/products/healthcare/Dataset.yaml
+  google_healthcare_dicom_store:
+    upstream: mmv1/products/healthcare/DicomStore.yaml
+  google_healthcare_consent_store:
+    upstream: mmv1/products/healthcare/ConsentStore.yaml
+  google_healthcare_dataset_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_iam_workload_identity_pool_provider:
     # MM YAML enriches merged IR (descriptions, hints); typed nested blocks still
     # come from the wrapper override prelude/customSlots, not from MM alone.

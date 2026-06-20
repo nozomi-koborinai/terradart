@@ -41,6 +41,7 @@ export 'firebase_remote_config.dart';
 export 'filestore.dart';
 export 'firestore.dart';
 export 'gke_backup.dart';
+export 'healthcare.dart';
 export 'iap.dart';
 export 'iam.dart';
 export 'kms.dart';
