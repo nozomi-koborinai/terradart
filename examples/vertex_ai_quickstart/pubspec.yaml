@@ -1,0 +1,15 @@
+name: terradart_example_vertex_ai_quickstart
+description: Vertex AI Feature Store example -- a BigQuery-backed feature group, with a typed Dart export.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.15.0
+  terradart_google: ^0.15.0
+
+dev_dependencies:
+  lints: ^6.0.0

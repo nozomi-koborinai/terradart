@@ -1,0 +1,11 @@
+outputDir: vertex_ai
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - region
+  - big_query
+  - description
+  - labels
+  - project

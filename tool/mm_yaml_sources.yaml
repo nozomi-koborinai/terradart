@@ -649,6 +649,8 @@ files:
     upstream: mmv1/products/networksecurity/UrlList.yaml
   google_redis_instance:
     upstream: mmv1/products/redis/Instance.yaml
+  google_vertex_ai_feature_group:
+    upstream: mmv1/products/vertexai/FeatureGroup.yaml
   google_spanner_database:
     upstream: mmv1/products/spanner/Database.yaml
   google_spanner_instance:

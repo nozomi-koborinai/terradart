@@ -303,6 +303,16 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 63 — Vertex AI Feature Store
+
+Adds `google_vertex_ai_feature_group` on a new `vertex_ai` barrel (a BigQuery-backed feature group; the `big_query` config is a structured map), with a new [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart) that wires a BigQuery dataset + table into the feature group.
+
+Catalog after Wave 63: **310 curated resource factories + 1 data source** (311 catalog entries). 56 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_vertex_ai_feature_group` | `GoogleVertexAiFeatureGroup` | `vertex_ai` | [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart) |
+
 ## Wave 62 — Compute network firewall policy
 
 Adds `google_compute_network_firewall_policy` on the existing `compute` barrel — the modern policy-based replacement for standalone VPC firewall rules — exercised by extending [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart).

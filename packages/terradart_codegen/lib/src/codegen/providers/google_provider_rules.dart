@@ -88,5 +88,8 @@ final class GoogleProviderRules extends ProviderRules {
 
     // Parameter Manager (`google_parameter_manager_*` → segment `parameter`).
     'parameter_manager': 'parameter_manager',
+
+    // Vertex AI (`google_vertex_ai_*` → segment `vertex`).
+    'vertex_ai': 'vertex_ai',
   };
 }

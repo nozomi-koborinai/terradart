@@ -63,6 +63,7 @@ export 'redis.dart';
 export 'secret_manager.dart';
 export 'service_directory.dart';
 export 'service_networking.dart';
+export 'vertex_ai.dart';
 export 'spanner.dart';
 export 'storage.dart';
 export 'tags.dart';

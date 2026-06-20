@@ -61,6 +61,7 @@ workspace:
   - examples/service_directory_quickstart
   - examples/storage_quickstart
   - examples/tags_quickstart
+  - examples/vertex_ai_quickstart
   - examples/workflows_quickstart
 dev_dependencies:
   args: any
