@@ -1,0 +1,10 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - disk
+  - zone
+  - deletion_policy
+  - project

@@ -80,7 +80,7 @@ final class NetworkRouteStack extends Stack {
 
     // A resource policy: a daily snapshot schedule (keep 7 days), modeled with
     // the typed sealed schedule + retention helpers.
-    add(
+    final snapshotPolicy = add(
       GoogleComputeResourcePolicy(
         localName: 'daily_snapshots',
         name: TfArg.literal('terradart-daily-snapshots'),
@@ -98,6 +98,34 @@ final class NetworkRouteStack extends Stack {
           ),
         ),
         dependsOn: [ResourceDependency(apiCompute)],
+      ),
+    );
+
+    // A small blank zonal disk in the policy's region, then attach the daily
+    // snapshot schedule to it via google_compute_disk_resource_policy_attachment
+    // (deletion_policy DELETE so the attachment detaches cleanly on destroy).
+    final disk = add(
+      GoogleComputeDisk(
+        localName: 'data',
+        name: TfArg.literal('terradart-data-disk'),
+        zone: TfArg.literal('us-central1-a'),
+        type: TfArg.literal('pd-standard'),
+        size: TfArg.literal(10),
+        dependsOn: [ResourceDependency(apiCompute)],
+      ),
+    );
+
+    add(
+      GoogleComputeDiskResourcePolicyAttachment(
+        localName: 'data_snapshots',
+        name: TfArg.literal('terradart-daily-snapshots'),
+        disk: TfArg.ref(disk.nameRef),
+        zone: TfArg.literal('us-central1-a'),
+        deletionPolicy: TfArg.literal('DELETE'),
+        dependsOn: [
+          ResourceDependency(disk),
+          ResourceDependency(snapshotPolicy),
+        ],
       ),
     );
 

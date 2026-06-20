@@ -2051,6 +2051,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_compute_disk_iam_member`.',
   ),
   CatalogEntry(
+    tfType: 'google_compute_disk_resource_policy_attachment',
+    className: 'GoogleComputeDiskResourcePolicyAttachment',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_compute_disk_resource_policy_attachment`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'disk',
+      'zone',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_disk_resource_policy_attachment`.',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_firewall',
     className: 'GoogleComputeFirewall',
     barrel: 'compute',

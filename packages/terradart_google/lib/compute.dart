@@ -404,6 +404,8 @@ export 'src/compute/google_compute_router.dart'
 export 'src/compute/google_compute_route.dart' show GoogleComputeRoute;
 export 'src/compute/google_compute_network_firewall_policy.dart'
     show GoogleComputeNetworkFirewallPolicy;
+export 'src/compute/google_compute_disk_resource_policy_attachment.dart'
+    show GoogleComputeDiskResourcePolicyAttachment;
 export 'src/compute/google_compute_resource_policy.dart'
     show
         ComputeResourcePolicyDailySchedule,

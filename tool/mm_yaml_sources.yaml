@@ -52,6 +52,8 @@ files:
     upstream: mmv1/products/compute/Route.yaml
   google_compute_project_metadata_item:
     upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
+  google_compute_disk_resource_policy_attachment:
+    upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
   google_compute_instance:
     upstream: mmv1/products/compute/Instance.yaml
   google_compute_network:
