@@ -78,6 +78,29 @@ final class NetworkRouteStack extends Stack {
       ),
     );
 
+    // A resource policy: a daily snapshot schedule (keep 7 days), modeled with
+    // the typed sealed schedule + retention helpers.
+    add(
+      GoogleComputeResourcePolicy(
+        localName: 'daily_snapshots',
+        name: TfArg.literal('terradart-daily-snapshots'),
+        region: TfArg.literal('us-central1'),
+        snapshotSchedulePolicy: ComputeResourcePolicySnapshotSchedulePolicy(
+          schedule: ComputeResourcePolicyDailySchedule(
+            daysInCycle: TfArg.literal(1),
+            startTime: TfArg.literal('04:00'),
+          ),
+          retentionPolicy: ComputeResourcePolicyRetentionPolicy(
+            maxRetentionDays: TfArg.literal(7),
+            onSourceDiskDelete: TfArg.literal(
+              ComputeResourcePolicyOnSourceDiskDelete.applyRetentionPolicy,
+            ),
+          ),
+        ),
+        dependsOn: [ResourceDependency(apiCompute)],
+      ),
+    );
+
     // Literal VPC name -- emitted as a Dart constant at synth time.
     addExport('DEMO_VPC_NAME', StringExport('terradart-route-demo'));
 

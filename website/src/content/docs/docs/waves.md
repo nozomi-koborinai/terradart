@@ -303,6 +303,16 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 66 — Compute resource policy
+
+Adds `google_compute_resource_policy` on the existing `compute` barrel — fully modeled with a sealed snapshot schedule (hourly / daily / weekly + typed day-of-week & on-source-disk-delete enums), retention/snapshot-properties helpers, and a typed workload policy (with type & topology-distance enums); the remaining policy blocks are structured maps. Exercised by extending [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart) with a daily snapshot schedule.
+
+Catalog after Wave 66: **317 curated resource factories + 1 data source** (318 catalog entries). 58 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_compute_resource_policy` | `GoogleComputeResourcePolicy` | `compute` | [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart) |
+
 ## Wave 65 — Gemini for Google Cloud
 
 Adds three Gemini Code Assist settings on a new `gemini` barrel — GCP enablement, logging, and release-channel settings — with a new [gemini_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gemini_quickstart).
