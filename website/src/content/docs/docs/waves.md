@@ -303,6 +303,18 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 65 — Gemini for Google Cloud
+
+Adds three Gemini Code Assist settings on a new `gemini` barrel — GCP enablement, logging, and release-channel settings — with a new [gemini_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gemini_quickstart).
+
+Catalog after Wave 65: **316 curated resource factories + 1 data source** (317 catalog entries). 58 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_gemini_gemini_gcp_enablement_setting` | `GoogleGeminiGeminiGcpEnablementSetting` | `gemini` | [gemini_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gemini_quickstart) |
+| `google_gemini_logging_setting` | `GoogleGeminiLoggingSetting` | `gemini` | [gemini_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gemini_quickstart) |
+| `google_gemini_release_channel_setting` | `GoogleGeminiReleaseChannelSetting` | `gemini` | [gemini_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gemini_quickstart) |
+
 ## Wave 64 — BigLake Metastore
 
 Adds `google_biglake_catalog` / `google_biglake_database` / `google_biglake_table` on a new `biglake` barrel (Hive-compatible metastore; `hive_options` passed as structured maps), with a new [biglake_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/biglake_quickstart).

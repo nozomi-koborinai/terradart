@@ -1,0 +1,11 @@
+outputDir: gemini
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - logging_setting_id
+  - location
+  - log_metadata
+  - log_prompts_and_responses
+  - labels
+  - project

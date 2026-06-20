@@ -1,0 +1,10 @@
+outputDir: gemini
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - release_channel_setting_id
+  - location
+  - release_channel
+  - labels
+  - project
