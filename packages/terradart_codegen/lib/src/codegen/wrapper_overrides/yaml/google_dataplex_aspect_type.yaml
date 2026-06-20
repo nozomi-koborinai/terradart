@@ -1,0 +1,31 @@
+outputDir: dataplex
+deriveClassDoc: true
+deriveOutputGetters: true
+
+dartTypeOverrides:
+  data_classification: DataplexAspectTypeDataClassification
+
+prelude: |
+  /// Data-classification level a [GoogleDataplexAspectType] applies to the
+  /// aspects (metadata) it governs.
+  enum DataplexAspectTypeDataClassification implements TerraformEnum {
+    /// Unspecified — no explicit classification.
+    unspecified('DATA_CLASSIFICATION_UNSPECIFIED'),
+
+    /// Classification applies to both the metadata and the underlying data.
+    metadataAndData('METADATA_AND_DATA');
+
+    const DataplexAspectTypeDataClassification(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+paramOrder:
+  - aspect_type_id
+  - location
+  - display_name
+  - description
+  - metadata_template
+  - data_classification
+  - deletion_policy
+  - project

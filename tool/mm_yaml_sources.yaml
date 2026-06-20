@@ -38,6 +38,18 @@ files:
     upstream: mmv1/products/compute/Subnetwork.yaml
   google_dataplex_data_product:
     upstream: mmv1/products/dataplex/DataProduct.yaml
+  google_dataplex_entry_group:
+    upstream: mmv1/products/dataplex/EntryGroup.yaml
+  google_dataplex_entry_type:
+    upstream: mmv1/products/dataplex/EntryType.yaml
+  google_dataplex_aspect_type:
+    upstream: mmv1/products/dataplex/AspectType.yaml
+  google_dataplex_entry_group_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_entry_type_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_aspect_type_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataplex_data_product_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dns_managed_zone:

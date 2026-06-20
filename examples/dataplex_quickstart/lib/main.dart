@@ -67,5 +67,107 @@ final class DataplexCatalogStack extends Stack {
         ],
       ),
     );
+
+    // --- Dataplex Universal Catalog metadata ---------------------------------
+    // An entry group (a container for catalog entries), an entry type, and an
+    // aspect type (a reusable metadata template), each with a resource-level
+    // IAM member granting the reader service account catalog access.
+
+    final catalogGroup = add(
+      GoogleDataplexEntryGroup(
+        localName: 'catalog',
+        entryGroupId: TfArg.literal('terradart-catalog'),
+        location: TfArg.literal('us-central1'),
+        displayName: TfArg.literal('TerraDart catalog'),
+        description: TfArg.literal('Catalog entry group for the quickstart'),
+        dependsOn: [...apiDeps],
+      ),
+    );
+
+    final datasetType = add(
+      GoogleDataplexEntryType(
+        localName: 'dataset_type',
+        entryTypeId: TfArg.literal('terradart-dataset'),
+        location: TfArg.literal('us-central1'),
+        displayName: TfArg.literal('TerraDart dataset'),
+        description: TfArg.literal('Entry type describing a dataset'),
+        dependsOn: [...apiDeps],
+      ),
+    );
+
+    final qualityAspect = add(
+      GoogleDataplexAspectType(
+        localName: 'quality',
+        aspectTypeId: TfArg.literal('terradart-quality'),
+        location: TfArg.literal('us-central1'),
+        displayName: TfArg.literal('Data quality'),
+        dataClassification: TfArg.literal(
+          DataplexAspectTypeDataClassification.metadataAndData,
+        ),
+        // Minimal valid metadata template (single required enum field).
+        metadataTemplate: TfArg.literal('''
+{
+  "name": "terradart-quality",
+  "type": "record",
+  "recordFields": [
+    {
+      "name": "tier",
+      "type": "enum",
+      "index": 1,
+      "annotations": { "displayName": "Tier" },
+      "constraints": { "required": true },
+      "enumValues": [
+        { "name": "GOLD", "index": 1 },
+        { "name": "SILVER", "index": 2 }
+      ]
+    }
+  ]
+}
+'''),
+        dependsOn: [...apiDeps],
+      ),
+    );
+
+    add(
+      GoogleDataplexEntryGroupIamMember(
+        localName: 'catalog_viewer',
+        entryGroupId: TfArg.literal('terradart-catalog'),
+        location: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/dataplex.catalogViewer'),
+        member: TfArg.ref(reader.iamMember),
+        dependsOn: [
+          ResourceDependency(catalogGroup),
+          ResourceDependency(reader),
+        ],
+      ),
+    );
+
+    add(
+      GoogleDataplexEntryTypeIamMember(
+        localName: 'dataset_type_viewer',
+        entryTypeId: TfArg.literal('terradart-dataset'),
+        location: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/dataplex.catalogViewer'),
+        member: TfArg.ref(reader.iamMember),
+        dependsOn: [
+          ResourceDependency(datasetType),
+          ResourceDependency(reader),
+        ],
+      ),
+    );
+
+    add(
+      GoogleDataplexAspectTypeIamMember(
+        localName: 'quality_viewer',
+        aspectTypeId: TfArg.literal('terradart-quality'),
+        location: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/dataplex.catalogViewer'),
+        member: TfArg.ref(reader.iamMember),
+        dependsOn: [
+          ResourceDependency(qualityAspect),
+          ResourceDependency(reader),
+        ],
+      ),
+    );
   }
 }

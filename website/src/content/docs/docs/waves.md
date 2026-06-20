@@ -303,6 +303,21 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 45 — Dataplex Universal Catalog
+
+Adds six Dataplex Universal Catalog factories on the existing `dataplex` barrel — entry group, entry type, aspect type, and their `*_iam_member` adjuncts — exercised by extending [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart).
+
+Catalog after Wave 45: **273 curated resource factories + 1 data source** (274 catalog entries). 49 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_dataplex_entry_group` | `GoogleDataplexEntryGroup` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+| `google_dataplex_entry_type` | `GoogleDataplexEntryType` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+| `google_dataplex_aspect_type` | `GoogleDataplexAspectType` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+| `google_dataplex_entry_group_iam_member` | `GoogleDataplexEntryGroupIamMember` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+| `google_dataplex_entry_type_iam_member` | `GoogleDataplexEntryTypeIamMember` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+| `google_dataplex_aspect_type_iam_member` | `GoogleDataplexAspectTypeIamMember` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+
 ## Wave 44 — Service Directory
 
 Adds five `google_service_directory_*` factories on a new `service_directory` barrel with [service_directory_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/service_directory_quickstart): a namespace, a service, an endpoint, and namespace/service `*_iam_member` adjuncts.

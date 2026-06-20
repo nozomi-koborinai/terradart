@@ -1,0 +1,11 @@
+outputDir: dataplex
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - entry_group_id
+  - role
+  - member
+  - condition
+  - location
+  - project

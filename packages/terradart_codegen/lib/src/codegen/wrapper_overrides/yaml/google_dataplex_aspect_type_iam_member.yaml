@@ -1,0 +1,11 @@
+outputDir: dataplex
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - aspect_type_id
+  - role
+  - member
+  - condition
+  - location
+  - project
