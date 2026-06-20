@@ -303,6 +303,20 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 44 — Service Directory
+
+Adds five `google_service_directory_*` factories on a new `service_directory` barrel with [service_directory_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/service_directory_quickstart): a namespace, a service, an endpoint, and namespace/service `*_iam_member` adjuncts.
+
+Catalog after Wave 44: **267 curated resource factories + 1 data source** (268 catalog entries). 49 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_service_directory_namespace` | `GoogleServiceDirectoryNamespace` | `service_directory` | [service_directory_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/service_directory_quickstart) |
+| `google_service_directory_service` | `GoogleServiceDirectoryService` | `service_directory` | [service_directory_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/service_directory_quickstart) |
+| `google_service_directory_endpoint` | `GoogleServiceDirectoryEndpoint` | `service_directory` | [service_directory_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/service_directory_quickstart) |
+| `google_service_directory_namespace_iam_member` | `GoogleServiceDirectoryNamespaceIamMember` | `service_directory` | [service_directory_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/service_directory_quickstart) |
+| `google_service_directory_service_iam_member` | `GoogleServiceDirectoryServiceIamMember` | `service_directory` | [service_directory_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/service_directory_quickstart) |
+
 ## Wave 43 — Essential Contacts
 
 Adds `google_essential_contacts_contact` on a new `essential_contacts` barrel. Exercised by extending [monitoring_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/monitoring_quickstart) with the Essential Contacts API enablement + a technical-notifications contact.

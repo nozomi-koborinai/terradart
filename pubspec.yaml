@@ -50,6 +50,7 @@ workspace:
   - examples/ops_quickstart
   - examples/pubsub_quickstart
   - examples/secret_manager_quickstart
+  - examples/service_directory_quickstart
   - examples/storage_quickstart
   - examples/tags_quickstart
 dev_dependencies:

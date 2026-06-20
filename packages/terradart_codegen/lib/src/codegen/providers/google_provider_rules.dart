@@ -79,5 +79,8 @@ final class GoogleProviderRules extends ProviderRules {
 
     // Essential Contacts (`google_essential_contacts_*` → segment `essential`).
     'essential': 'essential_contacts',
+
+    // Service Directory (`google_service_directory_*` → segment `service`).
+    'service_directory': 'service_directory',
   };
 }

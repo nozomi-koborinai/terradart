@@ -581,6 +581,16 @@ files:
     upstream: mmv1/products/spanner/Instance.yaml
   google_essential_contacts_contact:
     upstream: mmv1/products/essentialcontacts/Contact.yaml
+  google_service_directory_namespace:
+    upstream: mmv1/products/servicedirectory/Namespace.yaml
+  google_service_directory_service:
+    upstream: mmv1/products/servicedirectory/Service.yaml
+  google_service_directory_endpoint:
+    upstream: mmv1/products/servicedirectory/Endpoint.yaml
+  google_service_directory_namespace_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_service_directory_service_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_tags_tag_key:
     upstream: mmv1/products/tags/TagKey.yaml
   google_tags_tag_value:
