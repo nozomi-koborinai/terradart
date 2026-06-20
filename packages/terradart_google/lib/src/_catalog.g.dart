@@ -7462,4 +7462,32 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment:
         'Factory wrapper for `google_vpc_access_connector`.\n\nServerless VPC Access connector resource.\n\nServerless VPC Access connector — a managed proxy that lets Cloud Run,\nCloud Functions, and App Engine reach resources on a VPC (private IPs,\nMemorystore, Cloud SQL private IP, etc.) without public endpoints.\n\nTwo placement modes (mutually exclusive at the provider level):\n\n1. **Dedicated CIDR** — set [ipCidrRange] (a `/28` RFC 4632 range) and\n   [network] (VPC name or self_link). GCP creates a connector subnet.\n2. **Existing subnet** — set [subnet] ([VpcAccessConnectorSubnet]) with\n   the relative subnet name (and optional host [projectId] for Shared VPC).\n\nDownstream serverless resources reference the connector\'s [selfLink]\n(full `projects/.../locations/.../connectors/...` path). For example,\n[GoogleCloudRunV2Service] accepts it on\n`template.vpcAccess.connector` via [CloudRunV2ServiceVpcAccess].\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_vpc_access_connector.`).\n- [name]: connector ID (max 25 characters).\n\nExample (CIDR mode — see also `cloud_run_quickstart`):\n```dart\nfinal connector = GoogleVpcAccessConnector(\n  localName: \'run_vpc\',\n  name: TfArg.literal(\'run-vpc\'),\n  region: TfArg.literal(\'asia-northeast1\'),\n  ipCidrRange: TfArg.literal(\'10.8.0.0/28\'),\n  network: TfArg.literal(\'default\'),\n);\n```',
   ),
+  CatalogEntry(
+    tfType: 'google_workflows_workflow',
+    className: 'GoogleWorkflowsWorkflow',
+    barrel: 'workflows',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_workflows_workflow`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'region',
+      'description',
+      'sourceContents',
+      'serviceAccount',
+      'callLogLevel',
+      'executionHistoryLevel',
+      'cryptoKeyName',
+      'userEnvVars',
+      'labels',
+      'deletionProtection',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'WorkflowsWorkflowCallLogLevel',
+      'WorkflowsWorkflowExecutionHistoryLevel',
+    ],
+    sensitiveFields: <String>[],
+    docComment: 'Factory wrapper for `google_workflows_workflow`.',
+  ),
 ];

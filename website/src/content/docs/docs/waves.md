@@ -303,6 +303,16 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 47 — Workflows
+
+Adds `google_workflows_workflow` on a new `workflows` barrel (with `WorkflowsWorkflowCallLogLevel` / `WorkflowsWorkflowExecutionHistoryLevel` enums) and a new [workflows_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/workflows_quickstart) that defines a workflow from inline YAML.
+
+Catalog after Wave 47: **278 curated resource factories + 1 data source** (279 catalog entries). 50 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_workflows_workflow` | `GoogleWorkflowsWorkflow` | `workflows` | [workflows_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/workflows_quickstart) |
+
 ## Wave 46 — Dataplex business glossary
 
 Adds four Dataplex business-glossary factories on the existing `dataplex` barrel — glossary, glossary category, glossary term, and the glossary `*_iam_member` adjunct — exercised by extending [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart).

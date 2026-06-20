@@ -611,6 +611,8 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_service_directory_service_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_workflows_workflow:
+    upstream: mmv1/products/workflows/Workflow.yaml
   google_tags_tag_key:
     upstream: mmv1/products/tags/TagKey.yaml
   google_tags_tag_value:
