@@ -274,6 +274,12 @@ Application platform & operations
 - [Oracle Exadata and ExaDB](examples/oracle_exadata_quickstart/)
 - [Chronicle custom list](examples/chronicle_quickstart/)
 - [Eventarc message bus + pipeline + Pub/Sub trigger](examples/eventarc_quickstart/)
+- [Resource Manager tags (key + value + binding + IAM)](examples/tags_quickstart/)
+- [Service Directory namespace + service + endpoint + IAM](examples/service_directory_quickstart/)
+- [Workflows workflow from inline YAML](examples/workflows_quickstart/)
+- [Compute static route + project metadata item](examples/compute_route_quickstart/)
+- [Document AI OCR processor](examples/document_ai_quickstart/)
+- [Parameter Manager global + regional parameters](examples/parameter_manager_quickstart/)
 
 ## How it compares
 
