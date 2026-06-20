@@ -140,6 +140,10 @@ export 'src/bigquery/google_bigquery_routine.dart'
         GoogleBigqueryRoutine;
 export 'src/bigquery/google_bigquery_routine_iam_member.dart'
     show GoogleBigqueryRoutineIamMember;
+export 'src/bigquery/google_bigquery_routine_iam_binding.dart'
+    show GoogleBigqueryRoutineIamBinding;
+export 'src/bigquery/google_bigquery_routine_iam_policy.dart'
+    show GoogleBigqueryRoutineIamPolicy;
 export 'src/bigquery/google_bigquery_table.dart'
     show
         BigqueryTableAvroOptions,

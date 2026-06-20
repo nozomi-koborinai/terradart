@@ -50,6 +50,10 @@ files:
     upstream: mmv1/products/discoveryengine/SearchEngine.yaml
   google_discovery_engine_search_engine_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_discovery_engine_search_engine_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_discovery_engine_search_engine_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_kms_crypto_key:
     upstream: mmv1/products/kms/CryptoKey.yaml
   google_kms_key_ring:
@@ -169,6 +173,10 @@ files:
     upstream: mmv1/products/compute/RegionInstantSnapshot.yaml
   google_compute_region_instant_snapshot_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_region_instant_snapshot_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_region_instant_snapshot_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_compute_region_instance_group_manager:
     upstream: mmv1/products/compute/RegionInstanceGroupManager.yaml
   google_compute_region_network_endpoint_group:
@@ -213,6 +221,10 @@ files:
   google_bigquery_routine:
     upstream: mmv1/products/bigquery/Routine.yaml
   google_bigquery_routine_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_routine_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_routine_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_cloudbuild_trigger:
     upstream: mmv1/products/cloudbuild/Trigger.yaml

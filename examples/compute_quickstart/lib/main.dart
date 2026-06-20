@@ -15,6 +15,8 @@
 /// keeps service projects and tenants from over-reaching.
 library;
 
+import 'dart:convert';
+
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/data.dart';
@@ -23,6 +25,20 @@ import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/time.dart';
+
+String _iamPolicyDataJson({
+  required String role,
+  required String member,
+}) {
+  return jsonEncode({
+    'bindings': [
+      {
+        'role': role,
+        'members': [member],
+      },
+    ],
+  });
+}
 
 /// Network stack: a VPC + a public IP for a load balancer.
 final class NetworkStack extends Stack {
@@ -271,6 +287,36 @@ final class NetworkStack extends Stack {
           ResourceDependency(oncallSre),
           ResourceDependency(bastionInstant)
         ],
+      ),
+    );
+
+    add(
+      GoogleComputeRegionInstantSnapshotIamBinding(
+        localName: 'bastion_instant_binding',
+        name: TfArg.ref(bastionInstant.nameRef),
+        role: TfArg.literal('roles/compute.instanceAdmin'),
+        members: TfArg.literal([oncallSre.iamMember.interpolation]),
+        region: TfArg.literal('asia-northeast1'),
+        dependsOn: [
+          ResourceDependency(oncallSre),
+          ResourceDependency(bastionInstant),
+        ],
+      ),
+    );
+
+    add(
+      GoogleComputeRegionInstantSnapshotIamPolicy(
+        localName: 'bastion_instant_policy',
+        name: TfArg.ref(bastionInstant.nameRef),
+        policyData: TfArg.literal(
+          _iamPolicyDataJson(
+            role: 'roles/compute.viewer',
+            member:
+                'serviceAccount:oncall-sre@$projectId.iam.gserviceaccount.com',
+          ),
+        ),
+        region: TfArg.literal('asia-northeast1'),
+        dependsOn: [ResourceDependency(bastionInstant)],
       ),
     );
 

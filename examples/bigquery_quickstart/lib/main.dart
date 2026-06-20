@@ -16,10 +16,26 @@
 /// the table — covering both granularities of BigQuery IAM in one stack.
 library;
 
+import 'dart:convert';
+
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/bigquery.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
+
+String _iamPolicyDataJson({
+  required String role,
+  required String member,
+}) {
+  return jsonEncode({
+    'bindings': [
+      {
+        'role': role,
+        'members': [member],
+      },
+    ],
+  });
+}
 
 final class AnalyticsStack extends Stack {
   AnalyticsStack({required String projectId})
@@ -314,6 +330,33 @@ final class AnalyticsStack extends Stack {
         routineId: TfArg.ref(addOneRoutine.routineIdRef),
         role: TfArg.literal('roles/bigquery.dataViewer'),
         member: TfArg.ref(reader.iamMember),
+      ),
+    );
+
+    add(
+      GoogleBigqueryRoutineIamBinding(
+        localName: 'add_one_binding',
+        datasetId: TfArg.ref(dataset.datasetIdRef),
+        routineId: TfArg.ref(addOneRoutine.routineIdRef),
+        role: TfArg.literal('roles/bigquery.dataEditor'),
+        members: TfArg.literal([reader.iamMember.interpolation]),
+        dependsOn: [ResourceDependency(addOneRoutine)],
+      ),
+    );
+
+    add(
+      GoogleBigqueryRoutineIamPolicy(
+        localName: 'add_one_policy',
+        datasetId: TfArg.ref(dataset.datasetIdRef),
+        routineId: TfArg.ref(addOneRoutine.routineIdRef),
+        policyData: TfArg.literal(
+          _iamPolicyDataJson(
+            role: 'roles/bigquery.dataViewer',
+            member:
+                'serviceAccount:analytics-reader@$projectId.iam.gserviceaccount.com',
+          ),
+        ),
+        dependsOn: [ResourceDependency(addOneRoutine)],
       ),
     );
 

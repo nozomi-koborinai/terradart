@@ -1,12 +1,28 @@
 /// Discovery Engine quickstart — data store, search engine, IAM member.
 library;
 
+import 'dart:convert';
+
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/discovery_engine.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/time.dart';
+
+String _iamPolicyDataJson({
+  required String role,
+  required String member,
+}) {
+  return jsonEncode({
+    'bindings': [
+      {
+        'role': role,
+        'members': [member],
+      },
+    ],
+  });
+}
 
 final class DiscoveryEngineCatalogStack extends Stack {
   DiscoveryEngineCatalogStack({required String projectId})
@@ -76,6 +92,38 @@ final class DiscoveryEngineCatalogStack extends Stack {
           ResourceDependency(searchEngine),
           ResourceDependency(reader),
         ],
+      ),
+    );
+
+    add(
+      GoogleDiscoveryEngineSearchEngineIamBinding(
+        localName: 'search_reader_binding',
+        location: TfArg.literal('global'),
+        collectionId: TfArg.literal('default_collection'),
+        engineId: TfArg.ref(searchEngine.engineIdRef),
+        role: TfArg.literal('roles/discoveryengine.editor'),
+        members: TfArg.literal([reader.iamMember.interpolation]),
+        dependsOn: [
+          ResourceDependency(searchEngine),
+          ResourceDependency(reader),
+        ],
+      ),
+    );
+
+    add(
+      GoogleDiscoveryEngineSearchEngineIamPolicy(
+        localName: 'search_reader_policy',
+        location: TfArg.literal('global'),
+        collectionId: TfArg.literal('default_collection'),
+        engineId: TfArg.ref(searchEngine.engineIdRef),
+        policyData: TfArg.literal(
+          _iamPolicyDataJson(
+            role: 'roles/discoveryengine.viewer',
+            member:
+                'serviceAccount:vertex-search-reader@$projectId.iam.gserviceaccount.com',
+          ),
+        ),
+        dependsOn: [ResourceDependency(searchEngine)],
       ),
     );
   }
