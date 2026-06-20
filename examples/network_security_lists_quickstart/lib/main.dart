@@ -57,6 +57,26 @@ final class ListsStack extends Stack {
       ),
     );
 
+    // A Network Connectivity Center hub (a global, free routing fabric; spokes
+    // attach separately). Needs its own API, so enable it too -- an example that
+    // enables any API must enable every API its resources need.
+    final apiNetworkConnectivity = add(
+      GoogleProjectService(
+        localName: 'api_networkconnectivity',
+        service: TfArg.literal('networkconnectivity.googleapis.com'),
+        disableOnDestroy: TfArg.literal(false),
+      ),
+    );
+
+    add(
+      GoogleNetworkConnectivityHub(
+        localName: 'hub',
+        name: TfArg.literal('terradart-hub'),
+        description: TfArg.literal('NCC routing hub (terradart demo)'),
+        dependsOn: [ResourceDependency(apiNetworkConnectivity)],
+      ),
+    );
+
     // Literal address-group name -- emitted as a Dart constant at synth time.
     addExport('BLOCKLIST_NAME', StringExport('terradart-blocklist'));
 

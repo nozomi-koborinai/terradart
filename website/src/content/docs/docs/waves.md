@@ -303,6 +303,16 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 69 — Network Connectivity Center hub
+
+Extends the `network` barrel with `google_network_connectivity_hub` — a global, free routing fabric for Network Connectivity Center (spokes attach separately). `policy_mode` / `preset_topology` are optional+computed in the provider schema, so they stay plain `String` inputs. Exercised by extending [network_security_lists_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_security_lists_quickstart) (which now also enables `networkconnectivity.googleapis.com`).
+
+Catalog after Wave 69: **321 curated resource factories + 1 data source** (322 catalog entries). 58 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_network_connectivity_hub` | `GoogleNetworkConnectivityHub` | `network` | [network_security_lists_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_security_lists_quickstart) |
+
 ## Wave 68 — Vertex AI dataset + Tensorboard
 
 Extends the `vertex_ai` barrel with two managed-ML factories: `google_vertex_ai_dataset` (a managed dataset keyed by a Google-hosted metadata schema URI) and `google_vertex_ai_tensorboard` (experiment visualization). Both expose the single-attr `encryption_spec` block as a structured map. Exercised by extending [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart) with an image dataset and an experiments Tensorboard.

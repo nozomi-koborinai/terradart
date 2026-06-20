@@ -8,6 +8,8 @@ export 'src/network/google_network_security_address_group.dart'
 export 'src/network/google_network_security_url_lists.dart'
     show GoogleNetworkSecurityUrlLists;
 
+export 'src/network/google_network_connectivity_hub.dart'
+    show GoogleNetworkConnectivityHub;
 export 'src/network/google_network_connectivity_transport.dart'
     show
         GoogleNetworkConnectivityTransport,

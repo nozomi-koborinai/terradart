@@ -1,0 +1,15 @@
+outputDir: network
+deriveClassDoc: true
+deriveOutputGetters: true
+
+# policy_mode (PRESET/CUSTOM) and preset_topology (MESH/STAR) are optional+computed
+# in the provider schema, so the enum-gap gate skips them and they stay plain
+# String inputs (same treatment as compute network firewall policy's policy_type).
+paramOrder:
+  - name
+  - description
+  - policy_mode
+  - preset_topology
+  - export_psc
+  - labels
+  - project
