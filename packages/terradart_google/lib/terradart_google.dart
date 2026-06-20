@@ -58,3 +58,4 @@ export 'secret_manager.dart';
 export 'service_networking.dart';
 export 'spanner.dart';
 export 'storage.dart';
+export 'tags.dart';

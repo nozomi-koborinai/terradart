@@ -579,3 +579,13 @@ files:
     upstream: mmv1/products/spanner/Database.yaml
   google_spanner_instance:
     upstream: mmv1/products/spanner/Instance.yaml
+  google_tags_tag_key:
+    upstream: mmv1/products/tags/TagKey.yaml
+  google_tags_tag_value:
+    upstream: mmv1/products/tags/TagValue.yaml
+  google_tags_tag_binding:
+    upstream: mmv1/products/tags/TagBinding.yaml
+  google_tags_tag_key_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_tags_tag_value_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation

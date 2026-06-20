@@ -1,0 +1,12 @@
+outputDir: tags
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - short_name
+  - parent
+  - description
+  - purpose
+  - purpose_data
+  - allowed_values_regex
+  - deletion_policy

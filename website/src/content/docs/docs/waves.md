@@ -303,6 +303,20 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 42 — Resource Manager Tags
+
+Adds five `google_tags_*` factories on a new `tags` barrel with [tags_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/tags_quickstart): a project-scoped tag key + value, a tag binding on the project, and the tag key/value `*_iam_member` adjuncts.
+
+Catalog after Wave 42: **261 curated resource factories + 1 data source** (262 catalog entries). 47 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_tags_tag_key` | `GoogleTagsTagKey` | `tags` | [tags_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/tags_quickstart) |
+| `google_tags_tag_value` | `GoogleTagsTagValue` | `tags` | [tags_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/tags_quickstart) |
+| `google_tags_tag_binding` | `GoogleTagsTagBinding` | `tags` | [tags_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/tags_quickstart) |
+| `google_tags_tag_key_iam_member` | `GoogleTagsTagKeyIamMember` | `tags` | [tags_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/tags_quickstart) |
+| `google_tags_tag_value_iam_member` | `GoogleTagsTagValueIamMember` | `tags` | [tags_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/tags_quickstart) |
+
 ## v0.15.0 — Wave 41 — IAM binding/policy adjuncts
 
 Adds authoritative IAM `*_iam_binding` and `*_iam_policy` factories where sibling `*_iam_member` resources already ship, extending existing quickstarts.

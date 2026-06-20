@@ -1,0 +1,7 @@
+outputDir: tags
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - parent
+  - tag_value
