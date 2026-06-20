@@ -749,13 +749,13 @@ classDocComment: |-
       'production round-trip (71 entries — Phase 4.1 13 + Phase 4.5 Wave 0+1+2+3 15 + Plan 5.C Wave 4 Round 1 3 + Plan 5.C Wave 4 Round 2 9 + Plan 5.C Wave 4 Round 3 9 + Plan 5.F Wave 5 Batch 1 +6 + Plan 5.F Wave 5 Batch 2 +5 + Plan 5.F Wave 5 Batch 3 +6 + Plan 5.F Wave 5 Batch 4 +5 new)',
       () {
     test(
-      'lib/src/codegen/wrapper_overrides/yaml/ loads 250 resources + 1 data source',
+      'lib/src/codegen/wrapper_overrides/yaml/ loads 256 resources + 1 data source',
       () {
         final loaded = loadWrapperOverrides(
           rootDir:
               p.absolute('lib', 'src', 'codegen', 'wrapper_overrides', 'yaml'),
         );
-        expect(loaded.resources.length, 250);
+        expect(loaded.resources.length, 256);
         expect(loaded.dataSources.length, 1);
         expect(loaded.dataSources.keys.first, 'google_project');
       },
@@ -771,6 +771,12 @@ classDocComment: |-
         );
         const allowedBindingsAndPolicies = {
           'google_iap_web_backend_service_iam_binding',
+          'google_bigquery_routine_iam_binding',
+          'google_bigquery_routine_iam_policy',
+          'google_compute_region_instant_snapshot_iam_binding',
+          'google_compute_region_instant_snapshot_iam_policy',
+          'google_discovery_engine_search_engine_iam_binding',
+          'google_discovery_engine_search_engine_iam_policy',
         };
         final unexpected = loaded.resources.keys
             .where(

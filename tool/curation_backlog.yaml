@@ -16,22 +16,4 @@
 #       provider_version: 7.X.Y (the v7 release that introduced it)
 #       note: (optional, maintainer-added)
 
-entries:
-  - resource: google_bigquery_routine_iam_binding
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
-  - resource: google_bigquery_routine_iam_policy
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
-  - resource: google_compute_region_instant_snapshot_iam_binding
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
-  - resource: google_compute_region_instant_snapshot_iam_policy
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
-  - resource: google_discovery_engine_search_engine_iam_binding
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
-  - resource: google_discovery_engine_search_engine_iam_policy
-    detected_at: 2026-06-14
-    provider_version: 7.36.0
+entries: []

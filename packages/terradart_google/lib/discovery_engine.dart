@@ -15,3 +15,7 @@ export 'src/discovery_engine/google_discovery_engine_search_engine.dart'
         GoogleDiscoveryEngineSearchEngine;
 export 'src/discovery_engine/google_discovery_engine_search_engine_iam_member.dart'
     show GoogleDiscoveryEngineSearchEngineIamMember;
+export 'src/discovery_engine/google_discovery_engine_search_engine_iam_binding.dart'
+    show GoogleDiscoveryEngineSearchEngineIamBinding;
+export 'src/discovery_engine/google_discovery_engine_search_engine_iam_policy.dart'
+    show GoogleDiscoveryEngineSearchEngineIamPolicy;

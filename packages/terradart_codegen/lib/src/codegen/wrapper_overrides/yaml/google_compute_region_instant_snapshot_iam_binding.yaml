@@ -1,0 +1,19 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a regional instant
+  /// snapshot.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleComputeRegionInstantSnapshotIamMember] for additive grants.
+
+paramOrder:
+  - name
+  - role
+  - members
+  - condition
+  - region
+  - project

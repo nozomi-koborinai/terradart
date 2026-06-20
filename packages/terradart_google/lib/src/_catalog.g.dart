@@ -731,6 +731,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_bigquery_routine`.\n\nA user-defined function or a stored procedure that belongs to a Dataset\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_bigquery_routine.`).\n- `datasetId`: parent BigQuery dataset id. Typically\n  `TfArg.ref(dataset.datasetIdRef)` where `dataset` is a\n  `GoogleBigqueryDataset`.\n- `routineId`: routine id. Letters/digits/underscores only, up to 256\n  chars. Immutable after create.\n- `routineType`: one of [BigqueryRoutineType] — `SCALAR_FUNCTION`,\n  `PROCEDURE`, or `TABLE_VALUED_FUNCTION`.\n- `definitionBody`: SQL/JS/Python/Java/Scala source. For\n  `language = SQL`, this is the expression inside (but excluding) the\n  `AS (...)` parentheses.\n\n`returnType` and `returnTableType` expect JSON-encoded BigQuery type\nstrings (e.g. `jsonEncode({\'typeKind\': \'INT64\'})`). The provider\nsurfaces any byte-level reordering as a diff — pass the type exactly\nas the API returns it to avoid recurring plan churn.\n\nThe `arguments` block is repeatable: each entry is a\n[BigqueryRoutineArgument] with `name`, `argumentKind`, `mode`, and\n`dataType` (JSON-encoded). Procedures use `mode` (`IN`/`OUT`/`INOUT`);\nscalar/TVF functions leave it null.\n\n`remoteFunctionOptions` (max=1) configures a BigQuery Remote Function\nbacked by a Cloud Function / Cloud Run service via `connection`.\n`sparkOptions` (max=1) configures a Spark stored procedure for\n`language` = `PYTHON` / `JAVA` / `SCALA`.\n\nExample:\n```dart\nfinal addOne = GoogleBigqueryRoutine(\n  localName: \'add_one\',\n  datasetId: TfArg.ref(dataset.datasetIdRef),\n  routineId: TfArg.literal(\'add_one\'),\n  routineType: TfArg.literal(BigqueryRoutineType.scalarFunction.terraformValue),\n  definitionBody: TfArg.literal(\'x + 1\'),\n  language: TfArg.literal(BigqueryRoutineLanguage.sql.terraformValue),\n  arguments: const [\n    BigqueryRoutineArgument(\n      name: \'x\',\n      dataType: \'{"typeKind":"INT64"}\',\n    ),\n  ],\n  returnType: TfArg.literal(\'{"typeKind":"INT64"}\'),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_bigquery_routine_iam_binding',
+    className: 'GoogleBigqueryRoutineIamBinding',
+    barrel: 'bigquery',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_bigquery_routine_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'datasetId',
+      'routineId',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigquery_routine_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigQuery routine.\n\nReplaces the entire member list for that role on the routine. Prefer\n[GoogleBigqueryRoutineIamMember] when adding one principal without\ntouching existing bindings.',
+  ),
+  CatalogEntry(
     tfType: 'google_bigquery_routine_iam_member',
     className: 'GoogleBigqueryRoutineIamMember',
     barrel: 'bigquery',
@@ -748,6 +768,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_bigquery_routine_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_bigquery_routine_iam_policy',
+    className: 'GoogleBigqueryRoutineIamPolicy',
+    barrel: 'bigquery',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_bigquery_routine_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'datasetId',
+      'routineId',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigquery_routine_iam_policy`.\n\nAuthoritative IAM policy for a BigQuery routine.\n\n`policy_data` replaces the entire IAM policy on the routine. Prefer\n[GoogleBigqueryRoutineIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_row_access_policy',
@@ -2691,6 +2729,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_compute_region_instant_snapshot`.',
   ),
   CatalogEntry(
+    tfType: 'google_compute_region_instant_snapshot_iam_binding',
+    className: 'GoogleComputeRegionInstantSnapshotIamBinding',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_compute_region_instant_snapshot_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'members',
+      'condition',
+      'region',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_region_instant_snapshot_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a regional instant\nsnapshot.\n\nReplaces the entire member list for that role. Prefer\n[GoogleComputeRegionInstantSnapshotIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_region_instant_snapshot_iam_member',
     className: 'GoogleComputeRegionInstantSnapshotIamMember',
     barrel: 'compute',
@@ -2710,6 +2769,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_region_instant_snapshot_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_compute_region_instant_snapshot_iam_policy',
+    className: 'GoogleComputeRegionInstantSnapshotIamPolicy',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_compute_region_instant_snapshot_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'policyData',
+      'region',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_region_instant_snapshot_iam_policy`.\n\nAuthoritative IAM policy for a regional instant snapshot.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleComputeRegionInstantSnapshotIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_compute_region_network_endpoint',
@@ -3649,6 +3727,28 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_discovery_engine_search_engine`.\n\nVertex AI Search and Conversation can be used to create a search engine or a\nchat application by connecting it with a datastore',
   ),
   CatalogEntry(
+    tfType: 'google_discovery_engine_search_engine_iam_binding',
+    className: 'GoogleDiscoveryEngineSearchEngineIamBinding',
+    barrel: 'discovery_engine',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_discovery_engine_search_engine_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'collectionId',
+      'engineId',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_discovery_engine_search_engine_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Vertex AI Search\nengine.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDiscoveryEngineSearchEngineIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_discovery_engine_search_engine_iam_member',
     className: 'GoogleDiscoveryEngineSearchEngineIamMember',
     barrel: 'discovery_engine',
@@ -3669,6 +3769,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_discovery_engine_search_engine_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_discovery_engine_search_engine_iam_policy',
+    className: 'GoogleDiscoveryEngineSearchEngineIamPolicy',
+    barrel: 'discovery_engine',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_discovery_engine_search_engine_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'collectionId',
+      'engineId',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_discovery_engine_search_engine_iam_policy`.\n\nAuthoritative IAM policy for a Vertex AI Search engine.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleDiscoveryEngineSearchEngineIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_dns_managed_zone',

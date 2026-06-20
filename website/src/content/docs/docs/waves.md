@@ -303,11 +303,26 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 41 — IAM binding/policy adjuncts (unreleased)
+
+Adds authoritative IAM `*_iam_binding` and `*_iam_policy` factories where sibling `*_iam_member` resources already ship, extending existing quickstarts.
+
+Catalog after Wave 41: **256 curated resource factories + 1 data source** (257 catalog entries). 46 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_bigquery_routine_iam_binding` | `GoogleBigqueryRoutineIamBinding` | `bigquery` | [bigquery_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigquery_quickstart) |
+| `google_bigquery_routine_iam_policy` | `GoogleBigqueryRoutineIamPolicy` | `bigquery` | [bigquery_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigquery_quickstart) |
+| `google_compute_region_instant_snapshot_iam_binding` | `GoogleComputeRegionInstantSnapshotIamBinding` | `compute` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
+| `google_compute_region_instant_snapshot_iam_policy` | `GoogleComputeRegionInstantSnapshotIamPolicy` | `compute` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
+| `google_discovery_engine_search_engine_iam_binding` | `GoogleDiscoveryEngineSearchEngineIamBinding` | `discovery_engine` | [discovery_engine_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/discovery_engine_quickstart) |
+| `google_discovery_engine_search_engine_iam_policy` | `GoogleDiscoveryEngineSearchEngineIamPolicy` | `discovery_engine` | [discovery_engine_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/discovery_engine_quickstart) |
+
 ## Wave 40 — Oracle Exadata (unreleased)
 
 Adds four Oracle Exadata factories on the `oracle` barrel with [oracle_exadata_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_exadata_quickstart).
 
-Catalog after Wave 40: **250 curated resource factories + 1 data source** (251 catalog entries). 46 service barrels.
+Catalog after Wave 40: **256 curated resource factories + 1 data source** (257 catalog entries). 46 service barrels.
 
 | Terraform type | Dart factory | Barrel | Example |
 | --- | --- | --- | --- |
@@ -320,7 +335,7 @@ Catalog after Wave 40: **250 curated resource factories + 1 data source** (251 c
 
 Adds `google_oracle_database_db_system` on the `oracle` barrel with [oracle_db_system_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_db_system_quickstart).
 
-Catalog after Wave 39: **250 curated resource factories + 1 data source** (251 catalog entries). 46 service barrels.
+Catalog after Wave 39: **256 curated resource factories + 1 data source** (257 catalog entries). 46 service barrels.
 
 | Terraform type | Dart factory | Barrel | Example |
 | --- | --- | --- | --- |

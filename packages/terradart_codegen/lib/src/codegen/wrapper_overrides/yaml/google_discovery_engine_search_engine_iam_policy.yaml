@@ -1,0 +1,17 @@
+outputDir: discovery_engine
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Vertex AI Search engine.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleDiscoveryEngineSearchEngineIamMember] for single-principal grants.
+
+paramOrder:
+  - location
+  - collection_id
+  - engine_id
+  - policy_data
+  - project

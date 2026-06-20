@@ -1,0 +1,16 @@
+outputDir: bigquery
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a BigQuery routine.
+  ///
+  /// `policy_data` replaces the entire IAM policy on the routine. Prefer
+  /// [GoogleBigqueryRoutineIamMember] for single-principal grants.
+
+paramOrder:
+  - dataset_id
+  - routine_id
+  - policy_data
+  - project

@@ -316,6 +316,10 @@ export 'src/compute/google_compute_region_instant_snapshot.dart'
         GoogleComputeRegionInstantSnapshot;
 export 'src/compute/google_compute_region_instant_snapshot_iam_member.dart'
     show GoogleComputeRegionInstantSnapshotIamMember;
+export 'src/compute/google_compute_region_instant_snapshot_iam_binding.dart'
+    show GoogleComputeRegionInstantSnapshotIamBinding;
+export 'src/compute/google_compute_region_instant_snapshot_iam_policy.dart'
+    show GoogleComputeRegionInstantSnapshotIamPolicy;
 export 'src/compute/google_compute_region_instance_group_manager.dart'
     show
         GoogleComputeRegionInstanceGroupManager,
