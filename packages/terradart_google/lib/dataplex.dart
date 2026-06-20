@@ -21,3 +21,11 @@ export 'src/dataplex/google_dataplex_entry_type_iam_member.dart'
     show GoogleDataplexEntryTypeIamMember;
 export 'src/dataplex/google_dataplex_aspect_type_iam_member.dart'
     show GoogleDataplexAspectTypeIamMember;
+export 'src/dataplex/google_dataplex_glossary.dart'
+    show GoogleDataplexGlossary;
+export 'src/dataplex/google_dataplex_glossary_category.dart'
+    show GoogleDataplexGlossaryCategory;
+export 'src/dataplex/google_dataplex_glossary_term.dart'
+    show GoogleDataplexGlossaryTerm;
+export 'src/dataplex/google_dataplex_glossary_iam_member.dart'
+    show GoogleDataplexGlossaryIamMember;

@@ -169,5 +169,59 @@ final class DataplexCatalogStack extends Stack {
         ],
       ),
     );
+
+    // --- Dataplex business glossary ------------------------------------------
+    // A glossary with one category and one term, plus a resource-level IAM
+    // member granting the reader catalog access on the glossary.
+
+    final glossary = add(
+      GoogleDataplexGlossary(
+        localName: 'business_terms',
+        glossaryId: TfArg.literal('terradart-glossary'),
+        location: TfArg.literal('us-central1'),
+        displayName: TfArg.literal('TerraDart business glossary'),
+        description: TfArg.literal('Shared business vocabulary'),
+        dependsOn: [...apiDeps],
+      ),
+    );
+
+    add(
+      GoogleDataplexGlossaryCategory(
+        localName: 'metrics_category',
+        categoryId: TfArg.literal('terradart-metrics'),
+        glossaryId: TfArg.literal('terradart-glossary'),
+        location: TfArg.literal('us-central1'),
+        parent: TfArg.ref(glossary.id),
+        displayName: TfArg.literal('Metrics'),
+        dependsOn: [ResourceDependency(glossary)],
+      ),
+    );
+
+    add(
+      GoogleDataplexGlossaryTerm(
+        localName: 'mrr_term',
+        termId: TfArg.literal('terradart-mrr'),
+        glossaryId: TfArg.literal('terradart-glossary'),
+        location: TfArg.literal('us-central1'),
+        parent: TfArg.ref(glossary.id),
+        displayName: TfArg.literal('Monthly Recurring Revenue'),
+        description: TfArg.literal('Normalized monthly subscription revenue'),
+        dependsOn: [ResourceDependency(glossary)],
+      ),
+    );
+
+    add(
+      GoogleDataplexGlossaryIamMember(
+        localName: 'glossary_viewer',
+        glossaryId: TfArg.literal('terradart-glossary'),
+        location: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/dataplex.catalogViewer'),
+        member: TfArg.ref(reader.iamMember),
+        dependsOn: [
+          ResourceDependency(glossary),
+          ResourceDependency(reader),
+        ],
+      ),
+    );
   }
 }

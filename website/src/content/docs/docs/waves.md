@@ -303,6 +303,19 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 46 — Dataplex business glossary
+
+Adds four Dataplex business-glossary factories on the existing `dataplex` barrel — glossary, glossary category, glossary term, and the glossary `*_iam_member` adjunct — exercised by extending [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart).
+
+Catalog after Wave 46: **277 curated resource factories + 1 data source** (278 catalog entries). 49 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_dataplex_glossary` | `GoogleDataplexGlossary` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+| `google_dataplex_glossary_category` | `GoogleDataplexGlossaryCategory` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+| `google_dataplex_glossary_term` | `GoogleDataplexGlossaryTerm` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+| `google_dataplex_glossary_iam_member` | `GoogleDataplexGlossaryIamMember` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+
 ## Wave 45 — Dataplex Universal Catalog
 
 Adds six Dataplex Universal Catalog factories on the existing `dataplex` barrel — entry group, entry type, aspect type, and their `*_iam_member` adjuncts — exercised by extending [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart).

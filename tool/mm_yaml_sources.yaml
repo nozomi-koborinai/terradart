@@ -44,6 +44,14 @@ files:
     upstream: mmv1/products/dataplex/EntryType.yaml
   google_dataplex_aspect_type:
     upstream: mmv1/products/dataplex/AspectType.yaml
+  google_dataplex_glossary:
+    upstream: mmv1/products/dataplex/Glossary.yaml
+  google_dataplex_glossary_category:
+    upstream: mmv1/products/dataplex/GlossaryCategory.yaml
+  google_dataplex_glossary_term:
+    upstream: mmv1/products/dataplex/GlossaryTerm.yaml
+  google_dataplex_glossary_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataplex_entry_group_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataplex_entry_type_iam_member:
