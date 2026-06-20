@@ -15,7 +15,7 @@ The shared shape of the config across MCP clients is just:
 }
 ```
 
-The server registers itself under the name `terradart`, and exposes the four catalog tools described in the [Tools reference](/docs/agent/tools-reference/).
+The server registers itself under the name `terradart`, and exposes the five read-only tools described in the [Tools reference](/docs/agent/tools-reference/).
 
 ## Claude Code
 

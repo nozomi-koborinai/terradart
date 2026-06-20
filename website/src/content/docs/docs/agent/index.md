@@ -12,7 +12,7 @@ It is built with [genkit_mcp](https://pub.dev/packages/genkit_mcp) (Genkit's MCP
 ```mermaid
 graph LR
   agent["coding agent<br/>(Claude Code / Cursor / Claude Desktop)"]
-  mcp["terradart-mcp<br/>list_barrels · list_resources<br/>get_resource_schema · get_quickstart"]
+  mcp["terradart-mcp<br/>list_barrels · list_resources<br/>get_resource_schema · get_quickstart<br/>check_coverage"]
   catalog["static catalog in terradart_google<br/>257 entries · 46 service barrels"]
   agent -->|stdio JSON-RPC MCP| mcp
   mcp -->|reads in-process| catalog
@@ -35,5 +35,5 @@ If an agent wants to actually synthesize and apply a stack, that still happens t
 
 - [Install](/docs/agent/install/) — Homebrew or a direct binary download.
 - [Connecting clients](/docs/agent/clients/) — Claude Code, Claude Desktop, Cursor, and Genkit Dart.
-- [Tools reference](/docs/agent/tools-reference/) — the 4 tools, with request/response examples.
+- [Tools reference](/docs/agent/tools-reference/) — the 5 tools, with request/response examples.
 - [Recipes](/docs/agent/recipes/) — prompt patterns for discovery, schema lookup, scaffolding, and plan review.

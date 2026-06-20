@@ -1,9 +1,9 @@
 ---
 title: Tools reference
-description: The four read-only catalog tools exposed by terradart-mcp, with request/response examples.
+description: The five read-only tools exposed by terradart-mcp, with request/response examples.
 ---
 
-`terradart-mcp` exposes four read-only tools over MCP. All four are invoked with the standard MCP `tools/call` method. The envelope looks like this:
+`terradart-mcp` exposes five read-only tools over MCP. All five are invoked with the standard MCP `tools/call` method. The envelope looks like this:
 
 ```json
 {
@@ -145,3 +145,42 @@ Returns a runnable Dart `Stack` template for a named scenario. If the scenario k
 ```
 
 Each template is adapted from a CI-validated example in the repository, so the class names, constructor parameters, and imports compile against the current TerraDart API. The `gcs_refs` link to the full, deployable example for that scenario.
+
+## `check_coverage`
+
+Returns a coverage report for an existing Terraform plan or state JSON. Pass the full output of `terraform show -json`; the tool reports how much of the config is already covered by curated `terradart_google` factories and which Terraform types are not in the catalog.
+
+**Input** (required `tf_json`)
+
+```json
+{ "tf_json": "{\"values\":{\"root_module\":{\"resources\":[]}}}" }
+```
+
+**Output** — on valid input:
+
+```json
+{
+  "summary": {
+    "distinctTypes": 0,
+    "supportedTypes": 0,
+    "totalOccurrences": 0,
+    "supportedOccurrences": 0,
+    "coverageByTypePct": 100.0,
+    "coverageByOccurrencePct": 100.0
+  },
+  "supported": [],
+  "notInCatalog": [],
+  "perModule": {},
+  "unparseable": []
+}
+```
+
+**Output** — on invalid JSON:
+
+```json
+{
+  "error": "input is not valid JSON: ..."
+}
+```
+
+The report is read-only analysis. It does not run Terraform, read local files, or contact Google Cloud.

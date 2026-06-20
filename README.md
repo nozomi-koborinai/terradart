@@ -11,7 +11,7 @@
 >
 > Google Cloud infrastructure as real Dart code — typed, refactor-safe, drop-in for `terraform apply`.
 
-**Pre-alpha** — no SemVer guarantees until v1.0.0. Pin `^0.14.x`, read [`MIGRATING.md`](MIGRATING.md) before bumping, and see [status on terradart.dev](https://terradart.dev/docs/status/).
+**Pre-alpha** — no SemVer guarantees until v1.0.0. Pin `^0.15.x`, read [`MIGRATING.md`](MIGRATING.md) before bumping, and see [status on terradart.dev](https://terradart.dev/docs/status/).
 
 <!-- identity -->
 [![pub: terradart_core](https://img.shields.io/pub/v/terradart_core.svg?label=pub%3A%20core)](https://pub.dev/packages/terradart_core)
@@ -202,8 +202,8 @@ GoogleCloudRunV2Service(
 ```yaml
 # pubspec.yaml
 dependencies:
-  terradart_core: ^0.14.x
-  terradart_google: ^0.14.x
+  terradart_core: ^0.15.x
+  terradart_google: ^0.15.x
 ```
 
 ```bash
@@ -216,7 +216,7 @@ Runnable end-to-end:  [`examples/pubsub_quickstart/`](examples/pubsub_quickstart
 
 ## terradart-mcp
 
-**Pre-alpha.** [`terradart-mcp`](packages/terradart_agent/) is an MCP server that exposes the curated factory **catalog** to coding agents (Claude Code, Cursor, Claude Desktop). Four read-only tools — `list_barrels`, `list_resources`, `get_resource_schema`, `get_quickstart` — help agents author correct Dart without guessing factory names. It does **not** run Terraform or touch GCP.
+**Pre-alpha.** [`terradart-mcp`](packages/terradart_agent/) is an MCP server that exposes the curated factory **catalog** to coding agents (Claude Code, Cursor, Claude Desktop). Five read-only tools — `list_barrels`, `list_resources`, `get_resource_schema`, `get_quickstart`, and `check_coverage` — help agents author correct Dart without guessing factory names. It does **not** run Terraform or touch GCP.
 
 ```sh
 brew install nozomi-koborinai/tap/terradart-mcp
@@ -293,7 +293,7 @@ Application platform & operations
 
 ## Status
 
-**Pre-alpha**, pre-1.0 (0.14.x). No SemVer guarantees until v1.0.0; pin `^0.14.x` and read [`MIGRATING.md`](MIGRATING.md) before every minor bump. Beta is planned from **v0.14.0** once [readiness gates](https://terradart.dev/docs/status/#beta-readiness-checklist) are met. Expectations: [terradart.dev/docs/status/](https://terradart.dev/docs/status/).
+**Pre-alpha**, pre-1.0 (0.15.x). No SemVer guarantees until v1.0.0; pin `^0.15.x` and read [`MIGRATING.md`](MIGRATING.md) before every minor bump. Beta is planned from **v0.15.0** once [readiness gates](https://terradart.dev/docs/status/#beta-readiness-checklist) are met. Expectations: [terradart.dev/docs/status/](https://terradart.dev/docs/status/).
 
 ## Schema-bump automation (Plan 5.E)
 

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.15.0 - 2026-06-20
+
+Lockstep version bump for `terradart_google` v0.15.0. MCP catalog grows to
+**257 entries** (256 curated resource factories + 1 data source) across
+46 service barrels. No MCP protocol or tool changes.
+
 ## 0.14.0 - 2026-06-16
 
 Add the `check_coverage` MCP tool (5th catalog tool): given `terraform show -json`
