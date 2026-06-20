@@ -1,0 +1,21 @@
+outputDir: clouddeploy
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - location
+  - gke
+  - run
+  - multi_target
+  - anthos_cluster
+  - custom_target
+  - execution_configs
+  - associated_entities
+  - deploy_parameters
+  - require_approval
+  - description
+  - annotations
+  - labels
+  - deletion_policy
+  - project

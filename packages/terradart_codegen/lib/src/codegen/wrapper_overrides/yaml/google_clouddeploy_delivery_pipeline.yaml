@@ -1,0 +1,14 @@
+outputDir: clouddeploy
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - location
+  - serial_pipeline
+  - description
+  - suspended
+  - annotations
+  - labels
+  - deletion_policy
+  - project

@@ -303,6 +303,18 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 61 — Cloud Deploy
+
+Adds three Cloud Deploy factories on a new `clouddeploy` barrel — delivery pipeline, target, and custom target type (nested config passed as structured maps) — and a new [clouddeploy_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/clouddeploy_quickstart) (a Cloud Run target + pipeline + custom target type).
+
+Catalog after Wave 61: **308 curated resource factories + 1 data source** (309 catalog entries). 55 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_clouddeploy_delivery_pipeline` | `GoogleClouddeployDeliveryPipeline` | `clouddeploy` | [clouddeploy_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/clouddeploy_quickstart) |
+| `google_clouddeploy_target` | `GoogleClouddeployTarget` | `clouddeploy` | [clouddeploy_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/clouddeploy_quickstart) |
+| `google_clouddeploy_custom_target_type` | `GoogleClouddeployCustomTargetType` | `clouddeploy` | [clouddeploy_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/clouddeploy_quickstart) |
+
 ## Wave 60 — GKE Hub fleet scope + namespace
 
 Adds `google_gke_hub_scope` and `google_gke_hub_namespace` on the existing `container` barrel — fleet team-management scaffolding that needs no cluster — with a new lightweight [gke_hub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gke_hub_quickstart).

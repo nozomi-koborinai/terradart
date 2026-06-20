@@ -22,6 +22,7 @@ export 'cloud_scheduler.dart';
 export 'certificate_manager.dart';
 export 'chronicle.dart';
 export 'cloud_sql.dart';
+export 'clouddeploy.dart';
 export 'cloud_tasks.dart';
 export 'compute.dart';
 export 'container.dart';

@@ -15,6 +15,7 @@ workspace:
   - examples/bigquery_quickstart
   - examples/chronicle_quickstart
   - examples/cloud_build_quickstart
+  - examples/clouddeploy_quickstart
   - examples/config_deployment_quickstart
   - examples/cloud_functions_quickstart
   - examples/cloud_run_quickstart

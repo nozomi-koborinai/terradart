@@ -28,6 +28,12 @@ files:
     upstream: mmv1/products/bigquery/Table.yaml
   google_cloud_run_v2_service:
     upstream: mmv1/products/cloudrunv2/Service.yaml
+  google_clouddeploy_custom_target_type:
+    upstream: mmv1/products/clouddeploy/CustomTargetType.yaml
+  google_clouddeploy_delivery_pipeline:
+    upstream: mmv1/products/clouddeploy/DeliveryPipeline.yaml
+  google_clouddeploy_target:
+    upstream: mmv1/products/clouddeploy/Target.yaml
   google_compute_address:
     upstream: mmv1/products/compute/Address.yaml
   google_compute_firewall:
