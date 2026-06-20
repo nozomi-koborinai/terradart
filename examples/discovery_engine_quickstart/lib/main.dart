@@ -50,7 +50,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
       GoogleDiscoveryEngineDataStore(
         localName: 'docs_store',
         location: TfArg.literal('global'),
-        dataStoreId: TfArg.literal('quickstart-docs'),
+        dataStoreId: TfArg.literal('terradart-search-docs'),
         displayName: TfArg.literal('Quickstart documents'),
         industryVertical: TfArg.literal(
           DiscoveryEngineDataStoreIndustryVertical.generic,
