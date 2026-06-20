@@ -132,6 +132,12 @@ files:
     upstream: mmv1/products/healthcare/ConsentStore.yaml
   google_healthcare_dataset_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_healthcare_dicom_store_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_healthcare_hl7_v2_store_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_healthcare_consent_store_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_iam_workload_identity_pool_provider:
     # MM YAML enriches merged IR (descriptions, hints); typed nested blocks still
     # come from the wrapper override prelude/customSlots, not from MM alone.

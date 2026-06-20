@@ -303,6 +303,18 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 59 — Cloud Healthcare store IAM members
+
+Adds the store-level `*_iam_member` adjuncts on the existing `healthcare` barrel — `google_healthcare_dicom_store_iam_member`, `google_healthcare_hl7_v2_store_iam_member`, `google_healthcare_consent_store_iam_member` — exercised by extending [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) with per-store viewer grants.
+
+Catalog after Wave 59: **303 curated resource factories + 1 data source** (304 catalog entries). 54 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_healthcare_dicom_store_iam_member` | `GoogleHealthcareDicomStoreIamMember` | `healthcare` | [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) |
+| `google_healthcare_hl7_v2_store_iam_member` | `GoogleHealthcareHl7V2StoreIamMember` | `healthcare` | [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) |
+| `google_healthcare_consent_store_iam_member` | `GoogleHealthcareConsentStoreIamMember` | `healthcare` | [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) |
+
 ## Wave 58 — BigQuery standalone dataset access
 
 Adds `google_bigquery_dataset_access` on the existing `bigquery` barrel — the standalone (non-inline) counterpart of `GoogleBigqueryDataset.access`, with typed sealed-style helpers (`BigqueryDatasetAccessPredefinedGroup` enum, authorized view / routine / dataset blocks). Exercised by extending [bigquery_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigquery_quickstart) (synth + `terraform validate`; bigquery_quickstart is apply-smoke-skip-listed for org-gated datapolicy/analyticshub resources).

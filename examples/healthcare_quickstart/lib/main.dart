@@ -56,7 +56,7 @@ final class HealthcareStack extends Stack {
       ),
     );
 
-    add(
+    final dicom = add(
       GoogleHealthcareDicomStore(
         localName: 'images',
         name: TfArg.literal('terradart-images'),
@@ -66,7 +66,7 @@ final class HealthcareStack extends Stack {
       ),
     );
 
-    add(
+    final consent = add(
       GoogleHealthcareConsentStore(
         localName: 'consents',
         name: TfArg.literal('terradart-consents'),
@@ -76,7 +76,7 @@ final class HealthcareStack extends Stack {
       ),
     );
 
-    add(
+    final hl7 = add(
       GoogleHealthcareHl7V2Store(
         localName: 'messages',
         name: TfArg.literal('terradart-hl7'),
@@ -100,6 +100,38 @@ final class HealthcareStack extends Stack {
           ResourceDependency(dataset),
           ResourceDependency(analyst),
         ],
+      ),
+    );
+
+    // Store-level IAM members: grant the analyst read access on each store.
+    add(
+      GoogleHealthcareDicomStoreIamMember(
+        localName: 'dicom_viewer',
+        dicomStoreId: TfArg.ref(dicom.id),
+        role: TfArg.literal('roles/healthcare.dicomViewer'),
+        member: TfArg.ref(analyst.iamMember),
+        dependsOn: [ResourceDependency(dicom), ResourceDependency(analyst)],
+      ),
+    );
+
+    add(
+      GoogleHealthcareHl7V2StoreIamMember(
+        localName: 'hl7_consumer',
+        hl7V2StoreId: TfArg.ref(hl7.id),
+        role: TfArg.literal('roles/healthcare.hl7V2Consumer'),
+        member: TfArg.ref(analyst.iamMember),
+        dependsOn: [ResourceDependency(hl7), ResourceDependency(analyst)],
+      ),
+    );
+
+    add(
+      GoogleHealthcareConsentStoreIamMember(
+        localName: 'consent_viewer',
+        consentStoreId: TfArg.ref(consent.id),
+        dataset: TfArg.ref(dataset.id),
+        role: TfArg.literal('roles/healthcare.consentStoreViewer'),
+        member: TfArg.ref(analyst.iamMember),
+        dependsOn: [ResourceDependency(consent), ResourceDependency(analyst)],
       ),
     );
 

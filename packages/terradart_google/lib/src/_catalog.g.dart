@@ -5239,6 +5239,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_healthcare_consent_store`.',
   ),
   CatalogEntry(
+    tfType: 'google_healthcare_consent_store_iam_member',
+    className: 'GoogleHealthcareConsentStoreIamMember',
+    barrel: 'healthcare',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_healthcare_consent_store_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'consentStoreId',
+      'dataset',
+      'role',
+      'member',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_healthcare_consent_store_iam_member`.',
+  ),
+  CatalogEntry(
     tfType: 'google_healthcare_dataset',
     className: 'GoogleHealthcareDataset',
     barrel: 'healthcare',
@@ -5284,6 +5304,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_healthcare_dicom_store`.',
   ),
   CatalogEntry(
+    tfType: 'google_healthcare_dicom_store_iam_member',
+    className: 'GoogleHealthcareDicomStoreIamMember',
+    barrel: 'healthcare',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_healthcare_dicom_store_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'dicomStoreId',
+      'role',
+      'member',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_healthcare_dicom_store_iam_member`.',
+  ),
+  CatalogEntry(
     tfType: 'google_healthcare_hl7_v2_store',
     className: 'GoogleHealthcareHl7V2Store',
     barrel: 'healthcare',
@@ -5303,6 +5341,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_healthcare_hl7_v2_store`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_healthcare_hl7_v2_store_iam_member',
+    className: 'GoogleHealthcareHl7V2StoreIamMember',
+    barrel: 'healthcare',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_healthcare_hl7_v2_store_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'hl7V2StoreId',
+      'role',
+      'member',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_healthcare_hl7_v2_store_iam_member`.',
   ),
   CatalogEntry(
     tfType: 'google_iam_workload_identity_pool',

@@ -1,0 +1,10 @@
+outputDir: healthcare
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - consent_store_id
+  - dataset
+  - role
+  - member
+  - condition
