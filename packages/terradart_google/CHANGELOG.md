@@ -1,5 +1,28 @@
 # Changelog
 
+## 0.15.0 - 2026-06-20
+
+Lockstep release. **No breaking changes** vs `0.14.0`.
+
+### Added
+
+- Catalog grows to **256 curated resource factories + 1 data source** (257 entries; 46 service barrels).
+- BigQuery: `google_bigquery_routine_iam_member` plus authoritative routine IAM binding / policy adjuncts.
+- Compute: zonal disk, regional instant snapshot, and regional instant snapshot IAM member / binding / policy adjuncts.
+- New and extended service coverage: Apigee data collector / datastore, Dataplex data product / IAM member, License Manager configuration, Discovery Engine data store / search engine / IAM member / binding / policy, Config Deployment, Contact Center Insights encryption spec, Dialogflow SIP trunk, Network Connectivity service connection token transport, Chronicle custom list / native dashboard / dashboard chart, Migration Center wave, and Network Security ULL mirroring wave.
+- Oracle Database@Google Cloud Waves 36–40: GoldenGate deployment / connection / assignment, ODB network / subnet, Autonomous Database, Base Database DB System, and Exadata / ExaDB infrastructure factories.
+- Wave 41 IAM binding/policy adjuncts for BigQuery routine, Compute regional instant snapshot, and Discovery Engine search engine.
+
+### Changed
+
+- Quickstarts and docs now exercise every added catalog entry; examples include Apigee, Dataplex, Config Deployment, Network Connectivity, Network Security ULL, Migration Center, Chronicle, Oracle, and IAM binding/policy adjunct coverage.
+
+### Fixed
+
+- Backfilled `GoogleFilestoreSnapshot` in `compute_quickstart`.
+- Aligned the Contact Center Insights barrel output directory with the wrap-init anchor.
+- Added Config Deployment Gate 6 thunks for blueprint source variants.
+
 ## 0.14.0 - 2026-06-16
 
 - Provider 7.36.0: `google_compute_address` gains the computed `address_id`

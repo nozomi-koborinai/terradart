@@ -1,6 +1,6 @@
 ---
-title: Waves 23–29
-description: Curated google_* factories shipped in Waves 23–29 (v0.12.10–0.12.15) with example stack pointers.
+title: Waves 23–41
+description: Curated google_* factories shipped through Wave 41 (v0.12.10–v0.15.0) with example stack pointers.
 ---
 
 ## v0.12.10 — Waves 23–24
@@ -290,7 +290,7 @@ GoogleAlloydbCluster(
 );
 ```
 
-## Wave 35 — AlloyDB backup, Memcache, Spanner (unreleased)
+## v0.15.0 — Wave 35 — AlloyDB backup, Memcache, Spanner
 
 Adds `google_alloydb_backup`, `google_memcache_instance`, `google_spanner_instance`, and `google_spanner_database`.
 
@@ -303,7 +303,7 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
-## Wave 41 — IAM binding/policy adjuncts (unreleased)
+## v0.15.0 — Wave 41 — IAM binding/policy adjuncts
 
 Adds authoritative IAM `*_iam_binding` and `*_iam_policy` factories where sibling `*_iam_member` resources already ship, extending existing quickstarts.
 
@@ -318,7 +318,7 @@ Catalog after Wave 41: **256 curated resource factories + 1 data source** (257 c
 | `google_discovery_engine_search_engine_iam_binding` | `GoogleDiscoveryEngineSearchEngineIamBinding` | `discovery_engine` | [discovery_engine_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/discovery_engine_quickstart) |
 | `google_discovery_engine_search_engine_iam_policy` | `GoogleDiscoveryEngineSearchEngineIamPolicy` | `discovery_engine` | [discovery_engine_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/discovery_engine_quickstart) |
 
-## Wave 40 — Oracle Exadata (unreleased)
+## v0.15.0 — Wave 40 — Oracle Exadata
 
 Adds four Oracle Exadata factories on the `oracle` barrel with [oracle_exadata_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_exadata_quickstart).
 
@@ -331,7 +331,7 @@ Catalog after Wave 40: **256 curated resource factories + 1 data source** (257 c
 | `google_oracle_database_exadb_vm_cluster` | `GoogleOracleDatabaseExadbVmCluster` | `oracle` | [oracle_exadata_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_exadata_quickstart) |
 | `google_oracle_database_exascale_db_storage_vault` | `GoogleOracleDatabaseExascaleDbStorageVault` | `oracle` | [oracle_exadata_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_exadata_quickstart) |
 
-## Wave 39 — Oracle DB System (unreleased)
+## v0.15.0 — Wave 39 — Oracle DB System
 
 Adds `google_oracle_database_db_system` on the `oracle` barrel with [oracle_db_system_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_db_system_quickstart).
 
@@ -341,7 +341,7 @@ Catalog after Wave 39: **256 curated resource factories + 1 data source** (257 c
 | --- | --- | --- | --- |
 | `google_oracle_database_db_system` | `GoogleOracleDatabaseDbSystem` | `oracle` | [oracle_db_system_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_db_system_quickstart) |
 
-## Wave 38 — Oracle Autonomous Database (unreleased)
+## v0.15.0 — Wave 38 — Oracle Autonomous Database
 
 Adds `google_oracle_database_autonomous_database` on the `oracle` barrel with [oracle_autonomous_database_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_autonomous_database_quickstart).
 
@@ -351,7 +351,7 @@ Catalog after Wave 38: **245 curated resource factories + 1 data source** (246 c
 | --- | --- | --- | --- |
 | `google_oracle_database_autonomous_database` | `GoogleOracleDatabaseAutonomousDatabase` | `oracle` | [oracle_autonomous_database_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_autonomous_database_quickstart) |
 
-## Wave 37 — Oracle ODB networking (unreleased)
+## v0.15.0 — Wave 37 — Oracle ODB networking
 
 Extends the `oracle` barrel with ODB network and subnet factories and tightens [oracle_goldengate_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_goldengate_quickstart) to provision VPC → ODB network → subnet before GoldenGate resources.
 
@@ -362,7 +362,7 @@ Catalog after Wave 37: **244 curated resource factories + 1 data source** (245 c
 | `google_oracle_database_odb_network` | `GoogleOracleDatabaseOdbNetwork` | `oracle` | [oracle_goldengate_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_goldengate_quickstart) |
 | `google_oracle_database_odb_subnet` | `GoogleOracleDatabaseOdbSubnet` | `oracle` | [oracle_goldengate_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_goldengate_quickstart) |
 
-## Wave 36 — Oracle GoldenGate (unreleased)
+## v0.15.0 — Wave 36 — Oracle GoldenGate
 
 Adds Oracle Database@Google Cloud GoldenGate deployment, connection, and connection assignment on a new `oracle` barrel. New [oracle_goldengate_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_goldengate_quickstart).
 
@@ -374,7 +374,7 @@ Catalog after Wave 36: **242 curated resource factories + 1 data source** (243 c
 | `google_oracle_database_goldengate_connection` | `GoogleOracleDatabaseGoldengateConnection` | `oracle` | [oracle_goldengate_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_goldengate_quickstart) |
 | `google_oracle_database_goldengate_connection_assignment` | `GoogleOracleDatabaseGoldengateConnectionAssignment` | `oracle` | [oracle_goldengate_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/oracle_goldengate_quickstart) |
 
-## Wave 34 — Cloud Filestore (unreleased)
+## v0.15.0 — Wave 34 — Cloud Filestore
 
 Adds managed NFS (`google_filestore_instance`) plus backup and snapshot adjuncts on a new `filestore` barrel. Extends [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart).
 

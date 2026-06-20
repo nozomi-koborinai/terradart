@@ -1,6 +1,6 @@
 # Release Checklist
 
-terradart releases 3 packages in lockstep: `terradart_core`, `terradart_codegen`, `terradart_google`. All 3 share the same version (e.g. `0.11.0`).
+terradart bumps 5 packages in lockstep: `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage`. All 5 share the same version (e.g. `0.15.0`). The pub.dev publish workflow currently publishes the 3 hosted packages: `terradart_core`, `terradart_codegen`, and `terradart_google`.
 
 ## Pre-flight (local)
 
@@ -11,8 +11,8 @@ terradart releases 3 packages in lockstep: `terradart_core`, `terradart_codegen`
   tool/bump_version.sh 0.X.Y
   ```
 
-  This updates all 3 package pubspecs, their inter-package carets, the 23 example pubspec carets, and the README + website pubspec samples in one shot. Idempotent: re-running with the same version is a no-op. Run `git diff --stat` afterwards to review.
-- [ ] Add `## <version> - YYYY-MM-DD` entry to root `CHANGELOG.md` and to each of the 3 `packages/*/CHANGELOG.md` files. Release notes are prose — the bump script intentionally does not generate them.
+  This updates all 5 package pubspecs, their inter-package carets, the example pubspec carets, and the README + website pubspec samples in one shot. Idempotent: re-running with the same version is a no-op. Run `git diff --stat` afterwards to review.
+- [ ] Add `## <version> - YYYY-MM-DD` entry to root `CHANGELOG.md` and to each package `CHANGELOG.md` file. Release notes are prose — the bump script intentionally does not generate them.
 - [ ] If the release is breaking, add a `# Migrating from terradart X.Y.Z to A.B.C` section at the top of `MIGRATING.md` with before / after snippets.
 - [ ] Run pana score check on each package:
 

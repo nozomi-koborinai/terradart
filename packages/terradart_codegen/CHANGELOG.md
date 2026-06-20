@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.15.0 - 2026-06-20
+
+Lockstep release. No user-facing CLI changes.
+
+### Added
+
+- Wrapper overrides / manifest entries for the post-`0.14.0` curated expansion through Wave 41, covering Apigee, Dataplex, License Manager, Discovery Engine, Config Deployment, Contact Center Insights, Dialogflow, Network Connectivity, Chronicle, Migration Center, Network Security ULL, Oracle Database@Google Cloud, and IAM binding/policy adjuncts.
+
+### Fixed
+
+- Aligned the Contact Center Insights output directory with the wrap-init anchor.
+- Added Config Deployment Gate 6 thunks for blueprint source variants.
+
 ## 0.14.0 - 2026-06-16
 
 - Refresh the provider schema fixture to `hashicorp/google` 7.36.0.

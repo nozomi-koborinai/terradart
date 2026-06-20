@@ -15,7 +15,7 @@ examples/gke_quickstart/
 ├── lib/main.dart        # GkeQuickstartStack
 ├── bin/infra.dart       # Synth entry: stack.writeTo('tf-out')
 ├── tf-out/              # (created on synth) main.tf.json
-└── pubspec.yaml         # workspace member (terradart_core: ^0.12.x)
+└── pubspec.yaml         # workspace member (terradart_core: ^0.15.x)
 ```
 
 ## Usage

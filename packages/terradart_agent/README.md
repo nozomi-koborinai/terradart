@@ -2,7 +2,7 @@
 
 `terradart-mcp` — a [Model Context Protocol](https://modelcontextprotocol.io) server that exposes the curated GCP factory catalog of [TerraDart](https://terradart.dev) to AI coding agents.
 
-It reads the static catalog compiled into [`terradart_google`](https://pub.dev/packages/terradart_google) (`package:terradart_google/catalog.dart`) and surfaces it as four read-only MCP tools so agents can discover constructor signatures, nested types, and quickstart snippets without guessing factory names.
+It reads the static catalog compiled into [`terradart_google`](https://pub.dev/packages/terradart_google) (`package:terradart_google/catalog.dart`) and surfaces it as five read-only MCP tools so agents can discover constructor signatures, nested types, quickstart snippets, and coverage gaps without guessing factory names.
 
 Built on [`genkit`](https://pub.dev/packages/genkit) + [`genkit_mcp`](https://pub.dev/packages/genkit_mcp). Ships as a single `terradart-mcp` binary (not published to pub.dev).
 
@@ -48,6 +48,7 @@ Full walkthroughs: [terradart.dev — terradart-mcp](https://terradart.dev/docs/
 | `list_resources` | Resources / data sources (optional `barrel` filter) |
 | `get_resource_schema` | Constructor params and nested types for one factory |
 | `get_quickstart` | Ready-made `Stack` template for a resource |
+| `check_coverage` | Coverage report for `terraform show -json` input |
 
 The catalog currently holds 257 entries (256 curated resource factories + 1 data source) across 46 service barrels.
 

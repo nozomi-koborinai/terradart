@@ -4,6 +4,24 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage` — this top-level file summarises cross-cutting milestones.
 
+## [0.15.0] - 2026-06-20
+
+Lockstep release across the workspace. **No breaking changes** vs `0.14.0`.
+
+### Added
+
+- **`terradart_google`** — catalog grows to **256 curated resource factories + 1 data source** (257 entries; 46 service barrels), including Apigee, Dataplex, License Manager, Discovery Engine, Config Deployment, Contact Center Insights, Dialogflow SIP trunk, Network Connectivity transport, Chronicle, Migration Center, Network Security ULL, Oracle Database@Google Cloud Waves 36–40, and Wave 41 IAM binding/policy adjuncts.
+- **Examples** — new or extended quickstarts cover the added factories, including Config Deployment, Network Connectivity, Network Security ULL, Migration Center, Chronicle, Oracle GoldenGate / Autonomous Database / DB System / Exadata, and IAM binding/policy adjuncts.
+
+### Changed
+
+- **CI / release maintenance** — opt GitHub workflows into Node 24 and expand the Terraform validate matrix for Apigee and Dataplex quickstarts.
+- **Docs** — release Waves 34–41 in the public waves guide and align package/site version references with the `0.15.x` line.
+
+### Fixed
+
+- **Examples / generation** — backfill Filestore snapshot coverage in `compute_quickstart`, align the Contact Center Insights barrel output directory with the wrap-init anchor, and add Config Deployment Gate 6 thunks.
+
 ## [0.14.0] - 2026-06-16
 
 - Provider bump to `hashicorp/google` 7.36.0 (38 new resources recorded in the

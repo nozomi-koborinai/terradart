@@ -13,7 +13,7 @@ This package ships the small set of primitives every terradart Stack uses:
 This package is the **runtime layer only**. It is intentionally small and dependency-free. The companion packages are:
 
 - [`terradart_codegen`](https://pub.dev/packages/terradart_codegen) — maintainer `terradart` CLI (`wrap`, `wrap-init`, `wrap-promote`) used to regenerate curated factories in `terradart_google`.
-- [`terradart_google`](https://pub.dev/packages/terradart_google) — **147 curated GCP factories + 1 data source**, plus generated schema carriers.
+- [`terradart_google`](https://pub.dev/packages/terradart_google) — **256 curated GCP resource factories + 1 data source**, plus generated schema carriers.
 
 For project-level documentation, see the [terradart repo README](https://github.com/nozomi-koborinai/terradart#readme) and [terradart.dev](https://terradart.dev/docs/getting-started/).
 
@@ -36,7 +36,7 @@ enum RoutingMode implements TerraformEnum {
 
 ```yaml
 dependencies:
-  terradart_core: ^0.14.x
+  terradart_core: ^0.15.x
 ```
 
 Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch. Read [MIGRATING.md](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md) before minor bumps.
