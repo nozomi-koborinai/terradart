@@ -82,5 +82,8 @@ final class GoogleProviderRules extends ProviderRules {
 
     // Service Directory (`google_service_directory_*` → segment `service`).
     'service_directory': 'service_directory',
+
+    // Document AI (`google_document_ai_*` → segment `document`).
+    'document_ai': 'document_ai',
   };
 }

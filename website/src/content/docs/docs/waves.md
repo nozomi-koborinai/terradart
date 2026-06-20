@@ -303,6 +303,16 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 50 — Document AI
+
+Adds `google_document_ai_processor` on a new `document_ai` barrel and a new [document_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/document_ai_quickstart) that provisions an OCR processor.
+
+Catalog after Wave 50: **284 curated resource factories + 1 data source** (285 catalog entries). 51 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_document_ai_processor` | `GoogleDocumentAiProcessor` | `document_ai` | [document_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/document_ai_quickstart) |
+
 ## Wave 49 — Secret Manager regional
 
 Adds three regional Secret Manager factories on the existing `secret_manager` barrel — regional secret, regional secret version, and the regional secret `*_iam_member` adjunct — exercised by extending [secret_manager_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/secret_manager_quickstart) with a regional secret + accessor IAM member. (The regional version factory is tracked in `tool/example_debt.yaml`: regional secrets lack a write-only data field, so its sensitive `secret_data` cannot be supplied as a literal without making the example require a Terraform variable.)

@@ -31,6 +31,7 @@ export 'dataplex.dart';
 export 'discovery_engine.dart';
 export 'dialogflow.dart';
 export 'dns.dart';
+export 'document_ai.dart';
 export 'essential_contacts.dart';
 export 'eventarc.dart';
 export 'firebase_app_check.dart';

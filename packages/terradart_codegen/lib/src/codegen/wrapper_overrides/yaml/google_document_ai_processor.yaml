@@ -1,0 +1,11 @@
+outputDir: document_ai
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - type
+  - display_name
+  - location
+  - kms_key_name
+  - deletion_policy
+  - project
