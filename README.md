@@ -283,6 +283,7 @@ Application platform & operations
 - [Network Security address group + URL list](examples/network_security_lists_quickstart/)
 - [Cloud Healthcare dataset + DICOM/consent/HL7v2 stores](examples/healthcare_quickstart/)
 - [Cloud Observability trace scope](examples/observability_quickstart/)
+- [GKE Hub fleet scope + namespace (no cluster)](examples/gke_hub_quickstart/)
 
 ## How it compares
 
