@@ -294,7 +294,7 @@ final class NetworkStack extends Stack {
       GoogleComputeRegionInstantSnapshotIamBinding(
         localName: 'bastion_instant_binding',
         name: TfArg.ref(bastionInstant.nameRef),
-        role: TfArg.literal('roles/compute.instanceAdmin'),
+        role: TfArg.literal('roles/compute.viewer'),
         members: TfArg.literal([oncallSre.iamMember.interpolation]),
         region: TfArg.literal('asia-northeast1'),
         dependsOn: [
