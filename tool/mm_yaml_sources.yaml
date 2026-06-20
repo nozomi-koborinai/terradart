@@ -20,6 +20,12 @@ upstream_branch: main
 # `upstream` is the path relative to the upstream repo root.
 # A `null` upstream marks a fixture as synthetic (skipped by sync).
 files:
+  google_biglake_catalog:
+    upstream: mmv1/products/biglake/Catalog.yaml
+  google_biglake_database:
+    upstream: mmv1/products/biglake/Database.yaml
+  google_biglake_table:
+    upstream: mmv1/products/biglake/Table.yaml
   google_bigquery_dataset:
     upstream: mmv1/products/bigquery/Dataset.yaml
   google_bigquery_dataset_access:

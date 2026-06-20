@@ -1,0 +1,9 @@
+outputDir: biglake
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - location
+  - deletion_policy
+  - project

@@ -1,0 +1,10 @@
+outputDir: biglake
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - database
+  - type
+  - hive_options
+  - deletion_policy

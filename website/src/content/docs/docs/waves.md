@@ -303,6 +303,18 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 64 — BigLake Metastore
+
+Adds `google_biglake_catalog` / `google_biglake_database` / `google_biglake_table` on a new `biglake` barrel (Hive-compatible metastore; `hive_options` passed as structured maps), with a new [biglake_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/biglake_quickstart).
+
+Catalog after Wave 64: **313 curated resource factories + 1 data source** (314 catalog entries). 57 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_biglake_catalog` | `GoogleBiglakeCatalog` | `biglake` | [biglake_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/biglake_quickstart) |
+| `google_biglake_database` | `GoogleBiglakeDatabase` | `biglake` | [biglake_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/biglake_quickstart) |
+| `google_biglake_table` | `GoogleBiglakeTable` | `biglake` | [biglake_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/biglake_quickstart) |
+
 ## Wave 63 — Vertex AI Feature Store
 
 Adds `google_vertex_ai_feature_group` on a new `vertex_ai` barrel (a BigQuery-backed feature group; the `big_query` config is a structured map), with a new [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart) that wires a BigQuery dataset + table into the feature group.
