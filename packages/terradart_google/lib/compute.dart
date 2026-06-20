@@ -401,6 +401,9 @@ export 'src/compute/google_compute_router.dart'
         ComputeRouterBgp,
         ComputeRouterBgpAdvertiseMode,
         GoogleComputeRouter;
+export 'src/compute/google_compute_route.dart' show GoogleComputeRoute;
+export 'src/compute/google_compute_project_metadata_item.dart'
+    show GoogleComputeProjectMetadataItem;
 export 'src/compute/google_compute_region_url_map.dart'
     show
         ComputeRegionUrlMapRegionUrlMapCachePolicy,
