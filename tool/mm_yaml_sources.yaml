@@ -615,6 +615,12 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_service_directory_service_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_secret_manager_regional_secret:
+    upstream: mmv1/products/secretmanagerregional/RegionalSecret.yaml
+  google_secret_manager_regional_secret_version:
+    upstream: mmv1/products/secretmanagerregional/RegionalSecretVersion.yaml
+  google_secret_manager_regional_secret_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_workflows_workflow:
     upstream: mmv1/products/workflows/Workflow.yaml
   google_tags_tag_key:

@@ -44,3 +44,12 @@ GoogleFirestoreUserCreds: requires an Enterprise-edition (MongoDB-compatible) Fi
 # demonstrates GKE Backup resource-level IAM in gke_quickstart, so the redundant
 # per-restore-plan binding is dropped rather than chased further.
 GoogleGkeBackupRestorePlanIamMember: resource-level setIamPolicy on a restore plan failed 400 "Invalid argument"; the sibling GoogleGkeBackupBackupPlanIamMember already covers GKE Backup resource-level IAM in gke_quickstart, so this binding is dropped
+
+# Regional Secret Manager secrets have no write-only (`_wo`) data field, and
+# synth refuses a literal on the sensitive `secret_data` field (v1.0 no longer
+# masks sensitive literals). Supplying the value via a Terraform variable would
+# make secret_manager_quickstart (otherwise applyable) require `-var` at apply
+# time and force it onto the apply-smoke skip list. The regional secret +
+# regional secret IAM member are exercised in secret_manager_quickstart; only
+# the version factory is deferred here.
+GoogleSecretManagerRegionalSecretVersion: regional secrets lack a write-only data field and synth rejects a literal on the sensitive secret_data field; exercising it needs a Terraform variable that would break the applyable secret_manager_quickstart, so the version factory is tracked here while the regional secret + IAM member ship in the example

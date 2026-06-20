@@ -303,6 +303,18 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 49 — Secret Manager regional
+
+Adds three regional Secret Manager factories on the existing `secret_manager` barrel — regional secret, regional secret version, and the regional secret `*_iam_member` adjunct — exercised by extending [secret_manager_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/secret_manager_quickstart) with a regional secret + accessor IAM member. (The regional version factory is tracked in `tool/example_debt.yaml`: regional secrets lack a write-only data field, so its sensitive `secret_data` cannot be supplied as a literal without making the example require a Terraform variable.)
+
+Catalog after Wave 49: **283 curated resource factories + 1 data source** (284 catalog entries). 50 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_secret_manager_regional_secret` | `GoogleSecretManagerRegionalSecret` | `secret_manager` | [secret_manager_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/secret_manager_quickstart) |
+| `google_secret_manager_regional_secret_version` | `GoogleSecretManagerRegionalSecretVersion` | `secret_manager` | _(tool/example_debt.yaml)_ |
+| `google_secret_manager_regional_secret_iam_member` | `GoogleSecretManagerRegionalSecretIamMember` | `secret_manager` | [secret_manager_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/secret_manager_quickstart) |
+
 ## Wave 48 — Compute static route + project metadata
 
 Adds `google_compute_route` and `google_compute_project_metadata_item` on the existing `compute` barrel, exercised by a new lightweight [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart) (a custom-mode VPC + static route + project metadata item — all free, no VMs).
