@@ -51,6 +51,7 @@ export 'migration.dart';
 export 'monitoring.dart';
 export 'network.dart';
 export 'oracle.dart';
+export 'parameter_manager.dart';
 export 'privateca.dart';
 export 'project.dart';
 export 'provider.dart';

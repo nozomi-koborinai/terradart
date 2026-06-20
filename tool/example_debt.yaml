@@ -53,3 +53,12 @@ GoogleGkeBackupRestorePlanIamMember: resource-level setIamPolicy on a restore pl
 # regional secret IAM member are exercised in secret_manager_quickstart; only
 # the version factory is deferred here.
 GoogleSecretManagerRegionalSecretVersion: regional secrets lack a write-only data field and synth rejects a literal on the sensitive secret_data field; exercising it needs a Terraform variable that would break the applyable secret_manager_quickstart, so the version factory is tracked here while the regional secret + IAM member ship in the example
+
+# Parameter Manager parameter versions hold the payload in the sensitive
+# `parameter_data` field. As with regional Secret Manager versions, synth v1.0
+# refuses a literal on a sensitive field, and supplying it via a Terraform
+# variable would make parameter_manager_quickstart (otherwise applyable)
+# require `-var` at apply time. The global + regional parameter factories ship
+# in parameter_manager_quickstart; only the version factories are deferred here.
+GoogleParameterManagerParameterVersion: parameter versions carry the payload in the sensitive parameter_data field; synth rejects a literal there and a Terraform variable would break the applyable parameter_manager_quickstart, so the version factory is tracked here while the global parameter ships in the example
+GoogleParameterManagerRegionalParameterVersion: regional parameter versions carry the payload in the sensitive parameter_data field; same constraint as the global version, so the regional version factory is tracked here while the regional parameter ships in parameter_manager_quickstart

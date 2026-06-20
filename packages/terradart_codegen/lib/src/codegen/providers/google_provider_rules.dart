@@ -85,5 +85,8 @@ final class GoogleProviderRules extends ProviderRules {
 
     // Document AI (`google_document_ai_*` → segment `document`).
     'document_ai': 'document_ai',
+
+    // Parameter Manager (`google_parameter_manager_*` → segment `parameter`).
+    'parameter_manager': 'parameter_manager',
   };
 }

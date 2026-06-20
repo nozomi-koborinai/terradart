@@ -303,6 +303,19 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 52 — Parameter Manager
+
+Adds four Parameter Manager factories on a new `parameter_manager` barrel — global parameter (+ `ParameterManagerParameterFormat` enum), parameter version, regional parameter (+ enum), and regional parameter version — and a new [parameter_manager_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/parameter_manager_quickstart) with a global + regional parameter. (The two version factories are tracked in `tool/example_debt.yaml`: their `parameter_data` is sensitive, so a literal is rejected by synth and a TF variable would break the applyable example.)
+
+Catalog after Wave 52: **290 curated resource factories + 1 data source** (291 catalog entries). 52 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_parameter_manager_parameter` | `GoogleParameterManagerParameter` | `parameter_manager` | [parameter_manager_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/parameter_manager_quickstart) |
+| `google_parameter_manager_parameter_version` | `GoogleParameterManagerParameterVersion` | `parameter_manager` | _(tool/example_debt.yaml)_ |
+| `google_parameter_manager_regional_parameter` | `GoogleParameterManagerRegionalParameter` | `parameter_manager` | [parameter_manager_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/parameter_manager_quickstart) |
+| `google_parameter_manager_regional_parameter_version` | `GoogleParameterManagerRegionalParameterVersion` | `parameter_manager` | _(tool/example_debt.yaml)_ |
+
 ## Wave 51 — Dataplex lake
 
 Adds `google_dataplex_lake` and `google_dataplex_lake_iam_member` on the existing `dataplex` barrel, exercised by extending [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) with a lake + resource-level IAM member.

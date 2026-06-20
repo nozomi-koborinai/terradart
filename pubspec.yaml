@@ -49,6 +49,7 @@ workspace:
   - examples/oracle_db_system_quickstart
   - examples/oracle_exadata_quickstart
   - examples/oracle_goldengate_quickstart
+  - examples/parameter_manager_quickstart
   - examples/ops_quickstart
   - examples/pubsub_quickstart
   - examples/secret_manager_quickstart
