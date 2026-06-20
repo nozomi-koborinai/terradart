@@ -303,6 +303,16 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 55 — Cloud Observability
+
+Adds `google_observability_trace_scope` on a new `observability` barrel and a new [observability_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/observability_quickstart) (a Trace scope over the current project).
+
+Catalog after Wave 55: **297 curated resource factories + 1 data source** (298 catalog entries). 54 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_observability_trace_scope` | `GoogleObservabilityTraceScope` | `observability` | [observability_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/observability_quickstart) |
+
 ## Wave 54 — Cloud Healthcare
 
 Adds four Cloud Healthcare factories on a new `healthcare` barrel — dataset, DICOM store, consent store, and the dataset `*_iam_member` adjunct — and a new [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart).
