@@ -280,6 +280,9 @@ Application platform & operations
 - [Compute static route + project metadata item](examples/compute_route_quickstart/)
 - [Document AI OCR processor](examples/document_ai_quickstart/)
 - [Parameter Manager global + regional parameters](examples/parameter_manager_quickstart/)
+- [Network Security address group + URL list](examples/network_security_lists_quickstart/)
+- [Cloud Healthcare dataset + DICOM/consent/HL7v2 stores](examples/healthcare_quickstart/)
+- [Cloud Observability trace scope](examples/observability_quickstart/)
 
 ## How it compares
 
