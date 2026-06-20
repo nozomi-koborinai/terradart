@@ -6,6 +6,20 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_tags_tag_key`.
 const Set<String> _googleTagsTagKeySensitive = <String>{};
 
+/// Purpose of a [GoogleTagsTagKey] — when set, the key (and its values)
+/// drives a specific Google Cloud feature rather than free-form labelling.
+enum TagsTagKeyPurpose implements TerraformEnum {
+  /// Tag values are usable in VPC firewall rules as network tags.
+  gceFirewall('GCE_FIREWALL'),
+
+  /// Tag values participate in data-governance policies.
+  dataGovernance('DATA_GOVERNANCE');
+
+  const TagsTagKeyPurpose(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_tags_tag_key`.
 final class GoogleTagsTagKey extends Resource {
   static const String tfType = 'google_tags_tag_key';
@@ -15,7 +29,7 @@ final class GoogleTagsTagKey extends Resource {
     required TfArg<String> shortName,
     required TfArg<String> parent,
     TfArg<String>? description,
-    TfArg<String>? purpose,
+    TfArg<TagsTagKeyPurpose>? purpose,
     TfArg<Map<String, String>>? purposeData,
     TfArg<String>? allowedValuesRegex,
     TfArg<String>? deletionPolicy,

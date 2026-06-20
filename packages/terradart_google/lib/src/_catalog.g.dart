@@ -7071,7 +7071,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'allowedValuesRegex',
       'deletionPolicy',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['TagsTagKeyPurpose'],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_tags_tag_key`.',
   ),
