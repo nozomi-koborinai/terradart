@@ -80,7 +80,7 @@ final class DiscoveryEngineCatalogStack extends Stack {
       ),
     );
 
-    add(
+    final searchReaderMember = add(
       GoogleDiscoveryEngineSearchEngineIamMember(
         localName: 'search_reader_viewer',
         location: TfArg.literal('global'),
@@ -95,17 +95,18 @@ final class DiscoveryEngineCatalogStack extends Stack {
       ),
     );
 
-    add(
+    final searchReaderBinding = add(
       GoogleDiscoveryEngineSearchEngineIamBinding(
         localName: 'search_reader_binding',
         location: TfArg.literal('global'),
         collectionId: TfArg.literal('default_collection'),
         engineId: TfArg.ref(searchEngine.engineIdRef),
-        role: TfArg.literal('roles/discoveryengine.editor'),
+        role: TfArg.literal('roles/discoveryengine.viewer'),
         members: TfArg.literal([reader.iamMember.interpolation]),
         dependsOn: [
           ResourceDependency(searchEngine),
           ResourceDependency(reader),
+          ResourceDependency(searchReaderMember),
         ],
       ),
     );
@@ -123,7 +124,10 @@ final class DiscoveryEngineCatalogStack extends Stack {
                 'serviceAccount:vertex-search-reader@$projectId.iam.gserviceaccount.com',
           ),
         ),
-        dependsOn: [ResourceDependency(searchEngine)],
+        dependsOn: [
+          ResourceDependency(searchEngine),
+          ResourceDependency(searchReaderBinding),
+        ],
       ),
     );
   }

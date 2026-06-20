@@ -333,7 +333,7 @@ final class AnalyticsStack extends Stack {
       ),
     );
 
-    add(
+    final addOneBinding = add(
       GoogleBigqueryRoutineIamBinding(
         localName: 'add_one_binding',
         datasetId: TfArg.ref(dataset.datasetIdRef),
@@ -356,7 +356,10 @@ final class AnalyticsStack extends Stack {
                 'serviceAccount:analytics-reader@$projectId.iam.gserviceaccount.com',
           ),
         ),
-        dependsOn: [ResourceDependency(addOneRoutine)],
+        dependsOn: [
+          ResourceDependency(addOneRoutine),
+          ResourceDependency(addOneBinding),
+        ],
       ),
     );
 

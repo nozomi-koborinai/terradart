@@ -290,7 +290,7 @@ final class NetworkStack extends Stack {
       ),
     );
 
-    add(
+    final bastionInstantBinding = add(
       GoogleComputeRegionInstantSnapshotIamBinding(
         localName: 'bastion_instant_binding',
         name: TfArg.ref(bastionInstant.nameRef),
@@ -316,7 +316,10 @@ final class NetworkStack extends Stack {
           ),
         ),
         region: TfArg.literal('asia-northeast1'),
-        dependsOn: [ResourceDependency(bastionInstant)],
+        dependsOn: [
+          ResourceDependency(bastionInstant),
+          ResourceDependency(bastionInstantBinding),
+        ],
       ),
     );
 
