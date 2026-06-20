@@ -303,6 +303,17 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 51 — Dataplex lake
+
+Adds `google_dataplex_lake` and `google_dataplex_lake_iam_member` on the existing `dataplex` barrel, exercised by extending [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) with a lake + resource-level IAM member.
+
+Catalog after Wave 51: **286 curated resource factories + 1 data source** (287 catalog entries). 51 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_dataplex_lake` | `GoogleDataplexLake` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+| `google_dataplex_lake_iam_member` | `GoogleDataplexLakeIamMember` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+
 ## Wave 50 — Document AI
 
 Adds `google_document_ai_processor` on a new `document_ai` barrel and a new [document_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/document_ai_quickstart) that provisions an OCR processor.

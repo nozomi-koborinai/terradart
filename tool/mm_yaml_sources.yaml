@@ -42,6 +42,10 @@ files:
     upstream: mmv1/products/compute/Subnetwork.yaml
   google_dataplex_data_product:
     upstream: mmv1/products/dataplex/DataProduct.yaml
+  google_dataplex_lake:
+    upstream: mmv1/products/dataplex/Lake.yaml
+  google_dataplex_lake_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataplex_entry_group:
     upstream: mmv1/products/dataplex/EntryGroup.yaml
   google_dataplex_entry_type:

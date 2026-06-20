@@ -1,0 +1,12 @@
+outputDir: dataplex
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - location
+  - display_name
+  - description
+  - labels
+  - deletion_policy
+  - project

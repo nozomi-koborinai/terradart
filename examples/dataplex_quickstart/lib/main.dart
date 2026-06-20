@@ -223,5 +223,33 @@ final class DataplexCatalogStack extends Stack {
         ],
       ),
     );
+
+    // --- Dataplex lake -------------------------------------------------------
+    // A lake (the top-level Dataplex data-management container) with a
+    // resource-level IAM member granting the reader read access.
+    final lake = add(
+      GoogleDataplexLake(
+        localName: 'analytics_lake',
+        name: TfArg.literal('terradart-lake'),
+        location: TfArg.literal('us-central1'),
+        displayName: TfArg.literal('Analytics lake'),
+        description: TfArg.literal('Top-level Dataplex container'),
+        dependsOn: [...apiDeps],
+      ),
+    );
+
+    add(
+      GoogleDataplexLakeIamMember(
+        localName: 'lake_viewer',
+        lake: TfArg.literal('terradart-lake'),
+        location: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/dataplex.viewer'),
+        member: TfArg.ref(reader.iamMember),
+        dependsOn: [
+          ResourceDependency(lake),
+          ResourceDependency(reader),
+        ],
+      ),
+    );
   }
 }
