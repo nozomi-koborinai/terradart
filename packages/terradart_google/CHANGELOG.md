@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.17.0 - 2026-06-21
+
+Lockstep release. No catalog or API changes vs `0.16.0`.
+
 ## 0.16.0 - 2026-06-21
 
 Lockstep release. **No breaking changes** vs `0.15.0`.
