@@ -10,8 +10,12 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: apply-smoke
-  cancel-in-progress: false
+  # One independent lane per PR so a fresh push cancels its OWN in-flight run (a
+  # Wave PR can push many times in an hour). Different PRs — and the full sweep
+  # and janitor (group "apply-smoke") — stay on their own groups, so this never
+  # cancels them. A cancelled apply's teardown is reclaimed by the janitor.
+  group: apply-smoke-pr-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: read
@@ -25,6 +29,9 @@ jobs:
   apply_smoke:
     name: apply smoke (terradart-validate)
     runs-on: ubuntu-latest
+    # Skip while the PR is a draft — apply only once it's ready for review, so
+    # work-in-progress pushes don't each spin up real GCP resources.
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.draft == false
     # No label gate: the paths filter above already scopes this to PRs that touch
     # examples or the smoke tooling. apply_smoke.sh (changed mode) then applies
     # only the examples that differ from the PR base.

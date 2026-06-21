@@ -1,11 +1,13 @@
-name: Apply smoke weekly
+name: Apply smoke full sweep
 
 on:
   schedule:
-    # Weekly: Sunday 02:00 UTC (Sunday 11:00 JST). The PR change-gate
-    # (apply-smoke.yml) verifies changed/new examples per-PR; this full sweep is
-    # the regression backstop for the rest of the set (provider/API drift, etc.).
-    - cron: "0 2 * * 0"
+    # Monthly backstop: 1st of the month, 02:00 UTC. The per-PR change-gate
+    # (apply-smoke.yml) verifies changed examples; this full sweep is the
+    # regression backstop for provider/API drift the per-PR gate can't see.
+    # After a provider/factory bump, run it manually (workflow_dispatch) to
+    # verify the whole example set under the new provider.
+    - cron: "0 2 1 * *"
   workflow_dispatch:
 
 concurrency:

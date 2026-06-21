@@ -53,4 +53,17 @@ printf '%s\n' "$do_out" | grep -qxF "$sample_skip" \
 ov_out="$(tool/apply_smoke.sh --example "$sample_skip" --dry-run)" || fail "--example override non-zero"
 [[ "$ov_out" == "$sample_skip" ]] || fail "--example must override the skip-list: got '$ov_out'"
 
+# 6. PR-only skip-list (high-cost examples deferred to the full sweep): every
+#    entry must be a real quickstart, must NOT also be in the apply skip-list,
+#    and must remain in the --all apply set (the sweep still applies it).
+pr_skip_slugs="$(grep -vE '^[[:space:]]*#' tool/apply_smoke_pr_skip.yaml \
+  | grep -E '^[a-z0-9_]+:' | sed -E 's/:.*//' | sort)"
+[[ -n "$pr_skip_slugs" ]] || fail "pr-skip list is empty — expected gke/compute"
+while IFS= read -r s; do
+  [[ -z "$s" ]] && continue
+  printf '%s\n' "$all_slugs" | grep -qxF "$s" || fail "pr-skip '$s' is not a real quickstart"
+  printf '%s\n' "$skip_slugs" | grep -qxF "$s" && fail "pr-skip '$s' must not also be in the apply skip-list"
+  printf '%s\n' "$apply_set" | grep -qxF "$s" || fail "pr-skip '$s' must stay in the --all apply set (sweep applies it)"
+done <<< "$pr_skip_slugs"
+
 echo "apply_smoke_test: OK"
