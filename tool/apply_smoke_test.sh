@@ -67,8 +67,9 @@ while IFS= read -r s; do
 done <<< "$pr_skip_slugs"
 
 # 7. changed-mode filter: only bin/lib paths select an example (not pubspec/README).
+#    Mirrors the pipeline in apply_smoke.sh's `changed` branch — keep in sync.
 filter_changed_paths() {
-  awk -F/ '/^examples\/[^/]+_quickstart\/(bin|lib)\// {print $2}' | sort -u
+  grep -E '^examples/[^/]+_quickstart/(bin|lib)/' | cut -d/ -f2 | sort -u
 }
 changed_out="$(printf '%s\n' \
   'examples/dns_quickstart/pubspec.yaml' \
@@ -80,5 +81,20 @@ changed_out="$(printf '%s\n' \
   || fail "changed-mode path filter:
 got:
 $changed_out"
+
+# 8. changed-mode regression: a pubspec/README-only bump (a Wave version bump)
+#    must select NOTHING. The old awk literal-regex /…[^/]…/ broke on the
+#    embedded slash and silently matched every line under gawk, fanning a
+#    pubspec bump out to every example — a real cost leak. Guard it.
+fanout_out="$(printf '%s\n' \
+  'examples/dns_quickstart/pubspec.yaml' \
+  'examples/biglake_quickstart/pubspec.yaml' \
+  'examples/app_engine_quickstart/README.md' \
+  'examples/app_engine_quickstart/analysis_options.yaml' \
+  | filter_changed_paths)"
+[[ -z "$fanout_out" ]] \
+  || fail "pubspec/README-only bump must select no examples (fan-out regression):
+got:
+$fanout_out"
 
 echo "apply_smoke_test: OK"
