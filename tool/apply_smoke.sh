@@ -58,8 +58,12 @@ select_examples() {
     changed)
       # Only infra sources (bin/lib) — pubspec/README/analysis_options bumps must
       # not fan out apply-smoke to every quickstart on a Wave version bump.
+      # grep + cut, NOT awk: awk's literal-regex /…[^/]…/ breaks on the embedded
+      # slash (BSD errors "nonterminated character class"; gawk silently matches
+      # every line → full fan-out, which shipped pubspec bumps to all examples).
       git diff --name-only "${GITHUB_BASE_SHA:-origin/main}" HEAD -- 'examples/' 2>/dev/null \
-        | awk -F/ '/^examples\/[^/]+_quickstart\/(bin|lib)\// {print $2}' | sort -u
+        | grep -E '^examples/[^/]+_quickstart/(bin|lib)/' \
+        | cut -d/ -f2 | sort -u
       ;;
   esac
 }

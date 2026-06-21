@@ -82,6 +82,17 @@ jobs:
       - run: dart test --reporter=github
         working-directory: packages/${{ matrix.package }}
 
+  apply_smoke_selection_test:
+    name: apply_smoke.sh selection test
+    runs-on: ubuntu-latest
+    # The change-gate that scopes apply-smoke to changed examples lives in shell;
+    # a broken awk regex once fanned a pubspec-only bump out to every example (a
+    # real GCP-cost leak). Run the selection unit test so that can't regress
+    # unnoticed — it needs neither Dart nor GCP.
+    steps:
+      - uses: actions/checkout@v6
+      - run: bash tool/apply_smoke_test.sh
+
   wrap_check:
     name: terradart wrap --check
     runs-on: ubuntu-latest
