@@ -17,6 +17,43 @@ env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
 
 jobs:
+  changes:
+    name: select examples
+    runs-on: ubuntu-latest
+    outputs:
+      examples: ${{ steps.sel.outputs.examples }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+      - name: Select examples to validate
+        id: sel
+        env:
+          EVENT: ${{ github.event_name }}
+          BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: |
+          # Matrix uses the slug without the `_quickstart` suffix.
+          all() { for d in examples/*_quickstart/; do basename "$d" | sed 's/_quickstart$//'; done | sort; }
+          if [ "$EVENT" != 'pull_request' ]; then
+            # push to main / manual dispatch: full matrix (regression backstop).
+            sel="$(all)"
+          else
+            base="${BASE_SHA:-origin/main}"
+            changed="$(git diff --name-only "$base" HEAD)"
+            # A library/codegen/tooling/CI change can alter every example's synth
+            # output, so validate the whole set; otherwise only changed examples.
+            if printf '%s\n' "$changed" | grep -qE '^(packages/|tool/|\.github/workflows/ci\.yml$)'; then
+              sel="$(all)"
+            else
+              sel="$(printf '%s\n' "$changed" \
+                | awk -F/ '/^examples\/[^/]+_quickstart\// {print $2}' \
+                | sed 's/_quickstart$//' | sort -u)"
+            fi
+          fi
+          json="$(printf '%s\n' "$sel" | grep -v '^[[:space:]]*$' | jq -R . | jq -cs .)"
+          echo "examples=$json" >> "$GITHUB_OUTPUT"
+          echo "selected=$json"
+
   test:
     name: test (${{ matrix.package }})
     runs-on: ubuntu-latest
@@ -117,11 +154,16 @@ jobs:
   terraform_validate:
     name: terraform validate (${{ matrix.example }})
     runs-on: ubuntu-latest
-    needs: test
+    needs: [test, changes]
+    # Skip entirely when no relevant example changed (the gate job below still
+    # runs and reports success, so the required-check status stays satisfied).
+    if: needs.changes.outputs.examples != '[]'
+    env:
+      TF_PLUGIN_CACHE_DIR: ${{ github.workspace }}/.terraform-plugin-cache
     strategy:
       fail-fast: false
       matrix:
-        example: [apigee,biglake,bigquery,chronicle,cloud_build,cloud_functions,cloud_run,cloud_scheduler,cloud_sql,cloud_tasks,clouddeploy,compute,compute_lb,compute_route,config_deployment,dataplex,dialogflow,discovery_engine,dns,document_ai,eventarc,filestore,firebase_app_check,firebase_app_hosting,firebase_data_connect,firebase_remote_config,firestore,firestore_document,gemini,gke,gke_hub,healthcare,iam,kms,license_manager,migration_center,monitoring,network_connectivity,network_security_lists,network_security_ull,observability,ops,oracle_autonomous_database,oracle_db_system,oracle_exadata,oracle_goldengate,parameter_manager,pubsub,secret_manager,service_directory,storage,tags,vertex_ai,workflows]
+        example: ${{ fromJSON(needs.changes.outputs.examples) }}
     steps:
       - name: Job start
         id: job_start
@@ -131,9 +173,24 @@ jobs:
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
+      - name: Cache pub packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.pub-cache
+          key: pub-${{ runner.os }}-${{ hashFiles('**/pubspec.yaml') }}
+          restore-keys: pub-${{ runner.os }}-
       - uses: hashicorp/setup-terraform@v4
         with:
           terraform_version: "1.15.2"
+      - name: Cache Terraform providers
+        uses: actions/cache@v4
+        with:
+          path: ${{ env.TF_PLUGIN_CACHE_DIR }}
+          # Keyed on the pinned provider version; a provider bump invalidates it.
+          key: tfplugins-${{ runner.os }}-${{ hashFiles('packages/terradart_google/lib/src/_provider_meta.dart') }}
+          restore-keys: tfplugins-${{ runner.os }}-
+      - name: Ensure plugin cache dir exists
+        run: mkdir -p "$TF_PLUGIN_CACHE_DIR"
 
       - name: Setup checkpoint
         id: after_setup
@@ -192,3 +249,29 @@ jobs:
             echo "| Synth (\`dart run bin/infra.dart\`) | ${{ steps.synth.outputs.duration_ms }} |"
             echo "| \`terraform fmt + init + validate\` | ${{ steps.tf_validate.outputs.duration_ms }} |"
           } >> "$GITHUB_STEP_SUMMARY"
+
+  terraform_validate_gate:
+    name: terraform validate gate
+    runs-on: ubuntu-latest
+    needs: [changes, terraform_validate]
+    if: always()
+    # Stable, always-present check that aggregates the dynamic validate matrix.
+    # Branch protection requires THIS (not the per-example jobs), so a PR that
+    # validates a subset — or none — still presents a green required check.
+    steps:
+      - name: Aggregate terraform validate result
+        env:
+          CHANGES: ${{ needs.changes.result }}
+          RESULT: ${{ needs.terraform_validate.result }}
+          SELECTED: ${{ needs.changes.outputs.examples }}
+        run: |
+          echo "selected examples: $SELECTED"
+          echo "changes job: $CHANGES / terraform_validate: $RESULT"
+          if [ "$CHANGES" != 'success' ]; then
+            echo "::error::example-selection job did not succeed ($CHANGES)"
+            exit 1
+          fi
+          case "$RESULT" in
+            success|skipped) echo "gate: PASS"; exit 0 ;;
+            *) echo "::error::terraform validate did not pass (result=$RESULT)"; exit 1 ;;
+          esac
