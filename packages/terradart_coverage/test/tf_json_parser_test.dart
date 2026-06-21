@@ -78,6 +78,20 @@ void main() {
       expect(out.unparseable, hasLength(1));
     });
 
+    test('records non-object resource entries as unparseable', () {
+      final json = {
+        'values': {
+          'root_module': {
+            'resources': ['not-a-map', 42],
+          },
+        },
+      };
+      final out = parseShowJson(json);
+      expect(out.references, isEmpty);
+      expect(out.unparseable, hasLength(2));
+      expect(out.unparseable.first, contains('non-object resource entry'));
+    });
+
     test(
       'throws FormatException when neither values nor planned_values exist',
       () {
