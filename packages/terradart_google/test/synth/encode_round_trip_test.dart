@@ -191,6 +191,25 @@ final Map<String, Object Function()> _syntheticInstances = {
         ports: ['22'],
       ),
 
+  // --- ComputeResourcePolicySnapshotSchedule (3) — compute_resource_policy --
+  'ComputeResourcePolicyHourlySchedule': () =>
+      ComputeResourcePolicyHourlySchedule(
+        hoursInCycle: TfArg.literal(4),
+        startTime: TfArg.literal('00:00'),
+      ),
+  'ComputeResourcePolicyDailySchedule': () =>
+      ComputeResourcePolicyDailySchedule(
+        daysInCycle: TfArg.literal(1),
+        startTime: TfArg.literal('04:00'),
+      ),
+  'ComputeResourcePolicyWeeklySchedule': () =>
+      ComputeResourcePolicyWeeklySchedule([
+        ComputeResourcePolicyDayOfWeek(
+          day: TfArg.literal(ComputeResourcePolicySnapshotDayOfWeek.monday),
+          startTime: TfArg.literal('04:00'),
+        ),
+      ]),
+
   // --- BigqueryConnectionBackend (7) — bigquery_connection -----------------
   'BigqueryConnectionCloudSql': () => BigqueryConnectionCloudSql(
         instanceId: TfArg.literal('p:us:inst'),

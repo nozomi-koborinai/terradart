@@ -1,0 +1,8 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - key
+  - value
+  - project

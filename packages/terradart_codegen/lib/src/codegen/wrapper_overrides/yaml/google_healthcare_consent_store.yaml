@@ -1,0 +1,10 @@
+outputDir: healthcare
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - dataset
+  - default_consent_ttl
+  - enable_consent_create_on_update
+  - labels

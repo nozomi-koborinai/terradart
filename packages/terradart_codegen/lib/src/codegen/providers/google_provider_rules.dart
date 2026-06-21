@@ -76,5 +76,20 @@ final class GoogleProviderRules extends ProviderRules {
 
     // Vertex AI Search (`google_discovery_engine_*` → segment `discovery`).
     'discovery': 'discovery_engine',
+
+    // Essential Contacts (`google_essential_contacts_*` → segment `essential`).
+    'essential': 'essential_contacts',
+
+    // Service Directory (`google_service_directory_*` → segment `service`).
+    'service_directory': 'service_directory',
+
+    // Document AI (`google_document_ai_*` → segment `document`).
+    'document_ai': 'document_ai',
+
+    // Parameter Manager (`google_parameter_manager_*` → segment `parameter`).
+    'parameter_manager': 'parameter_manager',
+
+    // Vertex AI (`google_vertex_ai_*` → segment `vertex`).
+    'vertex_ai': 'vertex_ai',
   };
 }

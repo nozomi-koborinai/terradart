@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.16.0 - 2026-06-21
+
+Lockstep release. No `terradart_core` API changes.
+
 ## 0.15.0 - 2026-06-20
 
 Lockstep release. No `terradart_core` API changes.

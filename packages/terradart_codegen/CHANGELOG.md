@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.16.0 - 2026-06-21
+
+Lockstep release. No user-facing CLI changes.
+
+### Added
+
+- Wrapper overrides / manifest entries for Waves 42–70 (66 new curated factories through `google_vertex_ai_cache_config`).
+
 ## 0.15.0 - 2026-06-20
 
 Lockstep release. No user-facing CLI changes.

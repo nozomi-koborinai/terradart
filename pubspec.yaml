@@ -12,9 +12,11 @@ workspace:
   - packages/terradart_agent
   - packages/terradart_coverage
   - examples/apigee_quickstart
+  - examples/biglake_quickstart
   - examples/bigquery_quickstart
   - examples/chronicle_quickstart
   - examples/cloud_build_quickstart
+  - examples/clouddeploy_quickstart
   - examples/config_deployment_quickstart
   - examples/cloud_functions_quickstart
   - examples/cloud_run_quickstart
@@ -23,6 +25,8 @@ workspace:
   - examples/cloud_tasks_quickstart
   - examples/compute_lb_quickstart
   - examples/compute_quickstart
+  - examples/compute_route_quickstart
+  - examples/document_ai_quickstart
   - examples/dataplex_quickstart
   - examples/discovery_engine_quickstart
   - examples/dialogflow_quickstart
@@ -35,22 +39,32 @@ workspace:
   - examples/firestore_document_quickstart
   - examples/firestore_quickstart
   - examples/filestore_quickstart
+  - examples/gemini_quickstart
+  - examples/gke_hub_quickstart
   - examples/gke_quickstart
+  - examples/healthcare_quickstart
   - examples/iam_quickstart
   - examples/kms_quickstart
   - examples/license_manager_quickstart
   - examples/migration_center_quickstart
   - examples/monitoring_quickstart
   - examples/network_connectivity_quickstart
+  - examples/network_security_lists_quickstart
   - examples/network_security_ull_quickstart
+  - examples/observability_quickstart
   - examples/oracle_autonomous_database_quickstart
   - examples/oracle_db_system_quickstart
   - examples/oracle_exadata_quickstart
   - examples/oracle_goldengate_quickstart
+  - examples/parameter_manager_quickstart
   - examples/ops_quickstart
   - examples/pubsub_quickstart
   - examples/secret_manager_quickstart
+  - examples/service_directory_quickstart
   - examples/storage_quickstart
+  - examples/tags_quickstart
+  - examples/vertex_ai_quickstart
+  - examples/workflows_quickstart
 dev_dependencies:
   args: any
   meta: any

@@ -1,0 +1,13 @@
+outputDir: dataplex
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - category_id
+  - glossary_id
+  - parent
+  - location
+  - display_name
+  - description
+  - labels
+  - project

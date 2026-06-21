@@ -1,0 +1,15 @@
+name: terradart_example_gke_hub_quickstart
+description: GKE Hub fleet team-management example -- a fleet scope and a fleet namespace (no cluster required), with a typed Dart export.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.16.0
+  terradart_google: ^0.16.0
+
+dev_dependencies:
+  lints: ^6.0.0

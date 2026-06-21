@@ -1,0 +1,7 @@
+outputDir: vertex_ai
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - disable_cache
+  - project

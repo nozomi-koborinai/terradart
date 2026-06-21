@@ -1,0 +1,58 @@
+outputDir: workflows
+deriveClassDoc: true
+deriveOutputGetters: true
+
+dartTypeOverrides:
+  call_log_level: WorkflowsWorkflowCallLogLevel
+  execution_history_level: WorkflowsWorkflowExecutionHistoryLevel
+
+prelude: |
+  /// Platform logging level applied to calls and call responses during
+  /// executions of a [GoogleWorkflowsWorkflow].
+  enum WorkflowsWorkflowCallLogLevel implements TerraformEnum {
+    /// No call-logging level specified (the service default applies).
+    unspecified('CALL_LOG_LEVEL_UNSPECIFIED'),
+
+    /// Log all calls and their responses.
+    logAllCalls('LOG_ALL_CALLS'),
+
+    /// Log only calls that error.
+    logErrorsOnly('LOG_ERRORS_ONLY'),
+
+    /// Disable call logging.
+    logNone('LOG_NONE');
+
+    const WorkflowsWorkflowCallLogLevel(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Amount of execution history stored for a [GoogleWorkflowsWorkflow].
+  enum WorkflowsWorkflowExecutionHistoryLevel implements TerraformEnum {
+    /// No level specified (defaults to unspecified).
+    unspecified('EXECUTION_HISTORY_LEVEL_UNSPECIFIED'),
+
+    /// Store basic execution history.
+    basic('EXECUTION_HISTORY_BASIC'),
+
+    /// Store detailed execution history.
+    detailed('EXECUTION_HISTORY_DETAILED');
+
+    const WorkflowsWorkflowExecutionHistoryLevel(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+paramOrder:
+  - name
+  - region
+  - description
+  - source_contents
+  - service_account
+  - call_log_level
+  - execution_history_level
+  - crypto_key_name
+  - user_env_vars
+  - labels
+  - deletion_protection
+  - project

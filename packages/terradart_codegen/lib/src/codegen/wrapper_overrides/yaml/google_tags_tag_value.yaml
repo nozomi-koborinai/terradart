@@ -1,0 +1,9 @@
+outputDir: tags
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - short_name
+  - parent
+  - description
+  - deletion_policy

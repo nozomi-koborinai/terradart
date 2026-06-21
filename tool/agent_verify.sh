@@ -50,6 +50,9 @@ dart analyze packages/ --fatal-infos --fatal-warnings
 echo ">> dart analyze tool/"
 dart analyze tool/ --fatal-infos --fatal-warnings
 
+echo ">> dart analyze examples/"
+dart analyze examples/ --fatal-infos --fatal-warnings
+
 if [[ "$WITH_FORMAT" == "1" ]]; then
   echo ">> dart format (terradart_core, terradart_codegen, terradart_agent, terradart_coverage)"
   dart format --output=none --set-exit-if-changed \

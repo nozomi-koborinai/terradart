@@ -67,5 +67,189 @@ final class DataplexCatalogStack extends Stack {
         ],
       ),
     );
+
+    // --- Dataplex Universal Catalog metadata ---------------------------------
+    // An entry group (a container for catalog entries), an entry type, and an
+    // aspect type (a reusable metadata template), each with a resource-level
+    // IAM member granting the reader service account catalog access.
+
+    final catalogGroup = add(
+      GoogleDataplexEntryGroup(
+        localName: 'catalog',
+        entryGroupId: TfArg.literal('terradart-catalog'),
+        location: TfArg.literal('us-central1'),
+        displayName: TfArg.literal('TerraDart catalog'),
+        description: TfArg.literal('Catalog entry group for the quickstart'),
+        dependsOn: [...apiDeps],
+      ),
+    );
+
+    final datasetType = add(
+      GoogleDataplexEntryType(
+        localName: 'dataset_type',
+        entryTypeId: TfArg.literal('terradart-dataset'),
+        location: TfArg.literal('us-central1'),
+        displayName: TfArg.literal('TerraDart dataset'),
+        description: TfArg.literal('Entry type describing a dataset'),
+        dependsOn: [...apiDeps],
+      ),
+    );
+
+    final qualityAspect = add(
+      GoogleDataplexAspectType(
+        localName: 'quality',
+        aspectTypeId: TfArg.literal('terradart-quality'),
+        location: TfArg.literal('us-central1'),
+        displayName: TfArg.literal('Data quality'),
+        dataClassification: TfArg.literal(
+          DataplexAspectTypeDataClassification.metadataAndData,
+        ),
+        // Minimal valid metadata template (single required enum field).
+        metadataTemplate: TfArg.literal('''
+{
+  "name": "terradart-quality",
+  "type": "record",
+  "recordFields": [
+    {
+      "name": "tier",
+      "type": "enum",
+      "index": 1,
+      "annotations": { "displayName": "Tier" },
+      "constraints": { "required": true },
+      "enumValues": [
+        { "name": "GOLD", "index": 1 },
+        { "name": "SILVER", "index": 2 }
+      ]
+    }
+  ]
+}
+'''),
+        dependsOn: [...apiDeps],
+      ),
+    );
+
+    add(
+      GoogleDataplexEntryGroupIamMember(
+        localName: 'catalog_viewer',
+        entryGroupId: TfArg.literal('terradart-catalog'),
+        location: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/dataplex.catalogViewer'),
+        member: TfArg.ref(reader.iamMember),
+        dependsOn: [
+          ResourceDependency(catalogGroup),
+          ResourceDependency(reader),
+        ],
+      ),
+    );
+
+    add(
+      GoogleDataplexEntryTypeIamMember(
+        localName: 'dataset_type_viewer',
+        entryTypeId: TfArg.literal('terradart-dataset'),
+        location: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/dataplex.catalogViewer'),
+        member: TfArg.ref(reader.iamMember),
+        dependsOn: [
+          ResourceDependency(datasetType),
+          ResourceDependency(reader),
+        ],
+      ),
+    );
+
+    add(
+      GoogleDataplexAspectTypeIamMember(
+        localName: 'quality_viewer',
+        aspectTypeId: TfArg.literal('terradart-quality'),
+        location: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/dataplex.catalogViewer'),
+        member: TfArg.ref(reader.iamMember),
+        dependsOn: [
+          ResourceDependency(qualityAspect),
+          ResourceDependency(reader),
+        ],
+      ),
+    );
+
+    // --- Dataplex business glossary ------------------------------------------
+    // A glossary with one category and one term, plus a resource-level IAM
+    // member granting the reader catalog access on the glossary.
+
+    final glossary = add(
+      GoogleDataplexGlossary(
+        localName: 'business_terms',
+        glossaryId: TfArg.literal('terradart-glossary'),
+        location: TfArg.literal('us-central1'),
+        displayName: TfArg.literal('TerraDart business glossary'),
+        description: TfArg.literal('Shared business vocabulary'),
+        dependsOn: [...apiDeps],
+      ),
+    );
+
+    add(
+      GoogleDataplexGlossaryCategory(
+        localName: 'metrics_category',
+        categoryId: TfArg.literal('terradart-metrics'),
+        glossaryId: TfArg.literal('terradart-glossary'),
+        location: TfArg.literal('us-central1'),
+        parent: TfArg.ref(glossary.id),
+        displayName: TfArg.literal('Metrics'),
+        dependsOn: [ResourceDependency(glossary)],
+      ),
+    );
+
+    add(
+      GoogleDataplexGlossaryTerm(
+        localName: 'mrr_term',
+        termId: TfArg.literal('terradart-mrr'),
+        glossaryId: TfArg.literal('terradart-glossary'),
+        location: TfArg.literal('us-central1'),
+        parent: TfArg.ref(glossary.id),
+        displayName: TfArg.literal('Monthly Recurring Revenue'),
+        description: TfArg.literal('Normalized monthly subscription revenue'),
+        dependsOn: [ResourceDependency(glossary)],
+      ),
+    );
+
+    add(
+      GoogleDataplexGlossaryIamMember(
+        localName: 'glossary_viewer',
+        glossaryId: TfArg.literal('terradart-glossary'),
+        location: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/dataplex.catalogViewer'),
+        member: TfArg.ref(reader.iamMember),
+        dependsOn: [
+          ResourceDependency(glossary),
+          ResourceDependency(reader),
+        ],
+      ),
+    );
+
+    // --- Dataplex lake -------------------------------------------------------
+    // A lake (the top-level Dataplex data-management container) with a
+    // resource-level IAM member granting the reader read access.
+    final lake = add(
+      GoogleDataplexLake(
+        localName: 'analytics_lake',
+        name: TfArg.literal('terradart-lake'),
+        location: TfArg.literal('us-central1'),
+        displayName: TfArg.literal('Analytics lake'),
+        description: TfArg.literal('Top-level Dataplex container'),
+        dependsOn: [...apiDeps],
+      ),
+    );
+
+    add(
+      GoogleDataplexLakeIamMember(
+        localName: 'lake_viewer',
+        lake: TfArg.literal('terradart-lake'),
+        location: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/dataplex.viewer'),
+        member: TfArg.ref(reader.iamMember),
+        dependsOn: [
+          ResourceDependency(lake),
+          ResourceDependency(reader),
+        ],
+      ),
+    );
   }
 }

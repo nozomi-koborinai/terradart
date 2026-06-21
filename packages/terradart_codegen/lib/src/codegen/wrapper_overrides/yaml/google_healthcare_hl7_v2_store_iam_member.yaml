@@ -1,0 +1,9 @@
+outputDir: healthcare
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - hl7_v2_store_id
+  - role
+  - member
+  - condition

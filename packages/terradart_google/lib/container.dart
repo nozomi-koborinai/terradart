@@ -21,3 +21,6 @@ export 'src/container/google_gke_hub_fleet.dart'
         GoogleGkeHubFleet;
 export 'src/container/google_gke_hub_membership.dart'
     show GoogleGkeHubMembership;
+export 'src/container/google_gke_hub_scope.dart' show GoogleGkeHubScope;
+export 'src/container/google_gke_hub_namespace.dart'
+    show GoogleGkeHubNamespace;

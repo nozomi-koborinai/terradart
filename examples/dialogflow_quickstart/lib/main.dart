@@ -21,6 +21,23 @@ final class DialogflowSipTrunkStack extends Stack {
       propagationDelay: const Duration(seconds: 60),
     );
 
+    // The project's Dialogflow ES agent (a per-project singleton). Created
+    // before the CX SIP trunk; both share the dialogflow API enablement.
+    add(
+      GoogleDialogflowAgent(
+        localName: 'agent',
+        displayName: TfArg.literal('terradart-agent'),
+        defaultLanguageCode: TfArg.literal('en'),
+        timeZone: TfArg.literal('Europe/Berlin'),
+        description: TfArg.literal('Demo Dialogflow agent (terradart)'),
+        matchMode: TfArg.literal(DialogflowAgentMatchMode.hybrid),
+        apiVersion: TfArg.literal(DialogflowAgentApiVersion.v2),
+        tier: TfArg.literal(DialogflowAgentTier.standard),
+        enableLogging: TfArg.literal(true),
+        dependsOn: apiDeps,
+      ),
+    );
+
     add(
       GoogleDialogflowSipTrunk(
         localName: 'carrier_trunk',

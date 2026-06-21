@@ -1,6 +1,6 @@
 ---
 title: Waves 23–41
-description: Curated google_* factories shipped through Wave 41 (v0.12.10–v0.15.0) with example stack pointers.
+description: Curated google_* factories shipped through Wave 70 (v0.12.10–v0.16.0) with example stack pointers.
 ---
 
 ## v0.12.10 — Waves 23–24
@@ -302,6 +302,333 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_memcache_instance` | `GoogleMemcacheInstance` | `memcache` | [cloud_run_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloud_run_quickstart) |
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
+
+## Wave 70 — Vertex AI GenAI cache config
+
+Extends the `vertex_ai` barrel with `google_vertex_ai_cache_config` — a project-level singleton that toggles GenAI response caching (`disable_cache`). Flat factory with no nested enums. Exercised by extending [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart).
+
+Catalog after Wave 70: **322 curated resource factories + 1 data source** (323 catalog entries). 58 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_vertex_ai_cache_config` | `GoogleVertexAiCacheConfig` | `vertex_ai` | [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart) |
+
+## Wave 69 — Network Connectivity Center hub
+
+Extends the `network` barrel with `google_network_connectivity_hub` — a global, free routing fabric for Network Connectivity Center (spokes attach separately). `policy_mode` / `preset_topology` are optional+computed in the provider schema, so they stay plain `String` inputs. Exercised by extending [network_security_lists_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_security_lists_quickstart) (which now also enables `networkconnectivity.googleapis.com`).
+
+Catalog after Wave 69: **321 curated resource factories + 1 data source** (322 catalog entries). 58 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_network_connectivity_hub` | `GoogleNetworkConnectivityHub` | `network` | [network_security_lists_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_security_lists_quickstart) |
+
+## Wave 68 — Vertex AI dataset + Tensorboard
+
+Extends the `vertex_ai` barrel with two managed-ML factories: `google_vertex_ai_dataset` (a managed dataset keyed by a Google-hosted metadata schema URI) and `google_vertex_ai_tensorboard` (experiment visualization). Both expose the single-attr `encryption_spec` block as a structured map. Exercised by extending [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart) with an image dataset and an experiments Tensorboard.
+
+Catalog after Wave 68: **320 curated resource factories + 1 data source** (321 catalog entries). 58 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_vertex_ai_dataset` | `GoogleVertexAiDataset` | `vertex_ai` | [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart) |
+| `google_vertex_ai_tensorboard` | `GoogleVertexAiTensorboard` | `vertex_ai` | [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart) |
+
+## Wave 67 — Compute disk resource policy attachment
+
+Adds `google_compute_disk_resource_policy_attachment` on the existing `compute` barrel — a flat factory that attaches a [resource policy](#wave-66--compute-resource-policy) (e.g. a snapshot schedule) to a persistent disk. Exercised by extending [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart): a small blank zonal disk gets the daily snapshot schedule attached (`deletion_policy: DELETE` so it detaches cleanly on destroy).
+
+Catalog after Wave 67: **318 curated resource factories + 1 data source** (319 catalog entries). 58 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_compute_disk_resource_policy_attachment` | `GoogleComputeDiskResourcePolicyAttachment` | `compute` | [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart) |
+
+## Wave 66 — Compute resource policy
+
+Adds `google_compute_resource_policy` on the existing `compute` barrel — fully modeled with a sealed snapshot schedule (hourly / daily / weekly + typed day-of-week & on-source-disk-delete enums), retention/snapshot-properties helpers, and a typed workload policy (with type & topology-distance enums); the remaining policy blocks are structured maps. Exercised by extending [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart) with a daily snapshot schedule.
+
+Catalog after Wave 66: **317 curated resource factories + 1 data source** (318 catalog entries). 58 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_compute_resource_policy` | `GoogleComputeResourcePolicy` | `compute` | [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart) |
+
+## Wave 65 — Gemini for Google Cloud
+
+Adds three Gemini Code Assist settings on a new `gemini` barrel — GCP enablement, logging, and release-channel settings — with a new [gemini_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gemini_quickstart).
+
+Catalog after Wave 65: **316 curated resource factories + 1 data source** (317 catalog entries). 58 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_gemini_gemini_gcp_enablement_setting` | `GoogleGeminiGeminiGcpEnablementSetting` | `gemini` | [gemini_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gemini_quickstart) |
+| `google_gemini_logging_setting` | `GoogleGeminiLoggingSetting` | `gemini` | [gemini_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gemini_quickstart) |
+| `google_gemini_release_channel_setting` | `GoogleGeminiReleaseChannelSetting` | `gemini` | [gemini_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gemini_quickstart) |
+
+## Wave 64 — BigLake Metastore
+
+Adds `google_biglake_catalog` / `google_biglake_database` / `google_biglake_table` on a new `biglake` barrel (Hive-compatible metastore; `hive_options` passed as structured maps), with a new [biglake_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/biglake_quickstart).
+
+Catalog after Wave 64: **313 curated resource factories + 1 data source** (314 catalog entries). 57 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_biglake_catalog` | `GoogleBiglakeCatalog` | `biglake` | [biglake_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/biglake_quickstart) |
+| `google_biglake_database` | `GoogleBiglakeDatabase` | `biglake` | [biglake_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/biglake_quickstart) |
+| `google_biglake_table` | `GoogleBiglakeTable` | `biglake` | [biglake_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/biglake_quickstart) |
+
+## Wave 63 — Vertex AI Feature Store
+
+Adds `google_vertex_ai_feature_group` on a new `vertex_ai` barrel (a BigQuery-backed feature group; the `big_query` config is a structured map), with a new [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart) that wires a BigQuery dataset + table into the feature group.
+
+Catalog after Wave 63: **310 curated resource factories + 1 data source** (311 catalog entries). 56 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_vertex_ai_feature_group` | `GoogleVertexAiFeatureGroup` | `vertex_ai` | [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart) |
+
+## Wave 62 — Compute network firewall policy
+
+Adds `google_compute_network_firewall_policy` on the existing `compute` barrel — the modern policy-based replacement for standalone VPC firewall rules — exercised by extending [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart).
+
+Catalog after Wave 62: **309 curated resource factories + 1 data source** (310 catalog entries). 55 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_compute_network_firewall_policy` | `GoogleComputeNetworkFirewallPolicy` | `compute` | [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart) |
+
+## Wave 61 — Cloud Deploy
+
+Adds three Cloud Deploy factories on a new `clouddeploy` barrel — delivery pipeline, target, and custom target type (nested config passed as structured maps) — and a new [clouddeploy_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/clouddeploy_quickstart) (a Cloud Run target + pipeline + custom target type).
+
+Catalog after Wave 61: **308 curated resource factories + 1 data source** (309 catalog entries). 55 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_clouddeploy_delivery_pipeline` | `GoogleClouddeployDeliveryPipeline` | `clouddeploy` | [clouddeploy_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/clouddeploy_quickstart) |
+| `google_clouddeploy_target` | `GoogleClouddeployTarget` | `clouddeploy` | [clouddeploy_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/clouddeploy_quickstart) |
+| `google_clouddeploy_custom_target_type` | `GoogleClouddeployCustomTargetType` | `clouddeploy` | [clouddeploy_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/clouddeploy_quickstart) |
+
+## Wave 60 — GKE Hub fleet scope + namespace
+
+Adds `google_gke_hub_scope` and `google_gke_hub_namespace` on the existing `container` barrel — fleet team-management scaffolding that needs no cluster — with a new lightweight [gke_hub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gke_hub_quickstart).
+
+Catalog after Wave 60: **305 curated resource factories + 1 data source** (306 catalog entries). 54 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_gke_hub_scope` | `GoogleGkeHubScope` | `container` | [gke_hub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gke_hub_quickstart) |
+| `google_gke_hub_namespace` | `GoogleGkeHubNamespace` | `container` | [gke_hub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/gke_hub_quickstart) |
+
+## Wave 59 — Cloud Healthcare store IAM members
+
+Adds the store-level `*_iam_member` adjuncts on the existing `healthcare` barrel — `google_healthcare_dicom_store_iam_member`, `google_healthcare_hl7_v2_store_iam_member`, `google_healthcare_consent_store_iam_member` — exercised by extending [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) with per-store viewer grants.
+
+Catalog after Wave 59: **303 curated resource factories + 1 data source** (304 catalog entries). 54 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_healthcare_dicom_store_iam_member` | `GoogleHealthcareDicomStoreIamMember` | `healthcare` | [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) |
+| `google_healthcare_hl7_v2_store_iam_member` | `GoogleHealthcareHl7V2StoreIamMember` | `healthcare` | [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) |
+| `google_healthcare_consent_store_iam_member` | `GoogleHealthcareConsentStoreIamMember` | `healthcare` | [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) |
+
+## Wave 58 — BigQuery standalone dataset access
+
+Adds `google_bigquery_dataset_access` on the existing `bigquery` barrel — the standalone (non-inline) counterpart of `GoogleBigqueryDataset.access`, with typed sealed-style helpers (`BigqueryDatasetAccessPredefinedGroup` enum, authorized view / routine / dataset blocks). Exercised by extending [bigquery_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigquery_quickstart) (synth + `terraform validate`; bigquery_quickstart is apply-smoke-skip-listed for org-gated datapolicy/analyticshub resources).
+
+Catalog after Wave 58: **300 curated resource factories + 1 data source** (301 catalog entries). 54 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_bigquery_dataset_access` | `GoogleBigqueryDatasetAccess` | `bigquery` | [bigquery_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigquery_quickstart) |
+
+## Wave 57 — Cloud Healthcare HL7v2 store
+
+Adds `google_healthcare_hl7_v2_store` (with a typed `Hl7V2StoreParserConfig` block + `Hl7V2StoreParserConfigVersion` enum) on the existing `healthcare` barrel, exercised by extending [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart).
+
+Catalog after Wave 57: **299 curated resource factories + 1 data source** (300 catalog entries). 54 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_healthcare_hl7_v2_store` | `GoogleHealthcareHl7V2Store` | `healthcare` | [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) |
+
+## Wave 56 — Dialogflow agent
+
+Adds `google_dialogflow_agent` (+ `DialogflowAgentApiVersion` / `DialogflowAgentMatchMode` / `DialogflowAgentTier` enums) on the existing `dialogflow` barrel, exercised by extending [dialogflow_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dialogflow_quickstart) with the project's Dialogflow ES agent.
+
+Catalog after Wave 56: **298 curated resource factories + 1 data source** (299 catalog entries). 54 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_dialogflow_agent` | `GoogleDialogflowAgent` | `dialogflow` | [dialogflow_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dialogflow_quickstart) |
+
+## Wave 55 — Cloud Observability
+
+Adds `google_observability_trace_scope` on a new `observability` barrel and a new [observability_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/observability_quickstart) (a Trace scope over the current project).
+
+Catalog after Wave 55: **297 curated resource factories + 1 data source** (298 catalog entries). 54 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_observability_trace_scope` | `GoogleObservabilityTraceScope` | `observability` | [observability_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/observability_quickstart) |
+
+## Wave 54 — Cloud Healthcare
+
+Adds four Cloud Healthcare factories on a new `healthcare` barrel — dataset, DICOM store, consent store, and the dataset `*_iam_member` adjunct — and a new [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart).
+
+Catalog after Wave 54: **296 curated resource factories + 1 data source** (297 catalog entries). 53 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_healthcare_dataset` | `GoogleHealthcareDataset` | `healthcare` | [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) |
+| `google_healthcare_dicom_store` | `GoogleHealthcareDicomStore` | `healthcare` | [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) |
+| `google_healthcare_consent_store` | `GoogleHealthcareConsentStore` | `healthcare` | [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) |
+| `google_healthcare_dataset_iam_member` | `GoogleHealthcareDatasetIamMember` | `healthcare` | [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) |
+
+## Wave 53 — Network Security lists
+
+Adds `google_network_security_address_group` (+ `NetworkSecurityAddressGroupType` enum) and `google_network_security_url_lists` on the existing `network` barrel, with a new [network_security_lists_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_security_lists_quickstart) (an IPv4 address group + a URL list).
+
+Catalog after Wave 53: **292 curated resource factories + 1 data source** (293 catalog entries). 52 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_network_security_address_group` | `GoogleNetworkSecurityAddressGroup` | `network` | [network_security_lists_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_security_lists_quickstart) |
+| `google_network_security_url_lists` | `GoogleNetworkSecurityUrlLists` | `network` | [network_security_lists_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_security_lists_quickstart) |
+
+## Wave 52 — Parameter Manager
+
+Adds four Parameter Manager factories on a new `parameter_manager` barrel — global parameter (+ `ParameterManagerParameterFormat` enum), parameter version, regional parameter (+ enum), and regional parameter version — and a new [parameter_manager_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/parameter_manager_quickstart) with a global + regional parameter. (The two version factories are tracked in `tool/example_debt.yaml`: their `parameter_data` is sensitive, so a literal is rejected by synth and a TF variable would break the applyable example.)
+
+Catalog after Wave 52: **290 curated resource factories + 1 data source** (291 catalog entries). 52 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_parameter_manager_parameter` | `GoogleParameterManagerParameter` | `parameter_manager` | [parameter_manager_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/parameter_manager_quickstart) |
+| `google_parameter_manager_parameter_version` | `GoogleParameterManagerParameterVersion` | `parameter_manager` | _(tool/example_debt.yaml)_ |
+| `google_parameter_manager_regional_parameter` | `GoogleParameterManagerRegionalParameter` | `parameter_manager` | [parameter_manager_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/parameter_manager_quickstart) |
+| `google_parameter_manager_regional_parameter_version` | `GoogleParameterManagerRegionalParameterVersion` | `parameter_manager` | _(tool/example_debt.yaml)_ |
+
+## Wave 51 — Dataplex lake
+
+Adds `google_dataplex_lake` and `google_dataplex_lake_iam_member` on the existing `dataplex` barrel, exercised by extending [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) with a lake + resource-level IAM member.
+
+Catalog after Wave 51: **286 curated resource factories + 1 data source** (287 catalog entries). 51 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_dataplex_lake` | `GoogleDataplexLake` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+| `google_dataplex_lake_iam_member` | `GoogleDataplexLakeIamMember` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+
+## Wave 50 — Document AI
+
+Adds `google_document_ai_processor` on a new `document_ai` barrel and a new [document_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/document_ai_quickstart) that provisions an OCR processor.
+
+Catalog after Wave 50: **284 curated resource factories + 1 data source** (285 catalog entries). 51 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_document_ai_processor` | `GoogleDocumentAiProcessor` | `document_ai` | [document_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/document_ai_quickstart) |
+
+## Wave 49 — Secret Manager regional
+
+Adds three regional Secret Manager factories on the existing `secret_manager` barrel — regional secret, regional secret version, and the regional secret `*_iam_member` adjunct — exercised by extending [secret_manager_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/secret_manager_quickstart) with a regional secret + accessor IAM member. (The regional version factory is tracked in `tool/example_debt.yaml`: regional secrets lack a write-only data field, so its sensitive `secret_data` cannot be supplied as a literal without making the example require a Terraform variable.)
+
+Catalog after Wave 49: **283 curated resource factories + 1 data source** (284 catalog entries). 50 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_secret_manager_regional_secret` | `GoogleSecretManagerRegionalSecret` | `secret_manager` | [secret_manager_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/secret_manager_quickstart) |
+| `google_secret_manager_regional_secret_version` | `GoogleSecretManagerRegionalSecretVersion` | `secret_manager` | _(tool/example_debt.yaml)_ |
+| `google_secret_manager_regional_secret_iam_member` | `GoogleSecretManagerRegionalSecretIamMember` | `secret_manager` | [secret_manager_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/secret_manager_quickstart) |
+
+## Wave 48 — Compute static route + project metadata
+
+Adds `google_compute_route` and `google_compute_project_metadata_item` on the existing `compute` barrel, exercised by a new lightweight [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart) (a custom-mode VPC + static route + project metadata item — all free, no VMs).
+
+Catalog after Wave 48: **280 curated resource factories + 1 data source** (281 catalog entries). 50 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_compute_route` | `GoogleComputeRoute` | `compute` | [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart) |
+| `google_compute_project_metadata_item` | `GoogleComputeProjectMetadataItem` | `compute` | [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart) |
+
+## Wave 47 — Workflows
+
+Adds `google_workflows_workflow` on a new `workflows` barrel (with `WorkflowsWorkflowCallLogLevel` / `WorkflowsWorkflowExecutionHistoryLevel` enums) and a new [workflows_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/workflows_quickstart) that defines a workflow from inline YAML.
+
+Catalog after Wave 47: **278 curated resource factories + 1 data source** (279 catalog entries). 50 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_workflows_workflow` | `GoogleWorkflowsWorkflow` | `workflows` | [workflows_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/workflows_quickstart) |
+
+## Wave 46 — Dataplex business glossary
+
+Adds four Dataplex business-glossary factories on the existing `dataplex` barrel — glossary, glossary category, glossary term, and the glossary `*_iam_member` adjunct — exercised by extending [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart).
+
+Catalog after Wave 46: **277 curated resource factories + 1 data source** (278 catalog entries). 49 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_dataplex_glossary` | `GoogleDataplexGlossary` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+| `google_dataplex_glossary_category` | `GoogleDataplexGlossaryCategory` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+| `google_dataplex_glossary_term` | `GoogleDataplexGlossaryTerm` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+| `google_dataplex_glossary_iam_member` | `GoogleDataplexGlossaryIamMember` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+
+## Wave 45 — Dataplex Universal Catalog
+
+Adds six Dataplex Universal Catalog factories on the existing `dataplex` barrel — entry group, entry type, aspect type, and their `*_iam_member` adjuncts — exercised by extending [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart).
+
+Catalog after Wave 45: **273 curated resource factories + 1 data source** (274 catalog entries). 49 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_dataplex_entry_group` | `GoogleDataplexEntryGroup` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+| `google_dataplex_entry_type` | `GoogleDataplexEntryType` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+| `google_dataplex_aspect_type` | `GoogleDataplexAspectType` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+| `google_dataplex_entry_group_iam_member` | `GoogleDataplexEntryGroupIamMember` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+| `google_dataplex_entry_type_iam_member` | `GoogleDataplexEntryTypeIamMember` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+| `google_dataplex_aspect_type_iam_member` | `GoogleDataplexAspectTypeIamMember` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+
+## Wave 44 — Service Directory
+
+Adds five `google_service_directory_*` factories on a new `service_directory` barrel with [service_directory_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/service_directory_quickstart): a namespace, a service, an endpoint, and namespace/service `*_iam_member` adjuncts.
+
+Catalog after Wave 44: **267 curated resource factories + 1 data source** (268 catalog entries). 49 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_service_directory_namespace` | `GoogleServiceDirectoryNamespace` | `service_directory` | [service_directory_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/service_directory_quickstart) |
+| `google_service_directory_service` | `GoogleServiceDirectoryService` | `service_directory` | [service_directory_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/service_directory_quickstart) |
+| `google_service_directory_endpoint` | `GoogleServiceDirectoryEndpoint` | `service_directory` | [service_directory_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/service_directory_quickstart) |
+| `google_service_directory_namespace_iam_member` | `GoogleServiceDirectoryNamespaceIamMember` | `service_directory` | [service_directory_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/service_directory_quickstart) |
+| `google_service_directory_service_iam_member` | `GoogleServiceDirectoryServiceIamMember` | `service_directory` | [service_directory_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/service_directory_quickstart) |
+
+## Wave 43 — Essential Contacts
+
+Adds `google_essential_contacts_contact` on a new `essential_contacts` barrel. Exercised by extending [monitoring_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/monitoring_quickstart) with the Essential Contacts API enablement + a technical-notifications contact.
+
+Catalog after Wave 43: **262 curated resource factories + 1 data source** (263 catalog entries). 48 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_essential_contacts_contact` | `GoogleEssentialContactsContact` | `essential_contacts` | [monitoring_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/monitoring_quickstart) |
+
+## Wave 42 — Resource Manager Tags
+
+Adds five `google_tags_*` factories on a new `tags` barrel with [tags_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/tags_quickstart): a project-scoped tag key + value, a tag binding on the project, and the tag key/value `*_iam_member` adjuncts.
+
+Catalog after Wave 42: **261 curated resource factories + 1 data source** (262 catalog entries). 47 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_tags_tag_key` | `GoogleTagsTagKey` | `tags` | [tags_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/tags_quickstart) |
+| `google_tags_tag_value` | `GoogleTagsTagValue` | `tags` | [tags_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/tags_quickstart) |
+| `google_tags_tag_binding` | `GoogleTagsTagBinding` | `tags` | [tags_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/tags_quickstart) |
+| `google_tags_tag_key_iam_member` | `GoogleTagsTagKeyIamMember` | `tags` | [tags_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/tags_quickstart) |
+| `google_tags_tag_value_iam_member` | `GoogleTagsTagValueIamMember` | `tags` | [tags_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/tags_quickstart) |
 
 ## v0.15.0 — Wave 41 — IAM binding/policy adjuncts
 

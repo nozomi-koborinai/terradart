@@ -1,0 +1,18 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - network
+  - dest_range
+  - description
+  - priority
+  - next_hop_gateway
+  - next_hop_ip
+  - next_hop_instance
+  - next_hop_instance_zone
+  - next_hop_ilb
+  - next_hop_vpn_tunnel
+  - tags
+  - project

@@ -74,6 +74,42 @@ final class DbCredentialsStack extends Stack {
       ),
     );
 
+    // 5. A regional (single-location) secret -- the data-residency variant of
+    //    the secret above. Regional secrets store the value in one location and
+    //    have no replication block. They also lack the write-only field, so the
+    //    value is supplied via `secretData` (sensitive, kept out of logs).
+    final regionalSecret = add(
+      GoogleSecretManagerRegionalSecret(
+        localName: 'db_password_regional',
+        secretId: TfArg.literal('db-password-regional'),
+        location: TfArg.literal('us-central1'),
+        labels: const TfArgLiteral<Map<String, String>>({
+          'managed-by': 'terradart',
+        }),
+      ),
+    );
+
+    // NOTE: google_secret_manager_regional_secret_version is intentionally not
+    // created here. Regional secrets have no write-only (`_wo`) data field, and
+    // synth refuses a literal on the sensitive `secret_data` field; supplying it
+    // via a Terraform variable would make this (otherwise applyable) example
+    // require `-var` at apply time. The version factory is tracked in
+    // tool/example_debt.yaml instead.
+
+    add(
+      GoogleSecretManagerRegionalSecretIamMember(
+        localName: 'db_password_regional_accessor',
+        secretId: TfArg.ref(regionalSecret.secretIdRef),
+        location: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/secretmanager.secretAccessor'),
+        member: TfArg.ref(appSa.iamMember),
+        dependsOn: [
+          ResourceDependency(regionalSecret),
+          ResourceDependency(appSa),
+        ],
+      ),
+    );
+
     // Export the secret's resource path as a typed Dart constant. The
     // application reads the live value at runtime via the Secret Manager
     // client library -- the constant is the lookup key, not the secret.

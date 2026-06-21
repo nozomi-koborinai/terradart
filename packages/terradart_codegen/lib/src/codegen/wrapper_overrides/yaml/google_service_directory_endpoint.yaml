@@ -1,0 +1,12 @@
+outputDir: service_directory
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - endpoint_id
+  - service
+  - address
+  - port
+  - network
+  - metadata
+  - deletion_policy

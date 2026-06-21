@@ -1,0 +1,11 @@
+outputDir: dataplex
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - lake
+  - role
+  - member
+  - condition
+  - location
+  - project

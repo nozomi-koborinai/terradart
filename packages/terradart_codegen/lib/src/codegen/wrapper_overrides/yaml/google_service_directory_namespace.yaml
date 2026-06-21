@@ -1,0 +1,10 @@
+outputDir: service_directory
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - namespace_id
+  - location
+  - labels
+  - deletion_policy
+  - project

@@ -390,5 +390,18 @@ final class AnalyticsStack extends Stack {
         }),
       ),
     );
+
+    // A standalone access entry (the non-inline counterpart of the dataset's
+    // sealed `access` list): grant the project's writers READER on the dataset.
+    add(
+      GoogleBigqueryDatasetAccess(
+        localName: 'project_writers_reader',
+        datasetId: TfArg.ref(dataset.datasetIdRef),
+        role: TfArg.literal('READER'),
+        specialGroup:
+            TfArg.literal(BigqueryDatasetAccessPredefinedGroup.projectWriters),
+        dependsOn: [ResourceDependency(dataset)],
+      ),
+    );
   }
 }

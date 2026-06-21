@@ -87,6 +87,15 @@ export 'src/bigquery/google_bigquery_dataset.dart'
         BigqueryDatasetExternalCatalogDatasetOptions,
         BigqueryDatasetExternalDatasetReference,
         GoogleBigqueryDataset;
+export 'src/bigquery/google_bigquery_dataset_access.dart'
+    show
+        BigqueryDatasetAccessAuthDatasetReference,
+        BigqueryDatasetAccessAuthorizedDataset,
+        BigqueryDatasetAccessAuthorizedRoutine,
+        BigqueryDatasetAccessAuthorizedView,
+        BigqueryDatasetAccessDatasetTargetType,
+        BigqueryDatasetAccessPredefinedGroup,
+        GoogleBigqueryDatasetAccess;
 export 'src/bigquery/google_bigquery_dataset_iam_member.dart'
     show GoogleBigqueryDatasetIamMember;
 export 'src/bigquery/google_bigquery_job.dart'

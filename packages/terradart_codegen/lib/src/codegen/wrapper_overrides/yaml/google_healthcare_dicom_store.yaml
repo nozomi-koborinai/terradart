@@ -1,0 +1,8 @@
+outputDir: healthcare
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - dataset
+  - labels

@@ -1,0 +1,14 @@
+outputDir: clouddeploy
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - location
+  - custom_actions
+  - tasks
+  - description
+  - annotations
+  - labels
+  - deletion_policy
+  - project

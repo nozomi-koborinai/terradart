@@ -1,0 +1,10 @@
+outputDir: parameter_manager
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - parameter
+  - parameter_version_id
+  - parameter_data
+  - disabled
+  - deletion_policy

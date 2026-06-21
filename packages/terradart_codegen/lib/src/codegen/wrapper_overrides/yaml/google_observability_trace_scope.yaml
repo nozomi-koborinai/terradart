@@ -1,0 +1,10 @@
+outputDir: observability
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - trace_scope_id
+  - location
+  - resource_names
+  - description
+  - project

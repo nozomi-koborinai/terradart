@@ -1,0 +1,12 @@
+outputDir: dataplex
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - glossary_id
+  - location
+  - display_name
+  - description
+  - labels
+  - deletion_policy
+  - project

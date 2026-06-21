@@ -1,0 +1,9 @@
+outputDir: service_directory
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - service_id
+  - namespace
+  - metadata
+  - deletion_policy

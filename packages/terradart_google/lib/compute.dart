@@ -401,6 +401,29 @@ export 'src/compute/google_compute_router.dart'
         ComputeRouterBgp,
         ComputeRouterBgpAdvertiseMode,
         GoogleComputeRouter;
+export 'src/compute/google_compute_route.dart' show GoogleComputeRoute;
+export 'src/compute/google_compute_network_firewall_policy.dart'
+    show GoogleComputeNetworkFirewallPolicy;
+export 'src/compute/google_compute_disk_resource_policy_attachment.dart'
+    show GoogleComputeDiskResourcePolicyAttachment;
+export 'src/compute/google_compute_resource_policy.dart'
+    show
+        ComputeResourcePolicyDailySchedule,
+        ComputeResourcePolicyDayOfWeek,
+        ComputeResourcePolicyHourlySchedule,
+        ComputeResourcePolicyMaxTopologyDistance,
+        ComputeResourcePolicyOnSourceDiskDelete,
+        ComputeResourcePolicyRetentionPolicy,
+        ComputeResourcePolicySnapshotDayOfWeek,
+        ComputeResourcePolicySnapshotProperties,
+        ComputeResourcePolicySnapshotSchedule,
+        ComputeResourcePolicySnapshotSchedulePolicy,
+        ComputeResourcePolicyWeeklySchedule,
+        ComputeResourcePolicyWorkloadPolicy,
+        ComputeResourcePolicyWorkloadType,
+        GoogleComputeResourcePolicy;
+export 'src/compute/google_compute_project_metadata_item.dart'
+    show GoogleComputeProjectMetadataItem;
 export 'src/compute/google_compute_region_url_map.dart'
     show
         ComputeRegionUrlMapRegionUrlMapCachePolicy,

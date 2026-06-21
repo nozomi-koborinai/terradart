@@ -20,16 +20,42 @@ upstream_branch: main
 # `upstream` is the path relative to the upstream repo root.
 # A `null` upstream marks a fixture as synthetic (skipped by sync).
 files:
+  google_biglake_catalog:
+    upstream: mmv1/products/biglake/Catalog.yaml
+  google_biglake_database:
+    upstream: mmv1/products/biglake/Database.yaml
+  google_biglake_table:
+    upstream: mmv1/products/biglake/Table.yaml
   google_bigquery_dataset:
     upstream: mmv1/products/bigquery/Dataset.yaml
+  google_bigquery_dataset_access:
+    upstream: mmv1/products/bigquery/DatasetAccess.yaml
   google_bigquery_table:
     upstream: mmv1/products/bigquery/Table.yaml
   google_cloud_run_v2_service:
     upstream: mmv1/products/cloudrunv2/Service.yaml
+  google_clouddeploy_custom_target_type:
+    upstream: mmv1/products/clouddeploy/CustomTargetType.yaml
+  google_clouddeploy_delivery_pipeline:
+    upstream: mmv1/products/clouddeploy/DeliveryPipeline.yaml
+  google_clouddeploy_target:
+    upstream: mmv1/products/clouddeploy/Target.yaml
   google_compute_address:
     upstream: mmv1/products/compute/Address.yaml
   google_compute_firewall:
     upstream: mmv1/products/compute/Firewall.yaml
+  google_compute_network_firewall_policy:
+    upstream: mmv1/products/compute/NetworkFirewallPolicy.yaml
+  google_compute_resource_policy:
+    upstream: mmv1/products/compute/ResourcePolicy.yaml
+  google_compute_route:
+    upstream: mmv1/products/compute/Route.yaml
+  google_compute_project_metadata_item:
+    upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
+  google_compute_disk_resource_policy_attachment:
+    upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
+  google_network_connectivity_hub:
+    upstream: mmv1/products/networkconnectivity/Hub.yaml
   google_compute_instance:
     upstream: mmv1/products/compute/Instance.yaml
   google_compute_network:
@@ -38,12 +64,38 @@ files:
     upstream: mmv1/products/compute/Subnetwork.yaml
   google_dataplex_data_product:
     upstream: mmv1/products/dataplex/DataProduct.yaml
+  google_dataplex_lake:
+    upstream: mmv1/products/dataplex/Lake.yaml
+  google_dataplex_lake_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_entry_group:
+    upstream: mmv1/products/dataplex/EntryGroup.yaml
+  google_dataplex_entry_type:
+    upstream: mmv1/products/dataplex/EntryType.yaml
+  google_dataplex_aspect_type:
+    upstream: mmv1/products/dataplex/AspectType.yaml
+  google_dataplex_glossary:
+    upstream: mmv1/products/dataplex/Glossary.yaml
+  google_dataplex_glossary_category:
+    upstream: mmv1/products/dataplex/GlossaryCategory.yaml
+  google_dataplex_glossary_term:
+    upstream: mmv1/products/dataplex/GlossaryTerm.yaml
+  google_dataplex_glossary_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_entry_group_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_entry_type_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_aspect_type_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataplex_data_product_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dns_managed_zone:
     upstream: mmv1/products/dns/ManagedZone.yaml
   google_discovery_engine_data_store:
     upstream: mmv1/products/discoveryengine/DataStore.yaml
+  google_dialogflow_agent:
+    upstream: mmv1/products/dialogflow/Agent.yaml
   google_dialogflow_sip_trunk:
     upstream: mmv1/products/dialogflow/SipTrunk.yaml
   google_discovery_engine_search_engine:
@@ -90,6 +142,22 @@ files:
     upstream: null  # handwritten in terraform provider; no MM YAML
   google_iam_workload_identity_pool:
     upstream: mmv1/products/iambeta/WorkloadIdentityPool.yaml
+  google_healthcare_dataset:
+    upstream: mmv1/products/healthcare/Dataset.yaml
+  google_healthcare_hl7_v2_store:
+    upstream: mmv1/products/healthcare/Hl7V2Store.yaml
+  google_healthcare_dicom_store:
+    upstream: mmv1/products/healthcare/DicomStore.yaml
+  google_healthcare_consent_store:
+    upstream: mmv1/products/healthcare/ConsentStore.yaml
+  google_healthcare_dataset_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_healthcare_dicom_store_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_healthcare_hl7_v2_store_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_healthcare_consent_store_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_iam_workload_identity_pool_provider:
     # MM YAML enriches merged IR (descriptions, hints); typed nested blocks still
     # come from the wrapper override prelude/customSlots, not from MM alone.
@@ -286,6 +354,16 @@ files:
   # Wave 9 (GKE Hub)
   google_gke_hub_fleet:
     upstream: mmv1/products/gkehub2/Fleet.yaml
+  google_gemini_logging_setting:
+    upstream: mmv1/products/gemini/LoggingSetting.yaml
+  google_gemini_gemini_gcp_enablement_setting:
+    upstream: mmv1/products/gemini/GeminiGcpEnablementSetting.yaml
+  google_gemini_release_channel_setting:
+    upstream: mmv1/products/gemini/ReleaseChannelSetting.yaml
+  google_gke_hub_scope:
+    upstream: mmv1/products/gkehub/Scope.yaml
+  google_gke_hub_namespace:
+    upstream: mmv1/products/gkehub/Namespace.yaml
   google_gke_hub_membership:
     upstream: mmv1/products/gkehub/Membership.yaml
   # Wave 16 (Logging analytics extension)
@@ -557,6 +635,8 @@ files:
     upstream: mmv1/products/oracledatabase/GoldengateConnectionAssignment.yaml
   google_oracle_database_goldengate_deployment:
     upstream: mmv1/products/oracledatabase/GoldengateDeployment.yaml
+  google_observability_trace_scope:
+    upstream: mmv1/products/observability/TraceScope.yaml
   google_oracle_database_odb_network:
     upstream: mmv1/products/oracledatabase/OdbNetwork.yaml
   google_oracle_database_odb_subnet:
@@ -573,9 +653,61 @@ files:
     upstream: mmv1/products/oracledatabase/ExadbVmCluster.yaml
   google_oracle_database_exascale_db_storage_vault:
     upstream: mmv1/products/oracledatabase/ExascaleDbStorageVault.yaml
+  google_parameter_manager_parameter:
+    upstream: mmv1/products/parametermanager/Parameter.yaml
+  google_parameter_manager_parameter_version:
+    upstream: mmv1/products/parametermanager/ParameterVersion.yaml
+  google_parameter_manager_regional_parameter:
+    upstream: mmv1/products/parametermanagerregional/RegionalParameter.yaml
+  google_parameter_manager_regional_parameter_version:
+    upstream: mmv1/products/parametermanagerregional/RegionalParameterVersion.yaml
+  google_network_security_address_group:
+    upstream: mmv1/products/networksecurity/AddressGroup.yaml
+  google_network_security_url_lists:
+    upstream: mmv1/products/networksecurity/UrlList.yaml
   google_redis_instance:
     upstream: mmv1/products/redis/Instance.yaml
+  google_vertex_ai_feature_group:
+    upstream: mmv1/products/vertexai/FeatureGroup.yaml
+  google_vertex_ai_dataset:
+    upstream: mmv1/products/vertexai/Dataset.yaml
+  google_vertex_ai_tensorboard:
+    upstream: mmv1/products/vertexai/Tensorboard.yaml
+  google_vertex_ai_cache_config:
+    upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
   google_spanner_database:
     upstream: mmv1/products/spanner/Database.yaml
   google_spanner_instance:
     upstream: mmv1/products/spanner/Instance.yaml
+  google_document_ai_processor:
+    upstream: mmv1/products/documentai/Processor.yaml
+  google_essential_contacts_contact:
+    upstream: mmv1/products/essentialcontacts/Contact.yaml
+  google_service_directory_namespace:
+    upstream: mmv1/products/servicedirectory/Namespace.yaml
+  google_service_directory_service:
+    upstream: mmv1/products/servicedirectory/Service.yaml
+  google_service_directory_endpoint:
+    upstream: mmv1/products/servicedirectory/Endpoint.yaml
+  google_service_directory_namespace_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_service_directory_service_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_secret_manager_regional_secret:
+    upstream: mmv1/products/secretmanagerregional/RegionalSecret.yaml
+  google_secret_manager_regional_secret_version:
+    upstream: mmv1/products/secretmanagerregional/RegionalSecretVersion.yaml
+  google_secret_manager_regional_secret_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_workflows_workflow:
+    upstream: mmv1/products/workflows/Workflow.yaml
+  google_tags_tag_key:
+    upstream: mmv1/products/tags/TagKey.yaml
+  google_tags_tag_value:
+    upstream: mmv1/products/tags/TagValue.yaml
+  google_tags_tag_binding:
+    upstream: mmv1/products/tags/TagBinding.yaml
+  google_tags_tag_key_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_tags_tag_value_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation

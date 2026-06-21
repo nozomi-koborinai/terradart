@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.16.0 - 2026-06-21
+
+Lockstep version bump for the v0.16.0 binary release. No
+`terradart_coverage` API or CLI changes.
+
 ## 0.15.0 - 2026-06-20
 
 Lockstep version bump for the v0.15.0 binary release. No

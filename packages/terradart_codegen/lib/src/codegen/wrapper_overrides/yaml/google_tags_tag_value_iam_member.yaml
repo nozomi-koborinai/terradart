@@ -1,0 +1,9 @@
+outputDir: tags
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - tag_value
+  - role
+  - member
+  - condition

@@ -1,0 +1,68 @@
+outputDir: healthcare
+deriveClassDoc: true
+deriveOutputGetters: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+prelude: |
+  /// HL7v2 message-schema version used by a [HealthcareHl7V2StoreParserConfig].
+  enum HealthcareHl7V2StoreParserConfigVersion implements TerraformEnum {
+    /// Legacy parser (V1).
+    v1('V1'),
+
+    /// V2 parser.
+    v2('V2'),
+
+    /// V3 parser (recommended).
+    v3('V3');
+
+    const HealthcareHl7V2StoreParserConfigVersion(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `parser_config` block on a [GoogleHealthcareHl7V2Store] — controls how
+  /// inbound HL7v2 messages are parsed.
+  @immutable
+  class HealthcareHl7V2StoreParserConfig {
+    const HealthcareHl7V2StoreParserConfig({
+      this.version,
+      this.allowNullHeader,
+      this.segmentTerminator,
+      this.schema,
+    });
+
+    /// Parser version. Prefer [HealthcareHl7V2StoreParserConfigVersion.v3].
+    final TfArg<HealthcareHl7V2StoreParserConfigVersion>? version;
+
+    /// Whether messages with no header segment are accepted.
+    final TfArg<bool>? allowNullHeader;
+
+    /// Byte(s) to use as the segment terminator (base64-encoded).
+    final TfArg<String>? segmentTerminator;
+
+    /// JSON-encoded schema describing how to parse messages.
+    final TfArg<String>? schema;
+
+    Map<String, Object?> encode() => {
+          if (version != null) 'version': version!.toTfJson(),
+          if (allowNullHeader != null)
+            'allow_null_header': allowNullHeader!.toTfJson(),
+          if (segmentTerminator != null)
+            'segment_terminator': segmentTerminator!.toTfJson(),
+          if (schema != null) 'schema': schema!.toTfJson(),
+        };
+  }
+
+customSlots:
+  parser_config:
+    paramDeclaration: "HealthcareHl7V2StoreParserConfig? parserConfig"
+    argMapEntry: "if (parserConfig != null) 'parser_config': TfArg.literal(parserConfig.encode()),"
+
+paramOrder:
+  - name
+  - dataset
+  - reject_duplicate_message
+  - parser_config
+  - labels

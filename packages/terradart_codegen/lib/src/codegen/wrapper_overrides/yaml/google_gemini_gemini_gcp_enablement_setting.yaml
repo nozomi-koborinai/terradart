@@ -1,0 +1,12 @@
+outputDir: gemini
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - gemini_gcp_enablement_setting_id
+  - location
+  - enable_customer_data_sharing
+  - disable_web_grounding
+  - web_grounding_type
+  - labels
+  - project
