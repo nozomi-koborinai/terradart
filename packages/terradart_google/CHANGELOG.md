@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.19.0 - 2026-06-21
+
+Lockstep release. **No breaking changes** vs `0.18.0`.
+
+### Added
+
+- Wave 72 — IAP App Engine IAM (3 `*_iam_member` factories): service, version, and app-wide App Engine IAP access. Catalog: **333 curated resource factories + 1 data source** (334 entries; 59 service barrels).
+- [`iam_quickstart`](../../examples/iam_quickstart/) extended to exercise all three factories.
+
 ## 0.18.0 - 2026-06-21
 
 Lockstep release. **No breaking changes** vs `0.17.1`.

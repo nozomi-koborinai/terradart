@@ -1,6 +1,6 @@
 ---
 title: Waves 23–41
-description: Curated google_* factories shipped through Wave 71 (v0.12.10–v0.18.0) with example stack pointers.
+description: Curated google_* factories shipped through Wave 72 (v0.12.10–v0.19.0) with example stack pointers.
 ---
 
 ## v0.12.10 — Waves 23–24
@@ -302,6 +302,18 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_memcache_instance` | `GoogleMemcacheInstance` | `memcache` | [cloud_run_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloud_run_quickstart) |
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
+
+## Wave 72 — IAP App Engine IAM members
+
+Adds three additive `*_iam_member` factories under the `iap` barrel for Identity-Aware Proxy access to App Engine at service, version, and app-wide scope. Exercised by extending [iam_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/iam_quickstart) (IAP API enablement + three member grants).
+
+Catalog after Wave 72: **333 curated resource factories + 1 data source** (334 catalog entries). 59 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_iap_app_engine_service_iam_member` | `GoogleIapAppEngineServiceIamMember` | `iap` | [iam_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/iam_quickstart) |
+| `google_iap_app_engine_version_iam_member` | `GoogleIapAppEngineVersionIamMember` | `iap` | [iam_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/iam_quickstart) |
+| `google_iap_web_type_app_engine_iam_member` | `GoogleIapWebTypeAppEngineIamMember` | `iap` | [iam_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/iam_quickstart) |
 
 ## Wave 71 — App Engine
 
