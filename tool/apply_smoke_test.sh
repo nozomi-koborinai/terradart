@@ -66,4 +66,19 @@ while IFS= read -r s; do
   printf '%s\n' "$apply_set" | grep -qxF "$s" || fail "pr-skip '$s' must stay in the --all apply set (sweep applies it)"
 done <<< "$pr_skip_slugs"
 
+# 7. changed-mode filter: only bin/lib paths select an example (not pubspec/README).
+filter_changed_paths() {
+  awk -F/ '/^examples\/[^/]+_quickstart\/(bin|lib)\// {print $2}' | sort -u
+}
+changed_out="$(printf '%s\n' \
+  'examples/dns_quickstart/pubspec.yaml' \
+  'examples/app_engine_quickstart/README.md' \
+  'examples/dns_quickstart/lib/main.dart' \
+  'examples/pubsub_quickstart/bin/infra.dart' \
+  | filter_changed_paths)"
+[[ "$changed_out" == "$(printf '%s\n' dns_quickstart pubsub_quickstart)" ]] \
+  || fail "changed-mode path filter:
+got:
+$changed_out"
+
 echo "apply_smoke_test: OK"

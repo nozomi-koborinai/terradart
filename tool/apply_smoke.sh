@@ -56,8 +56,10 @@ select_examples() {
     example) printf '%s\n' "$EXPLICIT_EXAMPLE" ;;
     all) for d in examples/*_quickstart/; do basename "$d"; done | sort ;;
     changed)
+      # Only infra sources (bin/lib) — pubspec/README/analysis_options bumps must
+      # not fan out apply-smoke to every quickstart on a Wave version bump.
       git diff --name-only "${GITHUB_BASE_SHA:-origin/main}" HEAD -- 'examples/' 2>/dev/null \
-        | awk -F/ '/^examples\/[^/]+_quickstart\// {print $2}' | sort -u
+        | awk -F/ '/^examples\/[^/]+_quickstart\/(bin|lib)\// {print $2}' | sort -u
       ;;
   esac
 }
@@ -211,7 +213,11 @@ apply_one() {
     # silently-failed destroy once left a running GKE cluster orphaned that
     # only a manual gcloud sweep caught. Recorded failures fail the run below.
     apply_rc=0
-    tf_lockaware apply -auto-approve -input=false || apply_rc=$?
+    apply_out=""
+    apply_out="$(tf_lockaware apply -auto-approve -input=false 2>&1 | tee /dev/stderr)" || apply_rc=$?
+    if [[ "$apply_rc" != "0" ]] && grep -qE 'already exists|AlreadyExists' <<<"$apply_out"; then
+      echo "  !! apply hit alreadyExists — GCP resources likely orphaned outside state (e.g. a cancelled prior run); destroy can only remove resources tracked in state" >&2
+    fi
     if ! tf_lockaware destroy -auto-approve -input=false; then
       echo "  !! teardown failed for $slug — retrying in 15s" >&2
       sleep 15
