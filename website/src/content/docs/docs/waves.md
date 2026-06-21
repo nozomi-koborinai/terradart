@@ -303,6 +303,16 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 
+## Wave 70 — Vertex AI GenAI cache config
+
+Extends the `vertex_ai` barrel with `google_vertex_ai_cache_config` — a project-level singleton that toggles GenAI response caching (`disable_cache`). Flat factory with no nested enums. Exercised by extending [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart).
+
+Catalog after Wave 70: **322 curated resource factories + 1 data source** (323 catalog entries). 58 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_vertex_ai_cache_config` | `GoogleVertexAiCacheConfig` | `vertex_ai` | [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart) |
+
 ## Wave 69 — Network Connectivity Center hub
 
 Extends the `network` barrel with `google_network_connectivity_hub` — a global, free routing fabric for Network Connectivity Center (spokes attach separately). `policy_mode` / `preset_topology` are optional+computed in the provider schema, so they stay plain `String` inputs. Exercised by extending [network_security_lists_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_security_lists_quickstart) (which now also enables `networkconnectivity.googleapis.com`).

@@ -117,6 +117,16 @@ final class FeatureStack extends Stack {
       ),
     );
 
+    // Project-level GenAI cache config (singleton per project). Free to toggle;
+    // destroyed cleanly when removed from Terraform state.
+    add(
+      GoogleVertexAiCacheConfig(
+        localName: 'genai_cache',
+        disableCache: TfArg.literal(false),
+        dependsOn: [ResourceDependency(apiVertex)],
+      ),
+    );
+
     // Literal feature-group name -- emitted as a Dart constant at synth time.
     addExport(
       'FEATURE_GROUP_NAME',

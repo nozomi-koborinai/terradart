@@ -673,6 +673,8 @@ files:
     upstream: mmv1/products/vertexai/Dataset.yaml
   google_vertex_ai_tensorboard:
     upstream: mmv1/products/vertexai/Tensorboard.yaml
+  google_vertex_ai_cache_config:
+    upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
   google_spanner_database:
     upstream: mmv1/products/spanner/Database.yaml
   google_spanner_instance:

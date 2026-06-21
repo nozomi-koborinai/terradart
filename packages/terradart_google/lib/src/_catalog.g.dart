@@ -8254,6 +8254,17 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_tags_tag_value_iam_member`.',
   ),
   CatalogEntry(
+    tfType: 'google_vertex_ai_cache_config',
+    className: 'GoogleVertexAiCacheConfig',
+    barrel: 'vertex_ai',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_vertex_ai_cache_config`.',
+    constructorParams: <String>['localName', 'disableCache', 'project'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment: 'Factory wrapper for `google_vertex_ai_cache_config`.',
+  ),
+  CatalogEntry(
     tfType: 'google_vertex_ai_dataset',
     className: 'GoogleVertexAiDataset',
     barrel: 'vertex_ai',
