@@ -1,0 +1,10 @@
+outputDir: app
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - domain_name
+  - override_strategy
+  - ssl_settings
+  - deletion_policy
+  - project

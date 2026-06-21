@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleVertexAiDatasetSensitive = <String>{};
 
 /// Factory wrapper for `google_vertex_ai_dataset`.
+///
+/// A collection of DataItems and Annotations on them.
 final class GoogleVertexAiDataset extends Resource {
   static const String tfType = 'google_vertex_ai_dataset';
 

@@ -1,6 +1,6 @@
 ---
 title: Waves 23–41
-description: Curated google_* factories shipped through Wave 70 (v0.12.10–v0.16.0) with example stack pointers.
+description: Curated google_* factories shipped through Wave 71 (v0.12.10–v0.18.0) with example stack pointers.
 ---
 
 ## v0.12.10 — Waves 23–24
@@ -302,6 +302,23 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_memcache_instance` | `GoogleMemcacheInstance` | `memcache` | [cloud_run_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloud_run_quickstart) |
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
+
+## Wave 71 — App Engine
+
+Adds eight App Engine factories under the new `app` barrel: project application registration, URL dispatch rules, domain mapping, firewall rules, standard- and flexible-environment service versions (flexible uses a sealed automatic/manual scaling dispatch), and per-service network/traffic settings. Exercised by [app_engine_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/app_engine_quickstart).
+
+Catalog after Wave 71: **330 curated resource factories + 1 data source** (331 catalog entries). 59 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_app_engine_application` | `GoogleAppEngineApplication` | `app` | [app_engine_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/app_engine_quickstart) |
+| `google_app_engine_application_url_dispatch_rules` | `GoogleAppEngineApplicationUrlDispatchRules` | `app` | [app_engine_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/app_engine_quickstart) |
+| `google_app_engine_domain_mapping` | `GoogleAppEngineDomainMapping` | `app` | [app_engine_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/app_engine_quickstart) |
+| `google_app_engine_firewall_rule` | `GoogleAppEngineFirewallRule` | `app` | [app_engine_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/app_engine_quickstart) |
+| `google_app_engine_flexible_app_version` | `GoogleAppEngineFlexibleAppVersion` | `app` | [app_engine_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/app_engine_quickstart) |
+| `google_app_engine_service_network_settings` | `GoogleAppEngineServiceNetworkSettings` | `app` | [app_engine_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/app_engine_quickstart) |
+| `google_app_engine_service_split_traffic` | `GoogleAppEngineServiceSplitTraffic` | `app` | [app_engine_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/app_engine_quickstart) |
+| `google_app_engine_standard_app_version` | `GoogleAppEngineStandardAppVersion` | `app` | [app_engine_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/app_engine_quickstart) |
 
 ## Wave 70 — Vertex AI GenAI cache config
 

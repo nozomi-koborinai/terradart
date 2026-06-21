@@ -1,0 +1,56 @@
+outputDir: app
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Registers the App Engine application for a GCP project (one per project).
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [locationId]: region or multi-region for the default Firestore database
+  ///   when [databaseType] is `CLOUD_FIRESTORE` (e.g. `'us-central'`).
+  ///
+  /// Example (Native Firestore-backed app in us-central):
+  /// ```dart
+  /// final app = GoogleAppEngineApplication(
+  ///   localName: 'app',
+  ///   locationId: TfArg.literal('us-central'),
+  ///   databaseType: TfArg.literal(AppEngineDatabaseType.cloudFirestore),
+  /// );
+  /// ```
+
+paramOrder:
+  - location_id
+  - database_type
+  - serving_status
+  - auth_domain
+  - ssl_policy
+  - feature_settings
+  - iap
+  - project
+
+prelude: |
+  /// Default database mode for an [GoogleAppEngineApplication].
+  enum AppEngineDatabaseType implements TerraformEnum {
+    cloudFirestore('CLOUD_FIRESTORE'),
+    cloudDatastore('CLOUD_DATASTORE_COMPATIBILITY');
+
+    const AppEngineDatabaseType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Serving status for an [GoogleAppEngineApplication].
+  enum AppEngineServingStatus implements TerraformEnum {
+    serving('SERVING'),
+    userDisabled('USER_DISABLED'),
+    systemDisabled('SYSTEM_DISABLED');
+
+    const AppEngineServingStatus(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  database_type: AppEngineDatabaseType
+  serving_status: AppEngineServingStatus

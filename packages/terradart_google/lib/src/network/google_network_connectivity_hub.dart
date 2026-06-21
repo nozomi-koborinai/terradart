@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleNetworkConnectivityHubSensitive = <String>{};
 
 /// Factory wrapper for `google_network_connectivity_hub`.
+///
+/// The NetworkConnectivity Hub resource
 final class GoogleNetworkConnectivityHub extends Resource {
   static const String tfType = 'google_network_connectivity_hub';
 

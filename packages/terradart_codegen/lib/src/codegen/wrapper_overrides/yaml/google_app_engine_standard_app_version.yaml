@@ -1,0 +1,25 @@
+outputDir: app
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - service
+  - version_id
+  - runtime
+  - runtime_api_version
+  - instance_class
+  - env_variables
+  - handlers
+  - deployment
+  - entrypoint
+  - automatic_scaling
+  - manual_scaling
+  - vpc_access_connector
+  - app_engine_apis
+  - delete_service_on_destroy
+  - deletion_policy
+  - noop_on_destroy
+  - service_account
+  - threadsafe
+  - inbound_services
+  - project

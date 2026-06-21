@@ -1,0 +1,9 @@
+outputDir: app
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - service
+  - split
+  - migrate_traffic
+  - project

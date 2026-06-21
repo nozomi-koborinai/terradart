@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleGeminiLoggingSettingSensitive = <String>{};
 
 /// Factory wrapper for `google_gemini_logging_setting`.
+///
+/// The resource for managing Logging settings for Admin Control.
 final class GoogleGeminiLoggingSetting extends Resource {
   static const String tfType = 'google_gemini_logging_setting';
 

@@ -43,6 +43,8 @@ enum WorkflowsWorkflowExecutionHistoryLevel implements TerraformEnum {
 }
 
 /// Factory wrapper for `google_workflows_workflow`.
+///
+/// Workflow program to be executed by Workflows.
 final class GoogleWorkflowsWorkflow extends Resource {
   static const String tfType = 'google_workflows_workflow';
 

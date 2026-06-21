@@ -1,0 +1,11 @@
+outputDir: app
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - priority
+  - action
+  - source_range
+  - description
+  - deletion_policy
+  - project
