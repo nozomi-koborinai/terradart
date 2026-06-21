@@ -3,7 +3,7 @@ title: Getting Started
 description: Install TerraDart and generate your first *.tf.json from a Stack.
 ---
 
-This guide matches the [README quickstart](https://github.com/nozomi-koborinai/terradart#quickstart) for the **0.16.x** line. TerraDart is **pre-alpha** until [beta gates](/docs/status/#beta-readiness-checklist) are complete (planned label: **v0.16.0**).
+This guide matches the [README quickstart](https://github.com/nozomi-koborinai/terradart#quickstart) for the **0.17.x** line. TerraDart is **pre-alpha** until [beta gates](/docs/status/#beta-readiness-checklist) are complete (planned label: **v0.17.0**).
 
 ## Prerequisites
 
