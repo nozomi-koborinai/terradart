@@ -1,0 +1,30 @@
+outputDir: iap
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Additive IAM grant for Identity-Aware Proxy access to the App Engine
+  /// application at **project scope** (all services/versions).
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [appId]: App Engine application ID (usually the GCP project ID).
+  /// - [role]: typically `'roles/iap.httpsResourceAccessor'`.
+  /// - [member]: IAM principal string.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleIapWebTypeAppEngineIamMember(
+  ///   localName: 'app_invoker',
+  ///   appId: TfArg.literal(projectId),
+  ///   role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+  ///   member: TfArg.ref(sa.iamMember),
+  /// );
+  /// ```
+
+paramOrder:
+  - app_id
+  - role
+  - member
+  - condition
+  - project

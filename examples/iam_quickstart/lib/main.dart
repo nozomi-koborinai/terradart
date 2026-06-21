@@ -1,26 +1,21 @@
 /// IAM quickstart -- Workload Identity Federation (pool + GitHub OIDC provider),
-/// all four curated `_iam_member` resources in one Stack, plus the
-/// [GoogleServiceAccount] they bind to. Wave 5 Batch 2 extends the stack
-/// with the IAM-core surface (custom role + project-level grant +
-/// service-account-level grant + service-account key).
+/// curated `_iam_member` resources across Pub/Sub, Cloud Tasks, Secret Manager,
+/// and IAP App Engine, plus the [GoogleServiceAccount] they bind to.
 ///
 /// Demonstrates the additive `_iam_member` pattern across:
 ///   1. `google_pubsub_topic_iam_member`
 ///   2. `google_pubsub_subscription_iam_member`
 ///   3. `google_cloud_tasks_queue_iam_member`
 ///   4. `google_secret_manager_secret_iam_member`
+///   5. `google_iap_app_engine_service_iam_member`
+///   6. `google_iap_app_engine_version_iam_member`
+///   7. `google_iap_web_type_app_engine_iam_member`
 ///
-/// And the IAM-core resources:
-///   5. `google_project_iam_custom_role` -- defines a minimal read-only
-///      Cloud Storage observer custom role.
-///   6. `google_project_iam_member` -- grants that custom role to the demo
-///      SA at the project level.
-///   7. `google_service_account_iam_member` -- grants
-///      `roles/iam.serviceAccountUser` to a second SA on the demo SA
-///      (impersonation seam).
-///   8. `google_service_account_key` -- emits a long-lived JSON key for
-///      the demo SA. The `private_key` output is marked sensitive and
-///      masked at synth time.
+/// IAM-core resources (custom role, project binding, SA impersonation, SA key):
+///   8. `google_project_iam_custom_role`
+///   9. `google_project_iam_member`
+///  10. `google_service_account_iam_member`
+///  11. `google_service_account_key`
 ///
 /// WIF (0.12.5 debt): `google_iam_workload_identity_pool_provider` with
 /// sealed [IamWorkloadIdentityPoolProviderOidcTrust] for GitHub Actions.
@@ -36,6 +31,8 @@ library;
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_tasks.dart';
 import 'package:terradart_google/iam.dart';
+import 'package:terradart_google/iap.dart';
+import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';
 import 'package:terradart_google/secret_manager.dart';
@@ -101,12 +98,42 @@ final class IamShowcaseStack extends Stack {
 
     final saMember = TfArg.ref(sa.iamMember);
 
+    final apiPubsub = add(
+      GoogleProjectService(
+        localName: 'api_pubsub',
+        service: TfArg.literal('pubsub.googleapis.com'),
+        disableOnDestroy: TfArg.literal(false),
+      ),
+    );
+    final apiCloudTasks = add(
+      GoogleProjectService(
+        localName: 'api_cloudtasks',
+        service: TfArg.literal('cloudtasks.googleapis.com'),
+        disableOnDestroy: TfArg.literal(false),
+      ),
+    );
+    final apiSecretManager = add(
+      GoogleProjectService(
+        localName: 'api_secretmanager',
+        service: TfArg.literal('secretmanager.googleapis.com'),
+        disableOnDestroy: TfArg.literal(false),
+      ),
+    );
+    final apiIap = add(
+      GoogleProjectService(
+        localName: 'api_iap',
+        service: TfArg.literal('iap.googleapis.com'),
+        disableOnDestroy: TfArg.literal(false),
+      ),
+    );
+
     // ---- Resources to grant against ----------------------------------------
 
     final topic = add(
       GooglePubsubTopic(
         localName: 'demo',
         name: TfArg.literal('demo-topic'),
+        dependsOn: [ResourceDependency(apiPubsub)],
       ),
     );
 
@@ -116,6 +143,7 @@ final class IamShowcaseStack extends Stack {
         name: TfArg.literal('demo-sub'),
         // topic.id (NOT topic.nameRef) -- subscriptions need full path.
         topic: TfArg.ref(topic.id),
+        dependsOn: [ResourceDependency(apiPubsub)],
       ),
     );
 
@@ -124,6 +152,7 @@ final class IamShowcaseStack extends Stack {
         localName: 'demo_queue',
         name: TfArg.literal('demo-queue'),
         location: TfArg.literal('us-central1'),
+        dependsOn: [ResourceDependency(apiCloudTasks)],
       ),
     );
 
@@ -132,6 +161,7 @@ final class IamShowcaseStack extends Stack {
         localName: 'demo_secret',
         secretId: TfArg.literal('demo-secret'),
         replication: SecretManagerSecretReplication.auto(),
+        dependsOn: [ResourceDependency(apiSecretManager)],
       ),
     );
 
@@ -184,7 +214,45 @@ final class IamShowcaseStack extends Stack {
       ),
     );
 
-    // ---- 5. Custom role: minimal Cloud Storage observer -------------------
+    // ---- 5–7. IAP App Engine: service, version, and app-wide access ---------
+    //
+    // These use literal App Engine identifiers (no App Engine application
+    // resource required for synth). `appId` is typically the GCP project ID.
+
+    add(
+      GoogleIapAppEngineServiceIamMember(
+        localName: 'gae_service_invoker',
+        appId: TfArg.literal(projectId),
+        service: TfArg.literal('default'),
+        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+        member: saMember,
+        dependsOn: [ResourceDependency(apiIap)],
+      ),
+    );
+
+    add(
+      GoogleIapAppEngineVersionIamMember(
+        localName: 'gae_version_invoker',
+        appId: TfArg.literal(projectId),
+        service: TfArg.literal('default'),
+        versionId: TfArg.literal('v1'),
+        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+        member: saMember,
+        dependsOn: [ResourceDependency(apiIap)],
+      ),
+    );
+
+    add(
+      GoogleIapWebTypeAppEngineIamMember(
+        localName: 'gae_app_invoker',
+        appId: TfArg.literal(projectId),
+        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+        member: saMember,
+        dependsOn: [ResourceDependency(apiIap)],
+      ),
+    );
+
+    // ---- 8. Custom role: minimal Cloud Storage observer -------------------
     //
     // A least-privilege custom role granting read-only access to GCS
     // objects + buckets. Useful as a building block when a predefined
@@ -208,7 +276,7 @@ final class IamShowcaseStack extends Stack {
       ),
     );
 
-    // ---- 6. Project-level binding: grant custom role to demo SA -----------
+    // ---- 9. Project-level binding: grant custom role to demo SA -----------
     //
     // Wait for the custom role to exist before referencing it.
 
@@ -224,7 +292,7 @@ final class IamShowcaseStack extends Stack {
       ),
     );
 
-    // ---- 7. Service-account-level binding: impersonation ------------------
+    // ---- 10. Service-account-level binding: impersonation ------------------
     //
     // A second SA represents whoever needs to impersonate `demo`. Granting
     // `roles/iam.serviceAccountUser` on `demo` lets the second SA generate
@@ -248,7 +316,7 @@ final class IamShowcaseStack extends Stack {
       ),
     );
 
-    // ---- 8. Long-lived SA key for the demo SA -----------------------------
+    // ---- 11. Long-lived SA key for the demo SA -----------------------------
     //
     // Only do this when integrating with a system that cannot accept
     // short-lived OAuth tokens. The `private_key` output is sensitive --

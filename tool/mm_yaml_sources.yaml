@@ -560,6 +560,12 @@ files:
     upstream: mmv1/products/eventarc/GoogleChannelConfig.yaml
   google_cloud_run_v2_worker_pool:
     upstream: mmv1/products/cloudrunv2/WorkerPool.yaml
+  google_iap_app_engine_service_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_app_engine_version_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_web_type_app_engine_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_iap_web_backend_service_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   # Wave 24 (DNS response policy, Cloud Run worker pool IAM, Compute router, BigQuery datapolicy IAM)

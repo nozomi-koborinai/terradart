@@ -4,6 +4,15 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage` — this top-level file summarises cross-cutting milestones.
 
+## [0.19.0] - 2026-06-21
+
+Lockstep release across the workspace. **No breaking changes** vs `0.18.0`.
+
+### Added
+
+- **`terradart_google`** — Wave 72 (IAP App Engine IAM): **3** additive `*_iam_member` factories — `google_iap_app_engine_service_iam_member`, `google_iap_app_engine_version_iam_member`, `google_iap_web_type_app_engine_iam_member`. Catalog grows to **333 curated resource factories + 1 data source** (334 entries; 59 service barrels).
+- **Examples** — `iam_quickstart` extended with IAP API enablement and all three App Engine IAP member grants.
+
 ## [0.18.0] - 2026-06-21
 
 Lockstep release across the workspace. **No breaking changes** vs `0.17.1`.
