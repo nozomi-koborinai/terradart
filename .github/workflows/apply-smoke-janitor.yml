@@ -2,9 +2,11 @@ name: Apply smoke janitor
 
 on:
   schedule:
-    # Every 6 hours: reclaim anything a failed or cancelled apply left behind
-    # promptly (PR runs now cancel in-progress, so a teardown can be interrupted).
-    - cron: "0 */6 * * *"
+    # Weekly (Sundays 14:00 UTC). Teardown now runs with -lock=false, so a
+    # cancelled run no longer leaves a lock-blocked orphan; the janitor is just a
+    # periodic backstop for state-tracked leftovers — 6-hourly was overkill.
+    # (Avoids the monthly sweep's 02:00-on-the-1st slot.)
+    - cron: "0 14 * * 0"
   workflow_dispatch:
 
 permissions:

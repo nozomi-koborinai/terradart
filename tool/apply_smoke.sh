@@ -149,7 +149,7 @@ export DB_PASSWORD="${DB_PASSWORD:-apply-smoke-placeholder}"
 
 dart pub get
 
-# --- terraform with stale-lock recovery ------------------------------------
+# --- terraform APPLY with stale-lock recovery (teardown uses tf_destroy) ---
 # A killed apply-smoke run (e.g. GitHub's cancel-in-progress when a PR is
 # re-pushed) leaves the GCS backend lock held; the next run then dies with
 # "Error acquiring the state lock". Run terraform, and on THAT error force-
@@ -179,6 +179,16 @@ tf_lockaware() {
   terraform "$@"
 }
 
+# Teardown runs with -lock=false on purpose: apply-smoke processes slugs
+# serially (no concurrent writer to guard), and a stale lock from a cancelled
+# run — whose age is always < 15 min, so tf_lockaware treats it as "live" and
+# refuses to break it — must never block reclaiming state. tf_lockaware above
+# is therefore apply-only. State-UNtracked orphans (a killed apply mid-create,
+# never written to state) still need a gcloud-based janitor (separate task).
+tf_destroy() {
+  terraform destroy -auto-approve -input=false -lock=false
+}
+
 # --- apply (or destroy-only) one example, with a GCS-backed state ----------
 apply_one() {
   local slug="$1"
@@ -205,7 +215,7 @@ apply_one() {
       "$STATE_BUCKET" "$slug" > backend.tf.json
     terraform init -input=false -reconfigure || exit 1
     if [[ "$DESTROY_ONLY" == "1" ]]; then
-      tf_lockaware destroy -auto-approve -input=false
+      tf_destroy
       exit $?
     fi
     # Apply, then ALWAYS tear down — capturing the apply result separately.
@@ -218,10 +228,10 @@ apply_one() {
     if [[ "$apply_rc" != "0" ]] && grep -qE 'already exists|AlreadyExists' <<<"$apply_out"; then
       echo "  !! apply hit alreadyExists — GCP resources likely orphaned outside state (e.g. a cancelled prior run); destroy can only remove resources tracked in state" >&2
     fi
-    if ! tf_lockaware destroy -auto-approve -input=false; then
+    if ! tf_destroy; then
       echo "  !! teardown failed for $slug — retrying in 15s" >&2
       sleep 15
-      if ! tf_lockaware destroy -auto-approve -input=false; then
+      if ! tf_destroy; then
         echo "  !! TEARDOWN FAILED for $slug after retry — ORPHAN RISK; run tool/apply_smoke_janitor.sh" >&2
         echo "$slug" >> "$TEARDOWN_FAILS_FILE"
       fi
