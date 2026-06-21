@@ -81,8 +81,27 @@ is_skipped() {
 }
 skip_reason() { grep -E "^$1:[[:space:]]" "$SKIP_FILE" | head -1 | sed -E 's/^[^:]+:[[:space:]]*//'; }
 
+# PR-only skip: high-cost examples (GKE, Compute VMs) the per-PR change-gate
+# defers to the full sweep to keep per-PR apply cost down. Honored ONLY in
+# `changed` mode — `--all` (sweep), `--example` (override), and `--destroy-only`
+# (janitor) all apply them. See tool/apply_smoke_pr_skip.yaml.
+PR_SKIP_FILE="tool/apply_smoke_pr_skip.yaml"
+is_pr_skipped() {
+  [[ -f "$PR_SKIP_FILE" ]] || return 1
+  grep -qE "^$1:[[:space:]]" "$PR_SKIP_FILE"
+}
+pr_skip_reason() { grep -E "^$1:[[:space:]]" "$PR_SKIP_FILE" | head -1 | sed -E 's/^[^:]+:[[:space:]]*//'; }
+
+# Reason string for a skipped slug, whichever list deferred it.
+reason_for() {
+  if is_skipped "$1"; then skip_reason "$1"; else pr_skip_reason "$1"; fi
+}
+
 HONOR_SKIP=1
 [[ "$DESTROY_ONLY" == "1" || "$MODE" == "example" ]] && HONOR_SKIP=0
+# The PR-only skip applies to the change-gate (changed mode) alone.
+HONOR_PR_SKIP=0
+[[ "$MODE" == "changed" ]] && HONOR_PR_SKIP=1
 
 EXAMPLES=()
 SKIPPED=()
@@ -91,6 +110,8 @@ SKIPPED=()
 if [[ ${#SELECTED[@]} -gt 0 ]]; then
   for _slug in "${SELECTED[@]}"; do
     if [[ "$HONOR_SKIP" == "1" ]] && is_skipped "$_slug"; then
+      SKIPPED+=("$_slug")
+    elif [[ "$HONOR_PR_SKIP" == "1" ]] && is_pr_skipped "$_slug"; then
       SKIPPED+=("$_slug")
     else
       EXAMPLES+=("$_slug")
@@ -102,13 +123,13 @@ fi
 if [[ "$DRY_RUN" == "1" ]]; then
   [[ ${#EXAMPLES[@]} -gt 0 ]] && printf '%s\n' "${EXAMPLES[@]}"
   if [[ ${#SKIPPED[@]} -gt 0 ]]; then
-    for _s in "${SKIPPED[@]}"; do echo "skip $_s ($(skip_reason "$_s"))" >&2; done
+    for _s in "${SKIPPED[@]}"; do echo "skip $_s ($(reason_for "$_s"))" >&2; done
   fi
   exit 0
 fi
 
 if [[ ${#SKIPPED[@]} -gt 0 ]]; then
-  for _s in "${SKIPPED[@]}"; do echo ">> skip $_s ($(skip_reason "$_s"))"; done
+  for _s in "${SKIPPED[@]}"; do echo ">> skip $_s ($(reason_for "$_s"))"; done
 fi
 
 if [[ ${#EXAMPLES[@]} -eq 0 ]]; then
