@@ -4,6 +4,16 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage` — this top-level file summarises cross-cutting milestones.
 
+## [0.17.0] - 2026-06-21
+
+Lockstep release across the workspace. **No breaking changes** vs `0.16.0`.
+
+### Added
+
+- **`terradart_coverage`** — `terradart-coverage --dir <dir>` runs `terraform show -json` for you, so you can point the checker at a Terraform working directory (HCL or JSON) instead of piping output; a bare invocation defaults to the current directory. Adds the package README and an end-to-end test against a real `terraform show -json` document (suite 16 → 31).
+
+`terradart_core`, `terradart_codegen`, `terradart_google`, and `terradart_agent` bump in lockstep with no API or catalog changes.
+
 ## [0.16.0] - 2026-06-21
 
 Lockstep release across the workspace. **No breaking changes** vs `0.15.0`.
