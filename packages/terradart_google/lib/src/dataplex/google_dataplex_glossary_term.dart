@@ -7,9 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDataplexGlossaryTermSensitive = <String>{};
 
 /// Factory wrapper for `google_dataplex_glossary_term`.
-///
-/// Represents a collection of terms within a Glossary that are related to each
-/// other.
 final class GoogleDataplexGlossaryTerm extends Resource {
   static const String tfType = 'google_dataplex_glossary_term';
 

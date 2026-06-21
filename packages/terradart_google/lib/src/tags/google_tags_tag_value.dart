@@ -7,9 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleTagsTagValueSensitive = <String>{};
 
 /// Factory wrapper for `google_tags_tag_value`.
-///
-/// A TagValue is a child of a particular TagKey. TagValues are used to group
-/// cloud resources for the purpose of controlling them using policies.
 final class GoogleTagsTagValue extends Resource {
   static const String tfType = 'google_tags_tag_value';
 

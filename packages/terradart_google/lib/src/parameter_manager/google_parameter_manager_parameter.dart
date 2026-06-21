@@ -24,8 +24,6 @@ enum ParameterManagerParameterFormat implements TerraformEnum {
 }
 
 /// Factory wrapper for `google_parameter_manager_parameter`.
-///
-/// A Parameter resource is a logical parameter.
 final class GoogleParameterManagerParameter extends Resource {
   static const String tfType = 'google_parameter_manager_parameter';
 
