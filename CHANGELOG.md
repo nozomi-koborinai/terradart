@@ -4,6 +4,15 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage` — this top-level file summarises cross-cutting milestones.
 
+## [0.18.0] - 2026-06-21
+
+Lockstep release across the workspace. **No breaking changes** vs `0.17.1`.
+
+### Added
+
+- **`terradart_google`** — Wave 71 (App Engine): **8** curated factories — `google_app_engine_application`, `google_app_engine_application_url_dispatch_rules`, `google_app_engine_domain_mapping`, `google_app_engine_firewall_rule`, `google_app_engine_flexible_app_version` (sealed automatic/manual scaling), `google_app_engine_service_network_settings`, `google_app_engine_service_split_traffic`, `google_app_engine_standard_app_version`. New `app` service barrel. Catalog grows to **330 curated resource factories + 1 data source** (331 entries; 59 service barrels).
+- **Examples** — new [`app_engine_quickstart`](examples/app_engine_quickstart/) exercising every Wave 71 factory.
+
 ## [0.17.1] - 2026-06-21
 
 Patch release. The only change is **`terradart_coverage`**: `--dir` (and a bare invocation) now scans `.tf` / `.tf.json` source directly — recursively, with no terraform run, init, backend, or credentials — instead of running Terraform, and the evaluated `terraform show -json` path becomes opt-in. Other packages bump in lockstep with no changes.

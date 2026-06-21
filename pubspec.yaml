@@ -65,6 +65,7 @@ workspace:
   - examples/tags_quickstart
   - examples/vertex_ai_quickstart
   - examples/workflows_quickstart
+  - examples/app_engine_quickstart
 dev_dependencies:
   args: any
   meta: any

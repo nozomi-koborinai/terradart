@@ -32,6 +32,7 @@ firebase_app_hosting_quickstart: needs the project registered with Firebase + a 
 
 # --- Need a source artifact staged into the generated tf-out at apply time
 cloud_functions_quickstart: needs a real function source zip staged into tf-out
+app_engine_quickstart: needs a staged app.zip in the deploy bucket and a verifiable domain for domain mapping; one App Engine app per project
 storage_quickstart: uploads a local source file (config/app.json) absent from generated tf-out
 
 # --- Need external infra / secrets

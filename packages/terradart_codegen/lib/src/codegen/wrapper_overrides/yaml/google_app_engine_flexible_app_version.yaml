@@ -1,0 +1,82 @@
+outputDir: app
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+paramOrder:
+  - service
+  - version_id
+  - runtime
+  - runtime_api_version
+  - instance_class
+  - scaling
+  - liveness_check
+  - readiness_check
+  - vpc_access_connector
+  - env_variables
+  - beta_settings
+  - default_expiration
+  - delete_service_on_destroy
+  - deletion_policy
+  - noop_on_destroy
+  - nobuild_files_regex
+  - runtime_channel
+  - runtime_main_executable_path
+  - service_account
+  - serving_status
+  - inbound_services
+  - project
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+prelude: |
+  /// Automatic or manual scaling for [GoogleAppEngineFlexibleAppVersion].
+  sealed class AppEngineFlexibleAppVersionScaling {
+    const AppEngineFlexibleAppVersionScaling();
+
+    String get blockKey;
+
+    Map<String, Object?> encode();
+  }
+
+  /// `automatic_scaling` block — request/latency-driven autoscaling.
+  @immutable
+  final class AppEngineFlexibleAppVersionAutomaticScalingMode
+      extends AppEngineFlexibleAppVersionScaling {
+    const AppEngineFlexibleAppVersionAutomaticScalingMode({
+      required this.minTotalInstances,
+    });
+
+    final TfArg<int> minTotalInstances;
+
+    @override
+    String get blockKey => 'automatic_scaling';
+
+    @override
+    Map<String, Object?> encode() => {
+          'min_total_instances': minTotalInstances.toTfJson(),
+        };
+  }
+
+  /// `manual_scaling` block — fixed instance count.
+  @immutable
+  final class AppEngineFlexibleAppVersionManualScalingMode
+      extends AppEngineFlexibleAppVersionScaling {
+    const AppEngineFlexibleAppVersionManualScalingMode({
+      required this.instances,
+    });
+
+    final TfArg<int> instances;
+
+    @override
+    String get blockKey => 'manual_scaling';
+
+    @override
+    Map<String, Object?> encode() => {'instances': instances.toTfJson()};
+  }
+
+customSlots:
+  scaling:
+    paramDeclaration: 'required AppEngineFlexibleAppVersionScaling scaling'
+    argMapEntry: "scaling.blockKey: TfArg.literal(scaling.encode()),"

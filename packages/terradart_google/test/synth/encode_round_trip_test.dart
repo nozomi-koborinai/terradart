@@ -26,6 +26,7 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/universal_invariants/sealed_class_extractor.dart';
 import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/app.dart';
 import 'package:terradart_google/bigquery.dart';
 import 'package:terradart_google/certificate_manager.dart';
 import 'package:terradart_google/cloud_build.dart';
@@ -89,6 +90,16 @@ final Map<String, Object Function()> _syntheticInstances = {
           datasetId: TfArg.literal('d'),
           routineId: TfArg.literal('r'),
         ),
+      ),
+
+  // --- AppEngineFlexibleAppVersionScaling (2) — app_engine_flexible_app_version
+  'AppEngineFlexibleAppVersionAutomaticScalingMode': () =>
+      AppEngineFlexibleAppVersionAutomaticScalingMode(
+        minTotalInstances: TfArg.literal(1),
+      ),
+  'AppEngineFlexibleAppVersionManualScalingMode': () =>
+      AppEngineFlexibleAppVersionManualScalingMode(
+        instances: TfArg.literal(1),
       ),
 
   // --- EnvVarSource (2) — cloud_run_v2_service -----------------------------

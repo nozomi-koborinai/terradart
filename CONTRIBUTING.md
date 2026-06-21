@@ -1,14 +1,14 @@
 # Contributing to terradart
 
-Thanks for taking time to look at this. terradart is a **pre-alpha** single-maintainer project (0.17.x today; [beta planned at v0.17.0](https://terradart.dev/docs/status/#beta-readiness-checklist)). Contributions are welcome on a best-effort basis.
+Thanks for taking time to look at this. terradart is a **pre-alpha** single-maintainer project (0.18.x today; [beta planned at v0.17.0](https://terradart.dev/docs/status/#beta-readiness-checklist)). Contributions are welcome on a best-effort basis.
 
 ## What kind of contribution?
 
 terradart ships one consumer surface:
 
-- **Curated factories** — the `google_*` factory wrappers in [`terradart_google`](packages/terradart_google/README.md) (**322 curated resource factories + 1 data source** as of 0.16.x). Bug fixes, tests, and doc improvements welcome. New resources land via `terradart wrap` overrides — open an issue first to discuss scope.
+- **Curated factories** — the `google_*` factory wrappers in [`terradart_google`](packages/terradart_google/README.md) (**330 curated resource factories + 1 data source** as of 0.18.x). Bug fixes, tests, and doc improvements welcome. New resources land via `terradart wrap` overrides — open an issue first to discuss scope.
 
-Within a **minor** line (`^0.17.x`), we aim to avoid breaking public API changes. Across **minors**, breaking changes are allowed with `MIGRATING.md` coverage (stricter from v0.17.0 beta — see [status](https://terradart.dev/docs/status/)).
+Within a **minor** line (`^0.18.x`), we aim to avoid breaking public API changes. Across **minors**, breaking changes are allowed with `MIGRATING.md` coverage (stricter from v0.17.0 beta — see [status](https://terradart.dev/docs/status/)).
 
 Bug reports / questions / feature requests: pick a template when [opening an issue](https://github.com/nozomi-koborinai/terradart/issues/new/choose).
 

@@ -1,0 +1,8 @@
+outputDir: app
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - service
+  - network_settings
+  - project

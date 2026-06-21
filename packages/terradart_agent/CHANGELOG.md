@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.18.0 - 2026-06-21
+
+Lockstep release for Wave 71 (`terradart_google` App Engine). Catalog: **331 entries** (330 curated resource factories + 1 data source) across **59 service barrels**. No MCP protocol or tool changes.
+
 ## 0.17.1 - 2026-06-21
 
 Lockstep version bump for `terradart_google` v0.17.1. Catalog unchanged at

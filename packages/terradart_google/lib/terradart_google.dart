@@ -12,6 +12,7 @@ library;
 
 export 'alloydb.dart';
 export 'apigee.dart';
+export 'app.dart';
 export 'artifact_registry.dart';
 export 'biglake.dart';
 export 'bigquery.dart';

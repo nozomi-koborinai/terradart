@@ -1,0 +1,8 @@
+outputDir: app
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - dispatch_rules
+  - deletion_policy
+  - project

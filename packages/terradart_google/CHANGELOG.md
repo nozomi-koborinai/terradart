@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.18.0 - 2026-06-21
+
+Lockstep release. **No breaking changes** vs `0.17.1`.
+
+### Added
+
+- Wave 71 — App Engine (8 factories): application, URL dispatch rules, domain mapping, firewall rule, flexible/standard app versions, service network settings, service split traffic. New `app` barrel. Catalog: **330 curated resource factories + 1 data source** (331 entries; 59 service barrels).
+- [`app_engine_quickstart`](../../examples/app_engine_quickstart/) exercises every Wave 71 factory.
+
 ## 0.17.1 - 2026-06-21
 
 Lockstep release. No catalog or API changes vs `0.17.0`.

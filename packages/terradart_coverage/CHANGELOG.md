@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.18.0 - 2026-06-21
+
+Lockstep release. No API changes vs `0.17.1`.
+
 ## 0.17.1 - 2026-06-21
 
 Checking coverage no longer requires `terraform init`.

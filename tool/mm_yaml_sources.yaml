@@ -613,6 +613,22 @@ files:
     upstream: mmv1/products/apigee/DataCollector.yaml
   google_apigee_datastore:
     upstream: mmv1/products/apigee/Datastore.yaml
+  google_app_engine_application:
+    upstream: null  # handwritten in terraform-provider-google (no mmv1 Application.yaml)
+  google_app_engine_application_url_dispatch_rules:
+    upstream: mmv1/products/appengine/ApplicationUrlDispatchRules.yaml
+  google_app_engine_domain_mapping:
+    upstream: mmv1/products/appengine/DomainMapping.yaml
+  google_app_engine_firewall_rule:
+    upstream: mmv1/products/appengine/FirewallRule.yaml
+  google_app_engine_flexible_app_version:
+    upstream: mmv1/products/appengine/FlexibleAppVersion.yaml
+  google_app_engine_service_network_settings:
+    upstream: mmv1/products/appengine/ServiceNetworkSettings.yaml
+  google_app_engine_service_split_traffic:
+    upstream: mmv1/products/appengine/ServiceSplitTraffic.yaml
+  google_app_engine_standard_app_version:
+    upstream: mmv1/products/appengine/StandardAppVersion.yaml
   google_memcache_instance:
     upstream: mmv1/products/memcache/Instance.yaml
   google_migration_center_assets_export_job:
