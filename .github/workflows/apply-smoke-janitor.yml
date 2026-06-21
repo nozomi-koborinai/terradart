@@ -2,7 +2,9 @@ name: Apply smoke janitor
 
 on:
   schedule:
-    - cron: "0 6 * * *"
+    # Every 6 hours: reclaim anything a failed or cancelled apply left behind
+    # promptly (PR runs now cancel in-progress, so a teardown can be interrupted).
+    - cron: "0 */6 * * *"
   workflow_dispatch:
 
 permissions:

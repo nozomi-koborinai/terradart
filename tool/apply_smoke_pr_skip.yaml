@@ -1,0 +1,16 @@
+# Examples the PER-PR change-gate does NOT `terraform apply` because they
+# provision expensive, hourly-billed resources (GKE control plane + node VMs,
+# Compute Engine VMs). They are NOT skipped wholesale: the full sweep
+# (apply-smoke-weekly.yml / `apply_smoke.sh --all`) still applies them, and
+# per-PR they still synth + `terraform validate`. This keeps per-PR apply cost
+# low on Wave PRs (which push many times) while preserving apply coverage.
+#
+# Honored by tool/apply_smoke.sh ONLY in `changed` mode (the PR change-gate).
+# `--all` (sweep), `--example <slug>`, and `--destroy-only` (janitor) ignore it.
+# Distinct from tool/apply_smoke_skip.yaml (examples that can't apply here AT
+# ALL); an entry must NOT appear in both. tool/apply_smoke_test.sh enforces this.
+#
+# Format (one per line):  <example_slug>: <reason>
+
+gke_quickstart: GKE control plane management fee + node VMs bill hourly; apply only in the full sweep
+compute_quickstart: Compute Engine VM bills hourly; apply only in the full sweep
