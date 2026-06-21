@@ -29,10 +29,15 @@ terradart-coverage --help
 ### Point it at a Terraform directory (easiest)
 
 ```sh
+# point at any Terraform directory
 terradart-coverage --dir path/to/terraform
+
+# …or run it from inside that directory — with nothing piped in, it defaults
+# to the current directory, just like `terraform` itself
+cd path/to/terraform && terradart-coverage
 ```
 
-`--dir` is your **Terraform working directory** — the folder you normally run `terraform` in (the root module, where your `.tf` / `.tf.json` files live), after a `terraform init`. The CLI runs `terraform show -json` there for you, so there is nothing to pipe. It does not matter whether your configuration is written in HCL (`.tf`) or JSON (`.tf.json`): Terraform reads both, and this tool simply consumes its output.
+`--dir` (or the current directory by default) is your **Terraform working directory** — the folder you normally run `terraform` in (the root module, where your `.tf` / `.tf.json` files live), after a `terraform init`. The CLI runs `terraform show -json` there for you, so there is nothing to pipe. It does not matter whether your configuration is written in HCL (`.tf`) or JSON (`.tf.json`): Terraform reads both, and this tool simply consumes its output.
 
 - If the directory has already been applied, it reads current **state** — instant, no credentials.
 - Otherwise it falls back to a **plan**, so you can scope a repo you have never deployed. Run `terraform init` in the directory first. A plan containing `data` sources may need provider credentials; managed resources do not.

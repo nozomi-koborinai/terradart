@@ -11,3 +11,4 @@ export 'src/catalog_matcher.dart';
 export 'src/coverage_report.dart';
 export 'src/report_render.dart';
 export 'src/terraform_runner.dart';
+export 'src/cli_input.dart';
