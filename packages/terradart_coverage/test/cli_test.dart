@@ -34,4 +34,28 @@ void main() {
     ]);
     expect(result.exitCode, isNonZero);
   });
+
+  test('CLI --help prints usage and exits 0', () async {
+    final result = await Process.run('dart', [
+      'run',
+      'bin/terradart_coverage.dart',
+      '--help',
+    ]);
+    expect(result.exitCode, 0, reason: result.stderr.toString());
+    expect(result.stdout, contains('Usage:'));
+  });
+
+  test('CLI reads terraform JSON from stdin when no file arg', () async {
+    final process = await Process.start('dart', [
+      'run',
+      'bin/terradart_coverage.dart',
+    ]);
+    process.stdin
+      ..write(File('test/fixtures/state_sample.json').readAsStringSync())
+      ..close();
+    final out = await process.stdout.transform(utf8.decoder).join();
+    expect(await process.exitCode, 0);
+    expect(out, contains('Coverage'));
+    expect(out, contains('google_storage_bucket'));
+  });
 }
