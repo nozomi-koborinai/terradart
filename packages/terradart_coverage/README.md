@@ -26,7 +26,20 @@ terradart-coverage --help
 
 ## Usage
 
-The input is `terraform show -json` output — either a saved plan or current state. Pipe it in, or pass a file path.
+### Point it at a Terraform directory (easiest)
+
+```sh
+terradart-coverage --dir path/to/terraform
+```
+
+`--dir` is your **Terraform working directory** — the folder you normally run `terraform` in (the root module, where your `.tf` / `.tf.json` files live), after a `terraform init`. The CLI runs `terraform show -json` there for you, so there is nothing to pipe. It does not matter whether your configuration is written in HCL (`.tf`) or JSON (`.tf.json`): Terraform reads both, and this tool simply consumes its output.
+
+- If the directory has already been applied, it reads current **state** — instant, no credentials.
+- Otherwise it falls back to a **plan**, so you can scope a repo you have never deployed. Run `terraform init` in the directory first. A plan containing `data` sources may need provider credentials; managed resources do not.
+
+### Or feed `terraform show -json` yourself
+
+Handy in CI, or when Terraform runs elsewhere:
 
 ```sh
 # From a saved plan
@@ -38,12 +51,19 @@ terraform show -json | terradart-coverage
 
 # From a file
 terradart-coverage plan.json
-
-# Machine-readable output (for tooling / agents)
-terraform show -json tfplan.bin | terradart-coverage --json
 ```
 
-Using a `plan` works without applying anything, so you can scope a repo you have never deployed from. A `data` source in a plan may require provider credentials at plan time; managed resources do not.
+### JSON output
+
+Add `--json` to either mode for a machine-readable document (tooling / agents):
+
+```sh
+terradart-coverage --json --dir path/to/terraform
+```
+
+### Why JSON input, not raw `.tf`?
+
+The tool consumes Terraform's evaluated `terraform show -json` rather than parsing HCL directly, because the evaluated form is the accurate one: `count` / `for_each` are expanded into real instance counts, and `module` blocks are resolved into the resources they contain — neither of which is visible from `.tf` source text alone. `--dir` just hides that step by running Terraform for you.
 
 ## Example
 
