@@ -203,6 +203,27 @@ for tpl in .github/ISSUE_TEMPLATE/bug.yml \
   fi
 done
 
+# `.x`-style minor carets + pre-alpha banner. The pubspec samples in the
+# READMEs and the website getting-started page, plus the README pre-alpha
+# banner, use the ^X.Y.x minor form — distinct from the ^X.Y.Z full-semver
+# samples handled above, which is why those passes leave them untouched. Sweep
+# them in one pass so the docs-consistency check (which expects ^X.Y.x) stays
+# green every release.
+echo "  Minor (.x) caret samples + banner:"
+for f in README.md \
+         website/src/content/docs/docs/getting-started.md \
+         packages/terradart_core/README.md \
+         packages/terradart_google/README.md \
+         packages/terradart_codegen/README.md; do
+  [ -f "$f" ] || continue
+  # Blanket ^X.Y.x replace (like CONTRIBUTING/SECURITY below) covers every
+  # caret form — pubspec samples, the `dart pub global activate` line, and bare
+  # "Pin `^X.Y.x`" prose — in one go.
+  sed_inplace "s#\\^${OLD_MINOR_RE}\\.x#^${NEW_MINOR}.x#g" "$f"
+  sed_inplace "s#pre-1\\.0 \\(${OLD_MINOR_RE}\\.x\\)#pre-1.0 (${NEW_MINOR}.x)#g" "$f"
+  echo "    - $f"
+done
+
 echo
 
 # 5. Verify no stale OLD carets / version lines remain in the scoped files.
@@ -230,6 +251,12 @@ STALE=$(
     .github/ISSUE_TEMPLATE/question.yml 2>/dev/null
   grep -nE "\\*\\*${OLD_MINOR_RE}\\.x\\*\\* line" \
     website/src/content/docs/docs/getting-started.md 2>/dev/null
+  grep -nE "\\^${OLD_MINOR_RE}\\.x" \
+    README.md website/src/content/docs/docs/getting-started.md \
+    packages/terradart_core/README.md \
+    packages/terradart_google/README.md \
+    packages/terradart_codegen/README.md 2>/dev/null
+  grep -nE "pre-1\\.0 \\(${OLD_MINOR_RE}\\.x\\)" README.md 2>/dev/null
 )
 set -e
 
