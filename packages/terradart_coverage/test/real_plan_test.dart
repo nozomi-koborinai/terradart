@@ -89,7 +89,7 @@ void main() {
 
       expect(text, contains('TerraDart coverage'));
       expect(text, matches(RegExp(r'\d+% of types')));
-      expect(text, contains('By module:'));
+      expect(text, contains('By directory:'));
       expect(text, contains('module.network'));
     });
   });

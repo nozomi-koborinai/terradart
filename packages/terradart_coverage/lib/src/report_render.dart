@@ -34,7 +34,7 @@ String renderText(CoverageReport r) {
   }
   b.writeln();
 
-  b.writeln('By module:');
+  b.writeln('By directory:');
   for (final entry in r.perModule.entries) {
     b.writeln(
       '  ${entry.key}: ${entry.value.supported} supported, '
@@ -44,7 +44,7 @@ String renderText(CoverageReport r) {
 
   if (r.unparseable.isNotEmpty) {
     b.writeln();
-    b.writeln('Unparseable (${r.unparseable.length}):');
+    b.writeln('Not analyzed (${r.unparseable.length}):');
     for (final u in r.unparseable) {
       b.writeln('  $u');
     }

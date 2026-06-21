@@ -1,5 +1,21 @@
 # Changelog
 
+## 0.17.1 - 2026-06-21
+
+Checking coverage no longer requires `terraform init`.
+
+`--dir` (and a bare invocation) now scans `.tf` / `.tf.json` source directly —
+recursively, with no terraform run, init, backend, or credentials, which is all
+"how much of my config is curated?" needs. It descends into subdirectories (so
+one run at a repo root covers `dev/`, `prod/`, `modules/`, …), reports a
+per-directory breakdown, and calls out registry/git modules as not analyzed.
+
+The evaluated path is now opt-in: pipe `terraform show -json` (or pass it as a
+file) when you already have a plan/state and want exact instance counts and
+remote modules expanded. 0.17.0 briefly made `--dir` run `terraform` itself,
+which failed with "Backend initialization required" on a remote backend; that
+is removed.
+
 ## 0.17.0 - 2026-06-21
 
 Point the checker at a Terraform directory instead of piping JSON.

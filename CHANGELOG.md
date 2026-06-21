@@ -4,6 +4,10 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage` — this top-level file summarises cross-cutting milestones.
 
+## [0.17.1] - 2026-06-21
+
+Patch release. The only change is **`terradart_coverage`**: `--dir` (and a bare invocation) now scans `.tf` / `.tf.json` source directly — recursively, with no terraform run, init, backend, or credentials — instead of running Terraform, and the evaluated `terraform show -json` path becomes opt-in. Other packages bump in lockstep with no changes.
+
 ## [0.17.0] - 2026-06-21
 
 Lockstep release across the workspace. **No breaking changes** vs `0.16.0`.
