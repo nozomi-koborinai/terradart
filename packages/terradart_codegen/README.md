@@ -15,7 +15,7 @@ End users depend on [`terradart_google`](https://pub.dev/packages/terradart_goog
 Activate on the same minor line as your workspace when working on the repo:
 
 ```bash
-dart pub global activate terradart_codegen ^0.15.x
+dart pub global activate terradart_codegen ^0.16.x
 ```
 
 Check [pub.dev](https://pub.dev/packages/terradart_codegen) for the latest patch.

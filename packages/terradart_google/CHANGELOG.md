@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.16.0 - 2026-06-21
+
+Lockstep release. **No breaking changes** vs `0.15.0`.
+
+### Added
+
+- Catalog grows to **322 curated resource factories + 1 data source** (323 entries; 58 service barrels).
+- New service barrels and factories across Waves 42–70: Tags, Essential Contacts, Service Directory, Dataplex UC / glossary / lake, Workflows, Compute route / metadata / firewall policy / resource policy / disk attachment, Secret Manager / Parameter Manager, Document AI, Observability, Network Security lists, Healthcare (4 store types + IAM), GKE Hub, Cloud Deploy, BigLake, Gemini settings, Vertex AI dataset / Tensorboard / cache config, Network Connectivity hub, and BigQuery `dataset_access` (sealed access variants).
+- Quickstarts and docs exercise every added catalog entry.
+
 ## 0.15.0 - 2026-06-20
 
 Lockstep release. **No breaking changes** vs `0.14.0`.

@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.16.0 - 2026-06-21
+
+Lockstep version bump for `terradart_google` v0.16.0. MCP catalog grows to
+**323 entries** (322 curated resource factories + 1 data source) across
+58 service barrels. No MCP protocol or tool changes.
+
 ## 0.15.0 - 2026-06-20
 
 Lockstep version bump for `terradart_google` v0.15.0. MCP catalog grows to

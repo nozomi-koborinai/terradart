@@ -1,6 +1,6 @@
 ---
 title: Waves 23–41
-description: Curated google_* factories shipped through Wave 41 (v0.12.10–v0.15.0) with example stack pointers.
+description: Curated google_* factories shipped through Wave 70 (v0.12.10–v0.16.0) with example stack pointers.
 ---
 
 ## v0.12.10 — Waves 23–24

@@ -5,7 +5,7 @@ description: Guides for TerraDart — type-safe Google Cloud IaC for Dart.
 
 Welcome to the TerraDart docs.
 
-Guides track the **0.15.x** line on pub.dev. The repo [README](https://github.com/nozomi-koborinai/terradart/blob/main/README.md) and [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) stay the deepest references; this site mirrors onboarding and release expectations.
+Guides track the **0.16.x** line on pub.dev. The repo [README](https://github.com/nozomi-koborinai/terradart/blob/main/README.md) and [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) stay the deepest references; this site mirrors onboarding and release expectations.
 
 ## Guides
 

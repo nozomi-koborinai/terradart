@@ -4,6 +4,20 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage` — this top-level file summarises cross-cutting milestones.
 
+## [0.16.0] - 2026-06-21
+
+Lockstep release across the workspace. **No breaking changes** vs `0.15.0`.
+
+### Added
+
+- **`terradart_google`** — catalog grows to **322 curated resource factories + 1 data source** (323 entries; 58 service barrels), adding **66** factories across Waves 42–70: Resource Manager Tags, Essential Contacts, Service Directory, Dataplex Universal Catalog / glossary / lake, Workflows, Compute (static route, project metadata item, network firewall policy, resource policy with sealed snapshot schedules, disk resource policy attachment), Secret Manager / Parameter Manager, Document AI, Cloud Observability trace scope, Network Security lists, Migration Center, Dialogflow agent, Cloud Healthcare (dataset / DICOM / consent / HL7v2 stores + IAM members), GKE Hub scope + namespace, Cloud Deploy (delivery pipeline / target / custom target type), BigLake Metastore, Gemini for Google Cloud settings, Vertex AI (managed dataset, Tensorboard, GenAI cache config), Network Connectivity Center hub, and BigQuery standalone `dataset_access`.
+- **Examples** — 14 new or extended quickstarts (`tags`, `service_directory`, `workflows`, `parameter_manager`, `document_ai`, `observability`, `healthcare`, `gke_hub`, `clouddeploy`, `biglake`, `gemini`, `compute_route`, `network_security_lists`, `vertex_ai`) plus extensions to existing stacks; all 54 quickstarts now in the CI `terraform_validate` matrix.
+
+### Changed
+
+- **CI** — expand `terraform_validate` matrix from 40 to 54 examples (full quickstart coverage).
+- **Docs** — release Waves 42–70 in the public waves guide; align version references with the `0.16.x` line.
+
 ## [0.15.0] - 2026-06-20
 
 Lockstep release across the workspace. **No breaking changes** vs `0.14.0`.
