@@ -1,4 +1,4 @@
 /// The terradart-mcp binary version, kept in lockstep with pubspec.yaml's
 /// `version:` field by `tool/bump_version.sh`. The lockstep is guarded by
 /// test/version_test.dart so the two can never silently drift.
-const String packageVersion = '0.17.1';
+const String packageVersion = '0.18.0';

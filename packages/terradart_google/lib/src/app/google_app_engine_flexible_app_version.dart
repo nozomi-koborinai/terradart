@@ -30,16 +30,19 @@ sealed class AppEngineFlexibleAppVersionScaling {
 @immutable
 final class AppEngineFlexibleAppVersionAutomaticScalingMode
     extends AppEngineFlexibleAppVersionScaling {
-  const AppEngineFlexibleAppVersionAutomaticScalingMode({required this.config});
+  const AppEngineFlexibleAppVersionAutomaticScalingMode({
+    required this.minTotalInstances,
+  });
 
-  /// Nested block fields (e.g. `min_total_instances`, `max_total_instances`).
-  final Map<String, Object?> config;
+  final TfArg<int> minTotalInstances;
 
   @override
   String get blockKey => 'automatic_scaling';
 
   @override
-  Map<String, Object?> encode() => config;
+  Map<String, Object?> encode() => {
+    'min_total_instances': minTotalInstances.toTfJson(),
+  };
 }
 
 /// `manual_scaling` block — fixed instance count.
