@@ -16,8 +16,8 @@ This guide matches the [README quickstart](https://github.com/nozomi-koborinai/t
 ```yaml
 # pubspec.yaml
 dependencies:
-  terradart_core: ^0.16.x
-  terradart_google: ^0.16.x
+  terradart_core: ^0.17.x
+  terradart_google: ^0.17.x
 ```
 
 Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch, then run:
