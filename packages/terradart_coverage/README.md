@@ -2,13 +2,13 @@
 
 `terradart-coverage` — a read-only CLI that reports how much of an existing Terraform configuration is already covered by curated [TerraDart](https://terradart.dev) factories.
 
-Point it at `terraform show -json` output and it tells you which `resource` and `data` types already have a curated `terradart_google` factory, which are not in the catalog yet, and a rough migration scope — without manually diffing against the [status page](https://terradart.dev/docs/status/).
+Point it at a Terraform directory and it tells you which `resource` / `data` types already have a curated `terradart_google` factory, which are not in the catalog yet, and roughly how big a migration would be — **with no setup**: no `terraform init`, no backend, no credentials, not even a `terraform` binary. It reads only the `.tf` / `.tf.json` source you already have.
 
-It matches Terraform type strings against the static catalog compiled into [`terradart_google`](https://pub.dev/packages/terradart_google) (`package:terradart_google/catalog.dart`). Anything it cannot interpret is reported explicitly rather than dropped silently.
+It matches Terraform type strings against the static catalog compiled into [`terradart_google`](https://pub.dev/packages/terradart_google) (`package:terradart_google/catalog.dart`). Anything it can't analyze (a registry/git module, a file it can't parse) is reported explicitly rather than dropped silently.
 
 ## Status
 
-**Pre-alpha** — same expectations as the rest of TerraDart (pin versions, read release notes). The tool is read-only: it parses JSON you pipe in and never runs `terraform`, touches GCP, or modifies any file.
+**Pre-alpha** — same expectations as the rest of TerraDart (pin versions, read release notes). The tool is read-only: it reads source files and reports. It never runs Terraform, touches a backend, or modifies anything.
 
 ## Install
 
@@ -18,45 +18,39 @@ It matches Terraform type strings against the static catalog compiled into [`ter
 brew install nozomi-koborinai/tap/terradart-coverage
 ```
 
-**Direct binary:** see [GitHub releases](https://github.com/nozomi-koborinai/terradart/releases) (`terradart-coverage-darwin-arm64`, `linux-amd64`, etc.).
+If Homebrew asks you to trust the tap, run `brew trust nozomi-koborinai/tap` (it's the project's own tap).
 
-```sh
-terradart-coverage --help
-```
+**Direct binary:** see [GitHub releases](https://github.com/nozomi-koborinai/terradart/releases) (`terradart-coverage-darwin-arm64`, `linux-amd64`, etc.).
 
 ## Usage
 
-### Point it at a Terraform directory (easiest)
+### Scan a Terraform directory (default)
 
 ```sh
-# point at any Terraform directory
-terradart-coverage --dir path/to/terraform
+# from inside your Terraform repo
+terradart-coverage
 
-# …or run it from inside that directory — with nothing piped in, it defaults
-# to the current directory, just like `terraform` itself
-cd path/to/terraform && terradart-coverage
+# or point at any directory
+terradart-coverage --dir path/to/terraform
 ```
 
-`--dir` (or the current directory by default) is your **Terraform working directory** — the folder you normally run `terraform` in (the root module, where your `.tf` / `.tf.json` files live), after a `terraform init`. The CLI runs `terraform show -json` there for you, so there is nothing to pipe. It does not matter whether your configuration is written in HCL (`.tf`) or JSON (`.tf.json`): Terraform reads both, and this tool simply consumes its output.
+This recursively reads every `.tf` / `.tf.json` under the directory (so running it at the repo root covers `dev/`, `prod/`, `modules/`, … in one pass) and reports coverage. **No `terraform`, no `init`, no backend, no credentials.** `.terraform/` and `.git/` are skipped so the result doesn't depend on whether the tree has been initialized.
 
-- If the directory has already been applied, it reads current **state** — instant, no credentials.
-- Otherwise it falls back to a **plan**, so you can scope a repo you have never deployed. Run `terraform init` in the directory first. A plan containing `data` sources may need provider credentials; managed resources do not.
+It works whether your config is HCL (`.tf`) or JSON (`.tf.json`). A `module` block sourced from a registry or git URL can't be read from local source, so its resources are reported as **not analyzed** rather than silently missed; local modules are reached by the walk and counted directly.
 
-### Or feed `terraform show -json` yourself
+### Evaluated mode (optional)
 
-Handy in CI, or when Terraform runs elsewhere:
+If you already have a plan or state and want **exact instance counts** (`count` / `for_each` expanded) and **remote modules fully included**, pipe Terraform's evaluated output instead:
 
 ```sh
-# From a saved plan
-terraform plan -out=tfplan.bin
 terraform show -json tfplan.bin | terradart-coverage
-
-# From current state
+# or current state:
 terraform show -json | terradart-coverage
-
-# From a file
+# or from a file:
 terradart-coverage plan.json
 ```
+
+This is opt-in — only useful if you've already run `terraform`, and never required for the default directory scan.
 
 ### JSON output
 
@@ -66,52 +60,56 @@ Add `--json` to either mode for a machine-readable document (tooling / agents):
 terradart-coverage --json --dir path/to/terraform
 ```
 
-### Why JSON input, not raw `.tf`?
-
-The tool consumes Terraform's evaluated `terraform show -json` rather than parsing HCL directly, because the evaluated form is the accurate one: `count` / `for_each` are expanded into real instance counts, and `module` blocks are resolved into the resources they contain — neither of which is visible from `.tf` source text alone. `--dir` just hides that step by running Terraform for you.
-
 ## Example
 
 ```
 TerraDart coverage
 ==================
-Coverage: 80% of types (8/10), 80% of resources (8/10)
+Coverage: 83% of types (5/6), 83% of resources (5/6)
 
-Supported (8):
-  google_compute_router [resource] x1 -> GoogleComputeRouter (compute)
-  google_pubsub_topic [resource] x1 -> GooglePubsubTopic (pubsub)
-  google_service_account [resource] x1 -> GoogleServiceAccount (iam)
+Supported (5):
   google_storage_bucket [resource] x1 -> GoogleStorageBucket (storage)
-  google_storage_bucket_object [resource] x1 -> GoogleStorageBucketObject (storage)
+  google_project [data] x1 -> GoogleProject (data)
   google_compute_network [resource] x1 -> GoogleComputeNetwork (compute)
-  google_compute_route [resource] x1 -> GoogleComputeRoute (compute)
   google_compute_subnetwork [resource] x1 -> GoogleComputeSubnetwork (compute)
+  google_pubsub_topic [resource] x1 -> GooglePubsubTopic (pubsub)
 
-Not in catalog (2):
+Not in catalog (1):
   google_compute_router_nat [resource] x1 (compute)
-  google_compute_target_pool [resource] x1 (compute)
 
-By module:
-  root: 5 supported, 2 not-in-catalog
-  module.network: 3 supported, 0 not-in-catalog
+By directory:
+  dev: 2 supported, 1 not-in-catalog
+  modules/network: 2 supported, 0 not-in-catalog
+  prod: 1 supported, 0 not-in-catalog
+
+Not analyzed (1):
+  dev/main.tf: module "vpc" (source: terraform-google-modules/network/google) not analyzed — remote module
 ```
 
-Each supported line maps a Terraform type to the Dart factory (`className`) and its service barrel, so you know exactly what to import when rewriting a stack. `--json` emits the same data as a structured document with a `summary`, `supported`, `notInCatalog`, `perModule`, and `unparseable` blocks.
+Each supported line maps a Terraform type to the Dart factory (`className`) and its service barrel, so you know exactly what to import when rewriting a stack.
+
+## Why scan source instead of requiring `terraform show -json`?
+
+Checking coverage shouldn't make you `terraform init`. With a remote backend you don't init locally, and "show me what's covered" should never demand a backend or credentials. So the default reads the `.tf` source directly — the resource/data type is a literal in every block header, which is all coverage needs.
+
+The trade-offs are honest and called out in the report: `count` / `for_each` are counted as one block each (not expanded), and registry/git modules aren't read from local source. When you want that precision, the evaluated `terraform show -json` mode (above) provides it — as an opt-in for people who already run Terraform, not a requirement.
 
 ## Library
-
-The same logic is available as a library if you want to build on it:
 
 ```dart
 import 'package:terradart_coverage/terradart_coverage.dart';
 import 'package:terradart_google/catalog.dart';
 
-final parsed = parseShowJson(decodedShowJson);
+// Scan source files (no terraform):
+final parsed = scanConfigDir('path/to/terraform');
+// …or parse `terraform show -json` you already have:
+// final parsed = parseShowJson(decodedShowJson);
+
 final report = buildCoverageReport(parsed, CatalogIndex(terradartCatalog));
 print(renderText(report)); // or renderJson(report)
 ```
 
-The MCP server [`terradart_agent`](../terradart_agent/) wraps this as the `check_coverage` tool for AI coding agents.
+The MCP server [`terradart_agent`](../terradart_agent/) wraps the evaluated path as the `check_coverage` tool for AI coding agents.
 
 ## Development
 

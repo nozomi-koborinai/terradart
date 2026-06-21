@@ -10,21 +10,23 @@ Future<int> run(List<String> argv) async {
     ..addOption(
       'dir',
       help:
-          'Terraform working directory to read. Runs `terraform show -json` '
-          'for you; works with .tf (HCL) or .tf.json configs.',
+          'Terraform directory to scan. Recursively reads .tf / .tf.json — no '
+          'terraform run, init, backend, or credentials. Defaults to the '
+          'current directory.',
     )
     ..addFlag('json', negatable: false, help: 'Emit machine-readable JSON.')
     ..addFlag('help', abbr: 'h', negatable: false);
   final args = parser.parse(argv);
   if (args['help'] as bool) {
     stdout.writeln(
-      'Usage: terradart-coverage [--json] '
-      '[--dir <terraform-dir> | <terraform-show.json>]',
+      'Usage: terradart-coverage [--json] [--dir <dir> | <terraform-show.json>]',
     );
     stdout.writeln(
       'Reports terradart_google coverage of a Terraform configuration.\n'
-      'Input precedence: --dir, else a file argument, else (with nothing '
-      'piped in) the current directory, else piped stdin.',
+      'By default it scans .tf / .tf.json under --dir (or the current '
+      'directory), with no terraform run, init, or credentials. Pipe '
+      '`terraform show -json` (or pass it as a file) for an evaluated view '
+      'with exact instance counts and remote modules expanded.',
     );
     stdout.writeln(parser.usage);
     return 0;
@@ -36,36 +38,23 @@ Future<int> run(List<String> argv) async {
     stdinIsTerminal: stdin.hasTerminal,
   );
 
-  final Map<String, dynamic> json;
+  final ParseOutcome parsed;
   switch (input) {
     case DirectoryInput(:final dir):
       try {
-        json = await terraformShowJson(dir);
-      } on TerraformUnavailable catch (e) {
-        stderr.writeln('terradart-coverage: $e');
-        return 3;
-      } on TerraformFailed catch (e) {
-        stderr.writeln('terradart-coverage: $e');
+        parsed = scanConfigDir(dir);
+      } on FormatException catch (e) {
+        stderr.writeln('terradart-coverage: ${e.message}');
         return 2;
       }
     case FileInput(:final path):
-      final decoded = _decodeShowJson(await File(path).readAsString());
-      if (decoded == null) return 2;
-      json = decoded;
+      final p = _parseShowJson(await File(path).readAsString());
+      if (p == null) return 2;
+      parsed = p;
     case StdinInput():
-      final decoded = _decodeShowJson(
-        await stdin.transform(utf8.decoder).join(),
-      );
-      if (decoded == null) return 2;
-      json = decoded;
-  }
-
-  final ParseOutcome parsed;
-  try {
-    parsed = parseShowJson(json);
-  } on FormatException catch (e) {
-    stderr.writeln('terradart-coverage: ${e.message}');
-    return 2;
+      final p = _parseShowJson(await stdin.transform(utf8.decoder).join());
+      if (p == null) return 2;
+      parsed = p;
   }
 
   final report = buildCoverageReport(parsed, CatalogIndex(terradartCatalog));
@@ -75,14 +64,24 @@ Future<int> run(List<String> argv) async {
   return 0;
 }
 
-/// Decodes a `terraform show -json` document, or prints a hint and returns
-/// null so the caller can exit non-zero.
-Map<String, dynamic>? _decodeShowJson(String raw) {
+/// Decodes and parses a `terraform show -json` document, printing a hint and
+/// returning null on failure so the caller can exit non-zero.
+ParseOutcome? _parseShowJson(String raw) {
+  final Map<String, dynamic> json;
   try {
-    return jsonDecode(raw) as Map<String, dynamic>;
+    json = jsonDecode(raw) as Map<String, dynamic>;
   } on FormatException catch (e) {
     stderr.writeln('terradart-coverage: input is not valid JSON: ${e.message}');
-    stderr.writeln('Hint: pipe `terraform show -json` output, or use --dir.');
+    stderr.writeln(
+      'Hint: pipe `terraform show -json` output, or point --dir at a '
+      'Terraform directory.',
+    );
+    return null;
+  }
+  try {
+    return parseShowJson(json);
+  } on FormatException catch (e) {
+    stderr.writeln('terradart-coverage: ${e.message}');
     return null;
   }
 }
