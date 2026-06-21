@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.20.0 - 2026-06-21
+
+Lockstep release for Wave 73. No CLI or codegen API changes.
+
 ## 0.19.0 - 2026-06-21
 
 Lockstep release. No API changes vs `0.18.0`.

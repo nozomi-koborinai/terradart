@@ -32,6 +32,26 @@ files:
     upstream: mmv1/products/bigquery/DatasetAccess.yaml
   google_bigquery_table:
     upstream: mmv1/products/bigquery/Table.yaml
+  google_bigtable_app_profile:
+    upstream: mmv1/products/bigtable/AppProfile.yaml
+  google_bigtable_authorized_view:
+    upstream: null  # third_party terraform/services/bigtable/resource_bigtable_authorized_view.go
+  google_bigtable_gc_policy:
+    upstream: null  # third_party terraform/services/bigtable/resource_bigtable_gc_policy.go
+  google_bigtable_instance:
+    upstream: null  # third_party terraform/services/bigtable/resource_bigtable_instance.go
+  google_bigtable_instance_iam_member:
+    upstream: null
+  google_bigtable_logical_view:
+    upstream: mmv1/products/bigtable/LogicalView.yaml
+  google_bigtable_materialized_view:
+    upstream: mmv1/products/bigtable/MaterializedView.yaml
+  google_bigtable_schema_bundle:
+    upstream: mmv1/products/bigtable/SchemaBundle.yaml
+  google_bigtable_table:
+    upstream: null  # third_party terraform/services/bigtable/resource_bigtable_table.go
+  google_bigtable_table_iam_member:
+    upstream: null
   google_cloud_run_v2_service:
     upstream: mmv1/products/cloudrunv2/Service.yaml
   google_clouddeploy_custom_target_type:

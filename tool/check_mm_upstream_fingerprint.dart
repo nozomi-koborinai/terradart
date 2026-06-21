@@ -36,6 +36,7 @@ const _fingerprintFalsePositives = <String>{
   'google_compute_security_policy',
   'google_project',
   'google_cloudbuild_worker_pool',
+  'google_bigtable_instance', // third_party go + meta.yaml; no mmv1/products/bigtable/Instance.yaml
 };
 
 bool _isIamAdjunct(String tfType) =>

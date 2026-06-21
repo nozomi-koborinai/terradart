@@ -4,6 +4,15 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage` — this top-level file summarises cross-cutting milestones.
 
+## [0.20.0] - 2026-06-21
+
+Lockstep release across the workspace. **No breaking changes** vs `0.19.0`.
+
+### Added
+
+- **`terradart_google`** — Wave 73 (Cloud Bigtable): **10** curated factories — `google_bigtable_instance`, `google_bigtable_table`, `google_bigtable_app_profile`, `google_bigtable_gc_policy`, `google_bigtable_authorized_view`, `google_bigtable_logical_view`, `google_bigtable_materialized_view`, `google_bigtable_schema_bundle`, `google_bigtable_instance_iam_member`, `google_bigtable_table_iam_member`. New `bigtable` service barrel. Catalog grows to **343 curated resource factories + 1 data source** (344 entries; 60 service barrels).
+- **Examples** — new [`bigtable_quickstart`](examples/bigtable_quickstart/) exercising every Wave 73 factory.
+
 ## [0.19.0] - 2026-06-21
 
 Lockstep release across the workspace. **No breaking changes** vs `0.18.0`.

@@ -6,6 +6,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_app_engine_domain_mapping`.
 const Set<String> _googleAppEngineDomainMappingSensitive = <String>{};
 
+/// `override_strategy` on `google_app_engine_domain_mapping`.
+enum AppEngineDomainMappingOverrideStrategy implements TerraformEnum {
+  strict('STRICT'),
+  override('OVERRIDE');
+
+  const AppEngineDomainMappingOverrideStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_app_engine_domain_mapping`.
 ///
 /// A domain serving an App Engine application.
@@ -15,7 +25,7 @@ final class GoogleAppEngineDomainMapping extends Resource {
   GoogleAppEngineDomainMapping({
     required super.localName,
     required TfArg<String> domainName,
-    TfArg<String>? overrideStrategy,
+    TfArg<AppEngineDomainMappingOverrideStrategy>? overrideStrategy,
     TfArg<Map<String, dynamic>>? sslSettings,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

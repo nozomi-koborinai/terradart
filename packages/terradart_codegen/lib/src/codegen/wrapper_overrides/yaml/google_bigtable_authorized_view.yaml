@@ -1,0 +1,57 @@
+outputDir: bigtable
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authorized view on a Bigtable table — row-level access control.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [instanceName]: parent instance ID.
+  /// - [tableName]: parent table ID — pass `TfArg.ref(table.nameRef)`.
+  /// - [name]: authorized view ID.
+  /// - [subsetView]: optional [BigtableAuthorizedViewSubsetView] filter.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleBigtableAuthorizedView(
+  ///   localName: 'tenant_a',
+  ///   instanceName: TfArg.ref(instance.nameRef),
+  ///   tableName: TfArg.ref(table.nameRef),
+  ///   name: TfArg.literal('tenant-a'),
+  ///   subsetView: BigtableAuthorizedViewSubsetView(
+  ///     rowPrefixes: [TfArg.literal('tenant-a#')],
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - instance_name
+  - table_name
+  - name
+  - subset_view
+  - deletion_policy
+  - deletion_protection
+  - project
+
+extraGetters: |
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+prelude: |
+  /// `subset_view` block on `google_bigtable_authorized_view`.
+  class BigtableAuthorizedViewSubsetView {
+    const BigtableAuthorizedViewSubsetView({this.rowPrefixes});
+
+    final List<TfArg<String>>? rowPrefixes;
+
+    Map<String, Object?> toArgMap() => {
+          if (rowPrefixes != null)
+            'row_prefixes': rowPrefixes!.map((p) => p.toTfJson()).toList(),
+        };
+  }
+
+customSlots:
+  subset_view:
+    paramDeclaration: 'BigtableAuthorizedViewSubsetView? subsetView'
+    argMapEntry: "if (subsetView != null) 'subset_view': TfArg.literal([subsetView.toArgMap()]),"

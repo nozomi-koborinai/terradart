@@ -1,0 +1,36 @@
+outputDir: bigtable
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Materialized view on a Bigtable instance — precomputed query results.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [materializedViewId]: view ID within the instance.
+  /// - [query]: SELECT query the view materializes.
+  /// - [instance]: parent instance — pass `TfArg.ref(instance.nameRef)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleBigtableMaterializedView(
+  ///   localName: 'daily_counts',
+  ///   materializedViewId: TfArg.literal('daily-counts'),
+  ///   instance: TfArg.ref(instance.nameRef),
+  ///   query: TfArg.literal(
+  ///     'SELECT COUNT(*) AS cnt FROM events GROUP BY day',
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - materialized_view_id
+  - query
+  - instance
+  - deletion_policy
+  - deletion_protection
+  - project
+
+extraGetters: |
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

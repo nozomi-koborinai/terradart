@@ -24,6 +24,8 @@ enum ParameterManagerRegionalParameterFormat implements TerraformEnum {
 }
 
 /// Factory wrapper for `google_parameter_manager_regional_parameter`.
+///
+/// A Regional Parameter is a logical regional parameter.
 final class GoogleParameterManagerRegionalParameter extends Resource {
   static const String tfType = 'google_parameter_manager_regional_parameter';
 

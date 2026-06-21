@@ -1,6 +1,6 @@
 name: terradart_coverage
 description: Read-only Terraform coverage checker — reports how much of a Terraform config is covered by curated terradart_google factories.
-version: 0.19.0
+version: 0.20.0
 publish_to: none
 homepage: https://github.com/nozomi-koborinai/terradart
 repository: https://github.com/nozomi-koborinai/terradart
@@ -15,7 +15,7 @@ executables:
   terradart-coverage: terradart_coverage
 
 dependencies:
-  terradart_google: ^0.19.0
+  terradart_google: ^0.20.0
   args: ^2.5.0
 
 dev_dependencies:

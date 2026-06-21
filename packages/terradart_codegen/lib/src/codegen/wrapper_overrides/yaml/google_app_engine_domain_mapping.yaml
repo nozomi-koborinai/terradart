@@ -8,3 +8,17 @@ paramOrder:
   - ssl_settings
   - deletion_policy
   - project
+
+dartTypeOverrides:
+  override_strategy: AppEngineDomainMappingOverrideStrategy
+
+prelude: |
+  /// `override_strategy` on `google_app_engine_domain_mapping`.
+  enum AppEngineDomainMappingOverrideStrategy implements TerraformEnum {
+    strict('STRICT'),
+    override('OVERRIDE');
+
+    const AppEngineDomainMappingOverrideStrategy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }

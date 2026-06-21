@@ -1,0 +1,57 @@
+outputDir: bigtable
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Protobuf schema bundle attached to a Bigtable table.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [schemaBundleId]: bundle ID within the instance.
+  /// - [instance]: parent instance — pass `TfArg.ref(instance.nameRef)`.
+  /// - [table]: parent table — pass `TfArg.ref(table.nameRef)`.
+  /// - [protoSchema]: [BigtableSchemaBundleProtoSchema] with base64 descriptors.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleBigtableSchemaBundle(
+  ///   localName: 'events_proto',
+  ///   schemaBundleId: TfArg.literal('events-proto'),
+  ///   instance: TfArg.ref(instance.nameRef),
+  ///   table: TfArg.ref(table.nameRef),
+  ///   protoSchema: BigtableSchemaBundleProtoSchema(
+  ///     protoDescriptors: TfArg.literal('<base64-encoded FileDescriptorSet>'),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - schema_bundle_id
+  - instance
+  - table
+  - proto_schema
+  - ignore_warnings
+  - deletion_policy
+  - project
+
+extraGetters: |
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+prelude: |
+  /// `proto_schema` block on `google_bigtable_schema_bundle`.
+  class BigtableSchemaBundleProtoSchema {
+    const BigtableSchemaBundleProtoSchema({required this.protoDescriptors});
+
+    /// Base64-encoded `google.protobuf.FileDescriptorSet` bytes.
+    final TfArg<String> protoDescriptors;
+
+    Map<String, Object?> toArgMap() => {
+          'proto_descriptors': protoDescriptors.toTfJson(),
+        };
+  }
+
+customSlots:
+  proto_schema:
+    paramDeclaration: 'required BigtableSchemaBundleProtoSchema protoSchema'
+    argMapEntry: "'proto_schema': TfArg.literal([protoSchema.toArgMap()]),"

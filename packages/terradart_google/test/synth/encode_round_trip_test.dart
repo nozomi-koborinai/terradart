@@ -28,6 +28,7 @@ import 'package:terradart_codegen/src/codegen/universal_invariants/sealed_class_
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/app.dart';
 import 'package:terradart_google/bigquery.dart';
+import 'package:terradart_google/bigtable.dart';
 import 'package:terradart_google/certificate_manager.dart';
 import 'package:terradart_google/cloud_build.dart';
 import 'package:terradart_google/cloud_functions.dart';
@@ -91,6 +92,28 @@ final Map<String, Object Function()> _syntheticInstances = {
           routineId: TfArg.literal('r'),
         ),
       ),
+
+  // --- BigtableAppProfileRouting (3) — google_bigtable_app_profile -----------
+  'BigtableAppProfileSingleClusterRouting': () =>
+      BigtableAppProfileSingleClusterRouting(
+        clusterId: TfArg.literal('c1'),
+      ),
+  'BigtableAppProfileStandardIsolation': () =>
+      BigtableAppProfileStandardIsolation(
+        priority: TfArg.literal(BigtableAppProfileIsolationPriority.priorityHigh),
+      ),
+  'BigtableAppProfileDataBoostIsolation': () =>
+      BigtableAppProfileDataBoostIsolation(
+        computeBillingOwner: TfArg.literal(
+          BigtableAppProfileComputeBillingOwner.hostPays,
+        ),
+      ),
+
+  // --- BigtableGcPolicyRule (2) — google_bigtable_gc_policy -----------------
+  'BigtableGcPolicyMaxAge': () =>
+      BigtableGcPolicyMaxAge(days: TfArg.literal(7)),
+  'BigtableGcPolicyMaxVersion': () =>
+      BigtableGcPolicyMaxVersion(number: TfArg.literal(1)),
 
   // --- AppEngineFlexibleAppVersionScaling (2) — app_engine_flexible_app_version
   'AppEngineFlexibleAppVersionAutomaticScalingMode': () =>

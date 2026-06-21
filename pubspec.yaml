@@ -14,6 +14,7 @@ workspace:
   - examples/apigee_quickstart
   - examples/biglake_quickstart
   - examples/bigquery_quickstart
+  - examples/bigtable_quickstart
   - examples/chronicle_quickstart
   - examples/cloud_build_quickstart
   - examples/clouddeploy_quickstart

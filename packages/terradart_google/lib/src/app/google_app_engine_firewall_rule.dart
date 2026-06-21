@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_app_engine_firewall_rule`.
 const Set<String> _googleAppEngineFirewallRuleSensitive = <String>{};
 
+/// `action` on `google_app_engine_firewall_rule`.
+enum AppEngineFirewallRuleAction implements TerraformEnum {
+  unspecifiedAction('UNSPECIFIED_ACTION'),
+  allow('ALLOW'),
+  deny('DENY');
+
+  const AppEngineFirewallRuleAction(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_app_engine_firewall_rule`.
 ///
 /// A single firewall rule that is evaluated against incoming traffic and
@@ -16,7 +27,7 @@ final class GoogleAppEngineFirewallRule extends Resource {
   GoogleAppEngineFirewallRule({
     required super.localName,
     TfArg<num>? priority,
-    required TfArg<String> action,
+    required TfArg<AppEngineFirewallRuleAction> action,
     required TfArg<String> sourceRange,
     TfArg<String>? description,
     TfArg<String>? deletionPolicy,

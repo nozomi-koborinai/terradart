@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleServiceDirectoryServiceSensitive = <String>{};
 
 /// Factory wrapper for `google_service_directory_service`.
+///
+/// An individual service. A service contains a name and optional metadata.
 final class GoogleServiceDirectoryService extends Resource {
   static const String tfType = 'google_service_directory_service';
 

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.20.0 - 2026-06-21
+
+Lockstep release. **No breaking changes** vs `0.19.0`.
+
+### Added
+
+- Wave 73 — Cloud Bigtable (10 factories): instance, table, app profile, GC policy, authorized/logical/materialized views, schema bundle, instance/table IAM members. New `bigtable` barrel. Catalog: **343 curated resource factories + 1 data source** (344 entries; 60 service barrels).
+- [`bigtable_quickstart`](../../examples/bigtable_quickstart/) exercises every Wave 73 factory.
+
 ## 0.19.0 - 2026-06-21
 
 Lockstep release. **No breaking changes** vs `0.18.0`.
