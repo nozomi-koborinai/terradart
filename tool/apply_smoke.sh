@@ -147,6 +147,36 @@ export DB_PASSWORD="${DB_PASSWORD:-apply-smoke-placeholder}"
 
 dart pub get
 
+# --- terraform with stale-lock recovery ------------------------------------
+# A killed apply-smoke run (e.g. GitHub's cancel-in-progress when a PR is
+# re-pushed) leaves the GCS backend lock held; the next run then dies with
+# "Error acquiring the state lock". Run terraform, and on THAT error force-
+# unlock the reported lock id and retry once — but only when the lock is
+# demonstrably old (created > 15 min ago), so a genuinely live concurrent run
+# (another PR, or the weekly sweep, on the same slug) is never stolen. When the
+# lock age can't be determined (no GNU `date`), treat it as stale. Output is
+# streamed via `tee` so CI logs stay live while we capture it to parse the id.
+tf_lockaware() {
+  local out rc id created lock_epoch now_epoch age
+  out="$(terraform "$@" 2>&1 | tee /dev/stderr)"
+  rc=$?
+  (( rc == 0 )) && return 0
+  grep -q 'Error acquiring the state lock' <<<"$out" || return "$rc"
+  id="$(grep -oE 'ID:[[:space:]]+[0-9]+' <<<"$out" | grep -oE '[0-9]+' | head -1)"
+  [[ -n "$id" ]] || return "$rc"
+  created="$(grep -oE 'Created:[[:space:]]+[0-9].*UTC' <<<"$out" | head -1 | sed -E 's/^Created:[[:space:]]+//; s/ UTC$//')"
+  lock_epoch="$(date -u -d "$created" +%s 2>/dev/null || echo 0)"
+  now_epoch="$(date -u +%s)"
+  age=$(( now_epoch - lock_epoch ))
+  if [[ "$lock_epoch" != "0" && $age -lt 900 ]]; then
+    echo "  !! state lock $id is only ${age}s old — assuming a live run; NOT force-unlocking" >&2
+    return "$rc"
+  fi
+  echo "  !! stale state lock $id (age ${age}s) — force-unlock + retry once" >&2
+  terraform force-unlock -force "$id" >&2 || true
+  terraform "$@"
+}
+
 # --- apply (or destroy-only) one example, with a GCS-backed state ----------
 apply_one() {
   local slug="$1"
@@ -173,7 +203,7 @@ apply_one() {
       "$STATE_BUCKET" "$slug" > backend.tf.json
     terraform init -input=false -reconfigure || exit 1
     if [[ "$DESTROY_ONLY" == "1" ]]; then
-      terraform destroy -auto-approve -input=false
+      tf_lockaware destroy -auto-approve -input=false
       exit $?
     fi
     # Apply, then ALWAYS tear down — capturing the apply result separately.
@@ -181,11 +211,11 @@ apply_one() {
     # silently-failed destroy once left a running GKE cluster orphaned that
     # only a manual gcloud sweep caught. Recorded failures fail the run below.
     apply_rc=0
-    terraform apply -auto-approve -input=false || apply_rc=$?
-    if ! terraform destroy -auto-approve -input=false; then
+    tf_lockaware apply -auto-approve -input=false || apply_rc=$?
+    if ! tf_lockaware destroy -auto-approve -input=false; then
       echo "  !! teardown failed for $slug — retrying in 15s" >&2
       sleep 15
-      if ! terraform destroy -auto-approve -input=false; then
+      if ! tf_lockaware destroy -auto-approve -input=false; then
         echo "  !! TEARDOWN FAILED for $slug after retry — ORPHAN RISK; run tool/apply_smoke_janitor.sh" >&2
         echo "$slug" >> "$TEARDOWN_FAILS_FILE"
       fi
