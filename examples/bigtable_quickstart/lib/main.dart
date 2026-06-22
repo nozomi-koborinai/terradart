@@ -58,14 +58,45 @@ final class EventsStack extends Stack {
       ),
     );
 
+    final gcPolicy = add(
+      GoogleBigtableGcPolicy(
+        localName: 'cf1_gc',
+        instanceName: TfArg.ref(instance.nameRef),
+        table: TfArg.ref(table.nameRef),
+        columnFamily: TfArg.literal('cf1'),
+        policy: BigtableGcPolicyMaxAge(days: TfArg.literal(7)),
+        dependsOn: [ResourceDependency(table)],
+      ),
+    );
+
+    final authorizedView = add(
+      GoogleBigtableAuthorizedView(
+        localName: 'tenant_a',
+        instanceName: TfArg.ref(instance.nameRef),
+        tableName: TfArg.ref(table.nameRef),
+        name: TfArg.literal('tenant-a'),
+        subsetView: BigtableAuthorizedViewSubsetView(
+          // Provider expects base64-encoded row prefix bytes.
+          rowPrefixes: [TfArg.literal('dGVuYW50LWEj')],
+        ),
+        deletionProtection: TfArg.literal('UNPROTECTED'),
+        dependsOn: [ResourceDependency(table)],
+      ),
+    );
+
     final tableReady = add(
       TimeSleep(
         localName: 'table_propagation',
-        createDuration: TfArg.duration(const Duration(seconds: 45)),
+        createDuration: TfArg.duration(const Duration(seconds: 60)),
         triggers: TfArg.literal({
           'events_table': table.nameRef.interpolation,
+          'tenant_a_view': authorizedView.id.interpolation,
         }),
-        dependsOn: [ResourceDependency(table)],
+        dependsOn: [
+          ResourceDependency(table),
+          ResourceDependency(gcPolicy),
+          ResourceDependency(authorizedView),
+        ],
       ),
     );
     final tableReadyDeps = [ResourceDependency(tableReady)];
@@ -80,32 +111,6 @@ final class EventsStack extends Stack {
         ),
         ignoreWarnings: TfArg.literal(true),
         dependsOn: [ResourceDependency(instance)],
-      ),
-    );
-
-    add(
-      GoogleBigtableGcPolicy(
-        localName: 'cf1_gc',
-        instanceName: TfArg.ref(instance.nameRef),
-        table: TfArg.ref(table.nameRef),
-        columnFamily: TfArg.literal('cf1'),
-        policy: BigtableGcPolicyMaxAge(days: TfArg.literal(7)),
-        dependsOn: [ResourceDependency(table)],
-      ),
-    );
-
-    add(
-      GoogleBigtableAuthorizedView(
-        localName: 'tenant_a',
-        instanceName: TfArg.ref(instance.nameRef),
-        tableName: TfArg.ref(table.nameRef),
-        name: TfArg.literal('tenant-a'),
-        subsetView: BigtableAuthorizedViewSubsetView(
-          // Provider expects base64-encoded row prefix bytes.
-          rowPrefixes: [TfArg.literal('dGVuYW50LWEj')],
-        ),
-        deletionProtection: TfArg.literal('UNPROTECTED'),
-        dependsOn: tableReadyDeps,
       ),
     );
 
