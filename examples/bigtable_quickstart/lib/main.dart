@@ -87,7 +87,7 @@ final class EventsStack extends Stack {
     final tableReady = add(
       TimeSleep(
         localName: 'table_propagation',
-        createDuration: TfArg.duration(const Duration(seconds: 60)),
+        createDuration: TfArg.duration(const Duration(seconds: 90)),
         triggers: TfArg.literal({
           'events_table': table.nameRef.interpolation,
           'tenant_a_view': authorizedView.id.interpolation,
