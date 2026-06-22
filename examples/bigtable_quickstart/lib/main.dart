@@ -138,6 +138,17 @@ final class EventsStack extends Stack {
       ),
     );
 
+    final viewsReady = add(
+      TimeSleep(
+        localName: 'views_propagation',
+        createDuration: TfArg.duration(const Duration(seconds: 45)),
+        triggers: TfArg.literal({
+          'materialized_view': materializedView.id.interpolation,
+        }),
+        dependsOn: [ResourceDependency(materializedView)],
+      ),
+    );
+
     add(
       GoogleBigtableSchemaBundle(
         localName: 'events_proto',
@@ -151,7 +162,7 @@ final class EventsStack extends Stack {
           ),
         ),
         ignoreWarnings: TfArg.literal(true),
-        dependsOn: [ResourceDependency(materializedView)],
+        dependsOn: [ResourceDependency(viewsReady)],
       ),
     );
 
