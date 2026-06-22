@@ -17,16 +17,6 @@ enum AppEngineFlexibleAppVersionServingStatus implements TerraformEnum {
   final String terraformValue;
 }
 
-/// `serving_status` on `google_app_engine_flexible_app_version`.
-enum AppEngineFlexibleAppVersionServingStatus implements TerraformEnum {
-  serving('SERVING'),
-  stopped('STOPPED');
-
-  const AppEngineFlexibleAppVersionServingStatus(this.terraformValue);
-  @override
-  final String terraformValue;
-}
-
 /// Automatic or manual scaling for [GoogleAppEngineFlexibleAppVersion].
 sealed class AppEngineFlexibleAppVersionScaling {
   const AppEngineFlexibleAppVersionScaling();

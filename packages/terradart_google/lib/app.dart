@@ -12,9 +12,13 @@ export 'src/app/google_app_engine_application.dart'
 export 'src/app/google_app_engine_application_url_dispatch_rules.dart'
     show GoogleAppEngineApplicationUrlDispatchRules;
 export 'src/app/google_app_engine_domain_mapping.dart'
-    show GoogleAppEngineDomainMapping;
+    show
+        GoogleAppEngineDomainMapping,
+        AppEngineDomainMappingOverrideStrategy;
 export 'src/app/google_app_engine_firewall_rule.dart'
-    show GoogleAppEngineFirewallRule;
+    show
+        GoogleAppEngineFirewallRule,
+        AppEngineFirewallRuleAction;
 export 'src/app/google_app_engine_flexible_app_version.dart'
     show
         GoogleAppEngineFlexibleAppVersion,

@@ -7,8 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleServiceDirectoryEndpointSensitive = <String>{};
 
 /// Factory wrapper for `google_service_directory_endpoint`.
-///
-/// An individual endpoint that provides a service.
 final class GoogleServiceDirectoryEndpoint extends Resource {
   static const String tfType = 'google_service_directory_endpoint';
 

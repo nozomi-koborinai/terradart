@@ -7,8 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleGeminiGeminiGcpEnablementSettingSensitive = <String>{};
 
 /// Factory wrapper for `google_gemini_gemini_gcp_enablement_setting`.
-///
-/// The resource for managing GeminiGcpEnablement settings for Admin Control.
 final class GoogleGeminiGeminiGcpEnablementSetting extends Resource {
   static const String tfType = 'google_gemini_gemini_gcp_enablement_setting';
 

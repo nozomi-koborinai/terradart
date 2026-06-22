@@ -113,7 +113,7 @@ final class AppEngineStack extends Stack {
       GoogleAppEngineFirewallRule(
         localName: 'allow_all',
         priority: TfArg.literal(1000),
-        action: TfArg.literal('ALLOW'),
+        action: TfArg.literal(AppEngineFirewallRuleAction.allow),
         sourceRange: TfArg.literal('*'),
         description:
             TfArg.literal('terradart demo — allow all (replace in prod)'),

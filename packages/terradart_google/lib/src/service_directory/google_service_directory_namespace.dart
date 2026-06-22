@@ -7,9 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleServiceDirectoryNamespaceSensitive = <String>{};
 
 /// Factory wrapper for `google_service_directory_namespace`.
-///
-/// A container for `services`. Namespaces allow administrators to group
-/// services together and define permissions for a collection of services.
 final class GoogleServiceDirectoryNamespace extends Resource {
   static const String tfType = 'google_service_directory_namespace';
 

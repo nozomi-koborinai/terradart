@@ -7,8 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleEssentialContactsContactSensitive = <String>{};
 
 /// Factory wrapper for `google_essential_contacts_contact`.
-///
-/// A contact that will receive notifications from Google Cloud.
 final class GoogleEssentialContactsContact extends Resource {
   static const String tfType = 'google_essential_contacts_contact';
 

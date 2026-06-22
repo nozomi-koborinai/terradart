@@ -7,9 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleHealthcareDatasetSensitive = <String>{};
 
 /// Factory wrapper for `google_healthcare_dataset`.
-///
-/// A Healthcare `Dataset` is a toplevel logical grouping of `dicomStores`,
-/// `fhirStores` and `hl7V2Stores`.
 final class GoogleHealthcareDataset extends Resource {
   static const String tfType = 'google_healthcare_dataset';
 

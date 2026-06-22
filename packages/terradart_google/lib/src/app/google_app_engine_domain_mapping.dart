@@ -9,7 +9,7 @@ const Set<String> _googleAppEngineDomainMappingSensitive = <String>{};
 /// `override_strategy` on `google_app_engine_domain_mapping`.
 enum AppEngineDomainMappingOverrideStrategy implements TerraformEnum {
   strict('STRICT'),
-  override('OVERRIDE');
+  overrideStrategy('OVERRIDE');
 
   const AppEngineDomainMappingOverrideStrategy(this.terraformValue);
   @override

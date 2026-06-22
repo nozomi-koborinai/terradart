@@ -7,8 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleBiglakeCatalogSensitive = <String>{};
 
 /// Factory wrapper for `google_biglake_catalog`.
-///
-/// Catalogs are top-level containers for Databases and Tables.
 final class GoogleBiglakeCatalog extends Resource {
   static const String tfType = 'google_biglake_catalog';
 

@@ -7,8 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleGeminiReleaseChannelSettingSensitive = <String>{};
 
 /// Factory wrapper for `google_gemini_release_channel_setting`.
-///
-/// The resource for managing ReleaseChannel settings for Admin Control.
 final class GoogleGeminiReleaseChannelSetting extends Resource {
   static const String tfType = 'google_gemini_release_channel_setting';
 
