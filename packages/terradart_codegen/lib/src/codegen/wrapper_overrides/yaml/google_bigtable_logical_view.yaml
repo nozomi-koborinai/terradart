@@ -1,0 +1,34 @@
+outputDir: bigtable
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Logical view on a Bigtable instance — a SQL-like query over tables.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [logicalViewId]: view ID within the instance.
+  /// - [query]: SELECT query defining the view.
+  /// - [instance]: parent instance — pass `TfArg.ref(instance.nameRef)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleBigtableLogicalView(
+  ///   localName: 'recent_events',
+  ///   logicalViewId: TfArg.literal('recent-events'),
+  ///   instance: TfArg.ref(instance.nameRef),
+  ///   query: TfArg.literal('SELECT * FROM events WHERE timestamp > 0'),
+  /// );
+  /// ```
+
+paramOrder:
+  - logical_view_id
+  - query
+  - instance
+  - deletion_policy
+  - deletion_protection
+  - project
+
+extraGetters: |
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

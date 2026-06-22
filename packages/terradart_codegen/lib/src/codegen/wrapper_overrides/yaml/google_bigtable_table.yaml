@@ -1,0 +1,54 @@
+outputDir: bigtable
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Cloud Bigtable table within an instance.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [instanceName]: parent instance ID — pass `TfArg.ref(instance.nameRef)`.
+  /// - [name]: table ID (1-50 chars, hyphens, underscores, letters).
+  /// - [columnFamily]: at least one [BigtableTableColumnFamily].
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleBigtableTable(
+  ///   localName: 'events',
+  ///   instanceName: TfArg.ref(instance.nameRef),
+  ///   name: TfArg.literal('events'),
+  ///   columnFamily: [
+  ///     BigtableTableColumnFamily(family: TfArg.literal('cf1')),
+  ///   ],
+  /// );
+  /// ```
+
+paramOrder:
+  - instance_name
+  - name
+  - column_family
+  - deletion_policy
+  - deletion_protection
+  - change_stream_retention
+  - project
+
+extraGetters: |
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+prelude: |
+  /// One `column_family` block on `google_bigtable_table`.
+  class BigtableTableColumnFamily {
+    const BigtableTableColumnFamily({required this.family});
+
+    final TfArg<String> family;
+
+    Map<String, Object?> toArgMap() => {
+          'family': family.toTfJson(),
+        };
+  }
+
+customSlots:
+  column_family:
+    paramDeclaration: 'List<BigtableTableColumnFamily>? columnFamily'
+    argMapEntry: "if (columnFamily != null) 'column_family': TfArg.literal(columnFamily.map((c) => c.toArgMap()).toList()),"

@@ -1,0 +1,82 @@
+outputDir: bigtable
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Garbage-collection policy for one column family on a Bigtable table.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [instanceName]: parent instance ID.
+  /// - [table]: table ID — pass `TfArg.ref(table.nameRef)`.
+  /// - [columnFamily]: column family name.
+  /// - [policy]: [BigtableGcPolicyMaxAge] or [BigtableGcPolicyMaxVersion].
+  ///
+  /// Example (expire cells after 7 days):
+  /// ```dart
+  /// GoogleBigtableGcPolicy(
+  ///   localName: 'cf1_max_age',
+  ///   instanceName: TfArg.ref(instance.nameRef),
+  ///   table: TfArg.ref(table.nameRef),
+  ///   columnFamily: TfArg.literal('cf1'),
+  ///   policy: BigtableGcPolicyMaxAge(days: TfArg.literal(7)),
+  /// );
+  /// ```
+
+paramOrder:
+  - instance_name
+  - table
+  - column_family
+  - policy
+  - gc_rules
+  - mode
+  - ignore_warnings
+  - deletion_policy
+  - project
+
+prelude: |
+  /// GC rule variant for `google_bigtable_gc_policy`.
+  sealed class BigtableGcPolicyRule {
+    const BigtableGcPolicyRule();
+
+    String get blockKey;
+    Map<String, Object?> encode();
+  }
+
+  /// Keep only cells younger than the given age.
+  final class BigtableGcPolicyMaxAge extends BigtableGcPolicyRule {
+    const BigtableGcPolicyMaxAge({this.days, this.duration});
+
+    final TfArg<num>? days;
+    final TfArg<String>? duration;
+
+    @override
+    String get blockKey => 'max_age';
+
+    @override
+    Map<String, Object?> encode() => {
+          if (days != null) 'days': days!.toTfJson(),
+          if (duration != null) 'duration': duration!.toTfJson(),
+        };
+  }
+
+  /// Keep only the N most recent cell versions.
+  final class BigtableGcPolicyMaxVersion extends BigtableGcPolicyRule {
+    const BigtableGcPolicyMaxVersion({required this.number});
+
+    final TfArg<num> number;
+
+    @override
+    String get blockKey => 'max_version';
+
+    @override
+    Map<String, Object?> encode() => {
+          'number': number.toTfJson(),
+        };
+  }
+
+customSlots:
+  policy:
+    paramDeclaration: 'required BigtableGcPolicyRule policy'
+    argMapEntry: "policy.blockKey: TfArg.literal([policy.encode()]),"

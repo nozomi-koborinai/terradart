@@ -1,0 +1,110 @@
+outputDir: bigtable
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Cloud Bigtable instance — the top-level container for clusters and tables.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [name]: instance ID (6-33 chars, lowercase letters, numbers, hyphens).
+  /// - [cluster]: at least one [BigtableInstanceCluster] (zone + node count).
+  ///
+  /// Enable `bigtableadmin.googleapis.com` via [Apis.enable] before apply.
+  ///
+  /// Example (single-zone development instance):
+  /// ```dart
+  /// GoogleBigtableInstance(
+  ///   localName: 'events',
+  ///   name: TfArg.literal('events-dev'),
+  ///   instanceType: TfArg.literal(BigtableInstanceType.development),
+  ///   cluster: [
+  ///     BigtableInstanceCluster(
+  ///       clusterId: TfArg.literal('events-c1'),
+  ///       zone: TfArg.literal('us-central1-b'),
+  ///       numNodes: TfArg.literal(1),
+  ///     ),
+  ///   ],
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - cluster
+  - display_name
+  - instance_type
+  - edition
+  - labels
+  - deletion_policy
+  - deletion_protection
+  - force_destroy
+  - project
+
+extraGetters: |
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+dartTypeOverrides:
+  instance_type: BigtableInstanceType
+  edition: BigtableInstanceEdition
+
+prelude: |
+  /// `instance_type` on `google_bigtable_instance`.
+  enum BigtableInstanceType implements TerraformEnum {
+    development('DEVELOPMENT'),
+    production('PRODUCTION');
+
+    const BigtableInstanceType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `edition` on `google_bigtable_instance`.
+  enum BigtableInstanceEdition implements TerraformEnum {
+    enterprise('ENTERPRISE'),
+    enterprisePlus('ENTERPRISE_PLUS');
+
+    const BigtableInstanceEdition(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `storage_type` on a Bigtable cluster.
+  enum BigtableClusterStorageType implements TerraformEnum {
+    ssd('SSD'),
+    hdd('HDD');
+
+    const BigtableClusterStorageType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// One cluster block on `google_bigtable_instance`.
+  class BigtableInstanceCluster {
+    const BigtableInstanceCluster({
+      required this.clusterId,
+      this.zone,
+      this.numNodes,
+      this.storageType,
+      this.kmsKeyName,
+    });
+
+    final TfArg<String> clusterId;
+    final TfArg<String>? zone;
+    final TfArg<num>? numNodes;
+    final TfArg<BigtableClusterStorageType>? storageType;
+    final TfArg<String>? kmsKeyName;
+
+    Map<String, Object?> toArgMap() => {
+          'cluster_id': clusterId.toTfJson(),
+          if (zone != null) 'zone': zone!.toTfJson(),
+          if (numNodes != null) 'num_nodes': numNodes!.toTfJson(),
+          if (storageType != null) 'storage_type': storageType!.toTfJson(),
+          if (kmsKeyName != null) 'kms_key_name': kmsKeyName!.toTfJson(),
+        };
+  }
+
+customSlots:
+  cluster:
+    paramDeclaration: 'List<BigtableInstanceCluster>? cluster'
+    argMapEntry: "if (cluster != null) 'cluster': TfArg.literal(cluster.map((c) => c.toArgMap()).toList()),"

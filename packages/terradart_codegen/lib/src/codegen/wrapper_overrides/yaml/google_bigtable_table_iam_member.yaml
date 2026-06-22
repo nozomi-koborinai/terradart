@@ -1,0 +1,12 @@
+outputDir: bigtable
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - instance_name
+  - table
+  - role
+  - member
+  - condition
+  - project

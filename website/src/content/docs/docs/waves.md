@@ -1,6 +1,6 @@
 ---
 title: Waves 23–41
-description: Curated google_* factories shipped through Wave 72 (v0.12.10–v0.19.0) with example stack pointers.
+description: Curated google_* factories shipped through Wave 73 (v0.12.10–v0.20.0) with example stack pointers.
 ---
 
 ## v0.12.10 — Waves 23–24
@@ -302,6 +302,25 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 | `google_memcache_instance` | `GoogleMemcacheInstance` | `memcache` | [cloud_run_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/cloud_run_quickstart) |
 | `google_spanner_instance` | `GoogleSpannerInstance` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_spanner_database` | `GoogleSpannerDatabase` | `spanner` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
+
+## Wave 73 — Cloud Bigtable
+
+Adds ten Cloud Bigtable factories under the new `bigtable` barrel: instance (typed clusters), table (column families), app profile (sealed routing), GC policy (max age / max version), authorized view, logical view, materialized view, protobuf schema bundle, and additive instance/table IAM members. Exercised by [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart).
+
+Catalog after Wave 73: **343 curated resource factories + 1 data source** (344 catalog entries). 60 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_bigtable_instance` | `GoogleBigtableInstance` | `bigtable` | [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart) |
+| `google_bigtable_table` | `GoogleBigtableTable` | `bigtable` | [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart) |
+| `google_bigtable_app_profile` | `GoogleBigtableAppProfile` | `bigtable` | [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart) |
+| `google_bigtable_gc_policy` | `GoogleBigtableGcPolicy` | `bigtable` | [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart) |
+| `google_bigtable_authorized_view` | `GoogleBigtableAuthorizedView` | `bigtable` | [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart) |
+| `google_bigtable_logical_view` | `GoogleBigtableLogicalView` | `bigtable` | [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart) |
+| `google_bigtable_materialized_view` | `GoogleBigtableMaterializedView` | `bigtable` | [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart) |
+| `google_bigtable_schema_bundle` | `GoogleBigtableSchemaBundle` | `bigtable` | [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart) |
+| `google_bigtable_instance_iam_member` | `GoogleBigtableInstanceIamMember` | `bigtable` | [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart) |
+| `google_bigtable_table_iam_member` | `GoogleBigtableTableIamMember` | `bigtable` | [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart) |
 
 ## Wave 72 — IAP App Engine IAM members
 

@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.20.0 - 2026-06-21
+
+Lockstep release for Wave 73 (`terradart_google` Cloud Bigtable). Catalog: **344 entries** (343 curated resource factories + 1 data source) across **60 service barrels**. No MCP protocol or tool changes.
+
 ## 0.19.0 - 2026-06-21
 
 Lockstep release for Wave 72 (`terradart_google` IAP App Engine IAM). Catalog: **334 entries** (333 curated resource factories + 1 data source) across **59 service barrels**. No MCP protocol or tool changes.

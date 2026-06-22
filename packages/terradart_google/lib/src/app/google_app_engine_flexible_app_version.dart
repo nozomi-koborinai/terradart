@@ -98,7 +98,7 @@ final class GoogleAppEngineFlexibleAppVersion extends Resource {
     TfArg<String>? runtimeChannel,
     TfArg<String>? runtimeMainExecutablePath,
     TfArg<String>? serviceAccount,
-    TfArg<String>? servingStatus,
+    TfArg<AppEngineFlexibleAppVersionServingStatus>? servingStatus,
     TfArg<List<String>>? inboundServices,
     TfArg<String>? project,
     super.lifecycle,

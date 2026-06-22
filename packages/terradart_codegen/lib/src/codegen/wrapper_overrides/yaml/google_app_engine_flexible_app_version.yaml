@@ -27,6 +27,9 @@ paramOrder:
   - inbound_services
   - project
 
+dartTypeOverrides:
+  serving_status: AppEngineFlexibleAppVersionServingStatus
+
 extraImports:
   - "import 'package:meta/meta.dart';"
 

@@ -1,0 +1,46 @@
+# Bigtable quickstart
+
+Provisions a development Cloud Bigtable instance with table, app profile, GC policy, authorized / logical / materialized views, a protobuf schema bundle, and additive IAM grants.
+
+## Prerequisites
+
+- Dart SDK >= 3.6
+- Terraform CLI >= 1.11.0
+- A GCP project (the stack enables `bigtableadmin.googleapis.com` via `Apis.enable`).
+
+## Usage
+
+```bash
+dart pub get
+
+GCP_PROJECT_ID=my-proj-123 dart run bin/infra.dart
+
+cd tf-out
+terraform init -backend=false
+terraform validate
+```
+
+## What gets created
+
+- A **development** Bigtable instance `quickstart-events` with one cluster in `us-central1-b`
+- Table `events` with column family `cf1`
+- Default app profile routing to the cluster
+- 7-day max-age GC policy on `cf1`
+- Authorized view `tenant-a`, logical view `recent-events`, materialized view `event-counts`
+- Protobuf schema bundle `events-proto`
+- IAM grants: `roles/bigtable.viewer` on the instance and `roles/bigtable.reader` on the table for service account `bt-reader`
+
+## Wave 73 factories exercised
+
+All ten curated Bigtable factories appear in synth output:
+
+- `google_bigtable_instance`
+- `google_bigtable_table`
+- `google_bigtable_app_profile`
+- `google_bigtable_gc_policy`
+- `google_bigtable_authorized_view`
+- `google_bigtable_logical_view`
+- `google_bigtable_materialized_view`
+- `google_bigtable_schema_bundle`
+- `google_bigtable_instance_iam_member`
+- `google_bigtable_table_iam_member`

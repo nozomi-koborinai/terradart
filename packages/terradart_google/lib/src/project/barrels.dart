@@ -7,6 +7,7 @@ enum Barrels {
   apigee('apigee'),
   artifactRegistry('artifact_registry'),
   bigquery('bigquery'),
+  bigtable('bigtable'),
   certificateManager('certificate_manager'),
   chronicle('chronicle'),
   cloudBuild('cloud_build'),
