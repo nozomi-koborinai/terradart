@@ -114,7 +114,7 @@ final class EventsStack extends Stack {
       ),
     );
 
-    add(
+    final logicalView = add(
       GoogleBigtableLogicalView(
         localName: 'recent',
         logicalViewId: TfArg.literal('recent-events'),
@@ -125,7 +125,7 @@ final class EventsStack extends Stack {
       ),
     );
 
-    add(
+    final materializedView = add(
       GoogleBigtableMaterializedView(
         localName: 'counts',
         materializedViewId: TfArg.literal('event-counts'),
@@ -134,7 +134,7 @@ final class EventsStack extends Stack {
           "SELECT _key, COUNT(cf1['col1']) AS event_count FROM `events` GROUP BY _key",
         ),
         deletionProtection: TfArg.literal(false),
-        dependsOn: tableReadyDeps,
+        dependsOn: [ResourceDependency(logicalView)],
       ),
     );
 
@@ -151,7 +151,7 @@ final class EventsStack extends Stack {
           ),
         ),
         ignoreWarnings: TfArg.literal(true),
-        dependsOn: tableReadyDeps,
+        dependsOn: [ResourceDependency(materializedView)],
       ),
     );
 
