@@ -1,6 +1,6 @@
 /// Bigtable quickstart — instance, table, app profile, GC, views, IAM.
 ///
-/// Defines `EventsStack`: provisions a development Bigtable instance with
+/// Defines `EventsStack`: provisions a single-node production Bigtable instance with
 /// one cluster, a table + column family, app profile routing, GC policy,
 /// authorized / logical / materialized views, a protobuf schema bundle,
 /// and additive IAM grants for a reader service account.
@@ -32,7 +32,7 @@ final class EventsStack extends Stack {
       GoogleBigtableInstance(
         localName: 'events',
         name: TfArg.literal('quickstart-events'),
-        instanceType: TfArg.literal(BigtableInstanceType.development),
+        instanceType: TfArg.literal(BigtableInstanceType.production),
         deletionPolicy: TfArg.literal('DELETE'),
         cluster: [
           BigtableInstanceCluster(
