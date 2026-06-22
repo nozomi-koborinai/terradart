@@ -125,31 +125,7 @@ final class EventsStack extends Stack {
       ),
     );
 
-    final materializedView = add(
-      GoogleBigtableMaterializedView(
-        localName: 'counts',
-        materializedViewId: TfArg.literal('event-counts'),
-        instance: TfArg.ref(instance.nameRef),
-        query: TfArg.literal(
-          "SELECT _key, COUNT(cf1['col1']) AS event_count FROM `events` GROUP BY _key",
-        ),
-        deletionProtection: TfArg.literal(false),
-        dependsOn: [ResourceDependency(logicalView)],
-      ),
-    );
-
-    final viewsReady = add(
-      TimeSleep(
-        localName: 'views_propagation',
-        createDuration: TfArg.duration(const Duration(seconds: 45)),
-        triggers: TfArg.literal({
-          'materialized_view': materializedView.id.interpolation,
-        }),
-        dependsOn: [ResourceDependency(materializedView)],
-      ),
-    );
-
-    add(
+    final schemaBundle = add(
       GoogleBigtableSchemaBundle(
         localName: 'events_proto',
         schemaBundleId: TfArg.literal('events-proto'),
@@ -162,7 +138,20 @@ final class EventsStack extends Stack {
           ),
         ),
         ignoreWarnings: TfArg.literal(true),
-        dependsOn: [ResourceDependency(viewsReady)],
+        dependsOn: [ResourceDependency(logicalView)],
+      ),
+    );
+
+    add(
+      GoogleBigtableMaterializedView(
+        localName: 'counts',
+        materializedViewId: TfArg.literal('event-counts'),
+        instance: TfArg.ref(instance.nameRef),
+        query: TfArg.literal(
+          "SELECT _key, COUNT(cf1['col1']) AS event_count FROM `events` GROUP BY _key",
+        ),
+        deletionProtection: TfArg.literal(false),
+        dependsOn: [ResourceDependency(schemaBundle)],
       ),
     );
 
