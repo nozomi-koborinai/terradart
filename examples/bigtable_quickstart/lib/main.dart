@@ -58,6 +58,18 @@ final class EventsStack extends Stack {
       ),
     );
 
+    final tableReady = add(
+      TimeSleep(
+        localName: 'table_propagation',
+        createDuration: TfArg.duration(const Duration(seconds: 45)),
+        triggers: TfArg.literal({
+          'events_table': table.nameRef.interpolation,
+        }),
+        dependsOn: [ResourceDependency(table)],
+      ),
+    );
+    final tableReadyDeps = [ResourceDependency(tableReady)];
+
     add(
       GoogleBigtableAppProfile(
         localName: 'routing',
@@ -66,6 +78,7 @@ final class EventsStack extends Stack {
         routing: BigtableAppProfileSingleClusterRouting(
           clusterId: TfArg.literal('events-c1'),
         ),
+        ignoreWarnings: TfArg.literal(true),
         dependsOn: [ResourceDependency(instance)],
       ),
     );
@@ -88,9 +101,11 @@ final class EventsStack extends Stack {
         tableName: TfArg.ref(table.nameRef),
         name: TfArg.literal('tenant-a'),
         subsetView: BigtableAuthorizedViewSubsetView(
-          rowPrefixes: [TfArg.literal('tenant-a#')],
+          // Provider expects base64-encoded row prefix bytes.
+          rowPrefixes: [TfArg.literal('dGVuYW50LWEj')],
         ),
-        dependsOn: [ResourceDependency(table)],
+        deletionProtection: TfArg.literal('UNPROTECTED'),
+        dependsOn: tableReadyDeps,
       ),
     );
 
@@ -101,7 +116,7 @@ final class EventsStack extends Stack {
         instance: TfArg.ref(instance.nameRef),
         query: TfArg.literal('SELECT _key, cf1 FROM `events`'),
         deletionProtection: TfArg.literal(false),
-        dependsOn: [ResourceDependency(table)],
+        dependsOn: tableReadyDeps,
       ),
     );
 
@@ -114,7 +129,7 @@ final class EventsStack extends Stack {
           "SELECT _key, COUNT(cf1['col1']) AS event_count FROM `events` GROUP BY _key",
         ),
         deletionProtection: TfArg.literal(false),
-        dependsOn: [ResourceDependency(table)],
+        dependsOn: tableReadyDeps,
       ),
     );
 
@@ -131,7 +146,7 @@ final class EventsStack extends Stack {
           ),
         ),
         ignoreWarnings: TfArg.literal(true),
-        dependsOn: [ResourceDependency(table)],
+        dependsOn: tableReadyDeps,
       ),
     );
 
