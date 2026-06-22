@@ -34,6 +34,7 @@ final class EventsStack extends Stack {
         name: TfArg.literal('quickstart-events'),
         instanceType: TfArg.literal(BigtableInstanceType.production),
         deletionPolicy: TfArg.literal('DELETE'),
+        deletionProtection: TfArg.literal(false),
         cluster: [
           BigtableInstanceCluster(
             clusterId: TfArg.literal('events-c1'),
@@ -59,8 +60,8 @@ final class EventsStack extends Stack {
 
     add(
       GoogleBigtableAppProfile(
-        localName: 'default',
-        appProfileId: TfArg.literal('default'),
+        localName: 'routing',
+        appProfileId: TfArg.literal('quickstart-routing'),
         instance: TfArg.ref(instance.nameRef),
         routing: BigtableAppProfileSingleClusterRouting(
           clusterId: TfArg.literal('events-c1'),
@@ -98,7 +99,8 @@ final class EventsStack extends Stack {
         localName: 'recent',
         logicalViewId: TfArg.literal('recent-events'),
         instance: TfArg.ref(instance.nameRef),
-        query: TfArg.literal('SELECT * FROM events'),
+        query: TfArg.literal('SELECT _key, cf1 FROM `events`'),
+        deletionProtection: TfArg.literal(false),
         dependsOn: [ResourceDependency(table)],
       ),
     );
@@ -108,7 +110,10 @@ final class EventsStack extends Stack {
         localName: 'counts',
         materializedViewId: TfArg.literal('event-counts'),
         instance: TfArg.ref(instance.nameRef),
-        query: TfArg.literal('SELECT COUNT(*) FROM events'),
+        query: TfArg.literal(
+          "SELECT _key, COUNT(cf1['col1']) AS event_count FROM `events` GROUP BY _key",
+        ),
+        deletionProtection: TfArg.literal(false),
         dependsOn: [ResourceDependency(table)],
       ),
     );
@@ -120,8 +125,12 @@ final class EventsStack extends Stack {
         instance: TfArg.ref(instance.nameRef),
         table: TfArg.ref(table.nameRef),
         protoSchema: BigtableSchemaBundleProtoSchema(
-          protoDescriptors: TfArg.literal('CgA='),
+          // HashiCorp provider test fixture (minimal Author message).
+          protoDescriptors: TfArg.literal(
+            'CnEKGXByb3RvX3NjaGVtYV9idW5kbGUucHJvdG8SI2djbG91ZC5iaWd0YWJsZS5zY2hlbWFfYnVuZGxlcy50ZXN0IicKBkF1dGhvchIdCgpmaXJzdF9uYW1lGAEgASgJUglmaXJzdE5hbWViBnByb3RvMw==',
+          ),
         ),
+        ignoreWarnings: TfArg.literal(true),
         dependsOn: [ResourceDependency(table)],
       ),
     );
