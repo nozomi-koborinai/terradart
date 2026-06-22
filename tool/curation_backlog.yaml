@@ -16,4 +16,19 @@
 #       provider_version: 7.X.Y (the v7 release that introduced it)
 #       note: (optional, maintainer-added)
 
-entries: []
+entries:
+  - resource: google_apigee_environment_debugmask
+    detected_at: 2026-06-22
+    provider_version: 7.37.0
+  - resource: google_chronicle_parser
+    detected_at: 2026-06-22
+    provider_version: 7.37.0
+  - resource: google_migration_center_import_data_file
+    detected_at: 2026-06-22
+    provider_version: 7.37.0
+  - resource: google_network_services_agent_gateway
+    detected_at: 2026-06-22
+    provider_version: 7.37.0
+  - resource: google_vertex_ai_tensorboard_experiment
+    detected_at: 2026-06-22
+    provider_version: 7.37.0
