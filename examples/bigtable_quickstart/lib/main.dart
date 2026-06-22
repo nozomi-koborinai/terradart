@@ -114,17 +114,6 @@ final class EventsStack extends Stack {
       ),
     );
 
-    final logicalView = add(
-      GoogleBigtableLogicalView(
-        localName: 'recent',
-        logicalViewId: TfArg.literal('recent-events'),
-        instance: TfArg.ref(instance.nameRef),
-        query: TfArg.literal('SELECT _key, cf1 FROM `events`'),
-        deletionProtection: TfArg.literal(false),
-        dependsOn: tableReadyDeps,
-      ),
-    );
-
     final schemaBundle = add(
       GoogleBigtableSchemaBundle(
         localName: 'events_proto',
@@ -138,11 +127,22 @@ final class EventsStack extends Stack {
           ),
         ),
         ignoreWarnings: TfArg.literal(true),
-        dependsOn: [ResourceDependency(logicalView)],
+        dependsOn: tableReadyDeps,
       ),
     );
 
-    add(
+    final logicalView = add(
+      GoogleBigtableLogicalView(
+        localName: 'recent',
+        logicalViewId: TfArg.literal('recent-events'),
+        instance: TfArg.ref(instance.nameRef),
+        query: TfArg.literal('SELECT _key, cf1 FROM `events`'),
+        deletionProtection: TfArg.literal(false),
+        dependsOn: [ResourceDependency(schemaBundle)],
+      ),
+    );
+
+    final materializedView = add(
       GoogleBigtableMaterializedView(
         localName: 'counts',
         materializedViewId: TfArg.literal('event-counts'),
@@ -151,9 +151,10 @@ final class EventsStack extends Stack {
           "SELECT _key, COUNT(cf1['col1']) AS event_count FROM `events` GROUP BY _key",
         ),
         deletionProtection: TfArg.literal(false),
-        dependsOn: [ResourceDependency(schemaBundle)],
+        dependsOn: [ResourceDependency(logicalView)],
       ),
     );
+    final stackReadyDeps = [ResourceDependency(materializedView)];
 
     final readerSa = add(
       GoogleServiceAccount(
@@ -169,7 +170,11 @@ final class EventsStack extends Stack {
         instance: TfArg.ref(instance.nameRef),
         role: TfArg.literal('roles/bigtable.viewer'),
         member: TfArg.ref(readerSa.iamMember),
-        dependsOn: [ResourceDependency(readerSa), ResourceDependency(instance)],
+        dependsOn: [
+          ResourceDependency(readerSa),
+          ResourceDependency(instance),
+          ...stackReadyDeps,
+        ],
       ),
     );
 
@@ -180,7 +185,11 @@ final class EventsStack extends Stack {
         table: TfArg.ref(table.nameRef),
         role: TfArg.literal('roles/bigtable.reader'),
         member: TfArg.ref(readerSa.iamMember),
-        dependsOn: [ResourceDependency(readerSa), ResourceDependency(table)],
+        dependsOn: [
+          ResourceDependency(readerSa),
+          ResourceDependency(table),
+          ...stackReadyDeps,
+        ],
       ),
     );
   }
