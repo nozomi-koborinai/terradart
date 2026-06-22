@@ -25,6 +25,10 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v6
+        with:
+          # PAT so the push runs as a real user — this lets repo CI fire on the
+          # resulting PR, which the default GITHUB_TOKEN's pushes do not trigger.
+          token: ${{ secrets.SCHEMA_BUMP_PAT }}
 
       - uses: dart-lang/setup-dart@v1
         with:
@@ -222,7 +226,9 @@ jobs:
       - name: Create branch + commit + PR
         if: steps.skip_check.outputs.skip != 'true' && github.event.inputs.dry_run != 'true'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # PAT, not GITHUB_TOKEN: the default token lacks scope to open PRs
+          # under this repo's settings (gh pr create → "correct token scopes").
+          GH_TOKEN: ${{ secrets.SCHEMA_BUMP_PAT }}
         run: |
           today=$(date -u +%Y-%m-%d)
           branch="chore/schema-bump-$today"
