@@ -2,7 +2,7 @@
 name: terradart-ship-wave
 description: Ship a TerraDart Wave release — curated factories, examples/docs debt, catalog counts, CHANGELOG, and agent_verify. Use when landing multiple related google_* resources as one user-visible release.
 metadata:
-  last_modified: 2026-06-09
+  last_modified: 2026-06-22
 ---
 # Ship a TerraDart Wave
 
@@ -41,6 +41,7 @@ A Wave PR is **not done** when wrappers and `curatedDoc` land alone. It is done 
 - [ ] 6. **Version & CHANGELOG** — lockstep `0.N.P` across four packages; root + per-package CHANGELOG entries.
 - [ ] 7. **CI** — new quickstart in `terraform_validate` matrix when applicable.
 - [ ] 8. **Verify** — `tool/agent_verify.sh` (add `--maintainer` when touching wrap-init / wrap-promote).
+- [ ] 9. **Tag & GitHub release** — after merge and green CI: push `v0.N.P`, publish via `.github/workflows/publish.yml`, create the GitHub release using the template below (title is **`v0.N.P` only** — no Wave subtitle in the release name).
 
 ## Example patterns
 
@@ -49,6 +50,75 @@ A Wave PR is **not done** when wrappers and `curatedDoc` land alone. It is done 
 | New service area (e.g. GKE) | Add `examples/gke_quickstart/` from `compute_quickstart` template |
 | Extends existing stack (e.g. WIF provider on IAM pool) | Extend `examples/iam_quickstart/lib/main.dart` |
 | Breaking constructor change | `MIGRATING.md` + fix all examples importing the factory |
+
+## GitHub release notes
+
+Release tags and GitHub releases are **maintainer manual** (see [`AGENTS.md`](../../../AGENTS.md)). After `v0.N.P` is pushed and pub.dev publish succeeds, create the GitHub release body to match recent releases (canonical examples: [`v0.19.0`](https://github.com/nozomi-koborinai/terradart/releases/tag/v0.19.0), [`v0.20.0`](https://github.com/nozomi-koborinai/terradart/releases/tag/v0.20.0)). Do **not** use a bare CHANGELOG paste or a one-paragraph summary.
+
+### Required sections (in order)
+
+1. **Opening** — lockstep packages list + **No breaking changes** vs the previous published semver (or call out breaking changes + link `MIGRATING.md`).
+2. **Bundled Waves (optional)** — when one semver ships multiple Waves (e.g. `0.19.0` = Wave 71 + 72), explain merge/publish ordering if any intermediate tag was skipped.
+3. **`## Highlights`** — catalog counts (`N curated + 1 data source`, entries, barrels), number of new factories, new/extended examples (linked).
+4. **`## Wave …`** — one subsection per Wave: `## Wave N — Title (\`barrel\` barrel)`; table of Terraform type → Dart factory; 1–2 sentences on sealed types / IAM-member-only policy when relevant.
+5. **`## Tooling` (optional)** — only when the release includes CI/apply-smoke/agent-guide changes worth calling out.
+6. **`## Upgrade`** — `pubspec.yaml` snippet with `terradart_core` + `terradart_google` carets at the new version.
+7. **Docs links** — `Waves guide` · `Getting started` (terradart.dev URLs).
+8. **`## What's Changed`** — bullet per merged PR: `* Wave N: … by @author in <PR URL>`.
+9. **`**Full Changelog**`** — compare link `v0.(N-1).0...v0.N.P` (adjust when the previous tag is not the immediate predecessor).
+
+### Template (single Wave)
+
+Replace placeholders; duplicate the Wave section when shipping multiple Waves in one semver.
+
+```markdown
+Lockstep release across `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage`. **No breaking changes** vs `0.PREV`.
+
+## Highlights
+
+- **`terradart_google` catalog:** **NNN curated resource factories + 1 data source** (**NNN entries**; **NN service barrels**)
+- **K new curated factories** for <service area>
+- **New example:** [`foo_quickstart`](examples/foo_quickstart/)
+- **Extended example:** [`bar_quickstart`](examples/bar_quickstart/) — <one line on what was added> *(omit when N/A)*
+
+## Wave N — <Title> (`<barrel>` barrel)
+
+<K> curated factories:
+
+| Terraform type | Dart factory |
+| --- | --- |
+| `google_foo` | `GoogleFoo` |
+| … | … |
+
+<Optional: sealed dispatch, typed nested blocks, IAM-member-only note.>
+
+## Tooling
+
+- **<Area>:** <one line> *(omit section when nothing user-visible)*
+
+## Upgrade
+
+    dependencies:
+      terradart_core: ^0.N.P
+      terradart_google: ^0.N.P
+
+Docs: [Waves guide](https://terradart.dev/docs/waves/) · [Getting started](https://terradart.dev/docs/getting-started/)
+
+## What's Changed
+
+* Wave N: <title> by @author in https://github.com/nozomi-koborinai/terradart/pull/NNN
+
+**Full Changelog**: https://github.com/nozomi-koborinai/terradart/compare/v0.PREV...v0.N.P
+```
+
+```bash
+# Tag triggers pub.dev publish (.github/workflows/publish.yml)
+git tag -a v0.N.P -m "Release v0.N.P — Wave N <Title>"
+git push origin v0.N.P
+
+# GitHub release (after publish workflow is green)
+gh release create v0.N.P --title "v0.N.P" --notes-file /path/to/notes.md
+```
 
 ## Useful commands
 
