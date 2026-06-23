@@ -82,3 +82,13 @@ oracle_autonomous_database_quickstart: Autonomous Database apply needs Oracle zo
 
 # --- Oracle GoldenGate needs live ODB subnet/network and subscription entitlement
 oracle_goldengate_quickstart: GoldenGate apply needs Oracle zone entitlement and live ODB subnet provisioning — API rejects placeholder VPC/ODB wiring in terradart-validate
+
+# --- Bills heavily even for a brief existence (third-party software licenses) ---
+# License Manager reserves third-party software licenses (e.g. Office SPLA) that
+# bill per license_count for the configuration's entire lifetime — no Compute VM
+# is attached. Even a brief apply→destroy in the sweep accrues real Microsoft
+# license fees at a per-unit rate far above any other resource here (it caused a
+# large single-month cost spike). Unlike gke/compute in apply_smoke_pr_skip.yaml,
+# this must NOT apply even in the full sweep, so it belongs here. synth +
+# terraform validate still cover it.
+license_manager_quickstart: reserves Office SPLA licenses (license_count, active) that bill for the configuration's existence with no VM attached; a brief apply→destroy still accrues high Microsoft license fees — synth + terraform validate cover it instead
