@@ -1,0 +1,49 @@
+# apply_cost_denylist.yaml — Terraform resource types that make an example too
+# expensive to `terraform apply` freely in apply-smoke. Enforced by
+# tool/apply_smoke_test.sh (test 9): an example whose generated tf-out contains
+# one of these types MUST be skip-listed, or CI fails. This is the machine guard
+# that stops a high-cost resource — e.g. a software license that bills merely by
+# existing — from slipping into the sweep. That gap caused the Cloud License
+# Manager cost spike: license_manager_quickstart provisioned Office SPLA licenses
+# and was in neither skip list, so the per-PR gate applied it on every push.
+#
+# Format (one per line):  <terraform_type>: <tier>   # reason
+#
+# Tiers:
+#   never_apply — bills heavily merely by existing (software licenses,
+#                 reservations) or cannot be cheaply torn down. Must NEVER apply,
+#                 even in the full sweep. The example MUST be in
+#                 tool/apply_smoke_skip.yaml.
+#   sweep_only  — billed hourly and expensive, but safe to apply briefly in the
+#                 full sweep (apply -> destroy). Must not apply per-PR. The
+#                 example MUST be in tool/apply_smoke_skip.yaml OR
+#                 tool/apply_smoke_pr_skip.yaml.
+#
+# Not exhaustive by design — add new high-cost types as they are curated
+# (ratchet). The list only needs to stay ahead of what examples actually
+# provision; the gate fails loudly the moment an unlisted-but-skipped gap appears.
+
+# --- never_apply: existence-billed / reservation ---
+google_license_manager_configuration: never_apply  # Office SPLA licenses bill per license_count for the configuration's lifetime, no VM required
+
+# --- sweep_only: hourly-billed compute / managed data ---
+google_container_cluster: sweep_only         # GKE control plane fee + node VMs
+google_container_node_pool: sweep_only       # GKE node VMs
+google_compute_instance: sweep_only          # Compute Engine VM
+google_redis_instance: sweep_only            # Memorystore for Redis
+google_redis_cluster: sweep_only             # Memorystore for Redis Cluster
+google_memcache_instance: sweep_only         # Memorystore for Memcached
+google_spanner_instance: sweep_only          # Spanner node / processing units
+google_alloydb_cluster: sweep_only           # AlloyDB cluster
+google_alloydb_instance: sweep_only          # AlloyDB instance
+google_sql_database_instance: sweep_only     # Cloud SQL instance
+google_bigtable_instance: sweep_only         # Bigtable node billing
+google_filestore_instance: sweep_only        # Filestore provisioned capacity
+google_dataproc_cluster: sweep_only          # Dataproc cluster VMs
+google_composer_environment: sweep_only      # Cloud Composer (Airflow) fixed fee
+google_notebooks_instance: sweep_only        # Vertex AI Notebooks VM
+google_workbench_instance: sweep_only        # Vertex AI Workbench VM
+google_vertex_ai_endpoint: sweep_only        # deployed-model node billing
+google_vertex_ai_index_endpoint: sweep_only  # deployed-index node billing
+google_compute_reservation: sweep_only       # reserved compute capacity
+google_compute_commitment: sweep_only        # committed-use discount contract

@@ -97,4 +97,43 @@ fanout_out="$(printf '%s\n' \
 got:
 $fanout_out"
 
+# 9. cost gate: an example whose generated tf-out contains a denylisted resource
+#    type must be skip-listed appropriately. never_apply -> must be in the apply
+#    skip-list (skipped even in the full sweep); sweep_only -> must be in the
+#    apply skip-list OR the PR-skip list. This is the machine guard that stops a
+#    high-cost resource (e.g. an existence-billed software license) from slipping
+#    into the sweep — the gap behind the License Manager cost spike. Needs jq to
+#    read tf-out; if jq is absent (some local shells) skip with a warning, since
+#    CI always has it.
+if command -v jq >/dev/null 2>&1; then
+  denylist=tool/apply_cost_denylist.yaml
+  [[ -f "$denylist" ]] || fail "missing $denylist"
+  never_types="$(grep -vE '^[[:space:]]*#' "$denylist" | grep -E ': *never_apply' | sed -E 's/:.*//' | sort -u)"
+  sweep_types="$(grep -vE '^[[:space:]]*#' "$denylist" | grep -E ': *sweep_only' | sed -E 's/:.*//' | sort -u)"
+  [[ -n "$never_types$sweep_types" ]] || fail "cost denylist is empty — expected at least one entry"
+  for ex_dir in examples/*_quickstart/; do
+    slug="$(basename "$ex_dir")"
+    tfjson="${ex_dir}tf-out/main.tf.json"
+    [[ -f "$tfjson" ]] || continue
+    types="$(jq -r '.resource // {} | keys[]' "$tfjson" 2>/dev/null | sort -u)" \
+      || fail "cost gate: failed to parse $tfjson with jq"
+    in_skip=false; in_pr_skip=false
+    printf '%s\n' "$skip_slugs" | grep -qxF "$slug" && in_skip=true
+    printf '%s\n' "$pr_skip_slugs" | grep -qxF "$slug" && in_pr_skip=true
+    while IFS= read -r t; do
+      [[ -z "$t" ]] && continue
+      printf '%s\n' "$types" | grep -qxF "$t" || continue
+      $in_skip || fail "cost gate: $slug provisions never-apply '$t' but is not in tool/apply_smoke_skip.yaml"
+    done <<< "$never_types"
+    while IFS= read -r t; do
+      [[ -z "$t" ]] && continue
+      printf '%s\n' "$types" | grep -qxF "$t" || continue
+      { $in_skip || $in_pr_skip; } \
+        || fail "cost gate: $slug provisions sweep-only '$t' but is in neither tool/apply_smoke_skip.yaml nor tool/apply_smoke_pr_skip.yaml"
+    done <<< "$sweep_types"
+  done
+else
+  echo "apply_smoke_test: WARN: jq not found — skipping cost gate (test 9); CI runs it" >&2
+fi
+
 echo "apply_smoke_test: OK"
