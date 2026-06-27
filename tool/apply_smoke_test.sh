@@ -111,15 +111,30 @@ if command -v jq >/dev/null 2>&1; then
   never_types="$(grep -vE '^[[:space:]]*#' "$denylist" | grep -E ': *never_apply' | sed -E 's/:.*//' | sort -u)"
   sweep_types="$(grep -vE '^[[:space:]]*#' "$denylist" | grep -E ': *sweep_only' | sed -E 's/:.*//' | sort -u)"
   [[ -n "$never_types$sweep_types" ]] || fail "cost denylist is empty — expected at least one entry"
+  . tool/apply_cost_lib.sh
+  safe_types="$(grep -vE '^[[:space:]]*#' "$denylist" | grep -E ': *safe' | sed -E 's/:.*//' | sort -u)"
+  tfout_count=0
   for ex_dir in examples/*_quickstart/; do
     slug="$(basename "$ex_dir")"
     tfjson="${ex_dir}tf-out/main.tf.json"
     [[ -f "$tfjson" ]] || continue
+    tfout_count=$((tfout_count + 1))
     types="$(jq -r '.resource // {} | keys[]' "$tfjson" 2>/dev/null | sort -u)" \
       || fail "cost gate: failed to parse $tfjson with jq"
     in_skip=false; in_pr_skip=false
     printf '%s\n' "$skip_slugs" | grep -qxF "$slug" && in_skip=true
     printf '%s\n' "$pr_skip_slugs" | grep -qxF "$slug" && in_pr_skip=true
+    # DEFAULT-DENY: an APPLIED example (not in apply_smoke_skip.yaml — pr-skip
+    # examples ARE applied in the full sweep, so they count here) must have every
+    # type classified. An unclassified type = a possibly-high-cost unknown (the
+    # License Manager gap) → fail; classify it or skip the example.
+    if ! $in_skip; then
+      while IFS= read -r t; do
+        [[ -z "$t" ]] && continue
+        [[ -n "$(cost_tier_of "$t" "$denylist")" ]] \
+          || fail "cost gate: applied example '$slug' provisions unclassified type '$t' — classify it in tool/apply_cost_denylist.yaml (safe/sweep_only/never_apply) or add '$slug' to a skip list"
+      done <<< "$types"
+    fi
     while IFS= read -r t; do
       [[ -z "$t" ]] && continue
       printf '%s\n' "$types" | grep -qxF "$t" || continue
@@ -132,8 +147,42 @@ if command -v jq >/dev/null 2>&1; then
         || fail "cost gate: $slug provisions sweep-only '$t' but is in neither tool/apply_smoke_skip.yaml nor tool/apply_smoke_pr_skip.yaml"
     done <<< "$sweep_types"
   done
+  [[ "$tfout_count" -gt 0 ]] \
+    || fail "cost gate inspected 0 tf-outs — run 'dart tool/check_example_topology.dart' to synth examples first"
 else
   echo "apply_smoke_test: WARN: jq not found — skipping cost gate (test 9); CI runs it" >&2
+fi
+
+# 10. cost_tier_of: 台帳の型→tier を返し、未登録は空文字を返す。
+. tool/apply_cost_lib.sh || fail "cannot source tool/apply_cost_lib.sh"
+[[ "$(cost_tier_of google_license_manager_configuration tool/apply_cost_denylist.yaml)" == "never_apply" ]] \
+  || fail "cost_tier_of: never_apply 型の判定に失敗"
+[[ "$(cost_tier_of google_container_cluster tool/apply_cost_denylist.yaml)" == "sweep_only" ]] \
+  || fail "cost_tier_of: sweep_only 型の判定に失敗"
+[[ "$(cost_tier_of google_compute_network tool/apply_cost_denylist.yaml)" == "safe" ]] \
+  || fail "cost_tier_of: safe 型の判定に失敗"
+[[ -z "$(cost_tier_of google_app_engine_application tool/apply_cost_denylist.yaml)" ]] \
+  || fail "cost_tier_of: 未登録型は空文字であるべき"
+
+# 11. cost_is_dangerous_type: 危険パターンに反応する。
+cost_is_dangerous_type google_license_manager_configuration || fail "danger: license にマッチすべき"
+cost_is_dangerous_type google_compute_reservation        || fail "danger: reservation にマッチすべき"
+cost_is_dangerous_type google_storage_bucket             && fail "danger: storage_bucket は安全側であるべき"
+
+# 12. sanity check: a `safe`-classified type matching the danger pattern is
+#     almost certainly mis-classified (existence/hourly billing). Allow explicit
+#     exceptions via lines `safe_exception: <type>  # why` in the denylist.
+if command -v jq >/dev/null 2>&1; then
+  . tool/apply_cost_lib.sh
+  denylist=tool/apply_cost_denylist.yaml
+  safe_only="$(grep -vE '^[[:space:]]*#' "$denylist" | grep -E ': *safe([[:space:]]|$)' | sed -E 's/:.*//' | sort -u)"
+  exceptions="$(grep -E '^safe_exception:' "$denylist" | sed -E 's/^safe_exception:[[:space:]]*//; s/[[:space:]].*//' | sort -u)"
+  while IFS= read -r t; do
+    [[ -z "$t" ]] && continue
+    cost_is_dangerous_type "$t" || continue
+    printf '%s\n' "$exceptions" | grep -qxF "$t" && continue
+    fail "sanity: type '$t' is classified safe but matches a high-cost pattern — re-check billing (terraform MCP + docs); if truly safe add 'safe_exception: $t  # reason' to $denylist"
+  done <<< "$safe_only"
 fi
 
 echo "apply_smoke_test: OK"

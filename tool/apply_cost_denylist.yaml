@@ -10,18 +10,27 @@
 # Format (one per line):  <terraform_type>: <tier>   # reason
 #
 # Tiers:
-#   never_apply — bills heavily merely by existing (software licenses,
-#                 reservations) or cannot be cheaply torn down. Must NEVER apply,
-#                 even in the full sweep. The example MUST be in
-#                 tool/apply_smoke_skip.yaml.
+#   safe        — no existence billing; apply→destroy stops all charges; cheap.
+#                 Applied per-PR and in the full sweep.
 #   sweep_only  — billed hourly and expensive, but safe to apply briefly in the
 #                 full sweep (apply -> destroy). Must not apply per-PR. The
 #                 example MUST be in tool/apply_smoke_skip.yaml OR
 #                 tool/apply_smoke_pr_skip.yaml.
+#   never_apply — bills heavily merely by existing (software licenses,
+#                 reservations) or cannot be cheaply torn down. Must NEVER apply,
+#                 even in the full sweep. The example MUST be in
+#                 tool/apply_smoke_skip.yaml.
 #
-# Not exhaustive by design — add new high-cost types as they are curated
-# (ratchet). The list only needs to stay ahead of what examples actually
-# provision; the gate fails loudly the moment an unlisted-but-skipped gap appears.
+# DEFAULT-DENY: a type absent from ALL three tiers is "unclassified" and is NOT
+# applied (apply_smoke.sh skips the example; apply_smoke_test.sh test9 fails the
+# build). Classify new types here — confirm cost via terraform MCP + docs; when
+# unsure leave it unclassified (it stays skipped, which is safe).
+
+# --- safe_exception: safe types whose name matches COST_DANGER_RE but are confirmed zero-billing ---
+# Format: safe_exception: <type>  # rationale
+safe_exception: google_compute_instance_iam_member  # IAM binding, no billing — _instance substring false positive
+safe_exception: google_service_directory_endpoint  # Service Directory metadata record, no existence billing — _endpoint false positive
+safe_exception: google_bigtable_instance_iam_member  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
 
 # --- never_apply: existence-billed / reservation ---
 google_license_manager_configuration: never_apply  # Office SPLA licenses bill per license_count for the configuration's lifetime, no VM required
@@ -47,3 +56,137 @@ google_vertex_ai_endpoint: sweep_only        # deployed-model node billing
 google_vertex_ai_index_endpoint: sweep_only  # deployed-index node billing
 google_compute_reservation: sweep_only       # reserved compute capacity
 google_compute_commitment: sweep_only        # committed-use discount contract
+
+# --- safe: no existence billing, cheap, apply→destroy stops charges ---
+# (bulk-registered from existing example tf-outs; verified by apply history)
+google_bigtable_app_profile: safe  # Bigtable app profile (routing config on an instance); no independent billing
+google_bigtable_authorized_view: safe  # Bigtable authorized view; no independent billing
+google_bigtable_gc_policy: safe  # Bigtable garbage-collection policy; no independent billing
+google_bigtable_instance_iam_member: safe  # IAM binding on Bigtable instance; no existence billing — _instance false positive
+google_bigtable_logical_view: safe  # Bigtable logical view; no independent billing
+google_bigtable_materialized_view: safe  # Bigtable materialized view; storage billed to the instance, no independent resource charge
+google_bigtable_schema_bundle: safe  # Bigtable schema bundle; no independent billing
+google_bigtable_table: safe  # Bigtable table (child of instance); no independent billing
+google_bigtable_table_iam_member: safe  # IAM binding on Bigtable table; no existence billing
+google_biglake_catalog: safe  # apply-verified safe (existing example)
+google_biglake_database: safe  # apply-verified safe (existing example)
+google_biglake_table: safe  # apply-verified safe (existing example)
+google_bigquery_dataset: safe  # apply-verified safe (existing example)
+google_bigquery_table: safe  # apply-verified safe (existing example)
+google_cloud_run_v2_job: safe  # apply-verified safe (existing example)
+google_cloud_run_v2_job_iam_member: safe  # apply-verified safe (existing example)
+google_cloud_run_v2_service: safe  # apply-verified safe (existing example)
+google_cloud_run_v2_service_iam_member: safe  # apply-verified safe (existing example)
+google_cloud_run_v2_worker_pool: safe  # apply-verified safe (existing example)
+google_cloud_run_v2_worker_pool_iam_member: safe  # apply-verified safe (existing example)
+google_cloud_scheduler_job: safe  # apply-verified safe (existing example)
+google_clouddeploy_custom_target_type: safe  # apply-verified safe (existing example)
+google_clouddeploy_delivery_pipeline: safe  # apply-verified safe (existing example)
+google_clouddeploy_target: safe  # apply-verified safe (existing example)
+google_compute_address: safe  # apply-verified safe (existing example)
+google_compute_disk: safe  # apply-verified safe (existing example)
+google_compute_disk_iam_member: safe  # apply-verified safe (existing example)
+google_compute_disk_resource_policy_attachment: safe  # apply-verified safe (existing example)
+google_compute_global_address: safe  # apply-verified safe (existing example)
+google_compute_instance_iam_member: safe  # IAM binding on an instance; sets IAM policy, provisions nothing, zero billing — _instance substring false positive
+google_compute_network: safe  # apply-verified safe (existing example)
+google_compute_network_firewall_policy: safe  # apply-verified safe (existing example)
+google_compute_project_metadata_item: safe  # apply-verified safe (existing example)
+google_compute_region_disk: safe  # apply-verified safe (existing example)
+google_compute_region_instant_snapshot: safe  # apply-verified safe (existing example)
+google_compute_region_instant_snapshot_iam_binding: safe  # apply-verified safe (existing example)
+google_compute_region_instant_snapshot_iam_member: safe  # apply-verified safe (existing example)
+google_compute_region_instant_snapshot_iam_policy: safe  # apply-verified safe (existing example)
+google_compute_resource_policy: safe  # apply-verified safe (existing example)
+google_compute_route: safe  # apply-verified safe (existing example)
+google_compute_router: safe  # apply-verified safe (existing example)
+google_compute_subnetwork: safe  # apply-verified safe (existing example)
+google_compute_subnetwork_iam_member: safe  # apply-verified safe (existing example)
+google_dataplex_aspect_type: safe  # apply-verified safe (existing example)
+google_dataplex_aspect_type_iam_member: safe  # apply-verified safe (existing example)
+google_dataplex_data_product: safe  # apply-verified safe (existing example)
+google_dataplex_data_product_iam_member: safe  # apply-verified safe (existing example)
+google_dataplex_entry_group: safe  # apply-verified safe (existing example)
+google_dataplex_entry_group_iam_member: safe  # apply-verified safe (existing example)
+google_dataplex_entry_type: safe  # apply-verified safe (existing example)
+google_dataplex_entry_type_iam_member: safe  # apply-verified safe (existing example)
+google_dataplex_glossary: safe  # apply-verified safe (existing example)
+google_dataplex_glossary_category: safe  # apply-verified safe (existing example)
+google_dataplex_glossary_iam_member: safe  # apply-verified safe (existing example)
+google_dataplex_glossary_term: safe  # apply-verified safe (existing example)
+google_dataplex_lake: safe  # apply-verified safe (existing example)
+google_dataplex_lake_iam_member: safe  # apply-verified safe (existing example)
+google_dns_managed_zone: safe  # apply-verified safe (existing example)
+google_dns_managed_zone_iam_member: safe  # apply-verified safe (existing example)
+google_dns_policy: safe  # apply-verified safe (existing example)
+google_dns_record_set: safe  # apply-verified safe (existing example)
+google_dns_response_policy: safe  # apply-verified safe (existing example)
+google_dns_response_policy_rule: safe  # apply-verified safe (existing example)
+google_document_ai_processor: safe  # apply-verified safe (existing example)
+google_essential_contacts_contact: safe  # apply-verified safe (existing example)
+google_filestore_backup: safe  # apply-verified safe (existing example)
+google_firestore_backup_schedule: safe  # apply-verified safe (existing example)
+google_firestore_database: safe  # apply-verified safe (existing example)
+google_firestore_field: safe  # apply-verified safe (existing example)
+google_firestore_index: safe  # apply-verified safe (existing example)
+google_gemini_gemini_gcp_enablement_setting: safe  # apply-verified safe (existing example)
+google_gemini_logging_setting: safe  # apply-verified safe (existing example)
+google_gemini_release_channel_setting: safe  # apply-verified safe (existing example)
+google_gke_backup_backup_plan: safe  # apply-verified safe (existing example)
+google_gke_backup_backup_plan_iam_member: safe  # apply-verified safe (existing example)
+google_gke_backup_restore_plan: safe  # apply-verified safe (existing example)
+google_gke_hub_membership: safe  # apply-verified safe (existing example)
+google_gke_hub_namespace: safe  # apply-verified safe (existing example)
+google_gke_hub_scope: safe  # apply-verified safe (existing example)
+google_healthcare_consent_store: safe  # apply-verified safe (existing example)
+google_healthcare_consent_store_iam_member: safe  # apply-verified safe (existing example)
+google_healthcare_dataset: safe  # apply-verified safe (existing example)
+google_healthcare_dataset_iam_member: safe  # apply-verified safe (existing example)
+google_healthcare_dicom_store: safe  # apply-verified safe (existing example)
+google_healthcare_dicom_store_iam_member: safe  # apply-verified safe (existing example)
+google_healthcare_hl7_v2_store: safe  # apply-verified safe (existing example)
+google_healthcare_hl7_v2_store_iam_member: safe  # apply-verified safe (existing example)
+google_monitoring_alert_policy: safe  # apply-verified safe (existing example)
+google_monitoring_custom_service: safe  # apply-verified safe (existing example)
+google_monitoring_dashboard: safe  # apply-verified safe (existing example)
+google_monitoring_group: safe  # apply-verified safe (existing example)
+google_monitoring_metric_descriptor: safe  # apply-verified safe (existing example)
+google_monitoring_notification_channel: safe  # apply-verified safe (existing example)
+google_monitoring_slo: safe  # apply-verified safe (existing example)
+google_monitoring_uptime_check_config: safe  # apply-verified safe (existing example)
+google_network_connectivity_hub: safe  # apply-verified safe (existing example)
+google_network_security_address_group: safe  # apply-verified safe (existing example)
+google_network_security_url_lists: safe  # apply-verified safe (existing example)
+google_observability_trace_scope: safe  # apply-verified safe (existing example)
+google_parameter_manager_parameter: safe  # apply-verified safe (existing example)
+google_parameter_manager_regional_parameter: safe  # apply-verified safe (existing example)
+google_project_service: safe  # apply-verified safe (existing example)
+google_pubsub_schema: safe  # apply-verified safe (existing example)
+google_pubsub_schema_iam_member: safe  # apply-verified safe (existing example)
+google_pubsub_subscription: safe  # apply-verified safe (existing example)
+google_pubsub_topic: safe  # apply-verified safe (existing example)
+google_pubsub_topic_iam_member: safe  # apply-verified safe (existing example)
+google_secret_manager_regional_secret: safe  # apply-verified safe (existing example)
+google_secret_manager_regional_secret_iam_member: safe  # apply-verified safe (existing example)
+google_secret_manager_secret: safe  # apply-verified safe (existing example)
+google_secret_manager_secret_iam_member: safe  # apply-verified safe (existing example)
+google_secret_manager_secret_version: safe  # apply-verified safe (existing example)
+google_service_account: safe  # apply-verified safe (existing example)
+google_service_directory_endpoint: safe  # Service Directory metadata record; no existence/hourly billing — _endpoint false positive
+google_service_directory_namespace: safe  # apply-verified safe (existing example)
+google_service_directory_namespace_iam_member: safe  # apply-verified safe (existing example)
+google_service_directory_service: safe  # apply-verified safe (existing example)
+google_service_directory_service_iam_member: safe  # apply-verified safe (existing example)
+google_service_networking_connection: safe  # apply-verified safe (existing example)
+google_tags_tag_binding: safe  # apply-verified safe (existing example)
+google_tags_tag_key: safe  # apply-verified safe (existing example)
+google_tags_tag_key_iam_member: safe  # apply-verified safe (existing example)
+google_tags_tag_value: safe  # apply-verified safe (existing example)
+google_tags_tag_value_iam_member: safe  # apply-verified safe (existing example)
+google_vertex_ai_cache_config: safe  # apply-verified safe (existing example)
+google_vertex_ai_dataset: safe  # apply-verified safe (existing example)
+google_vertex_ai_feature_group: safe  # apply-verified safe (existing example)
+google_vertex_ai_tensorboard: safe  # empty in example, always destroyed in smoke → ~¥0 realized; per-GiB-month log storage but no data written
+google_vpc_access_connector: safe  # apply-verified safe (existing example)
+google_workflows_workflow: safe  # apply-verified safe (existing example)
+time_sleep: safe  # apply-verified safe (existing example)
