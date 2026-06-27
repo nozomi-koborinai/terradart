@@ -8541,6 +8541,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_storage_bucket`.\n\nThe Buckets resource represents a bucket in Google Cloud Storage. There is a\nsingle global namespace shared by all buckets. For more information, see\nBucket Name Requirements.\n\nBuckets contain objects which can be accessed by their own methods. In\naddition to the acl property, buckets contain bucketAccessControls, for use\nin fine-grained manipulation of an existing bucket\'s access controls.\n\nA bucket is always owned by the project team owners group.\n\nExample:\n```dart\nfinal assets = GoogleStorageBucket(\n  localName: \'assets\',\n  name: TfArg.literal(\'my-app-assets-prod\'),\n  location: TfArg.literal(\'ASIA-NORTHEAST1\'),\n  storageClass: TfArg.literal(BucketStorageClass.standard),\n  forceDestroy: TfArg.literal(false),\n  versioning: const StorageBucketVersioning(enabled: true),\n  uniformBucketLevelAccess: TfArg.literal(true),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_storage_bucket_iam_binding',
+    className: 'GoogleStorageBucketIamBinding',
+    barrel: 'storage',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_storage_bucket_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'bucket',
+      'role',
+      'members',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_storage_bucket_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Storage bucket.\n\nReplaces the entire member list for that role on the bucket. Prefer\n[GoogleStorageBucketIamMember] when adding one principal without\ntouching existing bindings.',
+  ),
+  CatalogEntry(
     tfType: 'google_storage_bucket_iam_member',
     className: 'GoogleStorageBucketIamMember',
     barrel: 'storage',

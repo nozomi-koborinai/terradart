@@ -777,6 +777,7 @@ classDocComment: |-
           'google_compute_region_instant_snapshot_iam_policy',
           'google_discovery_engine_search_engine_iam_binding',
           'google_discovery_engine_search_engine_iam_policy',
+          'google_storage_bucket_iam_binding',
         };
         final unexpected = loaded.resources.keys
             .where(
