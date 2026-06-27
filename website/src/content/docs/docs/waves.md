@@ -307,7 +307,7 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 
 Adds ten Cloud Bigtable factories under the new `bigtable` barrel: instance (typed clusters), table (column families), app profile (sealed routing), GC policy (max age / max version), authorized view, logical view, materialized view, protobuf schema bundle, and additive instance/table IAM members. Exercised by [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart).
 
-Catalog after Wave 73: **343 curated resource factories + 1 data source** (344 catalog entries). 60 service barrels.
+Catalog after Wave 73: **344 curated resource factories + 1 data source** (345 catalog entries). 60 service barrels.
 
 | Terraform type | Dart factory | Barrel | Example |
 | --- | --- | --- | --- |
