@@ -39,6 +39,13 @@ if ! command -v terraform >/dev/null 2>&1; then
   $SUDO apt-get install -y terraform
 fi
 
+# --- gcp-cost-mcp-server (pricing MCP for cost-classification) -------------
+if ! command -v gcp-cost-mcp-server >/dev/null 2>&1; then
+  GCMS_VER="0.8.0"
+  $SUDO curl -fsSL -o /usr/local/bin/gcp-cost-mcp-server "https://github.com/nozomi-koborinai/gcp-cost-mcp-server/releases/download/v${GCMS_VER}/gcp-cost-mcp-server-linux-amd64"
+  $SUDO chmod +x /usr/local/bin/gcp-cost-mcp-server
+fi
+
 # --- Resolve workspace dependencies (cheap; safe to re-run) ----------------
 # apt installs Dart under /usr/lib/dart/bin (symlinked into /usr/bin); add it to
 # PATH defensively in case the symlink is absent on a given base image.
