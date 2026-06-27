@@ -111,6 +111,8 @@ if command -v jq >/dev/null 2>&1; then
   never_types="$(grep -vE '^[[:space:]]*#' "$denylist" | grep -E ': *never_apply' | sed -E 's/:.*//' | sort -u)"
   sweep_types="$(grep -vE '^[[:space:]]*#' "$denylist" | grep -E ': *sweep_only' | sed -E 's/:.*//' | sort -u)"
   [[ -n "$never_types$sweep_types" ]] || fail "cost denylist is empty — expected at least one entry"
+  . tool/apply_cost_lib.sh
+  safe_types="$(grep -vE '^[[:space:]]*#' "$denylist" | grep -E ': *safe' | sed -E 's/:.*//' | sort -u)"
   for ex_dir in examples/*_quickstart/; do
     slug="$(basename "$ex_dir")"
     tfjson="${ex_dir}tf-out/main.tf.json"
@@ -120,6 +122,17 @@ if command -v jq >/dev/null 2>&1; then
     in_skip=false; in_pr_skip=false
     printf '%s\n' "$skip_slugs" | grep -qxF "$slug" && in_skip=true
     printf '%s\n' "$pr_skip_slugs" | grep -qxF "$slug" && in_pr_skip=true
+    # DEFAULT-DENY: an APPLIED example (not in apply_smoke_skip.yaml — pr-skip
+    # examples ARE applied in the full sweep, so they count here) must have every
+    # type classified. An unclassified type = a possibly-high-cost unknown (the
+    # License Manager gap) → fail; classify it or skip the example.
+    if ! $in_skip; then
+      while IFS= read -r t; do
+        [[ -z "$t" ]] && continue
+        [[ -n "$(cost_tier_of "$t" "$denylist")" ]] \
+          || fail "cost gate: applied example '$slug' provisions unclassified type '$t' — classify it in tool/apply_cost_denylist.yaml (safe/sweep_only/never_apply) or add '$slug' to a skip list"
+      done <<< "$types"
+    fi
     while IFS= read -r t; do
       [[ -z "$t" ]] && continue
       printf '%s\n' "$types" | grep -qxF "$t" || continue
