@@ -35,6 +35,7 @@ Read [`CONTEXT.md`](../../../CONTEXT.md) for vocabulary. Generation policy and p
 - [ ] 8. **Review** the generated `terradart_google` diff (constructors, enums, sealed types, sensitive fields, barrel export).
 - [ ] 9. **Counts:** if catalog size changed, update `tool/doc_expectations.dart`, `catalog_count_test.dart`, and `wrap_command_test.dart` file-count assertions in the same PR.
 - [ ] 10. **Wave / example:** if this resource is part of a Wave release, follow [`terradart-ship-wave`](../terradart-ship-wave/SKILL.md) — add or extend a quickstart and README Examples; `curatedDoc` alone is not enough.
+- [ ] 10b. **Cost-classify** every Terraform type that appears in the example synth output (including dependency types like `google_storage_bucket`). Run `tool/agent_cost_classify.sh <type> [service]` (gcp-cost MCP) and add `<type>: <tier>  # gcp-cost: …; billing-behavior: …` to [`tool/apply_cost_denylist.yaml`](../../../tool/apply_cost_denylist.yaml). IAM adjuncts with no catalog SKU may use `billing-behavior:` instead of `gcp-cost:`. `apply_smoke_test.sh` test 13 fails hand-wavy `safe` comments.
 - [ ] 11. **Verify:** run the [`terradart-agent-verify`](../terradart-agent-verify/SKILL.md) workflow (`tool/agent_verify.sh`; add `--maintainer` when touching wrap-init / wrap-promote).
 
 ## Override checklist
