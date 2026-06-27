@@ -165,4 +165,20 @@ cost_is_dangerous_type google_license_manager_configuration || fail "danger: lic
 cost_is_dangerous_type google_compute_reservation        || fail "danger: reservation にマッチすべき"
 cost_is_dangerous_type google_storage_bucket             && fail "danger: storage_bucket は安全側であるべき"
 
+# 12. sanity check: a `safe`-classified type matching the danger pattern is
+#     almost certainly mis-classified (existence/hourly billing). Allow explicit
+#     exceptions via lines `safe_exception: <type>  # why` in the denylist.
+if command -v jq >/dev/null 2>&1; then
+  . tool/apply_cost_lib.sh
+  denylist=tool/apply_cost_denylist.yaml
+  safe_only="$(grep -vE '^[[:space:]]*#' "$denylist" | grep -E ': *safe([[:space:]]|$)' | sed -E 's/:.*//' | sort -u)"
+  exceptions="$(grep -E '^safe_exception:' "$denylist" | sed -E 's/^safe_exception:[[:space:]]*//; s/[[:space:]].*//' | sort -u)"
+  while IFS= read -r t; do
+    [[ -z "$t" ]] && continue
+    cost_is_dangerous_type "$t" || continue
+    printf '%s\n' "$exceptions" | grep -qxF "$t" && continue
+    fail "sanity: type '$t' is classified safe but matches a high-cost pattern — re-check billing (terraform MCP + docs); if truly safe add 'safe_exception: $t  # reason' to $denylist"
+  done <<< "$safe_only"
+fi
+
 echo "apply_smoke_test: OK"

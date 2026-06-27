@@ -26,6 +26,11 @@
 # build). Classify new types here — confirm cost via terraform MCP + docs; when
 # unsure leave it unclassified (it stays skipped, which is safe).
 
+# --- safe_exception: safe types whose name matches COST_DANGER_RE but are confirmed zero-billing ---
+# Format: safe_exception: <type>  # rationale
+safe_exception: google_compute_instance_iam_member  # IAM binding, no billing — _instance substring false positive
+safe_exception: google_service_directory_endpoint  # Service Directory metadata record, no existence billing — _endpoint false positive
+
 # --- never_apply: existence-billed / reservation ---
 google_license_manager_configuration: never_apply  # Office SPLA licenses bill per license_count for the configuration's lifetime, no VM required
 
@@ -73,7 +78,7 @@ google_compute_disk: safe  # apply-verified safe (existing example)
 google_compute_disk_iam_member: safe  # apply-verified safe (existing example)
 google_compute_disk_resource_policy_attachment: safe  # apply-verified safe (existing example)
 google_compute_global_address: safe  # apply-verified safe (existing example)
-google_compute_instance_iam_member: safe  # apply-verified safe (existing example)
+google_compute_instance_iam_member: safe  # IAM binding on an instance; sets IAM policy, provisions nothing, zero billing — _instance substring false positive
 google_compute_network: safe  # apply-verified safe (existing example)
 google_compute_network_firewall_policy: safe  # apply-verified safe (existing example)
 google_compute_project_metadata_item: safe  # apply-verified safe (existing example)
@@ -157,7 +162,7 @@ google_secret_manager_secret: safe  # apply-verified safe (existing example)
 google_secret_manager_secret_iam_member: safe  # apply-verified safe (existing example)
 google_secret_manager_secret_version: safe  # apply-verified safe (existing example)
 google_service_account: safe  # apply-verified safe (existing example)
-google_service_directory_endpoint: safe  # apply-verified safe (existing example)
+google_service_directory_endpoint: safe  # Service Directory metadata record; no existence/hourly billing — _endpoint false positive
 google_service_directory_namespace: safe  # apply-verified safe (existing example)
 google_service_directory_namespace_iam_member: safe  # apply-verified safe (existing example)
 google_service_directory_service: safe  # apply-verified safe (existing example)
@@ -171,7 +176,7 @@ google_tags_tag_value_iam_member: safe  # apply-verified safe (existing example)
 google_vertex_ai_cache_config: safe  # apply-verified safe (existing example)
 google_vertex_ai_dataset: safe  # apply-verified safe (existing example)
 google_vertex_ai_feature_group: safe  # apply-verified safe (existing example)
-google_vertex_ai_tensorboard: safe  # apply-verified safe (existing example)
+google_vertex_ai_tensorboard: safe  # empty in example, always destroyed in smoke → ~¥0 realized; per-GiB-month log storage but no data written
 google_vpc_access_connector: safe  # apply-verified safe (existing example)
 google_workflows_workflow: safe  # apply-verified safe (existing example)
 time_sleep: safe  # apply-verified safe (existing example)
