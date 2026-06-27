@@ -74,10 +74,9 @@ void main() {
       );
       expect(
         report.notInCatalog,
-        isNotEmpty,
+        isEmpty,
         reason:
-            'the fixture includes an uncurated type '
-            '(google_storage_bucket_iam_binding); refresh if it gets curated',
+            'the fixture tree should be fully covered by the curated catalog',
       );
       expect(
         report.perModule.keys,

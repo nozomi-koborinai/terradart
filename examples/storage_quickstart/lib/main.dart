@@ -85,6 +85,26 @@ final class AssetsStack extends Stack {
       ),
     );
 
+    // Authoritative binding for bucket admins — replaces the full member list
+    // for `roles/storage.objectAdmin` on this bucket (contrast with the
+    // additive `*_iam_member` above).
+    final assetsAdmin = GoogleServiceAccount(
+      localName: 'assets_admin',
+      accountId: TfArg.literal('assets-admin'),
+      displayName: TfArg.literal('Assets bucket object admin'),
+    );
+    add(assetsAdmin);
+
+    add(
+      GoogleStorageBucketIamBinding(
+        localName: 'assets_admin_binding',
+        bucket: TfArg.ref(assets.nameRef),
+        role: TfArg.literal('roles/storage.objectAdmin'),
+        members: TfArg.literal([assetsAdmin.iamMember.interpolation]),
+        dependsOn: [ResourceDependency(assetsAdmin)],
+      ),
+    );
+
     add(
       GoogleStorageHmacKey(
         localName: 'interop_hmac',

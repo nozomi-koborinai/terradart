@@ -170,6 +170,8 @@ google_secret_manager_regional_secret: safe  # apply-verified safe (existing exa
 google_secret_manager_regional_secret_iam_member: safe  # apply-verified safe (existing example)
 google_secret_manager_secret: safe  # apply-verified safe (existing example)
 google_secret_manager_secret_iam_member: safe  # apply-verified safe (existing example)
+google_storage_bucket_iam_binding: safe  # IAM binding on a bucket; no existence billing
+google_storage_bucket_iam_member: safe  # apply-verified safe (existing example)
 google_secret_manager_secret_version: safe  # apply-verified safe (existing example)
 google_service_account: safe  # apply-verified safe (existing example)
 google_service_directory_endpoint: safe  # Service Directory metadata record; no existence/hourly billing — _endpoint false positive

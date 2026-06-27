@@ -1,0 +1,17 @@
+outputDir: storage
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud Storage bucket.
+  ///
+  /// Replaces the entire member list for that role on the bucket. Prefer
+  /// [GoogleStorageBucketIamMember] when adding one principal without
+  /// touching existing bindings.
+
+paramOrder:
+  - bucket
+  - role
+  - members
+  - condition

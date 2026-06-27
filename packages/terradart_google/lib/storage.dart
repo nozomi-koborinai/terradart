@@ -31,6 +31,8 @@ export 'src/storage/google_storage_managed_folder.dart'
     show GoogleStorageManagedFolder;
 export 'src/storage/google_storage_bucket_iam_member.dart'
     show GoogleStorageBucketIamMember;
+export 'src/storage/google_storage_bucket_iam_binding.dart'
+    show GoogleStorageBucketIamBinding;
 export 'src/storage/google_storage_bucket_object.dart'
     show
         StorageBucketObjectBucketObjectContent,
