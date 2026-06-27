@@ -30,7 +30,7 @@
 # Format: safe_exception: <type>  # rationale
 safe_exception: google_compute_instance_iam_member  # IAM binding, no billing — _instance substring false positive
 safe_exception: google_service_directory_endpoint  # Service Directory metadata record, no existence billing — _endpoint false positive
-safe_exception: google_bigtable_instance_iam_member  # IAM binding on Bigtable instance, no existence billing — _instance substring false positive
+safe_exception: google_bigtable_instance_iam_member  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
 
 # --- never_apply: existence-billed / reservation ---
 google_license_manager_configuration: never_apply  # Office SPLA licenses bill per license_count for the configuration's lifetime, no VM required
@@ -64,7 +64,7 @@ google_bigtable_authorized_view: safe  # Bigtable authorized view; no independen
 google_bigtable_gc_policy: safe  # Bigtable garbage-collection policy; no independent billing
 google_bigtable_instance_iam_member: safe  # IAM binding on Bigtable instance; no existence billing — _instance false positive
 google_bigtable_logical_view: safe  # Bigtable logical view; no independent billing
-google_bigtable_materialized_view: safe  # Bigtable materialized view; no independent billing
+google_bigtable_materialized_view: safe  # Bigtable materialized view; storage billed to the instance, no independent resource charge
 google_bigtable_schema_bundle: safe  # Bigtable schema bundle; no independent billing
 google_bigtable_table: safe  # Bigtable table (child of instance); no independent billing
 google_bigtable_table_iam_member: safe  # IAM binding on Bigtable table; no existence billing
