@@ -1,0 +1,7 @@
+{
+  "mcpServers": {
+    "gcp-cost": {
+      "command": "gcp-cost-mcp-server"
+    }
+  }
+}
