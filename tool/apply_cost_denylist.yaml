@@ -116,6 +116,9 @@ google_dataplex_glossary_iam_member: safe  # apply-verified safe (existing examp
 google_dataplex_glossary_term: safe  # apply-verified safe (existing example)
 google_dataplex_lake: safe  # apply-verified safe (existing example)
 google_dataplex_lake_iam_member: safe  # apply-verified safe (existing example)
+google_dataplex_zone: safe  # metadata-only lake partition; no existence billing
+google_dataplex_zone_iam_member: safe  # IAM binding adjunct
+google_dataplex_asset: safe  # metadata registration over an existing bucket
 google_dns_managed_zone: safe  # apply-verified safe (existing example)
 google_dns_managed_zone_iam_member: safe  # apply-verified safe (existing example)
 google_dns_policy: safe  # apply-verified safe (existing example)

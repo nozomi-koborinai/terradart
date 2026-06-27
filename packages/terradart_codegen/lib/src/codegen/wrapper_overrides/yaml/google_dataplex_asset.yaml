@@ -1,0 +1,21 @@
+outputDir: dataplex
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+paramOrder:
+  - name
+  - dataplex_zone
+  - lake
+  - location
+  - display_name
+  - description
+  - discovery_spec
+  - resource_spec
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute (asset id within the zone).
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

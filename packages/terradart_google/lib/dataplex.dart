@@ -32,3 +32,7 @@ export 'src/dataplex/google_dataplex_glossary_iam_member.dart'
 export 'src/dataplex/google_dataplex_lake.dart' show GoogleDataplexLake;
 export 'src/dataplex/google_dataplex_lake_iam_member.dart'
     show GoogleDataplexLakeIamMember;
+export 'src/dataplex/google_dataplex_zone.dart' show GoogleDataplexZone;
+export 'src/dataplex/google_dataplex_zone_iam_member.dart'
+    show GoogleDataplexZoneIamMember;
+export 'src/dataplex/google_dataplex_asset.dart' show GoogleDataplexAsset;
