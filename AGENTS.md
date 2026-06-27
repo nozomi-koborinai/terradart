@@ -209,6 +209,8 @@ Follow the [`terradart-add-curated-resource`](.agents/skills/terradart-add-curat
 
 Cloud Agent VMs provision their toolchain from [`.cursor/environment.json`](.cursor/environment.json), whose `install` step runs the idempotent [`.cursor/install.sh`](.cursor/install.sh): it installs **Dart SDK stable** (≥ 3.10; workspace root requires ^3.6, `terradart_agent` requires ^3.10) from the official apt repo and **Terraform** (≥ 1.11) from HashiCorp apt, then runs `dart pub get`. Cursor caches the result as a snapshot, so later agent boots are fast. Edit `install.sh` when the toolchain changes — do not rely on a hand-built snapshot.
 
+**gcp-cost MCP.** `.cursor/mcp.json` launches [`tool/gcp-cost-mcp-wrapper.sh`](tool/gcp-cost-mcp-wrapper.sh), which materializes the Cursor Secret `GOOGLE_APPLICATION_CREDENTIALS` (inline JSON) to `~/.config/gcp-cost/service-account.json` (`chmod 600`) before exec'ing `gcp-cost-mcp-server`. Register the service-account JSON as a Cursor Secret; do not commit credentials. Public Cloud Billing Catalog pricing needs no project API enablement; prefer a dedicated low-privilege SA over a production key.
+
 There is no long-running dev server for core work. Primary flows:
 
 | Goal | Command (repo root) |
