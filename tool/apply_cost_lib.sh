@@ -9,13 +9,21 @@
 COST_DANGER_RE='(license|reservation|commitment|_instance|cluster|node_pool|environment|_endpoint)'
 
 # Echo the tier (safe|sweep_only|never_apply) for a terraform type, or empty
-# if the type is absent from the denylist (= unclassified).
+# if the type is absent from the denylist (= unclassified) OR the denylist line
+# is malformed (tier missing/illegal). Rejects any type name that is not a bare
+# terraform identifier so a caller-supplied `.`/`*` cannot become an ERE
+# wildcard in the grep below.
 cost_tier_of() {
-  local type="$1" denylist="$2"
-  grep -vE '^[[:space:]]*#' "$denylist" 2>/dev/null \
+  [[ "$1" =~ ^[a-z0-9_]+$ ]] || return 1
+  local type="$1" denylist="$2" tier
+  tier="$(grep -vE '^[[:space:]]*#' "$denylist" 2>/dev/null \
     | grep -E "^${type}:[[:space:]]" \
     | head -1 \
-    | sed -E 's/^[^:]+:[[:space:]]*([a-z_]+).*/\1/'
+    | sed -E 's/^[^:]+:[[:space:]]*([a-z_]+).*/\1/')"
+  case "$tier" in
+    safe|sweep_only|never_apply) printf '%s\n' "$tier" ;;
+    *) printf '' ;;
+  esac
 }
 
 # Exit 0 if the type name matches the danger pattern.

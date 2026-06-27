@@ -137,7 +137,7 @@ else
 fi
 
 # 10. cost_tier_of: 台帳の型→tier を返し、未登録は空文字を返す。
-. tool/apply_cost_lib.sh
+. tool/apply_cost_lib.sh || fail "cannot source tool/apply_cost_lib.sh"
 [[ "$(cost_tier_of google_license_manager_configuration tool/apply_cost_denylist.yaml)" == "never_apply" ]] \
   || fail "cost_tier_of: never_apply 型の判定に失敗"
 [[ "$(cost_tier_of google_container_cluster tool/apply_cost_denylist.yaml)" == "sweep_only" ]] \
