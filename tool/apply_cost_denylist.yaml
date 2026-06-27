@@ -30,6 +30,7 @@
 # Format: safe_exception: <type>  # rationale
 safe_exception: google_compute_instance_iam_member  # IAM binding, no billing — _instance substring false positive
 safe_exception: google_service_directory_endpoint  # Service Directory metadata record, no existence billing — _endpoint false positive
+safe_exception: google_bigtable_instance_iam_member  # IAM binding on Bigtable instance, no existence billing — _instance substring false positive
 
 # --- never_apply: existence-billed / reservation ---
 google_license_manager_configuration: never_apply  # Office SPLA licenses bill per license_count for the configuration's lifetime, no VM required
@@ -58,6 +59,15 @@ google_compute_commitment: sweep_only        # committed-use discount contract
 
 # --- safe: no existence billing, cheap, apply→destroy stops charges ---
 # (bulk-registered from existing example tf-outs; verified by apply history)
+google_bigtable_app_profile: safe  # Bigtable app profile (routing config on an instance); no independent billing
+google_bigtable_authorized_view: safe  # Bigtable authorized view; no independent billing
+google_bigtable_gc_policy: safe  # Bigtable garbage-collection policy; no independent billing
+google_bigtable_instance_iam_member: safe  # IAM binding on Bigtable instance; no existence billing — _instance false positive
+google_bigtable_logical_view: safe  # Bigtable logical view; no independent billing
+google_bigtable_materialized_view: safe  # Bigtable materialized view; no independent billing
+google_bigtable_schema_bundle: safe  # Bigtable schema bundle; no independent billing
+google_bigtable_table: safe  # Bigtable table (child of instance); no independent billing
+google_bigtable_table_iam_member: safe  # IAM binding on Bigtable table; no existence billing
 google_biglake_catalog: safe  # apply-verified safe (existing example)
 google_biglake_database: safe  # apply-verified safe (existing example)
 google_biglake_table: safe  # apply-verified safe (existing example)
