@@ -26,6 +26,8 @@ set -uo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
+. tool/apply_cost_lib.sh
+COST_DENYLIST="tool/apply_cost_denylist.yaml"
 
 MODE="changed"
 EXPLICIT_EXAMPLE=""
@@ -206,6 +208,25 @@ apply_one() {
     dart pub get || exit 1
     dart run bin/infra.dart || exit 1
     cd tf-out || exit 1
+    # Runtime default-deny: after synth, inspect the freshly generated tf-out.
+    # If any type is unclassified or never_apply (and this isn't an explicit
+    # --example / --destroy-only), skip WITHOUT applying — the backstop for a
+    # type that drifted in vs the committed tf-out the CI gate checked.
+    if [[ "$DESTROY_ONLY" != "1" && "$MODE" != "example" && -f main.tf.json ]]; then
+      blocked=""
+      while IFS= read -r _t; do
+        [[ -z "$_t" ]] && continue
+        _tier="$(cost_tier_of "$_t" "$ROOT/$COST_DENYLIST")"
+        if [[ -z "$_tier" || "$_tier" == "never_apply" ]]; then
+          blocked="${blocked}${_t}(${_tier:-unclassified}) "
+        fi
+      done < <(jq -r '.resource // {} | keys[]' main.tf.json 2>/dev/null | sort -u)
+      if [[ -n "$blocked" ]]; then
+        echo "  >> COST-SKIP $slug — not applying: ${blocked}(classify in $COST_DENYLIST)" >&2
+        echo "$slug: ${blocked}" >> "$COST_SKIP_FILE"
+        exit 0
+      fi
+    fi
     # Placeholder for any input variable the synth references (`${var.X}`), so
     # `terraform -input=false` doesn't abort on "No value for required
     # variable". Examples needing a REAL secret / cert / org id still fail at
@@ -247,6 +268,10 @@ apply_one() {
 # Records examples whose teardown failed (orphan risk) — appended from the
 # apply_one subshell, read in the summary below.
 TEARDOWN_FAILS_FILE="$(mktemp)"
+# Records examples skipped by the runtime cost gate (unclassified/never_apply
+# type in the freshly-synthed tf-out), reported in the summary below.
+COST_SKIP_FILE="$(mktemp)"
+export COST_SKIP_FILE
 
 VERB="apply-smoke"
 [[ "$DESTROY_ONLY" == "1" ]] && VERB="destroy-only"
@@ -271,6 +296,11 @@ TEARDOWN_FAILS="$(tr '\n' ' ' < "$TEARDOWN_FAILS_FILE" 2>/dev/null)"
 rm -f "$TEARDOWN_FAILS_FILE"
 if [[ -n "${TEARDOWN_FAILS// /}" ]]; then
   echo "apply_smoke.sh: !! TEARDOWN FAILED (orphan risk): ${TEARDOWN_FAILS}— run tool/apply_smoke_janitor.sh" >&2
+fi
+COST_SKIPS="$(tr '\n' ' ' < "$COST_SKIP_FILE" 2>/dev/null)"
+rm -f "$COST_SKIP_FILE"
+if [[ -n "${COST_SKIPS// /}" ]]; then
+  echo "apply_smoke.sh: COST-SKIPPED (unclassified/never_apply types): ${COST_SKIPS}" >&2
 fi
 
 if [[ ${#FAILED[@]} -gt 0 ]]; then
