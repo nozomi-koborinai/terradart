@@ -142,7 +142,7 @@ fi
   || fail "cost_tier_of: never_apply 型の判定に失敗"
 [[ "$(cost_tier_of google_container_cluster tool/apply_cost_denylist.yaml)" == "sweep_only" ]] \
   || fail "cost_tier_of: sweep_only 型の判定に失敗"
-[[ "$(cost_tier_of google_storage_bucket_iam_member tool/apply_cost_denylist.yaml)" == "safe" ]] \
+[[ "$(cost_tier_of google_compute_network tool/apply_cost_denylist.yaml)" == "safe" ]] \
   || fail "cost_tier_of: safe 型の判定に失敗"
 [[ -z "$(cost_tier_of google_app_engine_application tool/apply_cost_denylist.yaml)" ]] \
   || fail "cost_tier_of: 未登録型は空文字であるべき"
