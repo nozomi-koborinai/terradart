@@ -1,7 +1,8 @@
 {
   "mcpServers": {
     "gcp-cost": {
-      "command": "gcp-cost-mcp-server"
+      "command": "bash",
+      "args": ["tool/gcp-cost-mcp-wrapper.sh"]
     }
   }
 }
