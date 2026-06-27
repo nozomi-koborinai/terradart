@@ -88,9 +88,16 @@ jobs:
     # The change-gate that scopes apply-smoke to changed examples lives in shell;
     # a broken awk regex once fanned a pubspec-only bump out to every example (a
     # real GCP-cost leak). Run the selection unit test so that can't regress
-    # unnoticed — it needs neither Dart nor GCP.
+    # unnoticed. The cost gate (test 9) reads tf-out/main.tf.json, which is
+    # gitignored, so we synth every example first via check_example_topology.
     steps:
       - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
+      - name: Synth all examples (populate tf-out for cost gate)
+        run: dart tool/check_example_topology.dart
       - run: bash tool/apply_smoke_test.sh
 
   wrap_check:

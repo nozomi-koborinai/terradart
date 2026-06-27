@@ -113,10 +113,12 @@ if command -v jq >/dev/null 2>&1; then
   [[ -n "$never_types$sweep_types" ]] || fail "cost denylist is empty — expected at least one entry"
   . tool/apply_cost_lib.sh
   safe_types="$(grep -vE '^[[:space:]]*#' "$denylist" | grep -E ': *safe' | sed -E 's/:.*//' | sort -u)"
+  tfout_count=0
   for ex_dir in examples/*_quickstart/; do
     slug="$(basename "$ex_dir")"
     tfjson="${ex_dir}tf-out/main.tf.json"
     [[ -f "$tfjson" ]] || continue
+    tfout_count=$((tfout_count + 1))
     types="$(jq -r '.resource // {} | keys[]' "$tfjson" 2>/dev/null | sort -u)" \
       || fail "cost gate: failed to parse $tfjson with jq"
     in_skip=false; in_pr_skip=false
@@ -145,6 +147,8 @@ if command -v jq >/dev/null 2>&1; then
         || fail "cost gate: $slug provisions sweep-only '$t' but is in neither tool/apply_smoke_skip.yaml nor tool/apply_smoke_pr_skip.yaml"
     done <<< "$sweep_types"
   done
+  [[ "$tfout_count" -gt 0 ]] \
+    || fail "cost gate inspected 0 tf-outs — run 'dart tool/check_example_topology.dart' to synth examples first"
 else
   echo "apply_smoke_test: WARN: jq not found — skipping cost gate (test 9); CI runs it" >&2
 fi
