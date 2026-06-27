@@ -136,4 +136,18 @@ else
   echo "apply_smoke_test: WARN: jq not found — skipping cost gate (test 9); CI runs it" >&2
 fi
 
+# 10. cost_tier_of: 台帳の型→tier を返し、未登録は空文字を返す。
+. tool/apply_cost_lib.sh
+[[ "$(cost_tier_of google_license_manager_configuration tool/apply_cost_denylist.yaml)" == "never_apply" ]] \
+  || fail "cost_tier_of: never_apply 型の判定に失敗"
+[[ "$(cost_tier_of google_container_cluster tool/apply_cost_denylist.yaml)" == "sweep_only" ]] \
+  || fail "cost_tier_of: sweep_only 型の判定に失敗"
+[[ -z "$(cost_tier_of google_storage_bucket_iam_member tool/apply_cost_denylist.yaml)" ]] \
+  || fail "cost_tier_of: 未登録型は空文字であるべき"
+
+# 11. cost_is_dangerous_type: 危険パターンに反応する。
+cost_is_dangerous_type google_license_manager_configuration || fail "danger: license にマッチすべき"
+cost_is_dangerous_type google_compute_reservation        || fail "danger: reservation にマッチすべき"
+cost_is_dangerous_type google_storage_bucket             && fail "danger: storage_bucket は安全側であるべき"
+
 echo "apply_smoke_test: OK"
