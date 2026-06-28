@@ -33,6 +33,7 @@ import 'package:terradart_google/certificate_manager.dart';
 import 'package:terradart_google/cloud_build.dart';
 import 'package:terradart_google/cloud_functions.dart';
 import 'package:terradart_google/config.dart';
+import 'package:terradart_google/dataplex.dart';
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/cloud_scheduler.dart';
 import 'package:terradart_google/compute.dart';
@@ -330,6 +331,13 @@ final Map<String, Object Function()> _syntheticInstances = {
         repo: TfArg.literal('https://github.com/example/terraform-blueprint'),
       ),
 
+  // --- DataplexDatascanSpec (4) — google_dataplex_datascan -----------------
+  'DataplexDatascanDataProfileSpec': () => const DataplexDatascanDataProfileSpec(),
+  'DataplexDatascanDataQualitySpec': () => const DataplexDatascanDataQualitySpec(),
+  'DataplexDatascanDataDiscoverySpec': () => const DataplexDatascanDataDiscoverySpec(),
+  'DataplexDatascanDataDocumentationSpec': () =>
+      const DataplexDatascanDataDocumentationSpec(),
+
   // --- MonitoringUptimeCheckTarget (3) — monitoring_uptime_check_config ----
   'MonitoringUptimeCheckConfigMonitoredResource': () =>
       MonitoringUptimeCheckConfigMonitoredResource(
@@ -496,11 +504,19 @@ void main() {
               raw = dyn.toArgMap();
             }
 
-            // The encoded payload must be non-empty (as a wire-shape — for
-            // the Map case, at least one key; for the List<Map> case, at
-            // least one element).
+            // The encoded payload must be non-empty when the member declares
+            // required constructor params (optional-only members may encode
+            // to `{}` when every optional is omitted — e.g. Dataplex scan
+            // spec blocks with `allow_empty_object`).
             if (raw is Map) {
-              expect(raw, isNotEmpty, reason: 'encoded Map must not be empty');
+              final hasRequired = member.params.any((p) => p.required);
+              if (hasRequired) {
+                expect(
+                  raw,
+                  isNotEmpty,
+                  reason: 'encoded Map must not be empty',
+                );
+              }
             } else if (raw is List) {
               expect(
                 raw,
