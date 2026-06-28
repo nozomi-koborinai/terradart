@@ -128,6 +128,10 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataplex_data_product_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_task:
+    upstream: mmv1/products/dataplex/Task.yaml
+  google_dataplex_task_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_dns_managed_zone:
     upstream: mmv1/products/dns/ManagedZone.yaml
   google_discovery_engine_data_store:

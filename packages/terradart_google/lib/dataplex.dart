@@ -56,3 +56,11 @@ export 'src/dataplex/google_dataplex_datascan.dart'
         DataplexDatascanType;
 export 'src/dataplex/google_dataplex_datascan_iam_member.dart'
     show GoogleDataplexDatascanIamMember;
+export 'src/dataplex/google_dataplex_task.dart'
+    show
+        GoogleDataplexTask,
+        DataplexTaskWorkload,
+        DataplexTaskSparkWorkload,
+        DataplexTaskNotebookWorkload;
+export 'src/dataplex/google_dataplex_task_iam_member.dart'
+    show GoogleDataplexTaskIamMember;

@@ -127,6 +127,8 @@ google_dataplex_asset: safe  # gcp-cost: metadata registration only (same Datapl
 google_dataplex_asset_iam_member: safe  # billing-behavior: IAM binding adjunct; no standalone Cloud Billing SKU
 google_dataplex_datascan: safe  # billing-behavior: scan definition is control-plane metadata; job execution is on-demand/scheduled (billed per run, not existence-billed); destroy removes scan config
 google_dataplex_datascan_iam_member: safe  # billing-behavior: IAM binding adjunct; no standalone Cloud Billing SKU
+google_dataplex_task: safe  # gcp-cost: no Cloud Billing Catalog SKU for task definition (gcp-cost MCP — Dataplex task is control-plane metadata; Spark/Notebook execution billed per Dataproc Serverless run); billing-behavior: destroy removes task config — not existence-billed
+google_dataplex_task_iam_member: safe  # billing-behavior: IAM binding adjunct; no standalone Cloud Billing SKU
 google_dns_managed_zone: safe  # apply-verified safe (existing example)
 google_dns_managed_zone_iam_member: safe  # apply-verified safe (existing example)
 google_dns_policy: safe  # apply-verified safe (existing example)
