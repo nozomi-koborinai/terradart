@@ -14,10 +14,6 @@ FROM dart:stable AS server_builder
 WORKDIR /src/cookbook/lunch-concierge
 COPY cookbook/lunch-concierge/shared ./shared
 RUN sed -i '/^resolution: workspace$/d' shared/pubspec.yaml
-WORKDIR /src/cookbook/lunch-concierge/shared
-RUN dart pub get
-RUN dart run build_runner build --delete-conflicting-outputs
-WORKDIR /src/cookbook/lunch-concierge
 COPY cookbook/lunch-concierge/server ./server
 RUN sed -i '/^resolution: workspace$/d' server/pubspec.yaml
 WORKDIR /src/cookbook/lunch-concierge/server
