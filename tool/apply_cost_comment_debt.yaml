@@ -1,11 +1,11 @@
 # Cost-classification ledger comments missing the gcp-cost MCP price axis.
 #
 # Policy: new `safe` entries in tool/apply_cost_denylist.yaml must include
-# `gcp-cost:` (list_skus / get_sku_price basis) in the trailing comment,
-# unless listed here with a reason. Stale lines fail when the comment gains
-# gcp-cost: — remove the debt entry in the same PR.
+# `gcp-cost:` (from agent-side gcp-cost MCP list_skus / get_sku_price) in the
+# trailing comment, unless listed here with a reason. Stale lines fail when
+# the comment gains gcp-cost: — remove the debt entry in the same PR.
 #
-# `apply_smoke_test.sh` test 13 enforces this. IAM/metadata adjuncts may
+# Test 13 checks comments only (no MCP in CI). IAM/metadata adjuncts may
 # instead use `billing-behavior:` when no Cloud Billing Catalog SKU applies.
 
 google_bigtable_app_profile: pre-gate Bigtable Wave; billing-behavior documented, gcp-cost SKU backfill pending

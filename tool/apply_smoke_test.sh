@@ -203,7 +203,7 @@ while IFS= read -r line; do
     continue
   fi
   printf '%s\n' "$debt_types" | grep -qxF "$type" && continue
-  fail "cost-comment gate: safe type '$type' lacks gcp-cost MCP basis in $denylist comment — run 'tool/agent_cost_classify.sh $type' and record SKU/price, or add billing-behavior: for IAM adjuncts, or list in $comment_debt with reason"
+  fail "cost-comment gate: safe type '$type' lacks gcp-cost MCP basis in $denylist comment — call gcp-cost MCP (list_skus/get_sku_price) in the agent session, record SKU/price in the comment, or add billing-behavior: for IAM adjuncts, or list in $comment_debt with reason"
 done < <(grep -vE '^[[:space:]]*#|^safe_exception:' "$denylist" | grep -E ': *safe([[:space:]]|$)')
 # Stale debt: remove lines when the denylist comment gains a basis marker.
 while IFS= read -r type; do
