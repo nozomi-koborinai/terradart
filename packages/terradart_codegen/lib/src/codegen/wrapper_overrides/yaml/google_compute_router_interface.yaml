@@ -1,0 +1,22 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+paramOrder:
+  - name
+  - router
+  - region
+  - ip_range
+  - ip_version
+  - subnetwork
+  - interconnect_attachment
+  - vpn_tunnel
+  - private_ip_address
+  - redundant_interface
+  - project
+  - deletion_policy
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -1,0 +1,12 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - network
+  - peering
+  - import_custom_routes
+  - export_custom_routes
+  - import_subnet_routes_with_public_ip
+  - export_subnet_routes_with_public_ip
+  - project

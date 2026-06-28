@@ -1,0 +1,20 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+dartTypeOverrides:
+  redundancy_type: ComputeExternalVpnGatewayRedundancyType
+
+paramOrder:
+  - name
+  - description
+  - redundancy_type
+  - labels
+  - interface
+  - project
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');

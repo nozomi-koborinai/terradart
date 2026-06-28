@@ -635,6 +635,12 @@ files:
     upstream: null  # third_party terraform/services/compute/resource_compute_shared_vpc_host_project.go
   google_compute_shared_vpc_service_project:
     upstream: null  # third_party terraform/services/compute/resource_compute_shared_vpc_service_project.go
+  google_compute_external_vpn_gateway:
+    upstream: mmv1/products/compute/ExternalVpnGateway.yaml
+  google_compute_router_interface:
+    upstream: null  # no mmv1/products/compute/RouterInterface.yaml in magic-modules (sync 404); schema-only curation
+  google_compute_network_peering_routes_config:
+    upstream: null  # third_party terraform/services/compute/resource_compute_network_peering_routes_config.go
   google_bigquery_datapolicy_data_policy_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   # Wave 25 (Serverless VPC Access connector)
