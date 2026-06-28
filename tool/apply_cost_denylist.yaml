@@ -39,6 +39,7 @@ google_license_manager_configuration: never_apply  # Office SPLA licenses bill p
 google_container_cluster: sweep_only         # GKE control plane fee + node VMs
 google_container_node_pool: sweep_only       # GKE node VMs
 google_compute_instance: sweep_only          # Compute Engine VM
+google_compute_router_nat: sweep_only        # gcp-cost: Networking SKU 32E2-4EFC-EF9F Cloud NAT Gateway Uptime $0.0014/h + SKU 015F-5732-FFF0 data processing $0.045/GiBy; billing-behavior: billed while NAT configured on router; destroy removes NAT
 google_redis_instance: sweep_only            # Memorystore for Redis
 google_redis_cluster: sweep_only             # Memorystore for Redis Cluster
 google_memcache_instance: sweep_only         # Memorystore for Memcached
@@ -100,8 +101,7 @@ google_compute_region_instant_snapshot_iam_policy: safe  # apply-verified safe (
 google_compute_resource_policy: safe  # apply-verified safe (existing example)
 google_compute_route: safe  # apply-verified safe (existing example)
 google_compute_router: safe  # apply-verified safe (existing example)
-google_compute_router_nat: safe  # billing-behavior: NAT config on Cloud Router; billed per processed GiB and VM-hour while active, not existence-billed; destroy removes NAT gateway
-google_compute_network_peering: safe  # billing-behavior: VPC peering association; no standalone Cloud Billing SKU for the peering object itself
+google_compute_network_peering: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Networking E505-1604-58F8); billing-behavior: VPC peering association metadata only
 google_compute_subnetwork: safe  # apply-verified safe (existing example)
 google_compute_subnetwork_iam_member: safe  # apply-verified safe (existing example)
 google_dataplex_aspect_type: safe  # apply-verified safe (existing example)
