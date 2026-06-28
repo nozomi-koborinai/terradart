@@ -39,6 +39,7 @@ google_license_manager_configuration: never_apply  # Office SPLA licenses bill p
 google_container_cluster: sweep_only         # GKE control plane fee + node VMs
 google_container_node_pool: sweep_only       # GKE node VMs
 google_compute_instance: sweep_only          # Compute Engine VM
+google_compute_vpn_tunnel: sweep_only        # gcp-cost: Networking SKU B0D8-6A41-4771 Cloud VPN Tunnel asia-northeast1 $0.075/h; billing-behavior: billed per tunnel-hour while provisioned; destroy removes tunnel
 google_compute_router_nat: sweep_only        # gcp-cost: Networking SKU 32E2-4EFC-EF9F Cloud NAT Gateway Uptime $0.0014/h + SKU 015F-5732-FFF0 data processing $0.045/GiBy; billing-behavior: billed while NAT configured on router; destroy removes NAT
 google_redis_instance: sweep_only            # Memorystore for Redis
 google_redis_cluster: sweep_only             # Memorystore for Redis Cluster
@@ -102,6 +103,10 @@ google_compute_resource_policy: safe  # apply-verified safe (existing example)
 google_compute_route: safe  # apply-verified safe (existing example)
 google_compute_router: safe  # apply-verified safe (existing example)
 google_compute_network_peering: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Networking E505-1604-58F8); billing-behavior: VPC peering association metadata only
+google_compute_vpn_gateway: safe  # gcp-cost: Networking catalog has no hourly SKU on gateway object (VPNTunnel SKUs e.g. B0D8-6A41-4771 bill on tunnel); billing-behavior: classic VPN gateway metadata only
+google_compute_ha_vpn_gateway: safe  # gcp-cost: no HA VPN gateway hourly SKU in Networking catalog (tunnel-hour SKU B0D8-6A41-4771 on google_compute_vpn_tunnel); billing-behavior: gateway metadata only
+google_compute_shared_vpc_host_project: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Compute+Networking); billing-behavior: project host attachment flag
+google_compute_shared_vpc_service_project: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Compute+Networking); billing-behavior: host/service project link
 google_compute_subnetwork: safe  # apply-verified safe (existing example)
 google_compute_subnetwork_iam_member: safe  # apply-verified safe (existing example)
 google_dataplex_aspect_type: safe  # apply-verified safe (existing example)

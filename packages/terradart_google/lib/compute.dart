@@ -411,6 +411,19 @@ export 'src/compute/google_compute_router_nat.dart'
         ComputeRouterNatType;
 export 'src/compute/google_compute_network_peering.dart'
     show GoogleComputeNetworkPeering;
+export 'src/compute/google_compute_vpn_gateway.dart'
+    show GoogleComputeVpnGateway;
+export 'src/compute/google_compute_ha_vpn_gateway.dart'
+    show
+        GoogleComputeHaVpnGateway,
+        ComputeHaVpnGatewayGatewayIpVersion,
+        ComputeHaVpnGatewayStackType;
+export 'src/compute/google_compute_vpn_tunnel.dart'
+    show GoogleComputeVpnTunnel;
+export 'src/compute/google_compute_shared_vpc_host_project.dart'
+    show GoogleComputeSharedVpcHostProject;
+export 'src/compute/google_compute_shared_vpc_service_project.dart'
+    show GoogleComputeSharedVpcServiceProject;
 export 'src/compute/google_compute_route.dart' show GoogleComputeRoute;
 export 'src/compute/google_compute_network_firewall_policy.dart'
     show GoogleComputeNetworkFirewallPolicy;

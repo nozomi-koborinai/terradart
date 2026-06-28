@@ -1,8 +1,10 @@
 /// Compute quickstart -- Phase 4.5.1 end-to-end example.
 ///
 /// Defines a `NetworkStack` that provisions:
+/// - Shared VPC host enablement and a placeholder service-project attachment,
 /// - a custom-mode VPC network (`main-vpc`) and a peer VPC (`peer-vpc`) with
 ///   bidirectional VPC peering,
+/// - classic and HA VPN gateways with representative IPSec tunnels,
 /// - a regional external IPv4 address for a load balancer (`lb-vip-prod`),
 /// - a Cloud Router with Cloud NAT for private egress,
 ///
@@ -82,6 +84,25 @@ final class NetworkStack extends Stack {
         localName: 'oncall_sre',
         accountId: TfArg.literal('oncall-sre'),
         displayName: TfArg.literal('On-call SRE (bastion power-cycle)'),
+      ),
+    );
+
+    add(
+      GoogleComputeSharedVpcHostProject(
+        localName: 'shared_vpc_host',
+        project: TfArg.literal(projectId),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleComputeSharedVpcServiceProject(
+        localName: 'shared_vpc_service',
+        hostProject: TfArg.literal(projectId),
+        // Placeholder service project id for synth/validate; real Shared VPC
+        // pairs a host with a distinct service project.
+        serviceProject: TfArg.literal('$projectId-svc'),
+        dependsOn: apiDeps,
       ),
     );
 
@@ -170,6 +191,66 @@ final class NetworkStack extends Stack {
           asn: TfArg.literal(64514),
         ),
         dependsOn: apiDeps,
+      ),
+    );
+
+    final classicVpnGateway = add(
+      GoogleComputeVpnGateway(
+        localName: 'classic_vpn',
+        name: TfArg.literal('classic-vpn'),
+        network: TfArg.ref(mainVpc.id),
+        region: TfArg.literal('asia-northeast1'),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    final haVpnGatewayA = add(
+      GoogleComputeHaVpnGateway(
+        localName: 'ha_vpn_a',
+        name: TfArg.literal('ha-vpn-a'),
+        network: TfArg.ref(mainVpc.id),
+        region: TfArg.literal('asia-northeast1'),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    final haVpnGatewayB = add(
+      GoogleComputeHaVpnGateway(
+        localName: 'ha_vpn_b',
+        name: TfArg.literal('ha-vpn-b'),
+        network: TfArg.ref(mainVpc.id),
+        region: TfArg.literal('asia-northeast1'),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleComputeVpnTunnel(
+        localName: 'classic_tunnel',
+        name: TfArg.literal('classic-tunnel'),
+        region: TfArg.literal('asia-northeast1'),
+        targetVpnGateway: TfArg.ref(classicVpnGateway.id),
+        peerIp: TfArg.literal('8.8.8.8'),
+        sharedSecretWo: TfArg.literal('terradart-quickstart-secret'),
+        sharedSecretWoVersion: TfArg.literal('1'),
+        dependsOn: [ResourceDependency(classicVpnGateway)],
+      ),
+    );
+
+    add(
+      GoogleComputeVpnTunnel(
+        localName: 'ha_tunnel',
+        name: TfArg.literal('ha-tunnel'),
+        region: TfArg.literal('asia-northeast1'),
+        vpnGateway: TfArg.ref(haVpnGatewayA.id),
+        vpnGatewayInterface: TfArg.literal(0),
+        peerGcpGateway: TfArg.ref(haVpnGatewayB.id),
+        sharedSecretWo: TfArg.literal('terradart-ha-vpn-secret'),
+        sharedSecretWoVersion: TfArg.literal('1'),
+        dependsOn: [
+          ResourceDependency(haVpnGatewayA),
+          ResourceDependency(haVpnGatewayB),
+        ],
       ),
     );
 

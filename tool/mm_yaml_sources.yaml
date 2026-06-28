@@ -625,6 +625,16 @@ files:
     upstream: mmv1/products/compute/RouterNat.yaml
   google_compute_network_peering:
     upstream: null  # third_party terraform/services/compute/resource_compute_network_peering.go
+  google_compute_vpn_gateway:
+    upstream: mmv1/products/compute/VpnGateway.yaml
+  google_compute_vpn_tunnel:
+    upstream: mmv1/products/compute/VpnTunnel.yaml
+  google_compute_ha_vpn_gateway:
+    upstream: mmv1/products/compute/HaVpnGateway.yaml
+  google_compute_shared_vpc_host_project:
+    upstream: null  # third_party terraform/services/compute/resource_compute_shared_vpc_host_project.go
+  google_compute_shared_vpc_service_project:
+    upstream: null  # third_party terraform/services/compute/resource_compute_shared_vpc_service_project.go
   google_bigquery_datapolicy_data_policy_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   # Wave 25 (Serverless VPC Access connector)
