@@ -338,6 +338,14 @@ final Map<String, Object Function()> _syntheticInstances = {
   'DataplexDatascanDataDocumentationSpec': () =>
       const DataplexDatascanDataDocumentationSpec(),
 
+  // --- DataplexTaskWorkload (2) — google_dataplex_task ---------------------
+  'DataplexTaskSparkWorkload': () => DataplexTaskSparkWorkload(
+        sqlScript: TfArg.literal('SELECT 1'),
+      ),
+  'DataplexTaskNotebookWorkload': () => DataplexTaskNotebookWorkload(
+        notebook: TfArg.literal('gs://mock-bucket/notebook.ipynb'),
+      ),
+
   // --- MonitoringUptimeCheckTarget (3) — monitoring_uptime_check_config ----
   'MonitoringUptimeCheckConfigMonitoredResource': () =>
       MonitoringUptimeCheckConfigMonitoredResource(
