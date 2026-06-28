@@ -16,9 +16,7 @@ abstract final class LunchStackExports {
 
   static const String DATABASE_USER = r'lunch-sql-client@flutter-gakkai-10.iam';
 
-  static const String DATABASE_URL =
-      r'postgresql://lunch-sql-client@flutter-gakkai-10.iam@localhost:5432/lunch';
+  static const String DATABASE_URL = r'postgresql://lunch-sql-client@flutter-gakkai-10.iam@localhost:5432/lunch';
 
-  static const String CLOUD_SQL_INSTANCE_CONNECTION_NAME =
-      r'flutter-gakkai-10:asia-northeast1:lunch-sql';
+  static const String CLOUD_SQL_INSTANCE_CONNECTION_NAME = r'flutter-gakkai-10:asia-northeast1:lunch-sql';
 }
