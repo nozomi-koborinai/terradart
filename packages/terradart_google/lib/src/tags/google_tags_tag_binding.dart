@@ -7,6 +7,10 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleTagsTagBindingSensitive = <String>{};
 
 /// Factory wrapper for `google_tags_tag_binding`.
+///
+/// A TagBinding represents a connection between a TagValue and a cloud resource
+/// (currently project, folder, or organization). Once a TagBinding is created,
+/// the TagValue is applied to all the descendants of the cloud resource.
 final class GoogleTagsTagBinding extends Resource {
   static const String tfType = 'google_tags_tag_binding';
 

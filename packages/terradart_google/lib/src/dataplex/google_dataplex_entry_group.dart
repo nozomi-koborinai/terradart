@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDataplexEntryGroupSensitive = <String>{};
 
 /// Factory wrapper for `google_dataplex_entry_group`.
+///
+/// An Entry Group represents a logical grouping of one or more Entries.
 final class GoogleDataplexEntryGroup extends Resource {
   static const String tfType = 'google_dataplex_entry_group';
 

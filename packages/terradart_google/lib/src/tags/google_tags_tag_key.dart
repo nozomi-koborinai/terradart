@@ -21,6 +21,8 @@ enum TagsTagKeyPurpose implements TerraformEnum {
 }
 
 /// Factory wrapper for `google_tags_tag_key`.
+///
+/// A TagKey, used to group a set of TagValues.
 final class GoogleTagsTagKey extends Resource {
   static const String tfType = 'google_tags_tag_key';
 
