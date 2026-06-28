@@ -29,9 +29,9 @@ Cloud SQL PostgreSQL
   - IAM DB authentication
 ```
 
-TerraDart defines the Artifact Registry repository, Cloud Run service, Cloud
-SQL instance/database/IAM user, VPC, Private Service Access, IAM grants, API
-enablement, and generated app exports.
+TerraDart defines the Cloud Run service, Cloud SQL instance/database/IAM user,
+VPC, Private Service Access, IAM grants, API enablement, and generated app
+exports. The Artifact Registry repository is a one-time bootstrap prerequisite.
 
 ## Layout
 
@@ -65,9 +65,6 @@ dart run build_runner build --delete-conflicting-outputs
 
 cd ../infra
 dart run bin/infra.dart
-cd tf-out
-terraform init
-terraform apply -target=google_artifact_registry_repository.app_images
 
 cd ../../../..
 gcloud auth configure-docker "$REGION-docker.pkg.dev"
@@ -75,11 +72,13 @@ docker build -f cookbook/lunch-concierge/server/Dockerfile -t "$IMAGE_URI" .
 docker push "$IMAGE_URI"
 
 cd cookbook/lunch-concierge/infra/tf-out
+terraform init
 terraform apply
 ```
 
-The targeted first apply creates the Artifact Registry repository so the image
-can be pushed. The second apply creates or updates the rest of the stack.
+Create the `lunch-concierge` Docker repository in Artifact Registry before this
+flow. The repository is bootstrap infrastructure that stores the image consumed
+by the Terraform-managed Cloud Run service.
 
 ## Boundary contract
 
