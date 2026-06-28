@@ -1,0 +1,38 @@
+name: Cookbook
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "cookbook/**"
+      - "tool/check_cookbook.sh"
+      - "pubspec.yaml"
+      - "pubspec.lock"
+  pull_request:
+    branches: [main]
+    paths:
+      - "cookbook/**"
+      - "tool/check_cookbook.sh"
+      - "pubspec.yaml"
+      - "pubspec.lock"
+
+concurrency:
+  group: cookbook-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: validate cookbook
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_version: "1.15.2"
+      - run: tool/check_cookbook.sh
