@@ -48,7 +48,7 @@ We will label the project **beta** starting with **v0.15.0** when every **requir
 
 - [x] **`MIGRATING.md` / site migration guide** — [Migrating](/docs/migrating/) mirrors the `0.12.9 → 0.12.10` breaking changes; [MIGRATING.md on GitHub](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md) remains canonical for older releases. *Two-minor depth across minors remains a beta quality bar for current and future minor releases.*
 - [ ] **External quickstart**: someone outside the core team completes the README path once; feedback captured in an issue or discussion.
-- [ ] **Real apply dogfood** via [terradart-cookbook](https://github.com/nozomi-koborinai/terradart-cookbook): at least one non-trivial recipe documents a successful `terraform apply`.
+- [ ] **Real apply dogfood** via the [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook): at least one non-trivial recipe documents a successful `terraform apply`.
 - [ ] **`terradart-mcp`**: [Agent install](/docs/agent/install/) verified on a clean machine (Homebrew or release binary + five tools).
 - [ ] **1.0.0 criteria** drafted (what “stable” means for curated names and `terradart_core` API).
 

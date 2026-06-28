@@ -1,0 +1,17 @@
+name: lunch_concierge_client
+description: Flutter Web client for the Lunch Concierge cookbook recipe.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  http: any
+
+dev_dependencies:
+  flutter_lints: any
+
+flutter:
+  uses-material-design: true
