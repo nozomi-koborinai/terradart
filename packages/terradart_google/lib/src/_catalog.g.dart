@@ -4629,7 +4629,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'deletionPolicy',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['DataplexZoneType'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataplex_zone`.\n\nA zone within a [GoogleDataplexLake] — a logical partition for curated or\nraw data assets. Requires [discoverySpec] and [resourceSpec] blocks.',
