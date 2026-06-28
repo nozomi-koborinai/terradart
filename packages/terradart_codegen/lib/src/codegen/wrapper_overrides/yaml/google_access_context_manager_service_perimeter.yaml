@@ -1,0 +1,19 @@
+outputDir: access_context_manager
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+paramOrder:
+  - name
+  - parent
+  - title
+  - description
+  - perimeter_type
+  - use_explicit_dry_run_spec
+  - spec
+  - status
+  - deletion_policy
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
