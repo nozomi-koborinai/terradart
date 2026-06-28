@@ -274,7 +274,7 @@ final class DataplexCatalogStack extends Stack {
         name: TfArg.literal('terradart-raw-zone'),
         lake: TfArg.ref(lake.nameRef),
         location: TfArg.literal('us-central1'),
-        type: TfArg.literal('RAW'),
+        type: TfArg.literal(DataplexZoneType.raw),
         displayName: TfArg.literal('Raw zone'),
         description: TfArg.literal('Raw data partition in the analytics lake'),
         discoverySpec: TfArg.literal({'enabled': false}),

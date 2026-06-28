@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.21.0 - 2026-06-28
+
+Lockstep release for Wave 74 (`terradart_google` Dataplex lake operations). Catalog: **348 entries** (347 curated resource factories + 1 data source) across **60 service barrels**. No MCP protocol or tool changes.
+
 ## 0.20.0 - 2026-06-21
 
 Lockstep release for Wave 73 (`terradart_google` Cloud Bigtable). Catalog: **344 entries** (343 curated resource factories + 1 data source) across **60 service barrels**. No MCP protocol or tool changes.

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.21.0 - 2026-06-28
+
+Lockstep release. **No breaking changes** vs `0.20.0`.
+
+### Added
+
+- Wave 74 — Dataplex lake operations (3 factories): zone, asset, zone IAM member. Catalog: **347 curated resource factories + 1 data source** (348 entries; 60 service barrels).
+- [`dataplex_quickstart`](../../examples/dataplex_quickstart/) extended with zone + asset + zone IAM member.
+
 ## 0.20.0 - 2026-06-21
 
 Lockstep release. **No breaking changes** vs `0.19.0`.

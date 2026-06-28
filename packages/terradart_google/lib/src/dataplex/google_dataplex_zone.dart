@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_dataplex_zone`.
 const Set<String> _googleDataplexZoneSensitive = <String>{};
 
+/// `type` on `google_dataplex_zone`.
+enum DataplexZoneType implements TerraformEnum {
+  typeUnspecified('TYPE_UNSPECIFIED'),
+  raw('RAW'),
+  curated('CURATED');
+
+  const DataplexZoneType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_dataplex_zone`.
 ///
 /// A zone within a [GoogleDataplexLake] — a logical partition for curated or
@@ -18,7 +29,7 @@ final class GoogleDataplexZone extends Resource {
     required TfArg<String> name,
     required TfArg<String> lake,
     required TfArg<String> location,
-    required TfArg<String> type,
+    required TfArg<DataplexZoneType> type,
     TfArg<String>? displayName,
     TfArg<String>? description,
     required TfArg<Map<String, dynamic>> discoverySpec,

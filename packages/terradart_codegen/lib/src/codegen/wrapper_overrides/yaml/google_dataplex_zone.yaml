@@ -7,6 +7,21 @@ curatedDoc: |-
   /// A zone within a [GoogleDataplexLake] — a logical partition for curated or
   /// raw data assets. Requires [discoverySpec] and [resourceSpec] blocks.
 
+dartTypeOverrides:
+  type: DataplexZoneType
+
+prelude: |
+  /// `type` on `google_dataplex_zone`.
+  enum DataplexZoneType implements TerraformEnum {
+    typeUnspecified('TYPE_UNSPECIFIED'),
+    raw('RAW'),
+    curated('CURATED');
+
+    const DataplexZoneType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
 paramOrder:
   - name
   - lake

@@ -16,8 +16,8 @@ Runtime primitives (`Stack`, `TfArg`, `writeTo`) live in [`terradart_core`](http
 
 ```yaml
 dependencies:
-  terradart_core: ^0.20.x
-  terradart_google: ^0.20.x
+  terradart_core: ^0.21.x
+  terradart_google: ^0.21.x
 ```
 
 ## Usage example
