@@ -20,5 +20,7 @@ terraform plan
 
 ## What gets created
 
-- `GoogleDataplexDataProduct` — `customer-360` in `us-central1` owned by an in-stack service account
-- `GoogleDataplexDataProductIamMember` — grants a second SA `roles/dataplex.viewer` on the product
+- `GoogleDataplexLake` — top-level analytics lake container
+- `GoogleDataplexZone` — raw zone under the lake
+- `GoogleDataplexAsset` — GCS bucket registered as a lake asset
+- `GoogleDataplexZoneIamMember` — grants the reader SA `roles/dataplex.viewer` on the zone

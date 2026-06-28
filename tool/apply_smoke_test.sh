@@ -185,4 +185,35 @@ if command -v jq >/dev/null 2>&1; then
   done <<< "$safe_only"
 fi
 
+# 13. cost-comment gate: `safe` ledger lines must document the gcp-cost MCP
+#     price axis (or IAM/metadata billing-behavior when no SKU exists).
+#     Grandfathered gaps live in tool/apply_cost_comment_debt.yaml.
+denylist=tool/apply_cost_denylist.yaml
+comment_debt=tool/apply_cost_comment_debt.yaml
+[[ -f "$comment_debt" ]] || fail "missing $comment_debt"
+debt_types="$(grep -vE '^[[:space:]]*#' "$comment_debt" \
+  | grep -E '^[a-z0-9_]+:' | sed -E 's/:.*//' | sort -u)"
+while IFS= read -r line; do
+  [[ -z "$line" ]] && continue
+  type="${line%%:*}"
+  tier="$(echo "$line" | sed -E 's/^[^:]+:[[:space:]]*([a-z_]+).*/\1/')"
+  [[ "$tier" == "safe" ]] || continue
+  comment="${line#*#}"
+  if printf '%s' "$comment" | grep -qE 'gcp-cost:|apply-verified|billing-behavior:'; then
+    continue
+  fi
+  printf '%s\n' "$debt_types" | grep -qxF "$type" && continue
+  fail "cost-comment gate: safe type '$type' lacks gcp-cost MCP basis in $denylist comment — call gcp-cost MCP (list_skus/get_sku_price) in the agent session, record SKU/price in the comment, or add billing-behavior: for IAM adjuncts, or list in $comment_debt with reason"
+done < <(grep -vE '^[[:space:]]*#|^safe_exception:' "$denylist" | grep -E ': *safe([[:space:]]|$)')
+# Stale debt: remove lines when the denylist comment gains a basis marker.
+while IFS= read -r type; do
+  [[ -z "$type" ]] && continue
+  line="$(grep -E "^${type}:[[:space:]]*safe" "$denylist" | head -1 || true)"
+  [[ -n "$line" ]] || continue
+  comment="${line#*#}"
+  if printf '%s' "$comment" | grep -qE 'gcp-cost:|apply-verified|billing-behavior:'; then
+    fail "cost-comment debt stale: '$type' now has a basis marker in $denylist — remove its line from $comment_debt"
+  fi
+done <<< "$debt_types"
+
 echo "apply_smoke_test: OK"

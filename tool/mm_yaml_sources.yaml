@@ -88,6 +88,12 @@ files:
     upstream: mmv1/products/dataplex/Lake.yaml
   google_dataplex_lake_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_zone:
+    upstream: null  # MM Zone.yaml is IAM-only (exclude_resource: true)
+  google_dataplex_zone_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_asset:
+    upstream: null  # MM Asset.yaml is IAM-only (exclude_resource: true)
   google_dataplex_entry_group:
     upstream: mmv1/products/dataplex/EntryGroup.yaml
   google_dataplex_entry_type:

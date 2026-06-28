@@ -1,4 +1,5 @@
-/// Dataplex quickstart — governed data product + IAM member.
+/// Dataplex quickstart — governed data product, Universal Catalog metadata,
+/// business glossary, lake (zone + asset), and resource-scoped IAM members.
 ///
 /// Provisions a `google_dataplex_data_product` and grants a separate
 /// in-stack service account `roles/dataplex.dataProductViewer` on that
@@ -10,6 +11,7 @@ import 'package:terradart_google/dataplex.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/storage.dart';
 import 'package:terradart_google/time.dart';
 
 final class DataplexCatalogStack extends Stack {
@@ -22,7 +24,7 @@ final class DataplexCatalogStack extends Stack {
         ) {
     final apiDeps = Apis.enable(
       this,
-      barrels: [Barrels.dataplex],
+      barrels: [Barrels.dataplex, Barrels.storage],
       propagationDelay: const Duration(seconds: 60),
     );
 
@@ -247,6 +249,73 @@ final class DataplexCatalogStack extends Stack {
         member: TfArg.ref(reader.iamMember),
         dependsOn: [
           ResourceDependency(lake),
+          ResourceDependency(reader),
+        ],
+      ),
+    );
+
+    // --- Dataplex lake zone + asset ----------------------------------------
+    // A raw zone under the lake, a GCS bucket registered as a lake asset, and
+    // a zone-level IAM member for the reader service account.
+
+    final lakeDataBucket = add(
+      GoogleStorageBucket(
+        localName: 'lake_data',
+        name: TfArg.literal('terradart-dataplex-lake-data'),
+        location: TfArg.literal('US-CENTRAL1'),
+        uniformBucketLevelAccess: TfArg.literal(true),
+        dependsOn: [...apiDeps],
+      ),
+    );
+
+    final rawZone = add(
+      GoogleDataplexZone(
+        localName: 'raw_zone',
+        name: TfArg.literal('terradart-raw-zone'),
+        lake: TfArg.ref(lake.nameRef),
+        location: TfArg.literal('us-central1'),
+        type: TfArg.literal(DataplexZoneType.raw),
+        displayName: TfArg.literal('Raw zone'),
+        description: TfArg.literal('Raw data partition in the analytics lake'),
+        discoverySpec: TfArg.literal({'enabled': false}),
+        resourceSpec: TfArg.literal({'location_type': 'SINGLE_REGION'}),
+        dependsOn: [
+          ResourceDependency(lake),
+          ...apiDeps,
+        ],
+      ),
+    );
+
+    add(
+      GoogleDataplexAsset(
+        localName: 'lake_data_asset',
+        name: TfArg.literal('terradart-lake-data-asset'),
+        dataplexZone: TfArg.ref(rawZone.nameRef),
+        lake: TfArg.ref(lake.nameRef),
+        location: TfArg.literal('us-central1'),
+        displayName: TfArg.literal('Lake data bucket asset'),
+        discoverySpec: TfArg.literal({'enabled': false}),
+        resourceSpec: TfArg.literal({
+          'name': 'projects/$projectId/buckets/terradart-dataplex-lake-data',
+          'type': 'STORAGE_BUCKET',
+        }),
+        dependsOn: [
+          ResourceDependency(rawZone),
+          ResourceDependency(lakeDataBucket),
+        ],
+      ),
+    );
+
+    add(
+      GoogleDataplexZoneIamMember(
+        localName: 'raw_zone_viewer',
+        dataplexZone: TfArg.ref(rawZone.nameRef),
+        lake: TfArg.ref(lake.nameRef),
+        location: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/dataplex.viewer'),
+        member: TfArg.ref(reader.iamMember),
+        dependsOn: [
+          ResourceDependency(rawZone),
           ResourceDependency(reader),
         ],
       ),

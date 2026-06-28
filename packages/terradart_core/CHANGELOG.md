@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.21.0 - 2026-06-28
+
+Lockstep release for Wave 74. No API changes in `terradart_core`.
+
 ## 0.20.0 - 2026-06-21
 
 Lockstep release for Wave 73. No API changes in `terradart_core`.

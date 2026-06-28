@@ -4,6 +4,19 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage` — this top-level file summarises cross-cutting milestones.
 
+## [0.21.0] - 2026-06-28
+
+Lockstep release across the workspace. **No breaking changes** vs `0.20.0`.
+
+### Added
+
+- **`terradart_google`** — Wave 74 (Dataplex lake operations): **3** curated factories — `google_dataplex_zone`, `google_dataplex_asset`, `google_dataplex_zone_iam_member`. Catalog grows to **347 curated resource factories + 1 data source** (348 entries; 60 service barrels).
+- **Examples** — [`dataplex_quickstart`](examples/dataplex_quickstart/) extended with a RAW zone, GCS bucket asset, and zone IAM member.
+
+### Changed
+
+- **Apply-smoke** — `apply_smoke_test.sh` test 13 requires `gcp-cost:` / `billing-behavior:` basis in new `safe` denylist comments (`tool/apply_cost_comment_debt.yaml` grandfather ledger). Agents call gcp-cost MCP directly; CI verifies comments only.
+
 ## [0.20.0] - 2026-06-21
 
 Lockstep release across the workspace. **No breaking changes** vs `0.19.0`.

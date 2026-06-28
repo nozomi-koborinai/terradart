@@ -1,0 +1,40 @@
+outputDir: dataplex
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// A zone within a [GoogleDataplexLake] — a logical partition for curated or
+  /// raw data assets. Requires [discoverySpec] and [resourceSpec] blocks.
+
+dartTypeOverrides:
+  type: DataplexZoneType
+
+prelude: |
+  /// `type` on `google_dataplex_zone`.
+  enum DataplexZoneType implements TerraformEnum {
+    typeUnspecified('TYPE_UNSPECIFIED'),
+    raw('RAW'),
+    curated('CURATED');
+
+    const DataplexZoneType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+paramOrder:
+  - name
+  - lake
+  - location
+  - type
+  - display_name
+  - description
+  - discovery_spec
+  - resource_spec
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute (zone id within the lake).
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

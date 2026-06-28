@@ -116,6 +116,9 @@ google_dataplex_glossary_iam_member: safe  # apply-verified safe (existing examp
 google_dataplex_glossary_term: safe  # apply-verified safe (existing example)
 google_dataplex_lake: safe  # apply-verified safe (existing example)
 google_dataplex_lake_iam_member: safe  # apply-verified safe (existing example)
+google_dataplex_zone: safe  # gcp-cost: Dataplex Metadata Storage us-central1 SKU 5D0E-3A17-3010 ~$2/GiBy.mo on stored metadata volume; zone object itself is control-plane — destroy stops charges (not existence-billed)
+google_dataplex_zone_iam_member: safe  # billing-behavior: IAM binding adjunct; no standalone Cloud Billing SKU
+google_dataplex_asset: safe  # gcp-cost: metadata registration only (same Dataplex metadata metering as zone); destroy removes asset — not existence-billed
 google_dns_managed_zone: safe  # apply-verified safe (existing example)
 google_dns_managed_zone_iam_member: safe  # apply-verified safe (existing example)
 google_dns_policy: safe  # apply-verified safe (existing example)
@@ -170,6 +173,7 @@ google_secret_manager_regional_secret: safe  # apply-verified safe (existing exa
 google_secret_manager_regional_secret_iam_member: safe  # apply-verified safe (existing example)
 google_secret_manager_secret: safe  # apply-verified safe (existing example)
 google_secret_manager_secret_iam_member: safe  # apply-verified safe (existing example)
+google_storage_bucket: safe  # gcp-cost: Standard Storage us-central1 SKU 141D-1A1B-38E1 ~$0.022/GiBy.mo — usage-metered; empty bucket in quickstart ≈ $0; destroy deletes bucket and stops storage charges (not existence-billed)
 google_storage_bucket_iam_binding: safe  # IAM binding on a bucket; no existence billing
 google_storage_bucket_iam_member: safe  # apply-verified safe (existing example)
 google_secret_manager_secret_version: safe  # apply-verified safe (existing example)

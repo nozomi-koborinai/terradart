@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.21.0 - 2026-06-28
+
+Lockstep release for Wave 74. Apply-smoke test 13 (cost-comment gate) and `tool/apply_cost_comment_debt.yaml`.
+
 ## 0.20.0 - 2026-06-21
 
 Lockstep release for Wave 73. No CLI or codegen API changes.

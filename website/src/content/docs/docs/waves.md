@@ -1,6 +1,6 @@
 ---
 title: Waves 23–41
-description: Curated google_* factories shipped through Wave 73 (v0.12.10–v0.20.0) with example stack pointers.
+description: Curated google_* factories shipped through Wave 74 (v0.12.10–v0.21.0) with example stack pointers.
 ---
 
 ## v0.12.10 — Waves 23–24
@@ -307,7 +307,7 @@ Catalog after Wave 35: **206 curated resource factories + 1 data source** (207 c
 
 Adds ten Cloud Bigtable factories under the new `bigtable` barrel: instance (typed clusters), table (column families), app profile (sealed routing), GC policy (max age / max version), authorized view, logical view, materialized view, protobuf schema bundle, and additive instance/table IAM members. Exercised by [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart).
 
-Catalog after Wave 73: **344 curated resource factories + 1 data source** (345 catalog entries). 60 service barrels.
+Catalog after Wave 73: **343 curated resource factories + 1 data source** (344 catalog entries). 60 service barrels.
 
 | Terraform type | Dart factory | Barrel | Example |
 | --- | --- | --- | --- |
@@ -321,6 +321,18 @@ Catalog after Wave 73: **344 curated resource factories + 1 data source** (345 c
 | `google_bigtable_schema_bundle` | `GoogleBigtableSchemaBundle` | `bigtable` | [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart) |
 | `google_bigtable_instance_iam_member` | `GoogleBigtableInstanceIamMember` | `bigtable` | [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart) |
 | `google_bigtable_table_iam_member` | `GoogleBigtableTableIamMember` | `bigtable` | [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart) |
+
+## Wave 74 — Dataplex lake operations
+
+Adds three Dataplex factories under the `dataplex` barrel: a lake zone (RAW/CURATED type enums), a GCS bucket asset, and an additive zone IAM member. Exercised by extending [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) with a RAW zone, bucket asset, and `roles/dataplex.dataReader` grant.
+
+Catalog after Wave 74: **347 curated resource factories + 1 data source** (348 catalog entries). 60 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_dataplex_zone` | `GoogleDataplexZone` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+| `google_dataplex_asset` | `GoogleDataplexAsset` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
+| `google_dataplex_zone_iam_member` | `GoogleDataplexZoneIamMember` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
 
 ## Wave 72 — IAP App Engine IAM members
 

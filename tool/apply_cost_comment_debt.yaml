@@ -1,0 +1,23 @@
+# Cost-classification ledger comments missing the gcp-cost MCP price axis.
+#
+# Policy: new `safe` entries in tool/apply_cost_denylist.yaml must include
+# `gcp-cost:` (from agent-side gcp-cost MCP list_skus / get_sku_price) in the
+# trailing comment, unless listed here with a reason. Stale lines fail when
+# the comment gains gcp-cost: — remove the debt entry in the same PR.
+#
+# Test 13 checks comments only (no MCP in CI). IAM/metadata adjuncts may
+# instead use `billing-behavior:` when no Cloud Billing Catalog SKU applies.
+
+google_bigtable_app_profile: pre-gate Bigtable Wave; billing-behavior documented, gcp-cost SKU backfill pending
+google_bigtable_authorized_view: pre-gate Bigtable Wave; billing-behavior documented, gcp-cost SKU backfill pending
+google_bigtable_gc_policy: pre-gate Bigtable Wave; billing-behavior documented, gcp-cost SKU backfill pending
+google_bigtable_instance_iam_member: pre-gate Bigtable Wave; IAM adjunct — billing-behavior only
+google_bigtable_logical_view: pre-gate Bigtable Wave; billing-behavior documented, gcp-cost SKU backfill pending
+google_bigtable_materialized_view: pre-gate Bigtable Wave; billing-behavior documented, gcp-cost SKU backfill pending
+google_bigtable_schema_bundle: pre-gate Bigtable Wave; billing-behavior documented, gcp-cost SKU backfill pending
+google_bigtable_table: pre-gate Bigtable Wave; billing-behavior documented, gcp-cost SKU backfill pending
+google_bigtable_table_iam_member: pre-gate Bigtable Wave; IAM adjunct — billing-behavior only
+google_compute_instance_iam_member: pre-gate; IAM binding false-positive on _instance pattern — billing-behavior only
+google_service_directory_endpoint: pre-gate; metadata endpoint — billing-behavior only
+google_storage_bucket_iam_binding: pre-gate; IAM binding adjunct — billing-behavior only
+google_vertex_ai_tensorboard: pre-gate; empty tensorboard in example — billing-behavior documented, gcp-cost SKU backfill pending
