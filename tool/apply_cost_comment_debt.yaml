@@ -5,8 +5,9 @@
 # trailing comment, unless listed here with a reason. Stale lines fail when
 # the comment gains gcp-cost: — remove the debt entry in the same PR.
 #
-# Test 13 checks comments only (no MCP in CI). IAM/metadata adjuncts may
-# instead use `billing-behavior:` when no Cloud Billing Catalog SKU applies.
+# Test 13 checks comments only (no MCP in CI). `billing-behavior:` without
+# `gcp-cost:` is allowed only for `*_iam_member` / `*_iam_binding` /
+# `*_iam_policy`, or when listed here.
 
 google_bigtable_app_profile: pre-gate Bigtable Wave; billing-behavior documented, gcp-cost SKU backfill pending
 google_bigtable_authorized_view: pre-gate Bigtable Wave; billing-behavior documented, gcp-cost SKU backfill pending
@@ -21,3 +22,7 @@ google_compute_instance_iam_member: pre-gate; IAM binding false-positive on _ins
 google_service_directory_endpoint: pre-gate; metadata endpoint — billing-behavior only
 google_storage_bucket_iam_binding: pre-gate; IAM binding adjunct — billing-behavior only
 google_vertex_ai_tensorboard: pre-gate; empty tensorboard in example — billing-behavior documented, gcp-cost SKU backfill pending
+google_dataplex_data_product_data_asset: pre-gate Dataplex Wave; billing-behavior documented, gcp-cost MCP backfill pending
+google_dataplex_entry: pre-gate Dataplex Wave; billing-behavior documented, gcp-cost MCP backfill pending
+google_dataplex_entry_link: pre-gate Dataplex Wave; billing-behavior documented, gcp-cost MCP backfill pending
+google_dataplex_datascan: pre-gate Dataplex Wave; billing-behavior documented, gcp-cost MCP backfill pending
