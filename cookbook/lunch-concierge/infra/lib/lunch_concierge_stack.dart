@@ -5,6 +5,7 @@
 library;
 
 import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/artifact_registry.dart';
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/cloud_sql.dart';
 import 'package:terradart_google/compute.dart';
@@ -16,6 +17,7 @@ import 'package:terradart_google/time.dart';
 
 const _region = 'asia-northeast1';
 const _serviceName = 'lunch-concierge';
+const _repositoryId = 'lunch-concierge';
 const _vpcName = 'lunch-vpc';
 const _subnetName = 'lunch-subnet';
 const _subnetCidr = '10.10.0.0/24';
@@ -40,6 +42,7 @@ final class LunchStack extends Stack {
     final apiDeps = Apis.enable(
       this,
       barrels: [
+        Barrels.artifactRegistry,
         Barrels.cloudRun,
         Barrels.compute,
         Barrels.serviceNetworking,
@@ -52,6 +55,17 @@ final class LunchStack extends Stack {
         localName: 'api_aiplatform',
         service: TfArg.literal('aiplatform.googleapis.com'),
         disableOnDestroy: TfArg.literal(false),
+      ),
+    );
+
+    add(
+      GoogleArtifactRegistryRepository(
+        localName: 'app_images',
+        repositoryId: TfArg.literal(_repositoryId),
+        format: TfArg.literal('DOCKER'),
+        location: TfArg.literal(_region),
+        description: TfArg.literal('Lunch Concierge demo container images'),
+        dependsOn: apiDeps,
       ),
     );
 
