@@ -1,6 +1,6 @@
 /// Dataplex quickstart — governed data product, Universal Catalog metadata,
 /// business glossary, lake (zone + asset), catalog entry link, data-product asset
-/// link, data scan, and resource-scoped IAM members.
+/// link, data scan, lake task, and resource-scoped IAM members.
 ///
 /// Provisions a `google_dataplex_data_product` and grants a separate
 /// in-stack service account `roles/dataplex.dataProductViewer` on that
@@ -439,6 +439,52 @@ final class DataplexCatalogStack extends Stack {
         member: TfArg.ref(reader.iamMember),
         dependsOn: [
           ResourceDependency(lakeDiscoveryScan),
+          ResourceDependency(reader),
+        ],
+      ),
+    );
+
+    // --- Dataplex lake task --------------------------------------------------
+    // An on-demand Spark SQL task under the lake plus a resource-level IAM
+    // member for the reader service account.
+
+    final lakeSqlTask = add(
+      GoogleDataplexTask(
+        localName: 'lake_sql_task',
+        taskId: TfArg.literal('terradart-sql-task'),
+        location: TfArg.literal('us-central1'),
+        lake: TfArg.literal('terradart-lake'),
+        workload: DataplexTaskSparkWorkload(
+          sqlScript: TfArg.literal('SELECT 1'),
+        ),
+        triggerSpec: TfArg.literal({
+          'type': 'ON_DEMAND',
+        }),
+        executionSpec: TfArg.literal({
+          'service_account': reader.email.interpolation,
+        }),
+        displayName: TfArg.literal('Lake SQL task'),
+        description: TfArg.literal(
+          'On-demand Spark SQL task for the analytics lake',
+        ),
+        dependsOn: [
+          ResourceDependency(lake),
+          ResourceDependency(reader),
+          ...apiDeps,
+        ],
+      ),
+    );
+
+    add(
+      GoogleDataplexTaskIamMember(
+        localName: 'sql_task_viewer',
+        taskId: TfArg.ref(lakeSqlTask.taskIdRef),
+        lake: TfArg.literal('terradart-lake'),
+        location: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/dataplex.viewer'),
+        member: TfArg.ref(reader.iamMember),
+        dependsOn: [
+          ResourceDependency(lakeSqlTask),
           ResourceDependency(reader),
         ],
       ),
