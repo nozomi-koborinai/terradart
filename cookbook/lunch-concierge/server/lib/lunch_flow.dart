@@ -13,7 +13,7 @@ final class LunchFlowBundle {
 }
 
 Future<LunchFlowBundle> createLunchFlow() async {
-  final repository = await LunchHistoryRepository.connect();
+  final repository = LunchHistoryRepository();
   final ai = Genkit(
     plugins: [
       vertexAI(
