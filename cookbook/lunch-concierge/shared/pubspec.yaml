@@ -1,0 +1,11 @@
+name: lunch_concierge_shared
+description: Shared generated constants for the Lunch Concierge cookbook recipe.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dev_dependencies:
+  lints: ^6.0.0

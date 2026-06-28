@@ -100,4 +100,4 @@ Rename `orders-prod` in the Stack without updating the subscriber and `dart anal
 - [Waves 23–24](/docs/waves/) — latest curated factories (v0.12.10)
 - [Migrating](/docs/migrating/) — read before bumping from `0.12.9`
 - [Status & versioning](/docs/status/) — pre-alpha vs beta vs 1.0
-- [Examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and [cookbook](https://github.com/nozomi-koborinai/terradart-cookbook) for fuller stacks
+- [Examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook) for fuller stacks

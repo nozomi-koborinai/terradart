@@ -1,0 +1,79 @@
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:lunch_concierge_shared/generated/lunch_stack.app.dart';
+import 'package:postgres/postgres.dart';
+
+import 'schema.dart';
+
+final class LunchHistoryRepository {
+  LunchHistoryRepository(this._connection);
+
+  final Connection _connection;
+
+  static Future<LunchHistoryRepository> connect() async {
+    final connection = await _withRetry(
+      () => Connection.open(
+        Endpoint(
+          host: '127.0.0.1',
+          port: 5432,
+          database: LunchStackExports.DATABASE_NAME,
+          username: LunchStackExports.DATABASE_USER,
+        ),
+      ),
+    );
+    final repository = LunchHistoryRepository(connection);
+    await repository.ensureSchema();
+    return repository;
+  }
+
+  Future<void> ensureSchema() async {
+    await _connection.execute('''
+      create table if not exists lunch_suggestions (
+        id bigserial primary key,
+        area text not null,
+        mood text not null,
+        budget_yen integer not null,
+        suggestion_json jsonb not null,
+        created_at timestamptz not null default now()
+      )
+    ''');
+  }
+
+  Future<void> save(LunchRequest request, LunchResponse response) async {
+    await _connection.execute(
+      Sql.named('''
+        insert into lunch_suggestions
+          (area, mood, budget_yen, suggestion_json)
+        values
+          (@area, @mood, @budgetYen, @suggestionJson)
+      '''),
+      parameters: {
+        'area': request.area,
+        'mood': request.mood,
+        'budgetYen': request.budgetYen,
+        'suggestionJson': jsonEncode(response.toJson()),
+      },
+    );
+  }
+}
+
+Future<T> _withRetry<T>(
+  Future<T> Function() operation, {
+  int maxAttempts = 10,
+  Duration delay = const Duration(seconds: 2),
+}) async {
+  Object? lastError;
+  StackTrace? lastStackTrace;
+  for (var attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      return await operation();
+    } catch (error, stackTrace) {
+      lastError = error;
+      lastStackTrace = stackTrace;
+      if (attempt == maxAttempts) break;
+      await Future<void>.delayed(delay);
+    }
+  }
+  Error.throwWithStackTrace(lastError!, lastStackTrace!);
+}

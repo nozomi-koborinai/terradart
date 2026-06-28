@@ -61,7 +61,7 @@ final class AppInfraStack extends Stack { /* ... */ }
 
 ## Provider integration
 
-[`terradart_google`](https://pub.dev/packages/terradart_google) ships a **curated** subset of the HashiCorp [`google`](https://registry.terraform.io/providers/hashicorp/google/latest) provider — typed factories for common services, expanded release by release. It does not wrap every resource block in the upstream provider yet. See [status](/docs/status/) and the [package README](https://pub.dev/packages/terradart_google) for what is available today; [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and the [cookbook](https://github.com/nozomi-koborinai/terradart-cookbook) add fuller stacks over time.
+[`terradart_google`](https://pub.dev/packages/terradart_google) ships a **curated** subset of the HashiCorp [`google`](https://registry.terraform.io/providers/hashicorp/google/latest) provider — typed factories for common services, expanded release by release. It does not wrap every resource block in the upstream provider yet. See [status](/docs/status/) and the [package README](https://pub.dev/packages/terradart_google) for what is available today; [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and the [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook) add fuller stacks over time.
 
 TerraDart depends on the Google Terraform provider via two upstream sources, both reconciled automatically on a weekly cadence.
 
@@ -104,7 +104,7 @@ Two export kinds cover most cases:
 
 Calling `setAppExportsOutputPath(...)` is what triggers the `.app.dart` emission. Exports whose values are only known after apply (for example `ResourceIdExport(topic.id)`) emit Terraform `output` blocks only; literal-resolvable exports (for example `ResourceIdExport(topic.nameRef)`) become typed Dart constants. Runnable pattern: [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) (`lib/subscriber_stub.dart`).
 
-A worked end-to-end example lives in the [terradart-cookbook `single-project-app` recipe](https://github.com/nozomi-koborinai/terradart-cookbook/tree/main/recipes/single-project-app), exporting `coffee_service_uri` (Terraform output), `SERVICE_NAME`, and `REGION` (Dart constants).
+A worked end-to-end example lives in the [cookbook `single-project-app` recipe](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook/single-project-app), exporting `coffee_service_uri` (Terraform output), `SERVICE_NAME`, and `REGION` (Dart constants).
 
 ## Non-goals
 

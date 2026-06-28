@@ -68,6 +68,12 @@ workspace:
   - examples/vertex_ai_quickstart
   - examples/workflows_quickstart
   - examples/app_engine_quickstart
+  - cookbook/single-project-app
+  - cookbook/firestore-seeded-data
+  - cookbook/remote-backend
+  - cookbook/lunch-concierge/shared
+  - cookbook/lunch-concierge/server
+  - cookbook/lunch-concierge/infra
 dev_dependencies:
   args: any
   meta: any

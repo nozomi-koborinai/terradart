@@ -1,0 +1,18 @@
+name: single_project_app
+description: terradart cookbook recipe — single-project Cloud Run + Cloud SQL + Pub/Sub + Monitoring webhook stack. Sample uses "coffee shop" naming inside but the recipe pattern is "1 GCP project, end-to-end app surface".
+homepage: https://github.com/nozomi-koborinai/terradart/tree/main/cookbook/single-project-app
+repository: https://github.com/nozomi-koborinai/terradart
+publish_to: none
+version: 0.1.0
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.21.0
+  terradart_google: ^0.21.0
+
+dev_dependencies:
+  lints: ^6.0.0

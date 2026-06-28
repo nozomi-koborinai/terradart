@@ -1,0 +1,18 @@
+name: remote_backend
+description: terradart cookbook recipe — GCS remote backend for Terraform state. Stage 0 bootstrap (creates the state bucket with local backend, then migrates its own state to GCS), demonstrates the canonical "introduce remote state" workflow.
+homepage: https://github.com/nozomi-koborinai/terradart/tree/main/cookbook/remote-backend
+repository: https://github.com/nozomi-koborinai/terradart
+publish_to: none
+version: 0.1.0
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.21.0
+  terradart_google: ^0.21.0
+
+dev_dependencies:
+  lints: ^6.0.0

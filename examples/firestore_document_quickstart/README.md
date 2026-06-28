@@ -7,7 +7,7 @@ the `FirestoreFields.encode` helper.
 
 For a more complete cookbook recipe (4 collections, 11 documents,
 composite index, daily backup schedule), see
-`terradart-cookbook/recipes/firestore-seeded-data/`.
+[`../../cookbook/firestore-seeded-data/`](../../cookbook/firestore-seeded-data/).
 
 ## Prerequisites
 
