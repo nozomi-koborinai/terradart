@@ -18,6 +18,7 @@ COPY cookbook/lunch-concierge/server ./server
 RUN sed -i '/^resolution: workspace$/d' server/pubspec.yaml
 WORKDIR /src/cookbook/lunch-concierge/server
 RUN dart pub get
+RUN mkdir -p /out
 RUN dart compile exe bin/server.dart -o /out/server
 
 FROM debian:bookworm-slim AS runtime
