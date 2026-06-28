@@ -3,16 +3,20 @@ name: Lunch Concierge Deploy
 on:
   workflow_dispatch:
     inputs:
+      operation:
+        description: Terraform operation.
+        required: true
+        default: plan
+        type: choice
+        options:
+          - plan
+          - apply
+          - destroy
       image_tag:
         description: Container image tag to build and deploy.
         required: true
         default: demo
         type: string
-      apply:
-        description: Apply Terraform changes and push the container image.
-        required: true
-        default: false
-        type: boolean
 
 concurrency:
   group: lunch-concierge-deploy
@@ -34,7 +38,7 @@ env:
 
 jobs:
   deploy:
-    name: plan/apply Lunch Concierge
+    name: ${{ inputs.operation }} Lunch Concierge
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -75,33 +79,54 @@ jobs:
           TF_STATE_PREFIX: ${{ env.TF_STATE_PREFIX }}
         run: dart run bin/infra.dart
 
-      - name: Terraform validate and plan
+      - name: Terraform init and validate
         working-directory: cookbook/lunch-concierge/infra/tf-out
         run: |
           terraform init
           terraform validate
-          terraform plan -out=tfplan
 
-      - name: Import Artifact Registry repository
-        if: inputs.apply
+      - name: Import Artifact Registry repository if present
+        if: inputs.operation == 'apply' || inputs.operation == 'destroy'
         working-directory: cookbook/lunch-concierge/infra/tf-out
         run: |
           if ! terraform state show google_artifact_registry_repository.app_images >/dev/null 2>&1; then
-            terraform import \
-              google_artifact_registry_repository.app_images \
-              "projects/${PROJECT_ID}/locations/${REGION}/repositories/lunch-concierge"
+            if gcloud artifacts repositories describe lunch-concierge \
+              --project="$PROJECT_ID" \
+              --location="$REGION" >/dev/null 2>&1; then
+              terraform import \
+                google_artifact_registry_repository.app_images \
+                "projects/${PROJECT_ID}/locations/${REGION}/repositories/lunch-concierge"
+            fi
           fi
 
+      - name: Terraform plan
+        if: inputs.operation == 'plan'
+        working-directory: cookbook/lunch-concierge/infra/tf-out
+        run: terraform plan -out=tfplan
+
       - name: Build and push image
-        if: inputs.apply
+        if: inputs.operation == 'apply'
         run: |
           gcloud auth configure-docker "${REGION}-docker.pkg.dev" --quiet
           docker build -f cookbook/lunch-concierge/server/Dockerfile -t "$IMAGE_URI" .
           docker push "$IMAGE_URI"
 
       - name: Terraform apply
-        if: inputs.apply
+        if: inputs.operation == 'apply'
         working-directory: cookbook/lunch-concierge/infra/tf-out
         run: |
           terraform plan -out=tfplan
           terraform apply -auto-approve tfplan
+
+      - name: Delete demo image before destroy
+        if: inputs.operation == 'destroy'
+        run: |
+          gcloud artifacts docker images delete "$IMAGE_URI" \
+            --project="$PROJECT_ID" \
+            --delete-tags \
+            --quiet || true
+
+      - name: Terraform destroy
+        if: inputs.operation == 'destroy'
+        working-directory: cookbook/lunch-concierge/infra/tf-out
+        run: terraform destroy -auto-approve

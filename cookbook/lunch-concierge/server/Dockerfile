@@ -5,19 +5,23 @@ FROM ghcr.io/cirruslabs/flutter:stable AS client_builder
 WORKDIR /src/cookbook/lunch-concierge/client
 COPY cookbook/lunch-concierge/client/pubspec.yaml ./
 COPY cookbook/lunch-concierge/shared ../shared
+RUN sed -i '/^resolution: workspace$/d' ../shared/pubspec.yaml
 RUN flutter pub get
 COPY cookbook/lunch-concierge/client ./
 RUN flutter build web --release
 
 FROM dart:stable AS server_builder
-WORKDIR /src
-COPY pubspec.yaml pubspec.lock ./
-COPY packages ./packages
-COPY cookbook ./cookbook
-RUN dart pub get
+WORKDIR /src/cookbook/lunch-concierge
+COPY cookbook/lunch-concierge/shared ./shared
+RUN sed -i '/^resolution: workspace$/d' shared/pubspec.yaml
 WORKDIR /src/cookbook/lunch-concierge/shared
+RUN dart pub get
 RUN dart run build_runner build --delete-conflicting-outputs
+WORKDIR /src/cookbook/lunch-concierge
+COPY cookbook/lunch-concierge/server ./server
+RUN sed -i '/^resolution: workspace$/d' server/pubspec.yaml
 WORKDIR /src/cookbook/lunch-concierge/server
+RUN dart pub get
 RUN dart compile exe bin/server.dart -o /out/server
 
 FROM debian:bookworm-slim AS runtime
