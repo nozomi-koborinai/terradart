@@ -405,7 +405,10 @@ export 'src/compute/google_compute_router_nat.dart'
     show
         GoogleComputeRouterNat,
         ComputeRouterNatNatIpAllocateOption,
-        ComputeRouterNatSourceSubnetworkIpRangesToNat;
+        ComputeRouterNatSourceSubnetworkIpRangesToNat,
+        ComputeRouterNatSourceSubnetworkIpRangesToNat64,
+        ComputeRouterNatAutoNetworkTier,
+        ComputeRouterNatType;
 export 'src/compute/google_compute_network_peering.dart'
     show GoogleComputeNetworkPeering;
 export 'src/compute/google_compute_route.dart' show GoogleComputeRoute;
