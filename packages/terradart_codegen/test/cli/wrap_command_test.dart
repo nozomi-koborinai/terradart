@@ -68,10 +68,10 @@ void main() {
             files.add(p.relative(ent.path, from: tmpOut.path));
           }
         }
-        // 361 wrappers (360 resource Layer 2 + 1 data source Layer 2) plus
+        // 359 wrappers (358 resource Layer 2 + 1 data source Layer 2) plus
         // the generated static catalog `_catalog.g.dart` (one CatalogEntry
-        // per wrapper) → 362 emitted .dart files.
-        expect(files, hasLength(362));
+        // per wrapper) → 360 emitted .dart files.
+        expect(files, hasLength(360));
         expect(files, contains('_catalog.g.dart'));
         expect(files, contains(p.join('pubsub', 'google_pubsub_topic.dart')));
         expect(files, contains(p.join('data', 'google_project.dart')));
