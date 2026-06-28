@@ -1,5 +1,6 @@
 /// Dataplex quickstart — governed data product, Universal Catalog metadata,
-/// business glossary, lake (zone + asset), and resource-scoped IAM members.
+/// business glossary, lake (zone + asset), data scan, and resource-scoped IAM
+/// members.
 ///
 /// Provisions a `google_dataplex_data_product` and grants a separate
 /// in-stack service account `roles/dataplex.dataProductViewer` on that
@@ -286,7 +287,7 @@ final class DataplexCatalogStack extends Stack {
       ),
     );
 
-    add(
+    final lakeDataAsset = add(
       GoogleDataplexAsset(
         localName: 'lake_data_asset',
         name: TfArg.literal('terradart-lake-data-asset'),
@@ -316,6 +317,49 @@ final class DataplexCatalogStack extends Stack {
         member: TfArg.ref(reader.iamMember),
         dependsOn: [
           ResourceDependency(rawZone),
+          ResourceDependency(reader),
+        ],
+      ),
+    );
+
+    // --- Dataplex data scan --------------------------------------------------
+    // A discovery scan over the lake data bucket (on-demand trigger) plus a
+    // resource-level IAM member for the reader service account.
+
+    final lakeDiscoveryScan = add(
+      GoogleDataplexDatascan(
+        localName: 'lake_discovery',
+        dataScanId: TfArg.literal('terradart-lake-discovery'),
+        location: TfArg.literal('us-central1'),
+        scanSpec: const DataplexDatascanDataDiscoverySpec(),
+        data: TfArg.literal({
+          'resource':
+              '//storage.googleapis.com/projects/$projectId/buckets/terradart-dataplex-lake-data',
+        }),
+        executionSpec: TfArg.literal({
+          'trigger': {'on_demand': <String, Object?>{}},
+        }),
+        displayName: TfArg.literal('Lake data discovery scan'),
+        description: TfArg.literal(
+          'Infers schema from objects in the lake data bucket',
+        ),
+        dependsOn: [
+          ResourceDependency(lakeDataBucket),
+          ResourceDependency(lakeDataAsset),
+          ...apiDeps,
+        ],
+      ),
+    );
+
+    add(
+      GoogleDataplexDatascanIamMember(
+        localName: 'discovery_viewer',
+        dataScanId: TfArg.ref(lakeDiscoveryScan.dataScanIdRef),
+        location: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/dataplex.viewer'),
+        member: TfArg.ref(reader.iamMember),
+        dependsOn: [
+          ResourceDependency(lakeDiscoveryScan),
           ResourceDependency(reader),
         ],
       ),

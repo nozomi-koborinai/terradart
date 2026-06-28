@@ -1,0 +1,170 @@
+outputDir: dataplex
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// A Dataplex data scan (profile, quality, discovery, or documentation).
+  ///
+  /// Choose exactly one [DataplexDatascanSpec] variant via [scanSpec]. Provide
+  /// [data] (entity or resource) and [executionSpec] (trigger) as literal maps
+  /// matching the provider nested blocks.
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+prelude: |
+  /// Scan-type spec block. Exactly one of the four provider `*_spec` blocks.
+  sealed class DataplexDatascanSpec {
+    const DataplexDatascanSpec();
+
+    String get blockKey;
+
+    Map<String, Object?> encode();
+  }
+
+  /// `data_profile_spec` — column statistics for BigQuery tables or entities.
+  @immutable
+  final class DataplexDatascanDataProfileSpec extends DataplexDatascanSpec {
+    const DataplexDatascanDataProfileSpec({
+      this.samplingPercent,
+      this.rowFilter,
+      this.catalogPublishingEnabled,
+      this.postScanActions,
+      this.includeFields,
+      this.excludeFields,
+    });
+
+    final TfArg<double>? samplingPercent;
+    final TfArg<String>? rowFilter;
+    final TfArg<bool>? catalogPublishingEnabled;
+    final TfArg<Map<String, Object?>>? postScanActions;
+    final TfArg<Map<String, Object?>>? includeFields;
+    final TfArg<Map<String, Object?>>? excludeFields;
+
+    @override
+    String get blockKey => 'data_profile_spec';
+
+    @override
+    Map<String, Object?> encode() => {
+      if (samplingPercent != null)
+        'sampling_percent': samplingPercent!.toTfJson(),
+      if (rowFilter != null) 'row_filter': rowFilter!.toTfJson(),
+      if (catalogPublishingEnabled != null)
+        'catalog_publishing_enabled': catalogPublishingEnabled!.toTfJson(),
+      if (postScanActions != null)
+        'post_scan_actions': postScanActions!.toTfJson(),
+      if (includeFields != null) 'include_fields': includeFields!.toTfJson(),
+      if (excludeFields != null) 'exclude_fields': excludeFields!.toTfJson(),
+    };
+  }
+
+  /// `data_quality_spec` — rule-based quality checks.
+  @immutable
+  final class DataplexDatascanDataQualitySpec extends DataplexDatascanSpec {
+    const DataplexDatascanDataQualitySpec({
+      this.rules,
+      this.samplingPercent,
+      this.rowFilter,
+      this.filter,
+      this.catalogPublishingEnabled,
+      this.enableCatalogBasedRules,
+      this.postScanActions,
+    });
+
+    final TfArg<List<Map<String, Object?>>>? rules;
+    final TfArg<double>? samplingPercent;
+    final TfArg<String>? rowFilter;
+    final TfArg<String>? filter;
+    final TfArg<bool>? catalogPublishingEnabled;
+    final TfArg<bool>? enableCatalogBasedRules;
+    final TfArg<Map<String, Object?>>? postScanActions;
+
+    @override
+    String get blockKey => 'data_quality_spec';
+
+    @override
+    Map<String, Object?> encode() => {
+      if (rules != null) 'rules': rules!.toTfJson(),
+      if (samplingPercent != null)
+        'sampling_percent': samplingPercent!.toTfJson(),
+      if (rowFilter != null) 'row_filter': rowFilter!.toTfJson(),
+      if (filter != null) 'filter': filter!.toTfJson(),
+      if (catalogPublishingEnabled != null)
+        'catalog_publishing_enabled': catalogPublishingEnabled!.toTfJson(),
+      if (enableCatalogBasedRules != null)
+        'enable_catalog_based_rules': enableCatalogBasedRules!.toTfJson(),
+      if (postScanActions != null)
+        'post_scan_actions': postScanActions!.toTfJson(),
+    };
+  }
+
+  /// `data_discovery_spec` — infer schema from Cloud Storage objects.
+  @immutable
+  final class DataplexDatascanDataDiscoverySpec extends DataplexDatascanSpec {
+    const DataplexDatascanDataDiscoverySpec({
+      this.storageConfig,
+      this.bigqueryPublishingConfig,
+    });
+
+    final TfArg<Map<String, Object?>>? storageConfig;
+    final TfArg<Map<String, Object?>>? bigqueryPublishingConfig;
+
+    @override
+    String get blockKey => 'data_discovery_spec';
+
+    @override
+    Map<String, Object?> encode() => {
+      if (storageConfig != null) 'storage_config': storageConfig!.toTfJson(),
+      if (bigqueryPublishingConfig != null)
+        'bigquery_publishing_config': bigqueryPublishingConfig!.toTfJson(),
+    };
+  }
+
+  /// `data_documentation_spec` — generate data documentation.
+  @immutable
+  final class DataplexDatascanDataDocumentationSpec extends DataplexDatascanSpec {
+    const DataplexDatascanDataDocumentationSpec();
+
+    @override
+    String get blockKey => 'data_documentation_spec';
+
+    @override
+    Map<String, Object?> encode() => {};
+  }
+
+paramOrder:
+  - data_scan_id
+  - location
+  - scan_spec
+  - data
+  - execution_spec
+  - display_name
+  - description
+  - labels
+  - execution_identity
+  - deletion_policy
+  - project
+
+argMapOrder:
+  - data_scan_id
+  - location
+  - display_name
+  - description
+  - labels
+  - data
+  - execution_spec
+  - execution_identity
+  - deletion_policy
+  - project
+  - scan_spec
+
+customSlots:
+  scan_spec:
+    paramDeclaration: 'required DataplexDatascanSpec scanSpec'
+    argMapEntry: "scanSpec.blockKey: TfArg.literal(scanSpec.encode()),"
+
+extraGetters: |2
+    /// Reference to `data_scan_id` for IAM bindings and cross-stack refs.
+    TfRef<String> get dataScanIdRef =>
+        TfRef.attribute<String>(this, 'data_scan_id');

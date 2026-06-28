@@ -37,3 +37,15 @@ export 'src/dataplex/google_dataplex_zone.dart'
 export 'src/dataplex/google_dataplex_zone_iam_member.dart'
     show GoogleDataplexZoneIamMember;
 export 'src/dataplex/google_dataplex_asset.dart' show GoogleDataplexAsset;
+export 'src/dataplex/google_dataplex_datascan.dart'
+    show
+        GoogleDataplexDatascan,
+        DataplexDatascanSpec,
+        DataplexDatascanDataProfileSpec,
+        DataplexDatascanDataQualitySpec,
+        DataplexDatascanDataDiscoverySpec,
+        DataplexDatascanDataDocumentationSpec,
+        DataplexDatascanState,
+        DataplexDatascanType;
+export 'src/dataplex/google_dataplex_datascan_iam_member.dart'
+    show GoogleDataplexDatascanIamMember;
