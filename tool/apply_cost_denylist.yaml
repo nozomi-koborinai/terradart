@@ -108,6 +108,7 @@ google_dataplex_data_product: safe  # apply-verified safe (existing example)
 google_dataplex_data_product_data_asset: safe  # billing-behavior: metadata link between data product and lake asset; destroy removes association — not existence-billed
 google_dataplex_data_product_iam_member: safe  # apply-verified safe (existing example)
 google_dataplex_entry: safe  # billing-behavior: catalog metadata entry; destroy removes entry — not existence-billed
+google_dataplex_entry_link: safe  # billing-behavior: catalog metadata link between entries; destroy removes link — not existence-billed
 google_dataplex_entry_group: safe  # apply-verified safe (existing example)
 google_dataplex_entry_group_iam_member: safe  # apply-verified safe (existing example)
 google_dataplex_entry_type: safe  # apply-verified safe (existing example)
@@ -121,6 +122,7 @@ google_dataplex_lake_iam_member: safe  # apply-verified safe (existing example)
 google_dataplex_zone: safe  # gcp-cost: Dataplex Metadata Storage us-central1 SKU 5D0E-3A17-3010 ~$2/GiBy.mo on stored metadata volume; zone object itself is control-plane — destroy stops charges (not existence-billed)
 google_dataplex_zone_iam_member: safe  # billing-behavior: IAM binding adjunct; no standalone Cloud Billing SKU
 google_dataplex_asset: safe  # gcp-cost: metadata registration only (same Dataplex metadata metering as zone); destroy removes asset — not existence-billed
+google_dataplex_asset_iam_member: safe  # billing-behavior: IAM binding adjunct; no standalone Cloud Billing SKU
 google_dataplex_datascan: safe  # billing-behavior: scan definition is control-plane metadata; job execution is on-demand/scheduled (billed per run, not existence-billed); destroy removes scan config
 google_dataplex_datascan_iam_member: safe  # billing-behavior: IAM binding adjunct; no standalone Cloud Billing SKU
 google_dns_managed_zone: safe  # apply-verified safe (existing example)

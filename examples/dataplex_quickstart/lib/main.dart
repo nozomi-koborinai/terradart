@@ -1,5 +1,5 @@
 /// Dataplex quickstart — governed data product, Universal Catalog metadata,
-/// business glossary, lake (zone + asset), catalog entry, data-product asset
+/// business glossary, lake (zone + asset), catalog entry link, data-product asset
 /// link, data scan, and resource-scoped IAM members.
 ///
 /// Provisions a `google_dataplex_data_product` and grants a separate
@@ -173,7 +173,7 @@ final class DataplexCatalogStack extends Stack {
       ),
     );
 
-    add(
+    final customerDatasetEntry = add(
       GoogleDataplexEntry(
         localName: 'customer_dataset',
         entryGroupId: TfArg.literal('terradart-catalog'),
@@ -242,6 +242,34 @@ final class DataplexCatalogStack extends Stack {
         dependsOn: [
           ResourceDependency(glossary),
           ResourceDependency(reader),
+        ],
+      ),
+    );
+
+    // Links the catalog dataset entry to the MRR glossary term (definition).
+    add(
+      GoogleDataplexEntryLink(
+        localName: 'dataset_mrr_link',
+        entryGroupId: TfArg.literal('terradart-catalog'),
+        entryLinkId: TfArg.literal('customer-dataset-mrr'),
+        location: TfArg.literal('us-central1'),
+        entryLinkType: TfArg.literal(
+          'projects/dataplex-types/locations/global/entryLinkTypes/definition',
+        ),
+        entryReferences: TfArg.literal([
+          {
+            'name': customerDatasetEntry.nameRef.interpolation,
+            'type': 'SOURCE',
+          },
+          {
+            'name':
+                'projects/$projectId/locations/us-central1/entryGroups/@dataplex/entries/projects/$projectId/locations/us-central1/glossaries/terradart-glossary/terms/terradart-mrr',
+            'type': 'TARGET',
+          },
+        ]),
+        dependsOn: [
+          ResourceDependency(customerDatasetEntry),
+          ResourceDependency(glossary),
         ],
       ),
     );
@@ -338,6 +366,22 @@ final class DataplexCatalogStack extends Stack {
         dependsOn: [
           ResourceDependency(dataProduct),
           ResourceDependency(lakeDataAsset),
+        ],
+      ),
+    );
+
+    add(
+      GoogleDataplexAssetIamMember(
+        localName: 'lake_data_asset_viewer',
+        asset: TfArg.literal('terradart-lake-data-asset'),
+        dataplexZone: TfArg.literal('terradart-raw-zone'),
+        lake: TfArg.literal('terradart-lake'),
+        location: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/dataplex.viewer'),
+        member: TfArg.ref(reader.iamMember),
+        dependsOn: [
+          ResourceDependency(lakeDataAsset),
+          ResourceDependency(reader),
         ],
       ),
     );
