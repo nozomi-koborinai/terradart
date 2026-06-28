@@ -82,10 +82,15 @@ jobs:
           terraform validate
           terraform plan -out=tfplan
 
-      - name: Create Artifact Registry repository
+      - name: Import Artifact Registry repository
         if: inputs.apply
         working-directory: cookbook/lunch-concierge/infra/tf-out
-        run: terraform apply -auto-approve -target=google_artifact_registry_repository.app_images
+        run: |
+          if ! terraform state show google_artifact_registry_repository.app_images >/dev/null 2>&1; then
+            terraform import \
+              google_artifact_registry_repository.app_images \
+              "projects/${PROJECT_ID}/locations/${REGION}/repositories/lunch-concierge"
+          fi
 
       - name: Build and push image
         if: inputs.apply
