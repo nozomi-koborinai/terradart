@@ -1,6 +1,6 @@
 # terradart_google
 
-Curated GCP factory wrappers for [terradart](https://github.com/nozomi-koborinai/terradart). Ships **349 curated resource factories + 1 data source** (350 catalog entries) with typed enums, sealed nested blocks, and golden-tested deterministic codegen.
+Curated GCP factory wrappers for [terradart](https://github.com/nozomi-koborinai/terradart). Ships **351 curated resource factories + 1 data source** (352 catalog entries) with typed enums, sealed nested blocks, and golden-tested deterministic codegen.
 
 The full per-service breakdown lives in the [repo README — What ships](https://github.com/nozomi-koborinai/terradart#what-ships). Discover factories programmatically via `package:terradart_google/catalog.dart` (`terradartCatalog`).
 

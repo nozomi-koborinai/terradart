@@ -1,6 +1,6 @@
 /// Dataplex quickstart — governed data product, Universal Catalog metadata,
-/// business glossary, lake (zone + asset), data scan, and resource-scoped IAM
-/// members.
+/// business glossary, lake (zone + asset), catalog entry, data-product asset
+/// link, data scan, and resource-scoped IAM members.
 ///
 /// Provisions a `google_dataplex_data_product` and grants a separate
 /// in-stack service account `roles/dataplex.dataProductViewer` on that
@@ -173,6 +173,25 @@ final class DataplexCatalogStack extends Stack {
       ),
     );
 
+    add(
+      GoogleDataplexEntry(
+        localName: 'customer_dataset',
+        entryGroupId: TfArg.literal('terradart-catalog'),
+        entryId: TfArg.literal('customer-dataset'),
+        location: TfArg.literal('us-central1'),
+        entryType: TfArg.ref(datasetType.nameRef),
+        entrySource: TfArg.literal({
+          'display_name': 'Customer dataset',
+          'description': 'Catalog entry for the customer 360 dataset',
+        }),
+        dependsOn: [
+          ResourceDependency(catalogGroup),
+          ResourceDependency(datasetType),
+          ...apiDeps,
+        ],
+      ),
+    );
+
     // --- Dataplex business glossary ------------------------------------------
     // A glossary with one category and one term, plus a resource-level IAM
     // member granting the reader catalog access on the glossary.
@@ -303,6 +322,22 @@ final class DataplexCatalogStack extends Stack {
         dependsOn: [
           ResourceDependency(rawZone),
           ResourceDependency(lakeDataBucket),
+        ],
+      ),
+    );
+
+    add(
+      GoogleDataplexDataProductDataAsset(
+        localName: 'customer_360_lake_asset',
+        dataProductId: TfArg.ref(dataProduct.dataProductIdRef),
+        dataAssetId: TfArg.literal('lake-data'),
+        location: TfArg.literal('us-central1'),
+        resource: TfArg.literal(
+          'projects/$projectId/locations/us-central1/lakes/terradart-lake/zones/terradart-raw-zone/assets/terradart-lake-data-asset',
+        ),
+        dependsOn: [
+          ResourceDependency(dataProduct),
+          ResourceDependency(lakeDataAsset),
         ],
       ),
     );

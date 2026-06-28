@@ -105,7 +105,9 @@ google_compute_subnetwork_iam_member: safe  # apply-verified safe (existing exam
 google_dataplex_aspect_type: safe  # apply-verified safe (existing example)
 google_dataplex_aspect_type_iam_member: safe  # apply-verified safe (existing example)
 google_dataplex_data_product: safe  # apply-verified safe (existing example)
+google_dataplex_data_product_data_asset: safe  # billing-behavior: metadata link between data product and lake asset; destroy removes association — not existence-billed
 google_dataplex_data_product_iam_member: safe  # apply-verified safe (existing example)
+google_dataplex_entry: safe  # billing-behavior: catalog metadata entry; destroy removes entry — not existence-billed
 google_dataplex_entry_group: safe  # apply-verified safe (existing example)
 google_dataplex_entry_group_iam_member: safe  # apply-verified safe (existing example)
 google_dataplex_entry_type: safe  # apply-verified safe (existing example)

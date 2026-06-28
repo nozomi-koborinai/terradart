@@ -7,10 +7,13 @@ export 'src/dataplex/google_dataplex_data_product.dart'
     show
         DataplexDataProductAccessApprovalConfig,
         GoogleDataplexDataProduct;
+export 'src/dataplex/google_dataplex_data_product_data_asset.dart'
+    show GoogleDataplexDataProductDataAsset;
 export 'src/dataplex/google_dataplex_data_product_iam_member.dart'
     show GoogleDataplexDataProductIamMember;
 export 'src/dataplex/google_dataplex_entry_group.dart'
     show GoogleDataplexEntryGroup;
+export 'src/dataplex/google_dataplex_entry.dart' show GoogleDataplexEntry;
 export 'src/dataplex/google_dataplex_entry_type.dart'
     show GoogleDataplexEntryType;
 export 'src/dataplex/google_dataplex_aspect_type.dart'
