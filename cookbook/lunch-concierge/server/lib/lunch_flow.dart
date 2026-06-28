@@ -1,9 +1,9 @@
 import 'package:genkit/genkit.dart';
 import 'package:genkit_vertexai/genkit_vertexai.dart';
 import 'package:lunch_concierge_shared/generated/lunch_stack.app.dart';
+import 'package:lunch_concierge_shared/schema.dart';
 
 import 'db.dart';
-import 'schema.dart';
 
 final class LunchFlowBundle {
   LunchFlowBundle({required this.ai, required this.flow});

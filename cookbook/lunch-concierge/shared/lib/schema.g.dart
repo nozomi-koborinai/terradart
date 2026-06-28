@@ -72,25 +72,29 @@ base class _LunchRequestTypeFactory extends SchemanticType<LunchRequest> {
 
   @override
   JsonSchemaMetadata get schemaMetadata => JsonSchemaMetadata(
-    name: 'LunchRequest',
-    definition: $Schema
-        .object(
+        name: 'LunchRequest',
+        definition: $Schema.object(
           properties: {
             'area': $Schema.string(
               description: 'Area or station where the user wants to eat.',
+              minLength: 1,
+              maxLength: 40,
             ),
             'mood': $Schema.string(
               description: 'Current lunch mood, such as light, spicy, or warm.',
+              minLength: 1,
+              maxLength: 40,
             ),
             'budgetYen': $Schema.integer(
               description: 'Expected budget in Japanese yen.',
+              minimum: 300,
+              maximum: 10000,
             ),
           },
           required: ['area', 'mood', 'budgetYen'],
-        )
-        .value,
-    dependencies: [],
-  );
+        ).value,
+        dependencies: [],
+      );
 }
 
 base class LunchSuggestion {
@@ -163,19 +167,17 @@ base class _LunchSuggestionTypeFactory extends SchemanticType<LunchSuggestion> {
 
   @override
   JsonSchemaMetadata get schemaMetadata => JsonSchemaMetadata(
-    name: 'LunchSuggestion',
-    definition: $Schema
-        .object(
+        name: 'LunchSuggestion',
+        definition: $Schema.object(
           properties: {
-            'name': $Schema.string(),
-            'reason': $Schema.string(),
-            'estimatedPriceYen': $Schema.integer(),
+            'name': $Schema.string(minLength: 1, maxLength: 80),
+            'reason': $Schema.string(minLength: 1, maxLength: 240),
+            'estimatedPriceYen': $Schema.integer(minimum: 0, maximum: 50000),
           },
           required: ['name', 'reason', 'estimatedPriceYen'],
-        )
-        .value,
-    dependencies: [],
-  );
+        ).value,
+        dependencies: [],
+      );
 }
 
 base class LunchResponse {
@@ -240,18 +242,16 @@ base class _LunchResponseTypeFactory extends SchemanticType<LunchResponse> {
 
   @override
   JsonSchemaMetadata get schemaMetadata => JsonSchemaMetadata(
-    name: 'LunchResponse',
-    definition: $Schema
-        .object(
+        name: 'LunchResponse',
+        definition: $Schema.object(
           properties: {
-            'message': $Schema.string(),
+            'message': $Schema.string(minLength: 1, maxLength: 400),
             'suggestions': $Schema.list(
               items: $Schema.fromMap({'\$ref': r'#/$defs/LunchSuggestion'}),
             ),
           },
           required: ['message', 'suggestions'],
-        )
-        .value,
-    dependencies: [LunchSuggestion.$schema],
-  );
+        ).value,
+        dependencies: [LunchSuggestion.$schema],
+      );
 }

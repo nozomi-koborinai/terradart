@@ -61,8 +61,8 @@ jobs:
           image_uri="${REGION}-docker.pkg.dev/${PROJECT_ID}/lunch-concierge/app:${{ inputs.image_tag }}"
           echo "IMAGE_URI=$image_uri" >> "$GITHUB_ENV"
 
-      - name: Generate server schemas
-        working-directory: cookbook/lunch-concierge/server
+      - name: Generate shared schemas
+        working-directory: cookbook/lunch-concierge/shared
         run: dart run build_runner build
 
       - name: Synth Terraform JSON

@@ -2,9 +2,8 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:lunch_concierge_shared/generated/lunch_stack.app.dart';
+import 'package:lunch_concierge_shared/schema.dart';
 import 'package:postgres/postgres.dart';
-
-import 'schema.dart';
 
 final class LunchHistoryRepository {
   LunchHistoryRepository(this._connection);

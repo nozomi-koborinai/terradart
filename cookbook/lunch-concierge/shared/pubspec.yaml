@@ -7,5 +7,9 @@ environment:
 
 resolution: workspace
 
+dependencies:
+  schemantic: any
+
 dev_dependencies:
+  build_runner: any
   lints: ^6.0.0
