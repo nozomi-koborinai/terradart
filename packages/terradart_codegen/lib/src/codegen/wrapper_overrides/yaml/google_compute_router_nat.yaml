@@ -1,0 +1,40 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Cloud NAT on a [GoogleComputeRouter]. Pair with a router on the same VPC
+  /// and region; [sourceSubnetworkIpRangesToNat] is required.
+
+paramOrder:
+  - name
+  - router
+  - region
+  - source_subnetwork_ip_ranges_to_nat
+  - nat_ip_allocate_option
+  - type
+  - nat_ips
+  - initial_nat_ips
+  - drain_nat_ips
+  - min_ports_per_vm
+  - max_ports_per_vm
+  - enable_dynamic_port_allocation
+  - enable_endpoint_independent_mapping
+  - icmp_idle_timeout_sec
+  - tcp_established_idle_timeout_sec
+  - tcp_transitory_idle_timeout_sec
+  - tcp_time_wait_timeout_sec
+  - udp_idle_timeout_sec
+  - auto_network_tier
+  - endpoint_types
+  - source_subnetwork_ip_ranges_to_nat64
+  - deletion_policy
+  - project
+
+dartTypeOverrides:
+  nat_ip_allocate_option: ComputeRouterNatNatIpAllocateOption
+  source_subnetwork_ip_ranges_to_nat: ComputeRouterNatSourceSubnetworkIpRangesToNat
+  source_subnetwork_ip_ranges_to_nat64: ComputeRouterNatSourceSubnetworkIpRangesToNat64
+  auto_network_tier: ComputeRouterNatAutoNetworkTier
+  type: ComputeRouterNatType

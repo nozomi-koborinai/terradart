@@ -100,6 +100,8 @@ google_compute_region_instant_snapshot_iam_policy: safe  # apply-verified safe (
 google_compute_resource_policy: safe  # apply-verified safe (existing example)
 google_compute_route: safe  # apply-verified safe (existing example)
 google_compute_router: safe  # apply-verified safe (existing example)
+google_compute_router_nat: safe  # billing-behavior: NAT config on Cloud Router; billed per processed GiB and VM-hour while active, not existence-billed; destroy removes NAT gateway
+google_compute_network_peering: safe  # billing-behavior: VPC peering association; no standalone Cloud Billing SKU for the peering object itself
 google_compute_subnetwork: safe  # apply-verified safe (existing example)
 google_compute_subnetwork_iam_member: safe  # apply-verified safe (existing example)
 google_dataplex_aspect_type: safe  # apply-verified safe (existing example)
