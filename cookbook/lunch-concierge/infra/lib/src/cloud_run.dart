@@ -88,7 +88,12 @@ GoogleCloudRunV2Service addCloudRunService({
         ResourceDependency(vertexApi),
         ResourceDependency(network.subnet),
         ResourceDependency(database.sql),
+        ResourceDependency(database.database),
+        ResourceDependency(database.sqlUser),
         ResourceDependency(identity.serviceAccount),
+        ResourceDependency(identity.cloudSqlClientGrant),
+        ResourceDependency(identity.instanceUserGrant),
+        ResourceDependency(identity.vertexUserGrant),
       ],
     ),
   );
