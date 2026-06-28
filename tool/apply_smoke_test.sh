@@ -199,10 +199,16 @@ while IFS= read -r line; do
   tier="$(echo "$line" | sed -E 's/^[^:]+:[[:space:]]*([a-z_]+).*/\1/')"
   [[ "$tier" == "safe" ]] || continue
   comment="${line#*#}"
-  if printf '%s' "$comment" | grep -qE 'gcp-cost:|apply-verified|billing-behavior:'; then
+  if printf '%s' "$comment" | grep -qE 'gcp-cost:|apply-verified'; then
     continue
   fi
   printf '%s\n' "$debt_types" | grep -qxF "$type" && continue
+  if printf '%s' "$comment" | grep -qE 'billing-behavior:'; then
+    case "$type" in
+      *_iam_member|*_iam_binding|*_iam_policy) continue ;;
+    esac
+    fail "cost-comment gate: safe type '$type' uses billing-behavior: without gcp-cost: — call gcp-cost MCP (list_skus/get_sku_price), record SKU/price (or 'no Cloud Billing Catalog SKU' after MCP lookup), or list in $comment_debt with reason"
+  fi
   fail "cost-comment gate: safe type '$type' lacks gcp-cost MCP basis in $denylist comment — call gcp-cost MCP (list_skus/get_sku_price) in the agent session, record SKU/price in the comment, or add billing-behavior: for IAM adjuncts, or list in $comment_debt with reason"
 done < <(grep -vE '^[[:space:]]*#|^safe_exception:' "$denylist" | grep -E ': *safe([[:space:]]|$)')
 # Stale debt: remove lines when the denylist comment gains a basis marker.
@@ -211,7 +217,7 @@ while IFS= read -r type; do
   line="$(grep -E "^${type}:[[:space:]]*safe" "$denylist" | head -1 || true)"
   [[ -n "$line" ]] || continue
   comment="${line#*#}"
-  if printf '%s' "$comment" | grep -qE 'gcp-cost:|apply-verified|billing-behavior:'; then
+  if printf '%s' "$comment" | grep -qE 'gcp-cost:|apply-verified'; then
     fail "cost-comment debt stale: '$type' now has a basis marker in $denylist — remove its line from $comment_debt"
   fi
 done <<< "$debt_types"
