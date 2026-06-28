@@ -7,9 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleSecretManagerRegionalSecretSensitive = <String>{};
 
 /// Factory wrapper for `google_secret_manager_regional_secret`.
-///
-/// A Regional Secret is a logical secret whose value and versions can be
-/// created and accessed within a region only.
 final class GoogleSecretManagerRegionalSecret extends Resource {
   static const String tfType = 'google_secret_manager_regional_secret';
 

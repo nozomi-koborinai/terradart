@@ -7,27 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleComputeRouteSensitive = <String>{};
 
 /// Factory wrapper for `google_compute_route`.
-///
-/// Represents a Route resource.
-///
-/// A route is a rule that specifies how certain packets should be handled by
-/// the virtual network. Routes are associated with virtual machines by tag, and
-/// the set of routes for a particular virtual machine is called its routing
-/// table. For each packet leaving a virtual machine, the system searches that
-/// virtual machine's routing table for a single best matching route.
-///
-/// Routes match packets by destination IP address, preferring smaller or more
-/// specific ranges over larger ones. If there is a tie, the system selects the
-/// route with the smallest priority value. If there is still a tie, it uses the
-/// layer three and four packet headers to select just one of the remaining
-/// matching routes. The packet is then forwarded as specified by the next_hop
-/// field of the winning route -- either to another virtual machine destination,
-/// a virtual machine gateway or a Compute Engine-operated gateway. Packets that
-/// do not match any route in the sending virtual machine's routing table will
-/// be dropped.
-///
-/// A Route resource must have exactly one specification of either
-/// nextHopGateway, nextHopInstance, nextHopIp, nextHopVpnTunnel, or nextHopIlb.
 final class GoogleComputeRoute extends Resource {
   static const String tfType = 'google_compute_route';
 

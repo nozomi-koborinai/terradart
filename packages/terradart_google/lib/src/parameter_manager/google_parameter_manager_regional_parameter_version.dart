@@ -8,9 +8,6 @@ const Set<String> _googleParameterManagerRegionalParameterVersionSensitive =
     <String>{'parameter_data'};
 
 /// Factory wrapper for `google_parameter_manager_regional_parameter_version`.
-///
-/// A Regional Parameter Version resource that stores the actual value of the
-/// regional parameter.
 final class GoogleParameterManagerRegionalParameterVersion extends Resource {
   static const String tfType =
       'google_parameter_manager_regional_parameter_version';

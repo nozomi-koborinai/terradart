@@ -230,9 +230,6 @@ class ComputeResourcePolicyWorkloadPolicy {
 
 /// Factory wrapper for `google_compute_resource_policy`.
 ///
-/// A policy that can be attached to a resource to specify or schedule actions
-/// on that resource.
-///
 /// A Compute Engine resource policy. Attach **exactly one** policy kind:
 /// - [snapshotSchedulePolicy] — scheduled persistent-disk snapshots;
 /// - [workloadPolicy] — instance placement for HA / throughput workloads;

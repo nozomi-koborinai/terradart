@@ -9,8 +9,6 @@ const Set<String> _googleSecretManagerRegionalSecretVersionSensitive = <String>{
 };
 
 /// Factory wrapper for `google_secret_manager_regional_secret_version`.
-///
-/// A regional secret version resource.
 final class GoogleSecretManagerRegionalSecretVersion extends Resource {
   static const String tfType = 'google_secret_manager_regional_secret_version';
 
