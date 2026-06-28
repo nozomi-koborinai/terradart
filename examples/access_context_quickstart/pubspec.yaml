@@ -1,0 +1,15 @@
+name: terradart_example_access_context_quickstart
+description: terradart example — Access Context Manager policy, level, perimeter.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.21.0
+  terradart_google: ^0.21.0
+
+dev_dependencies:
+  lints: ^6.0.0

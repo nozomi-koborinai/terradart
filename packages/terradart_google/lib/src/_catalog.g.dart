@@ -4,6 +4,90 @@ import 'catalog_entry.dart';
 
 const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
   CatalogEntry(
+    tfType: 'google_access_context_manager_access_level',
+    className: 'GoogleAccessContextManagerAccessLevel',
+    barrel: 'access_context_manager',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_access_context_manager_access_level`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'parent',
+      'title',
+      'description',
+      'basic',
+      'custom',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_access_context_manager_access_level`.\n\nAn AccessLevel is a label that can be applied to requests to GCP services,\nalong with a list of requirements necessary for the label to be applied.',
+  ),
+  CatalogEntry(
+    tfType: 'google_access_context_manager_access_policy',
+    className: 'GoogleAccessContextManagerAccessPolicy',
+    barrel: 'access_context_manager',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_access_context_manager_access_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'parent',
+      'title',
+      'scopes',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_access_context_manager_access_policy`.\n\nAccessPolicy is a container for AccessLevels (which define the necessary\nattributes to use GCP services) and ServicePerimeters (which define regions\nof services able to freely pass data within a perimeter). An access policy\nis globally visible within an organization, and the restrictions it\nspecifies apply to all projects within an organization.',
+  ),
+  CatalogEntry(
+    tfType: 'google_access_context_manager_access_policy_iam_member',
+    className: 'GoogleAccessContextManagerAccessPolicyIamMember',
+    barrel: 'access_context_manager',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_access_context_manager_access_policy_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'member',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_access_context_manager_access_policy_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_access_context_manager_service_perimeter',
+    className: 'GoogleAccessContextManagerServicePerimeter',
+    barrel: 'access_context_manager',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_access_context_manager_service_perimeter`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'parent',
+      'title',
+      'description',
+      'perimeterType',
+      'useExplicitDryRunSpec',
+      'spec',
+      'status',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>['AccessContextManagerServicePerimeterPerimeterType'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_access_context_manager_service_perimeter`.\n\nServicePerimeter describes a set of GCP resources which can freely import\nand export data amongst themselves, but not export outside of the\nServicePerimeter. If a request with a source within this ServicePerimeter\nhas a target outside of the ServicePerimeter, the request will be blocked.\nOtherwise the request is allowed. There are two types of Service Perimeter -\nRegular and Bridge. Regular Service Perimeters cannot overlap, a single GCP\nproject can only belong to a single regular Service Perimeter. Service\nPerimeter Bridges can contain only GCP projects as members, a single GCP\nproject may belong to multiple Service Perimeter Bridges.',
+  ),
+  CatalogEntry(
     tfType: 'google_alloydb_backup',
     className: 'GoogleAlloydbBackup',
     barrel: 'alloydb',

@@ -78,6 +78,10 @@ final class GoogleProviderRules extends ProviderRules {
     'discovery': 'discovery_engine',
 
     // Essential Contacts (`google_essential_contacts_*` → segment `essential`).
+    'access': 'access_context_manager',
+    'access_context': 'access_context_manager',
+    'access_context_manager': 'access_context_manager',
+    'accesscontextmanager': 'access_context_manager',
     'essential': 'essential_contacts',
 
     // Service Directory (`google_service_directory_*` → segment `service`).

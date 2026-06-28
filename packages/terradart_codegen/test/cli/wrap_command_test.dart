@@ -42,7 +42,7 @@ void main() {
 
   group('WrapCommand integration', () {
     test(
-        'emits 370 files (368 resource Layer 2 + 1 data source Layer 2 + 1 generated _catalog.g.dart)',
+        'emits 374 files (372 resource Layer 2 + 1 data source Layer 2 + 1 generated _catalog.g.dart)',
         () async {
       // Plan 5.X (v0.5.0-dev): the schemantic Layer 1 chain
       // (`generated/<type>.schema.dart` + `generated/<type>.schema.g.dart`
@@ -68,10 +68,10 @@ void main() {
             files.add(p.relative(ent.path, from: tmpOut.path));
           }
         }
-        // 369 wrappers (368 resource Layer 2 + 1 data source Layer 2) plus
+        // 373 wrappers (372 resource Layer 2 + 1 data source Layer 2) plus
         // the generated static catalog `_catalog.g.dart` (one CatalogEntry
-        // per wrapper) → 370 emitted .dart files.
-        expect(files, hasLength(370));
+        // per wrapper) → 374 emitted .dart files.
+        expect(files, hasLength(374));
         expect(files, contains('_catalog.g.dart'));
         expect(files, contains(p.join('pubsub', 'google_pubsub_topic.dart')));
         expect(files, contains(p.join('data', 'google_project.dart')));

@@ -326,7 +326,7 @@ Catalog after Wave 73: **343 curated resource factories + 1 data source** (344 c
 
 Adds three Dataplex factories under the `dataplex` barrel: a lake zone (RAW/CURATED type enums), a GCS bucket asset, and an additive zone IAM member. Exercised by extending [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) with a RAW zone, bucket asset, and `roles/dataplex.dataReader` grant.
 
-Catalog after Wave 74: **368 curated resource factories + 1 data source** (369 catalog entries). 60 service barrels.
+Catalog after Wave 74: **372 curated resource factories + 1 data source** (373 catalog entries). 61 service barrels.
 
 | Terraform type | Dart factory | Barrel | Example |
 | --- | --- | --- | --- |

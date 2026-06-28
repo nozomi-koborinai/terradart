@@ -4,6 +4,7 @@
 /// factories you import from `package:terradart_google/<barrel>.dart`.
 enum Barrels {
   alloydb('alloydb'),
+  accessContextManager('access_context_manager'),
   apigee('apigee'),
   artifactRegistry('artifact_registry'),
   bigquery('bigquery'),

@@ -1,0 +1,12 @@
+outputDir: access_context_manager
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - role
+  - member
+  - condition
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
