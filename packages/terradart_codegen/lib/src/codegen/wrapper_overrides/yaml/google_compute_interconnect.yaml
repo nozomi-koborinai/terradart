@@ -1,0 +1,29 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+dartTypeOverrides:
+  interconnect_type: ComputeInterconnectInterconnectType
+  link_type: ComputeInterconnectLinkType
+
+paramOrder:
+  - name
+  - interconnect_type
+  - link_type
+  - location
+  - requested_link_count
+  - customer_name
+  - description
+  - admin_enabled
+  - macsec_enabled
+  - noc_contact_email
+  - remote_location
+  - requested_features
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

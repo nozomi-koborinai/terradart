@@ -641,6 +641,12 @@ files:
     upstream: null  # no mmv1/products/compute/RouterInterface.yaml in magic-modules (sync 404); schema-only curation
   google_compute_network_peering_routes_config:
     upstream: null  # third_party terraform/services/compute/resource_compute_network_peering_routes_config.go
+  google_compute_router_peer:
+    upstream: null  # no mmv1/products/compute/RouterPeer.yaml in magic-modules (sync 404); schema-only curation
+  google_compute_interconnect:
+    upstream: mmv1/products/compute/Interconnect.yaml
+  google_compute_interconnect_attachment:
+    upstream: mmv1/products/compute/InterconnectAttachment.yaml
   google_bigquery_datapolicy_data_policy_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   # Wave 25 (Serverless VPC Access connector)
