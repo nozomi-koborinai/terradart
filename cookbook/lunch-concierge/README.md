@@ -56,6 +56,8 @@ export GCP_PROJECT_ID=flutter-gakkai-10
 export REGION=asia-northeast1
 export IMAGE_URI="$REGION-docker.pkg.dev/$GCP_PROJECT_ID/lunch-concierge/app:demo"
 export INVOKER_EMAIL="you@example.com"
+export TF_STATE_BUCKET=flutter-gakkai-10-tfstate
+export TF_STATE_PREFIX=lunch-concierge
 
 dart pub get
 cd cookbook/lunch-concierge/server
