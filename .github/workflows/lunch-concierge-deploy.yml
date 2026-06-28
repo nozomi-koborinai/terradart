@@ -1,0 +1,102 @@
+name: Lunch Concierge Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      image_tag:
+        description: Container image tag to build and deploy.
+        required: true
+        default: demo
+        type: string
+      apply:
+        description: Apply Terraform changes and push the container image.
+        required: true
+        default: false
+        type: boolean
+
+concurrency:
+  group: lunch-concierge-deploy
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  id-token: write
+
+env:
+  REGION: asia-northeast1
+  PROJECT_ID: ${{ secrets.LUNCH_PROJECT_ID }}
+  PROJECT_NUMBER: ${{ secrets.LUNCH_PROJECT_NUMBER }}
+  TF_STATE_BUCKET: ${{ secrets.LUNCH_TF_STATE_BUCKET }}
+  TF_STATE_PREFIX: ${{ secrets.LUNCH_TF_STATE_PREFIX }}
+  WIF_PROVIDER: ${{ secrets.LUNCH_WIF_PROVIDER }}
+  DEPLOYER_SERVICE_ACCOUNT: ${{ secrets.LUNCH_DEPLOYER_SERVICE_ACCOUNT }}
+  INVOKER_EMAIL: ${{ secrets.LUNCH_INVOKER_EMAIL }}
+
+jobs:
+  deploy:
+    name: plan/apply Lunch Concierge
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_version: "1.15.2"
+
+      - uses: google-github-actions/auth@v3
+        with:
+          workload_identity_provider: ${{ env.WIF_PROVIDER }}
+          service_account: ${{ env.DEPLOYER_SERVICE_ACCOUNT }}
+
+      - uses: google-github-actions/setup-gcloud@v3
+
+      - run: dart pub get
+
+      - name: Resolve deployment inputs
+        run: |
+          image_uri="${REGION}-docker.pkg.dev/${PROJECT_ID}/lunch-concierge/app:${{ inputs.image_tag }}"
+          echo "IMAGE_URI=$image_uri" >> "$GITHUB_ENV"
+
+      - name: Generate server schemas
+        working-directory: cookbook/lunch-concierge/server
+        run: dart run build_runner build
+
+      - name: Synth Terraform JSON
+        working-directory: cookbook/lunch-concierge/infra
+        env:
+          GCP_PROJECT_ID: ${{ env.PROJECT_ID }}
+          IMAGE_URI: ${{ env.IMAGE_URI }}
+          INVOKER_EMAIL: ${{ env.INVOKER_EMAIL }}
+          TF_STATE_BUCKET: ${{ env.TF_STATE_BUCKET }}
+          TF_STATE_PREFIX: ${{ env.TF_STATE_PREFIX }}
+        run: dart run bin/infra.dart
+
+      - name: Terraform validate and plan
+        working-directory: cookbook/lunch-concierge/infra/tf-out
+        run: |
+          terraform init
+          terraform validate
+          terraform plan -out=tfplan
+
+      - name: Create Artifact Registry repository
+        if: inputs.apply
+        working-directory: cookbook/lunch-concierge/infra/tf-out
+        run: terraform apply -auto-approve -target=google_artifact_registry_repository.app_images
+
+      - name: Build and push image
+        if: inputs.apply
+        run: |
+          gcloud auth configure-docker "${REGION}-docker.pkg.dev" --quiet
+          docker build -f cookbook/lunch-concierge/server/Dockerfile -t "$IMAGE_URI" .
+          docker push "$IMAGE_URI"
+
+      - name: Terraform apply
+        if: inputs.apply
+        working-directory: cookbook/lunch-concierge/infra/tf-out
+        run: |
+          terraform plan -out=tfplan
+          terraform apply -auto-approve tfplan

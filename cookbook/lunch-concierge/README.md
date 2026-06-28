@@ -52,10 +52,12 @@ build uses a Flutter builder image for the client stage.
 From the repository root:
 
 ```bash
-export GCP_PROJECT_ID=flutter-gakkai-10
+export GCP_PROJECT_ID="<your-gcp-project-id>"
 export REGION=asia-northeast1
 export IMAGE_URI="$REGION-docker.pkg.dev/$GCP_PROJECT_ID/lunch-concierge/app:demo"
-export INVOKER_EMAIL="you@example.com"
+export INVOKER_EMAIL="<your-google-account@example.com>"
+export TF_STATE_BUCKET="$GCP_PROJECT_ID-tfstate"
+export TF_STATE_PREFIX=lunch-concierge
 
 dart pub get
 cd cookbook/lunch-concierge/server

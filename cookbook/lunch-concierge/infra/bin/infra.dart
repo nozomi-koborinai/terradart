@@ -8,6 +8,7 @@ library;
 
 import 'dart:io';
 
+import 'package:terradart_core/terradart_core.dart';
 import 'package:lunch_concierge_infra/lunch_concierge_stack.dart';
 
 Future<void> main() async {
@@ -20,6 +21,15 @@ Future<void> main() async {
     imageUri: imageUri,
     invokerEmail: invokerEmail,
   );
+  final stateBucket = Platform.environment['TF_STATE_BUCKET'];
+  if (stateBucket != null && stateBucket.isNotEmpty) {
+    stack.setBackend(
+      GcsBackend(
+        bucket: stateBucket,
+        prefix: Platform.environment['TF_STATE_PREFIX'] ?? 'lunch-concierge',
+      ),
+    );
+  }
   await stack.writeTo('tf-out');
   stdout.writeln('synthesized to tf-out/main.tf.json');
 }
