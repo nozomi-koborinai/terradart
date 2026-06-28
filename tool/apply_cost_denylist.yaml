@@ -106,6 +106,9 @@ google_compute_network_peering: safe  # gcp-cost: no Cloud Billing Catalog SKU (
 google_compute_network_peering_routes_config: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Networking E505-1604-58F8); billing-behavior: peering route import/export policy metadata only
 google_compute_external_vpn_gateway: safe  # gcp-cost: no Cloud Billing Catalog SKU on external gateway object (VPNTunnel SKU B0D8-6A41-4771 bills on google_compute_vpn_tunnel); billing-behavior: off-GCP gateway metadata only
 google_compute_router_interface: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Networking E505-1604-58F8); billing-behavior: Cloud Router interface metadata only
+google_compute_router_peer: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Compute 6F81-5844-456A, 0 BGP/router-peer SKUs); billing-behavior: BGP peer config on Cloud Router only
+google_compute_interconnect: sweep_only  # gcp-cost: SKU B8C8-2F76-E648 Cloud Interconnect 10Gbps Dedicated circuit $2.328/h; billing-behavior: hourly while circuit provisioned
+google_compute_interconnect_attachment: sweep_only  # gcp-cost: SKU AB20-3021-9C97 10Gbps VLAN attachment via Dedicated Interconnect $0.10/h; billing-behavior: hourly while attachment active
 google_compute_vpn_gateway: safe  # gcp-cost: Networking catalog has no hourly SKU on gateway object (VPNTunnel SKUs e.g. B0D8-6A41-4771 bill on tunnel); billing-behavior: classic VPN gateway metadata only
 google_compute_ha_vpn_gateway: safe  # gcp-cost: no HA VPN gateway hourly SKU in Networking catalog (tunnel-hour SKU B0D8-6A41-4771 on google_compute_vpn_tunnel); billing-behavior: gateway metadata only
 google_compute_shared_vpc_host_project: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Compute+Networking); billing-behavior: project host attachment flag

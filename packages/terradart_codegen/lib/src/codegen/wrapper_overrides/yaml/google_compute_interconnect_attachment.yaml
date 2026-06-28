@@ -1,0 +1,37 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+dartTypeOverrides:
+  type: ComputeInterconnectAttachmentType
+  encryption: ComputeInterconnectAttachmentEncryption
+  stack_type: ComputeInterconnectAttachmentStackType
+
+paramOrder:
+  - name
+  - type
+  - interconnect
+  - router
+  - region
+  - bandwidth
+  - vlan_tag8021q
+  - mtu
+  - encryption
+  - stack_type
+  - edge_availability_domain
+  - candidate_subnets
+  - candidate_cloud_router_ip_address
+  - candidate_customer_router_ip_address
+  - candidate_cloud_router_ipv6_address
+  - candidate_customer_router_ipv6_address
+  - admin_enabled
+  - description
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');

@@ -1,0 +1,32 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+paramOrder:
+  - name
+  - router
+  - interface
+  - peer_asn
+  - region
+  - peer_ip_address
+  - advertise_mode
+  - advertised_groups
+  - advertised_route_priority
+  - enable
+  - enable_ipv4
+  - enable_ipv6
+  - ip_address
+  - ipv4_nexthop_address
+  - ipv6_nexthop_address
+  - peer_ipv4_nexthop_address
+  - peer_ipv6_nexthop_address
+  - export_policies
+  - import_policies
+  - router_appliance_instance
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

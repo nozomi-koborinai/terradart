@@ -419,6 +419,23 @@ export 'src/compute/google_compute_external_vpn_gateway.dart'
         ComputeExternalVpnGatewayRedundancyType;
 export 'src/compute/google_compute_router_interface.dart'
     show GoogleComputeRouterInterface;
+export 'src/compute/google_compute_router_peer.dart'
+    show GoogleComputeRouterPeer;
+export 'src/compute/google_compute_interconnect.dart'
+    show
+        GoogleComputeInterconnect,
+        ComputeInterconnectInterconnectType,
+        ComputeInterconnectLinkType,
+        ComputeInterconnectOperationalStatus,
+        ComputeInterconnectState;
+export 'src/compute/google_compute_interconnect_attachment.dart'
+    show
+        GoogleComputeInterconnectAttachment,
+        ComputeInterconnectAttachmentType,
+        ComputeInterconnectAttachmentBandwidth,
+        ComputeInterconnectAttachmentEncryption,
+        ComputeInterconnectAttachmentStackType,
+        ComputeInterconnectAttachmentState;
 export 'src/compute/google_compute_vpn_gateway.dart'
     show GoogleComputeVpnGateway;
 export 'src/compute/google_compute_ha_vpn_gateway.dart'
