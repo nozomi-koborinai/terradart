@@ -44,7 +44,6 @@ GoogleCloudRunV2Service addCloudRunService({
           CloudRunV2ServiceServiceContainer(
             name: TfArg.literal('app'),
             image: TfArg.literal(imageUri),
-            dependsOn: TfArg.literal(['cloud-sql-proxy']),
             ports: const CloudRunV2ServiceContainerPort(
               containerPort: TfArgLiteral(8080),
             ),
@@ -63,13 +62,6 @@ GoogleCloudRunV2Service addCloudRunService({
               '--auto-iam-authn',
               database.instanceConnectionName,
             ]),
-            startupProbe: const CloudRunV2ServiceStartupProbe(
-              tcpSocket: CloudRunV2ServiceTcpSocketAction(
-                port: TfArgLiteral(5432),
-              ),
-              periodSeconds: TfArgLiteral(2),
-              failureThreshold: TfArgLiteral(30),
-            ),
             resources: CloudRunV2ServiceContainerResources(
               limits: TfArg.literal({'cpu': '0.5', 'memory': '256Mi'}),
               cpuIdle: TfArg.literal(false),
