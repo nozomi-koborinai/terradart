@@ -8,7 +8,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  http: any
+  genkit: any
+  lunch_concierge_shared:
+    path: ../shared
 
 dev_dependencies:
   flutter_lints: any

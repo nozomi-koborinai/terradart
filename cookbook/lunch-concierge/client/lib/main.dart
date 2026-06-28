@@ -1,7 +1,6 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import 'package:genkit/client.dart';
+import 'package:lunch_concierge_shared/schema.dart';
 
 void main() {
   runApp(const LunchConciergeApp());
@@ -37,7 +36,7 @@ final class _LunchPageState extends State<LunchPage> {
 
   bool _loading = false;
   String? _error;
-  Map<String, Object?>? _result;
+  LunchResponse? _result;
 
   @override
   void dispose() {
@@ -55,25 +54,21 @@ final class _LunchPageState extends State<LunchPage> {
     });
 
     try {
-      final response = await http.post(
-        Uri.parse('/api/lunch'),
-        headers: {'content-type': 'application/json'},
-        body: jsonEncode({
-          'data': {
-            'area': _areaController.text,
-            'mood': _moodController.text,
-            'budgetYen': int.tryParse(_budgetController.text) ?? 1200,
-          },
-        }),
+      final action =
+          defineRemoteAction<LunchRequest, LunchResponse, void, void>(
+        url: '/api/lunch',
+        inputSchema: LunchRequest.$schema,
+        outputSchema: LunchResponse.$schema,
       );
-      if (response.statusCode >= 400) {
-        throw StateError('HTTP ${response.statusCode}: ${response.body}');
-      }
-      final decoded = jsonDecode(response.body) as Map<String, Object?>;
-      setState(() {
-        _result = (decoded['result'] ?? decoded['data'] ?? decoded)
-            as Map<String, Object?>;
-      });
+      final result = await action(
+        input: LunchRequest(
+          area: _areaController.text,
+          mood: _moodController.text,
+          budgetYen: int.tryParse(_budgetController.text) ?? 1200,
+        ),
+      );
+      action.dispose();
+      setState(() => _result = result);
     } catch (error) {
       setState(() => _error = error.toString());
     } finally {
@@ -84,9 +79,7 @@ final class _LunchPageState extends State<LunchPage> {
   @override
   Widget build(BuildContext context) {
     final result = _result;
-    final suggestions = (result?['suggestions'] as List<Object?>?)
-            ?.cast<Map<String, Object?>>() ??
-        const <Map<String, Object?>>[];
+    final suggestions = result?.suggestions ?? const <LunchSuggestion>[];
 
     return Scaffold(
       appBar: AppBar(title: const Text('Lunch Concierge')),
@@ -130,18 +123,16 @@ final class _LunchPageState extends State<LunchPage> {
               if (result != null) ...[
                 const SizedBox(height: 28),
                 Text(
-                  result['message'] as String? ?? '',
+                  result.message,
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 const SizedBox(height: 12),
                 for (final suggestion in suggestions)
                   Card(
                     child: ListTile(
-                      title: Text(suggestion['name'] as String? ?? ''),
-                      subtitle: Text(suggestion['reason'] as String? ?? ''),
-                      trailing: Text(
-                        '${suggestion['estimatedPriceYen'] ?? '?'}円',
-                      ),
+                      title: Text(suggestion.name),
+                      subtitle: Text(suggestion.reason),
+                      trailing: Text('${suggestion.estimatedPriceYen}円'),
                     ),
                   ),
               ],

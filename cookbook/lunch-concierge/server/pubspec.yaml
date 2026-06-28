@@ -14,11 +14,9 @@ dependencies:
   lunch_concierge_shared:
     path: ../shared
   postgres: any
-  schemantic: any
   shelf: any
   shelf_router: any
   shelf_static: any
 
 dev_dependencies:
-  build_runner: any
   lints: ^6.0.0

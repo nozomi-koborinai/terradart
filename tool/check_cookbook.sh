@@ -12,9 +12,9 @@ COOKBOOK_INVOKER_EMAIL="${COOKBOOK_INVOKER_EMAIL:-demo@example.com}"
 echo ">> dart pub get"
 dart pub get
 
-echo ">> generate Lunch Concierge server schemas"
+echo ">> generate Lunch Concierge shared schemas"
 (
-  cd cookbook/lunch-concierge/server
+  cd cookbook/lunch-concierge/shared
   dart run build_runner build
 )
 
