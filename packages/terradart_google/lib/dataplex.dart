@@ -14,6 +14,8 @@ export 'src/dataplex/google_dataplex_data_product_iam_member.dart'
 export 'src/dataplex/google_dataplex_entry_group.dart'
     show GoogleDataplexEntryGroup;
 export 'src/dataplex/google_dataplex_entry.dart' show GoogleDataplexEntry;
+export 'src/dataplex/google_dataplex_entry_link.dart'
+    show GoogleDataplexEntryLink;
 export 'src/dataplex/google_dataplex_entry_type.dart'
     show GoogleDataplexEntryType;
 export 'src/dataplex/google_dataplex_aspect_type.dart'
@@ -40,6 +42,8 @@ export 'src/dataplex/google_dataplex_zone.dart'
 export 'src/dataplex/google_dataplex_zone_iam_member.dart'
     show GoogleDataplexZoneIamMember;
 export 'src/dataplex/google_dataplex_asset.dart' show GoogleDataplexAsset;
+export 'src/dataplex/google_dataplex_asset_iam_member.dart'
+    show GoogleDataplexAssetIamMember;
 export 'src/dataplex/google_dataplex_datascan.dart'
     show
         GoogleDataplexDatascan,

@@ -1,0 +1,13 @@
+outputDir: dataplex
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - asset
+  - dataplex_zone
+  - lake
+  - role
+  - member
+  - condition
+  - location
+  - project
