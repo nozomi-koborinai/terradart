@@ -6,11 +6,15 @@ import 'package:lunch_concierge_shared/schema.dart';
 import 'package:postgres/postgres.dart';
 
 final class LunchHistoryRepository {
-  LunchHistoryRepository(this._connection);
+  LunchHistoryRepository();
 
-  final Connection _connection;
+  Future<Connection>? _readyConnection;
 
-  static Future<LunchHistoryRepository> connect() async {
+  Future<Connection> _connection() {
+    return _readyConnection ??= _openAndPrepare();
+  }
+
+  Future<Connection> _openAndPrepare() async {
     final connection = await _withRetry(
       () => Connection.open(
         Endpoint(
@@ -21,13 +25,12 @@ final class LunchHistoryRepository {
         ),
       ),
     );
-    final repository = LunchHistoryRepository(connection);
-    await repository.ensureSchema();
-    return repository;
+    await _ensureSchema(connection);
+    return connection;
   }
 
-  Future<void> ensureSchema() async {
-    await _connection.execute('''
+  Future<void> _ensureSchema(Connection connection) async {
+    await connection.execute('''
       create table if not exists lunch_suggestions (
         id bigserial primary key,
         area text not null,
@@ -40,7 +43,8 @@ final class LunchHistoryRepository {
   }
 
   Future<void> save(LunchRequest request, LunchResponse response) async {
-    await _connection.execute(
+    final connection = await _connection();
+    await connection.execute(
       Sql.named('''
         insert into lunch_suggestions
           (area, mood, budget_yen, suggestion_json)
