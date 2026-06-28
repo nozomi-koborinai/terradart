@@ -119,17 +119,6 @@ class BigqueryDatasetAccessAuthorizedRoutine {
 
 /// Factory wrapper for `google_bigquery_dataset_access`.
 ///
-/// Gives dataset access for a single entity. This resource is intended to be
-/// used in cases where it is not possible to compile a full list of access
-/// blocks to include in a `google_bigquery_dataset` resource, to enable them to
-/// be added separately.
-///
-/// ~> **Note:** If this resource is used alongside a `google_bigquery_dataset`
-/// resource, the dataset resource must either have no defined `access` blocks
-/// or a `lifecycle` block with `ignore_changes = [access]` so they don't fight
-/// over which accesses should be on the dataset. Additionally, both resource
-/// cannot be modified in the same apply.
-///
 /// A single access entry on a BigQuery dataset, managed as a standalone
 /// resource (the non-inline counterpart of `GoogleBigqueryDataset.access`).
 ///

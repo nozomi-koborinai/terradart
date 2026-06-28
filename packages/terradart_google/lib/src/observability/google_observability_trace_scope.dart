@@ -7,8 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleObservabilityTraceScopeSensitive = <String>{};
 
 /// Factory wrapper for `google_observability_trace_scope`.
-///
-/// A trace scope is a collection of resources whose traces are queried together
 final class GoogleObservabilityTraceScope extends Resource {
   static const String tfType = 'google_observability_trace_scope';
 

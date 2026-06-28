@@ -7,10 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDataplexGlossarySensitive = <String>{};
 
 /// Factory wrapper for `google_dataplex_glossary`.
-///
-/// Represents a collection of categories and terms defined by the user.
-/// Glossary is a top level resource and is the GCP parent resource of all the
-/// categories and terms within it.
 final class GoogleDataplexGlossary extends Resource {
   static const String tfType = 'google_dataplex_glossary';
 

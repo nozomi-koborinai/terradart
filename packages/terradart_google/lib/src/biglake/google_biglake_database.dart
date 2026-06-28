@@ -7,8 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleBiglakeDatabaseSensitive = <String>{};
 
 /// Factory wrapper for `google_biglake_database`.
-///
-/// Databases are containers of tables.
 final class GoogleBiglakeDatabase extends Resource {
   static const String tfType = 'google_biglake_database';
 

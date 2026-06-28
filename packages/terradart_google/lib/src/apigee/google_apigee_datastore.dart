@@ -54,10 +54,6 @@ class ApigeeDatastoreDatastoreConfig {
 }
 
 /// Factory wrapper for `google_apigee_datastore`.
-///
-/// An analytics datastore for an Apigee organization. Datastores configure
-/// export destinations for Apigee Analytics data, supporting either Google
-/// Cloud Storage (GCS) or BigQuery as targets.
 final class GoogleApigeeDatastore extends Resource {
   static const String tfType = 'google_apigee_datastore';
 
