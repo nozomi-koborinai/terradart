@@ -100,6 +100,11 @@ google_compute_region_instant_snapshot_iam_policy: safe  # apply-verified safe (
 google_compute_resource_policy: safe  # apply-verified safe (existing example)
 google_compute_route: safe  # apply-verified safe (existing example)
 google_compute_router: safe  # apply-verified safe (existing example)
+google_compute_vpn_gateway: safe  # billing-behavior: classic VPN gateway control-plane object; hourly tunnel charges apply to active tunnels, not gateway existence alone
+google_compute_vpn_tunnel: safe  # billing-behavior: IPSec tunnel; billed per tunnel-hour while provisioned; destroy removes tunnel
+google_compute_ha_vpn_gateway: safe  # billing-behavior: HA VPN gateway metadata; tunnel-hour billing applies to attached tunnels, not gateway existence alone
+google_compute_shared_vpc_host_project: safe  # billing-behavior: org/project attachment flag; no standalone Cloud Billing SKU
+google_compute_shared_vpc_service_project: safe  # billing-behavior: host/service project link; no standalone Cloud Billing SKU
 google_compute_subnetwork: safe  # apply-verified safe (existing example)
 google_compute_subnetwork_iam_member: safe  # apply-verified safe (existing example)
 google_dataplex_aspect_type: safe  # apply-verified safe (existing example)

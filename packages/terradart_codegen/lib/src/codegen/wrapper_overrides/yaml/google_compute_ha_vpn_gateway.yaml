@@ -1,0 +1,15 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+paramOrder:
+  - name
+  - network
+  - region
+  - description
+  - gateway_ip_version
+  - stack_type
+  - labels
+  - deletion_policy
+  - project

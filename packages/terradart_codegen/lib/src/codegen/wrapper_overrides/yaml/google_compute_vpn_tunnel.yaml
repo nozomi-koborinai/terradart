@@ -1,0 +1,29 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// IPSec VPN tunnel. Use [targetVpnGateway] for classic VPN, or [vpnGateway]
+  /// with [peerGcpGateway] / [peerExternalGateway] for HA VPN.
+
+paramOrder:
+  - name
+  - region
+  - target_vpn_gateway
+  - vpn_gateway
+  - vpn_gateway_interface
+  - peer_ip
+  - peer_gcp_gateway
+  - peer_external_gateway
+  - peer_external_gateway_interface
+  - shared_secret
+  - shared_secret_wo
+  - shared_secret_wo_version
+  - router
+  - description
+  - ike_version
+  - local_traffic_selector
+  - remote_traffic_selector
+  - labels
+  - deletion_policy
+  - project

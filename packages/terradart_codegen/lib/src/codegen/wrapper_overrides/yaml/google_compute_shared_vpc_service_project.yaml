@@ -1,0 +1,7 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - host_project
+  - service_project
