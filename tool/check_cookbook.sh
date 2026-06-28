@@ -4,6 +4,11 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 cd "$ROOT"
 
+COOKBOOK_GCP_PROJECT_ID="${COOKBOOK_GCP_PROJECT_ID:-ci-test-project-id}"
+COOKBOOK_REGION="${COOKBOOK_REGION:-asia-northeast1}"
+COOKBOOK_IMAGE_URI="${COOKBOOK_IMAGE_URI:-$COOKBOOK_REGION-docker.pkg.dev/$COOKBOOK_GCP_PROJECT_ID/lunch-concierge/app:demo}"
+COOKBOOK_INVOKER_EMAIL="${COOKBOOK_INVOKER_EMAIL:-demo@example.com}"
+
 echo ">> dart pub get"
 dart pub get
 
@@ -18,7 +23,6 @@ dart format --output=none --set-exit-if-changed \
   cookbook/lunch-concierge/client/lib \
   cookbook/lunch-concierge/server \
   cookbook/lunch-concierge/infra \
-  cookbook/lunch-concierge/shared \
   cookbook/single-project-app \
   cookbook/firestore-seeded-data \
   cookbook/remote-backend
@@ -41,9 +45,9 @@ echo ">> compile Lunch Concierge server"
 echo ">> synth Lunch Concierge infra"
 (
   cd cookbook/lunch-concierge/infra
-  GCP_PROJECT_ID=flutter-gakkai-10 \
-    IMAGE_URI=asia-northeast1-docker.pkg.dev/flutter-gakkai-10/lunch-concierge/app:demo \
-    INVOKER_EMAIL=demo@example.com \
+  GCP_PROJECT_ID="$COOKBOOK_GCP_PROJECT_ID" \
+    IMAGE_URI="$COOKBOOK_IMAGE_URI" \
+    INVOKER_EMAIL="$COOKBOOK_INVOKER_EMAIL" \
     dart run bin/infra.dart
 )
 
