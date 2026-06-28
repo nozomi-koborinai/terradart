@@ -5,9 +5,17 @@ import 'package:terradart_google/project.dart';
 import 'constants.dart';
 
 final class LunchRuntimeIdentity {
-  const LunchRuntimeIdentity({required this.serviceAccount});
+  const LunchRuntimeIdentity({
+    required this.serviceAccount,
+    required this.cloudSqlClientGrant,
+    required this.instanceUserGrant,
+    required this.vertexUserGrant,
+  });
 
   final GoogleServiceAccount serviceAccount;
+  final GoogleProjectIamMember cloudSqlClientGrant;
+  final GoogleProjectIamMember instanceUserGrant;
+  final GoogleProjectIamMember vertexUserGrant;
 }
 
 LunchRuntimeIdentity addRuntimeIdentity({
@@ -23,7 +31,7 @@ LunchRuntimeIdentity addRuntimeIdentity({
     ),
   );
 
-  stack.add(
+  final cloudSqlClientGrant = stack.add(
     GoogleProjectIamMember(
       localName: 'sql_client_cloudsql_client',
       project: TfArg.literal(projectId),
@@ -33,7 +41,7 @@ LunchRuntimeIdentity addRuntimeIdentity({
     ),
   );
 
-  stack.add(
+  final instanceUserGrant = stack.add(
     GoogleProjectIamMember(
       localName: 'sql_client_instance_user',
       project: TfArg.literal(projectId),
@@ -43,7 +51,7 @@ LunchRuntimeIdentity addRuntimeIdentity({
     ),
   );
 
-  stack.add(
+  final vertexUserGrant = stack.add(
     GoogleProjectIamMember(
       localName: 'sql_client_vertex_user',
       project: TfArg.literal(projectId),
@@ -56,5 +64,10 @@ LunchRuntimeIdentity addRuntimeIdentity({
     ),
   );
 
-  return LunchRuntimeIdentity(serviceAccount: serviceAccount);
+  return LunchRuntimeIdentity(
+    serviceAccount: serviceAccount,
+    cloudSqlClientGrant: cloudSqlClientGrant,
+    instanceUserGrant: instanceUserGrant,
+    vertexUserGrant: vertexUserGrant,
+  );
 }

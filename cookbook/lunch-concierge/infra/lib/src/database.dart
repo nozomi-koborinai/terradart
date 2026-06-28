@@ -8,12 +8,16 @@ import 'runtime_identity.dart';
 final class LunchDatabase {
   const LunchDatabase({
     required this.sql,
+    required this.database,
+    required this.sqlUser,
     required this.databaseUser,
     required this.databaseUrl,
     required this.instanceConnectionName,
   });
 
   final GoogleSqlDatabaseInstance sql;
+  final GoogleSqlDatabase database;
+  final GoogleSqlUser sqlUser;
   final String databaseUser;
   final String databaseUrl;
   final String instanceConnectionName;
@@ -54,7 +58,7 @@ LunchDatabase addDatabase({
     ),
   );
 
-  stack.add(
+  final database = stack.add(
     GoogleSqlDatabase(
       localName: 'lunch',
       instance: TfArg.ref(sql.nameRef),
@@ -63,14 +67,12 @@ LunchDatabase addDatabase({
     ),
   );
 
-  final sqlIamUserName =
-      '$sqlClientAccountId@$projectId.iam.gserviceaccount.com';
   final databaseUser = '$sqlClientAccountId@$projectId.iam';
-  stack.add(
+  final sqlUser = stack.add(
     GoogleSqlUser(
       localName: 'sql_client',
       instance: TfArg.ref(sql.nameRef),
-      name: TfArg.literal(sqlIamUserName),
+      name: TfArg.literal(databaseUser),
       type: TfArg.literal(SqlUserType.cloudIamServiceAccount),
       dependsOn: [
         ResourceDependency(sql),
@@ -81,6 +83,8 @@ LunchDatabase addDatabase({
 
   return LunchDatabase(
     sql: sql,
+    database: database,
+    sqlUser: sqlUser,
     databaseUser: databaseUser,
     databaseUrl: 'postgresql://$databaseUser@localhost:5432/$databaseName',
     instanceConnectionName: '$projectId:$region:$sqlInstanceName',
