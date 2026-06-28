@@ -1,0 +1,16 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+paramOrder:
+  - name
+  - network
+  - peer_network
+  - export_custom_routes
+  - import_custom_routes
+  - export_subnet_routes_with_public_ip
+  - import_subnet_routes_with_public_ip
+  - stack_type
+  - update_strategy
+  - deletion_policy

@@ -621,6 +621,10 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_compute_router:
     upstream: mmv1/products/compute/Router.yaml
+  google_compute_router_nat:
+    upstream: mmv1/products/compute/RouterNat.yaml
+  google_compute_network_peering:
+    upstream: null  # third_party terraform/services/compute/resource_compute_network_peering.go
   google_bigquery_datapolicy_data_policy_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   # Wave 25 (Serverless VPC Access connector)

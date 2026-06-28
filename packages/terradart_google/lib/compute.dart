@@ -401,6 +401,16 @@ export 'src/compute/google_compute_router.dart'
         ComputeRouterBgp,
         ComputeRouterBgpAdvertiseMode,
         GoogleComputeRouter;
+export 'src/compute/google_compute_router_nat.dart'
+    show
+        GoogleComputeRouterNat,
+        ComputeRouterNatNatIpAllocateOption,
+        ComputeRouterNatSourceSubnetworkIpRangesToNat,
+        ComputeRouterNatSourceSubnetworkIpRangesToNat64,
+        ComputeRouterNatAutoNetworkTier,
+        ComputeRouterNatType;
+export 'src/compute/google_compute_network_peering.dart'
+    show GoogleComputeNetworkPeering;
 export 'src/compute/google_compute_route.dart' show GoogleComputeRoute;
 export 'src/compute/google_compute_network_firewall_policy.dart'
     show GoogleComputeNetworkFirewallPolicy;
