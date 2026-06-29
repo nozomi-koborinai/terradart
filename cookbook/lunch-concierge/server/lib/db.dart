@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:lunch_concierge_shared/generated/lunch_stack.app.dart';
 import 'package:lunch_concierge_shared/schema.dart';
@@ -15,6 +16,10 @@ final class LunchHistoryRepository {
   }
 
   Future<Connection> _openAndPrepare() async {
+    stderr.writeln(
+      'opening postgres connection to 127.0.0.1:5432/'
+      '${LunchStackExports.DATABASE_NAME} as ${LunchStackExports.DATABASE_USER}',
+    );
     final connection = await _withRetry(
       () => Connection.open(
         Endpoint(
@@ -25,7 +30,9 @@ final class LunchHistoryRepository {
         ),
       ),
     );
+    stderr.writeln('postgres connection opened; ensuring schema');
     await _ensureSchema(connection);
+    stderr.writeln('postgres schema ready');
     return connection;
   }
 
@@ -74,9 +81,11 @@ Future<T> _withRetry<T>(
     } catch (error, stackTrace) {
       lastError = error;
       lastStackTrace = stackTrace;
+      stderr.writeln('operation attempt $attempt/$maxAttempts failed: $error');
       if (attempt == maxAttempts) break;
       await Future<void>.delayed(delay);
     }
   }
+  stderr.writeln('operation failed after $maxAttempts attempts');
   Error.throwWithStackTrace(lastError!, lastStackTrace!);
 }
