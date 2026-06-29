@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:genkit/genkit.dart';
 import 'package:genkit_vertexai/genkit_vertexai.dart';
 import 'package:lunch_concierge_shared/generated/lunch_stack.app.dart';
@@ -28,10 +30,16 @@ Future<LunchFlowBundle> createLunchFlow() async {
     inputSchema: LunchRequest.$schema,
     outputSchema: LunchResponse.$schema,
     fn: (input, _) async {
-      final response = await ai.generate(
-        model: vertexAI.gemini('gemini-2.5-flash'),
-        prompt:
-            '''
+      stderr.writeln(
+        'suggestLunch started: area=${input.area}, mood=${input.mood}, '
+        'budgetYen=${input.budgetYen}',
+      );
+      final GenerateResponseHelper<LunchResponse> response;
+      try {
+        response = await ai.generate(
+          model: vertexAI.gemini('gemini-2.5-flash'),
+          prompt:
+              '''
 あなたは日本のランチ相談に乗るコンシェルジュです。
 
 エリア: ${input.area}
@@ -41,17 +49,32 @@ Future<LunchFlowBundle> createLunchFlow() async {
 条件に合うランチ候補を3つ提案してください。
 理由は短く、午後の仕事や勉強に戻りやすい観点も入れてください。
 ''',
-        outputSchema: LunchResponse.$schema,
-      );
+          outputSchema: LunchResponse.$schema,
+        );
+      } catch (error, stackTrace) {
+        stderr.writeln('suggestLunch generate failed: $error');
+        stderr.writeln(stackTrace);
+        rethrow;
+      }
       final output = response.output;
       if (output == null) {
+        stderr.writeln('suggestLunch generate returned null schema output');
         throw GenkitException(
           'Gemini response did not match LunchResponse schema.',
           status: StatusCodes.INTERNAL,
         );
       }
+      stderr.writeln(
+        'suggestLunch generated ${output.suggestions.length} items',
+      );
 
-      await repository.save(input, output);
+      try {
+        await repository.save(input, output);
+        stderr.writeln('suggestLunch history saved');
+      } catch (error, stackTrace) {
+        stderr.writeln('suggestLunch history save failed: $error');
+        stderr.writeln(stackTrace);
+      }
       return output;
     },
   );
