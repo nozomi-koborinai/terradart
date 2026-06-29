@@ -28,6 +28,7 @@ final class LunchHistoryRepository {
           database: LunchStackExports.DATABASE_NAME,
           username: LunchStackExports.DATABASE_USER,
         ),
+        settings: const ConnectionSettings(sslMode: SslMode.disable),
       ),
     );
     stderr.writeln('postgres connection opened; ensuring schema');
