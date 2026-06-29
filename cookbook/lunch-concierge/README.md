@@ -81,6 +81,39 @@ terraform apply
 The targeted first apply creates the Artifact Registry repository so the image
 can be pushed. The second apply creates or updates the rest of the stack.
 
+## Database bootstrap
+
+The Cloud Run service connects as the Cloud SQL IAM database user:
+
+```text
+lunch-sql-client@<project-id>.iam
+```
+
+The server creates the `lunch_suggestions` table on startup if it has enough
+schema privileges. For the demo, bootstrap the database once as an
+administrator and grant the runtime user the privileges it needs:
+
+```sql
+create table if not exists lunch_suggestions (
+  id bigserial primary key,
+  area text not null,
+  mood text not null,
+  budget_yen integer not null,
+  suggestion_json jsonb not null,
+  created_at timestamptz not null default now()
+);
+
+grant usage on schema public to "lunch-sql-client@<project-id>.iam";
+grant create on schema public to "lunch-sql-client@<project-id>.iam";
+grant insert, select on lunch_suggestions to "lunch-sql-client@<project-id>.iam";
+grant usage, select on sequence lunch_suggestions_id_seq
+  to "lunch-sql-client@<project-id>.iam";
+```
+
+If the grants are missing, the Genkit flow can still generate a lunch response,
+but history persistence will fail and the server logs will show the PostgreSQL
+error.
+
 ## Boundary contract
 
 `infra` writes generated constants to `shared`:
