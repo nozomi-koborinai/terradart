@@ -38,34 +38,46 @@ final class LunchHistoryRepository {
   }
 
   Future<void> _ensureSchema(Connection connection) async {
-    await connection.execute('''
-      create table if not exists lunch_suggestions (
-        id bigserial primary key,
-        area text not null,
-        mood text not null,
-        budget_yen integer not null,
-        suggestion_json jsonb not null,
-        created_at timestamptz not null default now()
-      )
-    ''');
+    try {
+      await connection.execute('''
+        create table if not exists lunch_suggestions (
+          id bigserial primary key,
+          area text not null,
+          mood text not null,
+          budget_yen integer not null,
+          suggestion_json jsonb not null,
+          created_at timestamptz not null default now()
+        )
+      ''');
+    } catch (error, stackTrace) {
+      stderr.writeln('postgres schema ensure failed: $error');
+      stderr.writeln(stackTrace);
+      rethrow;
+    }
   }
 
   Future<void> save(LunchRequest request, LunchResponse response) async {
     final connection = await _connection();
-    await connection.execute(
-      Sql.named('''
-        insert into lunch_suggestions
-          (area, mood, budget_yen, suggestion_json)
-        values
-          (@area, @mood, @budgetYen, @suggestionJson)
-      '''),
-      parameters: {
-        'area': request.area,
-        'mood': request.mood,
-        'budgetYen': request.budgetYen,
-        'suggestionJson': jsonEncode(response.toJson()),
-      },
-    );
+    try {
+      await connection.execute(
+        Sql.named('''
+          insert into lunch_suggestions
+            (area, mood, budget_yen, suggestion_json)
+          values
+            (@area, @mood, @budgetYen, @suggestionJson)
+        '''),
+        parameters: {
+          'area': request.area,
+          'mood': request.mood,
+          'budgetYen': request.budgetYen,
+          'suggestionJson': jsonEncode(response.toJson()),
+        },
+      );
+    } catch (error, stackTrace) {
+      stderr.writeln('postgres history insert failed: $error');
+      stderr.writeln(stackTrace);
+      rethrow;
+    }
   }
 }
 
