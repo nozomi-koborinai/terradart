@@ -28,12 +28,7 @@ GoogleCloudRunV2Service addCloudRunService({
         maxInstanceRequestConcurrency: TfArg.literal(80),
         timeout: TfArg.literal('300s'),
         vpcAccess: CloudRunV2ServiceVpcAccess(
-          networkInterfaces: [
-            CloudRunV2ServiceVpcNetworkInterface(
-              network: TfArg.ref(network.vpc.id),
-              subnetwork: TfArg.ref(network.subnet.id),
-            ),
-          ],
+          connector: TfArg.ref(network.runConnector.selfLink),
           egress: TfArg.literal(VpcAccessEgress.privateRangesOnly),
         ),
         scaling: const CloudRunV2ServiceTemplateScaling(
@@ -79,6 +74,7 @@ GoogleCloudRunV2Service addCloudRunService({
         ...apiDeps,
         ResourceDependency(vertexApi),
         ResourceDependency(network.subnet),
+        ResourceDependency(network.runConnector),
         ResourceDependency(database.sql),
         ResourceDependency(database.database),
         ResourceDependency(database.sqlUser),
