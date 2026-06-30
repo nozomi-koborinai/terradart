@@ -387,7 +387,7 @@ final Map<String, Object Function()> _syntheticInstances = {
         timeZone: OsConfigPatchDeploymentRecurringScheduleTimeZone(
           id: TfArg.literal('America/New_York'),
         ),
-        weekly: OsConfigPatchDeploymentRecurringScheduleWeekly(
+        weekly: const OsConfigPatchDeploymentRecurringScheduleWeekly(
           dayOfWeek: OsConfigPatchDeploymentDayOfWeek.monday,
         ),
       ),
