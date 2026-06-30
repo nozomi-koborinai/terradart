@@ -41,6 +41,7 @@ import 'package:terradart_google/firebase_app_hosting.dart';
 import 'package:terradart_google/firestore.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/monitoring.dart';
+import 'package:terradart_google/os_config.dart';
 import 'package:terradart_google/secret_manager.dart';
 import 'package:terradart_google/storage.dart';
 import 'package:test/test.dart';
@@ -375,6 +376,21 @@ final Map<String, Object Function()> _syntheticInstances = {
   // unwraps to the single inner map for the structural assertions.
   'FirestoreBackupScheduleDailyRecurrence': () => const FirestoreBackupScheduleDailyRecurrence(),
   'FirestoreBackupScheduleWeeklyRecurrence': () => const FirestoreBackupScheduleWeeklyRecurrence(),
+
+  // --- OsConfigPatchDeploymentSchedule (2) — os_config_patch_deployment ------
+  'OsConfigPatchDeploymentOneTimeSchedule': () =>
+      OsConfigPatchDeploymentOneTimeSchedule(
+        executeTime: TfArg.literal('2030-01-01T02:00:00Z'),
+      ),
+  'OsConfigPatchDeploymentRecurringSchedule': () =>
+      OsConfigPatchDeploymentRecurringSchedule(
+        timeZone: OsConfigPatchDeploymentRecurringScheduleTimeZone(
+          id: TfArg.literal('America/New_York'),
+        ),
+        weekly: const OsConfigPatchDeploymentRecurringScheduleWeekly(
+          dayOfWeek: OsConfigPatchDeploymentDayOfWeek.monday,
+        ),
+      ),
 
   // --- MonitoringSloSli (3) — monitoring_slo ---------------------------------
   'MonitoringSloBasicSli': () => MonitoringSloBasicSli(

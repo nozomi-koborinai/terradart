@@ -1,0 +1,28 @@
+outputDir: binary_authorization
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// IAM member on a Binary Authorization attestor (`roles/binaryauthorization.attestorViewer`
+  /// or `roles/binaryauthorization.attestorEditor`).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleBinaryAuthorizationAttestorIamMember(
+  ///   localName: 'attestor_viewer',
+  ///   attestor: TfArg.ref(attestor.nameRef),
+  ///   role: TfArg.literal('roles/binaryauthorization.attestorViewer'),
+  ///   member: TfArg.literal('serviceAccount:ci@$projectId.iam.gserviceaccount.com'),
+  /// );
+  /// ```
+
+paramOrder:
+  - attestor
+  - role
+  - member
+  - project
+  - condition
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');

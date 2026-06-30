@@ -95,5 +95,23 @@ final class GoogleProviderRules extends ProviderRules {
 
     // Vertex AI (`google_vertex_ai_*` → segment `vertex`).
     'vertex_ai': 'vertex_ai',
+
+    // Wave 76 — OS Config (`google_os_config_*` → segment `os`).
+    'os': 'os_config',
+    'os_config': 'os_config',
+
+    // Wave 76 — Binary Authorization (`google_binary_authorization_*`).
+    'binary': 'binary_authorization',
+    'binary_authorization': 'binary_authorization',
+
+    // Wave 77 — API Keys (`google_apikeys_*`).
+    'apikeys': 'apikeys',
+
+    // Wave 77 — reCAPTCHA Enterprise (`google_recaptcha_enterprise_*`).
+    'recaptcha': 'recaptcha',
+    'recaptcha_enterprise': 'recaptcha',
+
+    // Wave 77 — Network Management (`google_network_management_*` → network barrel).
+    'network_management': 'network',
   };
 }

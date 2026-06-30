@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
-# Commit from a Cloud Agent without Co-authored-by trailers.
-#
-# Cursor Cloud may inject Co-authored-by via a platform commit-msg hook.
-# This wrapper uses --no-verify and fails if the trailer is still present.
+# Thin commit wrapper for Cloud Agent sessions (uses --no-verify).
 set -euo pipefail
 
 if [[ $# -lt 1 ]]; then
@@ -11,8 +8,3 @@ if [[ $# -lt 1 ]]; then
 fi
 
 git commit --no-verify "$@"
-
-if git log -1 --format='%B' | grep -qi '^Co-authored-by:'; then
-  echo 'agent_commit.sh: Co-authored-by trailer present after commit; aborting' >&2
-  exit 1
-fi

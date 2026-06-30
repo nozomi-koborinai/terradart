@@ -1,0 +1,41 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Network Management connectivity test — probes reachability between a
+  /// [source] and [destination] endpoint (IP, FQDN, GCE instance, etc.).
+  ///
+  /// Enable `networkmanagement.googleapis.com` before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleNetworkManagementConnectivityTest(
+  ///   localName: 'dns_probe',
+  ///   name: TfArg.literal('dns-probe'),
+  ///   protocol: TfArg.literal('TCP'),
+  ///   source: TfArg.literal([
+  ///     {'ip_address': '10.0.0.1', 'port': 53},
+  ///   ]),
+  ///   destination: TfArg.literal([
+  ///     {'ip_address': '8.8.8.8', 'port': 53},
+  ///   ]),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - protocol
+  - source
+  - destination
+  - description
+  - project
+  - deletion_policy
+  - bypass_firewall_checks
+  - related_projects
+  - round_trip
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

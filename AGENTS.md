@@ -55,12 +55,6 @@ When a Wave also pays down example `pubspec.yaml` carets or docs debt, **prefer 
 - **Never push directly to `main`.** All changes land through a pull request, including CI/publish hotfixes. Branch protection should enforce this for maintainers and automation alike.
 - Cloud agents: create `cursor/<descriptive-name>-fc7b` (or the repo's active agent suffix), commit, push, and open/update a PR before claiming work is done.
 - Emergency publish fixes still get a PR (can merge immediately after CI green); do not bypass review habit.
-
-### Cloud agent commits (no co-authorship)
-
-When **Cursor Cloud Agent** is the active maintainer, feature work lands only through Cursor-opened PRs on `cursor/*` branches.
-
-- **Do not add `Co-authored-by:` trailers** to commit messages. Cursor Cloud may inject them via a platform `commit-msg` hook — use [`tool/agent_commit.sh`](tool/agent_commit.sh) (or `git commit --no-verify`) and confirm with `git log -1 --format='%B'` before push.
 - Release tags and GitHub release bodies follow [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md).
 
 ## Override lint coverage (`exactly_one_of`)

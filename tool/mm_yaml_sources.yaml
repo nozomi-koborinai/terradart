@@ -812,3 +812,21 @@ files:
     upstream: mmv1/products/accesscontextmanager/ServicePerimeter.yaml
   google_access_context_manager_access_policy_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  # Wave 76 (OS Config + Binary Authorization — VM compliance & image trust)
+  google_os_config_os_policy_assignment:
+    upstream: null  # third_party terraform/services/osconfig/resource_os_config_os_policy_assignment.go
+  google_os_config_patch_deployment:
+    upstream: mmv1/products/osconfig/PatchDeployment.yaml
+  google_binary_authorization_policy:
+    upstream: mmv1/products/binaryauthorization/Policy.yaml
+  google_binary_authorization_attestor:
+    upstream: mmv1/products/binaryauthorization/Attestor.yaml
+  google_binary_authorization_attestor_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  # Wave 77 (API protection + network diagnostics)
+  google_apikeys_key:
+    upstream: null  # third_party terraform/services/apikeys/resource_apikeys_key.go
+  google_recaptcha_enterprise_key:
+    upstream: null  # third_party terraform/services/recaptchaenterprise/resource_recaptcha_enterprise_key.go
+  google_network_management_connectivity_test:
+    upstream: mmv1/products/networkmanagement/ConnectivityTest.yaml

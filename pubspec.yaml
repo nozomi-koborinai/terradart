@@ -12,6 +12,7 @@ workspace:
   - packages/terradart_agent
   - packages/terradart_coverage
   - examples/apigee_quickstart
+  - examples/api_security_quickstart
   - examples/access_context_quickstart
   - examples/biglake_quickstart
   - examples/bigquery_quickstart
@@ -66,6 +67,7 @@ workspace:
   - examples/storage_quickstart
   - examples/tags_quickstart
   - examples/vertex_ai_quickstart
+  - examples/vm_compliance_quickstart
   - examples/workflows_quickstart
   - examples/app_engine_quickstart
   - cookbook/single-project-app

@@ -1,0 +1,36 @@
+outputDir: binary_authorization
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Binary Authorization attestor — a trusted authority that signs container
+  /// images for admission decisions.
+  ///
+  /// Enable `binaryauthorization.googleapis.com` before apply. The
+  /// `attestation_authority_note` block holds the PGP public key material
+  /// (or a Container Analysis note reference) used to verify signatures.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleBinaryAuthorizationAttestor(
+  ///   localName: 'ci_attestor',
+  ///   name: TfArg.literal('ci-attestor'),
+  ///   attestationAuthorityNote: BinaryAuthorizationAttestorAttestationAuthorityNote(
+  ///     noteReference: TfArg.literal(
+  ///       'projects/$projectId/notes/ci-attestor',
+  ///     ),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - description
+  - attestation_authority_note
+  - project
+  - deletion_policy
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
