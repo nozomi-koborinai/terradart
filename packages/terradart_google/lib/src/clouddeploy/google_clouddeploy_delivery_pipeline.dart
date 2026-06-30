@@ -7,9 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleClouddeployDeliveryPipelineSensitive = <String>{};
 
 /// Factory wrapper for `google_clouddeploy_delivery_pipeline`.
-///
-/// A DeliveryPipeline defines a pipeline through which a Skaffold configuration
-/// can progress.
 final class GoogleClouddeployDeliveryPipeline extends Resource {
   static const String tfType = 'google_clouddeploy_delivery_pipeline';
 

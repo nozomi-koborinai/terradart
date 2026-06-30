@@ -21,8 +21,6 @@ enum DataplexAspectTypeDataClassification implements TerraformEnum {
 }
 
 /// Factory wrapper for `google_dataplex_aspect_type`.
-///
-/// An Aspect Type is a template for creating Aspects.
 final class GoogleDataplexAspectType extends Resource {
   static const String tfType = 'google_dataplex_aspect_type';
 

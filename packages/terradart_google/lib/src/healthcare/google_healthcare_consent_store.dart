@@ -7,9 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleHealthcareConsentStoreSensitive = <String>{};
 
 /// Factory wrapper for `google_healthcare_consent_store`.
-///
-/// The Consent Management API is a tool for tracking user consents and the
-/// documentation associated with the consents.
 final class GoogleHealthcareConsentStore extends Resource {
   static const String tfType = 'google_healthcare_consent_store';
 

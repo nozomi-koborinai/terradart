@@ -7,8 +7,6 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDataplexLakeSensitive = <String>{};
 
 /// Factory wrapper for `google_dataplex_lake`.
-///
-/// Only used to generate IAM resources
 final class GoogleDataplexLake extends Resource {
   static const String tfType = 'google_dataplex_lake';
 
