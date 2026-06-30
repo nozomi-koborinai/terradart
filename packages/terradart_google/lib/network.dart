@@ -15,6 +15,8 @@ export 'src/network/google_network_connectivity_transport.dart'
         GoogleNetworkConnectivityTransport,
         NetworkConnectivityTransportDeletionPolicy,
         NetworkConnectivityTransportStackType;
+export 'src/network/google_network_management_connectivity_test.dart'
+    show GoogleNetworkManagementConnectivityTest;
 export 'src/network/google_network_security_ull_mirroring_collector.dart'
     show
         GoogleNetworkSecurityUllMirroringCollector,

@@ -1,0 +1,38 @@
+outputDir: recaptcha
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// reCAPTCHA Enterprise key for web, Android, or iOS clients.
+  ///
+  /// Enable `recaptchaenterprise.googleapis.com` before apply. Provide exactly
+  /// one platform settings block (`web_settings`, `android_settings`, or
+  /// `ios_settings`).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleRecaptchaEnterpriseKey(
+  ///   localName: 'web_login',
+  ///   displayName: TfArg.literal('Login page'),
+  ///   webSettings: TfArg.literal({
+  ///     'integration_type': 'SCORE',
+  ///     'allow_all_domains': true,
+  ///   }),
+  /// );
+  /// ```
+
+paramOrder:
+  - display_name
+  - web_settings
+  - android_settings
+  - ios_settings
+  - waf_settings
+  - testing_options
+  - labels
+  - project
+  - deletion_policy
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

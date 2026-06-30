@@ -6,6 +6,8 @@ enum Barrels {
   alloydb('alloydb'),
   accessContextManager('access_context_manager'),
   apigee('apigee'),
+  recaptcha('recaptcha'),
+  apikeys('apikeys'),
   artifactRegistry('artifact_registry'),
   bigquery('bigquery'),
   bigtable('bigtable'),

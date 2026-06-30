@@ -334,6 +334,32 @@ Catalog after Wave 74: **377 curated resource factories + 1 data source** (378 c
 | `google_dataplex_asset` | `GoogleDataplexAsset` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
 | `google_dataplex_zone_iam_member` | `GoogleDataplexZoneIamMember` | `dataplex` | [dataplex_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataplex_quickstart) |
 
+## Wave 76 — OS Config + Binary Authorization VM compliance
+
+Adds five factories across the new `os_config` and `binary_authorization` barrels: OS policy assignment, patch deployment, project-wide Binary Authorization policy, attestor, and attestor IAM member. Exercised by [vm_compliance_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vm_compliance_quickstart).
+
+Catalog after Wave 76: **377 curated resource factories + 1 data source** (378 catalog entries). 63 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_os_config_os_policy_assignment` | `GoogleOsConfigOsPolicyAssignment` | `os_config` | [vm_compliance_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vm_compliance_quickstart) |
+| `google_os_config_patch_deployment` | `GoogleOsConfigPatchDeployment` | `os_config` | [vm_compliance_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vm_compliance_quickstart) |
+| `google_binary_authorization_policy` | `GoogleBinaryAuthorizationPolicy` | `binary_authorization` | [vm_compliance_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vm_compliance_quickstart) |
+| `google_binary_authorization_attestor` | `GoogleBinaryAuthorizationAttestor` | `binary_authorization` | [vm_compliance_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vm_compliance_quickstart) |
+| `google_binary_authorization_attestor_iam_member` | `GoogleBinaryAuthorizationAttestorIamMember` | `binary_authorization` | [vm_compliance_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vm_compliance_quickstart) |
+
+## Wave 77 — API security (API Keys + reCAPTCHA + connectivity test)
+
+Adds three factories: API Keys key under the new `apikeys` barrel, reCAPTCHA Enterprise key under `recaptcha`, and Network Management connectivity test on the existing `network` barrel. Exercised by [api_security_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/api_security_quickstart).
+
+Catalog after Wave 77: **380 curated resource factories + 1 data source** (381 catalog entries). 65 service barrels.
+
+| Terraform type | Dart factory | Barrel | Example |
+| --- | --- | --- | --- |
+| `google_apikeys_key` | `GoogleApikeysKey` | `apikeys` | [api_security_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/api_security_quickstart) |
+| `google_recaptcha_enterprise_key` | `GoogleRecaptchaEnterpriseKey` | `recaptcha` | [api_security_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/api_security_quickstart) |
+| `google_network_management_connectivity_test` | `GoogleNetworkManagementConnectivityTest` | `network` | [api_security_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/api_security_quickstart) |
+
 ## Wave 72 — IAP App Engine IAM members
 
 Adds three additive `*_iam_member` factories under the `iap` barrel for Identity-Aware Proxy access to App Engine at service, version, and app-wide scope. Exercised by extending [iam_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/iam_quickstart) (IAP API enablement + three member grants).

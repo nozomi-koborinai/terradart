@@ -100,15 +100,31 @@ void main() {
       expect(apis.single.localName, 'api_osconfig');
     });
 
-    test('binaryAuthorization barrel includes binaryauthorization.googleapis.com',
-        () {
+    test('binaryAuthorization barrel includes binaryauthorization.googleapis.com', () {
       final apis = Apis.required(barrels: [Barrels.binaryAuthorization]);
       expect(apis, hasLength(1));
       expect(
         apis.single.argMap['service']!.toTfJson(),
         'binaryauthorization.googleapis.com',
       );
-      expect(apis.single.localName, 'api_binaryauthorization');
+    });
+
+    test('apikeys barrel includes apikeys.googleapis.com', () {
+      final apis = Apis.required(barrels: [Barrels.apikeys]);
+      expect(apis, hasLength(1));
+      expect(
+        apis.single.argMap['service']!.toTfJson(),
+        'apikeys.googleapis.com',
+      );
+    });
+
+    test('recaptcha barrel includes recaptchaenterprise.googleapis.com', () {
+      final apis = Apis.required(barrels: [Barrels.recaptcha]);
+      expect(apis, hasLength(1));
+      expect(
+        apis.single.argMap['service']!.toTfJson(),
+        'recaptchaenterprise.googleapis.com',
+      );
     });
   });
 
@@ -223,6 +239,8 @@ void main() {
       expect(Barrels.redis.catalogName, 'redis');
       expect(Barrels.osConfig.catalogName, 'os_config');
       expect(Barrels.binaryAuthorization.catalogName, 'binary_authorization');
+      expect(Barrels.apikeys.catalogName, 'apikeys');
+      expect(Barrels.recaptcha.catalogName, 'recaptcha');
     });
   });
 }

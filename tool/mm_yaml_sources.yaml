@@ -823,3 +823,10 @@ files:
     upstream: mmv1/products/binaryauthorization/Attestor.yaml
   google_binary_authorization_attestor_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  # Wave 77 (API protection + network diagnostics)
+  google_apikeys_key:
+    upstream: null  # third_party terraform/services/apikeys/resource_apikeys_key.go
+  google_recaptcha_enterprise_key:
+    upstream: null  # third_party terraform/services/recaptchaenterprise/resource_recaptcha_enterprise_key.go
+  google_network_management_connectivity_test:
+    upstream: mmv1/products/networkmanagement/ConnectivityTest.yaml

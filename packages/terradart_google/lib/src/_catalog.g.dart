@@ -225,6 +225,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_apigee_datastore`.',
   ),
   CatalogEntry(
+    tfType: 'google_apikeys_key',
+    className: 'GoogleApikeysKey',
+    barrel: 'apikeys',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_apikeys_key`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'displayName',
+      'restrictions',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>['key_string'],
+    docComment:
+        'Factory wrapper for `google_apikeys_key`.\n\nAPI Keys key — restricts which Google Cloud APIs can be called with a\ngenerated API key.\n\nEnable `apikeys.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleApikeysKey(\n  localName: \'maps_browser\',\n  name: TfArg.literal(\'maps-browser-key\'),\n  displayName: TfArg.literal(\'Browser Maps key\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_app_engine_application',
     className: 'GoogleAppEngineApplication',
     barrel: 'app',
@@ -7859,6 +7878,31 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_network_connectivity_transport`.\n\nThe Transport resource is a top-level resource used by customers to control\nPartner Cross-Cloud Interconnect (CCI) connections.\n\nPartner Cross-Cloud Interconnect (CCI) transport for Network Connectivity.\n\nEnable `networkconnectivity.googleapis.com` via [GoogleProjectService]\nbefore apply. [network] must reference an existing VPC; [remoteProfile]\nis the full URL of a `remoteTransportProfiles` resource in the same region.\n\nExample:\n```dart\nGoogleNetworkConnectivityTransport(\n  localName: \'aws_cci\',\n  name: TfArg.literal(\'my-transport\'),\n  region: TfArg.literal(\'us-east4\'),\n  network: TfArg.ref(vpc.nameRef),\n  remoteProfile: TfArg.literal(\n    \'https://networkconnectivity.googleapis.com/v1/projects/my-project/locations/us-east4/remoteTransportProfiles/aws-us-east-1\',\n  ),\n  bandwidth: TfArg.literal(\'BPS_1G\'),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_network_management_connectivity_test',
+    className: 'GoogleNetworkManagementConnectivityTest',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_network_management_connectivity_test`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'protocol',
+      'source',
+      'destination',
+      'description',
+      'project',
+      'deletionPolicy',
+      'bypassFirewallChecks',
+      'relatedProjects',
+      'roundTrip',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_management_connectivity_test`.\n\nA connectivity test are a static analysis of your resource configurations\nthat enables you to evaluate connectivity to and from Google Cloud resources\nin your Virtual Private Cloud (VPC) network.\n\nNetwork Management connectivity test — probes reachability between a\n[source] and [destination] endpoint (IP, FQDN, GCE instance, etc.).\n\nEnable `networkmanagement.googleapis.com` before apply.\n\nExample:\n```dart\nGoogleNetworkManagementConnectivityTest(\n  localName: \'dns_probe\',\n  name: TfArg.literal(\'dns-probe\'),\n  protocol: TfArg.literal(\'TCP\'),\n  source: TfArg.literal([\n    {\'ip_address\': \'10.0.0.1\', \'port\': 53},\n  ]),\n  destination: TfArg.literal([\n    {\'ip_address\': \'8.8.8.8\', \'port\': 53},\n  ]),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_network_security_address_group',
     className: 'GoogleNetworkSecurityAddressGroup',
     barrel: 'network',
@@ -8754,6 +8798,29 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_pubsub_topic_iam_member`.\n\nAdds a single IAM `role` -> `member` binding on a topic. For\nmulti-member binding semantics, prefer `google_pubsub_topic_iam_binding`\n(not yet a curated factory -- open an issue to request curation).',
+  ),
+  CatalogEntry(
+    tfType: 'google_recaptcha_enterprise_key',
+    className: 'GoogleRecaptchaEnterpriseKey',
+    barrel: 'recaptcha',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_recaptcha_enterprise_key`.',
+    constructorParams: <String>[
+      'localName',
+      'displayName',
+      'webSettings',
+      'androidSettings',
+      'iosSettings',
+      'wafSettings',
+      'testingOptions',
+      'labels',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_recaptcha_enterprise_key`.\n\nreCAPTCHA Enterprise key for web, Android, or iOS clients.\n\nEnable `recaptchaenterprise.googleapis.com` before apply. Provide exactly\none platform settings block (`web_settings`, `android_settings`, or\n`ios_settings`).\n\nExample:\n```dart\nGoogleRecaptchaEnterpriseKey(\n  localName: \'web_login\',\n  displayName: TfArg.literal(\'Login page\'),\n  webSettings: TfArg.literal({\n    \'integration_type\': \'SCORE\',\n    \'allow_all_domains\': true,\n  }),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_redis_instance',

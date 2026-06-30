@@ -1,0 +1,15 @@
+name: terradart_example_api_security_quickstart
+description: terradart example — API Keys, reCAPTCHA Enterprise, connectivity test.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.21.0
+  terradart_google: ^0.21.0
+
+dev_dependencies:
+  lints: ^6.0.0

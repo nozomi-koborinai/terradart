@@ -12,6 +12,7 @@ workspace:
   - packages/terradart_agent
   - packages/terradart_coverage
   - examples/apigee_quickstart
+  - examples/api_security_quickstart
   - examples/access_context_quickstart
   - examples/biglake_quickstart
   - examples/bigquery_quickstart

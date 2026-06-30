@@ -103,5 +103,15 @@ final class GoogleProviderRules extends ProviderRules {
     // Wave 76 — Binary Authorization (`google_binary_authorization_*`).
     'binary': 'binary_authorization',
     'binary_authorization': 'binary_authorization',
+
+    // Wave 77 — API Keys (`google_apikeys_*`).
+    'apikeys': 'apikeys',
+
+    // Wave 77 — reCAPTCHA Enterprise (`google_recaptcha_enterprise_*`).
+    'recaptcha': 'recaptcha',
+    'recaptcha_enterprise': 'recaptcha',
+
+    // Wave 77 — Network Management (`google_network_management_*` → network barrel).
+    'network_management': 'network',
   };
 }
