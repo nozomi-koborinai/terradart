@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.22.0 - 2026-06-30
+
+Lockstep release for Waves 76–77. Agent guide: co-authorship commit policy removed from `AGENTS.md`.
+
 ## 0.21.0 - 2026-06-28
 
 Lockstep release for Wave 74. Apply-smoke test 13 (cost-comment gate) and `tool/apply_cost_comment_debt.yaml`.
