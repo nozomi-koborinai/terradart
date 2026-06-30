@@ -4,6 +4,20 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage` — this top-level file summarises cross-cutting milestones.
 
+## [0.22.0] - 2026-06-30
+
+Lockstep release across the workspace. **No breaking changes** vs `0.21.0`.
+
+### Added
+
+- **`terradart_google`** — Wave 76 (OS Config + Binary Authorization VM compliance): **5** curated factories — `google_os_config_os_policy_assignment`, `google_os_config_patch_deployment`, `google_binary_authorization_policy`, `google_binary_authorization_attestor`, `google_binary_authorization_attestor_iam_member`. New `os_config` and `binary_authorization` service barrels.
+- **`terradart_google`** — Wave 77 (API security): **3** curated factories — `google_apikeys_key`, `google_recaptcha_enterprise_key`, `google_network_management_connectivity_test`. New `apikeys` and `recaptcha` service barrels; connectivity test on the existing `network` barrel. Catalog grows to **380 curated resource factories + 1 data source** (381 entries; 65 service barrels).
+- **Examples** — new [`vm_compliance_quickstart`](examples/vm_compliance_quickstart/) (Wave 76) and [`api_security_quickstart`](examples/api_security_quickstart/) (Wave 77).
+
+### Changed
+
+- **Agent guide** — remove co-authorship commit policy from `AGENTS.md`; simplify `tool/agent_commit.sh`.
+
 ## [0.21.0] - 2026-06-28
 
 Lockstep release across the workspace. **No breaking changes** vs `0.20.0`.

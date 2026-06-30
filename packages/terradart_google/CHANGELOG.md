@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.22.0 - 2026-06-30
+
+Lockstep release. **No breaking changes** vs `0.21.0`.
+
+### Added
+
+- Wave 76 — OS Config + Binary Authorization (5 factories): OS policy assignment, patch deployment, project policy, attestor, attestor IAM member. New `os_config` and `binary_authorization` barrels.
+- Wave 77 — API security (3 factories): API Keys key, reCAPTCHA Enterprise key, Network Management connectivity test. New `apikeys` and `recaptcha` barrels. Catalog: **380 curated resource factories + 1 data source** (381 entries; 65 service barrels).
+- [`vm_compliance_quickstart`](../../examples/vm_compliance_quickstart/) and [`api_security_quickstart`](../../examples/api_security_quickstart/).
+
 ## 0.21.0 - 2026-06-28
 
 Lockstep release. **No breaking changes** vs `0.20.0`.
