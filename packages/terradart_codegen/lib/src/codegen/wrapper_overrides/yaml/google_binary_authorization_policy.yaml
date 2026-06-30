@@ -1,0 +1,27 @@
+outputDir: binary_authorization
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Project-wide Binary Authorization policy controlling container image
+  /// admission for GKE, Cloud Run, and other deploy targets.
+  ///
+  /// Enable `binaryauthorization.googleapis.com` via [GoogleProjectService]
+  /// before apply. Pair with [GoogleBinaryAuthorizationAttestor] and reference
+  /// attestor names in `default_admission_rule` / `cluster_admission_rules`.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleBinaryAuthorizationPolicy(
+  ///   localName: 'project_policy',
+  ///   defaultAdmissionRule: BinaryAuthorizationPolicyDefaultAdmissionRule(
+  ///     evaluationMode: TfArg.literal(
+  ///       BinaryAuthorizationPolicyEvaluationMode.alwaysAllow,
+  ///     ),
+  ///     enforcementMode: TfArg.literal(
+  ///       BinaryAuthorizationPolicyEnforcementMode.enforced,
+  ///     ),
+  ///   ),
+  /// );
+  /// ```

@@ -95,5 +95,13 @@ final class GoogleProviderRules extends ProviderRules {
 
     // Vertex AI (`google_vertex_ai_*` → segment `vertex`).
     'vertex_ai': 'vertex_ai',
+
+    // Wave 76 — OS Config (`google_os_config_*` → segment `os`).
+    'os': 'os_config',
+    'os_config': 'os_config',
+
+    // Wave 76 — Binary Authorization (`google_binary_authorization_*`).
+    'binary': 'binary_authorization',
+    'binary_authorization': 'binary_authorization',
   };
 }

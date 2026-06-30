@@ -20,6 +20,9 @@ enum NetworkSecurityAddressGroupType implements TerraformEnum {
 }
 
 /// Factory wrapper for `google_network_security_address_group`.
+///
+/// AddressGroup is a resource that specifies how a collection of IP/DNS used in
+/// Firewall Policy.
 final class GoogleNetworkSecurityAddressGroup extends Resource {
   static const String tfType = 'google_network_security_address_group';
 

@@ -200,7 +200,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ApigeeDataCollectorDeletionPolicy',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_apigee_data_collector`.',
+    docComment:
+        'Factory wrapper for `google_apigee_data_collector`.\n\nA `DataCollector` collects and stores data from the runtime for use in\nAnalytics custom reports or API monetization. Data collectors are scoped to\nan Apigee organization.',
   ),
   CatalogEntry(
     tfType: 'google_apigee_datastore',
@@ -222,7 +223,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ApigeeDatastoreDatastoreConfig',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_apigee_datastore`.',
+    docComment:
+        'Factory wrapper for `google_apigee_datastore`.\n\nAn analytics datastore for an Apigee organization. Datastores configure\nexport destinations for Apigee Analytics data, supporting either Google\nCloud Storage (GCS) or BigQuery as targets.',
   ),
   CatalogEntry(
     tfType: 'google_app_engine_application',
@@ -513,7 +515,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_biglake_catalog`.',
+    docComment:
+        'Factory wrapper for `google_biglake_catalog`.\n\nCatalogs are top-level containers for Databases and Tables.',
   ),
   CatalogEntry(
     tfType: 'google_biglake_database',
@@ -531,7 +534,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_biglake_database`.',
+    docComment:
+        'Factory wrapper for `google_biglake_database`.\n\nDatabases are containers of tables.',
   ),
   CatalogEntry(
     tfType: 'google_biglake_table',
@@ -549,7 +553,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_biglake_table`.',
+    docComment:
+        'Factory wrapper for `google_biglake_table`.\n\nRepresents a table.',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_analytics_hub_data_exchange',
@@ -943,7 +948,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_bigquery_dataset_access`.\n\nA single access entry on a BigQuery dataset, managed as a standalone\nresource (the non-inline counterpart of `GoogleBigqueryDataset.access`).\n\nProvide **exactly one** principal/target per entry:\n- a principal — [userByEmail] / [groupByEmail] / [domain] /\n  [specialGroup] / [iamMember] — paired with [role]; **or**\n- an authorized resource — [view] / [routine] / [authorizedDataset]\n  (these do **not** take a [role]).\n\nExample (grant a group READER):\n```dart\nGoogleBigqueryDatasetAccess(\n  localName: \'analysts_reader\',\n  datasetId: TfArg.ref(dataset.datasetIdRef),\n  role: TfArg.literal(\'READER\'),\n  groupByEmail: TfArg.literal(\'analysts@example.com\'),\n);\n```',
+        'Factory wrapper for `google_bigquery_dataset_access`.\n\nGives dataset access for a single entity. This resource is intended to be\nused in cases where it is not possible to compile a full list of access\nblocks to include in a `google_bigquery_dataset` resource, to enable them to\nbe added separately.\n\n~> **Note:** If this resource is used alongside a `google_bigquery_dataset`\nresource, the dataset resource must either have no defined `access` blocks\nor a `lifecycle` block with `ignore_changes = [access]` so they don\'t fight\nover which accesses should be on the dataset. Additionally, both resource\ncannot be modified in the same apply.\n\nA single access entry on a BigQuery dataset, managed as a standalone\nresource (the non-inline counterpart of `GoogleBigqueryDataset.access`).\n\nProvide **exactly one** principal/target per entry:\n- a principal — [userByEmail] / [groupByEmail] / [domain] /\n  [specialGroup] / [iamMember] — paired with [role]; **or**\n- an authorized resource — [view] / [routine] / [authorizedDataset]\n  (these do **not** take a [role]).\n\nExample (grant a group READER):\n```dart\nGoogleBigqueryDatasetAccess(\n  localName: \'analysts_reader\',\n  datasetId: TfArg.ref(dataset.datasetIdRef),\n  role: TfArg.literal(\'READER\'),\n  groupByEmail: TfArg.literal(\'analysts@example.com\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_dataset_iam_member',
@@ -1480,6 +1485,66 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_bigtable_table_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_binary_authorization_attestor',
+    className: 'GoogleBinaryAuthorizationAttestor',
+    barrel: 'binary_authorization',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_binary_authorization_attestor`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'description',
+      'attestationAuthorityNote',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_binary_authorization_attestor`.\n\nAn attestor that attests to container image artifacts.\n\nBinary Authorization attestor — a trusted authority that signs container\nimages for admission decisions.\n\nEnable `binaryauthorization.googleapis.com` before apply. The\n`attestation_authority_note` block holds the PGP public key material\n(or a Container Analysis note reference) used to verify signatures.\n\nExample:\n```dart\nGoogleBinaryAuthorizationAttestor(\n  localName: \'ci_attestor\',\n  name: TfArg.literal(\'ci-attestor\'),\n  attestationAuthorityNote: BinaryAuthorizationAttestorAttestationAuthorityNote(\n    noteReference: TfArg.literal(\n      \'projects/\$projectId/notes/ci-attestor\',\n    ),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_binary_authorization_attestor_iam_member',
+    className: 'GoogleBinaryAuthorizationAttestorIamMember',
+    barrel: 'binary_authorization',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_binary_authorization_attestor_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'attestor',
+      'role',
+      'member',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_binary_authorization_attestor_iam_member`.\n\nIAM member on a Binary Authorization attestor (`roles/binaryauthorization.attestorViewer`\nor `roles/binaryauthorization.attestorEditor`).\n\nExample:\n```dart\nGoogleBinaryAuthorizationAttestorIamMember(\n  localName: \'attestor_viewer\',\n  attestor: TfArg.ref(attestor.nameRef),\n  role: TfArg.literal(\'roles/binaryauthorization.attestorViewer\'),\n  member: TfArg.literal(\'serviceAccount:ci@\$projectId.iam.gserviceaccount.com\'),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_binary_authorization_policy',
+    className: 'GoogleBinaryAuthorizationPolicy',
+    barrel: 'binary_authorization',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_binary_authorization_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'deletionPolicy',
+      'description',
+      'globalPolicyEvaluationMode',
+      'project',
+      'admissionWhitelistPatterns',
+      'clusterAdmissionRules',
+      'defaultAdmissionRule',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_binary_authorization_policy`.\n\nA policy for container image binary authorization.\n\nProject-wide Binary Authorization policy controlling container image\nadmission for GKE, Cloud Run, and other deploy targets.\n\nEnable `binaryauthorization.googleapis.com` via [GoogleProjectService]\nbefore apply. Pair with [GoogleBinaryAuthorizationAttestor] and reference\nattestor names in `default_admission_rule` / `cluster_admission_rules`.\n\nExample:\n```dart\nGoogleBinaryAuthorizationPolicy(\n  localName: \'project_policy\',\n  defaultAdmissionRule: BinaryAuthorizationPolicyDefaultAdmissionRule(\n    evaluationMode: TfArg.literal(\n      BinaryAuthorizationPolicyEvaluationMode.alwaysAllow,\n    ),\n    enforcementMode: TfArg.literal(\n      BinaryAuthorizationPolicyEnforcementMode.enforced,\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_certificate_manager_certificate',
@@ -2197,7 +2262,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_clouddeploy_custom_target_type`.',
+    docComment:
+        'Factory wrapper for `google_clouddeploy_custom_target_type`.\n\nA Cloud Deploy `CustomTargetType` defines a type of custom target that can\nbe referenced in a Cloud Deploy `Target` in order to facilitate deploying to\nother systems besides the supported runtimes.',
   ),
   CatalogEntry(
     tfType: 'google_clouddeploy_delivery_pipeline',
@@ -2219,7 +2285,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_clouddeploy_delivery_pipeline`.',
+    docComment:
+        'Factory wrapper for `google_clouddeploy_delivery_pipeline`.\n\nA DeliveryPipeline defines a pipeline through which a Skaffold configuration\ncan progress.',
   ),
   CatalogEntry(
     tfType: 'google_clouddeploy_target',
@@ -2248,7 +2315,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_clouddeploy_target`.',
+    docComment:
+        'Factory wrapper for `google_clouddeploy_target`.\n\nThe Cloud Deploy `Target` resource.',
   ),
   CatalogEntry(
     tfType: 'google_cloudfunctions2_function',
@@ -2531,7 +2599,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'source_image_encryption_key.raw_key',
       'source_snapshot_encryption_key.raw_key',
     ],
-    docComment: 'Factory wrapper for `google_compute_disk`.',
+    docComment:
+        'Factory wrapper for `google_compute_disk`.\n\nPersistent disks are durable storage devices that function similarly to the\nphysical disks in a desktop or a server. Compute Engine manages the hardware\nbehind these devices to ensure data redundancy and optimize performance for\nyou. Persistent disks are available as either standard hard disk drives\n(HDD) or solid-state drives (SSD).\n\nPersistent disks are located independently from your virtual machine\ninstances, so you can detach or move persistent disks to keep your data even\nafter you delete your instances. Persistent disk performance scales\nautomatically with size, so you can resize your existing persistent disks or\nadd more persistent disks to an instance to meet your performance and\nstorage space requirements.\n\nAdd a persistent disk to your instance when you need reliable and affordable\nstorage with consistent performance characteristics.',
   ),
   CatalogEntry(
     tfType: 'google_compute_disk_iam_member',
@@ -3273,7 +3342,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_compute_network_firewall_policy`.',
+    docComment:
+        'Factory wrapper for `google_compute_network_firewall_policy`.\n\nThe Compute NetworkFirewallPolicy resource',
   ),
   CatalogEntry(
     tfType: 'google_compute_network_peering',
@@ -3478,7 +3548,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'source_image_encryption_key.rsa_encrypted_key',
       'source_snapshot_encryption_key.raw_key',
     ],
-    docComment: 'Factory wrapper for `google_compute_region_disk`.',
+    docComment:
+        'Factory wrapper for `google_compute_region_disk`.\n\nPersistent disks are durable storage devices that function similarly to the\nphysical disks in a desktop or a server. Compute Engine manages the hardware\nbehind these devices to ensure data redundancy and optimize performance for\nyou. Persistent disks are available as either standard hard disk drives\n(HDD) or solid-state drives (SSD).\n\nPersistent disks are located independently from your virtual machine\ninstances, so you can detach or move persistent disks to keep your data even\nafter you delete your instances. Persistent disk performance scales\nautomatically with size, so you can resize your existing persistent disks or\nadd more persistent disks to an instance to meet your performance and\nstorage space requirements.\n\nAdd a persistent disk to your instance when you need reliable and affordable\nstorage with consistent performance characteristics.',
   ),
   CatalogEntry(
     tfType: 'google_compute_region_health_check',
@@ -3601,7 +3672,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ComputeRegionInstantSnapshotParams',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_compute_region_instant_snapshot`.',
+    docComment:
+        'Factory wrapper for `google_compute_region_instant_snapshot`.\n\nRepresents an instant snapshot resource.\n\nAn instant snapshot is an in-place backup of a disk that can be used to\nrapidly create a new disk in minutes.\n\nInstant snapshots capture data at a specific point in time. They are\noptimized for rapidly restoring captured data to a new disk. Use instant\nsnapshots to quickly recover data in cases where the zone and disk are still\nintact but the data on the disk has been lost or corrupted',
   ),
   CatalogEntry(
     tfType: 'google_compute_region_instant_snapshot_iam_binding',
@@ -3983,7 +4055,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_compute_resource_policy`.\n\nA Compute Engine resource policy. Attach **exactly one** policy kind:\n- [snapshotSchedulePolicy] — scheduled persistent-disk snapshots;\n- [workloadPolicy] — instance placement for HA / throughput workloads;\n- [groupPlacementPolicy] / [instanceSchedulePolicy] /\n  [diskConsistencyGroupPolicy] — passed as structured maps.\n\nExample (daily snapshot schedule, keep 7 days):\n```dart\nGoogleComputeResourcePolicy(\n  localName: \'daily_snapshots\',\n  name: TfArg.literal(\'daily-snapshots\'),\n  region: TfArg.literal(\'us-central1\'),\n  snapshotSchedulePolicy: ComputeResourcePolicySnapshotSchedulePolicy(\n    schedule: ComputeResourcePolicyDailySchedule(\n      daysInCycle: TfArg.literal(1),\n      startTime: TfArg.literal(\'04:00\'),\n    ),\n    retentionPolicy: ComputeResourcePolicyRetentionPolicy(\n      maxRetentionDays: TfArg.literal(7),\n      onSourceDiskDelete: TfArg.literal(\n        ComputeResourcePolicyOnSourceDiskDelete.applyRetentionPolicy),\n    ),\n  ),\n);\n```',
+        'Factory wrapper for `google_compute_resource_policy`.\n\nA policy that can be attached to a resource to specify or schedule actions\non that resource.\n\nA Compute Engine resource policy. Attach **exactly one** policy kind:\n- [snapshotSchedulePolicy] — scheduled persistent-disk snapshots;\n- [workloadPolicy] — instance placement for HA / throughput workloads;\n- [groupPlacementPolicy] / [instanceSchedulePolicy] /\n  [diskConsistencyGroupPolicy] — passed as structured maps.\n\nExample (daily snapshot schedule, keep 7 days):\n```dart\nGoogleComputeResourcePolicy(\n  localName: \'daily_snapshots\',\n  name: TfArg.literal(\'daily-snapshots\'),\n  region: TfArg.literal(\'us-central1\'),\n  snapshotSchedulePolicy: ComputeResourcePolicySnapshotSchedulePolicy(\n    schedule: ComputeResourcePolicyDailySchedule(\n      daysInCycle: TfArg.literal(1),\n      startTime: TfArg.literal(\'04:00\'),\n    ),\n    retentionPolicy: ComputeResourcePolicyRetentionPolicy(\n      maxRetentionDays: TfArg.literal(7),\n      onSourceDiskDelete: TfArg.literal(\n        ComputeResourcePolicyOnSourceDiskDelete.applyRetentionPolicy),\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_compute_route',
@@ -4009,7 +4081,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_compute_route`.',
+    docComment:
+        'Factory wrapper for `google_compute_route`.\n\nRepresents a Route resource.\n\nA route is a rule that specifies how certain packets should be handled by\nthe virtual network. Routes are associated with virtual machines by tag, and\nthe set of routes for a particular virtual machine is called its routing\ntable. For each packet leaving a virtual machine, the system searches that\nvirtual machine\'s routing table for a single best matching route.\n\nRoutes match packets by destination IP address, preferring smaller or more\nspecific ranges over larger ones. If there is a tie, the system selects the\nroute with the smallest priority value. If there is still a tie, it uses the\nlayer three and four packet headers to select just one of the remaining\nmatching routes. The packet is then forwarded as specified by the next_hop\nfield of the winning route -- either to another virtual machine destination,\na virtual machine gateway or a Compute Engine-operated gateway. Packets that\ndo not match any route in the sending virtual machine\'s routing table will\nbe dropped.\n\nA Route resource must have exactly one specification of either\nnextHopGateway, nextHopInstance, nextHopIp, nextHopVpnTunnel, or nextHopIlb.',
   ),
   CatalogEntry(
     tfType: 'google_compute_router',
@@ -4754,7 +4827,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>['DataplexAspectTypeDataClassification'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_dataplex_aspect_type`.',
+    docComment:
+        'Factory wrapper for `google_dataplex_aspect_type`.\n\nAn Aspect Type is a template for creating Aspects.',
   ),
   CatalogEntry(
     tfType: 'google_dataplex_aspect_type_iam_member',
@@ -4839,7 +4913,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>['DataplexDataProductAccessApprovalConfig'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_dataplex_data_product`.',
+    docComment:
+        'Factory wrapper for `google_dataplex_data_product`.\n\nA data product is a curated collection of data assets, packaged to address\nspecific use cases.',
   ),
   CatalogEntry(
     tfType: 'google_dataplex_data_product_data_asset',
@@ -4976,7 +5051,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_dataplex_entry_group`.',
+    docComment:
+        'Factory wrapper for `google_dataplex_entry_group`.\n\nAn Entry Group represents a logical grouping of one or more Entries.',
   ),
   CatalogEntry(
     tfType: 'google_dataplex_entry_group_iam_member',
@@ -5039,7 +5115,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_dataplex_entry_type`.',
+    docComment:
+        'Factory wrapper for `google_dataplex_entry_type`.\n\nAn Entry Type is a template for creating Entries.',
   ),
   CatalogEntry(
     tfType: 'google_dataplex_entry_type_iam_member',
@@ -5078,7 +5155,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_dataplex_glossary`.',
+    docComment:
+        'Factory wrapper for `google_dataplex_glossary`.\n\nRepresents a collection of categories and terms defined by the user.\nGlossary is a top level resource and is the GCP parent resource of all the\ncategories and terms within it.',
   ),
   CatalogEntry(
     tfType: 'google_dataplex_glossary_category',
@@ -5099,7 +5177,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_dataplex_glossary_category`.',
+    docComment:
+        'Factory wrapper for `google_dataplex_glossary_category`.\n\nRepresents a collection of categories and terms within a Glossary that are\nrelated to each other.',
   ),
   CatalogEntry(
     tfType: 'google_dataplex_glossary_iam_member',
@@ -5139,7 +5218,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_dataplex_glossary_term`.',
+    docComment:
+        'Factory wrapper for `google_dataplex_glossary_term`.\n\nRepresents a collection of terms within a Glossary that are related to each\nother.',
   ),
   CatalogEntry(
     tfType: 'google_dataplex_lake',
@@ -5159,7 +5239,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_dataplex_lake`.',
+    docComment:
+        'Factory wrapper for `google_dataplex_lake`.\n\nOnly used to generate IAM resources',
   ),
   CatalogEntry(
     tfType: 'google_dataplex_lake_iam_member',
@@ -5301,7 +5382,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'DialogflowAgentTier',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_dialogflow_agent`.',
+    docComment:
+        'Factory wrapper for `google_dialogflow_agent`.\n\nA Dialogflow agent is a virtual agent that handles conversations with your\nend-users. It is a natural language understanding module that understands\nthe nuances of human language. Dialogflow translates end-user text or audio\nduring a conversation to structured data that your apps and services can\nunderstand. You design and build a Dialogflow agent to handle the types of\nconversations required for your system.',
   ),
   CatalogEntry(
     tfType: 'google_dialogflow_sip_trunk',
@@ -5612,7 +5694,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_document_ai_processor`.',
+    docComment:
+        'Factory wrapper for `google_document_ai_processor`.\n\nThe first-class citizen for Document AI. Each processor defines how to\nextract structural information from a document.',
   ),
   CatalogEntry(
     tfType: 'google_essential_contacts_contact',
@@ -5630,7 +5713,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_essential_contacts_contact`.',
+    docComment:
+        'Factory wrapper for `google_essential_contacts_contact`.\n\nA contact that will receive notifications from Google Cloud.',
   ),
   CatalogEntry(
     tfType: 'google_eventarc_channel',
@@ -6363,7 +6447,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_gemini_gemini_gcp_enablement_setting`.',
+        'Factory wrapper for `google_gemini_gemini_gcp_enablement_setting`.\n\nThe resource for managing GeminiGcpEnablement settings for Admin Control.',
   ),
   CatalogEntry(
     tfType: 'google_gemini_logging_setting',
@@ -6382,7 +6466,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_gemini_logging_setting`.',
+    docComment:
+        'Factory wrapper for `google_gemini_logging_setting`.\n\nThe resource for managing Logging settings for Admin Control.',
   ),
   CatalogEntry(
     tfType: 'google_gemini_release_channel_setting',
@@ -6400,7 +6485,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_gemini_release_channel_setting`.',
+    docComment:
+        'Factory wrapper for `google_gemini_release_channel_setting`.\n\nThe resource for managing ReleaseChannel settings for Admin Control.',
   ),
   CatalogEntry(
     tfType: 'google_gke_backup_backup_channel',
@@ -6639,7 +6725,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_healthcare_consent_store`.',
+    docComment:
+        'Factory wrapper for `google_healthcare_consent_store`.\n\nThe Consent Management API is a tool for tracking user consents and the\ndocumentation associated with the consents.',
   ),
   CatalogEntry(
     tfType: 'google_healthcare_consent_store_iam_member',
@@ -6676,7 +6763,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_healthcare_dataset`.',
+    docComment:
+        'Factory wrapper for `google_healthcare_dataset`.\n\nA Healthcare `Dataset` is a toplevel logical grouping of `dicomStores`,\n`fhirStores` and `hl7V2Stores`.',
   ),
   CatalogEntry(
     tfType: 'google_healthcare_dataset_iam_member',
@@ -6704,7 +6792,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     constructorParams: <String>['localName', 'name', 'dataset', 'labels'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_healthcare_dicom_store`.',
+    docComment:
+        'Factory wrapper for `google_healthcare_dicom_store`.\n\nA DicomStore is a datastore inside a Healthcare dataset that conforms to the\nDICOM (https://www.dicomstandard.org/about/) standard for Healthcare\ninformation exchange',
   ),
   CatalogEntry(
     tfType: 'google_healthcare_dicom_store_iam_member',
@@ -6743,7 +6832,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'HealthcareHl7V2StoreParserConfig',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_healthcare_hl7_v2_store`.',
+    docComment:
+        'Factory wrapper for `google_healthcare_hl7_v2_store`.\n\nA Hl7V2Store is a datastore inside a Healthcare dataset that conforms to the\nFHIR (https://www.hl7.org/hl7V2/STU3/) standard for Healthcare information\nexchange',
   ),
   CatalogEntry(
     tfType: 'google_healthcare_hl7_v2_store_iam_member',
@@ -7765,7 +7855,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_network_connectivity_hub`.',
+    docComment:
+        'Factory wrapper for `google_network_connectivity_hub`.\n\nThe NetworkConnectivity Hub resource',
   ),
   CatalogEntry(
     tfType: 'google_network_connectivity_transport',
@@ -7817,7 +7908,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>['NetworkSecurityAddressGroupType'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_network_security_address_group`.',
+    docComment:
+        'Factory wrapper for `google_network_security_address_group`.\n\nAddressGroup is a resource that specifies how a collection of IP/DNS used in\nFirewall Policy.',
   ),
   CatalogEntry(
     tfType: 'google_network_security_ull_mirroring_collector',
@@ -7921,7 +8013,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_observability_trace_scope`.',
+    docComment:
+        'Factory wrapper for `google_observability_trace_scope`.\n\nA trace scope is a collection of resources whose traces are queried together',
   ),
   CatalogEntry(
     tfType: 'google_oracle_database_autonomous_database',
@@ -8208,6 +8301,62 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_oracle_database_odb_subnet`.\n\nAn OdbSubnet resource which represents a subnet under an OdbNetwork.\n\nOracle Database@Google Cloud ODB subnet under an\n[GoogleOracleDatabaseOdbNetwork].\n\nEnable `oracledatabase.googleapis.com` before apply. Set [odbnetwork] to\nthe parent network\'s `odb_network_id` segment in the same [location].',
   ),
   CatalogEntry(
+    tfType: 'google_os_config_os_policy_assignment',
+    className: 'GoogleOsConfigOsPolicyAssignment',
+    barrel: 'os_config',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_os_config_os_policy_assignment`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'osPolicies',
+      'instanceFilter',
+      'rollout',
+      'description',
+      'project',
+      'deletionPolicy',
+      'skipAwaitRollout',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_os_config_os_policy_assignment`.\n\nOS Config OS policy assignment — bundles OS policies and rolls them out\nto a filtered set of VM instances in a zone.\n\nEnable `osconfig.googleapis.com` via [GoogleProjectService] before apply.\nRequires `location` (zone), `name`, `os_policies`, `instance_filter`, and\n`rollout` blocks.\n\nExample:\n```dart\nGoogleOsConfigOsPolicyAssignment(\n  localName: \'baseline\',\n  name: TfArg.literal(\'baseline-policies\'),\n  location: TfArg.literal(\'us-central1-a\'),\n  osPolicies: [/* OsConfigOsPolicyAssignmentOsPolicies helpers */],\n  instanceFilter: OsConfigOsPolicyAssignmentInstanceFilter(\n    all: TfArg.literal(true),\n  ),\n  rollout: OsConfigOsPolicyAssignmentRollout(\n    disruptionBudget: OsConfigOsPolicyAssignmentRolloutDisruptionBudget(\n      percent: TfArg.literal(100),\n    ),\n    minWaitDuration: TfArg.literal(\'0s\'),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_os_config_patch_deployment',
+    className: 'GoogleOsConfigPatchDeployment',
+    barrel: 'os_config',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_os_config_patch_deployment`.',
+    constructorParams: <String>[
+      'localName',
+      'patchDeploymentId',
+      'description',
+      'instanceFilter',
+      'patchConfig',
+      'schedule',
+      'duration',
+      'rollout',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[
+      'OsConfigPatchDeploymentSchedule',
+      'OsConfigPatchDeploymentOneTimeSchedule',
+      'OsConfigPatchDeploymentRecurringSchedule',
+      'OsConfigPatchDeploymentRecurringScheduleTimeZone',
+      'OsConfigPatchDeploymentRecurringScheduleTimeOfDay',
+      'OsConfigPatchDeploymentRecurringScheduleWeekly',
+      'OsConfigPatchDeploymentRecurringScheduleMonthly',
+      'OsConfigPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonth',
+      'OsConfigPatchDeploymentDayOfWeek',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_os_config_patch_deployment`.\n\nPatch deployments are configurations that individual patch jobs use to\ncomplete a patch. These configurations include instance filter, package\nrepository settings, and a schedule.\n\nOS Config patch deployment — schedules OS patch jobs against a filtered\nset of VM instances (one-time or recurring).\n\nEnable `osconfig.googleapis.com` before apply. Choose exactly one\nschedule via [OsConfigPatchDeploymentSchedule]:\n- [OsConfigPatchDeploymentOneTimeSchedule]\n- [OsConfigPatchDeploymentRecurringSchedule]\n\nExample:\n```dart\nGoogleOsConfigPatchDeployment(\n  localName: \'monthly_patches\',\n  patchDeploymentId: TfArg.literal(\'monthly-patches\'),\n  description: TfArg.literal(\'Monthly security patches\'),\n  instanceFilter: OsConfigPatchDeploymentInstanceFilter(\n    all: TfArg.literal(true),\n  ),\n  patchConfig: OsConfigPatchDeploymentPatchConfig(\n    migInstancesAllowed: TfArg.literal(true),\n  ),\n  schedule: OsConfigPatchDeploymentOneTimeSchedule(\n    executeTime: TfArg.literal(\'2026-07-01T02:00:00Z\'),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_parameter_manager_parameter',
     className: 'GoogleParameterManagerParameter',
     barrel: 'parameter_manager',
@@ -8224,7 +8373,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>['ParameterManagerParameterFormat'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_parameter_manager_parameter`.',
+    docComment:
+        'Factory wrapper for `google_parameter_manager_parameter`.\n\nA Parameter resource is a logical parameter.',
   ),
   CatalogEntry(
     tfType: 'google_parameter_manager_parameter_version',
@@ -8244,7 +8394,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>['parameter_data'],
     docComment:
-        'Factory wrapper for `google_parameter_manager_parameter_version`.',
+        'Factory wrapper for `google_parameter_manager_parameter_version`.\n\nA Parameter Version resource that stores the actual value of the parameter.',
   ),
   CatalogEntry(
     tfType: 'google_parameter_manager_regional_parameter',
@@ -8266,7 +8416,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>['ParameterManagerRegionalParameterFormat'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_parameter_manager_regional_parameter`.',
+        'Factory wrapper for `google_parameter_manager_regional_parameter`.\n\nA Regional Parameter is a logical regional parameter.',
   ),
   CatalogEntry(
     tfType: 'google_parameter_manager_regional_parameter_version',
@@ -8286,7 +8436,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>['parameter_data'],
     docComment:
-        'Factory wrapper for `google_parameter_manager_regional_parameter_version`.',
+        'Factory wrapper for `google_parameter_manager_regional_parameter_version`.\n\nA Regional Parameter Version resource that stores the actual value of the\nregional parameter.',
   ),
   CatalogEntry(
     tfType: 'google_privateca_ca_pool',
@@ -8703,7 +8853,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_secret_manager_regional_secret`.',
+    docComment:
+        'Factory wrapper for `google_secret_manager_regional_secret`.\n\nA Regional Secret is a logical secret whose value and versions can be\ncreated and accessed within a region only.',
   ),
   CatalogEntry(
     tfType: 'google_secret_manager_regional_secret_iam_member',
@@ -8744,7 +8895,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>['secret_data'],
     docComment:
-        'Factory wrapper for `google_secret_manager_regional_secret_version`.',
+        'Factory wrapper for `google_secret_manager_regional_secret_version`.\n\nA regional secret version resource.',
   ),
   CatalogEntry(
     tfType: 'google_secret_manager_secret',
@@ -8899,7 +9050,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_service_directory_endpoint`.',
+    docComment:
+        'Factory wrapper for `google_service_directory_endpoint`.\n\nAn individual endpoint that provides a service.',
   ),
   CatalogEntry(
     tfType: 'google_service_directory_namespace',
@@ -8917,7 +9069,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_service_directory_namespace`.',
+    docComment:
+        'Factory wrapper for `google_service_directory_namespace`.\n\nA container for `services`. Namespaces allow administrators to group\nservices together and define permissions for a collection of services.',
   ),
   CatalogEntry(
     tfType: 'google_service_directory_namespace_iam_member',
@@ -8953,7 +9106,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_service_directory_service`.',
+    docComment:
+        'Factory wrapper for `google_service_directory_service`.\n\nAn individual service. A service contains a name and optional metadata.',
   ),
   CatalogEntry(
     tfType: 'google_service_directory_service_iam_member',
@@ -9365,7 +9519,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     constructorParams: <String>['localName', 'parent', 'tagValue'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_tags_tag_binding`.',
+    docComment:
+        'Factory wrapper for `google_tags_tag_binding`.\n\nA TagBinding represents a connection between a TagValue and a cloud resource\n(currently project, folder, or organization). Once a TagBinding is created,\nthe TagValue is applied to all the descendants of the cloud resource.',
   ),
   CatalogEntry(
     tfType: 'google_tags_tag_key',
@@ -9385,7 +9540,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>['TagsTagKeyPurpose'],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_tags_tag_key`.',
+    docComment:
+        'Factory wrapper for `google_tags_tag_key`.\n\nA TagKey, used to group a set of TagValues.',
   ),
   CatalogEntry(
     tfType: 'google_tags_tag_key_iam_member',
@@ -9419,7 +9575,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_tags_tag_value`.',
+    docComment:
+        'Factory wrapper for `google_tags_tag_value`.\n\nA TagValue is a child of a particular TagKey. TagValues are used to group\ncloud resources for the purpose of controlling them using policies.',
   ),
   CatalogEntry(
     tfType: 'google_tags_tag_value_iam_member',
@@ -9467,7 +9624,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_vertex_ai_dataset`.',
+    docComment:
+        'Factory wrapper for `google_vertex_ai_dataset`.\n\nA collection of DataItems and Annotations on them.',
   ),
   CatalogEntry(
     tfType: 'google_vertex_ai_feature_group',
@@ -9486,7 +9644,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_vertex_ai_feature_group`.',
+    docComment:
+        'Factory wrapper for `google_vertex_ai_feature_group`.\n\nVertex AI Feature Group.',
   ),
   CatalogEntry(
     tfType: 'google_vertex_ai_tensorboard',
@@ -9506,7 +9665,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_vertex_ai_tensorboard`.',
+    docComment:
+        'Factory wrapper for `google_vertex_ai_tensorboard`.\n\nTensorboard is a physical database that stores users\' training metrics. A\ndefault Tensorboard is provided in each region of a GCP project. If needed\nusers can also create extra Tensorboards in their projects.',
   ),
   CatalogEntry(
     tfType: 'google_vpc_access_connector',
@@ -9559,6 +9719,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'WorkflowsWorkflowExecutionHistoryLevel',
     ],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_workflows_workflow`.',
+    docComment:
+        'Factory wrapper for `google_workflows_workflow`.\n\nWorkflow program to be executed by Workflows.',
   ),
 ];

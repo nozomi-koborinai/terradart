@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleComputeNetworkFirewallPolicySensitive = <String>{};
 
 /// Factory wrapper for `google_compute_network_firewall_policy`.
+///
+/// The Compute NetworkFirewallPolicy resource
 final class GoogleComputeNetworkFirewallPolicy extends Resource {
   static const String tfType = 'google_compute_network_firewall_policy';
 

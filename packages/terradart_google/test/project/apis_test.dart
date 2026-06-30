@@ -89,6 +89,27 @@ void main() {
       expect(apis.single.argMap['service']!.toTfJson(), 'redis.googleapis.com');
       expect(apis.single.localName, 'api_redis');
     });
+
+    test('osConfig barrel includes osconfig.googleapis.com', () {
+      final apis = Apis.required(barrels: [Barrels.osConfig]);
+      expect(apis, hasLength(1));
+      expect(
+        apis.single.argMap['service']!.toTfJson(),
+        'osconfig.googleapis.com',
+      );
+      expect(apis.single.localName, 'api_osconfig');
+    });
+
+    test('binaryAuthorization barrel includes binaryauthorization.googleapis.com',
+        () {
+      final apis = Apis.required(barrels: [Barrels.binaryAuthorization]);
+      expect(apis, hasLength(1));
+      expect(
+        apis.single.argMap['service']!.toTfJson(),
+        'binaryauthorization.googleapis.com',
+      );
+      expect(apis.single.localName, 'api_binaryauthorization');
+    });
   });
 
   group('Apis.enable', () {
@@ -200,6 +221,8 @@ void main() {
       expect(Barrels.alloydb.catalogName, 'alloydb');
       expect(Barrels.filestore.catalogName, 'filestore');
       expect(Barrels.redis.catalogName, 'redis');
+      expect(Barrels.osConfig.catalogName, 'os_config');
+      expect(Barrels.binaryAuthorization.catalogName, 'binary_authorization');
     });
   });
 }

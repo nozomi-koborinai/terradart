@@ -1,0 +1,235 @@
+outputDir: os_config
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// OS Config patch deployment — schedules OS patch jobs against a filtered
+  /// set of VM instances (one-time or recurring).
+  ///
+  /// Enable `osconfig.googleapis.com` before apply. Choose exactly one
+  /// schedule via [OsConfigPatchDeploymentSchedule]:
+  /// - [OsConfigPatchDeploymentOneTimeSchedule]
+  /// - [OsConfigPatchDeploymentRecurringSchedule]
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleOsConfigPatchDeployment(
+  ///   localName: 'monthly_patches',
+  ///   patchDeploymentId: TfArg.literal('monthly-patches'),
+  ///   description: TfArg.literal('Monthly security patches'),
+  ///   instanceFilter: OsConfigPatchDeploymentInstanceFilter(
+  ///     all: TfArg.literal(true),
+  ///   ),
+  ///   patchConfig: OsConfigPatchDeploymentPatchConfig(
+  ///     migInstancesAllowed: TfArg.literal(true),
+  ///   ),
+  ///   schedule: OsConfigPatchDeploymentOneTimeSchedule(
+  ///     executeTime: TfArg.literal('2026-07-01T02:00:00Z'),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - patch_deployment_id
+  - description
+  - instance_filter
+  - patch_config
+  - schedule
+  - duration
+  - rollout
+  - project
+  - deletion_policy
+
+argMapOrder:
+  - patch_deployment_id
+  - description
+  - instance_filter
+  - patch_config
+  - duration
+  - rollout
+  - project
+  - deletion_policy
+  - schedule
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+prelude: |
+  // ===========================================================================
+  // OsConfigPatchDeploymentSchedule — sealed (OneTime | Recurring)
+  // ===========================================================================
+
+  /// Choice of patch schedule. Sealed so exactly one of
+  /// `one_time_schedule` / `recurring_schedule` is emitted.
+  sealed class OsConfigPatchDeploymentSchedule {
+    const OsConfigPatchDeploymentSchedule();
+
+    String get blockKey;
+
+    List<Map<String, Object?>> encode();
+  }
+
+  /// `one_time_schedule` block — run the patch job once at [executeTime].
+  @immutable
+  final class OsConfigPatchDeploymentOneTimeSchedule
+      extends OsConfigPatchDeploymentSchedule {
+    const OsConfigPatchDeploymentOneTimeSchedule({required this.executeTime});
+
+    final TfArg<String> executeTime;
+
+    @override
+    String get blockKey => 'one_time_schedule';
+
+    @override
+    List<Map<String, Object?>> encode() => [
+          {'execute_time': executeTime.toTfJson()},
+        ];
+  }
+
+  /// `recurring_schedule` block — run patch jobs on a cadence.
+  @immutable
+  final class OsConfigPatchDeploymentRecurringSchedule
+      extends OsConfigPatchDeploymentSchedule {
+    const OsConfigPatchDeploymentRecurringSchedule({
+      required this.timeZone,
+      this.startTime,
+      this.endTime,
+      this.timeOfDay,
+      this.weekly,
+      this.monthly,
+    });
+
+    final OsConfigPatchDeploymentRecurringScheduleTimeZone timeZone;
+    final TfArg<String>? startTime;
+    final TfArg<String>? endTime;
+    final OsConfigPatchDeploymentRecurringScheduleTimeOfDay? timeOfDay;
+    final OsConfigPatchDeploymentRecurringScheduleWeekly? weekly;
+    final OsConfigPatchDeploymentRecurringScheduleMonthly? monthly;
+
+    @override
+    String get blockKey => 'recurring_schedule';
+
+    @override
+    List<Map<String, Object?>> encode() => [
+          {
+            'time_zone': [timeZone.encode()],
+            if (startTime != null) 'start_time': startTime!.toTfJson(),
+            if (endTime != null) 'end_time': endTime!.toTfJson(),
+            if (timeOfDay != null) 'time_of_day': [timeOfDay!.encode()],
+            if (weekly != null) 'weekly': [weekly!.encode()],
+            if (monthly != null) 'monthly': [monthly!.encode()],
+          },
+        ];
+  }
+
+  @immutable
+  final class OsConfigPatchDeploymentRecurringScheduleTimeZone {
+    const OsConfigPatchDeploymentRecurringScheduleTimeZone({
+      required this.id,
+      this.version,
+    });
+
+    final TfArg<String> id;
+    final TfArg<String>? version;
+
+    Map<String, Object?> encode() => {
+          'id': id.toTfJson(),
+          if (version != null) 'version': version!.toTfJson(),
+        };
+  }
+
+  @immutable
+  final class OsConfigPatchDeploymentRecurringScheduleTimeOfDay {
+    const OsConfigPatchDeploymentRecurringScheduleTimeOfDay({
+      required this.hours,
+      required this.minutes,
+      required this.seconds,
+      required this.nanos,
+    });
+
+    final TfArg<num> hours;
+    final TfArg<num> minutes;
+    final TfArg<num> seconds;
+    final TfArg<num> nanos;
+
+    Map<String, Object?> encode() => {
+          'hours': hours.toTfJson(),
+          'minutes': minutes.toTfJson(),
+          'seconds': seconds.toTfJson(),
+          'nanos': nanos.toTfJson(),
+        };
+  }
+
+  @immutable
+  final class OsConfigPatchDeploymentRecurringScheduleWeekly {
+    const OsConfigPatchDeploymentRecurringScheduleWeekly({
+      required this.dayOfWeek,
+    });
+
+    final OsConfigPatchDeploymentDayOfWeek dayOfWeek;
+
+    Map<String, Object?> encode() => {
+          'day_of_week': dayOfWeek.terraformValue,
+        };
+  }
+
+  @immutable
+  final class OsConfigPatchDeploymentRecurringScheduleMonthly {
+    const OsConfigPatchDeploymentRecurringScheduleMonthly.weekDayOfMonth({
+      required this.weekDayOfMonth,
+    }) : monthDay = null;
+
+    const OsConfigPatchDeploymentRecurringScheduleMonthly.monthDay({
+      required this.monthDay,
+    }) : weekDayOfMonth = null;
+
+    final OsConfigPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonth?
+        weekDayOfMonth;
+    final TfArg<num>? monthDay;
+
+    Map<String, Object?> encode() => {
+          if (weekDayOfMonth != null)
+            'week_day_of_month': [weekDayOfMonth!.encode()],
+          if (monthDay != null) 'month_day': monthDay!.toTfJson(),
+        };
+  }
+
+  @immutable
+  final class OsConfigPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonth {
+    const OsConfigPatchDeploymentRecurringScheduleMonthlyWeekDayOfMonth({
+      required this.weekOfMonth,
+      required this.dayOfWeek,
+    });
+
+    final TfArg<num> weekOfMonth;
+    final OsConfigPatchDeploymentDayOfWeek dayOfWeek;
+
+    Map<String, Object?> encode() => {
+          'week_of_month': weekOfMonth.toTfJson(),
+          'day_of_week': dayOfWeek.terraformValue,
+        };
+  }
+
+  enum OsConfigPatchDeploymentDayOfWeek implements TerraformEnum {
+    monday('MONDAY'),
+    tuesday('TUESDAY'),
+    wednesday('WEDNESDAY'),
+    thursday('THURSDAY'),
+    friday('FRIDAY'),
+    saturday('SATURDAY'),
+    sunday('SUNDAY');
+
+    const OsConfigPatchDeploymentDayOfWeek(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+customSlots:
+  schedule:
+    paramDeclaration: 'required OsConfigPatchDeploymentSchedule schedule'
+    argMapEntry: 'schedule.blockKey: TfArg.literal(schedule.encode()),'
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');

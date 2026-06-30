@@ -33,6 +33,16 @@ class ComputeRegionInstantSnapshotParams {
 }
 
 /// Factory wrapper for `google_compute_region_instant_snapshot`.
+///
+/// Represents an instant snapshot resource.
+///
+/// An instant snapshot is an in-place backup of a disk that can be used to
+/// rapidly create a new disk in minutes.
+///
+/// Instant snapshots capture data at a specific point in time. They are
+/// optimized for rapidly restoring captured data to a new disk. Use instant
+/// snapshots to quickly recover data in cases where the zone and disk are still
+/// intact but the data on the disk has been lost or corrupted
 final class GoogleComputeRegionInstantSnapshot extends Resource {
   static const String tfType = 'google_compute_region_instant_snapshot';
 

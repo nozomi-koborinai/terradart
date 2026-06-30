@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleVertexAiFeatureGroupSensitive = <String>{};
 
 /// Factory wrapper for `google_vertex_ai_feature_group`.
+///
+/// Vertex AI Feature Group.
 final class GoogleVertexAiFeatureGroup extends Resource {
   static const String tfType = 'google_vertex_ai_feature_group';
 

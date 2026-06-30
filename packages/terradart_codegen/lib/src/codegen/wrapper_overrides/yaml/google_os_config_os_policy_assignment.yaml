@@ -1,0 +1,46 @@
+outputDir: os_config
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// OS Config OS policy assignment — bundles OS policies and rolls them out
+  /// to a filtered set of VM instances in a zone.
+  ///
+  /// Enable `osconfig.googleapis.com` via [GoogleProjectService] before apply.
+  /// Requires `location` (zone), `name`, `os_policies`, `instance_filter`, and
+  /// `rollout` blocks.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleOsConfigOsPolicyAssignment(
+  ///   localName: 'baseline',
+  ///   name: TfArg.literal('baseline-policies'),
+  ///   location: TfArg.literal('us-central1-a'),
+  ///   osPolicies: [/* OsConfigOsPolicyAssignmentOsPolicies helpers */],
+  ///   instanceFilter: OsConfigOsPolicyAssignmentInstanceFilter(
+  ///     all: TfArg.literal(true),
+  ///   ),
+  ///   rollout: OsConfigOsPolicyAssignmentRollout(
+  ///     disruptionBudget: OsConfigOsPolicyAssignmentRolloutDisruptionBudget(
+  ///       percent: TfArg.literal(100),
+  ///     ),
+  ///     minWaitDuration: TfArg.literal('0s'),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - os_policies
+  - instance_filter
+  - rollout
+  - description
+  - project
+  - deletion_policy
+  - skip_await_rollout
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -30,6 +30,10 @@ enum ApigeeDataCollectorDeletionPolicy implements TerraformEnum {
 }
 
 /// Factory wrapper for `google_apigee_data_collector`.
+///
+/// A `DataCollector` collects and stores data from the runtime for use in
+/// Analytics custom reports or API monetization. Data collectors are scoped to
+/// an Apigee organization.
 final class GoogleApigeeDataCollector extends Resource {
   static const String tfType = 'google_apigee_data_collector';
 

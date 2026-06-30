@@ -66,6 +66,7 @@ workspace:
   - examples/storage_quickstart
   - examples/tags_quickstart
   - examples/vertex_ai_quickstart
+  - examples/vm_compliance_quickstart
   - examples/workflows_quickstart
   - examples/app_engine_quickstart
   - cookbook/single-project-app

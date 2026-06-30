@@ -9,6 +9,8 @@ const Set<String> _googleParameterManagerParameterVersionSensitive = <String>{
 };
 
 /// Factory wrapper for `google_parameter_manager_parameter_version`.
+///
+/// A Parameter Version resource that stores the actual value of the parameter.
 final class GoogleParameterManagerParameterVersion extends Resource {
   static const String tfType = 'google_parameter_manager_parameter_version';
 
