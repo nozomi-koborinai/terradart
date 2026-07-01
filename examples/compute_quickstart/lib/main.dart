@@ -100,58 +100,6 @@ final class NetworkStack extends Stack {
     );
     add(mainVpc);
 
-    final peerVpc = GoogleComputeNetwork(
-      localName: 'peer',
-      name: TfArg.literal('peer-vpc'),
-      autoCreateSubnetworks: TfArg.literal(false),
-      routingMode: TfArg.literal(RoutingMode.regional),
-      dependsOn: apiDeps,
-    );
-    add(peerVpc);
-
-    final mainToPeerPeering = add(
-      GoogleComputeNetworkPeering(
-        localName: 'main_to_peer',
-        name: TfArg.literal('main-to-peer'),
-        network: TfArg.ref(mainVpc.id),
-        peerNetwork: TfArg.ref(peerVpc.id),
-        dependsOn: [
-          ResourceDependency(mainVpc),
-          ResourceDependency(peerVpc),
-        ],
-      ),
-    );
-
-    add(
-      GoogleComputeNetworkPeering(
-        localName: 'peer_to_main',
-        name: TfArg.literal('peer-to-main'),
-        network: TfArg.ref(peerVpc.id),
-        peerNetwork: TfArg.ref(mainVpc.id),
-        // Serialize after the reverse peering: creating both directions
-        // concurrently trips "peering operation in progress".
-        dependsOn: [
-          ResourceDependency(peerVpc),
-          ResourceDependency(mainVpc),
-          ResourceDependency(mainToPeerPeering),
-        ],
-      ),
-    );
-
-    add(
-      GoogleComputeNetworkPeeringRoutesConfig(
-        localName: 'main_peer_routes',
-        network: TfArg.ref(mainVpc.id),
-        peering: TfArg.literal('main-to-peer'),
-        importCustomRoutes: TfArg.literal(false),
-        exportCustomRoutes: TfArg.literal(false),
-        dependsOn: [
-          ResourceDependency(mainVpc),
-          ResourceDependency(mainToPeerPeering),
-        ],
-      ),
-    );
-
     add(
       GoogleComputeAddress(
         localName: 'lb_vip',
