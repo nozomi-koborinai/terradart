@@ -287,8 +287,10 @@ final class DataplexCatalogStack extends Stack {
             'type': 'SOURCE',
           },
           {
-            'name':
-                'projects/$projectId/locations/us-central1/entryGroups/@dataplex/entries/projects/$projectId/locations/us-central1/glossaries/terradart-glossary/terms/terradart-mrr',
+            'name': 'projects/${current.number.interpolation}/locations/us-central1'
+                '/entryGroups/@dataplex/entries'
+                '/projects/${current.number.interpolation}/locations/us-central1'
+                '/glossaries/terradart-glossary/terms/terradart-mrr',
             'type': 'TARGET',
           },
         ]),
