@@ -62,3 +62,19 @@ GoogleSecretManagerRegionalSecretVersion: regional secrets lack a write-only dat
 # in parameter_manager_quickstart; only the version factories are deferred here.
 GoogleParameterManagerParameterVersion: parameter versions carry the payload in the sensitive parameter_data field; synth rejects a literal there and a Terraform variable would break the applyable parameter_manager_quickstart, so the version factory is tracked here while the global parameter ships in the example
 GoogleParameterManagerRegionalParameterVersion: regional parameter versions carry the payload in the sensitive parameter_data field; same constraint as the global version, so the regional version factory is tracked here while the regional parameter ships in parameter_manager_quickstart
+
+# Compute networking factories that cannot `terraform apply` against a
+# standalone apply-smoke project. compute_quickstart keeps the applyable
+# surface (VPC / subnet / router / NAT / address / instance / disk /
+# filestore / IAM) and drops these because none can be provisioned
+# deterministically in the sweep.
+GoogleComputeSharedVpcHostProject: enabling a Shared VPC host needs an organization — "The project has no organization" on a standalone apply-smoke project
+GoogleComputeSharedVpcServiceProject: attaches a service project to a Shared VPC host, which requires an organization the standalone apply-smoke project lacks
+GoogleComputeInterconnect: a Dedicated Interconnect needs a real physical cross-connect (a provisioned circuit / customerName); it cannot be created in a bare project
+GoogleComputeInterconnectAttachment: a VLAN attachment requires a provisioned Interconnect, which needs a physical circuit absent from the apply-smoke project
+GoogleComputeExternalVpnGateway: only useful paired with a VPN tunnel to an external peer; the tunnels are dropped, so the external gateway is dropped with them
+GoogleComputeVpnGateway: a classic target VPN gateway needs ESP/UDP forwarding rules before a tunnel can be created; that scaffolding is out of scope for the applyable example
+GoogleComputeHaVpnGateway: HA VPN tunnels need a Cloud Router with BGP sessions; the extra interface/peer wiring is out of scope for the applyable example
+GoogleComputeVpnTunnel: VPN tunnels require a configured gateway (forwarding rules for classic, Cloud Router BGP for HA), neither of which can be provisioned deterministically in the sweep
+GoogleComputeNetworkPeering: bidirectional VPC peering races on GCP's async peering operation ("peering operation in progress") even when serialized, so it cannot apply deterministically
+GoogleComputeNetworkPeeringRoutesConfig: configures routes on a VPC peering; with the peering dropped there is nothing to attach it to

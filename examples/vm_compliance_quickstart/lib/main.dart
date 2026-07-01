@@ -6,6 +6,7 @@ library;
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/binary_authorization.dart';
+import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/os_config.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
@@ -74,15 +75,27 @@ final class VmComplianceStack extends Stack {
       ),
     );
 
+    // The image-signing service account granted the attestor viewer role.
+    // Create it in-stack — a member pointing at a non-existent SA fails apply
+    // with "setIamPolicy: service account does not exist".
+    final ciSigner = add(
+      GoogleServiceAccount(
+        localName: 'ci_signer',
+        accountId: TfArg.literal('ci-signer'),
+        displayName: TfArg.literal('CI image signer'),
+      ),
+    );
+
     add(
       GoogleBinaryAuthorizationAttestorIamMember(
         localName: 'ci_attestor_viewer',
         attestor: TfArg.ref(attestor.nameRef),
-        role: TfArg.literal('roles/binaryauthorization.attestorViewer'),
-        member: TfArg.literal(
-          'serviceAccount:ci-signer@$projectId.iam.gserviceaccount.com',
-        ),
-        dependsOn: [ResourceDependency(attestor)],
+        role: TfArg.literal('roles/viewer'),
+        member: TfArg.ref(ciSigner.iamMember),
+        dependsOn: [
+          ResourceDependency(attestor),
+          ResourceDependency(ciSigner),
+        ],
       ),
     );
 
