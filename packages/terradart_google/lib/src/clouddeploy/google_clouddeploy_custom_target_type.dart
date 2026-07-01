@@ -7,6 +7,10 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleClouddeployCustomTargetTypeSensitive = <String>{};
 
 /// Factory wrapper for `google_clouddeploy_custom_target_type`.
+///
+/// A Cloud Deploy `CustomTargetType` defines a type of custom target that can
+/// be referenced in a Cloud Deploy `Target` in order to facilitate deploying to
+/// other systems besides the supported runtimes.
 final class GoogleClouddeployCustomTargetType extends Resource {
   static const String tfType = 'google_clouddeploy_custom_target_type';
 

@@ -246,6 +246,18 @@ final Map<String, Object Function()> _syntheticInstances = {
         ),
       ]),
 
+  // --- ComputeRouteNextHop (5) — compute_route -----------------------------
+  'ComputeRouteGatewayNextHop': () =>
+      ComputeRouteGatewayNextHop(nextHopGateway: TfArg.literal('default-internet-gateway')),
+  'ComputeRouteIpNextHop': () =>
+      ComputeRouteIpNextHop(nextHopIp: TfArg.literal('10.0.0.1')),
+  'ComputeRouteInstanceNextHop': () =>
+      ComputeRouteInstanceNextHop(nextHopInstance: TfArg.literal('mock-instance')),
+  'ComputeRouteIlbNextHop': () =>
+      ComputeRouteIlbNextHop(nextHopIlb: TfArg.literal('projects/p/regions/r/forwardingRules/fr')),
+  'ComputeRouteVpnTunnelNextHop': () =>
+      ComputeRouteVpnTunnelNextHop(nextHopVpnTunnel: TfArg.literal('projects/p/regions/r/vpnTunnels/t')),
+
   // --- BigqueryConnectionBackend (7) — bigquery_connection -----------------
   'BigqueryConnectionCloudSql': () => BigqueryConnectionCloudSql(
         instanceId: TfArg.literal('p:us:inst'),

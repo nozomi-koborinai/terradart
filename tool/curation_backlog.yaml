@@ -16,4 +16,106 @@
 #       provider_version: 7.X.Y (the v7 release that introduced it)
 #       note: (optional, maintainer-added)
 
-entries: []
+entries:
+  - resource: google_agent_registry_binding
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_agent_registry_service
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_apigee_environment_debugmask
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_artifact_registry_project_config
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_chronicle_feed
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_chronicle_findings_refinement
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_chronicle_parser
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_chronicle_parser_extension
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_compute_bulk_per_instance_config
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_compute_firewall_policy_iam_binding
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_compute_firewall_policy_iam_member
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_compute_firewall_policy_iam_policy
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_compute_network_firewall_policy_iam_binding
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_compute_network_firewall_policy_iam_member
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_compute_network_firewall_policy_iam_policy
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_compute_region_network_firewall_policy_iam_binding
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_compute_region_network_firewall_policy_iam_member
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_compute_region_network_firewall_policy_iam_policy
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_compute_region_resize_request
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_compute_zone_vm_extension_policy
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_dataplex_metadata_feed
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_gke_hub_rollout_sequence
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_iap_agent_registry_iam_binding
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_iap_agent_registry_iam_member
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_iap_agent_registry_iam_policy
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_iap_location_web_iam_binding
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_iap_location_web_iam_member
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_iap_location_web_iam_policy
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_migration_center_import_data_file
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_network_services_agent_gateway
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_oracle_database_cloud_exadata_infrastructure_exascale_config
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_vertex_ai_schedule
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_vertex_ai_tensorboard_experiment
+    detected_at: 2026-07-01
+    provider_version: 7.39.0
+  - resource: google_vertex_ai_tensorboard_run
+    detected_at: 2026-07-01
+    provider_version: 7.39.0

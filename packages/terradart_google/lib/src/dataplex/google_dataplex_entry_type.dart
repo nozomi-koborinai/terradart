@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDataplexEntryTypeSensitive = <String>{};
 
 /// Factory wrapper for `google_dataplex_entry_type`.
+///
+/// An Entry Type is a template for creating Entries.
 final class GoogleDataplexEntryType extends Resource {
   static const String tfType = 'google_dataplex_entry_type';
 

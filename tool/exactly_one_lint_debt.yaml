@@ -3,3 +3,5 @@
 # Each line is `google_<type>: reason`. Stale entries (override no longer
 # violates) fail `terradart lint-override`. New entries are a reviewed
 # maintainer decision — prefer sealed virtual slots (see #107).
+
+google_bigquery_dataset_access: MM sync surfaced exactly_one_of on dataset/routine/view customSlots; sealed principal/target slot follow-up tracked in #107

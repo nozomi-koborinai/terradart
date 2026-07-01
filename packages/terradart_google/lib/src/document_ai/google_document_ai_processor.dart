@@ -7,6 +7,9 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleDocumentAiProcessorSensitive = <String>{};
 
 /// Factory wrapper for `google_document_ai_processor`.
+///
+/// The first-class citizen for Document AI. Each processor defines how to
+/// extract structural information from a document.
 final class GoogleDocumentAiProcessor extends Resource {
   static const String tfType = 'google_document_ai_processor';
 

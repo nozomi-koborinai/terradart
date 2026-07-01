@@ -21,6 +21,9 @@ class DataplexDataProductAccessApprovalConfig {
 }
 
 /// Factory wrapper for `google_dataplex_data_product`.
+///
+/// A data product is a curated collection of data assets, packaged to address
+/// specific use cases.
 final class GoogleDataplexDataProduct extends Resource {
   static const String tfType = 'google_dataplex_data_product';
 
