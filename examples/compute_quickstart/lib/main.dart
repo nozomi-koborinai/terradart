@@ -90,25 +90,6 @@ final class NetworkStack extends Stack {
       ),
     );
 
-    add(
-      GoogleComputeSharedVpcHostProject(
-        localName: 'shared_vpc_host',
-        project: TfArg.literal(projectId),
-        dependsOn: apiDeps,
-      ),
-    );
-
-    add(
-      GoogleComputeSharedVpcServiceProject(
-        localName: 'shared_vpc_service',
-        hostProject: TfArg.literal(projectId),
-        // Placeholder service project id for synth/validate; real Shared VPC
-        // pairs a host with a distinct service project.
-        serviceProject: TfArg.literal('$projectId-svc'),
-        dependsOn: apiDeps,
-      ),
-    );
-
     final mainVpc = GoogleComputeNetwork(
       localName: 'main',
       name: TfArg.literal('main-vpc'),
@@ -147,9 +128,12 @@ final class NetworkStack extends Stack {
         name: TfArg.literal('peer-to-main'),
         network: TfArg.ref(peerVpc.id),
         peerNetwork: TfArg.ref(mainVpc.id),
+        // Serialize after the reverse peering: creating both directions
+        // concurrently trips "peering operation in progress".
         dependsOn: [
           ResourceDependency(peerVpc),
           ResourceDependency(mainVpc),
+          ResourceDependency(mainToPeerPeering),
         ],
       ),
     );
@@ -232,133 +216,6 @@ final class NetworkStack extends Stack {
         region: TfArg.literal('asia-northeast1'),
         peerIpAddress: TfArg.literal('169.254.0.2'),
         dependsOn: [ResourceDependency(edgeRouter)],
-      ),
-    );
-
-    final dedicatedInterconnect = add(
-      GoogleComputeInterconnect(
-        localName: 'dedicated_ix',
-        name: TfArg.literal('dedicated-ix'),
-        interconnectType: TfArg.literal(
-          ComputeInterconnectInterconnectType.dedicated,
-        ),
-        linkType: TfArg.literal(
-          ComputeInterconnectLinkType.linkTypeEthernet10gLr,
-        ),
-        location: TfArg.literal(
-          'https://www.googleapis.com/compute/v1/projects/$projectId/regions/asia-northeast1/interconnectLocations/place-a-tokyo',
-        ),
-        requestedLinkCount: TfArg.literal(1),
-        dependsOn: apiDeps,
-      ),
-    );
-
-    add(
-      GoogleComputeInterconnectAttachment(
-        localName: 'dedicated_ix_vlan',
-        name: TfArg.literal('dedicated-ix-vlan'),
-        type: TfArg.literal(ComputeInterconnectAttachmentType.dedicated),
-        interconnect: TfArg.ref(dedicatedInterconnect.id),
-        router: TfArg.ref(edgeRouter.nameRef),
-        region: TfArg.literal('asia-northeast1'),
-        bandwidth: TfArg.literal('BPS_50M'),
-        vlanTag8021q: TfArg.literal(100),
-        dependsOn: [
-          ResourceDependency(dedicatedInterconnect),
-          ResourceDependency(edgeRouter),
-        ],
-      ),
-    );
-
-    final externalVpnGateway = add(
-      GoogleComputeExternalVpnGateway(
-        localName: 'external_vpn',
-        name: TfArg.literal('external-vpn'),
-        redundancyType: TfArg.literal(
-          ComputeExternalVpnGatewayRedundancyType.singleIpInternallyRedundant,
-        ),
-        interface: TfArg.literal([
-          <String, dynamic>{'ip_address': '203.0.113.10'},
-        ]),
-        dependsOn: apiDeps,
-      ),
-    );
-
-    final classicVpnGateway = add(
-      GoogleComputeVpnGateway(
-        localName: 'classic_vpn',
-        name: TfArg.literal('classic-vpn'),
-        network: TfArg.ref(mainVpc.id),
-        region: TfArg.literal('asia-northeast1'),
-        dependsOn: apiDeps,
-      ),
-    );
-
-    final haVpnGatewayA = add(
-      GoogleComputeHaVpnGateway(
-        localName: 'ha_vpn_a',
-        name: TfArg.literal('ha-vpn-a'),
-        network: TfArg.ref(mainVpc.id),
-        region: TfArg.literal('asia-northeast1'),
-        dependsOn: apiDeps,
-      ),
-    );
-
-    final haVpnGatewayB = add(
-      GoogleComputeHaVpnGateway(
-        localName: 'ha_vpn_b',
-        name: TfArg.literal('ha-vpn-b'),
-        network: TfArg.ref(mainVpc.id),
-        region: TfArg.literal('asia-northeast1'),
-        dependsOn: apiDeps,
-      ),
-    );
-
-    add(
-      GoogleComputeVpnTunnel(
-        localName: 'classic_tunnel',
-        name: TfArg.literal('classic-tunnel'),
-        region: TfArg.literal('asia-northeast1'),
-        targetVpnGateway: TfArg.ref(classicVpnGateway.id),
-        peerIp: TfArg.literal('8.8.8.8'),
-        sharedSecretWo: TfArg.literal('terradart-quickstart-secret'),
-        sharedSecretWoVersion: TfArg.literal('1'),
-        dependsOn: [ResourceDependency(classicVpnGateway)],
-      ),
-    );
-
-    add(
-      GoogleComputeVpnTunnel(
-        localName: 'ha_tunnel',
-        name: TfArg.literal('ha-tunnel'),
-        region: TfArg.literal('asia-northeast1'),
-        vpnGateway: TfArg.ref(haVpnGatewayA.id),
-        vpnGatewayInterface: TfArg.literal(0),
-        peerGcpGateway: TfArg.ref(haVpnGatewayB.id),
-        sharedSecretWo: TfArg.literal('terradart-ha-vpn-secret'),
-        sharedSecretWoVersion: TfArg.literal('1'),
-        dependsOn: [
-          ResourceDependency(haVpnGatewayA),
-          ResourceDependency(haVpnGatewayB),
-        ],
-      ),
-    );
-
-    add(
-      GoogleComputeVpnTunnel(
-        localName: 'ha_external_tunnel',
-        name: TfArg.literal('ha-external-tunnel'),
-        region: TfArg.literal('asia-northeast1'),
-        vpnGateway: TfArg.ref(haVpnGatewayA.id),
-        vpnGatewayInterface: TfArg.literal(0),
-        peerExternalGateway: TfArg.ref(externalVpnGateway.selfLink),
-        peerExternalGatewayInterface: TfArg.literal(0),
-        sharedSecretWo: TfArg.literal('terradart-external-vpn-secret'),
-        sharedSecretWoVersion: TfArg.literal('1'),
-        dependsOn: [
-          ResourceDependency(haVpnGatewayA),
-          ResourceDependency(externalVpnGateway),
-        ],
       ),
     );
 
