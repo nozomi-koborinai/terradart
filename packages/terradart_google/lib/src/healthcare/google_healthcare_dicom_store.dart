@@ -7,6 +7,10 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleHealthcareDicomStoreSensitive = <String>{};
 
 /// Factory wrapper for `google_healthcare_dicom_store`.
+///
+/// A DicomStore is a datastore inside a Healthcare dataset that conforms to the
+/// DICOM (https://www.dicomstandard.org/about/) standard for Healthcare
+/// information exchange
 final class GoogleHealthcareDicomStore extends Resource {
   static const String tfType = 'google_healthcare_dicom_store';
 

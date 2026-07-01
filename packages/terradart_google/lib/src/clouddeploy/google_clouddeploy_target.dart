@@ -7,6 +7,8 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleClouddeployTargetSensitive = <String>{};
 
 /// Factory wrapper for `google_clouddeploy_target`.
+///
+/// The Cloud Deploy `Target` resource.
 final class GoogleClouddeployTarget extends Resource {
   static const String tfType = 'google_clouddeploy_target';
 

@@ -53,7 +53,9 @@ final class NetworkRouteStack extends Stack {
         destRange: TfArg.literal('192.168.255.0/24'),
         description: TfArg.literal('Demo egress route to the internet gateway'),
         priority: TfArg.literal(1000),
-        nextHopGateway: TfArg.literal('default-internet-gateway'),
+        nextHop: ComputeRouteGatewayNextHop(
+          nextHopGateway: TfArg.literal('default-internet-gateway'),
+        ),
         dependsOn: [ResourceDependency(vpc)],
       ),
     );

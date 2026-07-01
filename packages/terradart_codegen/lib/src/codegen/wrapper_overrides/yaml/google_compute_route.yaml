@@ -2,17 +2,128 @@ outputDir: compute
 deriveClassDoc: true
 deriveOutputGetters: true
 
+curatedDoc: |-
+  /// A Route resource must have exactly one [ComputeRouteNextHop]:
+  /// [ComputeRouteGatewayNextHop], [ComputeRouteIpNextHop],
+  /// [ComputeRouteInstanceNextHop], [ComputeRouteIlbNextHop], or
+  /// [ComputeRouteVpnTunnelNextHop].
+  ///
+  /// When using [ComputeRouteInstanceNextHop], set [nextHopInstanceZone] on
+  /// the factory when the instance is specified by name only (not a full
+  /// self-link).
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+prelude: |
+  /// Next-hop target for [GoogleComputeRoute]. Sealed so the provider
+  /// `exactly_one_of` on the `next_hop_*` attributes is exhaustive at the
+  /// type level.
+  sealed class ComputeRouteNextHop {
+    const ComputeRouteNextHop();
+
+    /// Terraform attribute name (`next_hop_gateway`, `next_hop_ip`, …).
+    String get blockKey;
+
+    /// Scalar value written under [blockKey].
+    TfArg<String> get value;
+
+    Map<String, Object?> encode() => {blockKey: value.toTfJson()};
+  }
+
+  /// Route via the default internet gateway (`default-internet-gateway`).
+  @immutable
+  final class ComputeRouteGatewayNextHop extends ComputeRouteNextHop {
+    const ComputeRouteGatewayNextHop({required this.nextHopGateway});
+
+    final TfArg<String> nextHopGateway;
+
+    @override
+    String get blockKey => 'next_hop_gateway';
+
+    @override
+    TfArg<String> get value => nextHopGateway;
+  }
+
+  /// Route via an explicit next-hop IP address.
+  @immutable
+  final class ComputeRouteIpNextHop extends ComputeRouteNextHop {
+    const ComputeRouteIpNextHop({required this.nextHopIp});
+
+    final TfArg<String> nextHopIp;
+
+    @override
+    String get blockKey => 'next_hop_ip';
+
+    @override
+    TfArg<String> get value => nextHopIp;
+  }
+
+  /// Route via a Compute Engine VM instance (name or self-link).
+  @immutable
+  final class ComputeRouteInstanceNextHop extends ComputeRouteNextHop {
+    const ComputeRouteInstanceNextHop({required this.nextHopInstance});
+
+    final TfArg<String> nextHopInstance;
+
+    @override
+    String get blockKey => 'next_hop_instance';
+
+    @override
+    TfArg<String> get value => nextHopInstance;
+  }
+
+  /// Route via an internal load balancer.
+  @immutable
+  final class ComputeRouteIlbNextHop extends ComputeRouteNextHop {
+    const ComputeRouteIlbNextHop({required this.nextHopIlb});
+
+    final TfArg<String> nextHopIlb;
+
+    @override
+    String get blockKey => 'next_hop_ilb';
+
+    @override
+    TfArg<String> get value => nextHopIlb;
+  }
+
+  /// Route via a Cloud VPN tunnel.
+  @immutable
+  final class ComputeRouteVpnTunnelNextHop extends ComputeRouteNextHop {
+    const ComputeRouteVpnTunnelNextHop({required this.nextHopVpnTunnel});
+
+    final TfArg<String> nextHopVpnTunnel;
+
+    @override
+    String get blockKey => 'next_hop_vpn_tunnel';
+
+    @override
+    TfArg<String> get value => nextHopVpnTunnel;
+  }
+
 paramOrder:
+  - name
+  - network
+  - dest_range
+  - next_hop
+  - description
+  - priority
+  - next_hop_instance_zone
+  - tags
+  - project
+
+argMapOrder:
   - name
   - network
   - dest_range
   - description
   - priority
-  - next_hop_gateway
-  - next_hop_ip
-  - next_hop_instance
   - next_hop_instance_zone
-  - next_hop_ilb
-  - next_hop_vpn_tunnel
   - tags
   - project
+  - next_hop
+
+customSlots:
+  next_hop:
+    paramDeclaration: 'required ComputeRouteNextHop nextHop'
+    argMapEntry: 'nextHop.blockKey: nextHop.value,'
