@@ -78,7 +78,7 @@ final class VmComplianceStack extends Stack {
       GoogleBinaryAuthorizationAttestorIamMember(
         localName: 'ci_attestor_viewer',
         attestor: TfArg.ref(attestor.nameRef),
-        role: TfArg.literal('roles/binaryauthorization.attestorViewer'),
+        role: TfArg.literal('roles/viewer'),
         member: TfArg.literal(
           'serviceAccount:ci-signer@$projectId.iam.gserviceaccount.com',
         ),
