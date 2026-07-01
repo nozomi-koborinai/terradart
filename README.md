@@ -334,6 +334,11 @@ to report, no PR is created.
 **Ad-hoc trigger:** workflow_dispatch on the Actions tab (with `dry_run`
 input for detection-only runs).
 
+**Repo secret:** `SCHEMA_BUMP_PAT` — a fine-grained PAT with **Contents**
+and **Pull requests** write access. The default `GITHUB_TOKEN` can push the
+bump branch but cannot open the PR when the repository blocks Actions from
+creating pull requests.
+
 **Why not Renovate for terraform-provider-google?** Renovate has no
 auto-detection path with our repo shape (no `.tf` or `.terraform-version`
 file). The schema-bump workflow is the single source of truth for provider

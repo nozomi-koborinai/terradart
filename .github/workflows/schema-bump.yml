@@ -222,8 +222,15 @@ jobs:
       - name: Create branch + commit + PR
         if: steps.skip_check.outputs.skip != 'true' && github.event.inputs.dry_run != 'true'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITHUB_TOKEN can push branches but cannot open PRs when the repo blocks
+          # "GitHub Actions creating/approving pull requests". Use a fine-grained PAT
+          # stored as SCHEMA_BUMP_PAT (contents + pull-requests write).
+          GH_TOKEN: ${{ secrets.SCHEMA_BUMP_PAT }}
         run: |
+          if [ -z "$GH_TOKEN" ]; then
+            echo "::error::SCHEMA_BUMP_PAT secret is missing. Add a fine-grained PAT with contents and pull-requests write so schema-bump can open PRs."
+            exit 1
+          fi
           today=$(date -u +%Y-%m-%d)
           branch="chore/schema-bump-$today"
           git config user.name "github-actions[bot]"
