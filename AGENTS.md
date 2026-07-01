@@ -190,6 +190,21 @@ Follow the [`terradart-add-curated-resource`](.agents/skills/terradart-add-curat
 3. Move machine-derived facts toward merged IR and keep wrapper overrides for human API decisions.
 4. Prefer adding repeatable `tool/agent_*.dart` or `tool/agent_*.sh` scripts before adding long prose instructions.
 
+### Fix An Example That Fails Apply-Smoke
+
+Apply-smoke failures are apply-time regressions: `synth` and `terraform validate` pass, so the bug only shows against a live project. Fix the example, then re-run `tool/apply_smoke.sh --example <slug>` and confirm **both apply AND destroy** succeed. A `pr_skip` example (e.g. `compute_quickstart`) is *not* applied by the per-PR gate — verify it locally or via a manual **Apply smoke** dispatch. After a run, audit the live project for orphans: `terraform destroy` is not trustworthy (a config error can block teardown and strand resources), so confirm with `gcloud`/REST.
+
+Recurring apply-time constraints that pass synth + `terraform validate`:
+
+1. **IAM members must reference a real identity.** A `serviceAccount:…` / `group:…` member that is neither created in-stack nor pre-existing fails apply with "does not exist". Create the SA in-stack and reference it (a Google Group can't be created via Terraform).
+2. **Some references need the project *number*, not id.** Dataplex catalog `entry_type` and entry-link targets require `projects/<project-number>/…` (a project id returns 400). Resolve it via a `GoogleProject` data source's `.number`.
+3. **Resource-level IAM roles are restricted.** Some resources (e.g. Binary Authorization attestor) reject predefined roles like `…attestorViewer`; use a basic role such as `roles/viewer`.
+4. **"Data asset" fields want the underlying resource's full name.** Dataplex `data_product_data_asset.resource` is a BigQuery/GCS full name (`//bigquery.googleapis.com/…`), not a Dataplex asset.
+5. **Some resources need extra required args.** A Spark-SQL Dataplex task needs an `output_location` in `execution_spec.args`.
+6. **Async operations race even when serialized.** Bidirectional VPC peering hits "peering operation in progress" despite `dependsOn` ordering — the operation is async and completes after the resource reports created.
+
+When a resource can't apply on a standalone project at all — org-only (Shared VPC host/service), physical-circuit-dependent (Interconnect), or needing scaffolding out of the example's scope (VPN gateways/tunnels) — drop it from the example and record each dropped factory in [`tool/example_debt.yaml`](tool/example_debt.yaml) with a reason. Removal drops the factory from synth coverage, which `check_docs_consistency` fails otherwise; also update the example's doc comment to match the reduced surface.
+
 ## Project Pitfalls
 
 - When adding curated resources, verify Terraform resource names against the provider schema key. Do not infer names from Magic Modules product/file names.
