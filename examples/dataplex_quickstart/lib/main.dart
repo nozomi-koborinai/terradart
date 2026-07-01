@@ -8,6 +8,8 @@
 library;
 
 import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/bigquery.dart';
+import 'package:terradart_google/data.dart';
 import 'package:terradart_google/dataplex.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
@@ -25,9 +27,13 @@ final class DataplexCatalogStack extends Stack {
         ) {
     final apiDeps = Apis.enable(
       this,
-      barrels: [Barrels.dataplex, Barrels.storage],
+      barrels: [Barrels.dataplex, Barrels.storage, Barrels.bigquery],
       propagationDelay: const Duration(seconds: 60),
     );
+
+    // Resolves the project *number* (not id) — Dataplex entry_type references
+    // must be `projects/<project-number>/...`; a project id is rejected.
+    final current = addData(GoogleProject(localName: 'current'));
 
     final owner = add(
       GoogleServiceAccount(
@@ -54,6 +60,22 @@ final class DataplexCatalogStack extends Stack {
         ownerEmails: TfArg.literal([owner.email.interpolation]),
         description: TfArg.literal('Curated customer analytics product'),
         dependsOn: [...apiDeps, ResourceDependency(owner)],
+      ),
+    );
+
+    // A Data Product Data Asset must reference a real data resource (BigQuery
+    // dataset / GCS bucket) by full resource name — a Dataplex lake asset is
+    // not an accepted target — so back the product with a BigQuery dataset.
+    final analyticsDataset = add(
+      GoogleBigqueryDataset(
+        localName: 'analytics',
+        datasetId: TfArg.literal('terradart_analytics'),
+        location: TfArg.literal('us-central1'),
+        description: TfArg.literal(
+          'Curated analytics dataset for the customer 360 data product',
+        ),
+        deleteContentsOnDestroy: TfArg.literal(true),
+        dependsOn: [...apiDeps],
       ),
     );
 
@@ -179,7 +201,10 @@ final class DataplexCatalogStack extends Stack {
         entryGroupId: TfArg.literal('terradart-catalog'),
         entryId: TfArg.literal('customer-dataset'),
         location: TfArg.literal('us-central1'),
-        entryType: TfArg.ref(datasetType.nameRef),
+        entryType: TfArg.literal(
+          'projects/${current.number.interpolation}/locations/us-central1'
+          '/entryTypes/terradart-dataset',
+        ),
         entrySource: TfArg.literal({
           'display_name': 'Customer dataset',
           'description': 'Catalog entry for the customer 360 dataset',
@@ -361,11 +386,11 @@ final class DataplexCatalogStack extends Stack {
         dataAssetId: TfArg.literal('lake-data'),
         location: TfArg.literal('us-central1'),
         resource: TfArg.literal(
-          'projects/$projectId/locations/us-central1/lakes/terradart-lake/zones/terradart-raw-zone/assets/terradart-lake-data-asset',
+          '//bigquery.googleapis.com/projects/$projectId/datasets/terradart_analytics',
         ),
         dependsOn: [
           ResourceDependency(dataProduct),
-          ResourceDependency(lakeDataAsset),
+          ResourceDependency(analyticsDataset),
         ],
       ),
     );
@@ -462,6 +487,12 @@ final class DataplexCatalogStack extends Stack {
         }),
         executionSpec: TfArg.literal({
           'service_account': reader.email.interpolation,
+          // Spark-SQL tasks require an output location, passed via TASK_ARGS.
+          'args': {
+            'TASK_ARGS': '--output_location,'
+                'gs://terradart-dataplex-lake-data/task-output,'
+                '--output_format,json',
+          },
         }),
         displayName: TfArg.literal('Lake SQL task'),
         description: TfArg.literal(
