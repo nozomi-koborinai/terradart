@@ -26,31 +26,27 @@ jobs:
       - uses: actions/checkout@v6
         with:
           fetch-depth: 0
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
       - name: Select examples to validate
         id: sel
         env:
           EVENT: ${{ github.event_name }}
           BASE_SHA: ${{ github.event.pull_request.base.sha }}
         run: |
-          # Matrix uses the slug without the `_quickstart` suffix.
-          all() { for d in examples/*_quickstart/; do basename "$d" | sed 's/_quickstart$//'; done | sort; }
-          if [ "$EVENT" != 'pull_request' ]; then
-            # push to main / manual dispatch: full matrix (regression backstop).
-            sel="$(all)"
-          else
+          # Selection logic lives in tested Dart
+          # (tool/select_changed_examples.dart + its unit test) — an earlier
+          # awk regex here once fanned a pubspec-only bump out to every
+          # example, a real GCP-cost leak. The shell only feeds it the git
+          # diff. The script is dart:core-only, so no `dart pub get` needed.
+          if [ "$EVENT" = 'pull_request' ]; then
             base="${BASE_SHA:-origin/main}"
-            changed="$(git diff --name-only "$base" HEAD)"
-            # A library/codegen/tooling/CI change can alter every example's synth
-            # output, so validate the whole set; otherwise only changed examples.
-            if printf '%s\n' "$changed" | grep -qE '^(packages/|tool/|\.github/workflows/ci\.yml$)'; then
-              sel="$(all)"
-            else
-              sel="$(printf '%s\n' "$changed" \
-                | awk -F/ '/^examples\/[^/]+_quickstart\// {print $2}' \
-                | sed 's/_quickstart$//' | sort -u)"
-            fi
+            json="$(git diff --name-only "$base" HEAD \
+              | dart tool/select_changed_examples.dart --event "$EVENT")"
+          else
+            json="$(dart tool/select_changed_examples.dart --event "$EVENT" < /dev/null)"
           fi
-          json="$(printf '%s\n' "$sel" | grep -v '^[[:space:]]*$' | jq -R . | jq -cs .)"
           echo "examples=$json" >> "$GITHUB_OUTPUT"
           echo "selected=$json"
 
@@ -78,7 +74,7 @@ jobs:
       - if: matrix.package == 'terradart_core'
         run: dart analyze packages/ tool/ --fatal-infos --fatal-warnings
       - if: matrix.package == 'terradart_core'
-        run: dart test tool/render_formula_test.dart tool/render_to_file_test.dart
+        run: dart test tool/render_formula_test.dart tool/render_to_file_test.dart tool/select_changed_examples_test.dart
       - run: dart test --reporter=github
         working-directory: packages/${{ matrix.package }}
 
