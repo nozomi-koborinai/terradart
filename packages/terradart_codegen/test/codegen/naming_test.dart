@@ -39,5 +39,24 @@ void main() {
       expect(
           resourceFileName('google_pubsub_topic'), 'google_pubsub_topic.dart');
     });
+
+    test('screamingToCamel converts without collision', () {
+      expect(screamingToCamel('AUTOMATIC'), 'automatic');
+      expect(screamingToCamel('ENCODING_UNSPECIFIED'), 'encodingUnspecified');
+    });
+
+    test('screamingToCamel appends Case on a reserved-word collision', () {
+      expect(screamingToCamel('DEFAULT'), 'defaultCase');
+      expect(screamingToCamel('IN'), 'inCase');
+    });
+
+    test('enumName carries the reserved-word-safe member through', () {
+      final e = enumName(
+        resourceType: 'google_compute_router',
+        fieldPath: 'advertise_mode',
+        members: const ['DEFAULT', 'CUSTOM'],
+      );
+      expect(e.dartMembers, ['defaultCase', 'custom']);
+    });
   });
 }
