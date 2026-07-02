@@ -6,6 +6,11 @@ import 'package:terradart_codegen/src/cli/cli_runner.dart';
 import 'package:terradart_codegen/src/cli/exit_codes.dart';
 import 'package:test/test.dart';
 
+/// Barrels are written one level above `--output` (`lib/` beside `lib/src`),
+/// so every integration test roots its output at `<tmp>/lib/src` and
+/// inspects `<tmp>` recursively.
+String _libSrcOut(Directory tmp) => p.join(tmp.path, 'lib', 'src');
+
 void main() {
   group('WrapCommand args parse', () {
     test('wrap command is registered', () {
@@ -42,7 +47,7 @@ void main() {
 
   group('WrapCommand integration', () {
     test(
-        'emits 382 files (380 resource Layer 2 + 1 data source Layer 2 + 1 generated _catalog.g.dart)',
+        'emits 449 files (381 wrappers + _catalog.g.dart + 66 barrels + umbrella)',
         () async {
       // Plan 5.X (v0.5.0-dev): the schemantic Layer 1 chain
       // (`generated/<type>.schema.dart` + `generated/<type>.schema.g.dart`
@@ -58,7 +63,7 @@ void main() {
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
-          tmpOut.path,
+          _libSrcOut(tmpOut),
         ]);
         expect(code, 0);
 
@@ -69,22 +74,31 @@ void main() {
           }
         }
         // 381 wrappers (380 resource Layer 2 + 1 data source Layer 2) plus
-        // the generated static catalog `_catalog.g.dart` (one CatalogEntry
-        // per wrapper) → 382 emitted .dart files.
-        expect(files, hasLength(382));
-        expect(files, contains('_catalog.g.dart'));
-        expect(files, contains(p.join('pubsub', 'google_pubsub_topic.dart')));
-        expect(files, contains(p.join('data', 'google_project.dart')));
-        // Plan 5.X: Layer 1 files are no longer emitted.
+        // the generated static catalog `_catalog.g.dart`, plus the derived
+        // barrels: 66 per-catalog barrels (65 service + `data`) and the
+        // `terradart_google.dart` umbrella → 449 emitted .dart files.
+        expect(files, hasLength(449));
+        expect(files, contains(p.join('lib', 'src', '_catalog.g.dart')));
         expect(
           files,
-          isNot(
-              contains(p.join('generated', 'data_google_project.schema.dart'))),
+          contains(p.join('lib', 'src', 'pubsub', 'google_pubsub_topic.dart')),
         );
         expect(
           files,
-          isNot(
-              contains(p.join('generated', 'google_pubsub_topic.schema.dart'))),
+          contains(p.join('lib', 'src', 'data', 'google_project.dart')),
+        );
+        // Derived barrels land one level up, under lib/.
+        expect(files, contains(p.join('lib', 'pubsub.dart')));
+        expect(files, contains(p.join('lib', 'data.dart')));
+        // The `sql` barrel keeps its authored file-name override.
+        expect(files, contains(p.join('lib', 'cloud_sql.dart')));
+        expect(files, isNot(contains(p.join('lib', 'sql.dart'))));
+        expect(files, contains(p.join('lib', 'terradart_google.dart')));
+        // Plan 5.X: Layer 1 files are no longer emitted.
+        expect(
+          files,
+          isNot(contains(p.join(
+              'lib', 'src', 'generated', 'data_google_project.schema.dart'))),
         );
       } finally {
         await tmpOut.delete(recursive: true);
@@ -114,7 +128,7 @@ void main() {
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
-          tmpOut.path,
+          _libSrcOut(tmpOut),
         ]);
         for (final ent in Directory(tmpOut.path).listSync(recursive: true)) {
           if (ent is File && ent.path.endsWith('.dart')) {
@@ -140,7 +154,7 @@ void main() {
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
-          tmpOut.path,
+          _libSrcOut(tmpOut),
         ]);
         final code = await buildCliRunner().run([
           'wrap',
@@ -149,7 +163,7 @@ void main() {
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
-          tmpOut.path,
+          _libSrcOut(tmpOut),
           '--check',
         ]);
         expect(code, 0);
@@ -168,10 +182,10 @@ void main() {
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
-          tmpOut.path,
+          _libSrcOut(tmpOut),
         ]);
-        final f =
-            File(p.join(tmpOut.path, 'pubsub', 'google_pubsub_topic.dart'));
+        final f = File(
+            p.join(_libSrcOut(tmpOut), 'pubsub', 'google_pubsub_topic.dart'));
         var src = f.readAsStringSync();
         src = src.replaceFirst(
             'class GooglePubsubTopic', 'class GooglePubsubTopicMUTATED');
@@ -183,7 +197,7 @@ void main() {
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
-          tmpOut.path,
+          _libSrcOut(tmpOut),
           '--check',
         ]);
         expect(code, isNot(0));
@@ -202,13 +216,15 @@ void main() {
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
-          tmpOut.path,
+          _libSrcOut(tmpOut),
         ]);
         for (final rel in [
-          'pubsub/google_pubsub_topic.dart',
-          'data/google_project.dart'
+          p.join('src', 'pubsub', 'google_pubsub_topic.dart'),
+          p.join('src', 'data', 'google_project.dart'),
+          // A derived barrel is part of the --check surface too.
+          'pubsub.dart',
         ]) {
-          final f = File(p.join(tmpOut.path, rel));
+          final f = File(p.join(tmpOut.path, 'lib', rel));
           f.writeAsStringSync('${f.readAsStringSync()}\n// trailing edit\n');
         }
         final code = await buildCliRunner().run([
@@ -218,7 +234,7 @@ void main() {
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
-          tmpOut.path,
+          _libSrcOut(tmpOut),
           '--check',
         ]);
         expect(code, isNot(0));
@@ -233,7 +249,7 @@ void main() {
       final tmpOut = await Directory.systemTemp.createTemp('phase4_force_');
       try {
         // Pre-create a non-generated file at one of wrap's target paths.
-        final dir = Directory(p.join(tmpOut.path, 'pubsub'));
+        final dir = Directory(p.join(_libSrcOut(tmpOut), 'pubsub'));
         dir.createSync(recursive: true);
         const preExisting = '// hand-written, not generated\nclass Foo {}\n';
         final f = File(p.join(dir.path, 'google_pubsub_topic.dart'));
@@ -246,7 +262,7 @@ void main() {
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
-          tmpOut.path,
+          _libSrcOut(tmpOut),
         ]);
         expect(code, isNot(0));
         expect(f.readAsStringSync(), preExisting);
@@ -258,7 +274,7 @@ void main() {
     test('--force overwrites the non-generated file', () async {
       final tmpOut = await Directory.systemTemp.createTemp('phase4_force_');
       try {
-        final dir = Directory(p.join(tmpOut.path, 'pubsub'));
+        final dir = Directory(p.join(_libSrcOut(tmpOut), 'pubsub'));
         dir.createSync(recursive: true);
         final f = File(p.join(dir.path, 'google_pubsub_topic.dart'));
         f.writeAsStringSync('// hand-written, not generated\nclass Foo {}\n');
@@ -270,7 +286,7 @@ void main() {
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
-          tmpOut.path,
+          _libSrcOut(tmpOut),
           '--force',
         ]);
         expect(code, 0);
@@ -296,7 +312,7 @@ void main() {
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
-          tmpOut.path,
+          _libSrcOut(tmpOut),
           '--only',
           'google_pubsub_topic',
         ]);
@@ -309,15 +325,15 @@ void main() {
           }
         }
         expect(files, hasLength(1));
-        expect(files, contains(p.join('pubsub', 'google_pubsub_topic.dart')));
-        // `--only` is a partial regen, so the whole-registry catalog is NOT
-        // emitted (it must not be clobbered with a single-entry partial).
-        expect(files, isNot(contains('_catalog.g.dart')));
         expect(
           files,
-          isNot(
-              contains(p.join('generated', 'google_pubsub_topic.schema.dart'))),
+          contains(p.join('lib', 'src', 'pubsub', 'google_pubsub_topic.dart')),
         );
+        // `--only` is a partial regen, so the whole-registry catalog and the
+        // derived barrels are NOT emitted (they must not be clobbered with a
+        // single-entry partial).
+        expect(files, isNot(contains(p.join('lib', 'src', '_catalog.g.dart'))));
+        expect(files, isNot(contains(p.join('lib', 'pubsub.dart'))));
       } finally {
         await tmpOut.delete(recursive: true);
       }
@@ -333,7 +349,7 @@ void main() {
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
-          tmpOut.path,
+          _libSrcOut(tmpOut),
           '--only',
           'google_no_such_resource',
         ]);
@@ -374,7 +390,7 @@ void main() {
             '--source',
             tmpSrc.path,
             '--output',
-            tmpOut.path,
+            _libSrcOut(tmpOut),
           ]),
           stderr: () => _BufferSink(errBuf),
         );
@@ -430,14 +446,14 @@ void main() {
           '--source',
           tmpSrc.path,
           '--output',
-          tmpOut.path,
+          _libSrcOut(tmpOut),
           '--only',
           'google_pubsub_schema',
         ]);
         expect(code, CliExitCodes.success);
 
         final outFile = File(
-          p.join(tmpOut.path, 'pubsub', 'google_pubsub_schema.dart'),
+          p.join(_libSrcOut(tmpOut), 'pubsub', 'google_pubsub_schema.dart'),
         );
         expect(outFile.existsSync(), isTrue);
         final contents = outFile.readAsStringSync();
@@ -473,7 +489,7 @@ void main() {
           '--source',
           p.join('test', 'fixtures', 'wrap', 'source'),
           '--output',
-          tmpOut.path,
+          _libSrcOut(tmpOut),
         ]);
         expect(code, 0);
 
@@ -489,7 +505,7 @@ void main() {
           final actualRel = rel.endsWith('.golden')
               ? rel.substring(0, rel.length - '.golden'.length)
               : rel;
-          final actualPath = p.join(tmpOut.path, actualRel);
+          final actualPath = p.join(_libSrcOut(tmpOut), actualRel);
           final actual =
               File(actualPath).readAsStringSync().replaceAll('\r\n', '\n');
           final expected = fixFile.readAsStringSync().replaceAll('\r\n', '\n');

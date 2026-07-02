@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/cloud_build.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Cloud Build CI/CD: trigger, private worker pool, v2 SCM connection +
 /// repository.
 ///
@@ -11,33 +12,33 @@ library;
 
 export 'src/cloud_build/google_cloudbuild_trigger.dart'
     show
+        CloudBuildTriggerBuildLogging,
+        CloudBuildTriggerCommentControl,
+        CloudBuildTriggerIncludeBuildLogs,
+        CloudBuildTriggerLogStreamingOption,
+        CloudBuildTriggerRepoType,
+        CloudBuildTriggerRequestedVerifyOption,
+        CloudBuildTriggerSourceProvenanceHash,
+        CloudBuildTriggerSubstitutionOption,
         CloudbuildTriggerApprovalConfig,
         CloudbuildTriggerBitbucketServerTriggerConfig,
         CloudbuildTriggerBuild,
-        CloudBuildTriggerBuildLogging,
         CloudbuildTriggerBuildOptions,
+        CloudbuildTriggerBuildSpec,
         CloudbuildTriggerBuildStep,
-        CloudBuildTriggerCommentControl,
         CloudbuildTriggerDeveloperConnectEventConfig,
+        CloudbuildTriggerFilenameSpec,
         CloudbuildTriggerGitFileSource,
+        CloudbuildTriggerGitFileSourceSpec,
         CloudbuildTriggerGithub,
-        CloudBuildTriggerIncludeBuildLogs,
-        CloudBuildTriggerLogStreamingOption,
+        CloudbuildTriggerInlineBuildSpec,
         CloudbuildTriggerPubsubConfig,
         CloudbuildTriggerPullRequestFilter,
         CloudbuildTriggerPushFilter,
-        CloudBuildTriggerRepoType,
         CloudbuildTriggerRepositoryEventConfig,
-        CloudBuildTriggerRequestedVerifyOption,
-        CloudBuildTriggerSourceProvenanceHash,
         CloudbuildTriggerSourceToBuild,
-        CloudBuildTriggerSubstitutionOption,
         CloudbuildTriggerTriggerTemplate,
         CloudbuildTriggerWebhookConfig,
-        CloudbuildTriggerBuildSpec,
-        CloudbuildTriggerFilenameSpec,
-        CloudbuildTriggerGitFileSourceSpec,
-        CloudbuildTriggerInlineBuildSpec,
         GoogleCloudbuildTrigger;
 export 'src/cloud_build/google_cloudbuild_worker_pool.dart'
     show

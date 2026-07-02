@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/container.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Google Kubernetes Engine (GKE) — clusters, node pools, and GKE Hub.
 ///
 /// For VPC networking, see `compute.dart` ([GoogleComputeNetwork],
@@ -21,6 +22,5 @@ export 'src/container/google_gke_hub_fleet.dart'
         GoogleGkeHubFleet;
 export 'src/container/google_gke_hub_membership.dart'
     show GoogleGkeHubMembership;
+export 'src/container/google_gke_hub_namespace.dart' show GoogleGkeHubNamespace;
 export 'src/container/google_gke_hub_scope.dart' show GoogleGkeHubScope;
-export 'src/container/google_gke_hub_namespace.dart'
-    show GoogleGkeHubNamespace;

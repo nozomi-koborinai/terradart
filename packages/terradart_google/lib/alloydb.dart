@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/alloydb.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// AlloyDB — Postgres-compatible managed database clusters and instances.
 library;
 

@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/workflows.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Workflows — serverless orchestration: define a Workflows workflow from
 /// inline YAML/JSON source.
 library;

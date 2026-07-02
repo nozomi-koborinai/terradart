@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/recaptcha.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// reCAPTCHA Enterprise keys for web, Android, and iOS clients.
 library;
 

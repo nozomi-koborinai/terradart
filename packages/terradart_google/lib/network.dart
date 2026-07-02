@@ -1,12 +1,8 @@
-// packages/terradart_google/lib/network.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Network Connectivity transports, Network Security ULL mirroring, address
 /// groups, and URL lists.
 library;
-
-export 'src/network/google_network_security_address_group.dart'
-    show GoogleNetworkSecurityAddressGroup, NetworkSecurityAddressGroupType;
-export 'src/network/google_network_security_url_lists.dart'
-    show GoogleNetworkSecurityUrlLists;
 
 export 'src/network/google_network_connectivity_hub.dart'
     show GoogleNetworkConnectivityHub;
@@ -17,6 +13,8 @@ export 'src/network/google_network_connectivity_transport.dart'
         NetworkConnectivityTransportStackType;
 export 'src/network/google_network_management_connectivity_test.dart'
     show GoogleNetworkManagementConnectivityTest;
+export 'src/network/google_network_security_address_group.dart'
+    show GoogleNetworkSecurityAddressGroup, NetworkSecurityAddressGroupType;
 export 'src/network/google_network_security_ull_mirroring_collector.dart'
     show
         GoogleNetworkSecurityUllMirroringCollector,
@@ -31,3 +29,5 @@ export 'src/network/google_network_security_ull_mirroring_engine.dart'
     show
         GoogleNetworkSecurityUllMirroringEngine,
         NetworkSecurityUllMirroringEngineDeletionPolicy;
+export 'src/network/google_network_security_url_lists.dart'
+    show GoogleNetworkSecurityUrlLists;

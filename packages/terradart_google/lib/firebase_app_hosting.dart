@@ -1,12 +1,13 @@
-// packages/terradart_google/lib/firebase_app_hosting.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Firebase App Hosting — Cloud Run-backed successor to classic Firebase
 /// Hosting. Backends, build artifacts, custom domains, traffic split.
 library;
 
 export 'src/firebase_app_hosting/google_firebase_app_hosting_backend.dart'
     show
-        FirebaseAppHostingBackendAppHostingBackendCodebase,
         AppHostingServingLocality,
+        FirebaseAppHostingBackendAppHostingBackendCodebase,
         GoogleFirebaseAppHostingBackend;
 export 'src/firebase_app_hosting/google_firebase_app_hosting_build.dart'
     show

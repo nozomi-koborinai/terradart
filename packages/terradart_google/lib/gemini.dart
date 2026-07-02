@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/gemini.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Gemini for Google Cloud (Gemini Code Assist) — project/location settings:
 /// enablement, logging, and release channel.
 library;

@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/apikeys.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// API Keys: restrict Google Cloud API access by key.
 library;
 

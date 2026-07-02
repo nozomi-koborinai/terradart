@@ -1,0 +1,313 @@
+# Authored barrel manifest — the human-decided axes of the
+# generated per-service barrels under terradart_google/lib/.
+#
+# One entry per catalog barrel (fail-closed: a catalog barrel
+# missing here fails `terradart wrap`, and a stale entry with
+# no catalog barrel fails too).
+#
+# Axes per barrel:
+#   doc:          the barrel's /// doc comment (verbatim).
+#   file:         barrel file name under lib/ when it differs from
+#                 the barrel key (e.g. sql -> cloud_sql).
+#   extraExports: verbatim export directives for hand-written
+#                 sources the wrap pipeline does not emit.
+
+umbrellaDoc: |-
+  /// terradart_google — curated GCP factory wrappers for `terradart`.
+  ///
+  /// Pinned to `hashicorp/google ~> 7.0`. See [kProviderSource] /
+  /// [kProviderVersionConstraint].
+  ///
+  /// This umbrella re-exports every per-service barrel. New code is encouraged
+  /// to import the specific service barrels instead, e.g.
+  /// `import 'package:terradart_google/pubsub.dart';`, which keeps the IDE
+  /// auto-complete dropdown service-scoped and isolates name collisions
+  /// between services.
+umbrellaExtraExports:
+  - "export 'provider.dart';"
+
+barrels:
+  access_context_manager:
+    doc: |-
+      /// Access Context Manager: VPC Service Controls access policies, levels,
+      /// service perimeters, and access-policy IAM members.
+  alloydb:
+    doc: |-
+      /// AlloyDB — Postgres-compatible managed database clusters and instances.
+  apigee:
+    doc: |-
+      /// Apigee: runtime data collectors and analytics datastores.
+  apikeys:
+    doc: |-
+      /// API Keys: restrict Google Cloud API access by key.
+  app:
+    doc: |-
+      /// App Engine — application registration, standard/flexible versions,
+      /// firewall rules, URL dispatch, domain mapping, and service traffic/network
+      /// settings.
+  artifact_registry:
+    doc: |-
+      /// Artifact Registry: container / package repository, per-repository IAM.
+      ///
+      /// Format is set at creation time and immutable. Pair `format: DOCKER`
+      /// with [ArtifactRegistryRepositoryArtifactRegistryDockerConfig], `format: MAVEN` with
+      /// [ArtifactRegistryRepositoryArtifactRegistryMavenConfig]. Mode is `STANDARD_REPOSITORY` (default),
+      /// `VIRTUAL_REPOSITORY` (aggregating proxy), or `REMOTE_REPOSITORY`
+      /// (caching proxy).
+      ///
+      /// Note: `google_artifact_registry_vpcsc_config` is beta-only; not curated
+      /// in v0.8.0-dev. A follow-up PR extends the schema fixture against
+      /// `terraform-provider-google-beta` and adds that resource.
+  biglake:
+    doc: |-
+      /// BigLake Metastore — Hive-compatible catalogs, databases, and tables.
+      /// Nested `hive_options` config is passed as a structured map.
+  bigquery:
+    doc: |-
+      /// BigQuery datasets, tables, jobs, routines, transfers, reservations,
+      /// capacity commitments, external connections, and per-resource IAM
+      /// bindings.
+  bigtable:
+    doc: |-
+      /// Cloud Bigtable — instances, tables, app profiles, GC policies, views.
+  binary_authorization:
+    doc: |-
+      /// Binary Authorization: project policy, attestors, and attestor IAM members.
+  certificate_manager:
+    doc: |-
+      /// Certificate Manager — DNS authorization, managed/self-managed
+      /// certificates, and certificate maps for HTTPS load balancers.
+  chronicle:
+    doc: |-
+      /// Chronicle (Google SecOps): detections, playbooks, custom lists, and dashboards.
+  cloud_build:
+    doc: |-
+      /// Cloud Build CI/CD: trigger, private worker pool, v2 SCM connection +
+      /// repository.
+      ///
+      /// The v2 SCM connection model ([GoogleCloudbuildv2Connection] +
+      /// [GoogleCloudbuildv2Repository]) is the modern way to wire GitHub /
+      /// GitLab / Bitbucket sources into a Cloud Build trigger. The v1
+      /// `github` / `bitbucket_server_trigger_config` inline forms inside
+      /// [GoogleCloudbuildTrigger] remain supported for existing setups.
+  cloud_functions:
+    doc: |-
+      /// Cloud Functions Gen 2 — serverless function execution with build + deploy
+      /// from source.
+  cloud_run:
+    doc: |-
+      /// Cloud Run v2 services + jobs.
+  cloud_scheduler:
+    doc: |-
+      /// Cloud Scheduler cron jobs.
+  cloud_tasks:
+    doc: |-
+      /// Cloud Tasks queues + per-queue IAM bindings.
+  clouddeploy:
+    doc: |-
+      /// Cloud Deploy — continuous-delivery pipelines, targets, and custom target
+      /// types. Nested config blocks (serial pipeline stages, deployment targets,
+      /// custom actions) are passed as structured maps.
+  compute:
+    doc: |-
+      /// Compute Engine resources: instances, addresses, firewalls, networks,
+      /// subnetworks.
+  config:
+    doc: |-
+      /// Infrastructure Manager (Config API): Terraform blueprint deployments.
+  contact:
+    doc: |-
+      /// Contact Center AI Insights and related contact APIs.
+  container:
+    doc: |-
+      /// Google Kubernetes Engine (GKE) — clusters, node pools, and GKE Hub.
+      ///
+      /// For VPC networking, see `compute.dart` ([GoogleComputeNetwork],
+      /// [GoogleComputeSubnetwork]). For workload identity federation, see
+      /// `iam.dart` ([GoogleIamWorkloadIdentityPool]).
+  data:
+    doc: |-
+      /// Read-only data sources (no `terraform apply` side effects).
+      ///
+      /// ```dart
+      /// import 'package:terradart_google/data.dart' show GoogleProject;
+      /// ```
+  dataplex:
+    doc: |-
+      /// Dataplex: governed data products, Universal Catalog metadata (entry groups /
+      /// entry types / aspect types), and their IAM adjuncts.
+  dialogflow:
+    doc: |-
+      /// Dialogflow CX: telephony and conversation resources.
+  discovery_engine:
+    doc: |-
+      /// Vertex AI Search (Discovery Engine): data stores, search engines, IAM.
+  dns:
+    doc: |-
+      /// Cloud DNS managed zones (public, private, peering, forwarding).
+  document_ai:
+    doc: |-
+      /// Document AI — document processors (OCR / form parser / etc.) for extracting
+      /// structured data from documents.
+  essential_contacts:
+    doc: |-
+      /// Essential Contacts — register people/teams to receive Google Cloud
+      /// notifications (technical, security, billing, …) for a project, folder, or
+      /// organization.
+  eventarc:
+    doc: |-
+      /// Eventarc — channels, triggers, pipelines, message buses, and API sources
+      /// for routing CloudEvents to Cloud Run, Cloud Functions, Workflows, GKE,
+      /// and HTTP endpoints.
+  filestore:
+    doc: |-
+      /// Cloud Filestore — managed NFS instances, backups, and snapshots.
+  firebase_app_check:
+    doc: |-
+      /// Firebase App Check — request attestation for Firebase services
+      /// (reCAPTCHA Enterprise / Play Integrity / App Attest / Device Check
+      /// providers + service-level enforcement + debug tokens + resource policies).
+  firebase_app_hosting:
+    doc: |-
+      /// Firebase App Hosting — Cloud Run-backed successor to classic Firebase
+      /// Hosting. Backends, build artifacts, custom domains, traffic split.
+  firebase_data_connect:
+    doc: |-
+      /// Firebase Data Connect — serverless GraphQL backend backed by Cloud SQL.
+  firebase_remote_config:
+    doc: |-
+      /// Firebase Remote Config — project-level dynamic configuration templates
+      /// (parameters + parameter groups + conditions).
+  firestore:
+    doc: |-
+      /// Cloud Firestore — Native and Datastore mode databases + composite index
+      /// management.
+    extraExports:
+      - "export 'src/firestore/firestore_fields.dart' show FirestoreFields, FirestoreReference, FirestoreGeoPoint;"
+  gemini:
+    doc: |-
+      /// Gemini for Google Cloud (Gemini Code Assist) — project/location settings:
+      /// enablement, logging, and release channel.
+  gke_backup:
+    doc: |-
+      /// GKE Backup — backup/restore plans, channels, and plan-scoped IAM.
+      ///
+      /// For clusters and node pools, see `container.dart`. Pair
+      /// [GoogleGkeBackupBackupPlan] with [GoogleContainerCluster].
+  healthcare:
+    doc: |-
+      /// Cloud Healthcare — datasets and modality stores (DICOM, consent) plus the
+      /// dataset `*_iam_member` adjunct.
+  iam:
+    doc: |-
+      /// IAM service accounts + Workload Identity Federation pools. Per-resource
+      /// IAM members live alongside their owning service barrel (e.g.
+      /// `pubsub.dart` exports `GooglePubsubTopicIamMember`).
+  iap:
+    doc: |-
+      /// Identity-Aware Proxy (IAP) IAM for App Engine and external HTTPS load
+      /// balancer backend services.
+  kms:
+    doc: |-
+      /// Cloud KMS key rings and crypto keys.
+  license_manager:
+    doc: |-
+      /// License Manager: third-party software license configurations for Compute Engine.
+  logging:
+    doc: |-
+      /// Cloud Logging: log-based metrics and sinks routed to BigQuery / Pub/Sub /
+      /// Storage / Logging-bucket destinations.
+      ///
+      /// The three sink resources (`project`, `folder`, `organization`) share a
+      /// common shape but differ in scope: each entry filters only the log stream
+      /// produced under its respective resource hierarchy. `project_sink` predates
+      /// the unified prefix convention and keeps its unprefixed `LoggingProjectSinkBigqueryOptions` /
+      /// `LoggingProjectSinkLogSinkExclusion` helper types; the newer folder and organization sinks
+      /// use scope-prefixed names to avoid barrel-export collision.
+  memcache:
+    doc: |-
+      /// Memorystore for Memcached — managed Memcached instances.
+  migration:
+    doc: |-
+      /// Migration Center: sources, discovery clients, import jobs, and reports.
+  monitoring:
+    doc: |-
+      /// Cloud Monitoring: alert policies, notification channels, uptime probes,
+      /// dashboards, custom metric descriptors, and SLO service objects.
+  network:
+    doc: |-
+      /// Network Connectivity transports, Network Security ULL mirroring, address
+      /// groups, and URL lists.
+  observability:
+    doc: |-
+      /// Cloud Observability — trace scopes that group projects' trace data for
+      /// unified querying.
+  oracle:
+    doc: |-
+      /// Oracle Database@Google Cloud — Autonomous Database, Base DB, Exadata, ODB, GoldenGate.
+  os_config:
+    doc: |-
+      /// OS Config: VM Manager OS policy assignments and patch deployments.
+  parameter_manager:
+    doc: |-
+      /// Parameter Manager — store and version application configuration parameters
+      /// (global and regional), the non-secret sibling of Secret Manager.
+  privateca:
+    doc: |-
+      /// Private CA (Certificate Authority Service) — CA pools for managed
+      /// certificate issuance via Certificate Manager.
+  project:
+    doc: |-
+      /// Project services (enabling individual GCP APIs on a project).
+    extraExports:
+      - "export 'src/project/apis.dart' show Apis;"
+      - "export 'src/project/barrels.dart' show Barrels;"
+  pubsub:
+    doc: |-
+      /// Pub/Sub topics, subscriptions, schemas, and per-resource IAM bindings.
+  recaptcha:
+    doc: |-
+      /// reCAPTCHA Enterprise keys for web, Android, and iOS clients.
+  redis:
+    doc: |-
+      /// Memorystore for Redis — managed Redis instances.
+  secret_manager:
+    doc: |-
+      /// Secret Manager secrets, versions, and per-secret IAM bindings.
+  service_directory:
+    doc: |-
+      /// Service Directory — managed service registry: namespaces, services,
+      /// endpoints, and the `*_iam_member` adjuncts for namespace/service access.
+  service_networking:
+    doc: |-
+      /// Service Networking — VPC peering between user networks and Google service
+      /// VPCs, plus Serverless VPC Access connectors for Cloud Run / Functions /
+      /// App Engine egress into a consumer VPC.
+  spanner:
+    doc: |-
+      /// Cloud Spanner — horizontally scalable relational databases.
+  sql:
+    file: cloud_sql
+    doc: |-
+      /// Cloud SQL — managed relational databases (MySQL / PostgreSQL / SQL Server).
+      ///
+      /// For private-IP deployments, see also `service_networking.dart`
+      /// ([GoogleServiceNetworkingConnection]) and `compute.dart`
+      /// ([GoogleComputeGlobalAddress]).
+  storage:
+    doc: |-
+      /// Cloud Storage buckets, bucket objects, and Pub/Sub object-change
+      /// notifications.
+  tags:
+    doc: |-
+      /// Resource Manager Tags — tag keys, tag values, resource bindings, and the
+      /// `*_iam_member` adjuncts that grant access on individual tag keys/values.
+  vertex_ai:
+    doc: |-
+      /// Vertex AI — feature store feature groups (backed by a BigQuery source),
+      /// managed datasets, experiment Tensorboards, and GenAI cache config.
+      /// Nested config blocks (e.g. `encryption_spec`) are passed as structured maps.
+  workflows:
+    doc: |-
+      /// Workflows — serverless orchestration: define a Workflows workflow from
+      /// inline YAML/JSON source.

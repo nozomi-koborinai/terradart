@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/license_manager.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// License Manager: third-party software license configurations for Compute Engine.
 library;
 

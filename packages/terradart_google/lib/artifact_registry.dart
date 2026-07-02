@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/artifact_registry.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Artifact Registry: container / package repository, per-repository IAM.
 ///
 /// Format is set at creation time and immutable. Pair `format: DOCKER`
@@ -15,18 +16,18 @@ library;
 export 'src/artifact_registry/google_artifact_registry_repository.dart'
     show
         ArtifactRegistryAptRepositoryBase,
-        ArtifactRegistryDockerPublicRepository,
         ArtifactRegistryCleanupAction,
-        ArtifactRegistryRepositoryArtifactRegistryCleanupCondition,
-        ArtifactRegistryRepositoryArtifactRegistryCleanupMostRecentVersions,
-        ArtifactRegistryRepositoryArtifactRegistryCleanupPolicy,
         ArtifactRegistryCleanupTagState,
-        ArtifactRegistryRepositoryArtifactRegistryDockerConfig,
-        ArtifactRegistryRepositoryArtifactRegistryMavenConfig,
+        ArtifactRegistryDockerPublicRepository,
         ArtifactRegistryMavenPublicRepository,
         ArtifactRegistryMavenVersionPolicy,
         ArtifactRegistryMode,
         ArtifactRegistryNpmPublicRepository,
+        ArtifactRegistryRepositoryArtifactRegistryCleanupCondition,
+        ArtifactRegistryRepositoryArtifactRegistryCleanupMostRecentVersions,
+        ArtifactRegistryRepositoryArtifactRegistryCleanupPolicy,
+        ArtifactRegistryRepositoryArtifactRegistryDockerConfig,
+        ArtifactRegistryRepositoryArtifactRegistryMavenConfig,
         ArtifactRegistryRepositoryArtifactRegistryRemoteAptPublicRepository,
         ArtifactRegistryRepositoryArtifactRegistryRemoteAptRepository,
         ArtifactRegistryRepositoryArtifactRegistryRemoteCommonRepository,
@@ -41,8 +42,8 @@ export 'src/artifact_registry/google_artifact_registry_repository.dart'
         ArtifactRegistryRepositoryArtifactRegistryRemoteYumRepository,
         ArtifactRegistryRepositoryArtifactRegistryVirtualRepositoryConfig,
         ArtifactRegistryRepositoryArtifactRegistryVirtualUpstreamPolicy,
-        ArtifactRegistryVulnerabilityEnablementConfig,
         ArtifactRegistryRepositoryArtifactRegistryVulnerabilityScanningConfig,
+        ArtifactRegistryVulnerabilityEnablementConfig,
         ArtifactRegistryYumRepositoryBase,
         GoogleArtifactRegistryRepository;
 export 'src/artifact_registry/google_artifact_registry_repository_iam_member.dart'
