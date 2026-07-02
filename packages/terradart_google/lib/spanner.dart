@@ -5,4 +5,9 @@ library;
 export 'src/spanner/google_spanner_database.dart'
     show GoogleSpannerDatabase, SpannerDatabaseDialect;
 export 'src/spanner/google_spanner_instance.dart'
-    show GoogleSpannerInstance, SpannerInstanceEdition;
+    show
+        GoogleSpannerInstance,
+        SpannerInstanceDefaultBackupScheduleType,
+        SpannerInstanceEdition,
+        SpannerInstanceInstanceType,
+        SpannerInstanceState;
