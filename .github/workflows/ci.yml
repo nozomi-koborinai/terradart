@@ -120,6 +120,27 @@ jobs:
             --output ../terradart_google/lib/src \
             --check
 
+  override_gates:
+    name: override gates (lint, enum gaps, MM fingerprint)
+    runs-on: ubuntu-latest
+    # These three gates previously lived ONLY in tool/agent_verify.sh — when
+    # nobody ran the full local gate, they silently rotted (enum-gap failures
+    # accumulated across Waves 42-77 with CI staying green). Running them per
+    # PR closes that structural hole; they are all seconds-cheap.
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - run: dart pub get
+      - name: terradart lint-override
+        working-directory: packages/terradart_codegen
+        run: dart run bin/terradart.dart lint-override
+      - name: check_override_enum_gaps (+ debt ledger staleness)
+        run: dart tool/check_override_enum_gaps.dart
+      - name: check_mm_upstream_fingerprint
+        run: dart tool/check_mm_upstream_fingerprint.dart
+
   publish_dry_run:
     name: pub publish --dry-run (${{ matrix.package }})
     runs-on: ubuntu-latest
