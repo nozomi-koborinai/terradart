@@ -24,7 +24,7 @@ env:
 
 jobs:
   sweep:
-    name: weekly apply sweep (terradart-validate)
+    name: monthly apply sweep (terradart-validate)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v6
@@ -56,8 +56,8 @@ jobs:
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
           summary="$(grep -E 'FAILED:' /tmp/sweep.log | tail -1 || echo 'see run log')"
-          title="weekly apply-smoke failures"
-          body="$(printf 'Weekly apply sweep failed on %s.\n\n%s\n\nRun: %s' \
+          title="monthly apply-smoke failures"
+          body="$(printf 'Monthly apply sweep failed on %s.\n\n%s\n\nRun: %s' \
             "$(date -u +%Y-%m-%d)" "$summary" "$RUN_URL")"
           existing="$(gh issue list --repo "$REPO" --state open \
             --search "$title in:title" --json number --jq '.[0].number')"
