@@ -13,6 +13,7 @@ Policy and pitfalls live in [`AGENTS.md`](../../../AGENTS.md) at the repo root. 
 - [When to use](#when-to-use)
 - [Workflow](#workflow)
 - [Optional flags](#optional-flags)
+- [Ad-hoc verification pitfalls](#ad-hoc-verification-pitfalls)
 - [What this does not cover](#what-this-does-not-cover)
 
 ## When to use
@@ -39,6 +40,11 @@ tool/agent_verify.sh --maintainer   # add wrap-init / wrap-promote e2e tests
 ```
 
 Use `--maintainer` when changing `wrap-init`, `wrap-promote`, or their tests.
+
+## Ad-hoc verification pitfalls
+
+- **Never trust `cmd | tail -1 && next`.** A pipeline's exit status is the last command's, so `tail`/`grep`/`head` swallow a failing `dart test` and the `&&` chain continues. Run the command bare and check `$?` directly, or use `agent_verify.sh` (it sets `pipefail`).
+- **Golden refresh is a copy, not an edit.** When `wrap` output legitimately changes: Level A factory goldens (`test/golden/*.factory.expected.dart.golden`) take the regenerated wrapper with the 3-line banner stripped (`tail -n +4`); wrap fixture goldens (`test/fixtures/wrap/expected_output/**`) take the file verbatim, banner included. Never hand-edit golden contents to make a diff pass.
 
 ## What this does not cover
 
