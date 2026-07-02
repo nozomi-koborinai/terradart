@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/document_ai.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Document AI — document processors (OCR / form parser / etc.) for extracting
 /// structured data from documents.
 library;

@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/oracle.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Oracle Database@Google Cloud — Autonomous Database, Base DB, Exadata, ODB, GoldenGate.
 library;
 
@@ -43,9 +44,7 @@ export 'src/oracle/google_oracle_database_goldengate_deployment.dart'
         GoogleOracleDatabaseGoldengateDeployment,
         OracleDatabaseGoldengateDeploymentDeletionPolicy;
 export 'src/oracle/google_oracle_database_odb_network.dart'
-    show
-        GoogleOracleDatabaseOdbNetwork,
-        OracleDatabaseOdbNetworkDeletionPolicy;
+    show GoogleOracleDatabaseOdbNetwork, OracleDatabaseOdbNetworkDeletionPolicy;
 export 'src/oracle/google_oracle_database_odb_subnet.dart'
     show
         GoogleOracleDatabaseOdbSubnet,

@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/iam.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// IAM service accounts + Workload Identity Federation pools. Per-resource
 /// IAM members live alongside their owning service barrel (e.g.
 /// `pubsub.dart` exports `GooglePubsubTopicIamMember`).

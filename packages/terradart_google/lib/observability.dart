@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/observability.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Cloud Observability — trace scopes that group projects' trace data for
 /// unified querying.
 library;

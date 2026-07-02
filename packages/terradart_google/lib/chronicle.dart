@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/chronicle.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Chronicle (Google SecOps): detections, playbooks, custom lists, and dashboards.
 library;
 
@@ -31,8 +32,8 @@ export 'src/chronicle/google_chronicle_dashboard_chart.dart'
         ChronicleDashboardChartTileType,
         ChronicleDashboardChartTimeUnit,
         ChronicleDashboardChartTooltipTrigger,
-        ChronicleDashboardChartVisualization,
         ChronicleDashboardChartVisualMapType,
+        ChronicleDashboardChartVisualization,
         GoogleChronicleDashboardChart;
 export 'src/chronicle/google_chronicle_native_dashboard.dart'
     show

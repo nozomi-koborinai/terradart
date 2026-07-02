@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/logging.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Cloud Logging: log-based metrics and sinks routed to BigQuery / Pub/Sub /
 /// Storage / Logging-bucket destinations.
 ///
@@ -17,22 +18,10 @@ export 'src/logging/google_logging_folder_sink.dart'
         LoggingFolderSinkExclusion;
 export 'src/logging/google_logging_linked_dataset.dart'
     show GoogleLoggingLinkedDataset, LoggingLinkedDatasetBigqueryDataset;
-export 'src/logging/google_logging_log_scope.dart'
-    show GoogleLoggingLogScope;
-export 'src/logging/google_logging_log_view.dart'
-    show GoogleLoggingLogView;
+export 'src/logging/google_logging_log_scope.dart' show GoogleLoggingLogScope;
+export 'src/logging/google_logging_log_view.dart' show GoogleLoggingLogView;
 export 'src/logging/google_logging_log_view_iam_member.dart'
     show GoogleLoggingLogViewIamMember;
-export 'src/logging/google_logging_project_bucket_config.dart'
-    show GoogleLoggingProjectBucketConfig;
-export 'src/logging/google_logging_project_exclusion.dart'
-    show GoogleLoggingProjectExclusion;
-export 'src/logging/google_logging_saved_query.dart'
-    show
-        GoogleLoggingSavedQuery,
-        LoggingSavedQueryLoggingQuery,
-        LoggingSavedQueryOpsAnalyticsQuery,
-        LoggingSavedQueryVisibility;
 export 'src/logging/google_logging_metric.dart'
     show
         GoogleLoggingMetric,
@@ -50,5 +39,18 @@ export 'src/logging/google_logging_organization_sink.dart'
         GoogleLoggingOrganizationSink,
         LoggingOrganizationSinkBigqueryOptions,
         LoggingOrganizationSinkExclusion;
+export 'src/logging/google_logging_project_bucket_config.dart'
+    show GoogleLoggingProjectBucketConfig;
+export 'src/logging/google_logging_project_exclusion.dart'
+    show GoogleLoggingProjectExclusion;
 export 'src/logging/google_logging_project_sink.dart'
-    show LoggingProjectSinkBigqueryOptions, GoogleLoggingProjectSink, LoggingProjectSinkLogSinkExclusion;
+    show
+        GoogleLoggingProjectSink,
+        LoggingProjectSinkBigqueryOptions,
+        LoggingProjectSinkLogSinkExclusion;
+export 'src/logging/google_logging_saved_query.dart'
+    show
+        GoogleLoggingSavedQuery,
+        LoggingSavedQueryLoggingQuery,
+        LoggingSavedQueryOpsAnalyticsQuery,
+        LoggingSavedQueryVisibility;

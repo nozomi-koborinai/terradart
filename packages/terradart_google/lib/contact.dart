@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/contact.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Contact Center AI Insights and related contact APIs.
 library;
 

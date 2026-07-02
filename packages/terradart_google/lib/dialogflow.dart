@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/dialogflow.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Dialogflow CX: telephony and conversation resources.
 library;
 

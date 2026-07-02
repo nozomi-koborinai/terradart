@@ -1,11 +1,12 @@
-// packages/terradart_google/lib/bigtable.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Cloud Bigtable — instances, tables, app profiles, GC policies, views.
 library;
 
 export 'src/bigtable/google_bigtable_app_profile.dart'
     show
-        BigtableAppProfileDataBoostIsolation,
         BigtableAppProfileComputeBillingOwner,
+        BigtableAppProfileDataBoostIsolation,
         BigtableAppProfileIsolationPriority,
         BigtableAppProfileRouting,
         BigtableAppProfileSingleClusterRouting,

@@ -1,13 +1,18 @@
-// packages/terradart_google/lib/kms.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Cloud KMS key rings and crypto keys.
 library;
 
 export 'src/kms/google_kms_crypto_key.dart'
-    show GoogleKmsCryptoKey, KmsKeyPurpose, KmsProtectionLevel, KmsCryptoKeyVersionTemplate;
-export 'src/kms/google_kms_crypto_key_version.dart'
-    show GoogleKmsCryptoKeyVersion, KmsCryptoKeyVersionState;
+    show
+        GoogleKmsCryptoKey,
+        KmsCryptoKeyVersionTemplate,
+        KmsKeyPurpose,
+        KmsProtectionLevel;
 export 'src/kms/google_kms_crypto_key_iam_member.dart'
     show GoogleKmsCryptoKeyIamMember;
+export 'src/kms/google_kms_crypto_key_version.dart'
+    show GoogleKmsCryptoKeyVersion, KmsCryptoKeyVersionState;
 export 'src/kms/google_kms_key_ring.dart' show GoogleKmsKeyRing;
 export 'src/kms/google_kms_key_ring_iam_member.dart'
     show GoogleKmsKeyRingIamMember;

@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/apigee.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Apigee: runtime data collectors and analytics datastores.
 library;
 

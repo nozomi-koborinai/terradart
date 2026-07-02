@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/data.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Read-only data sources (no `terraform apply` side effects).
 ///
 /// ```dart
