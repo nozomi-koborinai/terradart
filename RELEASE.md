@@ -1,6 +1,6 @@
 # Release Checklist
 
-terradart bumps 5 packages in lockstep: `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage`. All 5 share the same version (e.g. `0.15.0`). The pub.dev publish workflow currently publishes the 3 hosted packages: `terradart_core`, `terradart_codegen`, and `terradart_google`.
+terradart bumps 5 packages in lockstep: `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage`. All 5 share the same version. The pub.dev publish workflow currently publishes the 3 hosted packages: `terradart_core`, `terradart_codegen`, and `terradart_google`.
 
 ## Pre-flight (local)
 

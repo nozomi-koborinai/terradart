@@ -27,7 +27,7 @@ connectionTrackingPolicy:
 
 If you did not set `connection_tracking_policy`, no change is needed.
 
-## 0.12.20 → next release
+## 0.12.20 → 0.13.0
 
 **Breaking changes** — API-enablement collapse, time-wrapper relocation, and
 removal of the unimplemented provider-aliasing surface.
