@@ -41,10 +41,12 @@ final class ApiSecurityStack extends Stack {
       GoogleRecaptchaEnterpriseKey(
         localName: 'web_login',
         displayName: TfArg.literal('Login page'),
-        webSettings: TfArg.literal({
-          'integration_type': 'SCORE',
-          'allow_all_domains': true,
-        }),
+        webSettings: RecaptchaEnterpriseKeyWebSettings(
+          integrationType: TfArg.literal(
+            RecaptchaEnterpriseKeyWebSettingsIntegrationType.score,
+          ),
+          allowAllDomains: TfArg.literal(true),
+        ),
         dependsOn: apiDeps,
       ),
     );
@@ -55,14 +57,16 @@ final class ApiSecurityStack extends Stack {
         name: TfArg.literal('egress-https-probe'),
         description: TfArg.literal('Synthetic probe to public DNS over TCP'),
         protocol: TfArg.literal('TCP'),
-        source: TfArg.literal({
-          'ip_address': '10.0.0.2',
-          'network_type': 'GCP_NETWORK',
-        }),
-        destination: TfArg.literal({
-          'ip_address': '8.8.8.8',
-          'port': 443,
-        }),
+        source: NetworkManagementConnectivityTestSource(
+          ipAddress: TfArg.literal('10.0.0.2'),
+          networkType: TfArg.literal(
+            NetworkManagementConnectivityTestSourceNetworkType.gcpNetwork,
+          ),
+        ),
+        destination: NetworkManagementConnectivityTestDestination(
+          ipAddress: TfArg.literal('8.8.8.8'),
+          port: TfArg.literal(443),
+        ),
         dependsOn: apiDeps,
       ),
     );

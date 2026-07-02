@@ -49,10 +49,16 @@ final class VmComplianceStack extends Stack {
       GoogleBinaryAuthorizationPolicy(
         localName: 'project_policy',
         description: TfArg.literal('TerraDart quickstart admission policy'),
-        defaultAdmissionRule: TfArg.literal({
-          'evaluation_mode': 'ALWAYS_ALLOW',
-          'enforcement_mode': 'ENFORCED_BLOCK_AND_AUDIT_LOG',
-        }),
+        defaultAdmissionRule: BinaryAuthorizationPolicyDefaultAdmissionRule(
+          evaluationMode: TfArg.literal(
+            BinaryAuthorizationPolicyDefaultAdmissionRuleEvaluationMode
+                .alwaysAllow,
+          ),
+          enforcementMode: TfArg.literal(
+            BinaryAuthorizationPolicyDefaultAdmissionRuleEnforcementMode
+                .enforcedBlockAndAuditLog,
+          ),
+        ),
         dependsOn: apiDeps,
       ),
     );
@@ -105,14 +111,22 @@ final class VmComplianceStack extends Stack {
         name: TfArg.literal('baseline-policies'),
         location: TfArg.literal(zone),
         description: TfArg.literal('Validation-mode shell probe for Linux VMs'),
-        instanceFilter: TfArg.literal({'all': true}),
-        osPolicies: TfArg.literal([
-          {
-            'id': 'hello-probe',
-            'mode': 'VALIDATION',
-            'resource_groups': [
-              {
-                'resources': [
+        instanceFilter: OsConfigOsPolicyAssignmentInstanceFilter(
+          all: TfArg.literal(true),
+        ),
+        osPolicies: [
+          OsConfigOsPolicyAssignmentOsPolicies(
+            id: TfArg.literal('hello-probe'),
+            mode: TfArg.literal(
+              OsConfigOsPolicyAssignmentOsPoliciesMode.validation,
+            ),
+            resourceGroups: [
+              OsConfigOsPolicyAssignmentOsPoliciesResourceGroups(
+                // `resources` stays an opaque literal — deliberately excluded
+                // from typed derivation (see the override's
+                // `nestedTypeExcludes`); the field is still required +
+                // repeated, matching the real schema.
+                resources: TfArg.literal([
                   {
                     'id': 'hello-script',
                     'exec': {
@@ -122,15 +136,17 @@ final class VmComplianceStack extends Stack {
                       },
                     },
                   },
-                ],
-              },
+                ]),
+              ),
             ],
-          },
-        ]),
-        rollout: TfArg.literal({
-          'disruption_budget': {'percent': 100},
-          'min_wait_duration': '0s',
-        }),
+          ),
+        ],
+        rollout: OsConfigOsPolicyAssignmentRollout(
+          disruptionBudget: OsConfigOsPolicyAssignmentRolloutDisruptionBudget(
+            percent: TfArg.literal(100),
+          ),
+          minWaitDuration: TfArg.literal('0s'),
+        ),
         skipAwaitRollout: TfArg.literal(true),
         dependsOn: apiDeps,
       ),
@@ -141,11 +157,15 @@ final class VmComplianceStack extends Stack {
         localName: 'security_patches',
         patchDeploymentId: TfArg.literal('security-patches'),
         description: TfArg.literal('One-time security patch window'),
-        instanceFilter: TfArg.literal({'all': true}),
-        patchConfig: TfArg.literal({
-          'mig_instances_allowed': true,
-          'reboot_config': 'DEFAULT',
-        }),
+        instanceFilter: OsConfigPatchDeploymentInstanceFilter(
+          all: TfArg.literal(true),
+        ),
+        patchConfig: OsConfigPatchDeploymentPatchConfig(
+          migInstancesAllowed: TfArg.literal(true),
+          rebootConfig: TfArg.literal(
+            OsConfigPatchDeploymentPatchConfigRebootConfig.defaultCase,
+          ),
+        ),
         schedule: OsConfigPatchDeploymentOneTimeSchedule(
           executeTime: TfArg.literal('2030-01-01T02:00:00Z'),
         ),

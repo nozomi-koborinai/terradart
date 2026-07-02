@@ -73,15 +73,16 @@ final class AppEngineStack extends Stack {
         service: TfArg.literal('default'),
         versionId: TfArg.literal('v1'),
         runtime: TfArg.literal('python312'),
-        deployment: TfArg.literal(<String, dynamic>{
-          'zip': <String, dynamic>{
-            'source_url':
-                'https://storage.googleapis.com/$projectId-terradart-appengine/app.zip',
-          },
-        }),
-        entrypoint: TfArg.literal(<String, dynamic>{
-          'shell': 'gunicorn -b :\$PORT main:app',
-        }),
+        deployment: AppEngineStandardAppVersionDeployment(
+          zip: AppEngineStandardAppVersionDeploymentZip(
+            sourceUrl: TfArg.literal(
+              'https://storage.googleapis.com/$projectId-terradart-appengine/app.zip',
+            ),
+          ),
+        ),
+        entrypoint: AppEngineStandardAppVersionEntrypoint(
+          shell: TfArg.literal('gunicorn -b :\$PORT main:app'),
+        ),
         deleteServiceOnDestroy: TfArg.literal(true),
         dependsOn: [
           ResourceDependency(app),
@@ -99,8 +100,12 @@ final class AppEngineStack extends Stack {
         scaling: AppEngineFlexibleAppVersionManualScalingMode(
           instances: TfArg.literal(1),
         ),
-        livenessCheck: TfArg.literal(<String, dynamic>{'path': '/'}),
-        readinessCheck: TfArg.literal(<String, dynamic>{'path': '/'}),
+        livenessCheck: AppEngineFlexibleAppVersionLivenessCheck(
+          path: TfArg.literal('/'),
+        ),
+        readinessCheck: AppEngineFlexibleAppVersionReadinessCheck(
+          path: TfArg.literal('/'),
+        ),
         noopOnDestroy: TfArg.literal(true),
         dependsOn: [
           ResourceDependency(apiAppEngineFlex),
@@ -147,9 +152,12 @@ final class AppEngineStack extends Stack {
       GoogleAppEngineServiceNetworkSettings(
         localName: 'default_ingress',
         service: TfArg.literal('default'),
-        networkSettings: TfArg.literal(<String, dynamic>{
-          'ingress_traffic_allowed': 'INGRESS_TRAFFIC_ALLOWED_ALL',
-        }),
+        networkSettings: AppEngineServiceNetworkSettingsNetworkSettings(
+          ingressTrafficAllowed: TfArg.literal(
+            AppEngineServiceNetworkSettingsNetworkSettingsIngressTrafficAllowed
+                .ingressTrafficAllowedAll,
+          ),
+        ),
         dependsOn: [ResourceDependency(standard)],
       ),
     );
@@ -158,10 +166,14 @@ final class AppEngineStack extends Stack {
       GoogleAppEngineServiceSplitTraffic(
         localName: 'default_traffic',
         service: TfArg.literal('default'),
-        split: TfArg.literal(<String, dynamic>{
-          'shard_by': 'IP',
-          'allocations': <String, dynamic>{'v1': 1.0},
-        }),
+        // `allocations` values are strings per the provider schema
+        // (`["map", "string"]`) — Terraform's own JSON/cty layer already
+        // treats a bare `1.0` and `"1.0"` as the same value for this
+        // string-typed attribute, but the typed constructor enforces it.
+        split: AppEngineServiceSplitTrafficSplit(
+          allocations: TfArg.literal({'v1': '1.0'}),
+          shardBy: TfArg.literal(AppEngineServiceSplitTrafficSplitShardBy.ip),
+        ),
         migrateTraffic: TfArg.literal(true),
         dependsOn: [ResourceDependency(standard)],
       ),
