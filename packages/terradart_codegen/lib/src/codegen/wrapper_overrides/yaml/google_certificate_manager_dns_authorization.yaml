@@ -2,6 +2,7 @@ outputDir: certificate_manager
 
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true
 
 paramOrder:
   - name
@@ -32,15 +33,3 @@ curatedDoc: |-
   ///   domain: TfArg.literal('app.example.com'),
   /// );
   /// ```
-
-prelude: |
-  /// `type` — DNS authorization record strategy. When unset the API
-  /// picks `FIXED_RECORD` for global resources.
-  enum CertificateManagerDnsAuthorizationType implements TerraformEnum {
-    fixedRecord('FIXED_RECORD'),
-    perProjectRecord('PER_PROJECT_RECORD');
-
-    const CertificateManagerDnsAuthorizationType(this.terraformValue);
-    @override
-    final String terraformValue;
-  }

@@ -6,7 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_spanner_instance`.
 const Set<String> _googleSpannerInstanceSensitive = <String>{};
 
-/// `edition` — Spanner edition / capability tier.
+/// Spanner Instance Default Backup Schedule enum for `default_backup_schedule_type`.
+enum SpannerInstanceDefaultBackupScheduleType implements TerraformEnum {
+  none('NONE'),
+  automatic('AUTOMATIC');
+
+  const SpannerInstanceDefaultBackupScheduleType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Spanner Instance enum for `edition`.
 enum SpannerInstanceEdition implements TerraformEnum {
   editionUnspecified('EDITION_UNSPECIFIED'),
   standard('STANDARD'),
@@ -14,6 +24,26 @@ enum SpannerInstanceEdition implements TerraformEnum {
   enterprisePlus('ENTERPRISE_PLUS');
 
   const SpannerInstanceEdition(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Spanner Instance Instance enum for `instance_type`.
+enum SpannerInstanceInstanceType implements TerraformEnum {
+  provisioned('PROVISIONED'),
+  freeInstance('FREE_INSTANCE');
+
+  const SpannerInstanceInstanceType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Spanner Instance enum for `state`.
+enum SpannerInstanceState implements TerraformEnum {
+  ready('READY'),
+  creating('CREATING');
+
+  const SpannerInstanceState(this.terraformValue);
   @override
   final String terraformValue;
 }

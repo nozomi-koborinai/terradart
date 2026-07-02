@@ -6,6 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_storage_hmac_key`.
 const Set<String> _googleStorageHmacKeySensitive = <String>{'secret'};
 
+/// Storage Hmac Key enum for `state`.
 enum StorageHmacKeyState implements TerraformEnum {
   active('ACTIVE'),
   inactive('INACTIVE');

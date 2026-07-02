@@ -7,15 +7,10 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleParameterManagerRegionalParameterSensitive =
     <String>{};
 
-/// Payload format of a [GoogleParameterManagerRegionalParameter].
+/// Parameter Manager Regional Parameter enum for `format`.
 enum ParameterManagerRegionalParameterFormat implements TerraformEnum {
-  /// Opaque bytes (no validation).
   unformatted('UNFORMATTED'),
-
-  /// YAML-validated payload.
   yaml('YAML'),
-
-  /// JSON-validated payload.
   json('JSON');
 
   const ParameterManagerRegionalParameterFormat(this.terraformValue);

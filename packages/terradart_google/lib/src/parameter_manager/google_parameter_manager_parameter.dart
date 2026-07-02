@@ -6,16 +6,10 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_parameter_manager_parameter`.
 const Set<String> _googleParameterManagerParameterSensitive = <String>{};
 
-/// Payload format of a [GoogleParameterManagerParameter] — controls how
-/// Parameter Manager validates and renders the parameter's data.
+/// Parameter Manager Parameter enum for `format`.
 enum ParameterManagerParameterFormat implements TerraformEnum {
-  /// Opaque bytes (no validation).
   unformatted('UNFORMATTED'),
-
-  /// YAML-validated payload.
   yaml('YAML'),
-
-  /// JSON-validated payload.
   json('JSON');
 
   const ParameterManagerParameterFormat(this.terraformValue);

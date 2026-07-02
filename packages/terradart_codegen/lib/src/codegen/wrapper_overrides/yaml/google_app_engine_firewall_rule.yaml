@@ -1,6 +1,7 @@
 outputDir: app
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true
 
 paramOrder:
   - priority
@@ -12,15 +13,3 @@ paramOrder:
 
 dartTypeOverrides:
   action: AppEngineFirewallRuleAction
-
-prelude: |
-  /// `action` on `google_app_engine_firewall_rule`.
-  enum AppEngineFirewallRuleAction implements TerraformEnum {
-    unspecifiedAction('UNSPECIFIED_ACTION'),
-    allow('ALLOW'),
-    deny('DENY');
-
-    const AppEngineFirewallRuleAction(this.terraformValue);
-    @override
-    final String terraformValue;
-  }

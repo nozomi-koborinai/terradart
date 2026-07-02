@@ -7,8 +7,7 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleCertificateManagerDnsAuthorizationSensitive =
     <String>{};
 
-/// `type` — DNS authorization record strategy. When unset the API
-/// picks `FIXED_RECORD` for global resources.
+/// Certificate Manager Dns Authorization enum for `type`.
 enum CertificateManagerDnsAuthorizationType implements TerraformEnum {
   fixedRecord('FIXED_RECORD'),
   perProjectRecord('PER_PROJECT_RECORD');

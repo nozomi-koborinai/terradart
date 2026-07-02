@@ -9252,7 +9252,12 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'edition',
       'labels',
     ],
-    nestedTypes: <String>['SpannerInstanceEdition'],
+    nestedTypes: <String>[
+      'SpannerInstanceDefaultBackupScheduleType',
+      'SpannerInstanceEdition',
+      'SpannerInstanceInstanceType',
+      'SpannerInstanceState',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_spanner_instance`.\n\nAn isolated set of Cloud Spanner resources on which databases can be hosted.\n\nCloud Spanner instance — horizontally scalable relational database.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [config]: instance configuration name (e.g. `regional-asia-northeast1`).\n- [displayName]: user-visible label.\n\nSet exactly one of [numNodes] or [processingUnits] for capacity.\n\nEnable `spanner.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleSpannerInstance(\n  localName: \'app\',\n  config: TfArg.literal(\'regional-asia-northeast1\'),\n  displayName: TfArg.literal(\'App Spanner\'),\n  numNodes: TfArg.literal(1),\n);\n```',

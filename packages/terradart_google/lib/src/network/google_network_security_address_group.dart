@@ -6,12 +6,9 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_network_security_address_group`.
 const Set<String> _googleNetworkSecurityAddressGroupSensitive = <String>{};
 
-/// IP-version a [GoogleNetworkSecurityAddressGroup] holds.
+/// Network Security Address Group enum for `type`.
 enum NetworkSecurityAddressGroupType implements TerraformEnum {
-  /// IPv4 addresses / CIDR ranges.
   ipv4('IPV4'),
-
-  /// IPv6 addresses / CIDR ranges.
   ipv6('IPV6');
 
   const NetworkSecurityAddressGroupType(this.terraformValue);
