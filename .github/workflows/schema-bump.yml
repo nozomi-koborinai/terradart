@@ -96,6 +96,7 @@ jobs:
             terraform providers schema -json > /tmp/new_schema.json)
 
           cp /tmp/new_schema.json packages/terradart_codegen/test/fixtures/wrap/source/schema.json
+          printf '%s\n' "$v7_latest" > packages/terradart_codegen/test/fixtures/wrap/source/provider_version.txt
           echo "refreshed=true" >> "$GITHUB_OUTPUT"
 
       - name: Sync MM YAML overlays
@@ -239,6 +240,7 @@ jobs:
           git add \
             tool/curation_backlog.yaml \
             packages/terradart_codegen/test/fixtures/wrap/source/schema.json \
+            packages/terradart_codegen/test/fixtures/wrap/source/provider_version.txt \
             packages/terradart_codegen/test/fixtures/wrap/source/mm \
             packages/terradart_google/lib/src/_provider_meta.dart \
             packages/terradart_google/lib/src
