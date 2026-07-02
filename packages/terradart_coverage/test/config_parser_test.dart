@@ -91,10 +91,13 @@ void main() {
       File('${tmp.path}/main.tf.json').writeAsStringSync(
         jsonEncode({
           'resource': {
-            'google_pubsub_topic': {'a': {}, 'b': {}},
+            'google_pubsub_topic': {
+              'a': <String, Object?>{},
+              'b': <String, Object?>{},
+            },
           },
           'data': {
-            'google_project': {'p': {}},
+            'google_project': {'p': <String, Object?>{}},
           },
         }),
       );
