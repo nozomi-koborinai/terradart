@@ -56,6 +56,26 @@ Future<void> main() async {
   );
   _checkPhrase(
     errors,
+    'website/src/content/docs/docs/why-terradart.mdx',
+    '$curatedFactoryCount curated resource factories + 1 data source',
+    '($catalogEntryCount catalog entries)',
+  );
+  // Version-line freshness: any `0.NN.x` token in these user-facing pages must
+  // match the current workspace minor. Pages that intentionally reference old
+  // lines (MIGRATING, waves history, SECURITY's unsupported-versions table)
+  // are exempt.
+  for (final page in [
+    'README.md',
+    'CONTRIBUTING.md',
+    'website/src/content/docs/docs/index.md',
+    'website/src/content/docs/docs/status.md',
+    'website/src/content/docs/docs/getting-started.md',
+    'website/src/content/docs/docs/why-terradart.mdx',
+  ]) {
+    _checkNoStaleVersionLine(errors, minor, page);
+  }
+  _checkPhrase(
+    errors,
     'website/src/content/docs/docs/agent/index.md',
     agentCatalogEntriesPhrase,
     agentResourceFactoriesPhrase,
@@ -148,6 +168,24 @@ void _checkPhrase(
   for (final p in [phrase, phrase2, phrase3]) {
     if (p != null && !text.contains(p)) {
       errors.add('$path: expected phrase "$p"');
+    }
+  }
+}
+
+void _checkNoStaleVersionLine(List<String> errors, int minor, String path) {
+  final file = File(path);
+  if (!file.existsSync()) {
+    errors.add('Missing file: $path');
+    return;
+  }
+  final text = file.readAsStringSync();
+  final reported = <String>{};
+  for (final match in RegExp(r'\b0\.(\d+)\.x\b').allMatches(text)) {
+    final found = int.parse(match.group(1)!);
+    if (found != minor && reported.add('0.$found.x')) {
+      errors.add(
+        '$path: stale version line "0.$found.x" (current minor is 0.$minor.x)',
+      );
     }
   }
 }

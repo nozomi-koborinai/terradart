@@ -150,18 +150,17 @@ OLD_MINOR_RE="$(printf '%s' "$OLD_MINOR" | sed 's/[.]/\\./g')"
 #     Pattern set per file (only the version token is replaced; surrounding
 #     text is left intact so prose stays correct):
 #
-#   CONTRIBUTING.md  — "X.Y.x today", "^X.Y.x" caret, "vX.Y.0 beta" labels
+#   CONTRIBUTING.md  — "X.Y.x today" + "^X.Y.x" caret
 #   SECURITY.md      — "^X.Y.x" pin + table rows "**X.Y.x**"
 #   package READMEs  — pubspec/activate caret samples (same pattern as above)
-#   getting-started  — "**X.Y.x** line" + "vX.Y.0" planned-label
-#   ISSUE_TEMPLATE   — "**X.Y.x** today" + "vX.Y.0" planned-label in markdown value
+#   website pages    — "**X.Y.x** line" + "^X.Y.x" pins + "X.Y.x (current)"
+#   ISSUE_TEMPLATE   — "**X.Y.x** today" in markdown value
 echo "  Additional doc/template files:"
 
 # CONTRIBUTING.md: replace ^X.Y.x and "X.Y.x today" and "vX.Y.0 beta" labels.
 if [ -f CONTRIBUTING.md ]; then
   sed_inplace "s#\\^${OLD_MINOR_RE}\\.x#^${NEW_MINOR}.x#g" CONTRIBUTING.md
   sed_inplace "s#${OLD_MINOR_RE}\\.x today#${NEW_MINOR}.x today#g" CONTRIBUTING.md
-  sed_inplace "s#v${OLD_MINOR_RE}\\.0#v${NEW_MINOR}.0#g" CONTRIBUTING.md
   echo "    - CONTRIBUTING.md"
 fi
 
@@ -184,21 +183,24 @@ for pkg_readme in packages/terradart_core/README.md \
   fi
 done
 
-# website/getting-started.md: "**X.Y.x** line" and "vX.Y.0" planned-label.
-GSTART="website/src/content/docs/docs/getting-started.md"
-if [ -f "$GSTART" ]; then
-  sed_inplace "s#\\*\\*${OLD_MINOR_RE}\\.x\\*\\* line#**${NEW_MINOR}.x** line#g" "$GSTART"
-  sed_inplace "s#v${OLD_MINOR_RE}\\.0#v${NEW_MINOR}.0#g" "$GSTART"
-  echo "    - $GSTART"
-fi
+# website pages: "**X.Y.x** line", "^X.Y.x" pins, "X.Y.x (current)" phase row.
+for site_md in website/src/content/docs/docs/getting-started.md \
+               website/src/content/docs/docs/index.md \
+               website/src/content/docs/docs/status.md; do
+  if [ -f "$site_md" ]; then
+    sed_inplace "s#\\*\\*${OLD_MINOR_RE}\\.x\\*\\* line#**${NEW_MINOR}.x** line#g" "$site_md"
+    sed_inplace "s#\\^${OLD_MINOR_RE}\\.x#^${NEW_MINOR}.x#g" "$site_md"
+    sed_inplace "s#${OLD_MINOR_RE}\\.x \\(current\\)#${NEW_MINOR}.x (current)#g" "$site_md"
+    echo "    - $site_md"
+  fi
+done
 
-# ISSUE_TEMPLATE ymls: "**X.Y.x** today" and "vX.Y.0" planned-label.
+# ISSUE_TEMPLATE ymls: "**X.Y.x** today".
 for tpl in .github/ISSUE_TEMPLATE/bug.yml \
            .github/ISSUE_TEMPLATE/feature.yml \
            .github/ISSUE_TEMPLATE/question.yml; do
   if [ -f "$tpl" ]; then
     sed_inplace "s#\\*\\*${OLD_MINOR_RE}\\.x\\*\\* today#**${NEW_MINOR}.x** today#g" "$tpl"
-    sed_inplace "s#v${OLD_MINOR_RE}\\.0#v${NEW_MINOR}.0#g" "$tpl"
     echo "    - $tpl"
   fi
 done
