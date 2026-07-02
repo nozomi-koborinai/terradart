@@ -30,7 +30,7 @@ sealed class WrapInitAxis {
   const WrapInitAxis(this.key);
 
   /// The wrapper-override YAML key for this axis (e.g. `outputDir`,
-  /// `classDocComment`).
+  /// `curatedDoc`).
   final String key;
 }
 

@@ -135,18 +135,12 @@ class DataSourceWrapperEmitter {
     );
     buf.writeln();
 
-    // Class-level doc comment. Phase A4: when the override opts in via
-    // `deriveClassDoc: true`, the comment is derived deterministically from
-    // the IR (same path as WrapperEmitter), with any artisanal `curatedDoc`
-    // appended verbatim. Otherwise the legacy hand-written `classDocComment`
-    // is emitted verbatim (un-migrated resources).
+    // Class-level doc comment. Phase A4: derived deterministically from the
+    // IR (same path as WrapperEmitter), with any artisanal `curatedDoc`
+    // appended verbatim. The hand-written `classDocComment` fallback was
+    // retired with the 2026-07 doc wave; a gate-off override emits no doc.
     if (override.deriveClassDoc) {
       buf.writeln(buildClassDocComment(def, curatedDoc: override.curatedDoc));
-    } else {
-      final docComment = override.classDocComment;
-      if (docComment != null) {
-        buf.writeln(docComment);
-      }
     }
 
     // Wrapper class header — Plan 5.X: `extends Data` (no `<S>` generic).

@@ -1,6 +1,4 @@
 outputDir: x
-classDocComment: |-
-  /// Doc.
 paramOrder:
   - x
   - y

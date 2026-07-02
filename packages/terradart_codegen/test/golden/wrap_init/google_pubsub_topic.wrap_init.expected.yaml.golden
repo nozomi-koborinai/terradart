@@ -3,10 +3,10 @@
 
 outputDir: pubsub
 
-# TODO(wrap-init): expand the MM-seeded comment with a usage example, ForceNew callouts, and composition notes.
-classDocComment: |-
-  /// A named resource to which messages are sent by publishers.
-  /// 
+deriveClassDoc: true
+
+# TODO(wrap-init): the class doc derives from the IR (lead line + MM description); uncomment curatedDoc only for artisanal notes the IR cannot derive (worked example, variant guidance, ForceNew callouts) — otherwise delete this placeholder.
+# curatedDoc:
 
 # paramOrder is commented; uncomment + reorder only if natural schema order needs override.
 # paramOrder:

@@ -275,7 +275,7 @@ final class GoogleZ extends Resource {
       );
       const override = WrapperOverride(
         outputDir: 'demo',
-        classDocComment: '/// A demo thing.\n///\n/// Long form here.',
+        deriveClassDoc: true,
         extraSensitiveFields: ['extra_secret'],
       );
       const emitted = '''
@@ -296,16 +296,17 @@ class DemoHelper {}
       expect(entry.className, 'GoogleDemoThing');
       expect(entry.barrel, 'demo');
       expect(entry.kind, 'resource');
-      // classDocComment markers stripped.
-      expect(entry.docComment, 'A demo thing.\n\nLong form here.');
-      expect(entry.summary, 'A demo thing.');
+      // Derived doc, markers stripped. No IR description on this def, so
+      // the doc is the factory lead alone.
+      expect(entry.docComment, 'Factory wrapper for `google_demo_thing`.');
+      expect(entry.summary, 'Factory wrapper for `google_demo_thing`.');
       expect(entry.constructorParams, ['localName', 'name', 'token']);
       // schema-derived `token` + override `extra_secret`, sorted.
       expect(entry.sensitiveFields, ['extra_secret', 'token']);
       expect(entry.nestedTypes, ['DemoHelper']);
     });
 
-    test('falls back to IR description (marker-free) when no classDocComment',
+    test('falls back to IR description (marker-free) when deriveClassDoc off',
         () {
       final def = _def(
         tfType: 'google_project',
@@ -334,12 +335,11 @@ class DemoHelper {}
 
     test(
         'deriveClassDoc derives docComment from buildClassDocComment + '
-        'curatedDoc and ignores classDocComment', () {
+        'curatedDoc', () {
       // Phase A4: when `deriveClassDoc` is true the catalog must mirror the
       // emitted wrapper doc (factory line + rewrapped IR description +
-      // curatedDoc verbatim), NOT the legacy `classDocComment` — which is set
-      // here only to prove it is ignored. `summary` is the first sentence,
-      // which `firstSentence` terminates at the period after the backticked
+      // curatedDoc verbatim). `summary` is the first sentence, which
+      // `firstSentence` terminates at the period after the backticked
       // tfType, so it is the complete factory line.
       final def = _def(
         tfType: 'google_pubsub_schema',
@@ -350,7 +350,6 @@ class DemoHelper {}
         outputDir: 'pubsub',
         deriveClassDoc: true,
         curatedDoc: '/// Curated tail.',
-        classDocComment: '/// SHOULD NOT APPEAR.',
       );
 
       final entry = buildCatalogEntry(

@@ -3,8 +3,10 @@
 
 outputDir: synthetic
 
-# TODO(wrap-init): write a class doc comment for this resource (MM YAML had no description).
-# classDocComment:
+deriveClassDoc: true
+
+# TODO(wrap-init): the class doc derives from the IR (lead line + MM description); uncomment curatedDoc only for artisanal notes the IR cannot derive (worked example, variant guidance, ForceNew callouts) — otherwise delete this placeholder.
+# curatedDoc:
 
 # paramOrder is commented; uncomment + reorder only if natural schema order needs override.
 # paramOrder:

@@ -99,23 +99,16 @@ Set<String> handwrittenGetterNames(String? extra) => extra == null
 
 /// Classifies an override's class-doc disposition for the discovery report.
 ///
-/// Keyed on the derive gate first: a migrated override deletes
-/// `classDocComment` (lint-override forbids it alongside `deriveClassDoc`) and
-/// moves artisanal prose to `curatedDoc`, so a null-`classDocComment` test
-/// alone would mis-file every migrated override as 'none'.
+/// The hand-written `classDocComment` axis is retired (2026-07 doc wave), so
+/// the classification is purely gate-based:
 /// - deriveClassDoc + curatedDoc present -> 'derived+frozen'
 /// - deriveClassDoc, no curatedDoc       -> 'derived'
-/// - else: the legacy un-migrated heuristic on classDocComment.
+/// - gate off                            -> 'none'
 String classifyDoc(WrapperOverride o) {
   if (o.deriveClassDoc) {
     return o.curatedDoc != null ? 'derived+frozen' : 'derived';
   }
-  final doc = o.classDocComment;
-  if (doc == null) return 'none';
-  if (doc.contains('```') || doc.toLowerCase().contains('example')) {
-    return 'curatedDoc';
-  }
-  return 'boilerplate';
+  return 'none';
 }
 
 void main() {

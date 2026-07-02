@@ -145,20 +145,14 @@ class WrapperEmitter {
       buf.writeln();
     }
 
-    // Class-level doc comment. Phase A4: when the override opts in via
-    // `deriveClassDoc: true`, the comment is derived deterministically from
-    // the IR — `Factory wrapper for <type>`, then the resource summary
-    // rewrapped from `ResourceDef.description` (merged from the MM YAML), then
-    // any artisanal `curatedDoc` (③ frozen) verbatim. Otherwise the legacy
-    // hand-written `classDocComment` is emitted verbatim (un-migrated
-    // resources). A later `lint-override` gate (A5) will forbid setting both.
+    // Class-level doc comment. Phase A4: derived deterministically from the
+    // IR when `deriveClassDoc: true` — `Factory wrapper for <type>`, then the
+    // resource summary rewrapped from `ResourceDef.description` (merged from
+    // the MM YAML), then any artisanal `curatedDoc` (③ frozen) verbatim.
+    // The hand-written `classDocComment` fallback was retired with the
+    // 2026-07 doc wave; a gate-off override emits no class doc.
     if (override?.deriveClassDoc ?? false) {
       buf.writeln(buildClassDocComment(def, curatedDoc: override?.curatedDoc));
-    } else {
-      final docComment = override?.classDocComment;
-      if (docComment != null) {
-        buf.writeln(docComment);
-      }
     }
 
     // Wrapper class header. Plan 5.X: `extends Resource` (no `<S>` generic).

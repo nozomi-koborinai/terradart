@@ -50,8 +50,12 @@ class WrapInitGenerator {
       axes.add(const FilledAxis('schemaStubBodyMode', 'bare'));
     }
 
-    // classDocComment — TODO + MM seed (or fully commented placeholder).
-    axes.add(_buildClassDocCommentAxis(mm));
+    // deriveClassDoc + curatedDoc — the class doc derives from the IR
+    // (lead line + MM description injected by the merger); curatedDoc is a
+    // commented placeholder for the artisanal remainder. The hand-written
+    // classDocComment axis is retired.
+    axes.add(const FilledAxis('deriveClassDoc', 'true'));
+    axes.add(const TodoAxis('curatedDoc', todoMessage: todoCuratedDoc));
 
     // paramOrder — commented scaffold from schema natural order.
     final paramOrder = def.root.attributes.map((a) => a.name).toList();
@@ -72,23 +76,6 @@ class WrapInitGenerator {
       terraformType: terraformType,
       axes: axes,
       bannerDate: clock.now(),
-    );
-  }
-
-  WrapInitAxis _buildClassDocCommentAxis(MmResourceOverrides? mm) {
-    final desc = mm?.description;
-    if (desc != null && desc.isNotEmpty) {
-      // Seed with the MM description, formatted as `/// <line>` per line.
-      final seed = desc.split('\n').map((line) => '/// $line').join('\n');
-      return TodoAxis(
-        'classDocComment',
-        todoMessage: todoClassDocCommentWithMm,
-        seed: seed,
-      );
-    }
-    return const TodoAxis(
-      'classDocComment',
-      todoMessage: todoClassDocCommentNoMm,
     );
   }
 
