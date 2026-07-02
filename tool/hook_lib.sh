@@ -27,8 +27,14 @@ hook_is_handwritten_dart() {
 
 hook_is_protected_write_path() {
   local rel="$1"
+  # Only the GENERATED surface is protected: per-service wrappers
+  # (lib/src/<service>/google_*.dart) and the catalog. Hand-written files
+  # under lib/src (google_provider.dart, _provider_meta.dart, time/,
+  # firestore_fields.dart, project/apis.dart, ...) stay editable — the
+  # earlier lib/src/* blanket wrongly blocked them.
   case "$rel" in
-    packages/terradart_google/lib/src/*) return 0 ;;
+    packages/terradart_google/lib/src/*/google_*.dart) return 0 ;;
+    packages/terradart_google/lib/src/_catalog.g.dart) return 0 ;;
     packages/terradart_codegen/test/fixtures/wrap/expected_output/*) return 0 ;;
     .github/workflows/*) return 0 ;;
     *) return 1 ;;
