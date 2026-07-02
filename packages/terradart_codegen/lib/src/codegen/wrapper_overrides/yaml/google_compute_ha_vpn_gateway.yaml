@@ -3,6 +3,10 @@ deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
 
+dartTypeOverrides:
+  gateway_ip_version: ComputeHaVpnGatewayGatewayIpVersion
+  stack_type: ComputeHaVpnGatewayStackType
+
 paramOrder:
   - name
   - network
