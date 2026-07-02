@@ -60,9 +60,6 @@ void main() {
       expect(p.versionConstraint, '~> 7.0');
       expect(p.configArgs, {'project': 'demo'});
     });
-    test('toTfJson() backwards-compat returns the same as configArgs', () {
-      expect(p.toTfJson(), p.configArgs);
-    });
   });
 
   group('Stack.appExports', () {

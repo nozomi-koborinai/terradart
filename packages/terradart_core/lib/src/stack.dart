@@ -44,10 +44,6 @@ abstract interface class StackProvider {
   /// `provider.<providerName>` block. Empty map for unparameterized
   /// providers.
   Map<String, Object?> get configArgs;
-
-  /// Backwards-compat shim for tests / earlier callers that invoked
-  /// `toTfJson()` directly. Returns the same map as `configArgs`.
-  Map<String, Object?> toTfJson() => configArgs;
 }
 
 /// User-extended IaC composition root.
