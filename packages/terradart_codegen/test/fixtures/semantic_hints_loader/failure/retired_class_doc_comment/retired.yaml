@@ -1,0 +1,3 @@
+outputDir: x
+classDocComment: |-
+  /// Retired axis — the loader must reject this with a migration hint.

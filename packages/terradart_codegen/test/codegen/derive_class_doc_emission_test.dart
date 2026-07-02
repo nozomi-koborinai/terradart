@@ -41,31 +41,16 @@ void main() {
       expect(src, contains('/// Curated example.'));
     });
 
-    test('emits the legacy classDocComment when deriveClassDoc is false', () {
+    test('emits no class doc when deriveClassDoc is false', () {
+      // The hand-written classDocComment fallback is retired (2026-07 doc
+      // wave): a gate-off override emits a bare class declaration.
       final emitter = WrapperEmitter(overrides: {
-        'google_pubsub_schema': const WrapperOverride(
-          outputDir: 'pubsub',
-          classDocComment: '/// Hand-written doc.',
-        ),
+        'google_pubsub_schema': const WrapperOverride(outputDir: 'pubsub'),
       });
       final src =
           emitter.emit(_schemaDef(), providerSource: 'hashicorp/google');
-      expect(src, contains('/// Hand-written doc.'));
       expect(src, isNot(contains('Factory wrapper for')));
-    });
-
-    test('ignores classDocComment when deriveClassDoc is true', () {
-      final emitter = WrapperEmitter(overrides: {
-        'google_pubsub_schema': const WrapperOverride(
-          outputDir: 'pubsub',
-          deriveClassDoc: true,
-          classDocComment: '/// SHOULD NOT APPEAR.',
-        ),
-      });
-      final src =
-          emitter.emit(_schemaDef(), providerSource: 'hashicorp/google');
-      expect(src, isNot(contains('SHOULD NOT APPEAR')));
-      expect(src, contains('/// Factory wrapper for `google_pubsub_schema`.'));
+      expect(src, isNot(contains('A schema is a format')));
     });
   });
 }

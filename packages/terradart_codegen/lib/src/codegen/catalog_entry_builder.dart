@@ -22,9 +22,10 @@ import 'wrapper_overrides/wrapper_override.dart';
 /// - `className` / `barrel`: trivially from the IR + override.
 /// - `docComment` / `summary`: when `deriveClassDoc` is true, the assembled
 ///   doc from [buildClassDocComment] (stripped of `///` markers) is used so
-///   the catalog mirrors the emitted wrapper doc exactly; otherwise
-///   [_stripDocMarkers] of `classDocComment` (verbatim WITH markers) or the
-///   IR's marker-free `description`; `summary` is its [firstSentence].
+///   the catalog mirrors the emitted wrapper doc exactly; a gate-off
+///   override falls back to the IR's marker-free `description` (the
+///   hand-written `classDocComment` axis is retired); `summary` is its
+///   [firstSentence].
 /// - `constructorParams`: [catalogConstructorParams] — the emitter's resolved
 ///   slot order, mapped to actual Dart identifiers.
 /// - `sensitiveFields`: [sensitiveFieldPaths] — the shared pure function that
@@ -41,23 +42,17 @@ CatalogEntryData buildCatalogEntry({
   required String emittedSource,
 }) {
   final className = snakeToPascal(tfType);
-  // `override.classDocComment` is stored verbatim WITH leading `///` markers
-  // (it is emitted into the wrapper as-is). The IR's `description` is raw
-  // schema prose with no markers. For the catalog we want clean markdown
-  // either way, so strip the `///` line prefixes from the override form
-  // before recording it / extracting the summary.
-  //
   // Phase A4: when `deriveClassDoc` is true, the assembled doc is built by
   // `buildClassDocComment` (same function the WrapperEmitter calls) and then
   // stripped of markers — so the catalog entry mirrors the emitted wrapper
-  // doc exactly and never drifts.
+  // doc exactly and never drifts. A gate-off override falls back to the
+  // IR's marker-free `description` (the hand-written `classDocComment`
+  // fallback was retired with the 2026-07 doc wave).
   final docComment = override.deriveClassDoc
       ? _stripDocMarkers(
           buildClassDocComment(def, curatedDoc: override.curatedDoc),
         )
-      : override.classDocComment != null
-          ? _stripDocMarkers(override.classDocComment!)
-          : (def.description ?? '');
+      : (def.description ?? '');
   return CatalogEntryData(
     tfType: tfType,
     className: className,
@@ -152,11 +147,12 @@ List<String> scanNestedTypes(String source, {required String mainClass}) {
 }
 
 /// Strips Dart doc-comment markers from [doc]: each line's leading whitespace
-/// + `///` (and a single following space) is removed. Used to turn an
-/// override's verbatim `classDocComment` into clean markdown for the catalog.
-/// Trailing whitespace on the whole block is trimmed.
+/// + `///` (and a single following space) is removed. Used to turn the
+/// assembled derived doc (lead + description + `curatedDoc`) into clean
+/// markdown for the catalog. Trailing whitespace on the whole block is
+/// trimmed.
 ///
-/// `classDocComment` only ever holds triple-slash (`///`) lines, so the regex
+/// The assembled doc only ever holds triple-slash (`///`) lines, so the regex
 /// is tightened to `///` exactly — it does NOT strip plain `//` comment lines
 /// (those never appear in a doc comment and stripping them would corrupt any
 /// `//`-prefixed prose a curator wrote inside a fenced code block).

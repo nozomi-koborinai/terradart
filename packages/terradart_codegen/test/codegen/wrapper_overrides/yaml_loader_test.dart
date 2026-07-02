@@ -19,7 +19,6 @@ void main() {
         final result = loader.load().resources;
         expect(result, contains('empty'));
         final override = result['empty']!;
-        expect(override.classDocComment, isNull);
         expect(override.paramOrder, isNull);
         expect(override.argMapOrder, isNull);
         expect(override.extraGetters, isNull);
@@ -71,17 +70,6 @@ void main() {
         // the single `///` line with no leading separator or trailing `\n`.
         expect(o.curatedDoc, equals('/// Curated example block.'));
         expect(o.outputDir, 'test_out');
-      });
-
-      test('class_doc_comment_only -> only classDocComment set', () {
-        final loader = YamlOverrideLoader(
-          rootDir: 'test/fixtures/semantic_hints_loader/happy',
-        );
-        final result = loader.load().resources;
-        final o = result['class_doc_comment_only']!;
-        expect(o.classDocComment, equals('/// Test doc.\n/// Multi-line.'));
-        expect(o.paramOrder, isNull);
-        expect(o.extraGetters, isNull);
       });
 
       test('param_order_only -> only paramOrder set', () {
@@ -206,7 +194,6 @@ void main() {
         );
         final result = loader.load().resources;
         final o = result['full_axis']!;
-        expect(o.classDocComment, isNotNull);
         expect(o.paramOrder, equals(['x', 'y']));
         expect(o.argMapOrder, equals(['y', 'x']));
         expect(o.extraGetters, isNotNull);
@@ -241,6 +228,19 @@ void main() {
         expect(
           loader.load,
           throwsFormatExceptionWith('unknown top-level key: classDocCommen'),
+        );
+      });
+
+      test('classDocComment -> retired-axis FormatException with hint', () {
+        // The axis was retired with the 2026-07 doc wave; the loader fails
+        // loudly with the migration path so it cannot quietly come back.
+        final loader = YamlOverrideLoader(
+          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+              'retired_class_doc_comment',
+        );
+        expect(
+          loader.load,
+          throwsFormatExceptionWith('`classDocComment` is retired'),
         );
       });
 
@@ -460,15 +460,13 @@ schemaStubComment: |-
         await File(p.join(tmpDir.path, 'google_pubsub_topic.yaml'))
             .writeAsString('''
 outputDir: pubsub
-classDocComment: |-
-  /// Wrapper for google_pubsub_topic.
+deriveClassDoc: true
 ''');
         await File(p.join(tmpDir.path, 'google_project.yaml')).writeAsString('''
 kind: data_source
 outputDir: data
 schemaStubBodyMode: bare
-classDocComment: |-
-  /// Data source for data.google_project.
+deriveClassDoc: true
 ''');
 
         final loaded = loadWrapperOverrides(rootDir: tmpDir.path);
@@ -548,8 +546,7 @@ outputDir: data
       final tmpDir = await Directory.systemTemp.createTemp('phase4_outdir_');
       try {
         await File(p.join(tmpDir.path, 'x.yaml')).writeAsString('''
-classDocComment: |-
-  /// X.
+deriveClassDoc: true
 ''');
         try {
           loadWrapperOverrides(rootDir: tmpDir.path);
@@ -727,8 +724,7 @@ outputDir: x
 ''');
         // E102: outputDir missing entirely.
         await File(p.join(tmpDir.path, 'b.yaml')).writeAsString('''
-classDocComment: |-
-  /// hi
+deriveClassDoc: true
 ''');
         try {
           loadWrapperOverrides(rootDir: tmpDir.path);

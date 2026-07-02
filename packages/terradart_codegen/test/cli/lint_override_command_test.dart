@@ -33,7 +33,7 @@ void main() {
     final dir = Directory.systemTemp.createTempSync('a5lint');
     addTearDown(() => dir.deleteSync(recursive: true));
     File('${dir.path}/google_bad.yaml').writeAsStringSync(
-      'outputDir: x\nderiveClassDoc: true\nclassDocComment: |-\n  /// dead\n',
+      'outputDir: x\ncuratedDoc: |-\n  /// dead (deriveClassDoc is off)\n',
     );
     final result = Process.runSync(
       'dart',
@@ -45,7 +45,7 @@ void main() {
       65,
       reason: 'stdout:\n${result.stdout}\nstderr:\n${result.stderr}',
     );
-    expect(result.stderr, contains('derive-class-doc-dead-classdoccomment'));
+    expect(result.stderr, contains('curated-doc-without-derive-class-doc'));
   });
 
   test('lint-override exits 65 with a clean message on a missing --dir', () {

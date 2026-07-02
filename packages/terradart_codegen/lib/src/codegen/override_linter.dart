@@ -31,8 +31,6 @@ final class LintViolation {
 /// Phase-1 rules (all decidable from [WrapperOverride] fields alone, no
 /// schema/MM/IR load):
 ///
-/// - (a) `deriveClassDoc == true && classDocComment != null`: the emitter uses
-///   the derived doc (A4 precedence), so `classDocComment` is dead.
 /// - (d) `curatedDoc != null && deriveClassDoc == false`: `curatedDoc` is only
 ///   emitted when `deriveClassDoc` is on, so it is dead.
 /// - (e) `customSlots` keys never referenced by `paramOrder` /
@@ -57,15 +55,9 @@ List<LintViolation> lintOverride(
 }) {
   final violations = <LintViolation>[];
 
-  if (override.deriveClassDoc && override.classDocComment != null) {
-    violations.add(LintViolation(
-      tfType: tfType,
-      rule: 'derive-class-doc-dead-classdoccomment',
-      detail: 'deriveClassDoc is true but classDocComment is still set. The '
-          'emitter uses the derived doc, so classDocComment is dead config. '
-          'Remove classDocComment (move any artisanal prose to curatedDoc).',
-    ));
-  }
+  // Former rule (a) — deriveClassDoc + classDocComment dead config — is
+  // gone with the axis itself: the loader now rejects `classDocComment`
+  // outright with a migration hint, which fires earlier than any lint.
 
   if (override.curatedDoc != null && !override.deriveClassDoc) {
     violations.add(LintViolation(

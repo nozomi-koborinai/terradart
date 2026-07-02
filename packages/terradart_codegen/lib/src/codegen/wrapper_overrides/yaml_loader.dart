@@ -63,9 +63,9 @@ class YamlOverrideLoader {
   static final RegExp _terraformTypePattern = RegExp(r'^[a-z][a-z0-9_]*$');
 
   static const Set<String> _allowedTopLevelKeys = {
-    // 10 wrapper axes (Phase 2.x, minus the Plan 5.X-retired
-    // `schemaStubComment` axis whose host stub class is gone).
-    'classDocComment',
+    // Wrapper axes (Phase 2.x, minus the Plan 5.X-retired
+    // `schemaStubComment` axis and the A4-retired `classDocComment` axis —
+    // class docs derive from the IR + `curatedDoc` now).
     'paramOrder',
     'argMapOrder',
     'extraGetters',
@@ -208,6 +208,16 @@ class YamlOverrideLoader {
     List<LoaderError> errors,
   ) {
     for (final key in yaml.keys) {
+      if (key == 'classDocComment') {
+        // Retired axis (2026-07 doc wave): fail loudly with the migration
+        // path instead of the generic unknown-key error, so the axis cannot
+        // quietly come back.
+        throw FormatException(
+          '$filePath: `classDocComment` is retired — the class doc derives '
+          'from the IR. Set `deriveClassDoc: true` and move artisanal prose '
+          'to `curatedDoc`.',
+        );
+      }
       if (key is! String || !_allowedTopLevelKeys.contains(key)) {
         throw FormatException(
           '$filePath: unknown top-level key: $key '
@@ -274,7 +284,7 @@ class YamlOverrideLoader {
             line: span.start.line + 1,
             column: span.start.column + 1,
             hint: 'Allowed axes for data sources: kind, outputDir, '
-                'schemaStubBodyMode, fileLeadingComment, classDocComment, '
+                'schemaStubBodyMode, fileLeadingComment, '
                 'paramOrder, argMapOrder, requiredParams, '
                 'dartTypeOverrides, extraImports, extraGetters.',
           ));
@@ -288,7 +298,6 @@ class YamlOverrideLoader {
       outputDir: outputDir,
       schemaStubBodyMode: schemaStubBodyMode,
       fileLeadingComment: fileLeadingComment,
-      classDocComment: _readString(yaml, 'classDocComment', filePath),
       paramOrder: paramOrder,
       argMapOrder: argMapOrder,
       extraGetters: _readString(yaml, 'extraGetters', filePath),

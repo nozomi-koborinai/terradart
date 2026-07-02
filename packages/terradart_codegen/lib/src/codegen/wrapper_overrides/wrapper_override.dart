@@ -27,15 +27,6 @@ enum SchemaStubBodyMode { nosuchmethod, bare }
 /// resources reveal them — the YAML schema validates against the current
 /// axis set on load.
 final class WrapperOverride {
-  /// Full class-level doc comment, including the leading `///` markers.
-  /// Emitted verbatim immediately before the `final class` declaration.
-  ///
-  /// The string must NOT carry a trailing newline; the emitter writes it
-  /// via `writeln`.
-  ///
-  /// `null` means "no class doc comment".
-  final String? classDocComment;
-
   /// Snake-case parameter names in the order the constructor (and the
   /// matching argMap entries) should emit them.
   ///
@@ -207,12 +198,13 @@ final class WrapperOverride {
   /// `false` so un-migrated resources are unaffected.
   final bool deriveOutputGetters;
 
-  /// Phase A4 migration gate. When `true`, the emitter derives the class-level
-  /// doc comment from the IR via `buildClassDocComment` (a
+  /// Phase A4 gate. When `true`, the emitter derives the class-level doc
+  /// comment from the IR via `buildClassDocComment` (a
   /// `Factory wrapper for <type>` line, then the resource summary rewrapped
-  /// from `ResourceDef.description`, then [curatedDoc] verbatim), and the
-  /// hand-written [classDocComment] is ignored. Defaults to `false` so
-  /// un-migrated resources keep their verbatim [classDocComment].
+  /// from `ResourceDef.description`, then [curatedDoc] verbatim). When
+  /// `false` no class doc is emitted — the hand-written `classDocComment`
+  /// axis was retired after the 2026-07 doc wave migrated the last
+  /// overrides (all 381 committed overrides set this gate).
   final bool deriveClassDoc;
 
   /// Phase A4 ③ frozen asset: artisanal doc prose (ASCII diagrams, variant
@@ -292,7 +284,6 @@ final class WrapperOverride {
     this.kind = WrapperOverrideKind.resource,
     this.schemaStubBodyMode = SchemaStubBodyMode.nosuchmethod,
     this.fileLeadingComment,
-    this.classDocComment,
     this.paramOrder,
     this.argMapOrder,
     this.extraGetters,
