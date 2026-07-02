@@ -23,7 +23,7 @@ void main() {
     ]);
     expect(result.exitCode, 0, reason: result.stderr.toString());
     final decoded = jsonDecode(result.stdout as String);
-    expect(decoded['summary'], isA<Map>());
+    expect(decoded['summary'], isA<Map<String, dynamic>>());
   });
 
   test('CLI exits non-zero on non-JSON input', () async {

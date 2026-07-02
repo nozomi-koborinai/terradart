@@ -22,7 +22,7 @@ ParseOutcome parseShowJson(Map<String, dynamic> json) {
 }
 
 void _walk(
-  Map module,
+  Map<dynamic, dynamic> module,
   String modulePath,
   List<TfReference> refs,
   List<String> unparseable,
