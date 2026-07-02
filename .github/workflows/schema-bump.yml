@@ -144,9 +144,33 @@ jobs:
             "s|(Confirmed against registry latest )[0-9]+\.[0-9]+\.[0-9]+( on )[0-9]{4}-[0-9]{2}-[0-9]{2}|\1$v7_latest\2$today|" \
             "$file"
 
+      - name: Regenerate wrappers (`terradart wrap`)
+        id: wrap_regen
+        run: |
+          set +e
+          (cd packages/terradart_codegen && dart run bin/terradart.dart wrap \
+            --provider hashicorp/google \
+            --source test/fixtures/wrap/source \
+            --output ../terradart_google/lib/src) > /tmp/wrap_regen.txt 2>&1
+          rc=$?
+          echo "Exit: $rc"
+          cat /tmp/wrap_regen.txt
+          if [ "$rc" != "0" ]; then
+            # wrap builds its whole buffer before materialising, so a failure
+            # writes nothing — but discard any partial state defensively so
+            # the bump PR carries inputs + the check log only (the pre-regen
+            # behavior). The --check step below then records the divergence
+            # for the drift report, and a maintainer regenerates locally.
+            git checkout -- packages/terradart_google/lib
+            echo "wrap failed; bump PR will carry inputs only (see drift report)."
+          fi
+
       - name: Run `terradart wrap --check`
         id: wrap_check
         run: |
+          # After a successful regenerate this verifies (and records) that the
+          # committed tree matches the new schema byte-for-byte; after a failed
+          # regenerate it records the divergence for the drift report.
           set +e
           (cd packages/terradart_codegen && dart run bin/terradart.dart wrap \
             --provider hashicorp/google \
@@ -242,8 +266,7 @@ jobs:
             packages/terradart_codegen/test/fixtures/wrap/source/schema.json \
             packages/terradart_codegen/test/fixtures/wrap/source/provider_version.txt \
             packages/terradart_codegen/test/fixtures/wrap/source/mm \
-            packages/terradart_google/lib/src/_provider_meta.dart \
-            packages/terradart_google/lib/src
+            packages/terradart_google/lib
           git commit -m "chore(schema): weekly bump $today"
           git push -u origin "$branch"
           # Ensure the PR labels exist (idempotent) so a missing label can't fail
