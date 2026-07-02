@@ -73,8 +73,12 @@ final class FirebaseAppHostingBuildAppHostingBuildSourceContainer
   };
 }
 
-/// Factory wrapper for `google_firebase_app_hosting_build` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_firebase_app_hosting_build`.
+///
+/// A single build for a backend, at a specific point codebase reference tag and
+/// point in time. Encapsulates several resources, including an Artifact
+/// Registry container image, a Cloud Build invocation that built the image, and
+/// the Cloud Run revision that uses that image.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after

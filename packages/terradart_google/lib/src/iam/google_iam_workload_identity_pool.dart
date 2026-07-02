@@ -31,16 +31,16 @@ enum WorkloadIdentityPoolMode implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Factory wrapper for `google_iam_workload_identity_pool` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_iam_workload_identity_pool`.
 ///
-/// Represents a Workload Identity Federation (WIF) pool — a container for
-/// external workload identities (GitHub Actions, AWS, Azure, generic OIDC
-/// IdPs) that map to GCP service accounts without long-lived JSON keys.
+/// Represents a collection of external workload identities. You can define IAM
+/// policies to grant these identities access to Google Cloud resources.
 ///
 /// This wrapper covers the pool resource itself. Pair with
 /// [GoogleIamWorkloadIdentityPoolProvider] to configure the OIDC / AWS /
-/// SAML / X.509 trust binding that actually federates external identities.
+/// SAML / X.509 trust binding that actually federates external identities
+/// (e.g. GitHub Actions) onto GCP service accounts without long-lived
+/// JSON keys.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after

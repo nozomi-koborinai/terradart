@@ -57,8 +57,9 @@ class FirebaseAppHostingDomainAppHostingDomainRedirect {
   };
 }
 
-/// Factory wrapper for `google_firebase_app_hosting_domain` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_firebase_app_hosting_domain`.
+///
+/// A domain name that is associated with a backend.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after

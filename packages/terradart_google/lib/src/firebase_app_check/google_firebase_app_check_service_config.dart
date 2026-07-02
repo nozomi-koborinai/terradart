@@ -36,8 +36,9 @@ enum AppCheckEnforcementMode implements TerraformEnum {
   final String terraformValue;
 }
 
-/// Factory wrapper for `google_firebase_app_check_service_config`
-/// (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_firebase_app_check_service_config`.
+///
+/// The enforcement configuration for a service supported by App Check.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after

@@ -8,8 +8,12 @@ const Set<String> _googleFirebaseAppCheckDebugTokenSensitive = <String>{
   'token',
 };
 
-/// Factory wrapper for `google_firebase_app_check_debug_token` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_firebase_app_check_debug_token`.
+///
+/// A debug token is a secret used during the development or integration testing
+/// of an app. It essentially allows the development or integration testing to
+/// bypass app attestation while still allowing App Check to enforce protection
+/// on supported production Firebase services.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
@@ -39,13 +43,9 @@ const Set<String> _googleFirebaseAppCheckDebugTokenSensitive = <String>{
 /// );
 /// ```
 ///
-/// Provisions a debug token so developer-environment or CI clients can
-/// bypass App Check enforcement during development and integration
-/// testing without registering as full attestation providers. Debug
-/// tokens are scoped to a single app ([appId]) and can be revoked by
-/// destroying this resource.
-///
-/// No nested blocks aside from the meta-arg `timeouts`.
+/// Debug tokens are scoped to a single app ([appId]) and can be revoked
+/// by destroying this resource. No nested blocks aside from the meta-arg
+/// `timeouts`.
 final class GoogleFirebaseAppCheckDebugToken extends Resource {
   static const String tfType = 'google_firebase_app_check_debug_token';
 

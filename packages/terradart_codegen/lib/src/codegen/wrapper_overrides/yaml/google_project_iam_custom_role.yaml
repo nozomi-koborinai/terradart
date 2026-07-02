@@ -1,7 +1,7 @@
 outputDir: iam
-classDocComment: |-
-  /// Factory wrapper for `google_project_iam_custom_role`.
-  ///
+deriveClassDoc: true
+
+curatedDoc: |-
   /// Defines a project-level custom IAM role: a named bundle of low-level
   /// permissions that can be granted via `google_project_iam_member` /
   /// `_iam_binding` like any predefined role. Custom roles let you express

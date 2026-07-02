@@ -7,8 +7,12 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleFirebaseAppCheckPlayIntegrityConfigSensitive =
     <String>{};
 
-/// Factory wrapper for `google_firebase_app_check_play_integrity_config`
-/// (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_firebase_app_check_play_integrity_config`.
+///
+/// An app's Play Integrity configuration object. Note that your registered
+/// SHA-256 certificate fingerprints are used to validate tokens issued by the
+/// Play Integrity API. Make sure your `google_firebase_android_app` has at
+/// least one `sha256_hashes` present.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after

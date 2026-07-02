@@ -88,8 +88,9 @@ class FirebaseAppHostingTrafficAppHostingTrafficRolloutPolicy {
   };
 }
 
-/// Factory wrapper for `google_firebase_app_hosting_traffic` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_firebase_app_hosting_traffic`.
+///
+/// Controls traffic configuration for a backend.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after

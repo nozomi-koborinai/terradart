@@ -1,7 +1,7 @@
 outputDir: iam
-classDocComment: |-
-  /// Factory wrapper for `google_project_iam_member`.
-  ///
+deriveClassDoc: true
+
+curatedDoc: |-
   /// Grants a single (`role`, `member`) IAM binding on a GCP project. This
   /// is the **safe additive** form: it adds the tuple without touching any
   /// other bindings on the project.

@@ -7,8 +7,9 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleFirebaseAppCheckRecaptchaEnterpriseConfigSensitive =
     <String>{};
 
-/// Factory wrapper for `google_firebase_app_check_recaptcha_enterprise_config`
-/// (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_firebase_app_check_recaptcha_enterprise_config`.
+///
+/// An app's reCAPTCHA Enterprise configuration object.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
