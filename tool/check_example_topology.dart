@@ -4,6 +4,9 @@
 // proxy, health check on a backend) but appear only once in synth JSON.
 //
 // Run from repo root: dart tool/check_example_topology.dart
+// Pass --reuse-tf-out to skip synth and read each example's existing
+// tf-out/main.tf.json (fails when one is missing) — run
+// `dart tool/example_synth_gates.dart` first to populate them.
 // ignore_for_file: avoid_print
 
 import 'dart:convert';
@@ -11,7 +14,10 @@ import 'dart:io';
 
 import 'package:yaml/yaml.dart';
 
-Future<void> main() async {
+import 'example_synth_gates.dart';
+
+Future<void> main(List<String> args) async {
+  final reuseTfOut = args.contains('--reuse-tf-out');
   final errors = <String>[];
   final config = _loadConfig(errors);
   if (errors.isNotEmpty) {
@@ -32,7 +38,9 @@ Future<void> main() async {
   var strictViolations = 0;
 
   for (final slug in quickstarts) {
-    final json = await _synthExample(slug, errors);
+    final json = reuseTfOut
+        ? _readTfOut(slug, errors)
+        : await synthExample(slug, errors);
     if (json == null) continue;
     final unwired = _unwiredMustReference(json, mustBeReferenced);
     if (unwired.isEmpty) continue;
@@ -95,31 +103,13 @@ Future<void> main() async {
   );
 }
 
-Future<Map<String, dynamic>?> _synthExample(
-  String slug,
-  List<String> errors,
-) async {
-  final infra = File('examples/$slug/bin/infra.dart');
-  if (!infra.existsSync()) return null;
-  final result = await Process.run(
-    'dart',
-    ['run', 'bin/infra.dart'],
-    workingDirectory: 'examples/$slug',
-    environment: {
-      'GCP_PROJECT_ID': 'ci-test-project-id',
-      'DB_PASSWORD':
-          Platform.environment['DB_PASSWORD'] ?? 'ci-synth-placeholder',
-    },
-  );
-  if (result.exitCode != 0) {
-    errors.add(
-      'examples/$slug: synth failed (exit ${result.exitCode})\n${result.stderr}',
-    );
-    return null;
-  }
+Map<String, dynamic>? _readTfOut(String slug, List<String> errors) {
   final out = File('examples/$slug/tf-out/main.tf.json');
   if (!out.existsSync()) {
-    errors.add('examples/$slug: missing tf-out/main.tf.json after synth');
+    errors.add(
+      'examples/$slug: missing tf-out/main.tf.json — run '
+      '"dart tool/example_synth_gates.dart" before --reuse-tf-out',
+    );
     return null;
   }
   return jsonDecode(out.readAsStringSync()) as Map<String, dynamic>;

@@ -148,7 +148,7 @@ if command -v jq >/dev/null 2>&1; then
     done <<< "$sweep_types"
   done
   [[ "$tfout_count" -gt 0 ]] \
-    || fail "cost gate inspected 0 tf-outs — run 'dart tool/check_example_topology.dart' to synth examples first"
+    || fail "cost gate inspected 0 tf-outs — run 'dart tool/example_synth_gates.dart' to synth examples first"
 else
   echo "apply_smoke_test: WARN: jq not found — skipping cost gate (test 9); CI runs it" >&2
 fi

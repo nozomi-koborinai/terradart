@@ -47,7 +47,7 @@ Future<void> runExampleSynthGates(
   final allTfTypes = <String>{};
 
   for (final slug in quickstarts) {
-    final json = await _synthExample(slug, errors);
+    final json = await synthExample(slug, errors);
     if (json == null) continue;
     synthByExample[slug] = json;
     allTfTypes.addAll(_resourceTfTypes(json));
@@ -135,7 +135,11 @@ List<String> _quickstartSlugs() {
     ..sort();
 }
 
-Future<Map<String, dynamic>?> _synthExample(
+/// Synths `examples/<slug>` (`dart run bin/infra.dart` with CI-safe env) and
+/// returns the decoded `tf-out/main.tf.json`, appending to [errors] and
+/// returning null on failure. Shared with check_example_topology.dart so
+/// every gate synths examples exactly the same way.
+Future<Map<String, dynamic>?> synthExample(
   String slug,
   List<String> errors,
 ) async {

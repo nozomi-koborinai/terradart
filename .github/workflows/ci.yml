@@ -89,15 +89,20 @@ jobs:
     # a broken awk regex once fanned a pubspec-only bump out to every example (a
     # real GCP-cost leak). Run the selection unit test so that can't regress
     # unnoticed. The cost gate (test 9) reads tf-out/main.tf.json, which is
-    # gitignored, so we synth every example first via check_example_topology.
+    # gitignored, so example_synth_gates synths every example once (also running
+    # the coverage + API-enablement gates); the topology and cost gates reuse
+    # those tf-outs instead of re-synthing. terraform validate is skipped here —
+    # the per-example terraform_validate matrix covers it.
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
         with:
           sdk: stable
       - run: dart pub get
-      - name: Synth all examples (populate tf-out for cost gate)
-        run: dart tool/check_example_topology.dart
+      - name: Synth all examples + coverage/API gates (populates tf-out)
+        run: dart tool/example_synth_gates.dart --skip-validate
+      - name: Topology gate (reuses tf-out)
+        run: dart tool/check_example_topology.dart --reuse-tf-out
       - run: bash tool/apply_smoke_test.sh
 
   wrap_check:
