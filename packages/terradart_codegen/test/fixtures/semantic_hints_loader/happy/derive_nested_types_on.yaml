@@ -1,0 +1,2 @@
+outputDir: test_out
+deriveNestedTypes: true

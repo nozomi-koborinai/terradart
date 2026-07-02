@@ -7,6 +7,8 @@ import 'doc_comment_builder.dart';
 import 'enum_emitter.dart';
 import 'getter_emitter.dart';
 import 'naming.dart';
+import 'nested_types/nested_type_collector.dart';
+import 'nested_types/nested_type_emitter.dart';
 import 'sensitive_set_emitter.dart';
 import 'wrapper_overrides/wrapper_override.dart';
 
@@ -44,9 +46,20 @@ import 'wrapper_overrides/wrapper_override.dart';
 ///   const from `.schema.dart`.
 /// - The `sensitiveFields` getter references the new file-private const.
 class WrapperEmitter {
-  WrapperEmitter({required this.overrides});
+  WrapperEmitter({required this.overrides, this.rawResourceSchemas = const {}});
 
   final Map<String, WrapperOverride> overrides;
+
+  /// Raw provider-schema JSON `block` maps, keyed by Terraform type — the
+  /// shape `collectNestedTypes` consumes (`block_types` / `nesting_mode` /
+  /// `min_items`, etc.), which the parsed [ResourceDef] IR no longer carries
+  /// once `SchemaJsonParser` has flattened it into [Attribute] /
+  /// [NestedBlockDef]. Only consulted when an override sets
+  /// `deriveNestedTypes: true`; `wrap_command.dart` builds this lazily (only
+  /// decoding schema.json a second time when at least one loaded override
+  /// needs it), so callers that never flip the gate — every committed
+  /// override today — can omit this entirely.
+  final Map<String, Map<String, dynamic>> rawResourceSchemas;
 
   /// Emits the wrapper file source.
   ///
@@ -70,6 +83,11 @@ class WrapperEmitter {
     final override = overrides[def.terraformType];
     final requiredOverrides =
         (override?.requiredParams ?? const <String>[]).toSet();
+    // Hoisted ahead of its historical position (immediately before the
+    // constructor section) because the `deriveNestedTypes` gate below needs
+    // `customSlotKeys` before it renders the prelude section — customSlots
+    // itself doesn't depend on anything emitted in between.
+    final customSlots = override?.customSlots ?? const <String, CustomSlot>{};
 
     // Imports. `extraImports` is emitted FIRST so that `package:meta` (the
     // common case for hand-written helper classes that decorate themselves
@@ -145,6 +163,33 @@ class WrapperEmitter {
       buf.writeln();
     }
 
+    // `deriveNestedTypes` gate: derive a typed `@immutable` helper class
+    // (plus any attribute `TerraformEnum`s) for each of this resource's
+    // TOP-LEVEL nested blocks from the RAW provider-schema JSON —
+    // `collectNestedTypes` needs `block_types` / `nesting_mode` / etc., which
+    // the parsed IR no longer carries. `customSlots.keys` marks subtrees the
+    // hand-written override already owns (the collector skips them
+    // entirely, at any depth); `nestedTypeExcludes` marks additional
+    // subtrees left as the generic passthrough. Dark by construction: no
+    // committed override sets `deriveNestedTypes`, so `nestedTypeSpecs` is
+    // always `const []` today and this whole block is a no-op.
+    final nestedTypeSpecs = (override?.deriveNestedTypes ?? false)
+        ? collectNestedTypes(
+            resourceBlock: _requireRawSchema(def.terraformType),
+            resourcePrefix: shortResourcePascal(def.terraformType),
+            customSlotKeys: customSlots.keys.toSet(),
+            excludedPaths:
+                (override?.nestedTypeExcludes ?? const <String>[]).toSet(),
+          )
+        : const <NestedBlockSpec>[];
+    if (nestedTypeSpecs.isNotEmpty) {
+      buf.write(renderNestedTypes(
+        nestedTypeSpecs,
+        resourceTerraformType: def.terraformType,
+      ));
+      buf.writeln();
+    }
+
     // Class-level doc comment. Phase A4: derived deterministically from the
     // IR when `deriveClassDoc: true` — `Factory wrapper for <type>`, then the
     // resource summary rewrapped from `ResourceDef.description` (merged from
@@ -176,7 +221,6 @@ class WrapperEmitter {
     // `http_target` / `app_engine_http_target` blocks.
     final paramOrder = orderedConstructorParams(def, override?.paramOrder);
     final argMapOrder = override?.argMapOrder ?? paramOrder;
-    final customSlots = override?.customSlots ?? const <String, CustomSlot>{};
     final dartTypeOverrides =
         override?.dartTypeOverrides ?? const <String, String>{};
     final deprecations = override?.deprecatedParams ?? const <String, String>{};
@@ -190,6 +234,18 @@ class WrapperEmitter {
     for (final entry in customSlots.entries) {
       paramsByName[entry.key] = entry.value.paramDeclaration;
       argMapByName[entry.key] = entry.value.argMapEntry;
+    }
+    // Replace the generic passthrough for every TOP-LEVEL `deriveNestedTypes`
+    // spec with its typed rendering. Keys never collide with the customSlots
+    // loop above: `collectNestedTypes` skips any subtree rooted at a
+    // `customSlots` key entirely (see `customSlotKeys` above), so a spec can
+    // never share a `tfName` with a customSlot entry.
+    for (final spec in nestedTypeSpecs) {
+      final isRequired =
+          spec.required || requiredOverrides.contains(spec.tfName);
+      final slot = _nestedTypeSlot(spec, isRequired: isRequired);
+      paramsByName[spec.tfName] = slot.param;
+      argMapByName[spec.tfName] = slot.argMapEntry;
     }
 
     buf.writeln('  $pascal({');
@@ -408,5 +464,59 @@ class WrapperEmitter {
       return "'$snakeName': $camel,";
     }
     return "if ($camel != null) '$snakeName': $camel,";
+  }
+
+  /// Builds the constructor-param and argMap-entry snippets for one
+  /// TOP-LEVEL `deriveNestedTypes` spec, replacing [_nestedBlockParam] /
+  /// [_argMapEntry]'s generic `TfArg<Map<String, dynamic>>?` passthrough for
+  /// that slot.
+  ///
+  /// Mirrors the hand-written idiom [CustomSlot]'s doc comment describes
+  /// (e.g. `google_pubsub_subscription.bigquery_config`): the constructor
+  /// exposes a bare (non-`TfArg`) helper-class reference —
+  /// [nestedParamType]'s shape, required-ness stripped per its own
+  /// documented contract ("a caller rendering a required slot strips the
+  /// trailing `?` itself") — and the argMap entry wraps its `.encode()`
+  /// output in `TfArg.literal(...)` so it satisfies `Resource.argMap`'s
+  /// `Map<String, TfArg<dynamic>?>` contract.
+  ({String param, String argMapEntry}) _nestedTypeSlot(
+    NestedBlockSpec spec, {
+    required bool isRequired,
+  }) {
+    final dartName = snakeToCamel(spec.tfName);
+    final nullableType = nestedParamType(spec);
+    final bareType = nullableType.substring(0, nullableType.length - 1);
+    final param =
+        isRequired ? 'required $bareType $dartName' : '$nullableType $dartName';
+
+    final String encodeExpr;
+    if (spec.repeated) {
+      encodeExpr = isRequired
+          ? '[for (final e in $dartName) e.encode()]'
+          : '[for (final e in $dartName!) e.encode()]';
+    } else {
+      encodeExpr = isRequired ? '$dartName.encode()' : '$dartName!.encode()';
+    }
+    final entry = "'${spec.tfName}': TfArg.literal($encodeExpr),";
+    final argMapEntry = isRequired ? entry : 'if ($dartName != null) $entry';
+    return (param: param, argMapEntry: argMapEntry);
+  }
+
+  /// Looks up [terraformType]'s raw provider-schema `block` map in
+  /// [rawResourceSchemas], failing loudly when it's missing — this only
+  /// happens when a caller sets `deriveNestedTypes: true` without also
+  /// supplying the matching raw schema (a wiring bug, not a data problem;
+  /// `wrap_command.dart` always supplies it once any loaded override needs
+  /// it).
+  Map<String, dynamic> _requireRawSchema(String terraformType) {
+    final raw = rawResourceSchemas[terraformType];
+    if (raw == null) {
+      throw StateError(
+        'WrapperEmitter: deriveNestedTypes is set for "$terraformType" but '
+        'no raw provider-schema block was supplied (rawResourceSchemas has '
+        'no entry for this type).',
+      );
+    }
+    return raw;
   }
 }

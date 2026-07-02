@@ -45,9 +45,11 @@ class LoadedOverrides {
 ///
 /// Validation:
 /// - File names must match `^[a-z][a-z0-9_]*$`.
-/// - Top-level keys must be in the allowed set (15 axes — 11 wrapper axes
+/// - Top-level keys must be in the allowed set (20 axes — 16 wrapper axes
 ///   plus the 4 Phase 4.1 axes: `kind`, `outputDir`, `schemaStubBodyMode`,
 ///   `fileLeadingComment`).
+/// - `nestedTypeExcludes` requires `deriveNestedTypes: true` (checked eagerly,
+///   like the `argMapOrder`-must-permute-`paramOrder` rule below).
 /// - `List<String>` fields must not be empty and entries must be strings.
 /// - `Map<String, String>` fields' values must be strings.
 /// - `customSlots[x].paramDeclaration` and `customSlots[x].argMapEntry`
@@ -80,6 +82,8 @@ class YamlOverrideLoader {
     'deriveClassDoc',
     'curatedDoc',
     'customSlots',
+    'deriveNestedTypes',
+    'nestedTypeExcludes',
     // 4 Phase 4.1 axes (kind dispatch + emitter routing).
     'kind',
     'outputDir',
@@ -236,6 +240,21 @@ class YamlOverrideLoader {
         );
       }
     }
+    final deriveNestedTypes =
+        _readBool(yaml, 'deriveNestedTypes', filePath) ?? false;
+    final nestedTypeExcludes =
+        _readStringList(yaml, 'nestedTypeExcludes', filePath);
+    if (nestedTypeExcludes != null && !deriveNestedTypes) {
+      // Mirrors the retired-`classDocComment` style above: fail loudly at
+      // load time instead of silently accepting dead config the emitter
+      // would never consult (`nestedTypeExcludes` only has an effect inside
+      // the `deriveNestedTypes` codegen gate).
+      throw FormatException(
+        '$filePath: nestedTypeExcludes requires deriveNestedTypes: true. Set '
+        '`deriveNestedTypes: true` on this override, or remove '
+        '`nestedTypeExcludes`.',
+      );
+    }
     final kind = _parseKind(yaml, filePath, errors);
     if (kind == null) return null;
     final outputDir = _parseOutputDir(yaml, filePath, errors);
@@ -315,6 +334,8 @@ class YamlOverrideLoader {
       deriveClassDoc: _readBool(yaml, 'deriveClassDoc', filePath) ?? false,
       curatedDoc: _readString(yaml, 'curatedDoc', filePath),
       customSlots: _readCustomSlots(yaml, filePath),
+      deriveNestedTypes: deriveNestedTypes,
+      nestedTypeExcludes: nestedTypeExcludes,
     );
   }
 

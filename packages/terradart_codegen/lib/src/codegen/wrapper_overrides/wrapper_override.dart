@@ -218,6 +218,37 @@ final class WrapperOverride {
   /// `null` means "no curated doc fragment".
   final String? curatedDoc;
 
+  /// `deriveNestedTypes` migration gate. When `true`, the emitter derives a
+  /// typed `@immutable` helper class (plus any attribute `TerraformEnum`s)
+  /// for each of this resource's TOP-LEVEL nested blocks from the provider
+  /// schema — see `nested_types/nested_type_collector.dart` and
+  /// `nested_type_emitter.dart` — replacing the generic
+  /// `TfArg<Map<String, dynamic>>?` passthrough the IR would otherwise
+  /// produce for that slot. A block already covered by a [customSlots] entry
+  /// is left untouched (the collector skips any subtree rooted at a
+  /// customSlot key). Defaults to `false` so un-migrated resources are
+  /// unaffected — mirrors [deriveEnums] / [deriveOutputGetters] / [deriveClassDoc].
+  final bool deriveNestedTypes;
+
+  /// Dotted provider-schema block paths (e.g. `'basic.conditions'`) to
+  /// exclude from [deriveNestedTypes] derivation, relative to the resource
+  /// root. An excluded block (and everything under it) is rendered as the
+  /// generic `TfArg<Map<String, dynamic>>?` passthrough instead of a derived
+  /// class — use this for a subtree that still needs hand-curation (e.g. a
+  /// shape the collector cannot represent, or one earmarked for a future
+  /// customSlot). A TOP-LEVEL path (no dot) simply omits that slot from
+  /// derivation entirely; the constructor still emits it via the ordinary
+  /// `paramOrder`-driven passthrough.
+  ///
+  /// Only meaningful when [deriveNestedTypes] is `true` — the loader rejects
+  /// a yaml file that sets this without the gate (`FormatException` at load
+  /// time), and `lintOverride`'s `nested-excludes-without-derive` rule flags
+  /// the same condition for an override constructed some other way.
+  ///
+  /// `null` means "derive every nested block reachable from the resource
+  /// root" (subject only to the [customSlots] skip).
+  final List<String>? nestedTypeExcludes;
+
   /// Snake-case slot name → custom constructor / argMap snippets.
   ///
   /// Two use cases:
@@ -298,6 +329,8 @@ final class WrapperOverride {
     this.deriveOutputGetters = false,
     this.deriveClassDoc = false,
     this.curatedDoc,
+    this.deriveNestedTypes = false,
+    this.nestedTypeExcludes,
   });
 }
 

@@ -35,6 +35,8 @@ void main() {
         expect(override.deriveOutputGetters, isFalse);
         expect(override.deriveClassDoc, isFalse);
         expect(override.curatedDoc, isNull);
+        expect(override.deriveNestedTypes, isFalse);
+        expect(override.nestedTypeExcludes, isNull);
       });
 
       test('derive_enums_on -> deriveEnums true', () {
@@ -70,6 +72,29 @@ void main() {
         // the single `///` line with no leading separator or trailing `\n`.
         expect(o.curatedDoc, equals('/// Curated example block.'));
         expect(o.outputDir, 'test_out');
+      });
+
+      test('derive_nested_types_on -> deriveNestedTypes true', () {
+        final loader = YamlOverrideLoader(
+          rootDir: 'test/fixtures/semantic_hints_loader/happy',
+        );
+        final result = loader.load().resources;
+        final o = result['derive_nested_types_on']!;
+        expect(o.deriveNestedTypes, isTrue);
+        expect(o.nestedTypeExcludes, isNull);
+        expect(o.outputDir, 'test_out');
+      });
+
+      test(
+          'nested_type_excludes_only -> deriveNestedTypes + nestedTypeExcludes '
+          'round-trip', () {
+        final loader = YamlOverrideLoader(
+          rootDir: 'test/fixtures/semantic_hints_loader/happy',
+        );
+        final result = loader.load().resources;
+        final o = result['nested_type_excludes_only']!;
+        expect(o.deriveNestedTypes, isTrue);
+        expect(o.nestedTypeExcludes, equals(['basic.conditions', 'foo.bar']));
       });
 
       test('param_order_only -> only paramOrder set', () {
@@ -187,8 +212,8 @@ void main() {
       });
 
       test(
-          'full_axis -> all axes set (Plan 5.X: 10 axes, schemaStubComment retired)',
-          () {
+          'full_axis -> all axes set (schemaStubComment retired; '
+          'deriveNestedTypes + nestedTypeExcludes added)', () {
         final loader = YamlOverrideLoader(
           rootDir: 'test/fixtures/semantic_hints_loader/happy',
         );
@@ -206,6 +231,8 @@ void main() {
           o.customSlots!['s']!.paramDeclaration,
           equals('required Bar b'),
         );
+        expect(o.deriveNestedTypes, isTrue);
+        expect(o.nestedTypeExcludes, equals(['basic.conditions']));
       });
     });
 
@@ -337,6 +364,21 @@ schemaStubComment: |-
           loader.load,
           throwsFormatExceptionWith(
             '"deriveOutputGetters" must be a boolean (true or false)',
+          ),
+        );
+      });
+
+      test(
+          'nestedTypeExcludes without deriveNestedTypes -> FormatException '
+          '(mirrors the classDocComment retirement style)', () {
+        final loader = YamlOverrideLoader(
+          rootDir: 'test/fixtures/semantic_hints_loader/failure/'
+              'nested_type_excludes_without_derive',
+        );
+        expect(
+          loader.load,
+          throwsFormatExceptionWith(
+            'nestedTypeExcludes requires deriveNestedTypes',
           ),
         );
       });
