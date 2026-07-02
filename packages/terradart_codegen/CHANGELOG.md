@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.23.0 - 2026-07-02
+
+Lockstep release for `terradart_core` / `terradart_google` 0.23.0. No CLI or codegen API changes.
+
 ## 0.22.0 - 2026-06-30
 
 Lockstep release for Waves 76–77. Agent guide: co-authorship commit policy removed from `AGENTS.md`.

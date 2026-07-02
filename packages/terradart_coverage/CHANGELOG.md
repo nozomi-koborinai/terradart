@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.23.0 - 2026-07-02
+
+Lockstep release for `terradart_core` / `terradart_google` 0.23.0. No API changes in `terradart_coverage`.
+
 ## 0.22.0 - 2026-06-30
 
 Lockstep release for Waves 76–77. No API changes in `terradart_coverage`.

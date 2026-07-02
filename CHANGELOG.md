@@ -4,6 +4,15 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage` — this top-level file summarises cross-cutting milestones.
 
+## [0.23.0] - 2026-07-02
+
+Lockstep release across the workspace. **Breaking** — see [MIGRATING.md](MIGRATING.md).
+
+### Breaking
+
+- **`terradart_core`** — removed the `StackProvider.toTfJson()` backwards-compat shim; read `configArgs` directly. `Backend.toTfJson()` / `TfArg.toTfJson()` are unchanged.
+- **`terradart_google`** — six string fields became typed enums (serialized JSON unchanged): `GoogleAccessContextManagerServicePerimeter.perimeterType`, `GoogleComputeHaVpnGateway.gatewayIpVersion` / `.stackType`, `GoogleComputeNetworkPeering.stackType` / `.updateStrategy`, `GoogleComputeRouterPeer.advertiseMode`. Also drops `GoogleProvider.toTfJson()` / `TimeProvider.toTfJson()`, the mirrored copies of the removed shim.
+
 ## [0.22.0] - 2026-06-30
 
 Lockstep release across the workspace. **No breaking changes** vs `0.21.0`.
