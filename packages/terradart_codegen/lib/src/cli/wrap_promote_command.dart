@@ -10,6 +10,7 @@ import '../codegen/wrap_promote/wrap_promote_marker.dart';
 import '../parser/mm_yaml_parser.dart';
 import '../parser/schema_parser.dart';
 import 'exit_codes.dart';
+import 'wrap_cli_common.dart';
 
 /// `terradart wrap-promote <resource>` — overlays MM-derived sealed-class
 /// skeletons + Dart enums onto an existing wrap-init-produced yaml.
@@ -54,9 +55,6 @@ class WrapPromoteCommand extends Command<int> {
   String get description =>
       'Overlay MM-derived sealed-class skeletons + enums onto an existing wrap-init yaml.';
 
-  static final RegExp _providerIdPattern =
-      RegExp(r'^[a-z0-9][a-z0-9-]*\/[a-z0-9][a-z0-9-]*$');
-
   @override
   Future<int> run() async {
     final results = argResults!;
@@ -72,7 +70,7 @@ class WrapPromoteCommand extends Command<int> {
     }
 
     final provider = results['provider'] as String;
-    if (!_providerIdPattern.hasMatch(provider)) {
+    if (!providerIdPattern.hasMatch(provider)) {
       usageException(
         'Invalid --provider "$provider". Expected "namespace/name".',
       );
@@ -116,20 +114,14 @@ class WrapPromoteCommand extends Command<int> {
       return CliExitCodes.dataError;
     }
 
-    // 3. Locate the schema (canonical OR per-resource fallback).
-    final canonical = File(p.join(source, 'schema.json'));
-    final perRes = File(
-      p.join(source, 'schema', '${resourceName}_v7.schema.json'),
-    );
-    final File schemaFile;
-    if (canonical.existsSync()) {
-      schemaFile = canonical;
-    } else if (perRes.existsSync()) {
-      schemaFile = perRes;
-    } else {
+    // 3. Locate the schema (canonical OR per-resource fallback — see
+    //    resolveSchemaFile).
+    final schemaFile = resolveSchemaFile(source, resourceName);
+    if (schemaFile == null) {
       stderr.writeln(
-        'terradart wrap-promote: schema source not found in --source '
-        '"$source" (looked at ${canonical.path} and ${perRes.path}).',
+        'terradart wrap-promote: no schema for "$resourceName" under '
+        '--source "$source" (looked for schema.json and '
+        'schema/${resourceName}_v7.schema.json).',
       );
       return CliExitCodes.dataError;
     }
@@ -148,7 +140,7 @@ class WrapPromoteCommand extends Command<int> {
     // 5. Parse inputs.
     final ir = const SchemaJsonParser().parseString(
       schemaFile.readAsStringSync(),
-      providerVersion: '7.31.0',
+      providerVersion: readProviderVersion(source),
     );
     final def = ir.resources[resourceName] ?? ir.dataSources[resourceName];
     if (def == null) {

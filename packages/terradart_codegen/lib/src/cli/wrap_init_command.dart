@@ -12,6 +12,7 @@ import '../codegen/wrapper_overrides/wrapper_override.dart';
 import '../parser/mm_yaml_parser.dart';
 import '../parser/schema_parser.dart';
 import 'exit_codes.dart';
+import 'wrap_cli_common.dart';
 
 /// `terradart wrap-init <resource>` — scaffolds a wrapper override YAML
 /// for a single Terraform resource.
@@ -55,9 +56,6 @@ class WrapInitCommand extends Command<int> {
   String get description =>
       'Scaffold a wrapper override YAML skeleton for one Terraform resource.';
 
-  static final RegExp _providerIdPattern =
-      RegExp(r'^[a-z0-9][a-z0-9-]*\/[a-z0-9][a-z0-9-]*$');
-
   @override
   Future<int> run() async {
     final results = argResults!;
@@ -75,7 +73,7 @@ class WrapInitCommand extends Command<int> {
 
     // --provider validation + registry lookup.
     final provider = results['provider'] as String;
-    if (!_providerIdPattern.hasMatch(provider)) {
+    if (!providerIdPattern.hasMatch(provider)) {
       usageException(
         'Invalid --provider "$provider". Expected "namespace/name".',
       );
@@ -103,35 +101,22 @@ class WrapInitCommand extends Command<int> {
     final resourceName = rest.single;
     final force = results['force'] as bool;
 
-    // 1. Locate the schema file.
-    //
-    // The spec describes `<source>/schema.json` as the canonical layout.
-    // For the existing test fixtures (`test/fixtures/schema/<r>_v7.schema.json`)
-    // there is no single combined `schema.json` to point at, so we accept
-    // BOTH shapes:
-    //   (a) <source>/schema.json (canonical, used in production when paired
-    //       with the wrap subcommand's source dir)
-    //   (b) <source>/schema/<resource>_v7.schema.json (per-resource layout,
-    //       matches the existing Phase 2/4.1 schema fixtures)
-    final canonicalSchemaFile = File(p.join(source, 'schema.json'));
-    final perResourceSchemaFile = File(
-      p.join(source, 'schema', '${resourceName}_v7.schema.json'),
-    );
-    final File schemaFile;
-    if (canonicalSchemaFile.existsSync()) {
-      schemaFile = canonicalSchemaFile;
-    } else if (perResourceSchemaFile.existsSync()) {
-      schemaFile = perResourceSchemaFile;
-    } else {
+    // 1. Locate the schema file (canonical <source>/schema.json, else the
+    //    per-resource fixture layout — see resolveSchemaFile).
+    final schemaFile = resolveSchemaFile(source, resourceName);
+    if (schemaFile == null) {
       stderr.writeln(
-        'terradart wrap-init: neither ${canonicalSchemaFile.path} nor '
-        '${perResourceSchemaFile.path} exists.',
+        'terradart wrap-init: no schema for "$resourceName" under --source '
+        '"$source" (looked for schema.json and '
+        'schema/${resourceName}_v7.schema.json).',
       );
       return CliExitCodes.dataError;
     }
 
-    final ir = const SchemaJsonParser()
-        .parseString(schemaFile.readAsStringSync(), providerVersion: '7.31.0');
+    final ir = const SchemaJsonParser().parseString(
+      schemaFile.readAsStringSync(),
+      providerVersion: readProviderVersion(source),
+    );
 
     // 2. Resolve kind from where the resource lives in the IR.
     final def = ir.resources[resourceName] ?? ir.dataSources[resourceName];

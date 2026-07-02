@@ -16,6 +16,7 @@ import '../parser/ir_merger.dart';
 import '../parser/mm_yaml_parser.dart';
 import '../parser/schema_parser.dart';
 import 'exit_codes.dart';
+import 'wrap_cli_common.dart';
 
 /// The `terradart wrap` subcommand: emits Layer 2 factory wrappers (+ data
 /// source Layer 1) from override YAML.
@@ -74,9 +75,6 @@ class WrapCommand extends Command<int> {
   String get description =>
       'Emit Layer 2 factory wrappers (+ data source Layer 1) from override YAML.';
 
-  static final RegExp _providerIdPattern =
-      RegExp(r'^[a-z0-9][a-z0-9-]*\/[a-z0-9][a-z0-9-]*$');
-
   @override
   Future<int> run() async {
     final results = argResults!;
@@ -85,7 +83,7 @@ class WrapCommand extends Command<int> {
     if (provider == null || provider.isEmpty) {
       usageException('--provider is required.');
     }
-    if (!_providerIdPattern.hasMatch(provider)) {
+    if (!providerIdPattern.hasMatch(provider)) {
       usageException(
         'Invalid --provider "$provider". Expected "namespace/name".',
       );
@@ -119,8 +117,10 @@ class WrapCommand extends Command<int> {
       return CliExitCodes.dataError;
     }
     final schemaSrc = schemaFile.readAsStringSync();
-    final baseIr = const SchemaJsonParser()
-        .parseString(schemaSrc, providerVersion: '7.31.0');
+    final baseIr = const SchemaJsonParser().parseString(
+      schemaSrc,
+      providerVersion: readProviderVersion(source),
+    );
 
     // 1b. Load MM YAML overrides from <source>/mm/ and merge them into the
     //     schema IR so that enumValues (and other MM-derived constraints) are
