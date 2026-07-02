@@ -110,12 +110,15 @@ echo ">> terradart lint-override"
   dart run bin/terradart.dart lint-override
 )
 
-# NESTED_THIN stays advisory here: --strict-nested accumulated 56 un-modeled
-# nested blocks (whole-block TfArg<Map> surfaces) and silently broke the full
-# gate after Wave 76 — nobody ran it to completion again. Top-level and
-# NESTED_PARTIAL gaps still fail (modulo tool/enum_gap_debt.yaml).
+# --strict-nested restored: the 0.24.0 flip (deriveNestedTypes across 19
+# NESTED_THIN resources) paid down the 56-advisory rot this gate silently
+# accumulated after Wave 76. Remaining NESTED_THIN sites are only the ones a
+# flipped override's nestedTypeExcludes deliberately freezes (printed as
+# [frozen-by-exclude], never failing) — genuinely un-migrated sites fail here
+# again, same as top-level and NESTED_PARTIAL gaps (modulo
+# tool/enum_gap_debt.yaml).
 echo ">> check_override_enum_gaps"
-dart tool/check_override_enum_gaps.dart
+dart tool/check_override_enum_gaps.dart --strict-nested
 
 echo ">> check_mm_upstream_fingerprint"
 dart tool/check_mm_upstream_fingerprint.dart

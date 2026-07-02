@@ -137,20 +137,69 @@ bool _customSlotCoversBlock(Map<String, dynamic> ov, List<String> blockPath) {
   return false;
 }
 
+/// Collapses runs of whitespace (including newlines) to a single space.
+///
+/// `dart_style` wraps a field declaration across multiple lines once its
+/// type name is long enough (routine for `deriveNestedTypes` classes, whose
+/// names are `ResourcePrefix + full block path + attr name` chains) — e.g.
+/// `final TfArg<\n  VeryLongEnumClassName\n>?\n  fieldName;`, sometimes with
+/// the wrap landing INSIDE the generic's angle brackets (`TfArg<\n  Foo\n>?`,
+/// three whitespace-separated tokens even after normalizing). The field
+/// -detection regexes below (`[^;]+?` for the type, not `\S+`) tolerate an
+/// arbitrarily-wrapped type as long as it contains no literal semicolon
+/// (true of every Dart type), so normalizing first just keeps the captured
+/// type text comparable to its un-wrapped form (see `_declaredFieldType`).
+String _normalizeWhitespace(String s) => s.replaceAll(RegExp(r'\s+'), ' ');
+
+/// The declared type(s) of every `final <type> <camel>;` field named [camel]
+/// in [genText] (already whitespace-normalized), with internal whitespace
+/// stripped so a wrap-then-normalize round trip (`TfArg< Foo >?`) reads the
+/// same as the never-wrapped form (`TfArg<Foo>?`). Empty when no such field
+/// exists. More than one entry is possible — and INTENTIONALLY not resolved
+/// to "the right one" — when an unrelated block reuses the same attr name
+/// (e.g. top-level `type` vs a nested block's own `type`); see
+/// `_nestedEnumFieldIsGap`'s doc for why that's the accepted heuristic.
+Iterable<String> _declaredFieldTypes(String genText, String camel) sync* {
+  for (final m in RegExp('final ([^;]+?)\\s+$camel\\s*;').allMatches(genText)) {
+    yield m.group(1)!.replaceAll(' ', '');
+  }
+}
+
 bool _nestedFieldDeclared(String genText, String camel) {
-  return RegExp('final \\S+\\??\\s+$camel\\s*;').hasMatch(genText);
+  return _declaredFieldTypes(genText, camel).isNotEmpty;
 }
 
 bool _nestedEnumFieldIsGap(String genText, String camel) {
-  // A typed non-string field (enum / helper) with this name means covered,
-  // even when another unrelated `TfArg<String> foo` shares the same name
-  // elsewhere in the generated file (e.g. top-level `type` vs nested `type`).
-  if (RegExp('final (?!TfArg<String>)\\S+\\??\\s+$camel\\s*;').hasMatch(
-    genText,
-  )) {
-    return false;
+  const rawString = {'TfArg<String>', 'TfArg<String>?'};
+  var sawRawString = false;
+  for (final type in _declaredFieldTypes(genText, camel)) {
+    if (!rawString.contains(type)) {
+      // A typed non-string field (enum / helper) with this name means
+      // covered, even when another unrelated `TfArg<String> foo` shares the
+      // same name elsewhere in the generated file (e.g. top-level `type` vs
+      // nested `type`).
+      return false;
+    }
+    sawRawString = true;
   }
-  return RegExp('final TfArg<String>\\??\\s+$camel\\s*;').hasMatch(genText);
+  return sawRawString;
+}
+
+/// Whether [blockPath] (or an ancestor of it) is one of [ov]'s
+/// `nestedTypeExcludes` entries — i.e. a NESTED_THIN site the maintainer
+/// deliberately froze when flipping `deriveNestedTypes: true`, rather than
+/// one nobody has migrated yet. Only meaningful when [ov] actually sets
+/// `deriveNestedTypes: true`; an override that never turned the gate on has
+/// no "frozen" sites, only not-yet-migrated ones.
+bool _isFrozenByExclude(Map<String, dynamic> ov, List<String> blockPath) {
+  if (ov['deriveNestedTypes'] != true) return false;
+  final excludesRaw = ov['nestedTypeExcludes'] as YamlList?;
+  if (excludesRaw == null || excludesRaw.isEmpty) return false;
+  final excludes = excludesRaw.map((e) => e.toString()).toSet();
+  for (var i = blockPath.length; i > 0; i--) {
+    if (excludes.contains(blockPath.sublist(0, i).join('.'))) return true;
+  }
+  return false;
 }
 
 List<_NestedEnumSite> _collectNestedEnumSites(Map<String, dynamic> block) {
@@ -190,6 +239,7 @@ void main(List<String> args) {
   final topLevelGaps = <String>[];
   final nestedPartialGaps = <String>[];
   final nestedThinGaps = <String>[];
+  final frozenByExcludeGaps = <String>[];
 
   for (final ent in _overrideDir.listSync().whereType<File>()) {
     if (!ent.path.endsWith('.yaml')) continue;
@@ -204,7 +254,9 @@ void main(List<String> args) {
     );
     final thin = _isThin(ov);
     final stringFields = _ctorStringFields(tfType, ov);
-    final genText = _generatedSource(tfType, ov);
+    final genTextRaw = _generatedSource(tfType, ov);
+    final genText =
+        genTextRaw == null ? null : _normalizeWhitespace(genTextRaw);
 
     final attrs =
         ((schema as Map)['block'] as Map)['attributes'] as Map<String, dynamic>;
@@ -235,11 +287,11 @@ void main(List<String> args) {
     for (final site in _collectNestedEnumSites(block)) {
       final label = _blockPathLabel(site.blockPath, site.attr);
       final camel = _camel(site.attr);
+      final frozen = _isFrozenByExclude(ov, site.blockPath);
 
       if (!_nestedFieldDeclared(genText, camel)) {
-        nestedThinGaps.add(
-          'NESTED_THIN\t$tfType.$label\t${site.values.join(", ")}',
-        );
+        final gap = 'NESTED_THIN\t$tfType.$label\t${site.values.join(", ")}';
+        (frozen ? frozenByExcludeGaps : nestedThinGaps).add(gap);
         continue;
       }
 
@@ -252,9 +304,8 @@ void main(List<String> args) {
           'NESTED_PARTIAL\t$tfType.$label\t${site.values.join(", ")}',
         );
       } else {
-        nestedThinGaps.add(
-          'NESTED_THIN\t$tfType.$label\t${site.values.join(", ")}',
-        );
+        final gap = 'NESTED_THIN\t$tfType.$label\t${site.values.join(", ")}';
+        (frozen ? frozenByExcludeGaps : nestedThinGaps).add(gap);
       }
     }
   }
@@ -276,6 +327,7 @@ void main(List<String> args) {
   final allGapKeys = {
     ...failing.map(keyOf),
     ...nestedThinAdvisory.map(keyOf),
+    ...frozenByExcludeGaps.map(keyOf),
   };
   final staleDebt = debt.keys.where((k) => !allGapKeys.contains(k)).toList();
   if (staleDebt.isNotEmpty) {
@@ -293,22 +345,40 @@ void main(List<String> args) {
   final debtNote =
       suppressed == 0 ? '' : '; $suppressed in tool/enum_gap_debt.yaml';
 
+  // `frozenByExcludeGaps` never fails, even under --strict-nested — it's a
+  // maintainer's reviewed `nestedTypeExcludes` decision (recorded on the
+  // override, not this ledger), not migration debt to chase down. Still
+  // printed in every branch so "why is this one still a Map" is one command
+  // away, matching the advisory list's visibility.
+  void printFrozen() {
+    if (frozenByExcludeGaps.isEmpty) return;
+    print(
+      '  (${frozenByExcludeGaps.length} frozen-by-exclude — nestedTypeExcludes, never fails)',
+    );
+    for (final g in frozenByExcludeGaps) {
+      print('  [frozen-by-exclude] $g');
+    }
+  }
+
   if (effective.isEmpty && nestedThinAdvisory.isEmpty) {
     print(
       'check_override_enum_gaps: OK (0 top-level, 0 nested partial, '
-      '0 nested thin$debtNote)',
+      '0 nested thin$debtNote; ${frozenByExcludeGaps.length} frozen-by-exclude)',
     );
+    printFrozen();
     exit(0);
   }
 
   if (effective.isEmpty) {
     print(
       'check_override_enum_gaps: OK (0 failing$debtNote; '
-      '${nestedThinAdvisory.length} nested thin advisory)',
+      '${nestedThinAdvisory.length} nested thin advisory; '
+      '${frozenByExcludeGaps.length} frozen-by-exclude)',
     );
     for (final g in nestedThinAdvisory) {
       print('  [advisory] $g');
     }
+    printFrozen();
     exit(0);
   }
 
@@ -324,6 +394,7 @@ void main(List<String> args) {
       print('  [advisory] $g');
     }
   }
+  printFrozen();
   exit(1);
 }
 
