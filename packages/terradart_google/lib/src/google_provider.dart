@@ -46,7 +46,4 @@ final class GoogleProvider implements StackProvider {
         if (region != null) 'region': region,
         if (zone != null) 'zone': zone,
       };
-
-  @override
-  Map<String, Object?> toTfJson() => configArgs;
 }

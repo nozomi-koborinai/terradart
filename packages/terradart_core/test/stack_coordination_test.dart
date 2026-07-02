@@ -44,8 +44,6 @@ class _FakeProvider implements StackProvider {
   String get versionConstraint => '~> 7.0';
   @override
   Map<String, Object?> get configArgs => const {'project': 'demo'};
-  @override
-  Map<String, Object?> toTfJson() => configArgs;
 }
 
 final class _S extends Stack {
