@@ -75,7 +75,7 @@ void main() {
           'packages/terradart_codegen/test/golden/google_pubsub_topic.factory.expected.dart.golden',
           'packages/terradart_codegen/test/fixtures/wrap/expected_output/pubsub/google_pubsub_topic.dart',
           'packages/terradart_codegen/test/cli/wrap_command_test.dart',
-          'packages/terradart_agent/test/catalog_count_test.dart',
+          'packages/terradart_google/test/catalog/catalog_count_test.dart',
           'tool/doc_expectations.dart',
           'tool/curation_backlog.yaml',
           '.schema-bump/drift_report.md',

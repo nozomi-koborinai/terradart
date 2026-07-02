@@ -21,7 +21,7 @@ packages/terradart_codegen/test/fixtures/wrap/expected_output/
 
 # Count assertions that move with the catalog
 tool/doc_expectations.dart
-packages/terradart_agent/test/catalog_count_test.dart
+packages/terradart_google/test/catalog/catalog_count_test.dart
 packages/terradart_codegen/test/cli/wrap_command_test.dart
 
 # Bump bookkeeping
