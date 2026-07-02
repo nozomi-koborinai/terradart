@@ -2,6 +2,10 @@ outputDir: access_context_manager
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
 
 dartTypeOverrides:
   perimeter_type: AccessContextManagerServicePerimeterPerimeterType

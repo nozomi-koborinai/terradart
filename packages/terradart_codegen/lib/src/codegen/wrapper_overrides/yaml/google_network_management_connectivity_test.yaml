@@ -2,6 +2,10 @@ outputDir: network
 
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
 
 curatedDoc: |-
   /// Network Management connectivity test — probes reachability between a

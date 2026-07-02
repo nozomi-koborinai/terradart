@@ -2,6 +2,19 @@ outputDir: app
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveNestedTypes: true
+# `automatic_scaling` / `manual_scaling` are the real schema block names the
+# `scaling` customSlot's sealed variants (AutomaticScalingMode /
+# ManualScalingMode) already dispatch to via `.blockKey` — the collector's
+# customSlotKeys check only matches the bare declared slot name (`scaling`),
+# not the block names a virtual/sealed customSlot dynamically dispatches to,
+# so without this exclude the collector would derive a second, redundant
+# class per block (different name, since the derived name lacks the
+# hand-written "Mode" suffix — not a compile collision here, but dead,
+# confusing API surface with no enum sites to gain from typing it).
+nestedTypeExcludes:
+  - automatic_scaling
+  - manual_scaling
 
 paramOrder:
   - service

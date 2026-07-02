@@ -1,6 +1,10 @@
 outputDir: access_context_manager
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
 
 paramOrder:
   - name

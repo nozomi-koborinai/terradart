@@ -12,7 +12,15 @@ export 'src/network/google_network_connectivity_transport.dart'
         NetworkConnectivityTransportDeletionPolicy,
         NetworkConnectivityTransportStackType;
 export 'src/network/google_network_management_connectivity_test.dart'
-    show GoogleNetworkManagementConnectivityTest;
+    show
+        GoogleNetworkManagementConnectivityTest,
+        NetworkManagementConnectivityTestDestination,
+        NetworkManagementConnectivityTestDestinationNetworkType,
+        NetworkManagementConnectivityTestSource,
+        NetworkManagementConnectivityTestSourceAppEngineVersion,
+        NetworkManagementConnectivityTestSourceCloudFunction,
+        NetworkManagementConnectivityTestSourceCloudRunRevision,
+        NetworkManagementConnectivityTestSourceNetworkType;
 export 'src/network/google_network_security_address_group.dart'
     show GoogleNetworkSecurityAddressGroup, NetworkSecurityAddressGroupType;
 export 'src/network/google_network_security_ull_mirroring_collector.dart'

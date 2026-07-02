@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_router_nat`.
@@ -55,6 +56,126 @@ enum ComputeRouterNatType implements TerraformEnum {
   const ComputeRouterNatType(this.terraformValue);
   @override
   final String terraformValue;
+}
+
+/// Typed helper for the `log_config` block of
+/// `google_compute_router_nat` (derived from provider schema).
+@immutable
+final class ComputeRouterNatLogConfig {
+  const ComputeRouterNatLogConfig({required this.enable, required this.filter});
+
+  final TfArg<bool> enable;
+
+  final TfArg<ComputeRouterNatLogConfigFilter> filter;
+
+  Map<String, Object?> encode() => {
+    'enable': enable.toTfJson(),
+    'filter': filter.toTfJson(),
+  };
+}
+
+/// `filter` — derived from the provider schema description.
+enum ComputeRouterNatLogConfigFilter implements TerraformEnum {
+  errorsOnly('ERRORS_ONLY'),
+  translationsOnly('TRANSLATIONS_ONLY'),
+  all('ALL');
+
+  const ComputeRouterNatLogConfigFilter(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `nat64_subnetwork` block of
+/// `google_compute_router_nat` (derived from provider schema).
+@immutable
+final class ComputeRouterNatNat64Subnetwork {
+  const ComputeRouterNatNat64Subnetwork({required this.name});
+
+  final TfArg<String> name;
+
+  Map<String, Object?> encode() => {'name': name.toTfJson()};
+}
+
+/// Typed helper for the `rules` block of
+/// `google_compute_router_nat` (derived from provider schema).
+@immutable
+final class ComputeRouterNatRules {
+  const ComputeRouterNatRules({
+    this.description,
+    required this.match,
+    required this.ruleNumber,
+    this.action,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> match;
+
+  final TfArg<num> ruleNumber;
+
+  final ComputeRouterNatRulesAction? action;
+
+  Map<String, Object?> encode() => {
+    if (description != null) 'description': description!.toTfJson(),
+    'match': match.toTfJson(),
+    'rule_number': ruleNumber.toTfJson(),
+    if (action != null) 'action': action!.encode(),
+  };
+}
+
+/// Typed helper for the `rules.action` block of
+/// `google_compute_router_nat` (derived from provider schema).
+@immutable
+final class ComputeRouterNatRulesAction {
+  const ComputeRouterNatRulesAction({
+    this.sourceNatActiveIps,
+    this.sourceNatActiveRanges,
+    this.sourceNatDrainIps,
+    this.sourceNatDrainRanges,
+  });
+
+  final TfArg<List<Object?>>? sourceNatActiveIps;
+
+  final TfArg<List<Object?>>? sourceNatActiveRanges;
+
+  final TfArg<List<Object?>>? sourceNatDrainIps;
+
+  final TfArg<List<Object?>>? sourceNatDrainRanges;
+
+  Map<String, Object?> encode() => {
+    if (sourceNatActiveIps != null)
+      'source_nat_active_ips': sourceNatActiveIps!.toTfJson(),
+    if (sourceNatActiveRanges != null)
+      'source_nat_active_ranges': sourceNatActiveRanges!.toTfJson(),
+    if (sourceNatDrainIps != null)
+      'source_nat_drain_ips': sourceNatDrainIps!.toTfJson(),
+    if (sourceNatDrainRanges != null)
+      'source_nat_drain_ranges': sourceNatDrainRanges!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `subnetwork` block of
+/// `google_compute_router_nat` (derived from provider schema).
+@immutable
+final class ComputeRouterNatSubnetwork {
+  const ComputeRouterNatSubnetwork({
+    required this.name,
+    this.secondaryIpRangeNames,
+    required this.sourceIpRangesToNat,
+  });
+
+  final TfArg<String> name;
+
+  final TfArg<List<Object?>>? secondaryIpRangeNames;
+
+  final TfArg<List<Object?>> sourceIpRangesToNat;
+
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    if (secondaryIpRangeNames != null)
+      'secondary_ip_range_names': secondaryIpRangeNames!.toTfJson(),
+    'source_ip_ranges_to_nat': sourceIpRangesToNat.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_compute_router_nat`.

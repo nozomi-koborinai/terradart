@@ -2,6 +2,10 @@ outputDir: binary_authorization
 
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
 
 curatedDoc: |-
   /// Project-wide Binary Authorization policy controlling container image

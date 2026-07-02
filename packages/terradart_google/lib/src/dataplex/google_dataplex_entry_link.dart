@@ -1,10 +1,74 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_dataplex_entry_link`.
 const Set<String> _googleDataplexEntryLinkSensitive = <String>{};
+
+/// Typed helper for the `aspects` block of
+/// `google_dataplex_entry_link` (derived from provider schema).
+@immutable
+final class DataplexEntryLinkAspects {
+  const DataplexEntryLinkAspects({
+    required this.aspectKey,
+    required this.aspect,
+  });
+
+  final TfArg<String> aspectKey;
+
+  final DataplexEntryLinkAspectsAspect aspect;
+
+  Map<String, Object?> encode() => {
+    'aspect_key': aspectKey.toTfJson(),
+    'aspect': aspect.encode(),
+  };
+}
+
+/// Typed helper for the `aspects.aspect` block of
+/// `google_dataplex_entry_link` (derived from provider schema).
+@immutable
+final class DataplexEntryLinkAspectsAspect {
+  const DataplexEntryLinkAspectsAspect({required this.data});
+
+  final TfArg<String> data;
+
+  Map<String, Object?> encode() => {'data': data.toTfJson()};
+}
+
+/// Typed helper for the `entry_references` block of
+/// `google_dataplex_entry_link` (derived from provider schema).
+@immutable
+final class DataplexEntryLinkEntryReferences {
+  const DataplexEntryLinkEntryReferences({
+    required this.name,
+    this.path,
+    this.type,
+  });
+
+  final TfArg<String> name;
+
+  final TfArg<String>? path;
+
+  final TfArg<DataplexEntryLinkEntryReferencesType>? type;
+
+  Map<String, Object?> encode() => {
+    'name': name.toTfJson(),
+    if (path != null) 'path': path!.toTfJson(),
+    if (type != null) 'type': type!.toTfJson(),
+  };
+}
+
+/// `type` — derived from the provider schema description.
+enum DataplexEntryLinkEntryReferencesType implements TerraformEnum {
+  source('SOURCE'),
+  target('TARGET');
+
+  const DataplexEntryLinkEntryReferencesType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
 
 /// Factory wrapper for `google_dataplex_entry_link`.
 ///
@@ -18,8 +82,8 @@ final class GoogleDataplexEntryLink extends Resource {
     required TfArg<String> entryLinkId,
     required TfArg<String> entryLinkType,
     required TfArg<String> location,
-    required TfArg<List<Map<String, dynamic>>> entryReferences,
-    TfArg<List<Map<String, dynamic>>>? aspects,
+    required List<DataplexEntryLinkEntryReferences> entryReferences,
+    List<DataplexEntryLinkAspects>? aspects,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -31,8 +95,11 @@ final class GoogleDataplexEntryLink extends Resource {
            'entry_link_id': entryLinkId,
            'entry_link_type': entryLinkType,
            'location': location,
-           'entry_references': entryReferences,
-           if (aspects != null) 'aspects': aspects,
+           'entry_references': TfArg.literal([
+             for (final e in entryReferences) e.encode(),
+           ]),
+           if (aspects != null)
+             'aspects': TfArg.literal([for (final e in aspects) e.encode()]),
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (project != null) 'project': project,
          },

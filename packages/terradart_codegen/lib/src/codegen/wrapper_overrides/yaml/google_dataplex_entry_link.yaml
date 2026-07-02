@@ -1,6 +1,10 @@
 outputDir: dataplex
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
 
 paramOrder:
   - entry_group_id

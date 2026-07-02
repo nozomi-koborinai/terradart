@@ -3,6 +3,16 @@ outputDir: os_config
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveNestedTypes: true
+# `one_time_schedule` / `recurring_schedule` are the real schema block names
+# the hand-written sealed `OsConfigPatchDeploymentSchedule` variants already
+# own (dispatched via `schedule`'s `.blockKey`) — same customSlotKeys blind
+# spot as google_dataplex_datascan.yaml. Neither has an enum site itself (the
+# resource's enum sites are all under `patch_config` / `rollout`, which stay
+# un-excluded), so excluding both costs nothing.
+nestedTypeExcludes:
+  - one_time_schedule
+  - recurring_schedule
 
 curatedDoc: |-
   /// OS Config patch deployment — schedules OS patch jobs against a filtered

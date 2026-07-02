@@ -2,6 +2,17 @@ outputDir: os_config
 
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveNestedTypes: true
+# `resources` (exec/file/pkg/repository resource specs) is the deepest,
+# highest-enum-density subtree (5 of this resource's 6 enum sites) — kept as
+# an opaque passthrough rather than ~18 more generated classes. The
+# shallower `os_policies.mode` enum site still gets typed since `os_policies`
+# and `resource_groups` themselves are NOT excluded.
+nestedTypeExcludes:
+  - os_policies.resource_groups.resources
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
 
 curatedDoc: |-
   /// OS Config OS policy assignment — bundles OS policies and rolls them out

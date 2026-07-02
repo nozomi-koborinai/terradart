@@ -2,6 +2,22 @@ outputDir: dataplex
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveNestedTypes: true
+# All four are real schema block names the hand-written sealed
+# `DataplexDatascanSpec` variants already own (dispatched via `scan_spec`'s
+# `.blockKey`, a virtual customSlot key the collector's customSlotKeys check
+# can't map back to these real names). Left un-excluded, the collector would
+# derive `DataplexDatascanDataQualitySpec` / `...DataDiscoverySpec` /
+# `...DataDocumentationSpec` again from the raw schema — same class names as
+# the hand-written prelude, so a duplicate_definition compile error (verified
+# empirically). `data_discovery_spec.bigquery_publishing_config.table_type`
+# (the one enum site this otherwise would have typed) stays frozen-by-exclude
+# as a result — see MIGRATING.md.
+nestedTypeExcludes:
+  - data_profile_spec
+  - data_quality_spec
+  - data_discovery_spec
+  - data_documentation_spec
 
 curatedDoc: |-
   /// A Dataplex data scan (profile, quality, discovery, or documentation).

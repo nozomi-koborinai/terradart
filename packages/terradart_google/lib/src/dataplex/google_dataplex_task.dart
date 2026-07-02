@@ -85,6 +85,79 @@ final class DataplexTaskNotebookWorkload extends DataplexTaskWorkload {
   };
 }
 
+/// Typed helper for the `execution_spec` block of
+/// `google_dataplex_task` (derived from provider schema).
+@immutable
+final class DataplexTaskExecutionSpec {
+  const DataplexTaskExecutionSpec({
+    this.args,
+    this.kmsKey,
+    this.maxJobExecutionLifetime,
+    this.project,
+    required this.serviceAccount,
+  });
+
+  final TfArg<Map<String, String>>? args;
+
+  final TfArg<String>? kmsKey;
+
+  final TfArg<String>? maxJobExecutionLifetime;
+
+  final TfArg<String>? project;
+
+  final TfArg<String> serviceAccount;
+
+  Map<String, Object?> encode() => {
+    if (args != null) 'args': args!.toTfJson(),
+    if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
+    if (maxJobExecutionLifetime != null)
+      'max_job_execution_lifetime': maxJobExecutionLifetime!.toTfJson(),
+    if (project != null) 'project': project!.toTfJson(),
+    'service_account': serviceAccount.toTfJson(),
+  };
+}
+
+/// Typed helper for the `trigger_spec` block of
+/// `google_dataplex_task` (derived from provider schema).
+@immutable
+final class DataplexTaskTriggerSpec {
+  const DataplexTaskTriggerSpec({
+    this.disabled,
+    this.maxRetries,
+    this.schedule,
+    this.startTime,
+    required this.type,
+  });
+
+  final TfArg<bool>? disabled;
+
+  final TfArg<num>? maxRetries;
+
+  final TfArg<String>? schedule;
+
+  final TfArg<String>? startTime;
+
+  final TfArg<DataplexTaskTriggerSpecType> type;
+
+  Map<String, Object?> encode() => {
+    if (disabled != null) 'disabled': disabled!.toTfJson(),
+    if (maxRetries != null) 'max_retries': maxRetries!.toTfJson(),
+    if (schedule != null) 'schedule': schedule!.toTfJson(),
+    if (startTime != null) 'start_time': startTime!.toTfJson(),
+    'type': type.toTfJson(),
+  };
+}
+
+/// `type` — derived from the provider schema description.
+enum DataplexTaskTriggerSpecType implements TerraformEnum {
+  onDemand('ON_DEMAND'),
+  recurring('RECURRING');
+
+  const DataplexTaskTriggerSpecType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_dataplex_task`.
 ///
 /// A Dataplex task represents the work that you want Dataplex to do on a
@@ -104,8 +177,8 @@ final class GoogleDataplexTask extends Resource {
     TfArg<String>? location,
     TfArg<String>? lake,
     required DataplexTaskWorkload workload,
-    required TfArg<Map<String, dynamic>> triggerSpec,
-    required TfArg<Map<String, dynamic>> executionSpec,
+    required DataplexTaskTriggerSpec triggerSpec,
+    required DataplexTaskExecutionSpec executionSpec,
     TfArg<String>? displayName,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
@@ -122,8 +195,8 @@ final class GoogleDataplexTask extends Resource {
            if (displayName != null) 'display_name': displayName,
            if (description != null) 'description': description,
            if (labels != null) 'labels': labels,
-           'trigger_spec': triggerSpec,
-           'execution_spec': executionSpec,
+           'trigger_spec': TfArg.literal(triggerSpec.encode()),
+           'execution_spec': TfArg.literal(executionSpec.encode()),
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (project != null) 'project': project,
            workload.blockKey: TfArg.literal(workload.encode()),
