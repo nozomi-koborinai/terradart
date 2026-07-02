@@ -21,3 +21,6 @@ customSlots:
   s:
     paramDeclaration: 'required Bar b'
     argMapEntry: 's: TfArg.literal(b.encode()),'
+deriveNestedTypes: true
+nestedTypeExcludes:
+  - basic.conditions

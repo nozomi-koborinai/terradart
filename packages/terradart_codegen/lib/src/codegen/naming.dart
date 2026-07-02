@@ -43,6 +43,24 @@ class EnumName {
   });
 }
 
+/// Strips the `google_` provider prefix (if present) from [terraformType],
+/// then converts the remainder to PascalCase — e.g.
+/// `google_app_engine_domain_mapping` → `AppEngineDomainMapping`.
+///
+/// This is the shared "short resource name" both [enumName] (top-level
+/// derived enum names, e.g. `PubsubTopicEncoding` rather than
+/// `GooglePubsubTopicEncoding`) and the `deriveNestedTypes` collector wiring
+/// in `wrapper_emitter.dart` (nested-type class name prefixes, e.g.
+/// `AppEngineDomainMappingSslSettings`) build their generated names from —
+/// dropping the prefix keeps generated names readable in user code.
+String shortResourcePascal(String terraformType) {
+  const providerPrefix = 'google_';
+  final short = terraformType.startsWith(providerPrefix)
+      ? terraformType.substring(providerPrefix.length)
+      : terraformType;
+  return snakeToPascal(short);
+}
+
 /// Enum name = `<ResourceShortName><FieldNamePascal>`, e.g.
 /// `google_pubsub_topic` + `schema_settings.encoding` →
 /// `PubsubTopicEncoding`.
@@ -53,20 +71,13 @@ EnumName enumName({
   required String fieldPath,
   required List<String> members,
 }) {
-  // Drop the `google_` provider prefix when synthesising enum names so they
-  // read naturally in user code (`PubsubTopicEncoding`, not
-  // `GooglePubsubTopicSchemaSettingsEncoding`).
-  final shortResource = resourceType.startsWith('google_')
-      ? resourceType.substring(7)
-      : resourceType;
-  final shortResourcePascal = snakeToPascal(shortResource);
   // Use the **leaf** field name for the enum suffix (encoding, not
   // schema_settings.encoding) — short and distinctive.
   final leaf = fieldPath.split('.').last;
   final leafPascal = snakeToPascal(leaf);
   final dartMembers = [for (final m in members) screamingToCamel(m)];
   return EnumName(
-    dartName: '$shortResourcePascal$leafPascal',
+    dartName: '${shortResourcePascal(resourceType)}$leafPascal',
     dartMembers: dartMembers,
     rawValues: List<String>.from(members),
     fieldPath: fieldPath,

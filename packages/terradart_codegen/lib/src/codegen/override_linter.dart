@@ -69,6 +69,22 @@ List<LintViolation> lintOverride(
     ));
   }
 
+  // Belt-and-suspenders alongside the loader's eager FormatException (see
+  // `yaml_loader.dart`'s `nestedTypeExcludes requires deriveNestedTypes`
+  // check): the loader can never actually produce this shape from yaml, but
+  // an override built some other way (a test, a future non-yaml source)
+  // could still combine the two fields incorrectly.
+  if (override.nestedTypeExcludes != null && !override.deriveNestedTypes) {
+    violations.add(LintViolation(
+      tfType: tfType,
+      rule: 'nested-excludes-without-derive',
+      detail: 'nestedTypeExcludes is set but deriveNestedTypes is false. '
+          'nestedTypeExcludes only has an effect inside the deriveNestedTypes '
+          'codegen gate, so it is dead config. Set deriveNestedTypes: true or '
+          'remove nestedTypeExcludes.',
+    ));
+  }
+
   violations.addAll(lintDeadCustomSlots(tfType, override));
 
   violations.addAll(

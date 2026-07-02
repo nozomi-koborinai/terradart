@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 import 'dart:isolate';
 
@@ -210,7 +211,22 @@ class WrapCommand extends Command<int> {
     // `sensitiveFields` / `constructorParams` are computed from the SAME
     // helpers the wrapper emitter uses (zero drift by construction).
     final catalogEntries = <CatalogEntryData>[];
-    final resourceEmitter = WrapperEmitter(overrides: loaded.resources);
+    // `deriveNestedTypes` needs the RAW schema.json `block` shape
+    // (`block_types` / `nesting_mode` / `min_items`, ...), which `baseIr`
+    // above no longer carries once `SchemaJsonParser` has flattened it into
+    // the IR. Decoding schema.json a second time only when at least one
+    // loaded override actually sets the gate keeps today's (dark) run
+    // exactly as cheap as before this gate existed — every committed
+    // override currently leaves `deriveNestedTypes` at its `false` default.
+    final needsRawSchemas =
+        loaded.resources.values.any((o) => o.deriveNestedTypes);
+    final rawResourceSchemas = needsRawSchemas
+        ? _rawResourceBlocks(schemaSrc)
+        : const <String, Map<String, dynamic>>{};
+    final resourceEmitter = WrapperEmitter(
+      overrides: loaded.resources,
+      rawResourceSchemas: rawResourceSchemas,
+    );
     final dataSourceEmitter =
         DataSourceWrapperEmitter(overrides: loaded.dataSources);
     // Layer 2 emit output is unformatted; match the WrapperEmitter /
@@ -415,4 +431,25 @@ class WrapCommand extends Command<int> {
     stderr.writeln('\nRun `terradart wrap` to regenerate.');
     return CliExitCodes.dataError;
   }
+}
+
+/// Decodes [schemaJson]'s raw `resource_schemas` entries down to just their
+/// `block` map, keyed by Terraform type — the shape
+/// `collectNestedTypes`/`WrapperEmitter.rawResourceSchemas` need for the
+/// `deriveNestedTypes` gate. Mirrors the navigation path
+/// `SchemaJsonParser.parseString` itself uses
+/// (`provider_schemas` -> the single provider body -> `resource_schemas`),
+/// just stopping one level short of IR construction so `block_types` /
+/// `nesting_mode` survive.
+Map<String, Map<String, dynamic>> _rawResourceBlocks(String schemaJson) {
+  final root = jsonDecode(schemaJson) as Map<String, dynamic>;
+  final schemas = (root['provider_schemas'] as Map).cast<String, dynamic>();
+  final providerBody = (schemas.values.single as Map).cast<String, dynamic>();
+  final resourceSchemas =
+      (providerBody['resource_schemas'] as Map?)?.cast<String, dynamic>() ??
+          const {};
+  return {
+    for (final entry in resourceSchemas.entries)
+      entry.key: ((entry.value as Map)['block'] as Map).cast<String, dynamic>(),
+  };
 }

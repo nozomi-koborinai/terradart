@@ -1,0 +1,5 @@
+outputDir: test_out
+deriveNestedTypes: true
+nestedTypeExcludes:
+  - basic.conditions
+  - foo.bar

@@ -24,6 +24,16 @@ void main() {
       expect(nestedAbstractClassName('schema_settings'), r'$SchemaSettings');
     });
 
+    test('shortResourcePascal strips the google_ prefix then PascalCases', () {
+      expect(shortResourcePascal('google_app_engine_domain_mapping'),
+          'AppEngineDomainMapping');
+    });
+
+    test('shortResourcePascal leaves a non-google_ type untouched (Pascal)',
+        () {
+      expect(shortResourcePascal('foo_bar'), 'FooBar');
+    });
+
     test('enumName builds Pascal name and screaming-snake to camel members',
         () {
       final e = enumName(

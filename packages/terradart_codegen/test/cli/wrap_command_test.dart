@@ -1,9 +1,17 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
+import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/cli/cli_runner.dart';
 import 'package:terradart_codegen/src/cli/exit_codes.dart';
+import 'package:terradart_codegen/src/codegen/barrels/barrel_emitter.dart';
+import 'package:terradart_codegen/src/codegen/barrels/barrel_manifest.dart';
+import 'package:terradart_codegen/src/codegen/catalog_entry_builder.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_emitter.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
+import 'package:terradart_codegen/src/parser/schema_parser.dart';
 import 'package:test/test.dart';
 
 /// Barrels are written one level above `--output` (`lib/` beside `lib/src`),
@@ -521,6 +529,176 @@ void main() {
       }
     });
   });
+
+  group('WrapCommand deriveNestedTypes (dark launch)', () {
+    // Unlike every other test in this file, this one does NOT go through
+    // `buildCliRunner().run(['wrap', ...])`: `WrapCommand` resolves its
+    // override registry from the PACKAGE's own committed
+    // `lib/src/codegen/wrapper_overrides/yaml/` directory
+    // (`Isolate.resolvePackageUri` in `wrap_command.dart`), not from
+    // `--source` — there is no CLI flag to point it at a temp override
+    // directory instead. Flipping a real committed yaml (even temporarily,
+    // even restored in a `finally`) would violate the dark-launch
+    // requirement this whole PR exists to satisfy, and risks bleeding into
+    // any other test file that loads the same production directory
+    // concurrently. So this test drives the same building blocks
+    // `WrapCommand.run()` composes — `YamlOverrideLoader` ->
+    // `SchemaJsonParser` -> `WrapperEmitter` -> `DartFormatter` ->
+    // `buildCatalogEntry` -> `buildBarrelFiles` — directly, against a
+    // throwaway temp override, the same way `barrel_derivation_test.dart`
+    // exercises `buildBarrelFiles` without going through the CLI at all.
+    //
+    // The dark-launch invariant for the COMMITTED tree (byte-identical
+    // `wrap --check`) is proved by the untouched `WrapCommand --check`
+    // group above, which stays green throughout this change.
+    test(
+        'a temp deriveNestedTypes:true override derives a typed nested '
+        'class, narrows the ctor param, and flows into the catalog + a '
+        'barrel', () async {
+      const terraformType = 'google_app_engine_domain_mapping';
+      final tmpOverrideDir =
+          await Directory.systemTemp.createTemp('phase4_nested_types_');
+      try {
+        // Minimal override: only the two slots this test cares about.
+        // `paramOrder` may be a subset — slots it omits are simply not
+        // emitted (see `WrapperOverride.paramOrder`'s doc) — so dropping
+        // `override_strategy` / `deletion_policy` / `project` here (present
+        // in the real committed yaml) is deliberate, not an oversight: it
+        // keeps this reproduction minimal and free of the unrelated
+        // hand-written `override_strategy` enum idiom.
+        await File(p.join(tmpOverrideDir.path, '$terraformType.yaml'))
+            .writeAsString('''
+outputDir: app
+deriveNestedTypes: true
+paramOrder:
+  - domain_name
+  - ssl_settings
+''');
+        final loaded =
+            YamlOverrideLoader(rootDir: tmpOverrideDir.path).load().resources;
+        expect(loaded.keys, [terraformType]);
+
+        final schemaSrc = File(
+          p.join('test', 'fixtures', 'wrap', 'source', 'schema.json'),
+        ).readAsStringSync();
+        final ir = const SchemaJsonParser().parseString(schemaSrc);
+        final def = ir.resources[terraformType]!;
+
+        final emitter = WrapperEmitter(
+          overrides: loaded,
+          rawResourceSchemas: {
+            terraformType: _rawBlockOf(schemaSrc, terraformType),
+          },
+        );
+        final raw = emitter.emit(def, providerSource: 'hashicorp/google');
+        final formatter = DartFormatter(
+          languageVersion: DartFormatter.latestLanguageVersion,
+        );
+        final formatted = formatter.format(raw);
+
+        // The derived helper class + its attribute enum are emitted as
+        // top-level declarations. Their internal shape is byte-pinned by
+        // Task 3's emitter tests; here we only need to confirm the wiring
+        // actually reaches them.
+        expect(
+          formatted,
+          contains('final class AppEngineDomainMappingSslSettings {'),
+        );
+        // The class name is long enough that dart_style wraps `implements
+        // TerraformEnum {` onto its own line (83 columns unwrapped), so the
+        // two fragments are checked independently rather than as one
+        // contiguous string — same wrap-tolerance convention Task 3's tests
+        // use elsewhere in this campaign.
+        expect(
+          formatted,
+          contains('enum AppEngineDomainMappingSslSettingsSslManagementType'),
+        );
+        expect(formatted, contains('implements TerraformEnum {'));
+
+        // The constructor param narrows from the generic
+        // `TfArg<Map<String, dynamic>>? sslSettings` passthrough to the
+        // typed, bare (non-`TfArg`) class reference. `ssl_settings` is
+        // schema-optional (nesting_mode: list, max_items: 1, no min_items),
+        // so it stays nullable / un-`required`.
+        expect(
+          formatted,
+          contains('AppEngineDomainMappingSslSettings? sslSettings'),
+        );
+        expect(
+          formatted,
+          isNot(contains('TfArg<Map<String, dynamic>>? sslSettings')),
+        );
+
+        // The argMap entry wraps the typed helper's own `.encode()` in
+        // `TfArg.literal(...)` — matching the hand-written customSlot idiom
+        // (e.g. `google_pubsub_subscription.yaml`'s `bigquery_config`) —
+        // guarded since the slot is optional.
+        expect(formatted, contains('if (sslSettings != null)'));
+        expect(formatted, contains('TfArg.literal(sslSettings!.encode())'));
+
+        // Catalog: `nestedTypes` is scanned from this SAME formatted source
+        // (`catalog_entry_builder.dart`'s `scanNestedTypes`) — there is no
+        // separate registration list to wire up or keep in sync.
+        final entry = buildCatalogEntry(
+          tfType: terraformType,
+          override: loaded[terraformType]!,
+          def: def,
+          kind: 'resource',
+          emittedSource: formatted,
+        );
+        expect(
+          entry.nestedTypes,
+          containsAll([
+            'AppEngineDomainMappingSslSettings',
+            'AppEngineDomainMappingSslSettingsSslManagementType',
+          ]),
+        );
+
+        // Barrels: `buildBarrelFiles` merges `className` + `nestedTypes`
+        // into one sorted `show` set per barrel (`barrel_emitter.dart`).
+        // Confirm the derived names reach a barrel's export line, using a
+        // minimal synthetic manifest (mirrors `barrel_derivation_test.dart`)
+        // rather than the full 66-barrel production manifest, which needs a
+        // catalog entry for every declared barrel.
+        final barrelFiles = buildBarrelFiles(
+          entries: [entry],
+          manifest: const BarrelManifest(
+            umbrellaDoc: '/// Umbrella.',
+            umbrellaExtraExports: [],
+            barrels: {'app': BarrelSpec(doc: '/// App Engine.')},
+          ),
+        );
+        expect(
+          barrelFiles['app'],
+          contains('AppEngineDomainMappingSslSettings'),
+        );
+        expect(
+          barrelFiles['app'],
+          contains('AppEngineDomainMappingSslSettingsSslManagementType'),
+        );
+      } finally {
+        await tmpOverrideDir.delete(recursive: true);
+      }
+    });
+  });
+}
+
+/// Loads `resource_schemas[terraformType].block` straight from an
+/// already-read schema.json string — the raw shape `collectNestedTypes` (via
+/// `WrapperEmitter.rawResourceSchemas`) needs. Mirrors
+/// `nested_type_collector_test.dart`'s `_blockOf` helper and
+/// `wrap_command.dart`'s own private `_rawResourceBlocks`.
+Map<String, dynamic> _rawBlockOf(String schemaJson, String terraformType) {
+  final decoded = jsonDecode(schemaJson) as Map<String, dynamic>;
+  final providerSchemas =
+      (decoded['provider_schemas'] as Map).cast<String, dynamic>();
+  final providerBody =
+      (providerSchemas.values.single as Map).cast<String, dynamic>();
+  final resourceSchemas =
+      (providerBody['resource_schemas'] as Map).cast<String, dynamic>();
+  final resource =
+      (resourceSchemas[terraformType] as Map).cast<String, dynamic>();
+  return (resource['block'] as Map).cast<String, dynamic>();
 }
 
 /// Minimal [Stdout] stand-in that appends every `write*` call to a

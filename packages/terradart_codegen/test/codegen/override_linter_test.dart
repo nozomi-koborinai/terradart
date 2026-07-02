@@ -272,6 +272,33 @@ void main() {
       );
       expect(lintOverride('google_x', o), isEmpty);
     });
+
+    test(
+        'flags nestedTypeExcludes without deriveNestedTypes as dead config '
+        '(belt-and-suspenders for the loader-level FormatException)', () {
+      const o = WrapperOverride(
+        outputDir: 'x',
+        nestedTypeExcludes: ['basic.conditions'],
+      );
+      final violations = lintOverride('google_x', o);
+      expect(violations, hasLength(1));
+      expect(violations.single.rule, 'nested-excludes-without-derive');
+      expect(violations.single.detail, contains('nestedTypeExcludes'));
+    });
+
+    test('clean: deriveNestedTypes + nestedTypeExcludes', () {
+      const o = WrapperOverride(
+        outputDir: 'x',
+        deriveNestedTypes: true,
+        nestedTypeExcludes: ['basic.conditions'],
+      );
+      expect(lintOverride('google_x', o), isEmpty);
+    });
+
+    test('clean: deriveNestedTypes true with no excludes', () {
+      const o = WrapperOverride(outputDir: 'x', deriveNestedTypes: true);
+      expect(lintOverride('google_x', o), isEmpty);
+    });
   });
 
   group('lintOverrides', () {

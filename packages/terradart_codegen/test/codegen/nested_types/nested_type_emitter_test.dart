@@ -172,6 +172,52 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
       expect(formatted, contains('this.certificateId,'));
       expect(formatted, contains('final TfArg<String>? certificateId;'));
     });
+
+    test(
+        'google_access_context_manager_access_level: basic.conditions is '
+        'both required AND repeated (Task 3 carry-over — untested combo, '
+        'real data)', () {
+      const terraformType = 'google_access_context_manager_access_level';
+      final specs = collectNestedTypes(
+        resourceBlock: _blockOf(terraformType),
+        resourcePrefix: _resourcePrefixOf(terraformType),
+        customSlotKeys: const {},
+        excludedPaths: const {},
+      );
+
+      final formatted = _fmt(renderNestedTypes(
+        specs,
+        resourceTerraformType: terraformType,
+      ));
+
+      // `conditions` (nesting_mode: list, min_items: 1, no max_items) is a
+      // CHILD of `basic`, so it renders as a bare (non-`TfArg`) class
+      // reference encoded via `.encode()` — required means non-nullable
+      // field + unconditional entry + no `!`; repeated means `List<...>` +
+      // a `[for (final e in ...) e.encode()]` comprehension with no `!`
+      // guard on the iterable either (required, so it can't be null).
+      expect(formatted, contains('required this.conditions'));
+      expect(
+        formatted,
+        contains(
+          'final List<AccessContextManagerAccessLevelBasicConditions> '
+          'conditions;',
+        ),
+      );
+      expect(
+        formatted,
+        contains("'conditions': [for (final e in conditions) e.encode()],"),
+      );
+      expect(formatted, isNot(contains('conditions!')));
+      expect(formatted, isNot(contains('if (conditions != null)')));
+      // Depth-first: the child's own class is rendered too.
+      expect(
+        formatted,
+        contains(
+          'final class AccessContextManagerAccessLevelBasicConditions {',
+        ),
+      );
+    });
   });
 
   group('renderNestedTypes: additional shape rules', () {
