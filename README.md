@@ -309,7 +309,7 @@ Application platform & operations
 
 ## Status
 
-**Pre-alpha**, pre-1.0 (0.22.x). No SemVer guarantees until v1.0.0; pin `^0.22.x` and read [`MIGRATING.md`](MIGRATING.md) before every minor bump. Beta is planned from **v0.15.0** once [readiness gates](https://terradart.dev/docs/status/#beta-readiness-checklist) are met. Expectations: [terradart.dev/docs/status/](https://terradart.dev/docs/status/).
+**Pre-alpha**, pre-1.0 (0.22.x). No SemVer guarantees until v1.0.0; pin `^0.22.x` and read [`MIGRATING.md`](MIGRATING.md) before every minor bump. The [beta readiness gates](https://terradart.dev/docs/status/#beta-readiness-checklist) are met; the beta label timing is under consideration. Expectations: [terradart.dev/docs/status/](https://terradart.dev/docs/status/).
 
 ## Schema-bump automation (Plan 5.E)
 
