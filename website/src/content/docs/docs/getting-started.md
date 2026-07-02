@@ -3,7 +3,7 @@ title: Getting Started
 description: Install TerraDart and generate your first *.tf.json from a Stack.
 ---
 
-This guide matches the [README quickstart](https://github.com/nozomi-koborinai/terradart#quickstart) for the **0.22.x** line. TerraDart is **pre-alpha** until [beta gates](/docs/status/#beta-readiness-checklist) are complete (planned label: **v0.17.0**).
+This guide matches the [README quickstart](https://github.com/nozomi-koborinai/terradart#quickstart) for the **0.22.x** line. TerraDart is **pre-alpha**; the [beta gates](/docs/status/#beta-readiness-checklist) are met and the label timing is under consideration — see [Status & versioning](/docs/status/).
 
 ## Prerequisites
 
@@ -97,7 +97,7 @@ Rename `orders-prod` in the Stack without updating the subscriber and `dart anal
 
 - [Why TerraDart](/docs/why-terradart/) — motivation and comparisons
 - [Architecture](/docs/architecture/) — `synth()`, `writeTo()`, curated coverage
-- [Waves 23–24](/docs/waves/) — latest curated factories (v0.12.10)
-- [Migrating](/docs/migrating/) — read before bumping from `0.12.9`
+- [Curated factory waves](/docs/waves/) — factory history and example pointers
+- [Migrating](/docs/migrating/) — read before every minor bump
 - [Status & versioning](/docs/status/) — pre-alpha vs beta vs 1.0
 - [Examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook) for fuller stacks

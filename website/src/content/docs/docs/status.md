@@ -3,25 +3,25 @@ title: Status & versioning
 description: Pre-alpha expectations, beta readiness, and how TerraDart versions releases.
 ---
 
-TerraDart is **pre-alpha** on the **0.16.x** line today. We remain pre-alpha until the [beta readiness](#beta-readiness-checklist) required gates are all complete; we plan to label the project **beta** starting with **v0.15.0**, not retroactively on earlier 0.x lines.
+TerraDart is **pre-alpha** on the **0.22.x** line today. The [beta readiness](#beta-readiness-checklist) required gates are complete; labeling the project **beta** is now a deliberate timing decision under consideration (together with the eventual 1.0 timeline). The beta label will apply from a future release, not retroactively on earlier 0.x lines.
 
-There are no SemVer guarantees until **v1.0.0**. Pin with `^0.16.x` and read [MIGRATING.md](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md) before every **minor** bump. Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch.
+There are no SemVer guarantees until **v1.0.0**. Pin with `^0.22.x` and read [MIGRATING.md](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md) before every **minor** bump. Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch.
 
 ## Release phases
 
 | Phase | Version line | What we promise |
 | --- | --- | --- |
-| **Pre-alpha** | 0.16.x (current) | Docs and automation are catching up. Breaking changes may land in any 0.x release until beta policy applies. |
-| **Beta** | from **0.15.0** (planned) | Trustworthy onboarding on terradart.dev and GitHub. **No breaking changes within a minor** (`^0.N.x`); breaking changes only on minor bumps, always documented in `MIGRATING.md`. Not SemVer-frozen until 1.0.0. |
+| **Pre-alpha** | 0.22.x (current) | Breaking changes may land in any 0.x release until beta policy applies. |
+| **Beta** | TBD (gates met; timing under consideration) | Trustworthy onboarding on terradart.dev and GitHub. **No breaking changes within a minor** (`^0.N.x`); breaking changes only on minor bumps, always documented in `MIGRATING.md`. Not SemVer-frozen until 1.0.0. |
 | **1.0.0** | TBD | Stable SemVer for `terradart_core`, `terradart_google`, and `terradart_codegen`. |
 
 ## What to expect today (pre-alpha)
 
 - Surface and emitted Terraform JSON may change between releases, especially across **minor** bumps.
-- Use hosted `^0.16.x` carets on [pub.dev](https://pub.dev/packages/terradart_core) — not legacy `0.x.y-dev` pre-release tags.
+- Use hosted `^0.22.x` carets on [pub.dev](https://pub.dev/packages/terradart_core) — not legacy `0.x.y-dev` pre-release tags.
 - Only the **curated** `terradart_google` surface is supported for users; non-curated resources require a curation request.
 
-## Beta change policy (applies from v0.15.0)
+## Beta change policy (applies once beta is declared)
 
 When we declare beta:
 
@@ -31,9 +31,9 @@ When we declare beta:
 
 ## Beta readiness checklist
 
-We will label the project **beta** starting with **v0.15.0** when every **required** item below is done.
+Every **required** item below is done, so beta is no longer blocked on readiness — declaring it is a maintainer timing decision, and the label will take effect from a future release when made.
 
-### Required (all must be ✅ before v0.15.0)
+### Required (all must be ✅ before the beta label)
 
 - [x] **Getting Started** on terradart.dev matches the [README quickstart](https://github.com/nozomi-koborinai/terradart#quickstart); no “Coming soon” placeholders on Status or Getting Started.
 - [x] **`tool/check_docs_consistency`** runs in CI and passes (workspace + examples caret minor, catalog count, key meta docs). Workflow: [`.github/workflows/docs-consistency.yml`](https://github.com/nozomi-koborinai/terradart/blob/main/.github/workflows/docs-consistency.yml).
@@ -42,7 +42,7 @@ We will label the project **beta** starting with **v0.15.0** when every **requir
 - [x] **Boundary demo**: [pubsub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) documents `addExport` / generated `.app.dart` and includes a subscriber stub that `dart analyze` accepts.
 - [x] **Meta docs aligned** with the current minor: CONTRIBUTING, SECURITY, issue templates, package READMEs, and root README agree on pre-alpha/beta wording, `^0.N.x` pins, and **380 curated resource factories + 1 data source** (381 catalog entries).
 - [x] **Full example coverage**: `tool/example_debt.yaml` is empty — all catalog entries appear in at least one quickstart synth (`check_docs_consistency.dart`).
-- [x] **Beta change policy** published on this page (see [Beta change policy](#beta-change-policy-applies-from-v0150)).
+- [x] **Beta change policy** published on this page (see [Beta change policy](#beta-change-policy-applies-once-beta-is-declared)).
 
 ### Optional (does not block beta)
 

@@ -37,7 +37,7 @@ Pin dependencies with `^0.22.x` on [pub.dev](https://pub.dev/packages/terradart_
 |---|---|---|
 | **0.22.x** (pre-alpha, current) | **Best-effort** | Yes, on a rolling basis — no embargo guarantees |
 | **0.11.x and older** | Unsupported | Upgrade to 0.22.x; see [MIGRATING.md](MIGRATING.md) |
-| **0.22.x** (beta, planned) | Best-effort with clearer minor-boundary policy | See [status on terradart.dev](https://terradart.dev/docs/status/) |
+| Future beta line (TBD) | Best-effort with clearer minor-boundary policy | See [status on terradart.dev](https://terradart.dev/docs/status/) |
 
 ## Disclosure policy
 

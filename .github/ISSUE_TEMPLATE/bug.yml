@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         Thanks for taking the time to file. terradart is **pre-alpha** on
-        **0.22.x** today (beta planned from v0.17.0). Single-maintainer;
+        **0.22.x** today. Single-maintainer;
         triage is best-effort. See https://terradart.dev/docs/status/
 
         **PII note**: synthesized `.tf.json`, error output, and schema excerpts
