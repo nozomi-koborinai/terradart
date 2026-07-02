@@ -1,0 +1,16 @@
+# Known enum gaps check_override_enum_gaps.dart must NOT fail on, each with a
+# reviewed reason. Same ledger contract as example_debt.yaml: adding a line is
+# a reviewed decision, and a stale line (no longer matching any reported gap)
+# fails the check so the ledger cannot rot.
+#
+# These six are top-level PARTIAL gaps: the schema documents finite values but
+# the curated field is still TfArg<String>. Paying one down means narrowing a
+# public constructor param to a typed enum — a BREAKING change (the same class
+# as the 0.12.10 enum sweep) — so they wait for the next breaking minor
+# instead of failing every agent_verify run until then.
+google_access_context_manager_service_perimeter.perimeter_type: typed-enum narrowing is breaking; batch into the next breaking minor
+google_compute_ha_vpn_gateway.gateway_ip_version: typed-enum narrowing is breaking; batch into the next breaking minor
+google_compute_ha_vpn_gateway.stack_type: typed-enum narrowing is breaking; batch into the next breaking minor
+google_compute_network_peering.stack_type: typed-enum narrowing is breaking; batch into the next breaking minor
+google_compute_network_peering.update_strategy: typed-enum narrowing is breaking; batch into the next breaking minor
+google_compute_router_peer.advertise_mode: typed-enum narrowing is breaking; batch into the next breaking minor

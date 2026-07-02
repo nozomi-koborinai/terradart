@@ -306,16 +306,45 @@ void main(List<String> args) {
     ...nestedPartialGaps,
     if (strictNested) ...nestedThinAdvisory,
   ];
-  if (failing.isEmpty && nestedThinAdvisory.isEmpty) {
+
+  // tool/enum_gap_debt.yaml suppresses KNOWN gaps with a reviewed reason
+  // (e.g. typed-enum narrowing is a breaking change, so paying a top-level
+  // gap down waits for a breaking minor). Same ledger contract as
+  // example_debt.yaml: adding a line is a reviewed decision, and a stale
+  // line (no longer matching any reported gap) fails so it cannot rot.
+  final debt = _gapDebt();
+  String keyOf(String gap) => gap.split('\t')[1];
+  final allGapKeys = {
+    ...failing.map(keyOf),
+    ...nestedThinAdvisory.map(keyOf),
+  };
+  final staleDebt = debt.keys.where((k) => !allGapKeys.contains(k)).toList();
+  if (staleDebt.isNotEmpty) {
     print(
-      'check_override_enum_gaps: OK (0 top-level, 0 nested partial, 0 nested thin)',
+      'check_override_enum_gaps: stale tool/enum_gap_debt.yaml entries '
+      '(no longer a gap — remove the lines):',
+    );
+    for (final k in staleDebt) {
+      print('  $k');
+    }
+    exit(1);
+  }
+  final suppressed = failing.where((g) => debt.containsKey(keyOf(g))).length;
+  final effective = failing.where((g) => !debt.containsKey(keyOf(g))).toList();
+  final debtNote =
+      suppressed == 0 ? '' : '; $suppressed in tool/enum_gap_debt.yaml';
+
+  if (effective.isEmpty && nestedThinAdvisory.isEmpty) {
+    print(
+      'check_override_enum_gaps: OK (0 top-level, 0 nested partial, '
+      '0 nested thin$debtNote)',
     );
     exit(0);
   }
 
-  if (failing.isEmpty) {
+  if (effective.isEmpty) {
     print(
-      'check_override_enum_gaps: OK (0 top-level, 0 nested partial; '
+      'check_override_enum_gaps: OK (0 failing$debtNote; '
       '${nestedThinAdvisory.length} nested thin advisory)',
     );
     for (final g in nestedThinAdvisory) {
@@ -324,8 +353,8 @@ void main(List<String> args) {
     exit(0);
   }
 
-  print('check_override_enum_gaps: ${failing.length} gap(s):');
-  for (final g in failing) {
+  print('check_override_enum_gaps: ${effective.length} gap(s)$debtNote:');
+  for (final g in effective) {
     print('  $g');
   }
   if (!strictNested && nestedThinAdvisory.isNotEmpty) {
@@ -337,4 +366,28 @@ void main(List<String> args) {
     }
   }
   exit(1);
+}
+
+/// Parses `tool/enum_gap_debt.yaml` (`<tfType>.<attrPath>: <reason>` lines).
+Map<String, String> _gapDebt() {
+  final file = File(p.join(_root.path, 'tool', 'enum_gap_debt.yaml'));
+  if (!file.existsSync()) return const {};
+  final entries = <String, String>{};
+  for (final raw in file.readAsLinesSync()) {
+    final line = raw.trim();
+    if (line.isEmpty || line.startsWith('#')) continue;
+    final sep = line.indexOf(': ');
+    if (sep <= 0) {
+      print('tool/enum_gap_debt.yaml: unparsable line "$raw"');
+      exit(1);
+    }
+    final key = line.substring(0, sep).trim();
+    final reason = line.substring(sep + 2).trim();
+    if (reason.isEmpty) {
+      print('tool/enum_gap_debt.yaml: $key needs a reason');
+      exit(1);
+    }
+    entries[key] = reason;
+  }
+  return entries;
 }

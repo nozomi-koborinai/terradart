@@ -115,6 +115,10 @@ This is the shared agent gate (docs consistency, analyze incl. `tool/`, four-pac
 Optional flags:
 
 ```bash
+tool/agent_verify.sh --quick        # iteration loop: static + unit gates only
+                                    # (skips example synth, package suites,
+                                    # cookbook, smoke) — run the FULL gate
+                                    # before opening or updating a PR
 tool/agent_verify.sh --format       # scoped dart format (core, codegen, agent)
 tool/agent_verify.sh --maintainer   # add wrap-init / wrap-promote e2e tests
 ```

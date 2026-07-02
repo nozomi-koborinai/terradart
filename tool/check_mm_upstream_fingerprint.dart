@@ -37,6 +37,13 @@ const _fingerprintFalsePositives = <String>{
   'google_project',
   'google_cloudbuild_worker_pool',
   'google_bigtable_instance', // third_party go + meta.yaml; no mmv1/products/bigtable/Instance.yaml
+  // Probed earlier; reasons live on their mm_yaml_sources.yaml entries, but
+  // the listing here was missed, which silently broke the full agent gate:
+  'google_compute_network_peering', // third_party resource_compute_network_peering.go
+  'google_compute_router_peer', // no mmv1/products/compute/RouterPeer.yaml (sync 404)
+  'google_dataplex_zone', // MM Zone.yaml is IAM-only (exclude_resource: true)
+  'google_dataplex_asset', // MM Asset.yaml is IAM-only (exclude_resource: true)
+  'google_recaptcha_enterprise_key', // third_party resource_recaptcha_enterprise_key.go
 };
 
 bool _isIamAdjunct(String tfType) =>
