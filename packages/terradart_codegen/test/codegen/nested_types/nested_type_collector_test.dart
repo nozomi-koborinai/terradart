@@ -63,7 +63,7 @@ void main() {
     // no min_items -> the block itself is optional.
     expect(sslSettings.required, isFalse);
     expect(sslSettings.children, isEmpty);
-    expect(sslSettings.excludedChildTfNames, isEmpty);
+    expect(sslSettings.excludedChildren, isEmpty);
 
     final sslManagementType =
         sslSettings.attrs.firstWhere((a) => a.tfName == 'ssl_management_type');
@@ -110,8 +110,13 @@ void main() {
     final basic = specs.firstWhere((s) => s.tfName == 'basic');
     expect(basic.path, ['basic']);
     expect(basic.className, 'AccessContextManagerAccessLevelBasic');
-    // `basic.conditions` is excluded: recorded by name on the parent...
-    expect(basic.excludedChildTfNames, ['conditions']);
+    // `basic.conditions` is excluded: recorded by name on the parent, WITH
+    // the real cardinality (repeated + required — see the unrestricted
+    // re-run below) rather than the collector silently discarding it.
+    final excludedConditions = basic.excludedChildren.single;
+    expect(excludedConditions.tfName, 'conditions');
+    expect(excludedConditions.repeated, isTrue);
+    expect(excludedConditions.required, isTrue);
     // ...and NOT present as a child spec (the subtree is not descended).
     expect(basic.children.any((c) => c.tfName == 'conditions'), isFalse);
 
@@ -154,7 +159,7 @@ void main() {
     // ...and NESTED ('conditions', a child two levels down): `basic` itself
     // must still be collected (with its own attrs intact), but with
     // `conditions` entirely gone from both `children` AND
-    // `excludedChildTfNames` — true invisibility, unlike excludedPaths.
+    // `excludedChildren` — true invisibility, unlike excludedPaths.
     final withNestedCustomSlot = collectNestedTypes(
       resourceBlock: block,
       resourcePrefix: resourcePrefix,
@@ -172,7 +177,7 @@ void main() {
       basicWithNestedCustomSlot.children.any((c) => c.tfName == 'conditions'),
       isFalse,
     );
-    expect(basicWithNestedCustomSlot.excludedChildTfNames, isEmpty);
+    expect(basicWithNestedCustomSlot.excludedChildren, isEmpty);
   });
 
   test(
@@ -281,5 +286,36 @@ void main() {
     expect(ipSubnetworks.repeated, isFalse);
     expect(ipSubnetworks.enumValues, isNull);
     expect(ipSubnetworks.dartType, 'List<Object?>');
+  });
+
+  test(
+      'google_os_config_os_policy_assignment: an excluded child that is '
+      'itself required-and-repeated keeps that cardinality (Task 5 flip — '
+      'the real nestedTypeExcludes target)', () {
+    const terraformType = 'google_os_config_os_policy_assignment';
+    final specs = collectNestedTypes(
+      resourceBlock: _blockOf(terraformType),
+      resourcePrefix: _resourcePrefixOf(terraformType),
+      customSlotKeys: const {},
+      excludedPaths: const {'os_policies.resource_groups.resources'},
+    );
+
+    final osPolicies = specs.firstWhere((s) => s.tfName == 'os_policies');
+    final resourceGroups =
+        osPolicies.children.firstWhere((c) => c.tfName == 'resource_groups');
+    // `resources` is NOT descended into...
+    expect(
+      resourceGroups.children.any((c) => c.tfName == 'resources'),
+      isFalse,
+    );
+    // ...but IS recorded on its parent with the real schema cardinality:
+    // nesting_mode list, min_items: 1, no max_items -> required AND
+    // repeated. Forcing this to a scalar-optional passthrough (the pre-fix
+    // behavior) would make the opaque field unable to hold more than one
+    // resource per group, silently narrowing what the API allows.
+    final excludedResources = resourceGroups.excludedChildren
+        .firstWhere((c) => c.tfName == 'resources');
+    expect(excludedResources.repeated, isTrue);
+    expect(excludedResources.required, isTrue);
   });
 }

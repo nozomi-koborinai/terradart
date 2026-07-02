@@ -85,7 +85,7 @@ void main() {
         // caller-supplied order.
         attrs: [sslManagementType, certificateId],
         children: const [],
-        excludedChildTfNames: const [],
+        excludedChildren: const [],
       );
 
       final actual = renderNestedTypes(
@@ -232,7 +232,7 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         required: false,
         attrs: [],
         children: [],
-        excludedChildTfNames: [],
+        excludedChildren: [],
       );
       final basic = NestedBlockSpec(
         tfName: 'basic',
@@ -242,7 +242,7 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         required: false,
         attrs: const [],
         children: [conditions],
-        excludedChildTfNames: const [],
+        excludedChildren: const [],
       );
 
       final formatted = _fmt(renderNestedTypes(
@@ -285,7 +285,7 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         required: false,
         attrs: [requiredAttr],
         children: const [],
-        excludedChildTfNames: const [],
+        excludedChildren: const [],
       );
 
       final formatted = _fmt(renderNestedTypes(
@@ -310,8 +310,8 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
     });
 
     test(
-        'an excludedChildTfNames entry renders a TfArg<Map<String, dynamic>>? passthrough',
-        () {
+        'a scalar, optional excludedChildren entry renders a '
+        'TfArg<Map<String, dynamic>>? passthrough', () {
       final spec = const NestedBlockSpec(
         tfName: 'thing',
         path: ['thing'],
@@ -320,7 +320,13 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         required: false,
         attrs: [],
         children: [],
-        excludedChildTfNames: ['device_policy'],
+        excludedChildren: [
+          ExcludedNestedBlock(
+            tfName: 'device_policy',
+            repeated: false,
+            required: false,
+          ),
+        ],
       );
 
       final formatted = _fmt(renderNestedTypes(
@@ -338,6 +344,119 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
           "if (devicePolicy != null) 'device_policy': devicePolicy!.toTfJson(),",
         ),
       );
+    });
+
+    test(
+        'a repeated excludedChildren entry renders TfArg<List<Map<String, '
+        'dynamic>>>? (a single TfArg wrapping a list, not List<TfArg<...>>?)',
+        () {
+      final spec = const NestedBlockSpec(
+        tfName: 'thing',
+        path: ['thing'],
+        className: 'FooThing',
+        repeated: false,
+        required: false,
+        attrs: [],
+        children: [],
+        excludedChildren: [
+          ExcludedNestedBlock(
+            tfName: 'resources',
+            repeated: true,
+            required: false,
+          ),
+        ],
+      );
+
+      final formatted = _fmt(renderNestedTypes(
+        [spec],
+        resourceTerraformType: 'google_foo',
+      ));
+
+      expect(
+        formatted,
+        contains('final TfArg<List<Map<String, dynamic>>>? resources;'),
+      );
+      expect(
+        formatted,
+        contains(
+          "if (resources != null) 'resources': resources!.toTfJson(),",
+        ),
+      );
+      // NOT the per-element shape a repeated *typed* attribute/child uses.
+      expect(formatted, isNot(contains('List<TfArg<Map<String, dynamic>>>')));
+      expect(formatted, isNot(contains('for (final e in resources')));
+    });
+
+    test(
+        'a required, repeated excludedChildren entry renders a non-nullable '
+        'field with an unconditional entry (google_os_config_os_policy_'
+        'assignment\'s real os_policies.resource_groups.resources shape)', () {
+      final spec = const NestedBlockSpec(
+        tfName: 'thing',
+        path: ['thing'],
+        className: 'FooThing',
+        repeated: false,
+        required: false,
+        attrs: [],
+        children: [],
+        excludedChildren: [
+          ExcludedNestedBlock(
+            tfName: 'resources',
+            repeated: true,
+            required: true,
+          ),
+        ],
+      );
+
+      final formatted = _fmt(renderNestedTypes(
+        [spec],
+        resourceTerraformType: 'google_foo',
+      ));
+
+      expect(
+        formatted,
+        contains('required this.resources'),
+      );
+      expect(
+        formatted,
+        contains('final TfArg<List<Map<String, dynamic>>> resources;'),
+      );
+      // Lone map entry collapses onto one line under dart_style (no trailing
+      // comma) — same caveat as the "required attr" test above.
+      expect(
+        formatted,
+        contains("'resources': resources.toTfJson()"),
+      );
+      expect(formatted, isNot(contains('resources!')));
+      expect(formatted, isNot(contains('if (resources != null)')));
+    });
+
+    test(
+        'google_os_config_os_policy_assignment: the real excluded '
+        'os_policies.resource_groups.resources renders required + repeated '
+        '(real collector output, not a hand-built spec)', () {
+      const terraformType = 'google_os_config_os_policy_assignment';
+      final specs = collectNestedTypes(
+        resourceBlock: _blockOf(terraformType),
+        resourcePrefix: _resourcePrefixOf(terraformType),
+        customSlotKeys: const {},
+        excludedPaths: const {'os_policies.resource_groups.resources'},
+      );
+
+      final formatted = _fmt(renderNestedTypes(
+        specs,
+        resourceTerraformType: terraformType,
+      ));
+
+      expect(
+        formatted,
+        contains('required this.resources'),
+      );
+      expect(
+        formatted,
+        contains('final TfArg<List<Map<String, dynamic>>> resources;'),
+      );
+      expect(formatted, isNot(contains('resources!')));
     });
 
     test(
@@ -359,7 +478,7 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         required: false,
         attrs: [repeatedEnumAttr],
         children: const [],
-        excludedChildTfNames: const [],
+        excludedChildren: const [],
       );
 
       final formatted = _fmt(renderNestedTypes(
@@ -410,7 +529,7 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         required: false,
         attrs: [],
         children: [],
-        excludedChildTfNames: [],
+        excludedChildren: [],
       );
       final spec = NestedBlockSpec(
         tfName: 'thing',
@@ -423,7 +542,13 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         // of input order.
         attrs: [zzzAttr, aaaAttr],
         children: [mmmChild],
-        excludedChildTfNames: const ['bbb_excluded'],
+        excludedChildren: const [
+          ExcludedNestedBlock(
+            tfName: 'bbb_excluded',
+            repeated: false,
+            required: false,
+          ),
+        ],
       );
 
       final formatted = _fmt(renderNestedTypes(
@@ -456,7 +581,7 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         required: false,
         attrs: [],
         children: [],
-        excludedChildTfNames: [],
+        excludedChildren: [],
       );
       final b = const NestedBlockSpec(
         tfName: 'bbb',
@@ -466,7 +591,7 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         required: false,
         attrs: [],
         children: [],
-        excludedChildTfNames: [],
+        excludedChildren: [],
       );
 
       final first =
@@ -485,7 +610,7 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         required: false,
         attrs: [],
         children: [],
-        excludedChildTfNames: [],
+        excludedChildren: [],
       );
       final b = const NestedBlockSpec(
         tfName: 'bbb',
@@ -495,7 +620,7 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         required: false,
         attrs: [],
         children: [],
-        excludedChildTfNames: [],
+        excludedChildren: [],
       );
       final c = const NestedBlockSpec(
         tfName: 'ccc',
@@ -505,7 +630,7 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         required: false,
         attrs: [],
         children: [],
-        excludedChildTfNames: [],
+        excludedChildren: [],
       );
 
       final canonical =
@@ -535,7 +660,7 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         required: false,
         attrs: [],
         children: [],
-        excludedChildTfNames: [],
+        excludedChildren: [],
       );
       expect(nestedParamType(spec), 'AppEngineDomainMappingSslSettings?');
     });
@@ -549,7 +674,7 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
         required: false,
         attrs: [],
         children: [],
-        excludedChildTfNames: [],
+        excludedChildren: [],
       );
       expect(nestedParamType(spec), 'List<AccessLevelBasicConditions>?');
     });

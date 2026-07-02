@@ -632,9 +632,14 @@ paramOrder:
         // The argMap entry wraps the typed helper's own `.encode()` in
         // `TfArg.literal(...)` — matching the hand-written customSlot idiom
         // (e.g. `google_pubsub_subscription.yaml`'s `bigquery_config`) —
-        // guarded since the slot is optional.
+        // guarded since the slot is optional. No `!` on `sslSettings` inside
+        // the guard: it's a constructor PARAMETER, which the `if (sslSettings
+        // != null)` guard promotes to non-nullable (unlike a public FIELD —
+        // Dart field promotion is private-only — which is why
+        // `nested_type_emitter_test.dart`'s per-attribute/child encoding
+        // still needs `!`).
         expect(formatted, contains('if (sslSettings != null)'));
-        expect(formatted, contains('TfArg.literal(sslSettings!.encode())'));
+        expect(formatted, contains('TfArg.literal(sslSettings.encode())'));
 
         // Catalog: `nestedTypes` is scanned from this SAME formatted source
         // (`catalog_entry_builder.dart`'s `scanNestedTypes`) — there is no
