@@ -1,12 +1,15 @@
 // check_docs_consistency.dart — verifies docs caret minors and catalog counts.
 //
+// Text-only: the example synth gates (coverage + API-enablement ratchet +
+// local terraform validate) live in tool/example_synth_gates.dart and run as
+// their own step in agent_verify.sh and CI.
+//
 // Run from repo root: dart tool/check_docs_consistency.dart
 // ignore_for_file: avoid_print
 
 import 'dart:io';
 
 import 'doc_expectations.dart';
-import 'example_synth_gates.dart';
 
 Future<void> main() async {
   final errors = <String>[];
@@ -124,8 +127,6 @@ Future<void> main() async {
       }
     }
   }
-
-  await runExampleSynthGates(errors);
 
   if (errors.isEmpty) {
     print('check_docs_consistency: OK');

@@ -36,13 +36,14 @@ dart pub get
 echo ">> example_synth_gates_test (unit)"
 dart --enable-asserts tool/example_synth_gates_test.dart
 
-echo ">> check_docs_consistency"
-# Also runs the example synth gates (coverage + API-enablement ratchet) over
-# every quickstart via runExampleSynthGates.
+echo ">> check_docs_consistency (text-only)"
 dart tool/check_docs_consistency.dart
 
-echo ">> check_example_topology"
-dart tool/check_example_topology.dart
+echo ">> example_synth_gates (synth every quickstart once: coverage + API ratchet + validate)"
+dart tool/example_synth_gates.dart
+
+echo ">> check_example_topology (reuses tf-out from the synth pass)"
+dart tool/check_example_topology.dart --reuse-tf-out
 
 echo ">> dart analyze"
 dart analyze packages/ --fatal-infos --fatal-warnings
