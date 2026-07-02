@@ -137,7 +137,7 @@ jobs:
         working-directory: packages/terradart_codegen
         run: dart run bin/terradart.dart lint-override
       - name: check_override_enum_gaps (+ debt ledger staleness)
-        run: dart tool/check_override_enum_gaps.dart
+        run: dart tool/check_override_enum_gaps.dart --strict-nested
       - name: check_mm_upstream_fingerprint
         run: dart tool/check_mm_upstream_fingerprint.dart
 
