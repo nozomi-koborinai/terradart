@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/gke_backup.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// GKE Backup — backup/restore plans, channels, and plan-scoped IAM.
 ///
 /// For clusters and node pools, see `container.dart`. Pair

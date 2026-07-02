@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/service_networking.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Service Networking — VPC peering between user networks and Google service
 /// VPCs, plus Serverless VPC Access connectors for Cloud Run / Functions /
 /// App Engine egress into a consumer VPC.

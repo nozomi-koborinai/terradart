@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/os_config.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// OS Config: VM Manager OS policy assignments and patch deployments.
 library;
 

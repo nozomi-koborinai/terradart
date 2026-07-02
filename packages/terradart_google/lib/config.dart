@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/config.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Infrastructure Manager (Config API): Terraform blueprint deployments.
 library;
 

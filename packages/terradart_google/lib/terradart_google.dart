@@ -1,3 +1,5 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// terradart_google — curated GCP factory wrappers for `terradart`.
 ///
 /// Pinned to `hashicorp/google ~> 7.0`. See [kProviderSource] /
@@ -10,44 +12,48 @@
 /// between services.
 library;
 
+export 'access_context_manager.dart';
 export 'alloydb.dart';
 export 'apigee.dart';
+export 'apikeys.dart';
 export 'app.dart';
 export 'artifact_registry.dart';
 export 'biglake.dart';
 export 'bigquery.dart';
-export 'cloud_build.dart';
-export 'cloud_functions.dart';
-export 'config.dart';
-export 'cloud_run.dart';
-export 'cloud_scheduler.dart';
+export 'bigtable.dart';
+export 'binary_authorization.dart';
 export 'certificate_manager.dart';
 export 'chronicle.dart';
+export 'cloud_build.dart';
+export 'cloud_functions.dart';
+export 'cloud_run.dart';
+export 'cloud_scheduler.dart';
 export 'cloud_sql.dart';
-export 'clouddeploy.dart';
 export 'cloud_tasks.dart';
+export 'clouddeploy.dart';
 export 'compute.dart';
-export 'container.dart';
+export 'config.dart';
 export 'contact.dart';
+export 'container.dart';
 export 'data.dart';
 export 'dataplex.dart';
-export 'discovery_engine.dart';
 export 'dialogflow.dart';
+export 'discovery_engine.dart';
 export 'dns.dart';
 export 'document_ai.dart';
 export 'essential_contacts.dart';
 export 'eventarc.dart';
+export 'filestore.dart';
 export 'firebase_app_check.dart';
 export 'firebase_app_hosting.dart';
 export 'firebase_data_connect.dart';
 export 'firebase_remote_config.dart';
-export 'filestore.dart';
 export 'firestore.dart';
 export 'gemini.dart';
 export 'gke_backup.dart';
 export 'healthcare.dart';
-export 'iap.dart';
 export 'iam.dart';
+export 'iap.dart';
 export 'kms.dart';
 export 'license_manager.dart';
 export 'logging.dart';
@@ -57,17 +63,19 @@ export 'monitoring.dart';
 export 'network.dart';
 export 'observability.dart';
 export 'oracle.dart';
+export 'os_config.dart';
 export 'parameter_manager.dart';
 export 'privateca.dart';
 export 'project.dart';
 export 'provider.dart';
 export 'pubsub.dart';
+export 'recaptcha.dart';
 export 'redis.dart';
 export 'secret_manager.dart';
 export 'service_directory.dart';
 export 'service_networking.dart';
-export 'vertex_ai.dart';
 export 'spanner.dart';
 export 'storage.dart';
 export 'tags.dart';
+export 'vertex_ai.dart';
 export 'workflows.dart';

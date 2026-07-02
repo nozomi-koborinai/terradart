@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/iap.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Identity-Aware Proxy (IAP) IAM for App Engine and external HTTPS load
 /// balancer backend services.
 library;

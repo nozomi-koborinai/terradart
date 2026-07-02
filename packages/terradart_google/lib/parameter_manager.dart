@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/parameter_manager.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Parameter Manager — store and version application configuration parameters
 /// (global and regional), the non-secret sibling of Secret Manager.
 library;

@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/biglake.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// BigLake Metastore — Hive-compatible catalogs, databases, and tables.
 /// Nested `hive_options` config is passed as a structured map.
 library;

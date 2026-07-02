@@ -1,4 +1,5 @@
-// packages/terradart_google/lib/discovery_engine.dart
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
 /// Vertex AI Search (Discovery Engine): data stores, search engines, IAM.
 library;
 
@@ -13,9 +14,9 @@ export 'src/discovery_engine/google_discovery_engine_search_engine.dart'
         DiscoveryEngineSearchEngineSearchEngineConfig,
         DiscoveryEngineSearchEngineSearchTier,
         GoogleDiscoveryEngineSearchEngine;
-export 'src/discovery_engine/google_discovery_engine_search_engine_iam_member.dart'
-    show GoogleDiscoveryEngineSearchEngineIamMember;
 export 'src/discovery_engine/google_discovery_engine_search_engine_iam_binding.dart'
     show GoogleDiscoveryEngineSearchEngineIamBinding;
+export 'src/discovery_engine/google_discovery_engine_search_engine_iam_member.dart'
+    show GoogleDiscoveryEngineSearchEngineIamMember;
 export 'src/discovery_engine/google_discovery_engine_search_engine_iam_policy.dart'
     show GoogleDiscoveryEngineSearchEngineIamPolicy;

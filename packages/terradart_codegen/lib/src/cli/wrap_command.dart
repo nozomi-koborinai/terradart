@@ -5,6 +5,8 @@ import 'package:args/command_runner.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart' as p;
 
+import '../codegen/barrels/barrel_emitter.dart';
+import '../codegen/barrels/barrel_manifest.dart';
 import '../codegen/catalog_entry_builder.dart';
 import '../codegen/catalog_metadata_emitter.dart';
 import '../codegen/data_source_wrapper_emitter.dart';
@@ -290,6 +292,39 @@ class WrapCommand extends Command<int> {
     if (only == null) {
       final catalogRaw = CatalogMetadataEmitter().emit(catalogEntries);
       buffer['_catalog.g.dart'] = formatter.format(catalogRaw);
+
+      // Barrels: every per-service barrel (+ `data` + the umbrella) derives
+      // from the catalog entries joined with the authored barrels.yaml
+      // manifest (doc, file-name override, hand-written extraExports). Same
+      // `--only` skip rationale as the catalog: barrels are whole-registry
+      // artifacts, so a single-resource regen must not clobber them.
+      final manifestUri = await Isolate.resolvePackageUri(
+        Uri.parse('package:terradart_codegen/src/codegen/barrels/barrels.yaml'),
+      );
+      if (manifestUri == null) {
+        stderr.writeln(
+          'terradart wrap: failed to resolve barrels.yaml package path.',
+        );
+        return CliExitCodes.software;
+      }
+      final Map<String, String> barrelFiles;
+      try {
+        barrelFiles = buildBarrelFiles(
+          entries: catalogEntries,
+          manifest: loadBarrelManifest(manifestUri.toFilePath()),
+        );
+      } on StateError catch (e) {
+        stderr.writeln('terradart wrap: $e');
+        return CliExitCodes.dataError;
+      } on FormatException catch (e) {
+        stderr.writeln('terradart wrap: $e');
+        return CliExitCodes.dataError;
+      }
+      for (final entry in barrelFiles.entries) {
+        // `--output` is `.../lib/src`; barrels live one level up in `lib/`.
+        buffer[p.join('..', '${entry.key}.dart')] =
+            barrelFileHeader + formatter.format(entry.value);
+      }
     }
 
     // 4. E401 guard: refuse to clobber files that don't carry one of the
