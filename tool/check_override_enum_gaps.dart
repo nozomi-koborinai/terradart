@@ -17,6 +17,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:terradart_codegen/src/codegen/enum_value_parser.dart';
 import 'package:yaml/yaml.dart';
 
 final _root = Directory.current.path == '/workspace'
@@ -72,52 +73,6 @@ bool _isThin(Map<String, dynamic> ov) {
     'classDocComment',
   };
   return !ov.keys.any(rich.contains);
-}
-
-/// Parses schema descriptions that document a finite value set.
-List<String>? _parseEnumValues(String? desc) {
-  if (desc == null) return null;
-
-  final bracket = RegExp(r'Possible values:\s*(\[[^\]]+\])');
-  final m = bracket.firstMatch(desc);
-  if (m != null) {
-    try {
-      final vals = jsonDecode(m.group(1)!.replaceAll("'", '"')) as List;
-      final strings = vals.cast<String>();
-      return strings.length >= 2 ? strings : null;
-    } on FormatException {
-      // fall through
-    }
-  }
-
-  // `Valid values are: "PAGELESS", "PAGINATED".`
-  final validAre = RegExp(
-    r'Valid values are:\s*([^.]+)\.',
-    caseSensitive: false,
-  );
-  final vm = validAre.firstMatch(desc);
-  if (vm != null) {
-    final quoted = RegExp(r'"([^"]+)"')
-        .allMatches(vm.group(1)!)
-        .map((m) => m.group(1)!)
-        .toList();
-    if (quoted.length >= 2) return quoted;
-  }
-
-  // `Possible values: JOB_TYPE_UNSPECIFIED, PIPELINE, QUERY`
-  final loose = RegExp(r'Possible values:\s*([A-Z0-9_,\s]+)');
-  final lm = loose.firstMatch(desc);
-  if (lm != null) {
-    final vals = lm
-        .group(1)!
-        .split(',')
-        .map((v) => v.trim())
-        .where((v) => v.isNotEmpty)
-        .toList();
-    if (vals.length >= 2) return vals;
-  }
-
-  return null;
 }
 
 String _camel(String snake) {
@@ -214,7 +169,9 @@ List<_NestedEnumSite> _collectNestedEnumSites(Map<String, dynamic> block) {
       for (final attrEntry in attrs.entries) {
         final meta = Map<String, dynamic>.from(attrEntry.value as Map);
         if (meta['computed'] == true) continue;
-        final vals = _parseEnumValues(meta['description'] as String?);
+        final vals = parseEnumValuesFromDescription(
+          meta['description'] as String?,
+        );
         if (vals == null) continue;
         sites.add((blockPath: nextPath, attr: attrEntry.key, values: vals));
       }
@@ -256,7 +213,9 @@ void main(List<String> args) {
       final meta = Map<String, dynamic>.from(entry.value as Map);
       if (meta['computed'] == true) continue;
 
-      final vals = _parseEnumValues(meta['description'] as String?);
+      final vals = parseEnumValuesFromDescription(
+        meta['description'] as String?,
+      );
       if (vals == null) continue;
 
       final camel = _camel(attr);

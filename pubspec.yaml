@@ -86,3 +86,5 @@ dev_dependencies:
   yaml: any
   terradart_google:
     path: packages/terradart_google
+  terradart_codegen:
+    path: packages/terradart_codegen
