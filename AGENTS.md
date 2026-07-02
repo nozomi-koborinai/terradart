@@ -110,6 +110,8 @@ tool/agent_verify.sh
 
 This is the shared agent gate (docs consistency, analyze incl. `tool/`, four-package tests, `terradart wrap --check`, `lint-override`, enum gaps, example synth gates, pubsub smoke). The example synth gates synth every quickstart and enforce catalog coverage plus the API-enablement dependency graph: an example that enables any API must enable **every** API its resources need (`tool/example_api_debt.yaml` is the audited escape hatch). The gate does **not** run the full `terraform_validate` example matrix; GitHub Actions still enforces that on merge.
 
+**Ad-hoc verification pitfall:** when you compose your own check instead of `agent_verify.sh`, never rely on `&&` after piping a test/build command into `tail` / `grep` / `head` — the pipeline's exit status is the LAST command's, so the pipe swallows a failure and the chain keeps going (this hid a red `dart test` behind a green-looking `| tail -1` once). Run the command bare and check its exit code directly, or use `agent_verify.sh`, which sets `pipefail`.
+
 Optional flags:
 
 ```bash
@@ -121,14 +123,16 @@ tool/agent_verify.sh --format       # scoped dart format (core, codegen, agent)
 tool/agent_verify.sh --maintainer   # add wrap-init / wrap-promote e2e tests
 ```
 
-### Cursor hooks (Cloud + local IDE)
+### Agent guardrails (Cursor + Claude Code)
 
-Committed in `.cursor/hooks.json` (including Cursor Cloud Agent):
+Cursor sessions (including Cursor Cloud Agent) get hooks from `.cursor/hooks.json`:
 
 - `afterFileEdit` — `dart format` on hand-written Dart only (not `terradart_google/lib/src`).
 - `preToolUse` (`Write|Edit`) — blocks direct edits to generated wrappers, wrap goldens, and `.github/workflows/`.
 
-Run `tool/agent_verify.sh` explicitly before claiming work is done (Cloud Agent and local IDE).
+Claude Code sessions get the symmetric guardrails from the committed `.claude/settings.json`: `Edit`/`Write` are **denied** on generated wrappers (`terradart_google/lib/src`) and wrap goldens (`fixtures/wrap/expected_output`), and require **explicit confirmation** on `.github/workflows/`. Regenerate via `terradart wrap`; refresh goldens through the maintainer flow, not in-place edits.
+
+Run `tool/agent_verify.sh` explicitly before claiming work is done (all agents, cloud and local).
 
 ## Commits
 

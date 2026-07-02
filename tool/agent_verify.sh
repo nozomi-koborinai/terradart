@@ -91,8 +91,8 @@ else
   echo ">> package test suites: SKIPPED (--quick)"
 fi
 
-echo ">> dart test tool/ (render_formula, render_to_file)"
-dart test tool/render_formula_test.dart tool/render_to_file_test.dart
+echo ">> dart test tool/ (render_formula, render_to_file, select_changed_examples)"
+dart test tool/render_formula_test.dart tool/render_to_file_test.dart tool/select_changed_examples_test.dart
 
 echo ">> terradart wrap --check"
 (

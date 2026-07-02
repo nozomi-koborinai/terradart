@@ -36,8 +36,10 @@ coverage/
 # pana
 pana_report.json
 
-# Claude Code sandbox config (developer-local).
-.claude/
+# Claude Code local state (developer-local), EXCEPT the committed project
+# guardrails in settings.json (the Claude-side counterpart of .cursor/hooks).
+.claude/*
+!.claude/settings.json
 
 # Terraform local artifacts (state / secrets — never commit).
 validation/
