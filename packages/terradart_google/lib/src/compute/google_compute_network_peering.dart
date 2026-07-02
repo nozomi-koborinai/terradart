@@ -6,6 +6,28 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_network_peering`.
 const Set<String> _googleComputeNetworkPeeringSensitive = <String>{};
 
+/// `stack_type` — IP version stack of the peering. Default (when unset)
+/// is [ComputeNetworkPeeringStackType.ipv4Only].
+enum ComputeNetworkPeeringStackType implements TerraformEnum {
+  ipv4Only('IPV4_ONLY'),
+  ipv4Ipv6('IPV4_IPV6');
+
+  const ComputeNetworkPeeringStackType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `update_strategy` — how changes to peering config are reconciled.
+/// Default (when unset) is [ComputeNetworkPeeringUpdateStrategy.independent].
+enum ComputeNetworkPeeringUpdateStrategy implements TerraformEnum {
+  independent('INDEPENDENT'),
+  consensus('CONSENSUS');
+
+  const ComputeNetworkPeeringUpdateStrategy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_compute_network_peering`.
 final class GoogleComputeNetworkPeering extends Resource {
   static const String tfType = 'google_compute_network_peering';
@@ -19,8 +41,8 @@ final class GoogleComputeNetworkPeering extends Resource {
     TfArg<bool>? importCustomRoutes,
     TfArg<bool>? exportSubnetRoutesWithPublicIp,
     TfArg<bool>? importSubnetRoutesWithPublicIp,
-    TfArg<String>? stackType,
-    TfArg<String>? updateStrategy,
+    TfArg<ComputeNetworkPeeringStackType>? stackType,
+    TfArg<ComputeNetworkPeeringUpdateStrategy>? updateStrategy,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,

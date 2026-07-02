@@ -3,11 +3,6 @@
 # a reviewed decision, and a stale line (no longer matching any reported gap)
 # fails the check so the ledger cannot rot.
 #
-# These six are top-level PARTIAL gaps: the schema documents finite values but
-# the curated field is still TfArg<String>. Paying one down means narrowing a
-# public constructor param to a typed enum — a BREAKING change (the same class
-# as the 0.12.10 enum sweep) — so they wait for the next breaking minor
-# instead of failing every agent_verify run until then.
-google_compute_network_peering.stack_type: typed-enum narrowing is breaking; batch into the next breaking minor
-google_compute_network_peering.update_strategy: typed-enum narrowing is breaking; batch into the next breaking minor
-google_compute_router_peer.advertise_mode: typed-enum narrowing is breaking; batch into the next breaking minor
+# The ledger is currently empty — the 0.23.0 breaking minor paid all six
+# original entries off (typed-enum narrowing shipped with MIGRATING.md
+# coverage). Add new lines only as a reviewed decision.

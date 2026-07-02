@@ -3,6 +3,10 @@ deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
 
+dartTypeOverrides:
+  stack_type: ComputeNetworkPeeringStackType
+  update_strategy: ComputeNetworkPeeringUpdateStrategy
+
 paramOrder:
   - name
   - network
@@ -14,3 +18,26 @@ paramOrder:
   - stack_type
   - update_strategy
   - deletion_policy
+
+prelude: |
+  /// `stack_type` — IP version stack of the peering. Default (when unset)
+  /// is [ComputeNetworkPeeringStackType.ipv4Only].
+  enum ComputeNetworkPeeringStackType implements TerraformEnum {
+    ipv4Only('IPV4_ONLY'),
+    ipv4Ipv6('IPV4_IPV6');
+
+    const ComputeNetworkPeeringStackType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `update_strategy` — how changes to peering config are reconciled.
+  /// Default (when unset) is [ComputeNetworkPeeringUpdateStrategy.independent].
+  enum ComputeNetworkPeeringUpdateStrategy implements TerraformEnum {
+    independent('INDEPENDENT'),
+    consensus('CONSENSUS');
+
+    const ComputeNetworkPeeringUpdateStrategy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
