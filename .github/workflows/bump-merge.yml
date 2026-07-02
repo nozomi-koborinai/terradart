@@ -1,0 +1,149 @@
+name: bump-merge
+
+# Merge executor for the schema-bump post-process agent. The agent judges
+# and labels (bump-approved); this workflow INDEPENDENTLY re-verifies —
+# branch pattern, same-repo head, changed-file scope ledger, required
+# checks — and only then squash-merges. The agent holds no merge power.
+# Staged rollout: merging is disarmed (verify + comment only) until the
+# repository variable BUMP_MERGE_ENABLED is 'true'.
+#
+# Injection hygiene: every ${{ }} value consumed by a run: step goes
+# through env: (never inline interpolation) — the verify reason embeds the
+# head branch name, which is contributor-controlled input.
+
+on:
+  pull_request:
+    types: [labeled]
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: 'PR number to verify (and merge unless dry_run)'
+        required: true
+      dry_run:
+        description: 'Verify only; do not merge'
+        required: false
+        default: 'true'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: bump-merge-${{ github.event.pull_request.number || github.event.inputs.pr }}
+  cancel-in-progress: false
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+jobs:
+  verify_and_merge:
+    name: verify + merge
+    if: github.event_name == 'workflow_dispatch' || github.event.label.name == 'bump-approved'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - name: Resolve PR number and arm state
+        id: pr
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_PR: ${{ github.event.inputs.pr }}
+          INPUT_DRY_RUN: ${{ github.event.inputs.dry_run }}
+          EVENT_PR: ${{ github.event.pull_request.number }}
+          MERGE_ENABLED: ${{ vars.BUMP_MERGE_ENABLED }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            if ! printf '%s' "$INPUT_PR" | grep -qE '^[0-9]+$'; then
+              echo "::error::pr input must be a number, got: $INPUT_PR"
+              exit 1
+            fi
+            echo "number=$INPUT_PR" >> "$GITHUB_OUTPUT"
+            if [ "$INPUT_DRY_RUN" = "false" ]; then
+              echo "dry_run=false" >> "$GITHUB_OUTPUT"
+            else
+              echo "dry_run=true" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            echo "number=$EVENT_PR" >> "$GITHUB_OUTPUT"
+            if [ "$MERGE_ENABLED" = "true" ]; then
+              echo "dry_run=false" >> "$GITHUB_OUTPUT"
+            else
+              echo "dry_run=true" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+
+      - name: Verify branch, repo, and scope ledger
+        id: verify
+        env:
+          GH_TOKEN: ${{ secrets.SCHEMA_BUMP_PAT }}
+          PR: ${{ steps.pr.outputs.number }}
+        run: |
+          set -euo pipefail
+          fail() {
+            echo "verdict=fail" >> "$GITHUB_OUTPUT"
+            echo "reason=$1" >> "$GITHUB_OUTPUT"
+            exit 0
+          }
+          state=$(gh pr view "$PR" --json state -q .state)
+          [ "$state" = "OPEN" ] || fail "PR is $state, not OPEN"
+          head=$(gh pr view "$PR" --json headRefName -q .headRefName)
+          case "$head" in
+            chore/schema-bump-*) ;;
+            *) fail "head branch does not match chore/schema-bump-*" ;;
+          esac
+          cross=$(gh pr view "$PR" --json isCrossRepository -q .isCrossRepository)
+          [ "$cross" = "false" ] || fail "cross-repository PR"
+          # NOT `gh pr diff --name-only`: bump PRs carry a huge schema.json
+          # diff and trip the API's 20k-line limit (HTTP 406). The files
+          # endpoint lists names without diff bodies and paginates.
+          gh api "repos/${GITHUB_REPOSITORY}/pulls/${PR}/files" \
+            --paginate --jq '.[].filename' > /tmp/changed.txt
+          if dart tool/check_bump_scope.dart < /tmp/changed.txt > /tmp/scope.txt 2>&1; then
+            cat /tmp/scope.txt
+            echo "verdict=pass" >> "$GITHUB_OUTPUT"
+          else
+            cat /tmp/scope.txt
+            fail "changed files outside tool/bump_allowed_paths.yaml (see workflow log)"
+          fi
+
+      - name: Wait for required checks
+        id: checks
+        if: steps.verify.outputs.verdict == 'pass'
+        env:
+          GH_TOKEN: ${{ secrets.SCHEMA_BUMP_PAT }}
+          PR: ${{ steps.pr.outputs.number }}
+        run: |
+          set +e
+          gh pr checks "$PR" --required --watch --interval 60
+          echo "exit=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Merge or report
+        env:
+          GH_TOKEN: ${{ secrets.SCHEMA_BUMP_PAT }}
+          PR: ${{ steps.pr.outputs.number }}
+          VERDICT: ${{ steps.verify.outputs.verdict }}
+          REASON: ${{ steps.verify.outputs.reason }}
+          CHECKS_EXIT: ${{ steps.checks.outputs.exit }}
+          DRY_RUN: ${{ steps.pr.outputs.dry_run }}
+        run: |
+          set -euo pipefail
+          if [ "$VERDICT" != "pass" ]; then
+            gh pr comment "$PR" --body "**bump-merge:** NOT merging — ${REASON}."
+            exit 1
+          fi
+          if [ "$CHECKS_EXIT" != "0" ]; then
+            gh pr comment "$PR" --body "**bump-merge:** NOT merging — required checks did not finish green (gh pr checks exit ${CHECKS_EXIT})."
+            exit 1
+          fi
+          if [ "$DRY_RUN" = "true" ]; then
+            gh pr comment "$PR" --body "**bump-merge (dry run):** all verifications passed — branch pattern, same-repo head, scope ledger, required checks green. Merging is disarmed (BUMP_MERGE_ENABLED != true)."
+            exit 0
+          fi
+          gh pr merge "$PR" --squash --delete-branch
+          gh pr comment "$PR" --body "**bump-merge:** verified (branch pattern, same-repo head, scope ledger, required checks green) and squash-merged."

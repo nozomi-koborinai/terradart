@@ -101,6 +101,21 @@ void main() {
       );
       expect(violations, hasLength(6));
     });
+
+    test('committed ledger rejects Tier-3 evidence from real PR #244', () {
+      // #244 shipped a sealed-class design (compute_route next_hop) — its
+      // hand-written test follow-up and exactly-one debt entry are exactly
+      // the signals that must keep a bump PR OUT of the auto-merge path.
+      final rules = loadBumpRules('tool/bump_allowed_paths.yaml');
+      final violations = checkBumpScope(
+        changed: const [
+          'packages/terradart_google/test/synth/encode_round_trip_test.dart',
+          'tool/exactly_one_lint_debt.yaml',
+        ],
+        rules: rules,
+      );
+      expect(violations, hasLength(2));
+    });
   });
 
   test('loadBumpRules throws on a missing ledger', () {
