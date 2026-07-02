@@ -1,9 +1,8 @@
 outputDir: firebase_app_check
 
-classDocComment: |-
-  /// Factory wrapper for `google_firebase_app_check_debug_token` (provider
-  /// `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+
+curatedDoc: |-
   /// Required identity:
   /// - [localName]: Terraform local name (the address segment after
   ///   `google_firebase_app_check_debug_token.`).
@@ -32,13 +31,9 @@ classDocComment: |-
   /// );
   /// ```
   ///
-  /// Provisions a debug token so developer-environment or CI clients can
-  /// bypass App Check enforcement during development and integration
-  /// testing without registering as full attestation providers. Debug
-  /// tokens are scoped to a single app ([appId]) and can be revoked by
-  /// destroying this resource.
-  ///
-  /// No nested blocks aside from the meta-arg `timeouts`.
+  /// Debug tokens are scoped to a single app ([appId]) and can be revoked
+  /// by destroying this resource. No nested blocks aside from the meta-arg
+  /// `timeouts`.
 
 # paramOrder: app_id is the structural / forced-replace identity slot, then
 # the human-facing display_name, then the immutable token secret, then

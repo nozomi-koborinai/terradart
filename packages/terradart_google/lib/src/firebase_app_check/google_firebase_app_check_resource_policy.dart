@@ -8,8 +8,11 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_firebase_app_check_resource_policy`.
 const Set<String> _googleFirebaseAppCheckResourcePolicySensitive = <String>{};
 
-/// Factory wrapper for `google_firebase_app_check_resource_policy`
-/// (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_firebase_app_check_resource_policy`.
+///
+/// App Check enforcement policy for a specific resource of a Google service
+/// supported by App Check. Note that this policy will override the
+/// service-level configuration.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after

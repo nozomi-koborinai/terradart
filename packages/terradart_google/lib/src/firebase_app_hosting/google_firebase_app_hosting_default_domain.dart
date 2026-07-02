@@ -6,8 +6,9 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_firebase_app_hosting_default_domain`.
 const Set<String> _googleFirebaseAppHostingDefaultDomainSensitive = <String>{};
 
-/// Factory wrapper for `google_firebase_app_hosting_default_domain` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_firebase_app_hosting_default_domain`.
+///
+/// A domain name that is associated with a backend.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after

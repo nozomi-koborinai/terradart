@@ -184,21 +184,20 @@ void main() {
         reason:
             'migrated + curatedDoc must classify as derived+frozen, not none');
 
-    // Un-migrated boilerplate: an IAM custom role with no fenced/example doc.
-    // Pinned to the `iam` product, which is out of Wave 1 scope, so this
-    // fixture stays un-migrated for the duration of the de-fatten wave.
+    // The classDocComment axis is fully retired (the 2026-07 doc wave
+    // migrated the last 18 overrides — firebase_app_check, app_hosting, and
+    // iam), so no committed override exercises the legacy un-migrated
+    // branches of classifyDoc anymore. The former un-migrated fixtures now
+    // assert their migrated shape: gate on + curatedDoc.
     final iam = result.loaded.resources['google_project_iam_custom_role'];
     expect(iam, isNotNull);
-    expect(iam!.deriveClassDoc, isFalse);
-    expect(classifyDoc(iam), 'boilerplate');
+    expect(iam!.deriveClassDoc, isTrue);
+    expect(classifyDoc(iam), 'derived+frozen');
 
-    // Un-migrated artisanal: classDocComment carries the substring "example"
-    // (the member-string docs reference `user:alice@example.com`). Also pinned
-    // to the out-of-scope `iam` product so it stays un-migrated.
     final member = result.loaded.resources['google_project_iam_member'];
     expect(member, isNotNull);
-    expect(member!.deriveClassDoc, isFalse);
-    expect(classifyDoc(member), 'curatedDoc');
+    expect(member!.deriveClassDoc, isTrue);
+    expect(classifyDoc(member), 'derived+frozen');
   });
 
   // -------------------------------------------------------------------------

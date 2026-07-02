@@ -6,8 +6,11 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_firebase_app_check_app_attest_config`.
 const Set<String> _googleFirebaseAppCheckAppAttestConfigSensitive = <String>{};
 
-/// Factory wrapper for `google_firebase_app_check_app_attest_config`
-/// (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_firebase_app_check_app_attest_config`.
+///
+/// An app's App Attest configuration object. Note that the Team ID registered
+/// with your app is used as part of the validation process. Make sure your
+/// `google_firebase_apple_app` has a team_id present.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after

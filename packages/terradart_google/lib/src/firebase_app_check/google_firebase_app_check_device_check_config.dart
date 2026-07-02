@@ -8,8 +8,11 @@ const Set<String> _googleFirebaseAppCheckDeviceCheckConfigSensitive = <String>{
   'private_key',
 };
 
-/// Factory wrapper for `google_firebase_app_check_device_check_config`
-/// (provider `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_firebase_app_check_device_check_config`.
+///
+/// An app's DeviceCheck configuration object. Note that the Team ID registered
+/// with your app is used as part of the validation process. Make sure your
+/// `google_firebase_apple_app` has a team_id present.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after

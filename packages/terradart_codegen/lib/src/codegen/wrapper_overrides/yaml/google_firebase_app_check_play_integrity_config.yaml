@@ -1,9 +1,8 @@
 outputDir: firebase_app_check
 
-classDocComment: |-
-  /// Factory wrapper for `google_firebase_app_check_play_integrity_config`
-  /// (provider `hashicorp/google ~> 7.0`).
-  ///
+deriveClassDoc: true
+
+curatedDoc: |-
   /// Required identity:
   /// - [localName]: Terraform local name (the address segment after
   ///   `google_firebase_app_check_play_integrity_config.`).

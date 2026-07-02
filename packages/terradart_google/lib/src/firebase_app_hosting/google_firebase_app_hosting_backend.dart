@@ -54,8 +54,9 @@ class FirebaseAppHostingBackendAppHostingBackendCodebase {
   };
 }
 
-/// Factory wrapper for `google_firebase_app_hosting_backend` (provider
-/// `hashicorp/google ~> 7.0`).
+/// Factory wrapper for `google_firebase_app_hosting_backend`.
+///
+/// A Backend is the primary resource of App Hosting.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after
