@@ -174,4 +174,112 @@ void main() {
     );
     expect(basicWithNestedCustomSlot.excludedChildTfNames, isEmpty);
   });
+
+  test(
+      'google_os_config_patch_deployment: a list(string) attr with an enum '
+      'description becomes a first-class repeated enum, not a scalar one', () {
+    const terraformType = 'google_os_config_patch_deployment';
+    final specs = collectNestedTypes(
+      resourceBlock: _blockOf(terraformType),
+      resourcePrefix: _resourcePrefixOf(terraformType),
+      customSlotKeys: const {},
+      excludedPaths: const {},
+    );
+
+    final patchConfig = specs.firstWhere((s) => s.tfName == 'patch_config');
+    final windowsUpdate =
+        patchConfig.children.firstWhere((c) => c.tfName == 'windows_update');
+    expect(windowsUpdate.path, ['patch_config', 'windows_update']);
+    expect(
+      windowsUpdate.className,
+      'OsConfigPatchDeploymentPatchConfigWindowsUpdate',
+    );
+
+    // `classifications` is `["list", "string"]` with a "Possible values:
+    // [...]" description — schema type AND description agree it's a
+    // repeated enum, so it must render as one (not a self-contradictory
+    // scalar enum dartType on a list-typed field).
+    final classifications =
+        windowsUpdate.attrs.firstWhere((a) => a.tfName == 'classifications');
+    expect(classifications.dartName, 'classifications');
+    expect(classifications.required, isFalse);
+    expect(classifications.repeated, isTrue);
+    expect(classifications.enumValues, [
+      'CRITICAL',
+      'SECURITY',
+      'DEFINITION',
+      'DRIVER',
+      'FEATURE_PACK',
+      'SERVICE_PACK',
+      'TOOL',
+      'UPDATE_ROLLUP',
+      'UPDATE',
+    ]);
+    expect(
+      classifications.dartType,
+      'OsConfigPatchDeploymentPatchConfigWindowsUpdateClassifications',
+    );
+  });
+
+  test(
+      'google_access_context_manager_access_level: both device_policy '
+      'allow-lists become repeated enums when the conditions subtree is '
+      'not excluded', () {
+    const terraformType = 'google_access_context_manager_access_level';
+    final specs = collectNestedTypes(
+      resourceBlock: _blockOf(terraformType),
+      resourcePrefix: _resourcePrefixOf(terraformType),
+      customSlotKeys: const {},
+      excludedPaths: const {},
+    );
+
+    final basic = specs.firstWhere((s) => s.tfName == 'basic');
+    final conditions =
+        basic.children.firstWhere((c) => c.tfName == 'conditions');
+    final devicePolicy =
+        conditions.children.firstWhere((c) => c.tfName == 'device_policy');
+    expect(
+      devicePolicy.className,
+      'AccessContextManagerAccessLevelBasicConditionsDevicePolicy',
+    );
+
+    final managementLevels = devicePolicy.attrs
+        .firstWhere((a) => a.tfName == 'allowed_device_management_levels');
+    expect(managementLevels.repeated, isTrue);
+    expect(managementLevels.enumValues, [
+      'MANAGEMENT_UNSPECIFIED',
+      'NONE',
+      'BASIC',
+      'COMPLETE',
+    ]);
+    expect(
+      managementLevels.dartType,
+      'AccessContextManagerAccessLevelBasicConditionsDevicePolicy'
+      'AllowedDeviceManagementLevels',
+    );
+
+    final encryptionStatuses = devicePolicy.attrs
+        .firstWhere((a) => a.tfName == 'allowed_encryption_statuses');
+    expect(encryptionStatuses.repeated, isTrue);
+    expect(encryptionStatuses.enumValues, [
+      'ENCRYPTION_UNSPECIFIED',
+      'ENCRYPTION_UNSUPPORTED',
+      'UNENCRYPTED',
+      'ENCRYPTED',
+    ]);
+    expect(
+      encryptionStatuses.dartType,
+      'AccessContextManagerAccessLevelBasicConditionsDevicePolicy'
+      'AllowedEncryptionStatuses',
+    );
+
+    // A plain list(string) with NO enum description must still fall back
+    // to the conservative shape, not be swept up by the new repeated-enum
+    // branch.
+    final ipSubnetworks =
+        conditions.attrs.firstWhere((a) => a.tfName == 'ip_subnetworks');
+    expect(ipSubnetworks.repeated, isFalse);
+    expect(ipSubnetworks.enumValues, isNull);
+    expect(ipSubnetworks.dartType, 'List<Object?>');
+  });
 }

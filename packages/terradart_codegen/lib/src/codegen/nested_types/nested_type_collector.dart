@@ -5,7 +5,8 @@ import '../naming.dart';
 ///
 /// [dartType] is the *inner* type only (e.g. `'String'`, an enum class
 /// name, `'Map<String, String>'`) — the emitter (Task 3) wraps it in
-/// `TfArg<...>` and applies nullability from [required].
+/// `TfArg<...>` (or `List<TfArg<...>>`-shaped when [repeated]) and applies
+/// nullability from [required].
 final class NestedAttrSpec {
   final String tfName;
   final String dartName;
@@ -13,12 +14,22 @@ final class NestedAttrSpec {
   final bool required;
   final List<String>? enumValues;
 
+  /// Whether the underlying schema type is a `list`/`set` of [dartType]
+  /// rather than a bare scalar. Currently only ever `true` for a
+  /// list-of-enum-string attribute (`["list", "string"]` with a
+  /// `Possible values: [...]` description) — every other repeated shape
+  /// (a plain list of strings, a list of objects, ...) has no clean
+  /// per-element [dartType] to repeat, so it stays `false` and falls back
+  /// to an opaque [dartType] instead (see `_scalarDartType`).
+  final bool repeated;
+
   const NestedAttrSpec({
     required this.tfName,
     required this.dartName,
     required this.dartType,
     required this.required,
     this.enumValues,
+    this.repeated = false,
   });
 }
 
@@ -103,8 +114,7 @@ _ChildScan _scanChildren(
   required Set<String> customSlotKeys,
   required Set<String> excludedPaths,
 }) {
-  final blockTypes =
-      (block['block_types'] as Map?)?.cast<String, dynamic>() ?? const {};
+  final blockTypes = _optionalMap(block['block_types'], context: 'block_types');
   final children = <NestedBlockSpec>[];
   final excludedChildTfNames = <String>[];
   for (final entry in blockTypes.entries) {
@@ -119,7 +129,7 @@ _ChildScan _scanChildren(
 
     children.add(_buildSpec(
       tfName,
-      (entry.value as Map).cast<String, dynamic>(),
+      _requireMap(entry.value, context: 'block_types.$tfName'),
       path: childPath,
       resourcePrefix: resourcePrefix,
       customSlotKeys: customSlotKeys,
@@ -149,8 +159,10 @@ NestedBlockSpec _buildSpec(
   final minItems = (nestedBlockBody['min_items'] as num?)?.toInt();
   final className = resourcePrefix + path.map(snakeToPascal).join();
 
-  final block =
-      (nestedBlockBody['block'] as Map?)?.cast<String, dynamic>() ?? const {};
+  final block = _optionalMap(
+    nestedBlockBody['block'],
+    context: '$tfName.block',
+  );
   final scan = _scanChildren(
     block,
     path: path,
@@ -175,12 +187,11 @@ List<NestedAttrSpec> _collectAttrs(
   Map<String, dynamic> block, {
   required String className,
 }) {
-  final attributes =
-      (block['attributes'] as Map?)?.cast<String, dynamic>() ?? const {};
+  final attributes = _optionalMap(block['attributes'], context: 'attributes');
   final out = <NestedAttrSpec>[];
   for (final entry in attributes.entries) {
     final tfName = entry.key;
-    final body = (entry.value as Map).cast<String, dynamic>();
+    final body = _requireMap(entry.value, context: 'attributes.$tfName');
 
     final isComputed = body['computed'] == true;
     final isOptional = body['optional'] == true;
@@ -190,32 +201,98 @@ List<NestedAttrSpec> _collectAttrs(
 
     final enumValues =
         parseEnumValuesFromDescription(body['description'] as String?);
-    final dartType = enumValues != null
-        ? '$className${snakeToPascal(tfName)}'
-        : _scalarDartType(body['type']);
+    final typeInfo = _attrTypeInfo(
+      rawType: body['type'],
+      enumValues: enumValues,
+      className: className,
+      tfName: tfName,
+    );
 
     out.add(NestedAttrSpec(
       tfName: tfName,
       dartName: snakeToCamel(tfName),
-      dartType: dartType,
+      dartType: typeInfo.dartType,
       required: isRequired,
-      enumValues: enumValues,
+      enumValues: typeInfo.enumValues,
+      repeated: typeInfo.repeated,
     ));
   }
   return out;
 }
 
-/// Maps a raw schema-json attribute `type` to a dartType string.
+typedef _AttrTypeInfo = ({
+  String dartType,
+  bool repeated,
+  List<String>? enumValues,
+});
+
+/// Decides an attribute's [NestedAttrSpec] shape, gating enum detection on
+/// the RAW schema type rather than on `enumValues` alone.
+///
+/// A description matching `parseEnumValuesFromDescription` only produces an
+/// enum-typed [NestedAttrSpec] when the underlying type is one this
+/// collector can actually represent as an enum:
+/// - a bare `"string"` -> a scalar enum (`repeated: false`).
+/// - `["list", "string"]` / `["set", "string"]` -> a *repeated* enum
+///   (`repeated: true`) — e.g. `patch_config.windows_update.classifications`
+///   (`google_os_config_patch_deployment`) and
+///   `basic.conditions.device_policy.allowed_device_management_levels` /
+///   `allowed_encryption_statuses` (`google_access_context_manager_access_level`),
+///   3 of the 56 NESTED_THIN sites.
+///
+/// Any other shape — including a plain `["list", "string"]` with NO enum
+/// description, or an enum-shaped description on some other type entirely —
+/// ignores `enumValues` and falls back to [_scalarDartType]'s conservative
+/// mapping. This keeps `dartType`/`enumValues`/`repeated` mutually
+/// consistent: a scalar `dartType` never means "actually a list", and
+/// `enumValues` is only ever non-null when `dartType` really does name an
+/// enum class.
+_AttrTypeInfo _attrTypeInfo({
+  required Object? rawType,
+  required List<String>? enumValues,
+  required String className,
+  required String tfName,
+}) {
+  if (enumValues != null) {
+    if (rawType == 'string') {
+      return (
+        dartType: '$className${snakeToPascal(tfName)}',
+        repeated: false,
+        enumValues: enumValues,
+      );
+    }
+    if (_isListOrSetOfString(rawType)) {
+      return (
+        dartType: '$className${snakeToPascal(tfName)}',
+        repeated: true,
+        enumValues: enumValues,
+      );
+    }
+  }
+  return (
+    dartType: _scalarDartType(rawType),
+    repeated: false,
+    enumValues: null
+  );
+}
+
+bool _isListOrSetOfString(Object? rawType) =>
+    rawType is List &&
+    rawType.length == 2 &&
+    (rawType[0] == 'list' || rawType[0] == 'set') &&
+    rawType[1] == 'string';
+
+/// Maps a raw schema-json attribute `type` to a dartType string, for shapes
+/// [_attrTypeInfo] didn't already resolve as an enum.
 ///
 /// Scalars map cleanly (`"string"`->`String`, `"bool"`->`bool`,
 /// `"number"`->`num`, `"dynamic"`->`Object?`), as does a map-of-scalar
 /// (`["map", "string"]`->`Map<String, String>`). Everything else — a list
 /// or set of *anything* (including a plain list of primitives), a bare
 /// object type, a tuple, or a map of a non-scalar — has no single clean
-/// representation in [NestedAttrSpec] (there is no derived
-/// `List<EnumClass>` or nested-class-inside-a-list shape here), so it
-/// conservatively falls back to a `Map<String, dynamic>` /
-/// `List<Object?>`-style dartType. Genuinely unrecognized shapes throw,
+/// representation in [NestedAttrSpec] (no derived nested-class-inside-a-list
+/// shape here), so it conservatively falls back to a `Map<String, dynamic>`
+/// / `List<Object?>`-style dartType. Genuinely unrecognized shapes throw,
 /// matching `_type_decoder.dart`'s fail-fast convention for malformed
 /// schema input.
 String _scalarDartType(Object? rawType) {
@@ -254,4 +331,19 @@ String _scalarDartType(Object? rawType) {
     }
   }
   throw FormatException('Cannot map attribute type: $rawType');
+}
+
+/// Casts a required JSON-object value, failing loudly (not with a bare
+/// `TypeError`) when the schema doesn't shape up as expected.
+Map<String, dynamic> _requireMap(Object? value, {required String context}) {
+  if (value is Map) return value.cast<String, dynamic>();
+  throw FormatException('Expected a JSON object at $context, got: $value');
+}
+
+/// Like [_requireMap], but `null` (the key absent entirely) is a valid
+/// "nothing here" case that resolves to an empty map — schema-json omits
+/// `attributes`/`block_types` entirely on blocks that have none.
+Map<String, dynamic> _optionalMap(Object? value, {required String context}) {
+  if (value == null) return const {};
+  return _requireMap(value, context: context);
 }
