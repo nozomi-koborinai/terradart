@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.23.0 - 2026-07-02
+
+Lockstep release for `terradart_core` / `terradart_google` 0.23.0 (`StackProvider.toTfJson()` shim removed; six string fields now typed enums — see MIGRATING.md). Catalog unchanged at **381 entries** (380 curated resource factories + 1 data source) across **65 service barrels**. No MCP protocol or tool changes.
+
 ## 0.22.0 - 2026-06-30
 
 Lockstep release for Waves 76–77 (`terradart_google` OS Config, Binary Authorization, API Keys, reCAPTCHA, connectivity test). Catalog: **381 entries** (380 curated resource factories + 1 data source) across **65 service barrels**. No MCP protocol or tool changes.

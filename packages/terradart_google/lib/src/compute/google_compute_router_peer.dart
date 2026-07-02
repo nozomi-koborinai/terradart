@@ -8,6 +8,17 @@ const Set<String> _googleComputeRouterPeerSensitive = <String>{
   'md5_authentication_key.key',
 };
 
+/// `advertise_mode` — BGP prefix advertisement mode of this peer.
+/// Default (when unset) is [ComputeRouterPeerAdvertiseMode.defaultMode].
+enum ComputeRouterPeerAdvertiseMode implements TerraformEnum {
+  defaultMode('DEFAULT'),
+  custom('CUSTOM');
+
+  const ComputeRouterPeerAdvertiseMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_compute_router_peer`.
 final class GoogleComputeRouterPeer extends Resource {
   static const String tfType = 'google_compute_router_peer';
@@ -20,7 +31,7 @@ final class GoogleComputeRouterPeer extends Resource {
     required TfArg<num> peerAsn,
     TfArg<String>? region,
     TfArg<String>? peerIpAddress,
-    TfArg<String>? advertiseMode,
+    TfArg<ComputeRouterPeerAdvertiseMode>? advertiseMode,
     TfArg<List<String>>? advertisedGroups,
     TfArg<num>? advertisedRoutePriority,
     TfArg<bool>? enable,

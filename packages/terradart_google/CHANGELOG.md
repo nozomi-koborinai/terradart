@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.23.0 - 2026-07-02
+
+Lockstep release. **Breaking** — see [MIGRATING.md](../../MIGRATING.md).
+
+### Breaking
+
+- Six string fields became typed enums (serialized JSON unchanged): `GoogleAccessContextManagerServicePerimeter.perimeterType`, `GoogleComputeHaVpnGateway.gatewayIpVersion` / `.stackType`, `GoogleComputeNetworkPeering.stackType` / `.updateStrategy`, `GoogleComputeRouterPeer.advertiseMode`.
+- `GoogleProvider.toTfJson()` / `TimeProvider.toTfJson()` (mirrors of the removed `StackProvider` shim) are gone; read `configArgs`.
+
 ## 0.22.0 - 2026-06-30
 
 Lockstep release. **No breaking changes** vs `0.21.0`.

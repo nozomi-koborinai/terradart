@@ -39,7 +39,7 @@ final class GoogleAccessContextManagerServicePerimeter extends Resource {
     required TfArg<String> parent,
     required TfArg<String> title,
     TfArg<String>? description,
-    TfArg<String>? perimeterType,
+    TfArg<AccessContextManagerServicePerimeterPerimeterType>? perimeterType,
     TfArg<bool>? useExplicitDryRunSpec,
     TfArg<Map<String, dynamic>>? spec,
     TfArg<Map<String, dynamic>>? status,

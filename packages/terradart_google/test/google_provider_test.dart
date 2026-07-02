@@ -23,11 +23,6 @@ void main() {
       );
     });
 
-    test('toTfJson mirrors configArgs (back-compat shim)', () {
-      const p = GoogleProvider(project: 'demo');
-      expect(p.toTfJson(), equals(p.configArgs));
-    });
-
     test('configArgs is empty when no fields are set', () {
       const p = GoogleProvider();
       expect(p.configArgs, isEmpty);

@@ -1,5 +1,44 @@
 # Migrating terradart
 
+## 0.22.x → 0.23.0
+
+### `StackProvider.toTfJson()` removed
+
+The backwards-compat shim (it just returned `configArgs`) is gone. Read
+`configArgs` directly:
+
+```dart
+// before
+final map = provider.toTfJson();
+// after
+final map = provider.configArgs;
+```
+
+`Backend.toTfJson()` and `TfArg.toTfJson()` are unrelated real APIs and are
+unchanged.
+
+### Six string fields became typed enums
+
+The serialized Terraform JSON is unchanged; only the Dart type narrows.
+
+| Factory | Field | New type |
+| --- | --- | --- |
+| `GoogleAccessContextManagerServicePerimeter` | `perimeterType` | `AccessContextManagerServicePerimeterPerimeterType` |
+| `GoogleComputeHaVpnGateway` | `gatewayIpVersion` | `ComputeHaVpnGatewayGatewayIpVersion` |
+| `GoogleComputeHaVpnGateway` | `stackType` | `ComputeHaVpnGatewayStackType` |
+| `GoogleComputeNetworkPeering` | `stackType` | `ComputeNetworkPeeringStackType` |
+| `GoogleComputeNetworkPeering` | `updateStrategy` | `ComputeNetworkPeeringUpdateStrategy` |
+| `GoogleComputeRouterPeer` | `advertiseMode` | `ComputeRouterPeerAdvertiseMode` |
+
+Replace the string literal with the enum member:
+
+```dart
+// before
+stackType: TfArg.literal('IPV4_IPV6'),
+// after
+stackType: TfArg.literal(ComputeHaVpnGatewayStackType.ipv4Ipv6),
+```
+
 ## 0.13.0 → 0.14.0
 
 **Breaking** — one curated nested block became typed.

@@ -268,7 +268,10 @@ export 'src/compute/google_compute_network_endpoint_group.dart'
 export 'src/compute/google_compute_network_firewall_policy.dart'
     show GoogleComputeNetworkFirewallPolicy;
 export 'src/compute/google_compute_network_peering.dart'
-    show GoogleComputeNetworkPeering;
+    show
+        ComputeNetworkPeeringStackType,
+        ComputeNetworkPeeringUpdateStrategy,
+        GoogleComputeNetworkPeering;
 export 'src/compute/google_compute_network_peering_routes_config.dart'
     show GoogleComputeNetworkPeeringRoutesConfig;
 export 'src/compute/google_compute_project_metadata_item.dart'
@@ -491,7 +494,7 @@ export 'src/compute/google_compute_router_nat.dart'
         ComputeRouterNatType,
         GoogleComputeRouterNat;
 export 'src/compute/google_compute_router_peer.dart'
-    show GoogleComputeRouterPeer;
+    show ComputeRouterPeerAdvertiseMode, GoogleComputeRouterPeer;
 export 'src/compute/google_compute_security_policy.dart'
     show
         ComputeSecurityPolicySecurityPolicyAdaptiveProtectionConfig,

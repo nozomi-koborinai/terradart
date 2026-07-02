@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.23.0 - 2026-07-02
+
+Lockstep release. **Breaking** — see [MIGRATING.md](../../MIGRATING.md).
+
+### Breaking
+
+- Removed the `StackProvider.toTfJson()` backwards-compat shim; read `configArgs` directly. `Backend.toTfJson()` / `TfArg.toTfJson()` are unchanged (real, distinct APIs).
+
 ## 0.22.0 - 2026-06-30
 
 Lockstep release for Waves 76–77. No API changes in `terradart_core`.

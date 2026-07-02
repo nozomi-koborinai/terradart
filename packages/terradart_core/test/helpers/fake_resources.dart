@@ -33,9 +33,6 @@ class FakeStackProvider implements StackProvider {
 
   @override
   final Map<String, Object?> configArgs;
-
-  @override
-  Map<String, Object?> toTfJson() => Map<String, Object?>.from(configArgs);
 }
 
 /// Minimal concrete `Stack` subclass for tests. Uses the default

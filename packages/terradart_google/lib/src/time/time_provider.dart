@@ -22,7 +22,4 @@ final class TimeProvider implements StackProvider {
 
   @override
   Map<String, Object?> get configArgs => const {};
-
-  @override
-  Map<String, Object?> toTfJson() => configArgs;
 }

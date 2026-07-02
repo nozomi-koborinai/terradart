@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         Thanks for taking the time to ask. terradart is **alpha** on
-        **0.22.x** today. Single-maintainer;
+        **0.23.x** today. Single-maintainer;
         triage is best-effort. See https://terradart.dev/docs/status/
 
         Docs: https://terradart.dev/docs/getting-started/

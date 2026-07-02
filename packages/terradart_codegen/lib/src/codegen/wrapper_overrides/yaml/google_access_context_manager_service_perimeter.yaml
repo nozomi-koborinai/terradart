@@ -3,6 +3,9 @@ deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
 
+dartTypeOverrides:
+  perimeter_type: AccessContextManagerServicePerimeterPerimeterType
+
 paramOrder:
   - name
   - parent

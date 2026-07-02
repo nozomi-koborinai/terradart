@@ -15,6 +15,8 @@
 #   - packages/terradart_agent/pubspec.yaml       (version: + terradart_core caret + terradart_google caret)
 #   - packages/terradart_agent/lib/src/version.dart  (packageVersion const — lockstep with its pubspec)
 #   - examples/*/pubspec.yaml                     (terradart_core + terradart_google carets)
+#   - cookbook/*/pubspec.yaml,                    (terradart_core + terradart_google carets on
+#     cookbook/*/*/pubspec.yaml                    workspace-member cookbook recipes)
 #   - README.md                                   (Quickstart pubspec sample + `dart pub global activate terradart_codegen ^...` line + status blurb)
 #   - CONTRIBUTING.md                             (minor-line caret references)
 #   - SECURITY.md                                 (supported-versions pin + table)
@@ -128,6 +130,20 @@ for f in examples/*/pubspec.yaml; do
 done
 echo "    - bumped $EXAMPLE_COUNT examples to terradart_{core,google}: ^$NEW"
 
+# 3b. Cookbook recipe pubspecs (workspace members under cookbook/, one or two
+#     levels deep — e.g. cookbook/single-project-app/ and
+#     cookbook/lunch-concierge/infra/). Not every recipe depends on
+#     terradart_core/terradart_google (e.g. lunch-concierge/shared,server are
+#     Genkit-only), so the sed is a harmless no-op on those.
+echo "  Cookbook recipe pubspecs:"
+COOKBOOK_COUNT=0
+for f in cookbook/*/pubspec.yaml cookbook/*/*/pubspec.yaml; do
+  [ -f "$f" ] || continue
+  sed_inplace "s#^( *terradart_(core|google)): \\^${OLD_RE}\$#\\1: ^${NEW}#" "$f"
+  COOKBOOK_COUNT=$((COOKBOOK_COUNT + 1))
+done
+echo "    - scanned $COOKBOOK_COUNT cookbook pubspecs for terradart_{core,google}: ^$NEW"
+
 # 4. Markdown caret samples (README + website getting-started).
 #    Two distinct patterns:
 #    a) Inside a pubspec block: `  terradart_(core|codegen|google): ^X.Y.Z`
@@ -228,6 +244,29 @@ done
 
 echo
 
+# 4c. Blanket bare-minor sweep for the pages `tool/check_docs_consistency.dart`
+#     strictly scans for ANY stale `0.NN.x` token (its regex has no notion of
+#     "today" / "line" / "(current)" — it just flags every bare minor token
+#     that doesn't match the current one). The passes above only chase known
+#     phrase templates and have already missed new prose once (e.g. "as of
+#     0.NN.x" in CONTRIBUTING.md); replacing the literal substring everywhere
+#     in exactly the checker's file set closes that whole class of miss.
+#     SECURITY.md and website/waves.md are deliberately excluded — both carry
+#     legitimate historical `0.NN.x` references the checker itself exempts.
+echo "  Blanket bare-minor sweep (check_docs_consistency.dart's file set):"
+for f in README.md \
+         CONTRIBUTING.md \
+         website/src/content/docs/docs/index.md \
+         website/src/content/docs/docs/status.md \
+         website/src/content/docs/docs/getting-started.md \
+         website/src/content/docs/docs/why-terradart.mdx; do
+  [ -f "$f" ] || continue
+  sed_inplace "s#${OLD_MINOR_RE}\\.x#${NEW_MINOR}.x#g" "$f"
+  echo "    - $f"
+done
+
+echo
+
 # 5. Verify no stale OLD carets / version lines remain in the scoped files.
 echo "==> Verifying no stale '$OLD' references remain"
 set +e
@@ -235,6 +274,7 @@ STALE=$(
   grep -nE "^version: ${OLD_RE}\$" packages/*/pubspec.yaml 2>/dev/null
   grep -nE "terradart_(core|codegen|google|coverage): \\^${OLD_RE}([^0-9A-Za-z.-]|\$)" \
     packages/*/pubspec.yaml examples/*/pubspec.yaml \
+    cookbook/*/pubspec.yaml cookbook/*/*/pubspec.yaml \
     README.md website/src/content/docs/docs/getting-started.md \
     packages/terradart_core/README.md \
     packages/terradart_google/README.md \
@@ -259,6 +299,12 @@ STALE=$(
     packages/terradart_google/README.md \
     packages/terradart_codegen/README.md 2>/dev/null
   grep -nE "pre-1\\.0 \\(${OLD_MINOR_RE}\\.x\\)" README.md 2>/dev/null
+  grep -nE "\\b${OLD_MINOR_RE}\\.x\\b" \
+    README.md CONTRIBUTING.md \
+    website/src/content/docs/docs/index.md \
+    website/src/content/docs/docs/status.md \
+    website/src/content/docs/docs/getting-started.md \
+    website/src/content/docs/docs/why-terradart.mdx 2>/dev/null
 )
 set -e
 
