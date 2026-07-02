@@ -8,7 +8,7 @@ Built on [`genkit`](https://pub.dev/packages/genkit) + [`genkit_mcp`](https://pu
 
 ## Status
 
-**Pre-alpha** — same expectations as the rest of TerraDart (pin versions, read release notes). The server is read-only catalog metadata; it does not run `terraform`, touch GCP, or apply infrastructure.
+**Alpha** — same expectations as the rest of TerraDart (pin versions, read release notes). The server is read-only catalog metadata; it does not run `terraform`, touch GCP, or apply infrastructure.
 
 ## Install
 

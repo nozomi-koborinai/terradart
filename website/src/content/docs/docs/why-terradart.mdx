@@ -82,7 +82,7 @@ TerraDart fits teams already centered on **Dart**, already running **Terraform**
 | Dart authoring | Yes | No | No | No |
 | Drop-in for `terraform apply` | Yes | Yes | Yes | Different model |
 | Curated Dart factories for GCP | Yes | No | No | No |
-| Project status | Pre-alpha | Mature | Archived 2025 | Active |
+| Project status | Alpha | Mature | Archived 2025 | Active |
 
 HCL has provider schema types; CDKTF bindings are typed in TypeScript and other languages. TerraDart's difference is **Dart-native authoring** without replacing your Terraform execution pipeline.
 
@@ -102,11 +102,11 @@ HCL has provider schema types; CDKTF bindings are typed in TypeScript and other 
 
 - Not a Terraform replacement — state and apply stay in Terraform.
 - Not multi-cloud yet — the Google provider only.
-- Not a constructs framework in the pre-alpha cycle.
+- Not a constructs framework in the pre-1.0 cycle.
 - Not module-block support — compose Terraform modules in HCL alongside TerraDart-generated `*.tf.json`; both feed the same `terraform apply`.
 
 ## Next steps
 
 - [Architecture](/docs/architecture/) — `synth()` / `writeTo()`, provider integration, AppExport
 - [Getting Started](/docs/getting-started/) — install and first `*.tf.json` output (in progress)
-- [Status](/docs/status/) — pre-alpha expectations
+- [Status](/docs/status/) — alpha expectations

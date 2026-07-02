@@ -11,7 +11,7 @@
 >
 > Google Cloud infrastructure as real Dart code — typed, refactor-safe, drop-in for `terraform apply`.
 
-**Pre-alpha** — no SemVer guarantees until v1.0.0. Pin `^0.22.x`, read [`MIGRATING.md`](MIGRATING.md) before bumping, and see [status on terradart.dev](https://terradart.dev/docs/status/).
+**Alpha** — no SemVer until v1.0.0, but breaking changes land only on **minor** bumps. Pin `^0.22.x`, read [`MIGRATING.md`](MIGRATING.md) before minor bumps, and see [status on terradart.dev](https://terradart.dev/docs/status/).
 
 <!-- identity -->
 [![pub: terradart_core](https://img.shields.io/pub/v/terradart_core.svg?label=pub%3A%20core)](https://pub.dev/packages/terradart_core)
@@ -216,7 +216,7 @@ Runnable end-to-end:  [`examples/pubsub_quickstart/`](examples/pubsub_quickstart
 
 ## terradart-mcp
 
-**Pre-alpha.** [`terradart-mcp`](packages/terradart_agent/) is an MCP server that exposes the curated factory **catalog** to coding agents (Claude Code, Cursor, Claude Desktop). Five read-only tools — `list_barrels`, `list_resources`, `get_resource_schema`, `get_quickstart`, and `check_coverage` — help agents author correct Dart without guessing factory names. It does **not** run Terraform or touch GCP.
+**Alpha.** [`terradart-mcp`](packages/terradart_agent/) is an MCP server that exposes the curated factory **catalog** to coding agents (Claude Code, Cursor, Claude Desktop). Five read-only tools — `list_barrels`, `list_resources`, `get_resource_schema`, `get_quickstart`, and `check_coverage` — help agents author correct Dart without guessing factory names. It does **not** run Terraform or touch GCP.
 
 ```sh
 brew install nozomi-koborinai/tap/terradart-mcp
@@ -298,18 +298,18 @@ Application platform & operations
 | Dart authoring | ✅ | ❌ | ❌ (TS / Py / Java / Go) | ❌ (TS / Py / Go / etc.) |
 | Type-safe handoff to your app | ✅ (compile-time) | ❌ (`terraform output` + parse) | ❌ (no Dart) | ❌ (no Dart) |
 | Drop-in for `terraform apply` | ✅ (emits `*.tf.json`) | ✅ (native) | ✅ | ⚠️ (different state model) |
-| Project status | Pre-alpha | Mature | **Archived Dec 2025** | Active |
+| Project status | Alpha | Mature | **Archived Dec 2025** | Active |
 
 ## Non-goals
 
 - **Not a Terraform replacement.** TerraDart synthesizes JSON; `terraform plan / apply` runs as before. State stays where you already keep it.
 - **Not a multi-cloud tool yet.** Google provider only. AWS / Azure may follow if the curated surface stabilizes — no promise.
-- **Not a constructs framework.** Composite abstractions are out of scope for the pre-alpha cycle.
+- **Not a constructs framework.** Composite abstractions are out of scope for the pre-1.0 cycle.
 - **Not module-block support.** Compose Terraform modules in HCL alongside TerraDart-generated `*.tf.json` — both feed the same `terraform apply`.
 
 ## Status
 
-**Pre-alpha**, pre-1.0 (0.22.x). No SemVer guarantees until v1.0.0; pin `^0.22.x` and read [`MIGRATING.md`](MIGRATING.md) before every minor bump. The [beta readiness gates](https://terradart.dev/docs/status/#beta-readiness-checklist) are met; the beta label timing is under consideration. Expectations: [terradart.dev/docs/status/](https://terradart.dev/docs/status/).
+**Alpha**, pre-1.0 (0.22.x). No SemVer until v1.0.0, but breaking changes land only on **minor** bumps, always documented in [`MIGRATING.md`](MIGRATING.md); pin `^0.22.x` and take patches freely. Beta needs external validation — see the [path to beta](https://terradart.dev/docs/status/#path-to-beta). Expectations: [terradart.dev/docs/status/](https://terradart.dev/docs/status/).
 
 ## Schema-bump automation (Plan 5.E)
 

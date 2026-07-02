@@ -1,6 +1,6 @@
 # Contributing to terradart
 
-Thanks for taking time to look at this. terradart is a **pre-alpha** single-maintainer project (0.22.x today; [beta readiness gates](https://terradart.dev/docs/status/#beta-readiness-checklist) are met, label timing under consideration). Contributions are welcome on a best-effort basis.
+Thanks for taking time to look at this. terradart is an **alpha** single-maintainer project (0.22.x today; breaking changes land only on minor bumps — beta needs external validation, see the [path to beta](https://terradart.dev/docs/status/#path-to-beta)). Contributions are welcome on a best-effort basis.
 
 ## What kind of contribution?
 
@@ -8,7 +8,7 @@ terradart ships one consumer surface:
 
 - **Curated factories** — the `google_*` factory wrappers in [`terradart_google`](packages/terradart_google/README.md) (**380 curated resource factories + 1 data source** as of 0.22.x). Bug fixes, tests, and doc improvements welcome. New resources land via `terradart wrap` overrides — open an issue first to discuss scope.
 
-Within a **minor** line (`^0.22.x`), we aim to avoid breaking public API changes. Across **minors**, breaking changes are allowed with `MIGRATING.md` coverage (stricter once beta is declared — see [status](https://terradart.dev/docs/status/)).
+Within a **minor** line (`^0.22.x`), no breaking public API changes. Across **minors**, breaking changes are allowed with `MIGRATING.md` coverage (the alpha change policy — see [status](https://terradart.dev/docs/status/)).
 
 Bug reports / questions / feature requests: pick a template when [opening an issue](https://github.com/nozomi-koborinai/terradart/issues/new/choose).
 
@@ -68,7 +68,7 @@ Before opening a PR:
 
 ## Review cadence
 
-terradart is a single-maintainer project (pre-alpha). Issue triage and PR
+terradart is a single-maintainer project (alpha). Issue triage and PR
 review are best-effort — expect a few weeks of latency, not a defined SLA.
 If a PR sits untouched for 30 days, ping with a comment.
 

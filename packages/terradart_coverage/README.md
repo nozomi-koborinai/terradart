@@ -8,7 +8,7 @@ It matches Terraform type strings against the static catalog compiled into [`ter
 
 ## Status
 
-**Pre-alpha** — same expectations as the rest of TerraDart (pin versions, read release notes). The tool is read-only: it reads source files and reports. It never runs Terraform, touches a backend, or modifies anything.
+**Alpha** — same expectations as the rest of TerraDart (pin versions, read release notes). The tool is read-only: it reads source files and reports. It never runs Terraform, touches a backend, or modifies anything.
 
 ## Install
 
