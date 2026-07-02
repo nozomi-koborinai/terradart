@@ -22,9 +22,9 @@
 #   - packages/terradart_google/README.md         (pubspec sample carets)
 #   - packages/terradart_codegen/README.md        (`dart pub global activate` caret)
 #   - website/src/content/docs/docs/getting-started.md  (pubspec sample caret note + version line)
-#   - .github/ISSUE_TEMPLATE/bug.yml              (pre-alpha banner version)
-#   - .github/ISSUE_TEMPLATE/feature.yml          (pre-alpha banner version)
-#   - .github/ISSUE_TEMPLATE/question.yml         (pre-alpha banner version)
+#   - .github/ISSUE_TEMPLATE/bug.yml              (alpha banner version)
+#   - .github/ISSUE_TEMPLATE/feature.yml          (alpha banner version)
+#   - .github/ISSUE_TEMPLATE/question.yml         (alpha banner version)
 #
 # What it does NOT touch (write these by hand after the bump):
 #   - CHANGELOG.md (root + per-package) — release notes are prose
@@ -205,8 +205,8 @@ for tpl in .github/ISSUE_TEMPLATE/bug.yml \
   fi
 done
 
-# `.x`-style minor carets + pre-alpha banner. The pubspec samples in the
-# READMEs and the website getting-started page, plus the README pre-alpha
+# `.x`-style minor carets + alpha banner. The pubspec samples in the
+# READMEs and the website getting-started page, plus the README alpha
 # banner, use the ^X.Y.x minor form — distinct from the ^X.Y.Z full-semver
 # samples handled above, which is why those passes leave them untouched. Sweep
 # them in one pass so the docs-consistency check (which expects ^X.Y.x) stays

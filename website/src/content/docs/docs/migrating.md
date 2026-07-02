@@ -133,5 +133,5 @@ Earlier breaking changes (WIF provider sealed `trustSource`, `terradart codegen`
 ## Next steps
 
 - [Waves 23–24](/docs/waves/) — new factories and example stacks
-- [Status & versioning](/docs/status/) — pre-alpha expectations and beta policy
+- [Status & versioning](/docs/status/) — alpha expectations and change policy
 - [Examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) — updated quickstarts exercising the new APIs

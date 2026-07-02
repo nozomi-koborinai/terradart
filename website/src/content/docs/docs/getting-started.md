@@ -3,7 +3,7 @@ title: Getting Started
 description: Install TerraDart and generate your first *.tf.json from a Stack.
 ---
 
-This guide matches the [README quickstart](https://github.com/nozomi-koborinai/terradart#quickstart) for the **0.22.x** line. TerraDart is **pre-alpha**; the [beta gates](/docs/status/#beta-readiness-checklist) are met and the label timing is under consideration — see [Status & versioning](/docs/status/).
+This guide matches the [README quickstart](https://github.com/nozomi-koborinai/terradart#quickstart) for the **0.22.x** line. TerraDart is **alpha** — breaking changes land only on **minor** bumps; see [Status & versioning](/docs/status/) for the change policy and the [path to beta](/docs/status/#path-to-beta).
 
 ## Prerequisites
 
@@ -99,5 +99,5 @@ Rename `orders-prod` in the Stack without updating the subscriber and `dart anal
 - [Architecture](/docs/architecture/) — `synth()`, `writeTo()`, curated coverage
 - [Curated factory waves](/docs/waves/) — factory history and example pointers
 - [Migrating](/docs/migrating/) — read before every minor bump
-- [Status & versioning](/docs/status/) — pre-alpha vs beta vs 1.0
+- [Status & versioning](/docs/status/) — alpha vs beta vs 1.0
 - [Examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook) for fuller stacks

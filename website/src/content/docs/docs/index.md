@@ -14,9 +14,9 @@ Guides track the **0.22.x** line on pub.dev. The repo [README](https://github.co
 - [Architecture](/docs/architecture/) — generate `*.tf.json`, `synth()` / `writeTo()`, AppExport
 - [Curated factory waves](/docs/waves/) — factory history and example pointers
 - [Migrating](/docs/migrating/) — breaking-change guides for minor bumps
-- [Status & versioning](/docs/status/) — pre-alpha, beta readiness, 1.0
+- [Status & versioning](/docs/status/) — alpha, path to beta, 1.0
 
 ## For AI assistants
 
-- [terradart-mcp](/docs/agent/) — MCP catalog server for coding agents (pre-alpha)
+- [terradart-mcp](/docs/agent/) — MCP catalog server for coding agents (alpha)
 - [llms.txt](/llms.txt) — condensed site map for LLM crawlers
