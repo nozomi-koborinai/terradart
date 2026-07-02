@@ -1,5 +1,97 @@
 # Migrating terradart
 
+## 0.23.0 → 0.24.0
+
+**Breaking** — 19 resources that previously took an opaque, hand-shaped
+`TfArg<Map<String, dynamic>>?` (or `TfArg<List<Map<String, dynamic>>>?` for a
+repeated block) for a top-level nested block now take a typed helper class
+(or `List<...>` of one) instead. The serialized Terraform JSON is unchanged
+— only the Dart-side authoring API narrows from an untyped map literal to a
+generated `@immutable` class with named fields, `TerraformEnum` members
+where the schema documents finite values, and its own `encode()`.
+
+New type names follow `<FactoryNameWithoutGoogle><BlockPathInPascalCase>`
+(e.g. `google_app_engine_domain_mapping`'s `ssl_settings` block →
+`AppEngineDomainMappingSslSettings`); let your IDE's autocomplete on the
+constructor parameter's expected type find the exact name rather than
+guessing it.
+
+### Before / after: `google_app_engine_domain_mapping.ssl_settings`
+
+```dart
+// Before
+GoogleAppEngineDomainMapping(
+  localName: 'demo',
+  domainName: TfArg.literal('example.com'),
+  sslSettings: TfArg.literal({'ssl_management_type': 'AUTOMATIC'}),
+);
+
+// After
+GoogleAppEngineDomainMapping(
+  localName: 'demo',
+  domainName: TfArg.literal('example.com'),
+  sslSettings: AppEngineDomainMappingSslSettings(
+    sslManagementType: TfArg.literal(
+      AppEngineDomainMappingSslSettingsSslManagementType.automatic,
+    ),
+  ),
+);
+```
+
+### Retyped top-level parameters
+
+| Factory | Retyped params |
+| --- | --- |
+| `GoogleAccessContextManagerAccessLevel` | `basic`, `custom` |
+| `GoogleAccessContextManagerServicePerimeter` | `spec`, `status` |
+| `GoogleAppEngineDomainMapping` | `sslSettings` |
+| `GoogleAppEngineFlexibleAppVersion` | `livenessCheck`, `readinessCheck`, `vpcAccessConnector` |
+| `GoogleAppEngineServiceNetworkSettings` | `networkSettings` |
+| `GoogleAppEngineServiceSplitTraffic` | `split` |
+| `GoogleAppEngineStandardAppVersion` | `handlers`, `deployment`, `entrypoint`, `automaticScaling`, `manualScaling`, `vpcAccessConnector` |
+| `GoogleBinaryAuthorizationPolicy` | `admissionWhitelistPatterns`, `clusterAdmissionRules`, `defaultAdmissionRule` |
+| `GoogleDataplexAsset` | `discoverySpec`, `resourceSpec` |
+| `GoogleDataplexDatascan` | `data`, `executionSpec`, `executionIdentity` |
+| `GoogleDataplexEntryLink` | `entryReferences`, `aspects` |
+| `GoogleDataplexTask` | `triggerSpec`, `executionSpec` |
+| `GoogleDataplexZone` | `discoverySpec`, `resourceSpec` |
+| `GoogleNetworkManagementConnectivityTest` | `source`, `destination` |
+| `GoogleOsConfigOsPolicyAssignment` | `osPolicies`, `instanceFilter`, `rollout` |
+| `GoogleOsConfigPatchDeployment` | `instanceFilter`, `patchConfig`, `rollout` |
+| `GoogleRecaptchaEnterpriseKey` | `webSettings`, `androidSettings`, `iosSettings`, `wafSettings`, `testingOptions` |
+
+`GoogleComputeRouterNat` and `GoogleComputeRouterPeer` are in this same
+migration wave (their schemas gained the same treatment) but expose no
+constructor change: the nested blocks the schema newly types on these two
+(`rules`, `subnetwork`, `nat64_subnetwork`, `advertised_ip_ranges`) were
+never in the curated `paramOrder` to begin with, so nothing user-facing moves.
+
+`google_dataplex_task`'s `workload`, `google_dataplex_datascan`'s `scanSpec`,
+`google_app_engine_flexible_app_version`'s `scaling`, and
+`google_os_config_patch_deployment`'s `schedule` are pre-existing
+hand-curated sealed types (`DataplexTaskWorkload`,
+`DataplexDatascanSpec`, `AppEngineFlexibleAppVersionScaling`,
+`OsConfigPatchDeploymentSchedule`) — unrelated to this wave, not listed above.
+
+### Some subtrees stay `Map`-shaped on purpose
+
+A handful of deeply-nested or already-hand-curated subtrees were
+deliberately excluded from typing (`nestedTypeExcludes` on the override) to
+avoid either a runaway class count on a single resource or a name collision
+with a pre-existing hand-written type. These keep taking a literal map (or
+list-of-map) exactly as before:
+
+- `GoogleOsConfigOsPolicyAssignment`'s `osPolicies[].resourceGroups[].resources`
+  stays `TfArg<List<Map<String, dynamic>>>` — the `exec` / `file` / `pkg` /
+  `repository` resource-spec shapes underneath it are not typed.
+- `GoogleDataplexDatascan`'s four `scan_spec` variants (`data_profile_spec`,
+  `data_quality_spec`, `data_discovery_spec`, `data_documentation_spec`) are
+  untouched by this wave — they're already the hand-written
+  `DataplexDatascanDataProfileSpec` / `...DataQualitySpec` /
+  `...DataDiscoverySpec` / `...DataDocumentationSpec` classes (accessed via
+  `scanSpec`), which predate `deriveNestedTypes` and would otherwise collide
+  with a freshly-derived class of the same name.
+
 ## 0.22.x → 0.23.0
 
 ### `StackProvider.toTfJson()` removed
