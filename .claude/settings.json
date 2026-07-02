@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "deny": [
+      "Edit(packages/terradart_google/lib/src/**)",
+      "Write(packages/terradart_google/lib/src/**)",
+      "Edit(packages/terradart_codegen/test/fixtures/wrap/expected_output/**)",
+      "Write(packages/terradart_codegen/test/fixtures/wrap/expected_output/**)"
+    ],
+    "ask": [
+      "Edit(.github/workflows/**)",
+      "Write(.github/workflows/**)"
+    ]
+  }
+}
