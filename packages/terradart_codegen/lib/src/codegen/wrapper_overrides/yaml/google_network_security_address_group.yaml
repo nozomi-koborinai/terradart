@@ -1,23 +1,10 @@
 outputDir: network
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true
 
 dartTypeOverrides:
   type: NetworkSecurityAddressGroupType
-
-prelude: |
-  /// IP-version a [GoogleNetworkSecurityAddressGroup] holds.
-  enum NetworkSecurityAddressGroupType implements TerraformEnum {
-    /// IPv4 addresses / CIDR ranges.
-    ipv4('IPV4'),
-
-    /// IPv6 addresses / CIDR ranges.
-    ipv6('IPV6');
-
-    const NetworkSecurityAddressGroupType(this.terraformValue);
-    @override
-    final String terraformValue;
-  }
 
 paramOrder:
   - name

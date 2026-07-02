@@ -1,26 +1,10 @@
 outputDir: parameter_manager
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true
 
 dartTypeOverrides:
   format: ParameterManagerRegionalParameterFormat
-
-prelude: |
-  /// Payload format of a [GoogleParameterManagerRegionalParameter].
-  enum ParameterManagerRegionalParameterFormat implements TerraformEnum {
-    /// Opaque bytes (no validation).
-    unformatted('UNFORMATTED'),
-
-    /// YAML-validated payload.
-    yaml('YAML'),
-
-    /// JSON-validated payload.
-    json('JSON');
-
-    const ParameterManagerRegionalParameterFormat(this.terraformValue);
-    @override
-    final String terraformValue;
-  }
 
 paramOrder:
   - parameter_id

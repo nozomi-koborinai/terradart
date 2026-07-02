@@ -6,7 +6,7 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_app_engine_firewall_rule`.
 const Set<String> _googleAppEngineFirewallRuleSensitive = <String>{};
 
-/// `action` on `google_app_engine_firewall_rule`.
+/// App Engine Firewall Rule enum for `action`.
 enum AppEngineFirewallRuleAction implements TerraformEnum {
   unspecifiedAction('UNSPECIFIED_ACTION'),
   allow('ALLOW'),

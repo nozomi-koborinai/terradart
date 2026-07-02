@@ -2,6 +2,7 @@ outputDir: spanner
 
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true
 
 paramOrder:
   - config
@@ -35,16 +36,3 @@ curatedDoc: |-
   ///   numNodes: TfArg.literal(1),
   /// );
   /// ```
-
-prelude: |
-  /// `edition` — Spanner edition / capability tier.
-  enum SpannerInstanceEdition implements TerraformEnum {
-    editionUnspecified('EDITION_UNSPECIFIED'),
-    standard('STANDARD'),
-    enterprise('ENTERPRISE'),
-    enterprisePlus('ENTERPRISE_PLUS');
-
-    const SpannerInstanceEdition(this.terraformValue);
-    @override
-    final String terraformValue;
-  }
