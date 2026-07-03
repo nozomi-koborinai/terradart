@@ -4,6 +4,10 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage` — this top-level file summarises cross-cutting milestones.
 
+## [0.24.0] - 2026-07-03
+
+Lockstep release across the workspace. **Breaking** — see [MIGRATING.md](MIGRATING.md). Nested blocks on 19 resources moved from raw `TfArg<Map>` params to generated typed helper classes (`deriveNestedTypes`), typing 49 nested enum sites; serialized Terraform JSON is semantically unchanged. `--strict-nested` enum coverage is now enforced in CI.
+
 ## [0.23.0] - 2026-07-02
 
 Lockstep release across the workspace. **Breaking** — see [MIGRATING.md](MIGRATING.md).

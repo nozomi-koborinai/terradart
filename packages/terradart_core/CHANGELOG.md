@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.24.0 - 2026-07-03
+
+Lockstep release with `terradart_google` 0.24.0 (typed nested helpers). No `terradart_core` API changes.
+
 ## 0.23.0 - 2026-07-02
 
 Lockstep release. **Breaking** — see [MIGRATING.md](../../MIGRATING.md).
