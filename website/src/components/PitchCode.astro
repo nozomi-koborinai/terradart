@@ -14,81 +14,28 @@ const terradartPaper = {
   },
 };
 
-/** LP pitch snippet — Cloud SQL + Cloud Run with cloud-sql-proxy sidecar (illustrative). */
-const code = `// infra/lib/app_infra.dart
-// A Stack is one Terraform root module of GCP resources, written in Dart.
-import 'package:terradart_core/terradart_core.dart';
-import 'package:terradart_google/cloud_run.dart';
-import 'package:terradart_google/cloud_sql.dart';
-import 'package:terradart_google/iam.dart';
-import 'package:terradart_google/provider.dart';
+/**
+ * LP pitch snippet — extracted at build time from the cookbook's
+ * single-project-app recipe (analyzed on every PR, apply-verified against a
+ * real GCP project). Single source: editing the recipe updates the landing
+ * page; removing the markers fails the site build. No hand-maintained copy.
+ */
+import serviceSource from "../../../cookbook/single-project-app/lib/service.dart?raw";
 
-final class AppInfraStack extends Stack {
-  AppInfraStack({required String projectId})
-      : super(providers: [
-          GoogleProvider(project: projectId, region: 'asia-northeast1'),
-        ]) {
-    add(GoogleSqlDatabaseInstance(
-      localName: 'app_sql',
-      name: TfArg.literal('app-sql'),
-      databaseVersion: TfArg.literal(DatabaseVersion.postgres15),
-      region: TfArg.literal('asia-northeast1'),
-      settings: SqlDatabaseInstanceSettings(
-        tier: TfArg.literal('db-f1-micro'),
-      ),
-    ));
-
-    final runSa = add(GoogleServiceAccount(
-      localName: 'run_sa',
-      accountId: TfArg.literal('app-run-sa'),
-    ));
-    add(GoogleProjectIamMember(
-      localName: 'run_sa_sql_client',
-      project: TfArg.literal(projectId),
-      role: TfArg.literal('roles/cloudsql.client'),
-      member: TfArg.ref(runSa.iamMember),
-    ));
-
-    add(GoogleCloudRunV2Service(
-      localName: 'app',
-      name: TfArg.literal('app'),
-      location: TfArg.literal('asia-northeast1'),
-      template: CloudRunV2ServiceTemplate(
-        serviceAccount: TfArg.ref(runSa.email),
-        containers: [
-          CloudRunV2ServiceServiceContainer(
-            name: TfArg.literal('app'),
-            image: TfArg.literal('gcr.io/cloudrun/hello'),
-            ports: CloudRunV2ServiceContainerPort(
-              containerPort: TfArg.literal(8080),
-            ),
-            env: [
-              CloudRunV2ServiceEnvVar(
-                name: TfArg.literal('DATABASE_URL'),
-                source: CloudRunV2ServiceEnvVarFromLiteral(
-                  TfArg.literal(
-                    'postgresql://app-client@\${projectId}.iam@localhost:5432/app',
-                  ),
-                ),
-              ),
-            ],
-          ),
-          CloudRunV2ServiceServiceContainer(
-            name: TfArg.literal('cloud-sql-proxy'),
-            image: TfArg.literal(
-              'gcr.io/cloud-sql-connectors/cloud-sql-proxy:2.18.1',
-            ),
-            args: TfArg.literal([
-              '--port=5432',
-              '--auto-iam-authn',
-              '\${projectId}:asia-northeast1:app-sql',
-            ]),
-          ),
-        ],
-      ),
-    ));
-  }
-}`;
+const startMarker = "// docs:pitch:start";
+const endMarker = "// docs:pitch:end";
+const sourceLines = serviceSource.split("\n");
+const startIndex = sourceLines.findIndex((l) => l.includes(startMarker));
+const endIndex = sourceLines.findIndex((l) => l.includes(endMarker));
+if (startIndex < 0 || endIndex < 0 || endIndex <= startIndex) {
+  throw new Error(
+    "PitchCode: docs:pitch markers not found in cookbook/single-project-app/lib/service.dart",
+  );
+}
+const code = [
+  "// cookbook/single-project-app/lib/service.dart (excerpt — real, apply-verified code)",
+  ...sourceLines.slice(startIndex + 1, endIndex),
+].join("\n");
 
 const highlightedHtml = await codeToHtml(code, {
   lang: "dart",
@@ -101,9 +48,11 @@ const highlightedHtml = await codeToHtml(code, {
     <p class="section-label">Example</p>
     <h2 class="display-section">GCP resources in Dart</h2>
     <p class="pitch-code-lead">
-      Cloud SQL, IAM, and a multi-container Cloud Run service with a
-      <code>cloud-sql-proxy</code> sidecar&nbsp;&mdash; the kind of infrastructure you would
-      otherwise maintain in HCL or the console.
+      A Cloud Run service wired to Cloud SQL with its password pulled from
+      Secret Manager&nbsp;&mdash; typed helper classes, sealed env-var sources, and
+      enums where the provider documents values. This is not marketing pseudocode:
+      it is an excerpt of a cookbook recipe that CI analyzes on every pull request
+      and applies against a real GCP project.
     </p>
     <div class="pitch-code-figure">
       <div class="terra-stratum" aria-hidden="true"></div>
@@ -111,13 +60,11 @@ const highlightedHtml = await codeToHtml(code, {
     </div>
     <p class="pitch-code-meta">
       <code>terradart_google</code> ships a <strong>curated</strong> subset of the
-      HashiCorp <code>google</code> provider&nbsp;&mdash; not every resource type yet. Factories
-      expand release by release; see
-      <a href="/docs/status/" class="link-mark">status</a> and
-      <a href="https://pub.dev/packages/terradart_google" class="link-mark">pub.dev</a>.
-      More complete stacks and dogfood patterns live in the
+      HashiCorp <code>google</code> provider&nbsp;&mdash; not every resource type yet. The
+      full factory list with runnable examples is on
+      <a href="/docs/coverage/" class="link-mark">Coverage</a>; complete stacks live in the
       <a
-        href="https://github.com/nozomi-koborinai/terradart-cookbook"
+        href="https://github.com/nozomi-koborinai/terradart/tree/main/cookbook"
         class="link-mark">cookbook</a
       >
       and
@@ -126,10 +73,6 @@ const highlightedHtml = await codeToHtml(code, {
         class="link-mark">examples</a
       >
       on GitHub (both growing).
-    </p>
-    <p class="section-footnote">
-      A runnable quickstart in
-      <code class="font-mono text-[0.85em]">examples/</code> is on the way.
     </p>
   </div>
 </section>

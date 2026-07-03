@@ -1,0 +1,60 @@
+---
+/**
+ * Client-rendered Mermaid diagram that follows Starlight's light/dark theme.
+ * Rendering happens in the browser (no headless-browser build dependency);
+ * diagrams re-render on theme switches.
+ */
+interface Props {
+  code: string;
+}
+const { code } = Astro.props;
+---
+
+<div class="mermaid-block not-content" data-code={code}></div>
+
+<style>
+  .mermaid-block {
+    margin: 1.5rem 0;
+    display: flex;
+    justify-content: center;
+    overflow-x: auto;
+  }
+  .mermaid-block :global(svg) {
+    max-width: 100%;
+    height: auto;
+  }
+</style>
+
+<script>
+  import mermaid from "mermaid";
+
+  let renderPass = 0;
+
+  async function renderAll() {
+    const pass = ++renderPass;
+    const dark = document.documentElement.dataset.theme !== "light";
+    mermaid.initialize({
+      startOnLoad: false,
+      theme: dark ? "dark" : "neutral",
+      fontFamily: "inherit",
+    });
+    const blocks = document.querySelectorAll<HTMLElement>(".mermaid-block");
+    let i = 0;
+    for (const el of blocks) {
+      const source = el.dataset.code ?? "";
+      if (!source) continue;
+      try {
+        const { svg } = await mermaid.render(`mmd-${pass}-${i++}`, source);
+        el.innerHTML = svg;
+      } catch {
+        el.textContent = source; // fall back to the raw definition
+      }
+    }
+  }
+
+  renderAll();
+  new MutationObserver(() => renderAll()).observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"],
+  });
+</script>
