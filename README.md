@@ -11,7 +11,7 @@
 >
 > Google Cloud infrastructure as real Dart code — typed, refactor-safe, drop-in for `terraform apply`.
 
-**Alpha** — no SemVer until v1.0.0, but breaking changes land only on **minor** bumps. Pin `^0.23.x`, read [`MIGRATING.md`](MIGRATING.md) before minor bumps, and see [status on terradart.dev](https://terradart.dev/docs/status/).
+**Alpha** — no SemVer until v1.0.0, but breaking changes land only on **minor** bumps. Pin `^0.24.x`, read [`MIGRATING.md`](MIGRATING.md) before minor bumps, and see [status on terradart.dev](https://terradart.dev/docs/status/).
 
 <!-- identity -->
 [![pub: terradart_core](https://img.shields.io/pub/v/terradart_core.svg?label=pub%3A%20core)](https://pub.dev/packages/terradart_core)
@@ -202,8 +202,8 @@ GoogleCloudRunV2Service(
 ```yaml
 # pubspec.yaml
 dependencies:
-  terradart_core: ^0.23.x
-  terradart_google: ^0.23.x
+  terradart_core: ^0.24.x
+  terradart_google: ^0.24.x
 ```
 
 ```bash
@@ -309,7 +309,7 @@ Application platform & operations
 
 ## Status
 
-**Alpha**, pre-1.0 (0.23.x). No SemVer until v1.0.0, but breaking changes land only on **minor** bumps, always documented in [`MIGRATING.md`](MIGRATING.md); pin `^0.23.x` and take patches freely. Beta needs external validation — see the [path to beta](https://terradart.dev/docs/status/#path-to-beta). Expectations: [terradart.dev/docs/status/](https://terradart.dev/docs/status/).
+**Alpha**, pre-1.0 (0.24.x). No SemVer until v1.0.0, but breaking changes land only on **minor** bumps, always documented in [`MIGRATING.md`](MIGRATING.md); pin `^0.24.x` and take patches freely. Beta needs external validation — see the [path to beta](https://terradart.dev/docs/status/#path-to-beta). Expectations: [terradart.dev/docs/status/](https://terradart.dev/docs/status/).
 
 ## Schema-bump automation (Plan 5.E)
 

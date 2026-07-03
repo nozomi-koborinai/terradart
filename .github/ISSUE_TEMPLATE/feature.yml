@@ -7,7 +7,7 @@ body:
     attributes:
       value: |
         Thanks for taking the time to file. terradart is **alpha** on
-        **0.23.x** today. Single-maintainer;
+        **0.24.x** today. Single-maintainer;
         triage is best-effort. See https://terradart.dev/docs/status/
 
         Feature requests are welcome — no timeline promises, but they help

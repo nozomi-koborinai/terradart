@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.24.0 - 2026-07-03
+
+Lockstep release. **Breaking** — see [MIGRATING.md](../../MIGRATING.md).
+
+### Breaking
+
+- 19 resources' top-level nested blocks changed from `TfArg<Map<String, dynamic>>?` to generated typed helper classes (`deriveNestedTypes`): the app_engine surface (flexible/standard app versions, domain mapping, service network settings / split traffic), access_context_manager (access_level, service_perimeter), os_config (patch_deployment, os_policy_assignment), dataplex (asset, datascan, entry_link, task, zone), binary_authorization policy, compute (router_nat, router_peer), network_management connectivity_test, and recaptcha_enterprise_key. 49 nested enum sites are now typed `TerraformEnum`s. Serialized Terraform JSON is semantically unchanged (JSON key order may differ; `map(string)` attributes now require string values at compile time).
+- Intentionally frozen subtrees stay `TfArg<Map>` via `nestedTypeExcludes`: os_policy_assignment's OS-policy resources DSL and datascan's scan-spec/profile subtrees.
+
 ## 0.23.0 - 2026-07-02
 
 Lockstep release. **Breaking** — see [MIGRATING.md](../../MIGRATING.md).

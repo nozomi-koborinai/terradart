@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.24.0 - 2026-07-03
+
+Lockstep release with `terradart_core` / `terradart_google` 0.24.0. No functional changes in this package.
+
 ## 0.23.0 - 2026-07-02
 
 Lockstep release for `terradart_core` / `terradart_google` 0.23.0. No API changes in `terradart_coverage`.
