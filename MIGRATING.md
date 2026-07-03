@@ -5,10 +5,20 @@
 **Breaking** — 19 resources that previously took an opaque, hand-shaped
 `TfArg<Map<String, dynamic>>?` (or `TfArg<List<Map<String, dynamic>>>?` for a
 repeated block) for a top-level nested block now take a typed helper class
-(or `List<...>` of one) instead. The serialized Terraform JSON is unchanged
-— only the Dart-side authoring API narrows from an untyped map literal to a
+(or `List<...>` of one) instead. The serialized Terraform JSON is
+**semantically unchanged**: the typed `encode()` writes fields in a fixed
+alphabetical order, so the JSON object *key order* may differ from what your
+hand-written map produced — key order carries no meaning in Terraform. Only
+the Dart-side authoring API narrows, from an untyped map literal to a
 generated `@immutable` class with named fields, `TerraformEnum` members
 where the schema documents finite values, and its own `encode()`.
+
+One value-representation note: attributes whose schema type is `map(string)`
+now require string values at compile time. If you previously passed a number
+in such a map (e.g. `GoogleAppEngineServiceSplitTraffic`'s
+`split.allocations: {'v1': 1.0}`), it becomes `{'v1': '1.0'}` — Terraform
+treats a JSON number and a JSON string identically for a string-typed
+attribute, so the plan/apply behavior does not change.
 
 New type names follow `<FactoryNameWithoutGoogle><BlockPathInPascalCase>`
 (e.g. `google_app_engine_domain_mapping`'s `ssl_settings` block →
