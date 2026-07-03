@@ -281,19 +281,21 @@ final class DataplexCatalogStack extends Stack {
         entryLinkType: TfArg.literal(
           'projects/dataplex-types/locations/global/entryLinkTypes/definition',
         ),
-        entryReferences: TfArg.literal([
-          {
-            'name': customerDatasetEntry.nameRef.interpolation,
-            'type': 'SOURCE',
-          },
-          {
-            'name': 'projects/${current.number.interpolation}/locations/us-central1'
-                '/entryGroups/@dataplex/entries'
-                '/projects/${current.number.interpolation}/locations/us-central1'
-                '/glossaries/terradart-glossary/terms/terradart-mrr',
-            'type': 'TARGET',
-          },
-        ]),
+        entryReferences: [
+          DataplexEntryLinkEntryReferences(
+            name: TfArg.literal(customerDatasetEntry.nameRef.interpolation),
+            type: TfArg.literal(DataplexEntryLinkEntryReferencesType.source),
+          ),
+          DataplexEntryLinkEntryReferences(
+            name: TfArg.literal(
+              'projects/${current.number.interpolation}/locations/us-central1'
+              '/entryGroups/@dataplex/entries'
+              '/projects/${current.number.interpolation}/locations/us-central1'
+              '/glossaries/terradart-glossary/terms/terradart-mrr',
+            ),
+            type: TfArg.literal(DataplexEntryLinkEntryReferencesType.target),
+          ),
+        ],
         dependsOn: [
           ResourceDependency(customerDatasetEntry),
           ResourceDependency(glossary),
@@ -352,8 +354,14 @@ final class DataplexCatalogStack extends Stack {
         type: TfArg.literal(DataplexZoneType.raw),
         displayName: TfArg.literal('Raw zone'),
         description: TfArg.literal('Raw data partition in the analytics lake'),
-        discoverySpec: TfArg.literal({'enabled': false}),
-        resourceSpec: TfArg.literal({'location_type': 'SINGLE_REGION'}),
+        discoverySpec: DataplexZoneDiscoverySpec(
+          enabled: TfArg.literal(false),
+        ),
+        resourceSpec: DataplexZoneResourceSpec(
+          locationType: TfArg.literal(
+            DataplexZoneResourceSpecLocationType.singleRegion,
+          ),
+        ),
         dependsOn: [
           ResourceDependency(lake),
           ...apiDeps,
@@ -369,11 +377,15 @@ final class DataplexCatalogStack extends Stack {
         lake: TfArg.ref(lake.nameRef),
         location: TfArg.literal('us-central1'),
         displayName: TfArg.literal('Lake data bucket asset'),
-        discoverySpec: TfArg.literal({'enabled': false}),
-        resourceSpec: TfArg.literal({
-          'name': 'projects/$projectId/buckets/terradart-dataplex-lake-data',
-          'type': 'STORAGE_BUCKET',
-        }),
+        discoverySpec: DataplexAssetDiscoverySpec(
+          enabled: TfArg.literal(false),
+        ),
+        resourceSpec: DataplexAssetResourceSpec(
+          name: TfArg.literal(
+            'projects/$projectId/buckets/terradart-dataplex-lake-data',
+          ),
+          type: TfArg.literal(DataplexAssetResourceSpecType.storageBucket),
+        ),
         dependsOn: [
           ResourceDependency(rawZone),
           ResourceDependency(lakeDataBucket),
@@ -438,13 +450,16 @@ final class DataplexCatalogStack extends Stack {
         dataScanId: TfArg.literal('terradart-lake-discovery'),
         location: TfArg.literal('us-central1'),
         scanSpec: const DataplexDatascanDataDiscoverySpec(),
-        data: TfArg.literal({
-          'resource':
-              '//storage.googleapis.com/projects/$projectId/buckets/terradart-dataplex-lake-data',
-        }),
-        executionSpec: TfArg.literal({
-          'trigger': {'on_demand': <String, Object?>{}},
-        }),
+        data: DataplexDatascanData(
+          resource: TfArg.literal(
+            '//storage.googleapis.com/projects/$projectId/buckets/terradart-dataplex-lake-data',
+          ),
+        ),
+        executionSpec: DataplexDatascanExecutionSpec(
+          trigger: const DataplexDatascanExecutionSpecTrigger(
+            onDemand: DataplexDatascanExecutionSpecTriggerOnDemand(),
+          ),
+        ),
         displayName: TfArg.literal('Lake data discovery scan'),
         description: TfArg.literal(
           'Infers schema from objects in the lake data bucket',
@@ -484,18 +499,18 @@ final class DataplexCatalogStack extends Stack {
         workload: DataplexTaskSparkWorkload(
           sqlScript: TfArg.literal('SELECT 1'),
         ),
-        triggerSpec: TfArg.literal({
-          'type': 'ON_DEMAND',
-        }),
-        executionSpec: TfArg.literal({
-          'service_account': reader.email.interpolation,
+        triggerSpec: DataplexTaskTriggerSpec(
+          type: TfArg.literal(DataplexTaskTriggerSpecType.onDemand),
+        ),
+        executionSpec: DataplexTaskExecutionSpec(
+          serviceAccount: TfArg.literal(reader.email.interpolation),
           // Spark-SQL tasks require an output location, passed via TASK_ARGS.
-          'args': {
+          args: TfArg.literal({
             'TASK_ARGS': '--output_location,'
                 'gs://terradart-dataplex-lake-data/task-output,'
                 '--output_format,json',
-          },
-        }),
+          }),
+        ),
         displayName: TfArg.literal('Lake SQL task'),
         description: TfArg.literal(
           'On-demand Spark SQL task for the analytics lake',

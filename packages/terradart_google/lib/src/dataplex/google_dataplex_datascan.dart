@@ -152,6 +152,151 @@ final class DataplexDatascanDataDocumentationSpec extends DataplexDatascanSpec {
   Map<String, Object?> encode() => {};
 }
 
+/// Typed helper for the `data` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanData {
+  const DataplexDatascanData({this.entity, this.resource});
+
+  final TfArg<String>? entity;
+
+  final TfArg<String>? resource;
+
+  Map<String, Object?> encode() => {
+    if (entity != null) 'entity': entity!.toTfJson(),
+    if (resource != null) 'resource': resource!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `execution_identity` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanExecutionIdentity {
+  const DataplexDatascanExecutionIdentity({
+    this.dataplexServiceAgent,
+    this.serviceAccount,
+    this.userCredential,
+  });
+
+  final DataplexDatascanExecutionIdentityDataplexServiceAgent?
+  dataplexServiceAgent;
+
+  final DataplexDatascanExecutionIdentityServiceAccount? serviceAccount;
+
+  final DataplexDatascanExecutionIdentityUserCredential? userCredential;
+
+  Map<String, Object?> encode() => {
+    if (dataplexServiceAgent != null)
+      'dataplex_service_agent': dataplexServiceAgent!.encode(),
+    if (serviceAccount != null) 'service_account': serviceAccount!.encode(),
+    if (userCredential != null) 'user_credential': userCredential!.encode(),
+  };
+}
+
+/// Typed helper for the `execution_identity.dataplex_service_agent` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanExecutionIdentityDataplexServiceAgent {
+  const DataplexDatascanExecutionIdentityDataplexServiceAgent();
+
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `execution_identity.service_account` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanExecutionIdentityServiceAccount {
+  const DataplexDatascanExecutionIdentityServiceAccount({required this.email});
+
+  final TfArg<String> email;
+
+  Map<String, Object?> encode() => {'email': email.toTfJson()};
+}
+
+/// Typed helper for the `execution_identity.user_credential` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanExecutionIdentityUserCredential {
+  const DataplexDatascanExecutionIdentityUserCredential();
+
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `execution_spec` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanExecutionSpec {
+  const DataplexDatascanExecutionSpec({this.field, required this.trigger});
+
+  final TfArg<String>? field;
+
+  final DataplexDatascanExecutionSpecTrigger trigger;
+
+  Map<String, Object?> encode() => {
+    if (field != null) 'field': field!.toTfJson(),
+    'trigger': trigger.encode(),
+  };
+}
+
+/// Typed helper for the `execution_spec.trigger` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanExecutionSpecTrigger {
+  const DataplexDatascanExecutionSpecTrigger({
+    this.onDemand,
+    this.oneTime,
+    this.schedule,
+  });
+
+  final DataplexDatascanExecutionSpecTriggerOnDemand? onDemand;
+
+  final DataplexDatascanExecutionSpecTriggerOneTime? oneTime;
+
+  final DataplexDatascanExecutionSpecTriggerSchedule? schedule;
+
+  Map<String, Object?> encode() => {
+    if (onDemand != null) 'on_demand': onDemand!.encode(),
+    if (oneTime != null) 'one_time': oneTime!.encode(),
+    if (schedule != null) 'schedule': schedule!.encode(),
+  };
+}
+
+/// Typed helper for the `execution_spec.trigger.on_demand` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanExecutionSpecTriggerOnDemand {
+  const DataplexDatascanExecutionSpecTriggerOnDemand();
+
+  Map<String, Object?> encode() => {};
+}
+
+/// Typed helper for the `execution_spec.trigger.one_time` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanExecutionSpecTriggerOneTime {
+  const DataplexDatascanExecutionSpecTriggerOneTime({
+    this.ttlAfterScanCompletion,
+  });
+
+  final TfArg<String>? ttlAfterScanCompletion;
+
+  Map<String, Object?> encode() => {
+    if (ttlAfterScanCompletion != null)
+      'ttl_after_scan_completion': ttlAfterScanCompletion!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `execution_spec.trigger.schedule` block of
+/// `google_dataplex_datascan` (derived from provider schema).
+@immutable
+final class DataplexDatascanExecutionSpecTriggerSchedule {
+  const DataplexDatascanExecutionSpecTriggerSchedule({required this.cron});
+
+  final TfArg<String> cron;
+
+  Map<String, Object?> encode() => {'cron': cron.toTfJson()};
+}
+
 /// Factory wrapper for `google_dataplex_datascan`.
 ///
 /// Represents a user-visible job which provides the insights for the related
@@ -170,12 +315,12 @@ final class GoogleDataplexDatascan extends Resource {
     required TfArg<String> dataScanId,
     required TfArg<String> location,
     required DataplexDatascanSpec scanSpec,
-    required TfArg<Map<String, dynamic>> data,
-    required TfArg<Map<String, dynamic>> executionSpec,
+    required DataplexDatascanData data,
+    required DataplexDatascanExecutionSpec executionSpec,
     TfArg<String>? displayName,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
-    TfArg<Map<String, dynamic>>? executionIdentity,
+    DataplexDatascanExecutionIdentity? executionIdentity,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -188,10 +333,10 @@ final class GoogleDataplexDatascan extends Resource {
            if (displayName != null) 'display_name': displayName,
            if (description != null) 'description': description,
            if (labels != null) 'labels': labels,
-           'data': data,
-           'execution_spec': executionSpec,
+           'data': TfArg.literal(data.encode()),
+           'execution_spec': TfArg.literal(executionSpec.encode()),
            if (executionIdentity != null)
-             'execution_identity': executionIdentity,
+             'execution_identity': TfArg.literal(executionIdentity.encode()),
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (project != null) 'project': project,
            scanSpec.blockKey: TfArg.literal(scanSpec.encode()),

@@ -8,7 +8,15 @@ export 'src/dataplex/google_dataplex_aspect_type.dart'
     show DataplexAspectTypeDataClassification, GoogleDataplexAspectType;
 export 'src/dataplex/google_dataplex_aspect_type_iam_member.dart'
     show GoogleDataplexAspectTypeIamMember;
-export 'src/dataplex/google_dataplex_asset.dart' show GoogleDataplexAsset;
+export 'src/dataplex/google_dataplex_asset.dart'
+    show
+        DataplexAssetDiscoverySpec,
+        DataplexAssetDiscoverySpecCsvOptions,
+        DataplexAssetDiscoverySpecJsonOptions,
+        DataplexAssetResourceSpec,
+        DataplexAssetResourceSpecReadAccessMode,
+        DataplexAssetResourceSpecType,
+        GoogleDataplexAsset;
 export 'src/dataplex/google_dataplex_asset_iam_member.dart'
     show GoogleDataplexAssetIamMember;
 export 'src/dataplex/google_dataplex_data_product.dart'
@@ -19,10 +27,20 @@ export 'src/dataplex/google_dataplex_data_product_iam_member.dart'
     show GoogleDataplexDataProductIamMember;
 export 'src/dataplex/google_dataplex_datascan.dart'
     show
+        DataplexDatascanData,
         DataplexDatascanDataDiscoverySpec,
         DataplexDatascanDataDocumentationSpec,
         DataplexDatascanDataProfileSpec,
         DataplexDatascanDataQualitySpec,
+        DataplexDatascanExecutionIdentity,
+        DataplexDatascanExecutionIdentityDataplexServiceAgent,
+        DataplexDatascanExecutionIdentityServiceAccount,
+        DataplexDatascanExecutionIdentityUserCredential,
+        DataplexDatascanExecutionSpec,
+        DataplexDatascanExecutionSpecTrigger,
+        DataplexDatascanExecutionSpecTriggerOnDemand,
+        DataplexDatascanExecutionSpecTriggerOneTime,
+        DataplexDatascanExecutionSpecTriggerSchedule,
         DataplexDatascanSpec,
         DataplexDatascanState,
         DataplexDatascanType,
@@ -35,7 +53,12 @@ export 'src/dataplex/google_dataplex_entry_group.dart'
 export 'src/dataplex/google_dataplex_entry_group_iam_member.dart'
     show GoogleDataplexEntryGroupIamMember;
 export 'src/dataplex/google_dataplex_entry_link.dart'
-    show GoogleDataplexEntryLink;
+    show
+        DataplexEntryLinkAspects,
+        DataplexEntryLinkAspectsAspect,
+        DataplexEntryLinkEntryReferences,
+        DataplexEntryLinkEntryReferencesType,
+        GoogleDataplexEntryLink;
 export 'src/dataplex/google_dataplex_entry_type.dart'
     show GoogleDataplexEntryType;
 export 'src/dataplex/google_dataplex_entry_type_iam_member.dart'
@@ -52,13 +75,23 @@ export 'src/dataplex/google_dataplex_lake_iam_member.dart'
     show GoogleDataplexLakeIamMember;
 export 'src/dataplex/google_dataplex_task.dart'
     show
+        DataplexTaskExecutionSpec,
         DataplexTaskNotebookWorkload,
         DataplexTaskSparkWorkload,
+        DataplexTaskTriggerSpec,
+        DataplexTaskTriggerSpecType,
         DataplexTaskWorkload,
         GoogleDataplexTask;
 export 'src/dataplex/google_dataplex_task_iam_member.dart'
     show GoogleDataplexTaskIamMember;
 export 'src/dataplex/google_dataplex_zone.dart'
-    show DataplexZoneType, GoogleDataplexZone;
+    show
+        DataplexZoneDiscoverySpec,
+        DataplexZoneDiscoverySpecCsvOptions,
+        DataplexZoneDiscoverySpecJsonOptions,
+        DataplexZoneResourceSpec,
+        DataplexZoneResourceSpecLocationType,
+        DataplexZoneType,
+        GoogleDataplexZone;
 export 'src/dataplex/google_dataplex_zone_iam_member.dart'
     show GoogleDataplexZoneIamMember;

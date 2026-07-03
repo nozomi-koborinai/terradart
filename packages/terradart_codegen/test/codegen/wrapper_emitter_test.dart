@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dart_style/dart_style.dart';
@@ -137,6 +138,36 @@ ResourceDef _loadGooglePubsubSubscriptionV7() {
     providerVersion: '7.0.0',
   );
   return ir.resources['google_pubsub_subscription']!;
+}
+
+/// Loads [terraformType] from the `terradart wrap` fixture
+/// (`test/fixtures/wrap/source/schema.json`) — the same full-catalog schema
+/// `nested_type_collector_test.dart` and `universal_invariants_test.dart` use
+/// — rather than a dedicated per-resource `schema/*_v7.schema.json` (none of
+/// the Task 5 `deriveNestedTypes` targets have one).
+ResourceDef _loadFromWrapFixture(String terraformType) {
+  final json = File('test/fixtures/wrap/source/schema.json').readAsStringSync();
+  final ir =
+      const SchemaJsonParser().parseString(json, providerVersion: '7.31.0');
+  return ir.resources[terraformType]!;
+}
+
+/// Raw provider-schema JSON `block` maps keyed by Terraform type, mirroring
+/// `wrap_command.dart`'s private `_rawResourceBlocks` — the shape
+/// `WrapperEmitter.rawResourceSchemas` needs once an override sets
+/// `deriveNestedTypes: true`.
+Map<String, Map<String, dynamic>> _rawResourceBlocksFromWrapFixture() {
+  final root = jsonDecode(
+    File('test/fixtures/wrap/source/schema.json').readAsStringSync(),
+  ) as Map<String, dynamic>;
+  final schemas = (root['provider_schemas'] as Map).cast<String, dynamic>();
+  final providerBody = (schemas.values.single as Map).cast<String, dynamic>();
+  final resourceSchemas =
+      (providerBody['resource_schemas'] as Map).cast<String, dynamic>();
+  return {
+    for (final entry in resourceSchemas.entries)
+      entry.key: ((entry.value as Map)['block'] as Map).cast<String, dynamic>(),
+  };
 }
 
 ResourceDef _loadGoogleCloudTasksQueueV7() {
@@ -800,5 +831,103 @@ void main() {
         expect(out, isNot(contains(' timeouts,')));
       },
     );
+
+    group('deriveNestedTypes top-level slot rendering (Task 5 flip)', () {
+      // The real yaml overrides now flip `deriveNestedTypes: true` for 19
+      // resources (this branch), so `overrides` (loaded above from the real
+      // yaml dir) already exercises `_nestedTypeSlot` — no synthetic override
+      // needed. `rawResourceSchemas` mirrors `wrap_command.dart`'s
+      // `_rawResourceBlocks`, built from the same wrap-fixture schema.json
+      // `nested_type_collector_test.dart` uses.
+      late final Map<String, Map<String, dynamic>> rawResourceSchemas;
+      setUpAll(() {
+        rawResourceSchemas = _rawResourceBlocksFromWrapFixture();
+      });
+
+      test(
+          'an optional, scalar top-level slot has no `!` (parameter '
+          'promotion makes it unnecessary — google_app_engine_domain_mapping.'
+          'ssl_settings)', () {
+        const terraformType = 'google_app_engine_domain_mapping';
+        final def = _loadFromWrapFixture(terraformType);
+        final emitter = WrapperEmitter(
+          overrides: overrides,
+          rawResourceSchemas: rawResourceSchemas,
+        );
+        final out = emitter.emit(def, providerSource: 'hashicorp/google');
+
+        expect(
+          out,
+          contains('AppEngineDomainMappingSslSettings? sslSettings'),
+        );
+        expect(
+          out,
+          contains(
+            "if (sslSettings != null) 'ssl_settings': "
+            'TfArg.literal(sslSettings.encode()),',
+          ),
+        );
+        expect(out, isNot(contains('sslSettings!')));
+      });
+
+      test(
+          'an optional, repeated top-level slot has no `!` on the iterable '
+          '(google_dataplex_entry_link.aspects)', () {
+        const terraformType = 'google_dataplex_entry_link';
+        final def = _loadFromWrapFixture(terraformType);
+        final emitter = WrapperEmitter(
+          overrides: overrides,
+          rawResourceSchemas: rawResourceSchemas,
+        );
+        final out = emitter.emit(def, providerSource: 'hashicorp/google');
+
+        expect(out, contains('List<DataplexEntryLinkAspects>? aspects'));
+        expect(
+          out,
+          contains(
+            "if (aspects != null) 'aspects': "
+            'TfArg.literal([for (final e in aspects) e.encode()]),',
+          ),
+        );
+        expect(out, isNot(contains('aspects!')));
+      });
+
+      test(
+          'a required, repeated top-level slot has no `!` and no `if` guard '
+          '(google_os_config_os_policy_assignment.os_policies)', () {
+        const terraformType = 'google_os_config_os_policy_assignment';
+        final def = _loadFromWrapFixture(terraformType);
+        final emitter = WrapperEmitter(
+          overrides: overrides,
+          rawResourceSchemas: rawResourceSchemas,
+        );
+        final out = emitter.emit(def, providerSource: 'hashicorp/google');
+
+        expect(
+          out,
+          contains(
+              'required List<OsConfigOsPolicyAssignmentOsPolicies> osPolicies'),
+        );
+        expect(
+          out,
+          contains(
+            "'os_policies': TfArg.literal([for (final e in osPolicies) e.encode()]),",
+          ),
+        );
+        expect(out, isNot(contains('osPolicies!')));
+        expect(out, isNot(contains('if (osPolicies != null)')));
+
+        // The excluded `resources` grandchild keeps its real schema
+        // cardinality (required + repeated) rather than the collector's
+        // pre-fix scalar-optional default — see nested_type_collector.dart's
+        // `ExcludedNestedBlock`.
+        expect(
+          out,
+          contains(
+            'final TfArg<List<Map<String, dynamic>>> resources;',
+          ),
+        );
+      });
+    });
   });
 }

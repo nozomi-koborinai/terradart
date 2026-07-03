@@ -79,7 +79,7 @@ String _renderBlockTree(NestedBlockSpec spec, String resourceTerraformType) {
 /// Renders [spec]'s own `@immutable` helper class: doc comment, constructor,
 /// fields, `encode()`. Field order is: [spec]'s attributes first
 /// (alphabetical by Terraform name), then its block-type children — both
-/// derived nested classes and opaque [NestedBlockSpec.excludedChildTfNames]
+/// derived nested classes and opaque [NestedBlockSpec.excludedChildren]
 /// passthroughs, merged into one alphabetical-by-Terraform-name group —
 /// mirroring `constructor_params.dart`'s "attributes first, then nested
 /// blocks" grouping for top-level wrapper constructors.
@@ -166,8 +166,8 @@ List<_FieldPlan> _fieldPlans(NestedBlockSpec spec) {
   final blockChildren = <({String tfName, _FieldPlan plan})>[
     for (final child in spec.children)
       (tfName: child.tfName, plan: _planChild(child)),
-    for (final excluded in spec.excludedChildTfNames)
-      (tfName: excluded, plan: _planExcludedChild(excluded)),
+    for (final excluded in spec.excludedChildren)
+      (tfName: excluded.tfName, plan: _planExcludedChild(excluded)),
   ]..sort((a, b) => a.tfName.compareTo(b.tfName));
   plans.addAll(blockChildren.map((e) => e.plan));
 
@@ -195,18 +195,37 @@ _FieldPlan _planChild(NestedBlockSpec child) => _plan(
     );
 
 /// An excluded child (its subtree wasn't collected — see
-/// [NestedBlockSpec.excludedChildTfNames]) renders as an opaque, always
-/// -optional `TfArg<Map<String, dynamic>>?` passthrough: the collector
-/// deliberately discards its nesting mode / required-ness, so this is the
-/// conservative shape that fits any of them.
-_FieldPlan _planExcludedChild(String tfName) => _plan(
-      dartName: snakeToCamel(tfName),
-      tfName: tfName,
-      elementType: 'Map<String, dynamic>',
-      required: false,
-      repeated: false,
-      wrapInTfArg: true,
-    );
+/// [NestedBlockSpec.excludedChildren]) renders as an opaque `TfArg`
+/// passthrough that still matches the schema's real cardinality: a single
+/// `TfArg<Map<String, dynamic>>` normally, or `TfArg<List<Map<String,
+/// dynamic>>>` when [ExcludedNestedBlock.repeated] — required-ness follows
+/// [ExcludedNestedBlock.required] the same way every other field here does.
+/// Only the excluded block's OWN inner shape (its attrs / further children)
+/// is discarded; its shape as seen by its parent is preserved, matching the
+/// existing top-level passthrough idiom (`WrapperEmitter._nestedBlockParam`)
+/// rather than the per-element `List<TfArg<...>>?` shape [_plan] uses for a
+/// repeated *typed* attribute or child — a `TfArg` wrapping one JSON blob
+/// (here a whole array) is a different shape than a Dart `List` of
+/// individually-`TfArg`-wrapped elements, and callers of an opaque
+/// passthrough have always supplied the former (e.g. a literal
+/// `TfArg.literal([{...}, {...}])`), not the latter.
+_FieldPlan _planExcludedChild(ExcludedNestedBlock excluded) {
+  final dartName = snakeToCamel(excluded.tfName);
+  final innerType =
+      excluded.repeated ? 'List<Map<String, dynamic>>' : 'Map<String, dynamic>';
+  final fieldType =
+      excluded.required ? 'TfArg<$innerType>' : 'TfArg<$innerType>?';
+  final ctorParam =
+      excluded.required ? 'required this.$dartName,' : 'this.$dartName,';
+  final fieldDecl = 'final $fieldType $dartName;';
+
+  final accessExpr = excluded.required ? dartName : '$dartName!';
+  final entry = "'${excluded.tfName}': $accessExpr.toTfJson(),";
+  final encodeEntry =
+      excluded.required ? entry : 'if ($dartName != null) $entry';
+
+  return (ctorParam: ctorParam, fieldDecl: fieldDecl, encodeEntry: encodeEntry);
+}
 
 /// The one place the required/optional and repeated/scalar axes resolve
 /// into a constructor parameter, field declaration, and `encode()` entry.

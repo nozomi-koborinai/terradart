@@ -2,6 +2,10 @@ outputDir: compute
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
 
 dartTypeOverrides:
   advertise_mode: ComputeRouterPeerAdvertiseMode

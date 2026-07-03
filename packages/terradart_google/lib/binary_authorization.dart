@@ -8,4 +8,12 @@ export 'src/binary_authorization/google_binary_authorization_attestor.dart'
 export 'src/binary_authorization/google_binary_authorization_attestor_iam_member.dart'
     show GoogleBinaryAuthorizationAttestorIamMember;
 export 'src/binary_authorization/google_binary_authorization_policy.dart'
-    show GoogleBinaryAuthorizationPolicy;
+    show
+        BinaryAuthorizationPolicyAdmissionWhitelistPatterns,
+        BinaryAuthorizationPolicyClusterAdmissionRules,
+        BinaryAuthorizationPolicyClusterAdmissionRulesEnforcementMode,
+        BinaryAuthorizationPolicyClusterAdmissionRulesEvaluationMode,
+        BinaryAuthorizationPolicyDefaultAdmissionRule,
+        BinaryAuthorizationPolicyDefaultAdmissionRuleEnforcementMode,
+        BinaryAuthorizationPolicyDefaultAdmissionRuleEvaluationMode,
+        GoogleBinaryAuthorizationPolicy;

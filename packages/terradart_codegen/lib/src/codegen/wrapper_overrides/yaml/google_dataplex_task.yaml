@@ -1,6 +1,16 @@
 outputDir: dataplex
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveNestedTypes: true
+# `spark` / `notebook` are the real schema block names the hand-written
+# sealed `DataplexTaskWorkload` variants already own (dispatched via
+# `workload`'s `.blockKey`) — same customSlotKeys blind spot as
+# google_dataplex_datascan.yaml. Neither block has an enum site, so
+# excluding both costs nothing and avoids emitting a redundant derived class
+# per block.
+nestedTypeExcludes:
+  - spark
+  - notebook
 
 curatedDoc: |-
   /// A Dataplex lake task (scheduled Spark or Notebook workload).

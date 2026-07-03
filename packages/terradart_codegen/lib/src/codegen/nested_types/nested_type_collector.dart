@@ -43,7 +43,7 @@ final class NestedBlockSpec {
   final bool required;
   final List<NestedAttrSpec> attrs;
   final List<NestedBlockSpec> children;
-  final List<String> excludedChildTfNames;
+  final List<ExcludedNestedBlock> excludedChildren;
 
   const NestedBlockSpec({
     required this.tfName,
@@ -53,7 +53,28 @@ final class NestedBlockSpec {
     required this.required,
     required this.attrs,
     required this.children,
-    required this.excludedChildTfNames,
+    required this.excludedChildren,
+  });
+}
+
+/// One block-type child whose dotted path was in `excludedPaths` — recorded
+/// by name, plus the same schema-derived cardinality [_buildSpec] computes
+/// for a fully-derived child, so the emitter can render an accurately
+/// shaped opaque passthrough (`TfArg<Map<String, dynamic>>` vs
+/// `TfArg<List<Map<String, dynamic>>>`, nullable vs not) instead of always
+/// forcing the conservative single-optional shape regardless of what the
+/// schema actually declares (e.g. `google_os_config_os_policy_assignment`'s
+/// excluded `os_policies.resource_groups.resources` is `nesting_mode: list`
+/// with `min_items: 1` — a required, repeated block, not a scalar one).
+final class ExcludedNestedBlock {
+  final String tfName;
+  final bool repeated;
+  final bool required;
+
+  const ExcludedNestedBlock({
+    required this.tfName,
+    required this.repeated,
+    required this.required,
   });
 }
 
@@ -76,11 +97,11 @@ final class NestedBlockSpec {
 ///   meta-argument, not a user-facing input (same rule as
 ///   `constructor_params.dart`'s `skipNestedBlock`).
 /// - A block whose dotted path from the resource root (e.g.
-///   `'basic.conditions'`) is in [excludedPaths] is recorded by its bare
-///   name in its parent's [NestedBlockSpec.excludedChildTfNames] and not
-///   descended into; the wrapper emitter renders it as a passthrough
-///   `TfArg<Map<String, dynamic>>?` instead of a derived class. A
-///   root-level exclusion has no parent spec to record into, so it is
+///   `'basic.conditions'`) is in [excludedPaths] is recorded (by name, with
+///   its cardinality — see [ExcludedNestedBlock]) in its parent's
+///   [NestedBlockSpec.excludedChildren] and not descended into; the wrapper
+///   emitter renders it as an opaque passthrough instead of a derived class.
+///   A root-level exclusion has no parent spec to record into, so it is
 ///   simply absent from the returned list (root-level slot selection is
 ///   already the constructor's `paramOrder`'s job, not this collector's).
 List<NestedBlockSpec> collectNestedTypes({
@@ -101,12 +122,12 @@ List<NestedBlockSpec> collectNestedTypes({
 
 typedef _ChildScan = ({
   List<NestedBlockSpec> children,
-  List<String> excludedChildTfNames,
+  List<ExcludedNestedBlock> excludedChildren,
 });
 
 /// Scans one block's `block_types` map, returning the child specs that
-/// survive filtering plus the bare names of children dropped because their
-/// dotted path is in `excludedPaths`.
+/// survive filtering plus the children dropped because their dotted path is
+/// in `excludedPaths` (recorded with cardinality via [ExcludedNestedBlock]).
 _ChildScan _scanChildren(
   Map<String, dynamic> block, {
   required List<String> path,
@@ -116,38 +137,45 @@ _ChildScan _scanChildren(
 }) {
   final blockTypes = _optionalMap(block['block_types'], context: 'block_types');
   final children = <NestedBlockSpec>[];
-  final excludedChildTfNames = <String>[];
+  final excludedChildren = <ExcludedNestedBlock>[];
   for (final entry in blockTypes.entries) {
     final tfName = entry.key;
     if (customSlotKeys.contains(tfName) || tfName == 'timeouts') continue;
 
     final childPath = [...path, tfName];
+    final childBody = _requireMap(entry.value, context: 'block_types.$tfName');
     if (excludedPaths.contains(childPath.join('.'))) {
-      excludedChildTfNames.add(tfName);
+      final cardinality = _blockCardinality(childBody, tfName: tfName);
+      excludedChildren.add(ExcludedNestedBlock(
+        tfName: tfName,
+        repeated: cardinality.repeated,
+        required: cardinality.required,
+      ));
       continue;
     }
 
     children.add(_buildSpec(
       tfName,
-      _requireMap(entry.value, context: 'block_types.$tfName'),
+      childBody,
       path: childPath,
       resourcePrefix: resourcePrefix,
       customSlotKeys: customSlotKeys,
       excludedPaths: excludedPaths,
     ));
   }
-  return (children: children, excludedChildTfNames: excludedChildTfNames);
+  return (children: children, excludedChildren: excludedChildren);
 }
 
 const _knownNestingModes = {'single', 'list', 'set', 'map', 'group'};
 
-NestedBlockSpec _buildSpec(
-  String tfName,
+/// Computes [NestedBlockSpec.repeated] / [NestedBlockSpec.required] from a
+/// nested block's raw `nesting_mode` / `max_items` / `min_items` — shared by
+/// [_buildSpec] (a fully-derived child) and [_scanChildren]'s excluded-child
+/// branch ([ExcludedNestedBlock]), so both paths agree on what the schema
+/// actually declares instead of the excluded path silently assuming scalar.
+({bool repeated, bool required}) _blockCardinality(
   Map<String, dynamic> nestedBlockBody, {
-  required List<String> path,
-  required String resourcePrefix,
-  required Set<String> customSlotKeys,
-  required Set<String> excludedPaths,
+  required String tfName,
 }) {
   final nestingMode = nestedBlockBody['nesting_mode'];
   if (nestingMode is! String || !_knownNestingModes.contains(nestingMode)) {
@@ -157,6 +185,21 @@ NestedBlockSpec _buildSpec(
   }
   final maxItems = (nestedBlockBody['max_items'] as num?)?.toInt();
   final minItems = (nestedBlockBody['min_items'] as num?)?.toInt();
+  return (
+    repeated: (nestingMode == 'list' || nestingMode == 'set') && maxItems != 1,
+    required: (minItems ?? 0) >= 1,
+  );
+}
+
+NestedBlockSpec _buildSpec(
+  String tfName,
+  Map<String, dynamic> nestedBlockBody, {
+  required List<String> path,
+  required String resourcePrefix,
+  required Set<String> customSlotKeys,
+  required Set<String> excludedPaths,
+}) {
+  final cardinality = _blockCardinality(nestedBlockBody, tfName: tfName);
   final className = resourcePrefix + path.map(snakeToPascal).join();
 
   final block = _optionalMap(
@@ -175,11 +218,11 @@ NestedBlockSpec _buildSpec(
     tfName: tfName,
     path: path,
     className: className,
-    repeated: (nestingMode == 'list' || nestingMode == 'set') && maxItems != 1,
-    required: (minItems ?? 0) >= 1,
+    repeated: cardinality.repeated,
+    required: cardinality.required,
     attrs: _collectAttrs(block, className: className),
     children: scan.children,
-    excludedChildTfNames: scan.excludedChildTfNames,
+    excludedChildren: scan.excludedChildren,
   );
 }
 

@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_compute_router_peer`.
@@ -17,6 +18,96 @@ enum ComputeRouterPeerAdvertiseMode implements TerraformEnum {
   const ComputeRouterPeerAdvertiseMode(this.terraformValue);
   @override
   final String terraformValue;
+}
+
+/// Typed helper for the `advertised_ip_ranges` block of
+/// `google_compute_router_peer` (derived from provider schema).
+@immutable
+final class ComputeRouterPeerAdvertisedIpRanges {
+  const ComputeRouterPeerAdvertisedIpRanges({
+    this.description,
+    required this.range,
+  });
+
+  final TfArg<String>? description;
+
+  final TfArg<String> range;
+
+  Map<String, Object?> encode() => {
+    if (description != null) 'description': description!.toTfJson(),
+    'range': range.toTfJson(),
+  };
+}
+
+/// Typed helper for the `bfd` block of
+/// `google_compute_router_peer` (derived from provider schema).
+@immutable
+final class ComputeRouterPeerBfd {
+  const ComputeRouterPeerBfd({
+    this.minReceiveInterval,
+    this.minTransmitInterval,
+    this.multiplier,
+    required this.sessionInitializationMode,
+  });
+
+  final TfArg<num>? minReceiveInterval;
+
+  final TfArg<num>? minTransmitInterval;
+
+  final TfArg<num>? multiplier;
+
+  final TfArg<ComputeRouterPeerBfdSessionInitializationMode>
+  sessionInitializationMode;
+
+  Map<String, Object?> encode() => {
+    if (minReceiveInterval != null)
+      'min_receive_interval': minReceiveInterval!.toTfJson(),
+    if (minTransmitInterval != null)
+      'min_transmit_interval': minTransmitInterval!.toTfJson(),
+    if (multiplier != null) 'multiplier': multiplier!.toTfJson(),
+    'session_initialization_mode': sessionInitializationMode.toTfJson(),
+  };
+}
+
+/// `session_initialization_mode` — derived from the provider schema description.
+enum ComputeRouterPeerBfdSessionInitializationMode implements TerraformEnum {
+  active('ACTIVE'),
+  disabled('DISABLED'),
+  passive('PASSIVE');
+
+  const ComputeRouterPeerBfdSessionInitializationMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Typed helper for the `custom_learned_ip_ranges` block of
+/// `google_compute_router_peer` (derived from provider schema).
+@immutable
+final class ComputeRouterPeerCustomLearnedIpRanges {
+  const ComputeRouterPeerCustomLearnedIpRanges({required this.range});
+
+  final TfArg<String> range;
+
+  Map<String, Object?> encode() => {'range': range.toTfJson()};
+}
+
+/// Typed helper for the `md5_authentication_key` block of
+/// `google_compute_router_peer` (derived from provider schema).
+@immutable
+final class ComputeRouterPeerMd5AuthenticationKey {
+  const ComputeRouterPeerMd5AuthenticationKey({
+    required this.key,
+    required this.name,
+  });
+
+  final TfArg<String> key;
+
+  final TfArg<String> name;
+
+  Map<String, Object?> encode() => {
+    'key': key.toTfJson(),
+    'name': name.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_compute_router_peer`.

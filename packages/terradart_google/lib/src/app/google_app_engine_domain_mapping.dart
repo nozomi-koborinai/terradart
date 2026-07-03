@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_app_engine_domain_mapping`.
@@ -16,6 +17,37 @@ enum AppEngineDomainMappingOverrideStrategy implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Typed helper for the `ssl_settings` block of
+/// `google_app_engine_domain_mapping` (derived from provider schema).
+@immutable
+final class AppEngineDomainMappingSslSettings {
+  const AppEngineDomainMappingSslSettings({
+    this.certificateId,
+    required this.sslManagementType,
+  });
+
+  final TfArg<String>? certificateId;
+
+  final TfArg<AppEngineDomainMappingSslSettingsSslManagementType>
+  sslManagementType;
+
+  Map<String, Object?> encode() => {
+    if (certificateId != null) 'certificate_id': certificateId!.toTfJson(),
+    'ssl_management_type': sslManagementType.toTfJson(),
+  };
+}
+
+/// `ssl_management_type` — derived from the provider schema description.
+enum AppEngineDomainMappingSslSettingsSslManagementType
+    implements TerraformEnum {
+  automatic('AUTOMATIC'),
+  manual('MANUAL');
+
+  const AppEngineDomainMappingSslSettingsSslManagementType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_app_engine_domain_mapping`.
 ///
 /// A domain serving an App Engine application.
@@ -26,7 +58,7 @@ final class GoogleAppEngineDomainMapping extends Resource {
     required super.localName,
     required TfArg<String> domainName,
     TfArg<AppEngineDomainMappingOverrideStrategy>? overrideStrategy,
-    TfArg<Map<String, dynamic>>? sslSettings,
+    AppEngineDomainMappingSslSettings? sslSettings,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,
     super.lifecycle,
@@ -36,7 +68,8 @@ final class GoogleAppEngineDomainMapping extends Resource {
          argMap: {
            'domain_name': domainName,
            if (overrideStrategy != null) 'override_strategy': overrideStrategy,
-           if (sslSettings != null) 'ssl_settings': sslSettings,
+           if (sslSettings != null)
+             'ssl_settings': TfArg.literal(sslSettings.encode()),
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
            if (project != null) 'project': project,
          },

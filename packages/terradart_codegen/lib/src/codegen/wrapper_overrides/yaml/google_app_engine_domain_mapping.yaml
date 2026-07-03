@@ -1,6 +1,10 @@
 outputDir: app
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
 
 paramOrder:
   - domain_name

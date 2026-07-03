@@ -2,6 +2,10 @@ outputDir: compute
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
 
 curatedDoc: |-
   /// Cloud NAT on a [GoogleComputeRouter]. Pair with a router on the same VPC

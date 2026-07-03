@@ -489,14 +489,17 @@ class WrapperEmitter {
     final param =
         isRequired ? 'required $bareType $dartName' : '$nullableType $dartName';
 
-    final String encodeExpr;
-    if (spec.repeated) {
-      encodeExpr = isRequired
-          ? '[for (final e in $dartName) e.encode()]'
-          : '[for (final e in $dartName!) e.encode()]';
-    } else {
-      encodeExpr = isRequired ? '$dartName.encode()' : '$dartName!.encode()';
-    }
+    // No `!` needed in the optional branch even though `dartName` is a
+    // nullable-typed parameter: it's always paired with the SAME-named
+    // `if ($dartName != null)` guard below, which promotes a constructor
+    // PARAMETER (unlike a public field — Dart field promotion is
+    // private-only, which is why `nested_type_emitter.dart`'s `_plan` still
+    // needs `!` for its field-based optional accesses). Confirmed empirically
+    // (`dart analyze` flags the `!` here as `unnecessary_non_null_assertion`
+    // once a real override exercises this path).
+    final encodeExpr = spec.repeated
+        ? '[for (final e in $dartName) e.encode()]'
+        : '$dartName.encode()';
     final entry = "'${spec.tfName}': TfArg.literal($encodeExpr),";
     final argMapEntry = isRequired ? entry : 'if ($dartName != null) $entry';
     return (param: param, argMapEntry: argMapEntry);

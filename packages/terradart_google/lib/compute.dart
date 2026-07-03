@@ -488,13 +488,26 @@ export 'src/compute/google_compute_router_interface.dart'
 export 'src/compute/google_compute_router_nat.dart'
     show
         ComputeRouterNatAutoNetworkTier,
+        ComputeRouterNatLogConfig,
+        ComputeRouterNatLogConfigFilter,
+        ComputeRouterNatNat64Subnetwork,
         ComputeRouterNatNatIpAllocateOption,
+        ComputeRouterNatRules,
+        ComputeRouterNatRulesAction,
         ComputeRouterNatSourceSubnetworkIpRangesToNat,
         ComputeRouterNatSourceSubnetworkIpRangesToNat64,
+        ComputeRouterNatSubnetwork,
         ComputeRouterNatType,
         GoogleComputeRouterNat;
 export 'src/compute/google_compute_router_peer.dart'
-    show ComputeRouterPeerAdvertiseMode, GoogleComputeRouterPeer;
+    show
+        ComputeRouterPeerAdvertiseMode,
+        ComputeRouterPeerAdvertisedIpRanges,
+        ComputeRouterPeerBfd,
+        ComputeRouterPeerBfdSessionInitializationMode,
+        ComputeRouterPeerCustomLearnedIpRanges,
+        ComputeRouterPeerMd5AuthenticationKey,
+        GoogleComputeRouterPeer;
 export 'src/compute/google_compute_security_policy.dart'
     show
         ComputeSecurityPolicySecurityPolicyAdaptiveProtectionConfig,

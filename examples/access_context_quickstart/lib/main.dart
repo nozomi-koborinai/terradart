@@ -41,13 +41,13 @@ final class AccessControlsStack extends Stack {
         name: TfArg.literal('us_only'),
         parent: TfArg.ref(policy.name),
         title: TfArg.literal('US-only access'),
-        basic: TfArg.literal({
-          'conditions': [
-            {
-              'regions': ['US'],
-            },
+        basic: AccessContextManagerAccessLevelBasic(
+          conditions: [
+            AccessContextManagerAccessLevelBasicConditions(
+              regions: TfArg.literal(['US']),
+            ),
           ],
-        }),
+        ),
         dependsOn: [ResourceDependency(policy)],
       ),
     );
@@ -58,11 +58,11 @@ final class AccessControlsStack extends Stack {
         name: TfArg.literal('storage_perimeter'),
         parent: TfArg.ref(policy.name),
         title: TfArg.literal('Restrict Storage to US-only clients'),
-        status: TfArg.literal({
-          'resources': ['projects/$projectId'],
-          'restricted_services': ['storage.googleapis.com'],
-          'access_levels': [usOnly.nameRef.interpolation],
-        }),
+        status: AccessContextManagerServicePerimeterStatus(
+          resources: TfArg.literal(['projects/$projectId']),
+          restrictedServices: TfArg.literal(['storage.googleapis.com']),
+          accessLevels: TfArg.literal([usOnly.nameRef.interpolation]),
+        ),
         dependsOn: [
           ResourceDependency(policy),
           ResourceDependency(usOnly),

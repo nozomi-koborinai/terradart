@@ -2,6 +2,10 @@ outputDir: recaptcha
 
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
 
 curatedDoc: |-
   /// reCAPTCHA Enterprise key for web, Android, or iOS clients.
