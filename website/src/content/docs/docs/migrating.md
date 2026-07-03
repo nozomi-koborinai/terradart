@@ -124,7 +124,7 @@ For nested blocks, replace raw maps with helper constructors and call `.encode()
 
 ## Additive factories (no migration)
 
-Waves 23–24 shipped **ten new curated factories** in `0.12.10`. They are additive — only adopt them when you need the capability. See [Waves 23–24](/docs/waves/) for the factory list and runnable examples.
+Waves 23–24 shipped **ten new curated factories** in `0.12.10`. They are additive — only adopt them when you need the capability. See [Coverage](/docs/coverage/) for the current factory list and runnable examples.
 
 ## Older releases
 
@@ -132,6 +132,6 @@ Earlier breaking changes (WIF provider sealed `trustSource`, `terradart codegen`
 
 ## Next steps
 
-- [Waves 23–24](/docs/waves/) — new factories and example stacks
+- [Coverage](/docs/coverage/) — the current factory list and example stacks
 - [Status & versioning](/docs/status/) — alpha expectations and change policy
 - [Examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) — updated quickstarts exercising the new APIs

@@ -18,6 +18,7 @@ packages/terradart_codegen/lib/src/codegen/wrapper_overrides/yaml/
 packages/terradart_codegen/lib/src/codegen/barrels/barrels.yaml
 packages/terradart_codegen/test/golden/
 packages/terradart_codegen/test/fixtures/wrap/expected_output/
+website/src/content/docs/docs/coverage.md
 
 # Count assertions that move with the catalog
 tool/doc_expectations.dart

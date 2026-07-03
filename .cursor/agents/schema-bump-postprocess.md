@@ -44,7 +44,11 @@ guardrails all bind you.
   `packages/terradart_codegen/test/`;
 - mechanical example follow-ups under `examples/**` when a regenerated
   signature forces them (keep minimal — example changes trigger the
-  apply-smoke change-gate, which costs real GCP applies).
+  apply-smoke change-gate, which costs real GCP applies);
+- the regenerated site coverage page when the catalog changed: run
+  `dart tool/example_synth_gates.dart --skip-validate` then
+  `dart tool/render_coverage_page.dart` (CI's freshness check fails
+  otherwise).
 
 Repair loop: edit → `tool/agent_verify.sh --quick` (~20s) → iterate; run
 the FULL `tool/agent_verify.sh` before pushing. Never pipe a test command

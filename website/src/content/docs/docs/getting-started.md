@@ -97,7 +97,7 @@ Rename `orders-prod` in the Stack without updating the subscriber and `dart anal
 
 - [Why TerraDart](/docs/why-terradart/) — motivation and comparisons
 - [Architecture](/docs/architecture/) — `synth()`, `writeTo()`, curated coverage
-- [Curated factory waves](/docs/waves/) — factory history and example pointers
+- [Coverage](/docs/coverage/) — every curated factory, its barrel, and runnable examples
 - [Migrating](/docs/migrating/) — read before every minor bump
 - [Status & versioning](/docs/status/) — alpha vs beta vs 1.0
 - [Examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook) for fuller stacks

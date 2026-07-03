@@ -12,7 +12,8 @@ Guides track the **0.24.x** line on pub.dev. The repo [README](https://github.co
 - [Getting Started](/docs/getting-started/) — install, first `*.tf.json`, boundary export
 - [Why TerraDart](/docs/why-terradart/) — motivation, comparison, and curated coverage
 - [Architecture](/docs/architecture/) — generate `*.tf.json`, `synth()` / `writeTo()`, AppExport
-- [Curated factory waves](/docs/waves/) — factory history and example pointers
+- [Coverage](/docs/coverage/) — every curated factory, its barrel, and runnable examples
+- [How it's built](/docs/how-its-built/) — the generation pipeline, verification harness, and sustainability
 - [Migrating](/docs/migrating/) — breaking-change guides for minor bumps
 - [Status & versioning](/docs/status/) — alpha, path to beta, 1.0
 

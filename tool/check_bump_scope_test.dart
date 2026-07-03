@@ -80,6 +80,7 @@ void main() {
           'tool/curation_backlog.yaml',
           '.schema-bump/drift_report.md',
           'examples/compute_route_quickstart/lib/main.dart',
+          'website/src/content/docs/docs/coverage.md',
         ],
         rules: rules,
       );
