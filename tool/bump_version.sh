@@ -251,7 +251,7 @@ echo
 #     phrase templates and have already missed new prose once (e.g. "as of
 #     0.NN.x" in CONTRIBUTING.md); replacing the literal substring everywhere
 #     in exactly the checker's file set closes that whole class of miss.
-#     SECURITY.md and website/waves.md are deliberately excluded — both carry
+#     SECURITY.md and MIGRATING.md are deliberately excluded — both carry
 #     legitimate historical `0.NN.x` references the checker itself exempts.
 echo "  Blanket bare-minor sweep (check_docs_consistency.dart's file set):"
 for f in README.md \

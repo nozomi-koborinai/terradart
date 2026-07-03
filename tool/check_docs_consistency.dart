@@ -53,7 +53,7 @@ Future<void> main() async {
   );
   _checkPhrase(
     errors,
-    'website/src/content/docs/docs/waves.md',
+    'website/src/content/docs/docs/coverage.md',
     '$curatedFactoryCount curated resource factories + 1 data source',
     '($catalogEntryCount catalog entries)',
   );
