@@ -99,6 +99,8 @@ jobs:
         run: dart tool/example_synth_gates.dart --skip-validate
       - name: Topology gate (reuses tf-out)
         run: dart tool/check_example_topology.dart --reuse-tf-out
+      - name: Coverage page freshness (reuses tf-out)
+        run: dart tool/render_coverage_page.dart --check
       - run: bash tool/apply_smoke_test.sh
 
   wrap_check:

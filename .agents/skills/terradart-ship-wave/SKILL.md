@@ -39,6 +39,7 @@ A Wave PR is **not done** when wrappers and `curatedDoc` land alone. It is done 
 - [ ] 3. **Example / docs debt** — implement or extend quickstart; update README Examples section; website counts if the minor bumps; sync `tool/example_debt.yaml` (remove covered entries, add reasoned ones only when deferring an example on purpose); if the quickstart provisions a high-cost resource, skip-list it so the cost gate (`tool/apply_smoke_test.sh` test 9) stays green.
 - [ ] 4. **Breaking API** — `MIGRATING.md` + migrate any affected examples in the same PR.
 - [ ] 5. **Counts** — bump `catalogEntryCount` / `curatedFactoryCount` and every phrase in `tool/doc_expectations.dart`; sync tests.
+- [ ] 5b. **Coverage page** — regenerate the site coverage page: `dart tool/render_coverage_page.dart` (CI's freshness check fails otherwise).
 - [ ] 6. **Version & CHANGELOG** — lockstep `0.N.P` across four packages; root + per-package CHANGELOG entries.
 - [ ] 7. **CI** — new quickstart in `terraform_validate` matrix when applicable.
 - [ ] 8. **Verify** — `tool/agent_verify.sh` (add `--maintainer` when touching wrap-init / wrap-promote).
