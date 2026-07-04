@@ -1,0 +1,17 @@
+outputDir: vertex_ai
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - tensorboard_experiment_id
+  - tensorboard
+  - location
+  - display_name
+  - description
+  - labels
+  - source
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

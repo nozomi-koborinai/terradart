@@ -1,6 +1,12 @@
 # Vertex AI Feature Store quickstart
 
-End-to-end terradart example for Vertex AI Feature Store. Enables the Vertex AI API and provisions a BigQuery-backed feature group: a BigQuery dataset + table (the feature source, keyed by `entity_id`) and a `google_vertex_ai_feature_group` reading from it — and exports the feature group name as a typed Dart constant.
+End-to-end terradart example for Vertex AI Feature Store and MLOps metadata. Enables the Vertex AI, BigQuery, and Cloud Storage APIs and provisions:
+
+- a BigQuery dataset + table (feature source keyed by `entity_id`),
+- a `google_vertex_ai_feature_group` reading from that table,
+- a `google_vertex_ai_tensorboard` with an experiment and run,
+- a far-future `google_vertex_ai_schedule` for an empty pipeline (no runs during smoke),
+- a managed dataset, and GenAI cache config.
 
 The feature group's `big_query` config is passed as a structured map, matching the thin curated factory.
 

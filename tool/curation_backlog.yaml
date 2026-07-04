@@ -20,27 +20,34 @@ entries:
   - resource: google_agent_registry_binding
     detected_at: 2026-07-01
     provider_version: 7.39.0
+    note: skipped by wave-shipper — binding requires Agent Identity auth provider (external artifact); not apply-able on terradart-validate without pre-provisioned connector
   - resource: google_agent_registry_service
     detected_at: 2026-07-01
     provider_version: 7.39.0
+    note: skipped by wave-shipper — grouped with binding; service-only subset deferred until binding apply path is clear
   - resource: google_apigee_environment_debugmask
     detected_at: 2026-07-01
     provider_version: 7.39.0
+    note: skipped by wave-shipper — requires an existing Apigee organization/environment (not standalone-project applicable)
   - resource: google_artifact_registry_project_config
     detected_at: 2026-07-01
     provider_version: 7.39.0
   - resource: google_chronicle_feed
     detected_at: 2026-07-01
     provider_version: 7.39.0
+    note: skipped by wave-shipper — requires a real Chronicle (Google SecOps) instance ID; placeholder UUID fails at apply time
   - resource: google_chronicle_findings_refinement
     detected_at: 2026-07-01
     provider_version: 7.39.0
+    note: skipped by wave-shipper — requires a real Chronicle (Google SecOps) instance ID; placeholder UUID fails at apply time
   - resource: google_chronicle_parser
     detected_at: 2026-07-01
     provider_version: 7.39.0
+    note: skipped by wave-shipper — requires a real Chronicle (Google SecOps) instance ID; placeholder UUID fails at apply time
   - resource: google_chronicle_parser_extension
     detected_at: 2026-07-01
     provider_version: 7.39.0
+    note: skipped by wave-shipper — requires a real Chronicle (Google SecOps) instance ID; placeholder UUID fails at apply time
   - resource: google_compute_bulk_per_instance_config
     detected_at: 2026-07-01
     provider_version: 7.39.0
@@ -108,14 +115,5 @@ entries:
     detected_at: 2026-07-01
     provider_version: 7.39.0
   - resource: google_oracle_database_cloud_exadata_infrastructure_exascale_config
-    detected_at: 2026-07-01
-    provider_version: 7.39.0
-  - resource: google_vertex_ai_schedule
-    detected_at: 2026-07-01
-    provider_version: 7.39.0
-  - resource: google_vertex_ai_tensorboard_experiment
-    detected_at: 2026-07-01
-    provider_version: 7.39.0
-  - resource: google_vertex_ai_tensorboard_run
     detected_at: 2026-07-01
     provider_version: 7.39.0
