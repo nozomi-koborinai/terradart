@@ -1,0 +1,50 @@
+name: loop-health
+
+# Weekly loop-health report: metrics for the three agent loops (bump /
+# diagnosis / wave) plus stall detection, appended as one comment to the
+# single "Loop health" tracking issue every Monday noon JST — right after
+# the morning agents have run, so the week starts with a fresh picture.
+
+on:
+  schedule:
+    - cron: '0 3 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: read
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - name: Generate report
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BUMP_MERGE_ENABLED: ${{ vars.BUMP_MERGE_ENABLED }}
+          WAVE_MERGE_ENABLED: ${{ vars.WAVE_MERGE_ENABLED }}
+        run: dart tool/loop_health_report.dart > /tmp/report.md
+
+      - name: Append to the tracking issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          n=$(gh issue list --label loop-health --state open --json number --jq '.[0].number // empty')
+          if [ -z "$n" ]; then
+            n=$(gh issue create --title "Loop health" --label loop-health \
+              --body "Weekly loop-health reports land here as comments (loop-health.yml, Mondays 12:00 JST)." \
+              | grep -oE '[0-9]+$')
+          fi
+          gh issue comment "$n" --body-file /tmp/report.md
