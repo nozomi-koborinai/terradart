@@ -84,6 +84,9 @@ dev_dependencies:
   path: any
   test: any
   yaml: any
+  # Maintainer-ops MCP client (tool/gcp_cost_call.dart); resolved via the
+  # workspace already (terradart_agent depends on it), so no new solve cost.
+  genkit_mcp: ^0.2.1
   terradart_google:
     path: packages/terradart_google
   terradart_codegen:
