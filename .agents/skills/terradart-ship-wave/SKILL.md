@@ -41,7 +41,7 @@ A Wave PR is **not done** when wrappers and `curatedDoc` land alone. It is done 
 - [ ] 5. **Counts** — bump `catalogEntryCount` / `curatedFactoryCount` and every phrase in `tool/doc_expectations.dart`; sync tests.
 - [ ] 5b. **Coverage page** — regenerate the site coverage page: `dart tool/render_coverage_page.dart` (CI's freshness check fails otherwise).
 - [ ] 6. **Version & CHANGELOG** — lockstep `0.N.P` across four packages; root + per-package CHANGELOG entries.
-- [ ] 7. **CI** — new quickstart in `terraform_validate` matrix when applicable.
+- [ ] 7. **CI** — nothing to wire: the `terraform_validate` matrix derives from `examples/` automatically (tool/select_changed_examples.dart).
 - [ ] 8. **Verify** — `tool/agent_verify.sh` (add `--maintainer` when touching wrap-init / wrap-promote).
 - [ ] 9. **Tag & GitHub release** — after merge and green CI: push `v0.N.P`, publish via `.github/workflows/publish.yml`, create the GitHub release using the template below (title is **`v0.N.P` only** — no Wave subtitle in the release name).
 
