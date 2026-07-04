@@ -3,7 +3,9 @@
 /// Defines a `FeatureStack` that enables the Vertex AI API and provisions a
 /// BigQuery-backed Vertex AI feature group:
 /// - a BigQuery dataset + table (the feature source, keyed by `entity_id`),
-/// - a `google_vertex_ai_feature_group` reading from that table.
+/// - a `google_vertex_ai_feature_group` reading from that table,
+/// - Tensorboard experiment tracking (tensorboard + experiment + run),
+/// - a far-future Vertex AI pipeline schedule (metadata only during smoke).
 ///
 /// The BigQuery `big_query` config is passed as a structured map (the thin
 /// curated factory exposes it as `TfArg<Map<String, dynamic>>`). All resources
@@ -18,6 +20,7 @@ import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/bigquery.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/storage.dart';
 import 'package:terradart_google/vertex_ai.dart';
 
 /// Vertex AI Stack: a BigQuery-backed feature group.
@@ -43,6 +46,14 @@ final class FeatureStack extends Stack {
       GoogleProjectService(
         localName: 'api_bigquery',
         service: TfArg.literal('bigquery.googleapis.com'),
+        disableOnDestroy: TfArg.literal(false),
+      ),
+    );
+
+    final apiStorage = add(
+      GoogleProjectService(
+        localName: 'api_storage',
+        service: TfArg.literal('storage.googleapis.com'),
         disableOnDestroy: TfArg.literal(false),
       ),
     );
@@ -107,13 +118,92 @@ final class FeatureStack extends Stack {
 
     // A Vertex AI Tensorboard for experiment visualization. Empty Tensorboards
     // are free; created and destroyed cleanly.
-    add(
+    final tensorboard = add(
       GoogleVertexAiTensorboard(
         localName: 'experiments',
         displayName: TfArg.literal('terradart-experiments'),
         description: TfArg.literal('Experiment metrics (demo)'),
         region: TfArg.literal('us-central1'),
         dependsOn: [ResourceDependency(apiVertex)],
+      ),
+    );
+
+    const experimentId = 'terradart-experiment';
+
+    // The experiment/run APIs place `tensorboard` as ONE path segment
+    // (…/tensorboards/{tensorboard}/experiments), so they need the short
+    // numeric ID — the full resource name in `tensorboard.name` produces a
+    // doubled path and a 404. Extract the trailing segment.
+    final tensorboardShortId = TfArg.literal(
+      '\${element(split("/", ${tensorboard.nameRef.bareAddress}), 5)}',
+    );
+
+    final experiment = add(
+      GoogleVertexAiTensorboardExperiment(
+        localName: 'training_experiment',
+        tensorboardExperimentId: TfArg.literal(experimentId),
+        tensorboard: tensorboardShortId,
+        location: TfArg.literal('us-central1'),
+        displayName: TfArg.literal('TerraDart training experiment'),
+        description: TfArg.literal('Demo experiment for apply-smoke'),
+        dependsOn: [ResourceDependency(tensorboard)],
+      ),
+    );
+
+    add(
+      GoogleVertexAiTensorboardRun(
+        localName: 'training_run',
+        tensorboardRunId: TfArg.literal('terradart-run'),
+        experiment: TfArg.literal(experimentId),
+        tensorboard: tensorboardShortId,
+        location: TfArg.literal('us-central1'),
+        displayName: TfArg.literal('TerraDart training run'),
+        dependsOn: [ResourceDependency(experiment)],
+      ),
+    );
+
+    final pipelineRoot = add(
+      GoogleStorageBucket(
+        localName: 'pipeline_root',
+        name: TfArg.literal('$projectId-vertex-pipeline-root'),
+        location: TfArg.literal('US'),
+        forceDestroy: TfArg.literal(true),
+        uniformBucketLevelAccess: TfArg.literal(true),
+        dependsOn: [ResourceDependency(apiStorage)],
+      ),
+    );
+
+    add(
+      GoogleVertexAiSchedule(
+        localName: 'pipeline_schedule',
+        displayName: TfArg.literal('terradart-pipeline-schedule'),
+        location: TfArg.literal('us-central1'),
+        cron: TfArg.literal('0 0 1 1 *'),
+        maxConcurrentRunCount: TfArg.literal('1'),
+        startTime: TfArg.literal('2035-01-01T00:00:00Z'),
+        endTime: TfArg.literal('2035-01-02T00:00:00Z'),
+        createPipelineJobRequest: TfArg.literal(<String, Object?>{
+          'parent': 'projects/$projectId/locations/us-central1',
+          'pipeline_job': {
+            'display_name': 'terradart-empty-pipeline',
+            'pipeline_spec': '''
+{
+  "pipelineInfo": {"name": "terradart-empty"},
+  "root": {"dag": {"tasks": {}}},
+  "schemaVersion": "2.1.0",
+  "sdkVersion": "kfp-2.0.0"
+}
+''',
+            'runtime_config': {
+              'gcs_output_directory':
+                  'gs://$projectId-vertex-pipeline-root/pipeline_root',
+            },
+          },
+        }),
+        dependsOn: [
+          ResourceDependency(apiVertex),
+          ResourceDependency(pipelineRoot),
+        ],
       ),
     );
 

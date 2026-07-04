@@ -1,0 +1,21 @@
+outputDir: vertex_ai
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - display_name
+  - location
+  - cron
+  - max_concurrent_run_count
+  - allow_queueing
+  - max_concurrent_active_run_count
+  - max_run_count
+  - start_time
+  - end_time
+  - create_pipeline_job_request
+  - create_notebook_execution_job_request
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

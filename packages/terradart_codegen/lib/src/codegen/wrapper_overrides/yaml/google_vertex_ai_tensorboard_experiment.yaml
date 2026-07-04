@@ -1,0 +1,25 @@
+outputDir: vertex_ai
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |2
+    ///
+    /// **Gotcha:** `tensorboard` is embedded as a single URL path segment
+    /// (`…/tensorboards/{tensorboard}/experiments`), so pass the Tensorboard's
+    /// **short numeric ID** — the trailing segment of its `name` — not the full
+    /// resource name (a full path doubles the URL and the API returns 404).
+    /// From a managed instance: `element(split("/", <tensorboard>.name), 5)`.
+
+paramOrder:
+  - tensorboard_experiment_id
+  - tensorboard
+  - location
+  - display_name
+  - description
+  - labels
+  - source
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

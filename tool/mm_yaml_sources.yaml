@@ -767,6 +767,12 @@ files:
     upstream: mmv1/products/vertexai/Tensorboard.yaml
   google_vertex_ai_cache_config:
     upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
+  google_vertex_ai_schedule:
+    upstream: mmv1/products/vertexai/Schedule.yaml
+  google_vertex_ai_tensorboard_experiment:
+    upstream: mmv1/products/vertexai/TensorboardExperiment.yaml
+  google_vertex_ai_tensorboard_run:
+    upstream: mmv1/products/vertexai/TensorboardRun.yaml
   google_spanner_database:
     upstream: mmv1/products/spanner/Database.yaml
   google_spanner_instance:
