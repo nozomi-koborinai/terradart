@@ -19,9 +19,9 @@ dependencies:
   terradart_core: ^0.24.0
   terradart_google: ^0.24.0
   terradart_coverage: ^0.24.0
-  genkit: ^0.13.2
-  genkit_mcp: ^0.1.7
-  schemantic: ^0.1.3
+  genkit: ^0.14.1
+  genkit_mcp: ^0.2.1
+  schemantic: ^0.2.0
 
 dev_dependencies:
   lints: ^6.0.0
