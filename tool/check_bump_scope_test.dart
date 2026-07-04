@@ -125,4 +125,44 @@ void main() {
       throwsA(isA<FileSystemException>()),
     );
   });
+
+  test('committed wave ledger allows the Wave surface and rejects exclusions',
+      () {
+    final rules = loadBumpRules('tool/wave_allowed_paths.yaml');
+    expect(rules, isNotEmpty);
+    expect(
+      checkBumpScope(
+        changed: const [
+          'packages/terradart_codegen/lib/src/codegen/wrapper_overrides/yaml/google_new_thing.yaml',
+          'packages/terradart_codegen/test/fixtures/wrap/source/mm/google_new_thing.yaml',
+          'tool/mm_yaml_sources.yaml',
+          'packages/terradart_google/lib/src/new_thing/google_new_thing.dart',
+          'packages/terradart_google/lib/new_thing.dart',
+          'examples/new_thing_quickstart/lib/main.dart',
+          'README.md',
+          'website/src/content/docs/docs/why-terradart.mdx',
+          'website/src/content/docs/docs/coverage.md',
+          'tool/curation_backlog.yaml',
+          'tool/apply_cost_denylist.yaml',
+          'tool/doc_expectations.dart',
+        ],
+        rules: rules,
+      ),
+      isEmpty,
+    );
+    expect(
+      checkBumpScope(
+        changed: const [
+          'MIGRATING.md',
+          'CHANGELOG.md',
+          'packages/terradart_core/pubspec.yaml',
+          '.github/workflows/ci.yml',
+          'tool/check_bump_scope.dart',
+          'tool/exactly_one_lint_debt.yaml',
+        ],
+        rules: rules,
+      ),
+      hasLength(6),
+    );
+  });
 }

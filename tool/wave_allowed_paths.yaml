@@ -1,0 +1,41 @@
+# Paths a weekly Wave PR (wave/*) may touch. Consumed by
+# tool/check_bump_scope.dart --ledger tool/wave_allowed_paths.yaml, run by
+# the wave-merge executor before auto-merging (fail-closed).
+#
+# Deliberately excluded (needing them means the Wave is NOT additive or
+# needs maintainer judgment — no auto-merge): MIGRATING.md, CHANGELOG.md,
+# pubspec.yaml files, .github/workflows/, tool/*.dart,
+# tool/exactly_one_lint_debt.yaml (sealed design = escalate), .cursor/,
+# .claude/.
+
+# Curation inputs
+packages/terradart_codegen/lib/src/codegen/wrapper_overrides/yaml/
+packages/terradart_codegen/lib/src/codegen/barrels/barrels.yaml
+packages/terradart_codegen/test/fixtures/wrap/source/mm/
+tool/mm_yaml_sources.yaml
+
+# Generated surface
+packages/terradart_google/lib/
+
+# Goldens that move with regeneration
+packages/terradart_codegen/test/golden/
+packages/terradart_codegen/test/fixtures/wrap/expected_output/
+
+# Counts that move with the catalog
+tool/doc_expectations.dart
+packages/terradart_google/test/catalog/catalog_count_test.dart
+packages/terradart_codegen/test/cli/wrap_command_test.dart
+
+# Wave example + counts-bearing docs
+examples/
+README.md
+website/src/content/docs/docs/why-terradart.mdx
+website/src/content/docs/docs/coverage.md
+
+# Ledgers a Wave legitimately edits
+tool/curation_backlog.yaml
+tool/apply_cost_denylist.yaml
+tool/apply_smoke_skip.yaml
+tool/apply_smoke_pr_skip.yaml
+tool/example_debt.yaml
+tool/example_api_debt.yaml

@@ -49,8 +49,12 @@ List<String> checkBumpScope({
   ];
 }
 
-void main() {
-  final rules = loadBumpRules('tool/bump_allowed_paths.yaml');
+void main(List<String> args) {
+  var ledgerPath = 'tool/bump_allowed_paths.yaml';
+  for (var i = 0; i < args.length; i++) {
+    if (args[i] == '--ledger' && i + 1 < args.length) ledgerPath = args[++i];
+  }
+  final rules = loadBumpRules(ledgerPath);
   final changed = <String>[];
   while (true) {
     final line = stdin.readLineSync();
@@ -69,13 +73,13 @@ void main() {
   if (violations.isEmpty) {
     print(
       'check_bump_scope: OK '
-      '(${changed.length} files within tool/bump_allowed_paths.yaml)',
+      '(${changed.length} files within $ledgerPath)',
     );
     exit(0);
   }
   print(
     'check_bump_scope: ${violations.length} file(s) outside '
-    'tool/bump_allowed_paths.yaml:',
+    '$ledgerPath:',
   );
   violations.forEach(print);
   exit(1);
