@@ -9,6 +9,13 @@ const Set<String> _googleVertexAiTensorboardRunSensitive = <String>{};
 /// Factory wrapper for `google_vertex_ai_tensorboard_run`.
 ///
 /// A TensorboardRun is a single execution of a training job.
+///
+///
+/// **Gotcha:** `tensorboard` is embedded as a single URL path segment
+/// (`…/tensorboards/{tensorboard}/experiments`), so pass the Tensorboard's
+/// **short numeric ID** — the trailing segment of its `name` — not the full
+/// resource name (a full path doubles the URL and the API returns 404).
+/// From a managed instance: `element(split("/", <tensorboard>.name), 5)`.
 final class GoogleVertexAiTensorboardRun extends Resource {
   static const String tfType = 'google_vertex_ai_tensorboard_run';
 

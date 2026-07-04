@@ -10,6 +10,13 @@ const Set<String> _googleVertexAiTensorboardExperimentSensitive = <String>{};
 ///
 /// A TensorboardExperiment is a group of TensorboardRuns that are logically
 /// grouped together.
+///
+///
+/// **Gotcha:** `tensorboard` is embedded as a single URL path segment
+/// (`…/tensorboards/{tensorboard}/experiments`), so pass the Tensorboard's
+/// **short numeric ID** — the trailing segment of its `name` — not the full
+/// resource name (a full path doubles the URL and the API returns 404).
+/// From a managed instance: `element(split("/", <tensorboard>.name), 5)`.
 final class GoogleVertexAiTensorboardExperiment extends Resource {
   static const String tfType = 'google_vertex_ai_tensorboard_experiment';
 

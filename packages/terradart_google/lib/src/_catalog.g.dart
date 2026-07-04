@@ -10002,7 +10002,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_vertex_ai_tensorboard_experiment`.\n\nA TensorboardExperiment is a group of TensorboardRuns that are logically\ngrouped together.',
+        'Factory wrapper for `google_vertex_ai_tensorboard_experiment`.\n\nA TensorboardExperiment is a group of TensorboardRuns that are logically\ngrouped together.\n\n\n**Gotcha:** `tensorboard` is embedded as a single URL path segment\n(`…/tensorboards/{tensorboard}/experiments`), so pass the Tensorboard\'s\n**short numeric ID** — the trailing segment of its `name` — not the full\nresource name (a full path doubles the URL and the API returns 404).\nFrom a managed instance: `element(split("/", <tensorboard>.name), 5)`.',
   ),
   CatalogEntry(
     tfType: 'google_vertex_ai_tensorboard_run',
@@ -10025,7 +10025,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_vertex_ai_tensorboard_run`.\n\nA TensorboardRun is a single execution of a training job.',
+        'Factory wrapper for `google_vertex_ai_tensorboard_run`.\n\nA TensorboardRun is a single execution of a training job.\n\n\n**Gotcha:** `tensorboard` is embedded as a single URL path segment\n(`…/tensorboards/{tensorboard}/experiments`), so pass the Tensorboard\'s\n**short numeric ID** — the trailing segment of its `name` — not the full\nresource name (a full path doubles the URL and the API returns 404).\nFrom a managed instance: `element(split("/", <tensorboard>.name), 5)`.',
   ),
   CatalogEntry(
     tfType: 'google_vpc_access_connector',

@@ -130,11 +130,19 @@ final class FeatureStack extends Stack {
 
     const experimentId = 'terradart-experiment';
 
+    // The experiment/run APIs place `tensorboard` as ONE path segment
+    // (…/tensorboards/{tensorboard}/experiments), so they need the short
+    // numeric ID — the full resource name in `tensorboard.name` produces a
+    // doubled path and a 404. Extract the trailing segment.
+    final tensorboardShortId = TfArg.literal(
+      '\${element(split("/", ${tensorboard.nameRef.bareAddress}), 5)}',
+    );
+
     final experiment = add(
       GoogleVertexAiTensorboardExperiment(
         localName: 'training_experiment',
         tensorboardExperimentId: TfArg.literal(experimentId),
-        tensorboard: TfArg.ref(tensorboard.id),
+        tensorboard: tensorboardShortId,
         location: TfArg.literal('us-central1'),
         displayName: TfArg.literal('TerraDart training experiment'),
         description: TfArg.literal('Demo experiment for apply-smoke'),
@@ -147,7 +155,7 @@ final class FeatureStack extends Stack {
         localName: 'training_run',
         tensorboardRunId: TfArg.literal('terradart-run'),
         experiment: TfArg.literal(experimentId),
-        tensorboard: TfArg.ref(tensorboard.id),
+        tensorboard: tensorboardShortId,
         location: TfArg.literal('us-central1'),
         displayName: TfArg.literal('TerraDart training run'),
         dependsOn: [ResourceDependency(experiment)],
