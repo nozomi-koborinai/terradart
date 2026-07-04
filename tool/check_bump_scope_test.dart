@@ -140,8 +140,15 @@ void main() {
           'packages/terradart_google/lib/new_thing.dart',
           'examples/new_thing_quickstart/lib/main.dart',
           'README.md',
+          'CONTRIBUTING.md',
+          'packages/terradart_google/README.md',
+          'packages/terradart_agent/README.md',
           'website/src/content/docs/docs/why-terradart.mdx',
           'website/src/content/docs/docs/coverage.md',
+          'website/src/content/docs/docs/status.md',
+          'website/src/content/docs/docs/agent/index.md',
+          'website/src/content/docs/docs/agent/tools-reference.md',
+          'packages/terradart_codegen/test/codegen/wrapper_overrides/yaml_loader_test.dart',
           'tool/curation_backlog.yaml',
           'tool/apply_cost_denylist.yaml',
           'tool/doc_expectations.dart',
@@ -159,10 +166,11 @@ void main() {
           '.github/workflows/ci.yml',
           'tool/check_bump_scope.dart',
           'tool/exactly_one_lint_debt.yaml',
+          '.cursor/agents/wave-shipper.md',
         ],
         rules: rules,
       ),
-      hasLength(6),
+      hasLength(7),
     );
   });
 }
