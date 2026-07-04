@@ -51,9 +51,9 @@ Cloud Agent sessions do not get the gcp-cost MCP server through Cursor's
 MCP integration — call the same tools through the stdio helper instead:
 
 ```bash
-dart run terradart_agent:gcp_cost_call --list
-dart run terradart_agent:gcp_cost_call get_estimation_guide '{"service_name":"Cloud Tasks"}'
-dart run terradart_agent:gcp_cost_call list_skus '{"service_id":"F3A6-D7B7-9BDA","keyword":"operations"}'
+dart tool/gcp_cost_call.dart --list
+dart tool/gcp_cost_call.dart get_estimation_guide '{"service_name":"Cloud Tasks"}'
+dart tool/gcp_cost_call.dart list_skus '{"service_id":"F3A6-D7B7-9BDA","keyword":"operations"}'
 ```
 
 Auth and the server binary are provisioned by the environment (install.sh
