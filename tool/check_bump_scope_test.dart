@@ -149,6 +149,7 @@ void main() {
           'website/src/content/docs/docs/agent/index.md',
           'website/src/content/docs/docs/agent/tools-reference.md',
           'packages/terradart_codegen/test/codegen/wrapper_overrides/yaml_loader_test.dart',
+          'pubspec.yaml',
           'tool/curation_backlog.yaml',
           'tool/apply_cost_denylist.yaml',
           'tool/doc_expectations.dart',

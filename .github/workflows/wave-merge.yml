@@ -106,11 +106,24 @@ jobs:
           if dart tool/check_bump_scope.dart --ledger tool/wave_allowed_paths.yaml \
               < /tmp/changed.txt > /tmp/scope.txt 2>&1; then
             cat /tmp/scope.txt
-            echo "verdict=pass" >> "$GITHUB_OUTPUT"
           else
             cat /tmp/scope.txt
             fail "changed files outside tool/wave_allowed_paths.yaml (see workflow log)"
           fi
+          # The root pubspec is ledger-admitted only so a NEW example can be
+          # listed as a workspace member; anything beyond `- examples/…`
+          # additions (dependency edits, removals) must not auto-merge.
+          if grep -qx 'pubspec.yaml' /tmp/changed.txt; then
+            head_sha=$(gh pr view "$PR" --json headRefOid -q .headRefOid)
+            git fetch -q origin main "$head_sha"
+            if git diff "origin/main...$head_sha" -- pubspec.yaml \
+              | grep -E '^[+-]' | grep -vE '^(\+\+\+|---)' \
+              | grep -vE '^\+  - examples/[a-z0-9_]+$' | grep -q .; then
+              fail "pubspec.yaml diff contains more than workspace example additions"
+            fi
+            echo "pubspec.yaml diff: workspace example additions only"
+          fi
+          echo "verdict=pass" >> "$GITHUB_OUTPUT"
 
       - name: Wait for required checks
         id: checks

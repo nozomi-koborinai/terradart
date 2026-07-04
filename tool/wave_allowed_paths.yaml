@@ -41,6 +41,12 @@ website/src/content/docs/docs/status.md
 website/src/content/docs/docs/agent/index.md
 website/src/content/docs/docs/agent/tools-reference.md
 
+# Root workspace manifest — a NEW example must be listed as a workspace
+# member (Dart workspaces enumerate members explicitly). The executor
+# additionally verifies the pubspec diff contains ONLY `- examples/…`
+# workspace additions, so dependency edits still cannot auto-merge.
+pubspec.yaml
+
 # Ledgers a Wave legitimately edits
 tool/curation_backlog.yaml
 tool/apply_cost_denylist.yaml
