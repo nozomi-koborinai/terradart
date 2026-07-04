@@ -21,16 +21,25 @@ packages/terradart_google/lib/
 packages/terradart_codegen/test/golden/
 packages/terradart_codegen/test/fixtures/wrap/expected_output/
 
-# Counts that move with the catalog
+# Counts that move with the catalog (the docs-consistency checker and the
+# count assertions FORCE these to change whenever the catalog grows — a
+# Wave cannot avoid touching them; learned from the first canary, #277)
 tool/doc_expectations.dart
 packages/terradart_google/test/catalog/catalog_count_test.dart
 packages/terradart_codegen/test/cli/wrap_command_test.dart
+packages/terradart_codegen/test/codegen/wrapper_overrides/yaml_loader_test.dart
 
 # Wave example + counts-bearing docs
 examples/
 README.md
+CONTRIBUTING.md
+packages/terradart_google/README.md
+packages/terradart_agent/README.md
 website/src/content/docs/docs/why-terradart.mdx
 website/src/content/docs/docs/coverage.md
+website/src/content/docs/docs/status.md
+website/src/content/docs/docs/agent/index.md
+website/src/content/docs/docs/agent/tools-reference.md
 
 # Ledgers a Wave legitimately edits
 tool/curation_backlog.yaml
