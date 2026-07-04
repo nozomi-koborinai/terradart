@@ -86,13 +86,20 @@ tail/grep and trust `&&` — check exit codes bare.
   last push is up: mark the PR ready for review, wait for the change-gate
   to start, then comment and label.
 - Branch `wave/<product>-<YYYY-MM-DD>`; commits in English, no AI footers.
+- **Open the PR yourself with `gh pr create --head wave/<...> --draft`** —
+  do NOT rely on the platform's automatic PR creation, which uses a
+  `cursor/*` branch that the executor's `wave/*` pattern rejects (learned
+  from the first canary, #277). If the platform auto-opened a `cursor/*`
+  PR anyway, report its number for human closure (you never close PRs
+  yourself).
 - PR body: the selected resources and why this group, cost-classification
   evidence summary, the backlog diff, and the example's subject.
 - Comment your run report (selected / implemented / verified / anything
   skipped with reasons).
 - Apply the `wave-approved` label LAST — the executor starts watching
   checks the moment the label lands, and the apply-smoke change-gate must
-  run against your final push.
+  run against your final push. If labeling fails on token permissions,
+  say so explicitly in your report and ask a human to apply it.
 
 ## Hard rules
 
