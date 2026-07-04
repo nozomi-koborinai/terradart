@@ -1,0 +1,11 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - instance_group_manager
+  - instances
+  - deletion_policy
+  - zone
+  - project

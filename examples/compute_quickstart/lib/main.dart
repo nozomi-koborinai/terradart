@@ -14,6 +14,9 @@
 /// (instance, subnetwork, disk) -- each demonstrates the
 /// "tightly scope permissions to a single VM / subnet / disk" pattern that
 /// keeps service projects and tenants from over-reaching.
+///
+/// Wave adds bulk per-instance MIG config, network firewall policy IAM
+/// member, and a zonal VM extension policy (Ops Agent).
 library;
 
 import 'dart:convert';
@@ -393,6 +396,112 @@ final class NetworkStack extends Stack {
           ResourceDependency(scratchDisk),
           ResourceDependency(oncallSre),
         ],
+      ),
+    );
+
+    // ---- Bulk per-instance MIG config ---------------------------------------
+    //
+    // A zonal MIG in BULK target-size mode plus a bulk per-instance config
+    // that names the VMs the MIG should create in one shot (the Terraform
+    // replacement for multiple PerInstanceConfig resources).
+
+    final bulkWorkerTemplate = add(
+      GoogleComputeInstanceTemplate(
+        localName: 'bulk_worker_template',
+        namePrefix: TfArg.literal('bulk-worker-'),
+        machineType: TfArg.literal('e2-micro'),
+        disk: [
+          ComputeInstanceTemplateInstanceTemplateDisk(
+            boot: TfArg.literal(true),
+            sourceImage: TfArg.literal('debian-cloud/debian-12'),
+            autoDelete: TfArg.literal(true),
+          ),
+        ],
+        networkInterface: [
+          ComputeInstanceTemplateInstanceTemplateNetworkInterface(
+            network: TfArg.ref(mainVpc.selfLink),
+            subnetwork: TfArg.ref(workloadSubnet.selfLink),
+          ),
+        ],
+        dependsOn: apiDeps,
+      ),
+    );
+
+    final bulkWorkersMig = add(
+      GoogleComputeInstanceGroupManager(
+        localName: 'bulk_workers',
+        name: TfArg.literal('bulk-workers'),
+        zone: TfArg.literal('asia-northeast1-a'),
+        baseInstanceName: TfArg.literal('bulk-worker'),
+        versions: [
+          ComputeInstanceGroupManagerInstanceGroupManagerVersion(
+            name: TfArg.literal('default'),
+            instanceTemplate: TfArg.ref(bulkWorkerTemplate.selfLink),
+          ),
+        ],
+        // Do NOT set target_size_policies.mode=BULK explicitly: the GA API
+        // rejects it ("Bulk mode is not supported for this Managed Instance
+        // Group") — upstream's own example attaches bulk per-instance configs
+        // to a plain MIG and only ignores target_size drift.
+        lifecycle: const LifecycleOptions(ignoreChanges: ['target_size']),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleComputeBulkPerInstanceConfig(
+        localName: 'bulk_workers_cfg',
+        instanceGroupManager: TfArg.ref(bulkWorkersMig.nameRef),
+        zone: TfArg.literal('asia-northeast1-a'),
+        instances: TfArg.literal([
+          {'name': 'bulk-worker-1'},
+        ]),
+        dependsOn: [ResourceDependency(bulkWorkersMig)],
+      ),
+    );
+
+    // ---- Network firewall policy IAM member -------------------------------
+    //
+    // A global network firewall policy plus a resource-scoped IAM member so
+    // the on-call SA can read the policy without project-wide network admin.
+
+    final edgeFirewallPolicy = add(
+      GoogleComputeNetworkFirewallPolicy(
+        localName: 'ops_edge_policy',
+        name: TfArg.literal('ops-edge-policy'),
+        description: TfArg.literal('Global network firewall policy (IAM demo)'),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleComputeNetworkFirewallPolicyIamMember(
+        localName: 'ops_edge_policy_viewer',
+        name: TfArg.ref(edgeFirewallPolicy.nameRef),
+        role: TfArg.literal('roles/compute.viewer'),
+        member: TfArg.ref(oncallSre.iamMember),
+        dependsOn: [
+          ResourceDependency(edgeFirewallPolicy),
+          ResourceDependency(oncallSre),
+        ],
+      ),
+    );
+
+    // ---- Zonal VM extension policy (Ops Agent) ----------------------------
+
+    add(
+      GoogleComputeZoneVmExtensionPolicy(
+        localName: 'ops_agent_zone_policy',
+        name: TfArg.literal('ops-agent-zone-policy'),
+        zone: TfArg.literal('asia-northeast1-a'),
+        extensionPolicies: TfArg.literal([
+          {
+            'extension_name': 'ops-agent',
+            'pinned_version': '2.66.0',
+          },
+        ]),
+        description: TfArg.literal('Zonal Ops Agent extension policy (demo)'),
+        dependsOn: apiDeps,
       ),
     );
   }
