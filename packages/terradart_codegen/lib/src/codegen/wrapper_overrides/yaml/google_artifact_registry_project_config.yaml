@@ -1,0 +1,70 @@
+outputDir: artifact_registry
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Project-level Artifact Registry settings (platform logs) for a location.
+  /// The API auto-creates this config; Terraform acquires and updates the
+  /// existing resource. Destroy removes it from state only — the live config
+  /// remains in GCP.
+
+paramOrder:
+  - location
+  - platform_logs_config
+  - project
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+prelude: |
+  /// `platform_logs_config.logging_state` — whether platform logs are emitted.
+  enum ArtifactRegistryPlatformLogsLoggingState implements TerraformEnum {
+    enabled('ENABLED'),
+    disabled('DISABLED');
+
+    const ArtifactRegistryPlatformLogsLoggingState(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `platform_logs_config.severity_level` — minimum log severity to record.
+  enum ArtifactRegistryPlatformLogsSeverityLevel implements TerraformEnum {
+    debug('DEBUG'),
+    info('INFO'),
+    notice('NOTICE'),
+    warning('WARNING'),
+    error('ERROR'),
+    critical('CRITICAL'),
+    alert('ALERT'),
+    emergency('EMERGENCY');
+
+    const ArtifactRegistryPlatformLogsSeverityLevel(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `platform_logs_config` block — platform log emission for Artifact Registry
+  /// operations in this project/location.
+  @immutable
+  class ArtifactRegistryProjectConfigPlatformLogsConfig {
+    const ArtifactRegistryProjectConfigPlatformLogsConfig({
+      this.loggingState,
+      this.severityLevel,
+    });
+
+    final ArtifactRegistryPlatformLogsLoggingState? loggingState;
+    final ArtifactRegistryPlatformLogsSeverityLevel? severityLevel;
+
+    Map<String, Object?> toArgMap() => {
+      if (loggingState != null)
+        'logging_state': loggingState!.terraformValue,
+      if (severityLevel != null)
+        'severity_level': severityLevel!.terraformValue,
+    };
+  }
+
+customSlots:
+  platform_logs_config:
+    paramDeclaration: 'ArtifactRegistryProjectConfigPlatformLogsConfig? platformLogsConfig'
+    argMapEntry: "if (platformLogsConfig != null) 'platform_logs_config': TfArg.literal([platformLogsConfig.toArgMap()]),"

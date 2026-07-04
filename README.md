@@ -260,6 +260,7 @@ Data & storage
 - [License Manager Office SPLA configuration](examples/license_manager_quickstart/)
 - [Migration Center sources and reports](examples/migration_center_quickstart/)
 - [Filestore High Scale SSD snapshot](examples/filestore_quickstart/)
+- [Artifact Registry project config (platform logs)](examples/artifact_registry_quickstart/)
 
 Application platform & operations
 

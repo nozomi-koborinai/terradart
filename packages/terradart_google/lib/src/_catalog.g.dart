@@ -542,6 +542,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_app_engine_standard_app_version`.\n\nStandard App Version resource to create a new version of standard GAE\nApplication. Learn about the differences between the standard environment\nand the flexible environment at\nhttps://cloud.google.com/appengine/docs/the-appengine-environments.\nCurrently supporting Zip and File Containers.',
   ),
   CatalogEntry(
+    tfType: 'google_artifact_registry_project_config',
+    className: 'GoogleArtifactRegistryProjectConfig',
+    barrel: 'artifact_registry',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_artifact_registry_project_config`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'platformLogsConfig',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'ArtifactRegistryPlatformLogsLoggingState',
+      'ArtifactRegistryPlatformLogsSeverityLevel',
+      'ArtifactRegistryProjectConfigPlatformLogsConfig',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_artifact_registry_project_config`.\n\nThe Artifact Registry project config, used to configure platform logs that\napply to a project.\n\nProject-level Artifact Registry settings (platform logs) for a location.\nThe API auto-creates this config; Terraform acquires and updates the\nexisting resource. Destroy removes it from state only — the live config\nremains in GCP.',
+  ),
+  CatalogEntry(
     tfType: 'google_artifact_registry_repository',
     className: 'GoogleArtifactRegistryRepository',
     barrel: 'artifact_registry',

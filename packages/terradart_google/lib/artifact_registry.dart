@@ -13,6 +13,12 @@
 /// `terraform-provider-google-beta` and adds that resource.
 library;
 
+export 'src/artifact_registry/google_artifact_registry_project_config.dart'
+    show
+        ArtifactRegistryPlatformLogsLoggingState,
+        ArtifactRegistryPlatformLogsSeverityLevel,
+        ArtifactRegistryProjectConfigPlatformLogsConfig,
+        GoogleArtifactRegistryProjectConfig;
 export 'src/artifact_registry/google_artifact_registry_repository.dart'
     show
         ArtifactRegistryAptRepositoryBase,
