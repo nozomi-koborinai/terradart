@@ -394,8 +394,6 @@ export 'src/compute/google_compute_region_network_endpoint_group.dart'
         ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun,
         GoogleComputeRegionNetworkEndpointGroup,
         RegionNetworkEndpointGroupType;
-export 'src/compute/google_compute_region_resize_request.dart'
-    show GoogleComputeRegionResizeRequest;
 export 'src/compute/google_compute_region_security_policy.dart'
     show
         ComputeRegionSecurityPolicyRegionSecurityPolicyAdvancedOptionsConfig,

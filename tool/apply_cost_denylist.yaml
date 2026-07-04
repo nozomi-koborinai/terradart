@@ -98,13 +98,17 @@ google_clouddeploy_custom_target_type: safe  # apply-verified safe (existing exa
 google_clouddeploy_delivery_pipeline: safe  # apply-verified safe (existing example)
 google_clouddeploy_target: safe  # apply-verified safe (existing example)
 google_compute_address: safe  # apply-verified safe (existing example)
+google_compute_bulk_per_instance_config: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Compute 6F81-5844-456A keyword instance group); billing-behavior: per-instance config metadata on a MIG (VMs bill via google_compute_instance)
 google_compute_disk: safe  # apply-verified safe (existing example)
 google_compute_disk_iam_member: safe  # apply-verified safe (existing example)
 google_compute_disk_resource_policy_attachment: safe  # apply-verified safe (existing example)
 google_compute_global_address: safe  # apply-verified safe (existing example)
 google_compute_instance_iam_member: safe  # IAM binding on an instance; sets IAM policy, provisions nothing, zero billing — _instance substring false positive
+google_compute_instance_group_manager: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Compute 6F81-5844-456A keyword instance group); billing-behavior: MIG controller metadata (member VMs bill via google_compute_instance)
+google_compute_instance_template: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Compute 6F81-5844-456A keyword template); billing-behavior: instance template metadata only
 google_compute_network: safe  # apply-verified safe (existing example)
 google_compute_network_firewall_policy: safe  # apply-verified safe (existing example)
+google_compute_network_firewall_policy_iam_member: safe  # billing-behavior: IAM binding on a network firewall policy; sets policy only, zero billing
 google_compute_project_metadata_item: safe  # apply-verified safe (existing example)
 google_compute_region_disk: safe  # apply-verified safe (existing example)
 google_compute_region_instant_snapshot: safe  # apply-verified safe (existing example)
@@ -122,6 +126,7 @@ google_compute_router_peer: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-
 google_compute_interconnect: sweep_only  # gcp-cost: SKU B8C8-2F76-E648 Cloud Interconnect 10Gbps Dedicated circuit $2.328/h; billing-behavior: hourly while circuit provisioned
 google_compute_interconnect_attachment: sweep_only  # gcp-cost: SKU AB20-3021-9C97 10Gbps VLAN attachment via Dedicated Interconnect $0.10/h; billing-behavior: hourly while attachment active
 google_compute_vpn_gateway: safe  # gcp-cost: Networking catalog has no hourly SKU on gateway object (VPNTunnel SKUs e.g. B0D8-6A41-4771 bill on tunnel); billing-behavior: classic VPN gateway metadata only
+google_compute_zone_vm_extension_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Compute 6F81-5844-456A keyword extension); billing-behavior: zonal VM extension policy metadata only (Ops Agent has no catalog SKU)
 google_compute_ha_vpn_gateway: safe  # gcp-cost: no HA VPN gateway hourly SKU in Networking catalog (tunnel-hour SKU B0D8-6A41-4771 on google_compute_vpn_tunnel); billing-behavior: gateway metadata only
 google_compute_shared_vpc_host_project: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Compute+Networking); billing-behavior: project host attachment flag
 google_compute_shared_vpc_service_project: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Compute+Networking); billing-behavior: host/service project link

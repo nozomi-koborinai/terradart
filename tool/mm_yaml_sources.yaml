@@ -297,8 +297,6 @@ files:
     upstream: mmv1/products/compute/RegionInstanceGroupManager.yaml
   google_compute_region_network_endpoint_group:
     upstream: mmv1/products/compute/RegionNetworkEndpointGroup.yaml
-  google_compute_region_resize_request:
-    upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
   google_compute_region_target_http_proxy:
     upstream: mmv1/products/compute/RegionTargetHttpProxy.yaml
   google_compute_region_target_https_proxy:
