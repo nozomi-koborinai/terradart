@@ -34,23 +34,6 @@ final class GoogleComputeZoneVmExtensionPolicy extends Resource {
   Set<String> get sensitiveFields =>
       _googleComputeZoneVmExtensionPolicySensitive;
 
-  /// Reference to `name` attribute.
   TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
-
-  /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
-
-  /// Reference to `creation_timestamp` attribute.
-  TfRef<String> get creationTimestamp =>
-      TfRef.attribute<String>(this, 'creation_timestamp');
-
-  /// Reference to `kind` attribute.
-  TfRef<String> get kind => TfRef.attribute<String>(this, 'kind');
-
-  /// Reference to `managed_by_global` attribute.
-  TfRef<bool> get managedByGlobal =>
-      TfRef.attribute<bool>(this, 'managed_by_global');
-
-  /// Reference to `state` attribute.
-  TfRef<String> get state => TfRef.attribute<String>(this, 'state');
 }

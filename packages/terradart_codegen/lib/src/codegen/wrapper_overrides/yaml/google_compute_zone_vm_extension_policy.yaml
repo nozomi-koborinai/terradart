@@ -1,7 +1,7 @@
 outputDir: compute
 
 deriveClassDoc: true
-deriveOutputGetters: true
+deriveOutputGetters: false
 
 paramOrder:
   - name
@@ -9,3 +9,7 @@ paramOrder:
   - extension_policies
   - description
   - project
+
+extraGetters: |2
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');

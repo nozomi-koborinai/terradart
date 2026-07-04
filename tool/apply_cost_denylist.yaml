@@ -29,6 +29,9 @@
 # --- safe_exception: safe types whose name matches COST_DANGER_RE but are confirmed zero-billing ---
 # Format: safe_exception: <type>  # rationale
 safe_exception: google_compute_instance_iam_member  # IAM binding, no billing — _instance substring false positive
+safe_exception: google_compute_bulk_per_instance_config  # MIG per-instance config metadata only; VMs bill via google_compute_instance (sweep_only)
+safe_exception: google_compute_instance_group_manager  # MIG controller metadata only; member VMs bill via google_compute_instance (sweep_only)
+safe_exception: google_compute_instance_template  # instance template metadata only; VMs bill via google_compute_instance (sweep_only)
 safe_exception: google_service_directory_endpoint  # Service Directory metadata record, no existence billing — _endpoint false positive
 safe_exception: google_bigtable_instance_iam_member  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
 
