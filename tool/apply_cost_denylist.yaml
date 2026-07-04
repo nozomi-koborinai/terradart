@@ -29,8 +29,6 @@
 # --- safe_exception: safe types whose name matches COST_DANGER_RE but are confirmed zero-billing ---
 # Format: safe_exception: <type>  # rationale
 safe_exception: google_compute_instance_iam_member  # IAM binding, no billing — _instance substring false positive
-safe_exception: google_compute_bulk_per_instance_config  # MIG per-instance config metadata only; VMs bill via google_compute_instance (sweep_only)
-safe_exception: google_compute_instance_group_manager  # MIG controller metadata only; member VMs bill via google_compute_instance (sweep_only)
 safe_exception: google_compute_instance_template  # instance template metadata only; VMs bill via google_compute_instance (sweep_only)
 safe_exception: google_service_directory_endpoint  # Service Directory metadata record, no existence billing — _endpoint false positive
 safe_exception: google_bigtable_instance_iam_member  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
@@ -101,13 +99,13 @@ google_clouddeploy_custom_target_type: safe  # apply-verified safe (existing exa
 google_clouddeploy_delivery_pipeline: safe  # apply-verified safe (existing example)
 google_clouddeploy_target: safe  # apply-verified safe (existing example)
 google_compute_address: safe  # apply-verified safe (existing example)
-google_compute_bulk_per_instance_config: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Compute 6F81-5844-456A keyword instance group); billing-behavior: per-instance config metadata on a MIG (VMs bill via google_compute_instance)
+google_compute_bulk_per_instance_config: sweep_only  # gcp-cost: no Cloud Billing Catalog SKU for the config object itself, BUT a bulk per-instance config MATERIALIZES a member VM in the MIG (VM runtime bills while applied); example compute_quickstart already in apply_smoke_pr_skip.yaml
 google_compute_disk: safe  # apply-verified safe (existing example)
 google_compute_disk_iam_member: safe  # apply-verified safe (existing example)
 google_compute_disk_resource_policy_attachment: safe  # apply-verified safe (existing example)
 google_compute_global_address: safe  # apply-verified safe (existing example)
 google_compute_instance_iam_member: safe  # IAM binding on an instance; sets IAM policy, provisions nothing, zero billing — _instance substring false positive
-google_compute_instance_group_manager: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Compute 6F81-5844-456A keyword instance group); billing-behavior: MIG controller metadata (member VMs bill via google_compute_instance)
+google_compute_instance_group_manager: sweep_only  # gcp-cost: no Cloud Billing Catalog SKU for the manager object, BUT a MIG materializes member VMs (target_size / stateful / bulk per-instance configs) that bill while applied; example compute_quickstart already in apply_smoke_pr_skip.yaml
 google_compute_instance_template: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Compute 6F81-5844-456A keyword template); billing-behavior: instance template metadata only
 google_compute_network: safe  # apply-verified safe (existing example)
 google_compute_network_firewall_policy: safe  # apply-verified safe (existing example)
