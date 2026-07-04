@@ -42,10 +42,23 @@ Follow the two skills exactly, in order, for each resource:
    `wrap-init`, thin override, `lint-override`, regenerate, counts.
 2. [`terradart-ship-wave`](../../.agents/skills/terradart-ship-wave/SKILL.md)
    — the runnable quickstart example, README Examples list,
-   **cost-classify via the gcp-cost MCP tools** (mandatory — record SKU
+   **cost-classify via the gcp-cost tools** (mandatory — record SKU
    evidence in `tool/apply_cost_denylist.yaml` comments), coverage page
    regeneration (`dart tool/render_coverage_page.dart`), and the rest of
    the checklist.
+
+Cloud Agent sessions do not get the gcp-cost MCP server through Cursor's
+MCP integration — call the same tools through the stdio helper instead:
+
+```bash
+tool/gcp_cost_call.sh --list
+tool/gcp_cost_call.sh get_estimation_guide '{"service_name":"Cloud Tasks"}'
+tool/gcp_cost_call.sh list_skus '{"service_id":"F3A6-D7B7-9BDA","keyword":"operations"}'
+```
+
+Auth and the server binary are provisioned by the environment (install.sh
++ the `GOOGLE_APPLICATION_CREDENTIALS` secret); if a call fails, quote the
+helper's stderr in your escalation instead of guessing prices.
 
 Also remove the implemented resources' entries from
 `tool/curation_backlog.yaml` in the same PR (the file's own header rule).
