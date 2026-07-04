@@ -1,0 +1,11 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - zone
+  - extension_policies
+  - description
+  - project

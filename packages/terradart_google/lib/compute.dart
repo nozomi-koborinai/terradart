@@ -73,6 +73,8 @@ export 'src/compute/google_compute_backend_service.dart'
         LoadBalancingScheme,
         LocalityLbPolicy,
         SessionAffinity;
+export 'src/compute/google_compute_bulk_per_instance_config.dart'
+    show GoogleComputeBulkPerInstanceConfig;
 export 'src/compute/google_compute_disk.dart'
     show
         ComputeDiskGuestOsFeature,
@@ -267,6 +269,8 @@ export 'src/compute/google_compute_network_endpoint_group.dart'
     show GoogleComputeNetworkEndpointGroup, NetworkEndpointGroupType;
 export 'src/compute/google_compute_network_firewall_policy.dart'
     show GoogleComputeNetworkFirewallPolicy;
+export 'src/compute/google_compute_network_firewall_policy_iam_member.dart'
+    show GoogleComputeNetworkFirewallPolicyIamMember;
 export 'src/compute/google_compute_network_peering.dart'
     show
         ComputeNetworkPeeringStackType,
@@ -390,6 +394,8 @@ export 'src/compute/google_compute_region_network_endpoint_group.dart'
         ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun,
         GoogleComputeRegionNetworkEndpointGroup,
         RegionNetworkEndpointGroupType;
+export 'src/compute/google_compute_region_resize_request.dart'
+    show GoogleComputeRegionResizeRequest;
 export 'src/compute/google_compute_region_security_policy.dart'
     show
         ComputeRegionSecurityPolicyRegionSecurityPolicyAdvancedOptionsConfig,
@@ -602,3 +608,5 @@ export 'src/compute/google_compute_url_map.dart'
 export 'src/compute/google_compute_vpn_gateway.dart'
     show GoogleComputeVpnGateway;
 export 'src/compute/google_compute_vpn_tunnel.dart' show GoogleComputeVpnTunnel;
+export 'src/compute/google_compute_zone_vm_extension_policy.dart'
+    show GoogleComputeZoneVmExtensionPolicy;

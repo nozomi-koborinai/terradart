@@ -66,6 +66,8 @@ files:
     upstream: mmv1/products/compute/Firewall.yaml
   google_compute_network_firewall_policy:
     upstream: mmv1/products/compute/NetworkFirewallPolicy.yaml
+  google_compute_network_firewall_policy_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_compute_resource_policy:
     upstream: mmv1/products/compute/ResourcePolicy.yaml
   google_compute_route:
@@ -257,6 +259,8 @@ files:
     upstream: mmv1/products/compute/BackendBucket.yaml
   google_compute_backend_service:
     upstream: mmv1/products/compute/BackendService.yaml
+  google_compute_bulk_per_instance_config:
+    upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
   google_compute_forwarding_rule:
     upstream: mmv1/products/compute/ForwardingRule.yaml
   google_compute_global_forwarding_rule:
@@ -293,6 +297,8 @@ files:
     upstream: mmv1/products/compute/RegionInstanceGroupManager.yaml
   google_compute_region_network_endpoint_group:
     upstream: mmv1/products/compute/RegionNetworkEndpointGroup.yaml
+  google_compute_region_resize_request:
+    upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
   google_compute_region_target_http_proxy:
     upstream: mmv1/products/compute/RegionTargetHttpProxy.yaml
   google_compute_region_target_https_proxy:
@@ -631,6 +637,8 @@ files:
     upstream: mmv1/products/compute/VpnGateway.yaml
   google_compute_vpn_tunnel:
     upstream: mmv1/products/compute/VpnTunnel.yaml
+  google_compute_zone_vm_extension_policy:
+    upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
   google_compute_ha_vpn_gateway:
     upstream: mmv1/products/compute/HaVpnGateway.yaml
   google_compute_shared_vpc_host_project:

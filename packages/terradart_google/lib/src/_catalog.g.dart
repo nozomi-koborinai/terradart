@@ -2722,6 +2722,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_compute_backend_service`.\n\nA Backend Service defines a group of virtual machines that will serve\ntraffic for load balancing. This resource is a global backend service,\nappropriate for external load balancing or self-managed internal load\nbalancing. For managed internal load balancing, use a regional backend\nservice instead.\n\nCurrently self-managed internal load balancing is only available in beta.\n\n~> **Note:** Recreating a `google_compute_backend_service` that references\nother dependent resources like `google_compute_url_map` will give a\n`resourceInUseByAnotherResource` error, when modifying the number of other\ndependent resources. Use `lifecycle.create_before_destroy` on the dependent\nresources to avoid this type of error as shown in the Dynamic Backends\nexample.\n\nA **global** backend service is the load-balancing target for global\nexternal HTTP(S) load balancers and for Traffic Director\'s self-managed\ninternal load balancing. It groups a set of backends (instance groups,\nnetwork endpoint groups, or backend buckets) and routes traffic to\nthem according to the configured [protocol], [loadBalancingScheme],\n[localityLbPolicy], and [sessionAffinity].\n\nFor regional load balancing use `google_compute_region_backend_service`\n(curated separately). Regional-only [LoadBalancingScheme] values\n(`INTERNAL`, `INTERNAL_MANAGED`) are surfaced on this wrapper because\nthey appear in the Terraform schema, but the GCP API will reject them\non a global backend service at apply time.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_compute_backend_service.`).\n- `name`: GCP resource name (1-63 chars, lowercase RFC1035).\n\nCross-resource references (typical wiring):\n- [healthChecks]: list of self-links to `google_compute_health_check`\n  resources. Required unless every backend is an internet/serverless NEG.\n- [securityPolicy]: self-link to a Cloud Armor `google_compute_security_policy`.\n- [ComputeBackendServiceBackendServiceBackend.group]: self-link of an instance group, MIG,\n  or NEG. All backends in one service must share a kind (no mixing\n  instance groups with NEGs).\n\nExample (external HTTPS load balancer backend, IAP-protected):\n```dart\nfinal api = GoogleComputeBackendService(\n  localName: \'api\',\n  name: TfArg.literal(\'api-backend\'),\n  protocol: TfArg.literal(BackendServiceProtocol.https),\n  loadBalancingScheme:\n      TfArg.literal(LoadBalancingScheme.externalManaged),\n  portName: TfArg.literal(\'https\'),\n  timeoutSec: TfArg.literal(30),\n  enableCdn: TfArg.literal(false),\n  healthChecks: TfArg.literal([\n    // var.health_check_id resolves to a `google_compute_health_check`\n    // self-link from Batch 2.\n    \'projects/p/global/healthChecks/api-hc\',\n  ]),\n  securityPolicy: TfArg.literal(\n    // var.security_policy_id — see Cloud Armor curation in Batch 4.\n    \'projects/p/global/securityPolicies/edge-deny-all\',\n  ),\n  backends: [\n    ComputeBackendServiceBackendServiceBackend(\n      group: TfArg.literal(\n        // var.backend_group_id — typically a Batch 4 NEG or a\n        // Batch 3 MIG self-link.\n        \'projects/p/zones/asia-northeast1-a/networkEndpointGroups/api-neg\',\n      ),\n      balancingMode: BackendServiceBalancingMode.rate,\n      maxRatePerEndpoint: 100,\n      capacityScaler: 1.0,\n    ),\n  ],\n  iap: const ComputeBackendServiceBackendServiceIap(\n    enabled: true,\n    oauth2ClientId: \'xxx.apps.googleusercontent.com\',\n    oauth2ClientSecret: \'super-secret\', // sensitive — masked at synth.\n  ),\n  logConfig: const ComputeBackendServiceBackendServiceLogConfig(\n    enable: true,\n    sampleRate: 1.0,\n  ),\n);\n```\n\nSensitive fields (round-trip through the generated `sensitiveFields`\nset): `iap.oauth2_client_secret`, `iap.oauth2_client_secret_sha256`\n(computed), and `security_settings.aws_v4_authentication.access_key`.',
   ),
   CatalogEntry(
+    tfType: 'google_compute_bulk_per_instance_config',
+    className: 'GoogleComputeBulkPerInstanceConfig',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_bulk_per_instance_config`.',
+    constructorParams: <String>[
+      'localName',
+      'instanceGroupManager',
+      'instances',
+      'deletionPolicy',
+      'zone',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_bulk_per_instance_config`.',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_disk',
     className: 'GoogleComputeDisk',
     barrel: 'compute',
@@ -3497,6 +3516,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_compute_network_firewall_policy`.\n\nThe Compute NetworkFirewallPolicy resource',
   ),
   CatalogEntry(
+    tfType: 'google_compute_network_firewall_policy_iam_member',
+    className: 'GoogleComputeNetworkFirewallPolicyIamMember',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_compute_network_firewall_policy_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'member',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_network_firewall_policy_iam_member`.',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_network_peering',
     className: 'GoogleComputeNetworkPeering',
     barrel: 'compute',
@@ -3942,6 +3980,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_region_network_endpoint_group`.\n\nA regional NEG that can support Serverless Products, proxying traffic to\nexternal backends and providing traffic to the PSC port mapping endpoints.\n\nWhen in use by a resource that can be updated, recreating a\nRegionNetworkEndpointGroup will give a `resourceInUseByAnotherResource`\nerror because Terraform will attempt to delete the\nRegionNetworkEndpointGroup first, but an in-use RegionNetworkEndpointGroup\ncan\'t be deleted in the API. Use `lifecycle.create_before_destroy` to\nreorder the plan and create the new resource first, allowing the deletion to\ngo through successfully. This is only recommended when strictly necessary,\nas the `create_before_destroy` directive can be passed onto further\ndependencies, creating unexpected plans.\n\nSlots into the L7 Application LB chain as the backend leaf:\n\n```\ngoogle_compute_global_forwarding_rule\n  → google_compute_target_https_proxy\n    → google_compute_url_map\n      → google_compute_backend_service\n        → google_compute_region_network_endpoint_group   (this resource)\n```\n\nRequired identity:\n- [localName]: Terraform local name.\n- `name`: GCP NEG resource name. 1-63 chars, RFC1035.\n- `region`: GCP region the NEG lives in. For serverless NEGs the region\n  must match the Cloud Run / Cloud Function region; a backend service\n  aggregates per-region NEGs into one global backend.\n\n`networkEndpointType` defaults to\n[RegionNetworkEndpointGroupType.serverless] (provider default). Leave\n`null` to inherit that default, or pass an explicit value for PSC /\nINTERNET / portmap NEGs.\n\nServerless target — exactly one of `cloudRun` / `cloudFunction` /\n`appEngine` via the inline nested classes; setting more than one is\nrejected at apply time.\n\nPSC consumer NEG: set\n`networkEndpointType: RegionNetworkEndpointGroupType.privateServiceConnect`,\n`pscTargetService` (Google API bundle name or producer Service Attachment\nself-link), and typically also `network` (optionally `subnetwork`).\n\nINTERNET regional NEGs\n([RegionNetworkEndpointGroupType.internetIpPort] or\n[RegionNetworkEndpointGroupType.internetFqdnPort]) describe off-Google\norigins expressed regionally; pair with a regional external Application\nLoad Balancer.\n\nExample (serverless NEG fronting a Cloud Run service):\n```dart\nfinal crNeg = GoogleComputeRegionNetworkEndpointGroup(\n  localName: \'cr_neg\',\n  name: TfArg.literal(\'cloudrun-neg\'),\n  region: TfArg.literal(\'asia-northeast1\'),\n  cloudRun: ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun(\n    service: TfArg.ref(cloudRunService.nameRef),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_compute_region_resize_request',
+    className: 'GoogleComputeRegionResizeRequest',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_region_resize_request`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'instanceGroupManager',
+      'resizeBy',
+      'region',
+      'description',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment: 'Factory wrapper for `google_compute_region_resize_request`.',
   ),
   CatalogEntry(
     tfType: 'google_compute_region_security_policy',
@@ -4805,6 +4863,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>['shared_secret'],
     docComment:
         'Factory wrapper for `google_compute_vpn_tunnel`.\n\nVPN tunnel resource.\n\nIPSec VPN tunnel. Use [targetVpnGateway] for classic VPN, or [vpnGateway]\nwith [peerGcpGateway] / [peerExternalGateway] for HA VPN.',
+  ),
+  CatalogEntry(
+    tfType: 'google_compute_zone_vm_extension_policy',
+    className: 'GoogleComputeZoneVmExtensionPolicy',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_zone_vm_extension_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'zone',
+      'extensionPolicies',
+      'description',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_zone_vm_extension_policy`.',
   ),
   CatalogEntry(
     tfType: 'google_config_deployment',
