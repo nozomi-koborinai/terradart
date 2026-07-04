@@ -18,9 +18,12 @@ verification pitfalls, cost-classify rules, and guardrails all bind you.
 
 ## Select the Wave
 
-- Take the FIRST product group in the backlog: entries whose resource names
-  share the product segment (e.g. `google_apigee_*`). Take 3-6 resources;
-  if the group has more, take the first 6 and leave the rest for next week.
+- Take the FIRST product group in the backlog **that has no
+  `skipped by wave-shipper` note** — noted entries were already judged
+  unsuitable; do not re-evaluate them every run (a human clears the note
+  when circumstances change). Entries in a group share the product segment
+  (e.g. `google_apigee_*`). Take 3-6 resources; if the group has more,
+  take the first 6 and leave the rest for the next run.
 - Skip a product (add `note: skipped by wave-shipper — <reason>` to its
   entries and move to the next group) when it is organization-scoped,
   needs external artifacts (real certs/secrets/registrations), or its
@@ -64,6 +67,11 @@ tail/grep and trust `&&` — check exit codes bare.
 
 ## Open the PR
 
+- Open the PR **as a draft first** and keep it draft while you iterate —
+  the apply-smoke change-gate skips drafts, so real GCP applies happen
+  exactly once, on your final state. After the FULL gate is green and your
+  last push is up: mark the PR ready for review, wait for the change-gate
+  to start, then comment and label.
 - Branch `wave/<product>-<YYYY-MM-DD>`; commits in English, no AI footers.
 - PR body: the selected resources and why this group, cost-classification
   evidence summary, the backlog diff, and the example's subject.
