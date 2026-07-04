@@ -1,0 +1,190 @@
+name: wave-merge
+
+# Merge executor for the wave-shipper agent. The agent implements a Wave
+# from the curation backlog and labels the PR (wave-approved); this
+# workflow INDEPENDENTLY re-verifies — branch pattern, same-repo head,
+# the Wave scope ledger (additive-only by construction), required checks,
+# AND proof that the apply-smoke change-gate REALLY applied at least one
+# example (checks can be green with zero applies via draft-skip or
+# pr_skip deferral) — and only then squash-merges. The agent holds no
+# merge power. Staged rollout: merging is disarmed (verify + comment
+# only) until the repository variable WAVE_MERGE_ENABLED is 'true'.
+#
+# Injection hygiene: every ${{ }} value consumed by a run: step goes
+# through env: (never inline interpolation).
+
+on:
+  pull_request:
+    types: [labeled]
+  workflow_dispatch:
+    inputs:
+      pr:
+        description: 'PR number to verify (and merge unless dry_run)'
+        required: true
+      dry_run:
+        description: 'Verify only; do not merge'
+        required: false
+        default: 'true'
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: wave-merge-${{ github.event.pull_request.number || github.event.inputs.pr }}
+  cancel-in-progress: false
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: "true"
+
+jobs:
+  verify_and_merge:
+    name: verify + merge
+    if: github.event_name == 'workflow_dispatch' || github.event.label.name == 'wave-approved'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+
+      - name: Resolve PR number and arm state
+        id: pr
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          INPUT_PR: ${{ github.event.inputs.pr }}
+          INPUT_DRY_RUN: ${{ github.event.inputs.dry_run }}
+          EVENT_PR: ${{ github.event.pull_request.number }}
+          MERGE_ENABLED: ${{ vars.WAVE_MERGE_ENABLED }}
+        run: |
+          set -euo pipefail
+          if [ "$EVENT_NAME" = "workflow_dispatch" ]; then
+            if ! printf '%s' "$INPUT_PR" | grep -qE '^[0-9]+$'; then
+              echo "::error::pr input must be a number, got: $INPUT_PR"
+              exit 1
+            fi
+            echo "number=$INPUT_PR" >> "$GITHUB_OUTPUT"
+            if [ "$INPUT_DRY_RUN" = "false" ]; then
+              echo "dry_run=false" >> "$GITHUB_OUTPUT"
+            else
+              echo "dry_run=true" >> "$GITHUB_OUTPUT"
+            fi
+          else
+            echo "number=$EVENT_PR" >> "$GITHUB_OUTPUT"
+            if [ "$MERGE_ENABLED" = "true" ]; then
+              echo "dry_run=false" >> "$GITHUB_OUTPUT"
+            else
+              echo "dry_run=true" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+
+      - name: Verify branch, repo, and scope ledger
+        id: verify
+        env:
+          GH_TOKEN: ${{ secrets.SCHEMA_BUMP_PAT }}
+          PR: ${{ steps.pr.outputs.number }}
+        run: |
+          set -euo pipefail
+          fail() {
+            echo "verdict=fail" >> "$GITHUB_OUTPUT"
+            echo "reason=$1" >> "$GITHUB_OUTPUT"
+            exit 0
+          }
+          state=$(gh pr view "$PR" --json state -q .state)
+          [ "$state" = "OPEN" ] || fail "PR is $state, not OPEN"
+          head=$(gh pr view "$PR" --json headRefName -q .headRefName)
+          case "$head" in
+            wave/*) ;;
+            *) fail "head branch does not match wave/*" ;;
+          esac
+          cross=$(gh pr view "$PR" --json isCrossRepository -q .isCrossRepository)
+          [ "$cross" = "false" ] || fail "cross-repository PR"
+          gh api "repos/${GITHUB_REPOSITORY}/pulls/${PR}/files" \
+            --paginate --jq '.[].filename' > /tmp/changed.txt
+          if dart tool/check_bump_scope.dart --ledger tool/wave_allowed_paths.yaml \
+              < /tmp/changed.txt > /tmp/scope.txt 2>&1; then
+            cat /tmp/scope.txt
+            echo "verdict=pass" >> "$GITHUB_OUTPUT"
+          else
+            cat /tmp/scope.txt
+            fail "changed files outside tool/wave_allowed_paths.yaml (see workflow log)"
+          fi
+
+      - name: Wait for required checks
+        id: checks
+        if: steps.verify.outputs.verdict == 'pass'
+        env:
+          GH_TOKEN: ${{ secrets.SCHEMA_BUMP_PAT }}
+          PR: ${{ steps.pr.outputs.number }}
+        run: |
+          set +e
+          gh pr checks "$PR" --required --watch --interval 60
+          echo "exit=$?" >> "$GITHUB_OUTPUT"
+
+      - name: Verify a real apply happened (change-gate proof)
+        id: applyproof
+        if: steps.verify.outputs.verdict == 'pass'
+        env:
+          GH_TOKEN: ${{ secrets.SCHEMA_BUMP_PAT }}
+          PR: ${{ steps.pr.outputs.number }}
+        run: |
+          set -euo pipefail
+          fail() {
+            echo "verdict=fail" >> "$GITHUB_OUTPUT"
+            echo "reason=$1" >> "$GITHUB_OUTPUT"
+            exit 0
+          }
+          echo "verdict=pass" >> "$GITHUB_OUTPUT"
+          # Added examples must not be skip-listed (skip-listed = never applied).
+          gh api "repos/${GITHUB_REPOSITORY}/pulls/${PR}/files" \
+            --paginate --jq '.[].filename' > /tmp/wave_files.txt
+          slugs=$(grep -oE '^examples/[^/]+_quickstart' /tmp/wave_files.txt | cut -d/ -f2 | sort -u || true)
+          for slug in $slugs; do
+            if grep -qE "^${slug}:" tool/apply_smoke_skip.yaml tool/apply_smoke_pr_skip.yaml; then
+              fail "example $slug is skip-listed — it was never really applied; human merge required"
+            fi
+          done
+          # A successful apply-smoke run for this exact head SHA must report N>=1 applies.
+          sha=$(gh pr view "$PR" --json headRefOid -q .headRefOid)
+          run_id=$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/apply-smoke.yml/runs?head_sha=${sha}&status=success" \
+            --jq '.workflow_runs[0].id // empty')
+          [ -n "$run_id" ] || fail "no successful apply-smoke run for head $sha (draft-skipped or not yet run)"
+          n=$(gh run view "$run_id" --log 2>/dev/null \
+            | grep -oE 'apply_smoke\.sh: OK \([0-9]+ example' | grep -oE '[0-9]+' | head -1)
+          if [ -z "$n" ] || [ "$n" -lt 1 ]; then
+            fail "apply-smoke run $run_id applied ${n:-0} examples (need >= 1)"
+          fi
+          echo "Applied examples: $n (run $run_id)"
+
+      - name: Merge or report
+        env:
+          GH_TOKEN: ${{ secrets.SCHEMA_BUMP_PAT }}
+          PR: ${{ steps.pr.outputs.number }}
+          VERDICT: ${{ steps.verify.outputs.verdict }}
+          REASON: ${{ steps.verify.outputs.reason }}
+          CHECKS_EXIT: ${{ steps.checks.outputs.exit }}
+          APPLY_VERDICT: ${{ steps.applyproof.outputs.verdict }}
+          APPLY_REASON: ${{ steps.applyproof.outputs.reason }}
+          DRY_RUN: ${{ steps.pr.outputs.dry_run }}
+        run: |
+          set -euo pipefail
+          if [ "$VERDICT" != "pass" ]; then
+            gh pr comment "$PR" --body "**wave-merge:** NOT merging — ${REASON}."
+            exit 1
+          fi
+          if [ "$CHECKS_EXIT" != "0" ]; then
+            gh pr comment "$PR" --body "**wave-merge:** NOT merging — required checks did not finish green (gh pr checks exit ${CHECKS_EXIT})."
+            exit 1
+          fi
+          if [ "$APPLY_VERDICT" != "pass" ]; then
+            gh pr comment "$PR" --body "**wave-merge:** NOT merging — ${APPLY_REASON}."
+            exit 1
+          fi
+          if [ "$DRY_RUN" = "true" ]; then
+            gh pr comment "$PR" --body "**wave-merge (dry run):** all verifications passed — branch pattern, same-repo head, Wave scope ledger, required checks green, and a real apply-smoke apply for this head SHA. Merging is disarmed (WAVE_MERGE_ENABLED != true)."
+            exit 0
+          fi
+          gh pr merge "$PR" --squash --delete-branch
+          gh pr comment "$PR" --body "**wave-merge:** verified (branch pattern, same-repo head, scope ledger, required checks, real apply proof) and squash-merged."
