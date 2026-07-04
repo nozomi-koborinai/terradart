@@ -439,11 +439,10 @@ final class NetworkStack extends Stack {
             instanceTemplate: TfArg.ref(bulkWorkerTemplate.selfLink),
           ),
         ],
-        targetSizePolicies: [
-          ComputeInstanceGroupManagerInstanceGroupManagerTargetSizePolicy(
-            mode: TfArg.literal('BULK'),
-          ),
-        ],
+        // Do NOT set target_size_policies.mode=BULK explicitly: the GA API
+        // rejects it ("Bulk mode is not supported for this Managed Instance
+        // Group") — upstream's own example attaches bulk per-instance configs
+        // to a plain MIG and only ignores target_size drift.
         lifecycle: const LifecycleOptions(ignoreChanges: ['target_size']),
         dependsOn: apiDeps,
       ),
