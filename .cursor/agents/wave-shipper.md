@@ -44,7 +44,9 @@ Follow the two skills exactly, in order, for each resource:
    — the runnable quickstart example, README Examples list,
    **cost-classify via the gcp-cost tools** (mandatory — record SKU
    evidence in `tool/apply_cost_denylist.yaml` comments), coverage page
-   regeneration (`dart tool/render_coverage_page.dart`), and the rest of
+   regeneration (`dart tool/example_synth_gates.dart --skip-validate`
+   then `dart tool/render_coverage_page.dart` — the renderer fails closed
+   on partial tf-out), and the rest of
    the checklist.
 
 Cloud Agent sessions do not get the gcp-cost MCP server through Cursor's

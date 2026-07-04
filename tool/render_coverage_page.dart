@@ -146,11 +146,17 @@ Map<String, List<String>> _walkTfOuts() {
       (a, b) => a.path.compareTo(b.path),
     );
   var seen = 0;
+  var quickstarts = 0;
+  final missing = <String>[];
   for (final dir in dirs) {
     final slug = dir.path.split(Platform.pathSeparator).last;
     if (!slug.endsWith('_quickstart')) continue;
+    quickstarts++;
     final tfJson = File('${dir.path}/tf-out/main.tf.json');
-    if (!tfJson.existsSync()) continue;
+    if (!tfJson.existsSync()) {
+      missing.add(slug);
+      continue;
+    }
     seen++;
     final root = jsonDecode(tfJson.readAsStringSync()) as Map<String, dynamic>;
     for (final section in ['resource', 'data']) {
@@ -161,10 +167,14 @@ Map<String, List<String>> _walkTfOuts() {
       }
     }
   }
-  if (seen == 0) {
+  // Partial tf-out is as wrong as none: rendering from a subset silently
+  // blanks the other examples' back-references (first canary, PR #277).
+  if (seen < quickstarts) {
     print(
-      'render_coverage_page: no tf-out found — run '
-      '`dart tool/example_synth_gates.dart --skip-validate` first.',
+      'render_coverage_page: tf-out present for only $seen of $quickstarts '
+      'quickstarts — run `dart tool/example_synth_gates.dart '
+      '--skip-validate` first (missing: ${missing.take(5).join(', ')}'
+      '${missing.length > 5 ? ', …' : ''}).',
     );
     exit(1);
   }
