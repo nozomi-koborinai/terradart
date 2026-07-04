@@ -17,6 +17,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "13.0.0"
+  antlr4:
+    dependency: transitive
+    description:
+      name: antlr4
+      sha256: "752b4a6e4ad97953652a2b2bbf5377f46c94b579d3372b50080c7e5858234a05"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.13.2"
   args:
     dependency: "direct dev"
     description:
@@ -137,14 +145,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.2"
-  code_builder:
-    dependency: transitive
-    description:
-      name: code_builder
-      sha256: "6a6cab2ba4680d6423f34a9b972a4c9a94ebe1b62ecec4e1a1f2cba91fd1319d"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.11.1"
   collection:
     dependency: transitive
     description:
@@ -193,6 +193,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.2.4"
+  dotprompt:
+    dependency: transitive
+    description:
+      name: dotprompt
+      sha256: d2bc4b143566e424d881db36e6357cbc9140304624c2f8f77d225d783847b4ca
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1"
   email_validator:
     dependency: transitive
     description:
@@ -229,50 +237,50 @@ packages:
     dependency: transitive
     description:
       name: genkit
-      sha256: b55e406a0feacc25510fa1486ec2af0b9f7b6cacb786a2bf8672d2d00a562740
+      sha256: "31a98b360873f033ceab41921072c2a20eadb621ddc3223851a92f051f2cc0da"
       url: "https://pub.dev"
     source: hosted
-    version: "0.13.2"
+    version: "0.14.1"
   genkit_google_genai:
     dependency: transitive
     description:
       name: genkit_google_genai
-      sha256: e5cb3a3764650d2ef05a8c0b33385e0deab2376d57046f1adaa2ba2c6d3ee8d9
+      sha256: aeb14dd99197267a9d80ff4dc5665200f4ca3f7d1911f554e73bece82f22f62d
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.7"
+    version: "0.2.9"
   genkit_mcp:
     dependency: transitive
     description:
       name: genkit_mcp
-      sha256: "2d2998a39083f759d81664fdce6e64f295dd5b8e1d2c07b0327c6d1632a7eec1"
+      sha256: f106ed651216dc82651066672b92d747b0aa9330d8ba71f837db6e8812262d57
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.7"
+    version: "0.2.1"
   genkit_shelf:
     dependency: transitive
     description:
       name: genkit_shelf
-      sha256: "479e0839b2a22bbc25b6ab65b4c465a43a553cb87284727258f96190525d6fdd"
+      sha256: "73b2ed12855ed049b2202dbfa3727544be893a17b1737bfc0f7b579d4a570675"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.7"
+    version: "0.1.9"
   genkit_vertex_auth:
     dependency: transitive
     description:
       name: genkit_vertex_auth
-      sha256: "4407de7568bd3e901cd87401335aa680107f705ff9be2284204fe6afb0b164dd"
+      sha256: "945b207816e184b959e8b4a14ce89f2eee116504ba0bf7e67740e39d5aea6f7e"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.7"
+    version: "0.1.9"
   genkit_vertexai:
     dependency: transitive
     description:
       name: genkit_vertexai
-      sha256: "604cc22252f0bdc9448369209b1a62811b4bf67a4ddcb0e9de4618839d1969cb"
+      sha256: "6f00400b10454f76f5205ad130b831faf71d7310ea68a9731300dae62828ebaf"
       url: "https://pub.dev"
     source: hosted
-    version: "0.2.7"
+    version: "0.2.9"
   glob:
     dependency: transitive
     description:
@@ -313,6 +321,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.2"
+  handlebars_dart:
+    dependency: transitive
+    description:
+      name: handlebars_dart
+      sha256: "016a072264069ff879db1de710f535934dd4526c4770cb592d12b1da79876be9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.1"
   http:
     dependency: "direct dev"
     description:
@@ -509,10 +525,10 @@ packages:
     dependency: transitive
     description:
       name: schemantic
-      sha256: b593e339f89658b68ebaac3151379c65da487364512a6269daeddbce2407a70d
+      sha256: "87c9bb8c2b33be1904533f8f72094e76e772ef227b137dd0b77b4981c5f5ee77"
       url: "https://pub.dev"
     source: hosted
-    version: "0.1.3"
+    version: "0.2.0"
   shelf:
     dependency: transitive
     description:
@@ -553,14 +569,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.0"
-  source_gen:
-    dependency: transitive
-    description:
-      name: source_gen
-      sha256: ec37cc0e6694374cbef59ed79685572c870a54ede6fa30a3e420feb3adffea02
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.2.3"
   source_map_stack_trace:
     dependency: transitive
     description:
