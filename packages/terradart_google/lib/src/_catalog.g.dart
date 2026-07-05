@@ -5511,6 +5511,31 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_dataplex_lake_iam_member`.',
   ),
   CatalogEntry(
+    tfType: 'google_dataplex_metadata_feed',
+    className: 'GoogleDataplexMetadataFeed',
+    barrel: 'dataplex',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_dataplex_metadata_feed`.',
+    constructorParams: <String>[
+      'localName',
+      'metadataFeedId',
+      'location',
+      'scope',
+      'filters',
+      'pubsubTopic',
+      'labels',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'DataplexMetadataFeedFilters',
+      'DataplexMetadataFeedScope',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataplex_metadata_feed`.\n\nA Dataplex Metadata Feed monitors Dataplex metadata entries in a specified\nscope and publishes notifications of changes to a Cloud Pub/Sub topic.',
+  ),
+  CatalogEntry(
     tfType: 'google_dataplex_task',
     className: 'GoogleDataplexTask',
     barrel: 'dataplex',

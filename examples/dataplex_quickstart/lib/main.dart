@@ -1,6 +1,7 @@
 /// Dataplex quickstart — governed data product, Universal Catalog metadata,
-/// business glossary, lake (zone + asset), catalog entry link, data-product asset
-/// link, data scan, lake task, and resource-scoped IAM members.
+/// metadata feed (Pub/Sub change notifications), business glossary, lake
+/// (zone + asset), catalog entry link, data-product asset link, data scan,
+/// lake task, and resource-scoped IAM members.
 ///
 /// Provisions a `google_dataplex_data_product` and grants a separate
 /// in-stack service account `roles/dataplex.dataProductViewer` on that
@@ -14,6 +15,7 @@ import 'package:terradart_google/dataplex.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/pubsub.dart';
 import 'package:terradart_google/storage.dart';
 import 'package:terradart_google/time.dart';
 
@@ -27,7 +29,12 @@ final class DataplexCatalogStack extends Stack {
         ) {
     final apiDeps = Apis.enable(
       this,
-      barrels: [Barrels.dataplex, Barrels.storage, Barrels.bigquery],
+      barrels: [
+        Barrels.dataplex,
+        Barrels.pubsub,
+        Barrels.storage,
+        Barrels.bigquery,
+      ],
       propagationDelay: const Duration(seconds: 60),
     );
 
@@ -211,6 +218,95 @@ final class DataplexCatalogStack extends Stack {
         }),
         dependsOn: [
           ResourceDependency(catalogGroup),
+          ResourceDependency(datasetType),
+          ...apiDeps,
+        ],
+      ),
+    );
+
+    // --- Dataplex metadata feed (Pub/Sub change notifications) ---------------
+    // Publishes Universal Catalog metadata changes for this project to a
+    // Pub/Sub topic. Grant the Dataplex service agent publisher on the topic
+    // before creating the feed.
+
+    final catalogChangesTopic = add(
+      GooglePubsubTopic(
+        localName: 'catalog_changes',
+        name: TfArg.literal('terradart-dataplex-catalog-changes'),
+        dependsOn: [...apiDeps],
+      ),
+    );
+
+    final feedPublisher = add(
+      GooglePubsubTopicIamMember(
+        localName: 'catalog_changes_dataplex_agent',
+        topic: TfArg.ref(catalogChangesTopic.nameRef),
+        role: TfArg.literal('roles/pubsub.publisher'),
+        member: TfArg.literal(
+          'serviceAccount:service-${current.number.interpolation}'
+          '@gcp-sa-dataplex.iam.gserviceaccount.com',
+        ),
+        dependsOn: [
+          ResourceDependency(catalogChangesTopic),
+          ResourceDependency(current),
+        ],
+      ),
+    );
+
+    // The feed-create API checks pubsub.topics.get AND publish on the
+    // Dataplex service agent; roles/pubsub.publisher covers publish only.
+    final feedViewer = add(
+      GooglePubsubTopicIamMember(
+        localName: 'catalog_changes_dataplex_agent_viewer',
+        topic: TfArg.ref(catalogChangesTopic.nameRef),
+        role: TfArg.literal('roles/pubsub.viewer'),
+        member: TfArg.literal(
+          'serviceAccount:service-${current.number.interpolation}'
+          '@gcp-sa-dataplex.iam.gserviceaccount.com',
+        ),
+        dependsOn: [
+          ResourceDependency(catalogChangesTopic),
+          ResourceDependency(current),
+        ],
+      ),
+    );
+
+    // Topic-level IAM propagates asynchronously; the feed-create check 400s
+    // if it races the grants.
+    final feedIamReady = add(
+      TimeSleep(
+        localName: 'feed_iam_propagation',
+        createDuration: TfArg.duration(const Duration(seconds: 30)),
+        triggers: TfArg.literal({
+          'publisher': 'catalog_changes_dataplex_agent',
+          'viewer': 'catalog_changes_dataplex_agent_viewer',
+        }),
+        dependsOn: [
+          ResourceDependency(feedPublisher),
+          ResourceDependency(feedViewer),
+        ],
+      ),
+    );
+
+    add(
+      GoogleDataplexMetadataFeed(
+        localName: 'catalog_changes',
+        metadataFeedId: TfArg.literal('terradart-catalog-feed'),
+        location: TfArg.literal('us-central1'),
+        scope: DataplexMetadataFeedScope(
+          projects: TfArg.literal(['projects/$projectId']),
+        ),
+        filters: DataplexMetadataFeedFilters(
+          entryTypes: TfArg.literal([
+            'projects/${current.number.interpolation}/locations/us-central1'
+                '/entryTypes/terradart-dataset',
+          ]),
+        ),
+        pubsubTopic: TfArg.ref(catalogChangesTopic.id),
+        dependsOn: [
+          ResourceDependency(catalogChangesTopic),
+          ResourceDependency(feedIamReady),
+          ResourceDependency(current),
           ResourceDependency(datasetType),
           ...apiDeps,
         ],
