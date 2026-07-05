@@ -237,7 +237,7 @@ final class DataplexCatalogStack extends Stack {
       ),
     );
 
-    add(
+    final feedPublisher = add(
       GooglePubsubTopicIamMember(
         localName: 'catalog_changes_dataplex_agent',
         topic: TfArg.ref(catalogChangesTopic.nameRef),
@@ -249,6 +249,41 @@ final class DataplexCatalogStack extends Stack {
         dependsOn: [
           ResourceDependency(catalogChangesTopic),
           ResourceDependency(current),
+        ],
+      ),
+    );
+
+    // The feed-create API checks pubsub.topics.get AND publish on the
+    // Dataplex service agent; roles/pubsub.publisher covers publish only.
+    final feedViewer = add(
+      GooglePubsubTopicIamMember(
+        localName: 'catalog_changes_dataplex_agent_viewer',
+        topic: TfArg.ref(catalogChangesTopic.nameRef),
+        role: TfArg.literal('roles/pubsub.viewer'),
+        member: TfArg.literal(
+          'serviceAccount:service-${current.number.interpolation}'
+          '@gcp-sa-dataplex.iam.gserviceaccount.com',
+        ),
+        dependsOn: [
+          ResourceDependency(catalogChangesTopic),
+          ResourceDependency(current),
+        ],
+      ),
+    );
+
+    // Topic-level IAM propagates asynchronously; the feed-create check 400s
+    // if it races the grants.
+    final feedIamReady = add(
+      TimeSleep(
+        localName: 'feed_iam_propagation',
+        createDuration: TfArg.duration(const Duration(seconds: 30)),
+        triggers: TfArg.literal({
+          'publisher': 'catalog_changes_dataplex_agent',
+          'viewer': 'catalog_changes_dataplex_agent_viewer',
+        }),
+        dependsOn: [
+          ResourceDependency(feedPublisher),
+          ResourceDependency(feedViewer),
         ],
       ),
     );
@@ -270,6 +305,7 @@ final class DataplexCatalogStack extends Stack {
         pubsubTopic: TfArg.ref(catalogChangesTopic.id),
         dependsOn: [
           ResourceDependency(catalogChangesTopic),
+          ResourceDependency(feedIamReady),
           ResourceDependency(current),
           ResourceDependency(datasetType),
           ...apiDeps,
