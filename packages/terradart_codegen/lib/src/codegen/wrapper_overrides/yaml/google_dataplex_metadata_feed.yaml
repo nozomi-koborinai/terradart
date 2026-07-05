@@ -4,6 +4,9 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
 paramOrder:
   - metadata_feed_id
   - location
