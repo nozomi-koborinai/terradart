@@ -73,6 +73,11 @@ export 'src/dataplex/google_dataplex_glossary_term.dart'
 export 'src/dataplex/google_dataplex_lake.dart' show GoogleDataplexLake;
 export 'src/dataplex/google_dataplex_lake_iam_member.dart'
     show GoogleDataplexLakeIamMember;
+export 'src/dataplex/google_dataplex_metadata_feed.dart'
+    show
+        DataplexMetadataFeedFilters,
+        DataplexMetadataFeedScope,
+        GoogleDataplexMetadataFeed;
 export 'src/dataplex/google_dataplex_task.dart'
     show
         DataplexTaskExecutionSpec,
