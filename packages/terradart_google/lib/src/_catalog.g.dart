@@ -6970,6 +6970,28 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_gke_hub_namespace`.',
   ),
   CatalogEntry(
+    tfType: 'google_gke_hub_rollout_sequence',
+    className: 'GoogleGkeHubRolloutSequence',
+    barrel: 'container',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_gke_hub_rollout_sequence`.',
+    constructorParams: <String>[
+      'localName',
+      'rolloutSequenceId',
+      'stages',
+      'displayName',
+      'autoUpgradeConfig',
+      'ignoredClustersSelector',
+      'labels',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_gke_hub_rollout_sequence`.\n\nRolloutSequence defines the desired order of upgrades.',
+  ),
+  CatalogEntry(
     tfType: 'google_gke_hub_scope',
     className: 'GoogleGkeHubScope',
     barrel: 'container',

@@ -81,9 +81,6 @@ entries:
     detected_at: 2026-07-01
     provider_version: 7.39.0
     note: skipped by wave-shipper — requires DWS-compatible regional MIG (A3 GPU / requested_run_duration); not applicable on terradart-validate e2 topology
-  - resource: google_gke_hub_rollout_sequence
-    detected_at: 2026-07-01
-    provider_version: 7.39.0
   - resource: google_iap_agent_registry_iam_binding
     detected_at: 2026-07-01
     provider_version: 7.39.0

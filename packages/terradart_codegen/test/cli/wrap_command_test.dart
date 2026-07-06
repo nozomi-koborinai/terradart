@@ -55,7 +55,7 @@ void main() {
 
   group('WrapCommand integration', () {
     test(
-        'emits 456 files (388 wrappers + _catalog.g.dart + 66 barrels + umbrella)',
+        'emits 457 files (389 wrappers + _catalog.g.dart + 66 barrels + umbrella)',
         () async {
       // Plan 5.X (v0.5.0-dev): the schemantic Layer 1 chain
       // (`generated/<type>.schema.dart` + `generated/<type>.schema.g.dart`
@@ -81,11 +81,11 @@ void main() {
             files.add(p.relative(ent.path, from: tmpOut.path));
           }
         }
-        // 389 wrappers (388 resource Layer 2 + 1 data source Layer 2) plus
+        // 390 wrappers (389 resource Layer 2 + 1 data source Layer 2) plus
         // the generated static catalog `_catalog.g.dart`, plus the derived
         // barrels: 66 per-catalog barrels (65 service + `data`) and the
-        // `terradart_google.dart` umbrella → 457 emitted .dart files.
-        expect(files, hasLength(457));
+        // `terradart_google.dart` umbrella → 458 emitted .dart files.
+        expect(files, hasLength(458));
         expect(files, contains(p.join('lib', 'src', '_catalog.g.dart')));
         expect(
           files,

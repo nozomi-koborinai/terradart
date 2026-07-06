@@ -1,0 +1,13 @@
+outputDir: container
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - rollout_sequence_id
+  - stages
+  - display_name
+  - auto_upgrade_config
+  - ignored_clusters_selector
+  - labels
+  - deletion_policy
+  - project

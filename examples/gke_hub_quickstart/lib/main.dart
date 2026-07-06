@@ -2,12 +2,13 @@
 ///
 /// Defines a `FleetStack` that enables the GKE Hub API and provisions fleet
 /// team-management scaffolding **without any cluster**:
-/// - a fleet scope (`terradart-scope`), and
-/// - a fleet namespace (`terradart-team`) inside that scope.
+/// - a fleet scope (`terradart-scope`),
+/// - a fleet namespace (`terradart-team`) inside that scope, and
+/// - a rollout sequence that stages upgrades across the project's fleet.
 ///
-/// Both are free fleet-management resources (the project's default fleet is
-/// auto-created), so the stack creates and destroys cleanly in a single
-/// project.
+/// Scope, namespace, and rollout sequence are free fleet-management resources
+/// (the project's default fleet is auto-created), so the stack creates and
+/// destroys cleanly in a single project.
 ///
 /// Exports the scope id as a typed Dart constant via `Stack.addExport`.
 /// Run `bin/infra.dart` to synth into `tf-out/`.
@@ -49,6 +50,24 @@ final class FleetStack extends Stack {
         scopeId: TfArg.literal('terradart-scope'),
         scope: TfArg.ref(scope.id),
         dependsOn: [ResourceDependency(scope)],
+      ),
+    );
+
+    add(
+      GoogleGkeHubRolloutSequence(
+        localName: 'upgrade_sequence',
+        rolloutSequenceId: TfArg.literal('terradart-rollout'),
+        stages: TfArg.literal([
+          {
+            'fleet_projects': ['projects/$projectId'],
+            // The API requires a soak duration per stage even though the
+            // schema marks it optional ("rollout sequence stage must have
+            // a soak duration").
+            'soak_duration': '60s',
+          },
+        ]),
+        displayName: TfArg.literal('TerraDart upgrade sequence'),
+        dependsOn: [ResourceDependency(apiGkeHub)],
       ),
     );
 
