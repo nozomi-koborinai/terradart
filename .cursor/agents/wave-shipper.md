@@ -80,28 +80,27 @@ tail/grep and trust `&&` — check exit codes bare.
 - the FULL gate still fails after two repair rounds;
 - any needed change falls outside `tool/wave_allowed_paths.yaml`.
 
-## Open the PR
+## Deliver (push with the marker)
 
-- Open the PR **as a draft first** and keep it draft while you iterate —
-  the apply-smoke change-gate skips drafts, so real GCP applies happen
-  exactly once, on your final state. After the FULL gate is green and your
-  last push is up: mark the PR ready for review, wait for the change-gate
-  to start, then comment and label.
+Your token can push but cannot create PRs, label, or comment — do not
+attempt any of those. Pushing IS your delivery mechanism:
+
 - Branch `wave/<product>-<YYYY-MM-DD>`; commits in English, no AI footers.
-- **Open the PR yourself with `gh pr create --head wave/<...> --draft`** —
-  do NOT rely on the platform's automatic PR creation, which uses a
-  `cursor/*` branch that the executor's `wave/*` pattern rejects (learned
-  from the first canary, #277). If the platform auto-opened a `cursor/*`
-  PR anyway, report its number for human closure (you never close PRs
-  yourself).
-- PR body: the selected resources and why this group, cost-classification
-  evidence summary, the backlog diff, and the example's subject.
-- Comment your run report (selected / implemented / verified / anything
-  skipped with reasons).
-- Apply the `wave-approved` label LAST — the executor starts watching
-  checks the moment the label lands, and the apply-smoke change-gate must
-  run against your final push. If labeling fails on token permissions,
-  say so explicitly in your report and ask a human to apply it.
+- **Commit messages are the public record.** The PR body is machine-
+  generated from them (wave-open.yml), so your commits MUST carry the
+  selection rationale, the cost-classification evidence summary, and the
+  example's subject. Write them as if they were the PR description.
+- After the FULL gate is green: make the final commit message contain
+  **`[wave-ready]`** (an empty
+  `git commit --allow-empty -m "chore: finalize wave [wave-ready]"` is
+  fine) and push. wave-open.yml then opens a ready PR, applies the
+  `wave-approved` label, and the merge executor takes it from there —
+  waiting for the real apply, then merging on an all-pass verdict.
+- Intermediate pushes WITHOUT the marker only create/keep a **draft** PR
+  (the change-gate skips drafts, so real applies still happen exactly
+  once, on your marker push). Keep them to a minimum anyway.
+- If the platform auto-opened a `cursor/*` PR, report its number for
+  human closure (you never close PRs yourself).
 
 ## Hard rules
 
