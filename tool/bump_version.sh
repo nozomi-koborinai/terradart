@@ -259,7 +259,7 @@ for f in README.md \
          website/src/content/docs/docs/index.md \
          website/src/content/docs/docs/status.md \
          website/src/content/docs/docs/getting-started.md \
-         website/src/content/docs/docs/why-terradart.mdx; do
+         website/src/content/docs/docs/why-terradart.md; do
   [ -f "$f" ] || continue
   sed_inplace "s#${OLD_MINOR_RE}\\.x#${NEW_MINOR}.x#g" "$f"
   echo "    - $f"
@@ -304,7 +304,7 @@ STALE=$(
     website/src/content/docs/docs/index.md \
     website/src/content/docs/docs/status.md \
     website/src/content/docs/docs/getting-started.md \
-    website/src/content/docs/docs/why-terradart.mdx 2>/dev/null
+    website/src/content/docs/docs/why-terradart.md 2>/dev/null
 )
 set -e
 
