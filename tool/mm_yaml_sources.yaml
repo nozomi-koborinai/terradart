@@ -418,6 +418,8 @@ files:
     upstream: mmv1/products/gkehub/Namespace.yaml
   google_gke_hub_membership:
     upstream: mmv1/products/gkehub/Membership.yaml
+  google_gke_hub_rollout_sequence:
+    upstream: mmv1/products/gkehub2/RolloutSequence.yaml
   # Wave 16 (Logging analytics extension)
   google_logging_log_scope:
     upstream: mmv1/products/logging/LogScope.yaml
