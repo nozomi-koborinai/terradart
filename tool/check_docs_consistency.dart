@@ -59,7 +59,7 @@ Future<void> main() async {
   );
   _checkPhrase(
     errors,
-    'website/src/content/docs/docs/why-terradart.mdx',
+    'website/src/content/docs/docs/why-terradart.md',
     '$curatedFactoryCount curated resource factories + 1 data source',
     '($catalogEntryCount catalog entries)',
   );
@@ -73,7 +73,7 @@ Future<void> main() async {
     'website/src/content/docs/docs/index.md',
     'website/src/content/docs/docs/status.md',
     'website/src/content/docs/docs/getting-started.md',
-    'website/src/content/docs/docs/why-terradart.mdx',
+    'website/src/content/docs/docs/why-terradart.md',
     'website/src/content/docs/docs/how-its-built.mdx',
   ]) {
     _checkNoStaleVersionLine(errors, minor, page);

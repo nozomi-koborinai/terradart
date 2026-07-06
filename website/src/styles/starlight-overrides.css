@@ -3,6 +3,16 @@
 :root {
   --sl-font: "Inter", "Helvetica Neue", system-ui, sans-serif;
   --sl-font-mono: "JetBrains Mono", "SF Mono", Consolas, monospace;
+  /* Docs layout — symmetric gutters; wider nav + prose (inspired by genkit-ai/docsite). */
+  --sl-sidebar-width: 20rem;
+  --sl-content-width: 50rem;
+}
+
+/* Starlight pushes prose right when a page TOC is present (`auto 0` on .main-pane). */
+@media (min-width: 72rem) {
+  [data-has-sidebar][data-has-toc] .main-pane {
+    --sl-content-margin-inline: 1rem;
+  }
 }
 
 :root[data-theme="light"] {
