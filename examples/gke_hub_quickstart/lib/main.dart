@@ -60,6 +60,10 @@ final class FleetStack extends Stack {
         stages: TfArg.literal([
           {
             'fleet_projects': ['projects/$projectId'],
+            // The API requires a soak duration per stage even though the
+            // schema marks it optional ("rollout sequence stage must have
+            // a soak duration").
+            'soak_duration': '60s',
           },
         ]),
         displayName: TfArg.literal('TerraDart upgrade sequence'),
