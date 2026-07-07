@@ -56,7 +56,13 @@ jobs:
             echo
             echo "Files changed: $(git diff --name-only "origin/main...$HEAD_SHA" | wc -l | tr -d ' ')"
           } > "$body_file"
-          title=$(git log -1 --format=%s "$HEAD_SHA" | sed 's/ \[wave-ready\]//')
+          # Prefer the branch's first feat/fix subject as the PR title — the
+          # HEAD commit is often just the [wave-ready] finalize marker, which
+          # would otherwise become the squash-merge title on main.
+          title=$(git log --format=%s "origin/main..$HEAD_SHA" | grep -E '^(feat|fix)' | tail -1 || true)
+          if [ -z "$title" ]; then
+            title=$(git log -1 --format=%s "$HEAD_SHA" | sed 's/ \[wave-ready\]//')
+          fi
 
           if [ -z "$number" ]; then
             if [ "$ready" = "true" ]; then
