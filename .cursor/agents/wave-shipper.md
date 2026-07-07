@@ -31,7 +31,11 @@ verification pitfalls, cost-classify rules, and guardrails all bind you.
 - Prefer example subject matter that CAN be really applied: the executor
   refuses to auto-merge a Wave whose example is skip-listed, so a Wave that
   needs `apply_smoke_skip.yaml` will end as a human-merge PR — acceptable
-  when unavoidable, but prefer apply-able designs.
+  when unavoidable, but prefer apply-able designs. **When the only sensible
+  example IS skip-listed** (e.g. IAM adjuncts belonging in iam_quickstart),
+  say so explicitly in the feat commit message ("example is skip-listed:
+  <reason> — human merge expected") so the human reviewer knows the
+  auto-merge refusal is by design, not a defect.
 
 ## Implement
 
