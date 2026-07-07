@@ -10,11 +10,39 @@ verification pitfalls, cost-classify rules, and guardrails all bind you.
 
 ## Find the work
 
-1. `tool/curation_backlog.yaml` empty of entries → report "backlog empty"
+1. An OPEN PR whose head branch matches `wave/*` already exists
+   (`gh pr list --state open --json number,headRefName`)? Check its CI:
+   `gh pr checks <number>` —
+   - failures OTHER than the `verify + merge` check → the wave is **red**:
+     do NOT start a new Wave; go to **Repair a red wave** below.
+     (`verify + merge` alone failing is the merge executor's verdict for
+     humans — e.g. a skip-listed example — not something you can repair.)
+   - otherwise (running or green) → report "wave in flight" and exit 0
+     (WIP limit is 1 — never start a second Wave).
+2. `tool/curation_backlog.yaml` empty of entries → report "backlog empty"
    and exit 0 (normal).
-2. An OPEN PR whose head branch matches `wave/*` already exists
-   (`gh pr list --state open --json headRefName`) → report "wave in flight"
-   and exit 0 (WIP limit is 1 — never start a second Wave).
+
+## Repair a red wave
+
+Instead of shipping a new Wave, fix the one that is failing — checks-first,
+evidence-first:
+
+- **Attempt limit: 2 repair rounds per PR.** Count your own prior repair
+  commits on the branch (`git log --oneline origin/main..HEAD | grep -c
+  'fix(repair)'`); if this would be the third round, do NOT implement —
+  report the failure with the quoted error and exit (escalation).
+- Pull the failing run's log (`gh run view <run_id> --log`) and QUOTE the
+  underlying error (terraform apply error, test failure, gate message) in
+  your report and commit message. Never repair without quoted evidence.
+- Classify like the diagnosis rubric: example config / missing API
+  enablement / API-required-but-schema-optional fields / IAM grants on
+  service agents → fix the example (or override) yourself. Factory codegen
+  bugs, harness bugs, or anything outside `tool/wave_allowed_paths.yaml`
+  → escalate instead.
+- Commit as `fix(repair): <what> — <quoted error fragment>`, push WITHOUT
+  the marker first and wait for CI (draft = no real applies burned), then
+  push the `[wave-ready]` marker once required checks are green. The
+  change-gate's real apply and the merge executor take it from there.
 
 ## Select the Wave
 
