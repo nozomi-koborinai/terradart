@@ -9,6 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   genkit: any
+  google_fonts: any
   lunch_concierge_shared:
     path: ../shared
 
