@@ -241,7 +241,7 @@ Foundational
 - [Secret Manager (write-only fields)](examples/secret_manager_quickstart/)
 - [Cloud Scheduler → Pub/Sub target](examples/cloud_scheduler_quickstart/)
 - [Apigee data collector + analytics datastore](examples/apigee_quickstart/)
-- [IAM members across Pub/Sub, Tasks, Secret Manager, and IAP App Engine](examples/iam_quickstart/)
+- [IAM members across Pub/Sub, Tasks, Secret Manager, and IAP (App Engine, Agent Registry, location web)](examples/iam_quickstart/)
 
 Compute & networking
 

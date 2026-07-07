@@ -1,0 +1,30 @@
+outputDir: iap
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Additive IAM grant for Identity-Aware Proxy access on the **Agent
+  /// Registry** at a regional location.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [location]: regional location (e.g. `'us-central1'`).
+  /// - [role]: typically `'roles/iap.httpsResourceAccessor'`.
+  /// - [member]: IAM principal (`user:…`, `group:…`, `serviceAccount:…`).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleIapAgentRegistryIamMember(
+  ///   localName: 'agent_registry_invoker',
+  ///   location: TfArg.literal('us-central1'),
+  ///   role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+  ///   member: TfArg.ref(sa.iamMember),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - role
+  - member
+  - condition
+  - project
