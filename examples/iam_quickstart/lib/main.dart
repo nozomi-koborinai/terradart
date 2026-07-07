@@ -10,12 +10,14 @@
 ///   5. `google_iap_app_engine_service_iam_member`
 ///   6. `google_iap_app_engine_version_iam_member`
 ///   7. `google_iap_web_type_app_engine_iam_member`
+///   8. `google_iap_agent_registry_iam_member`
+///   9. `google_iap_location_web_iam_member`
 ///
 /// IAM-core resources (custom role, project binding, SA impersonation, SA key):
-///   8. `google_project_iam_custom_role`
-///   9. `google_project_iam_member`
-///  10. `google_service_account_iam_member`
-///  11. `google_service_account_key`
+///  10. `google_project_iam_custom_role`
+///  11. `google_project_iam_member`
+///  12. `google_service_account_iam_member`
+///  13. `google_service_account_key`
 ///
 /// WIF (0.12.5 debt): `google_iam_workload_identity_pool_provider` with
 /// sealed [IamWorkloadIdentityPoolProviderOidcTrust] for GitHub Actions.
@@ -252,7 +254,32 @@ final class IamShowcaseStack extends Stack {
       ),
     );
 
-    // ---- 8. Custom role: minimal Cloud Storage observer -------------------
+    // ---- 8–9. IAP regional: Agent Registry and location-scoped web access ----
+    //
+    // These bind IAP access at a regional location without requiring App
+    // Engine or a backend service resource in-stack.
+
+    add(
+      GoogleIapAgentRegistryIamMember(
+        localName: 'agent_registry_invoker',
+        location: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+        member: saMember,
+        dependsOn: [ResourceDependency(apiIap)],
+      ),
+    );
+
+    add(
+      GoogleIapLocationWebIamMember(
+        localName: 'location_web_invoker',
+        location: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+        member: saMember,
+        dependsOn: [ResourceDependency(apiIap)],
+      ),
+    );
+
+    // ---- 10. Custom role: minimal Cloud Storage observer -------------------
     //
     // A least-privilege custom role granting read-only access to GCS
     // objects + buckets. Useful as a building block when a predefined
@@ -276,7 +303,7 @@ final class IamShowcaseStack extends Stack {
       ),
     );
 
-    // ---- 9. Project-level binding: grant custom role to demo SA -----------
+    // ---- 11. Project-level binding: grant custom role to demo SA -----------
     //
     // Wait for the custom role to exist before referencing it.
 
@@ -292,7 +319,7 @@ final class IamShowcaseStack extends Stack {
       ),
     );
 
-    // ---- 10. Service-account-level binding: impersonation ------------------
+    // ---- 12. Service-account-level binding: impersonation ------------------
     //
     // A second SA represents whoever needs to impersonate `demo`. Granting
     // `roles/iam.serviceAccountUser` on `demo` lets the second SA generate
@@ -316,7 +343,7 @@ final class IamShowcaseStack extends Stack {
       ),
     );
 
-    // ---- 11. Long-lived SA key for the demo SA -----------------------------
+    // ---- 13. Long-lived SA key for the demo SA -----------------------------
     //
     // Only do this when integrating with a system that cannot accept
     // short-lived OAuth tokens. The `private_key` output is sensitive --

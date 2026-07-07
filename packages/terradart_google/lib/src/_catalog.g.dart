@@ -7205,6 +7205,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_iam_workload_identity_pool_provider`.\n\nA configuration for an external identity provider.\n\nConfigures a **Workload Identity Federation provider** inside an existing\n[GoogleIamWorkloadIdentityPool] — the trust binding that maps external\nidentities (GitHub Actions OIDC, AWS, SAML, X.509) into GCP subjects.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `workloadIdentityPoolId`: pool ID string **or**\n  `TfArg.ref(pool.nameRef)` from [GoogleIamWorkloadIdentityPool].\n- `workloadIdentityPoolProviderId`: provider ID (4–32 chars, `[a-z0-9-]`).\n- [trustSource]: exactly one trust binding — sealed so the API\'s\n  `exactly_one_of` (`oidc` / `aws` / `saml` / `x509`) is enforced at\n  compile time.\n\nExample (GitHub Actions OIDC):\n```dart\nfinal githubProvider = GoogleIamWorkloadIdentityPoolProvider(\n  localName: \'github_provider\',\n  workloadIdentityPoolId: TfArg.ref(pool.nameRef),\n  workloadIdentityPoolProviderId: TfArg.literal(\'github-actions\'),\n  displayName: TfArg.literal(\'GitHub Actions\'),\n  attributeCondition: TfArg.literal(\n    \'assertion.repository_owner == "my-org"\',\n  ),\n  attributeMapping: {\n    \'google.subject\': TfArg.literal(\'assertion.repository\'),\n    \'attribute.repository_owner\': TfArg.literal(\n      \'assertion.repository_owner\',\n    ),\n  },\n  trustSource: IamWorkloadIdentityPoolProviderOidcTrust(\n    allowedAudiences: [TfArg.literal(\'https://github.com/my-org\')],\n    issuerUri: TfArg.literal(\n      \'https://token.actions.githubusercontent.com\',\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_iap_agent_registry_iam_member',
+    className: 'GoogleIapAgentRegistryIamMember',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_iap_agent_registry_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'role',
+      'member',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_agent_registry_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access on the **Agent\nRegistry** at a regional location.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [location]: regional location (e.g. `\'us-central1\'`).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal (`user:…`, `group:…`, `serviceAccount:…`).\n\nExample:\n```dart\nGoogleIapAgentRegistryIamMember(\n  localName: \'agent_registry_invoker\',\n  location: TfArg.literal(\'us-central1\'),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_iap_app_engine_service_iam_member',
     className: 'GoogleIapAppEngineServiceIamMember',
     barrel: 'iap',
@@ -7244,6 +7263,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_app_engine_version_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access on one App Engine\n**version** within a service.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [appId]: App Engine application ID (usually the GCP project ID).\n- [service]: App Engine service name (e.g. `\'default\'`).\n- [versionId]: version ID within the service (e.g. `\'v1\'`).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal string.\n\nExample:\n```dart\nGoogleIapAppEngineVersionIamMember(\n  localName: \'v1_invoker\',\n  appId: TfArg.literal(projectId),\n  service: TfArg.literal(\'default\'),\n  versionId: TfArg.literal(\'v1\'),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_location_web_iam_member',
+    className: 'GoogleIapLocationWebIamMember',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_iap_location_web_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'role',
+      'member',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_location_web_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access on **web\nresources** at a regional location.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [location]: regional location (e.g. `\'us-central1\'`).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal (`user:…`, `group:…`, `serviceAccount:…`).\n\nExample:\n```dart\nGoogleIapLocationWebIamMember(\n  localName: \'location_web_invoker\',\n  location: TfArg.literal(\'us-central1\'),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_iap_web_backend_service_iam_binding',
