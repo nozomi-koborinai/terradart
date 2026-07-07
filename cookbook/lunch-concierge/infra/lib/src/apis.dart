@@ -5,10 +5,15 @@ import 'package:terradart_google/project.dart';
 import 'constants.dart';
 
 final class LunchApis {
-  const LunchApis({required this.apiDeps, required this.vertexApi});
+  const LunchApis({
+    required this.apiDeps,
+    required this.vertexApi,
+    required this.iapApi,
+  });
 
   final List<ResourceDependency> apiDeps;
   final GoogleProjectService vertexApi;
+  final GoogleProjectService iapApi;
 }
 
 LunchApis addApisAndRepository(Stack stack) {
@@ -31,6 +36,14 @@ LunchApis addApisAndRepository(Stack stack) {
     ),
   );
 
+  final iapApi = stack.add(
+    GoogleProjectService(
+      localName: 'api_iap',
+      service: TfArg.literal('iap.googleapis.com'),
+      disableOnDestroy: TfArg.literal(false),
+    ),
+  );
+
   stack.add(
     GoogleArtifactRegistryRepository(
       localName: 'app_images',
@@ -42,5 +55,5 @@ LunchApis addApisAndRepository(Stack stack) {
     ),
   );
 
-  return LunchApis(apiDeps: apiDeps, vertexApi: vertexApi);
+  return LunchApis(apiDeps: apiDeps, vertexApi: vertexApi, iapApi: iapApi);
 }

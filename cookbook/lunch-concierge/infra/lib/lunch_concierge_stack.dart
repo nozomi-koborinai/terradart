@@ -46,6 +46,7 @@ final class LunchStack extends Stack {
       invokerEmail: invokerEmail,
       apiDeps: apis.apiDeps,
       vertexApi: apis.vertexApi,
+      iapApi: apis.iapApi,
       network: network,
       database: database,
       identity: identity,

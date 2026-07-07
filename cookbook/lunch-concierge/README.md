@@ -81,6 +81,26 @@ terraform apply
 The targeted first apply creates the Artifact Registry repository so the image
 can be pushed. The second apply creates or updates the rest of the stack.
 
+## Access control (IAP)
+
+The Cloud Run service runs with IAP enabled: the run.app URL redirects to a
+Google sign-in, and only `INVOKER_EMAIL` holds
+`roles/iap.httpsResourceAccessor` (plus a direct `roles/run.invoker` grant as
+a token-based fallback). The stack grants `roles/run.invoker` to the IAP
+service agent, which must exist before the first apply. Provision it once per
+project:
+
+```bash
+gcloud beta services identity create \
+  --service=iap.googleapis.com \
+  --project="$GCP_PROJECT_ID"
+```
+
+The `google_iap_web_cloud_run_service_iam_member` grant uses a hand-rolled
+`Resource` subclass (`infra/lib/src/iap_access.dart`) because the
+terradart_google catalog has not curated IAP resources yet — it doubles as an
+example of expressing an uncurated resource without leaving Dart.
+
 ## Database bootstrap
 
 The Cloud Run service connects as the Cloud SQL IAM database user:

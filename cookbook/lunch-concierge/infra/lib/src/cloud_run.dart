@@ -1,8 +1,10 @@
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_run.dart';
+import 'package:terradart_google/data.dart';
 
 import 'constants.dart';
 import 'database.dart';
+import 'iap_access.dart';
 import 'network.dart';
 import 'runtime_identity.dart';
 
@@ -12,6 +14,7 @@ GoogleCloudRunV2Service addCloudRunService({
   required String invokerEmail,
   required List<ResourceDependency> apiDeps,
   required Resource vertexApi,
+  required Resource iapApi,
   required LunchNetwork network,
   required LunchDatabase database,
   required LunchRuntimeIdentity identity,
@@ -22,6 +25,7 @@ GoogleCloudRunV2Service addCloudRunService({
       name: TfArg.literal(serviceName),
       location: TfArg.literal(region),
       ingress: TfArg.literal(Ingress.all),
+      iapEnabled: TfArg.literal(true),
       deletionProtection: TfArg.literal(false),
       template: CloudRunV2ServiceTemplate(
         serviceAccount: TfArg.ref(identity.serviceAccount.email),
@@ -73,6 +77,7 @@ GoogleCloudRunV2Service addCloudRunService({
       dependsOn: [
         ...apiDeps,
         ResourceDependency(vertexApi),
+        ResourceDependency(iapApi),
         ResourceDependency(network.subnet),
         ResourceDependency(network.runConnector),
         ResourceDependency(database.sql),
@@ -94,6 +99,36 @@ GoogleCloudRunV2Service addCloudRunService({
       role: TfArg.literal('roles/run.invoker'),
       member: TfArg.literal('user:$invokerEmail'),
       dependsOn: [ResourceDependency(service)],
+    ),
+  );
+
+  final project = stack.addData(GoogleProject(localName: 'project'));
+
+  // IAP fronts the run.app URL, so the IAP service agent is the caller
+  // Cloud Run must authorize. The agent exists once the IAP API identity
+  // is provisioned (see README bootstrap note).
+  stack.add(
+    GoogleCloudRunV2ServiceIamMember(
+      localName: 'iap_agent_invoker',
+      name: TfArg.ref(service.nameRef),
+      location: TfArg.literal(region),
+      role: TfArg.literal('roles/run.invoker'),
+      member: TfArg.literal(
+        'serviceAccount:service-${project.number.interpolation}'
+        '@gcp-sa-iap.iam.gserviceaccount.com',
+      ),
+      dependsOn: [ResourceDependency(service), ResourceDependency(iapApi)],
+    ),
+  );
+
+  stack.add(
+    IapWebCloudRunServiceIamMember(
+      localName: 'speaker_iap_access',
+      cloudRunServiceName: TfArg.ref(service.nameRef),
+      location: TfArg.literal(region),
+      role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+      member: TfArg.literal('user:$invokerEmail'),
+      dependsOn: [ResourceDependency(service), ResourceDependency(iapApi)],
     ),
   );
 
