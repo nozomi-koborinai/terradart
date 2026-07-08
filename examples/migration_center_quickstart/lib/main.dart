@@ -1,4 +1,4 @@
-/// Migration Center quickstart — settings, source, discovery, import, and reports.
+/// Migration Center quickstart — settings, source, discovery, import, data file, and reports.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -54,14 +54,27 @@ final class MigrationCenterStack extends Stack {
       ),
     );
 
+    final importJob = GoogleMigrationCenterImportJob(
+      localName: 'upload',
+      location: TfArg.literal(location),
+      importJobId: TfArg.literal('terradart-import'),
+      assetSource: TfArg.ref(source.nameRef),
+      displayName: TfArg.literal('TerraDart import job'),
+      dependsOn: [...apiDeps, ResourceDependency(source)],
+    );
+    add(importJob);
+
     add(
-      GoogleMigrationCenterImportJob(
-        localName: 'upload',
+      GoogleMigrationCenterImportDataFile(
+        localName: 'payload',
         location: TfArg.literal(location),
-        importJobId: TfArg.literal('terradart-import'),
-        assetSource: TfArg.ref(source.nameRef),
-        displayName: TfArg.literal('TerraDart import job'),
-        dependsOn: [...apiDeps, ResourceDependency(source)],
+        importJob: TfArg.ref(importJob.nameRef),
+        importDataFileId: TfArg.literal('terradart-import-file'),
+        format: TfArg.literal(
+          MigrationCenterImportDataFileFormat.rvtoolsXlsx,
+        ),
+        displayName: TfArg.literal('TerraDart import payload'),
+        dependsOn: [...apiDeps, ResourceDependency(importJob)],
       ),
     );
 

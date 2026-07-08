@@ -97,9 +97,6 @@ entries:
     detected_at: 2026-07-01
     provider_version: 7.39.0
     note: skipped by wave-shipper — authoritative IAM adjunct; curate *_iam_member only per maintainer policy
-  - resource: google_migration_center_import_data_file
-    detected_at: 2026-07-01
-    provider_version: 7.39.0
   - resource: google_network_services_agent_gateway
     detected_at: 2026-07-01
     provider_version: 7.39.0

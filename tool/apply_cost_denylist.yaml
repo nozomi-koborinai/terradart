@@ -192,6 +192,7 @@ google_healthcare_hl7_v2_store: safe  # apply-verified safe (existing example)
 google_healthcare_hl7_v2_store_iam_member: safe  # apply-verified safe (existing example)
 google_iap_agent_registry_iam_member: safe  # gcp-cost: no Cloud Billing Catalog SKU (IAP IAM binding adjunct); billing-behavior: IAM binding only, no standalone billing
 google_iap_location_web_iam_member: safe  # gcp-cost: no Cloud Billing Catalog SKU (IAP IAM binding adjunct); billing-behavior: IAM binding only, no standalone billing
+google_migration_center_import_data_file: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_services — Migration Center absent from catalog); billing-behavior: import data file metadata only — no existence/hourly charge for the resource itself
 google_monitoring_alert_policy: safe  # apply-verified safe (existing example)
 google_monitoring_custom_service: safe  # apply-verified safe (existing example)
 google_monitoring_dashboard: safe  # apply-verified safe (existing example)

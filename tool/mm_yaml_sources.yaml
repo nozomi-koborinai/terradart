@@ -727,6 +727,8 @@ files:
     upstream: mmv1/products/migrationcenter/AssetsExportJob.yaml
   google_migration_center_discovery_client:
     upstream: mmv1/products/migrationcenter/DiscoveryClient.yaml
+  google_migration_center_import_data_file:
+    upstream: mmv1/products/migrationcenter/ImportDataFile.yaml
   google_migration_center_import_job:
     upstream: mmv1/products/migrationcenter/ImportJob.yaml
   google_migration_center_report:

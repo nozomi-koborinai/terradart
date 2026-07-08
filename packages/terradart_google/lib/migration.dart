@@ -12,6 +12,11 @@ export 'src/migration/google_migration_center_discovery_client.dart'
     show
         GoogleMigrationCenterDiscoveryClient,
         MigrationCenterDiscoveryClientDeletionPolicy;
+export 'src/migration/google_migration_center_import_data_file.dart'
+    show
+        GoogleMigrationCenterImportDataFile,
+        MigrationCenterImportDataFileDeletionPolicy,
+        MigrationCenterImportDataFileFormat;
 export 'src/migration/google_migration_center_import_job.dart'
     show GoogleMigrationCenterImportJob, MigrationCenterImportJobDeletionPolicy;
 export 'src/migration/google_migration_center_report.dart'

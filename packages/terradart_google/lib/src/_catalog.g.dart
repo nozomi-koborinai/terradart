@@ -7787,6 +7787,30 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_migration_center_discovery_client`.\n\nDiscoveryClient represents an on-premise discovery agent that scans\ninfrastructure and uploads discovery data to Migration Center.\n\nMigration Center on-prem discovery client bound to a [GoogleMigrationCenterSource].\n\nSet [source] to `TfArg.ref(source.nameRef)` and [serviceAccount] to the\ndiscovery agent service account email.',
   ),
   CatalogEntry(
+    tfType: 'google_migration_center_import_data_file',
+    className: 'GoogleMigrationCenterImportDataFile',
+    barrel: 'migration',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_migration_center_import_data_file`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'importJob',
+      'importDataFileId',
+      'format',
+      'displayName',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'MigrationCenterImportDataFileDeletionPolicy',
+      'MigrationCenterImportDataFileFormat',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_migration_center_import_data_file`.\n\nImportDataFile represents a user-uploaded data payload file containing\ninfrastructure discovery data.\n\nMigration Center import data file — upload slot for an import job payload.\n\nSet [importJob] to `TfArg.ref(importJob.nameRef)` and pick a [format]\nmatching the file you upload to the signed URI in [uploadFileInfo].',
+  ),
+  CatalogEntry(
     tfType: 'google_migration_center_import_job',
     className: 'GoogleMigrationCenterImportJob',
     barrel: 'migration',
