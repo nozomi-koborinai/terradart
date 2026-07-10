@@ -365,7 +365,7 @@ final class _Headline extends StatelessWidget {
         ),
         const SizedBox(height: 14),
         const Text(
-          '場所・気分・予算を入れると、Genkit と Vertex AI が候補を考えて、Cloud SQL に履歴を残します。',
+          '場所・気分・予算を入れると、Genkit と Agent Platform が候補を考えて、Cloud SQL に履歴を残します。',
           style: TextStyle(
             color: _Palette.muted,
             fontSize: 15,

@@ -1,8 +1,8 @@
 # Lunch Concierge
 
 Lunch Concierge is a full-stack TerraDart cookbook recipe for showing how
-Flutter Web, a Dart server, Genkit, Vertex AI, Cloud Run, and Cloud SQL can be
-connected through Dart-authored infrastructure.
+Flutter Web, a Dart server, Genkit, Agent Platform, Cloud Run, and Cloud SQL
+can be connected through Dart-authored infrastructure.
 
 ## Architecture
 
@@ -15,7 +15,7 @@ Cloud Run service: lunch-concierge
     - Flutter Web static files
     - shelf HTTP server
     - genkit_shelf endpoint
-    - Genkit Dart + Vertex AI Gemini
+    - Genkit Dart + Agent Platform (Gemini)
     - postgres client
 
   cloud-sql-proxy sidecar
