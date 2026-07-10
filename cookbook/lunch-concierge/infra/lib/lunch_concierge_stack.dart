@@ -1,7 +1,7 @@
 /// Lunch Concierge infrastructure.
 ///
 /// This Stack keeps Terraform as the execution layer while authoring the
-/// Cloud Run + Cloud SQL + Vertex AI surface in Dart.
+/// Cloud Run + Cloud SQL + Agent Platform surface in Dart.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
