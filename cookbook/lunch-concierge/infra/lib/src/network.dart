@@ -8,14 +8,12 @@ final class LunchNetwork {
   const LunchNetwork({
     required this.vpc,
     required this.subnet,
-    required this.runConnector,
     required this.psaRange,
     required this.psaConnection,
   });
 
   final GoogleComputeNetwork vpc;
   final GoogleComputeSubnetwork subnet;
-  final GoogleVpcAccessConnector runConnector;
   final GoogleComputeGlobalAddress psaRange;
   final GoogleServiceNetworkingConnection psaConnection;
 }
@@ -39,22 +37,6 @@ LunchNetwork addNetwork(Stack stack, List<ResourceDependency> apiDeps) {
       ipCidrRange: TfArg.literal(subnetCidr),
       privateIpGoogleAccess: TfArg.literal(true),
       dependsOn: [ResourceDependency(vpc)],
-    ),
-  );
-
-  final runConnector = stack.add(
-    GoogleVpcAccessConnector(
-      localName: 'run_connector',
-      name: TfArg.literal(runConnectorName),
-      region: TfArg.literal(region),
-      ipCidrRange: TfArg.literal(runConnectorCidr),
-      network: TfArg.ref(vpc.id),
-      minInstances: TfArg.literal(2),
-      maxInstances: TfArg.literal(3),
-      dependsOn: [
-        ...apiDeps,
-        ResourceDependency(vpc),
-      ],
     ),
   );
 
@@ -86,7 +68,6 @@ LunchNetwork addNetwork(Stack stack, List<ResourceDependency> apiDeps) {
   return LunchNetwork(
     vpc: vpc,
     subnet: subnet,
-    runConnector: runConnector,
     psaRange: psaRange,
     psaConnection: psaConnection,
   );
