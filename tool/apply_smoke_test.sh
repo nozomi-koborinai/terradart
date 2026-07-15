@@ -222,4 +222,27 @@ while IFS= read -r type; do
   fi
 done <<< "$debt_types"
 
+# 14. Wave skiplist gate: a wave/* PR that touches a skip-listed example will
+#     never auto-merge (wave-merge refuses) and used to stall WIP-1 forever
+#     because the daily shipper treated verify+merge-only as "human verdict,
+#     don't repair" (#296, 2026-07). Fail this required CI check instead so
+#     the shipper enters Repair (make applyable / un-skip) rather than no-op.
+head_ref="${GITHUB_HEAD_REF:-}"
+if [[ -z "$head_ref" ]]; then
+  head_ref="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || true)"
+fi
+if [[ "$head_ref" == wave/* ]]; then
+  base_sha="${GITHUB_BASE_SHA:-}"
+  if [[ -z "$base_sha" ]]; then
+    if git rev-parse --verify origin/main >/dev/null 2>&1; then
+      base_sha="$(git merge-base HEAD origin/main)"
+    else
+      base_sha="$(git merge-base HEAD main 2>/dev/null || echo HEAD)"
+    fi
+  fi
+  git diff --name-only "${base_sha}...HEAD" \
+    | dart tool/check_wave_skiplist_gate.dart --head-ref "$head_ref" \
+    || fail "wave skiplist gate failed — see message above"
+fi
+
 echo "apply_smoke_test: OK"
