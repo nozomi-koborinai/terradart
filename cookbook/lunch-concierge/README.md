@@ -23,6 +23,10 @@ Cloud Run service: lunch-concierge
     - IAM DB authentication
     - localhost:5432
   |
+  | Direct VPC egress
+  v
+VPC + Private Service Access
+  |
   v
 Cloud SQL PostgreSQL
   - private IP only
@@ -32,6 +36,10 @@ Cloud SQL PostgreSQL
 TerraDart defines the Artifact Registry repository, Cloud Run service, Cloud
 SQL instance/database/IAM user, VPC, Private Service Access, IAM grants, API
 enablement, and generated app exports.
+
+Cloud Run reaches the database through Direct VPC egress with
+`PRIVATE_RANGES_ONLY`. This keeps the private database path without a
+Serverless VPC Access connector or its baseline compute cost.
 
 ## Layout
 
