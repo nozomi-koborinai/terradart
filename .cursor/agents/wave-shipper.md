@@ -15,8 +15,15 @@ verification pitfalls, cost-classify rules, and guardrails all bind you.
    `gh pr checks <number>` —
    - failures OTHER than the `verify + merge` check → the wave is **red**:
      do NOT start a new Wave; go to **Repair a red wave** below.
-     (`verify + merge` alone failing is the merge executor's verdict for
-     humans — e.g. a skip-listed example — not something you can repair.)
+   - `verify + merge` alone failing with a **skip-listed example** reason
+     (`example … is skip-listed` / `human merge required`) → also **red**:
+     that is *repairable* (make the example applyable and remove it from
+     `tool/apply_smoke_skip.yaml` / `apply_smoke_pr_skip.yaml`, or drop the
+     example change into `tool/example_debt.yaml`). Do NOT treat it as a
+     human-only no-op — that stalls WIP-1 forever (#296). Go to Repair.
+   - `verify + merge` alone failing for a true executor/human verdict that
+     you cannot fix in-scope (e.g. scope-ledger rejection outside
+     `tool/wave_allowed_paths.yaml`) → report escalation and exit 0.
    - otherwise (running or green) → report "wave in flight" and exit 0
      (WIP limit is 1 — never start a second Wave).
 2. `tool/curation_backlog.yaml` empty of entries → report "backlog empty"
@@ -57,13 +64,15 @@ evidence-first:
   needs external artifacts (real certs/secrets/registrations), or its
   example could not be applied against a standalone GCP project.
 - Prefer example subject matter that CAN be really applied: the executor
-  refuses to auto-merge a Wave whose example is skip-listed, so a Wave that
-  needs `apply_smoke_skip.yaml` will end as a human-merge PR — acceptable
-  when unavoidable, but prefer apply-able designs. **When the only sensible
-  example IS skip-listed** (e.g. IAM adjuncts belonging in iam_quickstart),
-  say so explicitly in the feat commit message ("example is skip-listed:
-  <reason> — human merge expected") so the human reviewer knows the
-  auto-merge refusal is by design, not a defect.
+  refuses to auto-merge a Wave whose example is skip-listed, and CI's
+  `apply_smoke.sh selection test` fails closed via
+  `tool/check_wave_skiplist_gate.dart` when a `wave/*` PR touches a
+  skip-listed example (so WIP-1 cannot silently stall behind a
+  human-merge-only verdict). A Wave that needs `apply_smoke_skip.yaml`
+  must either make the example applyable and remove the skip entry in the
+  same PR, or drop the factories into `tool/example_debt.yaml` and pick
+  another product — do **not** push `[wave-ready]` while the example stays
+  skip-listed.
 
 ## Implement
 
