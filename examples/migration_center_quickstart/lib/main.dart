@@ -1,4 +1,4 @@
-/// Migration Center quickstart — settings, source, discovery, import, and data file.
+/// Migration Center quickstart — settings, sources, discovery, import, and data file.
 ///
 /// Report / report-config are deferred to [tool/example_debt.yaml]: they need
 /// curated `google_migration_center_group` + `preference_set` factories (not
@@ -21,6 +21,7 @@ final class MigrationCenterStack extends Stack {
           ],
         ) {
     const location = 'us-central1';
+    const importJobId = 'terradart-import';
 
     final apiDeps = Apis.enable(
       this,
@@ -36,15 +37,27 @@ final class MigrationCenterStack extends Stack {
       ),
     );
 
-    final source = GoogleMigrationCenterSource(
+    // Upload source for import jobs; discovery clients require a separate
+    // SOURCE_TYPE_DISCOVERY_CLIENT source (API 400 otherwise).
+    final uploadSource = GoogleMigrationCenterSource(
       localName: 'inventory',
       location: TfArg.literal(location),
       sourceId: TfArg.literal('terradart-source'),
-      displayName: TfArg.literal('TerraDart inventory source'),
+      displayName: TfArg.literal('TerraDart upload source'),
       type: TfArg.literal(MigrationCenterSourceType.sourceTypeUpload),
       dependsOn: apiDeps,
     );
-    add(source);
+    add(uploadSource);
+
+    final discoverySource = GoogleMigrationCenterSource(
+      localName: 'discovery',
+      location: TfArg.literal(location),
+      sourceId: TfArg.literal('terradart-discovery-source'),
+      displayName: TfArg.literal('TerraDart discovery source'),
+      type: TfArg.literal(MigrationCenterSourceType.sourceTypeDiscoveryClient),
+      dependsOn: apiDeps,
+    );
+    add(discoverySource);
 
     // Discovery client rejects a non-existent service account email at apply
     // time — provision the SA in-stack and pass its email ref.
@@ -61,12 +74,12 @@ final class MigrationCenterStack extends Stack {
         localName: 'agent',
         location: TfArg.literal(location),
         discoveryClientId: TfArg.literal('terradart-discovery'),
-        source: TfArg.ref(source.nameRef),
+        source: TfArg.ref(discoverySource.nameRef),
         serviceAccount: TfArg.ref(discoverySa.email),
         displayName: TfArg.literal('TerraDart discovery client'),
         dependsOn: [
           ...apiDeps,
-          ResourceDependency(source),
+          ResourceDependency(discoverySource),
           ResourceDependency(discoverySa),
         ],
       ),
@@ -75,18 +88,20 @@ final class MigrationCenterStack extends Stack {
     final importJob = GoogleMigrationCenterImportJob(
       localName: 'upload',
       location: TfArg.literal(location),
-      importJobId: TfArg.literal('terradart-import'),
-      assetSource: TfArg.ref(source.nameRef),
+      importJobId: TfArg.literal(importJobId),
+      assetSource: TfArg.ref(uploadSource.nameRef),
       displayName: TfArg.literal('TerraDart import job'),
-      dependsOn: [...apiDeps, ResourceDependency(source)],
+      dependsOn: [...apiDeps, ResourceDependency(uploadSource)],
     );
     add(importJob);
 
+    // `import_job` is a path ID segment (not the full resource name) — see
+    // hashicorp/google docs example using `.import_job_id`.
     add(
       GoogleMigrationCenterImportDataFile(
         localName: 'payload',
         location: TfArg.literal(location),
-        importJob: TfArg.ref(importJob.nameRef),
+        importJob: TfArg.literal(importJobId),
         importDataFileId: TfArg.literal('terradart-import-file'),
         format: TfArg.literal(
           MigrationCenterImportDataFileFormat.rvtoolsXlsx,
@@ -96,11 +111,14 @@ final class MigrationCenterStack extends Stack {
       ),
     );
 
+    // API requires one of inventory / performance_data / network_dependencies.
+    // Only performance_data is a writable nested block in the provider schema.
     add(
       GoogleMigrationCenterAssetsExportJob(
         localName: 'export',
         location: TfArg.literal(location),
         assetsExportJobId: TfArg.literal('terradart-export'),
+        performanceData: TfArg.literal(<String, Object?>{'max_days': 30}),
         dependsOn: apiDeps,
       ),
     );

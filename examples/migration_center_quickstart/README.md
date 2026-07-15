@@ -30,6 +30,6 @@ terraform plan
 
 ## What gets created
 
-- Regional settings singleton, upload source, in-stack discovery SA + client,
-  import job, and import data file slot in `us-central1`
-- Minimal assets export job
+- Regional settings singleton, upload + discovery sources, in-stack discovery
+  SA + client, import job, and import data file slot in `us-central1`
+- Assets export job (performance-data export type)
