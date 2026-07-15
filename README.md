@@ -258,7 +258,7 @@ Data & storage
 - [Vertex AI Search data store + engine + IAM](examples/discovery_engine_quickstart/)
 - [Cloud KMS keyring + crypto key](examples/kms_quickstart/)
 - [License Manager Office SPLA configuration](examples/license_manager_quickstart/)
-- [Migration Center sources and reports](examples/migration_center_quickstart/)
+- [Migration Center sources, discovery, and import](examples/migration_center_quickstart/)
 - [Filestore High Scale SSD snapshot](examples/filestore_quickstart/)
 - [Artifact Registry project config (platform logs)](examples/artifact_registry_quickstart/)
 

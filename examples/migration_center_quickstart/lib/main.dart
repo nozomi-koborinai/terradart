@@ -1,7 +1,12 @@
-/// Migration Center quickstart — settings, source, discovery, import, data file, and reports.
+/// Migration Center quickstart — settings, source, discovery, import, and data file.
+///
+/// Report / report-config are deferred to [tool/example_debt.yaml]: they need
+/// curated `google_migration_center_group` + `preference_set` factories (not
+/// yet wrapped). Placeholder self-links fail at apply time.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/migration.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
@@ -41,16 +46,29 @@ final class MigrationCenterStack extends Stack {
     );
     add(source);
 
+    // Discovery client rejects a non-existent service account email at apply
+    // time — provision the SA in-stack and pass its email ref.
+    final discoverySa = add(
+      GoogleServiceAccount(
+        localName: 'discovery_agent',
+        accountId: TfArg.literal('mc-discovery-agent'),
+        displayName: TfArg.literal('Migration Center discovery agent'),
+      ),
+    );
+
     add(
       GoogleMigrationCenterDiscoveryClient(
         localName: 'agent',
         location: TfArg.literal(location),
         discoveryClientId: TfArg.literal('terradart-discovery'),
         source: TfArg.ref(source.nameRef),
-        serviceAccount:
-            TfArg.literal('discovery-agent@$projectId.iam.gserviceaccount.com'),
+        serviceAccount: TfArg.ref(discoverySa.email),
         displayName: TfArg.literal('TerraDart discovery client'),
-        dependsOn: [...apiDeps, ResourceDependency(source)],
+        dependsOn: [
+          ...apiDeps,
+          ResourceDependency(source),
+          ResourceDependency(discoverySa),
+        ],
       ),
     );
 
@@ -75,36 +93,6 @@ final class MigrationCenterStack extends Stack {
         ),
         displayName: TfArg.literal('TerraDart import payload'),
         dependsOn: [...apiDeps, ResourceDependency(importJob)],
-      ),
-    );
-
-    final reportConfig = GoogleMigrationCenterReportConfig(
-      localName: 'assessment',
-      location: TfArg.literal(location),
-      reportConfigId: TfArg.literal('terradart-report-config'),
-      displayName: TfArg.literal('TerraDart assessment config'),
-      groupPreferencesetAssignments: [
-        MigrationCenterReportConfigGroupPreferencesetAssignment(
-          group: TfArg.literal(
-            'projects/$projectId/locations/$location/groups/terradart-group',
-          ),
-          preferenceSet: TfArg.literal(
-            'projects/$projectId/locations/$location/preferenceSets/terradart-prefs',
-          ),
-        ),
-      ],
-      dependsOn: apiDeps,
-    );
-    add(reportConfig);
-
-    add(
-      GoogleMigrationCenterReport(
-        localName: 'q1',
-        location: TfArg.literal(location),
-        reportConfig: TfArg.ref(reportConfig.nameRef),
-        reportId: TfArg.literal('terradart-report'),
-        displayName: TfArg.literal('TerraDart assessment report'),
-        dependsOn: [...apiDeps, ResourceDependency(reportConfig)],
       ),
     );
 

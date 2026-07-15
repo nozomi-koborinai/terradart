@@ -72,9 +72,6 @@ network_security_ull_quickstart: ULL mirroring apply needs a real internal forwa
 # --- Chronicle requires a provisioned SecOps instance ID
 chronicle_quickstart: needs a real Chronicle (Google SecOps) instance ID — placeholder UUID fails at apply time
 
-# --- Migration Center report config references external group/preference-set resources
-migration_center_quickstart: report config apply needs real group and preference-set resources plus a live discovery service account — placeholder self-links fail at apply time
-
 # --- Oracle Base Database DB System needs live ODB subnet and subscription entitlement
 oracle_db_system_quickstart: DB System apply needs Oracle zone entitlement and live ODB subnet provisioning — API rejects placeholder wiring in terradart-validate
 oracle_exadata_quickstart: Exadata/ExaDB apply needs Oracle zone entitlement and live Exascale vault wiring — API rejects placeholder wiring in terradart-validate
