@@ -1,8 +1,8 @@
 # Lunch Concierge
 
 Lunch Concierge is a full-stack TerraDart cookbook recipe for showing how
-Flutter Web, a Dart server, Genkit, Vertex AI, Cloud Run, and Cloud SQL can be
-connected through Dart-authored infrastructure.
+Flutter Web, a Dart server, Genkit, Agent Platform, Cloud Run, and Cloud SQL
+can be connected through Dart-authored infrastructure.
 
 ## Architecture
 
@@ -15,13 +15,17 @@ Cloud Run service: lunch-concierge
     - Flutter Web static files
     - shelf HTTP server
     - genkit_shelf endpoint
-    - Genkit Dart + Vertex AI Gemini
+    - Genkit Dart + Agent Platform (Gemini)
     - postgres client
 
   cloud-sql-proxy sidecar
     - private IP
     - IAM DB authentication
     - localhost:5432
+  |
+  | Direct VPC egress
+  v
+VPC + Private Service Access
   |
   v
 Cloud SQL PostgreSQL
@@ -32,6 +36,10 @@ Cloud SQL PostgreSQL
 TerraDart defines the Artifact Registry repository, Cloud Run service, Cloud
 SQL instance/database/IAM user, VPC, Private Service Access, IAM grants, API
 enablement, and generated app exports.
+
+Cloud Run reaches the database through Direct VPC egress with
+`PRIVATE_RANGES_ONLY`. This keeps the private database path without a
+Serverless VPC Access connector or its baseline compute cost.
 
 ## Layout
 
@@ -95,6 +103,26 @@ gcloud beta services identity create \
   --service=iap.googleapis.com \
   --project="$GCP_PROJECT_ID"
 ```
+
+IAP also needs an OAuth client. Projects inside an organization get a
+Google-managed client automatically; a project without an organization must
+configure a custom OAuth client once, in the console, because external
+consent screens cannot be created through the API (which is also why this
+part is not in the Terraform stack):
+
+1. Configure the OAuth consent screen (Google Auth Platform > Branding) with
+   the audience set to External, and add `INVOKER_EMAIL` as a test user while
+   the app is in testing status.
+2. On the IAP page, open the Cloud Run service's settings and choose
+   Custom OAuth > Auto Generate Credentials. Alternatively, create a
+   web-application OAuth client manually, add the redirect URI
+   `https://iap.googleapis.com/v1/oauth/clientIds/CLIENT_ID:handleRedirect`,
+   and apply it with `gcloud iap settings set`.
+
+Until the OAuth client is configured, requests fail with
+`Empty Google Account OAuth client ID(s)/secret(s).` instead of redirecting
+to the Google sign-in. The deployer service account also needs
+`roles/iap.admin` so Terraform can manage the IAP access policy.
 
 The `google_iap_web_cloud_run_service_iam_member` grant uses a hand-rolled
 `Resource` subclass (`infra/lib/src/iap_access.dart`) because the

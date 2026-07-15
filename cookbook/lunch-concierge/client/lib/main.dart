@@ -328,7 +328,7 @@ final class _NorenHeaderState extends State<_NorenHeader>
                   const Spacer(),
                   if (!compact)
                     Text(
-                      'GENKIT × VERTEX AI × CLOUD SQL',
+                      'GENKIT × AGENT PLATFORM × CLOUD SQL',
                       style: _mono(
                         size: 11,
                         color: Colors.white60,
@@ -356,7 +356,7 @@ final class _Headline extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '昼休みの気分を、\n一枚の食券にする。',
+          '明日のランチを決める。',
           style: _display(
             size: wide ? 42 : 30,
             height: 1.35,
@@ -365,7 +365,7 @@ final class _Headline extends StatelessWidget {
         ),
         const SizedBox(height: 14),
         const Text(
-          '場所・気分・予算を入れると、Genkit と Vertex AI が候補を考えて、Cloud SQL に履歴を残します。',
+          '場所・気分・予算を入れると、Genkit と Agent Platform が候補を考えて、Cloud SQL に履歴を残します。',
           style: TextStyle(
             color: _Palette.muted,
             fontSize: 15,
@@ -621,8 +621,8 @@ final class _DispenserTrayState extends State<_DispenserTray>
           _GhostTicket(
             title: widget.loading ? '発券中…' : '食券はまだありません。',
             body: widget.loading
-                ? 'Genkit が今日の候補を考えています。'
-                : '条件を入れてボタンを押すと、今日の候補がここに発券されます。',
+                ? 'Genkit が候補を考えています。'
+                : '条件を入れてボタンを押すと、ランチの候補がここに発券されます。',
           )
         else ...[
           Text(
