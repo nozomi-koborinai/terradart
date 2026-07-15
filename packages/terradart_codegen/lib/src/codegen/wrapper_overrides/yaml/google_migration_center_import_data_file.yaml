@@ -1,0 +1,49 @@
+outputDir: migration
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Migration Center import data file — upload slot for an import job payload.
+  ///
+  /// Set [importJob] to `TfArg.ref(importJob.nameRef)` and pick a [format]
+  /// matching the file you upload to the signed URI in [uploadFileInfo].
+
+paramOrder:
+  - location
+  - import_job
+  - import_data_file_id
+  - format
+  - display_name
+  - deletion_policy
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for Migration Center import data files.
+  enum MigrationCenterImportDataFileDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const MigrationCenterImportDataFileDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Import payload format for `google_migration_center_import_data_file.format`.
+  enum MigrationCenterImportDataFileFormat implements TerraformEnum {
+    rvtoolsXlsx('IMPORT_JOB_FORMAT_RVTOOLS_XLSX'),
+    rvtoolsCsv('IMPORT_JOB_FORMAT_RVTOOLS_CSV'),
+    exportedAwsCsv('IMPORT_JOB_FORMAT_EXPORTED_AWS_CSV'),
+    exportedAzureCsv('IMPORT_JOB_FORMAT_EXPORTED_AZURE_CSV'),
+    stratozoneCsv('IMPORT_JOB_FORMAT_STRATOZONE_CSV'),
+    databaseZip('IMPORT_JOB_FORMAT_DATABASE_ZIP');
+
+    const MigrationCenterImportDataFileFormat(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: MigrationCenterImportDataFileDeletionPolicy
+  format: MigrationCenterImportDataFileFormat

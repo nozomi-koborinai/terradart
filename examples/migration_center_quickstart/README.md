@@ -6,9 +6,11 @@ End-to-end terradart example for Migration Center factories:
 - `google_migration_center_source`
 - `google_migration_center_discovery_client`
 - `google_migration_center_import_job`
-- `google_migration_center_report_config`
-- `google_migration_center_report`
+- `google_migration_center_import_data_file`
 - `google_migration_center_assets_export_job`
+
+Report / report-config are deferred (`tool/example_debt.yaml`) until
+`google_migration_center_group` and `preference_set` are curated.
 
 ## Prerequisites
 
@@ -28,6 +30,6 @@ terraform plan
 
 ## What gets created
 
-- Regional settings singleton, upload source, discovery client, and import job in `us-central1`
-- Report config (with placeholder group/preference-set self-links) and a child report
-- Minimal assets export job
+- Regional settings singleton, upload + discovery sources, in-stack discovery
+  SA + client, import job, and import data file slot in `us-central1`
+- Assets export job (performance-data export type)

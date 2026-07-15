@@ -1,7 +1,12 @@
-/// Migration Center quickstart — settings, source, discovery, import, and reports.
+/// Migration Center quickstart — settings, sources, discovery, import, and data file.
+///
+/// Report / report-config are deferred to [tool/example_debt.yaml]: they need
+/// curated `google_migration_center_group` + `preference_set` factories (not
+/// yet wrapped). Placeholder self-links fail at apply time.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/migration.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
@@ -16,6 +21,7 @@ final class MigrationCenterStack extends Stack {
           ],
         ) {
     const location = 'us-central1';
+    const importJobId = 'terradart-import';
 
     final apiDeps = Apis.enable(
       this,
@@ -31,75 +37,88 @@ final class MigrationCenterStack extends Stack {
       ),
     );
 
-    final source = GoogleMigrationCenterSource(
+    // Upload source for import jobs; discovery clients require a separate
+    // SOURCE_TYPE_DISCOVERY_CLIENT source (API 400 otherwise).
+    final uploadSource = GoogleMigrationCenterSource(
       localName: 'inventory',
       location: TfArg.literal(location),
       sourceId: TfArg.literal('terradart-source'),
-      displayName: TfArg.literal('TerraDart inventory source'),
+      displayName: TfArg.literal('TerraDart upload source'),
       type: TfArg.literal(MigrationCenterSourceType.sourceTypeUpload),
       dependsOn: apiDeps,
     );
-    add(source);
+    add(uploadSource);
+
+    final discoverySource = GoogleMigrationCenterSource(
+      localName: 'discovery',
+      location: TfArg.literal(location),
+      sourceId: TfArg.literal('terradart-discovery-source'),
+      displayName: TfArg.literal('TerraDart discovery source'),
+      type: TfArg.literal(MigrationCenterSourceType.sourceTypeDiscoveryClient),
+      dependsOn: apiDeps,
+    );
+    add(discoverySource);
+
+    // Discovery client rejects a non-existent service account email at apply
+    // time — provision the SA in-stack and pass its email ref.
+    final discoverySa = add(
+      GoogleServiceAccount(
+        localName: 'discovery_agent',
+        accountId: TfArg.literal('mc-discovery-agent'),
+        displayName: TfArg.literal('Migration Center discovery agent'),
+      ),
+    );
 
     add(
       GoogleMigrationCenterDiscoveryClient(
         localName: 'agent',
         location: TfArg.literal(location),
         discoveryClientId: TfArg.literal('terradart-discovery'),
-        source: TfArg.ref(source.nameRef),
-        serviceAccount:
-            TfArg.literal('discovery-agent@$projectId.iam.gserviceaccount.com'),
+        source: TfArg.ref(discoverySource.nameRef),
+        serviceAccount: TfArg.ref(discoverySa.email),
         displayName: TfArg.literal('TerraDart discovery client'),
-        dependsOn: [...apiDeps, ResourceDependency(source)],
+        dependsOn: [
+          ...apiDeps,
+          ResourceDependency(discoverySource),
+          ResourceDependency(discoverySa),
+        ],
       ),
     );
 
-    add(
-      GoogleMigrationCenterImportJob(
-        localName: 'upload',
-        location: TfArg.literal(location),
-        importJobId: TfArg.literal('terradart-import'),
-        assetSource: TfArg.ref(source.nameRef),
-        displayName: TfArg.literal('TerraDart import job'),
-        dependsOn: [...apiDeps, ResourceDependency(source)],
-      ),
-    );
-
-    final reportConfig = GoogleMigrationCenterReportConfig(
-      localName: 'assessment',
+    final importJob = GoogleMigrationCenterImportJob(
+      localName: 'upload',
       location: TfArg.literal(location),
-      reportConfigId: TfArg.literal('terradart-report-config'),
-      displayName: TfArg.literal('TerraDart assessment config'),
-      groupPreferencesetAssignments: [
-        MigrationCenterReportConfigGroupPreferencesetAssignment(
-          group: TfArg.literal(
-            'projects/$projectId/locations/$location/groups/terradart-group',
-          ),
-          preferenceSet: TfArg.literal(
-            'projects/$projectId/locations/$location/preferenceSets/terradart-prefs',
-          ),
-        ),
-      ],
-      dependsOn: apiDeps,
+      importJobId: TfArg.literal(importJobId),
+      assetSource: TfArg.ref(uploadSource.nameRef),
+      displayName: TfArg.literal('TerraDart import job'),
+      dependsOn: [...apiDeps, ResourceDependency(uploadSource)],
     );
-    add(reportConfig);
+    add(importJob);
 
+    // `import_job` is a path ID segment (not the full resource name) — see
+    // hashicorp/google docs example using `.import_job_id`.
     add(
-      GoogleMigrationCenterReport(
-        localName: 'q1',
+      GoogleMigrationCenterImportDataFile(
+        localName: 'payload',
         location: TfArg.literal(location),
-        reportConfig: TfArg.ref(reportConfig.nameRef),
-        reportId: TfArg.literal('terradart-report'),
-        displayName: TfArg.literal('TerraDart assessment report'),
-        dependsOn: [...apiDeps, ResourceDependency(reportConfig)],
+        importJob: TfArg.literal(importJobId),
+        importDataFileId: TfArg.literal('terradart-import-file'),
+        format: TfArg.literal(
+          MigrationCenterImportDataFileFormat.rvtoolsXlsx,
+        ),
+        displayName: TfArg.literal('TerraDart import payload'),
+        dependsOn: [...apiDeps, ResourceDependency(importJob)],
       ),
     );
 
+    // API requires one of inventory / performance_data / network_dependencies.
+    // Only performance_data is a writable nested block in the provider schema.
     add(
       GoogleMigrationCenterAssetsExportJob(
         localName: 'export',
         location: TfArg.literal(location),
         assetsExportJobId: TfArg.literal('terradart-export'),
+        performanceData: TfArg.literal(<String, Object?>{'max_days': 30}),
         dependsOn: apiDeps,
       ),
     );
