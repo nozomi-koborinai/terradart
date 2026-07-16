@@ -1,61 +1,187 @@
+> Part of the [TerraDart cookbook](../README.md). Library: [terradart](https://github.com/nozomi-koborinai/terradart).
+>
+> **Status:** Full-stack demo recipe — Flutter Web + Dart server + Genkit (Agent Platform) + Cloud Run + private Cloud SQL, all authored in Dart. Targets `terradart_core` / `terradart_google` ^0.24.0.
+
 # Lunch Concierge
 
-Lunch Concierge is a full-stack TerraDart cookbook recipe for showing how
-Flutter Web, a Dart server, Genkit, Agent Platform, Cloud Run, and Cloud SQL
-can be connected through Dart-authored infrastructure.
+A full-stack app where **every layer is Dart** — the Flutter Web UI, the
+server, the Genkit AI flow, and the infrastructure itself. You describe the
+Cloud Run + Cloud SQL + Agent Platform surface in Dart with TerraDart, and the
+values that infrastructure owns cross into application code as **typed Dart
+constants** instead of hand-copied strings.
+
+The user picks an area, a mood, and a budget; Gemini (via Genkit + Agent
+Platform) suggests three lunches; each request is persisted to a private Cloud SQL
+database. Nothing about this app leaves Dart.
+
+## The one-language boundary
+
+Most "full-stack Dart" stories stop at UI + server. The moment you reach
+infrastructure, you usually drop into HCL, YAML, or a console — a boundary
+where types disappear and values get duplicated as strings. This recipe
+removes that boundary in two concrete places:
+
+- **client ↔ server** — the request/response types (`LunchRequest`,
+  `LunchResponse`) live once in `shared/` as [schemantic](https://pub.dev/packages/schemantic)
+  schemas. The Flutter client and the Genkit flow speak the *same* schema, so
+  the wire contract is compiled, not stringly-typed.
+- **infra → app** — the TerraDart Stack *generates* the values it owns
+  (project id, region, database name, database user, Cloud SQL connection
+  name) into `shared/` as `LunchStackExports`. The server imports them as
+  constants. No `.env` file re-typing what Terraform already knows.
+
+That second boundary is the point of the recipe: infrastructure is not a
+foreign language bolted on at the edge — it is a Dart package that hands typed
+values to the rest of the codebase.
 
 ## Architecture
 
-```text
-User
-  |
-  v
-Cloud Run service: lunch-concierge
-  app container
-    - Flutter Web static files
-    - shelf HTTP server
-    - genkit_shelf endpoint
-    - Genkit Dart + Agent Platform (Gemini)
-    - postgres client
+### Authoring — one Dart codebase, typed hand-offs
 
-  cloud-sql-proxy sidecar
-    - private IP
-    - IAM DB authentication
-    - localhost:5432
-  |
-  | Direct VPC egress
-  v
-VPC + Private Service Access
-  |
-  v
-Cloud SQL PostgreSQL
-  - private IP only
-  - IAM DB authentication
+```text
+infra/  (TerraDart Stack, Dart)
+  │  dart run bin/infra.dart  (synth)
+  ├──► tf-out/main.tf.json ──► terraform apply ──► Google Cloud
+  └──► shared/lib/generated/lunch_stack.app.dart   (LunchStackExports)
+                    ▲
+                    │ imported as typed constants
+shared/  (schemantic types: LunchRequest / LunchResponse)
+  │                                          same schema on both ends
+  ├── client/  Flutter Web  ── POST /api/lunch ──┐
+  └── server/  shelf + Genkit + postgres  ◄──────┘
 ```
 
-TerraDart defines the Artifact Registry repository, Cloud Run service, Cloud
-SQL instance/database/IAM user, VPC, Private Service Access, IAM grants, API
-enablement, and generated app exports.
+### Runtime — the deployed GCP topology
 
-Cloud Run reaches the database through Direct VPC egress with
-`PRIVATE_RANGES_ONLY`. This keeps the private database path without a
-Serverless VPC Access connector or its baseline compute cost.
+```text
+Browser ──► IAP (Google sign-in) ──► Cloud Run: lunch-concierge
+                                      ├─ app container
+                                      │    Flutter Web (static) + shelf
+                                      │    genkit_shelf ─► Agent Platform (Gemini 2.5 Flash)
+                                      │    postgres client ─► localhost:5432
+                                      └─ cloud-sql-proxy sidecar (private IP, IAM auth)
+                                             │ Direct VPC egress (PRIVATE_RANGES_ONLY)
+                                             ▼
+                                      VPC + Private Service Access
+                                             ▼
+                                      Cloud SQL PostgreSQL (private IP, IAM auth)
+```
 
-## Layout
+Cloud Run reaches the database through **Direct VPC egress** with
+`PRIVATE_RANGES_ONLY` — a private database path without a Serverless VPC
+Access connector or its baseline compute cost.
+
+### What the Stack provisions
+
+`LunchStack` composes one file per concern (see `infra/lib/src/`), spanning
+eight `terradart_google` barrels:
+
+- **`apis.dart`** — enables the required Google APIs (`Apis.enable` plus
+  `aiplatform` and `iap`) and creates the Artifact Registry Docker repository.
+- **`network.dart`** — VPC, subnet, a reserved `/16` PSA range, and the
+  Service Networking connection that makes private Cloud SQL reachable.
+- **`runtime_identity.dart`** — the runtime service account and its
+  `roles/cloudsql.client`, `cloudsql.instanceUser`, and `aiplatform.user`
+  grants.
+- **`database.dart`** — Cloud SQL for PostgreSQL 15 (private IP only, IAM
+  authentication), the `lunch` database, and the IAM database user.
+- **`cloud_run.dart`** — the Cloud Run v2 service (app + `cloud-sql-proxy`
+  sidecar, Direct VPC egress, IAP enabled) plus the `run.invoker` and IAP
+  accessor grants.
+- **`exports.dart`** — the seven infra-owned constants written into `shared/`.
+
+## Project layout
 
 ```text
 cookbook/lunch-concierge/
 ├── client/   # Flutter Web app (built inside the Dockerfile)
 ├── server/   # shelf + genkit_shelf + postgres server
-├── shared/   # generated TerraDart AppExport constants
+├── shared/   # schemantic schemas + generated LunchStackExports
 └── infra/    # TerraDart Stack
 ```
 
-The Flutter client is intentionally not a root Dart workspace member because
-the TerraDart monorepo agent environment does not install Flutter. The Docker
-build uses a Flutter builder image for the client stage.
+`client/`, `server/`, `shared/`, and `infra/` are separate Dart packages. The
+Flutter client is intentionally **not** a root Dart workspace member because
+the TerraDart monorepo agent environment does not install Flutter; the Docker
+build uses a Flutter builder image for the client stage and detaches
+`shared/` + `server/` from the workspace so they can `pub get` standalone in
+the image.
 
-## Deploy flow
+## The typed boundary contract
+
+The Stack declares the values it owns and the file to generate:
+
+```dart
+stack
+  ..addExport('PROJECT_ID', StringExport(projectId))
+  ..addExport('REGION', StringExport(region))
+  ..addExport('DATABASE_NAME', StringExport(databaseName))
+  ..addExport('DATABASE_USER', StringExport(database.databaseUser))
+  ..setAppExportsOutputPath('../shared/lib/generated/lunch_stack.app.dart');
+```
+
+Synth writes `LunchStackExports`, and the server imports it — the database
+name and user are never re-typed:
+
+```dart
+import 'package:lunch_concierge_shared/generated/lunch_stack.app.dart';
+
+// Point Genkit at Agent Platform for the infra-owned project/region.
+vertexAI(
+  projectId: LunchStackExports.PROJECT_ID,
+  location: LunchStackExports.REGION,
+);
+
+// The postgres client dials the cloud-sql-proxy sidecar as the IAM user.
+Endpoint(
+  host: '127.0.0.1',
+  port: 5432,
+  database: LunchStackExports.DATABASE_NAME,
+  username: LunchStackExports.DATABASE_USER,
+);
+```
+
+The request/response schemas live once and are shared by both ends of the
+wire:
+
+```dart
+// shared/lib/schema.dart
+@Schema()
+abstract class $LunchRequest {
+  String get area;
+  String get mood;
+  int get budgetYen;
+}
+
+// client — Flutter calls the endpoint with the shared schema
+defineRemoteAction<LunchRequest, LunchResponse, void, void>(
+  url: '/api/lunch',
+  inputSchema: LunchRequest.$schema,
+  outputSchema: LunchResponse.$schema,
+);
+
+// server — the Genkit flow is defined with the same schema
+ai.defineFlow(
+  name: 'suggestLunch',
+  inputSchema: LunchRequest.$schema,
+  outputSchema: LunchResponse.$schema,
+  fn: (input, _) async { /* ...call Gemini, persist, return... */ },
+);
+```
+
+## Request flow
+
+1. The browser hits the `run.app` URL and IAP redirects to a Google sign-in.
+2. The Flutter client POSTs a `LunchRequest` to `/api/lunch`.
+3. `genkit_shelf` routes it into the `suggestLunch` flow.
+4. The flow calls Agent Platform (Gemini 2.5 Flash) and gets a schema-validated
+   `LunchResponse`.
+5. The response is saved to Cloud SQL through the `cloud-sql-proxy` sidecar
+   (private IP, IAM auth) — a failure here is logged but does not break the
+   suggestion.
+6. The `LunchResponse` returns to the client and renders as lunch tickets.
+
+## Deploy
 
 From the repository root:
 
@@ -89,12 +215,19 @@ terraform apply
 The targeted first apply creates the Artifact Registry repository so the image
 can be pushed. The second apply creates or updates the rest of the stack.
 
+When you are done, `terraform destroy` cleans up — the Cloud SQL instance and
+Cloud Run service set `deletion_protection = false` explicitly. The main
+running cost is the Cloud SQL `db-f1-micro` instance; Cloud Run idles at
+min-instances 0, and the VPC / PSA range are free. (For the PSA teardown
+gotcha, see the [`single-project-app`](../single-project-app/README.md) recipe
+— the same private-services-access peering applies here.)
+
 ## Access control (IAP)
 
-The Cloud Run service runs with IAP enabled: the run.app URL redirects to a
+The Cloud Run service runs with IAP enabled: the `run.app` URL redirects to a
 Google sign-in, and only `INVOKER_EMAIL` holds
 `roles/iap.httpsResourceAccessor` (plus a direct `roles/run.invoker` grant as
-a token-based fallback). The stack grants `roles/run.invoker` to the IAP
+a token-based fallback). The stack also grants `roles/run.invoker` to the IAP
 service agent, which must exist before the first apply. Provision it once per
 project:
 
@@ -126,8 +259,8 @@ to the Google sign-in. The deployer service account also needs
 
 The `google_iap_web_cloud_run_service_iam_member` grant uses a hand-rolled
 `Resource` subclass (`infra/lib/src/iap_access.dart`) because the
-terradart_google catalog has not curated IAP resources yet — it doubles as an
-example of expressing an uncurated resource without leaving Dart.
+`terradart_google` catalog has not curated IAP resources yet — it doubles as
+an example of expressing an **uncurated** resource without leaving Dart.
 
 ## Database bootstrap
 
@@ -158,26 +291,6 @@ grant usage, select on sequence lunch_suggestions_id_seq
   to "lunch-sql-client@<project-id>.iam";
 ```
 
-If the grants are missing, the Genkit flow can still generate a lunch response,
-but history persistence will fail and the server logs will show the PostgreSQL
-error.
-
-## Boundary contract
-
-`infra` writes generated constants to `shared`:
-
-```dart
-setAppExportsOutputPath('../shared/lib/generated/lunch_stack.app.dart');
-```
-
-The server imports those constants:
-
-```dart
-import 'package:lunch_concierge_shared/generated/lunch_stack.app.dart';
-
-final databaseUrl = LunchStackExports.DATABASE_URL;
-```
-
-This is the demo boundary: infrastructure-owned values such as database name,
-database user, region, and Cloud SQL connection name are handed to application
-code as typed Dart constants instead of duplicated string literals.
+If the grants are missing, the Genkit flow can still generate a lunch
+response, but history persistence will fail and the server logs will show the
+PostgreSQL error.
