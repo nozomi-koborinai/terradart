@@ -8,15 +8,15 @@ environment:
 resolution: workspace
 
 dependencies:
-  genkit: any
-  genkit_shelf: any
-  genkit_vertexai: any
+  genkit: ^0.14.1
+  genkit_shelf: ^0.1.9
+  genkit_vertexai: ^0.2.9
   lunch_concierge_shared:
     path: ../shared
-  postgres: any
-  shelf: any
-  shelf_router: any
-  shelf_static: any
+  postgres: ^3.5.12
+  shelf: ^1.4.2
+  shelf_router: ^1.1.4
+  shelf_static: ^1.1.3
 
 dev_dependencies:
   lints: ^6.0.0

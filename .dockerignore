@@ -1,0 +1,9 @@
+# Only cookbook/lunch-concierge/server/Dockerfile builds from this repo root.
+# Allowlist exactly what its COPY steps need so the rest of the monorepo
+# (and local build artifacts) never enter the build context.
+*
+!cookbook/lunch-concierge/client
+!cookbook/lunch-concierge/server
+!cookbook/lunch-concierge/shared
+**/.dart_tool
+**/build
