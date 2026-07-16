@@ -57,6 +57,11 @@ build uses a Flutter builder image for the client stage.
 
 ## Deploy flow
 
+AppExport constants are baked at **synth** time from `GCP_PROJECT_ID` (and
+friends). Run `infra` synth **before** `docker build` or a local server run so
+`shared/lib/generated/lunch_stack.app.dart` matches your project — the image
+and the server binary both compile those constants in.
+
 From the repository root:
 
 ```bash
@@ -164,20 +169,34 @@ error.
 
 ## Boundary contract
 
-`infra` writes generated constants to `shared`:
+This recipe keeps the demo seam simple: **env → synth → AppExport → app**.
 
-```dart
-setAppExportsOutputPath('../shared/lib/generated/lunch_stack.app.dart');
-```
-
-The server imports those constants:
+1. Set `GCP_PROJECT_ID` (and the other required env vars) in the shell.
+2. `dart run bin/infra.dart` materializes Terraform JSON **and** rewrites
+   `shared/lib/generated/lunch_stack.app.dart` via `StringExport` — including
+   project-derived values (`PROJECT_ID`, `DATABASE_USER`,
+   `CLOUD_SQL_INSTANCE_CONNECTION_NAME`, …).
+3. The server imports those constants (no runtime `Platform.environment` for
+   the same fields):
 
 ```dart
 import 'package:lunch_concierge_shared/generated/lunch_stack.app.dart';
 
-final databaseUrl = LunchStackExports.DATABASE_URL;
+// Vertex AI
+projectId: LunchStackExports.PROJECT_ID,
+location: LunchStackExports.REGION,
+
+// Postgres (via cloud-sql-proxy on localhost)
+database: LunchStackExports.DATABASE_NAME,
+username: LunchStackExports.DATABASE_USER,
 ```
 
-This is the demo boundary: infrastructure-owned values such as database name,
-database user, region, and Cloud SQL connection name are handed to application
-code as typed Dart constants instead of duplicated string literals.
+That is the demo boundary: infrastructure-owned values are handed to
+application code as typed Dart constants instead of duplicated string
+literals. For this cookbook we intentionally export project-scoped strings
+too — regenerating with your real `GCP_PROJECT_ID` before build/run is the
+contract, not `EnvBackedExport` / compile-time `--dart-define`.
+
+The committed `.app.dart` may show `ci-test-project-id` from
+`tool/check_cookbook.sh`'s default synth. That placeholder is for CI analyze
+only; a deploy or local run against a real project must re-synth first.
