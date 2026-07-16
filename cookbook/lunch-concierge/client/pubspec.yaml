@@ -8,13 +8,13 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  genkit: any
-  google_fonts: any
+  genkit: ^0.14.1
+  google_fonts: ^8.2.0
   lunch_concierge_shared:
     path: ../shared
 
 dev_dependencies:
-  flutter_lints: any
+  flutter_lints: ^6.0.0
 
 flutter:
   uses-material-design: true
