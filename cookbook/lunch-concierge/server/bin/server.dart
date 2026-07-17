@@ -1,5 +1,6 @@
 import 'dart:io';
 
+<<<<<<< HEAD
 import 'package:genkit_shelf/genkit_shelf.dart';
 import 'package:lunch_concierge_server/lunch_flow.dart';
 import 'package:shelf/shelf.dart';
@@ -10,6 +11,27 @@ import 'package:shelf_static/shelf_static.dart';
 Future<void> main() async {
   final bundle = await createLunchFlow();
   final handler = _buildHandler(bundle);
+=======
+import 'package:lunch_concierge_server/app.dart';
+import 'package:lunch_concierge_server/lunch_flow.dart';
+import 'package:shelf/shelf_io.dart' as io;
+
+Future<void> main() async {
+  final bundle = await createLunchFlow();
+  final publicDir = switch (Platform.environment['PUBLIC_DIR']) {
+    final value? when value.isNotEmpty => value,
+    _ => '/app/public',
+  };
+  final iapAudience = switch (Platform.environment['IAP_AUDIENCE']) {
+    final value? when value.isNotEmpty => value,
+    _ => null,
+  };
+  final handler = buildApp(
+    bundle: bundle,
+    publicDir: publicDir,
+    iapAudience: iapAudience,
+  );
+>>>>>>> refactor/lunch-concierge-dart-style
   final port = switch (Platform.environment['PORT']) {
     final value? => int.parse(value),
     _ => 8080,

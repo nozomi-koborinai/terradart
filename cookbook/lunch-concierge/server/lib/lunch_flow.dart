@@ -51,7 +51,7 @@ Future<LunchFlowBundle> createLunchFlow() async {
 ''',
           outputSchema: LunchResponse.$schema,
         );
-      } catch (error, stackTrace) {
+      } on Exception catch (error, stackTrace) {
         stderr.writeln('suggestLunch generate failed: $error');
         stderr.writeln(stackTrace);
         rethrow;
@@ -74,7 +74,7 @@ Future<LunchFlowBundle> createLunchFlow() async {
       try {
         await repository.save(input, output);
         stderr.writeln('suggestLunch history saved');
-      } catch (error, stackTrace) {
+      } on Exception catch (error, stackTrace) {
         stderr.writeln('suggestLunch history save failed: $error');
         stderr.writeln(stackTrace);
       }

@@ -57,6 +57,7 @@ shared/  (schemantic types: LunchRequest / LunchResponse)
 Browser ──► IAP (Google sign-in) ──► Cloud Run: lunch-concierge
                                       ├─ app container
                                       │    Flutter Web (static) + shelf
+                                      │    optional IAP JWT check on /api/*
                                       │    genkit_shelf ─► Agent Platform (Gemini 2.5 Flash)
                                       │    postgres client ─► localhost:5432
                                       └─ cloud-sql-proxy sidecar (private IP, IAM auth)
@@ -94,8 +95,8 @@ eight `terradart_google` barrels:
 
 ```text
 cookbook/lunch-concierge/
-├── client/   # Flutter Web app (built inside the Dockerfile)
-├── server/   # shelf + genkit_shelf + postgres server
+├── client/   # Flutter Web (app / lunch_page / theme / widgets)
+├── server/   # shelf app (routes, optional IAP JWT, Genkit, postgres)
 ├── shared/   # schemantic schemas + generated LunchStackExports
 └── infra/    # TerraDart Stack
 ```
@@ -256,6 +257,19 @@ Until the OAuth client is configured, requests fail with
 `Empty Google Account OAuth client ID(s)/secret(s).` instead of redirecting
 to the Google sign-in. The deployer service account also needs
 `roles/iap.admin` so Terraform can manage the IAP access policy.
+
+### App-level IAP JWT checks (optional)
+
+IAP at the edge is enough for the demo, but the shelf server can also verify
+the `X-Goog-IAP-JWT-Assertion` header on `/api/*` as defense in depth.
+The Stack does **not** wire this — set `IAP_AUDIENCE` on the Cloud Run
+service yourself when you want it (the IAP OAuth Client ID; there is no
+separate console "JWT audience" field):
+
+- unset / empty → skip verification (local `dart run` keeps working)
+- set → missing or invalid assertions on `/api/*` return `401`
+
+`/health` and static Flutter assets are not gated by the JWT middleware.
 
 The `google_iap_web_cloud_run_service_iam_member` grant uses a hand-rolled
 `Resource` subclass (`infra/lib/src/iap_access.dart`) because the
