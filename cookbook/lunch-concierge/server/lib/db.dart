@@ -49,7 +49,7 @@ final class LunchHistoryRepository {
           created_at timestamptz not null default now()
         )
       ''');
-    } catch (error, stackTrace) {
+    } on Exception catch (error, stackTrace) {
       stderr.writeln('postgres schema ensure failed: $error');
       stderr.writeln(stackTrace);
       rethrow;
@@ -73,7 +73,7 @@ final class LunchHistoryRepository {
           'suggestionJson': jsonEncode(response.toJson()),
         },
       );
-    } catch (error, stackTrace) {
+    } on Exception catch (error, stackTrace) {
       stderr.writeln('postgres history insert failed: $error');
       stderr.writeln(stackTrace);
       rethrow;
@@ -91,7 +91,7 @@ Future<T> _withRetry<T>(
   for (var attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
       return await operation();
-    } catch (error, stackTrace) {
+    } on Exception catch (error, stackTrace) {
       lastError = error;
       lastStackTrace = stackTrace;
       stderr.writeln('operation attempt $attempt/$maxAttempts failed: $error');
