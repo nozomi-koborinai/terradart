@@ -8,7 +8,7 @@ import 'package:lunch_concierge_shared/schema.dart';
 import 'db.dart';
 
 final class LunchFlowBundle {
-  LunchFlowBundle({required this.ai, required this.flow});
+  const LunchFlowBundle({required this.ai, required this.flow});
 
   final Genkit ai;
   final Flow<LunchRequest, LunchResponse, void, void> flow;
@@ -56,13 +56,16 @@ Future<LunchFlowBundle> createLunchFlow() async {
         stderr.writeln(stackTrace);
         rethrow;
       }
-      final output = response.output;
-      if (output == null) {
-        stderr.writeln('suggestLunch generate returned null schema output');
-        throw GenkitException(
-          'Gemini response did not match LunchResponse schema.',
-          status: StatusCodes.INTERNAL,
-        );
+      final LunchResponse output;
+      switch (response.output) {
+        case final LunchResponse value:
+          output = value;
+        case null:
+          stderr.writeln('suggestLunch generate returned null schema output');
+          throw GenkitException(
+            'Gemini response did not match LunchResponse schema.',
+            status: StatusCodes.INTERNAL,
+          );
       }
       stderr.writeln(
         'suggestLunch generated ${output.suggestions.length} items',
