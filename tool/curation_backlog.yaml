@@ -103,3 +103,4 @@ entries:
   - resource: google_oracle_database_cloud_exadata_infrastructure_exascale_config
     detected_at: 2026-07-01
     provider_version: 7.39.0
+    note: skipped by wave-shipper — requires parent google_oracle_database_cloud_exadata_infrastructure; oracle_exadata_quickstart is apply-smoke skip-listed (Oracle zone entitlement / live Exascale vault wiring — API rejects placeholder wiring on terradart-validate)
