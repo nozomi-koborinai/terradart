@@ -100,6 +100,8 @@ entries:
   - resource: google_network_services_agent_gateway
     detected_at: 2026-07-01
     provider_version: 7.39.0
+    note: skipped by wave-shipper — requires Agent Registry URI (registries); same external-artifact gate as google_agent_registry_*; not apply-able on terradart-validate without pre-provisioned registry
   - resource: google_oracle_database_cloud_exadata_infrastructure_exascale_config
     detected_at: 2026-07-01
     provider_version: 7.39.0
+    note: skipped by wave-shipper — parent Exadata infrastructure needs Oracle zone entitlement; oracle_exadata_quickstart already skip-listed (not standalone-project applicable)
