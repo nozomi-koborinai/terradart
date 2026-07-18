@@ -28,6 +28,11 @@ verification pitfalls, cost-classify rules, and guardrails all bind you.
      (WIP limit is 1 — never start a second Wave).
 2. `tool/curation_backlog.yaml` empty of entries → report "backlog empty"
    and exit 0 (normal).
+3. Every remaining un-skipped entry is unsuitable for a standalone Wave →
+   **escalate proposed skip notes and exit 0**. Do not edit
+   `tool/curation_backlog.yaml`, do not commit, do not push. A skip-only
+   change opens a `cursor/*` Draft PR that is outside the wave-merge path
+   (#308); humans apply backlog skip notes after reviewing the evidence.
 
 ## Repair a red wave
 
@@ -59,10 +64,26 @@ evidence-first:
   when circumstances change). Entries in a group share the product segment
   (e.g. `google_apigee_*`). Take 3-6 resources; if the group has more,
   take the first 6 and leave the rest for the next run.
-- Skip a product (add `note: skipped by wave-shipper — <reason>` to its
-  entries and move to the next group) when it is organization-scoped,
-  needs external artifacts (real certs/secrets/registrations), or its
-  example could not be applied against a standalone GCP project.
+- A product may be unsuitable when it is organization-scoped, needs
+  external artifacts (real certs/secrets/registrations), or its example
+  could not be applied against a standalone GCP project. **Skip evidence
+  is mandatory** — quote at least one of:
+  - a schema **required** field that cannot be satisfied in-stack on
+    `terradart-validate` (optional fields are never "required");
+  - an existing `tool/apply_smoke_skip.yaml` / `example_debt.yaml` entry
+    for the parent or sibling product with a matching reason;
+  - a quoted terraform/API apply error from this run or a linked prior
+    smoke log.
+  Desk analogy alone ("looks like the other skipped resource") is not
+  enough.
+- **Writing skip notes vs escalating:**
+  - If a later un-skipped product group **is** shippable in this same
+    run: you may add `note: skipped by wave-shipper — <reason>` to the
+    unsuitable entries **inside that Wave PR** (same commit series as
+    the factories), then ship the shippable group.
+  - If **no** shippable group remains: do **not** edit the backlog.
+    Report each proposed `note:` line with its evidence quote and exit 0
+    (see Find the work §3). Never open a skip-only PR.
 - Prefer example subject matter that CAN be really applied: the executor
   refuses to auto-merge a Wave whose example is skip-listed, and CI's
   `apply_smoke.sh selection test` fails closed via
@@ -118,6 +139,8 @@ tail/grep and trust `&&` — check exit codes bare.
 - you cannot classify a resource's billing with confidence via gcp-cost
   MCP (default-deny will block the apply — correct, but the Wave choice
   should be reconsidered by a human);
+- every remaining un-skipped backlog entry is unsuitable (skip-only day —
+  proposed notes + evidence only; no backlog edit, no push);
 - the FULL gate still fails after two repair rounds;
 - any needed change falls outside `tool/wave_allowed_paths.yaml`.
 
