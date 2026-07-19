@@ -1,0 +1,35 @@
+outputDir: network
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Network Security **client TLS policy** — how a client authenticates to
+  /// backends (Traffic Director / service mesh). Creating a policy alone does
+  /// not attach it to a backend or bill mesh SKUs.
+  ///
+  /// Optional nested `clientCertificate` / `serverValidationCa` blocks stay
+  /// as maps (cert-provider exactly_one_of is nested, not sealed here).
+  ///
+  /// Enable `networksecurity.googleapis.com` via [GoogleProjectService]
+  /// before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleNetworkSecurityClientTlsPolicy(
+  ///   localName: 'backend',
+  ///   name: TfArg.literal('terradart-client-tls'),
+  ///   location: TfArg.literal('global'),
+  ///   description: TfArg.literal('TerraDart smoke client TLS policy'),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - description
+  - sni
+  - client_certificate
+  - server_validation_ca
+  - labels
+  - deletion_policy
+  - project

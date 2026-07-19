@@ -859,6 +859,10 @@ files:
     upstream: mmv1/products/networksecurity/AddressGroup.yaml
   google_network_security_url_lists:
     upstream: mmv1/products/networksecurity/UrlList.yaml
+  google_network_security_client_tls_policy:
+    upstream: mmv1/products/networksecurity/ClientTlsPolicy.yaml
+  google_network_security_server_tls_policy:
+    upstream: mmv1/products/networksecurity/ServerTlsPolicy.yaml
   google_redis_instance:
     upstream: mmv1/products/redis/Instance.yaml
   google_vertex_ai_feature_group:
