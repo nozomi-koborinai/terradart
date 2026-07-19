@@ -97,13 +97,15 @@ final class ContactCenterInsightsStack extends Stack {
         questionType: TfArg.literal('CUSTOMIZABLE'),
         abbreviation: TfArg.literal('Greeting'),
         answerChoices: [
+          // Scores must be non-zero doubles — the provider omits a 0 score
+          // and the API returns 400 "Answer choice score must be set".
           ContactCenterInsightsQaQuestionAnswerChoices(
             strValue: TfArg.literal('Yes'),
-            score: TfArg.literal(1),
+            score: TfArg.literal(1.0),
           ),
           ContactCenterInsightsQaQuestionAnswerChoices(
             strValue: TfArg.literal('No'),
-            score: TfArg.literal(0),
+            score: TfArg.literal(0.5),
           ),
         ],
         dependsOn: [ResourceDependency(revision)],
