@@ -206,6 +206,9 @@ barrels:
       /// IAM service accounts + Workload Identity Federation pools. Per-resource
       /// IAM members live alongside their owning service barrel (e.g.
       /// `pubsub.dart` exports `GooglePubsubTopicIamMember`).
+  identity:
+    doc: |-
+      /// Identity Platform — project Auth config and multi-tenant realms.
   iap:
     doc: |-
       /// Identity-Aware Proxy (IAP) IAM for App Engine and external HTTPS load

@@ -55,6 +55,7 @@ export 'gke_backup.dart';
 export 'healthcare.dart';
 export 'iam.dart';
 export 'iap.dart';
+export 'identity.dart';
 export 'kms.dart';
 export 'license_manager.dart';
 export 'logging.dart';

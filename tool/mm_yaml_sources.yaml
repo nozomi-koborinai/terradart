@@ -216,6 +216,10 @@ files:
     # MM YAML enriches merged IR (descriptions, hints); typed nested blocks still
     # come from the wrapper override prelude/customSlots, not from MM alone.
     upstream: mmv1/products/iambeta/WorkloadIdentityPoolProvider.yaml
+  google_identity_platform_config:
+    upstream: mmv1/products/identityplatform/Config.yaml
+  google_identity_platform_tenant:
+    upstream: mmv1/products/identityplatform/Tenant.yaml
   google_iap_web_backend_service_iam_binding:
     upstream: null  # handwritten IAM binding in terraform provider; no MM YAML
 
