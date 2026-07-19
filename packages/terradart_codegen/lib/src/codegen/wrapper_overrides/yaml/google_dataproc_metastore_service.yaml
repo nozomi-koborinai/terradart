@@ -1,0 +1,124 @@
+outputDir: dataproc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+# Scaling conflicts with tier; autoscaling nested enums stay frozen until a Wave
+# needs typed scaling_config.
+nestedTypeExcludes:
+  - scaling_config
+  - encryption_config
+  - maintenance_window
+  - metadata_integration
+  - network_config
+  - scheduled_backup
+  - telemetry_config
+  - hive_metastore_config
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Dataproc Metastore service — managed Apache Hive metastore.
+  ///
+  /// Enable `metastore.googleapis.com` before apply. Prefer [tier]
+  /// `DEVELOPER` for smoke stacks (`ENTERPRISE` and scaling configs bill more).
+  /// Set [hiveMetastoreConfig] with a Hive schema [version] (e.g. `3.1.2`).
+
+paramOrder:
+  - service_id
+  - location
+  - tier
+  - database_type
+  - release_channel
+  - hive_metastore_config
+  - network
+  - port
+  - labels
+  - deletion_protection
+  - deletion_policy
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for Dataproc Metastore services.
+  enum DataprocMetastoreServiceDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const DataprocMetastoreServiceDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Service tier for `google_dataproc_metastore_service.tier`.
+  enum DataprocMetastoreServiceTier implements TerraformEnum {
+    developer('DEVELOPER'),
+    enterprise('ENTERPRISE');
+
+    const DataprocMetastoreServiceTier(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Database engine for `google_dataproc_metastore_service.database_type`.
+  enum DataprocMetastoreServiceDatabaseType implements TerraformEnum {
+    mysql('MYSQL'),
+    spanner('SPANNER');
+
+    const DataprocMetastoreServiceDatabaseType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Release channel for `google_dataproc_metastore_service.release_channel`.
+  enum DataprocMetastoreServiceReleaseChannel implements TerraformEnum {
+    canary('CANARY'),
+    stable('STABLE');
+
+    const DataprocMetastoreServiceReleaseChannel(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Endpoint protocol for `hive_metastore_config.endpoint_protocol`.
+  enum DataprocMetastoreServiceEndpointProtocol implements TerraformEnum {
+    thrift('THRIFT'),
+    grpc('GRPC');
+
+    const DataprocMetastoreServiceEndpointProtocol(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `hive_metastore_config` block on a Dataproc Metastore service.
+  @immutable
+  class DataprocMetastoreServiceHiveMetastoreConfig {
+    const DataprocMetastoreServiceHiveMetastoreConfig({
+      required this.version,
+      this.configOverrides,
+      this.endpointProtocol,
+    });
+
+    final TfArg<String> version;
+    final TfArg<Map<String, String>>? configOverrides;
+    final TfArg<DataprocMetastoreServiceEndpointProtocol>? endpointProtocol;
+
+    Map<String, Object?> toArgMap() => {
+      'version': version.toTfJson(),
+      if (configOverrides != null) 'config_overrides': configOverrides!.toTfJson(),
+      if (endpointProtocol != null)
+        'endpoint_protocol': endpointProtocol!.toTfJson(),
+    };
+  }
+
+dartTypeOverrides:
+  deletion_policy: DataprocMetastoreServiceDeletionPolicy
+  tier: DataprocMetastoreServiceTier
+  database_type: DataprocMetastoreServiceDatabaseType
+  release_channel: DataprocMetastoreServiceReleaseChannel
+
+customSlots:
+  hive_metastore_config:
+    paramDeclaration: 'DataprocMetastoreServiceHiveMetastoreConfig? hiveMetastoreConfig'
+    argMapEntry: "if (hiveMetastoreConfig != null) 'hive_metastore_config': TfArg.literal([hiveMetastoreConfig.toArgMap()]),"

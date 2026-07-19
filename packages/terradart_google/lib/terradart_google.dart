@@ -37,6 +37,7 @@ export 'contact.dart';
 export 'container.dart';
 export 'data.dart';
 export 'dataplex.dart';
+export 'dataproc.dart';
 export 'dialogflow.dart';
 export 'discovery_engine.dart';
 export 'dns.dart';

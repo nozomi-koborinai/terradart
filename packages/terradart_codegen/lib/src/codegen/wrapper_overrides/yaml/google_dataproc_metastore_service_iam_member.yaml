@@ -1,0 +1,18 @@
+outputDir: dataproc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Adds a single IAM `role` → `member` binding on a Dataproc Metastore service.
+  ///
+  /// Set [serviceId] to the metastore service id (path segment), not the full
+  /// resource name.
+
+paramOrder:
+  - service_id
+  - role
+  - member
+  - location
+  - condition
+  - project

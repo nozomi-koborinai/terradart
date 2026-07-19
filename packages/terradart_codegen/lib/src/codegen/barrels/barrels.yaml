@@ -136,6 +136,9 @@ barrels:
     doc: |-
       /// Dataplex: governed data products, Universal Catalog metadata (entry groups /
       /// entry types / aspect types), and their IAM adjuncts.
+  dataproc:
+    doc: |-
+      /// Dataproc Metastore — managed Hive metastore services and federations.
   dialogflow:
     doc: |-
       /// Dialogflow CX: telephony and conversation resources.
