@@ -24,7 +24,9 @@ enum MigrationCenterReportDeletionPolicy implements TerraformEnum {
 ///
 /// Migration Center assessment report generated from a [GoogleMigrationCenterReportConfig].
 ///
-/// Set [reportConfig] to `TfArg.ref(config.nameRef)`.
+/// Set [reportConfig] to the report config **id segment** (e.g.
+/// `TfArg.literal('my-report-config')`), not the full resource name —
+/// same path-ID pattern as [GoogleMigrationCenterImportDataFile.importJob].
 final class GoogleMigrationCenterReport extends Resource {
   static const String tfType = 'google_migration_center_report';
 

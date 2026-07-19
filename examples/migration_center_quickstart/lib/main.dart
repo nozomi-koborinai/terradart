@@ -19,6 +19,7 @@ final class MigrationCenterStack extends Stack {
         ) {
     const location = 'us-central1';
     const importJobId = 'terradart-import';
+    const reportConfigId = 'terradart-report-config';
 
     final apiDeps = Apis.enable(
       this,
@@ -141,7 +142,7 @@ final class MigrationCenterStack extends Stack {
     final reportConfig = GoogleMigrationCenterReportConfig(
       localName: 'tco',
       location: TfArg.literal(location),
-      reportConfigId: TfArg.literal('terradart-report-config'),
+      reportConfigId: TfArg.literal(reportConfigId),
       displayName: TfArg.literal('TerraDart report config'),
       groupPreferencesetAssignments: [
         MigrationCenterReportConfigGroupPreferencesetAssignment(
@@ -157,11 +158,13 @@ final class MigrationCenterStack extends Stack {
     );
     add(reportConfig);
 
+    // `report_config` is a path ID segment (not the full resource name) —
+    // same pattern as import_data_file's `import_job`.
     add(
       GoogleMigrationCenterReport(
         localName: 'assessment',
         location: TfArg.literal(location),
-        reportConfig: TfArg.ref(reportConfig.nameRef),
+        reportConfig: TfArg.literal(reportConfigId),
         reportId: TfArg.literal('terradart-report'),
         displayName: TfArg.literal('TerraDart assessment report'),
         dependsOn: [...apiDeps, ResourceDependency(reportConfig)],
