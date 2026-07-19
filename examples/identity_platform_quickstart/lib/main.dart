@@ -1,8 +1,9 @@
-/// Identity Platform quickstart — a multi-tenant Auth realm.
+/// Identity Platform quickstart — a multi-tenant Auth realm (synth + validate).
 ///
-/// [GoogleIdentityPlatformConfig] is deferred to [tool/example_debt.yaml]: it is
-/// a project singleton and `terradart-validate` already has Identity Platform
-/// enabled, so create returns 400. Fresh projects can still use the factory.
+/// Real apply is skipped for `terradart-validate` ([tool/apply_smoke_skip.yaml]):
+/// tenant create returns 400 `INVALID_PROJECT_ID` after API enablement alone.
+/// [GoogleIdentityPlatformConfig] is also deferred to [tool/example_debt.yaml]
+/// (project singleton; create fails when Identity Platform is already on).
 ///
 /// IdP configs (OAuth / SAML / default supported IdPs) need real external
 /// client credentials and are not exercised here.

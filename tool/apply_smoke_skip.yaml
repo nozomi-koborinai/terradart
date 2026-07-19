@@ -31,6 +31,9 @@ firebase_data_connect_quickstart: needs the project registered with Firebase
 firebase_remote_config_quickstart: needs the project registered with Firebase
 firebase_app_hosting_quickstart: needs the project registered with Firebase + a connected source repo
 
+# --- Identity Platform / GCIP multi-tenancy needs more than API enablement
+identity_platform_quickstart: tenant create returns 400 INVALID_PROJECT_ID after enabling identitytoolkit.googleapis.com — terradart-validate lacks GCIP multi-tenancy / Firebase Auth project linkage that Terraform cannot establish here; config is also a project singleton (see tool/example_debt.yaml)
+
 # --- Need a source artifact staged into the generated tf-out at apply time
 cloud_functions_quickstart: needs a real function source zip staged into tf-out
 app_engine_quickstart: needs a staged app.zip in the deploy bucket and a verifiable domain for domain mapping; one App Engine app per project
