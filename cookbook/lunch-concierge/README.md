@@ -14,6 +14,9 @@ The user picks an area, a mood, and a budget; Gemini (via Genkit + Agent
 Platform) suggests three lunches; each request is persisted to a private Cloud SQL
 database. Nothing about this app leaves Dart.
 
+Talk slides (Japanese):
+[Type-safe IaC for Dart](https://speakerdeck.com/coborinai/type-safe-iac-for-dart).
+
 ## The one-language boundary
 
 Most "full-stack Dart" stories stop at UI + server. The moment you reach
@@ -53,20 +56,12 @@ shared/  (schemantic types: LunchRequest / LunchResponse)
 
 ### Runtime — the deployed GCP topology
 
-```text
-Browser ──► IAP (Google sign-in) ──► Cloud Run: lunch-concierge
-                                      ├─ app container
-                                      │    Flutter Web (static) + shelf
-                                      │    optional IAP JWT check on /api/*
-                                      │    genkit_shelf ─► Agent Platform (Gemini 2.5 Flash)
-                                      │    postgres client ─► localhost:5432
-                                      └─ cloud-sql-proxy sidecar (private IP, IAM auth)
-                                             │ Direct VPC egress (PRIVATE_RANGES_ONLY)
-                                             ▼
-                                      VPC + Private Service Access
-                                             ▼
-                                      Cloud SQL PostgreSQL (private IP, IAM auth)
-```
+![Lunch Concierge on Google Cloud — IAP, Cloud Run (app + cloud-sql-proxy), Agent Platform, private Cloud SQL, provisioned by a TerraDart Stack](docs/architecture.png)
+
+Solid edges are the runtime path (browser → IAP → Cloud Run → Agent Platform /
+Cloud SQL). Dashed edges are provisioning (`terradart` synth → Terraform plan /
+apply). The diagram’s model label may lag the server code, which currently
+calls `gemini-2.5-flash`.
 
 Cloud Run reaches the database through **Direct VPC egress** with
 `PRIVATE_RANGES_ONLY` — a private database path without a Serverless VPC
@@ -98,7 +93,8 @@ cookbook/lunch-concierge/
 ├── client/   # Flutter Web (app / lunch_page / theme / widgets)
 ├── server/   # shelf app (routes, optional IAP JWT, Genkit, postgres)
 ├── shared/   # schemantic schemas + generated LunchStackExports
-└── infra/    # TerraDart Stack
+├── infra/    # TerraDart Stack
+└── docs/     # architecture diagram for this README
 ```
 
 `client/`, `server/`, `shared/`, and `infra/` are separate Dart packages. The
@@ -184,6 +180,29 @@ ai.defineFlow(
 
 ## Deploy
 
+### GitHub Actions (reference)
+
+[`.github/workflows/lunch-concierge-deploy.yml`](../../.github/workflows/lunch-concierge-deploy.yml)
+is kept as a **reference** WIF-based `plan` / `apply` / `destroy` pipeline
+(`workflow_dispatch` only — not part of the merge gate). It is not wired to a
+maintainer demo project anymore; bring your own GCP project and set these
+repository secrets before running it:
+
+| Secret | Purpose |
+|--------|---------|
+| `LUNCH_PROJECT_ID` | GCP project id |
+| `LUNCH_PROJECT_NUMBER` | GCP project number (WIF resource names) |
+| `LUNCH_TF_STATE_BUCKET` | GCS bucket for Terraform state |
+| `LUNCH_TF_STATE_PREFIX` | State object prefix (e.g. `lunch-concierge`) |
+| `LUNCH_WIF_PROVIDER` | Full Workload Identity Provider resource name |
+| `LUNCH_DEPLOYER_SERVICE_ACCOUNT` | Deployer SA email impersonated via WIF |
+| `LUNCH_INVOKER_EMAIL` | Google account granted IAP / invoker access |
+
+Without those secrets, the workflow fails at `google-github-actions/auth` —
+that is expected when credentials are not configured.
+
+### Local apply
+
 From the repository root:
 
 ```bash
@@ -219,9 +238,26 @@ can be pushed. The second apply creates or updates the rest of the stack.
 When you are done, `terraform destroy` cleans up — the Cloud SQL instance and
 Cloud Run service set `deletion_protection = false` explicitly. The main
 running cost is the Cloud SQL `db-f1-micro` instance; Cloud Run idles at
-min-instances 0, and the VPC / PSA range are free. (For the PSA teardown
-gotcha, see the [`single-project-app`](../single-project-app/README.md) recipe
-— the same private-services-access peering applies here.)
+min-instances 0, and the VPC / PSA range are free.
+
+### Teardown gotcha (PSA)
+
+After Cloud SQL is gone, `terraform destroy` (local or Actions) can still fail
+on `google_service_networking_connection` with `Producer services … are still
+using this connection`. Force-delete the consumer peering, then re-run
+destroy:
+
+```bash
+gcloud compute networks peerings delete servicenetworking-googleapis-com \
+  --network=lunch-vpc \
+  --project="$GCP_PROJECT_ID" \
+  --quiet
+
+# then: terraform destroy -auto-approve
+#   or: re-run the workflow with operation=destroy
+```
+
+Same pattern as [`single-project-app`](../single-project-app/README.md).
 
 ## Access control (IAP)
 

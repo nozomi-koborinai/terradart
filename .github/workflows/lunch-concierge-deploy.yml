@@ -1,3 +1,18 @@
+# Reference CI/CD for cookbook/lunch-concierge (WIF plan/apply/destroy).
+# workflow_dispatch only — not part of the merge gate.
+#
+# Required repository secrets (bring your own GCP project):
+#   LUNCH_PROJECT_ID
+#   LUNCH_PROJECT_NUMBER
+#   LUNCH_TF_STATE_BUCKET
+#   LUNCH_TF_STATE_PREFIX
+#   LUNCH_WIF_PROVIDER
+#   LUNCH_DEPLOYER_SERVICE_ACCOUNT
+#   LUNCH_INVOKER_EMAIL
+#
+# Missing secrets fail at google-github-actions/auth — expected when the
+# demo credentials are not configured. See cookbook/lunch-concierge/README.md.
+#
 name: Lunch Concierge Deploy
 
 on:
