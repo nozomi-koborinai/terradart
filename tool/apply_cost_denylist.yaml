@@ -32,6 +32,7 @@ safe_exception: google_compute_instance_iam_member  # IAM binding, no billing �
 safe_exception: google_compute_instance_template  # instance template metadata only; VMs bill via google_compute_instance (sweep_only)
 safe_exception: google_service_directory_endpoint  # Service Directory metadata record, no existence billing — _endpoint false positive
 safe_exception: google_bigtable_instance_iam_member  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
+safe_exception: google_notebooks_environment  # Workbench environment is an image recipe only; Notebooks SKUs bill when an instance/VM runs — _notebooks substring false positive
 
 # --- never_apply: existence-billed / reservation ---
 google_license_manager_configuration: never_apply  # Office SPLA licenses bill per license_count for the configuration's lifetime, no VM required
@@ -117,6 +118,7 @@ google_apphub_workload: safe  # gcp-cost: no Cloud Billing Catalog SKU (same MCP
 google_apikeys_key: safe  # gcp-cost: no Cloud Billing Catalog SKU (API key metadata); billing-behavior: key object only, no hourly/existence billing
 google_recaptcha_enterprise_key: safe  # gcp-cost: no Cloud Billing Catalog SKU (reCAPTCHA Enterprise key metadata); billing-behavior: key config only; usage billed separately per assessment
 google_network_management_connectivity_test: safe  # gcp-cost: no Cloud Billing Catalog SKU on test object; billing-behavior: connectivity test metadata; execution may incur Network Intelligence pricing separately
+google_notebooks_environment: safe  # gcp-cost: no Cloud Billing Catalog SKU for environment config after MCP lookup on Notebooks D73B-5EEA-8215 (SKU surface is Workbench Instance CPU/RAM/GPU/disk when a VM runs); billing-behavior: environment metadata recipe — no existence/hourly charge until an instance uses it
 google_os_config_os_policy_assignment: safe  # gcp-cost: no Cloud Billing Catalog SKU (OS Config API); billing-behavior: policy assignment metadata; patch jobs bill separately when executed
 google_os_config_patch_deployment: safe  # gcp-cost: no Cloud Billing Catalog SKU on deployment object; billing-behavior: schedule metadata only until a patch job runs
 google_cloud_scheduler_job: safe  # apply-verified safe (existing example)

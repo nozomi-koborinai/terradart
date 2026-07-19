@@ -67,6 +67,7 @@ export 'memcache.dart';
 export 'migration.dart';
 export 'monitoring.dart';
 export 'network.dart';
+export 'notebooks.dart';
 export 'observability.dart';
 export 'oracle.dart';
 export 'os_config.dart';

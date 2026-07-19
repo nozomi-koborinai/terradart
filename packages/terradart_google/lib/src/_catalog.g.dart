@@ -9362,6 +9362,31 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_network_security_url_lists`.',
   ),
   CatalogEntry(
+    tfType: 'google_notebooks_environment',
+    className: 'GoogleNotebooksEnvironment',
+    barrel: 'notebooks',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_notebooks_environment`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'image',
+      'displayName',
+      'description',
+      'postStartupScript',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'NotebooksEnvironmentImage',
+      'NotebooksEnvironmentContainerImage',
+      'NotebooksEnvironmentVmImage',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_notebooks_environment`.\n\nA Cloud AI Platform Notebook environment.\n\nVertex AI Workbench (Notebooks) environment — a reusable image recipe\nfor notebook instances (no VM starts until an instance uses it).\n\nPass exactly one [image] variant:\n- [NotebooksEnvironmentContainerImage] — container repository (+ optional tag)\n- [NotebooksEnvironmentVmImage] — Compute Engine image project + name/family\n\nEnable `notebooks.googleapis.com` via [GoogleProjectService] before apply.\n\nExample (container image):\n```dart\nGoogleNotebooksEnvironment(\n  localName: \'base_cpu\',\n  name: TfArg.literal(\'terradart-nb-env\'),\n  location: TfArg.literal(\'us-central1-a\'),\n  image: NotebooksEnvironmentContainerImage(\n    repository: TfArg.literal(\n      \'gcr.io/deeplearning-platform-release/base-cpu\',\n    ),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_observability_trace_scope',
     className: 'GoogleObservabilityTraceScope',
     barrel: 'observability',
