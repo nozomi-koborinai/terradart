@@ -64,22 +64,35 @@ final class DataLossPreventionStoredInfoTypeDictionary
   ];
 }
 
-/// Large custom dictionary (GCS / BigQuery sources). Pass the nested block
-/// body as a map matching the Terraform schema.
+/// Large custom dictionary built from a GCS phrase file.
 @immutable
 final class DataLossPreventionStoredInfoTypeLargeCustomDictionary
     extends DataLossPreventionStoredInfoTypeDefinition {
   const DataLossPreventionStoredInfoTypeLargeCustomDictionary({
-    required this.block,
+    required this.outputPath,
+    required this.cloudStorageFileSet,
   });
 
-  final Map<String, Object?> block;
+  /// GCS path for dictionary artifacts (`gs://bucket/prefix/`).
+  final TfArg<String> outputPath;
+
+  /// GCS URL of the newline-delimited phrase file.
+  final TfArg<String> cloudStorageFileSet;
 
   @override
   String get blockKey => 'large_custom_dictionary';
 
   @override
-  List<Map<String, Object?>> encode() => [block];
+  List<Map<String, Object?>> encode() => [
+    {
+      'output_path': [
+        {'path': outputPath.toTfJson()},
+      ],
+      'cloud_storage_file_set': [
+        {'url': cloudStorageFileSet.toTfJson()},
+      ],
+    },
+  ];
 }
 
 /// Factory wrapper for `google_data_loss_prevention_stored_info_type`.

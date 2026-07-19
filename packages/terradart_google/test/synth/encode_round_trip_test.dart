@@ -37,6 +37,7 @@ import 'package:terradart_google/dataplex.dart';
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/cloud_scheduler.dart';
 import 'package:terradart_google/compute.dart';
+import 'package:terradart_google/dlp.dart';
 import 'package:terradart_google/firebase_app_hosting.dart';
 import 'package:terradart_google/firestore.dart';
 import 'package:terradart_google/iam.dart';
@@ -388,6 +389,21 @@ final Map<String, Object Function()> _syntheticInstances = {
   // unwraps to the single inner map for the structural assertions.
   'FirestoreBackupScheduleDailyRecurrence': () => const FirestoreBackupScheduleDailyRecurrence(),
   'FirestoreBackupScheduleWeeklyRecurrence': () => const FirestoreBackupScheduleWeeklyRecurrence(),
+
+  // --- StoredInfoTypeDefinition (3) — data_loss_prevention_stored_info_type -
+  'DataLossPreventionStoredInfoTypeRegex': () =>
+      DataLossPreventionStoredInfoTypeRegex(
+        pattern: TfArg.literal(r'patient-\d{4}'),
+      ),
+  'DataLossPreventionStoredInfoTypeDictionary': () =>
+      DataLossPreventionStoredInfoTypeDictionary(
+        words: TfArg.literal(const ['ALPHA', 'BRAVO']),
+      ),
+  'DataLossPreventionStoredInfoTypeLargeCustomDictionary': () =>
+      DataLossPreventionStoredInfoTypeLargeCustomDictionary(
+        outputPath: TfArg.literal('gs://bucket/dlp-dict/'),
+        cloudStorageFileSet: TfArg.literal('gs://bucket/phrases.txt'),
+      ),
 
   // --- OsConfigPatchDeploymentSchedule (2) — os_config_patch_deployment ------
   'OsConfigPatchDeploymentOneTimeSchedule': () =>
