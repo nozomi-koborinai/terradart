@@ -1,8 +1,11 @@
 outputDir: dlp
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveNestedTypes: true
 
 # Deep inspect_config tree stays Map for this thin Wave.
+nestedTypeExcludes:
+  - inspect_config
 
 curatedDoc: |-
   /// DLP inspect template — reusable configuration for finding sensitive

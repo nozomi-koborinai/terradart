@@ -2,11 +2,15 @@ outputDir: dlp
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveNestedTypes: true
 
 dartTypeOverrides:
   status: DataLossPreventionJobTriggerStatus
 
 # Deep inspect_job / triggers trees stay Map for this thin Wave.
+nestedTypeExcludes:
+  - inspect_job
+  - triggers
 
 curatedDoc: |-
   /// DLP job trigger — scheduled (or event-driven) inspect jobs.

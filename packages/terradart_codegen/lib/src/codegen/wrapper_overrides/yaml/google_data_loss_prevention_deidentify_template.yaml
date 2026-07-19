@@ -1,8 +1,11 @@
 outputDir: dlp
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveNestedTypes: true
 
 # Deep deidentify_config tree stays Map for this thin Wave.
+nestedTypeExcludes:
+  - deidentify_config
 
 curatedDoc: |-
   /// DLP de-identify template — reusable transforms that redact or replace
