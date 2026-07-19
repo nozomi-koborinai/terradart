@@ -1,0 +1,47 @@
+outputDir: artifact_registry
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  action: ArtifactRegistryRuleAction
+  operation: ArtifactRegistryRuleOperation
+
+curatedDoc: |-
+  /// Artifact Registry **repository rule** — allow or deny a repository
+  /// operation (today: `DOWNLOAD`) for matching packages. Creating a rule
+  /// alone does not store artifacts or bill storage/egress SKUs.
+  ///
+  /// You can set one rule for the whole repository and one rule per package
+  /// (`packageId`). Optional [condition] is a CEL expression; omit it to
+  /// match all objects.
+  ///
+  /// Enable `artifactregistry.googleapis.com` via [GoogleProjectService]
+  /// before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleArtifactRegistryRule(
+  ///   localName: 'deny_download',
+  ///   repositoryId: TfArg.literal('terradart-docker'),
+  ///   location: TfArg.literal('asia-northeast1'),
+  ///   ruleId: TfArg.literal('deny-all-downloads'),
+  ///   action: ArtifactRegistryRuleAction.deny,
+  ///   operation: ArtifactRegistryRuleOperation.download,
+  /// );
+  /// ```
+
+paramOrder:
+  - repository_id
+  - location
+  - rule_id
+  - action
+  - operation
+  - package_id
+  - condition
+  - deletion_policy
+  - project

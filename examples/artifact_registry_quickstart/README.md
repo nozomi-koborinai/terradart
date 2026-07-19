@@ -1,6 +1,8 @@
 # Artifact Registry quickstart
 
-End-to-end terradart example for Artifact Registry project config — the per-location platform logs policy (`google_artifact_registry_project_config`). Enables the Artifact Registry API and sets platform logs to `ENABLED` at `INFO` severity in `asia-northeast1`.
+End-to-end terradart example for Artifact Registry: per-location platform logs
+(`google_artifact_registry_project_config`), an empty Docker repository, and a
+repository-level DENY DOWNLOAD rule. Enables `artifactregistry.googleapis.com`.
 
 ## Prerequisites
 
@@ -12,7 +14,7 @@ End-to-end terradart example for Artifact Registry project config — the per-lo
 
 ```
 examples/artifact_registry_quickstart/
-├── lib/main.dart       # ArtifactRegistryStack (API + project config)
+├── lib/main.dart       # ArtifactRegistryStack (API + config + repo + rule)
 ├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
 ├── lib/generated/      # (created on synth) artifact_registry_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
@@ -36,4 +38,6 @@ dart run bin/infra.dart
 cd tf-out && terraform init && terraform plan
 ```
 
-The project config is a metadata resource; destroy removes it from Terraform state but leaves the live GCP config in place (per provider docs).
+The project config is a metadata resource; destroy removes it from Terraform
+state but leaves the live GCP config in place (per provider docs). The Docker
+repository is empty (≈ $0 storage). The rule is policy metadata only.
