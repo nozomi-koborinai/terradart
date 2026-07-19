@@ -1,0 +1,42 @@
+outputDir: container_analysis
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Container Analysis occurrence — an instance of a [GoogleContainerAnalysisNote]
+  /// attached to a concrete resource URI (typically a container image).
+  ///
+  /// Attestation occurrences require a base64 `serialized_payload` and at least
+  /// one signature (`public_key_id` + optional `signature`). See Binary
+  /// Authorization's "Creating Attestations" guide for payload formats.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleContainerAnalysisOccurrence(
+  ///   localName: 'image_attestation',
+  ///   noteName: TfArg.ref(note.id),
+  ///   resourceUri: TfArg.literal('https://gcr.io/$projectId/app@sha256:…'),
+  ///   attestation: ContainerAnalysisOccurrenceAttestation(
+  ///     serializedPayload: TfArg.literal('<base64-payload>'),
+  ///     signatures: [
+  ///       ContainerAnalysisOccurrenceAttestationSignatures(
+  ///         publicKeyId: TfArg.literal('//cloudkms.googleapis.com/…'),
+  ///         signature: TfArg.literal('<base64-signature>'),
+  ///       ),
+  ///     ],
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - note_name
+  - resource_uri
+  - attestation
+  - remediation
+  - deletion_policy
+  - project

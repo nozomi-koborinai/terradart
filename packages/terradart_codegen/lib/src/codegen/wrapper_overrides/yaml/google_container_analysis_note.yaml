@@ -1,0 +1,40 @@
+outputDir: container_analysis
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Container Analysis note — high-level metadata describing an analysis
+  /// type (commonly an attestation authority for Binary Authorization).
+  ///
+  /// Enable `containeranalysis.googleapis.com` before apply. Pair with
+  /// [GoogleContainerAnalysisOccurrence] when recording attestations against
+  /// a concrete image URI.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleContainerAnalysisNote(
+  ///   localName: 'attestor',
+  ///   name: TfArg.literal('terradart-attestor-note'),
+  ///   attestationAuthority: ContainerAnalysisNoteAttestationAuthority(
+  ///     hint: ContainerAnalysisNoteAttestationAuthorityHint(
+  ///       humanReadableName: TfArg.literal('TerraDart attestor'),
+  ///     ),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - short_description
+  - long_description
+  - attestation_authority
+  - related_url
+  - related_note_names
+  - expiration_time
+  - deletion_policy
+  - project

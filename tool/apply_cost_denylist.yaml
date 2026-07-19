@@ -37,6 +37,9 @@ safe_exception: google_bigtable_instance_iam_member  # IAM binding on Bigtable i
 google_license_manager_configuration: never_apply  # Office SPLA licenses bill per license_count for the configuration's lifetime, no VM required
 
 # --- sweep_only: hourly-billed compute / managed data ---
+google_container_analysis_note: safe  # gcp-cost: no Cloud Billing Catalog SKU for Container Analysis note metadata (MCP list_services: no "Container Analysis" service; related "Container Registry Vulnerability Scanning" / "On-Demand Scanning" SKUs bill image scan usage, not note existence); billing-behavior: note metadata only
+google_container_analysis_note_iam_member: safe  # billing-behavior: IAM binding only
+google_container_analysis_occurrence: safe  # gcp-cost: no Cloud Billing Catalog SKU for occurrence metadata (same MCP lookup as note — scanning SKUs are usage, not occurrence objects); billing-behavior: occurrence metadata only; signed attestations do not bill by existence
 google_container_cluster: sweep_only         # GKE control plane fee + node VMs
 google_container_node_pool: sweep_only       # GKE node VMs
 google_compute_instance: sweep_only          # Compute Engine VM

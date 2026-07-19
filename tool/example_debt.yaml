@@ -84,3 +84,8 @@ GoogleComputeNetworkPeeringRoutesConfig: configures routes on a VPC peering; wit
 # Tenant apply also fails on terradart-validate (400 INVALID_PROJECT_ID) — the
 # quickstart stays synth-only via tool/apply_smoke_skip.yaml.
 GoogleIdentityPlatformConfig: project singleton — terradart-validate (and any project with Identity Platform already on) rejects create with 400 "Identity Platform has already been enabled"; use the factory on a fresh project or import the existing config
+
+# Container Analysis occurrences require a base64 attestation payload + signature
+# (typically KMS / Binary Authorization). container_analysis_quickstart covers
+# the note + note IAM member instead.
+GoogleContainerAnalysisOccurrence: attestation occurrences need a real signed serialized_payload and public_key_id (KMS or similar); placeholder material fails apply — extend the quickstart when a deterministic signing path exists in terradart-validate

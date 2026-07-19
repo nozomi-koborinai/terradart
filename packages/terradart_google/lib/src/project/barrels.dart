@@ -22,6 +22,7 @@ enum Barrels {
   cloudTasks('cloud_tasks'),
   compute('compute'),
   container('container'),
+  containerAnalysis('container_analysis'),
   contact('contact'),
   dataplex('dataplex'),
   dataproc('dataproc'),
