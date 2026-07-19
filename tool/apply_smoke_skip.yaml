@@ -34,6 +34,12 @@ firebase_app_hosting_quickstart: needs the project registered with Firebase + a 
 # --- Identity Platform / GCIP multi-tenancy needs more than API enablement
 identity_platform_quickstart: tenant create returns 400 INVALID_PROJECT_ID after enabling identitytoolkit.googleapis.com — terradart-validate lacks GCIP multi-tenancy / Firebase Auth project linkage that Terraform cannot establish here; config is also a project singleton (see tool/example_debt.yaml)
 
+# --- Cloud Source Repositories API is not enableable on terradart-validate
+#     (sourcerepo.googleapis.com absent from the project's available services
+#     list; enable returns 403 AUTH_PERMISSION_DENIED — product is in
+#     maintenance / SSM successor). Synth + terraform validate still cover it.
+sourcerepo_quickstart: sourcerepo.googleapis.com cannot be enabled on terradart-validate (API absent from available services / enable 403); Cloud Source Repositories is maintenance-mode in favor of Secure Source Manager
+
 # --- Need a source artifact staged into the generated tf-out at apply time
 cloud_functions_quickstart: needs a real function source zip staged into tf-out
 app_engine_quickstart: needs a staged app.zip in the deploy bucket and a verifiable domain for domain mapping; one App Engine app per project
