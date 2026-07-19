@@ -56,6 +56,7 @@ workspace:
   - examples/iam_quickstart
   - examples/iap_tunnel_quickstart
   - examples/identity_platform_quickstart
+  - examples/kms_autokey_quickstart
   - examples/kms_quickstart
   - examples/license_manager_quickstart
   - examples/migration_center_quickstart

@@ -1,0 +1,40 @@
+outputDir: kms
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+dartTypeOverrides:
+  key_project_resolution_mode: KmsProjectAutokeyConfigKeyProjectResolutionMode
+
+curatedDoc: |-
+  /// Project-level **Cloud KMS Autokey config** — a singleton that controls
+  /// whether Autokey auto-provisions CMEK CryptoKeys for this project.
+  ///
+  /// Prefer [keyProjectResolutionMode] `DISABLED` for smoke stacks: the
+  /// config is free metadata and does not create keys. Setting
+  /// `RESOURCE_PROJECT` enables Autokey provisioning (HSM Autokey key SKUs
+  /// apply only when keys are created).
+  ///
+  /// Enable `cloudkms.googleapis.com` via [GoogleProjectService] (or
+  /// [Apis.enable] with [Barrels.kmsApi]) before apply.
+  ///
+  /// **Note:** Project Autokey configs cannot be deleted from GCP. Destroying
+  /// a Terraform-managed config removes it from state but does not delete the
+  /// singleton from the project (fields are cleared / abandoned per
+  /// [deletionPolicy]).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleKmsProjectAutokeyConfig(
+  ///   localName: 'autokey',
+  ///   keyProjectResolutionMode: TfArg.literal(
+  ///     KmsProjectAutokeyConfigKeyProjectResolutionMode.disabled,
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - key_project_resolution_mode
+  - deletion_policy
+  - project
