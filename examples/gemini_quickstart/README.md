@@ -1,6 +1,6 @@
 # Gemini for Google Cloud quickstart
 
-End-to-end terradart example for Gemini for Google Cloud (Gemini Code Assist). Enables the Gemini API and configures the project's settings: a GCP enablement setting, a logging setting (log metadata, not prompts/responses), and a release-channel setting — and exports the enablement setting id as a typed Dart constant.
+End-to-end terradart example for Gemini for Google Cloud (Gemini Code Assist). Enables the Gemini API and configures the project's settings: a GCP enablement setting, a logging setting (log metadata, not prompts/responses), a release-channel setting, and a data-sharing-with-Google setting — and exports the enablement setting id as a typed Dart constant.
 
 ## Prerequisites
 
@@ -12,7 +12,7 @@ End-to-end terradart example for Gemini for Google Cloud (Gemini Code Assist). E
 
 ```
 examples/gemini_quickstart/
-├── lib/main.dart       # GeminiStack (enablement + logging + release-channel settings)
+├── lib/main.dart       # GeminiStack (enablement + logging + release-channel + data-sharing)
 ├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
 ├── lib/generated/      # (created on synth) gemini_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json

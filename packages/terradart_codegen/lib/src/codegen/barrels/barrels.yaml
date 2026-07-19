@@ -207,7 +207,7 @@ barrels:
   gemini:
     doc: |-
       /// Gemini for Google Cloud (Gemini Code Assist) — project/location settings:
-      /// enablement, logging, and release channel.
+      /// enablement, logging, release channel, and data-sharing-with-Google.
   gke_backup:
     doc: |-
       /// GKE Backup — backup/restore plans, channels, and plan-scoped IAM.

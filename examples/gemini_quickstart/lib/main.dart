@@ -4,9 +4,10 @@
 /// configures the project's Gemini Code Assist settings:
 /// - a GCP enablement setting,
 /// - a logging setting (log metadata, not prompts/responses),
-/// - a release-channel setting.
+/// - a release-channel setting,
+/// - a data-sharing-with-Google setting (both flags off for smoke).
 ///
-/// All three are free, project/location-scoped config resources, so the stack
+/// All four are free, project/location-scoped config resources, so the stack
 /// creates and destroys cleanly in a single project.
 ///
 /// Exports the enablement setting id as a typed Dart constant via
@@ -18,7 +19,7 @@ import 'package:terradart_google/gemini.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 
-/// Gemini Stack: enablement + logging + release-channel settings.
+/// Gemini Stack: enablement + logging + release-channel + data-sharing.
 final class GeminiStack extends Stack {
   GeminiStack({required String projectId})
       : super(
@@ -60,6 +61,17 @@ final class GeminiStack extends Stack {
         localName: 'release_channel',
         releaseChannelSettingId: TfArg.literal('terradart-channel'),
         location: TfArg.literal('global'),
+        dependsOn: [ResourceDependency(apiGemini)],
+      ),
+    );
+
+    add(
+      GoogleGeminiDataSharingWithGoogleSetting(
+        localName: 'data_sharing',
+        dataSharingWithGoogleSettingId: TfArg.literal('terradart-sharing'),
+        location: TfArg.literal('global'),
+        enableDataSharing: TfArg.literal(false),
+        enablePreviewDataSharing: TfArg.literal(false),
         dependsOn: [ResourceDependency(apiGemini)],
       ),
     );

@@ -1,0 +1,32 @@
+outputDir: gemini
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Gemini for Google Cloud **data-sharing-with-Google** Admin Control setting.
+  ///
+  /// Project/location config that toggles whether Gemini products may share
+  /// usage data with Google (GA and Preview independently). Creating the
+  /// setting alone does not call Gemini models or incur token SKUs.
+  ///
+  /// Enable `cloudaicompanion.googleapis.com` via [GoogleProjectService]
+  /// before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleGeminiDataSharingWithGoogleSetting(
+  ///   localName: 'sharing',
+  ///   dataSharingWithGoogleSettingId: TfArg.literal('terradart-sharing'),
+  ///   location: TfArg.literal('global'),
+  ///   enableDataSharing: TfArg.literal(false),
+  ///   enablePreviewDataSharing: TfArg.literal(false),
+  /// );
+  /// ```
+
+paramOrder:
+  - data_sharing_with_google_setting_id
+  - location
+  - enable_data_sharing
+  - enable_preview_data_sharing
+  - labels
+  - project
