@@ -1,0 +1,16 @@
+outputDir: contact
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Saved conversation view (filter) for Contact Center AI Insights.
+  ///
+  /// Enable `contactcenterinsights.googleapis.com` via [GoogleProjectService]
+  /// before apply. [value] is a Conversational Insights filter expression.
+
+paramOrder:
+  - location
+  - display_name
+  - value
+  - project
+  - deletion_policy

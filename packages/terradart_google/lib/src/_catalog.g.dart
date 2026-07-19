@@ -5162,6 +5162,28 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_config_deployment`.\n\nA group of Google Cloud resources described by a Terraform blueprint.\n\nInfrastructure Manager deployment — actuates a Terraform blueprint from\nGCS or a public Git repository using a dedicated service account.\n\nEnable `config.googleapis.com` via [GoogleProjectService] before apply.\nThe actuation service account needs `roles/config.agent` (and any roles\nrequired by resources in the blueprint).\n\nExample (Git blueprint):\n```dart\nGoogleConfigDeployment(\n  localName: \'vpc\',\n  name: TfArg.literal(\'my-vpc-deployment\'),\n  location: TfArg.literal(\'us-central1\'),\n  serviceAccount: TfArg.literal(\n    \'projects/my-project/serviceAccounts/im-sa@my-project.iam.gserviceaccount.com\',\n  ),\n  terraformBlueprint: ConfigDeploymentTerraformBlueprint(\n    source: ConfigDeploymentBlueprintFromGit(\n      repo: TfArg.literal(\n        \'https://github.com/terraform-google-modules/terraform-google-network\',\n      ),\n      directory: TfArg.literal(\'modules/vpc\'),\n      ref: TfArg.literal(\'main\'),\n    ),\n    inputValues: [\n      ConfigDeploymentInputValue(\n        variableName: TfArg.literal(\'project_id\'),\n        inputValue: TfArg.literal(\'"my-project"\'),\n      ),\n    ],\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_contact_center_insights_analysis_rule',
+    className: 'GoogleContactCenterInsightsAnalysisRule',
+    barrel: 'contact',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_contact_center_insights_analysis_rule`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'displayName',
+      'active',
+      'analysisPercentage',
+      'conversationFilter',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_contact_center_insights_analysis_rule`.\n\nThe CCAI Insights project wide analysis rule. This rule will be applied to\nall conversations that match the filter defined in the rule. For a\nconversation matches the filter, the annotators specified in the rule will\nbe run. If a conversation matches multiple rules, a union of all the\nannotators will be run. One project can have multiple analysis rules.\n\nAnalysis rule for Contact Center AI Insights — selects which conversations\nget automatic analysis (filter + percentage).\n\nEnable `contactcenterinsights.googleapis.com` via [GoogleProjectService]\nbefore apply. An empty [conversationFilter] means the rule applies to all\nconversations in [location].',
+  ),
+  CatalogEntry(
     tfType: 'google_contact_center_insights_encryption_spec',
     className: 'GoogleContactCenterInsightsEncryptionSpec',
     barrel: 'contact',
@@ -5173,6 +5195,47 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_contact_center_insights_encryption_spec`.\n\nInitializes a location-level encryption key specification.\n\nLocation-level CMEK for Contact Center AI Insights.\n\nEnable `contactcenterinsights.googleapis.com` via [GoogleProjectService]\nbefore apply. The [kmsKey] must live in the same region as [location].\n\nExample:\n```dart\nGoogleContactCenterInsightsEncryptionSpec(\n  localName: \'insights_cmek\',\n  location: TfArg.literal(\'asia-northeast1\'),\n  kmsKey: TfArg.ref(paymentsKey.id),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_contact_center_insights_qa_scorecard',
+    className: 'GoogleContactCenterInsightsQaScorecard',
+    barrel: 'contact',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_contact_center_insights_qa_scorecard`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'qaScorecardId',
+      'displayName',
+      'description',
+      'source',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>['ContactCenterInsightsQaScorecardSource'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_contact_center_insights_qa_scorecard`.\n\nA QaScorecard represents a collection of questions to be scored during\nanalysis.\n\nQA scorecard for Contact Center AI Insights quality scoring.\n\nEnable `contactcenterinsights.googleapis.com` via [GoogleProjectService]\nbefore apply. [qaScorecardId] becomes the final path segment of the\nresource name.',
+  ),
+  CatalogEntry(
+    tfType: 'google_contact_center_insights_view',
+    className: 'GoogleContactCenterInsightsView',
+    barrel: 'contact',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_contact_center_insights_view`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'displayName',
+      'value',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_contact_center_insights_view`.\n\nInsights View resource for filtering conversations\n\nSaved conversation view (filter) for Contact Center AI Insights.\n\nEnable `contactcenterinsights.googleapis.com` via [GoogleProjectService]\nbefore apply. [value] is a Conversational Insights filter expression.',
   ),
   CatalogEntry(
     tfType: 'google_container_analysis_note',

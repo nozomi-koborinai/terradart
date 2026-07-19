@@ -37,6 +37,10 @@ safe_exception: google_bigtable_instance_iam_member  # IAM binding on Bigtable i
 google_license_manager_configuration: never_apply  # Office SPLA licenses bill per license_count for the configuration's lifetime, no VM required
 
 # --- sweep_only: hourly-billed compute / managed data ---
+google_contact_center_insights_analysis_rule: safe  # gcp-cost: no Cloud Billing Catalog SKU for analysis_rule config (Conversational Insights FA1B-16BE-8526 lists analysis/subscription SKUs only, e.g. C18F-21FE-BB85 standard voice analysis); billing-behavior: location config metadata — no existence/hourly charge; analysis billed only when conversations are processed
+google_contact_center_insights_encryption_spec: safe  # gcp-cost: no Cloud Billing Catalog SKU for encryption_spec config (same Conversational Insights service; CMEK binding only); billing-behavior: location CMEK metadata — no existence/hourly charge
+google_contact_center_insights_qa_scorecard: safe  # gcp-cost: no Cloud Billing Catalog SKU for qa_scorecard config (Conversational Insights FA1B-16BE-8526 analysis/subscription SKUs only); billing-behavior: QA scorecard metadata — no existence/hourly charge
+google_contact_center_insights_view: safe  # gcp-cost: no Cloud Billing Catalog SKU for view config (Conversational Insights FA1B-16BE-8526 analysis/subscription SKUs only); billing-behavior: saved filter metadata — no existence/hourly charge
 google_container_analysis_note: safe  # gcp-cost: no Cloud Billing Catalog SKU for Container Analysis note metadata (MCP list_services: no "Container Analysis" service; related "Container Registry Vulnerability Scanning" / "On-Demand Scanning" SKUs bill image scan usage, not note existence); billing-behavior: note metadata only
 google_container_analysis_note_iam_member: safe  # billing-behavior: IAM binding only
 google_container_analysis_occurrence: safe  # gcp-cost: no Cloud Billing Catalog SKU for occurrence metadata (same MCP lookup as note — scanning SKUs are usage, not occurrence objects); billing-behavior: occurrence metadata only; signed attestations do not bill by existence
