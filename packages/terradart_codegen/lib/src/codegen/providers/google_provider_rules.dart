@@ -120,5 +120,11 @@ final class GoogleProviderRules extends ProviderRules {
 
     // Wave 77 — Network Management (`google_network_management_*` → network barrel).
     'network_management': 'network',
+
+    // Sensitive Data Protection / DLP (`google_data_loss_prevention_*`).
+    // Segment-1 would be `data` (conflicts with the data-source barrel).
+    'data_loss_prevention': 'dlp',
+    'data_loss': 'dlp',
+    'dlp': 'dlp',
   };
 }

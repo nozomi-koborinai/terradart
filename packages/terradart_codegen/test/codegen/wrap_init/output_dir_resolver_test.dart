@@ -53,5 +53,14 @@ void main() {
       );
       expect(result, 'iam');
     });
+
+    test('Step 2: data_loss_prevention → dlp (not data)', () {
+      final result = resolver.resolve(
+        terraformType: 'google_data_loss_prevention_inspect_template',
+        mmProduct: null,
+        kind: WrapperOverrideKind.resource,
+      );
+      expect(result, 'dlp');
+    });
   });
 }
