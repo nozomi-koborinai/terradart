@@ -1,0 +1,95 @@
+outputDir: network
+deriveClassDoc: true
+deriveOutputGetters: true
+
+# Schema docs list Possible values space-separated (no commas / brackets), so
+# deriveEnums cannot mine them — hand-write the three top-level enums.
+dartTypeOverrides:
+  aggregation_interval: NetworkManagementVpcFlowLogsConfigAggregationInterval
+  metadata: NetworkManagementVpcFlowLogsConfigMetadata
+  state: NetworkManagementVpcFlowLogsConfigState
+
+prelude: |
+  /// `aggregation_interval` for `google_network_management_vpc_flow_logs_config`.
+  enum NetworkManagementVpcFlowLogsConfigAggregationInterval
+      implements TerraformEnum {
+    aggregationIntervalUnspecified('AGGREGATION_INTERVAL_UNSPECIFIED'),
+    interval5Sec('INTERVAL_5_SEC'),
+    interval30Sec('INTERVAL_30_SEC'),
+    interval1Min('INTERVAL_1_MIN'),
+    interval5Min('INTERVAL_5_MIN'),
+    interval10Min('INTERVAL_10_MIN'),
+    interval15Min('INTERVAL_15_MIN');
+
+    const NetworkManagementVpcFlowLogsConfigAggregationInterval(
+      this.terraformValue,
+    );
+    @override
+    final String terraformValue;
+  }
+
+  /// `metadata` for `google_network_management_vpc_flow_logs_config`.
+  enum NetworkManagementVpcFlowLogsConfigMetadata implements TerraformEnum {
+    metadataUnspecified('METADATA_UNSPECIFIED'),
+    includeAllMetadata('INCLUDE_ALL_METADATA'),
+    excludeAllMetadata('EXCLUDE_ALL_METADATA'),
+    customMetadata('CUSTOM_METADATA');
+
+    const NetworkManagementVpcFlowLogsConfigMetadata(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `state` for `google_network_management_vpc_flow_logs_config`.
+  enum NetworkManagementVpcFlowLogsConfigState implements TerraformEnum {
+    stateUnspecified('STATE_UNSPECIFIED'),
+    enabled('ENABLED'),
+    disabled('DISABLED');
+
+    const NetworkManagementVpcFlowLogsConfigState(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+curatedDoc: |-
+  /// Network Management **VPC Flow Logs config** — enables flow logging for a
+  /// network, subnet, VPN tunnel, or Interconnect attachment.
+  ///
+  /// Set exactly one target among [network], [subnet], [vpnTunnel], or
+  /// [interconnectAttachment] (full resource names). Creating a config on an
+  /// empty VPC does not by itself bill — Cloud Logging charges only when
+  /// traffic generates log volume.
+  ///
+  /// Enable `networkmanagement.googleapis.com` via [GoogleProjectService]
+  /// before apply. New configs must be created with [state] enabled.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleNetworkManagementVpcFlowLogsConfig(
+  ///   localName: 'vpc_logs',
+  ///   vpcFlowLogsConfigId: TfArg.literal('terradart-vpc-flow'),
+  ///   location: TfArg.literal('global'),
+  ///   network: TfArg.literal(
+  ///     'projects/123456789/global/networks/terradart-vpc',
+  ///   ),
+  ///   flowSampling: TfArg.literal(0.5),
+  /// );
+  /// ```
+
+paramOrder:
+  - vpc_flow_logs_config_id
+  - location
+  - network
+  - subnet
+  - vpn_tunnel
+  - interconnect_attachment
+  - description
+  - state
+  - aggregation_interval
+  - flow_sampling
+  - metadata
+  - metadata_fields
+  - filter_expr
+  - labels
+  - deletion_policy
+  - project

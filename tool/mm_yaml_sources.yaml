@@ -957,3 +957,5 @@ files:
     upstream: null  # third_party terraform/services/recaptchaenterprise/resource_recaptcha_enterprise_key.go
   google_network_management_connectivity_test:
     upstream: mmv1/products/networkmanagement/ConnectivityTest.yaml
+  google_network_management_vpc_flow_logs_config:
+    upstream: mmv1/products/networkmanagement/VpcFlowLogsConfig.yaml
