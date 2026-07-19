@@ -4,8 +4,10 @@
 /// provisions:
 /// - a healthcare dataset,
 /// - DICOM, consent, HL7v2, and FHIR stores inside it,
-/// - a Data Mapper workspace,
 /// - store-level + dataset IAM grants for an in-stack service account.
+///
+/// [GoogleHealthcareWorkspace] is deferred to [tool/example_debt.yaml]
+/// (create returns 404 Method not found on terradart-validate).
 ///
 /// Datasets and stores are free (you are billed for stored data / operations),
 /// so the stack creates and destroys cleanly in a single project.
@@ -20,7 +22,7 @@ import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 
-/// Cloud Healthcare Stack: dataset, clinical stores, Data Mapper workspace.
+/// Cloud Healthcare Stack: a dataset with DICOM / consent / HL7v2 / FHIR stores.
 final class HealthcareStack extends Stack {
   HealthcareStack({required String projectId})
       : super(
@@ -153,18 +155,6 @@ final class HealthcareStack extends Stack {
         role: TfArg.literal('roles/healthcare.fhirResourceReader'),
         member: TfArg.ref(analyst.iamMember),
         dependsOn: [ResourceDependency(fhir), ResourceDependency(analyst)],
-      ),
-    );
-
-    add(
-      GoogleHealthcareWorkspace(
-        localName: 'mapper',
-        dataset: TfArg.ref(dataset.id),
-        name: TfArg.literal('terradart-mapper'),
-        settings: HealthcareWorkspaceSettings(
-          dataProjectIds: TfArg.literal([projectId]),
-        ),
-        dependsOn: [ResourceDependency(dataset)],
       ),
     );
 

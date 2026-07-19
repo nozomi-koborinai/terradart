@@ -96,3 +96,9 @@ GoogleContainerAnalysisOccurrence: attestation occurrences need a real signed se
 GoogleApphubServiceProjectAttachment: attaches a separate service project to the App Hub host boundary; terradart-validate is a single standalone project and cannot create an org-scoped sibling project for attachment
 GoogleApphubService: registers a discovered service URI under an application; needs service-project attachment + google_apphub_discovered_service (data source not curated / needs live Compute URI)
 GoogleApphubWorkload: registers a discovered workload URI under an application; needs service-project attachment + google_apphub_discovered_workload (data source not curated / needs live MIG URI)
+
+# Healthcare Data Mapper workspace create returns 404 Method not found against
+# the GA Healthcare API on terradart-validate (us-central1). healthcare_quickstart
+# keeps the applyable dataset/stores/IAM surface; revisit when the Data Mapper
+# API method is available in this project/region.
+GoogleHealthcareWorkspace: google_healthcare_workspace create returns 404 Method not found on terradart-validate (GA Healthcare API / us-central1); Data Mapper may require entitlement or a different API surface — healthcare_quickstart keeps applyable stores instead

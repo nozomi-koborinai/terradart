@@ -604,7 +604,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_healthcare_fhir_store_iam_member` | `GoogleHealthcareFhirStoreIamMember` | [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) |
 | `google_healthcare_hl7_v2_store` | `GoogleHealthcareHl7V2Store` | [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) |
 | `google_healthcare_hl7_v2_store_iam_member` | `GoogleHealthcareHl7V2StoreIamMember` | [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) |
-| `google_healthcare_workspace` | `GoogleHealthcareWorkspace` | [healthcare_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/healthcare_quickstart) |
+| `google_healthcare_workspace` | `GoogleHealthcareWorkspace` | — |
 
 ## iam
 
