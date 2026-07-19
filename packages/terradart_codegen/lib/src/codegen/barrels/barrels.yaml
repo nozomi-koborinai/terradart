@@ -153,6 +153,10 @@ barrels:
   discovery_engine:
     doc: |-
       /// Vertex AI Search (Discovery Engine): data stores, search engines, IAM.
+  dlp:
+    doc: |-
+      /// Sensitive Data Protection (DLP) — inspect / de-identify templates,
+      /// stored info types, and job triggers.
   dns:
     doc: |-
       /// Cloud DNS managed zones (public, private, peering, forwarding).

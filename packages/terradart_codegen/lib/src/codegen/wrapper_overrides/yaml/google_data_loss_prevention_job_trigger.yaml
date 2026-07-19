@@ -1,0 +1,31 @@
+outputDir: dlp
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+deriveNestedTypes: true
+
+dartTypeOverrides:
+  status: DataLossPreventionJobTriggerStatus
+
+# Deep inspect_job / triggers trees stay Map for this thin Wave.
+nestedTypeExcludes:
+  - inspect_job
+  - triggers
+
+curatedDoc: |-
+  /// DLP job trigger — scheduled (or event-driven) inspect jobs.
+  ///
+  /// Enable `dlp.googleapis.com` via [GoogleProjectService] before apply.
+  /// Prefer [status] `PAUSED` in examples so apply does not start scans.
+  /// [parent] is `projects/{project}` or
+  /// `projects/{project}/locations/{location}`.
+
+paramOrder:
+  - parent
+  - trigger_id
+  - display_name
+  - description
+  - status
+  - triggers
+  - inspect_job
+  - deletion_policy

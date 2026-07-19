@@ -1,0 +1,123 @@
+outputDir: dlp
+deriveClassDoc: true
+deriveOutputGetters: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+prelude: |
+  /// Exactly one definition for a [GoogleDataLossPreventionStoredInfoType]
+  /// (`regex` / `dictionary` / `large_custom_dictionary`).
+  sealed class DataLossPreventionStoredInfoTypeDefinition {
+    const DataLossPreventionStoredInfoTypeDefinition();
+
+    /// Terraform nested-block key.
+    String get blockKey;
+
+    /// Single-element list body for the nested block.
+    List<Map<String, Object?>> encode();
+  }
+
+  /// Regex-based custom info type.
+  @immutable
+  final class DataLossPreventionStoredInfoTypeRegex
+      extends DataLossPreventionStoredInfoTypeDefinition {
+    const DataLossPreventionStoredInfoTypeRegex({
+      required this.pattern,
+      this.groupIndexes,
+    });
+
+    final TfArg<String> pattern;
+    final TfArg<List<num>>? groupIndexes;
+
+    @override
+    String get blockKey => 'regex';
+
+    @override
+    List<Map<String, Object?>> encode() => [
+          {
+            'pattern': pattern.toTfJson(),
+            if (groupIndexes != null) 'group_indexes': groupIndexes!.toTfJson(),
+          },
+        ];
+  }
+
+  /// Word-list dictionary custom info type.
+  @immutable
+  final class DataLossPreventionStoredInfoTypeDictionary
+      extends DataLossPreventionStoredInfoTypeDefinition {
+    const DataLossPreventionStoredInfoTypeDictionary({required this.words});
+
+    final TfArg<List<String>> words;
+
+    @override
+    String get blockKey => 'dictionary';
+
+    @override
+    List<Map<String, Object?>> encode() => [
+          {
+            'word_list': [
+              {'words': words.toTfJson()},
+            ],
+          },
+        ];
+  }
+
+  /// Large custom dictionary built from a GCS phrase file.
+  @immutable
+  final class DataLossPreventionStoredInfoTypeLargeCustomDictionary
+      extends DataLossPreventionStoredInfoTypeDefinition {
+    const DataLossPreventionStoredInfoTypeLargeCustomDictionary({
+      required this.outputPath,
+      required this.cloudStorageFileSet,
+    });
+
+    /// GCS path for dictionary artifacts (`gs://bucket/prefix/`).
+    final TfArg<String> outputPath;
+
+    /// GCS URL of the newline-delimited phrase file.
+    final TfArg<String> cloudStorageFileSet;
+
+    @override
+    String get blockKey => 'large_custom_dictionary';
+
+    @override
+    List<Map<String, Object?>> encode() => [
+          {
+            'output_path': [
+              {'path': outputPath.toTfJson()},
+            ],
+            'cloud_storage_file_set': [
+              {'url': cloudStorageFileSet.toTfJson()},
+            ],
+          },
+        ];
+  }
+
+customSlots:
+  definition:
+    paramDeclaration: 'required DataLossPreventionStoredInfoTypeDefinition definition'
+    argMapEntry: 'definition.blockKey: TfArg.literal(definition.encode()),'
+
+curatedDoc: |-
+  /// DLP stored info type — a project-owned custom detector (regex, word
+  /// list, or large dictionary).
+  ///
+  /// Enable `dlp.googleapis.com` via [GoogleProjectService] before apply.
+  /// Pass exactly one [definition] variant.
+
+paramOrder:
+  - parent
+  - stored_info_type_id
+  - display_name
+  - description
+  - definition
+  - deletion_policy
+
+argMapOrder:
+  - parent
+  - stored_info_type_id
+  - display_name
+  - description
+  - deletion_policy
+  - definition
