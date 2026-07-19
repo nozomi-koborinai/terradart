@@ -2,7 +2,7 @@
 ///
 /// Enables `contactcenterinsights.googleapis.com` and provisions:
 /// - an inactive analysis rule (0% auto-analysis),
-/// - a saved conversation view,
+/// - a saved conversation view (phone-call filter),
 /// - a customer-defined QA scorecard.
 ///
 /// These are configuration resources (no reserved throughput). Analysis is
@@ -46,11 +46,12 @@ final class ContactCenterInsightsStack extends Stack {
 
     final view = add(
       GoogleContactCenterInsightsView(
-        localName: 'all_conversations',
+        localName: 'phone_calls',
         location: TfArg.literal('us-central1'),
-        displayName: TfArg.literal('terradart-all'),
-        // Empty filter = all conversations in the location.
-        value: TfArg.literal(''),
+        displayName: TfArg.literal('terradart-phone-calls'),
+        // API rejects an empty value ("Value cannot be empty"); use a
+        // documented conversation filter instead.
+        value: TfArg.literal('medium="PHONE_CALL"'),
         dependsOn: [ResourceDependency(apiInsights)],
       ),
     );

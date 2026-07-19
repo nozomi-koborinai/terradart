@@ -2,7 +2,7 @@
 
 End-to-end terradart example for Contact Center AI Insights. Enables the
 Conversational Insights API and provisions an inactive analysis rule, a saved
-conversation view, and a customer-defined QA scorecard.
+conversation view (`medium="PHONE_CALL"`), and a customer-defined QA scorecard.
 
 ## Prerequisites
 
