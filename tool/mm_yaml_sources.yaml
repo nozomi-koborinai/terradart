@@ -416,6 +416,14 @@ files:
     upstream: mmv1/products/contactcenterinsights/View.yaml
   google_contact_center_insights_qa_scorecard:
     upstream: mmv1/products/contactcenterinsights/QaScorecard.yaml
+  google_contact_center_insights_assessment_rule:
+    upstream: mmv1/products/contactcenterinsights/AssessmentRule.yaml
+  google_contact_center_insights_auto_labeling_rule:
+    upstream: mmv1/products/contactcenterinsights/AutoLabelingRule.yaml
+  google_contact_center_insights_qa_scorecard_revision:
+    upstream: mmv1/products/contactcenterinsights/QaScorecardRevision.yaml
+  google_contact_center_insights_qa_question:
+    upstream: mmv1/products/contactcenterinsights/QaQuestion.yaml
   google_chronicle_dashboard_chart:
     upstream: mmv1/products/chronicle/DashboardChart.yaml
   google_chronicle_native_dashboard:
