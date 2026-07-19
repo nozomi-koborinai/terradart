@@ -415,6 +415,13 @@ files:
     upstream: mmv1/products/container/Cluster.yaml
   google_container_node_pool:
     upstream: mmv1/products/container/NodePool.yaml
+  # Container Analysis (notes / occurrences — image metadata & attestations)
+  google_container_analysis_note:
+    upstream: mmv1/products/containeranalysis/Note.yaml
+  google_container_analysis_note_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_container_analysis_occurrence:
+    upstream: mmv1/products/containeranalysis/Occurrence.yaml
   # Wave 9 (GKE Hub)
   google_gke_hub_fleet:
     upstream: mmv1/products/gkehub2/Fleet.yaml

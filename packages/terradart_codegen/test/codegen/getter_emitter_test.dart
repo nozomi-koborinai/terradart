@@ -88,6 +88,24 @@ void main() {
       expect('get nameRef'.allMatches(src).length, 1);
     });
 
+    test('emits kindRef (not kind) to avoid colliding with Resource.kind', () {
+      final src = emitDerivedOutputGetters(_def(const [
+        Attribute(
+          name: 'kind',
+          type: StringType(),
+          constraints: Constraints(computed: true),
+        ),
+      ]));
+      expect(
+        src,
+        contains(
+          "TfRef<String> get kindRef => TfRef.attribute<String>(this, 'kind');",
+        ),
+      );
+      expect(src, isNot(contains('get kind =>')));
+      expect('get kindRef'.allMatches(src).length, 1);
+    });
+
     test('does NOT emit getters for optional+computed (settable) attributes',
         () {
       final src = emitDerivedOutputGetters(_def(const [

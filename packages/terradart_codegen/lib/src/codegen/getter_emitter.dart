@@ -10,11 +10,13 @@ import 'naming.dart';
 ///
 /// - A `name` attribute → `nameRef` (the bare `name` getter would collide
 ///   with the constructor parameter; `String` matches every Terraform name).
+/// - A `kind` attribute → `kindRef` (bare `kind` would override
+///   [Resource.kind]'s `ResourceKind` return type and fail analysis).
 /// - An `id` attribute → bare `id`. Special-cased by name (parallel to
 ///   `skipAttribute`'s `isIdAttribute` check), so it is exposed as a getter
 ///   regardless of how its computed/optional flags would otherwise classify it.
 /// - Every **pure computed-only** attribute (`Constraints.computedOnly`)
-///   other than `id`/`name` → a camelCase getter of its rendered Dart type.
+///   other than `id`/`name`/`kind` → a camelCase getter of its rendered Dart type.
 ///
 /// `optional + computed` attributes are intentionally skipped: they are
 /// settable constructor inputs, and exposing a reference getter for them is
@@ -56,6 +58,9 @@ String emitDerivedOutputGetters(
 
   if (attrNames.contains('name')) {
     writeGetter('name', 'nameRef', 'String');
+  }
+  if (attrNames.contains('kind')) {
+    writeGetter('kind', 'kindRef', 'String');
   }
   // `id` is special-cased by name, parallel to `skipAttribute`'s isIdAttribute
   // check: always a getter, never a constructor arg, whatever its flags say.

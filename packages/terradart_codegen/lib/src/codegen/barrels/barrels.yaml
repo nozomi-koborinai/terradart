@@ -125,6 +125,10 @@ barrels:
       /// For VPC networking, see `compute.dart` ([GoogleComputeNetwork],
       /// [GoogleComputeSubnetwork]). For workload identity federation, see
       /// `iam.dart` ([GoogleIamWorkloadIdentityPool]).
+  container_analysis:
+    doc: |-
+      /// Container Analysis — notes and occurrences for image metadata and
+      /// attestations (often paired with Binary Authorization).
   data:
     doc: |-
       /// Read-only data sources (no `terraform apply` side effects).

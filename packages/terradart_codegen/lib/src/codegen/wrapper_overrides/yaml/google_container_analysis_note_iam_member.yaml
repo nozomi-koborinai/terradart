@@ -1,0 +1,29 @@
+outputDir: container_analysis
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// IAM member on a Container Analysis note (for example
+  /// `roles/containeranalysis.notes.occurrences.viewer`).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleContainerAnalysisNoteIamMember(
+  ///   localName: 'note_viewer',
+  ///   note: TfArg.ref(note.nameRef),
+  ///   role: TfArg.literal('roles/containeranalysis.notes.occurrences.viewer'),
+  ///   member: TfArg.literal('serviceAccount:ci@$projectId.iam.gserviceaccount.com'),
+  /// );
+  /// ```
+
+paramOrder:
+  - note
+  - role
+  - member
+  - project
+  - condition

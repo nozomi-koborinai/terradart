@@ -35,6 +35,7 @@ export 'compute.dart';
 export 'config.dart';
 export 'contact.dart';
 export 'container.dart';
+export 'container_analysis.dart';
 export 'data.dart';
 export 'dataplex.dart';
 export 'dataproc.dart';
