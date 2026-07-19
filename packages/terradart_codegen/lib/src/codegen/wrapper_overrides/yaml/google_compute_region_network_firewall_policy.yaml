@@ -1,0 +1,14 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+dartTypeOverrides:
+  policy_type: ComputeRegionNetworkFirewallPolicyPolicyType
+
+paramOrder:
+  - name
+  - region
+  - description
+  - policy_type
+  - project

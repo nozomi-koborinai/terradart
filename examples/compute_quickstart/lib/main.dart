@@ -17,6 +17,9 @@
 ///
 /// Wave adds bulk per-instance MIG config, network firewall policy IAM
 /// member, and a zonal VM extension policy (Ops Agent).
+///
+/// Regional network firewall policy + rule + IAM member extend the global
+/// network firewall policy demo for the regional surface.
 library;
 
 import 'dart:convert';
@@ -482,6 +485,61 @@ final class NetworkStack extends Stack {
         member: TfArg.ref(oncallSre.iamMember),
         dependsOn: [
           ResourceDependency(edgeFirewallPolicy),
+          ResourceDependency(oncallSre),
+        ],
+      ),
+    );
+
+    // ---- Regional network firewall policy + rule + IAM --------------------
+    //
+    // Mirrors the global policy demo above for the regional surface: a
+    // policy, one ingress allow rule (TCP 443), and a viewer IAM member.
+
+    final regionalFirewallPolicy = add(
+      GoogleComputeRegionNetworkFirewallPolicy(
+        localName: 'ops_regional_edge_policy',
+        name: TfArg.literal('ops-regional-edge-policy'),
+        region: TfArg.literal('asia-northeast1'),
+        description:
+            TfArg.literal('Regional network firewall policy (rule + IAM demo)'),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleComputeRegionNetworkFirewallPolicyRule(
+        localName: 'ops_regional_allow_https',
+        firewallPolicy: TfArg.ref(regionalFirewallPolicy.nameRef),
+        region: TfArg.literal('asia-northeast1'),
+        priority: TfArg.literal(1000),
+        action: TfArg.literal('allow'),
+        direction: TfArg.literal(
+          ComputeRegionNetworkFirewallPolicyRuleDirection.ingress,
+        ),
+        ruleName: TfArg.literal('allow-https'),
+        description: TfArg.literal('Allow ingress TCP 443 (demo)'),
+        match: ComputeRegionNetworkFirewallPolicyRuleMatch(
+          srcIpRanges: TfArg.literal(['0.0.0.0/0']),
+          layer4Configs: [
+            ComputeRegionNetworkFirewallPolicyRuleMatchLayer4Configs(
+              ipProtocol: TfArg.literal('tcp'),
+              ports: TfArg.literal(['443']),
+            ),
+          ],
+        ),
+        dependsOn: [ResourceDependency(regionalFirewallPolicy)],
+      ),
+    );
+
+    add(
+      GoogleComputeRegionNetworkFirewallPolicyIamMember(
+        localName: 'ops_regional_edge_policy_viewer',
+        name: TfArg.ref(regionalFirewallPolicy.nameRef),
+        region: TfArg.literal('asia-northeast1'),
+        role: TfArg.literal('roles/compute.viewer'),
+        member: TfArg.ref(oncallSre.iamMember),
+        dependsOn: [
+          ResourceDependency(regionalFirewallPolicy),
           ResourceDependency(oncallSre),
         ],
       ),

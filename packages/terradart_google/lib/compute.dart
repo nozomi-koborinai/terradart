@@ -394,6 +394,23 @@ export 'src/compute/google_compute_region_network_endpoint_group.dart'
         ComputeRegionNetworkEndpointGroupRegionNetworkEndpointGroupCloudRun,
         GoogleComputeRegionNetworkEndpointGroup,
         RegionNetworkEndpointGroupType;
+export 'src/compute/google_compute_region_network_firewall_policy.dart'
+    show
+        ComputeRegionNetworkFirewallPolicyPolicyType,
+        GoogleComputeRegionNetworkFirewallPolicy;
+export 'src/compute/google_compute_region_network_firewall_policy_iam_member.dart'
+    show GoogleComputeRegionNetworkFirewallPolicyIamMember;
+export 'src/compute/google_compute_region_network_firewall_policy_rule.dart'
+    show
+        ComputeRegionNetworkFirewallPolicyRuleDirection,
+        ComputeRegionNetworkFirewallPolicyRuleMatch,
+        ComputeRegionNetworkFirewallPolicyRuleMatchDestNetworkContext,
+        ComputeRegionNetworkFirewallPolicyRuleMatchLayer4Configs,
+        ComputeRegionNetworkFirewallPolicyRuleMatchSrcNetworkContext,
+        ComputeRegionNetworkFirewallPolicyRuleMatchSrcSecureTags,
+        ComputeRegionNetworkFirewallPolicyRuleTargetSecureTags,
+        ComputeRegionNetworkFirewallPolicyRuleTargetType,
+        GoogleComputeRegionNetworkFirewallPolicyRule;
 export 'src/compute/google_compute_region_security_policy.dart'
     show
         ComputeRegionSecurityPolicyRegionSecurityPolicyAdvancedOptionsConfig,

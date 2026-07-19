@@ -1,0 +1,52 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  direction: ComputeRegionNetworkFirewallPolicyRuleDirection
+
+curatedDoc: |-
+  /// Regional network firewall policy rule — allow/deny match on a
+  /// [GoogleComputeRegionNetworkFirewallPolicy].
+  ///
+  /// Minimal ingress allow example (any source, TCP 443):
+  /// ```dart
+  /// GoogleComputeRegionNetworkFirewallPolicyRule(
+  ///   localName: 'allow_https',
+  ///   firewallPolicy: TfArg.ref(policy.nameRef),
+  ///   region: TfArg.literal('asia-northeast1'),
+  ///   priority: TfArg.literal(1000),
+  ///   action: TfArg.literal('allow'),
+  ///   direction: TfArg.literal(
+  ///     ComputeRegionNetworkFirewallPolicyRuleDirection.ingress,
+  ///   ),
+  ///   match: ComputeRegionNetworkFirewallPolicyRuleMatch(
+  ///     srcIpRanges: TfArg.literal(['0.0.0.0/0']),
+  ///     layer4Configs: [
+  ///       ComputeRegionNetworkFirewallPolicyRuleMatchLayer4Configs(
+  ///         ipProtocol: TfArg.literal('tcp'),
+  ///         ports: TfArg.literal(['443']),
+  ///       ),
+  ///     ],
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - firewall_policy
+  - region
+  - priority
+  - action
+  - direction
+  - match
+  - rule_name
+  - description
+  - disabled
+  - enable_logging
+  - target_service_accounts
+  - project

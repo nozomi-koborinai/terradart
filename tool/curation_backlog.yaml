@@ -69,10 +69,6 @@ entries:
     detected_at: 2026-07-01
     provider_version: 7.39.0
     note: skipped by wave-shipper — authoritative IAM adjunct; curate *_iam_member only per maintainer policy
-  - resource: google_compute_region_network_firewall_policy_iam_member
-    detected_at: 2026-07-01
-    provider_version: 7.39.0
-    note: skipped by wave-shipper — parent google_compute_region_network_firewall_policy not yet curated
   - resource: google_compute_region_network_firewall_policy_iam_policy
     detected_at: 2026-07-01
     provider_version: 7.39.0

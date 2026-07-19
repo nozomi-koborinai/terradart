@@ -124,6 +124,9 @@ google_compute_instance_template: safe  # gcp-cost: no Cloud Billing Catalog SKU
 google_compute_network: safe  # apply-verified safe (existing example)
 google_compute_network_firewall_policy: safe  # apply-verified safe (existing example)
 google_compute_network_firewall_policy_iam_member: safe  # billing-behavior: IAM binding on a network firewall policy; sets policy only, zero billing
+google_compute_region_network_firewall_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU (list_services Compute Engine 6F81-5844-456A; list_skus keyword firewall/Network Firewall/Cloud NGFW → 0); billing-behavior: regional firewall policy is configuration-only — no existence or hourly charge; destroy removes the policy
+google_compute_region_network_firewall_policy_rule: safe  # gcp-cost: no Cloud Billing Catalog SKU (same Compute Engine lookup; no firewall/NGFW SKUs); billing-behavior: rule is child config on the policy — no separate billing; destroy removes the rule
+google_compute_region_network_firewall_policy_iam_member: safe  # billing-behavior: IAM binding on a regional network firewall policy; sets policy only, zero billing
 google_compute_project_metadata_item: safe  # apply-verified safe (existing example)
 google_compute_region_disk: safe  # apply-verified safe (existing example)
 google_compute_region_instant_snapshot: safe  # apply-verified safe (existing example)
