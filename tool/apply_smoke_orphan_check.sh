@@ -15,6 +15,11 @@
 #   GCP_VALIDATE_PROJECT_ID=terradart-validate tool/apply_smoke_orphan_check.sh
 set -euo pipefail
 
+# Non-interactive: disabled APIs otherwise prompt "enable and retry? (y/N)"
+# and hang Cloud Agents (no TTY). With prompts off, gcloud fails closed and
+# run_list treats that as "(skip)" — still read-only, never enables APIs.
+export CLOUDSDK_CORE_DISABLE_PROMPTS=1
+
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
