@@ -9420,6 +9420,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_network_security_client_tls_policy`.\n\nClientTlsPolicy is a resource that specifies how a client should\nauthenticate connections to backends of a service. This resource itself does\nnot affect configuration unless it is attached to a backend service\nresource.\n\nNetwork Security **client TLS policy** — how a client authenticates to\nbackends (Traffic Director / service mesh). Creating a policy alone does\nnot attach it to a backend or bill mesh SKUs.\n\nOptional nested `clientCertificate` / `serverValidationCa` blocks stay\nas maps (cert-provider exactly_one_of is nested, not sealed here).\n\nEnable `networksecurity.googleapis.com` via [GoogleProjectService]\nbefore apply.\n\nExample:\n```dart\nGoogleNetworkSecurityClientTlsPolicy(\n  localName: \'backend\',\n  name: TfArg.literal(\'terradart-client-tls\'),\n  location: TfArg.literal(\'global\'),\n  description: TfArg.literal(\'TerraDart smoke client TLS policy\'),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_network_security_gateway_security_policy',
+    className: 'GoogleNetworkSecurityGatewaySecurityPolicy',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_network_security_gateway_security_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'description',
+      'tlsInspectionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_security_gateway_security_policy`.\n\nThe GatewaySecurityPolicy resource contains a collection of\nGatewaySecurityPolicyRules and associated metadata.\n\nNetwork Security **gateway security policy** — metadata container for\nSecure Web Proxy (SWP) gateway rules.\n\nCreating a policy alone does not provision a gateway, attach rules that\ninspect traffic, or bill Secure Web Proxy data-plane SKUs.\n\nEnable `networksecurity.googleapis.com` via [GoogleProjectService]\nbefore apply. Location is typically regional (e.g. `us-central1`).\n\nExample:\n```dart\nGoogleNetworkSecurityGatewaySecurityPolicy(\n  localName: \'swp\',\n  name: TfArg.literal(\'terradart-gateway-policy\'),\n  location: TfArg.literal(\'us-central1\'),\n  description: TfArg.literal(\'TerraDart smoke gateway security policy\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_network_security_server_tls_policy',
     className: 'GoogleNetworkSecurityServerTlsPolicy',
     barrel: 'network',
