@@ -62,6 +62,10 @@ terraform apply
 
 The `Access` sealed type has 8 schema-faithful variants — `AccessUserByEmail`, `AccessGroupByEmail`, `AccessSpecialGroup`, `AccessDomain`, `AccessIamMember`, `AccessView`, `AccessDataset`, `AccessRoutine` — each carrying the fields BigQuery's API requires for that variant. The compiler keeps mutually-exclusive identity fields honest.
 
+`GoogleBigqueryReservationGroup` is curated but not exercised here: create
+requires Reservation Based Fairness (`ALTER PROJECT SET OPTIONS`), which is
+outside this stack's apply-smoke scope (see `tool/example_debt.yaml`).
+
 ## Next steps
 
 - [ops_quickstart](../ops_quickstart/) — route Cloud Audit Logs into a BigQuery dataset via `GoogleLoggingProjectSink`.

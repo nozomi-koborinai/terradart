@@ -133,6 +133,8 @@ export 'src/bigquery/google_bigquery_reservation_assignment.dart'
     show
         BigqueryReservationAssignmentJobType,
         GoogleBigqueryReservationAssignment;
+export 'src/bigquery/google_bigquery_reservation_group.dart'
+    show GoogleBigqueryReservationGroup;
 export 'src/bigquery/google_bigquery_routine.dart'
     show
         BigqueryRoutineArgument,
