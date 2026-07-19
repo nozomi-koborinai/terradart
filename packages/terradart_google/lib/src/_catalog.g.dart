@@ -772,6 +772,33 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_artifact_registry_repository_iam_member`.',
   ),
   CatalogEntry(
+    tfType: 'google_artifact_registry_rule',
+    className: 'GoogleArtifactRegistryRule',
+    barrel: 'artifact_registry',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_artifact_registry_rule`.',
+    constructorParams: <String>[
+      'localName',
+      'repositoryId',
+      'location',
+      'ruleId',
+      'action',
+      'operation',
+      'packageId',
+      'condition',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'ArtifactRegistryRuleAction',
+      'ArtifactRegistryRuleOperation',
+      'ArtifactRegistryRuleCondition',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_artifact_registry_rule`.\n\nA rule defines the deny or allow action of the operation it applies to and\nthe conditions required for the rule to apply. You can set one rule for an\nentire repository and one rule for each package within.\n\nArtifact Registry **repository rule** — allow or deny a repository\noperation (today: `DOWNLOAD`) for matching packages. Creating a rule\nalone does not store artifacts or bill storage/egress SKUs.\n\nYou can set one rule for the whole repository and one rule per package\n(`packageId`). Optional [condition] is a CEL expression; omit it to\nmatch all objects.\n\nEnable `artifactregistry.googleapis.com` via [GoogleProjectService]\nbefore apply.\n\nExample:\n```dart\nGoogleArtifactRegistryRule(\n  localName: \'deny_download\',\n  repositoryId: TfArg.literal(\'terradart-docker\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  ruleId: TfArg.literal(\'deny-all-downloads\'),\n  action: ArtifactRegistryRuleAction.deny,\n  operation: ArtifactRegistryRuleOperation.download,\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_biglake_catalog',
     className: 'GoogleBiglakeCatalog',
     barrel: 'biglake',

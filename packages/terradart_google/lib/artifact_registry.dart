@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Artifact Registry: container / package repository, per-repository IAM.
+/// Artifact Registry: container / package repository, per-repository IAM,
+/// and repository download rules.
 ///
 /// Format is set at creation time and immutable. Pair `format: DOCKER`
 /// with [ArtifactRegistryRepositoryArtifactRegistryDockerConfig], `format: MAVEN` with
@@ -54,3 +55,9 @@ export 'src/artifact_registry/google_artifact_registry_repository.dart'
         GoogleArtifactRegistryRepository;
 export 'src/artifact_registry/google_artifact_registry_repository_iam_member.dart'
     show GoogleArtifactRegistryRepositoryIamMember;
+export 'src/artifact_registry/google_artifact_registry_rule.dart'
+    show
+        ArtifactRegistryRuleAction,
+        ArtifactRegistryRuleCondition,
+        ArtifactRegistryRuleOperation,
+        GoogleArtifactRegistryRule;
