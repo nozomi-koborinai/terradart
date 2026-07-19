@@ -1,0 +1,21 @@
+outputDir: biglake
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Iceberg namespace inside a [GoogleBiglakeIcebergCatalog].
+  ///
+  /// [catalog] is the catalog name (GCS bucket name for
+  /// `CATALOG_TYPE_GCS_BUCKET`). Enable `biglake.googleapis.com` before apply.
+
+paramOrder:
+  - catalog
+  - namespace_id
+  - properties
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `namespace_id` attribute.
+    TfRef<String> get namespaceIdRef =>
+        TfRef.attribute<String>(this, 'namespace_id');

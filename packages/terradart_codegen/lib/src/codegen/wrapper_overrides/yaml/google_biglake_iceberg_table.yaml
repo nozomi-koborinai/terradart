@@ -1,0 +1,30 @@
+outputDir: biglake
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+# schema / partition_spec / sort_order stay Map for this thin Wave.
+nestedTypeExcludes:
+  - schema
+  - partition_spec
+  - sort_order
+
+curatedDoc: |-
+  /// Iceberg table under a [GoogleBiglakeIcebergNamespace].
+  ///
+  /// Pass [schema] as a nested-block Map (`type` / `fields` / optional
+  /// `identifier_field_ids`). [location] is the table's GCS path
+  /// (`gs://bucket/namespace/table`). Enable `biglake.googleapis.com`
+  /// before apply.
+
+paramOrder:
+  - catalog
+  - namespace
+  - name
+  - location
+  - schema
+  - partition_spec
+  - sort_order
+  - properties
+  - deletion_policy
+  - project
