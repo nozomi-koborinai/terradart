@@ -60,6 +60,7 @@ workspace:
   - examples/migration_center_quickstart
   - examples/monitoring_quickstart
   - examples/network_connectivity_quickstart
+  - examples/network_management_vpc_flow_logs_quickstart
   - examples/network_security_lists_quickstart
   - examples/network_security_tls_quickstart
   - examples/network_security_ull_quickstart

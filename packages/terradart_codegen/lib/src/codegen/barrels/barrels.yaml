@@ -261,7 +261,8 @@ barrels:
   network:
     doc: |-
       /// Network Connectivity transports, Network Security ULL mirroring, address
-      /// groups, URL lists, client/server TLS policies, and Network Services Mesh.
+      /// groups, URL lists, client/server TLS policies, VPC Flow Logs configs,
+      /// and Network Services Mesh.
   notebooks:
     doc: |-
       /// Vertex AI Workbench (Notebooks) — reusable environment image recipes.
