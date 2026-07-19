@@ -384,6 +384,8 @@ files:
     upstream: mmv1/products/bigquery/Job.yaml
   google_bigquery_reservation:
     upstream: mmv1/products/bigqueryreservation/Reservation.yaml
+  google_bigquery_reservation_group:
+    upstream: mmv1/products/bigqueryreservation/ReservationGroup.yaml
   google_bigquery_routine:
     upstream: mmv1/products/bigquery/Routine.yaml
   google_bigquery_routine_iam_member:

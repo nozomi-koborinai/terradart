@@ -18,6 +18,7 @@ workspace:
   - examples/artifact_registry_quickstart
   - examples/biglake_quickstart
   - examples/bigquery_quickstart
+  - examples/bigquery_reservation_group_quickstart
   - examples/bigtable_quickstart
   - examples/chronicle_quickstart
   - examples/cloud_build_quickstart

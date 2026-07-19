@@ -1396,6 +1396,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_bigquery_reservation_assignment`.\n\nThe BigqueryReservation Assignment resource.',
   ),
   CatalogEntry(
+    tfType: 'google_bigquery_reservation_group',
+    className: 'GoogleBigqueryReservationGroup',
+    barrel: 'bigquery',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_bigquery_reservation_group`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigquery_reservation_group`.\n\nA reservation group is a container for reservations.\n\nA BigQuery **reservation group** is a named container for reservations\nin a location. Creating a group alone does not allocate slots or bill\ncapacity — attach reservations (and assignments) separately.\n\nEnable `bigqueryreservation.googleapis.com` via [GoogleProjectService]\nbefore apply.\n\nExample:\n```dart\nGoogleBigqueryReservationGroup(\n  localName: \'analytics\',\n  name: TfArg.literal(\'terradart-res-group\'),\n  location: TfArg.literal(\'US\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_bigquery_routine',
     className: 'GoogleBigqueryRoutine',
     barrel: 'bigquery',

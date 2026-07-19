@@ -1,0 +1,26 @@
+outputDir: bigquery
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// A BigQuery **reservation group** is a named container for reservations
+  /// in a location. Creating a group alone does not allocate slots or bill
+  /// capacity — attach reservations (and assignments) separately.
+  ///
+  /// Enable `bigqueryreservation.googleapis.com` via [GoogleProjectService]
+  /// before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleBigqueryReservationGroup(
+  ///   localName: 'analytics',
+  ///   name: TfArg.literal('terradart-res-group'),
+  ///   location: TfArg.literal('US'),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - deletion_policy
+  - project
