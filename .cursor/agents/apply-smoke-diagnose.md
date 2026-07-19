@@ -47,9 +47,12 @@ verification pitfalls, and guardrails all bind you.
 - **F. Escalate** (fix would need `packages/**` — provider drift at the
   factory level; SA permissions / WIF / infrastructure; a bug in
   `tool/apply_smoke.sh` itself; teardown/destroy failures — possible
-  orphaned resources cost real money and you have no gcloud; or you are
-  not confident): analysis comment only, with your recommended next step.
-  Do not attempt the fix.
+  orphaned resources cost real money; or you are not confident): analysis
+  comment only, with your recommended next step. Do not attempt the fix.
+  When Cursor Secret `GCP_VALIDATE_SA_JSON` is present, you MAY run
+  `tool/apply_smoke_orphan_check.sh` (read-only) and quote its output as
+  evidence — never `gcloud … delete` / create; reclaim via the Apply smoke
+  janitor. If `gcloud` or the secret is missing, say so and escalate.
 
 ## Open fix PRs (classes A-D only)
 

@@ -240,7 +240,9 @@ When a resource can't apply on a standalone project at all — org-only (Shared 
 
 ## Cursor Cloud specific instructions
 
-Cloud Agent VMs provision their toolchain from [`.cursor/environment.json`](.cursor/environment.json), whose `install` step runs the idempotent [`.cursor/install.sh`](.cursor/install.sh): it installs **Dart SDK stable** (≥ 3.10; workspace root requires ^3.6, `terradart_agent` requires ^3.10) from the official apt repo and **Terraform** (≥ 1.11) from HashiCorp apt, then runs `dart pub get`. Cursor caches the result as a snapshot, so later agent boots are fast. Edit `install.sh` when the toolchain changes — do not rely on a hand-built snapshot.
+Cloud Agent VMs provision their toolchain from [`.cursor/environment.json`](.cursor/environment.json), whose `install` step runs the idempotent [`.cursor/install.sh`](.cursor/install.sh): it installs **Dart SDK stable** (≥ 3.10; workspace root requires ^3.6, `terradart_agent` requires ^3.10) from the official apt repo, **Terraform** (≥ 1.11) from HashiCorp apt, and the **Google Cloud CLI** (`gcloud`) from Google's apt repo, then runs `dart pub get`. Cursor caches the result as a snapshot, so later agent boots are fast. Edit `install.sh` when the toolchain changes — do not rely on a hand-built snapshot. After changing `install.sh`, rebuild / refresh the Cloud Agent environment snapshot so new boots pick up `gcloud`.
+
+**gcloud + terradart-validate (read-only).** CLI alone is not enough — register a **separate** Cursor Secret `GCP_VALIDATE_SA_JSON` (inline service-account JSON) for a **read-only** SA on `terradart-validate` (list/get style roles such as `roles/viewer` / Browser; no create/delete). Do **not** reuse the gcp-cost `GOOGLE_APPLICATION_CREDENTIALS` secret (Billing Catalog only). Auth helper: `eval "$(tool/gcloud_validate_auth.sh)"`. High-cost orphan probe (never mutates): `tool/apply_smoke_orphan_check.sh`. Reclaim orphans via the **Apply smoke janitor** workflow / `tool/apply_smoke.sh --all --destroy-only` — agents must not ad-hoc `gcloud … delete`.
 
 **gcp-cost MCP.** `.cursor/mcp.json` launches [`tool/gcp-cost-mcp-wrapper.sh`](tool/gcp-cost-mcp-wrapper.sh), which materializes the Cursor Secret `GOOGLE_APPLICATION_CREDENTIALS` (inline JSON) to `~/.config/gcp-cost/service-account.json` (`chmod 600`) before exec'ing `gcp-cost-mcp-server`. Register the service-account JSON as a Cursor Secret; do not commit credentials. Public Cloud Billing Catalog pricing needs no project API enablement; prefer a dedicated low-privilege SA over a production key. Cursor's MCP integration reaches this server from the local IDE only; Cloud Agent sessions never launch command-type MCP servers (verified 2026-07-04), so they call the same tools through [`tool/gcp_cost_call.dart`](tool/gcp_cost_call.dart) (maintainer ops, not part of any shipped package) — a judgment-free genkit_mcp-client transport that launches the server via the wrapper above (terradart_agent thus dogfoods genkit_mcp on both sides: server and host). Wrappers that decide *for* the agent (pre-picked SKUs, canned classifications) remain forbidden; CI verifies only the resulting denylist comments (test 13).
 
@@ -251,6 +253,8 @@ There is no long-running dev server for core work. Primary flows:
 | Agent gate (lint, tests, wrap check, smoke) | `tool/agent_verify.sh` |
 | Suspected mislabeled `upstream: null` | `dart tool/check_mm_upstream_fingerprint.dart` |
 | Apply-smoke selection (no GCP) | `tool/apply_smoke.sh --all --dry-run` |
+| Auth gcloud for validate project (read-only) | `eval "$(tool/gcloud_validate_auth.sh)"` |
+| High-cost orphan probe (read-only) | `tool/apply_smoke_orphan_check.sh` |
 | Apply one example for real | `GCP_PROJECT_ID=terradart-validate tool/apply_smoke.sh --example <slug>` |
 | Example coverage + API-enablement ratchet | `dart tool/example_synth_gates.dart` |
 | Publish readiness (per package) | `cd packages/<pkg> && dart pub publish --dry-run` |
