@@ -38,7 +38,8 @@ final class IdentityPlatformStack extends Stack {
     add(
       GoogleIdentityPlatformTenant(
         localName: 'app',
-        displayName: TfArg.literal('TerraDart tenant'),
+        // API: start with a letter; letters/digits/hyphens only; 4–20 chars.
+        displayName: TfArg.literal('TerraDart-app'),
         allowPasswordSignup: TfArg.literal(true),
         dependsOn: apiDeps,
       ),
