@@ -5714,6 +5714,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_container_node_pool`.\n\nNodePool\n\nExample (node pool on an existing cluster):\n```dart\nfinal pool = GoogleContainerNodePool(\n  localName: \'primary\',\n  name: TfArg.literal(\'primary-pool\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  cluster: TfArg.ref(cluster.nameRef),\n  nodeCount: TfArg.literal(3),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_data_catalog_entry_group',
+    className: 'GoogleDataCatalogEntryGroup',
+    barrel: 'data_catalog',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_data_catalog_entry_group`.',
+    constructorParams: <String>[
+      'localName',
+      'entryGroupId',
+      'region',
+      'displayName',
+      'description',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_data_catalog_entry_group`.\n\nAn EntryGroup resource represents a logical grouping of zero or more Data\nCatalog Entry resources.\n\nData Catalog **entry group** — logical container for Data Catalog Entry\nresources (legacy Data Catalog API).\n\nPrefer [GoogleDataplexEntryGroup] for new catalogs; this factory remains\nfor stacks that still use `google_data_catalog_entry_group`. Creating an\nentry group alone does not create entries or bill catalog SKUs.\n\nEnable `datacatalog.googleapis.com` via [GoogleProjectService]\nbefore apply. Region is typically regional (e.g. `us-central1`).\n\nExample:\n```dart\nGoogleDataCatalogEntryGroup(\n  localName: \'group\',\n  entryGroupId: TfArg.literal(\'terradart_entry_group\'),\n  region: TfArg.literal(\'us-central1\'),\n  displayName: TfArg.literal(\'TerraDart entry group\'),\n  description: TfArg.literal(\'TerraDart smoke Data Catalog entry group\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_data_loss_prevention_deidentify_template',
     className: 'GoogleDataLossPreventionDeidentifyTemplate',
     barrel: 'dlp',

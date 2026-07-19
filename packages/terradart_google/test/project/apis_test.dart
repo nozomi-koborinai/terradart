@@ -119,6 +119,14 @@ void main() {
       );
     });
 
+    test('dataCatalog barrel includes datacatalog.googleapis.com', () {
+      final apis = Apis.required(barrels: [Barrels.dataCatalog]);
+      expect(
+        apis.map((a) => a.argMap['service']!.toTfJson()).toList(),
+        ['datacatalog.googleapis.com'],
+      );
+    });
+
     test('apikeys barrel includes apikeys.googleapis.com', () {
       final apis = Apis.required(barrels: [Barrels.apikeys]);
       expect(apis, hasLength(1));
