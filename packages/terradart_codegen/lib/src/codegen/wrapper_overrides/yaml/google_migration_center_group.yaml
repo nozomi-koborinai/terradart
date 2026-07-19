@@ -1,0 +1,34 @@
+outputDir: migration
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Migration Center asset group — annotate a bundle of related assets.
+  ///
+  /// Pair with [GoogleMigrationCenterPreferenceSet] via
+  /// [GoogleMigrationCenterReportConfig] `group_preferenceset_assignments`.
+
+paramOrder:
+  - location
+  - group_id
+  - display_name
+  - description
+  - labels
+  - deletion_policy
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for Migration Center groups.
+  enum MigrationCenterGroupDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const MigrationCenterGroupDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: MigrationCenterGroupDeletionPolicy

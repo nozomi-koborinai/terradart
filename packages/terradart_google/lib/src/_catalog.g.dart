@@ -7787,6 +7787,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_migration_center_discovery_client`.\n\nDiscoveryClient represents an on-premise discovery agent that scans\ninfrastructure and uploads discovery data to Migration Center.\n\nMigration Center on-prem discovery client bound to a [GoogleMigrationCenterSource].\n\nSet [source] to `TfArg.ref(source.nameRef)` and [serviceAccount] to the\ndiscovery agent service account email.',
   ),
   CatalogEntry(
+    tfType: 'google_migration_center_group',
+    className: 'GoogleMigrationCenterGroup',
+    barrel: 'migration',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_migration_center_group`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'groupId',
+      'displayName',
+      'description',
+      'labels',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>['MigrationCenterGroupDeletionPolicy'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_migration_center_group`.\n\nA resource that represents an asset group. The purpose of an asset group is\nto bundle a set of assets that have something in common, while allowing\nusers to add annotations to the group.\n\nMigration Center asset group — annotate a bundle of related assets.\n\nPair with [GoogleMigrationCenterPreferenceSet] via\n[GoogleMigrationCenterReportConfig] `group_preferenceset_assignments`.',
+  ),
+  CatalogEntry(
     tfType: 'google_migration_center_import_data_file',
     className: 'GoogleMigrationCenterImportDataFile',
     barrel: 'migration',
@@ -7830,6 +7851,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_migration_center_import_job`.\n\nImportJob represents a batch data import task that processes uploaded data\nfiles and populates Migration Center assets.\n\nMigration Center import job that ingests uploaded data into a source.\n\nSet [assetSource] to `TfArg.ref(source.nameRef)`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_migration_center_preference_set',
+    className: 'GoogleMigrationCenterPreferenceSet',
+    barrel: 'migration',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_migration_center_preference_set`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'preferenceSetId',
+      'displayName',
+      'description',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>['MigrationCenterPreferenceSetDeletionPolicy'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_migration_center_preference_set`.\n\nManages the PreferenceSet resource.\n\nMigration Center preference set — sizing / target-product assumptions for reports.\n\nPair with [GoogleMigrationCenterGroup] via\n[GoogleMigrationCenterReportConfig] `group_preferenceset_assignments`.\nOptional `virtual_machine_preferences` nested blocks are omitted from this\ncurated surface; extend the override when a Wave needs typed VM prefs.',
   ),
   CatalogEntry(
     tfType: 'google_migration_center_report',

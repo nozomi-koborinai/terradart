@@ -78,12 +78,3 @@ GoogleComputeHaVpnGateway: HA VPN tunnels need a Cloud Router with BGP sessions;
 GoogleComputeVpnTunnel: VPN tunnels require a configured gateway (forwarding rules for classic, Cloud Router BGP for HA), neither of which can be provisioned deterministically in the sweep
 GoogleComputeNetworkPeering: bidirectional VPC peering races on GCP's async peering operation ("peering operation in progress") even when serialized, so it cannot apply deterministically
 GoogleComputeNetworkPeeringRoutesConfig: configures routes on a VPC peering; with the peering dropped there is nothing to attach it to
-
-# Migration Center report config requires real group + preference-set resource
-# names. Those factories (`google_migration_center_group` /
-# `google_migration_center_preference_set`) are not curated yet, and placeholder
-# self-links fail at apply time. migration_center_quickstart keeps the
-# applyable surface (settings / source / discovery / import / data file /
-# assets export) and defers report + report-config until those factories land.
-GoogleMigrationCenterReportConfig: needs curated google_migration_center_group + preference_set factories for group_preferenceset_assignments; placeholder self-links fail at apply, so report-config is dropped from migration_center_quickstart until those factories ship
-GoogleMigrationCenterReport: depends on a report config; with report-config deferred there is nothing to attach it to

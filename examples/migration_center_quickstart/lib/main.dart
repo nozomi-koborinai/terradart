@@ -1,8 +1,5 @@
-/// Migration Center quickstart — settings, sources, discovery, import, and data file.
-///
-/// Report / report-config are deferred to [tool/example_debt.yaml]: they need
-/// curated `google_migration_center_group` + `preference_set` factories (not
-/// yet wrapped). Placeholder self-links fail at apply time.
+/// Migration Center quickstart — settings, sources, discovery, import, groups,
+/// preference sets, and reports.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -120,6 +117,54 @@ final class MigrationCenterStack extends Stack {
         assetsExportJobId: TfArg.literal('terradart-export'),
         performanceData: TfArg.literal(<String, Object?>{'max_days': 30}),
         dependsOn: apiDeps,
+      ),
+    );
+
+    final group = GoogleMigrationCenterGroup(
+      localName: 'assets',
+      location: TfArg.literal(location),
+      groupId: TfArg.literal('terradart-group'),
+      displayName: TfArg.literal('TerraDart asset group'),
+      dependsOn: apiDeps,
+    );
+    add(group);
+
+    final preferenceSet = GoogleMigrationCenterPreferenceSet(
+      localName: 'defaults',
+      location: TfArg.literal(location),
+      preferenceSetId: TfArg.literal('terradart-prefs'),
+      displayName: TfArg.literal('TerraDart preference set'),
+      dependsOn: apiDeps,
+    );
+    add(preferenceSet);
+
+    final reportConfig = GoogleMigrationCenterReportConfig(
+      localName: 'tco',
+      location: TfArg.literal(location),
+      reportConfigId: TfArg.literal('terradart-report-config'),
+      displayName: TfArg.literal('TerraDart report config'),
+      groupPreferencesetAssignments: [
+        MigrationCenterReportConfigGroupPreferencesetAssignment(
+          group: TfArg.ref(group.nameRef),
+          preferenceSet: TfArg.ref(preferenceSet.nameRef),
+        ),
+      ],
+      dependsOn: [
+        ...apiDeps,
+        ResourceDependency(group),
+        ResourceDependency(preferenceSet),
+      ],
+    );
+    add(reportConfig);
+
+    add(
+      GoogleMigrationCenterReport(
+        localName: 'assessment',
+        location: TfArg.literal(location),
+        reportConfig: TfArg.ref(reportConfig.nameRef),
+        reportId: TfArg.literal('terradart-report'),
+        displayName: TfArg.literal('TerraDart assessment report'),
+        dependsOn: [...apiDeps, ResourceDependency(reportConfig)],
       ),
     );
   }

@@ -229,7 +229,8 @@ barrels:
       /// Memorystore for Memcached — managed Memcached instances.
   migration:
     doc: |-
-      /// Migration Center: sources, discovery clients, import jobs, and reports.
+      /// Migration Center: sources, discovery clients, import jobs, groups,
+      /// preference sets, and reports.
   monitoring:
     doc: |-
       /// Cloud Monitoring: alert policies, notification channels, uptime probes,

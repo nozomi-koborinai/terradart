@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Migration Center: sources, discovery clients, import jobs, and reports.
+/// Migration Center: sources, discovery clients, import jobs, groups,
+/// preference sets, and reports.
 library;
 
 export 'src/migration/google_migration_center_assets_export_job.dart'
@@ -12,6 +13,8 @@ export 'src/migration/google_migration_center_discovery_client.dart'
     show
         GoogleMigrationCenterDiscoveryClient,
         MigrationCenterDiscoveryClientDeletionPolicy;
+export 'src/migration/google_migration_center_group.dart'
+    show GoogleMigrationCenterGroup, MigrationCenterGroupDeletionPolicy;
 export 'src/migration/google_migration_center_import_data_file.dart'
     show
         GoogleMigrationCenterImportDataFile,
@@ -19,6 +22,10 @@ export 'src/migration/google_migration_center_import_data_file.dart'
         MigrationCenterImportDataFileFormat;
 export 'src/migration/google_migration_center_import_job.dart'
     show GoogleMigrationCenterImportJob, MigrationCenterImportJobDeletionPolicy;
+export 'src/migration/google_migration_center_preference_set.dart'
+    show
+        GoogleMigrationCenterPreferenceSet,
+        MigrationCenterPreferenceSetDeletionPolicy;
 export 'src/migration/google_migration_center_report.dart'
     show GoogleMigrationCenterReport, MigrationCenterReportDeletionPolicy;
 export 'src/migration/google_migration_center_report_config.dart'
