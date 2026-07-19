@@ -1,0 +1,22 @@
+outputDir: sourcerepo
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Cloud Source Repositories Git repository.
+  ///
+  /// Enable `sourcerepo.googleapis.com` via [GoogleProjectService] before
+  /// apply. Optional [pubsubConfigs] publish push notifications on repo
+  /// changes (each entry needs a Pub/Sub topic + [messageFormat]).
+
+paramOrder:
+  - name
+  - create_ignore_already_exists
+  - pubsub_configs
+  - deletion_policy
+  - project
