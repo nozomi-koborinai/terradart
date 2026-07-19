@@ -1,0 +1,31 @@
+outputDir: contact
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  label_key_type: ContactCenterInsightsAutoLabelingRuleLabelKeyType
+
+curatedDoc: |-
+  /// Auto-labeling rule for Contact Center AI Insights — applies a label key
+  /// when CEL [conditions] match.
+  ///
+  /// Enable `contactcenterinsights.googleapis.com` via [GoogleProjectService]
+  /// before apply. Keep [active] false in examples so apply does not label
+  /// live conversations.
+
+paramOrder:
+  - location
+  - auto_labeling_rule_id
+  - display_name
+  - description
+  - label_key
+  - label_key_type
+  - conditions
+  - active
+  - project
+  - deletion_policy

@@ -1,0 +1,37 @@
+outputDir: contact
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+# Computed / advanced nests stay Map for this thin Wave.
+nestedTypeExcludes:
+  - metrics
+  - tuning_metadata
+  - qa_question_data_options
+  - predefined_question_config
+
+curatedDoc: |-
+  /// QA question under a Contact Center AI Insights scorecard revision.
+  ///
+  /// Enable `contactcenterinsights.googleapis.com` via [GoogleProjectService]
+  /// before apply. [qaScorecard] and [revision] are path id segments (not full
+  /// resource names). Pair with [GoogleContactCenterInsightsQaScorecardRevision]
+  /// for a runnable scorecard → revision → question chain.
+
+paramOrder:
+  - location
+  - qa_scorecard
+  - revision
+  - question_body
+  - question_type
+  - abbreviation
+  - answer_instructions
+  - answer_choices
+  - order
+  - tags
+  - project
+  - deletion_policy

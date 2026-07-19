@@ -1,0 +1,25 @@
+outputDir: contact
+deriveClassDoc: true
+deriveOutputGetters: true
+
+# `snapshot` is computed-only; leave nested derivation off for this thin Wave.
+
+curatedDoc: |-
+  /// Revision of a Contact Center AI Insights QA scorecard.
+  ///
+  /// Enable `contactcenterinsights.googleapis.com` via [GoogleProjectService]
+  /// before apply. Pass [qaScorecard] as the scorecard id segment (not the
+  /// full resource name). When [qaScorecardRevisionId] is omitted, the
+  /// provider adopts the scorecard's latest revision.
+
+paramOrder:
+  - location
+  - qa_scorecard
+  - qa_scorecard_revision_id
+  - project
+
+# Optional+computed path segment — not emitted by deriveOutputGetters alone.
+extraGetters: |2
+    /// Reference to `qa_scorecard_revision_id` attribute.
+    TfRef<String> get qaScorecardRevisionId =>
+        TfRef.attribute<String>(this, 'qa_scorecard_revision_id');

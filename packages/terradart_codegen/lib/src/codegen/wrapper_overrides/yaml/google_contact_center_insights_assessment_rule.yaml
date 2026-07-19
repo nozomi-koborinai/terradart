@@ -1,0 +1,25 @@
+outputDir: contact
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Assessment rule for Contact Center AI Insights — samples conversations
+  /// on a schedule for quality assessment.
+  ///
+  /// Enable `contactcenterinsights.googleapis.com` via [GoogleProjectService]
+  /// before apply. Keep [active] false (or [samplePercentage] at 0) in
+  /// examples so apply does not enroll conversations for assessment.
+
+paramOrder:
+  - location
+  - assessment_rule_id
+  - display_name
+  - active
+  - sample_rule
+  - schedule_info
+  - project
+  - deletion_policy
