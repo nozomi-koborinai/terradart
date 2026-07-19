@@ -1,7 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 /// Network Connectivity transports, Network Security ULL mirroring, address
-/// groups, URL lists, and Network Services Mesh.
+/// groups, URL lists, client/server TLS policies, and Network Services Mesh.
 library;
 
 export 'src/network/google_network_connectivity_hub.dart'
@@ -23,6 +23,10 @@ export 'src/network/google_network_management_connectivity_test.dart'
         NetworkManagementConnectivityTestSourceNetworkType;
 export 'src/network/google_network_security_address_group.dart'
     show GoogleNetworkSecurityAddressGroup, NetworkSecurityAddressGroupType;
+export 'src/network/google_network_security_client_tls_policy.dart'
+    show GoogleNetworkSecurityClientTlsPolicy;
+export 'src/network/google_network_security_server_tls_policy.dart'
+    show GoogleNetworkSecurityServerTlsPolicy;
 export 'src/network/google_network_security_ull_mirroring_collector.dart'
     show
         GoogleNetworkSecurityUllMirroringCollector,

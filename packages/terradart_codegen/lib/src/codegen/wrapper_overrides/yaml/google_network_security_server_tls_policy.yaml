@@ -1,0 +1,43 @@
+outputDir: network
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+# Cert-provider / mTLS blocks stay Map — nested exactly_one_of and
+# client_validation_mode enum stay frozen for this thin Wave.
+nestedTypeExcludes:
+  - server_certificate
+  - mtls_policy
+
+curatedDoc: |-
+  /// Network Security **server TLS policy** — how a server presents TLS to
+  /// clients (Traffic Director / service mesh). Creating a policy alone does
+  /// not attach it to a proxy or bill mesh SKUs.
+  ///
+  /// Optional nested `serverCertificate` / `mtlsPolicy` blocks stay as maps
+  /// (cert-provider exactly_one_of is nested, not sealed here).
+  ///
+  /// Enable `networksecurity.googleapis.com` via [GoogleProjectService]
+  /// before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleNetworkSecurityServerTlsPolicy(
+  ///   localName: 'frontend',
+  ///   name: TfArg.literal('terradart-server-tls'),
+  ///   location: TfArg.literal('global'),
+  ///   description: TfArg.literal('TerraDart smoke server TLS policy'),
+  ///   allowOpen: TfArg.literal(true),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - description
+  - allow_open
+  - server_certificate
+  - mtls_policy
+  - labels
+  - deletion_policy
+  - project
