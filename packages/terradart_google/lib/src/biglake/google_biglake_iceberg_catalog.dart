@@ -79,6 +79,10 @@ final class GoogleBiglakeIcebergCatalog extends Resource {
   TfRef<String> get biglakeServiceAccount =>
       TfRef.attribute<String>(this, 'biglake_service_account');
 
+  /// Reference to `biglake_service_account_id` attribute.
+  TfRef<String> get biglakeServiceAccountId =>
+      TfRef.attribute<String>(this, 'biglake_service_account_id');
+
   /// Reference to `create_time` attribute.
   TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
 
