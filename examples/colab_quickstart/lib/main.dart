@@ -11,6 +11,7 @@ library;
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/colab.dart';
+import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
@@ -35,11 +36,42 @@ final class ColabStack extends Stack {
       ),
     );
 
+    final apiCompute = add(
+      GoogleProjectService(
+        localName: 'api_compute',
+        service: TfArg.literal('compute.googleapis.com'),
+        disableOnDestroy: TfArg.literal(false),
+      ),
+    );
+
     final apiStorage = add(
       GoogleProjectService(
         localName: 'api_storage',
         service: TfArg.literal('storage.googleapis.com'),
         disableOnDestroy: TfArg.literal(false),
+      ),
+    );
+
+    // terradart-validate has no default VPC; Colab templates require an
+    // explicit network + subnet (default network returns 404).
+    final network = add(
+      GoogleComputeNetwork(
+        localName: 'colab_vpc',
+        name: TfArg.literal('terradart-colab-vpc'),
+        autoCreateSubnetworks: TfArg.literal(false),
+        dependsOn: [ResourceDependency(apiCompute)],
+      ),
+    );
+
+    final subnet = add(
+      GoogleComputeSubnetwork(
+        localName: 'colab_subnet',
+        name: TfArg.literal('terradart-colab-subnet'),
+        region: TfArg.literal(location),
+        network: TfArg.ref(network.id),
+        ipCidrRange: TfArg.literal('10.40.0.0/24'),
+        privateIpGoogleAccess: TfArg.literal(true),
+        dependsOn: [ResourceDependency(network)],
       ),
     );
 
@@ -62,8 +94,13 @@ final class ColabStack extends Stack {
         }),
         networkSpec: TfArg.literal(<String, Object?>{
           'enable_internet_access': true,
+          'network': network.id.interpolation,
+          'subnetwork': subnet.id.interpolation,
         }),
-        dependsOn: [ResourceDependency(apiAi)],
+        dependsOn: [
+          ResourceDependency(apiAi),
+          ResourceDependency(subnet),
+        ],
       ),
     );
 
