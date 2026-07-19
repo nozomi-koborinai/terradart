@@ -1,0 +1,29 @@
+outputDir: healthcare
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+dartTypeOverrides:
+  version: HealthcareFhirStoreVersion
+
+curatedDoc: |-
+  /// FHIR store inside a [GoogleHealthcareDataset] — stores FHIR resources
+  /// (DSTU2 / STU3 / R4). Empty stores are free; you are billed for stored
+  /// data and API operations.
+  ///
+  /// Required identity:
+  /// - [localName]: Terraform local name.
+  /// - [name]: store id within the dataset (**ForceNew** — renaming recreates
+  ///   the store and drops data).
+  /// - [dataset]: parent dataset id (`projects/…/locations/…/datasets/…`).
+  /// - [version]: FHIR specification version ([HealthcareFhirStoreVersion]).
+
+paramOrder:
+  - name
+  - dataset
+  - version
+  - enable_update_create
+  - disable_referential_integrity
+  - disable_resource_versioning
+  - labels
+  - deletion_policy
