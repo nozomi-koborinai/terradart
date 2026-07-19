@@ -1,0 +1,29 @@
+outputDir: public_ca
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Public CA **external account binding (EAB) key** for ACME clients.
+  ///
+  /// Creates a key ID + HMAC secret used to register an ACME account with
+  /// Google Trust Services (Certificate Manager Public CA). The resource is
+  /// create-only: Terraform cannot read it back from the API, and destroy
+  /// removes it from state only (the secret is not revoked server-side).
+  /// Use the secret within 7 days or it is invalidated.
+  ///
+  /// Creating an EAB key alone does not issue a certificate and does not
+  /// incur Certificate Manager certificate-usage SKUs.
+  ///
+  /// Enable `publicca.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GooglePublicCaExternalAccountKey(
+  ///   localName: 'acme_eab',
+  ///   location: TfArg.literal('global'),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - project

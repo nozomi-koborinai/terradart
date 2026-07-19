@@ -62,5 +62,15 @@ void main() {
       );
       expect(result, 'dlp');
     });
+
+    test('Step 3: public segment → public_ca', () {
+      final result = resolver.resolve(
+        terraformType: 'google_public_ca_external_account_key',
+        mmProduct: null,
+        kind: WrapperOverrideKind.resource,
+      );
+      expect(result, 'public_ca');
+    });
+
   });
 }

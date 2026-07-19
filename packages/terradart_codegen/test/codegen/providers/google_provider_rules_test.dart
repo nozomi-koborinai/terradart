@@ -27,6 +27,9 @@ void main() {
       expect(rules.outputDirAliases['project_service'], 'project');
       // Phase 4.5 pilot — cloud_run service alias.
       expect(rules.outputDirAliases['cloudrunv2'], 'cloud_run');
+      expect(rules.outputDirAliases['public'], 'public_ca');
+      expect(rules.outputDirAliases['publicca'], 'public_ca');
+      expect(rules.outputDirAliases['public_ca'], 'public_ca');
     });
 
     test('universalGetters returns id + nameRef when both attrs are present',

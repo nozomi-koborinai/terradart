@@ -7,17 +7,20 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry('google_gke_hub_', 'gkehub.googleapis.com'),
   MapEntry('google_cloudfunctions2_', 'cloudfunctions.googleapis.com'),
   MapEntry('google_cloud_run_v2_', 'run.googleapis.com'),
-  MapEntry('google_access_context_manager_', 'accesscontextmanager.googleapis.com'),
+  MapEntry(
+      'google_access_context_manager_', 'accesscontextmanager.googleapis.com'),
   MapEntry('google_alloydb_', 'alloydb.googleapis.com'),
   MapEntry('google_apigee_', 'apigee.googleapis.com'),
   MapEntry('google_apphub_', 'apphub.googleapis.com'),
   MapEntry('google_network_management_', 'networkmanagement.googleapis.com'),
-  MapEntry('google_recaptcha_enterprise_', 'recaptchaenterprise.googleapis.com'),
+  MapEntry(
+      'google_recaptcha_enterprise_', 'recaptchaenterprise.googleapis.com'),
   MapEntry('google_apikeys_', 'apikeys.googleapis.com'),
   MapEntry('google_artifact_registry_', 'artifactregistry.googleapis.com'),
   MapEntry('google_certificate_manager_', 'certificatemanager.googleapis.com'),
   MapEntry('google_chronicle_', 'chronicle.googleapis.com'),
   MapEntry('google_privateca_', 'privateca.googleapis.com'),
+  MapEntry('google_public_ca_', 'publicca.googleapis.com'),
   MapEntry('google_secret_manager_', 'secretmanager.googleapis.com'),
   MapEntry(
     'google_firebase_data_connect_',
@@ -35,7 +38,8 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   // to the GKE Container API.
   MapEntry('google_container_analysis_', 'containeranalysis.googleapis.com'),
   MapEntry('google_container_', 'container.googleapis.com'),
-  MapEntry('google_contact_center_insights_', 'contactcenterinsights.googleapis.com'),
+  MapEntry('google_contact_center_insights_',
+      'contactcenterinsights.googleapis.com'),
   MapEntry('google_dataplex_', 'dataplex.googleapis.com'),
   MapEntry('google_dataproc_metastore_', 'metastore.googleapis.com'),
   MapEntry('google_discovery_engine_', 'discoveryengine.googleapis.com'),
@@ -58,7 +62,8 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry('google_bigquery_', 'bigquery.googleapis.com'),
   MapEntry('google_bigtable_', 'bigtableadmin.googleapis.com'),
   MapEntry('google_os_config_', 'osconfig.googleapis.com'),
-  MapEntry('google_binary_authorization_', 'binaryauthorization.googleapis.com'),
+  MapEntry(
+      'google_binary_authorization_', 'binaryauthorization.googleapis.com'),
   MapEntry('google_pubsub_', 'pubsub.googleapis.com'),
   MapEntry('google_redis_', 'redis.googleapis.com'),
   MapEntry('google_storage_', 'storage.googleapis.com'),
@@ -69,7 +74,8 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry('google_migration_center_', 'migrationcenter.googleapis.com'),
   MapEntry('google_logging_', 'logging.googleapis.com'),
   MapEntry('google_monitoring_', 'monitoring.googleapis.com'),
-  MapEntry('google_network_connectivity_', 'networkconnectivity.googleapis.com'),
+  MapEntry(
+      'google_network_connectivity_', 'networkconnectivity.googleapis.com'),
   MapEntry('google_network_security_', 'networksecurity.googleapis.com'),
   MapEntry('google_network_services_', 'networkservices.googleapis.com'),
   MapEntry('google_notebooks_', 'notebooks.googleapis.com'),

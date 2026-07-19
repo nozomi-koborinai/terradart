@@ -10241,6 +10241,23 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_project_service`.\n\nEnables a single Google Cloud API on a project. Each GCP API (Pub/Sub,\nCloud Tasks, Secret Manager, Cloud Scheduler, …) requires its matching\n`google_project_service` resource to be enabled before its resources\ncan be created — typically wired as an explicit `dependsOn` so Terraform\napplies the API enablement first.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_project_service.`).\n- `service`: API endpoint name, e.g. `pubsub.googleapis.com`.\n  Pass `TfArg.literal(\'pubsub.googleapis.com\')`.\n\nOptional knobs:\n- `project`: explicit project ID; defaults to the provider\'s `project`\n  when omitted.\n- `disableOnDestroy`: when `false`, leaves the API enabled if the\n  resource is destroyed. **Recommended `false` for personal/shared\n  projects** — disabling APIs that other resources outside Terraform\'s\n  knowledge depend on can break unrelated workloads.\n- `disableDependentServices`: when `true`, also disables any APIs that\n  depend on this one. Default `false`.\n\nExample pairing with [GooglePubsubTopic]:\n```dart\nfinal pubsubApi = GoogleProjectService(\n  localName: \'pubsub\',\n  service: TfArg.literal(\'pubsub.googleapis.com\'),\n  disableOnDestroy: TfArg.literal(false),\n);\n\nfinal orders = GooglePubsubTopic(\n  localName: \'orders\',\n  name: TfArg.literal(\'orders-prod\'),\n  dependsOn: [pubsubApi],\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_public_ca_external_account_key',
+    className: 'GooglePublicCaExternalAccountKey',
+    barrel: 'public_ca',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_public_ca_external_account_key`.',
+    constructorParams: <String>['localName', 'location', 'project'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[
+      'b64_mac_key',
+      'b64url_mac_key',
+      'key_id',
+      'mac_key',
+    ],
+    docComment:
+        'Factory wrapper for `google_public_ca_external_account_key`.\n\nA representation of an ExternalAccountKey used for external account binding\nwithin ACME.\n\nPublic CA **external account binding (EAB) key** for ACME clients.\n\nCreates a key ID + HMAC secret used to register an ACME account with\nGoogle Trust Services (Certificate Manager Public CA). The resource is\ncreate-only: Terraform cannot read it back from the API, and destroy\nremoves it from state only (the secret is not revoked server-side).\nUse the secret within 7 days or it is invalidated.\n\nCreating an EAB key alone does not issue a certificate and does not\nincur Certificate Manager certificate-usage SKUs.\n\nEnable `publicca.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGooglePublicCaExternalAccountKey(\n  localName: \'acme_eab\',\n  location: TfArg.literal(\'global\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_pubsub_schema',
     className: 'GooglePubsubSchema',
     barrel: 'pubsub',

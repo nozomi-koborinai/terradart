@@ -284,6 +284,10 @@ barrels:
     doc: |-
       /// Private CA (Certificate Authority Service) — CA pools for managed
       /// certificate issuance via Certificate Manager.
+  public_ca:
+    doc: |-
+      /// Public CA — ACME external account binding (EAB) keys for Google
+      /// Trust Services certificates via Certificate Manager Public CA.
   project:
     doc: |-
       /// Project services (enabling individual GCP APIs on a project).

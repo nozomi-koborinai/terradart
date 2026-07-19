@@ -121,6 +121,11 @@ final class GoogleProviderRules extends ProviderRules {
     // Wave 77 — Network Management (`google_network_management_*` → network barrel).
     'network_management': 'network',
 
+    // Public CA (`google_public_ca_*` → segment `public`; MM product PublicCA).
+    'public': 'public_ca',
+    'public_ca': 'public_ca',
+    'publicca': 'public_ca',
+
     // Sensitive Data Protection / DLP (`google_data_loss_prevention_*`).
     // Segment-1 would be `data` (conflicts with the data-source barrel).
     'data_loss_prevention': 'dlp',
