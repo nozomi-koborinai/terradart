@@ -1,4 +1,8 @@
-/// Identity Platform quickstart — project config and a tenant.
+/// Identity Platform quickstart — a multi-tenant Auth realm.
+///
+/// [GoogleIdentityPlatformConfig] is deferred to [tool/example_debt.yaml]: it is
+/// a project singleton and `terradart-validate` already has Identity Platform
+/// enabled, so create returns 400. Fresh projects can still use the factory.
 ///
 /// IdP configs (OAuth / SAML / default supported IdPs) need real external
 /// client credentials and are not exercised here.
@@ -22,17 +26,6 @@ final class IdentityPlatformStack extends Stack {
       this,
       barrels: [Barrels.identity],
       propagationDelay: const Duration(seconds: 60),
-    );
-
-    add(
-      GoogleIdentityPlatformConfig(
-        localName: 'default',
-        authorizedDomains: TfArg.literal(const [
-          'localhost',
-          'terradart.example',
-        ]),
-        dependsOn: apiDeps,
-      ),
     );
 
     add(

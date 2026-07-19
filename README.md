@@ -242,7 +242,7 @@ Foundational
 - [Cloud Scheduler → Pub/Sub target](examples/cloud_scheduler_quickstart/)
 - [Apigee data collector + analytics datastore](examples/apigee_quickstart/)
 - [IAM members across Pub/Sub, Tasks, Secret Manager, and IAP (App Engine, Agent Registry, location web)](examples/iam_quickstart/)
-- [Identity Platform config and tenant](examples/identity_platform_quickstart/)
+- [Identity Platform tenant](examples/identity_platform_quickstart/)
 
 Compute & networking
 

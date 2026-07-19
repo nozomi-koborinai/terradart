@@ -575,7 +575,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 
 | Terraform type | Dart factory | Example |
 | --- | --- | --- |
-| `google_identity_platform_config` | `GoogleIdentityPlatformConfig` | [identity_platform_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/identity_platform_quickstart) |
+| `google_identity_platform_config` | `GoogleIdentityPlatformConfig` | — |
 | `google_identity_platform_tenant` | `GoogleIdentityPlatformTenant` | [identity_platform_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/identity_platform_quickstart) |
 
 ## kms
