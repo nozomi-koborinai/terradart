@@ -2545,6 +2545,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_clouddeploy_custom_target_type`.\n\nA Cloud Deploy `CustomTargetType` defines a type of custom target that can\nbe referenced in a Cloud Deploy `Target` in order to facilitate deploying to\nother systems besides the supported runtimes.',
   ),
   CatalogEntry(
+    tfType: 'google_clouddeploy_custom_target_type_iam_member',
+    className: 'GoogleClouddeployCustomTargetTypeIamMember',
+    barrel: 'clouddeploy',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_clouddeploy_custom_target_type_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'member',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_clouddeploy_custom_target_type_iam_member`.',
+  ),
+  CatalogEntry(
     tfType: 'google_clouddeploy_delivery_pipeline',
     className: 'GoogleClouddeployDeliveryPipeline',
     barrel: 'clouddeploy',
@@ -2566,6 +2586,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_clouddeploy_delivery_pipeline`.\n\nA DeliveryPipeline defines a pipeline through which a Skaffold configuration\ncan progress.',
+  ),
+  CatalogEntry(
+    tfType: 'google_clouddeploy_delivery_pipeline_iam_member',
+    className: 'GoogleClouddeployDeliveryPipelineIamMember',
+    barrel: 'clouddeploy',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_clouddeploy_delivery_pipeline_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'member',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_clouddeploy_delivery_pipeline_iam_member`.',
   ),
   CatalogEntry(
     tfType: 'google_clouddeploy_target',
@@ -2596,6 +2636,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_clouddeploy_target`.\n\nThe Cloud Deploy `Target` resource.',
+  ),
+  CatalogEntry(
+    tfType: 'google_clouddeploy_target_iam_member',
+    className: 'GoogleClouddeployTargetIamMember',
+    barrel: 'clouddeploy',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_clouddeploy_target_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'member',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment: 'Factory wrapper for `google_clouddeploy_target_iam_member`.',
   ),
   CatalogEntry(
     tfType: 'google_cloudfunctions2_function',

@@ -1,6 +1,6 @@
 # Cloud Deploy quickstart
 
-End-to-end terradart example for Cloud Deploy. Enables the Cloud Deploy API and provisions a Cloud Run delivery target, a delivery pipeline with a single stage targeting it, and a custom target type — and exports the pipeline name as a typed Dart constant.
+End-to-end terradart example for Cloud Deploy. Enables the Cloud Deploy API and provisions a Cloud Run delivery target, a delivery pipeline with a single stage targeting it, a custom target type, and resource-scoped viewer IAM members for a deployer service account — and exports the pipeline name as a typed Dart constant.
 
 Nested config blocks are passed as structured maps (`TfArg<Map<String, dynamic>>`), matching the thin curated factories.
 
@@ -14,7 +14,7 @@ Nested config blocks are passed as structured maps (`TfArg<Map<String, dynamic>>
 
 ```
 examples/clouddeploy_quickstart/
-├── lib/main.dart       # DeployStack (target + delivery pipeline + custom target type)
+├── lib/main.dart       # DeployStack (target + pipeline + custom type + IAM members)
 ├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
 ├── lib/generated/      # (created on synth) deploy_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
