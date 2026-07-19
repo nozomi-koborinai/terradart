@@ -1,0 +1,15 @@
+name: terradart_example_colab_quickstart
+description: Colab Enterprise end-to-end example — runtime template, template IAM, paused schedule.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.24.0
+  terradart_google: ^0.24.0
+
+dev_dependencies:
+  lints: ^6.0.0

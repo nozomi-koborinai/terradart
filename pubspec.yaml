@@ -28,6 +28,7 @@ workspace:
   - examples/cloud_scheduler_quickstart
   - examples/cloud_sql_quickstart
   - examples/cloud_tasks_quickstart
+  - examples/colab_quickstart
   - examples/compute_lb_quickstart
   - examples/compute_quickstart
   - examples/compute_route_quickstart

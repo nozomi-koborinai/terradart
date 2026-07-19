@@ -112,6 +112,10 @@ barrels:
       /// Cloud Deploy — continuous-delivery pipelines, targets, and custom target
       /// types. Nested config blocks (serial pipeline stages, deployment targets,
       /// custom actions) are passed as structured maps.
+  colab:
+    doc: |-
+      /// Colab Enterprise — runtime templates, template IAM, and paused notebook
+      /// execution schedules (Vertex AI notebook runtimes).
   compute:
     doc: |-
       /// Compute Engine resources: instances, addresses, firewalls, networks,

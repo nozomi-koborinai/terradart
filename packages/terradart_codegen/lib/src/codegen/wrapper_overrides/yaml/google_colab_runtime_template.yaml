@@ -1,0 +1,37 @@
+outputDir: colab
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+# VM shape / network / software knobs stay Map for this thin Wave.
+nestedTypeExcludes:
+  - machine_spec
+  - network_spec
+  - data_persistent_disk_spec
+  - encryption_spec
+  - euc_config
+  - idle_shutdown_config
+  - shielded_vm_config
+  - software_config
+
+curatedDoc: |-
+  /// Colab Enterprise runtime template — a reusable VM shape for notebook
+  /// runtimes (machine type, network, disk, software).
+  ///
+  /// Enable `aiplatform.googleapis.com` via [GoogleProjectService] before
+  /// apply. Creating a template does not start a VM; pair with
+  /// [GoogleColabSchedule] (paused) or a runtime when you need execution.
+
+paramOrder:
+  - location
+  - display_name
+  - name
+  - description
+  - machine_spec
+  - network_spec
+  - data_persistent_disk_spec
+  - idle_shutdown_config
+  - software_config
+  - labels
+  - deletion_policy
+  - project
