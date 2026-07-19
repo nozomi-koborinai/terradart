@@ -72,6 +72,12 @@ files:
     upstream: mmv1/products/clouddeploy/Target.yaml
   google_clouddeploy_target_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_colab_runtime_template:
+    upstream: mmv1/products/colab/RuntimeTemplate.yaml
+  google_colab_runtime_template_iam_member:
+    upstream: null  # IAM — generated from parent RuntimeTemplate.yaml iam_policy
+  google_colab_schedule:
+    upstream: mmv1/products/colab/Schedule.yaml
   google_compute_address:
     upstream: mmv1/products/compute/Address.yaml
   google_compute_firewall:

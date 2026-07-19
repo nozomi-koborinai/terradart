@@ -32,6 +32,7 @@ export 'cloud_scheduler.dart';
 export 'cloud_sql.dart';
 export 'cloud_tasks.dart';
 export 'clouddeploy.dart';
+export 'colab.dart';
 export 'compute.dart';
 export 'config.dart';
 export 'contact.dart';

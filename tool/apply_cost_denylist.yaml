@@ -126,6 +126,9 @@ google_clouddeploy_delivery_pipeline: safe  # apply-verified safe (existing exam
 google_clouddeploy_delivery_pipeline_iam_member: safe  # billing-behavior: IAM binding on a Cloud Deploy delivery pipeline; sets policy only, zero billing
 google_clouddeploy_target: safe  # apply-verified safe (existing example)
 google_clouddeploy_target_iam_member: safe  # billing-behavior: IAM binding on a Cloud Deploy target; sets policy only, zero billing
+google_colab_runtime_template: safe  # gcp-cost: no Cloud Billing Catalog SKU for runtime_template config (Vertex AI C7E2-9256-1C43 "Vertex Colab *" SKUs bill when a runtime/VM runs, e.g. Colab CPU E2 cores); billing-behavior: template metadata — no existence/hourly charge until a runtime or schedule run starts
+google_colab_runtime_template_iam_member: safe  # billing-behavior: IAM binding — no resource charge
+google_colab_schedule: safe  # gcp-cost: no Cloud Billing Catalog SKU for schedule config itself (Vertex AI C7E2-9256-1C43 Colab VM SKUs apply only when runs execute); billing-behavior: paused schedule metadata — no charge while desired_state=PAUSED
 google_compute_address: safe  # apply-verified safe (existing example)
 google_compute_bulk_per_instance_config: sweep_only  # gcp-cost: no Cloud Billing Catalog SKU for the config object itself, BUT a bulk per-instance config MATERIALIZES a member VM in the MIG (VM runtime bills while applied); example compute_quickstart already in apply_smoke_pr_skip.yaml
 google_compute_disk: safe  # apply-verified safe (existing example)

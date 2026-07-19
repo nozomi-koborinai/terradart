@@ -1,0 +1,16 @@
+outputDir: colab
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Adds a single IAM `role` → `member` binding on a
+  /// [GoogleColabRuntimeTemplate]. Prefer an in-stack service account for
+  /// apply-smoke (placeholder identities fail at apply).
+
+paramOrder:
+  - runtime_template
+  - role
+  - member
+  - location
+  - condition
+  - project

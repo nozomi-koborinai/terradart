@@ -1,0 +1,44 @@
+outputDir: colab
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+dartTypeOverrides:
+  desired_state: ColabScheduleDesiredState
+
+prelude: |
+  /// Terraform `desired_state` for [GoogleColabSchedule].
+  enum ColabScheduleDesiredState implements TerraformEnum {
+    active('ACTIVE'),
+    paused('PAUSED');
+
+    const ColabScheduleDesiredState(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+# Deep notebook_execution_job tree stays Map for this thin Wave.
+nestedTypeExcludes:
+  - create_notebook_execution_job_request
+
+curatedDoc: |-
+  /// Colab Enterprise notebook execution schedule.
+  ///
+  /// Prefer [desiredState] `PAUSED` in examples so apply does not start
+  /// Vertex Colab VMs. Enable `aiplatform.googleapis.com` before apply.
+  /// [createNotebookExecutionJobRequest] is a nested-block Map
+  /// (`notebook_execution_job` → GCS notebook source + template + output).
+
+paramOrder:
+  - location
+  - display_name
+  - cron
+  - max_concurrent_run_count
+  - create_notebook_execution_job_request
+  - desired_state
+  - allow_queueing
+  - max_run_count
+  - start_time
+  - end_time
+  - deletion_policy
+  - project
