@@ -230,6 +230,7 @@ google_healthcare_hl7_v2_store: safe  # apply-verified safe (existing example)
 google_healthcare_hl7_v2_store_iam_member: safe  # apply-verified safe (existing example)
 google_healthcare_fhir_store: safe  # gcp-cost: SKU 983E-D822-5BCA Structured Storage (Iowa) $0.24/GiBy.mo after 1 GiB free tier; billing-behavior: storage/ops only — empty FHIR store has no existence/hourly charge
 google_healthcare_fhir_store_iam_member: safe  # billing-behavior: IAM binding only, no standalone billing
+google_healthcare_workspace: safe  # gcp-cost: no Cloud Billing Catalog SKU for Data Mapper workspace config after MCP lookup on Cloud Healthcare 7C52-19D8-71EE (storage/request SKUs only); billing-behavior: workspace metadata — no existence/hourly charge until mapper jobs process data
 google_iap_agent_registry_iam_member: safe  # gcp-cost: no Cloud Billing Catalog SKU (IAP IAM binding adjunct); billing-behavior: IAM binding only, no standalone billing
 google_iap_location_web_iam_member: safe  # gcp-cost: no Cloud Billing Catalog SKU (IAP IAM binding adjunct); billing-behavior: IAM binding only, no standalone billing
 google_migration_center_assets_export_job: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_services name=Migration/migration center — Migration Center absent from catalog); billing-behavior: export-job metadata only — no existence/hourly charge for the resource itself

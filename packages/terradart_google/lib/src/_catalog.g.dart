@@ -8023,6 +8023,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_healthcare_hl7_v2_store_iam_member`.',
   ),
   CatalogEntry(
+    tfType: 'google_healthcare_workspace',
+    className: 'GoogleHealthcareWorkspace',
+    barrel: 'healthcare',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_healthcare_workspace`.',
+    constructorParams: <String>[
+      'localName',
+      'dataset',
+      'name',
+      'settings',
+      'labels',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>['HealthcareWorkspaceSettings'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_healthcare_workspace`.\n\nA Data Mapper workspace is used to configure Data Mapper access, permissions\nand data sources for mapping clinical patient data to the FHIR standard.\n\nHealthcare Data Mapper workspace under a [GoogleHealthcareDataset].\n\n[settings] lists the data project IDs the workspace may access.\nEnable `healthcare.googleapis.com` via [GoogleProjectService] before\napply.',
+  ),
+  CatalogEntry(
     tfType: 'google_iam_workload_identity_pool',
     className: 'GoogleIamWorkloadIdentityPool',
     barrel: 'iam',

@@ -6,6 +6,9 @@
 /// - DICOM, consent, HL7v2, and FHIR stores inside it,
 /// - store-level + dataset IAM grants for an in-stack service account.
 ///
+/// [GoogleHealthcareWorkspace] is deferred to [tool/example_debt.yaml]
+/// (create returns 404 Method not found on terradart-validate).
+///
 /// Datasets and stores are free (you are billed for stored data / operations),
 /// so the stack creates and destroys cleanly in a single project.
 ///

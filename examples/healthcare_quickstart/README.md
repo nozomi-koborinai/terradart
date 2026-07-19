@@ -2,6 +2,10 @@
 
 End-to-end terradart example for Cloud Healthcare. Enables the Cloud Healthcare API and provisions a dataset with DICOM, consent, HL7v2, and FHIR stores, plus dataset/store IAM grants for an in-stack service account — and exports the dataset name as a typed Dart constant.
 
+`GoogleHealthcareWorkspace` is curated but deferred from this stack (apply
+returns 404 Method not found on terradart-validate; see
+`tool/example_debt.yaml`).
+
 ## Prerequisites
 
 - Dart SDK >= 3.6
