@@ -1,0 +1,122 @@
+outputDir: notebooks
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Vertex AI Workbench (Notebooks) environment — a reusable image recipe
+  /// for notebook instances (no VM starts until an instance uses it).
+  ///
+  /// Pass exactly one [image] variant:
+  /// - [NotebooksEnvironmentContainerImage] — container repository (+ optional tag)
+  /// - [NotebooksEnvironmentVmImage] — Compute Engine image project + name/family
+  ///
+  /// Enable `notebooks.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example (container image):
+  /// ```dart
+  /// GoogleNotebooksEnvironment(
+  ///   localName: 'base_cpu',
+  ///   name: TfArg.literal('terradart-nb-env'),
+  ///   location: TfArg.literal('us-central1-a'),
+  ///   image: NotebooksEnvironmentContainerImage(
+  ///     repository: TfArg.literal(
+  ///       'gcr.io/deeplearning-platform-release/base-cpu',
+  ///     ),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - image
+  - display_name
+  - description
+  - post_startup_script
+  - project
+
+argMapOrder:
+  - name
+  - location
+  - display_name
+  - description
+  - post_startup_script
+  - project
+  - image
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+prelude: |
+  // ===========================================================================
+  // NotebooksEnvironmentImage -- sealed (ContainerImage | VmImage)
+  // ===========================================================================
+
+  /// Exactly one image source for a [GoogleNotebooksEnvironment].
+  sealed class NotebooksEnvironmentImage {
+    const NotebooksEnvironmentImage();
+
+    /// Terraform nested-block key (`container_image` or `vm_image`).
+    String get blockKey;
+
+    /// Single-element list matching `nesting_mode: list, max_items: 1`.
+    List<Map<String, Object?>> encode();
+  }
+
+  /// `container_image` — start notebooks from a container repository.
+  @immutable
+  final class NotebooksEnvironmentContainerImage extends NotebooksEnvironmentImage {
+    const NotebooksEnvironmentContainerImage({
+      required this.repository,
+      this.tag,
+    });
+
+    final TfArg<String> repository;
+    final TfArg<String>? tag;
+
+    @override
+    String get blockKey => 'container_image';
+
+    @override
+    List<Map<String, Object?>> encode() => [
+          {
+            'repository': repository.toTfJson(),
+            if (tag != null) 'tag': tag!.toTfJson(),
+          },
+        ];
+  }
+
+  /// `vm_image` — start notebooks from a Compute Engine image.
+  ///
+  /// Provide [imageName] and/or [imageFamily] (newest in the family when
+  /// only the family is set).
+  @immutable
+  final class NotebooksEnvironmentVmImage extends NotebooksEnvironmentImage {
+    const NotebooksEnvironmentVmImage({
+      required this.project,
+      this.imageName,
+      this.imageFamily,
+    });
+
+    /// Image project, e.g. `deeplearning-platform-release`.
+    final TfArg<String> project;
+    final TfArg<String>? imageName;
+    final TfArg<String>? imageFamily;
+
+    @override
+    String get blockKey => 'vm_image';
+
+    @override
+    List<Map<String, Object?>> encode() => [
+          {
+            'project': project.toTfJson(),
+            if (imageName != null) 'image_name': imageName!.toTfJson(),
+            if (imageFamily != null) 'image_family': imageFamily!.toTfJson(),
+          },
+        ];
+  }
+
+customSlots:
+  image:
+    paramDeclaration: 'required NotebooksEnvironmentImage image'
+    argMapEntry: 'image.blockKey: TfArg.literal(image.encode()),'

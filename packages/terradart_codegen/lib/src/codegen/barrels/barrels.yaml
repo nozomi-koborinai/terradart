@@ -261,6 +261,9 @@ barrels:
     doc: |-
       /// Network Connectivity transports, Network Security ULL mirroring, address
       /// groups, and URL lists.
+  notebooks:
+    doc: |-
+      /// Vertex AI Workbench (Notebooks) — reusable environment image recipes.
   observability:
     doc: |-
       /// Cloud Observability — trace scopes that group projects' trace data for
