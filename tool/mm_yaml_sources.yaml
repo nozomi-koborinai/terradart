@@ -724,6 +724,17 @@ files:
     upstream: mmv1/products/apigee/DataCollector.yaml
   google_apigee_datastore:
     upstream: mmv1/products/apigee/Datastore.yaml
+  # App Hub (applications + discovered service/workload registration)
+  google_apphub_application:
+    upstream: mmv1/products/apphub/Application.yaml
+  google_apphub_boundary:
+    upstream: mmv1/products/apphub/Boundary.yaml
+  google_apphub_service:
+    upstream: mmv1/products/apphub/Service.yaml
+  google_apphub_service_project_attachment:
+    upstream: mmv1/products/apphub/ServiceProjectAttachment.yaml
+  google_apphub_workload:
+    upstream: mmv1/products/apphub/Workload.yaml
   google_app_engine_application:
     upstream: null  # handwritten in terraform-provider-google (no mmv1 Application.yaml)
   google_app_engine_application_url_dispatch_rules:

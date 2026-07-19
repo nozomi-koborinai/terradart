@@ -108,6 +108,9 @@ final class GoogleProviderRules extends ProviderRules {
     'binary': 'binary_authorization',
     'binary_authorization': 'binary_authorization',
 
+    // App Hub (`google_apphub_*`).
+    'apphub': 'apphub',
+
     // Wave 77 — API Keys (`google_apikeys_*`).
     'apikeys': 'apikeys',
 

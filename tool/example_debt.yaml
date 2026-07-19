@@ -89,3 +89,10 @@ GoogleIdentityPlatformConfig: project singleton — terradart-validate (and any 
 # (typically KMS / Binary Authorization). container_analysis_quickstart covers
 # the note + note IAM member instead.
 GoogleContainerAnalysisOccurrence: attestation occurrences need a real signed serialized_payload and public_key_id (KMS or similar); placeholder material fails apply — extend the quickstart when a deterministic signing path exists in terradart-validate
+
+# App Hub service/workload registration needs a second (service) project,
+# service-project attachment, and discovered_* data-source URIs. apphub_quickstart
+# covers the host boundary + application instead.
+GoogleApphubServiceProjectAttachment: attaches a separate service project to the App Hub host boundary; terradart-validate is a single standalone project and cannot create an org-scoped sibling project for attachment
+GoogleApphubService: registers a discovered service URI under an application; needs service-project attachment + google_apphub_discovered_service (data source not curated / needs live Compute URI)
+GoogleApphubWorkload: registers a discovered workload URI under an application; needs service-project attachment + google_apphub_discovered_workload (data source not curated / needs live MIG URI)

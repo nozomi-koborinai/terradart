@@ -98,6 +98,11 @@ google_cloud_run_v2_worker_pool_iam_member: safe  # apply-verified safe (existin
 google_binary_authorization_attestor: safe  # gcp-cost: no Cloud Billing Catalog SKU (policy metadata); billing-behavior: attestor config only, no hourly/existence billing
 google_binary_authorization_attestor_iam_member: safe  # billing-behavior: IAM binding only
 google_binary_authorization_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU (policy metadata); billing-behavior: admission policy metadata only
+google_apphub_application: safe  # gcp-cost: no Cloud Billing Catalog SKU (MCP list_services: no "App Hub"/"Apphub" service); billing-behavior: application metadata only — no existence/hourly charge
+google_apphub_boundary: safe  # gcp-cost: no Cloud Billing Catalog SKU (same MCP lookup as application); billing-behavior: CRM boundary metadata only
+google_apphub_service: safe  # gcp-cost: no Cloud Billing Catalog SKU (same MCP lookup as application); billing-behavior: service registration metadata only
+google_apphub_service_project_attachment: safe  # gcp-cost: no Cloud Billing Catalog SKU (same MCP lookup as application); billing-behavior: attachment metadata only
+google_apphub_workload: safe  # gcp-cost: no Cloud Billing Catalog SKU (same MCP lookup as application); billing-behavior: workload registration metadata only
 google_apikeys_key: safe  # gcp-cost: no Cloud Billing Catalog SKU (API key metadata); billing-behavior: key object only, no hourly/existence billing
 google_recaptcha_enterprise_key: safe  # gcp-cost: no Cloud Billing Catalog SKU (reCAPTCHA Enterprise key metadata); billing-behavior: key config only; usage billed separately per assessment
 google_network_management_connectivity_test: safe  # gcp-cost: no Cloud Billing Catalog SKU on test object; billing-behavior: connectivity test metadata; execution may incur Network Intelligence pricing separately

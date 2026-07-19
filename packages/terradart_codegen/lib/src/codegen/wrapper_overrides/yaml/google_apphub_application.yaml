@@ -1,0 +1,37 @@
+outputDir: apphub
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// App Hub application — functional grouping of services and workloads.
+  ///
+  /// Enable `apphub.googleapis.com` before apply. Set [scope] to `REGIONAL`
+  /// (match [location] to a region) or `GLOBAL` (use `location: global`).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleApphubApplication(
+  ///   localName: 'orders',
+  ///   location: TfArg.literal('us-central1'),
+  ///   applicationId: TfArg.literal('terradart-orders'),
+  ///   scope: ApphubApplicationScope(
+  ///     type: TfArg.literal(ApphubApplicationScopeType.regional),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - application_id
+  - scope
+  - display_name
+  - description
+  - attributes
+  - deletion_policy
+  - project

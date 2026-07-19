@@ -10,6 +10,7 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry('google_access_context_manager_', 'accesscontextmanager.googleapis.com'),
   MapEntry('google_alloydb_', 'alloydb.googleapis.com'),
   MapEntry('google_apigee_', 'apigee.googleapis.com'),
+  MapEntry('google_apphub_', 'apphub.googleapis.com'),
   MapEntry('google_network_management_', 'networkmanagement.googleapis.com'),
   MapEntry('google_recaptcha_enterprise_', 'recaptchaenterprise.googleapis.com'),
   MapEntry('google_apikeys_', 'apikeys.googleapis.com'),
