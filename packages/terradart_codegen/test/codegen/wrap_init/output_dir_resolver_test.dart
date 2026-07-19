@@ -71,6 +71,5 @@ void main() {
       );
       expect(result, 'public_ca');
     });
-
   });
 }
