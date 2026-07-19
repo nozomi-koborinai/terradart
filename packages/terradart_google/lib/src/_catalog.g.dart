@@ -9397,6 +9397,32 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_network_security_address_group`.\n\nAddressGroup is a resource that specifies how a collection of IP/DNS used in\nFirewall Policy.',
   ),
   CatalogEntry(
+    tfType: 'google_network_security_backend_authentication_config',
+    className: 'GoogleNetworkSecurityBackendAuthenticationConfig',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_network_security_backend_authentication_config`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'description',
+      'wellKnownRoots',
+      'trustConfig',
+      'clientCertificate',
+      'labels',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'NetworkSecurityBackendAuthenticationConfigWellKnownRoots',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_security_backend_authentication_config`.\n\nBackendAuthenticationConfig groups the TrustConfig together with other\nsettings that control how the load balancer authenticates, and expresses its\nidentity to the backend.\n\nNetwork Security **backend authentication config** — how a load balancer\nauthenticates to backends (backend mTLS / trust roots).\n\nCreating a config alone does not attach it to a BackendService or bill\nNetwork Security data-plane SKUs. Prefer [wellKnownRoots]\n`PUBLIC_ROOTS` when you do not need a Certificate Manager TrustConfig.\n\nEnable `networksecurity.googleapis.com` via [GoogleProjectService]\nbefore apply. Location defaults to `global`.\n\nExample:\n```dart\nGoogleNetworkSecurityBackendAuthenticationConfig(\n  localName: \'backend_auth\',\n  name: TfArg.literal(\'terradart-backend-auth\'),\n  location: TfArg.literal(\'global\'),\n  description: TfArg.literal(\'TerraDart smoke backend authentication\'),\n  wellKnownRoots: TfArg.literal(\n    NetworkSecurityBackendAuthenticationConfigWellKnownRoots.publicRoots,\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_network_security_client_tls_policy',
     className: 'GoogleNetworkSecurityClientTlsPolicy',
     barrel: 'network',

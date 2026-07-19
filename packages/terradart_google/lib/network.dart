@@ -30,6 +30,10 @@ export 'src/network/google_network_management_vpc_flow_logs_config.dart'
         NetworkManagementVpcFlowLogsConfigState;
 export 'src/network/google_network_security_address_group.dart'
     show GoogleNetworkSecurityAddressGroup, NetworkSecurityAddressGroupType;
+export 'src/network/google_network_security_backend_authentication_config.dart'
+    show
+        GoogleNetworkSecurityBackendAuthenticationConfig,
+        NetworkSecurityBackendAuthenticationConfigWellKnownRoots;
 export 'src/network/google_network_security_client_tls_policy.dart'
     show GoogleNetworkSecurityClientTlsPolicy;
 export 'src/network/google_network_security_gateway_security_policy.dart'
