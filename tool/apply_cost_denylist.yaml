@@ -256,6 +256,7 @@ google_monitoring_uptime_check_config: safe  # apply-verified safe (existing exa
 google_network_connectivity_hub: safe  # apply-verified safe (existing example)
 google_network_security_address_group: safe  # apply-verified safe (existing example)
 google_network_security_url_lists: safe  # apply-verified safe (existing example)
+google_network_services_mesh: safe  # gcp-cost: Anthos Service Mesh 3DAD-B96D-BE09 SKUs are Service Mesh Clusters (5B7A-29FB-1996 $50/mo) and Endpoints (F567-FD18-BBCE $0.50/mo after 100 free) — no Cloud Billing Catalog SKU for Mesh config object alone; billing-behavior: empty Mesh metadata — no existence/hourly charge until clusters/endpoints join
 google_observability_trace_scope: safe  # apply-verified safe (existing example)
 google_artifact_registry_project_config: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Artifact Registry 149C-F9EC-3994 keyword=platform — 0 matches); billing-behavior: project-level platform-logs policy PATCH only; log ingestion billed separately via Cloud Logging when enabled
 google_artifact_registry_repository: safe  # gcp-cost: SKU 8502-299A-ABAF Artifact Registry Storage $0.10/GiBy.mo above 0.5 GiB free tier; billing-behavior: usage-metered storage; empty repo in quickstart ≈ $0; destroy stops storage charges

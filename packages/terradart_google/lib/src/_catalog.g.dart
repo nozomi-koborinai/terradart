@@ -9362,6 +9362,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_network_security_url_lists`.',
   ),
   CatalogEntry(
+    tfType: 'google_network_services_mesh',
+    className: 'GoogleNetworkServicesMesh',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_network_services_mesh`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'description',
+      'interceptionPort',
+      'labels',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_services_mesh`.\n\nMesh represents a logical configuration grouping for workload to workload\ncommunication within a service mesh. Routes that point to mesh dictate how\nrequests are routed within this logical mesh boundary.\n\nCloud Network Services Mesh — a logical service-mesh namespace for\nsidecar / proxyless workloads (Traffic Director / Cloud Service Mesh).\n\nCreating a Mesh alone does not attach clusters or bill Anthos Service\nMesh cluster/endpoint SKUs. Enable `networkservices.googleapis.com`\nvia [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleNetworkServicesMesh(\n  localName: \'app\',\n  name: TfArg.literal(\'terradart-mesh\'),\n  location: TfArg.literal(\'global\'),\n  description: TfArg.literal(\'TerraDart smoke mesh\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_notebooks_environment',
     className: 'GoogleNotebooksEnvironment',
     barrel: 'notebooks',
