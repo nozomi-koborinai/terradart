@@ -1,0 +1,30 @@
+outputDir: network
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Cloud Network Services Mesh — a logical service-mesh namespace for
+  /// sidecar / proxyless workloads (Traffic Director / Cloud Service Mesh).
+  ///
+  /// Creating a Mesh alone does not attach clusters or bill Anthos Service
+  /// Mesh cluster/endpoint SKUs. Enable `networkservices.googleapis.com`
+  /// via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleNetworkServicesMesh(
+  ///   localName: 'app',
+  ///   name: TfArg.literal('terradart-mesh'),
+  ///   location: TfArg.literal('global'),
+  ///   description: TfArg.literal('TerraDart smoke mesh'),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - description
+  - interception_port
+  - labels
+  - deletion_policy
+  - project
