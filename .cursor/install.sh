@@ -40,10 +40,15 @@ if ! command -v terraform >/dev/null 2>&1; then
 fi
 
 # --- gcp-cost-mcp-server (pricing MCP for cost-classification) -------------
-if ! command -v gcp-cost-mcp-server >/dev/null 2>&1; then
-  GCMS_VER="0.8.0"
-  $SUDO curl -fsSL -o /usr/local/bin/gcp-cost-mcp-server "https://github.com/nozomi-koborinai/gcp-cost-mcp-server/releases/download/v${GCMS_VER}/gcp-cost-mcp-server-linux-amd64"
-  $SUDO chmod +x /usr/local/bin/gcp-cost-mcp-server
+# Stamp the pin beside the binary so a GCMS_VER bump re-downloads on cached
+# Cloud Agent snapshots (the binary itself does not expose a reliable --version).
+GCMS_VER="0.10.0"
+GCMS_BIN="/usr/local/bin/gcp-cost-mcp-server"
+GCMS_PIN="${GCMS_BIN}.version"
+if [[ ! -x "$GCMS_BIN" ]] || [[ "$(cat "$GCMS_PIN" 2>/dev/null || true)" != "$GCMS_VER" ]]; then
+  $SUDO curl -fsSL -o "$GCMS_BIN" "https://github.com/nozomi-koborinai/gcp-cost-mcp-server/releases/download/v${GCMS_VER}/gcp-cost-mcp-server-linux-amd64"
+  $SUDO chmod +x "$GCMS_BIN"
+  printf '%s\n' "$GCMS_VER" | $SUDO tee "$GCMS_PIN" >/dev/null
 fi
 
 # --- Resolve workspace dependencies (cheap; safe to re-run) ----------------
