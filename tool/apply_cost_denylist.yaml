@@ -218,6 +218,7 @@ google_firestore_index: safe  # apply-verified safe (existing example)
 google_gemini_gemini_gcp_enablement_setting: safe  # apply-verified safe (existing example)
 google_gemini_logging_setting: safe  # apply-verified safe (existing example)
 google_gemini_release_channel_setting: safe  # apply-verified safe (existing example)
+google_gemini_data_sharing_with_google_setting: safe  # gcp-cost: Gemini API AEFD-7695-64FA SKUs are generate_content / token usage only (no Admin Control setting SKU after list_skus keyword=setting → 0); billing-behavior: project/location config metadata — create/update/delete does not invoke models; destroy removes the setting
 google_gke_backup_backup_plan: safe  # apply-verified safe (existing example)
 google_gke_backup_backup_plan_iam_member: safe  # apply-verified safe (existing example)
 google_gke_backup_restore_plan: safe  # apply-verified safe (existing example)

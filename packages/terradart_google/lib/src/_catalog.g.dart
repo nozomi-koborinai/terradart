@@ -7580,6 +7580,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_firestore_user_creds`.\n\nUser credentials for a Cloud Firestore with MongoDB compatibility database.\nThe resource is owned by the database and is deleted along with the\ndatabase.\n\nProvisions a database-level credential (username + server-generated\npassword) for a Cloud Firestore database. The credential is scoped\nto one [database] and identified by [name] (4-63 chars,\n`[a-z][0-9]-` shape, must not be UUID-like).\n\nThe `secure_password` attribute is **sensitive and computed** -- the\nprovider generates it server-side and Terraform records it in state\nonly. terradart\'s masking layer flags it as sensitive via the\ngenerated `sensitiveFields` set.\n\nExample:\n```dart\nfinal readerCreds = GoogleFirestoreUserCreds(\n  localName: \'reader_creds\',\n  database: TfArg.ref(db.nameRef),\n  name: TfArg.literal(\'analytics-reader\'),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_gemini_data_sharing_with_google_setting',
+    className: 'GoogleGeminiDataSharingWithGoogleSetting',
+    barrel: 'gemini',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_gemini_data_sharing_with_google_setting`.',
+    constructorParams: <String>[
+      'localName',
+      'dataSharingWithGoogleSettingId',
+      'location',
+      'enableDataSharing',
+      'enablePreviewDataSharing',
+      'labels',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_gemini_data_sharing_with_google_setting`.\n\nThe resource for managing DataSharingWithGoogle settings for Admin Control.\n\nGemini for Google Cloud **data-sharing-with-Google** Admin Control setting.\n\nProject/location config that toggles whether Gemini products may share\nusage data with Google (GA and Preview independently). Creating the\nsetting alone does not call Gemini models or incur token SKUs.\n\nEnable `cloudaicompanion.googleapis.com` via [GoogleProjectService]\nbefore apply.\n\nExample:\n```dart\nGoogleGeminiDataSharingWithGoogleSetting(\n  localName: \'sharing\',\n  dataSharingWithGoogleSettingId: TfArg.literal(\'terradart-sharing\'),\n  location: TfArg.literal(\'global\'),\n  enableDataSharing: TfArg.literal(false),\n  enablePreviewDataSharing: TfArg.literal(false),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_gemini_gemini_gcp_enablement_setting',
     className: 'GoogleGeminiGeminiGcpEnablementSetting',
     barrel: 'gemini',
