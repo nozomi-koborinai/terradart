@@ -256,7 +256,6 @@ Data & storage
 
 - [GCS bucket + bucket object](examples/storage_quickstart/)
 - [BigQuery dataset (sealed `Access` hierarchy)](examples/bigquery_quickstart/)
-- [BigQuery reservation group](examples/bigquery_reservation_group_quickstart/)
 - [Cloud Bigtable instance + table + views + IAM](examples/bigtable_quickstart/)
 - [Dataplex data product + IAM member](examples/dataplex_quickstart/)
 - [Vertex AI Search data store + engine + IAM](examples/discovery_engine_quickstart/)
