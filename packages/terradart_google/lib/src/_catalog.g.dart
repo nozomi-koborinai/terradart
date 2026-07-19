@@ -7883,15 +7883,19 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'location',
       'reportConfig',
       'reportId',
+      'type',
       'displayName',
       'description',
       'deletionPolicy',
       'project',
     ],
-    nestedTypes: <String>['MigrationCenterReportDeletionPolicy'],
+    nestedTypes: <String>[
+      'MigrationCenterReportDeletionPolicy',
+      'MigrationCenterReportType',
+    ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_migration_center_report`.\n\nReport represents an analytical assessment report summarizing infrastructure\nsize, costs, and target suggestions.\n\nMigration Center assessment report generated from a [GoogleMigrationCenterReportConfig].\n\nSet [reportConfig] to the report config **id segment** (e.g.\n`TfArg.literal(\'my-report-config\')`), not the full resource name —\nsame path-ID pattern as [GoogleMigrationCenterImportDataFile.importJob].',
+        'Factory wrapper for `google_migration_center_report`.\n\nReport represents an analytical assessment report summarizing infrastructure\nsize, costs, and target suggestions.\n\nMigration Center assessment report generated from a [GoogleMigrationCenterReportConfig].\n\nSet [reportConfig] to the report config **id segment** (e.g.\n`TfArg.literal(\'my-report-config\')`), not the full resource name —\nsame path-ID pattern as [GoogleMigrationCenterImportDataFile.importJob].\nAlways set [type] (API rejects `TYPE_UNSPECIFIED`).',
   ),
   CatalogEntry(
     tfType: 'google_migration_center_report_config',

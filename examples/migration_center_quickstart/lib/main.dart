@@ -166,6 +166,7 @@ final class MigrationCenterStack extends Stack {
         location: TfArg.literal(location),
         reportConfig: TfArg.literal(reportConfigId),
         reportId: TfArg.literal('terradart-report'),
+        type: TfArg.literal(MigrationCenterReportType.totalCostOfOwnership),
         displayName: TfArg.literal('TerraDart assessment report'),
         dependsOn: [...apiDeps, ResourceDependency(reportConfig)],
       ),

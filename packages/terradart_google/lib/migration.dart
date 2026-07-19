@@ -27,7 +27,10 @@ export 'src/migration/google_migration_center_preference_set.dart'
         GoogleMigrationCenterPreferenceSet,
         MigrationCenterPreferenceSetDeletionPolicy;
 export 'src/migration/google_migration_center_report.dart'
-    show GoogleMigrationCenterReport, MigrationCenterReportDeletionPolicy;
+    show
+        GoogleMigrationCenterReport,
+        MigrationCenterReportDeletionPolicy,
+        MigrationCenterReportType;
 export 'src/migration/google_migration_center_report_config.dart'
     show
         GoogleMigrationCenterReportConfig,
