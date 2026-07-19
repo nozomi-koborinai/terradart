@@ -110,8 +110,11 @@ google_os_config_os_policy_assignment: safe  # gcp-cost: no Cloud Billing Catalo
 google_os_config_patch_deployment: safe  # gcp-cost: no Cloud Billing Catalog SKU on deployment object; billing-behavior: schedule metadata only until a patch job runs
 google_cloud_scheduler_job: safe  # apply-verified safe (existing example)
 google_clouddeploy_custom_target_type: safe  # apply-verified safe (existing example)
+google_clouddeploy_custom_target_type_iam_member: safe  # billing-behavior: IAM binding on a Cloud Deploy custom target type; sets policy only, zero billing
 google_clouddeploy_delivery_pipeline: safe  # apply-verified safe (existing example)
+google_clouddeploy_delivery_pipeline_iam_member: safe  # billing-behavior: IAM binding on a Cloud Deploy delivery pipeline; sets policy only, zero billing
 google_clouddeploy_target: safe  # apply-verified safe (existing example)
+google_clouddeploy_target_iam_member: safe  # billing-behavior: IAM binding on a Cloud Deploy target; sets policy only, zero billing
 google_compute_address: safe  # apply-verified safe (existing example)
 google_compute_bulk_per_instance_config: sweep_only  # gcp-cost: no Cloud Billing Catalog SKU for the config object itself, BUT a bulk per-instance config MATERIALIZES a member VM in the MIG (VM runtime bills while applied); example compute_quickstart already in apply_smoke_pr_skip.yaml
 google_compute_disk: safe  # apply-verified safe (existing example)

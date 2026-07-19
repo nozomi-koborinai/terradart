@@ -61,6 +61,7 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry('google_dns_', 'dns.googleapis.com'),
   MapEntry('google_cloudbuildv2_', 'cloudbuild.googleapis.com'),
   MapEntry('google_cloudbuild_', 'cloudbuild.googleapis.com'),
+  MapEntry('google_clouddeploy_', 'clouddeploy.googleapis.com'),
   MapEntry('google_config_', 'config.googleapis.com'),
   MapEntry('google_spanner_', 'spanner.googleapis.com'),
   MapEntry('google_sql_', 'sqladmin.googleapis.com'),

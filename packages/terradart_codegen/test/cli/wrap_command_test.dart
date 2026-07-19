@@ -81,11 +81,11 @@ void main() {
             files.add(p.relative(ent.path, from: tmpOut.path));
           }
         }
-        // 412 wrappers (411 resource Layer 2 + 1 data source Layer 2) plus
+        // 415 wrappers (414 resource Layer 2 + 1 data source Layer 2) plus
         // the generated static catalog `_catalog.g.dart`, plus the derived
         // barrels: 70 per-catalog barrels (69 service + `data`) and the
-        // `terradart_google.dart` umbrella → 484 emitted .dart files.
-        expect(files, hasLength(484));
+        // `terradart_google.dart` umbrella → 487 emitted .dart files.
+        expect(files, hasLength(487));
         expect(files, contains(p.join('lib', 'src', '_catalog.g.dart')));
         expect(
           files,
