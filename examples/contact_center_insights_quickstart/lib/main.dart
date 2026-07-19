@@ -60,7 +60,6 @@ final class ContactCenterInsightsStack extends Stack {
     );
 
     const scorecardId = 'terradart-qa';
-    const revisionId = 'terradartrev';
 
     final scorecard = add(
       GoogleContactCenterInsightsQaScorecard(
@@ -76,12 +75,14 @@ final class ContactCenterInsightsStack extends Stack {
       ),
     );
 
+    // Omit qaScorecardRevisionId so the provider adopts the scorecard's
+    // auto-created latest revision. Creating a second revision id returns
+    // API 400 "Precondition check failed" on a fresh scorecard.
     final revision = add(
       GoogleContactCenterInsightsQaScorecardRevision(
         localName: 'qa_rev',
         location: TfArg.literal('us-central1'),
         qaScorecard: TfArg.literal(scorecardId),
-        qaScorecardRevisionId: TfArg.literal(revisionId),
         dependsOn: [ResourceDependency(scorecard)],
       ),
     );
@@ -91,7 +92,7 @@ final class ContactCenterInsightsStack extends Stack {
         localName: 'greeting',
         location: TfArg.literal('us-central1'),
         qaScorecard: TfArg.literal(scorecardId),
-        revision: TfArg.literal(revisionId),
+        revision: TfArg.ref(revision.qaScorecardRevisionId),
         questionBody: TfArg.literal('Did the agent greet the customer?'),
         questionType: TfArg.literal('CUSTOMIZABLE'),
         abbreviation: TfArg.literal('Greeting'),
