@@ -20,6 +20,9 @@ export 'src/healthcare/google_healthcare_fhir_store.dart'
     show
         GoogleHealthcareFhirStore,
         HealthcareFhirStoreComplexDataTypeReferenceParsing,
+        HealthcareFhirStoreNotificationConfig,
+        HealthcareFhirStoreNotificationConfigs,
+        HealthcareFhirStoreValidationConfig,
         HealthcareFhirStoreVersion;
 export 'src/healthcare/google_healthcare_fhir_store_iam_member.dart'
     show GoogleHealthcareFhirStoreIamMember;

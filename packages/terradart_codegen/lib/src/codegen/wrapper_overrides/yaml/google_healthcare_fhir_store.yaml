@@ -2,9 +2,15 @@ outputDir: healthcare
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveNestedTypes: true
 
 dartTypeOverrides:
   version: HealthcareFhirStoreVersion
+
+# BigQuery FHIR streaming is out of scope for this thin Wave; freeze the
+# nested schema_config enums until a follow-up curates stream_configs.
+nestedTypeExcludes:
+  - stream_configs
 
 curatedDoc: |-
   /// FHIR store inside a [GoogleHealthcareDataset] — stores FHIR resources

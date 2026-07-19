@@ -7564,6 +7564,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[
       'HealthcareFhirStoreComplexDataTypeReferenceParsing',
       'HealthcareFhirStoreVersion',
+      'HealthcareFhirStoreNotificationConfig',
+      'HealthcareFhirStoreNotificationConfigs',
+      'HealthcareFhirStoreValidationConfig',
     ],
     sensitiveFields: <String>[],
     docComment:

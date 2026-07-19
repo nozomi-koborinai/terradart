@@ -31,6 +31,81 @@ enum HealthcareFhirStoreVersion implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Typed helper for the `notification_config` block of
+/// `google_healthcare_fhir_store` (derived from provider schema).
+@immutable
+final class HealthcareFhirStoreNotificationConfig {
+  const HealthcareFhirStoreNotificationConfig({required this.pubsubTopic});
+
+  final TfArg<String> pubsubTopic;
+
+  Map<String, Object?> encode() => {'pubsub_topic': pubsubTopic.toTfJson()};
+}
+
+/// Typed helper for the `notification_configs` block of
+/// `google_healthcare_fhir_store` (derived from provider schema).
+@immutable
+final class HealthcareFhirStoreNotificationConfigs {
+  const HealthcareFhirStoreNotificationConfigs({
+    required this.pubsubTopic,
+    this.sendFullResource,
+    this.sendPreviousResourceOnDelete,
+  });
+
+  final TfArg<String> pubsubTopic;
+
+  final TfArg<bool>? sendFullResource;
+
+  final TfArg<bool>? sendPreviousResourceOnDelete;
+
+  Map<String, Object?> encode() => {
+    'pubsub_topic': pubsubTopic.toTfJson(),
+    if (sendFullResource != null)
+      'send_full_resource': sendFullResource!.toTfJson(),
+    if (sendPreviousResourceOnDelete != null)
+      'send_previous_resource_on_delete': sendPreviousResourceOnDelete!
+          .toTfJson(),
+  };
+}
+
+/// Typed helper for the `validation_config` block of
+/// `google_healthcare_fhir_store` (derived from provider schema).
+@immutable
+final class HealthcareFhirStoreValidationConfig {
+  const HealthcareFhirStoreValidationConfig({
+    this.disableFhirpathValidation,
+    this.disableProfileValidation,
+    this.disableReferenceTypeValidation,
+    this.disableRequiredFieldValidation,
+    this.enabledImplementationGuides,
+  });
+
+  final TfArg<bool>? disableFhirpathValidation;
+
+  final TfArg<bool>? disableProfileValidation;
+
+  final TfArg<bool>? disableReferenceTypeValidation;
+
+  final TfArg<bool>? disableRequiredFieldValidation;
+
+  final TfArg<List<Object?>>? enabledImplementationGuides;
+
+  Map<String, Object?> encode() => {
+    if (disableFhirpathValidation != null)
+      'disable_fhirpath_validation': disableFhirpathValidation!.toTfJson(),
+    if (disableProfileValidation != null)
+      'disable_profile_validation': disableProfileValidation!.toTfJson(),
+    if (disableReferenceTypeValidation != null)
+      'disable_reference_type_validation': disableReferenceTypeValidation!
+          .toTfJson(),
+    if (disableRequiredFieldValidation != null)
+      'disable_required_field_validation': disableRequiredFieldValidation!
+          .toTfJson(),
+    if (enabledImplementationGuides != null)
+      'enabled_implementation_guides': enabledImplementationGuides!.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_healthcare_fhir_store`.
 ///
 /// A FhirStore is a datastore inside a Healthcare dataset that conforms to the
