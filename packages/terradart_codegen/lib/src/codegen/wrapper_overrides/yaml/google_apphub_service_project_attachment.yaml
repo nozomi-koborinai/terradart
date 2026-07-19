@@ -1,0 +1,17 @@
+outputDir: apphub
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// App Hub service-project attachment — attaches a service project to the
+  /// host project's App Hub boundary so its resources can be discovered.
+  ///
+  /// Typically needs a second GCP project (often org-scoped create). The
+  /// host project attachment id is usually the service project's id.
+
+paramOrder:
+  - service_project_attachment_id
+  - service_project
+  - deletion_policy
+  - project

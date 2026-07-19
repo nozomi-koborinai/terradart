@@ -14,6 +14,7 @@ workspace:
   - examples/apigee_quickstart
   - examples/api_security_quickstart
   - examples/access_context_quickstart
+  - examples/apphub_quickstart
   - examples/artifact_registry_quickstart
   - examples/biglake_quickstart
   - examples/bigquery_quickstart

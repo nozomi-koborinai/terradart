@@ -37,6 +37,10 @@ barrels:
   apigee:
     doc: |-
       /// Apigee: runtime data collectors and analytics datastores.
+  apphub:
+    doc: |-
+      /// App Hub — applications that group services and workloads for
+      /// end-to-end business functionality, plus host/service-project attachment.
   apikeys:
     doc: |-
       /// API Keys: restrict Google Cloud API access by key.

@@ -1,0 +1,25 @@
+outputDir: apphub
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// App Hub workload — registers a discovered workload under an application.
+  ///
+  /// Requires a prior [GoogleApphubServiceProjectAttachment] and a
+  /// `google_apphub_discovered_workload` data source URI (not curated here).
+
+paramOrder:
+  - location
+  - application_id
+  - workload_id
+  - discovered_workload
+  - display_name
+  - description
+  - attributes
+  - deletion_policy
+  - project

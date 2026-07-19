@@ -1,0 +1,22 @@
+outputDir: apphub
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// App Hub boundary — CRM node that defines the host project's App Hub
+  /// management boundary (typically `projects/<project-number>`).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleApphubBoundary(
+  ///   localName: 'host',
+  ///   location: TfArg.literal('global'),
+  ///   crmNode: TfArg.literal('projects/${current.number.interpolation}'),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - crm_node
+  - project

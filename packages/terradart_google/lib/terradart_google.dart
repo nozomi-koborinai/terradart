@@ -17,6 +17,7 @@ export 'alloydb.dart';
 export 'apigee.dart';
 export 'apikeys.dart';
 export 'app.dart';
+export 'apphub.dart';
 export 'artifact_registry.dart';
 export 'biglake.dart';
 export 'bigquery.dart';
