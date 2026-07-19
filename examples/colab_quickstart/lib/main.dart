@@ -83,10 +83,13 @@ final class ColabStack extends Stack {
       ),
     );
 
+    // Vertex keeps notebookRuntimeTemplate IDs briefly after destroy
+    // (409 "already exists" on rapid apply-smoke re-runs). Use a short
+    // stable id that is unlikely to collide with a soft-deleted prior name.
     final template = add(
       GoogleColabRuntimeTemplate(
         localName: 'basic',
-        name: TfArg.literal('terradart-colab-template'),
+        name: TfArg.literal('terradart-colab-rt'),
         displayName: TfArg.literal('TerraDart Colab runtime template'),
         location: TfArg.literal(location),
         machineSpec: TfArg.literal(<String, Object?>{
