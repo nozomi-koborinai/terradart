@@ -3,9 +3,8 @@
 /// Defines a `HealthcareStack` that enables the Cloud Healthcare API and
 /// provisions:
 /// - a healthcare dataset,
-/// - a DICOM store and a consent store inside it,
-/// - a `roles/healthcare.datasetViewer` grant on the dataset for an in-stack
-///   service account.
+/// - DICOM, consent, HL7v2, and FHIR stores inside it,
+/// - store-level + dataset IAM grants for an in-stack service account.
 ///
 /// Datasets and stores are free (you are billed for stored data / operations),
 /// so the stack creates and destroys cleanly in a single project.
@@ -20,7 +19,7 @@ import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 
-/// Cloud Healthcare Stack: a dataset with a DICOM + consent store and IAM.
+/// Cloud Healthcare Stack: a dataset with DICOM / consent / HL7v2 / FHIR stores.
 final class HealthcareStack extends Stack {
   HealthcareStack({required String projectId})
       : super(
@@ -90,6 +89,17 @@ final class HealthcareStack extends Stack {
       ),
     );
 
+    final fhir = add(
+      GoogleHealthcareFhirStore(
+        localName: 'clinical',
+        name: TfArg.literal('terradart-fhir'),
+        dataset: TfArg.ref(dataset.id),
+        version: TfArg.literal(HealthcareFhirStoreVersion.r4),
+        labels: TfArg.literal(const {'managed-by': 'terradart'}),
+        dependsOn: [ResourceDependency(dataset)],
+      ),
+    );
+
     add(
       GoogleHealthcareDatasetIamMember(
         localName: 'dataset_viewer',
@@ -132,6 +142,16 @@ final class HealthcareStack extends Stack {
         role: TfArg.literal('roles/healthcare.consentStoreViewer'),
         member: TfArg.ref(analyst.iamMember),
         dependsOn: [ResourceDependency(consent), ResourceDependency(analyst)],
+      ),
+    );
+
+    add(
+      GoogleHealthcareFhirStoreIamMember(
+        localName: 'fhir_viewer',
+        fhirStoreId: TfArg.ref(fhir.id),
+        role: TfArg.literal('roles/healthcare.fhirResourceReader'),
+        member: TfArg.ref(analyst.iamMember),
+        dependsOn: [ResourceDependency(fhir), ResourceDependency(analyst)],
       ),
     );
 

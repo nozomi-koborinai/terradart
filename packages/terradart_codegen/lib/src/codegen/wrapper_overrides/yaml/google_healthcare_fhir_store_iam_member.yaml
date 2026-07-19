@@ -1,0 +1,14 @@
+outputDir: healthcare
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Additive IAM member on a [GoogleHealthcareFhirStore].
+  ///
+  /// Prefer [GoogleHealthcareFhirStoreIamMember] over binding/policy adjuncts —
+  /// those overwrite grants made outside Terraform.
+
+paramOrder:
+  - fhir_store_id
+  - role
+  - member
