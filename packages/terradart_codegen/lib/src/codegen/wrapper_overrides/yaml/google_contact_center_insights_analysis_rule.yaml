@@ -1,0 +1,25 @@
+outputDir: contact
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+# Annotator / summarization knobs stay Map for this thin Wave.
+nestedTypeExcludes:
+  - annotator_selector
+
+curatedDoc: |-
+  /// Analysis rule for Contact Center AI Insights — selects which conversations
+  /// get automatic analysis (filter + percentage).
+  ///
+  /// Enable `contactcenterinsights.googleapis.com` via [GoogleProjectService]
+  /// before apply. An empty [conversationFilter] means the rule applies to all
+  /// conversations in [location].
+
+paramOrder:
+  - location
+  - display_name
+  - active
+  - analysis_percentage
+  - conversation_filter
+  - project
+  - deletion_policy

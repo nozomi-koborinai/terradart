@@ -1,0 +1,36 @@
+outputDir: contact
+deriveClassDoc: true
+deriveOutputGetters: true
+
+prelude: |
+  /// Terraform `source` for a [GoogleContactCenterInsightsQaScorecard].
+  enum ContactCenterInsightsQaScorecardSource implements TerraformEnum {
+    /// Customer-authored scorecard.
+    customerDefined('QA_SCORECARD_SOURCE_CUSTOMER_DEFINED'),
+
+    /// Scorecard sourced from Discovery Engine.
+    discoveryEngine('QA_SCORECARD_SOURCE_DISCOVERY_ENGINE');
+
+    const ContactCenterInsightsQaScorecardSource(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  source: ContactCenterInsightsQaScorecardSource
+
+curatedDoc: |-
+  /// QA scorecard for Contact Center AI Insights quality scoring.
+  ///
+  /// Enable `contactcenterinsights.googleapis.com` via [GoogleProjectService]
+  /// before apply. [qaScorecardId] becomes the final path segment of the
+  /// resource name.
+
+paramOrder:
+  - location
+  - qa_scorecard_id
+  - display_name
+  - description
+  - source
+  - project
+  - deletion_policy
