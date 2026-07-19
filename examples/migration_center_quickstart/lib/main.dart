@@ -1,8 +1,5 @@
-/// Migration Center quickstart — settings, sources, discovery, import, and data file.
-///
-/// Report / report-config are deferred to [tool/example_debt.yaml]: they need
-/// curated `google_migration_center_group` + `preference_set` factories (not
-/// yet wrapped). Placeholder self-links fail at apply time.
+/// Migration Center quickstart — settings, sources, discovery, import, groups,
+/// preference sets, and reports.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -22,6 +19,7 @@ final class MigrationCenterStack extends Stack {
         ) {
     const location = 'us-central1';
     const importJobId = 'terradart-import';
+    const reportConfigId = 'terradart-report-config';
 
     final apiDeps = Apis.enable(
       this,
@@ -120,6 +118,57 @@ final class MigrationCenterStack extends Stack {
         assetsExportJobId: TfArg.literal('terradart-export'),
         performanceData: TfArg.literal(<String, Object?>{'max_days': 30}),
         dependsOn: apiDeps,
+      ),
+    );
+
+    final group = GoogleMigrationCenterGroup(
+      localName: 'assets',
+      location: TfArg.literal(location),
+      groupId: TfArg.literal('terradart-group'),
+      displayName: TfArg.literal('TerraDart asset group'),
+      dependsOn: apiDeps,
+    );
+    add(group);
+
+    final preferenceSet = GoogleMigrationCenterPreferenceSet(
+      localName: 'defaults',
+      location: TfArg.literal(location),
+      preferenceSetId: TfArg.literal('terradart-prefs'),
+      displayName: TfArg.literal('TerraDart preference set'),
+      dependsOn: apiDeps,
+    );
+    add(preferenceSet);
+
+    final reportConfig = GoogleMigrationCenterReportConfig(
+      localName: 'tco',
+      location: TfArg.literal(location),
+      reportConfigId: TfArg.literal(reportConfigId),
+      displayName: TfArg.literal('TerraDart report config'),
+      groupPreferencesetAssignments: [
+        MigrationCenterReportConfigGroupPreferencesetAssignment(
+          group: TfArg.ref(group.nameRef),
+          preferenceSet: TfArg.ref(preferenceSet.nameRef),
+        ),
+      ],
+      dependsOn: [
+        ...apiDeps,
+        ResourceDependency(group),
+        ResourceDependency(preferenceSet),
+      ],
+    );
+    add(reportConfig);
+
+    // `report_config` is a path ID segment (not the full resource name) —
+    // same pattern as import_data_file's `import_job`.
+    add(
+      GoogleMigrationCenterReport(
+        localName: 'assessment',
+        location: TfArg.literal(location),
+        reportConfig: TfArg.literal(reportConfigId),
+        reportId: TfArg.literal('terradart-report'),
+        type: TfArg.literal(MigrationCenterReportType.totalCostOfOwnership),
+        displayName: TfArg.literal('TerraDart assessment report'),
+        dependsOn: [...apiDeps, ResourceDependency(reportConfig)],
       ),
     );
   }

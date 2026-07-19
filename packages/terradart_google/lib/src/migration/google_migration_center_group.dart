@@ -1,0 +1,79 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
+import 'package:terradart_core/terradart_core.dart';
+
+/// Sensitive field paths for `google_migration_center_group`.
+const Set<String> _googleMigrationCenterGroupSensitive = <String>{};
+
+/// Terraform `deletion_policy` for Migration Center groups.
+enum MigrationCenterGroupDeletionPolicy implements TerraformEnum {
+  delete('DELETE'),
+  prevent('PREVENT'),
+  abandon('ABANDON');
+
+  const MigrationCenterGroupDeletionPolicy(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Factory wrapper for `google_migration_center_group`.
+///
+/// A resource that represents an asset group. The purpose of an asset group is
+/// to bundle a set of assets that have something in common, while allowing
+/// users to add annotations to the group.
+///
+/// Migration Center asset group — annotate a bundle of related assets.
+///
+/// Pair with [GoogleMigrationCenterPreferenceSet] via
+/// [GoogleMigrationCenterReportConfig] `group_preferenceset_assignments`.
+final class GoogleMigrationCenterGroup extends Resource {
+  static const String tfType = 'google_migration_center_group';
+
+  GoogleMigrationCenterGroup({
+    required super.localName,
+    required TfArg<String> location,
+    required TfArg<String> groupId,
+    TfArg<String>? displayName,
+    TfArg<String>? description,
+    TfArg<Map<String, String>>? labels,
+    TfArg<MigrationCenterGroupDeletionPolicy>? deletionPolicy,
+    TfArg<String>? project,
+    super.lifecycle,
+    super.dependsOn,
+  }) : super(
+         terraformType: tfType,
+         argMap: {
+           'location': location,
+           'group_id': groupId,
+           if (displayName != null) 'display_name': displayName,
+           if (description != null) 'description': description,
+           if (labels != null) 'labels': labels,
+           if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
+           if (project != null) 'project': project,
+         },
+       );
+
+  @override
+  Set<String> get sensitiveFields => _googleMigrationCenterGroupSensitive;
+
+  /// Reference to `name` attribute.
+  TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `create_time` attribute.
+  TfRef<String> get createTime => TfRef.attribute<String>(this, 'create_time');
+
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
+
+  /// Reference to `update_time` attribute.
+  TfRef<String> get updateTime => TfRef.attribute<String>(this, 'update_time');
+}

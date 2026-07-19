@@ -727,10 +727,14 @@ files:
     upstream: mmv1/products/migrationcenter/AssetsExportJob.yaml
   google_migration_center_discovery_client:
     upstream: mmv1/products/migrationcenter/DiscoveryClient.yaml
+  google_migration_center_group:
+    upstream: mmv1/products/migrationcenter/Group.yaml
   google_migration_center_import_data_file:
     upstream: mmv1/products/migrationcenter/ImportDataFile.yaml
   google_migration_center_import_job:
     upstream: mmv1/products/migrationcenter/ImportJob.yaml
+  google_migration_center_preference_set:
+    upstream: mmv1/products/migrationcenter/PreferenceSet.yaml
   google_migration_center_report:
     upstream: mmv1/products/migrationcenter/Report.yaml
   google_migration_center_report_config:

@@ -17,6 +17,17 @@ enum MigrationCenterReportDeletionPolicy implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Report type for `google_migration_center_report.type`.
+///
+/// Required at apply time — the API rejects the default `TYPE_UNSPECIFIED`.
+enum MigrationCenterReportType implements TerraformEnum {
+  totalCostOfOwnership('TOTAL_COST_OF_OWNERSHIP');
+
+  const MigrationCenterReportType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_migration_center_report`.
 ///
 /// Report represents an analytical assessment report summarizing infrastructure
@@ -24,7 +35,10 @@ enum MigrationCenterReportDeletionPolicy implements TerraformEnum {
 ///
 /// Migration Center assessment report generated from a [GoogleMigrationCenterReportConfig].
 ///
-/// Set [reportConfig] to `TfArg.ref(config.nameRef)`.
+/// Set [reportConfig] to the report config **id segment** (e.g.
+/// `TfArg.literal('my-report-config')`), not the full resource name —
+/// same path-ID pattern as [GoogleMigrationCenterImportDataFile.importJob].
+/// Always set [type] (API rejects `TYPE_UNSPECIFIED`).
 final class GoogleMigrationCenterReport extends Resource {
   static const String tfType = 'google_migration_center_report';
 
@@ -33,6 +47,7 @@ final class GoogleMigrationCenterReport extends Resource {
     required TfArg<String> location,
     required TfArg<String> reportConfig,
     required TfArg<String> reportId,
+    TfArg<MigrationCenterReportType>? type,
     TfArg<String>? displayName,
     TfArg<String>? description,
     TfArg<MigrationCenterReportDeletionPolicy>? deletionPolicy,
@@ -45,6 +60,7 @@ final class GoogleMigrationCenterReport extends Resource {
            'location': location,
            'report_config': reportConfig,
            'report_id': reportId,
+           if (type != null) 'type': type,
            if (displayName != null) 'display_name': displayName,
            if (description != null) 'description': description,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,

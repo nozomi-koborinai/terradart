@@ -1,0 +1,40 @@
+outputDir: migration
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+# Intentionally thin: omit typed VM preference nesting until a Wave needs it.
+# Freezes NESTED_THIN on persistent_disk_type (and sibling nested enums).
+nestedTypeExcludes:
+  - virtual_machine_preferences
+
+curatedDoc: |-
+  /// Migration Center preference set — sizing / target-product assumptions for reports.
+  ///
+  /// Pair with [GoogleMigrationCenterGroup] via
+  /// [GoogleMigrationCenterReportConfig] `group_preferenceset_assignments`.
+  /// Optional `virtual_machine_preferences` nested blocks are omitted from this
+  /// curated surface; extend the override when a Wave needs typed VM prefs.
+
+paramOrder:
+  - location
+  - preference_set_id
+  - display_name
+  - description
+  - deletion_policy
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for Migration Center preference sets.
+  enum MigrationCenterPreferenceSetDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const MigrationCenterPreferenceSetDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: MigrationCenterPreferenceSetDeletionPolicy

@@ -6,12 +6,16 @@ deriveOutputGetters: true
 curatedDoc: |-
   /// Migration Center assessment report generated from a [GoogleMigrationCenterReportConfig].
   ///
-  /// Set [reportConfig] to `TfArg.ref(config.nameRef)`.
+  /// Set [reportConfig] to the report config **id segment** (e.g.
+  /// `TfArg.literal('my-report-config')`), not the full resource name —
+  /// same path-ID pattern as [GoogleMigrationCenterImportDataFile.importJob].
+  /// Always set [type] (API rejects `TYPE_UNSPECIFIED`).
 
 paramOrder:
   - location
   - report_config
   - report_id
+  - type
   - display_name
   - description
   - deletion_policy
@@ -29,5 +33,17 @@ prelude: |
     final String terraformValue;
   }
 
+  /// Report type for `google_migration_center_report.type`.
+  ///
+  /// Required at apply time — the API rejects the default `TYPE_UNSPECIFIED`.
+  enum MigrationCenterReportType implements TerraformEnum {
+    totalCostOfOwnership('TOTAL_COST_OF_OWNERSHIP');
+
+    const MigrationCenterReportType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
 dartTypeOverrides:
   deletion_policy: MigrationCenterReportDeletionPolicy
+  type: MigrationCenterReportType
