@@ -10568,6 +10568,47 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_service_networking_connection`.\n\nCreates a private services peering connection between the user\'s VPC\nnetwork and one of Google\'s service producer VPCs. This is the\n"private connectivity" hop required for managed services (Cloud SQL\nprivate IP, Memorystore private IP, AlloyDB, etc) to be reachable\nonly from inside the consumer VPC.\n\nThe pipeline is a three-resource chain:\n\n1. [GoogleComputeNetwork] — the consumer VPC.\n2. [GoogleComputeGlobalAddress] with `purpose: vpcPeering` —\n   pre-reserves an internal CIDR on that VPC for Google\'s services\n   to peer into.\n3. [GoogleServiceNetworkingConnection] (this resource) — peers\n   Google\'s `servicenetworking.googleapis.com` producer VPC into the\n   consumer VPC against the reserved range(s).\n\nOnce apply succeeds, downstream resources like\n[GoogleSqlDatabaseInstance] can set\n`settings.ip_configuration.private_network` to the same network and\nreceive a private-only IP allocated from the reserved range.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_service_networking_connection.`).\n- `network`: full self_link of a [GoogleComputeNetwork]\n  (`TfArg.ref(vpc.selfLink)`). The provider rejects short network\n  names here.\n- `service`: the producer service ID. The only documented value at\n  the time of writing is `\'servicenetworking.googleapis.com\'`; passed\n  as a plain string so callers can target other producer services\n  should Google introduce them.\n- `reservedPeeringRanges`: one or more `name` values from\n  [GoogleComputeGlobalAddress] resources with\n  `purpose: vpcPeering`. The provider rejects full self_links here —\n  pass `TfArg.ref(psaRange.nameRef)`.\n\nExample (full Cloud SQL private-IP chain — see also the\n`cloud_sql_quickstart` example):\n```dart\nfinal psaPeering = GoogleServiceNetworkingConnection(\n  localName: \'psa\',\n  network: TfArg.ref(vpc.selfLink),\n  service: TfArg.literal(\'servicenetworking.googleapis.com\'),\n  reservedPeeringRanges: TfArg.literal([\n    \'\\\${google_compute_global_address.psa_range.name}\',\n  ]),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_sourcerepo_repository',
+    className: 'GoogleSourcerepoRepository',
+    barrel: 'sourcerepo',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_sourcerepo_repository`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'createIgnoreAlreadyExists',
+      'pubsubConfigs',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'SourcerepoRepositoryPubsubConfigs',
+      'SourcerepoRepositoryPubsubConfigsMessageFormat',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_sourcerepo_repository`.\n\nA repository (or repo) is a Git repository storing versioned source content.\n\nCloud Source Repositories Git repository.\n\nEnable `sourcerepo.googleapis.com` via [GoogleProjectService] before\napply. Optional [pubsubConfigs] publish push notifications on repo\nchanges (each entry needs a Pub/Sub topic + [messageFormat]).',
+  ),
+  CatalogEntry(
+    tfType: 'google_sourcerepo_repository_iam_member',
+    className: 'GoogleSourcerepoRepositoryIamMember',
+    barrel: 'sourcerepo',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_sourcerepo_repository_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'repository',
+      'role',
+      'member',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_sourcerepo_repository_iam_member`.\n\nAdds a single IAM `role` → `member` binding on a\n[GoogleSourcerepoRepository]. Prefer an in-stack service account for\napply-smoke (placeholder identities fail at apply).',
+  ),
+  CatalogEntry(
     tfType: 'google_spanner_database',
     className: 'GoogleSpannerDatabase',
     barrel: 'spanner',

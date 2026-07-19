@@ -1,0 +1,15 @@
+outputDir: sourcerepo
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Adds a single IAM `role` → `member` binding on a
+  /// [GoogleSourcerepoRepository]. Prefer an in-stack service account for
+  /// apply-smoke (placeholder identities fail at apply).
+
+paramOrder:
+  - repository
+  - role
+  - member
+  - condition
+  - project

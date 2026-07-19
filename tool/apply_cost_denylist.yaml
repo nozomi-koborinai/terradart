@@ -280,6 +280,8 @@ google_service_directory_namespace: safe  # apply-verified safe (existing exampl
 google_service_directory_namespace_iam_member: safe  # apply-verified safe (existing example)
 google_service_directory_service: safe  # apply-verified safe (existing example)
 google_service_directory_service_iam_member: safe  # apply-verified safe (existing example)
+google_sourcerepo_repository: safe  # gcp-cost: Source Repository CAE2-A537-4A95 — Storage SKU 978B-7150-4C95 $0/GiBy.mo for first 50 GiB then $0.10; MAU SKU 4924-819F-A881 $0 for first 5 users then $1; billing-behavior: empty repo is usage-metered only (not existence-billed); destroy deletes repo and stops charges
+google_sourcerepo_repository_iam_member: safe  # billing-behavior: IAM binding — no resource charge
 google_service_networking_connection: safe  # apply-verified safe (existing example)
 google_tags_tag_binding: safe  # apply-verified safe (existing example)
 google_tags_tag_key: safe  # apply-verified safe (existing example)

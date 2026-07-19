@@ -306,6 +306,9 @@ barrels:
       /// Service Networking — VPC peering between user networks and Google service
       /// VPCs, plus Serverless VPC Access connectors for Cloud Run / Functions /
       /// App Engine egress into a consumer VPC.
+  sourcerepo:
+    doc: |-
+      /// Cloud Source Repositories — Git repositories and per-repo IAM.
   spanner:
     doc: |-
       /// Cloud Spanner — horizontally scalable relational databases.

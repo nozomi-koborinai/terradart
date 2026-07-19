@@ -78,6 +78,10 @@ files:
     upstream: null  # IAM — generated from parent RuntimeTemplate.yaml iam_policy
   google_colab_schedule:
     upstream: mmv1/products/colab/Schedule.yaml
+  google_sourcerepo_repository:
+    upstream: mmv1/products/sourcerepo/Repository.yaml
+  google_sourcerepo_repository_iam_member:
+    upstream: null  # IAM — generated from parent Repository.yaml iam_policy
   google_compute_address:
     upstream: mmv1/products/compute/Address.yaml
   google_compute_firewall:

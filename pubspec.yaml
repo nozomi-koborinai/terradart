@@ -72,6 +72,7 @@ workspace:
   - examples/pubsub_quickstart
   - examples/secret_manager_quickstart
   - examples/service_directory_quickstart
+  - examples/sourcerepo_quickstart
   - examples/storage_quickstart
   - examples/tags_quickstart
   - examples/vertex_ai_quickstart
