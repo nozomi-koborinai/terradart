@@ -56,12 +56,11 @@ shared/  (schemantic types: LunchRequest / LunchResponse)
 
 ### Runtime — the deployed GCP topology
 
-![Lunch Concierge on Google Cloud — IAP, Cloud Run (app + cloud-sql-proxy), Agent Platform, private Cloud SQL, provisioned by a TerraDart Stack](docs/architecture.png)
+![Lunch Concierge on Google Cloud — IAP, Cloud Run (app + cloud-sql-proxy), Direct VPC egress to private Cloud SQL, Agent Platform, provisioned by a TerraDart Stack](docs/architecture.png)
 
 Solid edges are the runtime path (browser → IAP → Cloud Run → Agent Platform /
-Cloud SQL). Dashed edges are provisioning (`terradart` synth → Terraform plan /
-apply). The diagram’s model label may lag the server code, which currently
-calls `gemini-2.5-flash`.
+Cloud SQL via Direct VPC egress). Dashed edges are provisioning (`terradart`
+synth → Terraform plan / apply).
 
 Cloud Run reaches the database through **Direct VPC egress** with
 `PRIVATE_RANGES_ONLY` — a private database path without a Serverless VPC
