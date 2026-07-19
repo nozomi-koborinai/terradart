@@ -1,0 +1,21 @@
+outputDir: healthcare
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Healthcare Data Mapper workspace under a [GoogleHealthcareDataset].
+  ///
+  /// [settings] lists the data project IDs the workspace may access.
+  /// Enable `healthcare.googleapis.com` via [GoogleProjectService] before
+  /// apply.
+
+paramOrder:
+  - dataset
+  - name
+  - settings
+  - labels
+  - deletion_policy

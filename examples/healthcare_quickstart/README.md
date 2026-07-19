@@ -1,6 +1,6 @@
 # Cloud Healthcare quickstart
 
-End-to-end terradart example for Cloud Healthcare. Enables the Cloud Healthcare API and provisions a dataset with DICOM, consent, HL7v2, and FHIR stores, plus dataset/store IAM grants for an in-stack service account — and exports the dataset name as a typed Dart constant.
+End-to-end terradart example for Cloud Healthcare. Enables the Cloud Healthcare API and provisions a dataset with DICOM, consent, HL7v2, and FHIR stores, a Data Mapper workspace, plus dataset/store IAM grants for an in-stack service account — and exports the dataset name as a typed Dart constant.
 
 ## Prerequisites
 
@@ -12,7 +12,7 @@ End-to-end terradart example for Cloud Healthcare. Enables the Cloud Healthcare 
 
 ```
 examples/healthcare_quickstart/
-├── lib/main.dart       # HealthcareStack (dataset + DICOM/consent/HL7v2/FHIR + IAM)
+├── lib/main.dart       # HealthcareStack (dataset + stores + workspace + IAM)
 ├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
 ├── lib/generated/      # (created on synth) healthcare_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
