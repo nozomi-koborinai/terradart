@@ -604,10 +604,12 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | --- | --- | --- |
 | `google_migration_center_assets_export_job` | `GoogleMigrationCenterAssetsExportJob` | [migration_center_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/migration_center_quickstart) |
 | `google_migration_center_discovery_client` | `GoogleMigrationCenterDiscoveryClient` | [migration_center_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/migration_center_quickstart) |
+| `google_migration_center_group` | `GoogleMigrationCenterGroup` | [migration_center_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/migration_center_quickstart) |
 | `google_migration_center_import_data_file` | `GoogleMigrationCenterImportDataFile` | [migration_center_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/migration_center_quickstart) |
 | `google_migration_center_import_job` | `GoogleMigrationCenterImportJob` | [migration_center_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/migration_center_quickstart) |
-| `google_migration_center_report` | `GoogleMigrationCenterReport` | — |
-| `google_migration_center_report_config` | `GoogleMigrationCenterReportConfig` | — |
+| `google_migration_center_preference_set` | `GoogleMigrationCenterPreferenceSet` | [migration_center_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/migration_center_quickstart) |
+| `google_migration_center_report` | `GoogleMigrationCenterReport` | [migration_center_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/migration_center_quickstart) |
+| `google_migration_center_report_config` | `GoogleMigrationCenterReportConfig` | [migration_center_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/migration_center_quickstart) |
 | `google_migration_center_settings` | `GoogleMigrationCenterSettings` | [migration_center_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/migration_center_quickstart) |
 | `google_migration_center_source` | `GoogleMigrationCenterSource` | [migration_center_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/migration_center_quickstart) |
 

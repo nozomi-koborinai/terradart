@@ -2,6 +2,11 @@ outputDir: migration
 
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveNestedTypes: true
+# Intentionally thin: omit typed VM preference nesting until a Wave needs it.
+# Freezes NESTED_THIN on persistent_disk_type (and sibling nested enums).
+nestedTypeExcludes:
+  - virtual_machine_preferences
 
 curatedDoc: |-
   /// Migration Center preference set — sizing / target-product assumptions for reports.
