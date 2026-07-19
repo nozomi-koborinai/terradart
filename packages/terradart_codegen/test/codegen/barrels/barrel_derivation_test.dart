@@ -25,11 +25,11 @@ CatalogEntryData _entry({
 
 void main() {
   group('loadBarrelManifest', () {
-    test('loads the committed manifest (74 barrels, sql file override)', () {
+    test('loads the committed manifest (75 barrels, sql file override)', () {
       final manifest = loadBarrelManifest(
         'lib/src/codegen/barrels/barrels.yaml',
       );
-      expect(manifest.barrels, hasLength(74));
+      expect(manifest.barrels, hasLength(75));
       expect(manifest.barrels['sql']!.file, 'cloud_sql');
       expect(manifest.barrels['pubsub']!.doc, startsWith('///'));
       expect(

@@ -766,6 +766,8 @@ files:
     upstream: mmv1/products/privateca/CertificateTemplate.yaml
   google_privateca_ca_pool_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_public_ca_external_account_key:
+    upstream: mmv1/products/publicca/ExternalAccountKey.yaml
   google_alloydb_backup:
     upstream: mmv1/products/alloydb/Backup.yaml
   google_alloydb_cluster:

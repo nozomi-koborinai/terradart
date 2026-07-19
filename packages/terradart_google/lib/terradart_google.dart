@@ -75,6 +75,7 @@ export 'parameter_manager.dart';
 export 'privateca.dart';
 export 'project.dart';
 export 'provider.dart';
+export 'public_ca.dart';
 export 'pubsub.dart';
 export 'recaptcha.dart';
 export 'redis.dart';

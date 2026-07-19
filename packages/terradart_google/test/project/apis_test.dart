@@ -100,12 +100,22 @@ void main() {
       expect(apis.single.localName, 'api_osconfig');
     });
 
-    test('binaryAuthorization barrel includes binaryauthorization.googleapis.com', () {
+    test(
+        'binaryAuthorization barrel includes binaryauthorization.googleapis.com',
+        () {
       final apis = Apis.required(barrels: [Barrels.binaryAuthorization]);
       expect(apis, hasLength(1));
       expect(
         apis.single.argMap['service']!.toTfJson(),
         'binaryauthorization.googleapis.com',
+      );
+    });
+
+    test('publicCa barrel includes publicca.googleapis.com', () {
+      final apis = Apis.required(barrels: [Barrels.publicCa]);
+      expect(
+        apis.map((a) => a.argMap['service']!.toTfJson()).toList(),
+        ['publicca.googleapis.com'],
       );
     });
 

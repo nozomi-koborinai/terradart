@@ -52,6 +52,7 @@ enum Barrels {
   memcache('memcache'),
   migration('migration'),
   privateca('privateca'),
+  publicCa('public_ca'),
   project('project'),
   pubsub('pubsub'),
   redis('redis'),
