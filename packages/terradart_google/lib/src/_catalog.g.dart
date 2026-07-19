@@ -8440,6 +8440,23 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_kms_key_ring_iam_member`.',
   ),
   CatalogEntry(
+    tfType: 'google_kms_project_autokey_config',
+    className: 'GoogleKmsProjectAutokeyConfig',
+    barrel: 'kms',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_kms_project_autokey_config`.',
+    constructorParams: <String>[
+      'localName',
+      'keyProjectResolutionMode',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>['KmsProjectAutokeyConfigKeyProjectResolutionMode'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_kms_project_autokey_config`.\n\n`ProjectAutokeyConfig` is a singleton resource used to configure the\nauto-provisioning flow of CryptoKeys for CMEK.\n\n~> **Note:** ProjectAutokeyConfigs cannot be deleted from Google Cloud\nPlatform. Destroying a Terraform-managed ProjectAutokeyConfigs will remove\nit from state but *will not delete the resource from the project.*\n\nProject-level **Cloud KMS Autokey config** — a singleton that controls\nwhether Autokey auto-provisions CMEK CryptoKeys for this project.\n\nPrefer [keyProjectResolutionMode] `DISABLED` for smoke stacks: the\nconfig is free metadata and does not create keys. Setting\n`RESOURCE_PROJECT` enables Autokey provisioning (HSM Autokey key SKUs\napply only when keys are created).\n\nEnable `cloudkms.googleapis.com` via [GoogleProjectService] (or\n[Apis.enable] with [Barrels.kmsApi]) before apply.\n\n**Note:** Project Autokey configs cannot be deleted from GCP. Destroying\na Terraform-managed config removes it from state but does not delete the\nsingleton from the project (fields are cleared / abandoned per\n[deletionPolicy]).\n\nExample:\n```dart\nGoogleKmsProjectAutokeyConfig(\n  localName: \'autokey\',\n  keyProjectResolutionMode: TfArg.literal(\n    KmsProjectAutokeyConfigKeyProjectResolutionMode.disabled,\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_license_manager_configuration',
     className: 'GoogleLicenseManagerConfiguration',
     barrel: 'license_manager',

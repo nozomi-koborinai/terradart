@@ -192,6 +192,8 @@ files:
     upstream: mmv1/products/kms/CryptoKey.yaml
   google_kms_key_ring:
     upstream: mmv1/products/kms/KeyRing.yaml
+  google_kms_project_autokey_config:
+    upstream: mmv1/products/kms/ProjectAutoConfig.yaml
   google_license_manager_configuration:
     upstream: mmv1/products/licensemanager/Configuration.yaml
   google_logging_project_sink:
