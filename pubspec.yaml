@@ -64,6 +64,7 @@ workspace:
   - examples/network_management_vpc_flow_logs_quickstart
   - examples/network_security_lists_quickstart
   - examples/network_security_tls_quickstart
+  - examples/network_security_gateway_policy_quickstart
   - examples/network_security_ull_quickstart
   - examples/network_services_mesh_quickstart
   - examples/notebooks_quickstart
