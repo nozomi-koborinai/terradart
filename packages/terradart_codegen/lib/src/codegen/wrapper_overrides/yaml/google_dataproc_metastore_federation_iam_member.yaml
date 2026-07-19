@@ -1,0 +1,17 @@
+outputDir: dataproc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Adds a single IAM `role` → `member` binding on a Dataproc Metastore federation.
+  ///
+  /// Set [federationId] to the federation id (path segment).
+
+paramOrder:
+  - federation_id
+  - role
+  - member
+  - location
+  - condition
+  - project

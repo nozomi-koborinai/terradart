@@ -24,6 +24,7 @@ enum Barrels {
   container('container'),
   contact('contact'),
   dataplex('dataplex'),
+  dataproc('dataproc'),
   discoveryEngine('discovery_engine'),
   dialogflow('dialogflow'),
   dnsApi('dns'),

@@ -42,6 +42,10 @@ google_container_node_pool: sweep_only       # GKE node VMs
 google_compute_instance: sweep_only          # Compute Engine VM
 google_compute_vpn_tunnel: sweep_only        # gcp-cost: Networking SKU B0D8-6A41-4771 Cloud VPN Tunnel asia-northeast1 $0.075/h; billing-behavior: billed per tunnel-hour while provisioned; destroy removes tunnel
 google_compute_router_nat: sweep_only        # gcp-cost: Networking SKU 32E2-4EFC-EF9F Cloud NAT Gateway Uptime $0.0014/h + SKU 015F-5732-FFF0 data processing $0.045/GiBy; billing-behavior: billed while NAT configured on router; destroy removes NAT
+google_dataproc_metastore_service: sweep_only  # gcp-cost: SKU E00F-6B0F-6FE3 Dataproc Metastore Service Developer Tier Hours $0.34/h (list); billing-behavior: billed per service-hour while provisioned; destroy stops the charge
+google_dataproc_metastore_federation: safe  # gcp-cost: no Cloud Billing Catalog SKU for federation metadata (parent Dataproc Metastore service SKUs are hourly on google_dataproc_metastore_service); billing-behavior: federation is a control-plane metadata resource — no existence/hourly charge beyond backend metastores
+google_dataproc_metastore_service_iam_member: safe  # billing-behavior: IAM binding only — no resource charge
+google_dataproc_metastore_federation_iam_member: safe  # billing-behavior: IAM binding only — no resource charge
 google_redis_instance: sweep_only            # Memorystore for Redis
 google_redis_cluster: sweep_only             # Memorystore for Redis Cluster
 google_memcache_instance: sweep_only         # Memorystore for Memcached

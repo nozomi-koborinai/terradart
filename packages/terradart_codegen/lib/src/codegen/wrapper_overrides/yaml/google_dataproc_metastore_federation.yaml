@@ -1,0 +1,76 @@
+outputDir: dataproc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Dataproc Metastore federation — query multiple backend metastores as one.
+  ///
+  /// Provide at least one [backendMetastores] entry. Backend [name] is the
+  /// relative resource name of a [GoogleDataprocMetastoreService]
+  /// (`projects/…/services/…`).
+
+paramOrder:
+  - federation_id
+  - version
+  - location
+  - backend_metastores
+  - labels
+  - deletion_protection
+  - deletion_policy
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for Dataproc Metastore federations.
+  enum DataprocMetastoreFederationDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const DataprocMetastoreFederationDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Backend metastore type for federation `backend_metastores`.
+  enum DataprocMetastoreFederationBackendType implements TerraformEnum {
+    unspecified('METASTORE_TYPE_UNSPECIFIED'),
+    dataprocMetastore('DATAPROC_METASTORE'),
+    bigquery('BIGQUERY'),
+    dataplex('DATAPLEX');
+
+    const DataprocMetastoreFederationBackendType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// One `backend_metastores` entry on a federation.
+  @immutable
+  class DataprocMetastoreFederationBackend {
+    const DataprocMetastoreFederationBackend({
+      required this.name,
+      required this.metastoreType,
+      required this.rank,
+    });
+
+    final TfArg<String> name;
+    final TfArg<DataprocMetastoreFederationBackendType> metastoreType;
+    final TfArg<int> rank;
+
+    Map<String, Object?> toArgMap() => {
+      'name': name.toTfJson(),
+      'metastore_type': metastoreType.toTfJson(),
+      'rank': rank.toTfJson(),
+    };
+  }
+
+dartTypeOverrides:
+  deletion_policy: DataprocMetastoreFederationDeletionPolicy
+
+customSlots:
+  backend_metastores:
+    paramDeclaration: 'required List<DataprocMetastoreFederationBackend> backendMetastores'
+    argMapEntry: "'backend_metastores': TfArg.literal(backendMetastores.map((b) => b.toArgMap()).toList()),"

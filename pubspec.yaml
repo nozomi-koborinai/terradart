@@ -32,6 +32,7 @@ workspace:
   - examples/compute_route_quickstart
   - examples/document_ai_quickstart
   - examples/dataplex_quickstart
+  - examples/dataproc_metastore_quickstart
   - examples/discovery_engine_quickstart
   - examples/dialogflow_quickstart
   - examples/dns_quickstart
