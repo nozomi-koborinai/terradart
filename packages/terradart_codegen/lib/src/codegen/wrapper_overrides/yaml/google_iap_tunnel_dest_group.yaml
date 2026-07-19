@@ -1,0 +1,33 @@
+outputDir: iap
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// IAP **tunnel destination group** — CIDRs/FQDNs that share the same
+  /// TCP-forwarding access restrictions.
+  ///
+  /// Used with IAP TCP forwarding (`gcloud compute start-iap-tunnel` / TCP-by-host).
+  /// Creating a group alone does not open tunnels or bill Chrome Enterprise
+  /// Premium; Cloud IAP for GCP-hosted targets is free per Google Cloud pricing.
+  ///
+  /// Enable `iap.googleapis.com` via [GoogleProjectService] before apply.
+  /// Set [region] to match the network resources in the group (provider
+  /// region is used when omitted).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleIapTunnelDestGroup(
+  ///   localName: 'internal',
+  ///   groupName: TfArg.literal('terradart-internal'),
+  ///   region: TfArg.literal('us-central1'),
+  ///   cidrs: TfArg.literal(['10.1.0.0/16']),
+  /// );
+  /// ```
+
+paramOrder:
+  - group_name
+  - region
+  - cidrs
+  - fqdns
+  - deletion_policy
+  - project

@@ -228,8 +228,8 @@ barrels:
       /// Identity Platform — project Auth config and multi-tenant realms.
   iap:
     doc: |-
-      /// Identity-Aware Proxy (IAP) IAM for App Engine and external HTTPS load
-      /// balancer backend services.
+      /// Identity-Aware Proxy (IAP) — tunnel destination groups plus IAM for
+      /// App Engine and external HTTPS load balancer backend services.
   kms:
     doc: |-
       /// Cloud KMS key rings and crypto keys.
