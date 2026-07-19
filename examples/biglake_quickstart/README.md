@@ -1,20 +1,25 @@
 # BigLake Metastore quickstart
 
-End-to-end terradart example for BigLake Metastore. Enables the BigLake API and provisions a Hive-compatible metastore hierarchy: a catalog, a database (with a Hive warehouse directory), and a table (with a Hive storage descriptor) — and exports the catalog name as a typed Dart constant.
+End-to-end terradart example for BigLake Metastore. Enables the BigLake and
+Storage APIs and provisions:
 
-The `hive_options` config is passed as a structured map, matching the thin curated factories.
+- a Hive-compatible metastore hierarchy (catalog → database → table)
+- an Iceberg REST catalog on a GCS bucket (catalog → namespace → table)
+
+Hive `hive_options` and Iceberg `schema` / `partition_spec` are passed as
+structured maps, matching the thin curated factories.
 
 ## Prerequisites
 
 - Dart SDK >= 3.6
 - Terraform CLI >= 1.11.0
-- A GCP project with credentials configured (`gcloud auth application-default login`). The BigLake API is enabled by the stack.
+- A GCP project with credentials configured (`gcloud auth application-default login`). APIs are enabled by the stack.
 
 ## Layout
 
 ```
 examples/biglake_quickstart/
-├── lib/main.dart       # MetastoreStack (catalog + database + table)
+├── lib/main.dart       # MetastoreStack (Hive + Iceberg trees)
 ├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
 ├── lib/generated/      # (created on synth) metastore_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
@@ -38,4 +43,6 @@ dart run bin/infra.dart
 cd tf-out && terraform init && terraform plan
 ```
 
-BigLake Metastore stores catalog metadata only (the `gs://` URIs are warehouse pointers); the stack creates and destroys cleanly in a single project.
+Hive metastore stores catalog metadata only. The Iceberg table incurs BigLake
+Table Management hourly charges while it exists — the per-PR apply-smoke gate
+defers this example to the full sweep (`tool/apply_smoke_pr_skip.yaml`).

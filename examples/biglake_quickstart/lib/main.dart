@@ -1,15 +1,14 @@
 /// BigLake Metastore quickstart -- an end-to-end terradart example.
 ///
-/// Defines a `MetastoreStack` that enables the BigLake API and provisions a
-/// Hive-compatible metastore hierarchy:
-/// - a catalog,
-/// - a database under it (Hive warehouse directory in `hive_options`),
-/// - a table under the database (Hive storage descriptor in `hive_options`).
+/// Defines a `MetastoreStack` that enables the BigLake API and provisions:
+/// - a Hive-compatible metastore hierarchy (catalog → database → table),
+/// - an Iceberg REST catalog on a GCS bucket (catalog → namespace → table).
 ///
-/// The `hive_options` config is passed as a structured map (the thin curated
-/// factories expose it as `TfArg<Map<String, dynamic>>`). The metastore stores
-/// catalog metadata only, so the stack creates and destroys cleanly in a
-/// single project.
+/// Hive `hive_options` and Iceberg `schema` / `partition_spec` stay as
+/// structured maps on the thin curated factories. Metadata-only resources
+/// create and destroy cleanly in a single project; the Iceberg table hits
+/// BigLake Table Management hourly SKUs (PR apply deferred via
+/// `apply_smoke_pr_skip.yaml`).
 ///
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
@@ -18,8 +17,9 @@ import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/biglake.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/storage.dart';
 
-/// BigLake Metastore Stack: a catalog + database + table.
+/// BigLake Metastore Stack: Hive + Iceberg catalog trees.
 final class MetastoreStack extends Stack {
   MetastoreStack({required String projectId})
       : super(
@@ -28,11 +28,21 @@ final class MetastoreStack extends Stack {
           ],
         ) {
     final warehouse = 'gs://$projectId-terradart-biglake';
+    // Globally unique GCS bucket name (= Iceberg catalog name).
+    final icebergBucketName = '$projectId-terradart-iceberg';
 
     final apiBiglake = add(
       GoogleProjectService(
         localName: 'api_biglake',
         service: TfArg.literal('biglake.googleapis.com'),
+        disableOnDestroy: TfArg.literal(false),
+      ),
+    );
+
+    final apiStorage = add(
+      GoogleProjectService(
+        localName: 'api_storage',
+        service: TfArg.literal('storage.googleapis.com'),
         disableOnDestroy: TfArg.literal(false),
       ),
     );
@@ -76,6 +86,84 @@ final class MetastoreStack extends Stack {
           },
         }),
         dependsOn: [ResourceDependency(database)],
+      ),
+    );
+
+    final icebergBucket = add(
+      GoogleStorageBucket(
+        localName: 'iceberg_bucket',
+        name: TfArg.literal(icebergBucketName),
+        location: TfArg.literal('US-CENTRAL1'),
+        forceDestroy: TfArg.literal(true),
+        uniformBucketLevelAccess: TfArg.literal(true),
+        dependsOn: [ResourceDependency(apiStorage)],
+      ),
+    );
+
+    final icebergCatalog = add(
+      GoogleBiglakeIcebergCatalog(
+        localName: 'iceberg_catalog',
+        name: TfArg.ref(icebergBucket.nameRef),
+        catalogType: TfArg.literal(
+          BiglakeIcebergCatalogCatalogType.catalogTypeGcsBucket,
+        ),
+        credentialMode: TfArg.literal(
+          BiglakeIcebergCatalogCredentialMode.credentialModeEndUser,
+        ),
+        dependsOn: [
+          ResourceDependency(apiBiglake),
+          ResourceDependency(icebergBucket),
+        ],
+      ),
+    );
+
+    final icebergNamespace = add(
+      GoogleBiglakeIcebergNamespace(
+        localName: 'iceberg_ns',
+        catalog: TfArg.ref(icebergCatalog.nameRef),
+        namespaceId: TfArg.literal('terradart_ns'),
+        dependsOn: [ResourceDependency(icebergCatalog)],
+      ),
+    );
+
+    add(
+      GoogleBiglakeIcebergTable(
+        localName: 'iceberg_orders',
+        catalog: TfArg.ref(icebergCatalog.nameRef),
+        namespace: TfArg.ref(icebergNamespace.namespaceIdRef),
+        name: TfArg.literal('terradart_iceberg_orders'),
+        location: TfArg.literal(
+          'gs://$icebergBucketName/terradart_ns/terradart_iceberg_orders',
+        ),
+        schema: TfArg.literal(<String, Object?>{
+          'type': 'struct',
+          'fields': [
+            {
+              'id': 1,
+              'name': 'id',
+              'type': 'long',
+              'required': true,
+              'doc': 'The ID of the record',
+            },
+            {
+              'id': 2,
+              'name': 'name',
+              'type': 'string',
+              'required': false,
+            },
+          ],
+          'identifier_field_ids': [1],
+        }),
+        partitionSpec: TfArg.literal(<String, Object?>{
+          'fields': [
+            {
+              'name': 'id_partition',
+              'source_id': 1,
+              'transform': 'identity',
+            },
+          ],
+        }),
+        dependsOn: [ResourceDependency(icebergNamespace)],
       ),
     );
 

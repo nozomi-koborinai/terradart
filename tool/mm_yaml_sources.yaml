@@ -26,6 +26,12 @@ files:
     upstream: mmv1/products/biglake/Database.yaml
   google_biglake_table:
     upstream: mmv1/products/biglake/Table.yaml
+  google_biglake_iceberg_catalog:
+    upstream: mmv1/products/biglakeiceberg/IcebergCatalog.yaml
+  google_biglake_iceberg_namespace:
+    upstream: mmv1/products/biglakeiceberg/IcebergNamespace.yaml
+  google_biglake_iceberg_table:
+    upstream: mmv1/products/biglakeiceberg/IcebergTable.yaml
   google_bigquery_dataset:
     upstream: mmv1/products/bigquery/Dataset.yaml
   google_bigquery_dataset_access:
