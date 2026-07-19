@@ -37,6 +37,7 @@ enum Barrels {
   firestore('firestore'),
   gkeBackup('gke_backup'),
   iamApi('iam'),
+  identity('identity'),
   iapApi('iap'),
   kmsApi('kms'),
   licenseManager('license_manager'),

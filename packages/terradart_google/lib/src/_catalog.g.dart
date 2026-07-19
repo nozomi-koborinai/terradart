@@ -7443,6 +7443,43 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_iap_web_type_app_engine_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access to the App Engine\napplication at **project scope** (all services/versions).\n\nRequired identity:\n- [localName]: Terraform local name.\n- [appId]: App Engine application ID (usually the GCP project ID).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal string.\n\nExample:\n```dart\nGoogleIapWebTypeAppEngineIamMember(\n  localName: \'app_invoker\',\n  appId: TfArg.literal(projectId),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_identity_platform_config',
+    className: 'GoogleIdentityPlatformConfig',
+    barrel: 'identity',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_identity_platform_config`.',
+    constructorParams: <String>[
+      'localName',
+      'authorizedDomains',
+      'autodeleteAnonymousUsers',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>['client.api_key'],
+    docComment:
+        'Factory wrapper for `google_identity_platform_config`.\n\nIdentity Platform configuration for a Cloud project. Identity Platform is an\nend-to-end authentication system for third-party users to access apps and\nservices.\n\nThis entity is created only once during intialization and cannot be deleted,\nindividual Identity Providers may be disabled instead. This resource may\nonly be created in billing-enabled projects.\n\nIdentity Platform project config — Auth settings for the GCP project.\n\nEnable `identitytoolkit.googleapis.com` before apply. Nested blocks\n(`sign_in`, `mfa`, `sms_region_config`, …) are omitted from this thin\nsurface; extend the override when a Wave needs typed Auth settings.',
+  ),
+  CatalogEntry(
+    tfType: 'google_identity_platform_tenant',
+    className: 'GoogleIdentityPlatformTenant',
+    barrel: 'identity',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_identity_platform_tenant`.',
+    constructorParams: <String>[
+      'localName',
+      'displayName',
+      'allowPasswordSignup',
+      'enableEmailLinkSignin',
+      'disableAuth',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>['IdentityPlatformTenantDeletionPolicy'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_identity_platform_tenant`.\n\nTenant configuration in a multi-tenant project.\n\nYou must enable the [Google Identity\nPlatform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity)\nin the marketplace prior to using this resource.\n\nYou must [enable\nmulti-tenancy](https://cloud.google.com/identity-platform/docs/multi-tenancy-quickstart)\nvia the Cloud Console prior to creating tenants.\n\nIdentity Platform tenant — isolated Auth realm under a multi-tenant project.\n\nPair with [GoogleIdentityPlatformConfig] (enable multi-tenancy in the\nconsole / config as needed). Set [displayName] at minimum.',
+  ),
+  CatalogEntry(
     tfType: 'google_kms_crypto_key',
     className: 'GoogleKmsCryptoKey',
     barrel: 'kms',

@@ -1,0 +1,36 @@
+outputDir: identity
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+nestedTypeExcludes:
+  - client
+
+curatedDoc: |-
+  /// Identity Platform tenant — isolated Auth realm under a multi-tenant project.
+  ///
+  /// Pair with [GoogleIdentityPlatformConfig] (enable multi-tenancy in the
+  /// console / config as needed). Set [displayName] at minimum.
+
+paramOrder:
+  - display_name
+  - allow_password_signup
+  - enable_email_link_signin
+  - disable_auth
+  - deletion_policy
+  - project
+
+prelude: |
+  /// Terraform `deletion_policy` for Identity Platform tenants.
+  enum IdentityPlatformTenantDeletionPolicy implements TerraformEnum {
+    delete('DELETE'),
+    prevent('PREVENT'),
+    abandon('ABANDON');
+
+    const IdentityPlatformTenantDeletionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+dartTypeOverrides:
+  deletion_policy: IdentityPlatformTenantDeletionPolicy

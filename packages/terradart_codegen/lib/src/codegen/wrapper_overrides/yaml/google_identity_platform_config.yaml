@@ -1,0 +1,29 @@
+outputDir: identity
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+# Deep nested surfaces (SMS region allowlists, MFA, blocking functions, …)
+# stay Map/excluded until a Wave needs typed blocks. Nested exactly_one_of
+# under sms_region_config is frozen here on purpose.
+nestedTypeExcludes:
+  - blocking_functions
+  - client
+  - mfa
+  - monitoring
+  - multi_tenant
+  - quota
+  - sign_in
+  - sms_region_config
+
+curatedDoc: |-
+  /// Identity Platform project config — Auth settings for the GCP project.
+  ///
+  /// Enable `identitytoolkit.googleapis.com` before apply. Nested blocks
+  /// (`sign_in`, `mfa`, `sms_region_config`, …) are omitted from this thin
+  /// surface; extend the override when a Wave needs typed Auth settings.
+
+paramOrder:
+  - authorized_domains
+  - autodelete_anonymous_users
+  - project
