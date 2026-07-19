@@ -2,9 +2,6 @@ outputDir: contact
 deriveClassDoc: true
 deriveOutputGetters: true
 
-extraImports:
-  - "import 'package:meta/meta.dart';"
-
 prelude: |
   /// Terraform `source` for a [GoogleContactCenterInsightsQaScorecard].
   enum ContactCenterInsightsQaScorecardSource implements TerraformEnum {
