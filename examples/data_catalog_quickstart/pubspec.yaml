@@ -1,0 +1,15 @@
+name: terradart_example_data_catalog_quickstart
+description: Data Catalog entry group quickstart (legacy Data Catalog API).
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.24.0
+  terradart_google: ^0.24.0
+
+dev_dependencies:
+  lints: ^6.0.0

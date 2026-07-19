@@ -1,0 +1,33 @@
+outputDir: data_catalog
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Data Catalog **entry group** — logical container for Data Catalog Entry
+  /// resources (legacy Data Catalog API).
+  ///
+  /// Prefer [GoogleDataplexEntryGroup] for new catalogs; this factory remains
+  /// for stacks that still use `google_data_catalog_entry_group`. Creating an
+  /// entry group alone does not create entries or bill catalog SKUs.
+  ///
+  /// Enable `datacatalog.googleapis.com` via [GoogleProjectService]
+  /// before apply. Region is typically regional (e.g. `us-central1`).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleDataCatalogEntryGroup(
+  ///   localName: 'group',
+  ///   entryGroupId: TfArg.literal('terradart_entry_group'),
+  ///   region: TfArg.literal('us-central1'),
+  ///   displayName: TfArg.literal('TerraDart entry group'),
+  ///   description: TfArg.literal('TerraDart smoke Data Catalog entry group'),
+  /// );
+  /// ```
+
+paramOrder:
+  - entry_group_id
+  - region
+  - display_name
+  - description
+  - project
+  - deletion_policy

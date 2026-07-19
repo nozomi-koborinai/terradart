@@ -131,5 +131,9 @@ final class GoogleProviderRules extends ProviderRules {
     'data_loss_prevention': 'dlp',
     'data_loss': 'dlp',
     'dlp': 'dlp',
+
+    // Data Catalog (`google_data_catalog_*` → segment `data`; MM product DataCatalog).
+    'datacatalog': 'data_catalog',
+    'data_catalog': 'data_catalog',
   };
 }

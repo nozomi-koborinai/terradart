@@ -145,6 +145,11 @@ barrels:
       /// ```dart
       /// import 'package:terradart_google/data.dart' show GoogleProject;
       /// ```
+  data_catalog:
+    doc: |-
+      /// Google Cloud Data Catalog — entry groups for organizing metadata
+      /// entries (legacy Data Catalog API; prefer Dataplex Universal Catalog
+      /// for new catalogs).
   dataplex:
     doc: |-
       /// Dataplex: governed data products, Universal Catalog metadata (entry groups /
