@@ -8239,6 +8239,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_iap_location_web_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access on **web\nresources** at a regional location.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [location]: regional location (e.g. `\'us-central1\'`).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal (`user:…`, `group:…`, `serviceAccount:…`).\n\nExample:\n```dart\nGoogleIapLocationWebIamMember(\n  localName: \'location_web_invoker\',\n  location: TfArg.literal(\'us-central1\'),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_iap_tunnel_dest_group',
+    className: 'GoogleIapTunnelDestGroup',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_iap_tunnel_dest_group`.',
+    constructorParams: <String>[
+      'localName',
+      'groupName',
+      'region',
+      'cidrs',
+      'fqdns',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_tunnel_dest_group`.\n\nTunnel destination groups represent resources that have the same tunnel\naccess restrictions.\n\nIAP **tunnel destination group** — CIDRs/FQDNs that share the same\nTCP-forwarding access restrictions.\n\nUsed with IAP TCP forwarding (`gcloud compute start-iap-tunnel` / TCP-by-host).\nCreating a group alone does not open tunnels or bill Chrome Enterprise\nPremium; Cloud IAP for GCP-hosted targets is free per Google Cloud pricing.\n\nEnable `iap.googleapis.com` via [GoogleProjectService] before apply.\nSet [region] to match the network resources in the group (provider\nregion is used when omitted).\n\nExample:\n```dart\nGoogleIapTunnelDestGroup(\n  localName: \'internal\',\n  groupName: TfArg.literal(\'terradart-internal\'),\n  region: TfArg.literal(\'us-central1\'),\n  cidrs: TfArg.literal([\'10.1.0.0/16\']),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_iap_web_backend_service_iam_binding',
     className: 'GoogleIapWebBackendServiceIamBinding',
     barrel: 'iap',
