@@ -42,6 +42,7 @@ export 'dataplex.dart';
 export 'dataproc.dart';
 export 'dialogflow.dart';
 export 'discovery_engine.dart';
+export 'dlp.dart';
 export 'dns.dart';
 export 'document_ai.dart';
 export 'essential_contacts.dart';

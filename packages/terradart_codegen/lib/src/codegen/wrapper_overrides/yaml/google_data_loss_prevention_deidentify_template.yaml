@@ -1,0 +1,21 @@
+outputDir: dlp
+deriveClassDoc: true
+deriveOutputGetters: true
+
+# Deep deidentify_config tree stays Map for this thin Wave.
+
+curatedDoc: |-
+  /// DLP de-identify template — reusable transforms that redact or replace
+  /// sensitive findings.
+  ///
+  /// Enable `dlp.googleapis.com` via [GoogleProjectService] before apply.
+  /// [parent] is `projects/{project}` or
+  /// `projects/{project}/locations/{location}`.
+
+paramOrder:
+  - parent
+  - template_id
+  - display_name
+  - description
+  - deidentify_config
+  - deletion_policy

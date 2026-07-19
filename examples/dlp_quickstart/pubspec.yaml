@@ -1,0 +1,15 @@
+name: terradart_example_dlp_quickstart
+description: Sensitive Data Protection (DLP) end-to-end example — inspect / de-identify templates, stored info type, paused job trigger.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.24.0
+  terradart_google: ^0.24.0
+
+dev_dependencies:
+  lints: ^6.0.0

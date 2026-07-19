@@ -180,6 +180,10 @@ google_dataplex_lake: safe  # apply-verified safe (existing example)
 google_dataplex_lake_iam_member: safe  # apply-verified safe (existing example)
 google_dataplex_zone: safe  # gcp-cost: Dataplex Metadata Storage us-central1 SKU 5D0E-3A17-3010 ~$2/GiBy.mo on stored metadata volume; zone object itself is control-plane — destroy stops charges (not existence-billed)
 google_dataplex_zone_iam_member: safe  # billing-behavior: IAM binding adjunct; no standalone Cloud Billing SKU
+google_data_loss_prevention_deidentify_template: safe  # gcp-cost: no Cloud Billing Catalog SKU for deidentify_template config (Cloud DLP D64E-AF12-1813 SKUs are bytes inspected/transformed, e.g. 0CC0-BE8A-D1EB Content Bytes Inspected $3/GiBy after free tier — usage only); billing-behavior: template metadata — no existence/hourly charge
+google_data_loss_prevention_inspect_template: safe  # gcp-cost: no Cloud Billing Catalog SKU for inspect_template config (Cloud DLP D64E-AF12-1813 usage SKUs only, e.g. 0CC0-BE8A-D1EB Content Bytes Inspected); billing-behavior: template metadata — no existence/hourly charge
+google_data_loss_prevention_job_trigger: safe  # gcp-cost: no Cloud Billing Catalog SKU for job_trigger config (Cloud DLP D64E-AF12-1813 SKUs bill bytes inspected when jobs run, e.g. DC41-B430-596D Storage Bytes Inspected); billing-behavior: paused trigger metadata — no charge without job execution
+google_data_loss_prevention_stored_info_type: safe  # gcp-cost: no Cloud Billing Catalog SKU for stored_info_type config (Cloud DLP D64E-AF12-1813 usage SKUs only); billing-behavior: custom detector metadata — no existence/hourly charge
 google_dataplex_asset: safe  # gcp-cost: metadata registration only (same Dataplex metadata metering as zone); destroy removes asset — not existence-billed
 google_dataplex_asset_iam_member: safe  # billing-behavior: IAM binding adjunct; no standalone Cloud Billing SKU
 google_dataplex_datascan: safe  # billing-behavior: scan definition is control-plane metadata; job execution is on-demand/scheduled (billed per run, not existence-billed); destroy removes scan config
