@@ -1,6 +1,13 @@
 outputDir: network
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveNestedTypes: true
+
+# Cert-provider / mTLS blocks stay Map — nested exactly_one_of and
+# client_validation_mode enum stay frozen for this thin Wave.
+nestedTypeExcludes:
+  - server_certificate
+  - mtls_policy
 
 curatedDoc: |-
   /// Network Security **server TLS policy** — how a server presents TLS to

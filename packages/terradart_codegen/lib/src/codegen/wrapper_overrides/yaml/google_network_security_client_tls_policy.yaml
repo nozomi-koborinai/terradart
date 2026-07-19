@@ -1,6 +1,13 @@
 outputDir: network
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveNestedTypes: true
+
+# Cert-provider blocks stay Map — nested grpc_endpoint | certificate_provider_instance
+# exactly_one_of is not sealed in this Wave.
+nestedTypeExcludes:
+  - client_certificate
+  - server_validation_ca
 
 curatedDoc: |-
   /// Network Security **client TLS policy** — how a client authenticates to
