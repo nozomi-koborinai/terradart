@@ -1,7 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Identity-Aware Proxy (IAP) — tunnel destination groups plus IAM for
-/// App Engine and external HTTPS load balancer backend services.
+/// Identity-Aware Proxy (IAP) — settings, tunnel destination groups, plus
+/// IAM for App Engine and external HTTPS load balancer backend services.
 library;
 
 export 'src/iap/google_iap_agent_registry_iam_member.dart'
@@ -12,6 +12,24 @@ export 'src/iap/google_iap_app_engine_version_iam_member.dart'
     show GoogleIapAppEngineVersionIamMember;
 export 'src/iap/google_iap_location_web_iam_member.dart'
     show GoogleIapLocationWebIamMember;
+export 'src/iap/google_iap_settings.dart'
+    show
+        GoogleIapSettings,
+        IapSettingsAccessSettings,
+        IapSettingsAccessSettingsAllowedDomainsSettings,
+        IapSettingsAccessSettingsCorsSettings,
+        IapSettingsAccessSettingsGcipSettings,
+        IapSettingsAccessSettingsOauthSettings,
+        IapSettingsAccessSettingsReauthSettings,
+        IapSettingsAccessSettingsReauthSettingsMethod,
+        IapSettingsAccessSettingsReauthSettingsPolicyType,
+        IapSettingsAccessSettingsWorkforceIdentitySettings,
+        IapSettingsAccessSettingsWorkforceIdentitySettingsOauth2,
+        IapSettingsApplicationSettings,
+        IapSettingsApplicationSettingsAccessDeniedPageSettings,
+        IapSettingsApplicationSettingsAttributePropagationSettings,
+        IapSettingsApplicationSettingsAttributePropagationSettingsOutputCredentials,
+        IapSettingsApplicationSettingsCsmSettings;
 export 'src/iap/google_iap_tunnel_dest_group.dart'
     show GoogleIapTunnelDestGroup;
 export 'src/iap/google_iap_web_backend_service_iam_binding.dart'
