@@ -135,5 +135,10 @@ final class GoogleProviderRules extends ProviderRules {
     // Data Catalog (`google_data_catalog_*` → segment `data`; MM product DataCatalog).
     'datacatalog': 'data_catalog',
     'data_catalog': 'data_catalog',
+
+    // Security Command Center v2 (`google_scc_v2_*` → segment `scc`).
+    'scc': 'scc',
+    'scc_v2': 'scc',
+    'securitycenterv2': 'scc',
   };
 }
