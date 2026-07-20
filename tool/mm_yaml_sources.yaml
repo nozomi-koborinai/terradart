@@ -732,6 +732,8 @@ files:
     upstream: mmv1/products/iap/TunnelDestGroup.yaml
   google_iap_settings:
     upstream: mmv1/products/iap/Settings.yaml
+  google_integrations_client:
+    upstream: mmv1/products/integrations/Client.yaml
   # Wave 24 (DNS response policy, Cloud Run worker pool IAM, Compute router, BigQuery datapolicy IAM)
   google_dns_response_policy:
     upstream: mmv1/products/dns/ResponsePolicy.yaml

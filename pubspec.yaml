@@ -65,6 +65,7 @@ workspace:
   - examples/healthcare_quickstart
   - examples/iam_quickstart
   - examples/iap_settings_quickstart
+  - examples/integrations_quickstart
   - examples/iap_tunnel_quickstart
   - examples/identity_platform_quickstart
   - examples/kms_autokey_quickstart

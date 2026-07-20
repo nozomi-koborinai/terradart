@@ -141,6 +141,9 @@ final class GoogleProviderRules extends ProviderRules {
     'datalineage': 'dataplex',
     'data_lineage': 'dataplex',
 
+    // Application Integration (`google_integrations_*`).
+    'integrations': 'integrations',
+
     // Security Command Center v2 (`google_scc_v2_*` → segment `scc`).
     'scc': 'scc',
     'scc_v2': 'scc',

@@ -8585,6 +8585,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_identity_platform_tenant`.\n\nTenant configuration in a multi-tenant project.\n\nYou must enable the [Google Identity\nPlatform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity)\nin the marketplace prior to using this resource.\n\nYou must [enable\nmulti-tenancy](https://cloud.google.com/identity-platform/docs/multi-tenancy-quickstart)\nvia the Cloud Console prior to creating tenants.\n\nIdentity Platform tenant — isolated Auth realm under a multi-tenant project.\n\nPair with [GoogleIdentityPlatformConfig] (enable multi-tenancy in the\nconsole / config as needed). Set [displayName] at minimum.',
   ),
   CatalogEntry(
+    tfType: 'google_integrations_client',
+    className: 'GoogleIntegrationsClient',
+    barrel: 'integrations',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_integrations_client`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'createSampleIntegrations',
+      'cloudKmsConfig',
+      'runAsServiceAccount',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>['IntegrationsClientCloudKmsConfig'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_integrations_client`.\n\nApplication Integration Client.\n\nApplication Integration **client** — provisions the Integration\ncontrol plane for a project location (`clients:provision`).\n\nThis is regional singleton config: [location] is the only required\nargument. Creating the client does not execute integration flows\n(billing SKUs are flow execution / data processed). Optional\n[createSampleIntegrations] seeds sample flows; omit it for smoke\nstacks. Optional [cloudKmsConfig] enables CMEK.\n\nEnable `integrations.googleapis.com` via [GoogleProjectService]\nbefore apply. Destroy calls `clients:deprovision`.\n\nExample:\n```dart\nGoogleIntegrationsClient(\n  localName: \'client\',\n  location: TfArg.literal(\'us-central1\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_kms_crypto_key',
     className: 'GoogleKmsCryptoKey',
     barrel: 'kms',
