@@ -1,0 +1,58 @@
+outputDir: storage_control
+
+deriveClassDoc: true
+deriveOutputGetters: true
+# MM ProjectIntelligenceConfig.yaml documents editionConfig as String with
+# "Valid values are INHERIT, TRIAL, DISABLED and STANDARD" (no enum_values),
+# so deriveEnums cannot emit — hand-write the TerraformEnum in prelude.
+deriveEnums: false
+
+dartTypeOverrides:
+  edition_config: StorageControlProjectIntelligenceConfigEditionConfig
+
+prelude: |
+  /// Edition configuration of the Storage Intelligence resource.
+  enum StorageControlProjectIntelligenceConfigEditionConfig
+      implements TerraformEnum {
+    inherit('INHERIT'),
+    trial('TRIAL'),
+    disabled('DISABLED'),
+    standard('STANDARD');
+
+    const StorageControlProjectIntelligenceConfigEditionConfig(
+      this.terraformValue,
+    );
+    @override
+    final String terraformValue;
+  }
+
+curatedDoc: |-
+  /// Project-level **Cloud Storage Intelligence config** — a singleton that
+  /// controls whether Storage Intelligence runs on this GCP project.
+  ///
+  /// Prefer [editionConfig] `DISABLED` for smoke stacks: the config is free
+  /// project metadata. Do **not** set `STANDARD` (or a paid `TRIAL` path) in
+  /// apply-smoke — those editions can enable billed Storage Intelligence.
+  /// `INHERIT` follows the parent org/folder setting and may still resolve
+  /// to a paid edition.
+  ///
+  /// Terraform create/update use `PATCH`; destroy is state-only
+  /// (`exclude_delete` upstream) and leaves the GCP singleton in place.
+  ///
+  /// Enable `storage.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleStorageControlProjectIntelligenceConfig(
+  ///   localName: 'intelligence',
+  ///   name: TfArg.literal(projectId),
+  ///   editionConfig: TfArg.literal(
+  ///     StorageControlProjectIntelligenceConfigEditionConfig.disabled,
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - edition_config
+  - filter

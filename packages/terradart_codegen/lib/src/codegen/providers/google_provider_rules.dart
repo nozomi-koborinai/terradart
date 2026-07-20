@@ -135,5 +135,10 @@ final class GoogleProviderRules extends ProviderRules {
     // Data Catalog (`google_data_catalog_*` → segment `data`; MM product DataCatalog).
     'datacatalog': 'data_catalog',
     'data_catalog': 'data_catalog',
+
+    // Storage Control / Intelligence (`google_storage_control_*`;
+    // MM product StorageControl). Distinct from the `storage` barrel.
+    'storagecontrol': 'storage_control',
+    'storage_control': 'storage_control',
   };
 }

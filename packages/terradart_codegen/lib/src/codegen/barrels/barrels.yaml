@@ -338,6 +338,10 @@ barrels:
     doc: |-
       /// Cloud Storage buckets, bucket objects, and Pub/Sub object-change
       /// notifications.
+  storage_control:
+    doc: |-
+      /// Cloud Storage Control — project Storage Intelligence config
+      /// (edition / filters for inventory and insights at project scope).
   tags:
     doc: |-
       /// Resource Manager Tags — tag keys, tag values, resource bindings, and the

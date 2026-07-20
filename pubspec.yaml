@@ -85,6 +85,7 @@ workspace:
   - examples/service_directory_quickstart
   - examples/sourcerepo_quickstart
   - examples/storage_quickstart
+  - examples/storage_intelligence_quickstart
   - examples/tags_quickstart
   - examples/vertex_ai_quickstart
   - examples/vm_compliance_quickstart

@@ -60,7 +60,8 @@ enum Barrels {
   secretManager('secret_manager'),
   serviceNetworking('service_networking'),
   sql('sql'),
-  storage('storage');
+  storage('storage'),
+  storageControl('storage_control');
 
   const Barrels(this.catalogName);
 
