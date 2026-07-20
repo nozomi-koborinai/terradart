@@ -34,6 +34,12 @@ final class ComputePreviewFeatureStack extends Stack {
         activationStatus: TfArg.literal(
           ComputePreviewFeatureActivationStatus.activationStateUnspecified,
         ),
+        // API currently accepts only FAST_ROLLOUT (provider basic example).
+        rolloutOperation: ComputePreviewFeatureRolloutOperation(
+          rolloutInput: ComputePreviewFeatureRolloutOperationRolloutInput(
+            predefinedRolloutPlan: TfArg.literal('ROLLOUT_PLAN_FAST_ROLLOUT'),
+          ),
+        ),
         dependsOn: [ResourceDependency(apiCompute)],
       ),
     );

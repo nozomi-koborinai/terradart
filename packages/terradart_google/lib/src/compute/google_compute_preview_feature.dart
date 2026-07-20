@@ -54,8 +54,10 @@ final class ComputePreviewFeatureRolloutOperationRolloutInput {
 /// project-level preview such as Alpha API access.
 ///
 /// Prefer `name: alpha-api-access` with
-/// `activationStatus: ACTIVATION_STATE_UNSPECIFIED` for smoke stacks (matches
-/// the provider basic example). Enabling Alpha APIs does not provision VMs.
+/// `activationStatus: ACTIVATION_STATE_UNSPECIFIED` and
+/// [rolloutOperation] `ROLLOUT_PLAN_FAST_ROLLOUT` for smoke stacks (matches
+/// the provider basic example; the API currently rejects other rollout
+/// plans). Enabling Alpha APIs does not provision VMs.
 ///
 /// Enable `compute.googleapis.com` via [GoogleProjectService] before apply.
 ///
@@ -66,6 +68,11 @@ final class ComputePreviewFeatureRolloutOperationRolloutInput {
 ///   name: TfArg.literal('alpha-api-access'),
 ///   activationStatus: TfArg.literal(
 ///     ComputePreviewFeatureActivationStatus.activationStateUnspecified,
+///   ),
+///   rolloutOperation: ComputePreviewFeatureRolloutOperation(
+///     rolloutInput: ComputePreviewFeatureRolloutOperationRolloutInput(
+///       predefinedRolloutPlan: TfArg.literal('ROLLOUT_PLAN_FAST_ROLLOUT'),
+///     ),
 ///   ),
 /// );
 /// ```
