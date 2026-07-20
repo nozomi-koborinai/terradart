@@ -1,0 +1,38 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Zonal **Compute Engine instance settings** — project-scoped defaults
+  /// for VM metadata applied to instances in a zone.
+  ///
+  /// Sets key/value metadata items that act as zonal defaults (see
+  /// [custom project-zonal metadata](https://cloud.google.com/compute/docs/metadata/setting-custom-metadata#set-custom-project-zonal-metadata)).
+  /// Creating or updating settings alone does not provision VMs and has no
+  /// Compute Engine SKU (metadata config only).
+  ///
+  /// Enable `compute.googleapis.com` via [GoogleProjectService] before apply.
+  /// [zone] is required. Terraform destroy clears the zonal settings via the
+  /// provider custom delete.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleComputeInstanceSettings(
+  ///   localName: 'zonal',
+  ///   zone: TfArg.literal('us-central1-a'),
+  ///   metadata: ComputeInstanceSettingsMetadata(
+  ///     items: TfArg.literal({'terradart-smoke': '1'}),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - zone
+  - metadata
+  - deletion_policy
+  - project

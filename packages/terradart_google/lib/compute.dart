@@ -204,6 +204,8 @@ export 'src/compute/google_compute_instance_group_manager.dart'
         InstanceGroupManagerUpdatePolicyType;
 export 'src/compute/google_compute_instance_iam_member.dart'
     show GoogleComputeInstanceIamMember;
+export 'src/compute/google_compute_instance_settings.dart'
+    show ComputeInstanceSettingsMetadata, GoogleComputeInstanceSettings;
 export 'src/compute/google_compute_instance_template.dart'
     show
         ComputeInstanceTemplateInstanceTemplateAccessConfig,
