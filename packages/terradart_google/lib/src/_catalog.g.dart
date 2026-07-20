@@ -3619,6 +3619,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_compute_instance_iam_member`.',
   ),
   CatalogEntry(
+    tfType: 'google_compute_instance_settings',
+    className: 'GoogleComputeInstanceSettings',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_instance_settings`.',
+    constructorParams: <String>[
+      'localName',
+      'zone',
+      'metadata',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>['ComputeInstanceSettingsMetadata'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_instance_settings`.\n\nRepresents an Instance Settings resource. Instance settings are centralized\nconfiguration parameters that allow users to configure the default values\nfor specific VM parameters that are normally set using GCE instance API\nmethods.\n\nZonal **Compute Engine instance settings** — project-scoped defaults\nfor VM metadata applied to instances in a zone.\n\nSets key/value metadata items that act as zonal defaults (see\n[custom project-zonal metadata](https://cloud.google.com/compute/docs/metadata/setting-custom-metadata#set-custom-project-zonal-metadata)).\nCreating or updating settings alone does not provision VMs and has no\nCompute Engine SKU (metadata config only).\n\nEnable `compute.googleapis.com` via [GoogleProjectService] before apply.\n[zone] is required. Terraform destroy clears the zonal settings via the\nprovider custom delete.\n\nExample:\n```dart\nGoogleComputeInstanceSettings(\n  localName: \'zonal\',\n  zone: TfArg.literal(\'us-central1-a\'),\n  metadata: ComputeInstanceSettingsMetadata(\n    items: TfArg.literal({\'terradart-smoke\': \'1\'}),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_instance_template',
     className: 'GoogleComputeInstanceTemplate',
     barrel: 'compute',
