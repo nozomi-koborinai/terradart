@@ -277,6 +277,7 @@ google_artifact_registry_repository_iam_member: safe  # billing-behavior: IAM bi
 google_artifact_registry_rule: safe  # gcp-cost: no Cloud Billing Catalog SKU for repository rule config (Artifact Registry 149C-F9EC-3994 lists storage/egress SKUs only — no rule SKU); billing-behavior: allow/deny policy metadata — no existence/hourly charge
 google_parameter_manager_parameter: safe  # apply-verified safe (existing example)
 google_parameter_manager_regional_parameter: safe  # apply-verified safe (existing example)
+google_project_usage_export_bucket: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus keyword="usage" on Compute Engine 6F81-5844-456A → 0 SKUs for the export-config resource; Cloud Storage 95FF-2EF5-5EA1 bills only if/when report objects are written to the sink bucket); billing-behavior: free project metadata singleton that points GCE usage reports at a GCS bucket — create/update/delete of the config itself does not bill; empty smoke buckets typically receive no objects
 google_project_service: safe  # apply-verified safe (existing example)
 google_pubsub_schema: safe  # apply-verified safe (existing example)
 google_pubsub_schema_iam_member: safe  # apply-verified safe (existing example)

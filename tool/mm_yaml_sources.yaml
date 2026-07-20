@@ -601,6 +601,8 @@ files:
     upstream: mmv1/products/firestore/UserCreds.yaml
   google_project:
     upstream: null  # data source; handwritten in terraform provider; no MM YAML
+  google_project_usage_export_bucket:
+    upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML; probe 404)
   google_project_service:
     upstream: null  # handwritten in terraform provider; no MM YAML (probe 404)
   google_pubsub_subscription:
