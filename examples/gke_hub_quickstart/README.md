@@ -1,6 +1,6 @@
 # GKE Hub fleet quickstart
 
-End-to-end terradart example for GKE Hub fleet team management — **no cluster required**. Enables the GKE Hub API and provisions a fleet scope (`terradart-scope`), a fleet namespace (`terradart-team`) inside it, and a rollout sequence, and Multi-Cluster Service Discovery feature for staged fleet upgrades — and exports the scope id as a typed Dart constant.
+End-to-end terradart example for GKE Hub fleet team management — **no cluster required**. Enables the GKE Hub API and provisions a fleet scope (`terradart-scope`), a fleet namespace (`terradart-team`) inside it, and a rollout sequence for staged fleet upgrades — and exports the scope id as a typed Dart constant.
 
 ## Prerequisites
 

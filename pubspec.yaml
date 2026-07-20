@@ -57,6 +57,7 @@ workspace:
   - examples/firestore_quickstart
   - examples/filestore_quickstart
   - examples/gemini_quickstart
+  - examples/gke_hub_feature_quickstart
   - examples/gke_hub_quickstart
   - examples/gke_quickstart
   - examples/healthcare_quickstart

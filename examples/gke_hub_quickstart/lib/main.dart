@@ -1,15 +1,14 @@
 /// GKE Hub fleet quickstart -- an end-to-end terradart example.
 ///
-/// Defines a `FleetStack` that enables the GKE Hub + MCS Discovery APIs and provisions fleet
+/// Defines a `FleetStack` that enables the GKE Hub API and provisions fleet
 /// team-management scaffolding **without any cluster**:
 /// - a fleet scope (`terradart-scope`),
-/// - a fleet namespace (`terradart-team`) inside that scope,
-/// - a rollout sequence that stages upgrades across the project's fleet, and
-/// - the Multi-Cluster Service Discovery hub feature (no membership needed).
+/// - a fleet namespace (`terradart-team`) inside that scope, and
+/// - a rollout sequence that stages upgrades across the project's fleet.
 ///
-/// Scope, namespace, rollout sequence, and MCS Discovery are free
-/// fleet-management resources (the project's default fleet is auto-created),
-/// so the stack creates and destroys cleanly in a single project.
+/// Scope, namespace, and rollout sequence are free fleet-management resources
+/// (the project's default fleet is auto-created), so the stack creates and
+/// destroys cleanly in a single project.
 ///
 /// Exports the scope id as a typed Dart constant via `Stack.addExport`.
 /// Run `bin/infra.dart` to synth into `tf-out/`.
@@ -33,26 +32,6 @@ final class FleetStack extends Stack {
         localName: 'api_gkehub',
         service: TfArg.literal('gkehub.googleapis.com'),
         disableOnDestroy: TfArg.literal(false),
-      ),
-    );
-
-    final apiMcsd = add(
-      GoogleProjectService(
-        localName: 'api_mcsd',
-        service: TfArg.literal('multiclusterservicediscovery.googleapis.com'),
-        disableOnDestroy: TfArg.literal(false),
-      ),
-    );
-
-    add(
-      GoogleGkeHubFeature(
-        localName: 'mcsd',
-        name: TfArg.literal('multiclusterservicediscovery'),
-        location: TfArg.literal('global'),
-        dependsOn: [
-          ResourceDependency(apiGkeHub),
-          ResourceDependency(apiMcsd),
-        ],
       ),
     );
 

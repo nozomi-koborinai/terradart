@@ -317,7 +317,8 @@ Application platform & operations
 - [Vertex AI Workbench environment (container image)](examples/notebooks_quickstart/)
 - [Sensitive Data Protection (DLP) inspect / de-identify templates + stored info type + paused job trigger](examples/dlp_quickstart/)
 - [Cloud Observability trace scope](examples/observability_quickstart/)
-- [GKE Hub fleet scope, namespace, rollout sequence, and MCS Discovery feature (no cluster)](examples/gke_hub_quickstart/)
+- [GKE Hub fleet scope, namespace, and rollout sequence (no cluster)](examples/gke_hub_quickstart/)
+- [GKE Hub Multi-Cluster Service Discovery feature](examples/gke_hub_feature_quickstart/)
 
 ## How it compares
 
