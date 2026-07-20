@@ -1,0 +1,37 @@
+outputDir: project
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Project-level **Compute Engine usage export** — points daily usage
+  /// reports at a GCS [bucketName] (optional [prefix]).
+  ///
+  /// This resource is free project metadata. Report objects written to the
+  /// bucket incur normal Cloud Storage charges if/when GCE emits them; empty
+  /// smoke stacks typically write nothing.
+  ///
+  /// Enable `compute.googleapis.com` and `storage.googleapis.com` via
+  /// [GoogleProjectService] before apply. Prefer a dedicated bucket with
+  /// `forceDestroy: true` in smoke stacks so teardown can empty it.
+  ///
+  /// Example:
+  /// ```dart
+  /// final reports = GoogleStorageBucket(
+  ///   localName: 'usage_reports',
+  ///   name: TfArg.literal('my-usage-reports'),
+  ///   location: TfArg.literal('US'),
+  ///   forceDestroy: TfArg.literal(true),
+  /// );
+  /// GoogleProjectUsageExportBucket(
+  ///   localName: 'usage_export',
+  ///   bucketName: TfArg.ref(reports.nameRef),
+  ///   prefix: TfArg.literal('gce-usage'),
+  /// );
+  /// ```
+
+paramOrder:
+  - bucket_name
+  - prefix
+  - deletion_policy
+  - project

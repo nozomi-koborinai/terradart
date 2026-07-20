@@ -4,5 +4,7 @@
 library;
 
 export 'src/project/google_project_service.dart' show GoogleProjectService;
+export 'src/project/google_project_usage_export_bucket.dart'
+    show GoogleProjectUsageExportBucket;
 export 'src/project/apis.dart' show Apis;
 export 'src/project/barrels.dart' show Barrels;

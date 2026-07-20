@@ -10373,6 +10373,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_project_service`.\n\nEnables a single Google Cloud API on a project. Each GCP API (Pub/Sub,\nCloud Tasks, Secret Manager, Cloud Scheduler, …) requires its matching\n`google_project_service` resource to be enabled before its resources\ncan be created — typically wired as an explicit `dependsOn` so Terraform\napplies the API enablement first.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_project_service.`).\n- `service`: API endpoint name, e.g. `pubsub.googleapis.com`.\n  Pass `TfArg.literal(\'pubsub.googleapis.com\')`.\n\nOptional knobs:\n- `project`: explicit project ID; defaults to the provider\'s `project`\n  when omitted.\n- `disableOnDestroy`: when `false`, leaves the API enabled if the\n  resource is destroyed. **Recommended `false` for personal/shared\n  projects** — disabling APIs that other resources outside Terraform\'s\n  knowledge depend on can break unrelated workloads.\n- `disableDependentServices`: when `true`, also disables any APIs that\n  depend on this one. Default `false`.\n\nExample pairing with [GooglePubsubTopic]:\n```dart\nfinal pubsubApi = GoogleProjectService(\n  localName: \'pubsub\',\n  service: TfArg.literal(\'pubsub.googleapis.com\'),\n  disableOnDestroy: TfArg.literal(false),\n);\n\nfinal orders = GooglePubsubTopic(\n  localName: \'orders\',\n  name: TfArg.literal(\'orders-prod\'),\n  dependsOn: [pubsubApi],\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_project_usage_export_bucket',
+    className: 'GoogleProjectUsageExportBucket',
+    barrel: 'project',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_project_usage_export_bucket`.',
+    constructorParams: <String>[
+      'localName',
+      'bucketName',
+      'prefix',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_project_usage_export_bucket`.\n\nProject-level **Compute Engine usage export** — points daily usage\nreports at a GCS [bucketName] (optional [prefix]).\n\nThis resource is free project metadata. Report objects written to the\nbucket incur normal Cloud Storage charges if/when GCE emits them; empty\nsmoke stacks typically write nothing.\n\nEnable `compute.googleapis.com` and `storage.googleapis.com` via\n[GoogleProjectService] before apply. Prefer a dedicated bucket with\n`forceDestroy: true` in smoke stacks so teardown can empty it.\n\nExample:\n```dart\nfinal reports = GoogleStorageBucket(\n  localName: \'usage_reports\',\n  name: TfArg.literal(\'my-usage-reports\'),\n  location: TfArg.literal(\'US\'),\n  forceDestroy: TfArg.literal(true),\n);\nGoogleProjectUsageExportBucket(\n  localName: \'usage_export\',\n  bucketName: TfArg.ref(reports.nameRef),\n  prefix: TfArg.literal(\'gce-usage\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_public_ca_external_account_key',
     className: 'GooglePublicCaExternalAccountKey',
     barrel: 'public_ca',
