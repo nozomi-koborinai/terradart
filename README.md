@@ -237,7 +237,6 @@ For any other `google_*` resource: open a [feature request](https://github.com/n
 Foundational
 
 - [Pub/Sub topic + IAM member](examples/pubsub_quickstart/)
-- [Security Command Center v2 project notification config](examples/scc_notification_quickstart/)
 - [Cloud Tasks queue + IAM member](examples/cloud_tasks_quickstart/)
 - [Secret Manager (write-only fields)](examples/secret_manager_quickstart/)
 - [Cloud Scheduler → Pub/Sub target](examples/cloud_scheduler_quickstart/)

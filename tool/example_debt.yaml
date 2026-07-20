@@ -103,3 +103,11 @@ GoogleApphubWorkload: registers a discovered workload URI under an application; 
 # API method is available in this project/region.
 GoogleHealthcareWorkspace: google_healthcare_workspace create returns 404 Method not found on terradart-validate (GA Healthcare API / us-central1); Data Mapper may require entitlement or a different API surface — healthcare_quickstart keeps applyable stores instead
 GoogleBigqueryReservationGroup: create returns 400 "Can not use Reservation Groups without Reservation Based Fairness enabled on the project"; enabling it needs ALTER PROJECT SET OPTIONS (`region-LOCATION.enable_reservation_based_fairness`=true) outside Terraform apply-smoke scope on terradart-validate
+
+# SCC v2 project notification configs create an org-scoped notification service
+# agent (service-org-ORGANIZATION_ID@gcp-sa-scc-notification.iam.gserviceaccount.com).
+# terradart-validate is a standalone project with no organization parent
+# (gcloud projects get-ancestors → project only), so create returns 400
+# "Precondition check failed." Keep the curated factory; revisit when an
+# org-backed validate project exists.
+GoogleSccV2ProjectNotificationConfig: requires an organization-activated Security Command Center parent — notification configs mint service-org-ORGANIZATION_ID@gcp-sa-scc-notification.iam.gserviceaccount.com; terradart-validate has no org ancestor, so apply returns 400 Precondition check failed
