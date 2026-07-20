@@ -1,0 +1,41 @@
+outputDir: network
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+dartTypeOverrides:
+  threat_detector_provider: NetworkSecurityDnsThreatDetectorThreatDetectorProvider
+
+curatedDoc: |-
+  /// Network Security **DNS threat detector** (DNS Armor / Infoblox) — enables
+  /// DNS-layer advanced threat detection for VPC workloads in a project.
+  ///
+  /// Creating a detector enables DNS Armor for the project. Billing is
+  /// usage-based (workloads / internet-bound DNS queries) via Network Security
+  /// SKU `F6D7-37A1-D4A0`, not a flat existence charge for the config alone.
+  /// [threatDetectorProvider] must be `INFOBLOX` (only supported value).
+  /// Location must be `global`.
+  ///
+  /// Enable `networksecurity.googleapis.com` via [GoogleProjectService]
+  /// before apply. At most one DNS threat detector exists per project.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleNetworkSecurityDnsThreatDetector(
+  ///   localName: 'dns_threat',
+  ///   name: TfArg.literal('terradart-dns-threat'),
+  ///   location: TfArg.literal('global'),
+  ///   threatDetectorProvider: TfArg.literal(
+  ///     NetworkSecurityDnsThreatDetectorThreatDetectorProvider.infoblox,
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - threat_detector_provider
+  - excluded_networks
+  - labels
+  - deletion_policy
+  - project

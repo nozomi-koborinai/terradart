@@ -66,6 +66,7 @@ workspace:
   - examples/network_connectivity_quickstart
   - examples/network_management_vpc_flow_logs_quickstart
   - examples/network_security_backend_auth_quickstart
+  - examples/network_security_dns_threat_quickstart
   - examples/network_security_lists_quickstart
   - examples/network_security_tls_quickstart
   - examples/network_security_gateway_policy_quickstart

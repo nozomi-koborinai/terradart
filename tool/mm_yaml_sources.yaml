@@ -886,6 +886,8 @@ files:
     upstream: mmv1/products/networksecurity/GatewaySecurityPolicy.yaml
   google_network_security_backend_authentication_config:
     upstream: mmv1/products/networksecurity/BackendAuthenticationConfig.yaml
+  google_network_security_dns_threat_detector:
+    upstream: mmv1/products/networksecurity/DnsThreatDetector.yaml
   google_redis_instance:
     upstream: mmv1/products/redis/Instance.yaml
   google_vertex_ai_feature_group:
