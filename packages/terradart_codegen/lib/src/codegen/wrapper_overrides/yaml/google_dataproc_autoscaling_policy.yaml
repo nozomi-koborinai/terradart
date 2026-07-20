@@ -1,0 +1,46 @@
+outputDir: dataproc
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Dataproc **autoscaling policy** — a reusable YARN autoscaler document
+  /// clusters can attach via `cluster_config.autoscaling_config.policy_uri`.
+  ///
+  /// Creating a policy alone does not provision VMs. Prefer a thin smoke
+  /// stack with [policyId], [location], [workerConfig], and
+  /// [basicAlgorithm].`yarnConfig` (no sibling cluster).
+  ///
+  /// Enable `dataproc.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleDataprocAutoscalingPolicy(
+  ///   localName: 'asp',
+  ///   policyId: TfArg.literal('terradart-asp'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   workerConfig: DataprocAutoscalingPolicyWorkerConfig(
+  ///     maxInstances: TfArg.literal(3),
+  ///   ),
+  ///   basicAlgorithm: DataprocAutoscalingPolicyBasicAlgorithm(
+  ///     yarnConfig: DataprocAutoscalingPolicyBasicAlgorithmYarnConfig(
+  ///       gracefulDecommissionTimeout: TfArg.literal('30s'),
+  ///       scaleUpFactor: TfArg.literal(0.5),
+  ///       scaleDownFactor: TfArg.literal(0.5),
+  ///     ),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - policy_id
+  - location
+  - worker_config
+  - secondary_worker_config
+  - basic_algorithm
+  - project
+  - deletion_policy

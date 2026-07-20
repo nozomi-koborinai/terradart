@@ -178,6 +178,8 @@ files:
     upstream: mmv1/products/dns/ManagedZone.yaml
   google_discovery_engine_data_store:
     upstream: mmv1/products/discoveryengine/DataStore.yaml
+  google_dataproc_autoscaling_policy:
+    upstream: mmv1/products/dataproc/AutoscalingPolicy.yaml
   google_dataproc_metastore_federation:
     upstream: mmv1/products/metastore/Federation.yaml
   google_dataproc_metastore_federation_iam_member:

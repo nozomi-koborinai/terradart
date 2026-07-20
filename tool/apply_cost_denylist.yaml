@@ -72,6 +72,7 @@ google_sql_database_instance: sweep_only     # Cloud SQL instance
 google_bigtable_instance: sweep_only         # Bigtable node billing
 google_filestore_instance: sweep_only        # Filestore provisioned capacity
 google_dataproc_cluster: sweep_only          # Dataproc cluster VMs
+google_dataproc_autoscaling_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU for autoscaling_policy (Dataproc 363B-8851-170D list_skus — Serverless DCU/accelerator/shuffle SKUs only; no policy/metadata SKU); billing-behavior: control-plane YARN autoscaler document — create/delete does not provision VMs; cluster compute hours bill only when a cluster attaches the policy
 google_composer_environment: sweep_only      # Cloud Composer (Airflow) fixed fee
 google_notebooks_instance: sweep_only        # Vertex AI Notebooks VM
 google_workbench_instance: sweep_only        # Vertex AI Workbench VM
