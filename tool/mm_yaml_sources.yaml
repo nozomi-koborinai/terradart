@@ -100,6 +100,8 @@ files:
     upstream: mmv1/products/compute/ResourcePolicy.yaml
   google_compute_route:
     upstream: mmv1/products/compute/Route.yaml
+  google_compute_snapshot_settings:
+    upstream: mmv1/products/compute/SnapshotSettings.yaml
   google_compute_project_metadata_item:
     upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
   google_compute_disk_resource_policy_attachment:

@@ -1,0 +1,35 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Project-level **Compute Engine snapshot settings** — default storage
+  /// location policy for new snapshots (a project singleton).
+  ///
+  /// Terraform create/update use `PATCH`; destroy is a state-only remove
+  /// (`exclude_delete` upstream) and leaves the GCP settings in place.
+  /// Prefer [ComputeSnapshotSettingsStorageLocationPolicy.localRegion] for
+  /// cheap, region-local defaults in smoke stacks.
+  ///
+  /// Enable `compute.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleComputeSnapshotSettings(
+  ///   localName: 'defaults',
+  ///   storageLocation: ComputeSnapshotSettingsStorageLocation(
+  ///     policy: TfArg.literal(
+  ///       ComputeSnapshotSettingsStorageLocationPolicy.localRegion,
+  ///     ),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - storage_location
+  - project
