@@ -6941,6 +6941,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_document_ai_processor`.\n\nThe first-class citizen for Document AI. Each processor defines how to\nextract structural information from a document.',
   ),
   CatalogEntry(
+    tfType: 'google_document_ai_schema',
+    className: 'GoogleDocumentAiSchema',
+    barrel: 'document_ai',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_document_ai_schema`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'displayName',
+      'labels',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_document_ai_schema`.\n\nNextSchema is a collection of SchemaVersions.\n\nDocument AI **schema** — a named collection of schema versions for\ncustom document processors.\n\nCreating a schema alone does not process documents and has no Document\nAI page/OCR SKU (billed only when pages are processed by a processor).\n\nEnable `documentai.googleapis.com` via [GoogleProjectService] before\napply. [location] is a multi-region (`us` or `eu`).\n\nExample:\n```dart\nGoogleDocumentAiSchema(\n  localName: \'fields\',\n  location: TfArg.literal(\'us\'),\n  displayName: TfArg.literal(\'terradart-schema\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_essential_contacts_contact',
     className: 'GoogleEssentialContactsContact',
     barrel: 'essential_contacts',

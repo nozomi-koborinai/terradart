@@ -1,0 +1,30 @@
+outputDir: document_ai
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Document AI **schema** — a named collection of schema versions for
+  /// custom document processors.
+  ///
+  /// Creating a schema alone does not process documents and has no Document
+  /// AI page/OCR SKU (billed only when pages are processed by a processor).
+  ///
+  /// Enable `documentai.googleapis.com` via [GoogleProjectService] before
+  /// apply. [location] is a multi-region (`us` or `eu`).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleDocumentAiSchema(
+  ///   localName: 'fields',
+  ///   location: TfArg.literal('us'),
+  ///   displayName: TfArg.literal('terradart-schema'),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - display_name
+  - labels
+  - deletion_policy
+  - project
