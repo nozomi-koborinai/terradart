@@ -85,6 +85,7 @@ workspace:
   - examples/parameter_manager_quickstart
   - examples/ops_quickstart
   - examples/public_ca_quickstart
+  - examples/project_iam_audit_config_quickstart
   - examples/pubsub_quickstart
   - examples/secret_manager_quickstart
   - examples/service_directory_quickstart

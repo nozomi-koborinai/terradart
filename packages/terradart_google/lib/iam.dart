@@ -17,6 +17,11 @@ export 'src/iam/google_iam_workload_identity_pool_provider.dart'
         IamWorkloadIdentityPoolProviderX509PemCertificate,
         IamWorkloadIdentityPoolProviderX509Trust,
         IamWorkloadIdentityPoolProviderX509TrustStore;
+export 'src/iam/google_project_iam_audit_config.dart'
+    show
+        GoogleProjectIamAuditConfig,
+        ProjectIamAuditConfigAuditLogConfig,
+        ProjectIamAuditConfigAuditLogConfigLogType;
 export 'src/iam/google_project_iam_custom_role.dart'
     show CustomRoleStage, GoogleProjectIamCustomRole;
 export 'src/iam/google_project_iam_member.dart' show GoogleProjectIamMember;
