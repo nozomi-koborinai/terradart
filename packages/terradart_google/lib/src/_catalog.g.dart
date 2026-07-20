@@ -7930,6 +7930,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_gke_backup_restore_plan_iam_member`.',
   ),
   CatalogEntry(
+    tfType: 'google_gke_hub_feature',
+    className: 'GoogleGkeHubFeature',
+    barrel: 'container',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_gke_hub_feature`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'labels',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_gke_hub_feature`.\n\nFeature represents the settings and status of any Hub Feature.\n\nGKE Hub **feature** — enables a fleet-level Feature such as\nMulti-Cluster Service Discovery, Service Mesh, or Config Management.\n\nFor smoke stacks prefer `name: multiclusterservicediscovery` at\n`location: global` — no cluster membership is required (see provider\n`gkehub_feature_multi_cluster_service_discovery`). Also enable\n`multiclusterservicediscovery.googleapis.com` before apply. Features\nthat need a membership (`multiclusteringress`) or paid Anthos add-ons\nare out of scope for the quickstart.\n\nEnable `gkehub.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleGkeHubFeature(\n  localName: \'mcsd\',\n  name: TfArg.literal(\'multiclusterservicediscovery\'),\n  location: TfArg.literal(\'global\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_gke_hub_fleet',
     className: 'GoogleGkeHubFleet',
     barrel: 'container',

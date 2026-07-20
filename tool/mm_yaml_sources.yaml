@@ -508,6 +508,8 @@ files:
     upstream: mmv1/products/gkehub/Scope.yaml
   google_gke_hub_namespace:
     upstream: mmv1/products/gkehub/Namespace.yaml
+  google_gke_hub_feature:
+    upstream: mmv1/products/gkehub2/Feature.yaml
   google_gke_hub_membership:
     upstream: mmv1/products/gkehub/Membership.yaml
   google_gke_hub_rollout_sequence:
