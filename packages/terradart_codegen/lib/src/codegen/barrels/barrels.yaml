@@ -265,6 +265,10 @@ barrels:
     doc: |-
       /// Migration Center: sources, discovery clients, import jobs, groups,
       /// preference sets, and reports.
+  model_armor:
+    doc: |-
+      /// Model Armor — templates that configure RAI / SDP / jailbreak / URI
+      /// filters for screening LLM prompts and responses.
   monitoring:
     doc: |-
       /// Cloud Monitoring: alert policies, notification channels, uptime probes,

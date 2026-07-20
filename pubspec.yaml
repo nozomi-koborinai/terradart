@@ -72,6 +72,7 @@ workspace:
   - examples/kms_quickstart
   - examples/license_manager_quickstart
   - examples/migration_center_quickstart
+  - examples/model_armor_quickstart
   - examples/monitoring_quickstart
   - examples/network_connectivity_quickstart
   - examples/network_management_vpc_flow_logs_quickstart

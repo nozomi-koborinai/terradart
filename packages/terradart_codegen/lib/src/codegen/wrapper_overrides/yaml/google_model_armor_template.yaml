@@ -1,0 +1,38 @@
+outputDir: model_armor
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Model Armor **template** — filter thresholds for screening LLM prompts
+  /// and responses (RAI, SDP, prompt-injection, malicious URI).
+  ///
+  /// [filterConfig] is required by the schema but may be an empty block for
+  /// a minimal template (see provider `modelarmor_template_basic`). Screening
+  /// is billed per Model Armor PAYG usage under Security Command Center
+  /// add-ons — creating/updating a template alone does not invoke models.
+  ///
+  /// Enable `modelarmor.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleModelArmorTemplate(
+  ///   localName: 'basic',
+  ///   location: TfArg.literal('us-central1'),
+  ///   templateId: TfArg.literal('terradart-modelarmor'),
+  ///   filterConfig: ModelArmorTemplateFilterConfig(),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - template_id
+  - filter_config
+  - template_metadata
+  - labels
+  - project
+  - deletion_policy

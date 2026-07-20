@@ -141,6 +141,11 @@ final class GoogleProviderRules extends ProviderRules {
     'datalineage': 'dataplex',
     'data_lineage': 'dataplex',
 
+    // Model Armor (`google_model_armor_*`; MM product ModelArmor).
+    'model': 'model_armor',
+    'model_armor': 'model_armor',
+    'modelarmor': 'model_armor',
+
     // Security Command Center v2 (`google_scc_v2_*` → segment `scc`).
     'scc': 'scc',
     'scc_v2': 'scc',
