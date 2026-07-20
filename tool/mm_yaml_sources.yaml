@@ -231,6 +231,8 @@ files:
   # IAM core
   google_project_iam_custom_role:
     upstream: null  # handwritten in terraform provider; no MM YAML
+  google_project_iam_audit_config:
+    upstream: null  # handwritten IAM audit config (schema-only; not MM-generated)
   google_project_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_service_account_iam_member:

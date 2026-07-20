@@ -10408,6 +10408,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_project`.\n\nUse to look up the active project\'s `number`, `name`, etc., for\ndownstream references (e.g. CMEK service-account email composition).\n\nExample:\n```dart\nfinal current = stack.addData(GoogleProject(localName: \'current\'));\nfinal cmekBinding = GooglePubsubTopicIamMember(\n  localName: \'pubsub_cmek\',\n  topic: TfArg.ref(topic.nameRef),\n  role: TfArg.literal(\'roles/cloudkms.cryptoKeyEncrypterDecrypter\'),\n  member: TfArg.literal(\n    \'serviceAccount:service-\${current.number.interpolation}@gcp-sa-pubsub.iam.gserviceaccount.com\',\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_project_iam_audit_config',
+    className: 'GoogleProjectIamAuditConfig',
+    barrel: 'iam',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_project_iam_audit_config`.',
+    constructorParams: <String>[
+      'localName',
+      'project',
+      'service',
+      'auditLogConfig',
+    ],
+    nestedTypes: <String>[
+      'ProjectIamAuditConfigAuditLogConfigLogType',
+      'ProjectIamAuditConfigAuditLogConfig',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_project_iam_audit_config`.\n\nProject-level **IAM audit logging config** — enables Admin Activity,\nData Access, or System Event audit logs for a service (or\n`allServices`).\n\nPrefer [ProjectIamAuditConfigAuditLogConfigLogType.adminRead] for smoke\nstacks: Admin Activity audit logs are free. `DATA_READ` / `DATA_WRITE`\nemit Data Access logs that count toward Cloud Logging ingestion volume.\n\nExample:\n```dart\nGoogleProjectIamAuditConfig(\n  localName: \'storage_admin_read\',\n  project: TfArg.literal(projectId),\n  service: TfArg.literal(\'storage.googleapis.com\'),\n  auditLogConfig: [\n    ProjectIamAuditConfigAuditLogConfig(\n      logType: TfArg.literal(\n        ProjectIamAuditConfigAuditLogConfigLogType.adminRead.terraformValue,\n      ),\n    ),\n  ],\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_project_iam_custom_role',
     className: 'GoogleProjectIamCustomRole',
     barrel: 'iam',
