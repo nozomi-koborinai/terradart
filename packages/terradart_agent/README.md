@@ -50,7 +50,7 @@ Full walkthroughs: [terradart.dev — terradart-mcp](https://terradart.dev/docs/
 | `get_quickstart` | Ready-made `Stack` template for a resource |
 | `check_coverage` | Coverage report for `terraform show -json` input |
 
-The catalog currently holds 459 entries (458 curated resource factories + 1 data source) across 77 service barrels.
+The catalog currently holds 460 entries (459 curated resource factories + 1 data source) across 77 service barrels.
 
 ## Development
 

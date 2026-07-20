@@ -214,6 +214,7 @@ google_dns_policy: safe  # apply-verified safe (existing example)
 google_dns_record_set: safe  # apply-verified safe (existing example)
 google_dns_response_policy: safe  # apply-verified safe (existing example)
 google_dns_response_policy_rule: safe  # apply-verified safe (existing example)
+google_document_ai_schema: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus keyword="schema" on Cloud Document AI API D870-408D-92A6 → 0 SKUs; processor SKUs are page/OCR usage only, e.g. 03C7-7B42-6CC7); billing-behavior: named schema metadata for custom processors — create/update/delete does not process documents or bill page SKUs; destroy removes the schema
 google_document_ai_processor: safe  # apply-verified safe (existing example)
 google_essential_contacts_contact: safe  # apply-verified safe (existing example)
 google_filestore_backup: safe  # apply-verified safe (existing example)
