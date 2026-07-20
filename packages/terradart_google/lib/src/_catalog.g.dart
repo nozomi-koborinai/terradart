@@ -6672,6 +6672,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_dialogflow_sip_trunk`.\n\nSipTrunk is the resource that represents a SIP trunk to connect to the\nGoogle Telephony Platform SIP trunking service.\n\nDialogflow CX SIP trunk for Google Telephony Platform trunking.\n\nEnable `dialogflow.googleapis.com` via [GoogleProjectService] before apply.\n[expectedHostname] lists the TLS peer certificate hostnames your carrier presents.\n\nExample:\n```dart\nGoogleDialogflowSipTrunk(\n  localName: \'carrier_trunk\',\n  location: TfArg.literal(\'global\'),\n  expectedHostname: TfArg.literal([\'sip.carrier.example.com\']),\n  displayName: TfArg.literal(\'Primary carrier trunk\'),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_discovery_engine_acl_config',
+    className: 'GoogleDiscoveryEngineAclConfig',
+    barrel: 'discovery_engine',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_discovery_engine_acl_config`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'idpConfig',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'DiscoveryEngineAclConfigIdpConfig',
+      'DiscoveryEngineAclConfigIdpConfigIdpType',
+      'DiscoveryEngineAclConfigIdpConfigExternalIdpConfig',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_discovery_engine_acl_config`.\n\nAccess Control Configuration.\n\nVertex AI Search **ACL config** — project identity-provider settings for\ndocument-level access control in a Discovery Engine location.\n\nThis is a per-project location singleton. Prefer `location: global` and\n`idpType: GSUITE` for smoke stacks (no workforce pool required).\n`THIRD_PARTY` needs an existing workforce pool name under\n[idpConfig].`externalIdpConfig`.\n\nCreating or updating ACL config does not index documents or serve\nqueries — Vertex AI Search query/indexing SKUs apply only when search\ntraffic or indexing runs.\n\nEnable `discoveryengine.googleapis.com` via [GoogleProjectService]\nbefore apply.\n\nExample:\n```dart\nGoogleDiscoveryEngineAclConfig(\n  localName: \'acl\',\n  location: TfArg.literal(\'global\'),\n  idpConfig: DiscoveryEngineAclConfigIdpConfig(\n    idpType: TfArg.literal(\n      DiscoveryEngineAclConfigIdpConfigIdpType.gsuite,\n    ),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_discovery_engine_data_store',
     className: 'GoogleDiscoveryEngineDataStore',
     barrel: 'discovery_engine',

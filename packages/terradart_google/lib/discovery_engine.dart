@@ -1,8 +1,14 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Vertex AI Search (Discovery Engine): data stores, search engines, IAM.
+/// Vertex AI Search (Discovery Engine): data stores, search engines, ACL, IAM.
 library;
 
+export 'src/discovery_engine/google_discovery_engine_acl_config.dart'
+    show
+        DiscoveryEngineAclConfigIdpConfig,
+        DiscoveryEngineAclConfigIdpConfigExternalIdpConfig,
+        DiscoveryEngineAclConfigIdpConfigIdpType,
+        GoogleDiscoveryEngineAclConfig;
 export 'src/discovery_engine/google_discovery_engine_data_store.dart'
     show
         DiscoveryEngineDataStoreContentConfig,
