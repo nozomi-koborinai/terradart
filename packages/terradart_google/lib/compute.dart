@@ -572,6 +572,12 @@ export 'src/compute/google_compute_shared_vpc_host_project.dart'
     show GoogleComputeSharedVpcHostProject;
 export 'src/compute/google_compute_shared_vpc_service_project.dart'
     show GoogleComputeSharedVpcServiceProject;
+export 'src/compute/google_compute_snapshot_settings.dart'
+    show
+        ComputeSnapshotSettingsStorageLocation,
+        ComputeSnapshotSettingsStorageLocationLocations,
+        ComputeSnapshotSettingsStorageLocationPolicy,
+        GoogleComputeSnapshotSettings;
 export 'src/compute/google_compute_ssl_certificate.dart'
     show GoogleComputeSslCertificate;
 export 'src/compute/google_compute_ssl_policy.dart'

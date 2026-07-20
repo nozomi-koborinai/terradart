@@ -4998,6 +4998,22 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_compute_shared_vpc_service_project`.',
   ),
   CatalogEntry(
+    tfType: 'google_compute_snapshot_settings',
+    className: 'GoogleComputeSnapshotSettings',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_snapshot_settings`.',
+    constructorParams: <String>['localName', 'storageLocation', 'project'],
+    nestedTypes: <String>[
+      'ComputeSnapshotSettingsStorageLocation',
+      'ComputeSnapshotSettingsStorageLocationPolicy',
+      'ComputeSnapshotSettingsStorageLocationLocations',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_snapshot_settings`.\n\nUpdates your project\'s snapshot settings and sets a new default storage\nlocation for snapshots.\n\nProject-level **Compute Engine snapshot settings** — default storage\nlocation policy for new snapshots (a project singleton).\n\nTerraform create/update use `PATCH`; destroy is a state-only remove\n(`exclude_delete` upstream) and leaves the GCP settings in place.\nPrefer [ComputeSnapshotSettingsStorageLocationPolicy.localRegion] for\ncheap, region-local defaults in smoke stacks.\n\nEnable `compute.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleComputeSnapshotSettings(\n  localName: \'defaults\',\n  storageLocation: ComputeSnapshotSettingsStorageLocation(\n    policy: TfArg.literal(\n      ComputeSnapshotSettingsStorageLocationPolicy.localRegion,\n    ),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_ssl_certificate',
     className: 'GoogleComputeSslCertificate',
     barrel: 'compute',
