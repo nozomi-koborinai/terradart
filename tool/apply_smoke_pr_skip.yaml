@@ -19,3 +19,4 @@ compute_quickstart: Compute Engine VM bills hourly; apply only in the full sweep
 cloud_run_quickstart: Memorystore Redis + Memcache bill hourly; apply only in the full sweep
 bigtable_quickstart: production Bigtable instance (hourly node billing) plus multi-step table/view ordering; apply only in the full sweep
 biglake_quickstart: BigLake Iceberg table hits Table Management SKU C2FF-D8D9-D9EF ~$0.12/h; apply only in the full sweep
+network_security_dns_threat_quickstart: DNS Armor (SKU F6D7-37A1-D4A0) bills usage units hourly when the detector is enabled and workloads produce internet-bound DNS queries; apply only in the full sweep
