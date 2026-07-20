@@ -102,6 +102,8 @@ files:
     upstream: mmv1/products/compute/Route.yaml
   google_compute_snapshot_settings:
     upstream: mmv1/products/compute/SnapshotSettings.yaml
+  google_compute_project_cloud_armor_tier:
+    upstream: mmv1/products/compute/ProjectCloudArmorTier.yaml
   google_compute_project_default_network_tier:
     upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML; probe 404)
   google_compute_project_metadata_item:

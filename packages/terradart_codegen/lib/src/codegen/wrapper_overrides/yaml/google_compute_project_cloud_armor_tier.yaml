@@ -1,0 +1,53 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+# Hand-write the enum so the factory type name stays
+# `ComputeProjectCloudArmorTier` (deriveEnums would emit the awkward
+# `ComputeProjectCloudArmorTierCloudArmorTier`).
+deriveEnums: false
+
+dartTypeOverrides:
+  cloud_armor_tier: ComputeProjectCloudArmorTier
+
+prelude: |
+  /// Cloud Armor managed protection tier for the project.
+  /// Prefer [caStandard] in smoke stacks — Enterprise Annual bills ~$3000/mo.
+  enum ComputeProjectCloudArmorTier implements TerraformEnum {
+    caStandard('CA_STANDARD'),
+    caEnterprisePaygo('CA_ENTERPRISE_PAYGO'),
+    caEnterpriseAnnual('CA_ENTERPRISE_ANNUAL');
+
+    const ComputeProjectCloudArmorTier(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+curatedDoc: |-
+  /// Project-level **Cloud Armor managed protection tier** — a singleton that
+  /// sets `CA_STANDARD`, `CA_ENTERPRISE_PAYGO`, or `CA_ENTERPRISE_ANNUAL`.
+  ///
+  /// Prefer [ComputeProjectCloudArmorTier.caStandard] in smoke stacks.
+  /// Do **not** set Enterprise tiers in apply-smoke: Cloud Armor Enterprise
+  /// Annual bills ~$3000/mo (SKU EFB7-4299-A2EC). `CA_STANDARD` is the free
+  /// / pay-as-you-go security-policy tier (no Enterprise subscription SKU).
+  ///
+  /// Terraform create/update call `setCloudArmorTier`; destroy is state-only
+  /// (`only_remove_from_state` upstream) and leaves the GCP tier in place.
+  ///
+  /// Enable `compute.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleComputeProjectCloudArmorTier(
+  ///   localName: 'armor_tier',
+  ///   cloudArmorTier: TfArg.literal(
+  ///     ComputeProjectCloudArmorTier.caStandard,
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - cloud_armor_tier
+  - deletion_policy
+  - project
