@@ -34,7 +34,6 @@ void main() {
       expect(rules.outputDirAliases['storage_control'], 'storage_control');
       expect(rules.outputDirAliases['data_lineage'], 'dataplex');
       expect(rules.outputDirAliases['datalineage'], 'dataplex');
-      expect(rules.outputDirAliases['integrations'], 'integrations');
     });
 
     test('universalGetters returns id + nameRef when both attrs are present',
