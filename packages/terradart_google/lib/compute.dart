@@ -278,6 +278,10 @@ export 'src/compute/google_compute_network_peering.dart'
         GoogleComputeNetworkPeering;
 export 'src/compute/google_compute_network_peering_routes_config.dart'
     show GoogleComputeNetworkPeeringRoutesConfig;
+export 'src/compute/google_compute_project_default_network_tier.dart'
+    show
+        ComputeProjectDefaultNetworkTier,
+        GoogleComputeProjectDefaultNetworkTier;
 export 'src/compute/google_compute_project_metadata_item.dart'
     show GoogleComputeProjectMetadataItem;
 export 'src/compute/google_compute_region_autoscaler.dart'
