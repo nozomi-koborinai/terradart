@@ -1,0 +1,36 @@
+outputDir: iap
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// IAP **settings** — project- or resource-scoped Identity-Aware Proxy
+  /// access and application configuration.
+  ///
+  /// Manages IAP settings metadata (CORS, OAuth, reauth, cookie domain, custom
+  /// access-denied page, and related blocks). Creating settings alone does not
+  /// enable IAP on a backend or bill Chrome Enterprise Premium; Cloud IAP for
+  /// GCP-hosted targets is free per Google Cloud pricing.
+  ///
+  /// Enable `iap.googleapis.com` via [GoogleProjectService] before apply.
+  /// [name] is the IAP resource path (e.g. `projects/<project>/iap_web`).
+  /// Omit nested [accessSettings] / [applicationSettings] for name-only
+  /// project-level settings.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleIapSettings(
+  ///   localName: 'web',
+  ///   name: TfArg.literal('projects/my-proj/iap_web'),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - access_settings
+  - application_settings
+  - deletion_policy

@@ -718,6 +718,8 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_iap_tunnel_dest_group:
     upstream: mmv1/products/iap/TunnelDestGroup.yaml
+  google_iap_settings:
+    upstream: mmv1/products/iap/Settings.yaml
   # Wave 24 (DNS response policy, Cloud Run worker pool IAM, Compute router, BigQuery datapolicy IAM)
   google_dns_response_policy:
     upstream: mmv1/products/dns/ResponsePolicy.yaml
