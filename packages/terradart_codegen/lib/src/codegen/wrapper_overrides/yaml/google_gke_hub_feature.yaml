@@ -2,15 +2,26 @@ outputDir: container
 deriveClassDoc: true
 deriveOutputGetters: true
 
+# Nested feature specs are out of scope for the MCS Discovery smoke path;
+# exclude their thin enum sites so --strict-nested stays green.
+nestedTypeExcludes:
+  - fleet_default_member_config.configmanagement.management
+  - fleet_default_member_config.mesh.management
+  - fleet_default_member_config.policycontroller.policy_controller_hub_config.install_spec
+  - fleet_default_member_config.policycontroller.policy_controller_hub_config.policy_content.template_library.installation
+  - spec.fleetobservability.logging_config.default_config.mode
+  - spec.fleetobservability.logging_config.fleet_scope_logs_config.mode
+
 curatedDoc: |-
   /// GKE Hub **feature** — enables a fleet-level Feature such as
   /// Multi-Cluster Service Discovery, Service Mesh, or Config Management.
   ///
   /// For smoke stacks prefer `name: multiclusterservicediscovery` at
   /// `location: global` — no cluster membership is required (see provider
-  /// `gkehub_feature_multi_cluster_service_discovery`). Features that need
-  /// a membership (`multiclusteringress`) or paid Anthos add-ons are out of
-  /// scope for the quickstart.
+  /// `gkehub_feature_multi_cluster_service_discovery`). Also enable
+  /// `multiclusterservicediscovery.googleapis.com` before apply. Features
+  /// that need a membership (`multiclusteringress`) or paid Anthos add-ons
+  /// are out of scope for the quickstart.
   ///
   /// Enable `gkehub.googleapis.com` via [GoogleProjectService] before apply.
   ///
