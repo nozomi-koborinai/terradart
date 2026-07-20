@@ -124,6 +124,8 @@ files:
     upstream: mmv1/products/dataplex/DataProduct.yaml
   google_dataplex_data_product_data_asset:
     upstream: mmv1/products/dataplex/DataProductDataAsset.yaml
+  google_data_lineage_config:
+    upstream: mmv1/products/datalineage/Config.yaml
   google_dataplex_lake:
     upstream: mmv1/products/dataplex/Lake.yaml
   google_dataplex_lake_iam_member:
