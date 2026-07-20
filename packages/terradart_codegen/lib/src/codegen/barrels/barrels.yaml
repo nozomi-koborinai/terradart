@@ -158,7 +158,7 @@ barrels:
       /// adjuncts.
   dataproc:
     doc: |-
-      /// Dataproc Metastore — managed Hive metastore services and federations.
+      /// Dataproc — autoscaling policies and Dataproc Metastore services/federations.
   dialogflow:
     doc: |-
       /// Dialogflow CX: telephony and conversation resources.

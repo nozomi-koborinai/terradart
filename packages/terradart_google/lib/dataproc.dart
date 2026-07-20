@@ -1,8 +1,15 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Dataproc Metastore — managed Hive metastore services and federations.
+/// Dataproc — autoscaling policies and Dataproc Metastore services/federations.
 library;
 
+export 'src/dataproc/google_dataproc_autoscaling_policy.dart'
+    show
+        DataprocAutoscalingPolicyBasicAlgorithm,
+        DataprocAutoscalingPolicyBasicAlgorithmYarnConfig,
+        DataprocAutoscalingPolicySecondaryWorkerConfig,
+        DataprocAutoscalingPolicyWorkerConfig,
+        GoogleDataprocAutoscalingPolicy;
 export 'src/dataproc/google_dataproc_metastore_federation.dart'
     show
         DataprocMetastoreFederationBackend,

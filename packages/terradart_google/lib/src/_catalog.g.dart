@@ -6522,6 +6522,32 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_dataplex_zone_iam_member`.',
   ),
   CatalogEntry(
+    tfType: 'google_dataproc_autoscaling_policy',
+    className: 'GoogleDataprocAutoscalingPolicy',
+    barrel: 'dataproc',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_dataproc_autoscaling_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'policyId',
+      'location',
+      'workerConfig',
+      'secondaryWorkerConfig',
+      'basicAlgorithm',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[
+      'DataprocAutoscalingPolicyBasicAlgorithm',
+      'DataprocAutoscalingPolicyBasicAlgorithmYarnConfig',
+      'DataprocAutoscalingPolicySecondaryWorkerConfig',
+      'DataprocAutoscalingPolicyWorkerConfig',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataproc_autoscaling_policy`.\n\nDescribes an autoscaling policy for Dataproc cluster autoscaler.\n\nDataproc **autoscaling policy** — a reusable YARN autoscaler document\nclusters can attach via `cluster_config.autoscaling_config.policy_uri`.\n\nCreating a policy alone does not provision VMs. Prefer a thin smoke\nstack with [policyId], [location], [workerConfig], and\n[basicAlgorithm].`yarnConfig` (no sibling cluster).\n\nEnable `dataproc.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleDataprocAutoscalingPolicy(\n  localName: \'asp\',\n  policyId: TfArg.literal(\'terradart-asp\'),\n  location: TfArg.literal(\'us-central1\'),\n  workerConfig: DataprocAutoscalingPolicyWorkerConfig(\n    maxInstances: TfArg.literal(3),\n  ),\n  basicAlgorithm: DataprocAutoscalingPolicyBasicAlgorithm(\n    yarnConfig: DataprocAutoscalingPolicyBasicAlgorithmYarnConfig(\n      gracefulDecommissionTimeout: TfArg.literal(\'30s\'),\n      scaleUpFactor: TfArg.literal(0.5),\n      scaleDownFactor: TfArg.literal(0.5),\n    ),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_dataproc_metastore_federation',
     className: 'GoogleDataprocMetastoreFederation',
     barrel: 'dataproc',
