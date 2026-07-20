@@ -58,6 +58,7 @@ workspace:
   - examples/filestore_quickstart
   - examples/gemini_quickstart
   - examples/gke_hub_feature_quickstart
+  - examples/compute_preview_feature_quickstart
   - examples/dataproc_autoscaling_quickstart
   - examples/gke_hub_quickstart
   - examples/gke_quickstart

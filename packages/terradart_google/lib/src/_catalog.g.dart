@@ -3971,6 +3971,28 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_compute_network_peering_routes_config`.',
   ),
   CatalogEntry(
+    tfType: 'google_compute_preview_feature',
+    className: 'GoogleComputePreviewFeature',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_preview_feature`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'activationStatus',
+      'rolloutOperation',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'ComputePreviewFeatureActivationStatus',
+      'ComputePreviewFeatureRolloutOperation',
+      'ComputePreviewFeatureRolloutOperationRolloutInput',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_preview_feature`.\n\nRepresents a single Google Compute Engine preview feature such as Alpha API\naccess, which can be enabled or unspecified for a project.\n\nCompute Engine **preview feature** — enables or leaves unspecified a\nproject-level preview such as Alpha API access.\n\nPrefer `name: alpha-api-access` with\n`activationStatus: ACTIVATION_STATE_UNSPECIFIED` for smoke stacks (matches\nthe provider basic example). Enabling Alpha APIs does not provision VMs.\n\nEnable `compute.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleComputePreviewFeature(\n  localName: \'alpha\',\n  name: TfArg.literal(\'alpha-api-access\'),\n  activationStatus: TfArg.literal(\n    ComputePreviewFeatureActivationStatus.activationStateUnspecified,\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_project_cloud_armor_tier',
     className: 'GoogleComputeProjectCloudArmorTier',
     barrel: 'compute',

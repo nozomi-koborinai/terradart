@@ -110,6 +110,8 @@ files:
     upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML; probe 404)
   google_compute_project_metadata_item:
     upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
+  google_compute_preview_feature:
+    upstream: mmv1/products/compute/PreviewFeature.yaml
   google_compute_disk_resource_policy_attachment:
     upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
   google_network_connectivity_hub:

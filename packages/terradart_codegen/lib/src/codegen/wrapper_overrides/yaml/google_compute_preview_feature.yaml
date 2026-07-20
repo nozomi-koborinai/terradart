@@ -1,0 +1,38 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+dartTypeOverrides:
+  activation_status: ComputePreviewFeatureActivationStatus
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Compute Engine **preview feature** — enables or leaves unspecified a
+  /// project-level preview such as Alpha API access.
+  ///
+  /// Prefer `name: alpha-api-access` with
+  /// `activationStatus: ACTIVATION_STATE_UNSPECIFIED` for smoke stacks (matches
+  /// the provider basic example). Enabling Alpha APIs does not provision VMs.
+  ///
+  /// Enable `compute.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleComputePreviewFeature(
+  ///   localName: 'alpha',
+  ///   name: TfArg.literal('alpha-api-access'),
+  ///   activationStatus: TfArg.literal(
+  ///     ComputePreviewFeatureActivationStatus.activationStateUnspecified,
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - activation_status
+  - rollout_operation
+  - project

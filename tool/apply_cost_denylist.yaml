@@ -178,6 +178,7 @@ google_compute_shared_vpc_host_project: safe  # gcp-cost: no Cloud Billing Catal
 google_compute_shared_vpc_service_project: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Compute+Networking); billing-behavior: host/service project link
 google_compute_subnetwork: safe  # apply-verified safe (existing example)
 google_compute_subnetwork_iam_member: safe  # apply-verified safe (existing example)
+google_compute_preview_feature: safe  # gcp-cost: no Cloud Billing Catalog SKU for preview_feature (Compute Engine 6F81-5844-456A list_skus keyword=preview → 0 SKUs); billing-behavior: project preview-feature enablement metadata (e.g. alpha-api-access) — create/update/delete does not provision VMs or bill Compute instance hours
 google_data_catalog_entry_group: safe  # gcp-cost: Data Catalog 89B9-6A5A-B358 SKUs are Storage Usage 1D52-4857-D286 ($2/GiBy.mo after free tier) and Api Usage 92A8-89E9-F95C ($10/100k calls after 1M free); list_skus keyword=entry → 0 dedicated entry-group SKU; billing-behavior: empty entry-group metadata only — no entries attached, negligible vs 1 MiB free storage / API free tier; destroy removes the group
 google_dataplex_aspect_type: safe  # apply-verified safe (existing example)
 google_dataplex_aspect_type_iam_member: safe  # apply-verified safe (existing example)
