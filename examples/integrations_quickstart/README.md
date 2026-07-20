@@ -2,7 +2,9 @@
 
 End-to-end terradart example for a regional Application Integration client
 (`google_integrations_client`). Provisions the Integration control plane in
-`us-central1` without sample flows or CMEK.
+`us-east1` without sample flows or CMEK (also enables Secret Manager +
+Connectors APIs and waits for propagation, matching Application Integration
+quick setup).
 
 Billing for Application Integration is flow execution / data processed — this
 stack only provisions the client.
