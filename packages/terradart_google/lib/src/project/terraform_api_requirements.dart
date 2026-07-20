@@ -66,6 +66,8 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry(
       'google_binary_authorization_', 'binaryauthorization.googleapis.com'),
   MapEntry('google_pubsub_', 'pubsub.googleapis.com'),
+  // SCC v2 notification configs use the Security Center API endpoint.
+  MapEntry('google_scc_', 'securitycenter.googleapis.com'),
   MapEntry('google_redis_', 'redis.googleapis.com'),
   MapEntry('google_storage_', 'storage.googleapis.com'),
   MapEntry('google_kms_', 'cloudkms.googleapis.com'),

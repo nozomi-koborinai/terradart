@@ -607,6 +607,8 @@ files:
     upstream: mmv1/products/pubsub/Topic.yaml
   google_pubsub_topic_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_scc_v2_project_notification_config:
+    upstream: mmv1/products/securitycenterv2/ProjectNotificationConfig.yaml
   google_secret_manager_secret:
     upstream: mmv1/products/secretmanager/Secret.yaml
   google_secret_manager_secret_iam_member:

@@ -80,6 +80,7 @@ export 'public_ca.dart';
 export 'pubsub.dart';
 export 'recaptcha.dart';
 export 'redis.dart';
+export 'scc.dart';
 export 'secret_manager.dart';
 export 'service_directory.dart';
 export 'service_networking.dart';
