@@ -10601,6 +10601,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_redis_instance`.\n\nA Google Cloud Redis instance.\n\nMemorystore for Redis instance — managed Redis for app caches and sessions.\n\nPair with [GoogleVpcAccessConnector] (Cloud Run) or GCE/GKE workloads on\nthe same VPC via [authorizedNetwork].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: instance ID.\n- [memorySizeGb]: memory size in GiB.\n\nOptional hardening / operations:\n- [authEnabled] turns Redis AUTH on (read the password via [authString]).\n- [transitEncryptionMode] enables in-transit TLS ([serverCaCerts]).\n- [replicaCount] / [readReplicasMode] add read replicas on\n  `STANDARD_HA` instances ([readEndpoint], [readEndpointPort]).\n- [maintenancePolicy] pins the weekly maintenance window.\n- [persistenceConfig] turns on RDB snapshots.\n\nEnable `redis.googleapis.com` via [GoogleProjectService] or\n[Apis.enable] before apply.\n\nExample (basic tier on the default VPC):\n```dart\nGoogleRedisInstance(\n  localName: \'cache\',\n  name: TfArg.literal(\'api-cache\'),\n  memorySizeGb: TfArg.literal(1),\n  region: TfArg.literal(\'us-central1\'),\n  tier: TfArg.literal(RedisInstanceTier.basic),\n  authorizedNetwork: TfArg.literal(\'default\'),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_scc_v2_project_notification_config',
+    className: 'GoogleSccV2ProjectNotificationConfig',
+    barrel: 'scc',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_scc_v2_project_notification_config`.',
+    constructorParams: <String>[
+      'localName',
+      'configId',
+      'pubsubTopic',
+      'streamingConfig',
+      'description',
+      'location',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>['SccV2ProjectNotificationConfigStreamingConfig'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_scc_v2_project_notification_config`.\n\nThis is a continuous export that exports findings to a Pub/Sub topic.\n\nSecurity Command Center v2 **project notification config** — a continuous\nexport that streams findings to a Pub/Sub topic.\n\n[pubsubTopic] must be a fully-qualified topic path\n(`projects/{project}/topics/{topic}`). Pass [GooglePubsubTopic.id] from a\nsibling topic (not the bare topic name).\n\n[streamingConfig].`filter` is required by the schema; use `""` to match\nall findings, or a CEL-style expression such as\n`state = "ACTIVE"`. See\n[Filtering notifications](https://cloud.google.com/security-command-center/docs/how-to-api-filter-notifications).\n\nAfter create, [serviceAccount] is the identity that needs\n`roles/pubsub.publisher` on the destination topic (grant via\n[GooglePubsubTopicIamMember] when delivery must succeed).\n\nEnable `securitycenter.googleapis.com` (and `pubsub.googleapis.com` when\ncreating the topic in-stack) via [GoogleProjectService] before apply.\n\nExample:\n```dart\nfinal topic = GooglePubsubTopic(\n  localName: \'scc_findings\',\n  name: TfArg.literal(\'scc-findings\'),\n);\nGoogleSccV2ProjectNotificationConfig(\n  localName: \'findings_export\',\n  configId: TfArg.literal(\'terradart-findings\'),\n  description: TfArg.literal(\'Export ACTIVE findings to Pub/Sub\'),\n  pubsubTopic: TfArg.ref(topic.id),\n  streamingConfig: SccV2ProjectNotificationConfigStreamingConfig(\n    filter: TfArg.literal(\'state = "ACTIVE"\'),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_secret_manager_regional_secret',
     className: 'GoogleSecretManagerRegionalSecret',
     barrel: 'secret_manager',

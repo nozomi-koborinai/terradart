@@ -302,6 +302,10 @@ barrels:
   pubsub:
     doc: |-
       /// Pub/Sub topics, subscriptions, schemas, and per-resource IAM bindings.
+  scc:
+    doc: |-
+      /// Security Command Center (SCC) v2 — project notification configs that
+      /// continuously export findings to Pub/Sub.
   recaptcha:
     doc: |-
       /// reCAPTCHA Enterprise keys for web, Android, and iOS clients.

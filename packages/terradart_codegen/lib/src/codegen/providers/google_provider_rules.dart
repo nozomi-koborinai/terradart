@@ -136,6 +136,11 @@ final class GoogleProviderRules extends ProviderRules {
     'datacatalog': 'data_catalog',
     'data_catalog': 'data_catalog',
 
+    // Security Command Center v2 (`google_scc_v2_*` → segment `scc`).
+    'scc': 'scc',
+    'scc_v2': 'scc',
+    'securitycenterv2': 'scc',
+
     // Storage Control / Intelligence (`google_storage_control_*`;
     // MM product StorageControl). Distinct from the `storage` barrel.
     'storagecontrol': 'storage_control',
