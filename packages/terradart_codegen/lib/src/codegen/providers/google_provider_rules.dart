@@ -140,5 +140,10 @@ final class GoogleProviderRules extends ProviderRules {
     'scc': 'scc',
     'scc_v2': 'scc',
     'securitycenterv2': 'scc',
+
+    // Storage Control / Intelligence (`google_storage_control_*`;
+    // MM product StorageControl). Distinct from the `storage` barrel.
+    'storagecontrol': 'storage_control',
+    'storage_control': 'storage_control',
   };
 }

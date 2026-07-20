@@ -87,6 +87,7 @@ export 'service_networking.dart';
 export 'sourcerepo.dart';
 export 'spanner.dart';
 export 'storage.dart';
+export 'storage_control.dart';
 export 'tags.dart';
 export 'vertex_ai.dart';
 export 'workflows.dart';

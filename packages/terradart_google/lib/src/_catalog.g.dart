@@ -11294,6 +11294,21 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_storage_bucket_object`.\n\nPass `TfArg.ref(bucket.nameRef)` for `bucket` — NOT `bucket.id`\n(`id` is `{bucket-name}` for buckets but the API wants just the name).\n\n`body`: object payload — choose exactly one of:\n- [StorageBucketObjectBucketObjectFromSource] — upload from a local file path.\n- [StorageBucketObjectBucketObjectFromContent] — inline string payload.\nThe sealed [StorageBucketObjectBucketObjectContent] type makes the `source` / `content`\n`exactly_one_of` constraint exhaustive at the type level.\n\nExample (inline content):\n```dart\nfinal assets = GoogleStorageBucket(\n  localName: \'assets\',\n  name: TfArg.literal(\'my-app-assets-prod\'),\n  location: TfArg.literal(\'ASIA-NORTHEAST1\'),\n);\nfinal config = GoogleStorageBucketObject(\n  localName: \'config\',\n  bucket: TfArg.ref(assets.nameRef),\n  name: TfArg.literal(\'config/app.json\'),\n  body: StorageBucketObjectBucketObjectFromContent(\n    content: TfArg.literal(\'{"feature_x": true}\'),\n  ),\n  contentType: TfArg.literal(\'application/json\'),\n  storageClass: TfArg.literal(BucketObjectStorageClass.standard),\n);\n```\n\nExample (file upload):\n```dart\nfinal logo = GoogleStorageBucketObject(\n  localName: \'logo\',\n  bucket: TfArg.ref(assets.nameRef),\n  name: TfArg.literal(\'static/logo.png\'),\n  body: StorageBucketObjectBucketObjectFromSource(source: TfArg.literal(\'./assets/logo.png\')),\n  contentType: TfArg.literal(\'image/png\'),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_storage_control_project_intelligence_config',
+    className: 'GoogleStorageControlProjectIntelligenceConfig',
+    barrel: 'storage_control',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_storage_control_project_intelligence_config`.',
+    constructorParams: <String>['localName', 'name', 'editionConfig', 'filter'],
+    nestedTypes: <String>[
+      'StorageControlProjectIntelligenceConfigEditionConfig',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_storage_control_project_intelligence_config`.\n\nThe Project Storage Intelligence Config resource represents GCS Storage\nIntelligence operating on individual GCP project. Storage Intelligence\nConfig is a singleton resource and individual instance exists on each GCP\nproject.\n\nStorage Intelligence is for Storage Admins to manage GCP storage assets at\nscale for performance, cost, security & compliance.\n\nProject-level **Cloud Storage Intelligence config** — a singleton that\ncontrols whether Storage Intelligence runs on this GCP project.\n\nPrefer [editionConfig] `DISABLED` for smoke stacks: the config is free\nproject metadata. Do **not** set `STANDARD` (or a paid `TRIAL` path) in\napply-smoke — those editions can enable billed Storage Intelligence.\n`INHERIT` follows the parent org/folder setting and may still resolve\nto a paid edition.\n\nTerraform create/update use `PATCH`; destroy is state-only\n(`exclude_delete` upstream) and leaves the GCP singleton in place.\n\nEnable `storage.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleStorageControlProjectIntelligenceConfig(\n  localName: \'intelligence\',\n  name: TfArg.literal(projectId),\n  editionConfig: TfArg.literal(\n    StorageControlProjectIntelligenceConfigEditionConfig.disabled,\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_storage_hmac_key',
     className: 'GoogleStorageHmacKey',
     barrel: 'storage',
