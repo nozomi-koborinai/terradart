@@ -233,6 +233,10 @@ barrels:
   identity:
     doc: |-
       /// Identity Platform — project Auth config and multi-tenant realms.
+  integrations:
+    doc: |-
+      /// Application Integration — provision a regional client
+      /// (`google_integrations_client`) for the Integration control plane.
   iap:
     doc: |-
       /// Identity-Aware Proxy (IAP) — settings, tunnel destination groups, plus

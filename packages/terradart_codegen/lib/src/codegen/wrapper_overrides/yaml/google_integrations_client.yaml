@@ -1,0 +1,36 @@
+outputDir: integrations
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Application Integration **client** — provisions the Integration
+  /// control plane for a project location (`clients:provision`).
+  ///
+  /// This is regional singleton config: [location] is the only required
+  /// argument. Creating the client does not execute integration flows
+  /// (billing SKUs are flow execution / data processed). Optional
+  /// [createSampleIntegrations] seeds sample flows; omit it for smoke
+  /// stacks. Optional [cloudKmsConfig] enables CMEK.
+  ///
+  /// Enable `integrations.googleapis.com` via [GoogleProjectService]
+  /// before apply. Destroy calls `clients:deprovision`.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleIntegrationsClient(
+  ///   localName: 'client',
+  ///   location: TfArg.literal('us-central1'),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - create_sample_integrations
+  - cloud_kms_config
+  - run_as_service_account
+  - project
+  - deletion_policy

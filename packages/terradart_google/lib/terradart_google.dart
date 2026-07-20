@@ -61,6 +61,7 @@ export 'healthcare.dart';
 export 'iam.dart';
 export 'iap.dart';
 export 'identity.dart';
+export 'integrations.dart';
 export 'kms.dart';
 export 'license_manager.dart';
 export 'logging.dart';
