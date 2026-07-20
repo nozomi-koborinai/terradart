@@ -129,7 +129,8 @@ barrels:
       /// Contact Center AI Insights and related contact APIs.
   container:
     doc: |-
-      /// Google Kubernetes Engine (GKE) — clusters, node pools, and GKE Hub.
+      /// Google Kubernetes Engine (GKE) — clusters, node pools, and GKE Hub
+      /// (membership, scope, namespace, rollout sequence, hub features).
       ///
       /// For VPC networking, see `compute.dart` ([GoogleComputeNetwork],
       /// [GoogleComputeSubnetwork]). For workload identity federation, see

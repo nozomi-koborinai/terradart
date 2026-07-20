@@ -1,0 +1,31 @@
+outputDir: container
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// GKE Hub **feature** — enables a fleet-level Feature such as
+  /// Multi-Cluster Service Discovery, Service Mesh, or Config Management.
+  ///
+  /// For smoke stacks prefer `name: multiclusterservicediscovery` at
+  /// `location: global` — no cluster membership is required (see provider
+  /// `gkehub_feature_multi_cluster_service_discovery`). Features that need
+  /// a membership (`multiclusteringress`) or paid Anthos add-ons are out of
+  /// scope for the quickstart.
+  ///
+  /// Enable `gkehub.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleGkeHubFeature(
+  ///   localName: 'mcsd',
+  ///   name: TfArg.literal('multiclusterservicediscovery'),
+  ///   location: TfArg.literal('global'),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - labels
+  - project
+  - deletion_policy
