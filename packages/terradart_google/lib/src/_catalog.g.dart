@@ -5798,6 +5798,30 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_data_catalog_entry_group`.\n\nAn EntryGroup resource represents a logical grouping of zero or more Data\nCatalog Entry resources.\n\nData Catalog **entry group** — logical container for Data Catalog Entry\nresources (legacy Data Catalog API).\n\nPrefer [GoogleDataplexEntryGroup] for new catalogs; this factory remains\nfor stacks that still use `google_data_catalog_entry_group`. Creating an\nentry group alone does not create entries or bill catalog SKUs.\n\nEnable `datacatalog.googleapis.com` via [GoogleProjectService]\nbefore apply. Region is typically regional (e.g. `us-central1`).\n\nExample:\n```dart\nGoogleDataCatalogEntryGroup(\n  localName: \'group\',\n  entryGroupId: TfArg.literal(\'terradart_entry_group\'),\n  region: TfArg.literal(\'us-central1\'),\n  displayName: TfArg.literal(\'TerraDart entry group\'),\n  description: TfArg.literal(\'TerraDart smoke Data Catalog entry group\'),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_data_lineage_config',
+    className: 'GoogleDataLineageConfig',
+    barrel: 'dataplex',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_data_lineage_config`.',
+    constructorParams: <String>[
+      'localName',
+      'parent',
+      'location',
+      'ingestion',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[
+      'DataLineageConfigIngestion',
+      'DataLineageConfigIngestionRule',
+      'DataLineageConfigIngestionRuleIntegrationSelector',
+      'DataLineageConfigIngestionRuleIntegrationSelectorIntegration',
+      'DataLineageConfigIngestionRuleLineageEnablement',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_data_lineage_config`.\n\nConfiguration for Data Lineage.\n\nDefines configuration options for Lineage customers to control behavior of\nlineage systems.\n\nProject/folder/org **Data Lineage config** — controls lineage ingestion\nenablement for integrations such as Dataproc.\n\nThis is a singleton `PATCH` resource per parent + location. Prefer a\nproject parent (`projects/<id>`) and `location: global` for smoke stacks.\nEnabling ingestion does not itself provision Dataproc or bill Dataplex\nMetadata Storage; those SKUs apply when lineage data is produced/stored.\n\nEnable `datalineage.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleDataLineageConfig(\n  localName: \'lineage\',\n  parent: TfArg.literal(\'projects/<project-id>\'),\n  location: TfArg.literal(\'global\'),\n  ingestion: DataLineageConfigIngestion(\n    rule: [\n      DataLineageConfigIngestionRule(\n        integrationSelector: DataLineageConfigIngestionRuleIntegrationSelector(\n          integration: TfArg.literal(\n            DataLineageConfigIngestionRuleIntegrationSelectorIntegration.dataproc,\n          ),\n        ),\n        lineageEnablement: DataLineageConfigIngestionRuleLineageEnablement(\n          enabled: TfArg.literal(true),\n        ),\n      ),\n    ],\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_data_loss_prevention_deidentify_template',
     className: 'GoogleDataLossPreventionDeidentifyTemplate',
     barrel: 'dlp',

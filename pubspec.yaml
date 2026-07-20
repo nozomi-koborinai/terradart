@@ -41,6 +41,7 @@ workspace:
   - examples/contact_center_insights_quickstart
   - examples/document_ai_quickstart
   - examples/data_catalog_quickstart
+  - examples/data_lineage_quickstart
   - examples/dataplex_quickstart
   - examples/dataproc_metastore_quickstart
   - examples/discovery_engine_quickstart

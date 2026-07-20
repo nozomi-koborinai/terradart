@@ -1,9 +1,18 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 /// Dataplex: governed data products, Universal Catalog metadata (entry groups /
-/// entry types / aspect types), and their IAM adjuncts.
+/// entry types / aspect types), Data Lineage project config, and their IAM
+/// adjuncts.
 library;
 
+export 'src/dataplex/google_data_lineage_config.dart'
+    show
+        DataLineageConfigIngestion,
+        DataLineageConfigIngestionRule,
+        DataLineageConfigIngestionRuleIntegrationSelector,
+        DataLineageConfigIngestionRuleIntegrationSelectorIntegration,
+        DataLineageConfigIngestionRuleLineageEnablement,
+        GoogleDataLineageConfig;
 export 'src/dataplex/google_dataplex_aspect_type.dart'
     show DataplexAspectTypeDataClassification, GoogleDataplexAspectType;
 export 'src/dataplex/google_dataplex_aspect_type_iam_member.dart'

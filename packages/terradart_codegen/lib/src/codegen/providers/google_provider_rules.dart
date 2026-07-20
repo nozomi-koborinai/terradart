@@ -136,6 +136,11 @@ final class GoogleProviderRules extends ProviderRules {
     'datacatalog': 'data_catalog',
     'data_catalog': 'data_catalog',
 
+    // Data Lineage (`google_data_lineage_*` → segment `data`; MM product datalineage).
+    // Shares the dataplex barrel (lineage is a Dataplex-adjacent control plane).
+    'datalineage': 'dataplex',
+    'data_lineage': 'dataplex',
+
     // Security Command Center v2 (`google_scc_v2_*` → segment `scc`).
     'scc': 'scc',
     'scc_v2': 'scc',
