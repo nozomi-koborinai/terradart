@@ -15,9 +15,10 @@ const Set<String> _googleGkeHubFeatureSensitive = <String>{};
 ///
 /// For smoke stacks prefer `name: multiclusterservicediscovery` at
 /// `location: global` — no cluster membership is required (see provider
-/// `gkehub_feature_multi_cluster_service_discovery`). Features that need
-/// a membership (`multiclusteringress`) or paid Anthos add-ons are out of
-/// scope for the quickstart.
+/// `gkehub_feature_multi_cluster_service_discovery`). Also enable
+/// `multiclusterservicediscovery.googleapis.com` before apply. Features
+/// that need a membership (`multiclusteringress`) or paid Anthos add-ons
+/// are out of scope for the quickstart.
 ///
 /// Enable `gkehub.googleapis.com` via [GoogleProjectService] before apply.
 ///

@@ -1,16 +1,13 @@
 outputDir: container
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveNestedTypes: true
 
-# Nested feature specs are out of scope for the MCS Discovery smoke path;
-# exclude their thin enum sites so --strict-nested stays green.
+# Keep fleet_default_member_config / spec as thin Maps for this smoke Wave —
+# MCS Discovery needs only name + location.
 nestedTypeExcludes:
-  - fleet_default_member_config.configmanagement.management
-  - fleet_default_member_config.mesh.management
-  - fleet_default_member_config.policycontroller.policy_controller_hub_config.install_spec
-  - fleet_default_member_config.policycontroller.policy_controller_hub_config.policy_content.template_library.installation
-  - spec.fleetobservability.logging_config.default_config.mode
-  - spec.fleetobservability.logging_config.fleet_scope_logs_config.mode
+  - fleet_default_member_config
+  - spec
 
 curatedDoc: |-
   /// GKE Hub **feature** — enables a fleet-level Feature such as
