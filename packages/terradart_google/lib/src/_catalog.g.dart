@@ -3953,6 +3953,19 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_compute_network_peering_routes_config`.',
   ),
   CatalogEntry(
+    tfType: 'google_compute_project_default_network_tier',
+    className: 'GoogleComputeProjectDefaultNetworkTier',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_compute_project_default_network_tier`.',
+    constructorParams: <String>['localName', 'networkTier', 'project'],
+    nestedTypes: <String>['ComputeProjectDefaultNetworkTier'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_project_default_network_tier`.\n\nProject-level **Compute Engine default network tier** — a singleton\nthat sets `PREMIUM` or `STANDARD` as the default for new external IP\naddresses in the project.\n\nThis resource is free project metadata. Prefer\n[ComputeProjectDefaultNetworkTier.standard] in smoke stacks when you\nwant the cheaper regional default; `PREMIUM` is Google\'s usual\nproject default.\n\nEnable `compute.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleComputeProjectDefaultNetworkTier(\n  localName: \'defaults\',\n  networkTier: TfArg.literal(\n    ComputeProjectDefaultNetworkTier.standard,\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_project_metadata_item',
     className: 'GoogleComputeProjectMetadataItem',
     barrel: 'compute',
