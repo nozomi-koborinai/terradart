@@ -328,3 +328,4 @@ google_vertex_ai_schedule: safe  # gcp-cost: no Cloud Billing Catalog SKU for Sc
 google_vpc_access_connector: safe  # apply-verified safe (existing example)
 google_workflows_workflow: safe  # apply-verified safe (existing example)
 time_sleep: safe  # apply-verified safe (existing example)
+google_discovery_engine_acl_config: safe  # gcp-cost: no Cloud Billing Catalog SKU for acl_config (Vertex AI Search 74B1-77CF-C302 list_skus — query/indexing SKUs e.g. 7FD8-6D78-0DD5 VAIS Configurable Pricing query units $6/mo list; no ACL/IdP config SKU); billing-behavior: project location singleton PATCH for document ACL IdP — create/update/delete does not index documents or serve queries; search SKUs apply only with traffic/indexing

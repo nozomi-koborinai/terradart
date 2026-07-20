@@ -1,0 +1,42 @@
+outputDir: discovery_engine
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Vertex AI Search **ACL config** — project identity-provider settings for
+  /// document-level access control in a Discovery Engine location.
+  ///
+  /// This is a per-project location singleton. Prefer `location: global` and
+  /// `idpType: GSUITE` for smoke stacks (no workforce pool required).
+  /// `THIRD_PARTY` needs an existing workforce pool name under
+  /// [idpConfig].`externalIdpConfig`.
+  ///
+  /// Creating or updating ACL config does not index documents or serve
+  /// queries — Vertex AI Search query/indexing SKUs apply only when search
+  /// traffic or indexing runs.
+  ///
+  /// Enable `discoveryengine.googleapis.com` via [GoogleProjectService]
+  /// before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleDiscoveryEngineAclConfig(
+  ///   localName: 'acl',
+  ///   location: TfArg.literal('global'),
+  ///   idpConfig: DiscoveryEngineAclConfigIdpConfig(
+  ///     idpType: TfArg.literal(
+  ///       DiscoveryEngineAclConfigIdpConfigIdpType.gsuite,
+  ///     ),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - idp_config
+  - project
