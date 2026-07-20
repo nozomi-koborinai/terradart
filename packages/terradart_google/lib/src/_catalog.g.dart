@@ -3953,6 +3953,23 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_compute_network_peering_routes_config`.',
   ),
   CatalogEntry(
+    tfType: 'google_compute_project_cloud_armor_tier',
+    className: 'GoogleComputeProjectCloudArmorTier',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_project_cloud_armor_tier`.',
+    constructorParams: <String>[
+      'localName',
+      'cloudArmorTier',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>['ComputeProjectCloudArmorTier'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_project_cloud_armor_tier`.\n\nSets the Cloud Armor tier of the project.\n\nProject-level **Cloud Armor managed protection tier** — a singleton that\nsets `CA_STANDARD`, `CA_ENTERPRISE_PAYGO`, or `CA_ENTERPRISE_ANNUAL`.\n\nPrefer [ComputeProjectCloudArmorTier.caStandard] in smoke stacks.\nDo **not** set Enterprise tiers in apply-smoke: Cloud Armor Enterprise\nAnnual bills ~\$3000/mo (SKU EFB7-4299-A2EC). `CA_STANDARD` is the free\n/ pay-as-you-go security-policy tier (no Enterprise subscription SKU).\n\nTerraform create/update call `setCloudArmorTier`; destroy is state-only\n(`only_remove_from_state` upstream) and leaves the GCP tier in place.\n\nEnable `compute.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleComputeProjectCloudArmorTier(\n  localName: \'armor_tier\',\n  cloudArmorTier: TfArg.literal(\n    ComputeProjectCloudArmorTier.caStandard,\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_project_default_network_tier',
     className: 'GoogleComputeProjectDefaultNetworkTier',
     barrel: 'compute',

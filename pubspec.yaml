@@ -34,6 +34,7 @@ workspace:
   - examples/compute_route_quickstart
   - examples/compute_snapshot_settings_quickstart
   - examples/compute_default_network_tier_quickstart
+  - examples/compute_cloud_armor_tier_quickstart
   - examples/usage_export_quickstart
   - examples/container_analysis_quickstart
   - examples/contact_center_insights_quickstart

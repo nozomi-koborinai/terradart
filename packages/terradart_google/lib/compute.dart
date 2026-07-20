@@ -278,6 +278,8 @@ export 'src/compute/google_compute_network_peering.dart'
         GoogleComputeNetworkPeering;
 export 'src/compute/google_compute_network_peering_routes_config.dart'
     show GoogleComputeNetworkPeeringRoutesConfig;
+export 'src/compute/google_compute_project_cloud_armor_tier.dart'
+    show ComputeProjectCloudArmorTier, GoogleComputeProjectCloudArmorTier;
 export 'src/compute/google_compute_project_default_network_tier.dart'
     show
         ComputeProjectDefaultNetworkTier,
