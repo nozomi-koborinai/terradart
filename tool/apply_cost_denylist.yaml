@@ -78,6 +78,7 @@ google_notebooks_instance: sweep_only        # Vertex AI Notebooks VM
 google_workbench_instance: sweep_only        # Vertex AI Workbench VM
 google_vertex_ai_endpoint: sweep_only        # deployed-model node billing
 google_vertex_ai_index_endpoint: sweep_only  # deployed-index node billing
+google_vector_search_index: sweep_only  # gcp-cost: Vector Search 0181-3AAD-0CB9 Performance Optimized Capacity Unit SKU 2ECA-1449-C093 $0.065/h (Storage Optimized 0F15-4F4D-23BA $2.3/h; High Performance 7D0B-CF29-5BB6 $0.11/h) — API defaults dedicated_infrastructure to PERFORMANCE_OPTIMIZED min/max_replica_count=2; billing-behavior: hourly index-serving capacity while the index exists; destroy stops capacity charges
 google_compute_reservation: sweep_only       # reserved compute capacity
 google_compute_commitment: sweep_only        # committed-use discount contract
 
@@ -323,6 +324,7 @@ google_tags_tag_key: safe  # apply-verified safe (existing example)
 google_tags_tag_key_iam_member: safe  # apply-verified safe (existing example)
 google_tags_tag_value: safe  # apply-verified safe (existing example)
 google_tags_tag_value_iam_member: safe  # apply-verified safe (existing example)
+google_vector_search_collection: safe  # gcp-cost: Vector Search 0181-3AAD-0CB9 Data Stored SKU 1AE9-553C-C219 $0.3/GiBy.mo + Write/Read ops C1E5-1A7F-E9B3/$0.18 and C6B8-92A1-C096/$0.06 per count — usage-metered payload DB only; billing-behavior: schema-only collection with no data objects / indexes accrues ~$0 (no index-serving capacity units); destroy deletes collection and stops storage charges
 google_vertex_ai_cache_config: safe  # apply-verified safe (existing example)
 google_vertex_ai_dataset: safe  # apply-verified safe (existing example)
 google_vertex_ai_feature_group: safe  # apply-verified safe (existing example)

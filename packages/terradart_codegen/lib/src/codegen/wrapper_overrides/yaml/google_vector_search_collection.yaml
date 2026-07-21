@@ -1,0 +1,61 @@
+outputDir: vector
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Vector Search 2.0 **collection** — typed data schema plus searchable
+  /// vector fields (`vector_schema`).
+  ///
+  /// An empty collection (schema only, no data objects / indexes) does not
+  /// provision index-serving capacity. Pair with [GoogleVectorSearchIndex]
+  /// when you need ANN serving (that path bills hourly capacity units).
+  ///
+  /// Enable `vectorsearch.googleapis.com` via [GoogleProjectService] before
+  /// apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleVectorSearchCollection(
+  ///   localName: 'docs',
+  ///   location: TfArg.literal('us-central1'),
+  ///   collectionId: TfArg.literal('terradart-docs'),
+  ///   displayName: TfArg.literal('Docs'),
+  ///   dataSchema: TfArg.literal(
+  ///     '{"type":"object","properties":{"title":{"type":"string"}}}',
+  ///   ),
+  ///   vectorSchema: [
+  ///     VectorSearchCollectionVectorSchema(
+  ///       fieldName: TfArg.literal('text_embedding'),
+  ///       denseVector: VectorSearchCollectionVectorSchemaDenseVector(
+  ///         dimensions: TfArg.literal(768),
+  ///       ),
+  ///     ),
+  ///   ],
+  /// );
+  /// ```
+
+
+paramOrder:
+  - location
+  - collection_id
+  - display_name
+  - description
+  - data_schema
+  - vector_schema
+  - encryption_spec
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `collection_id` attribute.
+    TfRef<String> get collectionIdRef =>
+        TfRef.attribute<String>(this, 'collection_id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
