@@ -32,9 +32,11 @@ entries:
   - resource: google_chronicle_data_export
     detected_at: 2026-07-19
     provider_version: 7.40.0
+    note: skipped by wave-shipper — schema required `instance` (Chronicle/SecOps instance ID); sibling google_chronicle_* + apply_smoke_skip chronicle_quickstart already document placeholder UUID fails at apply time
   - resource: google_chronicle_environment
     detected_at: 2026-07-19
     provider_version: 7.40.0
+    note: skipped by wave-shipper — schema required `instance` (Chronicle/SecOps instance ID); sibling google_chronicle_* + apply_smoke_skip chronicle_quickstart already document placeholder UUID fails at apply time
   - resource: google_chronicle_feed
     detected_at: 2026-07-01
     provider_version: 7.39.0
@@ -46,6 +48,7 @@ entries:
   - resource: google_chronicle_findings_refinement_deployment
     detected_at: 2026-07-19
     provider_version: 7.40.0
+    note: skipped by wave-shipper — schema required `instance` + `findings_refinement`; sibling google_chronicle_findings_refinement skip-noted for real SecOps instance ID; apply_smoke_skip chronicle_quickstart
   - resource: google_chronicle_parser
     detected_at: 2026-07-01
     provider_version: 7.39.0
@@ -89,21 +92,27 @@ entries:
   - resource: google_iap_agent_registry_agent_iam_binding
     detected_at: 2026-07-19
     provider_version: 7.40.0
+    note: skipped by wave-shipper — authoritative IAM adjunct; curate *_iam_member only per maintainer policy
   - resource: google_iap_agent_registry_agent_iam_member
     detected_at: 2026-07-19
     provider_version: 7.40.0
+    note: skipped by wave-shipper — schema required `agent_id`; parent google_agent_registry_* skip-noted (Agent Identity external artifact); not standalone-project applyable on terradart-validate
   - resource: google_iap_agent_registry_agent_iam_policy
     detected_at: 2026-07-19
     provider_version: 7.40.0
+    note: skipped by wave-shipper — authoritative IAM adjunct; curate *_iam_member only per maintainer policy
   - resource: google_iap_agent_registry_endpoint_iam_binding
     detected_at: 2026-07-19
     provider_version: 7.40.0
+    note: skipped by wave-shipper — authoritative IAM adjunct; curate *_iam_member only per maintainer policy
   - resource: google_iap_agent_registry_endpoint_iam_member
     detected_at: 2026-07-19
     provider_version: 7.40.0
+    note: skipped by wave-shipper — schema required `endpoint_id`; parent google_agent_registry_* skip-noted (Agent Identity external artifact); not standalone-project applyable on terradart-validate
   - resource: google_iap_agent_registry_endpoint_iam_policy
     detected_at: 2026-07-19
     provider_version: 7.40.0
+    note: skipped by wave-shipper — authoritative IAM adjunct; curate *_iam_member only per maintainer policy
   - resource: google_iap_agent_registry_iam_binding
     detected_at: 2026-07-01
     provider_version: 7.39.0
@@ -115,12 +124,15 @@ entries:
   - resource: google_iap_agent_registry_mcp_server_iam_binding
     detected_at: 2026-07-19
     provider_version: 7.40.0
+    note: skipped by wave-shipper — authoritative IAM adjunct; curate *_iam_member only per maintainer policy
   - resource: google_iap_agent_registry_mcp_server_iam_member
     detected_at: 2026-07-19
     provider_version: 7.40.0
+    note: skipped by wave-shipper — schema required `mcp_server_id`; parent google_agent_registry_* skip-noted (Agent Identity external artifact); not standalone-project applyable on terradart-validate
   - resource: google_iap_agent_registry_mcp_server_iam_policy
     detected_at: 2026-07-19
     provider_version: 7.40.0
+    note: skipped by wave-shipper — authoritative IAM adjunct; curate *_iam_member only per maintainer policy
   - resource: google_iap_location_web_iam_binding
     detected_at: 2026-07-01
     provider_version: 7.39.0
@@ -137,6 +149,3 @@ entries:
     detected_at: 2026-07-01
     provider_version: 7.39.0
     note: skipped by wave-shipper — requires parent google_oracle_database_cloud_exadata_infrastructure; oracle_exadata_quickstart is apply-smoke skip-listed (Oracle zone entitlement / live Exascale vault wiring — API rejects placeholder wiring on terradart-validate)
-  - resource: google_vector_search_index
-    detected_at: 2026-07-19
-    provider_version: 7.40.0

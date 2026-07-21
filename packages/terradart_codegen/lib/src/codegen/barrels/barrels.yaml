@@ -360,6 +360,10 @@ barrels:
     doc: |-
       /// Resource Manager Tags — tag keys, tag values, resource bindings, and the
       /// `*_iam_member` adjuncts that grant access on individual tag keys/values.
+  vector:
+    doc: |-
+      /// Vector Search 2.0 — collections (typed data + vector schema) and ANN
+      /// indexes over a collection field (ScaNN / dedicated infrastructure).
   vertex_ai:
     doc: |-
       /// Vertex AI — feature store feature groups (backed by a BigQuery source),

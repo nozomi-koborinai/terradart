@@ -91,5 +91,6 @@ export 'spanner.dart';
 export 'storage.dart';
 export 'storage_control.dart';
 export 'tags.dart';
+export 'vector.dart';
 export 'vertex_ai.dart';
 export 'workflows.dart';

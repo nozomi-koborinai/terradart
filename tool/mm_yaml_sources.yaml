@@ -928,6 +928,10 @@ files:
     upstream: mmv1/products/vertexai/TensorboardExperiment.yaml
   google_vertex_ai_tensorboard_run:
     upstream: mmv1/products/vertexai/TensorboardRun.yaml
+  google_vector_search_collection:
+    upstream: mmv1/products/vectorsearch/Collection.yaml
+  google_vector_search_index:
+    upstream: mmv1/products/vectorsearch/Index.yaml
   google_spanner_database:
     upstream: mmv1/products/spanner/Database.yaml
   google_spanner_instance:

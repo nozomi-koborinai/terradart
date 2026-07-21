@@ -1,0 +1,46 @@
+outputDir: vector
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+
+  /// Vector Search 2.0 **index** — approximate nearest-neighbor structure over
+  /// one [GoogleVectorSearchCollection] vector field.
+  ///
+  /// When [dedicatedInfrastructure] is omitted, the API defaults to
+  /// `PERFORMANCE_OPTIMIZED` with `min_replica_count=2` /
+  /// `max_replica_count=2`, which bills Vector Search V2 capacity units by
+  /// the hour. Prefer creating the collection first (and ingesting data)
+  /// before attaching an index in production workflows.
+  ///
+  /// Enable `vectorsearch.googleapis.com` via [GoogleProjectService] before
+  /// apply.
+
+paramOrder:
+  - location
+  - collection_id
+  - index_id
+  - index_field
+  - display_name
+  - description
+  - distance_metric
+  - filter_fields
+  - store_fields
+  - dense_scann
+  - dedicated_infrastructure
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `index_id` attribute.
+    TfRef<String> get indexIdRef =>
+        TfRef.attribute<String>(this, 'index_id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
