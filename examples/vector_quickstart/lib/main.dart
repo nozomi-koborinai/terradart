@@ -47,7 +47,7 @@ final class VectorSearchStack extends Stack {
         vectorSchema: [
           VectorSearchCollectionVectorSchema(
             fieldName: TfArg.literal('text_embedding'),
-            denseVector: const VectorSearchCollectionVectorSchemaDenseVector(
+            denseVector: VectorSearchCollectionVectorSchemaDenseVector(
               dimensions: TfArg.literal(768),
             ),
           ),
