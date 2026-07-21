@@ -30,6 +30,11 @@ void main() {
       expect(rules.outputDirAliases['public'], 'public_ca');
       expect(rules.outputDirAliases['publicca'], 'public_ca');
       expect(rules.outputDirAliases['public_ca'], 'public_ca');
+      expect(rules.outputDirAliases['storagecontrol'], 'storage_control');
+      expect(rules.outputDirAliases['storage_control'], 'storage_control');
+      expect(rules.outputDirAliases['data_lineage'], 'dataplex');
+      expect(rules.outputDirAliases['datalineage'], 'dataplex');
+      expect(rules.outputDirAliases['modelarmor'], 'model_armor');
     });
 
     test('universalGetters returns id + nameRef when both attrs are present',

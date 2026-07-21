@@ -1,0 +1,54 @@
+outputDir: iam
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+# Schema docs say "Must be one of DATA_READ, DATA_WRITE, or ADMIN_READ" but
+# deriveEnums does not parse that phrasing — hand-write the TerraformEnum.
+deriveEnums: false
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+# Nested dartTypeOverrides are not applied by the emitter today; keep the
+# enum in prelude and pass `.terraformValue` (or a string literal) at call sites.
+prelude: |
+  /// Permission type for which IAM audit logging is configured.
+  enum ProjectIamAuditConfigAuditLogConfigLogType implements TerraformEnum {
+    dataRead('DATA_READ'),
+    dataWrite('DATA_WRITE'),
+    adminRead('ADMIN_READ');
+
+    const ProjectIamAuditConfigAuditLogConfigLogType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+curatedDoc: |-
+  /// Project-level **IAM audit logging config** — enables Admin Activity,
+  /// Data Access, or System Event audit logs for a service (or
+  /// `allServices`).
+  ///
+  /// Prefer [ProjectIamAuditConfigAuditLogConfigLogType.adminRead] for smoke
+  /// stacks: Admin Activity audit logs are free. `DATA_READ` / `DATA_WRITE`
+  /// emit Data Access logs that count toward Cloud Logging ingestion volume.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleProjectIamAuditConfig(
+  ///   localName: 'storage_admin_read',
+  ///   project: TfArg.literal(projectId),
+  ///   service: TfArg.literal('storage.googleapis.com'),
+  ///   auditLogConfig: [
+  ///     ProjectIamAuditConfigAuditLogConfig(
+  ///       logType: TfArg.literal(
+  ///         ProjectIamAuditConfigAuditLogConfigLogType.adminRead.terraformValue,
+  ///       ),
+  ///     ),
+  ///   ],
+  /// );
+  /// ```
+
+paramOrder:
+  - project
+  - service
+  - audit_log_config

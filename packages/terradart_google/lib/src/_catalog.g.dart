@@ -3619,6 +3619,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_compute_instance_iam_member`.',
   ),
   CatalogEntry(
+    tfType: 'google_compute_instance_settings',
+    className: 'GoogleComputeInstanceSettings',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_instance_settings`.',
+    constructorParams: <String>[
+      'localName',
+      'zone',
+      'metadata',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>['ComputeInstanceSettingsMetadata'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_instance_settings`.\n\nRepresents an Instance Settings resource. Instance settings are centralized\nconfiguration parameters that allow users to configure the default values\nfor specific VM parameters that are normally set using GCE instance API\nmethods.\n\nZonal **Compute Engine instance settings** — project-scoped defaults\nfor VM metadata applied to instances in a zone.\n\nSets key/value metadata items that act as zonal defaults (see\n[custom project-zonal metadata](https://cloud.google.com/compute/docs/metadata/setting-custom-metadata#set-custom-project-zonal-metadata)).\nCreating or updating settings alone does not provision VMs and has no\nCompute Engine SKU (metadata config only).\n\nEnable `compute.googleapis.com` via [GoogleProjectService] before apply.\n[zone] is required. Terraform destroy clears the zonal settings via the\nprovider custom delete.\n\nExample:\n```dart\nGoogleComputeInstanceSettings(\n  localName: \'zonal\',\n  zone: TfArg.literal(\'us-central1-a\'),\n  metadata: ComputeInstanceSettingsMetadata(\n    items: TfArg.literal({\'terradart-smoke\': \'1\'}),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_instance_template',
     className: 'GoogleComputeInstanceTemplate',
     barrel: 'compute',
@@ -3951,6 +3969,58 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_network_peering_routes_config`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_compute_preview_feature',
+    className: 'GoogleComputePreviewFeature',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_preview_feature`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'activationStatus',
+      'rolloutOperation',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'ComputePreviewFeatureActivationStatus',
+      'ComputePreviewFeatureRolloutOperation',
+      'ComputePreviewFeatureRolloutOperationRolloutInput',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_preview_feature`.\n\nRepresents a single Google Compute Engine preview feature such as Alpha API\naccess, which can be enabled or unspecified for a project.\n\nCompute Engine **preview feature** — enables or leaves unspecified a\nproject-level preview such as Alpha API access.\n\nPrefer `name: alpha-api-access` with\n`activationStatus: ACTIVATION_STATE_UNSPECIFIED` and\n[rolloutOperation] `ROLLOUT_PLAN_FAST_ROLLOUT` for smoke stacks (matches\nthe provider basic example; the API currently rejects other rollout\nplans). Enabling Alpha APIs does not provision VMs.\n\nEnable `compute.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleComputePreviewFeature(\n  localName: \'alpha\',\n  name: TfArg.literal(\'alpha-api-access\'),\n  activationStatus: TfArg.literal(\n    ComputePreviewFeatureActivationStatus.activationStateUnspecified,\n  ),\n  rolloutOperation: ComputePreviewFeatureRolloutOperation(\n    rolloutInput: ComputePreviewFeatureRolloutOperationRolloutInput(\n      predefinedRolloutPlan: TfArg.literal(\'ROLLOUT_PLAN_FAST_ROLLOUT\'),\n    ),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_compute_project_cloud_armor_tier',
+    className: 'GoogleComputeProjectCloudArmorTier',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_project_cloud_armor_tier`.',
+    constructorParams: <String>[
+      'localName',
+      'cloudArmorTier',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>['ComputeProjectCloudArmorTier'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_project_cloud_armor_tier`.\n\nSets the Cloud Armor tier of the project.\n\nProject-level **Cloud Armor managed protection tier** — a singleton that\nsets `CA_STANDARD`, `CA_ENTERPRISE_PAYGO`, or `CA_ENTERPRISE_ANNUAL`.\n\nPrefer [ComputeProjectCloudArmorTier.caStandard] in smoke stacks.\nDo **not** set Enterprise tiers in apply-smoke: Cloud Armor Enterprise\nAnnual bills ~\$3000/mo (SKU EFB7-4299-A2EC). `CA_STANDARD` is the free\n/ pay-as-you-go security-policy tier (no Enterprise subscription SKU).\n\nTerraform create/update call `setCloudArmorTier`; destroy is state-only\n(`only_remove_from_state` upstream) and leaves the GCP tier in place.\n\nEnable `compute.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleComputeProjectCloudArmorTier(\n  localName: \'armor_tier\',\n  cloudArmorTier: TfArg.literal(\n    ComputeProjectCloudArmorTier.caStandard,\n  ),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_compute_project_default_network_tier',
+    className: 'GoogleComputeProjectDefaultNetworkTier',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_compute_project_default_network_tier`.',
+    constructorParams: <String>['localName', 'networkTier', 'project'],
+    nestedTypes: <String>['ComputeProjectDefaultNetworkTier'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_project_default_network_tier`.\n\nProject-level **Compute Engine default network tier** — a singleton\nthat sets `PREMIUM` or `STANDARD` as the default for new external IP\naddresses in the project.\n\nThis resource is free project metadata. Prefer\n[ComputeProjectDefaultNetworkTier.standard] in smoke stacks when you\nwant the cheaper regional default; `PREMIUM` is Google\'s usual\nproject default.\n\nEnable `compute.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleComputeProjectDefaultNetworkTier(\n  localName: \'defaults\',\n  networkTier: TfArg.literal(\n    ComputeProjectDefaultNetworkTier.standard,\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_compute_project_metadata_item',
@@ -4998,6 +5068,22 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_compute_shared_vpc_service_project`.',
   ),
   CatalogEntry(
+    tfType: 'google_compute_snapshot_settings',
+    className: 'GoogleComputeSnapshotSettings',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_snapshot_settings`.',
+    constructorParams: <String>['localName', 'storageLocation', 'project'],
+    nestedTypes: <String>[
+      'ComputeSnapshotSettingsStorageLocation',
+      'ComputeSnapshotSettingsStorageLocationPolicy',
+      'ComputeSnapshotSettingsStorageLocationLocations',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_snapshot_settings`.\n\nUpdates your project\'s snapshot settings and sets a new default storage\nlocation for snapshots.\n\nProject-level **Compute Engine snapshot settings** — default storage\nlocation policy for new snapshots (a project singleton).\n\nTerraform create/update use `PATCH`; destroy is a state-only remove\n(`exclude_delete` upstream) and leaves the GCP settings in place.\nPrefer [ComputeSnapshotSettingsStorageLocationPolicy.localRegion] for\ncheap, region-local defaults in smoke stacks.\n\nEnable `compute.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleComputeSnapshotSettings(\n  localName: \'defaults\',\n  storageLocation: ComputeSnapshotSettingsStorageLocation(\n    policy: TfArg.literal(\n      ComputeSnapshotSettingsStorageLocationPolicy.localRegion,\n    ),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_ssl_certificate',
     className: 'GoogleComputeSslCertificate',
     barrel: 'compute',
@@ -5714,6 +5800,50 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_container_node_pool`.\n\nNodePool\n\nExample (node pool on an existing cluster):\n```dart\nfinal pool = GoogleContainerNodePool(\n  localName: \'primary\',\n  name: TfArg.literal(\'primary-pool\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  cluster: TfArg.ref(cluster.nameRef),\n  nodeCount: TfArg.literal(3),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_data_catalog_entry_group',
+    className: 'GoogleDataCatalogEntryGroup',
+    barrel: 'data_catalog',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_data_catalog_entry_group`.',
+    constructorParams: <String>[
+      'localName',
+      'entryGroupId',
+      'region',
+      'displayName',
+      'description',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_data_catalog_entry_group`.\n\nAn EntryGroup resource represents a logical grouping of zero or more Data\nCatalog Entry resources.\n\nData Catalog **entry group** — logical container for Data Catalog Entry\nresources (legacy Data Catalog API).\n\nPrefer [GoogleDataplexEntryGroup] for new catalogs; this factory remains\nfor stacks that still use `google_data_catalog_entry_group`. Creating an\nentry group alone does not create entries or bill catalog SKUs.\n\nEnable `datacatalog.googleapis.com` via [GoogleProjectService]\nbefore apply. Region is typically regional (e.g. `us-central1`).\n\nExample:\n```dart\nGoogleDataCatalogEntryGroup(\n  localName: \'group\',\n  entryGroupId: TfArg.literal(\'terradart_entry_group\'),\n  region: TfArg.literal(\'us-central1\'),\n  displayName: TfArg.literal(\'TerraDart entry group\'),\n  description: TfArg.literal(\'TerraDart smoke Data Catalog entry group\'),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_data_lineage_config',
+    className: 'GoogleDataLineageConfig',
+    barrel: 'dataplex',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_data_lineage_config`.',
+    constructorParams: <String>[
+      'localName',
+      'parent',
+      'location',
+      'ingestion',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[
+      'DataLineageConfigIngestion',
+      'DataLineageConfigIngestionRule',
+      'DataLineageConfigIngestionRuleIntegrationSelector',
+      'DataLineageConfigIngestionRuleIntegrationSelectorIntegration',
+      'DataLineageConfigIngestionRuleLineageEnablement',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_data_lineage_config`.\n\nConfiguration for Data Lineage.\n\nDefines configuration options for Lineage customers to control behavior of\nlineage systems.\n\nProject/folder/org **Data Lineage config** — controls lineage ingestion\nenablement for integrations such as Dataproc.\n\nThis is a singleton `PATCH` resource per parent + location. Prefer a\nproject parent (`projects/<id>`) and `location: global` for smoke stacks.\nEnabling ingestion does not itself provision Dataproc or bill Dataplex\nMetadata Storage; those SKUs apply when lineage data is produced/stored.\n\nEnable `datalineage.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleDataLineageConfig(\n  localName: \'lineage\',\n  parent: TfArg.literal(\'projects/<project-id>\'),\n  location: TfArg.literal(\'global\'),\n  ingestion: DataLineageConfigIngestion(\n    rule: [\n      DataLineageConfigIngestionRule(\n        integrationSelector: DataLineageConfigIngestionRuleIntegrationSelector(\n          integration: TfArg.literal(\n            DataLineageConfigIngestionRuleIntegrationSelectorIntegration.dataproc,\n          ),\n        ),\n        lineageEnablement: DataLineageConfigIngestionRuleLineageEnablement(\n          enabled: TfArg.literal(true),\n        ),\n      ),\n    ],\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_data_loss_prevention_deidentify_template',
     className: 'GoogleDataLossPreventionDeidentifyTemplate',
     barrel: 'dlp',
@@ -6414,6 +6544,32 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_dataplex_zone_iam_member`.',
   ),
   CatalogEntry(
+    tfType: 'google_dataproc_autoscaling_policy',
+    className: 'GoogleDataprocAutoscalingPolicy',
+    barrel: 'dataproc',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_dataproc_autoscaling_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'policyId',
+      'location',
+      'workerConfig',
+      'secondaryWorkerConfig',
+      'basicAlgorithm',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[
+      'DataprocAutoscalingPolicyBasicAlgorithm',
+      'DataprocAutoscalingPolicyBasicAlgorithmYarnConfig',
+      'DataprocAutoscalingPolicySecondaryWorkerConfig',
+      'DataprocAutoscalingPolicyWorkerConfig',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataproc_autoscaling_policy`.\n\nDescribes an autoscaling policy for Dataproc cluster autoscaler.\n\nDataproc **autoscaling policy** — a reusable YARN autoscaler document\nclusters can attach via `cluster_config.autoscaling_config.policy_uri`.\n\nCreating a policy alone does not provision VMs. Prefer a thin smoke\nstack with [policyId], [location], [workerConfig], and\n[basicAlgorithm].`yarnConfig` (no sibling cluster).\n\nEnable `dataproc.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleDataprocAutoscalingPolicy(\n  localName: \'asp\',\n  policyId: TfArg.literal(\'terradart-asp\'),\n  location: TfArg.literal(\'us-central1\'),\n  workerConfig: DataprocAutoscalingPolicyWorkerConfig(\n    maxInstances: TfArg.literal(3),\n  ),\n  basicAlgorithm: DataprocAutoscalingPolicyBasicAlgorithm(\n    yarnConfig: DataprocAutoscalingPolicyBasicAlgorithmYarnConfig(\n      gracefulDecommissionTimeout: TfArg.literal(\'30s\'),\n      scaleUpFactor: TfArg.literal(0.5),\n      scaleDownFactor: TfArg.literal(0.5),\n    ),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_dataproc_metastore_federation',
     className: 'GoogleDataprocMetastoreFederation',
     barrel: 'dataproc',
@@ -6855,6 +7011,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_document_ai_processor`.\n\nThe first-class citizen for Document AI. Each processor defines how to\nextract structural information from a document.',
+  ),
+  CatalogEntry(
+    tfType: 'google_document_ai_schema',
+    className: 'GoogleDocumentAiSchema',
+    barrel: 'document_ai',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_document_ai_schema`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'displayName',
+      'labels',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_document_ai_schema`.\n\nNextSchema is a collection of SchemaVersions.\n\nDocument AI **schema** — a named collection of schema versions for\ncustom document processors.\n\nCreating a schema alone does not process documents and has no Document\nAI page/OCR SKU (billed only when pages are processed by a processor).\n\nEnable `documentai.googleapis.com` via [GoogleProjectService] before\napply. [location] is a multi-region (`us` or `eu`).\n\nExample:\n```dart\nGoogleDocumentAiSchema(\n  localName: \'fields\',\n  location: TfArg.literal(\'us\'),\n  displayName: TfArg.literal(\'terradart-schema\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_essential_contacts_contact',
@@ -7803,6 +7978,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_gke_backup_restore_plan_iam_member`.',
   ),
   CatalogEntry(
+    tfType: 'google_gke_hub_feature',
+    className: 'GoogleGkeHubFeature',
+    barrel: 'container',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_gke_hub_feature`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'labels',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_gke_hub_feature`.\n\nFeature represents the settings and status of any Hub Feature.\n\nGKE Hub **feature** — enables a fleet-level Feature such as\nMulti-Cluster Service Discovery, Service Mesh, or Config Management.\n\nFor smoke stacks prefer `name: multiclusterservicediscovery` at\n`location: global` — no cluster membership is required (see provider\n`gkehub_feature_multi_cluster_service_discovery`). Also enable\n`multiclusterservicediscovery.googleapis.com` before apply. Features\nthat need a membership (`multiclusteringress`) or paid Anthos add-ons\nare out of scope for the quickstart.\n\nEnable `gkehub.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleGkeHubFeature(\n  localName: \'mcsd\',\n  name: TfArg.literal(\'multiclusterservicediscovery\'),\n  location: TfArg.literal(\'global\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_gke_hub_fleet',
     className: 'GoogleGkeHubFleet',
     barrel: 'container',
@@ -8239,6 +8433,43 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_iap_location_web_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access on **web\nresources** at a regional location.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [location]: regional location (e.g. `\'us-central1\'`).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal (`user:…`, `group:…`, `serviceAccount:…`).\n\nExample:\n```dart\nGoogleIapLocationWebIamMember(\n  localName: \'location_web_invoker\',\n  location: TfArg.literal(\'us-central1\'),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_iap_settings',
+    className: 'GoogleIapSettings',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_iap_settings`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'accessSettings',
+      'applicationSettings',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[
+      'IapSettingsAccessSettings',
+      'IapSettingsAccessSettingsAllowedDomainsSettings',
+      'IapSettingsAccessSettingsCorsSettings',
+      'IapSettingsAccessSettingsGcipSettings',
+      'IapSettingsAccessSettingsOauthSettings',
+      'IapSettingsAccessSettingsReauthSettings',
+      'IapSettingsAccessSettingsReauthSettingsMethod',
+      'IapSettingsAccessSettingsReauthSettingsPolicyType',
+      'IapSettingsAccessSettingsWorkforceIdentitySettings',
+      'IapSettingsAccessSettingsWorkforceIdentitySettingsOauth2',
+      'IapSettingsApplicationSettings',
+      'IapSettingsApplicationSettingsAccessDeniedPageSettings',
+      'IapSettingsApplicationSettingsAttributePropagationSettings',
+      'IapSettingsApplicationSettingsAttributePropagationSettingsOutputCredentials',
+      'IapSettingsApplicationSettingsCsmSettings',
+    ],
+    sensitiveFields: <String>[
+      'access_settings.oauth_settings.client_secret',
+      'access_settings.workforce_identity_settings.oauth2.client_secret',
+    ],
+    docComment:
+        'Factory wrapper for `google_iap_settings`.\n\nIAP settings - manage IAP settings\n\nIAP **settings** — project- or resource-scoped Identity-Aware Proxy\naccess and application configuration.\n\nManages IAP settings metadata (CORS, OAuth, reauth, cookie domain, custom\naccess-denied page, and related blocks). Creating settings alone does not\nenable IAP on a backend or bill Chrome Enterprise Premium; Cloud IAP for\nGCP-hosted targets is free per Google Cloud pricing.\n\nEnable `iap.googleapis.com` via [GoogleProjectService] before apply.\n[name] is the IAP resource path (e.g. `projects/<project>/iap_web`).\nOmit nested [accessSettings] / [applicationSettings] for name-only\nproject-level settings.\n\nExample:\n```dart\nGoogleIapSettings(\n  localName: \'web\',\n  name: TfArg.literal(\'projects/my-proj/iap_web\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_iap_tunnel_dest_group',
     className: 'GoogleIapTunnelDestGroup',
     barrel: 'iap',
@@ -8354,6 +8585,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_identity_platform_tenant`.\n\nTenant configuration in a multi-tenant project.\n\nYou must enable the [Google Identity\nPlatform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity)\nin the marketplace prior to using this resource.\n\nYou must [enable\nmulti-tenancy](https://cloud.google.com/identity-platform/docs/multi-tenancy-quickstart)\nvia the Cloud Console prior to creating tenants.\n\nIdentity Platform tenant — isolated Auth realm under a multi-tenant project.\n\nPair with [GoogleIdentityPlatformConfig] (enable multi-tenancy in the\nconsole / config as needed). Set [displayName] at minimum.',
   ),
   CatalogEntry(
+    tfType: 'google_integrations_client',
+    className: 'GoogleIntegrationsClient',
+    barrel: 'integrations',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_integrations_client`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'createSampleIntegrations',
+      'cloudKmsConfig',
+      'runAsServiceAccount',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>['IntegrationsClientCloudKmsConfig'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_integrations_client`.\n\nApplication Integration Client.\n\nApplication Integration **client** — provisions the Integration\ncontrol plane for a project location (`clients:provision`).\n\nThis is regional singleton config: [location] is the only required\nargument. Creating the client does not execute integration flows\n(billing SKUs are flow execution / data processed). Optional\n[createSampleIntegrations] seeds sample flows; omit it for smoke\nstacks. Optional [cloudKmsConfig] enables CMEK.\n\nEnable `integrations.googleapis.com` via [GoogleProjectService]\nbefore apply. Destroy calls `clients:deprovision`.\n\nExample:\n```dart\nGoogleIntegrationsClient(\n  localName: \'client\',\n  location: TfArg.literal(\'us-central1\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_kms_crypto_key',
     className: 'GoogleKmsCryptoKey',
     barrel: 'kms',
@@ -8438,6 +8689,23 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_kms_key_ring_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_kms_project_autokey_config',
+    className: 'GoogleKmsProjectAutokeyConfig',
+    barrel: 'kms',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_kms_project_autokey_config`.',
+    constructorParams: <String>[
+      'localName',
+      'keyProjectResolutionMode',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>['KmsProjectAutokeyConfigKeyProjectResolutionMode'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_kms_project_autokey_config`.\n\n`ProjectAutokeyConfig` is a singleton resource used to configure the\nauto-provisioning flow of CryptoKeys for CMEK.\n\n~> **Note:** ProjectAutokeyConfigs cannot be deleted from Google Cloud\nPlatform. Destroying a Terraform-managed ProjectAutokeyConfigs will remove\nit from state but *will not delete the resource from the project.*\n\nProject-level **Cloud KMS Autokey config** — a singleton that controls\nwhether Autokey auto-provisions CMEK CryptoKeys for this project.\n\nPrefer [keyProjectResolutionMode] `DISABLED` for smoke stacks: the\nconfig is free metadata and does not create keys. Setting\n`RESOURCE_PROJECT` enables Autokey provisioning (HSM Autokey key SKUs\napply only when keys are created).\n\nEnable `cloudkms.googleapis.com` via [GoogleProjectService] (or\n[Apis.enable] with [Barrels.kmsApi]) before apply.\n\n**Note:** Project Autokey configs cannot be deleted from GCP. Destroying\na Terraform-managed config removes it from state but does not delete the\nsingleton from the project (fields are cleared / abandoned per\n[deletionPolicy]).\n\nExample:\n```dart\nGoogleKmsProjectAutokeyConfig(\n  localName: \'autokey\',\n  keyProjectResolutionMode: TfArg.literal(\n    KmsProjectAutokeyConfigKeyProjectResolutionMode.disabled,\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_license_manager_configuration',
@@ -8979,6 +9247,38 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_migration_center_source`.\n\nSource represents a data source from which asset discovery data is ingested\ninto Migration Center.\n\nMigration Center source — ingestion endpoint for discovery or upload data.\n\nEnable `migrationcenter.googleapis.com` before apply. Pair with\n[GoogleMigrationCenterDiscoveryClient] or [GoogleMigrationCenterImportJob].',
   ),
   CatalogEntry(
+    tfType: 'google_model_armor_template',
+    className: 'GoogleModelArmorTemplate',
+    barrel: 'model_armor',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_model_armor_template`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'templateId',
+      'filterConfig',
+      'templateMetadata',
+      'labels',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[
+      'ModelArmorTemplateFilterConfig',
+      'ModelArmorTemplateFilterConfigMaliciousUriFilterSettings',
+      'ModelArmorTemplateFilterConfigPiAndJailbreakFilterSettings',
+      'ModelArmorTemplateFilterConfigRaiSettings',
+      'ModelArmorTemplateFilterConfigRaiSettingsRaiFilters',
+      'ModelArmorTemplateFilterConfigSdpSettings',
+      'ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfig',
+      'ModelArmorTemplateFilterConfigSdpSettingsBasicConfig',
+      'ModelArmorTemplateTemplateMetadata',
+      'ModelArmorTemplateTemplateMetadataMultiLanguageDetection',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_model_armor_template`.\n\nA `Template` is a resource of Model Armor that lets you configure how Model\nArmor screens prompts and responses. It functions as sets of customized\nfilters and thresholds for different safety and security confidence levels,\nallowing control over what content is flagged.\n\nModel Armor **template** — filter thresholds for screening LLM prompts\nand responses (RAI, SDP, prompt-injection, malicious URI).\n\n[filterConfig] is required by the schema but may be an empty block for\na minimal template (see provider `modelarmor_template_basic`). Screening\nis billed per Model Armor PAYG usage under Security Command Center\nadd-ons — creating/updating a template alone does not invoke models.\n\nEnable `modelarmor.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleModelArmorTemplate(\n  localName: \'basic\',\n  location: TfArg.literal(\'us-central1\'),\n  templateId: TfArg.literal(\'terradart-modelarmor\'),\n  filterConfig: ModelArmorTemplateFilterConfig(),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_monitoring_alert_policy',
     className: 'GoogleMonitoringAlertPolicy',
     barrel: 'monitoring',
@@ -9397,6 +9697,32 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_network_security_address_group`.\n\nAddressGroup is a resource that specifies how a collection of IP/DNS used in\nFirewall Policy.',
   ),
   CatalogEntry(
+    tfType: 'google_network_security_backend_authentication_config',
+    className: 'GoogleNetworkSecurityBackendAuthenticationConfig',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_network_security_backend_authentication_config`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'description',
+      'wellKnownRoots',
+      'trustConfig',
+      'clientCertificate',
+      'labels',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'NetworkSecurityBackendAuthenticationConfigWellKnownRoots',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_security_backend_authentication_config`.\n\nBackendAuthenticationConfig groups the TrustConfig together with other\nsettings that control how the load balancer authenticates, and expresses its\nidentity to the backend.\n\nNetwork Security **backend authentication config** — how a load balancer\nauthenticates to backends (backend mTLS / trust roots).\n\nCreating a config alone does not attach it to a BackendService or bill\nNetwork Security data-plane SKUs. Prefer [wellKnownRoots]\n`PUBLIC_ROOTS` when you do not need a Certificate Manager TrustConfig.\n\nEnable `networksecurity.googleapis.com` via [GoogleProjectService]\nbefore apply. Location defaults to `global`.\n\nExample:\n```dart\nGoogleNetworkSecurityBackendAuthenticationConfig(\n  localName: \'backend_auth\',\n  name: TfArg.literal(\'terradart-backend-auth\'),\n  location: TfArg.literal(\'global\'),\n  description: TfArg.literal(\'TerraDart smoke backend authentication\'),\n  wellKnownRoots: TfArg.literal(\n    NetworkSecurityBackendAuthenticationConfigWellKnownRoots.publicRoots,\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_network_security_client_tls_policy',
     className: 'GoogleNetworkSecurityClientTlsPolicy',
     barrel: 'network',
@@ -9418,6 +9744,50 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_network_security_client_tls_policy`.\n\nClientTlsPolicy is a resource that specifies how a client should\nauthenticate connections to backends of a service. This resource itself does\nnot affect configuration unless it is attached to a backend service\nresource.\n\nNetwork Security **client TLS policy** — how a client authenticates to\nbackends (Traffic Director / service mesh). Creating a policy alone does\nnot attach it to a backend or bill mesh SKUs.\n\nOptional nested `clientCertificate` / `serverValidationCa` blocks stay\nas maps (cert-provider exactly_one_of is nested, not sealed here).\n\nEnable `networksecurity.googleapis.com` via [GoogleProjectService]\nbefore apply.\n\nExample:\n```dart\nGoogleNetworkSecurityClientTlsPolicy(\n  localName: \'backend\',\n  name: TfArg.literal(\'terradart-client-tls\'),\n  location: TfArg.literal(\'global\'),\n  description: TfArg.literal(\'TerraDart smoke client TLS policy\'),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_network_security_dns_threat_detector',
+    className: 'GoogleNetworkSecurityDnsThreatDetector',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_network_security_dns_threat_detector`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'threatDetectorProvider',
+      'excludedNetworks',
+      'labels',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'NetworkSecurityDnsThreatDetectorThreatDetectorProvider',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_security_dns_threat_detector`.\n\nDNS Armor is a fully-managed service that provides DNS-layer security for\nyour Google Cloud workloads.\n\nNetwork Security **DNS threat detector** (DNS Armor / Infoblox) — enables\nDNS-layer advanced threat detection for VPC workloads in a project.\n\nCreating a detector enables DNS Armor for the project. Billing is\nusage-based (workloads / internet-bound DNS queries) via Network Security\nSKU `F6D7-37A1-D4A0`, not a flat existence charge for the config alone.\n[threatDetectorProvider] must be `INFOBLOX` (only supported value).\nLocation must be `global`.\n\nEnable `networksecurity.googleapis.com` via [GoogleProjectService]\nbefore apply. At most one DNS threat detector exists per project.\n\nExample:\n```dart\nGoogleNetworkSecurityDnsThreatDetector(\n  localName: \'dns_threat\',\n  name: TfArg.literal(\'terradart-dns-threat\'),\n  location: TfArg.literal(\'global\'),\n  threatDetectorProvider: TfArg.literal(\n    NetworkSecurityDnsThreatDetectorThreatDetectorProvider.infoblox,\n  ),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_network_security_gateway_security_policy',
+    className: 'GoogleNetworkSecurityGatewaySecurityPolicy',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_network_security_gateway_security_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'description',
+      'tlsInspectionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_security_gateway_security_policy`.\n\nThe GatewaySecurityPolicy resource contains a collection of\nGatewaySecurityPolicyRules and associated metadata.\n\nNetwork Security **gateway security policy** — metadata container for\nSecure Web Proxy (SWP) gateway rules.\n\nCreating a policy alone does not provision a gateway, attach rules that\ninspect traffic, or bill Secure Web Proxy data-plane SKUs.\n\nEnable `networksecurity.googleapis.com` via [GoogleProjectService]\nbefore apply. Location is typically regional (e.g. `us-central1`).\n\nExample:\n```dart\nGoogleNetworkSecurityGatewaySecurityPolicy(\n  localName: \'swp\',\n  name: TfArg.literal(\'terradart-gateway-policy\'),\n  location: TfArg.literal(\'us-central1\'),\n  description: TfArg.literal(\'TerraDart smoke gateway security policy\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_network_security_server_tls_policy',
@@ -10205,6 +10575,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_project`.\n\nUse to look up the active project\'s `number`, `name`, etc., for\ndownstream references (e.g. CMEK service-account email composition).\n\nExample:\n```dart\nfinal current = stack.addData(GoogleProject(localName: \'current\'));\nfinal cmekBinding = GooglePubsubTopicIamMember(\n  localName: \'pubsub_cmek\',\n  topic: TfArg.ref(topic.nameRef),\n  role: TfArg.literal(\'roles/cloudkms.cryptoKeyEncrypterDecrypter\'),\n  member: TfArg.literal(\n    \'serviceAccount:service-\${current.number.interpolation}@gcp-sa-pubsub.iam.gserviceaccount.com\',\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_project_iam_audit_config',
+    className: 'GoogleProjectIamAuditConfig',
+    barrel: 'iam',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_project_iam_audit_config`.',
+    constructorParams: <String>[
+      'localName',
+      'project',
+      'service',
+      'auditLogConfig',
+    ],
+    nestedTypes: <String>[
+      'ProjectIamAuditConfigAuditLogConfigLogType',
+      'ProjectIamAuditConfigAuditLogConfig',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_project_iam_audit_config`.\n\nProject-level **IAM audit logging config** — enables Admin Activity,\nData Access, or System Event audit logs for a service (or\n`allServices`).\n\nPrefer [ProjectIamAuditConfigAuditLogConfigLogType.adminRead] for smoke\nstacks: Admin Activity audit logs are free. `DATA_READ` / `DATA_WRITE`\nemit Data Access logs that count toward Cloud Logging ingestion volume.\n\nExample:\n```dart\nGoogleProjectIamAuditConfig(\n  localName: \'storage_admin_read\',\n  project: TfArg.literal(projectId),\n  service: TfArg.literal(\'storage.googleapis.com\'),\n  auditLogConfig: [\n    ProjectIamAuditConfigAuditLogConfig(\n      logType: TfArg.literal(\n        ProjectIamAuditConfigAuditLogConfigLogType.adminRead.terraformValue,\n      ),\n    ),\n  ],\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_project_iam_custom_role',
     className: 'GoogleProjectIamCustomRole',
     barrel: 'iam',
@@ -10259,6 +10649,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_project_service`.\n\nEnables a single Google Cloud API on a project. Each GCP API (Pub/Sub,\nCloud Tasks, Secret Manager, Cloud Scheduler, …) requires its matching\n`google_project_service` resource to be enabled before its resources\ncan be created — typically wired as an explicit `dependsOn` so Terraform\napplies the API enablement first.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_project_service.`).\n- `service`: API endpoint name, e.g. `pubsub.googleapis.com`.\n  Pass `TfArg.literal(\'pubsub.googleapis.com\')`.\n\nOptional knobs:\n- `project`: explicit project ID; defaults to the provider\'s `project`\n  when omitted.\n- `disableOnDestroy`: when `false`, leaves the API enabled if the\n  resource is destroyed. **Recommended `false` for personal/shared\n  projects** — disabling APIs that other resources outside Terraform\'s\n  knowledge depend on can break unrelated workloads.\n- `disableDependentServices`: when `true`, also disables any APIs that\n  depend on this one. Default `false`.\n\nExample pairing with [GooglePubsubTopic]:\n```dart\nfinal pubsubApi = GoogleProjectService(\n  localName: \'pubsub\',\n  service: TfArg.literal(\'pubsub.googleapis.com\'),\n  disableOnDestroy: TfArg.literal(false),\n);\n\nfinal orders = GooglePubsubTopic(\n  localName: \'orders\',\n  name: TfArg.literal(\'orders-prod\'),\n  dependsOn: [pubsubApi],\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_project_usage_export_bucket',
+    className: 'GoogleProjectUsageExportBucket',
+    barrel: 'project',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_project_usage_export_bucket`.',
+    constructorParams: <String>[
+      'localName',
+      'bucketName',
+      'prefix',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_project_usage_export_bucket`.\n\nProject-level **Compute Engine usage export** — points daily usage\nreports at a GCS [bucketName] (optional [prefix]).\n\nThis resource is free project metadata. Report objects written to the\nbucket incur normal Cloud Storage charges if/when GCE emits them; empty\nsmoke stacks typically write nothing.\n\nEnable `compute.googleapis.com` and `storage.googleapis.com` via\n[GoogleProjectService] before apply. Prefer a dedicated bucket with\n`forceDestroy: true` in smoke stacks so teardown can empty it.\n\nExample:\n```dart\nfinal reports = GoogleStorageBucket(\n  localName: \'usage_reports\',\n  name: TfArg.literal(\'my-usage-reports\'),\n  location: TfArg.literal(\'US\'),\n  forceDestroy: TfArg.literal(true),\n);\nGoogleProjectUsageExportBucket(\n  localName: \'usage_export\',\n  bucketName: TfArg.ref(reports.nameRef),\n  prefix: TfArg.literal(\'gce-usage\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_public_ca_external_account_key',
@@ -10500,6 +10908,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>['auth_string'],
     docComment:
         'Factory wrapper for `google_redis_instance`.\n\nA Google Cloud Redis instance.\n\nMemorystore for Redis instance — managed Redis for app caches and sessions.\n\nPair with [GoogleVpcAccessConnector] (Cloud Run) or GCE/GKE workloads on\nthe same VPC via [authorizedNetwork].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: instance ID.\n- [memorySizeGb]: memory size in GiB.\n\nOptional hardening / operations:\n- [authEnabled] turns Redis AUTH on (read the password via [authString]).\n- [transitEncryptionMode] enables in-transit TLS ([serverCaCerts]).\n- [replicaCount] / [readReplicasMode] add read replicas on\n  `STANDARD_HA` instances ([readEndpoint], [readEndpointPort]).\n- [maintenancePolicy] pins the weekly maintenance window.\n- [persistenceConfig] turns on RDB snapshots.\n\nEnable `redis.googleapis.com` via [GoogleProjectService] or\n[Apis.enable] before apply.\n\nExample (basic tier on the default VPC):\n```dart\nGoogleRedisInstance(\n  localName: \'cache\',\n  name: TfArg.literal(\'api-cache\'),\n  memorySizeGb: TfArg.literal(1),\n  region: TfArg.literal(\'us-central1\'),\n  tier: TfArg.literal(RedisInstanceTier.basic),\n  authorizedNetwork: TfArg.literal(\'default\'),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_scc_v2_project_notification_config',
+    className: 'GoogleSccV2ProjectNotificationConfig',
+    barrel: 'scc',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_scc_v2_project_notification_config`.',
+    constructorParams: <String>[
+      'localName',
+      'configId',
+      'pubsubTopic',
+      'streamingConfig',
+      'description',
+      'location',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>['SccV2ProjectNotificationConfigStreamingConfig'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_scc_v2_project_notification_config`.\n\nThis is a continuous export that exports findings to a Pub/Sub topic.\n\nSecurity Command Center v2 **project notification config** — a continuous\nexport that streams findings to a Pub/Sub topic.\n\n[pubsubTopic] must be a fully-qualified topic path\n(`projects/{project}/topics/{topic}`). Pass [GooglePubsubTopic.id] from a\nsibling topic (not the bare topic name).\n\n[streamingConfig].`filter` is required by the schema; use `""` to match\nall findings, or a CEL-style expression such as\n`state = "ACTIVE"`. See\n[Filtering notifications](https://cloud.google.com/security-command-center/docs/how-to-api-filter-notifications).\n\nAfter create, [serviceAccount] is the identity that needs\n`roles/pubsub.publisher` on the destination topic (grant via\n[GooglePubsubTopicIamMember] when delivery must succeed).\n\nEnable `securitycenter.googleapis.com` (and `pubsub.googleapis.com` when\ncreating the topic in-stack) via [GoogleProjectService] before apply.\n\nExample:\n```dart\nfinal topic = GooglePubsubTopic(\n  localName: \'scc_findings\',\n  name: TfArg.literal(\'scc-findings\'),\n);\nGoogleSccV2ProjectNotificationConfig(\n  localName: \'findings_export\',\n  configId: TfArg.literal(\'terradart-findings\'),\n  description: TfArg.literal(\'Export ACTIVE findings to Pub/Sub\'),\n  pubsubTopic: TfArg.ref(topic.id),\n  streamingConfig: SccV2ProjectNotificationConfigStreamingConfig(\n    filter: TfArg.literal(\'state = "ACTIVE"\'),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_secret_manager_regional_secret',
@@ -11172,6 +11601,21 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>['content', 'customer_encryption.encryption_key'],
     docComment:
         'Factory wrapper for `google_storage_bucket_object`.\n\nPass `TfArg.ref(bucket.nameRef)` for `bucket` — NOT `bucket.id`\n(`id` is `{bucket-name}` for buckets but the API wants just the name).\n\n`body`: object payload — choose exactly one of:\n- [StorageBucketObjectBucketObjectFromSource] — upload from a local file path.\n- [StorageBucketObjectBucketObjectFromContent] — inline string payload.\nThe sealed [StorageBucketObjectBucketObjectContent] type makes the `source` / `content`\n`exactly_one_of` constraint exhaustive at the type level.\n\nExample (inline content):\n```dart\nfinal assets = GoogleStorageBucket(\n  localName: \'assets\',\n  name: TfArg.literal(\'my-app-assets-prod\'),\n  location: TfArg.literal(\'ASIA-NORTHEAST1\'),\n);\nfinal config = GoogleStorageBucketObject(\n  localName: \'config\',\n  bucket: TfArg.ref(assets.nameRef),\n  name: TfArg.literal(\'config/app.json\'),\n  body: StorageBucketObjectBucketObjectFromContent(\n    content: TfArg.literal(\'{"feature_x": true}\'),\n  ),\n  contentType: TfArg.literal(\'application/json\'),\n  storageClass: TfArg.literal(BucketObjectStorageClass.standard),\n);\n```\n\nExample (file upload):\n```dart\nfinal logo = GoogleStorageBucketObject(\n  localName: \'logo\',\n  bucket: TfArg.ref(assets.nameRef),\n  name: TfArg.literal(\'static/logo.png\'),\n  body: StorageBucketObjectBucketObjectFromSource(source: TfArg.literal(\'./assets/logo.png\')),\n  contentType: TfArg.literal(\'image/png\'),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_storage_control_project_intelligence_config',
+    className: 'GoogleStorageControlProjectIntelligenceConfig',
+    barrel: 'storage_control',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_storage_control_project_intelligence_config`.',
+    constructorParams: <String>['localName', 'name', 'editionConfig', 'filter'],
+    nestedTypes: <String>[
+      'StorageControlProjectIntelligenceConfigEditionConfig',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_storage_control_project_intelligence_config`.\n\nThe Project Storage Intelligence Config resource represents GCS Storage\nIntelligence operating on individual GCP project. Storage Intelligence\nConfig is a singleton resource and individual instance exists on each GCP\nproject.\n\nStorage Intelligence is for Storage Admins to manage GCP storage assets at\nscale for performance, cost, security & compliance.\n\nProject-level **Cloud Storage Intelligence config** — a singleton that\ncontrols whether Storage Intelligence runs on this GCP project.\n\nPrefer [editionConfig] `DISABLED` for smoke stacks: the config is free\nproject metadata. Do **not** set `STANDARD` (or a paid `TRIAL` path) in\napply-smoke — those editions can enable billed Storage Intelligence.\n`INHERIT` follows the parent org/folder setting and may still resolve\nto a paid edition.\n\nTerraform create/update use `PATCH`; destroy is state-only\n(`exclude_delete` upstream) and leaves the GCP singleton in place.\n\nEnable `storage.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleStorageControlProjectIntelligenceConfig(\n  localName: \'intelligence\',\n  name: TfArg.literal(projectId),\n  editionConfig: TfArg.literal(\n    StorageControlProjectIntelligenceConfigEditionConfig.disabled,\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_storage_hmac_key',

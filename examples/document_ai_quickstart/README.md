@@ -1,6 +1,6 @@
 # Document AI quickstart
 
-End-to-end terradart example for Document AI. Enables the Document AI API and provisions an OCR document processor (`terradart-ocr`) in the `us` multi-region — and exports the processor display name as a typed Dart constant.
+End-to-end terradart example for Document AI. Enables the Document AI API and provisions an OCR document processor (`terradart-ocr`) plus a named schema (`terradart-schema`) in the `us` multi-region — and exports the processor display name as a typed Dart constant.
 
 ## Prerequisites
 
@@ -12,7 +12,7 @@ End-to-end terradart example for Document AI. Enables the Document AI API and pr
 
 ```
 examples/document_ai_quickstart/
-├── lib/main.dart       # DocAiStack (API enablement + OCR processor + exports)
+├── lib/main.dart       # DocAiStack (API enablement + OCR processor + schema + exports)
 ├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
 ├── lib/generated/      # (created on synth) doc_ai_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
@@ -36,4 +36,4 @@ dart run bin/infra.dart
 cd tf-out && terraform init && terraform plan
 ```
 
-Creating a processor is free (billing is per document processed); the stack creates and destroys cleanly in a single project.
+Creating a processor or schema is free (billing is per document processed); the stack creates and destroys cleanly in a single project.

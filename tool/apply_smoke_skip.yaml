@@ -34,6 +34,12 @@ firebase_app_hosting_quickstart: needs the project registered with Firebase + a 
 # --- Identity Platform / GCIP multi-tenancy needs more than API enablement
 identity_platform_quickstart: tenant create returns 400 INVALID_PROJECT_ID after enabling identitytoolkit.googleapis.com — terradart-validate lacks GCIP multi-tenancy / Firebase Auth project linkage that Terraform cannot establish here; config is also a project singleton (see tool/example_debt.yaml)
 
+# --- Legacy Data Catalog writes blocked by GCP deprecation on terradart-validate
+#     (API returns 400 "not allowed to perform write operations due to Data
+#     Catalog deprecation"; prefer google_dataplex_entry_group). Synth +
+#     terraform validate still cover the curated factory.
+data_catalog_quickstart: Project is not allowed to perform write operations due to Data Catalog deprecation (HTTP 400 on EntryGroup create); prefer Dataplex Universal Catalog — synth + terraform validate cover google_data_catalog_entry_group
+
 # --- Cloud Source Repositories API is not enableable on terradart-validate
 #     (sourcerepo.googleapis.com absent from the project's available services
 #     list; enable returns 403 AUTH_PERMISSION_DENIED — product is in

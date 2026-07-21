@@ -1,0 +1,49 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+# Schema prose uses "following values: PREMIUM or STANDARD" (not MM
+# "Possible values: […]"), so deriveEnums cannot emit — hand-write the
+# TerraformEnum in prelude.
+deriveEnums: false
+
+dartTypeOverrides:
+  network_tier: ComputeProjectDefaultNetworkTier
+
+prelude: |
+  /// Default network service tier for new external IPs in the project.
+  /// `PREMIUM` uses Google's global backbone; `STANDARD` is regional/ISP.
+  enum ComputeProjectDefaultNetworkTier implements TerraformEnum {
+    premium('PREMIUM'),
+    standard('STANDARD');
+
+    const ComputeProjectDefaultNetworkTier(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+curatedDoc: |-
+  /// Project-level **Compute Engine default network tier** — a singleton
+  /// that sets `PREMIUM` or `STANDARD` as the default for new external IP
+  /// addresses in the project.
+  ///
+  /// This resource is free project metadata. Prefer
+  /// [ComputeProjectDefaultNetworkTier.standard] in smoke stacks when you
+  /// want the cheaper regional default; `PREMIUM` is Google's usual
+  /// project default.
+  ///
+  /// Enable `compute.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleComputeProjectDefaultNetworkTier(
+  ///   localName: 'defaults',
+  ///   networkTier: TfArg.literal(
+  ///     ComputeProjectDefaultNetworkTier.standard,
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - network_tier
+  - project

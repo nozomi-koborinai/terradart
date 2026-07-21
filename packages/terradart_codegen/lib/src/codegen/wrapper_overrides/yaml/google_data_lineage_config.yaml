@@ -1,0 +1,48 @@
+outputDir: dataplex
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Project/folder/org **Data Lineage config** — controls lineage ingestion
+  /// enablement for integrations such as Dataproc.
+  ///
+  /// This is a singleton `PATCH` resource per parent + location. Prefer a
+  /// project parent (`projects/<id>`) and `location: global` for smoke stacks.
+  /// Enabling ingestion does not itself provision Dataproc or bill Dataplex
+  /// Metadata Storage; those SKUs apply when lineage data is produced/stored.
+  ///
+  /// Enable `datalineage.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleDataLineageConfig(
+  ///   localName: 'lineage',
+  ///   parent: TfArg.literal('projects/<project-id>'),
+  ///   location: TfArg.literal('global'),
+  ///   ingestion: DataLineageConfigIngestion(
+  ///     rule: [
+  ///       DataLineageConfigIngestionRule(
+  ///         integrationSelector: DataLineageConfigIngestionRuleIntegrationSelector(
+  ///           integration: TfArg.literal(
+  ///             DataLineageConfigIngestionRuleIntegrationSelectorIntegration.dataproc,
+  ///           ),
+  ///         ),
+  ///         lineageEnablement: DataLineageConfigIngestionRuleLineageEnablement(
+  ///           enabled: TfArg.literal(true),
+  ///         ),
+  ///       ),
+  ///     ],
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - parent
+  - location
+  - ingestion
+  - deletion_policy

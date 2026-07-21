@@ -119,6 +119,22 @@ void main() {
       );
     });
 
+    test('dataCatalog barrel includes datacatalog.googleapis.com', () {
+      final apis = Apis.required(barrels: [Barrels.dataCatalog]);
+      expect(
+        apis.map((a) => a.argMap['service']!.toTfJson()).toList(),
+        ['datacatalog.googleapis.com'],
+      );
+    });
+
+    test('storageControl barrel includes storage.googleapis.com', () {
+      final apis = Apis.required(barrels: [Barrels.storageControl]);
+      expect(
+        apis.map((a) => a.argMap['service']!.toTfJson()).toList(),
+        ['storage.googleapis.com'],
+      );
+    });
+
     test('apikeys barrel includes apikeys.googleapis.com', () {
       final apis = Apis.required(barrels: [Barrels.apikeys]);
       expect(apis, hasLength(1));
@@ -251,6 +267,7 @@ void main() {
       expect(Barrels.binaryAuthorization.catalogName, 'binary_authorization');
       expect(Barrels.apikeys.catalogName, 'apikeys');
       expect(Barrels.recaptcha.catalogName, 'recaptcha');
+      expect(Barrels.storageControl.catalogName, 'storage_control');
     });
   });
 }

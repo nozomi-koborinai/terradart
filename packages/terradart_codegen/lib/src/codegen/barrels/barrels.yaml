@@ -129,7 +129,8 @@ barrels:
       /// Contact Center AI Insights and related contact APIs.
   container:
     doc: |-
-      /// Google Kubernetes Engine (GKE) — clusters, node pools, and GKE Hub.
+      /// Google Kubernetes Engine (GKE) — clusters, node pools, and GKE Hub
+      /// (membership, scope, namespace, rollout sequence, hub features).
       ///
       /// For VPC networking, see `compute.dart` ([GoogleComputeNetwork],
       /// [GoogleComputeSubnetwork]). For workload identity federation, see
@@ -145,13 +146,19 @@ barrels:
       /// ```dart
       /// import 'package:terradart_google/data.dart' show GoogleProject;
       /// ```
+  data_catalog:
+    doc: |-
+      /// Google Cloud Data Catalog — entry groups for organizing metadata
+      /// entries (legacy Data Catalog API; prefer Dataplex Universal Catalog
+      /// for new catalogs).
   dataplex:
     doc: |-
       /// Dataplex: governed data products, Universal Catalog metadata (entry groups /
-      /// entry types / aspect types), and their IAM adjuncts.
+      /// entry types / aspect types), Data Lineage project config, and their IAM
+      /// adjuncts.
   dataproc:
     doc: |-
-      /// Dataproc Metastore — managed Hive metastore services and federations.
+      /// Dataproc — autoscaling policies and Dataproc Metastore services/federations.
   dialogflow:
     doc: |-
       /// Dialogflow CX: telephony and conversation resources.
@@ -226,10 +233,14 @@ barrels:
   identity:
     doc: |-
       /// Identity Platform — project Auth config and multi-tenant realms.
+  integrations:
+    doc: |-
+      /// Application Integration — provision a regional client
+      /// (`google_integrations_client`) for the Integration control plane.
   iap:
     doc: |-
-      /// Identity-Aware Proxy (IAP) — tunnel destination groups plus IAM for
-      /// App Engine and external HTTPS load balancer backend services.
+      /// Identity-Aware Proxy (IAP) — settings, tunnel destination groups, plus
+      /// IAM for App Engine and external HTTPS load balancer backend services.
   kms:
     doc: |-
       /// Cloud KMS key rings and crypto keys.
@@ -254,6 +265,10 @@ barrels:
     doc: |-
       /// Migration Center: sources, discovery clients, import jobs, groups,
       /// preference sets, and reports.
+  model_armor:
+    doc: |-
+      /// Model Armor — templates that configure RAI / SDP / jailbreak / URI
+      /// filters for screening LLM prompts and responses.
   monitoring:
     doc: |-
       /// Cloud Monitoring: alert policies, notification channels, uptime probes,
@@ -261,8 +276,8 @@ barrels:
   network:
     doc: |-
       /// Network Connectivity transports, Network Security ULL mirroring, address
-      /// groups, URL lists, client/server TLS policies, VPC Flow Logs configs,
-      /// and Network Services Mesh.
+      /// groups, URL lists, client/server TLS policies, gateway security policies,
+      /// VPC Flow Logs configs, and Network Services Mesh.
   notebooks:
     doc: |-
       /// Vertex AI Workbench (Notebooks) — reusable environment image recipes.
@@ -297,6 +312,10 @@ barrels:
   pubsub:
     doc: |-
       /// Pub/Sub topics, subscriptions, schemas, and per-resource IAM bindings.
+  scc:
+    doc: |-
+      /// Security Command Center (SCC) v2 — project notification configs that
+      /// continuously export findings to Pub/Sub.
   recaptcha:
     doc: |-
       /// reCAPTCHA Enterprise keys for web, Android, and iOS clients.
@@ -333,6 +352,10 @@ barrels:
     doc: |-
       /// Cloud Storage buckets, bucket objects, and Pub/Sub object-change
       /// notifications.
+  storage_control:
+    doc: |-
+      /// Cloud Storage Control — project Storage Intelligence config
+      /// (edition / filters for inventory and insights at project scope).
   tags:
     doc: |-
       /// Resource Manager Tags — tag keys, tag values, resource bindings, and the

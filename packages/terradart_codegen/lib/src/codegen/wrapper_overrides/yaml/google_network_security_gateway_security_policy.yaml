@@ -1,0 +1,30 @@
+outputDir: network
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Network Security **gateway security policy** — metadata container for
+  /// Secure Web Proxy (SWP) gateway rules.
+  ///
+  /// Creating a policy alone does not provision a gateway, attach rules that
+  /// inspect traffic, or bill Secure Web Proxy data-plane SKUs.
+  ///
+  /// Enable `networksecurity.googleapis.com` via [GoogleProjectService]
+  /// before apply. Location is typically regional (e.g. `us-central1`).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleNetworkSecurityGatewaySecurityPolicy(
+  ///   localName: 'swp',
+  ///   name: TfArg.literal('terradart-gateway-policy'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   description: TfArg.literal('TerraDart smoke gateway security policy'),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - description
+  - tls_inspection_policy
+  - project

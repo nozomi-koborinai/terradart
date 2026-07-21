@@ -131,5 +131,30 @@ final class GoogleProviderRules extends ProviderRules {
     'data_loss_prevention': 'dlp',
     'data_loss': 'dlp',
     'dlp': 'dlp',
+
+    // Data Catalog (`google_data_catalog_*` → segment `data`; MM product DataCatalog).
+    'datacatalog': 'data_catalog',
+    'data_catalog': 'data_catalog',
+
+    // Data Lineage (`google_data_lineage_*` → segment `data`; MM product datalineage).
+    // Shares the dataplex barrel (lineage is a Dataplex-adjacent control plane).
+    'datalineage': 'dataplex',
+    'data_lineage': 'dataplex',
+
+    // Model Armor (`google_model_armor_*`; MM product ModelArmor).
+    // wrap-init segment is `model`; alias to the model_armor barrel.
+    'model': 'model_armor',
+    'model_armor': 'model_armor',
+    'modelarmor': 'model_armor',
+
+    // Security Command Center v2 (`google_scc_v2_*` → segment `scc`).
+    'scc': 'scc',
+    'scc_v2': 'scc',
+    'securitycenterv2': 'scc',
+
+    // Storage Control / Intelligence (`google_storage_control_*`;
+    // MM product StorageControl). Distinct from the `storage` barrel.
+    'storagecontrol': 'storage_control',
+    'storage_control': 'storage_control',
   };
 }

@@ -16,3 +16,7 @@ export 'src/kms/google_kms_crypto_key_version.dart'
 export 'src/kms/google_kms_key_ring.dart' show GoogleKmsKeyRing;
 export 'src/kms/google_kms_key_ring_iam_member.dart'
     show GoogleKmsKeyRingIamMember;
+export 'src/kms/google_kms_project_autokey_config.dart'
+    show
+        GoogleKmsProjectAutokeyConfig,
+        KmsProjectAutokeyConfigKeyProjectResolutionMode;

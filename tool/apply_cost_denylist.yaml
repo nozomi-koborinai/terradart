@@ -30,6 +30,7 @@
 # Format: safe_exception: <type>  # rationale
 safe_exception: google_compute_instance_iam_member  # IAM binding, no billing — _instance substring false positive
 safe_exception: google_compute_instance_template  # instance template metadata only; VMs bill via google_compute_instance (sweep_only)
+safe_exception: google_compute_instance_settings  # zonal metadata defaults singleton; no VM provisioned — _instance substring false positive
 safe_exception: google_service_directory_endpoint  # Service Directory metadata record, no existence billing — _endpoint false positive
 safe_exception: google_bigtable_instance_iam_member  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
 safe_exception: google_notebooks_environment  # Workbench environment is an image recipe only; Notebooks SKUs bill when an instance/VM runs — _notebooks substring false positive
@@ -71,6 +72,7 @@ google_sql_database_instance: sweep_only     # Cloud SQL instance
 google_bigtable_instance: sweep_only         # Bigtable node billing
 google_filestore_instance: sweep_only        # Filestore provisioned capacity
 google_dataproc_cluster: sweep_only          # Dataproc cluster VMs
+google_dataproc_autoscaling_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU for autoscaling_policy (Dataproc 363B-8851-170D list_skus — Serverless DCU/accelerator/shuffle SKUs only; no policy/metadata SKU); billing-behavior: control-plane YARN autoscaler document — create/delete does not provision VMs; cluster compute hours bill only when a cluster attaches the policy
 google_composer_environment: sweep_only      # Cloud Composer (Airflow) fixed fee
 google_notebooks_instance: sweep_only        # Vertex AI Notebooks VM
 google_workbench_instance: sweep_only        # Vertex AI Workbench VM
@@ -149,6 +151,9 @@ google_compute_network_firewall_policy_iam_member: safe  # billing-behavior: IAM
 google_compute_region_network_firewall_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU (list_services Compute Engine 6F81-5844-456A; list_skus keyword firewall/Network Firewall/Cloud NGFW → 0); billing-behavior: regional firewall policy is configuration-only — no existence or hourly charge; destroy removes the policy
 google_compute_region_network_firewall_policy_rule: safe  # gcp-cost: no Cloud Billing Catalog SKU (same Compute Engine lookup; no firewall/NGFW SKUs); billing-behavior: rule is child config on the policy — no separate billing; destroy removes the rule
 google_compute_region_network_firewall_policy_iam_member: safe  # billing-behavior: IAM binding on a regional network firewall policy; sets policy only, zero billing
+google_compute_instance_settings: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus keyword="metadata"/"instance settings"/"settings" on Compute Engine 6F81-5844-456A → 0 SKUs); billing-behavior: zonal VM metadata defaults singleton — create/update/delete does not provision VMs or bill compute; destroy clears settings via provider custom delete
+google_compute_project_cloud_armor_tier: safe  # gcp-cost: Cloud Armor Enterprise Annual Subscription SKU EFB7-4299-A2EC $3000/mo (Compute Engine 6F81-5844-456A list_skus keyword="Cloud Armor"); list_skus keyword=PAYGO/Managed Protection → 0 SKUs; billing-behavior: CA_STANDARD is the non-Enterprise managed-protection tier (no subscription SKU) — project singleton via setCloudArmorTier; destroy is state-only (only_remove_from_state). Never apply CA_ENTERPRISE_ANNUAL/PAYGO in smoke
+google_compute_project_default_network_tier: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus keyword="network tier"/"settings"/"default network" on Compute Engine 6F81-5844-456A → 0 SKUs for the settings resource; Premium Tier / Standard Tier SKUs are egress/path pricing for VMs using that tier, not for this project singleton); billing-behavior: free project metadata singleton (sets default PREMIUM/STANDARD for new external IPs) — no existence/hourly charge for the settings resource itself
 google_compute_project_metadata_item: safe  # apply-verified safe (existing example)
 google_compute_region_disk: safe  # apply-verified safe (existing example)
 google_compute_region_instant_snapshot: safe  # apply-verified safe (existing example)
@@ -156,6 +161,7 @@ google_compute_region_instant_snapshot_iam_binding: safe  # apply-verified safe 
 google_compute_region_instant_snapshot_iam_member: safe  # apply-verified safe (existing example)
 google_compute_region_instant_snapshot_iam_policy: safe  # apply-verified safe (existing example)
 google_compute_resource_policy: safe  # apply-verified safe (existing example)
+google_compute_snapshot_settings: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus keyword="snapshot settings"/"settings" on Compute Engine 6F81-5844-456A → 0 SKUs; keyword=snapshot SKUs are PD snapshot storage / instant snapshots only); billing-behavior: project-level metadata singleton (PATCH create/update, exclude_delete) — no existence/hourly charge for the settings resource itself
 google_compute_route: safe  # apply-verified safe (existing example)
 google_compute_router: safe  # apply-verified safe (existing example)
 google_compute_network_peering: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Networking E505-1604-58F8); billing-behavior: VPC peering association metadata only
@@ -172,6 +178,8 @@ google_compute_shared_vpc_host_project: safe  # gcp-cost: no Cloud Billing Catal
 google_compute_shared_vpc_service_project: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Compute+Networking); billing-behavior: host/service project link
 google_compute_subnetwork: safe  # apply-verified safe (existing example)
 google_compute_subnetwork_iam_member: safe  # apply-verified safe (existing example)
+google_compute_preview_feature: safe  # gcp-cost: no Cloud Billing Catalog SKU for preview_feature (Compute Engine 6F81-5844-456A list_skus keyword=preview → 0 SKUs); billing-behavior: project preview-feature enablement metadata (e.g. alpha-api-access) — create/update/delete does not provision VMs or bill Compute instance hours
+google_data_catalog_entry_group: safe  # gcp-cost: Data Catalog 89B9-6A5A-B358 SKUs are Storage Usage 1D52-4857-D286 ($2/GiBy.mo after free tier) and Api Usage 92A8-89E9-F95C ($10/100k calls after 1M free); list_skus keyword=entry → 0 dedicated entry-group SKU; billing-behavior: empty entry-group metadata only — no entries attached, negligible vs 1 MiB free storage / API free tier; destroy removes the group
 google_dataplex_aspect_type: safe  # apply-verified safe (existing example)
 google_dataplex_aspect_type_iam_member: safe  # apply-verified safe (existing example)
 google_dataplex_data_product: safe  # apply-verified safe (existing example)
@@ -187,6 +195,7 @@ google_dataplex_glossary: safe  # apply-verified safe (existing example)
 google_dataplex_glossary_category: safe  # apply-verified safe (existing example)
 google_dataplex_glossary_iam_member: safe  # apply-verified safe (existing example)
 google_dataplex_glossary_term: safe  # apply-verified safe (existing example)
+google_data_lineage_config: safe  # gcp-cost: no Cloud Billing Catalog SKU for data_lineage_config (Dataplex 51C6-B3F5-9B38 list_skus — Metadata Storage e.g. C8E9-A091-F77D $2/GiBy·mo in us-east1, Processing/Shuffle SKUs only; no lineage-config SKU); billing-behavior: project singleton PATCH config controlling ingestion enablement — create/update/delete does not provision Dataproc or bill Metadata Storage; Dataplex storage/processing bill only when lineage data is produced
 google_dataplex_lake: safe  # apply-verified safe (existing example)
 google_dataplex_lake_iam_member: safe  # apply-verified safe (existing example)
 google_dataplex_zone: safe  # gcp-cost: Dataplex Metadata Storage us-central1 SKU 5D0E-3A17-3010 ~$2/GiBy.mo on stored metadata volume; zone object itself is control-plane — destroy stops charges (not existence-billed)
@@ -208,6 +217,7 @@ google_dns_policy: safe  # apply-verified safe (existing example)
 google_dns_record_set: safe  # apply-verified safe (existing example)
 google_dns_response_policy: safe  # apply-verified safe (existing example)
 google_dns_response_policy_rule: safe  # apply-verified safe (existing example)
+google_document_ai_schema: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus keyword="schema" on Cloud Document AI API D870-408D-92A6 → 0 SKUs; processor SKUs are page/OCR usage only, e.g. 03C7-7B42-6CC7); billing-behavior: named schema metadata for custom processors — create/update/delete does not process documents or bill page SKUs; destroy removes the schema
 google_document_ai_processor: safe  # apply-verified safe (existing example)
 google_essential_contacts_contact: safe  # apply-verified safe (existing example)
 google_filestore_backup: safe  # apply-verified safe (existing example)
@@ -222,6 +232,7 @@ google_gemini_data_sharing_with_google_setting: safe  # gcp-cost: Gemini API AEF
 google_gke_backup_backup_plan: safe  # apply-verified safe (existing example)
 google_gke_backup_backup_plan_iam_member: safe  # apply-verified safe (existing example)
 google_gke_backup_restore_plan: safe  # apply-verified safe (existing example)
+google_gke_hub_feature: safe  # gcp-cost: GKE Enterprise / GDC 9186-F79E-3871 list_skus keyword=feature → 0 SKUs (cluster-attachment bundles only); billing-behavior: hub Feature enablement metadata (e.g. multiclusterservicediscovery) — create/delete does not attach clusters or bill Anthos/GKE Enterprise; destroy disables the feature
 google_gke_hub_membership: safe  # apply-verified safe (existing example)
 google_gke_hub_namespace: safe  # apply-verified safe (existing example)
 google_gke_hub_rollout_sequence: safe  # gcp-cost: no Cloud Billing Catalog SKU (Fleets/GKE Enterprise SKUs are cluster-attachment bundles; rollout sequence is fleet metadata); billing-behavior: no existence/hourly charge for the sequence resource itself
@@ -239,6 +250,8 @@ google_healthcare_fhir_store_iam_member: safe  # billing-behavior: IAM binding o
 google_healthcare_workspace: safe  # gcp-cost: no Cloud Billing Catalog SKU for Data Mapper workspace config after MCP lookup on Cloud Healthcare 7C52-19D8-71EE (storage/request SKUs only); billing-behavior: workspace metadata — no existence/hourly charge until mapper jobs process data
 google_iap_agent_registry_iam_member: safe  # gcp-cost: no Cloud Billing Catalog SKU (IAP IAM binding adjunct); billing-behavior: IAM binding only, no standalone billing
 google_iap_location_web_iam_member: safe  # gcp-cost: no Cloud Billing Catalog SKU (IAP IAM binding adjunct); billing-behavior: IAM binding only, no standalone billing
+google_iap_settings: safe  # gcp-cost: no Cloud Billing Catalog SKU after MCP lookup (list_services name=Identity-Aware Proxy / IAP / Cloud IAP / BeyondCorp → null services); Cloud IAP pricing docs: GCP-hosted resources and apps at no charge (https://cloud.google.com/iap/pricing); Chrome Enterprise Premium paid features unused; billing-behavior: IAP settings are config metadata (access/application settings PATCH) — create/update/delete does not provision compute or bill IAP Premium; destroy clears settings
+google_integrations_client: safe  # gcp-cost: Application Integration 3BE5-FBA4-1B83 SKUs are flow execution 1D2D-B1B5-38F1 ($0.0005/count after 400 free) and Data Processed DDE8-C515-4149 ($10/GiBy after 20 GiBy free); list_skus → no client-provision SKU; billing-behavior: clients:provision is control-plane config — create/deprovision does not execute flows or process data; destroy deprovisions the client
 google_iap_tunnel_dest_group: safe  # gcp-cost: no Cloud Billing Catalog SKU after MCP lookup (list_services name=Identity-Aware Proxy / IAP / Cloud IAP / BeyondCorp → null services); Cloud IAP pricing docs: GCP-hosted resources and apps at no charge (https://cloud.google.com/iap/pricing); Chrome Enterprise Premium paid features unused; billing-behavior: regional dest-group metadata for TCP forwarding targets — create/update/delete does not open tunnels or bill compute; destroy removes the group
 google_migration_center_assets_export_job: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_services name=Migration/migration center — Migration Center absent from catalog); billing-behavior: export-job metadata only — no existence/hourly charge for the resource itself
 google_migration_center_discovery_client: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_services — Migration Center absent from catalog); billing-behavior: discovery-client registration metadata only — no existence/hourly charge for the resource itself
@@ -250,6 +263,8 @@ google_migration_center_report: safe  # gcp-cost: no Cloud Billing Catalog SKU (
 google_migration_center_report_config: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_services — Migration Center absent from catalog; no display_name match for Migration Center among 1779 services); billing-behavior: report-config metadata only — no existence/hourly charge for the resource itself
 google_migration_center_settings: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_services — Migration Center absent from catalog); billing-behavior: per-location settings singleton — no existence/hourly charge for the resource itself
 google_migration_center_source: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_services — Migration Center absent from catalog); billing-behavior: inventory source metadata only — no existence/hourly charge for the resource itself
+google_kms_project_autokey_config: safe  # gcp-cost: no Cloud Billing Catalog SKU for project Autokey config (Cloud KMS EE2F-D110-890C list_skus keyword=autokey → only Active HSM symmetric key versions for Autokey 77F8-D8AF-3CCE $1/mo after 100 free and HSM crypto ops 88D6-F2EE-C781 — billed when Autokey provisions keys, not for the config singleton; keyword=config/project → 0); billing-behavior: DISABLED mode is free project metadata — does not create keys; destroy removes from Terraform state (singleton cannot be deleted from GCP)
+google_model_armor_template: safe  # gcp-cost: SCC Premium Model Armor PAYG SKU 1191-92C2-5EEB ($1e-7/count after 2e6 free; list_services name=Model Armor → null; list_skus on SCC FBF2-FC68-171A keyword=model); billing-behavior: template is filter-config metadata — create/update/delete does not screen prompts or consume Model Armor PAYG units; destroy removes the template
 google_monitoring_alert_policy: safe  # apply-verified safe (existing example)
 google_monitoring_custom_service: safe  # apply-verified safe (existing example)
 google_monitoring_dashboard: safe  # apply-verified safe (existing example)
@@ -262,6 +277,9 @@ google_network_connectivity_hub: safe  # apply-verified safe (existing example)
 google_network_security_address_group: safe  # apply-verified safe (existing example)
 google_network_security_client_tls_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU for client TLS policy config (Network Security E749-01A2-AE1F lists NGFW/data-processing SKUs only, e.g. 8717-57C8-078B — no TLS policy SKU); billing-behavior: policy metadata — no existence/hourly charge until attached to a data plane
 google_network_security_server_tls_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU for server TLS policy config (Network Security E749-01A2-AE1F lists NGFW/data-processing SKUs only — no TLS policy SKU); billing-behavior: policy metadata — no existence/hourly charge until attached to a proxy/endpoint
+google_network_security_gateway_security_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU for gateway security policy config (Network Security E749-01A2-AE1F list_skus keyword=gateway/policy → 0; service SKUs are data-plane only e.g. 8717-57C8-078B In-band Integration Data Processing, 994B-C7B9-C1F7 Cloud NGFW Enterprise Data Processing, E55D-280B-82DD Out-of-band Deployment Uptime); billing-behavior: empty policy metadata — no SWP gateway/rules attached, no existence/hourly charge; destroy removes the policy
+google_network_security_backend_authentication_config: safe  # gcp-cost: no Cloud Billing Catalog SKU for backend authentication config (Network Security E749-01A2-AE1F list_skus keyword=backend/authentication/tls → 0; service SKUs are data-plane only e.g. 8717-57C8-078B In-band Integration Data Processing, 994B-C7B9-C1F7 Cloud NGFW Enterprise Data Processing, E55D-280B-82DD Out-of-band Deployment Uptime); billing-behavior: config metadata with PUBLIC_ROOTS — no BackendService attachment, no existence/hourly charge; destroy removes the config
+google_network_security_dns_threat_detector: sweep_only  # gcp-cost: Network Security E749-01A2-AE1F SKU F6D7-37A1-D4A0 Networking Security DNS Armor Advanced Threat Detection $0.01/count (tiered; LEVEL_PROJECT / INTERVAL_MONTHLY); billing-behavior: creating the detector enables DNS Armor — Cloud DNS pricing bills hourly units from monitored VPC workloads / internet-bound DNS queries (not a flat existence charge for the config alone); shared validate project may have concurrent VMs so defer to full sweep; destroy removes the detector
 google_network_security_url_lists: safe  # apply-verified safe (existing example)
 google_network_services_mesh: safe  # gcp-cost: Anthos Service Mesh 3DAD-B96D-BE09 SKUs are Service Mesh Clusters (5B7A-29FB-1996 $50/mo) and Endpoints (F567-FD18-BBCE $0.50/mo after 100 free) — no Cloud Billing Catalog SKU for Mesh config object alone; billing-behavior: empty Mesh metadata — no existence/hourly charge until clusters/endpoints join
 google_observability_trace_scope: safe  # apply-verified safe (existing example)
@@ -271,6 +289,8 @@ google_artifact_registry_repository_iam_member: safe  # billing-behavior: IAM bi
 google_artifact_registry_rule: safe  # gcp-cost: no Cloud Billing Catalog SKU for repository rule config (Artifact Registry 149C-F9EC-3994 lists storage/egress SKUs only — no rule SKU); billing-behavior: allow/deny policy metadata — no existence/hourly charge
 google_parameter_manager_parameter: safe  # apply-verified safe (existing example)
 google_parameter_manager_regional_parameter: safe  # apply-verified safe (existing example)
+google_project_usage_export_bucket: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus keyword="usage" on Compute Engine 6F81-5844-456A → 0 SKUs for the export-config resource; Cloud Storage 95FF-2EF5-5EA1 bills only if/when report objects are written to the sink bucket); billing-behavior: free project metadata singleton that points GCE usage reports at a GCS bucket — create/update/delete of the config itself does not bill; empty smoke buckets typically receive no objects
+google_project_iam_audit_config: safe  # gcp-cost: no Cloud Billing Catalog SKU for the audit-config resource itself (Cloud Logging 5490-F7B7-8DF6 list_skus keyword="audit" → 0; Log Storage SKU 143F-A1B0-E0BE $0.50/GiBy after 50 GiB free tier bills Data Access log volume only); billing-behavior: IAM audit config is policy metadata — ADMIN_READ emits free Admin Activity logs; destroy removes the config; this example does not enable DATA_READ/DATA_WRITE
 google_project_service: safe  # apply-verified safe (existing example)
 google_pubsub_schema: safe  # apply-verified safe (existing example)
 google_pubsub_schema_iam_member: safe  # apply-verified safe (existing example)
@@ -278,6 +298,7 @@ google_pubsub_subscription: safe  # apply-verified safe (existing example)
 google_public_ca_external_account_key: safe  # gcp-cost: no Cloud Billing Catalog SKU for Public CA EAB key create after MCP lookup — Certificate Manager 7766-403C-6D6E SKUs are Certificates usage F08F-F1CD-3492 (~$0.20/mo after 100 free), Regional Certificates 4B89-6413-74D9, and mTLS Advanced 96D8-F0B3-E8A1 (none for EAB); Certificate Authority Service BAE4-9668-BD24 is Private CA only; billing-behavior: create-only ACME binding secret metadata — no certificate issued, no existence/hourly charge; terraform destroy removes from state only (API exclude_delete)
 google_pubsub_topic: safe  # apply-verified safe (existing example)
 google_pubsub_topic_iam_member: safe  # apply-verified safe (existing example)
+google_scc_v2_project_notification_config: safe  # gcp-cost: no Cloud Billing Catalog SKU for project notification config (Security Command Center FBF2-FC68-171A lists Premium/Enterprise subscription and asset-usage SKUs only, e.g. 694C-9680-C91A GCE Core Running — no notification-config SKU); billing-behavior: continuous-export config metadata — Standard-tier notification configs do not bill by existence; Pub/Sub delivery billed separately on topic usage
 google_secret_manager_regional_secret: safe  # apply-verified safe (existing example)
 google_secret_manager_regional_secret_iam_member: safe  # apply-verified safe (existing example)
 google_secret_manager_secret: safe  # apply-verified safe (existing example)
@@ -286,6 +307,7 @@ google_storage_bucket: safe  # gcp-cost: Standard Storage us-central1 SKU 141D-1
 google_storage_bucket_iam_binding: safe  # IAM binding on a bucket; no existence billing
 google_storage_bucket_object: safe  # gcp-cost: SKU 4DBF-185F-A415 Regional Standard Class A Operations (Cloud Storage 95FF-2EF5-5EA1) — usage-metered object create/list; small notebook object ≈ $0; destroy deletes object and stops charges (not existence-billed)
 google_storage_bucket_iam_member: safe  # apply-verified safe (existing example)
+google_storage_control_project_intelligence_config: safe  # gcp-cost: Cloud Storage 95FF-2EF5-5EA1 list_skus keyword=intelligence → Storage Intelligence Standard Object Management Fee F67F-9FAF-E4FB $2.5e-06/s and Early Termination Fee 2279-6BDB-AB4F $2.5e-06/s (STANDARD edition only); billing-behavior: DISABLED edition is free project metadata singleton (PATCH create/update, exclude_delete) — does not enable paid Storage Intelligence; destroy removes from Terraform state only
 google_secret_manager_secret_version: safe  # apply-verified safe (existing example)
 google_service_account: safe  # apply-verified safe (existing example)
 google_service_directory_endpoint: safe  # Service Directory metadata record; no existence/hourly billing — _endpoint false positive

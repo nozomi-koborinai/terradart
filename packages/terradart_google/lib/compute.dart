@@ -204,6 +204,8 @@ export 'src/compute/google_compute_instance_group_manager.dart'
         InstanceGroupManagerUpdatePolicyType;
 export 'src/compute/google_compute_instance_iam_member.dart'
     show GoogleComputeInstanceIamMember;
+export 'src/compute/google_compute_instance_settings.dart'
+    show ComputeInstanceSettingsMetadata, GoogleComputeInstanceSettings;
 export 'src/compute/google_compute_instance_template.dart'
     show
         ComputeInstanceTemplateInstanceTemplateAccessConfig,
@@ -278,6 +280,18 @@ export 'src/compute/google_compute_network_peering.dart'
         GoogleComputeNetworkPeering;
 export 'src/compute/google_compute_network_peering_routes_config.dart'
     show GoogleComputeNetworkPeeringRoutesConfig;
+export 'src/compute/google_compute_preview_feature.dart'
+    show
+        ComputePreviewFeatureActivationStatus,
+        ComputePreviewFeatureRolloutOperation,
+        ComputePreviewFeatureRolloutOperationRolloutInput,
+        GoogleComputePreviewFeature;
+export 'src/compute/google_compute_project_cloud_armor_tier.dart'
+    show ComputeProjectCloudArmorTier, GoogleComputeProjectCloudArmorTier;
+export 'src/compute/google_compute_project_default_network_tier.dart'
+    show
+        ComputeProjectDefaultNetworkTier,
+        GoogleComputeProjectDefaultNetworkTier;
 export 'src/compute/google_compute_project_metadata_item.dart'
     show GoogleComputeProjectMetadataItem;
 export 'src/compute/google_compute_region_autoscaler.dart'
@@ -572,6 +586,12 @@ export 'src/compute/google_compute_shared_vpc_host_project.dart'
     show GoogleComputeSharedVpcHostProject;
 export 'src/compute/google_compute_shared_vpc_service_project.dart'
     show GoogleComputeSharedVpcServiceProject;
+export 'src/compute/google_compute_snapshot_settings.dart'
+    show
+        ComputeSnapshotSettingsStorageLocation,
+        ComputeSnapshotSettingsStorageLocationLocations,
+        ComputeSnapshotSettingsStorageLocationPolicy,
+        GoogleComputeSnapshotSettings;
 export 'src/compute/google_compute_ssl_certificate.dart'
     show GoogleComputeSslCertificate;
 export 'src/compute/google_compute_ssl_policy.dart'

@@ -1,8 +1,8 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 /// Network Connectivity transports, Network Security ULL mirroring, address
-/// groups, URL lists, client/server TLS policies, VPC Flow Logs configs,
-/// and Network Services Mesh.
+/// groups, URL lists, client/server TLS policies, gateway security policies,
+/// VPC Flow Logs configs, and Network Services Mesh.
 library;
 
 export 'src/network/google_network_connectivity_hub.dart'
@@ -30,8 +30,18 @@ export 'src/network/google_network_management_vpc_flow_logs_config.dart'
         NetworkManagementVpcFlowLogsConfigState;
 export 'src/network/google_network_security_address_group.dart'
     show GoogleNetworkSecurityAddressGroup, NetworkSecurityAddressGroupType;
+export 'src/network/google_network_security_backend_authentication_config.dart'
+    show
+        GoogleNetworkSecurityBackendAuthenticationConfig,
+        NetworkSecurityBackendAuthenticationConfigWellKnownRoots;
 export 'src/network/google_network_security_client_tls_policy.dart'
     show GoogleNetworkSecurityClientTlsPolicy;
+export 'src/network/google_network_security_dns_threat_detector.dart'
+    show
+        GoogleNetworkSecurityDnsThreatDetector,
+        NetworkSecurityDnsThreatDetectorThreatDetectorProvider;
+export 'src/network/google_network_security_gateway_security_policy.dart'
+    show GoogleNetworkSecurityGatewaySecurityPolicy;
 export 'src/network/google_network_security_server_tls_policy.dart'
     show GoogleNetworkSecurityServerTlsPolicy;
 export 'src/network/google_network_security_ull_mirroring_collector.dart'

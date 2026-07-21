@@ -6,3 +6,5 @@ library;
 
 export 'src/document_ai/google_document_ai_processor.dart'
     show GoogleDocumentAiProcessor;
+export 'src/document_ai/google_document_ai_schema.dart'
+    show GoogleDocumentAiSchema;

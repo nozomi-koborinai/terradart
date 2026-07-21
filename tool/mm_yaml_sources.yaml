@@ -100,8 +100,18 @@ files:
     upstream: mmv1/products/compute/ResourcePolicy.yaml
   google_compute_route:
     upstream: mmv1/products/compute/Route.yaml
+  google_compute_snapshot_settings:
+    upstream: mmv1/products/compute/SnapshotSettings.yaml
+  google_compute_project_cloud_armor_tier:
+    upstream: mmv1/products/compute/ProjectCloudArmorTier.yaml
+  google_compute_instance_settings:
+    upstream: mmv1/products/compute/InstanceSettings.yaml
+  google_compute_project_default_network_tier:
+    upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML; probe 404)
   google_compute_project_metadata_item:
     upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
+  google_compute_preview_feature:
+    upstream: mmv1/products/compute/PreviewFeature.yaml
   google_compute_disk_resource_policy_attachment:
     upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
   google_network_connectivity_hub:
@@ -116,6 +126,8 @@ files:
     upstream: mmv1/products/dataplex/DataProduct.yaml
   google_dataplex_data_product_data_asset:
     upstream: mmv1/products/dataplex/DataProductDataAsset.yaml
+  google_data_lineage_config:
+    upstream: mmv1/products/datalineage/Config.yaml
   google_dataplex_lake:
     upstream: mmv1/products/dataplex/Lake.yaml
   google_dataplex_lake_iam_member:
@@ -168,6 +180,8 @@ files:
     upstream: mmv1/products/dns/ManagedZone.yaml
   google_discovery_engine_data_store:
     upstream: mmv1/products/discoveryengine/DataStore.yaml
+  google_dataproc_autoscaling_policy:
+    upstream: mmv1/products/dataproc/AutoscalingPolicy.yaml
   google_dataproc_metastore_federation:
     upstream: mmv1/products/metastore/Federation.yaml
   google_dataproc_metastore_federation_iam_member:
@@ -192,6 +206,11 @@ files:
     upstream: mmv1/products/kms/CryptoKey.yaml
   google_kms_key_ring:
     upstream: mmv1/products/kms/KeyRing.yaml
+  google_kms_project_autokey_config:
+    upstream: mmv1/products/kms/ProjectAutoConfig.yaml
+  # Data Catalog entry group (legacy Data Catalog API)
+  google_data_catalog_entry_group:
+    upstream: mmv1/products/datacatalog/EntryGroup.yaml
   google_license_manager_configuration:
     upstream: mmv1/products/licensemanager/Configuration.yaml
   google_logging_project_sink:
@@ -204,8 +223,12 @@ files:
     upstream: mmv1/products/networksecurity/UllMirroringCollectorRule.yaml
   google_network_security_ull_mirroring_engine:
     upstream: mmv1/products/networksecurity/UllMirroringEngine.yaml
+  google_model_armor_template:
+    upstream: mmv1/products/modelarmor/Template.yaml
   google_monitoring_alert_policy:
     upstream: mmv1/products/monitoring/AlertPolicy.yaml
+  google_storage_control_project_intelligence_config:
+    upstream: mmv1/products/storagecontrol/ProjectIntelligenceConfig.yaml
   google_storage_bucket:
     upstream: mmv1/products/storage/Bucket.yaml
   google_storage_bucket_object:
@@ -216,6 +239,8 @@ files:
   # IAM core
   google_project_iam_custom_role:
     upstream: null  # handwritten in terraform provider; no MM YAML
+  google_project_iam_audit_config:
+    upstream: null  # handwritten IAM audit config (schema-only; not MM-generated)
   google_project_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_service_account_iam_member:
@@ -489,6 +514,8 @@ files:
     upstream: mmv1/products/gkehub/Scope.yaml
   google_gke_hub_namespace:
     upstream: mmv1/products/gkehub/Namespace.yaml
+  google_gke_hub_feature:
+    upstream: mmv1/products/gkehub2/Feature.yaml
   google_gke_hub_membership:
     upstream: mmv1/products/gkehub/Membership.yaml
   google_gke_hub_rollout_sequence:
@@ -590,6 +617,8 @@ files:
     upstream: mmv1/products/firestore/UserCreds.yaml
   google_project:
     upstream: null  # data source; handwritten in terraform provider; no MM YAML
+  google_project_usage_export_bucket:
+    upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML; probe 404)
   google_project_service:
     upstream: null  # handwritten in terraform provider; no MM YAML (probe 404)
   google_pubsub_subscription:
@@ -600,6 +629,8 @@ files:
     upstream: mmv1/products/pubsub/Topic.yaml
   google_pubsub_topic_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_scc_v2_project_notification_config:
+    upstream: mmv1/products/securitycenterv2/ProjectNotificationConfig.yaml
   google_secret_manager_secret:
     upstream: mmv1/products/secretmanager/Secret.yaml
   google_secret_manager_secret_iam_member:
@@ -701,6 +732,10 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_iap_tunnel_dest_group:
     upstream: mmv1/products/iap/TunnelDestGroup.yaml
+  google_iap_settings:
+    upstream: mmv1/products/iap/Settings.yaml
+  google_integrations_client:
+    upstream: mmv1/products/integrations/Client.yaml
   # Wave 24 (DNS response policy, Cloud Run worker pool IAM, Compute router, BigQuery datapolicy IAM)
   google_dns_response_policy:
     upstream: mmv1/products/dns/ResponsePolicy.yaml
@@ -871,6 +906,12 @@ files:
     upstream: mmv1/products/networksecurity/ClientTlsPolicy.yaml
   google_network_security_server_tls_policy:
     upstream: mmv1/products/networksecurity/ServerTlsPolicy.yaml
+  google_network_security_gateway_security_policy:
+    upstream: mmv1/products/networksecurity/GatewaySecurityPolicy.yaml
+  google_network_security_backend_authentication_config:
+    upstream: mmv1/products/networksecurity/BackendAuthenticationConfig.yaml
+  google_network_security_dns_threat_detector:
+    upstream: mmv1/products/networksecurity/DnsThreatDetector.yaml
   google_redis_instance:
     upstream: mmv1/products/redis/Instance.yaml
   google_vertex_ai_feature_group:
@@ -893,6 +934,8 @@ files:
     upstream: mmv1/products/spanner/Instance.yaml
   google_document_ai_processor:
     upstream: mmv1/products/documentai/Processor.yaml
+  google_document_ai_schema:
+    upstream: mmv1/products/documentai/Schema.yaml
 
   google_data_loss_prevention_inspect_template:
     upstream: mmv1/products/dlp/InspectTemplate.yaml
