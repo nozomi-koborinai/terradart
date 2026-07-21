@@ -28,6 +28,7 @@ tool/doc_expectations.dart
 packages/terradart_google/test/catalog/catalog_count_test.dart
 packages/terradart_codegen/test/cli/wrap_command_test.dart
 packages/terradart_codegen/test/codegen/wrapper_overrides/yaml_loader_test.dart
+packages/terradart_codegen/test/codegen/barrels/barrel_derivation_test.dart
 
 # Wave example + counts-bearing docs
 examples/
