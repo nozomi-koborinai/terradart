@@ -33,6 +33,7 @@ export 'cloud_sql.dart';
 export 'cloud_tasks.dart';
 export 'clouddeploy.dart';
 export 'colab.dart';
+export 'composer.dart';
 export 'compute.dart';
 export 'config.dart';
 export 'contact.dart';

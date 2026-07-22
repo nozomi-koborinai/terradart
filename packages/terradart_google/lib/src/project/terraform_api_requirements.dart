@@ -46,6 +46,7 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry('google_dataproc_', 'dataproc.googleapis.com'),
   MapEntry('google_discovery_engine_', 'discoveryengine.googleapis.com'),
   MapEntry('google_dialogflow_', 'dialogflow.googleapis.com'),
+  MapEntry('google_composer_', 'composer.googleapis.com'),
   MapEntry('google_compute_', 'compute.googleapis.com'),
   // Longer than `google_bigquery_` — Reservation API (slots / groups), not
   // the core BigQuery data API.

@@ -1,0 +1,49 @@
+outputDir: composer
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Cloud Composer **environment** — managed Apache Airflow.
+  ///
+  /// **Cost:** Cloud Billing Catalog service `1992-3666-B975` bills an
+  /// **environment fee** while the environment exists (us-central1 Small
+  /// SKU `6EA4-3652-173E` **$0.35/h**; Medium `9802-34D7-AFE2` **$0.55/h**;
+  /// Large `2C11-0523-61D9` **$0.85/h**) plus compute/storage. Destroy
+  /// stops the fee. Too expensive for apply-smoke — factories ship without
+  /// a quickstart.
+  ///
+  /// Enable `composer.googleapis.com` via [GoogleProjectService] before
+  /// apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleComposerEnvironment(
+  ///   localName: 'airflow',
+  ///   name: TfArg.literal('terradart-composer'),
+  ///   region: TfArg.literal('us-central1'),
+  ///   config: ComposerEnvironmentConfig(
+  ///     environmentSize: TfArg.literal('ENVIRONMENT_SIZE_SMALL'),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - region
+  - config
+  - storage_config
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

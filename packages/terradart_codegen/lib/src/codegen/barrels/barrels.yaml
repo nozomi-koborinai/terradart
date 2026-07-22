@@ -117,6 +117,11 @@ barrels:
     doc: |-
       /// Colab Enterprise — runtime templates, template IAM, and paused notebook
       /// execution schedules (Vertex AI notebook runtimes).
+  composer:
+    doc: |-
+      /// Cloud Composer — managed Apache Airflow environments plus user
+      /// workloads ConfigMaps and Secrets. Environments bill an hourly fee
+      /// while they exist.
   compute:
     doc: |-
       /// Compute Engine resources: instances, addresses, firewalls, networks,

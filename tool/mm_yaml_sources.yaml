@@ -82,6 +82,14 @@ files:
     upstream: mmv1/products/sourcerepo/Repository.yaml
   google_sourcerepo_repository_iam_member:
     upstream: null  # IAM — generated from parent Repository.yaml iam_policy
+
+  google_composer_environment:
+    upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/composer); no mmv1 product YAML
+  google_composer_user_workloads_config_map:
+    upstream: mmv1/products/composer/UserWorkloadsConfigMap.yaml
+  google_composer_user_workloads_secret:
+    upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/composer); no mmv1 product YAML
+
   google_compute_address:
     upstream: mmv1/products/compute/Address.yaml
   google_compute_firewall:

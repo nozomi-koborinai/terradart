@@ -81,7 +81,7 @@ google_bigtable_instance: sweep_only         # Bigtable node billing
 google_filestore_instance: sweep_only        # Filestore provisioned capacity
 google_dataproc_cluster: sweep_only          # Dataproc cluster VMs
 google_dataproc_autoscaling_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU for autoscaling_policy (Dataproc 363B-8851-170D list_skus — Serverless DCU/accelerator/shuffle SKUs only; no policy/metadata SKU); billing-behavior: control-plane YARN autoscaler document — create/delete does not provision VMs; cluster compute hours bill only when a cluster attaches the policy
-google_composer_environment: sweep_only      # Cloud Composer (Airflow) fixed fee
+google_composer_environment: never_apply  # gcp-cost: Cloud Composer 1992-3666-B975 Small Environment Fee us-central1 SKU 6EA4-3652-173E $0.35/h (Medium 9802-34D7-AFE2 $0.55/h; Large 2C11-0523-61D9 $0.85/h) — billing-behavior: hourly environment fee while the environment exists (+ compute/storage); destroy stops the fee; too expensive for apply-smoke even once
 google_notebooks_instance: sweep_only        # Vertex AI Notebooks VM
 google_workbench_instance: sweep_only        # Vertex AI Workbench VM
 google_vertex_ai_endpoint: sweep_only        # deployed-model node billing
@@ -347,6 +347,8 @@ google_netapp_backup_policy: safe  # gcp-cost: no policy SKU under FC86-5113-7C8
 google_workstations_workstation_config: safe  # gcp-cost: Cloud Workstations 4528-FDD0-A2A0 lists control-plane + VM management SKUs only (no config SKU); billing-behavior: config template metadata — charges accrue on cluster/workstation runtime
 google_workstations_workstation_config_iam_member: safe  # billing-behavior: IAM binding — no resource charge
 google_workstations_workstation_iam_member: safe  # billing-behavior: IAM binding — no resource charge
+google_composer_user_workloads_config_map: safe  # gcp-cost: Cloud Composer 1992-3666-B975 lists environment fee / compute / storage SKUs only (no ConfigMap SKU); billing-behavior: ConfigMap metadata on a parent environment — no separate existence charge
+google_composer_user_workloads_secret: safe  # gcp-cost: no Secret SKU under Cloud Composer 1992-3666-B975; billing-behavior: Secret metadata on a parent environment — no separate existence charge
 google_vertex_ai_cache_config: safe  # apply-verified safe (existing example)
 google_vertex_ai_dataset: safe  # apply-verified safe (existing example)
 google_vertex_ai_feature_group: safe  # apply-verified safe (existing example)
