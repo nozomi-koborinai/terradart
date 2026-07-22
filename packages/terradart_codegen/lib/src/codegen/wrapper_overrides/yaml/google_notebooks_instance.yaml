@@ -1,0 +1,176 @@
+outputDir: notebooks
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+# Sealed [NotebooksInstanceImage] in prelude owns these blocks.
+nestedTypeExcludes:
+  - vm_image
+  - container_image
+
+dartTypeOverrides:
+  boot_disk_type: NotebooksInstanceBootDiskType
+  data_disk_type: NotebooksInstanceDataDiskType
+  disk_encryption: NotebooksInstanceDiskEncryption
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Vertex AI Workbench (Notebooks) **instance** — a user-managed notebook
+  /// VM.
+  ///
+  /// **Cost:** Cloud Billing Catalog service `D73B-5EEA-8215` bills Workbench
+  /// **management fees + GCE usage** while the VM runs (us-central1 N1
+  /// management CPU SKU `6196-1C27-5E30` **$0.0063222/h** + N1 usage CPU
+  /// `9027-15FF-8BFE` **$0.0379332/h** + RAM/disk). Destroy stops charges.
+  /// Too expensive for apply-smoke — factories ship without a quickstart.
+  ///
+  /// Pass exactly one [image] variant:
+  /// - [NotebooksInstanceContainerImage]
+  /// - [NotebooksInstanceVmImage]
+  ///
+  /// Enable `notebooks.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleNotebooksInstance(
+  ///   localName: 'nb',
+  ///   name: TfArg.literal('terradart-nb'),
+  ///   location: TfArg.literal('us-central1-a'),
+  ///   machineType: TfArg.literal('n1-standard-1'),
+  ///   image: NotebooksInstanceVmImage(
+  ///     project: TfArg.literal('deeplearning-platform-release'),
+  ///     imageFamily: TfArg.literal('common-cpu-notebooks'),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - machine_type
+  - image
+  - accelerator_config
+  - shielded_instance_config
+  - reservation_affinity
+  - service_account
+  - no_public_ip
+  - no_proxy_access
+  - network
+  - subnet
+  - labels
+  - metadata
+  - tags
+  - boot_disk_type
+  - boot_disk_size_gb
+  - data_disk_type
+  - data_disk_size_gb
+  - disk_encryption
+  - kms_key
+  - deletion_policy
+  - project
+
+argMapOrder:
+  - name
+  - location
+  - machine_type
+  - accelerator_config
+  - shielded_instance_config
+  - reservation_affinity
+  - service_account
+  - no_public_ip
+  - no_proxy_access
+  - network
+  - subnet
+  - labels
+  - metadata
+  - tags
+  - boot_disk_type
+  - boot_disk_size_gb
+  - data_disk_type
+  - data_disk_size_gb
+  - disk_encryption
+  - kms_key
+  - deletion_policy
+  - project
+  - image
+
+prelude: |
+  // ===========================================================================
+  // NotebooksInstanceImage -- sealed (ContainerImage | VmImage)
+  // ===========================================================================
+
+  /// Exactly one image source for a [GoogleNotebooksInstance].
+  sealed class NotebooksInstanceImage {
+    const NotebooksInstanceImage();
+
+    /// Terraform nested-block key (`container_image` or `vm_image`).
+    String get blockKey;
+
+    /// Single-element list matching `nesting_mode: list, max_items: 1`.
+    List<Map<String, Object?>> encode();
+  }
+
+  /// `container_image` — start the notebook from a container repository.
+  @immutable
+  final class NotebooksInstanceContainerImage extends NotebooksInstanceImage {
+    const NotebooksInstanceContainerImage({
+      required this.repository,
+      this.tag,
+    });
+
+    final TfArg<String> repository;
+    final TfArg<String>? tag;
+
+    @override
+    String get blockKey => 'container_image';
+
+    @override
+    List<Map<String, Object?>> encode() => [
+          {
+            'repository': repository.toTfJson(),
+            if (tag != null) 'tag': tag!.toTfJson(),
+          },
+        ];
+  }
+
+  /// `vm_image` — start the notebook from a Compute Engine image.
+  @immutable
+  final class NotebooksInstanceVmImage extends NotebooksInstanceImage {
+    const NotebooksInstanceVmImage({
+      required this.project,
+      this.imageName,
+      this.imageFamily,
+    });
+
+    final TfArg<String> project;
+    final TfArg<String>? imageName;
+    final TfArg<String>? imageFamily;
+
+    @override
+    String get blockKey => 'vm_image';
+
+    @override
+    List<Map<String, Object?>> encode() => [
+          {
+            'project': project.toTfJson(),
+            if (imageName != null) 'image_name': imageName!.toTfJson(),
+            if (imageFamily != null) 'image_family': imageFamily!.toTfJson(),
+          },
+        ];
+  }
+
+customSlots:
+  image:
+    paramDeclaration: 'required NotebooksInstanceImage image'
+    argMapEntry: 'image.blockKey: TfArg.literal(image.encode()),'
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

@@ -34,6 +34,7 @@ safe_exception: google_compute_instance_settings  # zonal metadata defaults sing
 safe_exception: google_service_directory_endpoint  # Service Directory metadata record, no existence billing — _endpoint false positive
 safe_exception: google_bigtable_instance_iam_member  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
 safe_exception: google_secure_source_manager_instance_iam_member  # IAM binding on SSM instance; no existence billing — _instance substring false positive (parent google_secure_source_manager_instance is never_apply)
+safe_exception: google_notebooks_instance_iam_member  # IAM binding on notebook instance; no existence billing — _instance substring false positive (parent google_notebooks_instance is never_apply)
 safe_exception: google_redis_cluster_user_created_connections  # PSC connection metadata on a parent Redis Cluster; no existence billing — _cluster substring false positive (parent google_redis_cluster is never_apply)
 
 safe_exception: google_notebooks_environment  # Workbench environment is an image recipe only; Notebooks SKUs bill when an instance/VM runs — _notebooks substring false positive
@@ -46,6 +47,8 @@ google_netapp_storage_pool: never_apply  # gcp-cost: NetApp Volumes FC86-5113-7C
 google_workstations_workstation_cluster: never_apply  # gcp-cost: Cloud Workstations 4528-FDD0-A2A0 control plane fee us-central1 SKU 61C4-0757-3151 $0.2/h — billing-behavior: hourly control-plane fee while the cluster exists; destroy stops the charge; too expensive for apply-smoke even once
 google_redis_cluster: never_apply  # gcp-cost: Cloud Memorystore for Redis 5AF5-2C11-D467 Shared Core Nano us-central1 SKU B4D9-BD1A-3BBC $0.0318/h (Standard Small 02F6-0CB2-BDE1 $0.1425/h; Default 13GB 8513-DCBC-92D7 $0.1923/h) — billing-behavior: hourly per node × shards × (1+replicas) while the cluster exists; destroy stops node charges; too expensive for apply-smoke even once
 google_looker_instance: never_apply  # gcp-cost: Looker (Google Cloud core) C71C-0952-AAC7 Standard Edition platform fee SKU 3F43-B8CB-2533 $5000/count (monthly) (+ Standard User 25F9-B190-39DB $60/count; Developer User 7CE2-9C5D-E9F4 $125/count) — billing-behavior: platform fee while the instance exists; destroy stops the charge; too expensive for apply-smoke even once
+google_notebooks_instance: never_apply  # gcp-cost: Notebooks D73B-5EEA-8215 Workbench N1 management CPU us-central1 SKU 6196-1C27-5E30 $0.0063222/h (+ N1 usage CPU 9027-15FF-8BFE $0.0379332/h + RAM/disk) — billing-behavior: hourly management fee + GCE while the notebook VM runs; destroy stops charges; too expensive for apply-smoke even once
+google_notebooks_runtime: never_apply  # gcp-cost: Notebooks D73B-5EEA-8215 same Workbench management fee + GCE usage surface as google_notebooks_instance (e.g. N1 mgmt CPU 6196-1C27-5E30 $0.0063222/h) — billing-behavior: hourly while the managed runtime VM runs; destroy stops charges; too expensive for apply-smoke even once
 
 # --- sweep_only: hourly-billed compute / managed data ---
 google_contact_center_insights_analysis_rule: safe  # gcp-cost: no Cloud Billing Catalog SKU for analysis_rule config (Conversational Insights FA1B-16BE-8526 lists analysis/subscription SKUs only, e.g. C18F-21FE-BB85 standard voice analysis); billing-behavior: location config metadata — no existence/hourly charge; analysis billed only when conversations are processed
@@ -84,7 +87,6 @@ google_filestore_instance: sweep_only        # Filestore provisioned capacity
 google_dataproc_cluster: sweep_only          # Dataproc cluster VMs
 google_dataproc_autoscaling_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU for autoscaling_policy (Dataproc 363B-8851-170D list_skus — Serverless DCU/accelerator/shuffle SKUs only; no policy/metadata SKU); billing-behavior: control-plane YARN autoscaler document — create/delete does not provision VMs; cluster compute hours bill only when a cluster attaches the policy
 google_composer_environment: never_apply  # gcp-cost: Cloud Composer 1992-3666-B975 Small Environment Fee us-central1 SKU 6EA4-3652-173E $0.35/h (Medium 9802-34D7-AFE2 $0.55/h; Large 2C11-0523-61D9 $0.85/h) — billing-behavior: hourly environment fee while the environment exists (+ compute/storage); destroy stops the fee; too expensive for apply-smoke even once
-google_notebooks_instance: sweep_only        # Vertex AI Notebooks VM
 google_workbench_instance: sweep_only        # Vertex AI Workbench VM
 google_vertex_ai_endpoint: sweep_only        # deployed-model node billing
 google_vertex_ai_index_endpoint: sweep_only  # deployed-index node billing
@@ -135,6 +137,8 @@ google_recaptcha_enterprise_key: safe  # gcp-cost: no Cloud Billing Catalog SKU 
 google_network_management_connectivity_test: safe  # gcp-cost: no Cloud Billing Catalog SKU on test object; billing-behavior: connectivity test metadata; execution may incur Network Intelligence pricing separately
 google_network_management_vpc_flow_logs_config: safe  # gcp-cost: SKU 143F-A1B0-E0BE Network Telemetry Flow Logs Generation (~$0.50/GiB ingested after free tier; Log Analytics Storage also lists Network Telemetry Flow Logs); billing-behavior: config resource itself has no existence charge — cost scales with VPC traffic that generates flow logs; empty/unused VPC in smoke ≈ $0; destroy stops new generation
 google_notebooks_environment: safe  # gcp-cost: no Cloud Billing Catalog SKU for environment config after MCP lookup on Notebooks D73B-5EEA-8215 (SKU surface is Workbench Instance CPU/RAM/GPU/disk when a VM runs); billing-behavior: environment metadata recipe — no existence/hourly charge until an instance uses it
+google_notebooks_runtime_iam_member: safe  # billing-behavior: IAM binding only — no resource charge
+google_notebooks_instance_iam_member: safe  # billing-behavior: IAM binding only — no resource charge
 google_os_config_os_policy_assignment: safe  # gcp-cost: no Cloud Billing Catalog SKU (OS Config API); billing-behavior: policy assignment metadata; patch jobs bill separately when executed
 google_os_config_patch_deployment: safe  # gcp-cost: no Cloud Billing Catalog SKU on deployment object; billing-behavior: schedule metadata only until a patch job runs
 google_cloud_scheduler_job: safe  # apply-verified safe (existing example)

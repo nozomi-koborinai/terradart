@@ -1,0 +1,59 @@
+outputDir: notebooks
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Vertex AI Workbench (Notebooks) **runtime** — a managed notebook
+  /// environment (Compute Engine VM under the hood).
+  ///
+  /// **Cost:** same Notebooks billing surface as
+  /// [GoogleNotebooksInstance] (`D73B-5EEA-8215` management fee + GCE
+  /// usage while the runtime VM runs). Destroy stops charges. Too
+  /// expensive for apply-smoke — factories ship without a quickstart.
+  ///
+  /// Configure [virtualMachine] (and optional [accessConfig] /
+  /// [softwareConfig]). Enable `notebooks.googleapis.com` via
+  /// [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleNotebooksRuntime(
+  ///   localName: 'rt',
+  ///   name: TfArg.literal('terradart-nb-rt'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   virtualMachine: NotebooksRuntimeVirtualMachine(
+  ///     virtualMachineConfig: NotebooksRuntimeVirtualMachineVirtualMachineConfig(
+  ///       machineType: TfArg.literal('n1-standard-4'),
+  ///       dataDisk: NotebooksRuntimeVirtualMachineVirtualMachineConfigDataDisk(
+  ///         initializeParams:
+  ///             NotebooksRuntimeVirtualMachineVirtualMachineConfigDataDiskInitializeParams(
+  ///           diskSizeGb: TfArg.literal(100),
+  ///         ),
+  ///       ),
+  ///     ),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - virtual_machine
+  - access_config
+  - software_config
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
