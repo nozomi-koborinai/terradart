@@ -31,6 +31,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 - [`cloud_tasks`](#cloudtasks)
 - [`clouddeploy`](#clouddeploy)
 - [`colab`](#colab)
+- [`composer`](#composer)
 - [`compute`](#compute)
 - [`config`](#config)
 - [`contact`](#contact)
@@ -302,6 +303,14 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_colab_runtime_template` | `GoogleColabRuntimeTemplate` | [colab_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/colab_quickstart) |
 | `google_colab_runtime_template_iam_member` | `GoogleColabRuntimeTemplateIamMember` | [colab_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/colab_quickstart) |
 | `google_colab_schedule` | `GoogleColabSchedule` | [colab_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/colab_quickstart) |
+
+## composer
+
+| Terraform type | Dart factory | Example |
+| --- | --- | --- |
+| `google_composer_environment` | `GoogleComposerEnvironment` | — |
+| `google_composer_user_workloads_config_map` | `GoogleComposerUserWorkloadsConfigMap` | — |
+| `google_composer_user_workloads_secret` | `GoogleComposerUserWorkloadsSecret` | — |
 
 ## compute
 
