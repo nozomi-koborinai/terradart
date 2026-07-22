@@ -8990,7 +8990,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
   CatalogEntry(
     tfType: 'google_managed_kafka_acl',
     className: 'GoogleManagedKafkaAcl',
-    barrel: 'managed_kafka',
+    barrel: 'managed',
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `google_managed_kafka_acl`.',
     constructorParams: <String>[
@@ -9010,7 +9010,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
   CatalogEntry(
     tfType: 'google_managed_kafka_cluster',
     className: 'GoogleManagedKafkaCluster',
-    barrel: 'managed_kafka',
+    barrel: 'managed',
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `google_managed_kafka_cluster`.',
     constructorParams: <String>[
@@ -9044,7 +9044,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
   CatalogEntry(
     tfType: 'google_managed_kafka_connect_cluster',
     className: 'GoogleManagedKafkaConnectCluster',
-    barrel: 'managed_kafka',
+    barrel: 'managed',
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `google_managed_kafka_connect_cluster`.',
     constructorParams: <String>[
@@ -9071,7 +9071,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
   CatalogEntry(
     tfType: 'google_managed_kafka_connector',
     className: 'GoogleManagedKafkaConnector',
-    barrel: 'managed_kafka',
+    barrel: 'managed',
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `google_managed_kafka_connector`.',
     constructorParams: <String>[
@@ -9092,7 +9092,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
   CatalogEntry(
     tfType: 'google_managed_kafka_topic',
     className: 'GoogleManagedKafkaTopic',
-    barrel: 'managed_kafka',
+    barrel: 'managed',
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `google_managed_kafka_topic`.',
     constructorParams: <String>[

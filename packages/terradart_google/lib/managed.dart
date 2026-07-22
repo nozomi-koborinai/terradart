@@ -4,9 +4,9 @@
 /// clusters, and connectors. Clusters bill Data Compute Units hourly.
 library;
 
-export 'src/managed_kafka/google_managed_kafka_acl.dart'
+export 'src/managed/google_managed_kafka_acl.dart'
     show GoogleManagedKafkaAcl, ManagedKafkaAclAclEntries;
-export 'src/managed_kafka/google_managed_kafka_cluster.dart'
+export 'src/managed/google_managed_kafka_cluster.dart'
     show
         GoogleManagedKafkaCluster,
         ManagedKafkaClusterBrokerCapacityConfig,
@@ -18,14 +18,14 @@ export 'src/managed_kafka/google_managed_kafka_cluster.dart'
         ManagedKafkaClusterTlsConfig,
         ManagedKafkaClusterTlsConfigTrustConfig,
         ManagedKafkaClusterTlsConfigTrustConfigCasConfigs;
-export 'src/managed_kafka/google_managed_kafka_connect_cluster.dart'
+export 'src/managed/google_managed_kafka_connect_cluster.dart'
     show
         GoogleManagedKafkaConnectCluster,
         ManagedKafkaConnectClusterCapacityConfig,
         ManagedKafkaConnectClusterGcpConfig,
         ManagedKafkaConnectClusterGcpConfigAccessConfig,
         ManagedKafkaConnectClusterGcpConfigAccessConfigNetworkConfigs;
-export 'src/managed_kafka/google_managed_kafka_connector.dart'
+export 'src/managed/google_managed_kafka_connector.dart'
     show GoogleManagedKafkaConnector, ManagedKafkaConnectorTaskRestartPolicy;
-export 'src/managed_kafka/google_managed_kafka_topic.dart'
+export 'src/managed/google_managed_kafka_topic.dart'
     show GoogleManagedKafkaTopic;

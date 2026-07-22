@@ -1,11 +1,9 @@
-outputDir: managed_kafka
+outputDir: managed
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 
-extraImports:
-  - "import 'package:meta/meta.dart';"
 
 curatedDoc: |-
   /// Kafka **topic** on a [GoogleManagedKafkaCluster].

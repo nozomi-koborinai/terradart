@@ -63,6 +63,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 - [`kms`](#kms)
 - [`license_manager`](#licensemanager)
 - [`logging`](#logging)
+- [`managed`](#managed)
 - [`memcache`](#memcache)
 - [`migration`](#migration)
 - [`model_armor`](#modelarmor)
@@ -705,6 +706,16 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_logging_project_exclusion` | `GoogleLoggingProjectExclusion` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_logging_project_sink` | `GoogleLoggingProjectSink` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
 | `google_logging_saved_query` | `GoogleLoggingSavedQuery` | [ops_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/ops_quickstart) |
+
+## managed
+
+| Terraform type | Dart factory | Example |
+| --- | --- | --- |
+| `google_managed_kafka_acl` | `GoogleManagedKafkaAcl` | — |
+| `google_managed_kafka_cluster` | `GoogleManagedKafkaCluster` | — |
+| `google_managed_kafka_connect_cluster` | `GoogleManagedKafkaConnectCluster` | — |
+| `google_managed_kafka_connector` | `GoogleManagedKafkaConnector` | — |
+| `google_managed_kafka_topic` | `GoogleManagedKafkaTopic` | — |
 
 ## memcache
 
