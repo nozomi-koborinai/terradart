@@ -277,6 +277,9 @@ barrels:
   memcache:
     doc: |-
       /// Memorystore for Memcached — managed Memcached instances.
+  memorystore:
+    doc: |-
+      /// Memorystore for Valkey — instances and user-created PSC endpoints.
   migration:
     doc: |-
       /// Migration Center: sources, discovery clients, import jobs, groups,

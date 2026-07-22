@@ -1,0 +1,86 @@
+outputDir: memorystore
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+
+curatedDoc: |-
+  /// Memorystore for Valkey **instance** — sharded Valkey with PSC
+  /// networking (`memorystore.googleapis.com`).
+  ///
+  /// **Cost:** Cloud Billing Catalog service `A2B5-E0F1-B0F3` bills **per
+  /// node-hour** while the instance exists (us-central1 Shared Core Nano
+  /// SKU `1E97-7EC7-226D` **$0.0318/h**; Standard Small `7054-E9DE-8B60`
+  /// **$0.1425/h**) × shards × (1 + replicas). Destroy stops node charges.
+  /// Too expensive for apply-smoke — factories ship without a quickstart.
+  ///
+  /// Requires [instanceId], [location], and [shardCount]. Prefer
+  /// [desiredAutoCreatedEndpoints] (or the sibling
+  /// [GoogleMemorystoreInstanceDesiredUserCreatedEndpoints]) over the
+  /// deprecated `psc_auto_connections` / `discovery_endpoints` outputs.
+  /// Enable `memorystore.googleapis.com` via [GoogleProjectService]
+  /// before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleMemorystoreInstance(
+  ///   localName: 'valkey',
+  ///   instanceId: TfArg.literal('terradart-valkey'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   shardCount: TfArg.literal(1),
+  ///   replicaCount: TfArg.literal(0),
+  ///   nodeType: TfArg.literal('SHARED_CORE_NANO'),
+  ///   desiredAutoCreatedEndpoints: [
+  ///     MemorystoreInstanceDesiredAutoCreatedEndpoints(
+  ///       network: TfArg.ref(network.id),
+  ///       projectId: TfArg.literal(projectId),
+  ///     ),
+  ///   ],
+  ///   deletionProtectionEnabled: TfArg.literal(false),
+  /// );
+  /// ```
+
+paramOrder:
+  - instance_id
+  - location
+  - shard_count
+  - replica_count
+  - node_type
+  - mode
+  - engine_version
+  - authorization_mode
+  - transit_encryption_mode
+  - desired_auto_created_endpoints
+  - desired_psc_auto_connections
+  - persistence_config
+  - zone_distribution_config
+  - maintenance_policy
+  - automated_backup_config
+  - cross_instance_replication_config
+  - gcs_source
+  - managed_backup_source
+  - kms_key
+  - labels
+  - deletion_protection_enabled
+  - deletion_policy
+  - project
+
+deprecatedParams:
+  discovery_endpoints: This field is deprecated. As a result it will not be populated if the connections are created using `desired_auto_created_endpoints` parameter or `google_memorystore_instance_desired_user_created_endpoints` resource. Instead of this parameter, for discovery, use `endpoints.connections.pscConnection` and `endpoints.connections.pscAutoConnection` with `connectionType` CONNECTION_TYPE_DISCOVERY.
+  psc_auto_connections: '`psc_auto_connections` is deprecated. Use `endpoints.connections.pscAutoConnections` instead.'
+
+extraGetters: |2
+    /// Reference to `instance_id` attribute.
+    TfRef<String> get instanceIdRef =>
+        TfRef.attribute<String>(this, 'instance_id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

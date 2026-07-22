@@ -211,3 +211,10 @@ GoogleDataprocClusterIamMember: requires a parent GoogleDataprocCluster (never_a
 # (never_apply) and block wave auto-merge — factories ship without an example.
 GoogleWorkbenchInstance: gcp-cost Notebooks D73B-5EEA-8215 N1 mgmt CPU us-central1 SKU 6196-1C27-5E30 $0.0063222/h (+ usage CPU 9027-15FF-8BFE $0.0379332/h) — never_apply VM hours; no applyable quickstart on terradart-validate
 GoogleWorkbenchInstanceIamMember: requires a parent GoogleWorkbenchInstance (never_apply); deferred with the instance
+
+# Memorystore for Valkey bills per node-hour while the instance exists
+# (Cloud Memorystore A2B5-E0F1-B0F3 Shared Core Nano us-central1 SKU
+# 1E97-7EC7-226D $0.0318/h). A quickstart would force apply_smoke_skip
+# (never_apply) and block wave auto-merge — factories ship without an example.
+GoogleMemorystoreInstance: gcp-cost Memorystore A2B5-E0F1-B0F3 Shared Core Nano us-central1 SKU 1E97-7EC7-226D $0.0318/h (Standard Small 7054-E9DE-8B60 $0.1425/h) — never_apply node-hours; no applyable quickstart on terradart-validate
+GoogleMemorystoreInstanceDesiredUserCreatedEndpoints: requires a parent GoogleMemorystoreInstance (never_apply); deferred with the instance
