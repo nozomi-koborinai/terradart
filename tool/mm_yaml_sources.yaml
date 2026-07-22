@@ -214,6 +214,10 @@ files:
     upstream: mmv1/products/discoveryengine/DataStore.yaml
   google_dataproc_autoscaling_policy:
     upstream: mmv1/products/dataproc/AutoscalingPolicy.yaml
+  google_dataproc_cluster:
+    upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/dataproc/resource_dataproc_cluster.go); no mmv1/products/dataproc/Cluster.yaml
+  google_dataproc_cluster_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataproc_metastore_federation:
     upstream: mmv1/products/metastore/Federation.yaml
   google_dataproc_metastore_federation_iam_member:

@@ -1,0 +1,62 @@
+outputDir: dataproc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Dataproc **cluster** — managed Apache Hadoop / Spark VMs (classic) or
+  /// a Dataproc-on-GKE virtual cluster.
+  ///
+  /// **Cost:** Cloud Billing Catalog service `363B-8851-170D` currently
+  /// lists **Serverless** SKUs only in us-central1 (e.g. Batch DCU
+  /// `EC7A-EF05-537E` **$0.06/h**; Interactive DCU `A486-6040-07FE`
+  /// **$0.089/h**) — **no classic cluster premium SKU** after MCP
+  /// `list_skus`. Classic clusters still **materialize GCE VMs** (plus
+  /// Dataproc premium per docs) while the cluster exists; destroy stops
+  /// those charges. Too expensive for apply-smoke — factories ship
+  /// without a quickstart.
+  ///
+  /// Provide [clusterConfig] (classic) or [virtualClusterConfig]
+  /// (Dataproc on GKE). Enable `dataproc.googleapis.com` via
+  /// [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleDataprocCluster(
+  ///   localName: 'spark',
+  ///   name: TfArg.literal('terradart-dataproc'),
+  ///   region: TfArg.literal('us-central1'),
+  ///   clusterConfig: DataprocClusterClusterConfig(
+  ///     masterConfig: DataprocClusterClusterConfigMasterConfig(
+  ///       numInstances: TfArg.literal(1),
+  ///       machineType: TfArg.literal('e2-standard-4'),
+  ///     ),
+  ///     workerConfig: DataprocClusterClusterConfigWorkerConfig(
+  ///       numInstances: TfArg.literal(2),
+  ///       machineType: TfArg.literal('e2-standard-4'),
+  ///     ),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - region
+  - cluster_config
+  - virtual_cluster_config
+  - labels
+  - graceful_decommission_timeout
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

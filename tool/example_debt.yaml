@@ -196,3 +196,11 @@ GoogleBackupDrBackupPlan: requires a parent GoogleBackupDrBackupVault (never_app
 GoogleBackupDrBackupPlanAssociation: requires a parent plan/vault (never_apply); deferred with the vault — associating starts management fees
 GoogleBackupDrServiceConfig: deferred with the Backup DR Wave (config metadata; no apply-smoke quickstart)
 GoogleBackupDrRestoreWorkload: requires vault backups (never_apply parents); deferred with the vault — restore materializes Compute/Disk
+
+# Dataproc classic clusters materialize GCE VMs while they exist (Cloud
+# Billing Catalog Dataproc 363B-8851-170D lists Serverless SKUs only after
+# MCP lookup; Batch DCU EC7A-EF05-537E $0.06/h). A quickstart would force
+# apply_smoke_skip (never_apply) and block wave auto-merge — factories
+# ship without an example.
+GoogleDataprocCluster: gcp-cost Dataproc 363B-8851-170D Serverless Batch DCU us-central1 SKU EC7A-EF05-537E $0.06/h (Interactive DCU A486-6040-07FE $0.089/h; no classic cluster premium SKU in catalog) — never_apply GCE+premium hours; no applyable quickstart on terradart-validate
+GoogleDataprocClusterIamMember: requires a parent GoogleDataprocCluster (never_apply); deferred with the cluster
