@@ -252,6 +252,9 @@ barrels:
   license_manager:
     doc: |-
       /// License Manager: third-party software license configurations for Compute Engine.
+  looker:
+    doc: |-
+      /// Looker (Google Cloud core) — managed BI instances (platform fee while provisioned).
   logging:
     doc: |-
       /// Cloud Logging: log-based metrics and sinks routed to BigQuery / Pub/Sub /

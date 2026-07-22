@@ -1,0 +1,65 @@
+outputDir: looker
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  platform_edition: LookerInstancePlatformEdition
+
+curatedDoc: |-
+  /// Looker (Google Cloud core) **instance** — managed BI / analytics
+  /// platform.
+  ///
+  /// **Cost:** Cloud Billing Catalog service `C71C-0952-AAC7` bills a
+  /// **platform fee** while the instance exists (Standard Edition SKU
+  /// `3F43-B8CB-2533` **$5000/count** per billing period) plus user fees
+  /// (Standard User `25F9-B190-39DB` **$60/count**; Developer User
+  /// `7CE2-9C5D-E9F4` **$125/count`). Destroy stops platform charges. Far
+  /// too expensive for apply-smoke — factories ship without a quickstart.
+  ///
+  /// Requires [oauthConfig] (OAuth client id/secret). Enable
+  /// `looker.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleLookerInstance(
+  ///   localName: 'bi',
+  ///   name: TfArg.literal('terradart-looker'),
+  ///   region: TfArg.literal('us-central1'),
+  ///   platformEdition: TfArg.literal(
+  ///     LookerInstancePlatformEdition.lookerCoreTrialStandard,
+  ///   ),
+  ///   oauthConfig: LookerInstanceOauthConfig(
+  ///     clientId: TfArg.literal('…'),
+  ///     clientSecret: TfArg.literal('…'),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - region
+  - platform_edition
+  - oauth_config
+  - consumer_network
+  - admin_settings
+  - maintenance_window
+  - encryption_config
+  - custom_domain
+  - deny_maintenance_period
+  - controlled_egress_config
+  - periodic_export_config
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
