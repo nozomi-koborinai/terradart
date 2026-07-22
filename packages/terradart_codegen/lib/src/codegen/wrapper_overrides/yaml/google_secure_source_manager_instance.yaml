@@ -1,0 +1,48 @@
+outputDir: secure
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Secure Source Manager **instance** — a regional Git hosting deployment
+  /// with a web UI.
+  ///
+  /// **Cost:** Cloud Billing Catalog lists fixed-instance SKUs (e.g. us-central1
+  /// `9B40-B4AA-D8EE` at **$1000/month**). An instance bills while it exists;
+  /// destroy stops the charge. Do not leave one running in apply-smoke.
+  ///
+  /// Enable `securesourcemanager.googleapis.com` via [GoogleProjectService]
+  /// before apply. Prefer [deletionPolicy] `DELETE` when the instance is
+  /// disposable.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleSecureSourceManagerInstance(
+  ///   localName: 'git',
+  ///   location: TfArg.literal('us-central1'),
+  ///   instanceId: TfArg.literal('terradart-ssm'),
+  ///   deletionPolicy: TfArg.literal('DELETE'),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - instance_id
+  - labels
+  - kms_key
+  - private_config
+  - workforce_identity_federation_config
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `instance_id` attribute.
+    TfRef<String> get instanceIdRef =>
+        TfRef.attribute<String>(this, 'instance_id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -100,6 +100,7 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry('google_service_networking_', 'servicenetworking.googleapis.com'),
   MapEntry('google_vpc_access_', 'vpcaccess.googleapis.com'),
   MapEntry('google_vector_search_', 'vectorsearch.googleapis.com'),
+  MapEntry('google_secure_source_manager_', 'securesourcemanager.googleapis.com'),
 ];
 
 /// Returns the API endpoint a [terraformType] needs, or null when unchecked.

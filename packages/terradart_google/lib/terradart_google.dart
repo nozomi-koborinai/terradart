@@ -84,6 +84,7 @@ export 'recaptcha.dart';
 export 'redis.dart';
 export 'scc.dart';
 export 'secret_manager.dart';
+export 'secure.dart';
 export 'service_directory.dart';
 export 'service_networking.dart';
 export 'sourcerepo.dart';

@@ -348,6 +348,11 @@ barrels:
       /// For private-IP deployments, see also `service_networking.dart`
       /// ([GoogleServiceNetworkingConnection]) and `compute.dart`
       /// ([GoogleComputeGlobalAddress]).
+  secure:
+    doc: |-
+      /// Secure Source Manager — regional Git instances, repositories, and
+      /// resource-level `*_iam_member` grants. Instances bill at a fixed
+      /// monthly rate while they exist.
   storage:
     doc: |-
       /// Cloud Storage buckets, bucket objects, and Pub/Sub object-change

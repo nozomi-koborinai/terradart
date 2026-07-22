@@ -116,3 +116,11 @@ GoogleSccV2ProjectNotificationConfig: requires an organization-activated Securit
 # PERFORMANCE_OPTIMIZED replicas (hourly capacity-unit SKUs). vector_quickstart
 # exercises the schema-only collection instead.
 GoogleVectorSearchIndex: API defaults dedicated_infrastructure to PERFORMANCE_OPTIMIZED with min/max_replica_count=2 (Vector Search V2 capacity units billed hourly, e.g. SKU 2ECA-1449-C093 $0.065/h); including the index would force apply_smoke_pr_skip and block wave auto-merge — vector_quickstart covers GoogleVectorSearchCollection only
+
+# Secure Source Manager instances are existence-billed at ~$1000/mo (Fixed
+# Instance Pricing). A quickstart would require apply_smoke_skip (never_apply)
+# and block wave auto-merge — factories ship without an example.
+GoogleSecureSourceManagerInstance: gcp-cost Fixed Instance Pricing us-central1 SKU 9B40-B4AA-D8EE $1000/mo — never_apply; no applyable quickstart on terradart-validate
+GoogleSecureSourceManagerRepository: requires a parent GoogleSecureSourceManagerInstance (never_apply); deferred with the instance
+GoogleSecureSourceManagerInstanceIamMember: requires a parent GoogleSecureSourceManagerInstance (never_apply); deferred with the instance
+GoogleSecureSourceManagerRepositoryIamMember: requires a parent repository on a never_apply instance; deferred with the instance
