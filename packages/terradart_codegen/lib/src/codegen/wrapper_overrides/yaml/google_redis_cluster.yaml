@@ -1,0 +1,72 @@
+outputDir: redis
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  authorization_mode: RedisClusterAuthorizationMode
+  transit_encryption_mode: RedisClusterTransitEncryptionMode
+  node_type: RedisClusterNodeType
+  server_ca_mode: RedisClusterServerCaMode
+
+curatedDoc: |-
+  /// Memorystore for Redis **Cluster** — sharded Redis with PSC networking.
+  ///
+  /// **Cost:** Cloud Billing Catalog service `5AF5-2C11-D467` bills **per
+  /// node-hour** while the cluster exists (us-central1 Shared Core Nano
+  /// SKU `B4D9-BD1A-3BBC` **$0.0318/h**; Standard Small `02F6-0CB2-BDE1`
+  /// **$0.1425/h**; Default 13 GB `8513-DCBC-92D7` **$0.1923/h**) ×
+  /// shards × (1 + replicas). Destroy stops node charges. Too expensive
+  /// for apply-smoke — factories ship without a quickstart.
+  ///
+  /// Requires [shardCount] and typically [pscConfigs] (consumer VPC
+  /// network). Enable `redis.googleapis.com` via [GoogleProjectService]
+  /// before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleRedisCluster(
+  ///   localName: 'rc',
+  ///   name: TfArg.literal('terradart-rc'),
+  ///   region: TfArg.literal('us-central1'),
+  ///   shardCount: TfArg.literal(1),
+  ///   replicaCount: TfArg.literal(0),
+  ///   nodeType: TfArg.literal(RedisClusterNodeType.redisSharedCoreNano),
+  ///   pscConfigs: [
+  ///     RedisClusterPscConfigs(network: TfArg.ref(network.id)),
+  ///   ],
+  ///   deletionProtectionEnabled: TfArg.literal(false),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - region
+  - shard_count
+  - replica_count
+  - node_type
+  - psc_configs
+  - authorization_mode
+  - transit_encryption_mode
+  - redis_configs
+  - persistence_config
+  - zone_distribution_config
+  - maintenance_policy
+  - automated_backup_config
+  - kms_key
+  - labels
+  - deletion_protection_enabled
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

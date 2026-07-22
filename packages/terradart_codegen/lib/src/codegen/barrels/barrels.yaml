@@ -334,7 +334,7 @@ barrels:
       /// reCAPTCHA Enterprise keys for web, Android, and iOS clients.
   redis:
     doc: |-
-      /// Memorystore for Redis — managed Redis instances.
+      /// Memorystore for Redis — instances, Cluster, and user-created PSC connections.
   secret_manager:
     doc: |-
       /// Secret Manager secrets, versions, and per-secret IAM bindings.

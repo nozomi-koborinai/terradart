@@ -953,6 +953,10 @@ files:
     upstream: mmv1/products/networksecurity/BackendAuthenticationConfig.yaml
   google_network_security_dns_threat_detector:
     upstream: mmv1/products/networksecurity/DnsThreatDetector.yaml
+  google_redis_cluster:
+    upstream: mmv1/products/redis/Cluster.yaml
+  google_redis_cluster_user_created_connections:
+    upstream: mmv1/products/redis/ClusterUserCreatedConnections.yaml
   google_redis_instance:
     upstream: mmv1/products/redis/Instance.yaml
   google_vertex_ai_feature_group:
