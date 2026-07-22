@@ -1,0 +1,17 @@
+outputDir: secure
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Non-authoritative IAM member on a Secure Source Manager instance.
+  ///
+  /// [instanceId] is the short instance id (path segment), not the full
+  /// resource name.
+
+paramOrder:
+  - instance_id
+  - role
+  - member
+  - location
+  - project
+  - condition

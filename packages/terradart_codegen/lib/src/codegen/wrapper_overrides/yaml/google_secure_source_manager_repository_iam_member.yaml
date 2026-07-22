@@ -1,0 +1,17 @@
+outputDir: secure
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Non-authoritative IAM member on a Secure Source Manager repository.
+  ///
+  /// [repositoryId] is the short repository id (path segment). Location and
+  /// project identify the parent when not taken from the provider default.
+
+paramOrder:
+  - repository_id
+  - role
+  - member
+  - location
+  - project
+  - condition

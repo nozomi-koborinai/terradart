@@ -33,11 +33,14 @@ safe_exception: google_compute_instance_template  # instance template metadata o
 safe_exception: google_compute_instance_settings  # zonal metadata defaults singleton; no VM provisioned — _instance substring false positive
 safe_exception: google_service_directory_endpoint  # Service Directory metadata record, no existence billing — _endpoint false positive
 safe_exception: google_bigtable_instance_iam_member  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
+safe_exception: google_secure_source_manager_instance_iam_member  # IAM binding on SSM instance; no existence billing — _instance substring false positive (parent google_secure_source_manager_instance is never_apply)
+
 safe_exception: google_notebooks_environment  # Workbench environment is an image recipe only; Notebooks SKUs bill when an instance/VM runs — _notebooks substring false positive
 safe_exception: google_bigquery_reservation_group  # reservation group is a named container only; BigQuery Reservation API 16B8-3DDA-9F10 SKUs bill slots/commits (e.g. Standard Edition PAYG 0165-271F-5086 ~$0.049/slot-hour) — reservation substring false positive
 
 # --- never_apply: existence-billed / reservation ---
 google_license_manager_configuration: never_apply  # Office SPLA licenses bill per license_count for the configuration's lifetime, no VM required
+google_secure_source_manager_instance: never_apply  # gcp-cost: Secure Source Manager ADD4-3782-815A Fixed Instance Pricing us-central1 SKU 9B40-B4AA-D8EE $1000/mo (unit month) — existence-billed while the instance exists; destroy stops the charge; too expensive for apply-smoke even once
 
 # --- sweep_only: hourly-billed compute / managed data ---
 google_contact_center_insights_analysis_rule: safe  # gcp-cost: no Cloud Billing Catalog SKU for analysis_rule config (Conversational Insights FA1B-16BE-8526 lists analysis/subscription SKUs only, e.g. C18F-21FE-BB85 standard voice analysis); billing-behavior: location config metadata — no existence/hourly charge; analysis billed only when conversations are processed
@@ -303,6 +306,10 @@ google_scc_v2_project_notification_config: safe  # gcp-cost: no Cloud Billing Ca
 google_secret_manager_regional_secret: safe  # apply-verified safe (existing example)
 google_secret_manager_regional_secret_iam_member: safe  # apply-verified safe (existing example)
 google_secret_manager_secret: safe  # apply-verified safe (existing example)
+google_secure_source_manager_repository: safe  # gcp-cost: Secure Source Manager ADD4-3782-815A SKUs are Fixed Instance Pricing only (e.g. 9B40-B4AA-D8EE $1000/mo) — no repository SKU; billing-behavior: Git repo metadata on a parent instance — no separate existence charge beyond the never_apply instance
+google_secure_source_manager_instance_iam_member: safe  # billing-behavior: IAM binding — no resource charge
+google_secure_source_manager_repository_iam_member: safe  # billing-behavior: IAM binding — no resource charge
+
 google_secret_manager_secret_iam_member: safe  # apply-verified safe (existing example)
 google_storage_bucket: safe  # gcp-cost: Standard Storage us-central1 SKU 141D-1A1B-38E1 ~$0.022/GiBy.mo — usage-metered; empty bucket in quickstart ≈ $0; destroy deletes bucket and stops storage charges (not existence-billed)
 google_storage_bucket_iam_binding: safe  # IAM binding on a bucket; no existence billing

@@ -1,0 +1,36 @@
+outputDir: secure
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Secure Source Manager **repository** — a Git repository on an
+  /// [GoogleSecureSourceManagerInstance].
+  ///
+  /// Pass the parent instance's resource [name] (not only the short id) to
+  /// [instance]. Optional [initialConfig] seeds default branch / license /
+  /// README on create.
+  ///
+  /// Enable `securesourcemanager.googleapis.com` before apply. Prefer
+  /// [deletionPolicy] `DELETE` for disposable stacks.
+
+paramOrder:
+  - location
+  - repository_id
+  - instance
+  - description
+  - initial_config
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `repository_id` attribute.
+    TfRef<String> get repositoryIdRef =>
+        TfRef.attribute<String>(this, 'repository_id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
