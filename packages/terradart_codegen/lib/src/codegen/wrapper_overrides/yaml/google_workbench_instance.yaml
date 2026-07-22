@@ -1,0 +1,60 @@
+outputDir: workbench
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Vertex AI Workbench **instance** — the current user-managed notebook
+  /// VM API (`google_notebooks_instance` is deprecated in favor of this).
+  ///
+  /// **Cost:** Cloud Billing Catalog service `D73B-5EEA-8215` bills Workbench
+  /// **management fees + GCE usage** while the VM runs (us-central1 N1
+  /// management CPU SKU `6196-1C27-5E30` **$0.0063222/h** + N1 usage CPU
+  /// `9027-15FF-8BFE` **$0.0379332/h** + RAM/disk). Destroy stops charges.
+  /// Too expensive for apply-smoke — factories ship without a quickstart.
+  ///
+  /// Configure the VM via [gceSetup] (machine type, image, disks, network).
+  /// Enable `notebooks.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleWorkbenchInstance(
+  ///   localName: 'wb',
+  ///   name: TfArg.literal('terradart-wb'),
+  ///   location: TfArg.literal('us-central1-a'),
+  ///   gceSetup: WorkbenchInstanceGceSetup(
+  ///     machineType: TfArg.literal('n1-standard-1'),
+  ///     vmImage: WorkbenchInstanceGceSetupVmImage(
+  ///       project: TfArg.literal('cloud-notebooks-managed'),
+  ///       family: TfArg.literal('workbench-instances'),
+  ///     ),
+  ///   ),
+  ///   desiredState: TfArg.literal('STOPPED'),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - gce_setup
+  - instance_owners
+  - disable_proxy_access
+  - enable_third_party_identity
+  - enable_managed_euc
+  - labels
+  - desired_state
+  - instance_id
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

@@ -1042,6 +1042,10 @@ files:
   google_workstations_workstation_iam_member:
     upstream: null  # IAM adjunct
 
+  google_workbench_instance:
+    upstream: mmv1/products/workbench/Instance.yaml
+  google_workbench_instance_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_workflows_workflow:
     upstream: mmv1/products/workflows/Workflow.yaml
   google_tags_tag_key:

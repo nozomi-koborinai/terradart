@@ -396,6 +396,9 @@ barrels:
       /// managed datasets, experiment Tensorboards (with experiments and runs),
       /// pipeline schedules, and GenAI cache config.
       /// Nested config blocks (e.g. `encryption_spec`) are passed as structured maps.
+  workbench:
+    doc: |-
+      /// Vertex AI Workbench instances (current notebook VM API) and IAM members.
   workstations:
     doc: |-
       /// Cloud Workstations — clusters, configs, workstations, and

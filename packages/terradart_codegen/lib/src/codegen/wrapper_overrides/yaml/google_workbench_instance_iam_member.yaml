@@ -1,0 +1,18 @@
+outputDir: workbench
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Non-authoritative IAM member on a Vertex AI Workbench instance.
+  ///
+  /// Deferred with the never_apply Workbench instance (no apply-smoke
+  /// quickstart).
+
+paramOrder:
+  - name
+  - role
+  - member
+  - location
+  - project
+  - condition

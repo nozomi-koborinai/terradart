@@ -99,5 +99,6 @@ export 'storage_control.dart';
 export 'tags.dart';
 export 'vector.dart';
 export 'vertex_ai.dart';
+export 'workbench.dart';
 export 'workflows.dart';
 export 'workstations.dart';
