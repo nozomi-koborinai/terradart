@@ -258,6 +258,10 @@ barrels:
       /// the unified prefix convention and keeps its unprefixed `LoggingProjectSinkBigqueryOptions` /
       /// `LoggingProjectSinkLogSinkExclusion` helper types; the newer folder and organization sinks
       /// use scope-prefixed names to avoid barrel-export collision.
+  managed:
+    doc: |-
+      /// Managed Service for Apache Kafka — clusters, topics, ACLs, Connect
+      /// clusters, and connectors. Clusters bill Data Compute Units hourly.
   memcache:
     doc: |-
       /// Memorystore for Memcached — managed Memcached instances.

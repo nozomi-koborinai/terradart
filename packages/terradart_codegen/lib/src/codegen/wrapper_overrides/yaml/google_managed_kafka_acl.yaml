@@ -1,0 +1,50 @@
+outputDir: managed
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+
+curatedDoc: |-
+  /// Kafka **ACL** entry set on a [GoogleManagedKafkaCluster].
+  ///
+  /// **Cost:** no separate Cloud Billing Catalog SKU — ACL metadata on the
+  /// parent cluster. Deferred with the cluster (no apply-smoke quickstart).
+  ///
+  /// [aclId] encodes the resource pattern (see provider docs). Provide at
+  /// least one [aclEntries] principal/operation.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleManagedKafkaAcl(
+  ///   localName: 'eventsAcl',
+  ///   aclId: TfArg.literal('topic/events'),
+  ///   cluster: TfArg.ref(cluster.clusterIdRef),
+  ///   location: TfArg.literal('us-central1'),
+  ///   aclEntries: [
+  ///     ManagedKafkaAclAclEntries(
+  ///       principal: TfArg.literal('User:serviceAccount:sa@proj.iam.gserviceaccount.com'),
+  ///       operation: TfArg.literal('ALL'),
+  ///       permissionType: TfArg.literal('ALLOW'),
+  ///     ),
+  ///   ],
+  /// );
+  /// ```
+
+paramOrder:
+  - acl_id
+  - cluster
+  - location
+  - acl_entries
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `acl_id` attribute.
+    TfRef<String> get aclIdRef => TfRef.attribute<String>(this, 'acl_id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

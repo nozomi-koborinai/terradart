@@ -853,6 +853,18 @@ files:
     upstream: mmv1/products/appengine/ServiceSplitTraffic.yaml
   google_app_engine_standard_app_version:
     upstream: mmv1/products/appengine/StandardAppVersion.yaml
+
+  google_managed_kafka_cluster:
+    upstream: mmv1/products/managedkafka/Cluster.yaml
+  google_managed_kafka_topic:
+    upstream: mmv1/products/managedkafka/Topic.yaml
+  google_managed_kafka_acl:
+    upstream: mmv1/products/managedkafka/Acl.yaml
+  google_managed_kafka_connect_cluster:
+    upstream: mmv1/products/managedkafka/ConnectCluster.yaml
+  google_managed_kafka_connector:
+    upstream: mmv1/products/managedkafka/Connector.yaml
+
   google_memcache_instance:
     upstream: mmv1/products/memcache/Instance.yaml
   google_migration_center_assets_export_job:
