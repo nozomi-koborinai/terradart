@@ -1,0 +1,40 @@
+outputDir: netapp
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// NetApp Volumes **backup vault** — destination for volume backups.
+  ///
+  /// **Cost:** Backup Storage Charge (us-central1 SKU `DCB6-FE72-5443`
+  /// **$0.045/GiBy·mo**) applies to stored backup data; an empty vault
+  /// has no capacity charge. Deferred with the pool Wave (no
+  /// apply-smoke quickstart).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleNetappBackupVault(
+  ///   localName: 'vault',
+  ///   name: TfArg.literal('terradart-vault'),
+  ///   location: TfArg.literal('us-central1'),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - description
+  - labels
+  - backup_region
+  - backup_vault_type
+  - backup_retention_policy
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

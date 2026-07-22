@@ -1,0 +1,42 @@
+outputDir: netapp
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// NetApp Volumes **backup policy** (schedule limits for vaulted backups).
+  ///
+  /// **Cost:** no Cloud Billing Catalog SKU for the policy itself under
+  /// `FC86-5113-7C81` — backup storage bills when backups exist (SKU
+  /// `DCB6-FE72-5443`). Deferred with the pool Wave (no apply-smoke
+  /// quickstart).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleNetappBackupPolicy(
+  ///   localName: 'policy',
+  ///   name: TfArg.literal('daily'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   dailyBackupLimit: TfArg.literal(2),
+  ///   weeklyBackupLimit: TfArg.literal(1),
+  ///   monthlyBackupLimit: TfArg.literal(1),
+  ///   enabled: TfArg.literal(true),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - daily_backup_limit
+  - weekly_backup_limit
+  - monthly_backup_limit
+  - enabled
+  - description
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

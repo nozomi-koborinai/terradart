@@ -277,6 +277,10 @@ barrels:
     doc: |-
       /// Cloud Monitoring: alert policies, notification channels, uptime probes,
       /// dashboards, custom metric descriptors, and SLO service objects.
+  netapp:
+    doc: |-
+      /// Google Cloud NetApp Volumes — storage pools, volumes, snapshots,
+      /// and backup vaults/policies. Pools bill capacity while they exist.
   network:
     doc: |-
       /// Network Connectivity transports, Network Security ULL mirroring, address

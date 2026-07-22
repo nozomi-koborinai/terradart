@@ -1,0 +1,36 @@
+outputDir: netapp
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// NetApp Volumes **volume snapshot**.
+  ///
+  /// **Cost:** no dedicated snapshot SKU under NetApp Volumes
+  /// `FC86-5113-7C81` beyond pool/backup capacity lines — snapshot space
+  /// is consumed from the parent pool. Deferred with the pool (no
+  /// apply-smoke quickstart).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleNetappVolumeSnapshot(
+  ///   localName: 'snap',
+  ///   name: TfArg.literal('daily'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   volumeName: TfArg.ref(vol.nameRef),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - volume_name
+  - description
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -1,0 +1,64 @@
+outputDir: netapp
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+dartTypeOverrides:
+  service_level: NetappStoragePoolServiceLevel
+  mode: NetappStoragePoolMode
+  qos_type: NetappStoragePoolQosType
+  scale_type: NetappStoragePoolScaleType
+  type: NetappStoragePoolType
+
+curatedDoc: |-
+  /// Google Cloud **NetApp Volumes** storage pool — provisioned capacity
+  /// that volumes draw from.
+  ///
+  /// **Cost:** Cloud Billing Catalog service `FC86-5113-7C81` bills pool
+  /// capacity while the pool exists (us-central1 Standard SKU
+  /// `C2DF-4710-FFE1` **$0.2/GiBy·mo**; Flex Zonal `211D-EBE1-87C9`
+  /// **$0.2/GiBy·mo**; Premium `5BCD-5BCB-41A3` **~$0.29/GiBy·mo**).
+  /// Typical minimum sizes are large (TiB-scale) → too expensive for
+  /// apply-smoke. Factories ship without a quickstart.
+  ///
+  /// Enable `netapp.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleNetappStoragePool(
+  ///   localName: 'pool',
+  ///   name: TfArg.literal('terradart-pool'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   network: TfArg.ref(vpc.id),
+  ///   serviceLevel: TfArg.literal(NetappStoragePoolServiceLevel.standard),
+  ///   capacityGib: TfArg.literal(2048),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - network
+  - service_level
+  - capacity_gib
+  - description
+  - labels
+  - ldap_enabled
+  - active_directory
+  - kms_config
+  - allow_auto_tiering
+  - custom_performance_enabled
+  - total_throughput_mibps
+  - total_iops
+  - hot_tier_size_gib
+  - enable_hot_tier_auto_resize
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

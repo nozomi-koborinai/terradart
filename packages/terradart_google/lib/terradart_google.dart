@@ -70,6 +70,7 @@ export 'memcache.dart';
 export 'migration.dart';
 export 'model_armor.dart';
 export 'monitoring.dart';
+export 'netapp.dart';
 export 'network.dart';
 export 'notebooks.dart';
 export 'observability.dart';

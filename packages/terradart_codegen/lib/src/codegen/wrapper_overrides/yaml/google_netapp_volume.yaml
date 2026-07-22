@@ -1,0 +1,56 @@
+outputDir: netapp
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// NetApp Volumes **volume** carved from a [GoogleNetappStoragePool].
+  ///
+  /// **Cost:** no separate pool-capacity SKU beyond the parent storage
+  /// pool (`FC86-5113-7C81` capacity GiBy·mo). Deferred with the pool
+  /// (no apply-smoke quickstart).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleNetappVolume(
+  ///   localName: 'vol',
+  ///   name: TfArg.literal('data'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   storagePool: TfArg.ref(pool.nameRef),
+  ///   capacityGib: TfArg.literal(100),
+  ///   protocols: [TfArg.literal('NFSV3')],
+  ///   shareName: TfArg.literal('data'),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - storage_pool
+  - capacity_gib
+  - protocols
+  - share_name
+  - description
+  - labels
+  - smb_settings
+  - unix_permissions
+  - snapshot_directory
+  - security_style
+  - kerberos_enabled
+  - export_policy
+  - snapshot_policy
+  - backup_config
+  - restore_parameters
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
