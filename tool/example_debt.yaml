@@ -154,3 +154,11 @@ GoogleWorkstationsWorkstationConfig: requires a parent GoogleWorkstationsWorksta
 GoogleWorkstationsWorkstation: gcp-cost Cloud Workstations instance VM (vCPU) management fee us-central1 SKU 8893-953D-5524 $0.05/h (+ Compute) — requires never_apply cluster; deferred with the cluster
 GoogleWorkstationsWorkstationConfigIamMember: requires a parent workstation config on a never_apply cluster; deferred with the cluster
 GoogleWorkstationsWorkstationIamMember: requires a parent workstation on a never_apply cluster; deferred with the cluster
+
+# Cloud Composer environments bill an environment fee while they exist
+# (us-central1 Small SKU 6EA4-3652-173E $0.35/h). A quickstart would force
+# apply_smoke_skip (never_apply) and block wave auto-merge — factories
+# ship without an example.
+GoogleComposerEnvironment: gcp-cost Cloud Composer 1992-3666-B975 Small Environment Fee us-central1 SKU 6EA4-3652-173E $0.35/h (Medium 9802-34D7-AFE2 $0.55/h; Large 2C11-0523-61D9 $0.85/h) — never_apply; no applyable quickstart on terradart-validate
+GoogleComposerUserWorkloadsConfigMap: requires a parent GoogleComposerEnvironment (never_apply); deferred with the environment
+GoogleComposerUserWorkloadsSecret: requires a parent GoogleComposerEnvironment (never_apply); deferred with the environment

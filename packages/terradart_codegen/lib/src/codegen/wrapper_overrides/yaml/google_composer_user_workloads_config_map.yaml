@@ -1,0 +1,37 @@
+outputDir: composer
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Composer **user workloads ConfigMap** on a [GoogleComposerEnvironment].
+  ///
+  /// **Cost:** no separate Cloud Billing Catalog SKU under Composer
+  /// `1992-3666-B975` — ConfigMap metadata on the parent environment.
+  /// Deferred with the environment (no apply-smoke quickstart).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleComposerUserWorkloadsConfigMap(
+  ///   localName: 'cfg',
+  ///   name: TfArg.literal('app-config'),
+  ///   environment: TfArg.ref(env.nameRef),
+  ///   region: TfArg.literal('us-central1'),
+  ///   data: {
+  ///     'KEY': TfArg.literal('value'),
+  ///   },
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - environment
+  - region
+  - data
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
