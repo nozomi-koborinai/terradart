@@ -20,6 +20,18 @@ upstream_branch: main
 # `upstream` is the path relative to the upstream repo root.
 # A `null` upstream marks a fixture as synthetic (skipped by sync).
 files:
+  google_backup_dr_backup_plan:
+    upstream: mmv1/products/backupdr/BackupPlan.yaml
+  google_backup_dr_backup_plan_association:
+    upstream: mmv1/products/backupdr/BackupPlanAssociation.yaml
+  google_backup_dr_backup_vault:
+    upstream: mmv1/products/backupdr/BackupVault.yaml
+  google_backup_dr_management_server:
+    upstream: mmv1/products/backupdr/ManagementServer.yaml
+  google_backup_dr_restore_workload:
+    upstream: mmv1/products/backupdr/RestoreWorkload.yaml
+  google_backup_dr_service_config:
+    upstream: mmv1/products/backupdr/ServiceConfig.yaml
   google_biglake_catalog:
     upstream: mmv1/products/biglake/Catalog.yaml
   google_biglake_database:

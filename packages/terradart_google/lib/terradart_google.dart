@@ -19,6 +19,7 @@ export 'apikeys.dart';
 export 'app.dart';
 export 'apphub.dart';
 export 'artifact_registry.dart';
+export 'backup_dr.dart';
 export 'biglake.dart';
 export 'bigquery.dart';
 export 'bigtable.dart';

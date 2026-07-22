@@ -1,0 +1,64 @@
+outputDir: backup_dr
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  access_restriction: BackupDrBackupVaultAccessRestriction
+  backup_retention_inheritance: BackupDrBackupVaultBackupRetentionInheritance
+
+curatedDoc: |-
+  /// Backup and DR Service **backup vault** — stores protected backups with
+  /// an enforced minimum retention.
+  ///
+  /// **Cost:** Cloud Billing Catalog service `3DAD-299B-0D94` bills BackupDR
+  /// **storage** while backups exist (us-central1 Long-Term Standard SKU
+  /// `5A13-2468-31B1` **$0.045/GiBy·mo**) plus **management** fees for
+  /// protected resources (GCE VM management SKU `0456-5BF2-438E`
+  /// **$0.02/GiBy·mo`). Destroying the vault does not erase cost risk if
+  /// retention blocks delete. Too expensive for apply-smoke — factories
+  /// ship without a quickstart.
+  ///
+  /// Enable `backupdr.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleBackupDrBackupVault(
+  ///   localName: 'vault',
+  ///   backupVaultId: TfArg.literal('terradart-vault'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   backupMinimumEnforcedRetentionDuration: TfArg.literal('2592000s'), // 30d
+  /// );
+  /// ```
+
+paramOrder:
+  - backup_vault_id
+  - location
+  - backup_minimum_enforced_retention_duration
+  - description
+  - labels
+  - annotations
+  - access_restriction
+  - backup_retention_inheritance
+  - encryption_config
+  - effective_time
+  - force_update
+  - force_delete
+  - allow_missing
+  - ignore_backup_plan_references
+  - ignore_inactive_datasources
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `backup_vault_id` attribute.
+    TfRef<String> get backupVaultIdRef =>
+        TfRef.attribute<String>(this, 'backup_vault_id');

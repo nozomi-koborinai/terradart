@@ -1,0 +1,26 @@
+outputDir: backup_dr
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Backup and DR Service **service config** — initializes Backup and DR
+  /// for a project/location and resource type.
+  ///
+  /// **Cost:** no separate Cloud Billing Catalog SKU under BackupDR
+  /// `3DAD-299B-0D94` for the config object itself (management/storage
+  /// SKUs apply when vaults/associations exist). Deferred with the
+  /// never_apply Backup DR Wave (no apply-smoke quickstart).
+  ///
+  /// Enable `backupdr.googleapis.com` via [GoogleProjectService] before apply.
+
+paramOrder:
+  - location
+  - resource_type
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

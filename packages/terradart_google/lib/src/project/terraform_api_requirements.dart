@@ -62,6 +62,7 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
     'google_bigquery_bi_reservation',
     'bigqueryreservation.googleapis.com',
   ),
+  MapEntry('google_backup_dr_', 'backupdr.googleapis.com'),
   MapEntry('google_bigquery_', 'bigquery.googleapis.com'),
   MapEntry('google_bigtable_', 'bigtableadmin.googleapis.com'),
   MapEntry('google_os_config_', 'osconfig.googleapis.com'),

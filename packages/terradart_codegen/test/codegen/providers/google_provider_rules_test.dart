@@ -35,6 +35,9 @@ void main() {
       expect(rules.outputDirAliases['data_lineage'], 'dataplex');
       expect(rules.outputDirAliases['datalineage'], 'dataplex');
       expect(rules.outputDirAliases['modelarmor'], 'model_armor');
+      expect(rules.outputDirAliases['backup'], 'backup_dr');
+      expect(rules.outputDirAliases['backup_dr'], 'backup_dr');
+      expect(rules.outputDirAliases['backupdr'], 'backup_dr');
     });
 
     test('universalGetters returns id + nameRef when both attrs are present',

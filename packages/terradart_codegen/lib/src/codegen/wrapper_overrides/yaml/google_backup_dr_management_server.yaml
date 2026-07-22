@@ -1,0 +1,56 @@
+outputDir: backup_dr
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  type: BackupDrManagementServerType
+
+curatedDoc: |-
+  /// Backup and DR Service **management server** — the control-plane
+  /// appliance for Backup and DR in a project/region.
+  ///
+  /// **Cost:** provisioning a management server attaches BackupDR
+  /// management + underlying Compute/networking. Cloud Billing Catalog
+  /// service `3DAD-299B-0D94` bills protected-resource management (e.g.
+  /// GCE VM management SKU `0456-5BF2-438E` **$0.02/GiBy·mo**) once
+  /// workloads are protected; the server itself is too heavy for
+  /// apply-smoke. Factories ship without a quickstart.
+  ///
+  /// Enable `backupdr.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleBackupDrManagementServer(
+  ///   localName: 'ms',
+  ///   name: TfArg.literal('terradart-bdr-ms'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   type: TfArg.literal(BackupDrManagementServerType.backupRestore),
+  ///   networks: [
+  ///     BackupDrManagementServerNetworks(
+  ///       network: TfArg.ref(network.id),
+  ///       peeringMode: TfArg.literal('PRIVATE_SERVICE_ACCESS'),
+  ///     ),
+  ///   ],
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - type
+  - networks
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

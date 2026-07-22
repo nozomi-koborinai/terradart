@@ -156,5 +156,10 @@ final class GoogleProviderRules extends ProviderRules {
     // MM product StorageControl). Distinct from the `storage` barrel.
     'storagecontrol': 'storage_control',
     'storage_control': 'storage_control',
+
+    // Backup and DR (`google_backup_dr_*` → segment `backup`; MM product backupdr).
+    'backup': 'backup_dr',
+    'backup_dr': 'backup_dr',
+    'backupdr': 'backup_dr',
   };
 }
