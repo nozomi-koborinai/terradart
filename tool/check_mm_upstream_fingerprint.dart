@@ -46,6 +46,7 @@ const _fingerprintFalsePositives = <String>{
   'google_recaptcha_enterprise_key', // third_party resource_recaptcha_enterprise_key.go
   'google_composer_environment', // third_party resource_composer_environment.go.tmpl; no mmv1/products/composer/Environment.yaml
   'google_composer_user_workloads_secret', // third_party resource_composer_user_workloads_secret.go.tmpl; no mmv1 YAML
+  'google_dataproc_cluster', // third_party resource_dataproc_cluster.go; no mmv1/products/dataproc/Cluster.yaml (product has AutoscalingPolicy/Batch/SessionTemplate only)
 };
 
 bool _isIamAdjunct(String tfType) =>
