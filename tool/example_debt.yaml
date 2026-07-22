@@ -169,3 +169,9 @@ GoogleComposerUserWorkloadsSecret: requires a parent GoogleComposerEnvironment (
 # block wave auto-merge — factories ship without an example.
 GoogleRedisCluster: gcp-cost Memorystore for Redis 5AF5-2C11-D467 Shared Core Nano us-central1 SKU B4D9-BD1A-3BBC $0.0318/h (Standard Small 02F6-0CB2-BDE1 $0.1425/h) — never_apply node-hours; no applyable quickstart on terradart-validate
 GoogleRedisClusterUserCreatedConnections: requires a parent GoogleRedisCluster (never_apply); deferred with the cluster
+
+# Looker (Google Cloud core) bills a platform fee while the instance exists
+# (Standard Edition SKU 3F43-B8CB-2533 $5000/count). A quickstart would force
+# apply_smoke_skip (never_apply) and block wave auto-merge — factories ship
+# without an example.
+GoogleLookerInstance: gcp-cost Looker C71C-0952-AAC7 Standard Edition SKU 3F43-B8CB-2533 $5000/count — never_apply platform fee; no applyable quickstart on terradart-validate
