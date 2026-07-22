@@ -44,6 +44,8 @@ const _fingerprintFalsePositives = <String>{
   'google_dataplex_zone', // MM Zone.yaml is IAM-only (exclude_resource: true)
   'google_dataplex_asset', // MM Asset.yaml is IAM-only (exclude_resource: true)
   'google_recaptcha_enterprise_key', // third_party resource_recaptcha_enterprise_key.go
+  'google_composer_environment', // third_party resource_composer_environment.go.tmpl; no mmv1/products/composer/Environment.yaml
+  'google_composer_user_workloads_secret', // third_party resource_composer_user_workloads_secret.go.tmpl; no mmv1 YAML
 };
 
 bool _isIamAdjunct(String tfType) =>
