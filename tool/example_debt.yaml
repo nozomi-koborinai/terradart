@@ -162,3 +162,10 @@ GoogleWorkstationsWorkstationIamMember: requires a parent workstation on a never
 GoogleComposerEnvironment: gcp-cost Cloud Composer 1992-3666-B975 Small Environment Fee us-central1 SKU 6EA4-3652-173E $0.35/h (Medium 9802-34D7-AFE2 $0.55/h; Large 2C11-0523-61D9 $0.85/h) — never_apply; no applyable quickstart on terradart-validate
 GoogleComposerUserWorkloadsConfigMap: requires a parent GoogleComposerEnvironment (never_apply); deferred with the environment
 GoogleComposerUserWorkloadsSecret: requires a parent GoogleComposerEnvironment (never_apply); deferred with the environment
+
+# Memorystore for Redis Cluster bills per node-hour while the cluster exists
+# (us-central1 Shared Core Nano SKU B4D9-BD1A-3BBC $0.0318/h × shards ×
+# replicas). A quickstart would force apply_smoke_skip (never_apply) and
+# block wave auto-merge — factories ship without an example.
+GoogleRedisCluster: gcp-cost Memorystore for Redis 5AF5-2C11-D467 Shared Core Nano us-central1 SKU B4D9-BD1A-3BBC $0.0318/h (Standard Small 02F6-0CB2-BDE1 $0.1425/h) — never_apply node-hours; no applyable quickstart on terradart-validate
+GoogleRedisClusterUserCreatedConnections: requires a parent GoogleRedisCluster (never_apply); deferred with the cluster

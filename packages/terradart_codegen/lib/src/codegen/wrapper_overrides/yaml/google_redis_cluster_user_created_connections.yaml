@@ -1,0 +1,43 @@
+outputDir: redis
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Memorystore for Redis Cluster **user-created connections** — PSC
+  /// endpoints you attach to an existing [GoogleRedisCluster].
+  ///
+  /// **Cost:** no separate Cloud Billing Catalog SKU under Memorystore for
+  /// Redis `5AF5-2C11-D467` (node/backup/AOF SKUs only). Connection
+  /// metadata rides on the parent cluster's node-hour charges.
+  ///
+  /// Requires a parent cluster [name] and [region]. Enable
+  /// `redis.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example (attach after [GoogleRedisCluster] is up):
+  /// ```dart
+  /// GoogleRedisClusterUserCreatedConnections(
+  ///   localName: 'rc_conn',
+  ///   name: cluster.nameRef,
+  ///   region: TfArg.literal('us-central1'),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - region
+  - cluster_endpoints
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
