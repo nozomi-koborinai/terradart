@@ -1,6 +1,6 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Dataproc — autoscaling policies and Dataproc Metastore services/federations.
+/// Dataproc — clusters, autoscaling policies, and Dataproc Metastore services/federations.
 library;
 
 export 'src/dataproc/google_dataproc_autoscaling_policy.dart'
@@ -10,6 +10,60 @@ export 'src/dataproc/google_dataproc_autoscaling_policy.dart'
         DataprocAutoscalingPolicySecondaryWorkerConfig,
         DataprocAutoscalingPolicyWorkerConfig,
         GoogleDataprocAutoscalingPolicy;
+export 'src/dataproc/google_dataproc_cluster.dart'
+    show
+        DataprocClusterClusterConfig,
+        DataprocClusterClusterConfigAutoscalingConfig,
+        DataprocClusterClusterConfigAuxiliaryNodeGroups,
+        DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroup,
+        DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroupNodeGroupConfig,
+        DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroupNodeGroupConfigAccelerators,
+        DataprocClusterClusterConfigAuxiliaryNodeGroupsNodeGroupNodeGroupConfigDiskConfig,
+        DataprocClusterClusterConfigDataprocMetricConfig,
+        DataprocClusterClusterConfigDataprocMetricConfigMetrics,
+        DataprocClusterClusterConfigEncryptionConfig,
+        DataprocClusterClusterConfigEndpointConfig,
+        DataprocClusterClusterConfigGceClusterConfig,
+        DataprocClusterClusterConfigGceClusterConfigConfidentialInstanceConfig,
+        DataprocClusterClusterConfigGceClusterConfigNodeGroupAffinity,
+        DataprocClusterClusterConfigGceClusterConfigReservationAffinity,
+        DataprocClusterClusterConfigGceClusterConfigShieldedInstanceConfig,
+        DataprocClusterClusterConfigInitializationAction,
+        DataprocClusterClusterConfigLifecycleConfig,
+        DataprocClusterClusterConfigMasterConfig,
+        DataprocClusterClusterConfigMasterConfigAccelerators,
+        DataprocClusterClusterConfigMasterConfigDiskConfig,
+        DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicy,
+        DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionList,
+        DataprocClusterClusterConfigMetastoreConfig,
+        DataprocClusterClusterConfigPreemptibleWorkerConfig,
+        DataprocClusterClusterConfigPreemptibleWorkerConfigDiskConfig,
+        DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicy,
+        DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList,
+        DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyProvisioningModelMix,
+        DataprocClusterClusterConfigSecurityConfig,
+        DataprocClusterClusterConfigSecurityConfigIdentityConfig,
+        DataprocClusterClusterConfigSecurityConfigKerberosConfig,
+        DataprocClusterClusterConfigSoftwareConfig,
+        DataprocClusterClusterConfigWorkerConfig,
+        DataprocClusterClusterConfigWorkerConfigAccelerators,
+        DataprocClusterClusterConfigWorkerConfigDiskConfig,
+        DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicy,
+        DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList,
+        DataprocClusterVirtualClusterConfig,
+        DataprocClusterVirtualClusterConfigAuxiliaryServicesConfig,
+        DataprocClusterVirtualClusterConfigAuxiliaryServicesConfigMetastoreConfig,
+        DataprocClusterVirtualClusterConfigAuxiliaryServicesConfigSparkHistoryServerConfig,
+        DataprocClusterVirtualClusterConfigKubernetesClusterConfig,
+        DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfig,
+        DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfigNodePoolTarget,
+        DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfigNodePoolTargetNodePoolConfig,
+        DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfigNodePoolTargetNodePoolConfigAutoscaling,
+        DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfigNodePoolTargetNodePoolConfigConfig,
+        DataprocClusterVirtualClusterConfigKubernetesClusterConfigKubernetesSoftwareConfig,
+        GoogleDataprocCluster;
+export 'src/dataproc/google_dataproc_cluster_iam_member.dart'
+    show GoogleDataprocClusterIamMember;
 export 'src/dataproc/google_dataproc_metastore_federation.dart'
     show
         DataprocMetastoreFederationBackend,

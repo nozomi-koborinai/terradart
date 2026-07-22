@@ -167,7 +167,7 @@ barrels:
       /// adjuncts.
   dataproc:
     doc: |-
-      /// Dataproc — autoscaling policies and Dataproc Metastore services/federations.
+      /// Dataproc — clusters, autoscaling policies, and Dataproc Metastore services/federations.
   dialogflow:
     doc: |-
       /// Dialogflow CX: telephony and conversation resources.

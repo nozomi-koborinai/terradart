@@ -1,0 +1,18 @@
+outputDir: dataproc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Non-authoritative IAM member on a Dataproc cluster.
+  ///
+  /// Deferred with the never_apply Dataproc cluster (no apply-smoke
+  /// quickstart).
+
+paramOrder:
+  - cluster
+  - role
+  - member
+  - region
+  - project
+  - condition
