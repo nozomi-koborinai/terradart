@@ -114,6 +114,18 @@ files:
     upstream: mmv1/products/compute/PreviewFeature.yaml
   google_compute_disk_resource_policy_attachment:
     upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
+
+  google_netapp_storage_pool:
+    upstream: mmv1/products/netapp/StoragePool.yaml
+  google_netapp_volume:
+    upstream: mmv1/products/netapp/Volume.yaml
+  google_netapp_volume_snapshot:
+    upstream: mmv1/products/netapp/VolumeSnapshot.yaml
+  google_netapp_backup_vault:
+    upstream: mmv1/products/netapp/BackupVault.yaml
+  google_netapp_backup_policy:
+    upstream: mmv1/products/netapp/BackupPolicy.yaml
+
   google_network_connectivity_hub:
     upstream: mmv1/products/networkconnectivity/Hub.yaml
   google_compute_instance:

@@ -134,3 +134,13 @@ GoogleManagedKafkaTopic: requires a parent GoogleManagedKafkaCluster (sweep_only
 GoogleManagedKafkaAcl: requires a parent GoogleManagedKafkaCluster (sweep_only capacity); deferred with the cluster
 GoogleManagedKafkaConnectCluster: gcp-cost Managed Kafka Connect DCU us-central1 SKU 12FB-6837-84CF $0.12/h — sweep_only; deferred without apply-smoke quickstart
 GoogleManagedKafkaConnector: requires a parent GoogleManagedKafkaConnectCluster (sweep_only); deferred with Connect
+
+# Google Cloud NetApp Volumes storage pools bill capacity while they exist
+# (us-central1 Standard SKU C2DF-4710-FFE1 $0.2/GiBy.mo; typical min TiB-scale).
+# A quickstart would force apply_smoke_skip (never_apply) and block wave
+# auto-merge — factories ship without an example.
+GoogleNetappStoragePool: gcp-cost NetApp Volumes FC86-5113-7C81 Capacity Standard us-central1 SKU C2DF-4710-FFE1 $0.2/GiBy.mo (Flex 211D-EBE1-87C9 $0.2/GiBy.mo; Premium 5BCD-5BCB-41A3 ~$0.29/GiBy.mo) — never_apply capacity; no applyable quickstart on terradart-validate
+GoogleNetappVolume: requires a parent GoogleNetappStoragePool (never_apply capacity); deferred with the pool
+GoogleNetappVolumeSnapshot: requires a parent GoogleNetappVolume on a never_apply pool; deferred with the pool
+GoogleNetappBackupVault: deferred with the NetApp pool Wave (no apply-smoke quickstart); empty vault has no capacity charge but pool Wave is debt-only
+GoogleNetappBackupPolicy: deferred with the NetApp pool Wave (policy metadata only; backup storage bills when backups exist)

@@ -41,6 +41,7 @@ safe_exception: google_bigquery_reservation_group  # reservation group is a name
 # --- never_apply: existence-billed / reservation ---
 google_license_manager_configuration: never_apply  # Office SPLA licenses bill per license_count for the configuration's lifetime, no VM required
 google_secure_source_manager_instance: never_apply  # gcp-cost: Secure Source Manager ADD4-3782-815A Fixed Instance Pricing us-central1 SKU 9B40-B4AA-D8EE $1000/mo (unit month) — existence-billed while the instance exists; destroy stops the charge; too expensive for apply-smoke even once
+google_netapp_storage_pool: never_apply  # gcp-cost: NetApp Volumes FC86-5113-7C81 Capacity Standard us-central1 SKU C2DF-4710-FFE1 $0.2/GiBy.mo (Flex Zonal 211D-EBE1-87C9 $0.2/GiBy.mo; Premium 5BCD-5BCB-41A3 ~$0.29/GiBy.mo) — billing-behavior: provisioned pool capacity bills while the pool exists (TiB-scale minimums); destroy stops the charge; too expensive for apply-smoke even once
 
 # --- sweep_only: hourly-billed compute / managed data ---
 google_contact_center_insights_analysis_rule: safe  # gcp-cost: no Cloud Billing Catalog SKU for analysis_rule config (Conversational Insights FA1B-16BE-8526 lists analysis/subscription SKUs only, e.g. C18F-21FE-BB85 standard voice analysis); billing-behavior: location config metadata — no existence/hourly charge; analysis billed only when conversations are processed
@@ -337,6 +338,10 @@ google_vector_search_collection: safe  # gcp-cost: Vector Search 0181-3AAD-0CB9 
 google_managed_kafka_topic: safe  # gcp-cost: Managed Kafka 9544-7B1C-811D lists DCU/storage/network SKUs only (no topic SKU); billing-behavior: topic metadata on a parent cluster — no separate existence charge beyond the sweep_only cluster
 google_managed_kafka_acl: safe  # gcp-cost: no ACL SKU under Managed Kafka 9544-7B1C-811D (DCU/storage/network only); billing-behavior: ACL metadata on a parent cluster — no separate existence charge
 google_managed_kafka_connector: safe  # gcp-cost: no connector SKU under Managed Kafka 9544-7B1C-811D (Connect DCU bills on google_managed_kafka_connect_cluster); billing-behavior: connector config on a parent Connect cluster — no separate existence charge
+google_netapp_volume: safe  # gcp-cost: NetApp Volumes FC86-5113-7C81 capacity SKUs bill the parent storage pool (e.g. C2DF-4710-FFE1); no separate volume-existence SKU; billing-behavior: volume carves pool capacity — no additive charge beyond never_apply pool
+google_netapp_volume_snapshot: safe  # gcp-cost: no dedicated snapshot SKU under FC86-5113-7C81 beyond pool/backup capacity lines; billing-behavior: snapshot space consumed from parent pool
+google_netapp_backup_vault: safe  # gcp-cost: Backup Storage Charge us-central1 SKU DCB6-FE72-5443 $0.045/GiBy.mo applies to stored backup data only; billing-behavior: empty vault has no capacity charge
+google_netapp_backup_policy: safe  # gcp-cost: no policy SKU under FC86-5113-7C81 (backup storage bills when backups exist via DCB6-FE72-5443); billing-behavior: schedule metadata only
 google_vertex_ai_cache_config: safe  # apply-verified safe (existing example)
 google_vertex_ai_dataset: safe  # apply-verified safe (existing example)
 google_vertex_ai_feature_group: safe  # apply-verified safe (existing example)
