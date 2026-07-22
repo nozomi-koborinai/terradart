@@ -33,6 +33,8 @@ safe_exception: google_compute_instance_template  # instance template metadata o
 safe_exception: google_compute_instance_settings  # zonal metadata defaults singleton; no VM provisioned — _instance substring false positive
 safe_exception: google_service_directory_endpoint  # Service Directory metadata record, no existence billing — _endpoint false positive
 safe_exception: google_bigtable_instance_iam_member  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
+safe_exception: google_secure_source_manager_instance_iam_member  # IAM binding on SSM instance; no existence billing — _instance substring false positive (parent google_secure_source_manager_instance is never_apply)
+
 safe_exception: google_notebooks_environment  # Workbench environment is an image recipe only; Notebooks SKUs bill when an instance/VM runs — _notebooks substring false positive
 safe_exception: google_bigquery_reservation_group  # reservation group is a named container only; BigQuery Reservation API 16B8-3DDA-9F10 SKUs bill slots/commits (e.g. Standard Edition PAYG 0165-271F-5086 ~$0.049/slot-hour) — reservation substring false positive
 
