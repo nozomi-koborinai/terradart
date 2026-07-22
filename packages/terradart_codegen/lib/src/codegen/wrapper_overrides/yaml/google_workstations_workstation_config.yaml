@@ -1,0 +1,63 @@
+outputDir: workstations
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Cloud Workstations **config** — machine image, disk, and timeout
+  /// template for workstations in a [GoogleWorkstationsWorkstationCluster].
+  ///
+  /// **Cost:** no separate control-plane SKU for the config itself under
+  /// `4528-FDD0-A2A0` — running workstations bill VM management fees (and
+  /// Compute). Deferred with the cluster (no apply-smoke quickstart).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleWorkstationsWorkstationConfig(
+  ///   localName: 'cfg',
+  ///   workstationConfigId: TfArg.literal('dev'),
+  ///   workstationClusterId: TfArg.ref(cluster.workstationClusterIdRef),
+  ///   location: TfArg.literal('us-central1'),
+  ///   host: WorkstationsWorkstationConfigHost(
+  ///     gceInstance: WorkstationsWorkstationConfigHostGceInstance(
+  ///       machineType: TfArg.literal('e2-standard-4'),
+  ///       bootDiskSizeGb: TfArg.literal(50),
+  ///     ),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - workstation_config_id
+  - workstation_cluster_id
+  - location
+  - display_name
+  - labels
+  - annotations
+  - idle_timeout
+  - running_timeout
+  - host
+  - container
+  - persistent_directories
+  - ephemeral_directories
+  - encryption_key
+  - allowed_ports
+  - readiness_checks
+  - disable_tcp_connections
+  - enable_audit_agent
+  - max_usable_workstations
+  - replica_zones
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `workstation_config_id` attribute.
+    TfRef<String> get workstationConfigIdRef =>
+        TfRef.attribute<String>(this, 'workstation_config_id');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

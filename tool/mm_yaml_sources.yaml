@@ -1000,6 +1000,18 @@ files:
     upstream: mmv1/products/secretmanagerregional/RegionalSecretVersion.yaml
   google_secret_manager_regional_secret_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+
+  google_workstations_workstation_cluster:
+    upstream: mmv1/products/workstations/WorkstationCluster.yaml
+  google_workstations_workstation_config:
+    upstream: mmv1/products/workstations/WorkstationConfig.yaml
+  google_workstations_workstation:
+    upstream: mmv1/products/workstations/Workstation.yaml
+  google_workstations_workstation_config_iam_member:
+    upstream: null  # IAM adjunct
+  google_workstations_workstation_iam_member:
+    upstream: null  # IAM adjunct
+
   google_workflows_workflow:
     upstream: mmv1/products/workflows/Workflow.yaml
   google_tags_tag_key:
