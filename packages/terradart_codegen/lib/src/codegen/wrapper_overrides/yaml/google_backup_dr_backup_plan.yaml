@@ -1,0 +1,42 @@
+outputDir: backup_dr
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Backup and DR Service **backup plan** — schedule and retention rules
+  /// targeting a [GoogleBackupDrBackupVault].
+  ///
+  /// **Cost:** plan metadata alone has no separate SKU under BackupDR
+  /// `3DAD-299B-0D94`; charges accrue when associations protect resources
+  /// (management + vault storage). Deferred with the never_apply vault /
+  /// management-server Wave (no apply-smoke quickstart).
+  ///
+  /// Enable `backupdr.googleapis.com` via [GoogleProjectService] before apply.
+
+paramOrder:
+  - backup_plan_id
+  - location
+  - backup_vault
+  - resource_type
+  - backup_rules
+  - description
+  - log_retention_days
+  - max_custom_on_demand_retention_days
+  - compute_instance_backup_plan_properties
+  - disk_backup_plan_properties
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `backup_plan_id` attribute.
+    TfRef<String> get backupPlanIdRef =>
+        TfRef.attribute<String>(this, 'backup_plan_id');

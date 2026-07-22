@@ -1,0 +1,30 @@
+outputDir: backup_dr
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Backup and DR Service **backup plan association** — binds a resource
+  /// to a [GoogleBackupDrBackupPlan].
+  ///
+  /// **Cost:** associating a workload starts BackupDR **management** fees
+  /// (e.g. GCE VM management SKU `0456-5BF2-438E` **$0.02/GiBy·mo**) plus
+  /// vault storage when backups land. Deferred with the never_apply
+  /// Backup DR Wave (no apply-smoke quickstart).
+  ///
+  /// Enable `backupdr.googleapis.com` via [GoogleProjectService] before apply.
+
+paramOrder:
+  - backup_plan_association_id
+  - location
+  - backup_plan
+  - resource
+  - resource_type
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

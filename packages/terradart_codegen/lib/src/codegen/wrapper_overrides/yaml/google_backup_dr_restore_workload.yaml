@@ -1,0 +1,44 @@
+outputDir: backup_dr
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Backup and DR Service **restore workload** — restores a backup from a
+  /// vault into Compute Engine or Persistent Disk targets.
+  ///
+  /// **Cost:** restore creates billable Compute/Disk resources and may
+  /// incur BackupDR restore processing. Deferred with the never_apply
+  /// Backup DR Wave (no apply-smoke quickstart).
+  ///
+  /// Provide the appropriate restore/target nested blocks for the workload
+  /// type. Enable `backupdr.googleapis.com` via [GoogleProjectService]
+  /// before apply.
+
+paramOrder:
+  - location
+  - backup_vault_id
+  - data_source_id
+  - backup_id
+  - name
+  - compute_instance_restore_properties
+  - compute_instance_target_environment
+  - disk_restore_properties
+  - disk_target_environment
+  - region_disk_target_environment
+  - clear_overrides_field_mask
+  - delete_restored_instance
+  - request_id
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

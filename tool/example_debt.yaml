@@ -184,3 +184,15 @@ GoogleNotebooksInstance: gcp-cost Notebooks D73B-5EEA-8215 N1 mgmt CPU us-centra
 GoogleNotebooksRuntime: gcp-cost Notebooks D73B-5EEA-8215 same Workbench management fee + GCE as instances — never_apply; deferred with notebook instance Wave
 GoogleNotebooksInstanceIamMember: requires a parent GoogleNotebooksInstance (never_apply); deferred with the instance
 GoogleNotebooksRuntimeIamMember: requires a parent GoogleNotebooksRuntime (never_apply); deferred with the runtime
+
+# Backup and DR vaults/management bill storage + protected-resource management
+# (BackupDR 3DAD-299B-0D94 storage SKU 5A13-2468-31B1 $0.045/GiBy.mo; GCE
+# management 0456-5BF2-438E $0.02/GiBy.mo). A quickstart would force
+# apply_smoke_skip (never_apply) and block wave auto-merge — factories ship
+# without an example.
+GoogleBackupDrManagementServer: gcp-cost BackupDR 3DAD-299B-0D94 GCE VM management SKU 0456-5BF2-438E $0.02/GiBy.mo (+ appliance Compute) — never_apply; no applyable quickstart on terradart-validate
+GoogleBackupDrBackupVault: gcp-cost BackupDR 3DAD-299B-0D94 Long-Term Standard us-central1 SKU 5A13-2468-31B1 $0.045/GiBy.mo — never_apply vault storage; deferred with management server Wave
+GoogleBackupDrBackupPlan: requires a parent GoogleBackupDrBackupVault (never_apply); deferred with the vault
+GoogleBackupDrBackupPlanAssociation: requires a parent plan/vault (never_apply); deferred with the vault — associating starts management fees
+GoogleBackupDrServiceConfig: deferred with the Backup DR Wave (config metadata; no apply-smoke quickstart)
+GoogleBackupDrRestoreWorkload: requires vault backups (never_apply parents); deferred with the vault — restore materializes Compute/Disk
