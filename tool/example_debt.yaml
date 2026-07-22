@@ -175,3 +175,12 @@ GoogleRedisClusterUserCreatedConnections: requires a parent GoogleRedisCluster (
 # apply_smoke_skip (never_apply) and block wave auto-merge — factories ship
 # without an example.
 GoogleLookerInstance: gcp-cost Looker C71C-0952-AAC7 Standard Edition SKU 3F43-B8CB-2533 $5000/count — never_apply platform fee; no applyable quickstart on terradart-validate
+
+# Vertex AI Workbench notebook VMs bill management fee + GCE while running
+# (Notebooks D73B-5EEA-8215 N1 mgmt CPU us-central1 SKU 6196-1C27-5E30
+# $0.0063222/h + usage). A quickstart would force apply_smoke_skip
+# (never_apply) and block wave auto-merge — factories ship without an example.
+GoogleNotebooksInstance: gcp-cost Notebooks D73B-5EEA-8215 N1 mgmt CPU us-central1 SKU 6196-1C27-5E30 $0.0063222/h (+ usage CPU 9027-15FF-8BFE $0.0379332/h) — never_apply VM hours; no applyable quickstart on terradart-validate
+GoogleNotebooksRuntime: gcp-cost Notebooks D73B-5EEA-8215 same Workbench management fee + GCE as instances — never_apply; deferred with notebook instance Wave
+GoogleNotebooksInstanceIamMember: requires a parent GoogleNotebooksInstance (never_apply); deferred with the instance
+GoogleNotebooksRuntimeIamMember: requires a parent GoogleNotebooksRuntime (never_apply); deferred with the runtime

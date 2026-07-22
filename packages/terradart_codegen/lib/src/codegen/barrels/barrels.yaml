@@ -296,7 +296,8 @@ barrels:
       /// VPC Flow Logs configs, and Network Services Mesh.
   notebooks:
     doc: |-
-      /// Vertex AI Workbench (Notebooks) — reusable environment image recipes.
+      /// Vertex AI Workbench (Notebooks) — environments, user-managed
+      /// instances, managed runtimes, and IAM members.
   observability:
     doc: |-
       /// Cloud Observability — trace scopes that group projects' trace data for

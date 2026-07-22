@@ -1052,6 +1052,14 @@ files:
     upstream: mmv1/products/networkservices/Mesh.yaml
   google_notebooks_environment:
     upstream: mmv1/products/notebooks/Environment.yaml
+  google_notebooks_instance:
+    upstream: mmv1/products/notebooks/Instance.yaml
+  google_notebooks_instance_iam_member:
+    upstream: null  # IAM adjunct (generated outside mmv1 product YAML)
+  google_notebooks_runtime:
+    upstream: mmv1/products/notebooks/Runtime.yaml
+  google_notebooks_runtime_iam_member:
+    upstream: null  # IAM adjunct (generated outside mmv1 product YAML)
   google_os_config_os_policy_assignment:
     upstream: null  # third_party terraform/services/osconfig/resource_os_config_os_policy_assignment.go
   google_os_config_patch_deployment:

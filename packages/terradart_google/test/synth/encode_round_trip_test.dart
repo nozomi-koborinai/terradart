@@ -417,6 +417,17 @@ final Map<String, Object Function()> _syntheticInstances = {
         imageFamily: TfArg.literal('common-cpu'),
       ),
 
+  // --- NotebooksInstanceImage (2) — notebooks_instance ---------------------
+  'NotebooksInstanceContainerImage': () => NotebooksInstanceContainerImage(
+        repository: TfArg.literal(
+          'gcr.io/deeplearning-platform-release/base-cpu',
+        ),
+      ),
+  'NotebooksInstanceVmImage': () => NotebooksInstanceVmImage(
+        project: TfArg.literal('deeplearning-platform-release'),
+        imageFamily: TfArg.literal('common-cpu-notebooks'),
+      ),
+
   // --- OsConfigPatchDeploymentSchedule (2) — os_config_patch_deployment ------
   'OsConfigPatchDeploymentOneTimeSchedule': () =>
       OsConfigPatchDeploymentOneTimeSchedule(

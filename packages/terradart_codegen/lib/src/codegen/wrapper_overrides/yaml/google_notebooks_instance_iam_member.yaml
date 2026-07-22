@@ -1,0 +1,19 @@
+outputDir: notebooks
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Non-authoritative IAM member on a Vertex AI Workbench notebook
+  /// instance.
+  ///
+  /// Deferred with the never_apply notebook instance (no apply-smoke
+  /// quickstart).
+
+paramOrder:
+  - instance_name
+  - role
+  - member
+  - location
+  - project
+  - condition
