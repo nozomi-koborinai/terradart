@@ -1,0 +1,53 @@
+outputDir: workstations
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Cloud Workstations **cluster** — VPC-attached control plane for
+  /// workstation configs and instances.
+  ///
+  /// **Cost:** Cloud Billing Catalog service `4528-FDD0-A2A0` bills a
+  /// **control plane fee** while the cluster exists (us-central1 SKU
+  /// `61C4-0757-3151` **$0.2/h**). Destroy stops the fee. Too expensive
+  /// for apply-smoke — factories ship without a quickstart.
+  ///
+  /// Enable `workstations.googleapis.com` via [GoogleProjectService]
+  /// before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleWorkstationsWorkstationCluster(
+  ///   localName: 'ws',
+  ///   workstationClusterId: TfArg.literal('terradart-ws'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   network: TfArg.ref(vpc.id),
+  ///   subnetwork: TfArg.ref(subnet.id),
+  /// );
+  /// ```
+
+paramOrder:
+  - workstation_cluster_id
+  - location
+  - network
+  - subnetwork
+  - display_name
+  - labels
+  - annotations
+  - tags
+  - domain_config
+  - private_cluster_config
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `workstation_cluster_id` attribute.
+    TfRef<String> get workstationClusterIdRef =>
+        TfRef.attribute<String>(this, 'workstation_cluster_id');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

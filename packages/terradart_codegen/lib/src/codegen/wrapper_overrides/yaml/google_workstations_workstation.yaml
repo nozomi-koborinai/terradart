@@ -1,0 +1,45 @@
+outputDir: workstations
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Cloud Workstations **workstation** instance under a config.
+  ///
+  /// **Cost:** Cloud Billing Catalog bills **instance VM (vCPU) management
+  /// fee** while a workstation runs (us-central1 SKU `8893-953D-5524`
+  /// **$0.05/h** per vCPU) plus underlying Compute. Deferred with the
+  /// never_apply cluster (no apply-smoke quickstart).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleWorkstationsWorkstation(
+  ///   localName: 'alice',
+  ///   workstationId: TfArg.literal('alice'),
+  ///   workstationConfigId: TfArg.ref(cfg.workstationConfigIdRef),
+  ///   workstationClusterId: TfArg.ref(cluster.workstationClusterIdRef),
+  ///   location: TfArg.literal('us-central1'),
+  /// );
+  /// ```
+
+paramOrder:
+  - workstation_id
+  - workstation_config_id
+  - workstation_cluster_id
+  - location
+  - display_name
+  - labels
+  - annotations
+  - env
+  - source_workstation
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `workstation_id` attribute.
+    TfRef<String> get workstationIdRef =>
+        TfRef.attribute<String>(this, 'workstation_id');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

@@ -144,3 +144,13 @@ GoogleNetappVolume: requires a parent GoogleNetappStoragePool (never_apply capac
 GoogleNetappVolumeSnapshot: requires a parent GoogleNetappVolume on a never_apply pool; deferred with the pool
 GoogleNetappBackupVault: deferred with the NetApp pool Wave (no apply-smoke quickstart); empty vault has no capacity charge but pool Wave is debt-only
 GoogleNetappBackupPolicy: deferred with the NetApp pool Wave (policy metadata only; backup storage bills when backups exist)
+
+# Cloud Workstations clusters bill a control-plane fee while they exist
+# (us-central1 SKU 61C4-0757-3151 $0.2/h). A quickstart would force
+# apply_smoke_skip (never_apply) and block wave auto-merge — factories
+# ship without an example.
+GoogleWorkstationsWorkstationCluster: gcp-cost Cloud Workstations 4528-FDD0-A2A0 control plane fee us-central1 SKU 61C4-0757-3151 $0.2/h — never_apply; no applyable quickstart on terradart-validate
+GoogleWorkstationsWorkstationConfig: requires a parent GoogleWorkstationsWorkstationCluster (never_apply); deferred with the cluster
+GoogleWorkstationsWorkstation: gcp-cost Cloud Workstations instance VM (vCPU) management fee us-central1 SKU 8893-953D-5524 $0.05/h (+ Compute) — requires never_apply cluster; deferred with the cluster
+GoogleWorkstationsWorkstationConfigIamMember: requires a parent workstation config on a never_apply cluster; deferred with the cluster
+GoogleWorkstationsWorkstationIamMember: requires a parent workstation on a never_apply cluster; deferred with the cluster

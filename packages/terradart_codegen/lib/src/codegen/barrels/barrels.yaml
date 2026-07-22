@@ -383,6 +383,11 @@ barrels:
       /// managed datasets, experiment Tensorboards (with experiments and runs),
       /// pipeline schedules, and GenAI cache config.
       /// Nested config blocks (e.g. `encryption_spec`) are passed as structured maps.
+  workstations:
+    doc: |-
+      /// Cloud Workstations — clusters, configs, workstations, and
+      /// resource-level `*_iam_member` grants. Clusters bill a control-plane
+      /// fee hourly while they exist.
   workflows:
     doc: |-
       /// Workflows — serverless orchestration: define a Workflows workflow from
