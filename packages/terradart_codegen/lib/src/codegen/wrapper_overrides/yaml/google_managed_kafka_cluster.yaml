@@ -1,0 +1,64 @@
+outputDir: managed_kafka
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Managed Service for Apache Kafka **cluster** — regional Kafka with
+  /// provisioned vCPU / memory (Data Compute Units).
+  ///
+  /// **Cost:** Cloud Billing Catalog service `9544-7B1C-811D` bills **Data
+  /// Compute Units** (us-central1 SKU `2837-8C0C-F431` **$0.09/h**) plus
+  /// local storage (SKU `1533-0F96-68AD` **$0.17/GiBy·mo**) while the
+  /// cluster exists. Destroy stops compute charges. Too expensive for
+  /// apply-smoke — factories ship without a quickstart.
+  ///
+  /// Requires [capacityConfig] (vCPU + memory) and [gcpConfig] (VPC subnet
+  /// under `access_config.network_configs`). Enable
+  /// `managedkafka.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleManagedKafkaCluster(
+  ///   localName: 'mk',
+  ///   clusterId: TfArg.literal('terradart-mk'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   capacityConfig: ManagedKafkaClusterCapacityConfig(
+  ///     vcpuCount: TfArg.literal(3),
+  ///     memoryBytes: TfArg.literal(3221225472), // 3 GiB
+  ///   ),
+  ///   gcpConfig: ManagedKafkaClusterGcpConfig(
+  ///     accessConfig: ManagedKafkaClusterGcpConfigAccessConfig(
+  ///       networkConfigs: [
+  ///         ManagedKafkaClusterGcpConfigAccessConfigNetworkConfigs(
+  ///           subnet: TfArg.ref(subnet.id),
+  ///         ),
+  ///       ],
+  ///     ),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - cluster_id
+  - location
+  - capacity_config
+  - gcp_config
+  - labels
+  - broker_capacity_config
+  - rebalance_config
+  - tls_config
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `cluster_id` attribute.
+    TfRef<String> get clusterIdRef =>
+        TfRef.attribute<String>(this, 'cluster_id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

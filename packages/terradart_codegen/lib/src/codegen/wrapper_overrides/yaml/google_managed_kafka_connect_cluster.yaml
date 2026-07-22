@@ -1,0 +1,60 @@
+outputDir: managed_kafka
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Managed **Kafka Connect** cluster attached to a Kafka cluster.
+  ///
+  /// **Cost:** Cloud Billing Catalog bills **Managed Kafka Connect Data
+  /// Compute Units** (us-central1 SKU `12FB-6837-84CF` **$0.12/h**) while
+  /// the Connect cluster exists. Destroy stops compute charges. Too
+  /// expensive for apply-smoke — factories ship without a quickstart.
+  ///
+  /// Requires [capacityConfig] and [gcpConfig] (primary subnet). Enable
+  /// `managedkafka.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleManagedKafkaConnectCluster(
+  ///   localName: 'connect',
+  ///   connectClusterId: TfArg.literal('terradart-connect'),
+  ///   kafkaCluster: TfArg.ref(cluster.nameRef),
+  ///   location: TfArg.literal('us-central1'),
+  ///   capacityConfig: ManagedKafkaConnectClusterCapacityConfig(
+  ///     vcpuCount: TfArg.literal(3),
+  ///     memoryBytes: TfArg.literal(3221225472),
+  ///   ),
+  ///   gcpConfig: ManagedKafkaConnectClusterGcpConfig(
+  ///     accessConfig: ManagedKafkaConnectClusterGcpConfigAccessConfig(
+  ///       networkConfigs: [
+  ///         ManagedKafkaConnectClusterGcpConfigAccessConfigNetworkConfigs(
+  ///           primarySubnet: TfArg.ref(subnet.id),
+  ///         ),
+  ///       ],
+  ///     ),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - connect_cluster_id
+  - kafka_cluster
+  - location
+  - capacity_config
+  - gcp_config
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `connect_cluster_id` attribute.
+    TfRef<String> get connectClusterIdRef =>
+        TfRef.attribute<String>(this, 'connect_cluster_id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

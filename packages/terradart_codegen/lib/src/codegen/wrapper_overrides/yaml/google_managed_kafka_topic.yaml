@@ -1,0 +1,46 @@
+outputDir: managed_kafka
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Kafka **topic** on a [GoogleManagedKafkaCluster].
+  ///
+  /// **Cost:** no separate Cloud Billing Catalog SKU under Managed Service
+  /// for Apache Kafka (`9544-7B1C-811D`) — topics are metadata on the parent
+  /// cluster (cluster compute/storage bills). Deferred with the cluster
+  /// (no apply-smoke quickstart).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleManagedKafkaTopic(
+  ///   localName: 'events',
+  ///   topicId: TfArg.literal('events'),
+  ///   cluster: TfArg.ref(cluster.clusterIdRef),
+  ///   location: TfArg.literal('us-central1'),
+  ///   replicationFactor: TfArg.literal(3),
+  ///   partitionCount: TfArg.literal(3),
+  /// );
+  /// ```
+
+paramOrder:
+  - topic_id
+  - cluster
+  - location
+  - replication_factor
+  - partition_count
+  - configs
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `topic_id` attribute.
+    TfRef<String> get topicIdRef =>
+        TfRef.attribute<String>(this, 'topic_id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

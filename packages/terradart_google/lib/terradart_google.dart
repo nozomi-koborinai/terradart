@@ -65,6 +65,7 @@ export 'integrations.dart';
 export 'kms.dart';
 export 'license_manager.dart';
 export 'logging.dart';
+export 'managed_kafka.dart';
 export 'memcache.dart';
 export 'migration.dart';
 export 'model_armor.dart';

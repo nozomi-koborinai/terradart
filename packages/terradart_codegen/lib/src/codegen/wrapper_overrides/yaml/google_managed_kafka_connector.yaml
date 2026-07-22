@@ -1,0 +1,46 @@
+outputDir: managed_kafka
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Kafka Connect **connector** on a [GoogleManagedKafkaConnectCluster].
+  ///
+  /// **Cost:** no separate Cloud Billing Catalog SKU — connector config on
+  /// the parent Connect cluster (Connect DCU bills). Deferred with Connect
+  /// (no apply-smoke quickstart).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleManagedKafkaConnector(
+  ///   localName: 'sink',
+  ///   connectorId: TfArg.literal('gcs-sink'),
+  ///   connectCluster: TfArg.ref(connect.connectClusterIdRef),
+  ///   location: TfArg.literal('us-central1'),
+  ///   configs: {
+  ///     'connector.class': TfArg.literal('com.example.SinkConnector'),
+  ///     'tasks.max': TfArg.literal('1'),
+  ///   },
+  /// );
+  /// ```
+
+paramOrder:
+  - connector_id
+  - connect_cluster
+  - location
+  - configs
+  - task_restart_policy
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `connector_id` attribute.
+    TfRef<String> get connectorIdRef =>
+        TfRef.attribute<String>(this, 'connector_id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

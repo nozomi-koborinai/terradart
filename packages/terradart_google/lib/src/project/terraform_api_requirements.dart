@@ -75,6 +75,7 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry('google_identity_platform_', 'identitytoolkit.googleapis.com'),
   MapEntry('google_integrations_', 'integrations.googleapis.com'),
   MapEntry('google_license_manager_', 'licensemanager.googleapis.com'),
+  MapEntry('google_managed_kafka_', 'managedkafka.googleapis.com'),
   MapEntry('google_memcache_', 'memcache.googleapis.com'),
   MapEntry('google_migration_center_', 'migrationcenter.googleapis.com'),
   MapEntry('google_logging_', 'logging.googleapis.com'),
