@@ -230,6 +230,8 @@ GoogleVertexAiEndpoint: gcp-cost Vertex AI C7E2-9256-1C43 list_skus keyword Endp
 GoogleVertexAiFeaturestore: gcp-cost Vertex AI C7E2-9256-1C43 Feature Store online serving node SKU 74D1-6081-582A $0.94/h — never_apply; no applyable quickstart on terradart-validate
 GoogleVertexAiFeaturestoreEntitytype: requires a parent GoogleVertexAiFeaturestore (never_apply); deferred with the Featurestore Wave
 GoogleVertexAiFeaturestoreEntitytypeFeature: requires a parent GoogleVertexAiFeaturestoreEntitytype; deferred with the Featurestore Wave
+GoogleVertexAiFeatureOnlineStore: gcp-cost Vertex AI C7E2-9256-1C43 Feature Store optimized online node us-central1 SKU 565E-845D-9FC2 $0.3/h; Bigtable online node us-east1 SKU 2EA3-C6D3-6BFF $1.06/h — never_apply sealed storage Wave; no applyable quickstart on terradart-validate
+GoogleVertexAiFeatureOnlineStoreFeatureview: requires a parent GoogleVertexAiFeatureOnlineStore (never_apply); deferred with the Feature Online Store Wave
 GoogleVertexAiIndex: gcp-cost Vertex AI C7E2-9256-1C43 Vector Search Index Building SKU 8724-DA51-DA95 $3/GiBy — never_apply; no applyable quickstart on terradart-validate
 GoogleVertexAiIndexEndpointDeployedIndex: gcp-cost Vertex AI C7E2-9256-1C43 Vector Search Index Serving e2-standard-2 us-central1 SKU 722D-2FE3-D851 $0.0938084/h — never_apply serving hours; no applyable quickstart on terradart-validate
 GoogleVertexAiIndexEndpoint: deferred with never_apply GoogleVertexAiIndex / GoogleVertexAiIndexEndpointDeployedIndex — endpoint shell is cheap but an index + deploy would bill building/serving; no apply-smoke quickstart
