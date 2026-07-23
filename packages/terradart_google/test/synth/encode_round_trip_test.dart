@@ -543,6 +543,24 @@ final Map<String, Object Function()> _syntheticInstances = {
           ),
         ],
       ),
+
+  // --- VertexAiRagEngineConfigManagedDbTier (3) — rag_engine_config --------
+  'VertexAiRagEngineConfigBasic': () => const VertexAiRagEngineConfigBasic(),
+  'VertexAiRagEngineConfigScaled': () => const VertexAiRagEngineConfigScaled(),
+  'VertexAiRagEngineConfigUnprovisioned': () =>
+      const VertexAiRagEngineConfigUnprovisioned(),
+
+  // --- VertexAiEndpointWithModelGardenDeploymentModel (2) — model garden ---
+  'VertexAiEndpointWithModelGardenDeploymentPublisherModel': () =>
+      VertexAiEndpointWithModelGardenDeploymentPublisherModel(
+        publisherModelName: TfArg.literal(
+          'publishers/google/models/gemma-2-2b-it@001',
+        ),
+      ),
+  'VertexAiEndpointWithModelGardenDeploymentHuggingFaceModel': () =>
+      VertexAiEndpointWithModelGardenDeploymentHuggingFaceModel(
+        huggingFaceModelId: TfArg.literal('google/gemma-2-2b-it'),
+      ),
 };
 
 void main() {

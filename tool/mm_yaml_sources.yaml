@@ -1009,6 +1009,12 @@ files:
     upstream: mmv1/products/vertexai/FeatureOnlineStore.yaml
   google_vertex_ai_feature_online_store_featureview:
     upstream: mmv1/products/vertexai/FeatureOnlineStoreFeatureview.yaml
+  google_vertex_ai_rag_engine_config:
+    upstream: mmv1/products/vertexai/RagEngineConfig.yaml
+  google_vertex_ai_reasoning_engine:
+    upstream: mmv1/products/vertexai/ReasoningEngine.yaml
+  google_vertex_ai_endpoint_with_model_garden_deployment:
+    upstream: mmv1/products/vertexai/EndpointWithModelGardenDeployment.yaml
   google_vertex_ai_dataset:
     upstream: mmv1/products/vertexai/Dataset.yaml
   google_vertex_ai_tensorboard:

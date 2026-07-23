@@ -1,0 +1,129 @@
+outputDir: vertex_ai
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+curatedDoc: |-
+  /// Vertex AI **Endpoint with Model Garden deployment** — one-shot deploy of
+  /// a Model Garden or Hugging Face model onto a prediction endpoint.
+  ///
+  /// Choose exactly one [VertexAiEndpointWithModelGardenDeploymentModel]:
+  /// - [VertexAiEndpointWithModelGardenDeploymentPublisherModel]
+  /// - [VertexAiEndpointWithModelGardenDeploymentHuggingFaceModel]
+  ///
+  /// **Cost:** Deploying starts Online/Batch Prediction capacity (and Model
+  /// Garden token/fine-tuning SKUs when invoked). Cloud Billing Catalog
+  /// service `C7E2-9256-1C43` bills prediction node-hours (e.g. Americas N1
+  /// Core `84D9-B3FA-0886` **$0.036/h**) once replicas are up;
+  /// `deploy_config.dedicated_resources.min_replica_count` is required when
+  /// that block is set. Too expensive for apply-smoke — factory ships
+  /// without a quickstart.
+  ///
+  /// Enable `aiplatform.googleapis.com` via [GoogleProjectService] before
+  /// apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleVertexAiEndpointWithModelGardenDeployment(
+  ///   localName: 'garden',
+  ///   location: TfArg.literal('us-central1'),
+  ///   model: VertexAiEndpointWithModelGardenDeploymentPublisherModel(
+  ///     publisherModelName: TfArg.literal(
+  ///       'publishers/google/models/gemma-2-2b-it@001',
+  ///     ),
+  ///   ),
+  /// );
+  /// ```
+
+# IR scalars `publisher_model_name` / `hugging_face_model_id` fan into the
+# virtual `model` customSlot.
+paramOrder:
+  - location
+  - model
+  - model_config
+  - endpoint_config
+  - deploy_config
+  - project
+  - deletion_policy
+
+argMapOrder:
+  - location
+  - model_config
+  - endpoint_config
+  - deploy_config
+  - project
+  - deletion_policy
+  - model
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+prelude: |
+  // ===========================================================================
+  // VertexAiEndpointWithModelGardenDeploymentModel — sealed (Publisher | HF)
+  // ===========================================================================
+
+  /// Model identity for [GoogleVertexAiEndpointWithModelGardenDeployment].
+  /// Sealed so the MM `exactly_one_of` (`publisher_model_name` /
+  /// `hugging_face_model_id`) is exhaustive at the type level.
+  sealed class VertexAiEndpointWithModelGardenDeploymentModel {
+    const VertexAiEndpointWithModelGardenDeploymentModel();
+
+    /// Terraform attribute key (`publisher_model_name` or
+    /// `hugging_face_model_id`).
+    String get blockKey;
+
+    /// Scalar value written under [blockKey].
+    TfArg<String> get value;
+
+    Map<String, Object?> encode() => {blockKey: value.toTfJson()};
+  }
+
+  /// Model Garden publisher model path
+  /// (`publishers/{publisher}/models/{model}@{version}`).
+  @immutable
+  final class VertexAiEndpointWithModelGardenDeploymentPublisherModel
+      extends VertexAiEndpointWithModelGardenDeploymentModel {
+    const VertexAiEndpointWithModelGardenDeploymentPublisherModel({
+      required this.publisherModelName,
+    });
+
+    final TfArg<String> publisherModelName;
+
+    @override
+    String get blockKey => 'publisher_model_name';
+
+    @override
+    TfArg<String> get value => publisherModelName;
+  }
+
+  /// Hugging Face model id (e.g. `google/gemma-2-2b-it`).
+  @immutable
+  final class VertexAiEndpointWithModelGardenDeploymentHuggingFaceModel
+      extends VertexAiEndpointWithModelGardenDeploymentModel {
+    const VertexAiEndpointWithModelGardenDeploymentHuggingFaceModel({
+      required this.huggingFaceModelId,
+    });
+
+    final TfArg<String> huggingFaceModelId;
+
+    @override
+    String get blockKey => 'hugging_face_model_id';
+
+    @override
+    TfArg<String> get value => huggingFaceModelId;
+  }
+
+customSlots:
+  model:
+    paramDeclaration:
+      'required VertexAiEndpointWithModelGardenDeploymentModel model'
+    argMapEntry: 'model.blockKey: model.value,'
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `endpoint` attribute.
+    TfRef<String> get endpointRef => TfRef.attribute<String>(this, 'endpoint');
