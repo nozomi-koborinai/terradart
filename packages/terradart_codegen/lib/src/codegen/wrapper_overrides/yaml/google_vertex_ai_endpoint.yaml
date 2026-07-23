@@ -1,0 +1,58 @@
+outputDir: vertex_ai
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Vertex AI **endpoint** — online prediction endpoint that can host
+  /// deployed models (`EndpointService.DeployModel`).
+  ///
+  /// **Cost:** Cloud Billing Catalog service `C7E2-9256-1C43` has **no
+  /// endpoint-shell SKU** after MCP `list_skus` (keyword `Endpoint` → 0).
+  /// **Online/Batch Prediction** node-hours start only when a model is
+  /// deployed (Americas N1 Predefined Instance Core SKU `84D9-B3FA-0886`
+  /// **$0.036/h**, plus management-fee SKUs such as us-central1 N1 Core
+  /// `7267-F2A5-DA1E` **$0.0046957/h**). Creating the endpoint alone does
+  /// not start prediction charges.
+  ///
+  /// Deferred without an apply-smoke quickstart — a real deploy would bill
+  /// prediction capacity. Enable `aiplatform.googleapis.com` via
+  /// [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleVertexAiEndpoint(
+  ///   localName: 'ep',
+  ///   name: TfArg.literal('1234567890'),
+  ///   displayName: TfArg.literal('terradart-ep'),
+  ///   location: TfArg.literal('us-central1'),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - display_name
+  - location
+  - region
+  - description
+  - network
+  - dedicated_endpoint_enabled
+  - traffic_split
+  - encryption_spec
+  - private_service_connect_config
+  - predict_request_response_logging_config
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

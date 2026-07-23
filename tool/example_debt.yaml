@@ -221,9 +221,11 @@ GoogleMemorystoreInstanceDesiredUserCreatedEndpoints: requires a parent GoogleMe
 
 # Vertex AI indexes bill Vector Search Index Building when content is
 # ingested (C7E2-9256-1C43 SKU 8724-DA51-DA95 $3/GiBy); deployed indexes
-# add serving capacity hours. A quickstart would force apply_smoke_skip
-# (never_apply) and block wave auto-merge — factories ship without an
-# example.
+# add serving capacity hours. Prediction endpoints are cheap shells until
+# DeployModel starts Online/Batch Prediction node-hours. Quickstarts that
+# force apply_smoke_skip (never_apply) or that would bill on deploy are
+# deferred — factories ship without an example.
+GoogleVertexAiEndpoint: gcp-cost Vertex AI C7E2-9256-1C43 list_skus keyword Endpoint → 0; Online/Batch Prediction Americas N1 Core 84D9-B3FA-0886 $0.036/h after DeployModel — shell is safe but a quickstart that deploys a model would bill; no apply-smoke quickstart
 GoogleVertexAiIndex: gcp-cost Vertex AI C7E2-9256-1C43 Vector Search Index Building SKU 8724-DA51-DA95 $3/GiBy — never_apply; no applyable quickstart on terradart-validate
 GoogleVertexAiIndexEndpointDeployedIndex: gcp-cost Vertex AI C7E2-9256-1C43 Vector Search Index Serving e2-standard-2 us-central1 SKU 722D-2FE3-D851 $0.0938084/h — never_apply serving hours; no applyable quickstart on terradart-validate
 GoogleVertexAiIndexEndpoint: deferred with never_apply GoogleVertexAiIndex / GoogleVertexAiIndexEndpointDeployedIndex — endpoint shell is cheap but an index + deploy would bill building/serving; no apply-smoke quickstart
