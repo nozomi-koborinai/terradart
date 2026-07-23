@@ -1,0 +1,68 @@
+outputDir: vertex_ai
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Vertex AI **index** — Matching Engine / Vector Search ANN index
+  /// (batch or streaming update).
+  ///
+  /// **Cost:** Cloud Billing Catalog service `C7E2-9256-1C43` bills
+  /// **Vector Search Index Building** when content is ingested (SKU
+  /// `8724-DA51-DA95` **$3/GiBy**). Deploying the index onto an endpoint
+  /// adds separate **Index Serving** node-hours (see
+  /// [GoogleVertexAiIndexEndpointDeployedIndex]). Too expensive for
+  /// apply-smoke — factories ship without a quickstart.
+  ///
+  /// Requires [displayName] and [metadata] (with `config.dimensions`).
+  /// Set [indexUpdateMethod] to `STREAM_UPDATE` for near-real-time upserts,
+  /// or leave the default `BATCH_UPDATE` and point
+  /// `metadata.contents_delta_uri` at a GCS directory of datapoints.
+  /// Enable `aiplatform.googleapis.com` via [GoogleProjectService] before
+  /// apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleVertexAiIndex(
+  ///   localName: 'idx',
+  ///   displayName: TfArg.literal('terradart-idx'),
+  ///   region: TfArg.literal('us-central1'),
+  ///   indexUpdateMethod: TfArg.literal('STREAM_UPDATE'),
+  ///   metadata: VertexAiIndexMetadata(
+  ///     config: VertexAiIndexMetadataConfig(
+  ///       dimensions: TfArg.literal(128),
+  ///       approximateNeighborsCount: TfArg.literal(10),
+  ///       distanceMeasureType: TfArg.literal('DOT_PRODUCT_DISTANCE'),
+  ///       algorithmConfig: VertexAiIndexMetadataConfigAlgorithmConfig(
+  ///         treeAhConfig: VertexAiIndexMetadataConfigAlgorithmConfigTreeAhConfig(
+  ///           leafNodeEmbeddingCount: TfArg.literal(1000),
+  ///           leafNodesToSearchPercent: TfArg.literal(10),
+  ///         ),
+  ///       ),
+  ///     ),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - display_name
+  - region
+  - description
+  - metadata
+  - index_update_method
+  - encryption_spec
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
