@@ -1,0 +1,45 @@
+outputDir: vertex_ai
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Vertex AI Feature Store **entity type** — grouping of features under a
+  /// [GoogleVertexAiFeaturestore].
+  ///
+  /// **Cost:** Cloud Billing Catalog service `C7E2-9256-1C43` has **no
+  /// entity-type SKU** after MCP `list_skus` (Feature Store SKUs are store
+  /// online/offline serving and storage). Billing stays on the parent
+  /// Featurestore's online serving / storage. Deferred with the never_apply
+  /// Featurestore Wave (no apply-smoke quickstart).
+  ///
+  /// Requires [featurestore] (full resource name or id). Enable
+  /// `aiplatform.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleVertexAiFeaturestoreEntitytype(
+  ///   localName: 'user',
+  ///   featurestore: store.nameRef,
+  ///   name: TfArg.literal('user'),
+  /// );
+  /// ```
+
+paramOrder:
+  - featurestore
+  - name
+  - description
+  - monitoring_config
+  - labels
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
