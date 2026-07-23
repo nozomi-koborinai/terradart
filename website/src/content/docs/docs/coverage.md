@@ -1040,7 +1040,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_vertex_ai_deployment_resource_pool` | `GoogleVertexAiDeploymentResourcePool` | — |
 | `google_vertex_ai_endpoint` | `GoogleVertexAiEndpoint` | — |
 | `google_vertex_ai_feature_group` | `GoogleVertexAiFeatureGroup` | [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart) |
-| `google_vertex_ai_feature_group_feature` | `GoogleVertexAiFeatureGroupFeature` | — |
+| `google_vertex_ai_feature_group_feature` | `GoogleVertexAiFeatureGroupFeature` | [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart) |
 | `google_vertex_ai_featurestore` | `GoogleVertexAiFeaturestore` | — |
 | `google_vertex_ai_featurestore_entitytype` | `GoogleVertexAiFeaturestoreEntitytype` | — |
 | `google_vertex_ai_featurestore_entitytype_feature` | `GoogleVertexAiFeaturestoreEntitytypeFeature` | — |
