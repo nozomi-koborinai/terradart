@@ -1,0 +1,120 @@
+outputDir: vertex_ai
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Vertex AI **RAG Engine config** — project/location singleton that sets
+  /// the RagManagedDb compute tier for Vertex AI RAG Engine.
+  ///
+  /// Choose exactly one [VertexAiRagEngineConfigManagedDbTier]:
+  /// - [VertexAiRagEngineConfigBasic] — default low-compute tier.
+  /// - [VertexAiRagEngineConfigScaled] — production autoscaling tier.
+  /// - [VertexAiRagEngineConfigUnprovisioned] — disables RAG Engine and
+  ///   deletes managed data (halts billing; data is not recoverable).
+  ///
+  /// **Cost:** Cloud Billing Catalog service `C7E2-9256-1C43` has **no
+  /// RagManagedDb / RAG Engine SKU** after MCP `list_skus` (keywords
+  /// `RagManaged` / `RAG Engine` → 0). Scaled is documented as
+  /// production-grade compute; unprovisioned deletes data. Deferred
+  /// without an apply-smoke quickstart.
+  ///
+  /// Enable `aiplatform.googleapis.com` via [GoogleProjectService] before
+  /// apply. At most one config exists per `(project, region)`.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleVertexAiRagEngineConfig(
+  ///   localName: 'rag',
+  ///   region: TfArg.literal('us-central1'),
+  ///   ragManagedDbConfig: const VertexAiRagEngineConfigBasic(),
+  /// );
+  /// ```
+
+# IR nested blocks under `rag_managed_db_config` (`basic` / `scaled` /
+# `unprovisioned`) fan into the sealed [ragManagedDbConfig] virtual slot.
+paramOrder:
+  - region
+  - rag_managed_db_config
+  - project
+  - deletion_policy
+
+argMapOrder:
+  - region
+  - project
+  - deletion_policy
+  - rag_managed_db_config
+
+requiredParams:
+  - region
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+prelude: |
+  // ===========================================================================
+  // VertexAiRagEngineConfigManagedDbTier — sealed (Basic | Scaled | Unprovisioned)
+  // ===========================================================================
+
+  /// RagManagedDb tier for [GoogleVertexAiRagEngineConfig]. Sealed so the MM
+  /// `exactly_one_of` under `rag_managed_db_config` is exhaustive at the type
+  /// level. Each variant is an empty nested block (`allow_empty_object`).
+  sealed class VertexAiRagEngineConfigManagedDbTier {
+    const VertexAiRagEngineConfigManagedDbTier();
+
+    /// Inner block key under `rag_managed_db_config` (`basic` / `scaled` /
+    /// `unprovisioned`).
+    String get tierKey;
+
+    /// Encodes as `rag_managed_db_config` list max 1:
+    /// `[{ <tierKey>: [{}] }]`.
+    List<Map<String, Object?>> encode() => [
+          {
+            tierKey: const [<String, Object?>{}],
+          },
+        ];
+  }
+
+  /// `basic` tier — cost-effective default for experiments / small data.
+  @immutable
+  final class VertexAiRagEngineConfigBasic
+      extends VertexAiRagEngineConfigManagedDbTier {
+    const VertexAiRagEngineConfigBasic();
+
+    @override
+    String get tierKey => 'basic';
+  }
+
+  /// `scaled` tier — production-grade performance with autoscaling.
+  @immutable
+  final class VertexAiRagEngineConfigScaled
+      extends VertexAiRagEngineConfigManagedDbTier {
+    const VertexAiRagEngineConfigScaled();
+
+    @override
+    String get tierKey => 'scaled';
+  }
+
+  /// `unprovisioned` — disables RAG Engine and deletes managed data.
+  @immutable
+  final class VertexAiRagEngineConfigUnprovisioned
+      extends VertexAiRagEngineConfigManagedDbTier {
+    const VertexAiRagEngineConfigUnprovisioned();
+
+    @override
+    String get tierKey => 'unprovisioned';
+  }
+
+customSlots:
+  rag_managed_db_config:
+    paramDeclaration:
+      'required VertexAiRagEngineConfigManagedDbTier ragManagedDbConfig'
+    argMapEntry:
+      "'rag_managed_db_config': TfArg.literal(ragManagedDbConfig.encode()),"
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

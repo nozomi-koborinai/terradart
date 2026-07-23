@@ -26,6 +26,43 @@ export 'src/vertex_ai/google_vertex_ai_endpoint.dart'
         VertexAiEndpointPredictRequestResponseLoggingConfigBigqueryDestination,
         VertexAiEndpointPrivateServiceConnectConfig,
         VertexAiEndpointPrivateServiceConnectConfigPscAutomationConfigs;
+export 'src/vertex_ai/google_vertex_ai_endpoint_with_model_garden_deployment.dart'
+    show
+        GoogleVertexAiEndpointWithModelGardenDeployment,
+        VertexAiEndpointWithModelGardenDeploymentDeployConfig,
+        VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResources,
+        VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResourcesAutoscalingMetricSpecs,
+        VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResourcesMachineSpec,
+        VertexAiEndpointWithModelGardenDeploymentDeployConfigDedicatedResourcesMachineSpecReservationAffinity,
+        VertexAiEndpointWithModelGardenDeploymentEndpointConfig,
+        VertexAiEndpointWithModelGardenDeploymentEndpointConfigPrivateServiceConnectConfig,
+        VertexAiEndpointWithModelGardenDeploymentEndpointConfigPrivateServiceConnectConfigPscAutomationConfigs,
+        VertexAiEndpointWithModelGardenDeploymentHuggingFaceModel,
+        VertexAiEndpointWithModelGardenDeploymentModel,
+        VertexAiEndpointWithModelGardenDeploymentModelConfig,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpec,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecEnv,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecGrpcPorts,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbe,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbeExec,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbeGrpc,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbeHttpGet,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbeHttpGetHttpHeaders,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecHealthProbeTcpSocket,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbe,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbeExec,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbeGrpc,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbeHttpGet,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbeHttpGetHttpHeaders,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecLivenessProbeTcpSocket,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecPorts,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbe,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeExec,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeGrpc,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeHttpGet,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeHttpGetHttpHeaders,
+        VertexAiEndpointWithModelGardenDeploymentModelConfigContainerSpecStartupProbeTcpSocket,
+        VertexAiEndpointWithModelGardenDeploymentPublisherModel;
 export 'src/vertex_ai/google_vertex_ai_feature_group.dart'
     show GoogleVertexAiFeatureGroup;
 export 'src/vertex_ai/google_vertex_ai_feature_group_feature.dart'
@@ -84,6 +121,33 @@ export 'src/vertex_ai/google_vertex_ai_index_endpoint_deployed_index.dart'
         VertexAiIndexEndpointDeployedIndexDedicatedResourcesMachineSpec,
         VertexAiIndexEndpointDeployedIndexDeployedIndexAuthConfig,
         VertexAiIndexEndpointDeployedIndexDeployedIndexAuthConfigAuthProvider;
+export 'src/vertex_ai/google_vertex_ai_rag_engine_config.dart'
+    show
+        GoogleVertexAiRagEngineConfig,
+        VertexAiRagEngineConfigBasic,
+        VertexAiRagEngineConfigManagedDbTier,
+        VertexAiRagEngineConfigScaled,
+        VertexAiRagEngineConfigUnprovisioned;
+export 'src/vertex_ai/google_vertex_ai_reasoning_engine.dart'
+    show
+        GoogleVertexAiReasoningEngine,
+        VertexAiReasoningEngineEncryptionSpec,
+        VertexAiReasoningEngineSpec,
+        VertexAiReasoningEngineSpecContainerSpec,
+        VertexAiReasoningEngineSpecDeploymentSpec,
+        VertexAiReasoningEngineSpecDeploymentSpecEnv,
+        VertexAiReasoningEngineSpecDeploymentSpecPscInterfaceConfig,
+        VertexAiReasoningEngineSpecDeploymentSpecPscInterfaceConfigDnsPeeringConfigs,
+        VertexAiReasoningEngineSpecDeploymentSpecSecretEnv,
+        VertexAiReasoningEngineSpecDeploymentSpecSecretEnvSecretRef,
+        VertexAiReasoningEngineSpecIdentityType,
+        VertexAiReasoningEngineSpecPackageSpec,
+        VertexAiReasoningEngineSpecSourceCodeSpec,
+        VertexAiReasoningEngineSpecSourceCodeSpecDeveloperConnectSource,
+        VertexAiReasoningEngineSpecSourceCodeSpecDeveloperConnectSourceConfig,
+        VertexAiReasoningEngineSpecSourceCodeSpecImageSpec,
+        VertexAiReasoningEngineSpecSourceCodeSpecInlineSource,
+        VertexAiReasoningEngineSpecSourceCodeSpecPythonSpec;
 export 'src/vertex_ai/google_vertex_ai_schedule.dart'
     show GoogleVertexAiSchedule;
 export 'src/vertex_ai/google_vertex_ai_tensorboard.dart'

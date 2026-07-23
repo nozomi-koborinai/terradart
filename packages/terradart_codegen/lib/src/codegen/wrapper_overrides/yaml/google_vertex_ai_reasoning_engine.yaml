@@ -1,0 +1,50 @@
+outputDir: vertex_ai
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Vertex AI **Reasoning Engine** (Agent Engine) — managed runtime for
+  /// agent frameworks (`spec` carries package / source / deployment details).
+  ///
+  /// **Cost:** Cloud Billing Catalog service `C7E2-9256-1C43` lists
+  /// ReasoningEngine management-fee SKUs (`8A55-0B95-B7DC` CPU Tier 1,
+  /// `0B45-6103-6EC1` Memory Tier 1; list-price tiers empty after MCP
+  /// `get_sku_price`). Creating an engine with deployment capacity accrues
+  /// CPU/Memory management fees while it exists. Too expensive for
+  /// apply-smoke — factory ships without a quickstart.
+  ///
+  /// Deep nested `exactly_one_of` groups inside Memory Bank TTL / topic
+  /// configs are not type-sealed in this Wave (MM notes array-element
+  /// groups rely on API validation). Enable `aiplatform.googleapis.com`
+  /// via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleVertexAiReasoningEngine(
+  ///   localName: 'agent',
+  ///   displayName: TfArg.literal('terradart-agent'),
+  ///   region: TfArg.literal('us-central1'),
+  /// );
+  /// ```
+
+paramOrder:
+  - display_name
+  - region
+  - description
+  - labels
+  - encryption_spec
+  - spec
+  - project
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
