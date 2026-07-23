@@ -8,6 +8,26 @@ deriveEnums: true
 extraImports:
   - "import 'package:meta/meta.dart';"
 
+# `runtime_type` is under MM `properties` → deriveEnums emits the enum;
+# wire it into the ctor. `retention` lives under MM `parameters` (url_param_only),
+# which MmYamlParser does not walk, so deriveEnums never sees its enum_values —
+# keep a thin prelude enum + override (schema Possible values still gap-check).
+dartTypeOverrides:
+  runtime_type: ApigeeOrganizationRuntimeType
+  retention: ApigeeOrganizationRetention
+
+prelude: |
+  /// Soft-delete data retention for `google_apigee_organization.retention`
+  /// (query param on delete; not in MM `properties`, so not deriveEnums-backed).
+  enum ApigeeOrganizationRetention implements TerraformEnum {
+    deletionRetentionUnspecified('DELETION_RETENTION_UNSPECIFIED'),
+    minimum('MINIMUM');
+
+    const ApigeeOrganizationRetention(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
 curatedDoc: |-
   /// Apigee **organization** — project-bound Apigee control plane
   /// (subscription / evaluation org).
@@ -32,7 +52,7 @@ curatedDoc: |-
   ///   projectId: TfArg.literal(projectId),
   ///   analyticsRegion: TfArg.literal('us-central1'),
   ///   authorizedNetwork: TfArg.ref(network.id),
-  ///   runtimeType: TfArg.literal('CLOUD'),
+  ///   runtimeType: TfArg.literal(ApigeeOrganizationRuntimeType.cloud),
   /// );
   /// ```
 

@@ -17,6 +17,17 @@ enum ApigeeOrganizationRuntimeType implements TerraformEnum {
   final String terraformValue;
 }
 
+/// Soft-delete data retention for `google_apigee_organization.retention`
+/// (query param on delete; not in MM `properties`, so not deriveEnums-backed).
+enum ApigeeOrganizationRetention implements TerraformEnum {
+  deletionRetentionUnspecified('DELETION_RETENTION_UNSPECIFIED'),
+  minimum('MINIMUM');
+
+  const ApigeeOrganizationRetention(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `properties` block of
 /// `google_apigee_organization` (derived from provider schema).
 @immutable
@@ -73,7 +84,7 @@ final class ApigeeOrganizationPropertiesProperty {
 ///   projectId: TfArg.literal(projectId),
 ///   analyticsRegion: TfArg.literal('us-central1'),
 ///   authorizedNetwork: TfArg.ref(network.id),
-///   runtimeType: TfArg.literal('CLOUD'),
+///   runtimeType: TfArg.literal(ApigeeOrganizationRuntimeType.cloud),
 /// );
 /// ```
 final class GoogleApigeeOrganization extends Resource {
@@ -84,12 +95,12 @@ final class GoogleApigeeOrganization extends Resource {
     required TfArg<String> projectId,
     TfArg<String>? analyticsRegion,
     TfArg<String>? authorizedNetwork,
-    TfArg<String>? runtimeType,
+    TfArg<ApigeeOrganizationRuntimeType>? runtimeType,
     TfArg<String>? billingType,
     TfArg<String>? displayName,
     TfArg<String>? description,
     TfArg<bool>? disableVpcPeering,
-    TfArg<String>? retention,
+    TfArg<ApigeeOrganizationRetention>? retention,
     TfArg<String>? apiConsumerDataLocation,
     TfArg<String>? apiConsumerDataEncryptionKeyName,
     TfArg<String>? controlPlaneEncryptionKeyName,
