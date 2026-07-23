@@ -905,6 +905,10 @@ files:
 
   google_memcache_instance:
     upstream: mmv1/products/memcache/Instance.yaml
+  google_memorystore_instance:
+    upstream: mmv1/products/memorystore/Instance.yaml
+  google_memorystore_instance_desired_user_created_endpoints:
+    upstream: mmv1/products/memorystore/InstanceDesiredUserCreatedEndpoints.yaml
   google_migration_center_assets_export_job:
     upstream: mmv1/products/migrationcenter/AssetsExportJob.yaml
   google_migration_center_discovery_client:

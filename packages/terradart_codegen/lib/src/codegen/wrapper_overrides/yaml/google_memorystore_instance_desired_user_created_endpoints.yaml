@@ -1,0 +1,34 @@
+outputDir: memorystore
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Memorystore for Valkey **user-created endpoints** — PSC connections
+  /// you attach to an existing [GoogleMemorystoreInstance].
+  ///
+  /// **Cost:** no separate Cloud Billing Catalog SKU under Memorystore
+  /// `A2B5-E0F1-B0F3` (node/backup/AOF SKUs only). Connection metadata
+  /// rides on the parent instance's node-hour charges.
+  ///
+  /// Deferred with the never_apply parent instance (no apply-smoke
+  /// quickstart). Enable `memorystore.googleapis.com` via
+  /// [GoogleProjectService] before apply.
+
+paramOrder:
+  - name
+  - region
+  - desired_user_created_endpoints
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

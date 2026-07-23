@@ -70,6 +70,7 @@ export 'logging.dart';
 export 'looker.dart';
 export 'managed.dart';
 export 'memcache.dart';
+export 'memorystore.dart';
 export 'migration.dart';
 export 'model_armor.dart';
 export 'monitoring.dart';
