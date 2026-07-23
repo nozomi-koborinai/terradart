@@ -28,6 +28,8 @@ export 'src/vertex_ai/google_vertex_ai_endpoint.dart'
         VertexAiEndpointPrivateServiceConnectConfigPscAutomationConfigs;
 export 'src/vertex_ai/google_vertex_ai_feature_group.dart'
     show GoogleVertexAiFeatureGroup;
+export 'src/vertex_ai/google_vertex_ai_feature_group_feature.dart'
+    show GoogleVertexAiFeatureGroupFeature;
 export 'src/vertex_ai/google_vertex_ai_featurestore.dart'
     show
         GoogleVertexAiFeaturestore,

@@ -385,6 +385,7 @@ google_redis_cluster_user_created_connections: safe  # gcp-cost: no separate SKU
 google_vertex_ai_cache_config: safe  # apply-verified safe (existing example)
 google_vertex_ai_dataset: safe  # apply-verified safe (existing example)
 google_vertex_ai_feature_group: safe  # apply-verified safe (existing example)
+google_vertex_ai_feature_group_feature: safe  # gcp-cost: Vertex AI C7E2-9256-1C43 list_skus — no Feature Group / Feature Registry feature SKU (Feature Store SKUs are legacy store online/offline serving + storage only) — billing-behavior: feature metadata over the parent feature group's BigQuery source; no existence/hourly Vertex charge for the feature itself
 google_vertex_ai_tensorboard: safe  # empty in example, always destroyed in smoke → ~¥0 realized; per-GiB-month log storage but no data written
 google_vertex_ai_tensorboard_experiment: safe  # gcp-cost: SKU 14E8-2D8F-4C9B Tensorboard storage $10/GiBy.mo — metadata-only experiment in example writes no tensor data; billing-behavior: no storage accrued when empty
 google_vertex_ai_tensorboard_run: safe  # gcp-cost: SKU 14E8-2D8F-4C9B Tensorboard storage $10/GiBy.mo — metadata-only run in example writes no scalars; billing-behavior: no storage accrued when empty

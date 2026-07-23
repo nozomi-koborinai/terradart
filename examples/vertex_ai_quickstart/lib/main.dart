@@ -4,6 +4,7 @@
 /// BigQuery-backed Vertex AI feature group:
 /// - a BigQuery dataset + table (the feature source, keyed by `entity_id`),
 /// - a `google_vertex_ai_feature_group` reading from that table,
+/// - a `google_vertex_ai_feature_group_feature` for the `feature_score` column,
 /// - Tensorboard experiment tracking (tensorboard + experiment + run),
 /// - a far-future Vertex AI pipeline schedule (metadata only during smoke).
 ///
@@ -99,6 +100,18 @@ final class FeatureStack extends Stack {
           ResourceDependency(apiVertex),
           ResourceDependency(table),
         ],
+      ),
+    );
+
+    add(
+      GoogleVertexAiFeatureGroupFeature(
+        localName: 'feature_score',
+        featureGroup: TfArg.ref(featureGroup.nameRef),
+        name: TfArg.literal('feature_score'),
+        region: TfArg.literal('us-central1'),
+        versionColumnName: TfArg.literal('feature_score'),
+        description: TfArg.literal('Customer score from BigQuery'),
+        dependsOn: [ResourceDependency(featureGroup)],
       ),
     );
 
