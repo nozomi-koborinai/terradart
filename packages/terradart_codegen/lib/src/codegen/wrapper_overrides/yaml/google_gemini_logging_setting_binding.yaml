@@ -1,0 +1,45 @@
+outputDir: gemini
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Gemini Admin Control **logging setting binding** — attaches a
+  /// [GoogleGeminiLoggingSetting] to a target project (`projects/<number>`).
+  ///
+  /// **Cost:** Cloud Billing Catalog service `AEFD-7695-64FA` (Gemini API)
+  /// has **no Admin Control setting/binding SKU** after MCP `list_skus`
+  /// (SKUs are generate_content / token usage). Binding metadata alone does
+  /// not invoke models. Covered by `gemini_quickstart`.
+  ///
+  /// Requires [loggingSettingId], [settingBindingId], and [target]. Enable
+  /// `cloudaicompanion.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleGeminiLoggingSettingBinding(
+  ///   localName: 'logging_bind',
+  ///   loggingSettingId: TfArg.literal('terradart-logging'),
+  ///   settingBindingId: TfArg.literal('terradart-logging-bind'),
+  ///   location: TfArg.literal('global'),
+  ///   target: TfArg.literal('projects/${current.number.interpolation}'),
+  /// );
+  /// ```
+
+paramOrder:
+  - logging_setting_id
+  - setting_binding_id
+  - target
+  - location
+  - product
+  - labels
+  - project
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

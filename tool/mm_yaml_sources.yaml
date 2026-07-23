@@ -548,6 +548,14 @@ files:
     upstream: mmv1/products/gemini/ReleaseChannelSetting.yaml
   google_gemini_data_sharing_with_google_setting:
     upstream: mmv1/products/gemini/DataSharingWithGoogleSetting.yaml
+  google_gemini_logging_setting_binding:
+    upstream: mmv1/products/gemini/LoggingSettingBinding.yaml
+  google_gemini_release_channel_setting_binding:
+    upstream: mmv1/products/gemini/ReleaseChannelSettingBinding.yaml
+  google_gemini_gemini_gcp_enablement_setting_binding:
+    upstream: mmv1/products/gemini/GeminiGcpEnablementSettingBinding.yaml
+  google_gemini_data_sharing_with_google_setting_binding:
+    upstream: mmv1/products/gemini/DataSharingWithGoogleSettingBinding.yaml
   google_gke_hub_scope:
     upstream: mmv1/products/gkehub/Scope.yaml
   google_gke_hub_namespace:

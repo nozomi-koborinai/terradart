@@ -270,6 +270,10 @@ google_gemini_gemini_gcp_enablement_setting: safe  # apply-verified safe (existi
 google_gemini_logging_setting: safe  # apply-verified safe (existing example)
 google_gemini_release_channel_setting: safe  # apply-verified safe (existing example)
 google_gemini_data_sharing_with_google_setting: safe  # gcp-cost: Gemini API AEFD-7695-64FA SKUs are generate_content / token usage only (no Admin Control setting SKU after list_skus keyword=setting → 0); billing-behavior: project/location config metadata — create/update/delete does not invoke models; destroy removes the setting
+google_gemini_logging_setting_binding: safe  # gcp-cost: Gemini API AEFD-7695-64FA list_skus — no Admin Control setting/binding SKU (SKUs are generate_content / token usage only) — billing-behavior: attaches a logging setting to projects/<number>; metadata-only, does not invoke models
+google_gemini_release_channel_setting_binding: safe  # gcp-cost: Gemini API AEFD-7695-64FA list_skus — no Admin Control setting/binding SKU (SKUs are generate_content / token usage only) — billing-behavior: attaches a release-channel setting to projects/<number>; metadata-only, does not invoke models
+google_gemini_gemini_gcp_enablement_setting_binding: safe  # gcp-cost: Gemini API AEFD-7695-64FA list_skus — no Admin Control setting/binding SKU (SKUs are generate_content / token usage only) — billing-behavior: attaches a GCP enablement setting to projects/<number>; metadata-only, does not invoke models
+google_gemini_data_sharing_with_google_setting_binding: safe  # gcp-cost: Gemini API AEFD-7695-64FA list_skus — no Admin Control setting/binding SKU (SKUs are generate_content / token usage only) — billing-behavior: attaches a data-sharing setting to projects/<number>; metadata-only, does not invoke models
 google_gke_backup_backup_plan: safe  # apply-verified safe (existing example)
 google_gke_backup_backup_plan_iam_member: safe  # apply-verified safe (existing example)
 google_gke_backup_restore_plan: safe  # apply-verified safe (existing example)
