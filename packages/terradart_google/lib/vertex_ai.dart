@@ -2,7 +2,8 @@
 // Run `terradart wrap` to regenerate.
 /// Vertex AI — feature store feature groups (backed by a BigQuery source),
 /// managed datasets, experiment Tensorboards (with experiments and runs),
-/// pipeline schedules, and GenAI cache config.
+/// pipeline schedules, GenAI cache config, and Vector Search index endpoints
+/// (plus deployed indexes).
 /// Nested config blocks (e.g. `encryption_spec`) are passed as structured maps.
 library;
 
@@ -11,6 +12,20 @@ export 'src/vertex_ai/google_vertex_ai_cache_config.dart'
 export 'src/vertex_ai/google_vertex_ai_dataset.dart' show GoogleVertexAiDataset;
 export 'src/vertex_ai/google_vertex_ai_feature_group.dart'
     show GoogleVertexAiFeatureGroup;
+export 'src/vertex_ai/google_vertex_ai_index_endpoint.dart'
+    show
+        GoogleVertexAiIndexEndpoint,
+        VertexAiIndexEndpointEncryptionSpec,
+        VertexAiIndexEndpointPrivateServiceConnectConfig,
+        VertexAiIndexEndpointPrivateServiceConnectConfigPscAutomationConfigs;
+export 'src/vertex_ai/google_vertex_ai_index_endpoint_deployed_index.dart'
+    show
+        GoogleVertexAiIndexEndpointDeployedIndex,
+        VertexAiIndexEndpointDeployedIndexAutomaticResources,
+        VertexAiIndexEndpointDeployedIndexDedicatedResources,
+        VertexAiIndexEndpointDeployedIndexDedicatedResourcesMachineSpec,
+        VertexAiIndexEndpointDeployedIndexDeployedIndexAuthConfig,
+        VertexAiIndexEndpointDeployedIndexDeployedIndexAuthConfigAuthProvider;
 export 'src/vertex_ai/google_vertex_ai_schedule.dart'
     show GoogleVertexAiSchedule;
 export 'src/vertex_ai/google_vertex_ai_tensorboard.dart'

@@ -1,0 +1,60 @@
+outputDir: vertex_ai
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Vertex AI **deployed index** on an index endpoint — starts Vector
+  /// Search / Matching Engine **serving capacity**.
+  ///
+  /// **Cost:** Cloud Billing Catalog service `C7E2-9256-1C43` bills
+  /// **Vector Search Index Serving** while the deployment exists
+  /// (us-central1 e2-standard-2 SKU `722D-2FE3-D851` **$0.0938084/h**;
+  /// n1-standard-16 `EBCE-B4E0-91EF` and larger machine SKUs also listed).
+  /// Destroy undeploys and stops serving charges. Too expensive for
+  /// apply-smoke — factories ship without a quickstart.
+  ///
+  /// Requires [deployedIndexId], parent [indexEndpoint], and [index].
+  /// Provide [automaticResources] or [dedicatedResources]. Enable
+  /// `aiplatform.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleVertexAiIndexEndpointDeployedIndex(
+  ///   localName: 'dep',
+  ///   deployedIndexId: TfArg.literal('terradart_dep'),
+  ///   indexEndpoint: endpoint.nameRef,
+  ///   index: index.nameRef,
+  ///   region: TfArg.literal('us-central1'),
+  ///   automaticResources: VertexAiIndexEndpointDeployedIndexAutomaticResources(
+  ///     minReplicaCount: TfArg.literal(1),
+  ///     maxReplicaCount: TfArg.literal(1),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - deployed_index_id
+  - index_endpoint
+  - index
+  - region
+  - display_name
+  - automatic_resources
+  - dedicated_resources
+  - deployed_index_auth_config
+  - deployment_group
+  - enable_access_logging
+  - reserved_ip_ranges
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

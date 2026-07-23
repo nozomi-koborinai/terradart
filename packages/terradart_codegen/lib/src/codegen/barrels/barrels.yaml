@@ -397,7 +397,8 @@ barrels:
     doc: |-
       /// Vertex AI — feature store feature groups (backed by a BigQuery source),
       /// managed datasets, experiment Tensorboards (with experiments and runs),
-      /// pipeline schedules, and GenAI cache config.
+      /// pipeline schedules, GenAI cache config, and Vector Search index endpoints
+      /// (plus deployed indexes).
       /// Nested config blocks (e.g. `encryption_spec`) are passed as structured maps.
   workbench:
     doc: |-

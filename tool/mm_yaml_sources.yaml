@@ -989,6 +989,10 @@ files:
     upstream: mmv1/products/vertexai/Tensorboard.yaml
   google_vertex_ai_cache_config:
     upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
+  google_vertex_ai_index_endpoint:
+    upstream: mmv1/products/vertexai/IndexEndpoint.yaml
+  google_vertex_ai_index_endpoint_deployed_index:
+    upstream: mmv1/products/vertexai/IndexEndpointDeployedIndex.yaml
   google_vertex_ai_schedule:
     upstream: mmv1/products/vertexai/Schedule.yaml
   google_vertex_ai_tensorboard_experiment:
