@@ -46,6 +46,7 @@ import 'package:terradart_google/notebooks.dart';
 import 'package:terradart_google/os_config.dart';
 import 'package:terradart_google/secret_manager.dart';
 import 'package:terradart_google/storage.dart';
+import 'package:terradart_google/vertex_ai.dart';
 import 'package:test/test.dart';
 
 /// Hand-curated lookup: sealed-class-member-name -> a thunk that returns a
@@ -516,6 +517,32 @@ final Map<String, Object Function()> _syntheticInstances = {
       ),
   'CertificateManagerCertificateMapEntryMatcher': () =>
       CertificateManagerCertificateMapEntryMatcher(TfArg.literal('PRIMARY')),
+
+  // --- VertexAiFeatureOnlineStoreStorage (2) — feature_online_store --------
+  'VertexAiFeatureOnlineStoreBigtable': () => VertexAiFeatureOnlineStoreBigtable(
+        autoScaling: VertexAiFeatureOnlineStoreBigtableAutoScaling(
+          minNodeCount: TfArg.literal(1),
+          maxNodeCount: TfArg.literal(3),
+        ),
+      ),
+  'VertexAiFeatureOnlineStoreOptimized': () =>
+      const VertexAiFeatureOnlineStoreOptimized(),
+
+  // --- VertexAiFeatureOnlineStoreFeatureviewSource (2) — featureview -------
+  'VertexAiFeatureOnlineStoreFeatureviewBigQuerySource': () =>
+      VertexAiFeatureOnlineStoreFeatureviewBigQuerySource(
+        uri: TfArg.literal('bq://p.dataset.view'),
+        entityIdColumns: TfArg.literal(const ['entity_id']),
+      ),
+  'VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource': () =>
+      VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource(
+        featureGroups: [
+          VertexAiFeatureOnlineStoreFeatureviewFeatureGroup(
+            featureGroupId: TfArg.literal('customer_features'),
+            featureIds: TfArg.literal(const ['feature_score']),
+          ),
+        ],
+      ),
 };
 
 void main() {

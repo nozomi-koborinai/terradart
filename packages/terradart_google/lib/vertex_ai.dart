@@ -30,6 +30,21 @@ export 'src/vertex_ai/google_vertex_ai_feature_group.dart'
     show GoogleVertexAiFeatureGroup;
 export 'src/vertex_ai/google_vertex_ai_feature_group_feature.dart'
     show GoogleVertexAiFeatureGroupFeature;
+export 'src/vertex_ai/google_vertex_ai_feature_online_store.dart'
+    show
+        GoogleVertexAiFeatureOnlineStore,
+        VertexAiFeatureOnlineStoreBigtable,
+        VertexAiFeatureOnlineStoreBigtableAutoScaling,
+        VertexAiFeatureOnlineStoreOptimized,
+        VertexAiFeatureOnlineStoreStorage;
+export 'src/vertex_ai/google_vertex_ai_feature_online_store_featureview.dart'
+    show
+        GoogleVertexAiFeatureOnlineStoreFeatureview,
+        VertexAiFeatureOnlineStoreFeatureviewBigQuerySource,
+        VertexAiFeatureOnlineStoreFeatureviewFeatureGroup,
+        VertexAiFeatureOnlineStoreFeatureviewFeatureRegistrySource,
+        VertexAiFeatureOnlineStoreFeatureviewSource,
+        VertexAiFeatureOnlineStoreFeatureviewSyncConfig;
 export 'src/vertex_ai/google_vertex_ai_featurestore.dart'
     show
         GoogleVertexAiFeaturestore,
