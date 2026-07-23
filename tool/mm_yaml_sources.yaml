@@ -864,6 +864,12 @@ files:
     upstream: mmv1/products/apigee/DataCollector.yaml
   google_apigee_datastore:
     upstream: mmv1/products/apigee/Datastore.yaml
+  google_apigee_instance:
+    upstream: mmv1/products/apigee/Instance.yaml
+  google_apigee_instance_attachment:
+    upstream: mmv1/products/apigee/InstanceAttachment.yaml
+  google_apigee_organization:
+    upstream: mmv1/products/apigee/Organization.yaml
   # App Hub (applications + discovered service/workload registration)
   google_apphub_application:
     upstream: mmv1/products/apphub/Application.yaml

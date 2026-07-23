@@ -1,0 +1,19 @@
+outputDir: apigee
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Attaches an Apigee **environment** to an [GoogleApigeeInstance].
+  ///
+  /// **Cost:** no separate Gateway Node Hours SKU beyond the parent
+  /// instance (`1C2D-8C78-EC58` / `0136-18C1-DD41`). Attachment is
+  /// binding metadata; environment usage may still accrue on the org.
+  ///
+  /// Deferred with the never_apply Apigee instance/org Wave (no
+  /// apply-smoke quickstart).
+
+paramOrder:
+  - instance_id
+  - environment
+  - deletion_policy
