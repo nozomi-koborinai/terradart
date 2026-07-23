@@ -343,12 +343,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'ApigeeOrganizationRuntimeType',
+      'ApigeeOrganizationRetention',
       'ApigeeOrganizationProperties',
       'ApigeeOrganizationPropertiesProperty',
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_apigee_organization`.\n\nAn `Organization` is the top-level container in Apigee.\n\nApigee **organization** — project-bound Apigee control plane\n(subscription / evaluation org).\n\n**Cost:** Cloud Billing Catalog service `1C2D-8C78-EC58` bills Apigee\nPAYG environment and gateway usage once the org is active (e.g.\nGateway Node Hours SKU `0136-18C1-DD41` **\$1.025/h**; Active\nIntermediate Environment Usage Hours `421B-D6C0-52A2` **\$2/h**;\nActive Comprehensive Environment Usage Hours `01C8-CFFA-106E`\n**\$4.7/h**). Creating an organization is the gateway to that\nbilling surface. Too expensive for apply-smoke — factories ship\nwithout a quickstart.\n\nRequires [projectId]. Typically also set [analyticsRegion] and\n[authorizedNetwork] (VPC peering). Enable `apigee.googleapis.com`\nvia [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleApigeeOrganization(\n  localName: \'org\',\n  projectId: TfArg.literal(projectId),\n  analyticsRegion: TfArg.literal(\'us-central1\'),\n  authorizedNetwork: TfArg.ref(network.id),\n  runtimeType: TfArg.literal(\'CLOUD\'),\n);\n```',
+        'Factory wrapper for `google_apigee_organization`.\n\nAn `Organization` is the top-level container in Apigee.\n\nApigee **organization** — project-bound Apigee control plane\n(subscription / evaluation org).\n\n**Cost:** Cloud Billing Catalog service `1C2D-8C78-EC58` bills Apigee\nPAYG environment and gateway usage once the org is active (e.g.\nGateway Node Hours SKU `0136-18C1-DD41` **\$1.025/h**; Active\nIntermediate Environment Usage Hours `421B-D6C0-52A2` **\$2/h**;\nActive Comprehensive Environment Usage Hours `01C8-CFFA-106E`\n**\$4.7/h**). Creating an organization is the gateway to that\nbilling surface. Too expensive for apply-smoke — factories ship\nwithout a quickstart.\n\nRequires [projectId]. Typically also set [analyticsRegion] and\n[authorizedNetwork] (VPC peering). Enable `apigee.googleapis.com`\nvia [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleApigeeOrganization(\n  localName: \'org\',\n  projectId: TfArg.literal(projectId),\n  analyticsRegion: TfArg.literal(\'us-central1\'),\n  authorizedNetwork: TfArg.ref(network.id),\n  runtimeType: TfArg.literal(ApigeeOrganizationRuntimeType.cloud),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_apikeys_key',

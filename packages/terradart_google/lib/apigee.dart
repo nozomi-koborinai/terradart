@@ -23,5 +23,6 @@ export 'src/apigee/google_apigee_organization.dart'
     show
         ApigeeOrganizationProperties,
         ApigeeOrganizationPropertiesProperty,
+        ApigeeOrganizationRetention,
         ApigeeOrganizationRuntimeType,
         GoogleApigeeOrganization;
