@@ -8261,6 +8261,29 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_gemini_data_sharing_with_google_setting`.\n\nThe resource for managing DataSharingWithGoogle settings for Admin Control.\n\nGemini for Google Cloud **data-sharing-with-Google** Admin Control setting.\n\nProject/location config that toggles whether Gemini products may share\nusage data with Google (GA and Preview independently). Creating the\nsetting alone does not call Gemini models or incur token SKUs.\n\nEnable `cloudaicompanion.googleapis.com` via [GoogleProjectService]\nbefore apply.\n\nExample:\n```dart\nGoogleGeminiDataSharingWithGoogleSetting(\n  localName: \'sharing\',\n  dataSharingWithGoogleSettingId: TfArg.literal(\'terradart-sharing\'),\n  location: TfArg.literal(\'global\'),\n  enableDataSharing: TfArg.literal(false),\n  enablePreviewDataSharing: TfArg.literal(false),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_gemini_data_sharing_with_google_setting_binding',
+    className: 'GoogleGeminiDataSharingWithGoogleSettingBinding',
+    barrel: 'gemini',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_gemini_data_sharing_with_google_setting_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'dataSharingWithGoogleSettingId',
+      'settingBindingId',
+      'target',
+      'location',
+      'product',
+      'labels',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_gemini_data_sharing_with_google_setting_binding`.\n\nThe resource for managing DataSharingWithGoogle setting bindings for Admin\nControl.\n\nGemini Admin Control **data-sharing-with-Google setting binding** —\nattaches a [GoogleGeminiDataSharingWithGoogleSetting] to a target\nproject (`projects/<number>`).\n\n**Cost:** Cloud Billing Catalog service `AEFD-7695-64FA` (Gemini API)\nhas **no Admin Control setting/binding SKU** after MCP `list_skus`\n(SKUs are generate_content / token usage). Binding metadata alone does\nnot invoke models. Covered by `gemini_quickstart`.\n\nRequires [dataSharingWithGoogleSettingId], [settingBindingId], and\n[target]. Enable `cloudaicompanion.googleapis.com` via\n[GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleGeminiDataSharingWithGoogleSettingBinding(\n  localName: \'sharing_bind\',\n  dataSharingWithGoogleSettingId: TfArg.literal(\'terradart-sharing\'),\n  settingBindingId: TfArg.literal(\'terradart-sharing-bind\'),\n  location: TfArg.literal(\'global\'),\n  target: TfArg.literal(\'projects/\${current.number.interpolation}\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_gemini_gemini_gcp_enablement_setting',
     className: 'GoogleGeminiGeminiGcpEnablementSetting',
     barrel: 'gemini',
@@ -8283,6 +8306,29 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_gemini_gemini_gcp_enablement_setting`.\n\nThe resource for managing GeminiGcpEnablement settings for Admin Control.',
   ),
   CatalogEntry(
+    tfType: 'google_gemini_gemini_gcp_enablement_setting_binding',
+    className: 'GoogleGeminiGeminiGcpEnablementSettingBinding',
+    barrel: 'gemini',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_gemini_gemini_gcp_enablement_setting_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'geminiGcpEnablementSettingId',
+      'settingBindingId',
+      'target',
+      'location',
+      'product',
+      'labels',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_gemini_gemini_gcp_enablement_setting_binding`.\n\nThe resource for managing GeminiGcpEnablementSetting setting bindings for\nAdmin Control.\n\nGemini Admin Control **GCP enablement setting binding** — attaches a\n[GoogleGeminiGeminiGcpEnablementSetting] to a target project\n(`projects/<number>`).\n\n**Cost:** Cloud Billing Catalog service `AEFD-7695-64FA` (Gemini API)\nhas **no Admin Control setting/binding SKU** after MCP `list_skus`\n(SKUs are generate_content / token usage). Binding metadata alone does\nnot invoke models. Covered by `gemini_quickstart`.\n\nRequires [geminiGcpEnablementSettingId], [settingBindingId], and\n[target]. Enable `cloudaicompanion.googleapis.com` via\n[GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleGeminiGeminiGcpEnablementSettingBinding(\n  localName: \'enablement_bind\',\n  geminiGcpEnablementSettingId: TfArg.literal(\'terradart-enablement\'),\n  settingBindingId: TfArg.literal(\'terradart-enablement-bind\'),\n  location: TfArg.literal(\'global\'),\n  target: TfArg.literal(\'projects/\${current.number.interpolation}\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_gemini_logging_setting',
     className: 'GoogleGeminiLoggingSetting',
     barrel: 'gemini',
@@ -8303,6 +8349,28 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_gemini_logging_setting`.\n\nThe resource for managing Logging settings for Admin Control.',
   ),
   CatalogEntry(
+    tfType: 'google_gemini_logging_setting_binding',
+    className: 'GoogleGeminiLoggingSettingBinding',
+    barrel: 'gemini',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_gemini_logging_setting_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'loggingSettingId',
+      'settingBindingId',
+      'target',
+      'location',
+      'product',
+      'labels',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>['GeminiLoggingSettingBindingProduct'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_gemini_logging_setting_binding`.\n\nThe resource for managing Logging setting bindings for Admin Control.\n\nGemini Admin Control **logging setting binding** — attaches a\n[GoogleGeminiLoggingSetting] to a target project (`projects/<number>`).\n\n**Cost:** Cloud Billing Catalog service `AEFD-7695-64FA` (Gemini API)\nhas **no Admin Control setting/binding SKU** after MCP `list_skus`\n(SKUs are generate_content / token usage). Binding metadata alone does\nnot invoke models. Covered by `gemini_quickstart`.\n\nRequires [loggingSettingId], [settingBindingId], and [target]. Enable\n`cloudaicompanion.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleGeminiLoggingSettingBinding(\n  localName: \'logging_bind\',\n  loggingSettingId: TfArg.literal(\'terradart-logging\'),\n  settingBindingId: TfArg.literal(\'terradart-logging-bind\'),\n  location: TfArg.literal(\'global\'),\n  target: TfArg.literal(\'projects/\${current.number.interpolation}\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_gemini_release_channel_setting',
     className: 'GoogleGeminiReleaseChannelSetting',
     barrel: 'gemini',
@@ -8320,6 +8388,29 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_gemini_release_channel_setting`.\n\nThe resource for managing ReleaseChannel settings for Admin Control.',
+  ),
+  CatalogEntry(
+    tfType: 'google_gemini_release_channel_setting_binding',
+    className: 'GoogleGeminiReleaseChannelSettingBinding',
+    barrel: 'gemini',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_gemini_release_channel_setting_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'releaseChannelSettingId',
+      'settingBindingId',
+      'target',
+      'location',
+      'product',
+      'labels',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>['GeminiReleaseChannelSettingBindingProduct'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_gemini_release_channel_setting_binding`.\n\nThe resource for managing ReleaseChannel setting bindings for Admin Control.\n\nGemini Admin Control **release-channel setting binding** — attaches a\n[GoogleGeminiReleaseChannelSetting] to a target project\n(`projects/<number>`).\n\n**Cost:** Cloud Billing Catalog service `AEFD-7695-64FA` (Gemini API)\nhas **no Admin Control setting/binding SKU** after MCP `list_skus`\n(SKUs are generate_content / token usage). Binding metadata alone does\nnot invoke models. Covered by `gemini_quickstart`.\n\nRequires [releaseChannelSettingId], [settingBindingId], and [target].\nEnable `cloudaicompanion.googleapis.com` via [GoogleProjectService]\nbefore apply.\n\nExample:\n```dart\nGoogleGeminiReleaseChannelSettingBinding(\n  localName: \'channel_bind\',\n  releaseChannelSettingId: TfArg.literal(\'terradart-channel\'),\n  settingBindingId: TfArg.literal(\'terradart-channel-bind\'),\n  location: TfArg.literal(\'global\'),\n  target: TfArg.literal(\'projects/\${current.number.interpolation}\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_gke_backup_backup_channel',

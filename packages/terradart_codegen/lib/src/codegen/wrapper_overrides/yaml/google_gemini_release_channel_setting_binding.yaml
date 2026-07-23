@@ -1,0 +1,47 @@
+outputDir: gemini
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Gemini Admin Control **release-channel setting binding** — attaches a
+  /// [GoogleGeminiReleaseChannelSetting] to a target project
+  /// (`projects/<number>`).
+  ///
+  /// **Cost:** Cloud Billing Catalog service `AEFD-7695-64FA` (Gemini API)
+  /// has **no Admin Control setting/binding SKU** after MCP `list_skus`
+  /// (SKUs are generate_content / token usage). Binding metadata alone does
+  /// not invoke models. Covered by `gemini_quickstart`.
+  ///
+  /// Requires [releaseChannelSettingId], [settingBindingId], and [target].
+  /// Enable `cloudaicompanion.googleapis.com` via [GoogleProjectService]
+  /// before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleGeminiReleaseChannelSettingBinding(
+  ///   localName: 'channel_bind',
+  ///   releaseChannelSettingId: TfArg.literal('terradart-channel'),
+  ///   settingBindingId: TfArg.literal('terradart-channel-bind'),
+  ///   location: TfArg.literal('global'),
+  ///   target: TfArg.literal('projects/${current.number.interpolation}'),
+  /// );
+  /// ```
+
+paramOrder:
+  - release_channel_setting_id
+  - setting_binding_id
+  - target
+  - location
+  - product
+  - labels
+  - project
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

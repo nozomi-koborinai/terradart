@@ -1,0 +1,47 @@
+outputDir: gemini
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Gemini Admin Control **data-sharing-with-Google setting binding** —
+  /// attaches a [GoogleGeminiDataSharingWithGoogleSetting] to a target
+  /// project (`projects/<number>`).
+  ///
+  /// **Cost:** Cloud Billing Catalog service `AEFD-7695-64FA` (Gemini API)
+  /// has **no Admin Control setting/binding SKU** after MCP `list_skus`
+  /// (SKUs are generate_content / token usage). Binding metadata alone does
+  /// not invoke models. Covered by `gemini_quickstart`.
+  ///
+  /// Requires [dataSharingWithGoogleSettingId], [settingBindingId], and
+  /// [target]. Enable `cloudaicompanion.googleapis.com` via
+  /// [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleGeminiDataSharingWithGoogleSettingBinding(
+  ///   localName: 'sharing_bind',
+  ///   dataSharingWithGoogleSettingId: TfArg.literal('terradart-sharing'),
+  ///   settingBindingId: TfArg.literal('terradart-sharing-bind'),
+  ///   location: TfArg.literal('global'),
+  ///   target: TfArg.literal('projects/${current.number.interpolation}'),
+  /// );
+  /// ```
+
+paramOrder:
+  - data_sharing_with_google_setting_id
+  - setting_binding_id
+  - target
+  - location
+  - product
+  - labels
+  - project
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
