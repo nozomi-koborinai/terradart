@@ -1,10 +1,11 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Vertex AI — feature store feature groups (backed by a BigQuery source),
-/// managed datasets, experiment Tensorboards (with experiments and runs),
-/// pipeline schedules, GenAI cache config, online prediction endpoints,
-/// shared deployment resource pools, and Vector Search indexes / index
-/// endpoints (plus deployed indexes).
+/// Vertex AI — Feature Store (legacy featurestore / entity type / feature)
+/// plus feature groups (BigQuery-backed), managed datasets, experiment
+/// Tensorboards (with experiments and runs), pipeline schedules, GenAI
+/// cache config, online prediction endpoints, shared deployment resource
+/// pools, and Vector Search indexes / index endpoints (plus deployed
+/// indexes).
 /// Nested config blocks (e.g. `encryption_spec`) are passed as structured maps.
 library;
 
@@ -27,6 +28,22 @@ export 'src/vertex_ai/google_vertex_ai_endpoint.dart'
         VertexAiEndpointPrivateServiceConnectConfigPscAutomationConfigs;
 export 'src/vertex_ai/google_vertex_ai_feature_group.dart'
     show GoogleVertexAiFeatureGroup;
+export 'src/vertex_ai/google_vertex_ai_featurestore.dart'
+    show
+        GoogleVertexAiFeaturestore,
+        VertexAiFeaturestoreEncryptionSpec,
+        VertexAiFeaturestoreOnlineServingConfig,
+        VertexAiFeaturestoreOnlineServingConfigScaling;
+export 'src/vertex_ai/google_vertex_ai_featurestore_entitytype.dart'
+    show
+        GoogleVertexAiFeaturestoreEntitytype,
+        VertexAiFeaturestoreEntitytypeMonitoringConfig,
+        VertexAiFeaturestoreEntitytypeMonitoringConfigCategoricalThresholdConfig,
+        VertexAiFeaturestoreEntitytypeMonitoringConfigImportFeaturesAnalysis,
+        VertexAiFeaturestoreEntitytypeMonitoringConfigNumericalThresholdConfig,
+        VertexAiFeaturestoreEntitytypeMonitoringConfigSnapshotAnalysis;
+export 'src/vertex_ai/google_vertex_ai_featurestore_entitytype_feature.dart'
+    show GoogleVertexAiFeaturestoreEntitytypeFeature;
 export 'src/vertex_ai/google_vertex_ai_index.dart'
     show
         GoogleVertexAiIndex,

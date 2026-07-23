@@ -987,6 +987,12 @@ files:
     upstream: mmv1/products/redis/ClusterUserCreatedConnections.yaml
   google_redis_instance:
     upstream: mmv1/products/redis/Instance.yaml
+  google_vertex_ai_featurestore:
+    upstream: mmv1/products/vertexai/Featurestore.yaml
+  google_vertex_ai_featurestore_entitytype:
+    upstream: mmv1/products/vertexai/FeaturestoreEntitytype.yaml
+  google_vertex_ai_featurestore_entitytype_feature:
+    upstream: mmv1/products/vertexai/FeaturestoreEntitytypeFeature.yaml
   google_vertex_ai_feature_group:
     upstream: mmv1/products/vertexai/FeatureGroup.yaml
   google_vertex_ai_dataset:

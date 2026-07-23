@@ -1,0 +1,54 @@
+outputDir: vertex_ai
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Vertex AI **Feature Store** (legacy) — container for entity types and
+  /// features with optional online serving capacity.
+  ///
+  /// **Cost:** Cloud Billing Catalog service `C7E2-9256-1C43` bills Feature
+  /// Store **online serving nodes** while configured (SKU `74D1-6081-582A`
+  /// **$0.94/h**; alternate online-node SKU `6875-441B-3793` **$1.11/h**;
+  /// us-central1 optimized online node `565E-845D-9FC2` **$0.3/h**) plus
+  /// online/offline storage (e.g. online storage `43C6-5652-01F4`
+  /// **$0.29/GiBy.mo**). Setting [onlineServingConfig] with
+  /// `fixedNodeCount` / scaling reserves node capacity until destroy.
+  /// Too expensive for apply-smoke — factories ship without a quickstart.
+  ///
+  /// Pair with [GoogleVertexAiFeaturestoreEntitytype] and
+  /// [GoogleVertexAiFeaturestoreEntitytypeFeature]. Enable
+  /// `aiplatform.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleVertexAiFeaturestore(
+  ///   localName: 'fs',
+  ///   name: TfArg.literal('terradart_fs'),
+  ///   region: TfArg.literal('us-central1'),
+  ///   onlineServingConfig: VertexAiFeaturestoreOnlineServingConfig(
+  ///     fixedNodeCount: TfArg.literal(1),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - region
+  - online_serving_config
+  - encryption_spec
+  - labels
+  - force_destroy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` / self-link attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

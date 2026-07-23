@@ -396,11 +396,12 @@ barrels:
       /// indexes over a collection field (ScaNN / dedicated infrastructure).
   vertex_ai:
     doc: |-
-      /// Vertex AI — feature store feature groups (backed by a BigQuery source),
-      /// managed datasets, experiment Tensorboards (with experiments and runs),
-      /// pipeline schedules, GenAI cache config, online prediction endpoints,
-      /// shared deployment resource pools, and Vector Search indexes / index
-      /// endpoints (plus deployed indexes).
+      /// Vertex AI — Feature Store (legacy featurestore / entity type / feature)
+      /// plus feature groups (BigQuery-backed), managed datasets, experiment
+      /// Tensorboards (with experiments and runs), pipeline schedules, GenAI
+      /// cache config, online prediction endpoints, shared deployment resource
+      /// pools, and Vector Search indexes / index endpoints (plus deployed
+      /// indexes).
       /// Nested config blocks (e.g. `encryption_spec`) are passed as structured maps.
   workbench:
     doc: |-

@@ -1,0 +1,44 @@
+outputDir: vertex_ai
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Vertex AI Feature Store **feature** under an entity type — typed column
+  /// definition ([valueType] is immutable).
+  ///
+  /// **Cost:** Cloud Billing Catalog service `C7E2-9256-1C43` has **no
+  /// feature SKU** after MCP `list_skus` (Feature Store SKUs are store
+  /// online/offline serving and storage). Billing stays on the parent
+  /// Featurestore. Deferred with the never_apply Featurestore Wave (no
+  /// apply-smoke quickstart).
+  ///
+  /// Requires [entitytype] and [valueType] (e.g. `INT64`, `STRING`,
+  /// `DOUBLE`). Enable `aiplatform.googleapis.com` via
+  /// [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleVertexAiFeaturestoreEntitytypeFeature(
+  ///   localName: 'age',
+  ///   entitytype: entity.nameRef,
+  ///   name: TfArg.literal('age'),
+  ///   valueType: TfArg.literal('INT64'),
+  /// );
+  /// ```
+
+paramOrder:
+  - entitytype
+  - name
+  - value_type
+  - description
+  - labels
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

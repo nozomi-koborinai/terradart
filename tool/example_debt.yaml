@@ -227,6 +227,9 @@ GoogleMemorystoreInstanceDesiredUserCreatedEndpoints: requires a parent GoogleMe
 # deferred — factories ship without an example.
 GoogleVertexAiDeploymentResourcePool: gcp-cost Vertex AI C7E2-9256-1C43 Online/Batch Prediction Americas N1 Core 84D9-B3FA-0886 $0.036/h — never_apply dedicated min replicas; no applyable quickstart on terradart-validate
 GoogleVertexAiEndpoint: gcp-cost Vertex AI C7E2-9256-1C43 list_skus keyword Endpoint → 0; Online/Batch Prediction Americas N1 Core 84D9-B3FA-0886 $0.036/h after DeployModel — shell is safe but a quickstart that deploys a model would bill; no apply-smoke quickstart
+GoogleVertexAiFeaturestore: gcp-cost Vertex AI C7E2-9256-1C43 Feature Store online serving node SKU 74D1-6081-582A $0.94/h — never_apply; no applyable quickstart on terradart-validate
+GoogleVertexAiFeaturestoreEntitytype: requires a parent GoogleVertexAiFeaturestore (never_apply); deferred with the Featurestore Wave
+GoogleVertexAiFeaturestoreEntitytypeFeature: requires a parent GoogleVertexAiFeaturestoreEntitytype; deferred with the Featurestore Wave
 GoogleVertexAiIndex: gcp-cost Vertex AI C7E2-9256-1C43 Vector Search Index Building SKU 8724-DA51-DA95 $3/GiBy — never_apply; no applyable quickstart on terradart-validate
 GoogleVertexAiIndexEndpointDeployedIndex: gcp-cost Vertex AI C7E2-9256-1C43 Vector Search Index Serving e2-standard-2 us-central1 SKU 722D-2FE3-D851 $0.0938084/h — never_apply serving hours; no applyable quickstart on terradart-validate
 GoogleVertexAiIndexEndpoint: deferred with never_apply GoogleVertexAiIndex / GoogleVertexAiIndexEndpointDeployedIndex — endpoint shell is cheap but an index + deploy would bill building/serving; no apply-smoke quickstart
