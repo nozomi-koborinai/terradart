@@ -1,0 +1,53 @@
+outputDir: vertex_ai
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Vertex AI **index endpoint** — a Matching Engine / Vector Search
+  /// endpoint that can host deployed indexes.
+  ///
+  /// **Cost:** Cloud Billing Catalog service `C7E2-9256-1C43` has **no
+  /// endpoint-shell SKU** after MCP `list_skus` (keyword `Endpoint` → 0).
+  /// Serving capacity bills only when an index is deployed (see
+  /// [GoogleVertexAiIndexEndpointDeployedIndex]). Creating the endpoint
+  /// alone does not start node-hour charges.
+  ///
+  /// Deferred with the never_apply deployed-index Wave (no apply-smoke
+  /// quickstart — PSC/VPC scaffolding plus a deployed index would bill).
+  /// Enable `aiplatform.googleapis.com` via [GoogleProjectService] before
+  /// apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleVertexAiIndexEndpoint(
+  ///   localName: 'ie',
+  ///   displayName: TfArg.literal('terradart-ie'),
+  ///   region: TfArg.literal('us-central1'),
+  ///   publicEndpointEnabled: TfArg.literal(true),
+  /// );
+  /// ```
+
+paramOrder:
+  - display_name
+  - region
+  - description
+  - network
+  - public_endpoint_enabled
+  - private_service_connect_config
+  - encryption_spec
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
