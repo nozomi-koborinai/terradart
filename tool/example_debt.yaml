@@ -225,3 +225,11 @@ GoogleMemorystoreInstanceDesiredUserCreatedEndpoints: requires a parent GoogleMe
 # and block wave auto-merge — factories ship without an example.
 GoogleVertexAiIndexEndpointDeployedIndex: gcp-cost Vertex AI C7E2-9256-1C43 Vector Search Index Serving e2-standard-2 us-central1 SKU 722D-2FE3-D851 $0.0938084/h — never_apply serving hours; no applyable quickstart on terradart-validate
 GoogleVertexAiIndexEndpoint: deferred with never_apply GoogleVertexAiIndexEndpointDeployedIndex — endpoint shell is cheap but PSC/VPC + a deployed index would bill serving capacity; no apply-smoke quickstart
+
+# Apigee orgs/instances bill Gateway Node Hours / environment usage while
+# provisioned (1C2D-8C78-EC58 Gateway Node Hours SKU 0136-18C1-DD41
+# $1.025/h). A quickstart would force apply_smoke_skip (never_apply) and
+# block wave auto-merge — factories ship without an example.
+GoogleApigeeOrganization: gcp-cost Apigee 1C2D-8C78-EC58 Gateway Node Hours SKU 0136-18C1-DD41 $1.025/h (Intermediate env 421B-D6C0-52A2 $2/h; Comprehensive 01C8-CFFA-106E $4.7/h) — never_apply; no applyable quickstart on terradart-validate
+GoogleApigeeInstance: gcp-cost Apigee 1C2D-8C78-EC58 Gateway Node Hours SKU 0136-18C1-DD41 $1.025/h — never_apply runtime; deferred with the organization Wave
+GoogleApigeeInstanceAttachment: requires a parent GoogleApigeeInstance (never_apply); deferred with the instance

@@ -36,7 +36,8 @@ barrels:
       /// AlloyDB — Postgres-compatible managed database clusters and instances.
   apigee:
     doc: |-
-      /// Apigee: runtime data collectors and analytics datastores.
+      /// Apigee: organizations, runtime instances, environment attachments,
+      /// data collectors, and analytics datastores.
   backup_dr:
     doc: |-
       /// Backup and DR Service — vaults, plans, associations, management

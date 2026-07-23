@@ -1,0 +1,53 @@
+outputDir: apigee
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Apigee **instance** — regional runtime that processes API traffic.
+  ///
+  /// **Cost:** Cloud Billing Catalog service `1C2D-8C78-EC58` bills
+  /// **Gateway Node Hours** while the instance exists (SKU
+  /// `0136-18C1-DD41` **$1.025/h**) plus environment usage (e.g.
+  /// Intermediate `421B-D6C0-52A2` **$2/h**; Comprehensive
+  /// `01C8-CFFA-106E` **$4.7/h`). Destroy stops instance/gateway charges.
+  /// Too expensive for apply-smoke — factories ship without a quickstart.
+  ///
+  /// Requires a parent [GoogleApigeeOrganization] ([orgId]), [name], and
+  /// [location]. Enable `apigee.googleapis.com` via
+  /// [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleApigeeInstance(
+  ///   localName: 'runtime',
+  ///   name: TfArg.literal('terradart-apigee'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   orgId: org.nameRef,
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - org_id
+  - peering_cidr_range
+  - ip_range
+  - display_name
+  - description
+  - disk_encryption_key_name
+  - consumer_accept_list
+  - access_logging_config
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
