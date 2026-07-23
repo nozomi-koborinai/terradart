@@ -3,13 +3,20 @@
 /// Vertex AI — feature store feature groups (backed by a BigQuery source),
 /// managed datasets, experiment Tensorboards (with experiments and runs),
 /// pipeline schedules, GenAI cache config, online prediction endpoints,
-/// and Vector Search indexes / index endpoints (plus deployed indexes).
+/// shared deployment resource pools, and Vector Search indexes / index
+/// endpoints (plus deployed indexes).
 /// Nested config blocks (e.g. `encryption_spec`) are passed as structured maps.
 library;
 
 export 'src/vertex_ai/google_vertex_ai_cache_config.dart'
     show GoogleVertexAiCacheConfig;
 export 'src/vertex_ai/google_vertex_ai_dataset.dart' show GoogleVertexAiDataset;
+export 'src/vertex_ai/google_vertex_ai_deployment_resource_pool.dart'
+    show
+        GoogleVertexAiDeploymentResourcePool,
+        VertexAiDeploymentResourcePoolDedicatedResources,
+        VertexAiDeploymentResourcePoolDedicatedResourcesAutoscalingMetricSpecs,
+        VertexAiDeploymentResourcePoolDedicatedResourcesMachineSpec;
 export 'src/vertex_ai/google_vertex_ai_endpoint.dart'
     show
         GoogleVertexAiEndpoint,

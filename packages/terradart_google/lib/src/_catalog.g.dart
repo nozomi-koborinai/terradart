@@ -13060,6 +13060,29 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_vertex_ai_dataset`.\n\nA collection of DataItems and Annotations on them.',
   ),
   CatalogEntry(
+    tfType: 'google_vertex_ai_deployment_resource_pool',
+    className: 'GoogleVertexAiDeploymentResourcePool',
+    barrel: 'vertex_ai',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_vertex_ai_deployment_resource_pool`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'region',
+      'dedicatedResources',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'VertexAiDeploymentResourcePoolDedicatedResources',
+      'VertexAiDeploymentResourcePoolDedicatedResourcesAutoscalingMetricSpecs',
+      'VertexAiDeploymentResourcePoolDedicatedResourcesMachineSpec',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_vertex_ai_deployment_resource_pool`.\n\n\'DeploymentResourcePool can be shared by multiple deployed models, whose\nunderlying specification consists of dedicated resources.\'\n\nVertex AI **deployment resource pool** — shared dedicated prediction\ncapacity that multiple deployed models can attach to.\n\n**Cost:** Creating a pool with [dedicatedResources] (required\n`min_replica_count` ≥ 1) reserves Online/Batch Prediction machine\ncapacity while the pool exists. Cloud Billing Catalog service\n`C7E2-9256-1C43` bills those node-hours (Americas N1 Predefined\nInstance Core SKU `84D9-B3FA-0886` **\$0.036/h**, plus management-fee\nSKUs such as us-central1 N1 Core `7267-F2A5-DA1E` **\$0.0046957/h**).\nDestroy deletes the pool and stops reservation charges. Too expensive\nfor apply-smoke — factories ship without a quickstart.\n\nRequires [name] and [dedicatedResources] (`machineSpec` +\n`minReplicaCount`). Enable `aiplatform.googleapis.com` via\n[GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleVertexAiDeploymentResourcePool(\n  localName: \'pool\',\n  name: TfArg.literal(\'terradart-pool\'),\n  region: TfArg.literal(\'us-central1\'),\n  dedicatedResources: VertexAiDeploymentResourcePoolDedicatedResources(\n    minReplicaCount: TfArg.literal(1),\n    machineSpec: VertexAiDeploymentResourcePoolDedicatedResourcesMachineSpec(\n      machineType: TfArg.literal(\'n1-standard-2\'),\n    ),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_vertex_ai_endpoint',
     className: 'GoogleVertexAiEndpoint',
     barrel: 'vertex_ai',
