@@ -1,0 +1,48 @@
+outputDir: vertex_ai
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Vertex AI Feature Registry **feature** under a
+  /// [GoogleVertexAiFeatureGroup] — column metadata over the group's
+  /// BigQuery source (`versionColumnName` selects the hosting column).
+  ///
+  /// **Cost:** Cloud Billing Catalog service `C7E2-9256-1C43` has **no
+  /// Feature Group / Feature Registry feature SKU** after MCP `list_skus`
+  /// (Feature Store SKUs are legacy store online/offline serving and
+  /// storage). Billing for Feature Registry stays on the BigQuery table
+  /// behind the parent feature group. Covered by `vertex_ai_quickstart`.
+  ///
+  /// Requires [featureGroup], [name], and [region]. Enable
+  /// `aiplatform.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleVertexAiFeatureGroupFeature(
+  ///   localName: 'score',
+  ///   featureGroup: TfArg.ref(group.nameRef),
+  ///   name: TfArg.literal('feature_score'),
+  ///   region: TfArg.literal('us-central1'),
+  ///   versionColumnName: TfArg.literal('feature_score'),
+  /// );
+  /// ```
+
+paramOrder:
+  - feature_group
+  - name
+  - region
+  - description
+  - labels
+  - project
+  - version_column_name
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

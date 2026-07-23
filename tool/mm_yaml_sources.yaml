@@ -995,6 +995,8 @@ files:
     upstream: mmv1/products/vertexai/FeaturestoreEntitytypeFeature.yaml
   google_vertex_ai_feature_group:
     upstream: mmv1/products/vertexai/FeatureGroup.yaml
+  google_vertex_ai_feature_group_feature:
+    upstream: mmv1/products/vertexai/FeatureGroupFeature.yaml
   google_vertex_ai_dataset:
     upstream: mmv1/products/vertexai/Dataset.yaml
   google_vertex_ai_tensorboard:

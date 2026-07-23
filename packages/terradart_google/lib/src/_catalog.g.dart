@@ -13137,6 +13137,28 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_vertex_ai_feature_group`.\n\nVertex AI Feature Group.',
   ),
   CatalogEntry(
+    tfType: 'google_vertex_ai_feature_group_feature',
+    className: 'GoogleVertexAiFeatureGroupFeature',
+    barrel: 'vertex_ai',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_vertex_ai_feature_group_feature`.',
+    constructorParams: <String>[
+      'localName',
+      'featureGroup',
+      'name',
+      'region',
+      'description',
+      'labels',
+      'project',
+      'versionColumnName',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_vertex_ai_feature_group_feature`.\n\nVertex AI Feature Group Feature is feature metadata information.\n\nVertex AI Feature Registry **feature** under a\n[GoogleVertexAiFeatureGroup] — column metadata over the group\'s\nBigQuery source (`versionColumnName` selects the hosting column).\n\n**Cost:** Cloud Billing Catalog service `C7E2-9256-1C43` has **no\nFeature Group / Feature Registry feature SKU** after MCP `list_skus`\n(Feature Store SKUs are legacy store online/offline serving and\nstorage). Billing for Feature Registry stays on the BigQuery table\nbehind the parent feature group. Covered by `vertex_ai_quickstart`.\n\nRequires [featureGroup], [name], and [region]. Enable\n`aiplatform.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleVertexAiFeatureGroupFeature(\n  localName: \'score\',\n  featureGroup: TfArg.ref(group.nameRef),\n  name: TfArg.literal(\'feature_score\'),\n  region: TfArg.literal(\'us-central1\'),\n  versionColumnName: TfArg.literal(\'feature_score\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_vertex_ai_featurestore',
     className: 'GoogleVertexAiFeaturestore',
     barrel: 'vertex_ai',
