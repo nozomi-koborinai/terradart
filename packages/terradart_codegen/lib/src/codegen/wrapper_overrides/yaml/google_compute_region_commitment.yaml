@@ -8,6 +8,11 @@ deriveEnums: true
 extraImports:
   - "import 'package:meta/meta.dart';"
 
+# Wire MM/schema enums onto constructor params (deriveEnums emits the types).
+dartTypeOverrides:
+  plan: ComputeRegionCommitmentPlan
+  category: ComputeRegionCommitmentCategory
+
 curatedDoc: |-
   /// Compute Engine **regional commitment** — purchased committed-use contract
   /// for vCPU / memory (and related resource types) in a region.

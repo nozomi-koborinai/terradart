@@ -128,11 +128,11 @@ final class GoogleComputeRegionCommitment extends Resource {
   GoogleComputeRegionCommitment({
     required super.localName,
     required TfArg<String> name,
-    required TfArg<String> plan,
+    required TfArg<ComputeRegionCommitmentPlan> plan,
     TfArg<String>? region,
     List<ComputeRegionCommitmentResources>? resources,
     TfArg<String>? type,
-    TfArg<String>? category,
+    TfArg<ComputeRegionCommitmentCategory>? category,
     TfArg<String>? description,
     TfArg<bool>? autoRenew,
     TfArg<String>? existingReservations,

@@ -384,6 +384,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_compute_project_metadata_item` | `GoogleComputeProjectMetadataItem` | [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart) |
 | `google_compute_region_autoscaler` | `GoogleComputeRegionAutoscaler` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
 | `google_compute_region_backend_service` | `GoogleComputeRegionBackendService` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
+| `google_compute_region_commitment` | `GoogleComputeRegionCommitment` | — |
 | `google_compute_region_disk` | `GoogleComputeRegionDisk` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_region_health_check` | `GoogleComputeRegionHealthCheck` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
 | `google_compute_region_instance_group_manager` | `GoogleComputeRegionInstanceGroupManager` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
