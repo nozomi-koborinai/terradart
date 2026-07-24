@@ -69,6 +69,7 @@ export 'kms.dart';
 export 'license_manager.dart';
 export 'logging.dart';
 export 'looker.dart';
+export 'lustre.dart';
 export 'managed.dart';
 export 'memcache.dart';
 export 'memorystore.dart';

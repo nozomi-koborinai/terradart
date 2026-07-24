@@ -1,0 +1,49 @@
+outputDir: lustre
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+# Access rules / dynamic tier / maintenance stay Map for this thin Wave.
+nestedTypeExcludes:
+  - access_rules_options
+  - dynamic_tier_options
+  - maintenance_policy
+
+curatedDoc: |-
+  /// Managed Lustre **instance** — Google-managed Lustre parallel file
+  /// system capacity.
+  ///
+  /// **Cost:** Managed Lustre `B384-1FDE-A709` bills provisioned capacity
+  /// while the instance exists — e.g. Capacity 125-Perf us-central1
+  /// (Iowa) SKU `517C-E77D-C11A` **$0.145/GiBy·mo** (250/500/1000-Perf and
+  /// Dynamic-Perf SKUs also listed). Destroy stops capacity charges. TiB-scale
+  /// minimums make this too expensive for apply-smoke — ships without a
+  /// quickstart (`tool/example_debt.yaml`).
+  ///
+  /// Enable `lustre.googleapis.com` via [GoogleProjectService] before apply.
+  /// [network] is a VPC network self-link / id; [capacityGib] is provisioned
+  /// size.
+
+paramOrder:
+  - instance_id
+  - location
+  - filesystem
+  - capacity_gib
+  - network
+  - description
+  - per_unit_storage_throughput
+  - gke_support_enabled
+  - kms_key
+  - placement_policy
+  - access_rules_options
+  - dynamic_tier_options
+  - maintenance_policy
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `instance_id` / name segment.
+    TfRef<String> get instanceIdRef =>
+        TfRef.attribute<String>(this, 'instance_id');

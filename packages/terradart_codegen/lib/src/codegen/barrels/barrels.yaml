@@ -260,6 +260,9 @@ barrels:
   license_manager:
     doc: |-
       /// License Manager: third-party software license configurations for Compute Engine.
+  lustre:
+    doc: |-
+      /// Managed Lustre — high-performance parallel file system instances.
   looker:
     doc: |-
       /// Looker (Google Cloud core) — managed BI instances (platform fee while provisioned).
