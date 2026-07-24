@@ -15,6 +15,7 @@ library;
 export 'access_context_manager.dart';
 export 'alloydb.dart';
 export 'apigee.dart';
+export 'apihub.dart';
 export 'apikeys.dart';
 export 'app.dart';
 export 'apphub.dart';

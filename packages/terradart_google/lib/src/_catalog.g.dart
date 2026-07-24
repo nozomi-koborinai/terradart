@@ -352,6 +352,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_apigee_organization`.\n\nAn `Organization` is the top-level container in Apigee.\n\nApigee **organization** — project-bound Apigee control plane\n(subscription / evaluation org).\n\n**Cost:** Cloud Billing Catalog service `1C2D-8C78-EC58` bills Apigee\nPAYG environment and gateway usage once the org is active (e.g.\nGateway Node Hours SKU `0136-18C1-DD41` **\$1.025/h**; Active\nIntermediate Environment Usage Hours `421B-D6C0-52A2` **\$2/h**;\nActive Comprehensive Environment Usage Hours `01C8-CFFA-106E`\n**\$4.7/h**). Creating an organization is the gateway to that\nbilling surface. Too expensive for apply-smoke — factories ship\nwithout a quickstart.\n\nRequires [projectId]. Typically also set [analyticsRegion] and\n[authorizedNetwork] (VPC peering). Enable `apigee.googleapis.com`\nvia [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleApigeeOrganization(\n  localName: \'org\',\n  projectId: TfArg.literal(projectId),\n  analyticsRegion: TfArg.literal(\'us-central1\'),\n  authorizedNetwork: TfArg.ref(network.id),\n  runtimeType: TfArg.literal(ApigeeOrganizationRuntimeType.cloud),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_apihub_api_hub_instance',
+    className: 'GoogleApihubApiHubInstance',
+    barrel: 'apihub',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_apihub_api_hub_instance`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'apiHubInstanceId',
+      'description',
+      'config',
+      'labels',
+      'project',
+    ],
+    nestedTypes: <String>['ApihubApiHubInstanceConfig'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_apihub_api_hub_instance`.\n\nAn ApiHubInstance represents the instance resources of the API Hub.\nCurrently, only one ApiHub instance is allowed for each project. Currently,\nupdation/deletion of ApiHub instance is not allowed.\n\nApigee API Hub **instance** — project-singleton control plane for the\nAPI catalog (one instance per project).\n\n**Cost / apply:** Cloud Billing Catalog has **no API Hub SKU** after\nMCP lookup (`list_services` for API Hub/apihub empty; Apigee\n`1C2D-8C78-EC58` `list_skus` keyword Hub → 0). Provider MM sets\n`exclude_delete: true` — Terraform **cannot destroy** the instance,\nso apply-smoke would strand a project singleton forever. Ships\nwithout a quickstart (`tool/example_debt.yaml`).\n\nEnable `apihub.googleapis.com` via [GoogleProjectService] before\napply. [config] selects encryption (GMEK vs CMEK) and optional\nVertex search location.',
+  ),
+  CatalogEntry(
     tfType: 'google_apikeys_key',
     className: 'GoogleApikeysKey',
     barrel: 'apikeys',

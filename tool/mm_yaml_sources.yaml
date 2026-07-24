@@ -1145,6 +1145,8 @@ files:
   google_binary_authorization_attestor_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   # Wave 77 (API protection + network diagnostics)
+  google_apihub_api_hub_instance:
+    upstream: mmv1/products/apihub/ApiHubInstance.yaml
   google_apikeys_key:
     upstream: null  # third_party terraform/services/apikeys/resource_apikeys_key.go
   google_recaptcha_enterprise_key:
