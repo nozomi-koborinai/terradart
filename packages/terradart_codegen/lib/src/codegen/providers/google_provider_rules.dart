@@ -144,6 +144,11 @@ final class GoogleProviderRules extends ProviderRules {
     'datafusion': 'data_fusion',
     'data_fusion': 'data_fusion',
 
+    // Dataproc on GDC (`google_dataproc_gdc_*`; MM product dataprocgdc).
+    // Fold into the dataproc barrel (operator on a GDCE cluster).
+    'dataproc_gdc': 'dataproc',
+    'dataprocgdc': 'dataproc',
+
     // Managed Lustre (`google_lustre_*`; MM product lustre).
     'lustre': 'lustre',
 

@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Dataproc — clusters, autoscaling policies, and Dataproc Metastore services/federations.
+/// Dataproc — clusters, autoscaling policies, Metastore services/federations,
+/// and Dataproc-on-GDC service instances.
 library;
 
 export 'src/dataproc/google_dataproc_autoscaling_policy.dart'
@@ -64,6 +65,10 @@ export 'src/dataproc/google_dataproc_cluster.dart'
         GoogleDataprocCluster;
 export 'src/dataproc/google_dataproc_cluster_iam_member.dart'
     show GoogleDataprocClusterIamMember;
+export 'src/dataproc/google_dataproc_gdc_service_instance.dart'
+    show
+        DataprocGdcServiceInstanceGdceCluster,
+        GoogleDataprocGdcServiceInstance;
 export 'src/dataproc/google_dataproc_metastore_federation.dart'
     show
         DataprocMetastoreFederationBackend,

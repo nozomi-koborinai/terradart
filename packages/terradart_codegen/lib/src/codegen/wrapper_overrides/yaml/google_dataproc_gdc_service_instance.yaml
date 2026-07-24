@@ -1,0 +1,44 @@
+outputDir: dataproc
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+# Empty Spark config block stays Map if present; GDCE cluster is typed.
+nestedTypeExcludes:
+  - spark_service_instance_config
+
+curatedDoc: |-
+  /// Dataproc on Google Distributed Cloud (GDC) **service instance** — the
+  /// Dataproc operator running on a GDCE cluster.
+  ///
+  /// **Cost / apply:** Requires a real GDCE cluster ([gdceCluster]) that
+  /// `terradart-validate` cannot provision. GKE Enterprise / GDC
+  /// `9186-F79E-3871` bills platform capacity (e.g. GDC Bare Metal SKU
+  /// `297F-4642-B7A1` **$0.03288/h**; GDC vSphere `82D9-AB10-CA55`
+  /// **$0.03288/h**) while the edge/appliance footprint exists; Dataproc
+  /// job DCUs may accrue when workloads run. Destroy stops new operator
+  /// charges only when the parent GDC stack is torn down. Too expensive /
+  /// infra-dependent for apply-smoke — ships without a quickstart
+  /// (`tool/example_debt.yaml`).
+  ///
+  /// Enable `dataprocgdc.googleapis.com` (and the GDC cluster APIs) before
+  /// apply.
+
+paramOrder:
+  - location
+  - service_instance_id
+  - gdce_cluster
+  - display_name
+  - service_account
+  - spark_service_instance_config
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `service_instance_id` attribute.
+    TfRef<String> get serviceInstanceIdRef =>
+        TfRef.attribute<String>(this, 'service_instance_id');
