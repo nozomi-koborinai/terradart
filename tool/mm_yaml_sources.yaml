@@ -160,6 +160,8 @@ files:
     upstream: mmv1/products/dataplex/DataProduct.yaml
   google_dataplex_data_product_data_asset:
     upstream: mmv1/products/dataplex/DataProductDataAsset.yaml
+  google_data_fusion_instance:
+    upstream: mmv1/products/datafusion/Instance.yaml
   google_data_lineage_config:
     upstream: mmv1/products/datalineage/Config.yaml
   google_dataplex_lake:
