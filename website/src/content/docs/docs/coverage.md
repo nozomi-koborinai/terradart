@@ -67,6 +67,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 - [`license_manager`](#licensemanager)
 - [`logging`](#logging)
 - [`looker`](#looker)
+- [`lustre`](#lustre)
 - [`managed`](#managed)
 - [`memcache`](#memcache)
 - [`memorystore`](#memorystore)
@@ -755,6 +756,12 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | Terraform type | Dart factory | Example |
 | --- | --- | --- |
 | `google_looker_instance` | `GoogleLookerInstance` | — |
+
+## lustre
+
+| Terraform type | Dart factory | Example |
+| --- | --- | --- |
+| `google_lustre_instance` | `GoogleLustreInstance` | — |
 
 ## managed
 
