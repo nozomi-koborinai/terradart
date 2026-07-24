@@ -122,6 +122,8 @@ final class ComputeRegionCommitmentResources {
 ///
 /// [plan] is `TWELVE_MONTH` or `THIRTY_SIX_MONTH`. Pair with [resources]
 /// amounts (vCPU / MEMORY / …).
+///
+/// Debt-only factory — CI retrigger marker.
 final class GoogleComputeRegionCommitment extends Resource {
   static const String tfType = 'google_compute_region_commitment';
 
