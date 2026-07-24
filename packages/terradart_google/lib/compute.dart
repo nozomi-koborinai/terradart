@@ -346,6 +346,15 @@ export 'src/compute/google_compute_region_backend_service.dart'
         RegionBackendServiceSessionAffinity,
         RegionBackendServiceTrackingMode,
         RegionBackendServiceZonalAffinitySpillover;
+export 'src/compute/google_compute_region_commitment.dart'
+    show
+        ComputeRegionCommitmentCategory,
+        ComputeRegionCommitmentLicenseResource,
+        ComputeRegionCommitmentParams,
+        ComputeRegionCommitmentPlan,
+        ComputeRegionCommitmentResources,
+        ComputeRegionCommitmentStatus,
+        GoogleComputeRegionCommitment;
 export 'src/compute/google_compute_region_disk.dart'
     show
         ComputeRegionDiskGuestOsFeature,
