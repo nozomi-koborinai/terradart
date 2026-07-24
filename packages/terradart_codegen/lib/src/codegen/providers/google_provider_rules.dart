@@ -136,6 +136,11 @@ final class GoogleProviderRules extends ProviderRules {
     'datacatalog': 'data_catalog',
     'data_catalog': 'data_catalog',
 
+    // Cloud Data Fusion (`google_data_fusion_*` → segment `data`; MM product datafusion).
+    // Distinct from the data-source barrel and from Data Catalog / Dataplex.
+    'datafusion': 'data_fusion',
+    'data_fusion': 'data_fusion',
+
     // Data Lineage (`google_data_lineage_*` → segment `data`; MM product datalineage).
     // Shares the dataplex barrel (lineage is a Dataplex-adjacent control plane).
     'datalineage': 'dataplex',
