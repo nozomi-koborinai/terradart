@@ -233,6 +233,11 @@ GoogleBackupDrRestoreWorkload: requires vault backups (never_apply parents); def
 GoogleDataprocCluster: gcp-cost Dataproc 363B-8851-170D Serverless Batch DCU us-central1 SKU EC7A-EF05-537E $0.06/h (Interactive DCU A486-6040-07FE $0.089/h; no classic cluster premium SKU in catalog) — never_apply GCE+premium hours; no applyable quickstart on terradart-validate
 GoogleDataprocClusterIamMember: requires a parent GoogleDataprocCluster (never_apply); deferred with the cluster
 
+# Dataproc-on-GDC needs a real GDCE cluster (edge/appliance). GDC Bare Metal
+# SKU 297F-4642-B7A1 $0.03288/h. A quickstart would force apply_smoke_skip
+# (never_apply) and block wave auto-merge — factory ships without an example.
+GoogleDataprocGdcServiceInstance: gcp-cost GKE Enterprise/GDC 9186-F79E-3871 Bare Metal SKU 297F-4642-B7A1 $0.03288/h (vSphere 82D9-AB10-CA55 $0.03288/h) — never_apply; requires GDCE cluster absent on terradart-validate
+
 # Vertex AI Workbench instances bill management fee + GCE while running
 # (Notebooks D73B-5EEA-8215 N1 mgmt CPU us-central1 SKU 6196-1C27-5E30
 # $0.0063222/h + usage). A quickstart would force apply_smoke_skip
