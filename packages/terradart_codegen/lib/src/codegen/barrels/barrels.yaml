@@ -120,8 +120,8 @@ barrels:
       /// custom actions) are passed as structured maps.
   colab:
     doc: |-
-      /// Colab Enterprise — runtime templates, template IAM, and paused notebook
-      /// execution schedules (Vertex AI notebook runtimes).
+      /// Colab Enterprise — runtimes, runtime templates, template IAM, and
+      /// paused notebook execution schedules (Vertex AI notebook runtimes).
   composer:
     doc: |-
       /// Cloud Composer — managed Apache Airflow environments plus user

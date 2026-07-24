@@ -185,6 +185,11 @@ GoogleNotebooksRuntime: gcp-cost Notebooks D73B-5EEA-8215 same Workbench managem
 GoogleNotebooksInstanceIamMember: requires a parent GoogleNotebooksInstance (never_apply); deferred with the instance
 GoogleNotebooksRuntimeIamMember: requires a parent GoogleNotebooksRuntime (never_apply); deferred with the runtime
 
+# Colab Enterprise runtime assigns a VM from a template (Vertex Colab CPU/RAM
+# SKUs while running). A quickstart would force apply_smoke_skip (never_apply)
+# and block wave auto-merge — factory ships without an example.
+GoogleColabRuntime: gcp-cost Vertex AI C7E2-9256-1C43 Colab N2 CPU usage us-central1 SKU 7362-581B-29B4 $0.0379332/h (+ E2 RAM 9215-A98F-C4CD $0.003508236/GiBy.h) — never_apply VM hours; no applyable quickstart on terradart-validate
+
 # Backup and DR vaults/management bill storage + protected-resource management
 # (BackupDR 3DAD-299B-0D94 storage SKU 5A13-2468-31B1 $0.045/GiBy.mo; GCE
 # management 0456-5BF2-438E $0.02/GiBy.mo). A quickstart would force
