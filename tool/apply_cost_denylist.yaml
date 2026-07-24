@@ -271,6 +271,7 @@ google_dns_response_policy: safe  # apply-verified safe (existing example)
 google_dns_response_policy_rule: safe  # apply-verified safe (existing example)
 google_document_ai_schema: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus keyword="schema" on Cloud Document AI API D870-408D-92A6 → 0 SKUs; processor SKUs are page/OCR usage only, e.g. 03C7-7B42-6CC7); billing-behavior: named schema metadata for custom processors — create/update/delete does not process documents or bill page SKUs; destroy removes the schema
 google_document_ai_processor: safe  # apply-verified safe (existing example)
+google_edgecontainer_cluster: never_apply  # gcp-cost: Google Distributed Cloud Edge 8A2D-5CB1-345B Connected Server Gen1 64vCPU FI 6mo SKU 007E-2D86-E472 $3600/mo (hardware+SW commitment SKUs) — billing-behavior: physical GDCE edge hardware / long commitments; no applyable standalone-project quickstart; never apply-smoke
 google_essential_contacts_contact: safe  # apply-verified safe (existing example)
 google_filestore_backup: safe  # apply-verified safe (existing example)
 google_firestore_backup_schedule: safe  # apply-verified safe (existing example)

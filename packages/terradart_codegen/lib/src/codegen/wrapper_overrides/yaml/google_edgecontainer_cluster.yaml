@@ -1,0 +1,203 @@
+outputDir: edgecontainer
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Google Distributed Cloud Edge **cluster** — Kubernetes control plane on
+  /// edge hardware (GDCE).
+  ///
+  /// Choose exactly one [EdgecontainerClusterControlPlane]:
+  /// - [EdgecontainerClusterControlPlaneRemote] — remote control plane.
+  /// - [EdgecontainerClusterControlPlaneLocal] — local control plane
+  ///   (node count 1 or 3).
+  ///
+  /// **Cost:** Google Distributed Cloud Edge `8A2D-5CB1-345B` bills
+  /// connected / edge server hardware+SW commitments (e.g. Connected Server
+  /// Gen1 64vCPU FI 6mo SKU `007E-2D86-E472` **$3600/mo**). Requires physical
+  /// GDCE machines absent on `terradart-validate` — ships without a
+  /// quickstart (`tool/example_debt.yaml`).
+  ///
+  /// Enable `edgecontainer.googleapis.com` via [GoogleProjectService] before
+  /// apply. [networking], [fleet], and [authorization] are required by the
+  /// provider.
+  ///
+  /// Example (remote control plane):
+  /// ```dart
+  /// GoogleEdgecontainerCluster(
+  ///   localName: 'edge',
+  ///   name: TfArg.literal('terradart-edge'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   networking: EdgecontainerClusterNetworking(
+  ///     clusterIpv4CidrBlocks: [TfArg.literal('10.96.0.0/17')],
+  ///     servicesIpv4CidrBlocks: [TfArg.literal('10.200.0.0/20')],
+  ///   ),
+  ///   fleet: EdgecontainerClusterFleet(
+  ///     project: TfArg.literal('projects/$projectNumber'),
+  ///   ),
+  ///   authorization: EdgecontainerClusterAuthorization(
+  ///     adminUsers: EdgecontainerClusterAuthorizationAdminUsers(
+  ///       username: TfArg.literal('admin@example.com'),
+  ///     ),
+  ///   ),
+  ///   controlPlane: EdgecontainerClusterControlPlaneRemote(
+  ///     nodeLocation: TfArg.literal('us-central1-edge-customer-a'),
+  ///   ),
+  /// );
+  /// ```
+
+# IR nested blocks under `control_plane` (`remote` / `local`) fan into the
+# sealed [controlPlane] virtual slot (MM `exactly_one_of`).
+paramOrder:
+  - name
+  - location
+  - networking
+  - fleet
+  - authorization
+  - control_plane
+  - control_plane_encryption
+  - maintenance_policy
+  - system_addons_config
+  - external_load_balancer_ipv4_address_pools
+  - target_version
+  - release_channel
+  - labels
+  - deletion_policy
+  - project
+
+argMapOrder:
+  - name
+  - location
+  - networking
+  - fleet
+  - authorization
+  - control_plane_encryption
+  - maintenance_policy
+  - system_addons_config
+  - external_load_balancer_ipv4_address_pools
+  - target_version
+  - release_channel
+  - labels
+  - deletion_policy
+  - project
+  - control_plane
+
+prelude: |
+  // ===========================================================================
+  // EdgecontainerClusterControlPlane — sealed (Remote | Local)
+  // ===========================================================================
+
+  /// Control-plane placement for [GoogleEdgecontainerCluster]. Sealed so the
+  /// MM `exactly_one_of` under `control_plane` (`remote` / `local`) is
+  /// exhaustive at the type level.
+  sealed class EdgecontainerClusterControlPlane {
+    const EdgecontainerClusterControlPlane();
+
+    /// Inner block key under `control_plane` (`remote` or `local`).
+    String get planeKey;
+
+    /// Encodes as `control_plane` list max 1: `[{ <planeKey>: [{…}] }]`.
+    List<Map<String, Object?>> encode();
+  }
+
+  /// `remote` control plane — node location only.
+  @immutable
+  final class EdgecontainerClusterControlPlaneRemote
+      extends EdgecontainerClusterControlPlane {
+    const EdgecontainerClusterControlPlaneRemote({this.nodeLocation});
+
+    final TfArg<String>? nodeLocation;
+
+    @override
+    String get planeKey => 'remote';
+
+    @override
+    List<Map<String, Object?>> encode() => [
+          {
+            planeKey: [
+              {
+                if (nodeLocation != null)
+                  'node_location': nodeLocation!.toTfJson(),
+              },
+            ],
+          },
+        ];
+  }
+
+  /// `local` control plane — optional node count (1 or 3), filter, policy.
+  @immutable
+  final class EdgecontainerClusterControlPlaneLocal
+      extends EdgecontainerClusterControlPlane {
+    const EdgecontainerClusterControlPlaneLocal({
+      this.nodeLocation,
+      this.nodeCount,
+      this.machineFilter,
+      this.sharedDeploymentPolicy,
+    });
+
+    final TfArg<String>? nodeLocation;
+    final TfArg<int>? nodeCount;
+    final TfArg<String>? machineFilter;
+    final TfArg<EdgecontainerClusterSharedDeploymentPolicy>?
+        sharedDeploymentPolicy;
+
+    @override
+    String get planeKey => 'local';
+
+    @override
+    List<Map<String, Object?>> encode() => [
+          {
+            planeKey: [
+              {
+                if (nodeLocation != null)
+                  'node_location': nodeLocation!.toTfJson(),
+                if (nodeCount != null) 'node_count': nodeCount!.toTfJson(),
+                if (machineFilter != null)
+                  'machine_filter': machineFilter!.toTfJson(),
+                if (sharedDeploymentPolicy != null)
+                  'shared_deployment_policy':
+                      sharedDeploymentPolicy!.toTfJson(),
+              },
+            ],
+          },
+        ];
+  }
+
+  /// Policy for deploying user apps onto local control-plane nodes.
+  enum EdgecontainerClusterSharedDeploymentPolicy implements TerraformEnum {
+    sharedDeploymentPolicyUnspecified,
+    allowed,
+    disallowed;
+
+    @override
+    String get terraformValue {
+      switch (this) {
+        case EdgecontainerClusterSharedDeploymentPolicy
+              .sharedDeploymentPolicyUnspecified:
+          return 'SHARED_DEPLOYMENT_POLICY_UNSPECIFIED';
+        case EdgecontainerClusterSharedDeploymentPolicy.allowed:
+          return 'ALLOWED';
+        case EdgecontainerClusterSharedDeploymentPolicy.disallowed:
+          return 'DISALLOWED';
+      }
+    }
+  }
+
+customSlots:
+  control_plane:
+    paramDeclaration:
+      'required EdgecontainerClusterControlPlane controlPlane'
+    argMapEntry:
+      "'control_plane': TfArg.literal(controlPlane.encode()),"
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

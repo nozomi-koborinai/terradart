@@ -198,6 +198,10 @@ barrels:
       /// Essential Contacts — register people/teams to receive Google Cloud
       /// notifications (technical, security, billing, …) for a project, folder, or
       /// organization.
+  edgecontainer:
+    doc: |-
+      /// Google Distributed Cloud Edge — Kubernetes clusters on edge hardware
+      /// (requires physical GDCE machines; not applyable on a standalone project).
   eventarc:
     doc: |-
       /// Eventarc — channels, triggers, pipelines, message buses, and API sources

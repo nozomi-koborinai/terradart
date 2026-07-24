@@ -38,6 +38,7 @@ void main() {
       expect(rules.outputDirAliases['backup'], 'backup_dr');
       expect(rules.outputDirAliases['backup_dr'], 'backup_dr');
       expect(rules.outputDirAliases['backupdr'], 'backup_dr');
+      expect(rules.outputDirAliases['edgecontainer'], 'edgecontainer');
     });
 
     test('universalGetters returns id + nameRef when both attrs are present',
