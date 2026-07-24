@@ -25,3 +25,10 @@ export 'src/edgecontainer/google_edgecontainer_cluster.dart'
         EdgecontainerClusterSystemAddonsConfig,
         EdgecontainerClusterSystemAddonsConfigIngress,
         GoogleEdgecontainerCluster;
+export 'src/edgecontainer/google_edgecontainer_node_pool.dart'
+    show
+        EdgecontainerNodePoolLocalDiskEncryption,
+        EdgecontainerNodePoolNodeConfig,
+        GoogleEdgecontainerNodePool;
+export 'src/edgecontainer/google_edgecontainer_vpn_connection.dart'
+    show EdgecontainerVpnConnectionVpcProject, GoogleEdgecontainerVpnConnection;

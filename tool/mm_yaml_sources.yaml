@@ -1070,6 +1070,10 @@ files:
     upstream: mmv1/products/dlp/JobTrigger.yaml
   google_edgecontainer_cluster:
     upstream: mmv1/products/edgecontainer/Cluster.yaml
+  google_edgecontainer_node_pool:
+    upstream: mmv1/products/edgecontainer/NodePool.yaml
+  google_edgecontainer_vpn_connection:
+    upstream: mmv1/products/edgecontainer/VpnConnection.yaml
   google_essential_contacts_contact:
     upstream: mmv1/products/essentialcontacts/Contact.yaml
   google_service_directory_namespace:
