@@ -322,6 +322,9 @@ barrels:
   os_config:
     doc: |-
       /// OS Config: VM Manager OS policy assignments and patch deployments.
+  parallelstore:
+    doc: |-
+      /// Parallelstore — high-performance managed parallel file system instances.
   parameter_manager:
     doc: |-
       /// Parameter Manager — store and version application configuration parameters
