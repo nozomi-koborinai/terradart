@@ -186,6 +186,7 @@ GoogleDataFusionInstance: gcp-cost Cloud Data Fusion 0D19-EC86-35B0 Developer SK
 # (125-Perf us-central1 SKU 517C-E77D-C11A $0.145/GiBy.mo). A quickstart would
 # force apply_smoke_skip (never_apply) and block wave auto-merge — factory
 # ships without an example.
+GoogleEdgecontainerCluster: gcp-cost Google Distributed Cloud Edge 8A2D-5CB1-345B Connected Server Gen1 SKU 007E-2D86-E472 $3600/mo — never_apply; requires physical GDCE hardware absent on terradart-validate
 GoogleLustreInstance: gcp-cost Managed Lustre B384-1FDE-A709 Capacity 125-Perf us-central1 SKU 517C-E77D-C11A $0.145/GiBy.mo — never_apply capacity; no applyable quickstart on terradart-validate
 
 # Parallelstore bills provisioned capacity while the instance exists
