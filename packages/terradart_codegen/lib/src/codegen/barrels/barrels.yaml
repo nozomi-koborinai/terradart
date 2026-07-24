@@ -46,6 +46,9 @@ barrels:
     doc: |-
       /// App Hub — applications that group services and workloads for
       /// end-to-end business functionality, plus host/service-project attachment.
+  apihub:
+    doc: |-
+      /// Apigee API Hub — project-singleton API Hub instances (catalog/control plane).
   apikeys:
     doc: |-
       /// API Keys: restrict Google Cloud API access by key.

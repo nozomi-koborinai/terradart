@@ -194,6 +194,11 @@ GoogleLustreInstance: gcp-cost Managed Lustre B384-1FDE-A709 Capacity 125-Perf u
 # factory ships without an example.
 GoogleParallelstoreInstance: gcp-cost Parallelstore 3450-1C42-A427 Scratch us-central1 SKU 920E-C157-D1E5 $0.000191781/GiBy.h (Persistent AC48-A917-C907 $0.000821917/GiBy.h) — never_apply capacity; no applyable quickstart on terradart-validate
 
+# Apigee API Hub is a project singleton with exclude_delete (Terraform cannot
+# destroy). No Cloud Billing Catalog SKU after MCP lookup. A quickstart would
+# strand the validate project — factory ships without an example.
+GoogleApihubApiHubInstance: gcp-cost no Cloud Billing Catalog SKU (list_services API Hub/apihub empty; Apigee 1C2D-8C78-EC58 Hub → 0) — never_apply undeletable project singleton; no applyable quickstart on terradart-validate
+
 # Vertex AI Workbench notebook VMs bill management fee + GCE while running
 # (Notebooks D73B-5EEA-8215 N1 mgmt CPU us-central1 SKU 6196-1C27-5E30
 # $0.0063222/h + usage). A quickstart would force apply_smoke_skip

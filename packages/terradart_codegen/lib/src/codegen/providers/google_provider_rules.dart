@@ -114,6 +114,9 @@ final class GoogleProviderRules extends ProviderRules {
     // Wave 77 — API Keys (`google_apikeys_*`).
     'apikeys': 'apikeys',
 
+    // Apigee API Hub (`google_apihub_*`; MM product apihub).
+    'apihub': 'apihub',
+
     // Wave 77 — reCAPTCHA Enterprise (`google_recaptcha_enterprise_*`).
     'recaptcha': 'recaptcha',
     'recaptcha_enterprise': 'recaptcha',

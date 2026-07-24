@@ -1,0 +1,35 @@
+outputDir: apihub
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Apigee API Hub **instance** — project-singleton control plane for the
+  /// API catalog (one instance per project).
+  ///
+  /// **Cost / apply:** Cloud Billing Catalog has **no API Hub SKU** after
+  /// MCP lookup (`list_services` for API Hub/apihub empty; Apigee
+  /// `1C2D-8C78-EC58` `list_skus` keyword Hub → 0). Provider MM sets
+  /// `exclude_delete: true` — Terraform **cannot destroy** the instance,
+  /// so apply-smoke would strand a project singleton forever. Ships
+  /// without a quickstart (`tool/example_debt.yaml`).
+  ///
+  /// Enable `apihub.googleapis.com` via [GoogleProjectService] before
+  /// apply. [config] selects encryption (GMEK vs CMEK) and optional
+  /// Vertex search location.
+
+paramOrder:
+  - location
+  - api_hub_instance_id
+  - description
+  - config
+  - labels
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
