@@ -161,6 +161,9 @@ barrels:
       /// Google Cloud Data Catalog — entry groups for organizing metadata
       /// entries (legacy Data Catalog API; prefer Dataplex Universal Catalog
       /// for new catalogs).
+  data_fusion:
+    doc: |-
+      /// Cloud Data Fusion — managed CDAP data integration instances.
   dataplex:
     doc: |-
       /// Dataplex: governed data products, Universal Catalog metadata (entry groups /

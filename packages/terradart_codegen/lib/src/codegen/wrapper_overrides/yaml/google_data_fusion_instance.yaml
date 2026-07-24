@@ -1,0 +1,58 @@
+outputDir: data_fusion
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+dartTypeOverrides:
+  type: DataFusionInstanceType
+
+# Network / CMEK / event / accelerator / maintenance stay Map for this thin Wave.
+nestedTypeExcludes:
+  - network_config
+  - crypto_key_config
+  - event_publish_config
+  - accelerators
+  - maintenance_policy
+
+curatedDoc: |-
+  /// Cloud Data Fusion **instance** — managed CDAP data integration
+  /// (pipeline authoring + execution control plane).
+  ///
+  /// **Cost:** Cloud Data Fusion `0D19-EC86-35B0` bills instance hours by
+  /// [type] while the instance exists — Developer SKU `88BC-986D-9A22`
+  /// **$0.35/h**, Basic `E74D-F7A2-0BF5` **$1.8/h** after 120 free hours/mo,
+  /// Enterprise `37C9-6893-468A` **$4.2/h**. Destroy stops instance charges.
+  /// Too expensive for apply-smoke — ships without a quickstart
+  /// (`tool/example_debt.yaml`).
+  ///
+  /// Enable `datafusion.googleapis.com` via [GoogleProjectService] before
+  /// apply. Prefer Developer for sandboxes; Enterprise enables streaming
+  /// and higher concurrency.
+
+paramOrder:
+  - name
+  - type
+  - region
+  - description
+  - display_name
+  - private_instance
+  - enable_rbac
+  - enable_stackdriver_logging
+  - enable_stackdriver_monitoring
+  - version
+  - zone
+  - network_config
+  - crypto_key_config
+  - event_publish_config
+  - accelerators
+  - maintenance_policy
+  - options
+  - labels
+  - tags
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

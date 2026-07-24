@@ -176,6 +176,12 @@ GoogleRedisClusterUserCreatedConnections: requires a parent GoogleRedisCluster (
 # without an example.
 GoogleLookerInstance: gcp-cost Looker C71C-0952-AAC7 Standard Edition SKU 3F43-B8CB-2533 $5000/count — never_apply platform fee; no applyable quickstart on terradart-validate
 
+# Cloud Data Fusion bills instance hours by edition (Developer 88BC-986D-9A22
+# $0.35/h; Basic E74D-F7A2-0BF5 $1.8/h after free tier; Enterprise
+# 37C9-6893-468A $4.2/h). A quickstart would force apply_smoke_skip
+# (never_apply) and block wave auto-merge — factory ships without an example.
+GoogleDataFusionInstance: gcp-cost Cloud Data Fusion 0D19-EC86-35B0 Developer SKU 88BC-986D-9A22 $0.35/h (Basic E74D-F7A2-0BF5 $1.8/h after 120 free h; Enterprise 37C9-6893-468A $4.2/h) — never_apply instance hours; no applyable quickstart on terradart-validate
+
 # Vertex AI Workbench notebook VMs bill management fee + GCE while running
 # (Notebooks D73B-5EEA-8215 N1 mgmt CPU us-central1 SKU 6196-1C27-5E30
 # $0.0063222/h + usage). A quickstart would force apply_smoke_skip
