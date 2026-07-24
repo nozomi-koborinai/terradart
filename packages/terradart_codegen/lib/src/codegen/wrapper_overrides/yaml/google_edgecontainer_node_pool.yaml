@@ -1,0 +1,43 @@
+outputDir: edgecontainer
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Google Distributed Cloud Edge **node pool** — worker nodes for a
+  /// [GoogleEdgecontainerCluster].
+  ///
+  /// **Cost / apply:** Same GDCE hardware commitment surface as the parent
+  /// cluster (`8A2D-5CB1-345B`, e.g. Connected Server Gen1 SKU
+  /// `007E-2D86-E472` **$3600/mo**). Requires a real edge cluster and
+  /// physical machines absent on `terradart-validate` — ships without a
+  /// quickstart (`tool/example_debt.yaml`). **Never** wire into apply-smoke.
+  ///
+  /// Enable `edgecontainer.googleapis.com` via [GoogleProjectService] before
+  /// apply. [cluster] is the parent cluster name; [nodeLocation] is a GDCE
+  /// zone (e.g. `us-central1-edge-customer-a`).
+
+paramOrder:
+  - name
+  - cluster
+  - location
+  - node_location
+  - node_count
+  - node_config
+  - local_disk_encryption
+  - machine_filter
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

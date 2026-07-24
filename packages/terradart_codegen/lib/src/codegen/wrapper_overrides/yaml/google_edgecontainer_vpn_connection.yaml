@@ -1,0 +1,44 @@
+outputDir: edgecontainer
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Google Distributed Cloud Edge **VPN connection** — links a
+  /// [GoogleEdgecontainerCluster] to a Cloud VPC via Cloud Router.
+  ///
+  /// **Cost / apply:** Same GDCE hardware commitment surface as the parent
+  /// cluster (`8A2D-5CB1-345B`, e.g. Connected Server Gen1 SKU
+  /// `007E-2D86-E472` **$3600/mo**), plus Cloud VPN / Router when wired.
+  /// Requires a real edge cluster absent on `terradart-validate` — ships
+  /// without a quickstart (`tool/example_debt.yaml`). **Never** wire into
+  /// apply-smoke.
+  ///
+  /// Enable `edgecontainer.googleapis.com` via [GoogleProjectService] before
+  /// apply. [cluster] is the parent cluster resource name; [vpc] / [router]
+  /// identify the Cloud side.
+
+paramOrder:
+  - name
+  - cluster
+  - location
+  - vpc
+  - router
+  - vpc_project
+  - enable_high_availability
+  - nat_gateway_ip
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
