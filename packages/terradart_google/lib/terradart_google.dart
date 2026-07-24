@@ -82,6 +82,7 @@ export 'notebooks.dart';
 export 'observability.dart';
 export 'oracle.dart';
 export 'os_config.dart';
+export 'parallelstore.dart';
 export 'parameter_manager.dart';
 export 'privateca.dart';
 export 'project.dart';

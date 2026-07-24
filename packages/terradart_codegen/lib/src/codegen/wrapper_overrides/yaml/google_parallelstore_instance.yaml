@@ -1,0 +1,52 @@
+outputDir: parallelstore
+deriveClassDoc: true
+deriveOutputGetters: true
+
+dartTypeOverrides:
+  deployment_type: ParallelstoreInstanceDeploymentType
+
+prelude: |
+  /// Terraform `deployment_type` for [GoogleParallelstoreInstance].
+  enum ParallelstoreInstanceDeploymentType implements TerraformEnum {
+    unspecified('DEPLOYMENT_TYPE_UNSPECIFIED'),
+    scratch('SCRATCH'),
+    persistent('PERSISTENT');
+
+    const ParallelstoreInstanceDeploymentType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+curatedDoc: |-
+  /// Parallelstore **instance** — managed high-performance parallel file
+  /// system capacity (DAOS-based).
+  ///
+  /// **Cost:** Parallelstore `3450-1C42-A427` bills provisioned capacity
+  /// while the instance exists — Scratch us-central1 (Iowa) SKU
+  /// `920E-C157-D1E5` **$0.000191781/GiBy·h** (~$0.14/GiBy·mo) and
+  /// Persistent `AC48-A917-C907` **$0.000821917/GiBy·h** (~$0.60/GiBy·mo).
+  /// Destroy stops capacity charges. Too expensive for apply-smoke —
+  /// ships without a quickstart (`tool/example_debt.yaml`).
+  ///
+  /// Enable `parallelstore.googleapis.com` via [GoogleProjectService]
+  /// before apply. Prefer [deploymentType] `SCRATCH` for ephemeral
+  /// workloads; `PERSISTENT` for longer-lived data.
+
+paramOrder:
+  - instance_id
+  - location
+  - capacity_gib
+  - network
+  - description
+  - deployment_type
+  - directory_stripe_level
+  - file_stripe_level
+  - reserved_ip_range
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `instance_id` attribute.
+    TfRef<String> get instanceIdRef =>
+        TfRef.attribute<String>(this, 'instance_id');
