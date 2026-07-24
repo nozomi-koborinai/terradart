@@ -473,6 +473,8 @@ files:
     upstream: mmv1/products/eventarc/Trigger.yaml
   google_logging_folder_sink:
     upstream: null  # handwritten in terraform-provider-google (probe 404)
+  google_lustre_instance:
+    upstream: mmv1/products/lustre/Instance.yaml
   google_looker_instance:
     upstream: mmv1/products/looker/Instance.yaml
   google_logging_metric:

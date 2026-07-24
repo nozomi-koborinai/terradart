@@ -182,6 +182,12 @@ GoogleLookerInstance: gcp-cost Looker C71C-0952-AAC7 Standard Edition SKU 3F43-B
 # (never_apply) and block wave auto-merge — factory ships without an example.
 GoogleDataFusionInstance: gcp-cost Cloud Data Fusion 0D19-EC86-35B0 Developer SKU 88BC-986D-9A22 $0.35/h (Basic E74D-F7A2-0BF5 $1.8/h after 120 free h; Enterprise 37C9-6893-468A $4.2/h) — never_apply instance hours; no applyable quickstart on terradart-validate
 
+# Managed Lustre bills provisioned capacity while the instance exists
+# (125-Perf us-central1 SKU 517C-E77D-C11A $0.145/GiBy.mo). A quickstart would
+# force apply_smoke_skip (never_apply) and block wave auto-merge — factory
+# ships without an example.
+GoogleLustreInstance: gcp-cost Managed Lustre B384-1FDE-A709 Capacity 125-Perf us-central1 SKU 517C-E77D-C11A $0.145/GiBy.mo — never_apply capacity; no applyable quickstart on terradart-validate
+
 # Vertex AI Workbench notebook VMs bill management fee + GCE while running
 # (Notebooks D73B-5EEA-8215 N1 mgmt CPU us-central1 SKU 6196-1C27-5E30
 # $0.0063222/h + usage). A quickstart would force apply_smoke_skip

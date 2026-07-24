@@ -141,6 +141,9 @@ final class GoogleProviderRules extends ProviderRules {
     'datafusion': 'data_fusion',
     'data_fusion': 'data_fusion',
 
+    // Managed Lustre (`google_lustre_*`; MM product lustre).
+    'lustre': 'lustre',
+
     // Data Lineage (`google_data_lineage_*` → segment `data`; MM product datalineage).
     // Shares the dataplex barrel (lineage is a Dataplex-adjacent control plane).
     'datalineage': 'dataplex',
