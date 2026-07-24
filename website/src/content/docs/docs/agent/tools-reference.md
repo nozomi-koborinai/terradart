@@ -29,7 +29,7 @@ Lists the per-service barrels with their resource counts. No arguments.
 {}
 ```
 
-**Output** — an object with a `barrels` array of `{ name, resource_count }`, one entry per barrel (90 in total, including the `data` barrel):
+**Output** — an object with a `barrels` array of `{ name, resource_count }`, one entry per barrel (91 in total, including the `data` barrel):
 
 ```json
 {

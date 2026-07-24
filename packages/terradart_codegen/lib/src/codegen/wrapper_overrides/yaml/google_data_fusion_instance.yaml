@@ -7,9 +7,6 @@ deriveEnums: true
 dartTypeOverrides:
   type: DataFusionInstanceType
 
-extraImports:
-  - "import 'package:meta/meta.dart';"
-
 # Network / CMEK / event / accelerator / maintenance stay Map for this thin Wave.
 nestedTypeExcludes:
   - network_config
