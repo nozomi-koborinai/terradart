@@ -49,6 +49,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 - [`dlp`](#dlp)
 - [`dns`](#dns)
 - [`document_ai`](#documentai)
+- [`edgecontainer`](#edgecontainer)
 - [`essential_contacts`](#essentialcontacts)
 - [`eventarc`](#eventarc)
 - [`filestore`](#filestore)
@@ -574,6 +575,12 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | --- | --- | --- |
 | `google_document_ai_processor` | `GoogleDocumentAiProcessor` | [document_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/document_ai_quickstart) |
 | `google_document_ai_schema` | `GoogleDocumentAiSchema` | [document_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/document_ai_quickstart) |
+
+## edgecontainer
+
+| Terraform type | Dart factory | Example |
+| --- | --- | --- |
+| `google_edgecontainer_cluster` | `GoogleEdgecontainerCluster` | — |
 
 ## essential_contacts
 

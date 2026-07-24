@@ -38,6 +38,7 @@ import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/cloud_scheduler.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/dlp.dart';
+import 'package:terradart_google/edgecontainer.dart';
 import 'package:terradart_google/firebase_app_hosting.dart';
 import 'package:terradart_google/firestore.dart';
 import 'package:terradart_google/iam.dart';
@@ -361,6 +362,12 @@ final Map<String, Object Function()> _syntheticInstances = {
   'DataplexTaskNotebookWorkload': () => DataplexTaskNotebookWorkload(
         notebook: TfArg.literal('gs://mock-bucket/notebook.ipynb'),
       ),
+
+  // --- EdgecontainerClusterControlPlane (2) — edgecontainer_cluster --------
+  'EdgecontainerClusterControlPlaneRemote': () =>
+      const EdgecontainerClusterControlPlaneRemote(),
+  'EdgecontainerClusterControlPlaneLocal': () =>
+      const EdgecontainerClusterControlPlaneLocal(),
 
   // --- MonitoringUptimeCheckTarget (3) — monitoring_uptime_check_config ----
   'MonitoringUptimeCheckConfigMonitoredResource': () =>
