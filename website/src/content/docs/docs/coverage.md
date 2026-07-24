@@ -80,6 +80,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 - [`observability`](#observability)
 - [`oracle`](#oracle)
 - [`os_config`](#osconfig)
+- [`parallelstore`](#parallelstore)
 - [`parameter_manager`](#parametermanager)
 - [`privateca`](#privateca)
 - [`project`](#project)
@@ -890,6 +891,12 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | --- | --- | --- |
 | `google_os_config_os_policy_assignment` | `GoogleOsConfigOsPolicyAssignment` | [vm_compliance_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vm_compliance_quickstart) |
 | `google_os_config_patch_deployment` | `GoogleOsConfigPatchDeployment` | [vm_compliance_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vm_compliance_quickstart) |
+
+## parallelstore
+
+| Terraform type | Dart factory | Example |
+| --- | --- | --- |
+| `google_parallelstore_instance` | `GoogleParallelstoreInstance` | — |
 
 ## parameter_manager
 

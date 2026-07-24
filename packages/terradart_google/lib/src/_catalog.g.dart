@@ -11579,7 +11579,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'deletionPolicy',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ParallelstoreInstanceDeploymentType'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_parallelstore_instance`.\n\nA Parallelstore Instance.\n\nParallelstore **instance** — managed high-performance parallel file\nsystem capacity (DAOS-based).\n\n**Cost:** Parallelstore `3450-1C42-A427` bills provisioned capacity\nwhile the instance exists — Scratch us-central1 (Iowa) SKU\n`920E-C157-D1E5` **\$0.000191781/GiBy·h** (~\$0.14/GiBy·mo) and\nPersistent `AC48-A917-C907` **\$0.000821917/GiBy·h** (~\$0.60/GiBy·mo).\nDestroy stops capacity charges. Too expensive for apply-smoke —\nships without a quickstart (`tool/example_debt.yaml`).\n\nEnable `parallelstore.googleapis.com` via [GoogleProjectService]\nbefore apply. Prefer [deploymentType] `SCRATCH` for ephemeral\nworkloads; `PERSISTENT` for longer-lived data.',

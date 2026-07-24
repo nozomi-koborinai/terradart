@@ -4,4 +4,4 @@
 library;
 
 export 'src/parallelstore/google_parallelstore_instance.dart'
-    show GoogleParallelstoreInstance;
+    show GoogleParallelstoreInstance, ParallelstoreInstanceDeploymentType;

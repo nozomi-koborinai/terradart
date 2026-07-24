@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_parallelstore_instance`.
 const Set<String> _googleParallelstoreInstanceSensitive = <String>{};
 
+/// Terraform `deployment_type` for [GoogleParallelstoreInstance].
+enum ParallelstoreInstanceDeploymentType implements TerraformEnum {
+  unspecified('DEPLOYMENT_TYPE_UNSPECIFIED'),
+  scratch('SCRATCH'),
+  persistent('PERSISTENT');
+
+  const ParallelstoreInstanceDeploymentType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_parallelstore_instance`.
 ///
 /// A Parallelstore Instance.

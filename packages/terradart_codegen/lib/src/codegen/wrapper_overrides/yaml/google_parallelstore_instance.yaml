@@ -1,10 +1,21 @@
 outputDir: parallelstore
 deriveClassDoc: true
 deriveOutputGetters: true
-deriveEnums: true
 
 dartTypeOverrides:
   deployment_type: ParallelstoreInstanceDeploymentType
+
+prelude: |
+  /// Terraform `deployment_type` for [GoogleParallelstoreInstance].
+  enum ParallelstoreInstanceDeploymentType implements TerraformEnum {
+    unspecified('DEPLOYMENT_TYPE_UNSPECIFIED'),
+    scratch('SCRATCH'),
+    persistent('PERSISTENT');
+
+    const ParallelstoreInstanceDeploymentType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
 
 curatedDoc: |-
   /// Parallelstore **instance** — managed high-performance parallel file
