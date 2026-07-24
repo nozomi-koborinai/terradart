@@ -152,7 +152,6 @@ final class GoogleProviderRules extends ProviderRules {
     // Managed Lustre (`google_lustre_*`; MM product lustre).
     'lustre': 'lustre',
 
-
     // Google Distributed Cloud Edge (`google_edgecontainer_*`; MM product edgecontainer).
     'edgecontainer': 'edgecontainer',
     // Parallelstore (`google_parallelstore_*`; MM product parallelstore).
