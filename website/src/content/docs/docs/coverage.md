@@ -40,6 +40,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 - [`container_analysis`](#containeranalysis)
 - [`data`](#data)
 - [`data_catalog`](#datacatalog)
+- [`data_fusion`](#datafusion)
 - [`dataplex`](#dataplex)
 - [`dataproc`](#dataproc)
 - [`dialogflow`](#dialogflow)
@@ -469,6 +470,12 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | Terraform type | Dart factory | Example |
 | --- | --- | --- |
 | `google_data_catalog_entry_group` | `GoogleDataCatalogEntryGroup` | [data_catalog_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/data_catalog_quickstart) |
+
+## data_fusion
+
+| Terraform type | Dart factory | Example |
+| --- | --- | --- |
+| `google_data_fusion_instance` | `GoogleDataFusionInstance` | — |
 
 ## dataplex
 
