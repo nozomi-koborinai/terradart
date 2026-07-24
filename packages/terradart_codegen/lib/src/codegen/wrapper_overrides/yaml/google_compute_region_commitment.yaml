@@ -28,6 +28,8 @@ curatedDoc: |-
   ///
   /// [plan] is `TWELVE_MONTH` or `THIRTY_SIX_MONTH`. Pair with [resources]
   /// amounts (vCPU / MEMORY / …).
+  ///
+  /// Debt-only factory — CI retrigger marker.
 
 paramOrder:
   - name
