@@ -14,6 +14,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 - [`access_context_manager`](#accesscontextmanager)
 - [`alloydb`](#alloydb)
 - [`apigee`](#apigee)
+- [`apihub`](#apihub)
 - [`apikeys`](#apikeys)
 - [`app`](#app)
 - [`apphub`](#apphub)
@@ -132,6 +133,12 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_apigee_instance` | `GoogleApigeeInstance` | — |
 | `google_apigee_instance_attachment` | `GoogleApigeeInstanceAttachment` | — |
 | `google_apigee_organization` | `GoogleApigeeOrganization` | — |
+
+## apihub
+
+| Terraform type | Dart factory | Example |
+| --- | --- | --- |
+| `google_apihub_api_hub_instance` | `GoogleApihubApiHubInstance` | — |
 
 ## apikeys
 
