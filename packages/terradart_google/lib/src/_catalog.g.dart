@@ -3136,6 +3136,33 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_cloudfunctions2_function_iam_member`.',
   ),
   CatalogEntry(
+    tfType: 'google_colab_runtime',
+    className: 'GoogleColabRuntime',
+    barrel: 'colab',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_colab_runtime`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'displayName',
+      'runtimeUser',
+      'notebookRuntimeTemplateRef',
+      'name',
+      'description',
+      'desiredState',
+      'autoUpgrade',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'ColabRuntimeDesiredState',
+      'ColabRuntimeNotebookRuntimeTemplateRef',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_colab_runtime`.\n\n\'A runtime is a Google-provisioned virtual machine (VM) that can run the\ncode in your notebook (IPYNB file).\'\n\nColab Enterprise **runtime** — a Google-provisioned VM that runs\nnotebook code (assign from a [GoogleColabRuntimeTemplate]).\n\n**Cost:** Vertex AI (`C7E2-9256-1C43`) `Vertex Colab *` SKUs bill\nwhile the runtime VM runs (e.g. N2 CPU usage us-central1\n`7362-581B-29B4` \$0.0379332/h + E2 RAM `9215-A98F-C4CD`\n\$0.003508236/GiBy·h). Destroy stops charges. Too expensive for\napply-smoke — ships without a quickstart (`tool/example_debt.yaml`).\n\nEnable `aiplatform.googleapis.com` via [GoogleProjectService] before\napply. Pair [notebookRuntimeTemplateRef] with an in-stack template.',
+  ),
+  CatalogEntry(
     tfType: 'google_colab_runtime_template',
     className: 'GoogleColabRuntimeTemplate',
     barrel: 'colab',

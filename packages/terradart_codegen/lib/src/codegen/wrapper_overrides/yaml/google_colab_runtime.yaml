@@ -1,0 +1,54 @@
+outputDir: colab
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+dartTypeOverrides:
+  desired_state: ColabRuntimeDesiredState
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+prelude: |
+  /// Terraform `desired_state` for [GoogleColabRuntime].
+  ///
+  /// Default in the provider is `RUNNING` (starts a Colab Enterprise VM).
+  /// Prefer `STOPPED` when experimenting locally — still too expensive for
+  /// apply-smoke (management fee + GCE while the runtime has ever run).
+  enum ColabRuntimeDesiredState implements TerraformEnum {
+    running('RUNNING'),
+    stopped('STOPPED');
+
+    const ColabRuntimeDesiredState(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+curatedDoc: |-
+  /// Colab Enterprise **runtime** — a Google-provisioned VM that runs
+  /// notebook code (assign from a [GoogleColabRuntimeTemplate]).
+  ///
+  /// **Cost:** Vertex AI (`C7E2-9256-1C43`) `Vertex Colab *` SKUs bill
+  /// while the runtime VM runs (e.g. N2 CPU usage us-central1
+  /// `7362-581B-29B4` $0.0379332/h + E2 RAM `9215-A98F-C4CD`
+  /// $0.003508236/GiBy·h). Destroy stops charges. Too expensive for
+  /// apply-smoke — ships without a quickstart (`tool/example_debt.yaml`).
+  ///
+  /// Enable `aiplatform.googleapis.com` via [GoogleProjectService] before
+  /// apply. Pair [notebookRuntimeTemplateRef] with an in-stack template.
+
+paramOrder:
+  - location
+  - display_name
+  - runtime_user
+  - notebook_runtime_template_ref
+  - name
+  - description
+  - desired_state
+  - auto_upgrade
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
