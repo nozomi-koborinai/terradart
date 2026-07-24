@@ -525,6 +525,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_dataproc_autoscaling_policy` | `GoogleDataprocAutoscalingPolicy` | [dataproc_autoscaling_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataproc_autoscaling_quickstart) |
 | `google_dataproc_cluster` | `GoogleDataprocCluster` | — |
 | `google_dataproc_cluster_iam_member` | `GoogleDataprocClusterIamMember` | — |
+| `google_dataproc_gdc_service_instance` | `GoogleDataprocGdcServiceInstance` | — |
 | `google_dataproc_metastore_federation` | `GoogleDataprocMetastoreFederation` | [dataproc_metastore_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataproc_metastore_quickstart) |
 | `google_dataproc_metastore_federation_iam_member` | `GoogleDataprocMetastoreFederationIamMember` | [dataproc_metastore_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataproc_metastore_quickstart) |
 | `google_dataproc_metastore_service` | `GoogleDataprocMetastoreService` | [dataproc_metastore_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataproc_metastore_quickstart) |
