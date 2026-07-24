@@ -581,6 +581,8 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | Terraform type | Dart factory | Example |
 | --- | --- | --- |
 | `google_edgecontainer_cluster` | `GoogleEdgecontainerCluster` | — |
+| `google_edgecontainer_node_pool` | `GoogleEdgecontainerNodePool` | — |
+| `google_edgecontainer_vpn_connection` | `GoogleEdgecontainerVpnConnection` | — |
 
 ## essential_contacts
 
