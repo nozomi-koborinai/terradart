@@ -288,6 +288,8 @@ files:
     upstream: mmv1/products/dialogflow/SipTrunk.yaml
   google_discovery_engine_search_engine:
     upstream: mmv1/products/discoveryengine/SearchEngine.yaml
+  google_discovery_engine_license_config:
+    upstream: mmv1/products/discoveryengine/LicenseConfig.yaml
   google_discovery_engine_search_engine_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_discovery_engine_search_engine_iam_binding:

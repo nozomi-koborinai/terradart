@@ -1,0 +1,53 @@
+outputDir: discovery_engine
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Vertex AI Search / Gemini Enterprise **license config** — purchased
+  /// seat subscriptions (`license_count` × tier × term).
+  ///
+  /// **Cost / apply:** gcp-cost: Vertex AI Search `74B1-77CF-C302` Gemini
+  /// Enterprise Standard monthly SKU `0532-C2F0-1DF0` **$35/seat·mo** (Plus
+  /// `4EDF-A125-F89E` **$60/mo**; Business `D03F-9D37-4753` **$25/mo**;
+  /// Frontline `C3B7-10E2-45EE` **$15/mo**; NotebookLM Enterprise
+  /// `BF82-0F2F-7FA3` **$9/mo**). billing-behavior: **existence / seat
+  /// subscription** — bills per [licenseCount] for the subscription term
+  /// while the config exists (same class of risk as License Manager /
+  /// Office SPLA). Magic Modules marks the resource `exclude_delete:
+  /// true` (Terraform cannot destroy it). Debt-only on
+  /// `terradart-validate`. **Never** wire into apply-smoke.
+  ///
+  /// Project-level license-config creation is deprecated for Gemini
+  /// Enterprise upstream (MM sample `exclude_test: true`).
+
+paramOrder:
+  - license_config_id
+  - location
+  - license_count
+  - subscription_tier
+  - subscription_term
+  - start_date
+  - end_date
+  - auto_renew
+  - free_trial
+  - project
+
+dartTypeOverrides:
+  subscription_tier: DiscoveryEngineLicenseConfigSubscriptionTier
+  subscription_term: DiscoveryEngineLicenseConfigSubscriptionTerm
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `license_config_id` attribute.
+    TfRef<String> get licenseConfigIdRef =>
+        TfRef.attribute<String>(this, 'license_config_id');
