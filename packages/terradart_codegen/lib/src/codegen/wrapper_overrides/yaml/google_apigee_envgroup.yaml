@@ -1,0 +1,27 @@
+outputDir: apigee
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Apigee **environment group** — hostname routing group for environments.
+  ///
+  /// **Cost:** gcp-cost: no dedicated envgroup SKU under Apigee
+  /// `1C2D-8C78-EC58` (gateway/environment usage hours bill parents).
+  /// billing-behavior: hostname group metadata on a never_apply
+  /// [GoogleApigeeOrganization]. Deferred with the org Wave (no apply-smoke
+  /// quickstart).
+
+paramOrder:
+  - name
+  - org_id
+  - hostnames
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
