@@ -40,6 +40,7 @@ void main() {
       expect(rules.outputDirAliases['backupdr'], 'backup_dr');
       expect(rules.outputDirAliases['edgecontainer'], 'edgecontainer');
       expect(rules.outputDirAliases['edgenetwork'], 'edgenetwork');
+      expect(rules.outputDirAliases['vmwareengine'], 'vmwareengine');
     });
 
     test('universalGetters returns id + nameRef when both attrs are present',
