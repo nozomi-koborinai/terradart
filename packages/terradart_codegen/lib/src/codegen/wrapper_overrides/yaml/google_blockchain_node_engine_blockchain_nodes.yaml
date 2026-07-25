@@ -1,0 +1,42 @@
+outputDir: blockchain
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Blockchain Node Engine **node** — managed Ethereum (and related) node.
+  ///
+  /// **Cost / apply:** gcp-cost: Blockchain Node Engine `1749-9ED8-C6DC`
+  /// Ethereum Full SKU `8884-3FAF-A138` **$0.69/h** (Archive `FE27-1AEE-54FF`
+  /// **$2.74/h**). billing-behavior: dedicated node hours while the node
+  /// exists; destroy stops charges. Too expensive for apply-smoke even once —
+  /// debt-only on `terradart-validate`. **Never** wire into apply-smoke.
+  ///
+  /// Enable `blockchainnodeengine.googleapis.com` before apply.
+
+paramOrder:
+  - blockchain_node_id
+  - location
+  - blockchain_type
+  - ethereum_details
+  - labels
+  - deletion_policy
+  - project
+
+dartTypeOverrides:
+  blockchain_type: BlockchainNodeEngineBlockchainNodesBlockchainType
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `blockchain_node_id` attribute.
+    TfRef<String> get blockchainNodeIdRef =>
+        TfRef.attribute<String>(this, 'blockchain_node_id');

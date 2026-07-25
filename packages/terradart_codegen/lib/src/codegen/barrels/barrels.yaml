@@ -97,6 +97,10 @@ barrels:
   binary_authorization:
     doc: |-
       /// Binary Authorization: project policy, attestors, and attestor IAM members.
+  blockchain:
+    doc: |-
+      /// Blockchain Node Engine — managed blockchain nodes (Ethereum Full/Archive
+      /// hours while provisioned; never_apply for apply-smoke).
   certificate_manager:
     doc: |-
       /// Certificate Manager — DNS authorization, managed/self-managed
@@ -118,6 +122,10 @@ barrels:
     doc: |-
       /// Cloud Functions Gen 2 — serverless function execution with build + deploy
       /// from source.
+  cloud_ids:
+    doc: |-
+      /// Cloud IDS — managed intrusion detection endpoints attached to VPC
+      /// networks (endpoint hours while provisioned; never_apply for apply-smoke).
   cloud_run:
     doc: |-
       /// Cloud Run v2 services + jobs.
@@ -144,7 +152,7 @@ barrels:
   compute:
     doc: |-
       /// Compute Engine resources: instances, addresses, firewalls, networks,
-      /// subnetworks.
+      /// subnetworks, and Hyperdisk Storage Pools (pool capacity is never_apply).
   config:
     doc: |-
       /// Infrastructure Manager (Config API): Terraform blueprint deployments.

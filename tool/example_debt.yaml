@@ -351,3 +351,6 @@ GoogleDiscoveryEngineLicenseConfig: gcp-cost Vertex AI Search 74B1-77CF-C302 Gem
 GoogleNetworkServicesGateway: gcp-cost Networking E505-1604-58F8 Cloud SWP Standard Gateway SKU 884B-E0E7-C3E4 $1.25/h — never_apply; no applyable quickstart on terradart-validate
 GoogleSecureSourceManagerHook: requires never_apply GoogleSecureSourceManagerInstance (+ repository); deferred with the SSM instance Wave
 GoogleSecureSourceManagerBranchRule: requires never_apply GoogleSecureSourceManagerInstance (+ repository); deferred with the SSM instance Wave
+GoogleBlockchainNodeEngineBlockchainNodes: gcp-cost Blockchain Node Engine 1749-9ED8-C6DC Ethereum Full SKU 8884-3FAF-A138 $0.69/h — never_apply; no applyable quickstart on terradart-validate
+GoogleCloudIdsEndpoint: gcp-cost Cloud IDS 25DB-618E-3F79 Endpoint Usage SKU FB57-C6D5-4F05 $1.5/h — never_apply; no applyable quickstart on terradart-validate
+GoogleComputeStoragePool: gcp-cost Compute Engine 6F81-5844-456A Hyperdisk Balanced Storage Pools Standard Capacity Iowa SKU 5BC4-9775-DEC9 $0.08/GiBy.mo — never_apply; no applyable quickstart on terradart-validate

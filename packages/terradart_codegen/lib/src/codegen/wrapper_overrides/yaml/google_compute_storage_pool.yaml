@@ -1,0 +1,50 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Compute Engine **Hyperdisk Storage Pool** — provisioned pool capacity /
+  /// throughput (and optional IOPS) shared by Hyperdisk volumes.
+  ///
+  /// **Cost / apply:** gcp-cost: Compute Engine `6F81-5844-456A` Hyperdisk
+  /// Balanced Storage Pools Standard Capacity Iowa (us-central1) SKU
+  /// `5BC4-9775-DEC9` **$0.08/GiBy·mo** (Throughput pool Standard Capacity
+  /// Iowa `D3CD-F5AE-6C2D` **$0.005/GiBy·mo**; Advanced capacity/IOPS/throughput
+  /// SKUs also listed). billing-behavior: provisioned pool capacity (+
+  /// performance) bills while the pool exists (TiB-scale minimums); destroy
+  /// stops the charge. Too expensive for apply-smoke even once — debt-only on
+  /// `terradart-validate`. **Never** wire into apply-smoke.
+  ///
+  /// Enable `compute.googleapis.com` before apply. [storagePoolType] is typically
+  /// a Hyperdisk pool type URL (e.g. `hyperdisk-balanced`).
+
+paramOrder:
+  - name
+  - zone
+  - storage_pool_type
+  - pool_provisioned_capacity_gb
+  - pool_provisioned_throughput
+  - pool_provisioned_iops
+  - capacity_provisioning_type
+  - performance_provisioning_type
+  - description
+  - labels
+  - deletion_protection
+  - deletion_policy
+  - project
+
+dartTypeOverrides:
+  capacity_provisioning_type: ComputeStoragePoolCapacityProvisioningType
+  performance_provisioning_type: ComputeStoragePoolPerformanceProvisioningType
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

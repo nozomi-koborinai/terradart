@@ -1,7 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 /// Compute Engine resources: instances, addresses, firewalls, networks,
-/// subnetworks.
+/// subnetworks, and Hyperdisk Storage Pools (pool capacity is never_apply).
 library;
 
 export 'src/compute/google_compute_address.dart'
@@ -635,6 +635,12 @@ export 'src/compute/google_compute_ssl_certificate.dart'
     show GoogleComputeSslCertificate;
 export 'src/compute/google_compute_ssl_policy.dart'
     show GoogleComputeSslPolicy, SslPolicyMinTlsVersion, SslPolicyProfile;
+export 'src/compute/google_compute_storage_pool.dart'
+    show
+        ComputeStoragePoolCapacityProvisioningType,
+        ComputeStoragePoolParams,
+        ComputeStoragePoolPerformanceProvisioningType,
+        GoogleComputeStoragePool;
 export 'src/compute/google_compute_subnetwork.dart'
     show
         ComputeSubnetworkSecondaryIpRange,

@@ -1,0 +1,43 @@
+outputDir: cloud_ids
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Cloud IDS **endpoint** — managed intrusion detection appliance attached
+  /// to a VPC network.
+  ///
+  /// **Cost / apply:** gcp-cost: Cloud IDS `25DB-618E-3F79` Endpoint Usage SKU
+  /// `FB57-C6D5-4F05` **$1.5/h** (Traffic Usage `E7D2-D0E0-D8C1` **$0.07/GBy**
+  /// when traffic is inspected). billing-behavior: endpoint hours bill while
+  /// the endpoint exists; destroy stops endpoint-hour charges. Too expensive
+  /// for apply-smoke even once — debt-only on `terradart-validate`. **Never**
+  /// wire into apply-smoke.
+  ///
+  /// Enable `ids.googleapis.com` before apply. [network] is a VPC network
+  /// self-link / id; [severity] sets the minimum threat severity reported.
+
+paramOrder:
+  - name
+  - location
+  - network
+  - severity
+  - description
+  - threat_exceptions
+  - deletion_policy
+  - project
+
+dartTypeOverrides:
+  severity: CloudIdsEndpointSeverity
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `endpoint_ip` attribute.
+    TfRef<String> get endpointIpRef =>
+        TfRef.attribute<String>(this, 'endpoint_ip');
