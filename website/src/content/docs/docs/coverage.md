@@ -104,6 +104,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 - [`tags`](#tags)
 - [`vector`](#vector)
 - [`vertex_ai`](#vertexai)
+- [`vmwareengine`](#vmwareengine)
 - [`workbench`](#workbench)
 - [`workflows`](#workflows)
 - [`workstations`](#workstations)
@@ -1109,6 +1110,12 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_vertex_ai_tensorboard` | `GoogleVertexAiTensorboard` | [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart) |
 | `google_vertex_ai_tensorboard_experiment` | `GoogleVertexAiTensorboardExperiment` | [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart) |
 | `google_vertex_ai_tensorboard_run` | `GoogleVertexAiTensorboardRun` | [vertex_ai_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vertex_ai_quickstart) |
+
+## vmwareengine
+
+| Terraform type | Dart factory | Example |
+| --- | --- | --- |
+| `google_vmwareengine_private_cloud` | `GoogleVmwareenginePrivateCloud` | — |
 
 ## workbench
 

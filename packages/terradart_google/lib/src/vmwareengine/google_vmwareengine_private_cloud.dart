@@ -285,7 +285,7 @@ final class GoogleVmwareenginePrivateCloud extends Resource {
     required VmwareenginePrivateCloudManagementCluster managementCluster,
     required VmwareenginePrivateCloudNetworkConfig networkConfig,
     TfArg<String>? description,
-    TfArg<String>? type,
+    TfArg<VmwareenginePrivateCloudType>? type,
     TfArg<num>? deletionDelayHours,
     TfArg<bool>? sendDeletionDelayHoursIfZero,
     TfArg<String>? deletionPolicy,

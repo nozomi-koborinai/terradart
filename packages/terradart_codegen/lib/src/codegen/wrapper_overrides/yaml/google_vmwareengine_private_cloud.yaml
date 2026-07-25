@@ -5,6 +5,9 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 
+dartTypeOverrides:
+  type: VmwareenginePrivateCloudType
+
 extraImports:
   - "import 'package:meta/meta.dart';"
 
