@@ -1,0 +1,53 @@
+outputDir: network
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Network Services **gateway** — customer-managed gateway, typically a
+  /// Secure Web Gateway (`SECURE_WEB_GATEWAY`) or open mesh (`OPEN_MESH`).
+  ///
+  /// **Cost / apply:** gcp-cost: Networking `E505-1604-58F8` Cloud SWP
+  /// Standard Gateway SKU `884B-E0E7-C3E4` **$1.25/h** (plus Standard Data
+  /// Processing `B402-76B5-458A` when traffic flows). billing-behavior:
+  /// Secure Web Gateway uptime bills while the gateway exists; destroy stops
+  /// gateway-hour charges. Too expensive for apply-smoke even once —
+  /// debt-only on `terradart-validate`. **Never** wire into apply-smoke.
+  ///
+  /// Enable `networkservices.googleapis.com` before apply. SWG also needs
+  /// network/subnetwork (+ certificates).
+
+paramOrder:
+  - name
+  - type
+  - location
+  - description
+  - network
+  - subnetwork
+  - ports
+  - all_ports
+  - certificate_urls
+  - gateway_security_policy
+  - server_tls_policy
+  - scope
+  - routing_mode
+  - ip_version
+  - envoy_headers
+  - labels
+  - delete_swg_autogen_router_on_destroy
+  - deletion_policy
+  - project
+
+dartTypeOverrides:
+  type: NetworkServicesGatewayType
+  ip_version: NetworkServicesGatewayIpVersion
+  envoy_headers: NetworkServicesGatewayEnvoyHeaders
+  routing_mode: NetworkServicesGatewayRoutingMode
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

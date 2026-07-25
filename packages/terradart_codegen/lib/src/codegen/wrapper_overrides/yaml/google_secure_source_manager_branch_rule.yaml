@@ -1,0 +1,41 @@
+outputDir: secure
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Secure Source Manager **branch rule** — branch protection / review
+  /// requirements on a repository.
+  ///
+  /// **Cost / apply:** gcp-cost: no branch-rule SKU under Secure Source
+  /// Manager `ADD4-3782-815A` (instance Fixed Pricing only, e.g.
+  /// `9B40-B4AA-D8EE` **$1000/mo**). billing-behavior: requires a
+  /// never_apply [GoogleSecureSourceManagerInstance] (+ repository).
+  /// Debt-only on `terradart-validate`. **Never** wire into apply-smoke.
+
+paramOrder:
+  - branch_rule_id
+  - location
+  - repository_id
+  - include_pattern
+  - disabled
+  - require_pull_request
+  - minimum_reviews_count
+  - minimum_approvals_count
+  - require_comments_resolved
+  - require_linear_history
+  - allow_stale_reviews
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `branch_rule_id` attribute.
+    TfRef<String> get branchRuleIdRef =>
+        TfRef.attribute<String>(this, 'branch_rule_id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

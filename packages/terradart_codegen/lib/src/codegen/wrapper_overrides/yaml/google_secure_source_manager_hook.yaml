@@ -1,0 +1,40 @@
+outputDir: secure
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Secure Source Manager **webhook hook** — HTTP callback on repository
+  /// events.
+  ///
+  /// **Cost / apply:** gcp-cost: no hook SKU under Secure Source Manager
+  /// `ADD4-3782-815A` (instance Fixed Pricing only, e.g. `9B40-B4AA-D8EE`
+  /// **$1000/mo**). billing-behavior: requires a never_apply
+  /// [GoogleSecureSourceManagerInstance] (+ repository). Debt-only on
+  /// `terradart-validate`. **Never** wire into apply-smoke.
+
+paramOrder:
+  - hook_id
+  - location
+  - repository_id
+  - target_uri
+  - events
+  - disabled
+  - sensitive_query_string
+  - push_option
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `hook_id` attribute.
+    TfRef<String> get hookIdRef => TfRef.attribute<String>(this, 'hook_id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

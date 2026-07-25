@@ -355,7 +355,8 @@ barrels:
     doc: |-
       /// Network Connectivity transports, Network Security ULL mirroring, address
       /// groups, URL lists, client/server TLS policies, gateway security policies,
-      /// VPC Flow Logs configs, and Network Services Mesh.
+      /// VPC Flow Logs configs, Network Services Mesh, and Network Services
+      /// gateways (Secure Web Gateway is never_apply — $1.25/h).
   notebooks:
     doc: |-
       /// Vertex AI Workbench (Notebooks) — environments, user-managed
@@ -437,9 +438,8 @@ barrels:
       /// ([GoogleComputeGlobalAddress]).
   secure:
     doc: |-
-      /// Secure Source Manager — regional Git instances, repositories, and
-      /// resource-level `*_iam_member` grants. Instances bill at a fixed
-      /// monthly rate while they exist.
+      /// Secure Source Manager — regional Git instances, repositories, IAM,
+      /// webhook hooks, and branch rules. Instances are never_apply ($1000/mo).
   storage:
     doc: |-
       /// Cloud Storage buckets, bucket objects, and Pub/Sub object-change

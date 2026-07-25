@@ -1,10 +1,13 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Secure Source Manager — regional Git instances, repositories, and
-/// resource-level `*_iam_member` grants. Instances bill at a fixed
-/// monthly rate while they exist.
+/// Secure Source Manager — regional Git instances, repositories, IAM,
+/// webhook hooks, and branch rules. Instances are never_apply ($1000/mo).
 library;
 
+export 'src/secure/google_secure_source_manager_branch_rule.dart'
+    show GoogleSecureSourceManagerBranchRule;
+export 'src/secure/google_secure_source_manager_hook.dart'
+    show GoogleSecureSourceManagerHook, SecureSourceManagerHookPushOption;
 export 'src/secure/google_secure_source_manager_instance.dart'
     show
         GoogleSecureSourceManagerInstance,
