@@ -249,6 +249,7 @@ GoogleDataprocGdcServiceInstance: gcp-cost GKE Enterprise/GDC 9186-F79E-3871 Bar
 # (Notebooks D73B-5EEA-8215 N1 mgmt CPU us-central1 SKU 6196-1C27-5E30
 # $0.0063222/h + usage). A quickstart would force apply_smoke_skip
 # (never_apply) and block wave auto-merge — factories ship without an example.
+GoogleVmwareenginePrivateCloud: gcp-cost VMware Engine C079-64FE-9109 Gen 2 Standard 112 VCPU Node us-west2 SKU 00C9-4870-5751 $15.11/h — never_apply multi-node SDDC; no applyable quickstart on terradart-validate
 GoogleWorkbenchInstance: gcp-cost Notebooks D73B-5EEA-8215 N1 mgmt CPU us-central1 SKU 6196-1C27-5E30 $0.0063222/h (+ usage CPU 9027-15FF-8BFE $0.0379332/h) — never_apply VM hours; no applyable quickstart on terradart-validate
 GoogleWorkbenchInstanceIamMember: requires a parent GoogleWorkbenchInstance (never_apply); deferred with the instance
 

@@ -843,6 +843,8 @@ files:
   google_bigquery_datapolicy_data_policy_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   # Wave 25 (Serverless VPC Access connector)
+  google_vmwareengine_private_cloud:
+    upstream: mmv1/products/vmwareengine/PrivateCloud.yaml
   google_vpc_access_connector:
     upstream: mmv1/products/vpcaccess/Connector.yaml
   # Wave 26 (Certificate Manager — core HTTPS LB integration chain)

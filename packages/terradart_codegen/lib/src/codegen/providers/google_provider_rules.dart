@@ -157,6 +157,9 @@ final class GoogleProviderRules extends ProviderRules {
 
     // Distributed Cloud Edge Network (`google_edgenetwork_*`).
     'edgenetwork': 'edgenetwork',
+
+    // Google Cloud VMware Engine (`google_vmwareengine_*`).
+    'vmwareengine': 'vmwareengine',
     // Parallelstore (`google_parallelstore_*`; MM product parallelstore).
     'parallelstore': 'parallelstore',
 
