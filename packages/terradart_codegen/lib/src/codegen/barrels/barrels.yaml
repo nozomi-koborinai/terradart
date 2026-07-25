@@ -335,7 +335,8 @@ barrels:
   netapp:
     doc: |-
       /// Google Cloud NetApp Volumes — storage pools, volumes, snapshots,
-      /// and backup vaults/policies. Pools bill capacity while they exist.
+      /// backups, replication, AD/CMEK/host/quota adjuncts. Pools bill
+      /// capacity while they exist (never_apply for apply-smoke).
   network:
     doc: |-
       /// Network Connectivity transports, Network Security ULL mirroring, address
