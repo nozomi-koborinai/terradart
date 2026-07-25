@@ -36,8 +36,26 @@ export 'src/chronicle/google_chronicle_dashboard_chart.dart'
         ChronicleDashboardChartVisualMapType,
         ChronicleDashboardChartVisualization,
         GoogleChronicleDashboardChart;
+export 'src/chronicle/google_chronicle_data_access_label.dart'
+    show GoogleChronicleDataAccessLabel;
+export 'src/chronicle/google_chronicle_data_access_scope.dart'
+    show
+        ChronicleDataAccessScopeAllowedDataAccessLabels,
+        ChronicleDataAccessScopeAllowedDataAccessLabelsIngestionLabel,
+        ChronicleDataAccessScopeDeniedDataAccessLabels,
+        ChronicleDataAccessScopeDeniedDataAccessLabelsIngestionLabel,
+        GoogleChronicleDataAccessScope;
 export 'src/chronicle/google_chronicle_data_export.dart'
     show ChronicleDataExportIngestionLabels, GoogleChronicleDataExport;
+export 'src/chronicle/google_chronicle_data_table.dart'
+    show
+        ChronicleDataTableColumnInfo,
+        ChronicleDataTableColumnInfoColumnType,
+        ChronicleDataTableScopeInfo,
+        ChronicleDataTableUpdateSource,
+        GoogleChronicleDataTable;
+export 'src/chronicle/google_chronicle_data_table_row.dart'
+    show GoogleChronicleDataTableRow;
 export 'src/chronicle/google_chronicle_environment.dart'
     show GoogleChronicleEnvironment;
 export 'src/chronicle/google_chronicle_findings_refinement.dart'
@@ -66,6 +84,14 @@ export 'src/chronicle/google_chronicle_parser.dart'
         ChronicleParserLowCodeFieldExtractorsPreprocessConfig,
         ChronicleParserVersionInfo,
         GoogleChronicleParser;
+export 'src/chronicle/google_chronicle_parser_extension.dart'
+    show
+        ChronicleParserExtensionDynamicParsing,
+        ChronicleParserExtensionDynamicParsingOptedFields,
+        ChronicleParserExtensionFieldExtractors,
+        ChronicleParserExtensionFieldExtractorsExtractors,
+        ChronicleParserExtensionFieldExtractorsPreprocessConfig,
+        GoogleChronicleParserExtension;
 export 'src/chronicle/google_chronicle_reference_list.dart'
     show
         ChronicleReferenceListEntries,
