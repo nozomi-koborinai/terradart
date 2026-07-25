@@ -112,7 +112,7 @@ final class GoogleDiscoveryEngineChatEngine extends Resource {
     required TfArg<String> displayName,
     required TfArg<List<String>> dataStoreIds,
     required DiscoveryEngineChatEngineChatEngineConfig chatEngineConfig,
-    TfArg<String>? industryVertical,
+    TfArg<DiscoveryEngineChatEngineIndustryVertical>? industryVertical,
     DiscoveryEngineChatEngineCommonConfig? commonConfig,
     TfArg<String>? deletionPolicy,
     TfArg<String>? project,

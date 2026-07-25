@@ -182,7 +182,8 @@ final class GoogleDiscoveryEngineRecommendationEngine extends Resource {
     required TfArg<String> engineId,
     required TfArg<String> displayName,
     required TfArg<List<String>> dataStoreIds,
-    TfArg<String>? industryVertical,
+    TfArg<DiscoveryEngineRecommendationEngineIndustryVertical>?
+    industryVertical,
     DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig?
     mediaRecommendationEngineConfig,
     DiscoveryEngineRecommendationEngineCommonConfig? commonConfig,

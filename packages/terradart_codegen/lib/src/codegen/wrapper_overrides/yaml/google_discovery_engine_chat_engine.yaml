@@ -8,6 +8,9 @@ deriveEnums: true
 extraImports:
   - "import 'package:meta/meta.dart';"
 
+dartTypeOverrides:
+  industry_vertical: DiscoveryEngineChatEngineIndustryVertical
+
 curatedDoc: |-
   /// Vertex AI Search / Gemini Enterprise **chat engine** — conversational
   /// engine backed by data stores (Dialogflow CX agent link or creation).
