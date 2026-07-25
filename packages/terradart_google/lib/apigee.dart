@@ -4,9 +4,10 @@
 /// add-ons, data collectors, analytics datastores, NAT addresses,
 /// endpoint attachments, DNS zones, spaces, sync authorization,
 /// target servers, developers, developer apps, API products, app
-/// groups, env keystores/references, KVMs, and keystore aliases.
-/// Org/instance/env bill while provisioned (never_apply for
-/// apply-smoke).
+/// groups, env keystores/references, KVMs, keystore aliases, proxy
+/// deployments, control-plane access, and Advanced API Security
+/// profiles/feedback. Org/instance/env bill while provisioned
+/// (never_apply for apply-smoke).
 library;
 
 export 'src/apigee/google_apigee_addons_config.dart'
@@ -18,6 +19,8 @@ export 'src/apigee/google_apigee_addons_config.dart'
         ApigeeAddonsConfigAddonsConfigIntegrationConfig,
         ApigeeAddonsConfigAddonsConfigMonetizationConfig,
         GoogleApigeeAddonsConfig;
+export 'src/apigee/google_apigee_api_deployment.dart'
+    show GoogleApigeeApiDeployment;
 export 'src/apigee/google_apigee_api_product.dart'
     show
         ApigeeApiProductApprovalType,
@@ -42,6 +45,8 @@ export 'src/apigee/google_apigee_api_product.dart'
         GoogleApigeeApiProduct;
 export 'src/apigee/google_apigee_app_group.dart'
     show ApigeeAppGroupAttributes, ApigeeAppGroupStatus, GoogleApigeeAppGroup;
+export 'src/apigee/google_apigee_control_plane_access.dart'
+    show GoogleApigeeControlPlaneAccess;
 export 'src/apigee/google_apigee_data_collector.dart'
     show
         ApigeeDataCollectorDeletionPolicy,
@@ -81,6 +86,8 @@ export 'src/apigee/google_apigee_environment.dart'
         GoogleApigeeEnvironment;
 export 'src/apigee/google_apigee_environment_addons_config.dart'
     show GoogleApigeeEnvironmentAddonsConfig;
+export 'src/apigee/google_apigee_environment_api_revision_deployment.dart'
+    show GoogleApigeeEnvironmentApiRevisionDeployment;
 export 'src/apigee/google_apigee_environment_keyvaluemaps.dart'
     show GoogleApigeeEnvironmentKeyvaluemaps;
 export 'src/apigee/google_apigee_environment_keyvaluemaps_entries.dart'
@@ -103,6 +110,18 @@ export 'src/apigee/google_apigee_organization.dart'
         ApigeeOrganizationRetention,
         ApigeeOrganizationRuntimeType,
         GoogleApigeeOrganization;
+export 'src/apigee/google_apigee_security_feedback.dart'
+    show
+        ApigeeSecurityFeedbackFeedbackContexts,
+        ApigeeSecurityFeedbackFeedbackContextsAttribute,
+        ApigeeSecurityFeedbackFeedbackType,
+        ApigeeSecurityFeedbackReason,
+        GoogleApigeeSecurityFeedback;
+export 'src/apigee/google_apigee_security_profile_v2.dart'
+    show
+        ApigeeSecurityProfileV2ProfileAssessmentConfigs,
+        ApigeeSecurityProfileV2ProfileAssessmentConfigsWeight,
+        GoogleApigeeSecurityProfileV2;
 export 'src/apigee/google_apigee_space.dart' show GoogleApigeeSpace;
 export 'src/apigee/google_apigee_sync_authorization.dart'
     show GoogleApigeeSyncAuthorization;
