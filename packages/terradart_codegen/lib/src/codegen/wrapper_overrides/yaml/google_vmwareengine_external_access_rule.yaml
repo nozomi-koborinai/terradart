@@ -1,0 +1,43 @@
+outputDir: vmwareengine
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+dartTypeOverrides:
+  action: VmwareengineExternalAccessRuleAction
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Google Cloud VMware Engine **external access rule** — firewall-style
+  /// ALLOW/DENY rule on a network policy (`parent`).
+  ///
+  /// **Cost / apply:** No dedicated rule SKU on VMware Engine
+  /// `C079-64FE-9109` after MCP lookup. Requires network policy / network /
+  /// never_apply private cloud (node hours, e.g. SKU `00C9-4870-5751`
+  /// **$15.11/h**). Debt-only — **never** wire into apply-smoke.
+  ///
+  /// Enable `vmwareengine.googleapis.com` via [GoogleProjectService] before
+  /// apply.
+
+paramOrder:
+  - name
+  - parent
+  - action
+  - ip_protocol
+  - priority
+  - source_ports
+  - destination_ports
+  - source_ip_ranges
+  - destination_ip_ranges
+  - description
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

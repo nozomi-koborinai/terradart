@@ -250,6 +250,11 @@ GoogleDataprocGdcServiceInstance: gcp-cost GKE Enterprise/GDC 9186-F79E-3871 Bar
 # $0.0063222/h + usage). A quickstart would force apply_smoke_skip
 # (never_apply) and block wave auto-merge — factories ship without an example.
 GoogleVmwareenginePrivateCloud: gcp-cost VMware Engine C079-64FE-9109 Gen 2 Standard 112 VCPU Node us-west2 SKU 00C9-4870-5751 $15.11/h — never_apply multi-node SDDC; no applyable quickstart on terradart-validate
+GoogleVmwareengineCluster: gcp-cost VMware Engine C079-64FE-9109 Gen 2 Standard 112 VCPU Node us-west2 SKU 00C9-4870-5751 $15.11/h — never_apply additional cluster nodes; requires GoogleVmwareenginePrivateCloud
+GoogleVmwareengineDatastore: gcp-cost VMware Engine C079-64FE-9109 list_skus keyword datastore → 0; Filestore/NetApp + private-cloud node hours — never_apply family; deferred with GoogleVmwareenginePrivateCloud
+GoogleVmwareengineExternalAccessRule: requires network policy / never_apply private-cloud family; deferred with GoogleVmwareenginePrivateCloud
+GoogleVmwareengineExternalAddress: requires never_apply private-cloud family; deferred with GoogleVmwareenginePrivateCloud
+GoogleVmwareengineSubnet: gcp-cost VMware Engine C079-64FE-9109 list_skus keyword subnet → 0; requires never_apply GoogleVmwareenginePrivateCloud — deferred with the private cloud
 GoogleVmwareengineNetwork: gcp-cost VMware Engine C079-64FE-9109 list_skus keyword network → 0; private-cloud node hours SKU 00C9-4870-5751 $15.11/h — never_apply family (no meaningful quickstart without private cloud); deferred with GoogleVmwareenginePrivateCloud
 GoogleVmwareengineNetworkPolicy: requires a parent GoogleVmwareengineNetwork (never_apply family); deferred with the VMware Engine private cloud
 GoogleVmwareengineNetworkPeering: requires a parent GoogleVmwareengineNetwork (never_apply family); deferred with the VMware Engine private cloud

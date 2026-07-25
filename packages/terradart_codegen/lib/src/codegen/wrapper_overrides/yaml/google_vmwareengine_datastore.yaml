@@ -1,0 +1,34 @@
+outputDir: vmwareengine
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Google Cloud VMware Engine **datastore** — NFS datastore backed by
+  /// Filestore / NetApp / third-party file service, attachable to clusters.
+  ///
+  /// **Cost / apply:** No dedicated datastore SKU on VMware Engine
+  /// `C079-64FE-9109` after MCP lookup; underlying Filestore/NetApp capacity
+  /// and never_apply private-cloud node hours (e.g. SKU `00C9-4870-5751`
+  /// **$15.11/h**) dominate. Debt-only — **never** wire into apply-smoke.
+  ///
+  /// Enable `vmwareengine.googleapis.com` via [GoogleProjectService] before
+  /// apply. [nfsDatastore] is required.
+
+paramOrder:
+  - name
+  - location
+  - nfs_datastore
+  - description
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
