@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Oracle Database@Google Cloud — Autonomous Database, Base DB, Exadata, ODB, GoldenGate.
+/// Oracle Database@Google Cloud — Autonomous Database, Base DB, Exadata
+/// (incl. Exascale storage config; BMS capacity is never_apply), ODB, GoldenGate.
 library;
 
 export 'src/oracle/google_oracle_database_autonomous_database.dart'
@@ -13,6 +14,8 @@ export 'src/oracle/google_oracle_database_cloud_exadata_infrastructure.dart'
     show
         GoogleOracleDatabaseCloudExadataInfrastructure,
         OracleDatabaseCloudExadataInfrastructureDeletionPolicy;
+export 'src/oracle/google_oracle_database_cloud_exadata_infrastructure_exascale_config.dart'
+    show GoogleOracleDatabaseCloudExadataInfrastructureExascaleConfig;
 export 'src/oracle/google_oracle_database_cloud_vm_cluster.dart'
     show
         GoogleOracleDatabaseCloudVmCluster,

@@ -1,0 +1,52 @@
+outputDir: dataflow
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Cloud Dataflow **job** — launches a batch or streaming pipeline from a
+  /// classic template (`template_gcs_path`).
+  ///
+  /// **Cost / apply:** gcp-cost: Cloud Dataflow `57D6-8E6B-2DE0` vCPU Time
+  /// Batch Iowa (us-central1) SKU `A613-4169-2E08` **$0.056/h** per vCPU
+  /// (plus RAM/disk/GPU/Streaming Engine SKUs when used). billing-behavior:
+  /// creating the job starts workers that bill while the job runs; destroy /
+  /// cancel stops worker charges. Too expensive for apply-smoke even once —
+  /// debt-only on `terradart-validate`. **Never** wire into apply-smoke.
+  ///
+  /// Enable `dataflow.googleapis.com` before apply. [tempGcsLocation] and
+  /// [templateGcsPath] must be GCS URLs the job can read/write.
+
+paramOrder:
+  - name
+  - template_gcs_path
+  - temp_gcs_location
+  - region
+  - zone
+  - max_workers
+  - machine_type
+  - network
+  - subnetwork
+  - ip_configuration
+  - service_account_email
+  - kms_key_name
+  - enable_streaming_engine
+  - parameters
+  - transform_name_mapping
+  - additional_experiments
+  - on_delete
+  - skip_wait_on_job_termination
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `job_id` attribute.
+    TfRef<String> get jobIdRef => TfRef.attribute<String>(this, 'job_id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -1,0 +1,32 @@
+outputDir: oracle
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Oracle Database@Google Cloud **Exadata Exascale config** — allocates
+  /// Exascale storage on a [GoogleOracleDatabaseCloudExadataInfrastructure].
+  ///
+  /// **Cost / apply:** gcp-cost: Bare Metal Solution `6955-34DC-6EF3` All
+  /// Flash NVMe Storage Useable TB Iowa (us-central1) SKU `A094-33FD-1ECD`
+  /// **$115/mo** per usable TB (48TB pack `8567-C651-956D` **$14135/mo**;
+  /// parent Exadata Dual Core Server Iowa `0783-C2A0-0D4E` **$3400/mo**).
+  /// billing-behavior: [totalStorageSizeGb] provisions Exascale capacity that
+  /// bills while allocated on the Exadata infrastructure; destroy releases
+  /// that allocation. Requires never_apply Exadata infrastructure + Oracle
+  /// zone entitlement — not applyable on `terradart-validate`. Too expensive
+  /// for apply-smoke even once — debt-only. **Never** wire into apply-smoke.
+  ///
+  /// Enable `oracledatabase.googleapis.com` before apply.
+
+paramOrder:
+  - cloud_exadata_infrastructure
+  - location
+  - total_storage_size_gb
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

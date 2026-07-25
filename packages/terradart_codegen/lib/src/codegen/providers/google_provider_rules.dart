@@ -144,6 +144,9 @@ final class GoogleProviderRules extends ProviderRules {
     'datafusion': 'data_fusion',
     'data_fusion': 'data_fusion',
 
+    // Cloud Dataflow (`google_dataflow_*`; handwritten third_party — product.yaml only).
+    'dataflow': 'dataflow',
+
     // Dataproc on GDC (`google_dataproc_gdc_*`; MM product dataprocgdc).
     // Fold into the dataproc barrel (operator on a GDCE cluster).
     'dataproc_gdc': 'dataproc',
