@@ -196,8 +196,10 @@ barrels:
       /// adjuncts.
   dataproc:
     doc: |-
-      /// Dataproc — clusters, autoscaling policies, Metastore services/federations,
-      /// and Dataproc-on-GDC service instances.
+      /// Dataproc: classic/GKE clusters, autoscaling policies, Metastore,
+      /// GDC service instances / application environments, and Serverless
+      /// session templates. Cluster / GDC / Interactive session paths are
+      /// never_apply for apply-smoke.
   dialogflow:
     doc: |-
       /// Dialogflow CX: telephony and conversation resources.

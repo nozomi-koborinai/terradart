@@ -1,7 +1,9 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Dataproc — clusters, autoscaling policies, Metastore services/federations,
-/// and Dataproc-on-GDC service instances.
+/// Dataproc: classic/GKE clusters, autoscaling policies, Metastore,
+/// GDC service instances / application environments, and Serverless
+/// session templates. Cluster / GDC / Interactive session paths are
+/// never_apply for apply-smoke.
 library;
 
 export 'src/dataproc/google_dataproc_autoscaling_policy.dart'
@@ -65,6 +67,10 @@ export 'src/dataproc/google_dataproc_cluster.dart'
         GoogleDataprocCluster;
 export 'src/dataproc/google_dataproc_cluster_iam_member.dart'
     show GoogleDataprocClusterIamMember;
+export 'src/dataproc/google_dataproc_gdc_application_environment.dart'
+    show
+        DataprocGdcApplicationEnvironmentSparkApplicationEnvironmentConfig,
+        GoogleDataprocGdcApplicationEnvironment;
 export 'src/dataproc/google_dataproc_gdc_service_instance.dart'
     show
         DataprocGdcServiceInstanceGdceCluster,
@@ -88,3 +94,16 @@ export 'src/dataproc/google_dataproc_metastore_service.dart'
         GoogleDataprocMetastoreService;
 export 'src/dataproc/google_dataproc_metastore_service_iam_member.dart'
     show GoogleDataprocMetastoreServiceIamMember;
+export 'src/dataproc/google_dataproc_session_template.dart'
+    show
+        DataprocSessionTemplateEnvironmentConfig,
+        DataprocSessionTemplateEnvironmentConfigExecutionConfig,
+        DataprocSessionTemplateEnvironmentConfigExecutionConfigAuthenticationConfig,
+        DataprocSessionTemplateEnvironmentConfigExecutionConfigAuthenticationConfigUserWorkloadAuthenticationType,
+        DataprocSessionTemplateEnvironmentConfigPeripheralsConfig,
+        DataprocSessionTemplateEnvironmentConfigPeripheralsConfigSparkHistoryServerConfig,
+        DataprocSessionTemplateJupyterSession,
+        DataprocSessionTemplateJupyterSessionKernel,
+        DataprocSessionTemplateRuntimeConfig,
+        DataprocSessionTemplateSparkConnectSession,
+        GoogleDataprocSessionTemplate;

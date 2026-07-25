@@ -1,0 +1,43 @@
+outputDir: dataproc
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Dataproc Serverless **session template** — reusable config for
+  /// Interactive / Jupyter / Spark Connect sessions.
+  ///
+  /// **Cost / apply:** gcp-cost: Dataproc `363B-8851-170D` Interactive DCU
+  /// SKU `A486-6040-07FE` **$0.089/h** (us-central1 list; milli-hour SKU
+  /// priced per DCU-hour). billing-behavior: sessions started from the
+  /// template burn Interactive DCUs while running; the template metadata
+  /// alone is not billed, but there is no applyable quickstart without
+  /// spinning Interactive compute. Debt-only on `terradart-validate`.
+  /// **Never** wire into apply-smoke.
+  ///
+  /// Enable `dataproc.googleapis.com` via [GoogleProjectService] before apply.
+
+paramOrder:
+  - name
+  - location
+  - labels
+  - runtime_config
+  - environment_config
+  - jupyter_session
+  - spark_connect_session
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `uuid` attribute.
+    TfRef<String> get uuidRef => TfRef.attribute<String>(this, 'uuid');
