@@ -167,6 +167,11 @@ final class GoogleProviderRules extends ProviderRules {
     'containerattached': 'container_attached',
     'container_attached': 'container_attached',
 
+    // Pub/Sub Lite (`google_pubsub_lite_*` — override outputDir; wrap-init
+    // otherwise collapses to the classic `pubsub` barrel).
+    'pubsublite': 'pubsub_lite',
+    'pubsub_lite': 'pubsub_lite',
+
     // Google Cloud VMware Engine (`google_vmwareengine_*`).
     'vmwareengine': 'vmwareengine',
 

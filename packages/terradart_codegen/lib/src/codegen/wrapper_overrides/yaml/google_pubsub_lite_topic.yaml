@@ -1,0 +1,36 @@
+outputDir: pubsub_lite
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Pub/Sub Lite **topic** — partitioned topic that draws capacity from a
+  /// [GooglePubsubLiteReservation] (or topic-level publish/subscribe units).
+  ///
+  /// **Cost / apply:** Pub/Sub Lite `3A1B-66C4-2BAE` Publisher Throughput
+  /// Capacity Allocated North America SKU `CE6F-6EC1-8463` **$0.00625/MiBy·h**
+  /// (+ Subscriber `DB2E-0351-AE15` **$0.003125/MiBy·h**, Storage
+  /// `13A4-C375-427E` **$0.04/GiBy·mo**) while capacity is allocated; usually
+  /// paired with a never_apply reservation. Debt-only on `terradart-validate`.
+  /// **Never** wire into apply-smoke.
+
+paramOrder:
+  - name
+  - region
+  - zone
+  - partition_config
+  - retention_config
+  - reservation_config
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
