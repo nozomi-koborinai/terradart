@@ -70,6 +70,7 @@ export 'firebase_remote_config.dart';
 export 'firestore.dart';
 export 'gemini.dart';
 export 'gke_backup.dart';
+export 'gkeonprem.dart';
 export 'healthcare.dart';
 export 'hypercomputecluster.dart';
 export 'iam.dart';
