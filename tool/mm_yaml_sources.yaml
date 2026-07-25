@@ -1004,6 +1004,16 @@ files:
     upstream: mmv1/products/apigee/EnvironmentKeyvaluemapsEntries.yaml
   google_apigee_keystores_aliases_self_signed_cert:
     upstream: mmv1/products/apigee/KeystoresAliasesSelfSignedCert.yaml
+  google_apigee_api_deployment:
+    upstream: mmv1/products/apigee/ApiDeployment.yaml
+  google_apigee_control_plane_access:
+    upstream: mmv1/products/apigee/ControlPlaneAccess.yaml
+  google_apigee_environment_api_revision_deployment:
+    upstream: mmv1/products/apigee/EnvironmentApiRevisionDeployment.yaml
+  google_apigee_security_feedback:
+    upstream: mmv1/products/apigee/SecurityFeedback.yaml
+  google_apigee_security_profile_v2:
+    upstream: mmv1/products/apigee/SecurityProfileV2.yaml
   # App Hub (applications + discovered service/workload registration)
   google_apphub_application:
     upstream: mmv1/products/apphub/Application.yaml

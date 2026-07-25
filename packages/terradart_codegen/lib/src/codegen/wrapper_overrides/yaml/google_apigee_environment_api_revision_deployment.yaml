@@ -1,0 +1,29 @@
+outputDir: apigee
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Apigee **environment API revision deployment** — deploys a specific API
+  /// proxy revision into an environment (with optional sequenced rollout).
+  ///
+  /// **Cost / apply:** gcp-cost: Apigee `1C2D-8C78-EC58` Proxy/Shared Flow
+  /// Deployment Unit Usage Hours (Base SKU `20F4-DE1D-0E80` included-in-base
+  /// **$0/h**; Intermediate `4836-1B91-161A`; Comprehensive `477D-FA48-D913`).
+  /// billing-behavior: requires never_apply [GoogleApigeeOrganization] /
+  /// [GoogleApigeeEnvironment]. Debt-only on `terradart-validate`. **Never**
+  /// wire into apply-smoke.
+
+paramOrder:
+  - org_id
+  - environment
+  - api
+  - revision
+  - override
+  - sequenced_rollout
+  - service_account
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

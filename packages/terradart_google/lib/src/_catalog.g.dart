@@ -255,6 +255,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_apigee_addons_config`.\n\nConfigures the add-ons for the Apigee organization. The existing add-on\nconfiguration will be fully replaced.\n\nApigee **organization add-ons config** (API Security, Advanced API\nOps, Monetization, Connectors, Integration).\n\n**Cost:** gcp-cost: no org-addons SKU under Apigee `1C2D-8C78-EC58`\nbeyond gateway/environment usage on never_apply parents.\nbilling-behavior: feature toggles on a never_apply\n[GoogleApigeeOrganization]. Deferred with the org Wave.\n**Never** wire into apply-smoke.',
   ),
   CatalogEntry(
+    tfType: 'google_apigee_api_deployment',
+    className: 'GoogleApigeeApiDeployment',
+    barrel: 'apigee',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_apigee_api_deployment`.',
+    constructorParams: <String>[
+      'localName',
+      'orgId',
+      'environment',
+      'proxyId',
+      'revision',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_apigee_api_deployment`.\n\nManages a deployment of an API proxy.\n\nApigee **API proxy deployment** — deploys a proxy revision to an\nenvironment.\n\n**Cost / apply:** gcp-cost: Apigee `1C2D-8C78-EC58` Proxy/Shared Flow\nDeployment Unit Usage Hours (Base SKU `20F4-DE1D-0E80` included-in-base\n**\$0/h**; Intermediate `4836-1B91-161A`; Comprehensive `477D-FA48-D913`\n/ overage `71C2-1AC1-805B`). billing-behavior: requires never_apply\n[GoogleApigeeOrganization] / [GoogleApigeeEnvironment] (environment\nusage hours **\$0.50–\$4.70/h**). Debt-only on `terradart-validate`.\n**Never** wire into apply-smoke.',
+  ),
+  CatalogEntry(
     tfType: 'google_apigee_api_product',
     className: 'GoogleApigeeApiProduct',
     barrel: 'apigee',
@@ -326,6 +344,23 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_apigee_app_group`.\n\nAn `AppGroup` in Apigee.\n\nApigee **app group** — grouping of developer apps in an organization.\n\n**Cost / apply:** gcp-cost: no Group SKU under Apigee `1C2D-8C78-EC58`\n(list_skus keyword Group → 0). billing-behavior: requires a never_apply\n[GoogleApigeeOrganization] (Gateway Node Hours `0136-18C1-DD41`\n**\$1.025/h**). Debt-only on `terradart-validate`. **Never** wire into\napply-smoke.',
+  ),
+  CatalogEntry(
+    tfType: 'google_apigee_control_plane_access',
+    className: 'GoogleApigeeControlPlaneAccess',
+    barrel: 'apigee',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_apigee_control_plane_access`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'synchronizerIdentities',
+      'analyticsPublisherIdentities',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_apigee_control_plane_access`.\n\nAuthorize the Runtime components to access directly with Apigee Control\nPlane.\n\nApigee **control plane access** — identities allowed to publish analytics\n/ synchronize the control plane for an organization.\n\n**Cost / apply:** gcp-cost: no Control-plane-access SKU under Apigee\n`1C2D-8C78-EC58` (list_skus keyword Control → 0). billing-behavior:\nrequires a never_apply [GoogleApigeeOrganization] (Gateway Node Hours\n`0136-18C1-DD41` **\$1.025/h**). Debt-only on `terradart-validate`.\n**Never** wire into apply-smoke.',
   ),
   CatalogEntry(
     tfType: 'google_apigee_data_collector',
@@ -566,6 +601,28 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_apigee_environment_addons_config`.\n\nEnable/Disable add-ons for an Apigee environment.\n\nApigee **environment add-ons config** (e.g. analytics) on an environment.\n\n**Cost:** gcp-cost: no environment-addons SKU under Apigee\n`1C2D-8C78-EC58` beyond parent environment usage hours.\nbilling-behavior: add-on toggles on a never_apply\n[GoogleApigeeEnvironment]. Deferred with the org Wave.',
   ),
   CatalogEntry(
+    tfType: 'google_apigee_environment_api_revision_deployment',
+    className: 'GoogleApigeeEnvironmentApiRevisionDeployment',
+    barrel: 'apigee',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_apigee_environment_api_revision_deployment`.',
+    constructorParams: <String>[
+      'localName',
+      'orgId',
+      'environment',
+      'api',
+      'revision',
+      'override',
+      'sequencedRollout',
+      'serviceAccount',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_apigee_environment_api_revision_deployment`.\n\nDeploys a specific Apigee API Proxy revision to a given Apigee environment.\n\nApigee **environment API revision deployment** — deploys a specific API\nproxy revision into an environment (with optional sequenced rollout).\n\n**Cost / apply:** gcp-cost: Apigee `1C2D-8C78-EC58` Proxy/Shared Flow\nDeployment Unit Usage Hours (Base SKU `20F4-DE1D-0E80` included-in-base\n**\$0/h**; Intermediate `4836-1B91-161A`; Comprehensive `477D-FA48-D913`).\nbilling-behavior: requires never_apply [GoogleApigeeOrganization] /\n[GoogleApigeeEnvironment]. Debt-only on `terradart-validate`. **Never**\nwire into apply-smoke.',
+  ),
+  CatalogEntry(
     tfType: 'google_apigee_environment_keyvaluemaps',
     className: 'GoogleApigeeEnvironmentKeyvaluemaps',
     barrel: 'apigee',
@@ -717,6 +774,53 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_apigee_organization`.\n\nAn `Organization` is the top-level container in Apigee.\n\nApigee **organization** — project-bound Apigee control plane\n(subscription / evaluation org).\n\n**Cost:** Cloud Billing Catalog service `1C2D-8C78-EC58` bills Apigee\nPAYG environment and gateway usage once the org is active (e.g.\nGateway Node Hours SKU `0136-18C1-DD41` **\$1.025/h**; Active\nIntermediate Environment Usage Hours `421B-D6C0-52A2` **\$2/h**;\nActive Comprehensive Environment Usage Hours `01C8-CFFA-106E`\n**\$4.7/h**). Creating an organization is the gateway to that\nbilling surface. Too expensive for apply-smoke — factories ship\nwithout a quickstart.\n\nRequires [projectId]. Typically also set [analyticsRegion] and\n[authorizedNetwork] (VPC peering). Enable `apigee.googleapis.com`\nvia [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleApigeeOrganization(\n  localName: \'org\',\n  projectId: TfArg.literal(projectId),\n  analyticsRegion: TfArg.literal(\'us-central1\'),\n  authorizedNetwork: TfArg.ref(network.id),\n  runtimeType: TfArg.literal(ApigeeOrganizationRuntimeType.cloud),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_apigee_security_feedback',
+    className: 'GoogleApigeeSecurityFeedback',
+    barrel: 'apigee',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_apigee_security_feedback`.',
+    constructorParams: <String>[
+      'localName',
+      'feedbackId',
+      'orgId',
+      'feedbackType',
+      'reason',
+      'comment',
+      'displayName',
+      'feedbackContexts',
+    ],
+    nestedTypes: <String>[
+      'ApigeeSecurityFeedbackFeedbackType',
+      'ApigeeSecurityFeedbackReason',
+      'ApigeeSecurityFeedbackFeedbackContexts',
+      'ApigeeSecurityFeedbackFeedbackContextsAttribute',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_apigee_security_feedback`.\n\nRepresents a feedback report from an Advanced API Security customer. Manages\ncustomer feedback about ML models.\n\nApigee **security feedback** — labeled feedback for Advanced API Security\ndetections.\n\n**Cost / apply:** gcp-cost: Apigee `1C2D-8C78-EC58` Advanced API Security\nAdd-on request SKU `572E-C6FE-7BB3` **\$0.00035/request** (subscription\nvariant `39EF-C4B0-1015`). billing-behavior: requires never_apply\n[GoogleApigeeOrganization] plus Advanced API Security entitlement.\nDebt-only on `terradart-validate`. **Never** wire into apply-smoke.',
+  ),
+  CatalogEntry(
+    tfType: 'google_apigee_security_profile_v2',
+    className: 'GoogleApigeeSecurityProfileV2',
+    barrel: 'apigee',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_apigee_security_profile_v2`.',
+    constructorParams: <String>[
+      'localName',
+      'profileId',
+      'orgId',
+      'description',
+      'profileAssessmentConfigs',
+    ],
+    nestedTypes: <String>[
+      'ApigeeSecurityProfileV2ProfileAssessmentConfigs',
+      'ApigeeSecurityProfileV2ProfileAssessmentConfigsWeight',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_apigee_security_profile_v2`.\n\nSecurity profile for risk assessment version 2 in Apigee.\n\nApigee **security profile v2** — Advanced API Security assessment profile.\n\n**Cost / apply:** gcp-cost: Apigee `1C2D-8C78-EC58` Advanced API Security\nAdd-on request SKU `572E-C6FE-7BB3` **\$0.00035/request** (subscription\nvariant `39EF-C4B0-1015`). billing-behavior: requires never_apply\n[GoogleApigeeOrganization] plus Advanced API Security entitlement.\nDebt-only on `terradart-validate`. **Never** wire into apply-smoke.',
   ),
   CatalogEntry(
     tfType: 'google_apigee_space',

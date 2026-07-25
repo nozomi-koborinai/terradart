@@ -1,0 +1,31 @@
+outputDir: apigee
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Apigee **security profile v2** — Advanced API Security assessment profile.
+  ///
+  /// **Cost / apply:** gcp-cost: Apigee `1C2D-8C78-EC58` Advanced API Security
+  /// Add-on request SKU `572E-C6FE-7BB3` **$0.00035/request** (subscription
+  /// variant `39EF-C4B0-1015`). billing-behavior: requires never_apply
+  /// [GoogleApigeeOrganization] plus Advanced API Security entitlement.
+  /// Debt-only on `terradart-validate`. **Never** wire into apply-smoke.
+
+paramOrder:
+  - profile_id
+  - org_id
+  - description
+  - profile_assessment_configs
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `profile_id` attribute.
+    TfRef<String> get profileIdRef =>
+        TfRef.attribute<String>(this, 'profile_id');

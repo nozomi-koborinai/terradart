@@ -342,4 +342,9 @@ GoogleApigeeEnvReferences: requires never_apply GoogleApigeeEnvironment; deferre
 GoogleApigeeEnvironmentKeyvaluemaps: requires never_apply GoogleApigeeEnvironment; deferred with the org Wave
 GoogleApigeeEnvironmentKeyvaluemapsEntries: requires never_apply GoogleApigeeEnvironment / GoogleApigeeEnvironmentKeyvaluemaps; deferred with the org Wave
 GoogleApigeeKeystoresAliasesSelfSignedCert: requires never_apply GoogleApigeeOrganization / GoogleApigeeEnvironment / GoogleApigeeEnvKeystore; deferred with the org Wave
+GoogleApigeeApiDeployment: requires never_apply GoogleApigeeOrganization / GoogleApigeeEnvironment; deferred with the org Wave
+GoogleApigeeControlPlaneAccess: requires never_apply GoogleApigeeOrganization; deferred with the org Wave
+GoogleApigeeEnvironmentApiRevisionDeployment: requires never_apply GoogleApigeeOrganization / GoogleApigeeEnvironment; deferred with the org Wave
+GoogleApigeeSecurityFeedback: requires never_apply GoogleApigeeOrganization + Advanced API Security; deferred with the org Wave
+GoogleApigeeSecurityProfileV2: requires never_apply GoogleApigeeOrganization + Advanced API Security; deferred with the org Wave
 GoogleDiscoveryEngineLicenseConfig: gcp-cost Vertex AI Search 74B1-77CF-C302 Gemini Enterprise Standard monthly SKU 0532-C2F0-1DF0 $35/seat.mo — never_apply existence/seat subscription (License Manager class; MM exclude_delete); no applyable quickstart

@@ -1,0 +1,39 @@
+outputDir: apigee
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Apigee **security feedback** — labeled feedback for Advanced API Security
+  /// detections.
+  ///
+  /// **Cost / apply:** gcp-cost: Apigee `1C2D-8C78-EC58` Advanced API Security
+  /// Add-on request SKU `572E-C6FE-7BB3` **$0.00035/request** (subscription
+  /// variant `39EF-C4B0-1015`). billing-behavior: requires never_apply
+  /// [GoogleApigeeOrganization] plus Advanced API Security entitlement.
+  /// Debt-only on `terradart-validate`. **Never** wire into apply-smoke.
+
+paramOrder:
+  - feedback_id
+  - org_id
+  - feedback_type
+  - reason
+  - comment
+  - display_name
+  - feedback_contexts
+
+dartTypeOverrides:
+  feedback_type: ApigeeSecurityFeedbackFeedbackType
+  reason: ApigeeSecurityFeedbackReason
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `feedback_id` attribute.
+    TfRef<String> get feedbackIdRef =>
+        TfRef.attribute<String>(this, 'feedback_id');
