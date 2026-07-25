@@ -1,9 +1,19 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Apigee: organizations, runtime instances, environment attachments,
-/// data collectors, and analytics datastores.
+/// Apigee: organizations, runtime instances, environments, env groups,
+/// add-ons, data collectors, and analytics datastores. Org/instance/env
+/// bill while provisioned (never_apply for apply-smoke).
 library;
 
+export 'src/apigee/google_apigee_addons_config.dart'
+    show
+        ApigeeAddonsConfigAddonsConfig,
+        ApigeeAddonsConfigAddonsConfigAdvancedApiOpsConfig,
+        ApigeeAddonsConfigAddonsConfigApiSecurityConfig,
+        ApigeeAddonsConfigAddonsConfigConnectorsPlatformConfig,
+        ApigeeAddonsConfigAddonsConfigIntegrationConfig,
+        ApigeeAddonsConfigAddonsConfigMonetizationConfig,
+        GoogleApigeeAddonsConfig;
 export 'src/apigee/google_apigee_data_collector.dart'
     show
         ApigeeDataCollectorDeletionPolicy,
@@ -15,6 +25,22 @@ export 'src/apigee/google_apigee_datastore.dart'
         ApigeeDatastoreDeletionPolicy,
         ApigeeDatastoreTargetType,
         GoogleApigeeDatastore;
+export 'src/apigee/google_apigee_envgroup.dart' show GoogleApigeeEnvgroup;
+export 'src/apigee/google_apigee_envgroup_attachment.dart'
+    show GoogleApigeeEnvgroupAttachment;
+export 'src/apigee/google_apigee_environment.dart'
+    show
+        ApigeeEnvironmentApiProxyType,
+        ApigeeEnvironmentClientIpResolutionConfig,
+        ApigeeEnvironmentClientIpResolutionConfigHeaderIndexAlgorithm,
+        ApigeeEnvironmentDeploymentType,
+        ApigeeEnvironmentNodeConfig,
+        ApigeeEnvironmentProperties,
+        ApigeeEnvironmentPropertiesProperty,
+        ApigeeEnvironmentType,
+        GoogleApigeeEnvironment;
+export 'src/apigee/google_apigee_environment_addons_config.dart'
+    show GoogleApigeeEnvironmentAddonsConfig;
 export 'src/apigee/google_apigee_instance.dart'
     show ApigeeInstanceAccessLoggingConfig, GoogleApigeeInstance;
 export 'src/apigee/google_apigee_instance_attachment.dart'

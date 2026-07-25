@@ -1,0 +1,36 @@
+outputDir: apigee
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Apigee **environment** — logical API runtime environment in an org.
+  ///
+  /// **Cost / apply:** Apigee `1C2D-8C78-EC58` Active Base Environment Usage
+  /// Hours SKU `C112-9373-5FC4` **$0.50/h**, Intermediate `421B-D6C0-52A2`
+  /// **$2/h**, Comprehensive `01C8-CFFA-106E` **$4.70/h** (plus Gateway Node
+  /// Hours `0136-18C1-DD41` **$1.025/h` on the parent instance). Requires a
+  /// never_apply [GoogleApigeeOrganization]. Debt-only on `terradart-validate`.
+  /// **Never** wire into apply-smoke.
+
+paramOrder:
+  - name
+  - org_id
+  - display_name
+  - description
+  - forward_proxy_uri
+  - node_config
+  - properties
+  - client_ip_resolution_config
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
