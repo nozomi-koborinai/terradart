@@ -190,8 +190,9 @@ void _checkSynthCoverage(List<String> errors, Set<String> synthTfTypes) {
   final text = catalog.readAsStringSync();
   final factories = <({String tfType, String className})>[];
   final catalogClasses = <String>{};
+  // dart format may wrap long `tfType:` string literals onto the next line.
   final tfRe = RegExp(
-    r"tfType: '([^']+)'[\s\S]*?className: '([^']+)'[\s\S]*?kind: CatalogKind\.(\w+)",
+    r"tfType:\s*'([^']+)'[\s\S]*?className:\s*'([^']+)'[\s\S]*?kind:\s*CatalogKind\.(\w+)",
   );
   for (final m in tfRe.allMatches(text)) {
     catalogClasses.add(m.group(2)!);
