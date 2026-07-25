@@ -274,6 +274,10 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataproc_gdc_service_instance:
     upstream: mmv1/products/dataprocgdc/ServiceInstance.yaml
+  google_dataproc_session_template:
+    upstream: mmv1/products/dataproc/SessionTemplate.yaml
+  google_dataproc_gdc_application_environment:
+    upstream: mmv1/products/dataprocgdc/ApplicationEnvironment.yaml
   google_dataproc_metastore_service:
     upstream: mmv1/products/metastore/Service.yaml
   google_dataproc_metastore_service_iam_member:

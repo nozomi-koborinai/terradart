@@ -264,6 +264,8 @@ GoogleDataprocClusterIamMember: requires a parent GoogleDataprocCluster (never_a
 # SKU 297F-4642-B7A1 $0.03288/h. A quickstart would force apply_smoke_skip
 # (never_apply) and block wave auto-merge — factory ships without an example.
 GoogleDataprocGdcServiceInstance: gcp-cost GKE Enterprise/GDC 9186-F79E-3871 Bare Metal SKU 297F-4642-B7A1 $0.03288/h (vSphere 82D9-AB10-CA55 $0.03288/h) — never_apply; requires GDCE cluster absent on terradart-validate
+GoogleDataprocSessionTemplate: gcp-cost Dataproc 363B-8851-170D Interactive DCU SKU A486-6040-07FE $0.089/h — never_apply; no applyable quickstart without Interactive compute
+GoogleDataprocGdcApplicationEnvironment: requires never_apply GoogleDataprocGdcServiceInstance (GDC platform); deferred with the GDC service-instance Wave
 
 # Vertex AI Workbench instances bill management fee + GCE while running
 # (Notebooks D73B-5EEA-8215 N1 mgmt CPU us-central1 SKU 6196-1C27-5E30
