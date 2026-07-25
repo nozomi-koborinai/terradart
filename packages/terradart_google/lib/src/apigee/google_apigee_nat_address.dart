@@ -8,6 +8,10 @@ const Set<String> _googleApigeeNatAddressSensitive = <String>{};
 
 /// Factory wrapper for `google_apigee_nat_address`.
 ///
+/// Apigee NAT (network address translation) address. A NAT address is a static
+/// external IP address used for Internet egress traffic. This is not avaible
+/// for Apigee hybrid.
+///
 /// Apigee **NAT address** — northbound NAT IP on an Apigee instance.
 ///
 /// **Cost / apply:** gcp-cost: no dedicated NAT-address SKU under Apigee

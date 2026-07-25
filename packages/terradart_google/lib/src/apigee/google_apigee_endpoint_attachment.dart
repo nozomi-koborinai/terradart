@@ -8,6 +8,13 @@ const Set<String> _googleApigeeEndpointAttachmentSensitive = <String>{};
 
 /// Factory wrapper for `google_apigee_endpoint_attachment`.
 ///
+/// An `EndpointAttachment` in Apigee is a resource that facilitates private
+/// connectivity between Apigee and backend services using Private Service
+/// Connect (PSC).
+///
+/// For more information, see the [Apigee
+/// documentation](https://docs.cloud.google.com/apigee/docs/api-platform/architecture/southbound-networking-patterns-endpoints).
+///
 /// Apigee **endpoint attachment** — Private Service Connect attachment
 /// from an Apigee org to a producer service attachment.
 ///

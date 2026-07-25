@@ -28,6 +28,8 @@ final class ApigeeDnsZonePeeringConfig {
 
 /// Factory wrapper for `google_apigee_dns_zone`.
 ///
+/// Apigee Dns Zone.
+///
 /// Apigee **DNS zone** — peered DNS zone for private resolution in an org.
 ///
 /// **Cost / apply:** gcp-cost: no DNS-zone SKU under Apigee
