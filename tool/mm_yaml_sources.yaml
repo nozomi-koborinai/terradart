@@ -980,6 +980,12 @@ files:
     upstream: mmv1/products/apigee/EndpointAttachment.yaml
   google_apigee_dns_zone:
     upstream: mmv1/products/apigee/DnsZone.yaml
+  google_apigee_space:
+    upstream: mmv1/products/apigee/Space.yaml
+  google_apigee_sync_authorization:
+    upstream: mmv1/products/apigee/SyncAuthorization.yaml
+  google_apigee_target_server:
+    upstream: mmv1/products/apigee/TargetServer.yaml
   # App Hub (applications + discovered service/workload registration)
   google_apphub_application:
     upstream: mmv1/products/apphub/Application.yaml

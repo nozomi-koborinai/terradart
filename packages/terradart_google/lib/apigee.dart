@@ -2,8 +2,9 @@
 // Run `terradart wrap` to regenerate.
 /// Apigee: organizations, runtime instances, environments, env groups,
 /// add-ons, data collectors, analytics datastores, NAT addresses,
-/// endpoint attachments, and DNS zones. Org/instance/env bill while
-/// provisioned (never_apply for apply-smoke).
+/// endpoint attachments, DNS zones, spaces, sync authorization, and
+/// target servers. Org/instance/env bill while provisioned
+/// (never_apply for apply-smoke).
 library;
 
 export 'src/apigee/google_apigee_addons_config.dart'
@@ -58,3 +59,12 @@ export 'src/apigee/google_apigee_organization.dart'
         ApigeeOrganizationRetention,
         ApigeeOrganizationRuntimeType,
         GoogleApigeeOrganization;
+export 'src/apigee/google_apigee_space.dart' show GoogleApigeeSpace;
+export 'src/apigee/google_apigee_sync_authorization.dart'
+    show GoogleApigeeSyncAuthorization;
+export 'src/apigee/google_apigee_target_server.dart'
+    show
+        ApigeeTargetServerProtocol,
+        ApigeeTargetServerSSlInfo,
+        ApigeeTargetServerSSlInfoCommonName,
+        GoogleApigeeTargetServer;
