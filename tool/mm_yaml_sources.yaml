@@ -112,6 +112,10 @@ files:
     upstream: mmv1/products/compute/NetworkFirewallPolicy.yaml
   google_compute_network_firewall_policy_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_node_group:
+    upstream: mmv1/products/compute/NodeGroup.yaml
+  google_compute_node_template:
+    upstream: mmv1/products/compute/NodeTemplate.yaml
   google_compute_region_network_firewall_policy:
     upstream: mmv1/products/compute/RegionNetworkFirewallPolicy.yaml
   google_compute_region_network_firewall_policy_rule:
