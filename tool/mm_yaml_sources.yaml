@@ -1278,6 +1278,18 @@ files:
     upstream: mmv1/products/edgenetwork/Network.yaml
   google_edgenetwork_subnet:
     upstream: mmv1/products/edgenetwork/Subnet.yaml
+  google_gkeonprem_bare_metal_admin_cluster:
+    upstream: mmv1/products/gkeonprem/BareMetalAdminCluster.yaml
+  google_gkeonprem_bare_metal_cluster:
+    upstream: mmv1/products/gkeonprem/BareMetalCluster.yaml
+  google_gkeonprem_bare_metal_node_pool:
+    upstream: mmv1/products/gkeonprem/BareMetalNodePool.yaml
+  google_gkeonprem_vmware_admin_cluster:
+    upstream: mmv1/products/gkeonprem/VmwareAdminCluster.yaml
+  google_gkeonprem_vmware_cluster:
+    upstream: mmv1/products/gkeonprem/VmwareCluster.yaml
+  google_gkeonprem_vmware_node_pool:
+    upstream: mmv1/products/gkeonprem/VmwareNodePool.yaml
   google_edgecontainer_cluster:
     upstream: mmv1/products/edgecontainer/Cluster.yaml
   google_edgecontainer_node_pool:

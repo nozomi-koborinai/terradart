@@ -1,0 +1,37 @@
+outputDir: gkeonprem
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// GKE on-prem / GDC **bare metal node pool** — worker nodes for a
+  /// [GoogleGkeonpremBareMetalCluster].
+  ///
+  /// **Cost / apply:** gcp-cost: GKE Enterprise / GDC `9186-F79E-3871` Bare
+  /// Metal SKU `297F-4642-B7A1` **$0.03288/h**. billing-behavior: requires
+  /// never_apply bare-metal cluster + physical hardware absent on
+  /// `terradart-validate`. **Never** wire into apply-smoke.
+  ///
+  /// Enable `gkeonprem.googleapis.com` before apply. [nodePoolConfig] is
+  /// required.
+
+paramOrder:
+  - name
+  - location
+  - bare_metal_cluster
+  - node_pool_config
+  - display_name
+  - annotations
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

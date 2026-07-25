@@ -1,0 +1,38 @@
+outputDir: gkeonprem
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// GKE on-prem / GDC **VMware node pool** — worker VMs for a
+  /// [GoogleGkeonpremVmwareCluster].
+  ///
+  /// **Cost / apply:** gcp-cost: GKE Enterprise / GDC `9186-F79E-3871` vSphere
+  /// SKU `82D9-AB10-CA55` **$0.03288/h**. billing-behavior: requires never_apply
+  /// VMware cluster + real vSphere hardware absent on `terradart-validate`.
+  /// **Never** wire into apply-smoke.
+  ///
+  /// Enable `gkeonprem.googleapis.com` before apply. [config] is required.
+
+paramOrder:
+  - name
+  - location
+  - vmware_cluster
+  - config
+  - on_prem_version
+  - display_name
+  - node_pool_autoscaling
+  - annotations
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

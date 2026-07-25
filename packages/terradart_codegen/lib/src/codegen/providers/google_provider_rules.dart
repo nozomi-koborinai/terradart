@@ -157,6 +157,8 @@ final class GoogleProviderRules extends ProviderRules {
 
     // Google Distributed Cloud Edge (`google_edgecontainer_*`; MM product edgecontainer).
     'edgecontainer': 'edgecontainer',
+    // GKE on-prem / GDC (`google_gkeonprem_*`; MM product gkeonprem).
+    'gkeonprem': 'gkeonprem',
 
     // Distributed Cloud Edge Network (`google_edgenetwork_*`).
     'edgenetwork': 'edgenetwork',

@@ -291,6 +291,11 @@ barrels:
       ///
       /// For clusters and node pools, see `container.dart`. Pair
       /// [GoogleGkeBackupBackupPlan] with [GoogleContainerCluster].
+  gkeonprem:
+    doc: |-
+      /// GKE on-prem (Google Distributed Cloud) — bare metal and VMware admin
+      /// clusters, user clusters, and node pools. Requires physical / vSphere
+      /// hardware plus GDC platform fees; never_apply for apply-smoke.
   hypercomputecluster:
     doc: |-
       /// Cluster Director (Hypercompute Cluster) — HPC clusters combining
