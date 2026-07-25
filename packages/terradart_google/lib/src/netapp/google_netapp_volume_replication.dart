@@ -119,7 +119,8 @@ final class GoogleNetappVolumeReplication extends Resource {
     required TfArg<String> name,
     required TfArg<String> location,
     required TfArg<String> volumeName,
-    required TfArg<String> replicationSchedule,
+    required TfArg<NetappVolumeReplicationReplicationSchedule>
+    replicationSchedule,
     NetappVolumeReplicationDestinationVolumeParameters?
     destinationVolumeParameters,
     TfArg<String>? description,

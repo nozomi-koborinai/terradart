@@ -4,6 +4,10 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 
+dartTypeOverrides:
+  os_type: NetappHostGroupOsType
+  type: NetappHostGroupType
+
 curatedDoc: |-
   /// NetApp Volumes **host group** (blocklist / allowlist of host addresses).
   ///

@@ -4,6 +4,9 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 
+dartTypeOverrides:
+  replication_schedule: NetappVolumeReplicationReplicationSchedule
+
 extraImports:
   - "import 'package:meta/meta.dart';"
 

@@ -36,7 +36,7 @@ final class GoogleNetappVolumeQuotaRule extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> volumeName,
-    required TfArg<String> type,
+    required TfArg<NetappVolumeQuotaRuleType> type,
     required TfArg<num> diskLimitMib,
     TfArg<String>? target,
     TfArg<String>? location,

@@ -4,6 +4,9 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 
+dartTypeOverrides:
+  type: NetappVolumeQuotaRuleType
+
 curatedDoc: |-
   /// NetApp Volumes **quota rule** on a [GoogleNetappVolume].
   ///
