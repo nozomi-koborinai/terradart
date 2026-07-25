@@ -154,6 +154,9 @@ final class GoogleProviderRules extends ProviderRules {
 
     // Google Distributed Cloud Edge (`google_edgecontainer_*`; MM product edgecontainer).
     'edgecontainer': 'edgecontainer',
+
+    // Distributed Cloud Edge Network (`google_edgenetwork_*`).
+    'edgenetwork': 'edgenetwork',
     // Parallelstore (`google_parallelstore_*`; MM product parallelstore).
     'parallelstore': 'parallelstore',
 

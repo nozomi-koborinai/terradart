@@ -1,0 +1,36 @@
+outputDir: edgenetwork
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Distributed Cloud Edge **network** — L3 isolation within a GDCE zone.
+  ///
+  /// **Cost / apply:** Same Google Distributed Cloud Edge hardware surface as
+  /// [GoogleEdgecontainerCluster] (`8A2D-5CB1-345B`, e.g. Connected Server
+  /// Gen1 SKU `007E-2D86-E472` **$3600/mo**). Requires physical GDCE zones
+  /// absent on `terradart-validate` — ships without a quickstart
+  /// (`tool/example_debt.yaml`). **Never** wire into apply-smoke.
+  ///
+  /// Enable `edgenetwork.googleapis.com` via [GoogleProjectService] before
+  /// apply. [zone] is a GDCE zone (e.g. `us-central1-edge-customer-a`).
+
+paramOrder:
+  - network_id
+  - location
+  - zone
+  - description
+  - mtu
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `network_id` / name segment.
+    TfRef<String> get networkIdRef =>
+        TfRef.attribute<String>(this, 'network_id');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

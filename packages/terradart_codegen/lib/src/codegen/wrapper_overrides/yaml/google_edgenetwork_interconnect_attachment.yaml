@@ -1,0 +1,40 @@
+outputDir: edgenetwork
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Distributed Cloud Edge **interconnect attachment** — VLAN attachment of
+  /// an interconnect to a [GoogleEdgenetworkNetwork].
+  ///
+  /// **Cost / apply:** Same GDCE hardware commitment surface
+  /// (`8A2D-5CB1-345B`, e.g. Connected Server Gen1 SKU `007E-2D86-E472`
+  /// **$3600/mo**), plus interconnect prerequisites. Requires physical edge
+  /// hardware absent on `terradart-validate` — ships without a quickstart
+  /// (`tool/example_debt.yaml`). **Never** wire into apply-smoke.
+  ///
+  /// Enable `edgenetwork.googleapis.com` via [GoogleProjectService] before
+  /// apply. [interconnect] and [network] are parent resource names.
+
+paramOrder:
+  - interconnect_attachment_id
+  - interconnect
+  - network
+  - vlan_id
+  - location
+  - zone
+  - description
+  - mtu
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `interconnect_attachment_id` / name segment.
+    TfRef<String> get interconnectAttachmentIdRef =>
+        TfRef.attribute<String>(this, 'interconnect_attachment_id');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
