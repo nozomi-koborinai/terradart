@@ -50,6 +50,7 @@ export 'container_azure.dart';
 export 'data.dart';
 export 'data_catalog.dart';
 export 'data_fusion.dart';
+export 'dataflow.dart';
 export 'dataplex.dart';
 export 'dataproc.dart';
 export 'dialogflow.dart';

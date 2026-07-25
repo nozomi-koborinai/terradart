@@ -55,6 +55,7 @@ void main() {
       expect(rules.outputDirAliases['blockchain'], 'blockchain');
       expect(rules.outputDirAliases['blockchain_node_engine'], 'blockchain');
       expect(rules.outputDirAliases['blockchainnodeengine'], 'blockchain');
+      expect(rules.outputDirAliases['dataflow'], 'dataflow');
     });
 
     test('universalGetters returns id + nameRef when both attrs are present',

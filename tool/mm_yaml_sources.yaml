@@ -124,12 +124,16 @@ files:
     upstream: null  # handwritten in terraform-provider-google (mmv1/products/containerazure has product.yaml only)
   google_container_azure_node_pool:
     upstream: null  # handwritten in terraform-provider-google (mmv1/products/containerazure has product.yaml only)
+  google_dataflow_job:
+    upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/dataflow/resource_dataflow_job.go); mmv1/products/dataflow has product.yaml only (Job.yaml 404, probed 2026-07-25)
   google_hypercomputecluster_cluster:
     upstream: mmv1/products/hypercomputecluster/Cluster.yaml
   google_network_security_firewall_endpoint:
     upstream: mmv1/products/networksecurity/FirewallEndpoint.yaml
   google_network_security_firewall_endpoint_association:
     upstream: mmv1/products/networksecurity/FirewallEndpointAssociation.yaml
+  google_oracle_database_cloud_exadata_infrastructure_exascale_config:
+    upstream: mmv1/products/oracledatabase/CloudExadataInfrastructureExascaleConfig.yaml
   google_sourcerepo_repository:
     upstream: mmv1/products/sourcerepo/Repository.yaml
   google_sourcerepo_repository_iam_member:

@@ -201,6 +201,10 @@ barrels:
   data_fusion:
     doc: |-
       /// Cloud Data Fusion — managed CDAP data integration instances.
+  dataflow:
+    doc: |-
+      /// Cloud Dataflow — managed batch/streaming pipeline jobs (worker vCPU
+      /// hours while running; never_apply for apply-smoke).
   dataplex:
     doc: |-
       /// Dataplex: governed data products, Universal Catalog metadata (entry groups /
@@ -376,7 +380,8 @@ barrels:
       /// unified querying.
   oracle:
     doc: |-
-      /// Oracle Database@Google Cloud — Autonomous Database, Base DB, Exadata, ODB, GoldenGate.
+      /// Oracle Database@Google Cloud — Autonomous Database, Base DB, Exadata
+      /// (incl. Exascale storage config; BMS capacity is never_apply), ODB, GoldenGate.
   os_config:
     doc: |-
       /// OS Config: VM Manager OS policy assignments and patch deployments.
