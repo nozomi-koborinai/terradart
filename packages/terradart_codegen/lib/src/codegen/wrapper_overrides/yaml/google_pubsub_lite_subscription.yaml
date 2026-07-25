@@ -1,0 +1,32 @@
+outputDir: pubsub_lite
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Pub/Sub Lite **subscription** on a [GooglePubsubLiteTopic].
+  ///
+  /// **Cost / apply:** subscriber throughput bills under Pub/Sub Lite
+  /// `3A1B-66C4-2BAE` (North America SKU `DB2E-0351-AE15` **$0.003125/MiBy·h**)
+  /// while capacity is allocated; parent topic/reservation are never_apply.
+  /// Debt-only on `terradart-validate`. **Never** wire into apply-smoke.
+
+paramOrder:
+  - name
+  - topic
+  - region
+  - zone
+  - delivery_config
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

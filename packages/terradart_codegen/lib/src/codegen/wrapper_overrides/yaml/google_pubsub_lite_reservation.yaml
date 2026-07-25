@@ -1,0 +1,32 @@
+outputDir: pubsub_lite
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Pub/Sub Lite **reservation** — reserved publish/subscribe throughput
+  /// capacity for Lite topics in a region.
+  ///
+  /// **Cost / apply:** Pub/Sub Lite `3A1B-66C4-2BAE` Reservation Throughput
+  /// Capacity Allocated North America SKU `0E37-3B5B-8275` **$0.00625/h**
+  /// (Default `576D-ADC9-9995` **$0.008/h**) while the reservation exists;
+  /// destroy stops the charge. Debt-only on `terradart-validate`. **Never**
+  /// wire into apply-smoke.
+  ///
+  /// Enable `pubsublite.googleapis.com` via [GoogleProjectService] before
+  /// apply. [throughputCapacity] is required (MiB/s units per product docs).
+
+paramOrder:
+  - name
+  - throughput_capacity
+  - region
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

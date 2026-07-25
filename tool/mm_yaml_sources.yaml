@@ -721,6 +721,12 @@ files:
     upstream: mmv1/products/pubsub/Topic.yaml
   google_pubsub_topic_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_pubsub_lite_reservation:
+    upstream: mmv1/products/pubsublite/Reservation.yaml
+  google_pubsub_lite_topic:
+    upstream: mmv1/products/pubsublite/Topic.yaml
+  google_pubsub_lite_subscription:
+    upstream: mmv1/products/pubsublite/Subscription.yaml
   google_scc_v2_project_notification_config:
     upstream: mmv1/products/securitycenterv2/ProjectNotificationConfig.yaml
   google_secret_manager_secret:

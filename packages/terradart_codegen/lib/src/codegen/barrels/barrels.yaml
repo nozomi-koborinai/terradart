@@ -380,6 +380,11 @@ barrels:
   pubsub:
     doc: |-
       /// Pub/Sub topics, subscriptions, schemas, and per-resource IAM bindings.
+  pubsub_lite:
+    doc: |-
+      /// Pub/Sub Lite — reserved throughput capacity, topics, and
+      /// subscriptions. Reservations bill while they exist (never_apply
+      /// for apply-smoke).
   scc:
     doc: |-
       /// Security Command Center (SCC) v2 — project notification configs that

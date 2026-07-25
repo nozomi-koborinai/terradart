@@ -47,6 +47,8 @@ void main() {
       expect(rules.outputDirAliases['container_azure'], 'container_azure');
       expect(
           rules.outputDirAliases['container_attached'], 'container_attached');
+      expect(rules.outputDirAliases['pubsub_lite'], 'pubsub_lite');
+      expect(rules.outputDirAliases['pubsublite'], 'pubsub_lite');
     });
 
     test('universalGetters returns id + nameRef when both attrs are present',

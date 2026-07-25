@@ -96,6 +96,7 @@ export 'project.dart';
 export 'provider.dart';
 export 'public_ca.dart';
 export 'pubsub.dart';
+export 'pubsub_lite.dart';
 export 'recaptcha.dart';
 export 'redis.dart';
 export 'scc.dart';
