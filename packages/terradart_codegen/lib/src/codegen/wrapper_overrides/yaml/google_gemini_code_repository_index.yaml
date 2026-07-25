@@ -1,0 +1,35 @@
+outputDir: gemini
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Gemini Code Assist **code repository index** — indexes connected source
+  /// repositories for repository-aware Code Assist.
+  ///
+  /// **Cost / apply:** gcp-cost: Duet AI `719A-983F-202D` Gemini Code Assist
+  /// subscription SKU `7743-4D2E-8A79` **$19/mo** (monthly `902A-4EC8-AB87`
+  /// **$22.8/mo**; Enterprise `78B4-81D7-89D8` **$45/mo**; Enterprise monthly
+  /// `B0A0-018B-6B14` **$54/mo`). billing-behavior: repository indexing sits on
+  /// the Code Assist subscription / entitlement path (seat fees while
+  /// subscribed). Not applyable on `terradart-validate`. **Never** wire into
+  /// apply-smoke.
+  ///
+  /// Enable `cloudaicompanion.googleapis.com` before apply.
+
+paramOrder:
+  - code_repository_index_id
+  - location
+  - kms_key
+  - labels
+  - force_destroy
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

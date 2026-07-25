@@ -357,6 +357,12 @@ GoogleApigeeSecurityFeedback: requires never_apply GoogleApigeeOrganization + Ad
 GoogleApigeeSecurityProfileV2: requires never_apply GoogleApigeeOrganization + Advanced API Security; deferred with the org Wave
 GoogleDiscoveryEngineLicenseConfig: gcp-cost Vertex AI Search 74B1-77CF-C302 Gemini Enterprise Standard monthly SKU 0532-C2F0-1DF0 $35/seat.mo — never_apply existence/seat subscription (License Manager class; MM exclude_delete); no applyable quickstart
 GoogleNetworkServicesGateway: gcp-cost Networking E505-1604-58F8 Cloud SWP Standard Gateway SKU 884B-E0E7-C3E4 $1.25/h — never_apply; no applyable quickstart on terradart-validate
+GoogleNetworkServicesEdgeCacheService: gcp-cost Networking E505-1604-58F8 Media CDN Capacity Reservation NA SKU 7393-8C37-77E1 $20000/mo (+ Edge Cache egress E2B8-D4FA-6E05 $0.02/GiBy) — never_apply; no applyable quickstart on terradart-validate
+GoogleNetworkServicesEdgeCacheOrigin: requires never_apply GoogleNetworkServicesEdgeCacheService; deferred with the Media CDN Edge Cache Wave
+GoogleNetworkServicesEdgeCacheKeyset: requires never_apply GoogleNetworkServicesEdgeCacheService; deferred with the Media CDN Edge Cache Wave
+GoogleGeminiCodeRepositoryIndex: gcp-cost Duet AI 719A-983F-202D Gemini Code Assist subscription SKU 7743-4D2E-8A79 $19/mo (Enterprise 78B4-81D7-89D8 $45/mo) — never_apply; seat/entitlement path; no applyable quickstart on terradart-validate
+GoogleGeminiCodeToolsSetting: gcp-cost Duet AI 719A-983F-202D Gemini Code Assist subscription SKU 7743-4D2E-8A79 $19/mo (Enterprise 78B4-81D7-89D8 $45/mo) — never_apply; seat/entitlement path; no applyable quickstart on terradart-validate
+GoogleGeminiCodeToolsSettingBinding: requires never_apply GoogleGeminiCodeToolsSetting (+ Code Assist subscription); deferred with the Code Assist tools Wave
 GoogleSecureSourceManagerHook: requires never_apply GoogleSecureSourceManagerInstance (+ repository); deferred with the SSM instance Wave
 GoogleSecureSourceManagerBranchRule: requires never_apply GoogleSecureSourceManagerInstance (+ repository); deferred with the SSM instance Wave
 GoogleBlockchainNodeEngineBlockchainNodes: gcp-cost Blockchain Node Engine 1749-9ED8-C6DC Ethereum Full SKU 8884-3FAF-A138 $0.69/h — never_apply; no applyable quickstart on terradart-validate

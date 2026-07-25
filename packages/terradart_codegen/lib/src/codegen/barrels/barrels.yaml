@@ -282,8 +282,9 @@ barrels:
       - "export 'src/firestore/firestore_fields.dart' show FirestoreFields, FirestoreReference, FirestoreGeoPoint;"
   gemini:
     doc: |-
-      /// Gemini for Google Cloud (Gemini Code Assist) — project/location settings:
-      /// enablement, logging, release channel, and data-sharing-with-Google.
+      /// Gemini for Google Cloud (Gemini Code Assist) — project/location settings
+      /// (enablement, logging, release channel, data-sharing) plus Code Assist
+      /// repository index / code tools (subscription seats; never_apply).
   gke_backup:
     doc: |-
       /// GKE Backup — backup/restore plans, channels, and plan-scoped IAM.
