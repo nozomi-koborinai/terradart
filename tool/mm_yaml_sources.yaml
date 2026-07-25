@@ -128,6 +128,14 @@ files:
     upstream: null  # handwritten in terraform-provider-google (mmv1/products/containerazure has product.yaml only)
   google_dataflow_job:
     upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/dataflow/resource_dataflow_job.go); mmv1/products/dataflow has product.yaml only (Job.yaml 404, probed 2026-07-25)
+  google_dialogflow_cx_agent:
+    upstream: mmv1/products/dialogflowcx/Agent.yaml
+  google_dialogflow_cx_generator:
+    upstream: mmv1/products/dialogflowcx/Generator.yaml
+  google_dialogflow_cx_security_settings:
+    upstream: mmv1/products/dialogflowcx/SecuritySettings.yaml
+  google_dialogflow_cx_tool:
+    upstream: mmv1/products/dialogflowcx/Tool.yaml
   google_discovery_engine_assistant:
     upstream: mmv1/products/discoveryengine/Assistant.yaml
   google_discovery_engine_chat_engine:
@@ -140,6 +148,8 @@ files:
     upstream: mmv1/products/discoveryengine/WidgetConfig.yaml
   google_hypercomputecluster_cluster:
     upstream: mmv1/products/hypercomputecluster/Cluster.yaml
+  google_kms_ekm_connection:
+    upstream: mmv1/products/kms/EkmConnection.yaml
   google_network_security_firewall_endpoint:
     upstream: mmv1/products/networksecurity/FirewallEndpoint.yaml
   google_network_security_firewall_endpoint_association:
@@ -355,6 +365,8 @@ files:
     upstream: mmv1/products/modelarmor/Template.yaml
   google_monitoring_alert_policy:
     upstream: mmv1/products/monitoring/AlertPolicy.yaml
+  google_spanner_instance_partition:
+    upstream: mmv1/products/spanner/InstancePartition.yaml
   google_storage_control_project_intelligence_config:
     upstream: mmv1/products/storagecontrol/ProjectIntelligenceConfig.yaml
   google_storage_bucket:

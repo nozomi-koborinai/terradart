@@ -1,0 +1,36 @@
+outputDir: dialogflow
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Dialogflow CX **generator** — LLM prompt generator used by CX agents /
+  /// playbooks.
+  ///
+  /// **Cost / apply:** gcp-cost: Cloud Dialogflow `FBC0-AA4A-C89A` Text
+  /// session SKU `A1CC-751A-CDCC` **$0.20**/session (plus generative model
+  /// usage on the agent path). billing-behavior: generators sit on the
+  /// Dialogflow CX / Agentspace surface deferred with never_apply
+  /// [GoogleDialogflowCxAgent]. **Never** wire into apply-smoke.
+
+paramOrder:
+  - display_name
+  - prompt_text
+  - parent
+  - language_code
+  - llm_model_settings
+  - model_parameter
+  - placeholders
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

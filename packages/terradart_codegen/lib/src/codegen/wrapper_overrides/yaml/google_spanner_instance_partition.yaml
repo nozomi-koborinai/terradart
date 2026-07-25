@@ -1,0 +1,42 @@
+outputDir: spanner
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Cloud Spanner **instance partition** — dedicated compute capacity
+  /// (nodes / processing units) carved out of a parent instance.
+  ///
+  /// **Cost / apply:** gcp-cost: Cloud Spanner `CC63-0873-48FD` Read-Write
+  /// Replica Enterprise Edition Iowa SKU `1D9F-E99D-5CBD` **$0.41/h**
+  /// (regional Server Node Zurich `07AA-3267-AE40` **$1.17/h**).
+  /// billing-behavior: [nodeCount] / [processingUnits] /
+  /// [autoscalingConfig] reserve Spanner compute while the partition
+  /// exists (one node ≈ 1000 PUs); destroy stops the charge. **Never**
+  /// wire into apply-smoke.
+  ///
+  /// Provide exactly one of [nodeCount], [processingUnits], or
+  /// [autoscalingConfig].
+
+paramOrder:
+  - name
+  - instance
+  - config
+  - display_name
+  - node_count
+  - processing_units
+  - autoscaling_config
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

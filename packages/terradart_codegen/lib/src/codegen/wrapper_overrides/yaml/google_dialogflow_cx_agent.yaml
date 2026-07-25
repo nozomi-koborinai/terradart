@@ -1,0 +1,56 @@
+outputDir: dialogflow
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Dialogflow CX **agent** — conversational agent (flows / playbooks /
+  /// tools) that drives billed CX sessions.
+  ///
+  /// **Cost / apply:** gcp-cost: Cloud Dialogflow `FBC0-AA4A-C89A` Text
+  /// session for Dialogflow CX agents SKU `A1CC-751A-CDCC` **$0.20**/session
+  /// (Audio session `9496-0679-69BE` **$0.45**/session; Text query
+  /// `2DA2-9861-0744` **$0.007**/op). billing-behavior: agents are the
+  /// Dialogflow CX / Agentspace runtime surface — apply-smoke traffic or
+  /// linked chat engines accrue session charges; not safe for
+  /// `terradart-validate`. **Never** wire into apply-smoke.
+  ///
+  /// Enable `dialogflow.googleapis.com` before apply.
+
+paramOrder:
+  - display_name
+  - location
+  - default_language_code
+  - time_zone
+  - description
+  - supported_language_codes
+  - security_settings
+  - start_playbook
+  - enable_stackdriver_logging
+  - enable_spell_correction
+  - enable_multi_language_training
+  - locked
+  - avatar_uri
+  - advanced_settings
+  - speech_to_text_settings
+  - text_to_speech_settings
+  - git_integration_settings
+  - gen_app_builder_settings
+  - answer_feedback_settings
+  - personalization_settings
+  - client_certificate_settings
+  - delete_chat_engine_on_destroy
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

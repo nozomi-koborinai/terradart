@@ -13,6 +13,12 @@ export 'src/kms/google_kms_crypto_key_iam_member.dart'
     show GoogleKmsCryptoKeyIamMember;
 export 'src/kms/google_kms_crypto_key_version.dart'
     show GoogleKmsCryptoKeyVersion, KmsCryptoKeyVersionState;
+export 'src/kms/google_kms_ekm_connection.dart'
+    show
+        GoogleKmsEkmConnection,
+        KmsEkmConnectionKeyManagementMode,
+        KmsEkmConnectionServiceResolvers,
+        KmsEkmConnectionServiceResolversServerCertificates;
 export 'src/kms/google_kms_key_ring.dart' show GoogleKmsKeyRing;
 export 'src/kms/google_kms_key_ring_iam_member.dart'
     show GoogleKmsKeyRingIamMember;

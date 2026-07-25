@@ -12,3 +12,10 @@ export 'src/spanner/google_spanner_instance.dart'
         SpannerInstanceEdition,
         SpannerInstanceInstanceType,
         SpannerInstanceState;
+export 'src/spanner/google_spanner_instance_partition.dart'
+    show
+        GoogleSpannerInstancePartition,
+        SpannerInstancePartitionAutoscalingConfig,
+        SpannerInstancePartitionAutoscalingConfigAutoscalingLimits,
+        SpannerInstancePartitionAutoscalingConfigAutoscalingTargets,
+        SpannerInstancePartitionState;

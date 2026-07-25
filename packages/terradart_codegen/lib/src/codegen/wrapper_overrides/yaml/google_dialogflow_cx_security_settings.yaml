@@ -1,0 +1,47 @@
+outputDir: dialogflow
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  redaction_scope: DialogflowCxSecuritySettingsRedactionScope
+  redaction_strategy: DialogflowCxSecuritySettingsRedactionStrategy
+  retention_strategy: DialogflowCxSecuritySettingsRetentionStrategy
+
+curatedDoc: |-
+  /// Dialogflow CX **security settings** — redaction / retention / audio
+  /// export policy attached to CX agents.
+  ///
+  /// **Cost / apply:** gcp-cost: Cloud Dialogflow `FBC0-AA4A-C89A` Text
+  /// session SKU `A1CC-751A-CDCC` **$0.20**/session (Audio `9496-0679-69BE`
+  /// **$0.45**/session). billing-behavior: security settings configure the
+  /// Dialogflow CX agent path that accrues session charges; deferred with
+  /// never_apply [GoogleDialogflowCxAgent]. **Never** wire into
+  /// apply-smoke.
+
+paramOrder:
+  - display_name
+  - location
+  - redaction_strategy
+  - redaction_scope
+  - inspect_template
+  - deidentify_template
+  - retention_window_days
+  - retention_strategy
+  - purge_data_types
+  - audio_export_settings
+  - insights_export_settings
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
