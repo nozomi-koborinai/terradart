@@ -1,0 +1,32 @@
+outputDir: apigee
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Apigee **environment debug mask** — configures which request/response
+  /// fields are masked in debug sessions for an environment.
+  ///
+  /// **Cost / apply:** gcp-cost: no DebugMask SKU under Apigee
+  /// `1C2D-8C78-EC58` (list_skus keyword Debug/Mask → 0). billing-behavior:
+  /// requires never_apply [GoogleApigeeEnvironment] (Active Base Environment
+  /// Usage Hours `C112-9373-5FC4` **$0.50/h**+). Debt-only on
+  /// `terradart-validate`. **Never** wire into apply-smoke.
+
+paramOrder:
+  - env_id
+  - fault_x_paths
+  - namespaces
+  - request_json_paths
+  - request_x_paths
+  - response_json_paths
+  - response_x_paths
+  - variables
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -1,0 +1,49 @@
+outputDir: dataproc
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Dataproc **job** — submits Hadoop / Spark / Hive / Pig / Presto /
+  /// PySpark / SparkSQL work to a classic cluster (or an ephemeral one).
+  ///
+  /// **Cost / apply:** gcp-cost: Dataproc `363B-8851-170D` list_skus
+  /// us-central1 returns Serverless DCU/accelerator SKUs only (Batch DCU
+  /// `EC7A-EF05-537E` **$0.06/h**; Interactive DCU `A486-6040-07FE`
+  /// **$0.089/h**) — no classic job premium SKU after MCP lookup.
+  /// billing-behavior: submitting the job starts workers on a Dataproc
+  /// cluster (often never_apply [GoogleDataprocCluster]) or materializes
+  /// GCE VMs for an ephemeral cluster (+ Dataproc premium per product
+  /// docs) while the job runs; destroy / completion stops those charges.
+  /// Too expensive for apply-smoke even once — debt-only on
+  /// `terradart-validate`. **Never** wire into apply-smoke.
+  ///
+  /// Provide exactly one job-config block (`spark_config`,
+  /// `pyspark_config`, …) plus [placement]. Enable `dataproc.googleapis.com`
+  /// before apply.
+
+paramOrder:
+  - region
+  - placement
+  - reference
+  - scheduling
+  - hadoop_config
+  - hive_config
+  - pig_config
+  - presto_config
+  - pyspark_config
+  - spark_config
+  - sparksql_config
+  - force_delete
+  - wait_for_completion
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

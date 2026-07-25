@@ -1,0 +1,29 @@
+outputDir: apigee
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Apigee **flow hook** — attaches a shared flow to a flow-hook point in
+  /// an environment (`PreProxyFlowHook`, `PostProxyFlowHook`, …).
+  ///
+  /// **Cost / apply:** gcp-cost: no FlowHook SKU under Apigee
+  /// `1C2D-8C78-EC58` (list_skus keyword Flow/Hook → Proxy/Shared Flow
+  /// Deployment Unit SKUs only, e.g. Base `20F4-DE1D-0E80`).
+  /// billing-behavior: requires never_apply [GoogleApigeeOrganization] /
+  /// [GoogleApigeeEnvironment] / [GoogleApigeeSharedflow]. Debt-only on
+  /// `terradart-validate`. **Never** wire into apply-smoke.
+
+paramOrder:
+  - org_id
+  - environment
+  - flow_hook_point
+  - sharedflow
+  - description
+  - continue_on_error
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

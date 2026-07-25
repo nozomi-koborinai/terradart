@@ -1,0 +1,29 @@
+outputDir: apigee
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Apigee **shared flow deployment** — deploys a shared-flow revision to
+  /// an environment.
+  ///
+  /// **Cost / apply:** gcp-cost: Apigee `1C2D-8C78-EC58` Proxy/Shared Flow
+  /// Deployment Unit Usage Hours Included in Base Environment SKU
+  /// `20F4-DE1D-0E80` (Intermediate `4836-1B91-161A`; Comprehensive
+  /// `477D-FA48-D913` / overage `71C2-1AC1-805B`). billing-behavior: requires
+  /// never_apply [GoogleApigeeOrganization] / [GoogleApigeeEnvironment] /
+  /// [GoogleApigeeSharedflow] (environment usage hours **$0.50–$4.70/h**).
+  /// Debt-only on `terradart-validate`. **Never** wire into apply-smoke.
+
+paramOrder:
+  - org_id
+  - environment
+  - sharedflow_id
+  - revision
+  - service_account
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
