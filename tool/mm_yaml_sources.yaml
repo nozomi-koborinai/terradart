@@ -132,6 +132,12 @@ files:
     upstream: mmv1/products/networksecurity/FirewallEndpoint.yaml
   google_network_security_firewall_endpoint_association:
     upstream: mmv1/products/networksecurity/FirewallEndpointAssociation.yaml
+  google_network_security_tls_inspection_policy:
+    upstream: mmv1/products/networksecurity/TlsInspectionPolicy.yaml
+  google_network_security_security_profile:
+    upstream: mmv1/products/networksecurity/SecurityProfile.yaml
+  google_network_security_security_profile_group:
+    upstream: mmv1/products/networksecurity/SecurityProfileGroup.yaml
   google_oracle_database_cloud_exadata_infrastructure_exascale_config:
     upstream: mmv1/products/oracledatabase/CloudExadataInfrastructureExascaleConfig.yaml
   google_sourcerepo_repository:
@@ -595,6 +601,12 @@ files:
     upstream: mmv1/products/chronicle/CustomList.yaml
   google_chronicle_environment:
     upstream: mmv1/products/chronicle/Environment.yaml
+  google_chronicle_rule:
+    upstream: mmv1/products/chronicle/Rule.yaml
+  google_chronicle_rule_deployment:
+    upstream: mmv1/products/chronicle/RuleDeployment.yaml
+  google_chronicle_retrohunt:
+    upstream: mmv1/products/chronicle/Retrohunt.yaml
   google_integration_connectors_connection:
     upstream: mmv1/products/integrationconnectors/Connection.yaml
   google_integration_connectors_endpoint_attachment:

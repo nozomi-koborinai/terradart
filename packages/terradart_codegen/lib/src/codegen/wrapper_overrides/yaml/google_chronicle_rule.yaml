@@ -1,0 +1,38 @@
+outputDir: chronicle
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Chronicle (Google SecOps) **detection rule** — YARA-L (or equivalent)
+  /// rule text compiled against a Chronicle instance.
+  ///
+  /// **Cost / apply:** gcp-cost: Chronicle `144D-4907-2A21` Bytes of data
+  /// ingested in US for the Enterprise Plus package SKU `0310-AEE4-5DC1`
+  /// **$6.58/GBy** (plus dollar-based SecOps commitments). billing-behavior:
+  /// rules sit on an entitlement-gated Chronicle instance; pairing with
+  /// [GoogleChronicleRuleDeployment] / [GoogleChronicleRetrohunt] drives
+  /// detection and historical reprocessing against billed ingestion. Not
+  /// applyable on `terradart-validate`. **Never** wire into apply-smoke.
+  ///
+  /// Enable `chronicle.googleapis.com` before apply. [instance] is the
+  /// Chronicle instance ID in [location] (e.g. `us`). Set [text] to the
+  /// rule body; [ruleId] is optional (server may assign).
+
+paramOrder:
+  - text
+  - location
+  - instance
+  - rule_id
+  - scope
+  - etag
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

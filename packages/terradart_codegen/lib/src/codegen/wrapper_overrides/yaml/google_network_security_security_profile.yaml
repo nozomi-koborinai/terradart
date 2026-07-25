@@ -1,0 +1,51 @@
+outputDir: network
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+dartTypeOverrides:
+  type: NetworkSecuritySecurityProfileType
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Network Security **security profile** — threat-prevention / URL-filter /
+  /// custom intercept or mirroring profile attached via a security profile
+  /// group to Cloud NGFW Enterprise (or out-of-band integrations).
+  ///
+  /// **Cost / apply:** gcp-cost: Network Security `E749-01A2-AE1F` Cloud NGFW
+  /// Enterprise Endpoint Uptime SKU `B778-1457-4A22` **$1.75/h** (plus Cloud
+  /// NGFW Enterprise Data Processing `994B-C7B9-C1F7` **$0.0193/GiBy** when
+  /// traffic is inspected). billing-behavior: profiles configure NGFW / out-of-
+  /// band inspection paths; a working stack implies expensive endpoint uptime
+  /// (and data processing). Org-scoped parents are common. Debt-only —
+  /// **Never** wire into apply-smoke.
+  ///
+  /// Enable `networksecurity.googleapis.com` before apply. [type] selects the
+  /// profile kind (`THREAT_PREVENTION`, `URL_FILTERING`, …).
+
+paramOrder:
+  - name
+  - type
+  - location
+  - parent
+  - description
+  - threat_prevention_profile
+  - url_filtering_profile
+  - custom_intercept_profile
+  - custom_mirroring_profile
+  - labels
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `self_link` attribute.
+    TfRef<String> get selfLinkRef =>
+        TfRef.attribute<String>(this, 'self_link');
