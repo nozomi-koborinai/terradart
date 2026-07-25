@@ -110,6 +110,8 @@ files:
     upstream: mmv1/products/compute/InterconnectAttachmentGroup.yaml
   google_compute_interconnect_group:
     upstream: mmv1/products/compute/InterconnectGroup.yaml
+  google_compute_reservation:
+    upstream: mmv1/products/compute/Reservation.yaml
   google_compute_storage_pool:
     upstream: mmv1/products/compute/StoragePool.yaml
   google_container_attached_cluster:
@@ -126,6 +128,16 @@ files:
     upstream: null  # handwritten in terraform-provider-google (mmv1/products/containerazure has product.yaml only)
   google_dataflow_job:
     upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/dataflow/resource_dataflow_job.go); mmv1/products/dataflow has product.yaml only (Job.yaml 404, probed 2026-07-25)
+  google_discovery_engine_assistant:
+    upstream: mmv1/products/discoveryengine/Assistant.yaml
+  google_discovery_engine_chat_engine:
+    upstream: mmv1/products/discoveryengine/ChatEngine.yaml
+  google_discovery_engine_recommendation_engine:
+    upstream: mmv1/products/discoveryengine/RecommendationEngine.yaml
+  google_discovery_engine_user_store:
+    upstream: mmv1/products/discoveryengine/UserStore.yaml
+  google_discovery_engine_widget_config:
+    upstream: mmv1/products/discoveryengine/WidgetConfig.yaml
   google_hypercomputecluster_cluster:
     upstream: mmv1/products/hypercomputecluster/Cluster.yaml
   google_network_security_firewall_endpoint:

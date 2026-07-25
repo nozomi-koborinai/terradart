@@ -1,0 +1,38 @@
+outputDir: discovery_engine
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Vertex AI Search / Gemini Enterprise **widget config** — search /
+  /// generative UI widget attached to an engine (Agentspace surface).
+  ///
+  /// **Cost / apply:** gcp-cost: Vertex AI Search `74B1-77CF-C302` Gemini
+  /// Enterprise Standard monthly SKU `0532-C2F0-1DF0` **$35/seat·mo** (Plus
+  /// `4EDF-A125-F89E` **$60/mo**). billing-behavior: widget configs sit on
+  /// the Gemini Enterprise / Agentspace entitlement path; MM
+  /// `exclude_delete: true` so Terraform cannot destroy them. **Never**
+  /// wire into apply-smoke.
+
+paramOrder:
+  - location
+  - engine_id
+  - collection_id
+  - widget_config_id
+  - access_settings
+  - ui_settings
+  - ui_branding
+  - homepage_setting
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

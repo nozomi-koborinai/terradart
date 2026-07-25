@@ -4,6 +4,21 @@
 /// and Gemini Enterprise license configs (never_apply — seat subscriptions).
 library;
 
+export 'src/discovery_engine/google_discovery_engine_assistant.dart'
+    show
+        DiscoveryEngineAssistantCustomerPolicy,
+        DiscoveryEngineAssistantCustomerPolicyBannedPhrases,
+        DiscoveryEngineAssistantCustomerPolicyModelArmorConfig,
+        DiscoveryEngineAssistantGenerationConfig,
+        DiscoveryEngineAssistantGenerationConfigSystemInstruction,
+        GoogleDiscoveryEngineAssistant;
+export 'src/discovery_engine/google_discovery_engine_chat_engine.dart'
+    show
+        DiscoveryEngineChatEngineChatEngineConfig,
+        DiscoveryEngineChatEngineChatEngineConfigAgentCreationConfig,
+        DiscoveryEngineChatEngineCommonConfig,
+        DiscoveryEngineChatEngineIndustryVertical,
+        GoogleDiscoveryEngineChatEngine;
 export 'src/discovery_engine/google_discovery_engine_data_store.dart'
     show
         DiscoveryEngineDataStoreContentConfig,
@@ -16,6 +31,17 @@ export 'src/discovery_engine/google_discovery_engine_license_config.dart'
         DiscoveryEngineLicenseConfigSubscriptionTerm,
         DiscoveryEngineLicenseConfigSubscriptionTier,
         GoogleDiscoveryEngineLicenseConfig;
+export 'src/discovery_engine/google_discovery_engine_recommendation_engine.dart'
+    show
+        DiscoveryEngineRecommendationEngineCommonConfig,
+        DiscoveryEngineRecommendationEngineIndustryVertical,
+        DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfig,
+        DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEngineFeaturesConfig,
+        DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEngineFeaturesConfigMostPopularConfig,
+        DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigEngineFeaturesConfigRecommendedForYouConfig,
+        DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigOptimizationObjectiveConfig,
+        DiscoveryEngineRecommendationEngineMediaRecommendationEngineConfigTrainingState,
+        GoogleDiscoveryEngineRecommendationEngine;
 export 'src/discovery_engine/google_discovery_engine_search_engine.dart'
     show
         DiscoveryEngineSearchEngineIndustryVertical,
@@ -28,3 +54,23 @@ export 'src/discovery_engine/google_discovery_engine_search_engine_iam_member.da
     show GoogleDiscoveryEngineSearchEngineIamMember;
 export 'src/discovery_engine/google_discovery_engine_search_engine_iam_policy.dart'
     show GoogleDiscoveryEngineSearchEngineIamPolicy;
+export 'src/discovery_engine/google_discovery_engine_user_store.dart'
+    show GoogleDiscoveryEngineUserStore;
+export 'src/discovery_engine/google_discovery_engine_widget_config.dart'
+    show
+        DiscoveryEngineWidgetConfigAccessSettings,
+        DiscoveryEngineWidgetConfigHomepageSetting,
+        DiscoveryEngineWidgetConfigHomepageSettingShortcuts,
+        DiscoveryEngineWidgetConfigHomepageSettingShortcutsIcon,
+        DiscoveryEngineWidgetConfigUiBranding,
+        DiscoveryEngineWidgetConfigUiBrandingLogo,
+        DiscoveryEngineWidgetConfigUiSettings,
+        DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigs,
+        DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigsFacetField,
+        DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigsFieldsUiComponentsMap,
+        DiscoveryEngineWidgetConfigUiSettingsDataStoreUiConfigsFieldsUiComponentsMapDeviceVisibility,
+        DiscoveryEngineWidgetConfigUiSettingsGenerativeAnswerConfig,
+        DiscoveryEngineWidgetConfigUiSettingsGenerativeAnswerConfigImageSource,
+        DiscoveryEngineWidgetConfigUiSettingsInteractionType,
+        DiscoveryEngineWidgetConfigUiSettingsResultDescriptionType,
+        GoogleDiscoveryEngineWidgetConfig;
