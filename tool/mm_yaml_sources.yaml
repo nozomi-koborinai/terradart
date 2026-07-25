@@ -96,6 +96,18 @@ files:
     upstream: mmv1/products/compute/InterconnectAttachmentGroup.yaml
   google_compute_interconnect_group:
     upstream: mmv1/products/compute/InterconnectGroup.yaml
+  google_container_attached_cluster:
+    upstream: mmv1/products/containerattached/Cluster.yaml
+  google_container_aws_cluster:
+    upstream: null  # handwritten in terraform-provider-google (mmv1/products/containeraws has product.yaml only; probe 404 for Cluster.yaml)
+  google_container_aws_node_pool:
+    upstream: null  # handwritten in terraform-provider-google (mmv1/products/containeraws has product.yaml only)
+  google_container_azure_client:
+    upstream: null  # handwritten in terraform-provider-google (mmv1/products/containerazure has product.yaml only)
+  google_container_azure_cluster:
+    upstream: null  # handwritten in terraform-provider-google (mmv1/products/containerazure has product.yaml only)
+  google_container_azure_node_pool:
+    upstream: null  # handwritten in terraform-provider-google (mmv1/products/containerazure has product.yaml only)
   google_hypercomputecluster_cluster:
     upstream: mmv1/products/hypercomputecluster/Cluster.yaml
   google_sourcerepo_repository:

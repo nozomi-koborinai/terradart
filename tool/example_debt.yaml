@@ -188,6 +188,12 @@ GoogleDataFusionInstance: gcp-cost Cloud Data Fusion 0D19-EC86-35B0 Developer SK
 # ships without an example.
 GoogleComputeInterconnectAttachmentGroup: gcp-cost Compute Engine 6F81-5844-456A Cloud Interconnect 10Gbps Dedicated circuit SKU B8C8-2F76-E648 $2.328/h — never_apply physical interconnect family; no applyable quickstart on terradart-validate
 GoogleComputeInterconnectGroup: gcp-cost Compute Engine 6F81-5844-456A Cloud Interconnect 10Gbps Dedicated circuit SKU B8C8-2F76-E648 $2.328/h — never_apply physical interconnect family; no applyable quickstart on terradart-validate
+GoogleContainerAttachedCluster: gcp-cost GKE Enterprise / GDC 9186-F79E-3871 Trial Attached SKU CA50-C2AE-45E8 $0/h (catalog); needs real external cluster — never_apply; no applyable quickstart on terradart-validate
+GoogleContainerAwsCluster: gcp-cost GKE Enterprise / GDC 9186-F79E-3871 Multicloud (AWS) SKU 24A0-2EF1-8ACB $0.00822/h (+ AWS EC2) — never_apply; needs real AWS account
+GoogleContainerAwsNodePool: requires never_apply GoogleContainerAwsCluster (+ AWS EC2); deferred with the AWS cluster
+GoogleContainerAzureClient: requires never_apply GoogleContainerAzureCluster family; deferred with the Azure cluster
+GoogleContainerAzureCluster: gcp-cost GKE Enterprise / GDC 9186-F79E-3871 Multicloud (Azure) SKU 688E-3D16-399E $0.00822/h (+ Azure VMs) — never_apply; needs real Azure tenant
+GoogleContainerAzureNodePool: requires never_apply GoogleContainerAzureCluster (+ Azure VMs); deferred with the Azure cluster
 GoogleHypercomputeclusterCluster: gcp-cost no Cluster Director SKU (list_services empty); Cloud TPU E000-3F24-B8AA TPU-v2 USA SKU 3B3D-4CB4-AECC $4.5/h — never_apply HPC capacity; no applyable quickstart on terradart-validate
 GoogleComputeNodeGroup: gcp-cost Compute Engine 6F81-5844-456A N4A Sole Tenancy Instance Core Iowa SKU 6DD8-C2A8-A106 $0.02646/h (+ Premium 0F1E-4428-FCCB $0.002646/h) — never_apply dedicated nodes; no applyable quickstart on terradart-validate
 GoogleComputeNodeTemplate: gcp-cost Compute Engine 6F81-5844-456A sole-tenancy SKUs bill via node groups (e.g. N4A Core Iowa 6DD8-C2A8-A106 $0.02646/h) — never_apply family; deferred with GoogleComputeNodeGroup

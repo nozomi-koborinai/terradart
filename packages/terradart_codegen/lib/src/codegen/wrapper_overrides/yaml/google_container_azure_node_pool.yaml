@@ -1,0 +1,38 @@
+outputDir: container_azure
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// GKE on Azure **node pool** — Azure VM-backed workers for a
+  /// [GoogleContainerAzureCluster].
+  ///
+  /// **Cost / apply:** Same GKE Enterprise Multicloud (Azure) management fee
+  /// (SKU `688E-3D16-399E` **$0.00822/h** on `9186-F79E-3871`) plus Azure VMs.
+  /// Requires never_apply parent cluster / Azure tenant — debt-only. **Never**
+  /// wire into apply-smoke.
+
+paramOrder:
+  - name
+  - location
+  - cluster
+  - subnet_id
+  - version
+  - autoscaling
+  - config
+  - max_pods_constraint
+  - management
+  - annotations
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

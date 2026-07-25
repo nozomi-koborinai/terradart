@@ -1,0 +1,40 @@
+outputDir: container_aws
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// GKE on AWS **node pool** — EC2-backed workers for a
+  /// [GoogleContainerAwsCluster].
+  ///
+  /// **Cost / apply:** Same GKE Enterprise Multicloud (AWS) management fee
+  /// surface (SKU `24A0-2EF1-8ACB` **$0.00822/h** on `9186-F79E-3871`) plus
+  /// AWS EC2 for nodes. Requires never_apply parent cluster / AWS account —
+  /// debt-only. **Never** wire into apply-smoke.
+
+paramOrder:
+  - name
+  - location
+  - cluster
+  - subnet_id
+  - version
+  - autoscaling
+  - config
+  - max_pods_constraint
+  - management
+  - kubelet_config
+  - update_settings
+  - annotations
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

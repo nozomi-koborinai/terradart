@@ -1,0 +1,48 @@
+outputDir: container_attached
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// GKE **attached cluster** — registers an existing conformant Kubernetes
+  /// cluster with a Fleet (GKE Enterprise / GDC Attached Clusters).
+  ///
+  /// **Cost / apply:** Cloud Billing Catalog lists GKE Enterprise Trial /
+  /// GDC (Attached Clusters) SKU `CA50-C2AE-45E8` at **$0/h** after MCP
+  /// `get_sku_price`; production attached clusters still require a real
+  /// external Kubernetes cluster and GKE Enterprise entitlement (related
+  /// Multicloud management fees e.g. AWS SKU `24A0-2EF1-8ACB` **$0.00822/h**
+  /// on `9186-F79E-3871`). Cannot apply on standalone `terradart-validate` —
+  /// debt-only. **Never** wire into apply-smoke.
+  ///
+  /// Enable `gkehub.googleapis.com` / attached APIs via [GoogleProjectService]
+  /// before apply. [fleet] and [oidcConfig] are required.
+
+paramOrder:
+  - name
+  - location
+  - distribution
+  - platform_version
+  - fleet
+  - oidc_config
+  - authorization
+  - binary_authorization
+  - logging_config
+  - monitoring_config
+  - proxy_config
+  - security_posture_config
+  - description
+  - annotations
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

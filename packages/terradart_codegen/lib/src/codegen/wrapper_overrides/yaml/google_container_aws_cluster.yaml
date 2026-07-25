@@ -1,0 +1,42 @@
+outputDir: container_aws
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// GKE on AWS **cluster** — multi-cloud control plane on Amazon Web Services,
+  /// registered to a Fleet.
+  ///
+  /// **Cost / apply:** GKE Enterprise Multicloud (AWS) SKU `24A0-2EF1-8ACB`
+  /// **$0.00822/h** (service `9186-F79E-3871`) plus AWS EC2 / ELB for the
+  /// control plane and node pools. Needs a real AWS account and VPC — debt-only
+  /// on `terradart-validate`. **Never** wire into apply-smoke.
+  ///
+  /// Enable `gkemulticloud.googleapis.com` via [GoogleProjectService] before
+  /// apply. [authorization], [controlPlane], [fleet], and [networking] are
+  /// required.
+
+paramOrder:
+  - name
+  - location
+  - aws_region
+  - authorization
+  - control_plane
+  - fleet
+  - networking
+  - binary_authorization
+  - description
+  - annotations
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
