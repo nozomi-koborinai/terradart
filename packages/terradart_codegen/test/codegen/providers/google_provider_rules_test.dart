@@ -41,7 +41,8 @@ void main() {
       expect(rules.outputDirAliases['edgecontainer'], 'edgecontainer');
       expect(rules.outputDirAliases['edgenetwork'], 'edgenetwork');
       expect(rules.outputDirAliases['vmwareengine'], 'vmwareengine');
-      expect(rules.outputDirAliases['hypercomputecluster'], 'hypercomputecluster');
+      expect(
+          rules.outputDirAliases['hypercomputecluster'], 'hypercomputecluster');
     });
 
     test('universalGetters returns id + nameRef when both attrs are present',
