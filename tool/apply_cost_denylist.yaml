@@ -275,6 +275,9 @@ google_document_ai_processor: safe  # apply-verified safe (existing example)
 google_edgecontainer_cluster: never_apply  # gcp-cost: Google Distributed Cloud Edge 8A2D-5CB1-345B Connected Server Gen1 64vCPU FI 6mo SKU 007E-2D86-E472 $3600/mo (hardware+SW commitment SKUs) — billing-behavior: physical GDCE edge hardware / long commitments; no applyable standalone-project quickstart; never apply-smoke
 google_edgecontainer_node_pool: never_apply  # gcp-cost: Google Distributed Cloud Edge 8A2D-5CB1-345B Connected Server Gen1 SKU 007E-2D86-E472 $3600/mo (same hardware commitment surface as google_edgecontainer_cluster) — billing-behavior: requires parent GDCE cluster + physical edge machines; never apply-smoke
 google_edgecontainer_vpn_connection: never_apply  # gcp-cost: Google Distributed Cloud Edge 8A2D-5CB1-345B Connected Server Gen1 SKU 007E-2D86-E472 $3600/mo (parent cluster hardware) — billing-behavior: requires parent GDCE cluster (+ Cloud VPN/Router when wired); never apply-smoke
+google_edgenetwork_interconnect_attachment: never_apply  # gcp-cost: Google Distributed Cloud Edge 8A2D-5CB1-345B Connected Server Gen1 SKU 007E-2D86-E472 $3600/mo (same hardware as edgecontainer) — billing-behavior: requires physical GDCE interconnect + zone; never apply-smoke
+google_edgenetwork_network: never_apply  # gcp-cost: Google Distributed Cloud Edge 8A2D-5CB1-345B Connected Server Gen1 SKU 007E-2D86-E472 $3600/mo — billing-behavior: L3 network on physical GDCE zone; never apply-smoke
+google_edgenetwork_subnet: never_apply  # gcp-cost: Google Distributed Cloud Edge 8A2D-5CB1-345B Connected Server Gen1 SKU 007E-2D86-E472 $3600/mo — billing-behavior: subnet on physical GDCE network/zone; never apply-smoke
 google_essential_contacts_contact: safe  # apply-verified safe (existing example)
 google_filestore_backup: safe  # apply-verified safe (existing example)
 google_firestore_backup_schedule: safe  # apply-verified safe (existing example)

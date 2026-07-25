@@ -1,0 +1,40 @@
+outputDir: edgenetwork
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Distributed Cloud Edge **subnet** — CIDR range inside a
+  /// [GoogleEdgenetworkNetwork].
+  ///
+  /// **Cost / apply:** Same GDCE hardware commitment surface
+  /// (`8A2D-5CB1-345B`, e.g. Connected Server Gen1 SKU `007E-2D86-E472`
+  /// **$3600/mo**). Requires a real edge network / zone absent on
+  /// `terradart-validate` — ships without a quickstart
+  /// (`tool/example_debt.yaml`). **Never** wire into apply-smoke.
+  ///
+  /// Enable `edgenetwork.googleapis.com` via [GoogleProjectService] before
+  /// apply. [network] is the parent network resource name.
+
+paramOrder:
+  - subnet_id
+  - network
+  - location
+  - zone
+  - ipv4_cidr
+  - ipv6_cidr
+  - vlan_id
+  - description
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `subnet_id` / name segment.
+    TfRef<String> get subnetIdRef =>
+        TfRef.attribute<String>(this, 'subnet_id');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

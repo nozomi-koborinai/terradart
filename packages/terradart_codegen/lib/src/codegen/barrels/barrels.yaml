@@ -202,6 +202,11 @@ barrels:
     doc: |-
       /// Google Distributed Cloud Edge — Kubernetes clusters on edge hardware
       /// (requires physical GDCE machines; not applyable on a standalone project).
+  edgenetwork:
+    doc: |-
+      /// Google Distributed Cloud Edge Network — L3 networks, subnets, and
+      /// interconnect attachments on physical GDCE zones (not applyable on a
+      /// standalone project).
   eventarc:
     doc: |-
       /// Eventarc — channels, triggers, pipelines, message buses, and API sources

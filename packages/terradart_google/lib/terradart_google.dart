@@ -52,6 +52,7 @@ export 'dlp.dart';
 export 'dns.dart';
 export 'document_ai.dart';
 export 'edgecontainer.dart';
+export 'edgenetwork.dart';
 export 'essential_contacts.dart';
 export 'eventarc.dart';
 export 'filestore.dart';

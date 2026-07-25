@@ -1070,6 +1070,12 @@ files:
     upstream: mmv1/products/dlp/StoredInfoType.yaml
   google_data_loss_prevention_job_trigger:
     upstream: mmv1/products/dlp/JobTrigger.yaml
+  google_edgenetwork_interconnect_attachment:
+    upstream: mmv1/products/edgenetwork/InterconnectAttachment.yaml
+  google_edgenetwork_network:
+    upstream: mmv1/products/edgenetwork/Network.yaml
+  google_edgenetwork_subnet:
+    upstream: mmv1/products/edgenetwork/Subnet.yaml
   google_edgecontainer_cluster:
     upstream: mmv1/products/edgecontainer/Cluster.yaml
   google_edgecontainer_node_pool:
