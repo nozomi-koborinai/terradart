@@ -1,0 +1,38 @@
+outputDir: apigee
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Apigee **target server** — named backend host:port for an environment.
+  ///
+  /// **Cost / apply:** gcp-cost: no Target/server SKU under Apigee
+  /// `1C2D-8C78-EC58` (list_skus keyword Target/server → 0).
+  /// billing-behavior: requires a never_apply [GoogleApigeeEnvironment]
+  /// (Active Base Environment Usage Hours `C112-9373-5FC4` **$0.50/h**+).
+  /// Debt-only on `terradart-validate`. **Never** wire into apply-smoke.
+
+paramOrder:
+  - name
+  - env_id
+  - host
+  - port
+  - description
+  - is_enabled
+  - protocol
+  - s_sl_info
+  - deletion_policy
+
+dartTypeOverrides:
+  protocol: ApigeeTargetServerProtocol
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

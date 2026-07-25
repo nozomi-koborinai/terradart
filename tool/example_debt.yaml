@@ -330,4 +330,7 @@ GoogleApigeeAddonsConfig: requires never_apply GoogleApigeeOrganization; deferre
 GoogleApigeeDnsZone: needs never_apply GoogleApigeeOrganization plus a peered VPC — no standalone-project apply path; deferred with the org Wave
 GoogleApigeeEndpointAttachment: needs never_apply GoogleApigeeOrganization and a real Private Service Connect service attachment — no standalone-project apply path; deferred with the org Wave
 GoogleApigeeNatAddress: needs never_apply GoogleApigeeInstance (Gateway Node Hours); deferred with the organization Wave
+GoogleApigeeSpace: requires never_apply GoogleApigeeOrganization; deferred with the org Wave
+GoogleApigeeSyncAuthorization: requires never_apply GoogleApigeeOrganization; deferred with the org Wave
+GoogleApigeeTargetServer: requires never_apply GoogleApigeeEnvironment; deferred with the org Wave
 GoogleDiscoveryEngineLicenseConfig: gcp-cost Vertex AI Search 74B1-77CF-C302 Gemini Enterprise Standard monthly SKU 0532-C2F0-1DF0 $35/seat.mo — never_apply existence/seat subscription (License Manager class; MM exclude_delete); no applyable quickstart
