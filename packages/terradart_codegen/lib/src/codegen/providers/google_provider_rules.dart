@@ -178,6 +178,12 @@ final class GoogleProviderRules extends ProviderRules {
     // BeyondCorp Enterprise (`google_beyondcorp_*`).
     'beyondcorp': 'beyondcorp',
 
+    // Integration Connectors (`google_integration_connectors_*`;
+    // MM product integrationconnectors). Distinct from Application
+    // Integration (`google_integrations_*` → integrations barrel).
+    'integration_connectors': 'integration_connectors',
+    'integrationconnectors': 'integration_connectors',
+
     // Cloud IDS (`google_cloud_ids_*` → segment `cloud` without alias;
     // MM product cloudids). Distinct from cloud_run / cloud_build / …
     'cloud_ids': 'cloud_ids',

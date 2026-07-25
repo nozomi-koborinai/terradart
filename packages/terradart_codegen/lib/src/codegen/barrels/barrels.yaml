@@ -107,7 +107,8 @@ barrels:
       /// certificates, and certificate maps for HTTPS load balancers.
   chronicle:
     doc: |-
-      /// Chronicle (Google SecOps): detections, playbooks, custom lists, and dashboards.
+      /// Chronicle (Google SecOps): detections, playbooks, custom lists,
+      /// dashboards, and environments (enterprise ingestion / never_apply).
   cloud_build:
     doc: |-
       /// Cloud Build CI/CD: trigger, private worker pool, v2 SCM connection +
@@ -309,6 +310,10 @@ barrels:
     doc: |-
       /// Application Integration — provision a regional client
       /// (`google_integrations_client`) for the Integration control plane.
+  integration_connectors:
+    doc: |-
+      /// Integration Connectors — managed connection nodes to SaaS / Google
+      /// apps (node hours while provisioned; never_apply for apply-smoke).
   iap:
     doc: |-
       /// Identity-Aware Proxy (IAP) — settings, tunnel destination groups, plus

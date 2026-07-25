@@ -356,5 +356,9 @@ GoogleCloudIdsEndpoint: gcp-cost Cloud IDS 25DB-618E-3F79 Endpoint Usage SKU FB5
 GoogleComputeStoragePool: gcp-cost Compute Engine 6F81-5844-456A Hyperdisk Balanced Storage Pools Standard Capacity Iowa SKU 5BC4-9775-DEC9 $0.08/GiBy.mo — never_apply; no applyable quickstart on terradart-validate
 GoogleNetworkSecurityFirewallEndpoint: gcp-cost Network Security E749-01A2-AE1F Cloud NGFW Enterprise Endpoint Uptime SKU B778-1457-4A22 $1.75/h — never_apply; org-scoped parent; no applyable quickstart on terradart-validate
 GoogleNetworkSecurityFirewallEndpointAssociation: requires never_apply GoogleNetworkSecurityFirewallEndpoint; deferred with the NGFW endpoint Wave
+GoogleChronicleEnvironment: gcp-cost Chronicle 144D-4907-2A21 Enterprise Plus US ingestion SKU 0310-AEE4-5DC1 $6.58/GBy — never_apply; entitlement-gated SecOps instance; no applyable quickstart on terradart-validate
 GoogleDataflowJob: gcp-cost Cloud Dataflow 57D6-8E6B-2DE0 vCPU Time Batch Iowa SKU A613-4169-2E08 $0.056/h per vCPU — never_apply; no applyable quickstart on terradart-validate
+GoogleIntegrationConnectorsConnection: gcp-cost Integration Connectors 6FFB-B71E-5A0F Connection nodes Google managed apps SKU 4AB5-4E41-8DAB $0.35/h (business apps 4E3B-04D1-77FA $0.70/h) — never_apply; no applyable quickstart on terradart-validate
+GoogleIntegrationConnectorsEndpointAttachment: requires never_apply Integration Connectors connection path (+ real PSC service attachment); deferred with the connectors Wave
+GoogleIntegrationConnectorsManagedZone: requires never_apply Integration Connectors connection path (+ real target VPC); deferred with the connectors Wave
 GoogleOracleDatabaseCloudExadataInfrastructureExascaleConfig: gcp-cost Bare Metal Solution 6955-34DC-6EF3 All Flash NVMe Storage Iowa SKU A094-33FD-1ECD $115/mo per TB — never_apply; requires Exadata infrastructure + Oracle entitlement

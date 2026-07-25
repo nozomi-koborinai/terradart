@@ -1,0 +1,52 @@
+outputDir: integration_connectors
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Integration Connectors **connection** — managed connector nodes to a
+  /// SaaS or Google-managed application (`connector_version`).
+  ///
+  /// **Cost / apply:** gcp-cost: Integration Connectors `6FFB-B71E-5A0F`
+  /// Connection nodes to Google managed applications SKU `4AB5-4E41-8DAB`
+  /// **$0.35/h** (business applications `4E3B-04D1-77FA` **$0.70/h**; data
+  /// processed `58DF-02CB-FB23` **$10/GiBy** after free tier).
+  /// billing-behavior: connection node hours bill while the connection
+  /// exists; destroy stops node charges. Too expensive for apply-smoke even
+  /// once — debt-only on `terradart-validate`. **Never** wire into
+  /// apply-smoke.
+  ///
+  /// Enable `connectors.googleapis.com` before apply. [connectorVersion] is
+  /// a full resource name under
+  /// `projects/.../locations/global/providers/.../connectors/.../versions/...`.
+
+paramOrder:
+  - name
+  - location
+  - connector_version
+  - description
+  - service_account
+  - eventing_enablement_type
+  - suspended
+  - auth_config
+  - config_variable
+  - destination_config
+  - eventing_config
+  - lock_config
+  - log_config
+  - node_config
+  - ssl_config
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
