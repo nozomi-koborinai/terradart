@@ -348,3 +348,6 @@ GoogleApigeeEnvironmentApiRevisionDeployment: requires never_apply GoogleApigeeO
 GoogleApigeeSecurityFeedback: requires never_apply GoogleApigeeOrganization + Advanced API Security; deferred with the org Wave
 GoogleApigeeSecurityProfileV2: requires never_apply GoogleApigeeOrganization + Advanced API Security; deferred with the org Wave
 GoogleDiscoveryEngineLicenseConfig: gcp-cost Vertex AI Search 74B1-77CF-C302 Gemini Enterprise Standard monthly SKU 0532-C2F0-1DF0 $35/seat.mo — never_apply existence/seat subscription (License Manager class; MM exclude_delete); no applyable quickstart
+GoogleNetworkServicesGateway: gcp-cost Networking E505-1604-58F8 Cloud SWP Standard Gateway SKU 884B-E0E7-C3E4 $1.25/h — never_apply; no applyable quickstart on terradart-validate
+GoogleSecureSourceManagerHook: requires never_apply GoogleSecureSourceManagerInstance (+ repository); deferred with the SSM instance Wave
+GoogleSecureSourceManagerBranchRule: requires never_apply GoogleSecureSourceManagerInstance (+ repository); deferred with the SSM instance Wave

@@ -1,0 +1,138 @@
+# Copyright 2024 Google Inc.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+---
+name: BranchRule
+description: BranchRule is the protection rule to enforce pre-defined rules on designated branches within a repository.
+references:
+  guides:
+    Official Documentation: https://cloud.google.com/secure-source-manager/docs/overview
+  api: https://cloud.google.com/secure-source-manager/docs/reference/rest/v1/projects.locations.repositories.branchRules
+base_url: projects/{{project}}/locations/{{location}}/repositories/{{repository_id}}/branchRules?branch_rule_id={{branch_rule_id}}
+self_link: projects/{{project}}/locations/{{location}}/repositories/{{repository_id}}/branchRules/{{branch_rule_id}}
+update_mask: true
+update_verb: PATCH
+import_format:
+  - projects/{{project}}/locations/{{location}}/repositories/{{repository_id}}/branchRules/{{branch_rule_id}}
+  - '{{branch_rule_id}}'
+async:
+  operation:
+    base_url: '{{op_id}}'
+  actions:
+    - create
+    - delete
+autogen_async: true
+samples:
+  - name: secure_source_manager_branch_rule_basic
+    primary_resource_id: basic
+    steps:
+      - name: secure_source_manager_branch_rule_basic
+        ignore_read_extra:
+          - deletion_policy
+        resource_id_vars:
+          branch_rule_id: my-basic-branchrule
+          deletion_policy: PREVENT
+          instance_id: my-basic-instance
+          repository_id: my-basic-repository
+        test_vars_overrides:
+          deletion_policy: '"DELETE"'
+        oics_vars_overrides:
+          deletion_policy: '"DELETE"'
+  - name: secure_source_manager_branch_rule_with_fields
+    primary_resource_id: default
+    steps:
+      - name: secure_source_manager_branch_rule_with_fields
+        ignore_read_extra:
+          - deletion_policy
+        resource_id_vars:
+          branch_rule_id: my-initial-branchrule
+          deletion_policy: PREVENT
+          instance_id: my-initial-instance
+          repository_id: my-initial-repository
+        test_vars_overrides:
+          deletion_policy: '"DELETE"'
+        oics_vars_overrides:
+          deletion_policy: '"DELETE"'
+parameters:
+  - name: branch_rule_id
+    type: String
+    required: true
+    description: |
+      The ID for the BranchRule.
+    url_param_only: true
+  - name: location
+    type: String
+    required: true
+    description: |
+      The location for the Repository.
+    url_param_only: true
+  - name: repository_id
+    type: String
+    required: true
+    description: |
+      The ID for the Repository.
+    url_param_only: true
+properties:
+  - name: name
+    type: String
+    description: |
+      The resource name for the BranchRule.
+    output: true
+  - name: uid
+    type: String
+    description: |
+      Unique identifier of the BranchRule.
+    output: true
+  - name: createTime
+    type: Time
+    description: |
+      Time the BranchRule was created in UTC.
+    output: true
+  - name: updateTime
+    type: Time
+    description: |
+      Time the BranchRule was updated in UTC.
+    output: true
+  - name: includePattern
+    type: String
+    required: true
+    description: |
+      The BranchRule matches branches based on the specified regular expression. Use .* to match all branches.
+  - name: disabled
+    type: Boolean
+    description: |
+      Determines if the branch rule is disabled or not.
+  - name: requirePullRequest
+    type: Boolean
+    description: |
+      Determines if the branch rule requires a pull request or not.
+  - name: minimumReviewsCount
+    type: Integer
+    description: |
+      The minimum number of reviews required for the branch rule to be matched.
+  - name: minimumApprovalsCount
+    type: Integer
+    description: |
+      The minimum number of approvals required for the branch rule to be matched.
+  - name: requireCommentsResolved
+    type: Boolean
+    description: |
+      Determines if require comments resolved before merging to the branch.
+  - name: allowStaleReviews
+    type: Boolean
+    description: |
+      Determines if allow stale reviews or approvals before merging to the branch.
+  - name: requireLinearHistory
+    type: Boolean
+    description: |
+      Determines if require linear history before merging to the branch.

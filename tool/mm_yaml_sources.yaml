@@ -1264,6 +1264,12 @@ files:
   # Wave 76 (OS Config + Binary Authorization — VM compliance & image trust)
   google_network_services_mesh:
     upstream: mmv1/products/networkservices/Mesh.yaml
+  google_network_services_gateway:
+    upstream: mmv1/products/networkservices/Gateway.yaml
+  google_secure_source_manager_hook:
+    upstream: mmv1/products/securesourcemanager/Hook.yaml
+  google_secure_source_manager_branch_rule:
+    upstream: mmv1/products/securesourcemanager/BranchRule.yaml
   google_notebooks_environment:
     upstream: mmv1/products/notebooks/Environment.yaml
   google_notebooks_instance:
