@@ -175,6 +175,17 @@ final class GoogleProviderRules extends ProviderRules {
     // BeyondCorp Enterprise (`google_beyondcorp_*`).
     'beyondcorp': 'beyondcorp',
 
+    // Cloud IDS (`google_cloud_ids_*` → segment `cloud` without alias;
+    // MM product cloudids). Distinct from cloud_run / cloud_build / …
+    'cloud_ids': 'cloud_ids',
+    'cloudids': 'cloud_ids',
+
+    // Blockchain Node Engine (`google_blockchain_node_engine_*`;
+    // MM product blockchainnodeengine).
+    'blockchain': 'blockchain',
+    'blockchain_node_engine': 'blockchain',
+    'blockchainnodeengine': 'blockchain',
+
     // Google Cloud VMware Engine (`google_vmwareengine_*`).
     'vmwareengine': 'vmwareengine',
 

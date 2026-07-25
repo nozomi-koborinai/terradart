@@ -50,6 +50,11 @@ void main() {
       expect(rules.outputDirAliases['pubsub_lite'], 'pubsub_lite');
       expect(rules.outputDirAliases['pubsublite'], 'pubsub_lite');
       expect(rules.outputDirAliases['beyondcorp'], 'beyondcorp');
+      expect(rules.outputDirAliases['cloud_ids'], 'cloud_ids');
+      expect(rules.outputDirAliases['cloudids'], 'cloud_ids');
+      expect(rules.outputDirAliases['blockchain'], 'blockchain');
+      expect(rules.outputDirAliases['blockchain_node_engine'], 'blockchain');
+      expect(rules.outputDirAliases['blockchainnodeengine'], 'blockchain');
     });
 
     test('universalGetters returns id + nameRef when both attrs are present',
