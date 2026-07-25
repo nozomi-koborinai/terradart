@@ -1,0 +1,44 @@
+outputDir: network
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+dartTypeOverrides:
+  min_tls_version: NetworkSecurityTlsInspectionPolicyMinTlsVersion
+  tls_feature_profile: NetworkSecurityTlsInspectionPolicyTlsFeatureProfile
+
+curatedDoc: |-
+  /// Network Security **TLS inspection policy** — CA pool / trust settings
+  /// for decrypting TLS when Cloud NGFW Enterprise inspects encrypted traffic.
+  ///
+  /// **Cost / apply:** gcp-cost: Network Security `E749-01A2-AE1F` Cloud NGFW
+  /// Enterprise Endpoint Uptime SKU `B778-1457-4A22` **$1.75/h** (plus Cloud
+  /// NGFW Enterprise Data Processing `994B-C7B9-C1F7` **$0.0193/GiBy** when
+  /// traffic is inspected). billing-behavior: the policy is configuration for
+  /// NGFW TLS inspection; applying it in a working stack implies NGFW
+  /// Enterprise endpoint hours + decrypted data processing. Not a cheap
+  /// standalone smoke resource — debt-only. **Never** wire into apply-smoke.
+  ///
+  /// Enable `networksecurity.googleapis.com` before apply. [caPool] is
+  /// required (Certificate Authority Service pool resource name).
+
+paramOrder:
+  - name
+  - ca_pool
+  - location
+  - description
+  - trust_config
+  - min_tls_version
+  - tls_feature_profile
+  - custom_tls_features
+  - exclude_public_ca_set
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

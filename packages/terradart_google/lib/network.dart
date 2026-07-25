@@ -52,8 +52,33 @@ export 'src/network/google_network_security_firewall_endpoint_association.dart'
         NetworkSecurityFirewallEndpointAssociationState;
 export 'src/network/google_network_security_gateway_security_policy.dart'
     show GoogleNetworkSecurityGatewaySecurityPolicy;
+export 'src/network/google_network_security_security_profile.dart'
+    show
+        GoogleNetworkSecuritySecurityProfile,
+        NetworkSecuritySecurityProfileCustomInterceptProfile,
+        NetworkSecuritySecurityProfileCustomMirroringProfile,
+        NetworkSecuritySecurityProfileThreatPreventionProfile,
+        NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverrides,
+        NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverridesAction,
+        NetworkSecuritySecurityProfileThreatPreventionProfileAntivirusOverridesProtocol,
+        NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverrides,
+        NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverridesAction,
+        NetworkSecuritySecurityProfileThreatPreventionProfileSeverityOverridesSeverity,
+        NetworkSecuritySecurityProfileThreatPreventionProfileThreatOverrides,
+        NetworkSecuritySecurityProfileThreatPreventionProfileThreatOverridesAction,
+        NetworkSecuritySecurityProfileType,
+        NetworkSecuritySecurityProfileUrlFilteringProfile,
+        NetworkSecuritySecurityProfileUrlFilteringProfileUrlFilters,
+        NetworkSecuritySecurityProfileUrlFilteringProfileUrlFiltersFilteringAction;
+export 'src/network/google_network_security_security_profile_group.dart'
+    show GoogleNetworkSecuritySecurityProfileGroup;
 export 'src/network/google_network_security_server_tls_policy.dart'
     show GoogleNetworkSecurityServerTlsPolicy;
+export 'src/network/google_network_security_tls_inspection_policy.dart'
+    show
+        GoogleNetworkSecurityTlsInspectionPolicy,
+        NetworkSecurityTlsInspectionPolicyMinTlsVersion,
+        NetworkSecurityTlsInspectionPolicyTlsFeatureProfile;
 export 'src/network/google_network_security_ull_mirroring_collector.dart'
     show
         GoogleNetworkSecurityUllMirroringCollector,

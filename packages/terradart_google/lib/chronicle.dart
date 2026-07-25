@@ -48,3 +48,8 @@ export 'src/chronicle/google_chronicle_native_dashboard.dart'
         ChronicleNativeDashboardFilterOperatorAndFieldValue,
         ChronicleNativeDashboardType,
         GoogleChronicleNativeDashboard;
+export 'src/chronicle/google_chronicle_retrohunt.dart'
+    show ChronicleRetrohuntProcessInterval, GoogleChronicleRetrohunt;
+export 'src/chronicle/google_chronicle_rule.dart' show GoogleChronicleRule;
+export 'src/chronicle/google_chronicle_rule_deployment.dart'
+    show GoogleChronicleRuleDeployment;

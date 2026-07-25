@@ -1,0 +1,39 @@
+outputDir: network
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Network Security **security profile group** — binds one or more
+  /// [GoogleNetworkSecuritySecurityProfile] resources for use on Cloud NGFW
+  /// Enterprise firewall policy rules.
+  ///
+  /// **Cost / apply:** gcp-cost: Network Security `E749-01A2-AE1F` Cloud NGFW
+  /// Enterprise Endpoint Uptime SKU `B778-1457-4A22` **$1.75/h** (plus Cloud
+  /// NGFW Enterprise Data Processing `994B-C7B9-C1F7` **$0.0193/GiBy** when
+  /// traffic is inspected). billing-behavior: groups are the attachment point
+  /// for NGFW threat prevention; a working stack implies NGFW Enterprise
+  /// endpoint hours. Debt-only — **Never** wire into apply-smoke.
+  ///
+  /// Enable `networksecurity.googleapis.com` before apply. Profile fields are
+  /// resource names of sibling security profiles.
+
+paramOrder:
+  - name
+  - location
+  - parent
+  - description
+  - threat_prevention_profile
+  - url_filtering_profile
+  - custom_intercept_profile
+  - custom_mirroring_profile
+  - labels
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
