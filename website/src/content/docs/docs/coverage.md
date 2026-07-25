@@ -50,6 +50,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 - [`dns`](#dns)
 - [`document_ai`](#documentai)
 - [`edgecontainer`](#edgecontainer)
+- [`edgenetwork`](#edgenetwork)
 - [`essential_contacts`](#essentialcontacts)
 - [`eventarc`](#eventarc)
 - [`filestore`](#filestore)
@@ -584,6 +585,14 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_edgecontainer_cluster` | `GoogleEdgecontainerCluster` | — |
 | `google_edgecontainer_node_pool` | `GoogleEdgecontainerNodePool` | — |
 | `google_edgecontainer_vpn_connection` | `GoogleEdgecontainerVpnConnection` | — |
+
+## edgenetwork
+
+| Terraform type | Dart factory | Example |
+| --- | --- | --- |
+| `google_edgenetwork_interconnect_attachment` | `GoogleEdgenetworkInterconnectAttachment` | — |
+| `google_edgenetwork_network` | `GoogleEdgenetworkNetwork` | — |
+| `google_edgenetwork_subnet` | `GoogleEdgenetworkSubnet` | — |
 
 ## essential_contacts
 
