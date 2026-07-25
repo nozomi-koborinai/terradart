@@ -1,0 +1,41 @@
+outputDir: vmwareengine
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Google Cloud VMware Engine **network policy** — edge services CIDR plus
+  /// optional external-IP / internet-access toggles on a VMware Engine
+  /// network.
+  ///
+  /// **Cost / apply:** No dedicated network-policy SKU on VMware Engine
+  /// `C079-64FE-9109` after MCP `list_skus` (keyword network/External/
+  /// Internet → 0). Requires a [GoogleVmwareengineNetwork] that exists to
+  /// attach never_apply private clouds (node hours, e.g. SKU `00C9-4870-5751`
+  /// **$15.11/h**). Debt-only — **never** wire into apply-smoke.
+  ///
+  /// Enable `vmwareengine.googleapis.com` via [GoogleProjectService] before
+  /// apply. [edgeServicesCidr] and [vmwareEngineNetwork] are required.
+
+paramOrder:
+  - name
+  - location
+  - edge_services_cidr
+  - vmware_engine_network
+  - description
+  - external_ip
+  - internet_access
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
