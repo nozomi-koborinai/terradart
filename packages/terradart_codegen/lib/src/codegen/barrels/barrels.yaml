@@ -435,9 +435,10 @@ barrels:
       /// fee hourly while they exist.
   vmwareengine:
     doc: |-
-      /// Google Cloud VMware Engine — private clouds (VMware SDDC on Google
-      /// infrastructure). Existence-billed node hours; not applyable on a
-      /// standalone smoke project.
+      /// Google Cloud VMware Engine — private clouds plus networks / policies /
+      /// peerings (VMware SDDC on Google infrastructure). Existence-billed
+      /// node hours on private clouds; not applyable on a standalone smoke
+      /// project.
   workflows:
     doc: |-
       /// Workflows — serverless orchestration: define a Workflows workflow from

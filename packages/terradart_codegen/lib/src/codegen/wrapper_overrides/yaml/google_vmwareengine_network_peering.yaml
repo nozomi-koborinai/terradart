@@ -1,0 +1,44 @@
+outputDir: vmwareengine
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+dartTypeOverrides:
+  peer_network_type: VmwareengineNetworkPeeringPeerNetworkType
+
+curatedDoc: |-
+  /// Google Cloud VMware Engine **network peering** — peer a VMware Engine
+  /// network with a VPC / another VMware Engine network / PSA / NetApp /
+  /// third-party network.
+  ///
+  /// **Cost / apply:** No dedicated peering SKU on VMware Engine
+  /// `C079-64FE-9109` after MCP `list_skus` (keyword Peering → 0). Requires a
+  /// [GoogleVmwareengineNetwork] used with never_apply private clouds (node
+  /// hours, e.g. SKU `00C9-4870-5751` **$15.11/h**). Debt-only — **never**
+  /// wire into apply-smoke.
+  ///
+  /// Enable `vmwareengine.googleapis.com` via [GoogleProjectService] before
+  /// apply. [peerNetwork], [peerNetworkType], and [vmwareEngineNetwork] are
+  /// required.
+
+paramOrder:
+  - name
+  - vmware_engine_network
+  - peer_network
+  - peer_network_type
+  - description
+  - export_custom_routes
+  - export_custom_routes_with_public_ip
+  - import_custom_routes
+  - import_custom_routes_with_public_ip
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
