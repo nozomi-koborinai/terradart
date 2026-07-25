@@ -968,6 +968,12 @@ files:
     upstream: mmv1/products/apigee/EnvironmentAddonsConfig.yaml
   google_apigee_addons_config:
     upstream: mmv1/products/apigee/AddonsConfig.yaml
+  google_apigee_nat_address:
+    upstream: mmv1/products/apigee/NatAddress.yaml
+  google_apigee_endpoint_attachment:
+    upstream: mmv1/products/apigee/EndpointAttachment.yaml
+  google_apigee_dns_zone:
+    upstream: mmv1/products/apigee/DnsZone.yaml
   # App Hub (applications + discovered service/workload registration)
   google_apphub_application:
     upstream: mmv1/products/apphub/Application.yaml
