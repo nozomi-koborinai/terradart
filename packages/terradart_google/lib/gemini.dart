@@ -1,9 +1,21 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Gemini for Google Cloud (Gemini Code Assist) — project/location settings:
-/// enablement, logging, release channel, and data-sharing-with-Google.
+/// Gemini for Google Cloud (Gemini Code Assist) — project/location settings
+/// (enablement, logging, release channel, data-sharing) plus Code Assist
+/// repository index / code tools (subscription seats; never_apply).
 library;
 
+export 'src/gemini/google_gemini_code_repository_index.dart'
+    show GoogleGeminiCodeRepositoryIndex;
+export 'src/gemini/google_gemini_code_tools_setting.dart'
+    show
+        GeminiCodeToolsSettingEnabledTool,
+        GeminiCodeToolsSettingEnabledToolConfig,
+        GoogleGeminiCodeToolsSetting;
+export 'src/gemini/google_gemini_code_tools_setting_binding.dart'
+    show
+        GeminiCodeToolsSettingBindingProduct,
+        GoogleGeminiCodeToolsSettingBinding;
 export 'src/gemini/google_gemini_data_sharing_with_google_setting.dart'
     show GoogleGeminiDataSharingWithGoogleSetting;
 export 'src/gemini/google_gemini_data_sharing_with_google_setting_binding.dart'

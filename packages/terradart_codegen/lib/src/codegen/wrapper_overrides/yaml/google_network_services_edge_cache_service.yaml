@@ -1,0 +1,45 @@
+outputDir: network
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Media CDN **Edge Cache service** — global edge HTTP(S) cache with
+  /// [routing] host/path matchers.
+  ///
+  /// **Cost / apply:** gcp-cost: Networking `E505-1604-58F8` Media CDN Capacity
+  /// Reservation per Tbps North America SKU `7393-8C37-77E1` **$20,000/mo**
+  /// (plus Edge Cache Data Transfer North America `E2B8-D4FA-6E05`
+  /// **$0.02/GiBy**). billing-behavior: services are the Media CDN Edge Cache
+  /// data plane; apply-smoke traffic accrues egress, and this product family
+  /// includes existence-billed Tbps capacity reservations. Too expensive for
+  /// apply-smoke even once — debt-only. **Never** wire into apply-smoke.
+  ///
+  /// Enable `networkservices.googleapis.com` before apply. [routing] is
+  /// required.
+
+paramOrder:
+  - name
+  - routing
+  - description
+  - edge_ssl_certificates
+  - ssl_policy
+  - edge_security_policy
+  - require_tls
+  - disable_http2
+  - disable_quic
+  - log_config
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -1,0 +1,37 @@
+outputDir: gemini
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Gemini Code Assist **code tools setting** — enables Code Assist tools
+  /// (handles / connectors) for a project location.
+  ///
+  /// **Cost / apply:** gcp-cost: Duet AI `719A-983F-202D` Gemini Code Assist
+  /// subscription SKU `7743-4D2E-8A79` **$19/mo** (Enterprise `78B4-81D7-89D8`
+  /// **$45/mo**; Enterprise monthly `B0A0-018B-6B14` **$54/mo`).
+  /// billing-behavior: tools settings sit on the Code Assist subscription /
+  /// entitlement path. Not applyable on `terradart-validate`. **Never** wire
+  /// into apply-smoke.
+  ///
+  /// Enable `cloudaicompanion.googleapis.com` before apply. [enabledTool] is
+  /// required (min 1).
+
+paramOrder:
+  - code_tools_setting_id
+  - enabled_tool
+  - location
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

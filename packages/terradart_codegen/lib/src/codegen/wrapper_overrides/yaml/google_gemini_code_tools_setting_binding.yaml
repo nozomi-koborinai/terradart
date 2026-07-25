@@ -1,0 +1,37 @@
+outputDir: gemini
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+dartTypeOverrides:
+  product: GeminiCodeToolsSettingBindingProduct
+
+curatedDoc: |-
+  /// Gemini Code Assist **code tools setting binding** — binds a
+  /// [GoogleGeminiCodeToolsSetting] to a target (project / folder / org).
+  ///
+  /// **Cost / apply:** gcp-cost: Duet AI `719A-983F-202D` Gemini Code Assist
+  /// subscription SKU `7743-4D2E-8A79` **$19/mo** (Enterprise `78B4-81D7-89D8`
+  /// **$45/mo**). billing-behavior: bindings activate Code Assist tools under
+  /// an entitlement / seat subscription. Not applyable on
+  /// `terradart-validate`. **Never** wire into apply-smoke.
+  ///
+  /// Enable `cloudaicompanion.googleapis.com` before apply.
+
+paramOrder:
+  - code_tools_setting_id
+  - setting_binding_id
+  - target
+  - location
+  - product
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

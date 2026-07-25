@@ -660,6 +660,12 @@ files:
   # Wave 9 (GKE Hub)
   google_gke_hub_fleet:
     upstream: mmv1/products/gkehub2/Fleet.yaml
+  google_gemini_code_repository_index:
+    upstream: mmv1/products/gemini/CodeRepositoryIndex.yaml
+  google_gemini_code_tools_setting:
+    upstream: mmv1/products/gemini/CodeToolsSetting.yaml
+  google_gemini_code_tools_setting_binding:
+    upstream: mmv1/products/gemini/CodeToolsSettingBinding.yaml
   google_gemini_logging_setting:
     upstream: mmv1/products/gemini/LoggingSetting.yaml
   google_gemini_gemini_gcp_enablement_setting:
@@ -1334,6 +1340,12 @@ files:
   google_access_context_manager_access_policy_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   # Wave 76 (OS Config + Binary Authorization — VM compliance & image trust)
+  google_network_services_edge_cache_keyset:
+    upstream: mmv1/products/networkservices/EdgeCacheKeyset.yaml
+  google_network_services_edge_cache_origin:
+    upstream: mmv1/products/networkservices/EdgeCacheOrigin.yaml
+  google_network_services_edge_cache_service:
+    upstream: mmv1/products/networkservices/EdgeCacheService.yaml
   google_network_services_mesh:
     upstream: mmv1/products/networkservices/Mesh.yaml
   google_network_services_gateway:
