@@ -205,7 +205,8 @@ barrels:
       /// Dialogflow CX: telephony and conversation resources.
   discovery_engine:
     doc: |-
-      /// Vertex AI Search (Discovery Engine): data stores, search engines, IAM.
+      /// Vertex AI Search (Discovery Engine): data stores, search engines, IAM,
+      /// and Gemini Enterprise license configs (never_apply — seat subscriptions).
   dlp:
     doc: |-
       /// Sensitive Data Protection (DLP) — inspect / de-identify templates,
