@@ -2,8 +2,9 @@
 // Run `terradart wrap` to regenerate.
 /// Network Connectivity transports, Network Security ULL mirroring, address
 /// groups, URL lists, client/server TLS policies, gateway security policies,
-/// VPC Flow Logs configs, Network Services Mesh, and Network Services
-/// gateways (Secure Web Gateway is never_apply — $1.25/h).
+/// Cloud NGFW firewall endpoints (Enterprise Endpoint Uptime is never_apply —
+/// $1.75/h), VPC Flow Logs configs, Network Services Mesh, and Network
+/// Services gateways (Secure Web Gateway is never_apply — $1.25/h).
 library;
 
 export 'src/network/google_network_connectivity_hub.dart'
@@ -41,6 +42,14 @@ export 'src/network/google_network_security_dns_threat_detector.dart'
     show
         GoogleNetworkSecurityDnsThreatDetector,
         NetworkSecurityDnsThreatDetectorThreatDetectorProvider;
+export 'src/network/google_network_security_firewall_endpoint.dart'
+    show
+        GoogleNetworkSecurityFirewallEndpoint,
+        NetworkSecurityFirewallEndpointEndpointSettings;
+export 'src/network/google_network_security_firewall_endpoint_association.dart'
+    show
+        GoogleNetworkSecurityFirewallEndpointAssociation,
+        NetworkSecurityFirewallEndpointAssociationState;
 export 'src/network/google_network_security_gateway_security_policy.dart'
     show GoogleNetworkSecurityGatewaySecurityPolicy;
 export 'src/network/google_network_security_server_tls_policy.dart'

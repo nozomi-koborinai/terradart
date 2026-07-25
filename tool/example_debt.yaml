@@ -354,3 +354,5 @@ GoogleSecureSourceManagerBranchRule: requires never_apply GoogleSecureSourceMana
 GoogleBlockchainNodeEngineBlockchainNodes: gcp-cost Blockchain Node Engine 1749-9ED8-C6DC Ethereum Full SKU 8884-3FAF-A138 $0.69/h — never_apply; no applyable quickstart on terradart-validate
 GoogleCloudIdsEndpoint: gcp-cost Cloud IDS 25DB-618E-3F79 Endpoint Usage SKU FB57-C6D5-4F05 $1.5/h — never_apply; no applyable quickstart on terradart-validate
 GoogleComputeStoragePool: gcp-cost Compute Engine 6F81-5844-456A Hyperdisk Balanced Storage Pools Standard Capacity Iowa SKU 5BC4-9775-DEC9 $0.08/GiBy.mo — never_apply; no applyable quickstart on terradart-validate
+GoogleNetworkSecurityFirewallEndpoint: gcp-cost Network Security E749-01A2-AE1F Cloud NGFW Enterprise Endpoint Uptime SKU B778-1457-4A22 $1.75/h — never_apply; org-scoped parent; no applyable quickstart on terradart-validate
+GoogleNetworkSecurityFirewallEndpointAssociation: requires never_apply GoogleNetworkSecurityFirewallEndpoint; deferred with the NGFW endpoint Wave
