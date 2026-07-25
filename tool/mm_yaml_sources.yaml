@@ -92,6 +92,12 @@ files:
     upstream: mmv1/products/colab/Runtime.yaml
   google_colab_schedule:
     upstream: mmv1/products/colab/Schedule.yaml
+  google_compute_interconnect_attachment_group:
+    upstream: mmv1/products/compute/InterconnectAttachmentGroup.yaml
+  google_compute_interconnect_group:
+    upstream: mmv1/products/compute/InterconnectGroup.yaml
+  google_hypercomputecluster_cluster:
+    upstream: mmv1/products/hypercomputecluster/Cluster.yaml
   google_sourcerepo_repository:
     upstream: mmv1/products/sourcerepo/Repository.yaml
   google_sourcerepo_repository_iam_member:

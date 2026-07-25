@@ -186,6 +186,9 @@ GoogleDataFusionInstance: gcp-cost Cloud Data Fusion 0D19-EC86-35B0 Developer SK
 # (125-Perf us-central1 SKU 517C-E77D-C11A $0.145/GiBy.mo). A quickstart would
 # force apply_smoke_skip (never_apply) and block wave auto-merge — factory
 # ships without an example.
+GoogleComputeInterconnectAttachmentGroup: gcp-cost Compute Engine 6F81-5844-456A Cloud Interconnect 10Gbps Dedicated circuit SKU B8C8-2F76-E648 $2.328/h — never_apply physical interconnect family; no applyable quickstart on terradart-validate
+GoogleComputeInterconnectGroup: gcp-cost Compute Engine 6F81-5844-456A Cloud Interconnect 10Gbps Dedicated circuit SKU B8C8-2F76-E648 $2.328/h — never_apply physical interconnect family; no applyable quickstart on terradart-validate
+GoogleHypercomputeclusterCluster: gcp-cost no Cluster Director SKU (list_services empty); Cloud TPU E000-3F24-B8AA TPU-v2 USA SKU 3B3D-4CB4-AECC $4.5/h — never_apply HPC capacity; no applyable quickstart on terradart-validate
 GoogleComputeNodeGroup: gcp-cost Compute Engine 6F81-5844-456A N4A Sole Tenancy Instance Core Iowa SKU 6DD8-C2A8-A106 $0.02646/h (+ Premium 0F1E-4428-FCCB $0.002646/h) — never_apply dedicated nodes; no applyable quickstart on terradart-validate
 GoogleComputeNodeTemplate: gcp-cost Compute Engine 6F81-5844-456A sole-tenancy SKUs bill via node groups (e.g. N4A Core Iowa 6DD8-C2A8-A106 $0.02646/h) — never_apply family; deferred with GoogleComputeNodeGroup
 GoogleComputeRegionCommitment: gcp-cost Compute Engine 6F81-5844-456A Commitment v1 Cpu Virginia 1 Year SKU 00EE-95C9-2FF9 $0.021309/h — never_apply undeletable commitment contract; no applyable quickstart on terradart-validate

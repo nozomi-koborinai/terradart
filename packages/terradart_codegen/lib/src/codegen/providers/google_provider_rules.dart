@@ -160,6 +160,9 @@ final class GoogleProviderRules extends ProviderRules {
 
     // Google Cloud VMware Engine (`google_vmwareengine_*`).
     'vmwareengine': 'vmwareengine',
+
+    // Cluster Director / Hypercompute Cluster (`google_hypercomputecluster_*`).
+    'hypercomputecluster': 'hypercomputecluster',
     // Parallelstore (`google_parallelstore_*`; MM product parallelstore).
     'parallelstore': 'parallelstore',
 

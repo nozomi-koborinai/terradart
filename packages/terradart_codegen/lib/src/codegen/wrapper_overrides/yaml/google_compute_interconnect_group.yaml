@@ -1,0 +1,35 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Compute Engine **Interconnect group** — groups Dedicated / Partner
+  /// Interconnects for topology / SLA intent.
+  ///
+  /// **Cost / apply:** Physical interconnect circuits bill while provisioned
+  /// (e.g. Cloud Interconnect 10Gbps Dedicated circuit SKU `B8C8-2F76-E648`
+  /// **$2.328/h** on Compute Engine `6F81-5844-456A`). Group config is
+  /// meaningless without those circuits — debt-only. **Never** wire into
+  /// apply-smoke.
+  ///
+  /// [intent] is required (topology capability / SLA intent).
+
+paramOrder:
+  - name
+  - intent
+  - interconnects
+  - description
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

@@ -253,6 +253,18 @@ export 'src/compute/google_compute_interconnect_attachment.dart'
         ComputeInterconnectAttachmentState,
         ComputeInterconnectAttachmentType,
         GoogleComputeInterconnectAttachment;
+export 'src/compute/google_compute_interconnect_attachment_group.dart'
+    show
+        ComputeInterconnectAttachmentGroupAttachments,
+        ComputeInterconnectAttachmentGroupIntent,
+        ComputeInterconnectAttachmentGroupIntentAvailabilitySla,
+        GoogleComputeInterconnectAttachmentGroup;
+export 'src/compute/google_compute_interconnect_group.dart'
+    show
+        ComputeInterconnectGroupIntent,
+        ComputeInterconnectGroupIntentTopologyCapability,
+        ComputeInterconnectGroupInterconnects,
+        GoogleComputeInterconnectGroup;
 export 'src/compute/google_compute_managed_ssl_certificate.dart'
     show
         ComputeManagedSslCertificateManagedSslCertificateConfig,
