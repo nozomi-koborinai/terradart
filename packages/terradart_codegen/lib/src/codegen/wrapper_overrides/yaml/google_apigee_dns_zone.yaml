@@ -1,0 +1,31 @@
+outputDir: apigee
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Apigee **DNS zone** — peered DNS zone for private resolution in an org.
+  ///
+  /// **Cost / apply:** gcp-cost: no DNS-zone SKU under Apigee
+  /// `1C2D-8C78-EC58` (list_skus keyword network → 0). billing-behavior:
+  /// requires a never_apply [GoogleApigeeOrganization] and a peered VPC.
+  /// Debt-only on `terradart-validate`. **Never** wire into apply-smoke.
+
+paramOrder:
+  - dns_zone_id
+  - org_id
+  - domain
+  - description
+  - peering_config
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -1,6 +1,6 @@
 # terradart_google
 
-Ships **583 curated resource factories + 1 data source** (584 catalog entries)
+Ships **586 curated resource factories + 1 data source** (587 catalog entries)
 
 The full per-service breakdown lives in the [repo README — What ships](https://github.com/nozomi-koborinai/terradart#what-ships). Discover factories programmatically via `package:terradart_google/catalog.dart` (`terradartCatalog`).
 

@@ -300,6 +300,45 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_apigee_datastore`.\n\nAn analytics datastore for an Apigee organization. Datastores configure\nexport destinations for Apigee Analytics data, supporting either Google\nCloud Storage (GCS) or BigQuery as targets.',
   ),
   CatalogEntry(
+    tfType: 'google_apigee_dns_zone',
+    className: 'GoogleApigeeDnsZone',
+    barrel: 'apigee',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_apigee_dns_zone`.',
+    constructorParams: <String>[
+      'localName',
+      'dnsZoneId',
+      'orgId',
+      'domain',
+      'description',
+      'peeringConfig',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>['ApigeeDnsZonePeeringConfig'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_apigee_dns_zone`.\n\nApigee Dns Zone.\n\nApigee **DNS zone** — peered DNS zone for private resolution in an org.\n\n**Cost / apply:** gcp-cost: no DNS-zone SKU under Apigee\n`1C2D-8C78-EC58` (list_skus keyword network → 0). billing-behavior:\nrequires a never_apply [GoogleApigeeOrganization] and a peered VPC.\nDebt-only on `terradart-validate`. **Never** wire into apply-smoke.',
+  ),
+  CatalogEntry(
+    tfType: 'google_apigee_endpoint_attachment',
+    className: 'GoogleApigeeEndpointAttachment',
+    barrel: 'apigee',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_apigee_endpoint_attachment`.',
+    constructorParams: <String>[
+      'localName',
+      'endpointAttachmentId',
+      'location',
+      'orgId',
+      'serviceAttachment',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_apigee_endpoint_attachment`.\n\nAn `EndpointAttachment` in Apigee is a resource that facilitates private\nconnectivity between Apigee and backend services using Private Service\nConnect (PSC).\n\nFor more information, see the [Apigee\ndocumentation](https://docs.cloud.google.com/apigee/docs/api-platform/architecture/southbound-networking-patterns-endpoints).\n\nApigee **endpoint attachment** — Private Service Connect attachment\nfrom an Apigee org to a producer service attachment.\n\n**Cost / apply:** gcp-cost: no endpoint-attachment SKU under Apigee\n`1C2D-8C78-EC58` (list_skus keyword network → 0). billing-behavior:\nrequires a never_apply [GoogleApigeeOrganization] plus a real PSC\nservice attachment. Debt-only on `terradart-validate`. **Never** wire\ninto apply-smoke.',
+  ),
+  CatalogEntry(
     tfType: 'google_apigee_envgroup',
     className: 'GoogleApigeeEnvgroup',
     barrel: 'apigee',
@@ -419,6 +458,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_apigee_instance_attachment`.\n\nAn `Instance attachment` in Apigee.\n\nAttaches an Apigee **environment** to an [GoogleApigeeInstance].\n\n**Cost:** no separate Gateway Node Hours SKU beyond the parent\ninstance (`1C2D-8C78-EC58` / `0136-18C1-DD41`). Attachment is\nbinding metadata; environment usage may still accrue on the org.\n\nDeferred with the never_apply Apigee instance/org Wave (no\napply-smoke quickstart).',
+  ),
+  CatalogEntry(
+    tfType: 'google_apigee_nat_address',
+    className: 'GoogleApigeeNatAddress',
+    barrel: 'apigee',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_apigee_nat_address`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'instanceId',
+      'activate',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_apigee_nat_address`.\n\nApigee NAT (network address translation) address. A NAT address is a static\nexternal IP address used for Internet egress traffic. This is not avaible\nfor Apigee hybrid.\n\nApigee **NAT address** — northbound NAT IP on an Apigee instance.\n\n**Cost / apply:** gcp-cost: no dedicated NAT-address SKU under Apigee\n`1C2D-8C78-EC58` (list_skus keyword NAT/network → 0). billing-behavior:\nrequires a never_apply [GoogleApigeeInstance] (Gateway Node Hours\n`0136-18C1-DD41` **\$1.025/h**). Debt-only on `terradart-validate`.\n**Never** wire into apply-smoke.',
   ),
   CatalogEntry(
     tfType: 'google_apigee_organization',

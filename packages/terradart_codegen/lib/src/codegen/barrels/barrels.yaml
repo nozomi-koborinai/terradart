@@ -37,8 +37,9 @@ barrels:
   apigee:
     doc: |-
       /// Apigee: organizations, runtime instances, environments, env groups,
-      /// add-ons, data collectors, and analytics datastores. Org/instance/env
-      /// bill while provisioned (never_apply for apply-smoke).
+      /// add-ons, data collectors, analytics datastores, NAT addresses,
+      /// endpoint attachments, and DNS zones. Org/instance/env bill while
+      /// provisioned (never_apply for apply-smoke).
   backup_dr:
     doc: |-
       /// Backup and DR Service — vaults, plans, associations, management
