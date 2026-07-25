@@ -148,6 +148,21 @@ barrels:
       /// For VPC networking, see `compute.dart` ([GoogleComputeNetwork],
       /// [GoogleComputeSubnetwork]). For workload identity federation, see
       /// `iam.dart` ([GoogleIamWorkloadIdentityPool]).
+  container_attached:
+    doc: |-
+      /// GKE attached clusters — register an existing conformant Kubernetes
+      /// cluster with a Fleet. GKE Enterprise management fees; needs a real
+      /// external cluster — not applyable on terradart-validate.
+  container_aws:
+    doc: |-
+      /// GKE on AWS (multi-cloud) — clusters and node pools on Amazon Web
+      /// Services. GKE Enterprise Multicloud fees plus AWS EC2; needs a real
+      /// AWS account — not applyable on terradart-validate.
+  container_azure:
+    doc: |-
+      /// GKE on Azure (multi-cloud) — Azure client, clusters, and node pools.
+      /// GKE Enterprise Multicloud fees plus Azure VMs; needs a real Azure
+      /// tenant — not applyable on terradart-validate.
   container_analysis:
     doc: |-
       /// Container Analysis — notes and occurrences for image metadata and

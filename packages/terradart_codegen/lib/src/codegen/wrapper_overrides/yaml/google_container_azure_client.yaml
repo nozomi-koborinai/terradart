@@ -1,0 +1,29 @@
+outputDir: container_azure
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// GKE on Azure **client** — Azure AD application credentials used by
+  /// subsequent Azure clusters / node pools.
+  ///
+  /// **Cost / apply:** No client SKU; exists only to create never_apply
+  /// [GoogleContainerAzureCluster] stacks that bill GKE Enterprise Multicloud
+  /// (Azure) SKU `688E-3D16-399E` **$0.00822/h** plus Azure VMs. Needs a real
+  /// Azure tenant — debt-only. **Never** wire into apply-smoke.
+
+paramOrder:
+  - name
+  - location
+  - application_id
+  - tenant_id
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

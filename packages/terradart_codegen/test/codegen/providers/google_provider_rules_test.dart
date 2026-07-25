@@ -43,6 +43,10 @@ void main() {
       expect(rules.outputDirAliases['vmwareengine'], 'vmwareengine');
       expect(
           rules.outputDirAliases['hypercomputecluster'], 'hypercomputecluster');
+      expect(rules.outputDirAliases['container_aws'], 'container_aws');
+      expect(rules.outputDirAliases['container_azure'], 'container_azure');
+      expect(
+          rules.outputDirAliases['container_attached'], 'container_attached');
     });
 
     test('universalGetters returns id + nameRef when both attrs are present',

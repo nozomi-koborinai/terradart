@@ -1,0 +1,44 @@
+outputDir: container_azure
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// GKE on Azure **cluster** — multi-cloud control plane on Microsoft Azure,
+  /// registered to a Fleet.
+  ///
+  /// **Cost / apply:** GKE Enterprise Multicloud (Azure) SKU `688E-3D16-399E`
+  /// **$0.00822/h** (service `9186-F79E-3871`) plus Azure VMs for the control
+  /// plane and node pools. Needs a real Azure tenant / resource group —
+  /// debt-only. **Never** wire into apply-smoke.
+  ///
+  /// Enable `gkemulticloud.googleapis.com` via [GoogleProjectService] before
+  /// apply. [authorization], [controlPlane], [fleet], and [networking] are
+  /// required.
+
+paramOrder:
+  - name
+  - location
+  - azure_region
+  - resource_group_id
+  - authorization
+  - control_plane
+  - fleet
+  - networking
+  - azure_services_authentication
+  - client
+  - description
+  - annotations
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

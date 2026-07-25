@@ -158,6 +158,15 @@ final class GoogleProviderRules extends ProviderRules {
     // Distributed Cloud Edge Network (`google_edgenetwork_*`).
     'edgenetwork': 'edgenetwork',
 
+    // GKE multi-cloud / attached (`google_container_aws_*` etc. — override
+    // outputDir in YAML; aliases cover MM product-style segments).
+    'containeraws': 'container_aws',
+    'container_aws': 'container_aws',
+    'containerazure': 'container_azure',
+    'container_azure': 'container_azure',
+    'containerattached': 'container_attached',
+    'container_attached': 'container_attached',
+
     // Google Cloud VMware Engine (`google_vmwareengine_*`).
     'vmwareengine': 'vmwareengine',
 
