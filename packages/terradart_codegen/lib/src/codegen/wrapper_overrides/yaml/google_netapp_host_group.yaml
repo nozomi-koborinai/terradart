@@ -1,0 +1,35 @@
+outputDir: netapp
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+dartTypeOverrides:
+  os_type: NetappHostGroupOsType
+  type: NetappHostGroupType
+
+curatedDoc: |-
+  /// NetApp Volumes **host group** (blocklist / allowlist of host addresses).
+  ///
+  /// **Cost:** gcp-cost: no Cloud Billing Catalog SKU under `FC86-5113-7C81`
+  /// (list_skus keyword host → 0). billing-behavior: host membership metadata
+  /// only — deferred with the never_apply NetApp pool Wave (no apply-smoke
+  /// quickstart).
+
+paramOrder:
+  - name
+  - location
+  - type
+  - os_type
+  - hosts
+  - description
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

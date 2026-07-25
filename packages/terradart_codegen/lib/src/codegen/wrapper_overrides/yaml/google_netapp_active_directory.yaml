@@ -1,0 +1,47 @@
+outputDir: netapp
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// NetApp Volumes **Active Directory** policy for SMB / LDAP volumes.
+  ///
+  /// **Cost:** gcp-cost: no Cloud Billing Catalog SKU under `FC86-5113-7C81`
+  /// (list_skus keyword directory → 0). billing-behavior: control-plane AD
+  /// join metadata — pool capacity (`C2DF-4710-FFE1`) bills only when a
+  /// never_apply [GoogleNetappStoragePool] attaches this policy. Deferred
+  /// with the pool Wave (no apply-smoke quickstart).
+  ///
+  /// [password] is sensitive.
+
+paramOrder:
+  - name
+  - location
+  - domain
+  - dns
+  - net_bios_prefix
+  - username
+  - password
+  - organizational_unit
+  - site
+  - administrators
+  - backup_operators
+  - security_operators
+  - aes_encryption
+  - encrypt_dc_connections
+  - ldap_signing
+  - nfs_users_with_ldap
+  - kdc_hostname
+  - kdc_ip
+  - description
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

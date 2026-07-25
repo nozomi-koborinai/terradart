@@ -144,6 +144,12 @@ GoogleNetappVolume: requires a parent GoogleNetappStoragePool (never_apply capac
 GoogleNetappVolumeSnapshot: requires a parent GoogleNetappVolume on a never_apply pool; deferred with the pool
 GoogleNetappBackupVault: deferred with the NetApp pool Wave (no apply-smoke quickstart); empty vault has no capacity charge but pool Wave is debt-only
 GoogleNetappBackupPolicy: deferred with the NetApp pool Wave (policy metadata only; backup storage bills when backups exist)
+GoogleNetappActiveDirectory: deferred with the never_apply NetApp pool Wave (AD policy metadata; no apply-smoke quickstart)
+GoogleNetappBackup: gcp-cost NetApp Volumes FC86-5113-7C81 Backup Storage Charge us-central1 SKU DCB6-FE72-5443 $0.045/GiBy.mo — never_apply stored backup bytes + never_apply pool parent; no applyable quickstart on terradart-validate
+GoogleNetappHostGroup: deferred with the never_apply NetApp pool Wave (host membership metadata; no apply-smoke quickstart)
+GoogleNetappKmsconfig: deferred with the never_apply NetApp pool Wave (CMEK policy metadata; no apply-smoke quickstart)
+GoogleNetappVolumeQuotaRule: requires a parent GoogleNetappVolume on a never_apply pool; deferred with the pool
+GoogleNetappVolumeReplication: gcp-cost NetApp Volumes FC86-5113-7C81 Inter Zone Replication Iowa SKU 1432-4402-7168 $0.11/GiBy (External 832F-38DB-A8C1 $0.11/GiBy) — never_apply replication + never_apply pool; no applyable quickstart on terradart-validate
 
 # Cloud Workstations clusters bill a control-plane fee while they exist
 # (us-central1 SKU 61C4-0757-3151 $0.2/h). A quickstart would force

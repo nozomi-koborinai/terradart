@@ -1,0 +1,33 @@
+outputDir: netapp
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// NetApp Volumes **CMEK** config (Cloud KMS key for volume encryption).
+  ///
+  /// **Cost:** gcp-cost: no Cloud Billing Catalog SKU under `FC86-5113-7C81`
+  /// (list_skus keyword kms → 0). billing-behavior: KMS key-version charges
+  /// live under Cloud KMS, not NetApp — deferred with the never_apply pool
+  /// Wave (no apply-smoke quickstart).
+
+paramOrder:
+  - name
+  - location
+  - crypto_key_name
+  - description
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `service_account` attribute (SA that must hold the CMEK).
+    TfRef<String> get serviceAccountRef =>
+        TfRef.attribute<String>(this, 'service_account');

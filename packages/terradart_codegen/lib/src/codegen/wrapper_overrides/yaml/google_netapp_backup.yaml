@@ -1,0 +1,34 @@
+outputDir: netapp
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// NetApp Volumes **backup** stored in a [GoogleNetappBackupVault].
+  ///
+  /// **Cost / apply:** Backup Storage Charge us-central1 SKU `DCB6-FE72-5443`
+  /// **$0.045/GiBy·mo** (service `FC86-5113-7C81`) while backup data exists;
+  /// source volume sits on a never_apply [GoogleNetappStoragePool]. Debt-only
+  /// on `terradart-validate`. **Never** wire into apply-smoke.
+
+paramOrder:
+  - name
+  - location
+  - vault_name
+  - source_volume
+  - source_snapshot
+  - description
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

@@ -1,0 +1,46 @@
+outputDir: netapp
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+dartTypeOverrides:
+  replication_schedule: NetappVolumeReplicationReplicationSchedule
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// NetApp Volumes **volume replication** (cross-zone / hybrid mirror).
+  ///
+  /// **Cost / apply:** Inter Zone Replication Usage Iowa SKU `1432-4402-7168`
+  /// **$0.11/GiBy** and External Replication Usage `832F-38DB-A8C1`
+  /// **$0.11/GiBy** (service `FC86-5113-7C81`), plus destination volume
+  /// capacity on a never_apply [GoogleNetappStoragePool]. Debt-only on
+  /// `terradart-validate`. **Never** wire into apply-smoke.
+
+paramOrder:
+  - name
+  - location
+  - volume_name
+  - replication_schedule
+  - destination_volume_parameters
+  - description
+  - labels
+  - replication_enabled
+  - wait_for_mirror
+  - force_stopping
+  - delete_destination_volume
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `destination_volume` attribute.
+    TfRef<String> get destinationVolumeRef =>
+        TfRef.attribute<String>(this, 'destination_volume');

@@ -171,6 +171,18 @@ files:
     upstream: mmv1/products/netapp/BackupVault.yaml
   google_netapp_backup_policy:
     upstream: mmv1/products/netapp/BackupPolicy.yaml
+  google_netapp_active_directory:
+    upstream: mmv1/products/netapp/ActiveDirectory.yaml
+  google_netapp_backup:
+    upstream: mmv1/products/netapp/Backup.yaml
+  google_netapp_host_group:
+    upstream: mmv1/products/netapp/HostGroup.yaml
+  google_netapp_kmsconfig:
+    upstream: mmv1/products/netapp/kmsconfig.yaml
+  google_netapp_volume_quota_rule:
+    upstream: mmv1/products/netapp/VolumeQuotaRule.yaml
+  google_netapp_volume_replication:
+    upstream: mmv1/products/netapp/VolumeReplication.yaml
 
   google_network_connectivity_hub:
     upstream: mmv1/products/networkconnectivity/Hub.yaml

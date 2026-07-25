@@ -1,0 +1,35 @@
+outputDir: netapp
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+dartTypeOverrides:
+  type: NetappVolumeQuotaRuleType
+
+curatedDoc: |-
+  /// NetApp Volumes **quota rule** on a [GoogleNetappVolume].
+  ///
+  /// **Cost:** gcp-cost: no Cloud Billing Catalog SKU under `FC86-5113-7C81`
+  /// (list_skus keyword quota → 0). billing-behavior: quota metadata only —
+  /// volume capacity is carved from a never_apply pool. Deferred with the
+  /// pool Wave (no apply-smoke quickstart).
+
+paramOrder:
+  - name
+  - volume_name
+  - type
+  - disk_limit_mib
+  - target
+  - location
+  - description
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
