@@ -126,6 +126,10 @@ files:
     upstream: null  # handwritten in terraform-provider-google (mmv1/products/containerazure has product.yaml only)
   google_hypercomputecluster_cluster:
     upstream: mmv1/products/hypercomputecluster/Cluster.yaml
+  google_network_security_firewall_endpoint:
+    upstream: mmv1/products/networksecurity/FirewallEndpoint.yaml
+  google_network_security_firewall_endpoint_association:
+    upstream: mmv1/products/networksecurity/FirewallEndpointAssociation.yaml
   google_sourcerepo_repository:
     upstream: mmv1/products/sourcerepo/Repository.yaml
   google_sourcerepo_repository_iam_member:
