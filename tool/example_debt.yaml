@@ -316,6 +316,11 @@ GoogleApigeeOrganization: gcp-cost Apigee 1C2D-8C78-EC58 Gateway Node Hours SKU 
 GoogleApigeeInstance: gcp-cost Apigee 1C2D-8C78-EC58 Gateway Node Hours SKU 0136-18C1-DD41 $1.025/h — never_apply runtime; deferred with the organization Wave
 GoogleApigeeInstanceAttachment: requires a parent GoogleApigeeInstance (never_apply); deferred with the instance
 GoogleApigeeEnvironment: gcp-cost Apigee 1C2D-8C78-EC58 Active Base Environment Usage Hours SKU C112-9373-5FC4 $0.50/h (Intermediate 421B-D6C0-52A2 $2/h; Comprehensive 01C8-CFFA-106E $4.70/h) — never_apply; deferred with the organization Wave
+GoogleBeyondcorpAppGateway: gcp-cost Chrome Enterprise Premium F91A-404B-8D2E Monthly Users SKU E2D2-474B-B4EF $6/user.mo — never_apply; CEP entitlement absent on terradart-validate
+GoogleBeyondcorpAppConnector: requires never_apply GoogleBeyondcorpAppGateway + CEP; deferred with the BeyondCorp Wave
+GoogleBeyondcorpAppConnection: requires never_apply GoogleBeyondcorpAppGateway / GoogleBeyondcorpAppConnector + CEP; deferred with the BeyondCorp Wave
+GoogleBeyondcorpSecurityGateway: gcp-cost Chrome Enterprise Premium F91A-404B-8D2E Monthly Users SKU E2D2-474B-B4EF $6/user.mo — never_apply; CEP entitlement absent on terradart-validate
+GoogleBeyondcorpSecurityGatewayApplication: requires never_apply GoogleBeyondcorpSecurityGateway + CEP; deferred with the BeyondCorp Wave
 GoogleApigeeEnvgroup: deferred with the never_apply Apigee org Wave (hostname group metadata; no apply-smoke quickstart)
 GoogleApigeeEnvgroupAttachment: requires never_apply GoogleApigeeEnvironment / GoogleApigeeEnvgroup; deferred with the org Wave
 GoogleApigeeEnvironmentAddonsConfig: requires never_apply GoogleApigeeEnvironment; deferred with the org Wave

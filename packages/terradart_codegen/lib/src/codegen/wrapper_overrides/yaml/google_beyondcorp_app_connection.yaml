@@ -1,0 +1,36 @@
+outputDir: beyondcorp
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// BeyondCorp **App Connection** — maps an application endpoint through
+  /// connectors / gateways.
+  ///
+  /// **Cost / apply:** Chrome Enterprise Premium `F91A-404B-8D2E` Monthly
+  /// Users SKU `E2D2-474B-B4EF` **$6/user·mo**; requires never_apply
+  /// connector/gateway parents. Debt-only on `terradart-validate`. **Never**
+  /// wire into apply-smoke.
+
+paramOrder:
+  - name
+  - region
+  - type
+  - application_endpoint
+  - gateway
+  - connectors
+  - display_name
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

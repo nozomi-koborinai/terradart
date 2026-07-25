@@ -32,6 +32,16 @@ files:
     upstream: mmv1/products/backupdr/RestoreWorkload.yaml
   google_backup_dr_service_config:
     upstream: mmv1/products/backupdr/ServiceConfig.yaml
+  google_beyondcorp_app_gateway:
+    upstream: mmv1/products/beyondcorp/AppGateway.yaml
+  google_beyondcorp_app_connector:
+    upstream: mmv1/products/beyondcorp/AppConnector.yaml
+  google_beyondcorp_app_connection:
+    upstream: mmv1/products/beyondcorp/AppConnection.yaml
+  google_beyondcorp_security_gateway:
+    upstream: mmv1/products/beyondcorp/SecurityGateway.yaml
+  google_beyondcorp_security_gateway_application:
+    upstream: mmv1/products/beyondcorp/SecurityGatewayApplication.yaml
   google_biglake_catalog:
     upstream: mmv1/products/biglake/Catalog.yaml
   google_biglake_database:

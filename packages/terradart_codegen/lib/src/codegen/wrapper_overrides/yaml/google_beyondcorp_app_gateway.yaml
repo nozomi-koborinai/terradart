@@ -1,0 +1,39 @@
+outputDir: beyondcorp
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+dartTypeOverrides:
+  type: BeyondcorpAppGatewayType
+  host_type: BeyondcorpAppGatewayHostType
+
+curatedDoc: |-
+  /// BeyondCorp **App Gateway** — regional connector gateway for
+  /// zero-trust application access.
+  ///
+  /// **Cost / apply:** Chrome Enterprise Premium (service `F91A-404B-8D2E`)
+  /// Monthly Users SKU `E2D2-474B-B4EF` **$6/user·mo** (BeyondCorp Enterprise
+  /// Essentials deprecated `C321-0177-7DAF` **$4/user·mo**). Gateways require
+  /// a CEP / BeyondCorp entitlement absent on `terradart-validate`. Debt-only.
+  /// **Never** wire into apply-smoke.
+  ///
+  /// Enable `beyondcorp.googleapis.com` via [GoogleProjectService] before
+  /// apply.
+
+paramOrder:
+  - name
+  - region
+  - type
+  - host_type
+  - display_name
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

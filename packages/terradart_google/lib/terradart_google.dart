@@ -21,6 +21,7 @@ export 'app.dart';
 export 'apphub.dart';
 export 'artifact_registry.dart';
 export 'backup_dr.dart';
+export 'beyondcorp.dart';
 export 'biglake.dart';
 export 'bigquery.dart';
 export 'bigtable.dart';

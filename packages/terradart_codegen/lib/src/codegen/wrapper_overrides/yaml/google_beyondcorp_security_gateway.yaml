@@ -1,0 +1,38 @@
+outputDir: beyondcorp
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// BeyondCorp **Security Gateway** — Chrome Enterprise Premium security
+  /// gateway (hubs, logging, service discovery).
+  ///
+  /// **Cost / apply:** Chrome Enterprise Premium `F91A-404B-8D2E` Monthly
+  /// Users SKU `E2D2-474B-B4EF` **$6/user·mo**. Needs a CEP entitlement
+  /// absent on `terradart-validate`. Debt-only. **Never** wire into
+  /// apply-smoke.
+  ///
+  /// Enable `beyondcorp.googleapis.com` via [GoogleProjectService] before
+  /// apply.
+
+paramOrder:
+  - security_gateway_id
+  - location
+  - display_name
+  - hubs
+  - logging
+  - proxy_protocol_config
+  - service_discovery
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
