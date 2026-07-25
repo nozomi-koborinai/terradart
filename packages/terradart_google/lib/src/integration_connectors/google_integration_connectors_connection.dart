@@ -1158,7 +1158,8 @@ final class GoogleIntegrationConnectorsConnection extends Resource {
     required TfArg<String> connectorVersion,
     TfArg<String>? description,
     TfArg<String>? serviceAccount,
-    TfArg<String>? eventingEnablementType,
+    TfArg<IntegrationConnectorsConnectionEventingEnablementType>?
+    eventingEnablementType,
     TfArg<bool>? suspended,
     IntegrationConnectorsConnectionAuthConfig? authConfig,
     List<IntegrationConnectorsConnectionConfigVariable>? configVariable,

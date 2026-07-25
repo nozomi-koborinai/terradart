@@ -7,6 +7,9 @@ deriveEnums: true
 extraImports:
   - "import 'package:meta/meta.dart';"
 
+dartTypeOverrides:
+  eventing_enablement_type: IntegrationConnectorsConnectionEventingEnablementType
+
 curatedDoc: |-
   /// Integration Connectors **connection** — managed connector nodes to a
   /// SaaS or Google-managed application (`connector_version`).
