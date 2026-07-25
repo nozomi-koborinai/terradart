@@ -1,0 +1,39 @@
+outputDir: apigee
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Apigee **API proxy** — uploads a proxy config bundle (`config_bundle`)
+  /// into an organization.
+  ///
+  /// **Cost / apply:** gcp-cost: Apigee `1C2D-8C78-EC58` Proxy/Shared Flow
+  /// Deployment Unit Usage Hours Included in Base Environment SKU
+  /// `20F4-DE1D-0E80` (Intermediate `4836-1B91-161A`; Comprehensive
+  /// `477D-FA48-D913` / overage `71C2-1AC1-805B`); parent Gateway Node Hours
+  /// `0136-18C1-DD41` **$1.025/h**. billing-behavior: requires never_apply
+  /// [GoogleApigeeOrganization]; deploying revisions accrues deployment-unit
+  /// / environment hours. Debt-only on `terradart-validate`. **Never** wire
+  /// into apply-smoke.
+  ///
+  /// Enable `apigee.googleapis.com` before apply. [configBundle] is a local
+  /// zip path Terraform uploads.
+
+paramOrder:
+  - name
+  - org_id
+  - config_bundle
+  - detect_md5hash
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `latest_revision_id` attribute.
+    TfRef<String> get latestRevisionIdRef =>
+        TfRef.attribute<String>(this, 'latest_revision_id');

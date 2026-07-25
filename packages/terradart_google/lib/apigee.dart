@@ -4,10 +4,11 @@
 /// add-ons, data collectors, analytics datastores, NAT addresses,
 /// endpoint attachments, DNS zones, spaces, sync authorization,
 /// target servers, developers, developer apps, API products, app
-/// groups, env keystores/references, KVMs, keystore aliases, proxy
-/// deployments, control-plane access, and Advanced API Security
-/// profiles/feedback. Org/instance/env bill while provisioned
-/// (never_apply for apply-smoke).
+/// groups, env keystores/references, KVMs, keystore aliases (self-signed
+/// / key+cert / PKCS12), API proxies, shared flows + deployments, flow
+/// hooks, environment debug masks, proxy deployments, control-plane
+/// access, and Advanced API Security profiles/feedback. Org/instance/env
+/// bill while provisioned (never_apply for apply-smoke).
 library;
 
 export 'src/apigee/google_apigee_addons_config.dart'
@@ -19,6 +20,7 @@ export 'src/apigee/google_apigee_addons_config.dart'
         ApigeeAddonsConfigAddonsConfigIntegrationConfig,
         ApigeeAddonsConfigAddonsConfigMonetizationConfig,
         GoogleApigeeAddonsConfig;
+export 'src/apigee/google_apigee_api.dart' show GoogleApigeeApi;
 export 'src/apigee/google_apigee_api_deployment.dart'
     show GoogleApigeeApiDeployment;
 export 'src/apigee/google_apigee_api_product.dart'
@@ -88,14 +90,21 @@ export 'src/apigee/google_apigee_environment_addons_config.dart'
     show GoogleApigeeEnvironmentAddonsConfig;
 export 'src/apigee/google_apigee_environment_api_revision_deployment.dart'
     show GoogleApigeeEnvironmentApiRevisionDeployment;
+export 'src/apigee/google_apigee_environment_debugmask.dart'
+    show GoogleApigeeEnvironmentDebugmask;
 export 'src/apigee/google_apigee_environment_keyvaluemaps.dart'
     show GoogleApigeeEnvironmentKeyvaluemaps;
 export 'src/apigee/google_apigee_environment_keyvaluemaps_entries.dart'
     show GoogleApigeeEnvironmentKeyvaluemapsEntries;
+export 'src/apigee/google_apigee_flowhook.dart' show GoogleApigeeFlowhook;
 export 'src/apigee/google_apigee_instance.dart'
     show ApigeeInstanceAccessLoggingConfig, GoogleApigeeInstance;
 export 'src/apigee/google_apigee_instance_attachment.dart'
     show GoogleApigeeInstanceAttachment;
+export 'src/apigee/google_apigee_keystores_aliases_key_cert_file.dart'
+    show GoogleApigeeKeystoresAliasesKeyCertFile;
+export 'src/apigee/google_apigee_keystores_aliases_pkcs12.dart'
+    show GoogleApigeeKeystoresAliasesPkcs12;
 export 'src/apigee/google_apigee_keystores_aliases_self_signed_cert.dart'
     show
         ApigeeKeystoresAliasesSelfSignedCertSubject,
@@ -122,6 +131,9 @@ export 'src/apigee/google_apigee_security_profile_v2.dart'
         ApigeeSecurityProfileV2ProfileAssessmentConfigs,
         ApigeeSecurityProfileV2ProfileAssessmentConfigsWeight,
         GoogleApigeeSecurityProfileV2;
+export 'src/apigee/google_apigee_sharedflow.dart' show GoogleApigeeSharedflow;
+export 'src/apigee/google_apigee_sharedflow_deployment.dart'
+    show GoogleApigeeSharedflowDeployment;
 export 'src/apigee/google_apigee_space.dart' show GoogleApigeeSpace;
 export 'src/apigee/google_apigee_sync_authorization.dart'
     show GoogleApigeeSyncAuthorization;

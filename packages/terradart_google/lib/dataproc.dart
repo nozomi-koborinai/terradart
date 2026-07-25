@@ -1,9 +1,9 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Dataproc: classic/GKE clusters, autoscaling policies, Metastore,
-/// GDC service instances / application environments, and Serverless
-/// session templates. Cluster / GDC / Interactive session paths are
-/// never_apply for apply-smoke.
+/// Dataproc: classic/GKE clusters, classic jobs, autoscaling policies,
+/// Metastore, GDC service instances / application environments, and
+/// Serverless session templates. Cluster / job / GDC / Interactive
+/// session paths are never_apply for apply-smoke.
 library;
 
 export 'src/dataproc/google_dataproc_autoscaling_policy.dart'
@@ -75,6 +75,25 @@ export 'src/dataproc/google_dataproc_gdc_service_instance.dart'
     show
         DataprocGdcServiceInstanceGdceCluster,
         GoogleDataprocGdcServiceInstance;
+export 'src/dataproc/google_dataproc_job.dart'
+    show
+        DataprocJobHadoopConfig,
+        DataprocJobHadoopConfigLoggingConfig,
+        DataprocJobHiveConfig,
+        DataprocJobPigConfig,
+        DataprocJobPigConfigLoggingConfig,
+        DataprocJobPlacement,
+        DataprocJobPrestoConfig,
+        DataprocJobPrestoConfigLoggingConfig,
+        DataprocJobPysparkConfig,
+        DataprocJobPysparkConfigLoggingConfig,
+        DataprocJobReference,
+        DataprocJobScheduling,
+        DataprocJobSparkConfig,
+        DataprocJobSparkConfigLoggingConfig,
+        DataprocJobSparksqlConfig,
+        DataprocJobSparksqlConfigLoggingConfig,
+        GoogleDataprocJob;
 export 'src/dataproc/google_dataproc_metastore_federation.dart'
     show
         DataprocMetastoreFederationBackend,

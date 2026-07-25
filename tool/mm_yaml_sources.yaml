@@ -280,6 +280,8 @@ files:
     upstream: mmv1/products/dataproc/AutoscalingPolicy.yaml
   google_dataproc_cluster:
     upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/dataproc/resource_dataproc_cluster.go); no mmv1/products/dataproc/Cluster.yaml
+  google_dataproc_job:
+    upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/dataproc/resource_dataproc_job.go); no mmv1/products/dataproc/Job.yaml (Job.yaml 404, probed 2026-07-25)
   google_dataproc_cluster_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataproc_metastore_federation:
@@ -1028,6 +1030,20 @@ files:
     upstream: mmv1/products/apigee/KeystoresAliasesSelfSignedCert.yaml
   google_apigee_api_deployment:
     upstream: mmv1/products/apigee/ApiDeployment.yaml
+  google_apigee_api:
+    upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/apigee/resource_apigee_api.go); no mmv1/products/apigee/Api.yaml (404, probed 2026-07-25)
+  google_apigee_sharedflow:
+    upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/apigee/resource_apigee_sharedflow.go); no mmv1/products/apigee/SharedFlow.yaml (404, probed 2026-07-25)
+  google_apigee_sharedflow_deployment:
+    upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/apigee/resource_apigee_sharedflow_deployment.go); SharedFlowDeployment.yaml 404, probed 2026-07-25
+  google_apigee_flowhook:
+    upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/apigee/resource_apigee_flowhook.go); FlowHook.yaml 404, probed 2026-07-25
+  google_apigee_environment_debugmask:
+    upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/apigee/resource_apigee_environment_debugmask.go); EnvironmentDebugmask.yaml 404, probed 2026-07-25
+  google_apigee_keystores_aliases_key_cert_file:
+    upstream: null  # third_party Framework handwritten (mmv1/third_party/terraform/services/apigee/fw_resource_apigee_keystores_aliases_key_cert_file.go); KeystoresAliasesKeyCertFile.yaml 404, probed 2026-07-25
+  google_apigee_keystores_aliases_pkcs12:
+    upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/apigee/resource_apigee_keystores_aliases_pkcs12.go); KeystoresAliasesPkcs12.yaml 404, probed 2026-07-25
   google_apigee_control_plane_access:
     upstream: mmv1/products/apigee/ControlPlaneAccess.yaml
   google_apigee_environment_api_revision_deployment:

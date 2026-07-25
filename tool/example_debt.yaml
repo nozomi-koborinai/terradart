@@ -259,6 +259,7 @@ GoogleBackupDrRestoreWorkload: requires vault backups (never_apply parents); def
 # ship without an example.
 GoogleDataprocCluster: gcp-cost Dataproc 363B-8851-170D Serverless Batch DCU us-central1 SKU EC7A-EF05-537E $0.06/h (Interactive DCU A486-6040-07FE $0.089/h; no classic cluster premium SKU in catalog) — never_apply GCE+premium hours; no applyable quickstart on terradart-validate
 GoogleDataprocClusterIamMember: requires a parent GoogleDataprocCluster (never_apply); deferred with the cluster
+GoogleDataprocJob: gcp-cost Dataproc 363B-8851-170D Serverless Batch DCU us-central1 SKU EC7A-EF05-537E $0.06/h (no classic job premium SKU in catalog) — never_apply; job workers on cluster / ephemeral GCE; no applyable quickstart on terradart-validate
 
 # Dataproc-on-GDC needs a real GDCE cluster (edge/appliance). GDC Bare Metal
 # SKU 297F-4642-B7A1 $0.03288/h. A quickstart would force apply_smoke_skip
@@ -342,7 +343,14 @@ GoogleApigeeEnvReferences: requires never_apply GoogleApigeeEnvironment; deferre
 GoogleApigeeEnvironmentKeyvaluemaps: requires never_apply GoogleApigeeEnvironment; deferred with the org Wave
 GoogleApigeeEnvironmentKeyvaluemapsEntries: requires never_apply GoogleApigeeEnvironment / GoogleApigeeEnvironmentKeyvaluemaps; deferred with the org Wave
 GoogleApigeeKeystoresAliasesSelfSignedCert: requires never_apply GoogleApigeeOrganization / GoogleApigeeEnvironment / GoogleApigeeEnvKeystore; deferred with the org Wave
+GoogleApigeeApi: requires never_apply GoogleApigeeOrganization (+ local proxy config_bundle); deferred with the org Wave
 GoogleApigeeApiDeployment: requires never_apply GoogleApigeeOrganization / GoogleApigeeEnvironment; deferred with the org Wave
+GoogleApigeeSharedflow: requires never_apply GoogleApigeeOrganization (+ local sharedflow config_bundle); deferred with the org Wave
+GoogleApigeeSharedflowDeployment: requires never_apply GoogleApigeeOrganization / GoogleApigeeEnvironment / GoogleApigeeSharedflow; deferred with the org Wave
+GoogleApigeeFlowhook: requires never_apply GoogleApigeeOrganization / GoogleApigeeEnvironment / GoogleApigeeSharedflow; deferred with the org Wave
+GoogleApigeeEnvironmentDebugmask: requires never_apply GoogleApigeeEnvironment; deferred with the org Wave
+GoogleApigeeKeystoresAliasesKeyCertFile: requires never_apply GoogleApigeeOrganization / GoogleApigeeEnvironment / GoogleApigeeEnvKeystore; deferred with the org Wave
+GoogleApigeeKeystoresAliasesPkcs12: requires never_apply GoogleApigeeOrganization / GoogleApigeeEnvironment / GoogleApigeeEnvKeystore; deferred with the org Wave
 GoogleApigeeControlPlaneAccess: requires never_apply GoogleApigeeOrganization; deferred with the org Wave
 GoogleApigeeEnvironmentApiRevisionDeployment: requires never_apply GoogleApigeeOrganization / GoogleApigeeEnvironment; deferred with the org Wave
 GoogleApigeeSecurityFeedback: requires never_apply GoogleApigeeOrganization + Advanced API Security; deferred with the org Wave
