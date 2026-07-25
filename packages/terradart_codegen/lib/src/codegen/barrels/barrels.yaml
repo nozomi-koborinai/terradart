@@ -43,6 +43,11 @@ barrels:
     doc: |-
       /// Backup and DR Service — vaults, plans, associations, management
       /// server, service config, and restore workloads.
+  beyondcorp:
+    doc: |-
+      /// BeyondCorp Enterprise / Chrome Enterprise Premium — App Gateways,
+      /// connectors, connections, and Security Gateways. Requires CEP
+      /// entitlement (never_apply for apply-smoke).
   apphub:
     doc: |-
       /// App Hub — applications that group services and workloads for

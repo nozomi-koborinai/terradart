@@ -1,0 +1,37 @@
+outputDir: beyondcorp
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+dartTypeOverrides:
+  schema: BeyondcorpSecurityGatewayApplicationSchema
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// BeyondCorp **Security Gateway Application** — application routed
+  /// through a [GoogleBeyondcorpSecurityGateway].
+  ///
+  /// **Cost / apply:** Chrome Enterprise Premium `F91A-404B-8D2E` Monthly
+  /// Users SKU `E2D2-474B-B4EF` **$6/user·mo**; parent security gateway is
+  /// never_apply. Debt-only on `terradart-validate`. **Never** wire into
+  /// apply-smoke.
+
+paramOrder:
+  - application_id
+  - security_gateway_id
+  - display_name
+  - schema
+  - endpoint_matchers
+  - upstreams
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

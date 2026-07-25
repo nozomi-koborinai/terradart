@@ -172,6 +172,9 @@ final class GoogleProviderRules extends ProviderRules {
     'pubsublite': 'pubsub_lite',
     'pubsub_lite': 'pubsub_lite',
 
+    // BeyondCorp Enterprise (`google_beyondcorp_*`).
+    'beyondcorp': 'beyondcorp',
+
     // Google Cloud VMware Engine (`google_vmwareengine_*`).
     'vmwareengine': 'vmwareengine',
 
