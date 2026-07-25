@@ -80,6 +80,10 @@ files:
     upstream: null  # third_party terraform/services/bigtable/resource_bigtable_table.go
   google_bigtable_table_iam_member:
     upstream: null
+  google_blockchain_node_engine_blockchain_nodes:
+    upstream: mmv1/products/blockchainnodeengine/BlockchainNodes.yaml
+  google_cloud_ids_endpoint:
+    upstream: mmv1/products/cloudids/Endpoint.yaml
   google_cloud_run_v2_service:
     upstream: mmv1/products/cloudrunv2/Service.yaml
   google_clouddeploy_custom_target_type:
@@ -106,6 +110,8 @@ files:
     upstream: mmv1/products/compute/InterconnectAttachmentGroup.yaml
   google_compute_interconnect_group:
     upstream: mmv1/products/compute/InterconnectGroup.yaml
+  google_compute_storage_pool:
+    upstream: mmv1/products/compute/StoragePool.yaml
   google_container_attached_cluster:
     upstream: mmv1/products/containerattached/Cluster.yaml
   google_container_aws_cluster:
