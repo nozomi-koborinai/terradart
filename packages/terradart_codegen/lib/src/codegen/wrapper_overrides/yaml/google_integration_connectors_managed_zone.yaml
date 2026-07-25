@@ -1,0 +1,35 @@
+outputDir: integration_connectors
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Integration Connectors **managed zone** — DNS zone peering a connector
+  /// path into a consumer VPC (`dns` + `target_project` / `target_vpc`).
+  ///
+  /// **Cost / apply:** gcp-cost: no dedicated managed-zone SKU under
+  /// Integration Connectors `6FFB-B71E-5A0F` (connection node hours
+  /// `4AB5-4E41-8DAB` **$0.35/h** / `4E3B-04D1-77FA` **$0.70/h**).
+  /// billing-behavior: DNS metadata for never_apply connector stacks; needs
+  /// a real target VPC. Not applyable on `terradart-validate`. **Never**
+  /// wire into apply-smoke.
+  ///
+  /// Enable `connectors.googleapis.com` before apply.
+
+paramOrder:
+  - name
+  - dns
+  - target_project
+  - target_vpc
+  - description
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

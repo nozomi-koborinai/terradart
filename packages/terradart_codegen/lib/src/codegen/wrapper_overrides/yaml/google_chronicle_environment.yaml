@@ -1,0 +1,41 @@
+outputDir: chronicle
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Chronicle (Google SecOps) **environment** — named retention / contact
+  /// boundary on a Chronicle instance.
+  ///
+  /// **Cost / apply:** gcp-cost: Chronicle `144D-4907-2A21` Bytes of data
+  /// ingested in US for the Enterprise Plus package SKU `0310-AEE4-5DC1`
+  /// **$6.58/GBy** (plus dollar-based SecOps commitments). billing-behavior:
+  /// environments sit on an entitlement-gated Chronicle instance; ingestion
+  /// and package fees accrue while the SecOps deployment is active. Not
+  /// applyable on `terradart-validate`. **Never** wire into apply-smoke.
+  ///
+  /// Enable `chronicle.googleapis.com` before apply. [instance] is the
+  /// Chronicle instance ID in [location] (e.g. `us`).
+
+paramOrder:
+  - display_name
+  - location
+  - instance
+  - retention_duration
+  - contact
+  - contact_emails
+  - contact_phone
+  - description
+  - aliases_json
+  - data_access_scopes_json
+  - deletion_protection
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

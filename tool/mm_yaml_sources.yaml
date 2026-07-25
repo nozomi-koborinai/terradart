@@ -591,6 +591,14 @@ files:
     upstream: mmv1/products/chronicle/NativeDashboard.yaml
   google_chronicle_custom_list:
     upstream: mmv1/products/chronicle/CustomList.yaml
+  google_chronicle_environment:
+    upstream: mmv1/products/chronicle/Environment.yaml
+  google_integration_connectors_connection:
+    upstream: mmv1/products/integrationconnectors/Connection.yaml
+  google_integration_connectors_endpoint_attachment:
+    upstream: mmv1/products/integrationconnectors/EndpointAttachment.yaml
+  google_integration_connectors_managed_zone:
+    upstream: mmv1/products/integrationconnectors/ManagedZone.yaml
   google_cloud_scheduler_job:
     upstream: mmv1/products/cloudscheduler/Job.yaml
   google_cloud_tasks_queue:

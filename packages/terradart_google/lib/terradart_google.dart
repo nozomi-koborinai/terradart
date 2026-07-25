@@ -75,6 +75,7 @@ export 'hypercomputecluster.dart';
 export 'iam.dart';
 export 'iap.dart';
 export 'identity.dart';
+export 'integration_connectors.dart';
 export 'integrations.dart';
 export 'kms.dart';
 export 'license_manager.dart';
