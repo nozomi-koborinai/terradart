@@ -64,6 +64,7 @@ export 'firestore.dart';
 export 'gemini.dart';
 export 'gke_backup.dart';
 export 'healthcare.dart';
+export 'hypercomputecluster.dart';
 export 'iam.dart';
 export 'iap.dart';
 export 'identity.dart';

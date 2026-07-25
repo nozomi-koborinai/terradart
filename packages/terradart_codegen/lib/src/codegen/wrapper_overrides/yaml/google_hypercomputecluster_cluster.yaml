@@ -1,0 +1,42 @@
+outputDir: hypercomputecluster
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Cluster Director (**Hypercompute Cluster**) — HPC cluster combining
+  /// compute, storage, network, and an orchestrator.
+  ///
+  /// **Cost / apply:** No dedicated "Cluster Director" / Hypercompute Cluster
+  /// SKU after MCP `list_services` (Hypercompute / Cluster Director → empty).
+  /// The cluster provisions billable compute capacity (e.g. Cloud TPU
+  /// `E000-3F24-B8AA` TPU-v2 Accelerator USA SKU `3B3D-4CB4-AECC` **$4.5/h**
+  /// in us-central1, plus GCE / storage / networking). Far too expensive for
+  /// apply-smoke — debt-only. **Never** wire into apply-smoke.
+  ///
+  /// Enable `hypercomputecluster.googleapis.com` via [GoogleProjectService]
+  /// before apply. [networkResources] is required.
+
+paramOrder:
+  - cluster_id
+  - location
+  - network_resources
+  - compute_resources
+  - storage_resources
+  - orchestrator
+  - description
+  - labels
+  - project
+
+extraGetters: |2
+    /// Reference to `cluster_id` / name segment.
+    TfRef<String> get clusterIdRef =>
+        TfRef.attribute<String>(this, 'cluster_id');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

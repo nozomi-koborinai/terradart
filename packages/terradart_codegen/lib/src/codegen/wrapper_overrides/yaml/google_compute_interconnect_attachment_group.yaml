@@ -1,0 +1,36 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Compute Engine **Interconnect attachment group** — groups VLAN
+  /// attachments (optionally under an [GoogleComputeInterconnectGroup]) for
+  /// availability-SLA intent.
+  ///
+  /// **Cost / apply:** Physical interconnect / VLAN attachments bill while
+  /// provisioned (e.g. Cloud Interconnect 10Gbps Dedicated circuit SKU
+  /// `B8C8-2F76-E648` **$2.328/h** on Compute Engine `6F81-5844-456A`).
+  /// Debt-only — **never** wire into apply-smoke.
+  ///
+  /// [intent] is required.
+
+paramOrder:
+  - name
+  - intent
+  - interconnect_group
+  - attachments
+  - description
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

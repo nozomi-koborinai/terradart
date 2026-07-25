@@ -247,6 +247,11 @@ barrels:
       ///
       /// For clusters and node pools, see `container.dart`. Pair
       /// [GoogleGkeBackupBackupPlan] with [GoogleContainerCluster].
+  hypercomputecluster:
+    doc: |-
+      /// Cluster Director (Hypercompute Cluster) — HPC clusters combining
+      /// compute, storage, network, and an orchestrator. Provisions billable
+      /// capacity; not applyable on a standalone smoke project.
   healthcare:
     doc: |-
       /// Cloud Healthcare — datasets and modality stores (DICOM, consent) plus the
