@@ -619,6 +619,16 @@ files:
     upstream: mmv1/products/chronicle/FindingsRefinement.yaml
   google_chronicle_findings_refinement_deployment:
     upstream: mmv1/products/chronicle/FindingsRefinementDeployment.yaml
+  google_chronicle_data_access_label:
+    upstream: mmv1/products/chronicle/DataAccessLabel.yaml
+  google_chronicle_data_access_scope:
+    upstream: mmv1/products/chronicle/DataAccessScope.yaml
+  google_chronicle_data_table:
+    upstream: mmv1/products/chronicle/DataTable.yaml
+  google_chronicle_data_table_row:
+    upstream: mmv1/products/chronicle/DataTableRow.yaml
+  google_chronicle_parser_extension:
+    upstream: mmv1/products/chronicle/ParserExtension.yaml
   google_integration_connectors_connection:
     upstream: mmv1/products/integrationconnectors/Connection.yaml
   google_integration_connectors_endpoint_attachment:

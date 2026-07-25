@@ -1,0 +1,40 @@
+outputDir: chronicle
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Chronicle (Google SecOps) **data access scope** — allow/deny label sets
+  /// that bound which labeled data a principal may query.
+  ///
+  /// **Cost / apply:** gcp-cost: Chronicle `144D-4907-2A21` Bytes of data
+  /// ingested in US for the Enterprise Plus package SKU `0310-AEE4-5DC1`
+  /// **$6.58/GBy** (plus dollar-based SecOps commitments). billing-behavior:
+  /// scopes sit on an entitlement-gated Chronicle instance (RBAC over billed
+  /// ingestion). Not applyable on `terradart-validate`. **Never** wire into
+  /// apply-smoke.
+  ///
+  /// Enable `chronicle.googleapis.com` before apply. Pair with
+  /// [GoogleChronicleDataAccessLabel] entries in allow/deny lists.
+
+paramOrder:
+  - data_access_scope_id
+  - location
+  - instance
+  - description
+  - allow_all
+  - allowed_data_access_labels
+  - denied_data_access_labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
