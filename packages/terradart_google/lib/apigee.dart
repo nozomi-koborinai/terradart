@@ -2,9 +2,10 @@
 // Run `terradart wrap` to regenerate.
 /// Apigee: organizations, runtime instances, environments, env groups,
 /// add-ons, data collectors, analytics datastores, NAT addresses,
-/// endpoint attachments, DNS zones, spaces, sync authorization, and
-/// target servers. Org/instance/env bill while provisioned
-/// (never_apply for apply-smoke).
+/// endpoint attachments, DNS zones, spaces, sync authorization,
+/// target servers, developers, developer apps, API products, and app
+/// groups. Org/instance/env bill while provisioned (never_apply for
+/// apply-smoke).
 library;
 
 export 'src/apigee/google_apigee_addons_config.dart'
@@ -16,6 +17,30 @@ export 'src/apigee/google_apigee_addons_config.dart'
         ApigeeAddonsConfigAddonsConfigIntegrationConfig,
         ApigeeAddonsConfigAddonsConfigMonetizationConfig,
         GoogleApigeeAddonsConfig;
+export 'src/apigee/google_apigee_api_product.dart'
+    show
+        ApigeeApiProductApprovalType,
+        ApigeeApiProductAttributes,
+        ApigeeApiProductGraphqlOperationGroup,
+        ApigeeApiProductGraphqlOperationGroupOperationConfigType,
+        ApigeeApiProductGraphqlOperationGroupOperationConfigs,
+        ApigeeApiProductGraphqlOperationGroupOperationConfigsAttributes,
+        ApigeeApiProductGraphqlOperationGroupOperationConfigsOperations,
+        ApigeeApiProductGraphqlOperationGroupOperationConfigsQuota,
+        ApigeeApiProductGrpcOperationGroup,
+        ApigeeApiProductGrpcOperationGroupOperationConfigs,
+        ApigeeApiProductGrpcOperationGroupOperationConfigsAttributes,
+        ApigeeApiProductGrpcOperationGroupOperationConfigsQuota,
+        ApigeeApiProductOperationGroup,
+        ApigeeApiProductOperationGroupOperationConfigType,
+        ApigeeApiProductOperationGroupOperationConfigs,
+        ApigeeApiProductOperationGroupOperationConfigsAttributes,
+        ApigeeApiProductOperationGroupOperationConfigsOperations,
+        ApigeeApiProductOperationGroupOperationConfigsQuota,
+        ApigeeApiProductQuotaCounterScope,
+        GoogleApigeeApiProduct;
+export 'src/apigee/google_apigee_app_group.dart'
+    show ApigeeAppGroupAttributes, ApigeeAppGroupStatus, GoogleApigeeAppGroup;
 export 'src/apigee/google_apigee_data_collector.dart'
     show
         ApigeeDataCollectorDeletionPolicy,
@@ -27,6 +52,10 @@ export 'src/apigee/google_apigee_datastore.dart'
         ApigeeDatastoreDeletionPolicy,
         ApigeeDatastoreTargetType,
         GoogleApigeeDatastore;
+export 'src/apigee/google_apigee_developer.dart'
+    show ApigeeDeveloperAttributes, GoogleApigeeDeveloper;
+export 'src/apigee/google_apigee_developer_app.dart'
+    show ApigeeDeveloperAppAttributes, GoogleApigeeDeveloperApp;
 export 'src/apigee/google_apigee_dns_zone.dart'
     show ApigeeDnsZonePeeringConfig, GoogleApigeeDnsZone;
 export 'src/apigee/google_apigee_endpoint_attachment.dart'

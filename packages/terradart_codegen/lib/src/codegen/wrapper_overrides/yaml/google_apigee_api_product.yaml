@@ -1,0 +1,49 @@
+outputDir: apigee
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Apigee **API product** — bundle of proxies/resources with quota and
+  /// approval settings.
+  ///
+  /// **Cost / apply:** gcp-cost: no Product SKU under Apigee
+  /// `1C2D-8C78-EC58` (list_skus keyword Product → 0). billing-behavior:
+  /// requires a never_apply [GoogleApigeeOrganization] (Gateway Node Hours
+  /// `0136-18C1-DD41` **$1.025/h**). Debt-only on `terradart-validate`.
+  /// **Never** wire into apply-smoke.
+
+paramOrder:
+  - name
+  - org_id
+  - display_name
+  - description
+  - approval_type
+  - api_resources
+  - environments
+  - proxies
+  - scopes
+  - space
+  - quota
+  - quota_interval
+  - quota_time_unit
+  - quota_counter_scope
+  - attributes
+  - operation_group
+  - graphql_operation_group
+  - grpc_operation_group
+
+dartTypeOverrides:
+  approval_type: ApigeeApiProductApprovalType
+  quota_counter_scope: ApigeeApiProductQuotaCounterScope
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

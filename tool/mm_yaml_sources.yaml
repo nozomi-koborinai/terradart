@@ -986,6 +986,14 @@ files:
     upstream: mmv1/products/apigee/SyncAuthorization.yaml
   google_apigee_target_server:
     upstream: mmv1/products/apigee/TargetServer.yaml
+  google_apigee_developer:
+    upstream: mmv1/products/apigee/Developer.yaml
+  google_apigee_developer_app:
+    upstream: mmv1/products/apigee/DeveloperApp.yaml
+  google_apigee_api_product:
+    upstream: mmv1/products/apigee/ApiProduct.yaml
+  google_apigee_app_group:
+    upstream: mmv1/products/apigee/AppGroup.yaml
   # App Hub (applications + discovered service/workload registration)
   google_apphub_application:
     upstream: mmv1/products/apphub/Application.yaml
