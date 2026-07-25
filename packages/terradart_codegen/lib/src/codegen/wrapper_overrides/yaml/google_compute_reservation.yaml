@@ -1,0 +1,46 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Compute Engine **reservation** — reserved zonal VM / GPU capacity that
+  /// bills at on-demand rates while the reservation exists, whether or not
+  /// matching VMs consume it.
+  ///
+  /// **Cost / apply:** gcp-cost: Compute Engine `6F81-5844-456A` N4A Custom
+  /// Instance Core Iowa SKU `F179-06F3-16EC` **$0.027783/h** (on-demand;
+  /// Flexible CUD 1y/3y lower); 1/8 vGPU no-LSSD Iowa SKU `D5C5-C5F4-086C`
+  /// **$0.64688/h**. billing-behavior: reserved `specific_reservation`
+  /// capacity accrues those SKUs for the reservation lifetime (GPU shapes
+  /// are especially costly); destroy stops the charge. **Never** wire into
+  /// apply-smoke.
+  ///
+  /// [specificReservation] is required. Prefer [deleteAtTime] /
+  /// [deleteAfterDuration] when experimenting outside CI.
+
+paramOrder:
+  - name
+  - zone
+  - specific_reservation
+  - description
+  - specific_reservation_required
+  - share_settings
+  - reservation_sharing_policy
+  - params
+  - delete_at_time
+  - delete_after_duration
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

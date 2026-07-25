@@ -1,0 +1,40 @@
+outputDir: discovery_engine
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Vertex AI Search / Gemini Enterprise **assistant** — Agentspace
+  /// assistant bound to a search/chat engine.
+  ///
+  /// **Cost / apply:** gcp-cost: Vertex AI Search `74B1-77CF-C302` Gemini
+  /// Enterprise Standard monthly SKU `0532-C2F0-1DF0` **$35/seat·mo** (Plus
+  /// `4EDF-A125-F89E` **$60/mo**). billing-behavior: assistants are the
+  /// Gemini Enterprise Agentspace runtime surface (seat/entitlement path);
+  /// not applyable without that subscription on `terradart-validate`.
+  /// **Never** wire into apply-smoke.
+
+paramOrder:
+  - location
+  - collection_id
+  - engine_id
+  - assistant_id
+  - display_name
+  - description
+  - generation_config
+  - customer_policy
+  - web_grounding_type
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

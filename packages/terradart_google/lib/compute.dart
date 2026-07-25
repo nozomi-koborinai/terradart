@@ -530,6 +530,21 @@ export 'src/compute/google_compute_region_url_map.dart'
         RegionUrlMapCacheMode,
         RegionUrlMapMetadataFilterMatchCriteria,
         RegionUrlMapRedirectResponseCode;
+export 'src/compute/google_compute_reservation.dart'
+    show
+        ComputeReservationDeleteAfterDuration,
+        ComputeReservationParams,
+        ComputeReservationReservationSharingPolicy,
+        ComputeReservationReservationSharingPolicyServiceShareType,
+        ComputeReservationShareSettings,
+        ComputeReservationShareSettingsProjectMap,
+        ComputeReservationShareSettingsShareType,
+        ComputeReservationSpecificReservation,
+        ComputeReservationSpecificReservationInstanceProperties,
+        ComputeReservationSpecificReservationInstancePropertiesGuestAccelerators,
+        ComputeReservationSpecificReservationInstancePropertiesLocalSsds,
+        ComputeReservationSpecificReservationInstancePropertiesLocalSsdsInterface,
+        GoogleComputeReservation;
 export 'src/compute/google_compute_resource_policy.dart'
     show
         ComputeResourcePolicyDailySchedule,

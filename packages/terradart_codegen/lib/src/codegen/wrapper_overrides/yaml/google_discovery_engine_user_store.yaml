@@ -1,0 +1,34 @@
+outputDir: discovery_engine
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Vertex AI Search / Gemini Enterprise **user store** — project-level
+  /// store that can auto-register users onto a default [licenseConfig].
+  ///
+  /// **Cost / apply:** gcp-cost: Vertex AI Search `74B1-77CF-C302` Gemini
+  /// Enterprise Standard monthly SKU `0532-C2F0-1DF0` **$35/seat·mo** (Plus
+  /// `4EDF-A125-F89E` **$60/mo**). billing-behavior: [defaultLicenseConfig]
+  /// + [enableLicenseAutoRegister] assign seat subscriptions (same class as
+  /// [GoogleDiscoveryEngineLicenseConfig]); MM `exclude_delete: true` so
+  /// Terraform cannot destroy the store. **Never** wire into apply-smoke.
+  ///
+  /// [userStoreId] currently accepts only `default_user_store`.
+
+paramOrder:
+  - location
+  - user_store_id
+  - default_license_config
+  - enable_license_auto_register
+  - enable_expired_license_auto_update
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

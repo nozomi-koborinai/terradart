@@ -1,0 +1,41 @@
+outputDir: discovery_engine
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  industry_vertical: DiscoveryEngineRecommendationEngineIndustryVertical
+
+curatedDoc: |-
+  /// Vertex AI Search / Gemini Enterprise **recommendation engine** —
+  /// media / generic recommendations over data stores.
+  ///
+  /// **Cost / apply:** gcp-cost: Vertex AI Search `74B1-77CF-C302` Gemini
+  /// Enterprise Standard monthly SKU `0532-C2F0-1DF0` **$35/seat·mo** (Plus
+  /// `4EDF-A125-F89E` **$60/mo**). billing-behavior: recommendation engines
+  /// sit on the Gemini Enterprise / Agentspace entitlement path; training /
+  /// serving accrue product fees while provisioned. **Never** wire into
+  /// apply-smoke.
+
+paramOrder:
+  - location
+  - engine_id
+  - display_name
+  - data_store_ids
+  - industry_vertical
+  - media_recommendation_engine_config
+  - common_config
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

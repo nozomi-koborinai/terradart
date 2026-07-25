@@ -1,0 +1,47 @@
+outputDir: discovery_engine
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  industry_vertical: DiscoveryEngineChatEngineIndustryVertical
+
+curatedDoc: |-
+  /// Vertex AI Search / Gemini Enterprise **chat engine** — conversational
+  /// engine backed by data stores (Dialogflow CX agent link or creation).
+  ///
+  /// **Cost / apply:** gcp-cost: Vertex AI Search `74B1-77CF-C302` Gemini
+  /// Enterprise Standard monthly SKU `0532-C2F0-1DF0` **$35/seat·mo** (Plus
+  /// `4EDF-A125-F89E` **$60/mo**); Dialogflow CX text sessions
+  /// `A1CC-751A-CDCC` **$0.20**/session on Cloud Dialogflow `FBC0-AA4A-C89A`.
+  /// billing-behavior: chat engines sit on the Gemini Enterprise /
+  /// Agentspace entitlement path and drive Dialogflow CX session charges;
+  /// not applyable without that subscription on `terradart-validate`.
+  /// **Never** wire into apply-smoke.
+  ///
+  /// [chatEngineConfig] is required (nested `agent_creation_config` XOR
+  /// `dialogflow_agent_to_link`).
+
+paramOrder:
+  - location
+  - collection_id
+  - engine_id
+  - display_name
+  - data_store_ids
+  - chat_engine_config
+  - industry_vertical
+  - common_config
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
