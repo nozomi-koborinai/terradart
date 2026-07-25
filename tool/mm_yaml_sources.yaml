@@ -607,6 +607,18 @@ files:
     upstream: mmv1/products/chronicle/RuleDeployment.yaml
   google_chronicle_retrohunt:
     upstream: mmv1/products/chronicle/Retrohunt.yaml
+  google_chronicle_reference_list:
+    upstream: mmv1/products/chronicle/ReferenceList.yaml
+  google_chronicle_watchlist:
+    upstream: mmv1/products/chronicle/Watchlist.yaml
+  google_chronicle_data_export:
+    upstream: mmv1/products/chronicle/DataExport.yaml
+  google_chronicle_parser:
+    upstream: mmv1/products/chronicle/Parser.yaml
+  google_chronicle_findings_refinement:
+    upstream: mmv1/products/chronicle/FindingsRefinement.yaml
+  google_chronicle_findings_refinement_deployment:
+    upstream: mmv1/products/chronicle/FindingsRefinementDeployment.yaml
   google_integration_connectors_connection:
     upstream: mmv1/products/integrationconnectors/Connection.yaml
   google_integration_connectors_endpoint_attachment:

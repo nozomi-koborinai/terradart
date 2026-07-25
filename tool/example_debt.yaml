@@ -371,6 +371,12 @@ GoogleChronicleEnvironment: gcp-cost Chronicle 144D-4907-2A21 Enterprise Plus US
 GoogleChronicleRule: gcp-cost Chronicle 144D-4907-2A21 Enterprise Plus US ingestion SKU 0310-AEE4-5DC1 $6.58/GBy — never_apply; entitlement-gated SecOps instance; no applyable quickstart on terradart-validate
 GoogleChronicleRuleDeployment: requires never_apply GoogleChronicleRule (+ entitlement-gated SecOps); deferred with the Chronicle rule Wave
 GoogleChronicleRetrohunt: gcp-cost Chronicle 144D-4907-2A21 Enterprise Plus US ingestion SKU 0310-AEE4-5DC1 $6.58/GBy — never_apply; historical reprocessing on entitlement-gated SecOps; no applyable quickstart on terradart-validate
+GoogleChronicleReferenceList: gcp-cost Chronicle 144D-4907-2A21 Enterprise Plus US ingestion SKU 0310-AEE4-5DC1 $6.58/GBy — never_apply; entitlement-gated SecOps; no applyable quickstart on terradart-validate
+GoogleChronicleWatchlist: gcp-cost Chronicle 144D-4907-2A21 Enterprise Plus US ingestion SKU 0310-AEE4-5DC1 $6.58/GBy — never_apply; entitlement-gated SecOps; no applyable quickstart on terradart-validate
+GoogleChronicleDataExport: gcp-cost Chronicle 144D-4907-2A21 Enterprise Plus US ingestion SKU 0310-AEE4-5DC1 $6.58/GBy — never_apply; historical export on entitlement-gated SecOps (+ GCS); no applyable quickstart on terradart-validate
+GoogleChronicleParser: gcp-cost Chronicle 144D-4907-2A21 Enterprise Plus US ingestion SKU 0310-AEE4-5DC1 $6.58/GBy — never_apply; ingestion-path parser on entitlement-gated SecOps; no applyable quickstart on terradart-validate
+GoogleChronicleFindingsRefinement: gcp-cost Chronicle 144D-4907-2A21 Enterprise Plus US ingestion SKU 0310-AEE4-5DC1 $6.58/GBy — never_apply; entitlement-gated SecOps; no applyable quickstart on terradart-validate
+GoogleChronicleFindingsRefinementDeployment: requires never_apply GoogleChronicleFindingsRefinement (+ entitlement-gated SecOps); deferred with the Chronicle findings-refinement Wave
 GoogleDataflowJob: gcp-cost Cloud Dataflow 57D6-8E6B-2DE0 vCPU Time Batch Iowa SKU A613-4169-2E08 $0.056/h per vCPU — never_apply; no applyable quickstart on terradart-validate
 GoogleIntegrationConnectorsConnection: gcp-cost Integration Connectors 6FFB-B71E-5A0F Connection nodes Google managed apps SKU 4AB5-4E41-8DAB $0.35/h (business apps 4E3B-04D1-77FA $0.70/h) — never_apply; no applyable quickstart on terradart-validate
 GoogleIntegrationConnectorsEndpointAttachment: requires never_apply Integration Connectors connection path (+ real PSC service attachment); deferred with the connectors Wave

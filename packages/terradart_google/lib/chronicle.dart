@@ -36,8 +36,18 @@ export 'src/chronicle/google_chronicle_dashboard_chart.dart'
         ChronicleDashboardChartVisualMapType,
         ChronicleDashboardChartVisualization,
         GoogleChronicleDashboardChart;
+export 'src/chronicle/google_chronicle_data_export.dart'
+    show ChronicleDataExportIngestionLabels, GoogleChronicleDataExport;
 export 'src/chronicle/google_chronicle_environment.dart'
     show GoogleChronicleEnvironment;
+export 'src/chronicle/google_chronicle_findings_refinement.dart'
+    show
+        ChronicleFindingsRefinementOutcomeFilters,
+        GoogleChronicleFindingsRefinement;
+export 'src/chronicle/google_chronicle_findings_refinement_deployment.dart'
+    show
+        ChronicleFindingsRefinementDeploymentDetectionExclusionApplication,
+        GoogleChronicleFindingsRefinementDeployment;
 export 'src/chronicle/google_chronicle_native_dashboard.dart'
     show
         ChronicleNativeDashboardAccess,
@@ -48,8 +58,28 @@ export 'src/chronicle/google_chronicle_native_dashboard.dart'
         ChronicleNativeDashboardFilterOperatorAndFieldValue,
         ChronicleNativeDashboardType,
         GoogleChronicleNativeDashboard;
+export 'src/chronicle/google_chronicle_parser.dart'
+    show
+        ChronicleParserLowCode,
+        ChronicleParserLowCodeFieldExtractors,
+        ChronicleParserLowCodeFieldExtractorsExtractors,
+        ChronicleParserLowCodeFieldExtractorsPreprocessConfig,
+        ChronicleParserVersionInfo,
+        GoogleChronicleParser;
+export 'src/chronicle/google_chronicle_reference_list.dart'
+    show
+        ChronicleReferenceListEntries,
+        ChronicleReferenceListScopeInfo,
+        ChronicleReferenceListScopeInfoReferenceListScope,
+        GoogleChronicleReferenceList;
 export 'src/chronicle/google_chronicle_retrohunt.dart'
     show ChronicleRetrohuntProcessInterval, GoogleChronicleRetrohunt;
 export 'src/chronicle/google_chronicle_rule.dart' show GoogleChronicleRule;
 export 'src/chronicle/google_chronicle_rule_deployment.dart'
     show GoogleChronicleRuleDeployment;
+export 'src/chronicle/google_chronicle_watchlist.dart'
+    show
+        ChronicleWatchlistEntityPopulationMechanism,
+        ChronicleWatchlistEntityPopulationMechanismManual,
+        ChronicleWatchlistWatchlistUserPreferences,
+        GoogleChronicleWatchlist;
