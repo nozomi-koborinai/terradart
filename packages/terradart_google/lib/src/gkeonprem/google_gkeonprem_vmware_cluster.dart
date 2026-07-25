@@ -637,6 +637,9 @@ final class GoogleGkeonpremVmwareCluster extends Resource {
   @override
   Set<String> get sensitiveFields => _googleGkeonpremVmwareClusterSensitive;
 
+  /// Reference to `local_name` attribute.
+  TfRef<String> get localNameRef => TfRef.attribute<String>(this, 'local_name');
+
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
@@ -659,9 +662,6 @@ final class GoogleGkeonpremVmwareCluster extends Resource {
   /// Reference to `fleet` attribute.
   TfRef<List<Map<String, Object?>>> get fleet =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'fleet');
-
-  /// Reference to `local_name` attribute.
-  TfRef<String> get localName => TfRef.attribute<String>(this, 'local_name');
 
   /// Reference to `reconciling` attribute.
   TfRef<bool> get reconciling => TfRef.attribute<bool>(this, 'reconciling');

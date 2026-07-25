@@ -106,6 +106,27 @@ void main() {
       expect('get kindRef'.allMatches(src).length, 1);
     });
 
+    test(
+        'emits localNameRef (not localName) to avoid colliding with '
+        'Resource.localName', () {
+      final src = emitDerivedOutputGetters(_def(const [
+        Attribute(
+          name: 'local_name',
+          type: StringType(),
+          constraints: Constraints(computed: true),
+        ),
+      ]));
+      expect(
+        src,
+        contains(
+          "TfRef<String> get localNameRef => "
+          "TfRef.attribute<String>(this, 'local_name');",
+        ),
+      );
+      expect(src, isNot(contains('get localName =>')));
+      expect('get localNameRef'.allMatches(src).length, 1);
+    });
+
     test('does NOT emit getters for optional+computed (settable) attributes',
         () {
       final src = emitDerivedOutputGetters(_def(const [

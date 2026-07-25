@@ -12,11 +12,15 @@ import 'naming.dart';
 ///   with the constructor parameter; `String` matches every Terraform name).
 /// - A `kind` attribute → `kindRef` (bare `kind` would override
 ///   [Resource.kind]'s `ResourceKind` return type and fail analysis).
+/// - A `local_name` attribute → `localNameRef` (bare `localName` would
+///   override [Resource.localName]'s `String` return type and fail analysis;
+///   GKE on-prem / GDC cluster CR names hit this).
 /// - An `id` attribute → bare `id`. Special-cased by name (parallel to
 ///   `skipAttribute`'s `isIdAttribute` check), so it is exposed as a getter
 ///   regardless of how its computed/optional flags would otherwise classify it.
 /// - Every **pure computed-only** attribute (`Constraints.computedOnly`)
-///   other than `id`/`name`/`kind` → a camelCase getter of its rendered Dart type.
+///   other than `id`/`name`/`kind`/`local_name` → a camelCase getter of its
+///   rendered Dart type.
 ///
 /// `optional + computed` attributes are intentionally skipped: they are
 /// settable constructor inputs, and exposing a reference getter for them is
@@ -61,6 +65,9 @@ String emitDerivedOutputGetters(
   }
   if (attrNames.contains('kind')) {
     writeGetter('kind', 'kindRef', 'String');
+  }
+  if (attrNames.contains('local_name')) {
+    writeGetter('local_name', 'localNameRef', 'String');
   }
   // `id` is special-cased by name, parallel to `skipAttribute`'s isIdAttribute
   // check: always a getter, never a constructor arg, whatever its flags say.
