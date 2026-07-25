@@ -1,0 +1,37 @@
+outputDir: vmwareengine
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Google Cloud VMware Engine **cluster** — additional cluster under a
+  /// private cloud (`parent`), with node type configs and optional
+  /// autoscaling / datastore mounts.
+  ///
+  /// **Cost / apply:** Adds VMware Engine node hours while the cluster exists
+  /// (e.g. Gen 2 Standard 112 VCPU Node us-west2 SKU `00C9-4870-5751`
+  /// **$15.11/h** per node on service `C079-64FE-9109`). Requires a
+  /// never_apply [GoogleVmwareenginePrivateCloud]. Debt-only — **never** wire
+  /// into apply-smoke.
+  ///
+  /// Enable `vmwareengine.googleapis.com` via [GoogleProjectService] before
+  /// apply. [parent] is the private cloud resource name.
+
+paramOrder:
+  - name
+  - parent
+  - node_type_configs
+  - autoscaling_settings
+  - datastore_mount_config
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
