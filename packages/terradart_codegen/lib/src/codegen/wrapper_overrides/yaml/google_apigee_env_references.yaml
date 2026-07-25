@@ -1,0 +1,28 @@
+outputDir: apigee
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Apigee **environment reference** — named pointer to a keystore/truststore
+  /// (or other resource) inside an environment.
+  ///
+  /// **Cost / apply:** gcp-cost: no Reference SKU under Apigee
+  /// `1C2D-8C78-EC58` (list_skus keyword Reference → 0). billing-behavior:
+  /// requires a never_apply [GoogleApigeeEnvironment]. Debt-only on
+  /// `terradart-validate`. **Never** wire into apply-smoke.
+
+paramOrder:
+  - name
+  - env_id
+  - refers
+  - resource_type
+  - description
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -1,0 +1,24 @@
+outputDir: apigee
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Apigee **environment key-value map** — KVM container in an environment.
+  ///
+  /// **Cost / apply:** gcp-cost: no KeyValue/KVM SKU under Apigee
+  /// `1C2D-8C78-EC58` (list_skus keyword KeyValue/KVM → 0). billing-behavior:
+  /// requires a never_apply [GoogleApigeeEnvironment]. Debt-only on
+  /// `terradart-validate`. **Never** wire into apply-smoke.
+
+paramOrder:
+  - name
+  - env_id
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

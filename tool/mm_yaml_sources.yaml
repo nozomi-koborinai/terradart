@@ -994,6 +994,16 @@ files:
     upstream: mmv1/products/apigee/ApiProduct.yaml
   google_apigee_app_group:
     upstream: mmv1/products/apigee/AppGroup.yaml
+  google_apigee_env_keystore:
+    upstream: mmv1/products/apigee/EnvKeystore.yaml
+  google_apigee_env_references:
+    upstream: mmv1/products/apigee/EnvReferences.yaml
+  google_apigee_environment_keyvaluemaps:
+    upstream: mmv1/products/apigee/EnvironmentKeyvaluemaps.yaml
+  google_apigee_environment_keyvaluemaps_entries:
+    upstream: mmv1/products/apigee/EnvironmentKeyvaluemapsEntries.yaml
+  google_apigee_keystores_aliases_self_signed_cert:
+    upstream: mmv1/products/apigee/KeystoresAliasesSelfSignedCert.yaml
   # App Hub (applications + discovered service/workload registration)
   google_apphub_application:
     upstream: mmv1/products/apphub/Application.yaml

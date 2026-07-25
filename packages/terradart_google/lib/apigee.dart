@@ -3,8 +3,9 @@
 /// Apigee: organizations, runtime instances, environments, env groups,
 /// add-ons, data collectors, analytics datastores, NAT addresses,
 /// endpoint attachments, DNS zones, spaces, sync authorization,
-/// target servers, developers, developer apps, API products, and app
-/// groups. Org/instance/env bill while provisioned (never_apply for
+/// target servers, developers, developer apps, API products, app
+/// groups, env keystores/references, KVMs, and keystore aliases.
+/// Org/instance/env bill while provisioned (never_apply for
 /// apply-smoke).
 library;
 
@@ -60,6 +61,10 @@ export 'src/apigee/google_apigee_dns_zone.dart'
     show ApigeeDnsZonePeeringConfig, GoogleApigeeDnsZone;
 export 'src/apigee/google_apigee_endpoint_attachment.dart'
     show GoogleApigeeEndpointAttachment;
+export 'src/apigee/google_apigee_env_keystore.dart'
+    show GoogleApigeeEnvKeystore;
+export 'src/apigee/google_apigee_env_references.dart'
+    show GoogleApigeeEnvReferences;
 export 'src/apigee/google_apigee_envgroup.dart' show GoogleApigeeEnvgroup;
 export 'src/apigee/google_apigee_envgroup_attachment.dart'
     show GoogleApigeeEnvgroupAttachment;
@@ -76,10 +81,20 @@ export 'src/apigee/google_apigee_environment.dart'
         GoogleApigeeEnvironment;
 export 'src/apigee/google_apigee_environment_addons_config.dart'
     show GoogleApigeeEnvironmentAddonsConfig;
+export 'src/apigee/google_apigee_environment_keyvaluemaps.dart'
+    show GoogleApigeeEnvironmentKeyvaluemaps;
+export 'src/apigee/google_apigee_environment_keyvaluemaps_entries.dart'
+    show GoogleApigeeEnvironmentKeyvaluemapsEntries;
 export 'src/apigee/google_apigee_instance.dart'
     show ApigeeInstanceAccessLoggingConfig, GoogleApigeeInstance;
 export 'src/apigee/google_apigee_instance_attachment.dart'
     show GoogleApigeeInstanceAttachment;
+export 'src/apigee/google_apigee_keystores_aliases_self_signed_cert.dart'
+    show
+        ApigeeKeystoresAliasesSelfSignedCertSubject,
+        ApigeeKeystoresAliasesSelfSignedCertSubjectAlternativeDnsNames,
+        ApigeeKeystoresAliasesSelfSignedCertType,
+        GoogleApigeeKeystoresAliasesSelfSignedCert;
 export 'src/apigee/google_apigee_nat_address.dart' show GoogleApigeeNatAddress;
 export 'src/apigee/google_apigee_organization.dart'
     show

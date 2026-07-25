@@ -39,8 +39,9 @@ barrels:
       /// Apigee: organizations, runtime instances, environments, env groups,
       /// add-ons, data collectors, analytics datastores, NAT addresses,
       /// endpoint attachments, DNS zones, spaces, sync authorization,
-      /// target servers, developers, developer apps, API products, and app
-      /// groups. Org/instance/env bill while provisioned (never_apply for
+      /// target servers, developers, developer apps, API products, app
+      /// groups, env keystores/references, KVMs, and keystore aliases.
+      /// Org/instance/env bill while provisioned (never_apply for
       /// apply-smoke).
   backup_dr:
     doc: |-
