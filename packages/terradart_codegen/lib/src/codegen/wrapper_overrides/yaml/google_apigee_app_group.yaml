@@ -1,0 +1,36 @@
+outputDir: apigee
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Apigee **app group** — grouping of developer apps in an organization.
+  ///
+  /// **Cost / apply:** gcp-cost: no Group SKU under Apigee `1C2D-8C78-EC58`
+  /// (list_skus keyword Group → 0). billing-behavior: requires a never_apply
+  /// [GoogleApigeeOrganization] (Gateway Node Hours `0136-18C1-DD41`
+  /// **$1.025/h**). Debt-only on `terradart-validate`. **Never** wire into
+  /// apply-smoke.
+
+paramOrder:
+  - name
+  - org_id
+  - display_name
+  - channel_id
+  - channel_uri
+  - status
+  - attributes
+
+dartTypeOverrides:
+  status: ApigeeAppGroupStatus
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

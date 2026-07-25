@@ -1,0 +1,36 @@
+outputDir: apigee
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Apigee **developer app** — credentials + API product access for a
+  /// developer.
+  ///
+  /// **Cost / apply:** gcp-cost: no App SKU under Apigee `1C2D-8C78-EC58`
+  /// (list_skus keyword App → 0). billing-behavior: requires never_apply
+  /// [GoogleApigeeOrganization] / [GoogleApigeeDeveloper]. Debt-only on
+  /// `terradart-validate`. **Never** wire into apply-smoke.
+
+paramOrder:
+  - name
+  - org_id
+  - developer_email
+  - callback_url
+  - api_products
+  - scopes
+  - key_expires_in
+  - consumer_key
+  - consumer_secret
+  - attributes
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
