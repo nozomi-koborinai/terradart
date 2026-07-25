@@ -456,6 +456,37 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_apigee_endpoint_attachment`.\n\nAn `EndpointAttachment` in Apigee is a resource that facilitates private\nconnectivity between Apigee and backend services using Private Service\nConnect (PSC).\n\nFor more information, see the [Apigee\ndocumentation](https://docs.cloud.google.com/apigee/docs/api-platform/architecture/southbound-networking-patterns-endpoints).\n\nApigee **endpoint attachment** — Private Service Connect attachment\nfrom an Apigee org to a producer service attachment.\n\n**Cost / apply:** gcp-cost: no endpoint-attachment SKU under Apigee\n`1C2D-8C78-EC58` (list_skus keyword network → 0). billing-behavior:\nrequires a never_apply [GoogleApigeeOrganization] plus a real PSC\nservice attachment. Debt-only on `terradart-validate`. **Never** wire\ninto apply-smoke.',
   ),
   CatalogEntry(
+    tfType: 'google_apigee_env_keystore',
+    className: 'GoogleApigeeEnvKeystore',
+    barrel: 'apigee',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_apigee_env_keystore`.',
+    constructorParams: <String>['localName', 'name', 'envId'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_apigee_env_keystore`.\n\nAn `Environment KeyStore` in Apigee.\n\nApigee **environment keystore** — TLS key/cert store for an environment.\n\n**Cost / apply:** gcp-cost: no Keystore SKU under Apigee\n`1C2D-8C78-EC58` (list_skus keyword Keystore → 0). billing-behavior:\nrequires a never_apply [GoogleApigeeEnvironment] (Active Base\nEnvironment Usage Hours `C112-9373-5FC4` **\$0.50/h**+). Debt-only on\n`terradart-validate`. **Never** wire into apply-smoke.',
+  ),
+  CatalogEntry(
+    tfType: 'google_apigee_env_references',
+    className: 'GoogleApigeeEnvReferences',
+    barrel: 'apigee',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_apigee_env_references`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'envId',
+      'refers',
+      'resourceType',
+      'description',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_apigee_env_references`.\n\nAn `Environment Reference` in Apigee.\n\nApigee **environment reference** — named pointer to a keystore/truststore\n(or other resource) inside an environment.\n\n**Cost / apply:** gcp-cost: no Reference SKU under Apigee\n`1C2D-8C78-EC58` (list_skus keyword Reference → 0). billing-behavior:\nrequires a never_apply [GoogleApigeeEnvironment]. Debt-only on\n`terradart-validate`. **Never** wire into apply-smoke.',
+  ),
+  CatalogEntry(
     tfType: 'google_apigee_envgroup',
     className: 'GoogleApigeeEnvgroup',
     barrel: 'apigee',
@@ -535,6 +566,36 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_apigee_environment_addons_config`.\n\nEnable/Disable add-ons for an Apigee environment.\n\nApigee **environment add-ons config** (e.g. analytics) on an environment.\n\n**Cost:** gcp-cost: no environment-addons SKU under Apigee\n`1C2D-8C78-EC58` beyond parent environment usage hours.\nbilling-behavior: add-on toggles on a never_apply\n[GoogleApigeeEnvironment]. Deferred with the org Wave.',
   ),
   CatalogEntry(
+    tfType: 'google_apigee_environment_keyvaluemaps',
+    className: 'GoogleApigeeEnvironmentKeyvaluemaps',
+    barrel: 'apigee',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_apigee_environment_keyvaluemaps`.',
+    constructorParams: <String>['localName', 'name', 'envId'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_apigee_environment_keyvaluemaps`.\n\nCollection of key/value string pairs.\n\nApigee **environment key-value map** — KVM container in an environment.\n\n**Cost / apply:** gcp-cost: no KeyValue/KVM SKU under Apigee\n`1C2D-8C78-EC58` (list_skus keyword KeyValue/KVM → 0). billing-behavior:\nrequires a never_apply [GoogleApigeeEnvironment]. Debt-only on\n`terradart-validate`. **Never** wire into apply-smoke.',
+  ),
+  CatalogEntry(
+    tfType: 'google_apigee_environment_keyvaluemaps_entries',
+    className: 'GoogleApigeeEnvironmentKeyvaluemapsEntries',
+    barrel: 'apigee',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_apigee_environment_keyvaluemaps_entries`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'envKeyvaluemapId',
+      'value',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_apigee_environment_keyvaluemaps_entries`.\n\nCreates key value entries in a key value map scoped to an environment.\n\nApigee **environment KVM entry** — one key/value inside an environment\nkey-value map.\n\n**Cost / apply:** gcp-cost: no KeyValue/KVM SKU under Apigee\n`1C2D-8C78-EC58` (list_skus keyword KeyValue/KVM → 0). billing-behavior:\nrequires never_apply [GoogleApigeeEnvironment] /\n[GoogleApigeeEnvironmentKeyvaluemaps]. Debt-only on\n`terradart-validate`. **Never** wire into apply-smoke.',
+  ),
+  CatalogEntry(
     tfType: 'google_apigee_instance',
     className: 'GoogleApigeeInstance',
     barrel: 'apigee',
@@ -575,6 +636,35 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_apigee_instance_attachment`.\n\nAn `Instance attachment` in Apigee.\n\nAttaches an Apigee **environment** to an [GoogleApigeeInstance].\n\n**Cost:** no separate Gateway Node Hours SKU beyond the parent\ninstance (`1C2D-8C78-EC58` / `0136-18C1-DD41`). Attachment is\nbinding metadata; environment usage may still accrue on the org.\n\nDeferred with the never_apply Apigee instance/org Wave (no\napply-smoke quickstart).',
+  ),
+  CatalogEntry(
+    tfType: 'google_apigee_keystores_aliases_self_signed_cert',
+    className: 'GoogleApigeeKeystoresAliasesSelfSignedCert',
+    barrel: 'apigee',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_apigee_keystores_aliases_self_signed_cert`.',
+    constructorParams: <String>[
+      'localName',
+      'alias',
+      'orgId',
+      'environment',
+      'keystore',
+      'sigAlg',
+      'keySize',
+      'certValidityInDays',
+      'subject',
+      'subjectAlternativeDnsNames',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[
+      'ApigeeKeystoresAliasesSelfSignedCertType',
+      'ApigeeKeystoresAliasesSelfSignedCertSubject',
+      'ApigeeKeystoresAliasesSelfSignedCertSubjectAlternativeDnsNames',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_apigee_keystores_aliases_self_signed_cert`.\n\nAn Environment Keystore Alias for Self Signed Certificate Format in Apigee\n\nApigee **keystore self-signed cert alias** — generates a self-signed\ncertificate in an environment keystore.\n\n**Cost / apply:** gcp-cost: no Alias/Keystore SKU under Apigee\n`1C2D-8C78-EC58` (list_skus keyword Alias/Keystore → 0).\nbilling-behavior: requires never_apply [GoogleApigeeOrganization] /\n[GoogleApigeeEnvironment] / [GoogleApigeeEnvKeystore]. Debt-only on\n`terradart-validate`. **Never** wire into apply-smoke.',
   ),
   CatalogEntry(
     tfType: 'google_apigee_nat_address',
