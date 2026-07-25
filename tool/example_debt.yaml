@@ -186,6 +186,8 @@ GoogleDataFusionInstance: gcp-cost Cloud Data Fusion 0D19-EC86-35B0 Developer SK
 # (125-Perf us-central1 SKU 517C-E77D-C11A $0.145/GiBy.mo). A quickstart would
 # force apply_smoke_skip (never_apply) and block wave auto-merge — factory
 # ships without an example.
+GoogleComputeNodeGroup: gcp-cost Compute Engine 6F81-5844-456A N4A Sole Tenancy Instance Core Iowa SKU 6DD8-C2A8-A106 $0.02646/h (+ Premium 0F1E-4428-FCCB $0.002646/h) — never_apply dedicated nodes; no applyable quickstart on terradart-validate
+GoogleComputeNodeTemplate: gcp-cost Compute Engine 6F81-5844-456A sole-tenancy SKUs bill via node groups (e.g. N4A Core Iowa 6DD8-C2A8-A106 $0.02646/h) — never_apply family; deferred with GoogleComputeNodeGroup
 GoogleComputeRegionCommitment: gcp-cost Compute Engine 6F81-5844-456A Commitment v1 Cpu Virginia 1 Year SKU 00EE-95C9-2FF9 $0.021309/h — never_apply undeletable commitment contract; no applyable quickstart on terradart-validate
 GoogleEdgecontainerCluster: gcp-cost Google Distributed Cloud Edge 8A2D-5CB1-345B Connected Server Gen1 SKU 007E-2D86-E472 $3600/mo — never_apply; requires physical GDCE hardware absent on terradart-validate
 GoogleEdgecontainerNodePool: gcp-cost Google Distributed Cloud Edge 8A2D-5CB1-345B Connected Server Gen1 SKU 007E-2D86-E472 $3600/mo — never_apply; requires parent GDCE cluster + physical hardware absent on terradart-validate

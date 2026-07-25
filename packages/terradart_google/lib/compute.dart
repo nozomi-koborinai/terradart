@@ -280,6 +280,24 @@ export 'src/compute/google_compute_network_peering.dart'
         GoogleComputeNetworkPeering;
 export 'src/compute/google_compute_network_peering_routes_config.dart'
     show GoogleComputeNetworkPeeringRoutesConfig;
+export 'src/compute/google_compute_node_group.dart'
+    show
+        ComputeNodeGroupAutoscalingPolicy,
+        ComputeNodeGroupAutoscalingPolicyMode,
+        ComputeNodeGroupMaintenanceWindow,
+        ComputeNodeGroupShareSettings,
+        ComputeNodeGroupShareSettingsProjectMap,
+        ComputeNodeGroupShareSettingsShareType,
+        GoogleComputeNodeGroup;
+export 'src/compute/google_compute_node_template.dart'
+    show
+        ComputeNodeTemplateAccelerators,
+        ComputeNodeTemplateCpuOvercommitType,
+        ComputeNodeTemplateDisks,
+        ComputeNodeTemplateNodeTypeFlexibility,
+        ComputeNodeTemplateServerBinding,
+        ComputeNodeTemplateServerBindingType,
+        GoogleComputeNodeTemplate;
 export 'src/compute/google_compute_preview_feature.dart'
     show
         ComputePreviewFeatureActivationStatus,
