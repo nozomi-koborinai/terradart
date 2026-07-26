@@ -220,7 +220,8 @@ barrels:
       /// session paths are never_apply for apply-smoke.
   dialogflow:
     doc: |-
-      /// Dialogflow CX: telephony and conversation resources.
+      /// Dialogflow ES / CX: SIP trunk, ES agent, and CX agent surfaces
+      /// (CX agent / security settings / generator / tool are never_apply).
   discovery_engine:
     doc: |-
       /// Vertex AI Search (Discovery Engine): data stores, search engines, IAM,

@@ -368,6 +368,12 @@ GoogleDiscoveryEngineWidgetConfig: gcp-cost Vertex AI Search 74B1-77CF-C302 Gemi
 GoogleDiscoveryEngineAssistant: gcp-cost Vertex AI Search 74B1-77CF-C302 Gemini Enterprise Standard monthly SKU 0532-C2F0-1DF0 $35/seat.mo — never_apply Agentspace assistant / Gemini Enterprise entitlement; no applyable quickstart
 GoogleDiscoveryEngineChatEngine: gcp-cost Vertex AI Search 74B1-77CF-C302 Gemini Enterprise Standard monthly SKU 0532-C2F0-1DF0 $35/seat.mo (+ Dialogflow CX session A1CC-751A-CDCC $0.20) — never_apply Agentspace chat engine; no applyable quickstart
 GoogleDiscoveryEngineRecommendationEngine: gcp-cost Vertex AI Search 74B1-77CF-C302 Gemini Enterprise Standard monthly SKU 0532-C2F0-1DF0 $35/seat.mo — never_apply Agentspace recommendation engine; no applyable quickstart
+GoogleSpannerInstancePartition: gcp-cost Cloud Spanner CC63-0873-48FD Enterprise RW Replica Iowa SKU 1D9F-E99D-5CBD $0.41/h (regional node Zurich 07AA-3267-AE40 $1.17/h) — never_apply reserved Spanner compute; no applyable quickstart
+GoogleKmsEkmConnection: gcp-cost Cloud KMS EE2F-D110-890C Active external symmetric key versions SKU E0AA-8721-5338 $3/mo — never_apply (MM exclude_delete; external EKM); no applyable quickstart
+GoogleDialogflowCxAgent: gcp-cost Cloud Dialogflow FBC0-AA4A-C89A Text session SKU A1CC-751A-CDCC $0.20/session (Audio 9496-0679-69BE $0.45) — never_apply CX agent runtime; no applyable quickstart
+GoogleDialogflowCxSecuritySettings: deferred with never_apply GoogleDialogflowCxAgent (CX session path)
+GoogleDialogflowCxGenerator: deferred with never_apply GoogleDialogflowCxAgent (CX generative path)
+GoogleDialogflowCxTool: deferred with never_apply GoogleDialogflowCxAgent (CX tool path)
 GoogleNetworkServicesGateway: gcp-cost Networking E505-1604-58F8 Cloud SWP Standard Gateway SKU 884B-E0E7-C3E4 $1.25/h — never_apply; no applyable quickstart on terradart-validate
 GoogleNetworkServicesEdgeCacheService: gcp-cost Networking E505-1604-58F8 Media CDN Capacity Reservation NA SKU 7393-8C37-77E1 $20000/mo (+ Edge Cache egress E2B8-D4FA-6E05 $0.02/GiBy) — never_apply; no applyable quickstart on terradart-validate
 GoogleNetworkServicesEdgeCacheOrigin: requires never_apply GoogleNetworkServicesEdgeCacheService; deferred with the Media CDN Edge Cache Wave

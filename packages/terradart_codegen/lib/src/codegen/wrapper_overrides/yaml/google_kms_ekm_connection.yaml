@@ -1,0 +1,41 @@
+outputDir: kms
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  key_management_mode: KmsEkmConnectionKeyManagementMode
+
+curatedDoc: |-
+  /// Cloud KMS **EKM connection** — links an external key manager (EKM /
+  /// EXTERNAL_VPC) into a project location for externally managed keys.
+  ///
+  /// **Cost / apply:** gcp-cost: Cloud KMS `EE2F-D110-890C` Active external
+  /// symmetric key versions SKU `E0AA-8721-5338` **$3/mo** (asymmetric
+  /// `D57A-D245-5FDB` **$3/mo**; Active HSM symmetric `46B1-C76A-0B7D`
+  /// **$1/mo**). billing-behavior: connections enable externally managed /
+  /// HSM key versions that bill while active; MM `exclude_delete: true`
+  /// (Terraform cannot destroy the connection — GCP policy). Requires a
+  /// reachable external EKM absent on `terradart-validate`. **Never**
+  /// wire into apply-smoke.
+
+paramOrder:
+  - name
+  - location
+  - service_resolvers
+  - key_management_mode
+  - crypto_space_path
+  - etag
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
