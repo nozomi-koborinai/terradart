@@ -34,6 +34,7 @@ import 'package:terradart_google/cloud_build.dart';
 import 'package:terradart_google/cloud_functions.dart';
 import 'package:terradart_google/config.dart';
 import 'package:terradart_google/dataplex.dart';
+import 'package:terradart_google/colab.dart';
 import 'package:terradart_google/dataproc.dart';
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/spanner.dart';
@@ -385,6 +386,42 @@ final Map<String, Object Function()> _syntheticInstances = {
       const SpannerBackupScheduleFullBackupSpec(),
   'SpannerBackupScheduleIncrementalBackupSpec': () =>
       const SpannerBackupScheduleIncrementalBackupSpec(),
+
+  // --- ColabNotebookExecutionSource (3) — google_colab_notebook_execution --
+  'ColabNotebookExecutionDataformSource': () =>
+      ColabNotebookExecutionDataformSource(
+        dataformRepositoryResourceName: TfArg.literal(
+          'projects/p/locations/us-central1/repositories/r',
+        ),
+      ),
+  'ColabNotebookExecutionGcsSource': () => ColabNotebookExecutionGcsSource(
+        uri: TfArg.literal('gs://mock-bucket/notebook.ipynb'),
+      ),
+  'ColabNotebookExecutionDirectSource': () => ColabNotebookExecutionDirectSource(
+        content: TfArg.literal('eyJuYiI6MX0='),
+      ),
+
+  // --- ColabNotebookExecutionCompute (2) -----------------------------------
+  'ColabNotebookExecutionTemplateCompute': () =>
+      ColabNotebookExecutionTemplateCompute(
+        TfArg.literal(
+          'projects/p/locations/us-central1/notebookRuntimeTemplates/t',
+        ),
+      ),
+  'ColabNotebookExecutionCustomCompute': () =>
+      ColabNotebookExecutionCustomCompute(
+        TfArg.literal(const {
+          'machine_spec': {'machine_type': 'e2-standard-4'},
+        }),
+      ),
+
+  // --- ColabNotebookExecutionIdentity (2) ----------------------------------
+  'ColabNotebookExecutionExecutionUser': () =>
+      ColabNotebookExecutionExecutionUser(TfArg.literal('user@example.com')),
+  'ColabNotebookExecutionServiceAccount': () =>
+      ColabNotebookExecutionServiceAccount(
+        TfArg.literal('sa@p.iam.gserviceaccount.com'),
+      ),
 
   // --- EdgecontainerClusterControlPlane (2) — edgecontainer_cluster --------
   'EdgecontainerClusterControlPlaneRemote': () =>

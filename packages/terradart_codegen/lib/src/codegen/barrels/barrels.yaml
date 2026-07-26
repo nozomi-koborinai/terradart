@@ -31,6 +31,10 @@ barrels:
     doc: |-
       /// Access Context Manager: VPC Service Controls access policies, levels,
       /// service perimeters, and access-policy IAM members.
+  active_directory:
+    doc: |-
+      /// Managed Service for Microsoft Active Directory — domains bill hourly
+      /// while they exist (never_apply for apply-smoke).
   alloydb:
     doc: |-
       /// AlloyDB — Postgres-compatible managed database clusters and instances.
@@ -144,8 +148,10 @@ barrels:
       /// custom actions) are passed as structured maps.
   colab:
     doc: |-
-      /// Colab Enterprise — runtimes, runtime templates, template IAM, and
-      /// paused notebook execution schedules (Vertex AI notebook runtimes).
+      /// Colab Enterprise — runtimes, runtime templates, template IAM,
+      /// paused notebook execution schedules, and one-shot notebook
+      /// executions (Vertex AI notebook runtimes; runtime/execution compute
+      /// is never_apply).
   composer:
     doc: |-
       /// Cloud Composer — managed Apache Airflow environments plus user

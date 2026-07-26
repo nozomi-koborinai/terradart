@@ -29,7 +29,7 @@ Lists the per-service barrels with their resource counts. No arguments.
 {}
 ```
 
-**Output** — an object with a `barrels` array of `{ name, resource_count }`, one entry per barrel (108 in total, including the `data` barrel):
+**Output** — an object with a `barrels` array of `{ name, resource_count }`, one entry per barrel (109 in total, including the `data` barrel):
 
 ```json
 {
@@ -44,7 +44,7 @@ Use this first to see what services TerraDart covers and how large each one is.
 
 ## `list_resources`
 
-Lists curated resources and data sources. Pass `barrel` to filter to one service, or omit it to list all 706.
+Lists curated resources and data sources. Pass `barrel` to filter to one service, or omit it to list all 709.
 
 **Input** (filter to one barrel)
 

@@ -104,6 +104,8 @@ files:
     upstream: null  # IAM — generated from parent RuntimeTemplate.yaml iam_policy
   google_colab_runtime:
     upstream: mmv1/products/colab/Runtime.yaml
+  google_colab_notebook_execution:
+    upstream: mmv1/products/colab/NotebookExecution.yaml
   google_colab_schedule:
     upstream: mmv1/products/colab/Schedule.yaml
   google_compute_interconnect_attachment_group:
@@ -421,6 +423,8 @@ files:
     upstream: mmv1/products/spanner/InstancePartition.yaml
   google_storage_control_project_intelligence_config:
     upstream: mmv1/products/storagecontrol/ProjectIntelligenceConfig.yaml
+  google_storage_anywhere_cache:
+    upstream: mmv1/products/storage/AnywhereCache.yaml
   google_storage_bucket:
     upstream: mmv1/products/storage/Bucket.yaml
   google_storage_bucket_object:
@@ -1086,6 +1090,8 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_public_ca_external_account_key:
     upstream: mmv1/products/publicca/ExternalAccountKey.yaml
+  google_active_directory_domain:
+    upstream: mmv1/products/activedirectory/Domain.yaml
   google_alloydb_backup:
     upstream: mmv1/products/alloydb/Backup.yaml
   google_alloydb_cluster:

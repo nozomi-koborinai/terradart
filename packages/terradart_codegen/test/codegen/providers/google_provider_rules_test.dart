@@ -39,6 +39,9 @@ void main() {
       expect(rules.outputDirAliases['backup_dr'], 'backup_dr');
       expect(rules.outputDirAliases['backupdr'], 'backup_dr');
       expect(rules.outputDirAliases['edgecontainer'], 'edgecontainer');
+      expect(rules.outputDirAliases['active'], 'active_directory');
+      expect(rules.outputDirAliases['active_directory'], 'active_directory');
+      expect(rules.outputDirAliases['activedirectory'], 'active_directory');
       expect(rules.outputDirAliases['edgenetwork'], 'edgenetwork');
       expect(rules.outputDirAliases['vmwareengine'], 'vmwareengine');
       expect(

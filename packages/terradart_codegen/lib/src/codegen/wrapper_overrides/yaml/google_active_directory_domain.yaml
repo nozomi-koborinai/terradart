@@ -1,0 +1,37 @@
+outputDir: active_directory
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Managed Service for Microsoft Active Directory **domain**.
+  ///
+  /// **Cost / apply:** gcp-cost: Managed Service for Microsoft Active
+  /// Directory `2A27-8988-64B8` SKU `BE02-3DF8-6AB6` **$0.4/h**.
+  /// billing-behavior: domain hours bill while the managed AD domain exists
+  /// (per deployed region / locations); destroy stops the charge — too
+  /// expensive for apply-smoke even once. **Never** wire into apply-smoke.
+  ///
+  /// Enable `managedidentities.googleapis.com` via [GoogleProjectService]
+  /// before apply. Set [deletionProtection] false when you intend to destroy.
+
+paramOrder:
+  - domain_name
+  - locations
+  - reserved_ip_range
+  - authorized_networks
+  - admin
+  - labels
+  - deletion_protection
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `fqdn` attribute.
+    TfRef<String> get fqdnRef => TfRef.attribute<String>(this, 'fqdn');
