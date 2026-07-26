@@ -65,8 +65,8 @@ prelude: |
     /// `mirroring_deployment_groups`).
     String get blockKey;
 
-    /// Value emitted under [blockKey] (string for DIRECT, list for BROKER).
-    TfArg get value;
+    /// JSON value for the linked deployment group attribute(s).
+    Object? toTfJson();
   }
 
   /// `mirroring_deployment_group` variant (DIRECT).
@@ -74,14 +74,16 @@ prelude: |
   final class NetworkSecurityMirroringEndpointGroupDirectDeploymentLink
       extends NetworkSecurityMirroringEndpointGroupDeploymentLink {
     const NetworkSecurityMirroringEndpointGroupDirectDeploymentLink(
-      this.value,
+      this.mirroringDeploymentGroup,
     );
 
-    @override
-    final TfArg<String> value;
+    final TfArg<String> mirroringDeploymentGroup;
 
     @override
     String get blockKey => 'mirroring_deployment_group';
+
+    @override
+    Object? toTfJson() => mirroringDeploymentGroup.toTfJson();
   }
 
   /// `mirroring_deployment_groups` variant (BROKER).
@@ -89,20 +91,22 @@ prelude: |
   final class NetworkSecurityMirroringEndpointGroupBrokerDeploymentLink
       extends NetworkSecurityMirroringEndpointGroupDeploymentLink {
     const NetworkSecurityMirroringEndpointGroupBrokerDeploymentLink(
-      this.value,
+      this.mirroringDeploymentGroups,
     );
 
-    @override
-    final TfArg<List<String>> value;
+    final TfArg<List<String>> mirroringDeploymentGroups;
 
     @override
     String get blockKey => 'mirroring_deployment_groups';
+
+    @override
+    Object? toTfJson() => mirroringDeploymentGroups.toTfJson();
   }
 
 customSlots:
   deploymentLink:
     paramDeclaration: 'required NetworkSecurityMirroringEndpointGroupDeploymentLink deploymentLink'
-    argMapEntry: 'deploymentLink.blockKey: deploymentLink.value,'
+    argMapEntry: 'deploymentLink.blockKey: TfArg.literal(deploymentLink.toTfJson()),'
 
 extraGetters: |2
     /// Reference to `id` attribute.

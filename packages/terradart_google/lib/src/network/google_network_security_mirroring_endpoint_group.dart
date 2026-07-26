@@ -27,34 +27,42 @@ sealed class NetworkSecurityMirroringEndpointGroupDeploymentLink {
   /// `mirroring_deployment_groups`).
   String get blockKey;
 
-  /// Value emitted under [blockKey] (string for DIRECT, list for BROKER).
-  TfArg get value;
+  /// JSON value for the linked deployment group attribute(s).
+  Object? toTfJson();
 }
 
 /// `mirroring_deployment_group` variant (DIRECT).
 @immutable
 final class NetworkSecurityMirroringEndpointGroupDirectDeploymentLink
     extends NetworkSecurityMirroringEndpointGroupDeploymentLink {
-  const NetworkSecurityMirroringEndpointGroupDirectDeploymentLink(this.value);
+  const NetworkSecurityMirroringEndpointGroupDirectDeploymentLink(
+    this.mirroringDeploymentGroup,
+  );
 
-  @override
-  final TfArg<String> value;
+  final TfArg<String> mirroringDeploymentGroup;
 
   @override
   String get blockKey => 'mirroring_deployment_group';
+
+  @override
+  Object? toTfJson() => mirroringDeploymentGroup.toTfJson();
 }
 
 /// `mirroring_deployment_groups` variant (BROKER).
 @immutable
 final class NetworkSecurityMirroringEndpointGroupBrokerDeploymentLink
     extends NetworkSecurityMirroringEndpointGroupDeploymentLink {
-  const NetworkSecurityMirroringEndpointGroupBrokerDeploymentLink(this.value);
+  const NetworkSecurityMirroringEndpointGroupBrokerDeploymentLink(
+    this.mirroringDeploymentGroups,
+  );
 
-  @override
-  final TfArg<List<String>> value;
+  final TfArg<List<String>> mirroringDeploymentGroups;
 
   @override
   String get blockKey => 'mirroring_deployment_groups';
+
+  @override
+  Object? toTfJson() => mirroringDeploymentGroups.toTfJson();
 }
 
 /// Factory wrapper for `google_network_security_mirroring_endpoint_group`.
@@ -104,7 +112,7 @@ final class GoogleNetworkSecurityMirroringEndpointGroup extends Resource {
            if (labels != null) 'labels': labels,
            if (project != null) 'project': project,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           deploymentLink.blockKey: deploymentLink.value,
+           deploymentLink.blockKey: TfArg.literal(deploymentLink.toTfJson()),
          },
        );
 
