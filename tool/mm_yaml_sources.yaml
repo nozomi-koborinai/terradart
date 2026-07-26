@@ -401,4 +401,1069 @@ files:
     upstream: mmv1/products/networkconnectivity/Transport.yaml
   google_network_connectivity_multicloud_data_transfer_config:
     upstream: mmv1/products/networkconnectivity/MulticloudDataTransferConfig.yaml
- 
+  google_network_security_ull_mirroring_collector:
+    upstream: mmv1/products/networksecurity/UllMirroringCollector.yaml
+  google_network_security_ull_mirroring_collector_rule:
+    upstream: mmv1/products/networksecurity/UllMirroringCollectorRule.yaml
+  google_network_security_ull_mirroring_engine:
+    upstream: mmv1/products/networksecurity/UllMirroringEngine.yaml
+  google_model_armor_template:
+    upstream: mmv1/products/modelarmor/Template.yaml
+  google_monitoring_alert_policy:
+    upstream: mmv1/products/monitoring/AlertPolicy.yaml
+  google_spanner_instance_partition:
+    upstream: mmv1/products/spanner/InstancePartition.yaml
+  google_storage_control_project_intelligence_config:
+    upstream: mmv1/products/storagecontrol/ProjectIntelligenceConfig.yaml
+  google_storage_bucket:
+    upstream: mmv1/products/storage/Bucket.yaml
+  google_storage_bucket_object:
+    upstream: null  # handwritten in terraform provider; no MM YAML (storage dir has no Object-related yaml)
+
+# Wave 5 — IAM completion + Cloud SQL (Plan 5.F)
+
+  # IAM core
+  google_project_iam_custom_role:
+    upstream: null  # handwritten in terraform provider; no MM YAML
+  google_project_iam_audit_config:
+    upstream: null  # handwritten IAM audit config (schema-only; not MM-generated)
+  google_project_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_service_account_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_service_account_key:
+    upstream: null  # handwritten in terraform provider; no MM YAML
+  google_iam_workload_identity_pool:
+    upstream: mmv1/products/iambeta/WorkloadIdentityPool.yaml
+  google_healthcare_dataset:
+    upstream: mmv1/products/healthcare/Dataset.yaml
+  google_healthcare_hl7_v2_store:
+    upstream: mmv1/products/healthcare/Hl7V2Store.yaml
+  google_healthcare_dicom_store:
+    upstream: mmv1/products/healthcare/DicomStore.yaml
+  google_healthcare_consent_store:
+    upstream: mmv1/products/healthcare/ConsentStore.yaml
+  google_healthcare_dataset_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_healthcare_dicom_store_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_healthcare_hl7_v2_store_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_healthcare_consent_store_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_healthcare_fhir_store:
+    upstream: mmv1/products/healthcare/FhirStore.yaml
+  google_healthcare_fhir_store_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_healthcare_workspace:
+    upstream: mmv1/products/healthcare/Workspace.yaml
+  google_iam_workload_identity_pool_provider:
+    # MM YAML enriches merged IR (descriptions, hints); typed nested blocks still
+    # come from the wrapper override prelude/customSlots, not from MM alone.
+    upstream: mmv1/products/iambeta/WorkloadIdentityPoolProvider.yaml
+  google_identity_platform_config:
+    upstream: mmv1/products/identityplatform/Config.yaml
+  google_identity_platform_tenant:
+    upstream: mmv1/products/identityplatform/Tenant.yaml
+  google_iap_web_backend_service_iam_binding:
+    upstream: null  # handwritten IAM binding in terraform provider; no MM YAML
+
+  # Cloud SQL
+  google_sql_database_instance:
+    upstream: null  # handwritten in terraform provider; no MM YAML
+  google_sql_database:
+    upstream: mmv1/products/sql/Database.yaml
+  google_sql_user:
+    upstream: null  # handwritten in terraform provider; no MM YAML
+  google_service_networking_connection:
+    upstream: null  # handwritten in terraform provider; no MM YAML
+  google_compute_global_address:
+    upstream: mmv1/products/compute/GlobalAddress.yaml
+
+  # Cloud Run v2 job (parent for the *_iam_member sibling)
+  google_cloud_run_v2_job:
+    upstream: mmv1/products/cloudrunv2/Job.yaml
+
+  # *_iam_member fill (no MM YAML; all schema-only)
+  google_bigquery_dataset_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_table_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloud_run_v2_service_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloud_run_v2_job_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_storage_bucket_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_storage_bucket_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_kms_crypto_key_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_kms_key_ring_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_instance_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_subnetwork_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dns_managed_zone_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+
+  # Wave 6 — Compute LB stack (Plan 5.G).
+  # MM URLs are best-effort guesses; Batch 0 probes each and rewrites to
+  # `upstream: null` for any that return 404 (handwritten in
+  # terraform-provider-google, not generated from Magic Modules).
+  google_compute_autoscaler:
+    upstream: mmv1/products/compute/Autoscaler.yaml
+  google_compute_backend_bucket:
+    upstream: mmv1/products/compute/BackendBucket.yaml
+  google_compute_backend_service:
+    upstream: mmv1/products/compute/BackendService.yaml
+  google_compute_bulk_per_instance_config:
+    upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
+  google_compute_forwarding_rule:
+    upstream: mmv1/products/compute/ForwardingRule.yaml
+  google_compute_global_forwarding_rule:
+    upstream: mmv1/products/compute/GlobalForwardingRule.yaml
+  google_compute_global_network_endpoint_group:
+    upstream: mmv1/products/compute/GlobalNetworkEndpointGroup.yaml
+  google_compute_health_check:
+    upstream: mmv1/products/compute/HealthCheck.yaml
+  google_compute_instance_group_manager:
+    upstream: mmv1/products/compute/InstanceGroupManager.yaml
+  google_compute_instance_template:
+    upstream: mmv1/products/compute/InstanceTemplate.yaml
+  google_compute_managed_ssl_certificate:
+    upstream: mmv1/products/compute/ManagedSslCertificate.yaml
+  google_compute_network_endpoint_group:
+    upstream: mmv1/products/compute/NetworkEndpointGroup.yaml
+  google_compute_region_autoscaler:
+    upstream: mmv1/products/compute/RegionAutoscaler.yaml
+  google_compute_region_backend_service:
+    upstream: mmv1/products/compute/RegionBackendService.yaml
+  google_compute_region_disk:
+    upstream: mmv1/products/compute/RegionDisk.yaml
+  google_compute_region_health_check:
+    upstream: mmv1/products/compute/RegionHealthCheck.yaml
+  google_compute_region_instant_snapshot:
+    upstream: mmv1/products/compute/RegionInstantSnapshot.yaml
+  google_compute_region_instant_snapshot_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_region_instant_snapshot_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_region_instant_snapshot_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_region_instance_group_manager:
+    upstream: mmv1/products/compute/RegionInstanceGroupManager.yaml
+  google_compute_region_network_endpoint_group:
+    upstream: mmv1/products/compute/RegionNetworkEndpointGroup.yaml
+  google_compute_region_target_http_proxy:
+    upstream: mmv1/products/compute/RegionTargetHttpProxy.yaml
+  google_compute_region_target_https_proxy:
+    upstream: mmv1/products/compute/RegionTargetHttpsProxy.yaml
+  google_compute_region_url_map:
+    upstream: mmv1/products/compute/RegionUrlMap.yaml
+  google_compute_security_policy:
+    upstream: null  # handwritten in terraform-provider-google (probe returned 404)
+  google_compute_ssl_certificate:
+    upstream: mmv1/products/compute/SslCertificate.yaml
+  google_compute_ssl_policy:
+    upstream: mmv1/products/compute/SslPolicy.yaml
+  google_compute_target_http_proxy:
+    upstream: mmv1/products/compute/TargetHttpProxy.yaml
+  google_compute_target_https_proxy:
+    upstream: mmv1/products/compute/TargetHttpsProxy.yaml
+  google_compute_url_map:
+    upstream: mmv1/products/compute/UrlMap.yaml
+
+  # Wave 7 — Data ops + observability + CI/CD (Plan 5.H).
+  # MM URLs are best-effort guesses; Batch 0 probes each and rewrites to
+  # `upstream: null` for any that return 404 (handwritten in
+  # terraform-provider-google, not generated from Magic Modules).
+  google_artifact_registry_repository:
+    upstream: mmv1/products/artifactregistry/Repository.yaml
+  google_artifact_registry_project_config:
+    upstream: mmv1/products/artifactregistry/ProjectConfig.yaml
+  google_artifact_registry_repository_iam_member:
+    upstream: null  # IAM templates are schema-only curation (Wave 5 precedent)
+  google_artifact_registry_rule:
+    upstream: mmv1/products/artifactregistry/Rule.yaml
+  google_bigquery_capacity_commitment:
+    upstream: mmv1/products/bigqueryreservation/CapacityCommitment.yaml
+  google_bigquery_connection:
+    upstream: mmv1/products/bigqueryconnection/Connection.yaml
+  google_bigquery_data_transfer_config:
+    upstream: mmv1/products/bigquerydatatransfer/Config.yaml
+  google_bigquery_job:
+    upstream: mmv1/products/bigquery/Job.yaml
+  google_bigquery_reservation:
+    upstream: mmv1/products/bigqueryreservation/Reservation.yaml
+  google_bigquery_reservation_group:
+    upstream: mmv1/products/bigqueryreservation/ReservationGroup.yaml
+  google_bigquery_routine:
+    upstream: mmv1/products/bigquery/Routine.yaml
+  google_bigquery_routine_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_routine_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_routine_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloudbuild_trigger:
+    upstream: mmv1/products/cloudbuild/Trigger.yaml
+  google_cloudbuild_worker_pool:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)
+  google_cloudbuildv2_connection:
+    upstream: mmv1/products/cloudbuildv2/Connection.yaml
+  google_cloudbuildv2_repository:
+    upstream: mmv1/products/cloudbuildv2/Repository.yaml
+  google_eventarc_trigger:
+    upstream: mmv1/products/eventarc/Trigger.yaml
+  google_logging_folder_sink:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)
+  google_lustre_instance:
+    upstream: mmv1/products/lustre/Instance.yaml
+  google_parallelstore_instance:
+    upstream: mmv1/products/parallelstore/Instance.yaml
+  google_looker_instance:
+    upstream: mmv1/products/looker/Instance.yaml
+  google_logging_metric:
+    upstream: mmv1/products/logging/Metric.yaml  # MM internal `name: Metric` → TF resource `google_logging_metric` (Wave 7 Batch 0 seeded `google_logging_log_metric`; corrected here to match schema.json)
+  google_logging_organization_sink:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)
+  google_monitoring_dashboard:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)
+  google_monitoring_metric_descriptor:
+    upstream: mmv1/products/monitoring/MetricDescriptor.yaml
+  google_monitoring_notification_channel:
+    upstream: mmv1/products/monitoring/NotificationChannel.yaml
+  google_monitoring_service:
+    upstream: mmv1/products/monitoring/GenericService.yaml
+  google_monitoring_uptime_check_config:
+    upstream: mmv1/products/monitoring/UptimeCheckConfig.yaml
+  google_pubsub_schema:
+    upstream: mmv1/products/pubsub/Schema.yaml
+  google_storage_notification:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)
+
+  # Manifest completion (0.12.2) — entries for curated overrides added after Wave 7.
+  google_config_deployment:
+    upstream: mmv1/products/config/Deployment.yaml
+  google_contact_center_insights_encryption_spec:
+    upstream: mmv1/products/contactcenterinsights/EncryptionSpec.yaml
+  google_contact_center_insights_analysis_rule:
+    upstream: mmv1/products/contactcenterinsights/AnalysisRule.yaml
+  google_contact_center_insights_view:
+    upstream: mmv1/products/contactcenterinsights/View.yaml
+  google_contact_center_insights_qa_scorecard:
+    upstream: mmv1/products/contactcenterinsights/QaScorecard.yaml
+  google_contact_center_insights_assessment_rule:
+    upstream: mmv1/products/contactcenterinsights/AssessmentRule.yaml
+  google_contact_center_insights_auto_labeling_rule:
+    upstream: mmv1/products/contactcenterinsights/AutoLabelingRule.yaml
+  google_contact_center_insights_qa_scorecard_revision:
+    upstream: mmv1/products/contactcenterinsights/QaScorecardRevision.yaml
+  google_contact_center_insights_qa_question:
+    upstream: mmv1/products/contactcenterinsights/QaQuestion.yaml
+  google_chronicle_dashboard_chart:
+    upstream: mmv1/products/chronicle/DashboardChart.yaml
+  google_chronicle_native_dashboard:
+    upstream: mmv1/products/chronicle/NativeDashboard.yaml
+  google_chronicle_custom_list:
+    upstream: mmv1/products/chronicle/CustomList.yaml
+  google_chronicle_environment:
+    upstream: mmv1/products/chronicle/Environment.yaml
+  google_chronicle_rule:
+    upstream: mmv1/products/chronicle/Rule.yaml
+  google_chronicle_rule_deployment:
+    upstream: mmv1/products/chronicle/RuleDeployment.yaml
+  google_chronicle_retrohunt:
+    upstream: mmv1/products/chronicle/Retrohunt.yaml
+  google_chronicle_reference_list:
+    upstream: mmv1/products/chronicle/ReferenceList.yaml
+  google_chronicle_watchlist:
+    upstream: mmv1/products/chronicle/Watchlist.yaml
+  google_chronicle_data_export:
+    upstream: mmv1/products/chronicle/DataExport.yaml
+  google_chronicle_parser:
+    upstream: mmv1/products/chronicle/Parser.yaml
+  google_chronicle_findings_refinement:
+    upstream: mmv1/products/chronicle/FindingsRefinement.yaml
+  google_chronicle_findings_refinement_deployment:
+    upstream: mmv1/products/chronicle/FindingsRefinementDeployment.yaml
+  google_chronicle_data_access_label:
+    upstream: mmv1/products/chronicle/DataAccessLabel.yaml
+  google_chronicle_data_access_scope:
+    upstream: mmv1/products/chronicle/DataAccessScope.yaml
+  google_chronicle_data_table:
+    upstream: mmv1/products/chronicle/DataTable.yaml
+  google_chronicle_data_table_row:
+    upstream: mmv1/products/chronicle/DataTableRow.yaml
+  google_chronicle_parser_extension:
+    upstream: mmv1/products/chronicle/ParserExtension.yaml
+  google_integration_connectors_connection:
+    upstream: mmv1/products/integrationconnectors/Connection.yaml
+  google_integration_connectors_endpoint_attachment:
+    upstream: mmv1/products/integrationconnectors/EndpointAttachment.yaml
+  google_integration_connectors_managed_zone:
+    upstream: mmv1/products/integrationconnectors/ManagedZone.yaml
+  google_cloud_scheduler_job:
+    upstream: mmv1/products/cloudscheduler/Job.yaml
+  google_cloud_tasks_queue:
+    upstream: mmv1/products/cloudtasks/Queue.yaml
+  google_cloud_tasks_queue_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloudfunctions2_function:
+    upstream: mmv1/products/cloudfunctions2/Function.yaml
+  google_cloudfunctions2_function_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  # Wave 8 (GKE core)
+  google_container_cluster:
+    upstream: mmv1/products/container/Cluster.yaml
+  google_container_node_pool:
+    upstream: mmv1/products/container/NodePool.yaml
+  # Container Analysis (notes / occurrences — image metadata & attestations)
+  google_container_analysis_note:
+    upstream: mmv1/products/containeranalysis/Note.yaml
+  google_container_analysis_note_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_container_analysis_occurrence:
+    upstream: mmv1/products/containeranalysis/Occurrence.yaml
+  # Wave 9 (GKE Hub)
+  google_gke_hub_fleet:
+    upstream: mmv1/products/gkehub2/Fleet.yaml
+  google_gemini_code_repository_index:
+    upstream: mmv1/products/gemini/CodeRepositoryIndex.yaml
+  google_gemini_code_tools_setting:
+    upstream: mmv1/products/gemini/CodeToolsSetting.yaml
+  google_gemini_code_tools_setting_binding:
+    upstream: mmv1/products/gemini/CodeToolsSettingBinding.yaml
+  google_gemini_logging_setting:
+    upstream: mmv1/products/gemini/LoggingSetting.yaml
+  google_gemini_gemini_gcp_enablement_setting:
+    upstream: mmv1/products/gemini/GeminiGcpEnablementSetting.yaml
+  google_gemini_release_channel_setting:
+    upstream: mmv1/products/gemini/ReleaseChannelSetting.yaml
+  google_gemini_data_sharing_with_google_setting:
+    upstream: mmv1/products/gemini/DataSharingWithGoogleSetting.yaml
+  google_gemini_logging_setting_binding:
+    upstream: mmv1/products/gemini/LoggingSettingBinding.yaml
+  google_gemini_release_channel_setting_binding:
+    upstream: mmv1/products/gemini/ReleaseChannelSettingBinding.yaml
+  google_gemini_gemini_gcp_enablement_setting_binding:
+    upstream: mmv1/products/gemini/GeminiGcpEnablementSettingBinding.yaml
+  google_gemini_data_sharing_with_google_setting_binding:
+    upstream: mmv1/products/gemini/DataSharingWithGoogleSettingBinding.yaml
+  google_gke_hub_scope:
+    upstream: mmv1/products/gkehub/Scope.yaml
+  google_gke_hub_namespace:
+    upstream: mmv1/products/gkehub/Namespace.yaml
+  google_gke_hub_feature:
+    upstream: mmv1/products/gkehub2/Feature.yaml
+  google_gke_hub_membership:
+    upstream: mmv1/products/gkehub/Membership.yaml
+  google_gke_hub_rollout_sequence:
+    upstream: mmv1/products/gkehub2/RolloutSequence.yaml
+  # Wave 16 (Logging analytics extension)
+  google_logging_log_scope:
+    upstream: mmv1/products/logging/LogScope.yaml
+  google_logging_linked_dataset:
+    upstream: mmv1/products/logging/LinkedDataset.yaml
+  # Wave 12 (Monitoring completion)
+  google_monitoring_slo:
+    upstream: mmv1/products/monitoring/Slo.yaml
+  google_monitoring_group:
+    upstream: mmv1/products/monitoring/Group.yaml
+  google_monitoring_custom_service:
+    upstream: mmv1/products/monitoring/Service.yaml
+  google_monitoring_monitored_project:
+    upstream: mmv1/products/monitoring/MonitoredProject.yaml
+  # Wave 13 (Compute LB follow-up)
+  google_compute_region_ssl_certificate:
+    upstream: mmv1/products/compute/RegionSslCertificate.yaml
+  google_compute_network_endpoint:
+    upstream: mmv1/products/compute/NetworkEndpoint.yaml
+  # Wave 14 (KMS)
+  google_kms_crypto_key_version:
+    upstream: mmv1/products/kms/CryptoKeyVersion.yaml
+  # Wave 15 (adjacent IAM / Storage)
+  google_pubsub_schema_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_storage_hmac_key:
+    upstream: mmv1/products/storage/HmacKey.yaml
+  # Wave 11 (Logging project ops)
+  google_logging_project_bucket_config:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)
+  google_logging_log_view:
+    upstream: mmv1/products/logging/LogView.yaml
+  google_logging_log_view_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_logging_project_exclusion:
+    upstream: null  # handwritten in terraform-provider-google (probe 404)
+  google_logging_saved_query:
+    upstream: mmv1/products/logging/SavedQuery.yaml
+  # Wave 10 (GKE Backup)
+  google_gke_backup_backup_channel:
+    upstream: mmv1/products/gkebackup/BackupChannel.yaml
+  google_gke_backup_backup_plan:
+    upstream: mmv1/products/gkebackup/BackupPlan.yaml
+  google_gke_backup_backup_plan_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_gke_backup_restore_channel:
+    upstream: mmv1/products/gkebackup/RestoreChannel.yaml
+  google_gke_backup_restore_plan:
+    upstream: mmv1/products/gkebackup/RestorePlan.yaml
+  google_gke_backup_restore_plan_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_disk:
+    upstream: mmv1/products/compute/Disk.yaml
+  google_compute_disk_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_firebase_app_check_app_attest_config:
+    upstream: mmv1/products/firebaseappcheck/AppAttestConfig.yaml
+  google_firebase_app_check_debug_token:
+    upstream: mmv1/products/firebaseappcheck/DebugToken.yaml
+  google_firebase_app_check_device_check_config:
+    upstream: mmv1/products/firebaseappcheck/DeviceCheckConfig.yaml
+  google_firebase_app_check_play_integrity_config:
+    upstream: mmv1/products/firebaseappcheck/PlayIntegrityConfig.yaml
+  google_firebase_app_check_recaptcha_enterprise_config:
+    upstream: mmv1/products/firebaseappcheck/RecaptchaEnterpriseConfig.yaml
+  google_firebase_app_check_resource_policy:
+    upstream: mmv1/products/firebaseappcheck/ResourcePolicy.yaml
+  google_firebase_app_check_service_config:
+    upstream: mmv1/products/firebaseappcheck/ServiceConfig.yaml
+  google_firebase_app_hosting_backend:
+    upstream: mmv1/products/firebaseapphosting/Backend.yaml
+  google_firebase_app_hosting_build:
+    upstream: mmv1/products/firebaseapphosting/Build.yaml
+  google_firebase_app_hosting_default_domain:
+    upstream: mmv1/products/firebaseapphosting/DefaultDomain.yaml
+  google_firebase_app_hosting_domain:
+    upstream: mmv1/products/firebaseapphosting/Domain.yaml
+  google_firebase_app_hosting_traffic:
+    upstream: mmv1/products/firebaseapphosting/Traffic.yaml
+  google_firebase_data_connect_service:
+    upstream: mmv1/products/firebasedataconnect/Service.yaml
+  google_firebase_remote_config_remote_config:
+    upstream: mmv1/products/firebaseremoteconfig/RemoteConfig.yaml
+  google_firestore_backup_schedule:
+    upstream: mmv1/products/firestore/BackupSchedule.yaml
+  google_firestore_database:
+    upstream: mmv1/products/firestore/Database.yaml
+  google_firestore_document:
+    upstream: mmv1/products/firestore/Document.yaml
+  google_firestore_field:
+    upstream: mmv1/products/firestore/Field.yaml
+  google_firestore_index:
+    upstream: mmv1/products/firestore/Index.yaml
+  google_firestore_user_creds:
+    upstream: mmv1/products/firestore/UserCreds.yaml
+  google_project:
+    upstream: null  # data source; handwritten in terraform provider; no MM YAML
+  google_project_usage_export_bucket:
+    upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML; probe 404)
+  google_project_service:
+    upstream: null  # handwritten in terraform provider; no MM YAML (probe 404)
+  google_pubsub_subscription:
+    upstream: mmv1/products/pubsub/Subscription.yaml
+  google_pubsub_subscription_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_pubsub_topic:
+    upstream: mmv1/products/pubsub/Topic.yaml
+  google_pubsub_topic_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_pubsub_lite_reservation:
+    upstream: mmv1/products/pubsublite/Reservation.yaml
+  google_pubsub_lite_topic:
+    upstream: mmv1/products/pubsublite/Topic.yaml
+  google_pubsub_lite_subscription:
+    upstream: mmv1/products/pubsublite/Subscription.yaml
+  google_scc_v2_project_notification_config:
+    upstream: mmv1/products/securitycenterv2/ProjectNotificationConfig.yaml
+  google_secret_manager_secret:
+    upstream: mmv1/products/secretmanager/Secret.yaml
+  google_secure_source_manager_instance:
+    upstream: mmv1/products/securesourcemanager/Instance.yaml
+  google_secure_source_manager_repository:
+    upstream: mmv1/products/securesourcemanager/Repository.yaml
+  google_secure_source_manager_instance_iam_member:
+    upstream: null  # IAM adjunct
+  google_secure_source_manager_repository_iam_member:
+    upstream: null  # IAM adjunct
+
+  google_secret_manager_secret_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_secret_manager_secret_version:
+    upstream: mmv1/products/secretmanager/SecretVersion.yaml
+  google_service_account:
+    upstream: null  # handwritten in terraform provider; no MM YAML (probe 404)
+  # Wave 17 (Eventarc completion)
+  google_eventarc_channel:
+    upstream: mmv1/products/eventarc/Channel.yaml
+  google_eventarc_enrollment:
+    upstream: mmv1/products/eventarc/Enrollment.yaml
+  google_eventarc_google_api_source:
+    upstream: mmv1/products/eventarc/GoogleApiSource.yaml
+  google_filestore_backup:
+    upstream: mmv1/products/filestore/Backup.yaml
+  google_filestore_instance:
+    upstream: mmv1/products/filestore/Instance.yaml
+  google_filestore_snapshot:
+    upstream: mmv1/products/filestore/Snapshot.yaml
+  google_eventarc_message_bus:
+    upstream: mmv1/products/eventarc/MessageBus.yaml
+  google_eventarc_pipeline:
+    upstream: mmv1/products/eventarc/Pipeline.yaml
+  # Wave 18 (Compute LB internals)
+  google_compute_target_ssl_proxy:
+    upstream: mmv1/products/compute/TargetSslProxy.yaml
+  google_compute_target_tcp_proxy:
+    upstream: mmv1/products/compute/TargetTcpProxy.yaml
+  google_compute_region_target_tcp_proxy:
+    upstream: mmv1/products/compute/RegionTargetTcpProxy.yaml
+  google_compute_service_attachment:
+    upstream: mmv1/products/compute/ServiceAttachment.yaml
+  google_compute_region_ssl_policy:
+    upstream: mmv1/products/compute/RegionSslPolicy.yaml
+  google_compute_region_security_policy:
+    upstream: mmv1/products/compute/RegionSecurityPolicy.yaml
+  google_compute_global_network_endpoint:
+    upstream: mmv1/products/compute/GlobalNetworkEndpoint.yaml
+  google_compute_region_network_endpoint:
+    upstream: mmv1/products/compute/RegionNetworkEndpoint.yaml
+  google_compute_security_policy_rule:
+    upstream: mmv1/products/compute/SecurityPolicyRule.yaml
+  # Wave 19 (BigQuery governance)
+  google_bigquery_reservation_assignment:
+    upstream: mmv1/products/bigqueryreservation/ReservationAssignment.yaml
+  google_bigquery_row_access_policy:
+    upstream: mmv1/products/bigquery/RowAccessPolicy.yaml
+  google_bigquery_datapolicy_data_policy:
+    upstream: mmv1/products/bigquerydatapolicy/DataPolicy.yaml
+  google_bigquery_analytics_hub_data_exchange:
+    upstream: mmv1/products/bigqueryanalyticshub/DataExchange.yaml
+  google_bigquery_analytics_hub_listing:
+    upstream: mmv1/products/bigqueryanalyticshub/Listing.yaml
+  google_bigquery_bi_reservation:
+    upstream: mmv1/products/bigqueryreservation/BiReservation.yaml
+  # Wave 20 (Storage + Cloud SQL)
+  google_storage_managed_folder:
+    upstream: mmv1/products/storage/ManagedFolder.yaml
+  google_sql_ssl_cert:
+    upstream: null  # handwritten in terraform provider; no MM YAML (sql dir has no SslCert, probe 404)
+  google_sql_source_representation_instance:
+    upstream: mmv1/products/sql/SourceRepresentationInstance.yaml
+  # Wave 21 (Firebase App Check)
+  google_firebase_app_check_recaptcha_v3_config:
+    upstream: mmv1/products/firebaseappcheck/RecaptchaV3Config.yaml
+  # Wave 22 (BigQuery Analytics Hub + connection IAM, regional Armor rule)
+  google_bigquery_analytics_hub_data_exchange_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_analytics_hub_listing_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_analytics_hub_listing_subscription:
+    upstream: mmv1/products/bigqueryanalyticshub/ListingSubscription.yaml
+  google_bigquery_connection_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_region_security_policy_rule:
+    upstream: mmv1/products/compute/RegionSecurityPolicyRule.yaml
+  # Wave 23 (DNS, Eventarc, Cloud Run worker pool, IAP)
+  google_dns_record_set:
+    upstream: null  # handwritten in terraform provider; no MM YAML (dns dir has no ResourceRecordSet, probe 404)
+  google_dns_policy:
+    upstream: mmv1/products/dns/Policy.yaml
+  google_eventarc_google_channel_config:
+    upstream: mmv1/products/eventarc/GoogleChannelConfig.yaml
+  google_cloud_run_v2_worker_pool:
+    upstream: mmv1/products/cloudrunv2/WorkerPool.yaml
+  google_iap_app_engine_service_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_app_engine_version_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_web_type_app_engine_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_web_backend_service_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_agent_registry_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_location_web_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_tunnel_dest_group:
+    upstream: mmv1/products/iap/TunnelDestGroup.yaml
+  google_iap_settings:
+    upstream: mmv1/products/iap/Settings.yaml
+  google_integrations_client:
+    upstream: mmv1/products/integrations/Client.yaml
+  # Wave 24 (DNS response policy, Cloud Run worker pool IAM, Compute router, BigQuery datapolicy IAM)
+  google_dns_response_policy:
+    upstream: mmv1/products/dns/ResponsePolicy.yaml
+  google_dns_response_policy_rule:
+    upstream: mmv1/products/dns/ResponsePolicyRule.yaml
+  google_cloud_run_v2_worker_pool_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_router:
+    upstream: mmv1/products/compute/Router.yaml
+  google_compute_router_nat:
+    upstream: mmv1/products/compute/RouterNat.yaml
+  google_compute_network_peering:
+    upstream: null  # third_party terraform/services/compute/resource_compute_network_peering.go
+  google_compute_vpn_gateway:
+    upstream: mmv1/products/compute/VpnGateway.yaml
+  google_compute_vpn_tunnel:
+    upstream: mmv1/products/compute/VpnTunnel.yaml
+  google_compute_zone_vm_extension_policy:
+    upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
+  google_compute_ha_vpn_gateway:
+    upstream: mmv1/products/compute/HaVpnGateway.yaml
+  google_compute_shared_vpc_host_project:
+    upstream: null  # third_party terraform/services/compute/resource_compute_shared_vpc_host_project.go
+  google_compute_shared_vpc_service_project:
+    upstream: null  # third_party terraform/services/compute/resource_compute_shared_vpc_service_project.go
+  google_compute_external_vpn_gateway:
+    upstream: mmv1/products/compute/ExternalVpnGateway.yaml
+  google_compute_router_interface:
+    upstream: null  # no mmv1/products/compute/RouterInterface.yaml in magic-modules (sync 404); schema-only curation
+  google_compute_network_peering_routes_config:
+    upstream: null  # third_party terraform/services/compute/resource_compute_network_peering_routes_config.go
+  google_compute_router_peer:
+    upstream: null  # no mmv1/products/compute/RouterPeer.yaml in magic-modules (sync 404); schema-only curation
+  google_compute_interconnect:
+    upstream: mmv1/products/compute/Interconnect.yaml
+  google_compute_interconnect_attachment:
+    upstream: mmv1/products/compute/InterconnectAttachment.yaml
+  google_bigquery_datapolicy_data_policy_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  # Wave 25 (Serverless VPC Access connector)
+  google_vmwareengine_cluster:
+    upstream: mmv1/products/vmwareengine/Cluster.yaml
+  google_vmwareengine_datastore:
+    upstream: mmv1/products/vmwareengine/Datastore.yaml
+  google_vmwareengine_external_access_rule:
+    upstream: mmv1/products/vmwareengine/ExternalAccessRule.yaml
+  google_vmwareengine_external_address:
+    upstream: mmv1/products/vmwareengine/ExternalAddress.yaml
+  google_vmwareengine_network:
+    upstream: mmv1/products/vmwareengine/Network.yaml
+  google_vmwareengine_network_peering:
+    upstream: mmv1/products/vmwareengine/NetworkPeering.yaml
+  google_vmwareengine_network_policy:
+    upstream: mmv1/products/vmwareengine/NetworkPolicy.yaml
+  google_vmwareengine_private_cloud:
+    upstream: mmv1/products/vmwareengine/PrivateCloud.yaml
+  google_vmwareengine_subnet:
+    upstream: mmv1/products/vmwareengine/Subnet.yaml
+  google_vpc_access_connector:
+    upstream: mmv1/products/vpcaccess/Connector.yaml
+  # Wave 26 (Certificate Manager — core HTTPS LB integration chain)
+  google_certificate_manager_dns_authorization:
+    upstream: mmv1/products/certificatemanager/DnsAuthorization.yaml
+  google_certificate_manager_certificate:
+    upstream: mmv1/products/certificatemanager/Certificate.yaml
+  google_certificate_manager_certificate_map:
+    upstream: mmv1/products/certificatemanager/CertificateMap.yaml
+  google_certificate_manager_certificate_map_entry:
+    upstream: mmv1/products/certificatemanager/CertificateMapEntry.yaml
+  # Wave 27 (Certificate Manager — trust + issuance policy)
+  google_certificate_manager_trust_config:
+    upstream: mmv1/products/certificatemanager/TrustConfig.yaml
+  google_certificate_manager_certificate_issuance_config:
+    upstream: mmv1/products/certificatemanager/CertificateIssuanceConfig.yaml
+  # Wave 28 (Private CA — CAS pool for Certificate Manager issuance)
+  google_privateca_ca_pool:
+    upstream: mmv1/products/privateca/CaPool.yaml
+  google_privateca_certificate_authority:
+    upstream: mmv1/products/privateca/CertificateAuthority.yaml
+  google_privateca_certificate:
+    upstream: mmv1/products/privateca/Certificate.yaml
+  google_privateca_certificate_template:
+    upstream: mmv1/products/privateca/CertificateTemplate.yaml
+  google_privateca_ca_pool_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_public_ca_external_account_key:
+    upstream: mmv1/products/publicca/ExternalAccountKey.yaml
+  google_alloydb_backup:
+    upstream: mmv1/products/alloydb/Backup.yaml
+  google_alloydb_cluster:
+    upstream: mmv1/products/alloydb/Cluster.yaml
+  google_alloydb_instance:
+    upstream: mmv1/products/alloydb/Instance.yaml
+  google_alloydb_user:
+    upstream: mmv1/products/alloydb/User.yaml
+  google_apigee_data_collector:
+    upstream: mmv1/products/apigee/DataCollector.yaml
+  google_apigee_datastore:
+    upstream: mmv1/products/apigee/Datastore.yaml
+  google_apigee_instance:
+    upstream: mmv1/products/apigee/Instance.yaml
+  google_apigee_instance_attachment:
+    upstream: mmv1/products/apigee/InstanceAttachment.yaml
+  google_apigee_organization:
+    upstream: mmv1/products/apigee/Organization.yaml
+  google_apigee_environment:
+    upstream: mmv1/products/apigee/Environment.yaml
+  google_apigee_envgroup:
+    upstream: mmv1/products/apigee/Envgroup.yaml
+  google_apigee_envgroup_attachment:
+    upstream: mmv1/products/apigee/EnvgroupAttachment.yaml
+  google_apigee_environment_addons_config:
+    upstream: mmv1/products/apigee/EnvironmentAddonsConfig.yaml
+  google_apigee_addons_config:
+    upstream: mmv1/products/apigee/AddonsConfig.yaml
+  google_apigee_nat_address:
+    upstream: mmv1/products/apigee/NatAddress.yaml
+  google_apigee_endpoint_attachment:
+    upstream: mmv1/products/apigee/EndpointAttachment.yaml
+  google_apigee_dns_zone:
+    upstream: mmv1/products/apigee/DnsZone.yaml
+  google_apigee_space:
+    upstream: mmv1/products/apigee/Space.yaml
+  google_apigee_sync_authorization:
+    upstream: mmv1/products/apigee/SyncAuthorization.yaml
+  google_apigee_target_server:
+    upstream: mmv1/products/apigee/TargetServer.yaml
+  google_apigee_developer:
+    upstream: mmv1/products/apigee/Developer.yaml
+  google_apigee_developer_app:
+    upstream: mmv1/products/apigee/DeveloperApp.yaml
+  google_apigee_api_product:
+    upstream: mmv1/products/apigee/ApiProduct.yaml
+  google_apigee_app_group:
+    upstream: mmv1/products/apigee/AppGroup.yaml
+  google_apigee_env_keystore:
+    upstream: mmv1/products/apigee/EnvKeystore.yaml
+  google_apigee_env_references:
+    upstream: mmv1/products/apigee/EnvReferences.yaml
+  google_apigee_environment_keyvaluemaps:
+    upstream: mmv1/products/apigee/EnvironmentKeyvaluemaps.yaml
+  google_apigee_environment_keyvaluemaps_entries:
+    upstream: mmv1/products/apigee/EnvironmentKeyvaluemapsEntries.yaml
+  google_apigee_keystores_aliases_self_signed_cert:
+    upstream: mmv1/products/apigee/KeystoresAliasesSelfSignedCert.yaml
+  google_apigee_api_deployment:
+    upstream: mmv1/products/apigee/ApiDeployment.yaml
+  google_apigee_api:
+    upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/apigee/resource_apigee_api.go); no mmv1/products/apigee/Api.yaml (404, probed 2026-07-25)
+  google_apigee_sharedflow:
+    upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/apigee/resource_apigee_sharedflow.go); no mmv1/products/apigee/SharedFlow.yaml (404, probed 2026-07-25)
+  google_apigee_sharedflow_deployment:
+    upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/apigee/resource_apigee_sharedflow_deployment.go); SharedFlowDeployment.yaml 404, probed 2026-07-25
+  google_apigee_flowhook:
+    upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/apigee/resource_apigee_flowhook.go); FlowHook.yaml 404, probed 2026-07-25
+  google_apigee_environment_debugmask:
+    upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/apigee/resource_apigee_environment_debugmask.go); EnvironmentDebugmask.yaml 404, probed 2026-07-25
+  google_apigee_keystores_aliases_key_cert_file:
+    upstream: null  # third_party Framework handwritten (mmv1/third_party/terraform/services/apigee/fw_resource_apigee_keystores_aliases_key_cert_file.go); KeystoresAliasesKeyCertFile.yaml 404, probed 2026-07-25
+  google_apigee_keystores_aliases_pkcs12:
+    upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/apigee/resource_apigee_keystores_aliases_pkcs12.go); KeystoresAliasesPkcs12.yaml 404, probed 2026-07-25
+  google_apigee_control_plane_access:
+    upstream: mmv1/products/apigee/ControlPlaneAccess.yaml
+  google_apigee_environment_api_revision_deployment:
+    upstream: mmv1/products/apigee/EnvironmentApiRevisionDeployment.yaml
+  google_apigee_security_feedback:
+    upstream: mmv1/products/apigee/SecurityFeedback.yaml
+  google_apigee_security_profile_v2:
+    upstream: mmv1/products/apigee/SecurityProfileV2.yaml
+  # App Hub (applications + discovered service/workload registration)
+  google_apphub_application:
+    upstream: mmv1/products/apphub/Application.yaml
+  google_apphub_boundary:
+    upstream: mmv1/products/apphub/Boundary.yaml
+  google_apphub_service:
+    upstream: mmv1/products/apphub/Service.yaml
+  google_apphub_service_project_attachment:
+    upstream: mmv1/products/apphub/ServiceProjectAttachment.yaml
+  google_apphub_workload:
+    upstream: mmv1/products/apphub/Workload.yaml
+  google_app_engine_application:
+    upstream: null  # handwritten in terraform-provider-google (no mmv1 Application.yaml)
+  google_app_engine_application_url_dispatch_rules:
+    upstream: mmv1/products/appengine/ApplicationUrlDispatchRules.yaml
+  google_app_engine_domain_mapping:
+    upstream: mmv1/products/appengine/DomainMapping.yaml
+  google_app_engine_firewall_rule:
+    upstream: mmv1/products/appengine/FirewallRule.yaml
+  google_app_engine_flexible_app_version:
+    upstream: mmv1/products/appengine/FlexibleAppVersion.yaml
+  google_app_engine_service_network_settings:
+    upstream: mmv1/products/appengine/ServiceNetworkSettings.yaml
+  google_app_engine_service_split_traffic:
+    upstream: mmv1/products/appengine/ServiceSplitTraffic.yaml
+  google_app_engine_standard_app_version:
+    upstream: mmv1/products/appengine/StandardAppVersion.yaml
+
+  google_managed_kafka_cluster:
+    upstream: mmv1/products/managedkafka/Cluster.yaml
+  google_managed_kafka_topic:
+    upstream: mmv1/products/managedkafka/Topic.yaml
+  google_managed_kafka_acl:
+    upstream: mmv1/products/managedkafka/Acl.yaml
+  google_managed_kafka_connect_cluster:
+    upstream: mmv1/products/managedkafka/ConnectCluster.yaml
+  google_managed_kafka_connector:
+    upstream: mmv1/products/managedkafka/Connector.yaml
+
+  google_memcache_instance:
+    upstream: mmv1/products/memcache/Instance.yaml
+  google_memorystore_instance:
+    upstream: mmv1/products/memorystore/Instance.yaml
+  google_memorystore_instance_desired_user_created_endpoints:
+    upstream: mmv1/products/memorystore/InstanceDesiredUserCreatedEndpoints.yaml
+  google_migration_center_assets_export_job:
+    upstream: mmv1/products/migrationcenter/AssetsExportJob.yaml
+  google_migration_center_discovery_client:
+    upstream: mmv1/products/migrationcenter/DiscoveryClient.yaml
+  google_migration_center_group:
+    upstream: mmv1/products/migrationcenter/Group.yaml
+  google_migration_center_import_data_file:
+    upstream: mmv1/products/migrationcenter/ImportDataFile.yaml
+  google_migration_center_import_job:
+    upstream: mmv1/products/migrationcenter/ImportJob.yaml
+  google_migration_center_preference_set:
+    upstream: mmv1/products/migrationcenter/PreferenceSet.yaml
+  google_migration_center_report:
+    upstream: mmv1/products/migrationcenter/Report.yaml
+  google_migration_center_report_config:
+    upstream: mmv1/products/migrationcenter/ReportConfig.yaml
+  google_migration_center_settings:
+    upstream: mmv1/products/migrationcenter/Settings.yaml
+  google_migration_center_source:
+    upstream: mmv1/products/migrationcenter/Source.yaml
+  google_oracle_database_goldengate_connection:
+    upstream: mmv1/products/oracledatabase/GoldengateConnection.yaml
+  google_oracle_database_goldengate_connection_assignment:
+    upstream: mmv1/products/oracledatabase/GoldengateConnectionAssignment.yaml
+  google_oracle_database_goldengate_deployment:
+    upstream: mmv1/products/oracledatabase/GoldengateDeployment.yaml
+  google_observability_trace_scope:
+    upstream: mmv1/products/observability/TraceScope.yaml
+  google_oracle_database_odb_network:
+    upstream: mmv1/products/oracledatabase/OdbNetwork.yaml
+  google_oracle_database_odb_subnet:
+    upstream: mmv1/products/oracledatabase/OdbSubnet.yaml
+  google_oracle_database_autonomous_database:
+    upstream: mmv1/products/oracledatabase/AutonomousDatabase.yaml
+  google_oracle_database_db_system:
+    upstream: mmv1/products/oracledatabase/DbSystem.yaml
+  google_oracle_database_cloud_exadata_infrastructure:
+    upstream: mmv1/products/oracledatabase/CloudExadataInfrastructure.yaml
+  google_oracle_database_cloud_vm_cluster:
+    upstream: mmv1/products/oracledatabase/CloudVmCluster.yaml
+  google_oracle_database_exadb_vm_cluster:
+    upstream: mmv1/products/oracledatabase/ExadbVmCluster.yaml
+  google_oracle_database_exascale_db_storage_vault:
+    upstream: mmv1/products/oracledatabase/ExascaleDbStorageVault.yaml
+  google_parameter_manager_parameter:
+    upstream: mmv1/products/parametermanager/Parameter.yaml
+  google_parameter_manager_parameter_version:
+    upstream: mmv1/products/parametermanager/ParameterVersion.yaml
+  google_parameter_manager_regional_parameter:
+    upstream: mmv1/products/parametermanagerregional/RegionalParameter.yaml
+  google_parameter_manager_regional_parameter_version:
+    upstream: mmv1/products/parametermanagerregional/RegionalParameterVersion.yaml
+  google_network_security_address_group:
+    upstream: mmv1/products/networksecurity/AddressGroup.yaml
+  google_network_security_url_lists:
+    upstream: mmv1/products/networksecurity/UrlList.yaml
+  google_network_security_client_tls_policy:
+    upstream: mmv1/products/networksecurity/ClientTlsPolicy.yaml
+  google_network_security_server_tls_policy:
+    upstream: mmv1/products/networksecurity/ServerTlsPolicy.yaml
+  google_network_security_gateway_security_policy:
+    upstream: mmv1/products/networksecurity/GatewaySecurityPolicy.yaml
+  google_network_security_backend_authentication_config:
+    upstream: mmv1/products/networksecurity/BackendAuthenticationConfig.yaml
+  google_network_security_dns_threat_detector:
+    upstream: mmv1/products/networksecurity/DnsThreatDetector.yaml
+  google_redis_cluster:
+    upstream: mmv1/products/redis/Cluster.yaml
+  google_redis_cluster_user_created_connections:
+    upstream: mmv1/products/redis/ClusterUserCreatedConnections.yaml
+  google_redis_instance:
+    upstream: mmv1/products/redis/Instance.yaml
+  google_vertex_ai_featurestore:
+    upstream: mmv1/products/vertexai/Featurestore.yaml
+  google_vertex_ai_featurestore_entitytype:
+    upstream: mmv1/products/vertexai/FeaturestoreEntitytype.yaml
+  google_vertex_ai_featurestore_entitytype_feature:
+    upstream: mmv1/products/vertexai/FeaturestoreEntitytypeFeature.yaml
+  google_vertex_ai_feature_group:
+    upstream: mmv1/products/vertexai/FeatureGroup.yaml
+  google_vertex_ai_feature_group_feature:
+    upstream: mmv1/products/vertexai/FeatureGroupFeature.yaml
+  google_vertex_ai_feature_online_store:
+    upstream: mmv1/products/vertexai/FeatureOnlineStore.yaml
+  google_vertex_ai_feature_online_store_featureview:
+    upstream: mmv1/products/vertexai/FeatureOnlineStoreFeatureview.yaml
+  google_vertex_ai_rag_engine_config:
+    upstream: mmv1/products/vertexai/RagEngineConfig.yaml
+  google_vertex_ai_reasoning_engine:
+    upstream: mmv1/products/vertexai/ReasoningEngine.yaml
+  google_vertex_ai_endpoint_with_model_garden_deployment:
+    upstream: mmv1/products/vertexai/EndpointWithModelGardenDeployment.yaml
+  google_vertex_ai_dataset:
+    upstream: mmv1/products/vertexai/Dataset.yaml
+  google_vertex_ai_tensorboard:
+    upstream: mmv1/products/vertexai/Tensorboard.yaml
+  google_vertex_ai_cache_config:
+    upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
+  google_vertex_ai_deployment_resource_pool:
+    upstream: mmv1/products/vertexai/DeploymentResourcePool.yaml
+  google_vertex_ai_endpoint:
+    upstream: mmv1/products/vertexai/Endpoint.yaml
+  google_vertex_ai_index:
+    upstream: mmv1/products/vertexai/Index.yaml
+  google_vertex_ai_index_endpoint:
+    upstream: mmv1/products/vertexai/IndexEndpoint.yaml
+  google_vertex_ai_index_endpoint_deployed_index:
+    upstream: mmv1/products/vertexai/IndexEndpointDeployedIndex.yaml
+  google_vertex_ai_schedule:
+    upstream: mmv1/products/vertexai/Schedule.yaml
+  google_vertex_ai_tensorboard_experiment:
+    upstream: mmv1/products/vertexai/TensorboardExperiment.yaml
+  google_vertex_ai_tensorboard_run:
+    upstream: mmv1/products/vertexai/TensorboardRun.yaml
+  google_vector_search_collection:
+    upstream: mmv1/products/vectorsearch/Collection.yaml
+  google_vector_search_index:
+    upstream: mmv1/products/vectorsearch/Index.yaml
+  google_spanner_database:
+    upstream: mmv1/products/spanner/Database.yaml
+  google_spanner_instance:
+    upstream: mmv1/products/spanner/Instance.yaml
+  google_document_ai_processor:
+    upstream: mmv1/products/documentai/Processor.yaml
+  google_document_ai_schema:
+    upstream: mmv1/products/documentai/Schema.yaml
+
+  google_data_loss_prevention_inspect_template:
+    upstream: mmv1/products/dlp/InspectTemplate.yaml
+  google_data_loss_prevention_deidentify_template:
+    upstream: mmv1/products/dlp/DeidentifyTemplate.yaml
+  google_data_loss_prevention_stored_info_type:
+    upstream: mmv1/products/dlp/StoredInfoType.yaml
+  google_data_loss_prevention_job_trigger:
+    upstream: mmv1/products/dlp/JobTrigger.yaml
+  google_edgenetwork_interconnect_attachment:
+    upstream: mmv1/products/edgenetwork/InterconnectAttachment.yaml
+  google_edgenetwork_network:
+    upstream: mmv1/products/edgenetwork/Network.yaml
+  google_edgenetwork_subnet:
+    upstream: mmv1/products/edgenetwork/Subnet.yaml
+  google_gkeonprem_bare_metal_admin_cluster:
+    upstream: mmv1/products/gkeonprem/BareMetalAdminCluster.yaml
+  google_gkeonprem_bare_metal_cluster:
+    upstream: mmv1/products/gkeonprem/BareMetalCluster.yaml
+  google_gkeonprem_bare_metal_node_pool:
+    upstream: mmv1/products/gkeonprem/BareMetalNodePool.yaml
+  google_gkeonprem_vmware_admin_cluster:
+    upstream: mmv1/products/gkeonprem/VmwareAdminCluster.yaml
+  google_gkeonprem_vmware_cluster:
+    upstream: mmv1/products/gkeonprem/VmwareCluster.yaml
+  google_gkeonprem_vmware_node_pool:
+    upstream: mmv1/products/gkeonprem/VmwareNodePool.yaml
+  google_edgecontainer_cluster:
+    upstream: mmv1/products/edgecontainer/Cluster.yaml
+  google_edgecontainer_node_pool:
+    upstream: mmv1/products/edgecontainer/NodePool.yaml
+  google_edgecontainer_vpn_connection:
+    upstream: mmv1/products/edgecontainer/VpnConnection.yaml
+  google_essential_contacts_contact:
+    upstream: mmv1/products/essentialcontacts/Contact.yaml
+  google_service_directory_namespace:
+    upstream: mmv1/products/servicedirectory/Namespace.yaml
+  google_service_directory_service:
+    upstream: mmv1/products/servicedirectory/Service.yaml
+  google_service_directory_endpoint:
+    upstream: mmv1/products/servicedirectory/Endpoint.yaml
+  google_service_directory_namespace_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_service_directory_service_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_secret_manager_regional_secret:
+    upstream: mmv1/products/secretmanagerregional/RegionalSecret.yaml
+  google_secret_manager_regional_secret_version:
+    upstream: mmv1/products/secretmanagerregional/RegionalSecretVersion.yaml
+  google_secret_manager_regional_secret_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+
+  google_workstations_workstation_cluster:
+    upstream: mmv1/products/workstations/WorkstationCluster.yaml
+  google_workstations_workstation_config:
+    upstream: mmv1/products/workstations/WorkstationConfig.yaml
+  google_workstations_workstation:
+    upstream: mmv1/products/workstations/Workstation.yaml
+  google_workstations_workstation_config_iam_member:
+    upstream: null  # IAM adjunct
+  google_workstations_workstation_iam_member:
+    upstream: null  # IAM adjunct
+
+  google_workbench_instance:
+    upstream: mmv1/products/workbench/Instance.yaml
+  google_workbench_instance_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_workflows_workflow:
+    upstream: mmv1/products/workflows/Workflow.yaml
+  google_tags_tag_key:
+    upstream: mmv1/products/tags/TagKey.yaml
+  google_tags_tag_value:
+    upstream: mmv1/products/tags/TagValue.yaml
+  google_tags_tag_binding:
+    upstream: mmv1/products/tags/TagBinding.yaml
+  google_tags_tag_key_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_tags_tag_value_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  # Wave 75 (Access Context Manager — VPC Service Controls core)
+  google_access_context_manager_access_policy:
+    upstream: mmv1/products/accesscontextmanager/AccessPolicy.yaml
+  google_access_context_manager_access_level:
+    upstream: mmv1/products/accesscontextmanager/AccessLevel.yaml
+  google_access_context_manager_service_perimeter:
+    upstream: mmv1/products/accesscontextmanager/ServicePerimeter.yaml
+  google_access_context_manager_access_policy_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  # Wave 76 (OS Config + Binary Authorization — VM compliance & image trust)
+  google_network_services_edge_cache_keyset:
+    upstream: mmv1/products/networkservices/EdgeCacheKeyset.yaml
+  google_network_services_edge_cache_origin:
+    upstream: mmv1/products/networkservices/EdgeCacheOrigin.yaml
+  google_network_services_edge_cache_service:
+    upstream: mmv1/products/networkservices/EdgeCacheService.yaml
+  google_network_services_mesh:
+    upstream: mmv1/products/networkservices/Mesh.yaml
+  google_network_services_gateway:
+    upstream: mmv1/products/networkservices/Gateway.yaml
+  google_secure_source_manager_hook:
+    upstream: mmv1/products/securesourcemanager/Hook.yaml
+  google_secure_source_manager_branch_rule:
+    upstream: mmv1/products/securesourcemanager/BranchRule.yaml
+  google_notebooks_environment:
+    upstream: mmv1/products/notebooks/Environment.yaml
+  google_notebooks_instance:
+    upstream: mmv1/products/notebooks/Instance.yaml
+  google_notebooks_instance_iam_member:
+    upstream: null  # IAM adjunct (generated outside mmv1 product YAML)
+  google_notebooks_runtime:
+    upstream: mmv1/products/notebooks/Runtime.yaml
+  google_notebooks_runtime_iam_member:
+    upstream: null  # IAM adjunct (generated outside mmv1 product YAML)
+  google_os_config_os_policy_assignment:
+    upstream: null  # third_party terraform/services/osconfig/resource_os_config_os_policy_assignment.go
+  google_os_config_patch_deployment:
+    upstream: mmv1/products/osconfig/PatchDeployment.yaml
+  google_binary_authorization_policy:
+    upstream: mmv1/products/binaryauthorization/Policy.yaml
+  google_binary_authorization_attestor:
+    upstream: mmv1/products/binaryauthorization/Attestor.yaml
+  google_binary_authorization_attestor_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  # Wave 77 (API protection + network diagnostics)
+  google_apihub_api_hub_instance:
+    upstream: mmv1/products/apihub/ApiHubInstance.yaml
+  google_apikeys_key:
+    upstream: null  # third_party terraform/services/apikeys/resource_apikeys_key.go
+  google_recaptcha_enterprise_key:
+    upstream: null  # third_party terraform/services/recaptchaenterprise/resource_recaptcha_enterprise_key.go
+  google_network_management_connectivity_test:
+    upstream: mmv1/products/networkmanagement/ConnectivityTest.yaml
+  google_network_management_vpc_flow_logs_config:
+    upstream: mmv1/products/networkmanagement/VpcFlowLogsConfig.yaml
