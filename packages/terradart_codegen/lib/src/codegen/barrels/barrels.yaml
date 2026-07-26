@@ -381,11 +381,13 @@ barrels:
       /// capacity while they exist (never_apply for apply-smoke).
   network:
     doc: |-
-      /// Network Connectivity transports, Network Security ULL mirroring, address
-      /// groups, URL lists, client/server TLS policies, gateway security policies,
-      /// Cloud NGFW firewall endpoints (Enterprise Endpoint Uptime is never_apply —
-      /// $1.75/h), VPC Flow Logs configs, Network Services Mesh, and Network
-      /// Services gateways (Secure Web Gateway is never_apply — $1.25/h).
+      /// Network Connectivity transports, Network Security ULL mirroring, OOB
+      /// intercept / mirroring deployments (Deployment Uptime $0.025/h is
+      /// never_apply), address groups, URL lists, client/server TLS policies,
+      /// gateway security policies, Cloud NGFW firewall endpoints (Enterprise
+      /// Endpoint Uptime is never_apply — $1.75/h), VPC Flow Logs configs,
+      /// Network Services Mesh, and Network Services gateways (Secure Web
+      /// Gateway is never_apply — $1.25/h).
   notebooks:
     doc: |-
       /// Vertex AI Workbench (Notebooks) — environments, user-managed

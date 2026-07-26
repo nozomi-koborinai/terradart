@@ -1,0 +1,33 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Network Security **intercept endpoint group** — consumer-side OOB
+  /// intercept endpoint group linked to a deployment group.
+  ///
+  /// **Cost / apply:** gcp-cost: Network Security `E749-01A2-AE1F` Out-of-band
+  /// Integration Deployment Uptime SKU `E55D-280B-82DD` **$0.025/h** (Data
+  /// Processing `88A5-6AEF-68F2` **$0.008/GiBy**). billing-behavior: OOB
+  /// intercept / mirroring deployment uptime bills while the deployment
+  /// exists; destroy stops deployment-hour charges. **Never** wire into
+  /// apply-smoke.
+
+paramOrder:
+  - location
+  - intercept_endpoint_group_id
+  - intercept_deployment_group
+  - description
+  - labels
+  - project
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -399,6 +399,12 @@ GoogleCloudIdsEndpoint: gcp-cost Cloud IDS 25DB-618E-3F79 Endpoint Usage SKU FB5
 GoogleComputeStoragePool: gcp-cost Compute Engine 6F81-5844-456A Hyperdisk Balanced Storage Pools Standard Capacity Iowa SKU 5BC4-9775-DEC9 $0.08/GiBy.mo — never_apply; no applyable quickstart on terradart-validate
 GoogleNetworkSecurityFirewallEndpoint: gcp-cost Network Security E749-01A2-AE1F Cloud NGFW Enterprise Endpoint Uptime SKU B778-1457-4A22 $1.75/h — never_apply; org-scoped parent; no applyable quickstart on terradart-validate
 GoogleNetworkSecurityFirewallEndpointAssociation: requires never_apply GoogleNetworkSecurityFirewallEndpoint; deferred with the NGFW endpoint Wave
+GoogleNetworkSecurityInterceptDeployment: gcp-cost Network Security E749-01A2-AE1F OOB Deployment Uptime SKU E55D-280B-82DD $0.025/h — never_apply; no applyable quickstart
+GoogleNetworkSecurityInterceptDeploymentGroup: deferred with never_apply GoogleNetworkSecurityInterceptDeployment (OOB intercept path)
+GoogleNetworkSecurityInterceptEndpointGroup: deferred with never_apply GoogleNetworkSecurityInterceptDeployment (OOB intercept path)
+GoogleNetworkSecurityInterceptEndpointGroupAssociation: deferred with never_apply GoogleNetworkSecurityInterceptDeployment (OOB intercept path)
+GoogleNetworkSecurityMirroringDeployment: gcp-cost Network Security E749-01A2-AE1F OOB Deployment Uptime SKU E55D-280B-82DD $0.025/h — never_apply; no applyable quickstart
+GoogleNetworkSecurityMirroringDeploymentGroup: deferred with never_apply GoogleNetworkSecurityMirroringDeployment (OOB mirroring path)
 GoogleNetworkSecurityTlsInspectionPolicy: gcp-cost Network Security E749-01A2-AE1F Cloud NGFW Enterprise Endpoint Uptime SKU B778-1457-4A22 $1.75/h (+ Data Processing 994B-C7B9-C1F7 $0.0193/GiBy) — never_apply; configures NGFW TLS decryption; no applyable quickstart on terradart-validate
 GoogleNetworkSecuritySecurityProfile: gcp-cost Network Security E749-01A2-AE1F Cloud NGFW Enterprise Endpoint Uptime SKU B778-1457-4A22 $1.75/h — never_apply; configures NGFW / out-of-band inspection; no applyable quickstart on terradart-validate
 GoogleNetworkSecuritySecurityProfileGroup: requires never_apply GoogleNetworkSecuritySecurityProfile (+ NGFW endpoint path); deferred with the NGFW security-profile Wave

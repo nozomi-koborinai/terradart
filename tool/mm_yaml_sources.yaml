@@ -176,6 +176,18 @@ files:
     upstream: mmv1/products/networksecurity/FirewallEndpoint.yaml
   google_network_security_firewall_endpoint_association:
     upstream: mmv1/products/networksecurity/FirewallEndpointAssociation.yaml
+  google_network_security_intercept_deployment:
+    upstream: mmv1/products/networksecurity/InterceptDeployment.yaml
+  google_network_security_intercept_deployment_group:
+    upstream: mmv1/products/networksecurity/InterceptDeploymentGroup.yaml
+  google_network_security_intercept_endpoint_group:
+    upstream: mmv1/products/networksecurity/InterceptEndpointGroup.yaml
+  google_network_security_intercept_endpoint_group_association:
+    upstream: mmv1/products/networksecurity/InterceptEndpointGroupAssociation.yaml
+  google_network_security_mirroring_deployment:
+    upstream: mmv1/products/networksecurity/MirroringDeployment.yaml
+  google_network_security_mirroring_deployment_group:
+    upstream: mmv1/products/networksecurity/MirroringDeploymentGroup.yaml
   google_network_security_tls_inspection_policy:
     upstream: mmv1/products/networksecurity/TlsInspectionPolicy.yaml
   google_network_security_security_profile:
