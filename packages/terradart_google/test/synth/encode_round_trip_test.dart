@@ -34,7 +34,9 @@ import 'package:terradart_google/cloud_build.dart';
 import 'package:terradart_google/cloud_functions.dart';
 import 'package:terradart_google/config.dart';
 import 'package:terradart_google/dataplex.dart';
+import 'package:terradart_google/dataproc.dart';
 import 'package:terradart_google/cloud_run.dart';
+import 'package:terradart_google/spanner.dart';
 import 'package:terradart_google/cloud_scheduler.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/dlp.dart';
@@ -363,6 +365,26 @@ final Map<String, Object Function()> _syntheticInstances = {
   'DataplexTaskNotebookWorkload': () => DataplexTaskNotebookWorkload(
         notebook: TfArg.literal('gs://mock-bucket/notebook.ipynb'),
       ),
+
+  // --- DataprocBatchWorkload (4) — google_dataproc_batch -------------------
+  'DataprocBatchPysparkWorkload': () => DataprocBatchPysparkWorkload(
+        mainPythonFileUri: TfArg.literal('gs://mock-bucket/main.py'),
+      ),
+  'DataprocBatchSparkWorkload': () => DataprocBatchSparkWorkload(
+        mainClass: TfArg.literal('com.example.Main'),
+      ),
+  'DataprocBatchSparkSqlWorkload': () => DataprocBatchSparkSqlWorkload(
+        queryFileUri: TfArg.literal('gs://mock-bucket/query.sql'),
+      ),
+  'DataprocBatchSparkRWorkload': () => DataprocBatchSparkRWorkload(
+        mainRFileUri: TfArg.literal('gs://mock-bucket/main.R'),
+      ),
+
+  // --- SpannerBackupScheduleBackupSpec (2) — google_spanner_backup_schedule
+  'SpannerBackupScheduleFullBackupSpec': () =>
+      const SpannerBackupScheduleFullBackupSpec(),
+  'SpannerBackupScheduleIncrementalBackupSpec': () =>
+      const SpannerBackupScheduleIncrementalBackupSpec(),
 
   // --- EdgecontainerClusterControlPlane (2) — edgecontainer_cluster --------
   'EdgecontainerClusterControlPlaneRemote': () =>
