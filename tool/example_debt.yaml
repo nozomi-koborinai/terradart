@@ -194,6 +194,12 @@ GoogleDataFusionInstance: gcp-cost Cloud Data Fusion 0D19-EC86-35B0 Developer SK
 # ships without an example.
 GoogleComputeInterconnectAttachmentGroup: gcp-cost Compute Engine 6F81-5844-456A Cloud Interconnect 10Gbps Dedicated circuit SKU B8C8-2F76-E648 $2.328/h — never_apply physical interconnect family; no applyable quickstart on terradart-validate
 GoogleComputeInterconnectGroup: gcp-cost Compute Engine 6F81-5844-456A Cloud Interconnect 10Gbps Dedicated circuit SKU B8C8-2F76-E648 $2.328/h — never_apply physical interconnect family; no applyable quickstart on terradart-validate
+GoogleComputeCrossSiteNetwork: gcp-cost NCC 7BEB-7A51-4223 Partner Cross Cloud Interconnect Managed Transport 10Gbps SKU AAE5-BD60-3575 $17.30/h — never_apply; no applyable quickstart
+GoogleComputeWireGroup: deferred with never_apply GoogleComputeCrossSiteNetwork (CCI / cross-site path)
+GoogleComputePacketMirroring: gcp-cost Compute Engine 6F81-5844-456A Packet Mirroring Data Processing Americas SKU A0DF-D169-F1EE $0.008/GiBy — never_apply; no applyable quickstart
+GoogleNetworkSecurityMirroringEndpoint: deferred with never_apply GoogleNetworkSecurityMirroringDeployment (OOB mirroring path)
+GoogleNetworkSecurityMirroringEndpointGroupAssociation: deferred with never_apply GoogleNetworkSecurityMirroringDeployment (OOB mirroring path)
+GoogleNetworkConnectivityMulticloudDataTransferConfig: gcp-cost NCC 7BEB-7A51-4223 Partner Cross Cloud Interconnect Managed Transport 10Gbps SKU AAE5-BD60-3575 $17.30/h — never_apply; no applyable quickstart
 GoogleContainerAttachedCluster: gcp-cost GKE Enterprise / GDC 9186-F79E-3871 Trial Attached SKU CA50-C2AE-45E8 $0/h (catalog); needs real external cluster — never_apply; no applyable quickstart on terradart-validate
 GoogleContainerAwsCluster: gcp-cost GKE Enterprise / GDC 9186-F79E-3871 Multicloud (AWS) SKU 24A0-2EF1-8ACB $0.00822/h (+ AWS EC2) — never_apply; needs real AWS account
 GoogleContainerAwsNodePool: requires never_apply GoogleContainerAwsCluster (+ AWS EC2); deferred with the AWS cluster

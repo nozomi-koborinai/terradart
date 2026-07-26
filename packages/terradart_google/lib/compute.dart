@@ -1,7 +1,9 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 /// Compute Engine resources: instances, addresses, firewalls, networks,
-/// subnetworks, and Hyperdisk Storage Pools (pool capacity is never_apply).
+/// subnetworks, Hyperdisk Storage Pools (pool capacity is never_apply),
+/// Cross-Site / wire groups (Partner Cross-Cloud Interconnect $17+/h is
+/// never_apply), and packet mirroring (mirrored GiBy is never_apply).
 library;
 
 export 'src/compute/google_compute_address.dart'
@@ -75,6 +77,8 @@ export 'src/compute/google_compute_backend_service.dart'
         SessionAffinity;
 export 'src/compute/google_compute_bulk_per_instance_config.dart'
     show GoogleComputeBulkPerInstanceConfig;
+export 'src/compute/google_compute_cross_site_network.dart'
+    show GoogleComputeCrossSiteNetwork;
 export 'src/compute/google_compute_disk.dart'
     show
         ComputeDiskGuestOsFeature,
@@ -310,6 +314,17 @@ export 'src/compute/google_compute_node_template.dart'
         ComputeNodeTemplateServerBinding,
         ComputeNodeTemplateServerBindingType,
         GoogleComputeNodeTemplate;
+export 'src/compute/google_compute_packet_mirroring.dart'
+    show
+        ComputePacketMirroringCollectorIlb,
+        ComputePacketMirroringEnable,
+        ComputePacketMirroringFilter,
+        ComputePacketMirroringFilterDirection,
+        ComputePacketMirroringMirroredResources,
+        ComputePacketMirroringMirroredResourcesInstances,
+        ComputePacketMirroringMirroredResourcesSubnetworks,
+        ComputePacketMirroringNetwork,
+        GoogleComputePacketMirroring;
 export 'src/compute/google_compute_preview_feature.dart'
     show
         ComputePreviewFeatureActivationStatus,
@@ -703,5 +718,11 @@ export 'src/compute/google_compute_url_map.dart'
 export 'src/compute/google_compute_vpn_gateway.dart'
     show GoogleComputeVpnGateway;
 export 'src/compute/google_compute_vpn_tunnel.dart' show GoogleComputeVpnTunnel;
+export 'src/compute/google_compute_wire_group.dart'
+    show
+        ComputeWireGroupEndpoints,
+        ComputeWireGroupEndpointsInterconnects,
+        ComputeWireGroupWireProperties,
+        GoogleComputeWireGroup;
 export 'src/compute/google_compute_zone_vm_extension_policy.dart'
     show GoogleComputeZoneVmExtensionPolicy;

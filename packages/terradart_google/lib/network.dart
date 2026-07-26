@@ -1,16 +1,22 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Network Connectivity transports, Network Security ULL mirroring, OOB
-/// intercept / mirroring deployments (Deployment Uptime $0.025/h is
-/// never_apply), address groups, URL lists, client/server TLS policies,
-/// gateway security policies, Cloud NGFW firewall endpoints (Enterprise
-/// Endpoint Uptime is never_apply — $1.75/h), VPC Flow Logs configs,
-/// Network Services Mesh, and Network Services gateways (Secure Web
-/// Gateway is never_apply — $1.25/h).
+/// Network Connectivity transports / multicloud data-transfer (Partner
+/// Cross-Cloud Interconnect managed transport is never_apply — $17+/h),
+/// Network Security ULL mirroring, OOB intercept / mirroring deployments
+/// + endpoints (Deployment Uptime $0.025/h is never_apply), address
+/// groups, URL lists, client/server TLS policies, gateway security
+/// policies, Cloud NGFW firewall endpoints (Enterprise Endpoint Uptime
+/// is never_apply — $1.75/h), VPC Flow Logs configs, Network Services
+/// Mesh, and Network Services gateways (Secure Web Gateway is
+/// never_apply — $1.25/h).
 library;
 
 export 'src/network/google_network_connectivity_hub.dart'
     show GoogleNetworkConnectivityHub;
+export 'src/network/google_network_connectivity_multicloud_data_transfer_config.dart'
+    show
+        GoogleNetworkConnectivityMulticloudDataTransferConfig,
+        NetworkConnectivityMulticloudDataTransferConfigServices;
 export 'src/network/google_network_connectivity_transport.dart'
     show
         GoogleNetworkConnectivityTransport,
@@ -66,6 +72,10 @@ export 'src/network/google_network_security_mirroring_deployment.dart'
     show GoogleNetworkSecurityMirroringDeployment;
 export 'src/network/google_network_security_mirroring_deployment_group.dart'
     show GoogleNetworkSecurityMirroringDeploymentGroup;
+export 'src/network/google_network_security_mirroring_endpoint.dart'
+    show GoogleNetworkSecurityMirroringEndpoint;
+export 'src/network/google_network_security_mirroring_endpoint_group_association.dart'
+    show GoogleNetworkSecurityMirroringEndpointGroupAssociation;
 export 'src/network/google_network_security_security_profile.dart'
     show
         GoogleNetworkSecuritySecurityProfile,
