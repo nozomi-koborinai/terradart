@@ -51,7 +51,9 @@ export 'src/network/google_network_security_backend_authentication_config.dart'
 export 'src/network/google_network_security_client_tls_policy.dart'
     show GoogleNetworkSecurityClientTlsPolicy;
 export 'src/network/google_network_security_dns_threat_detector.dart'
-    show GoogleNetworkSecurityDnsThreatDetector;
+    show
+        GoogleNetworkSecurityDnsThreatDetector,
+        NetworkSecurityDnsThreatDetectorThreatDetectorProvider;
 export 'src/network/google_network_security_firewall_endpoint.dart'
     show
         GoogleNetworkSecurityFirewallEndpoint,
