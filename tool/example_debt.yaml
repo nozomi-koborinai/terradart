@@ -200,6 +200,19 @@ GoogleComputePacketMirroring: gcp-cost Compute Engine 6F81-5844-456A Packet Mirr
 GoogleNetworkSecurityMirroringEndpoint: deferred with never_apply GoogleNetworkSecurityMirroringDeployment (OOB mirroring path)
 GoogleNetworkSecurityMirroringEndpointGroupAssociation: deferred with never_apply GoogleNetworkSecurityMirroringDeployment (OOB mirroring path)
 GoogleNetworkConnectivityMulticloudDataTransferConfig: gcp-cost NCC 7BEB-7A51-4223 Partner Cross Cloud Interconnect Managed Transport 10Gbps SKU AAE5-BD60-3575 $17.30/h — never_apply; no applyable quickstart
+# Cloud Multicast (allowlisted GA) — infrastructure reservation billed from
+# domain activation (docs; no Cloud Billing Catalog SKU). Factories ship without
+# an example — never_apply.
+GoogleNetworkServicesMulticastDomain: gcp-cost no Cloud Billing Catalog SKU (Networking E505-1604-58F8 multicast → 0); docs cloud.google.com/vpc/docs/multicast — infra billed from domain activation; never_apply; no applyable quickstart
+GoogleNetworkServicesMulticastDomainGroup: deferred with never_apply GoogleNetworkServicesMulticastDomain (Cloud Multicast path)
+GoogleNetworkServicesMulticastDomainActivation: gcp-cost no Cloud Billing Catalog SKU; docs — billing starts when domain activation is created; never_apply; no applyable quickstart
+GoogleNetworkServicesMulticastGroupRange: deferred with never_apply GoogleNetworkServicesMulticastDomain (Cloud Multicast path)
+GoogleNetworkServicesMulticastGroupRangeActivation: deferred with never_apply GoogleNetworkServicesMulticastDomainActivation (Cloud Multicast path)
+GoogleNetworkServicesMulticastConsumerAssociation: deferred with never_apply GoogleNetworkServicesMulticastDomainActivation (Cloud Multicast path)
+GoogleNetworkServicesMulticastProducerAssociation: deferred with never_apply GoogleNetworkServicesMulticastDomainActivation (Cloud Multicast path)
+GoogleNetworkServicesMulticastGroupConsumerActivation: deferred with never_apply GoogleNetworkServicesMulticastDomainActivation (Cloud Multicast path)
+GoogleNetworkServicesMulticastGroupProducerActivation: deferred with never_apply GoogleNetworkServicesMulticastDomainActivation (Cloud Multicast path)
+GoogleNetworkConnectivityDestination: requires never_apply GoogleNetworkConnectivityMulticloudDataTransferConfig (CCI / multicloud data-transfer path); deferred with that config
 GoogleContainerAttachedCluster: gcp-cost GKE Enterprise / GDC 9186-F79E-3871 Trial Attached SKU CA50-C2AE-45E8 $0/h (catalog); needs real external cluster — never_apply; no applyable quickstart on terradart-validate
 GoogleContainerAwsCluster: gcp-cost GKE Enterprise / GDC 9186-F79E-3871 Multicloud (AWS) SKU 24A0-2EF1-8ACB $0.00822/h (+ AWS EC2) — never_apply; needs real AWS account
 GoogleContainerAwsNodePool: requires never_apply GoogleContainerAwsCluster (+ AWS EC2); deferred with the AWS cluster

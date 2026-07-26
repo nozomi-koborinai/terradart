@@ -11,6 +11,10 @@
 /// never_apply — $1.25/h).
 library;
 
+export 'src/network/google_network_connectivity_destination.dart'
+    show
+        GoogleNetworkConnectivityDestination,
+        NetworkConnectivityDestinationEndpoints;
 export 'src/network/google_network_connectivity_hub.dart'
     show GoogleNetworkConnectivityHub;
 export 'src/network/google_network_connectivity_multicloud_data_transfer_config.dart'
@@ -177,3 +181,32 @@ export 'src/network/google_network_services_gateway.dart'
         NetworkServicesGatewayType;
 export 'src/network/google_network_services_mesh.dart'
     show GoogleNetworkServicesMesh;
+export 'src/network/google_network_services_multicast_consumer_association.dart'
+    show GoogleNetworkServicesMulticastConsumerAssociation;
+export 'src/network/google_network_services_multicast_domain.dart'
+    show
+        GoogleNetworkServicesMulticastDomain,
+        NetworkServicesMulticastDomainConnectionConfig,
+        NetworkServicesMulticastDomainUllMulticastDomain;
+export 'src/network/google_network_services_multicast_domain_activation.dart'
+    show
+        GoogleNetworkServicesMulticastDomainActivation,
+        NetworkServicesMulticastDomainActivationTrafficSpec;
+export 'src/network/google_network_services_multicast_domain_group.dart'
+    show GoogleNetworkServicesMulticastDomainGroup;
+export 'src/network/google_network_services_multicast_group_consumer_activation.dart'
+    show
+        GoogleNetworkServicesMulticastGroupConsumerActivation,
+        NetworkServicesMulticastGroupConsumerActivationLogConfig;
+export 'src/network/google_network_services_multicast_group_producer_activation.dart'
+    show GoogleNetworkServicesMulticastGroupProducerActivation;
+export 'src/network/google_network_services_multicast_group_range.dart'
+    show
+        GoogleNetworkServicesMulticastGroupRange,
+        NetworkServicesMulticastGroupRangeLogConfig;
+export 'src/network/google_network_services_multicast_group_range_activation.dart'
+    show
+        GoogleNetworkServicesMulticastGroupRangeActivation,
+        NetworkServicesMulticastGroupRangeActivationLogConfig;
+export 'src/network/google_network_services_multicast_producer_association.dart'
+    show GoogleNetworkServicesMulticastProducerAssociation;
