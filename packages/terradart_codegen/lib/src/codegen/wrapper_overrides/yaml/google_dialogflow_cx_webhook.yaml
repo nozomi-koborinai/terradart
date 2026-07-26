@@ -1,0 +1,38 @@
+outputDir: dialogflow
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Dialogflow CX **webhook** — generic web service / Service Directory
+  /// webhook for a CX agent.
+  ///
+  /// **Cost / apply:** gcp-cost: Cloud Dialogflow `FBC0-AA4A-C89A` Text
+  /// session SKU `A1CC-751A-CDCC` **$0.20**/session (Audio `9496-0679-69BE`
+  /// **$0.45**/session). billing-behavior: webhooks sit on the never_apply
+  /// [GoogleDialogflowCxAgent] session path. **Never** wire into
+  /// apply-smoke.
+
+paramOrder:
+  - display_name
+  - parent
+  - timeout
+  - disabled
+  - enable_stackdriver_logging
+  - enable_spell_correction
+  - security_settings
+  - generic_web_service
+  - service_directory
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
