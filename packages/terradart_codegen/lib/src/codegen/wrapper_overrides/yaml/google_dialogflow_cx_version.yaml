@@ -5,9 +5,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 
-extraImports:
-  - "import 'package:meta/meta.dart';"
-
 curatedDoc: |-
   /// Dialogflow CX **version** — immutable snapshot of a CX flow.
   ///
