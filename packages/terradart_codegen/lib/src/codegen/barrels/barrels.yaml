@@ -154,7 +154,9 @@ barrels:
   compute:
     doc: |-
       /// Compute Engine resources: instances, addresses, firewalls, networks,
-      /// subnetworks, and Hyperdisk Storage Pools (pool capacity is never_apply).
+      /// subnetworks, Hyperdisk Storage Pools (pool capacity is never_apply),
+      /// Cross-Site / wire groups (Partner Cross-Cloud Interconnect $17+/h is
+      /// never_apply), and packet mirroring (mirrored GiBy is never_apply).
   config:
     doc: |-
       /// Infrastructure Manager (Config API): Terraform blueprint deployments.
@@ -381,13 +383,15 @@ barrels:
       /// capacity while they exist (never_apply for apply-smoke).
   network:
     doc: |-
-      /// Network Connectivity transports, Network Security ULL mirroring, OOB
-      /// intercept / mirroring deployments (Deployment Uptime $0.025/h is
-      /// never_apply), address groups, URL lists, client/server TLS policies,
-      /// gateway security policies, Cloud NGFW firewall endpoints (Enterprise
-      /// Endpoint Uptime is never_apply — $1.75/h), VPC Flow Logs configs,
-      /// Network Services Mesh, and Network Services gateways (Secure Web
-      /// Gateway is never_apply — $1.25/h).
+      /// Network Connectivity transports / multicloud data-transfer (Partner
+      /// Cross-Cloud Interconnect managed transport is never_apply — $17+/h),
+      /// Network Security ULL mirroring, OOB intercept / mirroring deployments
+      /// + endpoints (Deployment Uptime $0.025/h is never_apply), address
+      /// groups, URL lists, client/server TLS policies, gateway security
+      /// policies, Cloud NGFW firewall endpoints (Enterprise Endpoint Uptime
+      /// is never_apply — $1.75/h), VPC Flow Logs configs, Network Services
+      /// Mesh, and Network Services gateways (Secure Web Gateway is
+      /// never_apply — $1.25/h).
   notebooks:
     doc: |-
       /// Vertex AI Workbench (Notebooks) — environments, user-managed

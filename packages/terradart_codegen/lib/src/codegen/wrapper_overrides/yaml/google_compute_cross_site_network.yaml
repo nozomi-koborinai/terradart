@@ -1,0 +1,31 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Compute Engine **cross-site network** — global Cross-Site Interconnect /
+  /// Partner Cross-Cloud Interconnect topology container.
+  ///
+  /// **Cost / apply:** gcp-cost: Network Connectivity Center `7BEB-7A51-4223`
+  /// Partner Cross Cloud Interconnect Managed Transport 10Gbps us-east4 SKU
+  /// `AAE5-BD60-3575` **$17.30/h** (100Gbps us-west1 `0ED2-0975-EF6E`
+  /// **$26.40/h**). billing-behavior: Cross-Site / wire-group / multicloud
+  /// data-transfer configs are the control plane for Partner Cross-Cloud
+  /// Interconnect managed transport; working stacks imply those circuit-hour
+  /// charges. **Never** wire into apply-smoke.
+
+paramOrder:
+  - name
+  - description
+  - project
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

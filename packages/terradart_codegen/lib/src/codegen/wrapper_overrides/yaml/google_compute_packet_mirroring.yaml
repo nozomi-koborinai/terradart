@@ -1,0 +1,39 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Compute Engine **packet mirroring** — VPC packet mirror policy (collector
+  /// ILB + mirrored instances / subnets / tags).
+  ///
+  /// **Cost / apply:** gcp-cost: Compute Engine `6F81-5844-456A` Network Packet
+  /// Mirroring Data Processing Americas SKU `A0DF-D169-F1EE` **$0.008/GiBy**
+  /// (Japan `F615-AC9B-DE64` **$0.012/GiBy**). billing-behavior: mirrored
+  /// traffic volume bills while packet mirroring is enabled; destroy stops
+  /// new processing charges. **Never** wire into apply-smoke.
+
+paramOrder:
+  - name
+  - region
+  - network
+  - collector_ilb
+  - mirrored_resources
+  - filter
+  - description
+  - enable
+  - priority
+  - project
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -4806,6 +4806,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_compute_bulk_per_instance_config`.',
   ),
   CatalogEntry(
+    tfType: 'google_compute_cross_site_network',
+    className: 'GoogleComputeCrossSiteNetwork',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_cross_site_network`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'description',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_cross_site_network`.\n\nRepresents a cross-site-network resource. A CrossSiteNetwork is used to\nestablish L2 connectivity between groups of Interconnects.\n\nCompute Engine **cross-site network** — global Cross-Site Interconnect /\nPartner Cross-Cloud Interconnect topology container.\n\n**Cost / apply:** gcp-cost: Network Connectivity Center `7BEB-7A51-4223`\nPartner Cross Cloud Interconnect Managed Transport 10Gbps us-east4 SKU\n`AAE5-BD60-3575` **\$17.30/h** (100Gbps us-west1 `0ED2-0975-EF6E`\n**\$26.40/h**). billing-behavior: Cross-Site / wire-group / multicloud\ndata-transfer configs are the control plane for Partner Cross-Cloud\nInterconnect managed transport; working stacks imply those circuit-hour\ncharges. **Never** wire into apply-smoke.',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_disk',
     className: 'GoogleComputeDisk',
     barrel: 'compute',
@@ -5775,6 +5793,40 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_node_template`.\n\nRepresents a NodeTemplate resource. Node templates specify properties for\ncreating sole-tenant nodes, such as node type, vCPU and memory requirements,\nnode affinity labels, and region.\n\nCompute Engine **sole-tenant node template** — defines node type /\nflexibility, disks, and accelerators for [GoogleComputeNodeGroup].\n\n**Cost / apply:** Sole-tenant nodes bill dedicated host capacity while a\nnode group exists (e.g. N4A Sole Tenancy Instance Core Iowa SKU\n`6DD8-C2A8-A106` **\$0.02646/h** + Sole Tenancy Premium SKU\n`0F1E-4428-FCCB` **\$0.002646/h** on Compute Engine `6F81-5844-456A`).\nThe template alone is metadata, but it only exists to create billed\nnode groups — ships debt-only with the sole-tenant family. **Never**\nwire into apply-smoke.\n\nSpecify either [nodeType] or [nodeTypeFlexibility] (not both).',
+  ),
+  CatalogEntry(
+    tfType: 'google_compute_packet_mirroring',
+    className: 'GoogleComputePacketMirroring',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_packet_mirroring`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'region',
+      'network',
+      'collectorIlb',
+      'mirroredResources',
+      'filter',
+      'description',
+      'enable',
+      'priority',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[
+      'ComputePacketMirroringEnable',
+      'ComputePacketMirroringCollectorIlb',
+      'ComputePacketMirroringFilter',
+      'ComputePacketMirroringFilterDirection',
+      'ComputePacketMirroringMirroredResources',
+      'ComputePacketMirroringMirroredResourcesInstances',
+      'ComputePacketMirroringMirroredResourcesSubnetworks',
+      'ComputePacketMirroringNetwork',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_packet_mirroring`.\n\nPacket Mirroring mirrors traffic to and from particular VM instances. You\ncan use the collected traffic to help you detect security threats and\nmonitor application performance.\n\nCompute Engine **packet mirroring** — VPC packet mirror policy (collector\nILB + mirrored instances / subnets / tags).\n\n**Cost / apply:** gcp-cost: Compute Engine `6F81-5844-456A` Network Packet\nMirroring Data Processing Americas SKU `A0DF-D169-F1EE` **\$0.008/GiBy**\n(Japan `F615-AC9B-DE64` **\$0.012/GiBy**). billing-behavior: mirrored\ntraffic volume bills while packet mirroring is enabled; destroy stops\nnew processing charges. **Never** wire into apply-smoke.',
   ),
   CatalogEntry(
     tfType: 'google_compute_preview_feature',
@@ -7284,6 +7336,32 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>['shared_secret'],
     docComment:
         'Factory wrapper for `google_compute_vpn_tunnel`.\n\nVPN tunnel resource.\n\nIPSec VPN tunnel. Use [targetVpnGateway] for classic VPN, or [vpnGateway]\nwith [peerGcpGateway] / [peerExternalGateway] for HA VPN.',
+  ),
+  CatalogEntry(
+    tfType: 'google_compute_wire_group',
+    className: 'GoogleComputeWireGroup',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_wire_group`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'crossSiteNetwork',
+      'description',
+      'adminEnabled',
+      'endpoints',
+      'wireProperties',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[
+      'ComputeWireGroupEndpoints',
+      'ComputeWireGroupEndpointsInterconnects',
+      'ComputeWireGroupWireProperties',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_wire_group`.\n\nThe WireGroup resource represents a group of redundant wires between\ninterconnects in two different metros. Each WireGroup belongs to a\nCrossSiteNetwork. A wire group defines endpoints and the wires which exist\nbetween them.\n\nCompute Engine **wire group** — Cross-Site / Partner Cross-Cloud\nInterconnect wire group under a [GoogleComputeCrossSiteNetwork].\n\n**Cost / apply:** gcp-cost: Network Connectivity Center `7BEB-7A51-4223`\nPartner Cross Cloud Interconnect Managed Transport 10Gbps us-east4 SKU\n`AAE5-BD60-3575` **\$17.30/h** (100Gbps us-west1 `0ED2-0975-EF6E`\n**\$26.40/h**). billing-behavior: Cross-Site / wire-group / multicloud\ndata-transfer configs are the control plane for Partner Cross-Cloud\nInterconnect managed transport; working stacks imply those circuit-hour\ncharges. **Never** wire into apply-smoke.',
   ),
   CatalogEntry(
     tfType: 'google_compute_zone_vm_extension_policy',
@@ -14269,6 +14347,30 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_network_connectivity_hub`.\n\nThe NetworkConnectivity Hub resource',
   ),
   CatalogEntry(
+    tfType: 'google_network_connectivity_multicloud_data_transfer_config',
+    className: 'GoogleNetworkConnectivityMulticloudDataTransferConfig',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_network_connectivity_multicloud_data_transfer_config`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'name',
+      'description',
+      'services',
+      'labels',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[
+      'NetworkConnectivityMulticloudDataTransferConfigServices',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_connectivity_multicloud_data_transfer_config`.\n\n\'Manage Multicloud Data Transfer Configs\'\n\nNetwork Connectivity **multicloud data transfer config** — Partner\nCross-Cloud Interconnect / multicloud data-transfer configuration.\n\n**Cost / apply:** gcp-cost: Network Connectivity Center `7BEB-7A51-4223`\nPartner Cross Cloud Interconnect Managed Transport 10Gbps us-east4 SKU\n`AAE5-BD60-3575` **\$17.30/h** (100Gbps us-west1 `0ED2-0975-EF6E`\n**\$26.40/h**). billing-behavior: Cross-Site / wire-group / multicloud\ndata-transfer configs are the control plane for Partner Cross-Cloud\nInterconnect managed transport; working stacks imply those circuit-hour\ncharges. **Never** wire into apply-smoke.',
+  ),
+  CatalogEntry(
     tfType: 'google_network_connectivity_transport',
     className: 'GoogleNetworkConnectivityTransport',
     barrel: 'network',
@@ -14660,6 +14762,50 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_network_security_mirroring_deployment_group`.\n\nA deployment group aggregates many zonal mirroring backends (deployments)\ninto a single global mirroring service. Consumers can connect this service\nusing an endpoint group.\n\nNetwork Security **mirroring deployment group** — global grouping for\nOOB mirroring deployments on a VPC network.\n\n**Cost / apply:** gcp-cost: Network Security `E749-01A2-AE1F` Out-of-band\nIntegration Deployment Uptime SKU `E55D-280B-82DD` **\$0.025/h** (Data\nProcessing `88A5-6AEF-68F2` **\$0.008/GiBy**). billing-behavior: OOB\nintercept / mirroring deployment uptime bills while the deployment\nexists; destroy stops deployment-hour charges. **Never** wire into\napply-smoke.',
+  ),
+  CatalogEntry(
+    tfType: 'google_network_security_mirroring_endpoint',
+    className: 'GoogleNetworkSecurityMirroringEndpoint',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_network_security_mirroring_endpoint`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'mirroringEndpointId',
+      'mirroringEndpointGroup',
+      'description',
+      'labels',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_security_mirroring_endpoint`.\n\nAn endpoint is a managed mirroring collector that provides enhanced packet\nenrichment capabilities and support for multiple replica destinations.\nEndpoints are always part of a global endpoint group which represents a\nglobal "mirroring broker" service.\n\nNetwork Security **mirroring endpoint** — zonal Out-of-band (OOB)\nmirroring endpoint bound to an endpoint group.\n\n**Cost / apply:** gcp-cost: Network Security `E749-01A2-AE1F` Out-of-band\nIntegration Deployment Uptime SKU `E55D-280B-82DD` **\$0.025/h** (Data\nProcessing `88A5-6AEF-68F2` **\$0.008/GiBy**). billing-behavior: OOB\nmirroring endpoints / associations sit on the never_apply OOB deployment\npath. **Never** wire into apply-smoke.',
+  ),
+  CatalogEntry(
+    tfType: 'google_network_security_mirroring_endpoint_group_association',
+    className: 'GoogleNetworkSecurityMirroringEndpointGroupAssociation',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_network_security_mirroring_endpoint_group_association`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'mirroringEndpointGroup',
+      'network',
+      'mirroringEndpointGroupAssociationId',
+      'labels',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_security_mirroring_endpoint_group_association`.\n\nAn endpoint group association represents a link between a network and an\nendpoint group in the organization.\n\nCreating an association creates the networking infrastructure linking the\nnetwork to the endpoint group, but does not enable mirroring by itself. To\nenable mirroring, the user must also create a network firewall policy\ncontaining mirroring rules and associate it with the network.\n\nNetwork Security **mirroring endpoint group association** — associates\nan OOB mirroring endpoint group with a consumer VPC network.\n\n**Cost / apply:** gcp-cost: Network Security `E749-01A2-AE1F` Out-of-band\nIntegration Deployment Uptime SKU `E55D-280B-82DD` **\$0.025/h** (Data\nProcessing `88A5-6AEF-68F2` **\$0.008/GiBy**). billing-behavior: OOB\nmirroring endpoints / associations sit on the never_apply OOB deployment\npath. **Never** wire into apply-smoke.',
   ),
   CatalogEntry(
     tfType: 'google_network_security_security_profile',
