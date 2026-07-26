@@ -17653,10 +17653,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ingestOnWrite',
       'deletionPolicy',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['StorageAnywhereCacheAdmissionPolicy'],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_storage_anywhere_cache`.\n\nThe Google Cloud Storage (GCS) Anywhere Cache feature allows users to create\nSSD backed zonal read cache for their buckets. These zonal caches are\nco-located with the customers compute engines to provide cost efficiency.\n\nCloud Storage **Anywhere Cache** (Rapid Cache) — a zonal SSD cache in\nfront of a bucket.\n\n**Cost / apply:** gcp-cost: Cloud Storage `95FF-2EF5-5EA1` Rapid Cache\nStorage Iowa (`us-central1`) SKU `A668-3CA8-42C8` **\$0.0001233/GiBy.h**.\nbilling-behavior: cached bytes bill while the cache is enabled (plus\ningest/data-transfer while warm); create is slow and destroy is a\ndisable — too expensive / sticky for apply-smoke. **Never** wire into\napply-smoke.\n\nMM marks `admission_policy=admit-on-second-miss` deprecated; prefer\n`admit-on-first-miss` (or omit).',
+        'Factory wrapper for `google_storage_anywhere_cache`.\n\nThe Google Cloud Storage (GCS) Anywhere Cache feature allows users to create\nSSD backed zonal read cache for their buckets. These zonal caches are\nco-located with the customers compute engines to provide cost efficiency.\n\nCloud Storage **Anywhere Cache** (Rapid Cache) — a zonal SSD cache in\nfront of a bucket.\n\n**Cost / apply:** gcp-cost: Cloud Storage `95FF-2EF5-5EA1` Rapid Cache\nStorage Iowa (`us-central1`) SKU `A668-3CA8-42C8` **\$0.0001233/GiBy.h**.\nbilling-behavior: cached bytes bill while the cache is enabled (plus\ningest/data-transfer while warm); create is slow and destroy is a\ndisable — too expensive / sticky for apply-smoke. **Never** wire into\napply-smoke.\n\nMM marks [StorageAnywhereCacheAdmissionPolicy.admitOnSecondMiss]\ndeprecated; prefer [StorageAnywhereCacheAdmissionPolicy.admitOnFirstMiss]\n(or omit).',
   ),
   CatalogEntry(
     tfType: 'google_storage_bucket',

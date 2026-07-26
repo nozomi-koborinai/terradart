@@ -2,8 +2,11 @@ outputDir: storage
 
 deriveClassDoc: true
 deriveOutputGetters: true
-# admission_policy values contain hyphens (`admit-on-first-miss`) — keep as
-# String rather than a derived enum with illegal Dart identifiers.
+# Hyphenated MM enum values cannot be derived as Dart identifiers — hand-map
+# via [StorageAnywhereCacheAdmissionPolicy].
+
+dartTypeOverrides:
+  admission_policy: StorageAnywhereCacheAdmissionPolicy
 
 curatedDoc: |-
   /// Cloud Storage **Anywhere Cache** (Rapid Cache) — a zonal SSD cache in
@@ -16,8 +19,24 @@ curatedDoc: |-
   /// disable — too expensive / sticky for apply-smoke. **Never** wire into
   /// apply-smoke.
   ///
-  /// MM marks `admission_policy=admit-on-second-miss` deprecated; prefer
-  /// `admit-on-first-miss` (or omit).
+  /// MM marks [StorageAnywhereCacheAdmissionPolicy.admitOnSecondMiss]
+  /// deprecated; prefer [StorageAnywhereCacheAdmissionPolicy.admitOnFirstMiss]
+  /// (or omit).
+
+prelude: |
+  /// Terraform `admission_policy` for [GoogleStorageAnywhereCache].
+  ///
+  /// Values use hyphens on the wire (`admit-on-first-miss`); Dart names are
+  /// camelCase. Prefer [admitOnFirstMiss] — [admitOnSecondMiss] is deprecated
+  /// upstream and treated as first-miss by the backend.
+  enum StorageAnywhereCacheAdmissionPolicy implements TerraformEnum {
+    admitOnFirstMiss('admit-on-first-miss'),
+    admitOnSecondMiss('admit-on-second-miss');
+
+    const StorageAnywhereCacheAdmissionPolicy(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
 
 paramOrder:
   - bucket
