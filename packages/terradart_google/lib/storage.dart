@@ -4,6 +4,8 @@
 /// notifications.
 library;
 
+export 'src/storage/google_storage_anywhere_cache.dart'
+    show GoogleStorageAnywhereCache;
 export 'src/storage/google_storage_bucket.dart'
     show
         BucketStorageClass,

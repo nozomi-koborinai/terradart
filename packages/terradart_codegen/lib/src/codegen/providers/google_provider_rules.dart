@@ -86,6 +86,12 @@ final class GoogleProviderRules extends ProviderRules {
     'access_context': 'access_context_manager',
     'access_context_manager': 'access_context_manager',
     'accesscontextmanager': 'access_context_manager',
+
+    // Managed Microsoft AD (`google_active_directory_*`; MM product activedirectory).
+    'active': 'active_directory',
+    'active_directory': 'active_directory',
+    'activedirectory': 'active_directory',
+
     'essential': 'essential_contacts',
 
     // Service Directory (`google_service_directory_*` → segment `service`).
