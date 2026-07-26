@@ -148,6 +148,16 @@ files:
     upstream: mmv1/products/dialogflowcx/Tool.yaml
   google_dialogflow_cx_webhook:
     upstream: mmv1/products/dialogflowcx/Webhook.yaml
+  google_dialogflow_cx_entity_type:
+    upstream: mmv1/products/dialogflowcx/EntityType.yaml
+  google_dialogflow_cx_environment:
+    upstream: mmv1/products/dialogflowcx/Environment.yaml
+  google_dialogflow_cx_version:
+    upstream: mmv1/products/dialogflowcx/Version.yaml
+  google_dialogflow_cx_tool_version:
+    upstream: mmv1/products/dialogflowcx/ToolVersion.yaml
+  google_dialogflow_cx_test_case:
+    upstream: mmv1/products/dialogflowcx/TestCase.yaml
   google_discovery_engine_assistant:
     upstream: mmv1/products/discoveryengine/Assistant.yaml
   google_discovery_engine_chat_engine:
