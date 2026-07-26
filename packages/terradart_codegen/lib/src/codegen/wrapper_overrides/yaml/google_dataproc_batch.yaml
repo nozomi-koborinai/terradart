@@ -1,0 +1,220 @@
+outputDir: dataproc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+# Sealed [DataprocBatchWorkload] owns these IR nested blocks via `.blockKey`.
+nestedTypeExcludes:
+  - pyspark_batch
+  - spark_batch
+  - spark_sql_batch
+  - spark_r_batch
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Dataproc Serverless **batch** — one-shot PySpark / Spark / Spark SQL /
+  /// SparkR job billed in Data Compute Units (DCUs) while running.
+  ///
+  /// Choose exactly one [DataprocBatchWorkload] via [workload]. Optional
+  /// [runtimeConfig] / [environmentConfig] are nested types matching the
+  /// provider blocks.
+  ///
+  /// **Cost / apply:** gcp-cost: Dataproc `363B-8851-170D` Serverless Batch
+  /// DCU us-central1 SKU `EC7A-EF05-537E` **$0.06/h** (Premium DCU
+  /// `C275-E37B-D8BA` **$0.089/h**; optional GPU accelerators also billed).
+  /// billing-behavior: batch runtime burns DCU-hours (and optional
+  /// accelerators / shuffle storage) until the job finishes or is cancelled;
+  /// no cheap idle apply. **Never** wire into apply-smoke.
+  ///
+  /// Enable `dataproc.googleapis.com` via [GoogleProjectService] before apply.
+
+# Omit IR members `pyspark_batch` / `spark_batch` / `spark_sql_batch` /
+# `spark_r_batch` — replaced by the sealed virtual `workload` slot.
+paramOrder:
+  - batch_id
+  - location
+  - workload
+  - labels
+  - runtime_config
+  - environment_config
+  - deletion_policy
+  - project
+
+argMapOrder:
+  - batch_id
+  - location
+  - labels
+  - runtime_config
+  - environment_config
+  - deletion_policy
+  - project
+  - workload
+
+prelude: |
+  /// Exactly one Dataproc Serverless batch workload block.
+  sealed class DataprocBatchWorkload {
+    const DataprocBatchWorkload();
+
+    /// argMap key (`pyspark_batch` / `spark_batch` / `spark_sql_batch` /
+    /// `spark_r_batch`).
+    String get blockKey;
+
+    /// JSON fragment for the block value (single-element list —
+    /// `nesting_mode: list, max_items: 1`).
+    List<Map<String, Object?>> encode();
+  }
+
+  /// `pyspark_batch` — PySpark driver.
+  @immutable
+  final class DataprocBatchPysparkWorkload extends DataprocBatchWorkload {
+    const DataprocBatchPysparkWorkload({
+      this.mainPythonFileUri,
+      this.args,
+      this.pythonFileUris,
+      this.jarFileUris,
+      this.fileUris,
+      this.archiveUris,
+    });
+
+    final TfArg<String>? mainPythonFileUri;
+    final TfArg<List<String>>? args;
+    final TfArg<List<String>>? pythonFileUris;
+    final TfArg<List<String>>? jarFileUris;
+    final TfArg<List<String>>? fileUris;
+    final TfArg<List<String>>? archiveUris;
+
+    @override
+    String get blockKey => 'pyspark_batch';
+
+    @override
+    List<Map<String, Object?>> encode() => [
+          {
+            if (mainPythonFileUri != null)
+              'main_python_file_uri': mainPythonFileUri!.toTfJson(),
+            if (args != null) 'args': args!.toTfJson(),
+            if (pythonFileUris != null)
+              'python_file_uris': pythonFileUris!.toTfJson(),
+            if (jarFileUris != null) 'jar_file_uris': jarFileUris!.toTfJson(),
+            if (fileUris != null) 'file_uris': fileUris!.toTfJson(),
+            if (archiveUris != null) 'archive_uris': archiveUris!.toTfJson(),
+          },
+        ];
+  }
+
+  /// `spark_batch` — JVM Spark. Provide exactly one of [mainClass] /
+  /// [mainJarFileUri] (provider `exactly_one_of`).
+  @immutable
+  final class DataprocBatchSparkWorkload extends DataprocBatchWorkload {
+    const DataprocBatchSparkWorkload({
+      this.mainClass,
+      this.mainJarFileUri,
+      this.args,
+      this.jarFileUris,
+      this.fileUris,
+      this.archiveUris,
+    });
+
+    final TfArg<String>? mainClass;
+    final TfArg<String>? mainJarFileUri;
+    final TfArg<List<String>>? args;
+    final TfArg<List<String>>? jarFileUris;
+    final TfArg<List<String>>? fileUris;
+    final TfArg<List<String>>? archiveUris;
+
+    @override
+    String get blockKey => 'spark_batch';
+
+    @override
+    List<Map<String, Object?>> encode() => [
+          {
+            if (mainClass != null) 'main_class': mainClass!.toTfJson(),
+            if (mainJarFileUri != null)
+              'main_jar_file_uri': mainJarFileUri!.toTfJson(),
+            if (args != null) 'args': args!.toTfJson(),
+            if (jarFileUris != null) 'jar_file_uris': jarFileUris!.toTfJson(),
+            if (fileUris != null) 'file_uris': fileUris!.toTfJson(),
+            if (archiveUris != null) 'archive_uris': archiveUris!.toTfJson(),
+          },
+        ];
+  }
+
+  /// `spark_sql_batch` — Spark SQL script.
+  @immutable
+  final class DataprocBatchSparkSqlWorkload extends DataprocBatchWorkload {
+    const DataprocBatchSparkSqlWorkload({
+      this.queryFileUri,
+      this.jarFileUris,
+      this.queryVariables,
+    });
+
+    final TfArg<String>? queryFileUri;
+    final TfArg<List<String>>? jarFileUris;
+    final TfArg<Map<String, String>>? queryVariables;
+
+    @override
+    String get blockKey => 'spark_sql_batch';
+
+    @override
+    List<Map<String, Object?>> encode() => [
+          {
+            if (queryFileUri != null)
+              'query_file_uri': queryFileUri!.toTfJson(),
+            if (jarFileUris != null) 'jar_file_uris': jarFileUris!.toTfJson(),
+            if (queryVariables != null)
+              'query_variables': queryVariables!.toTfJson(),
+          },
+        ];
+  }
+
+  /// `spark_r_batch` — SparkR driver.
+  @immutable
+  final class DataprocBatchSparkRWorkload extends DataprocBatchWorkload {
+    const DataprocBatchSparkRWorkload({
+      this.mainRFileUri,
+      this.args,
+      this.fileUris,
+      this.archiveUris,
+    });
+
+    final TfArg<String>? mainRFileUri;
+    final TfArg<List<String>>? args;
+    final TfArg<List<String>>? fileUris;
+    final TfArg<List<String>>? archiveUris;
+
+    @override
+    String get blockKey => 'spark_r_batch';
+
+    @override
+    List<Map<String, Object?>> encode() => [
+          {
+            if (mainRFileUri != null)
+              'main_r_file_uri': mainRFileUri!.toTfJson(),
+            if (args != null) 'args': args!.toTfJson(),
+            if (fileUris != null) 'file_uris': fileUris!.toTfJson(),
+            if (archiveUris != null) 'archive_uris': archiveUris!.toTfJson(),
+          },
+        ];
+  }
+
+customSlots:
+  workload:
+    paramDeclaration: 'required DataprocBatchWorkload workload'
+    argMapEntry: 'workload.blockKey: TfArg.literal(workload.encode()),'
+
+extraGetters: |2
+    /// Reference to `batch_id` for cross-stack refs.
+    TfRef<String> get batchIdRef =>
+        TfRef.attribute<String>(this, 'batch_id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `uuid` attribute.
+    TfRef<String> get uuidRef => TfRef.attribute<String>(this, 'uuid');

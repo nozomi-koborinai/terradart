@@ -13,6 +13,23 @@ export 'src/dataproc/google_dataproc_autoscaling_policy.dart'
         DataprocAutoscalingPolicySecondaryWorkerConfig,
         DataprocAutoscalingPolicyWorkerConfig,
         GoogleDataprocAutoscalingPolicy;
+export 'src/dataproc/google_dataproc_batch.dart'
+    show
+        DataprocBatchEnvironmentConfig,
+        DataprocBatchEnvironmentConfigExecutionConfig,
+        DataprocBatchEnvironmentConfigExecutionConfigAuthenticationConfig,
+        DataprocBatchEnvironmentConfigExecutionConfigAuthenticationConfigUserWorkloadAuthenticationType,
+        DataprocBatchEnvironmentConfigPeripheralsConfig,
+        DataprocBatchEnvironmentConfigPeripheralsConfigSparkHistoryServerConfig,
+        DataprocBatchPysparkWorkload,
+        DataprocBatchRuntimeConfig,
+        DataprocBatchRuntimeConfigAutotuningConfig,
+        DataprocBatchRuntimeConfigAutotuningConfigScenarios,
+        DataprocBatchSparkRWorkload,
+        DataprocBatchSparkSqlWorkload,
+        DataprocBatchSparkWorkload,
+        DataprocBatchWorkload,
+        GoogleDataprocBatch;
 export 'src/dataproc/google_dataproc_cluster.dart'
     show
         DataprocClusterClusterConfig,

@@ -1,0 +1,105 @@
+outputDir: spanner
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+# Sealed [SpannerBackupScheduleBackupSpec] owns these IR nested blocks.
+nestedTypeExcludes:
+  - full_backup_spec
+  - incremental_backup_spec
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Spanner **backup schedule** — cron-driven full or incremental backups
+  /// retained for [retentionDuration].
+  ///
+  /// Choose exactly one [SpannerBackupScheduleBackupSpec] via [backupSpec]
+  /// (`full_backup_spec` or `incremental_backup_spec`). Provide [spec] as the
+  /// nested cron block (or a literal map matching the provider shape).
+  ///
+  /// **Cost / apply:** gcp-cost: Cloud Spanner `CC63-0873-48FD` Backup storage
+  /// Regional Configuration (South Carolina / `us-east1`) SKU `D026-0717-CF8E`
+  /// **$0.1/GiBy.mo**. billing-behavior: retained backup bytes bill while
+  /// schedules produce and keep backups; destroy of the schedule does not
+  /// instantly erase stored backup capacity. **Never** wire into apply-smoke.
+  ///
+  /// Enable `spanner.googleapis.com` via [GoogleProjectService] before apply.
+
+# Omit IR members `full_backup_spec` / `incremental_backup_spec` — replaced
+# by the sealed virtual `backupSpec` slot.
+paramOrder:
+  - instance
+  - database
+  - retention_duration
+  - backupSpec
+  - spec
+  - encryption_config
+  - name
+  - deletion_policy
+  - project
+
+argMapOrder:
+  - instance
+  - database
+  - retention_duration
+  - spec
+  - encryption_config
+  - name
+  - deletion_policy
+  - project
+  - backupSpec
+
+prelude: |
+  /// Exactly one backup-chain style for a [GoogleSpannerBackupSchedule].
+  sealed class SpannerBackupScheduleBackupSpec {
+    const SpannerBackupScheduleBackupSpec();
+
+    /// argMap key (`full_backup_spec` or `incremental_backup_spec`).
+    String get blockKey;
+
+    /// JSON fragment for the block value (single empty map in a list —
+    /// both blocks are `nesting_mode: list, max_items: 1` with no fields).
+    List<Map<String, Object?>> encode();
+  }
+
+  /// `full_backup_spec` — schedule creates only full backups.
+  @immutable
+  final class SpannerBackupScheduleFullBackupSpec
+      extends SpannerBackupScheduleBackupSpec {
+    const SpannerBackupScheduleFullBackupSpec();
+
+    @override
+    String get blockKey => 'full_backup_spec';
+
+    @override
+    List<Map<String, Object?>> encode() => const [<String, Object?>{}];
+  }
+
+  /// `incremental_backup_spec` — schedule creates incremental backup chains.
+  @immutable
+  final class SpannerBackupScheduleIncrementalBackupSpec
+      extends SpannerBackupScheduleBackupSpec {
+    const SpannerBackupScheduleIncrementalBackupSpec();
+
+    @override
+    String get blockKey => 'incremental_backup_spec';
+
+    @override
+    List<Map<String, Object?>> encode() => const [<String, Object?>{}];
+  }
+
+customSlots:
+  backupSpec:
+    paramDeclaration: 'required SpannerBackupScheduleBackupSpec backupSpec'
+    argMapEntry: 'backupSpec.blockKey: TfArg.literal(backupSpec.encode()),'
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

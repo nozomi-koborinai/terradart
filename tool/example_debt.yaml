@@ -293,6 +293,7 @@ GoogleDataprocJob: gcp-cost Dataproc 363B-8851-170D Serverless Batch DCU us-cent
 # (never_apply) and block wave auto-merge — factory ships without an example.
 GoogleDataprocGdcServiceInstance: gcp-cost GKE Enterprise/GDC 9186-F79E-3871 Bare Metal SKU 297F-4642-B7A1 $0.03288/h (vSphere 82D9-AB10-CA55 $0.03288/h) — never_apply; requires GDCE cluster absent on terradart-validate
 GoogleDataprocSessionTemplate: gcp-cost Dataproc 363B-8851-170D Interactive DCU SKU A486-6040-07FE $0.089/h — never_apply; no applyable quickstart without Interactive compute
+GoogleDataprocBatch: gcp-cost Dataproc 363B-8851-170D Serverless Batch DCU us-central1 SKU EC7A-EF05-537E $0.06/h (Premium DCU C275-E37B-D8BA $0.089/h) — never_apply DCU-hours; no applyable quickstart on terradart-validate
 GoogleDataprocGdcApplicationEnvironment: requires never_apply GoogleDataprocGdcServiceInstance (GDC platform); deferred with the GDC service-instance Wave
 
 # Vertex AI Workbench instances bill management fee + GCE while running
@@ -389,6 +390,7 @@ GoogleDiscoveryEngineAssistant: gcp-cost Vertex AI Search 74B1-77CF-C302 Gemini 
 GoogleDiscoveryEngineChatEngine: gcp-cost Vertex AI Search 74B1-77CF-C302 Gemini Enterprise Standard monthly SKU 0532-C2F0-1DF0 $35/seat.mo (+ Dialogflow CX session A1CC-751A-CDCC $0.20) — never_apply Agentspace chat engine; no applyable quickstart
 GoogleDiscoveryEngineRecommendationEngine: gcp-cost Vertex AI Search 74B1-77CF-C302 Gemini Enterprise Standard monthly SKU 0532-C2F0-1DF0 $35/seat.mo — never_apply Agentspace recommendation engine; no applyable quickstart
 GoogleSpannerInstancePartition: gcp-cost Cloud Spanner CC63-0873-48FD Enterprise RW Replica Iowa SKU 1D9F-E99D-5CBD $0.41/h (regional node Zurich 07AA-3267-AE40 $1.17/h) — never_apply reserved Spanner compute; no applyable quickstart
+GoogleSpannerBackupSchedule: gcp-cost Cloud Spanner CC63-0873-48FD Backup storage Regional us-east1 SKU D026-0717-CF8E $0.1/GiBy.mo — never_apply retained backup bytes; no applyable quickstart
 GoogleKmsEkmConnection: gcp-cost Cloud KMS EE2F-D110-890C Active external symmetric key versions SKU E0AA-8721-5338 $3/mo — never_apply (MM exclude_delete; external EKM); no applyable quickstart
 GoogleDialogflowCxAgent: gcp-cost Cloud Dialogflow FBC0-AA4A-C89A Text session SKU A1CC-751A-CDCC $0.20/session (Audio 9496-0679-69BE $0.45) — never_apply CX agent runtime; no applyable quickstart
 GoogleDialogflowCxSecuritySettings: deferred with never_apply GoogleDialogflowCxAgent (CX session path)
