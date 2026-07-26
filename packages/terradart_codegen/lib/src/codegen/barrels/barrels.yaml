@@ -221,7 +221,9 @@ barrels:
   dialogflow:
     doc: |-
       /// Dialogflow ES / CX: SIP trunk, ES agent, and CX agent surfaces
-      /// (CX agent / security settings / generator / tool are never_apply).
+      /// (CX agent / flow / intent / page / playbook / webhook /
+      /// generative settings / security settings / generator / tool are
+      /// never_apply).
   discovery_engine:
     doc: |-
       /// Vertex AI Search (Discovery Engine): data stores, search engines, IAM,

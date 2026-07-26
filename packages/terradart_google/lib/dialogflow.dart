@@ -1,7 +1,9 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 /// Dialogflow ES / CX: SIP trunk, ES agent, and CX agent surfaces
-/// (CX agent / security settings / generator / tool are never_apply).
+/// (CX agent / flow / intent / page / playbook / webhook /
+/// generative settings / security settings / generator / tool are
+/// never_apply).
 library;
 
 export 'src/dialogflow/google_dialogflow_agent.dart'
@@ -26,6 +28,67 @@ export 'src/dialogflow/google_dialogflow_cx_agent.dart'
         DialogflowCxAgentSpeechToTextSettings,
         DialogflowCxAgentTextToSpeechSettings,
         GoogleDialogflowCxAgent;
+export 'src/dialogflow/google_dialogflow_cx_flow.dart'
+    show
+        DialogflowCxFlowAdvancedSettings,
+        DialogflowCxFlowAdvancedSettingsAudioExportGcsDestination,
+        DialogflowCxFlowAdvancedSettingsDtmfSettings,
+        DialogflowCxFlowAdvancedSettingsLoggingSettings,
+        DialogflowCxFlowAdvancedSettingsSpeechSettings,
+        DialogflowCxFlowEventHandlers,
+        DialogflowCxFlowEventHandlersTriggerFulfillment,
+        DialogflowCxFlowEventHandlersTriggerFulfillmentConditionalCases,
+        DialogflowCxFlowEventHandlersTriggerFulfillmentMessages,
+        DialogflowCxFlowEventHandlersTriggerFulfillmentMessagesConversationSuccess,
+        DialogflowCxFlowEventHandlersTriggerFulfillmentMessagesLiveAgentHandoff,
+        DialogflowCxFlowEventHandlersTriggerFulfillmentMessagesOutputAudioText,
+        DialogflowCxFlowEventHandlersTriggerFulfillmentMessagesPlayAudio,
+        DialogflowCxFlowEventHandlersTriggerFulfillmentMessagesTelephonyTransferCall,
+        DialogflowCxFlowEventHandlersTriggerFulfillmentMessagesText,
+        DialogflowCxFlowEventHandlersTriggerFulfillmentSetParameterActions,
+        DialogflowCxFlowKnowledgeConnectorSettings,
+        DialogflowCxFlowKnowledgeConnectorSettingsDataStoreConnections,
+        DialogflowCxFlowKnowledgeConnectorSettingsDataStoreConnectionsDataStoreType,
+        DialogflowCxFlowKnowledgeConnectorSettingsDataStoreConnectionsDocumentProcessingMode,
+        DialogflowCxFlowKnowledgeConnectorSettingsTriggerFulfillment,
+        DialogflowCxFlowKnowledgeConnectorSettingsTriggerFulfillmentAdvancedSettings,
+        DialogflowCxFlowKnowledgeConnectorSettingsTriggerFulfillmentAdvancedSettingsDtmfSettings,
+        DialogflowCxFlowKnowledgeConnectorSettingsTriggerFulfillmentAdvancedSettingsLoggingSettings,
+        DialogflowCxFlowKnowledgeConnectorSettingsTriggerFulfillmentAdvancedSettingsSpeechSettings,
+        DialogflowCxFlowKnowledgeConnectorSettingsTriggerFulfillmentConditionalCases,
+        DialogflowCxFlowKnowledgeConnectorSettingsTriggerFulfillmentMessages,
+        DialogflowCxFlowKnowledgeConnectorSettingsTriggerFulfillmentMessagesConversationSuccess,
+        DialogflowCxFlowKnowledgeConnectorSettingsTriggerFulfillmentMessagesKnowledgeInfoCard,
+        DialogflowCxFlowKnowledgeConnectorSettingsTriggerFulfillmentMessagesLiveAgentHandoff,
+        DialogflowCxFlowKnowledgeConnectorSettingsTriggerFulfillmentMessagesOutputAudioText,
+        DialogflowCxFlowKnowledgeConnectorSettingsTriggerFulfillmentMessagesPlayAudio,
+        DialogflowCxFlowKnowledgeConnectorSettingsTriggerFulfillmentMessagesTelephonyTransferCall,
+        DialogflowCxFlowKnowledgeConnectorSettingsTriggerFulfillmentMessagesText,
+        DialogflowCxFlowKnowledgeConnectorSettingsTriggerFulfillmentSetParameterActions,
+        DialogflowCxFlowNluSettings,
+        DialogflowCxFlowNluSettingsModelTrainingMode,
+        DialogflowCxFlowNluSettingsModelType,
+        DialogflowCxFlowTransitionRoutes,
+        DialogflowCxFlowTransitionRoutesTriggerFulfillment,
+        DialogflowCxFlowTransitionRoutesTriggerFulfillmentConditionalCases,
+        DialogflowCxFlowTransitionRoutesTriggerFulfillmentMessages,
+        DialogflowCxFlowTransitionRoutesTriggerFulfillmentMessagesConversationSuccess,
+        DialogflowCxFlowTransitionRoutesTriggerFulfillmentMessagesLiveAgentHandoff,
+        DialogflowCxFlowTransitionRoutesTriggerFulfillmentMessagesOutputAudioText,
+        DialogflowCxFlowTransitionRoutesTriggerFulfillmentMessagesPlayAudio,
+        DialogflowCxFlowTransitionRoutesTriggerFulfillmentMessagesTelephonyTransferCall,
+        DialogflowCxFlowTransitionRoutesTriggerFulfillmentMessagesText,
+        DialogflowCxFlowTransitionRoutesTriggerFulfillmentSetParameterActions,
+        GoogleDialogflowCxFlow;
+export 'src/dialogflow/google_dialogflow_cx_generative_settings.dart'
+    show
+        DialogflowCxGenerativeSettingsFallbackSettings,
+        DialogflowCxGenerativeSettingsFallbackSettingsPromptTemplates,
+        DialogflowCxGenerativeSettingsGenerativeSafetySettings,
+        DialogflowCxGenerativeSettingsGenerativeSafetySettingsBannedPhrases,
+        DialogflowCxGenerativeSettingsKnowledgeConnectorSettings,
+        DialogflowCxGenerativeSettingsLlmModelSettings,
+        GoogleDialogflowCxGenerativeSettings;
 export 'src/dialogflow/google_dialogflow_cx_generator.dart'
     show
         DialogflowCxGeneratorLlmModelSettings,
@@ -33,6 +96,101 @@ export 'src/dialogflow/google_dialogflow_cx_generator.dart'
         DialogflowCxGeneratorPlaceholders,
         DialogflowCxGeneratorPromptText,
         GoogleDialogflowCxGenerator;
+export 'src/dialogflow/google_dialogflow_cx_intent.dart'
+    show
+        DialogflowCxIntentParameters,
+        DialogflowCxIntentTrainingPhrases,
+        DialogflowCxIntentTrainingPhrasesParts,
+        GoogleDialogflowCxIntent;
+export 'src/dialogflow/google_dialogflow_cx_page.dart'
+    show
+        DialogflowCxPageAdvancedSettings,
+        DialogflowCxPageAdvancedSettingsDtmfSettings,
+        DialogflowCxPageEntryFulfillment,
+        DialogflowCxPageEntryFulfillmentConditionalCases,
+        DialogflowCxPageEntryFulfillmentMessages,
+        DialogflowCxPageEntryFulfillmentMessagesConversationSuccess,
+        DialogflowCxPageEntryFulfillmentMessagesLiveAgentHandoff,
+        DialogflowCxPageEntryFulfillmentMessagesOutputAudioText,
+        DialogflowCxPageEntryFulfillmentMessagesPlayAudio,
+        DialogflowCxPageEntryFulfillmentMessagesTelephonyTransferCall,
+        DialogflowCxPageEntryFulfillmentMessagesText,
+        DialogflowCxPageEntryFulfillmentSetParameterActions,
+        DialogflowCxPageEventHandlers,
+        DialogflowCxPageEventHandlersTriggerFulfillment,
+        DialogflowCxPageEventHandlersTriggerFulfillmentConditionalCases,
+        DialogflowCxPageEventHandlersTriggerFulfillmentMessages,
+        DialogflowCxPageEventHandlersTriggerFulfillmentMessagesConversationSuccess,
+        DialogflowCxPageEventHandlersTriggerFulfillmentMessagesLiveAgentHandoff,
+        DialogflowCxPageEventHandlersTriggerFulfillmentMessagesOutputAudioText,
+        DialogflowCxPageEventHandlersTriggerFulfillmentMessagesPlayAudio,
+        DialogflowCxPageEventHandlersTriggerFulfillmentMessagesTelephonyTransferCall,
+        DialogflowCxPageEventHandlersTriggerFulfillmentMessagesText,
+        DialogflowCxPageEventHandlersTriggerFulfillmentSetParameterActions,
+        DialogflowCxPageForm,
+        DialogflowCxPageFormParameters,
+        DialogflowCxPageFormParametersAdvancedSettings,
+        DialogflowCxPageFormParametersAdvancedSettingsDtmfSettings,
+        DialogflowCxPageFormParametersFillBehavior,
+        DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillment,
+        DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentConditionalCases,
+        DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessages,
+        DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesConversationSuccess,
+        DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesLiveAgentHandoff,
+        DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesOutputAudioText,
+        DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesPlayAudio,
+        DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesTelephonyTransferCall,
+        DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentMessagesText,
+        DialogflowCxPageFormParametersFillBehaviorInitialPromptFulfillmentSetParameterActions,
+        DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlers,
+        DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillment,
+        DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentConditionalCases,
+        DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessages,
+        DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesConversationSuccess,
+        DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesLiveAgentHandoff,
+        DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesOutputAudioText,
+        DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesPlayAudio,
+        DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesTelephonyTransferCall,
+        DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentMessagesText,
+        DialogflowCxPageFormParametersFillBehaviorRepromptEventHandlersTriggerFulfillmentSetParameterActions,
+        DialogflowCxPageKnowledgeConnectorSettings,
+        DialogflowCxPageKnowledgeConnectorSettingsDataStoreConnections,
+        DialogflowCxPageKnowledgeConnectorSettingsDataStoreConnectionsDataStoreType,
+        DialogflowCxPageKnowledgeConnectorSettingsDataStoreConnectionsDocumentProcessingMode,
+        DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillment,
+        DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvancedSettings,
+        DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvancedSettingsDtmfSettings,
+        DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvancedSettingsLoggingSettings,
+        DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentAdvancedSettingsSpeechSettings,
+        DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentConditionalCases,
+        DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessages,
+        DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesConversationSuccess,
+        DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesKnowledgeInfoCard,
+        DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesLiveAgentHandoff,
+        DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesOutputAudioText,
+        DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesPlayAudio,
+        DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesTelephonyTransferCall,
+        DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentMessagesText,
+        DialogflowCxPageKnowledgeConnectorSettingsTriggerFulfillmentSetParameterActions,
+        DialogflowCxPageTransitionRoutes,
+        DialogflowCxPageTransitionRoutesTriggerFulfillment,
+        DialogflowCxPageTransitionRoutesTriggerFulfillmentConditionalCases,
+        DialogflowCxPageTransitionRoutesTriggerFulfillmentMessages,
+        DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesConversationSuccess,
+        DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesLiveAgentHandoff,
+        DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesOutputAudioText,
+        DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesPlayAudio,
+        DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesTelephonyTransferCall,
+        DialogflowCxPageTransitionRoutesTriggerFulfillmentMessagesText,
+        DialogflowCxPageTransitionRoutesTriggerFulfillmentSetParameterActions,
+        GoogleDialogflowCxPage;
+export 'src/dialogflow/google_dialogflow_cx_playbook.dart'
+    show
+        DialogflowCxPlaybookInstruction,
+        DialogflowCxPlaybookInstructionSteps,
+        DialogflowCxPlaybookLlmModelSettings,
+        DialogflowCxPlaybookPlaybookType,
+        GoogleDialogflowCxPlaybook;
 export 'src/dialogflow/google_dialogflow_cx_security_settings.dart'
     show
         DialogflowCxSecuritySettingsAudioExportSettings,
@@ -58,5 +216,23 @@ export 'src/dialogflow/google_dialogflow_cx_tool.dart'
         DialogflowCxToolOpenApiSpecTlsConfig,
         DialogflowCxToolOpenApiSpecTlsConfigCaCerts,
         GoogleDialogflowCxTool;
+export 'src/dialogflow/google_dialogflow_cx_webhook.dart'
+    show
+        DialogflowCxWebhookGenericWebService,
+        DialogflowCxWebhookGenericWebServiceHttpMethod,
+        DialogflowCxWebhookGenericWebServiceOauthConfig,
+        DialogflowCxWebhookGenericWebServiceSecretVersionsForRequestHeaders,
+        DialogflowCxWebhookGenericWebServiceServiceAccountAuthConfig,
+        DialogflowCxWebhookGenericWebServiceServiceAgentAuth,
+        DialogflowCxWebhookGenericWebServiceWebhookType,
+        DialogflowCxWebhookServiceDirectory,
+        DialogflowCxWebhookServiceDirectoryGenericWebService,
+        DialogflowCxWebhookServiceDirectoryGenericWebServiceHttpMethod,
+        DialogflowCxWebhookServiceDirectoryGenericWebServiceOauthConfig,
+        DialogflowCxWebhookServiceDirectoryGenericWebServiceSecretVersionsForRequestHeaders,
+        DialogflowCxWebhookServiceDirectoryGenericWebServiceServiceAccountAuthConfig,
+        DialogflowCxWebhookServiceDirectoryGenericWebServiceServiceAgentAuth,
+        DialogflowCxWebhookServiceDirectoryGenericWebServiceWebhookType,
+        GoogleDialogflowCxWebhook;
 export 'src/dialogflow/google_dialogflow_sip_trunk.dart'
     show DialogflowSipTrunkDeletionPolicy, GoogleDialogflowSipTrunk;

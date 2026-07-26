@@ -130,12 +130,24 @@ files:
     upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/dataflow/resource_dataflow_job.go); mmv1/products/dataflow has product.yaml only (Job.yaml 404, probed 2026-07-25)
   google_dialogflow_cx_agent:
     upstream: mmv1/products/dialogflowcx/Agent.yaml
+  google_dialogflow_cx_flow:
+    upstream: mmv1/products/dialogflowcx/Flow.yaml
+  google_dialogflow_cx_generative_settings:
+    upstream: mmv1/products/dialogflowcx/GenerativeSettings.yaml
   google_dialogflow_cx_generator:
     upstream: mmv1/products/dialogflowcx/Generator.yaml
+  google_dialogflow_cx_intent:
+    upstream: mmv1/products/dialogflowcx/Intent.yaml
+  google_dialogflow_cx_page:
+    upstream: mmv1/products/dialogflowcx/Page.yaml
+  google_dialogflow_cx_playbook:
+    upstream: mmv1/products/dialogflowcx/Playbook.yaml
   google_dialogflow_cx_security_settings:
     upstream: mmv1/products/dialogflowcx/SecuritySettings.yaml
   google_dialogflow_cx_tool:
     upstream: mmv1/products/dialogflowcx/Tool.yaml
+  google_dialogflow_cx_webhook:
+    upstream: mmv1/products/dialogflowcx/Webhook.yaml
   google_discovery_engine_assistant:
     upstream: mmv1/products/discoveryengine/Assistant.yaml
   google_discovery_engine_chat_engine:
