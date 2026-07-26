@@ -1,9 +1,10 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Dialogflow ES / CX: SIP trunk, ES agent, and CX agent surfaces
-/// (CX agent / flow / intent / page / playbook / webhook /
-/// generative settings / security settings / generator / tool are
-/// never_apply).
+/// Dialogflow ES / CX: SIP trunk, ES agent, and full CX agent surfaces
+/// (all CX factories are never_apply — agent / flow / intent / page /
+/// playbook / webhook / generative settings / security settings /
+/// generator / tool / entity type / environment / version /
+/// tool version / test case).
 library;
 
 export 'src/dialogflow/google_dialogflow_agent.dart'
@@ -28,6 +29,15 @@ export 'src/dialogflow/google_dialogflow_cx_agent.dart'
         DialogflowCxAgentSpeechToTextSettings,
         DialogflowCxAgentTextToSpeechSettings,
         GoogleDialogflowCxAgent;
+export 'src/dialogflow/google_dialogflow_cx_entity_type.dart'
+    show
+        DialogflowCxEntityTypeAutoExpansionMode,
+        DialogflowCxEntityTypeEntities,
+        DialogflowCxEntityTypeExcludedPhrases,
+        DialogflowCxEntityTypeKind,
+        GoogleDialogflowCxEntityType;
+export 'src/dialogflow/google_dialogflow_cx_environment.dart'
+    show DialogflowCxEnvironmentVersionConfigs, GoogleDialogflowCxEnvironment;
 export 'src/dialogflow/google_dialogflow_cx_flow.dart'
     show
         DialogflowCxFlowAdvancedSettings,
@@ -200,6 +210,20 @@ export 'src/dialogflow/google_dialogflow_cx_security_settings.dart'
         DialogflowCxSecuritySettingsRedactionStrategy,
         DialogflowCxSecuritySettingsRetentionStrategy,
         GoogleDialogflowCxSecuritySettings;
+export 'src/dialogflow/google_dialogflow_cx_test_case.dart'
+    show
+        DialogflowCxTestCaseTestCaseConversationTurns,
+        DialogflowCxTestCaseTestCaseConversationTurnsUserInput,
+        DialogflowCxTestCaseTestCaseConversationTurnsUserInputInput,
+        DialogflowCxTestCaseTestCaseConversationTurnsUserInputInputDtmf,
+        DialogflowCxTestCaseTestCaseConversationTurnsUserInputInputEvent,
+        DialogflowCxTestCaseTestCaseConversationTurnsUserInputInputText,
+        DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutput,
+        DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputCurrentPage,
+        DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputTextResponses,
+        DialogflowCxTestCaseTestCaseConversationTurnsVirtualAgentOutputTriggeredIntent,
+        DialogflowCxTestCaseTestConfig,
+        GoogleDialogflowCxTestCase;
 export 'src/dialogflow/google_dialogflow_cx_tool.dart'
     show
         DialogflowCxToolDataStoreSpec,
@@ -216,6 +240,25 @@ export 'src/dialogflow/google_dialogflow_cx_tool.dart'
         DialogflowCxToolOpenApiSpecTlsConfig,
         DialogflowCxToolOpenApiSpecTlsConfigCaCerts,
         GoogleDialogflowCxTool;
+export 'src/dialogflow/google_dialogflow_cx_tool_version.dart'
+    show
+        DialogflowCxToolVersionTool,
+        DialogflowCxToolVersionToolDataStoreSpec,
+        DialogflowCxToolVersionToolDataStoreSpecDataStoreConnections,
+        DialogflowCxToolVersionToolDataStoreSpecFallbackPrompt,
+        DialogflowCxToolVersionToolFunctionSpec,
+        DialogflowCxToolVersionToolOpenApiSpec,
+        DialogflowCxToolVersionToolOpenApiSpecAuthentication,
+        DialogflowCxToolVersionToolOpenApiSpecAuthenticationApiKeyConfig,
+        DialogflowCxToolVersionToolOpenApiSpecAuthenticationBearerTokenConfig,
+        DialogflowCxToolVersionToolOpenApiSpecAuthenticationOauthConfig,
+        DialogflowCxToolVersionToolOpenApiSpecAuthenticationServiceAgentAuthConfig,
+        DialogflowCxToolVersionToolOpenApiSpecServiceDirectoryConfig,
+        DialogflowCxToolVersionToolOpenApiSpecTlsConfig,
+        DialogflowCxToolVersionToolOpenApiSpecTlsConfigCaCerts,
+        GoogleDialogflowCxToolVersion;
+export 'src/dialogflow/google_dialogflow_cx_version.dart'
+    show DialogflowCxVersionState, GoogleDialogflowCxVersion;
 export 'src/dialogflow/google_dialogflow_cx_webhook.dart'
     show
         DialogflowCxWebhookGenericWebService,

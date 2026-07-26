@@ -380,6 +380,11 @@ GoogleDialogflowCxPage: deferred with never_apply GoogleDialogflowCxAgent (CX se
 GoogleDialogflowCxPlaybook: deferred with never_apply GoogleDialogflowCxAgent (CX generative session path)
 GoogleDialogflowCxWebhook: deferred with never_apply GoogleDialogflowCxAgent (CX session path)
 GoogleDialogflowCxGenerativeSettings: gcp-cost Cloud Dialogflow FBC0-AA4A-C89A Text session SKU A1CC-751A-CDCC $0.20/session — never_apply generative defaults (MM exclude_delete); deferred with GoogleDialogflowCxAgent
+GoogleDialogflowCxEntityType: deferred with never_apply GoogleDialogflowCxAgent (CX session path)
+GoogleDialogflowCxEnvironment: deferred with never_apply GoogleDialogflowCxAgent (CX session path)
+GoogleDialogflowCxVersion: deferred with never_apply GoogleDialogflowCxAgent (CX flow version path)
+GoogleDialogflowCxToolVersion: deferred with never_apply GoogleDialogflowCxAgent (CX tool path)
+GoogleDialogflowCxTestCase: deferred with never_apply GoogleDialogflowCxAgent (CX session path)
 GoogleNetworkServicesGateway: gcp-cost Networking E505-1604-58F8 Cloud SWP Standard Gateway SKU 884B-E0E7-C3E4 $1.25/h — never_apply; no applyable quickstart on terradart-validate
 GoogleNetworkServicesEdgeCacheService: gcp-cost Networking E505-1604-58F8 Media CDN Capacity Reservation NA SKU 7393-8C37-77E1 $20000/mo (+ Edge Cache egress E2B8-D4FA-6E05 $0.02/GiBy) — never_apply; no applyable quickstart on terradart-validate
 GoogleNetworkServicesEdgeCacheOrigin: requires never_apply GoogleNetworkServicesEdgeCacheService; deferred with the Media CDN Edge Cache Wave
