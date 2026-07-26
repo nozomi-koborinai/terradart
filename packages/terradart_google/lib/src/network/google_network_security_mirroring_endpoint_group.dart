@@ -27,8 +27,8 @@ sealed class NetworkSecurityMirroringEndpointGroupDeploymentLink {
   /// `mirroring_deployment_groups`).
   String get blockKey;
 
-  /// JSON value for the linked deployment group attribute(s).
-  Object? toTfJson();
+  /// Flat `{blockKey: value}` payload (Gate 6 encode round-trip shape).
+  Map<String, Object?> encode();
 }
 
 /// `mirroring_deployment_group` variant (DIRECT).
@@ -45,7 +45,9 @@ final class NetworkSecurityMirroringEndpointGroupDirectDeploymentLink
   String get blockKey => 'mirroring_deployment_group';
 
   @override
-  Object? toTfJson() => mirroringDeploymentGroup.toTfJson();
+  Map<String, Object?> encode() => {
+    blockKey: mirroringDeploymentGroup.toTfJson(),
+  };
 }
 
 /// `mirroring_deployment_groups` variant (BROKER).
@@ -62,7 +64,9 @@ final class NetworkSecurityMirroringEndpointGroupBrokerDeploymentLink
   String get blockKey => 'mirroring_deployment_groups';
 
   @override
-  Object? toTfJson() => mirroringDeploymentGroups.toTfJson();
+  Map<String, Object?> encode() => {
+    blockKey: mirroringDeploymentGroups.toTfJson(),
+  };
 }
 
 /// Factory wrapper for `google_network_security_mirroring_endpoint_group`.
@@ -112,7 +116,9 @@ final class GoogleNetworkSecurityMirroringEndpointGroup extends Resource {
            if (labels != null) 'labels': labels,
            if (project != null) 'project': project,
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
-           deploymentLink.blockKey: TfArg.literal(deploymentLink.toTfJson()),
+           deploymentLink.blockKey: TfArg.literal(
+             deploymentLink.encode()[deploymentLink.blockKey],
+           ),
          },
        );
 

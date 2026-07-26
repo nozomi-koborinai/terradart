@@ -65,8 +65,8 @@ prelude: |
     /// `mirroring_deployment_groups`).
     String get blockKey;
 
-    /// JSON value for the linked deployment group attribute(s).
-    Object? toTfJson();
+    /// Flat `{blockKey: value}` payload (Gate 6 encode round-trip shape).
+    Map<String, Object?> encode();
   }
 
   /// `mirroring_deployment_group` variant (DIRECT).
@@ -83,7 +83,9 @@ prelude: |
     String get blockKey => 'mirroring_deployment_group';
 
     @override
-    Object? toTfJson() => mirroringDeploymentGroup.toTfJson();
+    Map<String, Object?> encode() => {
+          blockKey: mirroringDeploymentGroup.toTfJson(),
+        };
   }
 
   /// `mirroring_deployment_groups` variant (BROKER).
@@ -100,13 +102,15 @@ prelude: |
     String get blockKey => 'mirroring_deployment_groups';
 
     @override
-    Object? toTfJson() => mirroringDeploymentGroups.toTfJson();
+    Map<String, Object?> encode() => {
+          blockKey: mirroringDeploymentGroups.toTfJson(),
+        };
   }
 
 customSlots:
   deploymentLink:
     paramDeclaration: 'required NetworkSecurityMirroringEndpointGroupDeploymentLink deploymentLink'
-    argMapEntry: 'deploymentLink.blockKey: TfArg.literal(deploymentLink.toTfJson()),'
+    argMapEntry: 'deploymentLink.blockKey: TfArg.literal(deploymentLink.encode()[deploymentLink.blockKey]),'
 
 extraGetters: |2
     /// Reference to `id` attribute.
