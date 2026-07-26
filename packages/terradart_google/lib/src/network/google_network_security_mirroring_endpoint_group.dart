@@ -27,8 +27,8 @@ sealed class NetworkSecurityMirroringEndpointGroupDeploymentLink {
   /// `mirroring_deployment_groups`).
   String get blockKey;
 
-  /// Value emitted under [blockKey].
-  Object? get value;
+  /// Value emitted under [blockKey] (string for DIRECT, list for BROKER).
+  TfArg get value;
 }
 
 /// `mirroring_deployment_group` variant (DIRECT).
