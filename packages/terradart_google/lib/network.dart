@@ -78,6 +78,12 @@ export 'src/network/google_network_security_mirroring_deployment_group.dart'
     show GoogleNetworkSecurityMirroringDeploymentGroup;
 export 'src/network/google_network_security_mirroring_endpoint.dart'
     show GoogleNetworkSecurityMirroringEndpoint;
+export 'src/network/google_network_security_mirroring_endpoint_group.dart'
+    show
+        GoogleNetworkSecurityMirroringEndpointGroup,
+        NetworkSecurityMirroringEndpointGroupBrokerDeploymentLink,
+        NetworkSecurityMirroringEndpointGroupDeploymentLink,
+        NetworkSecurityMirroringEndpointGroupDirectDeploymentLink;
 export 'src/network/google_network_security_mirroring_endpoint_group_association.dart'
     show GoogleNetworkSecurityMirroringEndpointGroupAssociation;
 export 'src/network/google_network_security_security_profile.dart'

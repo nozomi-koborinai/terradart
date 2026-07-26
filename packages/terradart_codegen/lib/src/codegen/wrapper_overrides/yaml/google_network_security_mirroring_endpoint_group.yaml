@@ -1,0 +1,120 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Network Security **mirroring endpoint group** — global Out-of-band (OOB)
+  /// mirroring endpoint group bound to one (DIRECT) or many (BROKER)
+  /// deployment groups.
+  ///
+  /// The provider requires **exactly one** of `mirroring_deployment_group` /
+  /// `mirroring_deployment_groups`, modeled as the sealed
+  /// [NetworkSecurityMirroringEndpointGroupDeploymentLink].
+  ///
+  /// **Cost / apply:** gcp-cost: Network Security `E749-01A2-AE1F` Out-of-band
+  /// Integration Deployment Uptime SKU `E55D-280B-82DD` **$0.025/h** (Data
+  /// Processing `88A5-6AEF-68F2` **$0.008/GiBy**). billing-behavior: OOB
+  /// mirroring endpoint groups sit on the never_apply OOB deployment path.
+  /// **Never** wire into apply-smoke.
+
+# Omit IR members `mirroring_deployment_group` / `mirroring_deployment_groups`
+# — replaced by the sealed virtual `deploymentLink` slot.
+paramOrder:
+  - location
+  - mirroring_endpoint_group_id
+  - deploymentLink
+  - type
+  - description
+  - labels
+  - project
+  - deletion_policy
+
+argMapOrder:
+  - location
+  - mirroring_endpoint_group_id
+  - type
+  - description
+  - labels
+  - project
+  - deletion_policy
+  - deploymentLink
+
+prelude: |
+  /// Exactly-one link from a mirroring endpoint group to its deployment
+  /// group(s). DIRECT uses a single group; BROKER uses a list.
+  sealed class NetworkSecurityMirroringEndpointGroupDeploymentLink {
+    const NetworkSecurityMirroringEndpointGroupDeploymentLink();
+
+    /// Match a single deployment group (DIRECT endpoint groups).
+    const factory NetworkSecurityMirroringEndpointGroupDeploymentLink.direct(
+      TfArg<String> mirroringDeploymentGroup,
+    ) = NetworkSecurityMirroringEndpointGroupDirectDeploymentLink;
+
+    /// Match one or more deployment groups (BROKER endpoint groups).
+    const factory NetworkSecurityMirroringEndpointGroupDeploymentLink.broker(
+      TfArg<List<String>> mirroringDeploymentGroups,
+    ) = NetworkSecurityMirroringEndpointGroupBrokerDeploymentLink;
+
+    /// argMap key (`mirroring_deployment_group` or
+    /// `mirroring_deployment_groups`).
+    String get blockKey;
+
+    /// Flat `{blockKey: value}` payload (Gate 6 encode round-trip shape).
+    Map<String, Object?> encode();
+  }
+
+  /// `mirroring_deployment_group` variant (DIRECT).
+  @immutable
+  final class NetworkSecurityMirroringEndpointGroupDirectDeploymentLink
+      extends NetworkSecurityMirroringEndpointGroupDeploymentLink {
+    const NetworkSecurityMirroringEndpointGroupDirectDeploymentLink(
+      this.mirroringDeploymentGroup,
+    );
+
+    final TfArg<String> mirroringDeploymentGroup;
+
+    @override
+    String get blockKey => 'mirroring_deployment_group';
+
+    @override
+    Map<String, Object?> encode() => {
+          blockKey: mirroringDeploymentGroup.toTfJson(),
+        };
+  }
+
+  /// `mirroring_deployment_groups` variant (BROKER).
+  @immutable
+  final class NetworkSecurityMirroringEndpointGroupBrokerDeploymentLink
+      extends NetworkSecurityMirroringEndpointGroupDeploymentLink {
+    const NetworkSecurityMirroringEndpointGroupBrokerDeploymentLink(
+      this.mirroringDeploymentGroups,
+    );
+
+    final TfArg<List<String>> mirroringDeploymentGroups;
+
+    @override
+    String get blockKey => 'mirroring_deployment_groups';
+
+    @override
+    Map<String, Object?> encode() => {
+          blockKey: mirroringDeploymentGroups.toTfJson(),
+        };
+  }
+
+customSlots:
+  deploymentLink:
+    paramDeclaration: 'required NetworkSecurityMirroringEndpointGroupDeploymentLink deploymentLink'
+    argMapEntry: 'deploymentLink.blockKey: TfArg.literal(deploymentLink.encode()[deploymentLink.blockKey]),'
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -43,6 +43,7 @@ import 'package:terradart_google/firebase_app_hosting.dart';
 import 'package:terradart_google/firestore.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/monitoring.dart';
+import 'package:terradart_google/network.dart';
 import 'package:terradart_google/notebooks.dart';
 import 'package:terradart_google/os_config.dart';
 import 'package:terradart_google/secret_manager.dart';
@@ -524,6 +525,21 @@ final Map<String, Object Function()> _syntheticInstances = {
       ),
   'CertificateManagerCertificateMapEntryMatcher': () =>
       CertificateManagerCertificateMapEntryMatcher(TfArg.literal('PRIMARY')),
+
+  // --- NetworkSecurityMirroringEndpointGroupDeploymentLink (2) — OOB ------
+  'NetworkSecurityMirroringEndpointGroupDirectDeploymentLink': () =>
+      NetworkSecurityMirroringEndpointGroupDirectDeploymentLink(
+        TfArg.literal(
+          'projects/p/locations/global/mirroringDeploymentGroups/dg',
+        ),
+      ),
+  'NetworkSecurityMirroringEndpointGroupBrokerDeploymentLink': () =>
+      NetworkSecurityMirroringEndpointGroupBrokerDeploymentLink(
+        TfArg.literal([
+          'projects/p/locations/global/mirroringDeploymentGroups/dg1',
+          'projects/p/locations/global/mirroringDeploymentGroups/dg2',
+        ]),
+      ),
 
   // --- VertexAiFeatureOnlineStoreStorage (2) — feature_online_store --------
   'VertexAiFeatureOnlineStoreBigtable': () => VertexAiFeatureOnlineStoreBigtable(

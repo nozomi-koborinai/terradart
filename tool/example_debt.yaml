@@ -198,6 +198,7 @@ GoogleComputeCrossSiteNetwork: gcp-cost NCC 7BEB-7A51-4223 Partner Cross Cloud I
 GoogleComputeWireGroup: deferred with never_apply GoogleComputeCrossSiteNetwork (CCI / cross-site path)
 GoogleComputePacketMirroring: gcp-cost Compute Engine 6F81-5844-456A Packet Mirroring Data Processing Americas SKU A0DF-D169-F1EE $0.008/GiBy — never_apply; no applyable quickstart
 GoogleNetworkSecurityMirroringEndpoint: deferred with never_apply GoogleNetworkSecurityMirroringDeployment (OOB mirroring path)
+GoogleNetworkSecurityMirroringEndpointGroup: deferred with never_apply GoogleNetworkSecurityMirroringDeployment (OOB mirroring path)
 GoogleNetworkSecurityMirroringEndpointGroupAssociation: deferred with never_apply GoogleNetworkSecurityMirroringDeployment (OOB mirroring path)
 GoogleNetworkConnectivityMulticloudDataTransferConfig: gcp-cost NCC 7BEB-7A51-4223 Partner Cross Cloud Interconnect Managed Transport 10Gbps SKU AAE5-BD60-3575 $17.30/h — never_apply; no applyable quickstart
 # Cloud Multicast (allowlisted GA) — infrastructure reservation billed from

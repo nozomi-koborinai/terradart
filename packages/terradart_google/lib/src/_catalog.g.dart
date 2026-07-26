@@ -14809,6 +14809,33 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_network_security_mirroring_endpoint`.\n\nAn endpoint is a managed mirroring collector that provides enhanced packet\nenrichment capabilities and support for multiple replica destinations.\nEndpoints are always part of a global endpoint group which represents a\nglobal "mirroring broker" service.\n\nNetwork Security **mirroring endpoint** — zonal Out-of-band (OOB)\nmirroring endpoint bound to an endpoint group.\n\n**Cost / apply:** gcp-cost: Network Security `E749-01A2-AE1F` Out-of-band\nIntegration Deployment Uptime SKU `E55D-280B-82DD` **\$0.025/h** (Data\nProcessing `88A5-6AEF-68F2` **\$0.008/GiBy**). billing-behavior: OOB\nmirroring endpoints / associations sit on the never_apply OOB deployment\npath. **Never** wire into apply-smoke.',
   ),
   CatalogEntry(
+    tfType: 'google_network_security_mirroring_endpoint_group',
+    className: 'GoogleNetworkSecurityMirroringEndpointGroup',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_network_security_mirroring_endpoint_group`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'mirroringEndpointGroupId',
+      'deploymentLink',
+      'type',
+      'description',
+      'labels',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[
+      'NetworkSecurityMirroringEndpointGroupDeploymentLink',
+      'NetworkSecurityMirroringEndpointGroupDirectDeploymentLink',
+      'NetworkSecurityMirroringEndpointGroupBrokerDeploymentLink',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_security_mirroring_endpoint_group`.\n\nAn endpoint group is a consumer frontend for a deployment group (backend).\nIn order to configure mirroring for a network, consumers must create: - An\nassociation between their network and the endpoint group. - A security\nprofile that points to the endpoint group. - A mirroring rule that\nreferences the security profile (group).\n\nNetwork Security **mirroring endpoint group** — global Out-of-band (OOB)\nmirroring endpoint group bound to one (DIRECT) or many (BROKER)\ndeployment groups.\n\nThe provider requires **exactly one** of `mirroring_deployment_group` /\n`mirroring_deployment_groups`, modeled as the sealed\n[NetworkSecurityMirroringEndpointGroupDeploymentLink].\n\n**Cost / apply:** gcp-cost: Network Security `E749-01A2-AE1F` Out-of-band\nIntegration Deployment Uptime SKU `E55D-280B-82DD` **\$0.025/h** (Data\nProcessing `88A5-6AEF-68F2` **\$0.008/GiBy**). billing-behavior: OOB\nmirroring endpoint groups sit on the never_apply OOB deployment path.\n**Never** wire into apply-smoke.',
+  ),
+  CatalogEntry(
     tfType: 'google_network_security_mirroring_endpoint_group_association',
     className: 'GoogleNetworkSecurityMirroringEndpointGroupAssociation',
     barrel: 'network',
