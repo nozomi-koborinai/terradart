@@ -5,6 +5,9 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
 curatedDoc: |-
   /// Network Connectivity **destination** — IP prefix destination under a
   /// multicloud data-transfer config (Partner Cross-Cloud Interconnect path).

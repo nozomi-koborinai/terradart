@@ -5,6 +5,9 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
 curatedDoc: |-
   /// Network Services **multicast domain activation** — activates a domain in a region (starts infra billing).
   ///
