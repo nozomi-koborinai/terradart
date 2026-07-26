@@ -1,0 +1,38 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Network Connectivity **destination** — IP prefix destination under a
+  /// multicloud data-transfer config (Partner Cross-Cloud Interconnect path).
+  ///
+  /// **Cost / apply:** requires never_apply
+  /// `google_network_connectivity_multicloud_data_transfer_config`. gcp-cost:
+  /// Network Connectivity Center `7BEB-7A51-4223` Partner Cross Cloud
+  /// Interconnect Managed Transport 10Gbps us-east4 SKU `AAE5-BD60-3575`
+  /// **$17.30/h**. billing-behavior: destinations configure the never_apply
+  /// CCI / multicloud data-transfer path. **Never** wire into apply-smoke.
+
+paramOrder:
+  - location
+  - name
+  - multicloud_data_transfer_config
+  - ip_prefix
+  - endpoints
+  - description
+  - labels
+  - project
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `uid` attribute.
+    TfRef<String> get uidRef => TfRef.attribute<String>(this, 'uid');

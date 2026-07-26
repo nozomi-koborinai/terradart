@@ -401,6 +401,8 @@ files:
     upstream: mmv1/products/networkconnectivity/Transport.yaml
   google_network_connectivity_multicloud_data_transfer_config:
     upstream: mmv1/products/networkconnectivity/MulticloudDataTransferConfig.yaml
+  google_network_connectivity_destination:
+    upstream: mmv1/products/networkconnectivity/Destination.yaml
   google_network_security_ull_mirroring_collector:
     upstream: mmv1/products/networksecurity/UllMirroringCollector.yaml
   google_network_security_ull_mirroring_collector_rule:
@@ -1432,6 +1434,24 @@ files:
     upstream: mmv1/products/networkservices/Mesh.yaml
   google_network_services_gateway:
     upstream: mmv1/products/networkservices/Gateway.yaml
+  google_network_services_multicast_domain:
+    upstream: mmv1/products/networkservices/MulticastDomain.yaml
+  google_network_services_multicast_domain_group:
+    upstream: mmv1/products/networkservices/MulticastDomainGroup.yaml
+  google_network_services_multicast_domain_activation:
+    upstream: mmv1/products/networkservices/MulticastDomainActivation.yaml
+  google_network_services_multicast_group_range:
+    upstream: mmv1/products/networkservices/MulticastGroupRange.yaml
+  google_network_services_multicast_group_range_activation:
+    upstream: mmv1/products/networkservices/MulticastGroupRangeActivation.yaml
+  google_network_services_multicast_consumer_association:
+    upstream: mmv1/products/networkservices/MulticastConsumerAssociation.yaml
+  google_network_services_multicast_producer_association:
+    upstream: mmv1/products/networkservices/MulticastProducerAssociation.yaml
+  google_network_services_multicast_group_consumer_activation:
+    upstream: mmv1/products/networkservices/MulticastGroupConsumerActivation.yaml
+  google_network_services_multicast_group_producer_activation:
+    upstream: mmv1/products/networkservices/MulticastGroupProducerActivation.yaml
   google_secure_source_manager_hook:
     upstream: mmv1/products/securesourcemanager/Hook.yaml
   google_secure_source_manager_branch_rule:

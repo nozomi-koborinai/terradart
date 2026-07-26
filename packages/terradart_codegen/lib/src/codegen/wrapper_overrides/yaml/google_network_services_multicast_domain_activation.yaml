@@ -1,0 +1,37 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Network Services **multicast domain activation** — activates a domain in a region (starts infra billing).
+  ///
+  /// **Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU (Networking
+  /// `E505-1604-58F8` list_skus keyword multicast / "Cloud Multicast" → 0; no
+  /// dedicated Multicast service). Docs
+  /// (https://cloud.google.com/vpc/docs/multicast): multicast infrastructure
+  /// is billed to admin projects with **domain activations** — billing starts
+  /// when a domain activation is created; plus multicast data processing on
+  /// consumer projects (and NCC Advanced Data Networking for producer→infra
+  /// traffic). Allowlisted GA product. billing-behavior: existence / usage
+  /// billed from activation. **Never** wire into apply-smoke.
+
+paramOrder:
+  - location
+  - multicast_domain_activation_id
+  - multicast_domain
+  - traffic_spec
+  - disable_placement_policy
+  - description
+  - labels
+  - project
+  - deletion_policy
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
