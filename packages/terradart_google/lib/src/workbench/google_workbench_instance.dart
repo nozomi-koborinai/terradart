@@ -16,6 +16,7 @@ final class WorkbenchInstanceGceSetup {
     this.enableIpForwarding,
     this.machineType,
     this.metadata,
+    this.minCpuPlatform,
     this.tags,
     this.acceleratorConfigs,
     this.bootDisk,
@@ -36,6 +37,8 @@ final class WorkbenchInstanceGceSetup {
   final TfArg<String>? machineType;
 
   final TfArg<Map<String, String>>? metadata;
+
+  final TfArg<String>? minCpuPlatform;
 
   final TfArg<List<Object?>>? tags;
 
@@ -67,6 +70,7 @@ final class WorkbenchInstanceGceSetup {
       'enable_ip_forwarding': enableIpForwarding!.toTfJson(),
     if (machineType != null) 'machine_type': machineType!.toTfJson(),
     if (metadata != null) 'metadata': metadata!.toTfJson(),
+    if (minCpuPlatform != null) 'min_cpu_platform': minCpuPlatform!.toTfJson(),
     if (tags != null) 'tags': tags!.toTfJson(),
     if (acceleratorConfigs != null)
       'accelerator_configs': [for (final e in acceleratorConfigs!) e.encode()],
@@ -225,6 +229,7 @@ final class WorkbenchInstanceGceSetupDataDisks {
     this.diskSizeGb,
     this.diskType,
     this.kmsKey,
+    this.resourcePolicies,
   });
 
   final TfArg<WorkbenchInstanceGceSetupDataDisksDiskEncryption>? diskEncryption;
@@ -235,11 +240,15 @@ final class WorkbenchInstanceGceSetupDataDisks {
 
   final TfArg<String>? kmsKey;
 
+  final TfArg<List<Object?>>? resourcePolicies;
+
   Map<String, Object?> encode() => {
     if (diskEncryption != null) 'disk_encryption': diskEncryption!.toTfJson(),
     if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
     if (diskType != null) 'disk_type': diskType!.toTfJson(),
     if (kmsKey != null) 'kms_key': kmsKey!.toTfJson(),
+    if (resourcePolicies != null)
+      'resource_policies': resourcePolicies!.toTfJson(),
   };
 }
 

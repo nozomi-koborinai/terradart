@@ -396,12 +396,17 @@ final class DataprocClusterClusterConfigGceClusterConfig {
 @immutable
 final class DataprocClusterClusterConfigGceClusterConfigConfidentialInstanceConfig {
   const DataprocClusterClusterConfigGceClusterConfigConfidentialInstanceConfig({
+    this.confidentialInstanceType,
     this.enableConfidentialCompute,
   });
+
+  final TfArg<String>? confidentialInstanceType;
 
   final TfArg<bool>? enableConfidentialCompute;
 
   Map<String, Object?> encode() => {
+    if (confidentialInstanceType != null)
+      'confidential_instance_type': confidentialInstanceType!.toTfJson(),
     if (enableConfidentialCompute != null)
       'enable_confidential_compute': enableConfidentialCompute!.toTfJson(),
   };
@@ -644,15 +649,59 @@ final class DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyIns
   const DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionList({
     this.machineTypes,
     this.rank,
+    this.diskConfig,
   });
 
   final TfArg<List<Object?>>? machineTypes;
 
   final TfArg<num>? rank;
 
+  final DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig?
+  diskConfig;
+
   Map<String, Object?> encode() => {
     if (machineTypes != null) 'machine_types': machineTypes!.toTfJson(),
     if (rank != null) 'rank': rank!.toTfJson(),
+    if (diskConfig != null) 'disk_config': diskConfig!.encode(),
+  };
+}
+
+/// Typed helper for the `cluster_config.master_config.instance_flexibility_policy.instance_selection_list.disk_config` block of
+/// `google_dataproc_cluster` (derived from provider schema).
+@immutable
+final class DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig {
+  const DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig({
+    this.bootDiskProvisionedIops,
+    this.bootDiskProvisionedThroughput,
+    this.bootDiskSizeGb,
+    this.bootDiskType,
+    this.localSsdInterface,
+    this.numLocalSsds,
+  });
+
+  final TfArg<num>? bootDiskProvisionedIops;
+
+  final TfArg<num>? bootDiskProvisionedThroughput;
+
+  final TfArg<num>? bootDiskSizeGb;
+
+  final TfArg<String>? bootDiskType;
+
+  final TfArg<String>? localSsdInterface;
+
+  final TfArg<num>? numLocalSsds;
+
+  Map<String, Object?> encode() => {
+    if (bootDiskProvisionedIops != null)
+      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
+    if (bootDiskProvisionedThroughput != null)
+      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
+          .toTfJson(),
+    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
+    if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
+    if (localSsdInterface != null)
+      'local_ssd_interface': localSsdInterface!.toTfJson(),
+    if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
   };
 }
 
@@ -774,15 +823,59 @@ final class DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibili
   const DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList({
     this.machineTypes,
     this.rank,
+    this.diskConfig,
   });
 
   final TfArg<List<Object?>>? machineTypes;
 
   final TfArg<num>? rank;
 
+  final DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig?
+  diskConfig;
+
   Map<String, Object?> encode() => {
     if (machineTypes != null) 'machine_types': machineTypes!.toTfJson(),
     if (rank != null) 'rank': rank!.toTfJson(),
+    if (diskConfig != null) 'disk_config': diskConfig!.encode(),
+  };
+}
+
+/// Typed helper for the `cluster_config.preemptible_worker_config.instance_flexibility_policy.instance_selection_list.disk_config` block of
+/// `google_dataproc_cluster` (derived from provider schema).
+@immutable
+final class DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig {
+  const DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig({
+    this.bootDiskProvisionedIops,
+    this.bootDiskProvisionedThroughput,
+    this.bootDiskSizeGb,
+    this.bootDiskType,
+    this.localSsdInterface,
+    this.numLocalSsds,
+  });
+
+  final TfArg<num>? bootDiskProvisionedIops;
+
+  final TfArg<num>? bootDiskProvisionedThroughput;
+
+  final TfArg<num>? bootDiskSizeGb;
+
+  final TfArg<String>? bootDiskType;
+
+  final TfArg<String>? localSsdInterface;
+
+  final TfArg<num>? numLocalSsds;
+
+  Map<String, Object?> encode() => {
+    if (bootDiskProvisionedIops != null)
+      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
+    if (bootDiskProvisionedThroughput != null)
+      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
+          .toTfJson(),
+    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
+    if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
+    if (localSsdInterface != null)
+      'local_ssd_interface': localSsdInterface!.toTfJson(),
+    if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
   };
 }
 
@@ -1082,15 +1175,59 @@ final class DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyIns
   const DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionList({
     this.machineTypes,
     this.rank,
+    this.diskConfig,
   });
 
   final TfArg<List<Object?>>? machineTypes;
 
   final TfArg<num>? rank;
 
+  final DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig?
+  diskConfig;
+
   Map<String, Object?> encode() => {
     if (machineTypes != null) 'machine_types': machineTypes!.toTfJson(),
     if (rank != null) 'rank': rank!.toTfJson(),
+    if (diskConfig != null) 'disk_config': diskConfig!.encode(),
+  };
+}
+
+/// Typed helper for the `cluster_config.worker_config.instance_flexibility_policy.instance_selection_list.disk_config` block of
+/// `google_dataproc_cluster` (derived from provider schema).
+@immutable
+final class DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig {
+  const DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfig({
+    this.bootDiskProvisionedIops,
+    this.bootDiskProvisionedThroughput,
+    this.bootDiskSizeGb,
+    this.bootDiskType,
+    this.localSsdInterface,
+    this.numLocalSsds,
+  });
+
+  final TfArg<num>? bootDiskProvisionedIops;
+
+  final TfArg<num>? bootDiskProvisionedThroughput;
+
+  final TfArg<num>? bootDiskSizeGb;
+
+  final TfArg<String>? bootDiskType;
+
+  final TfArg<String>? localSsdInterface;
+
+  final TfArg<num>? numLocalSsds;
+
+  Map<String, Object?> encode() => {
+    if (bootDiskProvisionedIops != null)
+      'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
+    if (bootDiskProvisionedThroughput != null)
+      'boot_disk_provisioned_throughput': bootDiskProvisionedThroughput!
+          .toTfJson(),
+    if (bootDiskSizeGb != null) 'boot_disk_size_gb': bootDiskSizeGb!.toTfJson(),
+    if (bootDiskType != null) 'boot_disk_type': bootDiskType!.toTfJson(),
+    if (localSsdInterface != null)
+      'local_ssd_interface': localSsdInterface!.toTfJson(),
+    if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
   };
 }
 

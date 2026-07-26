@@ -37,6 +37,9 @@ entries:
     detected_at: 2026-07-19
     provider_version: 7.40.0
     note: skipped by wave-shipper — schema required `instance` (Chronicle/SecOps instance ID); sibling google_chronicle_* + apply_smoke_skip chronicle_quickstart already document placeholder UUID fails at apply time
+  - resource: google_chronicle_environment_group
+    detected_at: 2026-07-26
+    provider_version: 7.41.0
   - resource: google_chronicle_feed
     detected_at: 2026-07-01
     provider_version: 7.39.0
@@ -89,6 +92,9 @@ entries:
     detected_at: 2026-07-01
     provider_version: 7.39.0
     note: skipped by wave-shipper — requires DWS-compatible regional MIG (A3 GPU / requested_run_duration); not applicable on terradart-validate e2 topology
+  - resource: google_compute_router_named_set
+    detected_at: 2026-07-26
+    provider_version: 7.41.0
   - resource: google_iap_agent_registry_agent_iam_binding
     detected_at: 2026-07-19
     provider_version: 7.40.0
@@ -149,3 +155,6 @@ entries:
     detected_at: 2026-07-01
     provider_version: 7.39.0
     note: skipped by wave-shipper — requires parent google_oracle_database_cloud_exadata_infrastructure; oracle_exadata_quickstart is apply-smoke skip-listed (Oracle zone entitlement / live Exascale vault wiring — API rejects placeholder wiring on terradart-validate)
+  - resource: google_vertex_ai_semantic_governance_policy_engine
+    detected_at: 2026-07-26
+    provider_version: 7.41.0
