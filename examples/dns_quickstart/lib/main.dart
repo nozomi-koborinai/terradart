@@ -86,12 +86,19 @@ final class InternalDnsStack extends Stack {
     );
     add(zoneAdmin);
 
-    add(
+    // Serialize member → binding → policy so destroy cannot race concurrent
+    // SetIamPolicy calls on the same zone (DNS API returned 500 when member
+    // and binding tore down in parallel during apply-smoke).
+    final zoneAdminMember = add(
       GoogleDnsManagedZoneIamMember(
         localName: 'internal_zone_admin_member',
         managedZone: TfArg.ref(internalZone.nameRef),
         role: TfArg.literal('roles/dns.admin'),
         member: TfArg.ref(zoneAdmin.iamMember),
+        dependsOn: [
+          ResourceDependency(internalZone),
+          ResourceDependency(zoneAdmin),
+        ],
       ),
     );
 
@@ -103,7 +110,7 @@ final class InternalDnsStack extends Stack {
         members: TfArg.literal([zoneAdmin.iamMember.interpolation]),
         dependsOn: [
           ResourceDependency(internalZone),
-          ResourceDependency(zoneAdmin),
+          ResourceDependency(zoneAdminMember),
         ],
       ),
     );
