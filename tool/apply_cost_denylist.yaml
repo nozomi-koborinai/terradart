@@ -563,6 +563,8 @@ google_iap_web_type_app_engine_iam_binding: safe  # billing-behavior: IAM bindin
 google_iap_web_type_app_engine_iam_policy: safe  # billing-behavior: IAM policy only
 google_iap_web_backend_service_iam_policy: safe  # billing-behavior: IAM policy only
 google_iap_agent_registry_iam_member: safe  # gcp-cost: no Cloud Billing Catalog SKU (IAP IAM binding adjunct); billing-behavior: IAM binding only, no standalone billing
+google_iap_agent_registry_iam_binding: safe  # billing-behavior: IAM binding only
+google_iap_agent_registry_iam_policy: safe  # billing-behavior: IAM policy only
 google_iap_location_web_iam_binding: safe  # billing-behavior: IAM binding only, no standalone billing
 google_iap_location_web_iam_member: safe  # gcp-cost: no Cloud Billing Catalog SKU (IAP IAM binding adjunct); billing-behavior: IAM binding only, no standalone billing
 google_iap_location_web_iam_policy: safe  # billing-behavior: IAM policy only, no standalone billing

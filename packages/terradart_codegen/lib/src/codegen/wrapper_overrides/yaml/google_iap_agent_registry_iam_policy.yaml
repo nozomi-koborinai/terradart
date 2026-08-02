@@ -1,0 +1,16 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for the Identity-Aware Proxy **Agent Registry**
+  /// at a regional location.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleIapAgentRegistryIamMember] for single-principal grants.
+
+paramOrder:
+  - location
+  - policy_data
+  - project

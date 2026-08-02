@@ -1,0 +1,18 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on the Identity-Aware
+  /// Proxy **Agent Registry** at a regional location.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleIapAgentRegistryIamMember] for additive grants.
+
+paramOrder:
+  - location
+  - role
+  - members
+  - condition
+  - project
