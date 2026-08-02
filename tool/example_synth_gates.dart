@@ -1,7 +1,8 @@
 // example_synth_gates.dart — synth every quickstart once and run machine gates.
 //
 // - Coverage v2: curated factory tfTypes must appear in synth output (or
-//   tool/example_debt.yaml by className).
+//   tool/example_debt.yaml by className). Reasons containing `iam-adjunct-debt:`
+//   additionally require *IamBinding/*IamPolicy + sibling *IamMember in synth.
 // - API enablement: when an example enables APIs via google_project_service,
 //   EVERY resource requiring an API must have its API enabled in the same
 //   stack (or be listed in tool/example_api_debt.yaml) and transitively
@@ -201,6 +202,9 @@ void _checkSynthCoverage(List<String> errors, Set<String> synthTfTypes) {
   }
 
   final debt = _exampleDebt(errors);
+  final classToTfType = {
+    for (final f in factories) f.className: f.tfType,
+  };
   var covered = 0;
   for (final f in factories) {
     final used = synthTfTypes.contains(f.tfType);
@@ -223,10 +227,66 @@ void _checkSynthCoverage(List<String> errors, Set<String> synthTfTypes) {
       errors.add('tool/example_debt.yaml: unknown catalog class $name');
     }
   }
+  for (final entry in debt.entries) {
+    checkIamAdjunctDebtEntry(
+      className: entry.key,
+      reason: entry.value,
+      catalogClasses: catalogClasses,
+      classToTfType: classToTfType,
+      synthTfTypes: synthTfTypes,
+      errors: errors,
+    );
+  }
   print(
     'example coverage (synth): ${factories.length} resource factories, '
     '$covered in synth output, ${debt.length} in tool/example_debt.yaml',
   );
+}
+
+/// Enforces AGENTS.md IAM binding/policy debt path when [reason] contains
+/// `iam-adjunct-debt:`: class must be `*IamBinding`/`*IamPolicy`, sibling
+/// `*IamMember` must be curated, and sibling `tfType` must appear in synth.
+void checkIamAdjunctDebtEntry({
+  required String className,
+  required String reason,
+  required Set<String> catalogClasses,
+  required Map<String, String> classToTfType,
+  required Set<String> synthTfTypes,
+  required List<String> errors,
+}) {
+  if (!reason.contains('iam-adjunct-debt:')) return;
+
+  final String? sibling;
+  if (className.endsWith('IamBinding')) {
+    sibling =
+        '${className.substring(0, className.length - 'IamBinding'.length)}'
+        'IamMember';
+  } else if (className.endsWith('IamPolicy')) {
+    sibling = '${className.substring(0, className.length - 'IamPolicy'.length)}'
+        'IamMember';
+  } else {
+    errors.add(
+      'tool/example_debt.yaml: $className uses iam-adjunct-debt: but is not '
+      '*IamBinding/*IamPolicy',
+    );
+    return;
+  }
+
+  if (!catalogClasses.contains(sibling)) {
+    errors.add(
+      'tool/example_debt.yaml: $className iam-adjunct-debt: sibling $sibling '
+      'is not in the catalog',
+    );
+    return;
+  }
+
+  final siblingTf = classToTfType[sibling];
+  if (siblingTf == null || !synthTfTypes.contains(siblingTf)) {
+    errors.add(
+      'tool/example_debt.yaml: $className iam-adjunct-debt: sibling $sibling '
+      '(${siblingTf ?? 'no tfType'}) is not in any quickstart synth output',
+    );
+  }
 }
 
 Map<String, String> _exampleDebt(List<String> errors) {

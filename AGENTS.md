@@ -29,13 +29,14 @@ The supported maintainer generation path is `terradart wrap`.
 
 A **Wave** is a user-visible release batch of related curated factories. A Wave PR is complete only when:
 
-- Every new or breaking factory has a **runnable example** (new `examples/*_quickstart` or an extended existing example).
-- Example coverage is machine-checked: `dart tool/example_synth_gates.dart` synthesizes every quickstart and fails when a curated factory `tfType` is absent from synth output and not listed in [`tool/example_debt.yaml`](tool/example_debt.yaml) with a reason. Stale debt entries fail — adding a line is a reviewed decision, not a default.
+- Every new or breaking factory has a **runnable example** (new `examples/*_quickstart` or an extended existing example), **or** a reasoned [`tool/example_debt.yaml`](tool/example_debt.yaml) entry (reviewed decision, not a default).
+- **IAM binding/policy exception:** a new `*IamBinding` / `*IamPolicy` factory may complete via `tool/example_debt.yaml` with reason token `iam-adjunct-debt:` when the sibling `*IamMember` is already curated **and** already present in some quickstart synth. No example change ⇒ no per-PR apply-smoke. Prefer this path over extending examples solely for binding/policy coverage. `dart tool/example_synth_gates.dart` enforces the token (wrong class, missing sibling in catalog, or sibling absent from synth ⇒ fail).
+- Example coverage is otherwise machine-checked: `dart tool/example_synth_gates.dart` synthesizes every quickstart and fails when a curated factory `tfType` is absent from synth output and not listed in `tool/example_debt.yaml` with a reason. Stale debt entries fail — adding a line is a reviewed decision, not a default.
 - When an example enables a GCP API via `google_project_service`, every other resource in that example requiring the same API must transitively `depends_on` / reference that enablement (`tool/example_synth_gates.dart`).
 - Breaking API changes include **`MIGRATING.md`** and updated examples in the same PR.
 - Catalog counts, README Examples list, and CI `terraform_validate` matrix (for new quickstarts) move in lockstep.
 
-`curatedDoc` on the override is not sufficient on its own. Use the [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md) skill for the full checklist.
+`curatedDoc` on the override is not sufficient on its own (except the IAM binding/policy debt path above). Use the [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md) skill for the full checklist.
 
 ## PR granularity
 
