@@ -1,0 +1,16 @@
+outputDir: dataplex
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Dataplex glossary.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleDataplexGlossaryIamMember] for single-principal grants.
+
+paramOrder:
+  - glossary_id
+  - policy_data
+  - location
+  - project

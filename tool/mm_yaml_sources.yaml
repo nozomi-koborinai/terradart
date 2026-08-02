@@ -356,6 +356,10 @@ files:
     upstream: mmv1/products/dataplex/Datascan.yaml
   google_dataplex_datascan_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_datascan_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_datascan_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataplex_entry:
     upstream: mmv1/products/dataplex/Entry.yaml
   google_dataplex_entry_link:
@@ -373,6 +377,10 @@ files:
   google_dataplex_glossary_term:
     upstream: mmv1/products/dataplex/GlossaryTerm.yaml
   google_dataplex_glossary_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_glossary_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_glossary_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataplex_entry_group_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
@@ -399,6 +407,10 @@ files:
   google_dataplex_task:
     upstream: mmv1/products/dataplex/Task.yaml
   google_dataplex_task_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_task_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_task_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dns_managed_zone:
     upstream: mmv1/products/dns/ManagedZone.yaml

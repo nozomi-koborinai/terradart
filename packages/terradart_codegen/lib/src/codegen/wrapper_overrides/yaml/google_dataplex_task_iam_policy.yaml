@@ -1,0 +1,17 @@
+outputDir: dataplex
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Dataplex lake task.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleDataplexTaskIamMember] for single-principal grants.
+
+paramOrder:
+  - task_id
+  - lake
+  - policy_data
+  - location
+  - project
