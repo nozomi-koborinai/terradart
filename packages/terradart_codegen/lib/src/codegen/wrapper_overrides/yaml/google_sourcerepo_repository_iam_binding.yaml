@@ -1,0 +1,18 @@
+outputDir: sourcerepo
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud Source
+  /// Repository.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleSourcerepoRepositoryIamMember] for additive grants.
+
+paramOrder:
+  - repository
+  - role
+  - members
+  - condition
+  - project

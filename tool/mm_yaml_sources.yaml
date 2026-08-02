@@ -234,6 +234,10 @@ files:
     upstream: mmv1/products/sourcerepo/Repository.yaml
   google_sourcerepo_repository_iam_member:
     upstream: null  # IAM — generated from parent Repository.yaml iam_policy
+  google_sourcerepo_repository_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_sourcerepo_repository_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
 
   google_composer_environment:
     upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/composer); no mmv1 product YAML
