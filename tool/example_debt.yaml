@@ -486,3 +486,12 @@ GoogleKmsKeyRingIamBinding: iam-adjunct-debt: sibling GoogleKmsKeyRingIamMember 
 GoogleKmsKeyRingIamPolicy: iam-adjunct-debt: sibling GoogleKmsKeyRingIamMember already in kms_quickstart; authoritative policy not needed in smoke
 GoogleKmsCryptoKeyIamBinding: iam-adjunct-debt: sibling GoogleKmsCryptoKeyIamMember already in kms_quickstart; authoritative binding not needed in smoke
 GoogleKmsCryptoKeyIamPolicy: iam-adjunct-debt: sibling GoogleKmsCryptoKeyIamMember already in kms_quickstart; authoritative policy not needed in smoke
+
+# IAP App Engine IAM binding/policy — sibling *IamMember already in
+# iam_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
+GoogleIapAppEngineServiceIamBinding: iam-adjunct-debt: sibling GoogleIapAppEngineServiceIamMember already in iam_quickstart; authoritative binding not needed in smoke
+GoogleIapAppEngineServiceIamPolicy: iam-adjunct-debt: sibling GoogleIapAppEngineServiceIamMember already in iam_quickstart; authoritative policy not needed in smoke
+GoogleIapAppEngineVersionIamBinding: iam-adjunct-debt: sibling GoogleIapAppEngineVersionIamMember already in iam_quickstart; authoritative binding not needed in smoke
+GoogleIapAppEngineVersionIamPolicy: iam-adjunct-debt: sibling GoogleIapAppEngineVersionIamMember already in iam_quickstart; authoritative policy not needed in smoke
+GoogleIapWebTypeAppEngineIamBinding: iam-adjunct-debt: sibling GoogleIapWebTypeAppEngineIamMember already in iam_quickstart; authoritative binding not needed in smoke
+GoogleIapWebTypeAppEngineIamPolicy: iam-adjunct-debt: sibling GoogleIapWebTypeAppEngineIamMember already in iam_quickstart; authoritative policy not needed in smoke

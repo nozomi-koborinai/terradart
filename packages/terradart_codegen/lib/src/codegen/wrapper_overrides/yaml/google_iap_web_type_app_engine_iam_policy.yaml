@@ -1,0 +1,15 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for IAP App Engine at project scope.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleIapWebTypeAppEngineIamMember] for single-principal grants.
+
+paramOrder:
+  - app_id
+  - policy_data
+  - project

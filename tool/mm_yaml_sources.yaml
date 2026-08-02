@@ -1043,9 +1043,21 @@ files:
     upstream: mmv1/products/cloudrunv2/WorkerPool.yaml
   google_iap_app_engine_service_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_app_engine_service_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_app_engine_service_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_iap_app_engine_version_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_app_engine_version_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_app_engine_version_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_iap_web_type_app_engine_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_web_type_app_engine_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_web_type_app_engine_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_iap_web_backend_service_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation

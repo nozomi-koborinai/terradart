@@ -12884,6 +12884,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_iap_agent_registry_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access on the **Agent\nRegistry** at a regional location.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [location]: regional location (e.g. `\'us-central1\'`).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal (`user:…`, `group:…`, `serviceAccount:…`).\n\nExample:\n```dart\nGoogleIapAgentRegistryIamMember(\n  localName: \'agent_registry_invoker\',\n  location: TfArg.literal(\'us-central1\'),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_iap_app_engine_service_iam_binding',
+    className: 'GoogleIapAppEngineServiceIamBinding',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_iap_app_engine_service_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'appId',
+      'service',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_app_engine_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP App Engine\nservice.\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapAppEngineServiceIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_iap_app_engine_service_iam_member',
     className: 'GoogleIapAppEngineServiceIamMember',
     barrel: 'iap',
@@ -12902,6 +12922,45 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_app_engine_service_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access on one App Engine\n**service**.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [appId]: App Engine application ID (usually the GCP project ID).\n- [service]: App Engine service name (e.g. `\'default\'`).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal (`user:…`, `group:…`, `serviceAccount:…`).\n\nExample:\n```dart\nGoogleIapAppEngineServiceIamMember(\n  localName: \'default_invoker\',\n  appId: TfArg.literal(projectId),\n  service: TfArg.literal(\'default\'),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_app_engine_service_iam_policy',
+    className: 'GoogleIapAppEngineServiceIamPolicy',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_iap_app_engine_service_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'appId',
+      'service',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_app_engine_service_iam_policy`.\n\nAuthoritative IAM policy for an IAP App Engine service.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleIapAppEngineServiceIamMember] for single-principal grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_app_engine_version_iam_binding',
+    className: 'GoogleIapAppEngineVersionIamBinding',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_iap_app_engine_version_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'appId',
+      'service',
+      'versionId',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_app_engine_version_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP App Engine\nversion.\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapAppEngineVersionIamMember] for additive grants.',
   ),
   CatalogEntry(
     tfType: 'google_iap_app_engine_version_iam_member',
@@ -12923,6 +12982,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_app_engine_version_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access on one App Engine\n**version** within a service.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [appId]: App Engine application ID (usually the GCP project ID).\n- [service]: App Engine service name (e.g. `\'default\'`).\n- [versionId]: version ID within the service (e.g. `\'v1\'`).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal string.\n\nExample:\n```dart\nGoogleIapAppEngineVersionIamMember(\n  localName: \'v1_invoker\',\n  appId: TfArg.literal(projectId),\n  service: TfArg.literal(\'default\'),\n  versionId: TfArg.literal(\'v1\'),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_app_engine_version_iam_policy',
+    className: 'GoogleIapAppEngineVersionIamPolicy',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_iap_app_engine_version_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'appId',
+      'service',
+      'versionId',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_app_engine_version_iam_policy`.\n\nAuthoritative IAM policy for an IAP App Engine version.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleIapAppEngineVersionIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_iap_location_web_iam_binding',
@@ -13076,6 +13154,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_iap_web_backend_service_iam_member`.',
   ),
   CatalogEntry(
+    tfType: 'google_iap_web_type_app_engine_iam_binding',
+    className: 'GoogleIapWebTypeAppEngineIamBinding',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iap_web_type_app_engine_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'appId',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_web_type_app_engine_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on IAP App Engine at\nproject scope (all services/versions).\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapWebTypeAppEngineIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_iap_web_type_app_engine_iam_member',
     className: 'GoogleIapWebTypeAppEngineIamMember',
     barrel: 'iap',
@@ -13093,6 +13191,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_type_app_engine_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access to the App Engine\napplication at **project scope** (all services/versions).\n\nRequired identity:\n- [localName]: Terraform local name.\n- [appId]: App Engine application ID (usually the GCP project ID).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal string.\n\nExample:\n```dart\nGoogleIapWebTypeAppEngineIamMember(\n  localName: \'app_invoker\',\n  appId: TfArg.literal(projectId),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_web_type_app_engine_iam_policy',
+    className: 'GoogleIapWebTypeAppEngineIamPolicy',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_iap_web_type_app_engine_iam_policy`.',
+    constructorParams: <String>['localName', 'appId', 'policyData', 'project'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_web_type_app_engine_iam_policy`.\n\nAuthoritative IAM policy for IAP App Engine at project scope.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleIapWebTypeAppEngineIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_identity_platform_config',
