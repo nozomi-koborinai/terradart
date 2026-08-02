@@ -1,0 +1,18 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Compute Engine disk.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleComputeDiskIamMember] for additive grants.
+
+paramOrder:
+  - name
+  - role
+  - members
+  - condition
+  - zone
+  - project

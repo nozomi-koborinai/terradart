@@ -1,0 +1,16 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Compute Engine instance.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleComputeInstanceIamMember] for single-principal grants.
+
+paramOrder:
+  - instance_name
+  - policy_data
+  - zone
+  - project

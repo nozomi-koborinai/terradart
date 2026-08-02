@@ -84,8 +84,12 @@ export 'src/compute/google_compute_disk.dart'
         ComputeDiskGuestOsFeature,
         ComputeDiskGuestOsFeatureType,
         GoogleComputeDisk;
+export 'src/compute/google_compute_disk_iam_binding.dart'
+    show GoogleComputeDiskIamBinding;
 export 'src/compute/google_compute_disk_iam_member.dart'
     show GoogleComputeDiskIamMember;
+export 'src/compute/google_compute_disk_iam_policy.dart'
+    show GoogleComputeDiskIamPolicy;
 export 'src/compute/google_compute_disk_resource_policy_attachment.dart'
     show GoogleComputeDiskResourcePolicyAttachment;
 export 'src/compute/google_compute_external_vpn_gateway.dart'
@@ -206,8 +210,12 @@ export 'src/compute/google_compute_instance_group_manager.dart'
         InstanceGroupManagerUpdatePolicyAction,
         InstanceGroupManagerUpdatePolicyReplacementMethod,
         InstanceGroupManagerUpdatePolicyType;
+export 'src/compute/google_compute_instance_iam_binding.dart'
+    show GoogleComputeInstanceIamBinding;
 export 'src/compute/google_compute_instance_iam_member.dart'
     show GoogleComputeInstanceIamMember;
+export 'src/compute/google_compute_instance_iam_policy.dart'
+    show GoogleComputeInstanceIamPolicy;
 export 'src/compute/google_compute_instance_settings.dart'
     show ComputeInstanceSettingsMetadata, GoogleComputeInstanceSettings;
 export 'src/compute/google_compute_instance_template.dart'
@@ -696,8 +704,12 @@ export 'src/compute/google_compute_subnetwork.dart'
         SubnetworkResolveSubnetMask,
         SubnetworkRole,
         SubnetworkStackType;
+export 'src/compute/google_compute_subnetwork_iam_binding.dart'
+    show GoogleComputeSubnetworkIamBinding;
 export 'src/compute/google_compute_subnetwork_iam_member.dart'
     show GoogleComputeSubnetworkIamMember;
+export 'src/compute/google_compute_subnetwork_iam_policy.dart'
+    show GoogleComputeSubnetworkIamPolicy;
 export 'src/compute/google_compute_target_http_proxy.dart'
     show GoogleComputeTargetHttpProxy;
 export 'src/compute/google_compute_target_https_proxy.dart'

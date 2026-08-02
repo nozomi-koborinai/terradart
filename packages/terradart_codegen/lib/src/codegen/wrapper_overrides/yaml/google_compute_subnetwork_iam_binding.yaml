@@ -1,0 +1,19 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Compute Engine
+  /// subnetwork.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleComputeSubnetworkIamMember] for additive grants.
+
+paramOrder:
+  - subnetwork
+  - role
+  - members
+  - condition
+  - region
+  - project
