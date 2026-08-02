@@ -103,8 +103,11 @@ Follow the two skills exactly, in order, for each resource:
    — schema confirmation, `tool/mm_yaml_sources.yaml` row, MM fixture sync,
    `wrap-init`, thin override, `lint-override`, regenerate, counts.
 2. [`terradart-ship-wave`](../../.agents/skills/terradart-ship-wave/SKILL.md)
-   — the runnable quickstart example, README Examples list,
-   **cost-classify via the gcp-cost tools** (mandatory — record SKU
+   — the runnable quickstart example (or, for pure `*IamBinding` /
+   `*IamPolicy` Waves whose sibling `*IamMember` is already in synth,
+   `tool/example_debt.yaml` lines with `iam-adjunct-debt:` — no example
+   touch, no per-PR apply-smoke), README Examples list when examples
+   change, **cost-classify via the gcp-cost tools** (mandatory — record SKU
    evidence in `tool/apply_cost_denylist.yaml` comments), coverage page
    regeneration (`dart tool/example_synth_gates.dart --skip-validate`
    then `dart tool/render_coverage_page.dart` — the renderer fails closed

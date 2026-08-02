@@ -1,11 +1,19 @@
 # Curated factories not yet exercised by any example quickstart.
 #
 # Policy (AGENTS.md "Wave shipping policy"): every NEW factory must appear in
-# an example within its Wave PR. Pre-existing gaps live here explicitly, one
-# `ClassName: reason` line each. `tool/check_docs_consistency.dart` fails when
-# a factory is neither covered nor listed, and when a listed factory becomes
-# covered (remove the line) — adding a line is a reviewed decision, not a
-# default.
+# an example within its Wave PR, or get a reasoned line here. Pre-existing
+# gaps live here explicitly, one `ClassName: reason` line each.
+# `dart tool/example_synth_gates.dart` fails when a factory is neither covered
+# nor listed, and when a listed factory becomes covered (remove the line) —
+# adding a line is a reviewed decision, not a default.
+#
+# IAM binding/policy (preferred for pure adjunct Waves): when shipping a new
+# `*IamBinding` / `*IamPolicy` whose sibling `*IamMember` is already curated
+# and already in some quickstart synth, list the new factory here with reason
+# containing the token `iam-adjunct-debt:` (plus a short human note). The synth
+# gate enforces sibling presence — no example change and no per-PR apply-smoke.
+# Example:
+#   GoogleFooIamBinding: iam-adjunct-debt: sibling GoogleFooIamMember already in bar_quickstart; authoritative binding not needed in smoke
 
 # Monitoring factories that cannot `terraform apply` against a standalone
 # apply-smoke project, so monitoring_quickstart uses the applyable variants

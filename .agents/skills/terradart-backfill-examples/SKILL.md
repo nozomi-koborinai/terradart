@@ -22,7 +22,7 @@ Read [`CONTEXT.md`](../../../CONTEXT.md) for vocabulary. Wave policy lives in [`
 - [ ] 2. **Extend `lib/main.dart`** with minimal, self-contained resources that demonstrate real constructor patterns (refs to siblings in the same stack).
 - [ ] 3. **Apply pitfall checklist** (below) before committing.
 - [ ] 4. **Sensitive / variable fields** — use `TfArg.variable('name')` in the stack and declare the variable in `bin/infra.dart` via `tf-out/variables.tf.json` (see existing `cloud_sql_quickstart`, `firebase_app_check_quickstart`, `compute_lb_quickstart`).
-- [ ] 5. **Remove covered lines** from `tool/example_debt.yaml`. Keep reasoned deferrals only (org/folder scope, IAM binding policy, etc.).
+- [ ] 5. **Remove covered lines** from `tool/example_debt.yaml`. Keep reasoned deferrals only (org/folder scope, `iam-adjunct-debt:` for binding/policy when sibling member is in synth, etc.).
 - [ ] 6. **Tighten topology** — wire must-reference factories into siblings; see [`terradart-tighten-example-topology`](../terradart-tighten-example-topology/SKILL.md).
 - [ ] 7. **Verify** — from repo root:
   ```bash
