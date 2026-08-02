@@ -159,15 +159,35 @@ final class AccessContextManagerServicePerimeterSpecEgressPoliciesEgressFromSour
   const AccessContextManagerServicePerimeterSpecEgressPoliciesEgressFromSources({
     this.accessLevel,
     this.resource,
+    this.pscEndpoint,
   });
 
   final TfArg<String>? accessLevel;
 
   final TfArg<String>? resource;
 
+  final AccessContextManagerServicePerimeterSpecEgressPoliciesEgressFromSourcesPscEndpoint?
+  pscEndpoint;
+
   Map<String, Object?> encode() => {
     if (accessLevel != null) 'access_level': accessLevel!.toTfJson(),
     if (resource != null) 'resource': resource!.toTfJson(),
+    if (pscEndpoint != null) 'psc_endpoint': pscEndpoint!.encode(),
+  };
+}
+
+/// Typed helper for the `spec.egress_policies.egress_from.sources.psc_endpoint` block of
+/// `google_access_context_manager_service_perimeter` (derived from provider schema).
+@immutable
+final class AccessContextManagerServicePerimeterSpecEgressPoliciesEgressFromSourcesPscEndpoint {
+  const AccessContextManagerServicePerimeterSpecEgressPoliciesEgressFromSourcesPscEndpoint({
+    this.forwardingRule,
+  });
+
+  final TfArg<String>? forwardingRule;
+
+  Map<String, Object?> encode() => {
+    if (forwardingRule != null) 'forwarding_rule': forwardingRule!.toTfJson(),
   };
 }
 
@@ -321,15 +341,35 @@ final class AccessContextManagerServicePerimeterSpecIngressPoliciesIngressFromSo
   const AccessContextManagerServicePerimeterSpecIngressPoliciesIngressFromSources({
     this.accessLevel,
     this.resource,
+    this.pscEndpoint,
   });
 
   final TfArg<String>? accessLevel;
 
   final TfArg<String>? resource;
 
+  final AccessContextManagerServicePerimeterSpecIngressPoliciesIngressFromSourcesPscEndpoint?
+  pscEndpoint;
+
   Map<String, Object?> encode() => {
     if (accessLevel != null) 'access_level': accessLevel!.toTfJson(),
     if (resource != null) 'resource': resource!.toTfJson(),
+    if (pscEndpoint != null) 'psc_endpoint': pscEndpoint!.encode(),
+  };
+}
+
+/// Typed helper for the `spec.ingress_policies.ingress_from.sources.psc_endpoint` block of
+/// `google_access_context_manager_service_perimeter` (derived from provider schema).
+@immutable
+final class AccessContextManagerServicePerimeterSpecIngressPoliciesIngressFromSourcesPscEndpoint {
+  const AccessContextManagerServicePerimeterSpecIngressPoliciesIngressFromSourcesPscEndpoint({
+    this.forwardingRule,
+  });
+
+  final TfArg<String>? forwardingRule;
+
+  Map<String, Object?> encode() => {
+    if (forwardingRule != null) 'forwarding_rule': forwardingRule!.toTfJson(),
   };
 }
 
@@ -409,17 +449,96 @@ final class AccessContextManagerServicePerimeterSpecVpcAccessibleServices {
   const AccessContextManagerServicePerimeterSpecVpcAccessibleServices({
     this.allowedServices,
     this.enableRestriction,
+    this.servicePatternsEnforcementScopes,
+    this.allowedServicePatterns,
   });
 
   final TfArg<List<Object?>>? allowedServices;
 
   final TfArg<bool>? enableRestriction;
 
+  final TfArg<List<Object?>>? servicePatternsEnforcementScopes;
+
+  final List<
+    AccessContextManagerServicePerimeterSpecVpcAccessibleServicesAllowedServicePatterns
+  >?
+  allowedServicePatterns;
+
   Map<String, Object?> encode() => {
     if (allowedServices != null)
       'allowed_services': allowedServices!.toTfJson(),
     if (enableRestriction != null)
       'enable_restriction': enableRestriction!.toTfJson(),
+    if (servicePatternsEnforcementScopes != null)
+      'service_patterns_enforcement_scopes': servicePatternsEnforcementScopes!
+          .toTfJson(),
+    if (allowedServicePatterns != null)
+      'allowed_service_patterns': [
+        for (final e in allowedServicePatterns!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `spec.vpc_accessible_services.allowed_service_patterns` block of
+/// `google_access_context_manager_service_perimeter` (derived from provider schema).
+@immutable
+final class AccessContextManagerServicePerimeterSpecVpcAccessibleServicesAllowedServicePatterns {
+  const AccessContextManagerServicePerimeterSpecVpcAccessibleServicesAllowedServicePatterns({
+    this.pattern,
+    this.service,
+    this.modifiers,
+  });
+
+  final TfArg<String>? pattern;
+
+  final TfArg<String>? service;
+
+  final List<
+    AccessContextManagerServicePerimeterSpecVpcAccessibleServicesAllowedServicePatternsModifiers
+  >?
+  modifiers;
+
+  Map<String, Object?> encode() => {
+    if (pattern != null) 'pattern': pattern!.toTfJson(),
+    if (service != null) 'service': service!.toTfJson(),
+    if (modifiers != null)
+      'modifiers': [for (final e in modifiers!) e.encode()],
+  };
+}
+
+/// Typed helper for the `spec.vpc_accessible_services.allowed_service_patterns.modifiers` block of
+/// `google_access_context_manager_service_perimeter` (derived from provider schema).
+@immutable
+final class AccessContextManagerServicePerimeterSpecVpcAccessibleServicesAllowedServicePatternsModifiers {
+  const AccessContextManagerServicePerimeterSpecVpcAccessibleServicesAllowedServicePatternsModifiers({
+    this.addRequestHeader,
+  });
+
+  final AccessContextManagerServicePerimeterSpecVpcAccessibleServicesAllowedServicePatternsModifiersAddRequestHeader?
+  addRequestHeader;
+
+  Map<String, Object?> encode() => {
+    if (addRequestHeader != null)
+      'add_request_header': addRequestHeader!.encode(),
+  };
+}
+
+/// Typed helper for the `spec.vpc_accessible_services.allowed_service_patterns.modifiers.add_request_header` block of
+/// `google_access_context_manager_service_perimeter` (derived from provider schema).
+@immutable
+final class AccessContextManagerServicePerimeterSpecVpcAccessibleServicesAllowedServicePatternsModifiersAddRequestHeader {
+  const AccessContextManagerServicePerimeterSpecVpcAccessibleServicesAllowedServicePatternsModifiersAddRequestHeader({
+    required this.key,
+    required this.value,
+  });
+
+  final TfArg<String> key;
+
+  final TfArg<String> value;
+
+  Map<String, Object?> encode() => {
+    'key': key.toTfJson(),
+    'value': value.toTfJson(),
   };
 }
 
@@ -563,15 +682,35 @@ final class AccessContextManagerServicePerimeterStatusEgressPoliciesEgressFromSo
   const AccessContextManagerServicePerimeterStatusEgressPoliciesEgressFromSources({
     this.accessLevel,
     this.resource,
+    this.pscEndpoint,
   });
 
   final TfArg<String>? accessLevel;
 
   final TfArg<String>? resource;
 
+  final AccessContextManagerServicePerimeterStatusEgressPoliciesEgressFromSourcesPscEndpoint?
+  pscEndpoint;
+
   Map<String, Object?> encode() => {
     if (accessLevel != null) 'access_level': accessLevel!.toTfJson(),
     if (resource != null) 'resource': resource!.toTfJson(),
+    if (pscEndpoint != null) 'psc_endpoint': pscEndpoint!.encode(),
+  };
+}
+
+/// Typed helper for the `status.egress_policies.egress_from.sources.psc_endpoint` block of
+/// `google_access_context_manager_service_perimeter` (derived from provider schema).
+@immutable
+final class AccessContextManagerServicePerimeterStatusEgressPoliciesEgressFromSourcesPscEndpoint {
+  const AccessContextManagerServicePerimeterStatusEgressPoliciesEgressFromSourcesPscEndpoint({
+    this.forwardingRule,
+  });
+
+  final TfArg<String>? forwardingRule;
+
+  Map<String, Object?> encode() => {
+    if (forwardingRule != null) 'forwarding_rule': forwardingRule!.toTfJson(),
   };
 }
 
@@ -725,15 +864,35 @@ final class AccessContextManagerServicePerimeterStatusIngressPoliciesIngressFrom
   const AccessContextManagerServicePerimeterStatusIngressPoliciesIngressFromSources({
     this.accessLevel,
     this.resource,
+    this.pscEndpoint,
   });
 
   final TfArg<String>? accessLevel;
 
   final TfArg<String>? resource;
 
+  final AccessContextManagerServicePerimeterStatusIngressPoliciesIngressFromSourcesPscEndpoint?
+  pscEndpoint;
+
   Map<String, Object?> encode() => {
     if (accessLevel != null) 'access_level': accessLevel!.toTfJson(),
     if (resource != null) 'resource': resource!.toTfJson(),
+    if (pscEndpoint != null) 'psc_endpoint': pscEndpoint!.encode(),
+  };
+}
+
+/// Typed helper for the `status.ingress_policies.ingress_from.sources.psc_endpoint` block of
+/// `google_access_context_manager_service_perimeter` (derived from provider schema).
+@immutable
+final class AccessContextManagerServicePerimeterStatusIngressPoliciesIngressFromSourcesPscEndpoint {
+  const AccessContextManagerServicePerimeterStatusIngressPoliciesIngressFromSourcesPscEndpoint({
+    this.forwardingRule,
+  });
+
+  final TfArg<String>? forwardingRule;
+
+  Map<String, Object?> encode() => {
+    if (forwardingRule != null) 'forwarding_rule': forwardingRule!.toTfJson(),
   };
 }
 
@@ -813,17 +972,96 @@ final class AccessContextManagerServicePerimeterStatusVpcAccessibleServices {
   const AccessContextManagerServicePerimeterStatusVpcAccessibleServices({
     this.allowedServices,
     this.enableRestriction,
+    this.servicePatternsEnforcementScopes,
+    this.allowedServicePatterns,
   });
 
   final TfArg<List<Object?>>? allowedServices;
 
   final TfArg<bool>? enableRestriction;
 
+  final TfArg<List<Object?>>? servicePatternsEnforcementScopes;
+
+  final List<
+    AccessContextManagerServicePerimeterStatusVpcAccessibleServicesAllowedServicePatterns
+  >?
+  allowedServicePatterns;
+
   Map<String, Object?> encode() => {
     if (allowedServices != null)
       'allowed_services': allowedServices!.toTfJson(),
     if (enableRestriction != null)
       'enable_restriction': enableRestriction!.toTfJson(),
+    if (servicePatternsEnforcementScopes != null)
+      'service_patterns_enforcement_scopes': servicePatternsEnforcementScopes!
+          .toTfJson(),
+    if (allowedServicePatterns != null)
+      'allowed_service_patterns': [
+        for (final e in allowedServicePatterns!) e.encode(),
+      ],
+  };
+}
+
+/// Typed helper for the `status.vpc_accessible_services.allowed_service_patterns` block of
+/// `google_access_context_manager_service_perimeter` (derived from provider schema).
+@immutable
+final class AccessContextManagerServicePerimeterStatusVpcAccessibleServicesAllowedServicePatterns {
+  const AccessContextManagerServicePerimeterStatusVpcAccessibleServicesAllowedServicePatterns({
+    this.pattern,
+    this.service,
+    this.modifiers,
+  });
+
+  final TfArg<String>? pattern;
+
+  final TfArg<String>? service;
+
+  final List<
+    AccessContextManagerServicePerimeterStatusVpcAccessibleServicesAllowedServicePatternsModifiers
+  >?
+  modifiers;
+
+  Map<String, Object?> encode() => {
+    if (pattern != null) 'pattern': pattern!.toTfJson(),
+    if (service != null) 'service': service!.toTfJson(),
+    if (modifiers != null)
+      'modifiers': [for (final e in modifiers!) e.encode()],
+  };
+}
+
+/// Typed helper for the `status.vpc_accessible_services.allowed_service_patterns.modifiers` block of
+/// `google_access_context_manager_service_perimeter` (derived from provider schema).
+@immutable
+final class AccessContextManagerServicePerimeterStatusVpcAccessibleServicesAllowedServicePatternsModifiers {
+  const AccessContextManagerServicePerimeterStatusVpcAccessibleServicesAllowedServicePatternsModifiers({
+    this.addRequestHeader,
+  });
+
+  final AccessContextManagerServicePerimeterStatusVpcAccessibleServicesAllowedServicePatternsModifiersAddRequestHeader?
+  addRequestHeader;
+
+  Map<String, Object?> encode() => {
+    if (addRequestHeader != null)
+      'add_request_header': addRequestHeader!.encode(),
+  };
+}
+
+/// Typed helper for the `status.vpc_accessible_services.allowed_service_patterns.modifiers.add_request_header` block of
+/// `google_access_context_manager_service_perimeter` (derived from provider schema).
+@immutable
+final class AccessContextManagerServicePerimeterStatusVpcAccessibleServicesAllowedServicePatternsModifiersAddRequestHeader {
+  const AccessContextManagerServicePerimeterStatusVpcAccessibleServicesAllowedServicePatternsModifiersAddRequestHeader({
+    required this.key,
+    required this.value,
+  });
+
+  final TfArg<String> key;
+
+  final TfArg<String> value;
+
+  Map<String, Object?> encode() => {
+    'key': key.toTfJson(),
+    'value': value.toTfJson(),
   };
 }
 

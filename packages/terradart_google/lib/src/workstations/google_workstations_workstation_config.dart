@@ -145,6 +145,7 @@ final class WorkstationsWorkstationConfigHostGceInstance {
     this.disablePublicIpAddresses,
     this.disableSsh,
     this.enableNestedVirtualization,
+    this.instanceMetadata,
     this.machineType,
     this.poolSize,
     this.serviceAccount,
@@ -164,6 +165,8 @@ final class WorkstationsWorkstationConfigHostGceInstance {
   final TfArg<bool>? disableSsh;
 
   final TfArg<bool>? enableNestedVirtualization;
+
+  final TfArg<Map<String, String>>? instanceMetadata;
 
   final TfArg<String>? machineType;
 
@@ -196,6 +199,8 @@ final class WorkstationsWorkstationConfigHostGceInstance {
     if (disableSsh != null) 'disable_ssh': disableSsh!.toTfJson(),
     if (enableNestedVirtualization != null)
       'enable_nested_virtualization': enableNestedVirtualization!.toTfJson(),
+    if (instanceMetadata != null)
+      'instance_metadata': instanceMetadata!.toTfJson(),
     if (machineType != null) 'machine_type': machineType!.toTfJson(),
     if (poolSize != null) 'pool_size': poolSize!.toTfJson(),
     if (serviceAccount != null) 'service_account': serviceAccount!.toTfJson(),
