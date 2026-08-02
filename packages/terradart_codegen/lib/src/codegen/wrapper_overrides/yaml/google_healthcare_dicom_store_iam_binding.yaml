@@ -1,0 +1,17 @@
+outputDir: healthcare
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud Healthcare DICOM
+  /// store.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleHealthcareDicomStoreIamMember] for additive grants.
+
+paramOrder:
+  - dicom_store_id
+  - role
+  - members
+  - condition

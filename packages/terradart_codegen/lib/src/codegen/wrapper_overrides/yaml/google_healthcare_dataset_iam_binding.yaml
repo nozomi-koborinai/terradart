@@ -1,0 +1,17 @@
+outputDir: healthcare
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud Healthcare
+  /// dataset.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleHealthcareDatasetIamMember] for additive grants.
+
+paramOrder:
+  - dataset_id
+  - role
+  - members
+  - condition

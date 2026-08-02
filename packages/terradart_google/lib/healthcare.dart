@@ -10,12 +10,20 @@ export 'src/healthcare/google_healthcare_consent_store_iam_member.dart'
     show GoogleHealthcareConsentStoreIamMember;
 export 'src/healthcare/google_healthcare_dataset.dart'
     show GoogleHealthcareDataset;
+export 'src/healthcare/google_healthcare_dataset_iam_binding.dart'
+    show GoogleHealthcareDatasetIamBinding;
 export 'src/healthcare/google_healthcare_dataset_iam_member.dart'
     show GoogleHealthcareDatasetIamMember;
+export 'src/healthcare/google_healthcare_dataset_iam_policy.dart'
+    show GoogleHealthcareDatasetIamPolicy;
 export 'src/healthcare/google_healthcare_dicom_store.dart'
     show GoogleHealthcareDicomStore;
+export 'src/healthcare/google_healthcare_dicom_store_iam_binding.dart'
+    show GoogleHealthcareDicomStoreIamBinding;
 export 'src/healthcare/google_healthcare_dicom_store_iam_member.dart'
     show GoogleHealthcareDicomStoreIamMember;
+export 'src/healthcare/google_healthcare_dicom_store_iam_policy.dart'
+    show GoogleHealthcareDicomStoreIamPolicy;
 export 'src/healthcare/google_healthcare_fhir_store.dart'
     show
         GoogleHealthcareFhirStore,
@@ -24,8 +32,12 @@ export 'src/healthcare/google_healthcare_fhir_store.dart'
         HealthcareFhirStoreNotificationConfigs,
         HealthcareFhirStoreValidationConfig,
         HealthcareFhirStoreVersion;
+export 'src/healthcare/google_healthcare_fhir_store_iam_binding.dart'
+    show GoogleHealthcareFhirStoreIamBinding;
 export 'src/healthcare/google_healthcare_fhir_store_iam_member.dart'
     show GoogleHealthcareFhirStoreIamMember;
+export 'src/healthcare/google_healthcare_fhir_store_iam_policy.dart'
+    show GoogleHealthcareFhirStoreIamPolicy;
 export 'src/healthcare/google_healthcare_hl7_v2_store.dart'
     show
         GoogleHealthcareHl7V2Store,

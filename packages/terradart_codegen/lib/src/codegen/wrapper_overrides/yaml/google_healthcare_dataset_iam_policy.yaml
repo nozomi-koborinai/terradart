@@ -1,0 +1,14 @@
+outputDir: healthcare
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Cloud Healthcare dataset.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleHealthcareDatasetIamMember] for single-principal grants.
+
+paramOrder:
+  - dataset_id
+  - policy_data

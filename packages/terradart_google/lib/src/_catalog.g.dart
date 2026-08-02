@@ -12798,6 +12798,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_healthcare_dataset`.\n\nA Healthcare `Dataset` is a toplevel logical grouping of `dicomStores`,\n`fhirStores` and `hl7V2Stores`.',
   ),
   CatalogEntry(
+    tfType: 'google_healthcare_dataset_iam_binding',
+    className: 'GoogleHealthcareDatasetIamBinding',
+    barrel: 'healthcare',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_healthcare_dataset_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'datasetId',
+      'role',
+      'members',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_healthcare_dataset_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Healthcare\ndataset.\n\nReplaces the entire member list for that role. Prefer\n[GoogleHealthcareDatasetIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_healthcare_dataset_iam_member',
     className: 'GoogleHealthcareDatasetIamMember',
     barrel: 'healthcare',
@@ -12815,6 +12833,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_healthcare_dataset_iam_member`.',
   ),
   CatalogEntry(
+    tfType: 'google_healthcare_dataset_iam_policy',
+    className: 'GoogleHealthcareDatasetIamPolicy',
+    barrel: 'healthcare',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_healthcare_dataset_iam_policy`.',
+    constructorParams: <String>['localName', 'datasetId', 'policyData'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_healthcare_dataset_iam_policy`.\n\nAuthoritative IAM policy for a Cloud Healthcare dataset.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleHealthcareDatasetIamMember] for single-principal grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_healthcare_dicom_store',
     className: 'GoogleHealthcareDicomStore',
     barrel: 'healthcare',
@@ -12825,6 +12855,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_healthcare_dicom_store`.\n\nA DicomStore is a datastore inside a Healthcare dataset that conforms to the\nDICOM (https://www.dicomstandard.org/about/) standard for Healthcare\ninformation exchange',
+  ),
+  CatalogEntry(
+    tfType: 'google_healthcare_dicom_store_iam_binding',
+    className: 'GoogleHealthcareDicomStoreIamBinding',
+    barrel: 'healthcare',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_healthcare_dicom_store_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'dicomStoreId',
+      'role',
+      'members',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_healthcare_dicom_store_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Healthcare DICOM\nstore.\n\nReplaces the entire member list for that role. Prefer\n[GoogleHealthcareDicomStoreIamMember] for additive grants.',
   ),
   CatalogEntry(
     tfType: 'google_healthcare_dicom_store_iam_member',
@@ -12843,6 +12891,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_healthcare_dicom_store_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_healthcare_dicom_store_iam_policy',
+    className: 'GoogleHealthcareDicomStoreIamPolicy',
+    barrel: 'healthcare',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_healthcare_dicom_store_iam_policy`.',
+    constructorParams: <String>['localName', 'dicomStoreId', 'policyData'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_healthcare_dicom_store_iam_policy`.\n\nAuthoritative IAM policy for a Cloud Healthcare DICOM store.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleHealthcareDicomStoreIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_healthcare_fhir_store',
@@ -12873,6 +12933,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_healthcare_fhir_store`.\n\nA FhirStore is a datastore inside a Healthcare dataset that conforms to the\nFHIR (https://www.hl7.org/fhir/STU3/) standard for Healthcare information\nexchange\n\nFHIR store inside a [GoogleHealthcareDataset] — stores FHIR resources\n(DSTU2 / STU3 / R4). Empty stores are free; you are billed for stored\ndata and API operations.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: store id within the dataset (**ForceNew** — renaming recreates\n  the store and drops data).\n- [dataset]: parent dataset id (`projects/…/locations/…/datasets/…`).\n- [version]: FHIR specification version ([HealthcareFhirStoreVersion]).',
   ),
   CatalogEntry(
+    tfType: 'google_healthcare_fhir_store_iam_binding',
+    className: 'GoogleHealthcareFhirStoreIamBinding',
+    barrel: 'healthcare',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_healthcare_fhir_store_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'fhirStoreId',
+      'role',
+      'members',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_healthcare_fhir_store_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Healthcare FHIR\nstore.\n\nReplaces the entire member list for that role. Prefer\n[GoogleHealthcareFhirStoreIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_healthcare_fhir_store_iam_member',
     className: 'GoogleHealthcareFhirStoreIamMember',
     barrel: 'healthcare',
@@ -12883,6 +12961,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_healthcare_fhir_store_iam_member`.\n\nAdditive IAM member on a [GoogleHealthcareFhirStore].\n\nPrefer [GoogleHealthcareFhirStoreIamMember] over binding/policy adjuncts —\nthose overwrite grants made outside Terraform.',
+  ),
+  CatalogEntry(
+    tfType: 'google_healthcare_fhir_store_iam_policy',
+    className: 'GoogleHealthcareFhirStoreIamPolicy',
+    barrel: 'healthcare',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_healthcare_fhir_store_iam_policy`.',
+    constructorParams: <String>['localName', 'fhirStoreId', 'policyData'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_healthcare_fhir_store_iam_policy`.\n\nAuthoritative IAM policy for a Cloud Healthcare FHIR store.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleHealthcareFhirStoreIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_healthcare_hl7_v2_store',
