@@ -857,6 +857,10 @@ files:
     upstream: mmv1/products/cloudtasks/Queue.yaml
   google_cloud_tasks_queue_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloud_tasks_queue_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloud_tasks_queue_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_cloudfunctions2_function:
     upstream: mmv1/products/cloudfunctions2/Function.yaml
   google_cloudfunctions2_function_iam_member:
