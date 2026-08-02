@@ -1,0 +1,19 @@
+outputDir: artifact_registry
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on an Artifact Registry
+  /// repository.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleArtifactRegistryRepositoryIamMember] for additive grants.
+
+paramOrder:
+  - repository
+  - role
+  - members
+  - condition
+  - location
+  - project

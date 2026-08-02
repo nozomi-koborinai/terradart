@@ -597,6 +597,8 @@ google_observability_trace_scope: safe  # apply-verified safe (existing example)
 google_artifact_registry_project_config: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Artifact Registry 149C-F9EC-3994 keyword=platform — 0 matches); billing-behavior: project-level platform-logs policy PATCH only; log ingestion billed separately via Cloud Logging when enabled
 google_artifact_registry_repository: safe  # gcp-cost: SKU 8502-299A-ABAF Artifact Registry Storage $0.10/GiBy.mo above 0.5 GiB free tier; billing-behavior: usage-metered storage; empty repo in quickstart ≈ $0; destroy stops storage charges
 google_artifact_registry_repository_iam_member: safe  # billing-behavior: IAM binding adjunct on repository; no standalone Cloud Billing SKU
+google_artifact_registry_repository_iam_binding: safe  # billing-behavior: IAM binding only
+google_artifact_registry_repository_iam_policy: safe  # billing-behavior: IAM policy only
 google_artifact_registry_rule: safe  # gcp-cost: no Cloud Billing Catalog SKU for repository rule config (Artifact Registry 149C-F9EC-3994 lists storage/egress SKUs only — no rule SKU); billing-behavior: allow/deny policy metadata — no existence/hourly charge
 google_parameter_manager_parameter: safe  # apply-verified safe (existing example)
 google_parameter_manager_regional_parameter: safe  # apply-verified safe (existing example)
