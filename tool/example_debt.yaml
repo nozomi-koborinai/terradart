@@ -479,3 +479,10 @@ GoogleCloudRunV2JobIamBinding: iam-adjunct-debt: sibling GoogleCloudRunV2JobIamM
 GoogleCloudRunV2JobIamPolicy: iam-adjunct-debt: sibling GoogleCloudRunV2JobIamMember already in cloud_run_quickstart; authoritative policy not needed in smoke
 GoogleCloudRunV2WorkerPoolIamBinding: iam-adjunct-debt: sibling GoogleCloudRunV2WorkerPoolIamMember already in cloud_run_quickstart; authoritative binding not needed in smoke
 GoogleCloudRunV2WorkerPoolIamPolicy: iam-adjunct-debt: sibling GoogleCloudRunV2WorkerPoolIamMember already in cloud_run_quickstart; authoritative policy not needed in smoke
+
+# Cloud KMS IAM binding/policy — sibling *IamMember already in
+# kms_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
+GoogleKmsKeyRingIamBinding: iam-adjunct-debt: sibling GoogleKmsKeyRingIamMember already in kms_quickstart; authoritative binding not needed in smoke
+GoogleKmsKeyRingIamPolicy: iam-adjunct-debt: sibling GoogleKmsKeyRingIamMember already in kms_quickstart; authoritative policy not needed in smoke
+GoogleKmsCryptoKeyIamBinding: iam-adjunct-debt: sibling GoogleKmsCryptoKeyIamMember already in kms_quickstart; authoritative binding not needed in smoke
+GoogleKmsCryptoKeyIamPolicy: iam-adjunct-debt: sibling GoogleKmsCryptoKeyIamMember already in kms_quickstart; authoritative policy not needed in smoke

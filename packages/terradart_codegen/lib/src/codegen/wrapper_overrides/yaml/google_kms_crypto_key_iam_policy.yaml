@@ -1,0 +1,14 @@
+outputDir: kms
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Cloud KMS crypto key.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleKmsCryptoKeyIamMember] for single-principal grants.
+
+paramOrder:
+  - crypto_key_id
+  - policy_data

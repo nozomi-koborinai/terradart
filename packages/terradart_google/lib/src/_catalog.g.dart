@@ -13313,6 +13313,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_kms_crypto_key`.\n\nA `CryptoKey` represents a logical key that can be used for cryptographic\noperations.\n\n~> **Note:** CryptoKeys cannot be deleted from Google Cloud Platform.\nDestroying a Terraform-managed CryptoKey will remove it from state and\ndelete all CryptoKeyVersions, rendering the key unusable, but *will not\ndelete the resource from the project.* When Terraform destroys these keys,\nany data previously encrypted with these keys will be irrecoverable. For\nthis reason, it is strongly recommended that you add\n[lifecycle](https://developer.hashicorp.com/terraform/language/meta-arguments/lifecycle)\nhooks to the resource to prevent accidental destruction.\n\n\nExample:\n```dart\nfinal ring = GoogleKmsKeyRing(\n  localName: \'main\',\n  name: TfArg.literal(\'main-ring\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n);\n\nfinal cryptoKey = GoogleKmsCryptoKey(\n  localName: \'payments\',\n  name: TfArg.literal(\'payments\'),\n  keyRing: TfArg.ref(ring.id),\n  purpose: TfArg.literal(KmsKeyPurpose.encryptDecrypt),\n  // Must be > 86400s (1 day). `TfArg.duration` converts the\n  // Duration into the `"{seconds}s"` form Terraform expects.\n  rotationPeriod: TfArg.duration(const Duration(days: 90)),\n  versionTemplate: const KmsCryptoKeyVersionTemplate(\n    algorithm: \'GOOGLE_SYMMETRIC_ENCRYPTION\',\n    protectionLevel: KmsProtectionLevel.software,\n  ),\n);\n```\n\n**Note:** CryptoKeys cannot be deleted from GCP. Destroying a\nTerraform-managed CryptoKey removes it from state and renders all\nCryptoKeyVersions unusable but does not delete the resource from the\nproject. Consider attaching `lifecycle { prevent_destroy = true }` for\nproduction keys.',
   ),
   CatalogEntry(
+    tfType: 'google_kms_crypto_key_iam_binding',
+    className: 'GoogleKmsCryptoKeyIamBinding',
+    barrel: 'kms',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_kms_crypto_key_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'cryptoKeyId',
+      'role',
+      'members',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_kms_crypto_key_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud KMS crypto key.\n\nReplaces the entire member list for that role. Prefer\n[GoogleKmsCryptoKeyIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_kms_crypto_key_iam_member',
     className: 'GoogleKmsCryptoKeyIamMember',
     barrel: 'kms',
@@ -13328,6 +13346,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_kms_crypto_key_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_kms_crypto_key_iam_policy',
+    className: 'GoogleKmsCryptoKeyIamPolicy',
+    barrel: 'kms',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_kms_crypto_key_iam_policy`.',
+    constructorParams: <String>['localName', 'cryptoKeyId', 'policyData'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_kms_crypto_key_iam_policy`.\n\nAuthoritative IAM policy for a Cloud KMS crypto key.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleKmsCryptoKeyIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_kms_crypto_key_version',
@@ -13379,6 +13409,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_kms_key_ring`.\n\nA `KeyRing` is a toplevel logical grouping of `CryptoKeys`.\n\n~> **Note:** KeyRings cannot be deleted from Google Cloud Platform.\nDestroying a Terraform-managed KeyRing will remove it from state but *will\nnot delete the resource from the project.*\n\n\nExample:\n```dart\nfinal ring = GoogleKmsKeyRing(\n  localName: \'main\',\n  name: TfArg.literal(\'main-ring\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n);\n```\n\n**Note:** KeyRings cannot be deleted from GCP. Destroying a\nTerraform-managed KeyRing removes it from state but does not delete the\nresource from the project (per GCP policy).',
   ),
   CatalogEntry(
+    tfType: 'google_kms_key_ring_iam_binding',
+    className: 'GoogleKmsKeyRingIamBinding',
+    barrel: 'kms',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_kms_key_ring_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'keyRingId',
+      'role',
+      'members',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_kms_key_ring_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud KMS key ring.\n\nReplaces the entire member list for that role. Prefer\n[GoogleKmsKeyRingIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_kms_key_ring_iam_member',
     className: 'GoogleKmsKeyRingIamMember',
     barrel: 'kms',
@@ -13394,6 +13442,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_kms_key_ring_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_kms_key_ring_iam_policy',
+    className: 'GoogleKmsKeyRingIamPolicy',
+    barrel: 'kms',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_kms_key_ring_iam_policy`.',
+    constructorParams: <String>['localName', 'keyRingId', 'policyData'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_kms_key_ring_iam_policy`.\n\nAuthoritative IAM policy for a Cloud KMS key ring.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleKmsKeyRingIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_kms_project_autokey_config',
