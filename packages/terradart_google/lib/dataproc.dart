@@ -120,8 +120,12 @@ export 'src/dataproc/google_dataproc_metastore_federation.dart'
         DataprocMetastoreFederationBackendType,
         DataprocMetastoreFederationDeletionPolicy,
         GoogleDataprocMetastoreFederation;
+export 'src/dataproc/google_dataproc_metastore_federation_iam_binding.dart'
+    show GoogleDataprocMetastoreFederationIamBinding;
 export 'src/dataproc/google_dataproc_metastore_federation_iam_member.dart'
     show GoogleDataprocMetastoreFederationIamMember;
+export 'src/dataproc/google_dataproc_metastore_federation_iam_policy.dart'
+    show GoogleDataprocMetastoreFederationIamPolicy;
 export 'src/dataproc/google_dataproc_metastore_service.dart'
     show
         DataprocMetastoreServiceDatabaseType,
@@ -131,8 +135,12 @@ export 'src/dataproc/google_dataproc_metastore_service.dart'
         DataprocMetastoreServiceReleaseChannel,
         DataprocMetastoreServiceTier,
         GoogleDataprocMetastoreService;
+export 'src/dataproc/google_dataproc_metastore_service_iam_binding.dart'
+    show GoogleDataprocMetastoreServiceIamBinding;
 export 'src/dataproc/google_dataproc_metastore_service_iam_member.dart'
     show GoogleDataprocMetastoreServiceIamMember;
+export 'src/dataproc/google_dataproc_metastore_service_iam_policy.dart'
+    show GoogleDataprocMetastoreServiceIamPolicy;
 export 'src/dataproc/google_dataproc_session_template.dart'
     show
         DataprocSessionTemplateEnvironmentConfig,

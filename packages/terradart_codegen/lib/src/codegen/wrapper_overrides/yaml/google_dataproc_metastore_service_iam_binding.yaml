@@ -1,0 +1,19 @@
+outputDir: dataproc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Dataproc Metastore
+  /// service.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleDataprocMetastoreServiceIamMember] for additive grants.
+
+paramOrder:
+  - service_id
+  - role
+  - members
+  - location
+  - condition
+  - project

@@ -394,6 +394,10 @@ files:
     upstream: mmv1/products/metastore/Federation.yaml
   google_dataproc_metastore_federation_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataproc_metastore_federation_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataproc_metastore_federation_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataproc_gdc_service_instance:
     upstream: mmv1/products/dataprocgdc/ServiceInstance.yaml
   google_dataproc_session_template:
@@ -403,6 +407,10 @@ files:
   google_dataproc_metastore_service:
     upstream: mmv1/products/metastore/Service.yaml
   google_dataproc_metastore_service_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataproc_metastore_service_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataproc_metastore_service_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dialogflow_agent:
     upstream: mmv1/products/dialogflow/Agent.yaml

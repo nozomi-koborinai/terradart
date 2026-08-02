@@ -1,0 +1,16 @@
+outputDir: dataproc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Dataproc Metastore service.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleDataprocMetastoreServiceIamMember] for single-principal grants.
+
+paramOrder:
+  - service_id
+  - policy_data
+  - location
+  - project

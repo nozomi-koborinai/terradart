@@ -9725,6 +9725,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_dataproc_metastore_federation`.\n\nA managed metastore federation.\n\nDataproc Metastore federation — query multiple backend metastores as one.\n\nProvide at least one [backendMetastores] entry. Backend [name] is the\nrelative resource name of a [GoogleDataprocMetastoreService]\n(`projects/…/services/…`).',
   ),
   CatalogEntry(
+    tfType: 'google_dataproc_metastore_federation_iam_binding',
+    className: 'GoogleDataprocMetastoreFederationIamBinding',
+    barrel: 'dataproc',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_dataproc_metastore_federation_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'federationId',
+      'role',
+      'members',
+      'location',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataproc_metastore_federation_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataproc Metastore\nfederation.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDataprocMetastoreFederationIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_dataproc_metastore_federation_iam_member',
     className: 'GoogleDataprocMetastoreFederationIamMember',
     barrel: 'dataproc',
@@ -9744,6 +9765,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataproc_metastore_federation_iam_member`.\n\nAdds a single IAM `role` → `member` binding on a Dataproc Metastore federation.\n\nSet [federationId] to the federation id (path segment).',
+  ),
+  CatalogEntry(
+    tfType: 'google_dataproc_metastore_federation_iam_policy',
+    className: 'GoogleDataprocMetastoreFederationIamPolicy',
+    barrel: 'dataproc',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_dataproc_metastore_federation_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'federationId',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataproc_metastore_federation_iam_policy`.\n\nAuthoritative IAM policy for a Dataproc Metastore federation.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleDataprocMetastoreFederationIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_dataproc_metastore_service',
@@ -9779,6 +9819,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_dataproc_metastore_service`.\n\nA managed metastore service that serves metadata queries.\n\nDataproc Metastore service — managed Apache Hive metastore.\n\nEnable `metastore.googleapis.com` before apply. Prefer [tier]\n`DEVELOPER` for smoke stacks (`ENTERPRISE` and scaling configs bill more).\nSet [hiveMetastoreConfig] with a Hive schema [version] (e.g. `3.1.2`).',
   ),
   CatalogEntry(
+    tfType: 'google_dataproc_metastore_service_iam_binding',
+    className: 'GoogleDataprocMetastoreServiceIamBinding',
+    barrel: 'dataproc',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_dataproc_metastore_service_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'serviceId',
+      'role',
+      'members',
+      'location',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataproc_metastore_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataproc Metastore\nservice.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDataprocMetastoreServiceIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_dataproc_metastore_service_iam_member',
     className: 'GoogleDataprocMetastoreServiceIamMember',
     barrel: 'dataproc',
@@ -9798,6 +9859,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataproc_metastore_service_iam_member`.\n\nAdds a single IAM `role` → `member` binding on a Dataproc Metastore service.\n\nSet [serviceId] to the metastore service id (path segment), not the full\nresource name.',
+  ),
+  CatalogEntry(
+    tfType: 'google_dataproc_metastore_service_iam_policy',
+    className: 'GoogleDataprocMetastoreServiceIamPolicy',
+    barrel: 'dataproc',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_dataproc_metastore_service_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'serviceId',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataproc_metastore_service_iam_policy`.\n\nAuthoritative IAM policy for a Dataproc Metastore service.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleDataprocMetastoreServiceIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_dataproc_session_template',
