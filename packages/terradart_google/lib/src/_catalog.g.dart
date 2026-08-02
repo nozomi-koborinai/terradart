@@ -14985,6 +14985,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_logging_log_view`.\n\nDescribes a view over log entries in a bucket.\n\nA filtered view into a log bucket. Pass `bucket` as the bucket id\n(same value as [GoogleLoggingProjectBucketConfig.bucketId]) and wire\nIAM via [GoogleLoggingLogViewIamMember].\n\nExample:\n```dart\nfinal auditView = GoogleLoggingLogView(\n  localName: \'audit_view\',\n  bucket: TfArg.ref(auditBucket.bucketIdRef),\n  name: TfArg.literal(\'audit-only\'),\n  filter: TfArg.literal(\'logName:"cloudaudit.googleapis.com"\'),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_logging_log_view_iam_binding',
+    className: 'GoogleLoggingLogViewIamBinding',
+    barrel: 'logging',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_logging_log_view_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'bucket',
+      'location',
+      'name',
+      'parent',
+      'role',
+      'members',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_logging_log_view_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Logging log\nview.\n\nReplaces the entire member list for that role. Prefer\n[GoogleLoggingLogViewIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_logging_log_view_iam_member',
     className: 'GoogleLoggingLogViewIamMember',
     barrel: 'logging',
@@ -15003,6 +15024,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_logging_log_view_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_logging_log_view_iam_policy',
+    className: 'GoogleLoggingLogViewIamPolicy',
+    barrel: 'logging',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_logging_log_view_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'bucket',
+      'location',
+      'name',
+      'parent',
+      'policyData',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_logging_log_view_iam_policy`.\n\nAuthoritative IAM policy for a Cloud Logging log view.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleLoggingLogViewIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_logging_metric',
