@@ -18309,6 +18309,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_tags_tag_key`.\n\nA TagKey, used to group a set of TagValues.',
   ),
   CatalogEntry(
+    tfType: 'google_tags_tag_key_iam_binding',
+    className: 'GoogleTagsTagKeyIamBinding',
+    barrel: 'tags',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_tags_tag_key_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'tagKey',
+      'role',
+      'members',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_tags_tag_key_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Resource Manager\ntag key.\n\nReplaces the entire member list for that role. Prefer\n[GoogleTagsTagKeyIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_tags_tag_key_iam_member',
     className: 'GoogleTagsTagKeyIamMember',
     barrel: 'tags',
@@ -18324,6 +18342,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_tags_tag_key_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_tags_tag_key_iam_policy',
+    className: 'GoogleTagsTagKeyIamPolicy',
+    barrel: 'tags',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_tags_tag_key_iam_policy`.',
+    constructorParams: <String>['localName', 'tagKey', 'policyData'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_tags_tag_key_iam_policy`.\n\nAuthoritative IAM policy for a Resource Manager tag key.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleTagsTagKeyIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_tags_tag_value',
@@ -18344,6 +18374,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_tags_tag_value`.\n\nA TagValue is a child of a particular TagKey. TagValues are used to group\ncloud resources for the purpose of controlling them using policies.',
   ),
   CatalogEntry(
+    tfType: 'google_tags_tag_value_iam_binding',
+    className: 'GoogleTagsTagValueIamBinding',
+    barrel: 'tags',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_tags_tag_value_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'tagValue',
+      'role',
+      'members',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_tags_tag_value_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Resource Manager\ntag value.\n\nReplaces the entire member list for that role. Prefer\n[GoogleTagsTagValueIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_tags_tag_value_iam_member',
     className: 'GoogleTagsTagValueIamMember',
     barrel: 'tags',
@@ -18359,6 +18407,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_tags_tag_value_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_tags_tag_value_iam_policy',
+    className: 'GoogleTagsTagValueIamPolicy',
+    barrel: 'tags',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_tags_tag_value_iam_policy`.',
+    constructorParams: <String>['localName', 'tagValue', 'policyData'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_tags_tag_value_iam_policy`.\n\nAuthoritative IAM policy for a Resource Manager tag value.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleTagsTagValueIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_vector_search_collection',

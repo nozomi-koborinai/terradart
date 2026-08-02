@@ -7,8 +7,16 @@ library;
 export 'src/tags/google_tags_tag_binding.dart' show GoogleTagsTagBinding;
 export 'src/tags/google_tags_tag_key.dart'
     show GoogleTagsTagKey, TagsTagKeyPurpose;
+export 'src/tags/google_tags_tag_key_iam_binding.dart'
+    show GoogleTagsTagKeyIamBinding;
 export 'src/tags/google_tags_tag_key_iam_member.dart'
     show GoogleTagsTagKeyIamMember;
+export 'src/tags/google_tags_tag_key_iam_policy.dart'
+    show GoogleTagsTagKeyIamPolicy;
 export 'src/tags/google_tags_tag_value.dart' show GoogleTagsTagValue;
+export 'src/tags/google_tags_tag_value_iam_binding.dart'
+    show GoogleTagsTagValueIamBinding;
 export 'src/tags/google_tags_tag_value_iam_member.dart'
     show GoogleTagsTagValueIamMember;
+export 'src/tags/google_tags_tag_value_iam_policy.dart'
+    show GoogleTagsTagValueIamPolicy;

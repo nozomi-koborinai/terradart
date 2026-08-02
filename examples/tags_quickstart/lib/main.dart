@@ -4,13 +4,14 @@
 /// - a project-scoped tag key (`terradart-env`),
 /// - a tag value (`production`) under that key,
 /// - a tag binding attaching the value to the project itself,
-/// - a `roles/resourcemanager.tagViewer` grant on the key and a
-///   `roles/resourcemanager.tagUser` grant on the value, both for an in-stack
-///   service account,
+/// - tag-key / tag-value IAM member + binding + policy for an in-stack
+///   service account (serialized so destroy cannot race SetIamPolicy),
 ///
 /// and exports the tag key's short name as a typed Dart constant via
 /// `Stack.addExport`. Run `bin/infra.dart` to synth into `tf-out/`.
 library;
+
+import 'dart:convert';
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/data.dart';
@@ -18,8 +19,22 @@ import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/tags.dart';
 
+String _iamPolicyDataJson({
+  required String role,
+  required String member,
+}) {
+  return jsonEncode({
+    'bindings': [
+      {
+        'role': role,
+        'members': [member],
+      },
+    ],
+  });
+}
+
 /// Tags Stack: a project-scoped tag key + value, a binding on the project, and
-/// tag-level IAM members.
+/// tag-level IAM member / binding / policy adjuncts.
 final class TagsStack extends Stack {
   TagsStack({required String projectId})
       : super(
@@ -75,8 +90,8 @@ final class TagsStack extends Stack {
       ),
     );
 
-    // tagViewer is grantable at the tag-key resource level.
-    add(
+    // Tag-key IAM: member → binding → policy (ordered teardown).
+    final envViewer = add(
       GoogleTagsTagKeyIamMember(
         localName: 'env_viewer',
         tagKey: TfArg.ref(envKey.id),
@@ -89,8 +104,39 @@ final class TagsStack extends Stack {
       ),
     );
 
-    // tagUser is grantable at the tag-value resource level.
+    final envViewerBinding = add(
+      GoogleTagsTagKeyIamBinding(
+        localName: 'env_viewer_binding',
+        tagKey: TfArg.ref(envKey.id),
+        role: TfArg.literal('roles/resourcemanager.tagViewer'),
+        members: TfArg.literal([tagger.iamMember.interpolation]),
+        dependsOn: [
+          ResourceDependency(envKey),
+          ResourceDependency(envViewer),
+        ],
+      ),
+    );
+
     add(
+      GoogleTagsTagKeyIamPolicy(
+        localName: 'env_viewer_policy',
+        tagKey: TfArg.ref(envKey.id),
+        policyData: TfArg.literal(
+          _iamPolicyDataJson(
+            role: 'roles/resourcemanager.tagViewer',
+            member:
+                'serviceAccount:terradart-tagger@$projectId.iam.gserviceaccount.com',
+          ),
+        ),
+        dependsOn: [
+          ResourceDependency(envKey),
+          ResourceDependency(envViewerBinding),
+        ],
+      ),
+    );
+
+    // Tag-value IAM: member → binding → policy (ordered teardown).
+    final prodUser = add(
       GoogleTagsTagValueIamMember(
         localName: 'prod_user',
         tagValue: TfArg.ref(prodValue.id),
@@ -99,6 +145,37 @@ final class TagsStack extends Stack {
         dependsOn: [
           ResourceDependency(prodValue),
           ResourceDependency(tagger),
+        ],
+      ),
+    );
+
+    final prodUserBinding = add(
+      GoogleTagsTagValueIamBinding(
+        localName: 'prod_user_binding',
+        tagValue: TfArg.ref(prodValue.id),
+        role: TfArg.literal('roles/resourcemanager.tagUser'),
+        members: TfArg.literal([tagger.iamMember.interpolation]),
+        dependsOn: [
+          ResourceDependency(prodValue),
+          ResourceDependency(prodUser),
+        ],
+      ),
+    );
+
+    add(
+      GoogleTagsTagValueIamPolicy(
+        localName: 'prod_user_policy',
+        tagValue: TfArg.ref(prodValue.id),
+        policyData: TfArg.literal(
+          _iamPolicyDataJson(
+            role: 'roles/resourcemanager.tagUser',
+            member:
+                'serviceAccount:terradart-tagger@$projectId.iam.gserviceaccount.com',
+          ),
+        ),
+        dependsOn: [
+          ResourceDependency(prodValue),
+          ResourceDependency(prodUserBinding),
         ],
       ),
     );
