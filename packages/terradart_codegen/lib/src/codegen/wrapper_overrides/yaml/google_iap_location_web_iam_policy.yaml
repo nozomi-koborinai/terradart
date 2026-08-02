@@ -1,0 +1,16 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for IAP **web resources** at a regional
+  /// location.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleIapLocationWebIamMember] for single-principal grants.
+
+paramOrder:
+  - location
+  - policy_data
+  - project

@@ -6,6 +6,8 @@
 ///   default internet gateway,
 /// - a Cloud Router plus a PREFIX Named Set (CEL CIDR collection for route
 ///   policies),
+/// - global + regional network firewall policies with authoritative IAM
+///   binding/policy adjuncts,
 /// - a project-wide `google_compute_project_metadata_item` (an ops-owner tag).
 ///
 /// No VMs — the stack creates and destroys quickly in a single project.
@@ -14,13 +16,30 @@
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
+import 'dart:convert';
+
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
+import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 
+String _iamPolicyDataJson({
+  required String role,
+  required String member,
+}) {
+  return jsonEncode({
+    'bindings': [
+      {
+        'role': role,
+        'members': [member],
+      },
+    ],
+  });
+}
+
 /// Compute networking-extras Stack: a VPC, static route, Cloud Router Named
-/// Set, and a project metadata item.
+/// Set, network firewall IAM adjuncts, and a project metadata item.
 final class NetworkRouteStack extends Stack {
   NetworkRouteStack({required String projectId})
       : super(
@@ -33,6 +52,23 @@ final class NetworkRouteStack extends Stack {
         localName: 'api_compute',
         service: TfArg.literal('compute.googleapis.com'),
         disableOnDestroy: TfArg.literal(false),
+      ),
+    );
+
+    final apiIam = add(
+      GoogleProjectService(
+        localName: 'api_iam',
+        service: TfArg.literal('iam.googleapis.com'),
+        disableOnDestroy: TfArg.literal(false),
+      ),
+    );
+
+    final edgeViewer = add(
+      GoogleServiceAccount(
+        localName: 'edge_viewer',
+        accountId: TfArg.literal('route-edge-viewer'),
+        displayName: TfArg.literal('Network firewall policy viewer (demo)'),
+        dependsOn: [ResourceDependency(apiIam)],
       ),
     );
 
@@ -101,12 +137,87 @@ final class NetworkRouteStack extends Stack {
 
     // A global network firewall policy (the modern, policy-based replacement
     // for standalone VPC firewall rules; rules/associations attach separately).
-    add(
+    final edgePolicy = add(
       GoogleComputeNetworkFirewallPolicy(
         localName: 'edge_policy',
         name: TfArg.literal('terradart-edge-policy'),
         description: TfArg.literal('Global network firewall policy (demo)'),
         dependsOn: [ResourceDependency(apiCompute)],
+      ),
+    );
+
+    final edgeBinding = add(
+      GoogleComputeNetworkFirewallPolicyIamBinding(
+        localName: 'edge_policy_viewer',
+        name: TfArg.ref(edgePolicy.nameRef),
+        role: TfArg.literal('roles/compute.viewer'),
+        members: TfArg.literal([edgeViewer.iamMember.interpolation]),
+        dependsOn: [
+          ResourceDependency(edgePolicy),
+          ResourceDependency(edgeViewer),
+        ],
+      ),
+    );
+
+    add(
+      GoogleComputeNetworkFirewallPolicyIamPolicy(
+        localName: 'edge_policy_policy',
+        name: TfArg.ref(edgePolicy.nameRef),
+        policyData: TfArg.literal(
+          _iamPolicyDataJson(
+            role: 'roles/compute.viewer',
+            member:
+                'serviceAccount:route-edge-viewer@$projectId.iam.gserviceaccount.com',
+          ),
+        ),
+        dependsOn: [
+          ResourceDependency(edgePolicy),
+          ResourceDependency(edgeBinding),
+        ],
+      ),
+    );
+
+    final regionalEdgePolicy = add(
+      GoogleComputeRegionNetworkFirewallPolicy(
+        localName: 'regional_edge_policy',
+        name: TfArg.literal('terradart-regional-edge-policy'),
+        region: TfArg.literal('us-central1'),
+        description:
+            TfArg.literal('Regional network firewall policy (IAM demo)'),
+        dependsOn: [ResourceDependency(apiCompute)],
+      ),
+    );
+
+    final regionalEdgeBinding = add(
+      GoogleComputeRegionNetworkFirewallPolicyIamBinding(
+        localName: 'regional_edge_policy_viewer',
+        name: TfArg.ref(regionalEdgePolicy.nameRef),
+        region: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/compute.viewer'),
+        members: TfArg.literal([edgeViewer.iamMember.interpolation]),
+        dependsOn: [
+          ResourceDependency(regionalEdgePolicy),
+          ResourceDependency(edgeViewer),
+        ],
+      ),
+    );
+
+    add(
+      GoogleComputeRegionNetworkFirewallPolicyIamPolicy(
+        localName: 'regional_edge_policy_policy',
+        name: TfArg.ref(regionalEdgePolicy.nameRef),
+        region: TfArg.literal('us-central1'),
+        policyData: TfArg.literal(
+          _iamPolicyDataJson(
+            role: 'roles/compute.viewer',
+            member:
+                'serviceAccount:route-edge-viewer@$projectId.iam.gserviceaccount.com',
+          ),
+        ),
+        dependsOn: [
+          ResourceDependency(regionalEdgePolicy),
+          ResourceDependency(regionalEdgeBinding),
+        ],
       ),
     );
 

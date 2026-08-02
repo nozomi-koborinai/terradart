@@ -287,8 +287,12 @@ export 'src/compute/google_compute_network_endpoint_group.dart'
     show GoogleComputeNetworkEndpointGroup, NetworkEndpointGroupType;
 export 'src/compute/google_compute_network_firewall_policy.dart'
     show GoogleComputeNetworkFirewallPolicy;
+export 'src/compute/google_compute_network_firewall_policy_iam_binding.dart'
+    show GoogleComputeNetworkFirewallPolicyIamBinding;
 export 'src/compute/google_compute_network_firewall_policy_iam_member.dart'
     show GoogleComputeNetworkFirewallPolicyIamMember;
+export 'src/compute/google_compute_network_firewall_policy_iam_policy.dart'
+    show GoogleComputeNetworkFirewallPolicyIamPolicy;
 export 'src/compute/google_compute_network_peering.dart'
     show
         ComputeNetworkPeeringStackType,
@@ -466,8 +470,12 @@ export 'src/compute/google_compute_region_network_firewall_policy.dart'
     show
         ComputeRegionNetworkFirewallPolicyPolicyType,
         GoogleComputeRegionNetworkFirewallPolicy;
+export 'src/compute/google_compute_region_network_firewall_policy_iam_binding.dart'
+    show GoogleComputeRegionNetworkFirewallPolicyIamBinding;
 export 'src/compute/google_compute_region_network_firewall_policy_iam_member.dart'
     show GoogleComputeRegionNetworkFirewallPolicyIamMember;
+export 'src/compute/google_compute_region_network_firewall_policy_iam_policy.dart'
+    show GoogleComputeRegionNetworkFirewallPolicyIamPolicy;
 export 'src/compute/google_compute_region_network_firewall_policy_rule.dart'
     show
         ComputeRegionNetworkFirewallPolicyRuleDirection,

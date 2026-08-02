@@ -230,6 +230,10 @@ files:
     upstream: mmv1/products/compute/NetworkFirewallPolicy.yaml
   google_compute_network_firewall_policy_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_network_firewall_policy_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_network_firewall_policy_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_compute_node_group:
     upstream: mmv1/products/compute/NodeGroup.yaml
   google_compute_node_template:
@@ -238,6 +242,10 @@ files:
     upstream: mmv1/products/compute/RegionNetworkFirewallPolicy.yaml
   google_compute_region_network_firewall_policy_rule:
     upstream: mmv1/products/compute/RegionNetworkFirewallPolicyRule.yaml
+  google_compute_region_network_firewall_policy_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_region_network_firewall_policy_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_compute_region_network_firewall_policy_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_compute_region_commitment:
@@ -996,6 +1004,10 @@ files:
   google_iap_agent_registry_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_iap_location_web_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_location_web_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_location_web_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_iap_tunnel_dest_group:
     upstream: mmv1/products/iap/TunnelDestGroup.yaml
