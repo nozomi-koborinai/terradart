@@ -1,0 +1,14 @@
+outputDir: service_directory
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Service Directory service.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleServiceDirectoryServiceIamMember] for single-principal grants.
+
+paramOrder:
+  - name
+  - policy_data

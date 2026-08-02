@@ -17634,6 +17634,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_service_directory_namespace`.\n\nA container for `services`. Namespaces allow administrators to group\nservices together and define permissions for a collection of services.',
   ),
   CatalogEntry(
+    tfType: 'google_service_directory_namespace_iam_binding',
+    className: 'GoogleServiceDirectoryNamespaceIamBinding',
+    barrel: 'service_directory',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_service_directory_namespace_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'members',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_service_directory_namespace_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Service Directory\nnamespace.\n\nReplaces the entire member list for that role. Prefer\n[GoogleServiceDirectoryNamespaceIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_service_directory_namespace_iam_member',
     className: 'GoogleServiceDirectoryNamespaceIamMember',
     barrel: 'service_directory',
@@ -17651,6 +17670,19 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_service_directory_namespace_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_service_directory_namespace_iam_policy',
+    className: 'GoogleServiceDirectoryNamespaceIamPolicy',
+    barrel: 'service_directory',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_service_directory_namespace_iam_policy`.',
+    constructorParams: <String>['localName', 'name', 'policyData'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_service_directory_namespace_iam_policy`.\n\nAuthoritative IAM policy for a Service Directory namespace.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleServiceDirectoryNamespaceIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_service_directory_service',
@@ -17671,6 +17703,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_service_directory_service`.\n\nAn individual service. A service contains a name and optional metadata.',
   ),
   CatalogEntry(
+    tfType: 'google_service_directory_service_iam_binding',
+    className: 'GoogleServiceDirectoryServiceIamBinding',
+    barrel: 'service_directory',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_service_directory_service_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'members',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_service_directory_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Service Directory\nservice.\n\nReplaces the entire member list for that role. Prefer\n[GoogleServiceDirectoryServiceIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_service_directory_service_iam_member',
     className: 'GoogleServiceDirectoryServiceIamMember',
     barrel: 'service_directory',
@@ -17688,6 +17739,19 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_service_directory_service_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_service_directory_service_iam_policy',
+    className: 'GoogleServiceDirectoryServiceIamPolicy',
+    barrel: 'service_directory',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_service_directory_service_iam_policy`.',
+    constructorParams: <String>['localName', 'name', 'policyData'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_service_directory_service_iam_policy`.\n\nAuthoritative IAM policy for a Service Directory service.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleServiceDirectoryServiceIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_service_networking_connection',
