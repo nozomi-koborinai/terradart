@@ -22,8 +22,12 @@ export 'src/pubsub/google_pubsub_subscription.dart'
         PubsubSubscriptionOidcToken,
         PubsubSubscriptionPushConfig,
         PubsubSubscriptionRetryPolicy;
+export 'src/pubsub/google_pubsub_subscription_iam_binding.dart'
+    show GooglePubsubSubscriptionIamBinding;
 export 'src/pubsub/google_pubsub_subscription_iam_member.dart'
     show GooglePubsubSubscriptionIamMember;
+export 'src/pubsub/google_pubsub_subscription_iam_policy.dart'
+    show GooglePubsubSubscriptionIamPolicy;
 export 'src/pubsub/google_pubsub_topic.dart'
     show
         GooglePubsubTopic,
