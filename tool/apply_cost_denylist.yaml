@@ -338,6 +338,8 @@ google_cloudfunctions2_function_iam_binding: safe  # billing-behavior: IAM bindi
 google_cloudfunctions2_function_iam_policy: safe  # billing-behavior: IAM policy only
 google_binary_authorization_attestor: safe  # gcp-cost: no Cloud Billing Catalog SKU (policy metadata); billing-behavior: attestor config only, no hourly/existence billing
 google_binary_authorization_attestor_iam_member: safe  # billing-behavior: IAM binding only
+google_binary_authorization_attestor_iam_binding: safe  # billing-behavior: IAM binding only
+google_binary_authorization_attestor_iam_policy: safe  # billing-behavior: IAM policy only
 google_binary_authorization_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU (policy metadata); billing-behavior: admission policy metadata only
 google_apphub_application: safe  # gcp-cost: no Cloud Billing Catalog SKU (MCP list_services: no "App Hub"/"Apphub" service); billing-behavior: application metadata only — no existence/hourly charge
 google_apphub_boundary: safe  # gcp-cost: no Cloud Billing Catalog SKU (same MCP lookup as application); billing-behavior: CRM boundary metadata only

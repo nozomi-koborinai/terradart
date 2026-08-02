@@ -44,7 +44,7 @@ Use this first to see what services TerraDart covers and how large each one is.
 
 ## `list_resources`
 
-Lists curated resources and data sources. Pass `barrel` to filter to one service, or omit it to list all 822.
+Lists curated resources and data sources. Pass `barrel` to filter to one service, or omit it to list all 824.
 
 **Input** (filter to one barrel)
 
