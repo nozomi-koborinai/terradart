@@ -48,6 +48,8 @@ export 'src/iap/google_iap_web_backend_service_iam_binding.dart'
     show GoogleIapWebBackendServiceIamBinding;
 export 'src/iap/google_iap_web_backend_service_iam_member.dart'
     show GoogleIapWebBackendServiceIamMember;
+export 'src/iap/google_iap_web_backend_service_iam_policy.dart'
+    show GoogleIapWebBackendServiceIamPolicy;
 export 'src/iap/google_iap_web_type_app_engine_iam_binding.dart'
     show GoogleIapWebTypeAppEngineIamBinding;
 export 'src/iap/google_iap_web_type_app_engine_iam_member.dart'

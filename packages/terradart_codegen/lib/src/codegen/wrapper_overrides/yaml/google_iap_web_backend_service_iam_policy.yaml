@@ -1,0 +1,16 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for an **external HTTPS load balancer backend
+  /// service** protected by Identity-Aware Proxy (IAP).
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleIapWebBackendServiceIamMember] for single-principal grants.
+
+paramOrder:
+  - web_backend_service
+  - policy_data
+  - project
