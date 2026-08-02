@@ -495,6 +495,10 @@ google_gke_hub_namespace: safe  # apply-verified safe (existing example)
 google_gke_hub_rollout_sequence: safe  # gcp-cost: no Cloud Billing Catalog SKU (Fleets/GKE Enterprise SKUs are cluster-attachment bundles; rollout sequence is fleet metadata); billing-behavior: no existence/hourly charge for the sequence resource itself
 google_gke_hub_scope: safe  # apply-verified safe (existing example)
 google_healthcare_consent_store: safe  # apply-verified safe (existing example)
+google_healthcare_consent_store_iam_binding: safe  # billing-behavior: IAM binding — no SKU; grant metadata only
+google_healthcare_consent_store_iam_policy: safe  # billing-behavior: IAM policy — no SKU; grant metadata only
+google_healthcare_hl7_v2_store_iam_binding: safe  # billing-behavior: IAM binding — no SKU; grant metadata only
+google_healthcare_hl7_v2_store_iam_policy: safe  # billing-behavior: IAM policy — no SKU; grant metadata only
 google_healthcare_consent_store_iam_member: safe  # apply-verified safe (existing example)
 google_healthcare_dataset: safe  # apply-verified safe (existing example)
 google_healthcare_dataset_iam_member: safe  # apply-verified safe (existing example)

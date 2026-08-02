@@ -12840,6 +12840,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_healthcare_consent_store`.\n\nThe Consent Management API is a tool for tracking user consents and the\ndocumentation associated with the consents.',
   ),
   CatalogEntry(
+    tfType: 'google_healthcare_consent_store_iam_binding',
+    className: 'GoogleHealthcareConsentStoreIamBinding',
+    barrel: 'healthcare',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_healthcare_consent_store_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'consentStoreId',
+      'dataset',
+      'role',
+      'members',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_healthcare_consent_store_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Healthcare\nConsent Store.\n\nReplaces the entire member list for that role. Prefer\n[GoogleHealthcareConsentStoreIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_healthcare_consent_store_iam_member',
     className: 'GoogleHealthcareConsentStoreIamMember',
     barrel: 'healthcare',
@@ -12858,6 +12878,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_healthcare_consent_store_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_healthcare_consent_store_iam_policy',
+    className: 'GoogleHealthcareConsentStoreIamPolicy',
+    barrel: 'healthcare',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_healthcare_consent_store_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'consentStoreId',
+      'dataset',
+      'policyData',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_healthcare_consent_store_iam_policy`.\n\nAuthoritative IAM policy for a Cloud Healthcare Consent Store.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleHealthcareConsentStoreIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_healthcare_dataset',
@@ -13077,6 +13115,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_healthcare_hl7_v2_store`.\n\nA Hl7V2Store is a datastore inside a Healthcare dataset that conforms to the\nFHIR (https://www.hl7.org/hl7V2/STU3/) standard for Healthcare information\nexchange',
   ),
   CatalogEntry(
+    tfType: 'google_healthcare_hl7_v2_store_iam_binding',
+    className: 'GoogleHealthcareHl7V2StoreIamBinding',
+    barrel: 'healthcare',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_healthcare_hl7_v2_store_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'hl7V2StoreId',
+      'role',
+      'members',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_healthcare_hl7_v2_store_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Healthcare\nHL7v2 Store.\n\nReplaces the entire member list for that role. Prefer\n[GoogleHealthcareHl7V2StoreIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_healthcare_hl7_v2_store_iam_member',
     className: 'GoogleHealthcareHl7V2StoreIamMember',
     barrel: 'healthcare',
@@ -13093,6 +13150,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_healthcare_hl7_v2_store_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_healthcare_hl7_v2_store_iam_policy',
+    className: 'GoogleHealthcareHl7V2StoreIamPolicy',
+    barrel: 'healthcare',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_healthcare_hl7_v2_store_iam_policy`.',
+    constructorParams: <String>['localName', 'hl7V2StoreId', 'policyData'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_healthcare_hl7_v2_store_iam_policy`.\n\nAuthoritative IAM policy for a Cloud Healthcare HL7v2 Store.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleHealthcareHl7V2StoreIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_healthcare_workspace',

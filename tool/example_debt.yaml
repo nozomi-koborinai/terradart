@@ -520,6 +520,11 @@ GoogleHealthcareFhirStoreIamBinding: iam-adjunct-debt: sibling GoogleHealthcareF
 GoogleHealthcareFhirStoreIamPolicy: iam-adjunct-debt: sibling GoogleHealthcareFhirStoreIamMember already in healthcare_quickstart; authoritative policy not needed in smoke
 GoogleHealthcareDicomStoreIamBinding: iam-adjunct-debt: sibling GoogleHealthcareDicomStoreIamMember already in healthcare_quickstart; authoritative binding not needed in smoke
 GoogleHealthcareDicomStoreIamPolicy: iam-adjunct-debt: sibling GoogleHealthcareDicomStoreIamMember already in healthcare_quickstart; authoritative policy not needed in smoke
+GoogleHealthcareConsentStoreIamBinding: iam-adjunct-debt: sibling GoogleHealthcareConsentStoreIamMember already in healthcare_quickstart; authoritative binding not needed in smoke
+GoogleHealthcareConsentStoreIamPolicy: iam-adjunct-debt: sibling GoogleHealthcareConsentStoreIamMember already in healthcare_quickstart; authoritative policy not needed in smoke
+GoogleHealthcareHl7V2StoreIamBinding: iam-adjunct-debt: sibling GoogleHealthcareHl7V2StoreIamMember already in healthcare_quickstart; authoritative binding not needed in smoke
+GoogleHealthcareHl7V2StoreIamPolicy: iam-adjunct-debt: sibling GoogleHealthcareHl7V2StoreIamMember already in healthcare_quickstart; authoritative policy not needed in smoke
+
 
 # Dataproc Metastore IAM binding/policy — sibling *IamMember already in
 # dataproc_metastore_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).

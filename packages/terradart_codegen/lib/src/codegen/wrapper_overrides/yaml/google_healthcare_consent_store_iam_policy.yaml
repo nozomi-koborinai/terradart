@@ -1,0 +1,15 @@
+outputDir: healthcare
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Cloud Healthcare Consent Store.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleHealthcareConsentStoreIamMember] for single-principal grants.
+
+paramOrder:
+  - consent_store_id
+  - dataset
+  - policy_data
