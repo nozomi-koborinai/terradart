@@ -10,8 +10,12 @@ export 'src/iap/google_iap_app_engine_service_iam_member.dart'
     show GoogleIapAppEngineServiceIamMember;
 export 'src/iap/google_iap_app_engine_version_iam_member.dart'
     show GoogleIapAppEngineVersionIamMember;
+export 'src/iap/google_iap_location_web_iam_binding.dart'
+    show GoogleIapLocationWebIamBinding;
 export 'src/iap/google_iap_location_web_iam_member.dart'
     show GoogleIapLocationWebIamMember;
+export 'src/iap/google_iap_location_web_iam_policy.dart'
+    show GoogleIapLocationWebIamPolicy;
 export 'src/iap/google_iap_settings.dart'
     show
         GoogleIapSettings,

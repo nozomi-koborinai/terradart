@@ -5733,6 +5733,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_compute_network_firewall_policy`.\n\nThe Compute NetworkFirewallPolicy resource',
   ),
   CatalogEntry(
+    tfType: 'google_compute_network_firewall_policy_iam_binding',
+    className: 'GoogleComputeNetworkFirewallPolicyIamBinding',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_compute_network_firewall_policy_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_network_firewall_policy_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a global network\nfirewall policy.\n\nReplaces the entire member list for that role. Prefer\n[GoogleComputeNetworkFirewallPolicyIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_network_firewall_policy_iam_member',
     className: 'GoogleComputeNetworkFirewallPolicyIamMember',
     barrel: 'compute',
@@ -5750,6 +5770,19 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_network_firewall_policy_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_compute_network_firewall_policy_iam_policy',
+    className: 'GoogleComputeNetworkFirewallPolicyIamPolicy',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_compute_network_firewall_policy_iam_policy`.',
+    constructorParams: <String>['localName', 'name', 'policyData', 'project'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_network_firewall_policy_iam_policy`.\n\nAuthoritative IAM policy for a global network firewall policy.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleComputeNetworkFirewallPolicyIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_compute_network_peering',
@@ -6401,6 +6434,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_compute_region_network_firewall_policy`.\n\nThe Compute NetworkFirewallPolicy resource',
   ),
   CatalogEntry(
+    tfType: 'google_compute_region_network_firewall_policy_iam_binding',
+    className: 'GoogleComputeRegionNetworkFirewallPolicyIamBinding',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_compute_region_network_firewall_policy_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'members',
+      'condition',
+      'region',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_region_network_firewall_policy_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a regional network\nfirewall policy.\n\nReplaces the entire member list for that role. Prefer\n[GoogleComputeRegionNetworkFirewallPolicyIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_region_network_firewall_policy_iam_member',
     className: 'GoogleComputeRegionNetworkFirewallPolicyIamMember',
     barrel: 'compute',
@@ -6419,6 +6473,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_region_network_firewall_policy_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_compute_region_network_firewall_policy_iam_policy',
+    className: 'GoogleComputeRegionNetworkFirewallPolicyIamPolicy',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_compute_region_network_firewall_policy_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'policyData',
+      'region',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_region_network_firewall_policy_iam_policy`.\n\nAuthoritative IAM policy for a regional network firewall policy.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleComputeRegionNetworkFirewallPolicyIamMember] for single-principal\ngrants.',
   ),
   CatalogEntry(
     tfType: 'google_compute_region_network_firewall_policy_rule',
@@ -12550,6 +12623,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_iap_app_engine_version_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access on one App Engine\n**version** within a service.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [appId]: App Engine application ID (usually the GCP project ID).\n- [service]: App Engine service name (e.g. `\'default\'`).\n- [versionId]: version ID within the service (e.g. `\'v1\'`).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal string.\n\nExample:\n```dart\nGoogleIapAppEngineVersionIamMember(\n  localName: \'v1_invoker\',\n  appId: TfArg.literal(projectId),\n  service: TfArg.literal(\'default\'),\n  versionId: TfArg.literal(\'v1\'),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_iap_location_web_iam_binding',
+    className: 'GoogleIapLocationWebIamBinding',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_iap_location_web_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_location_web_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on IAP **web resources**\nat a regional location.\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapLocationWebIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_iap_location_web_iam_member',
     className: 'GoogleIapLocationWebIamMember',
     barrel: 'iap',
@@ -12567,6 +12659,23 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_location_web_iam_member`.\n\nAdditive IAM grant for Identity-Aware Proxy access on **web\nresources** at a regional location.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [location]: regional location (e.g. `\'us-central1\'`).\n- [role]: typically `\'roles/iap.httpsResourceAccessor\'`.\n- [member]: IAM principal (`user:…`, `group:…`, `serviceAccount:…`).\n\nExample:\n```dart\nGoogleIapLocationWebIamMember(\n  localName: \'location_web_invoker\',\n  location: TfArg.literal(\'us-central1\'),\n  role: TfArg.literal(\'roles/iap.httpsResourceAccessor\'),\n  member: TfArg.ref(sa.iamMember),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_location_web_iam_policy',
+    className: 'GoogleIapLocationWebIamPolicy',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_iap_location_web_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_location_web_iam_policy`.\n\nAuthoritative IAM policy for IAP **web resources** at a regional\nlocation.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleIapLocationWebIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_iap_settings',

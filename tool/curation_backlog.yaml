@@ -73,18 +73,6 @@ entries:
     detected_at: 2026-07-01
     provider_version: 7.39.0
     note: skipped by wave-shipper — org-scoped parent (google_compute_firewall_policy requires organization parent)
-  - resource: google_compute_network_firewall_policy_iam_binding
-    detected_at: 2026-07-01
-    provider_version: 7.39.0
-  - resource: google_compute_network_firewall_policy_iam_policy
-    detected_at: 2026-07-01
-    provider_version: 7.39.0
-  - resource: google_compute_region_network_firewall_policy_iam_binding
-    detected_at: 2026-07-01
-    provider_version: 7.39.0
-  - resource: google_compute_region_network_firewall_policy_iam_policy
-    detected_at: 2026-07-01
-    provider_version: 7.39.0
   - resource: google_compute_region_resize_request
     detected_at: 2026-07-01
     provider_version: 7.39.0
@@ -133,12 +121,6 @@ entries:
     detected_at: 2026-07-19
     provider_version: 7.40.0
     note: skipped by wave-shipper — parent google_agent_registry_* skip-noted (Agent Identity external artifact); not standalone-project applyable on terradart-validate
-  - resource: google_iap_location_web_iam_binding
-    detected_at: 2026-07-01
-    provider_version: 7.39.0
-  - resource: google_iap_location_web_iam_policy
-    detected_at: 2026-07-01
-    provider_version: 7.39.0
   - resource: google_network_services_agent_gateway
     detected_at: 2026-07-01
     provider_version: 7.39.0

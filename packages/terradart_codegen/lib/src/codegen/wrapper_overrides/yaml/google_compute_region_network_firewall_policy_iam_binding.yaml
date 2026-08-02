@@ -1,0 +1,19 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a regional network
+  /// firewall policy.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleComputeRegionNetworkFirewallPolicyIamMember] for additive grants.
+
+paramOrder:
+  - name
+  - role
+  - members
+  - condition
+  - region
+  - project
