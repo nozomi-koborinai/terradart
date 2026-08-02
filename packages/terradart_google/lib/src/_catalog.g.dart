@@ -19880,6 +19880,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_storage_bucket_iam_member`.',
   ),
   CatalogEntry(
+    tfType: 'google_storage_bucket_iam_policy',
+    className: 'GoogleStorageBucketIamPolicy',
+    barrel: 'storage',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_storage_bucket_iam_policy`.',
+    constructorParams: <String>['localName', 'bucket', 'policyData'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_storage_bucket_iam_policy`.\n\nAuthoritative IAM policy for a Cloud Storage bucket.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleStorageBucketIamMember] for single-principal grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_storage_bucket_object',
     className: 'GoogleStorageBucketObject',
     barrel: 'storage',

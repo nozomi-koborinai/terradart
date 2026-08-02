@@ -1,0 +1,14 @@
+outputDir: storage
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Cloud Storage bucket.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleStorageBucketIamMember] for single-principal grants.
+
+paramOrder:
+  - bucket
+  - policy_data
