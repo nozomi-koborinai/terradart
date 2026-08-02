@@ -179,7 +179,9 @@ google_contact_center_insights_auto_labeling_rule: safe  # gcp-cost: no Cloud Bi
 google_contact_center_insights_qa_scorecard_revision: safe  # gcp-cost: no Cloud Billing Catalog SKU for qa_scorecard_revision config (Conversational Insights FA1B-16BE-8526 analysis/subscription SKUs only); billing-behavior: scorecard revision metadata — no existence/hourly charge
 google_contact_center_insights_qa_question: safe  # gcp-cost: no Cloud Billing Catalog SKU for qa_question config (Conversational Insights FA1B-16BE-8526 analysis/subscription SKUs only); billing-behavior: QA question metadata — no existence/hourly charge
 google_container_analysis_note: safe  # gcp-cost: no Cloud Billing Catalog SKU for Container Analysis note metadata (MCP list_services: no "Container Analysis" service; related "Container Registry Vulnerability Scanning" / "On-Demand Scanning" SKUs bill image scan usage, not note existence); billing-behavior: note metadata only
+google_container_analysis_note_iam_binding: safe  # billing-behavior: IAM binding only
 google_container_analysis_note_iam_member: safe  # billing-behavior: IAM binding only
+google_container_analysis_note_iam_policy: safe  # billing-behavior: IAM policy only
 google_container_analysis_occurrence: safe  # gcp-cost: no Cloud Billing Catalog SKU for occurrence metadata (same MCP lookup as note — scanning SKUs are usage, not occurrence objects); billing-behavior: occurrence metadata only; signed attestations do not bill by existence
 google_container_attached_cluster: never_apply  # gcp-cost: GKE Enterprise / GDC 9186-F79E-3871 Trial Attached Clusters SKU CA50-C2AE-45E8 $0/h (catalog); related Multicloud management e.g. AWS SKU 24A0-2EF1-8ACB $0.00822/h — billing-behavior: requires a real external Kubernetes cluster + GKE Enterprise entitlement; never apply-smoke
 google_container_aws_cluster: never_apply  # gcp-cost: GKE Enterprise / GDC 9186-F79E-3871 Multicloud (AWS) SKU 24A0-2EF1-8ACB $0.00822/h (+ AWS EC2/ELB) — billing-behavior: multi-cloud control plane hours while the cluster exists; needs real AWS account; never apply-smoke
@@ -522,7 +524,9 @@ google_pubsub_schema_iam_member: safe  # apply-verified safe (existing example)
 google_pubsub_subscription: safe  # apply-verified safe (existing example)
 google_public_ca_external_account_key: safe  # gcp-cost: no Cloud Billing Catalog SKU for Public CA EAB key create after MCP lookup — Certificate Manager 7766-403C-6D6E SKUs are Certificates usage F08F-F1CD-3492 (~$0.20/mo after 100 free), Regional Certificates 4B89-6413-74D9, and mTLS Advanced 96D8-F0B3-E8A1 (none for EAB); Certificate Authority Service BAE4-9668-BD24 is Private CA only; billing-behavior: create-only ACME binding secret metadata — no certificate issued, no existence/hourly charge; terraform destroy removes from state only (API exclude_delete)
 google_pubsub_topic: safe  # apply-verified safe (existing example)
+google_pubsub_topic_iam_binding: safe  # billing-behavior: IAM binding only
 google_pubsub_topic_iam_member: safe  # apply-verified safe (existing example)
+google_pubsub_topic_iam_policy: safe  # billing-behavior: IAM policy only
 google_scc_v2_project_notification_config: safe  # gcp-cost: no Cloud Billing Catalog SKU for project notification config (Security Command Center FBF2-FC68-171A lists Premium/Enterprise subscription and asset-usage SKUs only, e.g. 694C-9680-C91A GCE Core Running — no notification-config SKU); billing-behavior: continuous-export config metadata — Standard-tier notification configs do not bill by existence; Pub/Sub delivery billed separately on topic usage
 google_secret_manager_regional_secret: safe  # apply-verified safe (existing example)
 google_secret_manager_regional_secret_iam_member: safe  # apply-verified safe (existing example)
@@ -531,7 +535,9 @@ google_secure_source_manager_repository: safe  # gcp-cost: Secure Source Manager
 google_secure_source_manager_instance_iam_member: safe  # billing-behavior: IAM binding — no resource charge
 google_secure_source_manager_repository_iam_member: safe  # billing-behavior: IAM binding — no resource charge
 
+google_secret_manager_secret_iam_binding: safe  # billing-behavior: IAM binding only
 google_secret_manager_secret_iam_member: safe  # apply-verified safe (existing example)
+google_secret_manager_secret_iam_policy: safe  # billing-behavior: IAM policy only
 google_storage_bucket: safe  # gcp-cost: Standard Storage us-central1 SKU 141D-1A1B-38E1 ~$0.022/GiBy.mo — usage-metered; empty bucket in quickstart ≈ $0; destroy deletes bucket and stops storage charges (not existence-billed)
 google_storage_bucket_iam_binding: safe  # IAM binding on a bucket; no existence billing
 google_storage_bucket_object: safe  # gcp-cost: SKU 4DBF-185F-A415 Regional Standard Class A Operations (Cloud Storage 95FF-2EF5-5EA1) — usage-metered object create/list; small notebook object ≈ $0; destroy deletes object and stops charges (not existence-billed)

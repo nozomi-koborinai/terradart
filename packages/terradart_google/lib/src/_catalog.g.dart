@@ -7788,6 +7788,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_container_analysis_note`.\n\nA Container Analysis note is a high-level piece of metadata that describes a\ntype of analysis that can be done for a resource.\n\nContainer Analysis note — high-level metadata describing an analysis\ntype (commonly an attestation authority for Binary Authorization).\n\nEnable `containeranalysis.googleapis.com` before apply. Pair with\n[GoogleContainerAnalysisOccurrence] when recording attestations against\na concrete image URI.\n\nExample:\n```dart\nGoogleContainerAnalysisNote(\n  localName: \'attestor\',\n  name: TfArg.literal(\'terradart-attestor-note\'),\n  attestationAuthority: ContainerAnalysisNoteAttestationAuthority(\n    hint: ContainerAnalysisNoteAttestationAuthorityHint(\n      humanReadableName: TfArg.literal(\'TerraDart attestor\'),\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_container_analysis_note_iam_binding',
+    className: 'GoogleContainerAnalysisNoteIamBinding',
+    barrel: 'container_analysis',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_container_analysis_note_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'note',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_container_analysis_note_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Container Analysis\nnote.\n\nReplaces the entire member list for that role. Prefer\n[GoogleContainerAnalysisNoteIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_container_analysis_note_iam_member',
     className: 'GoogleContainerAnalysisNoteIamMember',
     barrel: 'container_analysis',
@@ -7805,6 +7825,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_container_analysis_note_iam_member`.\n\nIAM member on a Container Analysis note (for example\n`roles/containeranalysis.notes.occurrences.viewer`).\n\nExample:\n```dart\nGoogleContainerAnalysisNoteIamMember(\n  localName: \'note_viewer\',\n  note: TfArg.ref(note.nameRef),\n  role: TfArg.literal(\'roles/containeranalysis.notes.occurrences.viewer\'),\n  member: TfArg.literal(\'serviceAccount:ci@\$projectId.iam.gserviceaccount.com\'),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_container_analysis_note_iam_policy',
+    className: 'GoogleContainerAnalysisNoteIamPolicy',
+    barrel: 'container_analysis',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_container_analysis_note_iam_policy`.',
+    constructorParams: <String>['localName', 'note', 'policyData', 'project'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_container_analysis_note_iam_policy`.\n\nAuthoritative IAM policy for a Container Analysis note.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleContainerAnalysisNoteIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_container_analysis_occurrence',
@@ -16843,6 +16875,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_pubsub_topic`.\n\nA named resource to which messages are sent by publishers.\n\nExample:\n```dart\nfinal orders = GooglePubsubTopic(\n  localName: \'orders\',\n  name: TfArg.literal(\'orders-prod\'),\n  messageRetentionDuration:\n      TfArg.literal(const Duration(days: 7).toTfDurationString()),\n  schemaSettings: const PubsubTopicSchemaSettings(\n    encoding: PubsubTopicSchemaEncoding.json,\n  ),\n  lifecycle: const LifecycleOptions(preventDestroy: true),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_pubsub_topic_iam_binding',
+    className: 'GooglePubsubTopicIamBinding',
+    barrel: 'pubsub',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_pubsub_topic_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'topic',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_pubsub_topic_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Pub/Sub topic.\n\nReplaces the entire member list for that role. Prefer\n[GooglePubsubTopicIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_pubsub_topic_iam_member',
     className: 'GooglePubsubTopicIamMember',
     barrel: 'pubsub',
@@ -16859,7 +16910,19 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_pubsub_topic_iam_member`.\n\nAdds a single IAM `role` -> `member` binding on a topic. For\nmulti-member binding semantics, prefer `google_pubsub_topic_iam_binding`\n(not yet a curated factory -- open an issue to request curation).',
+        'Factory wrapper for `google_pubsub_topic_iam_member`.\n\nAdds a single IAM `role` -> `member` binding on a topic. Prefer\n[GooglePubsubTopicIamBinding] when replacing the full member list for\na role, or [GooglePubsubTopicIamPolicy] for the entire policy.',
+  ),
+  CatalogEntry(
+    tfType: 'google_pubsub_topic_iam_policy',
+    className: 'GooglePubsubTopicIamPolicy',
+    barrel: 'pubsub',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_pubsub_topic_iam_policy`.',
+    constructorParams: <String>['localName', 'topic', 'policyData', 'project'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_pubsub_topic_iam_policy`.\n\nAuthoritative IAM policy for a Pub/Sub topic.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GooglePubsubTopicIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_recaptcha_enterprise_key',
@@ -17147,6 +17210,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_secret_manager_secret`.\n\nA Secret is a logical secret whose value and versions can be accessed.',
   ),
   CatalogEntry(
+    tfType: 'google_secret_manager_secret_iam_binding',
+    className: 'GoogleSecretManagerSecretIamBinding',
+    barrel: 'secret_manager',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_secret_manager_secret_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'secretId',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_secret_manager_secret_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Secret Manager\nsecret.\n\nReplaces the entire member list for that role. Prefer\n[GoogleSecretManagerSecretIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_secret_manager_secret_iam_member',
     className: 'GoogleSecretManagerSecretIamMember',
     barrel: 'secret_manager',
@@ -17164,6 +17246,23 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_secret_manager_secret_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_secret_manager_secret_iam_policy',
+    className: 'GoogleSecretManagerSecretIamPolicy',
+    barrel: 'secret_manager',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_secret_manager_secret_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'secretId',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_secret_manager_secret_iam_policy`.\n\nAuthoritative IAM policy for a Secret Manager secret.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleSecretManagerSecretIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_secret_manager_secret_version',

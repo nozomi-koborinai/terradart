@@ -1,0 +1,15 @@
+outputDir: container_analysis
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Container Analysis note.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleContainerAnalysisNoteIamMember] for single-principal grants.
+
+paramOrder:
+  - note
+  - policy_data
+  - project

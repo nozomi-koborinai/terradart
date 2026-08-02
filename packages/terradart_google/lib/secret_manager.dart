@@ -19,8 +19,12 @@ export 'src/secret_manager/google_secret_manager_secret.dart'
         SecretManagerSecretRotation,
         SecretManagerSecretSecretTopic,
         SecretManagerSecretUserManagedReplication;
+export 'src/secret_manager/google_secret_manager_secret_iam_binding.dart'
+    show GoogleSecretManagerSecretIamBinding;
 export 'src/secret_manager/google_secret_manager_secret_iam_member.dart'
     show GoogleSecretManagerSecretIamMember;
+export 'src/secret_manager/google_secret_manager_secret_iam_policy.dart'
+    show GoogleSecretManagerSecretIamPolicy;
 export 'src/secret_manager/google_secret_manager_secret_version.dart'
     show
         GoogleSecretManagerSecretVersion,

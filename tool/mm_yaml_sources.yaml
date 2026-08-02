@@ -743,6 +743,10 @@ files:
     upstream: mmv1/products/containeranalysis/Note.yaml
   google_container_analysis_note_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_container_analysis_note_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_container_analysis_note_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_container_analysis_occurrence:
     upstream: mmv1/products/containeranalysis/Occurrence.yaml
   # Wave 9 (GKE Hub)
@@ -889,6 +893,10 @@ files:
     upstream: mmv1/products/pubsub/Topic.yaml
   google_pubsub_topic_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_pubsub_topic_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_pubsub_topic_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_pubsub_lite_reservation:
     upstream: mmv1/products/pubsublite/Reservation.yaml
   google_pubsub_lite_topic:
@@ -909,6 +917,10 @@ files:
     upstream: null  # IAM adjunct
 
   google_secret_manager_secret_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_secret_manager_secret_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_secret_manager_secret_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_secret_manager_secret_version:
     upstream: mmv1/products/secretmanager/SecretVersion.yaml
