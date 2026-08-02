@@ -1,0 +1,17 @@
+outputDir: healthcare
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud Healthcare FHIR
+  /// store.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleHealthcareFhirStoreIamMember] for additive grants.
+
+paramOrder:
+  - fhir_store_id
+  - role
+  - members
+  - condition

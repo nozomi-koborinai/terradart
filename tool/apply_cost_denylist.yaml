@@ -494,12 +494,18 @@ google_healthcare_consent_store: safe  # apply-verified safe (existing example)
 google_healthcare_consent_store_iam_member: safe  # apply-verified safe (existing example)
 google_healthcare_dataset: safe  # apply-verified safe (existing example)
 google_healthcare_dataset_iam_member: safe  # apply-verified safe (existing example)
+google_healthcare_dataset_iam_binding: safe  # billing-behavior: IAM binding only
+google_healthcare_dataset_iam_policy: safe  # billing-behavior: IAM policy only
 google_healthcare_dicom_store: safe  # apply-verified safe (existing example)
 google_healthcare_dicom_store_iam_member: safe  # apply-verified safe (existing example)
+google_healthcare_dicom_store_iam_binding: safe  # billing-behavior: IAM binding only
+google_healthcare_dicom_store_iam_policy: safe  # billing-behavior: IAM policy only
 google_healthcare_hl7_v2_store: safe  # apply-verified safe (existing example)
 google_healthcare_hl7_v2_store_iam_member: safe  # apply-verified safe (existing example)
 google_healthcare_fhir_store: safe  # gcp-cost: SKU 983E-D822-5BCA Structured Storage (Iowa) $0.24/GiBy.mo after 1 GiB free tier; billing-behavior: storage/ops only — empty FHIR store has no existence/hourly charge
 google_healthcare_fhir_store_iam_member: safe  # billing-behavior: IAM binding only, no standalone billing
+google_healthcare_fhir_store_iam_binding: safe  # billing-behavior: IAM binding only
+google_healthcare_fhir_store_iam_policy: safe  # billing-behavior: IAM policy only
 google_healthcare_workspace: safe  # gcp-cost: no Cloud Billing Catalog SKU for Data Mapper workspace config after MCP lookup on Cloud Healthcare 7C52-19D8-71EE (storage/request SKUs only); billing-behavior: workspace metadata — no existence/hourly charge until mapper jobs process data
 google_iap_app_engine_service_iam_binding: safe  # billing-behavior: IAM binding only
 google_iap_app_engine_service_iam_policy: safe  # billing-behavior: IAM policy only

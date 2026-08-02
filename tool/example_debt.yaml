@@ -511,3 +511,12 @@ GoogleBigtableInstanceIamBinding: iam-adjunct-debt: sibling GoogleBigtableInstan
 GoogleBigtableInstanceIamPolicy: iam-adjunct-debt: sibling GoogleBigtableInstanceIamMember already in bigtable_quickstart; authoritative policy not needed in smoke
 GoogleBigtableTableIamBinding: iam-adjunct-debt: sibling GoogleBigtableTableIamMember already in bigtable_quickstart; authoritative binding not needed in smoke
 GoogleBigtableTableIamPolicy: iam-adjunct-debt: sibling GoogleBigtableTableIamMember already in bigtable_quickstart; authoritative policy not needed in smoke
+
+# Cloud Healthcare IAM binding/policy — sibling *IamMember already in
+# healthcare_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
+GoogleHealthcareDatasetIamBinding: iam-adjunct-debt: sibling GoogleHealthcareDatasetIamMember already in healthcare_quickstart; authoritative binding not needed in smoke
+GoogleHealthcareDatasetIamPolicy: iam-adjunct-debt: sibling GoogleHealthcareDatasetIamMember already in healthcare_quickstart; authoritative policy not needed in smoke
+GoogleHealthcareFhirStoreIamBinding: iam-adjunct-debt: sibling GoogleHealthcareFhirStoreIamMember already in healthcare_quickstart; authoritative binding not needed in smoke
+GoogleHealthcareFhirStoreIamPolicy: iam-adjunct-debt: sibling GoogleHealthcareFhirStoreIamMember already in healthcare_quickstart; authoritative policy not needed in smoke
+GoogleHealthcareDicomStoreIamBinding: iam-adjunct-debt: sibling GoogleHealthcareDicomStoreIamMember already in healthcare_quickstart; authoritative binding not needed in smoke
+GoogleHealthcareDicomStoreIamPolicy: iam-adjunct-debt: sibling GoogleHealthcareDicomStoreIamMember already in healthcare_quickstart; authoritative policy not needed in smoke
