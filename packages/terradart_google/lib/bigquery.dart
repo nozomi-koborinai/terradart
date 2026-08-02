@@ -9,14 +9,22 @@ export 'src/bigquery/google_bigquery_analytics_hub_data_exchange.dart'
     show
         BigqueryAnalyticsHubDataExchangeDiscoveryType,
         GoogleBigqueryAnalyticsHubDataExchange;
+export 'src/bigquery/google_bigquery_analytics_hub_data_exchange_iam_binding.dart'
+    show GoogleBigqueryAnalyticsHubDataExchangeIamBinding;
 export 'src/bigquery/google_bigquery_analytics_hub_data_exchange_iam_member.dart'
     show GoogleBigqueryAnalyticsHubDataExchangeIamMember;
+export 'src/bigquery/google_bigquery_analytics_hub_data_exchange_iam_policy.dart'
+    show GoogleBigqueryAnalyticsHubDataExchangeIamPolicy;
 export 'src/bigquery/google_bigquery_analytics_hub_listing.dart'
     show
         BigqueryAnalyticsHubListingDiscoveryType,
         GoogleBigqueryAnalyticsHubListing;
+export 'src/bigquery/google_bigquery_analytics_hub_listing_iam_binding.dart'
+    show GoogleBigqueryAnalyticsHubListingIamBinding;
 export 'src/bigquery/google_bigquery_analytics_hub_listing_iam_member.dart'
     show GoogleBigqueryAnalyticsHubListingIamMember;
+export 'src/bigquery/google_bigquery_analytics_hub_listing_iam_policy.dart'
+    show GoogleBigqueryAnalyticsHubListingIamPolicy;
 export 'src/bigquery/google_bigquery_analytics_hub_listing_subscription.dart'
     show GoogleBigqueryAnalyticsHubListingSubscription;
 export 'src/bigquery/google_bigquery_bi_reservation.dart'
@@ -69,8 +77,12 @@ export 'src/bigquery/google_bigquery_datapolicy_data_policy.dart'
         BigqueryDatapolicyDataPolicyPredefinedExpression,
         BigqueryDatapolicyDataPolicyType,
         GoogleBigqueryDatapolicyDataPolicy;
+export 'src/bigquery/google_bigquery_datapolicy_data_policy_iam_binding.dart'
+    show GoogleBigqueryDatapolicyDataPolicyIamBinding;
 export 'src/bigquery/google_bigquery_datapolicy_data_policy_iam_member.dart'
     show GoogleBigqueryDatapolicyDataPolicyIamMember;
+export 'src/bigquery/google_bigquery_datapolicy_data_policy_iam_policy.dart'
+    show GoogleBigqueryDatapolicyDataPolicyIamPolicy;
 export 'src/bigquery/google_bigquery_dataset.dart'
     show
         BigqueryDatasetAccess,

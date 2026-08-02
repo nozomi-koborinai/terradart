@@ -1,0 +1,19 @@
+outputDir: bigquery
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a BigQuery Analytics Hub
+  /// data exchange.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleBigqueryAnalyticsHubDataExchangeIamMember] for additive grants.
+
+paramOrder:
+  - data_exchange_id
+  - location
+  - role
+  - members
+  - condition
+  - project

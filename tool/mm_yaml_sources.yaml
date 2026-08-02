@@ -1080,7 +1080,15 @@ files:
   # Wave 22 (BigQuery Analytics Hub + connection IAM, regional Armor rule)
   google_bigquery_analytics_hub_data_exchange_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_analytics_hub_data_exchange_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_analytics_hub_data_exchange_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_bigquery_analytics_hub_listing_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_analytics_hub_listing_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_analytics_hub_listing_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_bigquery_analytics_hub_listing_subscription:
     upstream: mmv1/products/bigqueryanalyticshub/ListingSubscription.yaml
@@ -1179,6 +1187,10 @@ files:
   google_compute_interconnect_attachment:
     upstream: mmv1/products/compute/InterconnectAttachment.yaml
   google_bigquery_datapolicy_data_policy_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_datapolicy_data_policy_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_datapolicy_data_policy_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   # Wave 25 (Serverless VPC Access connector)
   google_vmwareengine_cluster:
