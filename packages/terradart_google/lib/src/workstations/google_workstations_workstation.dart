@@ -11,7 +11,9 @@ enum WorkstationsWorkstationState implements TerraformEnum {
   stateStarting('STATE_STARTING'),
   stateRunning('STATE_RUNNING'),
   stateStopping('STATE_STOPPING'),
-  stateStopped('STATE_STOPPED');
+  stateStopped('STATE_STOPPED'),
+  stateSuspending('STATE_SUSPENDING'),
+  stateSuspended('STATE_SUSPENDED');
 
   const WorkstationsWorkstationState(this.terraformValue);
   @override

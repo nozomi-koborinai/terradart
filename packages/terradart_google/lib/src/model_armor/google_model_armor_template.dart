@@ -178,6 +178,7 @@ final class ModelArmorTemplateTemplateMetadata {
     this.ignorePartialInvocationFailures,
     this.logSanitizeOperations,
     this.logTemplateOperations,
+    this.filterVersionSelector,
     this.multiLanguageDetection,
   });
 
@@ -196,6 +197,9 @@ final class ModelArmorTemplateTemplateMetadata {
   final TfArg<bool>? logSanitizeOperations;
 
   final TfArg<bool>? logTemplateOperations;
+
+  final ModelArmorTemplateTemplateMetadataFilterVersionSelector?
+  filterVersionSelector;
 
   final ModelArmorTemplateTemplateMetadataMultiLanguageDetection?
   multiLanguageDetection;
@@ -222,8 +226,29 @@ final class ModelArmorTemplateTemplateMetadata {
       'log_sanitize_operations': logSanitizeOperations!.toTfJson(),
     if (logTemplateOperations != null)
       'log_template_operations': logTemplateOperations!.toTfJson(),
+    if (filterVersionSelector != null)
+      'filter_version_selector': filterVersionSelector!.encode(),
     if (multiLanguageDetection != null)
       'multi_language_detection': multiLanguageDetection!.encode(),
+  };
+}
+
+/// Typed helper for the `template_metadata.filter_version_selector` block of
+/// `google_model_armor_template` (derived from provider schema).
+@immutable
+final class ModelArmorTemplateTemplateMetadataFilterVersionSelector {
+  const ModelArmorTemplateTemplateMetadataFilterVersionSelector({
+    this.alias,
+    this.version,
+  });
+
+  final TfArg<String>? alias;
+
+  final TfArg<String>? version;
+
+  Map<String, Object?> encode() => {
+    if (alias != null) 'alias': alias!.toTfJson(),
+    if (version != null) 'version': version!.toTfJson(),
   };
 }
 

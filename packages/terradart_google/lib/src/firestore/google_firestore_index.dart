@@ -234,9 +234,10 @@ final class FirestoreIndexIndexFieldVectorConfig
 ///
 /// Cloud Firestore indexes enable simple and complex queries against documents
 /// in a database. Firestore Native, Firestore with MongoDB compatibility and
-/// Datastore Mode indexes are all supported. This resource manages composite
-/// indexes and not single field indexes. To manage single field indexes, use
-/// the `google_firestore_field` resource instead.
+/// Datastore Mode indexes are all supported. In Enterprise edition databases,
+/// this resource manages both single field and composite indexes. In Standard
+/// edition databases, single field indexes are managed using the
+/// `google_firestore_field` resource instead.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name (the address segment after

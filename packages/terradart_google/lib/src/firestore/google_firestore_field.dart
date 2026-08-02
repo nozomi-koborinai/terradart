@@ -115,6 +115,10 @@ class FirestoreFieldTtlConfig {
 /// "Collection Group", which represent all collections in the database with the
 /// same id.
 ///
+/// In Standard edition databases, single field indexes are managed using the
+/// `google_firestore_field` resource. In Enterprise edition databases, they are
+/// managed using the `google_firestore_index` resource.
+///
 /// Configures a single field within one Firestore collection group --
 /// either to override the database's automatic single-field indexing or
 /// to enable a TTL policy on the field. Composite indexes live in a

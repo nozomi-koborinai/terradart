@@ -256,6 +256,10 @@ final class GoogleContainerCluster extends Resource {
   TfRef<Map<String, String>> get effectiveLabels =>
       TfRef.attribute<Map<String, String>>(this, 'effective_labels');
 
+  /// Reference to `emulated_version` attribute.
+  TfRef<String> get emulatedVersion =>
+      TfRef.attribute<String>(this, 'emulated_version');
+
   /// Reference to `endpoint` attribute.
   TfRef<String> get endpoint => TfRef.attribute<String>(this, 'endpoint');
 
