@@ -156,3 +156,4 @@ entries:
   - resource: google_vertex_ai_semantic_governance_policy_engine
     detected_at: 2026-07-26
     provider_version: 7.41.0
+    note: skipped by maintainer — managed PSC + policy-decision-point singleton (60m create/delete); Semantic Governance billing started 2026-08-01 per Gemini Enterprise Agent Platform docs; gcp-cost has no dedicated SGPE SKU but Agent Platform Compute/Memory/Storage SKUs exist; classified never_apply in apply_cost_denylist (do not apply-smoke); factory curation deferred
