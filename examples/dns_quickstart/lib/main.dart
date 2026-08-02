@@ -10,16 +10,32 @@
 /// (visibility / forwarding-path). DNSSEC is a public-zone-only feature and
 /// is therefore not configured on this private zone.
 ///
-/// Wave 5 Batch 4 adds a `roles/dns.admin` binding on the zone for a
-/// per-zone admin SA -- the standard delegated-DNS pattern where a team
-/// owns its own subdomain without project-wide DNS admin.
+/// Zone IAM covers member / binding / policy for a per-zone admin SA — the
+/// standard delegated-DNS pattern where a team owns its own subdomain without
+/// project-wide DNS admin.
 library;
+
+import 'dart:convert';
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/dns.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
+
+String _iamPolicyDataJson({
+  required String role,
+  required String member,
+}) {
+  return jsonEncode({
+    'bindings': [
+      {
+        'role': role,
+        'members': [member],
+      },
+    ],
+  });
+}
 
 final class InternalDnsStack extends Stack {
   InternalDnsStack({required String projectId})
@@ -70,12 +86,50 @@ final class InternalDnsStack extends Stack {
     );
     add(zoneAdmin);
 
-    add(
+    // Serialize member → binding → policy so destroy cannot race concurrent
+    // SetIamPolicy calls on the same zone (DNS API returned 500 when member
+    // and binding tore down in parallel during apply-smoke).
+    final zoneAdminMember = add(
       GoogleDnsManagedZoneIamMember(
-        localName: 'internal_zone_admin_binding',
+        localName: 'internal_zone_admin_member',
         managedZone: TfArg.ref(internalZone.nameRef),
         role: TfArg.literal('roles/dns.admin'),
         member: TfArg.ref(zoneAdmin.iamMember),
+        dependsOn: [
+          ResourceDependency(internalZone),
+          ResourceDependency(zoneAdmin),
+        ],
+      ),
+    );
+
+    final zoneAdminBinding = add(
+      GoogleDnsManagedZoneIamBinding(
+        localName: 'internal_zone_admin_binding',
+        managedZone: TfArg.ref(internalZone.nameRef),
+        role: TfArg.literal('roles/dns.admin'),
+        members: TfArg.literal([zoneAdmin.iamMember.interpolation]),
+        dependsOn: [
+          ResourceDependency(internalZone),
+          ResourceDependency(zoneAdminMember),
+        ],
+      ),
+    );
+
+    add(
+      GoogleDnsManagedZoneIamPolicy(
+        localName: 'internal_zone_admin_policy',
+        managedZone: TfArg.ref(internalZone.nameRef),
+        policyData: TfArg.literal(
+          _iamPolicyDataJson(
+            role: 'roles/dns.admin',
+            member:
+                'serviceAccount:internal-zone-admin@$projectId.iam.gserviceaccount.com',
+          ),
+        ),
+        dependsOn: [
+          ResourceDependency(internalZone),
+          ResourceDependency(zoneAdminBinding),
+        ],
       ),
     );
 

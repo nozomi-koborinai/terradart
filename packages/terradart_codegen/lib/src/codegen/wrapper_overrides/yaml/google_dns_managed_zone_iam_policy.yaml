@@ -1,0 +1,15 @@
+outputDir: dns
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Cloud DNS managed zone.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleDnsManagedZoneIamMember] for single-principal grants.
+
+paramOrder:
+  - managed_zone
+  - policy_data
+  - project

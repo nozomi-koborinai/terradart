@@ -5,8 +5,12 @@ library;
 
 export 'src/secret_manager/google_secret_manager_regional_secret.dart'
     show GoogleSecretManagerRegionalSecret;
+export 'src/secret_manager/google_secret_manager_regional_secret_iam_binding.dart'
+    show GoogleSecretManagerRegionalSecretIamBinding;
 export 'src/secret_manager/google_secret_manager_regional_secret_iam_member.dart'
     show GoogleSecretManagerRegionalSecretIamMember;
+export 'src/secret_manager/google_secret_manager_regional_secret_iam_policy.dart'
+    show GoogleSecretManagerRegionalSecretIamPolicy;
 export 'src/secret_manager/google_secret_manager_regional_secret_version.dart'
     show GoogleSecretManagerRegionalSecretVersion;
 export 'src/secret_manager/google_secret_manager_secret.dart'

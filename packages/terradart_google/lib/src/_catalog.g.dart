@@ -10394,6 +10394,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_dns_managed_zone`.\n\nA zone is a subtree of the DNS namespace under one administrative\nresponsibility. A ManagedZone is a resource that represents a DNS zone\nhosted by the Cloud DNS service.\n\nManages a Cloud DNS **managed zone** — the container that holds DNS\nrecords for a single DNS name (e.g. `example.com.`). Zones can be\npublic (served to the internet) or private (visible only within\nspecified VPC networks or GKE clusters).\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_dns_managed_zone.`).\n- `name`: GCP-internal zone name (forces replacement when changed).\n- `dns_name`: DNS name of the zone; must end with a trailing dot\n  (e.g. `\'example.com.\'`).\n\nThe 5 nested blocks (`private_visibility_config` / `dnssec_config` /\n`peering_config` / `forwarding_config` / `cloud_logging_config`) are\nmodeled as helper classes in the prelude; each block has `max_items=1`,\nso the factory wraps the encoded map in a single-element list before\npassing it to Terraform.\n\nExample (public zone):\n```dart\nfinal prod = GoogleDnsManagedZone(\n  localName: \'prod\',\n  name: TfArg.literal(\'prod-zone\'),\n  dnsName: TfArg.literal(\'prod.example.com.\'),\n  description: TfArg.literal(\'Production zone\'),\n  visibility: TfArg.literal(DnsZoneVisibility.public),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_dns_managed_zone_iam_binding',
+    className: 'GoogleDnsManagedZoneIamBinding',
+    barrel: 'dns',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_dns_managed_zone_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'managedZone',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dns_managed_zone_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud DNS managed\nzone.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDnsManagedZoneIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_dns_managed_zone_iam_member',
     className: 'GoogleDnsManagedZoneIamMember',
     barrel: 'dns',
@@ -10411,6 +10430,23 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dns_managed_zone_iam_member`.\n\nGrants a single (`role`, `member`) IAM binding **on a Cloud DNS\nmanaged zone** — i.e. who can read or change the records inside this\none zone. Zone-scoped IAM is the right granularity when different\nteams own different subdomains: grant `roles/dns.admin` on\n`team-a.example.com.` to team A\'s SRE group while keeping\n`team-b.example.com.` locked down. For read-only inspectors prefer\n`roles/dns.reader`.\n\nPicking the right `*_iam_*` variant:\n\n- `*_iam_member` (this resource) — **additive**: grants ONE\n  (role, member) tuple. Does not touch other principals\' bindings.\n  Safe in 95% of cases; prefer this unless you have a concrete reason\n  to use one of the authoritative variants below.\n- `*_iam_binding` — **authoritative per role**: takes a list of\n  members and *replaces* the entire member list for that role. Will\n  silently erase any other principal previously bound to that role\n  on this managed zone.\n- `*_iam_policy` — **authoritative for the entire resource**: replaces\n  the zone\'s whole IAM policy. Will erase **all** existing bindings.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `managedZone`: the target zone\'s `name` attribute (the short zone\n  name, *not* the DNS name with trailing dot — e.g. `\'internal-corp\'`,\n  not `\'internal.corp.\'`). Pass `TfArg.ref(zone.nameRef)`.\n- `role`: role name, e.g. `\'roles/dns.admin\'` (full record CRUD) or\n  `\'roles/dns.reader\'` (read-only inspection).\n- `member`: principal in IAM v1 string form.\n\n`project` is optional and defaults to the provider project.\n\nOptional `condition` is a single IAM Condition block (CEL\n`expression`, `title`, optional `description`).\n\nExample:\n```dart\nfinal zoneAdmin = GoogleDnsManagedZoneIamMember(\n  localName: \'zone_admin\',\n  managedZone: TfArg.ref(zone.nameRef),\n  role: TfArg.literal(\'roles/dns.admin\'),\n  member: TfArg.literal(\'group:sre-team-a@example.com\'),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_dns_managed_zone_iam_policy',
+    className: 'GoogleDnsManagedZoneIamPolicy',
+    barrel: 'dns',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_dns_managed_zone_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'managedZone',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dns_managed_zone_iam_policy`.\n\nAuthoritative IAM policy for a Cloud DNS managed zone.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleDnsManagedZoneIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_dns_policy',
@@ -16767,6 +16803,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_pubsub_schema`.\n\nA schema is a format that messages must follow, creating a contract between\npublisher and subscriber that Pub/Sub will enforce.\n\nTwo payload shapes are supported via [type]:\n- [PubsubSchemaType.protocolBuffer] -- [definition] holds a `.proto`\n  source string (a single `message {...}` definition).\n- [PubsubSchemaType.avro] -- [definition] holds an Avro JSON schema\n  string (`{"type":"record","name":...,"fields":[...]}`).\n\nThe schema also exposes [PubsubSchemaType.typeUnspecified] for\ncompleteness (Terraform\'s default when [type] is omitted) -- in\npractice prefer one of the typed variants so that the publisher API\ncan validate messages.\n\nSchemas are versioned: changing [definition] commits a new revision\n(up to 20 per schema). Topics that reference the schema can pin to a\nrevision range via [GooglePubsubTopic.schemaSettings]; otherwise the\nlatest revision is used.\n\nExample (Avro schema for an order event):\n```dart\nfinal orderSchema = GooglePubsubSchema(\n  localName: \'orders_v1\',\n  name: TfArg.literal(\'orders-v1\'),\n  type: TfArg.literal(PubsubSchemaType.avro),\n  definition: TfArg.literal(\n    \'{"type":"record","name":"Order","fields":[\'\n    \'{"name":"order_id","type":"string"},\'\n    \'{"name":"total_cents","type":"long"}\'\n    \']}\',\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_pubsub_schema_iam_binding',
+    className: 'GooglePubsubSchemaIamBinding',
+    barrel: 'pubsub',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_pubsub_schema_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'schema',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_pubsub_schema_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Pub/Sub schema.\n\nReplaces the entire member list for that role. Prefer\n[GooglePubsubSchemaIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_pubsub_schema_iam_member',
     className: 'GooglePubsubSchemaIamMember',
     barrel: 'pubsub',
@@ -16783,6 +16838,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_pubsub_schema_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_pubsub_schema_iam_policy',
+    className: 'GooglePubsubSchemaIamPolicy',
+    barrel: 'pubsub',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_pubsub_schema_iam_policy`.',
+    constructorParams: <String>['localName', 'schema', 'policyData', 'project'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_pubsub_schema_iam_policy`.\n\nAuthoritative IAM policy for a Pub/Sub schema.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GooglePubsubSchemaIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_pubsub_subscription',
@@ -17134,6 +17201,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_secret_manager_regional_secret`.\n\nA Regional Secret is a logical secret whose value and versions can be\ncreated and accessed within a region only.',
   ),
   CatalogEntry(
+    tfType: 'google_secret_manager_regional_secret_iam_binding',
+    className: 'GoogleSecretManagerRegionalSecretIamBinding',
+    barrel: 'secret_manager',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_secret_manager_regional_secret_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'secretId',
+      'location',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_secret_manager_regional_secret_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a regional Secret\nManager secret.\n\nReplaces the entire member list for that role. Prefer\n[GoogleSecretManagerRegionalSecretIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_secret_manager_regional_secret_iam_member',
     className: 'GoogleSecretManagerRegionalSecretIamMember',
     barrel: 'secret_manager',
@@ -17153,6 +17241,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_secret_manager_regional_secret_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_secret_manager_regional_secret_iam_policy',
+    className: 'GoogleSecretManagerRegionalSecretIamPolicy',
+    barrel: 'secret_manager',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_secret_manager_regional_secret_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'secretId',
+      'location',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_secret_manager_regional_secret_iam_policy`.\n\nAuthoritative IAM policy for a regional Secret Manager secret.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleSecretManagerRegionalSecretIamMember] for single-principal\ngrants.',
   ),
   CatalogEntry(
     tfType: 'google_secret_manager_regional_secret_version',

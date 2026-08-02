@@ -525,6 +525,10 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dns_managed_zone_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dns_managed_zone_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dns_managed_zone_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
 
   # Wave 6 — Compute LB stack (Plan 5.G).
   # MM URLs are best-effort guesses; Batch 0 probes each and rewrites to
@@ -808,6 +812,10 @@ files:
     upstream: mmv1/products/kms/CryptoKeyVersion.yaml
   # Wave 15 (adjacent IAM / Storage)
   google_pubsub_schema_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_pubsub_schema_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_pubsub_schema_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_storage_hmac_key:
     upstream: mmv1/products/storage/HmacKey.yaml
@@ -1423,6 +1431,10 @@ files:
   google_secret_manager_regional_secret_version:
     upstream: mmv1/products/secretmanagerregional/RegionalSecretVersion.yaml
   google_secret_manager_regional_secret_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_secret_manager_regional_secret_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_secret_manager_regional_secret_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
 
   google_workstations_workstation_cluster:

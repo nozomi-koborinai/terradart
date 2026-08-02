@@ -22,8 +22,12 @@ export 'src/dns/google_dns_managed_zone.dart'
         DnssecState,
         ForwardingPath,
         GoogleDnsManagedZone;
+export 'src/dns/google_dns_managed_zone_iam_binding.dart'
+    show GoogleDnsManagedZoneIamBinding;
 export 'src/dns/google_dns_managed_zone_iam_member.dart'
     show GoogleDnsManagedZoneIamMember;
+export 'src/dns/google_dns_managed_zone_iam_policy.dart'
+    show GoogleDnsManagedZoneIamPolicy;
 export 'src/dns/google_dns_policy.dart'
     show
         DnsPolicyAlternativeNameServerConfig,

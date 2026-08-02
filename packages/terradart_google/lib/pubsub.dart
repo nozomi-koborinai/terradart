@@ -5,8 +5,12 @@ library;
 
 export 'src/pubsub/google_pubsub_schema.dart'
     show GooglePubsubSchema, PubsubSchemaType;
+export 'src/pubsub/google_pubsub_schema_iam_binding.dart'
+    show GooglePubsubSchemaIamBinding;
 export 'src/pubsub/google_pubsub_schema_iam_member.dart'
     show GooglePubsubSchemaIamMember;
+export 'src/pubsub/google_pubsub_schema_iam_policy.dart'
+    show GooglePubsubSchemaIamPolicy;
 export 'src/pubsub/google_pubsub_subscription.dart'
     show
         GooglePubsubSubscription,
