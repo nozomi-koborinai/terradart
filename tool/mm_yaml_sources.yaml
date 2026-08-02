@@ -1470,7 +1470,15 @@ files:
     upstream: mmv1/products/tags/TagBinding.yaml
   google_tags_tag_key_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_tags_tag_key_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_tags_tag_key_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_tags_tag_value_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_tags_tag_value_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_tags_tag_value_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   # Wave 75 (Access Context Manager — VPC Service Controls core)
   google_access_context_manager_access_policy:

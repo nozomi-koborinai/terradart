@@ -1,0 +1,14 @@
+outputDir: tags
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Resource Manager tag value.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleTagsTagValueIamMember] for single-principal grants.
+
+paramOrder:
+  - tag_value
+  - policy_data

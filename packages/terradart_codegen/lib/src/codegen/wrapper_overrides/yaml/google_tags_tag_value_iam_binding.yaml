@@ -1,0 +1,17 @@
+outputDir: tags
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Resource Manager
+  /// tag value.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleTagsTagValueIamMember] for additive grants.
+
+paramOrder:
+  - tag_value
+  - role
+  - members
+  - condition

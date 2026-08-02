@@ -565,9 +565,13 @@ google_sourcerepo_repository_iam_member: safe  # billing-behavior: IAM binding �
 google_service_networking_connection: safe  # apply-verified safe (existing example)
 google_tags_tag_binding: safe  # apply-verified safe (existing example)
 google_tags_tag_key: safe  # apply-verified safe (existing example)
+google_tags_tag_key_iam_binding: safe  # billing-behavior: IAM binding only
 google_tags_tag_key_iam_member: safe  # apply-verified safe (existing example)
+google_tags_tag_key_iam_policy: safe  # billing-behavior: IAM policy only
 google_tags_tag_value: safe  # apply-verified safe (existing example)
+google_tags_tag_value_iam_binding: safe  # billing-behavior: IAM binding only
 google_tags_tag_value_iam_member: safe  # apply-verified safe (existing example)
+google_tags_tag_value_iam_policy: safe  # billing-behavior: IAM policy only
 google_vector_search_collection: safe  # gcp-cost: Vector Search 0181-3AAD-0CB9 Data Stored SKU 1AE9-553C-C219 $0.3/GiBy.mo + Write/Read ops C1E5-1A7F-E9B3/$0.18 and C6B8-92A1-C096/$0.06 per count — usage-metered payload DB only; billing-behavior: schema-only collection with no data objects / indexes accrues ~$0 (no index-serving capacity units); destroy deletes collection and stops storage charges
 google_managed_kafka_topic: safe  # gcp-cost: Managed Kafka 9544-7B1C-811D lists DCU/storage/network SKUs only (no topic SKU); billing-behavior: topic metadata on a parent cluster — no separate existence charge beyond the sweep_only cluster
 google_managed_kafka_acl: safe  # gcp-cost: no ACL SKU under Managed Kafka 9544-7B1C-811D (DCU/storage/network only); billing-behavior: ACL metadata on a parent cluster — no separate existence charge
