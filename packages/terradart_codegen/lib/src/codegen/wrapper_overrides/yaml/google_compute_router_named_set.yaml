@@ -1,0 +1,52 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  type: ComputeRouterNamedSetType
+
+curatedDoc: |-
+  /// Cloud Router **Named Set** — a CEL collection of IP prefixes
+  /// (`NAMED_SET_TYPE_PREFIX`) or BGP communities
+  /// (`NAMED_SET_TYPE_COMMUNITY`) for use in route policies.
+  ///
+  /// Requires an existing [GoogleComputeRouter]. Pair [type] with matching
+  /// [elements] expressions (quoted CIDRs for PREFIX, community literals
+  /// for COMMUNITY).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleComputeRouterNamedSet(
+  ///   localName: 'prefixes',
+  ///   name: TfArg.literal('terradart-prefixes'),
+  ///   router: TfArg.ref(router.nameRef),
+  ///   region: TfArg.literal('us-central1'),
+  ///   type: TfArg.literal(ComputeRouterNamedSetType.namedSetTypePrefix),
+  ///   elements: [
+  ///     ComputeRouterNamedSetElements(
+  ///       expression: TfArg.literal("'10.0.0.0/8'"),
+  ///       title: TfArg.literal('rfc1918-10'),
+  ///     ),
+  ///   ],
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - router
+  - type
+  - region
+  - description
+  - elements
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

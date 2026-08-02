@@ -4,10 +4,11 @@
 /// - a custom-mode VPC (`terradart-route-demo`),
 /// - a static `google_compute_route` sending an unused RFC-1918 range to the
 ///   default internet gateway,
+/// - a Cloud Router plus a PREFIX Named Set (CEL CIDR collection for route
+///   policies),
 /// - a project-wide `google_compute_project_metadata_item` (an ops-owner tag).
 ///
-/// All three resources are free (no VMs), so the stack creates and destroys
-/// quickly and cleanly in a single project.
+/// No VMs — the stack creates and destroys quickly in a single project.
 ///
 /// Exports the VPC name as a typed Dart constant via `Stack.addExport`.
 /// Run `bin/infra.dart` to synth into `tf-out/`.
@@ -18,8 +19,8 @@ import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 
-/// Compute networking-extras Stack: a VPC, a static route, and a project
-/// metadata item.
+/// Compute networking-extras Stack: a VPC, static route, Cloud Router Named
+/// Set, and a project metadata item.
 final class NetworkRouteStack extends Stack {
   NetworkRouteStack({required String projectId})
       : super(
@@ -57,6 +58,35 @@ final class NetworkRouteStack extends Stack {
           nextHopGateway: TfArg.literal('default-internet-gateway'),
         ),
         dependsOn: [ResourceDependency(vpc)],
+      ),
+    );
+
+    final router = add(
+      GoogleComputeRouter(
+        localName: 'edge',
+        name: TfArg.literal('terradart-route-router'),
+        network: TfArg.ref(vpc.id),
+        region: TfArg.literal('us-central1'),
+        description: TfArg.literal('Cloud Router for Named Set demo'),
+        dependsOn: [ResourceDependency(vpc)],
+      ),
+    );
+
+    add(
+      GoogleComputeRouterNamedSet(
+        localName: 'prefixes',
+        name: TfArg.literal('terradart-prefixes'),
+        router: TfArg.ref(router.nameRef),
+        region: TfArg.literal('us-central1'),
+        type: TfArg.literal(ComputeRouterNamedSetType.namedSetTypePrefix),
+        description: TfArg.literal('Demo PREFIX named set for route policies'),
+        elements: [
+          ComputeRouterNamedSetElements(
+            expression: TfArg.literal("'10.0.0.0/8'"),
+            title: TfArg.literal('rfc1918-10'),
+          ),
+        ],
+        dependsOn: [ResourceDependency(router)],
       ),
     );
 

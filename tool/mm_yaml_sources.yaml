@@ -1036,6 +1036,8 @@ files:
     upstream: null  # third_party terraform/services/compute/resource_compute_network_peering_routes_config.go
   google_compute_router_peer:
     upstream: null  # no mmv1/products/compute/RouterPeer.yaml in magic-modules (sync 404); schema-only curation
+  google_compute_router_named_set:
+    upstream: mmv1/products/compute/RouterNamedSet.yaml
   google_compute_interconnect:
     upstream: mmv1/products/compute/Interconnect.yaml
   google_compute_interconnect_attachment:
