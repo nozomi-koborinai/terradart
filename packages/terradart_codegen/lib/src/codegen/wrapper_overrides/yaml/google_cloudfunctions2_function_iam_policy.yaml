@@ -1,0 +1,16 @@
+outputDir: cloud_functions
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Cloud Functions (2nd gen) function.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleCloudfunctions2FunctionIamMember] for single-principal grants.
+
+paramOrder:
+  - cloud_function
+  - policy_data
+  - location
+  - project
