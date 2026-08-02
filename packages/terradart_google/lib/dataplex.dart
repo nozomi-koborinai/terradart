@@ -62,8 +62,12 @@ export 'src/dataplex/google_dataplex_datascan.dart'
         DataplexDatascanState,
         DataplexDatascanType,
         GoogleDataplexDatascan;
+export 'src/dataplex/google_dataplex_datascan_iam_binding.dart'
+    show GoogleDataplexDatascanIamBinding;
 export 'src/dataplex/google_dataplex_datascan_iam_member.dart'
     show GoogleDataplexDatascanIamMember;
+export 'src/dataplex/google_dataplex_datascan_iam_policy.dart'
+    show GoogleDataplexDatascanIamPolicy;
 export 'src/dataplex/google_dataplex_entry.dart' show GoogleDataplexEntry;
 export 'src/dataplex/google_dataplex_entry_group.dart'
     show GoogleDataplexEntryGroup;
@@ -91,8 +95,12 @@ export 'src/dataplex/google_dataplex_entry_type_iam_policy.dart'
 export 'src/dataplex/google_dataplex_glossary.dart' show GoogleDataplexGlossary;
 export 'src/dataplex/google_dataplex_glossary_category.dart'
     show GoogleDataplexGlossaryCategory;
+export 'src/dataplex/google_dataplex_glossary_iam_binding.dart'
+    show GoogleDataplexGlossaryIamBinding;
 export 'src/dataplex/google_dataplex_glossary_iam_member.dart'
     show GoogleDataplexGlossaryIamMember;
+export 'src/dataplex/google_dataplex_glossary_iam_policy.dart'
+    show GoogleDataplexGlossaryIamPolicy;
 export 'src/dataplex/google_dataplex_glossary_term.dart'
     show GoogleDataplexGlossaryTerm;
 export 'src/dataplex/google_dataplex_lake.dart' show GoogleDataplexLake;
@@ -116,8 +124,12 @@ export 'src/dataplex/google_dataplex_task.dart'
         DataplexTaskTriggerSpecType,
         DataplexTaskWorkload,
         GoogleDataplexTask;
+export 'src/dataplex/google_dataplex_task_iam_binding.dart'
+    show GoogleDataplexTaskIamBinding;
 export 'src/dataplex/google_dataplex_task_iam_member.dart'
     show GoogleDataplexTaskIamMember;
+export 'src/dataplex/google_dataplex_task_iam_policy.dart'
+    show GoogleDataplexTaskIamPolicy;
 export 'src/dataplex/google_dataplex_zone.dart'
     show
         DataplexZoneDiscoverySpec,

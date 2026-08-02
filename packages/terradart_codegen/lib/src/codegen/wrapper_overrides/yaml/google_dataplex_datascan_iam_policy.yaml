@@ -1,0 +1,16 @@
+outputDir: dataplex
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Dataplex data scan.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleDataplexDatascanIamMember] for single-principal grants.
+
+paramOrder:
+  - data_scan_id
+  - policy_data
+  - location
+  - project
