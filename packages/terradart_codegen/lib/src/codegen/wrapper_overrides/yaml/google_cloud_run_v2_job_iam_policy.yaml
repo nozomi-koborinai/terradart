@@ -1,0 +1,16 @@
+outputDir: cloud_run
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Cloud Run v2 job.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleCloudRunV2JobIamMember] for single-principal grants.
+
+paramOrder:
+  - name
+  - policy_data
+  - location
+  - project

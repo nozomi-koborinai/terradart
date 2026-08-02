@@ -521,7 +521,15 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_cloud_run_v2_service_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloud_run_v2_service_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloud_run_v2_service_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_cloud_run_v2_job_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloud_run_v2_job_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloud_run_v2_job_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_storage_bucket_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
@@ -1053,6 +1061,10 @@ files:
   google_dns_response_policy_rule:
     upstream: mmv1/products/dns/ResponsePolicyRule.yaml
   google_cloud_run_v2_worker_pool_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloud_run_v2_worker_pool_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloud_run_v2_worker_pool_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_compute_router:
     upstream: mmv1/products/compute/Router.yaml

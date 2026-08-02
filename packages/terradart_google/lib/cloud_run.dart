@@ -36,8 +36,12 @@ export 'src/cloud_run/google_cloud_run_v2_job.dart'
         CloudRunV2JobVpcAccessEgress,
         CloudRunV2JobVpcNetworkInterface,
         GoogleCloudRunV2Job;
+export 'src/cloud_run/google_cloud_run_v2_job_iam_binding.dart'
+    show GoogleCloudRunV2JobIamBinding;
 export 'src/cloud_run/google_cloud_run_v2_job_iam_member.dart'
     show GoogleCloudRunV2JobIamMember;
+export 'src/cloud_run/google_cloud_run_v2_job_iam_policy.dart'
+    show GoogleCloudRunV2JobIamPolicy;
 export 'src/cloud_run/google_cloud_run_v2_service.dart'
     show
         CloudRunV2ServiceBinaryAuthorization,
@@ -77,8 +81,12 @@ export 'src/cloud_run/google_cloud_run_v2_service.dart'
         ScalingMode,
         TrafficTargetAllocationType,
         VpcAccessEgress;
+export 'src/cloud_run/google_cloud_run_v2_service_iam_binding.dart'
+    show GoogleCloudRunV2ServiceIamBinding;
 export 'src/cloud_run/google_cloud_run_v2_service_iam_member.dart'
     show GoogleCloudRunV2ServiceIamMember;
+export 'src/cloud_run/google_cloud_run_v2_service_iam_policy.dart'
+    show GoogleCloudRunV2ServiceIamPolicy;
 export 'src/cloud_run/google_cloud_run_v2_worker_pool.dart'
     show
         CloudRunV2WorkerPoolEmptyDirVolume,
@@ -90,5 +98,9 @@ export 'src/cloud_run/google_cloud_run_v2_worker_pool.dart'
         CloudRunV2WorkerPoolTemplate,
         CloudRunV2WorkerPoolVolume,
         GoogleCloudRunV2WorkerPool;
+export 'src/cloud_run/google_cloud_run_v2_worker_pool_iam_binding.dart'
+    show GoogleCloudRunV2WorkerPoolIamBinding;
 export 'src/cloud_run/google_cloud_run_v2_worker_pool_iam_member.dart'
     show GoogleCloudRunV2WorkerPoolIamMember;
+export 'src/cloud_run/google_cloud_run_v2_worker_pool_iam_policy.dart'
+    show GoogleCloudRunV2WorkerPoolIamPolicy;
