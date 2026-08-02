@@ -1,0 +1,18 @@
+outputDir: bigquery
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a BigQuery data policy.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleBigqueryDatapolicyDataPolicyIamMember] for additive grants.
+
+paramOrder:
+  - data_policy_id
+  - role
+  - members
+  - condition
+  - location
+  - project

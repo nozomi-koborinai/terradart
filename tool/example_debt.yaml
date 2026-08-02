@@ -541,3 +541,12 @@ GoogleBigqueryTableIamBinding: iam-adjunct-debt: sibling GoogleBigqueryTableIamM
 GoogleBigqueryTableIamPolicy: iam-adjunct-debt: sibling GoogleBigqueryTableIamMember already in bigquery_quickstart; authoritative policy not needed in smoke
 GoogleBigqueryConnectionIamBinding: iam-adjunct-debt: sibling GoogleBigqueryConnectionIamMember already in bigquery_quickstart; authoritative binding not needed in smoke
 GoogleBigqueryConnectionIamPolicy: iam-adjunct-debt: sibling GoogleBigqueryConnectionIamMember already in bigquery_quickstart; authoritative policy not needed in smoke
+
+# BigQuery Analytics Hub + Datapolicy IAM binding/policy — sibling *IamMember
+# already in bigquery_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
+GoogleBigqueryAnalyticsHubDataExchangeIamBinding: iam-adjunct-debt: sibling GoogleBigqueryAnalyticsHubDataExchangeIamMember already in bigquery_quickstart; authoritative binding not needed in smoke
+GoogleBigqueryAnalyticsHubDataExchangeIamPolicy: iam-adjunct-debt: sibling GoogleBigqueryAnalyticsHubDataExchangeIamMember already in bigquery_quickstart; authoritative policy not needed in smoke
+GoogleBigqueryAnalyticsHubListingIamBinding: iam-adjunct-debt: sibling GoogleBigqueryAnalyticsHubListingIamMember already in bigquery_quickstart; authoritative binding not needed in smoke
+GoogleBigqueryAnalyticsHubListingIamPolicy: iam-adjunct-debt: sibling GoogleBigqueryAnalyticsHubListingIamMember already in bigquery_quickstart; authoritative policy not needed in smoke
+GoogleBigqueryDatapolicyDataPolicyIamBinding: iam-adjunct-debt: sibling GoogleBigqueryDatapolicyDataPolicyIamMember already in bigquery_quickstart; authoritative binding not needed in smoke
+GoogleBigqueryDatapolicyDataPolicyIamPolicy: iam-adjunct-debt: sibling GoogleBigqueryDatapolicyDataPolicyIamMember already in bigquery_quickstart; authoritative policy not needed in smoke

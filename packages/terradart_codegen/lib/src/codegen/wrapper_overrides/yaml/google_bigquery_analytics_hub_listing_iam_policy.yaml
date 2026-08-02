@@ -1,0 +1,17 @@
+outputDir: bigquery
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a BigQuery Analytics Hub listing.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleBigqueryAnalyticsHubListingIamMember] for single-principal grants.
+
+paramOrder:
+  - data_exchange_id
+  - listing_id
+  - location
+  - policy_data
+  - project

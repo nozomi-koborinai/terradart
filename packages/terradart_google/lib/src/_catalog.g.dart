@@ -2136,6 +2136,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_bigquery_analytics_hub_data_exchange`.\n\nA Bigquery Analytics Hub data exchange',
   ),
   CatalogEntry(
+    tfType: 'google_bigquery_analytics_hub_data_exchange_iam_binding',
+    className: 'GoogleBigqueryAnalyticsHubDataExchangeIamBinding',
+    barrel: 'bigquery',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_bigquery_analytics_hub_data_exchange_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'dataExchangeId',
+      'location',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigquery_analytics_hub_data_exchange_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigQuery Analytics Hub\ndata exchange.\n\nReplaces the entire member list for that role. Prefer\n[GoogleBigqueryAnalyticsHubDataExchangeIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_bigquery_analytics_hub_data_exchange_iam_member',
     className: 'GoogleBigqueryAnalyticsHubDataExchangeIamMember',
     barrel: 'bigquery',
@@ -2155,6 +2176,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_bigquery_analytics_hub_data_exchange_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_bigquery_analytics_hub_data_exchange_iam_policy',
+    className: 'GoogleBigqueryAnalyticsHubDataExchangeIamPolicy',
+    barrel: 'bigquery',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_bigquery_analytics_hub_data_exchange_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'dataExchangeId',
+      'location',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigquery_analytics_hub_data_exchange_iam_policy`.\n\nAuthoritative IAM policy for a BigQuery Analytics Hub data exchange.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleBigqueryAnalyticsHubDataExchangeIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_analytics_hub_listing',
@@ -2191,6 +2231,28 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_bigquery_analytics_hub_listing`.\n\nA Bigquery Analytics Hub data exchange listing',
   ),
   CatalogEntry(
+    tfType: 'google_bigquery_analytics_hub_listing_iam_binding',
+    className: 'GoogleBigqueryAnalyticsHubListingIamBinding',
+    barrel: 'bigquery',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_bigquery_analytics_hub_listing_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'dataExchangeId',
+      'listingId',
+      'location',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigquery_analytics_hub_listing_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigQuery Analytics Hub\nlisting.\n\nReplaces the entire member list for that role. Prefer\n[GoogleBigqueryAnalyticsHubListingIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_bigquery_analytics_hub_listing_iam_member',
     className: 'GoogleBigqueryAnalyticsHubListingIamMember',
     barrel: 'bigquery',
@@ -2211,6 +2273,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_bigquery_analytics_hub_listing_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_bigquery_analytics_hub_listing_iam_policy',
+    className: 'GoogleBigqueryAnalyticsHubListingIamPolicy',
+    barrel: 'bigquery',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_bigquery_analytics_hub_listing_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'dataExchangeId',
+      'listingId',
+      'location',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigquery_analytics_hub_listing_iam_policy`.\n\nAuthoritative IAM policy for a BigQuery Analytics Hub listing.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleBigqueryAnalyticsHubListingIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_analytics_hub_listing_subscription',
@@ -2437,6 +2519,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_bigquery_datapolicy_data_policy`.\n\nA BigQuery Data Policy',
   ),
   CatalogEntry(
+    tfType: 'google_bigquery_datapolicy_data_policy_iam_binding',
+    className: 'GoogleBigqueryDatapolicyDataPolicyIamBinding',
+    barrel: 'bigquery',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_bigquery_datapolicy_data_policy_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'dataPolicyId',
+      'role',
+      'members',
+      'condition',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigquery_datapolicy_data_policy_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigQuery data policy.\n\nReplaces the entire member list for that role. Prefer\n[GoogleBigqueryDatapolicyDataPolicyIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_bigquery_datapolicy_data_policy_iam_member',
     className: 'GoogleBigqueryDatapolicyDataPolicyIamMember',
     barrel: 'bigquery',
@@ -2456,6 +2559,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_bigquery_datapolicy_data_policy_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_bigquery_datapolicy_data_policy_iam_policy',
+    className: 'GoogleBigqueryDatapolicyDataPolicyIamPolicy',
+    barrel: 'bigquery',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_bigquery_datapolicy_data_policy_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'dataPolicyId',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigquery_datapolicy_data_policy_iam_policy`.\n\nAuthoritative IAM policy for a BigQuery data policy.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleBigqueryDatapolicyDataPolicyIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_dataset',
