@@ -1,0 +1,16 @@
+outputDir: artifact_registry
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for an Artifact Registry repository.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleArtifactRegistryRepositoryIamMember] for single-principal grants.
+
+paramOrder:
+  - repository
+  - policy_data
+  - location
+  - project

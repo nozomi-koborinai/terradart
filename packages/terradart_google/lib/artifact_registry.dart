@@ -53,8 +53,12 @@ export 'src/artifact_registry/google_artifact_registry_repository.dart'
         ArtifactRegistryVulnerabilityEnablementConfig,
         ArtifactRegistryYumRepositoryBase,
         GoogleArtifactRegistryRepository;
+export 'src/artifact_registry/google_artifact_registry_repository_iam_binding.dart'
+    show GoogleArtifactRegistryRepositoryIamBinding;
 export 'src/artifact_registry/google_artifact_registry_repository_iam_member.dart'
     show GoogleArtifactRegistryRepositoryIamMember;
+export 'src/artifact_registry/google_artifact_registry_repository_iam_policy.dart'
+    show GoogleArtifactRegistryRepositoryIamPolicy;
 export 'src/artifact_registry/google_artifact_registry_rule.dart'
     show
         ArtifactRegistryRuleAction,

@@ -1553,6 +1553,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_artifact_registry_repository`.\n\nA repository for storing artifacts',
   ),
   CatalogEntry(
+    tfType: 'google_artifact_registry_repository_iam_binding',
+    className: 'GoogleArtifactRegistryRepositoryIamBinding',
+    barrel: 'artifact_registry',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_artifact_registry_repository_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'repository',
+      'role',
+      'members',
+      'condition',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_artifact_registry_repository_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an Artifact Registry\nrepository.\n\nReplaces the entire member list for that role. Prefer\n[GoogleArtifactRegistryRepositoryIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_artifact_registry_repository_iam_member',
     className: 'GoogleArtifactRegistryRepositoryIamMember',
     barrel: 'artifact_registry',
@@ -1572,6 +1593,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_artifact_registry_repository_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_artifact_registry_repository_iam_policy',
+    className: 'GoogleArtifactRegistryRepositoryIamPolicy',
+    barrel: 'artifact_registry',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_artifact_registry_repository_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'repository',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_artifact_registry_repository_iam_policy`.\n\nAuthoritative IAM policy for an Artifact Registry repository.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleArtifactRegistryRepositoryIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_artifact_registry_rule',

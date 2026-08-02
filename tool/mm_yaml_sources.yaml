@@ -727,6 +727,10 @@ files:
     upstream: mmv1/products/artifactregistry/ProjectConfig.yaml
   google_artifact_registry_repository_iam_member:
     upstream: null  # IAM templates are schema-only curation (Wave 5 precedent)
+  google_artifact_registry_repository_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_artifact_registry_repository_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_artifact_registry_rule:
     upstream: mmv1/products/artifactregistry/Rule.yaml
   google_bigquery_capacity_commitment:
