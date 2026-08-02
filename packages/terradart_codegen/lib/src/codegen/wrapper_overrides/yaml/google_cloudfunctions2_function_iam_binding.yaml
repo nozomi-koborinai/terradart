@@ -1,0 +1,19 @@
+outputDir: cloud_functions
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud Functions (2nd gen)
+  /// function.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleCloudfunctions2FunctionIamMember] for additive grants.
+
+paramOrder:
+  - cloud_function
+  - role
+  - members
+  - condition
+  - location
+  - project

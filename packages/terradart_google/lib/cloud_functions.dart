@@ -25,5 +25,9 @@ export 'src/cloud_functions/google_cloudfunctions2_function.dart'
         RepoSource,
         StorageSource,
         VpcConnectorEgressSettings;
+export 'src/cloud_functions/google_cloudfunctions2_function_iam_binding.dart'
+    show GoogleCloudfunctions2FunctionIamBinding;
 export 'src/cloud_functions/google_cloudfunctions2_function_iam_member.dart'
     show GoogleCloudfunctions2FunctionIamMember;
+export 'src/cloud_functions/google_cloudfunctions2_function_iam_policy.dart'
+    show GoogleCloudfunctions2FunctionIamPolicy;

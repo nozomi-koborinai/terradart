@@ -5043,6 +5043,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_cloudfunctions2_function`.\n\nA Cloud Function that contains user computation executed in response to an\nevent.\n\nCloud Functions Gen 2 function. Gen 2 runs on Cloud Run + Eventarc +\nCloud Build; this resource owns the build step (source archive + runtime),\nthe runtime service config (memory / CPU / scaling), and optionally an\nevent-trigger binding.\n\nExample (HTTP-triggered Python function backed by a GCS source archive):\n```dart\nfinal fn = GoogleCloudfunctions2Function(\n  localName: \'http_fn\',\n  name: TfArg.literal(\'hello-http\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  buildConfig: Cloudfunctions2FunctionBuildConfig(\n    runtime: TfArg.literal(\'python311\'),\n    entryPoint: TfArg.literal(\'hello\'),\n    source: StorageSource(\n      bucket: TfArg.literal(\'my-source-bucket\'),\n      object: TfArg.literal(\'hello-http.zip\'),\n    ),\n  ),\n  serviceConfig: Cloudfunctions2FunctionServiceConfig(\n    availableMemory: TfArg.literal(\'256M\'),\n    timeoutSeconds: TfArg.literal(60),\n    ingressSettings: TfArg.literal(IngressSettings.allowAll),\n  ),\n);\n```\n\nExample (Pub/Sub event-triggered function):\n```dart\nfinal fn = GoogleCloudfunctions2Function(\n  localName: \'sub_fn\',\n  name: TfArg.literal(\'order-handler\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  buildConfig: Cloudfunctions2FunctionBuildConfig(\n    runtime: TfArg.literal(\'python311\'),\n    entryPoint: TfArg.literal(\'handle\'),\n    source: StorageSource(\n      bucket: TfArg.literal(\'my-source-bucket\'),\n      object: TfArg.literal(\'order-handler.zip\'),\n    ),\n  ),\n  eventTrigger: Cloudfunctions2FunctionEventTrigger(\n    eventType: TfArg.literal(\'google.cloud.pubsub.topic.v1.messagePublished\'),\n    pubsubTopic: TfArg.literal(\'projects/p/topics/orders\'),\n    retryPolicy: TfArg.literal(EventTriggerRetryPolicy.retry),\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_cloudfunctions2_function_iam_binding',
+    className: 'GoogleCloudfunctions2FunctionIamBinding',
+    barrel: 'cloud_functions',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_cloudfunctions2_function_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'cloudFunction',
+      'role',
+      'members',
+      'condition',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_cloudfunctions2_function_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Functions (2nd gen)\nfunction.\n\nReplaces the entire member list for that role. Prefer\n[GoogleCloudfunctions2FunctionIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_cloudfunctions2_function_iam_member',
     className: 'GoogleCloudfunctions2FunctionIamMember',
     barrel: 'cloud_functions',
@@ -5062,6 +5083,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_cloudfunctions2_function_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_cloudfunctions2_function_iam_policy',
+    className: 'GoogleCloudfunctions2FunctionIamPolicy',
+    barrel: 'cloud_functions',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_cloudfunctions2_function_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'cloudFunction',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_cloudfunctions2_function_iam_policy`.\n\nAuthoritative IAM policy for a Cloud Functions (2nd gen) function.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleCloudfunctions2FunctionIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_colab_notebook_execution',
