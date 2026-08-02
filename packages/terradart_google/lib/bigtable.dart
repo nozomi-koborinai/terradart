@@ -27,8 +27,12 @@ export 'src/bigtable/google_bigtable_instance.dart'
         BigtableInstanceEdition,
         BigtableInstanceType,
         GoogleBigtableInstance;
+export 'src/bigtable/google_bigtable_instance_iam_binding.dart'
+    show GoogleBigtableInstanceIamBinding;
 export 'src/bigtable/google_bigtable_instance_iam_member.dart'
     show GoogleBigtableInstanceIamMember;
+export 'src/bigtable/google_bigtable_instance_iam_policy.dart'
+    show GoogleBigtableInstanceIamPolicy;
 export 'src/bigtable/google_bigtable_logical_view.dart'
     show GoogleBigtableLogicalView;
 export 'src/bigtable/google_bigtable_materialized_view.dart'
@@ -37,5 +41,9 @@ export 'src/bigtable/google_bigtable_schema_bundle.dart'
     show BigtableSchemaBundleProtoSchema, GoogleBigtableSchemaBundle;
 export 'src/bigtable/google_bigtable_table.dart'
     show BigtableTableColumnFamily, GoogleBigtableTable;
+export 'src/bigtable/google_bigtable_table_iam_binding.dart'
+    show GoogleBigtableTableIamBinding;
 export 'src/bigtable/google_bigtable_table_iam_member.dart'
     show GoogleBigtableTableIamMember;
+export 'src/bigtable/google_bigtable_table_iam_policy.dart'
+    show GoogleBigtableTableIamPolicy;

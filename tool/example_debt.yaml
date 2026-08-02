@@ -504,3 +504,10 @@ GoogleComputeInstanceIamBinding: iam-adjunct-debt: sibling GoogleComputeInstance
 GoogleComputeInstanceIamPolicy: iam-adjunct-debt: sibling GoogleComputeInstanceIamMember already in compute_quickstart; authoritative policy not needed in smoke
 GoogleComputeSubnetworkIamBinding: iam-adjunct-debt: sibling GoogleComputeSubnetworkIamMember already in compute_quickstart; authoritative binding not needed in smoke
 GoogleComputeSubnetworkIamPolicy: iam-adjunct-debt: sibling GoogleComputeSubnetworkIamMember already in compute_quickstart; authoritative policy not needed in smoke
+
+# Bigtable IAM binding/policy — sibling *IamMember already in
+# bigtable_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
+GoogleBigtableInstanceIamBinding: iam-adjunct-debt: sibling GoogleBigtableInstanceIamMember already in bigtable_quickstart; authoritative binding not needed in smoke
+GoogleBigtableInstanceIamPolicy: iam-adjunct-debt: sibling GoogleBigtableInstanceIamMember already in bigtable_quickstart; authoritative policy not needed in smoke
+GoogleBigtableTableIamBinding: iam-adjunct-debt: sibling GoogleBigtableTableIamMember already in bigtable_quickstart; authoritative binding not needed in smoke
+GoogleBigtableTableIamPolicy: iam-adjunct-debt: sibling GoogleBigtableTableIamMember already in bigtable_quickstart; authoritative policy not needed in smoke

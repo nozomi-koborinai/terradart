@@ -70,6 +70,10 @@ files:
     upstream: null  # third_party terraform/services/bigtable/resource_bigtable_instance.go
   google_bigtable_instance_iam_member:
     upstream: null
+  google_bigtable_instance_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigtable_instance_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_bigtable_logical_view:
     upstream: mmv1/products/bigtable/LogicalView.yaml
   google_bigtable_materialized_view:
@@ -80,6 +84,10 @@ files:
     upstream: null  # third_party terraform/services/bigtable/resource_bigtable_table.go
   google_bigtable_table_iam_member:
     upstream: null
+  google_bigtable_table_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigtable_table_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_blockchain_node_engine_blockchain_nodes:
     upstream: mmv1/products/blockchainnodeengine/BlockchainNodes.yaml
   google_cloud_ids_endpoint:

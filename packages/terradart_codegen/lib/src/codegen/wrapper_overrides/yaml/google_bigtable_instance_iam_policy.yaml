@@ -1,0 +1,15 @@
+outputDir: bigtable
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Bigtable instance.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleBigtableInstanceIamMember] for single-principal grants.
+
+paramOrder:
+  - instance
+  - policy_data
+  - project
