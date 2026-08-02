@@ -1,0 +1,15 @@
+outputDir: sourcerepo
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Cloud Source Repository.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleSourcerepoRepositoryIamMember] for single-principal grants.
+
+paramOrder:
+  - repository
+  - policy_data
+  - project

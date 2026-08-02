@@ -8,5 +8,9 @@ export 'src/sourcerepo/google_sourcerepo_repository.dart'
         GoogleSourcerepoRepository,
         SourcerepoRepositoryPubsubConfigs,
         SourcerepoRepositoryPubsubConfigsMessageFormat;
+export 'src/sourcerepo/google_sourcerepo_repository_iam_binding.dart'
+    show GoogleSourcerepoRepositoryIamBinding;
 export 'src/sourcerepo/google_sourcerepo_repository_iam_member.dart'
     show GoogleSourcerepoRepositoryIamMember;
+export 'src/sourcerepo/google_sourcerepo_repository_iam_policy.dart'
+    show GoogleSourcerepoRepositoryIamPolicy;

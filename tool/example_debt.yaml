@@ -612,3 +612,8 @@ GoogleBinaryAuthorizationAttestorIamPolicy: iam-adjunct-debt: sibling GoogleBina
 # compute_lb_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
 GooglePrivatecaCaPoolIamBinding: iam-adjunct-debt: sibling GooglePrivatecaCaPoolIamMember already in compute_lb_quickstart; authoritative binding not needed in smoke
 GooglePrivatecaCaPoolIamPolicy: iam-adjunct-debt: sibling GooglePrivatecaCaPoolIamMember already in compute_lb_quickstart; authoritative policy not needed in smoke
+
+# Cloud Source Repositories IAM binding/policy — sibling *IamMember already in
+# sourcerepo_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
+GoogleSourcerepoRepositoryIamBinding: iam-adjunct-debt: sibling GoogleSourcerepoRepositoryIamMember already in sourcerepo_quickstart; authoritative binding not needed in smoke
+GoogleSourcerepoRepositoryIamPolicy: iam-adjunct-debt: sibling GoogleSourcerepoRepositoryIamMember already in sourcerepo_quickstart; authoritative policy not needed in smoke

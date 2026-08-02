@@ -19470,6 +19470,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_sourcerepo_repository`.\n\nA repository (or repo) is a Git repository storing versioned source content.\n\nCloud Source Repositories Git repository.\n\nEnable `sourcerepo.googleapis.com` via [GoogleProjectService] before\napply. Optional [pubsubConfigs] publish push notifications on repo\nchanges (each entry needs a Pub/Sub topic + [messageFormat]).',
   ),
   CatalogEntry(
+    tfType: 'google_sourcerepo_repository_iam_binding',
+    className: 'GoogleSourcerepoRepositoryIamBinding',
+    barrel: 'sourcerepo',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_sourcerepo_repository_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'repository',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_sourcerepo_repository_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Source\nRepository.\n\nReplaces the entire member list for that role. Prefer\n[GoogleSourcerepoRepositoryIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_sourcerepo_repository_iam_member',
     className: 'GoogleSourcerepoRepositoryIamMember',
     barrel: 'sourcerepo',
@@ -19487,6 +19506,23 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_sourcerepo_repository_iam_member`.\n\nAdds a single IAM `role` → `member` binding on a\n[GoogleSourcerepoRepository]. Prefer an in-stack service account for\napply-smoke (placeholder identities fail at apply).',
+  ),
+  CatalogEntry(
+    tfType: 'google_sourcerepo_repository_iam_policy',
+    className: 'GoogleSourcerepoRepositoryIamPolicy',
+    barrel: 'sourcerepo',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_sourcerepo_repository_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'repository',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_sourcerepo_repository_iam_policy`.\n\nAuthoritative IAM policy for a Cloud Source Repository.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleSourcerepoRepositoryIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_spanner_backup_schedule',
