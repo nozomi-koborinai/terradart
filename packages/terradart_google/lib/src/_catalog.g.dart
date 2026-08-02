@@ -18087,6 +18087,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_privateca_ca_pool`.\n\nA CaPool represents a group of CertificateAuthorities that form a trust\nanchor. A CaPool can be used to manage issuance policies for one or more\nCertificateAuthority resources and to rotate CA certificates in and out of\nthe trust anchor.\n\nCertificate Authority Service (CAS) CA pool — container for one or more\ncertificate authorities used by [GoogleCertificateManagerCertificateIssuanceConfig].\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: pool ID.\n- [location]: regional location (e.g. `us-central1`).\n- [tier]: `ENTERPRISE` or `DEVOPS`.\n\nEnable `privateca.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nfinal pool = GooglePrivatecaCaPool(\n  localName: \'app_pool\',\n  name: TfArg.literal(\'app-pool\'),\n  location: TfArg.literal(\'us-central1\'),\n  tier: TfArg.literal(PrivatecaCaPoolTier.devops),\n);\n\nGoogleCertificateManagerCertificateIssuanceConfig(\n  localName: \'issuance\',\n  name: TfArg.literal(\'app-issuance\'),\n  certificateAuthorityConfig:\n      CertificateManagerCertificateIssuanceConfigCertificateAuthorityConfig(\n    certificateAuthorityServiceConfig:\n        CertificateManagerCertificateIssuanceConfigCertificateAuthorityServiceConfig(\n      caPool: TfArg.ref(pool.id),\n    ),\n  ),\n  keyAlgorithm: TfArg.literal(\n    CertificateManagerCertificateIssuanceConfigKeyAlgorithm.rsa2048,\n  ),\n  lifetime: TfArg.literal(\'2592000s\'),\n  rotationWindowPercentage: TfArg.literal(50),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_privateca_ca_pool_iam_binding',
+    className: 'GooglePrivatecaCaPoolIamBinding',
+    barrel: 'privateca',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_privateca_ca_pool_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'caPool',
+      'role',
+      'members',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_privateca_ca_pool_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Private CA pool.\n\nReplaces the entire member list for that role. Prefer\n[GooglePrivatecaCaPoolIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_privateca_ca_pool_iam_member',
     className: 'GooglePrivatecaCaPoolIamMember',
     barrel: 'privateca',
@@ -18103,6 +18121,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_privateca_ca_pool_iam_member`.\n\nAdditive IAM member on a [GooglePrivatecaCaPool] (Certificate Authority Service).\n\nRequired identity:\n- [localName]: Terraform local name.\n- [caPool]: pool ID — `TfArg.ref(pool.id)` from [GooglePrivatecaCaPool].\n- [role]: CAS role (e.g. `roles/privateca.auditor`).\n- [member]: IAM principal (`user:…`, `group:…`, `serviceAccount:…`).\n\nExample:\n```dart\nGooglePrivatecaCaPoolIamMember(\n  localName: \'pool_auditor\',\n  caPool: TfArg.ref(caPool.id),\n  role: TfArg.literal(\'roles/privateca.auditor\'),\n  member: TfArg.literal(\'group:security@example.com\'),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_privateca_ca_pool_iam_policy',
+    className: 'GooglePrivatecaCaPoolIamPolicy',
+    barrel: 'privateca',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_privateca_ca_pool_iam_policy`.',
+    constructorParams: <String>['localName', 'caPool', 'policyData'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_privateca_ca_pool_iam_policy`.\n\nAuthoritative IAM policy for a Private CA pool.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GooglePrivatecaCaPoolIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_privateca_certificate',

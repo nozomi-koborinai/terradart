@@ -12,8 +12,12 @@ export 'src/privateca/google_privateca_ca_pool.dart'
         PrivatecaCaPoolPublishingOptions,
         PrivatecaCaPoolPublishingOptionsEncodingFormat,
         PrivatecaCaPoolTier;
+export 'src/privateca/google_privateca_ca_pool_iam_binding.dart'
+    show GooglePrivatecaCaPoolIamBinding;
 export 'src/privateca/google_privateca_ca_pool_iam_member.dart'
     show GooglePrivatecaCaPoolIamMember;
+export 'src/privateca/google_privateca_ca_pool_iam_policy.dart'
+    show GooglePrivatecaCaPoolIamPolicy;
 export 'src/privateca/google_privateca_certificate.dart'
     show
         GooglePrivatecaCertificate,
