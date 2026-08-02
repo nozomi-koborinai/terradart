@@ -589,6 +589,11 @@ export 'src/compute/google_compute_router.dart'
     show ComputeRouterBgp, ComputeRouterBgpAdvertiseMode, GoogleComputeRouter;
 export 'src/compute/google_compute_router_interface.dart'
     show GoogleComputeRouterInterface;
+export 'src/compute/google_compute_router_named_set.dart'
+    show
+        ComputeRouterNamedSetElements,
+        ComputeRouterNamedSetType,
+        GoogleComputeRouterNamedSet;
 export 'src/compute/google_compute_router_nat.dart'
     show
         ComputeRouterNatAutoNetworkTier,

@@ -6842,6 +6842,31 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     docComment: 'Factory wrapper for `google_compute_router_interface`.',
   ),
   CatalogEntry(
+    tfType: 'google_compute_router_named_set',
+    className: 'GoogleComputeRouterNamedSet',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_router_named_set`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'router',
+      'type',
+      'region',
+      'description',
+      'elements',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'ComputeRouterNamedSetType',
+      'ComputeRouterNamedSetElements',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_router_named_set`.\n\nA Named Set is a collection of IP addresses or ranges (for PREFIX type) or\nBGP communities (for COMMUNITY type) that can be used in route policies.\n\nCloud Router **Named Set** — a CEL collection of IP prefixes\n(`NAMED_SET_TYPE_PREFIX`) or BGP communities\n(`NAMED_SET_TYPE_COMMUNITY`) for use in route policies.\n\nRequires an existing [GoogleComputeRouter]. Pair [type] with matching\n[elements] expressions (quoted CIDRs for PREFIX, community literals\nfor COMMUNITY).\n\nExample:\n```dart\nGoogleComputeRouterNamedSet(\n  localName: \'prefixes\',\n  name: TfArg.literal(\'terradart-prefixes\'),\n  router: TfArg.ref(router.nameRef),\n  region: TfArg.literal(\'us-central1\'),\n  type: TfArg.literal(ComputeRouterNamedSetType.namedSetTypePrefix),\n  elements: [\n    ComputeRouterNamedSetElements(\n      expression: TfArg.literal("\'10.0.0.0/8\'"),\n      title: TfArg.literal(\'rfc1918-10\'),\n    ),\n  ],\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_router_nat',
     className: 'GoogleComputeRouterNat',
     barrel: 'compute',
