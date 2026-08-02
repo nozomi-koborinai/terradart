@@ -1,0 +1,20 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on an IAP App Engine
+  /// version.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleIapAppEngineVersionIamMember] for additive grants.
+
+paramOrder:
+  - app_id
+  - service
+  - version_id
+  - role
+  - members
+  - condition
+  - project
