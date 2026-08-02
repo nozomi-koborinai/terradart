@@ -376,11 +376,23 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataplex_entry_group_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_entry_group_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_entry_group_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataplex_entry_type_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_entry_type_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_entry_type_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataplex_metadata_feed:
     upstream: mmv1/products/dataplex/MetadataFeed.yaml
   google_dataplex_aspect_type_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_aspect_type_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_aspect_type_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataplex_data_product_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation

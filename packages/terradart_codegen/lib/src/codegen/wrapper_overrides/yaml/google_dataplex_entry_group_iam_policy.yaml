@@ -1,0 +1,16 @@
+outputDir: dataplex
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Dataplex entry group.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleDataplexEntryGroupIamMember] for single-principal grants.
+
+paramOrder:
+  - entry_group_id
+  - policy_data
+  - location
+  - project

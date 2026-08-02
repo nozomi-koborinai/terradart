@@ -1,0 +1,18 @@
+outputDir: dataplex
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Dataplex aspect type.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleDataplexAspectTypeIamMember] for additive grants.
+
+paramOrder:
+  - aspect_type_id
+  - role
+  - members
+  - condition
+  - location
+  - project
