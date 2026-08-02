@@ -1,0 +1,18 @@
+outputDir: container_analysis
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Container Analysis
+  /// note.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleContainerAnalysisNoteIamMember] for additive grants.
+
+paramOrder:
+  - note
+  - role
+  - members
+  - condition
+  - project

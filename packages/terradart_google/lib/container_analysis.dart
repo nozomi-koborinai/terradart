@@ -10,10 +10,14 @@ export 'src/container_analysis/google_container_analysis_note.dart'
         ContainerAnalysisNoteAttestationAuthorityHint,
         ContainerAnalysisNoteRelatedUrl,
         GoogleContainerAnalysisNote;
+export 'src/container_analysis/google_container_analysis_note_iam_binding.dart'
+    show GoogleContainerAnalysisNoteIamBinding;
 export 'src/container_analysis/google_container_analysis_note_iam_member.dart'
     show
         ContainerAnalysisNoteIamMemberCondition,
         GoogleContainerAnalysisNoteIamMember;
+export 'src/container_analysis/google_container_analysis_note_iam_policy.dart'
+    show GoogleContainerAnalysisNoteIamPolicy;
 export 'src/container_analysis/google_container_analysis_occurrence.dart'
     show
         ContainerAnalysisOccurrenceAttestation,

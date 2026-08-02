@@ -3,22 +3,23 @@
 // ignore_for_file: prefer_relative_imports
 import 'package:terradart_core/terradart_core.dart';
 
-/// Sensitive field paths for `google_pubsub_topic_iam_member`.
-const Set<String> _googlePubsubTopicIamMemberSensitive = <String>{};
+/// Sensitive field paths for `google_pubsub_topic_iam_binding`.
+const Set<String> _googlePubsubTopicIamBindingSensitive = <String>{};
 
-/// Factory wrapper for `google_pubsub_topic_iam_member`.
+/// Factory wrapper for `google_pubsub_topic_iam_binding`.
 ///
-/// Adds a single IAM `role` -> `member` binding on a topic. Prefer
-/// [GooglePubsubTopicIamBinding] when replacing the full member list for
-/// a role, or [GooglePubsubTopicIamPolicy] for the entire policy.
-final class GooglePubsubTopicIamMember extends Resource {
-  static const String tfType = 'google_pubsub_topic_iam_member';
+/// Authoritative IAM binding for a single `role` on a Pub/Sub topic.
+///
+/// Replaces the entire member list for that role. Prefer
+/// [GooglePubsubTopicIamMember] for additive grants.
+final class GooglePubsubTopicIamBinding extends Resource {
+  static const String tfType = 'google_pubsub_topic_iam_binding';
 
-  GooglePubsubTopicIamMember({
+  GooglePubsubTopicIamBinding({
     required super.localName,
     required TfArg<String> topic,
     required TfArg<String> role,
-    required TfArg<String> member,
+    required TfArg<List<String>> members,
     TfArg<Map<String, dynamic>>? condition,
     TfArg<String>? project,
     super.lifecycle,
@@ -28,14 +29,14 @@ final class GooglePubsubTopicIamMember extends Resource {
          argMap: {
            'topic': topic,
            'role': role,
-           'member': member,
+           'members': members,
            if (condition != null) 'condition': condition,
            if (project != null) 'project': project,
          },
        );
 
   @override
-  Set<String> get sensitiveFields => _googlePubsubTopicIamMemberSensitive;
+  Set<String> get sensitiveFields => _googlePubsubTopicIamBindingSensitive;
 
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');

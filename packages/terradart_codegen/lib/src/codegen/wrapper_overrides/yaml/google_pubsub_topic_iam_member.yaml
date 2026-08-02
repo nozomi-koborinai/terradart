@@ -3,9 +3,9 @@ deriveClassDoc: true
 deriveOutputGetters: true
 
 curatedDoc: |-
-  /// Adds a single IAM `role` -> `member` binding on a topic. For
-  /// multi-member binding semantics, prefer `google_pubsub_topic_iam_binding`
-  /// (not yet a curated factory -- open an issue to request curation).
+  /// Adds a single IAM `role` -> `member` binding on a topic. Prefer
+  /// [GooglePubsubTopicIamBinding] when replacing the full member list for
+  /// a role, or [GooglePubsubTopicIamPolicy] for the entire policy.
 
 paramOrder:
   - topic

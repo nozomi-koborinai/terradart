@@ -3,16 +3,33 @@
 /// Defines `DbCredentialsStack`: provisions a `google_secret_manager_secret`
 /// with auto replication, supplies the value via the **write-only**
 /// `secretDataWo` + `secretDataWoVersion` fields (so the plaintext never
-/// lands in Terraform state), and grants
-/// `roles/secretmanager.secretAccessor` to a reader service account.
+/// lands in Terraform state), grants
+/// `roles/secretmanager.secretAccessor` to a reader service account, and
+/// exercises authoritative secret IAM binding + policy adjuncts.
 ///
 /// Bump `secretDataWoVersion` to rotate.
 library;
+
+import 'dart:convert';
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/secret_manager.dart';
+
+String _iamPolicyDataJson({
+  required String role,
+  required String member,
+}) {
+  return jsonEncode({
+    'bindings': [
+      {
+        'role': role,
+        'members': [member],
+      },
+    ],
+  });
+}
 
 /// Secret Manager secret + version + IAM accessor Stack.
 final class DbCredentialsStack extends Stack {
@@ -71,6 +88,40 @@ final class DbCredentialsStack extends Stack {
         role: TfArg.literal('roles/secretmanager.secretAccessor'),
         member: TfArg.ref(appSa.iamMember),
         dependsOn: [ResourceDependency(appSa)],
+      ),
+    );
+
+    // Authoritative adjuncts for the same accessor role (member → binding →
+    // policy). Final apply state is the policy document; member/binding stay
+    // in the example for factory coverage (same pattern as compute_quickstart).
+    final secretAccessorBinding = add(
+      GoogleSecretManagerSecretIamBinding(
+        localName: 'db_password_accessor_binding',
+        secretId: TfArg.ref(secret.secretIdRef),
+        role: TfArg.literal('roles/secretmanager.secretAccessor'),
+        members: TfArg.literal([appSa.iamMember.interpolation]),
+        dependsOn: [
+          ResourceDependency(secret),
+          ResourceDependency(appSa),
+        ],
+      ),
+    );
+
+    add(
+      GoogleSecretManagerSecretIamPolicy(
+        localName: 'db_password_accessor_policy',
+        secretId: TfArg.ref(secret.secretIdRef),
+        policyData: TfArg.literal(
+          _iamPolicyDataJson(
+            role: 'roles/secretmanager.secretAccessor',
+            member:
+                'serviceAccount:app-runner@$projectId.iam.gserviceaccount.com',
+          ),
+        ),
+        dependsOn: [
+          ResourceDependency(secret),
+          ResourceDependency(secretAccessorBinding),
+        ],
       ),
     );
 

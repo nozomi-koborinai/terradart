@@ -28,5 +28,9 @@ export 'src/pubsub/google_pubsub_topic.dart'
         PubsubTopicPlatformLogsSeverity,
         PubsubTopicSchemaEncoding,
         PubsubTopicSchemaSettings;
+export 'src/pubsub/google_pubsub_topic_iam_binding.dart'
+    show GooglePubsubTopicIamBinding;
 export 'src/pubsub/google_pubsub_topic_iam_member.dart'
     show GooglePubsubTopicIamMember;
+export 'src/pubsub/google_pubsub_topic_iam_policy.dart'
+    show GooglePubsubTopicIamPolicy;

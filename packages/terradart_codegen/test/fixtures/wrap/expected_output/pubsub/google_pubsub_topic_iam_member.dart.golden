@@ -8,9 +8,9 @@ const Set<String> _googlePubsubTopicIamMemberSensitive = <String>{};
 
 /// Factory wrapper for `google_pubsub_topic_iam_member`.
 ///
-/// Adds a single IAM `role` -> `member` binding on a topic. For
-/// multi-member binding semantics, prefer `google_pubsub_topic_iam_binding`
-/// (not yet a curated factory -- open an issue to request curation).
+/// Adds a single IAM `role` -> `member` binding on a topic. Prefer
+/// [GooglePubsubTopicIamBinding] when replacing the full member list for
+/// a role, or [GooglePubsubTopicIamPolicy] for the entire policy.
 final class GooglePubsubTopicIamMember extends Resource {
   static const String tfType = 'google_pubsub_topic_iam_member';
 

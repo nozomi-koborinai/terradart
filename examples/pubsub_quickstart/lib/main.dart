@@ -5,16 +5,33 @@
 /// - a push subscription pointed at an HTTPS endpoint,
 /// - a `roles/pubsub.publisher` grant for the Pub/Sub service agent (project
 ///   number from the `GoogleProject` data source),
+/// - authoritative topic IAM binding + policy for a demo publisher SA,
 ///
 /// and exports the topic's resource ID as a typed Dart constant via
 /// `Stack.addExport`. Run `bin/infra.dart` to synth into `tf-out/`.
 library;
+
+import 'dart:convert';
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/data.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';
+
+String _iamPolicyDataJson({
+  required String role,
+  required String member,
+}) {
+  return jsonEncode({
+    'bindings': [
+      {
+        'role': role,
+        'members': [member],
+      },
+    ],
+  });
+}
 
 /// Pub/Sub Stack: a topic and a push subscription.
 ///
@@ -106,6 +123,39 @@ final class OrdersStack extends Stack {
           'serviceAccount:service-${current.number.interpolation}@gcp-sa-pubsub.iam.gserviceaccount.com',
         ),
         dependsOn: [ResourceDependency(topic)],
+      ),
+    );
+
+    // Authoritative topic IAM adjuncts for the in-stack publisher SA.
+    // Binding then policy (dependsOn) so apply ordering stays deterministic.
+    final topicViewerBinding = add(
+      GooglePubsubTopicIamBinding(
+        localName: 'orders_publisher_binding',
+        topic: TfArg.ref(topic.nameRef),
+        role: TfArg.literal('roles/pubsub.viewer'),
+        members: TfArg.literal([ordersPublisher.iamMember.interpolation]),
+        dependsOn: [
+          ResourceDependency(topic),
+          ResourceDependency(ordersPublisher),
+        ],
+      ),
+    );
+
+    add(
+      GooglePubsubTopicIamPolicy(
+        localName: 'orders_publisher_policy',
+        topic: TfArg.ref(topic.nameRef),
+        policyData: TfArg.literal(
+          _iamPolicyDataJson(
+            role: 'roles/pubsub.viewer',
+            member:
+                'serviceAccount:orders-publisher@$projectId.iam.gserviceaccount.com',
+          ),
+        ),
+        dependsOn: [
+          ResourceDependency(topic),
+          ResourceDependency(topicViewerBinding),
+        ],
       ),
     );
 
