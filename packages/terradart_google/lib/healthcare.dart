@@ -6,8 +6,12 @@ library;
 
 export 'src/healthcare/google_healthcare_consent_store.dart'
     show GoogleHealthcareConsentStore;
+export 'src/healthcare/google_healthcare_consent_store_iam_binding.dart'
+    show GoogleHealthcareConsentStoreIamBinding;
 export 'src/healthcare/google_healthcare_consent_store_iam_member.dart'
     show GoogleHealthcareConsentStoreIamMember;
+export 'src/healthcare/google_healthcare_consent_store_iam_policy.dart'
+    show GoogleHealthcareConsentStoreIamPolicy;
 export 'src/healthcare/google_healthcare_dataset.dart'
     show GoogleHealthcareDataset;
 export 'src/healthcare/google_healthcare_dataset_iam_binding.dart'
@@ -43,7 +47,11 @@ export 'src/healthcare/google_healthcare_hl7_v2_store.dart'
         GoogleHealthcareHl7V2Store,
         HealthcareHl7V2StoreParserConfig,
         HealthcareHl7V2StoreParserConfigVersion;
+export 'src/healthcare/google_healthcare_hl7_v2_store_iam_binding.dart'
+    show GoogleHealthcareHl7V2StoreIamBinding;
 export 'src/healthcare/google_healthcare_hl7_v2_store_iam_member.dart'
     show GoogleHealthcareHl7V2StoreIamMember;
+export 'src/healthcare/google_healthcare_hl7_v2_store_iam_policy.dart'
+    show GoogleHealthcareHl7V2StoreIamPolicy;
 export 'src/healthcare/google_healthcare_workspace.dart'
     show GoogleHealthcareWorkspace, HealthcareWorkspaceSettings;

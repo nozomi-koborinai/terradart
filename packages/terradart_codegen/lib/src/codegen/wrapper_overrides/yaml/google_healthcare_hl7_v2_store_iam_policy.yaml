@@ -1,0 +1,14 @@
+outputDir: healthcare
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Cloud Healthcare HL7v2 Store.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleHealthcareHl7V2StoreIamMember] for single-principal grants.
+
+paramOrder:
+  - hl7_v2_store_id
+  - policy_data

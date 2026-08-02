@@ -1,0 +1,18 @@
+outputDir: healthcare
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud Healthcare
+  /// Consent Store.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleHealthcareConsentStoreIamMember] for additive grants.
+
+paramOrder:
+  - consent_store_id
+  - dataset
+  - role
+  - members
+  - condition

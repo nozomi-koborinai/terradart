@@ -1,0 +1,17 @@
+outputDir: healthcare
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud Healthcare
+  /// HL7v2 Store.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleHealthcareHl7V2StoreIamMember] for additive grants.
+
+paramOrder:
+  - hl7_v2_store_id
+  - role
+  - members
+  - condition
