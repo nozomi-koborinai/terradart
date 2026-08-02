@@ -532,3 +532,12 @@ GoogleDataprocMetastoreServiceIamBinding: iam-adjunct-debt: sibling GoogleDatapr
 GoogleDataprocMetastoreServiceIamPolicy: iam-adjunct-debt: sibling GoogleDataprocMetastoreServiceIamMember already in dataproc_metastore_quickstart; authoritative policy not needed in smoke
 GoogleDataprocMetastoreFederationIamBinding: iam-adjunct-debt: sibling GoogleDataprocMetastoreFederationIamMember already in dataproc_metastore_quickstart; authoritative binding not needed in smoke
 GoogleDataprocMetastoreFederationIamPolicy: iam-adjunct-debt: sibling GoogleDataprocMetastoreFederationIamMember already in dataproc_metastore_quickstart; authoritative policy not needed in smoke
+
+# BigQuery dataset/table/connection IAM binding/policy — sibling *IamMember
+# already in bigquery_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
+GoogleBigqueryDatasetIamBinding: iam-adjunct-debt: sibling GoogleBigqueryDatasetIamMember already in bigquery_quickstart; authoritative binding not needed in smoke
+GoogleBigqueryDatasetIamPolicy: iam-adjunct-debt: sibling GoogleBigqueryDatasetIamMember already in bigquery_quickstart; authoritative policy not needed in smoke
+GoogleBigqueryTableIamBinding: iam-adjunct-debt: sibling GoogleBigqueryTableIamMember already in bigquery_quickstart; authoritative binding not needed in smoke
+GoogleBigqueryTableIamPolicy: iam-adjunct-debt: sibling GoogleBigqueryTableIamMember already in bigquery_quickstart; authoritative policy not needed in smoke
+GoogleBigqueryConnectionIamBinding: iam-adjunct-debt: sibling GoogleBigqueryConnectionIamMember already in bigquery_quickstart; authoritative binding not needed in smoke
+GoogleBigqueryConnectionIamPolicy: iam-adjunct-debt: sibling GoogleBigqueryConnectionIamMember already in bigquery_quickstart; authoritative policy not needed in smoke

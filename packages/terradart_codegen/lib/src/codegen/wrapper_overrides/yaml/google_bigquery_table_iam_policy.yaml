@@ -1,0 +1,16 @@
+outputDir: bigquery
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a BigQuery table.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleBigqueryTableIamMember] for single-principal grants.
+
+paramOrder:
+  - dataset_id
+  - table_id
+  - policy_data
+  - project

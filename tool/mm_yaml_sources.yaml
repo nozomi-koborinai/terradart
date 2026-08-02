@@ -553,7 +553,15 @@ files:
   # *_iam_member fill (no MM YAML; all schema-only)
   google_bigquery_dataset_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_dataset_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_dataset_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_bigquery_table_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_table_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_table_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_cloud_run_v2_service_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
@@ -1077,6 +1085,10 @@ files:
   google_bigquery_analytics_hub_listing_subscription:
     upstream: mmv1/products/bigqueryanalyticshub/ListingSubscription.yaml
   google_bigquery_connection_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_connection_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_connection_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_compute_region_security_policy_rule:
     upstream: mmv1/products/compute/RegionSecurityPolicyRule.yaml

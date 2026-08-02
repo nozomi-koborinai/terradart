@@ -1,0 +1,19 @@
+outputDir: bigquery
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a BigQuery connection.
+  ///
+  /// Replaces the entire member list for that role on the connection. Prefer
+  /// [GoogleBigqueryConnectionIamMember] when adding one principal without
+  /// touching existing bindings.
+
+paramOrder:
+  - connection_id
+  - location
+  - role
+  - members
+  - condition
+  - project
