@@ -20,8 +20,12 @@ export 'src/logging/google_logging_linked_dataset.dart'
     show GoogleLoggingLinkedDataset, LoggingLinkedDatasetBigqueryDataset;
 export 'src/logging/google_logging_log_scope.dart' show GoogleLoggingLogScope;
 export 'src/logging/google_logging_log_view.dart' show GoogleLoggingLogView;
+export 'src/logging/google_logging_log_view_iam_binding.dart'
+    show GoogleLoggingLogViewIamBinding;
 export 'src/logging/google_logging_log_view_iam_member.dart'
     show GoogleLoggingLogViewIamMember;
+export 'src/logging/google_logging_log_view_iam_policy.dart'
+    show GoogleLoggingLogViewIamPolicy;
 export 'src/logging/google_logging_metric.dart'
     show
         GoogleLoggingMetric,

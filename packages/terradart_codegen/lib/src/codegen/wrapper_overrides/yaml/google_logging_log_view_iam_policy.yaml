@@ -1,0 +1,17 @@
+outputDir: logging
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Cloud Logging log view.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleLoggingLogViewIamMember] for single-principal grants.
+
+paramOrder:
+  - bucket
+  - location
+  - name
+  - parent
+  - policy_data

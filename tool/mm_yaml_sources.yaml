@@ -968,6 +968,10 @@ files:
     upstream: mmv1/products/logging/LogView.yaml
   google_logging_log_view_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_logging_log_view_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_logging_log_view_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_logging_project_exclusion:
     upstream: null  # handwritten in terraform-provider-google (probe 404)
   google_logging_saved_query:

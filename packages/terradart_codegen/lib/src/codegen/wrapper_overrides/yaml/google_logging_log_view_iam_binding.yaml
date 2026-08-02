@@ -1,0 +1,20 @@
+outputDir: logging
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud Logging log
+  /// view.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleLoggingLogViewIamMember] for additive grants.
+
+paramOrder:
+  - bucket
+  - location
+  - name
+  - parent
+  - role
+  - members
+  - condition
