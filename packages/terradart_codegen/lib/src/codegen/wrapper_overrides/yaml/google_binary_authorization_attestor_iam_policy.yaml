@@ -1,0 +1,15 @@
+outputDir: binary_authorization
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Binary Authorization attestor.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleBinaryAuthorizationAttestorIamMember] for single-principal grants.
+
+paramOrder:
+  - attestor
+  - policy_data
+  - project

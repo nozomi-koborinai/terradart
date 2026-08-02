@@ -1714,6 +1714,10 @@ files:
     upstream: mmv1/products/binaryauthorization/Attestor.yaml
   google_binary_authorization_attestor_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_binary_authorization_attestor_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_binary_authorization_attestor_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   # Wave 77 (API protection + network diagnostics)
   google_apihub_api_hub_instance:
     upstream: mmv1/products/apihub/ApiHubInstance.yaml

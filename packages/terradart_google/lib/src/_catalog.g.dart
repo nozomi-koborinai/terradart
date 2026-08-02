@@ -3425,6 +3425,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_binary_authorization_attestor`.\n\nAn attestor that attests to container image artifacts.\n\nBinary Authorization attestor — a trusted authority that signs container\nimages for admission decisions.\n\nEnable `binaryauthorization.googleapis.com` before apply. The\n`attestation_authority_note` block holds the PGP public key material\n(or a Container Analysis note reference) used to verify signatures.\n\nExample:\n```dart\nGoogleBinaryAuthorizationAttestor(\n  localName: \'ci_attestor\',\n  name: TfArg.literal(\'ci-attestor\'),\n  attestationAuthorityNote: BinaryAuthorizationAttestorAttestationAuthorityNote(\n    noteReference: TfArg.literal(\n      \'projects/\$projectId/notes/ci-attestor\',\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_binary_authorization_attestor_iam_binding',
+    className: 'GoogleBinaryAuthorizationAttestorIamBinding',
+    barrel: 'binary_authorization',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_binary_authorization_attestor_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'attestor',
+      'role',
+      'members',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_binary_authorization_attestor_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Binary Authorization\nattestor.\n\nReplaces the entire member list for that role. Prefer\n[GoogleBinaryAuthorizationAttestorIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_binary_authorization_attestor_iam_member',
     className: 'GoogleBinaryAuthorizationAttestorIamMember',
     barrel: 'binary_authorization',
@@ -3443,6 +3463,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_binary_authorization_attestor_iam_member`.\n\nIAM member on a Binary Authorization attestor (`roles/binaryauthorization.attestorViewer`\nor `roles/binaryauthorization.attestorEditor`).\n\nExample:\n```dart\nGoogleBinaryAuthorizationAttestorIamMember(\n  localName: \'attestor_viewer\',\n  attestor: TfArg.ref(attestor.nameRef),\n  role: TfArg.literal(\'roles/binaryauthorization.attestorViewer\'),\n  member: TfArg.literal(\'serviceAccount:ci@\$projectId.iam.gserviceaccount.com\'),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_binary_authorization_attestor_iam_policy',
+    className: 'GoogleBinaryAuthorizationAttestorIamPolicy',
+    barrel: 'binary_authorization',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_binary_authorization_attestor_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'attestor',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_binary_authorization_attestor_iam_policy`.\n\nAuthoritative IAM policy for a Binary Authorization attestor.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleBinaryAuthorizationAttestorIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_binary_authorization_policy',

@@ -1,0 +1,18 @@
+outputDir: binary_authorization
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Binary Authorization
+  /// attestor.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleBinaryAuthorizationAttestorIamMember] for additive grants.
+
+paramOrder:
+  - attestor
+  - role
+  - members
+  - project
+  - condition

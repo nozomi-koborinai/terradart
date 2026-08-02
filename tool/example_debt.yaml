@@ -602,3 +602,8 @@ GoogleCloudTasksQueueIamPolicy: iam-adjunct-debt: sibling GoogleCloudTasksQueueI
 # cloud_functions_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
 GoogleCloudfunctions2FunctionIamBinding: iam-adjunct-debt: sibling GoogleCloudfunctions2FunctionIamMember already in cloud_functions_quickstart; authoritative binding not needed in smoke
 GoogleCloudfunctions2FunctionIamPolicy: iam-adjunct-debt: sibling GoogleCloudfunctions2FunctionIamMember already in cloud_functions_quickstart; authoritative policy not needed in smoke
+
+# Binary Authorization attestor IAM binding/policy — sibling *IamMember already
+# in vm_compliance_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
+GoogleBinaryAuthorizationAttestorIamBinding: iam-adjunct-debt: sibling GoogleBinaryAuthorizationAttestorIamMember already in vm_compliance_quickstart; authoritative binding not needed in smoke
+GoogleBinaryAuthorizationAttestorIamPolicy: iam-adjunct-debt: sibling GoogleBinaryAuthorizationAttestorIamMember already in vm_compliance_quickstart; authoritative policy not needed in smoke
