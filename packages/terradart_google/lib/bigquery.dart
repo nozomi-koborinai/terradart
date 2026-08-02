@@ -50,8 +50,12 @@ export 'src/bigquery/google_bigquery_connection.dart'
         BigqueryConnectionSparkMetastoreServiceConfig,
         BigqueryConnectionSparkSparkHistoryServerConfig,
         GoogleBigqueryConnection;
+export 'src/bigquery/google_bigquery_connection_iam_binding.dart'
+    show GoogleBigqueryConnectionIamBinding;
 export 'src/bigquery/google_bigquery_connection_iam_member.dart'
     show GoogleBigqueryConnectionIamMember;
+export 'src/bigquery/google_bigquery_connection_iam_policy.dart'
+    show GoogleBigqueryConnectionIamPolicy;
 export 'src/bigquery/google_bigquery_data_transfer_config.dart'
     show
         BigqueryDataTransferConfigEmailPreferences,
@@ -97,8 +101,12 @@ export 'src/bigquery/google_bigquery_dataset_access.dart'
         BigqueryDatasetAccessDatasetTargetType,
         BigqueryDatasetAccessPredefinedGroup,
         GoogleBigqueryDatasetAccess;
+export 'src/bigquery/google_bigquery_dataset_iam_binding.dart'
+    show GoogleBigqueryDatasetIamBinding;
 export 'src/bigquery/google_bigquery_dataset_iam_member.dart'
     show GoogleBigqueryDatasetIamMember;
+export 'src/bigquery/google_bigquery_dataset_iam_policy.dart'
+    show GoogleBigqueryDatasetIamPolicy;
 export 'src/bigquery/google_bigquery_job.dart'
     show
         BigqueryJobConfiguration,
@@ -186,5 +194,9 @@ export 'src/bigquery/google_bigquery_table.dart'
         ObjectMetadata,
         TableMetadataView,
         TimePartitioningType;
+export 'src/bigquery/google_bigquery_table_iam_binding.dart'
+    show GoogleBigqueryTableIamBinding;
 export 'src/bigquery/google_bigquery_table_iam_member.dart'
     show GoogleBigqueryTableIamMember;
+export 'src/bigquery/google_bigquery_table_iam_policy.dart'
+    show GoogleBigqueryTableIamPolicy;

@@ -1,0 +1,18 @@
+outputDir: bigquery
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a BigQuery dataset.
+  ///
+  /// Replaces the entire member list for that role on the dataset. Prefer
+  /// [GoogleBigqueryDatasetIamMember] when adding one principal without
+  /// touching existing bindings.
+
+paramOrder:
+  - dataset_id
+  - role
+  - members
+  - condition
+  - project

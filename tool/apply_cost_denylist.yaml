@@ -308,6 +308,12 @@ google_biglake_table: safe  # apply-verified safe (existing example)
 google_bigquery_dataset: safe  # apply-verified safe (existing example)
 google_bigquery_reservation_group: safe  # gcp-cost: no Cloud Billing Catalog SKU for reservation group config (BigQuery Reservation API 16B8-3DDA-9F10 lists slot/commit SKUs only, e.g. Standard Edition PAYG 0165-271F-5086 ~$0.049/slot-hour — no group SKU); billing-behavior: named container metadata — no existence/hourly charge until reservations allocate slots
 google_bigquery_table: safe  # apply-verified safe (existing example)
+google_bigquery_dataset_iam_binding: safe  # billing-behavior: IAM binding only
+google_bigquery_dataset_iam_policy: safe  # billing-behavior: IAM policy only
+google_bigquery_table_iam_binding: safe  # billing-behavior: IAM binding only
+google_bigquery_table_iam_policy: safe  # billing-behavior: IAM policy only
+google_bigquery_connection_iam_binding: safe  # billing-behavior: IAM binding only
+google_bigquery_connection_iam_policy: safe  # billing-behavior: IAM policy only
 google_cloud_run_v2_job: safe  # apply-verified safe (existing example)
 google_cloud_run_v2_job_iam_member: safe  # apply-verified safe (existing example)
 google_cloud_run_v2_job_iam_binding: safe  # billing-behavior: IAM binding only

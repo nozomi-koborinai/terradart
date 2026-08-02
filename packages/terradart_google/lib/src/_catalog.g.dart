@@ -2322,6 +2322,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_bigquery_connection`.\n\nA connection allows BigQuery connections to external data sources..\n\nA BigQuery **connection** stores the credentials and configuration\nBigQuery uses to read data from sources that live outside BigQuery\nstorage. Federated queries (`EXTERNAL_QUERY`), BigQuery Omni (multi-\ncloud reads), BigLake tables, stored procedures for Apache Spark, and\ngeneric Connector framework integrations all hang off a connection.\nThe credentials never travel through BigQuery query state — at query\ntime BigQuery loads them via the connection\'s service identity.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_bigquery_connection.`).\n- [connectionId]: optional. When omitted the API auto-generates a\n  UUID-shaped id. Pin it explicitly for stable references from SQL\n  (`EXTERNAL_QUERY(\'projects/.../locations/.../connections/<id>\', ...)`).\n- [location]: BigQuery region (`US`, `EU`, `asia-northeast1`,\n  `us-central1`, ...). The connection target must be reachable from\n  this region. Cloud SQL `us-central1` maps to BigQuery `US`; Cloud\n  SQL `europe-west1` maps to BigQuery `EU`; AWS connections must be\n  in `aws-us-east-1`; Azure connections in `azure-eastus2`. Schema\n  marks `location` optional — set it for any non-default deployment.\n\n**Connection-type one-of**: pick **at most one** of [cloudSql],\n[cloudSpanner], [aws], [azure], [cloudResource], [spark], or\n[configuration]. Supplying more than one errors at apply time. Use\ncase per variant:\n- [cloudSql] — federated queries against Cloud SQL Postgres / MySQL\n  (the most common BigQuery federation pattern). Credentials live\n  inside the [BigqueryConnectionCloudSqlCredential] block.\n- [cloudSpanner] — federated reads against a Cloud Spanner database,\n  optionally via Spanner Data Boost / independent compute.\n- [aws] — BigQuery Omni federation into Amazon S3 / Glue (BigLake\n  on AWS). The Google-side identity (output-only) trusts a\n  customer-owned IAM role.\n- [azure] — BigQuery Omni federation into Azure Data Lake Storage.\n  Uses Azure AD federation; most fields are computed and consumed by\n  the Azure side of the bridge.\n- [cloudResource] — generic GCP delegation. Surfaces an output-only\n  service account id that the connection acts as for cross-project\n  reads (e.g. BigLake tables over Cloud Storage in a different\n  project).\n- [spark] — stored procedures for Apache Spark on BigQuery. Optional\n  wiring to a Dataproc Metastore and Spark History Server.\n- [configuration] — the BigQuery Connector framework (AlloyDB,\n  `google-cloudsql-mysql`, `google-cloudsql-postgres`, and other\n  connector ids). Includes its own nested asset / authentication /\n  endpoint / network configuration.\n\nVariants the plan mentioned but the schema does not yet expose:\n`vertex_ai`, `salesforce_data_cloud`. These are gated behind the\nbeta provider as of the pinned `~> 7.0` GA schema and will surface\nonce the upstream MagicModules definitions promote to GA.\n\nExample (Cloud SQL — federated queries against a Postgres replica):\n```dart\nfinal pg = GoogleBigqueryConnection(\n  localName: \'analytics_pg\',\n  connectionId: TfArg.literal(\'analytics-pg\'),\n  location: TfArg.literal(\'US\'),\n  friendlyName: TfArg.literal(\'Analytics Postgres (read-replica)\'),\n  cloudSql: BigqueryConnectionCloudSql(\n    instanceId: TfArg.literal(\'my-project:us-central1:analytics-ro\'),\n    database: TfArg.literal(\'analytics\'),\n    type: BigqueryConnectionCloudSqlType.postgres,\n    credential: BigqueryConnectionCloudSqlCredential(\n      username: TfArg.literal(\'bq_federation\'),\n      password: TfArg.ref(pgPasswordVar),\n    ),\n  ),\n);\n```\n\nExample (AWS — BigLake federation against S3 / Glue):\n```dart\nfinal s3 = GoogleBigqueryConnection(\n  localName: \'biglake_s3\',\n  connectionId: TfArg.literal(\'biglake-s3\'),\n  location: TfArg.literal(\'aws-us-east-1\'),\n  aws: BigqueryConnectionAws(\n    accessRole: BigqueryConnectionAwsAccessRole(\n      iamRoleId:\n          TfArg.literal(\'arn:aws:iam::111122223333:role/biglake-bq\'),\n    ),\n  ),\n);\n```\n\nSensitive fields (round-trip through the generated `sensitiveFields`\nset; masked in serialized state by Terraform):\n- `cloud_sql.credential.password` — schema-flagged.\n- `configuration.authentication.username_password.password.plaintext`\n  — schema-flagged. Wire both via [TfArg.ref] to a secret resource or\n  sensitive variable rather than literals.\n\nOutput-only state:\n- [nameRef]: full resource name\n  (`projects/{project}/locations/{location}/connections/{id}`).\n- [hasCredential]: `true` once the credential block is materialized\n  server-side.',
   ),
   CatalogEntry(
+    tfType: 'google_bigquery_connection_iam_binding',
+    className: 'GoogleBigqueryConnectionIamBinding',
+    barrel: 'bigquery',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_bigquery_connection_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'connectionId',
+      'location',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigquery_connection_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigQuery connection.\n\nReplaces the entire member list for that role on the connection. Prefer\n[GoogleBigqueryConnectionIamMember] when adding one principal without\ntouching existing bindings.',
+  ),
+  CatalogEntry(
     tfType: 'google_bigquery_connection_iam_member',
     className: 'GoogleBigqueryConnectionIamMember',
     barrel: 'bigquery',
@@ -2339,6 +2359,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_bigquery_connection_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_bigquery_connection_iam_policy',
+    className: 'GoogleBigqueryConnectionIamPolicy',
+    barrel: 'bigquery',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_bigquery_connection_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'connectionId',
+      'location',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigquery_connection_iam_policy`.\n\nAuthoritative IAM policy for a BigQuery connection.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleBigqueryConnectionIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_data_transfer_config',
@@ -2504,6 +2542,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_bigquery_dataset_access`.\n\nGives dataset access for a single entity. This resource is intended to be\nused in cases where it is not possible to compile a full list of access\nblocks to include in a `google_bigquery_dataset` resource, to enable them to\nbe added separately.\n\n~> **Note:** If this resource is used alongside a `google_bigquery_dataset`\nresource, the dataset resource must either have no defined `access` blocks\nor a `lifecycle` block with `ignore_changes = [access]` so they don\'t fight\nover which accesses should be on the dataset. Additionally, both resource\ncannot be modified in the same apply.\n\nA single access entry on a BigQuery dataset, managed as a standalone\nresource (the non-inline counterpart of `GoogleBigqueryDataset.access`).\n\nProvide **exactly one** principal/target per entry:\n- a principal — [userByEmail] / [groupByEmail] / [domain] /\n  [specialGroup] / [iamMember] — paired with [role]; **or**\n- an authorized resource — [view] / [routine] / [authorizedDataset]\n  (these do **not** take a [role]).\n\nExample (grant a group READER):\n```dart\nGoogleBigqueryDatasetAccess(\n  localName: \'analysts_reader\',\n  datasetId: TfArg.ref(dataset.datasetIdRef),\n  role: TfArg.literal(\'READER\'),\n  groupByEmail: TfArg.literal(\'analysts@example.com\'),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_bigquery_dataset_iam_binding',
+    className: 'GoogleBigqueryDatasetIamBinding',
+    barrel: 'bigquery',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_bigquery_dataset_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'datasetId',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigquery_dataset_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigQuery dataset.\n\nReplaces the entire member list for that role on the dataset. Prefer\n[GoogleBigqueryDatasetIamMember] when adding one principal without\ntouching existing bindings.',
+  ),
+  CatalogEntry(
     tfType: 'google_bigquery_dataset_iam_member',
     className: 'GoogleBigqueryDatasetIamMember',
     barrel: 'bigquery',
@@ -2520,6 +2577,23 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_bigquery_dataset_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_bigquery_dataset_iam_policy',
+    className: 'GoogleBigqueryDatasetIamPolicy',
+    barrel: 'bigquery',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_bigquery_dataset_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'datasetId',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigquery_dataset_iam_policy`.\n\nAuthoritative IAM policy for a BigQuery dataset.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleBigqueryDatasetIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_bigquery_job',
@@ -2814,6 +2888,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_bigquery_table`.\n\nA Table that belongs to a Dataset\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_bigquery_table.`).\n- `datasetId`: parent BigQuery dataset id. Typically\n  `TfArg.ref(dataset.datasetIdRef)` where `dataset` is a\n  `GoogleBigqueryDataset`.\n- `tableId`: BigQuery table id. Letters/digits/underscores, up to 1024\n  chars. Immutable after create.\n\nThe `schema` slot is a `TfArg<String>?` — pass a JSON-encoded column\ndefinition string. Most callers will use `jsonEncode([...])` from\n`dart:convert` to assemble the schema at call site. Modeling the\ncolumn-level schema as Dart is out of scope for v0.0.x.\n\nPartitioning blocks are mutually exclusive at the API level: pass at\nmost one of `timePartitioning` / `rangePartitioning`. The wrapper does\nnot enforce this — passing both surfaces as a Terraform validation\nerror at plan time.\n\nExample:\n```dart\nfinal events = GoogleBigqueryTable(\n  localName: \'events\',\n  datasetId: TfArg.ref(dataset.datasetIdRef),\n  tableId: TfArg.literal(\'events_v1\'),\n  friendlyName: TfArg.literal(\'Click events\'),\n  description: TfArg.literal(\'Raw click events partitioned by day.\'),\n  timePartitioning: const BigqueryTableTimePartitioning(\n    type: TimePartitioningType.day,\n    field: \'event_time\',\n  ),\n  clustering: TfArg.literal(const [\'user_id\', \'campaign_id\']),\n  deletionProtection: TfArg.literal(false),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_bigquery_table_iam_binding',
+    className: 'GoogleBigqueryTableIamBinding',
+    barrel: 'bigquery',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_bigquery_table_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'datasetId',
+      'tableId',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigquery_table_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigQuery table.\n\nReplaces the entire member list for that role on the table. Prefer\n[GoogleBigqueryTableIamMember] when adding one principal without\ntouching existing bindings.',
+  ),
+  CatalogEntry(
     tfType: 'google_bigquery_table_iam_member',
     className: 'GoogleBigqueryTableIamMember',
     barrel: 'bigquery',
@@ -2831,6 +2925,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_bigquery_table_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_bigquery_table_iam_policy',
+    className: 'GoogleBigqueryTableIamPolicy',
+    barrel: 'bigquery',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_bigquery_table_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'datasetId',
+      'tableId',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigquery_table_iam_policy`.\n\nAuthoritative IAM policy for a BigQuery table.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleBigqueryTableIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_bigtable_app_profile',
