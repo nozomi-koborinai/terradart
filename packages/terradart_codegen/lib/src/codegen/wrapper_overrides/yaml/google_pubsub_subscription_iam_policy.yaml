@@ -1,0 +1,15 @@
+outputDir: pubsub
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Pub/Sub subscription.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GooglePubsubSubscriptionIamMember] for single-principal grants.
+
+paramOrder:
+  - subscription
+  - policy_data
+  - project

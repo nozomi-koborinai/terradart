@@ -1,0 +1,17 @@
+outputDir: pubsub
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Pub/Sub subscription.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GooglePubsubSubscriptionIamMember] for additive grants.
+
+paramOrder:
+  - subscription
+  - role
+  - members
+  - condition
+  - project

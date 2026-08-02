@@ -18346,6 +18346,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_pubsub_subscription`.\n\nA named resource representing the stream of messages from a single, specific\ntopic, to be delivered to the subscribing application.\n\nPass `topic` as the full topic path via `TfArg.ref(otherTopic.id)`\n(NOT `topic.nameRef`) so it resolves to\n`projects/{project}/topics/{name}`.\n\nExample (push subscription):\n```dart\nfinal push = GooglePubsubSubscription(\n  localName: \'orders_push\',\n  name: TfArg.literal(\'orders-push\'),\n  topic: TfArg.ref(orders.id),\n  pushConfig: const PubsubSubscriptionPushConfig(\n    pushEndpoint: TfArgLiteral(\'https://app.example.com/push\'),\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_pubsub_subscription_iam_binding',
+    className: 'GooglePubsubSubscriptionIamBinding',
+    barrel: 'pubsub',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_pubsub_subscription_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'subscription',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_pubsub_subscription_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Pub/Sub subscription.\n\nReplaces the entire member list for that role. Prefer\n[GooglePubsubSubscriptionIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_pubsub_subscription_iam_member',
     className: 'GooglePubsubSubscriptionIamMember',
     barrel: 'pubsub',
@@ -18363,6 +18382,23 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_pubsub_subscription_iam_member`.\n\nPub/Sub Subscription IAM is part of the curated surface. (Cloud\nScheduler IAM is not in the curated surface -- open an issue to request\ncuration.)',
+  ),
+  CatalogEntry(
+    tfType: 'google_pubsub_subscription_iam_policy',
+    className: 'GooglePubsubSubscriptionIamPolicy',
+    barrel: 'pubsub',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_pubsub_subscription_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'subscription',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_pubsub_subscription_iam_policy`.\n\nAuthoritative IAM policy for a Pub/Sub subscription.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GooglePubsubSubscriptionIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_pubsub_topic',

@@ -582,3 +582,8 @@ GoogleDataplexTaskIamPolicy: iam-adjunct-debt: sibling GoogleDataplexTaskIamMemb
 # dataplex_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
 GoogleDataplexDataProductIamBinding: iam-adjunct-debt: sibling GoogleDataplexDataProductIamMember already in dataplex_quickstart; authoritative binding not needed in smoke
 GoogleDataplexDataProductIamPolicy: iam-adjunct-debt: sibling GoogleDataplexDataProductIamMember already in dataplex_quickstart; authoritative policy not needed in smoke
+
+# Pub/Sub subscription IAM binding/policy — sibling *IamMember already in
+# iam_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
+GooglePubsubSubscriptionIamBinding: iam-adjunct-debt: sibling GooglePubsubSubscriptionIamMember already in iam_quickstart; authoritative binding not needed in smoke
+GooglePubsubSubscriptionIamPolicy: iam-adjunct-debt: sibling GooglePubsubSubscriptionIamMember already in iam_quickstart; authoritative policy not needed in smoke
