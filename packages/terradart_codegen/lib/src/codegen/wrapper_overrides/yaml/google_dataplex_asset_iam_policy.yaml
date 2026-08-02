@@ -1,0 +1,18 @@
+outputDir: dataplex
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Dataplex asset.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleDataplexAssetIamMember] for single-principal grants.
+
+paramOrder:
+  - asset
+  - dataplex_zone
+  - lake
+  - policy_data
+  - location
+  - project

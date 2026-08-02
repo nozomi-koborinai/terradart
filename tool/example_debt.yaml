@@ -550,3 +550,12 @@ GoogleBigqueryAnalyticsHubListingIamBinding: iam-adjunct-debt: sibling GoogleBig
 GoogleBigqueryAnalyticsHubListingIamPolicy: iam-adjunct-debt: sibling GoogleBigqueryAnalyticsHubListingIamMember already in bigquery_quickstart; authoritative policy not needed in smoke
 GoogleBigqueryDatapolicyDataPolicyIamBinding: iam-adjunct-debt: sibling GoogleBigqueryDatapolicyDataPolicyIamMember already in bigquery_quickstart; authoritative binding not needed in smoke
 GoogleBigqueryDatapolicyDataPolicyIamPolicy: iam-adjunct-debt: sibling GoogleBigqueryDatapolicyDataPolicyIamMember already in bigquery_quickstart; authoritative policy not needed in smoke
+
+# Dataplex lake/zone/asset IAM binding/policy — sibling *IamMember already in
+# dataplex_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
+GoogleDataplexLakeIamBinding: iam-adjunct-debt: sibling GoogleDataplexLakeIamMember already in dataplex_quickstart; authoritative binding not needed in smoke
+GoogleDataplexLakeIamPolicy: iam-adjunct-debt: sibling GoogleDataplexLakeIamMember already in dataplex_quickstart; authoritative policy not needed in smoke
+GoogleDataplexZoneIamBinding: iam-adjunct-debt: sibling GoogleDataplexZoneIamMember already in dataplex_quickstart; authoritative binding not needed in smoke
+GoogleDataplexZoneIamPolicy: iam-adjunct-debt: sibling GoogleDataplexZoneIamMember already in dataplex_quickstart; authoritative policy not needed in smoke
+GoogleDataplexAssetIamBinding: iam-adjunct-debt: sibling GoogleDataplexAssetIamMember already in dataplex_quickstart; authoritative binding not needed in smoke
+GoogleDataplexAssetIamPolicy: iam-adjunct-debt: sibling GoogleDataplexAssetIamMember already in dataplex_quickstart; authoritative policy not needed in smoke

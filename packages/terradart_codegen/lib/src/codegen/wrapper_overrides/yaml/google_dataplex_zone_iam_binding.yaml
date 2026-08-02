@@ -1,0 +1,19 @@
+outputDir: dataplex
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Dataplex zone.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleDataplexZoneIamMember] for additive grants.
+
+paramOrder:
+  - dataplex_zone
+  - lake
+  - role
+  - members
+  - condition
+  - location
+  - project
