@@ -26,8 +26,12 @@ export 'src/dataplex/google_dataplex_asset.dart'
         DataplexAssetResourceSpecReadAccessMode,
         DataplexAssetResourceSpecType,
         GoogleDataplexAsset;
+export 'src/dataplex/google_dataplex_asset_iam_binding.dart'
+    show GoogleDataplexAssetIamBinding;
 export 'src/dataplex/google_dataplex_asset_iam_member.dart'
     show GoogleDataplexAssetIamMember;
+export 'src/dataplex/google_dataplex_asset_iam_policy.dart'
+    show GoogleDataplexAssetIamPolicy;
 export 'src/dataplex/google_dataplex_data_product.dart'
     show DataplexDataProductAccessApprovalConfig, GoogleDataplexDataProduct;
 export 'src/dataplex/google_dataplex_data_product_data_asset.dart'
@@ -80,8 +84,12 @@ export 'src/dataplex/google_dataplex_glossary_iam_member.dart'
 export 'src/dataplex/google_dataplex_glossary_term.dart'
     show GoogleDataplexGlossaryTerm;
 export 'src/dataplex/google_dataplex_lake.dart' show GoogleDataplexLake;
+export 'src/dataplex/google_dataplex_lake_iam_binding.dart'
+    show GoogleDataplexLakeIamBinding;
 export 'src/dataplex/google_dataplex_lake_iam_member.dart'
     show GoogleDataplexLakeIamMember;
+export 'src/dataplex/google_dataplex_lake_iam_policy.dart'
+    show GoogleDataplexLakeIamPolicy;
 export 'src/dataplex/google_dataplex_metadata_feed.dart'
     show
         DataplexMetadataFeedFilters,
@@ -107,5 +115,9 @@ export 'src/dataplex/google_dataplex_zone.dart'
         DataplexZoneResourceSpecLocationType,
         DataplexZoneType,
         GoogleDataplexZone;
+export 'src/dataplex/google_dataplex_zone_iam_binding.dart'
+    show GoogleDataplexZoneIamBinding;
 export 'src/dataplex/google_dataplex_zone_iam_member.dart'
     show GoogleDataplexZoneIamMember;
+export 'src/dataplex/google_dataplex_zone_iam_policy.dart'
+    show GoogleDataplexZoneIamPolicy;

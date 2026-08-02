@@ -332,13 +332,25 @@ files:
     upstream: mmv1/products/dataplex/Lake.yaml
   google_dataplex_lake_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_lake_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_lake_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataplex_zone:
     upstream: null  # MM Zone.yaml is IAM-only (exclude_resource: true)
   google_dataplex_zone_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_zone_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_zone_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataplex_asset:
     upstream: null  # MM Asset.yaml is IAM-only (exclude_resource: true)
   google_dataplex_asset_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_asset_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_asset_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataplex_datascan:
     upstream: mmv1/products/dataplex/Datascan.yaml
