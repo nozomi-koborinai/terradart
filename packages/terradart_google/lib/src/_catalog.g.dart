@@ -14375,7 +14375,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_iap_web_backend_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an **external HTTPS\nload balancer backend service** protected by Identity-Aware Proxy (IAP).\n\nGrants `roles/iap.httpsResourceAccessor` (or another IAP role) to the\nlisted `members` and **replaces** the entire member list for that role\non the backend service. Prefer `google_iap_web_backend_service_iam_member`\nwhen you only need to add one principal without touching existing\nbindings (not yet a curated factory).\n\nRequired identity:\n- [localName]: Terraform local name.\n- `webBackendService`: short backend service name (e.g.\n  `\'koborin-ai-dev-backend\'`). Pass `TfArg.ref(backend.nameRef)` from\n  [GoogleComputeBackendService].\n- `role`: typically `\'roles/iap.httpsResourceAccessor\'`.\n- `members`: IAM principal strings (`user:…`, `group:…`, `domain:…`).\n\n`project` is optional and defaults to the provider project.\n\nOptional `condition` is a single IAM Condition block (CEL\n`expression`, `title`, optional `description`).\n\nPair with IAP enabled on the backend service itself via\n[GoogleComputeBackendService]\'s `iap` block (OAuth client ID/secret).',
+        'Factory wrapper for `google_iap_web_backend_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an **external HTTPS\nload balancer backend service** protected by Identity-Aware Proxy (IAP).\n\nGrants `roles/iap.httpsResourceAccessor` (or another IAP role) to the\nlisted `members` and **replaces** the entire member list for that role\non the backend service. Prefer [GoogleIapWebBackendServiceIamMember]\nwhen you only need to add one principal without touching existing\nbindings.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `webBackendService`: short backend service name (e.g.\n  `\'koborin-ai-dev-backend\'`). Pass `TfArg.ref(backend.nameRef)` from\n  [GoogleComputeBackendService].\n- `role`: typically `\'roles/iap.httpsResourceAccessor\'`.\n- `members`: IAM principal strings (`user:…`, `group:…`, `domain:…`).\n\n`project` is optional and defaults to the provider project.\n\nOptional `condition` is a single IAM Condition block (CEL\n`expression`, `title`, optional `description`).\n\nPair with IAP enabled on the backend service itself via\n[GoogleComputeBackendService]\'s `iap` block (OAuth client ID/secret).',
   ),
   CatalogEntry(
     tfType: 'google_iap_web_backend_service_iam_member',
@@ -14395,6 +14395,23 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_backend_service_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_web_backend_service_iam_policy',
+    className: 'GoogleIapWebBackendServiceIamPolicy',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_iap_web_backend_service_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'webBackendService',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_web_backend_service_iam_policy`.\n\nAuthoritative IAM policy for an **external HTTPS load balancer backend\nservice** protected by Identity-Aware Proxy (IAP).\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleIapWebBackendServiceIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_iap_web_type_app_engine_iam_binding',

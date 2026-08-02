@@ -13,9 +13,9 @@ const Set<String> _googleIapWebBackendServiceIamBindingSensitive = <String>{};
 ///
 /// Grants `roles/iap.httpsResourceAccessor` (or another IAP role) to the
 /// listed `members` and **replaces** the entire member list for that role
-/// on the backend service. Prefer `google_iap_web_backend_service_iam_member`
+/// on the backend service. Prefer [GoogleIapWebBackendServiceIamMember]
 /// when you only need to add one principal without touching existing
-/// bindings (not yet a curated factory).
+/// bindings.
 ///
 /// Required identity:
 /// - [localName]: Terraform local name.

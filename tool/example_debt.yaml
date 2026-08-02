@@ -498,6 +498,7 @@ GoogleIapAppEngineVersionIamBinding: iam-adjunct-debt: sibling GoogleIapAppEngin
 GoogleIapAppEngineVersionIamPolicy: iam-adjunct-debt: sibling GoogleIapAppEngineVersionIamMember already in iam_quickstart; authoritative policy not needed in smoke
 GoogleIapWebTypeAppEngineIamBinding: iam-adjunct-debt: sibling GoogleIapWebTypeAppEngineIamMember already in iam_quickstart; authoritative binding not needed in smoke
 GoogleIapWebTypeAppEngineIamPolicy: iam-adjunct-debt: sibling GoogleIapWebTypeAppEngineIamMember already in iam_quickstart; authoritative policy not needed in smoke
+GoogleIapWebBackendServiceIamPolicy: iam-adjunct-debt: sibling GoogleIapWebBackendServiceIamMember already in compute_lb_quickstart; authoritative policy not needed in smoke
 
 # Compute Engine IAM binding/policy — sibling *IamMember already in
 # compute_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
