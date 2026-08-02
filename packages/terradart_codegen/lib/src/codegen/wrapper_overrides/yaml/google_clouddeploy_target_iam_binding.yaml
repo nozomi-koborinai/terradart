@@ -1,0 +1,18 @@
+outputDir: clouddeploy
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud Deploy target.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleClouddeployTargetIamMember] for additive grants.
+
+paramOrder:
+  - name
+  - role
+  - members
+  - condition
+  - location
+  - project

@@ -4270,6 +4270,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_clouddeploy_custom_target_type`.\n\nA Cloud Deploy `CustomTargetType` defines a type of custom target that can\nbe referenced in a Cloud Deploy `Target` in order to facilitate deploying to\nother systems besides the supported runtimes.',
   ),
   CatalogEntry(
+    tfType: 'google_clouddeploy_custom_target_type_iam_binding',
+    className: 'GoogleClouddeployCustomTargetTypeIamBinding',
+    barrel: 'clouddeploy',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_clouddeploy_custom_target_type_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'members',
+      'condition',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_clouddeploy_custom_target_type_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Deploy custom\ntarget type.\n\nReplaces the entire member list for that role. Prefer\n[GoogleClouddeployCustomTargetTypeIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_clouddeploy_custom_target_type_iam_member',
     className: 'GoogleClouddeployCustomTargetTypeIamMember',
     barrel: 'clouddeploy',
@@ -4288,6 +4309,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_clouddeploy_custom_target_type_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_clouddeploy_custom_target_type_iam_policy',
+    className: 'GoogleClouddeployCustomTargetTypeIamPolicy',
+    barrel: 'clouddeploy',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_clouddeploy_custom_target_type_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_clouddeploy_custom_target_type_iam_policy`.\n\nAuthoritative IAM policy for a Cloud Deploy custom target type.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleClouddeployCustomTargetTypeIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_clouddeploy_delivery_pipeline',
@@ -4313,6 +4353,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_clouddeploy_delivery_pipeline`.\n\nA DeliveryPipeline defines a pipeline through which a Skaffold configuration\ncan progress.',
   ),
   CatalogEntry(
+    tfType: 'google_clouddeploy_delivery_pipeline_iam_binding',
+    className: 'GoogleClouddeployDeliveryPipelineIamBinding',
+    barrel: 'clouddeploy',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_clouddeploy_delivery_pipeline_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'members',
+      'condition',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_clouddeploy_delivery_pipeline_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Deploy delivery\npipeline.\n\nReplaces the entire member list for that role. Prefer\n[GoogleClouddeployDeliveryPipelineIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_clouddeploy_delivery_pipeline_iam_member',
     className: 'GoogleClouddeployDeliveryPipelineIamMember',
     barrel: 'clouddeploy',
@@ -4331,6 +4392,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_clouddeploy_delivery_pipeline_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_clouddeploy_delivery_pipeline_iam_policy',
+    className: 'GoogleClouddeployDeliveryPipelineIamPolicy',
+    barrel: 'clouddeploy',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_clouddeploy_delivery_pipeline_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_clouddeploy_delivery_pipeline_iam_policy`.\n\nAuthoritative IAM policy for a Cloud Deploy delivery pipeline.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleClouddeployDeliveryPipelineIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_clouddeploy_target',
@@ -4363,6 +4443,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_clouddeploy_target`.\n\nThe Cloud Deploy `Target` resource.',
   ),
   CatalogEntry(
+    tfType: 'google_clouddeploy_target_iam_binding',
+    className: 'GoogleClouddeployTargetIamBinding',
+    barrel: 'clouddeploy',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_clouddeploy_target_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'members',
+      'condition',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_clouddeploy_target_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Deploy target.\n\nReplaces the entire member list for that role. Prefer\n[GoogleClouddeployTargetIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_clouddeploy_target_iam_member',
     className: 'GoogleClouddeployTargetIamMember',
     barrel: 'clouddeploy',
@@ -4379,6 +4479,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_clouddeploy_target_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_clouddeploy_target_iam_policy',
+    className: 'GoogleClouddeployTargetIamPolicy',
+    barrel: 'clouddeploy',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_clouddeploy_target_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_clouddeploy_target_iam_policy`.\n\nAuthoritative IAM policy for a Cloud Deploy target.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleClouddeployTargetIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_cloudfunctions2_function',

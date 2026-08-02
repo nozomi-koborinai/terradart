@@ -461,3 +461,12 @@ GoogleIntegrationConnectorsConnection: gcp-cost Integration Connectors 6FFB-B71E
 GoogleIntegrationConnectorsEndpointAttachment: requires never_apply Integration Connectors connection path (+ real PSC service attachment); deferred with the connectors Wave
 GoogleIntegrationConnectorsManagedZone: requires never_apply Integration Connectors connection path (+ real target VPC); deferred with the connectors Wave
 GoogleOracleDatabaseCloudExadataInfrastructureExascaleConfig: gcp-cost Bare Metal Solution 6955-34DC-6EF3 All Flash NVMe Storage Iowa SKU A094-33FD-1ECD $115/mo per TB — never_apply; requires Exadata infrastructure + Oracle entitlement
+
+# Cloud Deploy IAM binding/policy — sibling *IamMember already in
+# clouddeploy_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
+GoogleClouddeployTargetIamBinding: iam-adjunct-debt: sibling GoogleClouddeployTargetIamMember already in clouddeploy_quickstart; authoritative binding not needed in smoke
+GoogleClouddeployTargetIamPolicy: iam-adjunct-debt: sibling GoogleClouddeployTargetIamMember already in clouddeploy_quickstart; authoritative policy not needed in smoke
+GoogleClouddeployDeliveryPipelineIamBinding: iam-adjunct-debt: sibling GoogleClouddeployDeliveryPipelineIamMember already in clouddeploy_quickstart; authoritative binding not needed in smoke
+GoogleClouddeployDeliveryPipelineIamPolicy: iam-adjunct-debt: sibling GoogleClouddeployDeliveryPipelineIamMember already in clouddeploy_quickstart; authoritative policy not needed in smoke
+GoogleClouddeployCustomTargetTypeIamBinding: iam-adjunct-debt: sibling GoogleClouddeployCustomTargetTypeIamMember already in clouddeploy_quickstart; authoritative binding not needed in smoke
+GoogleClouddeployCustomTargetTypeIamPolicy: iam-adjunct-debt: sibling GoogleClouddeployCustomTargetTypeIamMember already in clouddeploy_quickstart; authoritative policy not needed in smoke
