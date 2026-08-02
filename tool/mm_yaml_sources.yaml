@@ -1424,7 +1424,15 @@ files:
     upstream: mmv1/products/servicedirectory/Endpoint.yaml
   google_service_directory_namespace_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_service_directory_namespace_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_service_directory_namespace_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_service_directory_service_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_service_directory_service_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_service_directory_service_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_secret_manager_regional_secret:
     upstream: mmv1/products/secretmanagerregional/RegionalSecret.yaml
