@@ -801,34 +801,46 @@ deriveClassDoc: true
     );
 
     test(
-      'IAM adjuncts are iam_member-only (binding/policy need an explicit '
-      'allowlist entry — AGENTS.md Generation Policy)',
+      'IAM binding/policy overrides document authoritative replace semantics '
+      '(AGENTS.md Generation Policy)',
       () {
         final loaded = loadWrapperOverrides(
           rootDir:
               p.absolute('lib', 'src', 'codegen', 'wrapper_overrides', 'yaml'),
         );
-        const allowedBindingsAndPolicies = {
-          'google_iap_web_backend_service_iam_binding',
-          'google_bigquery_routine_iam_binding',
-          'google_bigquery_routine_iam_policy',
-          'google_compute_region_instant_snapshot_iam_binding',
-          'google_compute_region_instant_snapshot_iam_policy',
-          'google_discovery_engine_search_engine_iam_binding',
-          'google_discovery_engine_search_engine_iam_policy',
-          'google_storage_bucket_iam_binding',
-        };
-        final unexpected = loaded.resources.keys
-            .where(
-                (t) => t.endsWith('_iam_binding') || t.endsWith('_iam_policy'))
-            .where((t) => !allowedBindingsAndPolicies.contains(t))
-            .toList();
+        final missingDoc = <String>[];
+        final missingWarning = <String>[];
+        for (final entry in loaded.resources.entries) {
+          final type = entry.key;
+          if (!type.endsWith('_iam_binding') && !type.endsWith('_iam_policy')) {
+            continue;
+          }
+          final doc = entry.value.curatedDoc?.trim() ?? '';
+          if (doc.isEmpty) {
+            missingDoc.add(type);
+            continue;
+          }
+          final lower = doc.toLowerCase();
+          final warns = lower.contains('authoritative') ||
+              lower.contains('replaces') ||
+              lower.contains('replace') ||
+              lower.contains('overwrite') ||
+              lower.contains('overwrites');
+          if (!warns) {
+            missingWarning.add(type);
+          }
+        }
         expect(
-          unexpected,
+          missingDoc,
           isEmpty,
-          reason: 'Curated IAM is *_iam_member-only by default. Curating a '
-              'binding/policy is an explicit maintainer decision: add the '
-              'type to allowedBindingsAndPolicies in the same PR.',
+          reason: 'Every curated *_iam_binding / *_iam_policy needs '
+              'curatedDoc (authoritative / replace semantics).',
+        );
+        expect(
+          missingWarning,
+          isEmpty,
+          reason: 'curatedDoc for *_iam_binding / *_iam_policy must mention '
+              'authoritative, replace(s), or overwrite(s).',
         );
       },
     );
