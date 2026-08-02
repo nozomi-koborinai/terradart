@@ -299,7 +299,7 @@ Application platform & operations
 - [Service Directory namespace + service + endpoint + IAM](examples/service_directory_quickstart/)
 - [Workflows workflow from inline YAML](examples/workflows_quickstart/)
 - [App Engine application + standard/flex versions + routing](examples/app_engine_quickstart/)
-- [Compute static route + project metadata item](examples/compute_route_quickstart/)
+- [Compute static route + Cloud Router Named Set + project metadata item](examples/compute_route_quickstart/)
 - [Compute zonal instance settings](examples/compute_instance_settings_quickstart/)
 - [Compute Engine preview feature](examples/compute_preview_feature_quickstart/)
 - [Compute project Cloud Armor tier](examples/compute_cloud_armor_tier_quickstart/)
