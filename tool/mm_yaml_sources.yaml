@@ -1199,6 +1199,10 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_iap_agent_registry_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_agent_registry_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_agent_registry_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_iap_location_web_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_iap_location_web_iam_binding:

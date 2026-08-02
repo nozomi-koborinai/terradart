@@ -4,8 +4,12 @@
 /// IAM for App Engine and external HTTPS load balancer backend services.
 library;
 
+export 'src/iap/google_iap_agent_registry_iam_binding.dart'
+    show GoogleIapAgentRegistryIamBinding;
 export 'src/iap/google_iap_agent_registry_iam_member.dart'
     show GoogleIapAgentRegistryIamMember;
+export 'src/iap/google_iap_agent_registry_iam_policy.dart'
+    show GoogleIapAgentRegistryIamPolicy;
 export 'src/iap/google_iap_app_engine_service_iam_binding.dart'
     show GoogleIapAppEngineServiceIamBinding;
 export 'src/iap/google_iap_app_engine_service_iam_member.dart'
