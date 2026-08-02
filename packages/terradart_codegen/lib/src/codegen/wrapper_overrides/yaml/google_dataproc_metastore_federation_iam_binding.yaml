@@ -1,0 +1,19 @@
+outputDir: dataproc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Dataproc Metastore
+  /// federation.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleDataprocMetastoreFederationIamMember] for additive grants.
+
+paramOrder:
+  - federation_id
+  - role
+  - members
+  - location
+  - condition
+  - project
