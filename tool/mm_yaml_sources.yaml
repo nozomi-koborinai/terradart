@@ -404,6 +404,10 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataplex_data_product_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_data_product_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataplex_data_product_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataplex_task:
     upstream: mmv1/products/dataplex/Task.yaml
   google_dataplex_task_iam_member:

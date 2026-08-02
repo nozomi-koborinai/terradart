@@ -477,6 +477,8 @@ google_dataplex_datascan_iam_binding: safe  # billing-behavior: IAM binding only
 google_dataplex_datascan_iam_policy: safe  # billing-behavior: IAM policy only
 google_dataplex_task_iam_binding: safe  # billing-behavior: IAM binding only
 google_dataplex_task_iam_policy: safe  # billing-behavior: IAM policy only
+google_dataplex_data_product_iam_binding: safe  # billing-behavior: IAM binding only
+google_dataplex_data_product_iam_policy: safe  # billing-behavior: IAM policy only
 google_dns_managed_zone: safe  # apply-verified safe (existing example)
 google_dns_managed_zone_iam_binding: safe  # billing-behavior: IAM binding only
 google_dns_managed_zone_iam_member: safe  # apply-verified safe (existing example)

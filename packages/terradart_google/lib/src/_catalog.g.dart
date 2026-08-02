@@ -9291,6 +9291,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_dataplex_data_product_data_asset`.\n\nA data asset resource that can be packaged and shared via a data product.',
   ),
   CatalogEntry(
+    tfType: 'google_dataplex_data_product_iam_binding',
+    className: 'GoogleDataplexDataProductIamBinding',
+    barrel: 'dataplex',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_dataplex_data_product_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'dataProductId',
+      'role',
+      'members',
+      'condition',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataplex_data_product_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataplex data product.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDataplexDataProductIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_dataplex_data_product_iam_member',
     className: 'GoogleDataplexDataProductIamMember',
     barrel: 'dataplex',
@@ -9309,6 +9329,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataplex_data_product_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_dataplex_data_product_iam_policy',
+    className: 'GoogleDataplexDataProductIamPolicy',
+    barrel: 'dataplex',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_dataplex_data_product_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'dataProductId',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataplex_data_product_iam_policy`.\n\nAuthoritative IAM policy for a Dataplex data product.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleDataplexDataProductIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_dataplex_datascan',
