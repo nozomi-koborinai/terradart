@@ -15,8 +15,12 @@ export 'src/dataplex/google_data_lineage_config.dart'
         GoogleDataLineageConfig;
 export 'src/dataplex/google_dataplex_aspect_type.dart'
     show DataplexAspectTypeDataClassification, GoogleDataplexAspectType;
+export 'src/dataplex/google_dataplex_aspect_type_iam_binding.dart'
+    show GoogleDataplexAspectTypeIamBinding;
 export 'src/dataplex/google_dataplex_aspect_type_iam_member.dart'
     show GoogleDataplexAspectTypeIamMember;
+export 'src/dataplex/google_dataplex_aspect_type_iam_policy.dart'
+    show GoogleDataplexAspectTypeIamPolicy;
 export 'src/dataplex/google_dataplex_asset.dart'
     show
         DataplexAssetDiscoverySpec,
@@ -63,8 +67,12 @@ export 'src/dataplex/google_dataplex_datascan_iam_member.dart'
 export 'src/dataplex/google_dataplex_entry.dart' show GoogleDataplexEntry;
 export 'src/dataplex/google_dataplex_entry_group.dart'
     show GoogleDataplexEntryGroup;
+export 'src/dataplex/google_dataplex_entry_group_iam_binding.dart'
+    show GoogleDataplexEntryGroupIamBinding;
 export 'src/dataplex/google_dataplex_entry_group_iam_member.dart'
     show GoogleDataplexEntryGroupIamMember;
+export 'src/dataplex/google_dataplex_entry_group_iam_policy.dart'
+    show GoogleDataplexEntryGroupIamPolicy;
 export 'src/dataplex/google_dataplex_entry_link.dart'
     show
         DataplexEntryLinkAspects,
@@ -74,8 +82,12 @@ export 'src/dataplex/google_dataplex_entry_link.dart'
         GoogleDataplexEntryLink;
 export 'src/dataplex/google_dataplex_entry_type.dart'
     show GoogleDataplexEntryType;
+export 'src/dataplex/google_dataplex_entry_type_iam_binding.dart'
+    show GoogleDataplexEntryTypeIamBinding;
 export 'src/dataplex/google_dataplex_entry_type_iam_member.dart'
     show GoogleDataplexEntryTypeIamMember;
+export 'src/dataplex/google_dataplex_entry_type_iam_policy.dart'
+    show GoogleDataplexEntryTypeIamPolicy;
 export 'src/dataplex/google_dataplex_glossary.dart' show GoogleDataplexGlossary;
 export 'src/dataplex/google_dataplex_glossary_category.dart'
     show GoogleDataplexGlossaryCategory;

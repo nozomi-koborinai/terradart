@@ -559,3 +559,12 @@ GoogleDataplexZoneIamBinding: iam-adjunct-debt: sibling GoogleDataplexZoneIamMem
 GoogleDataplexZoneIamPolicy: iam-adjunct-debt: sibling GoogleDataplexZoneIamMember already in dataplex_quickstart; authoritative policy not needed in smoke
 GoogleDataplexAssetIamBinding: iam-adjunct-debt: sibling GoogleDataplexAssetIamMember already in dataplex_quickstart; authoritative binding not needed in smoke
 GoogleDataplexAssetIamPolicy: iam-adjunct-debt: sibling GoogleDataplexAssetIamMember already in dataplex_quickstart; authoritative policy not needed in smoke
+
+# Dataplex Universal Catalog type IAM binding/policy — sibling *IamMember
+# already in dataplex_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
+GoogleDataplexEntryGroupIamBinding: iam-adjunct-debt: sibling GoogleDataplexEntryGroupIamMember already in dataplex_quickstart; authoritative binding not needed in smoke
+GoogleDataplexEntryGroupIamPolicy: iam-adjunct-debt: sibling GoogleDataplexEntryGroupIamMember already in dataplex_quickstart; authoritative policy not needed in smoke
+GoogleDataplexEntryTypeIamBinding: iam-adjunct-debt: sibling GoogleDataplexEntryTypeIamMember already in dataplex_quickstart; authoritative binding not needed in smoke
+GoogleDataplexEntryTypeIamPolicy: iam-adjunct-debt: sibling GoogleDataplexEntryTypeIamMember already in dataplex_quickstart; authoritative policy not needed in smoke
+GoogleDataplexAspectTypeIamBinding: iam-adjunct-debt: sibling GoogleDataplexAspectTypeIamMember already in dataplex_quickstart; authoritative binding not needed in smoke
+GoogleDataplexAspectTypeIamPolicy: iam-adjunct-debt: sibling GoogleDataplexAspectTypeIamMember already in dataplex_quickstart; authoritative policy not needed in smoke

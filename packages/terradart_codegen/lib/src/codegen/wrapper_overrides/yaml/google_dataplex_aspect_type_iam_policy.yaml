@@ -1,0 +1,16 @@
+outputDir: dataplex
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Dataplex aspect type.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleDataplexAspectTypeIamMember] for single-principal grants.
+
+paramOrder:
+  - aspect_type_id
+  - policy_data
+  - location
+  - project
