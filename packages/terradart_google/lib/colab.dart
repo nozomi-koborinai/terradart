@@ -26,7 +26,11 @@ export 'src/colab/google_colab_runtime.dart'
         GoogleColabRuntime;
 export 'src/colab/google_colab_runtime_template.dart'
     show GoogleColabRuntimeTemplate;
+export 'src/colab/google_colab_runtime_template_iam_binding.dart'
+    show GoogleColabRuntimeTemplateIamBinding;
 export 'src/colab/google_colab_runtime_template_iam_member.dart'
     show GoogleColabRuntimeTemplateIamMember;
+export 'src/colab/google_colab_runtime_template_iam_policy.dart'
+    show GoogleColabRuntimeTemplateIamPolicy;
 export 'src/colab/google_colab_schedule.dart'
     show ColabScheduleDesiredState, GoogleColabSchedule;

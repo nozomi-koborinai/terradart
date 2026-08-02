@@ -122,6 +122,10 @@ files:
     upstream: mmv1/products/colab/RuntimeTemplate.yaml
   google_colab_runtime_template_iam_member:
     upstream: null  # IAM — generated from parent RuntimeTemplate.yaml iam_policy
+  google_colab_runtime_template_iam_binding:
+    upstream: null
+  google_colab_runtime_template_iam_policy:
+    upstream: null
   google_colab_runtime:
     upstream: mmv1/products/colab/Runtime.yaml
   google_colab_notebook_execution:

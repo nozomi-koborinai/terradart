@@ -1,0 +1,19 @@
+outputDir: colab
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Colab Enterprise
+  /// runtime template.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleColabRuntimeTemplateIamMember] for additive grants.
+
+paramOrder:
+  - runtime_template
+  - role
+  - members
+  - location
+  - condition
+  - project
