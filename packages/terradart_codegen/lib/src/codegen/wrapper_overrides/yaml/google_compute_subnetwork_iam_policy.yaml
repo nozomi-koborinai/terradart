@@ -1,0 +1,16 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Compute Engine subnetwork.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleComputeSubnetworkIamMember] for single-principal grants.
+
+paramOrder:
+  - subnetwork
+  - policy_data
+  - region
+  - project
