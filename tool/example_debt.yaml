@@ -592,3 +592,8 @@ GooglePubsubSubscriptionIamPolicy: iam-adjunct-debt: sibling GooglePubsubSubscri
 # in cloud_build_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
 GoogleArtifactRegistryRepositoryIamBinding: iam-adjunct-debt: sibling GoogleArtifactRegistryRepositoryIamMember already in cloud_build_quickstart; authoritative binding not needed in smoke
 GoogleArtifactRegistryRepositoryIamPolicy: iam-adjunct-debt: sibling GoogleArtifactRegistryRepositoryIamMember already in cloud_build_quickstart; authoritative policy not needed in smoke
+
+# Cloud Tasks queue IAM binding/policy — sibling *IamMember already in
+# cloud_tasks_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
+GoogleCloudTasksQueueIamBinding: iam-adjunct-debt: sibling GoogleCloudTasksQueueIamMember already in cloud_tasks_quickstart; authoritative binding not needed in smoke
+GoogleCloudTasksQueueIamPolicy: iam-adjunct-debt: sibling GoogleCloudTasksQueueIamMember already in cloud_tasks_quickstart; authoritative policy not needed in smoke

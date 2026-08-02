@@ -14,5 +14,9 @@ export 'src/cloud_tasks/google_cloud_tasks_queue.dart'
         CloudTasksQueueRetryConfig,
         CloudTasksQueueStackdriverLoggingConfig,
         GoogleCloudTasksQueue;
+export 'src/cloud_tasks/google_cloud_tasks_queue_iam_binding.dart'
+    show GoogleCloudTasksQueueIamBinding;
 export 'src/cloud_tasks/google_cloud_tasks_queue_iam_member.dart'
     show GoogleCloudTasksQueueIamMember;
+export 'src/cloud_tasks/google_cloud_tasks_queue_iam_policy.dart'
+    show GoogleCloudTasksQueueIamPolicy;

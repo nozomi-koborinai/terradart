@@ -4549,6 +4549,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_cloud_tasks_queue`.\n\nA named resource to which messages are sent by publishers.',
   ),
   CatalogEntry(
+    tfType: 'google_cloud_tasks_queue_iam_binding',
+    className: 'GoogleCloudTasksQueueIamBinding',
+    barrel: 'cloud_tasks',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_cloud_tasks_queue_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_cloud_tasks_queue_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Tasks queue.\n\nReplaces the entire member list for that role. Prefer\n[GoogleCloudTasksQueueIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_cloud_tasks_queue_iam_member',
     className: 'GoogleCloudTasksQueueIamMember',
     barrel: 'cloud_tasks',
@@ -4566,6 +4586,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_cloud_tasks_queue_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_cloud_tasks_queue_iam_policy',
+    className: 'GoogleCloudTasksQueueIamPolicy',
+    barrel: 'cloud_tasks',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_cloud_tasks_queue_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_cloud_tasks_queue_iam_policy`.\n\nAuthoritative IAM policy for a Cloud Tasks queue.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleCloudTasksQueueIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_cloudbuild_trigger',

@@ -1,0 +1,23 @@
+outputDir: cloud_tasks
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud Tasks queue.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleCloudTasksQueueIamMember] for additive grants.
+
+paramOrder:
+  - name
+  - location
+  - role
+  - members
+  - condition
+  - project
+
+# Match the member override: Terraform marks `location` optional+computed, but
+# the curated API treats it as identity.
+requiredParams:
+  - location

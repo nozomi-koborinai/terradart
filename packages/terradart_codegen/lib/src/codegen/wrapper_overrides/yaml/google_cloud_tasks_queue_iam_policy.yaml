@@ -1,0 +1,19 @@
+outputDir: cloud_tasks
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Cloud Tasks queue.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleCloudTasksQueueIamMember] for single-principal grants.
+
+paramOrder:
+  - name
+  - location
+  - policy_data
+  - project
+
+requiredParams:
+  - location
