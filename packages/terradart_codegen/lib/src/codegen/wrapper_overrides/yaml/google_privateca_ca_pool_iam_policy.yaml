@@ -1,0 +1,14 @@
+outputDir: privateca
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Private CA pool.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GooglePrivatecaCaPoolIamMember] for single-principal grants.
+
+paramOrder:
+  - ca_pool
+  - policy_data

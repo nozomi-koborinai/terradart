@@ -1,0 +1,16 @@
+outputDir: privateca
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Private CA pool.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GooglePrivatecaCaPoolIamMember] for additive grants.
+
+paramOrder:
+  - ca_pool
+  - role
+  - members
+  - condition
