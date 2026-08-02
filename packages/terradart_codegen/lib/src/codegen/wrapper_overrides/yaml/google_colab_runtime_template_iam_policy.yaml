@@ -1,0 +1,16 @@
+outputDir: colab
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Colab Enterprise runtime template.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleColabRuntimeTemplateIamMember] for single-principal grants.
+
+paramOrder:
+  - runtime_template
+  - policy_data
+  - location
+  - project

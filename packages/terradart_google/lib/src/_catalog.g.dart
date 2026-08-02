@@ -5230,6 +5230,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_colab_runtime_template`.\n\n\'A runtime template is a VM configuration that specifies a machine type and\nother characteristics of the VM, as well as common settings such as the\nnetwork and whether public internet access is enabled. When you create a\nruntime, its VM is created according to the specifications of a runtime\ntemplate.\'\n\nColab Enterprise runtime template — a reusable VM shape for notebook\nruntimes (machine type, network, disk, software).\n\nEnable `aiplatform.googleapis.com` via [GoogleProjectService] before\napply. Creating a template does not start a VM; pair with\n[GoogleColabSchedule] (paused) or a runtime when you need execution.',
   ),
   CatalogEntry(
+    tfType: 'google_colab_runtime_template_iam_binding',
+    className: 'GoogleColabRuntimeTemplateIamBinding',
+    barrel: 'colab',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_colab_runtime_template_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'runtimeTemplate',
+      'role',
+      'members',
+      'location',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_colab_runtime_template_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Colab Enterprise\nruntime template.\n\nReplaces the entire member list for that role. Prefer\n[GoogleColabRuntimeTemplateIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_colab_runtime_template_iam_member',
     className: 'GoogleColabRuntimeTemplateIamMember',
     barrel: 'colab',
@@ -5248,6 +5268,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_colab_runtime_template_iam_member`.\n\nAdds a single IAM `role` → `member` binding on a\n[GoogleColabRuntimeTemplate]. Prefer an in-stack service account for\napply-smoke (placeholder identities fail at apply).',
+  ),
+  CatalogEntry(
+    tfType: 'google_colab_runtime_template_iam_policy',
+    className: 'GoogleColabRuntimeTemplateIamPolicy',
+    barrel: 'colab',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_colab_runtime_template_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'runtimeTemplate',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_colab_runtime_template_iam_policy`.\n\nAuthoritative IAM policy for a Colab Enterprise runtime template.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleColabRuntimeTemplateIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_colab_schedule',
