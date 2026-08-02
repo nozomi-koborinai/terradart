@@ -40,8 +40,12 @@ export 'src/dataplex/google_dataplex_data_product.dart'
     show DataplexDataProductAccessApprovalConfig, GoogleDataplexDataProduct;
 export 'src/dataplex/google_dataplex_data_product_data_asset.dart'
     show GoogleDataplexDataProductDataAsset;
+export 'src/dataplex/google_dataplex_data_product_iam_binding.dart'
+    show GoogleDataplexDataProductIamBinding;
 export 'src/dataplex/google_dataplex_data_product_iam_member.dart'
     show GoogleDataplexDataProductIamMember;
+export 'src/dataplex/google_dataplex_data_product_iam_policy.dart'
+    show GoogleDataplexDataProductIamPolicy;
 export 'src/dataplex/google_dataplex_datascan.dart'
     show
         DataplexDatascanData,
