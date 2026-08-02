@@ -1,0 +1,17 @@
+outputDir: bigtable
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Bigtable instance.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleBigtableInstanceIamMember] for additive grants.
+
+paramOrder:
+  - instance
+  - role
+  - members
+  - condition
+  - project

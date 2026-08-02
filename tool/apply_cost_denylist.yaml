@@ -35,6 +35,8 @@ safe_exception: google_compute_instance_template  # instance template metadata o
 safe_exception: google_compute_instance_settings  # zonal metadata defaults singleton; no VM provisioned — _instance substring false positive
 safe_exception: google_service_directory_endpoint  # Service Directory metadata record, no existence billing — _endpoint false positive
 safe_exception: google_bigtable_instance_iam_member  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
+safe_exception: google_bigtable_instance_iam_policy  # IAM policy on Bigtable instance; no existence billing — _instance substring false positive
+safe_exception: google_bigtable_instance_iam_binding  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
 safe_exception: google_secure_source_manager_instance_iam_member  # IAM binding on SSM instance; no existence billing — _instance substring false positive (parent google_secure_source_manager_instance is never_apply)
 safe_exception: google_notebooks_instance_iam_member  # IAM binding on notebook instance; no existence billing — _instance substring false positive (parent google_notebooks_instance is never_apply)
 safe_exception: google_workbench_instance_iam_member  # IAM binding on Workbench instance; no existence billing — _instance substring false positive (parent google_workbench_instance is never_apply)
@@ -284,11 +286,15 @@ google_bigtable_app_profile: safe  # Bigtable app profile (routing config on an 
 google_bigtable_authorized_view: safe  # Bigtable authorized view; no independent billing
 google_bigtable_gc_policy: safe  # Bigtable garbage-collection policy; no independent billing
 google_bigtable_instance_iam_member: safe  # IAM binding on Bigtable instance; no existence billing — _instance false positive
+google_bigtable_instance_iam_binding: safe  # billing-behavior: IAM binding only — _instance substring false positive
+google_bigtable_instance_iam_policy: safe  # billing-behavior: IAM policy only — _instance substring false positive
 google_bigtable_logical_view: safe  # Bigtable logical view; no independent billing
 google_bigtable_materialized_view: safe  # Bigtable materialized view; storage billed to the instance, no independent resource charge
 google_bigtable_schema_bundle: safe  # Bigtable schema bundle; no independent billing
 google_bigtable_table: safe  # Bigtable table (child of instance); no independent billing
 google_bigtable_table_iam_member: safe  # IAM binding on Bigtable table; no existence billing
+google_bigtable_table_iam_binding: safe  # billing-behavior: IAM binding only
+google_bigtable_table_iam_policy: safe  # billing-behavior: IAM policy only
 google_biglake_catalog: safe  # apply-verified safe (existing example)
 google_biglake_database: safe  # apply-verified safe (existing example)
 google_biglake_iceberg_catalog: safe  # gcp-cost: no Cloud Billing Catalog SKU for iceberg_catalog config (BigLake A6C3-245D-D767 SKUs are Table Management / Class A-B metadata ops, e.g. 36B5-F69B-2F4D Class A); billing-behavior: catalog metadata — no existence/hourly charge for the catalog resource itself

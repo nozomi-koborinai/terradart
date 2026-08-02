@@ -2939,6 +2939,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_bigtable_instance`.\n\nCloud Bigtable instance — the top-level container for clusters and tables.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [name]: instance ID (6-33 chars, lowercase letters, numbers, hyphens).\n- [cluster]: at least one [BigtableInstanceCluster] (zone + node count).\n\nEnable `bigtableadmin.googleapis.com` via [Apis.enable] before apply.\n\nExample (single-zone development instance):\n```dart\nGoogleBigtableInstance(\n  localName: \'events\',\n  name: TfArg.literal(\'events-dev\'),\n  instanceType: TfArg.literal(BigtableInstanceType.development),\n  cluster: [\n    BigtableInstanceCluster(\n      clusterId: TfArg.literal(\'events-c1\'),\n      zone: TfArg.literal(\'us-central1-b\'),\n      numNodes: TfArg.literal(1),\n    ),\n  ],\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_bigtable_instance_iam_binding',
+    className: 'GoogleBigtableInstanceIamBinding',
+    barrel: 'bigtable',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_bigtable_instance_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'instance',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigtable_instance_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Bigtable instance.\n\nReplaces the entire member list for that role. Prefer\n[GoogleBigtableInstanceIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_bigtable_instance_iam_member',
     className: 'GoogleBigtableInstanceIamMember',
     barrel: 'bigtable',
@@ -2955,6 +2974,23 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_bigtable_instance_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_bigtable_instance_iam_policy',
+    className: 'GoogleBigtableInstanceIamPolicy',
+    barrel: 'bigtable',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_bigtable_instance_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'instance',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigtable_instance_iam_policy`.\n\nAuthoritative IAM policy for a Bigtable instance.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleBigtableInstanceIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_bigtable_logical_view',
@@ -3039,6 +3075,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_bigtable_table`.\n\nCloud Bigtable table within an instance.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [instanceName]: parent instance ID — pass `TfArg.ref(instance.nameRef)`.\n- [name]: table ID (1-50 chars, hyphens, underscores, letters).\n- [columnFamily]: at least one [BigtableTableColumnFamily].\n\nExample:\n```dart\nGoogleBigtableTable(\n  localName: \'events\',\n  instanceName: TfArg.ref(instance.nameRef),\n  name: TfArg.literal(\'events\'),\n  columnFamily: [\n    BigtableTableColumnFamily(family: TfArg.literal(\'cf1\')),\n  ],\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_bigtable_table_iam_binding',
+    className: 'GoogleBigtableTableIamBinding',
+    barrel: 'bigtable',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_bigtable_table_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'instanceName',
+      'table',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigtable_table_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Bigtable table.\n\nReplaces the entire member list for that role. Prefer\n[GoogleBigtableTableIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_bigtable_table_iam_member',
     className: 'GoogleBigtableTableIamMember',
     barrel: 'bigtable',
@@ -3056,6 +3112,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_bigtable_table_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_bigtable_table_iam_policy',
+    className: 'GoogleBigtableTableIamPolicy',
+    barrel: 'bigtable',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_bigtable_table_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'instanceName',
+      'table',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigtable_table_iam_policy`.\n\nAuthoritative IAM policy for a Bigtable table.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleBigtableTableIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_binary_authorization_attestor',
