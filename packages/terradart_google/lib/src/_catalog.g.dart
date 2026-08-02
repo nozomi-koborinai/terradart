@@ -3853,6 +3853,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_cloud_run_v2_job`.\n\nA Cloud Run Job resource that references a container image which is run to\ncompletion.\n\nExample (minimal one-shot batch job):\n```dart\nfinal etl = GoogleCloudRunV2Job(\n  localName: \'etl\',\n  name: TfArg.literal(\'nightly-etl\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  template: CloudRunV2JobTemplate(\n    template: CloudRunV2JobTaskTemplate(\n      containers: [\n        CloudRunV2JobContainer(\n          image: TfArg.literal(\'gcr.io/p/etl:v1\'),\n        ),\n      ],\n    ),\n  ),\n);\n```\n\nNaming convention: helpers reuse the Cloud Run v2 Service shape but\ncarry a `Job` / `Task` prefix\n(`CloudRunV2JobTemplate`, `CloudRunV2JobTaskTemplate`, `CloudRunV2JobContainer`,\n`CloudRunV2JobBinaryAuthorization`, `CloudRunV2JobVolume`, `CloudRunV2JobVolumeSource`, ...) to\nstay barrel-exportable alongside the Service helpers.',
   ),
   CatalogEntry(
+    tfType: 'google_cloud_run_v2_job_iam_binding',
+    className: 'GoogleCloudRunV2JobIamBinding',
+    barrel: 'cloud_run',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_cloud_run_v2_job_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'members',
+      'condition',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_cloud_run_v2_job_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Run v2 job.\n\nReplaces the entire member list for that role. Prefer\n[GoogleCloudRunV2JobIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_cloud_run_v2_job_iam_member',
     className: 'GoogleCloudRunV2JobIamMember',
     barrel: 'cloud_run',
@@ -3870,6 +3890,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_cloud_run_v2_job_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_cloud_run_v2_job_iam_policy',
+    className: 'GoogleCloudRunV2JobIamPolicy',
+    barrel: 'cloud_run',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_cloud_run_v2_job_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_cloud_run_v2_job_iam_policy`.\n\nAuthoritative IAM policy for a Cloud Run v2 job.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleCloudRunV2JobIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_cloud_run_v2_service',
@@ -3942,6 +3980,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_cloud_run_v2_service`.\n\nService acts as a top-level container that manages a set of configurations\nand revision templates which implement a network service. Service exists to\nprovide a singular abstraction which can be access controlled, reasoned\nabout, and which encapsulates software lifecycle decisions such as rollout\npolicy and team resource ownership.\n\nExample (minimal hello-world service):\n```dart\nfinal svc = GoogleCloudRunV2Service(\n  localName: \'hello\',\n  name: TfArg.literal(\'hello-svc\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  template: const CloudRunV2ServiceTemplate(\n    containers: [\n      CloudRunV2ServiceServiceContainer(\n        image: TfArg.literal(\'gcr.io/cloudrun/hello\'),\n        ports: CloudRunV2ServiceContainerPort(containerPort: 8080),\n      ),\n    ],\n  ),\n  ingress: TfArg.literal(Ingress.all),\n);\n```\n\nExample (with secret-backed env var + GCS volume):\n```dart\nfinal api = GoogleCloudRunV2Service(\n  localName: \'api\',\n  name: TfArg.literal(\'api\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  template: CloudRunV2ServiceTemplate(\n    containers: [\n      CloudRunV2ServiceServiceContainer(\n        image: TfArg.literal(\'asia-northeast1-docker.pkg.dev/p/r/api:v1\'),\n        env: [\n          CloudRunV2ServiceEnvVar(\n            name: \'DATABASE_URL\',\n            source: CloudRunV2ServiceEnvVarFromSecret(\n              secret: TfArg.literal(\'db-url\'),\n              version: TfArg.literal(\'latest\'),\n            ),\n          ),\n        ],\n        volumeMounts: [\n          CloudRunV2ServiceVolumeMount(name: \'cache\', mountPath: \'/var/cache\'),\n        ],\n      ),\n    ],\n    volumes: [\n      CloudRunV2ServiceServiceVolume(\n        name: \'cache\',\n        source: CloudRunV2ServiceGcsVolume(\n          bucket: TfArg.literal(\'my-cache-bucket\'),\n        ),\n      ),\n    ],\n    executionEnvironment: TfArg.literal(ExecutionEnvironment.gen2),\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_cloud_run_v2_service_iam_binding',
+    className: 'GoogleCloudRunV2ServiceIamBinding',
+    barrel: 'cloud_run',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_cloud_run_v2_service_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'members',
+      'condition',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_cloud_run_v2_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Run v2 service.\n\nReplaces the entire member list for that role. Prefer\n[GoogleCloudRunV2ServiceIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_cloud_run_v2_service_iam_member',
     className: 'GoogleCloudRunV2ServiceIamMember',
     barrel: 'cloud_run',
@@ -3959,6 +4017,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment: 'Factory wrapper for `google_cloud_run_v2_service_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_cloud_run_v2_service_iam_policy',
+    className: 'GoogleCloudRunV2ServiceIamPolicy',
+    barrel: 'cloud_run',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_cloud_run_v2_service_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_cloud_run_v2_service_iam_policy`.\n\nAuthoritative IAM policy for a Cloud Run v2 service.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleCloudRunV2ServiceIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_cloud_run_v2_worker_pool',
@@ -3999,6 +4075,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_cloud_run_v2_worker_pool`.\n\nWorkerPool acts as a top-level container that manages a set of\nconfigurations and revision templates which implement a pull-based workload.\nWorkerPool exists to provide a singular abstraction which can be access\ncontrolled, reasoned about, and which encapsulates software lifecycle\ndecisions such as rollout policy and team resource ownership.',
   ),
   CatalogEntry(
+    tfType: 'google_cloud_run_v2_worker_pool_iam_binding',
+    className: 'GoogleCloudRunV2WorkerPoolIamBinding',
+    barrel: 'cloud_run',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_cloud_run_v2_worker_pool_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'members',
+      'condition',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_cloud_run_v2_worker_pool_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Run v2 worker\npool.\n\nReplaces the entire member list for that role. Prefer\n[GoogleCloudRunV2WorkerPoolIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_cloud_run_v2_worker_pool_iam_member',
     className: 'GoogleCloudRunV2WorkerPoolIamMember',
     barrel: 'cloud_run',
@@ -4018,6 +4115,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_cloud_run_v2_worker_pool_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_cloud_run_v2_worker_pool_iam_policy',
+    className: 'GoogleCloudRunV2WorkerPoolIamPolicy',
+    barrel: 'cloud_run',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_cloud_run_v2_worker_pool_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_cloud_run_v2_worker_pool_iam_policy`.\n\nAuthoritative IAM policy for a Cloud Run v2 worker pool.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleCloudRunV2WorkerPoolIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_cloud_scheduler_job',

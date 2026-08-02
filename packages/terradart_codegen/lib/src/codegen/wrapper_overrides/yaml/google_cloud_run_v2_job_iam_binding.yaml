@@ -1,0 +1,18 @@
+outputDir: cloud_run
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud Run v2 job.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleCloudRunV2JobIamMember] for additive grants.
+
+paramOrder:
+  - name
+  - role
+  - members
+  - condition
+  - location
+  - project

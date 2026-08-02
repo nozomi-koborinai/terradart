@@ -470,3 +470,12 @@ GoogleClouddeployDeliveryPipelineIamBinding: iam-adjunct-debt: sibling GoogleClo
 GoogleClouddeployDeliveryPipelineIamPolicy: iam-adjunct-debt: sibling GoogleClouddeployDeliveryPipelineIamMember already in clouddeploy_quickstart; authoritative policy not needed in smoke
 GoogleClouddeployCustomTargetTypeIamBinding: iam-adjunct-debt: sibling GoogleClouddeployCustomTargetTypeIamMember already in clouddeploy_quickstart; authoritative binding not needed in smoke
 GoogleClouddeployCustomTargetTypeIamPolicy: iam-adjunct-debt: sibling GoogleClouddeployCustomTargetTypeIamMember already in clouddeploy_quickstart; authoritative policy not needed in smoke
+
+# Cloud Run v2 IAM binding/policy — sibling *IamMember already in
+# cloud_run_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
+GoogleCloudRunV2ServiceIamBinding: iam-adjunct-debt: sibling GoogleCloudRunV2ServiceIamMember already in cloud_run_quickstart; authoritative binding not needed in smoke
+GoogleCloudRunV2ServiceIamPolicy: iam-adjunct-debt: sibling GoogleCloudRunV2ServiceIamMember already in cloud_run_quickstart; authoritative policy not needed in smoke
+GoogleCloudRunV2JobIamBinding: iam-adjunct-debt: sibling GoogleCloudRunV2JobIamMember already in cloud_run_quickstart; authoritative binding not needed in smoke
+GoogleCloudRunV2JobIamPolicy: iam-adjunct-debt: sibling GoogleCloudRunV2JobIamMember already in cloud_run_quickstart; authoritative policy not needed in smoke
+GoogleCloudRunV2WorkerPoolIamBinding: iam-adjunct-debt: sibling GoogleCloudRunV2WorkerPoolIamMember already in cloud_run_quickstart; authoritative binding not needed in smoke
+GoogleCloudRunV2WorkerPoolIamPolicy: iam-adjunct-debt: sibling GoogleCloudRunV2WorkerPoolIamMember already in cloud_run_quickstart; authoritative policy not needed in smoke
