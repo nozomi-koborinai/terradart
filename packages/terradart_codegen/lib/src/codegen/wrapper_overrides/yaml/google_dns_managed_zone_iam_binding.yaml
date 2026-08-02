@@ -1,0 +1,18 @@
+outputDir: dns
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud DNS managed
+  /// zone.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleDnsManagedZoneIamMember] for additive grants.
+
+paramOrder:
+  - managed_zone
+  - role
+  - members
+  - condition
+  - project

@@ -90,6 +90,37 @@ final class OrdersStack extends Stack {
       ),
     );
 
+    final schemaViewerBinding = add(
+      GooglePubsubSchemaIamBinding(
+        localName: 'orders_schema_viewer_binding',
+        schema: TfArg.ref(ordersSchema.id),
+        role: TfArg.literal('roles/pubsub.viewer'),
+        members: TfArg.literal([ordersPublisher.iamMember.interpolation]),
+        dependsOn: [
+          ResourceDependency(ordersSchema),
+          ResourceDependency(ordersPublisher),
+        ],
+      ),
+    );
+
+    add(
+      GooglePubsubSchemaIamPolicy(
+        localName: 'orders_schema_viewer_policy',
+        schema: TfArg.ref(ordersSchema.id),
+        policyData: TfArg.literal(
+          _iamPolicyDataJson(
+            role: 'roles/pubsub.viewer',
+            member:
+                'serviceAccount:orders-publisher@$projectId.iam.gserviceaccount.com',
+          ),
+        ),
+        dependsOn: [
+          ResourceDependency(ordersSchema),
+          ResourceDependency(schemaViewerBinding),
+        ],
+      ),
+    );
+
     final topic = add(
       GooglePubsubTopic(
         localName: 'orders',

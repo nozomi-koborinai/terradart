@@ -1,0 +1,15 @@
+outputDir: pubsub
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Pub/Sub schema.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GooglePubsubSchemaIamMember] for single-principal grants.
+
+paramOrder:
+  - schema
+  - policy_data
+  - project

@@ -161,6 +161,39 @@ final class DbCredentialsStack extends Stack {
       ),
     );
 
+    final regionalAccessorBinding = add(
+      GoogleSecretManagerRegionalSecretIamBinding(
+        localName: 'db_password_regional_accessor_binding',
+        secretId: TfArg.ref(regionalSecret.secretIdRef),
+        location: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/secretmanager.secretAccessor'),
+        members: TfArg.literal([appSa.iamMember.interpolation]),
+        dependsOn: [
+          ResourceDependency(regionalSecret),
+          ResourceDependency(appSa),
+        ],
+      ),
+    );
+
+    add(
+      GoogleSecretManagerRegionalSecretIamPolicy(
+        localName: 'db_password_regional_accessor_policy',
+        secretId: TfArg.ref(regionalSecret.secretIdRef),
+        location: TfArg.literal('us-central1'),
+        policyData: TfArg.literal(
+          _iamPolicyDataJson(
+            role: 'roles/secretmanager.secretAccessor',
+            member:
+                'serviceAccount:app-runner@$projectId.iam.gserviceaccount.com',
+          ),
+        ),
+        dependsOn: [
+          ResourceDependency(regionalSecret),
+          ResourceDependency(regionalAccessorBinding),
+        ],
+      ),
+    );
+
     // Export the secret's resource path as a typed Dart constant. The
     // application reads the live value at runtime via the Secret Manager
     // client library -- the constant is the lookup key, not the secret.

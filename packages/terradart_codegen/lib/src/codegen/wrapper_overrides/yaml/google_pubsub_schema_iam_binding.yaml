@@ -1,0 +1,17 @@
+outputDir: pubsub
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Pub/Sub schema.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GooglePubsubSchemaIamMember] for additive grants.
+
+paramOrder:
+  - schema
+  - role
+  - members
+  - condition
+  - project

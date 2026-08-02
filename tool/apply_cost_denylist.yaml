@@ -414,7 +414,9 @@ google_dataplex_task: safe  # gcp-cost: no Cloud Billing Catalog SKU for task de
 google_dataplex_task_iam_member: safe  # billing-behavior: IAM binding adjunct; no standalone Cloud Billing SKU
 google_dataplex_metadata_feed: safe  # gcp-cost: no Cloud Billing Catalog SKU for metadata feed definition (gcp-cost MCP list_skus keyword "metadata feed" on Dataplex 51C6-B3F5-9B38 — empty); billing-behavior: control-plane metadata subscription config; destroy removes feed — not existence-billed
 google_dns_managed_zone: safe  # apply-verified safe (existing example)
+google_dns_managed_zone_iam_binding: safe  # billing-behavior: IAM binding only
 google_dns_managed_zone_iam_member: safe  # apply-verified safe (existing example)
+google_dns_managed_zone_iam_policy: safe  # billing-behavior: IAM policy only
 google_dns_policy: safe  # apply-verified safe (existing example)
 google_dns_record_set: safe  # apply-verified safe (existing example)
 google_dns_response_policy: safe  # apply-verified safe (existing example)
@@ -520,7 +522,9 @@ google_project_usage_export_bucket: safe  # gcp-cost: no Cloud Billing Catalog S
 google_project_iam_audit_config: safe  # gcp-cost: no Cloud Billing Catalog SKU for the audit-config resource itself (Cloud Logging 5490-F7B7-8DF6 list_skus keyword="audit" → 0; Log Storage SKU 143F-A1B0-E0BE $0.50/GiBy after 50 GiB free tier bills Data Access log volume only); billing-behavior: IAM audit config is policy metadata — ADMIN_READ emits free Admin Activity logs; destroy removes the config; this example does not enable DATA_READ/DATA_WRITE
 google_project_service: safe  # apply-verified safe (existing example)
 google_pubsub_schema: safe  # apply-verified safe (existing example)
+google_pubsub_schema_iam_binding: safe  # billing-behavior: IAM binding only
 google_pubsub_schema_iam_member: safe  # apply-verified safe (existing example)
+google_pubsub_schema_iam_policy: safe  # billing-behavior: IAM policy only
 google_pubsub_subscription: safe  # apply-verified safe (existing example)
 google_public_ca_external_account_key: safe  # gcp-cost: no Cloud Billing Catalog SKU for Public CA EAB key create after MCP lookup — Certificate Manager 7766-403C-6D6E SKUs are Certificates usage F08F-F1CD-3492 (~$0.20/mo after 100 free), Regional Certificates 4B89-6413-74D9, and mTLS Advanced 96D8-F0B3-E8A1 (none for EAB); Certificate Authority Service BAE4-9668-BD24 is Private CA only; billing-behavior: create-only ACME binding secret metadata — no certificate issued, no existence/hourly charge; terraform destroy removes from state only (API exclude_delete)
 google_pubsub_topic: safe  # apply-verified safe (existing example)
@@ -529,7 +533,9 @@ google_pubsub_topic_iam_member: safe  # apply-verified safe (existing example)
 google_pubsub_topic_iam_policy: safe  # billing-behavior: IAM policy only
 google_scc_v2_project_notification_config: safe  # gcp-cost: no Cloud Billing Catalog SKU for project notification config (Security Command Center FBF2-FC68-171A lists Premium/Enterprise subscription and asset-usage SKUs only, e.g. 694C-9680-C91A GCE Core Running — no notification-config SKU); billing-behavior: continuous-export config metadata — Standard-tier notification configs do not bill by existence; Pub/Sub delivery billed separately on topic usage
 google_secret_manager_regional_secret: safe  # apply-verified safe (existing example)
+google_secret_manager_regional_secret_iam_binding: safe  # billing-behavior: IAM binding only
 google_secret_manager_regional_secret_iam_member: safe  # apply-verified safe (existing example)
+google_secret_manager_regional_secret_iam_policy: safe  # billing-behavior: IAM policy only
 google_secret_manager_secret: safe  # apply-verified safe (existing example)
 google_secure_source_manager_repository: safe  # gcp-cost: Secure Source Manager ADD4-3782-815A SKUs are Fixed Instance Pricing only (e.g. 9B40-B4AA-D8EE $1000/mo) — no repository SKU; billing-behavior: Git repo metadata on a parent instance — no separate existence charge beyond the never_apply instance
 google_secure_source_manager_instance_iam_member: safe  # billing-behavior: IAM binding — no resource charge
