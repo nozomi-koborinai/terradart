@@ -1,0 +1,40 @@
+outputDir: agent
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Agent Identity **auth provider** — delegates cloud authentication to
+  /// agents (API key, 3LO, or 2LO via [authProviderTypeParams]).
+  ///
+  /// **Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU after MCP
+  /// lookup (`list_services` has no Agent Identity / Agent Registry service;
+  /// Identity Platform `DC5D-D207-FD2F` keyword `agent` → 0; Agentic
+  /// Applications `E4EE-DF31-DCDA` is Shopping Agent chat only).
+  /// billing-behavior: auth-provider config metadata — no existence/hourly
+  /// charge observed. Not standalone-project applyable on
+  /// `terradart-validate` (Agent Identity scaffolding). **Never** wire into
+  /// apply-smoke.
+
+paramOrder:
+  - location
+  - auth_provider_id
+  - auth_provider_type_params
+  - allowed_scopes
+  - blocked_scopes
+  - description
+  - labels
+  - workload_ids
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

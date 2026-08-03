@@ -539,6 +539,11 @@ GoogleIapAgentRegistryEndpointIamPolicy: authoritative IAM policy; requires Agen
 GoogleIapAgentRegistryMcpServerIamMember: requires Agent Identity registry MCP server parent (google_agent_registry_* skip-noted); not standalone-project applyable on terradart-validate
 GoogleIapAgentRegistryMcpServerIamBinding: authoritative IAM binding; requires Agent Identity registry MCP server parent (skip-noted); deferred with sibling member
 GoogleIapAgentRegistryMcpServerIamPolicy: authoritative IAM policy; requires Agent Identity registry MCP server parent (skip-noted); deferred with sibling member
+# Agent Identity / Agent Registry — require Agent Identity scaffolding; not
+# standalone-project applyable on terradart-validate.
+GoogleAgentIdentityAuthProvider: gcp-cost: no Cloud Billing Catalog SKU after MCP lookup (no Agent Identity/Agent Registry service; Identity Platform DC5D-D207-FD2F keyword agent → 0); Agent Identity scaffolding required — no applyable quickstart on terradart-validate
+GoogleAgentRegistryBinding: requires GoogleAgentIdentityAuthProvider (Agent Identity scaffolding); deferred with auth provider
+GoogleAgentRegistryService: requires Agent Identity / Agent Registry scaffolding; deferred with auth provider Wave
 GoogleLoggingLogViewIamBinding: iam-adjunct-debt: sibling GoogleLoggingLogViewIamMember already in ops_quickstart; authoritative binding not needed in smoke
 GoogleLoggingLogViewIamPolicy: iam-adjunct-debt: sibling GoogleLoggingLogViewIamMember already in ops_quickstart; authoritative policy not needed in smoke
 GoogleGkeBackupBackupPlanIamBinding: iam-adjunct-debt: sibling GoogleGkeBackupBackupPlanIamMember already in gke_quickstart; authoritative binding not needed in smoke

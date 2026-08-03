@@ -1,0 +1,174 @@
+outputDir: agent
+deriveClassDoc: true
+deriveOutputGetters: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Agent Registry **service** — registers an agent / MCP / endpoint
+  /// surface. Pass exactly one [AgentRegistryServiceSpec] variant
+  /// (`agent_spec` / `mcp_server_spec` / `endpoint_spec`).
+  ///
+  /// **Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU after MCP
+  /// lookup (no Agent Identity / Agent Registry service in
+  /// `list_services`). billing-behavior: registry service metadata — no
+  /// existence/hourly charge observed. Not standalone-project applyable on
+  /// `terradart-validate` without Agent Identity scaffolding. **Never** wire
+  /// into apply-smoke.
+
+# IR's three nested-block specs (`agent_spec`, `mcp_server_spec`,
+# `endpoint_spec`) fan out into the sealed virtual `spec` customSlot —
+# omit them from paramOrder (lint: exactly-one-paramorder-fanout).
+paramOrder:
+  - location
+  - service_id
+  - display_name
+  - description
+  - spec
+  - interfaces
+  - deletion_policy
+  - project
+
+argMapOrder:
+  - location
+  - service_id
+  - display_name
+  - description
+  - interfaces
+  - deletion_policy
+  - project
+  - spec
+
+prelude: |
+  /// `type` under `agent_spec`.
+  enum AgentRegistryServiceAgentSpecType implements TerraformEnum {
+    noSpec('NO_SPEC'),
+    a2aAgentCard('A2A_AGENT_CARD');
+
+    const AgentRegistryServiceAgentSpecType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `type` under `mcp_server_spec`.
+  enum AgentRegistryServiceMcpServerSpecType implements TerraformEnum {
+    noSpec('NO_SPEC'),
+    toolSpec('TOOL_SPEC');
+
+    const AgentRegistryServiceMcpServerSpecType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `type` under `endpoint_spec`.
+  enum AgentRegistryServiceEndpointSpecType implements TerraformEnum {
+    noSpec('NO_SPEC');
+
+    const AgentRegistryServiceEndpointSpecType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `protocol_binding` under `interfaces`.
+  enum AgentRegistryServiceInterfacesProtocolBinding implements TerraformEnum {
+    jsonrpc('JSONRPC'),
+    grpc('GRPC'),
+    httpJson('HTTP_JSON');
+
+    const AgentRegistryServiceInterfacesProtocolBinding(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Exactly one of agent / MCP server / endpoint spec (MM `exactly_one_of`).
+  sealed class AgentRegistryServiceSpec {
+    const AgentRegistryServiceSpec();
+
+    String get blockKey;
+    Map<String, Object?> encode();
+  }
+
+  /// `agent_spec` — service type is Agent.
+  @immutable
+  final class AgentRegistryServiceAgentSpec extends AgentRegistryServiceSpec {
+    const AgentRegistryServiceAgentSpec({required this.type, this.content});
+
+    final AgentRegistryServiceAgentSpecType type;
+    final TfArg<String>? content;
+
+    @override
+    String get blockKey => 'agent_spec';
+
+    @override
+    Map<String, Object?> encode() => {
+      'type': type.terraformValue,
+      if (content != null) 'content': content!.toTfJson(),
+    };
+  }
+
+  /// `mcp_server_spec` — service type is MCP Server.
+  @immutable
+  final class AgentRegistryServiceMcpServerSpec extends AgentRegistryServiceSpec {
+    const AgentRegistryServiceMcpServerSpec({required this.type, this.content});
+
+    final AgentRegistryServiceMcpServerSpecType type;
+    final TfArg<String>? content;
+
+    @override
+    String get blockKey => 'mcp_server_spec';
+
+    @override
+    Map<String, Object?> encode() => {
+      'type': type.terraformValue,
+      if (content != null) 'content': content!.toTfJson(),
+    };
+  }
+
+  /// `endpoint_spec` — service type is Endpoint.
+  @immutable
+  final class AgentRegistryServiceEndpointSpec extends AgentRegistryServiceSpec {
+    const AgentRegistryServiceEndpointSpec({required this.type});
+
+    final AgentRegistryServiceEndpointSpecType type;
+
+    @override
+    String get blockKey => 'endpoint_spec';
+
+    @override
+    Map<String, Object?> encode() => {
+      'type': type.terraformValue,
+    };
+  }
+
+  /// Typed helper for the `interfaces` block.
+  @immutable
+  final class AgentRegistryServiceInterfaces {
+    const AgentRegistryServiceInterfaces({
+      required this.protocolBinding,
+      required this.url,
+    });
+
+    final AgentRegistryServiceInterfacesProtocolBinding protocolBinding;
+    final TfArg<String> url;
+
+    Map<String, Object?> encode() => {
+      'protocol_binding': protocolBinding.terraformValue,
+      'url': url.toTfJson(),
+    };
+  }
+
+customSlots:
+  spec:
+    paramDeclaration: 'required AgentRegistryServiceSpec spec'
+    argMapEntry: 'spec.blockKey: TfArg.literal([spec.encode()]),'
+  interfaces:
+    paramDeclaration: 'List<AgentRegistryServiceInterfaces>? interfaces'
+    argMapEntry: "if (interfaces != null) 'interfaces': TfArg.literal([for (final e in interfaces) e.encode()]),"
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

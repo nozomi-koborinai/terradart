@@ -14,6 +14,7 @@ library;
 
 export 'access_context_manager.dart';
 export 'active_directory.dart';
+export 'agent.dart';
 export 'alloydb.dart';
 export 'apigee.dart';
 export 'apihub.dart';

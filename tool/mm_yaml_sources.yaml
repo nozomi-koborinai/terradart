@@ -1386,6 +1386,12 @@ files:
     upstream: mmv1/products/publicca/ExternalAccountKey.yaml
   google_active_directory_domain:
     upstream: mmv1/products/activedirectory/Domain.yaml
+  google_agent_identity_auth_provider:
+    upstream: mmv1/products/agentidentity/AuthProvider.yaml
+  google_agent_registry_binding:
+    upstream: mmv1/products/agentregistry/Binding.yaml
+  google_agent_registry_service:
+    upstream: mmv1/products/agentregistry/Service.yaml
   google_alloydb_backup:
     upstream: mmv1/products/alloydb/Backup.yaml
   google_alloydb_cluster:
