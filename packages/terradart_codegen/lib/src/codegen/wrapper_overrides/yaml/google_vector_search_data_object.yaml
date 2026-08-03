@@ -1,0 +1,42 @@
+outputDir: vector
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Vector Search 2.0 **data object** — one JSON row (optional dense/sparse
+  /// vectors) stored in a parent [GoogleVectorSearchCollection].
+  ///
+  /// **Cost / apply:** Payload storage and write ops meter while the object
+  /// exists (Cloud Billing Catalog service `0181-3AAD-0CB9` Data Stored SKU
+  /// `1AE9-553C-C219` **$0.3/GiBy.mo**, Write Operations `C1E5-1A7F-E9B3`
+  /// **$0.18/count**). No index-serving capacity units. Ships without a
+  /// quickstart extension (`tool/example_debt.yaml`) — `vector_quickstart`
+  /// covers the parent collection only.
+  ///
+  /// Requires [location], [collectionId], and [dataObjectId]. Prefer
+  /// bulk `importDataObjects` / `batchCreate` outside Terraform for large
+  /// ingest. Enable `vectorsearch.googleapis.com` via [GoogleProjectService]
+  /// before apply.
+
+paramOrder:
+  - location
+  - collection_id
+  - data_object_id
+  - data
+  - vectors
+  - etag
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `data_object_id` attribute.
+    TfRef<String> get dataObjectIdRef =>
+        TfRef.attribute<String>(this, 'data_object_id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

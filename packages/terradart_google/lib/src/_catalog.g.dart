@@ -21622,6 +21622,32 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_vector_search_collection`.\n\nDescription\n\nVector Search 2.0 **collection** — typed data schema plus searchable\nvector fields (`vector_schema`).\n\nAn empty collection (schema only, no data objects / indexes) does not\nprovision index-serving capacity. Pair with [GoogleVectorSearchIndex]\nwhen you need ANN serving (that path bills hourly capacity units).\n\nEnable `vectorsearch.googleapis.com` via [GoogleProjectService] before\napply.\n\nExample:\n```dart\nGoogleVectorSearchCollection(\n  localName: \'docs\',\n  location: TfArg.literal(\'us-central1\'),\n  collectionId: TfArg.literal(\'terradart-docs\'),\n  displayName: TfArg.literal(\'Docs\'),\n  dataSchema: TfArg.literal(\n    \'{"type":"object","properties":{"title":{"type":"string"}}}\',\n  ),\n  vectorSchema: [\n    VectorSearchCollectionVectorSchema(\n      fieldName: TfArg.literal(\'text_embedding\'),\n      denseVector: VectorSearchCollectionVectorSchemaDenseVector(\n        dimensions: TfArg.literal(768),\n      ),\n    ),\n  ],\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_vector_search_data_object',
+    className: 'GoogleVectorSearchDataObject',
+    barrel: 'vector',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_vector_search_data_object`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'collectionId',
+      'dataObjectId',
+      'data',
+      'vectors',
+      'etag',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'VectorSearchDataObjectVectors',
+      'VectorSearchDataObjectVectorsDense',
+      'VectorSearchDataObjectVectorsSparse',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_vector_search_data_object`.\n\nA DataObject is a single item of data (with optional vectors) stored in a\nVector Search Collection. Each DataObject conforms to the parent\nCollection\'s `data_schema` and `vector_schema`.\n\nThis resource always issues one `CreateDataObject` request per Terraform\nresource block. It does NOT use the `batchCreate` REST endpoint --\nTerraform\'s resource lifecycle is inherently per-object, so batching across\nresources is not modeled. When you use `for_each` or `count`, Terraform will\nstill issue individual requests, up to `-parallelism` in parallel.\n\nFor ingesting more than a few hundred items, prefer one of the following\nout-of-band paths instead of Terraform:\n\n* `importDataObjects` (bulk ingest from Cloud Storage) -- highest\nthroughput, but only available *before* any Index is created on the\nCollection. * `batchCreate` (up to ~1000 items per call) -- available at any\ntime, but must be driven from your own client code, not Terraform.\n\nOnce an Index exists on the Collection, `importDataObjects` is no longer\navailable and DataObjects must be created via `CreateDataObject` (as this\nresource does) or via `batchCreate`.\n\nVector Search 2.0 **data object** — one JSON row (optional dense/sparse\nvectors) stored in a parent [GoogleVectorSearchCollection].\n\n**Cost / apply:** Payload storage and write ops meter while the object\nexists (Cloud Billing Catalog service `0181-3AAD-0CB9` Data Stored SKU\n`1AE9-553C-C219` **\$0.3/GiBy.mo**, Write Operations `C1E5-1A7F-E9B3`\n**\$0.18/count**). No index-serving capacity units. Ships without a\nquickstart extension (`tool/example_debt.yaml`) — `vector_quickstart`\ncovers the parent collection only.\n\nRequires [location], [collectionId], and [dataObjectId]. Prefer\nbulk `importDataObjects` / `batchCreate` outside Terraform for large\ningest. Enable `vectorsearch.googleapis.com` via [GoogleProjectService]\nbefore apply.',
+  ),
+  CatalogEntry(
     tfType: 'google_vector_search_index',
     className: 'GoogleVectorSearchIndex',
     barrel: 'vector',
