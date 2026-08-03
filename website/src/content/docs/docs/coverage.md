@@ -13,6 +13,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 
 - [`access_context_manager`](#accesscontextmanager)
 - [`active_directory`](#activedirectory)
+- [`agent`](#agent)
 - [`alloydb`](#alloydb)
 - [`apigee`](#apigee)
 - [`apihub`](#apihub)
@@ -137,6 +138,14 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | Terraform type | Dart factory | Example |
 | --- | --- | --- |
 | `google_active_directory_domain` | `GoogleActiveDirectoryDomain` | — |
+
+## agent
+
+| Terraform type | Dart factory | Example |
+| --- | --- | --- |
+| `google_agent_identity_auth_provider` | `GoogleAgentIdentityAuthProvider` | — |
+| `google_agent_registry_binding` | `GoogleAgentRegistryBinding` | — |
+| `google_agent_registry_service` | `GoogleAgentRegistryService` | — |
 
 ## alloydb
 
