@@ -503,6 +503,14 @@ GoogleIapAgentRegistryIamBinding: iam-adjunct-debt: sibling GoogleIapAgentRegist
 GoogleIapAgentRegistryIamPolicy: iam-adjunct-debt: sibling GoogleIapAgentRegistryIamMember already in iam_quickstart; authoritative policy not needed in smoke
 GoogleLoggingLogViewIamBinding: iam-adjunct-debt: sibling GoogleLoggingLogViewIamMember already in ops_quickstart; authoritative binding not needed in smoke
 GoogleLoggingLogViewIamPolicy: iam-adjunct-debt: sibling GoogleLoggingLogViewIamMember already in ops_quickstart; authoritative policy not needed in smoke
+GoogleGkeBackupBackupPlanIamBinding: iam-adjunct-debt: sibling GoogleGkeBackupBackupPlanIamMember already in gke_quickstart; authoritative binding not needed in smoke
+GoogleGkeBackupBackupPlanIamPolicy: iam-adjunct-debt: sibling GoogleGkeBackupBackupPlanIamMember already in gke_quickstart; authoritative policy not needed in smoke
+GoogleAccessContextManagerAccessPolicyIamBinding: iam-adjunct-debt: sibling GoogleAccessContextManagerAccessPolicyIamMember already in access_context_quickstart; authoritative binding not needed in smoke
+GoogleAccessContextManagerAccessPolicyIamPolicy: iam-adjunct-debt: sibling GoogleAccessContextManagerAccessPolicyIamMember already in access_context_quickstart; authoritative policy not needed in smoke
+GoogleProjectIamBinding: iam-adjunct-debt: sibling GoogleProjectIamMember already in iam_quickstart; authoritative binding not needed in smoke
+GoogleProjectIamPolicy: iam-adjunct-debt: sibling GoogleProjectIamMember already in iam_quickstart; authoritative policy not needed in smoke
+GoogleServiceAccountIamBinding: iam-adjunct-debt: sibling GoogleServiceAccountIamMember already in iam_quickstart; authoritative binding not needed in smoke
+GoogleServiceAccountIamPolicy: iam-adjunct-debt: sibling GoogleServiceAccountIamMember already in iam_quickstart; authoritative policy not needed in smoke
 
 # Compute Engine IAM binding/policy — sibling *IamMember already in
 # compute_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).

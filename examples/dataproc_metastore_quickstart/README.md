@@ -7,6 +7,10 @@ End-to-end terradart example for Dataproc Metastore factories:
 - `google_dataproc_metastore_federation`
 - `google_dataproc_metastore_federation_iam_member`
 
+The stack also provisions a dedicated `google_compute_network`: the
+Metastore THRIFT endpoint attaches to a VPC, and the API otherwise defaults
+to the project `default` network, which standalone projects do not have.
+
 ## Prerequisites
 
 - Dart SDK >= 3.6

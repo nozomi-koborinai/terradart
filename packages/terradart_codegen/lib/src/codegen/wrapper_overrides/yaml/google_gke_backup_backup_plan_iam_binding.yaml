@@ -1,0 +1,19 @@
+outputDir: gke_backup
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a GKE Backup backup
+  /// plan.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleGkeBackupBackupPlanIamMember] for additive grants.
+
+paramOrder:
+  - name
+  - role
+  - members
+  - location
+  - condition
+  - project

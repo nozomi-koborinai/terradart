@@ -523,7 +523,15 @@ files:
     upstream: null  # handwritten IAM audit config (schema-only; not MM-generated)
   google_project_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_project_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_project_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_service_account_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_service_account_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_service_account_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_service_account_key:
     upstream: null  # handwritten in terraform provider; no MM YAML
@@ -982,6 +990,10 @@ files:
   google_gke_backup_backup_plan:
     upstream: mmv1/products/gkebackup/BackupPlan.yaml
   google_gke_backup_backup_plan_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_gke_backup_backup_plan_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_gke_backup_backup_plan_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_gke_backup_restore_channel:
     upstream: mmv1/products/gkebackup/RestoreChannel.yaml
@@ -1684,6 +1696,10 @@ files:
   google_access_context_manager_service_perimeter:
     upstream: mmv1/products/accesscontextmanager/ServicePerimeter.yaml
   google_access_context_manager_access_policy_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_access_context_manager_access_policy_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_access_context_manager_access_policy_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   # Wave 76 (OS Config + Binary Authorization — VM compliance & image trust)
   google_network_services_edge_cache_keyset:

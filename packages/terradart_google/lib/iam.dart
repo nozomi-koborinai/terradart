@@ -22,11 +22,17 @@ export 'src/iam/google_project_iam_audit_config.dart'
         GoogleProjectIamAuditConfig,
         ProjectIamAuditConfigAuditLogConfig,
         ProjectIamAuditConfigAuditLogConfigLogType;
+export 'src/iam/google_project_iam_binding.dart' show GoogleProjectIamBinding;
 export 'src/iam/google_project_iam_custom_role.dart'
     show CustomRoleStage, GoogleProjectIamCustomRole;
 export 'src/iam/google_project_iam_member.dart' show GoogleProjectIamMember;
+export 'src/iam/google_project_iam_policy.dart' show GoogleProjectIamPolicy;
 export 'src/iam/google_service_account.dart' show GoogleServiceAccount;
+export 'src/iam/google_service_account_iam_binding.dart'
+    show GoogleServiceAccountIamBinding;
 export 'src/iam/google_service_account_iam_member.dart'
     show GoogleServiceAccountIamMember;
+export 'src/iam/google_service_account_iam_policy.dart'
+    show GoogleServiceAccountIamPolicy;
 export 'src/iam/google_service_account_key.dart'
     show GoogleServiceAccountKey, KeyAlgorithm, PrivateKeyType, PublicKeyType;
