@@ -13089,6 +13089,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_gke_backup_backup_plan`.\n\nRepresents a Backup Plan instance.\n\nDefines a **GKE Backup plan** — scheduled backups of a\n[GoogleContainerCluster] into a backup store.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `name`: backup plan ID (unique per project/location).\n- `location`: GCP region (e.g. `\'asia-northeast1\'`).\n- `cluster`: target cluster — typically `TfArg.ref(cluster.id)`.\n\nPair with [GoogleGkeBackupRestorePlan] for restore workflows.',
   ),
   CatalogEntry(
+    tfType: 'google_gke_backup_backup_plan_iam_binding',
+    className: 'GoogleGkeBackupBackupPlanIamBinding',
+    barrel: 'gke_backup',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_gke_backup_backup_plan_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'members',
+      'location',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_gke_backup_backup_plan_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a GKE Backup backup\nplan.\n\nReplaces the entire member list for that role. Prefer\n[GoogleGkeBackupBackupPlanIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_gke_backup_backup_plan_iam_member',
     className: 'GoogleGkeBackupBackupPlanIamMember',
     barrel: 'gke_backup',
@@ -13107,6 +13127,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_gke_backup_backup_plan_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_gke_backup_backup_plan_iam_policy',
+    className: 'GoogleGkeBackupBackupPlanIamPolicy',
+    barrel: 'gke_backup',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_gke_backup_backup_plan_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_gke_backup_backup_plan_iam_policy`.\n\nAuthoritative IAM policy for a GKE Backup backup plan.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleGkeBackupBackupPlanIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_gke_backup_restore_channel',

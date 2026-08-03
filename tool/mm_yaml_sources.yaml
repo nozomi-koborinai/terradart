@@ -983,6 +983,10 @@ files:
     upstream: mmv1/products/gkebackup/BackupPlan.yaml
   google_gke_backup_backup_plan_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_gke_backup_backup_plan_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_gke_backup_backup_plan_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_gke_backup_restore_channel:
     upstream: mmv1/products/gkebackup/RestoreChannel.yaml
   google_gke_backup_restore_plan:

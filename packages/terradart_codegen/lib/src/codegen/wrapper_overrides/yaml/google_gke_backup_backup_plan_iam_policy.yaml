@@ -1,0 +1,16 @@
+outputDir: gke_backup
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a GKE Backup backup plan.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleGkeBackupBackupPlanIamMember] for single-principal grants.
+
+paramOrder:
+  - name
+  - policy_data
+  - location
+  - project
