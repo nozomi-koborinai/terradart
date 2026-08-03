@@ -1,0 +1,131 @@
+outputDir: network
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+nestedTypeExcludes:
+  - google_managed
+  - self_managed
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Network Services **Agent Gateway** — ingress for Agent Identity /
+  /// Agent Registry traffic. Pass exactly one
+  /// [NetworkServicesAgentGatewayDeployment]:
+  /// - [NetworkServicesAgentGatewayGoogleManaged] — Google-orchestrated
+  ///   proxy (`governedAccessPath`: `AGENT_TO_ANYWHERE` /
+  ///   `CLIENT_TO_AGENT`).
+  /// - [NetworkServicesAgentGatewaySelfManaged] — attach an existing
+  ///   Application LB / Secure Web Proxy via `resourceUri`.
+  ///
+  /// **Cost / apply:** gcp-cost: Networking `E505-1604-58F8` and Vertex AI
+  /// `C7E2-9256-1C43` list_skus keyword=Agent/Agent Gateway → 0 dedicated
+  /// SKUs. billing-behavior: google_managed provisions a tenant-project
+  /// proxy; self_managed attaches to existing SWG/LB (SWG sibling
+  /// `google_network_services_gateway` is never_apply at **$1.25/h**).
+  /// Needs network attachment + Agent Registry URI scaffolding — not
+  /// standalone-project applyable on terradart-validate. Ships
+  /// `never_apply` / `tool/example_debt.yaml`.
+  ///
+  /// Enable `networkservices.googleapis.com` (and Agent Registry) before
+  /// apply.
+
+# IR's google_managed / self_managed fan out into sealed virtual
+# `deployment` — omit them from paramOrder (exactly-one-paramorder-fanout).
+paramOrder:
+  - name
+  - location
+  - deployment
+  - description
+  - protocols
+  - registries
+  - network_config
+  - labels
+  - deletion_policy
+  - project
+
+argMapOrder:
+  - name
+  - location
+  - description
+  - protocols
+  - registries
+  - network_config
+  - labels
+  - deletion_policy
+  - project
+  - deployment
+
+prelude: |
+  /// `governed_access_path` under `google_managed`.
+  enum NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath
+      implements TerraformEnum {
+    agentToAnywhere('AGENT_TO_ANYWHERE'),
+    clientToAgent('CLIENT_TO_AGENT');
+
+    const NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath(
+      this.terraformValue,
+    );
+    @override
+    final String terraformValue;
+  }
+
+  /// Exactly one of google_managed / self_managed (MM `exactly_one_of`).
+  sealed class NetworkServicesAgentGatewayDeployment {
+    const NetworkServicesAgentGatewayDeployment();
+
+    String get blockKey;
+    Map<String, Object?> encode();
+  }
+
+  /// `google_managed` — proxy orchestrated in a Google tenant project.
+  @immutable
+  final class NetworkServicesAgentGatewayGoogleManaged
+      extends NetworkServicesAgentGatewayDeployment {
+    const NetworkServicesAgentGatewayGoogleManaged({
+      required this.governedAccessPath,
+    });
+
+    final NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath
+        governedAccessPath;
+
+    @override
+    String get blockKey => 'google_managed';
+
+    @override
+    Map<String, Object?> encode() => {
+      'governed_access_path': governedAccessPath.terraformValue,
+    };
+  }
+
+  /// `self_managed` — attach an existing networking proxy in-project.
+  @immutable
+  final class NetworkServicesAgentGatewaySelfManaged
+      extends NetworkServicesAgentGatewayDeployment {
+    const NetworkServicesAgentGatewaySelfManaged({required this.resourceUri});
+
+    final TfArg<String> resourceUri;
+
+    @override
+    String get blockKey => 'self_managed';
+
+    @override
+    Map<String, Object?> encode() => {
+      'resource_uri': resourceUri.toTfJson(),
+    };
+  }
+
+customSlots:
+  deployment:
+    paramDeclaration: 'required NetworkServicesAgentGatewayDeployment deployment'
+    argMapEntry: 'deployment.blockKey: TfArg.literal([deployment.encode()]),'
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

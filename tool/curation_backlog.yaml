@@ -1,9 +1,1 @@
-entries:
-  - resource: google_compute_region_resize_request
-    detected_at: 2026-07-01
-    provider_version: '7.39.0'
-    note: skipped by wave-shipper — requires DWS-compatible regional MIG (A3 GPU / requested_run_duration); not applicable on terradart-validate e2 topology
-  - resource: google_network_services_agent_gateway
-    detected_at: 2026-07-01
-    provider_version: '7.39.0'
-    note: skipped by maintainer — provider example needs google_compute_network_attachment + agentregistry API + registries URI; sibling google_agent_registry_* already skip-noted (Agent Identity); google_managed/self_managed is an exactly_one_of sealed design; not standalone-project applyable on terradart-validate without that scaffolding
+entries: []
