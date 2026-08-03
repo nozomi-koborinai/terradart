@@ -71,13 +71,15 @@ import 'package:test/test.dart';
 /// `SecretManagerSecretReplication.userManaged(...)` factories.
 final Map<String, Object Function()> _syntheticInstances = {
   // --- AgentRegistryServiceSpec (3) — google_agent_registry_service -------
-  'AgentRegistryServiceAgentSpec': () => AgentRegistryServiceAgentSpec(
+  'AgentRegistryServiceAgentSpec': () => const AgentRegistryServiceAgentSpec(
         type: AgentRegistryServiceAgentSpecType.noSpec,
       ),
-  'AgentRegistryServiceMcpServerSpec': () => AgentRegistryServiceMcpServerSpec(
+  'AgentRegistryServiceMcpServerSpec': () =>
+      const AgentRegistryServiceMcpServerSpec(
         type: AgentRegistryServiceMcpServerSpecType.noSpec,
       ),
-  'AgentRegistryServiceEndpointSpec': () => AgentRegistryServiceEndpointSpec(
+  'AgentRegistryServiceEndpointSpec': () =>
+      const AgentRegistryServiceEndpointSpec(
         type: AgentRegistryServiceEndpointSpecType.noSpec,
       ),
 
