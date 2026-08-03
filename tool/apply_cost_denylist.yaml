@@ -457,6 +457,7 @@ google_compute_region_instant_snapshot_iam_member: safe  # apply-verified safe (
 google_compute_region_instant_snapshot_iam_policy: safe  # apply-verified safe (existing example)
 google_compute_resource_policy: safe  # apply-verified safe (existing example)
 google_compute_snapshot_settings: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus keyword="snapshot settings"/"settings" on Compute Engine 6F81-5844-456A → 0 SKUs; keyword=snapshot SKUs are PD snapshot storage / instant snapshots only); billing-behavior: project-level metadata singleton (PATCH create/update, exclude_delete) — no existence/hourly charge for the settings resource itself
+google_compute_rollout_plan: safe  # gcp-cost: no Cloud Billing Catalog SKU (Compute Engine 6F81-5844-456A list_skus keyword=rollout/wave/plan → 0); billing-behavior: project-global wave-strategy metadata only — create/delete does not provision VMs or bill Compute instance hours
 google_compute_route: safe  # apply-verified safe (existing example)
 google_compute_router: safe  # apply-verified safe (existing example)
 google_compute_network_peering: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Networking E505-1604-58F8); billing-behavior: VPC peering association metadata only

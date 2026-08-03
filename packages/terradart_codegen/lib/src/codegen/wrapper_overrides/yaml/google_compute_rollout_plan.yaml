@@ -1,0 +1,34 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+dartTypeOverrides:
+  location_scope: ComputeRolloutPlanLocationScope
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Compute Engine **rollout plan** — a project-global wave strategy that
+  /// divides a large-scale change into sequenced increments (`waves`).
+  /// Each wave selects targets (location and/or resource-hierarchy) and
+  /// defines validation before the next wave proceeds.
+  ///
+  /// **Cost / apply:** The plan itself is configuration metadata. Cloud
+  /// Billing Catalog service `6F81-5844-456A` (Compute Engine) has no SKU
+  /// for rollout / wave / plan (gcp-cost `list_skus` → 0). Creating or
+  /// deleting a plan does not provision VMs. Ships without a quickstart
+  /// (`tool/example_debt.yaml`) until a dedicated smoke stack lands.
+  ///
+  /// Requires [name] and at least one [waves] entry. Enable
+  /// `compute.googleapis.com` via [GoogleProjectService] before apply.
+
+paramOrder:
+  - name
+  - location_scope
+  - description
+  - waves
+  - deletion_policy
+  - project
