@@ -1,0 +1,17 @@
+outputDir: secure
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Secure Source Manager repository.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleSecureSourceManagerRepositoryIamMember] for single-principal
+  /// grants. Deferred with the never_apply SSM instance (no apply-smoke
+  /// quickstart).
+
+paramOrder:
+  - repository_id
+  - policy_data
+  - location
+  - project
