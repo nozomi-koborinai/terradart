@@ -1,0 +1,15 @@
+outputDir: access_context_manager
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for an Access Context Manager access policy.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleAccessContextManagerAccessPolicyIamMember] for single-principal
+  /// grants.
+
+paramOrder:
+  - name
+  - policy_data

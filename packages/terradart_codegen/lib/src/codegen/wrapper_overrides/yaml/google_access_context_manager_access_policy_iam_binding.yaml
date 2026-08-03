@@ -1,0 +1,17 @@
+outputDir: access_context_manager
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on an Access Context
+  /// Manager access policy.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleAccessContextManagerAccessPolicyIamMember] for additive grants.
+
+paramOrder:
+  - name
+  - role
+  - members
+  - condition

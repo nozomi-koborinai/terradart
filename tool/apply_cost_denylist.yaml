@@ -286,6 +286,8 @@ google_access_context_manager_access_policy: safe  # gcp-cost: no Cloud Billing 
 google_access_context_manager_access_level: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus — access level metadata); billing-behavior: policy label only — destroy removes level
 google_access_context_manager_service_perimeter: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus — perimeter metadata); billing-behavior: VPC SC perimeter config only — not existence-billed
 google_access_context_manager_access_policy_iam_member: safe  # billing-behavior: IAM binding adjunct on access policy; no standalone Cloud Billing SKU
+google_access_context_manager_access_policy_iam_binding: safe  # billing-behavior: IAM binding only
+google_access_context_manager_access_policy_iam_policy: safe  # billing-behavior: IAM policy only
 google_bigtable_app_profile: safe  # Bigtable app profile (routing config on an instance); no independent billing
 google_bigtable_authorized_view: safe  # Bigtable authorized view; no independent billing
 google_bigtable_gc_policy: safe  # Bigtable garbage-collection policy; no independent billing

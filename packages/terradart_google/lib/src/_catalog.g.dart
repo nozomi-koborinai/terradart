@@ -58,6 +58,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_access_context_manager_access_policy`.\n\nAccessPolicy is a container for AccessLevels (which define the necessary\nattributes to use GCP services) and ServicePerimeters (which define regions\nof services able to freely pass data within a perimeter). An access policy\nis globally visible within an organization, and the restrictions it\nspecifies apply to all projects within an organization.',
   ),
   CatalogEntry(
+    tfType: 'google_access_context_manager_access_policy_iam_binding',
+    className: 'GoogleAccessContextManagerAccessPolicyIamBinding',
+    barrel: 'access_context_manager',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_access_context_manager_access_policy_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'members',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_access_context_manager_access_policy_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an Access Context\nManager access policy.\n\nReplaces the entire member list for that role. Prefer\n[GoogleAccessContextManagerAccessPolicyIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_access_context_manager_access_policy_iam_member',
     className: 'GoogleAccessContextManagerAccessPolicyIamMember',
     barrel: 'access_context_manager',
@@ -75,6 +94,19 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_access_context_manager_access_policy_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_access_context_manager_access_policy_iam_policy',
+    className: 'GoogleAccessContextManagerAccessPolicyIamPolicy',
+    barrel: 'access_context_manager',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_access_context_manager_access_policy_iam_policy`.',
+    constructorParams: <String>['localName', 'name', 'policyData'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_access_context_manager_access_policy_iam_policy`.\n\nAuthoritative IAM policy for an Access Context Manager access policy.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleAccessContextManagerAccessPolicyIamMember] for single-principal\ngrants.',
   ),
   CatalogEntry(
     tfType: 'google_access_context_manager_service_perimeter',
