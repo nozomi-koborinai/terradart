@@ -529,6 +529,10 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_service_account_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_service_account_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_service_account_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_service_account_key:
     upstream: null  # handwritten in terraform provider; no MM YAML
   google_iam_workload_identity_pool:
