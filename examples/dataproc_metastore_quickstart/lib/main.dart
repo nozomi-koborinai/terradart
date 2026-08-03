@@ -1,10 +1,12 @@
 /// Dataproc Metastore quickstart — developer-tier service, federation, IAM.
 ///
-/// Provisions a DEVELOPER-tier Hive metastore, grants an in-stack service
-/// account viewer access, and federates the service as a single backend.
+/// Provisions a dedicated VPC network, a DEVELOPER-tier Hive metastore on it,
+/// grants an in-stack service account viewer access, and federates the
+/// service as a single backend.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/dataproc.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
@@ -25,8 +27,22 @@ final class DataprocMetastoreStack extends Stack {
 
     final apiDeps = Apis.enable(
       this,
-      barrels: [Barrels.dataproc],
+      barrels: [Barrels.compute, Barrels.dataproc],
       propagationDelay: const Duration(seconds: 60),
+    );
+
+    // Dataproc Metastore's THRIFT endpoint attaches to a VPC network. When
+    // `network` is omitted the API falls back to the project `default`
+    // network, which standalone projects (e.g. the apply-smoke project) do
+    // not have — apply then fails "Network ... does not exist". Provision an
+    // auto-mode VPC so the example is self-contained.
+    final network = add(
+      GoogleComputeNetwork(
+        localName: 'metastore_net',
+        name: TfArg.literal('terradart-metastore-net'),
+        autoCreateSubnetworks: TfArg.literal(true),
+        dependsOn: apiDeps,
+      ),
     );
 
     final viewerSa = add(
@@ -45,7 +61,8 @@ final class DataprocMetastoreStack extends Stack {
       hiveMetastoreConfig: DataprocMetastoreServiceHiveMetastoreConfig(
         version: TfArg.literal('3.1.2'),
       ),
-      dependsOn: apiDeps,
+      network: TfArg.ref(network.id),
+      dependsOn: [...apiDeps, ResourceDependency(network)],
     );
     add(service);
 
