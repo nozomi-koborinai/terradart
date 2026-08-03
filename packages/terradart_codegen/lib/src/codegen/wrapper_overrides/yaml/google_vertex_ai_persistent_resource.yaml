@@ -1,0 +1,42 @@
+outputDir: vertex_ai
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Vertex AI **persistent resource** — reserved training / Ray-on-Vertex
+  /// machine pools (`resourcePools`, min 1) that stay up between jobs.
+  ///
+  /// **Cost / apply:** Creating a pool reserves Vertex AI Training machine
+  /// capacity while the resource exists. Cloud Billing Catalog service
+  /// `C7E2-9256-1C43` bills those node-hours (Americas N1 Predefined
+  /// Instance Core SKU `2A57-4214-1832` **$0.03635265/h**, plus management
+  /// fee us-central1 N1 Core `A4CD-7C62-A250` **$0.0047416/h`). Destroy
+  /// deletes the resource and stops reservation charges. Too expensive for
+  /// apply-smoke — ships without a quickstart (`never_apply` /
+  /// `tool/example_debt.yaml`).
+  ///
+  /// Requires [name] and at least one [resourcePools] entry. Enable
+  /// `aiplatform.googleapis.com` via [GoogleProjectService] before apply.
+
+paramOrder:
+  - name
+  - location
+  - display_name
+  - resource_pools
+  - network
+  - reserved_ip_ranges
+  - encryption_spec
+  - psc_interface_config
+  - resource_runtime_spec
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

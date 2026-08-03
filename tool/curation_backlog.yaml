@@ -16,9 +16,6 @@ entries:
   - resource: google_vector_search_data_object
     detected_at: 2026-08-02
     provider_version: '7.42.0'
-  - resource: google_vertex_ai_persistent_resource
-    detected_at: 2026-08-02
-    provider_version: '7.42.0'
   - resource: google_vertex_ai_semantic_governance_policy_engine
     detected_at: 2026-07-26
     provider_version: '7.41.0'
