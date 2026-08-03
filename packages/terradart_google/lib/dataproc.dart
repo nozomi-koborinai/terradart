@@ -85,8 +85,12 @@ export 'src/dataproc/google_dataproc_cluster.dart'
         DataprocClusterVirtualClusterConfigKubernetesClusterConfigGkeClusterConfigNodePoolTargetNodePoolConfigConfig,
         DataprocClusterVirtualClusterConfigKubernetesClusterConfigKubernetesSoftwareConfig,
         GoogleDataprocCluster;
+export 'src/dataproc/google_dataproc_cluster_iam_binding.dart'
+    show GoogleDataprocClusterIamBinding;
 export 'src/dataproc/google_dataproc_cluster_iam_member.dart'
     show GoogleDataprocClusterIamMember;
+export 'src/dataproc/google_dataproc_cluster_iam_policy.dart'
+    show GoogleDataprocClusterIamPolicy;
 export 'src/dataproc/google_dataproc_gdc_application_environment.dart'
     show
         DataprocGdcApplicationEnvironmentSparkApplicationEnvironmentConfig,

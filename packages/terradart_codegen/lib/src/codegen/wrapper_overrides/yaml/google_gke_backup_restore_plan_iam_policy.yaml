@@ -1,0 +1,17 @@
+outputDir: gke_backup
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a GKE Backup restore plan.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleGkeBackupRestorePlanIamMember] for single-principal grants.
+  /// Resource-level setIamPolicy on restore plans has failed apply-smoke with
+  /// 400; ships debt-only with the sibling member.
+
+paramOrder:
+  - name
+  - policy_data
+  - location
+  - project

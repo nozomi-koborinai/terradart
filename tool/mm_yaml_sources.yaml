@@ -438,6 +438,10 @@ files:
     upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/dataproc/resource_dataproc_job.go); no mmv1/products/dataproc/Job.yaml (Job.yaml 404, probed 2026-07-25)
   google_dataproc_cluster_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataproc_cluster_iam_binding:
+    upstream: null  # IAM adjunct
+  google_dataproc_cluster_iam_policy:
+    upstream: null  # IAM adjunct
   google_dataproc_metastore_federation:
     upstream: mmv1/products/metastore/Federation.yaml
   google_dataproc_metastore_federation_iam_member:
@@ -1001,6 +1005,10 @@ files:
     upstream: mmv1/products/gkebackup/RestorePlan.yaml
   google_gke_backup_restore_plan_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_gke_backup_restore_plan_iam_binding:
+    upstream: null  # IAM adjunct
+  google_gke_backup_restore_plan_iam_policy:
+    upstream: null  # IAM adjunct
   google_compute_disk:
     upstream: mmv1/products/compute/Disk.yaml
   google_compute_disk_iam_member:
@@ -1684,6 +1692,10 @@ files:
     upstream: mmv1/products/workbench/Instance.yaml
   google_workbench_instance_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_workbench_instance_iam_binding:
+    upstream: null  # IAM adjunct
+  google_workbench_instance_iam_policy:
+    upstream: null  # IAM adjunct
   google_workflows_workflow:
     upstream: mmv1/products/workflows/Workflow.yaml
   google_tags_tag_key:

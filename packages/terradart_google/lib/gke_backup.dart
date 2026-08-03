@@ -35,5 +35,9 @@ export 'src/gke_backup/google_gke_backup_restore_plan.dart'
         GkeBackupRestorePlanVolumeDataRestorePolicy,
         GkeBackupRestorePlanVolumeDataRestorePolicyBinding,
         GoogleGkeBackupRestorePlan;
+export 'src/gke_backup/google_gke_backup_restore_plan_iam_binding.dart'
+    show GoogleGkeBackupRestorePlanIamBinding;
 export 'src/gke_backup/google_gke_backup_restore_plan_iam_member.dart'
     show GoogleGkeBackupRestorePlanIamMember;
+export 'src/gke_backup/google_gke_backup_restore_plan_iam_policy.dart'
+    show GoogleGkeBackupRestorePlanIamPolicy;

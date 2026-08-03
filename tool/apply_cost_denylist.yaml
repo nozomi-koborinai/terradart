@@ -44,6 +44,8 @@ safe_exception: google_notebooks_instance_iam_member  # IAM binding on notebook 
 safe_exception: google_notebooks_instance_iam_binding  # IAM binding on notebook instance; no existence billing — _instance substring false positive (parent google_notebooks_instance is never_apply)
 safe_exception: google_notebooks_instance_iam_policy  # IAM policy on notebook instance; no existence billing — _instance substring false positive (parent google_notebooks_instance is never_apply)
 safe_exception: google_workbench_instance_iam_member  # IAM binding on Workbench instance; no existence billing — _instance substring false positive (parent google_workbench_instance is never_apply)
+safe_exception: google_workbench_instance_iam_binding  # IAM binding on Workbench instance; no existence billing — _instance substring false positive (parent google_workbench_instance is never_apply)
+safe_exception: google_workbench_instance_iam_policy  # IAM policy on Workbench instance; no existence billing — _instance substring false positive (parent google_workbench_instance is never_apply)
 safe_exception: google_memorystore_instance_desired_user_created_endpoints  # PSC endpoint metadata on a parent Memorystore Valkey instance; no existence billing — _instance substring false positive (parent google_memorystore_instance is never_apply)
 safe_exception: google_vertex_ai_endpoint  # prediction endpoint shell; no existence billing until a model is deployed — _endpoint substring false positive
 safe_exception: google_vertex_ai_index_endpoint  # index endpoint shell; no existence billing until a deployed index — _endpoint substring false positive (sibling google_vertex_ai_index_endpoint_deployed_index is never_apply)
@@ -53,6 +55,8 @@ safe_exception: google_apigee_envgroup_attachment  # envgroup↔environment bind
 safe_exception: google_apigee_envgroup  # hostname group metadata on a parent Apigee org; no existence billing — env substring false positive (parent google_apigee_organization / google_apigee_environment are never_apply)
 safe_exception: google_redis_cluster_user_created_connections  # PSC connection metadata on a parent Redis Cluster; no existence billing — _cluster substring false positive (parent google_redis_cluster is never_apply)
 safe_exception: google_dataproc_cluster_iam_member  # IAM binding on Dataproc cluster; no existence billing — cluster substring false positive (parent google_dataproc_cluster is never_apply)
+safe_exception: google_dataproc_cluster_iam_binding  # IAM binding on Dataproc cluster; no existence billing — cluster substring false positive (parent google_dataproc_cluster is never_apply)
+safe_exception: google_dataproc_cluster_iam_policy  # IAM policy on Dataproc cluster; no existence billing — cluster substring false positive (parent google_dataproc_cluster is never_apply)
 
 safe_exception: google_notebooks_environment  # Workbench environment is an image recipe only; Notebooks SKUs bill when an instance/VM runs — _notebooks substring false positive
 safe_exception: google_bigquery_reservation_group  # reservation group is a named container only; BigQuery Reservation API 16B8-3DDA-9F10 SKUs bill slots/commits (e.g. Standard Edition PAYG 0165-271F-5086 ~$0.049/slot-hour) — reservation substring false positive
@@ -238,10 +242,14 @@ google_dataproc_session_template: never_apply  # gcp-cost: Dataproc 363B-8851-17
 google_dataproc_batch: never_apply  # gcp-cost: Dataproc 363B-8851-170D Serverless Batch DCU us-central1 SKU EC7A-EF05-537E $0.06/h (Premium DCU C275-E37B-D8BA $0.089/h); billing-behavior: batch runtime burns DCU-hours (+ optional GPU/shuffle) until the job finishes; too expensive for apply-smoke even once
 google_dataproc_gdc_application_environment: never_apply  # gcp-cost: no application-environment SKU under Dataproc 363B-8851-170D (list_skus keyword template → 0); billing-behavior: requires never_apply google_dataproc_gdc_service_instance (GDC 9186-F79E-3871 Bare Metal 297F-4642-B7A1 $0.03288/h); terradart-validate cannot host GDC; too expensive / infra-dependent for apply-smoke even once
 google_dataproc_cluster_iam_member: safe  # billing-behavior: IAM binding only — no resource charge
+google_dataproc_cluster_iam_binding: safe  # billing-behavior: IAM binding — no resource charge
+google_dataproc_cluster_iam_policy: safe  # billing-behavior: IAM policy — no resource charge
 google_dataproc_autoscaling_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU for autoscaling_policy (Dataproc 363B-8851-170D list_skus — Serverless DCU/accelerator/shuffle SKUs only; no policy/metadata SKU); billing-behavior: control-plane YARN autoscaler document — create/delete does not provision VMs; cluster compute hours bill only when a cluster attaches the policy
 google_composer_environment: never_apply  # gcp-cost: Cloud Composer 1992-3666-B975 Small Environment Fee us-central1 SKU 6EA4-3652-173E $0.35/h (Medium 9802-34D7-AFE2 $0.55/h; Large 2C11-0523-61D9 $0.85/h) — billing-behavior: hourly environment fee while the environment exists (+ compute/storage); destroy stops the fee; too expensive for apply-smoke even once
 google_workbench_instance: never_apply  # gcp-cost: Notebooks D73B-5EEA-8215 Workbench N1 management CPU us-central1 SKU 6196-1C27-5E30 $0.0063222/h (+ N1 usage CPU 9027-15FF-8BFE $0.0379332/h + RAM/disk) — billing-behavior: hourly management fee + GCE while the Workbench VM runs; destroy stops charges; too expensive for apply-smoke even once
 google_workbench_instance_iam_member: safe  # billing-behavior: IAM binding only — no resource charge
+google_workbench_instance_iam_binding: safe  # billing-behavior: IAM binding — no resource charge
+google_workbench_instance_iam_policy: safe  # billing-behavior: IAM policy — no resource charge
 google_vertex_ai_endpoint: sweep_only        # deployed-model node billing
 google_vertex_ai_deployment_resource_pool: never_apply  # gcp-cost: Vertex AI C7E2-9256-1C43 Online/Batch Prediction Americas N1 Core SKU 84D9-B3FA-0886 $0.036/h (+ us-central1 N1 management 7267-F2A5-DA1E $0.0046957/h) — billing-behavior: dedicatedResources.min_replica_count ≥ 1 reserves prediction machine capacity while the pool exists; destroy stops reservation charges; too expensive for apply-smoke even once
 google_vertex_ai_endpoint: safe  # gcp-cost: Vertex AI C7E2-9256-1C43 list_skus keyword Endpoint → 0 SKUs; Online/Batch Prediction Americas N1 Core SKU 84D9-B3FA-0886 $0.036/h (+ us-central1 N1 management 7267-F2A5-DA1E $0.0046957/h) bills only after EndpointService.DeployModel — billing-behavior: endpoint shell is control-plane metadata; no existence/hourly charge until a model is deployed
@@ -541,6 +549,9 @@ google_gke_backup_backup_plan_iam_member: safe  # apply-verified safe (existing 
 google_gke_backup_backup_plan_iam_binding: safe  # billing-behavior: IAM binding only
 google_gke_backup_backup_plan_iam_policy: safe  # billing-behavior: IAM policy only
 google_gke_backup_restore_plan: safe  # apply-verified safe (existing example)
+google_gke_backup_restore_plan_iam_member: safe  # billing-behavior: IAM binding — no resource charge
+google_gke_backup_restore_plan_iam_binding: safe  # billing-behavior: IAM binding — no resource charge
+google_gke_backup_restore_plan_iam_policy: safe  # billing-behavior: IAM policy — no resource charge
 google_gke_hub_feature: safe  # gcp-cost: GKE Enterprise / GDC 9186-F79E-3871 list_skus keyword=feature → 0 SKUs (cluster-attachment bundles only); billing-behavior: hub Feature enablement metadata (e.g. multiclusterservicediscovery) — create/delete does not attach clusters or bill Anthos/GKE Enterprise; destroy disables the feature
 google_gke_hub_membership: safe  # apply-verified safe (existing example)
 google_gke_hub_namespace: safe  # apply-verified safe (existing example)

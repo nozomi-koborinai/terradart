@@ -1,0 +1,17 @@
+outputDir: dataproc
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Dataproc cluster.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleDataprocClusterIamMember] for single-principal grants.
+  /// Deferred with the never_apply Dataproc cluster (no apply-smoke
+  /// quickstart).
+
+paramOrder:
+  - cluster
+  - policy_data
+  - region
+  - project

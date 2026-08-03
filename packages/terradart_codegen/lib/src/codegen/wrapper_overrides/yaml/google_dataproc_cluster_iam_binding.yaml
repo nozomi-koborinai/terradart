@@ -1,0 +1,18 @@
+outputDir: dataproc
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Dataproc cluster.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleDataprocClusterIamMember] for additive grants. Deferred with
+  /// the never_apply Dataproc cluster (no apply-smoke quickstart).
+
+paramOrder:
+  - cluster
+  - role
+  - members
+  - region
+  - project
+  - condition
