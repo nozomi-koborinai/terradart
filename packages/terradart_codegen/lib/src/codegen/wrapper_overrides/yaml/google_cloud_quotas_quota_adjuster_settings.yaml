@@ -1,0 +1,24 @@
+outputDir: cloud_quotas
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Cloud Quotas **quota adjuster settings** — project-singleton toggle
+  /// for automatic quota adjustment (`ENABLED` / `DISABLED`).
+  ///
+  /// **Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU after MCP
+  /// lookup (`list_services` Cloud Quotas / Quota → empty). billing-behavior:
+  /// settings metadata — no existence/hourly charge. Provider MM sets
+  /// `exclude_delete: true` (create is PATCH on a pre-existing singleton) —
+  /// Terraform **cannot destroy** it, so apply-smoke would strand project
+  /// state forever (`never_apply`). Ships without a quickstart
+  /// (`tool/example_debt.yaml`).
+
+paramOrder:
+  - enablement
+  - parent
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');

@@ -34,6 +34,7 @@ export 'chronicle.dart';
 export 'cloud_build.dart';
 export 'cloud_functions.dart';
 export 'cloud_ids.dart';
+export 'cloud_quotas.dart';
 export 'cloud_run.dart';
 export 'cloud_scheduler.dart';
 export 'cloud_sql.dart';
