@@ -12,6 +12,12 @@ export 'src/vector/google_vector_search_collection.dart'
         VectorSearchCollectionVectorSchemaDenseVector,
         VectorSearchCollectionVectorSchemaDenseVectorVertexEmbeddingConfig,
         VectorSearchCollectionVectorSchemaSparseVector;
+export 'src/vector/google_vector_search_data_object.dart'
+    show
+        GoogleVectorSearchDataObject,
+        VectorSearchDataObjectVectors,
+        VectorSearchDataObjectVectorsDense,
+        VectorSearchDataObjectVectorsSparse;
 export 'src/vector/google_vector_search_index.dart'
     show
         GoogleVectorSearchIndex,
