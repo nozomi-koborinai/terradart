@@ -18464,6 +18464,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_project_iam_audit_config`.\n\nProject-level **IAM audit logging config** — enables Admin Activity,\nData Access, or System Event audit logs for a service (or\n`allServices`).\n\nPrefer [ProjectIamAuditConfigAuditLogConfigLogType.adminRead] for smoke\nstacks: Admin Activity audit logs are free. `DATA_READ` / `DATA_WRITE`\nemit Data Access logs that count toward Cloud Logging ingestion volume.\n\nExample:\n```dart\nGoogleProjectIamAuditConfig(\n  localName: \'storage_admin_read\',\n  project: TfArg.literal(projectId),\n  service: TfArg.literal(\'storage.googleapis.com\'),\n  auditLogConfig: [\n    ProjectIamAuditConfigAuditLogConfig(\n      logType: TfArg.literal(\n        ProjectIamAuditConfigAuditLogConfigLogType.adminRead.terraformValue,\n      ),\n    ),\n  ],\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_project_iam_binding',
+    className: 'GoogleProjectIamBinding',
+    barrel: 'iam',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_project_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'project',
+      'role',
+      'members',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_project_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a GCP project.\n\nReplaces the entire member list for that role on the project. Prefer\n[GoogleProjectIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_project_iam_custom_role',
     className: 'GoogleProjectIamCustomRole',
     barrel: 'iam',
@@ -18500,6 +18518,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_project_iam_member`.\n\nGrants a single (`role`, `member`) IAM binding on a GCP project. This\nis the **safe additive** form: it adds the tuple without touching any\nother bindings on the project.\n\nPicking the right `*_iam_*` variant:\n\n- `*_iam_member` (this resource) — **additive**: grants ONE\n  (role, member) tuple. Does not touch other principals\' bindings.\n  Safe in 95% of cases; prefer this unless you have a concrete reason\n  to use one of the authoritative variants below.\n- `*_iam_binding` — **authoritative per role**: takes a list of\n  members and *replaces* the entire member list for that role. Will\n  silently erase any other principal previously bound to that role\n  (including ones created out-of-band).\n- `*_iam_policy` — **authoritative for the entire resource**: replaces\n  the resource\'s whole IAM policy. Will erase **all** existing\n  bindings on the project. Use only when you intend to fully own the\n  policy from Terraform.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_project_iam_member.`).\n- `project`: target project (ID or number).\n- `role`: role name, e.g. `\'roles/storage.objectViewer\'` or the full\n  path to a project-level custom role (`projects/<id>/roles/<role_id>`).\n- `member`: principal in IAM v1 string form, e.g.\n  `\'serviceAccount:foo@<project>.iam.gserviceaccount.com\'`,\n  `\'user:alice@example.com\'`, `\'group:eng@example.com\'`. The\n  `serviceAccount:` prefix is best sourced from\n  [GoogleServiceAccount.member] to avoid manual concatenation.\n\nOptional `condition` is a single IAM Condition block (CEL `expression`,\n`title`, optional `description`). Conditioned bindings count as a\ndistinct tuple from the same role+member without the condition — the\ntwo coexist.',
+  ),
+  CatalogEntry(
+    tfType: 'google_project_iam_policy',
+    className: 'GoogleProjectIamPolicy',
+    barrel: 'iam',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_project_iam_policy`.',
+    constructorParams: <String>['localName', 'project', 'policyData'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_project_iam_policy`.\n\nAuthoritative IAM policy for a GCP project.\n\n`policy_data` replaces the entire project IAM policy. Prefer\n[GoogleProjectIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_project_service',
