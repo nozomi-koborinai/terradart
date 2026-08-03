@@ -21,8 +21,12 @@ export 'src/access_context_manager/google_access_context_manager_access_level.da
         GoogleAccessContextManagerAccessLevel;
 export 'src/access_context_manager/google_access_context_manager_access_policy.dart'
     show GoogleAccessContextManagerAccessPolicy;
+export 'src/access_context_manager/google_access_context_manager_access_policy_iam_binding.dart'
+    show GoogleAccessContextManagerAccessPolicyIamBinding;
 export 'src/access_context_manager/google_access_context_manager_access_policy_iam_member.dart'
     show GoogleAccessContextManagerAccessPolicyIamMember;
+export 'src/access_context_manager/google_access_context_manager_access_policy_iam_policy.dart'
+    show GoogleAccessContextManagerAccessPolicyIamPolicy;
 export 'src/access_context_manager/google_access_context_manager_service_perimeter.dart'
     show
         AccessContextManagerServicePerimeterPerimeterType,

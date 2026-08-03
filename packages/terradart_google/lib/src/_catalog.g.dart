@@ -58,6 +58,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_access_context_manager_access_policy`.\n\nAccessPolicy is a container for AccessLevels (which define the necessary\nattributes to use GCP services) and ServicePerimeters (which define regions\nof services able to freely pass data within a perimeter). An access policy\nis globally visible within an organization, and the restrictions it\nspecifies apply to all projects within an organization.',
   ),
   CatalogEntry(
+    tfType: 'google_access_context_manager_access_policy_iam_binding',
+    className: 'GoogleAccessContextManagerAccessPolicyIamBinding',
+    barrel: 'access_context_manager',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_access_context_manager_access_policy_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'members',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_access_context_manager_access_policy_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an Access Context\nManager access policy.\n\nReplaces the entire member list for that role. Prefer\n[GoogleAccessContextManagerAccessPolicyIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_access_context_manager_access_policy_iam_member',
     className: 'GoogleAccessContextManagerAccessPolicyIamMember',
     barrel: 'access_context_manager',
@@ -75,6 +94,19 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_access_context_manager_access_policy_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_access_context_manager_access_policy_iam_policy',
+    className: 'GoogleAccessContextManagerAccessPolicyIamPolicy',
+    barrel: 'access_context_manager',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_access_context_manager_access_policy_iam_policy`.',
+    constructorParams: <String>['localName', 'name', 'policyData'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_access_context_manager_access_policy_iam_policy`.\n\nAuthoritative IAM policy for an Access Context Manager access policy.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleAccessContextManagerAccessPolicyIamMember] for single-principal\ngrants.',
   ),
   CatalogEntry(
     tfType: 'google_access_context_manager_service_perimeter',
@@ -13089,6 +13121,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_gke_backup_backup_plan`.\n\nRepresents a Backup Plan instance.\n\nDefines a **GKE Backup plan** — scheduled backups of a\n[GoogleContainerCluster] into a backup store.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `name`: backup plan ID (unique per project/location).\n- `location`: GCP region (e.g. `\'asia-northeast1\'`).\n- `cluster`: target cluster — typically `TfArg.ref(cluster.id)`.\n\nPair with [GoogleGkeBackupRestorePlan] for restore workflows.',
   ),
   CatalogEntry(
+    tfType: 'google_gke_backup_backup_plan_iam_binding',
+    className: 'GoogleGkeBackupBackupPlanIamBinding',
+    barrel: 'gke_backup',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_gke_backup_backup_plan_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'members',
+      'location',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_gke_backup_backup_plan_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a GKE Backup backup\nplan.\n\nReplaces the entire member list for that role. Prefer\n[GoogleGkeBackupBackupPlanIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_gke_backup_backup_plan_iam_member',
     className: 'GoogleGkeBackupBackupPlanIamMember',
     barrel: 'gke_backup',
@@ -13107,6 +13159,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_gke_backup_backup_plan_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_gke_backup_backup_plan_iam_policy',
+    className: 'GoogleGkeBackupBackupPlanIamPolicy',
+    barrel: 'gke_backup',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_gke_backup_backup_plan_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_gke_backup_backup_plan_iam_policy`.\n\nAuthoritative IAM policy for a GKE Backup backup plan.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleGkeBackupBackupPlanIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_gke_backup_restore_channel',
@@ -18394,6 +18464,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_project_iam_audit_config`.\n\nProject-level **IAM audit logging config** — enables Admin Activity,\nData Access, or System Event audit logs for a service (or\n`allServices`).\n\nPrefer [ProjectIamAuditConfigAuditLogConfigLogType.adminRead] for smoke\nstacks: Admin Activity audit logs are free. `DATA_READ` / `DATA_WRITE`\nemit Data Access logs that count toward Cloud Logging ingestion volume.\n\nExample:\n```dart\nGoogleProjectIamAuditConfig(\n  localName: \'storage_admin_read\',\n  project: TfArg.literal(projectId),\n  service: TfArg.literal(\'storage.googleapis.com\'),\n  auditLogConfig: [\n    ProjectIamAuditConfigAuditLogConfig(\n      logType: TfArg.literal(\n        ProjectIamAuditConfigAuditLogConfigLogType.adminRead.terraformValue,\n      ),\n    ),\n  ],\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_project_iam_binding',
+    className: 'GoogleProjectIamBinding',
+    barrel: 'iam',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_project_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'project',
+      'role',
+      'members',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_project_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a GCP project.\n\nReplaces the entire member list for that role on the project. Prefer\n[GoogleProjectIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_project_iam_custom_role',
     className: 'GoogleProjectIamCustomRole',
     barrel: 'iam',
@@ -18430,6 +18518,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_project_iam_member`.\n\nGrants a single (`role`, `member`) IAM binding on a GCP project. This\nis the **safe additive** form: it adds the tuple without touching any\nother bindings on the project.\n\nPicking the right `*_iam_*` variant:\n\n- `*_iam_member` (this resource) — **additive**: grants ONE\n  (role, member) tuple. Does not touch other principals\' bindings.\n  Safe in 95% of cases; prefer this unless you have a concrete reason\n  to use one of the authoritative variants below.\n- `*_iam_binding` — **authoritative per role**: takes a list of\n  members and *replaces* the entire member list for that role. Will\n  silently erase any other principal previously bound to that role\n  (including ones created out-of-band).\n- `*_iam_policy` — **authoritative for the entire resource**: replaces\n  the resource\'s whole IAM policy. Will erase **all** existing\n  bindings on the project. Use only when you intend to fully own the\n  policy from Terraform.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_project_iam_member.`).\n- `project`: target project (ID or number).\n- `role`: role name, e.g. `\'roles/storage.objectViewer\'` or the full\n  path to a project-level custom role (`projects/<id>/roles/<role_id>`).\n- `member`: principal in IAM v1 string form, e.g.\n  `\'serviceAccount:foo@<project>.iam.gserviceaccount.com\'`,\n  `\'user:alice@example.com\'`, `\'group:eng@example.com\'`. The\n  `serviceAccount:` prefix is best sourced from\n  [GoogleServiceAccount.member] to avoid manual concatenation.\n\nOptional `condition` is a single IAM Condition block (CEL `expression`,\n`title`, optional `description`). Conditioned bindings count as a\ndistinct tuple from the same role+member without the condition — the\ntwo coexist.',
+  ),
+  CatalogEntry(
+    tfType: 'google_project_iam_policy',
+    className: 'GoogleProjectIamPolicy',
+    barrel: 'iam',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_project_iam_policy`.',
+    constructorParams: <String>['localName', 'project', 'policyData'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_project_iam_policy`.\n\nAuthoritative IAM policy for a GCP project.\n\n`policy_data` replaces the entire project IAM policy. Prefer\n[GoogleProjectIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_project_service',
@@ -19362,6 +19462,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_service_account`.\n\nCreates an IAM service account on a project. The most user-facing computed\nattribute is [member] — a pre-formatted `serviceAccount:<email>` string\nyou pass straight into IAM bindings, sidestepping the manual\n`\'serviceAccount:\' + email` concatenation that\'s easy to typo.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_service_account.`).\n- `accountId`: short ID before the `@` in the resulting email\n  (e.g. `\'my-runner\'` → `my-runner@<project>.iam.gserviceaccount.com`).\n  Must be 6-30 chars matching `[a-z]([-a-z0-9]*[a-z0-9])`. **ForceNew**:\n  changing this destroys and recreates the SA.\n\nOptional knobs:\n- `project`: explicit project ID; defaults to the provider\'s `project`\n  when omitted. **ForceNew** in the provider.\n- `displayName`: human-readable name shown in the GCP console.\n- `description`: free-form text (≤ 256 UTF-8 bytes).\n- `createIgnoreAlreadyExists`: when `true`, skip creation if an SA with\n  the same email already exists. Useful for shared environments where a\n  peer Terraform stack may have created the SA first.\n- `disabled`: disables the SA without deleting it. Defaults to `false`.\n\nExample pairing with [GooglePubsubTopicIamMember] — the canonical\n`sa.member` flow:\n```dart\nfinal sa = GoogleServiceAccount(\n  localName: \'publisher\',\n  accountId: TfArg.literal(\'orders-publisher\'),\n  displayName: TfArg.literal(\'Orders publisher\'),\n);\n\nfinal orders = GooglePubsubTopic(\n  localName: \'orders\',\n  name: TfArg.literal(\'orders-prod\'),\n);\n\n// member is `serviceAccount:orders-publisher@<project>.iam.gserviceaccount.com`\n// — pass it directly without manually prefixing `serviceAccount:`.\nGooglePubsubTopicIamMember(\n  localName: \'orders_publisher_binding\',\n  topic: TfArg.ref(orders.nameRef),\n  role: TfArg.literal(\'roles/pubsub.publisher\'),\n  member: TfArg.ref(sa.member),\n);\n```\n\nComposition pattern: extends `Resource` for\nruntime behavior, implements `\$GoogleServiceAccount` for the schemantic\nschema surface. `argMap` stores `TfArg<dynamic>?` entries directly;\nsynth\'s JSON-encoding pass walks them and calls `arg.toTfJson()` to\nencode at write time.',
   ),
   CatalogEntry(
+    tfType: 'google_service_account_iam_binding',
+    className: 'GoogleServiceAccountIamBinding',
+    barrel: 'iam',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_service_account_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'serviceAccountId',
+      'role',
+      'members',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_service_account_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a service account\nresource (who can impersonate / mint tokens for this SA).\n\nReplaces the entire member list for that role. Prefer\n[GoogleServiceAccountIamMember] for additive grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_service_account_iam_member',
     className: 'GoogleServiceAccountIamMember',
     barrel: 'iam',
@@ -19378,6 +19496,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_service_account_iam_member`.\n\nGrants a single (`role`, `member`) IAM binding **on a service\naccount resource** — i.e. who can impersonate / generate tokens / sign\nblobs for this SA. This is distinct from `google_project_iam_member`\n(which grants the SA *itself* a role on a project).\n\nPicking the right `*_iam_*` variant:\n\n- `*_iam_member` (this resource) — **additive**: grants ONE\n  (role, member) tuple. Does not touch other principals\' bindings.\n  Safe in 95% of cases; prefer this unless you have a concrete reason\n  to use one of the authoritative variants below.\n- `*_iam_binding` — **authoritative per role**: takes a list of\n  members and *replaces* the entire member list for that role. Will\n  silently erase any other principal previously bound to that role\n  on this service account.\n- `*_iam_policy` — **authoritative for the entire resource**: replaces\n  the SA\'s whole IAM policy. Will erase **all** existing bindings.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `serviceAccountId`: the **fully-qualified resource path** of the\n  target SA, i.e. `projects/{project}/serviceAccounts/{email}`. Pass\n  `TfArg.ref(sa.id)` (or `sa.name`, same value) rather than the bare\n  email — short forms are rejected by the API.\n- `role`: role name, typically `\'roles/iam.serviceAccountUser\'`\n  (impersonation) or `\'roles/iam.serviceAccountTokenCreator\'`\n  (generate access tokens).\n- `member`: principal in IAM v1 string form.\n\nOptional `condition` is a single IAM Condition block (CEL\n`expression`, `title`, optional `description`).',
+  ),
+  CatalogEntry(
+    tfType: 'google_service_account_iam_policy',
+    className: 'GoogleServiceAccountIamPolicy',
+    barrel: 'iam',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_service_account_iam_policy`.',
+    constructorParams: <String>['localName', 'serviceAccountId', 'policyData'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_service_account_iam_policy`.\n\nAuthoritative IAM policy for a service account resource.\n\n`policy_data` replaces the entire SA IAM policy. Prefer\n[GoogleServiceAccountIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_service_account_key',

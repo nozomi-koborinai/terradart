@@ -1,0 +1,16 @@
+outputDir: iam
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a GCP project.
+  ///
+  /// Replaces the entire member list for that role on the project. Prefer
+  /// [GoogleProjectIamMember] for additive grants.
+
+paramOrder:
+  - project
+  - role
+  - members
+  - condition
