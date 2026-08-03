@@ -612,6 +612,20 @@ export 'src/compute/google_compute_resource_policy.dart'
         ComputeResourcePolicyWorkloadPolicy,
         ComputeResourcePolicyWorkloadType,
         GoogleComputeResourcePolicy;
+export 'src/compute/google_compute_rollout_plan.dart'
+    show
+        ComputeRolloutPlanLocationScope,
+        ComputeRolloutPlanWaves,
+        ComputeRolloutPlanWavesOrchestrationOptions,
+        ComputeRolloutPlanWavesOrchestrationOptionsDelays,
+        ComputeRolloutPlanWavesOrchestrationOptionsDelaysDelimiter,
+        ComputeRolloutPlanWavesOrchestrationOptionsDelaysType,
+        ComputeRolloutPlanWavesSelectors,
+        ComputeRolloutPlanWavesSelectorsLocationSelector,
+        ComputeRolloutPlanWavesSelectorsResourceHierarchySelector,
+        ComputeRolloutPlanWavesValidation,
+        ComputeRolloutPlanWavesValidationTimeBasedValidationMetadata,
+        GoogleComputeRolloutPlan;
 export 'src/compute/google_compute_route.dart'
     show
         ComputeRouteGatewayNextHop,

@@ -292,6 +292,8 @@ files:
     upstream: mmv1/products/compute/RegionCommitment.yaml
   google_compute_resource_policy:
     upstream: mmv1/products/compute/ResourcePolicy.yaml
+  google_compute_rollout_plan:
+    upstream: mmv1/products/compute/RolloutPlan.yaml
   google_compute_route:
     upstream: mmv1/products/compute/Route.yaml
   google_compute_snapshot_settings:
