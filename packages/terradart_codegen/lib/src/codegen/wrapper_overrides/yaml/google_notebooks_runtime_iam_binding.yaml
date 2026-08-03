@@ -1,0 +1,19 @@
+outputDir: notebooks
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Vertex AI Workbench
+  /// notebook runtime.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleNotebooksRuntimeIamMember] for additive grants. Deferred with
+  /// the never_apply notebook runtime (no apply-smoke quickstart).
+
+paramOrder:
+  - runtime_name
+  - role
+  - members
+  - location
+  - project
+  - condition

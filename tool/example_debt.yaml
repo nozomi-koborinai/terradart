@@ -273,6 +273,10 @@ GoogleNotebooksInstance: gcp-cost Notebooks D73B-5EEA-8215 N1 mgmt CPU us-centra
 GoogleNotebooksRuntime: gcp-cost Notebooks D73B-5EEA-8215 same Workbench management fee + GCE as instances — never_apply; deferred with notebook instance Wave
 GoogleNotebooksInstanceIamMember: requires a parent GoogleNotebooksInstance (never_apply); deferred with the instance
 GoogleNotebooksRuntimeIamMember: requires a parent GoogleNotebooksRuntime (never_apply); deferred with the runtime
+GoogleNotebooksInstanceIamBinding: authoritative IAM binding; requires a parent GoogleNotebooksInstance (never_apply); deferred with the instance
+GoogleNotebooksInstanceIamPolicy: authoritative IAM policy; requires a parent GoogleNotebooksInstance (never_apply); deferred with the instance
+GoogleNotebooksRuntimeIamBinding: authoritative IAM binding; requires a parent GoogleNotebooksRuntime (never_apply); deferred with the runtime
+GoogleNotebooksRuntimeIamPolicy: authoritative IAM policy; requires a parent GoogleNotebooksRuntime (never_apply); deferred with the runtime
 
 # Colab Enterprise runtime assigns a VM from a template (Vertex Colab CPU/RAM
 # SKUs while running). A quickstart would force apply_smoke_skip (never_apply)
