@@ -1,0 +1,16 @@
+outputDir: iap
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for an IAP Agent Registry **MCP server**.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleIapAgentRegistryMcpServerIamMember] for single-principal grants.
+  /// Deferred with the Agent Identity registry MCP server parent (skip-noted).
+
+paramOrder:
+  - mcp_server_id
+  - policy_data
+  - location
+  - project

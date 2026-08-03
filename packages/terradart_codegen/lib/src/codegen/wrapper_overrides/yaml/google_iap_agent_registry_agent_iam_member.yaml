@@ -1,0 +1,19 @@
+outputDir: iap
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Non-authoritative IAM member on an Identity-Aware Proxy Agent Registry
+  /// **agent**.
+  ///
+  /// Requires an Agent Identity registry agent parent
+  /// (`google_agent_registry_*` — skip-noted); not standalone-project
+  /// applyable on terradart-validate.
+
+paramOrder:
+  - agent_id
+  - role
+  - member
+  - location
+  - project
+  - condition

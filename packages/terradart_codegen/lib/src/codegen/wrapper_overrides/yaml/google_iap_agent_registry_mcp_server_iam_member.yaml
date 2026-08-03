@@ -1,0 +1,19 @@
+outputDir: iap
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Non-authoritative IAM member on an Identity-Aware Proxy Agent Registry
+  /// **MCP server**.
+  ///
+  /// Requires an Agent Identity registry MCP server parent
+  /// (`google_agent_registry_*` — skip-noted); not standalone-project
+  /// applyable on terradart-validate.
+
+paramOrder:
+  - mcp_server_id
+  - role
+  - member
+  - location
+  - project
+  - condition
