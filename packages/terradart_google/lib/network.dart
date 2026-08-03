@@ -129,6 +129,16 @@ export 'src/network/google_network_security_ull_mirroring_engine.dart'
         NetworkSecurityUllMirroringEngineDeletionPolicy;
 export 'src/network/google_network_security_url_lists.dart'
     show GoogleNetworkSecurityUrlLists;
+export 'src/network/google_network_services_agent_gateway.dart'
+    show
+        GoogleNetworkServicesAgentGateway,
+        NetworkServicesAgentGatewayDeployment,
+        NetworkServicesAgentGatewayGoogleManaged,
+        NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath,
+        NetworkServicesAgentGatewayNetworkConfig,
+        NetworkServicesAgentGatewayNetworkConfigDnsPeeringConfig,
+        NetworkServicesAgentGatewayNetworkConfigEgress,
+        NetworkServicesAgentGatewaySelfManaged;
 export 'src/network/google_network_services_edge_cache_keyset.dart'
     show
         GoogleNetworkServicesEdgeCacheKeyset,

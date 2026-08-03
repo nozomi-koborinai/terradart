@@ -20,6 +20,7 @@
 # instead (the custom-service resource) and drops the self-linking monitored
 # project. Tracked here rather than forced into an example that would fail the
 # apply-smoke sweep.
+GoogleComputeRegionResizeRequest: gcp-cost Compute Engine 6F81-5844-456A On Demand H100 80GB GPU Sao Paulo 0526-B904-9D8B $15.55594/h — never_apply DWS Flex Start GPU capacity; requires DWS-compatible regional MIG absent on terradart-validate
 GoogleMonitoringService: typed google_monitoring_service needs a basic_service identifier bound to a real well-known service (App Engine / Istio / etc.) absent from a bare project; the applyable GoogleMonitoringCustomService is exercised by monitoring_quickstart instead
 GoogleMonitoringMonitoredProject: links another project into a metrics scope — self-linking the scoping project is rejected, and cross-project linking needs a second project plus roles/monitoring.admin on both, which a standalone apply-smoke project can't provide
 
@@ -62,6 +63,7 @@ GoogleGkeBackupRestorePlanIamPolicy: authoritative IAM policy; sibling member de
 # time and force it onto the apply-smoke skip list. The regional secret +
 # regional secret IAM member are exercised in secret_manager_quickstart; only
 # the version factory is deferred here.
+GoogleNetworkServicesAgentGateway: gcp-cost Networking/Vertex AI list_skus Agent Gateway → 0; sibling SWG 884B-E0E7-C3E4 $1.25/h never_apply — google_managed tenant proxy / self_managed SWG attach + Agent Registry scaffolding; no applyable quickstart on terradart-validate
 GoogleSecretManagerRegionalSecretVersion: regional secrets lack a write-only data field and synth rejects a literal on the sensitive secret_data field; exercising it needs a Terraform variable that would break the applyable secret_manager_quickstart, so the version factory is tracked here while the regional secret + IAM member ship in the example
 
 # Parameter Manager parameter versions hold the payload in the sensitive

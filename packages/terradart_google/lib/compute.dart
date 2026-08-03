@@ -523,6 +523,10 @@ export 'src/compute/google_compute_region_network_firewall_policy_rule.dart'
         ComputeRegionNetworkFirewallPolicyRuleTargetSecureTags,
         ComputeRegionNetworkFirewallPolicyRuleTargetType,
         GoogleComputeRegionNetworkFirewallPolicyRule;
+export 'src/compute/google_compute_region_resize_request.dart'
+    show
+        ComputeRegionResizeRequestRequestedRunDuration,
+        GoogleComputeRegionResizeRequest;
 export 'src/compute/google_compute_region_security_policy.dart'
     show
         ComputeRegionSecurityPolicyRegionSecurityPolicyAdvancedOptionsConfig,

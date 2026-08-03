@@ -83,14 +83,29 @@ final Map<String, Object Function()> _syntheticInstances = {
         type: AgentRegistryServiceEndpointSpecType.noSpec,
       ),
 
+  // --- NetworkServicesAgentGatewayDeployment (2) — agent_gateway ---------
+  'NetworkServicesAgentGatewayGoogleManaged': () =>
+      const NetworkServicesAgentGatewayGoogleManaged(
+        governedAccessPath:
+            NetworkServicesAgentGatewayGoogleManagedGovernedAccessPath
+                .agentToAnywhere,
+      ),
+  'NetworkServicesAgentGatewaySelfManaged': () =>
+      NetworkServicesAgentGatewaySelfManaged(
+        resourceUri: TfArg.literal(
+          '//networkservices.googleapis.com/projects/p/locations/global/gateways/g',
+        ),
+      ),
+
   // --- Access (8) — bigquery_dataset ---------------------------------------
-  'BigqueryDatasetAccessUserByEmail': () =>
-      BigqueryDatasetAccessUserByEmail(userByEmail: TfArg.literal('user@example.com')),
-  'BigqueryDatasetAccessGroupByEmail': () =>
-      BigqueryDatasetAccessGroupByEmail(groupByEmail: TfArg.literal('group@example.com')),
-  'BigqueryDatasetAccessSpecialGroup': () =>
-      BigqueryDatasetAccessSpecialGroup(specialGroup: TfArg.literal('projectReaders')),
-  'BigqueryDatasetAccessDomain': () => BigqueryDatasetAccessDomain(domain: TfArg.literal('example.com')),
+  'BigqueryDatasetAccessUserByEmail': () => BigqueryDatasetAccessUserByEmail(
+      userByEmail: TfArg.literal('user@example.com')),
+  'BigqueryDatasetAccessGroupByEmail': () => BigqueryDatasetAccessGroupByEmail(
+      groupByEmail: TfArg.literal('group@example.com')),
+  'BigqueryDatasetAccessSpecialGroup': () => BigqueryDatasetAccessSpecialGroup(
+      specialGroup: TfArg.literal('projectReaders')),
+  'BigqueryDatasetAccessDomain': () =>
+      BigqueryDatasetAccessDomain(domain: TfArg.literal('example.com')),
   'BigqueryDatasetAccessIamMember': () =>
       BigqueryDatasetAccessIamMember(iamMember: TfArg.literal('allUsers')),
   'BigqueryDatasetAccessView': () => BigqueryDatasetAccessView(
@@ -124,7 +139,8 @@ final Map<String, Object Function()> _syntheticInstances = {
       ),
   'BigtableAppProfileStandardIsolation': () =>
       BigtableAppProfileStandardIsolation(
-        priority: TfArg.literal(BigtableAppProfileIsolationPriority.priorityHigh),
+        priority:
+            TfArg.literal(BigtableAppProfileIsolationPriority.priorityHigh),
       ),
   'BigtableAppProfileDataBoostIsolation': () =>
       BigtableAppProfileDataBoostIsolation(
@@ -150,15 +166,20 @@ final Map<String, Object Function()> _syntheticInstances = {
       ),
 
   // --- EnvVarSource (2) — cloud_run_v2_service -----------------------------
-  'CloudRunV2ServiceEnvVarFromLiteral': () => CloudRunV2ServiceEnvVarFromLiteral(TfArg.literal('mock-value')),
+  'CloudRunV2ServiceEnvVarFromLiteral': () =>
+      CloudRunV2ServiceEnvVarFromLiteral(TfArg.literal('mock-value')),
   'CloudRunV2ServiceEnvVarFromSecret': () =>
       CloudRunV2ServiceEnvVarFromSecret(secret: TfArg.literal('mock-secret')),
 
   // --- VolumeSource (5) — cloud_run_v2_service -----------------------------
-  'CloudRunV2ServiceVolumeSecret': () => CloudRunV2ServiceVolumeSecret(secret: TfArg.literal('mock-secret')),
-  'CloudRunV2ServiceCloudSqlVolume': () => const CloudRunV2ServiceCloudSqlVolume(),
-  'CloudRunV2ServiceEmptyDirVolume': () => const CloudRunV2ServiceEmptyDirVolume(),
-  'CloudRunV2ServiceGcsVolume': () => CloudRunV2ServiceGcsVolume(bucket: TfArg.literal('mock-bucket')),
+  'CloudRunV2ServiceVolumeSecret': () =>
+      CloudRunV2ServiceVolumeSecret(secret: TfArg.literal('mock-secret')),
+  'CloudRunV2ServiceCloudSqlVolume': () =>
+      const CloudRunV2ServiceCloudSqlVolume(),
+  'CloudRunV2ServiceEmptyDirVolume': () =>
+      const CloudRunV2ServiceEmptyDirVolume(),
+  'CloudRunV2ServiceGcsVolume': () =>
+      CloudRunV2ServiceGcsVolume(bucket: TfArg.literal('mock-bucket')),
   'CloudRunV2ServiceNfsVolume': () => CloudRunV2ServiceNfsVolume(
         server: TfArg.literal('nfs.example.com'),
         path: TfArg.literal('/exports/data'),
@@ -177,16 +198,19 @@ final Map<String, Object Function()> _syntheticInstances = {
       CloudRunV2JobVolumeSecret(secret: TfArg.literal('mock-secret')),
   'CloudRunV2JobCloudSqlVolume': () => const CloudRunV2JobCloudSqlVolume(),
   'CloudRunV2JobEmptyDirVolume': () => const CloudRunV2JobEmptyDirVolume(),
-  'CloudRunV2JobGcsVolume': () => CloudRunV2JobGcsVolume(bucket: TfArg.literal('mock-bucket')),
-  'CloudRunV2JobNfsVolume': () => CloudRunV2JobNfsVolume(server: TfArg.literal('nfs.example.com')),
+  'CloudRunV2JobGcsVolume': () =>
+      CloudRunV2JobGcsVolume(bucket: TfArg.literal('mock-bucket')),
+  'CloudRunV2JobNfsVolume': () =>
+      CloudRunV2JobNfsVolume(server: TfArg.literal('nfs.example.com')),
 
   // --- CloudSchedulerJobSchedulerTarget (3) — cloud_scheduler_job ---------------------------
-  'CloudSchedulerJobPubsubTarget': () =>
-      CloudSchedulerJobPubsubTarget(topicName: TfArg.literal('projects/p/topics/t')),
-  'CloudSchedulerJobHttpTarget': () =>
-      CloudSchedulerJobHttpTarget(uri: TfArg.literal('https://example.com/webhook')),
+  'CloudSchedulerJobPubsubTarget': () => CloudSchedulerJobPubsubTarget(
+      topicName: TfArg.literal('projects/p/topics/t')),
+  'CloudSchedulerJobHttpTarget': () => CloudSchedulerJobHttpTarget(
+      uri: TfArg.literal('https://example.com/webhook')),
   'CloudSchedulerJobAppEngineHttpTarget': () =>
-      CloudSchedulerJobAppEngineHttpTarget(relativeUri: TfArg.literal('/handler')),
+      CloudSchedulerJobAppEngineHttpTarget(
+          relativeUri: TfArg.literal('/handler')),
 
   // --- SourceConfig (2) — cloudfunctions2_function -------------------------
   'StorageSource': () => StorageSource(
@@ -269,16 +293,16 @@ final Map<String, Object Function()> _syntheticInstances = {
       ]),
 
   // --- ComputeRouteNextHop (5) — compute_route -----------------------------
-  'ComputeRouteGatewayNextHop': () =>
-      ComputeRouteGatewayNextHop(nextHopGateway: TfArg.literal('default-internet-gateway')),
+  'ComputeRouteGatewayNextHop': () => ComputeRouteGatewayNextHop(
+      nextHopGateway: TfArg.literal('default-internet-gateway')),
   'ComputeRouteIpNextHop': () =>
       ComputeRouteIpNextHop(nextHopIp: TfArg.literal('10.0.0.1')),
-  'ComputeRouteInstanceNextHop': () =>
-      ComputeRouteInstanceNextHop(nextHopInstance: TfArg.literal('mock-instance')),
-  'ComputeRouteIlbNextHop': () =>
-      ComputeRouteIlbNextHop(nextHopIlb: TfArg.literal('projects/p/regions/r/forwardingRules/fr')),
-  'ComputeRouteVpnTunnelNextHop': () =>
-      ComputeRouteVpnTunnelNextHop(nextHopVpnTunnel: TfArg.literal('projects/p/regions/r/vpnTunnels/t')),
+  'ComputeRouteInstanceNextHop': () => ComputeRouteInstanceNextHop(
+      nextHopInstance: TfArg.literal('mock-instance')),
+  'ComputeRouteIlbNextHop': () => ComputeRouteIlbNextHop(
+      nextHopIlb: TfArg.literal('projects/p/regions/r/forwardingRules/fr')),
+  'ComputeRouteVpnTunnelNextHop': () => ComputeRouteVpnTunnelNextHop(
+      nextHopVpnTunnel: TfArg.literal('projects/p/regions/r/vpnTunnels/t')),
 
   // --- BigqueryConnectionBackend (7) — bigquery_connection -----------------
   'BigqueryConnectionCloudSql': () => BigqueryConnectionCloudSql(
@@ -367,9 +391,12 @@ final Map<String, Object Function()> _syntheticInstances = {
       ),
 
   // --- DataplexDatascanSpec (4) — google_dataplex_datascan -----------------
-  'DataplexDatascanDataProfileSpec': () => const DataplexDatascanDataProfileSpec(),
-  'DataplexDatascanDataQualitySpec': () => const DataplexDatascanDataQualitySpec(),
-  'DataplexDatascanDataDiscoverySpec': () => const DataplexDatascanDataDiscoverySpec(),
+  'DataplexDatascanDataProfileSpec': () =>
+      const DataplexDatascanDataProfileSpec(),
+  'DataplexDatascanDataQualitySpec': () =>
+      const DataplexDatascanDataQualitySpec(),
+  'DataplexDatascanDataDiscoverySpec': () =>
+      const DataplexDatascanDataDiscoverySpec(),
   'DataplexDatascanDataDocumentationSpec': () =>
       const DataplexDatascanDataDocumentationSpec(),
 
@@ -411,7 +438,8 @@ final Map<String, Object Function()> _syntheticInstances = {
   'ColabNotebookExecutionGcsSource': () => ColabNotebookExecutionGcsSource(
         uri: TfArg.literal('gs://mock-bucket/notebook.ipynb'),
       ),
-  'ColabNotebookExecutionDirectSource': () => ColabNotebookExecutionDirectSource(
+  'ColabNotebookExecutionDirectSource': () =>
+      ColabNotebookExecutionDirectSource(
         content: TfArg.literal('eyJuYiI6MX0='),
       ),
 
@@ -461,8 +489,10 @@ final Map<String, Object Function()> _syntheticInstances = {
       ),
 
   // --- AppHostingBuildSource (2) — firebase_app_hosting_build --------------
-  'FirebaseAppHostingBuildAppHostingBuildSourceCodebase': () => const FirebaseAppHostingBuildAppHostingBuildSourceCodebase(),
-  'FirebaseAppHostingBuildAppHostingBuildSourceContainer': () => FirebaseAppHostingBuildAppHostingBuildSourceContainer(
+  'FirebaseAppHostingBuildAppHostingBuildSourceCodebase': () =>
+      const FirebaseAppHostingBuildAppHostingBuildSourceCodebase(),
+  'FirebaseAppHostingBuildAppHostingBuildSourceContainer': () =>
+      FirebaseAppHostingBuildAppHostingBuildSourceContainer(
         image: TfArg.literal('us-central1-docker.pkg.dev/p/r/web:1.0.0'),
       ),
 
@@ -470,8 +500,10 @@ final Map<String, Object Function()> _syntheticInstances = {
   // These return List<Map<String, Object?>> (single-element, per the
   // nesting_mode: list, max_items: 1 schema convention). The dispatch logic
   // unwraps to the single inner map for the structural assertions.
-  'FirestoreBackupScheduleDailyRecurrence': () => const FirestoreBackupScheduleDailyRecurrence(),
-  'FirestoreBackupScheduleWeeklyRecurrence': () => const FirestoreBackupScheduleWeeklyRecurrence(),
+  'FirestoreBackupScheduleDailyRecurrence': () =>
+      const FirestoreBackupScheduleDailyRecurrence(),
+  'FirestoreBackupScheduleWeeklyRecurrence': () =>
+      const FirestoreBackupScheduleWeeklyRecurrence(),
 
   // --- StoredInfoTypeDefinition (3) — data_loss_prevention_stored_info_type -
   'DataLossPreventionStoredInfoTypeRegex': () =>
@@ -489,7 +521,8 @@ final Map<String, Object Function()> _syntheticInstances = {
       ),
 
   // --- NotebooksEnvironmentImage (2) — notebooks_environment ---------------
-  'NotebooksEnvironmentContainerImage': () => NotebooksEnvironmentContainerImage(
+  'NotebooksEnvironmentContainerImage': () =>
+      NotebooksEnvironmentContainerImage(
         repository: TfArg.literal(
           'gcr.io/deeplearning-platform-release/base-cpu',
         ),
@@ -545,34 +578,47 @@ final Map<String, Object Function()> _syntheticInstances = {
       ),
 
   // --- IamWorkloadIdentityPoolProviderTrustSource (4) — iam WIF provider ---
-  'IamWorkloadIdentityPoolProviderOidcTrust': () => IamWorkloadIdentityPoolProviderOidcTrust(
+  'IamWorkloadIdentityPoolProviderOidcTrust': () =>
+      IamWorkloadIdentityPoolProviderOidcTrust(
         issuerUri: TfArg.literal('https://token.actions.githubusercontent.com'),
       ),
-  'IamWorkloadIdentityPoolProviderAwsTrust': () => const IamWorkloadIdentityPoolProviderAwsTrust(),
-  'IamWorkloadIdentityPoolProviderSamlTrust': () => IamWorkloadIdentityPoolProviderSamlTrust(
+  'IamWorkloadIdentityPoolProviderAwsTrust': () =>
+      const IamWorkloadIdentityPoolProviderAwsTrust(),
+  'IamWorkloadIdentityPoolProviderSamlTrust': () =>
+      IamWorkloadIdentityPoolProviderSamlTrust(
         idpMetadataXml: TfArg.literal('<xml/>'),
       ),
-  'IamWorkloadIdentityPoolProviderX509Trust': () => const IamWorkloadIdentityPoolProviderX509Trust(),
+  'IamWorkloadIdentityPoolProviderX509Trust': () =>
+      const IamWorkloadIdentityPoolProviderX509Trust(),
 
   // --- IndexFieldSpec (4) — firestore_index --------------------------------
-  'FirestoreIndexIndexFieldOrder': () => const FirestoreIndexIndexFieldOrder(FirestoreIndexOrder.ascending),
-  'FirestoreIndexIndexFieldArrayConfig': () => const FirestoreIndexIndexFieldArrayConfig(),
-  'FirestoreIndexIndexFieldSearchConfig': () => const FirestoreIndexIndexFieldSearchConfig(),
-  'FirestoreIndexIndexFieldVectorConfig': () => const FirestoreIndexIndexFieldVectorConfig(dimension: TfArgLiteral<int>(768)),
+  'FirestoreIndexIndexFieldOrder': () =>
+      const FirestoreIndexIndexFieldOrder(FirestoreIndexOrder.ascending),
+  'FirestoreIndexIndexFieldArrayConfig': () =>
+      const FirestoreIndexIndexFieldArrayConfig(),
+  'FirestoreIndexIndexFieldSearchConfig': () =>
+      const FirestoreIndexIndexFieldSearchConfig(),
+  'FirestoreIndexIndexFieldVectorConfig': () =>
+      const FirestoreIndexIndexFieldVectorConfig(
+          dimension: TfArgLiteral<int>(768)),
 
   // --- SecretManagerSecretReplication (2) — secret_manager_secret ------------
   // After v1.0 naming audit the subclasses are now public:
   // SecretManagerSecretAutoReplication / SecretManagerSecretUserManagedReplication.
   // Thunks construct via the public factories.
-  'SecretManagerSecretAutoReplication': () => SecretManagerSecretReplication.auto(),
+  'SecretManagerSecretAutoReplication': () =>
+      SecretManagerSecretReplication.auto(),
   'SecretManagerSecretUserManagedReplication': () =>
-      SecretManagerSecretReplication.userManaged([SecretManagerSecretReplica(location: TfArg.literal('us-east1'))]),
+      SecretManagerSecretReplication.userManaged(
+          [SecretManagerSecretReplica(location: TfArg.literal('us-east1'))]),
 
   // --- BucketObjectContent (2) — storage_bucket_object ---------------------
   'StorageBucketObjectBucketObjectFromSource': () =>
-      StorageBucketObjectBucketObjectFromSource(source: TfArg.literal('./mock/path.bin')),
+      StorageBucketObjectBucketObjectFromSource(
+          source: TfArg.literal('./mock/path.bin')),
   'StorageBucketObjectBucketObjectFromContent': () =>
-      StorageBucketObjectBucketObjectFromContent(content: TfArg.literal('mock-inline-payload')),
+      StorageBucketObjectBucketObjectFromContent(
+          content: TfArg.literal('mock-inline-payload')),
 
   // --- CertificateManagerCertificateProvisioningSource (2) — certificate_manager_certificate
   'CertificateManagerCertificateManagedProvisioning': () =>
@@ -615,7 +661,8 @@ final Map<String, Object Function()> _syntheticInstances = {
       ),
 
   // --- VertexAiFeatureOnlineStoreStorage (2) — feature_online_store --------
-  'VertexAiFeatureOnlineStoreBigtable': () => VertexAiFeatureOnlineStoreBigtable(
+  'VertexAiFeatureOnlineStoreBigtable': () =>
+      VertexAiFeatureOnlineStoreBigtable(
         autoScaling: VertexAiFeatureOnlineStoreBigtableAutoScaling(
           minNodeCount: TfArg.literal(1),
           maxNodeCount: TfArg.literal(3),
