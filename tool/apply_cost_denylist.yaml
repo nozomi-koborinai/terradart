@@ -702,6 +702,10 @@ google_netapp_volume_quota_rule: safe  # gcp-cost: no Cloud Billing Catalog SKU 
 google_workstations_workstation_config: safe  # gcp-cost: Cloud Workstations 4528-FDD0-A2A0 lists control-plane + VM management SKUs only (no config SKU); billing-behavior: config template metadata — charges accrue on cluster/workstation runtime
 google_workstations_workstation_config_iam_member: safe  # billing-behavior: IAM binding — no resource charge
 google_workstations_workstation_iam_member: safe  # billing-behavior: IAM binding — no resource charge
+google_workstations_workstation_config_iam_binding: safe  # billing-behavior: IAM binding — no resource charge
+google_workstations_workstation_config_iam_policy: safe  # billing-behavior: IAM policy — no resource charge
+google_workstations_workstation_iam_binding: safe  # billing-behavior: IAM binding — no resource charge
+google_workstations_workstation_iam_policy: safe  # billing-behavior: IAM policy — no resource charge
 google_composer_user_workloads_config_map: safe  # gcp-cost: Cloud Composer 1992-3666-B975 lists environment fee / compute / storage SKUs only (no ConfigMap SKU); billing-behavior: ConfigMap metadata on a parent environment — no separate existence charge
 google_composer_user_workloads_secret: safe  # gcp-cost: no Secret SKU under Cloud Composer 1992-3666-B975; billing-behavior: Secret metadata on a parent environment — no separate existence charge
 google_redis_cluster_user_created_connections: safe  # gcp-cost: no separate SKU under Memorystore for Redis 5AF5-2C11-D467 (node/backup/AOF only); billing-behavior: PSC connection metadata on a parent cluster — no separate existence charge

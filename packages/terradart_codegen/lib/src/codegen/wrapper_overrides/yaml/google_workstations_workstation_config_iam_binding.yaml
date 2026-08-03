@@ -1,0 +1,21 @@
+outputDir: workstations
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud Workstations
+  /// config.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleWorkstationsWorkstationConfigIamMember] for additive grants.
+  /// Deferred with the never_apply workstation cluster (no apply-smoke
+  /// quickstart).
+
+paramOrder:
+  - workstation_cluster_id
+  - workstation_config_id
+  - role
+  - members
+  - location
+  - project
+  - condition

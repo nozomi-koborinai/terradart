@@ -1663,6 +1663,14 @@ files:
     upstream: null  # IAM adjunct
   google_workstations_workstation_iam_member:
     upstream: null  # IAM adjunct
+  google_workstations_workstation_config_iam_binding:
+    upstream: null  # IAM adjunct
+  google_workstations_workstation_config_iam_policy:
+    upstream: null  # IAM adjunct
+  google_workstations_workstation_iam_binding:
+    upstream: null  # IAM adjunct
+  google_workstations_workstation_iam_policy:
+    upstream: null  # IAM adjunct
 
   google_workbench_instance:
     upstream: mmv1/products/workbench/Instance.yaml
