@@ -1,0 +1,17 @@
+outputDir: notebooks
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Vertex AI Workbench notebook runtime.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleNotebooksRuntimeIamMember] for single-principal grants.
+  /// Deferred with the never_apply notebook runtime (no apply-smoke
+  /// quickstart).
+
+paramOrder:
+  - runtime_name
+  - policy_data
+  - location
+  - project

@@ -17669,6 +17669,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_notebooks_instance`.\n\nA Cloud AI Platform Notebook instance.\n\n~> **Note:** Due to limitations of the Notebooks Instance API, many fields\nin this resource do not properly detect drift. These fields will also not\nappear in state once imported.\n\nVertex AI Workbench (Notebooks) **instance** — a user-managed notebook\nVM.\n\n**Cost:** Cloud Billing Catalog service `D73B-5EEA-8215` bills Workbench\n**management fees + GCE usage** while the VM runs (us-central1 N1\nmanagement CPU SKU `6196-1C27-5E30` **\$0.0063222/h** + N1 usage CPU\n`9027-15FF-8BFE` **\$0.0379332/h** + RAM/disk). Destroy stops charges.\nToo expensive for apply-smoke — factories ship without a quickstart.\n\nPass exactly one [image] variant:\n- [NotebooksInstanceContainerImage]\n- [NotebooksInstanceVmImage]\n\nEnable `notebooks.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleNotebooksInstance(\n  localName: \'nb\',\n  name: TfArg.literal(\'terradart-nb\'),\n  location: TfArg.literal(\'us-central1-a\'),\n  machineType: TfArg.literal(\'n1-standard-1\'),\n  image: NotebooksInstanceVmImage(\n    project: TfArg.literal(\'deeplearning-platform-release\'),\n    imageFamily: TfArg.literal(\'common-cpu-notebooks\'),\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_notebooks_instance_iam_binding',
+    className: 'GoogleNotebooksInstanceIamBinding',
+    barrel: 'notebooks',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_notebooks_instance_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'instanceName',
+      'role',
+      'members',
+      'location',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_notebooks_instance_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Vertex AI Workbench\nnotebook instance.\n\nReplaces the entire member list for that role. Prefer\n[GoogleNotebooksInstanceIamMember] for additive grants. Deferred with\nthe never_apply notebook instance (no apply-smoke quickstart).',
+  ),
+  CatalogEntry(
     tfType: 'google_notebooks_instance_iam_member',
     className: 'GoogleNotebooksInstanceIamMember',
     barrel: 'notebooks',
@@ -17687,6 +17707,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_notebooks_instance_iam_member`.\n\nNon-authoritative IAM member on a Vertex AI Workbench notebook\ninstance.\n\nDeferred with the never_apply notebook instance (no apply-smoke\nquickstart).',
+  ),
+  CatalogEntry(
+    tfType: 'google_notebooks_instance_iam_policy',
+    className: 'GoogleNotebooksInstanceIamPolicy',
+    barrel: 'notebooks',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_notebooks_instance_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'instanceName',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_notebooks_instance_iam_policy`.\n\nAuthoritative IAM policy for a Vertex AI Workbench notebook instance.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleNotebooksInstanceIamMember] for single-principal grants.\nDeferred with the never_apply notebook instance (no apply-smoke\nquickstart).',
   ),
   CatalogEntry(
     tfType: 'google_notebooks_runtime',
@@ -17726,6 +17764,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_notebooks_runtime`.\n\nA Cloud AI Platform Notebook runtime.\n\n~> **Note:** Due to limitations of the Notebooks Runtime API, many fields in\nthis resource do not properly detect drift. These fields will also not\nappear in state once imported.\n\nVertex AI Workbench (Notebooks) **runtime** — a managed notebook\nenvironment (Compute Engine VM under the hood).\n\n**Cost:** same Notebooks billing surface as\n[GoogleNotebooksInstance] (`D73B-5EEA-8215` management fee + GCE\nusage while the runtime VM runs). Destroy stops charges. Too\nexpensive for apply-smoke — factories ship without a quickstart.\n\nConfigure [virtualMachine] (and optional [accessConfig] /\n[softwareConfig]). Enable `notebooks.googleapis.com` via\n[GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleNotebooksRuntime(\n  localName: \'rt\',\n  name: TfArg.literal(\'terradart-nb-rt\'),\n  location: TfArg.literal(\'us-central1\'),\n  virtualMachine: NotebooksRuntimeVirtualMachine(\n    virtualMachineConfig: NotebooksRuntimeVirtualMachineVirtualMachineConfig(\n      machineType: TfArg.literal(\'n1-standard-4\'),\n      dataDisk: NotebooksRuntimeVirtualMachineVirtualMachineConfigDataDisk(\n        initializeParams:\n            NotebooksRuntimeVirtualMachineVirtualMachineConfigDataDiskInitializeParams(\n          diskSizeGb: TfArg.literal(100),\n        ),\n      ),\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_notebooks_runtime_iam_binding',
+    className: 'GoogleNotebooksRuntimeIamBinding',
+    barrel: 'notebooks',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_notebooks_runtime_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'runtimeName',
+      'role',
+      'members',
+      'location',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_notebooks_runtime_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Vertex AI Workbench\nnotebook runtime.\n\nReplaces the entire member list for that role. Prefer\n[GoogleNotebooksRuntimeIamMember] for additive grants. Deferred with\nthe never_apply notebook runtime (no apply-smoke quickstart).',
+  ),
+  CatalogEntry(
     tfType: 'google_notebooks_runtime_iam_member',
     className: 'GoogleNotebooksRuntimeIamMember',
     barrel: 'notebooks',
@@ -17744,6 +17802,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_notebooks_runtime_iam_member`.\n\nNon-authoritative IAM member on a Vertex AI Workbench notebook\nruntime.\n\nDeferred with the never_apply notebook runtime (no apply-smoke\nquickstart).',
+  ),
+  CatalogEntry(
+    tfType: 'google_notebooks_runtime_iam_policy',
+    className: 'GoogleNotebooksRuntimeIamPolicy',
+    barrel: 'notebooks',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_notebooks_runtime_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'runtimeName',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_notebooks_runtime_iam_policy`.\n\nAuthoritative IAM policy for a Vertex AI Workbench notebook runtime.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleNotebooksRuntimeIamMember] for single-principal grants.\nDeferred with the never_apply notebook runtime (no apply-smoke\nquickstart).',
   ),
   CatalogEntry(
     tfType: 'google_observability_trace_scope',

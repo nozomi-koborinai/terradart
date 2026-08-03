@@ -25,8 +25,12 @@ export 'src/notebooks/google_notebooks_instance.dart'
         NotebooksInstanceReservationAffinityConsumeReservationType,
         NotebooksInstanceShieldedInstanceConfig,
         NotebooksInstanceVmImage;
+export 'src/notebooks/google_notebooks_instance_iam_binding.dart'
+    show GoogleNotebooksInstanceIamBinding;
 export 'src/notebooks/google_notebooks_instance_iam_member.dart'
     show GoogleNotebooksInstanceIamMember;
+export 'src/notebooks/google_notebooks_instance_iam_policy.dart'
+    show GoogleNotebooksInstanceIamPolicy;
 export 'src/notebooks/google_notebooks_runtime.dart'
     show
         GoogleNotebooksRuntime,
@@ -44,5 +48,9 @@ export 'src/notebooks/google_notebooks_runtime.dart'
         NotebooksRuntimeVirtualMachineVirtualMachineConfigEncryptionConfig,
         NotebooksRuntimeVirtualMachineVirtualMachineConfigNicType,
         NotebooksRuntimeVirtualMachineVirtualMachineConfigShieldedInstanceConfig;
+export 'src/notebooks/google_notebooks_runtime_iam_binding.dart'
+    show GoogleNotebooksRuntimeIamBinding;
 export 'src/notebooks/google_notebooks_runtime_iam_member.dart'
     show GoogleNotebooksRuntimeIamMember;
+export 'src/notebooks/google_notebooks_runtime_iam_policy.dart'
+    show GoogleNotebooksRuntimeIamPolicy;

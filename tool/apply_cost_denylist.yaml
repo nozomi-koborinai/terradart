@@ -39,6 +39,8 @@ safe_exception: google_bigtable_instance_iam_policy  # IAM policy on Bigtable in
 safe_exception: google_bigtable_instance_iam_binding  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
 safe_exception: google_secure_source_manager_instance_iam_member  # IAM binding on SSM instance; no existence billing — _instance substring false positive (parent google_secure_source_manager_instance is never_apply)
 safe_exception: google_notebooks_instance_iam_member  # IAM binding on notebook instance; no existence billing — _instance substring false positive (parent google_notebooks_instance is never_apply)
+safe_exception: google_notebooks_instance_iam_binding  # IAM binding on notebook instance; no existence billing — _instance substring false positive (parent google_notebooks_instance is never_apply)
+safe_exception: google_notebooks_instance_iam_policy  # IAM policy on notebook instance; no existence billing — _instance substring false positive (parent google_notebooks_instance is never_apply)
 safe_exception: google_workbench_instance_iam_member  # IAM binding on Workbench instance; no existence billing — _instance substring false positive (parent google_workbench_instance is never_apply)
 safe_exception: google_memorystore_instance_desired_user_created_endpoints  # PSC endpoint metadata on a parent Memorystore Valkey instance; no existence billing — _instance substring false positive (parent google_memorystore_instance is never_apply)
 safe_exception: google_vertex_ai_endpoint  # prediction endpoint shell; no existence billing until a model is deployed — _endpoint substring false positive
@@ -358,7 +360,11 @@ google_backup_dr_backup_plan_association: safe  # gcp-cost: association has no s
 google_backup_dr_service_config: safe  # gcp-cost: no Cloud Billing Catalog SKU for service config under BackupDR 3DAD-299B-0D94; billing-behavior: project/location init metadata — no separate existence charge
 google_backup_dr_restore_workload: safe  # gcp-cost: no restore-workload SKU under BackupDR 3DAD-299B-0D94 (restore materializes Compute/Disk which bill separately); billing-behavior: restore job metadata — underlying restored VMs/disks are the cost
 google_notebooks_runtime_iam_member: safe  # billing-behavior: IAM binding only — no resource charge
+google_notebooks_runtime_iam_binding: safe  # billing-behavior: IAM binding — no resource charge
+google_notebooks_runtime_iam_policy: safe  # billing-behavior: IAM policy — no resource charge
 google_notebooks_instance_iam_member: safe  # billing-behavior: IAM binding only — no resource charge
+google_notebooks_instance_iam_binding: safe  # billing-behavior: IAM binding — no resource charge
+google_notebooks_instance_iam_policy: safe  # billing-behavior: IAM policy — no resource charge
 google_os_config_os_policy_assignment: safe  # gcp-cost: no Cloud Billing Catalog SKU (OS Config API); billing-behavior: policy assignment metadata; patch jobs bill separately when executed
 google_os_config_patch_deployment: safe  # gcp-cost: no Cloud Billing Catalog SKU on deployment object; billing-behavior: schedule metadata only until a patch job runs
 google_cloud_scheduler_job: safe  # apply-verified safe (existing example)
