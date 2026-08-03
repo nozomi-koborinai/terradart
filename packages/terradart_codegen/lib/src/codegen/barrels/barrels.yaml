@@ -35,6 +35,12 @@ barrels:
     doc: |-
       /// Managed Service for Microsoft Active Directory — domains bill hourly
       /// while they exist (never_apply for apply-smoke).
+  agent:
+    doc: |-
+      /// Agent Identity / Agent Registry — auth providers (API key / OAuth)
+      /// plus registered agent/MCP services and auth-provider bindings.
+      /// Requires Agent Identity scaffolding; ships debt-only (not applyable
+      /// on terradart-validate).
   alloydb:
     doc: |-
       /// AlloyDB — Postgres-compatible managed database clusters and instances.

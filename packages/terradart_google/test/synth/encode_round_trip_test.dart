@@ -26,6 +26,7 @@ import 'dart:io';
 import 'package:path/path.dart' as p;
 import 'package:terradart_codegen/src/codegen/universal_invariants/sealed_class_extractor.dart';
 import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/agent.dart';
 import 'package:terradart_google/app.dart';
 import 'package:terradart_google/bigquery.dart';
 import 'package:terradart_google/bigtable.dart';
@@ -69,6 +70,19 @@ import 'package:test/test.dart';
 /// extractor, but thunk bodies construct via the public `SecretManagerSecretReplication.auto()` /
 /// `SecretManagerSecretReplication.userManaged(...)` factories.
 final Map<String, Object Function()> _syntheticInstances = {
+  // --- AgentRegistryServiceSpec (3) — google_agent_registry_service -------
+  'AgentRegistryServiceAgentSpec': () => const AgentRegistryServiceAgentSpec(
+        type: AgentRegistryServiceAgentSpecType.noSpec,
+      ),
+  'AgentRegistryServiceMcpServerSpec': () =>
+      const AgentRegistryServiceMcpServerSpec(
+        type: AgentRegistryServiceMcpServerSpecType.noSpec,
+      ),
+  'AgentRegistryServiceEndpointSpec': () =>
+      const AgentRegistryServiceEndpointSpec(
+        type: AgentRegistryServiceEndpointSpecType.noSpec,
+      ),
+
   // --- Access (8) — bigquery_dataset ---------------------------------------
   'BigqueryDatasetAccessUserByEmail': () =>
       BigqueryDatasetAccessUserByEmail(userByEmail: TfArg.literal('user@example.com')),

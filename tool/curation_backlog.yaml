@@ -17,17 +17,6 @@
 #       note: (optional, maintainer-added)
 
 entries:
-  - resource: google_agent_identity_auth_provider
-    detected_at: 2026-08-02
-    provider_version: 7.42.0
-  - resource: google_agent_registry_binding
-    detected_at: 2026-07-01
-    provider_version: 7.39.0
-    note: skipped by wave-shipper — binding requires Agent Identity auth provider (external artifact); not apply-able on terradart-validate without pre-provisioned connector
-  - resource: google_agent_registry_service
-    detected_at: 2026-07-01
-    provider_version: 7.39.0
-    note: skipped by wave-shipper — grouped with binding; service-only subset deferred until binding apply path is clear
   - resource: google_apihub_runtime_project_attachment
     detected_at: 2026-08-02
     provider_version: 7.42.0

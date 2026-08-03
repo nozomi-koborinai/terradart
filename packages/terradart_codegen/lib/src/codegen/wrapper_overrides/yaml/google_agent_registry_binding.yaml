@@ -1,0 +1,36 @@
+outputDir: agent
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Agent Registry **binding** — links a source identity to a target
+  /// registry resource through an [authProviderBinding].
+  ///
+  /// **Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU after MCP
+  /// lookup (no Agent Identity / Agent Registry service in
+  /// `list_services`). billing-behavior: binding metadata — no
+  /// existence/hourly charge observed. Requires a sibling
+  /// [GoogleAgentIdentityAuthProvider]; not standalone-project applyable on
+  /// `terradart-validate`. **Never** wire into apply-smoke.
+
+paramOrder:
+  - location
+  - binding_id
+  - auth_provider_binding
+  - source
+  - target
+  - display_name
+  - description
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `id` attribute.
+    TfRef<String> get idRef => TfRef.attribute<String>(this, 'id');
+
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
