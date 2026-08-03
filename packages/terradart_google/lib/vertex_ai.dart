@@ -162,6 +162,8 @@ export 'src/vertex_ai/google_vertex_ai_reasoning_engine.dart'
         VertexAiReasoningEngineSpecSourceCodeSpecPythonSpec;
 export 'src/vertex_ai/google_vertex_ai_schedule.dart'
     show GoogleVertexAiSchedule;
+export 'src/vertex_ai/google_vertex_ai_semantic_governance_policy_engine.dart'
+    show GoogleVertexAiSemanticGovernancePolicyEngine;
 export 'src/vertex_ai/google_vertex_ai_tensorboard.dart'
     show GoogleVertexAiTensorboard;
 export 'src/vertex_ai/google_vertex_ai_tensorboard_experiment.dart'
