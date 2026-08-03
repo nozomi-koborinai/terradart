@@ -254,6 +254,18 @@ files:
     upstream: mmv1/products/compute/Address.yaml
   google_compute_firewall:
     upstream: mmv1/products/compute/Firewall.yaml
+  google_compute_firewall_policy:
+    upstream: mmv1/products/compute/FirewallPolicy.yaml
+  google_compute_firewall_policy_association:
+    upstream: mmv1/products/compute/FirewallPolicyAssociation.yaml
+  google_compute_firewall_policy_rule:
+    upstream: mmv1/products/compute/FirewallPolicyRule.yaml
+  google_compute_firewall_policy_iam_member:
+    upstream: null  # IAM adjunct
+  google_compute_firewall_policy_iam_binding:
+    upstream: null  # IAM adjunct
+  google_compute_firewall_policy_iam_policy:
+    upstream: null  # IAM adjunct
   google_compute_network_firewall_policy:
     upstream: mmv1/products/compute/NetworkFirewallPolicy.yaml
   google_compute_network_firewall_policy_iam_member:

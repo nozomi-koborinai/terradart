@@ -215,6 +215,14 @@ GoogleComputeInterconnectGroup: gcp-cost Compute Engine 6F81-5844-456A Cloud Int
 GoogleComputeCrossSiteNetwork: gcp-cost NCC 7BEB-7A51-4223 Partner Cross Cloud Interconnect Managed Transport 10Gbps SKU AAE5-BD60-3575 $17.30/h — never_apply; no applyable quickstart
 GoogleComputeWireGroup: deferred with never_apply GoogleComputeCrossSiteNetwork (CCI / cross-site path)
 GoogleComputePacketMirroring: gcp-cost Compute Engine 6F81-5844-456A Packet Mirroring Data Processing Americas SKU A0DF-D169-F1EE $0.008/GiBy — never_apply; no applyable quickstart
+# Hierarchical (org/folder) firewall policy — parent must be organizations/{id}
+# or folders/{id}; not applyable on standalone terradart-validate.
+GoogleComputeFirewallPolicy: org-scoped hierarchical firewall policy (parent organizations/{id} or folders/{id}); gcp-cost: no Cloud Billing Catalog SKU (list_services Compute Engine 6F81-5844-456A + Network Security E749-01A2-AE1F; list_skus keyword firewall/Network Firewall/Cloud NGFW/Hierarchical → 0); billing-behavior: policy config metadata only — no existence/hourly charge; no applyable quickstart on terradart-validate
+GoogleComputeFirewallPolicyAssociation: requires org-scoped GoogleComputeFirewallPolicy parent; deferred with the hierarchical firewall policy
+GoogleComputeFirewallPolicyRule: requires org-scoped GoogleComputeFirewallPolicy parent; deferred with the hierarchical firewall policy
+GoogleComputeFirewallPolicyIamMember: requires org-scoped GoogleComputeFirewallPolicy parent; deferred with the hierarchical firewall policy
+GoogleComputeFirewallPolicyIamBinding: authoritative IAM binding; requires org-scoped GoogleComputeFirewallPolicy parent; deferred with the hierarchical firewall policy
+GoogleComputeFirewallPolicyIamPolicy: authoritative IAM policy; requires org-scoped GoogleComputeFirewallPolicy parent; deferred with the hierarchical firewall policy
 GoogleNetworkSecurityMirroringEndpoint: deferred with never_apply GoogleNetworkSecurityMirroringDeployment (OOB mirroring path)
 GoogleNetworkSecurityMirroringEndpointGroup: deferred with never_apply GoogleNetworkSecurityMirroringDeployment (OOB mirroring path)
 GoogleNetworkSecurityMirroringEndpointGroupAssociation: deferred with never_apply GoogleNetworkSecurityMirroringDeployment (OOB mirroring path)

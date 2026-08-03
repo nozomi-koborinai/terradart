@@ -1,0 +1,17 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Hierarchical (organization / folder) firewall policy.
+  ///
+  /// [parent] is an organization or folder (`organizations/{id}` or
+  /// `folders/{id}`). Pair with [GoogleComputeFirewallPolicyAssociation] and
+  /// [GoogleComputeFirewallPolicyRule]. Org-scoped — not standalone-project
+  /// applyable on terradart-validate (ships via `tool/example_debt.yaml`).
+
+paramOrder:
+  - parent
+  - short_name
+  - description
+  - deletion_policy

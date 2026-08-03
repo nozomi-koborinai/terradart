@@ -1,0 +1,35 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  direction: ComputeFirewallPolicyRuleDirection
+
+curatedDoc: |-
+  /// Rule on a hierarchical [GoogleComputeFirewallPolicy].
+  ///
+  /// Valid [action] values include `allow`, `deny`, `goto_next`, and
+  /// `apply_security_profile_group`. Org-scoped parent path — not
+  /// standalone-project applyable on terradart-validate (ships via
+  /// `tool/example_debt.yaml`).
+
+paramOrder:
+  - firewall_policy
+  - priority
+  - action
+  - direction
+  - match
+  - description
+  - disabled
+  - enable_logging
+  - target_resources
+  - target_service_accounts
+  - target_secure_tags
+  - security_profile_group
+  - tls_inspect
+  - deletion_policy
