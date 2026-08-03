@@ -619,6 +619,10 @@ files:
     upstream: mmv1/products/compute/GlobalAddress.yaml
 
   # Cloud Run v2 job (parent for the *_iam_member sibling)
+  google_cloud_quotas_quota_adjuster_settings:
+    upstream: mmv1/products/cloudquotas/QuotaAdjusterSettings.yaml
+  google_cloud_quotas_quota_preference:
+    upstream: mmv1/products/cloudquotas/QuotaPreference.yaml
   google_cloud_run_v2_job:
     upstream: mmv1/products/cloudrunv2/Job.yaml
 

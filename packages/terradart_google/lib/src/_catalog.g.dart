@@ -4781,6 +4781,48 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_cloud_ids_endpoint`.\n\nCloud IDS is an intrusion detection service that provides threat detection\nfor intrusions, malware, spyware, and command-and-control attacks on your\nnetwork.\n\nCloud IDS **endpoint** — managed intrusion detection appliance attached\nto a VPC network.\n\n**Cost / apply:** gcp-cost: Cloud IDS `25DB-618E-3F79` Endpoint Usage SKU\n`FB57-C6D5-4F05` **\$1.5/h** (Traffic Usage `E7D2-D0E0-D8C1` **\$0.07/GBy**\nwhen traffic is inspected). billing-behavior: endpoint hours bill while\nthe endpoint exists; destroy stops endpoint-hour charges. Too expensive\nfor apply-smoke even once — debt-only on `terradart-validate`. **Never**\nwire into apply-smoke.\n\nEnable `ids.googleapis.com` before apply. [network] is a VPC network\nself-link / id; [severity] sets the minimum threat severity reported.',
   ),
   CatalogEntry(
+    tfType: 'google_cloud_quotas_quota_adjuster_settings',
+    className: 'GoogleCloudQuotasQuotaAdjusterSettings',
+    barrel: 'cloud_quotas',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_cloud_quotas_quota_adjuster_settings`.',
+    constructorParams: <String>['localName', 'enablement', 'parent'],
+    nestedTypes: <String>[
+      'CloudQuotasQuotaAdjusterSettingsEffectiveEnablement',
+      'CloudQuotasQuotaAdjusterSettingsEnablement',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_cloud_quotas_quota_adjuster_settings`.\n\nQuotaAdjusterSettings resource represents your quota adjuster settings for a\nparticular project. When enabled, the quota adjuster monitors your usage for\nthe specified resources and issues quota adjustment requests when resource\nusage approaches its quota value.\n\nCloud Quotas **quota adjuster settings** — project-singleton toggle\nfor automatic quota adjustment (`ENABLED` / `DISABLED`).\n\n**Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU after MCP\nlookup (`list_services` Cloud Quotas / Quota → empty). billing-behavior:\nsettings metadata — no existence/hourly charge. Provider MM sets\n`exclude_delete: true` (create is PATCH on a pre-existing singleton) —\nTerraform **cannot destroy** it, so apply-smoke would strand project\nstate forever (`never_apply`). Ships without a quickstart\n(`tool/example_debt.yaml`).',
+  ),
+  CatalogEntry(
+    tfType: 'google_cloud_quotas_quota_preference',
+    className: 'GoogleCloudQuotasQuotaPreference',
+    barrel: 'cloud_quotas',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_cloud_quotas_quota_preference`.',
+    constructorParams: <String>[
+      'localName',
+      'parent',
+      'name',
+      'service',
+      'quotaId',
+      'quotaConfig',
+      'dimensions',
+      'contactEmail',
+      'justification',
+      'ignoreSafetyChecks',
+    ],
+    nestedTypes: <String>[
+      'CloudQuotasQuotaPreferenceIgnoreSafetyChecks',
+      'CloudQuotasQuotaPreferenceQuotaConfig',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_cloud_quotas_quota_preference`.\n\nQuotaPreference represents the preferred quota configuration specified for a\nproject, folder or organization. There is only one QuotaPreference resource\nfor a quota value targeting a unique set of dimensions.\n\nCloud Quotas **quota preference** — preferred quota value for one\nservice / quota id (optionally dimensioned).\n\n**Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU after MCP\nlookup (`list_services` Cloud Quotas / Quota → empty). billing-behavior:\npreference metadata — no existence/hourly charge. Provider MM sets\n`exclude_delete: true` — Terraform **cannot destroy** the preference,\nso apply-smoke would strand it forever (`never_apply`). Ships without\na quickstart (`tool/example_debt.yaml`).',
+  ),
+  CatalogEntry(
     tfType: 'google_cloud_run_v2_job',
     className: 'GoogleCloudRunV2Job',
     barrel: 'cloud_run',

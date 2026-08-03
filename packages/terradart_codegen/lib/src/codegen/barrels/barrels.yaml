@@ -140,6 +140,10 @@ barrels:
     doc: |-
       /// Cloud IDS — managed intrusion detection endpoints attached to VPC
       /// networks (endpoint hours while provisioned; never_apply for apply-smoke).
+  cloud_quotas:
+    doc: |-
+      /// Cloud Quotas — project-singleton adjuster settings and quota
+      /// preferences. Both are never_apply (MM exclude_delete); debt-only.
   cloud_run:
     doc: |-
       /// Cloud Run v2 services + jobs.

@@ -1,0 +1,49 @@
+outputDir: cloud_quotas
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  ignore_safety_checks: CloudQuotasQuotaPreferenceIgnoreSafetyChecks
+
+prelude: |
+  /// Quota safety checks that may be skipped on create/update.
+  enum CloudQuotasQuotaPreferenceIgnoreSafetyChecks implements TerraformEnum {
+    unspecified('QUOTA_SAFETY_CHECK_UNSPECIFIED'),
+    decreaseBelowUsage('QUOTA_DECREASE_BELOW_USAGE'),
+    decreasePercentageTooHigh('QUOTA_DECREASE_PERCENTAGE_TOO_HIGH');
+
+    const CloudQuotasQuotaPreferenceIgnoreSafetyChecks(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+curatedDoc: |-
+  /// Cloud Quotas **quota preference** — preferred quota value for one
+  /// service / quota id (optionally dimensioned).
+  ///
+  /// **Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU after MCP
+  /// lookup (`list_services` Cloud Quotas / Quota → empty). billing-behavior:
+  /// preference metadata — no existence/hourly charge. Provider MM sets
+  /// `exclude_delete: true` — Terraform **cannot destroy** the preference,
+  /// so apply-smoke would strand it forever (`never_apply`). Ships without
+  /// a quickstart (`tool/example_debt.yaml`).
+
+paramOrder:
+  - parent
+  - name
+  - service
+  - quota_id
+  - quota_config
+  - dimensions
+  - contact_email
+  - justification
+  - ignore_safety_checks
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

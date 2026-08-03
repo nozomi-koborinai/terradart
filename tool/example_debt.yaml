@@ -185,6 +185,8 @@ GoogleWorkstationsWorkstationIamPolicy: authoritative IAM policy; requires a par
 # ship without an example.
 GoogleComposerEnvironment: gcp-cost Cloud Composer 1992-3666-B975 Small Environment Fee us-central1 SKU 6EA4-3652-173E $0.35/h (Medium 9802-34D7-AFE2 $0.55/h; Large 2C11-0523-61D9 $0.85/h) — never_apply; no applyable quickstart on terradart-validate
 GoogleComposerUserWorkloadsConfigMap: requires a parent GoogleComposerEnvironment (never_apply); deferred with the environment
+GoogleCloudQuotasQuotaAdjusterSettings: gcp-cost: no Cloud Billing Catalog SKU after MCP lookup (list_services Cloud Quotas/Quota → empty); MM exclude_delete singleton — never_apply; no applyable quickstart on terradart-validate
+GoogleCloudQuotasQuotaPreference: gcp-cost: no Cloud Billing Catalog SKU after MCP lookup (list_services Cloud Quotas/Quota → empty); MM exclude_delete — never_apply; no applyable quickstart on terradart-validate
 GoogleComposerUserWorkloadsSecret: requires a parent GoogleComposerEnvironment (never_apply); deferred with the environment
 
 # Memorystore for Redis Cluster bills per node-hour while the cluster exists
