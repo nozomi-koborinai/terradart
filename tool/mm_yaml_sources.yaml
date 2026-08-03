@@ -1623,6 +1623,8 @@ files:
     upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
   google_vertex_ai_deployment_resource_pool:
     upstream: mmv1/products/vertexai/DeploymentResourcePool.yaml
+  google_vertex_ai_persistent_resource:
+    upstream: mmv1/products/vertexai/PersistentResource.yaml
   google_vertex_ai_endpoint:
     upstream: mmv1/products/vertexai/Endpoint.yaml
   google_vertex_ai_index:

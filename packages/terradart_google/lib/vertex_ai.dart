@@ -121,6 +121,18 @@ export 'src/vertex_ai/google_vertex_ai_index_endpoint_deployed_index.dart'
         VertexAiIndexEndpointDeployedIndexDedicatedResourcesMachineSpec,
         VertexAiIndexEndpointDeployedIndexDeployedIndexAuthConfig,
         VertexAiIndexEndpointDeployedIndexDeployedIndexAuthConfigAuthProvider;
+export 'src/vertex_ai/google_vertex_ai_persistent_resource.dart'
+    show
+        GoogleVertexAiPersistentResource,
+        VertexAiPersistentResourceEncryptionSpec,
+        VertexAiPersistentResourcePscInterfaceConfig,
+        VertexAiPersistentResourcePscInterfaceConfigDnsPeeringConfigs,
+        VertexAiPersistentResourceResourcePools,
+        VertexAiPersistentResourceResourcePoolsAutoscalingSpec,
+        VertexAiPersistentResourceResourcePoolsDiskSpec,
+        VertexAiPersistentResourceResourcePoolsMachineSpec,
+        VertexAiPersistentResourceResourceRuntimeSpec,
+        VertexAiPersistentResourceResourceRuntimeSpecServiceAccountSpec;
 export 'src/vertex_ai/google_vertex_ai_rag_engine_config.dart'
     show
         GoogleVertexAiRagEngineConfig,

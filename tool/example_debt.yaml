@@ -373,6 +373,7 @@ GoogleMemorystoreInstanceDesiredUserCreatedEndpoints: requires a parent GoogleMe
 # force apply_smoke_skip (never_apply) or that would bill on deploy are
 # deferred — factories ship without an example.
 GoogleVertexAiDeploymentResourcePool: gcp-cost Vertex AI C7E2-9256-1C43 Online/Batch Prediction Americas N1 Core 84D9-B3FA-0886 $0.036/h — never_apply dedicated min replicas; no applyable quickstart on terradart-validate
+GoogleVertexAiPersistentResource: gcp-cost Vertex AI C7E2-9256-1C43 Training/Pipelines Americas N1 Core 2A57-4214-1832 $0.03635265/h (+ us-central1 N1 management A4CD-7C62-A250 $0.0047416/h) — never_apply reserved training pools (resourcePools min 1); no applyable quickstart on terradart-validate
 GoogleVertexAiEndpoint: gcp-cost Vertex AI C7E2-9256-1C43 list_skus keyword Endpoint → 0; Online/Batch Prediction Americas N1 Core 84D9-B3FA-0886 $0.036/h after DeployModel — shell is safe but a quickstart that deploys a model would bill; no apply-smoke quickstart
 GoogleVertexAiFeaturestore: gcp-cost Vertex AI C7E2-9256-1C43 Feature Store online serving node SKU 74D1-6081-582A $0.94/h — never_apply; no applyable quickstart on terradart-validate
 GoogleVertexAiFeaturestoreEntitytype: requires a parent GoogleVertexAiFeaturestore (never_apply); deferred with the Featurestore Wave
