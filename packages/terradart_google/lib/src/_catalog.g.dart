@@ -14263,6 +14263,128 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_iam_workload_identity_pool_provider`.\n\nA configuration for an external identity provider.\n\nConfigures a **Workload Identity Federation provider** inside an existing\n[GoogleIamWorkloadIdentityPool] — the trust binding that maps external\nidentities (GitHub Actions OIDC, AWS, SAML, X.509) into GCP subjects.\n\nRequired identity:\n- [localName]: Terraform local name.\n- `workloadIdentityPoolId`: pool ID string **or**\n  `TfArg.ref(pool.nameRef)` from [GoogleIamWorkloadIdentityPool].\n- `workloadIdentityPoolProviderId`: provider ID (4–32 chars, `[a-z0-9-]`).\n- [trustSource]: exactly one trust binding — sealed so the API\'s\n  `exactly_one_of` (`oidc` / `aws` / `saml` / `x509`) is enforced at\n  compile time.\n\nExample (GitHub Actions OIDC):\n```dart\nfinal githubProvider = GoogleIamWorkloadIdentityPoolProvider(\n  localName: \'github_provider\',\n  workloadIdentityPoolId: TfArg.ref(pool.nameRef),\n  workloadIdentityPoolProviderId: TfArg.literal(\'github-actions\'),\n  displayName: TfArg.literal(\'GitHub Actions\'),\n  attributeCondition: TfArg.literal(\n    \'assertion.repository_owner == "my-org"\',\n  ),\n  attributeMapping: {\n    \'google.subject\': TfArg.literal(\'assertion.repository\'),\n    \'attribute.repository_owner\': TfArg.literal(\n      \'assertion.repository_owner\',\n    ),\n  },\n  trustSource: IamWorkloadIdentityPoolProviderOidcTrust(\n    allowedAudiences: [TfArg.literal(\'https://github.com/my-org\')],\n    issuerUri: TfArg.literal(\n      \'https://token.actions.githubusercontent.com\',\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_iap_agent_registry_agent_iam_binding',
+    className: 'GoogleIapAgentRegistryAgentIamBinding',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iap_agent_registry_agent_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'agentId',
+      'role',
+      'members',
+      'location',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_agent_registry_agent_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP Agent Registry\n**agent**.\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapAgentRegistryAgentIamMember] for additive grants. Deferred\nwith the Agent Identity registry agent parent (skip-noted).',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_agent_registry_agent_iam_member',
+    className: 'GoogleIapAgentRegistryAgentIamMember',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iap_agent_registry_agent_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'agentId',
+      'role',
+      'member',
+      'location',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_agent_registry_agent_iam_member`.\n\nNon-authoritative IAM member on an Identity-Aware Proxy Agent Registry\n**agent**.\n\nRequires an Agent Identity registry agent parent\n(`google_agent_registry_*` — skip-noted); not standalone-project\napplyable on terradart-validate.',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_agent_registry_agent_iam_policy',
+    className: 'GoogleIapAgentRegistryAgentIamPolicy',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iap_agent_registry_agent_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'agentId',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_agent_registry_agent_iam_policy`.\n\nAuthoritative IAM policy for an IAP Agent Registry **agent**.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleIapAgentRegistryAgentIamMember] for single-principal grants.\nDeferred with the Agent Identity registry agent parent (skip-noted).',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_agent_registry_endpoint_iam_binding',
+    className: 'GoogleIapAgentRegistryEndpointIamBinding',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iap_agent_registry_endpoint_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'endpointId',
+      'role',
+      'members',
+      'location',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_agent_registry_endpoint_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP Agent Registry\n**endpoint**.\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapAgentRegistryEndpointIamMember] for additive grants. Deferred\nwith the Agent Identity registry endpoint parent (skip-noted).',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_agent_registry_endpoint_iam_member',
+    className: 'GoogleIapAgentRegistryEndpointIamMember',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iap_agent_registry_endpoint_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'endpointId',
+      'role',
+      'member',
+      'location',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_agent_registry_endpoint_iam_member`.\n\nNon-authoritative IAM member on an Identity-Aware Proxy Agent Registry\n**endpoint**.\n\nRequires an Agent Identity registry endpoint parent\n(`google_agent_registry_*` — skip-noted); not standalone-project\napplyable on terradart-validate.',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_agent_registry_endpoint_iam_policy',
+    className: 'GoogleIapAgentRegistryEndpointIamPolicy',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iap_agent_registry_endpoint_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'endpointId',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_agent_registry_endpoint_iam_policy`.\n\nAuthoritative IAM policy for an IAP Agent Registry **endpoint**.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleIapAgentRegistryEndpointIamMember] for single-principal grants.\nDeferred with the Agent Identity registry endpoint parent (skip-noted).',
+  ),
+  CatalogEntry(
     tfType: 'google_iap_agent_registry_iam_binding',
     className: 'GoogleIapAgentRegistryIamBinding',
     barrel: 'iap',
@@ -14316,6 +14438,67 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_agent_registry_iam_policy`.\n\nAuthoritative IAM policy for the Identity-Aware Proxy **Agent Registry**\nat a regional location.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleIapAgentRegistryIamMember] for single-principal grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_agent_registry_mcp_server_iam_binding',
+    className: 'GoogleIapAgentRegistryMcpServerIamBinding',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iap_agent_registry_mcp_server_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'mcpServerId',
+      'role',
+      'members',
+      'location',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_agent_registry_mcp_server_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP Agent Registry\n**MCP server**.\n\nReplaces the entire member list for that role. Prefer\n[GoogleIapAgentRegistryMcpServerIamMember] for additive grants. Deferred\nwith the Agent Identity registry MCP server parent (skip-noted).',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_agent_registry_mcp_server_iam_member',
+    className: 'GoogleIapAgentRegistryMcpServerIamMember',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iap_agent_registry_mcp_server_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'mcpServerId',
+      'role',
+      'member',
+      'location',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_agent_registry_mcp_server_iam_member`.\n\nNon-authoritative IAM member on an Identity-Aware Proxy Agent Registry\n**MCP server**.\n\nRequires an Agent Identity registry MCP server parent\n(`google_agent_registry_*` — skip-noted); not standalone-project\napplyable on terradart-validate.',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_agent_registry_mcp_server_iam_policy',
+    className: 'GoogleIapAgentRegistryMcpServerIamPolicy',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iap_agent_registry_mcp_server_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'mcpServerId',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_agent_registry_mcp_server_iam_policy`.\n\nAuthoritative IAM policy for an IAP Agent Registry **MCP server**.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleIapAgentRegistryMcpServerIamMember] for single-principal grants.\nDeferred with the Agent Identity registry MCP server parent (skip-noted).',
   ),
   CatalogEntry(
     tfType: 'google_iap_app_engine_service_iam_binding',

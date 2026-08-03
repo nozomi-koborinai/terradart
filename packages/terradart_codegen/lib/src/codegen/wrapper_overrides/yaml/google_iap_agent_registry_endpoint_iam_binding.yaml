@@ -1,0 +1,19 @@
+outputDir: iap
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on an IAP Agent Registry
+  /// **endpoint**.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleIapAgentRegistryEndpointIamMember] for additive grants. Deferred
+  /// with the Agent Identity registry endpoint parent (skip-noted).
+
+paramOrder:
+  - endpoint_id
+  - role
+  - members
+  - location
+  - project
+  - condition

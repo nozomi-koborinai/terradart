@@ -4,12 +4,30 @@
 /// IAM for App Engine and external HTTPS load balancer backend services.
 library;
 
+export 'src/iap/google_iap_agent_registry_agent_iam_binding.dart'
+    show GoogleIapAgentRegistryAgentIamBinding;
+export 'src/iap/google_iap_agent_registry_agent_iam_member.dart'
+    show GoogleIapAgentRegistryAgentIamMember;
+export 'src/iap/google_iap_agent_registry_agent_iam_policy.dart'
+    show GoogleIapAgentRegistryAgentIamPolicy;
+export 'src/iap/google_iap_agent_registry_endpoint_iam_binding.dart'
+    show GoogleIapAgentRegistryEndpointIamBinding;
+export 'src/iap/google_iap_agent_registry_endpoint_iam_member.dart'
+    show GoogleIapAgentRegistryEndpointIamMember;
+export 'src/iap/google_iap_agent_registry_endpoint_iam_policy.dart'
+    show GoogleIapAgentRegistryEndpointIamPolicy;
 export 'src/iap/google_iap_agent_registry_iam_binding.dart'
     show GoogleIapAgentRegistryIamBinding;
 export 'src/iap/google_iap_agent_registry_iam_member.dart'
     show GoogleIapAgentRegistryIamMember;
 export 'src/iap/google_iap_agent_registry_iam_policy.dart'
     show GoogleIapAgentRegistryIamPolicy;
+export 'src/iap/google_iap_agent_registry_mcp_server_iam_binding.dart'
+    show GoogleIapAgentRegistryMcpServerIamBinding;
+export 'src/iap/google_iap_agent_registry_mcp_server_iam_member.dart'
+    show GoogleIapAgentRegistryMcpServerIamMember;
+export 'src/iap/google_iap_agent_registry_mcp_server_iam_policy.dart'
+    show GoogleIapAgentRegistryMcpServerIamPolicy;
 export 'src/iap/google_iap_app_engine_service_iam_binding.dart'
     show GoogleIapAppEngineServiceIamBinding;
 export 'src/iap/google_iap_app_engine_service_iam_member.dart'

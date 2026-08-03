@@ -1,0 +1,16 @@
+outputDir: iap
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for an IAP Agent Registry **agent**.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleIapAgentRegistryAgentIamMember] for single-principal grants.
+  /// Deferred with the Agent Identity registry agent parent (skip-noted).
+
+paramOrder:
+  - agent_id
+  - policy_data
+  - location
+  - project

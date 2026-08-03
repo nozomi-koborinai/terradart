@@ -519,6 +519,15 @@ GoogleIapWebTypeAppEngineIamPolicy: iam-adjunct-debt: sibling GoogleIapWebTypeAp
 GoogleIapWebBackendServiceIamPolicy: iam-adjunct-debt: sibling GoogleIapWebBackendServiceIamMember already in compute_lb_quickstart; authoritative policy not needed in smoke
 GoogleIapAgentRegistryIamBinding: iam-adjunct-debt: sibling GoogleIapAgentRegistryIamMember already in iam_quickstart; authoritative binding not needed in smoke
 GoogleIapAgentRegistryIamPolicy: iam-adjunct-debt: sibling GoogleIapAgentRegistryIamMember already in iam_quickstart; authoritative policy not needed in smoke
+GoogleIapAgentRegistryAgentIamMember: requires Agent Identity registry agent parent (google_agent_registry_* skip-noted); not standalone-project applyable on terradart-validate
+GoogleIapAgentRegistryAgentIamBinding: authoritative IAM binding; requires Agent Identity registry agent parent (skip-noted); deferred with sibling member
+GoogleIapAgentRegistryAgentIamPolicy: authoritative IAM policy; requires Agent Identity registry agent parent (skip-noted); deferred with sibling member
+GoogleIapAgentRegistryEndpointIamMember: requires Agent Identity registry endpoint parent (google_agent_registry_* skip-noted); not standalone-project applyable on terradart-validate
+GoogleIapAgentRegistryEndpointIamBinding: authoritative IAM binding; requires Agent Identity registry endpoint parent (skip-noted); deferred with sibling member
+GoogleIapAgentRegistryEndpointIamPolicy: authoritative IAM policy; requires Agent Identity registry endpoint parent (skip-noted); deferred with sibling member
+GoogleIapAgentRegistryMcpServerIamMember: requires Agent Identity registry MCP server parent (google_agent_registry_* skip-noted); not standalone-project applyable on terradart-validate
+GoogleIapAgentRegistryMcpServerIamBinding: authoritative IAM binding; requires Agent Identity registry MCP server parent (skip-noted); deferred with sibling member
+GoogleIapAgentRegistryMcpServerIamPolicy: authoritative IAM policy; requires Agent Identity registry MCP server parent (skip-noted); deferred with sibling member
 GoogleLoggingLogViewIamBinding: iam-adjunct-debt: sibling GoogleLoggingLogViewIamMember already in ops_quickstart; authoritative binding not needed in smoke
 GoogleLoggingLogViewIamPolicy: iam-adjunct-debt: sibling GoogleLoggingLogViewIamMember already in ops_quickstart; authoritative policy not needed in smoke
 GoogleGkeBackupBackupPlanIamBinding: iam-adjunct-debt: sibling GoogleGkeBackupBackupPlanIamMember already in gke_quickstart; authoritative binding not needed in smoke
