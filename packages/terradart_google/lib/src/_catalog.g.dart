@@ -10438,6 +10438,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_dataproc_cluster`.\n\nDataproc **cluster** — managed Apache Hadoop / Spark VMs (classic) or\na Dataproc-on-GKE virtual cluster.\n\n**Cost:** Cloud Billing Catalog service `363B-8851-170D` currently\nlists **Serverless** SKUs only in us-central1 (e.g. Batch DCU\n`EC7A-EF05-537E` **\$0.06/h**; Interactive DCU `A486-6040-07FE`\n**\$0.089/h**) — **no classic cluster premium SKU** after MCP\n`list_skus`. Classic clusters still **materialize GCE VMs** (plus\nDataproc premium per docs) while the cluster exists; destroy stops\nthose charges. Too expensive for apply-smoke — factories ship\nwithout a quickstart.\n\nProvide [clusterConfig] (classic) or [virtualClusterConfig]\n(Dataproc on GKE). Enable `dataproc.googleapis.com` via\n[GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleDataprocCluster(\n  localName: \'spark\',\n  name: TfArg.literal(\'terradart-dataproc\'),\n  region: TfArg.literal(\'us-central1\'),\n  clusterConfig: DataprocClusterClusterConfig(\n    masterConfig: DataprocClusterClusterConfigMasterConfig(\n      numInstances: TfArg.literal(1),\n      machineType: TfArg.literal(\'e2-standard-4\'),\n    ),\n    workerConfig: DataprocClusterClusterConfigWorkerConfig(\n      numInstances: TfArg.literal(2),\n      machineType: TfArg.literal(\'e2-standard-4\'),\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_dataproc_cluster_iam_binding',
+    className: 'GoogleDataprocClusterIamBinding',
+    barrel: 'dataproc',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_dataproc_cluster_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'cluster',
+      'role',
+      'members',
+      'region',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataproc_cluster_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataproc cluster.\n\nReplaces the entire member list for that role. Prefer\n[GoogleDataprocClusterIamMember] for additive grants. Deferred with\nthe never_apply Dataproc cluster (no apply-smoke quickstart).',
+  ),
+  CatalogEntry(
     tfType: 'google_dataproc_cluster_iam_member',
     className: 'GoogleDataprocClusterIamMember',
     barrel: 'dataproc',
@@ -10456,6 +10476,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataproc_cluster_iam_member`.\n\nNon-authoritative IAM member on a Dataproc cluster.\n\nDeferred with the never_apply Dataproc cluster (no apply-smoke\nquickstart).',
+  ),
+  CatalogEntry(
+    tfType: 'google_dataproc_cluster_iam_policy',
+    className: 'GoogleDataprocClusterIamPolicy',
+    barrel: 'dataproc',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_dataproc_cluster_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'cluster',
+      'policyData',
+      'region',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataproc_cluster_iam_policy`.\n\nAuthoritative IAM policy for a Dataproc cluster.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleDataprocClusterIamMember] for single-principal grants.\nDeferred with the never_apply Dataproc cluster (no apply-smoke\nquickstart).',
   ),
   CatalogEntry(
     tfType: 'google_dataproc_gdc_application_environment',
@@ -13238,6 +13276,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_gke_backup_restore_plan`.\n\nRepresents a Restore Plan instance.\n\nDefines a **GKE restore plan** — restores workloads from a\n[GoogleGkeBackupBackupPlan] into a [GoogleContainerCluster].\n\nRequired identity:\n- [localName]: Terraform local name.\n- `name`: restore plan ID (unique per project/location).\n- `location`: GCP region (e.g. `\'asia-northeast1\'`).\n- `backupPlan`: source plan — `TfArg.ref(backupPlan.nameRef)`.\n- `cluster`: target cluster — `TfArg.ref(cluster.id)`.',
   ),
   CatalogEntry(
+    tfType: 'google_gke_backup_restore_plan_iam_binding',
+    className: 'GoogleGkeBackupRestorePlanIamBinding',
+    barrel: 'gke_backup',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_gke_backup_restore_plan_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'members',
+      'location',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_gke_backup_restore_plan_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a GKE Backup restore\nplan.\n\nReplaces the entire member list for that role. Prefer\n[GoogleGkeBackupRestorePlanIamMember] for additive grants. Resource-level\nsetIamPolicy on restore plans has failed apply-smoke with 400; ships\ndebt-only with the sibling member.',
+  ),
+  CatalogEntry(
     tfType: 'google_gke_backup_restore_plan_iam_member',
     className: 'GoogleGkeBackupRestorePlanIamMember',
     barrel: 'gke_backup',
@@ -13256,6 +13315,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_gke_backup_restore_plan_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_gke_backup_restore_plan_iam_policy',
+    className: 'GoogleGkeBackupRestorePlanIamPolicy',
+    barrel: 'gke_backup',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_gke_backup_restore_plan_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_gke_backup_restore_plan_iam_policy`.\n\nAuthoritative IAM policy for a GKE Backup restore plan.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleGkeBackupRestorePlanIamMember] for single-principal grants.\nResource-level setIamPolicy on restore plans has failed apply-smoke with\n400; ships debt-only with the sibling member.',
   ),
   CatalogEntry(
     tfType: 'google_gke_hub_feature',
@@ -21486,6 +21563,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_workbench_instance`.\n\nA Workbench instance.\n\nVertex AI Workbench **instance** — the current user-managed notebook\nVM API (`google_notebooks_instance` is deprecated in favor of this).\n\n**Cost:** Cloud Billing Catalog service `D73B-5EEA-8215` bills Workbench\n**management fees + GCE usage** while the VM runs (us-central1 N1\nmanagement CPU SKU `6196-1C27-5E30` **\$0.0063222/h** + N1 usage CPU\n`9027-15FF-8BFE` **\$0.0379332/h** + RAM/disk). Destroy stops charges.\nToo expensive for apply-smoke — factories ship without a quickstart.\n\nConfigure the VM via [gceSetup] (machine type, image, disks, network).\nEnable `notebooks.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleWorkbenchInstance(\n  localName: \'wb\',\n  name: TfArg.literal(\'terradart-wb\'),\n  location: TfArg.literal(\'us-central1-a\'),\n  gceSetup: WorkbenchInstanceGceSetup(\n    machineType: TfArg.literal(\'n1-standard-1\'),\n    vmImage: WorkbenchInstanceGceSetupVmImage(\n      project: TfArg.literal(\'cloud-notebooks-managed\'),\n      family: TfArg.literal(\'workbench-instances\'),\n    ),\n  ),\n  desiredState: TfArg.literal(\'STOPPED\'),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_workbench_instance_iam_binding',
+    className: 'GoogleWorkbenchInstanceIamBinding',
+    barrel: 'workbench',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_workbench_instance_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'members',
+      'location',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_workbench_instance_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Vertex AI Workbench\ninstance.\n\nReplaces the entire member list for that role. Prefer\n[GoogleWorkbenchInstanceIamMember] for additive grants. Deferred with\nthe never_apply Workbench instance (no apply-smoke quickstart).',
+  ),
+  CatalogEntry(
     tfType: 'google_workbench_instance_iam_member',
     className: 'GoogleWorkbenchInstanceIamMember',
     barrel: 'workbench',
@@ -21504,6 +21601,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_workbench_instance_iam_member`.\n\nNon-authoritative IAM member on a Vertex AI Workbench instance.\n\nDeferred with the never_apply Workbench instance (no apply-smoke\nquickstart).',
+  ),
+  CatalogEntry(
+    tfType: 'google_workbench_instance_iam_policy',
+    className: 'GoogleWorkbenchInstanceIamPolicy',
+    barrel: 'workbench',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_workbench_instance_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_workbench_instance_iam_policy`.\n\nAuthoritative IAM policy for a Vertex AI Workbench instance.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleWorkbenchInstanceIamMember] for single-principal grants.\nDeferred with the never_apply Workbench instance (no apply-smoke\nquickstart).',
   ),
   CatalogEntry(
     tfType: 'google_workflows_workflow',

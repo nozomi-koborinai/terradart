@@ -1,0 +1,19 @@
+outputDir: workbench
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Vertex AI Workbench
+  /// instance.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleWorkbenchInstanceIamMember] for additive grants. Deferred with
+  /// the never_apply Workbench instance (no apply-smoke quickstart).
+
+paramOrder:
+  - name
+  - role
+  - members
+  - location
+  - project
+  - condition

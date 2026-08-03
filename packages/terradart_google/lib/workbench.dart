@@ -25,5 +25,9 @@ export 'src/workbench/google_workbench_instance.dart'
         WorkbenchInstanceGceSetupServiceAccounts,
         WorkbenchInstanceGceSetupShieldedInstanceConfig,
         WorkbenchInstanceGceSetupVmImage;
+export 'src/workbench/google_workbench_instance_iam_binding.dart'
+    show GoogleWorkbenchInstanceIamBinding;
 export 'src/workbench/google_workbench_instance_iam_member.dart'
     show GoogleWorkbenchInstanceIamMember;
+export 'src/workbench/google_workbench_instance_iam_policy.dart'
+    show GoogleWorkbenchInstanceIamPolicy;
