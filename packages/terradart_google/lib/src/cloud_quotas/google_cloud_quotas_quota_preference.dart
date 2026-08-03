@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_cloud_quotas_quota_preference`.
 const Set<String> _googleCloudQuotasQuotaPreferenceSensitive = <String>{};
 
+/// Quota safety checks that may be skipped on create/update.
+enum CloudQuotasQuotaPreferenceIgnoreSafetyChecks implements TerraformEnum {
+  unspecified('QUOTA_SAFETY_CHECK_UNSPECIFIED'),
+  decreaseBelowUsage('QUOTA_DECREASE_BELOW_USAGE'),
+  decreasePercentageTooHigh('QUOTA_DECREASE_PERCENTAGE_TOO_HIGH');
+
+  const CloudQuotasQuotaPreferenceIgnoreSafetyChecks(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `quota_config` block of
 /// `google_cloud_quotas_quota_preference` (derived from provider schema).
 @immutable
@@ -54,7 +65,7 @@ final class GoogleCloudQuotasQuotaPreference extends Resource {
     TfArg<Map<String, String>>? dimensions,
     TfArg<String>? contactEmail,
     TfArg<String>? justification,
-    TfArg<String>? ignoreSafetyChecks,
+    TfArg<CloudQuotasQuotaPreferenceIgnoreSafetyChecks>? ignoreSafetyChecks,
     super.lifecycle,
     super.dependsOn,
   }) : super(

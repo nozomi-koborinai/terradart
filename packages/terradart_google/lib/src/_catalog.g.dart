@@ -4814,7 +4814,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'justification',
       'ignoreSafetyChecks',
     ],
-    nestedTypes: <String>['CloudQuotasQuotaPreferenceQuotaConfig'],
+    nestedTypes: <String>[
+      'CloudQuotasQuotaPreferenceIgnoreSafetyChecks',
+      'CloudQuotasQuotaPreferenceQuotaConfig',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_cloud_quotas_quota_preference`.\n\nQuotaPreference represents the preferred quota configuration specified for a\nproject, folder or organization. There is only one QuotaPreference resource\nfor a quota value targeting a unique set of dimensions.\n\nCloud Quotas **quota preference** — preferred quota value for one\nservice / quota id (optionally dimensioned).\n\n**Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU after MCP\nlookup (`list_services` Cloud Quotas / Quota → empty). billing-behavior:\npreference metadata — no existence/hourly charge. Provider MM sets\n`exclude_delete: true` — Terraform **cannot destroy** the preference,\nso apply-smoke would strand it forever (`never_apply`). Ships without\na quickstart (`tool/example_debt.yaml`).',

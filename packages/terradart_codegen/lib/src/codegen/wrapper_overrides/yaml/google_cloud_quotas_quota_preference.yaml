@@ -7,6 +7,21 @@ deriveEnums: true
 extraImports:
   - "import 'package:meta/meta.dart';"
 
+dartTypeOverrides:
+  ignore_safety_checks: CloudQuotasQuotaPreferenceIgnoreSafetyChecks
+
+prelude: |
+  /// Quota safety checks that may be skipped on create/update.
+  enum CloudQuotasQuotaPreferenceIgnoreSafetyChecks implements TerraformEnum {
+    unspecified('QUOTA_SAFETY_CHECK_UNSPECIFIED'),
+    decreaseBelowUsage('QUOTA_DECREASE_BELOW_USAGE'),
+    decreasePercentageTooHigh('QUOTA_DECREASE_PERCENTAGE_TOO_HIGH');
+
+    const CloudQuotasQuotaPreferenceIgnoreSafetyChecks(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
 curatedDoc: |-
   /// Cloud Quotas **quota preference** — preferred quota value for one
   /// service / quota id (optionally dimensioned).

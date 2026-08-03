@@ -52,7 +52,7 @@ final class GoogleCloudQuotasQuotaAdjusterSettings extends Resource {
 
   GoogleCloudQuotasQuotaAdjusterSettings({
     required super.localName,
-    required TfArg<String> enablement,
+    required TfArg<CloudQuotasQuotaAdjusterSettingsEnablement> enablement,
     TfArg<String>? parent,
     super.lifecycle,
     super.dependsOn,

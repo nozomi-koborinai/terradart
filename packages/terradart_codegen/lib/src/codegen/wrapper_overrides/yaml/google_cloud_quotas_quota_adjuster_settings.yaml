@@ -3,6 +3,9 @@ deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
 
+dartTypeOverrides:
+  enablement: CloudQuotasQuotaAdjusterSettingsEnablement
+
 curatedDoc: |-
   /// Cloud Quotas **quota adjuster settings** — project-singleton toggle
   /// for automatic quota adjustment (`ENABLED` / `DISABLED`).

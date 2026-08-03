@@ -11,5 +11,6 @@ export 'src/cloud_quotas/google_cloud_quotas_quota_adjuster_settings.dart'
         GoogleCloudQuotasQuotaAdjusterSettings;
 export 'src/cloud_quotas/google_cloud_quotas_quota_preference.dart'
     show
+        CloudQuotasQuotaPreferenceIgnoreSafetyChecks,
         CloudQuotasQuotaPreferenceQuotaConfig,
         GoogleCloudQuotasQuotaPreference;
