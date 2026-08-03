@@ -1,0 +1,39 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Compute Engine **global VM extension policy** — project-scoped policy
+  /// that installs / configures VM extensions (for example Ops Agent) across
+  /// selected instances, driven by a rollout plan.
+  ///
+  /// **Cost / apply:** Policy metadata only. Cloud Billing Catalog service
+  /// `6F81-5844-456A` (Compute Engine) has no SKU for extension / VM
+  /// extension policy (gcp-cost `list_skus` keyword=extension → 0). Creating
+  /// or deleting the policy does not provision VMs. Ships without a
+  /// quickstart (`tool/example_debt.yaml`); the zonal sibling is covered by
+  /// `compute_quickstart`.
+  ///
+  /// Inside [rolloutOperation].rolloutInput, set exactly one of `name`
+  /// (custom [GoogleComputeRolloutPlan]) or `predefinedRolloutPlan`.
+  /// Requires [name], [extensionPolicies], and [rolloutOperation]. Enable
+  /// `compute.googleapis.com` via [GoogleProjectService] before apply.
+
+paramOrder:
+  - name
+  - description
+  - priority
+  - extension_policies
+  - instance_selectors
+  - rollout_operation
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
