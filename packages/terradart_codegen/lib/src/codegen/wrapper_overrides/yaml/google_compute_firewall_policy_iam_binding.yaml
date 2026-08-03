@@ -1,0 +1,17 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a hierarchical
+  /// firewall policy.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleComputeFirewallPolicyIamMember] for additive grants. Deferred
+  /// with the org-scoped policy (no apply-smoke quickstart).
+
+paramOrder:
+  - name
+  - role
+  - members
+  - condition

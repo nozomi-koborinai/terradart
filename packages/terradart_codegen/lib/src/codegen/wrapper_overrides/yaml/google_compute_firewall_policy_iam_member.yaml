@@ -1,0 +1,15 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Non-authoritative IAM member on a hierarchical firewall policy.
+  ///
+  /// Requires an org/folder [GoogleComputeFirewallPolicy] parent — deferred
+  /// with the org-scoped policy (no apply-smoke quickstart).
+
+paramOrder:
+  - name
+  - role
+  - member
+  - condition

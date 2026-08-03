@@ -1,0 +1,16 @@
+outputDir: compute
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Associates a hierarchical [GoogleComputeFirewallPolicy] with a folder,
+  /// organization, or network attachment target.
+  ///
+  /// Org-scoped parent path — not standalone-project applyable on
+  /// terradart-validate (ships via `tool/example_debt.yaml`).
+
+paramOrder:
+  - name
+  - firewall_policy
+  - attachment_target
+  - deletion_policy

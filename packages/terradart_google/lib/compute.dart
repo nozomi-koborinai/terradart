@@ -107,6 +107,26 @@ export 'src/compute/google_compute_firewall.dart'
         FirewallDirection,
         FirewallLogMetadata,
         GoogleComputeFirewall;
+export 'src/compute/google_compute_firewall_policy.dart'
+    show GoogleComputeFirewallPolicy;
+export 'src/compute/google_compute_firewall_policy_association.dart'
+    show GoogleComputeFirewallPolicyAssociation;
+export 'src/compute/google_compute_firewall_policy_iam_binding.dart'
+    show GoogleComputeFirewallPolicyIamBinding;
+export 'src/compute/google_compute_firewall_policy_iam_member.dart'
+    show GoogleComputeFirewallPolicyIamMember;
+export 'src/compute/google_compute_firewall_policy_iam_policy.dart'
+    show GoogleComputeFirewallPolicyIamPolicy;
+export 'src/compute/google_compute_firewall_policy_rule.dart'
+    show
+        ComputeFirewallPolicyRuleDirection,
+        ComputeFirewallPolicyRuleMatch,
+        ComputeFirewallPolicyRuleMatchDestNetworkContext,
+        ComputeFirewallPolicyRuleMatchLayer4Configs,
+        ComputeFirewallPolicyRuleMatchSrcNetworkContext,
+        ComputeFirewallPolicyRuleMatchSrcSecureTags,
+        ComputeFirewallPolicyRuleTargetSecureTags,
+        GoogleComputeFirewallPolicyRule;
 export 'src/compute/google_compute_forwarding_rule.dart'
     show
         ComputeForwardingRuleForwardingRuleServiceDirectoryRegistration,

@@ -416,6 +416,12 @@ google_compute_instance_iam_policy: safe  # billing-behavior: IAM policy only �
 google_compute_instance_group_manager: sweep_only  # gcp-cost: no Cloud Billing Catalog SKU for the manager object, BUT a MIG materializes member VMs (target_size / stateful / bulk per-instance configs) that bill while applied; example compute_quickstart already in apply_smoke_pr_skip.yaml
 google_compute_instance_template: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Compute 6F81-5844-456A keyword template); billing-behavior: instance template metadata only
 google_compute_network: safe  # apply-verified safe (existing example)
+google_compute_firewall_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU (list_services Compute Engine 6F81-5844-456A + Network Security E749-01A2-AE1F; list_skus keyword firewall/Network Firewall/Cloud NGFW/Hierarchical → 0); billing-behavior: hierarchical firewall policy is configuration-only — no existence or hourly charge; destroy removes the policy (org/folder parent required — debt-only on terradart-validate)
+google_compute_firewall_policy_association: safe  # gcp-cost: no Cloud Billing Catalog SKU (same Compute Engine / Network Security lookup; no firewall/NGFW SKUs); billing-behavior: association is binding metadata — no separate billing; destroy removes the association
+google_compute_firewall_policy_rule: safe  # gcp-cost: no Cloud Billing Catalog SKU (same Compute Engine / Network Security lookup; no firewall/NGFW SKUs); billing-behavior: rule is child config on the policy — no separate billing; destroy removes the rule
+google_compute_firewall_policy_iam_member: safe  # billing-behavior: IAM binding — no resource charge
+google_compute_firewall_policy_iam_binding: safe  # billing-behavior: IAM binding — no resource charge
+google_compute_firewall_policy_iam_policy: safe  # billing-behavior: IAM policy — no resource charge
 google_compute_network_firewall_policy: safe  # apply-verified safe (existing example)
 google_compute_network_firewall_policy_iam_binding: safe  # billing-behavior: IAM binding on a network firewall policy; sets policy only, zero billing
 google_compute_network_firewall_policy_iam_member: safe  # billing-behavior: IAM binding on a network firewall policy; sets policy only, zero billing
