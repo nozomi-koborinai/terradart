@@ -1087,7 +1087,15 @@ files:
     upstream: mmv1/products/securesourcemanager/Repository.yaml
   google_secure_source_manager_instance_iam_member:
     upstream: null  # IAM adjunct
+  google_secure_source_manager_instance_iam_binding:
+    upstream: null  # IAM adjunct
+  google_secure_source_manager_instance_iam_policy:
+    upstream: null  # IAM adjunct
   google_secure_source_manager_repository_iam_member:
+    upstream: null  # IAM adjunct
+  google_secure_source_manager_repository_iam_binding:
+    upstream: null  # IAM adjunct
+  google_secure_source_manager_repository_iam_policy:
     upstream: null  # IAM adjunct
 
   google_secret_manager_secret_iam_member:

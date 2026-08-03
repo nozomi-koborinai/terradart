@@ -132,6 +132,10 @@ GoogleSecureSourceManagerInstance: gcp-cost Fixed Instance Pricing us-central1 S
 GoogleSecureSourceManagerRepository: requires a parent GoogleSecureSourceManagerInstance (never_apply); deferred with the instance
 GoogleSecureSourceManagerInstanceIamMember: requires a parent GoogleSecureSourceManagerInstance (never_apply); deferred with the instance
 GoogleSecureSourceManagerRepositoryIamMember: requires a parent repository on a never_apply instance; deferred with the instance
+GoogleSecureSourceManagerInstanceIamBinding: authoritative IAM binding; requires a parent GoogleSecureSourceManagerInstance (never_apply); deferred with the instance
+GoogleSecureSourceManagerInstanceIamPolicy: authoritative IAM policy; requires a parent GoogleSecureSourceManagerInstance (never_apply); deferred with the instance
+GoogleSecureSourceManagerRepositoryIamBinding: authoritative IAM binding; requires a parent repository on a never_apply instance; deferred with the instance
+GoogleSecureSourceManagerRepositoryIamPolicy: authoritative IAM policy; requires a parent repository on a never_apply instance; deferred with the instance
 
 # Managed Service for Apache Kafka clusters bill Data Compute Units hourly
 # (us-central1 SKU 2837-8C0C-F431 $0.09/h) plus storage; Connect clusters bill

@@ -19464,6 +19464,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_secure_source_manager_instance`.\n\nInstances are deployed to an available Google Cloud region and are\naccessible via their web interface.\n\nSecure Source Manager **instance** — a regional Git hosting deployment\nwith a web UI.\n\n**Cost:** Cloud Billing Catalog lists fixed-instance SKUs (e.g. us-central1\n`9B40-B4AA-D8EE` at **\$1000/month**). An instance bills while it exists;\ndestroy stops the charge. Do not leave one running in apply-smoke.\n\nEnable `securesourcemanager.googleapis.com` via [GoogleProjectService]\nbefore apply. Prefer [deletionPolicy] `DELETE` when the instance is\ndisposable.\n\nExample:\n```dart\nGoogleSecureSourceManagerInstance(\n  localName: \'git\',\n  location: TfArg.literal(\'us-central1\'),\n  instanceId: TfArg.literal(\'terradart-ssm\'),\n  deletionPolicy: TfArg.literal(\'DELETE\'),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_secure_source_manager_instance_iam_binding',
+    className: 'GoogleSecureSourceManagerInstanceIamBinding',
+    barrel: 'secure',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_secure_source_manager_instance_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'instanceId',
+      'role',
+      'members',
+      'location',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_secure_source_manager_instance_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Secure Source Manager\ninstance.\n\nReplaces the entire member list for that role. Prefer\n[GoogleSecureSourceManagerInstanceIamMember] for additive grants.\nDeferred with the never_apply SSM instance (no apply-smoke quickstart).',
+  ),
+  CatalogEntry(
     tfType: 'google_secure_source_manager_instance_iam_member',
     className: 'GoogleSecureSourceManagerInstanceIamMember',
     barrel: 'secure',
@@ -19483,6 +19504,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_secure_source_manager_instance_iam_member`.\n\nNon-authoritative IAM member on a Secure Source Manager instance.\n\n[instanceId] is the short instance id (path segment), not the full\nresource name.',
+  ),
+  CatalogEntry(
+    tfType: 'google_secure_source_manager_instance_iam_policy',
+    className: 'GoogleSecureSourceManagerInstanceIamPolicy',
+    barrel: 'secure',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_secure_source_manager_instance_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'instanceId',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_secure_source_manager_instance_iam_policy`.\n\nAuthoritative IAM policy for a Secure Source Manager instance.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleSecureSourceManagerInstanceIamMember] for single-principal\ngrants. Deferred with the never_apply SSM instance (no apply-smoke\nquickstart).',
   ),
   CatalogEntry(
     tfType: 'google_secure_source_manager_repository',
@@ -19506,6 +19546,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_secure_source_manager_repository`.\n\nRepositories store source code. It supports all Git SCM client commands and\nhas built-in pull requests and issue tracking. Both HTTPS and SSH\nauthentication are supported.\n\nSecure Source Manager **repository** — a Git repository on an\n[GoogleSecureSourceManagerInstance].\n\nPass the parent instance\'s resource [name] (not only the short id) to\n[instance]. Optional [initialConfig] seeds default branch / license /\nREADME on create.\n\nEnable `securesourcemanager.googleapis.com` before apply. Prefer\n[deletionPolicy] `DELETE` for disposable stacks.',
   ),
   CatalogEntry(
+    tfType: 'google_secure_source_manager_repository_iam_binding',
+    className: 'GoogleSecureSourceManagerRepositoryIamBinding',
+    barrel: 'secure',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_secure_source_manager_repository_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'repositoryId',
+      'role',
+      'members',
+      'location',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_secure_source_manager_repository_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Secure Source Manager\nrepository.\n\nReplaces the entire member list for that role. Prefer\n[GoogleSecureSourceManagerRepositoryIamMember] for additive grants.\nDeferred with the never_apply SSM instance (no apply-smoke quickstart).',
+  ),
+  CatalogEntry(
     tfType: 'google_secure_source_manager_repository_iam_member',
     className: 'GoogleSecureSourceManagerRepositoryIamMember',
     barrel: 'secure',
@@ -19525,6 +19586,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_secure_source_manager_repository_iam_member`.\n\nNon-authoritative IAM member on a Secure Source Manager repository.\n\n[repositoryId] is the short repository id (path segment). Location and\nproject identify the parent when not taken from the provider default.',
+  ),
+  CatalogEntry(
+    tfType: 'google_secure_source_manager_repository_iam_policy',
+    className: 'GoogleSecureSourceManagerRepositoryIamPolicy',
+    barrel: 'secure',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_secure_source_manager_repository_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'repositoryId',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_secure_source_manager_repository_iam_policy`.\n\nAuthoritative IAM policy for a Secure Source Manager repository.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleSecureSourceManagerRepositoryIamMember] for single-principal\ngrants. Deferred with the never_apply SSM instance (no apply-smoke\nquickstart).',
   ),
   CatalogEntry(
     tfType: 'google_service_account',

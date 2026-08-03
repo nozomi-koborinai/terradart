@@ -1,0 +1,19 @@
+outputDir: secure
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Secure Source Manager
+  /// instance.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleSecureSourceManagerInstanceIamMember] for additive grants.
+  /// Deferred with the never_apply SSM instance (no apply-smoke quickstart).
+
+paramOrder:
+  - instance_id
+  - role
+  - members
+  - location
+  - project
+  - condition
