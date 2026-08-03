@@ -78,6 +78,7 @@ GoogleParameterManagerRegionalParameterVersion: regional parameter versions carr
 # surface (VPC / subnet / router / NAT / address / instance / disk /
 # filestore / IAM) and drops these because none can be provisioned
 # deterministically in the sweep.
+GoogleComputeGlobalVmExtensionPolicy: gcp-cost no Cloud Billing Catalog SKU (Compute Engine 6F81-5844-456A list_skus keyword=extension → 0); config-only global VM extension policy — deferred quickstart (zonal sibling covered by compute_quickstart)
 GoogleComputeSharedVpcHostProject: enabling a Shared VPC host needs an organization — "The project has no organization" on a standalone apply-smoke project
 GoogleComputeSharedVpcServiceProject: attaches a service project to a Shared VPC host, which requires an organization the standalone apply-smoke project lacks
 GoogleComputeInterconnect: a Dedicated Interconnect needs a real physical cross-connect (a provisioned circuit / customerName); it cannot be created in a bare project

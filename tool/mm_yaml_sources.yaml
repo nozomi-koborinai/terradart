@@ -708,6 +708,8 @@ files:
     upstream: mmv1/products/compute/GlobalForwardingRule.yaml
   google_compute_global_network_endpoint_group:
     upstream: mmv1/products/compute/GlobalNetworkEndpointGroup.yaml
+  google_compute_global_vm_extension_policy:
+    upstream: mmv1/products/compute/GlobalVmExtensionPolicy.yaml
   google_compute_health_check:
     upstream: mmv1/products/compute/HealthCheck.yaml
   google_compute_instance_group_manager:

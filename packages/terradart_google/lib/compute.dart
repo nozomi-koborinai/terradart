@@ -159,6 +159,14 @@ export 'src/compute/google_compute_global_network_endpoint_group.dart'
     show
         GlobalNetworkEndpointGroupType,
         GoogleComputeGlobalNetworkEndpointGroup;
+export 'src/compute/google_compute_global_vm_extension_policy.dart'
+    show
+        ComputeGlobalVmExtensionPolicyExtensionPolicies,
+        ComputeGlobalVmExtensionPolicyInstanceSelectors,
+        ComputeGlobalVmExtensionPolicyInstanceSelectorsLabelSelector,
+        ComputeGlobalVmExtensionPolicyRolloutOperation,
+        ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput,
+        GoogleComputeGlobalVmExtensionPolicy;
 export 'src/compute/google_compute_ha_vpn_gateway.dart'
     show
         ComputeHaVpnGatewayGatewayIpVersion,
