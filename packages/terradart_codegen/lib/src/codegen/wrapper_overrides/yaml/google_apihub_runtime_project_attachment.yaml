@@ -1,0 +1,26 @@
+outputDir: apihub
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// API Hub **runtime project attachment** — attaches a runtime GCP
+  /// project so API Hub can discover deployments there.
+  ///
+  /// **Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU after MCP
+  /// lookup (`list_services` API Hub → empty; Apigee `1C2D-8C78-EC58`
+  /// `list_skus` keyword Hub → 0). billing-behavior: attachment metadata
+  /// — no existence/hourly charge observed. Requires an API Hub host /
+  /// [GoogleApihubApiHubInstance] (never_apply undeletable singleton);
+  /// not standalone-project applyable on `terradart-validate`. **Never**
+  /// wire into apply-smoke.
+
+paramOrder:
+  - location
+  - runtime_project_attachment_id
+  - runtime_project
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

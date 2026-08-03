@@ -1,0 +1,24 @@
+outputDir: apihub
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// API Hub **host project registration** — registers the GCP project
+  /// that hosts the API Hub instance (consumer project for the catalog).
+  ///
+  /// **Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU after MCP
+  /// lookup (`list_services` API Hub → empty; Apigee `1C2D-8C78-EC58`
+  /// `list_skus` keyword Hub → 0). Provider MM sets `exclude_delete: true`
+  /// — Terraform **cannot destroy** the registration, so apply-smoke
+  /// would strand it forever (`never_apply`). Ships without a quickstart
+  /// (`tool/example_debt.yaml`).
+
+paramOrder:
+  - location
+  - host_project_registration_id
+  - gcp_project
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
