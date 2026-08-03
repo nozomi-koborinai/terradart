@@ -879,6 +879,12 @@ files:
     upstream: mmv1/products/chronicle/DataTableRow.yaml
   google_chronicle_parser_extension:
     upstream: mmv1/products/chronicle/ParserExtension.yaml
+  google_chronicle_feed:
+    upstream: mmv1/products/chronicle/Feed.yaml
+  google_chronicle_environment_group:
+    upstream: mmv1/products/chronicle/EnvironmentGroup.yaml
+  google_chronicle_big_query_export:
+    upstream: mmv1/products/chronicle/BigQueryExport.yaml
   google_integration_connectors_connection:
     upstream: mmv1/products/integrationconnectors/Connection.yaml
   google_integration_connectors_endpoint_attachment:
