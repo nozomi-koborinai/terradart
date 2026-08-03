@@ -117,6 +117,10 @@ final class GoogleComputeInterconnect extends Resource {
   TfRef<Map<String, String>> get effectiveLabels =>
       TfRef.attribute<Map<String, String>>(this, 'effective_labels');
 
+  /// Reference to `effective_location` attribute.
+  TfRef<String> get effectiveLocation =>
+      TfRef.attribute<String>(this, 'effective_location');
+
   /// Reference to `expected_outages` attribute.
   TfRef<List<Map<String, Object?>>> get expectedOutages =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'expected_outages');

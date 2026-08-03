@@ -17,6 +17,9 @@
 #       note: (optional, maintainer-added)
 
 entries:
+  - resource: google_agent_identity_auth_provider
+    detected_at: 2026-08-02
+    provider_version: 7.42.0
   - resource: google_agent_registry_binding
     detected_at: 2026-07-01
     provider_version: 7.39.0
@@ -29,6 +32,12 @@ entries:
     detected_at: 2026-07-01
     provider_version: 7.39.0
     note: skipped by wave-shipper — requires an existing Apigee organization/environment (not standalone-project applicable)
+  - resource: google_apihub_runtime_project_attachment
+    detected_at: 2026-08-02
+    provider_version: 7.42.0
+  - resource: google_chronicle_big_query_export
+    detected_at: 2026-08-02
+    provider_version: 7.42.0
   - resource: google_chronicle_data_export
     detected_at: 2026-07-19
     provider_version: 7.40.0
@@ -61,6 +70,9 @@ entries:
     detected_at: 2026-07-01
     provider_version: 7.39.0
     note: skipped by wave-shipper — requires a real Chronicle (Google SecOps) instance ID; placeholder UUID fails at apply time
+  - resource: google_cloud_quotas_quota_adjuster_settings
+    detected_at: 2026-08-02
+    provider_version: 7.42.0
   - resource: google_compute_firewall_policy_iam_binding
     detected_at: 2026-07-01
     provider_version: 7.39.0
@@ -73,10 +85,16 @@ entries:
     detected_at: 2026-07-01
     provider_version: 7.39.0
     note: skipped by wave-shipper — org-scoped parent (google_compute_firewall_policy requires organization parent)
+  - resource: google_compute_global_vm_extension_policy
+    detected_at: 2026-08-02
+    provider_version: 7.42.0
   - resource: google_compute_region_resize_request
     detected_at: 2026-07-01
     provider_version: 7.39.0
     note: skipped by wave-shipper — requires DWS-compatible regional MIG (A3 GPU / requested_run_duration); not applicable on terradart-validate e2 topology
+  - resource: google_compute_rollout_plan
+    detected_at: 2026-08-02
+    provider_version: 7.42.0
   - resource: google_iap_agent_registry_agent_iam_binding
     detected_at: 2026-07-19
     provider_version: 7.40.0
@@ -129,6 +147,12 @@ entries:
     detected_at: 2026-07-01
     provider_version: 7.39.0
     note: skipped by wave-shipper — requires parent google_oracle_database_cloud_exadata_infrastructure; oracle_exadata_quickstart is apply-smoke skip-listed (Oracle zone entitlement / live Exascale vault wiring — API rejects placeholder wiring on terradart-validate)
+  - resource: google_vector_search_data_object
+    detected_at: 2026-08-02
+    provider_version: 7.42.0
+  - resource: google_vertex_ai_persistent_resource
+    detected_at: 2026-08-02
+    provider_version: 7.42.0
   - resource: google_vertex_ai_semantic_governance_policy_engine
     detected_at: 2026-07-26
     provider_version: 7.41.0

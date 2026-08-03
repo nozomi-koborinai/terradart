@@ -62,6 +62,18 @@ final class GoogleGkeHubRolloutSequence extends Resource {
   /// Reference to `etag` attribute.
   TfRef<String> get etag => TfRef.attribute<String>(this, 'etag');
 
+  /// Reference to `operational_state` attribute.
+  TfRef<List<Map<String, Object?>>> get operationalState =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'operational_state');
+
+  /// Reference to `target_control_plane_version` attribute.
+  TfRef<String> get targetControlPlaneVersion =>
+      TfRef.attribute<String>(this, 'target_control_plane_version');
+
+  /// Reference to `target_node_version` attribute.
+  TfRef<String> get targetNodeVersion =>
+      TfRef.attribute<String>(this, 'target_node_version');
+
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');

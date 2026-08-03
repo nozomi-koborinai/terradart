@@ -16,4 +16,5 @@ export 'src/model_armor/google_model_armor_template.dart'
         ModelArmorTemplateFilterConfigSdpSettingsAdvancedConfig,
         ModelArmorTemplateFilterConfigSdpSettingsBasicConfig,
         ModelArmorTemplateTemplateMetadata,
+        ModelArmorTemplateTemplateMetadataFilterVersionSelector,
         ModelArmorTemplateTemplateMetadataMultiLanguageDetection;

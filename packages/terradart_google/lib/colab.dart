@@ -33,4 +33,12 @@ export 'src/colab/google_colab_runtime_template_iam_member.dart'
 export 'src/colab/google_colab_runtime_template_iam_policy.dart'
     show GoogleColabRuntimeTemplateIamPolicy;
 export 'src/colab/google_colab_schedule.dart'
-    show ColabScheduleDesiredState, GoogleColabSchedule;
+    show
+        ColabScheduleCreatePipelineJobRequest,
+        ColabScheduleCreatePipelineJobRequestPipelineJob,
+        ColabScheduleCreatePipelineJobRequestPipelineJobEncryptionSpec,
+        ColabScheduleCreatePipelineJobRequestPipelineJobPscInterfaceConfig,
+        ColabScheduleCreatePipelineJobRequestPipelineJobPscInterfaceConfigDnsPeeringConfigs,
+        ColabScheduleCreatePipelineJobRequestPipelineJobRuntimeConfig,
+        ColabScheduleDesiredState,
+        GoogleColabSchedule;

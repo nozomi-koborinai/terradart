@@ -3,6 +3,9 @@ deriveClassDoc: true
 deriveOutputGetters: true
 deriveNestedTypes: true
 
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
 dartTypeOverrides:
   desired_state: ColabScheduleDesiredState
 
