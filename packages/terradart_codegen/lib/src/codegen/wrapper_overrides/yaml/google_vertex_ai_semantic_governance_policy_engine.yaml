@@ -1,0 +1,39 @@
+outputDir: vertex_ai
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Vertex AI **Semantic Governance Policy Engine** (SGPE) — regional
+  /// singleton that provisions managed PSC networking plus a policy
+  /// decision point for Gemini Enterprise Agent Platform tool-call
+  /// governance.
+  ///
+  /// **Cost / apply:** No dedicated SGPE SKU in Cloud Billing Catalog
+  /// (Vertex AI `C7E2-9256-1C43` list_skus keyword=Semantic/Governance → 0).
+  /// Related Agent Platform Compute `D4E0-46FF-A0E0` (**$0.085/h** after
+  /// free tier), Memory `8184-BF16-D3F4` (**$0.009/GiBy.h** after free
+  /// tier), and Storage `1B9B-8D66-DD5E` (**$0.3/GiBy.mo** after free
+  /// tier) exist. Docs say Semantic Governance Policy billing commenced
+  /// 2026-08-01. Create/delete timeouts are **60m**; destroy deprovisions
+  /// to state `INACTIVE` (not 404). Existence vs usage billing for the
+  /// engine itself is unclear — ships `never_apply` /
+  /// `tool/example_debt.yaml` (no apply-smoke).
+  ///
+  /// Project×region singleton (at most one). Prefer setting [region]
+  /// explicitly (e.g. `us-central1`). Enable `aiplatform.googleapis.com`
+  /// via [GoogleProjectService] before apply. Semantic Governance Policies
+  /// and Agent Gateway routing are configured separately.
+
+paramOrder:
+  - region
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `state` attribute.
+    TfRef<String> get stateRef => TfRef.attribute<String>(this, 'state');

@@ -22241,6 +22241,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_vertex_ai_schedule`.\n\nAn online schedule that triggers running pipeline jobs or notebook execution\njobs.',
   ),
   CatalogEntry(
+    tfType: 'google_vertex_ai_semantic_governance_policy_engine',
+    className: 'GoogleVertexAiSemanticGovernancePolicyEngine',
+    barrel: 'vertex_ai',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_vertex_ai_semantic_governance_policy_engine`.',
+    constructorParams: <String>[
+      'localName',
+      'region',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_vertex_ai_semantic_governance_policy_engine`.\n\nA SemanticGovernancePolicyEngine (SGPE) is the managed, runtime evaluation\ninfrastructure for Semantic Governance Policies (SGP): the natural-language\nconstraints that govern an AI agent\'s tool calls. It is a project-level,\nregional singleton, so each project has at most one engine per region.\n\nProvisioning the engine sets up managed Private Service Connect (PSC)\nnetworking in your VPC and a policy decision point that the Agent Gateway\nconsults at runtime to allow or deny an agent\'s proposed tool calls. The\nSemantic Governance Policies themselves, and the Agent Gateway integration\nthat routes agent traffic through the engine, are configured separately and\nare not managed by this resource.\n\nReading an uninitialized or deprovisioned engine returns the singleton with\nstate INACTIVE rather than reporting it as absent.\n\nVertex AI **Semantic Governance Policy Engine** (SGPE) — regional\nsingleton that provisions managed PSC networking plus a policy\ndecision point for Gemini Enterprise Agent Platform tool-call\ngovernance.\n\n**Cost / apply:** No dedicated SGPE SKU in Cloud Billing Catalog\n(Vertex AI `C7E2-9256-1C43` list_skus keyword=Semantic/Governance → 0).\nRelated Agent Platform Compute `D4E0-46FF-A0E0` (**\$0.085/h** after\nfree tier), Memory `8184-BF16-D3F4` (**\$0.009/GiBy.h** after free\ntier), and Storage `1B9B-8D66-DD5E` (**\$0.3/GiBy.mo** after free\ntier) exist. Docs say Semantic Governance Policy billing commenced\n2026-08-01. Create/delete timeouts are **60m**; destroy deprovisions\nto state `INACTIVE` (not 404). Existence vs usage billing for the\nengine itself is unclear — ships `never_apply` /\n`tool/example_debt.yaml` (no apply-smoke).\n\nProject×region singleton (at most one). Prefer setting [region]\nexplicitly (e.g. `us-central1`). Enable `aiplatform.googleapis.com`\nvia [GoogleProjectService] before apply. Semantic Governance Policies\nand Agent Gateway routing are configured separately.',
+  ),
+  CatalogEntry(
     tfType: 'google_vertex_ai_tensorboard',
     className: 'GoogleVertexAiTensorboard',
     barrel: 'vertex_ai',

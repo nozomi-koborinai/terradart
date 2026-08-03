@@ -1637,6 +1637,8 @@ files:
     upstream: mmv1/products/vertexai/IndexEndpoint.yaml
   google_vertex_ai_index_endpoint_deployed_index:
     upstream: mmv1/products/vertexai/IndexEndpointDeployedIndex.yaml
+  google_vertex_ai_semantic_governance_policy_engine:
+    upstream: mmv1/products/vertexai/SemanticGovernancePolicyEngine.yaml
   google_vertex_ai_schedule:
     upstream: mmv1/products/vertexai/Schedule.yaml
   google_vertex_ai_tensorboard_experiment:
