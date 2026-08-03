@@ -70,7 +70,9 @@ barrels:
       /// end-to-end business functionality, plus host/service-project attachment.
   apihub:
     doc: |-
-      /// Apigee API Hub — project-singleton API Hub instances (catalog/control plane).
+      /// Apigee API Hub — host registration, project-singleton instance,
+      /// runtime attachments, curations, and catalog plugins. Host/instance
+      /// are never_apply (MM exclude_delete); siblings ship debt-only.
   apikeys:
     doc: |-
       /// API Keys: restrict Google Cloud API access by key.

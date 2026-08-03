@@ -278,6 +278,11 @@ GoogleParallelstoreInstance: gcp-cost Parallelstore 3450-1C42-A427 Scratch us-ce
 # destroy). No Cloud Billing Catalog SKU after MCP lookup. A quickstart would
 # strand the validate project — factory ships without an example.
 GoogleApihubApiHubInstance: gcp-cost no Cloud Billing Catalog SKU (list_services API Hub/apihub empty; Apigee 1C2D-8C78-EC58 Hub → 0) — never_apply undeletable project singleton; no applyable quickstart on terradart-validate
+GoogleApihubHostProjectRegistration: gcp-cost: no Cloud Billing Catalog SKU after MCP lookup (list_services API Hub → empty; Apigee 1C2D-8C78-EC58 list_skus keyword Hub → 0); MM exclude_delete — never_apply; no applyable quickstart on terradart-validate
+GoogleApihubRuntimeProjectAttachment: requires API Hub host / GoogleApihubApiHubInstance (never_apply undeletable singleton); not standalone-project applyable on terradart-validate
+GoogleApihubCuration: requires API Hub host scaffolding (GoogleApihubApiHubInstance never_apply); deferred with API Hub debt Wave
+GoogleApihubPlugin: requires API Hub host scaffolding (GoogleApihubApiHubInstance never_apply); deferred with API Hub debt Wave
+GoogleApihubPluginInstance: requires GoogleApihubPlugin + API Hub host scaffolding; deferred with API Hub debt Wave
 
 # Vertex AI Workbench notebook VMs bill management fee + GCE while running
 # (Notebooks D73B-5EEA-8215 N1 mgmt CPU us-central1 SKU 6196-1C27-5E30

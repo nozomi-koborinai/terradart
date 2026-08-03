@@ -1,49 +1,28 @@
-# tool/curation_backlog.yaml
-#
-# Append-only log of google_* resources detected in upstream provider schema
-# that are NOT yet curated in terradart_google. Maintained by the weekly
-# schema-bump workflow (.github/workflows/schema-bump.yml) — each cron run
-# appends any newly-detected resources here.
-#
-# Maintainers: when curating a resource (via Wave N), remove its entry from
-# this file in the same PR that introduces the curated wrapper. This file
-# is the single source of truth for "what's left to look at".
-#
-# Schema:
-#   entries:
-#     - resource: google_X_Y_Z
-#       detected_at: YYYY-MM-DD (date of the schema-bump PR that detected it)
-#       provider_version: 7.X.Y (the v7 release that introduced it)
-#       note: (optional, maintainer-added)
-
 entries:
-  - resource: google_apihub_runtime_project_attachment
-    detected_at: 2026-08-02
-    provider_version: 7.42.0
   - resource: google_cloud_quotas_quota_adjuster_settings
     detected_at: 2026-08-02
-    provider_version: 7.42.0
+    provider_version: '7.42.0'
   - resource: google_compute_global_vm_extension_policy
     detected_at: 2026-08-02
-    provider_version: 7.42.0
+    provider_version: '7.42.0'
   - resource: google_compute_region_resize_request
     detected_at: 2026-07-01
-    provider_version: 7.39.0
+    provider_version: '7.39.0'
     note: skipped by wave-shipper — requires DWS-compatible regional MIG (A3 GPU / requested_run_duration); not applicable on terradart-validate e2 topology
   - resource: google_compute_rollout_plan
     detected_at: 2026-08-02
-    provider_version: 7.42.0
+    provider_version: '7.42.0'
   - resource: google_network_services_agent_gateway
     detected_at: 2026-07-01
-    provider_version: 7.39.0
+    provider_version: '7.39.0'
     note: skipped by maintainer — provider example needs google_compute_network_attachment + agentregistry API + registries URI; sibling google_agent_registry_* already skip-noted (Agent Identity); google_managed/self_managed is an exactly_one_of sealed design; not standalone-project applyable on terradart-validate without that scaffolding
   - resource: google_vector_search_data_object
     detected_at: 2026-08-02
-    provider_version: 7.42.0
+    provider_version: '7.42.0'
   - resource: google_vertex_ai_persistent_resource
     detected_at: 2026-08-02
-    provider_version: 7.42.0
+    provider_version: '7.42.0'
   - resource: google_vertex_ai_semantic_governance_policy_engine
     detected_at: 2026-07-26
-    provider_version: 7.41.0
+    provider_version: '7.41.0'
     note: skipped by maintainer — managed PSC + policy-decision-point singleton (60m create/delete); Semantic Governance billing started 2026-08-01 per Gemini Enterprise Agent Platform docs; gcp-cost has no dedicated SGPE SKU but Agent Platform Compute/Memory/Storage SKUs exist; classified never_apply in apply_cost_denylist (do not apply-smoke); factory curation deferred
