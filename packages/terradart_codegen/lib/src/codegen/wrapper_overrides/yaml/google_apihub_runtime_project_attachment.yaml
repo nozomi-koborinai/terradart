@@ -2,9 +2,6 @@ outputDir: apihub
 deriveClassDoc: true
 deriveOutputGetters: true
 
-extraImports:
-  - "import 'package:meta/meta.dart';"
-
 curatedDoc: |-
   /// API Hub **runtime project attachment** — attaches a runtime GCP
   /// project so API Hub can discover deployments there.

@@ -2,9 +2,6 @@ outputDir: apihub
 deriveClassDoc: true
 deriveOutputGetters: true
 
-extraImports:
-  - "import 'package:meta/meta.dart';"
-
 curatedDoc: |-
   /// API Hub **host project registration** — registers the GCP project
   /// that hosts the API Hub instance (consumer project for the catalog).
