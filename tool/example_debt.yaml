@@ -168,6 +168,10 @@ GoogleWorkstationsWorkstationConfig: requires a parent GoogleWorkstationsWorksta
 GoogleWorkstationsWorkstation: gcp-cost Cloud Workstations instance VM (vCPU) management fee us-central1 SKU 8893-953D-5524 $0.05/h (+ Compute) — requires never_apply cluster; deferred with the cluster
 GoogleWorkstationsWorkstationConfigIamMember: requires a parent workstation config on a never_apply cluster; deferred with the cluster
 GoogleWorkstationsWorkstationIamMember: requires a parent workstation on a never_apply cluster; deferred with the cluster
+GoogleWorkstationsWorkstationConfigIamBinding: authoritative IAM binding; requires a parent workstation config on a never_apply cluster; deferred with the cluster
+GoogleWorkstationsWorkstationConfigIamPolicy: authoritative IAM policy; requires a parent workstation config on a never_apply cluster; deferred with the cluster
+GoogleWorkstationsWorkstationIamBinding: authoritative IAM binding; requires a parent workstation on a never_apply cluster; deferred with the cluster
+GoogleWorkstationsWorkstationIamPolicy: authoritative IAM policy; requires a parent workstation on a never_apply cluster; deferred with the cluster
 
 # Cloud Composer environments bill an environment fee while they exist
 # (us-central1 Small SKU 6EA4-3652-173E $0.35/h). A quickstart would force

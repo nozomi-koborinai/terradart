@@ -1,0 +1,19 @@
+outputDir: workstations
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Cloud Workstations workstation.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleWorkstationsWorkstationIamMember] for single-principal grants.
+  /// Deferred with the never_apply workstation cluster (no apply-smoke
+  /// quickstart).
+
+paramOrder:
+  - workstation_cluster_id
+  - workstation_config_id
+  - workstation_id
+  - policy_data
+  - location
+  - project

@@ -21487,6 +21487,28 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_workstations_workstation_config`.\n\nA set of configuration options describing how a workstation will be run.\nWorkstation configurations are intended to be shared across multiple\nworkstations.\n\nCloud Workstations **config** — machine image, disk, and timeout\ntemplate for workstations in a [GoogleWorkstationsWorkstationCluster].\n\n**Cost:** no separate control-plane SKU for the config itself under\n`4528-FDD0-A2A0` — running workstations bill VM management fees (and\nCompute). Deferred with the cluster (no apply-smoke quickstart).\n\nExample:\n```dart\nGoogleWorkstationsWorkstationConfig(\n  localName: \'cfg\',\n  workstationConfigId: TfArg.literal(\'dev\'),\n  workstationClusterId: TfArg.ref(cluster.workstationClusterIdRef),\n  location: TfArg.literal(\'us-central1\'),\n  host: WorkstationsWorkstationConfigHost(\n    gceInstance: WorkstationsWorkstationConfigHostGceInstance(\n      machineType: TfArg.literal(\'e2-standard-4\'),\n      bootDiskSizeGb: TfArg.literal(50),\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_workstations_workstation_config_iam_binding',
+    className: 'GoogleWorkstationsWorkstationConfigIamBinding',
+    barrel: 'workstations',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_workstations_workstation_config_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'workstationClusterId',
+      'workstationConfigId',
+      'role',
+      'members',
+      'location',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_workstations_workstation_config_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Workstations\nconfig.\n\nReplaces the entire member list for that role. Prefer\n[GoogleWorkstationsWorkstationConfigIamMember] for additive grants.\nDeferred with the never_apply workstation cluster (no apply-smoke\nquickstart).',
+  ),
+  CatalogEntry(
     tfType: 'google_workstations_workstation_config_iam_member',
     className: 'GoogleWorkstationsWorkstationConfigIamMember',
     barrel: 'workstations',
@@ -21507,6 +21529,49 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_workstations_workstation_config_iam_member`.\n\nNon-authoritative IAM member on a Cloud Workstations config.\n\nDeferred with the never_apply workstation cluster (no apply-smoke\nquickstart).',
+  ),
+  CatalogEntry(
+    tfType: 'google_workstations_workstation_config_iam_policy',
+    className: 'GoogleWorkstationsWorkstationConfigIamPolicy',
+    barrel: 'workstations',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_workstations_workstation_config_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'workstationClusterId',
+      'workstationConfigId',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_workstations_workstation_config_iam_policy`.\n\nAuthoritative IAM policy for a Cloud Workstations config.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleWorkstationsWorkstationConfigIamMember] for single-principal\ngrants. Deferred with the never_apply workstation cluster (no\napply-smoke quickstart).',
+  ),
+  CatalogEntry(
+    tfType: 'google_workstations_workstation_iam_binding',
+    className: 'GoogleWorkstationsWorkstationIamBinding',
+    barrel: 'workstations',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_workstations_workstation_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'workstationClusterId',
+      'workstationConfigId',
+      'workstationId',
+      'role',
+      'members',
+      'location',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_workstations_workstation_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Workstations\nworkstation.\n\nReplaces the entire member list for that role. Prefer\n[GoogleWorkstationsWorkstationIamMember] for additive grants.\nDeferred with the never_apply workstation cluster (no apply-smoke\nquickstart).',
   ),
   CatalogEntry(
     tfType: 'google_workstations_workstation_iam_member',
@@ -21530,5 +21595,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_workstations_workstation_iam_member`.\n\nNon-authoritative IAM member on a Cloud Workstations workstation.\n\nDeferred with the never_apply workstation cluster (no apply-smoke\nquickstart).',
+  ),
+  CatalogEntry(
+    tfType: 'google_workstations_workstation_iam_policy',
+    className: 'GoogleWorkstationsWorkstationIamPolicy',
+    barrel: 'workstations',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_workstations_workstation_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'workstationClusterId',
+      'workstationConfigId',
+      'workstationId',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_workstations_workstation_iam_policy`.\n\nAuthoritative IAM policy for a Cloud Workstations workstation.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleWorkstationsWorkstationIamMember] for single-principal grants.\nDeferred with the never_apply workstation cluster (no apply-smoke\nquickstart).',
   ),
 ];
