@@ -1,6 +1,6 @@
 # Bigtable quickstart
 
-Provisions a development Cloud Bigtable instance with table, app profile, GC policy, authorized / logical / materialized views, a protobuf schema bundle, and additive IAM grants.
+Provisions a production Cloud Bigtable instance with table, app profile, GC policy, authorized / logical / materialized views, and additive IAM grants.
 
 ## Prerequisites
 
@@ -22,17 +22,16 @@ terraform validate
 
 ## What gets created
 
-- A **development** Bigtable instance `quickstart-events` with one cluster in `us-central1-b`
+- A **production** Bigtable instance `quickstart-events` with one cluster in `us-central1-b`
 - Table `events` with column family `cf1`
 - Default app profile routing to the cluster
 - 7-day max-age GC policy on `cf1`
 - Authorized view `tenant-a`, logical view `recent-events`, materialized view `event-counts`
-- Protobuf schema bundle `events-proto`
 - IAM grants: `roles/bigtable.viewer` on the instance and `roles/bigtable.reader` on the table for service account `bt-reader`
 
-## Wave 73 factories exercised
+Protobuf schema bundles are curated but tracked in `tool/example_debt.yaml` — create races with table settle (`Parent table is either creating or deleting`) even after a 90s wait.
 
-All ten curated Bigtable factories appear in synth output:
+## Factories exercised
 
 - `google_bigtable_instance`
 - `google_bigtable_table`
@@ -41,6 +40,5 @@ All ten curated Bigtable factories appear in synth output:
 - `google_bigtable_authorized_view`
 - `google_bigtable_logical_view`
 - `google_bigtable_materialized_view`
-- `google_bigtable_schema_bundle`
 - `google_bigtable_instance_iam_member`
 - `google_bigtable_table_iam_member`
