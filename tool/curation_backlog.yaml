@@ -1,1 +1,12 @@
-entries: []
+
+
+entries:
+  - resource: google_bigquery_analytics_hub_query_template
+    detected_at: 2026-08-09
+    provider_version: 7.43.0
+  - resource: google_cloud_support_support_event_subscription
+    detected_at: 2026-08-09
+    provider_version: 7.43.0
+  - resource: google_network_connectivity_gateway_advertised_route
+    detected_at: 2026-08-09
+    provider_version: 7.43.0
