@@ -338,7 +338,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_bigtable_instance_iam_policy` | `GoogleBigtableInstanceIamPolicy` | — |
 | `google_bigtable_logical_view` | `GoogleBigtableLogicalView` | [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart) |
 | `google_bigtable_materialized_view` | `GoogleBigtableMaterializedView` | [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart) |
-| `google_bigtable_schema_bundle` | `GoogleBigtableSchemaBundle` | [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart) |
+| `google_bigtable_schema_bundle` | `GoogleBigtableSchemaBundle` | — |
 | `google_bigtable_table` | `GoogleBigtableTable` | [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart) |
 | `google_bigtable_table_iam_binding` | `GoogleBigtableTableIamBinding` | — |
 | `google_bigtable_table_iam_member` | `GoogleBigtableTableIamMember` | [bigtable_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigtable_quickstart) |

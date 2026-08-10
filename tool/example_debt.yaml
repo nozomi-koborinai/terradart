@@ -578,6 +578,13 @@ GoogleComputeInstanceIamPolicy: iam-adjunct-debt: sibling GoogleComputeInstanceI
 GoogleComputeSubnetworkIamBinding: iam-adjunct-debt: sibling GoogleComputeSubnetworkIamMember already in compute_quickstart; authoritative binding not needed in smoke
 GoogleComputeSubnetworkIamPolicy: iam-adjunct-debt: sibling GoogleComputeSubnetworkIamMember already in compute_quickstart; authoritative policy not needed in smoke
 
+# Bigtable schema bundles race with table settle even after a 90s TimeSleep
+# (monthly sweep 2026-08-01: "Parent table … is either creating or deleting").
+# Ordering/wait retries did not make apply deterministic; keep the factory
+# curated and drop it from bigtable_quickstart so the rest of the stack can
+# apply. Sibling IAM binding/policy stay on the iam-adjunct-debt path below.
+GoogleBigtableSchemaBundle: Bigtable schema-bundle create returns 400 "Parent table is either creating or deleting" after table + GC + authorized-view settle waits (90s TimeSleep still failed on monthly sweep 2026-08-01); dropped from bigtable_quickstart rather than extending another flaky wait
+
 # Bigtable IAM binding/policy — sibling *IamMember already in
 # bigtable_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
 GoogleBigtableInstanceIamBinding: iam-adjunct-debt: sibling GoogleBigtableInstanceIamMember already in bigtable_quickstart; authoritative binding not needed in smoke

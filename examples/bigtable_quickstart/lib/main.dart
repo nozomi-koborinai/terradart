@@ -2,8 +2,10 @@
 ///
 /// Defines `EventsStack`: provisions a single-node production Bigtable instance with
 /// one cluster, a table + column family, app profile routing, GC policy,
-/// authorized / logical / materialized views, a protobuf schema bundle,
-/// and additive IAM grants for a reader service account.
+/// authorized / logical / materialized views, and additive IAM grants for a
+/// reader service account. Schema bundles stay in `tool/example_debt.yaml` —
+/// after table settle waits they still race with "Parent table is either
+/// creating or deleting" at apply time (monthly sweep 2026-08-01).
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -13,7 +15,7 @@ import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/time.dart';
 
-/// Cloud Bigtable stack exercising every Wave 73 factory.
+/// Cloud Bigtable stack for the applyable Wave 73 surface (schema bundle deferred).
 final class EventsStack extends Stack {
   EventsStack({required String projectId})
       : super(
@@ -114,23 +116,6 @@ final class EventsStack extends Stack {
       ),
     );
 
-    final schemaBundle = add(
-      GoogleBigtableSchemaBundle(
-        localName: 'events_proto',
-        schemaBundleId: TfArg.literal('events-proto'),
-        instance: TfArg.ref(instance.nameRef),
-        table: TfArg.ref(table.nameRef),
-        protoSchema: BigtableSchemaBundleProtoSchema(
-          // HashiCorp provider test fixture (minimal Author message).
-          protoDescriptors: TfArg.literal(
-            'CnEKGXByb3RvX3NjaGVtYV9idW5kbGUucHJvdG8SI2djbG91ZC5iaWd0YWJsZS5zY2hlbWFfYnVuZGxlcy50ZXN0IicKBkF1dGhvchIdCgpmaXJzdF9uYW1lGAEgASgJUglmaXJzdE5hbWViBnByb3RvMw==',
-          ),
-        ),
-        ignoreWarnings: TfArg.literal(true),
-        dependsOn: tableReadyDeps,
-      ),
-    );
-
     final logicalView = add(
       GoogleBigtableLogicalView(
         localName: 'recent',
@@ -138,7 +123,7 @@ final class EventsStack extends Stack {
         instance: TfArg.ref(instance.nameRef),
         query: TfArg.literal('SELECT _key, cf1 FROM `events`'),
         deletionProtection: TfArg.literal(false),
-        dependsOn: [ResourceDependency(schemaBundle)],
+        dependsOn: tableReadyDeps,
       ),
     );
 
