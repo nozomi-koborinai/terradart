@@ -48,6 +48,9 @@ safe_exception: google_workbench_instance_iam_member  # IAM binding on Workbench
 safe_exception: google_workbench_instance_iam_binding  # IAM binding on Workbench instance; no existence billing — _instance substring false positive (parent google_workbench_instance is never_apply)
 safe_exception: google_workbench_instance_iam_policy  # IAM policy on Workbench instance; no existence billing — _instance substring false positive (parent google_workbench_instance is never_apply)
 safe_exception: google_memorystore_instance_desired_user_created_endpoints  # PSC endpoint metadata on a parent Memorystore Valkey instance; no existence billing — _instance substring false positive (parent google_memorystore_instance is never_apply)
+safe_exception: google_spanner_instance_iam_member  # IAM binding on Spanner instance; no existence billing — _instance substring false positive (parent google_spanner_instance is sweep_only)
+safe_exception: google_spanner_instance_iam_binding  # IAM binding on Spanner instance; no existence billing — _instance substring false positive (parent google_spanner_instance is sweep_only)
+safe_exception: google_spanner_instance_iam_policy  # IAM policy on Spanner instance; no existence billing — _instance substring false positive (parent google_spanner_instance is sweep_only)
 safe_exception: google_vertex_ai_endpoint  # prediction endpoint shell; no existence billing until a model is deployed — _endpoint substring false positive
 safe_exception: google_iap_agent_registry_endpoint_iam_member  # IAM binding on IAP agent registry endpoint; no existence billing — _endpoint substring false positive (Agent Identity parent skip-noted)
 safe_exception: google_iap_agent_registry_endpoint_iam_binding  # IAM binding on IAP agent registry endpoint; no existence billing — _endpoint substring false positive (Agent Identity parent skip-noted)
