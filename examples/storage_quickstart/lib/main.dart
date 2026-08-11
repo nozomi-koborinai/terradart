@@ -13,6 +13,10 @@
 /// Wave 5 Batch 3 adds a `roles/storage.objectViewer` binding on the
 /// bucket for a dedicated reader SA -- the typical "read-only consumer"
 /// pattern for a static-assets bucket.
+///
+/// Storage coverage wave adds hierarchical [GoogleStorageFolder], managed-
+/// folder IAM, Storage Batch Operations (`put_metadata`), and a separate
+/// fine-grained-ACL bucket (UBLA off) for access-control factories.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -113,11 +117,119 @@ final class AssetsStack extends Stack {
       ),
     );
 
-    add(
+    final managedFolder = add(
       GoogleStorageManagedFolder(
         localName: 'config_folder',
         bucket: TfArg.ref(assets.nameRef),
         name: TfArg.literal('config/'),
+      ),
+    );
+
+    // Hierarchical Folders API (sibling of managed folders) under reports/.
+    add(
+      GoogleStorageFolder(
+        localName: 'reports_folder',
+        bucket: TfArg.ref(assets.nameRef),
+        name: TfArg.literal('reports/'),
+        forceDestroy: TfArg.literal(true),
+      ),
+    );
+
+    add(
+      GoogleStorageManagedFolderIamMember(
+        localName: 'config_folder_viewer',
+        bucket: TfArg.ref(assets.nameRef),
+        managedFolder: TfArg.ref(managedFolder.nameRef),
+        role: TfArg.literal('roles/storage.objectViewer'),
+        member: TfArg.ref(reader.iamMember),
+        dependsOn: [
+          ResourceDependency(managedFolder),
+          ResourceDependency(reader),
+        ],
+      ),
+    );
+
+    // Batch-stamp custom metadata on the config/ prefix (job is destroyable).
+    add(
+      GoogleStorageBatchOperationsJob(
+        localName: 'stamp_config_meta',
+        jobId: TfArg.literal('stamp-config-meta'),
+        deleteProtection: TfArg.literal(false),
+        bucketList: StorageBatchOperationsJobBucketList(
+          buckets: [
+            StorageBatchOperationsJobBuckets(
+              bucket: TfArg.ref(assets.nameRef),
+              prefixList: StorageBatchOperationsJobPrefixList(
+                includedObjectPrefixes: TfArg.literal(['config/']),
+              ),
+            ),
+          ],
+        ),
+        operation: StorageBatchOperationsJobPutMetadata(
+          customMetadata: TfArg.literal({'managed-by': 'terradart'}),
+        ),
+        dependsOn: [ResourceDependency(assets)],
+      ),
+    );
+
+    // ---- Fine-grained ACL surface (UBLA off; cannot share the HNS bucket) --
+
+    final legacy = add(
+      GoogleStorageBucket(
+        localName: 'legacy_acl',
+        name: TfArg.literal('my-app-legacy-acl'),
+        location: TfArg.literal('ASIA-NORTHEAST1'),
+        storageClass: TfArg.literal(BucketStorageClass.standard),
+        forceDestroy: TfArg.literal(true),
+        uniformBucketLevelAccess: TfArg.literal(false),
+      ),
+    );
+
+    final legacyObject = add(
+      GoogleStorageBucketObject(
+        localName: 'legacy_readme',
+        bucket: TfArg.ref(legacy.nameRef),
+        name: TfArg.literal('readme.txt'),
+        body: StorageBucketObjectBucketObjectFromSource(
+          source: TfArg.literal('./legacy/readme.txt'),
+        ),
+        contentType: TfArg.literal('text/plain'),
+        storageClass: TfArg.literal(BucketObjectStorageClass.standard),
+        dependsOn: [ResourceDependency(legacy)],
+      ),
+    );
+
+    add(
+      GoogleStorageBucketAccessControl(
+        localName: 'legacy_bucket_reader',
+        bucket: TfArg.ref(legacy.nameRef),
+        entity: TfArg.literal('allAuthenticatedUsers'),
+        role: TfArg.literal(StorageBucketAccessControlRole.reader),
+        dependsOn: [ResourceDependency(legacy)],
+      ),
+    );
+
+    add(
+      GoogleStorageDefaultObjectAccessControl(
+        localName: 'legacy_default_reader',
+        bucket: TfArg.ref(legacy.nameRef),
+        entity: TfArg.literal('allAuthenticatedUsers'),
+        role: TfArg.literal(StorageDefaultObjectAccessControlRole.reader),
+        dependsOn: [ResourceDependency(legacy)],
+      ),
+    );
+
+    add(
+      GoogleStorageObjectAccessControl(
+        localName: 'legacy_object_reader',
+        bucket: TfArg.ref(legacy.nameRef),
+        object: TfArg.literal('readme.txt'),
+        entity: TfArg.literal('allAuthenticatedUsers'),
+        role: TfArg.literal(StorageObjectAccessControlRole.reader),
+        dependsOn: [
+          ResourceDependency(legacy),
+          ResourceDependency(legacyObject),
+        ],
       ),
     );
 

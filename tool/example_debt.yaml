@@ -313,6 +313,8 @@ GoogleColabRuntime: gcp-cost Vertex AI C7E2-9256-1C43 Colab N2 CPU usage us-cent
 GoogleColabNotebookExecution: gcp-cost Vertex AI C7E2-9256-1C43 Colab N2 CPU usage us-central1 SKU 7362-581B-29B4 $0.0379332/h (+ E2 RAM 9215-A98F-C4CD $0.003508236/GiBy.h) — never_apply execution compute; no applyable quickstart on terradart-validate
 GoogleActiveDirectoryDomain: gcp-cost Managed Microsoft AD 2A27-8988-64B8 SKU BE02-3DF8-6AB6 $0.4/h — never_apply domain hours; no applyable quickstart on terradart-validate
 GoogleStorageBucketIamPolicy: iam-adjunct-debt: sibling GoogleStorageBucketIamMember already in storage_quickstart; authoritative policy not needed in smoke
+GoogleStorageManagedFolderIamBinding: iam-adjunct-debt: sibling GoogleStorageManagedFolderIamMember already in storage_quickstart; authoritative binding not needed in smoke
+GoogleStorageManagedFolderIamPolicy: iam-adjunct-debt: sibling GoogleStorageManagedFolderIamMember already in storage_quickstart; authoritative policy not needed in smoke
 GoogleStorageAnywhereCache: gcp-cost Cloud Storage 95FF-2EF5-5EA1 Rapid Cache Storage Iowa SKU A668-3CA8-42C8 $0.0001233/GiBy.h — never_apply cache capacity; no applyable quickstart on terradart-validate
 
 # Backup and DR vaults/management bill storage + protected-resource management

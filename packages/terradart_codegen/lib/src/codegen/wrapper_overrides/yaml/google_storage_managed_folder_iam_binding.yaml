@@ -1,0 +1,18 @@
+outputDir: storage
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud Storage
+  /// managed folder.
+  ///
+  /// Replaces the entire member list for that role on the managed folder.
+  /// Prefer [GoogleStorageManagedFolderIamMember] when adding one principal
+  /// without touching existing bindings.
+
+paramOrder:
+  - bucket
+  - managed_folder
+  - role
+  - members
+  - condition

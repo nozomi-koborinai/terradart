@@ -1,0 +1,29 @@
+outputDir: storage
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+dartTypeOverrides:
+  role: StorageBucketAccessControlRole
+
+curatedDoc: |-
+  /// Fine-grained **bucket ACL** entry (one entity + optional role). Requires a
+  /// bucket with uniform bucket-level access **disabled** — HNS buckets cannot
+  /// use this resource. Prefer IAM ([GoogleStorageBucketIamMember]) on modern
+  /// buckets.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleStorageBucketAccessControl(
+  ///   localName: 'legacy_reader',
+  ///   bucket: TfArg.ref(legacy.nameRef),
+  ///   entity: TfArg.ref(reader.iamMember),
+  ///   role: TfArg.literal(StorageBucketAccessControlRole.reader),
+  /// );
+  /// ```
+
+paramOrder:
+  - bucket
+  - entity
+  - role
+  - deletion_policy

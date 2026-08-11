@@ -1,0 +1,14 @@
+outputDir: storage
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for an entire Cloud Storage managed folder.
+  ///
+  /// Replaces the managed folder's whole IAM policy. Prefer
+  /// [GoogleStorageManagedFolderIamMember] when an additive grant is enough.
+
+paramOrder:
+  - bucket
+  - managed_folder
+  - policy_data

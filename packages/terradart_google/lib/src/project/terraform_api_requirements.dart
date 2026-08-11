@@ -73,6 +73,12 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry('google_scc_', 'securitycenter.googleapis.com'),
   MapEntry('google_redis_', 'redis.googleapis.com'),
   MapEntry('google_memorystore_', 'memorystore.googleapis.com'),
+  // Longer than `google_storage_` — Batch Operations API, not the core
+  // Cloud Storage JSON API.
+  MapEntry(
+    'google_storage_batch_operations_',
+    'storagebatchoperations.googleapis.com',
+  ),
   MapEntry('google_storage_', 'storage.googleapis.com'),
   MapEntry('google_kms_', 'cloudkms.googleapis.com'),
   MapEntry('google_identity_platform_', 'identitytoolkit.googleapis.com'),

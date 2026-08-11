@@ -1,0 +1,25 @@
+outputDir: storage
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Additive IAM grant on a [GoogleStorageManagedFolder]. Prefer this over
+  /// binding/policy when you only need to add one (`role`, `member`) tuple.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleStorageManagedFolderIamMember(
+  ///   localName: 'folder_viewer',
+  ///   bucket: TfArg.ref(assets.nameRef),
+  ///   managedFolder: TfArg.ref(folder.nameRef),
+  ///   role: TfArg.literal('roles/storage.objectViewer'),
+  ///   member: TfArg.ref(reader.iamMember),
+  /// );
+  /// ```
+
+paramOrder:
+  - bucket
+  - managed_folder
+  - role
+  - member
+  - condition

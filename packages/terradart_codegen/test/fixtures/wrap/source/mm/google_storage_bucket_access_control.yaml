@@ -1,0 +1,98 @@
+# Copyright 2024 Google Inc.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+---
+name: BucketAccessControl
+description: |
+  Bucket ACLs can be managed authoritatively using the
+  [`storage_bucket_acl`](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/storage_bucket_acl)
+  resource. Do not use these two resources in conjunction to manage the same bucket.
+
+  The BucketAccessControls resource manages the Access Control List
+  (ACLs) for a single entity/role pairing on a bucket. ACLs let you specify who
+  has access to your data and to what extent.
+
+  There are three roles that can be assigned to an entity:
+
+  READERs can get the bucket, though no acl property will be returned, and
+  list the bucket's objects.  WRITERs are READERs, and they can insert
+  objects into the bucket and delete the bucket's objects.  OWNERs are
+  WRITERs, and they can get the acl property of a bucket, update a bucket,
+  and call all BucketAccessControls methods on the bucket.  For more
+  information, see Access Control, with the caveat that this API uses
+  READER, WRITER, and OWNER instead of READ, WRITE, and FULL_CONTROL.
+references:
+  guides:
+    Official Documentation: https://cloud.google.com/storage/docs/access-control/lists
+  api: https://cloud.google.com/storage/docs/json_api/v1/bucketAccessControls
+base_url: b/{{bucket}}/acl
+self_link: b/{{bucket}}/acl/{{entity}}
+collection_url_key: items
+identity:
+  - entity
+kind: storage#bucketAccessControl
+id_format: '{{bucket}}/{{entity}}'
+import_format:
+  - '{{bucket}}/{{entity}}'
+mutex: storage/buckets/{{bucket}}
+exclude_sweeper: true
+samples:
+  - name: storage_bucket_access_control_public_bucket
+    primary_resource_id: public_rule
+    steps:
+      - name: storage_bucket_access_control_public_bucket
+        resource_id_vars:
+          bucket_name: static-content-bucket
+properties:
+  - name: bucket
+    type: ResourceRef
+    required: true
+    description: The name of the bucket.
+    immutable: true
+    resource: Bucket
+    imports: name
+  - name: domain
+    type: String
+    description: The domain associated with the entity.
+    output: true
+  - name: email
+    type: String
+    description: The email address associated with the entity.
+    output: true
+  - name: entity
+    type: String
+    required: true
+    description: |
+      The entity holding the permission, in one of the following forms:
+        user-userId
+        user-email
+        group-groupId
+        group-email
+        domain-domain
+        project-team-projectId
+        allUsers
+        allAuthenticatedUsers
+      Examples:
+        The user liz@example.com would be user-liz@example.com.
+        The group example@googlegroups.com would be
+        group-example@googlegroups.com.
+        To refer to all members of the Google Apps for Business domain
+        example.com, the entity would be domain-example.com.
+    immutable: true
+  - name: role
+    type: Enum
+    description: The access permission for the entity.
+    enum_values:
+      - OWNER
+      - READER
+      - WRITER
