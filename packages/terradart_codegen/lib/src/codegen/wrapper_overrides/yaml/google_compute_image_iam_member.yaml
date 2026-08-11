@@ -1,0 +1,11 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - image
+  - role
+  - member
+  - condition
+  - project

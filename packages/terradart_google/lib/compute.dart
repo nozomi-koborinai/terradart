@@ -186,6 +186,12 @@ export 'src/compute/google_compute_health_check.dart'
         HealthCheckPortSpecification,
         HealthCheckProxyHeader,
         HealthCheckType;
+export 'src/compute/google_compute_image_iam_binding.dart'
+    show GoogleComputeImageIamBinding;
+export 'src/compute/google_compute_image_iam_member.dart'
+    show GoogleComputeImageIamMember;
+export 'src/compute/google_compute_image_iam_policy.dart'
+    show GoogleComputeImageIamPolicy;
 export 'src/compute/google_compute_instance.dart'
     show
         AccessConfigNetworkTier,
@@ -284,6 +290,12 @@ export 'src/compute/google_compute_instance_template_iam_member.dart'
     show GoogleComputeInstanceTemplateIamMember;
 export 'src/compute/google_compute_instance_template_iam_policy.dart'
     show GoogleComputeInstanceTemplateIamPolicy;
+export 'src/compute/google_compute_instant_snapshot_iam_binding.dart'
+    show GoogleComputeInstantSnapshotIamBinding;
+export 'src/compute/google_compute_instant_snapshot_iam_member.dart'
+    show GoogleComputeInstantSnapshotIamMember;
+export 'src/compute/google_compute_instant_snapshot_iam_policy.dart'
+    show GoogleComputeInstantSnapshotIamPolicy;
 export 'src/compute/google_compute_interconnect.dart'
     show
         ComputeInterconnectInterconnectType,
@@ -734,6 +746,12 @@ export 'src/compute/google_compute_shared_vpc_host_project.dart'
     show GoogleComputeSharedVpcHostProject;
 export 'src/compute/google_compute_shared_vpc_service_project.dart'
     show GoogleComputeSharedVpcServiceProject;
+export 'src/compute/google_compute_snapshot_iam_binding.dart'
+    show GoogleComputeSnapshotIamBinding;
+export 'src/compute/google_compute_snapshot_iam_member.dart'
+    show GoogleComputeSnapshotIamMember;
+export 'src/compute/google_compute_snapshot_iam_policy.dart'
+    show GoogleComputeSnapshotIamPolicy;
 export 'src/compute/google_compute_snapshot_settings.dart'
     show
         ComputeSnapshotSettingsStorageLocation,

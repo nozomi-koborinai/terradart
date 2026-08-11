@@ -463,6 +463,15 @@ google_compute_disk: safe  # apply-verified safe (existing example)
 google_compute_disk_iam_member: safe  # apply-verified safe (existing example)
 google_compute_disk_iam_binding: safe  # billing-behavior: IAM binding only
 google_compute_disk_iam_policy: safe  # billing-behavior: IAM policy only
+google_compute_image_iam_member: safe  # billing-behavior: IAM binding only
+google_compute_image_iam_binding: safe  # billing-behavior: IAM binding only
+google_compute_image_iam_policy: safe  # billing-behavior: IAM policy only
+google_compute_snapshot_iam_member: safe  # billing-behavior: IAM binding only
+google_compute_snapshot_iam_binding: safe  # billing-behavior: IAM binding only
+google_compute_snapshot_iam_policy: safe  # billing-behavior: IAM policy only
+google_compute_instant_snapshot_iam_member: safe  # billing-behavior: IAM binding only
+google_compute_instant_snapshot_iam_binding: safe  # billing-behavior: IAM binding only
+google_compute_instant_snapshot_iam_policy: safe  # billing-behavior: IAM policy only
 google_compute_disk_resource_policy_attachment: safe  # apply-verified safe (existing example)
 google_compute_global_address: safe  # apply-verified safe (existing example)
 google_compute_instance_iam_member: safe  # IAM binding on an instance; sets IAM policy, provisions nothing, zero billing — _instance substring false positive
