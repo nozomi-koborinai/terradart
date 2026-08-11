@@ -1,0 +1,19 @@
+outputDir: dataproc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Dataproc Metastore database.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleDataprocMetastoreDatabaseIamMember] for additive grants.
+
+paramOrder:
+  - service_id
+  - database
+  - role
+  - members
+  - location
+  - condition
+  - project

@@ -1,0 +1,17 @@
+outputDir: dataproc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Dataproc Metastore database.
+  ///
+  /// `policy_data` replaces the entire IAM policy, overwriting grants made
+  /// outside Terraform. Prefer [GoogleDataprocMetastoreDatabaseIamMember] for single-principal grants.
+
+paramOrder:
+  - service_id
+  - database
+  - policy_data
+  - location
+  - project

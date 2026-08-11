@@ -130,6 +130,12 @@ export 'src/dataproc/google_dataproc_job_iam_member.dart'
     show GoogleDataprocJobIamMember;
 export 'src/dataproc/google_dataproc_job_iam_policy.dart'
     show GoogleDataprocJobIamPolicy;
+export 'src/dataproc/google_dataproc_metastore_database_iam_binding.dart'
+    show GoogleDataprocMetastoreDatabaseIamBinding;
+export 'src/dataproc/google_dataproc_metastore_database_iam_member.dart'
+    show GoogleDataprocMetastoreDatabaseIamMember;
+export 'src/dataproc/google_dataproc_metastore_database_iam_policy.dart'
+    show GoogleDataprocMetastoreDatabaseIamPolicy;
 export 'src/dataproc/google_dataproc_metastore_federation.dart'
     show
         DataprocMetastoreFederationBackend,
@@ -157,6 +163,12 @@ export 'src/dataproc/google_dataproc_metastore_service_iam_member.dart'
     show GoogleDataprocMetastoreServiceIamMember;
 export 'src/dataproc/google_dataproc_metastore_service_iam_policy.dart'
     show GoogleDataprocMetastoreServiceIamPolicy;
+export 'src/dataproc/google_dataproc_metastore_table_iam_binding.dart'
+    show GoogleDataprocMetastoreTableIamBinding;
+export 'src/dataproc/google_dataproc_metastore_table_iam_member.dart'
+    show GoogleDataprocMetastoreTableIamMember;
+export 'src/dataproc/google_dataproc_metastore_table_iam_policy.dart'
+    show GoogleDataprocMetastoreTableIamPolicy;
 export 'src/dataproc/google_dataproc_session_template.dart'
     show
         DataprocSessionTemplateEnvironmentConfig,

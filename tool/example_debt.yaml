@@ -692,6 +692,16 @@ GoogleDataprocMetastoreServiceIamPolicy: iam-adjunct-debt: sibling GoogleDatapro
 GoogleDataprocMetastoreFederationIamBinding: iam-adjunct-debt: sibling GoogleDataprocMetastoreFederationIamMember already in dataproc_metastore_quickstart; authoritative binding not needed in smoke
 GoogleDataprocMetastoreFederationIamPolicy: iam-adjunct-debt: sibling GoogleDataprocMetastoreFederationIamMember already in dataproc_metastore_quickstart; authoritative policy not needed in smoke
 
+# Dataproc Metastore database/table IAM — parents are schema IAM-only
+# surfaces (no google_dataproc_metastore_{database,table} resource factories);
+# grants target Hive DB/table names under a sweep_only metastore service.
+GoogleDataprocMetastoreDatabaseIamMember: requires Hive database name under GoogleDataprocMetastoreService (sweep_only); no curated database parent factory — deferred pending parent Wave / debt-only
+GoogleDataprocMetastoreDatabaseIamBinding: requires Hive database under GoogleDataprocMetastoreService (sweep_only); deferred with sibling member
+GoogleDataprocMetastoreDatabaseIamPolicy: requires Hive database under GoogleDataprocMetastoreService (sweep_only); deferred with sibling member
+GoogleDataprocMetastoreTableIamMember: requires Hive table under GoogleDataprocMetastoreService (sweep_only); no curated table parent factory — deferred pending parent Wave / debt-only
+GoogleDataprocMetastoreTableIamBinding: requires Hive table under GoogleDataprocMetastoreService (sweep_only); deferred with sibling member
+GoogleDataprocMetastoreTableIamPolicy: requires Hive table under GoogleDataprocMetastoreService (sweep_only); deferred with sibling member
+
 # BigQuery dataset/table/connection IAM binding/policy — sibling *IamMember
 # already in bigquery_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
 GoogleBigqueryDatapolicyv2DataPolicyIamBinding: iam-adjunct-debt: sibling GoogleBigqueryDatapolicyv2DataPolicyIamMember already in bigquery_datapolicyv2_quickstart; authoritative binding not needed in smoke

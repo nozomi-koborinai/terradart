@@ -1,0 +1,14 @@
+outputDir: dataproc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - service_id
+  - database_id
+  - table
+  - role
+  - member
+  - location
+  - condition
+  - project
