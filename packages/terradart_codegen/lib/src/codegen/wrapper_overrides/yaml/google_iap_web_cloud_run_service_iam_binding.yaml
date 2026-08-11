@@ -1,0 +1,19 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on an IAP-protected
+  /// Cloud Run service (`iap.web.services.<service>`).
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleIapWebCloudRunServiceIamMember] for additive grants.
+
+paramOrder:
+  - cloud_run_service_name
+  - role
+  - members
+  - condition
+  - location
+  - project

@@ -35,6 +35,7 @@ import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/iam.dart';
+import 'package:terradart_google/iap.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/memcache.dart';
@@ -69,6 +70,7 @@ final class ApiServiceStack extends Stack {
         Barrels.serviceNetworking,
         Barrels.redis,
         Barrels.memcache,
+        Barrels.iapApi,
       ],
       propagationDelay: const Duration(seconds: 60),
     );
@@ -376,6 +378,22 @@ final class ApiServiceStack extends Stack {
         role: TfArg.literal('roles/run.invoker'),
         member: TfArg.literal('allUsers'),
         location: TfArg.literal('asia-northeast1'),
+      ),
+    );
+
+    // IAP accessor on the Cloud Run service (project-scoped IAP web path).
+    add(
+      GoogleIapWebCloudRunServiceIamMember(
+        localName: 'api_iap_accessor',
+        cloudRunServiceName: TfArg.ref(apiService.nameRef),
+        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+        member: TfArg.ref(runtimeSa.iamMember),
+        location: TfArg.literal('asia-northeast1'),
+        dependsOn: [
+          ResourceDependency(apiService),
+          ResourceDependency(runtimeSa),
+          ...apiDeps,
+        ],
       ),
     );
 

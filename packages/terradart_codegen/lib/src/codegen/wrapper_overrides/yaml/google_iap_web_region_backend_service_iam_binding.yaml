@@ -1,0 +1,19 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on an IAP-protected
+  /// regional backend service.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleIapWebRegionBackendServiceIamMember] for additive grants.
+
+paramOrder:
+  - web_region_backend_service
+  - role
+  - members
+  - condition
+  - region
+  - project

@@ -1,0 +1,12 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - cloud_run_service_name
+  - role
+  - member
+  - condition
+  - location
+  - project

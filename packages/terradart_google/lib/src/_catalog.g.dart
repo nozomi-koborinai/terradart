@@ -17133,6 +17133,125 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_iap_web_backend_service_iam_policy`.\n\nAuthoritative IAM policy for an **external HTTPS load balancer backend\nservice** protected by Identity-Aware Proxy (IAP).\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleIapWebBackendServiceIamMember] for single-principal grants.',
   ),
   CatalogEntry(
+    tfType: 'google_iap_web_cloud_run_service_iam_binding',
+    className: 'GoogleIapWebCloudRunServiceIamBinding',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iap_web_cloud_run_service_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'cloudRunServiceName',
+      'role',
+      'members',
+      'condition',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_web_cloud_run_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP-protected\nCloud Run service (`iap.web.services.<service>`).\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapWebCloudRunServiceIamMember] for additive grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_web_cloud_run_service_iam_member',
+    className: 'GoogleIapWebCloudRunServiceIamMember',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iap_web_cloud_run_service_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'cloudRunServiceName',
+      'role',
+      'member',
+      'condition',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_web_cloud_run_service_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_web_cloud_run_service_iam_policy',
+    className: 'GoogleIapWebCloudRunServiceIamPolicy',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iap_web_cloud_run_service_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'cloudRunServiceName',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_web_cloud_run_service_iam_policy`.\n\nAuthoritative IAM policy for an IAP-protected Cloud Run service\n(`iap.web.services.<service>`).\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleIapWebCloudRunServiceIamMember] for single-principal grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_web_forwarding_rule_service_iam_binding',
+    className: 'GoogleIapWebForwardingRuleServiceIamBinding',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iap_web_forwarding_rule_service_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'forwardingRuleServiceName',
+      'role',
+      'members',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_web_forwarding_rule_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP-protected\nglobal/regional forwarding rule service.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapWebForwardingRuleServiceIamMember] for additive grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_web_forwarding_rule_service_iam_member',
+    className: 'GoogleIapWebForwardingRuleServiceIamMember',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iap_web_forwarding_rule_service_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'forwardingRuleServiceName',
+      'role',
+      'member',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_web_forwarding_rule_service_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_web_forwarding_rule_service_iam_policy',
+    className: 'GoogleIapWebForwardingRuleServiceIamPolicy',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iap_web_forwarding_rule_service_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'forwardingRuleServiceName',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_web_forwarding_rule_service_iam_policy`.\n\nAuthoritative IAM policy for an IAP-protected forwarding rule service.\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleIapWebForwardingRuleServiceIamMember] for single-principal grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_iap_web_iam_binding',
     className: 'GoogleIapWebIamBinding',
     barrel: 'iap',
@@ -17178,6 +17297,67 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_iap_web_iam_policy`.\n\nAuthoritative IAM policy for IAP-protected HTTPS resources at\n**project scope** (`iap.web`).\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleIapWebIamMember] for single-principal grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_web_region_backend_service_iam_binding',
+    className: 'GoogleIapWebRegionBackendServiceIamBinding',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iap_web_region_backend_service_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'webRegionBackendService',
+      'role',
+      'members',
+      'condition',
+      'region',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_web_region_backend_service_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on an IAP-protected\nregional backend service.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapWebRegionBackendServiceIamMember] for additive grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_web_region_backend_service_iam_member',
+    className: 'GoogleIapWebRegionBackendServiceIamMember',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iap_web_region_backend_service_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'webRegionBackendService',
+      'role',
+      'member',
+      'condition',
+      'region',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_web_region_backend_service_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_web_region_backend_service_iam_policy',
+    className: 'GoogleIapWebRegionBackendServiceIamPolicy',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iap_web_region_backend_service_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'webRegionBackendService',
+      'policyData',
+      'region',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_web_region_backend_service_iam_policy`.\n\nAuthoritative IAM policy for an IAP-protected regional backend service.\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleIapWebRegionBackendServiceIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_iap_web_type_app_engine_iam_binding',
