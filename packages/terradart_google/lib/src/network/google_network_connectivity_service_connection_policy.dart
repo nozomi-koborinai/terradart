@@ -56,6 +56,8 @@ enum NetworkConnectivityServiceConnectionPolicyPscConfigProducerInstanceLocation
 
 /// Factory wrapper for `google_network_connectivity_service_connection_policy`.
 ///
+/// Manage Service Connection Policies.
+///
 /// Network Connectivity **service connection policy** — consumer-side PSC
 /// policy that authorizes Private Service Connect connections for a
 /// producer [serviceClass] into a VPC / subnet set.

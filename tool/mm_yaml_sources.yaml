@@ -1964,6 +1964,6 @@ files:
   google_network_connectivity_gateway_advertised_route:
     upstream: mmv1/products/networkconnectivity/GatewayAdvertisedRoute.yaml
   google_network_connectivity_service_connection_policy:
-    upstream: null  # handwritten in terraform-provider-google; absent from mmv1/products/networkconnectivity (probed 2026-08-11)
+    upstream: mmv1/products/networkconnectivityv1/ServiceConnectionPolicy.yaml
   google_cloud_support_support_event_subscription:
     upstream: mmv1/products/cloudsupport/SupportEventSubscription.yaml
