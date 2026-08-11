@@ -1,0 +1,17 @@
+outputDir: biglake
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a BigLake Iceberg namespace.
+  ///
+  /// `policy_data` replaces the entire IAM policy, overwriting grants made
+  /// outside Terraform. Prefer [GoogleBiglakeIcebergNamespaceIamMember] for
+  /// single-principal grants.
+
+paramOrder:
+  - catalog
+  - namespace_id
+  - policy_data
+  - project

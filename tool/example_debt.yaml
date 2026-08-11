@@ -713,6 +713,15 @@ GooglePrivatecaCaPoolIamPolicy: iam-adjunct-debt: sibling GooglePrivatecaCaPoolI
 GoogleSourcerepoRepositoryIamBinding: iam-adjunct-debt: sibling GoogleSourcerepoRepositoryIamMember already in sourcerepo_quickstart; authoritative binding not needed in smoke
 GoogleSourcerepoRepositoryIamPolicy: iam-adjunct-debt: sibling GoogleSourcerepoRepositoryIamMember already in sourcerepo_quickstart; authoritative policy not needed in smoke
 
+# BigLake Iceberg IAM binding/policy — sibling *IamMember already in
+# biglake_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
+GoogleBiglakeIcebergCatalogIamBinding: iam-adjunct-debt: sibling GoogleBiglakeIcebergCatalogIamMember already in biglake_quickstart; authoritative binding not needed in smoke
+GoogleBiglakeIcebergCatalogIamPolicy: iam-adjunct-debt: sibling GoogleBiglakeIcebergCatalogIamMember already in biglake_quickstart; authoritative policy not needed in smoke
+GoogleBiglakeIcebergNamespaceIamBinding: iam-adjunct-debt: sibling GoogleBiglakeIcebergNamespaceIamMember already in biglake_quickstart; authoritative binding not needed in smoke
+GoogleBiglakeIcebergNamespaceIamPolicy: iam-adjunct-debt: sibling GoogleBiglakeIcebergNamespaceIamMember already in biglake_quickstart; authoritative policy not needed in smoke
+GoogleBiglakeIcebergTableIamBinding: iam-adjunct-debt: sibling GoogleBiglakeIcebergTableIamMember already in biglake_quickstart; authoritative binding not needed in smoke
+GoogleBiglakeIcebergTableIamPolicy: iam-adjunct-debt: sibling GoogleBiglakeIcebergTableIamMember already in biglake_quickstart; authoritative policy not needed in smoke
+
 # Network Security address group IAM binding/policy — sibling *IamMember already
 # in network_security_lists_quickstart (iam-adjunct-debt path).
 GoogleNetworkSecurityAddressGroupIamBinding: iam-adjunct-debt: sibling GoogleNetworkSecurityAddressGroupIamMember already in network_security_lists_quickstart; authoritative binding not needed in smoke
