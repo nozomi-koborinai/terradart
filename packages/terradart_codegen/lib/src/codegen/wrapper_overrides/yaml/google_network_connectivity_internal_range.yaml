@@ -1,0 +1,107 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  peering: NetworkConnectivityInternalRangePeering
+  usage: NetworkConnectivityInternalRangeUsage
+
+curatedDoc: |-
+  /// Network Connectivity **internal range** — reserves or allocates a CIDR
+  /// inside a VPC for NCC / PSC / migration use.
+  ///
+  /// Pass either [ipCidrRange] or [prefixLength] (auto-allocation).
+  /// When using [prefixLength], optionally set [allocationOptions].
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleNetworkConnectivityInternalRange(
+  ///   localName: 'reserved',
+  ///   name: TfArg.literal('terradart-ir'),
+  ///   network: TfArg.ref(vpc.id),
+  ///   usage: TfArg.literal(NetworkConnectivityInternalRangeUsage.forVpc),
+  ///   peering: TfArg.literal(NetworkConnectivityInternalRangePeering.forSelf),
+  ///   ipCidrRange: TfArg.literal('10.9.0.0/24'),
+  /// );
+  /// ```
+
+prelude: |
+  /// `usage` for [GoogleNetworkConnectivityInternalRange].
+  enum NetworkConnectivityInternalRangeUsage implements TerraformEnum {
+    forVpc('FOR_VPC'),
+    externalToVpc('EXTERNAL_TO_VPC'),
+    forMigration('FOR_MIGRATION');
+
+    const NetworkConnectivityInternalRangeUsage(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `peering` for [GoogleNetworkConnectivityInternalRange].
+  enum NetworkConnectivityInternalRangePeering implements TerraformEnum {
+    forSelf('FOR_SELF'),
+    forPeer('FOR_PEER'),
+    notShared('NOT_SHARED');
+
+    const NetworkConnectivityInternalRangePeering(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `allocation_strategy` on [NetworkConnectivityInternalRangeAllocationOptions].
+  enum NetworkConnectivityInternalRangeAllocationStrategy
+      implements TerraformEnum {
+    random('RANDOM'),
+    firstAvailable('FIRST_AVAILABLE'),
+    randomFirstNAvailable('RANDOM_FIRST_N_AVAILABLE'),
+    firstSmallestFitting('FIRST_SMALLEST_FITTING');
+
+    const NetworkConnectivityInternalRangeAllocationStrategy(
+        this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Optional `allocation_options` when auto-allocating via [prefixLength].
+  @immutable
+  final class NetworkConnectivityInternalRangeAllocationOptions {
+    const NetworkConnectivityInternalRangeAllocationOptions({
+      this.allocationStrategy,
+      this.firstAvailableRangesLookupSize,
+    });
+
+    final TfArg<NetworkConnectivityInternalRangeAllocationStrategy>?
+        allocationStrategy;
+    final TfArg<int>? firstAvailableRangesLookupSize;
+
+    Map<String, Object?> encode() => {
+          if (allocationStrategy != null)
+            'allocation_strategy': allocationStrategy!.toTfJson(),
+          if (firstAvailableRangesLookupSize != null)
+            'first_available_ranges_lookup_size':
+                firstAvailableRangesLookupSize!.toTfJson(),
+        };
+  }
+
+customSlots:
+  allocation_options:
+    paramDeclaration: 'NetworkConnectivityInternalRangeAllocationOptions? allocationOptions'
+    argMapEntry: "if (allocationOptions != null) 'allocation_options': TfArg.literal([allocationOptions.encode()]),"
+
+paramOrder:
+  - name
+  - network
+  - usage
+  - peering
+  - ip_cidr_range
+  - prefix_length
+  - allocation_options
+  - description
+  - target_cidr_range
+  - overlaps
+  - labels
+  - project

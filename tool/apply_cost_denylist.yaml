@@ -34,6 +34,7 @@ safe_exception: google_compute_instance_iam_binding  # IAM binding, no billing �
 safe_exception: google_compute_instance_template  # instance template metadata only; VMs bill via google_compute_instance (sweep_only)
 safe_exception: google_compute_instance_settings  # zonal metadata defaults singleton; no VM provisioned — _instance substring false positive
 safe_exception: google_service_directory_endpoint  # Service Directory metadata record, no existence billing — _endpoint false positive
+safe_exception: google_network_connectivity_regional_endpoint  # NCC PSC regional endpoint metadata for Google APIs; no existence billing (NCC 7BEB-7A51-4223 has no endpoint SKU) — _endpoint false positive
 safe_exception: google_bigtable_instance_iam_member  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
 safe_exception: google_bigtable_instance_iam_policy  # IAM policy on Bigtable instance; no existence billing — _instance substring false positive
 safe_exception: google_bigtable_instance_iam_binding  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
@@ -678,6 +679,13 @@ google_monitoring_notification_channel: safe  # apply-verified safe (existing ex
 google_monitoring_slo: safe  # apply-verified safe (existing example)
 google_monitoring_uptime_check_config: safe  # apply-verified safe (existing example)
 google_network_connectivity_hub: safe  # apply-verified safe (existing example)
+google_network_connectivity_group: safe  # gcp-cost: no Cloud Billing Catalog SKU for NCC group (Network Connectivity Center 7BEB-7A51-4223 list_skus keyword=hub/spoke/group/range/endpoint → 0; catalog only lists Partner CCI Managed Transport hourly SKUs e.g. AAE5-BD60-3575); billing-behavior: hub group metadata — no existence/hourly charge; destroy deletes the group
+google_network_connectivity_spoke: safe  # gcp-cost: no Cloud Billing Catalog SKU for VPC/VPN/interconnect spokes (NCC 7BEB-7A51-4223 list_skus keyword=spoke/gateway → 0; only Partner CCI transport SKUs); billing-behavior: VPC spoke is free routing fabric metadata; gateway-spoke capacity is a different attach path (not used in apply-smoke); destroy deletes the spoke
+google_network_connectivity_internal_range: safe  # gcp-cost: no Cloud Billing Catalog SKU for internal range (NCC 7BEB-7A51-4223 list_skus keyword=range → 0); billing-behavior: CIDR reservation metadata — no existence/hourly charge; destroy deletes the range
+google_network_connectivity_regional_endpoint: safe  # gcp-cost: no Cloud Billing Catalog SKU for regional endpoint (NCC 7BEB-7A51-4223 list_skus keyword=endpoint/PSC → 0); billing-behavior: PSC regional endpoint metadata for Google APIs — no existence/hourly charge beyond ordinary PSC/networking; destroy deletes the endpoint
+google_network_connectivity_hub_iam_member: safe  # billing-behavior: IAM binding only
+google_network_connectivity_hub_iam_binding: safe  # billing-behavior: IAM binding only
+google_network_connectivity_hub_iam_policy: safe  # billing-behavior: IAM policy only
 google_network_security_address_group: safe  # apply-verified safe (existing example)
 google_network_security_client_tls_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU for client TLS policy config (Network Security E749-01A2-AE1F lists NGFW/data-processing SKUs only, e.g. 8717-57C8-078B — no TLS policy SKU); billing-behavior: policy metadata — no existence/hourly charge until attached to a data plane
 google_network_security_server_tls_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU for server TLS policy config (Network Security E749-01A2-AE1F lists NGFW/data-processing SKUs only — no TLS policy SKU); billing-behavior: policy metadata — no existence/hourly charge until attached to a proxy/endpoint

@@ -1941,3 +1941,19 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_kms_ekm_connection_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
+
+  # Network Connectivity Center hub / spoke coverage wave
+  google_network_connectivity_group:
+    upstream: mmv1/products/networkconnectivity/Group.yaml
+  google_network_connectivity_spoke:
+    upstream: mmv1/products/networkconnectivity/Spoke.yaml
+  google_network_connectivity_regional_endpoint:
+    upstream: mmv1/products/networkconnectivity/RegionalEndpoint.yaml
+  google_network_connectivity_internal_range:
+    upstream: null  # handwritten in terraform-provider-google; no MM YAML in networkconnectivity product
+  google_network_connectivity_hub_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_network_connectivity_hub_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_network_connectivity_hub_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation

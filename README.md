@@ -227,7 +227,7 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **926 curated resource factories + 1 data source** (927 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
+[`terradart_google`](packages/terradart_google/README.md) ships **933 curated resource factories + 1 data source** (934 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
 
 The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). In Dart, discover factories via `package:terradart_google/catalog.dart` (`terradartCatalog`). CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
@@ -290,6 +290,7 @@ Application platform & operations
 - [Infrastructure Manager Git blueprint deployment](examples/config_deployment_quickstart/)
 - [Dialogflow CX SIP trunk](examples/dialogflow_quickstart/)
 - [Network Connectivity CCI transport](examples/network_connectivity_quickstart/)
+- [Network Connectivity Center hub / spoke](examples/ncc_hub_quickstart/)
 - [Network Security ULL mirroring](examples/network_security_ull_quickstart/)
 - [Oracle GoldenGate deployment and connections](examples/oracle_goldengate_quickstart/)
 - [Oracle Autonomous Database on ODB networking](examples/oracle_autonomous_database_quickstart/)

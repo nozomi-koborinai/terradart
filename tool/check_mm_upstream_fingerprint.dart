@@ -63,6 +63,9 @@ const _fingerprintFalsePositives = <String>{
   'google_container_aws_node_pool',
   'google_container_azure_cluster',
   'google_container_azure_node_pool',
+  // NCC InternalRange: effective_labels fingerprint but no
+  // mmv1/products/networkconnectivity/InternalRange.yaml (404, probed 2026-08-11).
+  'google_network_connectivity_internal_range',
 };
 
 bool _isIamAdjunct(String tfType) =>

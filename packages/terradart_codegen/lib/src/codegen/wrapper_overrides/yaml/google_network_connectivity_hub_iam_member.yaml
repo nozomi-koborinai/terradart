@@ -1,0 +1,11 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - hub
+  - role
+  - member
+  - project
+  - condition
