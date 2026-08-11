@@ -2343,6 +2343,57 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_biglake_iceberg_catalog`.\n\nIcebergCatalogs are top-level containers for Apache Iceberg REST Catalog\nserved Namespaces and Tables.\n\nBigLake Iceberg catalog backed by a GCS bucket\n(`CATALOG_TYPE_GCS_BUCKET`).\n\n[name] must equal the bucket name (not `gs://…`). Enable\n`biglake.googleapis.com` via [GoogleProjectService] before apply.\nPair with [GoogleStorageBucket] + [GoogleBiglakeIcebergNamespace] /\n[GoogleBiglakeIcebergTable].',
   ),
   CatalogEntry(
+    tfType: 'google_biglake_iceberg_catalog_iam_binding',
+    className: 'GoogleBiglakeIcebergCatalogIamBinding',
+    barrel: 'biglake',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_biglake_iceberg_catalog_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'members',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_biglake_iceberg_catalog_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigLake Iceberg\nREST catalog.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleBiglakeIcebergCatalogIamMember] for\nadditive grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_biglake_iceberg_catalog_iam_member',
+    className: 'GoogleBiglakeIcebergCatalogIamMember',
+    barrel: 'biglake',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_biglake_iceberg_catalog_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'role',
+      'member',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_biglake_iceberg_catalog_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_biglake_iceberg_catalog_iam_policy',
+    className: 'GoogleBiglakeIcebergCatalogIamPolicy',
+    barrel: 'biglake',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_biglake_iceberg_catalog_iam_policy`.',
+    constructorParams: <String>['localName', 'name', 'policyData', 'project'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_biglake_iceberg_catalog_iam_policy`.\n\nAuthoritative IAM policy for a BigLake Iceberg REST catalog.\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleBiglakeIcebergCatalogIamMember] for\nsingle-principal grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_biglake_iceberg_namespace',
     className: 'GoogleBiglakeIcebergNamespace',
     barrel: 'biglake',
@@ -2360,6 +2411,67 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_biglake_iceberg_namespace`.\n\nIcebergNamespaces are containers for Apache Iceberg Tables within an\nIcebergCatalog.\n\nIceberg namespace inside a [GoogleBiglakeIcebergCatalog].\n\n[catalog] is the catalog name (GCS bucket name for\n`CATALOG_TYPE_GCS_BUCKET`). Enable `biglake.googleapis.com` before apply.',
+  ),
+  CatalogEntry(
+    tfType: 'google_biglake_iceberg_namespace_iam_binding',
+    className: 'GoogleBiglakeIcebergNamespaceIamBinding',
+    barrel: 'biglake',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_biglake_iceberg_namespace_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'catalog',
+      'namespaceId',
+      'role',
+      'members',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_biglake_iceberg_namespace_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigLake Iceberg\nnamespace.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleBiglakeIcebergNamespaceIamMember] for\nadditive grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_biglake_iceberg_namespace_iam_member',
+    className: 'GoogleBiglakeIcebergNamespaceIamMember',
+    barrel: 'biglake',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_biglake_iceberg_namespace_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'catalog',
+      'namespaceId',
+      'role',
+      'member',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_biglake_iceberg_namespace_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_biglake_iceberg_namespace_iam_policy',
+    className: 'GoogleBiglakeIcebergNamespaceIamPolicy',
+    barrel: 'biglake',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_biglake_iceberg_namespace_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'catalog',
+      'namespaceId',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_biglake_iceberg_namespace_iam_policy`.\n\nAuthoritative IAM policy for a BigLake Iceberg namespace.\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleBiglakeIcebergNamespaceIamMember] for\nsingle-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_biglake_iceberg_table',
@@ -2384,6 +2496,67 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_biglake_iceberg_table`.\n\nIcebergTables are the primary objects in an IcebergCatalog.\n\nIceberg table under a [GoogleBiglakeIcebergNamespace].\n\nPass [schema] as a nested-block Map (`type` / `fields` / optional\n`identifier_field_ids`). [location] is the table\'s GCS path\n(`gs://bucket/namespace/table`). Enable `biglake.googleapis.com`\nbefore apply.',
+  ),
+  CatalogEntry(
+    tfType: 'google_biglake_iceberg_table_iam_binding',
+    className: 'GoogleBiglakeIcebergTableIamBinding',
+    barrel: 'biglake',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_biglake_iceberg_table_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'catalog',
+      'namespace',
+      'name',
+      'role',
+      'members',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_biglake_iceberg_table_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a BigLake Iceberg\ntable.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleBiglakeIcebergTableIamMember] for\nadditive grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_biglake_iceberg_table_iam_member',
+    className: 'GoogleBiglakeIcebergTableIamMember',
+    barrel: 'biglake',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_biglake_iceberg_table_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'catalog',
+      'namespace',
+      'name',
+      'role',
+      'member',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_biglake_iceberg_table_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_biglake_iceberg_table_iam_policy',
+    className: 'GoogleBiglakeIcebergTableIamPolicy',
+    barrel: 'biglake',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_biglake_iceberg_table_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'catalog',
+      'namespace',
+      'name',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_biglake_iceberg_table_iam_policy`.\n\nAuthoritative IAM policy for a BigLake Iceberg table.\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleBiglakeIcebergTableIamMember] for\nsingle-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_biglake_table',

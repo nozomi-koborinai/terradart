@@ -10,11 +10,15 @@
 /// BigLake Table Management hourly SKUs (PR apply deferred via
 /// `apply_smoke_pr_skip.yaml`).
 ///
+/// Additive IAM members grant a reader service account on each Iceberg level
+/// (catalog, namespace, table).
+///
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/biglake.dart';
+import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/storage.dart';
@@ -126,7 +130,7 @@ final class MetastoreStack extends Stack {
       ),
     );
 
-    add(
+    final icebergTable = add(
       GoogleBiglakeIcebergTable(
         localName: 'iceberg_orders',
         catalog: TfArg.ref(icebergCatalog.nameRef),
@@ -164,6 +168,56 @@ final class MetastoreStack extends Stack {
           ],
         }),
         dependsOn: [ResourceDependency(icebergNamespace)],
+      ),
+    );
+
+    final reader = add(
+      GoogleServiceAccount(
+        localName: 'iceberg_reader',
+        accountId: TfArg.literal('terradart-iceberg-reader'),
+        displayName: TfArg.literal('BigLake Iceberg reader'),
+      ),
+    );
+
+    add(
+      GoogleBiglakeIcebergCatalogIamMember(
+        localName: 'catalog_reader',
+        name: TfArg.ref(icebergCatalog.nameRef),
+        role: TfArg.literal('roles/viewer'),
+        member: TfArg.ref(reader.iamMember),
+        dependsOn: [
+          ResourceDependency(icebergCatalog),
+          ResourceDependency(reader),
+        ],
+      ),
+    );
+
+    add(
+      GoogleBiglakeIcebergNamespaceIamMember(
+        localName: 'namespace_reader',
+        catalog: TfArg.ref(icebergCatalog.nameRef),
+        namespaceId: TfArg.ref(icebergNamespace.namespaceIdRef),
+        role: TfArg.literal('roles/viewer'),
+        member: TfArg.ref(reader.iamMember),
+        dependsOn: [
+          ResourceDependency(icebergNamespace),
+          ResourceDependency(reader),
+        ],
+      ),
+    );
+
+    add(
+      GoogleBiglakeIcebergTableIamMember(
+        localName: 'table_reader',
+        catalog: TfArg.ref(icebergCatalog.nameRef),
+        namespace: TfArg.ref(icebergNamespace.namespaceIdRef),
+        name: TfArg.ref(icebergTable.nameRef),
+        role: TfArg.literal('roles/viewer'),
+        member: TfArg.ref(reader.iamMember),
+        dependsOn: [
+          ResourceDependency(icebergTable),
+          ResourceDependency(reader),
+        ],
       ),
     );
 

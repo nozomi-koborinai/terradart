@@ -1,0 +1,13 @@
+outputDir: biglake
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - catalog
+  - namespace
+  - name
+  - role
+  - member
+  - project
+  - condition
