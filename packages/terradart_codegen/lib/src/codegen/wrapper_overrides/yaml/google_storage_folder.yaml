@@ -1,0 +1,28 @@
+outputDir: storage
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Hierarchical-namespace **folder** in a Cloud Storage bucket. The parent
+  /// bucket must have `hierarchical_namespace.enabled = true` (and therefore
+  /// uniform bucket-level access). Folder [name] is a path and must end with
+  /// `/` (e.g. `reports/2024/`).
+  ///
+  /// Prefer this over [GoogleStorageManagedFolder] when you want the Folders
+  /// API (create / list / rename) rather than the managed-folder IAM surface.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleStorageFolder(
+  ///   localName: 'reports',
+  ///   bucket: TfArg.ref(assets.nameRef),
+  ///   name: TfArg.literal('reports/'),
+  ///   forceDestroy: TfArg.literal(true),
+  /// );
+  /// ```
+
+paramOrder:
+  - bucket
+  - name
+  - force_destroy
+  - deletion_policy

@@ -1,0 +1,29 @@
+outputDir: storage
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+dartTypeOverrides:
+  role: StorageObjectAccessControlRole
+
+curatedDoc: |-
+  /// Fine-grained **object ACL** entry on one object. Requires a bucket with
+  /// uniform bucket-level access **disabled**. Prefer IAM on modern buckets.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleStorageObjectAccessControl(
+  ///   localName: 'object_reader',
+  ///   bucket: TfArg.ref(legacy.nameRef),
+  ///   object: TfArg.literal('config/app.json'),
+  ///   entity: TfArg.ref(reader.iamMember),
+  ///   role: TfArg.literal(StorageObjectAccessControlRole.reader),
+  /// );
+  /// ```
+
+paramOrder:
+  - bucket
+  - object
+  - entity
+  - role
+  - deletion_policy

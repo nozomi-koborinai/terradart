@@ -720,6 +720,17 @@ google_storage_bucket_object: safe  # gcp-cost: SKU 4DBF-185F-A415 Regional Stan
 google_storage_bucket_iam_member: safe  # apply-verified safe (existing example)
 google_storage_bucket_iam_policy: safe  # billing-behavior: IAM policy only
 google_storage_control_project_intelligence_config: safe  # gcp-cost: Cloud Storage 95FF-2EF5-5EA1 list_skus keyword=intelligence → Storage Intelligence Standard Object Management Fee F67F-9FAF-E4FB $2.5e-06/s and Early Termination Fee 2279-6BDB-AB4F $2.5e-06/s (STANDARD edition only); billing-behavior: DISABLED edition is free project metadata singleton (PATCH create/update, exclude_delete) — does not enable paid Storage Intelligence; destroy removes from Terraform state only
+google_storage_folder: safe  # gcp-cost: Cloud Storage 95FF-2EF5-5EA1 list_skus keyword=folder → 0; Class A ops SKU 4DBF-185F-A415 $0.005/count after free tier; billing-behavior: HNS folder is metadata — create/list are usage-metered Class A ops, not existence-billed; destroy deletes the folder
+google_storage_bucket_access_control: safe  # gcp-cost: Cloud Storage 95FF-2EF5-5EA1 list_skus keyword=ACL → 0; Class A ops SKU 4DBF-185F-A415 $0.005/count after free tier; billing-behavior: fine-grained bucket ACL entry is metadata — not existence-billed
+google_storage_default_object_access_control: safe  # gcp-cost: Cloud Storage 95FF-2EF5-5EA1 list_skus keyword=ACL → 0; Class A ops SKU 4DBF-185F-A415 $0.005/count after free tier; billing-behavior: default object ACL entry is metadata — not existence-billed
+google_storage_object_access_control: safe  # gcp-cost: Cloud Storage 95FF-2EF5-5EA1 list_skus keyword=ACL → 0; Class A ops SKU 4DBF-185F-A415 $0.005/count after free tier; billing-behavior: object ACL entry is metadata — not existence-billed
+google_storage_batch_operations_job: safe  # gcp-cost: Cloud Storage 95FF-2EF5-5EA1 list_skus keyword=batch → 0 (no Batch Operations SKU); Class A ops SKU 4DBF-185F-A415 $0.005/count after free tier for object mutations the job performs; billing-behavior: job record itself is free metadata (delete_protection controls TF destroy); not existence-billed like licenses — destroy removes the job; smoke uses put_metadata on a tiny prefix
+google_storage_managed_folder_iam_member: safe  # billing-behavior: IAM binding only
+google_storage_managed_folder_iam_binding: safe  # billing-behavior: IAM binding only
+google_storage_managed_folder_iam_policy: safe  # billing-behavior: IAM policy only
+google_storage_hmac_key: safe  # gcp-cost: Cloud Storage 95FF-2EF5-5EA1 list_skus keyword=HMAC → 0; billing-behavior: HMAC key metadata for S3 interop — no existence/hourly charge; destroy deletes the key
+google_storage_managed_folder: safe  # gcp-cost: Cloud Storage 95FF-2EF5-5EA1 list_skus keyword=folder → 0; Class A ops SKU 4DBF-185F-A415 $0.005/count after free tier; billing-behavior: managed-folder metadata on an HNS bucket — not existence-billed; destroy deletes the folder
+google_storage_notification: safe  # gcp-cost: Cloud Storage 95FF-2EF5-5EA1 list_skus keyword=notification → 0; billing-behavior: bucket notification config metadata — Pub/Sub delivery billed separately on topic usage; destroy removes the notification config
 google_secret_manager_secret_version: safe  # apply-verified safe (existing example)
 google_service_account: safe  # apply-verified safe (existing example)
 google_service_account_iam_binding: safe  # billing-behavior: IAM binding only

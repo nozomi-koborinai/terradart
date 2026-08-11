@@ -1,0 +1,27 @@
+outputDir: storage
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+dartTypeOverrides:
+  role: StorageDefaultObjectAccessControlRole
+
+curatedDoc: |-
+  /// Default **object ACL** applied to new objects in a bucket. Requires
+  /// uniform bucket-level access **disabled**. Prefer IAM on modern buckets.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleStorageDefaultObjectAccessControl(
+  ///   localName: 'default_reader',
+  ///   bucket: TfArg.ref(legacy.nameRef),
+  ///   entity: TfArg.ref(reader.iamMember),
+  ///   role: TfArg.literal(StorageDefaultObjectAccessControlRole.reader),
+  /// );
+  /// ```
+
+paramOrder:
+  - bucket
+  - entity
+  - role
+  - deletion_policy

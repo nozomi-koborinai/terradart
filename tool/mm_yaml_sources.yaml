@@ -1877,3 +1877,20 @@ files:
     upstream: mmv1/products/networkmanagement/ConnectivityTest.yaml
   google_network_management_vpc_flow_logs_config:
     upstream: mmv1/products/networkmanagement/VpcFlowLogsConfig.yaml
+  # Storage coverage wave (folder + ACL access_control + batch ops + managed folder IAM)
+  google_storage_folder:
+    upstream: mmv1/products/storage/Folder.yaml
+  google_storage_bucket_access_control:
+    upstream: mmv1/products/storage/BucketAccessControl.yaml
+  google_storage_default_object_access_control:
+    upstream: mmv1/products/storage/DefaultObjectAccessControl.yaml
+  google_storage_object_access_control:
+    upstream: mmv1/products/storage/ObjectAccessControl.yaml
+  google_storage_batch_operations_job:
+    upstream: mmv1/products/storagebatchoperations/Job.yaml
+  google_storage_managed_folder_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_storage_managed_folder_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_storage_managed_folder_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
