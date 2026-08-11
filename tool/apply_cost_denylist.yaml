@@ -740,6 +740,15 @@ google_project_usage_export_bucket: safe  # gcp-cost: no Cloud Billing Catalog S
 google_project_iam_audit_config: safe  # gcp-cost: no Cloud Billing Catalog SKU for the audit-config resource itself (Cloud Logging 5490-F7B7-8DF6 list_skus keyword="audit" → 0; Log Storage SKU 143F-A1B0-E0BE $0.50/GiBy after 50 GiB free tier bills Data Access log volume only); billing-behavior: IAM audit config is policy metadata — ADMIN_READ emits free Admin Activity logs; destroy removes the config; this example does not enable DATA_READ/DATA_WRITE
 google_project_iam_binding: safe  # billing-behavior: IAM binding only
 google_project_iam_member: safe  # billing-behavior: IAM binding only
+google_organization_iam_member: safe  # billing-behavior: IAM binding only
+google_organization_iam_binding: safe  # billing-behavior: IAM binding only
+google_organization_iam_policy: safe  # billing-behavior: IAM policy only
+google_billing_account_iam_member: safe  # billing-behavior: IAM binding only
+google_billing_account_iam_binding: safe  # billing-behavior: IAM binding only
+google_billing_account_iam_policy: safe  # billing-behavior: IAM policy only
+google_folder_iam_member: safe  # billing-behavior: IAM binding only
+google_folder_iam_binding: safe  # billing-behavior: IAM binding only
+google_folder_iam_policy: safe  # billing-behavior: IAM policy only
 google_project_iam_policy: safe  # billing-behavior: IAM policy only
 google_project_service: safe  # apply-verified safe (existing example)
 google_pubsub_schema: safe  # apply-verified safe (existing example)

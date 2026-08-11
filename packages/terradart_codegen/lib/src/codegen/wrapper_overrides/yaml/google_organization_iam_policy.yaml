@@ -1,0 +1,14 @@
+outputDir: organization
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a GCP organization.
+  ///
+  /// `policy_data` replaces the entire IAM policy, overwriting grants made
+  /// outside Terraform. Prefer [GoogleOrganizationIamMember] for single-principal grants.
+
+paramOrder:
+  - org_id
+  - policy_data

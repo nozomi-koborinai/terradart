@@ -1,0 +1,16 @@
+outputDir: folder
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a GCP folder.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleFolderIamMember] for additive grants.
+
+paramOrder:
+  - folder
+  - role
+  - members
+  - condition

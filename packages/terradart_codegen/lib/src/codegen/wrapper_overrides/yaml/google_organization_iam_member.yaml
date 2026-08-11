@@ -1,0 +1,10 @@
+outputDir: organization
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - org_id
+  - role
+  - member
+  - condition

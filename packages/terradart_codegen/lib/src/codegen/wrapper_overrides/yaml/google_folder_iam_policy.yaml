@@ -1,0 +1,14 @@
+outputDir: folder
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a GCP folder.
+  ///
+  /// `policy_data` replaces the entire IAM policy, overwriting grants made
+  /// outside Terraform. Prefer [GoogleFolderIamMember] for single-principal grants.
+
+paramOrder:
+  - folder
+  - policy_data

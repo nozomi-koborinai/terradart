@@ -1,0 +1,10 @@
+outputDir: billing
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - billing_account_id
+  - role
+  - member
+  - condition
