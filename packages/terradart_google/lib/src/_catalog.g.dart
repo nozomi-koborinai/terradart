@@ -2610,6 +2610,32 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_bigquery_analytics_hub_listing_subscription`.\n\nA Bigquery Analytics Hub listing subscription',
   ),
   CatalogEntry(
+    tfType: 'google_bigquery_analytics_hub_query_template',
+    className: 'GoogleBigqueryAnalyticsHubQueryTemplate',
+    barrel: 'bigquery',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_bigquery_analytics_hub_query_template`.',
+    constructorParams: <String>[
+      'localName',
+      'dataExchangeId',
+      'deletionPolicy',
+      'description',
+      'displayName',
+      'documentation',
+      'location',
+      'primaryContact',
+      'project',
+      'queryTemplateId',
+      'submit',
+      'routine',
+    ],
+    nestedTypes: <String>['BigqueryAnalyticsHubQueryTemplateRoutine'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_bigquery_analytics_hub_query_template`.\n\nRepresents a BigQuery Query Template within a Data Exchange. This resource\ndefines a reusable SQL routine (e.g., a TVF) that can be shared or executed\nvia the Data Exchange.\n\nAnalytics Hub **query template** — reusable SQL routine (typically a\ntable-valued function) defined on a data exchange for sharing /\nsubscription workflows.\n\n**Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU after MCP\nlookup (`list_services` name=Analytics → no Analytics Hub service;\nBigQuery `24E6-581D-38E5` `list_skus` keywords analytics hub /\ntemplate / sharing / exchange → 0). billing-behavior: exchange\nmetadata only — no existence or hourly charge for the template\nitself (query jobs that *run* the TVF bill normal BigQuery\nanalysis). Sibling Analytics Hub resources already live under\nskip-listed `bigquery_quickstart` ("datapolicy + analyticshub\nresources require an organization"); extending that example would\nfail the wave skiplist gate. Ships via `tool/example_debt.yaml`.\n\nRequires [dataExchangeId], [displayName], [location], and\n[queryTemplateId]. Optional [routine] holds `definition_body` +\n`routine_type` (`TABLE_VALUED_FUNCTION`). Enable\n`analyticshub.googleapis.com` via [GoogleProjectService] before\napply.',
+  ),
+  CatalogEntry(
     tfType: 'google_bigquery_bi_reservation',
     className: 'GoogleBigqueryBiReservation',
     barrel: 'bigquery',

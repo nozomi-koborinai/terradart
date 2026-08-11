@@ -344,6 +344,7 @@ google_bigquery_table_iam_binding: safe  # billing-behavior: IAM binding only
 google_bigquery_table_iam_policy: safe  # billing-behavior: IAM policy only
 google_bigquery_connection_iam_binding: safe  # billing-behavior: IAM binding only
 google_bigquery_connection_iam_policy: safe  # billing-behavior: IAM policy only
+google_bigquery_analytics_hub_query_template: safe  # gcp-cost: no Cloud Billing Catalog SKU (list_services name=Analytics → no Analytics Hub; BigQuery 24E6-581D-38E5 list_skus keywords analytics hub/template/sharing/exchange → 0); billing-behavior: data-exchange query-template metadata only — no existence/hourly charge (TVF *execution* bills normal BigQuery analysis)
 google_bigquery_analytics_hub_data_exchange_iam_binding: safe  # billing-behavior: IAM binding only
 google_bigquery_analytics_hub_data_exchange_iam_policy: safe  # billing-behavior: IAM policy only
 google_bigquery_analytics_hub_listing_iam_binding: safe  # billing-behavior: IAM binding only

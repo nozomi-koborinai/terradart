@@ -1,0 +1,27 @@
+outputDir: bigquery
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Analytics Hub **query template** — reusable SQL routine (typically a
+  /// table-valued function) defined on a data exchange for sharing /
+  /// subscription workflows.
+  ///
+  /// **Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU after MCP
+  /// lookup (`list_services` name=Analytics → no Analytics Hub service;
+  /// BigQuery `24E6-581D-38E5` `list_skus` keywords analytics hub /
+  /// template / sharing / exchange → 0). billing-behavior: exchange
+  /// metadata only — no existence or hourly charge for the template
+  /// itself (query jobs that *run* the TVF bill normal BigQuery
+  /// analysis). Sibling Analytics Hub resources already live under
+  /// skip-listed `bigquery_quickstart` ("datapolicy + analyticshub
+  /// resources require an organization"); extending that example would
+  /// fail the wave skiplist gate. Ships via `tool/example_debt.yaml`.
+  ///
+  /// Requires [dataExchangeId], [displayName], [location], and
+  /// [queryTemplateId]. Optional [routine] holds `definition_body` +
+  /// `routine_type` (`TABLE_VALUED_FUNCTION`). Enable
+  /// `analyticshub.googleapis.com` via [GoogleProjectService] before
+  /// apply.
