@@ -1,0 +1,12 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - forwarding_rule_region_service_name
+  - role
+  - member
+  - condition
+  - region
+  - project

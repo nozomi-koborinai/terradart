@@ -582,6 +582,10 @@ GoogleIapWebForwardingRuleServiceIamBinding: iam-adjunct-debt: sibling GoogleIap
 GoogleIapWebForwardingRuleServiceIamPolicy: iam-adjunct-debt: sibling GoogleIapWebForwardingRuleServiceIamMember already in compute_lb_quickstart; authoritative policy not needed in smoke
 GoogleIapWebRegionBackendServiceIamBinding: iam-adjunct-debt: sibling GoogleIapWebRegionBackendServiceIamMember already in compute_lb_quickstart; authoritative binding not needed in smoke
 GoogleIapWebRegionBackendServiceIamPolicy: iam-adjunct-debt: sibling GoogleIapWebRegionBackendServiceIamMember already in compute_lb_quickstart; authoritative policy not needed in smoke
+GoogleIapWebRegionForwardingRuleServiceIamBinding: iam-adjunct-debt: sibling GoogleIapWebRegionForwardingRuleServiceIamMember already in compute_lb_quickstart; authoritative binding not needed in smoke
+GoogleIapWebRegionForwardingRuleServiceIamPolicy: iam-adjunct-debt: sibling GoogleIapWebRegionForwardingRuleServiceIamMember already in compute_lb_quickstart; authoritative policy not needed in smoke
+GoogleIapTunnelInstanceIamBinding: iam-adjunct-debt: sibling GoogleIapTunnelInstanceIamMember already in compute_quickstart; authoritative binding not needed in smoke
+GoogleIapTunnelInstanceIamPolicy: iam-adjunct-debt: sibling GoogleIapTunnelInstanceIamMember already in compute_quickstart; authoritative policy not needed in smoke
 GoogleIapWebBackendServiceIamPolicy: iam-adjunct-debt: sibling GoogleIapWebBackendServiceIamMember already in compute_lb_quickstart; authoritative policy not needed in smoke
 GoogleIapAgentRegistryIamBinding: iam-adjunct-debt: sibling GoogleIapAgentRegistryIamMember already in iam_quickstart; authoritative binding not needed in smoke
 GoogleIapAgentRegistryIamPolicy: iam-adjunct-debt: sibling GoogleIapAgentRegistryIamMember already in iam_quickstart; authoritative policy not needed in smoke

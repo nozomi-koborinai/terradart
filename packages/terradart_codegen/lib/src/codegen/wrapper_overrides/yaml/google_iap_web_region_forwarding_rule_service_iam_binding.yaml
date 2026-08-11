@@ -1,0 +1,19 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on an IAP-protected
+  /// regional forwarding rule service.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleIapWebRegionForwardingRuleServiceIamMember] for additive grants.
+
+paramOrder:
+  - forwarding_rule_region_service_name
+  - role
+  - members
+  - condition
+  - region
+  - project

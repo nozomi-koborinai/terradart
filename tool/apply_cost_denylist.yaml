@@ -41,6 +41,9 @@ safe_exception: google_network_connectivity_regional_endpoint  # NCC PSC regiona
 safe_exception: google_bigtable_instance_iam_member  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
 safe_exception: google_bigtable_instance_iam_policy  # IAM policy on Bigtable instance; no existence billing — _instance substring false positive
 safe_exception: google_bigtable_instance_iam_binding  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
+safe_exception: google_iap_tunnel_instance_iam_member  # IAM binding on IAP tunnel instance path; no existence billing — _instance substring false positive
+safe_exception: google_iap_tunnel_instance_iam_binding  # IAM binding on IAP tunnel instance path; no existence billing — _instance substring false positive
+safe_exception: google_iap_tunnel_instance_iam_policy  # IAM policy on IAP tunnel instance path; no existence billing — _instance substring false positive
 safe_exception: google_data_fusion_instance_iam_member  # IAM binding on Data Fusion instance; no existence billing — _instance substring false positive (parent google_data_fusion_instance is never_apply)
 safe_exception: google_data_fusion_instance_iam_binding  # IAM binding on Data Fusion instance; no existence billing — _instance substring false positive (parent google_data_fusion_instance is never_apply)
 safe_exception: google_data_fusion_instance_iam_policy  # IAM policy on Data Fusion instance; no existence billing — _instance substring false positive (parent google_data_fusion_instance is never_apply)
@@ -882,6 +885,12 @@ google_iap_web_forwarding_rule_service_iam_policy: safe  # billing-behavior: IAM
 google_iap_web_region_backend_service_iam_member: safe  # billing-behavior: IAM binding only
 google_iap_web_region_backend_service_iam_binding: safe  # billing-behavior: IAM binding only
 google_iap_web_region_backend_service_iam_policy: safe  # billing-behavior: IAM policy only
+google_iap_web_region_forwarding_rule_service_iam_member: safe  # billing-behavior: IAM binding only
+google_iap_web_region_forwarding_rule_service_iam_binding: safe  # billing-behavior: IAM binding only
+google_iap_web_region_forwarding_rule_service_iam_policy: safe  # billing-behavior: IAM policy only
+google_iap_tunnel_instance_iam_member: safe  # billing-behavior: IAM binding only
+google_iap_tunnel_instance_iam_binding: safe  # billing-behavior: IAM binding only
+google_iap_tunnel_instance_iam_policy: safe  # billing-behavior: IAM policy only
 google_dataproc_autoscaling_policy_iam_member: safe  # billing-behavior: IAM binding only
 google_dataproc_autoscaling_policy_iam_binding: safe  # billing-behavior: IAM binding only
 google_dataproc_autoscaling_policy_iam_policy: safe  # billing-behavior: IAM policy only

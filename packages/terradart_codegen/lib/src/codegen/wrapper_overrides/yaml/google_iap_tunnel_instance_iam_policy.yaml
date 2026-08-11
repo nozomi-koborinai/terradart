@@ -1,0 +1,17 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for IAP TCP forwarding to a Compute Engine
+  /// instance (`iap.tunnel.instances.<instance>`).
+  ///
+  /// `policy_data` replaces the entire IAM policy, overwriting grants made
+  /// outside Terraform. Prefer [GoogleIapTunnelInstanceIamMember] for single-principal grants.
+
+paramOrder:
+  - instance
+  - policy_data
+  - zone
+  - project

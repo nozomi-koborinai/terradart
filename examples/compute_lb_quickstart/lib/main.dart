@@ -954,6 +954,17 @@ final class ComputeLbStack extends Stack {
     );
 
     add(
+      GoogleIapWebRegionForwardingRuleServiceIamMember(
+        localName: 'ilb_https_region_iap_accessor',
+        forwardingRuleRegionServiceName: TfArg.ref(ilbHttps.nameRef),
+        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+        member: TfArg.literal('allAuthenticatedUsers'),
+        region: TfArg.literal(region),
+        dependsOn: [ResourceDependency(ilbHttps)],
+      ),
+    );
+
+    add(
       GoogleIapWebRegionBackendServiceIamMember(
         localName: 'regional_backend_iap_accessor',
         webRegionBackendService: TfArg.ref(regionalBackend.nameRef),
