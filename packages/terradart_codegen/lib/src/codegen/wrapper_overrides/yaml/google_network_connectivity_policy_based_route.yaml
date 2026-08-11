@@ -1,0 +1,132 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Network Connectivity **policy-based route** — L4 route that matches on
+  /// source/dest IP and protocol (not just destination), and always wins
+  /// over ordinary VPC routes when it matches.
+  ///
+  /// Pass exactly one [nextHop] variant (`ilbIp` or `otherRoutes`). Scope
+  /// installation with optional [virtualMachine] tags and/or
+  /// [interconnectAttachment] (provider `conflicts` — do not set both).
+  ///
+  /// **Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU for PBR
+  /// (Network Connectivity Center `7BEB-7A51-4223` `list_skus` keywords
+  /// policy/route → 0; catalog only lists Partner CCI Managed Transport
+  /// hourly SKUs). billing-behavior: routing metadata — no existence/hourly
+  /// charge. Ships in [`ncc_hub_quickstart`] with
+  /// `nextHop.otherRoutes(DEFAULT_ROUTING)` + VM tags.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleNetworkConnectivityPolicyBasedRoute(
+  ///   localName: 'default_pbr',
+  ///   name: TfArg.literal('terradart-pbr'),
+  ///   network: TfArg.ref(vpc.id),
+  ///   filter: NetworkConnectivityPolicyBasedRouteFilter(
+  ///     protocolVersion: TfArg.literal(
+  ///       NetworkConnectivityPolicyBasedRouteFilterProtocolVersion.ipv4,
+  ///     ),
+  ///   ),
+  ///   nextHop: NetworkConnectivityPolicyBasedRouteNextHop.otherRoutes(
+  ///     TfArg.literal(
+  ///       NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.defaultRouting,
+  ///     ),
+  ///   ),
+  ///   virtualMachine: NetworkConnectivityPolicyBasedRouteVirtualMachine(
+  ///     tags: TfArg.literal(['terradart-pbr']),
+  ///   ),
+  /// );
+  /// ```
+
+prelude: |
+  /// Exactly one next-hop for [GoogleNetworkConnectivityPolicyBasedRoute]
+  /// (MM `exactly_one_of` on `next_hop_ilb_ip` / `next_hop_other_routes`).
+  /// Use [NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes] (derived)
+  /// for the `otherRoutes` variant.
+  sealed class NetworkConnectivityPolicyBasedRouteNextHop {
+    const NetworkConnectivityPolicyBasedRouteNextHop();
+
+    /// L4 ILB VIP (global-access enabled) as next hop.
+    const factory NetworkConnectivityPolicyBasedRouteNextHop.ilbIp(
+      TfArg<String> ip,
+    ) = NetworkConnectivityPolicyBasedRouteNextHopIlbIp;
+
+    /// Reference other routes — currently only `DEFAULT_ROUTING`.
+    const factory NetworkConnectivityPolicyBasedRouteNextHop.otherRoutes(
+      TfArg<NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes> value,
+    ) = NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice;
+
+    /// argMap key (`next_hop_ilb_ip` or `next_hop_other_routes`).
+    String get blockKey;
+
+    /// Value emitted under [blockKey] (string VIP or enum / string route).
+    TfArg<dynamic> get value;
+  }
+
+  /// `next_hop_ilb_ip` variant.
+  @immutable
+  final class NetworkConnectivityPolicyBasedRouteNextHopIlbIp
+      extends NetworkConnectivityPolicyBasedRouteNextHop {
+    const NetworkConnectivityPolicyBasedRouteNextHopIlbIp(TfArg<String> ip)
+        : value = ip;
+
+    @override
+    final TfArg<dynamic> value;
+
+    @override
+    String get blockKey => 'next_hop_ilb_ip';
+  }
+
+  /// `next_hop_other_routes` variant.
+  @immutable
+  final class NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice
+      extends NetworkConnectivityPolicyBasedRouteNextHop {
+    const NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice(
+      TfArg<NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes> routes,
+    ) : value = routes;
+
+    @override
+    final TfArg<dynamic> value;
+
+    @override
+    String get blockKey => 'next_hop_other_routes';
+  }
+
+customSlots:
+  next_hop:
+    paramDeclaration: 'required NetworkConnectivityPolicyBasedRouteNextHop nextHop'
+    argMapEntry: 'nextHop.blockKey: nextHop.value,'
+
+paramOrder:
+  - name
+  - network
+  - filter
+  - next_hop
+  - virtual_machine
+  - interconnect_attachment
+  - priority
+  - description
+  - labels
+  - deletion_policy
+  - project
+
+argMapOrder:
+  - name
+  - network
+  - filter
+  - virtual_machine
+  - interconnect_attachment
+  - priority
+  - description
+  - labels
+  - deletion_policy
+  - project
+  - next_hop

@@ -6,6 +6,7 @@
 /// - a VPC spoke on a dedicated network,
 /// - an internal range reservation,
 /// - a private regional endpoint for Storage,
+/// - a policy-based route (`DEFAULT_ROUTING` + VM tags),
 /// - additive hub IAM for an inventory SA.
 ///
 /// Run `bin/infra.dart` to synth into `tf-out/`. Apply-smoke targets this
@@ -21,7 +22,8 @@ import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/time.dart';
 
-/// NCC hub stack: hub, group, VPC spoke, internal range, regional endpoint, IAM.
+/// NCC hub stack: hub, group, VPC spoke, internal range, regional endpoint,
+/// policy-based route, IAM.
 final class NccHubStack extends Stack {
   NccHubStack({required String projectId})
       : super(
@@ -129,6 +131,30 @@ final class NccHubStack extends Stack {
           ResourceDependency(vpc),
           ResourceDependency(subnet),
         ],
+      ),
+    );
+
+    add(
+      GoogleNetworkConnectivityPolicyBasedRoute(
+        localName: 'default_pbr',
+        name: TfArg.literal('terradart-ncc-pbr'),
+        network: TfArg.ref(vpc.id),
+        filter: NetworkConnectivityPolicyBasedRouteFilter(
+          protocolVersion: TfArg.literal(
+            NetworkConnectivityPolicyBasedRouteFilterProtocolVersion.ipv4,
+          ),
+        ),
+        nextHop: NetworkConnectivityPolicyBasedRouteNextHop.otherRoutes(
+          TfArg.literal(
+            NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes
+                .defaultRouting,
+          ),
+        ),
+        virtualMachine: NetworkConnectivityPolicyBasedRouteVirtualMachine(
+          tags: TfArg.literal(['terradart-pbr']),
+        ),
+        description: TfArg.literal('TerraDart PBR smoke (DEFAULT_ROUTING)'),
+        dependsOn: [...apiDeps, ResourceDependency(vpc)],
       ),
     );
 

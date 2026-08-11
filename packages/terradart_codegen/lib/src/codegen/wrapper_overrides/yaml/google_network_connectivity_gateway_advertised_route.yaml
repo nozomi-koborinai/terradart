@@ -1,0 +1,31 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Network Connectivity **gateway advertised route** — advertises an IP
+  /// prefix from an NCC **gateway** spoke to the hub (or a recipient).
+  ///
+  /// Requires a spoke whose attachment is
+  /// [NetworkConnectivitySpokeGateway] (capacity-billed; never apply-smoke).
+  ///
+  /// **Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU for the route
+  /// itself (NCC `7BEB-7A51-4223` `list_skus` keyword=gateway/route → 0;
+  /// catalog only lists Partner CCI Managed Transport hourly SKUs).
+  /// billing-behavior: route metadata is free, but the parent gateway spoke
+  /// is capacity-billed — same never_apply path as
+  /// [NetworkConnectivitySpokeGateway]. Ships via `tool/example_debt.yaml`.
+
+paramOrder:
+  - name
+  - location
+  - spoke
+  - ip_range
+  - recipient
+  - priority
+  - description
+  - labels
+  - deletion_policy
+  - project

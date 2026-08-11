@@ -1,0 +1,36 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Network Connectivity **service connection policy** — consumer-side PSC
+  /// policy that authorizes Private Service Connect connections for a
+  /// producer [serviceClass] into a VPC / subnet set.
+  ///
+  /// [serviceClass] is a producer-published identifier (not inventable
+  /// in-stack on a standalone project without an external producer).
+  ///
+  /// **Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU for the policy
+  /// (NCC `7BEB-7A51-4223` `list_skus` keyword=connection/service → 0;
+  /// catalog only lists Partner CCI Managed Transport hourly SKUs).
+  /// billing-behavior: policy metadata — no existence/hourly charge; PSC
+  /// data-plane usage bills under ordinary networking. Not
+  /// standalone-project applyable without a real producer `service_class`.
+  /// Ships via `tool/example_debt.yaml`.
+
+paramOrder:
+  - name
+  - location
+  - network
+  - service_class
+  - psc_config
+  - description
+  - labels
+  - deletion_policy
+  - project
