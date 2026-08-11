@@ -619,6 +619,12 @@ google_edgenetwork_interconnect_attachment: never_apply  # gcp-cost: Google Dist
 google_edgenetwork_network: never_apply  # gcp-cost: Google Distributed Cloud Edge 8A2D-5CB1-345B Connected Server Gen1 SKU 007E-2D86-E472 $3600/mo — billing-behavior: L3 network on physical GDCE zone; never apply-smoke
 google_edgenetwork_subnet: never_apply  # gcp-cost: Google Distributed Cloud Edge 8A2D-5CB1-345B Connected Server Gen1 SKU 007E-2D86-E472 $3600/mo — billing-behavior: subnet on physical GDCE network/zone; never apply-smoke
 google_essential_contacts_contact: safe  # apply-verified safe (existing example)
+google_endpoints_service_iam_member: safe  # billing-behavior: IAM binding only
+google_endpoints_service_iam_binding: safe  # billing-behavior: IAM binding only
+google_endpoints_service_iam_policy: safe  # billing-behavior: IAM policy only
+google_endpoints_service_consumers_iam_member: safe  # billing-behavior: IAM binding only
+google_endpoints_service_consumers_iam_binding: safe  # billing-behavior: IAM binding only
+google_endpoints_service_consumers_iam_policy: safe  # billing-behavior: IAM policy only
 google_filestore_backup: safe  # apply-verified safe (existing example)
 google_firestore_backup_schedule: safe  # apply-verified safe (existing example)
 google_firestore_database: safe  # apply-verified safe (existing example)

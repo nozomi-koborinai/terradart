@@ -1,6 +1,6 @@
 # terradart_google
 
-Ships **1066 curated resource factories + 1 data source** (1067 catalog entries)
+Ships **1072 curated resource factories + 1 data source** (1073 catalog entries)
 
 The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). Discover factories programmatically via `package:terradart_google/catalog.dart` (`terradartCatalog`).
 

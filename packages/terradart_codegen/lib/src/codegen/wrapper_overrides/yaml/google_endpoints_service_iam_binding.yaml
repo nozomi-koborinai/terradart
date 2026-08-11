@@ -1,0 +1,16 @@
+outputDir: endpoints
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud Endpoints service.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleEndpointsServiceIamMember] for additive grants.
+
+paramOrder:
+  - service_name
+  - role
+  - members
+  - condition

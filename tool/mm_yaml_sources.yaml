@@ -1267,6 +1267,18 @@ files:
   google_service_account:
     upstream: null  # handwritten in terraform provider; no MM YAML (probe 404)
   # Wave 17 (Eventarc completion)
+  google_endpoints_service_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_endpoints_service_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_endpoints_service_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_endpoints_service_consumers_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_endpoints_service_consumers_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_endpoints_service_consumers_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_eventarc_channel:
     upstream: mmv1/products/eventarc/Channel.yaml
   google_eventarc_enrollment:
