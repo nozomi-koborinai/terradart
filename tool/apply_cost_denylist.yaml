@@ -343,6 +343,15 @@ google_biglake_iceberg_catalog: safe  # gcp-cost: no Cloud Billing Catalog SKU f
 google_biglake_iceberg_namespace: safe  # gcp-cost: no Cloud Billing Catalog SKU for iceberg_namespace config (BigLake A6C3-245D-D767 usage SKUs only); billing-behavior: namespace metadata — no existence/hourly charge
 google_biglake_iceberg_table: sweep_only  # gcp-cost: SKU C2FF-D8D9-D9EF BigLake Table Management Iowa (us-central1) $0.12/h — hourly while the Iceberg table exists; destroy stops the charge; billing-behavior: hourly table-management
 google_biglake_table: safe  # apply-verified safe (existing example)
+google_biglake_iceberg_catalog_iam_member: safe  # billing-behavior: IAM binding only
+google_biglake_iceberg_catalog_iam_binding: safe  # billing-behavior: IAM binding only
+google_biglake_iceberg_catalog_iam_policy: safe  # billing-behavior: IAM policy only
+google_biglake_iceberg_namespace_iam_member: safe  # billing-behavior: IAM binding only
+google_biglake_iceberg_namespace_iam_binding: safe  # billing-behavior: IAM binding only
+google_biglake_iceberg_namespace_iam_policy: safe  # billing-behavior: IAM policy only
+google_biglake_iceberg_table_iam_member: safe  # billing-behavior: IAM binding only
+google_biglake_iceberg_table_iam_binding: safe  # billing-behavior: IAM binding only
+google_biglake_iceberg_table_iam_policy: safe  # billing-behavior: IAM policy only
 google_bigquery_dataset: safe  # apply-verified safe (existing example)
 google_bigquery_reservation_group: safe  # gcp-cost: no Cloud Billing Catalog SKU for reservation group config (BigQuery Reservation API 16B8-3DDA-9F10 lists slot/commit SKUs only, e.g. Standard Edition PAYG 0165-271F-5086 ~$0.049/slot-hour — no group SKU); billing-behavior: named container metadata — no existence/hourly charge until reservations allocate slots
 google_bigquery_table: safe  # apply-verified safe (existing example)
