@@ -864,6 +864,15 @@ google_network_security_address_group_iam_policy: safe  # billing-behavior: IAM 
 google_iap_tunnel_dest_group_iam_member: safe  # billing-behavior: IAM binding only
 google_iap_tunnel_dest_group_iam_binding: safe  # billing-behavior: IAM binding only
 google_iap_tunnel_dest_group_iam_policy: safe  # billing-behavior: IAM policy only
+google_iap_web_iam_member: safe  # billing-behavior: IAM binding only
+google_iap_web_iam_binding: safe  # billing-behavior: IAM binding only
+google_iap_web_iam_policy: safe  # billing-behavior: IAM policy only
+google_iap_web_type_compute_iam_member: safe  # billing-behavior: IAM binding only
+google_iap_web_type_compute_iam_binding: safe  # billing-behavior: IAM binding only
+google_iap_web_type_compute_iam_policy: safe  # billing-behavior: IAM policy only
+google_iap_tunnel_iam_member: safe  # billing-behavior: IAM binding only
+google_iap_tunnel_iam_binding: safe  # billing-behavior: IAM binding only
+google_iap_tunnel_iam_policy: safe  # billing-behavior: IAM policy only
 google_dataproc_autoscaling_policy_iam_member: safe  # billing-behavior: IAM binding only
 google_dataproc_autoscaling_policy_iam_binding: safe  # billing-behavior: IAM binding only
 google_dataproc_autoscaling_policy_iam_policy: safe  # billing-behavior: IAM policy only
