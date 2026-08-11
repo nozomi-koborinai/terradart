@@ -28,3 +28,16 @@ curatedDoc: |-
   /// `routine_type` (`TABLE_VALUED_FUNCTION`). Enable
   /// `analyticshub.googleapis.com` via [GoogleProjectService] before
   /// apply.
+
+paramOrder:
+  - data_exchange_id
+  - query_template_id
+  - location
+  - display_name
+  - description
+  - documentation
+  - primary_contact
+  - routine
+  - submit
+  - deletion_policy
+  - project

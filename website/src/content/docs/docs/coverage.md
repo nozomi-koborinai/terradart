@@ -295,6 +295,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_bigquery_analytics_hub_listing_iam_member` | `GoogleBigqueryAnalyticsHubListingIamMember` | [bigquery_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigquery_quickstart) |
 | `google_bigquery_analytics_hub_listing_iam_policy` | `GoogleBigqueryAnalyticsHubListingIamPolicy` | — |
 | `google_bigquery_analytics_hub_listing_subscription` | `GoogleBigqueryAnalyticsHubListingSubscription` | [bigquery_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigquery_quickstart) |
+| `google_bigquery_analytics_hub_query_template` | `GoogleBigqueryAnalyticsHubQueryTemplate` | — |
 | `google_bigquery_bi_reservation` | `GoogleBigqueryBiReservation` | [bigquery_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigquery_quickstart) |
 | `google_bigquery_capacity_commitment` | `GoogleBigqueryCapacityCommitment` | [bigquery_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigquery_quickstart) |
 | `google_bigquery_connection` | `GoogleBigqueryConnection` | [bigquery_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/bigquery_quickstart) |
