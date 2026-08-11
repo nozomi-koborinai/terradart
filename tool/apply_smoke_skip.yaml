@@ -106,3 +106,11 @@ oracle_goldengate_quickstart: GoldenGate apply needs Oracle zone entitlement and
 # this must NOT apply even in the full sweep, so it belongs here. synth +
 # terraform validate still cover it.
 license_manager_quickstart: reserves Office SPLA licenses (license_count, active) that bill for the configuration's existence with no VM attached; a brief apply→destroy still accrues high Microsoft license fees — synth + terraform validate cover it instead
+
+# --- Vector Search DataObject meters Write Ops + payload storage ---
+# Collection-only was applyable (~$0 schema). Adding google_vector_search_data_object
+# for synth coverage introduces Write Ops SKU C1E5-1A7F-E9B3 ~$0.18/count plus
+# Data Stored 1AE9-553C-C219 while the object exists. Skip the whole example
+# (apply is example-scoped) so personal validate projects do not accrue those
+# meters; synth + terraform validate still cover collection + data object.
+vector_quickstart: Vector Search DataObject meters Write Ops (C1E5-1A7F-E9B3 ~$0.18/count) and payload storage; apply skipped intentionally — synth + terraform validate cover google_vector_search_collection and google_vector_search_data_object
