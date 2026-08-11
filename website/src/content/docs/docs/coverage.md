@@ -560,7 +560,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_compute_instance_settings` | `GoogleComputeInstanceSettings` | [compute_instance_settings_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_instance_settings_quickstart) |
 | `google_compute_instance_template` | `GoogleComputeInstanceTemplate` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart), [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_instance_template_iam_binding` | `GoogleComputeInstanceTemplateIamBinding` | — |
-| `google_compute_instance_template_iam_member` | `GoogleComputeInstanceTemplateIamMember` | — |
+| `google_compute_instance_template_iam_member` | `GoogleComputeInstanceTemplateIamMember` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_instance_template_iam_policy` | `GoogleComputeInstanceTemplateIamPolicy` | — |
 | `google_compute_interconnect` | `GoogleComputeInterconnect` | — |
 | `google_compute_interconnect_attachment` | `GoogleComputeInterconnectAttachment` | — |
@@ -588,7 +588,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_compute_region_commitment` | `GoogleComputeRegionCommitment` | — |
 | `google_compute_region_disk` | `GoogleComputeRegionDisk` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_region_disk_iam_binding` | `GoogleComputeRegionDiskIamBinding` | — |
-| `google_compute_region_disk_iam_member` | `GoogleComputeRegionDiskIamMember` | — |
+| `google_compute_region_disk_iam_member` | `GoogleComputeRegionDiskIamMember` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_region_disk_iam_policy` | `GoogleComputeRegionDiskIamPolicy` | — |
 | `google_compute_region_health_check` | `GoogleComputeRegionHealthCheck` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
 | `google_compute_region_instance_group_manager` | `GoogleComputeRegionInstanceGroupManager` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
