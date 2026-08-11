@@ -4,7 +4,7 @@
 /// - an entry group + custom entry,
 /// - a taxonomy + policy tag,
 /// - a tag template with a STRING field,
-/// - additive IAM on the entry group and taxonomy.
+/// - additive IAM on the entry group, taxonomy, policy tag, and tag template.
 ///
 /// Prefer Dataplex Universal Catalog for new catalogs. This project may reject
 /// Data Catalog writes at apply time due to upstream deprecation (see
@@ -72,7 +72,7 @@ final class DataCatalogStack extends Stack {
       ),
     );
 
-    add(
+    final emailTag = add(
       GoogleDataCatalogPolicyTag(
         localName: 'email',
         displayName: TfArg.literal('email'),
@@ -82,7 +82,7 @@ final class DataCatalogStack extends Stack {
       ),
     );
 
-    add(
+    final tagTemplate = add(
       GoogleDataCatalogTagTemplate(
         localName: 'demo',
         tagTemplateId: TfArg.literal('terradart_template'),
@@ -134,6 +134,33 @@ final class DataCatalogStack extends Stack {
         member: TfArg.ref(reader.iamMember),
         dependsOn: [
           ResourceDependency(taxonomy),
+          ResourceDependency(reader),
+        ],
+      ),
+    );
+
+    add(
+      GoogleDataCatalogPolicyTagIamMember(
+        localName: 'policy_tag_viewer',
+        policyTag: TfArg.ref(emailTag.id),
+        role: TfArg.literal('roles/datacatalog.viewer'),
+        member: TfArg.ref(reader.iamMember),
+        dependsOn: [
+          ResourceDependency(emailTag),
+          ResourceDependency(reader),
+        ],
+      ),
+    );
+
+    add(
+      GoogleDataCatalogTagTemplateIamMember(
+        localName: 'tag_template_viewer',
+        tagTemplate: TfArg.ref(tagTemplate.id),
+        region: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/datacatalog.viewer'),
+        member: TfArg.ref(reader.iamMember),
+        dependsOn: [
+          ResourceDependency(tagTemplate),
           ResourceDependency(reader),
         ],
       ),

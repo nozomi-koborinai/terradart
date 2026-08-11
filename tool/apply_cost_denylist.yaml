@@ -837,3 +837,12 @@ google_vmwareengine_subnet: never_apply  # gcp-cost: VMware Engine C079-64FE-910
 google_vpc_access_connector: safe  # apply-verified safe (existing example)
 google_workflows_workflow: safe  # apply-verified safe (existing example)
 time_sleep: safe  # apply-verified safe (existing example)
+google_data_catalog_policy_tag_iam_member: safe  # billing-behavior: IAM binding only
+google_data_catalog_policy_tag_iam_binding: safe  # billing-behavior: IAM binding only
+google_data_catalog_policy_tag_iam_policy: safe  # billing-behavior: IAM policy only
+google_data_catalog_tag_template_iam_member: safe  # billing-behavior: IAM binding only
+google_data_catalog_tag_template_iam_binding: safe  # billing-behavior: IAM binding only
+google_data_catalog_tag_template_iam_policy: safe  # billing-behavior: IAM policy only
+google_cloudbuildv2_connection_iam_member: safe  # billing-behavior: IAM binding only
+google_cloudbuildv2_connection_iam_binding: safe  # billing-behavior: IAM binding only
+google_cloudbuildv2_connection_iam_policy: safe  # billing-behavior: IAM policy only

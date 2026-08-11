@@ -1,0 +1,18 @@
+outputDir: data_catalog
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Data Catalog tag template.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleDataCatalogTagTemplateIamMember] for additive grants.
+
+paramOrder:
+  - tag_template
+  - region
+  - role
+  - members
+  - project
+  - condition

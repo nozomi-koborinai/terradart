@@ -1,0 +1,16 @@
+outputDir: data_catalog
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Data Catalog tag template.
+  ///
+  /// `policy_data` replaces the entire IAM policy, overwriting grants made
+  /// outside Terraform. Prefer [GoogleDataCatalogTagTemplateIamMember] for single-principal grants.
+
+paramOrder:
+  - tag_template
+  - region
+  - policy_data
+  - project

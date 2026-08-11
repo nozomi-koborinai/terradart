@@ -22,6 +22,12 @@ export 'src/data_catalog/google_data_catalog_entry_group_iam_policy.dart'
     show GoogleDataCatalogEntryGroupIamPolicy;
 export 'src/data_catalog/google_data_catalog_policy_tag.dart'
     show GoogleDataCatalogPolicyTag;
+export 'src/data_catalog/google_data_catalog_policy_tag_iam_binding.dart'
+    show GoogleDataCatalogPolicyTagIamBinding;
+export 'src/data_catalog/google_data_catalog_policy_tag_iam_member.dart'
+    show GoogleDataCatalogPolicyTagIamMember;
+export 'src/data_catalog/google_data_catalog_policy_tag_iam_policy.dart'
+    show GoogleDataCatalogPolicyTagIamPolicy;
 export 'src/data_catalog/google_data_catalog_tag_template.dart'
     show
         DataCatalogTagTemplateEnumAllowedValue,
@@ -31,6 +37,12 @@ export 'src/data_catalog/google_data_catalog_tag_template.dart'
         DataCatalogTagTemplatePrimitiveFieldType,
         DataCatalogTagTemplatePrimitiveType,
         GoogleDataCatalogTagTemplate;
+export 'src/data_catalog/google_data_catalog_tag_template_iam_binding.dart'
+    show GoogleDataCatalogTagTemplateIamBinding;
+export 'src/data_catalog/google_data_catalog_tag_template_iam_member.dart'
+    show GoogleDataCatalogTagTemplateIamMember;
+export 'src/data_catalog/google_data_catalog_tag_template_iam_policy.dart'
+    show GoogleDataCatalogTagTemplateIamPolicy;
 export 'src/data_catalog/google_data_catalog_taxonomy.dart'
     show GoogleDataCatalogTaxonomy;
 export 'src/data_catalog/google_data_catalog_taxonomy_iam_binding.dart'

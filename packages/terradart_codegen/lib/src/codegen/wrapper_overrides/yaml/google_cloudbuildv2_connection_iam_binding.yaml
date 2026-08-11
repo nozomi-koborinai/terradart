@@ -1,0 +1,18 @@
+outputDir: cloud_build
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud Build v2 SCM connection.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleCloudbuildv2ConnectionIamMember] for additive grants.
+
+paramOrder:
+  - name
+  - location
+  - role
+  - members
+  - project
+  - condition

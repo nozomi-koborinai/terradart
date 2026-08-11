@@ -1,0 +1,12 @@
+outputDir: cloud_build
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - location
+  - role
+  - member
+  - project
+  - condition
