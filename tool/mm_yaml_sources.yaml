@@ -2026,3 +2026,29 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_cloudbuildv2_connection_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
+
+  # IAM adjuncts for WIF pool / Private CA template / Spanner instance+database
+  google_iam_workload_identity_pool_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iam_workload_identity_pool_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iam_workload_identity_pool_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_privateca_certificate_template_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_privateca_certificate_template_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_privateca_certificate_template_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_spanner_database_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_spanner_database_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_spanner_database_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_spanner_instance_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_spanner_instance_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_spanner_instance_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation

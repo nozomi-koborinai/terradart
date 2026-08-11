@@ -52,3 +52,9 @@ export 'src/privateca/google_privateca_certificate_template.dart'
         GooglePrivatecaCertificateTemplate,
         PrivatecaCertificateTemplateCelExpression,
         PrivatecaCertificateTemplateIdentityConstraints;
+export 'src/privateca/google_privateca_certificate_template_iam_binding.dart'
+    show GooglePrivatecaCertificateTemplateIamBinding;
+export 'src/privateca/google_privateca_certificate_template_iam_member.dart'
+    show GooglePrivatecaCertificateTemplateIamMember;
+export 'src/privateca/google_privateca_certificate_template_iam_policy.dart'
+    show GooglePrivatecaCertificateTemplateIamPolicy;

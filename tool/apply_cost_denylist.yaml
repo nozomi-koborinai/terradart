@@ -865,3 +865,15 @@ google_data_catalog_tag_template_iam_policy: safe  # billing-behavior: IAM polic
 google_cloudbuildv2_connection_iam_member: safe  # billing-behavior: IAM binding only
 google_cloudbuildv2_connection_iam_binding: safe  # billing-behavior: IAM binding only
 google_cloudbuildv2_connection_iam_policy: safe  # billing-behavior: IAM policy only
+google_iam_workload_identity_pool_iam_member: safe  # billing-behavior: IAM binding only
+google_iam_workload_identity_pool_iam_binding: safe  # billing-behavior: IAM binding only
+google_iam_workload_identity_pool_iam_policy: safe  # billing-behavior: IAM policy only
+google_privateca_certificate_template_iam_member: safe  # billing-behavior: IAM binding only
+google_privateca_certificate_template_iam_binding: safe  # billing-behavior: IAM binding only
+google_privateca_certificate_template_iam_policy: safe  # billing-behavior: IAM policy only
+google_spanner_database_iam_member: safe  # billing-behavior: IAM binding only
+google_spanner_database_iam_binding: safe  # billing-behavior: IAM binding only
+google_spanner_database_iam_policy: safe  # billing-behavior: IAM policy only
+google_spanner_instance_iam_member: safe  # billing-behavior: IAM binding only
+google_spanner_instance_iam_binding: safe  # billing-behavior: IAM binding only
+google_spanner_instance_iam_policy: safe  # billing-behavior: IAM policy only

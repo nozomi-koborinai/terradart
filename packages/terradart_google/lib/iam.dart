@@ -7,6 +7,12 @@ library;
 
 export 'src/iam/google_iam_workload_identity_pool.dart'
     show GoogleIamWorkloadIdentityPool, WorkloadIdentityPoolMode;
+export 'src/iam/google_iam_workload_identity_pool_iam_binding.dart'
+    show GoogleIamWorkloadIdentityPoolIamBinding;
+export 'src/iam/google_iam_workload_identity_pool_iam_member.dart'
+    show GoogleIamWorkloadIdentityPoolIamMember;
+export 'src/iam/google_iam_workload_identity_pool_iam_policy.dart'
+    show GoogleIamWorkloadIdentityPoolIamPolicy;
 export 'src/iam/google_iam_workload_identity_pool_provider.dart'
     show
         GoogleIamWorkloadIdentityPoolProvider,

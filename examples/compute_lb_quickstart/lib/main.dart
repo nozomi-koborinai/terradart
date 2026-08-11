@@ -203,6 +203,17 @@ final class ComputeLbStack extends Stack {
       ),
     );
 
+    add(
+      GooglePrivatecaCertificateTemplateIamMember(
+        localName: 'cm_cert_template_user',
+        certificateTemplate: TfArg.ref(cmCertTemplate.nameRef),
+        location: TfArg.literal(region),
+        role: TfArg.literal('roles/privateca.templateUser'),
+        member: TfArg.literal('group:security-admins@example.com'),
+        dependsOn: [ResourceDependency(cmCertTemplate)],
+      ),
+    );
+
     final cmRootCa = GooglePrivatecaCertificateAuthority(
       localName: 'cm_root_ca',
       certificateAuthorityId: TfArg.literal('app-root-ca'),
