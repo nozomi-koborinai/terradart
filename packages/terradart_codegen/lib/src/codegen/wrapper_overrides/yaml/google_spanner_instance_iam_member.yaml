@@ -1,0 +1,11 @@
+outputDir: spanner
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - instance
+  - role
+  - member
+  - project
+  - condition

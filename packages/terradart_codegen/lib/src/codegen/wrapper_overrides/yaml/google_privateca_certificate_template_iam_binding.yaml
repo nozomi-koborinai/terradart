@@ -1,0 +1,18 @@
+outputDir: privateca
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Private CA certificate template.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GooglePrivatecaCertificateTemplateIamMember] for additive grants.
+
+paramOrder:
+  - certificate_template
+  - location
+  - role
+  - members
+  - project
+  - condition

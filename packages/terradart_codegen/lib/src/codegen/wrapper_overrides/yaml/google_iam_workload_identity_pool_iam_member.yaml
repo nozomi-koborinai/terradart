@@ -1,0 +1,11 @@
+outputDir: iam
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - workload_identity_pool_id
+  - role
+  - member
+  - project
+  - condition

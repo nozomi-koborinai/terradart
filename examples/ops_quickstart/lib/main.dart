@@ -241,13 +241,34 @@ final class AuditPipelineStack extends Stack {
       ),
     );
 
-    add(
+    final spannerDb = add(
       GoogleSpannerDatabase(
         localName: 'audit_meta',
         instance: TfArg.ref(spanner.nameRef),
         name: TfArg.literal('audit_meta'),
         versionRetentionPeriod: TfArg.literal('86400s'),
         dependsOn: [ResourceDependency(spanner)],
+      ),
+    );
+
+    add(
+      GoogleSpannerInstanceIamMember(
+        localName: 'spanner_instance_viewer',
+        instance: TfArg.ref(spanner.nameRef),
+        role: TfArg.literal('roles/spanner.viewer'),
+        member: TfArg.literal('group:audit-readers@example.com'),
+        dependsOn: [ResourceDependency(spanner)],
+      ),
+    );
+
+    add(
+      GoogleSpannerDatabaseIamMember(
+        localName: 'spanner_db_reader',
+        instance: TfArg.ref(spanner.nameRef),
+        database: TfArg.ref(spannerDb.nameRef),
+        role: TfArg.literal('roles/spanner.databaseReader'),
+        member: TfArg.literal('group:audit-readers@example.com'),
+        dependsOn: [ResourceDependency(spannerDb)],
       ),
     );
   }

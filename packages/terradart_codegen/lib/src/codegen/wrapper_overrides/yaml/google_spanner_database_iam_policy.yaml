@@ -1,0 +1,16 @@
+outputDir: spanner
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Spanner database.
+  ///
+  /// `policy_data` replaces the entire IAM policy, overwriting grants made
+  /// outside Terraform. Prefer [GoogleSpannerDatabaseIamMember] for single-principal grants.
+
+paramOrder:
+  - instance
+  - database
+  - policy_data
+  - project

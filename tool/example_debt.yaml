@@ -748,3 +748,20 @@ GoogleDataCatalogTagTemplateIamPolicy: iam-adjunct-debt: sibling GoogleDataCatal
 # cloud_build_quickstart (iam-adjunct-debt path).
 GoogleCloudbuildv2ConnectionIamBinding: iam-adjunct-debt: sibling GoogleCloudbuildv2ConnectionIamMember already in cloud_build_quickstart; authoritative binding not needed in smoke
 GoogleCloudbuildv2ConnectionIamPolicy: iam-adjunct-debt: sibling GoogleCloudbuildv2ConnectionIamMember already in cloud_build_quickstart; authoritative policy not needed in smoke
+
+# WIF pool IAM binding/policy — sibling *IamMember already in iam_quickstart
+# (iam-adjunct-debt path).
+GoogleIamWorkloadIdentityPoolIamBinding: iam-adjunct-debt: sibling GoogleIamWorkloadIdentityPoolIamMember already in iam_quickstart; authoritative binding not needed in smoke
+GoogleIamWorkloadIdentityPoolIamPolicy: iam-adjunct-debt: sibling GoogleIamWorkloadIdentityPoolIamMember already in iam_quickstart; authoritative policy not needed in smoke
+
+# Private CA certificate template IAM binding/policy — sibling *IamMember
+# already in compute_lb_quickstart (iam-adjunct-debt path).
+GooglePrivatecaCertificateTemplateIamBinding: iam-adjunct-debt: sibling GooglePrivatecaCertificateTemplateIamMember already in compute_lb_quickstart; authoritative binding not needed in smoke
+GooglePrivatecaCertificateTemplateIamPolicy: iam-adjunct-debt: sibling GooglePrivatecaCertificateTemplateIamMember already in compute_lb_quickstart; authoritative policy not needed in smoke
+
+# Spanner instance/database IAM binding/policy — sibling *IamMember already in
+# ops_quickstart (iam-adjunct-debt path).
+GoogleSpannerInstanceIamBinding: iam-adjunct-debt: sibling GoogleSpannerInstanceIamMember already in ops_quickstart; authoritative binding not needed in smoke
+GoogleSpannerInstanceIamPolicy: iam-adjunct-debt: sibling GoogleSpannerInstanceIamMember already in ops_quickstart; authoritative policy not needed in smoke
+GoogleSpannerDatabaseIamBinding: iam-adjunct-debt: sibling GoogleSpannerDatabaseIamMember already in ops_quickstart; authoritative binding not needed in smoke
+GoogleSpannerDatabaseIamPolicy: iam-adjunct-debt: sibling GoogleSpannerDatabaseIamMember already in ops_quickstart; authoritative policy not needed in smoke

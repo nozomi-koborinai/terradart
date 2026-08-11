@@ -100,6 +100,21 @@ final class IamShowcaseStack extends Stack {
 
     final saMember = TfArg.ref(sa.iamMember);
 
+    // Additive IAM on the pool itself: lets the demo SA read pool/provider
+    // metadata without granting the authoritative pool policy.
+    add(
+      GoogleIamWorkloadIdentityPoolIamMember(
+        localName: 'wif_pool_viewer',
+        workloadIdentityPoolId: TfArg.ref(wifPool.nameRef),
+        role: TfArg.literal('roles/iam.workloadIdentityPoolViewer'),
+        member: saMember,
+        dependsOn: [
+          ResourceDependency(wifPool),
+          ResourceDependency(sa),
+        ],
+      ),
+    );
+
     final apiPubsub = add(
       GoogleProjectService(
         localName: 'api_pubsub',

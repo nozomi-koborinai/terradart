@@ -1,0 +1,12 @@
+outputDir: privateca
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - certificate_template
+  - location
+  - role
+  - member
+  - project
+  - condition

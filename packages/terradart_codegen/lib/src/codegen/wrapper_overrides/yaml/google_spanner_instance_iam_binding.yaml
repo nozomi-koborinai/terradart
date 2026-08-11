@@ -1,0 +1,17 @@
+outputDir: spanner
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Spanner instance.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleSpannerInstanceIamMember] for additive grants.
+
+paramOrder:
+  - instance
+  - role
+  - members
+  - project
+  - condition
