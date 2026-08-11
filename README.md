@@ -289,6 +289,7 @@ Application platform & operations
 - [Monitoring alert policy with typed `Aligner` / `Reducer`](examples/monitoring_quickstart/)
 - [Infrastructure Manager Git blueprint deployment](examples/config_deployment_quickstart/)
 - [Dialogflow CX SIP trunk](examples/dialogflow_quickstart/)
+- [NetApp Volumes metadata (vault / policy / host group)](examples/netapp_metadata_quickstart/)
 - [Network Connectivity CCI transport](examples/network_connectivity_quickstart/)
 - [Network Connectivity Center hub / spoke](examples/ncc_hub_quickstart/)
 - [Network Security ULL mirroring](examples/network_security_ull_quickstart/)
