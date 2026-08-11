@@ -1,14 +1,18 @@
 # Vector Search collection quickstart
 
-End-to-end terradart example for a Vector Search 2.0 collection
-(`google_vector_search_collection`) with a JSON data schema and a dense
-vector field — the same shape as the provider
-`vectorsearch_collection_basic` example (without Vertex embedding config).
+End-to-end terradart example for Vector Search 2.0:
+
+- `google_vector_search_collection` — JSON data schema + dense vector field
+- `google_vector_search_data_object` — one sample row (zero embedding)
 
 Creating a collection alone does not provision index-serving capacity.
-`google_vector_search_index` is curated in `terradart_google` but listed in
-`tool/example_debt.yaml` because the API defaults dedicated infrastructure
-to two PERFORMANCE_OPTIMIZED replicas (hourly billing).
+`google_vector_search_index` stays in `tool/example_debt.yaml` because the
+API defaults dedicated infrastructure to two PERFORMANCE_OPTIMIZED replicas
+(hourly billing).
+
+**Apply-smoke:** this example is listed in `tool/apply_smoke_skip.yaml`.
+DataObject meters Write Ops (~$0.18/count) and payload storage; synth +
+`terraform validate` still cover both factories.
 
 ## Prerequisites
 

@@ -1538,7 +1538,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | Terraform type | Dart factory | Example |
 | --- | --- | --- |
 | `google_vector_search_collection` | `GoogleVectorSearchCollection` | [vector_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vector_quickstart) |
-| `google_vector_search_data_object` | `GoogleVectorSearchDataObject` | — |
+| `google_vector_search_data_object` | `GoogleVectorSearchDataObject` | [vector_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vector_quickstart) |
 | `google_vector_search_index` | `GoogleVectorSearchIndex` | — |
 
 ## vertex_ai
