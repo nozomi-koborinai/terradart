@@ -626,6 +626,19 @@ GoogleFolderIamMember: folder-scoped IAM; requires folders/{id} under an organiz
 GoogleFolderIamBinding: folder-scoped authoritative IAM binding; deferred with sibling member (no folder on terradart-validate)
 GoogleFolderIamPolicy: folder-scoped authoritative IAM policy; deferred with sibling member (no folder on terradart-validate)
 
+# Compute image / snapshot / instant-snapshot IAM — parents are not curated
+# yet (custom images and snapshots bill storage while they exist). Cover via
+# debt until a parent Wave lands with an applyable or never_apply path.
+GoogleComputeImageIamMember: requires a parent GoogleComputeImage (uncurated; image storage bills while the image exists); deferred pending parent Wave
+GoogleComputeImageIamBinding: requires a parent GoogleComputeImage (uncurated); deferred with sibling member
+GoogleComputeImageIamPolicy: requires a parent GoogleComputeImage (uncurated); deferred with sibling member
+GoogleComputeSnapshotIamMember: requires a parent GoogleComputeSnapshot (uncurated; PD snapshot storage bills while the snapshot exists); deferred pending parent Wave
+GoogleComputeSnapshotIamBinding: requires a parent GoogleComputeSnapshot (uncurated); deferred with sibling member
+GoogleComputeSnapshotIamPolicy: requires a parent GoogleComputeSnapshot (uncurated); deferred with sibling member
+GoogleComputeInstantSnapshotIamMember: requires a parent GoogleComputeInstantSnapshot (uncurated; instant snapshot storage bills while it exists); deferred pending parent Wave
+GoogleComputeInstantSnapshotIamBinding: requires a parent GoogleComputeInstantSnapshot (uncurated); deferred with sibling member
+GoogleComputeInstantSnapshotIamPolicy: requires a parent GoogleComputeInstantSnapshot (uncurated); deferred with sibling member
+
 # Compute Engine IAM binding/policy — sibling *IamMember already in
 # compute_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
 GoogleComputeDiskIamBinding: iam-adjunct-debt: sibling GoogleComputeDiskIamMember already in compute_quickstart; authoritative binding not needed in smoke

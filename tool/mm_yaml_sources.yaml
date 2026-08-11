@@ -1125,6 +1125,24 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_compute_disk_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_image_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_image_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_image_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_snapshot_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_snapshot_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_snapshot_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_instant_snapshot_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_instant_snapshot_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_instant_snapshot_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_firebase_app_check_app_attest_config:
     upstream: mmv1/products/firebaseappcheck/AppAttestConfig.yaml
   google_firebase_app_check_debug_token:
