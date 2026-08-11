@@ -1,0 +1,18 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Network Connectivity
+  /// Center hub.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleNetworkConnectivityHubIamMember] for additive grants.
+
+paramOrder:
+  - hub
+  - role
+  - members
+  - project
+  - condition

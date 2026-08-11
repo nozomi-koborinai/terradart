@@ -535,6 +535,15 @@ GoogleKmsKeyRingIamPolicy: iam-adjunct-debt: sibling GoogleKmsKeyRingIamMember a
 GoogleKmsCryptoKeyIamBinding: iam-adjunct-debt: sibling GoogleKmsCryptoKeyIamMember already in kms_quickstart; authoritative binding not needed in smoke
 GoogleKmsCryptoKeyIamPolicy: iam-adjunct-debt: sibling GoogleKmsCryptoKeyIamMember already in kms_quickstart; authoritative policy not needed in smoke
 
+# ncc_hub_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
+GoogleNetworkConnectivityHubIamBinding: iam-adjunct-debt: sibling GoogleNetworkConnectivityHubIamMember already in ncc_hub_quickstart; authoritative binding not needed in smoke
+GoogleNetworkConnectivityHubIamPolicy: iam-adjunct-debt: sibling GoogleNetworkConnectivityHubIamMember already in ncc_hub_quickstart; authoritative policy not needed in smoke
+
+# NCC leftovers not in this wave — need interconnect / PSC service-class scaffolding.
+GoogleNetworkConnectivityGatewayAdvertisedRoute: requires a gateway spoke + advertised route path absent on standalone terradart-validate; deferred (no applyable quickstart)
+GoogleNetworkConnectivityPolicyBasedRoute: needs ILB next-hop or interconnect-attachment target scaffolding beyond ncc_hub_quickstart; deferred
+GoogleNetworkConnectivityServiceConnectionPolicy: needs a real PSC service_class from a producer service; deferred (no applyable quickstart on terradart-validate)
+
 # KMS helpers coverage wave — folder Autokey / Autokey key handle / EKM IAM
 # need org-folder or external EKM scaffolding absent on terradart-validate.
 GoogleKmsAutokeyConfig: folder-scoped Autokey singleton (folders/…); not applyable on standalone terradart-validate — project Autokey covered by kms_autokey_quickstart

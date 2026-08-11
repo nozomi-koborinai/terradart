@@ -1,0 +1,15 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Network Connectivity Center hub.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleNetworkConnectivityHubIamMember] for single-principal grants.
+
+paramOrder:
+  - hub
+  - policy_data
+  - project

@@ -1,0 +1,49 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Network Connectivity Center **group** under a
+  /// [GoogleNetworkConnectivityHub] (STAR topology center/edge, or `default`).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleNetworkConnectivityGroup(
+  ///   localName: 'center',
+  ///   hub: TfArg.ref(hub.id),
+  ///   name: TfArg.literal('center'),
+  /// );
+  /// ```
+
+prelude: |
+  /// Optional `auto_accept` block on [GoogleNetworkConnectivityGroup].
+  @immutable
+  final class NetworkConnectivityGroupAutoAccept {
+    const NetworkConnectivityGroupAutoAccept({
+      required this.autoAcceptProjects,
+    });
+
+    final TfArg<List<String>> autoAcceptProjects;
+
+    Map<String, Object?> encode() => {
+          'auto_accept_projects': autoAcceptProjects.toTfJson(),
+        };
+  }
+
+customSlots:
+  auto_accept:
+    paramDeclaration: 'NetworkConnectivityGroupAutoAccept? autoAccept'
+    argMapEntry: "if (autoAccept != null) 'auto_accept': TfArg.literal([autoAccept.encode()]),"
+
+paramOrder:
+  - hub
+  - name
+  - description
+  - auto_accept
+  - labels
+  - deletion_policy
+  - project

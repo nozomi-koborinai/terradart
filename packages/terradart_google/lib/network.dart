@@ -15,12 +15,42 @@ export 'src/network/google_network_connectivity_destination.dart'
     show
         GoogleNetworkConnectivityDestination,
         NetworkConnectivityDestinationEndpoints;
+export 'src/network/google_network_connectivity_group.dart'
+    show GoogleNetworkConnectivityGroup, NetworkConnectivityGroupAutoAccept;
 export 'src/network/google_network_connectivity_hub.dart'
     show GoogleNetworkConnectivityHub;
+export 'src/network/google_network_connectivity_hub_iam_binding.dart'
+    show GoogleNetworkConnectivityHubIamBinding;
+export 'src/network/google_network_connectivity_hub_iam_member.dart'
+    show GoogleNetworkConnectivityHubIamMember;
+export 'src/network/google_network_connectivity_hub_iam_policy.dart'
+    show GoogleNetworkConnectivityHubIamPolicy;
+export 'src/network/google_network_connectivity_internal_range.dart'
+    show
+        GoogleNetworkConnectivityInternalRange,
+        NetworkConnectivityInternalRangePeering,
+        NetworkConnectivityInternalRangeUsage;
 export 'src/network/google_network_connectivity_multicloud_data_transfer_config.dart'
     show
         GoogleNetworkConnectivityMulticloudDataTransferConfig,
         NetworkConnectivityMulticloudDataTransferConfigServices;
+export 'src/network/google_network_connectivity_regional_endpoint.dart'
+    show
+        GoogleNetworkConnectivityRegionalEndpoint,
+        NetworkConnectivityRegionalEndpointAccessType;
+export 'src/network/google_network_connectivity_spoke.dart'
+    show
+        GoogleNetworkConnectivitySpoke,
+        NetworkConnectivitySpokeAttachment,
+        NetworkConnectivitySpokeGateway,
+        NetworkConnectivitySpokeGatewayCapacity,
+        NetworkConnectivitySpokeGatewayIpRangeReservation,
+        NetworkConnectivitySpokeLinkedInterconnectAttachments,
+        NetworkConnectivitySpokeLinkedProducerVpcNetwork,
+        NetworkConnectivitySpokeLinkedRouterApplianceInstances,
+        NetworkConnectivitySpokeLinkedVpcNetwork,
+        NetworkConnectivitySpokeLinkedVpnTunnels,
+        NetworkConnectivitySpokeRouterApplianceInstance;
 export 'src/network/google_network_connectivity_transport.dart'
     show
         GoogleNetworkConnectivityTransport,

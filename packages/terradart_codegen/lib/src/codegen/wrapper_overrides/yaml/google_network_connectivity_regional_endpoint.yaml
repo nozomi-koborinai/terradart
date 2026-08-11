@@ -1,0 +1,39 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+dartTypeOverrides:
+  access_type: NetworkConnectivityRegionalEndpointAccessType
+
+curatedDoc: |-
+  /// Network Connectivity **regional endpoint** — private PSC endpoint for a
+  /// Google API (`{service}.{region}.rep.googleapis.com`).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleNetworkConnectivityRegionalEndpoint(
+  ///   localName: 'storage_rep',
+  ///   name: TfArg.literal('terradart-storage-rep'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   targetGoogleApi: TfArg.literal('storage.us-central1.rep.googleapis.com'),
+  ///   accessType: TfArg.literal(
+  ///     NetworkConnectivityRegionalEndpointAccessType.regional,
+  ///   ),
+  ///   network: TfArg.ref(vpc.id),
+  ///   subnetwork: TfArg.ref(subnet.id),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - target_google_api
+  - access_type
+  - network
+  - subnetwork
+  - address
+  - description
+  - labels
+  - project

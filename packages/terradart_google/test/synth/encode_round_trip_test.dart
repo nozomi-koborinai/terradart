@@ -660,6 +660,55 @@ final Map<String, Object Function()> _syntheticInstances = {
         ],
       ),
 
+  // --- NetworkConnectivitySpokeAttachment (6) — network_connectivity_spoke -
+  'NetworkConnectivitySpokeLinkedVpcNetwork': () =>
+      NetworkConnectivitySpokeLinkedVpcNetwork(
+        uri: TfArg.literal(
+          'projects/p/global/networks/net',
+        ),
+      ),
+  'NetworkConnectivitySpokeLinkedVpnTunnels': () =>
+      NetworkConnectivitySpokeLinkedVpnTunnels(
+        uris: TfArg.literal([
+          'projects/p/regions/us-central1/vpnTunnels/t1',
+        ]),
+        siteToSiteDataTransfer: TfArg.literal(false),
+      ),
+  'NetworkConnectivitySpokeLinkedInterconnectAttachments': () =>
+      NetworkConnectivitySpokeLinkedInterconnectAttachments(
+        uris: TfArg.literal([
+          'projects/p/regions/us-central1/interconnectAttachments/a1',
+        ]),
+        siteToSiteDataTransfer: TfArg.literal(false),
+      ),
+  'NetworkConnectivitySpokeLinkedRouterApplianceInstances': () =>
+      NetworkConnectivitySpokeLinkedRouterApplianceInstances(
+        instances: [
+          NetworkConnectivitySpokeRouterApplianceInstance(
+            virtualMachine: TfArg.literal(
+              'projects/p/zones/us-central1-a/instances/vm',
+            ),
+            ipAddress: TfArg.literal('10.0.0.2'),
+          ),
+        ],
+        siteToSiteDataTransfer: TfArg.literal(false),
+      ),
+  'NetworkConnectivitySpokeLinkedProducerVpcNetwork': () =>
+      NetworkConnectivitySpokeLinkedProducerVpcNetwork(
+        network: TfArg.literal('projects/p/global/networks/consumer'),
+        peering: TfArg.literal('producer-peering'),
+      ),
+  'NetworkConnectivitySpokeGateway': () => NetworkConnectivitySpokeGateway(
+        capacity: TfArg.literal(
+          NetworkConnectivitySpokeGatewayCapacity.capacity1Gbps,
+        ),
+        ipRangeReservations: [
+          NetworkConnectivitySpokeGatewayIpRangeReservation(
+            ipRange: TfArg.literal('10.1.2.0/23'),
+          ),
+        ],
+      ),
+
   // --- CertificateManagerCertificateProvisioningSource (2) — certificate_manager_certificate
   'CertificateManagerCertificateManagedProvisioning': () =>
       CertificateManagerCertificateManagedProvisioning(
