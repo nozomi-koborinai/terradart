@@ -121,6 +121,15 @@ GoogleBigqueryReservationGroup: create returns 400 "Can not use Reservation Grou
 # org-backed validate project exists.
 GoogleSccV2ProjectNotificationConfig: requires an organization-activated Security Command Center parent — notification configs mint service-org-ORGANIZATION_ID@gcp-sa-scc-notification.iam.gserviceaccount.com; terradart-validate has no org ancestor, so apply returns 400 Precondition check failed
 
+# SCC source IAM (v1 + v2 organization) — org-scoped; parents uncurated and
+# require an organization absent on standalone terradart-validate.
+GoogleSccSourceIamMember: org-scoped SCC source IAM; requires organizations/{id} + google_scc_source (uncurated) — not applyable on terradart-validate
+GoogleSccSourceIamBinding: org-scoped authoritative SCC source IAM binding; deferred with sibling member
+GoogleSccSourceIamPolicy: org-scoped authoritative SCC source IAM policy; deferred with sibling member
+GoogleSccV2OrganizationSourceIamMember: org-scoped SCC v2 organization source IAM; requires organizations/{id} + google_scc_v2_organization_source (uncurated) — not applyable on terradart-validate
+GoogleSccV2OrganizationSourceIamBinding: org-scoped authoritative SCC v2 organization source IAM binding; deferred with sibling member
+GoogleSccV2OrganizationSourceIamPolicy: org-scoped authoritative SCC v2 organization source IAM policy; deferred with sibling member
+
 # Vector Search indexes default dedicated_infrastructure to two
 # PERFORMANCE_OPTIMIZED replicas (hourly capacity-unit SKUs). vector_quickstart
 # exercises the schema-only collection instead.

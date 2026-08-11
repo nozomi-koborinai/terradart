@@ -1213,6 +1213,18 @@ files:
     upstream: mmv1/products/pubsublite/Subscription.yaml
   google_scc_v2_project_notification_config:
     upstream: mmv1/products/securitycenterv2/ProjectNotificationConfig.yaml
+  google_scc_source_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_scc_source_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_scc_source_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_scc_v2_organization_source_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_scc_v2_organization_source_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_scc_v2_organization_source_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_secret_manager_secret:
     upstream: mmv1/products/secretmanager/Secret.yaml
   google_secure_source_manager_instance:

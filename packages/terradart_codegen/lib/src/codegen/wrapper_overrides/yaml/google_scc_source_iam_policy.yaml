@@ -1,0 +1,15 @@
+outputDir: scc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Security Command Center source.
+  ///
+  /// `policy_data` replaces the entire IAM policy, overwriting grants made
+  /// outside Terraform. Prefer [GoogleSccSourceIamMember] for single-principal grants.
+
+paramOrder:
+  - source
+  - organization
+  - policy_data

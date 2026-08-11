@@ -1,0 +1,11 @@
+outputDir: scc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - source
+  - organization
+  - role
+  - member
+  - condition
