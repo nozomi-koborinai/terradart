@@ -42,6 +42,9 @@ sealed class NetworkConnectivityPolicyBasedRouteNextHop {
 
   /// Value emitted under [blockKey] (string VIP or enum / string route).
   TfArg<dynamic> get value;
+
+  /// Flat `{blockKey: value}` payload for Gate 6 encode round-trip.
+  Map<String, Object?> encode() => {blockKey: value.toTfJson()};
 }
 
 /// `next_hop_ilb_ip` variant.

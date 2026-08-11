@@ -660,6 +660,18 @@ final Map<String, Object Function()> _syntheticInstances = {
         ],
       ),
 
+  // --- NetworkConnectivityPolicyBasedRouteNextHop (2) — PBR next hop ------
+  'NetworkConnectivityPolicyBasedRouteNextHopIlbIp': () =>
+      NetworkConnectivityPolicyBasedRouteNextHopIlbIp(
+        TfArg.literal('10.0.0.10'),
+      ),
+  'NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice': () =>
+      NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice(
+        TfArg.literal(
+          NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.defaultRouting,
+        ),
+      ),
+
   // --- NetworkConnectivitySpokeAttachment (6) — network_connectivity_spoke -
   'NetworkConnectivitySpokeLinkedVpcNetwork': () =>
       NetworkConnectivitySpokeLinkedVpcNetwork(
