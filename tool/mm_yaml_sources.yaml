@@ -2007,3 +2007,22 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataproc_autoscaling_policy_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  # IAM adjuncts for Data Catalog policy tag / tag template and Cloud Build v2 connection
+  google_data_catalog_policy_tag_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_data_catalog_policy_tag_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_data_catalog_policy_tag_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_data_catalog_tag_template_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_data_catalog_tag_template_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_data_catalog_tag_template_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloudbuildv2_connection_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloudbuildv2_connection_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloudbuildv2_connection_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation

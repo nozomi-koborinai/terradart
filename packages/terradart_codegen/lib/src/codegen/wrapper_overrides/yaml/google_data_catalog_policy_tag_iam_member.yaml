@@ -1,0 +1,10 @@
+outputDir: data_catalog
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - policy_tag
+  - role
+  - member
+  - condition

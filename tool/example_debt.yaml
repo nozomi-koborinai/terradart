@@ -736,3 +736,15 @@ GoogleIapTunnelDestGroupIamPolicy: iam-adjunct-debt: sibling GoogleIapTunnelDest
 # dataproc_autoscaling_quickstart (iam-adjunct-debt path).
 GoogleDataprocAutoscalingPolicyIamBinding: iam-adjunct-debt: sibling GoogleDataprocAutoscalingPolicyIamMember already in dataproc_autoscaling_quickstart; authoritative binding not needed in smoke
 GoogleDataprocAutoscalingPolicyIamPolicy: iam-adjunct-debt: sibling GoogleDataprocAutoscalingPolicyIamMember already in dataproc_autoscaling_quickstart; authoritative policy not needed in smoke
+
+# Data Catalog policy tag / tag template IAM binding/policy — sibling *IamMember
+# already in data_catalog_quickstart (iam-adjunct-debt path).
+GoogleDataCatalogPolicyTagIamBinding: iam-adjunct-debt: sibling GoogleDataCatalogPolicyTagIamMember already in data_catalog_quickstart; authoritative binding not needed in smoke
+GoogleDataCatalogPolicyTagIamPolicy: iam-adjunct-debt: sibling GoogleDataCatalogPolicyTagIamMember already in data_catalog_quickstart; authoritative policy not needed in smoke
+GoogleDataCatalogTagTemplateIamBinding: iam-adjunct-debt: sibling GoogleDataCatalogTagTemplateIamMember already in data_catalog_quickstart; authoritative binding not needed in smoke
+GoogleDataCatalogTagTemplateIamPolicy: iam-adjunct-debt: sibling GoogleDataCatalogTagTemplateIamMember already in data_catalog_quickstart; authoritative policy not needed in smoke
+
+# Cloud Build v2 connection IAM binding/policy — sibling *IamMember already in
+# cloud_build_quickstart (iam-adjunct-debt path).
+GoogleCloudbuildv2ConnectionIamBinding: iam-adjunct-debt: sibling GoogleCloudbuildv2ConnectionIamMember already in cloud_build_quickstart; authoritative binding not needed in smoke
+GoogleCloudbuildv2ConnectionIamPolicy: iam-adjunct-debt: sibling GoogleCloudbuildv2ConnectionIamMember already in cloud_build_quickstart; authoritative policy not needed in smoke

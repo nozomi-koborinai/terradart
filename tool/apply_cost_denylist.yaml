@@ -855,3 +855,13 @@ google_iap_tunnel_dest_group_iam_policy: safe  # billing-behavior: IAM policy on
 google_dataproc_autoscaling_policy_iam_member: safe  # billing-behavior: IAM binding only
 google_dataproc_autoscaling_policy_iam_binding: safe  # billing-behavior: IAM binding only
 google_dataproc_autoscaling_policy_iam_policy: safe  # billing-behavior: IAM policy only
+
+google_data_catalog_policy_tag_iam_member: safe  # billing-behavior: IAM binding only
+google_data_catalog_policy_tag_iam_binding: safe  # billing-behavior: IAM binding only
+google_data_catalog_policy_tag_iam_policy: safe  # billing-behavior: IAM policy only
+google_data_catalog_tag_template_iam_member: safe  # billing-behavior: IAM binding only
+google_data_catalog_tag_template_iam_binding: safe  # billing-behavior: IAM binding only
+google_data_catalog_tag_template_iam_policy: safe  # billing-behavior: IAM policy only
+google_cloudbuildv2_connection_iam_member: safe  # billing-behavior: IAM binding only
+google_cloudbuildv2_connection_iam_binding: safe  # billing-behavior: IAM binding only
+google_cloudbuildv2_connection_iam_policy: safe  # billing-behavior: IAM policy only

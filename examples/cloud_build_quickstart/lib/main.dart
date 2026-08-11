@@ -115,6 +115,23 @@ final class CloudBuildStack extends Stack {
       ),
     );
 
+    // Additive IAM on the connection itself: the runner SA reads connection
+    // metadata (repositories, installation state) when a v2 trigger resolves
+    // its source.
+    add(
+      GoogleCloudbuildv2ConnectionIamMember(
+        localName: 'lb_conn_iam',
+        name: TfArg.ref<String>(lbConn.nameRef),
+        location: TfArg.literal(region),
+        role: TfArg.literal('roles/cloudbuild.connectionViewer'),
+        member: TfArg.ref<String>(buildSa.iamMember),
+        dependsOn: [
+          ResourceDependency(lbConn),
+          ResourceDependency(buildSa),
+        ],
+      ),
+    );
+
     // ---- 2. Linked GitHub repository -------------------------------------
     //
     // Binds a specific remote GitHub repo to the v2 connection. v2 triggers

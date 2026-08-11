@@ -1,0 +1,12 @@
+outputDir: data_catalog
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - tag_template
+  - region
+  - role
+  - member
+  - project
+  - condition

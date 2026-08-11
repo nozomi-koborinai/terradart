@@ -5712,6 +5712,65 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_cloudbuildv2_connection`.\n\nA connection to a SCM like GitHub, GitHub Enterprise, Bitbucket Data\nCenter/Cloud or GitLab.\n\nA Cloud Build v2 (2nd-gen) **connection** binds a Google Cloud project\nto a source-code-management host (GitHub, GitHub Enterprise, GitLab,\nBitbucket Data Center, Bitbucket Cloud). It carries the credentials\nthe Cloud Build control plane uses to enumerate repositories, fetch\nsource, and register webhooks — every `google_cloudbuildv2_repository`\n(see [GoogleCloudbuildv2Repository]) hangs off exactly one connection.\n\n**SCM one-of**: pick **at most one** of [githubConfig],\n[githubEnterpriseConfig], [gitlabConfig], [bitbucketDataCenterConfig],\nor [bitbucketCloudConfig]. The provider treats them as mutually\nexclusive (`conflicts` in the upstream MagicModules definition);\nsupplying more than one errors at apply time. Omit them all to create\nan unconfigured connection (rare — usually a placeholder during\nstaged setup).\n\n**Secret references**: every `*_secret_version` field on the nested\nSCM configs takes the self-link of a\n[GoogleSecretManagerSecretVersion] (format\n`projects/*/secrets/*/versions/*`). The secret payload itself stays\nin Secret Manager; the connection only stores the reference. Wire\nthese with `TfArg.ref(oauthVersion.id)` so changes to the underlying\nsecret version propagate as a connection update.\n\nExample (GitHub OAuth connection):\n```dart\nfinal ghConn = GoogleCloudbuildv2Connection(\n  localName: \'github\',\n  name: TfArg.literal(\'repo-github\'),\n  location: TfArg.literal(\'us-central1\'),\n  githubConfig: Cloudbuildv2ConnectionGithubConfig(\n    appInstallationId: TfArg.literal(123456),\n    authorizerCredential: Cloudbuildv2ConnectionGithubAuthorizerCredential(\n      oauthTokenSecretVersion: TfArg.ref(oauthSecretVersion.id),\n    ),\n  ),\n);\n```\n\nCross-resource references:\n- Consumed by [GoogleCloudbuildv2Repository] via `parent_connection`\n  = `TfArg.ref(connection.nameRef)`.\n\nOutput-only state:\n- [installationStateRef]: per-stage installation progress\n  (`PENDING_CREATE_APP` / `PENDING_USER_OAUTH` /\n  `PENDING_INSTALL_APP` / `COMPLETE`).\n- [reconciling]: server-side reconciliation flag.\n- [etag]: optimistic-concurrency token.',
   ),
   CatalogEntry(
+    tfType: 'google_cloudbuildv2_connection_iam_binding',
+    className: 'GoogleCloudbuildv2ConnectionIamBinding',
+    barrel: 'cloud_build',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_cloudbuildv2_connection_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'role',
+      'members',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_cloudbuildv2_connection_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Cloud Build v2 SCM connection.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleCloudbuildv2ConnectionIamMember] for additive grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_cloudbuildv2_connection_iam_member',
+    className: 'GoogleCloudbuildv2ConnectionIamMember',
+    barrel: 'cloud_build',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_cloudbuildv2_connection_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'role',
+      'member',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_cloudbuildv2_connection_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_cloudbuildv2_connection_iam_policy',
+    className: 'GoogleCloudbuildv2ConnectionIamPolicy',
+    barrel: 'cloud_build',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_cloudbuildv2_connection_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_cloudbuildv2_connection_iam_policy`.\n\nAuthoritative IAM policy for a Cloud Build v2 SCM connection.\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleCloudbuildv2ConnectionIamMember] for single-principal grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_cloudbuildv2_repository',
     className: 'GoogleCloudbuildv2Repository',
     barrel: 'cloud_build',
@@ -10344,6 +10403,55 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_data_catalog_policy_tag`.\n\nDenotes one policy tag in a taxonomy.\n\nData Catalog **policy tag** under a [GoogleDataCatalogTaxonomy] (legacy\nData Catalog API). Pass [taxonomy] as the parent taxonomy resource name\n(`TfArg.ref(taxonomy.id)`).\n\nExample:\n```dart\nGoogleDataCatalogPolicyTag(\n  localName: \'email\',\n  displayName: TfArg.literal(\'email\'),\n  taxonomy: TfArg.ref(taxonomy.id),\n  description: TfArg.literal(\'Email addresses\'),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_data_catalog_policy_tag_iam_binding',
+    className: 'GoogleDataCatalogPolicyTagIamBinding',
+    barrel: 'data_catalog',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_data_catalog_policy_tag_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'policyTag',
+      'role',
+      'members',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_data_catalog_policy_tag_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Data Catalog policy tag.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleDataCatalogPolicyTagIamMember] for additive grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_data_catalog_policy_tag_iam_member',
+    className: 'GoogleDataCatalogPolicyTagIamMember',
+    barrel: 'data_catalog',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_data_catalog_policy_tag_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'policyTag',
+      'role',
+      'member',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_data_catalog_policy_tag_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_data_catalog_policy_tag_iam_policy',
+    className: 'GoogleDataCatalogPolicyTagIamPolicy',
+    barrel: 'data_catalog',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_data_catalog_policy_tag_iam_policy`.',
+    constructorParams: <String>['localName', 'policyTag', 'policyData'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_data_catalog_policy_tag_iam_policy`.\n\nAuthoritative IAM policy for a Data Catalog policy tag.\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleDataCatalogPolicyTagIamMember] for single-principal grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_data_catalog_tag_template',
     className: 'GoogleDataCatalogTagTemplate',
     barrel: 'data_catalog',
@@ -10370,6 +10478,67 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_data_catalog_tag_template`.\n\nA tag template defines a tag, which can have one or more typed fields. The\ntemplate is used to create and attach the tag to GCP resources.\n\nData Catalog **tag template** — defines typed fields that\n`google_data_catalog_tag` instances fill in (legacy Data Catalog API).\nSupply at least one [fields] entry; each field picks exactly one\n[DataCatalogTagTemplateFieldType] (primitive or enum).\n\nExample:\n```dart\nGoogleDataCatalogTagTemplate(\n  localName: \'demo\',\n  tagTemplateId: TfArg.literal(\'terradart_template\'),\n  region: TfArg.literal(\'us-central1\'),\n  displayName: TfArg.literal(\'Demo Tag Template\'),\n  fields: [\n    DataCatalogTagTemplateField(\n      fieldId: TfArg.literal(\'source\'),\n      displayName: TfArg.literal(\'Source of data asset\'),\n      isRequired: TfArg.literal(true),\n      type: const DataCatalogTagTemplatePrimitiveFieldType(\n        DataCatalogTagTemplatePrimitiveType.string,\n      ),\n    ),\n  ],\n  forceDelete: TfArg.literal(true),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_data_catalog_tag_template_iam_binding',
+    className: 'GoogleDataCatalogTagTemplateIamBinding',
+    barrel: 'data_catalog',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_data_catalog_tag_template_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'tagTemplate',
+      'region',
+      'role',
+      'members',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_data_catalog_tag_template_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Data Catalog tag template.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleDataCatalogTagTemplateIamMember] for additive grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_data_catalog_tag_template_iam_member',
+    className: 'GoogleDataCatalogTagTemplateIamMember',
+    barrel: 'data_catalog',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_data_catalog_tag_template_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'tagTemplate',
+      'region',
+      'role',
+      'member',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_data_catalog_tag_template_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_data_catalog_tag_template_iam_policy',
+    className: 'GoogleDataCatalogTagTemplateIamPolicy',
+    barrel: 'data_catalog',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_data_catalog_tag_template_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'tagTemplate',
+      'region',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_data_catalog_tag_template_iam_policy`.\n\nAuthoritative IAM policy for a Data Catalog tag template.\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleDataCatalogTagTemplateIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_data_catalog_taxonomy',

@@ -57,5 +57,11 @@ export 'src/cloud_build/google_cloudbuildv2_connection.dart'
         Cloudbuildv2ConnectionServiceDirectoryConfig,
         Cloudbuildv2ConnectionUserCredential,
         GoogleCloudbuildv2Connection;
+export 'src/cloud_build/google_cloudbuildv2_connection_iam_binding.dart'
+    show GoogleCloudbuildv2ConnectionIamBinding;
+export 'src/cloud_build/google_cloudbuildv2_connection_iam_member.dart'
+    show GoogleCloudbuildv2ConnectionIamMember;
+export 'src/cloud_build/google_cloudbuildv2_connection_iam_policy.dart'
+    show GoogleCloudbuildv2ConnectionIamPolicy;
 export 'src/cloud_build/google_cloudbuildv2_repository.dart'
     show GoogleCloudbuildv2Repository;
