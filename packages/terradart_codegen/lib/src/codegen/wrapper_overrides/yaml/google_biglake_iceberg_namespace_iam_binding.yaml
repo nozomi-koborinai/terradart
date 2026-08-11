@@ -1,0 +1,20 @@
+outputDir: biglake
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a BigLake Iceberg
+  /// namespace.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleBiglakeIcebergNamespaceIamMember] for
+  /// additive grants.
+
+paramOrder:
+  - catalog
+  - namespace_id
+  - role
+  - members
+  - project
+  - condition

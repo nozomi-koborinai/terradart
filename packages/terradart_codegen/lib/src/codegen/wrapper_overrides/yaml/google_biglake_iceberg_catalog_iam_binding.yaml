@@ -1,0 +1,19 @@
+outputDir: biglake
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a BigLake Iceberg
+  /// REST catalog.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleBiglakeIcebergCatalogIamMember] for
+  /// additive grants.
+
+paramOrder:
+  - name
+  - role
+  - members
+  - project
+  - condition
