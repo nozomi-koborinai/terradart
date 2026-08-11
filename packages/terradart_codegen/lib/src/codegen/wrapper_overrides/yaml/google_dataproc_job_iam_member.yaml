@@ -1,0 +1,12 @@
+outputDir: dataproc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - job_id
+  - role
+  - member
+  - condition
+  - region
+  - project

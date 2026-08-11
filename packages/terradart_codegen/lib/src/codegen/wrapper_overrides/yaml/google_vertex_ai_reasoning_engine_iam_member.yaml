@@ -1,0 +1,12 @@
+outputDir: vertex_ai
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - reasoning_engine
+  - role
+  - member
+  - condition
+  - region
+  - project

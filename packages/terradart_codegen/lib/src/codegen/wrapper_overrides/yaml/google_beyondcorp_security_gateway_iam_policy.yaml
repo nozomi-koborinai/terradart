@@ -1,0 +1,16 @@
+outputDir: beyondcorp
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a BeyondCorp Security Gateway.
+  ///
+  /// `policy_data` replaces the entire IAM policy, overwriting grants made
+  /// outside Terraform. Prefer [GoogleBeyondcorpSecurityGatewayIamMember] for single-principal grants.
+
+paramOrder:
+  - security_gateway_id
+  - policy_data
+  - location
+  - project

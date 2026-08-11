@@ -160,6 +160,12 @@ export 'src/vertex_ai/google_vertex_ai_reasoning_engine.dart'
         VertexAiReasoningEngineSpecSourceCodeSpecImageSpec,
         VertexAiReasoningEngineSpecSourceCodeSpecInlineSource,
         VertexAiReasoningEngineSpecSourceCodeSpecPythonSpec;
+export 'src/vertex_ai/google_vertex_ai_reasoning_engine_iam_binding.dart'
+    show GoogleVertexAiReasoningEngineIamBinding;
+export 'src/vertex_ai/google_vertex_ai_reasoning_engine_iam_member.dart'
+    show GoogleVertexAiReasoningEngineIamMember;
+export 'src/vertex_ai/google_vertex_ai_reasoning_engine_iam_policy.dart'
+    show GoogleVertexAiReasoningEngineIamPolicy;
 export 'src/vertex_ai/google_vertex_ai_schedule.dart'
     show GoogleVertexAiSchedule;
 export 'src/vertex_ai/google_vertex_ai_semantic_governance_policy_engine.dart'

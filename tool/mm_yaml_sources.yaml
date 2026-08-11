@@ -40,8 +40,20 @@ files:
     upstream: mmv1/products/beyondcorp/AppConnection.yaml
   google_beyondcorp_security_gateway:
     upstream: mmv1/products/beyondcorp/SecurityGateway.yaml
+  google_beyondcorp_security_gateway_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_beyondcorp_security_gateway_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_beyondcorp_security_gateway_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_beyondcorp_security_gateway_application:
     upstream: mmv1/products/beyondcorp/SecurityGatewayApplication.yaml
+  google_beyondcorp_security_gateway_application_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_beyondcorp_security_gateway_application_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_beyondcorp_security_gateway_application_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_biglake_catalog:
     upstream: mmv1/products/biglake/Catalog.yaml
   google_biglake_database:
@@ -374,6 +386,12 @@ files:
     upstream: mmv1/products/dataplex/DataProductDataAsset.yaml
   google_data_fusion_instance:
     upstream: mmv1/products/datafusion/Instance.yaml
+  google_data_fusion_instance_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_data_fusion_instance_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_data_fusion_instance_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_data_lineage_config:
     upstream: mmv1/products/datalineage/Config.yaml
   google_dataplex_lake:
@@ -476,6 +494,12 @@ files:
     upstream: mmv1/products/dataproc/Batch.yaml
   google_dataproc_job:
     upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/dataproc/resource_dataproc_job.go); no mmv1/products/dataproc/Job.yaml (Job.yaml 404, probed 2026-07-25)
+  google_dataproc_job_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataproc_job_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataproc_job_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataproc_cluster_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataproc_cluster_iam_binding:
@@ -1462,6 +1486,12 @@ files:
     upstream: mmv1/products/apigee/Organization.yaml
   google_apigee_environment:
     upstream: mmv1/products/apigee/Environment.yaml
+  google_apigee_environment_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_apigee_environment_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_apigee_environment_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_apigee_envgroup:
     upstream: mmv1/products/apigee/Envgroup.yaml
   google_apigee_envgroup_attachment:
@@ -1659,6 +1689,12 @@ files:
     upstream: mmv1/products/vertexai/RagEngineConfig.yaml
   google_vertex_ai_reasoning_engine:
     upstream: mmv1/products/vertexai/ReasoningEngine.yaml
+  google_vertex_ai_reasoning_engine_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_vertex_ai_reasoning_engine_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_vertex_ai_reasoning_engine_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_vertex_ai_endpoint_with_model_garden_deployment:
     upstream: mmv1/products/vertexai/EndpointWithModelGardenDeployment.yaml
   google_vertex_ai_dataset:

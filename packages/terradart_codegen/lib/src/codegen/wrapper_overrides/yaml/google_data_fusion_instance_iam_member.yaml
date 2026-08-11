@@ -1,0 +1,12 @@
+outputDir: data_fusion
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - name
+  - role
+  - member
+  - condition
+  - region
+  - project

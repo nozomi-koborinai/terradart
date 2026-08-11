@@ -1,0 +1,15 @@
+outputDir: apigee
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for an Apigee environment.
+  ///
+  /// `policy_data` replaces the entire IAM policy, overwriting grants made
+  /// outside Terraform. Prefer [GoogleApigeeEnvironmentIamMember] for single-principal grants.
+
+paramOrder:
+  - org_id
+  - env_id
+  - policy_data
