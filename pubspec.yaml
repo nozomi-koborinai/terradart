@@ -78,6 +78,7 @@ workspace:
   - examples/monitoring_quickstart
   - examples/network_connectivity_quickstart
   - examples/ncc_hub_quickstart
+  - examples/netapp_metadata_quickstart
   - examples/network_management_vpc_flow_logs_quickstart
   - examples/network_security_backend_auth_quickstart
   - examples/network_security_dns_threat_quickstart
