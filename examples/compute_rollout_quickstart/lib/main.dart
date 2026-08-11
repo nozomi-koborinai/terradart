@@ -14,6 +14,7 @@ library;
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/compute.dart';
+import 'package:terradart_google/data.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 
@@ -25,6 +26,8 @@ final class ComputeRolloutStack extends Stack {
             GoogleProvider(project: projectId, region: 'us-central1'),
           ],
         ) {
+    final current = addData(GoogleProject(localName: 'current'));
+
     final apiCompute = add(
       GoogleProjectService(
         localName: 'api_compute',
@@ -51,13 +54,27 @@ final class ComputeRolloutStack extends Stack {
               ),
             ],
             validation: ComputeRolloutPlanWavesValidation(
-              type: TfArg.literal('manual'),
+              type: TfArg.literal('time'),
+              timeBasedValidationMetadata:
+                  ComputeRolloutPlanWavesValidationTimeBasedValidationMetadata(
+                waitDuration: TfArg.literal('0s'),
+              ),
+            ),
+            orchestrationOptions: ComputeRolloutPlanWavesOrchestrationOptions(
+              maxConcurrentLocations: TfArg.literal(10),
+              maxConcurrentResourcesPerLocation: TfArg.literal(10),
             ),
           ),
         ],
         dependsOn: [ResourceDependency(apiCompute)],
       ),
     );
+
+    // Upstream AccTest uses projects/{number}/locations/global/rolloutPlans/{name}
+    // — a bare plan name returns Internal error at apply time.
+    final planResourceName =
+        'projects/${current.number.interpolation}/locations/global/rolloutPlans/'
+        '${plan.nameRef.interpolation}';
 
     add(
       GoogleComputeGlobalVmExtensionPolicy(
@@ -66,6 +83,7 @@ final class ComputeRolloutStack extends Stack {
         description: TfArg.literal(
           'Global Ops Agent policy (label-gated; no matching VMs)',
         ),
+        priority: TfArg.literal(10),
         extensionPolicies: [
           ComputeGlobalVmExtensionPolicyExtensionPolicies(
             extensionName: TfArg.literal('ops-agent'),
@@ -85,7 +103,7 @@ final class ComputeRolloutStack extends Stack {
         rolloutOperation: ComputeGlobalVmExtensionPolicyRolloutOperation(
           rolloutInput:
               ComputeGlobalVmExtensionPolicyRolloutOperationRolloutInput(
-            name: TfArg.ref(plan.nameRef),
+            name: TfArg.literal(planResourceName),
           ),
         ),
         dependsOn: [
