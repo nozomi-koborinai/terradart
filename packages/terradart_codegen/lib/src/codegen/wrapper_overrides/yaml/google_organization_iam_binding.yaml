@@ -1,0 +1,16 @@
+outputDir: iam
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a GCP organization.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleOrganizationIamMember] for additive grants.
+
+paramOrder:
+  - org_id
+  - role
+  - members
+  - condition

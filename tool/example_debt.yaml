@@ -614,6 +614,18 @@ GoogleProjectIamPolicy: iam-adjunct-debt: sibling GoogleProjectIamMember already
 GoogleServiceAccountIamBinding: iam-adjunct-debt: sibling GoogleServiceAccountIamMember already in iam_quickstart; authoritative binding not needed in smoke
 GoogleServiceAccountIamPolicy: iam-adjunct-debt: sibling GoogleServiceAccountIamMember already in iam_quickstart; authoritative policy not needed in smoke
 
+# Org / billing / folder IAM — require organization (or billing account /
+# folder) ancestors absent on standalone terradart-validate.
+GoogleOrganizationIamMember: org-scoped IAM; terradart-validate has no organization parent — not applyable on a standalone project
+GoogleOrganizationIamBinding: org-scoped authoritative IAM binding; deferred with sibling member (no org on terradart-validate)
+GoogleOrganizationIamPolicy: org-scoped authoritative IAM policy; deferred with sibling member (no org on terradart-validate)
+GoogleBillingAccountIamMember: billing-account-scoped IAM; requires a billing account the standalone apply-smoke project cannot own for IAM demos
+GoogleBillingAccountIamBinding: billing-account-scoped authoritative IAM binding; deferred with sibling member
+GoogleBillingAccountIamPolicy: billing-account-scoped authoritative IAM policy; deferred with sibling member
+GoogleFolderIamMember: folder-scoped IAM; requires folders/{id} under an organization absent on terradart-validate
+GoogleFolderIamBinding: folder-scoped authoritative IAM binding; deferred with sibling member (no folder on terradart-validate)
+GoogleFolderIamPolicy: folder-scoped authoritative IAM policy; deferred with sibling member (no folder on terradart-validate)
+
 # Compute Engine IAM binding/policy — sibling *IamMember already in
 # compute_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
 GoogleComputeDiskIamBinding: iam-adjunct-debt: sibling GoogleComputeDiskIamMember already in compute_quickstart; authoritative binding not needed in smoke

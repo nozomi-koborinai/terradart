@@ -1,0 +1,16 @@
+outputDir: iam
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud Billing account.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleBillingAccountIamMember] for additive grants.
+
+paramOrder:
+  - billing_account_id
+  - role
+  - members
+  - condition

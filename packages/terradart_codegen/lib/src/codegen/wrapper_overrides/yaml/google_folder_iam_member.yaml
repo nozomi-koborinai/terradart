@@ -1,0 +1,10 @@
+outputDir: iam
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - folder
+  - role
+  - member
+  - condition
