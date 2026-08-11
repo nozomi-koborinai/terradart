@@ -1,0 +1,12 @@
+outputDir: dataproc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - policy_id
+  - location
+  - role
+  - member
+  - project
+  - condition

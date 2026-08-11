@@ -1,0 +1,18 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a IAP TCP-forwarding destination group.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleIapTunnelDestGroupIamMember] for additive grants.
+
+paramOrder:
+  - dest_group
+  - region
+  - role
+  - members
+  - project
+  - condition

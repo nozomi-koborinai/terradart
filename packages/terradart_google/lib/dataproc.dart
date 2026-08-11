@@ -13,6 +13,12 @@ export 'src/dataproc/google_dataproc_autoscaling_policy.dart'
         DataprocAutoscalingPolicySecondaryWorkerConfig,
         DataprocAutoscalingPolicyWorkerConfig,
         GoogleDataprocAutoscalingPolicy;
+export 'src/dataproc/google_dataproc_autoscaling_policy_iam_binding.dart'
+    show GoogleDataprocAutoscalingPolicyIamBinding;
+export 'src/dataproc/google_dataproc_autoscaling_policy_iam_member.dart'
+    show GoogleDataprocAutoscalingPolicyIamMember;
+export 'src/dataproc/google_dataproc_autoscaling_policy_iam_policy.dart'
+    show GoogleDataprocAutoscalingPolicyIamPolicy;
 export 'src/dataproc/google_dataproc_batch.dart'
     show
         DataprocBatchEnvironmentConfig,

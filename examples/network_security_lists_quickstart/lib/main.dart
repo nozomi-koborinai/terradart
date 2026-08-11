@@ -12,6 +12,7 @@
 library;
 
 import 'package:terradart_core/terradart_core.dart';
+import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/network.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
@@ -74,6 +75,28 @@ final class ListsStack extends Stack {
         name: TfArg.literal('terradart-hub'),
         description: TfArg.literal('NCC routing hub (terradart demo)'),
         dependsOn: [ResourceDependency(apiNetworkConnectivity)],
+      ),
+    );
+
+    final auditor = add(
+      GoogleServiceAccount(
+        localName: 'address_group_auditor',
+        accountId: TfArg.literal('terradart-ag-auditor'),
+        displayName: TfArg.literal('Address group auditor'),
+      ),
+    );
+
+    add(
+      GoogleNetworkSecurityAddressGroupIamMember(
+        localName: 'blocklist_auditor',
+        name: TfArg.ref(blocklist.nameRef),
+        location: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/viewer'),
+        member: TfArg.ref(auditor.iamMember),
+        dependsOn: [
+          ResourceDependency(blocklist),
+          ResourceDependency(auditor),
+        ],
       ),
     );
 

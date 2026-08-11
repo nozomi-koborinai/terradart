@@ -1,0 +1,16 @@
+outputDir: dataproc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Dataproc autoscaling policy.
+  ///
+  /// `policy_data` replaces the entire IAM policy, overwriting grants made
+  /// outside Terraform. Prefer [GoogleDataprocAutoscalingPolicyIamMember] for single-principal grants.
+
+paramOrder:
+  - policy_id
+  - location
+  - policy_data
+  - project
