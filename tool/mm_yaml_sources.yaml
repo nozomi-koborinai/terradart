@@ -1218,6 +1218,8 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_bigquery_analytics_hub_listing_subscription:
     upstream: mmv1/products/bigqueryanalyticshub/ListingSubscription.yaml
+  google_bigquery_analytics_hub_query_template:
+    upstream: mmv1/products/bigqueryanalyticshub/QueryTemplate.yaml
   google_bigquery_connection_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_bigquery_connection_iam_binding:

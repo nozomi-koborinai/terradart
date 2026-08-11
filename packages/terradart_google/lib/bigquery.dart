@@ -27,6 +27,10 @@ export 'src/bigquery/google_bigquery_analytics_hub_listing_iam_policy.dart'
     show GoogleBigqueryAnalyticsHubListingIamPolicy;
 export 'src/bigquery/google_bigquery_analytics_hub_listing_subscription.dart'
     show GoogleBigqueryAnalyticsHubListingSubscription;
+export 'src/bigquery/google_bigquery_analytics_hub_query_template.dart'
+    show
+        BigqueryAnalyticsHubQueryTemplateRoutine,
+        GoogleBigqueryAnalyticsHubQueryTemplate;
 export 'src/bigquery/google_bigquery_bi_reservation.dart'
     show GoogleBigqueryBiReservation;
 export 'src/bigquery/google_bigquery_capacity_commitment.dart'

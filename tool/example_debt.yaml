@@ -628,6 +628,7 @@ GoogleBigqueryAnalyticsHubDataExchangeIamBinding: iam-adjunct-debt: sibling Goog
 GoogleBigqueryAnalyticsHubDataExchangeIamPolicy: iam-adjunct-debt: sibling GoogleBigqueryAnalyticsHubDataExchangeIamMember already in bigquery_quickstart; authoritative policy not needed in smoke
 GoogleBigqueryAnalyticsHubListingIamBinding: iam-adjunct-debt: sibling GoogleBigqueryAnalyticsHubListingIamMember already in bigquery_quickstart; authoritative binding not needed in smoke
 GoogleBigqueryAnalyticsHubListingIamPolicy: iam-adjunct-debt: sibling GoogleBigqueryAnalyticsHubListingIamMember already in bigquery_quickstart; authoritative policy not needed in smoke
+GoogleBigqueryAnalyticsHubQueryTemplate: Analytics Hub query template sibling resources already live under skip-listed bigquery_quickstart ("datapolicy + analyticshub resources require an organization"); extending that example fails the wave skiplist gate, so the factory ships debt-only
 GoogleBigqueryDatapolicyDataPolicyIamBinding: iam-adjunct-debt: sibling GoogleBigqueryDatapolicyDataPolicyIamMember already in bigquery_quickstart; authoritative binding not needed in smoke
 GoogleBigqueryDatapolicyDataPolicyIamPolicy: iam-adjunct-debt: sibling GoogleBigqueryDatapolicyDataPolicyIamMember already in bigquery_quickstart; authoritative policy not needed in smoke
 
