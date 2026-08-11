@@ -8,7 +8,9 @@
 /// - a private regional endpoint for Storage,
 /// - additive hub IAM for an inventory SA.
 ///
-/// Run `bin/infra.dart` to synth into `tf-out/`.
+/// Run `bin/infra.dart` to synth into `tf-out/`. Apply-smoke targets this
+/// stack on `terradart-validate` (not the Partner-CCI `network_connectivity`
+/// quickstart).
 library;
 
 import 'package:terradart_core/terradart_core.dart';
