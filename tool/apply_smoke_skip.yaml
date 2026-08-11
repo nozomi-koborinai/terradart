@@ -67,7 +67,7 @@ iam_quickstart: creates a WIF pool id 'github-actions' that COLLIDES with the ap
 # These can't be repeated against a reused project: the resource (or its name)
 # survives teardown, so the next sweep fails "already exists" / "existed too
 # recently". synth + validate still cover them.
-kms_quickstart: KMS key rings (and keys) cannot be deleted, so a re-run fails 409 "KeyRing already exists"; no way to reclaim the name in a reused project
+kms_quickstart: KMS key rings (and keys) cannot be deleted, so a re-run fails 409 "KeyRing already exists"; also provisions google_kms_key_ring_import_job (never_apply wrapping-key material); no way to reclaim names in a reused project
 firestore_document_quickstart: creates the Firestore (default) database, which cannot be deleted, so a re-run fails 409 "Database already exists"
 cloud_tasks_quickstart: a deleted Cloud Tasks queue name is locked ~7 days ("queue cannot be created because a queue with this name existed too recently"), so a daily sweep with a fixed name always 409s
 api_security_quickstart: google_apikeys_key is soft-deleted for 30 days and the example uses a fixed name, so a re-apply after destroy fails "Resource already exists - apply blocked by lifecycle params" (first surfaced by PR #265's change-gate; teardown itself is clean)
