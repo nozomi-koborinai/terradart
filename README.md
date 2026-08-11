@@ -307,6 +307,7 @@ Application platform & operations
 - [Compute zonal instance settings](examples/compute_instance_settings_quickstart/)
 - [Compute Engine preview feature](examples/compute_preview_feature_quickstart/)
 - [Compute Engine rollout plan](examples/compute_rollout_quickstart/)
+- [Compute VPN gateway shells](examples/compute_vpn_gateway_quickstart/)
 - [Compute project Cloud Armor tier](examples/compute_cloud_armor_tier_quickstart/)
 - [Compute project default network tier](examples/compute_default_network_tier_quickstart/)
 - [Compute Engine usage export bucket](examples/usage_export_quickstart/)

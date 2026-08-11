@@ -84,9 +84,6 @@ GoogleComputeSharedVpcHostProject: enabling a Shared VPC host needs an organizat
 GoogleComputeSharedVpcServiceProject: attaches a service project to a Shared VPC host, which requires an organization the standalone apply-smoke project lacks
 GoogleComputeInterconnect: a Dedicated Interconnect needs a real physical cross-connect (a provisioned circuit / customerName); it cannot be created in a bare project
 GoogleComputeInterconnectAttachment: a VLAN attachment requires a provisioned Interconnect, which needs a physical circuit absent from the apply-smoke project
-GoogleComputeExternalVpnGateway: only useful paired with a VPN tunnel to an external peer; the tunnels are dropped, so the external gateway is dropped with them
-GoogleComputeVpnGateway: a classic target VPN gateway needs ESP/UDP forwarding rules before a tunnel can be created; that scaffolding is out of scope for the applyable example
-GoogleComputeHaVpnGateway: HA VPN tunnels need a Cloud Router with BGP sessions; the extra interface/peer wiring is out of scope for the applyable example
 GoogleComputeVpnTunnel: VPN tunnels require a configured gateway (forwarding rules for classic, Cloud Router BGP for HA), neither of which can be provisioned deterministically in the sweep
 GoogleComputeNetworkPeering: bidirectional VPC peering races on GCP's async peering operation ("peering operation in progress") even when serialized, so it cannot apply deterministically
 GoogleComputeNetworkPeeringRoutesConfig: configures routes on a VPC peering; with the peering dropped there is nothing to attach it to
