@@ -78,6 +78,12 @@ export 'src/iap/google_iap_tunnel_iam_member.dart'
     show GoogleIapTunnelIamMember;
 export 'src/iap/google_iap_tunnel_iam_policy.dart'
     show GoogleIapTunnelIamPolicy;
+export 'src/iap/google_iap_tunnel_instance_iam_binding.dart'
+    show GoogleIapTunnelInstanceIamBinding;
+export 'src/iap/google_iap_tunnel_instance_iam_member.dart'
+    show GoogleIapTunnelInstanceIamMember;
+export 'src/iap/google_iap_tunnel_instance_iam_policy.dart'
+    show GoogleIapTunnelInstanceIamPolicy;
 export 'src/iap/google_iap_web_backend_service_iam_binding.dart'
     show GoogleIapWebBackendServiceIamBinding;
 export 'src/iap/google_iap_web_backend_service_iam_member.dart'
@@ -105,6 +111,12 @@ export 'src/iap/google_iap_web_region_backend_service_iam_member.dart'
     show GoogleIapWebRegionBackendServiceIamMember;
 export 'src/iap/google_iap_web_region_backend_service_iam_policy.dart'
     show GoogleIapWebRegionBackendServiceIamPolicy;
+export 'src/iap/google_iap_web_region_forwarding_rule_service_iam_binding.dart'
+    show GoogleIapWebRegionForwardingRuleServiceIamBinding;
+export 'src/iap/google_iap_web_region_forwarding_rule_service_iam_member.dart'
+    show GoogleIapWebRegionForwardingRuleServiceIamMember;
+export 'src/iap/google_iap_web_region_forwarding_rule_service_iam_policy.dart'
+    show GoogleIapWebRegionForwardingRuleServiceIamPolicy;
 export 'src/iap/google_iap_web_type_app_engine_iam_binding.dart'
     show GoogleIapWebTypeAppEngineIamBinding;
 export 'src/iap/google_iap_web_type_app_engine_iam_member.dart'

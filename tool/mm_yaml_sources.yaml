@@ -1351,6 +1351,18 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_iap_web_region_backend_service_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_web_region_forwarding_rule_service_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_web_region_forwarding_rule_service_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_web_region_forwarding_rule_service_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_tunnel_instance_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_tunnel_instance_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_tunnel_instance_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_iap_agent_registry_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_iap_agent_registry_iam_binding:

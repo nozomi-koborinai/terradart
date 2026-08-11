@@ -1,0 +1,19 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on IAP TCP forwarding to a
+  /// Compute Engine instance (`iap.tunnel.instances.<instance>`).
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleIapTunnelInstanceIamMember] for additive grants.
+
+paramOrder:
+  - instance
+  - role
+  - members
+  - condition
+  - zone
+  - project

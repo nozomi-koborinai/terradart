@@ -1,0 +1,12 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - instance
+  - role
+  - member
+  - condition
+  - zone
+  - project

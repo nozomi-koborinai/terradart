@@ -29,6 +29,7 @@ import 'package:terradart_google/compute.dart';
 import 'package:terradart_google/data.dart';
 import 'package:terradart_google/filestore.dart';
 import 'package:terradart_google/iam.dart';
+import 'package:terradart_google/iap.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/time.dart';
@@ -61,7 +62,7 @@ final class NetworkStack extends Stack {
     // Every API-gated resource below carries `dependsOn: apiDeps`.
     final apiDeps = Apis.enable(
       this,
-      barrels: [Barrels.compute, Barrels.filestore],
+      barrels: [Barrels.compute, Barrels.filestore, Barrels.iapApi],
       propagationDelay: const Duration(seconds: 60),
     );
 
@@ -288,6 +289,22 @@ final class NetworkStack extends Stack {
         member: TfArg.ref(oncallSre.iamMember),
         zone: TfArg.literal('asia-northeast1-a'),
         dependsOn: [ResourceDependency(oncallSre)],
+      ),
+    );
+
+    // IAP TCP forwarding to the bastion (project-scoped tunnel instance path).
+    add(
+      GoogleIapTunnelInstanceIamMember(
+        localName: 'bastion_iap_tunnel',
+        instance: TfArg.ref(bastion.nameRef),
+        role: TfArg.literal('roles/iap.tunnelResourceAccessor'),
+        member: TfArg.ref(oncallSre.iamMember),
+        zone: TfArg.literal('asia-northeast1-a'),
+        dependsOn: [
+          ResourceDependency(bastion),
+          ResourceDependency(oncallSre),
+          ...apiDeps,
+        ],
       ),
     );
 
