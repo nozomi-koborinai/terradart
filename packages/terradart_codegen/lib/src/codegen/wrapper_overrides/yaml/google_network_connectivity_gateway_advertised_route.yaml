@@ -4,6 +4,9 @@ deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
 
+dartTypeOverrides:
+  recipient: NetworkConnectivityGatewayAdvertisedRouteRecipient
+
 curatedDoc: |-
   /// Network Connectivity **gateway advertised route** — advertises an IP
   /// prefix from an NCC **gateway** spoke to the hub (or a recipient).

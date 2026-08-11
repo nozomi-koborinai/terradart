@@ -63,7 +63,7 @@ final class GoogleNetworkConnectivityGatewayAdvertisedRoute extends Resource {
     required TfArg<String> location,
     required TfArg<String> spoke,
     TfArg<String>? ipRange,
-    TfArg<String>? recipient,
+    TfArg<NetworkConnectivityGatewayAdvertisedRouteRecipient>? recipient,
     TfArg<num>? priority,
     TfArg<String>? description,
     TfArg<Map<String, String>>? labels,
