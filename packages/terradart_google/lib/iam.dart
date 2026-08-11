@@ -5,15 +5,6 @@
 /// `pubsub.dart` exports `GooglePubsubTopicIamMember`).
 library;
 
-export 'src/iam/google_billing_account_iam_binding.dart'
-    show GoogleBillingAccountIamBinding;
-export 'src/iam/google_billing_account_iam_member.dart'
-    show GoogleBillingAccountIamMember;
-export 'src/iam/google_billing_account_iam_policy.dart'
-    show GoogleBillingAccountIamPolicy;
-export 'src/iam/google_folder_iam_binding.dart' show GoogleFolderIamBinding;
-export 'src/iam/google_folder_iam_member.dart' show GoogleFolderIamMember;
-export 'src/iam/google_folder_iam_policy.dart' show GoogleFolderIamPolicy;
 export 'src/iam/google_iam_workload_identity_pool.dart'
     show GoogleIamWorkloadIdentityPool, WorkloadIdentityPoolMode;
 export 'src/iam/google_iam_workload_identity_pool_iam_binding.dart'
@@ -32,12 +23,6 @@ export 'src/iam/google_iam_workload_identity_pool_provider.dart'
         IamWorkloadIdentityPoolProviderX509PemCertificate,
         IamWorkloadIdentityPoolProviderX509Trust,
         IamWorkloadIdentityPoolProviderX509TrustStore;
-export 'src/iam/google_organization_iam_binding.dart'
-    show GoogleOrganizationIamBinding;
-export 'src/iam/google_organization_iam_member.dart'
-    show GoogleOrganizationIamMember;
-export 'src/iam/google_organization_iam_policy.dart'
-    show GoogleOrganizationIamPolicy;
 export 'src/iam/google_project_iam_audit_config.dart'
     show
         GoogleProjectIamAuditConfig,

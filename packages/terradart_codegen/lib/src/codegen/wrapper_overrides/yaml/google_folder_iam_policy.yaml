@@ -1,4 +1,4 @@
-outputDir: iam
+outputDir: folder
 
 deriveClassDoc: true
 deriveOutputGetters: true

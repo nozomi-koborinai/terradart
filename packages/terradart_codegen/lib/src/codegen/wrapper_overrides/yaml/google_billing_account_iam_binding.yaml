@@ -1,4 +1,4 @@
-outputDir: iam
+outputDir: billing
 
 deriveClassDoc: true
 deriveOutputGetters: true

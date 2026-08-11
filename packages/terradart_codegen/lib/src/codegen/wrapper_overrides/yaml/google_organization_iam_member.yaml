@@ -1,4 +1,4 @@
-outputDir: iam
+outputDir: organization
 
 deriveClassDoc: true
 deriveOutputGetters: true

@@ -64,6 +64,10 @@ barrels:
       /// BeyondCorp Enterprise / Chrome Enterprise Premium — App Gateways,
       /// connectors, connections, and Security Gateways. Requires CEP
       /// entitlement (never_apply for apply-smoke).
+  billing:
+    doc: |-
+      /// Cloud Billing account IAM — grant roles on billing accounts
+      /// (`google_billing_account_iam_*`).
   apphub:
     doc: |-
       /// App Hub — applications that group services and workloads for
@@ -303,6 +307,10 @@ barrels:
     doc: |-
       /// Firebase Remote Config — project-level dynamic configuration templates
       /// (parameters + parameter groups + conditions).
+  folder:
+    doc: |-
+      /// Resource Manager folder IAM — grant roles on folders
+      /// (`google_folder_iam_*`).
   firestore:
     doc: |-
       /// Cloud Firestore — Native and Datastore mode databases + composite index
@@ -429,6 +437,10 @@ barrels:
     doc: |-
       /// Oracle Database@Google Cloud — Autonomous Database, Base DB, Exadata
       /// (incl. Exascale storage config; BMS capacity is never_apply), ODB, GoldenGate.
+  organization:
+    doc: |-
+      /// Resource Manager organization IAM — grant roles on organizations
+      /// (`google_organization_iam_*`).
   os_config:
     doc: |-
       /// OS Config: VM Manager OS policy assignments and patch deployments.

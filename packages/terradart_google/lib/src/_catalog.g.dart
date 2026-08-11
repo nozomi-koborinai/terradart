@@ -4121,7 +4121,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
   CatalogEntry(
     tfType: 'google_billing_account_iam_binding',
     className: 'GoogleBillingAccountIamBinding',
-    barrel: 'iam',
+    barrel: 'billing',
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `google_billing_account_iam_binding`.',
     constructorParams: <String>[
@@ -4139,7 +4139,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
   CatalogEntry(
     tfType: 'google_billing_account_iam_member',
     className: 'GoogleBillingAccountIamMember',
-    barrel: 'iam',
+    barrel: 'billing',
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `google_billing_account_iam_member`.',
     constructorParams: <String>[
@@ -4156,7 +4156,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
   CatalogEntry(
     tfType: 'google_billing_account_iam_policy',
     className: 'GoogleBillingAccountIamPolicy',
-    barrel: 'iam',
+    barrel: 'billing',
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `google_billing_account_iam_policy`.',
     constructorParams: <String>['localName', 'billingAccountId', 'policyData'],
@@ -14941,7 +14941,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
   CatalogEntry(
     tfType: 'google_folder_iam_binding',
     className: 'GoogleFolderIamBinding',
-    barrel: 'iam',
+    barrel: 'folder',
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `google_folder_iam_binding`.',
     constructorParams: <String>[
@@ -14959,7 +14959,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
   CatalogEntry(
     tfType: 'google_folder_iam_member',
     className: 'GoogleFolderIamMember',
-    barrel: 'iam',
+    barrel: 'folder',
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `google_folder_iam_member`.',
     constructorParams: <String>[
@@ -14976,7 +14976,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
   CatalogEntry(
     tfType: 'google_folder_iam_policy',
     className: 'GoogleFolderIamPolicy',
-    barrel: 'iam',
+    barrel: 'folder',
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `google_folder_iam_policy`.',
     constructorParams: <String>['localName', 'folder', 'policyData'],
@@ -21722,7 +21722,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
   CatalogEntry(
     tfType: 'google_organization_iam_binding',
     className: 'GoogleOrganizationIamBinding',
-    barrel: 'iam',
+    barrel: 'organization',
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `google_organization_iam_binding`.',
     constructorParams: <String>[
@@ -21740,7 +21740,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
   CatalogEntry(
     tfType: 'google_organization_iam_member',
     className: 'GoogleOrganizationIamMember',
-    barrel: 'iam',
+    barrel: 'organization',
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `google_organization_iam_member`.',
     constructorParams: <String>[
@@ -21757,7 +21757,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
   CatalogEntry(
     tfType: 'google_organization_iam_policy',
     className: 'GoogleOrganizationIamPolicy',
-    barrel: 'iam',
+    barrel: 'organization',
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `google_organization_iam_policy`.',
     constructorParams: <String>['localName', 'orgId', 'policyData'],
