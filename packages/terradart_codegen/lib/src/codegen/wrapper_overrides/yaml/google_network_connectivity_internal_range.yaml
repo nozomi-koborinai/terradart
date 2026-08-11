@@ -3,6 +3,9 @@ outputDir: network
 deriveClassDoc: true
 deriveOutputGetters: true
 
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
 dartTypeOverrides:
   peering: NetworkConnectivityInternalRangePeering
   usage: NetworkConnectivityInternalRangeUsage
@@ -12,6 +15,7 @@ curatedDoc: |-
   /// inside a VPC for NCC / PSC / migration use.
   ///
   /// Pass either [ipCidrRange] or [prefixLength] (auto-allocation).
+  /// When using [prefixLength], optionally set [allocationOptions].
   ///
   /// Example:
   /// ```dart
@@ -48,6 +52,46 @@ prelude: |
     final String terraformValue;
   }
 
+  /// `allocation_strategy` on [NetworkConnectivityInternalRangeAllocationOptions].
+  enum NetworkConnectivityInternalRangeAllocationStrategy
+      implements TerraformEnum {
+    random('RANDOM'),
+    firstAvailable('FIRST_AVAILABLE'),
+    randomFirstNAvailable('RANDOM_FIRST_N_AVAILABLE'),
+    firstSmallestFitting('FIRST_SMALLEST_FITTING');
+
+    const NetworkConnectivityInternalRangeAllocationStrategy(
+        this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Optional `allocation_options` when auto-allocating via [prefixLength].
+  @immutable
+  final class NetworkConnectivityInternalRangeAllocationOptions {
+    const NetworkConnectivityInternalRangeAllocationOptions({
+      this.allocationStrategy,
+      this.firstAvailableRangesLookupSize,
+    });
+
+    final TfArg<NetworkConnectivityInternalRangeAllocationStrategy>?
+        allocationStrategy;
+    final TfArg<int>? firstAvailableRangesLookupSize;
+
+    Map<String, Object?> encode() => {
+          if (allocationStrategy != null)
+            'allocation_strategy': allocationStrategy!.toTfJson(),
+          if (firstAvailableRangesLookupSize != null)
+            'first_available_ranges_lookup_size':
+                firstAvailableRangesLookupSize!.toTfJson(),
+        };
+  }
+
+customSlots:
+  allocation_options:
+    paramDeclaration: 'NetworkConnectivityInternalRangeAllocationOptions? allocationOptions'
+    argMapEntry: "if (allocationOptions != null) 'allocation_options': TfArg.literal([allocationOptions.encode()]),"
+
 paramOrder:
   - name
   - network
@@ -55,6 +99,7 @@ paramOrder:
   - peering
   - ip_cidr_range
   - prefix_length
+  - allocation_options
   - description
   - target_cidr_range
   - overlaps

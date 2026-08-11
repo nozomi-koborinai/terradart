@@ -18026,10 +18026,13 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'deletionPolicy',
       'project',
     ],
-    nestedTypes: <String>['NetworkConnectivityGroupAutoAccept'],
+    nestedTypes: <String>[
+      'NetworkConnectivityGroupName',
+      'NetworkConnectivityGroupAutoAccept',
+    ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_network_connectivity_group`.\n\nThe NetworkConnectivity Group resource\n\nNetwork Connectivity Center **group** under a\n[GoogleNetworkConnectivityHub] (STAR topology center/edge, or `default`).\n\nExample:\n```dart\nGoogleNetworkConnectivityGroup(\n  localName: \'center\',\n  hub: TfArg.ref(hub.id),\n  name: TfArg.literal(\'center\'),\n);\n```',
+        'Factory wrapper for `google_network_connectivity_group`.\n\nThe NetworkConnectivity Group resource\n\nNetwork Connectivity Center **group** under a\n[GoogleNetworkConnectivityHub] (STAR topology center/edge, or `default`).\n\nExample:\n```dart\nGoogleNetworkConnectivityGroup(\n  localName: \'center\',\n  hub: TfArg.ref(hub.id),\n  name: TfArg.literal(NetworkConnectivityGroupName.center),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_network_connectivity_hub',
@@ -18120,6 +18123,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'peering',
       'ipCidrRange',
       'prefixLength',
+      'allocationOptions',
       'description',
       'targetCidrRange',
       'overlaps',
@@ -18129,10 +18133,12 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     nestedTypes: <String>[
       'NetworkConnectivityInternalRangeUsage',
       'NetworkConnectivityInternalRangePeering',
+      'NetworkConnectivityInternalRangeAllocationStrategy',
+      'NetworkConnectivityInternalRangeAllocationOptions',
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_network_connectivity_internal_range`.\n\nNetwork Connectivity **internal range** — reserves or allocates a CIDR\ninside a VPC for NCC / PSC / migration use.\n\nPass either [ipCidrRange] or [prefixLength] (auto-allocation).\n\nExample:\n```dart\nGoogleNetworkConnectivityInternalRange(\n  localName: \'reserved\',\n  name: TfArg.literal(\'terradart-ir\'),\n  network: TfArg.ref(vpc.id),\n  usage: TfArg.literal(NetworkConnectivityInternalRangeUsage.forVpc),\n  peering: TfArg.literal(NetworkConnectivityInternalRangePeering.forSelf),\n  ipCidrRange: TfArg.literal(\'10.9.0.0/24\'),\n);\n```',
+        'Factory wrapper for `google_network_connectivity_internal_range`.\n\nNetwork Connectivity **internal range** — reserves or allocates a CIDR\ninside a VPC for NCC / PSC / migration use.\n\nPass either [ipCidrRange] or [prefixLength] (auto-allocation).\nWhen using [prefixLength], optionally set [allocationOptions].\n\nExample:\n```dart\nGoogleNetworkConnectivityInternalRange(\n  localName: \'reserved\',\n  name: TfArg.literal(\'terradart-ir\'),\n  network: TfArg.ref(vpc.id),\n  usage: TfArg.literal(NetworkConnectivityInternalRangeUsage.forVpc),\n  peering: TfArg.literal(NetworkConnectivityInternalRangePeering.forSelf),\n  ipCidrRange: TfArg.literal(\'10.9.0.0/24\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_network_connectivity_multicloud_data_transfer_config',

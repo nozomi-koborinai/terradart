@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_network_connectivity_group`.
 const Set<String> _googleNetworkConnectivityGroupSensitive = <String>{};
 
+/// Network Connectivity Group enum for `name`.
+enum NetworkConnectivityGroupName implements TerraformEnum {
+  defaultCase('default'),
+  center('center'),
+  edge('edge');
+
+  const NetworkConnectivityGroupName(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Optional `auto_accept` block on [GoogleNetworkConnectivityGroup].
 @immutable
 final class NetworkConnectivityGroupAutoAccept {
@@ -31,7 +42,7 @@ final class NetworkConnectivityGroupAutoAccept {
 /// GoogleNetworkConnectivityGroup(
 ///   localName: 'center',
 ///   hub: TfArg.ref(hub.id),
-///   name: TfArg.literal('center'),
+///   name: TfArg.literal(NetworkConnectivityGroupName.center),
 /// );
 /// ```
 final class GoogleNetworkConnectivityGroup extends Resource {
@@ -40,7 +51,7 @@ final class GoogleNetworkConnectivityGroup extends Resource {
   GoogleNetworkConnectivityGroup({
     required super.localName,
     required TfArg<String> hub,
-    required TfArg<String> name,
+    required TfArg<NetworkConnectivityGroupName> name,
     TfArg<String>? description,
     NetworkConnectivityGroupAutoAccept? autoAccept,
     TfArg<Map<String, String>>? labels,

@@ -51,7 +51,7 @@ final class NccHubStack extends Stack {
       GoogleNetworkConnectivityGroup(
         localName: 'center',
         hub: TfArg.ref(hub.id),
-        name: TfArg.literal('center'),
+        name: TfArg.literal(NetworkConnectivityGroupName.center),
         description: TfArg.literal('STAR center group'),
         dependsOn: [...apiDeps, ResourceDependency(hub)],
       ),

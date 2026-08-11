@@ -2,6 +2,10 @@ outputDir: network
 
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true
+
+dartTypeOverrides:
+  name: NetworkConnectivityGroupName
 
 extraImports:
   - "import 'package:meta/meta.dart';"
@@ -15,7 +19,7 @@ curatedDoc: |-
   /// GoogleNetworkConnectivityGroup(
   ///   localName: 'center',
   ///   hub: TfArg.ref(hub.id),
-  ///   name: TfArg.literal('center'),
+  ///   name: TfArg.literal(NetworkConnectivityGroupName.center),
   /// );
   /// ```
 

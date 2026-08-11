@@ -16,7 +16,10 @@ export 'src/network/google_network_connectivity_destination.dart'
         GoogleNetworkConnectivityDestination,
         NetworkConnectivityDestinationEndpoints;
 export 'src/network/google_network_connectivity_group.dart'
-    show GoogleNetworkConnectivityGroup, NetworkConnectivityGroupAutoAccept;
+    show
+        GoogleNetworkConnectivityGroup,
+        NetworkConnectivityGroupAutoAccept,
+        NetworkConnectivityGroupName;
 export 'src/network/google_network_connectivity_hub.dart'
     show GoogleNetworkConnectivityHub;
 export 'src/network/google_network_connectivity_hub_iam_binding.dart'
@@ -28,6 +31,8 @@ export 'src/network/google_network_connectivity_hub_iam_policy.dart'
 export 'src/network/google_network_connectivity_internal_range.dart'
     show
         GoogleNetworkConnectivityInternalRange,
+        NetworkConnectivityInternalRangeAllocationOptions,
+        NetworkConnectivityInternalRangeAllocationStrategy,
         NetworkConnectivityInternalRangePeering,
         NetworkConnectivityInternalRangeUsage;
 export 'src/network/google_network_connectivity_multicloud_data_transfer_config.dart'
