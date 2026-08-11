@@ -72,15 +72,30 @@ export 'src/iap/google_iap_tunnel_dest_group_iam_member.dart'
     show GoogleIapTunnelDestGroupIamMember;
 export 'src/iap/google_iap_tunnel_dest_group_iam_policy.dart'
     show GoogleIapTunnelDestGroupIamPolicy;
+export 'src/iap/google_iap_tunnel_iam_binding.dart'
+    show GoogleIapTunnelIamBinding;
+export 'src/iap/google_iap_tunnel_iam_member.dart'
+    show GoogleIapTunnelIamMember;
+export 'src/iap/google_iap_tunnel_iam_policy.dart'
+    show GoogleIapTunnelIamPolicy;
 export 'src/iap/google_iap_web_backend_service_iam_binding.dart'
     show GoogleIapWebBackendServiceIamBinding;
 export 'src/iap/google_iap_web_backend_service_iam_member.dart'
     show GoogleIapWebBackendServiceIamMember;
 export 'src/iap/google_iap_web_backend_service_iam_policy.dart'
     show GoogleIapWebBackendServiceIamPolicy;
+export 'src/iap/google_iap_web_iam_binding.dart' show GoogleIapWebIamBinding;
+export 'src/iap/google_iap_web_iam_member.dart' show GoogleIapWebIamMember;
+export 'src/iap/google_iap_web_iam_policy.dart' show GoogleIapWebIamPolicy;
 export 'src/iap/google_iap_web_type_app_engine_iam_binding.dart'
     show GoogleIapWebTypeAppEngineIamBinding;
 export 'src/iap/google_iap_web_type_app_engine_iam_member.dart'
     show GoogleIapWebTypeAppEngineIamMember;
 export 'src/iap/google_iap_web_type_app_engine_iam_policy.dart'
     show GoogleIapWebTypeAppEngineIamPolicy;
+export 'src/iap/google_iap_web_type_compute_iam_binding.dart'
+    show GoogleIapWebTypeComputeIamBinding;
+export 'src/iap/google_iap_web_type_compute_iam_member.dart'
+    show GoogleIapWebTypeComputeIamMember;
+export 'src/iap/google_iap_web_type_compute_iam_policy.dart'
+    show GoogleIapWebTypeComputeIamPolicy;

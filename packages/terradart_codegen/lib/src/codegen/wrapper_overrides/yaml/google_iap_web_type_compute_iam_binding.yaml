@@ -1,0 +1,17 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on IAP Compute Engine
+  /// backends at **project scope** (`iap.web.type.compute`).
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleIapWebTypeComputeIamMember] for additive grants.
+
+paramOrder:
+  - role
+  - members
+  - condition
+  - project

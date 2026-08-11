@@ -12,6 +12,8 @@
 ///   7. `google_iap_web_type_app_engine_iam_member`
 ///   8. `google_iap_agent_registry_iam_member`
 ///   9. `google_iap_location_web_iam_member`
+///  10. `google_iap_web_iam_member`
+///  11. `google_iap_web_type_compute_iam_member`
 ///
 /// IAM-core resources (custom role, project binding, SA impersonation, SA key):
 ///  10. `google_project_iam_custom_role`
@@ -288,6 +290,27 @@ final class IamShowcaseStack extends Stack {
       GoogleIapLocationWebIamMember(
         localName: 'location_web_invoker',
         location: TfArg.literal('us-central1'),
+        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+        member: saMember,
+        dependsOn: [ResourceDependency(apiIap)],
+      ),
+    );
+
+    // Project-scoped IAP HTTPS (`iap.web`) and Compute backends
+    // (`iap.web.type.compute`) — no App Engine / backend resource required.
+
+    add(
+      GoogleIapWebIamMember(
+        localName: 'web_invoker',
+        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+        member: saMember,
+        dependsOn: [ResourceDependency(apiIap)],
+      ),
+    );
+
+    add(
+      GoogleIapWebTypeComputeIamMember(
+        localName: 'web_type_compute_invoker',
         role: TfArg.literal('roles/iap.httpsResourceAccessor'),
         member: saMember,
         dependsOn: [ResourceDependency(apiIap)],

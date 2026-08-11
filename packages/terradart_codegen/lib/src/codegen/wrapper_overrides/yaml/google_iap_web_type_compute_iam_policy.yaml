@@ -1,0 +1,15 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for IAP Compute Engine backends at
+  /// **project scope** (`iap.web.type.compute`).
+  ///
+  /// `policy_data` replaces the entire IAM policy, overwriting grants made
+  /// outside Terraform. Prefer [GoogleIapWebTypeComputeIamMember] for single-principal grants.
+
+paramOrder:
+  - policy_data
+  - project

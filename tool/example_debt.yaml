@@ -570,6 +570,12 @@ GoogleIapAppEngineVersionIamBinding: iam-adjunct-debt: sibling GoogleIapAppEngin
 GoogleIapAppEngineVersionIamPolicy: iam-adjunct-debt: sibling GoogleIapAppEngineVersionIamMember already in iam_quickstart; authoritative policy not needed in smoke
 GoogleIapWebTypeAppEngineIamBinding: iam-adjunct-debt: sibling GoogleIapWebTypeAppEngineIamMember already in iam_quickstart; authoritative binding not needed in smoke
 GoogleIapWebTypeAppEngineIamPolicy: iam-adjunct-debt: sibling GoogleIapWebTypeAppEngineIamMember already in iam_quickstart; authoritative policy not needed in smoke
+GoogleIapWebIamBinding: iam-adjunct-debt: sibling GoogleIapWebIamMember already in iam_quickstart; authoritative binding not needed in smoke
+GoogleIapWebIamPolicy: iam-adjunct-debt: sibling GoogleIapWebIamMember already in iam_quickstart; authoritative policy not needed in smoke
+GoogleIapWebTypeComputeIamBinding: iam-adjunct-debt: sibling GoogleIapWebTypeComputeIamMember already in iam_quickstart; authoritative binding not needed in smoke
+GoogleIapWebTypeComputeIamPolicy: iam-adjunct-debt: sibling GoogleIapWebTypeComputeIamMember already in iam_quickstart; authoritative policy not needed in smoke
+GoogleIapTunnelIamBinding: iam-adjunct-debt: sibling GoogleIapTunnelIamMember already in iap_tunnel_quickstart; authoritative binding not needed in smoke
+GoogleIapTunnelIamPolicy: iam-adjunct-debt: sibling GoogleIapTunnelIamMember already in iap_tunnel_quickstart; authoritative policy not needed in smoke
 GoogleIapWebBackendServiceIamPolicy: iam-adjunct-debt: sibling GoogleIapWebBackendServiceIamMember already in compute_lb_quickstart; authoritative policy not needed in smoke
 GoogleIapAgentRegistryIamBinding: iam-adjunct-debt: sibling GoogleIapAgentRegistryIamMember already in iam_quickstart; authoritative binding not needed in smoke
 GoogleIapAgentRegistryIamPolicy: iam-adjunct-debt: sibling GoogleIapAgentRegistryIamMember already in iam_quickstart; authoritative policy not needed in smoke

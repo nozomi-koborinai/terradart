@@ -1,8 +1,9 @@
 /// IAP tunnel quickstart — destination group for TCP forwarding.
 ///
 /// Enables `iap.googleapis.com` and creates a regional tunnel destination
-/// group with a private CIDR, plus an additive IAM grant for a tunnel-user
-/// service account. No VMs or tunnels are created.
+/// group with a private CIDR, plus additive IAM grants for a tunnel-user
+/// service account (destination-group and project-scoped `iap.tunnel`).
+/// No VMs or tunnels are created.
 ///
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
@@ -56,6 +57,19 @@ final class IapTunnelStack extends Stack {
         member: TfArg.ref(tunnelUser.iamMember),
         dependsOn: [
           ResourceDependency(destGroup),
+          ResourceDependency(tunnelUser),
+        ],
+      ),
+    );
+
+    // Project-scoped IAP TCP forwarding (`iap.tunnel`) — no VM required.
+    add(
+      GoogleIapTunnelIamMember(
+        localName: 'tunnel_project_grant',
+        role: TfArg.literal('roles/iap.tunnelResourceAccessor'),
+        member: TfArg.ref(tunnelUser.iamMember),
+        dependsOn: [
+          ResourceDependency(apiIap),
           ResourceDependency(tunnelUser),
         ],
       ),

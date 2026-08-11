@@ -1317,6 +1317,18 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_iap_web_type_app_engine_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_web_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_web_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_web_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_web_type_compute_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_web_type_compute_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_web_type_compute_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_iap_web_backend_service_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_iap_web_backend_service_iam_policy:
@@ -1353,6 +1365,12 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_iap_tunnel_dest_group:
     upstream: mmv1/products/iap/TunnelDestGroup.yaml
+  google_iap_tunnel_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_tunnel_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_tunnel_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_iap_settings:
     upstream: mmv1/products/iap/Settings.yaml
   google_integrations_client:
