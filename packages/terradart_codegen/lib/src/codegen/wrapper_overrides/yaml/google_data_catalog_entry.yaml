@@ -1,0 +1,107 @@
+outputDir: data_catalog
+deriveClassDoc: true
+deriveOutputGetters: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Data Catalog **entry** inside a [GoogleDataCatalogEntryGroup] (legacy
+  /// Data Catalog API). Provide exactly one [entryKind]:
+  /// - [DataCatalogEntryFileset] — builtin `FILESET` (+ optional [gcsFilesetSpec])
+  /// - [DataCatalogEntryCustomType] — `user_specified_type` (+ optional
+  ///   [userSpecifiedSystem])
+  ///
+  /// Pass [entryGroup] as the parent entry-group id (`TfArg.ref(group.id)`).
+  ///
+  /// Example (custom entry):
+  /// ```dart
+  /// GoogleDataCatalogEntry(
+  ///   localName: 'custom',
+  ///   entryGroup: TfArg.ref(group.id),
+  ///   entryId: TfArg.literal('my_entry'),
+  ///   entryKind: DataCatalogEntryCustomType(
+  ///     userSpecifiedType: TfArg.literal('my_custom_type'),
+  ///   ),
+  ///   userSpecifiedSystem: TfArg.literal('SomethingExternal'),
+  /// );
+  /// ```
+
+prelude: |
+  // ===========================================================================
+  // DataCatalogEntryKind — sealed (FILESET | user_specified_type)
+  // ===========================================================================
+
+  /// Choice of entry type. Sealed so callers pick exactly one of the provider
+  /// `type` / `user_specified_type` scalars.
+  sealed class DataCatalogEntryKind {
+    const DataCatalogEntryKind();
+
+    /// argMap key (`type` or `user_specified_type`).
+    String get blockKey;
+
+    /// Scalar value for that key.
+    TfArg<String> get value;
+
+    /// Flat `{blockKey: value}` payload (Gate 6 / callers that need a map).
+    Map<String, Object?> encode() => {blockKey: value.toTfJson()};
+  }
+
+  /// Builtin `type = FILESET` entry.
+  @immutable
+  final class DataCatalogEntryFileset extends DataCatalogEntryKind {
+    const DataCatalogEntryFileset();
+
+    @override
+    String get blockKey => 'type';
+
+    @override
+    TfArg<String> get value => TfArg.literal('FILESET');
+  }
+
+  /// Custom `user_specified_type` entry.
+  @immutable
+  final class DataCatalogEntryCustomType extends DataCatalogEntryKind {
+    const DataCatalogEntryCustomType({required this.userSpecifiedType});
+
+    final TfArg<String> userSpecifiedType;
+
+    @override
+    String get blockKey => 'user_specified_type';
+
+    @override
+    TfArg<String> get value => userSpecifiedType;
+  }
+
+  /// `gcs_fileset_spec` — only valid when [entryKind] is [DataCatalogEntryFileset].
+  @immutable
+  final class DataCatalogEntryGcsFilesetSpec {
+    const DataCatalogEntryGcsFilesetSpec({required this.filePatterns});
+
+    final TfArg<List<String>> filePatterns;
+
+    Map<String, Object?> encode() => {
+          'file_patterns': filePatterns.toTfJson(),
+        };
+  }
+
+customSlots:
+  entry_kind:
+    paramDeclaration: 'required DataCatalogEntryKind entryKind'
+    argMapEntry: 'entryKind.blockKey: entryKind.value,'
+  gcs_fileset_spec:
+    paramDeclaration: 'DataCatalogEntryGcsFilesetSpec? gcsFilesetSpec'
+    argMapEntry: "if (gcsFilesetSpec != null) 'gcs_fileset_spec': TfArg.literal([gcsFilesetSpec.encode()]),"
+
+# IR `type` / `user_specified_type` omitted — fan into virtual entry_kind.
+paramOrder:
+  - entry_group
+  - entry_id
+  - entry_kind
+  - display_name
+  - description
+  - user_specified_system
+  - linked_resource
+  - schema
+  - gcs_fileset_spec
+  - deletion_policy

@@ -1,0 +1,15 @@
+outputDir: data_catalog
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for an entire Data Catalog taxonomy.
+  ///
+  /// Replaces the taxonomy's whole IAM policy. Prefer
+  /// [GoogleDataCatalogTaxonomyIamMember] when an additive grant is enough.
+
+paramOrder:
+  - taxonomy
+  - policy_data
+  - region
+  - project

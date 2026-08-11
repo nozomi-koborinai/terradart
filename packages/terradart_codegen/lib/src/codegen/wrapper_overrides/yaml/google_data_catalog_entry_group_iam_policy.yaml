@@ -1,0 +1,15 @@
+outputDir: data_catalog
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for an entire Data Catalog entry group.
+  ///
+  /// Replaces the entry group's whole IAM policy. Prefer
+  /// [GoogleDataCatalogEntryGroupIamMember] when an additive grant is enough.
+
+paramOrder:
+  - entry_group
+  - policy_data
+  - region
+  - project

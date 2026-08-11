@@ -1,0 +1,34 @@
+outputDir: data_catalog
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Data Catalog **taxonomy** — root container for [GoogleDataCatalogPolicyTag]
+  /// hierarchies (legacy Data Catalog API). Prefer Dataplex Universal Catalog
+  /// for new work; this factory remains for stacks that still use
+  /// `google_data_catalog_taxonomy`.
+  ///
+  /// Enable `datacatalog.googleapis.com` via [GoogleProjectService] before
+  /// apply. Note: some projects reject Data Catalog writes due to the
+  /// upstream deprecation (HTTP 400) — synth / validate still cover the
+  /// factory.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleDataCatalogTaxonomy(
+  ///   localName: 'pii',
+  ///   displayName: TfArg.literal('PII taxonomy'),
+  ///   description: TfArg.literal('Policy tags for PII columns'),
+  ///   activatedPolicyTypes: TfArg.literal(['FINE_GRAINED_ACCESS_CONTROL']),
+  ///   region: TfArg.literal('us-central1'),
+  /// );
+  /// ```
+
+paramOrder:
+  - display_name
+  - description
+  - activated_policy_types
+  - region
+  - project
+  - deletion_policy

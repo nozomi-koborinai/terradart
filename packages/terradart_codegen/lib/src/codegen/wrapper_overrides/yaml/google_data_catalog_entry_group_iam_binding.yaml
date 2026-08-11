@@ -1,0 +1,19 @@
+outputDir: data_catalog
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Data Catalog entry
+  /// group.
+  ///
+  /// Replaces the entire member list for that role on the entry group. Prefer
+  /// [GoogleDataCatalogEntryGroupIamMember] when adding one principal without
+  /// touching existing bindings.
+
+paramOrder:
+  - entry_group
+  - role
+  - members
+  - condition
+  - region
+  - project

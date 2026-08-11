@@ -1,0 +1,15 @@
+outputDir: data_catalog
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Additive IAM grant on a [GoogleDataCatalogTaxonomy]. Prefer this over
+  /// binding/policy when adding one (`role`, `member`) tuple.
+
+paramOrder:
+  - taxonomy
+  - role
+  - member
+  - condition
+  - region
+  - project

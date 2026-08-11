@@ -1903,3 +1903,25 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_bigquery_datapolicyv2_data_policy_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
+
+  # Data Catalog coverage wave
+  google_data_catalog_taxonomy:
+    upstream: mmv1/products/datacatalog/Taxonomy.yaml
+  google_data_catalog_policy_tag:
+    upstream: mmv1/products/datacatalog/PolicyTag.yaml
+  google_data_catalog_tag_template:
+    upstream: mmv1/products/datacatalog/TagTemplate.yaml
+  google_data_catalog_entry:
+    upstream: mmv1/products/datacatalog/Entry.yaml
+  google_data_catalog_entry_group_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_data_catalog_entry_group_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_data_catalog_entry_group_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_data_catalog_taxonomy_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_data_catalog_taxonomy_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_data_catalog_taxonomy_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
