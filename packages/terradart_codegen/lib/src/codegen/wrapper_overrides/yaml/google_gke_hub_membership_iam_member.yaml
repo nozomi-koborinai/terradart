@@ -1,0 +1,12 @@
+outputDir: container
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - membership_id
+  - location
+  - role
+  - member
+  - project
+  - condition

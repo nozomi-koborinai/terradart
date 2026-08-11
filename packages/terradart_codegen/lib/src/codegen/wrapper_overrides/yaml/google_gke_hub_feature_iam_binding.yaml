@@ -1,0 +1,18 @@
+outputDir: container
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a GKE Hub fleet feature.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleGkeHubFeatureIamMember] for additive grants.
+
+paramOrder:
+  - name
+  - location
+  - role
+  - members
+  - project
+  - condition

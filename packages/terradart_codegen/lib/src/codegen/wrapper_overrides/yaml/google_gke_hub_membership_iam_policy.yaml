@@ -1,0 +1,16 @@
+outputDir: container
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a GKE Hub fleet membership.
+  ///
+  /// `policy_data` replaces the entire IAM policy, overwriting grants made
+  /// outside Terraform. Prefer [GoogleGkeHubMembershipIamMember] for single-principal grants.
+
+paramOrder:
+  - membership_id
+  - location
+  - policy_data
+  - project
