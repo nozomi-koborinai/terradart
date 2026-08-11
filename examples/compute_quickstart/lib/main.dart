@@ -314,6 +314,20 @@ final class NetworkStack extends Stack {
       ),
     );
 
+    add(
+      GoogleComputeRegionDiskIamMember(
+        localName: 'backup_disk_viewer',
+        name: TfArg.ref(backupDisk.nameRef),
+        role: TfArg.literal('roles/compute.viewer'),
+        member: TfArg.ref(oncallSre.iamMember),
+        region: TfArg.literal('asia-northeast1'),
+        dependsOn: [
+          ResourceDependency(backupDisk),
+          ResourceDependency(oncallSre),
+        ],
+      ),
+    );
+
     final bastionInstant = add(
       GoogleComputeRegionInstantSnapshot(
         localName: 'bastion_instant',
@@ -427,6 +441,19 @@ final class NetworkStack extends Stack {
           ),
         ],
         dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleComputeInstanceTemplateIamMember(
+        localName: 'bulk_worker_template_viewer',
+        name: TfArg.ref(bulkWorkerTemplate.nameRef),
+        role: TfArg.literal('roles/compute.viewer'),
+        member: TfArg.ref(oncallSre.iamMember),
+        dependsOn: [
+          ResourceDependency(bulkWorkerTemplate),
+          ResourceDependency(oncallSre),
+        ],
       ),
     );
 
