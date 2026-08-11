@@ -84,9 +84,27 @@ export 'src/iap/google_iap_web_backend_service_iam_member.dart'
     show GoogleIapWebBackendServiceIamMember;
 export 'src/iap/google_iap_web_backend_service_iam_policy.dart'
     show GoogleIapWebBackendServiceIamPolicy;
+export 'src/iap/google_iap_web_cloud_run_service_iam_binding.dart'
+    show GoogleIapWebCloudRunServiceIamBinding;
+export 'src/iap/google_iap_web_cloud_run_service_iam_member.dart'
+    show GoogleIapWebCloudRunServiceIamMember;
+export 'src/iap/google_iap_web_cloud_run_service_iam_policy.dart'
+    show GoogleIapWebCloudRunServiceIamPolicy;
+export 'src/iap/google_iap_web_forwarding_rule_service_iam_binding.dart'
+    show GoogleIapWebForwardingRuleServiceIamBinding;
+export 'src/iap/google_iap_web_forwarding_rule_service_iam_member.dart'
+    show GoogleIapWebForwardingRuleServiceIamMember;
+export 'src/iap/google_iap_web_forwarding_rule_service_iam_policy.dart'
+    show GoogleIapWebForwardingRuleServiceIamPolicy;
 export 'src/iap/google_iap_web_iam_binding.dart' show GoogleIapWebIamBinding;
 export 'src/iap/google_iap_web_iam_member.dart' show GoogleIapWebIamMember;
 export 'src/iap/google_iap_web_iam_policy.dart' show GoogleIapWebIamPolicy;
+export 'src/iap/google_iap_web_region_backend_service_iam_binding.dart'
+    show GoogleIapWebRegionBackendServiceIamBinding;
+export 'src/iap/google_iap_web_region_backend_service_iam_member.dart'
+    show GoogleIapWebRegionBackendServiceIamMember;
+export 'src/iap/google_iap_web_region_backend_service_iam_policy.dart'
+    show GoogleIapWebRegionBackendServiceIamPolicy;
 export 'src/iap/google_iap_web_type_app_engine_iam_binding.dart'
     show GoogleIapWebTypeAppEngineIamBinding;
 export 'src/iap/google_iap_web_type_app_engine_iam_member.dart'

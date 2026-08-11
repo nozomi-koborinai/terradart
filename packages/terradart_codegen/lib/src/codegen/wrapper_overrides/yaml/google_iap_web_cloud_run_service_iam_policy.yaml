@@ -1,0 +1,17 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for an IAP-protected Cloud Run service
+  /// (`iap.web.services.<service>`).
+  ///
+  /// `policy_data` replaces the entire IAM policy, overwriting grants made
+  /// outside Terraform. Prefer [GoogleIapWebCloudRunServiceIamMember] for single-principal grants.
+
+paramOrder:
+  - cloud_run_service_name
+  - policy_data
+  - location
+  - project

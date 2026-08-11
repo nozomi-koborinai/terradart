@@ -873,6 +873,15 @@ google_iap_web_type_compute_iam_policy: safe  # billing-behavior: IAM policy onl
 google_iap_tunnel_iam_member: safe  # billing-behavior: IAM binding only
 google_iap_tunnel_iam_binding: safe  # billing-behavior: IAM binding only
 google_iap_tunnel_iam_policy: safe  # billing-behavior: IAM policy only
+google_iap_web_cloud_run_service_iam_member: safe  # billing-behavior: IAM binding only
+google_iap_web_cloud_run_service_iam_binding: safe  # billing-behavior: IAM binding only
+google_iap_web_cloud_run_service_iam_policy: safe  # billing-behavior: IAM policy only
+google_iap_web_forwarding_rule_service_iam_member: safe  # billing-behavior: IAM binding only
+google_iap_web_forwarding_rule_service_iam_binding: safe  # billing-behavior: IAM binding only
+google_iap_web_forwarding_rule_service_iam_policy: safe  # billing-behavior: IAM policy only
+google_iap_web_region_backend_service_iam_member: safe  # billing-behavior: IAM binding only
+google_iap_web_region_backend_service_iam_binding: safe  # billing-behavior: IAM binding only
+google_iap_web_region_backend_service_iam_policy: safe  # billing-behavior: IAM policy only
 google_dataproc_autoscaling_policy_iam_member: safe  # billing-behavior: IAM binding only
 google_dataproc_autoscaling_policy_iam_binding: safe  # billing-behavior: IAM binding only
 google_dataproc_autoscaling_policy_iam_policy: safe  # billing-behavior: IAM policy only

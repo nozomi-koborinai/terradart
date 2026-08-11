@@ -1,0 +1,12 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - web_region_backend_service
+  - role
+  - member
+  - condition
+  - region
+  - project

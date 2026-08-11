@@ -881,7 +881,7 @@ final class ComputeLbStack extends Stack {
       ),
     );
 
-    add(
+    final ilbHttps = add(
       GoogleComputeForwardingRule(
         localName: 'ilb_https',
         name: TfArg.literal('app-ilb-https'),
@@ -939,6 +939,28 @@ final class ComputeLbStack extends Stack {
           'group:platform-admins@example.com',
         ]),
         dependsOn: [ResourceDependency(lbBackend)],
+      ),
+    );
+
+    // IAP on the regional ILB forwarding rule and regional backend service.
+    add(
+      GoogleIapWebForwardingRuleServiceIamMember(
+        localName: 'ilb_https_iap_accessor',
+        forwardingRuleServiceName: TfArg.ref(ilbHttps.nameRef),
+        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+        member: TfArg.literal('allAuthenticatedUsers'),
+        dependsOn: [ResourceDependency(ilbHttps)],
+      ),
+    );
+
+    add(
+      GoogleIapWebRegionBackendServiceIamMember(
+        localName: 'regional_backend_iap_accessor',
+        webRegionBackendService: TfArg.ref(regionalBackend.nameRef),
+        role: TfArg.literal('roles/iap.httpsResourceAccessor'),
+        member: TfArg.literal('allAuthenticatedUsers'),
+        region: TfArg.literal(region),
+        dependsOn: [ResourceDependency(regionalBackend)],
       ),
     );
   }
