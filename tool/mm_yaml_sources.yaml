@@ -1894,3 +1894,12 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_storage_managed_folder_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  # BigQuery Data Policy V2
+  google_bigquery_datapolicyv2_data_policy:
+    upstream: mmv1/products/bigquerydatapolicyv2/DataPolicy.yaml
+  google_bigquery_datapolicyv2_data_policy_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_datapolicyv2_data_policy_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_bigquery_datapolicyv2_data_policy_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation

@@ -63,6 +63,15 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
     'bigqueryreservation.googleapis.com',
   ),
   MapEntry('google_backup_dr_', 'backupdr.googleapis.com'),
+  // Longer than `google_bigquery_` — Data Policy API (V1 + V2), not core BQ.
+  MapEntry(
+    'google_bigquery_datapolicyv2_',
+    'bigquerydatapolicy.googleapis.com',
+  ),
+  MapEntry(
+    'google_bigquery_datapolicy_',
+    'bigquerydatapolicy.googleapis.com',
+  ),
   MapEntry('google_bigquery_', 'bigquery.googleapis.com'),
   MapEntry('google_bigtable_', 'bigtableadmin.googleapis.com'),
   MapEntry('google_os_config_', 'osconfig.googleapis.com'),

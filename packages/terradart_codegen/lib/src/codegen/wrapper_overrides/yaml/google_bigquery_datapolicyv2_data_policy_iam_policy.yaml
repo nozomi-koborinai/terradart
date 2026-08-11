@@ -1,0 +1,16 @@
+outputDir: bigquery
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for an entire BigQuery Data Policy V2 resource.
+  ///
+  /// Replaces the data policy's whole IAM policy. Prefer
+  /// [GoogleBigqueryDatapolicyv2DataPolicyIamMember] when an additive grant is
+  /// enough.
+
+paramOrder:
+  - data_policy_id
+  - policy_data
+  - location
+  - project
