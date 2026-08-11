@@ -278,6 +278,12 @@ export 'src/compute/google_compute_instance_template.dart'
         InstanceTemplatePerformanceMonitoringUnit,
         InstanceTemplateProvisioningModel,
         InstanceTemplateReservationAffinityType;
+export 'src/compute/google_compute_instance_template_iam_binding.dart'
+    show GoogleComputeInstanceTemplateIamBinding;
+export 'src/compute/google_compute_instance_template_iam_member.dart'
+    show GoogleComputeInstanceTemplateIamMember;
+export 'src/compute/google_compute_instance_template_iam_policy.dart'
+    show GoogleComputeInstanceTemplateIamPolicy;
 export 'src/compute/google_compute_interconnect.dart'
     show
         ComputeInterconnectInterconnectType,
@@ -445,6 +451,12 @@ export 'src/compute/google_compute_region_disk.dart'
         ComputeRegionDiskGuestOsFeature,
         ComputeRegionDiskGuestOsFeatureType,
         GoogleComputeRegionDisk;
+export 'src/compute/google_compute_region_disk_iam_binding.dart'
+    show GoogleComputeRegionDiskIamBinding;
+export 'src/compute/google_compute_region_disk_iam_member.dart'
+    show GoogleComputeRegionDiskIamMember;
+export 'src/compute/google_compute_region_disk_iam_policy.dart'
+    show GoogleComputeRegionDiskIamPolicy;
 export 'src/compute/google_compute_region_health_check.dart'
     show
         ComputeRegionHealthCheckProtocol,
@@ -738,6 +750,12 @@ export 'src/compute/google_compute_storage_pool.dart'
         ComputeStoragePoolParams,
         ComputeStoragePoolPerformanceProvisioningType,
         GoogleComputeStoragePool;
+export 'src/compute/google_compute_storage_pool_iam_binding.dart'
+    show GoogleComputeStoragePoolIamBinding;
+export 'src/compute/google_compute_storage_pool_iam_member.dart'
+    show GoogleComputeStoragePoolIamMember;
+export 'src/compute/google_compute_storage_pool_iam_policy.dart'
+    show GoogleComputeStoragePoolIamPolicy;
 export 'src/compute/google_compute_subnetwork.dart'
     show
         ComputeSubnetworkSecondaryIpRange,

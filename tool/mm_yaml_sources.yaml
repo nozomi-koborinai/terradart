@@ -166,6 +166,12 @@ files:
     upstream: mmv1/products/compute/Reservation.yaml
   google_compute_storage_pool:
     upstream: mmv1/products/compute/StoragePool.yaml
+  google_compute_storage_pool_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_storage_pool_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_storage_pool_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_container_attached_cluster:
     upstream: mmv1/products/containerattached/Cluster.yaml
   google_container_aws_cluster:
@@ -736,6 +742,12 @@ files:
     upstream: mmv1/products/compute/InstanceGroupManager.yaml
   google_compute_instance_template:
     upstream: mmv1/products/compute/InstanceTemplate.yaml
+  google_compute_instance_template_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_instance_template_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_instance_template_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_compute_managed_ssl_certificate:
     upstream: mmv1/products/compute/ManagedSslCertificate.yaml
   google_compute_network_endpoint_group:
@@ -746,6 +758,12 @@ files:
     upstream: mmv1/products/compute/RegionBackendService.yaml
   google_compute_region_disk:
     upstream: mmv1/products/compute/RegionDisk.yaml
+  google_compute_region_disk_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_region_disk_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_region_disk_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_compute_region_health_check:
     upstream: mmv1/products/compute/RegionHealthCheck.yaml
   google_compute_region_instant_snapshot:
