@@ -11658,6 +11658,67 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_dataproc_autoscaling_policy`.\n\nDescribes an autoscaling policy for Dataproc cluster autoscaler.\n\nDataproc **autoscaling policy** — a reusable YARN autoscaler document\nclusters can attach via `cluster_config.autoscaling_config.policy_uri`.\n\nCreating a policy alone does not provision VMs. Prefer a thin smoke\nstack with [policyId], [location], [workerConfig], and\n[basicAlgorithm].`yarnConfig` (no sibling cluster).\n\nEnable `dataproc.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleDataprocAutoscalingPolicy(\n  localName: \'asp\',\n  policyId: TfArg.literal(\'terradart-asp\'),\n  location: TfArg.literal(\'us-central1\'),\n  workerConfig: DataprocAutoscalingPolicyWorkerConfig(\n    maxInstances: TfArg.literal(3),\n  ),\n  basicAlgorithm: DataprocAutoscalingPolicyBasicAlgorithm(\n    yarnConfig: DataprocAutoscalingPolicyBasicAlgorithmYarnConfig(\n      gracefulDecommissionTimeout: TfArg.literal(\'30s\'),\n      scaleUpFactor: TfArg.literal(0.5),\n      scaleDownFactor: TfArg.literal(0.5),\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_dataproc_autoscaling_policy_iam_binding',
+    className: 'GoogleDataprocAutoscalingPolicyIamBinding',
+    barrel: 'dataproc',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_dataproc_autoscaling_policy_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'policyId',
+      'location',
+      'role',
+      'members',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataproc_autoscaling_policy_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataproc autoscaling policy.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleDataprocAutoscalingPolicyIamMember] for additive grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_dataproc_autoscaling_policy_iam_member',
+    className: 'GoogleDataprocAutoscalingPolicyIamMember',
+    barrel: 'dataproc',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_dataproc_autoscaling_policy_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'policyId',
+      'location',
+      'role',
+      'member',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataproc_autoscaling_policy_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_dataproc_autoscaling_policy_iam_policy',
+    className: 'GoogleDataprocAutoscalingPolicyIamPolicy',
+    barrel: 'dataproc',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_dataproc_autoscaling_policy_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'policyId',
+      'location',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataproc_autoscaling_policy_iam_policy`.\n\nAuthoritative IAM policy for a Dataproc autoscaling policy.\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleDataprocAutoscalingPolicyIamMember] for single-principal grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_dataproc_batch',
     className: 'GoogleDataprocBatch',
     barrel: 'dataproc',
@@ -16064,6 +16125,64 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_iap_tunnel_dest_group`.\n\nTunnel destination groups represent resources that have the same tunnel\naccess restrictions.\n\nIAP **tunnel destination group** — CIDRs/FQDNs that share the same\nTCP-forwarding access restrictions.\n\nUsed with IAP TCP forwarding (`gcloud compute start-iap-tunnel` / TCP-by-host).\nCreating a group alone does not open tunnels or bill Chrome Enterprise\nPremium; Cloud IAP for GCP-hosted targets is free per Google Cloud pricing.\n\nEnable `iap.googleapis.com` via [GoogleProjectService] before apply.\nSet [region] to match the network resources in the group (provider\nregion is used when omitted).\n\nExample:\n```dart\nGoogleIapTunnelDestGroup(\n  localName: \'internal\',\n  groupName: TfArg.literal(\'terradart-internal\'),\n  region: TfArg.literal(\'us-central1\'),\n  cidrs: TfArg.literal([\'10.1.0.0/16\']),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_iap_tunnel_dest_group_iam_binding',
+    className: 'GoogleIapTunnelDestGroupIamBinding',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_iap_tunnel_dest_group_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'destGroup',
+      'region',
+      'role',
+      'members',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_tunnel_dest_group_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a IAP TCP-forwarding destination group.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleIapTunnelDestGroupIamMember] for additive grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_tunnel_dest_group_iam_member',
+    className: 'GoogleIapTunnelDestGroupIamMember',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_iap_tunnel_dest_group_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'destGroup',
+      'region',
+      'role',
+      'member',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_tunnel_dest_group_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_iap_tunnel_dest_group_iam_policy',
+    className: 'GoogleIapTunnelDestGroupIamPolicy',
+    barrel: 'iap',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_iap_tunnel_dest_group_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'destGroup',
+      'region',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iap_tunnel_dest_group_iam_policy`.\n\nAuthoritative IAM policy for a IAP TCP-forwarding destination group.\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleIapTunnelDestGroupIamMember] for single-principal grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_iap_web_backend_service_iam_binding',
     className: 'GoogleIapWebBackendServiceIamBinding',
     barrel: 'iap',
@@ -18624,6 +18743,67 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_network_security_address_group`.\n\nAddressGroup is a resource that specifies how a collection of IP/DNS used in\nFirewall Policy.',
+  ),
+  CatalogEntry(
+    tfType: 'google_network_security_address_group_iam_binding',
+    className: 'GoogleNetworkSecurityAddressGroupIamBinding',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_network_security_address_group_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'role',
+      'members',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_security_address_group_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Network Security address group.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleNetworkSecurityAddressGroupIamMember] for additive grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_network_security_address_group_iam_member',
+    className: 'GoogleNetworkSecurityAddressGroupIamMember',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_network_security_address_group_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'role',
+      'member',
+      'project',
+      'condition',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_security_address_group_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_network_security_address_group_iam_policy',
+    className: 'GoogleNetworkSecurityAddressGroupIamPolicy',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_network_security_address_group_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'policyData',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_security_address_group_iam_policy`.\n\nAuthoritative IAM policy for a Network Security address group.\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleNetworkSecurityAddressGroupIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_network_security_backend_authentication_config',

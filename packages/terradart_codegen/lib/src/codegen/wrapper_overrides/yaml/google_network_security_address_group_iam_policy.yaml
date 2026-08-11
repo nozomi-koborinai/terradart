@@ -1,0 +1,16 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Network Security address group.
+  ///
+  /// `policy_data` replaces the entire IAM policy, overwriting grants made
+  /// outside Terraform. Prefer [GoogleNetworkSecurityAddressGroupIamMember] for single-principal grants.
+
+paramOrder:
+  - name
+  - location
+  - policy_data
+  - project

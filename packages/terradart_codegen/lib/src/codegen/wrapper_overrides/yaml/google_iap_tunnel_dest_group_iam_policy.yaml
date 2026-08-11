@@ -1,0 +1,16 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a IAP TCP-forwarding destination group.
+  ///
+  /// `policy_data` replaces the entire IAM policy, overwriting grants made
+  /// outside Terraform. Prefer [GoogleIapTunnelDestGroupIamMember] for single-principal grants.
+
+paramOrder:
+  - dest_group
+  - region
+  - policy_data
+  - project

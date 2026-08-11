@@ -1,0 +1,12 @@
+outputDir: iap
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - dest_group
+  - region
+  - role
+  - member
+  - project
+  - condition
