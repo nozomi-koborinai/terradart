@@ -1,0 +1,18 @@
+outputDir: beyondcorp
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a BeyondCorp Security Gateway application.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleBeyondcorpSecurityGatewayApplicationIamMember] for additive grants.
+
+paramOrder:
+  - security_gateway_id
+  - application_id
+  - role
+  - members
+  - condition
+  - project

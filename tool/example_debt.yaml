@@ -203,6 +203,9 @@ GoogleLookerInstance: gcp-cost Looker C71C-0952-AAC7 Standard Edition SKU 3F43-B
 # 37C9-6893-468A $4.2/h). A quickstart would force apply_smoke_skip
 # (never_apply) and block wave auto-merge — factory ships without an example.
 GoogleDataFusionInstance: gcp-cost Cloud Data Fusion 0D19-EC86-35B0 Developer SKU 88BC-986D-9A22 $0.35/h (Basic E74D-F7A2-0BF5 $1.8/h after 120 free h; Enterprise 37C9-6893-468A $4.2/h) — never_apply instance hours; no applyable quickstart on terradart-validate
+GoogleDataFusionInstanceIamMember: requires a parent GoogleDataFusionInstance (never_apply); deferred with the instance
+GoogleDataFusionInstanceIamBinding: requires a parent GoogleDataFusionInstance (never_apply); deferred with the instance
+GoogleDataFusionInstanceIamPolicy: requires a parent GoogleDataFusionInstance (never_apply); deferred with the instance
 
 # Managed Lustre bills provisioned capacity while the instance exists
 # (125-Perf us-central1 SKU 517C-E77D-C11A $0.145/GiBy.mo). A quickstart would
@@ -333,6 +336,9 @@ GoogleDataprocClusterIamMember: requires a parent GoogleDataprocCluster (never_a
 GoogleDataprocClusterIamBinding: authoritative IAM binding; requires a parent GoogleDataprocCluster (never_apply); deferred with the cluster
 GoogleDataprocClusterIamPolicy: authoritative IAM policy; requires a parent GoogleDataprocCluster (never_apply); deferred with the cluster
 GoogleDataprocJob: gcp-cost Dataproc 363B-8851-170D Serverless Batch DCU us-central1 SKU EC7A-EF05-537E $0.06/h (no classic job premium SKU in catalog) — never_apply; job workers on cluster / ephemeral GCE; no applyable quickstart on terradart-validate
+GoogleDataprocJobIamMember: requires a parent GoogleDataprocJob (never_apply); deferred with the job
+GoogleDataprocJobIamBinding: requires a parent GoogleDataprocJob (never_apply); deferred with the job
+GoogleDataprocJobIamPolicy: requires a parent GoogleDataprocJob (never_apply); deferred with the job
 
 # Dataproc-on-GDC needs a real GDCE cluster (edge/appliance). GDC Bare Metal
 # SKU 297F-4642-B7A1 $0.03288/h. A quickstart would force apply_smoke_skip
@@ -384,6 +390,9 @@ GoogleVertexAiFeatureOnlineStore: gcp-cost Vertex AI C7E2-9256-1C43 Feature Stor
 GoogleVertexAiFeatureOnlineStoreFeatureview: requires a parent GoogleVertexAiFeatureOnlineStore (never_apply); deferred with the Feature Online Store Wave
 GoogleVertexAiRagEngineConfig: gcp-cost Vertex AI C7E2-9256-1C43 list_skus RagManaged/RAG Engine → 0; Scaled tier is production RagManagedDb — never_apply; no applyable quickstart on terradart-validate
 GoogleVertexAiReasoningEngine: gcp-cost Vertex AI C7E2-9256-1C43 ReasoningEngine management fee CPU 8A55-0B95-B7DC + Memory 0B45-6103-6EC1 — never_apply; no applyable quickstart on terradart-validate
+GoogleVertexAiReasoningEngineIamMember: requires a parent GoogleVertexAiReasoningEngine (never_apply); deferred with the engine
+GoogleVertexAiReasoningEngineIamBinding: requires a parent GoogleVertexAiReasoningEngine (never_apply); deferred with the engine
+GoogleVertexAiReasoningEngineIamPolicy: requires a parent GoogleVertexAiReasoningEngine (never_apply); deferred with the engine
 GoogleVertexAiEndpointWithModelGardenDeployment: gcp-cost Vertex AI C7E2-9256-1C43 Online/Batch Prediction Americas N1 Core 84D9-B3FA-0886 $0.036/h — never_apply Model Garden deploy; no applyable quickstart on terradart-validate
 GoogleVertexAiIndex: gcp-cost Vertex AI C7E2-9256-1C43 Vector Search Index Building SKU 8724-DA51-DA95 $3/GiBy — never_apply; no applyable quickstart on terradart-validate
 GoogleVertexAiIndexEndpointDeployedIndex: gcp-cost Vertex AI C7E2-9256-1C43 Vector Search Index Serving e2-standard-2 us-central1 SKU 722D-2FE3-D851 $0.0938084/h — never_apply serving hours; no applyable quickstart on terradart-validate
@@ -397,11 +406,20 @@ GoogleApigeeOrganization: gcp-cost Apigee 1C2D-8C78-EC58 Gateway Node Hours SKU 
 GoogleApigeeInstance: gcp-cost Apigee 1C2D-8C78-EC58 Gateway Node Hours SKU 0136-18C1-DD41 $1.025/h — never_apply runtime; deferred with the organization Wave
 GoogleApigeeInstanceAttachment: requires a parent GoogleApigeeInstance (never_apply); deferred with the instance
 GoogleApigeeEnvironment: gcp-cost Apigee 1C2D-8C78-EC58 Active Base Environment Usage Hours SKU C112-9373-5FC4 $0.50/h (Intermediate 421B-D6C0-52A2 $2/h; Comprehensive 01C8-CFFA-106E $4.70/h) — never_apply; deferred with the organization Wave
+GoogleApigeeEnvironmentIamMember: requires a parent GoogleApigeeEnvironment (never_apply); deferred with the organization Wave
+GoogleApigeeEnvironmentIamBinding: requires a parent GoogleApigeeEnvironment (never_apply); deferred with the organization Wave
+GoogleApigeeEnvironmentIamPolicy: requires a parent GoogleApigeeEnvironment (never_apply); deferred with the organization Wave
 GoogleBeyondcorpAppGateway: gcp-cost Chrome Enterprise Premium F91A-404B-8D2E Monthly Users SKU E2D2-474B-B4EF $6/user.mo — never_apply; CEP entitlement absent on terradart-validate
 GoogleBeyondcorpAppConnector: requires never_apply GoogleBeyondcorpAppGateway + CEP; deferred with the BeyondCorp Wave
 GoogleBeyondcorpAppConnection: requires never_apply GoogleBeyondcorpAppGateway / GoogleBeyondcorpAppConnector + CEP; deferred with the BeyondCorp Wave
 GoogleBeyondcorpSecurityGateway: gcp-cost Chrome Enterprise Premium F91A-404B-8D2E Monthly Users SKU E2D2-474B-B4EF $6/user.mo — never_apply; CEP entitlement absent on terradart-validate
+GoogleBeyondcorpSecurityGatewayIamMember: requires a parent GoogleBeyondcorpSecurityGateway (never_apply); deferred with the BeyondCorp Wave
+GoogleBeyondcorpSecurityGatewayIamBinding: requires a parent GoogleBeyondcorpSecurityGateway (never_apply); deferred with the BeyondCorp Wave
+GoogleBeyondcorpSecurityGatewayIamPolicy: requires a parent GoogleBeyondcorpSecurityGateway (never_apply); deferred with the BeyondCorp Wave
 GoogleBeyondcorpSecurityGatewayApplication: requires never_apply GoogleBeyondcorpSecurityGateway + CEP; deferred with the BeyondCorp Wave
+GoogleBeyondcorpSecurityGatewayApplicationIamMember: requires a parent GoogleBeyondcorpSecurityGatewayApplication (never_apply); deferred with the BeyondCorp Wave
+GoogleBeyondcorpSecurityGatewayApplicationIamBinding: requires a parent GoogleBeyondcorpSecurityGatewayApplication (never_apply); deferred with the BeyondCorp Wave
+GoogleBeyondcorpSecurityGatewayApplicationIamPolicy: requires a parent GoogleBeyondcorpSecurityGatewayApplication (never_apply); deferred with the BeyondCorp Wave
 GoogleApigeeEnvgroup: deferred with the never_apply Apigee org Wave (hostname group metadata; no apply-smoke quickstart)
 GoogleApigeeEnvgroupAttachment: requires never_apply GoogleApigeeEnvironment / GoogleApigeeEnvgroup; deferred with the org Wave
 GoogleApigeeEnvironmentAddonsConfig: requires never_apply GoogleApigeeEnvironment; deferred with the org Wave

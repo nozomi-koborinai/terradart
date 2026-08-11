@@ -1,0 +1,18 @@
+outputDir: vertex_ai
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Vertex AI Reasoning Engine.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleVertexAiReasoningEngineIamMember] for additive grants.
+
+paramOrder:
+  - reasoning_engine
+  - role
+  - members
+  - condition
+  - region
+  - project

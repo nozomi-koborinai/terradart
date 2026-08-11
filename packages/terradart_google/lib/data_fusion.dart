@@ -8,3 +8,9 @@ export 'src/data_fusion/google_data_fusion_instance.dart'
         DataFusionInstanceState,
         DataFusionInstanceType,
         GoogleDataFusionInstance;
+export 'src/data_fusion/google_data_fusion_instance_iam_binding.dart'
+    show GoogleDataFusionInstanceIamBinding;
+export 'src/data_fusion/google_data_fusion_instance_iam_member.dart'
+    show GoogleDataFusionInstanceIamMember;
+export 'src/data_fusion/google_data_fusion_instance_iam_policy.dart'
+    show GoogleDataFusionInstanceIamPolicy;

@@ -1,0 +1,17 @@
+outputDir: apigee
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on an Apigee environment.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleApigeeEnvironmentIamMember] for additive grants.
+
+paramOrder:
+  - org_id
+  - env_id
+  - role
+  - members
+  - condition

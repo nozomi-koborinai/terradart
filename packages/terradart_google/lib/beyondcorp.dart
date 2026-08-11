@@ -59,3 +59,15 @@ export 'src/beyondcorp/google_beyondcorp_security_gateway_application.dart'
         BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersUserInfo,
         BeyondcorpSecurityGatewayApplicationUpstreamsProxyProtocolContextualHeadersUserInfoOutputType,
         GoogleBeyondcorpSecurityGatewayApplication;
+export 'src/beyondcorp/google_beyondcorp_security_gateway_application_iam_binding.dart'
+    show GoogleBeyondcorpSecurityGatewayApplicationIamBinding;
+export 'src/beyondcorp/google_beyondcorp_security_gateway_application_iam_member.dart'
+    show GoogleBeyondcorpSecurityGatewayApplicationIamMember;
+export 'src/beyondcorp/google_beyondcorp_security_gateway_application_iam_policy.dart'
+    show GoogleBeyondcorpSecurityGatewayApplicationIamPolicy;
+export 'src/beyondcorp/google_beyondcorp_security_gateway_iam_binding.dart'
+    show GoogleBeyondcorpSecurityGatewayIamBinding;
+export 'src/beyondcorp/google_beyondcorp_security_gateway_iam_member.dart'
+    show GoogleBeyondcorpSecurityGatewayIamMember;
+export 'src/beyondcorp/google_beyondcorp_security_gateway_iam_policy.dart'
+    show GoogleBeyondcorpSecurityGatewayIamPolicy;

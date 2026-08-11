@@ -41,6 +41,9 @@ safe_exception: google_network_connectivity_regional_endpoint  # NCC PSC regiona
 safe_exception: google_bigtable_instance_iam_member  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
 safe_exception: google_bigtable_instance_iam_policy  # IAM policy on Bigtable instance; no existence billing — _instance substring false positive
 safe_exception: google_bigtable_instance_iam_binding  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
+safe_exception: google_data_fusion_instance_iam_member  # IAM binding on Data Fusion instance; no existence billing — _instance substring false positive (parent google_data_fusion_instance is never_apply)
+safe_exception: google_data_fusion_instance_iam_binding  # IAM binding on Data Fusion instance; no existence billing — _instance substring false positive (parent google_data_fusion_instance is never_apply)
+safe_exception: google_data_fusion_instance_iam_policy  # IAM policy on Data Fusion instance; no existence billing — _instance substring false positive (parent google_data_fusion_instance is never_apply)
 safe_exception: google_secure_source_manager_instance_iam_member  # IAM binding on SSM instance; no existence billing — _instance substring false positive (parent google_secure_source_manager_instance is never_apply)
 safe_exception: google_secure_source_manager_instance_iam_binding  # IAM binding on SSM instance; no existence billing — _instance substring false positive (parent google_secure_source_manager_instance is never_apply)
 safe_exception: google_secure_source_manager_instance_iam_policy  # IAM policy on SSM instance; no existence billing — _instance substring false positive (parent google_secure_source_manager_instance is never_apply)
@@ -60,6 +63,9 @@ safe_exception: google_iap_agent_registry_endpoint_iam_binding  # IAM binding on
 safe_exception: google_iap_agent_registry_endpoint_iam_policy  # IAM policy on IAP agent registry endpoint; no existence billing — _endpoint substring false positive (Agent Identity parent skip-noted)
 safe_exception: google_vertex_ai_index_endpoint  # index endpoint shell; no existence billing until a deployed index — _endpoint substring false positive (sibling google_vertex_ai_index_endpoint_deployed_index is never_apply)
 safe_exception: google_apigee_instance_attachment  # environment↔instance binding; no existence billing — _instance substring false positive (parent google_apigee_instance is never_apply)
+safe_exception: google_apigee_environment_iam_member  # IAM binding on Apigee environment; no existence billing — environment substring false positive (parent google_apigee_environment is never_apply)
+safe_exception: google_apigee_environment_iam_binding  # IAM binding on Apigee environment; no existence billing — environment substring false positive (parent google_apigee_environment is never_apply)
+safe_exception: google_apigee_environment_iam_policy  # IAM policy on Apigee environment; no existence billing — environment substring false positive (parent google_apigee_environment is never_apply)
 safe_exception: google_apigee_environment_addons_config  # add-on toggles on a parent Apigee environment; no existence billing — environment substring false positive (parent google_apigee_environment is never_apply)
 safe_exception: google_apigee_envgroup_attachment  # envgroup↔environment binding; no existence billing — environment substring false positive (parent google_apigee_environment is never_apply)
 safe_exception: google_apigee_envgroup  # hostname group metadata on a parent Apigee org; no existence billing — env substring false positive (parent google_apigee_organization / google_apigee_environment are never_apply)
@@ -901,3 +907,21 @@ google_compute_region_disk_iam_policy: safe  # billing-behavior: IAM policy only
 google_compute_storage_pool_iam_member: safe  # billing-behavior: IAM binding only
 google_compute_storage_pool_iam_binding: safe  # billing-behavior: IAM binding only
 google_compute_storage_pool_iam_policy: safe  # billing-behavior: IAM policy only
+google_apigee_environment_iam_member: safe  # billing-behavior: IAM binding only
+google_apigee_environment_iam_binding: safe  # billing-behavior: IAM binding only
+google_apigee_environment_iam_policy: safe  # billing-behavior: IAM policy only
+google_beyondcorp_security_gateway_iam_member: safe  # billing-behavior: IAM binding only
+google_beyondcorp_security_gateway_iam_binding: safe  # billing-behavior: IAM binding only
+google_beyondcorp_security_gateway_iam_policy: safe  # billing-behavior: IAM policy only
+google_beyondcorp_security_gateway_application_iam_member: safe  # billing-behavior: IAM binding only
+google_beyondcorp_security_gateway_application_iam_binding: safe  # billing-behavior: IAM binding only
+google_beyondcorp_security_gateway_application_iam_policy: safe  # billing-behavior: IAM policy only
+google_data_fusion_instance_iam_member: safe  # billing-behavior: IAM binding only
+google_data_fusion_instance_iam_binding: safe  # billing-behavior: IAM binding only
+google_data_fusion_instance_iam_policy: safe  # billing-behavior: IAM policy only
+google_dataproc_job_iam_member: safe  # billing-behavior: IAM binding only
+google_dataproc_job_iam_binding: safe  # billing-behavior: IAM binding only
+google_dataproc_job_iam_policy: safe  # billing-behavior: IAM policy only
+google_vertex_ai_reasoning_engine_iam_member: safe  # billing-behavior: IAM binding only
+google_vertex_ai_reasoning_engine_iam_binding: safe  # billing-behavior: IAM binding only
+google_vertex_ai_reasoning_engine_iam_policy: safe  # billing-behavior: IAM policy only

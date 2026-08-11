@@ -1,0 +1,18 @@
+outputDir: dataproc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Dataproc job.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleDataprocJobIamMember] for additive grants.
+
+paramOrder:
+  - job_id
+  - role
+  - members
+  - condition
+  - region
+  - project

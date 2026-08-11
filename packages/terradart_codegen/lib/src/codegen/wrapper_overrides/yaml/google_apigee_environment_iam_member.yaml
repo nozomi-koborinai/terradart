@@ -1,0 +1,11 @@
+outputDir: apigee
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - org_id
+  - env_id
+  - role
+  - member
+  - condition

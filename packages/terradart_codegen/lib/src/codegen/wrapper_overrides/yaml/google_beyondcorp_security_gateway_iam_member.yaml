@@ -1,0 +1,12 @@
+outputDir: beyondcorp
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - security_gateway_id
+  - role
+  - member
+  - condition
+  - location
+  - project

@@ -1,0 +1,16 @@
+outputDir: dataproc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Dataproc job.
+  ///
+  /// `policy_data` replaces the entire IAM policy, overwriting grants made
+  /// outside Terraform. Prefer [GoogleDataprocJobIamMember] for single-principal grants.
+
+paramOrder:
+  - job_id
+  - policy_data
+  - region
+  - project

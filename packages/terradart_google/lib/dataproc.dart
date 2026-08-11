@@ -124,6 +124,12 @@ export 'src/dataproc/google_dataproc_job.dart'
         DataprocJobSparksqlConfig,
         DataprocJobSparksqlConfigLoggingConfig,
         GoogleDataprocJob;
+export 'src/dataproc/google_dataproc_job_iam_binding.dart'
+    show GoogleDataprocJobIamBinding;
+export 'src/dataproc/google_dataproc_job_iam_member.dart'
+    show GoogleDataprocJobIamMember;
+export 'src/dataproc/google_dataproc_job_iam_policy.dart'
+    show GoogleDataprocJobIamPolicy;
 export 'src/dataproc/google_dataproc_metastore_federation.dart'
     show
         DataprocMetastoreFederationBackend,
