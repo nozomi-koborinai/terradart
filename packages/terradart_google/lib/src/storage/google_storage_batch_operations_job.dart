@@ -21,7 +21,7 @@ final class StorageBatchOperationsJobPrefixList {
   final TfArg<List<String>> includedObjectPrefixes;
 
   Map<String, Object?> encode() => {
-    'included_object_prefixes': includedObjectPrefixes,
+    'included_object_prefixes': includedObjectPrefixes.toTfJson(),
   };
 }
 
@@ -32,7 +32,9 @@ final class StorageBatchOperationsJobManifest {
 
   final TfArg<String> manifestLocation;
 
-  Map<String, Object?> encode() => {'manifest_location': manifestLocation};
+  Map<String, Object?> encode() => {
+    'manifest_location': manifestLocation.toTfJson(),
+  };
 }
 
 /// One bucket (+ object selector) inside [StorageBatchOperationsJobBucketList].
@@ -49,7 +51,7 @@ final class StorageBatchOperationsJobBuckets {
   final StorageBatchOperationsJobManifest? manifest;
 
   Map<String, Object?> encode() => {
-    'bucket': bucket,
+    'bucket': bucket.toTfJson(),
     if (prefixList != null) 'prefix_list': [prefixList!.encode()],
     if (manifest != null) 'manifest': [manifest!.encode()],
   };
@@ -113,13 +115,16 @@ final class StorageBatchOperationsJobPutMetadata
   @override
   List<Map<String, Object?>> encode() => [
     {
-      if (cacheControl != null) 'cache_control': cacheControl,
-      if (contentDisposition != null) 'content_disposition': contentDisposition,
-      if (contentEncoding != null) 'content_encoding': contentEncoding,
-      if (contentLanguage != null) 'content_language': contentLanguage,
-      if (contentType != null) 'content_type': contentType,
-      if (customMetadata != null) 'custom_metadata': customMetadata,
-      if (customTime != null) 'custom_time': customTime,
+      if (cacheControl != null) 'cache_control': cacheControl!.toTfJson(),
+      if (contentDisposition != null)
+        'content_disposition': contentDisposition!.toTfJson(),
+      if (contentEncoding != null)
+        'content_encoding': contentEncoding!.toTfJson(),
+      if (contentLanguage != null)
+        'content_language': contentLanguage!.toTfJson(),
+      if (contentType != null) 'content_type': contentType!.toTfJson(),
+      if (customMetadata != null) 'custom_metadata': customMetadata!.toTfJson(),
+      if (customTime != null) 'custom_time': customTime!.toTfJson(),
     },
   ];
 }
@@ -142,8 +147,9 @@ final class StorageBatchOperationsJobPutObjectHold
   @override
   List<Map<String, Object?>> encode() => [
     {
-      if (eventBasedHold != null) 'event_based_hold': eventBasedHold,
-      if (temporaryHold != null) 'temporary_hold': temporaryHold,
+      if (eventBasedHold != null)
+        'event_based_hold': eventBasedHold!.toTfJson(),
+      if (temporaryHold != null) 'temporary_hold': temporaryHold!.toTfJson(),
     },
   ];
 }
@@ -161,7 +167,7 @@ final class StorageBatchOperationsJobRewriteObject
 
   @override
   List<Map<String, Object?>> encode() => [
-    {'kms_key': kmsKey},
+    {'kms_key': kmsKey.toTfJson()},
   ];
 }
 
@@ -180,7 +186,10 @@ final class StorageBatchOperationsJobDeleteObject
 
   @override
   List<Map<String, Object?>> encode() => [
-    {'permanent_object_deletion_enabled': permanentObjectDeletionEnabled},
+    {
+      'permanent_object_deletion_enabled': permanentObjectDeletionEnabled
+          .toTfJson(),
+    },
   ];
 }
 

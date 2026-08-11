@@ -620,6 +620,26 @@ final Map<String, Object Function()> _syntheticInstances = {
       StorageBucketObjectBucketObjectFromContent(
           content: TfArg.literal('mock-inline-payload')),
 
+  // --- StorageBatchOperationsJobOperation (4) — batch_operations_job -------
+  'StorageBatchOperationsJobPutMetadata': () =>
+      StorageBatchOperationsJobPutMetadata(
+        customMetadata: TfArg.literal({'managed-by': 'terradart'}),
+      ),
+  'StorageBatchOperationsJobPutObjectHold': () =>
+      StorageBatchOperationsJobPutObjectHold(
+        temporaryHold: TfArg.literal('TRUE'),
+      ),
+  'StorageBatchOperationsJobRewriteObject': () =>
+      StorageBatchOperationsJobRewriteObject(
+        kmsKey: TfArg.literal(
+          'projects/p/locations/global/keyRings/r/cryptoKeys/k',
+        ),
+      ),
+  'StorageBatchOperationsJobDeleteObject': () =>
+      StorageBatchOperationsJobDeleteObject(
+        permanentObjectDeletionEnabled: TfArg.literal(false),
+      ),
+
   // --- CertificateManagerCertificateProvisioningSource (2) — certificate_manager_certificate
   'CertificateManagerCertificateManagedProvisioning': () =>
       CertificateManagerCertificateManagedProvisioning(

@@ -190,8 +190,8 @@ final class AssetsStack extends Stack {
         localName: 'legacy_readme',
         bucket: TfArg.ref(legacy.nameRef),
         name: TfArg.literal('readme.txt'),
-        body: StorageBucketObjectBucketObjectFromContent(
-          content: TfArg.literal('legacy acl smoke'),
+        body: StorageBucketObjectBucketObjectFromSource(
+          source: TfArg.literal('./legacy/readme.txt'),
         ),
         contentType: TfArg.literal('text/plain'),
         storageClass: TfArg.literal(BucketObjectStorageClass.standard),
