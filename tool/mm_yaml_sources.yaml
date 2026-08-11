@@ -1988,6 +1988,25 @@ files:
   google_cloud_support_support_event_subscription:
     upstream: mmv1/products/cloudsupport/SupportEventSubscription.yaml
 
+  # IAM adjuncts for address group / IAP dest group / Dataproc autoscaling policy
+  google_network_security_address_group_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_network_security_address_group_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_network_security_address_group_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_tunnel_dest_group_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_tunnel_dest_group_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iap_tunnel_dest_group_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataproc_autoscaling_policy_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataproc_autoscaling_policy_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataproc_autoscaling_policy_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   # IAM adjuncts for Data Catalog policy tag / tag template and Cloud Build v2 connection
   google_data_catalog_policy_tag_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation

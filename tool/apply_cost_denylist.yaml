@@ -846,6 +846,16 @@ google_vmwareengine_subnet: never_apply  # gcp-cost: VMware Engine C079-64FE-910
 google_vpc_access_connector: safe  # apply-verified safe (existing example)
 google_workflows_workflow: safe  # apply-verified safe (existing example)
 time_sleep: safe  # apply-verified safe (existing example)
+google_network_security_address_group_iam_member: safe  # billing-behavior: IAM binding only
+google_network_security_address_group_iam_binding: safe  # billing-behavior: IAM binding only
+google_network_security_address_group_iam_policy: safe  # billing-behavior: IAM policy only
+google_iap_tunnel_dest_group_iam_member: safe  # billing-behavior: IAM binding only
+google_iap_tunnel_dest_group_iam_binding: safe  # billing-behavior: IAM binding only
+google_iap_tunnel_dest_group_iam_policy: safe  # billing-behavior: IAM policy only
+google_dataproc_autoscaling_policy_iam_member: safe  # billing-behavior: IAM binding only
+google_dataproc_autoscaling_policy_iam_binding: safe  # billing-behavior: IAM binding only
+google_dataproc_autoscaling_policy_iam_policy: safe  # billing-behavior: IAM policy only
+
 google_data_catalog_policy_tag_iam_member: safe  # billing-behavior: IAM binding only
 google_data_catalog_policy_tag_iam_binding: safe  # billing-behavior: IAM binding only
 google_data_catalog_policy_tag_iam_policy: safe  # billing-behavior: IAM policy only

@@ -66,6 +66,12 @@ export 'src/iap/google_iap_settings.dart'
         IapSettingsApplicationSettingsCsmSettings;
 export 'src/iap/google_iap_tunnel_dest_group.dart'
     show GoogleIapTunnelDestGroup;
+export 'src/iap/google_iap_tunnel_dest_group_iam_binding.dart'
+    show GoogleIapTunnelDestGroupIamBinding;
+export 'src/iap/google_iap_tunnel_dest_group_iam_member.dart'
+    show GoogleIapTunnelDestGroupIamMember;
+export 'src/iap/google_iap_tunnel_dest_group_iam_policy.dart'
+    show GoogleIapTunnelDestGroupIamPolicy;
 export 'src/iap/google_iap_web_backend_service_iam_binding.dart'
     show GoogleIapWebBackendServiceIamBinding;
 export 'src/iap/google_iap_web_backend_service_iam_member.dart'

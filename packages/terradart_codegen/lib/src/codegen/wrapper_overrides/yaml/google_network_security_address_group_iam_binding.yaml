@@ -1,0 +1,18 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Network Security address group.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleNetworkSecurityAddressGroupIamMember] for additive grants.
+
+paramOrder:
+  - name
+  - location
+  - role
+  - members
+  - project
+  - condition

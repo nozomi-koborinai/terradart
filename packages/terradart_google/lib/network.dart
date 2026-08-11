@@ -102,6 +102,12 @@ export 'src/network/google_network_management_vpc_flow_logs_config.dart'
         NetworkManagementVpcFlowLogsConfigState;
 export 'src/network/google_network_security_address_group.dart'
     show GoogleNetworkSecurityAddressGroup, NetworkSecurityAddressGroupType;
+export 'src/network/google_network_security_address_group_iam_binding.dart'
+    show GoogleNetworkSecurityAddressGroupIamBinding;
+export 'src/network/google_network_security_address_group_iam_member.dart'
+    show GoogleNetworkSecurityAddressGroupIamMember;
+export 'src/network/google_network_security_address_group_iam_policy.dart'
+    show GoogleNetworkSecurityAddressGroupIamPolicy;
 export 'src/network/google_network_security_backend_authentication_config.dart'
     show
         GoogleNetworkSecurityBackendAuthenticationConfig,
