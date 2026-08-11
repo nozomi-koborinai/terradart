@@ -1,6 +1,7 @@
 /// Synth entry. `dart run bin/infra.dart` → `tf-out/main.tf.json`.
 library;
 
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:terradart_example_kms_quickstart/main.dart';
@@ -13,5 +14,13 @@ Future<void> main() async {
   }
   final stack = CryptoStack(projectId: projectId);
   await stack.writeTo('tf-out');
+  // `plaintext` uses TfArg.variable — declare for terraform validate.
+  await File('tf-out/variables.tf.json').writeAsString(
+    const JsonEncoder.withIndent('  ').convert({
+      'variable': {
+        'kms_secret_plaintext': {'type': 'string', 'sensitive': true},
+      },
+    }),
+  );
   print('synthesized to tf-out/main.tf.json');
 }

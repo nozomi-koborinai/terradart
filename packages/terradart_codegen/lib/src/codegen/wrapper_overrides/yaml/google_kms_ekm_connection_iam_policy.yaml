@@ -1,0 +1,16 @@
+outputDir: kms
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Cloud KMS EKM connection.
+  ///
+  /// `policy_data` replaces the entire IAM policy. Prefer
+  /// [GoogleKmsEkmConnectionIamMember] for single-principal grants.
+
+paramOrder:
+  - name
+  - policy_data
+  - location
+  - project

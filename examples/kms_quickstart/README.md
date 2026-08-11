@@ -1,6 +1,13 @@
 # Cloud KMS quickstart
 
-End-to-end terradart example for Cloud KMS plus Contact Center AI Insights CMEK. Provisions a regional key ring (`main-ring`) and `payments` crypto key in `asia-northeast1`, IAM bindings, and a `GoogleContactCenterInsightsEncryptionSpec` wired to the payments key.
+End-to-end terradart example for Cloud KMS plus Contact Center AI Insights CMEK.
+Provisions a regional key ring (`main-ring`) and `payments` crypto key in
+`asia-northeast1`, IAM bindings, a secret-ciphertext encrypt helper, a software
+import job, and a `GoogleContactCenterInsightsEncryptionSpec` wired to the
+payments key.
+
+Apply-smoke skips this example: KMS key rings / import jobs cannot be deleted
+from GCP, so re-runs fail with 409 on a reused project.
 
 ## Prerequisites
 

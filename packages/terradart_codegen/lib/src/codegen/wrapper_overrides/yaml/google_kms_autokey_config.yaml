@@ -1,0 +1,36 @@
+outputDir: kms
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+dartTypeOverrides:
+  key_project_resolution_mode: KmsAutokeyConfigKeyProjectResolutionMode
+
+curatedDoc: |-
+  /// Folder-level **Cloud KMS Autokey config** — singleton that controls
+  /// Autokey CMEK provisioning for a folder.
+  ///
+  /// Requires a real folder id (`folders/123…`). Not applyable on a
+  /// standalone project such as `terradart-validate`. Prefer
+  /// [GoogleKmsProjectAutokeyConfig] for project-scoped smoke stacks.
+  ///
+  /// **Note:** Autokey configs cannot be deleted from GCP. Destroy removes
+  /// the resource from Terraform state only.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleKmsAutokeyConfig(
+  ///   localName: 'folder_autokey',
+  ///   folder: TfArg.literal('folders/123456789012'),
+  ///   keyProjectResolutionMode: TfArg.literal(
+  ///     KmsAutokeyConfigKeyProjectResolutionMode.disabled,
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - folder
+  - key_project
+  - key_project_resolution_mode
+  - deletion_policy

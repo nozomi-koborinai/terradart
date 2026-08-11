@@ -1,0 +1,19 @@
+outputDir: kms
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud KMS EKM
+  /// connection.
+  ///
+  /// Replaces the entire member list for that role. Prefer
+  /// [GoogleKmsEkmConnectionIamMember] for additive grants.
+
+paramOrder:
+  - name
+  - role
+  - members
+  - location
+  - project
+  - condition

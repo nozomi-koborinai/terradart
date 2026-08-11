@@ -12,6 +12,10 @@
 /// Wave 5 Batch 4 adds a `roles/cloudkms.viewer` binding on the *ring* for
 /// a read-only inventory SA -- this is the right granularity for "list
 /// every key under this ring" without granting per-key encrypt/decrypt.
+///
+/// Later coverage adds `GoogleKmsSecretCiphertext` (encrypt helper) and a
+/// software `GoogleKmsKeyRingImportJob` (wrapping key for external material).
+/// Apply-smoke skips this example (non-deletable key rings / import jobs).
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -129,6 +133,37 @@ final class CryptoStack extends Stack {
         keyRingId: TfArg.ref(ring.id),
         role: TfArg.literal('roles/cloudkms.viewer'),
         member: TfArg.ref(ringInventory.iamMember),
+      ),
+    );
+
+    // ---- Secret ciphertext (encrypt helper) + import job ------------------
+    //
+    // Ciphertext encrypts a smoke plaintext with the payments KEK (usage-
+    // billed crypto ops only). The import job demonstrates software wrapping
+    // for external key material; GCP does not delete import jobs.
+
+    add(
+      GoogleKmsSecretCiphertext(
+        localName: 'payments_secret',
+        cryptoKey: TfArg.ref(paymentsKey.id),
+        // Schema-sensitive — must be a Terraform variable (see bin/infra.dart).
+        plaintext: TfArg.variable('kms_secret_plaintext'),
+        dependsOn: [...apiDeps, ResourceDependency(paymentsKey)],
+      ),
+    );
+
+    add(
+      GoogleKmsKeyRingImportJob(
+        localName: 'import_software',
+        keyRing: TfArg.ref(ring.id),
+        importJobId: TfArg.literal('terradart-import'),
+        importMethod: TfArg.literal(
+          KmsKeyRingImportJobImportMethod.rsaOaep3072Sha1Aes256,
+        ),
+        protectionLevel: TfArg.literal(
+          KmsKeyRingImportJobProtectionLevel.software,
+        ),
+        dependsOn: [...apiDeps, ResourceDependency(ring)],
       ),
     );
   }

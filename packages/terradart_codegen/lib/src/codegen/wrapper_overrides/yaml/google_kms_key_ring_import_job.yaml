@@ -1,0 +1,38 @@
+outputDir: kms
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+dartTypeOverrides:
+  import_method: KmsKeyRingImportJobImportMethod
+  protection_level: KmsKeyRingImportJobProtectionLevel
+
+curatedDoc: |-
+  /// Cloud KMS **key-ring import job** — wrapping key used to import
+  /// externally generated key material into a [GoogleKmsKeyRing].
+  ///
+  /// Jobs expire ~3 days after create. Terraform destroy removes the job
+  /// from state only (GCP does not delete import jobs).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleKmsKeyRingImportJob(
+  ///   localName: 'import',
+  ///   keyRing: TfArg.ref(ring.id),
+  ///   importJobId: TfArg.literal('terradart-import'),
+  ///   importMethod: TfArg.literal(
+  ///     KmsKeyRingImportJobImportMethod.rsaOaep3072Sha1Aes256,
+  ///   ),
+  ///   protectionLevel: TfArg.literal(
+  ///     KmsKeyRingImportJobProtectionLevel.software,
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - key_ring
+  - import_job_id
+  - import_method
+  - protection_level
+  - deletion_policy

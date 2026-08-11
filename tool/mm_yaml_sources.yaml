@@ -1925,3 +1925,19 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_data_catalog_taxonomy_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
+
+  # KMS helpers coverage wave
+  google_kms_secret_ciphertext:
+    upstream: mmv1/products/kms/SecretCiphertext.yaml
+  google_kms_key_ring_import_job:
+    upstream: mmv1/products/kms/KeyRingImportJob.yaml
+  google_kms_autokey_config:
+    upstream: mmv1/products/kms/AutokeyConfig.yaml
+  google_kms_key_handle:
+    upstream: mmv1/products/kms/KeyHandle.yaml
+  google_kms_ekm_connection_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_kms_ekm_connection_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_kms_ekm_connection_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
