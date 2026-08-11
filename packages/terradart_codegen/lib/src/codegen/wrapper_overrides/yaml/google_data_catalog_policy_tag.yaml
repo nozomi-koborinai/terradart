@@ -1,0 +1,25 @@
+outputDir: data_catalog
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Data Catalog **policy tag** under a [GoogleDataCatalogTaxonomy] (legacy
+  /// Data Catalog API). Pass [taxonomy] as the parent taxonomy resource name
+  /// (`TfArg.ref(taxonomy.id)`).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleDataCatalogPolicyTag(
+  ///   localName: 'email',
+  ///   displayName: TfArg.literal('email'),
+  ///   taxonomy: TfArg.ref(taxonomy.id),
+  ///   description: TfArg.literal('Email addresses'),
+  /// );
+  /// ```
+
+paramOrder:
+  - display_name
+  - taxonomy
+  - description
+  - parent_policy_tag
+  - deletion_policy

@@ -1,23 +1,20 @@
-# Data Catalog entry group quickstart
+# Data Catalog quickstart (legacy)
 
-End-to-end terradart example for a **Data Catalog entry group** (legacy Data
-Catalog API). Enables `datacatalog.googleapis.com` and creates a regional
-entry group. Prefer Dataplex Universal Catalog for new catalogs.
+End-to-end terradart example for the **legacy** Data Catalog API. Enables
+`datacatalog.googleapis.com` and provisions an entry group + custom entry, a
+taxonomy + policy tag, a tag template, and additive IAM grants.
 
-Creating the entry group alone does not create entries or bill catalog SKUs.
-
-## Prerequisites
-
-- Dart SDK >= 3.6
-- Terraform CLI >= 1.11.0
-- A GCP project with credentials configured (`gcloud auth application-default login`). APIs are enabled by the stack.
+Prefer [Dataplex Universal Catalog](../dataplex_quickstart/) for new catalogs.
+Apply-smoke skips this example: some projects reject Data Catalog writes due to
+upstream deprecation (HTTP 400). Synth + `terraform validate` still cover the
+factories.
 
 ## Usage
 
 ```bash
 dart pub get
 cd examples/data_catalog_quickstart && dart pub get
-export GCP_PROJECT_ID=my-project-123
-dart run bin/infra.dart
-cd tf-out && terraform init && terraform plan
+
+GCP_PROJECT_ID=my-proj-123 dart run bin/infra.dart
+cd tf-out && terraform init -backend=false && terraform validate
 ```

@@ -41,6 +41,7 @@ import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/spanner.dart';
 import 'package:terradart_google/cloud_scheduler.dart';
 import 'package:terradart_google/compute.dart';
+import 'package:terradart_google/data_catalog.dart';
 import 'package:terradart_google/dlp.dart';
 import 'package:terradart_google/edgecontainer.dart';
 import 'package:terradart_google/firebase_app_hosting.dart';
@@ -638,6 +639,25 @@ final Map<String, Object Function()> _syntheticInstances = {
   'StorageBatchOperationsJobDeleteObject': () =>
       StorageBatchOperationsJobDeleteObject(
         permanentObjectDeletionEnabled: TfArg.literal(false),
+      ),
+
+  // --- DataCatalogEntryKind (2) — data_catalog_entry -----------------------
+  'DataCatalogEntryFileset': () => const DataCatalogEntryFileset(),
+  'DataCatalogEntryCustomType': () => DataCatalogEntryCustomType(
+        userSpecifiedType: TfArg.literal('my_custom_type'),
+      ),
+
+  // --- DataCatalogTagTemplateFieldType (2) — tag_template ------------------
+  'DataCatalogTagTemplatePrimitiveFieldType': () =>
+      const DataCatalogTagTemplatePrimitiveFieldType(
+        DataCatalogTagTemplatePrimitiveType.string,
+      ),
+  'DataCatalogTagTemplateEnumFieldType': () => DataCatalogTagTemplateEnumFieldType(
+        allowedValues: [
+          DataCatalogTagTemplateEnumAllowedValue(
+            displayName: TfArg.literal('EMAIL'),
+          ),
+        ],
       ),
 
   // --- CertificateManagerCertificateProvisioningSource (2) — certificate_manager_certificate

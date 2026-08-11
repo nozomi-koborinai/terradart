@@ -1,0 +1,18 @@
+outputDir: data_catalog
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Data Catalog taxonomy.
+  ///
+  /// Replaces the entire member list for that role on the taxonomy. Prefer
+  /// [GoogleDataCatalogTaxonomyIamMember] when adding one principal without
+  /// touching existing bindings.
+
+paramOrder:
+  - taxonomy
+  - role
+  - members
+  - condition
+  - region
+  - project

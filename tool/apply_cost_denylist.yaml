@@ -488,6 +488,16 @@ google_compute_subnetwork_iam_binding: safe  # billing-behavior: IAM binding onl
 google_compute_subnetwork_iam_policy: safe  # billing-behavior: IAM policy only
 google_compute_preview_feature: safe  # gcp-cost: no Cloud Billing Catalog SKU for preview_feature (Compute Engine 6F81-5844-456A list_skus keyword=preview → 0 SKUs); billing-behavior: project preview-feature enablement metadata (e.g. alpha-api-access) — create/update/delete does not provision VMs or bill Compute instance hours
 google_data_catalog_entry_group: safe  # gcp-cost: Data Catalog 89B9-6A5A-B358 SKUs are Storage Usage 1D52-4857-D286 ($2/GiBy.mo after free tier) and Api Usage 92A8-89E9-F95C ($10/100k calls after 1M free); list_skus keyword=entry → 0 dedicated entry-group SKU; billing-behavior: empty entry-group metadata only — no entries attached, negligible vs 1 MiB free storage / API free tier; destroy removes the group
+google_data_catalog_entry: safe  # gcp-cost: Data Catalog 89B9-6A5A-B358 list_skus keyword=entry/taxonomy/tag → 0 dedicated SKU (Storage 1D52-4857-D286 $2/GiBy.mo + Api 92A8-89E9-F95C after free tiers); billing-behavior: entry metadata — usage-metered API/storage only, not existence-billed; destroy deletes the entry
+google_data_catalog_taxonomy: safe  # gcp-cost: Data Catalog 89B9-6A5A-B358 list_skus keyword=taxonomy → 0; billing-behavior: taxonomy metadata for policy tags — no existence/hourly charge; destroy deletes the taxonomy
+google_data_catalog_policy_tag: safe  # gcp-cost: Data Catalog 89B9-6A5A-B358 list_skus keyword=policy → 0; billing-behavior: policy-tag metadata under a taxonomy — no existence/hourly charge; destroy deletes the tag
+google_data_catalog_tag_template: safe  # gcp-cost: Data Catalog 89B9-6A5A-B358 list_skus keyword=tag → 0; billing-behavior: tag-template metadata — no existence/hourly charge; destroy deletes the template (force_delete)
+google_data_catalog_entry_group_iam_member: safe  # billing-behavior: IAM binding only
+google_data_catalog_entry_group_iam_binding: safe  # billing-behavior: IAM binding only
+google_data_catalog_entry_group_iam_policy: safe  # billing-behavior: IAM policy only
+google_data_catalog_taxonomy_iam_member: safe  # billing-behavior: IAM binding only
+google_data_catalog_taxonomy_iam_binding: safe  # billing-behavior: IAM binding only
+google_data_catalog_taxonomy_iam_policy: safe  # billing-behavior: IAM policy only
 google_dataplex_aspect_type: safe  # apply-verified safe (existing example)
 google_dataplex_aspect_type_iam_member: safe  # apply-verified safe (existing example)
 google_dataplex_data_product: safe  # apply-verified safe (existing example)
