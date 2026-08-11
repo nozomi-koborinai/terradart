@@ -17,6 +17,7 @@ workspace:
   - examples/apphub_quickstart
   - examples/artifact_registry_quickstart
   - examples/biglake_quickstart
+  - examples/bigquery_datapolicyv2_quickstart
   - examples/bigquery_quickstart
   - examples/bigtable_quickstart
   - examples/chronicle_quickstart

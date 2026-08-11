@@ -349,8 +349,14 @@ google_bigquery_analytics_hub_data_exchange_iam_binding: safe  # billing-behavio
 google_bigquery_analytics_hub_data_exchange_iam_policy: safe  # billing-behavior: IAM policy only
 google_bigquery_analytics_hub_listing_iam_binding: safe  # billing-behavior: IAM binding only
 google_bigquery_analytics_hub_listing_iam_policy: safe  # billing-behavior: IAM policy only
+google_bigquery_datapolicy_data_policy: safe  # gcp-cost: BigQuery 24E6-581D-38E5 list_skus keywords policy/mask → 0; billing-behavior: data-policy metadata (column masking config) — no existence/hourly charge; query-time analysis bills normal BigQuery
+google_bigquery_datapolicy_data_policy_iam_member: safe  # billing-behavior: IAM binding only
 google_bigquery_datapolicy_data_policy_iam_binding: safe  # billing-behavior: IAM binding only
 google_bigquery_datapolicy_data_policy_iam_policy: safe  # billing-behavior: IAM policy only
+google_bigquery_datapolicyv2_data_policy: safe  # gcp-cost: BigQuery 24E6-581D-38E5 list_skus keywords policy/mask → 0; no Data Policy SKU; billing-behavior: V2 data-policy metadata (raw access / masking config) — no existence/hourly charge; destroy deletes the policy
+google_bigquery_datapolicyv2_data_policy_iam_member: safe  # billing-behavior: IAM binding only
+google_bigquery_datapolicyv2_data_policy_iam_binding: safe  # billing-behavior: IAM binding only
+google_bigquery_datapolicyv2_data_policy_iam_policy: safe  # billing-behavior: IAM policy only
 google_cloud_run_v2_job: safe  # apply-verified safe (existing example)
 google_cloud_run_v2_job_iam_member: safe  # apply-verified safe (existing example)
 google_cloud_run_v2_job_iam_binding: safe  # billing-behavior: IAM binding only

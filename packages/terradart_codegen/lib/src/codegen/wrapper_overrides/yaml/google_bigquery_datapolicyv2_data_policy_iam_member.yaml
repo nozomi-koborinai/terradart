@@ -1,0 +1,26 @@
+outputDir: bigquery
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Additive IAM grant on a [GoogleBigqueryDatapolicyv2DataPolicy]. Prefer
+  /// this over binding/policy when adding one (`role`, `member`) tuple.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleBigqueryDatapolicyv2DataPolicyIamMember(
+  ///   localName: 'raw_reader',
+  ///   dataPolicyId: TfArg.literal('raw-access'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   role: TfArg.literal('roles/bigquerydatapolicy.maskedReader'),
+  ///   member: TfArg.ref(reader.iamMember),
+  /// );
+  /// ```
+
+paramOrder:
+  - data_policy_id
+  - role
+  - member
+  - condition
+  - location
+  - project

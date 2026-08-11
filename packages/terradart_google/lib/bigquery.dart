@@ -87,6 +87,19 @@ export 'src/bigquery/google_bigquery_datapolicy_data_policy_iam_member.dart'
     show GoogleBigqueryDatapolicyDataPolicyIamMember;
 export 'src/bigquery/google_bigquery_datapolicy_data_policy_iam_policy.dart'
     show GoogleBigqueryDatapolicyDataPolicyIamPolicy;
+export 'src/bigquery/google_bigquery_datapolicyv2_data_policy.dart'
+    show
+        BigqueryDatapolicyv2DataPolicyDataGovernanceTag,
+        BigqueryDatapolicyv2DataPolicyDataMaskingPolicy,
+        BigqueryDatapolicyv2DataPolicyPredefinedExpression,
+        BigqueryDatapolicyv2DataPolicyType,
+        GoogleBigqueryDatapolicyv2DataPolicy;
+export 'src/bigquery/google_bigquery_datapolicyv2_data_policy_iam_binding.dart'
+    show GoogleBigqueryDatapolicyv2DataPolicyIamBinding;
+export 'src/bigquery/google_bigquery_datapolicyv2_data_policy_iam_member.dart'
+    show GoogleBigqueryDatapolicyv2DataPolicyIamMember;
+export 'src/bigquery/google_bigquery_datapolicyv2_data_policy_iam_policy.dart'
+    show GoogleBigqueryDatapolicyv2DataPolicyIamPolicy;
 export 'src/bigquery/google_bigquery_dataset.dart'
     show
         BigqueryDatasetAccess,
