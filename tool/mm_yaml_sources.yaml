@@ -528,6 +528,18 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataproc_metastore_service_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataproc_metastore_database_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataproc_metastore_database_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataproc_metastore_database_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataproc_metastore_table_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataproc_metastore_table_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataproc_metastore_table_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_dialogflow_agent:
     upstream: mmv1/products/dialogflow/Agent.yaml
   google_dialogflow_sip_trunk:

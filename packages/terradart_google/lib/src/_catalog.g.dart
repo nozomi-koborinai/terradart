@@ -12813,6 +12813,70 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_dataproc_job_iam_policy`.\n\nAuthoritative IAM policy for a Dataproc job.\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleDataprocJobIamMember] for single-principal grants.',
   ),
   CatalogEntry(
+    tfType: 'google_dataproc_metastore_database_iam_binding',
+    className: 'GoogleDataprocMetastoreDatabaseIamBinding',
+    barrel: 'dataproc',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_dataproc_metastore_database_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'serviceId',
+      'database',
+      'role',
+      'members',
+      'location',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataproc_metastore_database_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataproc Metastore database.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleDataprocMetastoreDatabaseIamMember] for additive grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_dataproc_metastore_database_iam_member',
+    className: 'GoogleDataprocMetastoreDatabaseIamMember',
+    barrel: 'dataproc',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_dataproc_metastore_database_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'serviceId',
+      'database',
+      'role',
+      'member',
+      'location',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataproc_metastore_database_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_dataproc_metastore_database_iam_policy',
+    className: 'GoogleDataprocMetastoreDatabaseIamPolicy',
+    barrel: 'dataproc',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_dataproc_metastore_database_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'serviceId',
+      'database',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataproc_metastore_database_iam_policy`.\n\nAuthoritative IAM policy for a Dataproc Metastore database.\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleDataprocMetastoreDatabaseIamMember] for single-principal grants.',
+  ),
+  CatalogEntry(
     tfType: 'google_dataproc_metastore_federation',
     className: 'GoogleDataprocMetastoreFederation',
     barrel: 'dataproc',
@@ -12992,6 +13056,73 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_dataproc_metastore_service_iam_policy`.\n\nAuthoritative IAM policy for a Dataproc Metastore service.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleDataprocMetastoreServiceIamMember] for single-principal grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_dataproc_metastore_table_iam_binding',
+    className: 'GoogleDataprocMetastoreTableIamBinding',
+    barrel: 'dataproc',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_dataproc_metastore_table_iam_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'serviceId',
+      'databaseId',
+      'table',
+      'role',
+      'members',
+      'location',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataproc_metastore_table_iam_binding`.\n\nAuthoritative IAM binding for a single `role` on a Dataproc Metastore table.\n\nReplaces the entire member list for that role, overwriting grants made\noutside Terraform. Prefer [GoogleDataprocMetastoreTableIamMember] for additive grants.',
+  ),
+  CatalogEntry(
+    tfType: 'google_dataproc_metastore_table_iam_member',
+    className: 'GoogleDataprocMetastoreTableIamMember',
+    barrel: 'dataproc',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_dataproc_metastore_table_iam_member`.',
+    constructorParams: <String>[
+      'localName',
+      'serviceId',
+      'databaseId',
+      'table',
+      'role',
+      'member',
+      'location',
+      'condition',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataproc_metastore_table_iam_member`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_dataproc_metastore_table_iam_policy',
+    className: 'GoogleDataprocMetastoreTableIamPolicy',
+    barrel: 'dataproc',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_dataproc_metastore_table_iam_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'serviceId',
+      'databaseId',
+      'table',
+      'policyData',
+      'location',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataproc_metastore_table_iam_policy`.\n\nAuthoritative IAM policy for a Dataproc Metastore table.\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleDataprocMetastoreTableIamMember] for single-principal grants.',
   ),
   CatalogEntry(
     tfType: 'google_dataproc_session_template',

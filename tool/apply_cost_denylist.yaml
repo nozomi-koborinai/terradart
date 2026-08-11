@@ -257,6 +257,12 @@ google_dataproc_metastore_service_iam_policy: safe  # billing-behavior: IAM poli
 google_dataproc_metastore_federation_iam_member: safe  # billing-behavior: IAM binding only — no resource charge
 google_dataproc_metastore_federation_iam_binding: safe  # billing-behavior: IAM binding only
 google_dataproc_metastore_federation_iam_policy: safe  # billing-behavior: IAM policy only
+google_dataproc_metastore_database_iam_member: safe  # billing-behavior: IAM binding only
+google_dataproc_metastore_database_iam_binding: safe  # billing-behavior: IAM binding only
+google_dataproc_metastore_database_iam_policy: safe  # billing-behavior: IAM policy only
+google_dataproc_metastore_table_iam_member: safe  # billing-behavior: IAM binding only
+google_dataproc_metastore_table_iam_binding: safe  # billing-behavior: IAM binding only
+google_dataproc_metastore_table_iam_policy: safe  # billing-behavior: IAM policy only
 google_redis_instance: sweep_only            # Memorystore for Redis
 google_managed_kafka_cluster: sweep_only  # gcp-cost: Managed Service for Apache Kafka 9544-7B1C-811D Data Compute Units us-central1 SKU 2837-8C0C-F431 $0.09/h (+ Local Storage 1533-0F96-68AD $0.17/GiBy.mo) — billing-behavior: hourly DCU + storage while the cluster exists; destroy stops compute charges
 google_managed_kafka_connect_cluster: sweep_only  # gcp-cost: Managed Kafka Connect Data Compute Units us-central1 SKU 12FB-6837-84CF $0.12/h — billing-behavior: hourly Connect DCU while the Connect cluster exists; destroy stops compute charges
