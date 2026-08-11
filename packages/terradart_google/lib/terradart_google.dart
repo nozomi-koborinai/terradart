@@ -38,6 +38,7 @@ export 'cloud_quotas.dart';
 export 'cloud_run.dart';
 export 'cloud_scheduler.dart';
 export 'cloud_sql.dart';
+export 'cloud_support.dart';
 export 'cloud_tasks.dart';
 export 'clouddeploy.dart';
 export 'colab.dart';

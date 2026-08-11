@@ -153,6 +153,11 @@ barrels:
   cloud_tasks:
     doc: |-
       /// Cloud Tasks queues + per-queue IAM bindings.
+  cloud_support:
+    doc: |-
+      /// Cloud Support — organization-scoped support event subscriptions
+      /// (Pub/Sub notifications for support-case events). Org-only;
+      /// debt-only on terradart-validate.
   clouddeploy:
     doc: |-
       /// Cloud Deploy — continuous-delivery pipelines, targets, and custom target
@@ -401,15 +406,17 @@ barrels:
       /// capacity while they exist (never_apply for apply-smoke).
   network:
     doc: |-
-      /// Network Connectivity transports / multicloud data-transfer (Partner
-      /// Cross-Cloud Interconnect managed transport is never_apply — $17+/h),
-      /// Network Security ULL mirroring, OOB intercept / mirroring deployments
-      /// + endpoints (Deployment Uptime $0.025/h is never_apply), address
-      /// groups, URL lists, client/server TLS policies, gateway security
-      /// policies, Cloud NGFW firewall endpoints (Enterprise Endpoint Uptime
-      /// is never_apply — $1.75/h), VPC Flow Logs configs, Network Services
-      /// Mesh, and Network Services gateways (Secure Web Gateway is
-      /// never_apply — $1.25/h).
+      /// Network Connectivity Center (hub / group / spoke / internal range /
+      /// regional endpoint / policy-based route; gateway advertised route and
+      /// service connection policy are debt-only), transports / multicloud
+      /// data-transfer (Partner Cross-Cloud Interconnect managed transport is
+      /// never_apply — $17+/h), Network Security ULL mirroring, OOB intercept /
+      /// mirroring deployments + endpoints (Deployment Uptime $0.025/h is
+      /// never_apply), address groups, URL lists, client/server TLS policies,
+      /// gateway security policies, Cloud NGFW firewall endpoints (Enterprise
+      /// Endpoint Uptime is never_apply — $1.75/h), VPC Flow Logs configs,
+      /// Network Services Mesh, and Network Services gateways (Secure Web
+      /// Gateway is never_apply — $1.25/h).
   notebooks:
     doc: |-
       /// Vertex AI Workbench (Notebooks) — environments, user-managed

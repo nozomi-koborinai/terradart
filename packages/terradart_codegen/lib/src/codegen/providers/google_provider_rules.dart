@@ -202,6 +202,11 @@ final class GoogleProviderRules extends ProviderRules {
     'cloud_quotas': 'cloud_quotas',
     'cloudquotas': 'cloud_quotas',
 
+    // Cloud Support (`google_cloud_support_*` → segment `cloud` without alias;
+    // MM product cloudsupport). Distinct from cloud_ids / cloud_quotas / …
+    'cloud_support': 'cloud_support',
+    'cloudsupport': 'cloud_support',
+
     // Blockchain Node Engine (`google_blockchain_node_engine_*`;
     // MM product blockchainnodeengine).
     'blockchain': 'blockchain',

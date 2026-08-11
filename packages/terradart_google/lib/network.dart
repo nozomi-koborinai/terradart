@@ -1,20 +1,27 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Network Connectivity transports / multicloud data-transfer (Partner
-/// Cross-Cloud Interconnect managed transport is never_apply — $17+/h),
-/// Network Security ULL mirroring, OOB intercept / mirroring deployments
-/// + endpoints (Deployment Uptime $0.025/h is never_apply), address
-/// groups, URL lists, client/server TLS policies, gateway security
-/// policies, Cloud NGFW firewall endpoints (Enterprise Endpoint Uptime
-/// is never_apply — $1.75/h), VPC Flow Logs configs, Network Services
-/// Mesh, and Network Services gateways (Secure Web Gateway is
-/// never_apply — $1.25/h).
+/// Network Connectivity Center (hub / group / spoke / internal range /
+/// regional endpoint / policy-based route; gateway advertised route and
+/// service connection policy are debt-only), transports / multicloud
+/// data-transfer (Partner Cross-Cloud Interconnect managed transport is
+/// never_apply — $17+/h), Network Security ULL mirroring, OOB intercept /
+/// mirroring deployments + endpoints (Deployment Uptime $0.025/h is
+/// never_apply), address groups, URL lists, client/server TLS policies,
+/// gateway security policies, Cloud NGFW firewall endpoints (Enterprise
+/// Endpoint Uptime is never_apply — $1.75/h), VPC Flow Logs configs,
+/// Network Services Mesh, and Network Services gateways (Secure Web
+/// Gateway is never_apply — $1.25/h).
 library;
 
 export 'src/network/google_network_connectivity_destination.dart'
     show
         GoogleNetworkConnectivityDestination,
         NetworkConnectivityDestinationEndpoints;
+export 'src/network/google_network_connectivity_gateway_advertised_route.dart'
+    show
+        GoogleNetworkConnectivityGatewayAdvertisedRoute,
+        NetworkConnectivityGatewayAdvertisedRouteRecipient,
+        NetworkConnectivityGatewayAdvertisedRouteState;
 export 'src/network/google_network_connectivity_group.dart'
     show
         GoogleNetworkConnectivityGroup,
@@ -39,10 +46,26 @@ export 'src/network/google_network_connectivity_multicloud_data_transfer_config.
     show
         GoogleNetworkConnectivityMulticloudDataTransferConfig,
         NetworkConnectivityMulticloudDataTransferConfigServices;
+export 'src/network/google_network_connectivity_policy_based_route.dart'
+    show
+        GoogleNetworkConnectivityPolicyBasedRoute,
+        NetworkConnectivityPolicyBasedRouteFilter,
+        NetworkConnectivityPolicyBasedRouteFilterProtocolVersion,
+        NetworkConnectivityPolicyBasedRouteInterconnectAttachment,
+        NetworkConnectivityPolicyBasedRouteNextHop,
+        NetworkConnectivityPolicyBasedRouteNextHopIlbIp,
+        NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes,
+        NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice,
+        NetworkConnectivityPolicyBasedRouteVirtualMachine;
 export 'src/network/google_network_connectivity_regional_endpoint.dart'
     show
         GoogleNetworkConnectivityRegionalEndpoint,
         NetworkConnectivityRegionalEndpointAccessType;
+export 'src/network/google_network_connectivity_service_connection_policy.dart'
+    show
+        GoogleNetworkConnectivityServiceConnectionPolicy,
+        NetworkConnectivityServiceConnectionPolicyPscConfig,
+        NetworkConnectivityServiceConnectionPolicyPscConfigProducerInstanceLocation;
 export 'src/network/google_network_connectivity_spoke.dart'
     show
         GoogleNetworkConnectivitySpoke,

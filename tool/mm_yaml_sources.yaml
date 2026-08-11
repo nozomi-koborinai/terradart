@@ -1957,3 +1957,13 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_network_connectivity_hub_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
+
+  # NCC leftovers + Cloud Support (debt-friendly Wave)
+  google_network_connectivity_policy_based_route:
+    upstream: mmv1/products/networkconnectivity/PolicyBasedRoute.yaml
+  google_network_connectivity_gateway_advertised_route:
+    upstream: mmv1/products/networkconnectivity/GatewayAdvertisedRoute.yaml
+  google_network_connectivity_service_connection_policy:
+    upstream: mmv1/products/networkconnectivityv1/ServiceConnectionPolicy.yaml
+  google_cloud_support_support_event_subscription:
+    upstream: mmv1/products/cloudsupport/SupportEventSubscription.yaml

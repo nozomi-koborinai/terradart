@@ -5309,6 +5309,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_cloud_scheduler_job`.\n\nA scheduled job that can publish a PubSub message or an HTTP request every X\ninterval of time, using a crontab format string.\n\n`region` is treated as Required for ergonomic clarity in v0.0.x, even\nthough the underlying provider attribute is technically Optional (it\nfalls back to the provider default). This avoids subtle issues where a\nstack pinned to one region quietly schedules jobs in another.\n\nChoose exactly one [CloudSchedulerJobSchedulerTarget]:\n- [CloudSchedulerJobPubsubTarget] — note `topicName` MUST use `topic.id` (full path).\n- [CloudSchedulerJobHttpTarget] — generic HTTP webhook.\n- [CloudSchedulerJobAppEngineHttpTarget] — App Engine routing.\n\nExample:\n```dart\nfinal orders = GooglePubsubTopic(\n  localName: \'orders\',\n  name: TfArg.literal(\'orders\'),\n);\nfinal job = GoogleCloudSchedulerJob(\n  localName: \'nightly\',\n  name: TfArg.literal(\'nightly\'),\n  region: TfArg.literal(\'us-central1\'),\n  schedule: TfArg.literal(\'0 0 * * *\'),\n  target: CloudSchedulerJobPubsubTarget(\n    // Correct: topic.id resolves to the full projects/.../topics/... path.\n    topicName: TfArg.ref(orders.id),\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_cloud_support_support_event_subscription',
+    className: 'GoogleCloudSupportSupportEventSubscription',
+    barrel: 'cloud_support',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_cloud_support_support_event_subscription`.',
+    constructorParams: <String>[
+      'localName',
+      'organization',
+      'pubSubTopic',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_cloud_support_support_event_subscription`.\n\nA support event subscription for receiving notifications from Cloud Support\nAPI.\n\nCloud Support **event subscription** — publishes support-case events\nfrom an organization to a Pub/Sub topic.\n\nRequires a real [organization] ID (org-scoped; not creatable inside\n`terradart-validate`).\n\n**Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU after MCP\nlookup (`list_services` name=Cloud Support → no service;\nSupport `2062-016F-44A2` `list_skus` keyword=event → 0).\nbilling-behavior: subscription metadata only — Cloud Support plan\nfees are separate org entitlements. Org-only; ships via\n`tool/example_debt.yaml`.',
+  ),
+  CatalogEntry(
     tfType: 'google_cloud_tasks_queue',
     className: 'GoogleCloudTasksQueue',
     barrel: 'cloud_tasks',
@@ -18011,6 +18029,34 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_network_connectivity_destination`.\n\n\'Manage Multicloud Data Transfer Destinations\'\n\nNetwork Connectivity **destination** — IP prefix destination under a\nmulticloud data-transfer config (Partner Cross-Cloud Interconnect path).\n\n**Cost / apply:** requires never_apply\n`google_network_connectivity_multicloud_data_transfer_config`. gcp-cost:\nNetwork Connectivity Center `7BEB-7A51-4223` Partner Cross Cloud\nInterconnect Managed Transport 10Gbps us-east4 SKU `AAE5-BD60-3575`\n**\$17.30/h**. billing-behavior: destinations configure the never_apply\nCCI / multicloud data-transfer path. **Never** wire into apply-smoke.',
   ),
   CatalogEntry(
+    tfType: 'google_network_connectivity_gateway_advertised_route',
+    className: 'GoogleNetworkConnectivityGatewayAdvertisedRoute',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_network_connectivity_gateway_advertised_route`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'spoke',
+      'ipRange',
+      'recipient',
+      'priority',
+      'description',
+      'labels',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'NetworkConnectivityGatewayAdvertisedRouteRecipient',
+      'NetworkConnectivityGatewayAdvertisedRouteState',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_connectivity_gateway_advertised_route`.\n\nA gateway advertised route is a route that a gateway spoke advertises\nsomewhere.\n\nNetwork Connectivity **gateway advertised route** — advertises an IP\nprefix from an NCC **gateway** spoke to the hub (or a recipient).\n\nRequires a spoke whose attachment is\n[NetworkConnectivitySpokeGateway] (capacity-billed; never apply-smoke).\n\n**Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU for the route\nitself (NCC `7BEB-7A51-4223` `list_skus` keyword=gateway/route → 0;\ncatalog only lists Partner CCI Managed Transport hourly SKUs).\nbilling-behavior: route metadata is free, but the parent gateway spoke\nis capacity-billed — same never_apply path as\n[NetworkConnectivitySpokeGateway]. Ships via `tool/example_debt.yaml`.',
+  ),
+  CatalogEntry(
     tfType: 'google_network_connectivity_group',
     className: 'GoogleNetworkConnectivityGroup',
     barrel: 'network',
@@ -18165,6 +18211,41 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_network_connectivity_multicloud_data_transfer_config`.\n\n\'Manage Multicloud Data Transfer Configs\'\n\nNetwork Connectivity **multicloud data transfer config** — Partner\nCross-Cloud Interconnect / multicloud data-transfer configuration.\n\n**Cost / apply:** gcp-cost: Network Connectivity Center `7BEB-7A51-4223`\nPartner Cross Cloud Interconnect Managed Transport 10Gbps us-east4 SKU\n`AAE5-BD60-3575` **\$17.30/h** (100Gbps us-west1 `0ED2-0975-EF6E`\n**\$26.40/h**). billing-behavior: Cross-Site / wire-group / multicloud\ndata-transfer configs are the control plane for Partner Cross-Cloud\nInterconnect managed transport; working stacks imply those circuit-hour\ncharges. **Never** wire into apply-smoke.',
   ),
   CatalogEntry(
+    tfType: 'google_network_connectivity_policy_based_route',
+    className: 'GoogleNetworkConnectivityPolicyBasedRoute',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_network_connectivity_policy_based_route`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'network',
+      'filter',
+      'nextHop',
+      'virtualMachine',
+      'interconnectAttachment',
+      'priority',
+      'description',
+      'labels',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes',
+      'NetworkConnectivityPolicyBasedRouteNextHop',
+      'NetworkConnectivityPolicyBasedRouteNextHopIlbIp',
+      'NetworkConnectivityPolicyBasedRouteNextHopOtherRoutesChoice',
+      'NetworkConnectivityPolicyBasedRouteFilter',
+      'NetworkConnectivityPolicyBasedRouteFilterProtocolVersion',
+      'NetworkConnectivityPolicyBasedRouteInterconnectAttachment',
+      'NetworkConnectivityPolicyBasedRouteVirtualMachine',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_connectivity_policy_based_route`.\n\nPolicy-based Routes are more powerful routes that route L4 network traffic\nbased on not just destination IP, but also source IP, protocol and more. A\nPolicy-based Route always take precedence when it conflicts with other types\nof routes.\n\nNetwork Connectivity **policy-based route** — L4 route that matches on\nsource/dest IP and protocol (not just destination), and always wins\nover ordinary VPC routes when it matches.\n\nPass exactly one [nextHop] variant (`ilbIp` or `otherRoutes`). Scope\ninstallation with optional [virtualMachine] tags and/or\n[interconnectAttachment] (provider `conflicts` — do not set both).\n\n**Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU for PBR\n(Network Connectivity Center `7BEB-7A51-4223` `list_skus` keywords\npolicy/route → 0; catalog only lists Partner CCI Managed Transport\nhourly SKUs). billing-behavior: routing metadata — no existence/hourly\ncharge. Ships in [`ncc_hub_quickstart`] with\n`nextHop.otherRoutes(DEFAULT_ROUTING)` + VM tags.\n\nExample:\n```dart\nGoogleNetworkConnectivityPolicyBasedRoute(\n  localName: \'default_pbr\',\n  name: TfArg.literal(\'terradart-pbr\'),\n  network: TfArg.ref(vpc.id),\n  filter: NetworkConnectivityPolicyBasedRouteFilter(\n    protocolVersion: TfArg.literal(\n      NetworkConnectivityPolicyBasedRouteFilterProtocolVersion.ipv4,\n    ),\n  ),\n  nextHop: NetworkConnectivityPolicyBasedRouteNextHop.otherRoutes(\n    TfArg.literal(\n      NetworkConnectivityPolicyBasedRouteNextHopOtherRoutes.defaultRouting,\n    ),\n  ),\n  virtualMachine: NetworkConnectivityPolicyBasedRouteVirtualMachine(\n    tags: TfArg.literal([\'terradart-pbr\']),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_network_connectivity_regional_endpoint',
     className: 'GoogleNetworkConnectivityRegionalEndpoint',
     barrel: 'network',
@@ -18188,6 +18269,33 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_network_connectivity_regional_endpoint`.\n\nRegional Private Service Connect (PSC) endpoint resource.\n\nNetwork Connectivity **regional endpoint** — private PSC endpoint for a\nGoogle API (`{service}.{region}.rep.googleapis.com`).\n\nExample:\n```dart\nGoogleNetworkConnectivityRegionalEndpoint(\n  localName: \'storage_rep\',\n  name: TfArg.literal(\'terradart-storage-rep\'),\n  location: TfArg.literal(\'us-central1\'),\n  targetGoogleApi: TfArg.literal(\'storage.us-central1.rep.googleapis.com\'),\n  accessType: TfArg.literal(\n    NetworkConnectivityRegionalEndpointAccessType.regional,\n  ),\n  network: TfArg.ref(vpc.id),\n  subnetwork: TfArg.ref(subnet.id),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_network_connectivity_service_connection_policy',
+    className: 'GoogleNetworkConnectivityServiceConnectionPolicy',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_network_connectivity_service_connection_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'network',
+      'serviceClass',
+      'pscConfig',
+      'description',
+      'labels',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'NetworkConnectivityServiceConnectionPolicyPscConfig',
+      'NetworkConnectivityServiceConnectionPolicyPscConfigProducerInstanceLocation',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_connectivity_service_connection_policy`.\n\nManage Service Connection Policies.\n\nNetwork Connectivity **service connection policy** — consumer-side PSC\npolicy that authorizes Private Service Connect connections for a\nproducer [serviceClass] into a VPC / subnet set.\n\n[serviceClass] is a producer-published identifier (not inventable\nin-stack on a standalone project without an external producer).\n\n**Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU for the policy\n(NCC `7BEB-7A51-4223` `list_skus` keyword=connection/service → 0;\ncatalog only lists Partner CCI Managed Transport hourly SKUs).\nbilling-behavior: policy metadata — no existence/hourly charge; PSC\ndata-plane usage bills under ordinary networking. Not\nstandalone-project applyable without a real producer `service_class`.\nShips via `tool/example_debt.yaml`.',
   ),
   CatalogEntry(
     tfType: 'google_network_connectivity_spoke',

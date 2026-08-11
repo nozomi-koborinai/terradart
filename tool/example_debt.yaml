@@ -238,6 +238,9 @@ GoogleNetworkServicesMulticastProducerAssociation: deferred with never_apply Goo
 GoogleNetworkServicesMulticastGroupConsumerActivation: deferred with never_apply GoogleNetworkServicesMulticastDomainActivation (Cloud Multicast path)
 GoogleNetworkServicesMulticastGroupProducerActivation: deferred with never_apply GoogleNetworkServicesMulticastDomainActivation (Cloud Multicast path)
 GoogleNetworkConnectivityDestination: requires never_apply GoogleNetworkConnectivityMulticloudDataTransferConfig (CCI / multicloud data-transfer path); deferred with that config
+GoogleNetworkConnectivityGatewayAdvertisedRoute: requires NetworkConnectivitySpokeGateway parent (capacity-billed; never apply-smoke); not standalone-project applyable without gateway spoke scaffolding
+GoogleNetworkConnectivityServiceConnectionPolicy: requires producer-published service_class (external PSC producer); not inventable in-stack on terradart-validate
+GoogleCloudSupportSupportEventSubscription: org-scoped (organization required); not creatable inside standalone terradart-validate project
 GoogleContainerAttachedCluster: gcp-cost GKE Enterprise / GDC 9186-F79E-3871 Trial Attached SKU CA50-C2AE-45E8 $0/h (catalog); needs real external cluster — never_apply; no applyable quickstart on terradart-validate
 GoogleContainerAwsCluster: gcp-cost GKE Enterprise / GDC 9186-F79E-3871 Multicloud (AWS) SKU 24A0-2EF1-8ACB $0.00822/h (+ AWS EC2) — never_apply; needs real AWS account
 GoogleContainerAwsNodePool: requires never_apply GoogleContainerAwsCluster (+ AWS EC2); deferred with the AWS cluster

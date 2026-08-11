@@ -1,0 +1,24 @@
+outputDir: cloud_support
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Cloud Support **event subscription** — publishes support-case events
+  /// from an organization to a Pub/Sub topic.
+  ///
+  /// Requires a real [organization] ID (org-scoped; not creatable inside
+  /// `terradart-validate`).
+  ///
+  /// **Cost / apply:** gcp-cost: no Cloud Billing Catalog SKU after MCP
+  /// lookup (`list_services` name=Cloud Support → no service;
+  /// Support `2062-016F-44A2` `list_skus` keyword=event → 0).
+  /// billing-behavior: subscription metadata only — Cloud Support plan
+  /// fees are separate org entitlements. Org-only; ships via
+  /// `tool/example_debt.yaml`.
+
+paramOrder:
+  - organization
+  - pub_sub_topic
+  - deletion_policy

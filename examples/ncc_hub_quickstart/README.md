@@ -2,7 +2,8 @@
 
 End-to-end terradart example for an NCC hub with a STAR `center` group, a VPC
 spoke, an internal IP range reservation, a private regional endpoint for
-Storage, and an additive hub IAM grant.
+Storage, a policy-based route (`DEFAULT_ROUTING` + VM tags), and an additive
+hub IAM grant.
 
 Partner CCI transport stays in
 [`network_connectivity_quickstart`](../network_connectivity_quickstart/)
