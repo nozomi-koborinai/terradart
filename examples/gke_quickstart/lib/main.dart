@@ -113,7 +113,7 @@ final class GkeQuickstartStack extends Stack {
     // fails with "Resource '.../fleets/default' already exists" (409). So we
     // skip the fleet resource and enroll the cluster directly; the membership
     // registers against the auto-created default fleet.
-    add(
+    final membership = add(
       GoogleGkeHubMembership(
         localName: 'main',
         membershipId: TfArg.literal('main-cluster'),
@@ -149,6 +149,19 @@ final class GkeQuickstartStack extends Stack {
         localName: 'backup_operator',
         accountId: TfArg.literal('gke-backup-operator'),
         displayName: TfArg.literal('GKE Backup operator'),
+      ),
+    );
+
+    add(
+      GoogleGkeHubMembershipIamMember(
+        localName: 'membership_viewer',
+        membershipId: TfArg.literal('main-cluster'),
+        role: TfArg.literal('roles/viewer'),
+        member: TfArg.ref(backupOperator.iamMember),
+        dependsOn: [
+          ResourceDependency(membership),
+          ResourceDependency(backupOperator),
+        ],
       ),
     );
 

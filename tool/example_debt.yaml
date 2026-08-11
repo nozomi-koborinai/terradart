@@ -765,3 +765,13 @@ GoogleSpannerInstanceIamBinding: iam-adjunct-debt: sibling GoogleSpannerInstance
 GoogleSpannerInstanceIamPolicy: iam-adjunct-debt: sibling GoogleSpannerInstanceIamMember already in ops_quickstart; authoritative policy not needed in smoke
 GoogleSpannerDatabaseIamBinding: iam-adjunct-debt: sibling GoogleSpannerDatabaseIamMember already in ops_quickstart; authoritative binding not needed in smoke
 GoogleSpannerDatabaseIamPolicy: iam-adjunct-debt: sibling GoogleSpannerDatabaseIamMember already in ops_quickstart; authoritative policy not needed in smoke
+
+# GKE Hub feature / membership / scope IAM binding/policy — sibling *IamMember
+# already in gke_hub_feature_quickstart, gke_quickstart, and gke_hub_quickstart
+# (iam-adjunct-debt path).
+GoogleGkeHubFeatureIamBinding: iam-adjunct-debt: sibling GoogleGkeHubFeatureIamMember already in gke_hub_feature_quickstart; authoritative binding not needed in smoke
+GoogleGkeHubFeatureIamPolicy: iam-adjunct-debt: sibling GoogleGkeHubFeatureIamMember already in gke_hub_feature_quickstart; authoritative policy not needed in smoke
+GoogleGkeHubMembershipIamBinding: iam-adjunct-debt: sibling GoogleGkeHubMembershipIamMember already in gke_quickstart; authoritative binding not needed in smoke
+GoogleGkeHubMembershipIamPolicy: iam-adjunct-debt: sibling GoogleGkeHubMembershipIamMember already in gke_quickstart; authoritative policy not needed in smoke
+GoogleGkeHubScopeIamBinding: iam-adjunct-debt: sibling GoogleGkeHubScopeIamMember already in gke_hub_quickstart; authoritative binding not needed in smoke
+GoogleGkeHubScopeIamPolicy: iam-adjunct-debt: sibling GoogleGkeHubScopeIamMember already in gke_hub_quickstart; authoritative policy not needed in smoke

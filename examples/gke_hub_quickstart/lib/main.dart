@@ -3,8 +3,9 @@
 /// Defines a `FleetStack` that enables the GKE Hub API and provisions fleet
 /// team-management scaffolding **without any cluster**:
 /// - a fleet scope (`terradart-scope`),
-/// - a fleet namespace (`terradart-team`) inside that scope, and
-/// - a rollout sequence that stages upgrades across the project's fleet.
+/// - a fleet namespace (`terradart-team`) inside that scope,
+/// - a rollout sequence that stages upgrades across the project's fleet, and
+/// - an additive IAM grant on the scope for a team-reader service account.
 ///
 /// Scope, namespace, and rollout sequence are free fleet-management resources
 /// (the project's default fleet is auto-created), so the stack creates and
@@ -16,6 +17,7 @@ library;
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/container.dart';
+import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 
@@ -68,6 +70,29 @@ final class FleetStack extends Stack {
         ]),
         displayName: TfArg.literal('TerraDart upgrade sequence'),
         dependsOn: [ResourceDependency(apiGkeHub)],
+      ),
+    );
+
+    // Resource-scoped `setIamPolicy` validates that the member exists, so the
+    // grantee is an in-stack service account rather than a fabricated group.
+    final teamReader = add(
+      GoogleServiceAccount(
+        localName: 'team_reader',
+        accountId: TfArg.literal('terradart-team-reader'),
+        displayName: TfArg.literal('Fleet scope reader'),
+      ),
+    );
+
+    add(
+      GoogleGkeHubScopeIamMember(
+        localName: 'team_scope_viewer',
+        scopeId: TfArg.literal('terradart-scope'),
+        role: TfArg.literal('roles/viewer'),
+        member: TfArg.ref(teamReader.iamMember),
+        dependsOn: [
+          ResourceDependency(scope),
+          ResourceDependency(teamReader),
+        ],
       ),
     );
 
