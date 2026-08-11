@@ -775,6 +775,12 @@ google_pubsub_topic_iam_binding: safe  # billing-behavior: IAM binding only
 google_pubsub_topic_iam_member: safe  # apply-verified safe (existing example)
 google_pubsub_topic_iam_policy: safe  # billing-behavior: IAM policy only
 google_scc_v2_project_notification_config: safe  # gcp-cost: no Cloud Billing Catalog SKU for project notification config (Security Command Center FBF2-FC68-171A lists Premium/Enterprise subscription and asset-usage SKUs only, e.g. 694C-9680-C91A GCE Core Running — no notification-config SKU); billing-behavior: continuous-export config metadata — Standard-tier notification configs do not bill by existence; Pub/Sub delivery billed separately on topic usage
+google_scc_source_iam_member: safe  # billing-behavior: IAM binding only
+google_scc_source_iam_binding: safe  # billing-behavior: IAM binding only
+google_scc_source_iam_policy: safe  # billing-behavior: IAM policy only
+google_scc_v2_organization_source_iam_member: safe  # billing-behavior: IAM binding only
+google_scc_v2_organization_source_iam_binding: safe  # billing-behavior: IAM binding only
+google_scc_v2_organization_source_iam_policy: safe  # billing-behavior: IAM policy only
 google_secret_manager_regional_secret: safe  # apply-verified safe (existing example)
 google_secret_manager_regional_secret_iam_binding: safe  # billing-behavior: IAM binding only
 google_secret_manager_regional_secret_iam_member: safe  # apply-verified safe (existing example)

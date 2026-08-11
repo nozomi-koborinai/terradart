@@ -1,0 +1,17 @@
+outputDir: scc
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Security Command Center v2 organization source.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleSccV2OrganizationSourceIamMember] for additive grants.
+
+paramOrder:
+  - source
+  - organization
+  - role
+  - members
+  - condition
