@@ -3,6 +3,20 @@ outputDir: compute
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveNestedTypes: true
+
+# Thin curation: seal scalar sources only. Freeze nested blocks (guest OS
+# features, raw_disk GCS import, encryption keys, shielded state, params)
+# until a follow-up types them.
+nestedTypeExcludes:
+  - guest_os_features
+  - raw_disk
+  - image_encryption_key
+  - source_disk_encryption_key
+  - source_image_encryption_key
+  - source_snapshot_encryption_key
+  - shielded_instance_initial_state
+  - params
 
 curatedDoc: |-
   /// An Image must have exactly one [ComputeImageSource]:
