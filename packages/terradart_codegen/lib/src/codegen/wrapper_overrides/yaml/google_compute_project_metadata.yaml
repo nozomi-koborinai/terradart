@@ -1,0 +1,16 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Authoritative project-wide Compute metadata map. This **replaces**
+  /// every metadata key on the project (the same footgun as
+  /// `google_compute_project_metadata` in Terraform). Prefer
+  /// [GoogleComputeProjectMetadataItem] for an additive single key.
+
+paramOrder:
+  - metadata
+  - deletion_policy
+  - project

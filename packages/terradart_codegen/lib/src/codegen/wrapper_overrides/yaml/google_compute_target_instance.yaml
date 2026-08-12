@@ -1,0 +1,30 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+dartTypeOverrides:
+  nat_policy: ComputeTargetInstanceNatPolicy
+
+curatedDoc: |-
+  /// Protocol-forwarding target that points at an existing VM ([instance]).
+  /// Does not provision a VM; pair with [GoogleComputeInstance] (or a
+  /// forwarding rule) for traffic. [natPolicy] currently only supports
+  /// `NO_NAT`.
+
+paramOrder:
+  - name
+  - instance
+  - zone
+  - description
+  - nat_policy
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `self_link` attribute.
+    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');

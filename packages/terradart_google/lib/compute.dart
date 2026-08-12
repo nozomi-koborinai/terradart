@@ -462,6 +462,8 @@ export 'src/compute/google_compute_project_default_network_tier.dart'
     show
         ComputeProjectDefaultNetworkTier,
         GoogleComputeProjectDefaultNetworkTier;
+export 'src/compute/google_compute_project_metadata.dart'
+    show GoogleComputeProjectMetadata;
 export 'src/compute/google_compute_project_metadata_item.dart'
     show GoogleComputeProjectMetadataItem;
 export 'src/compute/google_compute_region_autoscaler.dart'
@@ -737,6 +739,8 @@ export 'src/compute/google_compute_reservation.dart'
         ComputeReservationSpecificReservationInstancePropertiesLocalSsds,
         ComputeReservationSpecificReservationInstancePropertiesLocalSsdsInterface,
         GoogleComputeReservation;
+export 'src/compute/google_compute_resize_request.dart'
+    show ComputeResizeRequestRequestedRunDuration, GoogleComputeResizeRequest;
 export 'src/compute/google_compute_resource_policy.dart'
     show
         ComputeResourcePolicyDailySchedule,
@@ -801,6 +805,8 @@ export 'src/compute/google_compute_router_nat.dart'
         ComputeRouterNatSubnetwork,
         ComputeRouterNatType,
         GoogleComputeRouterNat;
+export 'src/compute/google_compute_router_nat_address.dart'
+    show GoogleComputeRouterNatAddress;
 export 'src/compute/google_compute_router_peer.dart'
     show
         ComputeRouterPeerAdvertiseMode,
@@ -810,6 +816,13 @@ export 'src/compute/google_compute_router_peer.dart'
         ComputeRouterPeerCustomLearnedIpRanges,
         ComputeRouterPeerMd5AuthenticationKey,
         GoogleComputeRouterPeer;
+export 'src/compute/google_compute_router_route_policy.dart'
+    show
+        ComputeRouterRoutePolicyTerms,
+        ComputeRouterRoutePolicyTermsActions,
+        ComputeRouterRoutePolicyTermsMatch,
+        ComputeRouterRoutePolicyType,
+        GoogleComputeRouterRoutePolicy;
 export 'src/compute/google_compute_security_policy.dart'
     show
         ComputeSecurityPolicySecurityPolicyAdaptiveProtectionConfig,
@@ -906,10 +919,14 @@ export 'src/compute/google_compute_subnetwork_iam_member.dart'
     show GoogleComputeSubnetworkIamMember;
 export 'src/compute/google_compute_subnetwork_iam_policy.dart'
     show GoogleComputeSubnetworkIamPolicy;
+export 'src/compute/google_compute_target_grpc_proxy.dart'
+    show GoogleComputeTargetGrpcProxy;
 export 'src/compute/google_compute_target_http_proxy.dart'
     show GoogleComputeTargetHttpProxy;
 export 'src/compute/google_compute_target_https_proxy.dart'
     show GoogleComputeTargetHttpsProxy, QuicOverride, TlsEarlyData;
+export 'src/compute/google_compute_target_instance.dart'
+    show ComputeTargetInstanceNatPolicy, GoogleComputeTargetInstance;
 export 'src/compute/google_compute_target_pool.dart'
     show GoogleComputeTargetPool;
 export 'src/compute/google_compute_target_ssl_proxy.dart'

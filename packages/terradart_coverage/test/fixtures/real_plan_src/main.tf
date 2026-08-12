@@ -64,10 +64,10 @@ resource "google_compute_router_nat" "nat" {
 
 # --- Not curated yet (expected: not in catalog) ---
 
-resource "google_compute_target_instance" "ti" {
-  name     = "example-target-instance"
-  instance = "projects/example-dogfood-project/zones/us-central1-a/instances/example"
-  zone     = "us-central1-a"
+resource "google_compute_backend_bucket_signed_url_key" "cdn_key" {
+  name           = "example-cdn-key"
+  key_value      = "random-key-value-0123456789"
+  backend_bucket = "example-backend-bucket"
 }
 
 module "network" {

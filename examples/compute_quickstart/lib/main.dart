@@ -35,10 +35,11 @@
 /// regional), a PSC `GoogleComputeNetworkAttachment`, NEG
 /// `GoogleComputeNetworkEndpoints`, legacy
 /// `GoogleComputeHttpHealthCheck` / `GoogleComputeHttpsHealthCheck`, a
-/// legacy `GoogleComputeTargetPool`, regional health aggregation policy,
-/// regional instance template + region MIG per-instance config, zonal
-/// per-instance config, and resource-policy attachments (instance +
-/// regional disk).
+/// legacy `GoogleComputeTargetPool` / `GoogleComputeTargetInstance`,
+/// Cloud Router NAT extra IPs + BGP route policy, regional health
+/// aggregation policy, regional instance template + region MIG
+/// per-instance config, zonal per-instance config, and resource-policy
+/// attachments (instance + regional disk).
 library;
 
 import 'dart:convert';
@@ -187,19 +188,81 @@ final class NetworkStack extends Stack {
       ),
     );
 
-    add(
+    final egressNatIp0 = add(
+      GoogleComputeAddress(
+        localName: 'egress_nat_ip0',
+        name: TfArg.literal('egress-nat-ip0'),
+        region: TfArg.literal('asia-northeast1'),
+        addressType: TfArg.literal(AddressType.external),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    final egressNatIp1 = add(
+      GoogleComputeAddress(
+        localName: 'egress_nat_ip1',
+        name: TfArg.literal('egress-nat-ip1'),
+        region: TfArg.literal('asia-northeast1'),
+        addressType: TfArg.literal(AddressType.external),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    final egressNat = add(
       GoogleComputeRouterNat(
         localName: 'egress_nat',
         name: TfArg.literal('egress-nat'),
         router: TfArg.ref(edgeRouter.nameRef),
         region: TfArg.literal('asia-northeast1'),
         natIpAllocateOption: TfArg.literal(
-          ComputeRouterNatNatIpAllocateOption.autoOnly,
+          ComputeRouterNatNatIpAllocateOption.manualOnly,
         ),
+        initialNatIps: TfArg.literal([egressNatIp0.selfLink.interpolation]),
         sourceSubnetworkIpRangesToNat: TfArg.literal(
           ComputeRouterNatSourceSubnetworkIpRangesToNat
               .allSubnetworksAllIpRanges,
         ),
+        dependsOn: [
+          ResourceDependency(edgeRouter),
+          ResourceDependency(egressNatIp0),
+        ],
+      ),
+    );
+
+    add(
+      GoogleComputeRouterNatAddress(
+        localName: 'egress_nat_extra_ip',
+        router: TfArg.ref(edgeRouter.nameRef),
+        routerNat: TfArg.ref(egressNat.nameRef),
+        region: TfArg.literal('asia-northeast1'),
+        natIps: TfArg.literal([egressNatIp1.selfLink.interpolation]),
+        dependsOn: [
+          ResourceDependency(egressNat),
+          ResourceDependency(egressNatIp1),
+        ],
+      ),
+    );
+
+    add(
+      GoogleComputeRouterRoutePolicy(
+        localName: 'edge_export_policy',
+        name: TfArg.literal('edge-export-policy'),
+        router: TfArg.ref(edgeRouter.nameRef),
+        region: TfArg.literal('asia-northeast1'),
+        type: TfArg.literal(ComputeRouterRoutePolicyType.routePolicyTypeExport),
+        terms: [
+          ComputeRouterRoutePolicyTerms(
+            priority: TfArg.literal(1),
+            match: ComputeRouterRoutePolicyTermsMatch(
+              expression: TfArg.literal("destination == '10.10.0.0/20'"),
+            ),
+            actions: [
+              ComputeRouterRoutePolicyTermsActions(
+                expression: TfArg.literal('accept()'),
+              ),
+            ],
+          ),
+        ],
         dependsOn: [ResourceDependency(edgeRouter)],
       ),
     );
@@ -815,6 +878,19 @@ final class NetworkStack extends Stack {
           ResourceDependency(bastion),
           ResourceDependency(legacyHttpHc),
         ],
+      ),
+    );
+
+    add(
+      GoogleComputeTargetInstance(
+        localName: 'ops_bastion_target',
+        name: TfArg.literal('ops-bastion-target'),
+        instance: TfArg.ref(bastion.selfLink),
+        zone: TfArg.literal('asia-northeast1-a'),
+        description:
+            TfArg.literal('Protocol-forwarding target for the bastion'),
+        natPolicy: TfArg.literal(ComputeTargetInstanceNatPolicy.noNat),
+        dependsOn: [ResourceDependency(bastion)],
       ),
     );
 

@@ -1,0 +1,30 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  type: ComputeRouterRoutePolicyType
+
+curatedDoc: |-
+  /// BGP import/export route policy on a [GoogleComputeRouter]. [type] is
+  /// `ROUTE_POLICY_TYPE_IMPORT` or `ROUTE_POLICY_TYPE_EXPORT`; [terms]
+  /// are evaluated by priority.
+
+paramOrder:
+  - name
+  - router
+  - region
+  - type
+  - terms
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
