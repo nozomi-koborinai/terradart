@@ -598,8 +598,9 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_compute_instance_template_iam_binding` | `GoogleComputeInstanceTemplateIamBinding` | — |
 | `google_compute_instance_template_iam_member` | `GoogleComputeInstanceTemplateIamMember` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_instance_template_iam_policy` | `GoogleComputeInstanceTemplateIamPolicy` | — |
+| `google_compute_instant_snapshot` | `GoogleComputeInstantSnapshot` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_instant_snapshot_iam_binding` | `GoogleComputeInstantSnapshotIamBinding` | — |
-| `google_compute_instant_snapshot_iam_member` | `GoogleComputeInstantSnapshotIamMember` | — |
+| `google_compute_instant_snapshot_iam_member` | `GoogleComputeInstantSnapshotIamMember` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_instant_snapshot_iam_policy` | `GoogleComputeInstantSnapshotIamPolicy` | — |
 | `google_compute_interconnect` | `GoogleComputeInterconnect` | — |
 | `google_compute_interconnect_attachment` | `GoogleComputeInterconnectAttachment` | — |
