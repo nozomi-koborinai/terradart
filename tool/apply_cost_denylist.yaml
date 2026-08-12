@@ -36,6 +36,9 @@ safe_exception: google_compute_instance_template_iam_member  # IAM binding on in
 safe_exception: google_compute_instance_template_iam_binding  # IAM binding on instance template; no existence billing — _instance substring false positive
 safe_exception: google_compute_instance_template_iam_policy  # IAM policy on instance template; no existence billing — _instance substring false positive
 safe_exception: google_compute_instance_settings  # zonal metadata defaults singleton; no VM provisioned — _instance substring false positive
+safe_exception: google_compute_instance_group  # unmanaged IG metadata only; member VMs bill separately — _instance substring false positive
+safe_exception: google_compute_instance_group_membership  # membership binding metadata only — _instance substring false positive
+safe_exception: google_compute_instance_group_named_port  # named-port metadata on an IG — _instance substring false positive
 safe_exception: google_service_directory_endpoint  # Service Directory metadata record, no existence billing — _endpoint false positive
 safe_exception: google_network_connectivity_regional_endpoint  # NCC PSC regional endpoint metadata for Google APIs; no existence billing (NCC 7BEB-7A51-4223 has no endpoint SKU) — _endpoint false positive
 safe_exception: google_bigtable_instance_iam_member  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
@@ -496,6 +499,12 @@ google_compute_instance_iam_member: safe  # IAM binding on an instance; sets IAM
 google_compute_instance_iam_binding: safe  # billing-behavior: IAM binding only — _instance substring false positive
 google_compute_instance_iam_policy: safe  # billing-behavior: IAM policy only — _instance substring false positive
 google_compute_instance_group_manager: sweep_only  # gcp-cost: no Cloud Billing Catalog SKU for the manager object, BUT a MIG materializes member VMs (target_size / stateful / bulk per-instance configs) that bill while applied; example compute_quickstart already in apply_smoke_pr_skip.yaml
+google_compute_instance_group: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Compute 6F81-5844-456A keyword "instance group" → 0); billing-behavior: unmanaged IG is membership metadata only — member VMs bill via google_compute_instance / instance_from_template
+google_compute_instance_group_membership: safe  # gcp-cost: no Cloud Billing Catalog SKU (same Compute Engine lookup; keyword membership → 0); billing-behavior: additive membership row on an unmanaged IG — no separate charge
+google_compute_instance_group_named_port: safe  # gcp-cost: no Cloud Billing Catalog SKU (keyword "named port" → 0); billing-behavior: named-port metadata on an IG — no separate charge
+google_compute_attached_disk: safe  # gcp-cost: no Cloud Billing Catalog SKU for the attachment resource (list_skus keyword attached matches GPU-attached SKUs only, not this association); billing-behavior: attaches an existing PD to a VM — disk/VM bill separately; destroy detaches
+google_compute_disk_async_replication: sweep_only  # gcp-cost: Compute Engine 6F81-5844-456A Asynchronous Replication Protection - PD Balanced in Japan (asia-northeast1) SKU 9B57-FA47-C39C $0.0512/GiBy.mo (+ secondary PD capacity + inter-region transfer SKUs); billing-behavior: protection bills while replication is configured; destroy stops the charge; keep on pr_skip compute_quickstart
+google_compute_instance_from_template: sweep_only  # gcp-cost: Compute Engine 6F81-5844-456A E2 Instance Core running in Japan (asia-northeast1) SKU EAED-8A05-843B $0.02802/h (on-demand); billing-behavior: provisions a VM from a template — hourly while applied; destroy stops the charge
 google_compute_instance_template: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus Compute 6F81-5844-456A keyword template); billing-behavior: instance template metadata only
 google_compute_network: safe  # apply-verified safe (existing example)
 google_compute_firewall_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU (list_services Compute Engine 6F81-5844-456A + Network Security E749-01A2-AE1F; list_skus keyword firewall/Network Firewall/Cloud NGFW/Hierarchical → 0); billing-behavior: hierarchical firewall policy is configuration-only — no existence or hourly charge; destroy removes the policy (org/folder parent required — debt-only on terradart-validate)

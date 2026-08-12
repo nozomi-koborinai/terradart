@@ -25,6 +25,11 @@
 /// durable `GoogleComputeSnapshot` (+ IAM member), and a custom
 /// `GoogleComputeImage` (+ IAM member) promoted from that snapshot,
 /// alongside the regional instant-snapshot demo.
+///
+/// Unmanaged instance groups (`GoogleComputeInstanceGroup` + membership +
+/// named port), `GoogleComputeAttachedDisk`,
+/// `GoogleComputeInstanceFromTemplate`, and
+/// `GoogleComputeDiskAsyncReplication` round out the zonal Compute surface.
 library;
 
 import 'dart:convert';
@@ -670,6 +675,125 @@ final class NetworkStack extends Stack {
         dependsOn: [
           ResourceDependency(regionalFirewallPolicy),
           ResourceDependency(oncallSre),
+        ],
+      ),
+    );
+
+    // ---- Attached disk + unmanaged IG + instance-from-template ------------
+    //
+    // Extra PD attached to the bastion; an unmanaged instance group that
+    // claims the bastion via membership + a named port for LB targeting;
+    // and a one-off VM cloned from the bulk-worker template.
+
+    final bastionDataDisk = add(
+      GoogleComputeDisk(
+        localName: 'bastion_data',
+        name: TfArg.literal('ops-bastion-data'),
+        zone: TfArg.literal('asia-northeast1-a'),
+        type: TfArg.literal('pd-balanced'),
+        size: TfArg.literal(10),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleComputeAttachedDisk(
+        localName: 'bastion_data_attach',
+        disk: TfArg.ref(bastionDataDisk.selfLink),
+        instance: TfArg.ref(bastion.selfLink),
+        zone: TfArg.literal('asia-northeast1-a'),
+        dependsOn: [
+          ResourceDependency(bastion),
+          ResourceDependency(bastionDataDisk),
+        ],
+      ),
+    );
+
+    final opsUnmanagedGroup = add(
+      GoogleComputeInstanceGroup(
+        localName: 'ops_unmanaged',
+        name: TfArg.literal('ops-unmanaged'),
+        zone: TfArg.literal('asia-northeast1-a'),
+        network: TfArg.ref(mainVpc.selfLink),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleComputeInstanceGroupMembership(
+        localName: 'ops_unmanaged_bastion',
+        instance: TfArg.ref(bastion.selfLink),
+        instanceGroup: TfArg.ref(opsUnmanagedGroup.nameRef),
+        zone: TfArg.literal('asia-northeast1-a'),
+        dependsOn: [
+          ResourceDependency(bastion),
+          ResourceDependency(opsUnmanagedGroup),
+        ],
+      ),
+    );
+
+    add(
+      GoogleComputeInstanceGroupNamedPort(
+        localName: 'ops_unmanaged_http',
+        group: TfArg.ref(opsUnmanagedGroup.selfLink),
+        name: TfArg.literal('http'),
+        port: TfArg.literal(80),
+        zone: TfArg.literal('asia-northeast1-a'),
+        dependsOn: [ResourceDependency(opsUnmanagedGroup)],
+      ),
+    );
+
+    add(
+      GoogleComputeInstanceFromTemplate(
+        localName: 'templated_worker',
+        name: TfArg.literal('templated-worker'),
+        sourceInstanceTemplate: TfArg.ref(bulkWorkerTemplate.selfLink),
+        zone: TfArg.literal('asia-northeast1-a'),
+        dependsOn: [
+          ResourceDependency(bulkWorkerTemplate),
+          ...apiDeps,
+        ],
+      ),
+    );
+
+    // ---- Disk async replication (cross-region) ----------------------------
+    //
+    // Primary PD in asia-northeast1-a, secondary of the same size/type in
+    // asia-northeast2-a (Osaka). The replication resource only wires the
+    // relationship — both disks must already exist.
+
+    final asyncPrimary = add(
+      GoogleComputeDisk(
+        localName: 'async_primary',
+        name: TfArg.literal('ops-async-primary'),
+        zone: TfArg.literal('asia-northeast1-a'),
+        type: TfArg.literal('pd-balanced'),
+        size: TfArg.literal(10),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    final asyncSecondary = add(
+      GoogleComputeDisk(
+        localName: 'async_secondary',
+        name: TfArg.literal('ops-async-secondary'),
+        zone: TfArg.literal('asia-northeast2-a'),
+        type: TfArg.literal('pd-balanced'),
+        size: TfArg.literal(10),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleComputeDiskAsyncReplication(
+        localName: 'async_replication',
+        primaryDisk: TfArg.ref(asyncPrimary.id),
+        secondaryDisk: TfArg.literal({
+          'disk': asyncSecondary.id.interpolation,
+        }),
+        dependsOn: [
+          ResourceDependency(asyncPrimary),
+          ResourceDependency(asyncSecondary),
         ],
       ),
     );

@@ -1,0 +1,33 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// An **unmanaged** zonal instance group. Members are attached explicitly
+  /// (via [instances] or `google_compute_instance_group_membership`); the
+  /// group does not recreate VMs. For managed fleets use
+  /// `google_compute_instance_group_manager`.
+  ///
+  /// Required:
+  /// - [name]: group name.
+  /// - Prefer setting [network] (or rely on the first instance's network)
+  ///   and [zone] explicitly for cross-resource composition.
+
+paramOrder:
+  - name
+  - zone
+  - network
+  - instances
+  - named_port
+  - description
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `self_link` attribute.
+    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
