@@ -38,9 +38,44 @@ curatedDoc: |-
   /// network interface, scheduling, …). Prefer the template for shared
   /// shape and override only instance-specific fields here.
 
-# Natural schema order (scalars + nested override blocks). Do not pin
-# paramOrder here — omitting a nested block from an explicit list silently
-# drops it from the constructor.
+# Gate 1 requires every required schema attr in paramOrder/customSlots.
+# List nested override blocks too — an omitted name is silently dropped.
+paramOrder:
+  - name
+  - source_instance_template
+  - machine_type
+  - zone
+  - description
+  - labels
+  - metadata
+  - metadata_startup_script
+  - tags
+  - can_ip_forward
+  - allow_stopping_for_update
+  - deletion_protection
+  - deletion_policy
+  - desired_status
+  - enable_display
+  - hostname
+  - key_revocation_action_type
+  - min_cpu_platform
+  - resource_policies
+  - project
+  - advanced_machine_features
+  - attached_disk
+  - boot_disk
+  - confidential_instance_config
+  - guest_accelerator
+  - instance_encryption_key
+  - network_interface
+  - network_performance_config
+  - params
+  - reservation_affinity
+  - scheduling
+  - scratch_disk
+  - service_account
+  - shielded_instance_config
+  - workload_identity_config
 
 extraGetters: |2
     /// Reference to `name` attribute.

@@ -559,12 +559,14 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | Terraform type | Dart factory | Example |
 | --- | --- | --- |
 | `google_compute_address` | `GoogleComputeAddress` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart), [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
+| `google_compute_attached_disk` | `GoogleComputeAttachedDisk` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_autoscaler` | `GoogleComputeAutoscaler` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
 | `google_compute_backend_bucket` | `GoogleComputeBackendBucket` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
 | `google_compute_backend_service` | `GoogleComputeBackendService` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
 | `google_compute_bulk_per_instance_config` | `GoogleComputeBulkPerInstanceConfig` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_cross_site_network` | `GoogleComputeCrossSiteNetwork` | — |
 | `google_compute_disk` | `GoogleComputeDisk` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart), [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart) |
+| `google_compute_disk_async_replication` | `GoogleComputeDiskAsyncReplication` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_disk_iam_binding` | `GoogleComputeDiskIamBinding` | — |
 | `google_compute_disk_iam_member` | `GoogleComputeDiskIamMember` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_disk_iam_policy` | `GoogleComputeDiskIamPolicy` | — |
@@ -590,7 +592,11 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_compute_image_iam_member` | `GoogleComputeImageIamMember` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_image_iam_policy` | `GoogleComputeImageIamPolicy` | — |
 | `google_compute_instance` | `GoogleComputeInstance` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart), [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
+| `google_compute_instance_from_template` | `GoogleComputeInstanceFromTemplate` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
+| `google_compute_instance_group` | `GoogleComputeInstanceGroup` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_instance_group_manager` | `GoogleComputeInstanceGroupManager` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart), [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
+| `google_compute_instance_group_membership` | `GoogleComputeInstanceGroupMembership` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
+| `google_compute_instance_group_named_port` | `GoogleComputeInstanceGroupNamedPort` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_instance_iam_binding` | `GoogleComputeInstanceIamBinding` | — |
 | `google_compute_instance_iam_member` | `GoogleComputeInstanceIamMember` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_instance_iam_policy` | `GoogleComputeInstanceIamPolicy` | — |
