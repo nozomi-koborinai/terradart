@@ -35,6 +35,10 @@
 /// 13. `google_compute_global_forwarding_rule` -- binds the VIP and
 ///     port 443 to the target HTTPS proxy as an `EXTERNAL_MANAGED`
 ///     L7 LB.
+///
+/// Cloud CDN signed-URL keys on the global backend service and the
+/// static-assets backend bucket take `key_value` via Terraform
+/// variables (synth rejects literals on sensitive fields).
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -444,6 +448,15 @@ final class ComputeLbStack extends Stack {
       ),
     );
 
+    add(
+      GoogleComputeBackendServiceSignedUrlKey(
+        localName: 'lb_backend_signed_url_key',
+        name: TfArg.literal('app-lb-cdn-key'),
+        backendService: TfArg.ref(lbBackend.nameRef),
+        keyValue: TfArg.variable('lb_backend_service_signed_url_key'),
+      ),
+    );
+
     // ---- 5. URL map: route everything to the backend service -------------
 
     final lbUrlMap = add(
@@ -772,12 +785,21 @@ final class ComputeLbStack extends Stack {
       ),
     );
 
-    add(
+    final staticAssets = add(
       GoogleComputeBackendBucket(
         localName: 'static_assets',
         name: TfArg.literal('app-static-assets'),
         bucketName: TfArg.literal('my-app-static-assets'),
         enableCdn: TfArg.literal(true),
+      ),
+    );
+
+    add(
+      GoogleComputeBackendBucketSignedUrlKey(
+        localName: 'static_assets_signed_url_key',
+        name: TfArg.literal('app-static-cdn-key'),
+        backendBucket: TfArg.ref(staticAssets.nameRef),
+        keyValue: TfArg.variable('lb_backend_bucket_signed_url_key'),
       ),
     );
 

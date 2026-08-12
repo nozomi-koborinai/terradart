@@ -6868,6 +6868,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_compute_backend_bucket`.\n\nBackend buckets allow you to use Google Cloud Storage buckets with HTTP(S)\nload balancing.\n\nAn HTTP(S) load balancer can direct traffic to specified URLs to a backend\nbucket rather than a backend service. It can send requests for static\ncontent to a Cloud Storage bucket and requests for dynamic content to a\nvirtual machine instance.\n\nA **global** backend bucket — the load-balancing target that points\nan HTTPS load balancer at a Google Cloud Storage bucket of static\nobjects. Use this when the load balancer needs to serve static\ncontent (images, JS/CSS bundles, downloadable assets) directly out\nof GCS without routing through a VM or serverless backend. Pair it\nwith a URL map (a `google_compute_url_map` `path_matcher` typically\nhas the form `default_service = backendService` and\n`path_rule = backendBucket` for a `/static/*` prefix).\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_compute_backend_bucket.`).\n- `name`: GCP resource name (1-63 chars, lowercase RFC1035).\n- `bucket_name`: the **name** of an existing Cloud Storage bucket\n  (e.g. `\'my-static-assets\'`). This is the bucket name only — not a\n  `gs://` URI and not the bucket\'s self-link. The bucket must exist\n  in the same project and be readable by the load balancer\'s service\n  identity (`allUsers`-readable for public CDN serving, or granted\n  via the Cloud CDN signed-URL key for private content).\n\nCross-resource references:\n- [edgeSecurityPolicy] is the self-link of a\n  `google_compute_security_policy` of type `CLOUD_ARMOR_EDGE`\n  (distinct from a regular Cloud Armor policy — edge policies attach\n  at the load balancer\'s edge, ahead of the cache). Use\n  `var.security_policy_id` in real configs:\n  `edgeSecurityPolicy: TfArg.literal(\'projects/p/global/securityPolicies/edge-deny-all\')`.\n- The compositional inverse is at a URL map: a\n  `google_compute_url_map.path_rule.service` references this\n  bucket\'s [selfLink].\n\nExample (CDN-fronted static assets with custom cache headers):\n```dart\nfinal assets = GoogleComputeBackendBucket(\n  localName: \'static_assets\',\n  name: TfArg.literal(\'static-assets\'),\n  bucketName: TfArg.literal(\'my-static-assets\'),\n  enableCdn: TfArg.literal(true),\n  cdnPolicy: const ComputeBackendBucketBackendBucketCdnPolicy(\n    cacheMode: BackendBucketCacheMode.cacheAllStatic,\n    defaultTtl: 3600,\n    maxTtl: 86400,\n    clientTtl: 3600,\n    negativeCaching: true,\n    negativeCachingPolicy: [\n      ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy(code: 404, ttl: 120),\n      ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy(code: 410, ttl: 120),\n    ],\n    serveWhileStale: 60,\n  ),\n  customResponseHeaders: TfArg.literal([\n    \'X-Cache: \\\$(cache_status)\',\n  ]),\n  compressionMode:\n      TfArg.literal(BackendBucketCompressionMode.automatic),\n);\n```\n\nExample (private bucket fronted by Cloud Armor edge policy):\n```dart\nfinal secured = GoogleComputeBackendBucket(\n  localName: \'secured_assets\',\n  name: TfArg.literal(\'secured-assets\'),\n  bucketName: TfArg.literal(\'private-static-assets\'),\n  enableCdn: TfArg.literal(true),\n  edgeSecurityPolicy: TfArg.literal(\n    // var.security_policy_id — a CLOUD_ARMOR_EDGE-typed\n    // google_compute_security_policy self-link.\n    \'projects/p/global/securityPolicies/edge-rate-limit\',\n  ),\n);\n```\n\nNested-type prefix: every helper class for a `cdn_policy` sub-block\nis `BackendBucket`-prefixed (e.g. [ComputeBackendBucketBackendBucketCdnPolicy],\n[ComputeBackendBucketBackendBucketCdnCacheKeyPolicy],\n[ComputeBackendBucketBackendBucketCdnNegativeCachingPolicy],\n[ComputeBackendBucketBackendBucketCdnBypassCacheOnRequestHeader]). The shape mirrors the\n`BackendService*` family but is a **distinct type** — the bucket and\nservice CDN configurations are not interchangeable, even where the\nschema field names agree.\n\nComposition pattern: extends `Resource`\nfor runtime behavior.',
   ),
   CatalogEntry(
+    tfType: 'google_compute_backend_bucket_signed_url_key',
+    className: 'GoogleComputeBackendBucketSignedUrlKey',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_compute_backend_bucket_signed_url_key`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'backendBucket',
+      'keyValue',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>['key_value'],
+    docComment:
+        'Factory wrapper for `google_compute_backend_bucket_signed_url_key`.\n\nA key for signing Cloud CDN signed URLs for BackendBuckets.\n\nCloud CDN signed-URL key on a [GoogleComputeBackendBucket].\n[keyValue] is a 128-bit RFC 4648 §5 base64url secret — pass it via\n[TfArg.variable], not a literal (synth rejects sensitive literals).',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_backend_service',
     className: 'GoogleComputeBackendService',
     barrel: 'compute',
@@ -6956,6 +6976,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     docComment:
         'Factory wrapper for `google_compute_backend_service`.\n\nA Backend Service defines a group of virtual machines that will serve\ntraffic for load balancing. This resource is a global backend service,\nappropriate for external load balancing or self-managed internal load\nbalancing. For managed internal load balancing, use a regional backend\nservice instead.\n\nCurrently self-managed internal load balancing is only available in beta.\n\n~> **Note:** Recreating a `google_compute_backend_service` that references\nother dependent resources like `google_compute_url_map` will give a\n`resourceInUseByAnotherResource` error, when modifying the number of other\ndependent resources. Use `lifecycle.create_before_destroy` on the dependent\nresources to avoid this type of error as shown in the Dynamic Backends\nexample.\n\nA **global** backend service is the load-balancing target for global\nexternal HTTP(S) load balancers and for Traffic Director\'s self-managed\ninternal load balancing. It groups a set of backends (instance groups,\nnetwork endpoint groups, or backend buckets) and routes traffic to\nthem according to the configured [protocol], [loadBalancingScheme],\n[localityLbPolicy], and [sessionAffinity].\n\nFor regional load balancing use `google_compute_region_backend_service`\n(curated separately). Regional-only [LoadBalancingScheme] values\n(`INTERNAL`, `INTERNAL_MANAGED`) are surfaced on this wrapper because\nthey appear in the Terraform schema, but the GCP API will reject them\non a global backend service at apply time.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_compute_backend_service.`).\n- `name`: GCP resource name (1-63 chars, lowercase RFC1035).\n\nCross-resource references (typical wiring):\n- [healthChecks]: list of self-links to `google_compute_health_check`\n  resources. Required unless every backend is an internet/serverless NEG.\n- [securityPolicy]: self-link to a Cloud Armor `google_compute_security_policy`.\n- [ComputeBackendServiceBackendServiceBackend.group]: self-link of an instance group, MIG,\n  or NEG. All backends in one service must share a kind (no mixing\n  instance groups with NEGs).\n\nExample (external HTTPS load balancer backend, IAP-protected):\n```dart\nfinal api = GoogleComputeBackendService(\n  localName: \'api\',\n  name: TfArg.literal(\'api-backend\'),\n  protocol: TfArg.literal(BackendServiceProtocol.https),\n  loadBalancingScheme:\n      TfArg.literal(LoadBalancingScheme.externalManaged),\n  portName: TfArg.literal(\'https\'),\n  timeoutSec: TfArg.literal(30),\n  enableCdn: TfArg.literal(false),\n  healthChecks: TfArg.literal([\n    // var.health_check_id resolves to a `google_compute_health_check`\n    // self-link from Batch 2.\n    \'projects/p/global/healthChecks/api-hc\',\n  ]),\n  securityPolicy: TfArg.literal(\n    // var.security_policy_id — see Cloud Armor curation in Batch 4.\n    \'projects/p/global/securityPolicies/edge-deny-all\',\n  ),\n  backends: [\n    ComputeBackendServiceBackendServiceBackend(\n      group: TfArg.literal(\n        // var.backend_group_id — typically a Batch 4 NEG or a\n        // Batch 3 MIG self-link.\n        \'projects/p/zones/asia-northeast1-a/networkEndpointGroups/api-neg\',\n      ),\n      balancingMode: BackendServiceBalancingMode.rate,\n      maxRatePerEndpoint: 100,\n      capacityScaler: 1.0,\n    ),\n  ],\n  iap: const ComputeBackendServiceBackendServiceIap(\n    enabled: true,\n    oauth2ClientId: \'xxx.apps.googleusercontent.com\',\n    oauth2ClientSecret: \'super-secret\', // sensitive — masked at synth.\n  ),\n  logConfig: const ComputeBackendServiceBackendServiceLogConfig(\n    enable: true,\n    sampleRate: 1.0,\n  ),\n);\n```\n\nSensitive fields (round-trip through the generated `sensitiveFields`\nset): `iap.oauth2_client_secret`, `iap.oauth2_client_secret_sha256`\n(computed), and `security_settings.aws_v4_authentication.access_key`.',
+  ),
+  CatalogEntry(
+    tfType: 'google_compute_backend_service_signed_url_key',
+    className: 'GoogleComputeBackendServiceSignedUrlKey',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_compute_backend_service_signed_url_key`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'backendService',
+      'keyValue',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>['key_value'],
+    docComment:
+        'Factory wrapper for `google_compute_backend_service_signed_url_key`.\n\nA key for signing Cloud CDN signed URLs for Backend Services.\n\nCloud CDN signed-URL key on a [GoogleComputeBackendService].\n[keyValue] is a 128-bit RFC 4648 §5 base64url secret — pass it via\n[TfArg.variable], not a literal (synth rejects sensitive literals).',
   ),
   CatalogEntry(
     tfType: 'google_compute_bulk_per_instance_config',

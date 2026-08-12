@@ -806,8 +806,12 @@ files:
     upstream: mmv1/products/compute/Autoscaler.yaml
   google_compute_backend_bucket:
     upstream: mmv1/products/compute/BackendBucket.yaml
+  google_compute_backend_bucket_signed_url_key:
+    upstream: mmv1/products/compute/BackendBucketSignedUrlKey.yaml
   google_compute_backend_service:
     upstream: mmv1/products/compute/BackendService.yaml
+  google_compute_backend_service_signed_url_key:
+    upstream: mmv1/products/compute/BackendServiceSignedUrlKey.yaml
   google_compute_bulk_per_instance_config:
     upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
   google_compute_forwarding_rule:
