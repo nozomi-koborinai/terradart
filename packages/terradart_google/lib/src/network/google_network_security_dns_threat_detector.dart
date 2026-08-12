@@ -6,6 +6,18 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_network_security_dns_threat_detector`.
 const Set<String> _googleNetworkSecurityDnsThreatDetectorSensitive = <String>{};
 
+/// Network Security Dns Threat Detector Threat Detector enum for `threat_detector_provider`.
+enum NetworkSecurityDnsThreatDetectorThreatDetectorProvider
+    implements TerraformEnum {
+  infoblox('INFOBLOX');
+
+  const NetworkSecurityDnsThreatDetectorThreatDetectorProvider(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_network_security_dns_threat_detector`.
 ///
 /// DNS Armor is a fully-managed service that provides DNS-layer security for
