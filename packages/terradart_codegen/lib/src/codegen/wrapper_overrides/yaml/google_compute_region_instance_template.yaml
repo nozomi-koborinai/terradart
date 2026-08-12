@@ -1,0 +1,66 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+deriveNestedTypes: true
+
+# Thin curation: keep nested override blocks as TfArg maps for now (mirror
+# google_compute_instance_from_template). Typed helpers can land in a follow-up.
+nestedTypeExcludes:
+  - advanced_machine_features
+  - confidential_instance_config
+  - disk
+  - guest_accelerator
+  - network_interface
+  - network_performance_config
+  - reservation_affinity
+  - scheduling
+  - service_account
+  - shielded_instance_config
+  - workload_identity_config
+
+curatedDoc: |-
+  /// Regional instance template (region-scoped sibling of
+  /// `google_compute_instance_template`). Required: [machineType] and at
+  /// least one `disk` block. Prefer [namePrefix] over [name] so Terraform
+  /// can rotate unique names; do not set both.
+
+# Gate 1 needs required attrs in paramOrder; include nested blocks so they
+# are not silently dropped from the constructor.
+paramOrder:
+  - name
+  - name_prefix
+  - machine_type
+  - region
+  - description
+  - labels
+  - metadata
+  - metadata_startup_script
+  - tags
+  - can_ip_forward
+  - min_cpu_platform
+  - resource_manager_tags
+  - resource_policies
+  - key_revocation_action_type
+  - instance_description
+  - deletion_policy
+  - project
+  - advanced_machine_features
+  - confidential_instance_config
+  - disk
+  - guest_accelerator
+  - network_interface
+  - network_performance_config
+  - reservation_affinity
+  - scheduling
+  - service_account
+  - shielded_instance_config
+  - workload_identity_config
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `self_link` attribute.
+    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');

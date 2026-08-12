@@ -1,0 +1,17 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Attaches an existing [GoogleComputeResourcePolicy] ([name]) to a
+  /// regional persistent disk. Zonal disks use
+  /// `google_compute_disk_resource_policy_attachment` instead.
+
+paramOrder:
+  - disk
+  - name
+  - region
+  - deletion_policy
+  - project

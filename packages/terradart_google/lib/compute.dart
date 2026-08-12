@@ -192,6 +192,8 @@ export 'src/compute/google_compute_health_check.dart'
         HealthCheckType;
 export 'src/compute/google_compute_http_health_check.dart'
     show GoogleComputeHttpHealthCheck;
+export 'src/compute/google_compute_https_health_check.dart'
+    show GoogleComputeHttpsHealthCheck;
 export 'src/compute/google_compute_image.dart'
     show
         ComputeImageDiskSource,
@@ -435,6 +437,19 @@ export 'src/compute/google_compute_packet_mirroring.dart'
         ComputePacketMirroringMirroredResourcesSubnetworks,
         ComputePacketMirroringNetwork,
         GoogleComputePacketMirroring;
+export 'src/compute/google_compute_per_instance_config.dart'
+    show
+        ComputePerInstanceConfigPreservedState,
+        ComputePerInstanceConfigPreservedStateDisk,
+        ComputePerInstanceConfigPreservedStateDiskDeleteRule,
+        ComputePerInstanceConfigPreservedStateDiskMode,
+        ComputePerInstanceConfigPreservedStateExternalIp,
+        ComputePerInstanceConfigPreservedStateExternalIpAutoDelete,
+        ComputePerInstanceConfigPreservedStateExternalIpIpAddress,
+        ComputePerInstanceConfigPreservedStateInternalIp,
+        ComputePerInstanceConfigPreservedStateInternalIpAutoDelete,
+        ComputePerInstanceConfigPreservedStateInternalIpIpAddress,
+        GoogleComputePerInstanceConfig;
 export 'src/compute/google_compute_preview_feature.dart'
     show
         ComputePreviewFeatureActivationStatus,
@@ -521,6 +536,8 @@ export 'src/compute/google_compute_region_disk_iam_member.dart'
     show GoogleComputeRegionDiskIamMember;
 export 'src/compute/google_compute_region_disk_iam_policy.dart'
     show GoogleComputeRegionDiskIamPolicy;
+export 'src/compute/google_compute_region_disk_resource_policy_attachment.dart'
+    show GoogleComputeRegionDiskResourcePolicyAttachment;
 export 'src/compute/google_compute_region_health_check.dart'
     show
         ComputeRegionHealthCheckProtocol,
@@ -558,6 +575,8 @@ export 'src/compute/google_compute_region_instance_group_manager.dart'
         RegionInstanceGroupManagerUpdatePolicyAction,
         RegionInstanceGroupManagerUpdatePolicyReplacementMethod,
         RegionInstanceGroupManagerUpdatePolicyType;
+export 'src/compute/google_compute_region_instance_template.dart'
+    show GoogleComputeRegionInstanceTemplate;
 export 'src/compute/google_compute_region_instant_snapshot.dart'
     show
         ComputeRegionInstantSnapshotDeletionPolicy,
@@ -599,6 +618,19 @@ export 'src/compute/google_compute_region_network_firewall_policy_rule.dart'
         ComputeRegionNetworkFirewallPolicyRuleTargetSecureTags,
         ComputeRegionNetworkFirewallPolicyRuleTargetType,
         GoogleComputeRegionNetworkFirewallPolicyRule;
+export 'src/compute/google_compute_region_per_instance_config.dart'
+    show
+        ComputeRegionPerInstanceConfigPreservedState,
+        ComputeRegionPerInstanceConfigPreservedStateDisk,
+        ComputeRegionPerInstanceConfigPreservedStateDiskDeleteRule,
+        ComputeRegionPerInstanceConfigPreservedStateDiskMode,
+        ComputeRegionPerInstanceConfigPreservedStateExternalIp,
+        ComputeRegionPerInstanceConfigPreservedStateExternalIpAutoDelete,
+        ComputeRegionPerInstanceConfigPreservedStateExternalIpIpAddress,
+        ComputeRegionPerInstanceConfigPreservedStateInternalIp,
+        ComputeRegionPerInstanceConfigPreservedStateInternalIpAutoDelete,
+        ComputeRegionPerInstanceConfigPreservedStateInternalIpIpAddress,
+        GoogleComputeRegionPerInstanceConfig;
 export 'src/compute/google_compute_region_resize_request.dart'
     show
         ComputeRegionResizeRequestRequestedRunDuration,
@@ -700,6 +732,8 @@ export 'src/compute/google_compute_resource_policy.dart'
         ComputeResourcePolicyWorkloadPolicy,
         ComputeResourcePolicyWorkloadType,
         GoogleComputeResourcePolicy;
+export 'src/compute/google_compute_resource_policy_attachment.dart'
+    show GoogleComputeResourcePolicyAttachment;
 export 'src/compute/google_compute_rollout_plan.dart'
     show
         ComputeRolloutPlanLocationScope,

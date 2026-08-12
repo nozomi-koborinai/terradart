@@ -70,6 +70,9 @@ const _fingerprintFalsePositives = <String>{
   // resource_compute_instance_from_template.go.tmpl (+ meta.yaml); no
   // mmv1/products/compute/InstanceFromTemplate.yaml (404, probed 2026-08-12).
   'google_compute_instance_from_template',
+  // Handwritten third_party Go template only (no MM YAML under products/).
+  // Probed: no RegionInstanceTemplate.yaml; region_instance_template.go.tmpl.
+  'google_compute_region_instance_template',
 };
 
 bool _isIamAdjunct(String tfType) =>

@@ -1,0 +1,17 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Attaches an existing [GoogleComputeResourcePolicy] ([name]) to a VM
+  /// instance. The policy itself (snapshot schedule, instance schedule, …)
+  /// is curated separately.
+
+paramOrder:
+  - instance
+  - name
+  - zone
+  - deletion_policy
+  - project
