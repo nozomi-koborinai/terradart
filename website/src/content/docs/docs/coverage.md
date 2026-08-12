@@ -637,6 +637,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_compute_preview_feature` | `GoogleComputePreviewFeature` | [compute_preview_feature_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_preview_feature_quickstart) |
 | `google_compute_project_cloud_armor_tier` | `GoogleComputeProjectCloudArmorTier` | [compute_cloud_armor_tier_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_cloud_armor_tier_quickstart) |
 | `google_compute_project_default_network_tier` | `GoogleComputeProjectDefaultNetworkTier` | [compute_default_network_tier_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_default_network_tier_quickstart) |
+| `google_compute_project_metadata` | `GoogleComputeProjectMetadata` | — |
 | `google_compute_project_metadata_item` | `GoogleComputeProjectMetadataItem` | [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart) |
 | `google_compute_region_autoscaler` | `GoogleComputeRegionAutoscaler` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
 | `google_compute_region_backend_service` | `GoogleComputeRegionBackendService` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
@@ -676,6 +677,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_compute_region_target_tcp_proxy` | `GoogleComputeRegionTargetTcpProxy` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
 | `google_compute_region_url_map` | `GoogleComputeRegionUrlMap` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
 | `google_compute_reservation` | `GoogleComputeReservation` | — |
+| `google_compute_resize_request` | `GoogleComputeResizeRequest` | — |
 | `google_compute_resource_policy` | `GoogleComputeResourcePolicy` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart), [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart) |
 | `google_compute_resource_policy_attachment` | `GoogleComputeResourcePolicyAttachment` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_rollout_plan` | `GoogleComputeRolloutPlan` | [compute_rollout_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_rollout_quickstart) |
@@ -684,7 +686,9 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_compute_router_interface` | `GoogleComputeRouterInterface` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_router_named_set` | `GoogleComputeRouterNamedSet` | [compute_route_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_route_quickstart) |
 | `google_compute_router_nat` | `GoogleComputeRouterNat` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
+| `google_compute_router_nat_address` | `GoogleComputeRouterNatAddress` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_router_peer` | `GoogleComputeRouterPeer` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
+| `google_compute_router_route_policy` | `GoogleComputeRouterRoutePolicy` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_security_policy` | `GoogleComputeSecurityPolicy` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
 | `google_compute_security_policy_rule` | `GoogleComputeSecurityPolicyRule` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
 | `google_compute_service_attachment` | `GoogleComputeServiceAttachment` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
@@ -705,8 +709,10 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_compute_subnetwork_iam_binding` | `GoogleComputeSubnetworkIamBinding` | — |
 | `google_compute_subnetwork_iam_member` | `GoogleComputeSubnetworkIamMember` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_subnetwork_iam_policy` | `GoogleComputeSubnetworkIamPolicy` | — |
+| `google_compute_target_grpc_proxy` | `GoogleComputeTargetGrpcProxy` | — |
 | `google_compute_target_http_proxy` | `GoogleComputeTargetHttpProxy` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
 | `google_compute_target_https_proxy` | `GoogleComputeTargetHttpsProxy` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
+| `google_compute_target_instance` | `GoogleComputeTargetInstance` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_target_pool` | `GoogleComputeTargetPool` | [compute_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_quickstart) |
 | `google_compute_target_ssl_proxy` | `GoogleComputeTargetSslProxy` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
 | `google_compute_target_tcp_proxy` | `GoogleComputeTargetTcpProxy` | [compute_lb_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/compute_lb_quickstart) |
