@@ -64,14 +64,10 @@ parameters:
 properties:
   - name: threatDetectorProvider
     type: String
-    # Upstream MM sets api_name: provider (REST), but the Terraform schema
-    # attribute is threat_detector_provider — keep the TF snake_case key so
-    # IrMerger can attach enum_values for deriveEnums.
+    api_name: provider
     description: |
       DNS Threat Detection provider. The only supported value is `INFOBLOX`.
     immutable: true
-    enum_values:
-      - INFOBLOX
   - name: excludedNetworks
     type: Array
     description: |

@@ -1,0 +1,31 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Regional network firewall policy that embeds its rules in one resource
+  /// (`rule` blocks) instead of separate
+  /// `google_compute_region_network_firewall_policy_rule` children. Prefer the
+  /// split policy + rule factories when rules are owned by multiple stacks.
+
+paramOrder:
+  - name
+  - region
+  - rule
+  - description
+  - policy_type
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `self_link` attribute.
+    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');

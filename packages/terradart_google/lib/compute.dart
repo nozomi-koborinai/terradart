@@ -525,6 +525,8 @@ export 'src/compute/google_compute_region_commitment.dart'
         ComputeRegionCommitmentResources,
         ComputeRegionCommitmentStatus,
         GoogleComputeRegionCommitment;
+export 'src/compute/google_compute_region_composite_health_check.dart'
+    show GoogleComputeRegionCompositeHealthCheck;
 export 'src/compute/google_compute_region_disk.dart'
     show
         ComputeRegionDiskGuestOsFeature,
@@ -538,6 +540,10 @@ export 'src/compute/google_compute_region_disk_iam_policy.dart'
     show GoogleComputeRegionDiskIamPolicy;
 export 'src/compute/google_compute_region_disk_resource_policy_attachment.dart'
     show GoogleComputeRegionDiskResourcePolicyAttachment;
+export 'src/compute/google_compute_region_health_aggregation_policy.dart'
+    show
+        ComputeRegionHealthAggregationPolicyPolicyType,
+        GoogleComputeRegionHealthAggregationPolicy;
 export 'src/compute/google_compute_region_health_check.dart'
     show
         ComputeRegionHealthCheckProtocol,
@@ -552,6 +558,8 @@ export 'src/compute/google_compute_region_health_check.dart'
         RegionHealthCheckPortSpecification,
         RegionHealthCheckProxyHeader,
         RegionHealthCheckType;
+export 'src/compute/google_compute_region_health_source.dart'
+    show ComputeRegionHealthSourceSourceType, GoogleComputeRegionHealthSource;
 export 'src/compute/google_compute_region_instance_group_manager.dart'
     show
         ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerAllInstancesConfig,
@@ -601,6 +609,8 @@ export 'src/compute/google_compute_region_network_firewall_policy.dart'
     show
         ComputeRegionNetworkFirewallPolicyPolicyType,
         GoogleComputeRegionNetworkFirewallPolicy;
+export 'src/compute/google_compute_region_network_firewall_policy_association.dart'
+    show GoogleComputeRegionNetworkFirewallPolicyAssociation;
 export 'src/compute/google_compute_region_network_firewall_policy_iam_binding.dart'
     show GoogleComputeRegionNetworkFirewallPolicyIamBinding;
 export 'src/compute/google_compute_region_network_firewall_policy_iam_member.dart'
@@ -618,6 +628,17 @@ export 'src/compute/google_compute_region_network_firewall_policy_rule.dart'
         ComputeRegionNetworkFirewallPolicyRuleTargetSecureTags,
         ComputeRegionNetworkFirewallPolicyRuleTargetType,
         GoogleComputeRegionNetworkFirewallPolicyRule;
+export 'src/compute/google_compute_region_network_firewall_policy_with_rules.dart'
+    show
+        ComputeRegionNetworkFirewallPolicyWithRulesPolicyType,
+        ComputeRegionNetworkFirewallPolicyWithRulesRule,
+        ComputeRegionNetworkFirewallPolicyWithRulesRuleDirection,
+        ComputeRegionNetworkFirewallPolicyWithRulesRuleMatch,
+        ComputeRegionNetworkFirewallPolicyWithRulesRuleMatchLayer4Config,
+        ComputeRegionNetworkFirewallPolicyWithRulesRuleMatchSrcSecureTag,
+        ComputeRegionNetworkFirewallPolicyWithRulesRuleTargetSecureTag,
+        ComputeRegionNetworkFirewallPolicyWithRulesRuleTargetType,
+        GoogleComputeRegionNetworkFirewallPolicyWithRules;
 export 'src/compute/google_compute_region_per_instance_config.dart'
     show
         ComputeRegionPerInstanceConfigPreservedState,
@@ -889,6 +910,8 @@ export 'src/compute/google_compute_target_http_proxy.dart'
     show GoogleComputeTargetHttpProxy;
 export 'src/compute/google_compute_target_https_proxy.dart'
     show GoogleComputeTargetHttpsProxy, QuicOverride, TlsEarlyData;
+export 'src/compute/google_compute_target_pool.dart'
+    show GoogleComputeTargetPool;
 export 'src/compute/google_compute_target_ssl_proxy.dart'
     show GoogleComputeTargetSslProxy, TargetSslProxyProxyHeader;
 export 'src/compute/google_compute_target_tcp_proxy.dart'

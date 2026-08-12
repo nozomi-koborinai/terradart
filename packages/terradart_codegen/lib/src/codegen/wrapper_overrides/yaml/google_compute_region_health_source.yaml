@@ -1,0 +1,32 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+dartTypeOverrides:
+  source_type: ComputeRegionHealthSourceSourceType
+
+curatedDoc: |-
+  /// Regional health source that aggregates backend-service health via a
+  /// [GoogleComputeRegionHealthAggregationPolicy]. [sourceType] must be
+  /// `BACKEND_SERVICE`; [sources] is a single INTERNAL / INTERNAL_MANAGED
+  /// backend service URL.
+
+paramOrder:
+  - name
+  - region
+  - source_type
+  - health_aggregation_policy
+  - sources
+  - description
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `self_link_with_id` attribute.
+    TfRef<String> get selfLinkWithId =>
+        TfRef.attribute<String>(this, 'self_link_with_id');

@@ -1,0 +1,22 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Associates a regional [GoogleComputeRegionNetworkFirewallPolicy] with a
+  /// VPC network ([attachmentTarget] = network self-link). Regional sibling
+  /// of [GoogleComputeNetworkFirewallPolicyAssociation].
+
+paramOrder:
+  - name
+  - firewall_policy
+  - attachment_target
+  - region
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
