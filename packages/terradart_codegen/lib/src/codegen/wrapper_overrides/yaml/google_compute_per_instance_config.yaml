@@ -1,0 +1,27 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Stateful per-instance config on a zonal
+  /// [GoogleComputeInstanceGroupManager]. Names one MIG member and optionally
+  /// preserves disks / IPs / metadata across recreation. For many members at
+  /// once prefer [GoogleComputeBulkPerInstanceConfig].
+
+paramOrder:
+  - instance_group_manager
+  - name
+  - zone
+  - preserved_state
+  - minimal_action
+  - most_disruptive_allowed_action
+  - remove_instance_on_destroy
+  - remove_instance_state_on_destroy
+  - deletion_policy
+  - project

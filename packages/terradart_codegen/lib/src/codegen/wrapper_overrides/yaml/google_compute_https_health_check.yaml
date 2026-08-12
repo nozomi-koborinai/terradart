@@ -1,0 +1,32 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Legacy HTTPS health check (TLS port/path probe). Prefer
+  /// [GoogleComputeHealthCheck] / [GoogleComputeRegionHealthCheck] for new
+  /// stacks; this factory covers the classic
+  /// `google_compute_https_health_check` surface still used by some target
+  /// pools and older backends.
+
+paramOrder:
+  - name
+  - request_path
+  - port
+  - host
+  - check_interval_sec
+  - timeout_sec
+  - healthy_threshold
+  - unhealthy_threshold
+  - description
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `self_link` attribute.
+    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');

@@ -33,7 +33,10 @@
 ///
 /// Also covers network firewall association/rule/`with_rules`, a PSC
 /// `GoogleComputeNetworkAttachment`, NEG `GoogleComputeNetworkEndpoints`,
-/// and a legacy `GoogleComputeHttpHealthCheck`.
+/// legacy `GoogleComputeHttpHealthCheck` / `GoogleComputeHttpsHealthCheck`,
+/// regional instance template + region MIG per-instance config, zonal
+/// per-instance config, and resource-policy attachments (instance +
+/// regional disk).
 library;
 
 import 'dart:convert';
@@ -601,6 +604,38 @@ final class NetworkStack extends Stack {
       ),
     );
 
+    // Stateful per-instance config on a dedicated zonal MIG (metadata only).
+    final picDemoMig = add(
+      GoogleComputeInstanceGroupManager(
+        localName: 'pic_demo',
+        name: TfArg.literal('pic-demo'),
+        zone: TfArg.literal('asia-northeast1-a'),
+        baseInstanceName: TfArg.literal('pic-demo'),
+        versions: [
+          ComputeInstanceGroupManagerInstanceGroupManagerVersion(
+            name: TfArg.literal('default'),
+            instanceTemplate: TfArg.ref(bulkWorkerTemplate.selfLink),
+          ),
+        ],
+        lifecycle: const LifecycleOptions(ignoreChanges: ['target_size']),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleComputePerInstanceConfig(
+        localName: 'pic_demo_1',
+        instanceGroupManager: TfArg.ref(picDemoMig.nameRef),
+        name: TfArg.literal('pic-demo-1'),
+        zone: TfArg.literal('asia-northeast1-a'),
+        preservedState: ComputePerInstanceConfigPreservedState(
+          metadata: TfArg.literal({'role': 'pic-demo'}),
+        ),
+        removeInstanceOnDestroy: TfArg.literal(true),
+        dependsOn: [ResourceDependency(picDemoMig)],
+      ),
+    );
+
     // ---- Network firewall policy IAM member -------------------------------
     //
     // A global network firewall policy plus a resource-scoped IAM member so
@@ -752,6 +787,16 @@ final class NetworkStack extends Stack {
         name: TfArg.literal('ops-legacy-http-hc'),
         requestPath: TfArg.literal('/'),
         port: TfArg.literal(80),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleComputeHttpsHealthCheck(
+        localName: 'ops_legacy_https_hc',
+        name: TfArg.literal('ops-legacy-https-hc'),
+        requestPath: TfArg.literal('/'),
+        port: TfArg.literal(443),
         dependsOn: apiDeps,
       ),
     );
@@ -926,6 +971,131 @@ final class NetworkStack extends Stack {
         dependsOn: [
           ResourceDependency(asyncPrimary),
           ResourceDependency(asyncSecondary),
+        ],
+      ),
+    );
+
+    // ---- Regional template + region MIG PIC + policy attachments ----------
+    //
+    // A region-scoped instance template feeding a regional MIG with one
+    // stateful per-instance config; an instance-schedule policy attached to
+    // the bastion; and a daily snapshot schedule attached to the regional
+    // backup disk.
+
+    final regionalWorkerTemplate = add(
+      GoogleComputeRegionInstanceTemplate(
+        localName: 'regional_worker_template',
+        namePrefix: TfArg.literal('reg-worker-'),
+        region: TfArg.literal('asia-northeast1'),
+        machineType: TfArg.literal('e2-micro'),
+        disk: TfArg.literal([
+          {
+            'boot': true,
+            'source_image': 'debian-cloud/debian-12',
+            'auto_delete': true,
+          },
+        ]),
+        networkInterface: TfArg.literal([
+          {
+            'network': mainVpc.selfLink.interpolation,
+            'subnetwork': workloadSubnet.selfLink.interpolation,
+          },
+        ]),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    final regionalPicMig = add(
+      GoogleComputeRegionInstanceGroupManager(
+        localName: 'regional_pic_demo',
+        name: TfArg.literal('regional-pic-demo'),
+        region: TfArg.literal('asia-northeast1'),
+        baseInstanceName: TfArg.literal('regional-pic'),
+        distributionPolicyZones: TfArg.literal(['asia-northeast1-a']),
+        versions: [
+          ComputeRegionInstanceGroupManagerRegionInstanceGroupManagerVersion(
+            name: TfArg.literal('default'),
+            instanceTemplate: TfArg.ref(regionalWorkerTemplate.selfLink),
+          ),
+        ],
+        lifecycle: const LifecycleOptions(ignoreChanges: ['target_size']),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleComputeRegionPerInstanceConfig(
+        localName: 'regional_pic_1',
+        regionInstanceGroupManager: TfArg.ref(regionalPicMig.nameRef),
+        name: TfArg.literal('regional-pic-1'),
+        region: TfArg.literal('asia-northeast1'),
+        preservedState: ComputeRegionPerInstanceConfigPreservedState(
+          metadata: TfArg.literal({'role': 'regional-pic-demo'}),
+        ),
+        removeInstanceOnDestroy: TfArg.literal(true),
+        dependsOn: [ResourceDependency(regionalPicMig)],
+      ),
+    );
+
+    final bastionSchedulePolicy = add(
+      GoogleComputeResourcePolicy(
+        localName: 'bastion_schedule',
+        name: TfArg.literal('ops-bastion-schedule'),
+        region: TfArg.literal('asia-northeast1'),
+        instanceSchedulePolicy: TfArg.literal({
+          'time_zone': 'Asia/Tokyo',
+          'vm_start_schedule': {'schedule': '0 9 * * 1-5'},
+          'vm_stop_schedule': {'schedule': '0 18 * * 1-5'},
+        }),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleComputeResourcePolicyAttachment(
+        localName: 'bastion_schedule_attach',
+        instance: TfArg.ref(bastion.nameRef),
+        name: TfArg.ref(bastionSchedulePolicy.nameRef),
+        zone: TfArg.literal('asia-northeast1-a'),
+        deletionPolicy: TfArg.literal('ABANDON'),
+        dependsOn: [
+          ResourceDependency(bastion),
+          ResourceDependency(bastionSchedulePolicy),
+        ],
+      ),
+    );
+
+    final backupSnapshotPolicy = add(
+      GoogleComputeResourcePolicy(
+        localName: 'backup_daily_snapshots',
+        name: TfArg.literal('ops-backup-daily-snapshots'),
+        region: TfArg.literal('asia-northeast1'),
+        snapshotSchedulePolicy: ComputeResourcePolicySnapshotSchedulePolicy(
+          schedule: ComputeResourcePolicyDailySchedule(
+            daysInCycle: TfArg.literal(1),
+            startTime: TfArg.literal('04:00'),
+          ),
+          retentionPolicy: ComputeResourcePolicyRetentionPolicy(
+            maxRetentionDays: TfArg.literal(3),
+            onSourceDiskDelete: TfArg.literal(
+              ComputeResourcePolicyOnSourceDiskDelete.applyRetentionPolicy,
+            ),
+          ),
+        ),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleComputeRegionDiskResourcePolicyAttachment(
+        localName: 'backup_disk_snapshots',
+        disk: TfArg.ref(backupDisk.nameRef),
+        name: TfArg.ref(backupSnapshotPolicy.nameRef),
+        region: TfArg.literal('asia-northeast1'),
+        deletionPolicy: TfArg.literal('DELETE'),
+        dependsOn: [
+          ResourceDependency(backupDisk),
+          ResourceDependency(backupSnapshotPolicy),
         ],
       ),
     );
