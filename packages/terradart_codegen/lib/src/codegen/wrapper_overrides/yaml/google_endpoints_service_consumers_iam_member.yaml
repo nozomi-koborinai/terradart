@@ -1,0 +1,11 @@
+outputDir: endpoints
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - service_name
+  - consumer_project
+  - role
+  - member
+  - condition

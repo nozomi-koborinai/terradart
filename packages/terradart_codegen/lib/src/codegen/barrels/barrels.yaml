@@ -283,6 +283,10 @@ barrels:
       /// Google Distributed Cloud Edge Network — L3 networks, subnets, and
       /// interconnect attachments on physical GDCE zones (not applyable on a
       /// standalone project).
+  endpoints:
+    doc: |-
+      /// Cloud Endpoints — managed API service IAM for an Endpoints service
+      /// and its consumer projects (`google_endpoints_service*_iam_*`).
   eventarc:
     doc: |-
       /// Eventarc — channels, triggers, pipelines, message buses, and API sources

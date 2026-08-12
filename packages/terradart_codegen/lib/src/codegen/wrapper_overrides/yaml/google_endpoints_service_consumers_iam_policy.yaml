@@ -1,0 +1,15 @@
+outputDir: endpoints
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Cloud Endpoints service consumer.
+  ///
+  /// `policy_data` replaces the entire IAM policy, overwriting grants made
+  /// outside Terraform. Prefer [GoogleEndpointsServiceConsumersIamMember] for single-principal grants.
+
+paramOrder:
+  - service_name
+  - consumer_project
+  - policy_data

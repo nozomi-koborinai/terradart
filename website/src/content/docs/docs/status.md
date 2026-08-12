@@ -36,7 +36,7 @@ Alpha required every item below; all are done. (This list was the former "beta r
 - [x] **`tool/smoke_quickstart.sh`** runs in CI and passes (`pubsub_quickstart`: pub get → synth → analyze including export consumer stub).
 - [x] **Examples matrix** on `main` stays green (per-example synth + `terraform validate` on `tf-out/`).
 - [x] **Boundary demo**: [pubsub_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) documents `addExport` / generated `.app.dart` and includes a subscriber stub that `dart analyze` accepts.
-- [x] **Meta docs aligned** with the current minor: CONTRIBUTING, SECURITY, issue templates, package READMEs, and root README agree on alpha/beta wording, `^0.N.x` pins, and **1066 curated resource factories + 1 data source** (1067 catalog entries).
+- [x] **Meta docs aligned** with the current minor: CONTRIBUTING, SECURITY, issue templates, package READMEs, and root README agree on alpha/beta wording, `^0.N.x` pins, and **1072 curated resource factories + 1 data source** (1073 catalog entries).
 - [x] **Full example coverage**: `tool/example_debt.yaml` is empty — all catalog entries appear in at least one quickstart synth (`check_docs_consistency.dart`).
 - [x] **Change policy** published on this page (see [Change policy](#change-policy-from-alpha-onward)) and in force from alpha.
 

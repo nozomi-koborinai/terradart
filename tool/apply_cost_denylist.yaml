@@ -65,6 +65,12 @@ safe_exception: google_iap_agent_registry_endpoint_iam_member  # IAM binding on 
 safe_exception: google_iap_agent_registry_endpoint_iam_binding  # IAM binding on IAP agent registry endpoint; no existence billing — _endpoint substring false positive (Agent Identity parent skip-noted)
 safe_exception: google_iap_agent_registry_endpoint_iam_policy  # IAM policy on IAP agent registry endpoint; no existence billing — _endpoint substring false positive (Agent Identity parent skip-noted)
 safe_exception: google_vertex_ai_index_endpoint  # index endpoint shell; no existence billing until a deployed index — _endpoint substring false positive (sibling google_vertex_ai_index_endpoint_deployed_index is never_apply)
+safe_exception: google_endpoints_service_iam_member  # IAM binding on Cloud Endpoints service; no existence billing — endpoints substring false positive (parent google_endpoints_service uncurated)
+safe_exception: google_endpoints_service_iam_binding  # IAM binding on Cloud Endpoints service; no existence billing — endpoints substring false positive (parent google_endpoints_service uncurated)
+safe_exception: google_endpoints_service_iam_policy  # IAM policy on Cloud Endpoints service; no existence billing — endpoints substring false positive (parent google_endpoints_service uncurated)
+safe_exception: google_endpoints_service_consumers_iam_member  # IAM binding on Cloud Endpoints service consumer; no existence billing — endpoints substring false positive (parent google_endpoints_service uncurated)
+safe_exception: google_endpoints_service_consumers_iam_binding  # IAM binding on Cloud Endpoints service consumer; no existence billing — endpoints substring false positive (parent google_endpoints_service uncurated)
+safe_exception: google_endpoints_service_consumers_iam_policy  # IAM policy on Cloud Endpoints service consumer; no existence billing — endpoints substring false positive (parent google_endpoints_service uncurated)
 safe_exception: google_apigee_instance_attachment  # environment↔instance binding; no existence billing — _instance substring false positive (parent google_apigee_instance is never_apply)
 safe_exception: google_apigee_environment_iam_member  # IAM binding on Apigee environment; no existence billing — environment substring false positive (parent google_apigee_environment is never_apply)
 safe_exception: google_apigee_environment_iam_binding  # IAM binding on Apigee environment; no existence billing — environment substring false positive (parent google_apigee_environment is never_apply)
@@ -619,6 +625,12 @@ google_edgenetwork_interconnect_attachment: never_apply  # gcp-cost: Google Dist
 google_edgenetwork_network: never_apply  # gcp-cost: Google Distributed Cloud Edge 8A2D-5CB1-345B Connected Server Gen1 SKU 007E-2D86-E472 $3600/mo — billing-behavior: L3 network on physical GDCE zone; never apply-smoke
 google_edgenetwork_subnet: never_apply  # gcp-cost: Google Distributed Cloud Edge 8A2D-5CB1-345B Connected Server Gen1 SKU 007E-2D86-E472 $3600/mo — billing-behavior: subnet on physical GDCE network/zone; never apply-smoke
 google_essential_contacts_contact: safe  # apply-verified safe (existing example)
+google_endpoints_service_iam_member: safe  # billing-behavior: IAM binding only
+google_endpoints_service_iam_binding: safe  # billing-behavior: IAM binding only
+google_endpoints_service_iam_policy: safe  # billing-behavior: IAM policy only
+google_endpoints_service_consumers_iam_member: safe  # billing-behavior: IAM binding only
+google_endpoints_service_consumers_iam_binding: safe  # billing-behavior: IAM binding only
+google_endpoints_service_consumers_iam_policy: safe  # billing-behavior: IAM policy only
 google_filestore_backup: safe  # apply-verified safe (existing example)
 google_firestore_backup_schedule: safe  # apply-verified safe (existing example)
 google_firestore_database: safe  # apply-verified safe (existing example)
