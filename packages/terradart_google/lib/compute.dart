@@ -290,6 +290,8 @@ export 'src/compute/google_compute_instance_template_iam_member.dart'
     show GoogleComputeInstanceTemplateIamMember;
 export 'src/compute/google_compute_instance_template_iam_policy.dart'
     show GoogleComputeInstanceTemplateIamPolicy;
+export 'src/compute/google_compute_instant_snapshot.dart'
+    show GoogleComputeInstantSnapshot;
 export 'src/compute/google_compute_instant_snapshot_iam_binding.dart'
     show GoogleComputeInstantSnapshotIamBinding;
 export 'src/compute/google_compute_instant_snapshot_iam_member.dart'

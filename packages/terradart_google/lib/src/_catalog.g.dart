@@ -7904,6 +7904,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_compute_instance_template_iam_policy`.\n\nAuthoritative IAM policy for a Compute Engine instance template.\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleComputeInstanceTemplateIamMember] for single-principal grants.',
   ),
   CatalogEntry(
+    tfType: 'google_compute_instant_snapshot',
+    className: 'GoogleComputeInstantSnapshot',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_instant_snapshot`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'sourceDisk',
+      'description',
+      'labels',
+      'deletionPolicy',
+      'zone',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_instant_snapshot`.\n\nRepresents an instant snapshot resource.\n\nAn instant snapshot is an in-place backup of a disk that can be used to\nrapidly create a new disk in minutes.\n\nInstant snapshots capture data at a specific point in time. They are\noptimized for rapidly restoring captured data to a new disk. Use instant\nsnapshots to quickly recover data in cases where the zone and disk are still\nintact but the data on the disk has been lost or corrupted',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_instant_snapshot_iam_binding',
     className: 'GoogleComputeInstantSnapshotIamBinding',
     barrel: 'compute',
