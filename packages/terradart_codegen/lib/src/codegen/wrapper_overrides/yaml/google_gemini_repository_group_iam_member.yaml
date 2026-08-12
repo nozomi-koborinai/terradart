@@ -1,0 +1,13 @@
+outputDir: gemini
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - repository_group_id
+  - code_repository_index
+  - role
+  - member
+  - condition
+  - location
+  - project

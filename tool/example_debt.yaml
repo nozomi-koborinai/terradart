@@ -489,6 +489,11 @@ GoogleNetworkServicesEdgeCacheService: gcp-cost Networking E505-1604-58F8 Media 
 GoogleNetworkServicesEdgeCacheOrigin: requires never_apply GoogleNetworkServicesEdgeCacheService; deferred with the Media CDN Edge Cache Wave
 GoogleNetworkServicesEdgeCacheKeyset: requires never_apply GoogleNetworkServicesEdgeCacheService; deferred with the Media CDN Edge Cache Wave
 GoogleGeminiCodeRepositoryIndex: gcp-cost Duet AI 719A-983F-202D Gemini Code Assist subscription SKU 7743-4D2E-8A79 $19/mo (Enterprise 78B4-81D7-89D8 $45/mo) — never_apply; seat/entitlement path; no applyable quickstart on terradart-validate
+# Gemini Code Assist repository group IAM — parent repository group uncurated;
+# sits under never_apply google_gemini_code_repository_index (Code Assist seats).
+GoogleGeminiRepositoryGroupIamMember: requires GoogleGeminiRepositoryGroup (uncurated) under never_apply GoogleGeminiCodeRepositoryIndex; deferred pending parent Wave
+GoogleGeminiRepositoryGroupIamBinding: requires Gemini repository group under never_apply code repository index; deferred with sibling member
+GoogleGeminiRepositoryGroupIamPolicy: requires Gemini repository group under never_apply code repository index; deferred with sibling member
 GoogleGeminiCodeToolsSetting: gcp-cost Duet AI 719A-983F-202D Gemini Code Assist subscription SKU 7743-4D2E-8A79 $19/mo (Enterprise 78B4-81D7-89D8 $45/mo) — never_apply; seat/entitlement path; no applyable quickstart on terradart-validate
 GoogleGeminiCodeToolsSettingBinding: requires never_apply GoogleGeminiCodeToolsSetting (+ Code Assist subscription); deferred with the Code Assist tools Wave
 GoogleSecureSourceManagerHook: requires never_apply GoogleSecureSourceManagerInstance (+ repository); deferred with the SSM instance Wave
