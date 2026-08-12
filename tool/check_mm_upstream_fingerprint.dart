@@ -66,6 +66,10 @@ const _fingerprintFalsePositives = <String>{
   // NCC InternalRange: effective_labels fingerprint but no
   // mmv1/products/networkconnectivity/InternalRange.yaml (404, probed 2026-08-11).
   'google_network_connectivity_internal_range',
+  // Compute instance-from-template: third_party
+  // resource_compute_instance_from_template.go.tmpl (+ meta.yaml); no
+  // mmv1/products/compute/InstanceFromTemplate.yaml (404, probed 2026-08-12).
+  'google_compute_instance_from_template',
 };
 
 bool _isIamAdjunct(String tfType) =>
