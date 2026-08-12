@@ -1,0 +1,98 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// A Snapshot must have exactly one [ComputeSnapshotSource]:
+  /// [ComputeSnapshotDiskSource] or [ComputeSnapshotInstantSource].
+  ///
+  /// Prefer [ComputeSnapshotDiskSource] for a durable copy of a PD; use
+  /// [ComputeSnapshotInstantSource] when promoting a zonal Instant Snapshot.
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+prelude: |
+  /// Snapshot source for [GoogleComputeSnapshot]. Sealed so the provider
+  /// `exactly_one_of` on `source_disk` / `source_instant_snapshot` is
+  /// exhaustive at the type level.
+  sealed class ComputeSnapshotSource {
+    const ComputeSnapshotSource();
+
+    /// Terraform attribute name (`source_disk` or `source_instant_snapshot`).
+    String get blockKey;
+
+    /// Scalar value written under [blockKey].
+    TfArg<String> get value;
+
+    Map<String, Object?> encode() => {blockKey: value.toTfJson()};
+  }
+
+  /// Create the snapshot from a Persistent Disk (name or self-link).
+  @immutable
+  final class ComputeSnapshotDiskSource extends ComputeSnapshotSource {
+    const ComputeSnapshotDiskSource({required this.sourceDisk});
+
+    final TfArg<String> sourceDisk;
+
+    @override
+    String get blockKey => 'source_disk';
+
+    @override
+    TfArg<String> get value => sourceDisk;
+  }
+
+  /// Create the snapshot from a zonal Instant Snapshot (name or self-link).
+  @immutable
+  final class ComputeSnapshotInstantSource extends ComputeSnapshotSource {
+    const ComputeSnapshotInstantSource({required this.sourceInstantSnapshot});
+
+    final TfArg<String> sourceInstantSnapshot;
+
+    @override
+    String get blockKey => 'source_instant_snapshot';
+
+    @override
+    TfArg<String> get value => sourceInstantSnapshot;
+  }
+
+paramOrder:
+  - name
+  - source
+  - description
+  - labels
+  - storage_locations
+  - snapshot_type
+  - chain_name
+  - deletion_policy
+  - zone
+  - project
+
+argMapOrder:
+  - name
+  - description
+  - labels
+  - storage_locations
+  - snapshot_type
+  - chain_name
+  - deletion_policy
+  - zone
+  - project
+  - source
+
+customSlots:
+  source:
+    paramDeclaration: 'required ComputeSnapshotSource source'
+    argMapEntry: 'source.blockKey: source.value,'
+
+dartTypeOverrides:
+  snapshot_type: ComputeSnapshotSnapshotType
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `self_link` attribute.
+    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');

@@ -305,6 +305,15 @@ final Map<String, Object Function()> _syntheticInstances = {
   'ComputeRouteVpnTunnelNextHop': () => ComputeRouteVpnTunnelNextHop(
       nextHopVpnTunnel: TfArg.literal('projects/p/regions/r/vpnTunnels/t')),
 
+  // --- ComputeSnapshotSource (2) — compute_snapshot ------------------------
+  'ComputeSnapshotDiskSource': () => ComputeSnapshotDiskSource(
+        sourceDisk: TfArg.literal('projects/p/zones/z/disks/d'),
+      ),
+  'ComputeSnapshotInstantSource': () => ComputeSnapshotInstantSource(
+        sourceInstantSnapshot:
+            TfArg.literal('projects/p/zones/z/instantSnapshots/s'),
+      ),
+
   // --- BigqueryConnectionBackend (7) — bigquery_connection -----------------
   'BigqueryConnectionCloudSql': () => BigqueryConnectionCloudSql(
         instanceId: TfArg.literal('p:us:inst'),

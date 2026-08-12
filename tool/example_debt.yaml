@@ -646,9 +646,10 @@ GoogleFolderIamPolicy: folder-scoped authoritative IAM policy; deferred with sib
 GoogleComputeImageIamMember: requires a parent GoogleComputeImage (uncurated; image storage bills while the image exists); deferred pending parent Wave
 GoogleComputeImageIamBinding: requires a parent GoogleComputeImage (uncurated); deferred with sibling member
 GoogleComputeImageIamPolicy: requires a parent GoogleComputeImage (uncurated); deferred with sibling member
-GoogleComputeSnapshotIamMember: requires a parent GoogleComputeSnapshot (uncurated; PD snapshot storage bills while the snapshot exists); deferred pending parent Wave
-GoogleComputeSnapshotIamBinding: requires a parent GoogleComputeSnapshot (uncurated); deferred with sibling member
-GoogleComputeSnapshotIamPolicy: requires a parent GoogleComputeSnapshot (uncurated); deferred with sibling member
+# PD Snapshot IAM binding/policy — sibling *IamMember already in
+# compute_quickstart (iam-adjunct-debt path).
+GoogleComputeSnapshotIamBinding: iam-adjunct-debt: sibling GoogleComputeSnapshotIamMember already in compute_quickstart; authoritative binding not needed in smoke
+GoogleComputeSnapshotIamPolicy: iam-adjunct-debt: sibling GoogleComputeSnapshotIamMember already in compute_quickstart; authoritative policy not needed in smoke
 # Zonal instant-snapshot IAM binding/policy — sibling *IamMember already in
 # compute_quickstart (iam-adjunct-debt path).
 GoogleComputeInstantSnapshotIamBinding: iam-adjunct-debt: sibling GoogleComputeInstantSnapshotIamMember already in compute_quickstart; authoritative binding not needed in smoke

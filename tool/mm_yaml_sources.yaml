@@ -828,6 +828,8 @@ files:
     upstream: mmv1/products/compute/RegionHealthCheck.yaml
   google_compute_instant_snapshot:
     upstream: mmv1/products/compute/InstantSnapshot.yaml
+  google_compute_snapshot:
+    upstream: mmv1/products/compute/Snapshot.yaml
   google_compute_region_instant_snapshot:
     upstream: mmv1/products/compute/RegionInstantSnapshot.yaml
   google_compute_region_instant_snapshot_iam_member:

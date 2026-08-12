@@ -748,6 +748,13 @@ export 'src/compute/google_compute_shared_vpc_host_project.dart'
     show GoogleComputeSharedVpcHostProject;
 export 'src/compute/google_compute_shared_vpc_service_project.dart'
     show GoogleComputeSharedVpcServiceProject;
+export 'src/compute/google_compute_snapshot.dart'
+    show
+        ComputeSnapshotDiskSource,
+        ComputeSnapshotInstantSource,
+        ComputeSnapshotSnapshotType,
+        ComputeSnapshotSource,
+        GoogleComputeSnapshot;
 export 'src/compute/google_compute_snapshot_iam_binding.dart'
     show GoogleComputeSnapshotIamBinding;
 export 'src/compute/google_compute_snapshot_iam_member.dart'
