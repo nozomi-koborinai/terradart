@@ -1,0 +1,17 @@
+outputDir: iam
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Workforce Identity Federation pool.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleIamWorkforcePoolIamMember] for additive grants.
+
+paramOrder:
+  - workforce_pool_id
+  - role
+  - members
+  - location
+  - condition
