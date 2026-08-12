@@ -9047,6 +9047,28 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_compute_region_commitment`.\n\nRepresents a regional Commitment resource.\n\nCreating a commitment resource means that you are purchasing a committed use\ncontract with an explicit start and end time. You can create commitments\nbased on vCPUs and memory usage and receive discounted rates.\n\nCompute Engine **regional commitment** — purchased committed-use contract\nfor vCPU / memory (and related resource types) in a region.\n\n**Cost / apply:** Compute Engine `6F81-5844-456A` bills commitment SKUs\nfor the contract term (e.g. Commitment v1 Cpu Virginia 1 Year SKU\n`00EE-95C9-2FF9` **\$0.021309/h** per vCPU; N1 Cpu Phoenix 1 Year\n`41AB-ED04-F989` **\$0.019915/h**). Provider MM sets\n`exclude_delete: true` — Terraform **cannot destroy** the commitment,\nso apply would strand a paid contract until term end.\nShips without a quickstart (`tool/example_debt.yaml`). **Never** wire\ninto apply-smoke.\n\n[plan] is `TWELVE_MONTH` or `THIRTY_SIX_MONTH`. Pair with [resources]\namounts (vCPU / MEMORY / …).\n\nDebt-only factory — CI retrigger marker.',
   ),
   CatalogEntry(
+    tfType: 'google_compute_region_composite_health_check',
+    className: 'GoogleComputeRegionCompositeHealthCheck',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_compute_region_composite_health_check`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'region',
+      'healthDestination',
+      'healthSources',
+      'description',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_region_composite_health_check`.\n\nA composite health check resource specifies the health source resources and\nthe health destination resource to which the aggregated health result from\nthe health source resources is delivered.\n\nRegional composite health check that AND\'s one or more\n[GoogleComputeRegionHealthSource] results against a regional INTERNAL /\nINTERNAL_MANAGED forwarding-rule destination ([healthDestination]).',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_region_disk',
     className: 'GoogleComputeRegionDisk',
     barrel: 'compute',
@@ -9157,6 +9179,29 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_compute_region_disk_resource_policy_attachment`.\n\nAdds existing resource policies to a disk. You can only add one policy which\nwill be applied to this disk for scheduling snapshot creation.\n\n~> **Note:** This resource does not support zonal disks\n(`google_compute_disk`). For zonal disks, please refer to\n[`google_compute_disk_resource_policy_attachment`](https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/compute_disk_resource_policy_attachment)\n\nAttaches an existing [GoogleComputeResourcePolicy] ([name]) to a\nregional persistent disk. Zonal disks use\n`google_compute_disk_resource_policy_attachment` instead.',
   ),
   CatalogEntry(
+    tfType: 'google_compute_region_health_aggregation_policy',
+    className: 'GoogleComputeRegionHealthAggregationPolicy',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_compute_region_health_aggregation_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'region',
+      'policyType',
+      'healthyPercentThreshold',
+      'minHealthyThreshold',
+      'description',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>['ComputeRegionHealthAggregationPolicyPolicyType'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_region_health_aggregation_policy`.\n\nThe Health Aggregation Policy specifies how to aggregate the service\'s\nconstituent source health status to determine an aggregated health status\nresult for the service. For example, you can specify a criteria such as\n“Consider the Health Source as `Healthy` if there are at least 5 healthy\nbackend endpoints”. Or, you can specify a criteria like “Consider the Health\nSource as `Healthy` if minimum 60% of endpoints in the Backend are healthy”.\nThe Health Aggregation Policy is applied to each Health Source (e.g. Backend\nService) individually.\n\nRegional health aggregation policy used by\n[GoogleComputeRegionHealthSource] / composite health checks. For regional\nresources set [policyType] to `BACKEND_SERVICE_POLICY`.',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_region_health_check',
     className: 'GoogleComputeRegionHealthCheck',
     barrel: 'compute',
@@ -9191,6 +9236,28 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_region_health_check`.\n\nHealth Checks determine whether instances are responsive and able to do\nwork. They are an important part of a comprehensive load balancing\nconfiguration, as they enable monitoring instances behind load balancers.\n\nHealth Checks poll instances at a specified interval. Instances that do not\nrespond successfully to some number of probes in a row are marked as\nunhealthy. No new connections are sent to unhealthy instances, though\nexisting connections will continue. The health check will continue to poll\nunhealthy instances. If an instance later responds successfully to some\nnumber of consecutive probes, it is marked healthy again and can receive new\nconnections.\n\nA **regional** health check polls instances behind a regional load\nbalancer at a configurable interval. Required by regional internal\n(`INTERNAL`) and internal-managed (`INTERNAL_MANAGED`) load\nbalancers; regional external schemes also accept it. For global\nload balancers use the regionless `google_compute_health_check`\n(curated separately).\n\n**Protocol invariant**: exactly one of the per-protocol config blocks\n([httpHealthCheck], [httpsHealthCheck], [http2HealthCheck],\n[tcpHealthCheck], [sslHealthCheck], [grpcHealthCheck]) must be set,\nand the choice determines the value the GCP API will compute for\n`type` (which is read-only on this resource — accessible via the\nderived `type` getter). The Terraform provider rejects configurations\nwith multiple blocks or none.\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_compute_region_health_check.`).\n- `name`: GCP health-check resource name (1-63 chars, lowercase\n  RFC1035). Forces replacement when changed.\n- [region]: GCP region the health check lives in (e.g.\n  `\'us-central1\'`). Required in practice — without it the provider\n  falls back to the provider-level default region, which is rarely\n  what callers want and makes the resource non-portable across\n  environments. Pass `TfArg.literal(\'asia-northeast1\')` or\n  `TfArg.ref(...)` against a tfvar.\n\nExample (HTTPS regional health check):\n```dart\nfinal apiHc = GoogleComputeRegionHealthCheck(\n  localName: \'api_hc\',\n  name: TfArg.literal(\'api-region-hc\'),\n  region: TfArg.literal(\'asia-northeast1\'),\n  checkIntervalSec: TfArg.literal(10),\n  timeoutSec: TfArg.literal(5),\n  healthyThreshold: TfArg.literal(2),\n  unhealthyThreshold: TfArg.literal(3),\n  httpsHealthCheck: const ComputeRegionHealthCheckRegionHealthCheckHttpsConfig(\n    port: 443,\n    requestPath: \'/healthz\',\n    portSpecification:\n        RegionHealthCheckPortSpecification.useFixedPort,\n  ),\n  logConfig: const ComputeRegionHealthCheckRegionHealthCheckLogConfig(enable: true),\n);\n```\n\nCross-resource references:\n- Attach via `google_compute_region_backend_service.health_checks`\n  (list of self-links; that resource is curated separately).\n\nComposition pattern: extends `Resource`\nfor runtime behavior.',
+  ),
+  CatalogEntry(
+    tfType: 'google_compute_region_health_source',
+    className: 'GoogleComputeRegionHealthSource',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_region_health_source`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'region',
+      'sourceType',
+      'healthAggregationPolicy',
+      'sources',
+      'description',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>['ComputeRegionHealthSourceSourceType'],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_region_health_source`.\n\nA health source resource specifies the source resources and the health\naggregation policy applied to the source resources to determine the\naggregated health status.\n\nRegional health source that aggregates backend-service health via a\n[GoogleComputeRegionHealthAggregationPolicy]. [sourceType] must be\n`BACKEND_SERVICE`; [sources] is a single INTERNAL / INTERNAL_MANAGED\nbackend service URL.',
   ),
   CatalogEntry(
     tfType: 'google_compute_region_instance_group_manager',
@@ -9462,6 +9529,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_compute_region_network_firewall_policy`.\n\nThe Compute NetworkFirewallPolicy resource',
   ),
   CatalogEntry(
+    tfType: 'google_compute_region_network_firewall_policy_association',
+    className: 'GoogleComputeRegionNetworkFirewallPolicyAssociation',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_compute_region_network_firewall_policy_association`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'firewallPolicy',
+      'attachmentTarget',
+      'region',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_region_network_firewall_policy_association`.\n\nThe Compute NetworkFirewallPolicyAssociation resource\n\nAssociates a regional [GoogleComputeRegionNetworkFirewallPolicy] with a\nVPC network ([attachmentTarget] = network self-link). Regional sibling\nof [GoogleComputeNetworkFirewallPolicyAssociation].',
+  ),
+  CatalogEntry(
     tfType: 'google_compute_region_network_firewall_policy_iam_binding',
     className: 'GoogleComputeRegionNetworkFirewallPolicyIamBinding',
     barrel: 'compute',
@@ -9556,6 +9644,37 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_region_network_firewall_policy_rule`.\n\nRepresents a rule that describes one or more match conditions along with the\naction to be taken when traffic matches this condition (allow or deny).\n\nRegional network firewall policy rule — allow/deny match on a\n[GoogleComputeRegionNetworkFirewallPolicy].\n\nMinimal ingress allow example (any source, TCP 443):\n```dart\nGoogleComputeRegionNetworkFirewallPolicyRule(\n  localName: \'allow_https\',\n  firewallPolicy: TfArg.ref(policy.nameRef),\n  region: TfArg.literal(\'asia-northeast1\'),\n  priority: TfArg.literal(1000),\n  action: TfArg.literal(\'allow\'),\n  direction: TfArg.literal(\n    ComputeRegionNetworkFirewallPolicyRuleDirection.ingress,\n  ),\n  match: ComputeRegionNetworkFirewallPolicyRuleMatch(\n    srcIpRanges: TfArg.literal([\'0.0.0.0/0\']),\n    layer4Configs: [\n      ComputeRegionNetworkFirewallPolicyRuleMatchLayer4Configs(\n        ipProtocol: TfArg.literal(\'tcp\'),\n        ports: TfArg.literal([\'443\']),\n      ),\n    ],\n  ),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_compute_region_network_firewall_policy_with_rules',
+    className: 'GoogleComputeRegionNetworkFirewallPolicyWithRules',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_compute_region_network_firewall_policy_with_rules`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'region',
+      'rule',
+      'description',
+      'policyType',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'ComputeRegionNetworkFirewallPolicyWithRulesPolicyType',
+      'ComputeRegionNetworkFirewallPolicyWithRulesRule',
+      'ComputeRegionNetworkFirewallPolicyWithRulesRuleDirection',
+      'ComputeRegionNetworkFirewallPolicyWithRulesRuleTargetType',
+      'ComputeRegionNetworkFirewallPolicyWithRulesRuleMatch',
+      'ComputeRegionNetworkFirewallPolicyWithRulesRuleMatchLayer4Config',
+      'ComputeRegionNetworkFirewallPolicyWithRulesRuleMatchSrcSecureTag',
+      'ComputeRegionNetworkFirewallPolicyWithRulesRuleTargetSecureTag',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_region_network_firewall_policy_with_rules`.\n\nThe Compute NetworkFirewallPolicy with rules resource\n\nRegional network firewall policy that embeds its rules in one resource\n(`rule` blocks) instead of separate\n`google_compute_region_network_firewall_policy_rule` children. Prefer the\nsplit policy + rule factories when rules are owned by multiple stacks.',
   ),
   CatalogEntry(
     tfType: 'google_compute_region_per_instance_config',
@@ -10676,6 +10795,30 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_target_https_proxy`.\n\nRepresents a TargetHttpsProxy resource, which is used by one or more global\nforwarding rule to route incoming HTTPS requests to a URL map.\n\nA global HTTPS target proxy — the TLS-terminating node in the GCP\nexternal HTTP(S) load-balancer chain. The full chain is:\n\n```\ngoogle_compute_global_forwarding_rule.target\n  → google_compute_target_https_proxy\n    → google_compute_target_https_proxy.url_map\n      → google_compute_url_map.default_service\n        → google_compute_backend_service\n```\n\nRequired identity:\n- [localName]: Terraform local name (the address segment after\n  `google_compute_target_https_proxy.`).\n- `name`: GCP target proxy resource name. Pass\n  `TfArg.literal(\'lb-https-proxy\')` or\n  `TfArg.ref(otherProxy.nameRef)`.\n- `urlMap`: self-link of the upstream\n  [GoogleComputeUrlMap]. Pass `TfArg.ref(urlMap.selfLink)` so the\n  value resolves to\n  `\${google_compute_url_map.<localName>.self_link}`.\n\nTLS material — exactly one of:\n- `sslCertificates`: list of self-links to\n  [GoogleComputeSslCertificate] or\n  [GoogleComputeManagedSslCertificate] resources. Up to 15 entries.\n  The classic certificate path; works for EXTERNAL and\n  EXTERNAL_MANAGED load-balancing schemes.\n- `certificateManagerCertificates`: list of Certificate Manager\n  certificate URLs (the\n  `//certificatemanager.googleapis.com/projects/{p}/locations/{l}/certificates/{r}`\n  form, or the bare `projects/.../certificates/{r}` self-link).\n  Only valid when the load-balancing scheme is INTERNAL_MANAGED.\n  Mutually exclusive with `sslCertificates`.\n\nExample (classic SSL certificate, external HTTPS LB):\n```dart\nfinal httpsProxy = GoogleComputeTargetHttpsProxy(\n  localName: \'lb_https\',\n  name: TfArg.literal(\'lb-https-proxy\'),\n  urlMap: TfArg.ref(urlMap.selfLink),\n  sslCertificates: TfArg.literal(const [\n    \'projects/my-proj/global/sslCertificates/my-cert\',\n  ]),\n  sslPolicy: TfArg.ref(var.ssl_policy_id),\n  quicOverride: TfArg.literal(QuicOverride.enable),\n);\n```\n\n`sslPolicy` is the self-link of a [GoogleComputeSslPolicy] (Batch 4 in\nthe curation roadmap). When passed via input variable use\n`TfArg.ref(var.ssl_policy_id)`.\n\nComposition pattern: extends `Resource`\nfor runtime behavior.',
+  ),
+  CatalogEntry(
+    tfType: 'google_compute_target_pool',
+    className: 'GoogleComputeTargetPool',
+    barrel: 'compute',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_compute_target_pool`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'region',
+      'description',
+      'instances',
+      'healthChecks',
+      'sessionAffinity',
+      'backupPool',
+      'failoverRatio',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_compute_target_pool`.\n\nLegacy Network Load Balancer target pool. Optional [healthChecks] accept\nonly a legacy [GoogleComputeHttpHealthCheck] (not the newer health-check\nresources). Prefer backend services for new HTTP(S) load balancers.',
   ),
   CatalogEntry(
     tfType: 'google_compute_target_ssl_proxy',

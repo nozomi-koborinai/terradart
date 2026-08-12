@@ -1,0 +1,31 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+dartTypeOverrides:
+  policy_type: ComputeRegionHealthAggregationPolicyPolicyType
+
+curatedDoc: |-
+  /// Regional health aggregation policy used by
+  /// [GoogleComputeRegionHealthSource] / composite health checks. For regional
+  /// resources set [policyType] to `BACKEND_SERVICE_POLICY`.
+
+paramOrder:
+  - name
+  - region
+  - policy_type
+  - healthy_percent_threshold
+  - min_healthy_threshold
+  - description
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `self_link_with_id` attribute.
+    TfRef<String> get selfLinkWithId =>
+        TfRef.attribute<String>(this, 'self_link_with_id');

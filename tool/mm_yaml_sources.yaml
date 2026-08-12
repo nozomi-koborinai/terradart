@@ -332,6 +332,19 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_compute_region_network_firewall_policy_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_compute_region_network_firewall_policy_association:
+    upstream: mmv1/products/compute/RegionNetworkFirewallPolicyAssociation.yaml
+  google_compute_region_network_firewall_policy_with_rules:
+    upstream: mmv1/products/compute/RegionNetworkFirewallPolicyWithRules.yaml
+  google_compute_region_composite_health_check:
+    upstream: mmv1/products/compute/RegionCompositeHealthCheck.yaml
+  google_compute_region_health_aggregation_policy:
+    upstream: mmv1/products/compute/RegionHealthAggregationPolicy.yaml
+  google_compute_region_health_source:
+    upstream: mmv1/products/compute/RegionHealthSource.yaml
+  google_compute_target_pool:
+    upstream: null  # handwritten third_party resource_compute_target_pool.go.tmpl (no TargetPool.yaml)
+
   google_compute_region_commitment:
     upstream: mmv1/products/compute/RegionCommitment.yaml
   google_compute_resource_policy:

@@ -54,8 +54,6 @@ resource "google_compute_router" "router" {
   region  = "us-central1"
 }
 
-# --- Not curated yet (expected: not in catalog) ---
-
 resource "google_compute_router_nat" "nat" {
   name                               = "example-nat"
   router                             = google_compute_router.router.name
@@ -64,8 +62,12 @@ resource "google_compute_router_nat" "nat" {
   source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
 }
 
-resource "google_compute_target_pool" "pool" {
-  name = "example-pool"
+# --- Not curated yet (expected: not in catalog) ---
+
+resource "google_compute_target_instance" "ti" {
+  name     = "example-target-instance"
+  instance = "projects/example-dogfood-project/zones/us-central1-a/instances/example"
+  zone     = "us-central1-a"
 }
 
 module "network" {

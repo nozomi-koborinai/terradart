@@ -640,6 +640,14 @@ GoogleFolderIamMember: folder-scoped IAM; requires folders/{id} under an organiz
 GoogleFolderIamBinding: folder-scoped authoritative IAM binding; deferred with sibling member (no folder on terradart-validate)
 GoogleFolderIamPolicy: folder-scoped authoritative IAM policy; deferred with sibling member (no folder on terradart-validate)
 
+# Regional composite health check family needs an INTERNAL /
+# INTERNAL_MANAGED backend service + forwarding rule scaffolding that is
+# out of scope for compute_quickstart (sibling GoogleComputeRegionHealthAggregationPolicy
+# is covered there). Cover the dependents via debt until a dedicated ILB
+# health-aggregation example lands.
+GoogleComputeRegionHealthSource: requires a regional INTERNAL/INTERNAL_MANAGED BackendService URL plus GoogleComputeRegionHealthAggregationPolicy; scaffolding an ILB stack solely for this adjunct is out of scope for compute_quickstart (aggregation policy alone is covered there)
+GoogleComputeRegionCompositeHealthCheck: requires a regional INTERNAL/INTERNAL_MANAGED ForwardingRule destination and ≥1 GoogleComputeRegionHealthSource; deferred with GoogleComputeRegionHealthSource
+
 # Compute image / snapshot / instant-snapshot IAM — parents are not curated
 # yet (custom images and snapshots bill storage while they exist). Cover via
 # debt until a parent Wave lands with an applyable or never_apply path.

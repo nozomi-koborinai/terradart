@@ -14,10 +14,10 @@ import 'package:test/test.dart';
 /// many top-level keys we intentionally ignore), unlike the hand-written maps
 /// in the other tests.
 ///
-/// At capture time coverage was 80% (8/10), with `google_compute_router_nat`
-/// and `google_compute_target_pool` the two not-in-catalog types. The
-/// assertions below deliberately avoid pinning that exact percentage so the
-/// test survives catalog growth; they pin the catalog-independent parse and the
+/// At capture time (after curating `google_compute_target_pool`) the
+/// not-in-catalog type is `google_compute_target_instance`. The assertions
+/// below deliberately avoid pinning that exact percentage so the test
+/// survives catalog growth; they pin the catalog-independent parse and the
 /// structural invariants instead.
 void main() {
   final json =

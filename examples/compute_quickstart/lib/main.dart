@@ -31,9 +31,11 @@
 /// `GoogleComputeInstanceFromTemplate`, and
 /// `GoogleComputeDiskAsyncReplication` round out the zonal Compute surface.
 ///
-/// Also covers network firewall association/rule/`with_rules`, a PSC
-/// `GoogleComputeNetworkAttachment`, NEG `GoogleComputeNetworkEndpoints`,
-/// legacy `GoogleComputeHttpHealthCheck` / `GoogleComputeHttpsHealthCheck`,
+/// Also covers network firewall association/rule/`with_rules` (global +
+/// regional), a PSC `GoogleComputeNetworkAttachment`, NEG
+/// `GoogleComputeNetworkEndpoints`, legacy
+/// `GoogleComputeHttpHealthCheck` / `GoogleComputeHttpsHealthCheck`, a
+/// legacy `GoogleComputeTargetPool`, regional health aggregation policy,
 /// regional instance template + region MIG per-instance config, zonal
 /// per-instance config, and resource-policy attachments (instance +
 /// regional disk).
@@ -781,7 +783,7 @@ final class NetworkStack extends Stack {
       ),
     );
 
-    add(
+    final legacyHttpHc = add(
       GoogleComputeHttpHealthCheck(
         localName: 'ops_legacy_http_hc',
         name: TfArg.literal('ops-legacy-http-hc'),
@@ -798,6 +800,21 @@ final class NetworkStack extends Stack {
         requestPath: TfArg.literal('/'),
         port: TfArg.literal(443),
         dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleComputeTargetPool(
+        localName: 'ops_legacy_target_pool',
+        name: TfArg.literal('ops-legacy-target-pool'),
+        region: TfArg.literal('asia-northeast1'),
+        description: TfArg.literal('Legacy NLB target pool (demo)'),
+        instances: TfArg.literal([bastion.selfLink.interpolation]),
+        healthChecks: TfArg.literal([legacyHttpHc.selfLink.interpolation]),
+        dependsOn: [
+          ResourceDependency(bastion),
+          ResourceDependency(legacyHttpHc),
+        ],
       ),
     );
 
@@ -853,6 +870,65 @@ final class NetworkStack extends Stack {
           ResourceDependency(regionalFirewallPolicy),
           ResourceDependency(oncallSre),
         ],
+      ),
+    );
+
+    add(
+      GoogleComputeRegionNetworkFirewallPolicyAssociation(
+        localName: 'ops_regional_edge_policy_assoc',
+        name: TfArg.literal('ops-regional-edge-policy-assoc'),
+        firewallPolicy: TfArg.ref(regionalFirewallPolicy.nameRef),
+        attachmentTarget: TfArg.ref(mainVpc.selfLink),
+        region: TfArg.literal('asia-northeast1'),
+        dependsOn: [
+          ResourceDependency(regionalFirewallPolicy),
+          ResourceDependency(mainVpc),
+        ],
+      ),
+    );
+
+    add(
+      GoogleComputeRegionNetworkFirewallPolicyWithRules(
+        localName: 'ops_regional_edge_with_rules',
+        name: TfArg.literal('ops-regional-edge-with-rules'),
+        region: TfArg.literal('asia-northeast1'),
+        description:
+            TfArg.literal('Regional firewall policy with embedded rules'),
+        rule: [
+          ComputeRegionNetworkFirewallPolicyWithRulesRule(
+            action: TfArg.literal('allow'),
+            direction: TfArg.literal(
+              ComputeRegionNetworkFirewallPolicyWithRulesRuleDirection.ingress,
+            ),
+            priority: TfArg.literal(1000),
+            ruleName: TfArg.literal('allow-https'),
+            match: ComputeRegionNetworkFirewallPolicyWithRulesRuleMatch(
+              srcIpRanges: TfArg.literal(['0.0.0.0/0']),
+              layer4Config: [
+                ComputeRegionNetworkFirewallPolicyWithRulesRuleMatchLayer4Config(
+                  ipProtocol: TfArg.literal('tcp'),
+                  ports: TfArg.literal(['443']),
+                ),
+              ],
+            ),
+          ),
+        ],
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleComputeRegionHealthAggregationPolicy(
+        localName: 'ops_health_agg',
+        name: TfArg.literal('ops-health-agg'),
+        region: TfArg.literal('asia-northeast1'),
+        policyType: TfArg.literal(
+          ComputeRegionHealthAggregationPolicyPolicyType.backendServicePolicy,
+        ),
+        healthyPercentThreshold: TfArg.literal(60),
+        minHealthyThreshold: TfArg.literal(1),
+        description: TfArg.literal('Regional health aggregation policy (demo)'),
+        dependsOn: apiDeps,
       ),
     );
 
