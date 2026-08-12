@@ -649,9 +649,10 @@ GoogleComputeImageIamPolicy: requires a parent GoogleComputeImage (uncurated); d
 GoogleComputeSnapshotIamMember: requires a parent GoogleComputeSnapshot (uncurated; PD snapshot storage bills while the snapshot exists); deferred pending parent Wave
 GoogleComputeSnapshotIamBinding: requires a parent GoogleComputeSnapshot (uncurated); deferred with sibling member
 GoogleComputeSnapshotIamPolicy: requires a parent GoogleComputeSnapshot (uncurated); deferred with sibling member
-GoogleComputeInstantSnapshotIamMember: requires a parent GoogleComputeInstantSnapshot (uncurated; instant snapshot storage bills while it exists); deferred pending parent Wave
-GoogleComputeInstantSnapshotIamBinding: requires a parent GoogleComputeInstantSnapshot (uncurated); deferred with sibling member
-GoogleComputeInstantSnapshotIamPolicy: requires a parent GoogleComputeInstantSnapshot (uncurated); deferred with sibling member
+# Zonal instant-snapshot IAM binding/policy — sibling *IamMember already in
+# compute_quickstart (iam-adjunct-debt path).
+GoogleComputeInstantSnapshotIamBinding: iam-adjunct-debt: sibling GoogleComputeInstantSnapshotIamMember already in compute_quickstart; authoritative binding not needed in smoke
+GoogleComputeInstantSnapshotIamPolicy: iam-adjunct-debt: sibling GoogleComputeInstantSnapshotIamMember already in compute_quickstart; authoritative policy not needed in smoke
 
 # Compute Engine IAM binding/policy — sibling *IamMember already in
 # compute_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
