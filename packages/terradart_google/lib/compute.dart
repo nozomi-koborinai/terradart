@@ -186,6 +186,13 @@ export 'src/compute/google_compute_health_check.dart'
         HealthCheckPortSpecification,
         HealthCheckProxyHeader,
         HealthCheckType;
+export 'src/compute/google_compute_image.dart'
+    show
+        ComputeImageDiskSource,
+        ComputeImageImageSource,
+        ComputeImageSnapshotSource,
+        ComputeImageSource,
+        GoogleComputeImage;
 export 'src/compute/google_compute_image_iam_binding.dart'
     show GoogleComputeImageIamBinding;
 export 'src/compute/google_compute_image_iam_member.dart'

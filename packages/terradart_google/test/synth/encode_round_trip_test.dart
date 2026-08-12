@@ -314,6 +314,17 @@ final Map<String, Object Function()> _syntheticInstances = {
             TfArg.literal('projects/p/zones/z/instantSnapshots/s'),
       ),
 
+  // --- ComputeImageSource (3) — compute_image ------------------------------
+  'ComputeImageDiskSource': () => ComputeImageDiskSource(
+        sourceDisk: TfArg.literal('projects/p/zones/z/disks/d'),
+      ),
+  'ComputeImageImageSource': () => ComputeImageImageSource(
+        sourceImage: TfArg.literal('projects/p/global/images/i'),
+      ),
+  'ComputeImageSnapshotSource': () => ComputeImageSnapshotSource(
+        sourceSnapshot: TfArg.literal('projects/p/global/snapshots/s'),
+      ),
+
   // --- BigqueryConnectionBackend (7) — bigquery_connection -----------------
   'BigqueryConnectionCloudSql': () => BigqueryConnectionCloudSql(
         instanceId: TfArg.literal('p:us:inst'),
