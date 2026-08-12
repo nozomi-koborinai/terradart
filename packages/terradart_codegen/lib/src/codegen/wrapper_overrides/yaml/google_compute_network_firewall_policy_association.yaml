@@ -1,0 +1,21 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Associates a global [GoogleComputeNetworkFirewallPolicy] with a VPC
+  /// network ([attachmentTarget] = network self-link). One association per
+  /// network per policy.
+
+paramOrder:
+  - name
+  - firewall_policy
+  - attachment_target
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

@@ -30,6 +30,10 @@
 /// named port), `GoogleComputeAttachedDisk`,
 /// `GoogleComputeInstanceFromTemplate`, and
 /// `GoogleComputeDiskAsyncReplication` round out the zonal Compute surface.
+///
+/// Also covers network firewall association/rule/`with_rules`, a PSC
+/// `GoogleComputeNetworkAttachment`, NEG `GoogleComputeNetworkEndpoints`,
+/// and a legacy `GoogleComputeHttpHealthCheck`.
 library;
 
 import 'dart:convert';
@@ -621,6 +625,134 @@ final class NetworkStack extends Stack {
           ResourceDependency(edgeFirewallPolicy),
           ResourceDependency(oncallSre),
         ],
+      ),
+    );
+
+    add(
+      GoogleComputeNetworkFirewallPolicyAssociation(
+        localName: 'ops_edge_policy_assoc',
+        name: TfArg.literal('ops-edge-policy-assoc'),
+        firewallPolicy: TfArg.ref(edgeFirewallPolicy.nameRef),
+        attachmentTarget: TfArg.ref(mainVpc.selfLink),
+        dependsOn: [
+          ResourceDependency(edgeFirewallPolicy),
+          ResourceDependency(mainVpc),
+        ],
+      ),
+    );
+
+    add(
+      GoogleComputeNetworkFirewallPolicyRule(
+        localName: 'ops_edge_allow_https',
+        firewallPolicy: TfArg.ref(edgeFirewallPolicy.nameRef),
+        priority: TfArg.literal(1000),
+        action: TfArg.literal('allow'),
+        direction: TfArg.literal(
+          ComputeNetworkFirewallPolicyRuleDirection.ingress,
+        ),
+        ruleName: TfArg.literal('allow-https'),
+        description: TfArg.literal('Allow ingress TCP 443 (global demo)'),
+        match: ComputeNetworkFirewallPolicyRuleMatch(
+          srcIpRanges: TfArg.literal(['0.0.0.0/0']),
+          layer4Configs: [
+            ComputeNetworkFirewallPolicyRuleMatchLayer4Configs(
+              ipProtocol: TfArg.literal('tcp'),
+              ports: TfArg.literal(['443']),
+            ),
+          ],
+        ),
+        dependsOn: [ResourceDependency(edgeFirewallPolicy)],
+      ),
+    );
+
+    // Embedded-rules variant of a global network firewall policy (separate
+    // from the split policy + rule factories above).
+    add(
+      GoogleComputeNetworkFirewallPolicyWithRules(
+        localName: 'ops_edge_with_rules',
+        name: TfArg.literal('ops-edge-with-rules'),
+        description:
+            TfArg.literal('Global firewall policy with embedded rules'),
+        rule: [
+          ComputeNetworkFirewallPolicyWithRulesRule(
+            action: TfArg.literal('allow'),
+            direction: TfArg.literal(
+              ComputeNetworkFirewallPolicyWithRulesRuleDirection.ingress,
+            ),
+            priority: TfArg.literal(1000),
+            ruleName: TfArg.literal('allow-https'),
+            match: ComputeNetworkFirewallPolicyWithRulesRuleMatch(
+              srcIpRanges: TfArg.literal(['0.0.0.0/0']),
+              layer4Config: [
+                ComputeNetworkFirewallPolicyWithRulesRuleMatchLayer4Config(
+                  ipProtocol: TfArg.literal('tcp'),
+                  ports: TfArg.literal(['443']),
+                ),
+              ],
+            ),
+          ),
+        ],
+        dependsOn: apiDeps,
+      ),
+    );
+
+    // ---- PSC network attachment + NEG endpoints + legacy HTTP HC ----------
+
+    add(
+      GoogleComputeNetworkAttachment(
+        localName: 'ops_psc_attachment',
+        name: TfArg.literal('ops-psc-attachment'),
+        region: TfArg.literal('asia-northeast1'),
+        connectionPreference: TfArg.literal(
+          ComputeNetworkAttachmentConnectionPreference.acceptAutomatic,
+        ),
+        subnetworks: TfArg.literal([workloadSubnet.selfLink.interpolation]),
+        dependsOn: [
+          ResourceDependency(workloadSubnet),
+          ...apiDeps,
+        ],
+      ),
+    );
+
+    final bastionNeg = add(
+      GoogleComputeNetworkEndpointGroup(
+        localName: 'ops_bastion_neg',
+        name: TfArg.literal('ops-bastion-neg'),
+        zone: TfArg.literal('asia-northeast1-a'),
+        network: TfArg.ref(mainVpc.selfLink),
+        subnetwork: TfArg.ref(workloadSubnet.selfLink),
+        networkEndpointType:
+            TfArg.literal(NetworkEndpointGroupType.gceVmIpPort),
+        defaultPort: TfArg.literal(80),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleComputeNetworkEndpoints(
+        localName: 'ops_bastion_neg_eps',
+        networkEndpointGroup: TfArg.ref(bastionNeg.nameRef),
+        zone: TfArg.literal('asia-northeast1-a'),
+        networkEndpoints: [
+          ComputeNetworkEndpointsNetworkEndpoints(
+            instance: TfArg.ref(bastion.nameRef),
+            port: TfArg.literal(80),
+          ),
+        ],
+        dependsOn: [
+          ResourceDependency(bastionNeg),
+          ResourceDependency(bastion),
+        ],
+      ),
+    );
+
+    add(
+      GoogleComputeHttpHealthCheck(
+        localName: 'ops_legacy_http_hc',
+        name: TfArg.literal('ops-legacy-http-hc'),
+        requestPath: TfArg.literal('/'),
+        port: TfArg.literal(80),
+        dependsOn: apiDeps,
       ),
     );
 

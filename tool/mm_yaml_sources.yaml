@@ -306,6 +306,12 @@ files:
     upstream: null  # IAM adjunct
   google_compute_network_firewall_policy:
     upstream: mmv1/products/compute/NetworkFirewallPolicy.yaml
+  google_compute_network_firewall_policy_association:
+    upstream: mmv1/products/compute/NetworkFirewallPolicyAssociation.yaml
+  google_compute_network_firewall_policy_rule:
+    upstream: mmv1/products/compute/NetworkFirewallPolicyRule.yaml
+  google_compute_network_firewall_policy_with_rules:
+    upstream: mmv1/products/compute/NetworkFirewallPolicyWithRules.yaml
   google_compute_network_firewall_policy_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_compute_network_firewall_policy_iam_binding:
@@ -812,6 +818,12 @@ files:
     upstream: mmv1/products/compute/ManagedSslCertificate.yaml
   google_compute_network_endpoint_group:
     upstream: mmv1/products/compute/NetworkEndpointGroup.yaml
+  google_compute_network_endpoints:
+    upstream: mmv1/products/compute/NetworkEndpoints.yaml
+  google_compute_network_attachment:
+    upstream: mmv1/products/compute/NetworkAttachment.yaml
+  google_compute_http_health_check:
+    upstream: mmv1/products/compute/HttpHealthCheck.yaml
   google_compute_region_autoscaler:
     upstream: mmv1/products/compute/RegionAutoscaler.yaml
   google_compute_region_backend_service:

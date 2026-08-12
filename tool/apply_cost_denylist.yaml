@@ -514,6 +514,12 @@ google_compute_firewall_policy_iam_member: safe  # billing-behavior: IAM binding
 google_compute_firewall_policy_iam_binding: safe  # billing-behavior: IAM binding — no resource charge
 google_compute_firewall_policy_iam_policy: safe  # billing-behavior: IAM policy — no resource charge
 google_compute_network_firewall_policy: safe  # apply-verified safe (existing example)
+google_compute_network_firewall_policy_association: safe  # gcp-cost: no Cloud Billing Catalog SKU (list_skus Compute Engine 6F81-5844-456A + Network Security E749-01A2-AE1F keyword firewall/Network Firewall → 0); billing-behavior: VPC↔policy association metadata only
+google_compute_network_firewall_policy_rule: safe  # gcp-cost: no Cloud Billing Catalog SKU (same Compute Engine / Network Security lookup → 0); billing-behavior: child rule config on a global network firewall policy — no separate charge
+google_compute_network_firewall_policy_with_rules: safe  # gcp-cost: no Cloud Billing Catalog SKU (same Compute Engine / Network Security lookup → 0); billing-behavior: policy + embedded rules are configuration-only
+google_compute_network_attachment: safe  # gcp-cost: no Cloud Billing Catalog SKU (list_skus Compute Engine 6F81-5844-456A keyword "network attachment" → 0); billing-behavior: PSC producer attachment metadata — consumer traffic bills elsewhere
+google_compute_network_endpoints: safe  # gcp-cost: no Cloud Billing Catalog SKU (list_skus Compute Engine 6F81-5844-456A keyword "network endpoint" → 0); billing-behavior: NEG membership list sync — no separate charge
+google_compute_http_health_check: safe  # gcp-cost: no Cloud Billing Catalog SKU (list_skus Compute Engine 6F81-5844-456A keyword "http health" → 0); billing-behavior: legacy HTTP health-check probe config — no existence/hourly charge for the check object
 google_compute_network_firewall_policy_iam_binding: safe  # billing-behavior: IAM binding on a network firewall policy; sets policy only, zero billing
 google_compute_network_firewall_policy_iam_member: safe  # billing-behavior: IAM binding on a network firewall policy; sets policy only, zero billing
 google_compute_network_firewall_policy_iam_policy: safe  # billing-behavior: IAM policy on a network firewall policy; sets policy only, zero billing
