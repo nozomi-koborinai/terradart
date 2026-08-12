@@ -13,6 +13,8 @@ export 'src/compute/google_compute_address.dart'
         IpVersion,
         Ipv6EndpointType,
         NetworkTier;
+export 'src/compute/google_compute_attached_disk.dart'
+    show GoogleComputeAttachedDisk;
 export 'src/compute/google_compute_autoscaler.dart'
     show
         AutoscalerCpuPredictiveMethod,
@@ -84,6 +86,8 @@ export 'src/compute/google_compute_disk.dart'
         ComputeDiskGuestOsFeature,
         ComputeDiskGuestOsFeatureType,
         GoogleComputeDisk;
+export 'src/compute/google_compute_disk_async_replication.dart'
+    show GoogleComputeDiskAsyncReplication;
 export 'src/compute/google_compute_disk_iam_binding.dart'
     show GoogleComputeDiskIamBinding;
 export 'src/compute/google_compute_disk_iam_member.dart'
@@ -232,6 +236,10 @@ export 'src/compute/google_compute_instance.dart'
         ProvisioningModel,
         ReservationAffinityType,
         ScratchDiskInterface;
+export 'src/compute/google_compute_instance_from_template.dart'
+    show GoogleComputeInstanceFromTemplate;
+export 'src/compute/google_compute_instance_group.dart'
+    show GoogleComputeInstanceGroup;
 export 'src/compute/google_compute_instance_group_manager.dart'
     show
         ComputeInstanceGroupManagerInstanceGroupManagerAllInstancesConfig,
@@ -251,6 +259,10 @@ export 'src/compute/google_compute_instance_group_manager.dart'
         InstanceGroupManagerUpdatePolicyAction,
         InstanceGroupManagerUpdatePolicyReplacementMethod,
         InstanceGroupManagerUpdatePolicyType;
+export 'src/compute/google_compute_instance_group_membership.dart'
+    show GoogleComputeInstanceGroupMembership;
+export 'src/compute/google_compute_instance_group_named_port.dart'
+    show GoogleComputeInstanceGroupNamedPort;
 export 'src/compute/google_compute_instance_iam_binding.dart'
     show GoogleComputeInstanceIamBinding;
 export 'src/compute/google_compute_instance_iam_member.dart'

@@ -832,6 +832,18 @@ files:
     upstream: mmv1/products/compute/Snapshot.yaml
   google_compute_image:
     upstream: mmv1/products/compute/Image.yaml
+  google_compute_attached_disk:
+    upstream: null  # third_party terraform/services/compute/resource_compute_attached_disk.go.tmpl
+  google_compute_disk_async_replication:
+    upstream: null  # third_party terraform/services/compute/resource_compute_disk_async_replication.go
+  google_compute_instance_from_template:
+    upstream: null  # third_party terraform/services/compute/resource_compute_instance_from_template.go.tmpl
+  google_compute_instance_group:
+    upstream: mmv1/products/compute/InstanceGroup.yaml
+  google_compute_instance_group_membership:
+    upstream: mmv1/products/compute/InstanceGroupMembership.yaml
+  google_compute_instance_group_named_port:
+    upstream: mmv1/products/compute/InstanceGroupNamedPort.yaml
   google_compute_region_instant_snapshot:
     upstream: mmv1/products/compute/RegionInstantSnapshot.yaml
   google_compute_region_instant_snapshot_iam_member:

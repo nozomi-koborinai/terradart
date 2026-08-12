@@ -1,0 +1,15 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+paramOrder:
+  - disk
+  - instance
+  - device_name
+  - mode
+  - interface
+  - deletion_policy
+  - zone
+  - project

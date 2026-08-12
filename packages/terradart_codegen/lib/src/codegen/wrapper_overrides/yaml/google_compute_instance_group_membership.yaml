@@ -1,0 +1,17 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Adds one VM to an unmanaged `google_compute_instance_group` without
+  /// rewriting the group's full [instances] list. Prefer this for
+  /// additive membership when other stacks also attach members.
+
+paramOrder:
+  - instance
+  - instance_group
+  - zone
+  - deletion_policy
+  - project

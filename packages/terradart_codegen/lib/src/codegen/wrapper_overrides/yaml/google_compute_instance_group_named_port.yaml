@@ -1,0 +1,22 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Declares a named port on an unmanaged instance group (or GKE node
+  /// pool's instance group URL) without rewriting the group's full
+  /// `named_port` list. Useful when load balancers target a port by name.
+
+paramOrder:
+  - group
+  - name
+  - port
+  - zone
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

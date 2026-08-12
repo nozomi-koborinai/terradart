@@ -1,0 +1,53 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+deriveNestedTypes: true
+
+# Freeze nested override blocks for now — instance_from_template inherits
+# most shape from the template; typed nested helpers can land in a follow-up.
+nestedTypeExcludes:
+  - advanced_machine_features
+  - attached_disk
+  - boot_disk
+  - confidential_instance_config
+  - guest_accelerator
+  - instance_encryption_key
+  - network_interface
+  - network_performance_config
+  - params
+  - reservation_affinity
+  - scheduling
+  - scratch_disk
+  - service_account
+  - shielded_instance_config
+  - workload_identity_config
+
+curatedDoc: |-
+  /// Creates a Compute Engine VM from an existing
+  /// `google_compute_instance_template` (or regional template). Fields
+  /// omitted here inherit from the template; any supplied field overrides
+  /// the template value for this instance only.
+  ///
+  /// Required:
+  /// - [name]: instance name (ForcesNew).
+  /// - [sourceInstanceTemplate]: self-link of the template.
+  ///
+  /// Nested override blocks mirror `google_compute_instance` (boot disk,
+  /// network interface, scheduling, …). Prefer the template for shared
+  /// shape and override only instance-specific fields here.
+
+# Natural schema order (scalars + nested override blocks). Do not pin
+# paramOrder here — omitting a nested block from an explicit list silently
+# drops it from the constructor.
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `self_link` attribute.
+    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
+
+    /// Reference to `instance_id` attribute.
+    TfRef<String> get instanceId => TfRef.attribute<String>(this, 'instance_id');

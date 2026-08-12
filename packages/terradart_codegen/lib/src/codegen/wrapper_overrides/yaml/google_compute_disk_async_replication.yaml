@@ -1,0 +1,20 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Starts asynchronous replication between a primary zonal/regional disk
+  /// and a secondary disk in another region. Both disks must already exist;
+  /// this resource only manages the replication relationship.
+  ///
+  /// Required:
+  /// - [primaryDisk]: self-link or id of the primary disk.
+  /// - [secondaryDisk]: nested block with the secondary disk self-link
+  ///   (`disk`) and optional `customer_encryption_key`.
+
+paramOrder:
+  - primary_disk
+  - secondary_disk
+  - deletion_policy
