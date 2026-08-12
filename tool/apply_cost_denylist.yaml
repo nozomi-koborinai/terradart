@@ -41,6 +41,8 @@ safe_exception: google_compute_instance_group_membership  # membership binding m
 safe_exception: google_compute_instance_group_named_port  # named-port metadata on an IG — _instance substring false positive
 safe_exception: google_service_directory_endpoint  # Service Directory metadata record, no existence billing — _endpoint false positive
 safe_exception: google_network_connectivity_regional_endpoint  # NCC PSC regional endpoint metadata for Google APIs; no existence billing (NCC 7BEB-7A51-4223 has no endpoint SKU) — _endpoint false positive
+safe_exception: google_compute_network_endpoint_group  # zonal NEG metadata; member endpoints bill elsewhere — _endpoint false positive
+safe_exception: google_compute_network_endpoints  # authoritative NEG membership sync; no separate charge — _endpoint false positive
 safe_exception: google_bigtable_instance_iam_member  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
 safe_exception: google_bigtable_instance_iam_policy  # IAM policy on Bigtable instance; no existence billing — _instance substring false positive
 safe_exception: google_bigtable_instance_iam_binding  # IAM binding on Bigtable instance; no existence billing — _instance substring false positive
@@ -518,6 +520,7 @@ google_compute_network_firewall_policy_association: safe  # gcp-cost: no Cloud B
 google_compute_network_firewall_policy_rule: safe  # gcp-cost: no Cloud Billing Catalog SKU (same Compute Engine / Network Security lookup → 0); billing-behavior: child rule config on a global network firewall policy — no separate charge
 google_compute_network_firewall_policy_with_rules: safe  # gcp-cost: no Cloud Billing Catalog SKU (same Compute Engine / Network Security lookup → 0); billing-behavior: policy + embedded rules are configuration-only
 google_compute_network_attachment: safe  # gcp-cost: no Cloud Billing Catalog SKU (list_skus Compute Engine 6F81-5844-456A keyword "network attachment" → 0); billing-behavior: PSC producer attachment metadata — consumer traffic bills elsewhere
+google_compute_network_endpoint_group: safe  # gcp-cost: no Cloud Billing Catalog SKU (list_skus Compute Engine 6F81-5844-456A keyword "endpoint group"/"NEG" → 0); billing-behavior: zonal NEG is membership metadata — backends/traffic bill elsewhere
 google_compute_network_endpoints: safe  # gcp-cost: no Cloud Billing Catalog SKU (list_skus Compute Engine 6F81-5844-456A keyword "network endpoint" → 0); billing-behavior: NEG membership list sync — no separate charge
 google_compute_http_health_check: safe  # gcp-cost: no Cloud Billing Catalog SKU (list_skus Compute Engine 6F81-5844-456A keyword "http health" → 0); billing-behavior: legacy HTTP health-check probe config — no existence/hourly charge for the check object
 google_compute_network_firewall_policy_iam_binding: safe  # billing-behavior: IAM binding on a network firewall policy; sets policy only, zero billing
