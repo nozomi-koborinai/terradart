@@ -409,6 +409,9 @@ google_cloud_run_v2_service: safe  # apply-verified safe (existing example)
 google_cloud_run_v2_service_iam_member: safe  # apply-verified safe (existing example)
 google_cloud_run_v2_service_iam_binding: safe  # billing-behavior: IAM binding only
 google_cloud_run_v2_service_iam_policy: safe  # billing-behavior: IAM policy only
+google_cloud_run_service_iam_member: safe  # billing-behavior: IAM binding only
+google_cloud_run_service_iam_binding: safe  # billing-behavior: IAM binding only
+google_cloud_run_service_iam_policy: safe  # billing-behavior: IAM policy only
 google_cloud_run_v2_worker_pool: safe  # apply-verified safe (existing example)
 google_cloud_run_v2_worker_pool_iam_member: safe  # apply-verified safe (existing example)
 google_cloud_run_v2_worker_pool_iam_binding: safe  # billing-behavior: IAM binding only
@@ -417,6 +420,9 @@ google_cloud_tasks_queue_iam_binding: safe  # billing-behavior: IAM binding only
 google_cloud_tasks_queue_iam_policy: safe  # billing-behavior: IAM policy only
 google_cloudfunctions2_function_iam_binding: safe  # billing-behavior: IAM binding only
 google_cloudfunctions2_function_iam_policy: safe  # billing-behavior: IAM policy only
+google_cloudfunctions_function_iam_member: safe  # billing-behavior: IAM binding only
+google_cloudfunctions_function_iam_binding: safe  # billing-behavior: IAM binding only
+google_cloudfunctions_function_iam_policy: safe  # billing-behavior: IAM policy only
 google_binary_authorization_attestor: safe  # gcp-cost: no Cloud Billing Catalog SKU (policy metadata); billing-behavior: attestor config only, no hourly/existence billing
 google_binary_authorization_attestor_iam_member: safe  # billing-behavior: IAM binding only
 google_binary_authorization_attestor_iam_binding: safe  # billing-behavior: IAM binding only

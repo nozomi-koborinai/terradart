@@ -727,6 +727,12 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_cloud_run_v2_service_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloud_run_service_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloud_run_service_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloud_run_service_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_cloud_run_v2_job_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_cloud_run_v2_job_iam_binding:
@@ -1008,6 +1014,12 @@ files:
   google_cloudfunctions2_function_iam_binding:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_cloudfunctions2_function_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloudfunctions_function_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloudfunctions_function_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_cloudfunctions_function_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
   # Wave 8 (GKE core)
   google_container_cluster:

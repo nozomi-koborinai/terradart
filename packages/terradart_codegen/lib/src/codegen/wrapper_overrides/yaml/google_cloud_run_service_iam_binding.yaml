@@ -1,0 +1,19 @@
+outputDir: cloud_run
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud Run (v1) service.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleCloudRunServiceIamMember] for additive grants.
+  /// Prefer [GoogleCloudRunV2ServiceIamMember] for Cloud Run v2 services.
+
+paramOrder:
+  - service
+  - role
+  - members
+  - condition
+  - location
+  - project

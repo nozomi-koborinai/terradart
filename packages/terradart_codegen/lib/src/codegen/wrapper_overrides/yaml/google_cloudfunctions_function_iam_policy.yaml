@@ -1,0 +1,17 @@
+outputDir: cloudfunctions
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM policy for a Cloud Functions (1st gen) function.
+  ///
+  /// `policy_data` replaces the entire IAM policy, overwriting grants made
+  /// outside Terraform. Prefer [GoogleCloudfunctionsFunctionIamMember] for single-principal grants.
+  /// Prefer [GoogleCloudfunctions2FunctionIamMember] for 2nd gen functions.
+
+paramOrder:
+  - cloud_function
+  - policy_data
+  - region
+  - project
