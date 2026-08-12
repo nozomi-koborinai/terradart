@@ -1,0 +1,19 @@
+outputDir: gemini
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Gemini Code Assist repository group.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleGeminiRepositoryGroupIamMember] for additive grants.
+
+paramOrder:
+  - repository_group_id
+  - code_repository_index
+  - role
+  - members
+  - condition
+  - location
+  - project

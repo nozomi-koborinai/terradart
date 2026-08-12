@@ -1042,6 +1042,12 @@ files:
     upstream: mmv1/products/gkehub2/Fleet.yaml
   google_gemini_code_repository_index:
     upstream: mmv1/products/gemini/CodeRepositoryIndex.yaml
+  google_gemini_repository_group_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_gemini_repository_group_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_gemini_repository_group_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_gemini_code_tools_setting:
     upstream: mmv1/products/gemini/CodeToolsSetting.yaml
   google_gemini_code_tools_setting_binding:

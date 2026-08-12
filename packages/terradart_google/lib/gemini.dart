@@ -34,3 +34,9 @@ export 'src/gemini/google_gemini_release_channel_setting_binding.dart'
     show
         GeminiReleaseChannelSettingBindingProduct,
         GoogleGeminiReleaseChannelSettingBinding;
+export 'src/gemini/google_gemini_repository_group_iam_binding.dart'
+    show GoogleGeminiRepositoryGroupIamBinding;
+export 'src/gemini/google_gemini_repository_group_iam_member.dart'
+    show GoogleGeminiRepositoryGroupIamMember;
+export 'src/gemini/google_gemini_repository_group_iam_policy.dart'
+    show GoogleGeminiRepositoryGroupIamPolicy;
