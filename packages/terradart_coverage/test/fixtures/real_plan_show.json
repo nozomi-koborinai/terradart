@@ -84,21 +84,16 @@
           }
         },
         {
-          "address": "google_compute_target_instance.ti",
+          "address": "google_compute_backend_bucket_signed_url_key.cdn_key",
           "mode": "managed",
-          "type": "google_compute_target_instance",
-          "name": "ti",
+          "type": "google_compute_backend_bucket_signed_url_key",
+          "name": "cdn_key",
           "provider_name": "registry.terraform.io/hashicorp/google",
           "schema_version": 0,
           "values": {
-            "deletion_policy": "DELETE",
-            "description": null,
-            "name": "example-target-instance",
-            "project": "example-dogfood-project",
-            "region": "us-central1",
-            "timeouts": null,
-            "zone": "us-central1-a",
-            "instance": "projects/example-dogfood-project/zones/us-central1-a/instances/example"
+            "name": "example-cdn-key",
+            "key_value": "random-key-value-0123456789",
+            "backend_bucket": "example-backend-bucket"
           },
           "sensitive_values": {
             "instances": []
@@ -484,10 +479,10 @@
       }
     },
     {
-      "address": "google_compute_target_instance.ti",
+      "address": "google_compute_backend_bucket_signed_url_key.cdn_key",
       "mode": "managed",
-      "type": "google_compute_target_instance",
-      "name": "ti",
+      "type": "google_compute_backend_bucket_signed_url_key",
+      "name": "cdn_key",
       "provider_name": "registry.terraform.io/hashicorp/google",
       "change": {
         "actions": [
@@ -495,14 +490,9 @@
         ],
         "before": null,
         "after": {
-          "deletion_policy": "DELETE",
-          "description": null,
-          "name": "example-target-instance",
-          "project": "example-dogfood-project",
-          "region": "us-central1",
-          "timeouts": null,
-          "zone": "us-central1-a",
-          "instance": "projects/example-dogfood-project/zones/us-central1-a/instances/example"
+          "name": "example-cdn-key",
+          "key_value": "random-key-value-0123456789",
+          "backend_bucket": "example-backend-bucket"
         },
         "after_unknown": {
           "id": true,
@@ -988,20 +978,20 @@
           "schema_version": 0
         },
         {
-          "address": "google_compute_target_instance.ti",
+          "address": "google_compute_backend_bucket_signed_url_key.cdn_key",
           "mode": "managed",
-          "type": "google_compute_target_instance",
-          "name": "ti",
+          "type": "google_compute_backend_bucket_signed_url_key",
+          "name": "cdn_key",
           "provider_config_key": "google",
           "expressions": {
             "name": {
-              "constant_value": "example-target-instance"
+              "constant_value": "example-cdn-key"
             },
-            "zone": {
-              "constant_value": "us-central1-a"
+            "key_value": {
+              "constant_value": "random-key-value-0123456789"
             },
-            "instance": {
-              "constant_value": "projects/example-dogfood-project/zones/us-central1-a/instances/example"
+            "backend_bucket": {
+              "constant_value": "example-backend-bucket"
             }
           },
           "schema_version": 0

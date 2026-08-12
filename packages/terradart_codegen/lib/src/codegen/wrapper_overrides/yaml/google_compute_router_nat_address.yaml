@@ -1,0 +1,20 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Extra NAT IPs (and optional drain IPs) for a
+  /// [GoogleComputeRouterNat] that uses `MANUAL_ONLY`. Set
+  /// [initialNatIps] on the NAT itself — do not also set [natIps] there
+  /// or Terraform will permadiff.
+
+paramOrder:
+  - router
+  - router_nat
+  - nat_ips
+  - drain_nat_ips
+  - region
+  - deletion_policy
+  - project

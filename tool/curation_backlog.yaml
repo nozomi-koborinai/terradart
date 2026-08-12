@@ -27,24 +27,6 @@
 
 entries:
   # --- compute (project-scoped Wave candidates; unsuitable skipped) ---
-  - resource: google_compute_target_instance
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_compute_target_grpc_proxy
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_compute_router_nat_address
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_compute_router_route_policy
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_compute_project_metadata
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_compute_resize_request
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
   - resource: google_compute_backend_bucket_signed_url_key
     detected_at: 2026-08-12
     provider_version: 7.43.0

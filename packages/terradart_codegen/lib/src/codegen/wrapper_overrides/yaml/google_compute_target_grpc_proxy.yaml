@@ -1,0 +1,25 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Global gRPC target proxy. [urlMap] must point at a
+  /// [GoogleComputeUrlMap] whose default backend uses protocol `GRPC`.
+  /// Set [validateForProxyless] when gRPC clients skip the sidecar proxy.
+
+paramOrder:
+  - name
+  - url_map
+  - description
+  - validate_for_proxyless
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `self_link` attribute.
+    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');

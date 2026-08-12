@@ -363,6 +363,9 @@ files:
     upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML; probe 404)
   google_compute_project_metadata_item:
     upstream: null  # handwritten in terraform-provider-google (no mmv1 YAML)
+  google_compute_project_metadata:
+    upstream: null  # handwritten third_party resource_compute_project_metadata.go.tmpl (no ProjectMetadata.yaml)
+
   google_compute_preview_feature:
     upstream: mmv1/products/compute/PreviewFeature.yaml
   google_compute_disk_resource_policy_attachment:
@@ -911,6 +914,10 @@ files:
     upstream: mmv1/products/compute/TargetHttpsProxy.yaml
   google_compute_url_map:
     upstream: mmv1/products/compute/UrlMap.yaml
+  google_compute_target_instance:
+    upstream: mmv1/products/compute/TargetInstance.yaml
+  google_compute_target_grpc_proxy:
+    upstream: mmv1/products/compute/TargetGrpcProxy.yaml
 
   # Wave 7 — Data ops + observability + CI/CD (Plan 5.H).
   # MM URLs are best-effort guesses; Batch 0 probes each and rewrites to
@@ -1150,6 +1157,8 @@ files:
   # Wave 13 (Compute LB follow-up)
   google_compute_region_resize_request:
     upstream: mmv1/products/compute/RegionResizeRequest.yaml
+  google_compute_resize_request:
+    upstream: mmv1/products/compute/ResizeRequest.yaml
   google_compute_region_ssl_certificate:
     upstream: mmv1/products/compute/RegionSslCertificate.yaml
   google_compute_network_endpoint:
@@ -1565,6 +1574,10 @@ files:
     upstream: mmv1/products/compute/Router.yaml
   google_compute_router_nat:
     upstream: mmv1/products/compute/RouterNat.yaml
+  google_compute_router_nat_address:
+    upstream: mmv1/products/compute/RouterNatAddress.yaml
+  google_compute_router_route_policy:
+    upstream: mmv1/products/compute/RouterRoutePolicy.yaml
   google_compute_network_peering:
     upstream: null  # third_party terraform/services/compute/resource_compute_network_peering.go
   google_compute_vpn_gateway:

@@ -14,11 +14,11 @@ import 'package:test/test.dart';
 /// many top-level keys we intentionally ignore), unlike the hand-written maps
 /// in the other tests.
 ///
-/// At capture time (after curating `google_compute_target_pool`) the
-/// not-in-catalog type is `google_compute_target_instance`. The assertions
-/// below deliberately avoid pinning that exact percentage so the test
-/// survives catalog growth; they pin the catalog-independent parse and the
-/// structural invariants instead.
+/// At capture time (after curating `google_compute_target_instance`) the
+/// not-in-catalog type is `google_compute_backend_bucket_signed_url_key`.
+/// The assertions below deliberately avoid pinning that exact percentage
+/// so the test survives catalog growth; they pin the catalog-independent
+/// parse and the structural invariants instead.
 void main() {
   final json =
       jsonDecode(File('test/fixtures/real_plan_show.json').readAsStringSync())

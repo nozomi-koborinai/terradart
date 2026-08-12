@@ -21,6 +21,10 @@
 # project. Tracked here rather than forced into an example that would fail the
 # apply-smoke sweep.
 GoogleComputeRegionResizeRequest: gcp-cost Compute Engine 6F81-5844-456A On Demand H100 80GB GPU Sao Paulo 0526-B904-9D8B $15.55594/h — never_apply DWS Flex Start GPU capacity; requires DWS-compatible regional MIG absent on terradart-validate
+GoogleComputeResizeRequest: gcp-cost Compute Engine 6F81-5844-456A On Demand H100 80GB GPU Sao Paulo 0526-B904-9D8B $15.55594/h — never_apply DWS Flex Start GPU capacity; zonal sibling of GoogleComputeRegionResizeRequest; requires DWS-compatible MIG absent on terradart-validate
+GoogleComputeTargetGrpcProxy: needs a UrlMap whose default backend uses protocol GRPC (plus a GRPC BackendService); scaffolding an L7 gRPC chain is out of scope for compute_quickstart, and compute_lb_quickstart already documents grpc proxy as out of scope (skip-listed for TLS)
+GoogleComputeProjectMetadata: authoritative project-wide Compute metadata map — replaces every metadata key (same footgun as upstream google_compute_project_metadata); unsafe on the shared terradart-validate project. Prefer GoogleComputeProjectMetadataItem (already in compute_route_quickstart)
+
 GoogleMonitoringService: typed google_monitoring_service needs a basic_service identifier bound to a real well-known service (App Engine / Istio / etc.) absent from a bare project; the applyable GoogleMonitoringCustomService is exercised by monitoring_quickstart instead
 GoogleMonitoringMonitoredProject: links another project into a metrics scope — self-linking the scoping project is rejected, and cross-project linking needs a second project plus roles/monitoring.admin on both, which a standalone apply-smoke project can't provide
 
