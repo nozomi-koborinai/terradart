@@ -955,6 +955,9 @@ google_cloudbuildv2_connection_iam_policy: safe  # billing-behavior: IAM policy 
 google_iam_workload_identity_pool_iam_member: safe  # billing-behavior: IAM binding only
 google_iam_workload_identity_pool_iam_binding: safe  # billing-behavior: IAM binding only
 google_iam_workload_identity_pool_iam_policy: safe  # billing-behavior: IAM policy only
+google_iam_workforce_pool_iam_member: safe  # billing-behavior: IAM binding only
+google_iam_workforce_pool_iam_binding: safe  # billing-behavior: IAM binding only
+google_iam_workforce_pool_iam_policy: safe  # billing-behavior: IAM policy only
 google_privateca_certificate_template_iam_member: safe  # billing-behavior: IAM binding only
 google_privateca_certificate_template_iam_binding: safe  # billing-behavior: IAM binding only
 google_privateca_certificate_template_iam_policy: safe  # billing-behavior: IAM policy only

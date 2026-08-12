@@ -5,6 +5,12 @@
 /// `pubsub.dart` exports `GooglePubsubTopicIamMember`).
 library;
 
+export 'src/iam/google_iam_workforce_pool_iam_binding.dart'
+    show GoogleIamWorkforcePoolIamBinding;
+export 'src/iam/google_iam_workforce_pool_iam_member.dart'
+    show GoogleIamWorkforcePoolIamMember;
+export 'src/iam/google_iam_workforce_pool_iam_policy.dart'
+    show GoogleIamWorkforcePoolIamPolicy;
 export 'src/iam/google_iam_workload_identity_pool.dart'
     show GoogleIamWorkloadIdentityPool, WorkloadIdentityPoolMode;
 export 'src/iam/google_iam_workload_identity_pool_iam_binding.dart'

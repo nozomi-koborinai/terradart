@@ -1,0 +1,11 @@
+outputDir: iam
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - workforce_pool_id
+  - role
+  - member
+  - location
+  - condition

@@ -2220,6 +2220,12 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_iam_workload_identity_pool_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iam_workforce_pool_iam_member:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iam_workforce_pool_iam_binding:
+    upstream: null  # MM templates IAM bindings; schema-only curation
+  google_iam_workforce_pool_iam_policy:
+    upstream: null  # MM templates IAM bindings; schema-only curation
   google_privateca_certificate_template_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_privateca_certificate_template_iam_binding:
