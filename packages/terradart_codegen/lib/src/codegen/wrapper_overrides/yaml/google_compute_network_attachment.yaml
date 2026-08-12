@@ -1,0 +1,32 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+dartTypeOverrides:
+  connection_preference: ComputeNetworkAttachmentConnectionPreference
+
+curatedDoc: |-
+  /// A regional Network Attachment for Private Service Connect producer
+  /// acceptance. Consumers connect into the listed [subnetworks]; use
+  /// [connectionPreference] (`ACCEPT_AUTOMATIC` / `ACCEPT_MANUAL`) plus
+  /// optional producer accept/reject project lists.
+
+paramOrder:
+  - name
+  - region
+  - connection_preference
+  - subnetworks
+  - description
+  - producer_accept_lists
+  - producer_reject_lists
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `self_link` attribute.
+    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');

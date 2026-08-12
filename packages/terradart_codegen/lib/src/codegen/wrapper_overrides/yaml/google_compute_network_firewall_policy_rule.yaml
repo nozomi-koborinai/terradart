@@ -1,0 +1,57 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  direction: ComputeNetworkFirewallPolicyRuleDirection
+
+curatedDoc: |-
+  /// Global network firewall policy rule — allow/deny match on a
+  /// [GoogleComputeNetworkFirewallPolicy].
+  ///
+  /// Minimal ingress allow example (any source, TCP 443):
+  /// ```dart
+  /// GoogleComputeNetworkFirewallPolicyRule(
+  ///   localName: 'allow_https',
+  ///   firewallPolicy: TfArg.ref(policy.nameRef),
+  ///   priority: TfArg.literal(1000),
+  ///   action: TfArg.literal('allow'),
+  ///   direction: TfArg.literal(
+  ///     ComputeNetworkFirewallPolicyRuleDirection.ingress,
+  ///   ),
+  ///   match: ComputeNetworkFirewallPolicyRuleMatch(
+  ///     srcIpRanges: TfArg.literal(['0.0.0.0/0']),
+  ///     layer4Configs: [
+  ///       ComputeNetworkFirewallPolicyRuleMatchLayer4Configs(
+  ///         ipProtocol: TfArg.literal('tcp'),
+  ///         ports: TfArg.literal(['443']),
+  ///       ),
+  ///     ],
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - firewall_policy
+  - priority
+  - action
+  - direction
+  - match
+  - rule_name
+  - description
+  - disabled
+  - enable_logging
+  - target_service_accounts
+  - target_secure_tags
+  - target_type
+  - target_forwarding_rules
+  - security_profile_group
+  - tls_inspect
+  - deletion_policy
+  - project

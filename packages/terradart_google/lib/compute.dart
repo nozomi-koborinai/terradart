@@ -190,6 +190,8 @@ export 'src/compute/google_compute_health_check.dart'
         HealthCheckPortSpecification,
         HealthCheckProxyHeader,
         HealthCheckType;
+export 'src/compute/google_compute_http_health_check.dart'
+    show GoogleComputeHttpHealthCheck;
 export 'src/compute/google_compute_image.dart'
     show
         ComputeImageDiskSource,
@@ -356,18 +358,47 @@ export 'src/compute/google_compute_network.dart'
         GoogleComputeNetwork,
         NetworkFirewallPolicyEnforcementOrder,
         RoutingMode;
+export 'src/compute/google_compute_network_attachment.dart'
+    show
+        ComputeNetworkAttachmentConnectionPreference,
+        GoogleComputeNetworkAttachment;
 export 'src/compute/google_compute_network_endpoint.dart'
     show GoogleComputeNetworkEndpoint;
 export 'src/compute/google_compute_network_endpoint_group.dart'
     show GoogleComputeNetworkEndpointGroup, NetworkEndpointGroupType;
+export 'src/compute/google_compute_network_endpoints.dart'
+    show ComputeNetworkEndpointsNetworkEndpoints, GoogleComputeNetworkEndpoints;
 export 'src/compute/google_compute_network_firewall_policy.dart'
     show GoogleComputeNetworkFirewallPolicy;
+export 'src/compute/google_compute_network_firewall_policy_association.dart'
+    show GoogleComputeNetworkFirewallPolicyAssociation;
 export 'src/compute/google_compute_network_firewall_policy_iam_binding.dart'
     show GoogleComputeNetworkFirewallPolicyIamBinding;
 export 'src/compute/google_compute_network_firewall_policy_iam_member.dart'
     show GoogleComputeNetworkFirewallPolicyIamMember;
 export 'src/compute/google_compute_network_firewall_policy_iam_policy.dart'
     show GoogleComputeNetworkFirewallPolicyIamPolicy;
+export 'src/compute/google_compute_network_firewall_policy_rule.dart'
+    show
+        ComputeNetworkFirewallPolicyRuleDirection,
+        ComputeNetworkFirewallPolicyRuleMatch,
+        ComputeNetworkFirewallPolicyRuleMatchDestNetworkContext,
+        ComputeNetworkFirewallPolicyRuleMatchLayer4Configs,
+        ComputeNetworkFirewallPolicyRuleMatchSrcNetworkContext,
+        ComputeNetworkFirewallPolicyRuleMatchSrcSecureTags,
+        ComputeNetworkFirewallPolicyRuleTargetSecureTags,
+        ComputeNetworkFirewallPolicyRuleTargetType,
+        GoogleComputeNetworkFirewallPolicyRule;
+export 'src/compute/google_compute_network_firewall_policy_with_rules.dart'
+    show
+        ComputeNetworkFirewallPolicyWithRulesPolicyType,
+        ComputeNetworkFirewallPolicyWithRulesRule,
+        ComputeNetworkFirewallPolicyWithRulesRuleDirection,
+        ComputeNetworkFirewallPolicyWithRulesRuleMatch,
+        ComputeNetworkFirewallPolicyWithRulesRuleMatchLayer4Config,
+        ComputeNetworkFirewallPolicyWithRulesRuleMatchSrcSecureTag,
+        ComputeNetworkFirewallPolicyWithRulesRuleTargetSecureTag,
+        GoogleComputeNetworkFirewallPolicyWithRules;
 export 'src/compute/google_compute_network_peering.dart'
     show
         ComputeNetworkPeeringStackType,
