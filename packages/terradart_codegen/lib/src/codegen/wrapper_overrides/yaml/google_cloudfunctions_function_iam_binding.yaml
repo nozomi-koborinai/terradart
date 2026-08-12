@@ -1,0 +1,19 @@
+outputDir: cloudfunctions
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Authoritative IAM binding for a single `role` on a Cloud Functions (1st gen) function.
+  ///
+  /// Replaces the entire member list for that role, overwriting grants made
+  /// outside Terraform. Prefer [GoogleCloudfunctionsFunctionIamMember] for additive grants.
+  /// Prefer [GoogleCloudfunctions2FunctionIamMember] for 2nd gen functions.
+
+paramOrder:
+  - cloud_function
+  - role
+  - members
+  - condition
+  - region
+  - project

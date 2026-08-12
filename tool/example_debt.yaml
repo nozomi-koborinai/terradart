@@ -712,6 +712,15 @@ GoogleEndpointsServiceConsumersIamMember: requires Endpoints service_name + cons
 GoogleEndpointsServiceConsumersIamBinding: requires Endpoints service consumer scope (parent uncurated); deferred with sibling member
 GoogleEndpointsServiceConsumersIamPolicy: requires Endpoints service consumer scope (parent uncurated); deferred with sibling member
 
+# Legacy Cloud Run (v1) / Cloud Functions (1st gen) IAM — parents uncurated;
+# prefer Cloud Run v2 / Cloud Functions 2nd gen factories in examples.
+GoogleCloudRunServiceIamMember: requires a parent google_cloud_run_service (uncurated v1 API); prefer GoogleCloudRunV2ServiceIamMember — deferred pending parent Wave
+GoogleCloudRunServiceIamBinding: requires a parent google_cloud_run_service (uncurated v1 API); deferred with sibling member
+GoogleCloudRunServiceIamPolicy: requires a parent google_cloud_run_service (uncurated v1 API); deferred with sibling member
+GoogleCloudfunctionsFunctionIamMember: requires a parent google_cloudfunctions_function (uncurated 1st gen); prefer GoogleCloudfunctions2FunctionIamMember — deferred pending parent Wave
+GoogleCloudfunctionsFunctionIamBinding: requires a parent google_cloudfunctions_function (uncurated 1st gen); deferred with sibling member
+GoogleCloudfunctionsFunctionIamPolicy: requires a parent google_cloudfunctions_function (uncurated 1st gen); deferred with sibling member
+
 # BigQuery dataset/table/connection IAM binding/policy — sibling *IamMember
 # already in bigquery_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
 GoogleBigqueryDatapolicyv2DataPolicyIamBinding: iam-adjunct-debt: sibling GoogleBigqueryDatapolicyv2DataPolicyIamMember already in bigquery_datapolicyv2_quickstart; authoritative binding not needed in smoke

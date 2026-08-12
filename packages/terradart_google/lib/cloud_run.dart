@@ -3,6 +3,12 @@
 /// Cloud Run v2 services + jobs.
 library;
 
+export 'src/cloud_run/google_cloud_run_service_iam_binding.dart'
+    show GoogleCloudRunServiceIamBinding;
+export 'src/cloud_run/google_cloud_run_service_iam_member.dart'
+    show GoogleCloudRunServiceIamMember;
+export 'src/cloud_run/google_cloud_run_service_iam_policy.dart'
+    show GoogleCloudRunServiceIamPolicy;
 export 'src/cloud_run/google_cloud_run_v2_job.dart'
     show
         CloudRunV2JobBinaryAuthorization,

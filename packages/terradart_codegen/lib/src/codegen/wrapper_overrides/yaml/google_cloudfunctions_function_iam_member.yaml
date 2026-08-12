@@ -1,0 +1,12 @@
+outputDir: cloudfunctions
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - cloud_function
+  - role
+  - member
+  - condition
+  - region
+  - project

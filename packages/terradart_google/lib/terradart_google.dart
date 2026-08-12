@@ -42,6 +42,7 @@ export 'cloud_sql.dart';
 export 'cloud_support.dart';
 export 'cloud_tasks.dart';
 export 'clouddeploy.dart';
+export 'cloudfunctions.dart';
 export 'colab.dart';
 export 'composer.dart';
 export 'compute.dart';

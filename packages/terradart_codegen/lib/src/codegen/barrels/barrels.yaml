@@ -140,6 +140,10 @@ barrels:
     doc: |-
       /// Cloud Functions Gen 2 — serverless function execution with build + deploy
       /// from source.
+  cloudfunctions:
+    doc: |-
+      /// Cloud Functions (1st gen) IAM — grant roles on legacy
+      /// `google_cloudfunctions_function` resources.
   cloud_ids:
     doc: |-
       /// Cloud IDS — managed intrusion detection endpoints attached to VPC
