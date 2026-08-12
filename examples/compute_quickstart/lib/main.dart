@@ -21,8 +21,9 @@
 /// Regional network firewall policy + rule + IAM member extend the global
 /// network firewall policy demo for the regional surface.
 ///
-/// Also covers a zonal `GoogleComputeInstantSnapshot` (+ IAM member) and a
-/// durable `GoogleComputeSnapshot` (+ IAM member) of the scratch disk,
+/// Also covers a zonal `GoogleComputeInstantSnapshot` (+ IAM member), a
+/// durable `GoogleComputeSnapshot` (+ IAM member), and a custom
+/// `GoogleComputeImage` (+ IAM member) promoted from that snapshot,
 /// alongside the regional instant-snapshot demo.
 library;
 
@@ -486,6 +487,33 @@ final class NetworkStack extends Stack {
         dependsOn: [
           ResourceDependency(oncallSre),
           ResourceDependency(scratchSnapshot),
+        ],
+      ),
+    );
+
+    // Custom Image from the PD Snapshot (Compute Image IAM parent).
+    final scratchImage = add(
+      GoogleComputeImage(
+        localName: 'scratch_image',
+        name: TfArg.literal('ops-scratch-image'),
+        source: ComputeImageSnapshotSource(
+          sourceSnapshot: TfArg.ref(scratchSnapshot.selfLink),
+        ),
+        family: TfArg.literal('ops-scratch'),
+        storageLocations: TfArg.literal(['asia-northeast1']),
+        dependsOn: [ResourceDependency(scratchSnapshot)],
+      ),
+    );
+
+    add(
+      GoogleComputeImageIamMember(
+        localName: 'scratch_image_viewer',
+        image: TfArg.ref(scratchImage.nameRef),
+        role: TfArg.literal('roles/compute.viewer'),
+        member: TfArg.ref(oncallSre.iamMember),
+        dependsOn: [
+          ResourceDependency(oncallSre),
+          ResourceDependency(scratchImage),
         ],
       ),
     );

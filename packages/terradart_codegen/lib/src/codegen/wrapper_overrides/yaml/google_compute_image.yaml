@@ -1,0 +1,129 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+deriveNestedTypes: true
+
+# Thin curation: seal scalar sources only. Freeze nested blocks (guest OS
+# features, raw_disk GCS import, encryption keys, shielded state, params)
+# until a follow-up types them.
+nestedTypeExcludes:
+  - guest_os_features
+  - raw_disk
+  - image_encryption_key
+  - source_disk_encryption_key
+  - source_image_encryption_key
+  - source_snapshot_encryption_key
+  - shielded_instance_initial_state
+  - params
+
+curatedDoc: |-
+  /// An Image must have exactly one [ComputeImageSource]:
+  /// [ComputeImageDiskSource], [ComputeImageImageSource], or
+  /// [ComputeImageSnapshotSource].
+  ///
+  /// GCS `raw_disk` import is not modeled yet — use the Terraform provider
+  /// directly (or request curation) when importing a tarball from Cloud Storage.
+  ///
+  /// Prefer [ComputeImageSnapshotSource] when promoting a PD Snapshot into a
+  /// reusable image; use [ComputeImageDiskSource] for a live disk.
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+prelude: |
+  /// Image source for [GoogleComputeImage]. Sealed so callers pick exactly
+  /// one of `source_disk` / `source_image` / `source_snapshot` at the type
+  /// level (MM documents mutual exclusion in prose; there is no
+  /// `exactly_one_of` metadata on this resource).
+  sealed class ComputeImageSource {
+    const ComputeImageSource();
+
+    /// Terraform attribute name (`source_disk`, `source_image`, or
+    /// `source_snapshot`).
+    String get blockKey;
+
+    /// Scalar value written under [blockKey].
+    TfArg<String> get value;
+
+    Map<String, Object?> encode() => {blockKey: value.toTfJson()};
+  }
+
+  /// Create the image from a Persistent Disk (name or self-link).
+  @immutable
+  final class ComputeImageDiskSource extends ComputeImageSource {
+    const ComputeImageDiskSource({required this.sourceDisk});
+
+    final TfArg<String> sourceDisk;
+
+    @override
+    String get blockKey => 'source_disk';
+
+    @override
+    TfArg<String> get value => sourceDisk;
+  }
+
+  /// Create the image from another Image (name or self-link).
+  @immutable
+  final class ComputeImageImageSource extends ComputeImageSource {
+    const ComputeImageImageSource({required this.sourceImage});
+
+    final TfArg<String> sourceImage;
+
+    @override
+    String get blockKey => 'source_image';
+
+    @override
+    TfArg<String> get value => sourceImage;
+  }
+
+  /// Create the image from a Persistent Disk Snapshot (name or self-link).
+  @immutable
+  final class ComputeImageSnapshotSource extends ComputeImageSource {
+    const ComputeImageSnapshotSource({required this.sourceSnapshot});
+
+    final TfArg<String> sourceSnapshot;
+
+    @override
+    String get blockKey => 'source_snapshot';
+
+    @override
+    TfArg<String> get value => sourceSnapshot;
+  }
+
+paramOrder:
+  - name
+  - source
+  - description
+  - family
+  - labels
+  - licenses
+  - storage_locations
+  - disk_size_gb
+  - deletion_policy
+  - project
+
+argMapOrder:
+  - name
+  - description
+  - family
+  - labels
+  - licenses
+  - storage_locations
+  - disk_size_gb
+  - deletion_policy
+  - project
+  - source
+
+customSlots:
+  source:
+    paramDeclaration: 'required ComputeImageSource source'
+    argMapEntry: 'source.blockKey: source.value,'
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
+
+    /// Reference to `self_link` attribute.
+    TfRef<String> get selfLink => TfRef.attribute<String>(this, 'self_link');
