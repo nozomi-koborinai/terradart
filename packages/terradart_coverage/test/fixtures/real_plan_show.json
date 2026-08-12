@@ -84,20 +84,32 @@
           }
         },
         {
-          "address": "google_compute_backend_bucket_signed_url_key.cdn_key",
+          "address": "google_network_services_endpoint_policy.sidecar",
           "mode": "managed",
-          "type": "google_compute_backend_bucket_signed_url_key",
-          "name": "cdn_key",
+          "type": "google_network_services_endpoint_policy",
+          "name": "sidecar",
           "provider_name": "registry.terraform.io/hashicorp/google",
           "schema_version": 0,
           "values": {
-            "name": "example-cdn-key",
-            "key_value": "random-key-value-0123456789",
-            "backend_bucket": "example-backend-bucket"
+            "name": "example-endpoint-policy",
+            "type": "SIDECAR_PROXY",
+            "endpoint_matcher": [
+              {
+                "metadata_label_matcher": [
+                  {
+                    "metadata_label_match_criteria": "MATCH_ANY",
+                    "metadata_labels": [
+                      {
+                        "label_name": "app",
+                        "label_value": "example"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
           },
-          "sensitive_values": {
-            "instances": []
-          }
+          "sensitive_values": {}
         },
         {
           "address": "google_pubsub_topic.events",
@@ -479,10 +491,10 @@
       }
     },
     {
-      "address": "google_compute_backend_bucket_signed_url_key.cdn_key",
+      "address": "google_network_services_endpoint_policy.sidecar",
       "mode": "managed",
-      "type": "google_compute_backend_bucket_signed_url_key",
-      "name": "cdn_key",
+      "type": "google_network_services_endpoint_policy",
+      "name": "sidecar",
       "provider_name": "registry.terraform.io/hashicorp/google",
       "change": {
         "actions": [
@@ -490,19 +502,15 @@
         ],
         "before": null,
         "after": {
-          "name": "example-cdn-key",
-          "key_value": "random-key-value-0123456789",
-          "backend_bucket": "example-backend-bucket"
+          "name": "example-endpoint-policy",
+          "type": "SIDECAR_PROXY"
         },
         "after_unknown": {
           "id": true,
-          "instances": true,
-          "self_link": true
+          "endpoint_matcher": true
         },
         "before_sensitive": false,
-        "after_sensitive": {
-          "instances": []
-        }
+        "after_sensitive": {}
       }
     },
     {
@@ -978,20 +986,17 @@
           "schema_version": 0
         },
         {
-          "address": "google_compute_backend_bucket_signed_url_key.cdn_key",
+          "address": "google_network_services_endpoint_policy.sidecar",
           "mode": "managed",
-          "type": "google_compute_backend_bucket_signed_url_key",
-          "name": "cdn_key",
+          "type": "google_network_services_endpoint_policy",
+          "name": "sidecar",
           "provider_config_key": "google",
           "expressions": {
             "name": {
-              "constant_value": "example-cdn-key"
+              "constant_value": "example-endpoint-policy"
             },
-            "key_value": {
-              "constant_value": "random-key-value-0123456789"
-            },
-            "backend_bucket": {
-              "constant_value": "example-backend-bucket"
+            "type": {
+              "constant_value": "SIDECAR_PROXY"
             }
           },
           "schema_version": 0

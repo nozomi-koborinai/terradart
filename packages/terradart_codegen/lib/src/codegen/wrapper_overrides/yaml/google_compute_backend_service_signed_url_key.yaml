@@ -1,0 +1,21 @@
+outputDir: compute
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Cloud CDN signed-URL key on a [GoogleComputeBackendService].
+  /// [keyValue] is a 128-bit RFC 4648 §5 base64url secret — pass it via
+  /// [TfArg.variable], not a literal (synth rejects sensitive literals).
+
+paramOrder:
+  - name
+  - backend_service
+  - key_value
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

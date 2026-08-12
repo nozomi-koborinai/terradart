@@ -64,10 +64,18 @@ resource "google_compute_router_nat" "nat" {
 
 # --- Not curated yet (expected: not in catalog) ---
 
-resource "google_compute_backend_bucket_signed_url_key" "cdn_key" {
-  name           = "example-cdn-key"
-  key_value      = "random-key-value-0123456789"
-  backend_bucket = "example-backend-bucket"
+resource "google_network_services_endpoint_policy" "sidecar" {
+  name = "example-endpoint-policy"
+  type = "SIDECAR_PROXY"
+  endpoint_matcher {
+    metadata_label_matcher {
+      metadata_label_match_criteria = "MATCH_ANY"
+      metadata_labels {
+        label_name  = "app"
+        label_value = "example"
+      }
+    }
+  }
 }
 
 module "network" {
