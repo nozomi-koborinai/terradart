@@ -1,2 +1,270 @@
+# tool/curation_backlog.yaml
+#
+# Append-only log of google_* resources detected in upstream provider schema
+# that are NOT yet curated in terradart_google. Maintained by the weekly
+# schema-bump workflow (.github/workflows/schema-bump.yml) — each cron run
+# appends any newly-detected resources here.
+#
+# Maintainers: when curating a resource (via Wave N), remove its entry from
+# this file in the same PR that introduces the curated wrapper. This file
+# is the single source of truth for "what's left to look at".
+#
+# Schema:
+#   entries:
+#     - resource: google_X_Y_Z
+#       detected_at: YYYY-MM-DD (date of the schema-bump PR that detected it)
+#       provider_version: 7.X.Y (the v7 release that introduced it)
+#       note: (optional, maintainer-added)
+#
+# 2026-08-12 maintainer triage: refilled from the GA fixture gap (~245
+# uncured non-IAM). Product order is intentional for wave-shipper (first
+# un-skipped product group, then first 3–6 resources): compute →
+# network_services → dialogflow → discovery_engine → storage.
+# Org/folder/BYOIP and artifact-gated entries carry
+# `skipped by wave-shipper` notes so daily runs do not stall on them.
+# Remaining gap families (SCC, ACM, CES, IAM workforce, …) are deferred
+# to a follow-up backlog fill after these Waves land.
 
-entries: []
+entries:
+  # --- compute (project-scoped Wave candidates; unsuitable skipped) ---
+  - resource: google_compute_attached_disk
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_disk_async_replication
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_instance_from_template
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_instance_group
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_instance_group_membership
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_instance_group_named_port
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_network_attachment
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_network_endpoints
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_network_firewall_policy_association
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_network_firewall_policy_rule
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_network_firewall_policy_with_rules
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_http_health_check
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_https_health_check
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_region_instance_template
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_per_instance_config
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_region_per_instance_config
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_resource_policy_attachment
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_region_disk_resource_policy_attachment
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_region_network_firewall_policy_association
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_region_network_firewall_policy_with_rules
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_region_composite_health_check
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_region_health_aggregation_policy
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_region_health_source
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_target_pool
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_target_instance
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_target_grpc_proxy
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_router_nat_address
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_router_route_policy
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_project_metadata
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_resize_request
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_backend_bucket_signed_url_key
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_backend_service_signed_url_key
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_compute_firewall_policy_with_rules
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `parent` (org/folder hierarchical firewall policy); sibling google_compute_firewall_policy_* IAM already skip-noted for org-scoped parent
+  - resource: google_compute_organization_security_policy
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `parent` (organization); not standalone-project applyable on terradart-validate
+  - resource: google_compute_organization_security_policy_association
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — org-scoped sibling of google_compute_organization_security_policy (required parent)
+  - resource: google_compute_organization_security_policy_rule
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — org-scoped sibling of google_compute_organization_security_policy (required parent)
+  - resource: google_compute_public_advertised_prefix
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — BYOIP; schema required `ip_cidr_range` must be a real owned public prefix (external artifact); not applyable on terradart-validate
+  - resource: google_compute_public_delegated_prefix
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — BYOIP; schema required `parent_prefix` + owned `ip_cidr_range`; sibling google_compute_public_advertised_prefix skip-noted
+
+  # --- network_services ---
+  - resource: google_network_services_endpoint_policy
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_network_services_grpc_route
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_network_services_http_route
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_network_services_tcp_route
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_network_services_tls_route
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_network_services_service_binding
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_network_services_authz_extension
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_network_services_lb_edge_extension
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_network_services_lb_route_extension
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_network_services_lb_traffic_extension
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_network_services_wasm_plugin
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `main_version_id`; needs an uploaded Wasm plugin artifact (external binary), not standalone-project applyable without a source artifact
+
+  # --- dialogflow (ES) ---
+  - resource: google_dialogflow_intent
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_dialogflow_entity_type
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_dialogflow_fulfillment
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_dialogflow_version
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_dialogflow_environment
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_dialogflow_conversation_profile
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_dialogflow_generator
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_dialogflow_encryption_spec
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+
+  # --- discovery_engine ---
+  - resource: google_discovery_engine_schema
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_discovery_engine_sitemap
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_discovery_engine_target_site
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_discovery_engine_serving_config
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_discovery_engine_control
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_discovery_engine_acl_config
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_discovery_engine_cmek_config
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `kms_key`; CMEK binding needs a real KMS key + Discovery Engine CMEK enablement path that is easy to misconfigure on terradart-validate
+  - resource: google_discovery_engine_data_connector
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `data_source` (external connector identity); not standalone-project applyable without a pre-provisioned third-party data source
+
+  # --- storage (project-scoped; org/folder intelligence skipped) ---
+  - resource: google_storage_insights_dataset_config
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_storage_insights_report_config
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_storage_transfer_agent_pool
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_storage_transfer_job
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_storage_bucket_acl
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_storage_default_object_acl
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_storage_object_acl
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_storage_control_folder_intelligence_config
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — folder-scoped intelligence config (`name` is a folder id); not standalone-project applyable on terradart-validate
+  - resource: google_storage_control_organization_intelligence_config
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — organization-scoped intelligence config; not standalone-project applyable on terradart-validate
