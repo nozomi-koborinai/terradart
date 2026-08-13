@@ -104,6 +104,9 @@ final class NetworkServicesMeshStack extends Stack {
       ),
     );
 
+    // original_destination requires a prefix-length-0 match (`*/0` in the
+    // API error). Literal `*/0` is not CIDR (`address */0 is invalid`);
+    // `0.0.0.0/0` is the documented any-IPv4 form.
     add(
       GoogleNetworkServicesTcpRoute(
         localName: 'tcp',
@@ -113,7 +116,7 @@ final class NetworkServicesMeshStack extends Stack {
           NetworkServicesTcpRouteRules(
             matches: [
               NetworkServicesTcpRouteRulesMatches(
-                address: TfArg.literal('*/0'),
+                address: TfArg.literal('0.0.0.0/0'),
                 port: TfArg.literal('8081'),
               ),
             ],
