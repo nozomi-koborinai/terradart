@@ -22619,6 +22619,35 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_network_security_gateway_security_policy`.\n\nThe GatewaySecurityPolicy resource contains a collection of\nGatewaySecurityPolicyRules and associated metadata.\n\nNetwork Security **gateway security policy** — metadata container for\nSecure Web Proxy (SWP) gateway rules.\n\nCreating a policy alone does not provision a gateway, attach rules that\ninspect traffic, or bill Secure Web Proxy data-plane SKUs.\n\nEnable `networksecurity.googleapis.com` via [GoogleProjectService]\nbefore apply. Location is typically regional (e.g. `us-central1`).\n\nExample:\n```dart\nGoogleNetworkSecurityGatewaySecurityPolicy(\n  localName: \'swp\',\n  name: TfArg.literal(\'terradart-gateway-policy\'),\n  location: TfArg.literal(\'us-central1\'),\n  description: TfArg.literal(\'TerraDart smoke gateway security policy\'),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_network_security_gateway_security_policy_rule',
+    className: 'GoogleNetworkSecurityGatewaySecurityPolicyRule',
+    barrel: 'network',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_network_security_gateway_security_policy_rule`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'location',
+      'gatewaySecurityPolicy',
+      'enabled',
+      'priority',
+      'sessionMatcher',
+      'basicProfile',
+      'applicationMatcher',
+      'description',
+      'tlsInspectionEnabled',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'NetworkSecurityGatewaySecurityPolicyRuleBasicProfile',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_network_security_gateway_security_policy_rule`.\n\nThe GatewaySecurityPolicyRule resource is in a nested collection within a\nGatewaySecurityPolicy and represents a traffic matching condition and\nassociated action to perform.\n\nNetwork Security **gateway security policy rule** — a CEL session\nmatcher plus ALLOW/DENY on a [GoogleNetworkSecurityGatewaySecurityPolicy].\n\nCreating a rule does not provision a Secure Web Proxy gateway or\ninspect live traffic. Data-plane SKUs fire only when an SWP gateway\nis attached and processes bytes.\n\nEnable `networksecurity.googleapis.com` via [GoogleProjectService]\nbefore apply. Location must match the parent policy.\n\nExample:\n```dart\nGoogleNetworkSecurityGatewaySecurityPolicyRule(\n  localName: \'allow_example\',\n  name: TfArg.literal(\'terradart-allow-example\'),\n  location: TfArg.literal(\'us-central1\'),\n  gatewaySecurityPolicy: TfArg.ref(policy.nameRef),\n  enabled: TfArg.literal(true),\n  priority: TfArg.literal(1),\n  sessionMatcher: TfArg.literal("host() == \'example.com\'"),\n  basicProfile: TfArg.literal(\n    NetworkSecurityGatewaySecurityPolicyRuleBasicProfile.allow,\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_network_security_intercept_deployment',
     className: 'GoogleNetworkSecurityInterceptDeployment',
     barrel: 'network',

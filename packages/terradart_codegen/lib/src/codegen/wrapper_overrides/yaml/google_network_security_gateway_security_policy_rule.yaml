@@ -1,0 +1,48 @@
+outputDir: network
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+dartTypeOverrides:
+  basic_profile: NetworkSecurityGatewaySecurityPolicyRuleBasicProfile
+
+curatedDoc: |-
+  /// Network Security **gateway security policy rule** — a CEL session
+  /// matcher plus ALLOW/DENY on a [GoogleNetworkSecurityGatewaySecurityPolicy].
+  ///
+  /// Creating a rule does not provision a Secure Web Proxy gateway or
+  /// inspect live traffic. Data-plane SKUs fire only when an SWP gateway
+  /// is attached and processes bytes.
+  ///
+  /// Enable `networksecurity.googleapis.com` via [GoogleProjectService]
+  /// before apply. Location must match the parent policy.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleNetworkSecurityGatewaySecurityPolicyRule(
+  ///   localName: 'allow_example',
+  ///   name: TfArg.literal('terradart-allow-example'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   gatewaySecurityPolicy: TfArg.ref(policy.nameRef),
+  ///   enabled: TfArg.literal(true),
+  ///   priority: TfArg.literal(1),
+  ///   sessionMatcher: TfArg.literal("host() == 'example.com'"),
+  ///   basicProfile: TfArg.literal(
+  ///     NetworkSecurityGatewaySecurityPolicyRuleBasicProfile.allow,
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - gateway_security_policy
+  - enabled
+  - priority
+  - session_matcher
+  - basic_profile
+  - application_matcher
+  - description
+  - tls_inspection_enabled
+  - deletion_policy
+  - project

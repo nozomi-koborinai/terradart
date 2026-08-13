@@ -1924,6 +1924,8 @@ files:
     upstream: mmv1/products/networksecurity/ServerTlsPolicy.yaml
   google_network_security_gateway_security_policy:
     upstream: mmv1/products/networksecurity/GatewaySecurityPolicy.yaml
+  google_network_security_gateway_security_policy_rule:
+    upstream: mmv1/products/networksecurity/GatewaySecurityPolicyRule.yaml
   google_network_security_backend_authentication_config:
     upstream: mmv1/products/networksecurity/BackendAuthenticationConfig.yaml
   google_network_security_dns_threat_detector:
