@@ -8,6 +8,9 @@ deriveEnums: true
 extraImports:
   - "import 'package:meta/meta.dart';"
 
+dartTypeOverrides:
+  load_balancing_scheme: NetworkServicesLbRouteExtensionLoadBalancingScheme
+
 curatedDoc: |-
   /// Service Extensions **LbRouteExtension** — route callout / plugin
   /// chain attached to Application Load Balancer forwarding rules.

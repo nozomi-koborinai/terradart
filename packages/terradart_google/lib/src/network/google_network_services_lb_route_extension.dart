@@ -158,7 +158,8 @@ final class GoogleNetworkServicesLbRouteExtension extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<String> loadBalancingScheme,
+    required TfArg<NetworkServicesLbRouteExtensionLoadBalancingScheme>
+    loadBalancingScheme,
     required TfArg<List<String>> forwardingRules,
     required List<NetworkServicesLbRouteExtensionExtensionChains>
     extensionChains,

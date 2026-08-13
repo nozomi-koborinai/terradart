@@ -5,6 +5,10 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 
+dartTypeOverrides:
+  load_balancing_scheme: NetworkServicesAuthzExtensionLoadBalancingScheme
+  wire_format: NetworkServicesAuthzExtensionWireFormat
+
 curatedDoc: |-
   /// Service Extensions **AuthzExtension** — callout that makes an
   /// authorization decision from the load-balancing data path.

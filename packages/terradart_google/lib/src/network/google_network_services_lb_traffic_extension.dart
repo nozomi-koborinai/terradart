@@ -136,7 +136,8 @@ final class GoogleNetworkServicesLbTrafficExtension extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<String> loadBalancingScheme,
+    required TfArg<NetworkServicesLbTrafficExtensionLoadBalancingScheme>
+    loadBalancingScheme,
     required TfArg<List<String>> forwardingRules,
     required List<NetworkServicesLbTrafficExtensionExtensionChains>
     extensionChains,

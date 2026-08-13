@@ -119,7 +119,8 @@ final class GoogleNetworkServicesLbEdgeExtension extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> location,
-    required TfArg<String> loadBalancingScheme,
+    required TfArg<NetworkServicesLbEdgeExtensionLoadBalancingScheme>
+    loadBalancingScheme,
     required TfArg<List<String>> forwardingRules,
     required List<NetworkServicesLbEdgeExtensionExtensionChains>
     extensionChains,
