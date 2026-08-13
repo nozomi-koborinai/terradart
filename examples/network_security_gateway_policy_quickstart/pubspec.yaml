@@ -1,5 +1,5 @@
 name: terradart_example_network_security_gateway_policy_quickstart
-description: Network Security gateway security policy for Secure Web Proxy.
+description: Network Security gateway security policy + ALLOW rule for Secure Web Proxy.
 publish_to: none
 
 environment:

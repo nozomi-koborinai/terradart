@@ -2,9 +2,10 @@
 
 End-to-end terradart example for a **Network Security gateway security policy**
 used with Secure Web Proxy. Enables `networksecurity.googleapis.com` and
-creates an empty regional policy (no gateway, no rules).
+creates a regional policy plus one ALLOW rule (CEL `host() == 'example.com'`).
 
-Creating the policy alone does not bill Secure Web Proxy / NGFW data-plane SKUs.
+No Secure Web Proxy gateway is attached, so creating the policy and rule
+does not bill Secure Web Proxy / NGFW data-plane SKUs.
 
 ## Prerequisites
 

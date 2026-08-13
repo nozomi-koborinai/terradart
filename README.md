@@ -227,7 +227,7 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **1162 curated resource factories + 1 data source** (1163 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
+[`terradart_google`](packages/terradart_google/README.md) ships **1163 curated resource factories + 1 data source** (1164 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
 
 The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). In Dart, discover factories via `package:terradart_google/catalog.dart` (`terradartCatalog`). CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
@@ -321,7 +321,7 @@ Application platform & operations
 - [Parameter Manager global + regional parameters](examples/parameter_manager_quickstart/)
 - [Network Security address group + URL list](examples/network_security_lists_quickstart/)
 - [Network Security client + server TLS policies](examples/network_security_tls_quickstart/)
-- [Network Security gateway security policy](examples/network_security_gateway_policy_quickstart/)
+- [Network Security gateway security policy + ALLOW rule](examples/network_security_gateway_policy_quickstart/)
 - [Network Security backend authentication config](examples/network_security_backend_auth_quickstart/)
 - [Network Security DNS threat detector](examples/network_security_dns_threat_quickstart/)
 - [Network Management VPC Flow Logs config](examples/network_management_vpc_flow_logs_quickstart/)

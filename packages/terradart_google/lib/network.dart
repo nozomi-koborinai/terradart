@@ -130,6 +130,10 @@ export 'src/network/google_network_security_firewall_endpoint_association.dart'
         NetworkSecurityFirewallEndpointAssociationState;
 export 'src/network/google_network_security_gateway_security_policy.dart'
     show GoogleNetworkSecurityGatewaySecurityPolicy;
+export 'src/network/google_network_security_gateway_security_policy_rule.dart'
+    show
+        GoogleNetworkSecurityGatewaySecurityPolicyRule,
+        NetworkSecurityGatewaySecurityPolicyRuleBasicProfile;
 export 'src/network/google_network_security_intercept_deployment.dart'
     show GoogleNetworkSecurityInterceptDeployment;
 export 'src/network/google_network_security_intercept_deployment_group.dart'
