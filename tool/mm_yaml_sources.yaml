@@ -150,6 +150,10 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_clouddeploy_target_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_clouddeploy_automation:
+    upstream: mmv1/products/clouddeploy/Automation.yaml
+  google_clouddeploy_deploy_policy:
+    upstream: mmv1/products/clouddeploy/DeployPolicy.yaml
   google_colab_runtime_template:
     upstream: mmv1/products/colab/RuntimeTemplate.yaml
   google_colab_runtime_template_iam_member:

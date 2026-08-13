@@ -175,9 +175,10 @@ barrels:
       /// debt-only on terradart-validate.
   clouddeploy:
     doc: |-
-      /// Cloud Deploy — continuous-delivery pipelines, targets, and custom target
-      /// types. Nested config blocks (serial pipeline stages, deployment targets,
-      /// custom actions) are passed as structured maps.
+      /// Cloud Deploy — continuous-delivery pipelines, targets, custom target
+      /// types, automations, and deploy policies. Nested config blocks
+      /// (serial pipeline stages, deployment targets, custom actions,
+      /// automation rules, policy selectors) are passed as structured maps.
   colab:
     doc: |-
       /// Colab Enterprise — runtimes, runtime templates, template IAM,
