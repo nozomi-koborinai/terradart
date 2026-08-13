@@ -24,6 +24,14 @@ Future<void> main() async {
         'lb_regional_private_key': {'type': 'string', 'sensitive': true},
         'cm_trust_anchor_pem': {'type': 'string', 'sensitive': true},
         'cm_cas_cert_csr_pem': {'type': 'string', 'sensitive': true},
+        'lb_backend_bucket_signed_url_key': {
+          'type': 'string',
+          'sensitive': true,
+        },
+        'lb_backend_service_signed_url_key': {
+          'type': 'string',
+          'sensitive': true,
+        },
       },
     }),
   );

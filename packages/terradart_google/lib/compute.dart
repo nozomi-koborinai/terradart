@@ -39,6 +39,8 @@ export 'src/compute/google_compute_backend_bucket.dart'
         ComputeBackendBucketBackendBucketCdnPolicy,
         ComputeBackendBucketBackendBucketParams,
         GoogleComputeBackendBucket;
+export 'src/compute/google_compute_backend_bucket_signed_url_key.dart'
+    show GoogleComputeBackendBucketSignedUrlKey;
 export 'src/compute/google_compute_backend_service.dart'
     show
         BackendServiceBalancingMode,
@@ -77,6 +79,8 @@ export 'src/compute/google_compute_backend_service.dart'
         LoadBalancingScheme,
         LocalityLbPolicy,
         SessionAffinity;
+export 'src/compute/google_compute_backend_service_signed_url_key.dart'
+    show GoogleComputeBackendServiceSignedUrlKey;
 export 'src/compute/google_compute_bulk_per_instance_config.dart'
     show GoogleComputeBulkPerInstanceConfig;
 export 'src/compute/google_compute_cross_site_network.dart'

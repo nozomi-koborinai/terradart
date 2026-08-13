@@ -35,7 +35,7 @@ the HTTPS proxy.
 
 ## Resources demonstrated
 
-Thirteen Wave 6 resources are wired together in `lib/main.dart`:
+The stack in `lib/main.dart` includes:
 
 1. `google_compute_network`                   -- custom-mode VPC
 2. `google_compute_subnetwork`                -- regional backend subnet
@@ -58,6 +58,9 @@ Thirteen Wave 6 resources are wired together in `lib/main.dart`:
 13. `google_compute_global_forwarding_rule`   -- VIP:443 -> HTTPS proxy
 14. `google_iap_web_backend_service_iam_member` + `google_iap_web_backend_service_iam_binding`
     -- IAP accessor grant (additive member + authoritative binding demo)
+15. `google_compute_backend_service_signed_url_key` +
+    `google_compute_backend_bucket_signed_url_key` -- Cloud CDN signed-URL
+    keys (`key_value` via Terraform variables)
 
 Wave 6 ships additional curated resources that pair with this stack but
 are out of scope for a single quickstart -- pick them up as the design
