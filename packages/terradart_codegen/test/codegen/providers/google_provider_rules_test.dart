@@ -32,6 +32,10 @@ void main() {
       expect(rules.outputDirAliases['public_ca'], 'public_ca');
       expect(rules.outputDirAliases['storagecontrol'], 'storage_control');
       expect(rules.outputDirAliases['storage_control'], 'storage_control');
+      expect(rules.outputDirAliases['storageinsights'], 'storage');
+      expect(rules.outputDirAliases['storage_insights'], 'storage');
+      expect(rules.outputDirAliases['storagetransfer'], 'storage');
+      expect(rules.outputDirAliases['storage_transfer'], 'storage');
       expect(rules.outputDirAliases['data_lineage'], 'dataplex');
       expect(rules.outputDirAliases['datalineage'], 'dataplex');
       expect(rules.outputDirAliases['modelarmor'], 'model_armor');

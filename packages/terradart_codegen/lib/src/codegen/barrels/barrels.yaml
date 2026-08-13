@@ -527,8 +527,9 @@ barrels:
       /// webhook hooks, and branch rules. Instances are never_apply ($1000/mo).
   storage:
     doc: |-
-      /// Cloud Storage buckets, bucket objects, and Pub/Sub object-change
-      /// notifications.
+      /// Cloud Storage buckets, bucket objects, Pub/Sub object-change
+      /// notifications, inventory reports, Storage Transfer jobs, and
+      /// fine-grained ACLs.
   storage_control:
     doc: |-
       /// Cloud Storage Control — project Storage Intelligence config

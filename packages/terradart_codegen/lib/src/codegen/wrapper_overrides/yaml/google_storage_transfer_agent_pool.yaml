@@ -1,0 +1,42 @@
+outputDir: storage
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Storage Transfer Service **on-premises agent pool** — named pool
+  /// metadata for POSIX agents. Creating a pool does not install agents
+  /// or move bytes.
+  ///
+  /// **Cost:** gcp-cost: Transfer Service `D961-88BE-4D2D` On-Premises data
+  /// moved `DC3D-7464-4764` **$0.0125/GiBy**. billing-behavior: the pool
+  /// record is free metadata; data-moved SKUs fire only when agents copy
+  /// POSIX bytes. Smoke creates an empty pool (no agents).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleStorageTransferAgentPool(
+  ///   localName: 'pool',
+  ///   name: TfArg.literal('terradart-sts-pool'),
+  ///   displayName: TfArg.literal('TerraDart smoke agent pool'),
+  ///   bandwidthLimit: StorageTransferAgentPoolBandwidthLimit(
+  ///     limitMbps: TfArg.literal('120'),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - display_name
+  - bandwidth_limit
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

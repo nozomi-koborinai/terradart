@@ -242,6 +242,15 @@ final class GoogleProviderRules extends ProviderRules {
     'storagecontrol': 'storage_control',
     'storage_control': 'storage_control',
 
+    // Storage Insights + Storage Transfer Service (`google_storage_insights_*`,
+    // `google_storage_transfer_*`; MM products storageinsights /
+    // storagetransfer). Same Cloud Storage family as the `storage` barrel
+    // (batch operations already live there despite a distinct API).
+    'storageinsights': 'storage',
+    'storage_insights': 'storage',
+    'storagetransfer': 'storage',
+    'storage_transfer': 'storage',
+
     // Backup and DR (`google_backup_dr_*` → segment `backup`; MM product backupdr).
     'backup': 'backup_dr',
     'backup_dr': 'backup_dr',

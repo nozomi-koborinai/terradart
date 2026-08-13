@@ -1,0 +1,52 @@
+outputDir: storage
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Storage Transfer Service **job** — a transfer or replication spec plus
+  /// an optional schedule. Set [status] to `DISABLED` in smoke so the job
+  /// never runs.
+  ///
+  /// **Cost:** gcp-cost: Transfer Service `D961-88BE-4D2D` SKUs are
+  /// S3-private-network / on-prem data-moved (`DC3D-7464-4764`
+  /// **$0.0125/GiBy**); GCS↔GCS is Cloud Storage Class A ops
+  /// `4DBF-185F-A415` **$0.005/count after 5k**. billing-behavior: the job
+  /// record is free metadata; bytes move only when ENABLED and a run
+  /// starts. Destroy deletes the job.
+  ///
+  /// Example (disabled GCS→GCS, no bytes moved):
+  /// ```dart
+  /// GoogleStorageTransferJob(
+  ///   localName: 'copy',
+  ///   description: TfArg.literal('terradart disabled gcs copy'),
+  ///   status: TfArg.literal('DISABLED'),
+  ///   transferSpec: StorageTransferJobTransferSpec(
+  ///     gcsDataSource: StorageTransferJobTransferSpecGcsDataSource(
+  ///       bucketName: TfArg.ref(src.nameRef),
+  ///     ),
+  ///     gcsDataSink: StorageTransferJobTransferSpecGcsDataSink(
+  ///       bucketName: TfArg.ref(dst.nameRef),
+  ///     ),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - description
+  - transfer_spec
+  - schedule
+  - status
+  - service_account
+  - name
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
