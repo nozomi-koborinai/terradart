@@ -2398,3 +2398,5 @@ files:
     upstream: null  # third_party terraform/services/storage/resource_storage_bucket_acl.go
   google_storage_default_object_acl:
     upstream: null  # third_party terraform/services/storage/resource_storage_default_object_acl.go
+  google_storage_object_acl:
+    upstream: null  # third_party terraform/services/storage/resource_storage_object_acl.go

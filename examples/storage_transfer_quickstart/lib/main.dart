@@ -4,6 +4,9 @@
 /// `storage` barrel). The transfer job is `DISABLED` so no bytes move.
 /// Inventory reports start in 2099 so no CSV objects are written. Dataset
 /// configs are omitted — they are a Storage Intelligence exclusive.
+/// Authoritative object ACL is exercised on a tiny object uploaded from
+/// `../acl-marker.txt` (relative to `tf-out/`, same pattern as
+/// `colab_quickstart`) on its own UBLA-off bucket.
 ///
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
@@ -226,6 +229,41 @@ final class StorageTransferStack extends Stack {
           'OWNER:project-owners-${current.number.interpolation}',
         ]),
         dependsOn: [...apiDeps, ResourceDependency(defaultAclBucket)],
+      ),
+    );
+
+    final objectAclBucket = add(
+      GoogleStorageBucket(
+        localName: 'legacy_object_acl_bucket',
+        name: TfArg.literal('terradart-xfer-oacl-$projectId'),
+        location: TfArg.literal('ASIA-NORTHEAST1'),
+        storageClass: TfArg.literal(BucketStorageClass.standard),
+        forceDestroy: TfArg.literal(true),
+        uniformBucketLevelAccess: TfArg.literal(false),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    final marker = add(
+      GoogleStorageBucketObject(
+        localName: 'acl_marker',
+        bucket: TfArg.ref(objectAclBucket.nameRef),
+        name: TfArg.literal('acl-marker.txt'),
+        body: StorageBucketObjectBucketObjectFromSource(
+          source: TfArg.literal('../acl-marker.txt'),
+        ),
+        contentType: TfArg.literal('text/plain'),
+        dependsOn: [...apiDeps, ResourceDependency(objectAclBucket)],
+      ),
+    );
+
+    add(
+      GoogleStorageObjectAcl(
+        localName: 'legacy_object_acl',
+        bucket: TfArg.ref(objectAclBucket.nameRef),
+        object: TfArg.ref(marker.nameRef),
+        predefinedAcl: TfArg.literal('private'),
+        dependsOn: [...apiDeps, ResourceDependency(marker)],
       ),
     );
   }
