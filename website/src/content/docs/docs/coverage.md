@@ -1468,6 +1468,8 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_network_services_edge_cache_origin` | `GoogleNetworkServicesEdgeCacheOrigin` | — |
 | `google_network_services_edge_cache_service` | `GoogleNetworkServicesEdgeCacheService` | — |
 | `google_network_services_gateway` | `GoogleNetworkServicesGateway` | — |
+| `google_network_services_grpc_route` | `GoogleNetworkServicesGrpcRoute` | [network_services_mesh_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_services_mesh_quickstart) |
+| `google_network_services_http_route` | `GoogleNetworkServicesHttpRoute` | [network_services_mesh_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_services_mesh_quickstart) |
 | `google_network_services_mesh` | `GoogleNetworkServicesMesh` | [network_services_mesh_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_services_mesh_quickstart) |
 | `google_network_services_multicast_consumer_association` | `GoogleNetworkServicesMulticastConsumerAssociation` | — |
 | `google_network_services_multicast_domain` | `GoogleNetworkServicesMulticastDomain` | — |
@@ -1478,6 +1480,9 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_network_services_multicast_group_range` | `GoogleNetworkServicesMulticastGroupRange` | — |
 | `google_network_services_multicast_group_range_activation` | `GoogleNetworkServicesMulticastGroupRangeActivation` | — |
 | `google_network_services_multicast_producer_association` | `GoogleNetworkServicesMulticastProducerAssociation` | — |
+| `google_network_services_service_binding` | `GoogleNetworkServicesServiceBinding` | — |
+| `google_network_services_tcp_route` | `GoogleNetworkServicesTcpRoute` | [network_services_mesh_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/network_services_mesh_quickstart) |
+| `google_network_services_tls_route` | `GoogleNetworkServicesTlsRoute` | — |
 
 ## notebooks
 

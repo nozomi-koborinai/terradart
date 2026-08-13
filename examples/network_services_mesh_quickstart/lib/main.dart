@@ -46,32 +46,35 @@ final class NetworkServicesMeshStack extends Stack {
       ResourceDependency(mesh),
     ];
 
+    // Mesh-attached HttpRoute rejects redirect actions ("Config validation
+    // failed"). Upstream mesh-basic matcher: hostname `example`, full path
+    // `example`, query `key=value`, no action.
     add(
       GoogleNetworkServicesHttpRoute(
         localName: 'http',
         name: TfArg.literal('terradart-http-route'),
-        hostnames: TfArg.literal(['example.com']),
+        hostnames: TfArg.literal(['example']),
         meshes: meshId,
         rules: [
           NetworkServicesHttpRouteRules(
             matches: [
               NetworkServicesHttpRouteRulesMatches(
-                prefixMatch: TfArg.literal('/'),
+                fullPathMatch: TfArg.literal('example'),
+                queryParameters: [
+                  NetworkServicesHttpRouteRulesMatchesQueryParameters(
+                    queryParameter: TfArg.literal('key'),
+                    exactMatch: TfArg.literal('value'),
+                  ),
+                ],
               ),
             ],
-            action: NetworkServicesHttpRouteRulesAction(
-              redirect: NetworkServicesHttpRouteRulesActionRedirect(
-                hostRedirect: TfArg.literal('example.com'),
-                httpsRedirect: TfArg.literal(true),
-              ),
-            ),
           ),
         ],
         dependsOn: onMesh,
       ),
     );
 
-    // GrpcRoute nested types are untyped Maps until hyphenated
+    // GrpcRoute nested types stay untyped Maps until hyphenated
     // retry_conditions enums can wrap (naming.dart follow-up).
     add(
       GoogleNetworkServicesGrpcRoute(
@@ -102,6 +105,7 @@ final class NetworkServicesMeshStack extends Stack {
       ),
     );
 
+    // original_destination is allowed only when an address match is `*/0`.
     add(
       GoogleNetworkServicesTcpRoute(
         localName: 'tcp',
@@ -111,7 +115,7 @@ final class NetworkServicesMeshStack extends Stack {
           NetworkServicesTcpRouteRules(
             matches: [
               NetworkServicesTcpRouteRulesMatches(
-                address: TfArg.literal('10.0.0.1/32'),
+                address: TfArg.literal('*/0'),
                 port: TfArg.literal('8081'),
               ),
             ],
@@ -123,6 +127,5 @@ final class NetworkServicesMeshStack extends Stack {
         dependsOn: onMesh,
       ),
     );
-
   }
 }

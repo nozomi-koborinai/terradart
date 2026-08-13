@@ -2,12 +2,15 @@ outputDir: network
 
 deriveClassDoc: true
 deriveOutputGetters: true
-# Nested `retry_conditions` values are hyphenated (`connect-failure`, …).
-# `deriveNestedTypes` would emit illegal Dart enum members until
-# `screamingToCamel` treats `-` as a snake separator (naming.dart — outside
-# wave_allowed_paths). Keep rules as List<Map> until that maintainer fix.
-deriveNestedTypes: false
-deriveEnums: false
+deriveNestedTypes: true
+deriveEnums: true
+
+# Hyphenated nested enum `retry_conditions` (`connect-failure`, …) cannot
+# wrap until screamingToCamel treats `-` as a snake separator (naming.dart
+# is outside wave_allowed_paths). Freeze the whole `rules` subtree so
+# --strict-nested records it as frozen-by-exclude rather than a gap.
+nestedTypeExcludes:
+  - rules
 
 curatedDoc: |-
   /// Cloud Service Mesh **gRPC route** — hostname + method matchers that
