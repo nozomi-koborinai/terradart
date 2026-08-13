@@ -431,8 +431,10 @@ barrels:
       /// never_apply), address groups, URL lists, client/server TLS policies,
       /// gateway security policies, Cloud NGFW firewall endpoints (Enterprise
       /// Endpoint Uptime is never_apply — $1.75/h), VPC Flow Logs configs,
-      /// Network Services Mesh, and Network Services gateways (Secure Web
-      /// Gateway is never_apply — $1.25/h).
+      /// Network Services Mesh, Service Extensions (Authz / LB traffic /
+      /// route / edge — debt-only: schema required forwarding_rules bill
+      /// Cloud LB Forwarding Rule Minimum $0.025/h), and Network Services
+      /// gateways (Secure Web Gateway is never_apply — $1.25/h).
   notebooks:
     doc: |-
       /// Vertex AI Workbench (Notebooks) — environments, user-managed

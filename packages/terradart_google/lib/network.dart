@@ -9,8 +9,10 @@
 /// never_apply), address groups, URL lists, client/server TLS policies,
 /// gateway security policies, Cloud NGFW firewall endpoints (Enterprise
 /// Endpoint Uptime is never_apply — $1.75/h), VPC Flow Logs configs,
-/// Network Services Mesh, and Network Services gateways (Secure Web
-/// Gateway is never_apply — $1.25/h).
+/// Network Services Mesh, Service Extensions (Authz / LB traffic /
+/// route / edge — debt-only: schema required forwarding_rules bill
+/// Cloud LB Forwarding Rule Minimum $0.025/h), and Network Services
+/// gateways (Secure Web Gateway is never_apply — $1.25/h).
 library;
 
 export 'src/network/google_network_connectivity_destination.dart'
@@ -203,6 +205,11 @@ export 'src/network/google_network_services_agent_gateway.dart'
         NetworkServicesAgentGatewayNetworkConfigDnsPeeringConfig,
         NetworkServicesAgentGatewayNetworkConfigEgress,
         NetworkServicesAgentGatewaySelfManaged;
+export 'src/network/google_network_services_authz_extension.dart'
+    show
+        GoogleNetworkServicesAuthzExtension,
+        NetworkServicesAuthzExtensionLoadBalancingScheme,
+        NetworkServicesAuthzExtensionWireFormat;
 export 'src/network/google_network_services_edge_cache_keyset.dart'
     show
         GoogleNetworkServicesEdgeCacheKeyset,
@@ -304,6 +311,28 @@ export 'src/network/google_network_services_http_route.dart'
         NetworkServicesHttpRouteRulesMatchesHeaders,
         NetworkServicesHttpRouteRulesMatchesHeadersRangeMatch,
         NetworkServicesHttpRouteRulesMatchesQueryParameters;
+export 'src/network/google_network_services_lb_edge_extension.dart'
+    show
+        GoogleNetworkServicesLbEdgeExtension,
+        NetworkServicesLbEdgeExtensionExtensionChains,
+        NetworkServicesLbEdgeExtensionExtensionChainsExtensions,
+        NetworkServicesLbEdgeExtensionExtensionChainsMatchCondition,
+        NetworkServicesLbEdgeExtensionLoadBalancingScheme;
+export 'src/network/google_network_services_lb_route_extension.dart'
+    show
+        GoogleNetworkServicesLbRouteExtension,
+        NetworkServicesLbRouteExtensionExtensionChains,
+        NetworkServicesLbRouteExtensionExtensionChainsExtensions,
+        NetworkServicesLbRouteExtensionExtensionChainsExtensionsRequestBodySendMode,
+        NetworkServicesLbRouteExtensionExtensionChainsMatchCondition,
+        NetworkServicesLbRouteExtensionLoadBalancingScheme;
+export 'src/network/google_network_services_lb_traffic_extension.dart'
+    show
+        GoogleNetworkServicesLbTrafficExtension,
+        NetworkServicesLbTrafficExtensionExtensionChains,
+        NetworkServicesLbTrafficExtensionExtensionChainsExtensions,
+        NetworkServicesLbTrafficExtensionExtensionChainsMatchCondition,
+        NetworkServicesLbTrafficExtensionLoadBalancingScheme;
 export 'src/network/google_network_services_mesh.dart'
     show GoogleNetworkServicesMesh;
 export 'src/network/google_network_services_multicast_consumer_association.dart'

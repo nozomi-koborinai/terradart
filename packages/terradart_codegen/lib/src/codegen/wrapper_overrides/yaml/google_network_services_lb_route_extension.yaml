@@ -1,0 +1,43 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  load_balancing_scheme: NetworkServicesLbRouteExtensionLoadBalancingScheme
+
+curatedDoc: |-
+  /// Service Extensions **LbRouteExtension** — route callout / plugin
+  /// chain attached to Application Load Balancer forwarding rules.
+  ///
+  /// Schema requires `forwarding_rules` (min 1) and `extension_chains`
+  /// with a callout `service`. Do **not** wire this into apply-smoke:
+  /// Cloud LB Forwarding Rule Minimum (Iowa `8295-248B-132F`) is
+  /// **$0.025/h**.
+  ///
+  /// **Cost:** gcp-cost: Networking `E505-1604-58F8` Service Extensions
+  /// Load Balancer Callouts `3C5D-59B9-2035` **$0.10/count**; Plugin
+  /// Invocations `4C0F-EF59-605D` **$0 until 2e6 then $0.10/count**.
+  /// billing-behavior: the extension object is invocation-metered — no
+  /// existence/hourly charge until attached LB traffic invokes it.
+  /// Enable `networkservices.googleapis.com` before apply.
+
+paramOrder:
+  - name
+  - location
+  - load_balancing_scheme
+  - forwarding_rules
+  - extension_chains
+  - description
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
