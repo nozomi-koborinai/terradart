@@ -2,6 +2,13 @@ outputDir: clouddeploy
 
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveNestedTypes: true
+
+# Keep `selectors` / `rules` as structured maps like the other Cloud Deploy
+# factories (restriction metadata, not a typed nested tree).
+nestedTypeExcludes:
+  - selectors
+  - rules
 
 curatedDoc: |-
   /// Cloud Deploy **deploy policy** — restricts rollout actions on

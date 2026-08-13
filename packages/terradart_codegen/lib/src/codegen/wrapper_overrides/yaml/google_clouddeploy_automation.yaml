@@ -2,6 +2,14 @@ outputDir: clouddeploy
 
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveNestedTypes: true
+
+# Keep `selector` / `rules` as structured maps like the other Cloud Deploy
+# factories. Nested `exactly_one_of` on each rules item (promote / advance /
+# repair / timed) is not a top-level sealed slot.
+nestedTypeExcludes:
+  - selector
+  - rules
 
 curatedDoc: |-
   /// Cloud Deploy **automation** — promotes / advances / repairs rollouts
