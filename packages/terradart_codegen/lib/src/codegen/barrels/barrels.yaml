@@ -253,7 +253,8 @@ barrels:
       /// session paths are never_apply for apply-smoke.
   dialogflow:
     doc: |-
-      /// Dialogflow ES / CX: SIP trunk, ES agent, and full CX agent surfaces
+      /// Dialogflow ES / CX: SIP trunk, ES agent plus intent / entity type /
+      /// fulfillment / version / environment, and full CX agent surfaces
       /// (all CX factories are never_apply — agent / flow / intent / page /
       /// playbook / webhook / generative settings / security settings /
       /// generator / tool / entity type / environment / version /

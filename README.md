@@ -227,7 +227,7 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **1129 curated resource factories + 1 data source** (1130 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
+[`terradart_google`](packages/terradart_google/README.md) ships **1134 curated resource factories + 1 data source** (1135 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
 
 The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). In Dart, discover factories via `package:terradart_google/catalog.dart` (`terradartCatalog`). CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
@@ -289,6 +289,7 @@ Application platform & operations
 - [Monitoring alert policy with typed `Aligner` / `Reducer`](examples/monitoring_quickstart/)
 - [Infrastructure Manager Git blueprint deployment](examples/config_deployment_quickstart/)
 - [Dialogflow CX SIP trunk](examples/dialogflow_quickstart/)
+- [Dialogflow ES agent + intent / entity type / fulfillment / version / environment](examples/dialogflow_es_quickstart/)
 - [NetApp Volumes metadata (vault / policy / host group)](examples/netapp_metadata_quickstart/)
 - [Network Connectivity CCI transport](examples/network_connectivity_quickstart/)
 - [Network Connectivity Center hub / spoke](examples/ncc_hub_quickstart/)

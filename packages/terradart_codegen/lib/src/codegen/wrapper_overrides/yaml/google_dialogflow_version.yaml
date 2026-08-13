@@ -1,0 +1,23 @@
+outputDir: dialogflow
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Dialogflow ES **version** — immutable snapshot of the per-project
+  /// ES agent (`parent` is `projects/<project>/agent`).
+  ///
+  /// **Cost:** gcp-cost: Cloud Dialogflow `FBC0-AA4A-C89A` Intent Detection
+  /// Text Query Operations for Enterprise Essentials Agents `114B-F183-612D`
+  /// **$0.002/count**. billing-behavior: versions are design-time
+  /// snapshots; query SKUs fire only on DetectIntent (this factory never
+  /// invokes it). Standard-tier agents have no catalog query SKU. Enable
+  /// `dialogflow.googleapis.com` before apply. Create
+  /// [GoogleDialogflowAgent] first.
+
+paramOrder:
+  - parent
+  - description
+  - deletion_policy

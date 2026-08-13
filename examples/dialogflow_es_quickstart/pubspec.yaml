@@ -1,0 +1,15 @@
+name: terradart_example_dialogflow_es_quickstart
+description: Dialogflow ES agent plus intent, entity type, fulfillment, version, and environment.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.24.0
+  terradart_google: ^0.24.0
+
+dev_dependencies:
+  lints: ^6.0.0

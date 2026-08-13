@@ -58,31 +58,19 @@ entries:
     provider_version: 7.43.0
     note: skipped by wave-shipper — schema required `main_version_id`; needs an uploaded Wasm plugin artifact (external binary), not standalone-project applyable without a source artifact
 
-  # --- dialogflow (ES) ---
-  - resource: google_dialogflow_intent
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_dialogflow_entity_type
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_dialogflow_fulfillment
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_dialogflow_version
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_dialogflow_environment
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
+  # --- dialogflow (ES leftovers; CCAI / CMEK — not ES agent children) ---
   - resource: google_dialogflow_conversation_profile
     detected_at: 2026-08-12
     provider_version: 7.43.0
+    note: skipped by wave-shipper — CCAI Conversation Profile (required location + display_name); Contact Center AI surface (human_agent_assistant / STT / TTS / live-agent handoff), not a child of the ES agent singleton; out of scope for the ES design-time Wave
   - resource: google_dialogflow_generator
     detected_at: 2026-08-12
     provider_version: 7.43.0
+    note: skipped by wave-shipper — schema requires summarization_context (min 1); CCAI LLM generator (published_model text-bison), not an ES agent child
   - resource: google_dialogflow_encryption_spec
     detected_at: 2026-08-12
     provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required nested encryption_spec.kms_key (customer-managed KMS key + Dialogflow service-agent IAM); CMEK init is not standalone-project applyable without a dedicated keyring
 
   # --- discovery_engine ---
   - resource: google_discovery_engine_schema
