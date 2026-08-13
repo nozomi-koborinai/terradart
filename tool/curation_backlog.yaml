@@ -59,24 +59,6 @@ entries:
     note: skipped by wave-shipper — BYOIP; schema required `parent_prefix` + owned `ip_cidr_range`; sibling google_compute_public_advertised_prefix skip-noted
 
   # --- network_services ---
-  - resource: google_network_services_endpoint_policy
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_network_services_grpc_route
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_network_services_http_route
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_network_services_tcp_route
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_network_services_tls_route
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_network_services_service_binding
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
   - resource: google_network_services_authz_extension
     detected_at: 2026-08-12
     provider_version: 7.43.0

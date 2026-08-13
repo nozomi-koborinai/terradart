@@ -85,7 +85,9 @@ EnumName enumName({
 }
 
 /// SCREAMING_SNAKE_CASE → camelCase, e.g. `AUTOMATIC` → `automatic`,
-/// `ENCODING_UNSPECIFIED` → `encodingUnspecified`.
+/// `ENCODING_UNSPECIFIED` → `encodingUnspecified`. Hyphenated schema
+/// values (`connect-failure`) are treated as snake_case so the Dart
+/// member is a legal identifier (`connectFailure`).
 ///
 /// Guarantees a legal Dart identifier: on the rare occasion a raw value's
 /// camelCase rendering collides with a word Dart reserves outright
@@ -99,7 +101,7 @@ EnumName enumName({
 /// generic fallback only exists so a not-yet-reviewed derived enum can never
 /// fail to compile; a real hit is worth a human pass at a more fitting name.
 String screamingToCamel(String screaming) {
-  final parts = screaming.toLowerCase().split('_');
+  final parts = screaming.toLowerCase().replaceAll('-', '_').split('_');
   final camel = snakeToCamel(parts.join('_'));
   return _dartReservedWords.contains(camel) ? '${camel}Case' : camel;
 }

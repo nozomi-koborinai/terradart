@@ -506,6 +506,36 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
       expect(formatted, contains("full('FULL');"));
     });
 
+    test('hyphenated schema enum values become legal Dart members', () {
+      final retryConditions = const NestedAttrSpec(
+        tfName: 'retry_conditions',
+        dartName: 'retryConditions',
+        dartType: 'FooRetryConditions',
+        required: false,
+        enumValues: ['connect-failure', 'deadline-exceeded'],
+        repeated: true,
+      );
+      final spec = NestedBlockSpec(
+        tfName: 'retry_policy',
+        path: const ['retry_policy'],
+        className: 'FooRetryPolicy',
+        repeated: false,
+        required: false,
+        attrs: [retryConditions],
+        children: const [],
+        excludedChildren: const [],
+      );
+
+      final formatted = _fmt(renderNestedTypes(
+        [spec],
+        resourceTerraformType: 'google_foo',
+      ));
+
+      expect(formatted, contains("connectFailure('connect-failure')"));
+      expect(formatted, contains("deadlineExceeded('deadline-exceeded')"));
+      expect(formatted, isNot(contains('connect-failure(')));
+    });
+
     test(
         'field order: attrs (alphabetical) first, then block-type children '
         '— derived and excluded merged (alphabetical) — second', () {

@@ -227,7 +227,7 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **1117 curated resource factories + 1 data source** (1118 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
+[`terradart_google`](packages/terradart_google/README.md) ships **1123 curated resource factories + 1 data source** (1124 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
 
 The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). In Dart, discover factories via `package:terradart_google/catalog.dart` (`terradartCatalog`). CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
@@ -321,7 +321,7 @@ Application platform & operations
 - [Network Security DNS threat detector](examples/network_security_dns_threat_quickstart/)
 - [Network Management VPC Flow Logs config](examples/network_management_vpc_flow_logs_quickstart/)
 - [Public CA ACME external account key](examples/public_ca_quickstart/)
-- [Network Services Mesh](examples/network_services_mesh_quickstart/)
+- [Network Services Mesh + HTTP/gRPC/TCP routes + endpoint policy](examples/network_services_mesh_quickstart/)
 - [Cloud Healthcare dataset + DICOM/consent/HL7v2/FHIR stores](examples/healthcare_quickstart/)
 - [Contact Center AI Insights analysis rule + view + QA scorecard/revision/question + assessment + auto-labeling](examples/contact_center_insights_quickstart/)
 - [Colab Enterprise runtime template + template IAM + paused schedule](examples/colab_quickstart/)
