@@ -15043,6 +15043,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'DiscoveryEngineControlSolutionType',
       'DiscoveryEngineControlAction',
       'DiscoveryEngineControlBoostAction',
+      'DiscoveryEngineControlInterpolationAttributeType',
+      'DiscoveryEngineControlInterpolationType',
       'DiscoveryEngineControlInterpolationBoostSpec',
       'DiscoveryEngineControlFilterAction',
       'DiscoveryEngineControlRedirectAction',
