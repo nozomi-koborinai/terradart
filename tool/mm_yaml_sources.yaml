@@ -683,6 +683,10 @@ files:
     upstream: null  # handwritten in terraform provider; no MM YAML
   google_iam_workload_identity_pool:
     upstream: mmv1/products/iambeta/WorkloadIdentityPool.yaml
+  google_iam_workload_identity_pool_namespace:
+    upstream: mmv1/products/iambeta/WorkloadIdentityPoolNamespace.yaml
+  google_iam_workload_identity_pool_managed_identity:
+    upstream: mmv1/products/iambeta/WorkloadIdentityPoolManagedIdentity.yaml
   google_healthcare_dataset:
     upstream: mmv1/products/healthcare/Dataset.yaml
   google_healthcare_hl7_v2_store:

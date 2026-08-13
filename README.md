@@ -227,7 +227,7 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **1158 curated resource factories + 1 data source** (1159 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
+[`terradart_google`](packages/terradart_google/README.md) ships **1160 curated resource factories + 1 data source** (1161 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
 
 The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). In Dart, discover factories via `package:terradart_google/catalog.dart` (`terradartCatalog`). CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
@@ -243,6 +243,7 @@ Foundational
 - [Cloud Scheduler → Pub/Sub target](examples/cloud_scheduler_quickstart/)
 - [Apigee data collector + analytics datastore](examples/apigee_quickstart/)
 - [IAM members across Pub/Sub, Tasks, Secret Manager, and IAP (App Engine, Agent Registry, location web)](examples/iam_quickstart/)
+- [WIF trust-domain pool + namespace + managed identity](examples/wif_trust_domain_quickstart/)
 - [Project IAM audit config](examples/project_iam_audit_config_quickstart/)
 - [IAP settings + location-web IAM binding/policy](examples/iap_settings_quickstart/)
 - [Application Integration client](examples/integrations_quickstart/)

@@ -1,8 +1,9 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// IAM service accounts + Workload Identity Federation pools. Per-resource
-/// IAM members live alongside their owning service barrel (e.g.
-/// `pubsub.dart` exports `GooglePubsubTopicIamMember`).
+/// IAM service accounts, Workload Identity Federation pools
+/// (including trust-domain namespaces and managed identities), and
+/// per-resource IAM members live alongside their owning service
+/// barrel (e.g. `pubsub.dart` exports `GooglePubsubTopicIamMember`).
 library;
 
 export 'src/iam/google_iam_workforce_pool_iam_binding.dart'
@@ -19,6 +20,10 @@ export 'src/iam/google_iam_workload_identity_pool_iam_member.dart'
     show GoogleIamWorkloadIdentityPoolIamMember;
 export 'src/iam/google_iam_workload_identity_pool_iam_policy.dart'
     show GoogleIamWorkloadIdentityPoolIamPolicy;
+export 'src/iam/google_iam_workload_identity_pool_managed_identity.dart'
+    show GoogleIamWorkloadIdentityPoolManagedIdentity;
+export 'src/iam/google_iam_workload_identity_pool_namespace.dart'
+    show GoogleIamWorkloadIdentityPoolNamespace;
 export 'src/iam/google_iam_workload_identity_pool_provider.dart'
     show
         GoogleIamWorkloadIdentityPoolProvider,

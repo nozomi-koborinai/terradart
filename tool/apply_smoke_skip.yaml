@@ -62,6 +62,7 @@ filestore_quickstart: High Scale SSD Filestore needs HighScaleSSDStorageGibPerRe
 
 # --- Collides with the apply-smoke WIF auth infrastructure (must never apply here)
 iam_quickstart: creates a WIF pool id 'github-actions' that COLLIDES with the apply-smoke auth pool — applying it would 409 and its teardown could delete the pool CI auth depends on; WIF pools also have a 30-day soft-delete lock that breaks repeated sweeps
+wif_trust_domain_quickstart: WIF trust-domain pool/namespace/managed identity IDs are soft-deleted ~30 days; terraform create does not undelete (hashicorp/terraform-provider-google#14191) so a fixed-id re-apply after destroy 409s; pool id terradart-trust is distinct from skip-listed iam_quickstart (github-actions collision)
 
 # --- Create resources GCP cannot delete (or soft-deletes), so a 2nd run 409s ---
 # These can't be repeated against a reused project: the resource (or its name)
