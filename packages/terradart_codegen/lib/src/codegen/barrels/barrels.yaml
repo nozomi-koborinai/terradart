@@ -133,6 +133,11 @@ barrels:
     doc: |-
       /// Chronicle (Google SecOps): detections, playbooks, custom lists,
       /// dashboards, and environments (enterprise ingestion / never_apply).
+  cloud_asset:
+    doc: |-
+      /// Cloud Asset Inventory — project feeds that publish asset updates
+      /// to Pub/Sub. Creating a feed does not scan or export existing
+      /// assets; messages fire only when matching resources change.
   cloud_build:
     doc: |-
       /// Cloud Build CI/CD: trigger, private worker pool, v2 SCM connection +

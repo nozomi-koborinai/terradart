@@ -33,6 +33,7 @@ export 'blockchain.dart';
 export 'certificate_manager.dart';
 export 'ces.dart';
 export 'chronicle.dart';
+export 'cloud_asset.dart';
 export 'cloud_build.dart';
 export 'cloud_functions.dart';
 export 'cloud_ids.dart';

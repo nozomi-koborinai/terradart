@@ -1,0 +1,59 @@
+outputDir: cloud_asset
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+dartTypeOverrides:
+  content_type: CloudAssetProjectFeedContentType
+
+curatedDoc: |-
+  /// Cloud Asset Inventory **project feed** — publishes matching asset
+  /// updates to a Pub/Sub topic.
+  ///
+  /// Creating a feed does not scan or export existing resources. Messages
+  /// fire only when matching assets change. Specify [assetTypes] and/or
+  /// [assetNames].
+  ///
+  /// [feedOutputConfig] `pubsub_destination.topic` must be the **full**
+  /// topic path (`projects/{project}/topics/{name}`). Pass
+  /// `TfArg.ref(topic.id)` against a sibling [GooglePubsubTopic].
+  ///
+  /// Grant `roles/pubsub.publisher` on that topic to
+  /// `service-{PROJECT_NUMBER}@gcp-sa-cloudasset.iam.gserviceaccount.com`
+  /// (created when `cloudasset.googleapis.com` is enabled) and
+  /// `dependsOn` the IAM member.
+  ///
+  /// Enable `cloudasset.googleapis.com` and `pubsub.googleapis.com` via
+  /// [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleCloudAssetProjectFeed(
+  ///   localName: 'project_feed',
+  ///   feedId: TfArg.literal('terradart-project-feed'),
+  ///   assetTypes: TfArg.literal(const [
+  ///     'cloudresourcemanager.googleapis.com/Project',
+  ///   ]),
+  ///   contentType: TfArg.literal(CloudAssetProjectFeedContentType.resource),
+  ///   feedOutputConfig: CloudAssetProjectFeedFeedOutputConfig(
+  ///     pubsubDestination: CloudAssetProjectFeedFeedOutputConfigPubsubDestination(
+  ///       topic: TfArg.ref(topic.id),
+  ///     ),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - feed_id
+  - asset_types
+  - asset_names
+  - content_type
+  - feed_output_config
+  - condition
+  - billing_project
+  - deletion_policy
+  - project

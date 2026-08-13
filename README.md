@@ -227,7 +227,7 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **1163 curated resource factories + 1 data source** (1164 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
+[`terradart_google`](packages/terradart_google/README.md) ships **1164 curated resource factories + 1 data source** (1165 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
 
 The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). In Dart, discover factories via `package:terradart_google/catalog.dart` (`terradartCatalog`). CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
@@ -269,6 +269,7 @@ Data & storage
 - [Data Catalog taxonomy / entry / tag template](examples/data_catalog_quickstart/)
 - [Data Lineage config](examples/data_lineage_quickstart/)
 - [Dataform team folder + nested folder](examples/dataform_quickstart/)
+- [Cloud Asset Inventory project feed](examples/cloud_asset_quickstart/)
 - [Dataplex data product + IAM member](examples/dataplex_quickstart/)
 - [Vertex AI Search data store + engine + schema / control / serving config + IAM](examples/discovery_engine_quickstart/)
 - [Cloud KMS project Autokey config](examples/kms_autokey_quickstart/)
