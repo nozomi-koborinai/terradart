@@ -734,8 +734,8 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
             repeated: true,
           ),
         ],
-        children: const [],
-        excludedChildren: const [],
+        children: [],
+        excludedChildren: [],
       );
 
       final actual = renderNestedTypes(
