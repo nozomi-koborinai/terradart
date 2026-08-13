@@ -229,23 +229,23 @@ final Map<String, Object Function()> _syntheticInstances = {
         ),
       ),
 
-  // --- StorageInsightsDatasetSource (3) — google_storage_insights_dataset_config ---
-  'StorageInsightsDatasetSourceProjects': () =>
-      StorageInsightsDatasetSourceProjects(
+  // --- StorageInsightsDatasetConfigSource (3) — google_storage_insights_dataset_config ---
+  'StorageInsightsDatasetConfigSourceProjects': () =>
+      StorageInsightsDatasetConfigSourceProjects(
         projectNumbers: TfArg.literal(['123456789012']),
       ),
-  'StorageInsightsDatasetSourceFolders': () =>
-      StorageInsightsDatasetSourceFolders(
+  'StorageInsightsDatasetConfigSourceFolders': () =>
+      StorageInsightsDatasetConfigSourceFolders(
         folderNumbers: TfArg.literal(['987654321']),
       ),
-  'StorageInsightsDatasetOrganizationScope': () =>
-      const StorageInsightsDatasetOrganizationScope(),
+  'StorageInsightsDatasetConfigOrganizationScope': () =>
+      const StorageInsightsDatasetConfigOrganizationScope(),
 
-  // --- StorageInsightsReportFormat (2) — google_storage_insights_report_config ---
-  'StorageInsightsReportCsvFormat': () =>
-      const StorageInsightsReportCsvFormat(),
-  'StorageInsightsReportParquetFormat': () =>
-      const StorageInsightsReportParquetFormat(),
+  // --- StorageInsightsReportConfigFormat (2) — google_storage_insights_report_config ---
+  'StorageInsightsReportConfigCsvFormat': () =>
+      const StorageInsightsReportConfigCsvFormat(),
+  'StorageInsightsReportConfigParquetFormat': () =>
+      const StorageInsightsReportConfigParquetFormat(),
 
   // --- CloudSchedulerJobSchedulerTarget (3) — cloud_scheduler_job ---------------------------
   'CloudSchedulerJobPubsubTarget': () => CloudSchedulerJobPubsubTarget(

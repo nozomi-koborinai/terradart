@@ -22,8 +22,8 @@ enum StorageInsightsDatasetConfigDatasetConfigState implements TerraformEnum {
 
 /// Exactly one dataset source scope (MM `exactly_one_of`:
 /// `source_projects` / `source_folders` / `organization_scope`).
-sealed class StorageInsightsDatasetSource {
-  const StorageInsightsDatasetSource();
+sealed class StorageInsightsDatasetConfigSource {
+  const StorageInsightsDatasetConfigSource();
 
   /// Terraform attribute or nested-block key.
   String get blockKey;
@@ -35,9 +35,11 @@ sealed class StorageInsightsDatasetSource {
 
 /// `source_projects` — index these project numbers.
 @immutable
-final class StorageInsightsDatasetSourceProjects
-    extends StorageInsightsDatasetSource {
-  const StorageInsightsDatasetSourceProjects({required this.projectNumbers});
+final class StorageInsightsDatasetConfigSourceProjects
+    extends StorageInsightsDatasetConfigSource {
+  const StorageInsightsDatasetConfigSourceProjects({
+    required this.projectNumbers,
+  });
 
   final TfArg<List<String>> projectNumbers;
 
@@ -54,9 +56,11 @@ final class StorageInsightsDatasetSourceProjects
 
 /// `source_folders` — index these folder numbers.
 @immutable
-final class StorageInsightsDatasetSourceFolders
-    extends StorageInsightsDatasetSource {
-  const StorageInsightsDatasetSourceFolders({required this.folderNumbers});
+final class StorageInsightsDatasetConfigSourceFolders
+    extends StorageInsightsDatasetConfigSource {
+  const StorageInsightsDatasetConfigSourceFolders({
+    required this.folderNumbers,
+  });
 
   final TfArg<List<String>> folderNumbers;
 
@@ -73,9 +77,9 @@ final class StorageInsightsDatasetSourceFolders
 
 /// `organization_scope` — index the whole organization.
 @immutable
-final class StorageInsightsDatasetOrganizationScope
-    extends StorageInsightsDatasetSource {
-  const StorageInsightsDatasetOrganizationScope();
+final class StorageInsightsDatasetConfigOrganizationScope
+    extends StorageInsightsDatasetConfigSource {
+  const StorageInsightsDatasetConfigOrganizationScope();
 
   @override
   String get blockKey => 'organization_scope';
@@ -213,7 +217,7 @@ final class StorageInsightsDatasetConfigIncludeCloudStorageLocations {
 ///
 /// Storage Insights **dataset config** — indexes Cloud Storage metadata
 /// for a project, folder, or organization. Pick exactly one
-/// [StorageInsightsDatasetSource].
+/// [StorageInsightsDatasetConfigSource].
 ///
 /// This is a Storage Intelligence exclusive: linking or processing a
 /// dataset can enable billed STANDARD object-management (gcp-cost:
@@ -234,7 +238,7 @@ final class StorageInsightsDatasetConfigIncludeCloudStorageLocations {
 ///       StorageInsightsDatasetConfigIdentityType.identityTypePerConfig,
 ///     ),
 ///   ),
-///   source: StorageInsightsDatasetSourceProjects(
+///   source: StorageInsightsDatasetConfigSourceProjects(
 ///     projectNumbers: TfArg.literal([projectNumber]),
 ///   ),
 /// );
@@ -248,7 +252,7 @@ final class GoogleStorageInsightsDatasetConfig extends Resource {
     required TfArg<String> datasetConfigId,
     required TfArg<num> retentionPeriodDays,
     required StorageInsightsDatasetConfigIdentity identity,
-    required StorageInsightsDatasetSource source,
+    required StorageInsightsDatasetConfigSource source,
     StorageInsightsDatasetConfigIncludeCloudStorageBuckets?
     includeCloudStorageBuckets,
     TfArg<bool>? includeNewlyCreatedBuckets,

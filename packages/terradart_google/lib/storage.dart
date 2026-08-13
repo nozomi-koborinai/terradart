@@ -80,13 +80,15 @@ export 'src/storage/google_storage_insights_dataset_config.dart'
         StorageInsightsDatasetConfigIncludeCloudStorageBuckets,
         StorageInsightsDatasetConfigIncludeCloudStorageBucketsCloudStorageBuckets,
         StorageInsightsDatasetConfigIncludeCloudStorageLocations,
-        StorageInsightsDatasetOrganizationScope,
-        StorageInsightsDatasetSource,
-        StorageInsightsDatasetSourceFolders,
-        StorageInsightsDatasetSourceProjects;
+        StorageInsightsDatasetConfigOrganizationScope,
+        StorageInsightsDatasetConfigSource,
+        StorageInsightsDatasetConfigSourceFolders,
+        StorageInsightsDatasetConfigSourceProjects;
 export 'src/storage/google_storage_insights_report_config.dart'
     show
         GoogleStorageInsightsReportConfig,
+        StorageInsightsReportConfigCsvFormat,
+        StorageInsightsReportConfigFormat,
         StorageInsightsReportConfigFrequencyOptions,
         StorageInsightsReportConfigFrequencyOptionsEndDate,
         StorageInsightsReportConfigFrequencyOptionsFrequency,
@@ -94,9 +96,7 @@ export 'src/storage/google_storage_insights_report_config.dart'
         StorageInsightsReportConfigObjectMetadataReportOptions,
         StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestinationOptions,
         StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters,
-        StorageInsightsReportCsvFormat,
-        StorageInsightsReportFormat,
-        StorageInsightsReportParquetFormat;
+        StorageInsightsReportConfigParquetFormat;
 export 'src/storage/google_storage_managed_folder.dart'
     show GoogleStorageManagedFolder;
 export 'src/storage/google_storage_managed_folder_iam_binding.dart'

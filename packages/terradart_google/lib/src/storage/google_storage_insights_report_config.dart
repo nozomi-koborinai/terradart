@@ -9,8 +9,8 @@ const Set<String> _googleStorageInsightsReportConfigSensitive = <String>{};
 
 /// Inventory report file format (MM `exactly_one_of`: `csv_options` /
 /// `parquet_options`).
-sealed class StorageInsightsReportFormat {
-  const StorageInsightsReportFormat();
+sealed class StorageInsightsReportConfigFormat {
+  const StorageInsightsReportConfigFormat();
 
   String get blockKey;
 
@@ -21,8 +21,9 @@ sealed class StorageInsightsReportFormat {
 
 /// `csv_options` — CSV inventory reports.
 @immutable
-final class StorageInsightsReportCsvFormat extends StorageInsightsReportFormat {
-  const StorageInsightsReportCsvFormat({
+final class StorageInsightsReportConfigCsvFormat
+    extends StorageInsightsReportConfigFormat {
+  const StorageInsightsReportConfigCsvFormat({
     this.delimiter,
     this.headerRequired,
     this.recordSeparator,
@@ -48,9 +49,9 @@ final class StorageInsightsReportCsvFormat extends StorageInsightsReportFormat {
 
 /// `parquet_options` — Parquet inventory reports (empty options object).
 @immutable
-final class StorageInsightsReportParquetFormat
-    extends StorageInsightsReportFormat {
-  const StorageInsightsReportParquetFormat();
+final class StorageInsightsReportConfigParquetFormat
+    extends StorageInsightsReportConfigFormat {
+  const StorageInsightsReportConfigParquetFormat();
 
   @override
   String get blockKey => 'parquet_options';
@@ -207,7 +208,7 @@ final class StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters
 ///
 /// Cloud Storage **inventory report** config — periodic CSV or Parquet
 /// object-metadata dumps into a destination bucket. Pick exactly one
-/// [StorageInsightsReportFormat].
+/// [StorageInsightsReportConfigFormat].
 ///
 /// **Cost:** gcp-cost: Cloud Storage `95FF-2EF5-5EA1` list_skus
 /// keyword=inventory → 0; Class A ops `4DBF-185F-A415` **$0.005/count
@@ -223,7 +224,7 @@ final class StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters
 ///   location: TfArg.literal('asia-northeast1'),
 ///   displayName: TfArg.literal('terradart-inventory'),
 ///   forceDestroy: TfArg.literal(true),
-///   format: const StorageInsightsReportCsvFormat(),
+///   format: const StorageInsightsReportConfigCsvFormat(),
 ///   frequencyOptions: StorageInsightsReportConfigFrequencyOptions(
 ///     frequency: TfArg.literal(
 ///       StorageInsightsReportConfigFrequencyOptionsFrequency.weekly,
@@ -260,7 +261,7 @@ final class GoogleStorageInsightsReportConfig extends Resource {
     required super.localName,
     required TfArg<String> location,
     TfArg<String>? displayName,
-    required StorageInsightsReportFormat format,
+    required StorageInsightsReportConfigFormat format,
     StorageInsightsReportConfigFrequencyOptions? frequencyOptions,
     StorageInsightsReportConfigObjectMetadataReportOptions?
     objectMetadataReportOptions,

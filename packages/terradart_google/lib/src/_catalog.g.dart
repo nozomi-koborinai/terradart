@@ -26535,10 +26535,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     nestedTypes: <String>[
       'StorageInsightsDatasetConfigDatasetConfigState',
-      'StorageInsightsDatasetSource',
-      'StorageInsightsDatasetSourceProjects',
-      'StorageInsightsDatasetSourceFolders',
-      'StorageInsightsDatasetOrganizationScope',
+      'StorageInsightsDatasetConfigSource',
+      'StorageInsightsDatasetConfigSourceProjects',
+      'StorageInsightsDatasetConfigSourceFolders',
+      'StorageInsightsDatasetConfigOrganizationScope',
       'StorageInsightsDatasetConfigExcludeCloudStorageBuckets',
       'StorageInsightsDatasetConfigExcludeCloudStorageBucketsCloudStorageBuckets',
       'StorageInsightsDatasetConfigExcludeCloudStorageLocations',
@@ -26550,7 +26550,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_storage_insights_dataset_config`.\n\nRepresents a Storage Insights DatasetConfig.\n\nStorage Insights **dataset config** — indexes Cloud Storage metadata\nfor a project, folder, or organization. Pick exactly one\n[StorageInsightsDatasetSource].\n\nThis is a Storage Intelligence exclusive: linking or processing a\ndataset can enable billed STANDARD object-management (gcp-cost:\nCloud Storage `95FF-2EF5-5EA1` Storage Intelligence Standard Object\nManagement Fee `F67F-9FAF-E4FB` **\$2.5e-06/s**). Leave\n[linkDataset] unset/`false` so Terraform can destroy the config.\n**Never** apply on `terradart-validate`.\n\nExample (project scope, unlinked):\n```dart\nGoogleStorageInsightsDatasetConfig(\n  localName: \'inventory\',\n  datasetConfigId: TfArg.literal(\'terradart-insights\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  retentionPeriodDays: TfArg.literal(1),\n  identity: StorageInsightsDatasetConfigIdentity(\n    type: TfArg.literal(\n      StorageInsightsDatasetConfigIdentityType.identityTypePerConfig,\n    ),\n  ),\n  source: StorageInsightsDatasetSourceProjects(\n    projectNumbers: TfArg.literal([projectNumber]),\n  ),\n);\n```',
+        'Factory wrapper for `google_storage_insights_dataset_config`.\n\nRepresents a Storage Insights DatasetConfig.\n\nStorage Insights **dataset config** — indexes Cloud Storage metadata\nfor a project, folder, or organization. Pick exactly one\n[StorageInsightsDatasetConfigSource].\n\nThis is a Storage Intelligence exclusive: linking or processing a\ndataset can enable billed STANDARD object-management (gcp-cost:\nCloud Storage `95FF-2EF5-5EA1` Storage Intelligence Standard Object\nManagement Fee `F67F-9FAF-E4FB` **\$2.5e-06/s**). Leave\n[linkDataset] unset/`false` so Terraform can destroy the config.\n**Never** apply on `terradart-validate`.\n\nExample (project scope, unlinked):\n```dart\nGoogleStorageInsightsDatasetConfig(\n  localName: \'inventory\',\n  datasetConfigId: TfArg.literal(\'terradart-insights\'),\n  location: TfArg.literal(\'asia-northeast1\'),\n  retentionPeriodDays: TfArg.literal(1),\n  identity: StorageInsightsDatasetConfigIdentity(\n    type: TfArg.literal(\n      StorageInsightsDatasetConfigIdentityType.identityTypePerConfig,\n    ),\n  ),\n  source: StorageInsightsDatasetConfigSourceProjects(\n    projectNumbers: TfArg.literal([projectNumber]),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_storage_insights_report_config',
@@ -26570,9 +26570,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
     ],
     nestedTypes: <String>[
-      'StorageInsightsReportFormat',
-      'StorageInsightsReportCsvFormat',
-      'StorageInsightsReportParquetFormat',
+      'StorageInsightsReportConfigFormat',
+      'StorageInsightsReportConfigCsvFormat',
+      'StorageInsightsReportConfigParquetFormat',
       'StorageInsightsReportConfigFrequencyOptions',
       'StorageInsightsReportConfigFrequencyOptionsFrequency',
       'StorageInsightsReportConfigFrequencyOptionsEndDate',
@@ -26583,7 +26583,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_storage_insights_report_config`.\n\nRepresents an inventory report configuration.\n\nCloud Storage **inventory report** config — periodic CSV or Parquet\nobject-metadata dumps into a destination bucket. Pick exactly one\n[StorageInsightsReportFormat].\n\n**Cost:** gcp-cost: Cloud Storage `95FF-2EF5-5EA1` list_skus\nkeyword=inventory → 0; Class A ops `4DBF-185F-A415` **\$0.005/count\nafter 5k**. billing-behavior: the config is free metadata; report\nobjects (if generated) are usage-metered Standard Storage + Class A.\nUse a future [frequencyOptions] start date in smoke so no files land.\nSet [forceDestroy] so Terraform can delete leftover report objects.\n\nExample:\n```dart\nGoogleStorageInsightsReportConfig(\n  localName: \'inventory\',\n  location: TfArg.literal(\'asia-northeast1\'),\n  displayName: TfArg.literal(\'terradart-inventory\'),\n  forceDestroy: TfArg.literal(true),\n  format: const StorageInsightsReportCsvFormat(),\n  frequencyOptions: StorageInsightsReportConfigFrequencyOptions(\n    frequency: TfArg.literal(\n      StorageInsightsReportConfigFrequencyOptionsFrequency.weekly,\n    ),\n    startDate: StorageInsightsReportConfigFrequencyOptionsStartDate(\n      year: TfArg.literal(2099),\n      month: TfArg.literal(1),\n      day: TfArg.literal(1),\n    ),\n    endDate: StorageInsightsReportConfigFrequencyOptionsEndDate(\n      year: TfArg.literal(2099),\n      month: TfArg.literal(12),\n      day: TfArg.literal(31),\n    ),\n  ),\n  objectMetadataReportOptions:\n      StorageInsightsReportConfigObjectMetadataReportOptions(\n    metadataFields: TfArg.literal([\'name\', \'size\']),\n    storageDestinationOptions:\n        StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestinationOptions(\n      bucket: TfArg.ref(reports.nameRef),\n    ),\n    storageFilters:\n        StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters(\n      bucket: TfArg.ref(source.nameRef),\n    ),\n  ),\n);\n```',
+        'Factory wrapper for `google_storage_insights_report_config`.\n\nRepresents an inventory report configuration.\n\nCloud Storage **inventory report** config — periodic CSV or Parquet\nobject-metadata dumps into a destination bucket. Pick exactly one\n[StorageInsightsReportConfigFormat].\n\n**Cost:** gcp-cost: Cloud Storage `95FF-2EF5-5EA1` list_skus\nkeyword=inventory → 0; Class A ops `4DBF-185F-A415` **\$0.005/count\nafter 5k**. billing-behavior: the config is free metadata; report\nobjects (if generated) are usage-metered Standard Storage + Class A.\nUse a future [frequencyOptions] start date in smoke so no files land.\nSet [forceDestroy] so Terraform can delete leftover report objects.\n\nExample:\n```dart\nGoogleStorageInsightsReportConfig(\n  localName: \'inventory\',\n  location: TfArg.literal(\'asia-northeast1\'),\n  displayName: TfArg.literal(\'terradart-inventory\'),\n  forceDestroy: TfArg.literal(true),\n  format: const StorageInsightsReportConfigCsvFormat(),\n  frequencyOptions: StorageInsightsReportConfigFrequencyOptions(\n    frequency: TfArg.literal(\n      StorageInsightsReportConfigFrequencyOptionsFrequency.weekly,\n    ),\n    startDate: StorageInsightsReportConfigFrequencyOptionsStartDate(\n      year: TfArg.literal(2099),\n      month: TfArg.literal(1),\n      day: TfArg.literal(1),\n    ),\n    endDate: StorageInsightsReportConfigFrequencyOptionsEndDate(\n      year: TfArg.literal(2099),\n      month: TfArg.literal(12),\n      day: TfArg.literal(31),\n    ),\n  ),\n  objectMetadataReportOptions:\n      StorageInsightsReportConfigObjectMetadataReportOptions(\n    metadataFields: TfArg.literal([\'name\', \'size\']),\n    storageDestinationOptions:\n        StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestinationOptions(\n      bucket: TfArg.ref(reports.nameRef),\n    ),\n    storageFilters:\n        StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters(\n      bucket: TfArg.ref(source.nameRef),\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_storage_managed_folder',

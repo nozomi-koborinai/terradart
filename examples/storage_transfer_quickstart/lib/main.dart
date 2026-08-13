@@ -142,7 +142,7 @@ final class StorageTransferStack extends Stack {
         location: TfArg.literal('asia-northeast1'),
         displayName: TfArg.literal('terradart-inventory'),
         forceDestroy: TfArg.literal(true),
-        format: StorageInsightsReportCsvFormat(
+        format: StorageInsightsReportConfigCsvFormat(
           delimiter: TfArg.literal(','),
           headerRequired: TfArg.literal(true),
         ),
