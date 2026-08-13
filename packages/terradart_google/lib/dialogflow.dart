@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Dialogflow ES / CX: SIP trunk, ES agent, and full CX agent surfaces
+/// Dialogflow ES / CX: SIP trunk, ES agent plus intent / entity type /
+/// fulfillment / version / environment, and full CX agent surfaces
 /// (all CX factories are never_apply — agent / flow / intent / page /
 /// playbook / webhook / generative settings / security settings /
 /// generator / tool / entity type / environment / version /
@@ -277,5 +278,32 @@ export 'src/dialogflow/google_dialogflow_cx_webhook.dart'
         DialogflowCxWebhookServiceDirectoryGenericWebServiceServiceAgentAuth,
         DialogflowCxWebhookServiceDirectoryGenericWebServiceWebhookType,
         GoogleDialogflowCxWebhook;
+export 'src/dialogflow/google_dialogflow_entity_type.dart'
+    show
+        DialogflowEntityTypeEntities,
+        DialogflowEntityTypeKind,
+        GoogleDialogflowEntityType;
+export 'src/dialogflow/google_dialogflow_environment.dart'
+    show
+        DialogflowEnvironmentFulfillment,
+        DialogflowEnvironmentFulfillmentFeatures,
+        DialogflowEnvironmentFulfillmentFeaturesType,
+        DialogflowEnvironmentFulfillmentGenericWebService,
+        DialogflowEnvironmentState,
+        DialogflowEnvironmentTextToSpeechSettings,
+        DialogflowEnvironmentTextToSpeechSettingsOutputAudioEncoding,
+        DialogflowEnvironmentTextToSpeechSettingsSynthesizeSpeechConfigs,
+        DialogflowEnvironmentTextToSpeechSettingsSynthesizeSpeechConfigsVoice,
+        DialogflowEnvironmentTextToSpeechSettingsSynthesizeSpeechConfigsVoiceSsmlGender,
+        GoogleDialogflowEnvironment;
+export 'src/dialogflow/google_dialogflow_fulfillment.dart'
+    show
+        DialogflowFulfillmentFeatures,
+        DialogflowFulfillmentGenericWebService,
+        GoogleDialogflowFulfillment;
+export 'src/dialogflow/google_dialogflow_intent.dart'
+    show DialogflowIntentWebhookState, GoogleDialogflowIntent;
 export 'src/dialogflow/google_dialogflow_sip_trunk.dart'
     show DialogflowSipTrunkDeletionPolicy, GoogleDialogflowSipTrunk;
+export 'src/dialogflow/google_dialogflow_version.dart'
+    show GoogleDialogflowVersion;

@@ -564,8 +564,18 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dialogflow_agent:
     upstream: mmv1/products/dialogflow/Agent.yaml
+  google_dialogflow_entity_type:
+    upstream: mmv1/products/dialogflow/EntityType.yaml
+  google_dialogflow_environment:
+    upstream: mmv1/products/dialogflow/Environment.yaml
+  google_dialogflow_fulfillment:
+    upstream: mmv1/products/dialogflow/Fulfillment.yaml
+  google_dialogflow_intent:
+    upstream: mmv1/products/dialogflow/Intent.yaml
   google_dialogflow_sip_trunk:
     upstream: mmv1/products/dialogflow/SipTrunk.yaml
+  google_dialogflow_version:
+    upstream: null  # no mmv1/products/dialogflow/Version.yaml (HTTP 404, probed 2026-08-13); handwritten in terraform-provider-google
   google_discovery_engine_search_engine:
     upstream: mmv1/products/discoveryengine/SearchEngine.yaml
   google_discovery_engine_license_config:

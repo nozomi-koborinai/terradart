@@ -1,0 +1,32 @@
+outputDir: dialogflow
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Dialogflow ES **environment** — named serving environment that
+  /// loads an agent version (`environmentid` is the URL id).
+  ///
+  /// **Cost:** gcp-cost: Cloud Dialogflow `FBC0-AA4A-C89A` Intent Detection
+  /// Text Query Operations for Enterprise Essentials Agents `114B-F183-612D`
+  /// **$0.002/count**. billing-behavior: environments are design-time
+  /// config; query SKUs fire only on DetectIntent against a published
+  /// environment (this factory never invokes it). Do not enable
+  /// `text_to_speech_settings` in apply-smoke (Enterprise TTS SKU
+  /// `B82E-CE31-1AB6`). Enable `dialogflow.googleapis.com` before apply.
+  /// Create [GoogleDialogflowAgent] and [GoogleDialogflowVersion] first.
+
+paramOrder:
+  - environmentid
+  - agent_version
+  - location
+  - description
+  - fulfillment
+  - text_to_speech_settings
+  - deletion_policy
+  - project

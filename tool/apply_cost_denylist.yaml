@@ -92,6 +92,7 @@ safe_exception: google_dataproc_cluster_iam_policy  # IAM policy on Dataproc clu
 safe_exception: google_apihub_plugin_instance  # plugin-instance config metadata; no existence billing — _instance substring false positive (parent API Hub host is never_apply)
 
 safe_exception: google_notebooks_environment  # Workbench environment is an image recipe only; Notebooks SKUs bill when an instance/VM runs — _notebooks substring false positive
+safe_exception: google_dialogflow_environment  # Dialogflow ES environment is a named version pointer; query SKUs fire only on DetectIntent — environment substring false positive (Composer/Apigee environments are never_apply)
 safe_exception: google_bigquery_reservation_group  # reservation group is a named container only; BigQuery Reservation API 16B8-3DDA-9F10 SKUs bill slots/commits (e.g. Standard Edition PAYG 0165-271F-5086 ~$0.049/slot-hour) — reservation substring false positive
 safe_exception: google_network_services_endpoint_policy  # Cloud Service Mesh endpoint-policy matcher is config metadata; Anthos/TD endpoint SKUs bill when workloads join, not for this object — _endpoint substring false positive
 
@@ -658,6 +659,12 @@ google_dataplex_task_iam_binding: safe  # billing-behavior: IAM binding only
 google_dataplex_task_iam_policy: safe  # billing-behavior: IAM policy only
 google_dataplex_data_product_iam_binding: safe  # billing-behavior: IAM binding only
 google_dataplex_data_product_iam_policy: safe  # billing-behavior: IAM policy only
+google_dialogflow_agent: safe  # gcp-cost: Cloud Dialogflow FBC0-AA4A-C89A Intent Detection Text Query Operations for Enterprise Essentials Agents 114B-F183-612D $0.002/count; billing-behavior: ES agent is a per-project singleton config object — query SKUs fire only on DetectIntent (Standard tier has no catalog query SKU); this example uses TIER_STANDARD and never calls DetectIntent
+google_dialogflow_entity_type: safe  # gcp-cost: Cloud Dialogflow FBC0-AA4A-C89A Intent Detection Text Query Operations for Enterprise Essentials Agents 114B-F183-612D $0.002/count; billing-behavior: design-time entity config — query SKUs fire only on DetectIntent; this example never calls DetectIntent
+google_dialogflow_environment: safe  # gcp-cost: Cloud Dialogflow FBC0-AA4A-C89A Intent Detection Text Query Operations for Enterprise Essentials Agents 114B-F183-612D $0.002/count; TTS Standard Voices for Enterprise Agents B82E-CE31-1AB6 is unused (text_to_speech_settings omitted); billing-behavior: design-time environment config — query SKUs fire only on DetectIntent against a published environment; this example never calls DetectIntent
+google_dialogflow_fulfillment: safe  # gcp-cost: Cloud Dialogflow FBC0-AA4A-C89A Intent Detection Text Query Operations for Enterprise Essentials Agents 114B-F183-612D $0.002/count; billing-behavior: singleton PATCH config — a generic_web_service URI is not called until an intent match; this example sets enabled=false and omits the webhook
+google_dialogflow_intent: safe  # gcp-cost: Cloud Dialogflow FBC0-AA4A-C89A Intent Detection Text Query Operations for Enterprise Essentials Agents 114B-F183-612D $0.002/count; billing-behavior: design-time intent config — query SKUs fire only on DetectIntent; this example never calls DetectIntent
+google_dialogflow_version: safe  # gcp-cost: Cloud Dialogflow FBC0-AA4A-C89A Intent Detection Text Query Operations for Enterprise Essentials Agents 114B-F183-612D $0.002/count; billing-behavior: immutable design-time snapshot — query SKUs fire only on DetectIntent; this example never calls DetectIntent
 google_dns_managed_zone: safe  # apply-verified safe (existing example)
 google_dns_managed_zone_iam_binding: safe  # billing-behavior: IAM binding only
 google_dns_managed_zone_iam_member: safe  # apply-verified safe (existing example)

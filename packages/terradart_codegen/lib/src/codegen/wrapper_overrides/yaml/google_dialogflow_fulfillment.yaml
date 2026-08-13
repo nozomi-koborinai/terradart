@@ -1,0 +1,33 @@
+outputDir: dialogflow
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Dialogflow ES **fulfillment** — singleton webhook config on the
+  /// per-project ES agent (`PATCH` create / update / delete).
+  ///
+  /// Creating this resource overwrites the agent's existing fulfillment
+  /// the same way upstream Terraform does.
+  ///
+  /// **Cost:** gcp-cost: Cloud Dialogflow `FBC0-AA4A-C89A` Intent Detection
+  /// Text Query Operations for Enterprise Essentials Agents `114B-F183-612D`
+  /// **$0.002/count**. billing-behavior: fulfillment is design-time
+  /// config; query SKUs fire only on DetectIntent (this factory never
+  /// invokes it). A configured `generic_web_service` URI is not called
+  /// until an intent match. Enable `dialogflow.googleapis.com` before
+  /// apply. The ES agent is a per-project singleton — create
+  /// [GoogleDialogflowAgent] first.
+
+paramOrder:
+  - display_name
+  - enabled
+  - features
+  - generic_web_service
+  - deletion_policy
+  - project

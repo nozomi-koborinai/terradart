@@ -1,0 +1,32 @@
+outputDir: dialogflow
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+dartTypeOverrides:
+  kind: DialogflowEntityTypeKind
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Dialogflow ES **entity type** — extracts parameter values from
+  /// natural-language queries on the per-project ES agent.
+  ///
+  /// **Cost:** gcp-cost: Cloud Dialogflow `FBC0-AA4A-C89A` Intent Detection
+  /// Text Query Operations for Enterprise Essentials Agents `114B-F183-612D`
+  /// **$0.002/count**. billing-behavior: entity types are design-time
+  /// config; query SKUs fire only on DetectIntent (this factory never
+  /// invokes it). Standard-tier agents have no catalog query SKU. Enable
+  /// `dialogflow.googleapis.com` before apply. The ES agent is a
+  /// per-project singleton — create [GoogleDialogflowAgent] first.
+
+paramOrder:
+  - display_name
+  - kind
+  - enable_fuzzy_extraction
+  - entities
+  - deletion_policy
+  - project

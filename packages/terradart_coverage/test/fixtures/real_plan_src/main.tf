@@ -64,8 +64,9 @@ resource "google_compute_router_nat" "nat" {
 
 # --- Not curated yet (expected: not in catalog) ---
 
-resource "google_dialogflow_intent" "hello" {
+resource "google_dialogflow_conversation_profile" "hello" {
   display_name = "hello"
+  location     = "global"
 }
 
 module "network" {
