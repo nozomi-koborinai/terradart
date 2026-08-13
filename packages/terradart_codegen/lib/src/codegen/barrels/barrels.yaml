@@ -122,6 +122,12 @@ barrels:
     doc: |-
       /// Certificate Manager — DNS authorization, managed/self-managed
       /// certificates, and certificate maps for HTTPS load balancers.
+  ces:
+    doc: |-
+      /// Customer Engagement Suite (Conversational Agents): apps, agents,
+      /// root-agent association, app versions, guardrails, and tools.
+      /// Session SKUs fire only on chat/voice traffic — this barrel's
+      /// curated factories are design-time config (no `google_ces_deployment`).
   chronicle:
     doc: |-
       /// Chronicle (Google SecOps): detections, playbooks, custom lists,

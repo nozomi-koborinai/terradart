@@ -1,0 +1,43 @@
+outputDir: ces
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+# `snapshot` is a computed-only object tree (the frozen app graph). Do not
+# explode it into nested Dart types — callers never set it.
+nestedTypeExcludes:
+  - snapshot
+
+curatedDoc: |-
+  /// Customer Engagement Suite **app version** — immutable snapshot of an
+  /// app's agents / tools / guardrails. Pass the parent app's `app_id` as
+  /// [app]. Terraform fills `snapshot` after create.
+  ///
+  /// **Cost:** gcp-cost: Customer Engagement Suite `383B-7930-9BC4` Chat
+  /// sessions for CX Agent Studio `40A1-7B02-5EF6` **$0.50/count** (Voice
+  /// sessions `AC3D-5A20-CF66` **$0.50/count**; Voice overages
+  /// `9B47-D9B2-C9CB`). billing-behavior: a version is design-time
+  /// metadata — session SKUs fire only on CX Agent Studio chat/voice
+  /// sessions. This factory never creates `google_ces_deployment`. Enable
+  /// `ces.googleapis.com` via [Apis.enable] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleCesAppVersion(
+  ///   localName: 'v1',
+  ///   location: TfArg.ref(app.locationRef),
+  ///   app: TfArg.ref(app.appIdRef),
+  ///   appVersionId: TfArg.literal('v1'),
+  ///   displayName: TfArg.literal('terradart-ces-v1'),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - app
+  - app_version_id
+  - display_name
+  - description
+  - deletion_policy
+  - project

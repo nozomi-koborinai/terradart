@@ -144,6 +144,15 @@ void main() {
       );
     });
 
+    test('ces barrel includes ces.googleapis.com', () {
+      final apis = Apis.required(barrels: [Barrels.ces]);
+      expect(apis, hasLength(1));
+      expect(
+        apis.single.argMap['service']!.toTfJson(),
+        'ces.googleapis.com',
+      );
+    });
+
     test('recaptcha barrel includes recaptchaenterprise.googleapis.com', () {
       final apis = Apis.required(barrels: [Barrels.recaptcha]);
       expect(apis, hasLength(1));
@@ -268,6 +277,7 @@ void main() {
       expect(Barrels.apikeys.catalogName, 'apikeys');
       expect(Barrels.recaptcha.catalogName, 'recaptcha');
       expect(Barrels.storageControl.catalogName, 'storage_control');
+      expect(Barrels.ces.catalogName, 'ces');
     });
   });
 }

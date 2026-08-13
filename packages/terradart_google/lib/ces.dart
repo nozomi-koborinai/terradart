@@ -1,0 +1,116 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+/// Customer Engagement Suite (Conversational Agents): apps, agents,
+/// root-agent association, app versions, guardrails, and tools.
+/// Session SKUs fire only on chat/voice traffic — this barrel's
+/// curated factories are design-time config (no `google_ces_deployment`).
+library;
+
+export 'src/ces/google_ces_agent.dart'
+    show
+        CesAgentAfterAgentCallbacks,
+        CesAgentAfterModelCallbacks,
+        CesAgentAfterToolCallbacks,
+        CesAgentBeforeAgentCallbacks,
+        CesAgentBeforeModelCallbacks,
+        CesAgentBeforeToolCallbacks,
+        CesAgentLlmAgent,
+        CesAgentModelSettings,
+        CesAgentRemoteDialogflowAgent,
+        CesAgentToolsets,
+        GoogleCesAgent;
+export 'src/ces/google_ces_app.dart'
+    show
+        CesAppAudioProcessingConfig,
+        CesAppAudioProcessingConfigAmbientSoundConfig,
+        CesAppAudioProcessingConfigBargeInConfig,
+        CesAppAudioProcessingConfigSynthesizeSpeechConfigs,
+        CesAppClientCertificateSettings,
+        CesAppDataStoreSettings,
+        CesAppDefaultChannelProfile,
+        CesAppDefaultChannelProfilePersonaProperty,
+        CesAppDefaultChannelProfileWebWidgetConfig,
+        CesAppEvaluationMetricsThresholds,
+        CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholds,
+        CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsExpectationLevelMetricsThresholds,
+        CesAppEvaluationMetricsThresholdsGoldenEvaluationMetricsThresholdsTurnLevelMetricsThresholds,
+        CesAppLanguageSettings,
+        CesAppLoggingSettings,
+        CesAppLoggingSettingsAudioRecordingConfig,
+        CesAppLoggingSettingsBigqueryExportSettings,
+        CesAppLoggingSettingsCloudLoggingSettings,
+        CesAppLoggingSettingsConversationLoggingSettings,
+        CesAppLoggingSettingsRedactionConfig,
+        CesAppModelSettings,
+        CesAppTimeZoneSettings,
+        CesAppVariableDeclarations,
+        CesAppVariableDeclarationsSchema,
+        GoogleCesApp;
+export 'src/ces/google_ces_app_root_agent_association.dart'
+    show GoogleCesAppRootAgentAssociation;
+export 'src/ces/google_ces_app_version.dart' show GoogleCesAppVersion;
+export 'src/ces/google_ces_guardrail.dart'
+    show
+        CesGuardrailAction,
+        CesGuardrailActionGenerativeAnswer,
+        CesGuardrailActionRespondImmediately,
+        CesGuardrailActionRespondImmediatelyResponses,
+        CesGuardrailActionTransferAgent,
+        CesGuardrailCodeCallback,
+        CesGuardrailCodeCallbackAfterAgentCallback,
+        CesGuardrailCodeCallbackAfterModelCallback,
+        CesGuardrailCodeCallbackBeforeAgentCallback,
+        CesGuardrailCodeCallbackBeforeModelCallback,
+        CesGuardrailContentFilter,
+        CesGuardrailLlmPolicy,
+        CesGuardrailLlmPolicyModelSettings,
+        CesGuardrailLlmPolicyPolicyScope,
+        CesGuardrailLlmPromptSecurity,
+        CesGuardrailLlmPromptSecurityCustomPolicy,
+        CesGuardrailLlmPromptSecurityCustomPolicyModelSettings,
+        CesGuardrailLlmPromptSecurityDefaultSettings,
+        CesGuardrailModelSafety,
+        CesGuardrailModelSafetySafetySettings,
+        CesGuardrailModelSafetySafetySettingsCategory,
+        CesGuardrailModelSafetySafetySettingsThreshold,
+        GoogleCesGuardrail;
+export 'src/ces/google_ces_tool.dart'
+    show
+        CesToolAgentTool,
+        CesToolClientFunction,
+        CesToolClientFunctionParameters,
+        CesToolClientFunctionResponse,
+        CesToolDataStoreTool,
+        CesToolDataStoreToolBoostSpecs,
+        CesToolDataStoreToolBoostSpecsSpec,
+        CesToolDataStoreToolBoostSpecsSpecConditionBoostSpecs,
+        CesToolDataStoreToolBoostSpecsSpecConditionBoostSpecsBoostControlSpec,
+        CesToolDataStoreToolBoostSpecsSpecConditionBoostSpecsBoostControlSpecControlPoints,
+        CesToolDataStoreToolDataStoreSource,
+        CesToolDataStoreToolDataStoreSourceDataStore,
+        CesToolDataStoreToolEngineSource,
+        CesToolDataStoreToolEngineSourceDataStoreSources,
+        CesToolDataStoreToolEngineSourceDataStoreSourcesDataStore,
+        CesToolDataStoreToolFilterParameterBehavior,
+        CesToolDataStoreToolModalityConfigs,
+        CesToolDataStoreToolModalityConfigsGroundingConfig,
+        CesToolDataStoreToolModalityConfigsRewriterConfig,
+        CesToolDataStoreToolModalityConfigsRewriterConfigModelSettings,
+        CesToolDataStoreToolModalityConfigsSummarizationConfig,
+        CesToolDataStoreToolModalityConfigsSummarizationConfigModelSettings,
+        CesToolFileSearchTool,
+        CesToolFileSearchToolCorpusType,
+        CesToolGoogleSearchTool,
+        CesToolGoogleSearchToolPromptConfig,
+        CesToolPythonFunction,
+        CesToolToolFakeConfig,
+        CesToolToolFakeConfigCodeBlock,
+        CesToolWidgetTool,
+        CesToolWidgetToolDataMapping,
+        CesToolWidgetToolDataMappingMode,
+        CesToolWidgetToolDataMappingPythonFunction,
+        CesToolWidgetToolParameters,
+        CesToolWidgetToolTextResponseConfig,
+        CesToolWidgetToolTextResponseConfigType,
+        CesToolWidgetToolWidgetType,
+        GoogleCesTool;

@@ -1,0 +1,62 @@
+outputDir: ces
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Customer Engagement Suite **guardrail** — content filter, model
+  /// safety, LLM policy, or prompt-security bound to a [GoogleCesApp].
+  /// Optional action / filter blocks fan out (no MM `exactly_one_of`).
+  ///
+  /// **Cost:** gcp-cost: Customer Engagement Suite `383B-7930-9BC4` Chat
+  /// sessions for CX Agent Studio `40A1-7B02-5EF6` **$0.50/count** (Voice
+  /// sessions `AC3D-5A20-CF66` **$0.50/count**; Voice overages
+  /// `9B47-D9B2-C9CB`). billing-behavior: guardrails are design-time
+  /// config — session SKUs fire only on CX Agent Studio chat/voice
+  /// sessions. Enable `ces.googleapis.com` via [Apis.enable] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleCesGuardrail(
+  ///   localName: 'safety',
+  ///   location: TfArg.ref(app.locationRef),
+  ///   app: TfArg.ref(app.appIdRef),
+  ///   guardrailId: TfArg.literal('terradart-ces-guardrail'),
+  ///   displayName: TfArg.literal('terradart-ces-guardrail'),
+  ///   enabled: TfArg.literal(true),
+  ///   modelSafety: CesGuardrailModelSafety(
+  ///     safetySettings: [
+  ///       CesGuardrailModelSafetySafetySettings(
+  ///         category: TfArg.literal(
+  ///           CesGuardrailModelSafetySafetySettingsCategory
+  ///               .harmCategoryHateSpeech,
+  ///         ),
+  ///         threshold: TfArg.literal(
+  ///           CesGuardrailModelSafetySafetySettingsThreshold.blockNone,
+  ///         ),
+  ///       ),
+  ///     ],
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - app
+  - guardrail_id
+  - display_name
+  - description
+  - enabled
+  - action
+  - content_filter
+  - model_safety
+  - llm_policy
+  - llm_prompt_security
+  - code_callback
+  - deletion_policy
+  - project

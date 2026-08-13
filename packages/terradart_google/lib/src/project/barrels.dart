@@ -14,6 +14,7 @@ enum Barrels {
   bigtable('bigtable'),
   binaryAuthorization('binary_authorization'),
   certificateManager('certificate_manager'),
+  ces('ces'),
   chronicle('chronicle'),
   cloudBuild('cloud_build'),
   cloudFunctions('cloud_functions'),

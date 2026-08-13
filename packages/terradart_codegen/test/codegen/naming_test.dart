@@ -61,6 +61,12 @@ void main() {
       expect(screamingToCamel('IN'), 'inCase');
     });
 
+    test('safeDartIdentifier suffixes reserved words with Case', () {
+      expect(safeDartIdentifier('default'), 'defaultCase');
+      expect(safeDartIdentifier('enum'), 'enumCase');
+      expect(safeDartIdentifier('displayName'), 'displayName');
+    });
+
     test('enumName carries the reserved-word-safe member through', () {
       final e = enumName(
         resourceType: 'google_compute_router',

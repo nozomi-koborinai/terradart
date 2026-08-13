@@ -21,6 +21,7 @@ workspace:
   - examples/bigquery_quickstart
   - examples/bigtable_quickstart
   - examples/chronicle_quickstart
+  - examples/ces_quickstart
   - examples/cloud_build_quickstart
   - examples/clouddeploy_quickstart
   - examples/config_deployment_quickstart

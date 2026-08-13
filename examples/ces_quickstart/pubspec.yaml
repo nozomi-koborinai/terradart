@@ -1,0 +1,15 @@
+name: terradart_example_ces_quickstart
+description: Customer Engagement Suite app, agent, guardrail, tool, and version.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.24.0
+  terradart_google: ^0.24.0
+
+dev_dependencies:
+  lints: ^6.0.0

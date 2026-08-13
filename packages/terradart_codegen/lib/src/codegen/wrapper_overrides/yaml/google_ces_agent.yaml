@@ -1,0 +1,63 @@
+outputDir: ces
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Customer Engagement Suite **agent** — LLM or remote-Dialogflow child
+  /// of a [GoogleCesApp]. Pass the parent app's `app_id` (not the full
+  /// name) as [app].
+  ///
+  /// **Cost:** gcp-cost: Customer Engagement Suite `383B-7930-9BC4` Chat
+  /// sessions for CX Agent Studio `40A1-7B02-5EF6` **$0.50/count** (Voice
+  /// sessions `AC3D-5A20-CF66` **$0.50/count**; Voice overages
+  /// `9B47-D9B2-C9CB`). billing-behavior: the agent is design-time config
+  /// — session SKUs fire only on CX Agent Studio chat/voice sessions. This
+  /// factory never creates `google_ces_deployment` and never sends
+  /// sessions. Enable `ces.googleapis.com` via [Apis.enable] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleCesAgent(
+  ///   localName: 'agent',
+  ///   location: TfArg.ref(app.locationRef),
+  ///   app: TfArg.ref(app.appIdRef),
+  ///   agentId: TfArg.literal('terradart-ces-agent'),
+  ///   displayName: TfArg.literal('terradart-ces-agent'),
+  ///   instruction: TfArg.literal('You are a helpful assistant.'),
+  ///   llmAgent: const CesAgentLlmAgent(),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - app
+  - display_name
+  - agent_id
+  - description
+  - instruction
+  - llm_agent
+  - model_settings
+  - remote_dialogflow_agent
+  - tools
+  - toolsets
+  - guardrails
+  - child_agents
+  - before_agent_callbacks
+  - after_agent_callbacks
+  - before_model_callbacks
+  - after_model_callbacks
+  - before_tool_callbacks
+  - after_tool_callbacks
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `agent_id` (set this on create so association can bind it).
+    TfRef<String> get agentIdRef =>
+        TfRef.attribute<String>(this, 'agent_id');

@@ -31,6 +31,7 @@ export 'billing.dart';
 export 'binary_authorization.dart';
 export 'blockchain.dart';
 export 'certificate_manager.dart';
+export 'ces.dart';
 export 'chronicle.dart';
 export 'cloud_build.dart';
 export 'cloud_functions.dart';
