@@ -50,21 +50,21 @@ final class NetworkServicesMeshStack extends Stack {
       GoogleNetworkServicesHttpRoute(
         localName: 'http',
         name: TfArg.literal('terradart-http-route'),
-        hostnames: TfArg.literal(['example.com']),
+        hostnames: TfArg.literal(['example']),
         meshes: meshId,
         rules: [
           NetworkServicesHttpRouteRules(
             matches: [
               NetworkServicesHttpRouteRulesMatches(
-                prefixMatch: TfArg.literal('/'),
+                fullPathMatch: TfArg.literal('example'),
+                queryParameters: [
+                  NetworkServicesHttpRouteRulesMatchesQueryParameters(
+                    queryParameter: TfArg.literal('key'),
+                    exactMatch: TfArg.literal('value'),
+                  ),
+                ],
               ),
             ],
-            action: NetworkServicesHttpRouteRulesAction(
-              redirect: NetworkServicesHttpRouteRulesActionRedirect(
-                hostRedirect: TfArg.literal('example.com'),
-                httpsRedirect: TfArg.literal(true),
-              ),
-            ),
           ),
         ],
         dependsOn: onMesh,
@@ -113,7 +113,7 @@ final class NetworkServicesMeshStack extends Stack {
           NetworkServicesTcpRouteRules(
             matches: [
               NetworkServicesTcpRouteRulesMatches(
-                address: TfArg.literal('10.0.0.1/32'),
+                address: TfArg.literal('*/0'),
                 port: TfArg.literal('8081'),
               ),
             ],
