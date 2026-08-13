@@ -262,7 +262,8 @@ barrels:
   discovery_engine:
     doc: |-
       /// Vertex AI Search (Discovery Engine): data stores, search engines, IAM,
-      /// and Gemini Enterprise license configs (never_apply — seat subscriptions).
+      /// schema / serving controls, and Gemini Enterprise license configs
+      /// (never_apply — seat subscriptions).
   dlp:
     doc: |-
       /// Sensitive Data Protection (DLP) — inspect / de-identify templates,

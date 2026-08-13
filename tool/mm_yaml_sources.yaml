@@ -238,6 +238,18 @@ files:
     upstream: mmv1/products/discoveryengine/UserStore.yaml
   google_discovery_engine_widget_config:
     upstream: mmv1/products/discoveryengine/WidgetConfig.yaml
+  google_discovery_engine_schema:
+    upstream: mmv1/products/discoveryengine/Schema.yaml
+  google_discovery_engine_sitemap:
+    upstream: mmv1/products/discoveryengine/Sitemap.yaml
+  google_discovery_engine_target_site:
+    upstream: mmv1/products/discoveryengine/TargetSite.yaml
+  google_discovery_engine_serving_config:
+    upstream: mmv1/products/discoveryengine/ServingConfig.yaml
+  google_discovery_engine_control:
+    upstream: mmv1/products/discoveryengine/Control.yaml
+  google_discovery_engine_acl_config:
+    upstream: mmv1/products/discoveryengine/AclConfig.yaml
   google_hypercomputecluster_cluster:
     upstream: mmv1/products/hypercomputecluster/Cluster.yaml
   google_kms_ekm_connection:

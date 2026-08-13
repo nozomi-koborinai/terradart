@@ -1,0 +1,30 @@
+outputDir: discovery_engine
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Vertex AI Search **schema** — JSON Schema for documents in a data
+  /// store. Pair with `skip_default_schema_creation: true` on
+  /// [GoogleDiscoveryEngineDataStore] when this is the store's only schema.
+  ///
+  /// **Cost:** gcp-cost: Vertex AI Search `74B1-77CF-C302` Search API Request
+  /// Count - Standard `BADA-EE26-7BDA` **$1.50/count after 10k** (Enterprise
+  /// `93D6-7280-CF05` **$4/count after 10k**); Data Index `BC7D-6A97-90F8`
+  /// **$5/GiBy·mo after 10 GiB**. billing-behavior: schemas are design-time
+  /// config; query SKUs fire only on Search API requests and Data Index
+  /// bills indexed GiB. This factory never queries or ingests documents.
+
+paramOrder:
+  - location
+  - data_store_id
+  - schema_id
+  - json_schema
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `schema_id` attribute.
+    TfRef<String> get schemaIdRef =>
+        TfRef.attribute<String>(this, 'schema_id');

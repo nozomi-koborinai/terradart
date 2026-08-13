@@ -73,24 +73,6 @@ entries:
     note: skipped by wave-shipper — schema required nested encryption_spec.kms_key (customer-managed KMS key + Dialogflow service-agent IAM); CMEK init is not standalone-project applyable without a dedicated keyring
 
   # --- discovery_engine ---
-  - resource: google_discovery_engine_schema
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_discovery_engine_sitemap
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_discovery_engine_target_site
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_discovery_engine_serving_config
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_discovery_engine_control
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_discovery_engine_acl_config
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
   - resource: google_discovery_engine_cmek_config
     detected_at: 2026-08-12
     provider_version: 7.43.0

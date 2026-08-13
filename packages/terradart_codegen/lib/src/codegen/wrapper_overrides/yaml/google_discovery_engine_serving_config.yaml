@@ -1,0 +1,33 @@
+outputDir: discovery_engine
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Vertex AI Search **serving config** — singleton under an engine.
+  /// `serving_config_id` currently accepts only `default_search`. Create is
+  /// PATCH; Magic Modules `exclude_delete: true` (Terraform destroy removes
+  /// state only — the parent engine delete still tears the config down).
+  ///
+  /// **Cost:** gcp-cost: Vertex AI Search `74B1-77CF-C302` Search API Request
+  /// Count - Standard `BADA-EE26-7BDA` **$1.50/count after 10k**.
+  /// billing-behavior: serving config is design-time wiring of controls;
+  /// query SKUs fire only on Search API requests. This factory never queries.
+
+paramOrder:
+  - location
+  - collection_id
+  - engine_id
+  - serving_config_id
+  - synonyms_control_ids
+  - filter_control_ids
+  - boost_control_ids
+  - redirect_control_ids
+  - promote_control_ids
+  - project
+
+extraGetters: |2
+    /// Reference to `serving_config_id` attribute.
+    TfRef<String> get servingConfigIdRef =>
+        TfRef.attribute<String>(this, 'serving_config_id');
