@@ -210,7 +210,7 @@ _FieldPlan _planChild(NestedBlockSpec child) => _plan(
 /// passthrough have always supplied the former (e.g. a literal
 /// `TfArg.literal([{...}, {...}])`), not the latter.
 _FieldPlan _planExcludedChild(ExcludedNestedBlock excluded) {
-  final dartName = snakeToCamel(excluded.tfName);
+  final dartName = safeDartIdentifier(snakeToCamel(excluded.tfName));
   final innerType =
       excluded.repeated ? 'List<Map<String, dynamic>>' : 'Map<String, dynamic>';
   final fieldType =
@@ -242,24 +242,25 @@ _FieldPlan _plan({
   required bool repeated,
   required bool wrapInTfArg,
 }) {
+  final ident = safeDartIdentifier(dartName);
   final accessor = wrapInTfArg ? '.toTfJson()' : '.encode()';
   final elementDartType = wrapInTfArg ? 'TfArg<$elementType>' : elementType;
   final bareFieldType = repeated ? 'List<$elementDartType>' : elementDartType;
   final fieldType = required ? bareFieldType : '$bareFieldType?';
 
-  final ctorParam = required ? 'required this.$dartName,' : 'this.$dartName,';
-  final fieldDecl = 'final $fieldType $dartName;';
+  final ctorParam = required ? 'required this.$ident,' : 'this.$ident,';
+  final fieldDecl = 'final $fieldType $ident;';
 
   final String valueExpr;
   if (repeated) {
-    final source = required ? dartName : '$dartName!';
+    final source = required ? ident : '$ident!';
     valueExpr = '[for (final e in $source) e$accessor]';
   } else {
-    final target = required ? dartName : '$dartName!';
+    final target = required ? ident : '$ident!';
     valueExpr = '$target$accessor';
   }
   final entry = "'$tfName': $valueExpr,";
-  final encodeEntry = required ? entry : 'if ($dartName != null) $entry';
+  final encodeEntry = required ? entry : 'if ($ident != null) $entry';
 
   return (ctorParam: ctorParam, fieldDecl: fieldDecl, encodeEntry: encodeEntry);
 }

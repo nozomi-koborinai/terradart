@@ -1673,6 +1673,19 @@ files:
     upstream: mmv1/products/certificatemanager/TrustConfig.yaml
   google_certificate_manager_certificate_issuance_config:
     upstream: mmv1/products/certificatemanager/CertificateIssuanceConfig.yaml
+  # Customer Engagement Suite (Conversational Agents)
+  google_ces_app:
+    upstream: mmv1/products/ces/App.yaml
+  google_ces_agent:
+    upstream: mmv1/products/ces/Agent.yaml
+  google_ces_app_root_agent_association:
+    upstream: mmv1/products/ces/AppRootAgentAssociation.yaml
+  google_ces_app_version:
+    upstream: mmv1/products/ces/AppVersion.yaml
+  google_ces_guardrail:
+    upstream: mmv1/products/ces/Guardrail.yaml
+  google_ces_tool:
+    upstream: mmv1/products/ces/Tool.yaml
   # Wave 28 (Private CA — CAS pool for Certificate Manager issuance)
   google_privateca_ca_pool:
     upstream: mmv1/products/privateca/CaPool.yaml

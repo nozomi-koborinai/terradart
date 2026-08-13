@@ -103,8 +103,15 @@ EnumName enumName({
 String screamingToCamel(String screaming) {
   final parts = screaming.toLowerCase().replaceAll('-', '_').split('_');
   final camel = snakeToCamel(parts.join('_'));
-  return _dartReservedWords.contains(camel) ? '${camel}Case' : camel;
+  return safeDartIdentifier(camel);
 }
+
+/// Returns [ident] verbatim unless it is a Dart reserved word, in which
+/// case a `Case` suffix is appended (`default` → `defaultCase`). Shared by
+/// [screamingToCamel] (enum members) and nested-type field names so wrap
+/// never emits an unparseable identifier.
+String safeDartIdentifier(String ident) =>
+    _dartReservedWords.contains(ident) ? '${ident}Case' : ident;
 
 /// Dart's fully-reserved words: illegal as an identifier in *any* context.
 /// Deliberately narrower than "reserved words + built-in identifiers" (e.g.

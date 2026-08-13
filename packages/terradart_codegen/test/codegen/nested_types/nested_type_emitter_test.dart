@@ -709,4 +709,56 @@ enum AppEngineDomainMappingSslSettingsSslManagementType implements TerraformEnum
       expect(nestedParamType(spec), 'List<AccessLevelBasicConditions>?');
     });
   });
+
+  group('reserved Dart identifiers', () {
+    test('field named default encodes as defaultCase, tf key stays default',
+        () {
+      final spec = const NestedBlockSpec(
+        tfName: 'schema',
+        path: ['schema'],
+        className: 'CesToolSchema',
+        repeated: false,
+        required: false,
+        attrs: [
+          NestedAttrSpec(
+            tfName: 'default',
+            dartName: 'default',
+            dartType: 'String',
+            required: false,
+          ),
+          NestedAttrSpec(
+            tfName: 'enum',
+            dartName: 'enum',
+            dartType: 'String',
+            required: false,
+            repeated: true,
+          ),
+        ],
+        children: const [],
+        excludedChildren: const [],
+      );
+
+      final actual = renderNestedTypes(
+        [spec],
+        resourceTerraformType: 'google_ces_tool',
+      );
+
+      expect(actual, contains('this.defaultCase,'));
+      expect(actual, contains('this.enumCase,'));
+      expect(actual, contains('final TfArg<String>? defaultCase;'));
+      expect(actual, contains('final List<TfArg<String>>? enumCase;'));
+      expect(
+        actual,
+        contains(
+            "if (defaultCase != null) 'default': defaultCase!.toTfJson(),"),
+      );
+      expect(
+        actual,
+        contains(
+          "if (enumCase != null) 'enum': [for (final e in enumCase!) e.toTfJson()],",
+        ),
+      );
+      expect(actual, isNot(contains('this.default,')));
+    });
+  });
 }

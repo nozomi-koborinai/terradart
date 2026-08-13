@@ -1,0 +1,68 @@
+outputDir: ces
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Customer Engagement Suite **app** — parent container for agents,
+  /// tools, guardrails, and versions.
+  ///
+  /// **Cost:** gcp-cost: Customer Engagement Suite `383B-7930-9BC4` Chat
+  /// sessions for CX Agent Studio `40A1-7B02-5EF6` **$0.50/count** (Voice
+  /// sessions `AC3D-5A20-CF66` **$0.50/count**; Voice overages
+  /// `9B47-D9B2-C9CB`). billing-behavior: the app is design-time config —
+  /// session SKUs fire only on CX Agent Studio chat/voice sessions. This
+  /// factory never creates `google_ces_deployment` and never sends
+  /// sessions. Enable `ces.googleapis.com` via [Apis.enable] before apply.
+  ///
+  /// When pairing with [GoogleCesAppRootAgentAssociation], set
+  /// `lifecycle: LifecycleOptions(ignoreChanges: ['root_agent'])` so
+  /// Terraform does not fight the association over `root_agent`.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleCesApp(
+  ///   localName: 'app',
+  ///   location: TfArg.literal('us'),
+  ///   appId: TfArg.literal('terradart-ces'),
+  ///   displayName: TfArg.literal('terradart-ces'),
+  ///   lifecycle: const LifecycleOptions(ignoreChanges: ['root_agent']),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - app_id
+  - display_name
+  - description
+  - language_settings
+  - time_zone_settings
+  - model_settings
+  - global_instruction
+  - guardrails
+  - root_agent
+  - pinned
+  - metadata
+  - tool_execution_mode
+  - audio_processing_config
+  - logging_settings
+  - client_certificate_settings
+  - data_store_settings
+  - default_channel_profile
+  - evaluation_metrics_thresholds
+  - variable_declarations
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `app_id` (parent segment for agents / tools / guardrails).
+    TfRef<String> get appIdRef => TfRef.attribute<String>(this, 'app_id');
+
+    /// Reference to `location`.
+    TfRef<String> get locationRef =>
+        TfRef.attribute<String>(this, 'location');

@@ -1,0 +1,37 @@
+outputDir: ces
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Customer Engagement Suite **root-agent association** — PATCHes
+  /// `root_agent` on a [GoogleCesApp] after the agent exists.
+  ///
+  /// A CES agent must reference its parent app at create time, so the app
+  /// cannot set `root_agent` on first apply. Use this resource afterwards.
+  /// Add `lifecycle: LifecycleOptions(ignoreChanges: ['root_agent'])` on
+  /// the parent [GoogleCesApp] so Terraform does not clear the field.
+  ///
+  /// **Cost:** gcp-cost: Customer Engagement Suite `383B-7930-9BC4` Chat
+  /// sessions for CX Agent Studio `40A1-7B02-5EF6` **$0.50/count** (Voice
+  /// sessions `AC3D-5A20-CF66` **$0.50/count**; Voice overages
+  /// `9B47-D9B2-C9CB`). billing-behavior: association is a PATCH on app
+  /// metadata — session SKUs fire only on CX Agent Studio chat/voice
+  /// sessions. Enable `ces.googleapis.com` via [Apis.enable] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleCesAppRootAgentAssociation(
+  ///   localName: 'root',
+  ///   location: TfArg.ref(app.locationRef),
+  ///   appId: TfArg.ref(app.appIdRef),
+  ///   agentId: TfArg.ref(agent.agentIdRef),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - app_id
+  - agent_id
+  - deletion_policy
+  - project

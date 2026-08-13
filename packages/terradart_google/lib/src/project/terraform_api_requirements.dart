@@ -18,6 +18,7 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry('google_apikeys_', 'apikeys.googleapis.com'),
   MapEntry('google_artifact_registry_', 'artifactregistry.googleapis.com'),
   MapEntry('google_certificate_manager_', 'certificatemanager.googleapis.com'),
+  MapEntry('google_ces_', 'ces.googleapis.com'),
   MapEntry('google_chronicle_', 'chronicle.googleapis.com'),
   MapEntry('google_privateca_', 'privateca.googleapis.com'),
   MapEntry('google_public_ca_', 'publicca.googleapis.com'),
@@ -140,7 +141,8 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry('google_vpc_access_', 'vpcaccess.googleapis.com'),
   MapEntry('google_workstations_', 'workstations.googleapis.com'),
   MapEntry('google_vector_search_', 'vectorsearch.googleapis.com'),
-  MapEntry('google_secure_source_manager_', 'securesourcemanager.googleapis.com'),
+  MapEntry(
+      'google_secure_source_manager_', 'securesourcemanager.googleapis.com'),
 ];
 
 /// Returns the API endpoint a [terraformType] needs, or null when unchecked.
