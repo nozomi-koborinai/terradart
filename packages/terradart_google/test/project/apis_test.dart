@@ -153,6 +153,15 @@ void main() {
       );
     });
 
+    test('dataform barrel includes dataform.googleapis.com', () {
+      final apis = Apis.required(barrels: [Barrels.dataform]);
+      expect(apis, hasLength(1));
+      expect(
+        apis.single.argMap['service']!.toTfJson(),
+        'dataform.googleapis.com',
+      );
+    });
+
     test('recaptcha barrel includes recaptchaenterprise.googleapis.com', () {
       final apis = Apis.required(barrels: [Barrels.recaptcha]);
       expect(apis, hasLength(1));
@@ -278,6 +287,7 @@ void main() {
       expect(Barrels.recaptcha.catalogName, 'recaptcha');
       expect(Barrels.storageControl.catalogName, 'storage_control');
       expect(Barrels.ces.catalogName, 'ces');
+      expect(Barrels.dataform.catalogName, 'dataform');
     });
   });
 }

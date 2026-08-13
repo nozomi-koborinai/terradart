@@ -58,6 +58,7 @@ export 'data.dart';
 export 'data_catalog.dart';
 export 'data_fusion.dart';
 export 'dataflow.dart';
+export 'dataform.dart';
 export 'dataplex.dart';
 export 'dataproc.dart';
 export 'dialogflow.dart';

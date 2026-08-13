@@ -248,6 +248,11 @@ barrels:
     doc: |-
       /// Cloud Dataflow — managed batch/streaming pipeline jobs (worker vCPU
       /// hours while running; never_apply for apply-smoke).
+  dataform:
+    doc: |-
+      /// Dataform — folder and team-folder metadata for organizing SQL
+      /// workflow repositories. Folder objects do not compile or run
+      /// workflows (those SKUs fire on repository compilation).
   dataplex:
     doc: |-
       /// Dataplex: governed data products, Universal Catalog metadata (entry groups /

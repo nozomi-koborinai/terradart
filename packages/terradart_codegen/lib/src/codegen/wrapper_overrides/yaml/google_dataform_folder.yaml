@@ -1,0 +1,33 @@
+outputDir: dataform
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Dataform **folder** — metadata for grouping repositories under a
+  /// region (optionally inside a [GoogleDataformTeamFolder] via
+  /// `containingFolder`).
+  ///
+  /// Creating a folder does not compile SQL or run workflows.
+  ///
+  /// **Cost:** gcp-cost: no Cloud Billing Catalog SKU after list_services
+  /// "Dataform" empty; BigQuery 24E6-581D-38E5 list_skus keyword
+  /// dataform/compilation/workflow/folder → 0. billing-behavior: folder
+  /// metadata is free config; compilation SKUs fire on repository runs,
+  /// not folder create.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleDataformFolder(
+  ///   localName: 'apps',
+  ///   displayName: TfArg.literal('terradart-apps'),
+  ///   region: TfArg.literal('us-central1'),
+  /// );
+  /// ```
+
+paramOrder:
+  - display_name
+  - region
+  - containing_folder
+  - deletion_policy
+  - project
