@@ -100,6 +100,26 @@ prelude: |
         ];
   }
 
+  /// `boost_action.interpolation_boost_spec.attribute_type`.
+  enum DiscoveryEngineControlInterpolationAttributeType
+      implements TerraformEnum {
+    numerical('NUMERICAL'),
+    freshness('FRESHNESS');
+
+    const DiscoveryEngineControlInterpolationAttributeType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// `boost_action.interpolation_boost_spec.interpolation_type`.
+  enum DiscoveryEngineControlInterpolationType implements TerraformEnum {
+    linear('LINEAR');
+
+    const DiscoveryEngineControlInterpolationType(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
   /// `boost_action.interpolation_boost_spec` (max 1).
   @immutable
   class DiscoveryEngineControlInterpolationBoostSpec {
@@ -110,8 +130,9 @@ prelude: |
     });
 
     final TfArg<String>? fieldName;
-    final TfArg<String>? attributeType;
-    final TfArg<String>? interpolationType;
+    final TfArg<DiscoveryEngineControlInterpolationAttributeType>?
+        attributeType;
+    final TfArg<DiscoveryEngineControlInterpolationType>? interpolationType;
 
     Map<String, Object?> toArgMap() => {
           if (fieldName != null) 'field_name': fieldName!.toTfJson(),
