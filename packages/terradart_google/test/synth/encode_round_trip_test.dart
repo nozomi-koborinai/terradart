@@ -37,6 +37,7 @@ import 'package:terradart_google/config.dart';
 import 'package:terradart_google/dataplex.dart';
 import 'package:terradart_google/colab.dart';
 import 'package:terradart_google/dataproc.dart';
+import 'package:terradart_google/discovery_engine.dart';
 import 'package:terradart_google/cloud_run.dart';
 import 'package:terradart_google/spanner.dart';
 import 'package:terradart_google/cloud_scheduler.dart';
@@ -203,6 +204,30 @@ final Map<String, Object Function()> _syntheticInstances = {
       CloudRunV2JobGcsVolume(bucket: TfArg.literal('mock-bucket')),
   'CloudRunV2JobNfsVolume': () =>
       CloudRunV2JobNfsVolume(server: TfArg.literal('nfs.example.com')),
+
+  // --- DiscoveryEngineControlAction (5) — google_discovery_engine_control ---
+  'DiscoveryEngineControlBoostAction': () => DiscoveryEngineControlBoostAction(
+        dataStore: TfArg.literal('mock-store'),
+        filter: TfArg.literal('true'),
+      ),
+  'DiscoveryEngineControlFilterAction': () =>
+      DiscoveryEngineControlFilterAction(
+        dataStore: TfArg.literal('mock-store'),
+        filter: TfArg.literal('true'),
+      ),
+  'DiscoveryEngineControlRedirectAction': () =>
+      DiscoveryEngineControlRedirectAction(
+        redirectUri: TfArg.literal('https://example.com'),
+      ),
+  'DiscoveryEngineControlSynonymsAction': () =>
+      const DiscoveryEngineControlSynonymsAction(),
+  'DiscoveryEngineControlPromoteAction': () =>
+      DiscoveryEngineControlPromoteAction(
+        dataStore: TfArg.literal('mock-store'),
+        searchLinkPromotion: DiscoveryEngineControlSearchLinkPromotion(
+          title: TfArg.literal('pinned'),
+        ),
+      ),
 
   // --- CloudSchedulerJobSchedulerTarget (3) — cloud_scheduler_job ---------------------------
   'CloudSchedulerJobPubsubTarget': () => CloudSchedulerJobPubsubTarget(

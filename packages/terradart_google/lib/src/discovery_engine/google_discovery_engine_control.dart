@@ -61,9 +61,9 @@ final class DiscoveryEngineControlBoostAction
   @override
   List<Map<String, Object?>> encode() => [
     {
-      'data_store': dataStore,
-      'filter': filter,
-      if (fixedBoost != null) 'fixed_boost': fixedBoost,
+      'data_store': dataStore.toTfJson(),
+      'filter': filter.toTfJson(),
+      if (fixedBoost != null) 'fixed_boost': fixedBoost!.toTfJson(),
       if (interpolationBoostSpec != null)
         'interpolation_boost_spec': [interpolationBoostSpec!.toArgMap()],
     },
@@ -84,9 +84,10 @@ class DiscoveryEngineControlInterpolationBoostSpec {
   final TfArg<String>? interpolationType;
 
   Map<String, Object?> toArgMap() => {
-    if (fieldName != null) 'field_name': fieldName,
-    if (attributeType != null) 'attribute_type': attributeType,
-    if (interpolationType != null) 'interpolation_type': interpolationType,
+    if (fieldName != null) 'field_name': fieldName!.toTfJson(),
+    if (attributeType != null) 'attribute_type': attributeType!.toTfJson(),
+    if (interpolationType != null)
+      'interpolation_type': interpolationType!.toTfJson(),
   };
 }
 
@@ -107,7 +108,7 @@ final class DiscoveryEngineControlFilterAction
 
   @override
   List<Map<String, Object?>> encode() => [
-    {'data_store': dataStore, 'filter': filter},
+    {'data_store': dataStore.toTfJson(), 'filter': filter.toTfJson()},
   ];
 }
 
@@ -124,7 +125,7 @@ final class DiscoveryEngineControlRedirectAction
 
   @override
   List<Map<String, Object?>> encode() => [
-    {'redirect_uri': redirectUri},
+    {'redirect_uri': redirectUri.toTfJson()},
   ];
 }
 
@@ -141,7 +142,7 @@ final class DiscoveryEngineControlSynonymsAction
 
   @override
   List<Map<String, Object?>> encode() => [
-    {if (synonyms != null) 'synonyms': synonyms},
+    {if (synonyms != null) 'synonyms': synonyms!.toTfJson()},
   ];
 }
 
@@ -163,7 +164,7 @@ final class DiscoveryEngineControlPromoteAction
   @override
   List<Map<String, Object?>> encode() => [
     {
-      'data_store': dataStore,
+      'data_store': dataStore.toTfJson(),
       'search_link_promotion': [searchLinkPromotion.toArgMap()],
     },
   ];
@@ -189,12 +190,12 @@ class DiscoveryEngineControlSearchLinkPromotion {
   final TfArg<String>? uri;
 
   Map<String, Object?> toArgMap() => {
-    'title': title,
-    if (description != null) 'description': description,
-    if (document != null) 'document': document,
-    if (enabled != null) 'enabled': enabled,
-    if (imageUri != null) 'image_uri': imageUri,
-    if (uri != null) 'uri': uri,
+    'title': title.toTfJson(),
+    if (description != null) 'description': description!.toTfJson(),
+    if (document != null) 'document': document!.toTfJson(),
+    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    if (imageUri != null) 'image_uri': imageUri!.toTfJson(),
+    if (uri != null) 'uri': uri!.toTfJson(),
   };
 }
 
