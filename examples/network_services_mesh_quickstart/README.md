@@ -1,7 +1,7 @@
 # Network Services Mesh quickstart
 
 End-to-end terradart example for a Cloud Network Services **Mesh** plus
-config-only HTTP / gRPC / TCP routes and an endpoint policy. Enables
+config-only HTTP / gRPC / TCP routes. Enables
 `networkservices.googleapis.com` and provisions a global
 `google_network_services_mesh`, then attaches route/policy objects that do
 **not** require a Gateway or BackendService.

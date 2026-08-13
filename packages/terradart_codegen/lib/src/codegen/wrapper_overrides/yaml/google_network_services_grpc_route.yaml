@@ -9,9 +9,6 @@ deriveOutputGetters: true
 deriveNestedTypes: false
 deriveEnums: false
 
-extraImports:
-  - "import 'package:meta/meta.dart';"
-
 curatedDoc: |-
   /// Cloud Service Mesh **gRPC route** — hostname + method matchers that
   /// attach to a [GoogleNetworkServicesMesh] (or a gateway). Config only

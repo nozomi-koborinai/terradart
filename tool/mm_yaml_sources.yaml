@@ -2104,8 +2104,6 @@ files:
     upstream: mmv1/products/networkservices/MulticastGroupConsumerActivation.yaml
   google_network_services_multicast_group_producer_activation:
     upstream: mmv1/products/networkservices/MulticastGroupProducerActivation.yaml
-  google_network_services_endpoint_policy:
-    upstream: mmv1/products/networkservices/EndpointPolicy.yaml
   google_network_services_grpc_route:
     upstream: mmv1/products/networkservices/GrpcRoute.yaml
   google_network_services_http_route:

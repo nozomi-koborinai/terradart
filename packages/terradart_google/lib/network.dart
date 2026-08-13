@@ -252,15 +252,6 @@ export 'src/network/google_network_services_edge_cache_service.dart'
         NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteMethods,
         NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleUrlRedirect,
         NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleUrlRedirectRedirectResponseCode;
-export 'src/network/google_network_services_endpoint_policy.dart'
-    show
-        GoogleNetworkServicesEndpointPolicy,
-        NetworkServicesEndpointPolicyEndpointMatcher,
-        NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcher,
-        NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabelMatchCriteria,
-        NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabels,
-        NetworkServicesEndpointPolicyTrafficPortSelector,
-        NetworkServicesEndpointPolicyType;
 export 'src/network/google_network_services_gateway.dart'
     show
         GoogleNetworkServicesGateway,

@@ -1,5 +1,5 @@
 /// Network Services Mesh quickstart — a logical service-mesh namespace
-/// plus config-only HTTP / gRPC / TCP routes and an endpoint policy.
+/// plus config-only HTTP / gRPC / TCP routes.
 ///
 /// Enables `networkservices.googleapis.com` and provisions a global Mesh.
 /// Routes attach to that Mesh; they do not attach a Gateway (SWG is
@@ -14,7 +14,7 @@ import 'package:terradart_google/network.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 
-/// Network Services stack: Mesh + config-only routes + endpoint policy.
+/// Network Services stack: Mesh + config-only HTTP / gRPC / TCP routes.
 final class NetworkServicesMeshStack extends Stack {
   NetworkServicesMeshStack({required String projectId})
       : super(
@@ -124,28 +124,5 @@ final class NetworkServicesMeshStack extends Stack {
       ),
     );
 
-    add(
-      GoogleNetworkServicesEndpointPolicy(
-        localName: 'ep',
-        name: TfArg.literal('terradart-ep'),
-        type: TfArg.literal(NetworkServicesEndpointPolicyType.sidecarProxy),
-        endpointMatcher: NetworkServicesEndpointPolicyEndpointMatcher(
-          metadataLabelMatcher:
-              NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcher(
-            metadataLabelMatchCriteria: TfArg.literal(
-              NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabelMatchCriteria
-                  .matchAny,
-            ),
-            metadataLabels: [
-              NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabels(
-                labelName: TfArg.literal('app'),
-                labelValue: TfArg.literal('terradart'),
-              ),
-            ],
-          ),
-        ),
-        dependsOn: [ResourceDependency(apiNetworkServices)],
-      ),
-    );
   }
 }
