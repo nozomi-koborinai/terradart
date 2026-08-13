@@ -229,6 +229,24 @@ final Map<String, Object Function()> _syntheticInstances = {
         ),
       ),
 
+  // --- StorageInsightsDatasetConfigSource (3) — google_storage_insights_dataset_config ---
+  'StorageInsightsDatasetConfigSourceProjects': () =>
+      StorageInsightsDatasetConfigSourceProjects(
+        projectNumbers: TfArg.literal(['123456789012']),
+      ),
+  'StorageInsightsDatasetConfigSourceFolders': () =>
+      StorageInsightsDatasetConfigSourceFolders(
+        folderNumbers: TfArg.literal(['987654321']),
+      ),
+  'StorageInsightsDatasetConfigOrganizationScope': () =>
+      const StorageInsightsDatasetConfigOrganizationScope(),
+
+  // --- StorageInsightsReportConfigFormat (2) — google_storage_insights_report_config ---
+  'StorageInsightsReportConfigCsvFormat': () =>
+      const StorageInsightsReportConfigCsvFormat(),
+  'StorageInsightsReportConfigParquetFormat': () =>
+      const StorageInsightsReportConfigParquetFormat(),
+
   // --- CloudSchedulerJobSchedulerTarget (3) — cloud_scheduler_job ---------------------------
   'CloudSchedulerJobPubsubTarget': () => CloudSchedulerJobPubsubTarget(
       topicName: TfArg.literal('projects/p/topics/t')),
@@ -697,7 +715,8 @@ final Map<String, Object Function()> _syntheticInstances = {
       const DataCatalogTagTemplatePrimitiveFieldType(
         DataCatalogTagTemplatePrimitiveType.string,
       ),
-  'DataCatalogTagTemplateEnumFieldType': () => DataCatalogTagTemplateEnumFieldType(
+  'DataCatalogTagTemplateEnumFieldType': () =>
+      DataCatalogTagTemplateEnumFieldType(
         allowedValues: [
           DataCatalogTagTemplateEnumAllowedValue(
             displayName: TfArg.literal('EMAIL'),

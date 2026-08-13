@@ -105,6 +105,7 @@ workspace:
   - examples/sourcerepo_quickstart
   - examples/storage_quickstart
   - examples/storage_intelligence_quickstart
+  - examples/storage_transfer_quickstart
   - examples/tags_quickstart
   - examples/vector_quickstart
   - examples/vertex_ai_quickstart

@@ -1,7 +1,8 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Cloud Storage buckets, bucket objects, and Pub/Sub object-change
-/// notifications.
+/// Cloud Storage buckets, bucket objects, Pub/Sub object-change
+/// notifications, inventory reports, Storage Transfer jobs, and
+/// fine-grained ACLs.
 library;
 
 export 'src/storage/google_storage_anywhere_cache.dart'
@@ -42,6 +43,7 @@ export 'src/storage/google_storage_bucket.dart'
         StorageBucketVpcNetworkSource;
 export 'src/storage/google_storage_bucket_access_control.dart'
     show GoogleStorageBucketAccessControl, StorageBucketAccessControlRole;
+export 'src/storage/google_storage_bucket_acl.dart' show GoogleStorageBucketAcl;
 export 'src/storage/google_storage_bucket_iam_binding.dart'
     show GoogleStorageBucketIamBinding;
 export 'src/storage/google_storage_bucket_iam_member.dart'
@@ -61,9 +63,40 @@ export 'src/storage/google_storage_default_object_access_control.dart'
     show
         GoogleStorageDefaultObjectAccessControl,
         StorageDefaultObjectAccessControlRole;
+export 'src/storage/google_storage_default_object_acl.dart'
+    show GoogleStorageDefaultObjectAcl;
 export 'src/storage/google_storage_folder.dart' show GoogleStorageFolder;
 export 'src/storage/google_storage_hmac_key.dart'
     show GoogleStorageHmacKey, StorageHmacKeyState;
+export 'src/storage/google_storage_insights_dataset_config.dart'
+    show
+        GoogleStorageInsightsDatasetConfig,
+        StorageInsightsDatasetConfigDatasetConfigState,
+        StorageInsightsDatasetConfigExcludeCloudStorageBuckets,
+        StorageInsightsDatasetConfigExcludeCloudStorageBucketsCloudStorageBuckets,
+        StorageInsightsDatasetConfigExcludeCloudStorageLocations,
+        StorageInsightsDatasetConfigIdentity,
+        StorageInsightsDatasetConfigIdentityType,
+        StorageInsightsDatasetConfigIncludeCloudStorageBuckets,
+        StorageInsightsDatasetConfigIncludeCloudStorageBucketsCloudStorageBuckets,
+        StorageInsightsDatasetConfigIncludeCloudStorageLocations,
+        StorageInsightsDatasetConfigOrganizationScope,
+        StorageInsightsDatasetConfigSource,
+        StorageInsightsDatasetConfigSourceFolders,
+        StorageInsightsDatasetConfigSourceProjects;
+export 'src/storage/google_storage_insights_report_config.dart'
+    show
+        GoogleStorageInsightsReportConfig,
+        StorageInsightsReportConfigCsvFormat,
+        StorageInsightsReportConfigFormat,
+        StorageInsightsReportConfigFrequencyOptions,
+        StorageInsightsReportConfigFrequencyOptionsEndDate,
+        StorageInsightsReportConfigFrequencyOptionsFrequency,
+        StorageInsightsReportConfigFrequencyOptionsStartDate,
+        StorageInsightsReportConfigObjectMetadataReportOptions,
+        StorageInsightsReportConfigObjectMetadataReportOptionsStorageDestinationOptions,
+        StorageInsightsReportConfigObjectMetadataReportOptionsStorageFilters,
+        StorageInsightsReportConfigParquetFormat;
 export 'src/storage/google_storage_managed_folder.dart'
     show GoogleStorageManagedFolder;
 export 'src/storage/google_storage_managed_folder_iam_binding.dart'
@@ -79,3 +112,42 @@ export 'src/storage/google_storage_notification.dart'
         StorageNotificationPayloadFormat;
 export 'src/storage/google_storage_object_access_control.dart'
     show GoogleStorageObjectAccessControl, StorageObjectAccessControlRole;
+export 'src/storage/google_storage_transfer_agent_pool.dart'
+    show
+        GoogleStorageTransferAgentPool,
+        StorageTransferAgentPoolBandwidthLimit,
+        StorageTransferAgentPoolState;
+export 'src/storage/google_storage_transfer_job.dart'
+    show
+        GoogleStorageTransferJob,
+        StorageTransferJobEventStream,
+        StorageTransferJobLoggingConfig,
+        StorageTransferJobNotificationConfig,
+        StorageTransferJobReplicationSpec,
+        StorageTransferJobReplicationSpecGcsDataSink,
+        StorageTransferJobReplicationSpecGcsDataSource,
+        StorageTransferJobReplicationSpecObjectConditions,
+        StorageTransferJobReplicationSpecTransferOptions,
+        StorageTransferJobReplicationSpecTransferOptionsMetadataOptions,
+        StorageTransferJobSchedule,
+        StorageTransferJobScheduleScheduleEndDate,
+        StorageTransferJobScheduleScheduleStartDate,
+        StorageTransferJobScheduleStartTimeOfDay,
+        StorageTransferJobTransferSpec,
+        StorageTransferJobTransferSpecAwsS3CompatibleDataSource,
+        StorageTransferJobTransferSpecAwsS3CompatibleDataSourceS3Metadata,
+        StorageTransferJobTransferSpecAwsS3DataSource,
+        StorageTransferJobTransferSpecAwsS3DataSourceAwsAccessKey,
+        StorageTransferJobTransferSpecAzureBlobStorageDataSource,
+        StorageTransferJobTransferSpecAzureBlobStorageDataSourceAzureCredentials,
+        StorageTransferJobTransferSpecAzureBlobStorageDataSourceFederatedIdentityConfig,
+        StorageTransferJobTransferSpecGcsDataSink,
+        StorageTransferJobTransferSpecGcsDataSource,
+        StorageTransferJobTransferSpecHdfsDataSource,
+        StorageTransferJobTransferSpecHttpDataSource,
+        StorageTransferJobTransferSpecObjectConditions,
+        StorageTransferJobTransferSpecPosixDataSink,
+        StorageTransferJobTransferSpecPosixDataSource,
+        StorageTransferJobTransferSpecTransferManifest,
+        StorageTransferJobTransferSpecTransferOptions,
+        StorageTransferJobTransferSpecTransferOptionsMetadataOptions;

@@ -2384,3 +2384,17 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_gke_hub_scope_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
+
+  # Storage Insights / Transfer / ACL wave
+  google_storage_insights_dataset_config:
+    upstream: mmv1/products/storageinsights/DatasetConfig.yaml
+  google_storage_insights_report_config:
+    upstream: mmv1/products/storageinsights/ReportConfig.yaml
+  google_storage_transfer_agent_pool:
+    upstream: mmv1/products/storagetransfer/AgentPool.yaml
+  google_storage_transfer_job:
+    upstream: null  # third_party terraform/services/storagetransfer/resource_storage_transfer_job.go
+  google_storage_bucket_acl:
+    upstream: null  # third_party terraform/services/storage/resource_storage_bucket_acl.go
+  google_storage_default_object_acl:
+    upstream: null  # third_party terraform/services/storage/resource_storage_default_object_acl.go

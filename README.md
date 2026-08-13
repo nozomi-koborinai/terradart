@@ -227,7 +227,7 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **1140 curated resource factories + 1 data source** (1141 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
+[`terradart_google`](packages/terradart_google/README.md) ships **1146 curated resource factories + 1 data source** (1147 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
 
 The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). In Dart, discover factories via `package:terradart_google/catalog.dart` (`terradartCatalog`). CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
@@ -261,6 +261,7 @@ Data & storage
 
 - [GCS bucket + bucket object](examples/storage_quickstart/)
 - [Cloud Storage Intelligence project config](examples/storage_intelligence_quickstart/)
+- [Storage Transfer + inventory reports + ACLs](examples/storage_transfer_quickstart/)
 - [BigQuery Data Policy V2 (raw access + email mask)](examples/bigquery_datapolicyv2_quickstart/)
 - [BigQuery dataset (sealed `Access` hierarchy)](examples/bigquery_quickstart/)
 - [Cloud Bigtable instance + table + views + IAM](examples/bigtable_quickstart/)

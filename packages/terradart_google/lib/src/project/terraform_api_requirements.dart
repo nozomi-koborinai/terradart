@@ -88,6 +88,18 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
     'google_storage_batch_operations_',
     'storagebatchoperations.googleapis.com',
   ),
+  // Longer than `google_storage_` — Storage Insights API (inventory reports
+  // + datasets), not the core Cloud Storage JSON API.
+  MapEntry(
+    'google_storage_insights_',
+    'storageinsights.googleapis.com',
+  ),
+  // Longer than `google_storage_` — Storage Transfer Service API, not the
+  // core Cloud Storage JSON API.
+  MapEntry(
+    'google_storage_transfer_',
+    'storagetransfer.googleapis.com',
+  ),
   MapEntry('google_storage_', 'storage.googleapis.com'),
   MapEntry('google_kms_', 'cloudkms.googleapis.com'),
   MapEntry('google_identity_platform_', 'identitytoolkit.googleapis.com'),

@@ -1,0 +1,32 @@
+outputDir: storage
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Authoritative **bucket ACL** (the full role/entity list or a canned
+  /// [predefinedAcl]). Requires uniform bucket-level access **disabled**.
+  /// Prefer IAM ([GoogleStorageBucketIamMember]) on modern buckets. Do not
+  /// mix with [GoogleStorageBucketAccessControl] on the same bucket —
+  /// this resource replaces the whole ACL.
+  ///
+  /// **Cost:** gcp-cost: Cloud Storage `95FF-2EF5-5EA1` list_skus
+  /// keyword=ACL → 0; Class A ops `4DBF-185F-A415` **$0.005/count after
+  /// 5k**. billing-behavior: ACL metadata — not existence-billed.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleStorageBucketAcl(
+  ///   localName: 'legacy_acl',
+  ///   bucket: TfArg.ref(legacy.nameRef),
+  ///   predefinedAcl: TfArg.literal('private'),
+  /// );
+  /// ```
+
+paramOrder:
+  - bucket
+  - predefined_acl
+  - role_entity
+  - default_acl
+  - deletion_policy
