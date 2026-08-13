@@ -1,0 +1,216 @@
+# Copyright 2024 Google Inc.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+---
+name: TlsRoute
+description: |
+  TlsRoute defines how traffic should be routed based on SNI and other matching L3 attributes.
+references:
+  guides:
+  api: https://cloud.google.com/traffic-director/docs/reference/network-services/rest/v1beta1/projects.locations.tlsRoutes
+docs:
+base_url: projects/{{project}}/locations/{{location}}/tlsRoutes
+self_link: projects/{{project}}/locations/{{location}}/tlsRoutes/{{name}}
+create_url: projects/{{project}}/locations/{{location}}/tlsRoutes?tlsRouteId={{name}}
+update_mask: true
+update_verb: PATCH
+import_format:
+  - projects/{{project}}/locations/{{location}}/tlsRoutes/{{name}}
+  - projects/{{project}}/locations/global/tlsRoutes/{{name}}
+timeouts:
+  insert_minutes: 30
+  update_minutes: 30
+  delete_minutes: 30
+async:
+  type: OpAsync
+  operation:
+    timeouts:
+      insert_minutes: 30
+      update_minutes: 30
+      delete_minutes: 30
+    base_url: '{{op_id}}'
+  actions: [create, delete, update]
+  result:
+    resource_inside_response: false
+schema_version: 1
+state_upgraders: true
+autogen_async: true
+custom_code:
+samples:
+  - name: network_services_tls_route_basic
+    primary_resource_id: default
+    steps:
+      - name: network_services_tls_route_basic
+        resource_id_vars:
+          resource_name: my-tls-route
+          backend_service_name: my-backend-service
+          health_check_name: backend-service-health-check
+  - name: network_services_tls_route_regional_basic
+    primary_resource_id: default
+    steps:
+      - name: network_services_tls_route_regional_basic
+        resource_id_vars:
+          resource_name: my-tls-route
+          backend_service_name: my-backend-service
+          health_check_name: backend-service-health-check
+  - name: network_services_tls_route_mesh_basic
+    primary_resource_id: default
+    steps:
+      - name: network_services_tls_route_mesh_basic
+        resource_id_vars:
+          resource_name: my-tls-route
+          backend_service_name: my-backend-service
+          health_check_name: backend-service-health-check
+  - name: network_services_tls_route_gateway_basic
+    primary_resource_id: default
+    steps:
+      - name: network_services_tls_route_gateway_basic
+        resource_id_vars:
+          resource_name: my-tls-route
+          backend_service_name: my-backend-service
+          health_check_name: backend-service-health-check
+  - name: network_services_tls_route_target_tcp_proxy_basic
+    min_version: beta
+    primary_resource_id: default
+    steps:
+      - name: network_services_tls_route_target_tcp_proxy_basic
+        min_version: beta
+        resource_id_vars:
+          resource_name: my-tls-route
+          target_tcp_proxy_name: my-target-tcp-proxy
+          backend_service_name: my-backend-service
+          health_check_name: my-health-check
+  - name: network_services_tls_route_region_target_tcp_proxy_basic
+    min_version: beta
+    primary_resource_id: default
+    steps:
+      - name: network_services_tls_route_region_target_tcp_proxy_basic
+        min_version: beta
+        resource_id_vars:
+          resource_name: my-tls-route
+          target_tcp_proxy_name: my-target-tcp-proxy
+          backend_service_name: my-backend-service
+          health_check_name: my-health-check
+parameters:
+  - name: name
+    type: String
+    description: |
+      Name of the TlsRoute resource.
+    url_param_only: true
+    required: true
+    immutable: true
+  - name: location
+    type: String
+    description: |
+      Location (region) of the TLS Route.
+    immutable: true
+    default_value: global
+    url_param_only: true
+properties:
+  - name: selfLink
+    type: String
+    description: |
+      Server-defined URL of this resource.
+    output: true
+  - name: createTime
+    type: Time
+    description: |
+      Time the TlsRoute was created in UTC.
+    output: true
+  - name: updateTime
+    type: Time
+    description: |
+      Time the TlsRoute was updated in UTC.
+    output: true
+  - name: description
+    type: String
+    description: |
+      A free-text description of the resource. Max length 1024 characters.
+  - name: meshes
+    type: Array
+    description: |
+      Meshes defines a list of meshes this TlsRoute is attached to, as one of the routing rules to route the requests served by the mesh.
+      Each mesh reference should match the pattern: projects/*/locations/*/meshes/<mesh_name>
+      The attached Mesh should be of a type SIDECAR
+    send_empty_value: true
+    item_type:
+      type: String
+  - name: gateways
+    type: Array
+    description: |
+      Gateways defines a list of gateways this TlsRoute is attached to, as one of the routing rules to route the requests served by the gateway.
+      Each gateway reference should match the pattern: projects/*/locations/*/gateways/<gateway_name>
+    send_empty_value: true
+    item_type:
+      type: String
+  - name: targetProxies
+    type: Array
+    description: |
+      TargetProxies defines a list of target proxies this TlsRoute is attached to, as one of the routing rules to route the requests served by the load balancer.
+      Each target proxy reference should match the pattern: projects/*/locations/global/targetTcpProxies/<target_tcp_proxy_name>
+    send_empty_value: true
+    item_type:
+      type: String
+  - name: rules
+    type: Array
+    description: |
+      Rules that define how traffic is routed and handled.
+    required: true
+    send_empty_value: true
+    item_type:
+      type: NestedObject
+      properties:
+        - name: matches
+          type: Array
+          description: |
+            Matches define the predicate used to match requests to a given action.
+          required: true
+          item_type:
+            type: NestedObject
+            properties:
+              - name: sniHost
+                type: Array
+                description: |
+                  SNI (server name indicator) to match against. SNI will be matched against all wildcard domains, i.e. www.example.com will be first matched against www.example.com, then *.example.com, then *.com.
+                  Partial wildcards are not supported, and values like *w.example.com are invalid. At least one of sniHost and alpn is required. Up to 5 sni hosts across all matches can be set.
+                send_empty_value: true
+                item_type:
+                  type: String
+              - name: alpn
+                type: Array
+                description: |
+                  ALPN (Application-Layer Protocol Negotiation) to match against. Examples: "http/1.1", "h2". At least one of sniHost and alpn is required. Up to 5 alpns across all matches can be set.
+                send_empty_value: true
+                item_type:
+                  type: String
+        - name: action
+          type: NestedObject
+          description: |
+            Required. A detailed rule defining how to route traffic.
+          required: true
+          properties:
+            - name: destinations
+              type: Array
+              description: |
+                The destination to which traffic should be forwarded.
+              item_type:
+                type: NestedObject
+                properties:
+                  - name: serviceName
+                    type: String
+                    description: |
+                      The URL of a BackendService to route traffic to.
+                  - name: weight
+                    type: Integer
+                    description: |
+                      Specifies the proportion of requests forwarded to the backend referenced by the serviceName field.

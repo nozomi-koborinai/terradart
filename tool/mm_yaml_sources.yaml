@@ -2104,6 +2104,18 @@ files:
     upstream: mmv1/products/networkservices/MulticastGroupConsumerActivation.yaml
   google_network_services_multicast_group_producer_activation:
     upstream: mmv1/products/networkservices/MulticastGroupProducerActivation.yaml
+  google_network_services_endpoint_policy:
+    upstream: mmv1/products/networkservices/EndpointPolicy.yaml
+  google_network_services_grpc_route:
+    upstream: mmv1/products/networkservices/GrpcRoute.yaml
+  google_network_services_http_route:
+    upstream: mmv1/products/networkservices/HttpRoute.yaml
+  google_network_services_tcp_route:
+    upstream: mmv1/products/networkservices/TcpRoute.yaml
+  google_network_services_tls_route:
+    upstream: mmv1/products/networkservices/TlsRoute.yaml
+  google_network_services_service_binding:
+    upstream: mmv1/products/networkservices/ServiceBinding.yaml
   google_secure_source_manager_hook:
     upstream: mmv1/products/securesourcemanager/Hook.yaml
   google_secure_source_manager_branch_rule:

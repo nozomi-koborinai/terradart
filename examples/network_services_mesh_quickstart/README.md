@@ -1,11 +1,15 @@
 # Network Services Mesh quickstart
 
-End-to-end terradart example for a Cloud Network Services **Mesh** (logical
-service-mesh namespace). Enables `networkservices.googleapis.com` and
-provisions a global `google_network_services_mesh`.
+End-to-end terradart example for a Cloud Network Services **Mesh** plus
+config-only HTTP / gRPC / TCP routes and an endpoint policy. Enables
+`networkservices.googleapis.com` and provisions a global
+`google_network_services_mesh`, then attaches route/policy objects that do
+**not** require a Gateway or BackendService.
 
-Creating a Mesh alone does **not** attach clusters or bill Anthos Service Mesh
-cluster/endpoint SKUs — those apply when workloads join the mesh.
+Creating these objects alone does **not** attach clusters or bill Anthos
+Service Mesh cluster/endpoint SKUs — those apply when workloads join the mesh.
+Do not add a Secure Web Gateway (`google_network_services_gateway`) here —
+SWG is $1.25/h.
 
 ## Prerequisites
 

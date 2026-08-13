@@ -1,0 +1,29 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Cloud Service Mesh **TCP route** — CIDR/port matchers that attach to
+  /// a [GoogleNetworkServicesMesh] (or a gateway). Prefer
+  /// [originalDestination] in smoke stacks so no BackendService is
+  /// required. Config only until workloads join the mesh.
+
+paramOrder:
+  - name
+  - rules
+  - meshes
+  - gateways
+  - description
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

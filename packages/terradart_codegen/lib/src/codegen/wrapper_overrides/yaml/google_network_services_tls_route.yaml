@@ -1,0 +1,34 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Cloud Service Mesh **TLS route** — SNI/ALPN matchers that attach to
+  /// a [GoogleNetworkServicesMesh] (or a gateway / target proxy). Config
+  /// only until workloads join the mesh; do not attach a
+  /// [GoogleNetworkServicesGateway] in apply-smoke (SWG is $1.25/h).
+  ///
+  /// `action.destinations.service_name` is a BackendService URL — smoke
+  /// stacks debt this factory rather than pulling Compute into the mesh
+  /// quickstart.
+
+paramOrder:
+  - name
+  - rules
+  - meshes
+  - gateways
+  - target_proxies
+  - location
+  - description
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

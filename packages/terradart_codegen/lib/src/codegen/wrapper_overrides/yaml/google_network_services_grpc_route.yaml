@@ -1,0 +1,38 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+# Nested `retry_conditions` values are hyphenated (`connect-failure`, …).
+# `deriveNestedTypes` would emit illegal Dart enum members until
+# `screamingToCamel` treats `-` as a snake separator (naming.dart — outside
+# wave_allowed_paths). Keep rules as List<Map> until that maintainer fix.
+deriveNestedTypes: false
+deriveEnums: false
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Cloud Service Mesh **gRPC route** — hostname + method matchers that
+  /// attach to a [GoogleNetworkServicesMesh] (or a gateway). Config only
+  /// until workloads join the mesh; do not attach a
+  /// [GoogleNetworkServicesGateway] in apply-smoke (SWG is $1.25/h).
+  ///
+  /// Nested `rules` stay as `List<Map<String, dynamic>>` until hyphenated
+  /// schema enums (`connect-failure`, …) can camelCase legally in wrap.
+
+paramOrder:
+  - name
+  - hostnames
+  - rules
+  - meshes
+  - gateways
+  - location
+  - description
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');
