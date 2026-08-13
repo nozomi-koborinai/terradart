@@ -1,10 +1,11 @@
 # Customer Engagement Suite (Conversational Agents) quickstart
 
 End-to-end terradart example for a CES app plus an LLM agent, root-agent
-association, app version, model-safety guardrail, and Google Search tool.
+association, app version, model-safety guardrail, Google Search tool,
+OpenAPI toolset, few-shot example, and an API-channel deployment.
 
 Session SKUs fire only on CX Agent Studio chat/voice traffic. This stack
-never creates `google_ces_deployment` and never sends sessions.
+never sends sessions.
 
 ## Prerequisites
 

@@ -1,9 +1,10 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 /// Customer Engagement Suite (Conversational Agents): apps, agents,
-/// root-agent association, app versions, guardrails, and tools.
-/// Session SKUs fire only on chat/voice traffic — this barrel's
-/// curated factories are design-time config (no `google_ces_deployment`).
+/// root-agent association, app versions, guardrails, tools, toolsets,
+/// few-shot examples, and deployments. Session SKUs fire only on
+/// chat/voice traffic — creating design-time config or a channel
+/// binding does not send sessions.
 library;
 
 export 'src/ces/google_ces_agent.dart'
@@ -49,6 +50,24 @@ export 'src/ces/google_ces_app.dart'
 export 'src/ces/google_ces_app_root_agent_association.dart'
     show GoogleCesAppRootAgentAssociation;
 export 'src/ces/google_ces_app_version.dart' show GoogleCesAppVersion;
+export 'src/ces/google_ces_deployment.dart'
+    show
+        CesDeploymentChannelProfile,
+        CesDeploymentChannelProfilePersonaProperty,
+        CesDeploymentChannelProfileWebWidgetConfig,
+        CesDeploymentChannelProfileWebWidgetConfigSecuritySettings,
+        GoogleCesDeployment;
+export 'src/ces/google_ces_example.dart'
+    show
+        CesExampleMessages,
+        CesExampleMessagesChunks,
+        CesExampleMessagesChunksAgentTransfer,
+        CesExampleMessagesChunksImage,
+        CesExampleMessagesChunksToolCall,
+        CesExampleMessagesChunksToolCallToolsetTool,
+        CesExampleMessagesChunksToolResponse,
+        CesExampleMessagesChunksToolResponseToolsetTool,
+        GoogleCesExample;
 export 'src/ces/google_ces_guardrail.dart'
     show
         CesGuardrailAction,
@@ -114,3 +133,28 @@ export 'src/ces/google_ces_tool.dart'
         CesToolWidgetToolTextResponseConfigType,
         CesToolWidgetToolWidgetType,
         GoogleCesTool;
+export 'src/ces/google_ces_toolset.dart'
+    show
+        CesToolsetMcpToolset,
+        CesToolsetMcpToolsetApiAuthentication,
+        CesToolsetMcpToolsetApiAuthenticationApiKeyConfig,
+        CesToolsetMcpToolsetApiAuthenticationBearerTokenConfig,
+        CesToolsetMcpToolsetApiAuthenticationOauthConfig,
+        CesToolsetMcpToolsetApiAuthenticationServiceAccountAuthConfig,
+        CesToolsetMcpToolsetApiAuthenticationServiceAgentIdTokenAuthConfig,
+        CesToolsetMcpToolsetServiceDirectoryConfig,
+        CesToolsetMcpToolsetTlsConfig,
+        CesToolsetMcpToolsetTlsConfigCaCerts,
+        CesToolsetOpenApiToolset,
+        CesToolsetOpenApiToolsetApiAuthentication,
+        CesToolsetOpenApiToolsetApiAuthenticationApiKeyConfig,
+        CesToolsetOpenApiToolsetApiAuthenticationBearerTokenConfig,
+        CesToolsetOpenApiToolsetApiAuthenticationOauthConfig,
+        CesToolsetOpenApiToolsetApiAuthenticationServiceAccountAuthConfig,
+        CesToolsetOpenApiToolsetApiAuthenticationServiceAgentIdTokenAuthConfig,
+        CesToolsetOpenApiToolsetServiceDirectoryConfig,
+        CesToolsetOpenApiToolsetTlsConfig,
+        CesToolsetOpenApiToolsetTlsConfigCaCerts,
+        CesToolsetToolFakeConfig,
+        CesToolsetToolFakeConfigCodeBlock,
+        GoogleCesToolset;

@@ -1686,6 +1686,12 @@ files:
     upstream: mmv1/products/ces/Guardrail.yaml
   google_ces_tool:
     upstream: mmv1/products/ces/Tool.yaml
+  google_ces_toolset:
+    upstream: mmv1/products/ces/Toolset.yaml
+  google_ces_example:
+    upstream: mmv1/products/ces/Example.yaml
+  google_ces_deployment:
+    upstream: mmv1/products/ces/Deployment.yaml
   # Wave 28 (Private CA — CAS pool for Certificate Manager issuance)
   google_privateca_ca_pool:
     upstream: mmv1/products/privateca/CaPool.yaml
