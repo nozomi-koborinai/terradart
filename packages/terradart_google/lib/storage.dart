@@ -112,6 +112,7 @@ export 'src/storage/google_storage_notification.dart'
         StorageNotificationPayloadFormat;
 export 'src/storage/google_storage_object_access_control.dart'
     show GoogleStorageObjectAccessControl, StorageObjectAccessControlRole;
+export 'src/storage/google_storage_object_acl.dart' show GoogleStorageObjectAcl;
 export 'src/storage/google_storage_transfer_agent_pool.dart'
     show
         GoogleStorageTransferAgentPool,

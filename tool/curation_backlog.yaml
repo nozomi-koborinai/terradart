@@ -83,9 +83,6 @@ entries:
     note: skipped by wave-shipper — schema required `data_source` (external connector identity); not standalone-project applyable without a pre-provisioned third-party data source
 
   # --- storage (project-scoped; org/folder intelligence skipped) ---
-  - resource: google_storage_object_acl
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
   - resource: google_storage_control_folder_intelligence_config
     detected_at: 2026-08-12
     provider_version: 7.43.0

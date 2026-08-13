@@ -920,6 +920,7 @@ google_storage_transfer_agent_pool: safe  # gcp-cost: Transfer Service D961-88BE
 google_storage_transfer_job: safe  # gcp-cost: Transfer Service D961-88BE-4D2D SKUs are S3-private-network / on-prem data-moved (DC3D-7464-4764 $0.0125/GiBy); GCS↔GCS is Cloud Storage Class A ops 4DBF-185F-A415 $0.005/count after 5k; billing-behavior: the job record is free metadata; bytes move only when ENABLED and a run starts; smoke uses DISABLED GCS→GCS; destroy deletes the job
 google_storage_bucket_acl: safe  # gcp-cost: Cloud Storage 95FF-2EF5-5EA1 list_skus keyword=ACL → 0; Class A ops 4DBF-185F-A415 $0.005/count after 5k; billing-behavior: authoritative bucket ACL metadata — not existence-billed
 google_storage_default_object_acl: safe  # gcp-cost: Cloud Storage 95FF-2EF5-5EA1 list_skus keyword=ACL → 0; Class A ops 4DBF-185F-A415 $0.005/count after 5k; billing-behavior: authoritative default object ACL metadata — not existence-billed
+google_storage_object_acl: safe  # gcp-cost: Cloud Storage 95FF-2EF5-5EA1 list_skus keyword=ACL → 0; Class A ops 4DBF-185F-A415 $0.005/count after 5k; billing-behavior: authoritative object ACL metadata — not existence-billed
 google_secret_manager_secret_version: safe  # apply-verified safe (existing example)
 google_service_account: safe  # apply-verified safe (existing example)
 google_service_account_iam_binding: safe  # billing-behavior: IAM binding only

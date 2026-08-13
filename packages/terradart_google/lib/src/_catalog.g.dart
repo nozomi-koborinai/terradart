@@ -26695,6 +26695,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_storage_object_access_control`.\n\nThe ObjectAccessControls resources represent the Access Control Lists (ACLs)\nfor objects within Google Cloud Storage. ACLs let you specify who has access\nto your data and to what extent.\n\nThere are two roles that can be assigned to an entity:\n\nREADERs can get an object, though the acl property will not be revealed.\nOWNERs are READERs, and they can get the acl property, update an object, and\ncall all objectAccessControls methods on the object. The owner of an object\nis always an OWNER. For more information, see Access Control, with the\ncaveat that this API uses READER and OWNER instead of READ and FULL_CONTROL.\n\nFine-grained **object ACL** entry on one object. Requires a bucket with\nuniform bucket-level access **disabled**. Prefer IAM on modern buckets.\n\nExample:\n```dart\nGoogleStorageObjectAccessControl(\n  localName: \'object_reader\',\n  bucket: TfArg.ref(legacy.nameRef),\n  object: TfArg.literal(\'config/app.json\'),\n  entity: TfArg.ref(reader.iamMember),\n  role: TfArg.literal(StorageObjectAccessControlRole.reader),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_storage_object_acl',
+    className: 'GoogleStorageObjectAcl',
+    barrel: 'storage',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_storage_object_acl`.',
+    constructorParams: <String>[
+      'localName',
+      'bucket',
+      'object',
+      'predefinedAcl',
+      'roleEntity',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_storage_object_acl`.\n\nAuthoritative **object ACL** (the full role/entity list or a canned\n[predefinedAcl]). Requires uniform bucket-level access **disabled**.\nPrefer IAM on modern buckets. Do not mix with\n[GoogleStorageObjectAccessControl] on the same object — this resource\nreplaces the whole ACL.\n\n**Cost:** gcp-cost: Cloud Storage `95FF-2EF5-5EA1` list_skus\nkeyword=ACL → 0; Class A ops `4DBF-185F-A415` **\$0.005/count after\n5k**. billing-behavior: ACL metadata — not existence-billed.\n\nExample:\n```dart\nGoogleStorageObjectAcl(\n  localName: \'legacy_object_acl\',\n  bucket: TfArg.ref(legacy.nameRef),\n  object: TfArg.literal(\'acl-marker.txt\'),\n  predefinedAcl: TfArg.literal(\'private\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_storage_transfer_agent_pool',
     className: 'GoogleStorageTransferAgentPool',
     barrel: 'storage',
