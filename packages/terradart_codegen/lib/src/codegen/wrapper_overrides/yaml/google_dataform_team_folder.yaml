@@ -1,0 +1,31 @@
+outputDir: dataform
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Dataform **team folder** — top-level metadata container that can
+  /// parent [GoogleDataformFolder] resources via `containingFolder`.
+  ///
+  /// Creating a team folder does not compile SQL or run workflows.
+  ///
+  /// **Cost:** gcp-cost: no Cloud Billing Catalog SKU after list_services
+  /// "Dataform" empty; BigQuery 24E6-581D-38E5 list_skus keyword
+  /// dataform/compilation/workflow/folder → 0. billing-behavior: team-folder
+  /// metadata is free config; compilation SKUs fire on repository runs,
+  /// not team-folder create.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleDataformTeamFolder(
+  ///   localName: 'team',
+  ///   displayName: TfArg.literal('terradart-team'),
+  ///   region: TfArg.literal('us-central1'),
+  /// );
+  /// ```
+
+paramOrder:
+  - display_name
+  - region
+  - deletion_policy
+  - project

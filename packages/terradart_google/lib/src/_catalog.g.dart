@@ -12845,6 +12845,43 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_dataflow_job`.\n\nCloud Dataflow **job** — launches a batch or streaming pipeline from a\nclassic template (`template_gcs_path`).\n\n**Cost / apply:** gcp-cost: Cloud Dataflow `57D6-8E6B-2DE0` vCPU Time\nBatch Iowa (us-central1) SKU `A613-4169-2E08` **\$0.056/h** per vCPU\n(plus RAM/disk/GPU/Streaming Engine SKUs when used). billing-behavior:\ncreating the job starts workers that bill while the job runs; destroy /\ncancel stops worker charges. Too expensive for apply-smoke even once —\ndebt-only on `terradart-validate`. **Never** wire into apply-smoke.\n\nEnable `dataflow.googleapis.com` before apply. [tempGcsLocation] and\n[templateGcsPath] must be GCS URLs the job can read/write.',
   ),
   CatalogEntry(
+    tfType: 'google_dataform_folder',
+    className: 'GoogleDataformFolder',
+    barrel: 'dataform',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_dataform_folder`.',
+    constructorParams: <String>[
+      'localName',
+      'displayName',
+      'region',
+      'containingFolder',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataform_folder`.\n\nA resource represents a Dataform folder\n\nDataform **folder** — metadata for grouping repositories under a\nregion (optionally inside a [GoogleDataformTeamFolder] via\n`containingFolder`).\n\nCreating a folder does not compile SQL or run workflows.\n\n**Cost:** gcp-cost: no Cloud Billing Catalog SKU after list_services\n"Dataform" empty; BigQuery 24E6-581D-38E5 list_skus keyword\ndataform/compilation/workflow/folder → 0. billing-behavior: folder\nmetadata is free config; compilation SKUs fire on repository runs,\nnot folder create.\n\nExample:\n```dart\nGoogleDataformFolder(\n  localName: \'apps\',\n  displayName: TfArg.literal(\'terradart-apps\'),\n  region: TfArg.literal(\'us-central1\'),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_dataform_team_folder',
+    className: 'GoogleDataformTeamFolder',
+    barrel: 'dataform',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_dataform_team_folder`.',
+    constructorParams: <String>[
+      'localName',
+      'displayName',
+      'region',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dataform_team_folder`.\n\nA resource represents a Dataform TeamFolder\n\nDataform **team folder** — top-level metadata container that can\nparent [GoogleDataformFolder] resources via `containingFolder`.\n\nCreating a team folder does not compile SQL or run workflows.\n\n**Cost:** gcp-cost: no Cloud Billing Catalog SKU after list_services\n"Dataform" empty; BigQuery 24E6-581D-38E5 list_skus keyword\ndataform/compilation/workflow/folder → 0. billing-behavior: team-folder\nmetadata is free config; compilation SKUs fire on repository runs,\nnot team-folder create.\n\nExample:\n```dart\nGoogleDataformTeamFolder(\n  localName: \'team\',\n  displayName: TfArg.literal(\'terradart-team\'),\n  region: TfArg.literal(\'us-central1\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_dataplex_aspect_type',
     className: 'GoogleDataplexAspectType',
     barrel: 'dataplex',

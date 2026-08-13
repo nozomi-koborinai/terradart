@@ -430,6 +430,10 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_data_fusion_instance_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_dataform_folder:
+    upstream: mmv1/products/dataform/Folder.yaml
+  google_dataform_team_folder:
+    upstream: mmv1/products/dataform/TeamFolder.yaml
   google_data_lineage_config:
     upstream: mmv1/products/datalineage/Config.yaml
   google_dataplex_lake:
