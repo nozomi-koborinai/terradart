@@ -1,0 +1,50 @@
+outputDir: clouddeploy
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Cloud Deploy **deploy policy** — restricts rollout actions on
+  /// selected pipelines / targets. Nested `rules` and `selectors` blocks
+  /// are passed as structured maps (same as the other Cloud Deploy
+  /// factories).
+  ///
+  /// **Cost:** gcp-cost: Cloud Deploy `C3AD-803F-FC89` Active Multiple
+  /// Target Delivery Pipelines `E1A5-8E1F-C1DE` **$5/count**.
+  /// billing-behavior: a deploy policy is restriction metadata — the
+  /// catalog SKU is for *active multi-target pipelines*, not for creating
+  /// a policy. Enable `clouddeploy.googleapis.com` before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleClouddeployDeployPolicy(
+  ///   localName: 'freeze',
+  ///   name: TfArg.literal('terradart-deploy-policy'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   selectors: TfArg.literal([
+  ///     {
+  ///       'delivery_pipeline': {'id': 'terradart-pipeline'},
+  ///     },
+  ///   ]),
+  ///   rules: TfArg.literal([
+  ///     {
+  ///       'rollout_restriction': {
+  ///         'id': 'no-automation',
+  ///         'invokers': ['DEPLOY_AUTOMATION'],
+  ///       },
+  ///     },
+  ///   ]),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - selectors
+  - rules
+  - suspended
+  - description
+  - annotations
+  - labels
+  - deletion_policy
+  - project

@@ -1,0 +1,53 @@
+outputDir: clouddeploy
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Cloud Deploy **automation** — promotes / advances / repairs rollouts
+  /// on a [GoogleClouddeployDeliveryPipeline]. Nested `rules` and
+  /// `selector` blocks are passed as structured maps (same as the other
+  /// Cloud Deploy factories). Set [suspended] to `true` so the automation
+  /// does not fire rollouts.
+  ///
+  /// **Cost:** gcp-cost: Cloud Deploy `C3AD-803F-FC89` Active Multiple
+  /// Target Delivery Pipelines `E1A5-8E1F-C1DE` **$5/count**.
+  /// billing-behavior: automations are pipeline config — the catalog SKU
+  /// is for *active multi-target pipelines*, not for creating an
+  /// automation. Enable `clouddeploy.googleapis.com` before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleClouddeployAutomation(
+  ///   localName: 'promote',
+  ///   name: TfArg.literal('terradart-automation'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   deliveryPipeline: TfArg.ref(pipeline.nameRef),
+  ///   serviceAccount: TfArg.ref(deployer.email),
+  ///   suspended: TfArg.literal(true),
+  ///   selector: TfArg.literal(<String, Object?>{
+  ///     'targets': [
+  ///       {'id': 'terradart-run-target'},
+  ///     ],
+  ///   }),
+  ///   rules: TfArg.literal([
+  ///     {
+  ///       'promote_release_rule': {'id': 'promote-release'},
+  ///     },
+  ///   ]),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - delivery_pipeline
+  - service_account
+  - selector
+  - rules
+  - suspended
+  - description
+  - annotations
+  - labels
+  - deletion_policy
+  - project

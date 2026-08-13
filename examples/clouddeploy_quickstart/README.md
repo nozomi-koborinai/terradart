@@ -1,6 +1,6 @@
 # Cloud Deploy quickstart
 
-End-to-end terradart example for Cloud Deploy. Enables the Cloud Deploy API and provisions a Cloud Run delivery target, a delivery pipeline with a single stage targeting it, a custom target type, and resource-scoped viewer IAM members for a deployer service account — and exports the pipeline name as a typed Dart constant.
+End-to-end terradart example for Cloud Deploy. Enables the Cloud Deploy API and provisions a Cloud Run delivery target, a delivery pipeline with a single stage targeting it, a custom target type, a suspended automation (promote-release), a deploy policy that restricts automation-driven rollouts, and resource-scoped viewer / releaser IAM members for a deployer service account — and exports the pipeline name as a typed Dart constant.
 
 Nested config blocks are passed as structured maps (`TfArg<Map<String, dynamic>>`), matching the thin curated factories.
 
@@ -14,7 +14,7 @@ Nested config blocks are passed as structured maps (`TfArg<Map<String, dynamic>>
 
 ```
 examples/clouddeploy_quickstart/
-├── lib/main.dart       # DeployStack (target + pipeline + custom type + IAM members)
+├── lib/main.dart       # DeployStack (target + pipeline + custom type + automation + policy + IAM)
 ├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
 ├── lib/generated/      # (created on synth) deploy_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
@@ -38,4 +38,4 @@ dart run bin/infra.dart
 cd tf-out && terraform init && terraform plan
 ```
 
-Pipelines, targets, and custom target types are free config (billing is per rollout); the stack creates and destroys cleanly in a single project.
+Pipelines, targets, custom target types, automations, and deploy policies are config (the catalog SKU is for active multi-target pipelines; this stack keeps one target and leaves the automation suspended); the stack creates and destroys cleanly in a single project.

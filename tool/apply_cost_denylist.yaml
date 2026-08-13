@@ -468,6 +468,7 @@ google_notebooks_instance_iam_policy: safe  # billing-behavior: IAM policy — n
 google_os_config_os_policy_assignment: safe  # gcp-cost: no Cloud Billing Catalog SKU (OS Config API); billing-behavior: policy assignment metadata; patch jobs bill separately when executed
 google_os_config_patch_deployment: safe  # gcp-cost: no Cloud Billing Catalog SKU on deployment object; billing-behavior: schedule metadata only until a patch job runs
 google_cloud_scheduler_job: safe  # apply-verified safe (existing example)
+google_clouddeploy_automation: safe  # gcp-cost: SKU E1A5-8E1F-C1DE $5/count; billing-behavior: automation is pipeline config — catalog SKU is for active multi-target pipelines, not for creating an automation; example keeps a single-target pipeline and suspended: true
 google_clouddeploy_custom_target_type: safe  # apply-verified safe (existing example)
 google_clouddeploy_custom_target_type_iam_member: safe  # billing-behavior: IAM binding on a Cloud Deploy custom target type; sets policy only, zero billing
 google_clouddeploy_custom_target_type_iam_binding: safe  # billing-behavior: IAM binding only
@@ -476,6 +477,7 @@ google_clouddeploy_delivery_pipeline: safe  # apply-verified safe (existing exam
 google_clouddeploy_delivery_pipeline_iam_member: safe  # billing-behavior: IAM binding on a Cloud Deploy delivery pipeline; sets policy only, zero billing
 google_clouddeploy_delivery_pipeline_iam_binding: safe  # billing-behavior: IAM binding only
 google_clouddeploy_delivery_pipeline_iam_policy: safe  # billing-behavior: IAM policy only
+google_clouddeploy_deploy_policy: safe  # gcp-cost: SKU E1A5-8E1F-C1DE $5/count; billing-behavior: deploy policy is restriction metadata — catalog SKU is for active multi-target pipelines, not for creating a policy
 google_clouddeploy_target: safe  # apply-verified safe (existing example)
 google_clouddeploy_target_iam_member: safe  # billing-behavior: IAM binding on a Cloud Deploy target; sets policy only, zero billing
 google_clouddeploy_target_iam_binding: safe  # billing-behavior: IAM binding only
