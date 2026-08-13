@@ -1,8 +1,10 @@
-/// Network Services Mesh quickstart — a logical service-mesh namespace.
+/// Network Services Mesh quickstart — a logical service-mesh namespace
+/// plus config-only HTTP / gRPC / TCP routes and an endpoint policy.
 ///
 /// Enables `networkservices.googleapis.com` and provisions a global Mesh.
-/// Creating a Mesh alone does not attach clusters or bill Anthos Service
-/// Mesh cluster/endpoint SKUs.
+/// Routes attach to that Mesh; they do not attach a Gateway (SWG is
+/// $1.25/h) or a BackendService. Creating these objects does not attach
+/// clusters or bill Anthos Service Mesh cluster/endpoint SKUs.
 ///
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
@@ -12,7 +14,7 @@ import 'package:terradart_google/network.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 
-/// Network Services stack: empty Mesh config object.
+/// Network Services stack: Mesh + config-only routes + endpoint policy.
 final class NetworkServicesMeshStack extends Stack {
   NetworkServicesMeshStack({required String projectId})
       : super(
@@ -28,12 +30,125 @@ final class NetworkServicesMeshStack extends Stack {
       ),
     );
 
-    add(
+    final mesh = add(
       GoogleNetworkServicesMesh(
         localName: 'app',
         name: TfArg.literal('terradart-mesh'),
         location: TfArg.literal('global'),
         description: TfArg.literal('TerraDart smoke mesh'),
+        dependsOn: [ResourceDependency(apiNetworkServices)],
+      ),
+    );
+
+    final meshId = TfArg.literal([mesh.id.interpolation]);
+    final onMesh = [
+      ResourceDependency(apiNetworkServices),
+      ResourceDependency(mesh),
+    ];
+
+    add(
+      GoogleNetworkServicesHttpRoute(
+        localName: 'http',
+        name: TfArg.literal('terradart-http-route'),
+        hostnames: TfArg.literal(['example']),
+        meshes: meshId,
+        rules: [
+          NetworkServicesHttpRouteRules(
+            matches: [
+              NetworkServicesHttpRouteRulesMatches(
+                fullPathMatch: TfArg.literal('example'),
+                queryParameters: [
+                  NetworkServicesHttpRouteRulesMatchesQueryParameters(
+                    queryParameter: TfArg.literal('key'),
+                    exactMatch: TfArg.literal('value'),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+        dependsOn: onMesh,
+      ),
+    );
+
+    add(
+      GoogleNetworkServicesGrpcRoute(
+        localName: 'grpc',
+        name: TfArg.literal('terradart-grpc-route'),
+        hostnames: TfArg.literal(['example.com']),
+        meshes: meshId,
+        rules: [
+          NetworkServicesGrpcRouteRules(
+            matches: [
+              NetworkServicesGrpcRouteRulesMatches(
+                method: NetworkServicesGrpcRouteRulesMatchesMethod(
+                  grpcService: TfArg.literal('helloworld.Greeter'),
+                  grpcMethod: TfArg.literal('SayHello'),
+                ),
+              ),
+            ],
+            action: NetworkServicesGrpcRouteRulesAction(
+              retryPolicy: NetworkServicesGrpcRouteRulesActionRetryPolicy(
+                numRetries: TfArg.literal(1),
+                retryConditions: [
+                  TfArg.literal(
+                    NetworkServicesGrpcRouteRulesActionRetryPolicyRetryConditions
+                        .connectFailure,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+        dependsOn: onMesh,
+      ),
+    );
+
+    // original_destination requires a prefix-length-0 match (`*/0` in the
+    // API error). Literal `*/0` is not CIDR (`address */0 is invalid`);
+    // `0.0.0.0/0` is the documented any-IPv4 form.
+    add(
+      GoogleNetworkServicesTcpRoute(
+        localName: 'tcp',
+        name: TfArg.literal('terradart-tcp-route'),
+        meshes: meshId,
+        rules: [
+          NetworkServicesTcpRouteRules(
+            matches: [
+              NetworkServicesTcpRouteRulesMatches(
+                address: TfArg.literal('0.0.0.0/0'),
+                port: TfArg.literal('8081'),
+              ),
+            ],
+            action: NetworkServicesTcpRouteRulesAction(
+              originalDestination: TfArg.literal(true),
+            ),
+          ),
+        ],
+        dependsOn: onMesh,
+      ),
+    );
+
+    add(
+      GoogleNetworkServicesEndpointPolicy(
+        localName: 'ep',
+        name: TfArg.literal('terradart-ep'),
+        type: TfArg.literal(NetworkServicesEndpointPolicyType.sidecarProxy),
+        endpointMatcher: NetworkServicesEndpointPolicyEndpointMatcher(
+          metadataLabelMatcher:
+              NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcher(
+            metadataLabelMatchCriteria: TfArg.literal(
+              NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabelMatchCriteria
+                  .matchAny,
+            ),
+            metadataLabels: [
+              NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabels(
+                labelName: TfArg.literal('app'),
+                labelValue: TfArg.literal('terradart'),
+              ),
+            ],
+          ),
+        ),
         dependsOn: [ResourceDependency(apiNetworkServices)],
       ),
     );

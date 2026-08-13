@@ -68,6 +68,8 @@ GoogleGkeBackupRestorePlanIamPolicy: authoritative IAM policy; sibling member de
 # regional secret IAM member are exercised in secret_manager_quickstart; only
 # the version factory is deferred here.
 GoogleNetworkServicesAgentGateway: gcp-cost Networking/Vertex AI list_skus Agent Gateway → 0; sibling SWG 884B-E0E7-C3E4 $1.25/h never_apply — google_managed tenant proxy / self_managed SWG attach + Agent Registry scaffolding; no applyable quickstart on terradart-validate
+GoogleNetworkServicesTlsRoute: TlsRoute.action.destinations needs a BackendService URL; attaching google_compute_backend_service would pull Compute into the applyable network_services_mesh_quickstart (and that type is not classified for apply-smoke). HTTP redirect / gRPC retry / TCP originalDestination cover the mesh route surface without a backend
+GoogleNetworkServicesServiceBinding: MM deprecation_message — Cloud Service Mesh Service Directory integration is being sunset and creating new service binding resources is being disabled; not applyable on terradart-validate
 GoogleSecretManagerRegionalSecretVersion: regional secrets lack a write-only data field and synth rejects a literal on the sensitive secret_data field; exercising it needs a Terraform variable that would break the applyable secret_manager_quickstart, so the version factory is tracked here while the regional secret + IAM member ship in the example
 
 # Parameter Manager parameter versions hold the payload in the sensitive

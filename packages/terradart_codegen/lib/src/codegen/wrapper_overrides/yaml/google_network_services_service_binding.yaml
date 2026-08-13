@@ -1,0 +1,27 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Cloud Service Mesh **service binding** — registers a Service
+  /// Directory service (`projects/*/locations/*/namespaces/*/services/*`)
+  /// for use as a BackendService target.
+  ///
+  /// Upstream is deprecated: creating new bindings is being disabled
+  /// (Service Directory integration sunset). Prefer BackendService
+  /// destinations on Http/Grpc/Tcp/Tls routes. Debt-only on
+  /// `terradart-validate`.
+
+paramOrder:
+  - name
+  - service
+  - description
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

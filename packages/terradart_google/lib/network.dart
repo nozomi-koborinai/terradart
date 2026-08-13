@@ -252,6 +252,15 @@ export 'src/network/google_network_services_edge_cache_service.dart'
         NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleRouteMethods,
         NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleUrlRedirect,
         NetworkServicesEdgeCacheServiceRoutingPathMatcherRouteRuleUrlRedirectRedirectResponseCode;
+export 'src/network/google_network_services_endpoint_policy.dart'
+    show
+        GoogleNetworkServicesEndpointPolicy,
+        NetworkServicesEndpointPolicyEndpointMatcher,
+        NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcher,
+        NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabelMatchCriteria,
+        NetworkServicesEndpointPolicyEndpointMatcherMetadataLabelMatcherMetadataLabels,
+        NetworkServicesEndpointPolicyTrafficPortSelector,
+        NetworkServicesEndpointPolicyType;
 export 'src/network/google_network_services_gateway.dart'
     show
         GoogleNetworkServicesGateway,
@@ -259,6 +268,42 @@ export 'src/network/google_network_services_gateway.dart'
         NetworkServicesGatewayIpVersion,
         NetworkServicesGatewayRoutingMode,
         NetworkServicesGatewayType;
+export 'src/network/google_network_services_grpc_route.dart'
+    show
+        GoogleNetworkServicesGrpcRoute,
+        NetworkServicesGrpcRouteRules,
+        NetworkServicesGrpcRouteRulesAction,
+        NetworkServicesGrpcRouteRulesActionDestinations,
+        NetworkServicesGrpcRouteRulesActionFaultInjectionPolicy,
+        NetworkServicesGrpcRouteRulesActionFaultInjectionPolicyAbort,
+        NetworkServicesGrpcRouteRulesActionFaultInjectionPolicyDelay,
+        NetworkServicesGrpcRouteRulesActionRetryPolicy,
+        NetworkServicesGrpcRouteRulesActionRetryPolicyRetryConditions,
+        NetworkServicesGrpcRouteRulesMatches,
+        NetworkServicesGrpcRouteRulesMatchesHeaders,
+        NetworkServicesGrpcRouteRulesMatchesHeadersType,
+        NetworkServicesGrpcRouteRulesMatchesMethod;
+export 'src/network/google_network_services_http_route.dart'
+    show
+        GoogleNetworkServicesHttpRoute,
+        NetworkServicesHttpRouteRules,
+        NetworkServicesHttpRouteRulesAction,
+        NetworkServicesHttpRouteRulesActionCorsPolicy,
+        NetworkServicesHttpRouteRulesActionDestinations,
+        NetworkServicesHttpRouteRulesActionFaultInjectionPolicy,
+        NetworkServicesHttpRouteRulesActionFaultInjectionPolicyAbort,
+        NetworkServicesHttpRouteRulesActionFaultInjectionPolicyDelay,
+        NetworkServicesHttpRouteRulesActionRedirect,
+        NetworkServicesHttpRouteRulesActionRequestHeaderModifier,
+        NetworkServicesHttpRouteRulesActionRequestMirrorPolicy,
+        NetworkServicesHttpRouteRulesActionRequestMirrorPolicyDestination,
+        NetworkServicesHttpRouteRulesActionResponseHeaderModifier,
+        NetworkServicesHttpRouteRulesActionRetryPolicy,
+        NetworkServicesHttpRouteRulesActionUrlRewrite,
+        NetworkServicesHttpRouteRulesMatches,
+        NetworkServicesHttpRouteRulesMatchesHeaders,
+        NetworkServicesHttpRouteRulesMatchesHeadersRangeMatch,
+        NetworkServicesHttpRouteRulesMatchesQueryParameters;
 export 'src/network/google_network_services_mesh.dart'
     show GoogleNetworkServicesMesh;
 export 'src/network/google_network_services_multicast_consumer_association.dart'
@@ -290,3 +335,19 @@ export 'src/network/google_network_services_multicast_group_range_activation.dar
         NetworkServicesMulticastGroupRangeActivationLogConfig;
 export 'src/network/google_network_services_multicast_producer_association.dart'
     show GoogleNetworkServicesMulticastProducerAssociation;
+export 'src/network/google_network_services_service_binding.dart'
+    show GoogleNetworkServicesServiceBinding;
+export 'src/network/google_network_services_tcp_route.dart'
+    show
+        GoogleNetworkServicesTcpRoute,
+        NetworkServicesTcpRouteRules,
+        NetworkServicesTcpRouteRulesAction,
+        NetworkServicesTcpRouteRulesActionDestinations,
+        NetworkServicesTcpRouteRulesMatches;
+export 'src/network/google_network_services_tls_route.dart'
+    show
+        GoogleNetworkServicesTlsRoute,
+        NetworkServicesTlsRouteRules,
+        NetworkServicesTlsRouteRulesAction,
+        NetworkServicesTlsRouteRulesActionDestinations,
+        NetworkServicesTlsRouteRulesMatches;

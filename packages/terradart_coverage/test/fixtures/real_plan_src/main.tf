@@ -64,18 +64,8 @@ resource "google_compute_router_nat" "nat" {
 
 # --- Not curated yet (expected: not in catalog) ---
 
-resource "google_network_services_endpoint_policy" "sidecar" {
-  name = "example-endpoint-policy"
-  type = "SIDECAR_PROXY"
-  endpoint_matcher {
-    metadata_label_matcher {
-      metadata_label_match_criteria = "MATCH_ANY"
-      metadata_labels {
-        label_name  = "app"
-        label_value = "example"
-      }
-    }
-  }
+resource "google_dialogflow_intent" "hello" {
+  display_name = "hello"
 }
 
 module "network" {

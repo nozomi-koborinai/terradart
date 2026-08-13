@@ -53,6 +53,7 @@ void main() {
     test('screamingToCamel converts without collision', () {
       expect(screamingToCamel('AUTOMATIC'), 'automatic');
       expect(screamingToCamel('ENCODING_UNSPECIFIED'), 'encodingUnspecified');
+      expect(screamingToCamel('connect-failure'), 'connectFailure');
     });
 
     test('screamingToCamel appends Case on a reserved-word collision', () {
