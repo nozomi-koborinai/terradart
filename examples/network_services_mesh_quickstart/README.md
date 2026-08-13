@@ -11,9 +11,13 @@ the mesh-basic matcher (no redirect); TCP uses `original_destination` with a
 Creating these objects does **not** attach clusters or bill Anthos Service Mesh
 cluster/endpoint SKUs — those apply when workloads join the mesh.
 
-`GoogleNetworkServicesTlsRoute` (needs a BackendService destination) and
+`GoogleNetworkServicesTlsRoute` (needs a BackendService destination),
 `GoogleNetworkServicesServiceBinding` (Service Directory integration sunset;
-creating new bindings is being disabled) are tracked in `tool/example_debt.yaml`.
+creating new bindings is being disabled), and the Service Extensions factories
+(`GoogleNetworkServicesAuthzExtension`, `GoogleNetworkServicesLbTrafficExtension`,
+`GoogleNetworkServicesLbRouteExtension`, `GoogleNetworkServicesLbEdgeExtension` —
+schema required forwarding rules / callout backends; Cloud LB Forwarding Rule
+Minimum is $0.025/h) are tracked in `tool/example_debt.yaml`.
 
 ## Prerequisites
 

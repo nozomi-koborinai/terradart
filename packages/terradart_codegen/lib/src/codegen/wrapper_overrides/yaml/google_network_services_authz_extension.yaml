@@ -1,0 +1,43 @@
+outputDir: network
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Service Extensions **AuthzExtension** — callout that makes an
+  /// authorization decision from the load-balancing data path.
+  ///
+  /// `service` is a Compute BackendService URI, `iap.googleapis.com`
+  /// (`REQUEST_AUTHZ`), or `modelarmor.<region>.rep.googleapis.com`
+  /// (`CONTENT_AUTHZ`). Attaching a BackendService (or an Application
+  /// LB forwarding rule) is out of scope for apply-smoke: Cloud LB
+  /// Forwarding Rule Minimum (Iowa `8295-248B-132F`) is **$0.025/h**.
+  ///
+  /// **Cost:** gcp-cost: Networking `E505-1604-58F8` Service Extensions
+  /// Load Balancer Callouts `3C5D-59B9-2035` **$0.10/count** (per million
+  /// invocations). billing-behavior: the extension object is
+  /// invocation-metered — no existence/hourly charge until attached LB
+  /// traffic invokes it. Enable `networkservices.googleapis.com` before
+  /// apply.
+
+paramOrder:
+  - name
+  - location
+  - service
+  - timeout
+  - load_balancing_scheme
+  - authority
+  - fail_open
+  - forward_headers
+  - metadata
+  - wire_format
+  - description
+  - labels
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `name` attribute.
+    TfRef<String> get nameRef => TfRef.attribute<String>(this, 'name');

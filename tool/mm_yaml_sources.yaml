@@ -2098,6 +2098,14 @@ files:
     upstream: mmv1/products/networkservices/AgentGateway.yaml
   google_network_services_gateway:
     upstream: mmv1/products/networkservices/Gateway.yaml
+  google_network_services_authz_extension:
+    upstream: mmv1/products/networkservices/AuthzExtension.yaml
+  google_network_services_lb_edge_extension:
+    upstream: mmv1/products/networkservices/LbEdgeExtension.yaml
+  google_network_services_lb_route_extension:
+    upstream: mmv1/products/networkservices/LbRouteExtension.yaml
+  google_network_services_lb_traffic_extension:
+    upstream: mmv1/products/networkservices/LbTrafficExtension.yaml
   google_network_services_multicast_domain:
     upstream: mmv1/products/networkservices/MulticastDomain.yaml
   google_network_services_multicast_domain_group:
