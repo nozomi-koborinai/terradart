@@ -22,8 +22,15 @@
 # network_services → dialogflow → discovery_engine → storage.
 # Org/folder/BYOIP and artifact-gated entries carry
 # `skipped by wave-shipper` notes so daily runs do not stall on them.
-# Remaining gap families (SCC, ACM, CES, IAM workforce, …) are deferred
-# to a follow-up backlog fill after these Waves land.
+#
+# 2026-08-13 follow-up: those Waves landed. Deferred families from the same
+# GA fixture gap are appended here (still detected_at 2026-08-12 /
+# provider 7.43.0). Product order for wave-shipper: ces (un-skipped) →
+# already-skipped compute/network_services/dialogflow/discovery_engine/
+# storage remain above so they stay judged. IAM workforce / SCC / ACM
+# leftovers are skip-noted with schema or sibling-debt evidence.
+# Other remaining gap families (logging org/folder, identity platform IdP
+# configs, billing, DMS, Datastream, …) stay deferred.
 
 entries:
   # --- compute (project-scoped Wave candidates; unsuitable skipped) ---
@@ -91,3 +98,224 @@ entries:
     detected_at: 2026-08-12
     provider_version: 7.43.0
     note: skipped by wave-shipper — organization-scoped intelligence config; not standalone-project applyable on terradart-validate
+
+  # --- ces (Conversational Agents; project-scoped; next Wave) ---
+  # Schema required fields are in-stack (location + ids). Wave-shipper takes
+  # the first 3–6; leftover app children stay for the following run.
+  - resource: google_ces_app
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_ces_agent
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_ces_app_root_agent_association
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_ces_app_version
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_ces_guardrail
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_ces_tool
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_ces_toolset
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_ces_example
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+  - resource: google_ces_deployment
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+
+  # --- iam workforce (org-scoped parent) ---
+  - resource: google_iam_workforce_pool
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `parent` (format organizations/{org-id}); sibling GoogleIamWorkforcePoolIamMember already in example_debt (org/folder scoped)
+  - resource: google_iam_workforce_pool_provider
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — child of google_iam_workforce_pool; schema required `workforce_pool_id` plus an IdP block (oidc.client_id / saml.idp_metadata_xml); parent is org-scoped
+  - resource: google_iam_workforce_pool_provider_key
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — child of org-scoped google_iam_workforce_pool_provider; schema required key_data.key_spec
+  - resource: google_iam_workforce_pool_provider_scim_tenant
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — child of org-scoped google_iam_workforce_pool_provider
+  - resource: google_iam_workforce_pool_provider_scim_token
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — child of org-scoped google_iam_workforce_pool_provider_scim_tenant
+
+  # --- scc (org-activated Security Command Center; v1) ---
+  # Project-scoped SCC still needs an organization-activated SCC parent.
+  # Sibling GoogleSccV2ProjectNotificationConfig is in example_debt (apply
+  # 400 Precondition check failed on terradart-validate; no org ancestor).
+  - resource: google_scc_source
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `organization`; sibling GoogleSccSourceIamMember already in example_debt (org-scoped, parent uncurated)
+  - resource: google_scc_notification_config
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `organization`
+  - resource: google_scc_event_threat_detection_custom_module
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `organization`
+  - resource: google_scc_organization_custom_module
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `organization`
+  - resource: google_scc_organization_scc_big_query_export
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `organization`
+  - resource: google_scc_management_organization_event_threat_detection_custom_module
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `organization`
+  - resource: google_scc_management_organization_security_health_analytics_custom_module
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `organization`
+  - resource: google_scc_folder_custom_module
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `folder`
+  - resource: google_scc_folder_notification_config
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `folder`
+  - resource: google_scc_folder_scc_big_query_export
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `folder`
+  - resource: google_scc_management_folder_security_health_analytics_custom_module
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `folder`
+  - resource: google_scc_mute_config
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — sibling GoogleSccV2ProjectNotificationConfig in example_debt (org-activated SCC, terradart-validate has no org ancestor, apply 400 Precondition check failed)
+  - resource: google_scc_project_custom_module
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — sibling GoogleSccV2ProjectNotificationConfig in example_debt (org-activated SCC, terradart-validate has no org ancestor, apply 400 Precondition check failed)
+  - resource: google_scc_project_notification_config
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — sibling GoogleSccV2ProjectNotificationConfig in example_debt (org-activated SCC, terradart-validate has no org ancestor, apply 400 Precondition check failed)
+  - resource: google_scc_project_scc_big_query_export
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — sibling GoogleSccV2ProjectNotificationConfig in example_debt (org-activated SCC, terradart-validate has no org ancestor, apply 400 Precondition check failed)
+  - resource: google_scc_management_project_security_health_analytics_custom_module
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — sibling GoogleSccV2ProjectNotificationConfig in example_debt (org-activated SCC, terradart-validate has no org ancestor, apply 400 Precondition check failed)
+
+  # --- scc_v2 (org-activated Security Command Center; v2) ---
+  - resource: google_scc_v2_organization_source
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `organization`; sibling GoogleSccV2OrganizationSourceIamMember already in example_debt
+  - resource: google_scc_v2_organization_mute_config
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `organization`
+  - resource: google_scc_v2_organization_notification_config
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `organization`
+  - resource: google_scc_v2_organization_scc_big_query_export
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `organization`
+  - resource: google_scc_v2_organization_scc_big_query_exports
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `organization`
+  - resource: google_scc_v2_folder_mute_config
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `folder`
+  - resource: google_scc_v2_folder_notification_config
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `folder`
+  - resource: google_scc_v2_folder_scc_big_query_export
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `folder`
+  - resource: google_scc_v2_project_mute_config
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — sibling GoogleSccV2ProjectNotificationConfig in example_debt (org-activated SCC, terradart-validate has no org ancestor, apply 400 Precondition check failed)
+  - resource: google_scc_v2_project_scc_big_query_export
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — sibling GoogleSccV2ProjectNotificationConfig in example_debt (org-activated SCC, terradart-validate has no org ancestor, apply 400 Precondition check failed)
+
+  # --- access_context_manager leftovers (org-scoped VPC-SC) ---
+  # Sibling access_context_quickstart is skip-listed (needs a real
+  # organization id for access policy parent). These attach to that policy
+  # or perimeter, or require organization_id themselves.
+  - resource: google_access_context_manager_gcp_user_access_binding
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `organization_id`; sibling access_context_quickstart is skip-listed (needs a real organization id for access policy parent)
+  - resource: google_access_context_manager_authorized_orgs_desc
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `parent` (access policy); sibling access_context_quickstart is skip-listed (needs a real organization id)
+  - resource: google_access_context_manager_access_levels
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `parent` (access policy); sibling access_context_quickstart is skip-listed (needs a real organization id)
+  - resource: google_access_context_manager_access_level_condition
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — attaches to an access level under an org-scoped access policy; sibling access_context_quickstart is skip-listed
+  - resource: google_access_context_manager_service_perimeters
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — schema required `parent` (access policy); sibling access_context_quickstart is skip-listed
+  - resource: google_access_context_manager_service_perimeter_resource
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — attaches to an org-scoped service perimeter; sibling access_context_quickstart is skip-listed
+  - resource: google_access_context_manager_service_perimeter_ingress_policy
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — attaches to an org-scoped service perimeter; sibling access_context_quickstart is skip-listed
+  - resource: google_access_context_manager_service_perimeter_egress_policy
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — attaches to an org-scoped service perimeter; sibling access_context_quickstart is skip-listed
+  - resource: google_access_context_manager_ingress_policy
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — attaches to an org-scoped service perimeter; sibling access_context_quickstart is skip-listed
+  - resource: google_access_context_manager_egress_policy
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — attaches to an org-scoped service perimeter; sibling access_context_quickstart is skip-listed
+  - resource: google_access_context_manager_service_perimeter_dry_run_resource
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — attaches to an org-scoped service perimeter; sibling access_context_quickstart is skip-listed
+  - resource: google_access_context_manager_service_perimeter_dry_run_ingress_policy
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — attaches to an org-scoped service perimeter; sibling access_context_quickstart is skip-listed
+  - resource: google_access_context_manager_service_perimeter_dry_run_egress_policy
+    detected_at: 2026-08-12
+    provider_version: 7.43.0
+    note: skipped by wave-shipper — attaches to an org-scoped service perimeter; sibling access_context_quickstart is skip-listed
