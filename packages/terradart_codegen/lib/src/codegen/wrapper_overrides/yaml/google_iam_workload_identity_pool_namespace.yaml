@@ -1,0 +1,32 @@
+outputDir: iam
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Workload Identity Federation **namespace** — segments identities
+  /// inside a [GoogleIamWorkloadIdentityPool] that uses
+  /// [WorkloadIdentityPoolMode.trustDomain]. Federation-only pools cannot
+  /// host namespaces.
+  ///
+  /// **Cost:** gcp-cost: no Cloud Billing Catalog SKU for IAM Workload
+  /// Identity Federation namespaces after list_services / list_skus.
+  /// billing-behavior: namespace metadata is free identity config;
+  /// creating one does not issue tokens or attach compute.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleIamWorkloadIdentityPoolNamespace(
+  ///   localName: 'apps',
+  ///   workloadIdentityPoolId: TfArg.literal('terradart-trust'),
+  ///   workloadIdentityPoolNamespaceId: TfArg.literal('terradart-apps'),
+  /// );
+  /// ```
+
+paramOrder:
+  - workload_identity_pool_id
+  - workload_identity_pool_namespace_id
+  - description
+  - disabled
+  - deletion_policy
+  - project

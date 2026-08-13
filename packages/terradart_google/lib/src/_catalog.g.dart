@@ -18779,6 +18779,50 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_iam_workload_identity_pool_iam_policy`.\n\nAuthoritative IAM policy for a Workload Identity Federation pool.\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleIamWorkloadIdentityPoolIamMember] for single-principal grants.',
   ),
   CatalogEntry(
+    tfType: 'google_iam_workload_identity_pool_managed_identity',
+    className: 'GoogleIamWorkloadIdentityPoolManagedIdentity',
+    barrel: 'iam',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iam_workload_identity_pool_managed_identity`.',
+    constructorParams: <String>[
+      'localName',
+      'workloadIdentityPoolId',
+      'workloadIdentityPoolNamespaceId',
+      'workloadIdentityPoolManagedIdentityId',
+      'description',
+      'disabled',
+      'attestationRules',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iam_workload_identity_pool_managed_identity`.\n\nRepresents a managed identity for a workload identity pool namespace.\n\nWorkload Identity Federation **managed identity** — a named identity\nunder a [GoogleIamWorkloadIdentityPoolNamespace] in a trust-domain\npool. Optional `attestationRules` are structured maps (resource\nnames of Compute / GKE workloads allowed to receive this identity).\n\n**Cost:** gcp-cost: no Cloud Billing Catalog SKU for IAM Workload\nIdentity Federation managed identities after list_services /\nlist_skus. billing-behavior: identity metadata is free config;\ncreating one does not issue tokens or attach compute.\n\nExample:\n```dart\nGoogleIamWorkloadIdentityPoolManagedIdentity(\n  localName: \'runner\',\n  workloadIdentityPoolId: TfArg.literal(\'terradart-trust\'),\n  workloadIdentityPoolNamespaceId: TfArg.literal(\'terradart-apps\'),\n  workloadIdentityPoolManagedIdentityId:\n      TfArg.literal(\'terradart-runner\'),\n);\n```',
+  ),
+  CatalogEntry(
+    tfType: 'google_iam_workload_identity_pool_namespace',
+    className: 'GoogleIamWorkloadIdentityPoolNamespace',
+    barrel: 'iam',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_iam_workload_identity_pool_namespace`.',
+    constructorParams: <String>[
+      'localName',
+      'workloadIdentityPoolId',
+      'workloadIdentityPoolNamespaceId',
+      'description',
+      'disabled',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iam_workload_identity_pool_namespace`.\n\nRepresents a namespace for a workload identity pool. Namespaces are used to\nsegment identities within the pool.\n\nWorkload Identity Federation **namespace** — segments identities\ninside a [GoogleIamWorkloadIdentityPool] that uses\n[WorkloadIdentityPoolMode.trustDomain]. Federation-only pools cannot\nhost namespaces.\n\n**Cost:** gcp-cost: no Cloud Billing Catalog SKU for IAM Workload\nIdentity Federation namespaces after list_services / list_skus.\nbilling-behavior: namespace metadata is free identity config;\ncreating one does not issue tokens or attach compute.\n\nExample:\n```dart\nGoogleIamWorkloadIdentityPoolNamespace(\n  localName: \'apps\',\n  workloadIdentityPoolId: TfArg.literal(\'terradart-trust\'),\n  workloadIdentityPoolNamespaceId: TfArg.literal(\'terradart-apps\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_iam_workload_identity_pool_provider',
     className: 'GoogleIamWorkloadIdentityPoolProvider',
     barrel: 'iam',

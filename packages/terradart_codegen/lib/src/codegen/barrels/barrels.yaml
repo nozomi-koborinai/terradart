@@ -362,9 +362,10 @@ barrels:
       /// dataset `*_iam_member` adjunct.
   iam:
     doc: |-
-      /// IAM service accounts + Workload Identity Federation pools. Per-resource
-      /// IAM members live alongside their owning service barrel (e.g.
-      /// `pubsub.dart` exports `GooglePubsubTopicIamMember`).
+      /// IAM service accounts, Workload Identity Federation pools
+      /// (including trust-domain namespaces and managed identities), and
+      /// per-resource IAM members live alongside their owning service
+      /// barrel (e.g. `pubsub.dart` exports `GooglePubsubTopicIamMember`).
   identity:
     doc: |-
       /// Identity Platform — project Auth config and multi-tenant realms.

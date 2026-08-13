@@ -1,0 +1,36 @@
+outputDir: iam
+
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Workload Identity Federation **managed identity** — a named identity
+  /// under a [GoogleIamWorkloadIdentityPoolNamespace] in a trust-domain
+  /// pool. Optional `attestationRules` are structured maps (resource
+  /// names of Compute / GKE workloads allowed to receive this identity).
+  ///
+  /// **Cost:** gcp-cost: no Cloud Billing Catalog SKU for IAM Workload
+  /// Identity Federation managed identities after list_services /
+  /// list_skus. billing-behavior: identity metadata is free config;
+  /// creating one does not issue tokens or attach compute.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleIamWorkloadIdentityPoolManagedIdentity(
+  ///   localName: 'runner',
+  ///   workloadIdentityPoolId: TfArg.literal('terradart-trust'),
+  ///   workloadIdentityPoolNamespaceId: TfArg.literal('terradart-apps'),
+  ///   workloadIdentityPoolManagedIdentityId:
+  ///       TfArg.literal('terradart-runner'),
+  /// );
+  /// ```
+
+paramOrder:
+  - workload_identity_pool_id
+  - workload_identity_pool_namespace_id
+  - workload_identity_pool_managed_identity_id
+  - description
+  - disabled
+  - attestation_rules
+  - deletion_policy
+  - project
