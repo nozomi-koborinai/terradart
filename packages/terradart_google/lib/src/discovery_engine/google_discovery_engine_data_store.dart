@@ -44,6 +44,7 @@ final class GoogleDiscoveryEngineDataStore extends Resource {
     required TfArg<DiscoveryEngineDataStoreIndustryVertical> industryVertical,
     TfArg<DiscoveryEngineDataStoreContentConfig>? contentConfig,
     TfArg<List<String>>? solutionTypes,
+    TfArg<bool>? skipDefaultSchemaCreation,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,
@@ -56,6 +57,8 @@ final class GoogleDiscoveryEngineDataStore extends Resource {
            'industry_vertical': industryVertical,
            if (contentConfig != null) 'content_config': contentConfig,
            if (solutionTypes != null) 'solution_types': solutionTypes,
+           if (skipDefaultSchemaCreation != null)
+             'skip_default_schema_creation': skipDefaultSchemaCreation,
            if (project != null) 'project': project,
          },
        );

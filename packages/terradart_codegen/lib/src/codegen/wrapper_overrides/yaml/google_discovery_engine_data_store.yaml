@@ -11,6 +11,7 @@ paramOrder:
   - industry_vertical
   - content_config
   - solution_types
+  - skip_default_schema_creation
   - project
 
 extraGetters: |2

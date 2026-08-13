@@ -1,0 +1,28 @@
+outputDir: discovery_engine
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+dartTypeOverrides:
+  type: DiscoveryEngineTargetSiteType
+
+curatedDoc: |-
+  /// Vertex AI Search **target site** — URI pattern to include or exclude
+  /// from a `PUBLIC_WEBSITE` data store.
+  ///
+  /// **Cost / apply:** gcp-cost: Vertex AI Search `74B1-77CF-C302` Data Index
+  /// `BC7D-6A97-90F8` **$5/GiBy·mo after 10 GiB** (indexing core PAYG
+  /// `AD21-6FE4-C919` **$5/GiBy·mo**). billing-behavior: an INCLUDE pattern
+  /// starts crawling / indexing while the target site exists; destroy stops
+  /// further index growth. **Never** wire into apply-smoke (website crawl /
+  /// Data Index).
+
+paramOrder:
+  - location
+  - data_store_id
+  - provided_uri_pattern
+  - type
+  - exact_match
+  - deletion_policy
+  - project

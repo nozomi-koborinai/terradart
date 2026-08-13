@@ -1,0 +1,26 @@
+outputDir: discovery_engine
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Vertex AI Search **ACL config** — per-location project singleton
+  /// (`projects/{project}/locations/{location}/aclConfig`). Create is PATCH;
+  /// Magic Modules `exclude_delete: true` so Terraform cannot destroy it.
+  ///
+  /// **Cost / apply:** gcp-cost: Vertex AI Search `74B1-77CF-C302` Search API
+  /// Request Count - Standard `BADA-EE26-7BDA` **$1.50/count after 10k**.
+  /// billing-behavior: IdP metadata only; query SKUs fire only on Search API
+  /// requests. Mutating this on a shared project is unsafe (same class as
+  /// other `exclude_delete` project singletons). **Never** wire into
+  /// apply-smoke.
+
+paramOrder:
+  - location
+  - idp_config
+  - project

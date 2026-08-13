@@ -227,7 +227,7 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **1134 curated resource factories + 1 data source** (1135 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
+[`terradart_google`](packages/terradart_google/README.md) ships **1140 curated resource factories + 1 data source** (1141 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
 
 The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). In Dart, discover factories via `package:terradart_google/catalog.dart` (`terradartCatalog`). CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
@@ -267,7 +267,7 @@ Data & storage
 - [Data Catalog taxonomy / entry / tag template](examples/data_catalog_quickstart/)
 - [Data Lineage config](examples/data_lineage_quickstart/)
 - [Dataplex data product + IAM member](examples/dataplex_quickstart/)
-- [Vertex AI Search data store + engine + IAM](examples/discovery_engine_quickstart/)
+- [Vertex AI Search data store + engine + schema / control / serving config + IAM](examples/discovery_engine_quickstart/)
 - [Cloud KMS project Autokey config](examples/kms_autokey_quickstart/)
 - [Cloud KMS keyring + crypto key + ciphertext/import job](examples/kms_quickstart/)
 - [License Manager Office SPLA configuration](examples/license_manager_quickstart/)

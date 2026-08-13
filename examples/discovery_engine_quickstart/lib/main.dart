@@ -1,4 +1,5 @@
-/// Discovery Engine quickstart — data store, search engine, IAM member.
+/// Discovery Engine quickstart — data store, search engine, schema,
+/// synonyms control, default serving config, and IAM member.
 library;
 
 import 'dart:convert';
@@ -127,6 +128,73 @@ final class DiscoveryEngineCatalogStack extends Stack {
         dependsOn: [
           ResourceDependency(searchEngine),
           ResourceDependency(searchReaderBinding),
+        ],
+      ),
+    );
+
+    final schemaStore = add(
+      GoogleDiscoveryEngineDataStore(
+        localName: 'schema_store',
+        location: TfArg.literal('global'),
+        dataStoreId: TfArg.literal('terradart-search-schema'),
+        displayName: TfArg.literal('Quickstart schema store'),
+        industryVertical: TfArg.literal(
+          DiscoveryEngineDataStoreIndustryVertical.generic,
+        ),
+        contentConfig: TfArg.literal(
+          DiscoveryEngineDataStoreContentConfig.noContent,
+        ),
+        solutionTypes: TfArg.literal(['SOLUTION_TYPE_SEARCH']),
+        skipDefaultSchemaCreation: TfArg.literal(true),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleDiscoveryEngineSchema(
+        localName: 'docs_schema',
+        location: TfArg.literal('global'),
+        dataStoreId: TfArg.ref(schemaStore.dataStoreIdRef),
+        schemaId: TfArg.literal('terradart-docs'),
+        jsonSchema: TfArg.literal(
+          r'{"$schema":"https://json-schema.org/draft/2020-12/schema","datetime_detection":true,"type":"object","geolocation_detection":true}',
+        ),
+        dependsOn: [ResourceDependency(schemaStore)],
+      ),
+    );
+
+    final synonyms = add(
+      GoogleDiscoveryEngineControl(
+        localName: 'synonyms',
+        location: TfArg.literal('global'),
+        collectionId: TfArg.literal('default_collection'),
+        engineId: TfArg.ref(searchEngine.engineIdRef),
+        controlId: TfArg.literal('terradart-synonyms'),
+        displayName: TfArg.literal('terradart synonyms'),
+        solutionType: TfArg.literal(
+          DiscoveryEngineControlSolutionType.solutionTypeSearch,
+        ),
+        useCases: TfArg.literal(['SEARCH_USE_CASE_SEARCH']),
+        action: DiscoveryEngineControlSynonymsAction(
+          synonyms: TfArg.literal(['quickstart', 'demo']),
+        ),
+        dependsOn: [ResourceDependency(searchEngine)],
+      ),
+    );
+
+    add(
+      GoogleDiscoveryEngineServingConfig(
+        localName: 'default_search',
+        location: TfArg.literal('global'),
+        collectionId: TfArg.literal('default_collection'),
+        engineId: TfArg.ref(searchEngine.engineIdRef),
+        servingConfigId: TfArg.literal('default_search'),
+        synonymsControlIds: TfArg.literal([
+          synonyms.controlIdRef.interpolation,
+        ]),
+        dependsOn: [
+          ResourceDependency(searchEngine),
+          ResourceDependency(synonyms),
         ],
       ),
     );
