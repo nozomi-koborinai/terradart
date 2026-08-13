@@ -125,9 +125,10 @@ barrels:
   ces:
     doc: |-
       /// Customer Engagement Suite (Conversational Agents): apps, agents,
-      /// root-agent association, app versions, guardrails, and tools.
-      /// Session SKUs fire only on chat/voice traffic — this barrel's
-      /// curated factories are design-time config (no `google_ces_deployment`).
+      /// root-agent association, app versions, guardrails, tools, toolsets,
+      /// few-shot examples, and deployments. Session SKUs fire only on
+      /// chat/voice traffic — creating design-time config or a channel
+      /// binding does not send sessions.
   chronicle:
     doc: |-
       /// Chronicle (Google SecOps): detections, playbooks, custom lists,

@@ -1,0 +1,57 @@
+outputDir: ces
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Customer Engagement Suite **toolset** — OpenAPI or MCP tools bound
+  /// to a [GoogleCesApp]. Pass the parent app's `app_id` as [app]. Pick
+  /// one of [openApiToolset] or [mcpToolset] (no MM `exactly_one_of`;
+  /// the API rejects both).
+  ///
+  /// **Cost:** gcp-cost: Customer Engagement Suite `383B-7930-9BC4` Chat
+  /// sessions for CX Agent Studio `40A1-7B02-5EF6` **$0.50/count** (Voice
+  /// sessions `AC3D-5A20-CF66` **$0.50/count**; Voice overages
+  /// `9B47-D9B2-C9CB` **$0.0025/s**). billing-behavior: a toolset is
+  /// design-time config — session SKUs fire only on CX Agent Studio
+  /// chat/voice sessions. Enable `ces.googleapis.com` via [Apis.enable]
+  /// before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleCesToolset(
+  ///   localName: 'openapi',
+  ///   location: TfArg.ref(app.locationRef),
+  ///   app: TfArg.ref(app.appIdRef),
+  ///   toolsetId: TfArg.literal('terradart-ces-toolset'),
+  ///   displayName: TfArg.literal('terradart-ces-toolset'),
+  ///   openApiToolset: CesToolsetOpenApiToolset(
+  ///     openApiSchema: TfArg.literal(
+  ///       'openapi: 3.0.0\ninfo:\n  title: smoke\n  version: 1.0.0\npaths: {}\n',
+  ///     ),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - app
+  - toolset_id
+  - display_name
+  - description
+  - execution_type
+  - open_api_toolset
+  - mcp_toolset
+  - tool_fake_config
+  - deletion_policy
+  - project
+
+extraGetters: |2
+    /// Reference to `toolset_id` (set this on create so agents can bind it).
+    TfRef<String> get toolsetIdRef =>
+        TfRef.attribute<String>(this, 'toolset_id');

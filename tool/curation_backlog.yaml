@@ -23,15 +23,12 @@
 # Org/folder/BYOIP and artifact-gated entries carry
 # `skipped by wave-shipper` notes so daily runs do not stall on them.
 #
-# 2026-08-13 follow-up: those Waves landed. Deferred families from the same
-# GA fixture gap are appended here (still detected_at 2026-08-12 /
-# provider 7.43.0). Product order for wave-shipper: leftover CES
-# (toolset / example / deployment) → already-skipped
-# compute/network_services/dialogflow/discovery_engine/storage remain
-# above so they stay judged. IAM workforce / SCC / ACM leftovers are
-# skip-noted with schema or sibling-debt evidence.
-# Other remaining gap families (logging org/folder, identity platform IdP
-# configs, billing, DMS, Datastream, …) stay deferred.
+# 2026-08-13 follow-up: CES leftovers (toolset / example / deployment)
+# shipped. Remaining un-skipped product groups in this file are empty —
+# compute/network_services/dialogflow/discovery_engine/storage and IAM
+# workforce / SCC / ACM leftovers stay skip-noted. Other remaining gap
+# families (logging org/folder, identity platform IdP configs, billing,
+# DMS, Datastream, …) stay deferred.
 
 entries:
   # --- compute (project-scoped Wave candidates; unsuitable skipped) ---
@@ -99,19 +96,6 @@ entries:
     detected_at: 2026-08-12
     provider_version: 7.43.0
     note: skipped by wave-shipper — organization-scoped intelligence config; not standalone-project applyable on terradart-validate
-
-  # --- ces leftovers (Conversational Agents; follow-on Wave) ---
-  # Parent app / agent / association / version / guardrail / tool shipped.
-  # Schema required fields are in-stack. Deployment needs channel_profile.
-  - resource: google_ces_toolset
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_ces_example
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-  - resource: google_ces_deployment
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
 
   # --- iam workforce (org-scoped parent) ---
   - resource: google_iam_workforce_pool

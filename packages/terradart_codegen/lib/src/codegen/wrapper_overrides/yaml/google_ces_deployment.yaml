@@ -1,0 +1,48 @@
+outputDir: ces
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Customer Engagement Suite **deployment** — publishes a
+  /// [GoogleCesAppVersion] onto a channel (`channel_profile` is required).
+  /// Pass the parent app's `app_id` as [app] and the version's `name` as
+  /// [appVersion]. Session SKUs fire only when chat/voice traffic hits
+  /// the channel — creating the deployment does not send sessions.
+  ///
+  /// **Cost:** gcp-cost: Customer Engagement Suite `383B-7930-9BC4` Chat
+  /// sessions for CX Agent Studio `40A1-7B02-5EF6` **$0.50/count** (Voice
+  /// sessions `AC3D-5A20-CF66` **$0.50/count**; Voice overages
+  /// `9B47-D9B2-C9CB` **$0.0025/s**). billing-behavior: a deployment is a
+  /// channel binding — session SKUs fire only on CX Agent Studio
+  /// chat/voice sessions. Enable `ces.googleapis.com` via [Apis.enable]
+  /// before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleCesDeployment(
+  ///   localName: 'api',
+  ///   location: TfArg.ref(app.locationRef),
+  ///   app: TfArg.ref(app.appIdRef),
+  ///   appVersion: TfArg.ref(version.nameRef),
+  ///   displayName: TfArg.literal('terradart-ces-deploy'),
+  ///   channelProfile: CesDeploymentChannelProfile(
+  ///     channelType: TfArg.literal('API'),
+  ///     profileId: TfArg.literal('terradart-ces-api'),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - app
+  - app_version
+  - display_name
+  - channel_profile
+  - deletion_policy
+  - project
