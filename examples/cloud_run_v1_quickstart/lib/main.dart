@@ -76,6 +76,7 @@ final class CloudRunV1Stack extends Stack {
         role: TfArg.literal('roles/run.invoker'),
         member: TfArg.ref(invoker.iamMember),
         dependsOn: [
+          ResourceDependency(apiRun),
           ResourceDependency(hello),
           ResourceDependency(invoker),
         ],
