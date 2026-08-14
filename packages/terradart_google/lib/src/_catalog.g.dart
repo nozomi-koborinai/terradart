@@ -29146,6 +29146,18 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_workflows_workflow`.\n\nWorkflow program to be executed by Workflows.',
   ),
   CatalogEntry(
+    tfType: 'google_workload_identity_service_agent',
+    className: 'GoogleWorkloadIdentityServiceAgent',
+    barrel: 'iam',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_workload_identity_service_agent`.',
+    constructorParams: <String>['localName', 'parent'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_workload_identity_service_agent`.\n\nA Service Agent within the Workload Identity API.\n\nWorkload Identity **service agent** — calls\n`generateServiceAgents` so Google-managed service-agent\nidentities exist for one [parent] service producer.\nCreating the resource does **not** provision a VM, start a\njob, or grant IAM (do not wire the official `for_each` role\ngrants in a smoke stack).\n\nPrefer a thin smoke stack: [parent] is\n`projects/\$projectNumber/locations/global/serviceProducers/pubsub.googleapis.com`\n(an API the stack already uses). Magic Modules sets\n`exclude_delete` — destroy drops Terraform state; the API\ncannot remove Google-owned service agents. The wrap fixture\n(provider 7.43.0) has no `deletion_policy` attribute.\n\nEnable `workloadidentity.googleapis.com` via\n[GoogleProjectService] before apply. Resolve the project\n*number* with [GoogleProject] `.number`.\n\nExample:\n```dart\nGoogleWorkloadIdentityServiceAgent(\n  localName: \'pubsub_agents\',\n  parent: TfArg.literal(\n    \'projects/\${current.number.interpolation}/locations/global/serviceProducers/pubsub.googleapis.com\',\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_workstations_workstation',
     className: 'GoogleWorkstationsWorkstation',
     barrel: 'workstations',

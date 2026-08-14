@@ -21,6 +21,7 @@
 ///  12. `google_service_account_iam_member`
 ///  13. `google_service_account_key`
 ///  14. `google_os_login_ssh_public_key`
+///  15. `google_workload_identity_service_agent`
 ///
 /// WIF (0.12.5 debt): `google_iam_workload_identity_pool_provider` with
 /// sealed [IamWorkloadIdentityPoolProviderOidcTrust] for GitHub Actions.
@@ -35,6 +36,7 @@ library;
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_tasks.dart';
+import 'package:terradart_google/data.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/iap.dart';
 import 'package:terradart_google/project.dart';
@@ -422,6 +424,32 @@ final class IamShowcaseStack extends Stack {
           ResourceDependency(sa),
           ResourceDependency(apiOsLogin),
         ],
+      ),
+    );
+
+    // ---- 15. Workload Identity service-agent mint -------------------------
+    //
+    // generateServiceAgents for Pub/Sub (already in this stack). Does not
+    // grant IAM. MM exclude_delete: destroy drops state; Google-owned
+    // SAs remain. The wrap fixture has no deletion_policy attribute.
+
+    final current = addData(GoogleProject(localName: 'current'));
+
+    final apiWorkloadIdentity = add(
+      GoogleProjectService(
+        localName: 'api_workloadidentity',
+        service: TfArg.literal('workloadidentity.googleapis.com'),
+        disableOnDestroy: TfArg.literal(false),
+      ),
+    );
+
+    add(
+      GoogleWorkloadIdentityServiceAgent(
+        localName: 'pubsub_agents',
+        parent: TfArg.literal(
+          'projects/${current.number.interpolation}/locations/global/serviceProducers/pubsub.googleapis.com',
+        ),
+        dependsOn: [ResourceDependency(apiWorkloadIdentity)],
       ),
     );
 

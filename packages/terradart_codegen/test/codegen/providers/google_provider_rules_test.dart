@@ -24,6 +24,8 @@ void main() {
       expect(rules.outputDirAliases['resourcemanager'], 'project');
       // Strategy 2 — segment / prefix overrides.
       expect(rules.outputDirAliases['service_account'], 'iam');
+      expect(rules.outputDirAliases['workload_identity'], 'iam');
+      expect(rules.outputDirAliases['workloadidentity'], 'iam');
       expect(rules.outputDirAliases['project_service'], 'project');
       // Phase 4.5 pilot — cloud_run service alias.
       expect(rules.outputDirAliases['cloudrunv2'], 'cloud_run');

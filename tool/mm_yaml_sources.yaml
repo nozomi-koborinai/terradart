@@ -2090,6 +2090,8 @@ files:
   google_secret_manager_regional_secret_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
 
+  google_workload_identity_service_agent:
+    upstream: mmv1/products/workloadidentity/ServiceAgent.yaml
   google_workstations_workstation_cluster:
     upstream: mmv1/products/workstations/WorkstationCluster.yaml
   google_workstations_workstation_config:

@@ -8,6 +8,7 @@ Demonstrates each of the curated `_iam_member` resources in a single Stack, plus
 - `google_cloud_tasks_queue_iam_member`
 - `google_secret_manager_secret_iam_member`
 - `google_os_login_ssh_public_key` (dummy `ssh-ed25519` on the demo SA; no VM)
+- `google_workload_identity_service_agent` (mint Pub/Sub service agents; destroy drops state)
 
 Each IAM resource has a slightly different identity surface; this example shows the right `TfRef` getter for each:
 
