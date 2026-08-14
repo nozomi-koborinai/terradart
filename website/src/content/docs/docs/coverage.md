@@ -1608,6 +1608,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | --- | --- | --- |
 | `google_os_config_os_policy_assignment` | `GoogleOsConfigOsPolicyAssignment` | [vm_compliance_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vm_compliance_quickstart) |
 | `google_os_config_patch_deployment` | `GoogleOsConfigPatchDeployment` | [vm_compliance_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vm_compliance_quickstart) |
+| `google_os_config_v2_policy_orchestrator` | `GoogleOsConfigV2PolicyOrchestrator` | [vm_compliance_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/vm_compliance_quickstart) |
 
 ## parallelstore
 
