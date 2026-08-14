@@ -267,9 +267,11 @@ barrels:
   dataproc:
     doc: |-
       /// Dataproc: classic/GKE clusters, classic jobs, autoscaling policies,
-      /// Metastore, GDC service instances / application environments, and
-      /// Serverless session templates. Cluster / job / GDC / Interactive
-      /// session paths are never_apply for apply-smoke.
+      /// workflow templates, Metastore, GDC service instances / application
+      /// environments, and Serverless session templates. Cluster / job /
+      /// GDC / Interactive session paths are never_apply for apply-smoke.
+      /// Workflow templates are reusable DAG metadata — create does not
+      /// start a cluster.
   developer_connect:
     doc: |-
       /// Developer Connect — account connectors that start an OAuth flow

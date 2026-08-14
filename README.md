@@ -283,7 +283,7 @@ Data & storage
 - [Vector Search collection](examples/vector_quickstart/)
 - [Migration Center sources, discovery, import, groups, and reports](examples/migration_center_quickstart/)
 - [Dataproc Metastore service and federation](examples/dataproc_metastore_quickstart/)
-- [Dataproc autoscaling policy](examples/dataproc_autoscaling_quickstart/)
+- [Dataproc autoscaling policy + workflow template](examples/dataproc_autoscaling_quickstart/)
 - [Filestore High Scale SSD snapshot](examples/filestore_quickstart/)
 - [Artifact Registry project config + Docker repo + download rule + location tag binding](examples/artifact_registry_quickstart/)
 

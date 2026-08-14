@@ -1,7 +1,8 @@
 # Dataproc autoscaling policy quickstart
 
 End-to-end terradart example for `google_dataproc_autoscaling_policy` — a
-reusable YARN autoscaler document (no Dataproc cluster).
+reusable YARN autoscaler document — and `google_dataproc_workflow_template`
+(reusable DAG metadata). Neither resource starts a cluster or a job.
 
 ## Prerequisites
 
