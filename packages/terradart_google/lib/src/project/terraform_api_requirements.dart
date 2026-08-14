@@ -48,6 +48,7 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry('google_dataplex_', 'dataplex.googleapis.com'),
   MapEntry('google_dataproc_metastore_', 'metastore.googleapis.com'),
   MapEntry('google_dataproc_', 'dataproc.googleapis.com'),
+  MapEntry('google_developer_connect_', 'developerconnect.googleapis.com'),
   MapEntry('google_discovery_engine_', 'discoveryengine.googleapis.com'),
   MapEntry('google_dialogflow_', 'dialogflow.googleapis.com'),
   MapEntry('google_document_ai_', 'documentai.googleapis.com'),

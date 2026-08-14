@@ -48,6 +48,7 @@ workspace:
   - examples/dataform_quickstart
   - examples/dataplex_quickstart
   - examples/dataproc_metastore_quickstart
+  - examples/developer_connect_quickstart
   - examples/discovery_engine_quickstart
   - examples/dialogflow_es_quickstart
   - examples/dialogflow_quickstart

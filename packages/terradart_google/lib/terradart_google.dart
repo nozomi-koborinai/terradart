@@ -62,6 +62,7 @@ export 'dataflow.dart';
 export 'dataform.dart';
 export 'dataplex.dart';
 export 'dataproc.dart';
+export 'developer_connect.dart';
 export 'dialogflow.dart';
 export 'discovery_engine.dart';
 export 'dlp.dart';

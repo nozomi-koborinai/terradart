@@ -1,0 +1,46 @@
+outputDir: developer_connect
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Developer Connect **account connector** — OAuth config that starts
+  /// a system-provider login (GitHub / GitLab / …). Creating the
+  /// connector does not complete OAuth, clone a repository, or create a
+  /// `google_developer_connect_connection`.
+  ///
+  /// This leftover exposes the official GitHub recipe via
+  /// [providerOauthConfig] (`system_provider_id` + `scopes`). Custom
+  /// OAuth (`custom_oauth_config`, client secret) is left uncurated.
+  ///
+  /// Enable `developerconnect.googleapis.com` via [GoogleProjectService]
+  /// before apply. Set [deletionPolicy] to `DELETE` so destroy removes
+  /// the unused connector.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleDeveloperConnectAccountConnector(
+  ///   localName: 'github',
+  ///   location: TfArg.literal('us-central1'),
+  ///   accountConnectorId: TfArg.literal('terradart-github'),
+  ///   providerOauthConfig:
+  ///       DeveloperConnectAccountConnectorProviderOauthConfig(
+  ///     systemProviderId: TfArg.literal('GITHUB'),
+  ///     scopes: TfArg.literal(['repo']),
+  ///   ),
+  ///   deletionPolicy: TfArg.literal('DELETE'),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - account_connector_id
+  - provider_oauth_config
+  - labels
+  - annotations
+  - deletion_policy
+  - project
