@@ -20349,6 +20349,30 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_identity_platform_tenant`.\n\nTenant configuration in a multi-tenant project.\n\nYou must enable the [Google Identity\nPlatform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity)\nin the marketplace prior to using this resource.\n\nYou must [enable\nmulti-tenancy](https://cloud.google.com/identity-platform/docs/multi-tenancy-quickstart)\nvia the Cloud Console prior to creating tenants.\n\nIdentity Platform tenant — isolated Auth realm under a multi-tenant project.\n\nPair with [GoogleIdentityPlatformConfig] (enable multi-tenancy in the\nconsole / config as needed). Set [displayName] at minimum.',
   ),
   CatalogEntry(
+    tfType: 'google_identity_platform_tenant_oauth_idp_config',
+    className: 'GoogleIdentityPlatformTenantOauthIdpConfig',
+    barrel: 'identity',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_identity_platform_tenant_oauth_idp_config`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'tenant',
+      'displayName',
+      'issuer',
+      'clientId',
+      'enabled',
+      'clientSecret',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_identity_platform_tenant_oauth_idp_config`.\n\nOIDC IdP configuration for a Identity Toolkit project within a tenant.\n\nYou must enable the [Google Identity\nPlatform](https://console.cloud.google.com/marketplace/details/google-cloud-platform/customer-identity)\nin the marketplace prior to using this resource.\n\nIdentity Platform **tenant OIDC IdP** — Auth metadata that\nnames an OpenID Connect issuer for one tenant.\nCreating the config does **not** complete OAuth, authenticate\na user, or generate Monthly Active Users.\n\n[name] must start with `oidc.`. Prefer a thin smoke stack:\na dummy [issuer] (`https://accounts.example.com`), a dummy\n[clientId], and [enabled] `false`. Omit [clientSecret] so\nthe authorization-code flow stays off. Set [deletionPolicy]\nto `DELETE`.\n\n`identity_platform_quickstart` is apply-smoke skipped\n(tenant create returns 400 without GCIP multi-tenancy), so\nthis factory is synth + `terraform validate` only.\n\nExample:\n```dart\nGoogleIdentityPlatformTenantOauthIdpConfig(\n  localName: \'demo_oidc\',\n  name: TfArg.literal(\'oidc.terradart\'),\n  tenant: TfArg.ref(tenant.nameRef),\n  displayName: TfArg.literal(\'TerraDart dummy OIDC\'),\n  issuer: TfArg.literal(\'https://accounts.example.com\'),\n  clientId: TfArg.literal(\'terradart-dummy-client\'),\n  enabled: TfArg.literal(false),\n  deletionPolicy: TfArg.literal(\'DELETE\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_integration_connectors_connection',
     className: 'GoogleIntegrationConnectorsConnection',
     barrel: 'integration_connectors',

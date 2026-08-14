@@ -751,6 +751,8 @@ files:
     upstream: mmv1/products/identityplatform/Config.yaml
   google_identity_platform_tenant:
     upstream: mmv1/products/identityplatform/Tenant.yaml
+  google_identity_platform_tenant_oauth_idp_config:
+    upstream: mmv1/products/identityplatform/TenantOauthIdpConfig.yaml
   google_iap_web_backend_service_iam_binding:
     upstream: null  # handwritten IAM binding in terraform provider; no MM YAML
 

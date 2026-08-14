@@ -3,13 +3,14 @@
 End-to-end terradart example for:
 
 - `google_identity_platform_tenant`
+- `google_identity_platform_tenant_oauth_idp_config` (dummy OIDC issuer, `enabled=false`, no client secret)
 
 `google_identity_platform_config` is deferred (`tool/example_debt.yaml`): it is
 a project singleton, and shared validate projects that already enabled Identity
 Platform reject a second create. Use the factory on a fresh project.
 
-OAuth / SAML / default-supported IdP configs need real external credentials
-and are not included in this stack.
+Default-supported IdPs and SAML configs need real external credentials and
+are not included in this stack. Real apply is skipped (`apply_smoke_skip.yaml`).
 
 ## Prerequisites
 
