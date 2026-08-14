@@ -724,6 +724,18 @@ final Map<String, Object Function()> _syntheticInstances = {
         ],
       ),
 
+  // --- DataCatalogTagFieldValue (5) — data_catalog_tag --------------------
+  'DataCatalogTagStringValue': () =>
+      DataCatalogTagStringValue(TfArg.literal('terradart-smoke')),
+  'DataCatalogTagBoolValue': () => DataCatalogTagBoolValue(TfArg.literal(true)),
+  'DataCatalogTagDoubleValue': () =>
+      DataCatalogTagDoubleValue(TfArg.literal(1.0)),
+  'DataCatalogTagTimestampValue': () => DataCatalogTagTimestampValue(
+        TfArg.literal('2026-01-01T00:00:00Z'),
+      ),
+  'DataCatalogTagEnumValue': () =>
+      DataCatalogTagEnumValue(TfArg.literal('EMAIL')),
+
   // --- NetworkConnectivityPolicyBasedRouteNextHop (2) — PBR next hop ------
   'NetworkConnectivityPolicyBasedRouteNextHopIlbIp': () =>
       NetworkConnectivityPolicyBasedRouteNextHopIlbIp(

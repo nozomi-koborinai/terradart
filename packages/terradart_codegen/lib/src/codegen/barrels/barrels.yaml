@@ -244,8 +244,8 @@ barrels:
       /// ```
   data_catalog:
     doc: |-
-      /// Google Cloud Data Catalog — entry groups for organizing metadata
-      /// entries (legacy Data Catalog API; prefer Dataplex Universal Catalog
+      /// Google Cloud Data Catalog — entry groups, tag templates, and
+      /// tags (legacy Data Catalog API; prefer Dataplex Universal Catalog
       /// for new catalogs).
   data_fusion:
     doc: |-
