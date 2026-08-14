@@ -292,7 +292,7 @@ Application platform & operations
 - [Cloud Run v2 service (sealed `EnvVarSource`)](examples/cloud_run_quickstart/)
 - [Cloud Run v1 hello service](examples/cloud_run_v1_quickstart/)
 - [Access Context Manager policy + perimeter](examples/access_context_quickstart/)
-- [OS Config + Binary Authorization VM compliance](examples/vm_compliance_quickstart/)
+- [OS Config + Binary Authorization VM compliance](examples/vm_compliance_quickstart/) (STOPPED v2 policy orchestrator)
 - [API Keys + reCAPTCHA Enterprise + connectivity test](examples/api_security_quickstart/)
 - [Logging sinks (project / folder / org) → BigQuery](examples/ops_quickstart/)
 - [Monitoring alert policy with typed `Aligner` / `Reducer`](examples/monitoring_quickstart/)
