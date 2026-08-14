@@ -963,6 +963,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 | `google_dataproc_metastore_table_iam_member` | `GoogleDataprocMetastoreTableIamMember` | — |
 | `google_dataproc_metastore_table_iam_policy` | `GoogleDataprocMetastoreTableIamPolicy` | — |
 | `google_dataproc_session_template` | `GoogleDataprocSessionTemplate` | — |
+| `google_dataproc_workflow_template` | `GoogleDataprocWorkflowTemplate` | [dataproc_autoscaling_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/dataproc_autoscaling_quickstart) |
 
 ## developer_connect
 
