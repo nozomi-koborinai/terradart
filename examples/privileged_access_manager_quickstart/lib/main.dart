@@ -1,16 +1,14 @@
 /// Privileged Access Manager entitlement quickstart.
 ///
-/// Enables `privilegedaccessmanager.googleapis.com`, grants the PAM
-/// service agent, and creates a project-scoped entitlement that lets an
-/// in-stack service account request `roles/browser` for 30 minutes.
-/// Creating the entitlement does not grant access — no grant is
-/// requested.
+/// Enables `privilegedaccessmanager.googleapis.com` and creates a
+/// project-scoped entitlement that lets an in-stack service account
+/// request `roles/browser` for 30 minutes. Creating the entitlement
+/// does not grant access — no grant is requested.
 ///
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
-import 'package:terradart_google/data.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/privileged_access_manager.dart';
 import 'package:terradart_google/project.dart';
@@ -24,7 +22,6 @@ final class PrivilegedAccessManagerStack extends Stack {
             GoogleProvider(project: projectId, region: 'us-central1'),
           ],
         ) {
-    final current = addData(GoogleProject(localName: 'current'));
     final parent = 'projects/$projectId';
     final projectResource =
         '//cloudresourcemanager.googleapis.com/projects/$projectId';
@@ -42,19 +39,6 @@ final class PrivilegedAccessManagerStack extends Stack {
         localName: 'requester',
         accountId: TfArg.literal('pam-requester'),
         displayName: TfArg.literal('PAM entitlement requester'),
-      ),
-    );
-
-    final pamAgent = add(
-      GoogleProjectIamMember(
-        localName: 'pam_service_agent',
-        project: TfArg.literal(projectId),
-        role: TfArg.literal('roles/privilegedaccessmanager.serviceAgent'),
-        member: TfArg.literal(
-          'serviceAccount:service-${current.number.interpolation}'
-          '@gcp-sa-pam.iam.gserviceaccount.com',
-        ),
-        dependsOn: [ResourceDependency(apiPam)],
       ),
     );
 
@@ -92,7 +76,6 @@ final class PrivilegedAccessManagerStack extends Stack {
         deletionPolicy: TfArg.literal('DELETE'),
         dependsOn: [
           ResourceDependency(apiPam),
-          ResourceDependency(pamAgent),
           ResourceDependency(requester),
         ],
       ),
