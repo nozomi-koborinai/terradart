@@ -110,6 +110,7 @@ workspace:
   - examples/storage_intelligence_quickstart
   - examples/storage_transfer_quickstart
   - examples/tags_quickstart
+  - examples/transcoder_quickstart
   - examples/vector_quickstart
   - examples/vertex_ai_quickstart
   - examples/vm_compliance_quickstart

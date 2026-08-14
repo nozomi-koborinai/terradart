@@ -127,6 +127,7 @@ export 'spanner.dart';
 export 'storage.dart';
 export 'storage_control.dart';
 export 'tags.dart';
+export 'transcoder.dart';
 export 'vector.dart';
 export 'vertex_ai.dart';
 export 'vmwareengine.dart';
