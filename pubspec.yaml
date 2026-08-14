@@ -103,6 +103,7 @@ workspace:
   - examples/oracle_goldengate_quickstart
   - examples/parameter_manager_quickstart
   - examples/ops_quickstart
+  - examples/privileged_access_manager_quickstart
   - examples/public_ca_quickstart
   - examples/project_iam_audit_config_quickstart
   - examples/pubsub_quickstart

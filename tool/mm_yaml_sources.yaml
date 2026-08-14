@@ -1731,6 +1731,8 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_public_ca_external_account_key:
     upstream: mmv1/products/publicca/ExternalAccountKey.yaml
+  google_privileged_access_manager_entitlement:
+    upstream: mmv1/products/privilegedaccessmanager/Entitlement.yaml
   google_active_directory_domain:
     upstream: mmv1/products/activedirectory/Domain.yaml
   google_agent_identity_auth_provider:

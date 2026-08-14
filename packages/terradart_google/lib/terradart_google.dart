@@ -112,6 +112,7 @@ export 'os_config.dart';
 export 'parallelstore.dart';
 export 'parameter_manager.dart';
 export 'privateca.dart';
+export 'privileged_access_manager.dart';
 export 'project.dart';
 export 'provider.dart';
 export 'public_ca.dart';

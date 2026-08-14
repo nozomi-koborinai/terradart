@@ -494,6 +494,11 @@ barrels:
     doc: |-
       /// Parameter Manager — store and version application configuration parameters
       /// (global and regional), the non-secret sibling of Secret Manager.
+  privileged_access_manager:
+    doc: |-
+      /// Privileged Access Manager — project-scoped entitlements that
+      /// define who may request time-bound IAM roles. Creating an
+      /// entitlement does not grant access until someone requests a grant.
   privateca:
     doc: |-
       /// Private CA (Certificate Authority Service) — CA pools for managed

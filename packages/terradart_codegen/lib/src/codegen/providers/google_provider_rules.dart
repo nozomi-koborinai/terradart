@@ -245,6 +245,13 @@ final class GoogleProviderRules extends ProviderRules {
     'developer_connect': 'developer_connect',
     'developerconnect': 'developer_connect',
 
+    // Privileged Access Manager (`google_privileged_access_manager_*` →
+    // segment `privileged`; MM product privilegedaccessmanager).
+    'privileged': 'privileged_access_manager',
+    'privileged_access': 'privileged_access_manager',
+    'privileged_access_manager': 'privileged_access_manager',
+    'privilegedaccessmanager': 'privileged_access_manager',
+
     // Security Command Center v2 (`google_scc_v2_*` → segment `scc`).
     'scc': 'scc',
     'scc_v2': 'scc',

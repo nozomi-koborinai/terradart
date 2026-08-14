@@ -154,6 +154,10 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry(
       'google_secure_source_manager_', 'securesourcemanager.googleapis.com'),
   MapEntry('google_transcoder_', 'transcoder.googleapis.com'),
+  MapEntry(
+    'google_privileged_access_manager_',
+    'privilegedaccessmanager.googleapis.com',
+  ),
 ];
 
 /// Returns the API endpoint a [terraformType] needs, or null when unchecked.
