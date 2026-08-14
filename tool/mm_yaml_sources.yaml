@@ -562,6 +562,8 @@ files:
     upstream: mmv1/products/dataprocgdc/ServiceInstance.yaml
   google_dataproc_session_template:
     upstream: mmv1/products/dataproc/SessionTemplate.yaml
+  google_dataproc_workflow_template:
+    upstream: null  # third_party handwritten (mmv1/third_party/terraform/services/dataproc/resource_dataproc_workflow_template.go.tmpl); no mmv1/products/dataproc/WorkflowTemplate.yaml (404, probed 2026-08-14; dataproc product has AutoscalingPolicy/Batch/SessionTemplate only)
   google_dataproc_gdc_application_environment:
     upstream: mmv1/products/dataprocgdc/ApplicationEnvironment.yaml
   google_dataproc_metastore_service:

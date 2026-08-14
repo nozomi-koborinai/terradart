@@ -1,9 +1,11 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 /// Dataproc: classic/GKE clusters, classic jobs, autoscaling policies,
-/// Metastore, GDC service instances / application environments, and
-/// Serverless session templates. Cluster / job / GDC / Interactive
-/// session paths are never_apply for apply-smoke.
+/// workflow templates, Metastore, GDC service instances / application
+/// environments, and Serverless session templates. Cluster / job /
+/// GDC / Interactive session paths are never_apply for apply-smoke.
+/// Workflow templates are reusable DAG metadata — create does not
+/// start a cluster.
 library;
 
 export 'src/dataproc/google_dataproc_autoscaling_policy.dart'
@@ -182,3 +184,62 @@ export 'src/dataproc/google_dataproc_session_template.dart'
         DataprocSessionTemplateRuntimeConfig,
         DataprocSessionTemplateSparkConnectSession,
         GoogleDataprocSessionTemplate;
+export 'src/dataproc/google_dataproc_workflow_template.dart'
+    show
+        DataprocWorkflowTemplateEncryptionConfig,
+        DataprocWorkflowTemplateJobs,
+        DataprocWorkflowTemplateJobsHadoopJob,
+        DataprocWorkflowTemplateJobsHadoopJobLoggingConfig,
+        DataprocWorkflowTemplateJobsHiveJob,
+        DataprocWorkflowTemplateJobsHiveJobQueryList,
+        DataprocWorkflowTemplateJobsPigJob,
+        DataprocWorkflowTemplateJobsPigJobLoggingConfig,
+        DataprocWorkflowTemplateJobsPigJobQueryList,
+        DataprocWorkflowTemplateJobsPrestoJob,
+        DataprocWorkflowTemplateJobsPrestoJobLoggingConfig,
+        DataprocWorkflowTemplateJobsPrestoJobQueryList,
+        DataprocWorkflowTemplateJobsPysparkJob,
+        DataprocWorkflowTemplateJobsPysparkJobLoggingConfig,
+        DataprocWorkflowTemplateJobsScheduling,
+        DataprocWorkflowTemplateJobsSparkJob,
+        DataprocWorkflowTemplateJobsSparkJobLoggingConfig,
+        DataprocWorkflowTemplateJobsSparkRJob,
+        DataprocWorkflowTemplateJobsSparkRJobLoggingConfig,
+        DataprocWorkflowTemplateJobsSparkSqlJob,
+        DataprocWorkflowTemplateJobsSparkSqlJobLoggingConfig,
+        DataprocWorkflowTemplateJobsSparkSqlJobQueryList,
+        DataprocWorkflowTemplateParameters,
+        DataprocWorkflowTemplateParametersValidation,
+        DataprocWorkflowTemplateParametersValidationRegex,
+        DataprocWorkflowTemplateParametersValidationValues,
+        DataprocWorkflowTemplatePlacement,
+        DataprocWorkflowTemplatePlacementClusterSelector,
+        DataprocWorkflowTemplatePlacementManagedCluster,
+        DataprocWorkflowTemplatePlacementManagedClusterConfig,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigAutoscalingConfig,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigEncryptionConfig,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigEndpointConfig,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfig,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigNodeGroupAffinity,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigPrivateIpv6GoogleAccess,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigReservationAffinity,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigReservationAffinityConsumeReservationType,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfigShieldedInstanceConfig,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigInitializationActions,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigLifecycleConfig,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfig,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigAccelerators,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigDiskConfig,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigMasterConfigPreemptibility,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfig,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigAccelerators,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigDiskConfig,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigSecondaryWorkerConfigPreemptibility,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigSecurityConfig,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigSecurityConfigKerberosConfig,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigSoftwareConfig,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfig,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigAccelerators,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigDiskConfig,
+        DataprocWorkflowTemplatePlacementManagedClusterConfigWorkerConfigPreemptibility,
+        GoogleDataprocWorkflowTemplate;

@@ -227,7 +227,7 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **1175 curated resource factories + 1 data source** (1176 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
+[`terradart_google`](packages/terradart_google/README.md) ships **1176 curated resource factories + 1 data source** (1177 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
 
 The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). In Dart, discover factories via `package:terradart_google/catalog.dart` (`terradartCatalog`). CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
@@ -283,7 +283,7 @@ Data & storage
 - [Vector Search collection](examples/vector_quickstart/)
 - [Migration Center sources, discovery, import, groups, and reports](examples/migration_center_quickstart/)
 - [Dataproc Metastore service and federation](examples/dataproc_metastore_quickstart/)
-- [Dataproc autoscaling policy](examples/dataproc_autoscaling_quickstart/)
+- [Dataproc autoscaling policy + workflow template](examples/dataproc_autoscaling_quickstart/)
 - [Filestore High Scale SSD snapshot](examples/filestore_quickstart/)
 - [Artifact Registry project config + Docker repo + download rule + location tag binding](examples/artifact_registry_quickstart/)
 

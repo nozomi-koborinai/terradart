@@ -1,0 +1,65 @@
+outputDir: dataproc
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Dataproc **workflow template** — reusable DAG metadata (placement +
+  /// job steps). Creating a template does **not** instantiate a cluster
+  /// or start jobs; instantiate later via `gcloud dataproc
+  /// workflow-templates instantiate` (or the API).
+  ///
+  /// Prefer a thin smoke stack: [location] `us-central1`,
+  /// [placement].`managedCluster` with `clusterName` + GCE `zone` only
+  /// (no live cluster), one [jobs] Spark step, and [deletionPolicy]
+  /// `DELETE`. Do not pair this factory with [GoogleDataprocCluster],
+  /// [GoogleDataprocJob], or [GoogleDataprocBatch].
+  ///
+  /// Enable `dataproc.googleapis.com` via [GoogleProjectService] before
+  /// apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleDataprocWorkflowTemplate(
+  ///   localName: 'sparkpi',
+  ///   name: TfArg.literal('terradart-wf'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   placement: DataprocWorkflowTemplatePlacement(
+  ///     managedCluster: DataprocWorkflowTemplatePlacementManagedCluster(
+  ///       clusterName: TfArg.literal('terradart-wf-cluster'),
+  ///       config: DataprocWorkflowTemplatePlacementManagedClusterConfig(
+  ///         gceClusterConfig:
+  ///             DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfig(
+  ///           zone: TfArg.literal('us-central1-a'),
+  ///         ),
+  ///       ),
+  ///     ),
+  ///   ),
+  ///   jobs: [
+  ///     DataprocWorkflowTemplateJobs(
+  ///       stepId: TfArg.literal('sparkpi'),
+  ///       sparkJob: DataprocWorkflowTemplateJobsSparkJob(
+  ///         mainClass: TfArg.literal('org.apache.spark.examples.SparkPi'),
+  ///       ),
+  ///     ),
+  ///   ],
+  ///   deletionPolicy: TfArg.literal('DELETE'),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - location
+  - placement
+  - jobs
+  - parameters
+  - dag_timeout
+  - encryption_config
+  - labels
+  - version
+  - deletion_policy
+  - project

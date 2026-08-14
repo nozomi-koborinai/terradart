@@ -1,8 +1,10 @@
-/// Dataproc autoscaling policy quickstart.
+/// Dataproc autoscaling policy + workflow template quickstart.
 ///
 /// Enables `dataproc.googleapis.com` and creates a reusable
 /// `google_dataproc_autoscaling_policy` (no cluster — metadata only), plus an
-/// additive IAM grant for a policy-reader service account.
+/// additive IAM grant for a policy-reader service account, and a reusable
+/// `google_dataproc_workflow_template` (DAG metadata only — create does not
+/// instantiate a cluster or start jobs).
 ///
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
@@ -13,7 +15,7 @@ import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 
-/// Dataproc autoscaling policy stack (policy document only).
+/// Dataproc autoscaling policy + workflow template stack (metadata only).
 final class DataprocAutoscalingStack extends Stack {
   DataprocAutoscalingStack({required String projectId})
       : super(
@@ -67,6 +69,35 @@ final class DataprocAutoscalingStack extends Stack {
           ResourceDependency(policy),
           ResourceDependency(policyReader),
         ],
+      ),
+    );
+
+    add(
+      GoogleDataprocWorkflowTemplate(
+        localName: 'sparkpi',
+        name: TfArg.literal('terradart-wf'),
+        location: TfArg.literal('us-central1'),
+        placement: DataprocWorkflowTemplatePlacement(
+          managedCluster: DataprocWorkflowTemplatePlacementManagedCluster(
+            clusterName: TfArg.literal('terradart-wf-cluster'),
+            config: DataprocWorkflowTemplatePlacementManagedClusterConfig(
+              gceClusterConfig:
+                  DataprocWorkflowTemplatePlacementManagedClusterConfigGceClusterConfig(
+                zone: TfArg.literal('us-central1-a'),
+              ),
+            ),
+          ),
+        ),
+        jobs: [
+          DataprocWorkflowTemplateJobs(
+            stepId: TfArg.literal('sparkpi'),
+            sparkJob: DataprocWorkflowTemplateJobsSparkJob(
+              mainClass: TfArg.literal('org.apache.spark.examples.SparkPi'),
+            ),
+          ),
+        ],
+        deletionPolicy: TfArg.literal('DELETE'),
+        dependsOn: [ResourceDependency(apiDataproc)],
       ),
     );
   }
