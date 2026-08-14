@@ -119,6 +119,13 @@ final class GoogleProviderRules extends ProviderRules {
     'os_login': 'iam',
     'oslogin': 'iam',
 
+    // Workload Identity service-agent minting
+    // (`google_workload_identity_service_agent`; MM product
+    // workloadidentity). Fold into `iam` next to WIF pools — do not
+    // create a `workload_identity` barrel.
+    'workload_identity': 'iam',
+    'workloadidentity': 'iam',
+
     // Wave 76 — Binary Authorization (`google_binary_authorization_*`).
     'binary': 'binary_authorization',
     'binary_authorization': 'binary_authorization',

@@ -89,5 +89,14 @@ void main() {
       );
       expect(result, 'iam');
     });
+
+    test('Step 2: workload_identity → iam (not workload_identity barrel)', () {
+      final result = resolver.resolve(
+        terraformType: 'google_workload_identity_service_agent',
+        mmProduct: null,
+        kind: WrapperOverrideKind.resource,
+      );
+      expect(result, 'iam');
+    });
   });
 }

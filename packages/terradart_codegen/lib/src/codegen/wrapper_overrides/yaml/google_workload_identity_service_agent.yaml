@@ -1,0 +1,37 @@
+outputDir: iam
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Workload Identity **service agent** — calls
+  /// `generateServiceAgents` so Google-managed service-agent
+  /// identities exist for one [parent] service producer.
+  /// Creating the resource does **not** provision a VM, start a
+  /// job, or grant IAM (do not wire the official `for_each` role
+  /// grants in a smoke stack).
+  ///
+  /// Prefer a thin smoke stack: [parent] is
+  /// `projects/$projectNumber/locations/global/serviceProducers/pubsub.googleapis.com`
+  /// (an API the stack already uses). Magic Modules sets
+  /// `exclude_delete` — destroy drops Terraform state; the API
+  /// cannot remove Google-owned service agents. The wrap fixture
+  /// (provider 7.43.0) has no `deletion_policy` attribute.
+  ///
+  /// Enable `workloadidentity.googleapis.com` via
+  /// [GoogleProjectService] before apply. Resolve the project
+  /// *number* with [GoogleProject] `.number`.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleWorkloadIdentityServiceAgent(
+  ///   localName: 'pubsub_agents',
+  ///   parent: TfArg.literal(
+  ///     'projects/${current.number.interpolation}/locations/global/serviceProducers/pubsub.googleapis.com',
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - parent

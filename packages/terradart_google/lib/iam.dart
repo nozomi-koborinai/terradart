@@ -2,9 +2,10 @@
 // Run `terradart wrap` to regenerate.
 /// IAM service accounts, Workload Identity Federation pools
 /// (including trust-domain namespaces and managed identities),
-/// OS Login SSH public keys, project deny policies, and
-/// per-resource IAM members live alongside their owning service
-/// barrel (e.g. `pubsub.dart` exports `GooglePubsubTopicIamMember`).
+/// Workload Identity service-agent minting, OS Login SSH public
+/// keys, project deny policies, and per-resource IAM members live
+/// alongside their owning service barrel (e.g. `pubsub.dart`
+/// exports `GooglePubsubTopicIamMember`).
 library;
 
 export 'src/iam/google_iam_deny_policy.dart'
@@ -62,3 +63,5 @@ export 'src/iam/google_service_account_iam_policy.dart'
     show GoogleServiceAccountIamPolicy;
 export 'src/iam/google_service_account_key.dart'
     show GoogleServiceAccountKey, KeyAlgorithm, PrivateKeyType, PublicKeyType;
+export 'src/iam/google_workload_identity_service_agent.dart'
+    show GoogleWorkloadIdentityServiceAgent;
