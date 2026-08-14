@@ -14882,6 +14882,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_dialogflow_agent`.\n\nA Dialogflow agent is a virtual agent that handles conversations with your\nend-users. It is a natural language understanding module that understands\nthe nuances of human language. Dialogflow translates end-user text or audio\nduring a conversation to structured data that your apps and services can\nunderstand. You design and build a Dialogflow agent to handle the types of\nconversations required for your system.',
   ),
   CatalogEntry(
+    tfType: 'google_dialogflow_conversation_profile',
+    className: 'GoogleDialogflowConversationProfile',
+    barrel: 'dialogflow',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_dialogflow_conversation_profile`.',
+    constructorParams: <String>[
+      'localName',
+      'displayName',
+      'location',
+      'languageCode',
+      'timeZone',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dialogflow_conversation_profile`.\n\nA conversation profile configures a set of parameters that control the\nsuggestions made to an agent. These parameters control the suggestions that\nare surfaced during runtime. Each profile configures either a Dialogflow\nvirtual agent or a human agent for a conversation.\n\nDialogflow ES **conversation profile** — Agent Assist config\nmetadata. Creating the profile does **not** start a conversation,\ncall DetectIntent, or enable speech / suggestions.\n\nPrefer a thin smoke stack: [displayName] plus [location] `global`.\nOmit automated-agent, human-agent-assistant, STT, TTS, and\nnotification blocks so no runtime path is wired. Set\n[deletionPolicy] to `DELETE`.\n\n`dialogflow_quickstart` is apply-smoke skipped (SIP trunk needs\na live carrier TLS peer), so this factory is synth +\n`terraform validate` only.\n\nExample:\n```dart\nGoogleDialogflowConversationProfile(\n  localName: \'demo_profile\',\n  displayName: TfArg.literal(\'terradart-profile\'),\n  location: TfArg.literal(\'global\'),\n  deletionPolicy: TfArg.literal(\'DELETE\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_dialogflow_cx_agent',
     className: 'GoogleDialogflowCxAgent',
     barrel: 'dialogflow',

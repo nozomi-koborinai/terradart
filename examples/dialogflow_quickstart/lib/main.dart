@@ -1,4 +1,9 @@
-/// Dialogflow CX quickstart — regional SIP trunk.
+/// Dialogflow CX quickstart — regional SIP trunk plus a thin ES
+/// conversation-profile (Agent Assist metadata only).
+///
+/// Real apply is skipped ([tool/apply_smoke_skip.yaml]): SIP trunk
+/// needs a live carrier TLS peer. The conversation profile omits
+/// automated-agent / STT / TTS so it does not start a conversation.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -44,6 +49,18 @@ final class DialogflowSipTrunkStack extends Stack {
         location: TfArg.literal('europe-west3'),
         expectedHostname: TfArg.literal(['terradart-carrier.example.com']),
         displayName: TfArg.literal('terradart-carrier-trunk'),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    // Agent Assist config metadata only. No automated agent, STT, TTS,
+    // or notifications — creating this does not start a conversation.
+    add(
+      GoogleDialogflowConversationProfile(
+        localName: 'demo_profile',
+        displayName: TfArg.literal('terradart-profile'),
+        location: TfArg.literal('global'),
+        deletionPolicy: TfArg.literal('DELETE'),
         dependsOn: apiDeps,
       ),
     );
