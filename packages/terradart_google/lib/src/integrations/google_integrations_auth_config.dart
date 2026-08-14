@@ -422,7 +422,8 @@ final class IntegrationsAuthConfigDecryptedCredentialUsernameAndPassword {
 /// [GoogleIntegrationsClient]). Optional [decryptedCredential] holds
 /// one credential kind (`username_and_password`, OAuth, JWT, OIDC,
 /// service account, auth token). Those kinds are MM `conflicts`, not
-/// `exactly_one_of` — they stay optional nested types. Omit
+/// `exactly_one_of` — they stay optional nested types. Optional
+/// [visibility] is [IntegrationsAuthConfigVisibility]. Omit
 /// [clientCertificate] unless you have a real PEM pair.
 ///
 /// Enable `integrations.googleapis.com` via [GoogleProjectService]
@@ -456,7 +457,7 @@ final class GoogleIntegrationsAuthConfig extends Resource {
     TfArg<String>? description,
     IntegrationsAuthConfigDecryptedCredential? decryptedCredential,
     IntegrationsAuthConfigClientCertificate? clientCertificate,
-    TfArg<String>? visibility,
+    TfArg<IntegrationsAuthConfigVisibility>? visibility,
     TfArg<List<String>>? expiryNotificationDuration,
     TfArg<String>? overrideValidTime,
     TfArg<String>? project,
