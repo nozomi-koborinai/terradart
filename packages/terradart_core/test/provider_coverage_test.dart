@@ -65,8 +65,10 @@ void main() {
           isA<StateError>().having(
             (e) => e.message,
             'message',
-            allOf(contains('"google-beta"'),
-                contains('google_pubsub_topic.orders')),
+            allOf(
+              contains('"google-beta"'),
+              contains('google_pubsub_topic.orders'),
+            ),
           ),
         ),
       );
