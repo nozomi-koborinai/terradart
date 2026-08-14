@@ -134,7 +134,9 @@ export 'src/apigee/google_apigee_security_feedback.dart'
         ApigeeSecurityFeedbackReason,
         GoogleApigeeSecurityFeedback;
 export 'src/apigee/google_apigee_security_monitoring_condition.dart'
-    show GoogleApigeeSecurityMonitoringCondition;
+    show
+        ApigeeSecurityMonitoringConditionIncludeAllResources,
+        GoogleApigeeSecurityMonitoringCondition;
 export 'src/apigee/google_apigee_security_profile_v2.dart'
     show
         ApigeeSecurityProfileV2ProfileAssessmentConfigs,

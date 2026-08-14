@@ -1126,12 +1126,15 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'orgId',
       'profile',
       'scope',
+      'ApigeeSecurityMonitoringConditionIncludeAllResources',
       'deletionPolicy',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'ApigeeSecurityMonitoringConditionIncludeAllResources',
+    ],
     sensitiveFields: <String>[],
     docComment:
-        'Factory wrapper for `google_apigee_security_monitoring_condition`.\n\nSecurity monitoring condition for risk assessment version 2 in Apigee.\n\nApigee **security monitoring condition** — Advanced API Security\nconfig metadata that names a profile and environment scope.\nCreating the condition does **not** process API requests, create\nan organization, or enable the add-on.\n\nPrefer a thin smoke stack: placeholder [orgId]\n`organizations/demo-org`, [profile] and [scope] environment IDs,\nand [conditionId] `terradart-smc`. Set [deletionPolicy] to\n`DELETE`. Omit `include_all_resources` (the GA sibling `include`\nblock is not shipped yet).\n\n`apigee_quickstart` is apply-smoke skipped (needs a live Apigee\norg), so this factory is synth + `terraform validate` only.\n\nExample:\n```dart\nGoogleApigeeSecurityMonitoringCondition(\n  localName: \'demo_smc\',\n  conditionId: TfArg.literal(\'terradart-smc\'),\n  orgId: TfArg.literal(\'organizations/demo-org\'),\n  profile: TfArg.literal(\'demo-profile\'),\n  scope: TfArg.literal(\'demo-env\'),\n  deletionPolicy: TfArg.literal(\'DELETE\'),\n);\n```',
+        'Factory wrapper for `google_apigee_security_monitoring_condition`.\n\nSecurity monitoring condition for risk assessment version 2 in Apigee.\n\nApigee **security monitoring condition** — Advanced API Security\nconfig metadata that names a profile and environment scope.\nCreating the condition does **not** process API requests, create\nan organization, or enable the add-on.\n\nPrefer a thin smoke stack: placeholder [orgId]\n`organizations/demo-org`, [profile] and [scope] environment IDs,\nand [conditionId] `terradart-smc`. Set [deletionPolicy] to\n`DELETE`. The provider requires empty\n[includeAllResources] (`include_all_resources {}`); the GA\nsibling `include` block is not shipped yet.\n\n`apigee_quickstart` is apply-smoke skipped (needs a live Apigee\norg), so this factory is synth + `terraform validate` only.\n\nExample:\n```dart\nGoogleApigeeSecurityMonitoringCondition(\n  localName: \'demo_smc\',\n  conditionId: TfArg.literal(\'terradart-smc\'),\n  orgId: TfArg.literal(\'organizations/demo-org\'),\n  profile: TfArg.literal(\'demo-profile\'),\n  scope: TfArg.literal(\'demo-env\'),\n  deletionPolicy: TfArg.literal(\'DELETE\'),\n);\n```',
   ),
   CatalogEntry(
     tfType: 'google_apigee_security_profile_v2',

@@ -7,6 +7,15 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleApigeeSecurityMonitoringConditionSensitive =
     <String>{};
 
+/// Empty `include_all_resources {}` block required by the provider
+/// (`exactly_one_of` with one live member; sibling `include` is not
+/// shipped yet).
+final class ApigeeSecurityMonitoringConditionIncludeAllResources {
+  const ApigeeSecurityMonitoringConditionIncludeAllResources();
+
+  List<Map<String, Object?>> encode() => [{}];
+}
+
 /// Factory wrapper for `google_apigee_security_monitoring_condition`.
 ///
 /// Security monitoring condition for risk assessment version 2 in Apigee.
@@ -19,8 +28,9 @@ const Set<String> _googleApigeeSecurityMonitoringConditionSensitive =
 /// Prefer a thin smoke stack: placeholder [orgId]
 /// `organizations/demo-org`, [profile] and [scope] environment IDs,
 /// and [conditionId] `terradart-smc`. Set [deletionPolicy] to
-/// `DELETE`. Omit `include_all_resources` (the GA sibling `include`
-/// block is not shipped yet).
+/// `DELETE`. The provider requires empty
+/// [includeAllResources] (`include_all_resources {}`); the GA
+/// sibling `include` block is not shipped yet.
 ///
 /// `apigee_quickstart` is apply-smoke skipped (needs a live Apigee
 /// org), so this factory is synth + `terraform validate` only.
@@ -45,6 +55,8 @@ final class GoogleApigeeSecurityMonitoringCondition extends Resource {
     required TfArg<String> orgId,
     required TfArg<String> profile,
     required TfArg<String> scope,
+    ApigeeSecurityMonitoringConditionIncludeAllResources includeAllResources =
+        const ApigeeSecurityMonitoringConditionIncludeAllResources(),
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,
@@ -55,6 +67,7 @@ final class GoogleApigeeSecurityMonitoringCondition extends Resource {
            'org_id': orgId,
            'profile': profile,
            'scope': scope,
+           'include_all_resources': TfArg.literal(includeAllResources.encode()),
            if (deletionPolicy != null) 'deletion_policy': deletionPolicy,
          },
        );
