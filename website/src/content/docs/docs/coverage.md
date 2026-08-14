@@ -1345,6 +1345,7 @@ Import per service: `import 'package:terradart_google/<barrel>.dart';`
 
 | Terraform type | Dart factory | Example |
 | --- | --- | --- |
+| `google_integrations_auth_config` | `GoogleIntegrationsAuthConfig` | [integrations_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/integrations_quickstart) |
 | `google_integrations_client` | `GoogleIntegrationsClient` | [integrations_quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/integrations_quickstart) |
 
 ## kms
