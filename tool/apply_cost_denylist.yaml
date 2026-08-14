@@ -888,6 +888,7 @@ google_pubsub_schema_iam_binding: safe  # billing-behavior: IAM binding only
 google_pubsub_schema_iam_member: safe  # apply-verified safe (existing example)
 google_pubsub_schema_iam_policy: safe  # billing-behavior: IAM policy only
 google_pubsub_subscription: safe  # apply-verified safe (existing example)
+google_privileged_access_manager_entitlement: safe  # gcp-cost: no Cloud Billing Catalog SKU after MCP lookup (list_services Privileged Access/Privileged → empty/null; SCC FBF2-FC68-171A list_skus keyword=privileged/pam/entitlement → 0); official IAM pricing: all IAM API use is free (https://cloud.google.com/iam/pricing); billing-behavior: entitlement is eligibility metadata — create does not issue a grant or elevate IAM; destroy with deletion_policy=DELETE removes it
 google_privateca_ca_pool_iam_binding: safe  # billing-behavior: IAM binding only
 google_privateca_ca_pool_iam_policy: safe  # billing-behavior: IAM policy only
 google_public_ca_external_account_key: safe  # gcp-cost: no Cloud Billing Catalog SKU for Public CA EAB key create after MCP lookup — Certificate Manager 7766-403C-6D6E SKUs are Certificates usage F08F-F1CD-3492 (~$0.20/mo after 100 free), Regional Certificates 4B89-6413-74D9, and mTLS Advanced 96D8-F0B3-E8A1 (none for EAB); Certificate Authority Service BAE4-9668-BD24 is Private CA only; billing-behavior: create-only ACME binding secret metadata — no certificate issued, no existence/hourly charge; terraform destroy removes from state only (API exclude_delete)

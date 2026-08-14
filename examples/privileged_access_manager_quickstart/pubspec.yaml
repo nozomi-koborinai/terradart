@@ -1,0 +1,15 @@
+name: terradart_example_privileged_access_manager_quickstart
+description: Privileged Access Manager entitlement quickstart (no grant).
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.24.0
+  terradart_google: ^0.24.0
+
+dev_dependencies:
+  lints: ^6.0.0

@@ -1,0 +1,76 @@
+outputDir: privileged_access_manager
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Privileged Access Manager **entitlement** — who may request a
+  /// time-bound IAM role on a project, folder, or organization. Creating
+  /// the entitlement does not grant access; a separate grant request is
+  /// required. This leftover uses the official project-scoped recipe
+  /// without an approval workflow (auto-grant if someone requests).
+  ///
+  /// [maxRequestDuration] must be between 30 minutes and 7 days
+  /// (`1800s` … `604800s`). Prefer an in-stack service account in
+  /// [eligibleUsers] — a Google Group cannot be created via Terraform.
+  ///
+  /// Enable `privilegedaccessmanager.googleapis.com` via
+  /// [GoogleProjectService] before apply. Set [deletionPolicy] to
+  /// `DELETE` so destroy removes the unused entitlement.
+  ///
+  /// Example:
+  /// ```dart
+  /// GooglePrivilegedAccessManagerEntitlement(
+  ///   localName: 'viewer',
+  ///   location: TfArg.literal('global'),
+  ///   entitlementId: TfArg.literal('terradart-pam'),
+  ///   parent: TfArg.literal('projects/my-project'),
+  ///   maxRequestDuration: TfArg.literal('1800s'),
+  ///   eligibleUsers: [
+  ///     PrivilegedAccessManagerEntitlementEligibleUsers(
+  ///       principals: TfArg.literal([
+  ///         'serviceAccount:pam-requester@my-project.iam.gserviceaccount.com',
+  ///       ]),
+  ///     ),
+  ///   ],
+  ///   privilegedAccess:
+  ///       PrivilegedAccessManagerEntitlementPrivilegedAccess(
+  ///     gcpIamAccess:
+  ///         PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccess(
+  ///       resourceType: TfArg.literal(
+  ///         'cloudresourcemanager.googleapis.com/Project',
+  ///       ),
+  ///       resource: TfArg.literal(
+  ///         '//cloudresourcemanager.googleapis.com/projects/my-project',
+  ///       ),
+  ///       roleBindings: [
+  ///         PrivilegedAccessManagerEntitlementPrivilegedAccessGcpIamAccessRoleBindings(
+  ///           role: TfArg.literal('roles/browser'),
+  ///         ),
+  ///       ],
+  ///     ),
+  ///   ),
+  ///   requesterJustificationConfig:
+  ///       PrivilegedAccessManagerEntitlementRequesterJustificationConfig(
+  ///     unstructured:
+  ///         const PrivilegedAccessManagerEntitlementRequesterJustificationConfigUnstructured(),
+  ///   ),
+  ///   deletionPolicy: TfArg.literal('DELETE'),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - entitlement_id
+  - parent
+  - max_request_duration
+  - eligible_users
+  - privileged_access
+  - requester_justification_config
+  - approval_workflow
+  - additional_notification_targets
+  - deletion_policy
