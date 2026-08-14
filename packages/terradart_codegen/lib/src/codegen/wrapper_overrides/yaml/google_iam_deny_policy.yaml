@@ -1,0 +1,55 @@
+outputDir: iam
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Project / folder / organization **IAM deny policy** — a named set of
+  /// deny rules attached to [parent]. Deny is evaluated before allow and
+  /// can block even Owner / `roles/owner`.
+  ///
+  /// [parent] is the URL-encoded full resource name, for example
+  /// `Uri.encodeComponent('cloudresourcemanager.googleapis.com/projects/$projectId')`.
+  /// [rules] requires at least one entry. Prefer denying an in-stack
+  /// service account and a narrow permission; do not deny `public:all`
+  /// or project-admin verbs (`projects.update` / `projects.delete`).
+  ///
+  /// Enable `iam.googleapis.com` via [GoogleProjectService] before apply.
+  /// Set [deletionPolicy] to `DELETE` so `terraform destroy` removes the
+  /// policy (the default). `ABANDON` leaves it in the project.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleIamDenyPolicy(
+  ///   localName: 'storage_get_deny',
+  ///   parent: TfArg.literal(
+  ///     Uri.encodeComponent(
+  ///       'cloudresourcemanager.googleapis.com/projects/$projectId',
+  ///     ),
+  ///   ),
+  ///   name: TfArg.literal('terradart-storage-get-deny'),
+  ///   rules: [
+  ///     IamDenyPolicyRules(
+  ///       denyRule: IamDenyPolicyRulesDenyRule(
+  ///         deniedPrincipals: TfArg.literal([
+  ///           'principal://iam.googleapis.com/projects/-/serviceAccounts/${denied.email.interpolation}',
+  ///         ]),
+  ///         deniedPermissions: TfArg.literal([
+  ///           'storage.googleapis.com/objects.get',
+  ///         ]),
+  ///       ),
+  ///     ),
+  ///   ],
+  /// );
+  /// ```
+
+paramOrder:
+  - parent
+  - name
+  - display_name
+  - rules
+  - deletion_policy

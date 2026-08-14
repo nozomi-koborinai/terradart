@@ -106,6 +106,9 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   ),
   MapEntry('google_storage_', 'storage.googleapis.com'),
   MapEntry('google_kms_', 'cloudkms.googleapis.com'),
+  // Longer than a hypothetical `google_iam_` prefix so WIF / workforce
+  // pool factories stay ungated. Deny policies use the IAM v2 API.
+  MapEntry('google_iam_deny_', 'iam.googleapis.com'),
   MapEntry('google_identity_platform_', 'identitytoolkit.googleapis.com'),
   MapEntry(
     'google_integration_connectors_',

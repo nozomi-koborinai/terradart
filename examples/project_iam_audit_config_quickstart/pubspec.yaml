@@ -1,5 +1,5 @@
 name: terradart_example_project_iam_audit_config_quickstart
-description: Project IAM audit logging config (ADMIN_READ) for a single service.
+description: Project IAM audit logging (ADMIN_READ) plus a project deny policy.
 publish_to: none
 
 environment:
