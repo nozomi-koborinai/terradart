@@ -1,0 +1,42 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+/// Transcoder API — reusable job templates (JobConfig metadata). Creating
+/// a template does not transcode media; jobs that run a template bill
+/// output-minute SKUs and are not curated here.
+library;
+
+export 'src/transcoder/google_transcoder_job_template.dart'
+    show
+        GoogleTranscoderJobTemplate,
+        TranscoderJobTemplateConfig,
+        TranscoderJobTemplateConfigAdBreaks,
+        TranscoderJobTemplateConfigEditList,
+        TranscoderJobTemplateConfigElementaryStreams,
+        TranscoderJobTemplateConfigElementaryStreamsAudioStream,
+        TranscoderJobTemplateConfigElementaryStreamsVideoStream,
+        TranscoderJobTemplateConfigElementaryStreamsVideoStreamH264,
+        TranscoderJobTemplateConfigElementaryStreamsVideoStreamH264Hlg,
+        TranscoderJobTemplateConfigElementaryStreamsVideoStreamH264Sdr,
+        TranscoderJobTemplateConfigEncryptions,
+        TranscoderJobTemplateConfigEncryptionsAes128,
+        TranscoderJobTemplateConfigEncryptionsDrmSystems,
+        TranscoderJobTemplateConfigEncryptionsDrmSystemsClearkey,
+        TranscoderJobTemplateConfigEncryptionsDrmSystemsFairplay,
+        TranscoderJobTemplateConfigEncryptionsDrmSystemsPlayready,
+        TranscoderJobTemplateConfigEncryptionsDrmSystemsWidevine,
+        TranscoderJobTemplateConfigEncryptionsMpegCenc,
+        TranscoderJobTemplateConfigEncryptionsSampleAes,
+        TranscoderJobTemplateConfigEncryptionsSecretManagerKeySource,
+        TranscoderJobTemplateConfigInputs,
+        TranscoderJobTemplateConfigManifests,
+        TranscoderJobTemplateConfigManifestsType,
+        TranscoderJobTemplateConfigMuxStreams,
+        TranscoderJobTemplateConfigMuxStreamsSegmentSettings,
+        TranscoderJobTemplateConfigOutput,
+        TranscoderJobTemplateConfigOverlays,
+        TranscoderJobTemplateConfigOverlaysAnimations,
+        TranscoderJobTemplateConfigOverlaysAnimationsAnimationFade,
+        TranscoderJobTemplateConfigOverlaysAnimationsAnimationFadeFadeType,
+        TranscoderJobTemplateConfigOverlaysAnimationsAnimationFadeXy,
+        TranscoderJobTemplateConfigOverlaysImage,
+        TranscoderJobTemplateConfigPubsubDestination;

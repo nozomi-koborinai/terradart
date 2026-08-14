@@ -1,0 +1,50 @@
+outputDir: transcoder
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Transcoder **job template** — reusable JobConfig (elementary streams,
+  /// mux streams, optional inputs) for later `google_transcoder_job` runs.
+  ///
+  /// Creating a template does not transcode media and does not bill Transcoder
+  /// output-minute SKUs. A job that references this template is a separate
+  /// resource and is not curated here.
+  ///
+  /// Enable `transcoder.googleapis.com` via [GoogleProjectService] before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleTranscoderJobTemplate(
+  ///   localName: 'sd',
+  ///   jobTemplateId: TfArg.literal('terradart-sd'),
+  ///   location: TfArg.literal('us-central1'),
+  ///   config: TranscoderJobTemplateConfig(
+  ///     elementaryStreams: [
+  ///       TranscoderJobTemplateConfigElementaryStreams(
+  ///         key: TfArg.literal('video-stream0'),
+  ///         videoStream: TranscoderJobTemplateConfigElementaryStreamsVideoStream(
+  ///           h264: TranscoderJobTemplateConfigElementaryStreamsVideoStreamH264(
+  ///             widthPixels: TfArg.literal(640),
+  ///             heightPixels: TfArg.literal(360),
+  ///             bitrateBps: TfArg.literal(550000),
+  ///             frameRate: TfArg.literal(60),
+  ///           ),
+  ///         ),
+  ///       ),
+  ///     ],
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - job_template_id
+  - location
+  - config
+  - labels
+  - project
+  - deletion_policy

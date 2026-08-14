@@ -557,6 +557,11 @@ barrels:
     doc: |-
       /// Resource Manager Tags — tag keys, tag values, resource bindings, and the
       /// `*_iam_member` adjuncts that grant access on individual tag keys/values.
+  transcoder:
+    doc: |-
+      /// Transcoder API — reusable job templates (JobConfig metadata). Creating
+      /// a template does not transcode media; jobs that run a template bill
+      /// output-minute SKUs and are not curated here.
   vector:
     doc: |-
       /// Vector Search 2.0 — collections (typed data + vector schema) and ANN

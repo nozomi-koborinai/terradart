@@ -2121,6 +2121,8 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_tags_tag_value_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_transcoder_job_template:
+    upstream: mmv1/products/transcoder/JobTemplate.yaml
   # Wave 75 (Access Context Manager — VPC Service Controls core)
   google_access_context_manager_access_policy:
     upstream: mmv1/products/accesscontextmanager/AccessPolicy.yaml
