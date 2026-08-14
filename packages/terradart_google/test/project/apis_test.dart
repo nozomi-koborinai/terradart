@@ -43,9 +43,13 @@ void main() {
       expect(apis, isEmpty);
     });
 
-    test('iam barrel yields no APIs (IAM adjuncts only)', () {
+    test('iam barrel includes iam.googleapis.com (deny policies)', () {
       final apis = Apis.required(barrels: [Barrels.iamApi]);
-      expect(apis, isEmpty);
+      expect(apis, hasLength(1));
+      expect(
+        apis.single.argMap['service']!.toTfJson(),
+        'iam.googleapis.com',
+      );
     });
 
     test('alloydb barrel includes alloydb.googleapis.com', () {
@@ -275,9 +279,9 @@ void main() {
 
     test('empty barrels register nothing and return no deps', () {
       final stack = TestStack();
-      // Barrels.iamApi contributes no API endpoints (IAM-only adjuncts), so
-      // there is nothing to enable and nothing to wait for.
-      final deps = Apis.enable(stack, barrels: [Barrels.iamApi]);
+      // Barrels.project contributes no API endpoints, so there is nothing
+      // to enable and nothing to wait for.
+      final deps = Apis.enable(stack, barrels: [Barrels.project]);
       expect(deps, isEmpty);
       expect(stack.resources, isEmpty);
     });

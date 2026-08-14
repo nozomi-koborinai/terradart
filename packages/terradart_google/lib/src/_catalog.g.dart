@@ -18749,6 +18749,29 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_hypercomputecluster_cluster`.\n\nA collection of virtual machines and connected resources forming a\nhigh-performance computing cluster capable of running large-scale, tightly\ncoupled workloads. A cluster combines a set a compute resources that perform\ncomputations, storage resources that contain inputs and store outputs, an\norchestrator that is responsible for assigning jobs to compute resources,\nand network resources that connect everything together.\n\nCluster Director (**Hypercompute Cluster**) — HPC cluster combining\ncompute, storage, network, and an orchestrator.\n\n**Cost / apply:** No dedicated "Cluster Director" / Hypercompute Cluster\nSKU after MCP `list_services` (Hypercompute / Cluster Director → empty).\nThe cluster provisions billable compute capacity (e.g. Cloud TPU\n`E000-3F24-B8AA` TPU-v2 Accelerator USA SKU `3B3D-4CB4-AECC` **\$4.5/h**\nin us-central1, plus GCE / storage / networking). Far too expensive for\napply-smoke — debt-only. **Never** wire into apply-smoke.\n\nEnable `hypercomputecluster.googleapis.com` via [GoogleProjectService]\nbefore apply. [networkResources] is required.',
   ),
   CatalogEntry(
+    tfType: 'google_iam_deny_policy',
+    className: 'GoogleIamDenyPolicy',
+    barrel: 'iam',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_iam_deny_policy`.',
+    constructorParams: <String>[
+      'localName',
+      'parent',
+      'name',
+      'displayName',
+      'rules',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[
+      'IamDenyPolicyRules',
+      'IamDenyPolicyRulesDenyRule',
+      'IamDenyPolicyRulesDenyRuleDenialCondition',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_iam_deny_policy`.\n\nRepresents a collection of denial policies to apply to a given resource.\n\nProject / folder / organization **IAM deny policy** — a named set of\ndeny rules attached to [parent]. Deny is evaluated before allow and\ncan block even Owner / `roles/owner`.\n\n[parent] is the URL-encoded full resource name, for example\n`Uri.encodeComponent(\'cloudresourcemanager.googleapis.com/projects/\$projectId\')`.\n[rules] requires at least one entry. Prefer denying an in-stack\nservice account and a narrow permission; do not deny `public:all`\nor project-admin verbs (`projects.update` / `projects.delete`).\n\nEnable `iam.googleapis.com` via [GoogleProjectService] before apply.\nSet [deletionPolicy] to `DELETE` so `terraform destroy` removes the\npolicy (the default). `ABANDON` leaves it in the project.\n\nExample:\n```dart\nGoogleIamDenyPolicy(\n  localName: \'storage_get_deny\',\n  parent: TfArg.literal(\n    Uri.encodeComponent(\n      \'cloudresourcemanager.googleapis.com/projects/\$projectId\',\n    ),\n  ),\n  name: TfArg.literal(\'terradart-storage-get-deny\'),\n  rules: [\n    IamDenyPolicyRules(\n      denyRule: IamDenyPolicyRulesDenyRule(\n        deniedPrincipals: TfArg.literal([\n          \'principal://iam.googleapis.com/projects/-/serviceAccounts/\${denied.email.interpolation}\',\n        ]),\n        deniedPermissions: TfArg.literal([\n          \'storage.googleapis.com/objects.get\',\n        ]),\n      ),\n    ),\n  ],\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_iam_workforce_pool_iam_binding',
     className: 'GoogleIamWorkforcePoolIamBinding',
     barrel: 'iam',
