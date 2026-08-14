@@ -1,8 +1,10 @@
 # Artifact Registry quickstart
 
 End-to-end terradart example for Artifact Registry: per-location platform logs
-(`google_artifact_registry_project_config`), an empty Docker repository, and a
-repository-level DENY DOWNLOAD rule. Enables `artifactregistry.googleapis.com`.
+(`google_artifact_registry_project_config`), an empty Docker repository, a
+repository-level DENY DOWNLOAD rule, and a location-scoped tag binding on the
+repo (`google_tags_location_tag_binding`). Enables
+`artifactregistry.googleapis.com`.
 
 ## Prerequisites
 
@@ -14,7 +16,7 @@ repository-level DENY DOWNLOAD rule. Enables `artifactregistry.googleapis.com`.
 
 ```
 examples/artifact_registry_quickstart/
-├── lib/main.dart       # ArtifactRegistryStack (API + config + repo + rule)
+├── lib/main.dart       # ArtifactRegistryStack (API + config + repo + rule + tag)
 ├── bin/infra.dart      # Synth: stack.writeTo('tf-out')
 ├── lib/generated/      # (created on synth) artifact_registry_stack.app.dart
 ├── tf-out/             # (created on synth) main.tf.json
@@ -40,4 +42,5 @@ cd tf-out && terraform init && terraform plan
 
 The project config is a metadata resource; destroy removes it from Terraform
 state but leaves the live GCP config in place (per provider docs). The Docker
-repository is empty (≈ $0 storage). The rule is policy metadata only.
+repository is empty (≈ $0 storage). The rule is policy metadata only. The
+location tag binding unbinds on destroy and does not delete the repository.

@@ -958,6 +958,7 @@ google_sourcerepo_repository_iam_member: safe  # billing-behavior: IAM binding �
 google_sourcerepo_repository_iam_binding: safe  # billing-behavior: IAM binding only
 google_sourcerepo_repository_iam_policy: safe  # billing-behavior: IAM policy only
 google_service_networking_connection: safe  # apply-verified safe (existing example)
+google_tags_location_tag_binding: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_services "Resource Manager"/"Tags"/"Organization"/"IAM" empty or no match; "Tag" matched only Topic Tagging API 183D-0753-AE77 — list_skus keyword=binding → 0 SKUs, unrelated NLP); billing-behavior: location-scoped TagValue binding metadata — create/delete does not bill the parent Artifact Registry repo; destroy unbinds and does not delete the repo
 google_tags_tag_binding: safe  # apply-verified safe (existing example)
 google_tags_tag_key: safe  # apply-verified safe (existing example)
 google_tags_tag_key_iam_binding: safe  # billing-behavior: IAM binding only

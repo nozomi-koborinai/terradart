@@ -1,5 +1,5 @@
 name: terradart_example_artifact_registry_quickstart
-description: Artifact Registry project config quickstart — platform logs for a location.
+description: Artifact Registry project config + Docker repo + download rule + location tag binding.
 publish_to: none
 
 environment:

@@ -27392,6 +27392,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_storage_transfer_job`.\n\nStorage Transfer Service **job** — a transfer or replication spec plus\nan optional schedule. Set [status] to `DISABLED` in smoke so the job\nnever runs.\n\n**Cost:** gcp-cost: Transfer Service `D961-88BE-4D2D` SKUs are\nS3-private-network / on-prem data-moved (`DC3D-7464-4764`\n**\$0.0125/GiBy**); GCS↔GCS is Cloud Storage Class A ops\n`4DBF-185F-A415` **\$0.005/count after 5k**. billing-behavior: the job\nrecord is free metadata; bytes move only when ENABLED and a run\nstarts. Destroy deletes the job.\n\nExample (disabled GCS→GCS, no bytes moved):\n```dart\nGoogleStorageTransferJob(\n  localName: \'copy\',\n  description: TfArg.literal(\'terradart disabled gcs copy\'),\n  status: TfArg.literal(\'DISABLED\'),\n  transferSpec: StorageTransferJobTransferSpec(\n    gcsDataSource: StorageTransferJobTransferSpecGcsDataSource(\n      bucketName: TfArg.ref(src.nameRef),\n    ),\n    gcsDataSink: StorageTransferJobTransferSpecGcsDataSink(\n      bucketName: TfArg.ref(dst.nameRef),\n    ),\n  ),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_tags_location_tag_binding',
+    className: 'GoogleTagsLocationTagBinding',
+    barrel: 'tags',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_tags_location_tag_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'parent',
+      'tagValue',
+      'location',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_tags_location_tag_binding`.\n\nLocation-scoped TagBinding — attaches a TagValue to a regional or\nzonal resource (Artifact Registry repository, Cloud Run service,\nCompute instance). Use [GoogleTagsTagBinding] for project / folder /\norganization parents.\n\n[parent] is the full resource name, for example\n`//artifactregistry.googleapis.com/projects/{number}/locations/{location}/repositories/{id}`.\n[location] must match the target region or zone.\n\nExample:\n```dart\nGoogleTagsLocationTagBinding(\n  localName: \'repo_env\',\n  parent: TfArg.literal(\n    \'//artifactregistry.googleapis.com/projects/\'\n    \'\${project.number.interpolation}/locations/asia-northeast1/\'\n    \'repositories/\${repo.repositoryIdRef.interpolation}\',\n  ),\n  tagValue: TfArg.ref(value.id),\n  location: TfArg.literal(\'asia-northeast1\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_tags_tag_binding',
     className: 'GoogleTagsTagBinding',
     barrel: 'tags',

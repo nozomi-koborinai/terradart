@@ -2107,6 +2107,8 @@ files:
     upstream: mmv1/products/tags/TagValue.yaml
   google_tags_tag_binding:
     upstream: mmv1/products/tags/TagBinding.yaml
+  google_tags_location_tag_binding:
+    upstream: null  # handwritten in terraform-provider-google (mmv1/third_party/.../tags; LocationTagBinding.yaml 404, probed 2026-08-14)
   google_tags_tag_key_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_tags_tag_key_iam_binding:
