@@ -876,6 +876,7 @@ google_folder_iam_binding: safe  # billing-behavior: IAM binding only
 google_folder_iam_policy: safe  # billing-behavior: IAM policy only
 google_project_iam_policy: safe  # billing-behavior: IAM policy only
 google_project_service: safe  # apply-verified safe (existing example)
+google_project_service_identity: safe  # gcp-cost: no Cloud Billing Catalog SKU after list_services "Service Usage"/"IAM" empty (schema null); list_services "Identity" matched Identity Platform DC5D-D207-FD2F (GCIP, unrelated) and Evidian IDaaS; billing-behavior: google-beta generateServiceIdentity mints a Google-managed agent email only — no billed resource; destroy is a state unlink
 google_pubsub_schema: safe  # apply-verified safe (existing example)
 google_pubsub_schema_iam_binding: safe  # billing-behavior: IAM binding only
 google_pubsub_schema_iam_member: safe  # apply-verified safe (existing example)

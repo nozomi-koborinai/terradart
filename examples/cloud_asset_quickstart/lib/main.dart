@@ -1,16 +1,18 @@
 /// Cloud Asset Inventory project-feed quickstart.
 ///
 /// Enables `cloudasset.googleapis.com` and `pubsub.googleapis.com`,
-/// creates a Pub/Sub topic, grants the Cloud Asset service agent
-/// publisher, and creates a project feed for Project resource updates.
-/// Creating a feed does not scan or export existing assets.
+/// mints the Cloud Asset service agent (`google_project_service_identity`,
+/// google-beta — API enable does not create it), grants that agent
+/// publisher on a Pub/Sub topic, and creates a project feed for Project
+/// resource updates. Creating a feed does not scan or export existing
+/// assets.
 ///
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
 import 'package:terradart_google/cloud_asset.dart';
-import 'package:terradart_google/data.dart';
+import 'package:terradart_google/google_beta.dart';
 import 'package:terradart_google/project.dart';
 import 'package:terradart_google/provider.dart';
 import 'package:terradart_google/pubsub.dart';
@@ -22,15 +24,25 @@ final class CloudAssetStack extends Stack {
       : super(
           providers: [
             GoogleProvider(project: projectId, region: 'us-central1'),
+            GoogleBetaProvider(project: projectId, region: 'us-central1'),
             const TimeProvider(),
           ],
         ) {
-    final current = addData(GoogleProject(localName: 'current'));
-
     final apiDeps = Apis.enable(
       this,
       barrels: [Barrels.cloudAsset, Barrels.pubsub],
       propagationDelay: const Duration(seconds: 60),
+    );
+
+    // Enabling cloudasset.googleapis.com does not mint
+    // service-{number}@gcp-sa-cloudasset. Topic IAM 400s until this
+    // google-beta identity exists.
+    final assetSa = add(
+      GoogleProjectServiceIdentity(
+        localName: 'cloudasset',
+        service: TfArg.literal('cloudasset.googleapis.com'),
+        dependsOn: apiDeps,
+      ),
     );
 
     final topic = add(
@@ -46,11 +58,20 @@ final class CloudAssetStack extends Stack {
         localName: 'cloudasset_publisher',
         topic: TfArg.ref(topic.nameRef),
         role: TfArg.literal('roles/pubsub.publisher'),
-        member: TfArg.literal(
-          'serviceAccount:service-${current.number.interpolation}'
-          '@gcp-sa-cloudasset.iam.gserviceaccount.com',
-        ),
-        dependsOn: [ResourceDependency(topic), ...apiDeps],
+        member: TfArg.ref(assetSa.member),
+        dependsOn: [
+          ResourceDependency(topic),
+          ResourceDependency(assetSa),
+        ],
+      ),
+    );
+
+    // Topic IAM is eventually consistent; feed-create checks publish.
+    final feedIamReady = add(
+      TimeSleep(
+        localName: 'feed_iam_propagation',
+        createDuration: TfArg.duration(const Duration(seconds: 30)),
+        dependsOn: [ResourceDependency(publisher)],
       ),
     );
 
@@ -68,7 +89,7 @@ final class CloudAssetStack extends Stack {
             topic: TfArg.ref(topic.id),
           ),
         ),
-        dependsOn: [ResourceDependency(publisher)],
+        dependsOn: [ResourceDependency(feedIamReady)],
       ),
     );
   }

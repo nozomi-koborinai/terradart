@@ -3,13 +3,16 @@
 End-to-end terradart example for a **Cloud Asset Inventory project feed**:
 
 - enables `cloudasset.googleapis.com` and `pubsub.googleapis.com`
-- creates a Pub/Sub topic
-- grants the Cloud Asset service agent `roles/pubsub.publisher`
+- mints the Cloud Asset service agent (`google_project_service_identity`)
+- grants that agent `roles/pubsub.publisher` on a Pub/Sub topic
 - creates a project feed for `cloudresourcemanager.googleapis.com/Project`
 
-Creating a feed does not scan or export existing assets. Messages fire only
-when matching resources change. Folder and organization feeds are not in
-this stack (they need a folder/org parent).
+Enabling the Cloud Asset API does **not** create
+`service-{PROJECT_NUMBER}@gcp-sa-cloudasset.iam.gserviceaccount.com`.
+This stack mints it with `google_project_service_identity` (google-beta)
+before the topic IAM grant. Creating a feed does not scan or export
+existing assets. Folder and organization feeds are not in this stack
+(they need a folder/org parent).
 
 ## Prerequisites
 

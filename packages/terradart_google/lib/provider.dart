@@ -9,5 +9,5 @@
 library;
 
 export 'src/_provider_meta.dart'
-    show kProviderSource, kProviderVersionConstraint;
+    show kBetaProviderSource, kProviderSource, kProviderVersionConstraint;
 export 'src/google_provider.dart' show GoogleProvider;
