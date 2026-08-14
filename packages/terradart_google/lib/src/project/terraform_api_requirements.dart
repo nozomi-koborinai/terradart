@@ -35,6 +35,7 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
     'firebaseremoteconfig.googleapis.com',
   ),
   MapEntry('google_filestore_', 'file.googleapis.com'),
+  MapEntry('google_firebaserules_', 'firebaserules.googleapis.com'),
   MapEntry('google_firestore_', 'firestore.googleapis.com'),
   // Longer than `google_container_` so analysis notes/occurrences do not map
   // to the GKE Container API.
