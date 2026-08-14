@@ -12516,6 +12516,33 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_data_catalog_policy_tag_iam_policy`.\n\nAuthoritative IAM policy for a Data Catalog policy tag.\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleDataCatalogPolicyTagIamMember] for single-principal grants.',
   ),
   CatalogEntry(
+    tfType: 'google_data_catalog_tag',
+    className: 'GoogleDataCatalogTag',
+    barrel: 'data_catalog',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_data_catalog_tag`.',
+    constructorParams: <String>[
+      'localName',
+      'template',
+      'parent',
+      'fields',
+      'column',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[
+      'DataCatalogTagFieldValue',
+      'DataCatalogTagStringValue',
+      'DataCatalogTagBoolValue',
+      'DataCatalogTagDoubleValue',
+      'DataCatalogTagTimestampValue',
+      'DataCatalogTagEnumValue',
+      'DataCatalogTagField',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_data_catalog_tag`.\n\nTags are used to attach custom metadata to Data Catalog resources. Tags\nconform to the specifications within their tag template.\n\nSee [Data Catalog\nIAM](https://cloud.google.com/data-catalog/docs/concepts/iam) for\ninformation on the permissions needed to create or view tags.\n\nData Catalog **tag** — attaches one [template]\'s fields to a\n[parent] entry or entry group (legacy Data Catalog API).\nCreating the tag does **not** enable Dataplex Universal Catalog\nor write outside Data Catalog metadata.\n\nPrefer a thin smoke stack: [parent] is an in-stack\n[GoogleDataCatalogEntry] `.id`, [template] is an in-stack\n[GoogleDataCatalogTagTemplate] `.id`, and [fields] fills the\ntemplate\'s required STRING `source` field. Set [deletionPolicy]\nto `DELETE`. Data Catalog writes may 400 on projects that have\nalready transitioned to Dataplex — `data_catalog_quickstart` is\napply-smoke skipped for that reason.\n\nEach [DataCatalogTagField] picks exactly one\n[DataCatalogTagFieldValue] (`string` / `bool` / `double` /\n`timestamp` / `enum`).\n\nExample:\n```dart\nGoogleDataCatalogTag(\n  localName: \'entry_source\',\n  parent: TfArg.ref(entry.id),\n  template: TfArg.ref(template.id),\n  fields: [\n    DataCatalogTagField(\n      fieldName: TfArg.literal(\'source\'),\n      value: DataCatalogTagStringValue(\n        TfArg.literal(\'terradart-smoke\'),\n      ),\n    ),\n  ],\n  deletionPolicy: TfArg.literal(\'DELETE\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_data_catalog_tag_template',
     className: 'GoogleDataCatalogTagTemplate',
     barrel: 'data_catalog',

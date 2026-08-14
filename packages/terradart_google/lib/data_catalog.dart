@@ -1,7 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Google Cloud Data Catalog — entry groups for organizing metadata
-/// entries (legacy Data Catalog API; prefer Dataplex Universal Catalog
+/// Google Cloud Data Catalog — entry groups, tag templates, and
+/// tags (legacy Data Catalog API; prefer Dataplex Universal Catalog
 /// for new catalogs).
 library;
 
@@ -28,6 +28,16 @@ export 'src/data_catalog/google_data_catalog_policy_tag_iam_member.dart'
     show GoogleDataCatalogPolicyTagIamMember;
 export 'src/data_catalog/google_data_catalog_policy_tag_iam_policy.dart'
     show GoogleDataCatalogPolicyTagIamPolicy;
+export 'src/data_catalog/google_data_catalog_tag.dart'
+    show
+        DataCatalogTagBoolValue,
+        DataCatalogTagDoubleValue,
+        DataCatalogTagEnumValue,
+        DataCatalogTagField,
+        DataCatalogTagFieldValue,
+        DataCatalogTagStringValue,
+        DataCatalogTagTimestampValue,
+        GoogleDataCatalogTag;
 export 'src/data_catalog/google_data_catalog_tag_template.dart'
     show
         DataCatalogTagTemplateEnumAllowedValue,

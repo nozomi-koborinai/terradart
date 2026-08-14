@@ -615,6 +615,7 @@ google_data_catalog_entry: safe  # gcp-cost: Data Catalog 89B9-6A5A-B358 list_sk
 google_data_catalog_taxonomy: safe  # gcp-cost: Data Catalog 89B9-6A5A-B358 list_skus keyword=taxonomy → 0; billing-behavior: taxonomy metadata for policy tags — no existence/hourly charge; destroy deletes the taxonomy
 google_data_catalog_policy_tag: safe  # gcp-cost: Data Catalog 89B9-6A5A-B358 list_skus keyword=policy → 0; billing-behavior: policy-tag metadata under a taxonomy — no existence/hourly charge; destroy deletes the tag
 google_data_catalog_tag_template: safe  # gcp-cost: Data Catalog 89B9-6A5A-B358 list_skus keyword=tag → 0; billing-behavior: tag-template metadata — no existence/hourly charge; destroy deletes the template (force_delete)
+google_data_catalog_tag: safe  # gcp-cost: Data Catalog 89B9-6A5A-B358 list_skus keyword=tag → 0 dedicated tag SKU; Storage Usage 1D52-4857-D286 $0 then $2/GiBy.mo after 0.001 GiBy; Api Usage 92A8-89E9-F95C $0 then $10/count after 1e6; Api Usage report-only 3907-2601-48EF $0; billing-behavior: tag is entry metadata — usage-metered API/storage only, not existence-billed; data_catalog_quickstart is apply-smoke skipped (Data Catalog write 400 on terradart-validate); destroy with deletion_policy=DELETE
 google_data_catalog_entry_group_iam_member: safe  # billing-behavior: IAM binding only
 google_data_catalog_entry_group_iam_binding: safe  # billing-behavior: IAM binding only
 google_data_catalog_entry_group_iam_policy: safe  # billing-behavior: IAM policy only

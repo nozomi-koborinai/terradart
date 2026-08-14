@@ -4,6 +4,7 @@
 /// - an entry group + custom entry,
 /// - a taxonomy + policy tag,
 /// - a tag template with a STRING field,
+/// - a tag on the custom entry filling that `source` field,
 /// - additive IAM on the entry group, taxonomy, policy tag, and tag template.
 ///
 /// Prefer Dataplex Universal Catalog for new catalogs. This project may reject
@@ -47,7 +48,7 @@ final class DataCatalogStack extends Stack {
       ),
     );
 
-    add(
+    final customEntry = add(
       GoogleDataCatalogEntry(
         localName: 'custom_entry',
         entryGroup: TfArg.ref(group.id),
@@ -100,6 +101,27 @@ final class DataCatalogStack extends Stack {
         ],
         forceDelete: TfArg.literal(true),
         dependsOn: [ResourceDependency(apiDataCatalog)],
+      ),
+    );
+
+    add(
+      GoogleDataCatalogTag(
+        localName: 'entry_source',
+        parent: TfArg.ref(customEntry.id),
+        template: TfArg.ref(tagTemplate.id),
+        fields: [
+          DataCatalogTagField(
+            fieldName: TfArg.literal('source'),
+            value: DataCatalogTagStringValue(
+              TfArg.literal('terradart-smoke'),
+            ),
+          ),
+        ],
+        deletionPolicy: TfArg.literal('DELETE'),
+        dependsOn: [
+          ResourceDependency(customEntry),
+          ResourceDependency(tagTemplate),
+        ],
       ),
     );
 

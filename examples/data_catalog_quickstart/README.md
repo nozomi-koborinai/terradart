@@ -2,7 +2,7 @@
 
 End-to-end terradart example for the **legacy** Data Catalog API. Enables
 `datacatalog.googleapis.com` and provisions an entry group + custom entry, a
-taxonomy + policy tag, a tag template, and additive IAM grants.
+taxonomy + policy tag, a tag template, a tag on the custom entry, and additive IAM grants.
 
 Prefer [Dataplex Universal Catalog](../dataplex_quickstart/) for new catalogs.
 Apply-smoke skips this example: some projects reject Data Catalog writes due to
