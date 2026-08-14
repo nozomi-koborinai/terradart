@@ -227,7 +227,7 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **1172 curated resource factories + 1 data source** (1173 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
+[`terradart_google`](packages/terradart_google/README.md) ships **1173 curated resource factories + 1 data source** (1174 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
 
 The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). In Dart, discover factories via `package:terradart_google/catalog.dart` (`terradartCatalog`). CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
@@ -289,6 +289,7 @@ Data & storage
 Application platform & operations
 
 - [Cloud Run v2 service (sealed `EnvVarSource`)](examples/cloud_run_quickstart/)
+- [Cloud Run v1 hello service](examples/cloud_run_v1_quickstart/)
 - [Access Context Manager policy + perimeter](examples/access_context_quickstart/)
 - [OS Config + Binary Authorization VM compliance](examples/vm_compliance_quickstart/)
 - [API Keys + reCAPTCHA Enterprise + connectivity test](examples/api_security_quickstart/)

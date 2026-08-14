@@ -124,6 +124,8 @@ files:
     upstream: mmv1/products/blockchainnodeengine/BlockchainNodes.yaml
   google_cloud_ids_endpoint:
     upstream: mmv1/products/cloudids/Endpoint.yaml
+  google_cloud_run_service:
+    upstream: mmv1/products/cloudrun/Service.yaml
   google_cloud_run_v2_service:
     upstream: mmv1/products/cloudrunv2/Service.yaml
   google_clouddeploy_custom_target_type:

@@ -7,6 +7,8 @@ const List<MapEntry<String, String>> terraformApiPrefixRules = [
   MapEntry('google_gke_hub_', 'gkehub.googleapis.com'),
   MapEntry('google_cloudfunctions2_', 'cloudfunctions.googleapis.com'),
   MapEntry('google_cloud_run_v2_', 'run.googleapis.com'),
+  // After v2 so `google_cloud_run_v2_*` still matches the longer prefix first.
+  MapEntry('google_cloud_run_', 'run.googleapis.com'),
   MapEntry('google_cloud_asset_', 'cloudasset.googleapis.com'),
   MapEntry(
       'google_access_context_manager_', 'accesscontextmanager.googleapis.com'),

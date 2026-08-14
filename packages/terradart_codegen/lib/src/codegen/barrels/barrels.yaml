@@ -166,7 +166,8 @@ barrels:
       /// preferences. Both are never_apply (MM exclude_delete); debt-only.
   cloud_run:
     doc: |-
-      /// Cloud Run v2 services + jobs.
+      /// Cloud Run v2 services + jobs, plus the legacy v1 service
+      /// (`google_cloud_run_service`). Prefer v2 for new stacks.
   cloud_scheduler:
     doc: |-
       /// Cloud Scheduler cron jobs.

@@ -1,8 +1,47 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Cloud Run v2 services + jobs.
+/// Cloud Run v2 services + jobs, plus the legacy v1 service
+/// (`google_cloud_run_service`). Prefer v2 for new stacks.
 library;
 
+export 'src/cloud_run/google_cloud_run_service.dart'
+    show
+        CloudRunServiceMetadata,
+        CloudRunServiceTemplate,
+        CloudRunServiceTemplateMetadata,
+        CloudRunServiceTemplateSpec,
+        CloudRunServiceTemplateSpecContainers,
+        CloudRunServiceTemplateSpecContainersEnv,
+        CloudRunServiceTemplateSpecContainersEnvFrom,
+        CloudRunServiceTemplateSpecContainersEnvFromConfigMapRef,
+        CloudRunServiceTemplateSpecContainersEnvFromConfigMapRefLocalObjectReference,
+        CloudRunServiceTemplateSpecContainersEnvFromSecretRef,
+        CloudRunServiceTemplateSpecContainersEnvFromSecretRefLocalObjectReference,
+        CloudRunServiceTemplateSpecContainersEnvValueFrom,
+        CloudRunServiceTemplateSpecContainersEnvValueFromSecretKeyRef,
+        CloudRunServiceTemplateSpecContainersLivenessProbe,
+        CloudRunServiceTemplateSpecContainersLivenessProbeGrpc,
+        CloudRunServiceTemplateSpecContainersLivenessProbeHttpGet,
+        CloudRunServiceTemplateSpecContainersLivenessProbeHttpGetHttpHeaders,
+        CloudRunServiceTemplateSpecContainersPorts,
+        CloudRunServiceTemplateSpecContainersReadinessProbe,
+        CloudRunServiceTemplateSpecContainersReadinessProbeGrpc,
+        CloudRunServiceTemplateSpecContainersReadinessProbeHttpGet,
+        CloudRunServiceTemplateSpecContainersResources,
+        CloudRunServiceTemplateSpecContainersStartupProbe,
+        CloudRunServiceTemplateSpecContainersStartupProbeGrpc,
+        CloudRunServiceTemplateSpecContainersStartupProbeHttpGet,
+        CloudRunServiceTemplateSpecContainersStartupProbeHttpGetHttpHeaders,
+        CloudRunServiceTemplateSpecContainersStartupProbeTcpSocket,
+        CloudRunServiceTemplateSpecContainersVolumeMounts,
+        CloudRunServiceTemplateSpecVolumes,
+        CloudRunServiceTemplateSpecVolumesCsi,
+        CloudRunServiceTemplateSpecVolumesEmptyDir,
+        CloudRunServiceTemplateSpecVolumesNfs,
+        CloudRunServiceTemplateSpecVolumesSecret,
+        CloudRunServiceTemplateSpecVolumesSecretItems,
+        CloudRunServiceTraffic,
+        GoogleCloudRunService;
 export 'src/cloud_run/google_cloud_run_service_iam_binding.dart'
     show GoogleCloudRunServiceIamBinding;
 export 'src/cloud_run/google_cloud_run_service_iam_member.dart'

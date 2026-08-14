@@ -1,0 +1,58 @@
+outputDir: cloud_run
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Cloud Run **v1** service — Knative serving API. Prefer
+  /// [GoogleCloudRunV2Service] for new stacks; this leftover keeps the
+  /// v1 factory so existing `google_cloud_run_service` + v1 IAM adjuncts
+  /// can be authored in Dart.
+  ///
+  /// This leftover exposes the official hello recipe via [template]
+  /// (`spec.containers[].image`) and [traffic] (100% latest revision).
+  /// Probe / volume / secret-env surfaces stay optional nested types.
+  ///
+  /// Enable `run.googleapis.com` via [GoogleProjectService] before apply.
+  /// Default request-based billing does not charge while the service is
+  /// idle (no min instances, no invocations).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleCloudRunService(
+  ///   localName: 'hello',
+  ///   location: TfArg.literal('us-central1'),
+  ///   name: TfArg.literal('terradart-run-v1'),
+  ///   template: CloudRunServiceTemplate(
+  ///     spec: CloudRunServiceTemplateSpec(
+  ///       containers: [
+  ///         CloudRunServiceTemplateSpecContainers(
+  ///           image: TfArg.literal(
+  ///             'us-docker.pkg.dev/cloudrun/container/hello',
+  ///           ),
+  ///         ),
+  ///       ],
+  ///     ),
+  ///   ),
+  ///   traffic: [
+  ///     CloudRunServiceTraffic(
+  ///       percent: TfArg.literal(100),
+  ///       latestRevision: TfArg.literal(true),
+  ///     ),
+  ///   ],
+  ///   deletionPolicy: TfArg.literal('DELETE'),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - name
+  - template
+  - traffic
+  - autogenerate_revision_name
+  - deletion_policy
+  - project
