@@ -16956,6 +16956,27 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_firebase_remote_config_remote_config`.\n\nA RemoteConfig represents a Remote Config template.\n\nManages the project-level Firebase Remote Config template. Required\nidentity: [localName] is the Terraform local name; `project` is an\noptional override of the provider\'s default project (templates are\nscoped to a single Firebase project). Only one Remote Config template\nexists per Firebase project (the `name` is server-fixed as\n`projects/{project}/namespaces/{namespace}/remoteConfig`), so this\nresource is effectively a singleton.\n\nExample (one boolean parameter, one staged condition):\n```dart\nfinal cfg = GoogleFirebaseRemoteConfigRemoteConfig(\n  localName: \'default\',\n  conditions: const [\n    FirebaseRemoteConfigRemoteConfigRemoteConfigCondition(\n      name: \'staging_only\',\n      expression: "app.id == \'com.example.app.staging\'",\n      tagColor: RemoteConfigTagColor.orange,\n    ),\n  ],\n  parameters: const [\n    FirebaseRemoteConfigRemoteConfigRemoteConfigParameter(\n      parameterName: \'feature_x_enabled\',\n      valueType: RemoteConfigValueType.boolean,\n      description: \'Gates the feature X rollout.\',\n      defaultValue: FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue(value: \'false\'),\n      conditionalValues: [\n        FirebaseRemoteConfigRemoteConfigRemoteConfigConditionalValue(\n          conditionName: \'staging_only\',\n          value: \'true\',\n        ),\n      ],\n    ),\n  ],\n);\n```\n\nExample (one parameter group):\n```dart\nfinal cfg = GoogleFirebaseRemoteConfigRemoteConfig(\n  localName: \'default\',\n  parameterGroups: const [\n    FirebaseRemoteConfigRemoteConfigRemoteConfigParameterGroup(\n      parameterGroupName: \'search_v2\',\n      description: \'New mobile search view.\',\n      parameters: [\n        FirebaseRemoteConfigRemoteConfigRemoteConfigParameter(\n          parameterName: \'search_layout\',\n          valueType: RemoteConfigValueType.string,\n          defaultValue: FirebaseRemoteConfigRemoteConfigRemoteConfigDefaultValue(value: \'grid\'),\n        ),\n      ],\n    ),\n  ],\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_firebaserules_ruleset',
+    className: 'GoogleFirebaserulesRuleset',
+    barrel: 'firebaserules',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_firebaserules_ruleset`.',
+    constructorParams: <String>[
+      'localName',
+      'source',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[
+      'FirebaserulesRulesetSource',
+      'FirebaserulesRulesetSourceLanguage',
+      'FirebaserulesRulesetSourceFiles',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_firebaserules_ruleset`.\n\nFirebase Security Rules **ruleset** — an immutable source bundle\n(usually `FIREBASE_RULES` language). Creating a ruleset does not\nserve it; a `google_firebaserules_release` (uncurated) points a\nproduct at a ruleset name.\n\n[source] needs at least one file (`name` + `content`). This factory\ndoes not create a release, so existing Firestore / Storage rules\nstay unchanged.\n\nEnable `firebaserules.googleapis.com` via [GoogleProjectService]\nbefore apply. Set [deletionPolicy] to `DELETE` so destroy removes\nthe unused ruleset.\n\nExample:\n```dart\nGoogleFirebaserulesRuleset(\n  localName: \'deny_all\',\n  source: FirebaserulesRulesetSource(\n    files: [\n      FirebaserulesRulesetSourceFiles(\n        name: TfArg.literal(\'firestore.rules\'),\n        content: TfArg.literal(\n          \'service cloud.firestore {\'\n          \'match /databases/{database}/documents {\'\n          \'match /{document=**} { allow read, write: if false; } } }\',\n        ),\n      ),\n    ],\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_firestore_backup_schedule',
     className: 'GoogleFirestoreBackupSchedule',
     barrel: 'firestore',

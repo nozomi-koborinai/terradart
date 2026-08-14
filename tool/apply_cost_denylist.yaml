@@ -716,6 +716,7 @@ google_endpoints_service_consumers_iam_member: safe  # billing-behavior: IAM bin
 google_endpoints_service_consumers_iam_binding: safe  # billing-behavior: IAM binding only
 google_endpoints_service_consumers_iam_policy: safe  # billing-behavior: IAM policy only
 google_filestore_backup: safe  # apply-verified safe (existing example)
+google_firebaserules_ruleset: safe  # gcp-cost: no Cloud Billing Catalog SKU after Firebase 5DD3-CA5C-D8EA list_skus keyword rules/ruleset/security → 0; Cloud Firestore EE2C-7FAC-5E08 list_skus keyword rules/ruleset → 0; billing-behavior: ruleset is immutable source metadata — create does not serve rules or bill Firestore reads/writes; destroy with deletion_policy=DELETE removes the unused ruleset
 google_firestore_backup_schedule: safe  # apply-verified safe (existing example)
 google_firestore_database: safe  # apply-verified safe (existing example)
 google_firestore_field: safe  # apply-verified safe (existing example)

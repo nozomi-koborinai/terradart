@@ -77,6 +77,7 @@ export 'firebase_app_check.dart';
 export 'firebase_app_hosting.dart';
 export 'firebase_data_connect.dart';
 export 'firebase_remote_config.dart';
+export 'firebaserules.dart';
 export 'firestore.dart';
 export 'folder.dart';
 export 'gemini.dart';

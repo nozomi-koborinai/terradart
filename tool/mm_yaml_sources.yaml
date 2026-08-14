@@ -1307,6 +1307,8 @@ files:
     upstream: mmv1/products/firebasedataconnect/Service.yaml
   google_firebase_remote_config_remote_config:
     upstream: mmv1/products/firebaseremoteconfig/RemoteConfig.yaml
+  google_firebaserules_ruleset:
+    upstream: null  # handwritten in terraform-provider-google (mmv1/third_party/terraform/services/firebaserules; Ruleset.yaml 404, probed 2026-08-14)
   google_firestore_backup_schedule:
     upstream: mmv1/products/firestore/BackupSchedule.yaml
   google_firestore_database:

@@ -339,6 +339,11 @@ barrels:
     doc: |-
       /// Resource Manager folder IAM — grant roles on folders
       /// (`google_folder_iam_*`).
+  firebaserules:
+    doc: |-
+      /// Firebase Security Rules — immutable rulesets for Firestore / Storage.
+      /// Creating a ruleset does not activate it; pair with
+      /// `google_firebaserules_release` (uncurated) to serve rules.
   firestore:
     doc: |-
       /// Cloud Firestore — Native and Datastore mode databases + composite index
