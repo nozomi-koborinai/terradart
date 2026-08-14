@@ -53,8 +53,9 @@ barrels:
       /// groups, env keystores/references, KVMs, keystore aliases (self-signed
       /// / key+cert / PKCS12), API proxies, shared flows + deployments, flow
       /// hooks, environment debug masks, proxy deployments, control-plane
-      /// access, and Advanced API Security profiles/feedback. Org/instance/env
-      /// bill while provisioned (never_apply for apply-smoke).
+      /// access, and Advanced API Security profiles / feedback /
+      /// monitoring conditions. Org/instance/env bill while provisioned
+      /// (never_apply for apply-smoke).
   backup_dr:
     doc: |-
       /// Backup and DR Service — vaults, plans, associations, management

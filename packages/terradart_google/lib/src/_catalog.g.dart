@@ -1114,6 +1114,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_apigee_security_feedback`.\n\nRepresents a feedback report from an Advanced API Security customer. Manages\ncustomer feedback about ML models.\n\nApigee **security feedback** — labeled feedback for Advanced API Security\ndetections.\n\n**Cost / apply:** gcp-cost: Apigee `1C2D-8C78-EC58` Advanced API Security\nAdd-on request SKU `572E-C6FE-7BB3` **\$0.00035/request** (subscription\nvariant `39EF-C4B0-1015`). billing-behavior: requires never_apply\n[GoogleApigeeOrganization] plus Advanced API Security entitlement.\nDebt-only on `terradart-validate`. **Never** wire into apply-smoke.',
   ),
   CatalogEntry(
+    tfType: 'google_apigee_security_monitoring_condition',
+    className: 'GoogleApigeeSecurityMonitoringCondition',
+    barrel: 'apigee',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_apigee_security_monitoring_condition`.',
+    constructorParams: <String>[
+      'localName',
+      'conditionId',
+      'orgId',
+      'profile',
+      'scope',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_apigee_security_monitoring_condition`.\n\nSecurity monitoring condition for risk assessment version 2 in Apigee.\n\nApigee **security monitoring condition** — Advanced API Security\nconfig metadata that names a profile and environment scope.\nCreating the condition does **not** process API requests, create\nan organization, or enable the add-on.\n\nPrefer a thin smoke stack: placeholder [orgId]\n`organizations/demo-org`, [profile] and [scope] environment IDs,\nand [conditionId] `terradart-smc`. Set [deletionPolicy] to\n`DELETE`. Omit `include_all_resources` (the GA sibling `include`\nblock is not shipped yet).\n\n`apigee_quickstart` is apply-smoke skipped (needs a live Apigee\norg), so this factory is synth + `terraform validate` only.\n\nExample:\n```dart\nGoogleApigeeSecurityMonitoringCondition(\n  localName: \'demo_smc\',\n  conditionId: TfArg.literal(\'terradart-smc\'),\n  orgId: TfArg.literal(\'organizations/demo-org\'),\n  profile: TfArg.literal(\'demo-profile\'),\n  scope: TfArg.literal(\'demo-env\'),\n  deletionPolicy: TfArg.literal(\'DELETE\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_apigee_security_profile_v2',
     className: 'GoogleApigeeSecurityProfileV2',
     barrel: 'apigee',

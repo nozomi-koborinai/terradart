@@ -1,0 +1,38 @@
+outputDir: apigee
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Apigee **security monitoring condition** — Advanced API Security
+  /// config metadata that names a profile and environment scope.
+  /// Creating the condition does **not** process API requests, create
+  /// an organization, or enable the add-on.
+  ///
+  /// Prefer a thin smoke stack: placeholder [orgId]
+  /// `organizations/demo-org`, [profile] and [scope] environment IDs,
+  /// and [conditionId] `terradart-smc`. Set [deletionPolicy] to
+  /// `DELETE`. Omit `include_all_resources` (the GA sibling `include`
+  /// block is not shipped yet).
+  ///
+  /// `apigee_quickstart` is apply-smoke skipped (needs a live Apigee
+  /// org), so this factory is synth + `terraform validate` only.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleApigeeSecurityMonitoringCondition(
+  ///   localName: 'demo_smc',
+  ///   conditionId: TfArg.literal('terradart-smc'),
+  ///   orgId: TfArg.literal('organizations/demo-org'),
+  ///   profile: TfArg.literal('demo-profile'),
+  ///   scope: TfArg.literal('demo-env'),
+  ///   deletionPolicy: TfArg.literal('DELETE'),
+  /// );
+  /// ```
+
+paramOrder:
+  - condition_id
+  - org_id
+  - profile
+  - scope
+  - deletion_policy
