@@ -64,9 +64,10 @@ resource "google_compute_router_nat" "nat" {
 
 # --- Not curated yet (expected: not in catalog) ---
 
-resource "google_dialogflow_conversation_profile" "hello" {
-  display_name = "hello"
-  location     = "global"
+resource "google_identity_platform_oauth_idp_config" "hello" {
+  name      = "oidc.hello"
+  client_id = "dummy"
+  issuer    = "https://accounts.example.com"
 }
 
 module "network" {

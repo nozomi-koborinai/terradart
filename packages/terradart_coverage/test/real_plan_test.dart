@@ -14,8 +14,8 @@ import 'package:test/test.dart';
 /// many top-level keys we intentionally ignore), unlike the hand-written maps
 /// in the other tests.
 ///
-/// At capture time (after curating `google_dialogflow_intent`)
-/// the not-in-catalog type is `google_dialogflow_conversation_profile`.
+/// At capture time (after curating `google_dialogflow_conversation_profile`)
+/// the not-in-catalog type is `google_identity_platform_oauth_idp_config`.
 /// The assertions below deliberately avoid pinning that exact percentage
 /// so the test survives catalog growth; they pin the catalog-independent
 /// parse and the structural invariants instead.
