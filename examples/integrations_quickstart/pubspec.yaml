@@ -1,5 +1,5 @@
 name: terradart_example_integrations_quickstart
-description: Application Integration regional client provision quickstart.
+description: Application Integration regional client + dummy auth-config quickstart.
 publish_to: none
 
 environment:

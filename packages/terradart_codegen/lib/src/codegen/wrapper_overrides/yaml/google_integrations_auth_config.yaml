@@ -1,0 +1,59 @@
+outputDir: integrations
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+dartTypeOverrides:
+  visibility: IntegrationsAuthConfigVisibility
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Application Integration **auth config** — credential metadata
+  /// (`authConfigs`) for a regional client. Creating the profile does
+  /// not execute integration flows (billing SKUs are flow execution /
+  /// data processed).
+  ///
+  /// Required: [displayName] and [location] (must match the provisioned
+  /// [GoogleIntegrationsClient]). Optional [decryptedCredential] holds
+  /// one credential kind (`username_and_password`, OAuth, JWT, OIDC,
+  /// service account, auth token). Those kinds are MM `conflicts`, not
+  /// `exactly_one_of` — they stay optional nested types. Optional
+  /// [visibility] is [IntegrationsAuthConfigVisibility]. Omit
+  /// [clientCertificate] unless you have a real PEM pair.
+  ///
+  /// Enable `integrations.googleapis.com` via [GoogleProjectService]
+  /// and provision the client before apply. Set [deletionPolicy] to
+  /// `DELETE` so destroy removes the unused profile.
+  ///
+  /// Example (dummy username/password — not a real secret):
+  /// ```dart
+  /// GoogleIntegrationsAuthConfig(
+  ///   localName: 'auth_config',
+  ///   displayName: TfArg.literal('terradart-dummy-basic'),
+  ///   location: TfArg.literal('us-east1'),
+  ///   decryptedCredential: IntegrationsAuthConfigDecryptedCredential(
+  ///     credentialType: TfArg.literal('USERNAME_AND_PASSWORD'),
+  ///     usernameAndPassword:
+  ///         IntegrationsAuthConfigDecryptedCredentialUsernameAndPassword(
+  ///       username: TfArg.literal('terradart-dummy'),
+  ///       password: TfArg.literal('terradart-dummy-password'),
+  ///     ),
+  ///   ),
+  ///   deletionPolicy: TfArg.literal('DELETE'),
+  /// );
+  /// ```
+
+paramOrder:
+  - display_name
+  - location
+  - description
+  - decrypted_credential
+  - client_certificate
+  - visibility
+  - expiry_notification_duration
+  - override_valid_time
+  - project
+  - deletion_policy
