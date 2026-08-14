@@ -1,9 +1,11 @@
 /// Access Context Manager quickstart — VPC Service Controls core chain.
 ///
 /// Provisions an organization-scoped access policy, a geo access level, a
-/// service perimeter restricting Storage, and a policy IAM member. The policy
-/// `parent` reads `ops_organization_id` (Terraform variable — apply needs a
-/// real organization id).
+/// service perimeter restricting Storage, a cross-org authorized-orgs
+/// descriptor (placeholder org numbers), and a policy IAM member. The
+/// policy `parent` reads `ops_organization_id` (Terraform variable —
+/// apply needs a real organization id). Creating the descriptor does
+/// not evaluate traffic.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -76,6 +78,33 @@ final class AccessControlsStack extends Stack {
         name: TfArg.ref(policy.name),
         role: TfArg.literal('roles/accesscontextmanager.policyViewer'),
         member: TfArg.literal('group:security-admins@example.com'),
+        dependsOn: [ResourceDependency(policy)],
+      ),
+    );
+
+    // Cross-org trust metadata only. Placeholder org numbers — creating
+    // this does not evaluate traffic or grant live access.
+    add(
+      GoogleAccessContextManagerAuthorizedOrgsDesc(
+        localName: 'demo_orgs',
+        parent: TfArg.literal(
+          'accessPolicies/${policy.name.interpolation}',
+        ),
+        name: TfArg.literal(
+          'accessPolicies/${policy.name.interpolation}'
+          '/authorizedOrgsDescs/terradart_desc',
+        ),
+        orgs: TfArg.literal(['organizations/12345']),
+        authorizationType: TfArg.literal(
+          AccessContextManagerAuthorizedOrgsDescAuthorizationType.trust,
+        ),
+        assetType: TfArg.literal(
+          AccessContextManagerAuthorizedOrgsDescAssetType.credentialStrength,
+        ),
+        authorizationDirection: TfArg.literal(
+          AccessContextManagerAuthorizedOrgsDescAuthorizationDirection.to,
+        ),
+        deletionPolicy: TfArg.literal('DELETE'),
         dependsOn: [ResourceDependency(policy)],
       ),
     );

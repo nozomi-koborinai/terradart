@@ -5,6 +5,7 @@ End-to-end terradart example for VPC Service Controls primitives:
 - `GoogleAccessContextManagerAccessPolicy` (organization parent via `ops_organization_id` variable)
 - `GoogleAccessContextManagerAccessLevel` (geo `basic` level)
 - `GoogleAccessContextManagerServicePerimeter` (Storage restriction)
+- `GoogleAccessContextManagerAuthorizedOrgsDesc` (placeholder org numbers; `deletion_policy=DELETE`)
 - `GoogleAccessContextManagerAccessPolicyIamMember`
 
 ```bash
