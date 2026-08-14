@@ -7,7 +7,9 @@ justification, no approval workflow).
 
 Creating the entitlement does **not** grant access. This example does
 not request a grant. The eligible principal is an in-stack service
-account; the gated role is `roles/browser` for 30 minutes.
+account; the gated role is `roles/browser` for 30 minutes. The stack
+also grants `roles/privilegedaccessmanager.serviceAgent` to the
+project PAM service agent created when the API is enabled.
 
 Official IAM pricing: all use of the Identity and Access Management API
 is free of charge
