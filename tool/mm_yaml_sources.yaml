@@ -699,6 +699,8 @@ files:
     upstream: mmv1/products/iambeta/WorkloadIdentityPoolManagedIdentity.yaml
   google_iam_deny_policy:
     upstream: mmv1/products/iam2/DenyPolicy.yaml
+  google_iam_oauth_client:
+    upstream: mmv1/products/iamworkforcepool/OauthClient.yaml
   google_healthcare_dataset:
     upstream: mmv1/products/healthcare/Dataset.yaml
   google_healthcare_hl7_v2_store:

@@ -22,6 +22,7 @@
 ///  13. `google_service_account_key`
 ///  14. `google_os_login_ssh_public_key`
 ///  15. `google_workload_identity_service_agent`
+///  16. `google_iam_oauth_client`
 ///
 /// WIF (0.12.5 debt): `google_iam_workload_identity_pool_provider` with
 /// sealed [IamWorkloadIdentityPoolProviderOidcTrust] for GitHub Actions.
@@ -450,6 +451,24 @@ final class IamShowcaseStack extends Stack {
           'projects/${current.number.interpolation}/locations/global/serviceProducers/pubsub.googleapis.com',
         ),
         dependsOn: [ResourceDependency(apiWorkloadIdentity)],
+      ),
+    );
+
+    // ---- 16. Workforce Identity Federation OAuth client -------------------
+    //
+    // App metadata only. PUBLIC_CLIENT so no client secret. Does not
+    // complete OAuth or create a workforce pool.
+
+    add(
+      GoogleIamOauthClient(
+        localName: 'demo_oauth',
+        oauthClientId: TfArg.literal('terradart-oauth'),
+        location: TfArg.literal('global'),
+        allowedGrantTypes: TfArg.literal(['AUTHORIZATION_CODE_GRANT']),
+        allowedRedirectUris: TfArg.literal(['https://www.example.com']),
+        allowedScopes: TfArg.literal(['openid']),
+        clientType: TfArg.literal('PUBLIC_CLIENT'),
+        deletionPolicy: TfArg.literal('DELETE'),
       ),
     );
 
