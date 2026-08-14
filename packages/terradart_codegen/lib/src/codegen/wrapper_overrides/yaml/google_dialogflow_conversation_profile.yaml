@@ -2,6 +2,20 @@ outputDir: dialogflow
 deriveClassDoc: true
 deriveOutputGetters: true
 deriveEnums: true
+deriveNestedTypes: true
+# Agent Assist / STT / TTS / notification blocks stay excluded — the
+# leftover smoke stack is displayName + location only. Nested enum
+# sites under these blocks are frozen-by-exclude on purpose.
+nestedTypeExcludes:
+  - automated_agent_config
+  - human_agent_assistant_config
+  - human_agent_handoff_config
+  - logging_config
+  - new_message_event_notification_config
+  - new_recognition_result_notification_config
+  - notification_config
+  - stt_config
+  - tts_config
 
 curatedDoc: |-
   /// Dialogflow ES **conversation profile** — Agent Assist config
