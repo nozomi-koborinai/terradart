@@ -227,7 +227,7 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **1178 curated resource factories + 1 data source** (1179 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
+[`terradart_google`](packages/terradart_google/README.md) ships **1179 curated resource factories + 1 data source** (1180 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
 
 The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). In Dart, discover factories via `package:terradart_google/catalog.dart` (`terradartCatalog`). CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
@@ -248,6 +248,7 @@ Foundational
 - [Project IAM audit config + deny policy](examples/project_iam_audit_config_quickstart/)
 - [IAP settings + location-web IAM binding/policy](examples/iap_settings_quickstart/)
 - [Application Integration client + dummy auth config](examples/integrations_quickstart/)
+- [Cloud Endpoints OpenAPI service + service IAM member](examples/endpoints_quickstart/)
 - [IAP tunnel destination group](examples/iap_tunnel_quickstart/)
 - [Identity Platform tenant](examples/identity_platform_quickstart/)
 - [Container Analysis note + note IAM binding/policy](examples/container_analysis_quickstart/)

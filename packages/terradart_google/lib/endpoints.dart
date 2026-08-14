@@ -1,9 +1,13 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Cloud Endpoints — managed API service IAM for an Endpoints service
-/// and its consumer projects (`google_endpoints_service*_iam_*`).
+/// Cloud Endpoints — OpenAPI/gRPC service-config metadata
+/// (`google_endpoints_service`) plus managed API service IAM for an
+/// Endpoints service and its consumer projects
+/// (`google_endpoints_service*_iam_*`).
 library;
 
+export 'src/endpoints/google_endpoints_service.dart'
+    show GoogleEndpointsService;
 export 'src/endpoints/google_endpoints_service_consumers_iam_binding.dart'
     show GoogleEndpointsServiceConsumersIamBinding;
 export 'src/endpoints/google_endpoints_service_consumers_iam_member.dart'

@@ -16453,6 +16453,26 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_edgenetwork_subnet`.\n\nA Distributed Cloud Edge subnet, which provides L2 isolation within a\nnetwork.\n\nDistributed Cloud Edge **subnet** — CIDR range inside a\n[GoogleEdgenetworkNetwork].\n\n**Cost / apply:** Same GDCE hardware commitment surface\n(`8A2D-5CB1-345B`, e.g. Connected Server Gen1 SKU `007E-2D86-E472`\n**\$3600/mo**). Requires a real edge network / zone absent on\n`terradart-validate` — ships without a quickstart\n(`tool/example_debt.yaml`). **Never** wire into apply-smoke.\n\nEnable `edgenetwork.googleapis.com` via [GoogleProjectService] before\napply. [network] is the parent network resource name.',
   ),
   CatalogEntry(
+    tfType: 'google_endpoints_service',
+    className: 'GoogleEndpointsService',
+    barrel: 'endpoints',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_endpoints_service`.',
+    constructorParams: <String>[
+      'localName',
+      'serviceName',
+      'openapiConfig',
+      'grpcConfig',
+      'protocOutputBase64',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_endpoints_service`.\n\nCloud Endpoints **service** — OpenAPI or gRPC service-config metadata\nin Service Management. Creating the service does **not** deploy an\nESP/ESPv2 proxy or send Service Control operations (those SKUs fire\nonly when traffic hits a deployed proxy).\n\nPrefer a thin smoke stack: [serviceName]\n`\$name.endpoints.\$projectId.cloud.goog` plus inline [openapiConfig]\n(Swagger 2.0 `host` must match [serviceName]). Omit [grpcConfig] /\n[protocOutputBase64] unless you have a compiled descriptor. Set\n[deletionPolicy] to `DELETE` so destroy removes the unused service.\n\nEnable `servicemanagement.googleapis.com` via [GoogleProjectService]\nbefore apply.\n\nExample:\n```dart\nGoogleEndpointsService(\n  localName: \'echo\',\n  serviceName: TfArg.literal(\'terradart.endpoints.\$projectId.cloud.goog\'),\n  openapiConfig: TfArg.literal(openapiYaml),\n  deletionPolicy: TfArg.literal(\'DELETE\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_endpoints_service_consumers_iam_binding',
     className: 'GoogleEndpointsServiceConsumersIamBinding',
     barrel: 'endpoints',

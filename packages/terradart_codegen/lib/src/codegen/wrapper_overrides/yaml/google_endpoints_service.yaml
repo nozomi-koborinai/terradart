@@ -1,0 +1,38 @@
+outputDir: endpoints
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Cloud Endpoints **service** — OpenAPI or gRPC service-config metadata
+  /// in Service Management. Creating the service does **not** deploy an
+  /// ESP/ESPv2 proxy or send Service Control operations (those SKUs fire
+  /// only when traffic hits a deployed proxy).
+  ///
+  /// Prefer a thin smoke stack: [serviceName]
+  /// `$name.endpoints.$projectId.cloud.goog` plus inline [openapiConfig]
+  /// (Swagger 2.0 `host` must match [serviceName]). Omit [grpcConfig] /
+  /// [protocOutputBase64] unless you have a compiled descriptor. Set
+  /// [deletionPolicy] to `DELETE` so destroy removes the unused service.
+  ///
+  /// Enable `servicemanagement.googleapis.com` via [GoogleProjectService]
+  /// before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleEndpointsService(
+  ///   localName: 'echo',
+  ///   serviceName: TfArg.literal('terradart.endpoints.$projectId.cloud.goog'),
+  ///   openapiConfig: TfArg.literal(openapiYaml),
+  ///   deletionPolicy: TfArg.literal('DELETE'),
+  /// );
+  /// ```
+
+paramOrder:
+  - service_name
+  - openapi_config
+  - grpc_config
+  - protoc_output_base64
+  - project
+  - deletion_policy
