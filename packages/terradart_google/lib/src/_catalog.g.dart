@@ -24848,6 +24848,25 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_os_config_v2_policy_orchestrator`.\n\nPolicyOrchestrator helps managing project+zone level policy resources (e.g.\nOS Policy Assignments), by providing tools to create, update and delete them\nacross projects and locations, at scale.\n\nOS Config v2 **policy orchestrator** — stores a project-scoped recipe\nthat can create, update, or delete zonal OS policy assignments.\n\nSet [state] to `STOPPED` so the orchestrator is stored but **does not\ncreate any OS policy assignments** (Google: STOPPED = won\'t make any\nchanges). `ACTIVE` + `UPSERT` would fan out assignments across zones\nand is not used in apply-smoke.\n\nEnable `osconfig.googleapis.com` via [GoogleProjectService] before\napply. Set [deletionPolicy] to `DELETE` so destroy removes the unused\norchestrator.\n\nExample:\n```dart\nGoogleOsConfigV2PolicyOrchestrator(\n  localName: \'stopped\',\n  policyOrchestratorId: TfArg.literal(\'terradart-po\'),\n  action: TfArg.literal(\'UPSERT\'),\n  state: TfArg.literal(\'STOPPED\'),\n  orchestratedResource: OsConfigV2PolicyOrchestratorOrchestratedResource(\n    osPolicyAssignmentV1Payload:\n        OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1Payload(\n      osPolicies: [\n        OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPolicies(\n          id: TfArg.literal(\'test-os-policy\'),\n          mode: TfArg.literal(\'VALIDATION\'),\n          resourceGroups: [\n            OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroups(\n              resources: TfArg.literal([\n                {\n                  \'id\': \'resource-tf\',\n                  \'file\': {\n                    \'content\': \'file-content-tf\',\n                    \'path\': \'file-path-tf-1\',\n                    \'state\': \'PRESENT\',\n                  },\n                },\n              ]),\n            ),\n          ],\n        ),\n      ],\n      instanceFilter:\n          OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilter(\n        inventories: [\n          OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterInventories(\n            osShortName: TfArg.literal(\'windows-10\'),\n          ),\n        ],\n      ),\n      rollout:\n          OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRollout(\n        disruptionBudget:\n            OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRolloutDisruptionBudget(\n          percent: TfArg.literal(100),\n        ),\n        minWaitDuration: TfArg.literal(\'60s\'),\n      ),\n    ),\n  ),\n  deletionPolicy: TfArg.literal(\'DELETE\'),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_os_login_ssh_public_key',
+    className: 'GoogleOsLoginSshPublicKey',
+    barrel: 'iam',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_os_login_ssh_public_key`.',
+    constructorParams: <String>[
+      'localName',
+      'user',
+      'key',
+      'expirationTimeUsec',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_os_login_ssh_public_key`.\n\nThe SSH public key information associated with a Google account.\n\nOS Login **SSH public key** — imports an SSH public key onto a\nGoogle user or service-account identity. Creating the key does\n**not** provision a VM or enable OS Login on instances.\n\nPrefer a thin smoke stack: [user] is an in-stack\n[GoogleServiceAccount] `.email` (not a human Google account),\n[key] is a dummy `ssh-ed25519` public key (no private key in\nthe repo), and [deletionPolicy] `DELETE`. Do not pair this\nfactory with [GoogleComputeInstance].\n\nEnable `oslogin.googleapis.com` via [GoogleProjectService]\nbefore apply.\n\nExample:\n```dart\nGoogleOsLoginSshPublicKey(\n  localName: \'dummy\',\n  user: TfArg.ref(sa.email),\n  key: TfArg.literal(\n    \'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMlTZg5RNgdRr0tVBEkKHZOi3VCrR2eoC7e5stONs4Uw terradart-dummy\',\n  ),\n  deletionPolicy: TfArg.literal(\'DELETE\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_parallelstore_instance',
     className: 'GoogleParallelstoreInstance',
     barrel: 'parallelstore',

@@ -2,9 +2,9 @@
 // Run `terradart wrap` to regenerate.
 /// IAM service accounts, Workload Identity Federation pools
 /// (including trust-domain namespaces and managed identities),
-/// project deny policies, and per-resource IAM members live
-/// alongside their owning service barrel (e.g. `pubsub.dart`
-/// exports `GooglePubsubTopicIamMember`).
+/// OS Login SSH public keys, project deny policies, and
+/// per-resource IAM members live alongside their owning service
+/// barrel (e.g. `pubsub.dart` exports `GooglePubsubTopicIamMember`).
 library;
 
 export 'src/iam/google_iam_deny_policy.dart'
@@ -41,6 +41,8 @@ export 'src/iam/google_iam_workload_identity_pool_provider.dart'
         IamWorkloadIdentityPoolProviderX509PemCertificate,
         IamWorkloadIdentityPoolProviderX509Trust,
         IamWorkloadIdentityPoolProviderX509TrustStore;
+export 'src/iam/google_os_login_ssh_public_key.dart'
+    show GoogleOsLoginSshPublicKey;
 export 'src/iam/google_project_iam_audit_config.dart'
     show
         GoogleProjectIamAuditConfig,

@@ -114,6 +114,11 @@ final class GoogleProviderRules extends ProviderRules {
     'os_config_v2': 'os_config',
     'osconfigv2': 'os_config',
 
+    // OS Login SSH keys (`google_os_login_*`; MM product oslogin).
+    // Fold into the existing `iam` barrel (user/SA identity metadata).
+    'os_login': 'iam',
+    'oslogin': 'iam',
+
     // Wave 76 — Binary Authorization (`google_binary_authorization_*`).
     'binary': 'binary_authorization',
     'binary_authorization': 'binary_authorization',

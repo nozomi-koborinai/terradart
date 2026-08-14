@@ -1,0 +1,41 @@
+outputDir: iam
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// OS Login **SSH public key** — imports an SSH public key onto a
+  /// Google user or service-account identity. Creating the key does
+  /// **not** provision a VM or enable OS Login on instances.
+  ///
+  /// Prefer a thin smoke stack: [user] is an in-stack
+  /// [GoogleServiceAccount] `.email` (not a human Google account),
+  /// [key] is a dummy `ssh-ed25519` public key (no private key in
+  /// the repo), and [deletionPolicy] `DELETE`. Do not pair this
+  /// factory with [GoogleComputeInstance].
+  ///
+  /// Enable `oslogin.googleapis.com` via [GoogleProjectService]
+  /// before apply.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleOsLoginSshPublicKey(
+  ///   localName: 'dummy',
+  ///   user: TfArg.ref(sa.email),
+  ///   key: TfArg.literal(
+  ///     'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMlTZg5RNgdRr0tVBEkKHZOi3VCrR2eoC7e5stONs4Uw terradart-dummy',
+  ///   ),
+  ///   deletionPolicy: TfArg.literal('DELETE'),
+  /// );
+  /// ```
+
+paramOrder:
+  - user
+  - key
+  - expiration_time_usec
+  - project
+  - deletion_policy

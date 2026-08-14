@@ -80,5 +80,14 @@ void main() {
       );
       expect(result, 'public_ca');
     });
+
+    test('Step 2: os_login → iam (not os_login barrel)', () {
+      final result = resolver.resolve(
+        terraformType: 'google_os_login_ssh_public_key',
+        mmProduct: null,
+        kind: WrapperOverrideKind.resource,
+      );
+      expect(result, 'iam');
+    });
   });
 }
