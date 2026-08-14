@@ -4,9 +4,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 
-extraImports:
-  - "import 'package:meta/meta.dart';"
-
 curatedDoc: |-
   /// OS Login **SSH public key** — imports an SSH public key onto a
   /// Google user or service-account identity. Creating the key does
