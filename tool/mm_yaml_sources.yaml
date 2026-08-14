@@ -582,6 +582,8 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_dataproc_metastore_table_iam_policy:
     upstream: null  # MM templates IAM bindings; schema-only curation
+  google_developer_connect_account_connector:
+    upstream: mmv1/products/developerconnect/AccountConnector.yaml
   google_dialogflow_agent:
     upstream: mmv1/products/dialogflow/Agent.yaml
   google_dialogflow_entity_type:

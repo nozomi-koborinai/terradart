@@ -14659,6 +14659,33 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_dataproc_session_template`.\n\nA Dataproc Serverless session template defines the configuration settings\nfor creating one or more Dataproc Serverless interactive sessions.\n\nDataproc Serverless **session template** — reusable config for\nInteractive / Jupyter / Spark Connect sessions.\n\n**Cost / apply:** gcp-cost: Dataproc `363B-8851-170D` Interactive DCU\nSKU `A486-6040-07FE` **\$0.089/h** (us-central1 list; milli-hour SKU\npriced per DCU-hour). billing-behavior: sessions started from the\ntemplate burn Interactive DCUs while running; the template metadata\nalone is not billed, but there is no applyable quickstart without\nspinning Interactive compute. Debt-only on `terradart-validate`.\n**Never** wire into apply-smoke.\n\nEnable `dataproc.googleapis.com` via [GoogleProjectService] before apply.',
   ),
   CatalogEntry(
+    tfType: 'google_developer_connect_account_connector',
+    className: 'GoogleDeveloperConnectAccountConnector',
+    barrel: 'developer_connect',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_developer_connect_account_connector`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'accountConnectorId',
+      'providerOauthConfig',
+      'labels',
+      'annotations',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'DeveloperConnectAccountConnectorCustomOauthConfig',
+      'DeveloperConnectAccountConnectorCustomOauthConfigServiceDirectoryConfig',
+      'DeveloperConnectAccountConnectorProviderOauthConfig',
+      'DeveloperConnectAccountConnectorProxyConfig',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_developer_connect_account_connector`.\n\nDescription\n\nDeveloper Connect **account connector** — OAuth config that starts\na system-provider login (GitHub / GitLab / …). Creating the\nconnector does not complete OAuth, clone a repository, or create a\n`google_developer_connect_connection`.\n\nThis leftover exposes the official GitHub recipe via\n[providerOauthConfig] (`system_provider_id` + `scopes`). Custom\nOAuth (`custom_oauth_config`, client secret) is left uncurated.\n\nEnable `developerconnect.googleapis.com` via [GoogleProjectService]\nbefore apply. Set [deletionPolicy] to `DELETE` so destroy removes\nthe unused connector.\n\nExample:\n```dart\nGoogleDeveloperConnectAccountConnector(\n  localName: \'github\',\n  location: TfArg.literal(\'us-central1\'),\n  accountConnectorId: TfArg.literal(\'terradart-github\'),\n  providerOauthConfig:\n      DeveloperConnectAccountConnectorProviderOauthConfig(\n    systemProviderId: TfArg.literal(\'GITHUB\'),\n    scopes: TfArg.literal([\'repo\']),\n  ),\n  deletionPolicy: TfArg.literal(\'DELETE\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_dialogflow_agent',
     className: 'GoogleDialogflowAgent',
     barrel: 'dialogflow',

@@ -269,6 +269,11 @@ barrels:
       /// Metastore, GDC service instances / application environments, and
       /// Serverless session templates. Cluster / job / GDC / Interactive
       /// session paths are never_apply for apply-smoke.
+  developer_connect:
+    doc: |-
+      /// Developer Connect — account connectors that start an OAuth flow
+      /// for a system provider (GitHub / GitLab / …). Creating a connector
+      /// does not complete OAuth or clone a repository.
   dialogflow:
     doc: |-
       /// Dialogflow ES / CX: SIP trunk, ES agent plus intent / entity type /

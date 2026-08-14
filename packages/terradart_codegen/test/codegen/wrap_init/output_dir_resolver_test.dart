@@ -63,6 +63,15 @@ void main() {
       expect(result, 'dlp');
     });
 
+    test('Step 2: developer_connect → developer_connect (not developer)', () {
+      final result = resolver.resolve(
+        terraformType: 'google_developer_connect_account_connector',
+        mmProduct: null,
+        kind: WrapperOverrideKind.resource,
+      );
+      expect(result, 'developer_connect');
+    });
+
     test('Step 3: public segment → public_ca', () {
       final result = resolver.resolve(
         terraformType: 'google_public_ca_external_account_key',

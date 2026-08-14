@@ -39,6 +39,9 @@ void main() {
       expect(rules.outputDirAliases['data_lineage'], 'dataplex');
       expect(rules.outputDirAliases['datalineage'], 'dataplex');
       expect(rules.outputDirAliases['modelarmor'], 'model_armor');
+      expect(rules.outputDirAliases['developer'], 'developer_connect');
+      expect(rules.outputDirAliases['developer_connect'], 'developer_connect');
+      expect(rules.outputDirAliases['developerconnect'], 'developer_connect');
       expect(rules.outputDirAliases['backup'], 'backup_dr');
       expect(rules.outputDirAliases['backup_dr'], 'backup_dr');
       expect(rules.outputDirAliases['backupdr'], 'backup_dr');

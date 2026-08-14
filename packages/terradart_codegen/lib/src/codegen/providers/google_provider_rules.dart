@@ -238,6 +238,13 @@ final class GoogleProviderRules extends ProviderRules {
     'model_armor': 'model_armor',
     'modelarmor': 'model_armor',
 
+    // Developer Connect (`google_developer_connect_*` → segment `developer`;
+    // MM product developerconnect). All GA `google_developer_*` types are
+    // this product — do not fold into a generic `developer` barrel.
+    'developer': 'developer_connect',
+    'developer_connect': 'developer_connect',
+    'developerconnect': 'developer_connect',
+
     // Security Command Center v2 (`google_scc_v2_*` → segment `scc`).
     'scc': 'scc',
     'scc_v2': 'scc',
