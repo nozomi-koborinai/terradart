@@ -4,6 +4,8 @@
 /// `*_iam_member` adjuncts that grant access on individual tag keys/values.
 library;
 
+export 'src/tags/google_tags_location_tag_binding.dart'
+    show GoogleTagsLocationTagBinding;
 export 'src/tags/google_tags_tag_binding.dart' show GoogleTagsTagBinding;
 export 'src/tags/google_tags_tag_key.dart'
     show GoogleTagsTagKey, TagsTagKeyPurpose;

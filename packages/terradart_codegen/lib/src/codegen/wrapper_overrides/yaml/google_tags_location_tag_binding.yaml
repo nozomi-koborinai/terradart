@@ -1,0 +1,33 @@
+outputDir: tags
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Location-scoped TagBinding — attaches a TagValue to a regional or
+  /// zonal resource (Artifact Registry repository, Cloud Run service,
+  /// Compute instance). Use [GoogleTagsTagBinding] for project / folder /
+  /// organization parents.
+  ///
+  /// [parent] is the full resource name, for example
+  /// `//artifactregistry.googleapis.com/projects/{number}/locations/{location}/repositories/{id}`.
+  /// [location] must match the target region or zone.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleTagsLocationTagBinding(
+  ///   localName: 'repo_env',
+  ///   parent: TfArg.literal(
+  ///     '//artifactregistry.googleapis.com/projects/'
+  ///     '${project.number.interpolation}/locations/asia-northeast1/'
+  ///     'repositories/${repo.repositoryIdRef.interpolation}',
+  ///   ),
+  ///   tagValue: TfArg.ref(value.id),
+  ///   location: TfArg.literal('asia-northeast1'),
+  /// );
+  /// ```
+
+paramOrder:
+  - parent
+  - tag_value
+  - location
+  - deletion_policy
