@@ -95,9 +95,15 @@ final class AccessControlsStack extends Stack {
           '/authorizedOrgsDescs/terradart_desc',
         ),
         orgs: TfArg.literal(['organizations/12345']),
-        authorizationType: TfArg.literal('AUTHORIZATION_TYPE_TRUST'),
-        assetType: TfArg.literal('ASSET_TYPE_CREDENTIAL_STRENGTH'),
-        authorizationDirection: TfArg.literal('AUTHORIZATION_DIRECTION_TO'),
+        authorizationType: TfArg.literal(
+          AccessContextManagerAuthorizedOrgsDescAuthorizationType.trust,
+        ),
+        assetType: TfArg.literal(
+          AccessContextManagerAuthorizedOrgsDescAssetType.credentialStrength,
+        ),
+        authorizationDirection: TfArg.literal(
+          AccessContextManagerAuthorizedOrgsDescAuthorizationDirection.to,
+        ),
         deletionPolicy: TfArg.literal('DELETE'),
         dependsOn: [ResourceDependency(policy)],
       ),

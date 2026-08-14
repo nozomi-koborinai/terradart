@@ -7,6 +7,41 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleAccessContextManagerAuthorizedOrgsDescSensitive =
     <String>{};
 
+/// `authorization_type` for [GoogleAccessContextManagerAuthorizedOrgsDesc].
+enum AccessContextManagerAuthorizedOrgsDescAuthorizationType
+    implements TerraformEnum {
+  trust('AUTHORIZATION_TYPE_TRUST');
+
+  const AccessContextManagerAuthorizedOrgsDescAuthorizationType(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
+/// `asset_type` for [GoogleAccessContextManagerAuthorizedOrgsDesc].
+enum AccessContextManagerAuthorizedOrgsDescAssetType implements TerraformEnum {
+  device('ASSET_TYPE_DEVICE'),
+  credentialStrength('ASSET_TYPE_CREDENTIAL_STRENGTH');
+
+  const AccessContextManagerAuthorizedOrgsDescAssetType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// `authorization_direction` for [GoogleAccessContextManagerAuthorizedOrgsDesc].
+enum AccessContextManagerAuthorizedOrgsDescAuthorizationDirection
+    implements TerraformEnum {
+  to('AUTHORIZATION_DIRECTION_TO'),
+  from('AUTHORIZATION_DIRECTION_FROM');
+
+  const AccessContextManagerAuthorizedOrgsDescAuthorizationDirection(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_access_context_manager_authorized_orgs_desc`.
 ///
 /// An authorized organizations description describes a list of organizations
@@ -40,9 +75,15 @@ const Set<String> _googleAccessContextManagerAuthorizedOrgsDescSensitive =
 ///     '/authorizedOrgsDescs/terradart_desc',
 ///   ),
 ///   orgs: TfArg.literal(['organizations/12345']),
-///   authorizationType: TfArg.literal('AUTHORIZATION_TYPE_TRUST'),
-///   assetType: TfArg.literal('ASSET_TYPE_CREDENTIAL_STRENGTH'),
-///   authorizationDirection: TfArg.literal('AUTHORIZATION_DIRECTION_TO'),
+///   authorizationType: TfArg.literal(
+///     AccessContextManagerAuthorizedOrgsDescAuthorizationType.trust,
+///   ),
+///   assetType: TfArg.literal(
+///     AccessContextManagerAuthorizedOrgsDescAssetType.credentialStrength,
+///   ),
+///   authorizationDirection: TfArg.literal(
+///     AccessContextManagerAuthorizedOrgsDescAuthorizationDirection.to,
+///   ),
 ///   deletionPolicy: TfArg.literal('DELETE'),
 /// );
 /// ```
@@ -55,9 +96,11 @@ final class GoogleAccessContextManagerAuthorizedOrgsDesc extends Resource {
     required TfArg<String> parent,
     required TfArg<String> name,
     TfArg<List<String>>? orgs,
-    TfArg<String>? authorizationType,
-    TfArg<String>? assetType,
-    TfArg<String>? authorizationDirection,
+    TfArg<AccessContextManagerAuthorizedOrgsDescAuthorizationType>?
+    authorizationType,
+    TfArg<AccessContextManagerAuthorizedOrgsDescAssetType>? assetType,
+    TfArg<AccessContextManagerAuthorizedOrgsDescAuthorizationDirection>?
+    authorizationDirection,
     TfArg<String>? deletionPolicy,
     super.lifecycle,
     super.dependsOn,
