@@ -15599,6 +15599,31 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_dialogflow_fulfillment`.\n\nBy default, your agent responds to a matched intent with a static response.\nIf you\'re using one of the integration options, you can provide a more\ndynamic response by using fulfillment. When you enable fulfillment for an\nintent, Dialogflow responds to that intent by calling a service that you\ndefine. For example, if an end-user wants to schedule a haircut on Friday,\nyour service can check your database and respond to the end-user with\navailability information for Friday.\n\nDialogflow ES **fulfillment** — singleton webhook config on the\nper-project ES agent (`PATCH` create / update / delete).\n\nCreating this resource overwrites the agent\'s existing fulfillment\nthe same way upstream Terraform does.\n\n**Cost:** gcp-cost: Cloud Dialogflow `FBC0-AA4A-C89A` Intent Detection\nText Query Operations for Enterprise Essentials Agents `114B-F183-612D`\n**\$0.002/count**. billing-behavior: fulfillment is design-time\nconfig; query SKUs fire only on DetectIntent (this factory never\ninvokes it). A configured `generic_web_service` URI is not called\nuntil an intent match. Enable `dialogflow.googleapis.com` before\napply. The ES agent is a per-project singleton — create\n[GoogleDialogflowAgent] first.',
   ),
   CatalogEntry(
+    tfType: 'google_dialogflow_generator',
+    className: 'GoogleDialogflowGenerator',
+    barrel: 'dialogflow',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_dialogflow_generator`.',
+    constructorParams: <String>[
+      'localName',
+      'location',
+      'generatorId',
+      'description',
+      'triggerEvent',
+      'summarizationContext',
+      'publishedModel',
+      'project',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[
+      'DialogflowGeneratorTriggerEvent',
+      'DialogflowGeneratorSummarizationContext',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_dialogflow_generator`.\n\nLLM generator.\n\nDialogflow **Agent Assist summarization generator** — LLM\ngenerator config metadata. Creating the generator does **not**\nstart a conversation, call DetectIntent, or run summarization.\n\nPrefer a thin smoke stack: [location] `global`, [triggerEvent]\n`MANUAL_CALL`, and a [summarizationContext] with version `4.0`\nplus `en`. Omit [publishedModel], inference parameters, few-shot\nexamples, and summarization sections. Set [deletionPolicy] to\n`DELETE`.\n\n`dialogflow_quickstart` is apply-smoke skipped (SIP trunk needs\na live carrier TLS peer), so this factory is synth +\n`terraform validate` only.\n\nExample:\n```dart\nGoogleDialogflowGenerator(\n  localName: \'demo_summarizer\',\n  location: TfArg.literal(\'global\'),\n  description: TfArg.literal(\'terradart summarization generator\'),\n  triggerEvent: TfArg.literal(\n    DialogflowGeneratorTriggerEvent.manualCall,\n  ),\n  summarizationContext: DialogflowGeneratorSummarizationContext(\n    version: TfArg.literal(\'4.0\'),\n    outputLanguageCode: TfArg.literal(\'en\'),\n  ),\n  deletionPolicy: TfArg.literal(\'DELETE\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_dialogflow_intent',
     className: 'GoogleDialogflowIntent',
     barrel: 'dialogflow',
