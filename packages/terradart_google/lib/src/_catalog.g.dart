@@ -109,6 +109,28 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_access_context_manager_access_policy_iam_policy`.\n\nAuthoritative IAM policy for an Access Context Manager access policy.\n\n`policy_data` replaces the entire IAM policy. Prefer\n[GoogleAccessContextManagerAccessPolicyIamMember] for single-principal\ngrants.',
   ),
   CatalogEntry(
+    tfType: 'google_access_context_manager_authorized_orgs_desc',
+    className: 'GoogleAccessContextManagerAuthorizedOrgsDesc',
+    barrel: 'access_context_manager',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_access_context_manager_authorized_orgs_desc`.',
+    constructorParams: <String>[
+      'localName',
+      'parent',
+      'name',
+      'orgs',
+      'authorizationType',
+      'assetType',
+      'authorizationDirection',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_access_context_manager_authorized_orgs_desc`.\n\nAn authorized organizations description describes a list of organizations\n(1) that have been authorized to use certain asset (for example, device)\ndata owned by different organizations at the enforcement points, or (2) with\ncertain asset (for example, device) have been authorized to access the\nresources in another organization at the enforcement points.\n\nAccess Context Manager **authorized orgs descriptor** — VPC-SC\ncross-org trust metadata on an access policy. Creating the\ndescriptor does **not** evaluate traffic or grant live access.\n\nPrefer a thin smoke stack: [parent] `accessPolicies/{policy}`,\n[name] ending in `authorizedOrgsDescs/terradart_desc`, placeholder\n[orgs], and the Hashicorp basic enums. Set [deletionPolicy] to\n`DELETE`.\n\n`access_context_quickstart` is apply-smoke skipped (needs a real\norganization id), so this factory is synth + `terraform validate`\nonly.\n\nExample:\n```dart\nGoogleAccessContextManagerAuthorizedOrgsDesc(\n  localName: \'demo_orgs\',\n  parent: TfArg.literal(\n    \'accessPolicies/\${policy.name.interpolation}\',\n  ),\n  name: TfArg.literal(\n    \'accessPolicies/\${policy.name.interpolation}\'\n    \'/authorizedOrgsDescs/terradart_desc\',\n  ),\n  orgs: TfArg.literal([\'organizations/12345\']),\n  authorizationType: TfArg.literal(\'AUTHORIZATION_TYPE_TRUST\'),\n  assetType: TfArg.literal(\'ASSET_TYPE_CREDENTIAL_STRENGTH\'),\n  authorizationDirection: TfArg.literal(\'AUTHORIZATION_DIRECTION_TO\'),\n  deletionPolicy: TfArg.literal(\'DELETE\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_access_context_manager_service_perimeter',
     className: 'GoogleAccessContextManagerServicePerimeter',
     barrel: 'access_context_manager',

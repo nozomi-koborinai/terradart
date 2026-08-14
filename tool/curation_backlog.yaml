@@ -230,10 +230,6 @@ entries:
     detected_at: 2026-08-12
     provider_version: 7.43.0
     note: skipped by wave-shipper — schema required `organization_id`; sibling access_context_quickstart is skip-listed (needs a real organization id for access policy parent)
-  - resource: google_access_context_manager_authorized_orgs_desc
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-    note: skipped by wave-shipper — schema required `parent` (access policy); sibling access_context_quickstart is skip-listed (needs a real organization id)
   - resource: google_access_context_manager_access_levels
     detected_at: 2026-08-12
     provider_version: 7.43.0

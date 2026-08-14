@@ -1,0 +1,46 @@
+outputDir: access_context_manager
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+
+curatedDoc: |-
+  /// Access Context Manager **authorized orgs descriptor** — VPC-SC
+  /// cross-org trust metadata on an access policy. Creating the
+  /// descriptor does **not** evaluate traffic or grant live access.
+  ///
+  /// Prefer a thin smoke stack: [parent] `accessPolicies/{policy}`,
+  /// [name] ending in `authorizedOrgsDescs/terradart_desc`, placeholder
+  /// [orgs], and the Hashicorp basic enums. Set [deletionPolicy] to
+  /// `DELETE`.
+  ///
+  /// `access_context_quickstart` is apply-smoke skipped (needs a real
+  /// organization id), so this factory is synth + `terraform validate`
+  /// only.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleAccessContextManagerAuthorizedOrgsDesc(
+  ///   localName: 'demo_orgs',
+  ///   parent: TfArg.literal(
+  ///     'accessPolicies/${policy.name.interpolation}',
+  ///   ),
+  ///   name: TfArg.literal(
+  ///     'accessPolicies/${policy.name.interpolation}'
+  ///     '/authorizedOrgsDescs/terradart_desc',
+  ///   ),
+  ///   orgs: TfArg.literal(['organizations/12345']),
+  ///   authorizationType: TfArg.literal('AUTHORIZATION_TYPE_TRUST'),
+  ///   assetType: TfArg.literal('ASSET_TYPE_CREDENTIAL_STRENGTH'),
+  ///   authorizationDirection: TfArg.literal('AUTHORIZATION_DIRECTION_TO'),
+  ///   deletionPolicy: TfArg.literal('DELETE'),
+  /// );
+  /// ```
+
+paramOrder:
+  - parent
+  - name
+  - orgs
+  - authorization_type
+  - asset_type
+  - authorization_direction
+  - deletion_policy
