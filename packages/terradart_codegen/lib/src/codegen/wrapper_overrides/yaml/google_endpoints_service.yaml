@@ -4,9 +4,6 @@ deriveOutputGetters: true
 deriveNestedTypes: true
 deriveEnums: true
 
-extraImports:
-  - "import 'package:meta/meta.dart';"
-
 curatedDoc: |-
   /// Cloud Endpoints **service** — OpenAPI or gRPC service-config metadata
   /// in Service Management. Creating the service does **not** deploy an
