@@ -29,7 +29,11 @@ export 'src/access_context_manager/google_access_context_manager_access_policy_i
 export 'src/access_context_manager/google_access_context_manager_access_policy_iam_policy.dart'
     show GoogleAccessContextManagerAccessPolicyIamPolicy;
 export 'src/access_context_manager/google_access_context_manager_authorized_orgs_desc.dart'
-    show GoogleAccessContextManagerAuthorizedOrgsDesc;
+    show
+        AccessContextManagerAuthorizedOrgsDescAssetType,
+        AccessContextManagerAuthorizedOrgsDescAuthorizationDirection,
+        AccessContextManagerAuthorizedOrgsDescAuthorizationType,
+        GoogleAccessContextManagerAuthorizedOrgsDesc;
 export 'src/access_context_manager/google_access_context_manager_service_perimeter.dart'
     show
         AccessContextManagerServicePerimeterPerimeterType,
