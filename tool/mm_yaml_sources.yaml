@@ -600,6 +600,8 @@ files:
     upstream: mmv1/products/dialogflow/Intent.yaml
   google_dialogflow_sip_trunk:
     upstream: mmv1/products/dialogflow/SipTrunk.yaml
+  google_dialogflow_conversation_profile:
+    upstream: mmv1/products/dialogflow/ConversationProfile.yaml
   google_dialogflow_version:
     upstream: null  # no mmv1/products/dialogflow/Version.yaml (HTTP 404, probed 2026-08-13); handwritten in terraform-provider-google
   google_discovery_engine_search_engine:

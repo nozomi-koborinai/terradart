@@ -64,10 +64,6 @@ entries:
     note: skipped by wave-shipper — schema required `main_version_id`; needs an uploaded Wasm plugin artifact (external binary), not standalone-project applyable without a source artifact
 
   # --- dialogflow (ES leftovers; CCAI / CMEK — not ES agent children) ---
-  - resource: google_dialogflow_conversation_profile
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-    note: skipped by wave-shipper — CCAI Conversation Profile (required location + display_name); Contact Center AI surface (human_agent_assistant / STT / TTS / live-agent handoff), not a child of the ES agent singleton; out of scope for the ES design-time Wave
   - resource: google_dialogflow_generator
     detected_at: 2026-08-12
     provider_version: 7.43.0

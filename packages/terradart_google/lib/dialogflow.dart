@@ -1,11 +1,11 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Dialogflow ES / CX: SIP trunk, ES agent plus intent / entity type /
-/// fulfillment / version / environment, and full CX agent surfaces
-/// (all CX factories are never_apply — agent / flow / intent / page /
-/// playbook / webhook / generative settings / security settings /
-/// generator / tool / entity type / environment / version /
-/// tool version / test case).
+/// Dialogflow ES / CX: SIP trunk, ES conversation-profile metadata,
+/// ES agent plus intent / entity type / fulfillment / version /
+/// environment, and full CX agent surfaces (all CX factories are
+/// never_apply — agent / flow / intent / page / playbook / webhook /
+/// generative settings / security settings / generator / tool /
+/// entity type / environment / version / tool version / test case).
 library;
 
 export 'src/dialogflow/google_dialogflow_agent.dart'
@@ -14,6 +14,8 @@ export 'src/dialogflow/google_dialogflow_agent.dart'
         DialogflowAgentMatchMode,
         DialogflowAgentTier,
         GoogleDialogflowAgent;
+export 'src/dialogflow/google_dialogflow_conversation_profile.dart'
+    show GoogleDialogflowConversationProfile;
 export 'src/dialogflow/google_dialogflow_cx_agent.dart'
     show
         DialogflowCxAgentAdvancedSettings,

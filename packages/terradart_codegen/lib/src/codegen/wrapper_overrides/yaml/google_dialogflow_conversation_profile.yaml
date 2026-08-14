@@ -1,0 +1,50 @@
+outputDir: dialogflow
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+deriveNestedTypes: true
+# Agent Assist / STT / TTS / notification blocks stay excluded — the
+# leftover smoke stack is displayName + location only. Nested enum
+# sites under these blocks are frozen-by-exclude on purpose.
+nestedTypeExcludes:
+  - automated_agent_config
+  - human_agent_assistant_config
+  - human_agent_handoff_config
+  - logging_config
+  - new_message_event_notification_config
+  - new_recognition_result_notification_config
+  - notification_config
+  - stt_config
+  - tts_config
+
+curatedDoc: |-
+  /// Dialogflow ES **conversation profile** — Agent Assist config
+  /// metadata. Creating the profile does **not** start a conversation,
+  /// call DetectIntent, or enable speech / suggestions.
+  ///
+  /// Prefer a thin smoke stack: [displayName] plus [location] `global`.
+  /// Omit automated-agent, human-agent-assistant, STT, TTS, and
+  /// notification blocks so no runtime path is wired. Set
+  /// [deletionPolicy] to `DELETE`.
+  ///
+  /// `dialogflow_quickstart` is apply-smoke skipped (SIP trunk needs
+  /// a live carrier TLS peer), so this factory is synth +
+  /// `terraform validate` only.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleDialogflowConversationProfile(
+  ///   localName: 'demo_profile',
+  ///   displayName: TfArg.literal('terradart-profile'),
+  ///   location: TfArg.literal('global'),
+  ///   deletionPolicy: TfArg.literal('DELETE'),
+  /// );
+  /// ```
+
+paramOrder:
+  - display_name
+  - location
+  - language_code
+  - time_zone
+  - project
+  - deletion_policy
