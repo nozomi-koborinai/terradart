@@ -1,7 +1,9 @@
-/// VM compliance quickstart — Wave 76 OS Config + Binary Authorization.
+/// VM compliance quickstart — Wave 76 OS Config + Binary Authorization,
+/// plus a leftover OS Config v2 policy orchestrator (STOPPED).
 ///
 /// Provisions Binary Authorization policy/attestor/IAM and OS Config policy
-/// assignment + patch deployment for a single GCP project.
+/// assignment + patch deployment + a stored-but-inactive v2 policy
+/// orchestrator for a single GCP project.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -169,6 +171,60 @@ final class VmComplianceStack extends Stack {
         schedule: OsConfigPatchDeploymentOneTimeSchedule(
           executeTime: TfArg.literal('2030-01-01T02:00:00Z'),
         ),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    // STOPPED: stored metadata only — the orchestrator will not create
+    // zonal OS policy assignments (ACTIVE + UPSERT would fan out).
+    add(
+      GoogleOsConfigV2PolicyOrchestrator(
+        localName: 'stopped',
+        policyOrchestratorId: TfArg.literal('terradart-po'),
+        action: TfArg.literal('UPSERT'),
+        state: TfArg.literal('STOPPED'),
+        orchestratedResource: OsConfigV2PolicyOrchestratorOrchestratedResource(
+          osPolicyAssignmentV1Payload:
+              OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1Payload(
+            osPolicies: [
+              OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPolicies(
+                id: TfArg.literal('test-os-policy'),
+                mode: TfArg.literal('VALIDATION'),
+                resourceGroups: [
+                  OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroups(
+                    resources: TfArg.literal([
+                      {
+                        'id': 'resource-tf',
+                        'file': {
+                          'content': 'file-content-tf',
+                          'path': 'file-path-tf-1',
+                          'state': 'PRESENT',
+                        },
+                      },
+                    ]),
+                  ),
+                ],
+              ),
+            ],
+            instanceFilter:
+                OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilter(
+              inventories: [
+                OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterInventories(
+                  osShortName: TfArg.literal('windows-10'),
+                ),
+              ],
+            ),
+            rollout:
+                OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRollout(
+              disruptionBudget:
+                  OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRolloutDisruptionBudget(
+                percent: TfArg.literal(100),
+              ),
+              minWaitDuration: TfArg.literal('60s'),
+            ),
+          ),
+        ),
+        deletionPolicy: TfArg.literal('DELETE'),
         dependsOn: apiDeps,
       ),
     );

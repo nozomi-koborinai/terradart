@@ -1,7 +1,8 @@
 # VM compliance quickstart
 
 End-to-end terradart example for OS Config (OS policy assignment + patch
-deployment) and Binary Authorization (project policy + attestor + IAM member).
+deployment + a STOPPED v2 policy orchestrator) and Binary Authorization
+(project policy + attestor + IAM member).
 
 ## Prerequisites
 
@@ -27,3 +28,5 @@ terraform validate
 - `GoogleBinaryAuthorizationAttestorIamMember` — viewer grant for a sample CI SA
 - `GoogleOsConfigOsPolicyAssignment` — validation-mode shell script policy in `us-central1-a`
 - `GoogleOsConfigPatchDeployment` — one-time patch job scheduled in the future
+- `GoogleOsConfigV2PolicyOrchestrator` — stored `STOPPED` recipe (`UPSERT` +
+  VALIDATION file payload); does not create zonal OS policy assignments

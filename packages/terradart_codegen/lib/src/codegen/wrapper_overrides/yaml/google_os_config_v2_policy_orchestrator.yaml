@@ -1,0 +1,91 @@
+outputDir: os_config
+
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+# `resources` (exec/file/pkg/repository specs) is the same deep subtree
+# excluded on `google_os_config_os_policy_assignment` — keep it opaque so
+# wrap does not emit ~18 extra classes. Shallower payload blocks
+# (`os_policies`, `instance_filter`, `rollout`) stay typed.
+nestedTypeExcludes:
+  - orchestrated_resource.os_policy_assignment_v1_payload.os_policies.resource_groups.resources
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// OS Config v2 **policy orchestrator** — stores a project-scoped recipe
+  /// that can create, update, or delete zonal OS policy assignments.
+  ///
+  /// Set [state] to `STOPPED` so the orchestrator is stored but **does not
+  /// create any OS policy assignments** (Google: STOPPED = won't make any
+  /// changes). `ACTIVE` + `UPSERT` would fan out assignments across zones
+  /// and is not used in apply-smoke.
+  ///
+  /// Enable `osconfig.googleapis.com` via [GoogleProjectService] before
+  /// apply. Set [deletionPolicy] to `DELETE` so destroy removes the unused
+  /// orchestrator.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleOsConfigV2PolicyOrchestrator(
+  ///   localName: 'stopped',
+  ///   policyOrchestratorId: TfArg.literal('terradart-po'),
+  ///   action: TfArg.literal('UPSERT'),
+  ///   state: TfArg.literal('STOPPED'),
+  ///   orchestratedResource: OsConfigV2PolicyOrchestratorOrchestratedResource(
+  ///     osPolicyAssignmentV1Payload:
+  ///         OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1Payload(
+  ///       osPolicies: [
+  ///         OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPolicies(
+  ///           id: TfArg.literal('test-os-policy'),
+  ///           mode: TfArg.literal('VALIDATION'),
+  ///           resourceGroups: [
+  ///             OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroups(
+  ///               resources: TfArg.literal([
+  ///                 {
+  ///                   'id': 'resource-tf',
+  ///                   'file': {
+  ///                     'content': 'file-content-tf',
+  ///                     'path': 'file-path-tf-1',
+  ///                     'state': 'PRESENT',
+  ///                   },
+  ///                 },
+  ///               ]),
+  ///             ),
+  ///           ],
+  ///         ),
+  ///       ],
+  ///       instanceFilter:
+  ///           OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilter(
+  ///         inventories: [
+  ///           OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterInventories(
+  ///             osShortName: TfArg.literal('windows-10'),
+  ///           ),
+  ///         ],
+  ///       ),
+  ///       rollout:
+  ///           OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRollout(
+  ///         disruptionBudget:
+  ///             OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRolloutDisruptionBudget(
+  ///           percent: TfArg.literal(100),
+  ///         ),
+  ///         minWaitDuration: TfArg.literal('60s'),
+  ///       ),
+  ///     ),
+  ///   ),
+  ///   deletionPolicy: TfArg.literal('DELETE'),
+  /// );
+  /// ```
+
+paramOrder:
+  - policy_orchestrator_id
+  - action
+  - orchestrated_resource
+  - state
+  - description
+  - labels
+  - orchestration_scope
+  - project
+  - deletion_policy
