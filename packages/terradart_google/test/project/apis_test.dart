@@ -162,6 +162,15 @@ void main() {
       );
     });
 
+    test('cloudAsset barrel includes cloudasset.googleapis.com', () {
+      final apis = Apis.required(barrels: [Barrels.cloudAsset]);
+      expect(apis, hasLength(1));
+      expect(
+        apis.single.argMap['service']!.toTfJson(),
+        'cloudasset.googleapis.com',
+      );
+    });
+
     test('recaptcha barrel includes recaptchaenterprise.googleapis.com', () {
       final apis = Apis.required(barrels: [Barrels.recaptcha]);
       expect(apis, hasLength(1));
@@ -288,6 +297,7 @@ void main() {
       expect(Barrels.storageControl.catalogName, 'storage_control');
       expect(Barrels.ces.catalogName, 'ces');
       expect(Barrels.dataform.catalogName, 'dataform');
+      expect(Barrels.cloudAsset.catalogName, 'cloud_asset');
     });
   });
 }

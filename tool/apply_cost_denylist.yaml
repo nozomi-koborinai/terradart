@@ -827,6 +827,7 @@ google_network_connectivity_policy_based_route: safe  # gcp-cost: no Cloud Billi
 google_network_connectivity_gateway_advertised_route: never_apply  # gcp-cost: no Cloud Billing Catalog SKU for the route itself (NCC 7BEB-7A51-4223 list_skus keyword=gateway/route → 0); billing-behavior: requires capacity-billed NetworkConnectivitySpokeGateway parent — never apply-smoke
 google_network_connectivity_service_connection_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU for service connection policy (NCC 7BEB-7A51-4223 list_skus keyword=connection/service → 0; catalog only Partner CCI transport SKUs); billing-behavior: PSC policy metadata — no existence/hourly charge; destroy deletes the policy
 google_cloud_support_support_event_subscription: safe  # gcp-cost: no Cloud Billing Catalog SKU after MCP lookup (list_services name=Cloud Support → none; Support 2062-016F-44A2 list_skus keyword=event → 0); billing-behavior: org subscription metadata — Cloud Support plan fees are separate entitlements; destroy deletes the subscription
+google_cloud_asset_project_feed: safe  # gcp-cost: no Cloud Billing Catalog SKU after list_services "Cloud Asset"/"Asset Inventory" empty; list_services "Asset" matched only Digital Asset Management 86A8-4796-BD2B (unrelated; list_skus keyword=feed → 0); billing-behavior: feed metadata publishes asset-change messages to Pub/Sub — create does not scan/export existing assets or bill CAI; destroy removes the feed
 google_network_security_address_group: safe  # apply-verified safe (existing example)
 google_network_security_client_tls_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU for client TLS policy config (Network Security E749-01A2-AE1F lists NGFW/data-processing SKUs only, e.g. 8717-57C8-078B — no TLS policy SKU); billing-behavior: policy metadata — no existence/hourly charge until attached to a data plane
 google_network_security_server_tls_policy: safe  # gcp-cost: no Cloud Billing Catalog SKU for server TLS policy config (Network Security E749-01A2-AE1F lists NGFW/data-processing SKUs only — no TLS policy SKU); billing-behavior: policy metadata — no existence/hourly charge until attached to a proxy/endpoint
@@ -875,6 +876,7 @@ google_folder_iam_binding: safe  # billing-behavior: IAM binding only
 google_folder_iam_policy: safe  # billing-behavior: IAM policy only
 google_project_iam_policy: safe  # billing-behavior: IAM policy only
 google_project_service: safe  # apply-verified safe (existing example)
+google_project_service_identity: safe  # gcp-cost: no Cloud Billing Catalog SKU after list_services "Service Usage"/"IAM" empty (schema null); list_services "Identity" matched Identity Platform DC5D-D207-FD2F (GCIP, unrelated) and Evidian IDaaS; billing-behavior: google-beta generateServiceIdentity mints a Google-managed agent email only — no billed resource; destroy is a state unlink
 google_pubsub_schema: safe  # apply-verified safe (existing example)
 google_pubsub_schema_iam_binding: safe  # billing-behavior: IAM binding only
 google_pubsub_schema_iam_member: safe  # apply-verified safe (existing example)

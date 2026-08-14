@@ -16,6 +16,7 @@ enum Barrels {
   certificateManager('certificate_manager'),
   ces('ces'),
   chronicle('chronicle'),
+  cloudAsset('cloud_asset'),
   cloudBuild('cloud_build'),
   cloudFunctions('cloud_functions'),
   config('config'),

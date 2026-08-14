@@ -70,6 +70,7 @@ final class FakePubsubTopic extends Resource {
     required super.argMap,
     super.lifecycle,
     super.dependsOn,
+    super.provider,
   }) : super(
           terraformType: 'google_pubsub_topic',
         );

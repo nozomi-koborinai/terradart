@@ -57,6 +57,8 @@ void main() {
       expect(rules.outputDirAliases['pubsub_lite'], 'pubsub_lite');
       expect(rules.outputDirAliases['pubsublite'], 'pubsub_lite');
       expect(rules.outputDirAliases['beyondcorp'], 'beyondcorp');
+      expect(rules.outputDirAliases['cloud_asset'], 'cloud_asset');
+      expect(rules.outputDirAliases['cloudasset'], 'cloud_asset');
       expect(rules.outputDirAliases['cloud_ids'], 'cloud_ids');
       expect(rules.outputDirAliases['cloudids'], 'cloud_ids');
       expect(rules.outputDirAliases['blockchain'], 'blockchain');

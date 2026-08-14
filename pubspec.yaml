@@ -25,6 +25,7 @@ workspace:
   - examples/cloud_build_quickstart
   - examples/clouddeploy_quickstart
   - examples/config_deployment_quickstart
+  - examples/cloud_asset_quickstart
   - examples/cloud_functions_quickstart
   - examples/cloud_run_quickstart
   - examples/cloud_scheduler_quickstart

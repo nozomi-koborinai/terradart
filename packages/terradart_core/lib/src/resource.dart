@@ -24,6 +24,7 @@ abstract base class Resource implements TfAddressed {
     required this.argMap,
     this.lifecycle,
     this.dependsOn,
+    this.provider,
   });
 
   /// Terraform resource type, e.g. `google_pubsub_topic`.
@@ -44,6 +45,13 @@ abstract base class Resource implements TfAddressed {
   /// either a wholesale resource (rendered as bare address) or an explicit
   /// `TfRef` (rendered via `bareAddress`).
   final List<DependencyTarget>? dependsOn;
+
+  /// Optional Terraform `provider` meta-argument (e.g. `'google-beta'`).
+  ///
+  /// When set, synth emits `"provider": "<name>"` on the resource block and
+  /// requires a [StackProvider] whose [StackProvider.providerName] matches.
+  /// Omit for the default provider implied by [terraformType]'s prefix.
+  final String? provider;
 
   @override
   String get tfAddress => '$terraformType.$localName';

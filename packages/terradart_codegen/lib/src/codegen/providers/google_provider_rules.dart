@@ -192,6 +192,12 @@ final class GoogleProviderRules extends ProviderRules {
     'integration_connectors': 'integration_connectors',
     'integrationconnectors': 'integration_connectors',
 
+    // Cloud Asset Inventory (`google_cloud_asset_*` → segment `cloud`
+    // without alias; MM product cloudasset). Distinct from cloud_ids /
+    // cloud_run / cloud_build / …
+    'cloud_asset': 'cloud_asset',
+    'cloudasset': 'cloud_asset',
+
     // Cloud IDS (`google_cloud_ids_*` → segment `cloud` without alias;
     // MM product cloudids). Distinct from cloud_run / cloud_build / …
     'cloud_ids': 'cloud_ids',

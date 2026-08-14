@@ -26,10 +26,11 @@ class TfJsonEncoder {
   /// Validates provider coverage: every registered resource / data source
   /// must have a [StackProvider] whose `providerName` equals the resource
   /// type's provider prefix (the segment before the first `_`, e.g.
-  /// `google_redis_instance` → `google`, `time_sleep` → `time`). Without
-  /// this, Terraform silently falls back to an unpinned implied
-  /// `hashicorp/<prefix>` provider, bypassing the version pin the concrete
-  /// provider class promises.
+  /// `google_redis_instance` → `google`, `time_sleep` → `time`). An explicit
+  /// [Resource.provider] meta-argument (e.g. `'google-beta'`) must also match
+  /// a registered provider. Without this, Terraform silently falls back to
+  /// an unpinned implied `hashicorp/<prefix>` provider, bypassing the
+  /// version pin the concrete provider class promises.
   static Map<String, dynamic> terraformBlock(Stack stack) {
     if (stack.providers.isEmpty) {
       throw StateError(
@@ -45,8 +46,13 @@ class TfJsonEncoder {
     final missingByPrefix = <String, List<String>>{};
     for (final r in [...stack.resources, ...stack.dataSources]) {
       final prefix = r.terraformType.split('_').first;
-      if (providerNames.contains(prefix)) continue;
-      missingByPrefix.putIfAbsent(prefix, () => []).add(r.tfAddress);
+      if (!providerNames.contains(prefix)) {
+        missingByPrefix.putIfAbsent(prefix, () => []).add(r.tfAddress);
+      }
+      final explicit = r.provider;
+      if (explicit != null && !providerNames.contains(explicit)) {
+        missingByPrefix.putIfAbsent(explicit, () => []).add(r.tfAddress);
+      }
     }
     if (missingByPrefix.isNotEmpty) {
       final detail = missingByPrefix.entries
@@ -338,6 +344,9 @@ class TfJsonEncoder {
       sensitiveFields: r.sensitiveFields,
       resourceAddress: r.tfAddress,
     );
+    if (r.provider != null) {
+      out['provider'] = r.provider;
+    }
     final deps = r.dependsOn;
     if (deps != null) {
       final dep = dependsOn(deps);
