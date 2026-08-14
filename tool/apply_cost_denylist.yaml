@@ -423,6 +423,7 @@ google_cloud_run_v2_job: safe  # apply-verified safe (existing example)
 google_cloud_run_v2_job_iam_member: safe  # apply-verified safe (existing example)
 google_cloud_run_v2_job_iam_binding: safe  # billing-behavior: IAM binding only
 google_cloud_run_v2_job_iam_policy: safe  # billing-behavior: IAM policy only
+google_cloud_run_service: safe  # gcp-cost: Cloud Run 152E-C115-5142 Requests 2DA5-55D3-E679 $0 then $0.40/count after 2M; Services CPU (Request-based billing) 4856-B847-F1EB $0.000024/s; billing-behavior: request-based CPU/memory and request count fire only on invocations (min-instance SKUs unused unless minScale>0); this example uses the hello image with default request-based billing and never sends requests
 google_cloud_run_v2_service: safe  # apply-verified safe (existing example)
 google_cloud_run_v2_service_iam_member: safe  # apply-verified safe (existing example)
 google_cloud_run_v2_service_iam_binding: safe  # billing-behavior: IAM binding only

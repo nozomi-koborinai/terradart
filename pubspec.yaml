@@ -28,6 +28,7 @@ workspace:
   - examples/cloud_asset_quickstart
   - examples/cloud_functions_quickstart
   - examples/cloud_run_quickstart
+  - examples/cloud_run_v1_quickstart
   - examples/cloud_scheduler_quickstart
   - examples/cloud_sql_quickstart
   - examples/cloud_tasks_quickstart
