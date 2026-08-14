@@ -41,5 +41,35 @@ void main() {
       stack.add(FakeResource(localName: 'x', name: TfArg.literal('x')));
       expect(stack.synth().tfJson, isA<Map<String, dynamic>>());
     });
+
+    test('throws when Resource.provider has no matching StackProvider', () {
+      final stack = TestStack(
+        providers: const [
+          FakeStackProvider(
+            providerName: 'google',
+            source: 'hashicorp/google',
+            versionConstraint: '~> 7.0',
+          ),
+        ],
+      );
+      stack.add(
+        FakePubsubTopic.withMeta(
+          localName: 'orders',
+          argMap: const {'name': TfArgLiteral<String>('orders-prod')},
+          provider: 'google-beta',
+        ),
+      );
+      expect(
+        () => stack.synth(),
+        throwsA(
+          isA<StateError>().having(
+            (e) => e.message,
+            'message',
+            allOf(contains('"google-beta"'),
+                contains('google_pubsub_topic.orders')),
+          ),
+        ),
+      );
+    });
   });
 }

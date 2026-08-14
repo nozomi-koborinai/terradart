@@ -407,6 +407,22 @@ void main() {
       );
     });
 
+    test('emits provider meta-argument when set', () {
+      final r = FakePubsubTopic.withMeta(
+        localName: 'orders',
+        argMap: const {'name': TfArgLiteral<String>('orders-prod')},
+        provider: 'google-beta',
+      );
+      final out = TfJsonEncoder.resourceBlock(r);
+      expect(
+        out,
+        equals({
+          'name': 'orders-prod',
+          'provider': 'google-beta',
+        }),
+      );
+    });
+
     test('sensitiveFields metadata throws on literal', () {
       final r = FakeSecretVersion(
         localName: 'api_key',
