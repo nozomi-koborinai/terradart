@@ -227,7 +227,7 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **1164 curated resource factories + 1 data source** (1165 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
+[`terradart_google`](packages/terradart_google/README.md) ships **1165 curated resource factories + 1 data source** (1166 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
 
 The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). In Dart, discover factories via `package:terradart_google/catalog.dart` (`terradartCatalog`). CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
@@ -318,7 +318,7 @@ Application platform & operations
 - [Compute project default network tier](examples/compute_default_network_tier_quickstart/)
 - [Compute Engine usage export bucket](examples/usage_export_quickstart/)
 - [Compute project snapshot settings](examples/compute_snapshot_settings_quickstart/)
-- [Document AI OCR processor](examples/document_ai_quickstart/)
+- [Document AI OCR processor + default version](examples/document_ai_quickstart/)
 - [Parameter Manager global + regional parameters](examples/parameter_manager_quickstart/)
 - [Network Security address group + URL list](examples/network_security_lists_quickstart/)
 - [Network Security client + server TLS policies](examples/network_security_tls_quickstart/)

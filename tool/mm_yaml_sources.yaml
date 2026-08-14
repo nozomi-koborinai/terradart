@@ -2004,6 +2004,8 @@ files:
     upstream: mmv1/products/documentai/Processor.yaml
   google_document_ai_schema:
     upstream: mmv1/products/documentai/Schema.yaml
+  google_document_ai_processor_default_version:
+    upstream: mmv1/products/documentai/ProcessorDefaultVersion.yaml
 
   google_data_loss_prevention_inspect_template:
     upstream: mmv1/products/dlp/InspectTemplate.yaml

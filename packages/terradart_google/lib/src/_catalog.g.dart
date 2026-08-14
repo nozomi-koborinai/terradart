@@ -16081,6 +16081,19 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_document_ai_processor`.\n\nThe first-class citizen for Document AI. Each processor defines how to\nextract structural information from a document.',
   ),
   CatalogEntry(
+    tfType: 'google_document_ai_processor_default_version',
+    className: 'GoogleDocumentAiProcessorDefaultVersion',
+    barrel: 'document_ai',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_document_ai_processor_default_version`.',
+    constructorParams: <String>['localName', 'processor', 'version'],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_document_ai_processor_default_version`.\n\nThe default version for the processor. Deleting this resource is a no-op,\nand does not unset the default version.\n\nDocument AI **processor default version** — points a processor at a\nversion (`stable`, `rc`, or a full `…/processorVersions/{id}` name).\n\nSetting the default does not process documents and has no Document AI\npage/OCR SKU. Terraform destroy is a no-op and does **not** unset the\ndefault; deleting the sibling processor removes it.\n\nPass [processor] as `TfArg.ref(processor.id)` and [version] as\n`\'\${processor.id.interpolation}/processorVersions/stable\'` (or `rc`).\n\nEnable `documentai.googleapis.com` via [GoogleProjectService] before\napply. The processor must exist first (`dependsOn` it).\n\nExample:\n```dart\nGoogleDocumentAiProcessorDefaultVersion(\n  localName: \'ocr_default\',\n  processor: TfArg.ref(ocr.id),\n  version: TfArg.literal(\n    \'\${ocr.id.interpolation}/processorVersions/stable\',\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_document_ai_schema',
     className: 'GoogleDocumentAiSchema',
     barrel: 'document_ai',

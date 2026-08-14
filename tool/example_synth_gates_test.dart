@@ -19,6 +19,12 @@ void _testRequiredApi() {
     requiredApiForTerraformType('google_gke_backup_backup_plan_iam_member') ==
         null,
   );
+  assert(
+    requiredApiForTerraformType(
+          'google_document_ai_processor_default_version',
+        ) ==
+        'documentai.googleapis.com',
+  );
 }
 
 void _testApiEnablementGraph() {
