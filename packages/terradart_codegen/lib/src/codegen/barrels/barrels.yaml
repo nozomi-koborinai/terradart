@@ -395,7 +395,8 @@ barrels:
       /// barrel (e.g. `pubsub.dart` exports `GooglePubsubTopicIamMember`).
   identity:
     doc: |-
-      /// Identity Platform — project Auth config and multi-tenant realms.
+      /// Identity Platform — project Auth config, multi-tenant realms,
+      /// and tenant OIDC IdP metadata.
   integrations:
     doc: |-
       /// Application Integration — provision a regional client
