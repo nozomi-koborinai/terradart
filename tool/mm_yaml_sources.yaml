@@ -2229,6 +2229,8 @@ files:
     upstream: null  # third_party terraform/services/osconfig/resource_os_config_os_policy_assignment.go
   google_os_config_patch_deployment:
     upstream: mmv1/products/osconfig/PatchDeployment.yaml
+  google_os_config_v2_policy_orchestrator:
+    upstream: mmv1/products/osconfigv2/PolicyOrchestrator.yaml
   google_binary_authorization_policy:
     upstream: mmv1/products/binaryauthorization/Policy.yaml
   google_binary_authorization_attestor:

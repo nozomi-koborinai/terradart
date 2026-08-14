@@ -42,6 +42,10 @@ void main() {
       expect(rules.outputDirAliases['developer'], 'developer_connect');
       expect(rules.outputDirAliases['developer_connect'], 'developer_connect');
       expect(rules.outputDirAliases['developerconnect'], 'developer_connect');
+      expect(rules.outputDirAliases['os'], 'os_config');
+      expect(rules.outputDirAliases['os_config'], 'os_config');
+      expect(rules.outputDirAliases['os_config_v2'], 'os_config');
+      expect(rules.outputDirAliases['osconfigv2'], 'os_config');
       expect(rules.outputDirAliases['backup'], 'backup_dr');
       expect(rules.outputDirAliases['backup_dr'], 'backup_dr');
       expect(rules.outputDirAliases['backupdr'], 'backup_dr');

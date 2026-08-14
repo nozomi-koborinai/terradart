@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// OS Config: VM Manager OS policy assignments and patch deployments.
+/// OS Config: VM Manager OS policy assignments, patch deployments,
+/// and v2 policy orchestrators.
 library;
 
 export 'src/os_config/google_os_config_os_policy_assignment.dart'
@@ -56,3 +57,21 @@ export 'src/os_config/google_os_config_patch_deployment.dart'
         OsConfigPatchDeploymentRolloutDisruptionBudget,
         OsConfigPatchDeploymentRolloutMode,
         OsConfigPatchDeploymentSchedule;
+export 'src/os_config/google_os_config_v2_policy_orchestrator.dart'
+    show
+        GoogleOsConfigV2PolicyOrchestrator,
+        OsConfigV2PolicyOrchestratorOrchestratedResource,
+        OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1Payload,
+        OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilter,
+        OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterExclusionLabels,
+        OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterInclusionLabels,
+        OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadInstanceFilterInventories,
+        OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPolicies,
+        OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroups,
+        OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadOsPoliciesResourceGroupsInventoryFilters,
+        OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRollout,
+        OsConfigV2PolicyOrchestratorOrchestratedResourceOsPolicyAssignmentV1PayloadRolloutDisruptionBudget,
+        OsConfigV2PolicyOrchestratorOrchestrationScope,
+        OsConfigV2PolicyOrchestratorOrchestrationScopeSelectors,
+        OsConfigV2PolicyOrchestratorOrchestrationScopeSelectorsLocationSelector,
+        OsConfigV2PolicyOrchestratorOrchestrationScopeSelectorsResourceHierarchySelector;

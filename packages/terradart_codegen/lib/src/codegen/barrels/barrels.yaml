@@ -489,7 +489,8 @@ barrels:
       /// (`google_organization_iam_*`).
   os_config:
     doc: |-
-      /// OS Config: VM Manager OS policy assignments and patch deployments.
+      /// OS Config: VM Manager OS policy assignments, patch deployments,
+      /// and v2 policy orchestrators.
   parallelstore:
     doc: |-
       /// Parallelstore — high-performance managed parallel file system instances.

@@ -107,8 +107,12 @@ final class GoogleProviderRules extends ProviderRules {
     'vertex_ai': 'vertex_ai',
 
     // Wave 76 — OS Config (`google_os_config_*` → segment `os`).
+    // v2 policy orchestrators live in MM product `osconfigv2`; fold into
+    // the existing `os_config` barrel (do not create `os_config_v2`).
     'os': 'os_config',
     'os_config': 'os_config',
+    'os_config_v2': 'os_config',
+    'osconfigv2': 'os_config',
 
     // Wave 76 — Binary Authorization (`google_binary_authorization_*`).
     'binary': 'binary_authorization',
