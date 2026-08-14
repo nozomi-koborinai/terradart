@@ -1,6 +1,13 @@
 # Apigee quickstart
 
-End-to-end terradart example for Apigee runtime analytics primitives: a typed data collector and a Cloud Storage analytics datastore.
+End-to-end terradart example for Apigee runtime analytics primitives plus
+an Advanced API Security monitoring condition (placeholder profile / env IDs):
+
+- `google_apigee_data_collector`
+- `google_apigee_datastore`
+- `google_apigee_security_monitoring_condition`
+
+Real apply is skipped (`apply_smoke_skip.yaml`): needs a live Apigee org.
 
 ## Prerequisites
 
@@ -23,5 +30,6 @@ terraform plan
 
 - `GoogleApigeeDataCollector` — integer `dc_request_latency` collector on the demo org
 - `GoogleApigeeDatastore` — GCS-backed analytics export target in the same org
+- `GoogleApigeeSecurityMonitoringCondition` — placeholder profile `demo-profile` and scope `demo-env` (`deletion_policy=DELETE`)
 
 Replace the placeholder `organizations/demo-org` in `lib/main.dart` with your org before applying.

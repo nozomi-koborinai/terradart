@@ -7,8 +7,9 @@
 /// groups, env keystores/references, KVMs, keystore aliases (self-signed
 /// / key+cert / PKCS12), API proxies, shared flows + deployments, flow
 /// hooks, environment debug masks, proxy deployments, control-plane
-/// access, and Advanced API Security profiles/feedback. Org/instance/env
-/// bill while provisioned (never_apply for apply-smoke).
+/// access, and Advanced API Security profiles / feedback /
+/// monitoring conditions. Org/instance/env bill while provisioned
+/// (never_apply for apply-smoke).
 library;
 
 export 'src/apigee/google_apigee_addons_config.dart'
@@ -132,6 +133,10 @@ export 'src/apigee/google_apigee_security_feedback.dart'
         ApigeeSecurityFeedbackFeedbackType,
         ApigeeSecurityFeedbackReason,
         GoogleApigeeSecurityFeedback;
+export 'src/apigee/google_apigee_security_monitoring_condition.dart'
+    show
+        ApigeeSecurityMonitoringConditionIncludeAllResources,
+        GoogleApigeeSecurityMonitoringCondition;
 export 'src/apigee/google_apigee_security_profile_v2.dart'
     show
         ApigeeSecurityProfileV2ProfileAssessmentConfigs,

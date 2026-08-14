@@ -1841,6 +1841,8 @@ files:
     upstream: mmv1/products/apigee/SecurityFeedback.yaml
   google_apigee_security_profile_v2:
     upstream: mmv1/products/apigee/SecurityProfileV2.yaml
+  google_apigee_security_monitoring_condition:
+    upstream: mmv1/products/apigee/SecurityMonitoringCondition.yaml
   # App Hub (applications + discovered service/workload registration)
   google_apphub_application:
     upstream: mmv1/products/apphub/Application.yaml

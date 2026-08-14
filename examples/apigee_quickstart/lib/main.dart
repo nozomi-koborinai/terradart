@@ -1,9 +1,12 @@
-/// Apigee quickstart — data collector + GCS analytics datastore.
+/// Apigee quickstart — data collector + GCS analytics datastore plus
+/// an Advanced API Security monitoring condition (placeholder IDs).
 ///
 /// Provisions runtime analytics plumbing inside an existing Apigee
 /// organization:
 /// - a `google_apigee_data_collector` that captures integer request latency,
-/// - a `google_apigee_datastore` targeting Cloud Storage for export.
+/// - a `google_apigee_datastore` targeting Cloud Storage for export,
+/// - a `google_apigee_security_monitoring_condition` naming a profile
+///   and environment scope (does not process API requests).
 ///
 /// `org_id` must reference a pre-existing Apigee org
 /// (`organizations/{org_name}`). This example uses a placeholder org name
@@ -52,6 +55,20 @@ final class ApigeeAnalyticsStack extends Stack {
           bucketName: TfArg.literal('$projectId-apigee-analytics'),
           path: TfArg.literal('analytics'),
         ),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    // Advanced API Security config metadata only. Placeholder profile
+    // and environment IDs — creating this does not process API requests.
+    add(
+      GoogleApigeeSecurityMonitoringCondition(
+        localName: 'demo_smc',
+        conditionId: TfArg.literal('terradart-smc'),
+        orgId: TfArg.literal(orgId),
+        profile: TfArg.literal('demo-profile'),
+        scope: TfArg.literal('demo-env'),
+        deletionPolicy: TfArg.literal('DELETE'),
         dependsOn: apiDeps,
       ),
     );
