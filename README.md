@@ -227,7 +227,7 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **1165 curated resource factories + 1 data source** (1166 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
+[`terradart_google`](packages/terradart_google/README.md) ships **1166 curated resource factories + 1 data source** (1167 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
 
 The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). In Dart, discover factories via `package:terradart_google/catalog.dart` (`terradartCatalog`). CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
@@ -335,7 +335,7 @@ Application platform & operations
 - [Vertex AI Workbench environment (container image)](examples/notebooks_quickstart/)
 - [Sensitive Data Protection (DLP) inspect / de-identify templates + stored info type + paused job trigger](examples/dlp_quickstart/)
 - [Cloud Observability trace scope](examples/observability_quickstart/)
-- [GKE Hub fleet scope, namespace, and rollout sequence (no cluster)](examples/gke_hub_quickstart/)
+- [GKE Hub fleet scope, namespace, scope RBAC, and rollout sequence (no cluster)](examples/gke_hub_quickstart/)
 - [GKE Hub Multi-Cluster Service Discovery feature](examples/gke_hub_feature_quickstart/)
 
 ## How it compares

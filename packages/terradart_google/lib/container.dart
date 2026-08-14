@@ -46,3 +46,8 @@ export 'src/container/google_gke_hub_scope_iam_member.dart'
     show GoogleGkeHubScopeIamMember;
 export 'src/container/google_gke_hub_scope_iam_policy.dart'
     show GoogleGkeHubScopeIamPolicy;
+export 'src/container/google_gke_hub_scope_rbac_role_binding.dart'
+    show
+        GkeHubScopeRbacRoleBindingRole,
+        GkeHubScopeRbacRoleBindingRolePredefinedRole,
+        GoogleGkeHubScopeRbacRoleBinding;

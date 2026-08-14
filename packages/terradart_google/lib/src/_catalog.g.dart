@@ -17970,6 +17970,30 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_gke_hub_scope_iam_policy`.\n\nAuthoritative IAM policy for a GKE Hub fleet scope.\n\n`policy_data` replaces the entire IAM policy, overwriting grants made\noutside Terraform. Prefer [GoogleGkeHubScopeIamMember] for single-principal grants.',
   ),
   CatalogEntry(
+    tfType: 'google_gke_hub_scope_rbac_role_binding',
+    className: 'GoogleGkeHubScopeRbacRoleBinding',
+    barrel: 'container',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_gke_hub_scope_rbac_role_binding`.',
+    constructorParams: <String>[
+      'localName',
+      'scopeId',
+      'scopeRbacRoleBindingId',
+      'user',
+      'role',
+      'labels',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'GkeHubScopeRbacRoleBindingRole',
+      'GkeHubScopeRbacRoleBindingRolePredefinedRole',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_gke_hub_scope_rbac_role_binding`.\n\nRBACRoleBinding represents a rbacrolebinding across the Fleet.\n\nGKE Hub **scope RBAC role binding** — a fleet-wide Kubernetes RBAC\nbinding on a [GoogleGkeHubScope] (no cluster membership required).\n\nPass [user] as a Kubernetes principal (`alice@example.com`). [group]\nis the other half of the MM `exactly_one_of` and is omitted from this\nconstructor — use [user] (a Google Group cannot be created via\nTerraform). [role] must set either `predefinedRole` (`VIEW` / `EDIT`\n/ `ADMIN`) or `customRole` (needs the `rbacrolebindingactuation`\nfeature). Prefer `VIEW` for smoke stacks.\n\nCreating the binding does not attach clusters or bill GKE Enterprise.\nEnable `gkehub.googleapis.com` via [GoogleProjectService] before apply.\nThe scope must exist first (`dependsOn` it).\n\nExample:\n```dart\nGoogleGkeHubScopeRbacRoleBinding(\n  localName: \'team_view\',\n  scopeId: TfArg.literal(\'terradart-scope\'),\n  scopeRbacRoleBindingId: TfArg.literal(\'terradart-scope-rbac\'),\n  user: TfArg.literal(\'terradart-fleet-rbac@example.com\'),\n  role: GkeHubScopeRbacRoleBindingRole(\n    predefinedRole: TfArg.literal(\n      GkeHubScopeRbacRoleBindingRolePredefinedRole.view,\n    ),\n  ),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_gkeonprem_bare_metal_admin_cluster',
     className: 'GoogleGkeonpremBareMetalAdminCluster',
     barrel: 'gkeonprem',
