@@ -4,6 +4,7 @@
 /// team-management scaffolding **without any cluster**:
 /// - a fleet scope (`terradart-scope`),
 /// - a fleet namespace (`terradart-team`) inside that scope,
+/// - a fleet-wide scope RBAC role binding (`VIEW` for a demo principal),
 /// - a rollout sequence that stages upgrades across the project's fleet, and
 /// - an additive IAM grant on the scope for a team-reader service account.
 ///
@@ -51,6 +52,25 @@ final class FleetStack extends Stack {
         scopeNamespaceId: TfArg.literal('terradart-team'),
         scopeId: TfArg.literal('terradart-scope'),
         scope: TfArg.ref(scope.id),
+        dependsOn: [ResourceDependency(scope)],
+      ),
+    );
+
+    // Fleet-wide Kubernetes RBAC on the scope. `user` is a K8s principal
+    // name (not a GCP IAM member), so a demo email is enough — the official
+    // provider sample uses the same pattern. `VIEW` is the least-privilege
+    // predefined role; custom roles need rbacrolebindingactuation.
+    add(
+      GoogleGkeHubScopeRbacRoleBinding(
+        localName: 'team_view',
+        scopeId: TfArg.literal('terradart-scope'),
+        scopeRbacRoleBindingId: TfArg.literal('terradart-scope-rbac'),
+        user: TfArg.literal('terradart-fleet-rbac@example.com'),
+        role: GkeHubScopeRbacRoleBindingRole(
+          predefinedRole: TfArg.literal(
+            GkeHubScopeRbacRoleBindingRolePredefinedRole.view,
+          ),
+        ),
         dependsOn: [ResourceDependency(scope)],
       ),
     );

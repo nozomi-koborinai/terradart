@@ -747,6 +747,7 @@ google_gke_hub_membership: safe  # apply-verified safe (existing example)
 google_gke_hub_namespace: safe  # apply-verified safe (existing example)
 google_gke_hub_rollout_sequence: safe  # gcp-cost: no Cloud Billing Catalog SKU (Fleets/GKE Enterprise SKUs are cluster-attachment bundles; rollout sequence is fleet metadata); billing-behavior: no existence/hourly charge for the sequence resource itself
 google_gke_hub_scope: safe  # apply-verified safe (existing example)
+google_gke_hub_scope_rbac_role_binding: safe  # gcp-cost: no Cloud Billing Catalog SKU (gcp-cost MCP list_skus keyword="rbac"/"scope" on GKE Enterprise / GDC 9186-F79E-3871 → 0 SKUs; Fleets 2E81-DB3E-82E2 keyword="rbac" → 0; sibling SKUs are cluster-attachment only, e.g. C0C2-B5F0-9020 GKE Multicloud Attached Clusters $0.10/h); billing-behavior: fleet-wide Kubernetes RBAC metadata on a scope — create/delete does not attach clusters or bill GKE Enterprise; destroy removes the binding
 google_healthcare_consent_store: safe  # apply-verified safe (existing example)
 google_healthcare_consent_store_iam_binding: safe  # billing-behavior: IAM binding — no SKU; grant metadata only
 google_healthcare_consent_store_iam_policy: safe  # billing-behavior: IAM policy — no SKU; grant metadata only

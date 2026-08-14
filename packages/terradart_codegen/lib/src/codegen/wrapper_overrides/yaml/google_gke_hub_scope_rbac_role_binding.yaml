@@ -1,0 +1,49 @@
+outputDir: container
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// GKE Hub **scope RBAC role binding** — a fleet-wide Kubernetes RBAC
+  /// binding on a [GoogleGkeHubScope] (no cluster membership required).
+  ///
+  /// Pass [user] as a Kubernetes principal (`alice@example.com`). [group]
+  /// is the other half of the MM `exactly_one_of` and is omitted from this
+  /// constructor — use [user] (a Google Group cannot be created via
+  /// Terraform). [role] must set either `predefinedRole` (`VIEW` / `EDIT`
+  /// / `ADMIN`) or `customRole` (needs the `rbacrolebindingactuation`
+  /// feature). Prefer `VIEW` for smoke stacks.
+  ///
+  /// Creating the binding does not attach clusters or bill GKE Enterprise.
+  /// Enable `gkehub.googleapis.com` via [GoogleProjectService] before apply.
+  /// The scope must exist first (`dependsOn` it).
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleGkeHubScopeRbacRoleBinding(
+  ///   localName: 'team_view',
+  ///   scopeId: TfArg.literal('terradart-scope'),
+  ///   scopeRbacRoleBindingId: TfArg.literal('terradart-scope-rbac'),
+  ///   user: TfArg.literal('terradart-fleet-rbac@example.com'),
+  ///   role: GkeHubScopeRbacRoleBindingRole(
+  ///     predefinedRole: TfArg.literal(
+  ///       GkeHubScopeRbacRoleBindingRolePredefinedRole.view,
+  ///     ),
+  ///   ),
+  /// );
+  /// ```
+
+# List only `user` (not `group`) so lint-override's
+# exactly-one-paramorder-fanout does not require a sealed principal slot.
+paramOrder:
+  - scope_id
+  - scope_rbac_role_binding_id
+  - user
+  - role
+  - labels
+  - deletion_policy
+  - project

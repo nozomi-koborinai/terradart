@@ -1,5 +1,5 @@
 name: terradart_example_gke_hub_quickstart
-description: GKE Hub fleet team-management example -- a fleet scope and a fleet namespace (no cluster required), with a typed Dart export.
+description: GKE Hub fleet team-management example -- a fleet scope, namespace, and scope RBAC binding (no cluster required).
 publish_to: none
 
 environment:
