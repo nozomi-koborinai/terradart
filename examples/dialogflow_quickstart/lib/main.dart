@@ -1,9 +1,11 @@
-/// Dialogflow CX quickstart — regional SIP trunk plus a thin ES
-/// conversation-profile (Agent Assist metadata only).
+/// Dialogflow CX quickstart — regional SIP trunk plus thin Agent
+/// Assist metadata (conversation profile + summarization generator).
 ///
 /// Real apply is skipped ([tool/apply_smoke_skip.yaml]): SIP trunk
 /// needs a live carrier TLS peer. The conversation profile omits
 /// automated-agent / STT / TTS so it does not start a conversation.
+/// The generator uses [DialogflowGeneratorTriggerEvent.manualCall]
+/// and does not run summarization on create.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -60,6 +62,25 @@ final class DialogflowSipTrunkStack extends Stack {
         localName: 'demo_profile',
         displayName: TfArg.literal('terradart-profile'),
         location: TfArg.literal('global'),
+        deletionPolicy: TfArg.literal('DELETE'),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    // Summarization generator config only. MANUAL_CALL so create does
+    // not run the LLM. No published_model / inference / few-shot.
+    add(
+      GoogleDialogflowGenerator(
+        localName: 'demo_summarizer',
+        location: TfArg.literal('global'),
+        description: TfArg.literal('terradart summarization generator'),
+        triggerEvent: TfArg.literal(
+          DialogflowGeneratorTriggerEvent.manualCall,
+        ),
+        summarizationContext: DialogflowGeneratorSummarizationContext(
+          version: TfArg.literal('4.0'),
+          outputLanguageCode: TfArg.literal('en'),
+        ),
         deletionPolicy: TfArg.literal('DELETE'),
         dependsOn: apiDeps,
       ),
