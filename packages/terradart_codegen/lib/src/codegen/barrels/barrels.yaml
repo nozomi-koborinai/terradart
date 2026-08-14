@@ -394,7 +394,8 @@ barrels:
   integrations:
     doc: |-
       /// Application Integration — provision a regional client
-      /// (`google_integrations_client`) for the Integration control plane.
+      /// (`google_integrations_client`) and auth-config credential
+      /// metadata (`google_integrations_auth_config`).
   integration_connectors:
     doc: |-
       /// Integration Connectors — managed connection nodes to SaaS / Google

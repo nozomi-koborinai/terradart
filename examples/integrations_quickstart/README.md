@@ -1,13 +1,16 @@
-# Application Integration client quickstart
+# Application Integration client + auth-config quickstart
 
 End-to-end terradart example for a regional Application Integration client
-(`google_integrations_client`). Provisions the Integration control plane in
-`us-east1` without sample flows or CMEK (also enables Secret Manager +
-Connectors APIs and waits for propagation, matching Application Integration
-quick setup).
+(`google_integrations_client`) plus dummy credential metadata
+(`google_integrations_auth_config`). Provisions the Integration control
+plane in `us-east1` and a `USERNAME_AND_PASSWORD` auth profile with
+placeholder username/password — not a real secret, not OAuth, not a PEM
+cert. No sample flows, CMEK, or connectors (also enables Secret Manager +
+Connectors APIs and waits for propagation, matching Application
+Integration quick setup).
 
-Billing for Application Integration is flow execution / data processed — this
-stack only provisions the client.
+Billing for Application Integration is flow execution / data processed —
+this stack only provisions the client and unused credential metadata.
 
 ## Prerequisites
 
