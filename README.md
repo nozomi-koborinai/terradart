@@ -248,6 +248,7 @@ Foundational
 - [Project IAM audit config + deny policy](examples/project_iam_audit_config_quickstart/)
 - [IAP settings + location-web IAM binding/policy](examples/iap_settings_quickstart/)
 - [Application Integration client + dummy auth config](examples/integrations_quickstart/)
+- [Cloud Endpoints OpenAPI service + service IAM member](examples/endpoints_quickstart/)
 - [IAP tunnel destination group](examples/iap_tunnel_quickstart/)
 - [Identity Platform tenant](examples/identity_platform_quickstart/)
 - [Container Analysis note + note IAM binding/policy](examples/container_analysis_quickstart/)

@@ -317,8 +317,10 @@ barrels:
       /// standalone project).
   endpoints:
     doc: |-
-      /// Cloud Endpoints — managed API service IAM for an Endpoints service
-      /// and its consumer projects (`google_endpoints_service*_iam_*`).
+      /// Cloud Endpoints — OpenAPI/gRPC service-config metadata
+      /// (`google_endpoints_service`) plus managed API service IAM for an
+      /// Endpoints service and its consumer projects
+      /// (`google_endpoints_service*_iam_*`).
   eventarc:
     doc: |-
       /// Eventarc — channels, triggers, pipelines, message buses, and API sources

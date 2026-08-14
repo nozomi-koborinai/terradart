@@ -1398,6 +1398,8 @@ files:
     upstream: mmv1/products/secretmanager/SecretVersion.yaml
   google_service_account:
     upstream: null  # handwritten in terraform provider; no MM YAML (probe 404)
+  google_endpoints_service:
+    upstream: null  # third_party handwritten; no mmv1/products/endpoints/Service.yaml (HTTP 404, probed 2026-08-14)
   # Wave 17 (Eventarc completion)
   google_endpoints_service_iam_member:
     upstream: null  # MM templates IAM bindings; schema-only curation

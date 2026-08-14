@@ -732,15 +732,14 @@ GoogleDataprocMetastoreTableIamMember: requires Hive table under GoogleDataprocM
 GoogleDataprocMetastoreTableIamBinding: requires Hive table under GoogleDataprocMetastoreService (sweep_only); deferred with sibling member
 GoogleDataprocMetastoreTableIamPolicy: requires Hive table under GoogleDataprocMetastoreService (sweep_only); deferred with sibling member
 
-# Cloud Endpoints service / consumer IAM — parent google_endpoints_service is
-# uncurated (OpenAPI/gRPC service config upload); consumer IAM also needs a
-# consumer project number. No applyable quickstart on terradart-validate.
-GoogleEndpointsServiceIamMember: requires a parent GoogleEndpointsService (uncurated OpenAPI/gRPC config); deferred pending parent Wave
-GoogleEndpointsServiceIamBinding: requires a parent GoogleEndpointsService (uncurated); deferred with sibling member
-GoogleEndpointsServiceIamPolicy: requires a parent GoogleEndpointsService (uncurated); deferred with sibling member
-GoogleEndpointsServiceConsumersIamMember: requires Endpoints service_name + consumer_project (parent uncurated); deferred pending parent Wave
-GoogleEndpointsServiceConsumersIamBinding: requires Endpoints service consumer scope (parent uncurated); deferred with sibling member
-GoogleEndpointsServiceConsumersIamPolicy: requires Endpoints service consumer scope (parent uncurated); deferred with sibling member
+# Cloud Endpoints service IAM binding/policy — sibling *IamMember is in
+# endpoints_quickstart (iam-adjunct-debt path; AGENTS.md Wave shipping).
+# Consumer IAM still needs a second consumer project number.
+GoogleEndpointsServiceIamBinding: iam-adjunct-debt: sibling GoogleEndpointsServiceIamMember already in endpoints_quickstart; authoritative binding not needed in smoke
+GoogleEndpointsServiceIamPolicy: iam-adjunct-debt: sibling GoogleEndpointsServiceIamMember already in endpoints_quickstart; authoritative policy not needed in smoke
+GoogleEndpointsServiceConsumersIamMember: requires Endpoints service_name + consumer_project (second project); deferred — terradart-validate is a standalone project
+GoogleEndpointsServiceConsumersIamBinding: requires Endpoints service consumer scope (second project); deferred with sibling member
+GoogleEndpointsServiceConsumersIamPolicy: requires Endpoints service consumer scope (second project); deferred with sibling member
 
 # Legacy Cloud Functions (1st gen) IAM — parent uncurated;
 # prefer Cloud Functions 2nd gen factories in examples.
