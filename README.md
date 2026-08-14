@@ -227,7 +227,7 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **1177 curated resource factories + 1 data source** (1178 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
+[`terradart_google`](packages/terradart_google/README.md) ships **1178 curated resource factories + 1 data source** (1179 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
 
 The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). In Dart, discover factories via `package:terradart_google/catalog.dart` (`terradartCatalog`). CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
@@ -242,7 +242,7 @@ Foundational
 - [Secret Manager (write-only fields + global/regional secret IAM binding/policy)](examples/secret_manager_quickstart/)
 - [Cloud Scheduler → Pub/Sub target](examples/cloud_scheduler_quickstart/)
 - [Apigee data collector + analytics datastore](examples/apigee_quickstart/)
-- [IAM members across Pub/Sub, Tasks, Secret Manager, and IAP (App Engine, Agent Registry, location web)](examples/iam_quickstart/)
+- [IAM members across Pub/Sub, Tasks, Secret Manager, and IAP (App Engine, Agent Registry, location web), plus OS Login SSH public key](examples/iam_quickstart/)
 - [Privileged Access Manager entitlement](examples/privileged_access_manager_quickstart/)
 - [WIF trust-domain pool + namespace + managed identity](examples/wif_trust_domain_quickstart/)
 - [Project IAM audit config + deny policy](examples/project_iam_audit_config_quickstart/)

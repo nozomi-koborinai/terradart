@@ -2231,6 +2231,8 @@ files:
     upstream: mmv1/products/osconfig/PatchDeployment.yaml
   google_os_config_v2_policy_orchestrator:
     upstream: mmv1/products/osconfigv2/PolicyOrchestrator.yaml
+  google_os_login_ssh_public_key:
+    upstream: mmv1/products/oslogin/SSHPublicKey.yaml
   google_binary_authorization_policy:
     upstream: mmv1/products/binaryauthorization/Policy.yaml
   google_binary_authorization_attestor:

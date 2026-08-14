@@ -20,6 +20,7 @@
 ///  11. `google_project_iam_member`
 ///  12. `google_service_account_iam_member`
 ///  13. `google_service_account_key`
+///  14. `google_os_login_ssh_public_key`
 ///
 /// WIF (0.12.5 debt): `google_iam_workload_identity_pool_provider` with
 /// sealed [IamWorkloadIdentityPoolProviderOidcTrust] for GitHub Actions.
@@ -393,6 +394,34 @@ final class IamShowcaseStack extends Stack {
         serviceAccountId: TfArg.ref(sa.name),
         keyAlgorithm: TfArg.literal(KeyAlgorithm.rsa2048),
         privateKeyType: TfArg.literal(PrivateKeyType.googleCredentialsFile),
+      ),
+    );
+
+    // ---- 14. OS Login SSH public key on the demo SA -----------------------
+    //
+    // Imports a dummy ssh-ed25519 public key onto the in-stack SA identity.
+    // Does not provision a VM. Private key is not in the repo.
+
+    final apiOsLogin = add(
+      GoogleProjectService(
+        localName: 'api_oslogin',
+        service: TfArg.literal('oslogin.googleapis.com'),
+        disableOnDestroy: TfArg.literal(false),
+      ),
+    );
+
+    add(
+      GoogleOsLoginSshPublicKey(
+        localName: 'demo_ssh',
+        user: TfArg.ref(sa.email),
+        key: TfArg.literal(
+          'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMlTZg5RNgdRr0tVBEkKHZOi3VCrR2eoC7e5stONs4Uw terradart-dummy',
+        ),
+        deletionPolicy: TfArg.literal('DELETE'),
+        dependsOn: [
+          ResourceDependency(sa),
+          ResourceDependency(apiOsLogin),
+        ],
       ),
     );
 
