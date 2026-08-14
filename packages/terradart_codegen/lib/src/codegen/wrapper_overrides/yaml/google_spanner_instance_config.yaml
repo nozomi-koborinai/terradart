@@ -1,0 +1,50 @@
+outputDir: spanner
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Cloud Spanner **user-managed instance configuration** — replica
+  /// topology metadata cloned from a Google-managed [baseConfig].
+  /// Creating the config does not create a [GoogleSpannerInstance] and
+  /// does not reserve nodes or processing units.
+  ///
+  /// [name] must start with `custom-`. The Terraform provider merges
+  /// [baseConfig] replicas automatically — pass only the extra optional
+  /// `READ_ONLY` replica (official recipe: `nam11` + `us-west1`).
+  ///
+  /// Enable `spanner.googleapis.com` via [GoogleProjectService] before
+  /// apply. Set [deletionPolicy] to `DELETE` so destroy removes the
+  /// unused config. Do not attach a [GoogleSpannerInstance] unless you
+  /// intend to pay node / PU SKUs.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleSpannerInstanceConfig(
+  ///   localName: 'custom_nam11',
+  ///   name: TfArg.literal('custom-td-nam11-ro'),
+  ///   displayName: TfArg.literal('TerraDart nam11 + us-west1 RO'),
+  ///   baseConfig: TfArg.literal('nam11'),
+  ///   replicas: [
+  ///     SpannerInstanceConfigReplicas(
+  ///       location: TfArg.literal('us-west1'),
+  ///       type: TfArg.literal(SpannerInstanceConfigReplicasType.readOnly),
+  ///       defaultLeaderLocation: TfArg.literal(false),
+  ///     ),
+  ///   ],
+  ///   deletionPolicy: TfArg.literal('DELETE'),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - display_name
+  - base_config
+  - replicas
+  - labels
+  - deletion_policy
+  - project

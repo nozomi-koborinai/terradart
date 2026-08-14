@@ -1,6 +1,7 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
-/// Cloud Spanner — horizontally scalable relational databases.
+/// Cloud Spanner — horizontally scalable relational databases and
+/// user-managed instance configurations.
 library;
 
 export 'src/spanner/google_spanner_backup_schedule.dart'
@@ -28,6 +29,11 @@ export 'src/spanner/google_spanner_instance.dart'
         SpannerInstanceEdition,
         SpannerInstanceInstanceType,
         SpannerInstanceState;
+export 'src/spanner/google_spanner_instance_config.dart'
+    show
+        GoogleSpannerInstanceConfig,
+        SpannerInstanceConfigReplicas,
+        SpannerInstanceConfigReplicasType;
 export 'src/spanner/google_spanner_instance_iam_binding.dart'
     show GoogleSpannerInstanceIamBinding;
 export 'src/spanner/google_spanner_instance_iam_member.dart'

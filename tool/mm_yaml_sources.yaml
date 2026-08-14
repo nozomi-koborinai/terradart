@@ -2006,6 +2006,8 @@ files:
     upstream: mmv1/products/spanner/BackupSchedule.yaml
   google_spanner_instance:
     upstream: mmv1/products/spanner/Instance.yaml
+  google_spanner_instance_config:
+    upstream: mmv1/products/spanner/InstanceConfig.yaml
   google_document_ai_processor:
     upstream: mmv1/products/documentai/Processor.yaml
   google_document_ai_schema:

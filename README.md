@@ -227,7 +227,7 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **1170 curated resource factories + 1 data source** (1171 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
+[`terradart_google`](packages/terradart_google/README.md) ships **1171 curated resource factories + 1 data source** (1172 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
 
 The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). In Dart, discover factories via `package:terradart_google/catalog.dart` (`terradartCatalog`). CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
@@ -277,6 +277,7 @@ Data & storage
 - [License Manager Office SPLA configuration](examples/license_manager_quickstart/)
 - [Model Armor template](examples/model_armor_quickstart/)
 - [Transcoder job template](examples/transcoder_quickstart/)
+- [Spanner user-managed instance config](examples/spanner_instance_config_quickstart/)
 - [Firebase Security Rules ruleset](examples/firebaserules_quickstart/)
 - [Vector Search collection](examples/vector_quickstart/)
 - [Migration Center sources, discovery, import, groups, and reports](examples/migration_center_quickstart/)

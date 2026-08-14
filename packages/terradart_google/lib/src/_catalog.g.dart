@@ -26615,6 +26615,30 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_spanner_instance`.\n\nAn isolated set of Cloud Spanner resources on which databases can be hosted.\n\nCloud Spanner instance — horizontally scalable relational database.\n\nRequired identity:\n- [localName]: Terraform local name.\n- [config]: instance configuration name (e.g. `regional-asia-northeast1`).\n- [displayName]: user-visible label.\n\nSet exactly one of [numNodes] or [processingUnits] for capacity.\n\nEnable `spanner.googleapis.com` via [GoogleProjectService] before apply.\n\nExample:\n```dart\nGoogleSpannerInstance(\n  localName: \'app\',\n  config: TfArg.literal(\'regional-asia-northeast1\'),\n  displayName: TfArg.literal(\'App Spanner\'),\n  numNodes: TfArg.literal(1),\n);\n```',
   ),
   CatalogEntry(
+    tfType: 'google_spanner_instance_config',
+    className: 'GoogleSpannerInstanceConfig',
+    barrel: 'spanner',
+    kind: CatalogKind.resource,
+    summary: 'Factory wrapper for `google_spanner_instance_config`.',
+    constructorParams: <String>[
+      'localName',
+      'name',
+      'displayName',
+      'baseConfig',
+      'replicas',
+      'labels',
+      'deletionPolicy',
+      'project',
+    ],
+    nestedTypes: <String>[
+      'SpannerInstanceConfigReplicas',
+      'SpannerInstanceConfigReplicasType',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_spanner_instance_config`.\n\nA possible configuration for a Cloud Spanner instance. Configurations define\nthe geographic placement of nodes and their replication.\n\nCloud Spanner **user-managed instance configuration** — replica\ntopology metadata cloned from a Google-managed [baseConfig].\nCreating the config does not create a [GoogleSpannerInstance] and\ndoes not reserve nodes or processing units.\n\n[name] must start with `custom-`. The Terraform provider merges\n[baseConfig] replicas automatically — pass only the extra optional\n`READ_ONLY` replica (official recipe: `nam11` + `us-west1`).\n\nEnable `spanner.googleapis.com` via [GoogleProjectService] before\napply. Set [deletionPolicy] to `DELETE` so destroy removes the\nunused config. Do not attach a [GoogleSpannerInstance] unless you\nintend to pay node / PU SKUs.\n\nExample:\n```dart\nGoogleSpannerInstanceConfig(\n  localName: \'custom_nam11\',\n  name: TfArg.literal(\'custom-td-nam11-ro\'),\n  displayName: TfArg.literal(\'TerraDart nam11 + us-west1 RO\'),\n  baseConfig: TfArg.literal(\'nam11\'),\n  replicas: [\n    SpannerInstanceConfigReplicas(\n      location: TfArg.literal(\'us-west1\'),\n      type: TfArg.literal(SpannerInstanceConfigReplicasType.readOnly),\n      defaultLeaderLocation: TfArg.literal(false),\n    ),\n  ],\n  deletionPolicy: TfArg.literal(\'DELETE\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_spanner_instance_iam_binding',
     className: 'GoogleSpannerInstanceIamBinding',
     barrel: 'spanner',
