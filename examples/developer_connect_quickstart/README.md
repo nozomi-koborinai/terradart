@@ -5,7 +5,10 @@ End-to-end terradart example for a Developer Connect account connector
 recipe (`system_provider_id = GITHUB`, `scopes = ["repo"]`).
 
 Creating the connector does **not** complete OAuth or clone a repository.
-This example does not create `google_developer_connect_connection`.
+This example does not create `google_developer_connect_connection` and
+omits `proxy_config` (Git proxy). Official pricing: if you do not use
+the Git proxy, Developer Connect has no charge
+(https://cloud.google.com/developer-connect/pricing).
 
 ## Prerequisites
 

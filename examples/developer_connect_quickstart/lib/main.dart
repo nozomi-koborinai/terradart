@@ -3,8 +3,8 @@
 /// Enables `developerconnect.googleapis.com` and creates a GitHub
 /// `google_developer_connect_account_connector` (system provider +
 /// `repo` scope). Creating the connector does not complete OAuth or
-/// clone a repository — no `google_developer_connect_connection` is
-/// included.
+/// clone a repository — no `google_developer_connect_connection` and
+/// no Git proxy (`proxy_config`) are included.
 ///
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
