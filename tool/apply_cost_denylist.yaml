@@ -67,6 +67,7 @@ safe_exception: google_memorystore_instance_desired_user_created_endpoints  # PS
 safe_exception: google_spanner_instance_iam_member  # IAM binding on Spanner instance; no existence billing — _instance substring false positive (parent google_spanner_instance is sweep_only)
 safe_exception: google_spanner_instance_iam_binding  # IAM binding on Spanner instance; no existence billing — _instance substring false positive (parent google_spanner_instance is sweep_only)
 safe_exception: google_spanner_instance_iam_policy  # IAM policy on Spanner instance; no existence billing — _instance substring false positive (parent google_spanner_instance is sweep_only)
+safe_exception: google_spanner_instance_config  # user-managed instance config is replica-topology metadata; no existence billing — _instance substring false positive (sibling google_spanner_instance is sweep_only)
 safe_exception: google_vertex_ai_endpoint  # prediction endpoint shell; no existence billing until a model is deployed — _endpoint substring false positive
 safe_exception: google_iap_agent_registry_endpoint_iam_member  # IAM binding on IAP agent registry endpoint; no existence billing — _endpoint substring false positive (Agent Identity parent skip-noted)
 safe_exception: google_iap_agent_registry_endpoint_iam_binding  # IAM binding on IAP agent registry endpoint; no existence billing — _endpoint substring false positive (Agent Identity parent skip-noted)
@@ -1075,6 +1076,7 @@ google_spanner_database_iam_policy: safe  # billing-behavior: IAM policy only
 google_spanner_instance_iam_member: safe  # billing-behavior: IAM binding only
 google_spanner_instance_iam_binding: safe  # billing-behavior: IAM binding only
 google_spanner_instance_iam_policy: safe  # billing-behavior: IAM policy only
+google_spanner_instance_config: safe  # gcp-cost: no Cloud Billing Catalog SKU after Cloud Spanner CC63-0873-48FD list_skus keyword "instance config"/"user-managed"/"custom instance"/"instance configuration" → 0 (keyword "config" matches 218 Storage/Server Node/Backup SKUs named Regional/Multi-Region Configuration, e.g. Server Node nam11 F8F1-2017-AD58 $3/h — those bill google_spanner_instance, already sweep_only); billing-behavior: user-managed instance config is replica-topology metadata — create does not provision a Spanner instance or reserve nodes/PUs; destroy with deletion_policy=DELETE removes the unused config
 google_gke_hub_feature_iam_member: safe  # billing-behavior: IAM binding only
 google_gke_hub_feature_iam_binding: safe  # billing-behavior: IAM binding only
 google_gke_hub_feature_iam_policy: safe  # billing-behavior: IAM policy only

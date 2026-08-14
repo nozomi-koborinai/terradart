@@ -537,7 +537,8 @@ barrels:
       /// Cloud Source Repositories — Git repositories and per-repo IAM.
   spanner:
     doc: |-
-      /// Cloud Spanner — horizontally scalable relational databases.
+      /// Cloud Spanner — horizontally scalable relational databases and
+      /// user-managed instance configurations.
   sql:
     file: cloud_sql
     doc: |-

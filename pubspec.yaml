@@ -107,6 +107,7 @@ workspace:
   - examples/secret_manager_quickstart
   - examples/service_directory_quickstart
   - examples/sourcerepo_quickstart
+  - examples/spanner_instance_config_quickstart
   - examples/storage_quickstart
   - examples/storage_intelligence_quickstart
   - examples/storage_transfer_quickstart
