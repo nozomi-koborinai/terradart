@@ -3,7 +3,8 @@
 /// Enables `privilegedaccessmanager.googleapis.com` and creates a
 /// project-scoped entitlement that lets an in-stack service account
 /// request `roles/browser` for 30 minutes. Creating the entitlement
-/// does not grant access — no grant is requested.
+/// does not grant access — no grant is requested. Apply requires the
+/// project to belong to an organization (`ORGLESS_RESOURCE` otherwise).
 ///
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;

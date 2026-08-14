@@ -17,6 +17,7 @@
 # --- Org-only: the resource requires the project to belong to an organization
 apigee_quickstart: requires a pre-existing Apigee organization (organizations/{org_name}) and a GCS bucket for the analytics datastore target — neither is provisioned in terradart-validate
 bigquery_quickstart: datapolicy + analyticshub resources require an organization
+privileged_access_manager_quickstart: PAM entitlement create returns 400 ORGLESS_RESOURCE ("PAM cannot be used on resources that are not part of an Organization") on standalone terradart-validate — synth + terraform validate still cover google_privileged_access_manager_entitlement
 
 # --- Need real external secrets / certs / ids
 compute_lb_quickstart: needs a real TLS cert + private key + CAS CSR / trust anchor

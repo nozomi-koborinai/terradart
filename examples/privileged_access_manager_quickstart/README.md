@@ -17,7 +17,10 @@ is free of charge
 
 - Dart SDK >= 3.6
 - Terraform CLI >= 1.11.0
-- A GCP project with credentials configured (`gcloud auth application-default login`). APIs are enabled by the stack.
+- A GCP project that belongs to an organization. Privileged Access
+  Manager rejects org-less projects (`ORGLESS_RESOURCE`).
+- Credentials configured (`gcloud auth application-default login`).
+  APIs are enabled by the stack.
 
 ## Usage
 
