@@ -753,6 +753,8 @@ files:
     upstream: mmv1/products/iambeta/WorkloadIdentityPoolProvider.yaml
   google_identity_platform_config:
     upstream: mmv1/products/identityplatform/Config.yaml
+  google_identity_platform_oauth_idp_config:
+    upstream: mmv1/products/identityplatform/OauthIdpConfig.yaml
   google_identity_platform_tenant:
     upstream: mmv1/products/identityplatform/Tenant.yaml
   google_identity_platform_tenant_oauth_idp_config:

@@ -1,8 +1,9 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 /// Identity Platform — project Auth config, multi-tenant realms,
-/// tenant OIDC IdP metadata, leftover default-supported / SAML IdP
-/// configs, and Cloud Identity groups / memberships (apply-excluded).
+/// project and tenant OIDC IdP metadata, leftover default-supported
+/// / SAML IdP configs, and Cloud Identity groups / memberships
+/// (apply-excluded).
 library;
 
 export 'src/identity/google_cloud_identity_group.dart'
@@ -27,6 +28,10 @@ export 'src/identity/google_identity_platform_inbound_saml_config.dart'
         IdentityPlatformInboundSamlConfigIdpConfig,
         IdentityPlatformInboundSamlConfigIdpConfigIdpCertificates,
         IdentityPlatformInboundSamlConfigSpConfig;
+export 'src/identity/google_identity_platform_oauth_idp_config.dart'
+    show
+        GoogleIdentityPlatformOauthIdpConfig,
+        IdentityPlatformOauthIdpConfigResponseType;
 export 'src/identity/google_identity_platform_tenant.dart'
     show GoogleIdentityPlatformTenant, IdentityPlatformTenantDeletionPolicy;
 export 'src/identity/google_identity_platform_tenant_default_supported_idp_config.dart'

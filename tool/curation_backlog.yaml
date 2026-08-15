@@ -40,8 +40,8 @@
 # (logging org/folder/billing, Identity Platform IdP configs except
 # `google_identity_platform_oauth_idp_config`, billing, DMS, Datastream,
 # Assured Workloads, Cloud Domains, …) shipped on the apply-excluded path.
-# That last type is ordinary leftover, not a coverage sentinel — the
-# uncovered report path uses a fabricated type. An empty backlog is a
+# 2026-08-15: that last GA type was curated after the coverage real-plan
+# test stopped requiring a live uncurated sentinel. An empty backlog is a
 # normal wave-shipper no-op until the weekly schema bump appends newly
 # detected types.
 
