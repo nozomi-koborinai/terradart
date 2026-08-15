@@ -91,10 +91,12 @@ void main() {
 
   final out = StringBuffer()
     ..writeln(
-        '/// Data-source leftover quickstart — remaining GA data sources.')
+      '/// Data-source leftover quickstart — remaining GA data sources.',
+    )
     ..writeln('///')
     ..writeln(
-        '/// Skip-listed; synth + `terraform validate` only. Do not apply.')
+      '/// Skip-listed; synth + `terraform validate` only. Do not apply.',
+    )
     ..writeln('library;')
     ..writeln()
     ..writeln("import 'package:terradart_core/terradart_core.dart';")

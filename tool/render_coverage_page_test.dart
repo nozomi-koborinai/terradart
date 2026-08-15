@@ -88,7 +88,7 @@ void main() {
       tfTypeToExamples: {
         'resource:google_compute_network': ['compute_quickstart'],
         'dataSource:google_compute_network': [
-          'data_source_leftover_quickstart'
+          'data_source_leftover_quickstart',
         ],
       },
     );
