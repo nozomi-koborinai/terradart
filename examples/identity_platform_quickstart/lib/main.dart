@@ -1,5 +1,5 @@
 /// Identity Platform quickstart — a multi-tenant Auth realm plus dummy
-/// tenant OIDC IdP metadata (synth + validate).
+/// project and tenant OIDC IdP metadata (synth + validate).
 ///
 /// Real apply is skipped for `terradart-validate` ([tool/apply_smoke_skip.yaml]):
 /// tenant create returns 400 `INVALID_PROJECT_ID` after API enablement alone.
@@ -41,7 +41,22 @@ final class IdentityPlatformStack extends Stack {
       ),
     );
 
-    // Tenant OIDC IdP metadata only. Dummy issuer, no client secret,
+    // Project-level OIDC IdP metadata. Dummy issuer, no client secret,
+    // disabled so it cannot sign users in even if someone force-applies.
+    add(
+      GoogleIdentityPlatformOauthIdpConfig(
+        localName: 'project_oidc',
+        name: TfArg.literal('oidc.terradart-project'),
+        displayName: TfArg.literal('TerraDart project dummy OIDC'),
+        issuer: TfArg.literal('https://accounts.example.com'),
+        clientId: TfArg.literal('terradart-dummy-client'),
+        enabled: TfArg.literal(false),
+        deletionPolicy: TfArg.literal('DELETE'),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    // Tenant OIDC IdP metadata. Dummy issuer, no client secret,
     // disabled so it cannot sign users in even if someone force-applies.
     add(
       GoogleIdentityPlatformTenantOauthIdpConfig(

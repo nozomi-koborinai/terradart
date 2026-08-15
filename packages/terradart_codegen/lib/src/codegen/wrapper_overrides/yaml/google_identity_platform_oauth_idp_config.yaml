@@ -1,0 +1,48 @@
+outputDir: identity
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Identity Platform **project OIDC IdP** — Auth metadata that
+  /// names an OpenID Connect issuer for the project (not a tenant).
+  /// Creating the config does **not** complete OAuth, authenticate
+  /// a user, or generate Monthly Active Users.
+  ///
+  /// [name] must start with `oidc.`. Prefer a thin smoke stack:
+  /// a dummy [issuer] (`https://accounts.example.com`), a dummy
+  /// [clientId], and [enabled] `false`. Omit [clientSecret] so
+  /// the authorization-code flow stays off. Set [deletionPolicy]
+  /// to `DELETE`.
+  ///
+  /// `identity_platform_quickstart` is apply-smoke skipped
+  /// (tenant create returns 400 without GCIP multi-tenancy), so
+  /// this factory is synth + `terraform validate` only.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleIdentityPlatformOauthIdpConfig(
+  ///   localName: 'project_oidc',
+  ///   name: TfArg.literal('oidc.terradart-project'),
+  ///   displayName: TfArg.literal('TerraDart project dummy OIDC'),
+  ///   issuer: TfArg.literal('https://accounts.example.com'),
+  ///   clientId: TfArg.literal('terradart-dummy-client'),
+  ///   enabled: TfArg.literal(false),
+  ///   deletionPolicy: TfArg.literal('DELETE'),
+  /// );
+  /// ```
+
+paramOrder:
+  - name
+  - display_name
+  - issuer
+  - client_id
+  - enabled
+  - client_secret
+  - response_type
+  - project
+  - deletion_policy

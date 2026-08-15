@@ -3,7 +3,8 @@
 End-to-end terradart example for:
 
 - `google_identity_platform_tenant`
-- `google_identity_platform_tenant_oauth_idp_config` (dummy OIDC issuer, `enabled=false`, no client secret)
+- `google_identity_platform_oauth_idp_config` (project OIDC, dummy issuer, `enabled=false`, no client secret)
+- `google_identity_platform_tenant_oauth_idp_config` (tenant OIDC, dummy issuer, `enabled=false`, no client secret)
 
 `google_identity_platform_config` is deferred (`tool/example_debt.yaml`): it is
 a project singleton, and shared validate projects that already enabled Identity
