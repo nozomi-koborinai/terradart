@@ -6,3 +6,8 @@ library;
 
 export 'src/active_directory/google_active_directory_domain.dart'
     show GoogleActiveDirectoryDomain;
+export 'src/active_directory/google_active_directory_domain_trust.dart'
+    show
+        ActiveDirectoryDomainTrustTrustDirection,
+        ActiveDirectoryDomainTrustTrustType,
+        GoogleActiveDirectoryDomainTrust;

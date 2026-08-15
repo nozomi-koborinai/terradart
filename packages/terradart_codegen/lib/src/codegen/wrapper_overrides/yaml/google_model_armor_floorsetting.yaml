@@ -1,0 +1,25 @@
+outputDir: model_armor
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Leftover factory on the apply-excluded path
+  /// (synth + `terraform validate` only).
+  ///
+  /// Needs an organization / folder / billing account /
+  /// external artifact that standalone terradart-validate
+  /// cannot supply. Do not apply.
+
+paramOrder:
+  - enable_floor_setting_enforcement
+  - integrated_services
+  - location
+  - parent
+  - ai_platform_floor_setting
+  - filter_config
+  - floor_setting_metadata
+  - google_mcp_server_floor_setting

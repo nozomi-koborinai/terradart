@@ -10,13 +10,41 @@
 /// exports `GooglePubsubTopicIamMember`).
 library;
 
+export 'src/iam/google_iam_access_boundary_policy.dart'
+    show
+        GoogleIamAccessBoundaryPolicy,
+        IamAccessBoundaryPolicyRules,
+        IamAccessBoundaryPolicyRulesAccessBoundaryRule,
+        IamAccessBoundaryPolicyRulesAccessBoundaryRuleAvailabilityCondition;
 export 'src/iam/google_iam_deny_policy.dart'
     show
         GoogleIamDenyPolicy,
         IamDenyPolicyRules,
         IamDenyPolicyRulesDenyRule,
         IamDenyPolicyRulesDenyRuleDenialCondition;
+export 'src/iam/google_iam_folders_policy_binding.dart'
+    show
+        GoogleIamFoldersPolicyBinding,
+        IamFoldersPolicyBindingCondition,
+        IamFoldersPolicyBindingTarget;
 export 'src/iam/google_iam_oauth_client.dart' show GoogleIamOauthClient;
+export 'src/iam/google_iam_oauth_client_credential.dart'
+    show GoogleIamOauthClientCredential;
+export 'src/iam/google_iam_organizations_policy_binding.dart'
+    show
+        GoogleIamOrganizationsPolicyBinding,
+        IamOrganizationsPolicyBindingCondition,
+        IamOrganizationsPolicyBindingTarget;
+export 'src/iam/google_iam_principal_access_boundary_policy.dart'
+    show
+        GoogleIamPrincipalAccessBoundaryPolicy,
+        IamPrincipalAccessBoundaryPolicyDetails,
+        IamPrincipalAccessBoundaryPolicyDetailsRules;
+export 'src/iam/google_iam_projects_policy_binding.dart'
+    show
+        GoogleIamProjectsPolicyBinding,
+        IamProjectsPolicyBindingCondition,
+        IamProjectsPolicyBindingTarget;
 export 'src/iam/google_iam_workforce_pool.dart'
     show
         GoogleIamWorkforcePool,
@@ -81,6 +109,8 @@ export 'src/iam/google_project_iam_binding.dart' show GoogleProjectIamBinding;
 export 'src/iam/google_project_iam_custom_role.dart'
     show CustomRoleStage, GoogleProjectIamCustomRole;
 export 'src/iam/google_project_iam_member.dart' show GoogleProjectIamMember;
+export 'src/iam/google_project_iam_member_remove.dart'
+    show GoogleProjectIamMemberRemove;
 export 'src/iam/google_project_iam_policy.dart' show GoogleProjectIamPolicy;
 export 'src/iam/google_service_account.dart' show GoogleServiceAccount;
 export 'src/iam/google_service_account_iam_binding.dart'

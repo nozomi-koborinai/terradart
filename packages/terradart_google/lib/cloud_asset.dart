@@ -5,6 +5,20 @@
 /// assets; messages fire only when matching resources change.
 library;
 
+export 'src/cloud_asset/google_cloud_asset_folder_feed.dart'
+    show
+        CloudAssetFolderFeedCondition,
+        CloudAssetFolderFeedContentType,
+        CloudAssetFolderFeedFeedOutputConfig,
+        CloudAssetFolderFeedFeedOutputConfigPubsubDestination,
+        GoogleCloudAssetFolderFeed;
+export 'src/cloud_asset/google_cloud_asset_organization_feed.dart'
+    show
+        CloudAssetOrganizationFeedCondition,
+        CloudAssetOrganizationFeedContentType,
+        CloudAssetOrganizationFeedFeedOutputConfig,
+        CloudAssetOrganizationFeedFeedOutputConfigPubsubDestination,
+        GoogleCloudAssetOrganizationFeed;
 export 'src/cloud_asset/google_cloud_asset_project_feed.dart'
     show
         CloudAssetProjectFeedCondition,

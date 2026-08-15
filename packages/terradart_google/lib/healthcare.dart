@@ -53,5 +53,16 @@ export 'src/healthcare/google_healthcare_hl7_v2_store_iam_member.dart'
     show GoogleHealthcareHl7V2StoreIamMember;
 export 'src/healthcare/google_healthcare_hl7_v2_store_iam_policy.dart'
     show GoogleHealthcareHl7V2StoreIamPolicy;
+export 'src/healthcare/google_healthcare_pipeline_job.dart'
+    show
+        GoogleHealthcarePipelineJob,
+        HealthcarePipelineJobBackfillPipelineJob,
+        HealthcarePipelineJobMappingPipelineJob,
+        HealthcarePipelineJobMappingPipelineJobFhirStreamingSource,
+        HealthcarePipelineJobMappingPipelineJobMappingConfig,
+        HealthcarePipelineJobMappingPipelineJobMappingConfigWhistleConfigSource,
+        HealthcarePipelineJobReconciliationPipelineJob,
+        HealthcarePipelineJobReconciliationPipelineJobMergeConfig,
+        HealthcarePipelineJobReconciliationPipelineJobMergeConfigWhistleConfigSource;
 export 'src/healthcare/google_healthcare_workspace.dart'
     show GoogleHealthcareWorkspace, HealthcareWorkspaceSettings;

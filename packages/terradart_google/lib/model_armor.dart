@@ -4,6 +4,21 @@
 /// filters for screening LLM prompts and responses.
 library;
 
+export 'src/model_armor/google_model_armor_floorsetting.dart'
+    show
+        GoogleModelArmorFloorsetting,
+        ModelArmorFloorsettingAiPlatformFloorSetting,
+        ModelArmorFloorsettingFilterConfig,
+        ModelArmorFloorsettingFilterConfigMaliciousUriFilterSettings,
+        ModelArmorFloorsettingFilterConfigPiAndJailbreakFilterSettings,
+        ModelArmorFloorsettingFilterConfigRaiSettings,
+        ModelArmorFloorsettingFilterConfigRaiSettingsRaiFilters,
+        ModelArmorFloorsettingFilterConfigSdpSettings,
+        ModelArmorFloorsettingFilterConfigSdpSettingsAdvancedConfig,
+        ModelArmorFloorsettingFilterConfigSdpSettingsBasicConfig,
+        ModelArmorFloorsettingFloorSettingMetadata,
+        ModelArmorFloorsettingFloorSettingMetadataMultiLanguageDetection,
+        ModelArmorFloorsettingGoogleMcpServerFloorSetting;
 export 'src/model_armor/google_model_armor_template.dart'
     show
         GoogleModelArmorTemplate,

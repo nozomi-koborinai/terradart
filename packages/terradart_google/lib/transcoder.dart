@@ -5,6 +5,41 @@
 /// output-minute SKUs and are not curated here.
 library;
 
+export 'src/transcoder/google_transcoder_job.dart'
+    show
+        GoogleTranscoderJob,
+        TranscoderJobConfig,
+        TranscoderJobConfigAdBreaks,
+        TranscoderJobConfigEditList,
+        TranscoderJobConfigElementaryStreams,
+        TranscoderJobConfigElementaryStreamsAudioStream,
+        TranscoderJobConfigElementaryStreamsVideoStream,
+        TranscoderJobConfigElementaryStreamsVideoStreamH264,
+        TranscoderJobConfigElementaryStreamsVideoStreamH264Hlg,
+        TranscoderJobConfigElementaryStreamsVideoStreamH264Sdr,
+        TranscoderJobConfigEncryptions,
+        TranscoderJobConfigEncryptionsAes128,
+        TranscoderJobConfigEncryptionsDrmSystems,
+        TranscoderJobConfigEncryptionsDrmSystemsClearkey,
+        TranscoderJobConfigEncryptionsDrmSystemsFairplay,
+        TranscoderJobConfigEncryptionsDrmSystemsPlayready,
+        TranscoderJobConfigEncryptionsDrmSystemsWidevine,
+        TranscoderJobConfigEncryptionsMpegCenc,
+        TranscoderJobConfigEncryptionsSampleAes,
+        TranscoderJobConfigEncryptionsSecretManagerKeySource,
+        TranscoderJobConfigInputs,
+        TranscoderJobConfigManifests,
+        TranscoderJobConfigManifestsType,
+        TranscoderJobConfigMuxStreams,
+        TranscoderJobConfigMuxStreamsSegmentSettings,
+        TranscoderJobConfigOutput,
+        TranscoderJobConfigOverlays,
+        TranscoderJobConfigOverlaysAnimations,
+        TranscoderJobConfigOverlaysAnimationsAnimationFade,
+        TranscoderJobConfigOverlaysAnimationsAnimationFadeFadeType,
+        TranscoderJobConfigOverlaysAnimationsAnimationFadeXy,
+        TranscoderJobConfigOverlaysImage,
+        TranscoderJobConfigPubsubDestination;
 export 'src/transcoder/google_transcoder_job_template.dart'
     show
         GoogleTranscoderJobTemplate,

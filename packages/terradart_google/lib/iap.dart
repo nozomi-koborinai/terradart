@@ -40,6 +40,8 @@ export 'src/iap/google_iap_app_engine_version_iam_member.dart'
     show GoogleIapAppEngineVersionIamMember;
 export 'src/iap/google_iap_app_engine_version_iam_policy.dart'
     show GoogleIapAppEngineVersionIamPolicy;
+export 'src/iap/google_iap_brand.dart' show GoogleIapBrand;
+export 'src/iap/google_iap_client.dart' show GoogleIapClient;
 export 'src/iap/google_iap_location_web_iam_binding.dart'
     show GoogleIapLocationWebIamBinding;
 export 'src/iap/google_iap_location_web_iam_member.dart'

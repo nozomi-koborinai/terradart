@@ -12,6 +12,8 @@ export 'src/container/google_container_cluster.dart'
     show GoogleContainerCluster;
 export 'src/container/google_container_node_pool.dart'
     show GoogleContainerNodePool;
+export 'src/container/google_container_registry.dart'
+    show GoogleContainerRegistry;
 export 'src/container/google_gke_hub_feature.dart' show GoogleGkeHubFeature;
 export 'src/container/google_gke_hub_feature_iam_binding.dart'
     show GoogleGkeHubFeatureIamBinding;
@@ -19,6 +21,35 @@ export 'src/container/google_gke_hub_feature_iam_member.dart'
     show GoogleGkeHubFeatureIamMember;
 export 'src/container/google_gke_hub_feature_iam_policy.dart'
     show GoogleGkeHubFeatureIamPolicy;
+export 'src/container/google_gke_hub_feature_membership.dart'
+    show
+        GkeHubFeatureMembershipConfigmanagement,
+        GkeHubFeatureMembershipConfigmanagementConfigSync,
+        GkeHubFeatureMembershipConfigmanagementConfigSyncDeploymentOverrides,
+        GkeHubFeatureMembershipConfigmanagementConfigSyncDeploymentOverridesContainers,
+        GkeHubFeatureMembershipConfigmanagementConfigSyncGit,
+        GkeHubFeatureMembershipConfigmanagementConfigSyncOci,
+        GkeHubFeatureMembershipConfigmanagementHierarchyController,
+        GkeHubFeatureMembershipConfigmanagementPolicyController,
+        GkeHubFeatureMembershipConfigmanagementPolicyControllerMonitoring,
+        GkeHubFeatureMembershipMesh,
+        GkeHubFeatureMembershipMeshControlPlane,
+        GkeHubFeatureMembershipMeshManagement,
+        GkeHubFeatureMembershipPolicycontroller,
+        GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfig,
+        GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigDeploymentConfigs,
+        GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResources,
+        GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResourcesLimits,
+        GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigDeploymentConfigsContainerResourcesRequests,
+        GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigDeploymentConfigsPodAffinity,
+        GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigDeploymentConfigsPodTolerations,
+        GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigInstallSpec,
+        GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigMonitoring,
+        GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigPolicyContent,
+        GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigPolicyContentBundles,
+        GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigPolicyContentTemplateLibrary,
+        GkeHubFeatureMembershipPolicycontrollerPolicyControllerHubConfigPolicyContentTemplateLibraryInstallation,
+        GoogleGkeHubFeatureMembership;
 export 'src/container/google_gke_hub_fleet.dart'
     show
         GkeHubFleetBinaryAuthorizationConfig,
@@ -30,6 +61,8 @@ export 'src/container/google_gke_hub_fleet.dart'
         GoogleGkeHubFleet;
 export 'src/container/google_gke_hub_membership.dart'
     show GoogleGkeHubMembership;
+export 'src/container/google_gke_hub_membership_binding.dart'
+    show GoogleGkeHubMembershipBinding;
 export 'src/container/google_gke_hub_membership_iam_binding.dart'
     show GoogleGkeHubMembershipIamBinding;
 export 'src/container/google_gke_hub_membership_iam_member.dart'

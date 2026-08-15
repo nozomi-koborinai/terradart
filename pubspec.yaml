@@ -71,6 +71,7 @@ workspace:
   - examples/compute_rollout_quickstart
   - examples/compute_vpn_gateway_quickstart
   - examples/dataproc_autoscaling_quickstart
+  - examples/deferred_leftover_quickstart
   - examples/gke_hub_quickstart
   - examples/gke_quickstart
   - examples/healthcare_quickstart

@@ -1,0 +1,47 @@
+outputDir: datastream
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+
+dartTypeOverrides:
+  desired_state: DatastreamStreamDesiredState
+
+prelude: |
+  /// Datastream Stream Desired enum for `desired_state`.
+  enum DatastreamStreamDesiredState implements TerraformEnum {
+    notStarted('NOT_STARTED'),
+    running('RUNNING'),
+    paused('PAUSED');
+
+    const DatastreamStreamDesiredState(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+curatedDoc: |-
+  /// Leftover factory on the apply-excluded path
+  /// (synth + `terraform validate` only).
+  ///
+  /// Needs an organization / folder / billing account /
+  /// external artifact that standalone terradart-validate
+  /// cannot supply. Do not apply.
+
+paramOrder:
+  - create_without_validation
+  - customer_managed_encryption_key
+  - deletion_policy
+  - desired_state
+  - display_name
+  - labels
+  - location
+  - project
+  - stream_id
+  - backfill_none
+  - destination_config
+  - rule_sets
+  - source_config

@@ -4,6 +4,17 @@
 /// `google_cloudfunctions_function` resources.
 library;
 
+export 'src/cloudfunctions/google_cloudfunctions_function.dart'
+    show
+        CloudfunctionsFunctionAutomaticUpdatePolicy,
+        CloudfunctionsFunctionEventTrigger,
+        CloudfunctionsFunctionEventTriggerFailurePolicy,
+        CloudfunctionsFunctionOnDeployUpdatePolicy,
+        CloudfunctionsFunctionSecretEnvironmentVariables,
+        CloudfunctionsFunctionSecretVolumes,
+        CloudfunctionsFunctionSecretVolumesVersions,
+        CloudfunctionsFunctionSourceRepository,
+        GoogleCloudfunctionsFunction;
 export 'src/cloudfunctions/google_cloudfunctions_function_iam_binding.dart'
     show GoogleCloudfunctionsFunctionIamBinding;
 export 'src/cloudfunctions/google_cloudfunctions_function_iam_member.dart'

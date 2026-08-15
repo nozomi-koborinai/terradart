@@ -7,5 +7,9 @@ library;
 
 export 'src/service_networking/google_service_networking_connection.dart'
     show GoogleServiceNetworkingConnection;
+export 'src/service_networking/google_service_networking_peered_dns_domain.dart'
+    show GoogleServiceNetworkingPeeredDnsDomain;
+export 'src/service_networking/google_service_networking_vpc_service_controls.dart'
+    show GoogleServiceNetworkingVpcServiceControls;
 export 'src/service_networking/google_vpc_access_connector.dart'
     show GoogleVpcAccessConnector, VpcAccessConnectorSubnet;

@@ -3,8 +3,8 @@
 /// Enables `transcoder.googleapis.com` and creates a reusable
 /// `google_transcoder_job_template` (SD H.264 + AAC → mp4). The template
 /// is JobConfig metadata only — it does not transcode media or bill
-/// output-minute SKUs. `google_transcoder_job` is left uncurated (needs a
-/// source video in Cloud Storage).
+/// output-minute SKUs. `google_transcoder_job` is curated on the
+/// apply-excluded leftover path (needs a source video in Cloud Storage).
 ///
 /// Run `bin/infra.dart` to synth into `tf-out/`.
 library;
