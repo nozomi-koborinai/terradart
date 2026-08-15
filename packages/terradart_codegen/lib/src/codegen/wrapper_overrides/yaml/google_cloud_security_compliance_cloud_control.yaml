@@ -1,0 +1,30 @@
+outputDir: cloud_security_compliance
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Leftover factory on the apply-excluded path
+  /// (synth + `terraform validate` only).
+  ///
+  /// Needs an organization / folder / billing account /
+  /// external artifact that standalone terradart-validate
+  /// cannot supply. Do not apply.
+
+paramOrder:
+  - categories
+  - cloud_control_id
+  - deletion_policy
+  - description
+  - display_name
+  - finding_category
+  - location
+  - parent
+  - remediation_steps
+  - severity
+  - supported_cloud_providers
+  - parameter_spec
+  - rules

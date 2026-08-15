@@ -126,6 +126,15 @@ export 'src/apigee/google_apigee_organization.dart'
         ApigeeOrganizationRetention,
         ApigeeOrganizationRuntimeType,
         GoogleApigeeOrganization;
+export 'src/apigee/google_apigee_security_action.dart'
+    show
+        ApigeeSecurityActionAllow,
+        ApigeeSecurityActionConditionConfig,
+        ApigeeSecurityActionDeny,
+        ApigeeSecurityActionFlag,
+        ApigeeSecurityActionFlagHeaders,
+        ApigeeSecurityActionState,
+        GoogleApigeeSecurityAction;
 export 'src/apigee/google_apigee_security_feedback.dart'
     show
         ApigeeSecurityFeedbackFeedbackContexts,

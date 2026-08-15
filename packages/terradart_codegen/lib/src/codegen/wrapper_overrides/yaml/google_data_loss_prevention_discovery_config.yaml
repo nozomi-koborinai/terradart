@@ -1,0 +1,32 @@
+outputDir: dlp
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+
+dartTypeOverrides:
+  status: DataLossPreventionDiscoveryConfigStatus
+
+curatedDoc: |-
+  /// Leftover factory on the apply-excluded path
+  /// (synth + `terraform validate` only).
+  ///
+  /// Needs an organization / folder / billing account /
+  /// external artifact that standalone terradart-validate
+  /// cannot supply. Do not apply.
+
+paramOrder:
+  - deletion_policy
+  - display_name
+  - inspect_templates
+  - location
+  - parent
+  - status
+  - actions
+  - org_config
+  - other_cloud_starting_location
+  - targets

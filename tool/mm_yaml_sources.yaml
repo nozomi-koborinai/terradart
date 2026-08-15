@@ -2593,3 +2593,183 @@ files:
     upstream: mmv1/products/accesscontextmanager/ServicePerimeterDryRunIngressPolicy.yaml
   google_access_context_manager_service_perimeter_dry_run_egress_policy:
     upstream: mmv1/products/accesscontextmanager/ServicePerimeterDryRunEgressPolicy.yaml
+
+  # Apply-excluded remaining uncurated batch (deferred families)
+  google_active_directory_domain_trust:
+    upstream: mmv1/products/activedirectory/DomainTrust.yaml
+  google_apigee_security_action:
+    upstream: mmv1/products/apigee/SecurityAction.yaml
+  google_assured_workloads_workload:
+    upstream: null  # mmv1/products/assuredworkloads has product.yaml only (Workload.yaml 404, probed 2026-08-15)
+  google_billing_budget:
+    upstream: mmv1/products/billingbudgets/Budget.yaml
+  google_billing_project_info:
+    upstream: mmv1/products/cloudbilling/ProjectInfo.yaml
+  google_billing_subaccount:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_cloud_asset_folder_feed:
+    upstream: mmv1/products/cloudasset/FolderFeed.yaml
+  google_cloud_asset_organization_feed:
+    upstream: mmv1/products/cloudasset/OrganizationFeed.yaml
+  google_cloud_identity_group:
+    upstream: mmv1/products/cloudidentity/Group.yaml
+  google_cloud_identity_group_membership:
+    upstream: mmv1/products/cloudidentity/GroupMembership.yaml
+  google_cloud_run_domain_mapping:
+    upstream: mmv1/products/cloudrun/DomainMapping.yaml
+  google_cloud_security_compliance_cloud_control:
+    upstream: mmv1/products/cloudsecuritycompliance/CloudControl.yaml
+  google_cloud_security_compliance_framework:
+    upstream: mmv1/products/cloudsecuritycompliance/Framework.yaml
+  google_cloud_security_compliance_framework_deployment:
+    upstream: mmv1/products/cloudsecuritycompliance/FrameworkDeployment.yaml
+  google_cloudbuild_bitbucket_server_config:
+    upstream: mmv1/products/cloudbuild/BitbucketServerConfig.yaml
+  google_clouddomains_registration:
+    upstream: mmv1/products/clouddomains/Registration.yaml
+  google_cloudfunctions_function:
+    upstream: mmv1/products/cloudfunctions/CloudFunction.yaml
+  google_container_registry:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_data_loss_prevention_discovery_config:
+    upstream: mmv1/products/dlp/DiscoveryConfig.yaml
+  google_data_pipeline_pipeline:
+    upstream: mmv1/products/datapipeline/Pipeline.yaml
+  google_database_migration_service_connection_profile:
+    upstream: mmv1/products/databasemigrationservice/ConnectionProfile.yaml
+  google_database_migration_service_migration_job:
+    upstream: mmv1/products/databasemigrationservice/MigrationJob.yaml
+  google_database_migration_service_private_connection:
+    upstream: mmv1/products/databasemigrationservice/PrivateConnection.yaml
+  google_dataproc_gdc_spark_application:
+    upstream: mmv1/products/dataprocgdc/SparkApplication.yaml
+  google_datastream_connection_profile:
+    upstream: mmv1/products/datastream/ConnectionProfile.yaml
+  google_datastream_private_connection:
+    upstream: mmv1/products/datastream/PrivateConnection.yaml
+  google_datastream_stream:
+    upstream: mmv1/products/datastream/Stream.yaml
+  google_deployment_manager_deployment:
+    upstream: mmv1/products/deploymentmanager/Deployment.yaml
+  google_developer_connect_connection:
+    upstream: mmv1/products/developerconnect/Connection.yaml
+  google_developer_connect_git_repository_link:
+    upstream: mmv1/products/developerconnect/GitRepositoryLink.yaml
+  google_developer_connect_insights_config:
+    upstream: mmv1/products/developerconnect/InsightsConfig.yaml
+  google_document_ai_warehouse_document_schema:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15; documentai/Schema.yaml is processor schema, not warehouse)
+  google_document_ai_warehouse_location:
+    upstream: mmv1/products/documentaiwarehouse/Location.yaml
+  google_firebaserules_release:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_folder:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_folder_access_approval_settings:
+    upstream: mmv1/products/accessapproval/FolderSettings.yaml
+  google_folder_iam_audit_config:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_folder_organization_policy:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_gemini_repository_group:
+    upstream: mmv1/products/gemini/RepositoryGroup.yaml
+  google_gke_hub_feature_membership:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_gke_hub_membership_binding:
+    upstream: mmv1/products/gkehub2/MembershipBinding.yaml
+  google_healthcare_pipeline_job:
+    upstream: mmv1/products/healthcare/PipelineJob.yaml
+  google_iam_access_boundary_policy:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_iam_folders_policy_binding:
+    upstream: mmv1/products/iam3/FoldersPolicyBinding.yaml
+  google_iam_oauth_client_credential:
+    upstream: mmv1/products/iamworkforcepool/OauthClientCredential.yaml
+  google_iam_organizations_policy_binding:
+    upstream: mmv1/products/iam3/OrganizationsPolicyBinding.yaml
+  google_iam_principal_access_boundary_policy:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_iam_projects_policy_binding:
+    upstream: mmv1/products/iam3/ProjectsPolicyBinding.yaml
+  google_iap_brand:
+    upstream: mmv1/products/iap/Brand.yaml
+  google_iap_client:
+    upstream: mmv1/products/iap/Client.yaml
+  google_identity_platform_default_supported_idp_config:
+    upstream: mmv1/products/identityplatform/DefaultSupportedIdpConfig.yaml
+  google_identity_platform_inbound_saml_config:
+    upstream: mmv1/products/identityplatform/InboundSamlConfig.yaml
+  google_identity_platform_tenant_default_supported_idp_config:
+    upstream: mmv1/products/identityplatform/TenantDefaultSupportedIdpConfig.yaml
+  google_identity_platform_tenant_inbound_saml_config:
+    upstream: mmv1/products/identityplatform/TenantInboundSamlConfig.yaml
+  google_logging_billing_account_bucket_config:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_logging_billing_account_exclusion:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_logging_billing_account_sink:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_logging_folder_bucket_config:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_logging_folder_exclusion:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_logging_folder_settings:
+    upstream: mmv1/products/logging/FolderSettings.yaml
+  google_logging_organization_bucket_config:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_logging_organization_exclusion:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_logging_organization_settings:
+    upstream: mmv1/products/logging/OrganizationSettings.yaml
+  google_ml_engine_model:
+    upstream: mmv1/products/mlengine/Model.yaml
+  google_model_armor_floorsetting:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_network_management_organization_vpc_flow_logs_config:
+    upstream: mmv1/products/networkmanagement/OrganizationVpcFlowLogsConfig.yaml
+  google_network_security_authz_policy:
+    upstream: mmv1/products/networksecurity/AuthzPolicy.yaml
+  google_org_policy_custom_constraint:
+    upstream: mmv1/products/orgpolicy/CustomConstraint.yaml
+  google_org_policy_policy:
+    upstream: mmv1/products/orgpolicy/Policy.yaml
+  google_organization_access_approval_settings:
+    upstream: mmv1/products/accessapproval/OrganizationSettings.yaml
+  google_organization_iam_audit_config:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_organization_iam_custom_role:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_organization_policy:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_os_config_v2_policy_orchestrator_for_folder:
+    upstream: mmv1/products/osconfigv2/PolicyOrchestratorForFolder.yaml
+  google_os_config_v2_policy_orchestrator_for_organization:
+    upstream: mmv1/products/osconfigv2/PolicyOrchestratorForOrganization.yaml
+  google_project_access_approval_settings:
+    upstream: mmv1/products/accessapproval/ProjectSettings.yaml
+  google_project_default_service_accounts:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_project_iam_member_remove:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_project_organization_policy:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_resource_manager_capability:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_resource_manager_lien:
+    upstream: mmv1/products/resourcemanager/Lien.yaml
+  google_securityposture_posture:
+    upstream: mmv1/products/securityposture/Posture.yaml
+  google_securityposture_posture_deployment:
+    upstream: mmv1/products/securityposture/PostureDeployment.yaml
+  google_service_networking_peered_dns_domain:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_service_networking_vpc_service_controls:
+    upstream: mmv1/products/servicenetworking/VPCServiceControls.yaml
+  google_site_verification_owner:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_site_verification_web_resource:
+    upstream: mmv1/products/siteverification/WebResource.yaml
+  google_sql_provision_script:
+    upstream: null  # no mmv1 YAML (probed 2026-08-15)
+  google_transcoder_job:
+    upstream: mmv1/products/transcoder/Job.yaml

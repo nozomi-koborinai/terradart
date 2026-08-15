@@ -1,0 +1,34 @@
+outputDir: dataflow
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+
+dartTypeOverrides:
+  state: DataPipelinePipelineState
+  type: DataPipelinePipelineType
+
+curatedDoc: |-
+  /// Leftover factory on the apply-excluded path
+  /// (synth + `terraform validate` only).
+  ///
+  /// Needs an organization / folder / billing account /
+  /// external artifact that standalone terradart-validate
+  /// cannot supply. Do not apply.
+
+paramOrder:
+  - deletion_policy
+  - display_name
+  - name
+  - pipeline_sources
+  - project
+  - region
+  - scheduler_service_account_email
+  - state
+  - type
+  - schedule_info
+  - workload

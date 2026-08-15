@@ -4,6 +4,12 @@
 /// (`google_cloud_run_service`). Prefer v2 for new stacks.
 library;
 
+export 'src/cloud_run/google_cloud_run_domain_mapping.dart'
+    show
+        CloudRunDomainMappingMetadata,
+        CloudRunDomainMappingSpec,
+        CloudRunDomainMappingSpecCertificateMode,
+        GoogleCloudRunDomainMapping;
 export 'src/cloud_run/google_cloud_run_service.dart'
     show
         CloudRunServiceMetadata,

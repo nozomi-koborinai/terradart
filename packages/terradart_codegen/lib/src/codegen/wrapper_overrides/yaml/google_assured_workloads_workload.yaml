@@ -1,0 +1,88 @@
+outputDir: assured_workloads
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+
+dartTypeOverrides:
+  compliance_regime: AssuredWorkloadsWorkloadComplianceRegime
+  partner: AssuredWorkloadsWorkloadPartner
+
+prelude: |
+  /// Assured Workloads Workload Compliance enum for `compliance_regime`.
+  enum AssuredWorkloadsWorkloadComplianceRegime implements TerraformEnum {
+    complianceRegimeUnspecified('COMPLIANCE_REGIME_UNSPECIFIED'),
+    il4ComplianceRegime('IL4'),
+    cjis('CJIS'),
+    fedrampHigh('FEDRAMP_HIGH'),
+    fedrampModerate('FEDRAMP_MODERATE'),
+    usRegionalAccess('US_REGIONAL_ACCESS'),
+    hipaa('HIPAA'),
+    hitrust('HITRUST'),
+    euRegionsAndSupport('EU_REGIONS_AND_SUPPORT'),
+    caRegionsAndSupport('CA_REGIONS_AND_SUPPORT'),
+    itar('ITAR'),
+    auRegionsAndUsSupport('AU_REGIONS_AND_US_SUPPORT'),
+    assuredWorkloadsForPartners('ASSURED_WORKLOADS_FOR_PARTNERS'),
+    isrRegions('ISR_REGIONS'),
+    isrRegionsAndSupport('ISR_REGIONS_AND_SUPPORT'),
+    caProtectedB('CA_PROTECTED_B'),
+    il5ComplianceRegime('IL5'),
+    il2ComplianceRegime('IL2'),
+    jpRegionsAndSupport('JP_REGIONS_AND_SUPPORT'),
+    ksaRegionsAndSupportWithSovereigntyControls('KSA_REGIONS_AND_SUPPORT_WITH_SOVEREIGNTY_CONTROLS'),
+    regionalControls('REGIONAL_CONTROLS'),
+    healthcareAndLifeSciencesControls('HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS'),
+    healthcareAndLifeSciencesControlsUsSupport('HEALTHCARE_AND_LIFE_SCIENCES_CONTROLS_US_SUPPORT'),
+    irs1075('IRS_1075');
+
+    const AssuredWorkloadsWorkloadComplianceRegime(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+  /// Assured Workloads Workload enum for `partner`.
+  enum AssuredWorkloadsWorkloadPartner implements TerraformEnum {
+    partnerUnspecified('PARTNER_UNSPECIFIED'),
+    localControlsByS3ns('LOCAL_CONTROLS_BY_S3NS'),
+    sovereignControlsByTSystems('SOVEREIGN_CONTROLS_BY_T_SYSTEMS'),
+    sovereignControlsBySiaMinsait('SOVEREIGN_CONTROLS_BY_SIA_MINSAIT'),
+    sovereignControlsByPsn('SOVEREIGN_CONTROLS_BY_PSN'),
+    sovereignControlsByCntxt('SOVEREIGN_CONTROLS_BY_CNTXT'),
+    sovereignControlsByCntxtNoEkm('SOVEREIGN_CONTROLS_BY_CNTXT_NO_EKM'),
+    spainDataBoundaryByTelefonica('SPAIN_DATA_BOUNDARY_BY_TELEFONICA');
+
+    const AssuredWorkloadsWorkloadPartner(this.terraformValue);
+    @override
+    final String terraformValue;
+  }
+
+curatedDoc: |-
+  /// Leftover factory on the apply-excluded path
+  /// (synth + `terraform validate` only).
+  ///
+  /// Needs an organization / folder / billing account /
+  /// external artifact that standalone terradart-validate
+  /// cannot supply. Do not apply.
+
+paramOrder:
+  - billing_account
+  - compliance_regime
+  - deletion_policy
+  - display_name
+  - enable_sovereign_controls
+  - labels
+  - location
+  - organization
+  - partner
+  - partner_services_billing_account
+  - provisioned_resources_parent
+  - violation_notifications_enabled
+  - kms_settings
+  - partner_permissions
+  - resource_settings
+  - workload_options

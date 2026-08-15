@@ -34,10 +34,16 @@
 # (compute org/BYOIP, Wasm plugin, Dialogflow encryption spec, Discovery
 # Engine CMEK/connector, Storage Intelligence folder/org, IAM workforce,
 # SCC v1/v2/management, ACM attachments) shipped on the apply-excluded
-# path. An empty backlog is a normal wave-shipper no-op until the weekly
-# schema bump appends newly detected types. Remaining uncurated families
-# (logging org/folder, identity platform IdP configs, billing, DMS,
-# Datastream, …) stay deferred and are not listed here.
+# path.
+#
+# 2026-08-15 remaining-uncurated batch: the other 89 GA-fixture leftovers
+# (logging org/folder/billing, Identity Platform IdP configs except the
+# coverage sentinel, billing, DMS, Datastream, Assured Workloads, Cloud
+# Domains, …) shipped on the apply-excluded path. The only remaining
+# uncurated GA type is `google_identity_platform_oauth_idp_config`
+# (coverage-report sentinel in terradart_coverage). An empty backlog is
+# a normal wave-shipper no-op until the weekly schema bump appends newly
+# detected types.
 
 entries:
   []

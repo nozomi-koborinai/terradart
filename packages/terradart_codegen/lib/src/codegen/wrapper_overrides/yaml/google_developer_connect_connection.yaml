@@ -1,0 +1,33 @@
+outputDir: developer_connect
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Leftover factory on the apply-excluded path
+  /// (synth + `terraform validate` only).
+  ///
+  /// Needs an organization / folder / billing account /
+  /// external artifact that standalone terradart-validate
+  /// cannot supply. Do not apply.
+
+paramOrder:
+  - annotations
+  - connection_id
+  - deletion_policy
+  - disabled
+  - etag
+  - labels
+  - location
+  - project
+  - bitbucket_cloud_config
+  - bitbucket_data_center_config
+  - crypto_key_config
+  - github_config
+  - github_enterprise_config
+  - gitlab_config
+  - gitlab_enterprise_config
+  - http_config

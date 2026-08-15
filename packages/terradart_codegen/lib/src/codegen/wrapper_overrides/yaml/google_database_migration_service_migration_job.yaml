@@ -1,0 +1,43 @@
+outputDir: database_migration
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+deriveEnums: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+
+dartTypeOverrides:
+  dump_type: DatabaseMigrationServiceMigrationJobDumpType
+  type: DatabaseMigrationServiceMigrationJobType
+
+curatedDoc: |-
+  /// Leftover factory on the apply-excluded path
+  /// (synth + `terraform validate` only).
+  ///
+  /// Needs an organization / folder / billing account /
+  /// external artifact that standalone terradart-validate
+  /// cannot supply. Do not apply.
+
+paramOrder:
+  - deletion_policy
+  - desired_state
+  - destination
+  - display_name
+  - dump_path
+  - dump_type
+  - labels
+  - location
+  - migration_job_id
+  - project
+  - source
+  - stop_on_warnings
+  - type
+  - dump_flags
+  - objects_config
+  - performance_config
+  - postgres_homogeneous_config
+  - reverse_ssh_connectivity
+  - static_ip_connectivity
+  - vpc_peering_connectivity

@@ -26,6 +26,7 @@ export 'src/sql/google_sql_database_instance.dart'
         SqlDatabaseInstanceSettings,
         SqlDiskType,
         SqlEdition;
+export 'src/sql/google_sql_provision_script.dart' show GoogleSqlProvisionScript;
 export 'src/sql/google_sql_source_representation_instance.dart'
     show GoogleSqlSourceRepresentationInstance;
 export 'src/sql/google_sql_ssl_cert.dart' show GoogleSqlSslCert;

@@ -71,6 +71,10 @@ const _fingerprintFalsePositives = <String>{
   // resource_compute_instance_from_template.go.tmpl (+ meta.yaml); no
   // mmv1/products/compute/InstanceFromTemplate.yaml (404, probed 2026-08-12).
   'google_compute_instance_from_template',
+  // Assured Workloads: mmv1/products/assuredworkloads has product.yaml only
+  // (Workload.yaml 404, probed 2026-08-15). Schema still carries Possible
+  // values: / labels fingerprints.
+  'google_assured_workloads_workload',
   // Handwritten third_party Go template only (no MM YAML under products/).
   // Probed: no RegionInstanceTemplate.yaml; region_instance_template.go.tmpl.
   'google_compute_region_instance_template',

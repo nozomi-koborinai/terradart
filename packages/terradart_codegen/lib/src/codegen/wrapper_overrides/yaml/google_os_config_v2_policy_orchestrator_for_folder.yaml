@@ -1,0 +1,26 @@
+outputDir: os_config
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Leftover factory on the apply-excluded path
+  /// (synth + `terraform validate` only).
+  ///
+  /// Needs an organization / folder / billing account /
+  /// external artifact that standalone terradart-validate
+  /// cannot supply. Do not apply.
+
+paramOrder:
+  - action
+  - deletion_policy
+  - description
+  - folder_id
+  - labels
+  - policy_orchestrator_id
+  - state
+  - orchestrated_resource
+  - orchestration_scope

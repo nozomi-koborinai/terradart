@@ -10,6 +10,11 @@
 /// [GoogleCloudbuildTrigger] remain supported for existing setups.
 library;
 
+export 'src/cloud_build/google_cloudbuild_bitbucket_server_config.dart'
+    show
+        CloudbuildBitbucketServerConfigConnectedRepositories,
+        CloudbuildBitbucketServerConfigSecrets,
+        GoogleCloudbuildBitbucketServerConfig;
 export 'src/cloud_build/google_cloudbuild_trigger.dart'
     show
         CloudBuildTriggerBuildLogging,

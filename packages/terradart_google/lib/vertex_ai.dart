@@ -9,6 +9,8 @@
 /// Nested config blocks (e.g. `encryption_spec`) are passed as structured maps.
 library;
 
+export 'src/vertex_ai/google_ml_engine_model.dart'
+    show GoogleMlEngineModel, MlEngineModelDefaultVersion;
 export 'src/vertex_ai/google_vertex_ai_cache_config.dart'
     show GoogleVertexAiCacheConfig;
 export 'src/vertex_ai/google_vertex_ai_dataset.dart' show GoogleVertexAiDataset;

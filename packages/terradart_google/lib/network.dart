@@ -97,6 +97,8 @@ export 'src/network/google_network_management_connectivity_test.dart'
         NetworkManagementConnectivityTestSourceCloudFunction,
         NetworkManagementConnectivityTestSourceCloudRunRevision,
         NetworkManagementConnectivityTestSourceNetworkType;
+export 'src/network/google_network_management_organization_vpc_flow_logs_config.dart'
+    show GoogleNetworkManagementOrganizationVpcFlowLogsConfig;
 export 'src/network/google_network_management_vpc_flow_logs_config.dart'
     show
         GoogleNetworkManagementVpcFlowLogsConfig,
@@ -111,6 +113,66 @@ export 'src/network/google_network_security_address_group_iam_member.dart'
     show GoogleNetworkSecurityAddressGroupIamMember;
 export 'src/network/google_network_security_address_group_iam_policy.dart'
     show GoogleNetworkSecurityAddressGroupIamPolicy;
+export 'src/network/google_network_security_authz_policy.dart'
+    show
+        GoogleNetworkSecurityAuthzPolicy,
+        NetworkSecurityAuthzPolicyAction,
+        NetworkSecurityAuthzPolicyCustomProvider,
+        NetworkSecurityAuthzPolicyCustomProviderAuthzExtension,
+        NetworkSecurityAuthzPolicyCustomProviderCloudIap,
+        NetworkSecurityAuthzPolicyHttpRules,
+        NetworkSecurityAuthzPolicyHttpRulesFrom,
+        NetworkSecurityAuthzPolicyHttpRulesFromNotSources,
+        NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesIpBlocks,
+        NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesPrincipals,
+        NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesPrincipalsPrincipal,
+        NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesPrincipalsPrincipalSelector,
+        NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResources,
+        NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResourcesIamServiceAccount,
+        NetworkSecurityAuthzPolicyHttpRulesFromNotSourcesResourcesTagValueIdSet,
+        NetworkSecurityAuthzPolicyHttpRulesFromSources,
+        NetworkSecurityAuthzPolicyHttpRulesFromSourcesIpBlocks,
+        NetworkSecurityAuthzPolicyHttpRulesFromSourcesPrincipals,
+        NetworkSecurityAuthzPolicyHttpRulesFromSourcesPrincipalsPrincipal,
+        NetworkSecurityAuthzPolicyHttpRulesFromSourcesPrincipalsPrincipalSelector,
+        NetworkSecurityAuthzPolicyHttpRulesFromSourcesResources,
+        NetworkSecurityAuthzPolicyHttpRulesFromSourcesResourcesIamServiceAccount,
+        NetworkSecurityAuthzPolicyHttpRulesFromSourcesResourcesTagValueIdSet,
+        NetworkSecurityAuthzPolicyHttpRulesTo,
+        NetworkSecurityAuthzPolicyHttpRulesToNotOperations,
+        NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSet,
+        NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSetHeaders,
+        NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHeaderSetHeadersValue,
+        NetworkSecurityAuthzPolicyHttpRulesToNotOperationsHosts,
+        NetworkSecurityAuthzPolicyHttpRulesToNotOperationsPaths,
+        NetworkSecurityAuthzPolicyHttpRulesToOperations,
+        NetworkSecurityAuthzPolicyHttpRulesToOperationsHeaderSet,
+        NetworkSecurityAuthzPolicyHttpRulesToOperationsHeaderSetHeaders,
+        NetworkSecurityAuthzPolicyHttpRulesToOperationsHeaderSetHeadersValue,
+        NetworkSecurityAuthzPolicyHttpRulesToOperationsHosts,
+        NetworkSecurityAuthzPolicyHttpRulesToOperationsMcp,
+        NetworkSecurityAuthzPolicyHttpRulesToOperationsMcpBaseProtocolMethodsOption,
+        NetworkSecurityAuthzPolicyHttpRulesToOperationsMcpMethods,
+        NetworkSecurityAuthzPolicyHttpRulesToOperationsMcpMethodsParams,
+        NetworkSecurityAuthzPolicyHttpRulesToOperationsPaths,
+        NetworkSecurityAuthzPolicyNetworkRules,
+        NetworkSecurityAuthzPolicyNetworkRulesFrom,
+        NetworkSecurityAuthzPolicyNetworkRulesFromNotSources,
+        NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesIpBlocks,
+        NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesPrincipals,
+        NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesPrincipalsPrincipal,
+        NetworkSecurityAuthzPolicyNetworkRulesFromNotSourcesPrincipalsPrincipalSelector,
+        NetworkSecurityAuthzPolicyNetworkRulesFromSources,
+        NetworkSecurityAuthzPolicyNetworkRulesFromSourcesIpBlocks,
+        NetworkSecurityAuthzPolicyNetworkRulesFromSourcesPrincipals,
+        NetworkSecurityAuthzPolicyNetworkRulesFromSourcesPrincipalsPrincipal,
+        NetworkSecurityAuthzPolicyNetworkRulesFromSourcesPrincipalsPrincipalSelector,
+        NetworkSecurityAuthzPolicyNetworkRulesTo,
+        NetworkSecurityAuthzPolicyNetworkRulesToOperations,
+        NetworkSecurityAuthzPolicyNetworkRulesToOperationsSnis,
+        NetworkSecurityAuthzPolicyPolicyProfile,
+        NetworkSecurityAuthzPolicyTarget,
+        NetworkSecurityAuthzPolicyTargetLoadBalancingScheme;
 export 'src/network/google_network_security_backend_authentication_config.dart'
     show
         GoogleNetworkSecurityBackendAuthenticationConfig,

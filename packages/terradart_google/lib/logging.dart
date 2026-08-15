@@ -1,7 +1,8 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 /// Cloud Logging: log-based metrics and sinks routed to BigQuery / Pub/Sub /
-/// Storage / Logging-bucket destinations.
+/// Storage / Logging-bucket destinations, plus leftover folder / organization /
+/// billing-account buckets, exclusions, sinks, and settings (apply-excluded).
 ///
 /// The three sink resources (`project`, `folder`, `organization`) share a
 /// common shape but differ in scope: each entry filters only the log stream
@@ -11,6 +12,27 @@
 /// use scope-prefixed names to avoid barrel-export collision.
 library;
 
+export 'src/logging/google_logging_billing_account_bucket_config.dart'
+    show
+        GoogleLoggingBillingAccountBucketConfig,
+        LoggingBillingAccountBucketConfigCmekSettings,
+        LoggingBillingAccountBucketConfigIndexConfigs;
+export 'src/logging/google_logging_billing_account_exclusion.dart'
+    show GoogleLoggingBillingAccountExclusion;
+export 'src/logging/google_logging_billing_account_sink.dart'
+    show
+        GoogleLoggingBillingAccountSink,
+        LoggingBillingAccountSinkBigqueryOptions,
+        LoggingBillingAccountSinkExclusions;
+export 'src/logging/google_logging_folder_bucket_config.dart'
+    show
+        GoogleLoggingFolderBucketConfig,
+        LoggingFolderBucketConfigCmekSettings,
+        LoggingFolderBucketConfigIndexConfigs;
+export 'src/logging/google_logging_folder_exclusion.dart'
+    show GoogleLoggingFolderExclusion;
+export 'src/logging/google_logging_folder_settings.dart'
+    show GoogleLoggingFolderSettings;
 export 'src/logging/google_logging_folder_sink.dart'
     show
         GoogleLoggingFolderSink,
@@ -38,6 +60,15 @@ export 'src/logging/google_logging_metric.dart'
         LoggingMetricLabelValueType,
         LoggingMetricLinearBuckets,
         LoggingMetricValueType;
+export 'src/logging/google_logging_organization_bucket_config.dart'
+    show
+        GoogleLoggingOrganizationBucketConfig,
+        LoggingOrganizationBucketConfigCmekSettings,
+        LoggingOrganizationBucketConfigIndexConfigs;
+export 'src/logging/google_logging_organization_exclusion.dart'
+    show GoogleLoggingOrganizationExclusion;
+export 'src/logging/google_logging_organization_settings.dart'
+    show GoogleLoggingOrganizationSettings;
 export 'src/logging/google_logging_organization_sink.dart'
     show
         GoogleLoggingOrganizationSink,

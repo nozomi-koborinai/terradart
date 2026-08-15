@@ -70,8 +70,8 @@ barrels:
       /// entitlement (never_apply for apply-smoke).
   billing:
     doc: |-
-      /// Cloud Billing account IAM — grant roles on billing accounts
-      /// (`google_billing_account_iam_*`).
+      /// Cloud Billing — account IAM plus leftover budget / project-info /
+      /// subaccount factories (billing-account scoped; apply-excluded).
   apphub:
     doc: |-
       /// App Hub — applications that group services and workloads for
@@ -89,6 +89,11 @@ barrels:
       /// App Engine — application registration, standard/flexible versions,
       /// firewall rules, URL dispatch, domain mapping, and service traffic/network
       /// settings.
+  assured_workloads:
+    doc: |-
+      /// Assured Workloads — compliance-regime folders (IL4 / CJIS / HITRUST
+      /// / EU Regions / …). Creating a workload mutates the organization
+      /// folder tree; apply-excluded leftover factory.
   artifact_registry:
     doc: |-
       /// Artifact Registry: container / package repository, per-repository IAM,
@@ -160,6 +165,14 @@ barrels:
     doc: |-
       /// Cloud Functions (1st gen) IAM — grant roles on legacy
       /// `google_cloudfunctions_function` resources.
+  cloud_security_compliance:
+    doc: |-
+      /// Compliance Manager — cloud controls, frameworks, and framework
+      /// deployments. Org/folder scoped; apply-excluded leftover factories.
+  clouddomains:
+    doc: |-
+      /// Cloud Domains — domain registration metadata. Registration is
+      /// existence-billed; apply-excluded leftover factory (do not apply).
   cloud_ids:
     doc: |-
       /// Cloud IDS — managed intrusion detection endpoints attached to VPC
@@ -259,7 +272,18 @@ barrels:
   dataflow:
     doc: |-
       /// Cloud Dataflow — managed batch/streaming pipeline jobs (worker vCPU
-      /// hours while running; never_apply for apply-smoke).
+      /// hours while running; never_apply for apply-smoke) plus the leftover
+      /// Data Pipeline factory (apply-excluded).
+  database_migration:
+    doc: |-
+      /// Database Migration Service — connection profiles, private
+      /// connections, and migration jobs. Apply-excluded leftover factories
+      /// (needs a reachable source database).
+  datastream:
+    doc: |-
+      /// Datastream — CDC connection profiles, private connections, and
+      /// streams. Apply-excluded leftover factories (needs a reachable
+      /// source database).
   dataform:
     doc: |-
       /// Dataform — folder and team-folder metadata for organizing SQL
@@ -283,6 +307,10 @@ barrels:
       /// Developer Connect — account connectors that start an OAuth flow
       /// for a system provider (GitHub / GitLab / …). Creating a connector
       /// does not complete OAuth or clone a repository.
+  deployment_manager:
+    doc: |-
+      /// Deployment Manager — legacy Google Cloud deployment configs.
+      /// Apply-excluded leftover factory.
   dialogflow:
     doc: |-
       /// Dialogflow ES / CX: SIP trunk, ES conversation-profile metadata,
@@ -356,13 +384,14 @@ barrels:
       /// (parameters + parameter groups + conditions).
   folder:
     doc: |-
-      /// Resource Manager folder IAM — grant roles on folders
-      /// (`google_folder_iam_*`).
+      /// Resource Manager folders — folder create, folder IAM, leftover
+      /// access-approval settings, IAM audit config, and the legacy
+      /// folder organization-policy factory (apply-excluded).
   firebaserules:
     doc: |-
-      /// Firebase Security Rules — immutable rulesets for Firestore / Storage.
-      /// Creating a ruleset does not activate it; pair with
-      /// `google_firebaserules_release` (uncurated) to serve rules.
+      /// Firebase Security Rules — immutable rulesets for Firestore / Storage
+      /// plus the leftover `google_firebaserules_release` factory that
+      /// activates a ruleset (apply-excluded; serving live rules).
   firestore:
     doc: |-
       /// Cloud Firestore — Native and Datastore mode databases + composite index
@@ -407,7 +436,10 @@ barrels:
   identity:
     doc: |-
       /// Identity Platform — project Auth config, multi-tenant realms,
-      /// and tenant OIDC IdP metadata.
+      /// tenant OIDC IdP metadata, leftover default-supported / SAML IdP
+      /// configs, and Cloud Identity groups / memberships (apply-excluded).
+      /// `google_identity_platform_oauth_idp_config` stays uncurated as
+      /// the coverage-fixture sentinel.
   integrations:
     doc: |-
       /// Application Integration — provision a regional client
@@ -436,7 +468,8 @@ barrels:
   logging:
     doc: |-
       /// Cloud Logging: log-based metrics and sinks routed to BigQuery / Pub/Sub /
-      /// Storage / Logging-bucket destinations.
+      /// Storage / Logging-bucket destinations, plus leftover folder / organization /
+      /// billing-account buckets, exclusions, sinks, and settings (apply-excluded).
       ///
       /// The three sink resources (`project`, `folder`, `organization`) share a
       /// common shape but differ in scope: each entry filters only the log stream
@@ -501,8 +534,10 @@ barrels:
       /// (incl. Exascale storage config; BMS capacity is never_apply), ODB, GoldenGate.
   organization:
     doc: |-
-      /// Resource Manager organization IAM — grant roles on organizations
-      /// (`google_organization_iam_*`).
+      /// Resource Manager organization IAM plus leftover access-approval
+      /// settings, custom roles, IAM audit config, legacy organization
+      /// policy, and Org Policy v2 custom constraints / policies
+      /// (apply-excluded).
   os_config:
     doc: |-
       /// OS Config: VM Manager OS policy assignments, patch deployments,
@@ -552,9 +587,18 @@ barrels:
   redis:
     doc: |-
       /// Memorystore for Redis — instances, Cluster, and user-created PSC connections.
+  securityposture:
+    doc: |-
+      /// Security Posture — organization postures and deployments.
+      /// Apply-excluded leftover factories.
   secret_manager:
     doc: |-
       /// Secret Manager secrets, versions, and per-secret IAM bindings.
+  site_verification:
+    doc: |-
+      /// Site Verification — Search Console ownership tokens and verified
+      /// web resources. Apply-excluded leftover factories (needs a real
+      /// domain / file token).
   service_directory:
     doc: |-
       /// Service Directory — managed service registry: namespaces, services,
