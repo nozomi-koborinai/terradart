@@ -59,8 +59,9 @@ const highlightedHtml = await codeToHtml(code, {
       <div class="pitch-code-wrap" set:html={highlightedHtml} />
     </div>
     <p class="pitch-code-meta">
-      <code>terradart_google</code> ships a <strong>curated</strong> subset of the
-      HashiCorp <code>google</code> provider&nbsp;&mdash; not every resource type yet. The
+      <code>terradart_google</code> ships typed factories for the
+      <strong>GA</strong> HashiCorp <code>google</code> provider catalog. The
+      <code>google-beta</code> provider is later. The
       full factory list with runnable examples is on
       <a href="/docs/coverage/" class="link-mark">Coverage</a>; complete stacks live in the
       <a

@@ -47,9 +47,9 @@ auditable.**
 - Anything the schema or Magic Modules can state — parameters, enum values,
   output getters, nested block shapes, documentation — is *derived*, so it
   moves automatically when upstream moves.
-- Human decisions — which resources to curate, how to model an
-  exactly-one-of block as a sealed class hierarchy, which surfaces to freeze
-  deliberately — live in thin, reviewable override files.
+- Human decisions — how to model an exactly-one-of block as a sealed class
+  hierarchy, which surfaces to freeze deliberately, and whether to opt into
+  `google-beta` later — live in thin, reviewable override files.
 - Every escape hatch is a **fail-closed ledger**: skipped examples, frozen
   surfaces, cost classifications, and coverage debts are recorded lines with
   reasons, and CI fails when an entry goes stale. Forgetting is impossible to

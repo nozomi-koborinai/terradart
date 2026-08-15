@@ -2,13 +2,13 @@
 
 Ships **1332 curated resource factories + 461 data sources** (1793 catalog entries)
 
-The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). Discover factories programmatically via `package:terradart_google/catalog.dart` (`terradartCatalog`).
+The GA `hashicorp/google` catalog is filled. The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). Discover factories programmatically via `package:terradart_google/catalog.dart` (`terradartCatalog`).
 
 ## How resources are built
 
 Factory wrappers under `lib/src/<service>/` are emitted by `terradart wrap` from curated overrides in [`terradart_codegen`](https://pub.dev/packages/terradart_codegen). They are committed so consumers depend on `terradart_google` without running codegen.
 
-CI verifies determinism via `terradart wrap --check`. For any other `google_*` resource, open an issue to request curation.
+CI verifies determinism via `terradart wrap --check`. For `google-beta` types, open an issue to request curation.
 
 Runtime primitives (`Stack`, `TfArg`, `writeTo`) live in [`terradart_core`](https://pub.dev/packages/terradart_core).
 

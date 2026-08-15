@@ -26,7 +26,7 @@ Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch, t
 dart pub get
 ```
 
-Non-curated `google_*` resources are not generated locally. Request new factories via a [GitHub feature issue](https://github.com/nozomi-koborinai/terradart/issues/new/choose).
+The GA `hashicorp/google` catalog is filled. `google-beta` types are later and are not generated locally — request them via a [GitHub feature issue](https://github.com/nozomi-koborinai/terradart/issues/new/choose).
 
 ## 2. Define a Stack
 
