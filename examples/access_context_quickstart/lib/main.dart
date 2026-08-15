@@ -1,12 +1,14 @@
 /// Access Context Manager quickstart — VPC Service Controls core chain.
 ///
 /// Provisions an organization-scoped access policy, a geo access level, a
-/// service perimeter restricting Storage, a dedicated access level with an
-/// additive condition (not attached to the perimeter), a cross-org
-/// authorized-orgs descriptor (placeholder org numbers), and a policy IAM
-/// member. The policy `parent` reads `ops_organization_id` (Terraform
-/// variable — apply needs a real organization id). The additive condition
-/// does not change the Storage perimeter.
+/// service perimeter restricting Storage, a dedicated dry-run perimeter
+/// with an additive spec resource (placeholder project number), a
+/// dedicated access level with an additive condition (not attached to
+/// the Storage perimeter), a cross-org authorized-orgs descriptor
+/// (placeholder org numbers), and a policy IAM member. The policy
+/// `parent` reads `ops_organization_id` (Terraform variable — apply
+/// needs a real organization id). The dry-run attachment does not
+/// change live `status` evaluation.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -70,6 +72,37 @@ final class AccessControlsStack extends Stack {
           ResourceDependency(policy),
           ResourceDependency(usOnly),
         ],
+      ),
+    );
+
+    // Dedicated dry-run perimeter. Not the live Storage perimeter, so
+    // the additive spec resource does not change status evaluation.
+    // Hashicorp: ignore_changes on spec.resources so the two resources
+    // do not fight.
+    final dryRun = add(
+      GoogleAccessContextManagerServicePerimeter(
+        localName: 'storage_dry_run',
+        name: TfArg.literal('storage_dry_run'),
+        parent: TfArg.ref(policy.name),
+        title: TfArg.literal('Storage dry-run perimeter'),
+        useExplicitDryRunSpec: TfArg.literal(true),
+        spec: AccessContextManagerServicePerimeterSpec(
+          restrictedServices: TfArg.literal(['storage.googleapis.com']),
+        ),
+        lifecycle: const LifecycleOptions(
+          ignoreChanges: ['spec[0].resources'],
+        ),
+        dependsOn: [ResourceDependency(policy)],
+      ),
+    );
+
+    add(
+      GoogleAccessContextManagerServicePerimeterDryRunResource(
+        localName: 'dry_run_project',
+        perimeterName: TfArg.ref(dryRun.nameRef),
+        resource: TfArg.literal('projects/987654321'),
+        deletionPolicy: TfArg.literal('DELETE'),
+        dependsOn: [ResourceDependency(dryRun)],
       ),
     );
 

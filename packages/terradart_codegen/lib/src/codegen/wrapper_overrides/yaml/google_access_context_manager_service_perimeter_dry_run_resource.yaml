@@ -1,0 +1,35 @@
+outputDir: access_context_manager
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Access Context Manager **dry-run perimeter resource** — an
+  /// additive project attached to a service perimeter `spec` (dry-run)
+  /// only. Prefer a dedicated perimeter with
+  /// [useExplicitDryRunSpec] so the attachment does **not** change
+  /// live `status` evaluation.
+  ///
+  /// Prefer a thin smoke stack: [perimeterName] from that dry-run
+  /// perimeter, placeholder [resource] `projects/987654321`, and
+  /// [deletionPolicy] `DELETE`. Set the sibling perimeter's
+  /// `lifecycle.ignore_changes` to `spec[0].resources` so the two
+  /// resources do not fight.
+  ///
+  /// `access_context_quickstart` is apply-smoke skipped (needs a real
+  /// organization id), so this factory is synth + `terraform validate`
+  /// only.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleAccessContextManagerServicePerimeterDryRunResource(
+  ///   localName: 'dry_run_project',
+  ///   perimeterName: TfArg.ref(dryRun.nameRef),
+  ///   resource: TfArg.literal('projects/987654321'),
+  ///   deletionPolicy: TfArg.literal('DELETE'),
+  /// );
+  /// ```
+
+paramOrder:
+  - perimeter_name
+  - resource
+  - deletion_policy
