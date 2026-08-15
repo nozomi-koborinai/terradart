@@ -306,11 +306,9 @@ void main() {
   });
 
   group('WrapCommand --only', () {
-    test('emits exactly 1 file (Layer 2 wrapper only) for one resource',
-        () async {
-      // Plan 5.X (v0.5.0-dev): Layer 1 emit retired. `--only <type>` now
-      // produces a single wrapper file rather than the historical Layer 1
-      // + Layer 2 pair.
+    test('emits the resource wrapper plus its data-source twin', () async {
+      // `--only <type>` loads `<type>.yaml` and `data_<type>.yaml` when
+      // both exist. Catalog / barrels stay omitted (partial regen).
       final tmpOut = await Directory.systemTemp.createTemp('phase4_only_');
       try {
         final code = await buildCliRunner().run([
@@ -332,16 +330,49 @@ void main() {
             files.add(p.relative(ent.path, from: tmpOut.path));
           }
         }
-        expect(files, hasLength(1));
+        expect(files, hasLength(2));
         expect(
           files,
           contains(p.join('lib', 'src', 'pubsub', 'google_pubsub_topic.dart')),
         );
-        // `--only` is a partial regen, so the whole-registry catalog and the
-        // derived barrels are NOT emitted (they must not be clobbered with a
-        // single-entry partial).
+        expect(
+          files,
+          contains(p.join('lib', 'src', 'data', 'google_pubsub_topic.dart')),
+        );
         expect(files, isNot(contains(p.join('lib', 'src', '_catalog.g.dart'))));
         expect(files, isNot(contains(p.join('lib', 'pubsub.dart'))));
+      } finally {
+        await tmpOut.delete(recursive: true);
+      }
+    });
+
+    test('--only data_<type> emits only the data-source wrapper', () async {
+      final tmpOut = await Directory.systemTemp.createTemp('phase4_only_data_');
+      try {
+        final code = await buildCliRunner().run([
+          'wrap',
+          '--provider',
+          'hashicorp/google',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          _libSrcOut(tmpOut),
+          '--only',
+          'data_google_pubsub_topic',
+        ]);
+        expect(code, 0);
+
+        final files = <String>[];
+        for (final ent in Directory(tmpOut.path).listSync(recursive: true)) {
+          if (ent is File && ent.path.endsWith('.dart')) {
+            files.add(p.relative(ent.path, from: tmpOut.path));
+          }
+        }
+        expect(files, hasLength(1));
+        expect(
+          files,
+          contains(p.join('lib', 'src', 'data', 'google_pubsub_topic.dart')),
+        );
       } finally {
         await tmpOut.delete(recursive: true);
       }

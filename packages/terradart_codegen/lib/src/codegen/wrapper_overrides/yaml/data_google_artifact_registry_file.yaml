@@ -7,3 +7,11 @@ deriveOutputGetters: true
 curatedDoc: |-
   /// Read-only data source on the apply-excluded leftover path
   /// (synth + `terraform validate` only). Do not apply.
+
+paramOrder:
+  - file_id
+  - location
+  - output_path
+  - overwrite
+  - project
+  - repository_id
