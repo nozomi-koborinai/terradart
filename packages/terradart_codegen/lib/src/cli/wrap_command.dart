@@ -63,10 +63,11 @@ class WrapCommand extends Command<int> {
       )
       ..addOption(
         'only',
-        help: 'Regenerate only this Terraform type. Skips every other yaml '
-            'override under the registry — useful when a sibling yaml has '
-            'unstripped `wrap-promote` markers that would otherwise break '
-            'the full-registry load.',
+        help: 'Regenerate only this Terraform type (and its data_<type> '
+            'twin when present). Skips every other yaml override under '
+            'the registry — useful when a sibling yaml has unstripped '
+            '`wrap-promote` markers that would otherwise break the '
+            'full-registry load.',
         valueHelp: 'TERRAFORM_TYPE',
       );
   }

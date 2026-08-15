@@ -12,6 +12,7 @@ import 'package:terradart_codegen/src/codegen/wrap_init/wrap_init_generator.dart
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/_registry.dart'
     as registry;
 import 'package:terradart_codegen/src/codegen/wrapper_overrides/wrapper_override.dart';
+import 'package:terradart_codegen/src/codegen/wrapper_overrides/yaml_loader.dart';
 import 'package:terradart_codegen/src/parser/schema_parser.dart';
 import 'package:test/test.dart';
 
@@ -60,8 +61,11 @@ void main() {
           mm: null,
         );
         final yaml = emitter.emit(draft);
-        File(p.join(tmpDir.path, '$terraformType.yaml'))
-            .writeAsStringSync(yaml);
+        final stem = overrideFileStem(
+          terraformType: terraformType,
+          kind: kind,
+        );
+        File(p.join(tmpDir.path, '$stem.yaml')).writeAsStringSync(yaml);
       }
 
       // Loader must read every emitted yaml without raising.

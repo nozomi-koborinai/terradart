@@ -9,12 +9,32 @@ class SchemaResult {
 }
 
 SchemaResult getResourceSchema(List<CatalogEntry> catalog, String name) {
-  for (final e in catalog) {
-    if (e.tfType == name) return SchemaResult.found(e);
+  var lookup = name;
+  var wantData = false;
+  if (name.startsWith('data.')) {
+    lookup = name.substring('data.'.length);
+    wantData = true;
+  }
+  final matches = [
+    for (final e in catalog)
+      if (e.tfType == lookup || e.className == name) e,
+  ];
+  if (matches.isNotEmpty) {
+    if (wantData) {
+      for (final e in matches) {
+        if (e.kind == CatalogKind.dataSource) {
+          return SchemaResult.found(e);
+        }
+      }
+    }
+    for (final e in matches) {
+      if (e.kind == CatalogKind.resource) return SchemaResult.found(e);
+    }
+    return SchemaResult.found(matches.first);
   }
   // Near-miss suggestions: edit distance <= 3, top 5 by distance.
   final scored = <MapEntry<String, int>>[
-    for (final e in catalog) MapEntry(e.tfType, _levenshtein(e.tfType, name)),
+    for (final e in catalog) MapEntry(e.tfType, _levenshtein(e.tfType, lookup)),
   ]..sort((a, b) => a.value.compareTo(b.value));
   final suggestions = [
     for (final s in scored.where((s) => s.value <= 3).take(5)) s.key,

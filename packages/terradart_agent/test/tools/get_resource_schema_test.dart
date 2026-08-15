@@ -28,6 +28,24 @@ void main() {
     );
   });
 
+  test('prefers the resource twin and resolves data. / className lookups', () {
+    final byType = getResourceSchema(terradartCatalog, 'google_project');
+    expect(byType.found, isTrue);
+    expect(byType.schema!.kind, CatalogKind.dataSource);
+    expect(byType.schema!.className, 'GoogleProject');
+
+    final byClass = getResourceSchema(terradartCatalog, 'GoogleProject');
+    expect(byClass.found, isTrue);
+    expect(byClass.schema!.tfType, 'google_project');
+
+    final byDataPrefix = getResourceSchema(
+      terradartCatalog,
+      'data.google_project',
+    );
+    expect(byDataPrefix.found, isTrue);
+    expect(byDataPrefix.schema!.kind, CatalogKind.dataSource);
+  });
+
   test('empty input returns not-found with no suggestions', () {
     final r = getResourceSchema(terradartCatalog, '');
     expect(r.found, isFalse);

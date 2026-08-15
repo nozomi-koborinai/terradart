@@ -532,6 +532,69 @@ deriveClassDoc: true
       }
     });
 
+    test('data_ prefix keys a twin data source without clobbering the resource',
+        () async {
+      final tmpDir = await Directory.systemTemp.createTemp('phase4_loader_');
+      try {
+        await File(p.join(tmpDir.path, 'google_compute_network.yaml'))
+            .writeAsString('''
+outputDir: compute
+deriveClassDoc: true
+''');
+        await File(p.join(tmpDir.path, 'data_google_compute_network.yaml'))
+            .writeAsString('''
+kind: data_source
+outputDir: data
+schemaStubBodyMode: bare
+deriveClassDoc: true
+''');
+
+        final loaded = loadWrapperOverrides(rootDir: tmpDir.path);
+        expect(loaded.resources.keys, ['google_compute_network']);
+        expect(loaded.dataSources.keys, ['google_compute_network']);
+        expect(loaded.length, 2);
+        expect(
+          loaded.asLintMap().keys,
+          containsAll(
+              ['google_compute_network', 'data.google_compute_network']),
+        );
+        expect(
+          () => loaded.all,
+          throwsA(isA<StateError>()),
+        );
+      } finally {
+        await tmpDir.delete(recursive: true);
+      }
+    });
+
+    test('--only terraform type loads the data_ twin when present', () async {
+      final tmpDir = await Directory.systemTemp.createTemp('phase4_loader_');
+      try {
+        await File(p.join(tmpDir.path, 'google_compute_network.yaml'))
+            .writeAsString('''
+outputDir: compute
+''');
+        await File(p.join(tmpDir.path, 'data_google_compute_network.yaml'))
+            .writeAsString('''
+kind: data_source
+outputDir: data
+''');
+        await File(p.join(tmpDir.path, 'google_other.yaml')).writeAsString('''
+outputDir: other
+''');
+
+        final loaded = loadWrapperOverrides(
+          rootDir: tmpDir.path,
+          only: 'google_compute_network',
+        );
+        expect(loaded.resources.keys, ['google_compute_network']);
+        expect(loaded.dataSources.keys, ['google_compute_network']);
+        expect(loaded.resources.containsKey('google_other'), isFalse);
+      } finally {
+        await tmpDir.delete(recursive: true);
+      }
+    });
+
     test('default kind is resource when omitted', () async {
       final tmpDir = await Directory.systemTemp.createTemp('phase4_loader_');
       try {
@@ -787,7 +850,7 @@ deriveClassDoc: true
       'production round-trip (71 entries — Phase 4.1 13 + Phase 4.5 Wave 0+1+2+3 15 + Plan 5.C Wave 4 Round 1 3 + Plan 5.C Wave 4 Round 2 9 + Plan 5.C Wave 4 Round 3 9 + Plan 5.F Wave 5 Batch 1 +6 + Plan 5.F Wave 5 Batch 2 +5 + Plan 5.F Wave 5 Batch 3 +6 + Plan 5.F Wave 5 Batch 4 +5 new)',
       () {
     test(
-      'lib/src/codegen/wrapper_overrides/yaml/ loads 1331 resources + 1 data source',
+      'lib/src/codegen/wrapper_overrides/yaml/ loads 1331 resources + 461 data sources',
       () {
         final loaded = loadWrapperOverrides(
           rootDir:
@@ -795,8 +858,9 @@ deriveClassDoc: true
         );
         expect(loaded.resources.length, 1331);
 
-        expect(loaded.dataSources.length, 1);
-        expect(loaded.dataSources.keys.first, 'google_project');
+        expect(loaded.dataSources.length, 461);
+        expect(loaded.dataSources.keys, contains('google_project'));
+        expect(loaded.dataSources.keys, contains('google_compute_network'));
       },
     );
 

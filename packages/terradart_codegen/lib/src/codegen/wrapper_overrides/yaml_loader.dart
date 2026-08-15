@@ -31,17 +31,83 @@ class LoadedOverrides {
 
   /// All entries flattened into a single map (for tests / introspection).
   ///
-  /// The two halves are merged with [resources] first; data source keys are
-  /// expected to be disjoint from resource keys at load time, so collision
-  /// behavior is not specified.
-  Map<String, WrapperOverride> get all => {
+  /// Throws [StateError] when a terraform type exists in both halves
+  /// (resource / data-source twins). Iterate [entries] or use [asLintMap]
+  /// instead — colliding keys must not silently overwrite.
+  Map<String, WrapperOverride> get all {
+    final overlap =
+        resources.keys.toSet().intersection(dataSources.keys.toSet());
+    if (overlap.isNotEmpty) {
+      throw StateError(
+        'LoadedOverrides.all is undefined for ${overlap.length} '
+        'resource/data-source twin key(s). Iterate .entries or use '
+        'asLintMap().',
+      );
+    }
+    return {...resources, ...dataSources};
+  }
+
+  /// Resource overrides plus data-source overrides. Twin terraform types
+  /// appear twice (once per kind).
+  Iterable<MapEntry<String, WrapperOverride>> get entries sync* {
+    yield* resources.entries;
+    yield* dataSources.entries;
+  }
+
+  /// Total curated overrides (resources + data sources).
+  int get length => resources.length + dataSources.length;
+
+  /// Bag for lint / debt tools that need a unique map key per override.
+  ///
+  /// Colliding data-source keys are stored as `data.<tfType>` so they
+  /// never overwrite the resource twin. Non-colliding data sources keep
+  /// their terraform type key (`google_project`).
+  Map<String, WrapperOverride> asLintMap() => {
         ...resources,
-        ...dataSources,
+        for (final e in dataSources.entries)
+          resources.containsKey(e.key) ? 'data.${e.key}' : e.key: e.value,
       };
 }
 
-/// Loads `<terraformType>.yaml` files under [rootDir] into a [LoadedOverrides]
-/// keyed by terraform type. The file name stem is used as the key.
+/// Override YAML file stem for [terraformType] / [kind].
+///
+/// Resources: `<terraformType>`. Data sources: `data_<terraformType>`,
+/// except the legacy `google_project` data-source file which stays
+/// unprefixed.
+String overrideFileStem({
+  required String terraformType,
+  required WrapperOverrideKind kind,
+}) {
+  if (kind == WrapperOverrideKind.dataSource &&
+      terraformType != 'google_project') {
+    return 'data_$terraformType';
+  }
+  return terraformType;
+}
+
+/// Terraform type encoded by an override file stem and its parsed [kind].
+///
+/// `data_google_compute_network` + `kind: data_source` →
+/// `google_compute_network`. Legacy `google_project.yaml` keeps its stem.
+String terraformTypeFromOverrideStem(
+  String stem,
+  WrapperOverrideKind kind,
+) {
+  if (kind == WrapperOverrideKind.dataSource &&
+      stem.startsWith('data_') &&
+      stem.length > 5) {
+    return stem.substring('data_'.length);
+  }
+  return stem;
+}
+
+/// Loads override YAML files under [rootDir] into a [LoadedOverrides]
+/// keyed by terraform type.
+///
+/// Resource files are `<terraformType>.yaml`. Data-source twins use
+/// `data_<terraformType>.yaml` so they do not overwrite the resource
+/// file; the loader strips the `data_` prefix after reading `kind`.
+/// The legacy `google_project.yaml` data-source file keeps its stem.
 ///
 /// Validation:
 /// - File names must match `^[a-z][a-z0-9_]*$`.
@@ -113,11 +179,12 @@ class YamlOverrideLoader {
   /// callers; those failures short-circuit before the [LoaderErrorReport]
   /// is assembled.
   ///
-  /// [only], when non-null, restricts the scan to the single
-  /// `<only>.yaml` file under [rootDir]. Sibling yamls are not even
-  /// opened, so an unstripped `wrap-promote` marker block in a peer file
-  /// no longer aborts the load. Throws [StateError] if no matching file
-  /// exists.
+  /// [only], when non-null, restricts the scan to that terraform type
+  /// (and its `data_<type>.yaml` twin when present). Passing a
+  /// `data_<type>` stem loads only that data-source file. Sibling yamls
+  /// are not even opened, so an unstripped `wrap-promote` marker block
+  /// in a peer file no longer aborts the load. Throws [StateError] if no
+  /// matching file exists.
   LoadedOverrides load({String? only}) {
     final dir = Directory(rootDir);
     if (!dir.existsSync()) {
@@ -127,13 +194,7 @@ class YamlOverrideLoader {
     }
     final List<File> yamlFiles;
     if (only != null) {
-      final target = File(p.join(rootDir, '$only.yaml'));
-      if (!target.existsSync()) {
-        throw StateError(
-          'YamlOverrideLoader: --only target not found: ${target.path}',
-        );
-      }
-      yamlFiles = [target];
+      yamlFiles = _resolveOnlyFiles(only);
     } else {
       yamlFiles = dir
           .listSync()
@@ -144,13 +205,14 @@ class YamlOverrideLoader {
     }
 
     final errors = <LoaderError>[];
-    final all = <String, WrapperOverride>{};
+    final resources = <String, WrapperOverride>{};
+    final dataSources = <String, WrapperOverride>{};
 
     for (final file in yamlFiles) {
-      final terraformType = p.basenameWithoutExtension(file.path);
-      if (!_terraformTypePattern.hasMatch(terraformType)) {
+      final stem = p.basenameWithoutExtension(file.path);
+      if (!_terraformTypePattern.hasMatch(stem)) {
         throw FormatException(
-          'YamlOverrideLoader: invalid terraform type "$terraformType" '
+          'YamlOverrideLoader: invalid terraform type "$stem" '
           '(file: ${file.path})',
         );
       }
@@ -175,9 +237,31 @@ class YamlOverrideLoader {
         );
       }
       final override = _parseOverride(yaml, file.path, errors);
-      if (override != null) {
-        all[terraformType] = override;
+      if (override == null) continue;
+      if (override.kind == WrapperOverrideKind.resource &&
+          stem.startsWith('data_')) {
+        throw FormatException(
+          'YamlOverrideLoader: resource override cannot use the data_ '
+          'file prefix (file: ${file.path})',
+        );
       }
+      final terraformType = terraformTypeFromOverrideStem(stem, override.kind);
+      if (!_terraformTypePattern.hasMatch(terraformType)) {
+        throw FormatException(
+          'YamlOverrideLoader: invalid terraform type "$terraformType" '
+          '(file: ${file.path})',
+        );
+      }
+      final target = override.kind == WrapperOverrideKind.dataSource
+          ? dataSources
+          : resources;
+      if (target.containsKey(terraformType)) {
+        throw FormatException(
+          'YamlOverrideLoader: duplicate ${override.kind.name} override '
+          'for "$terraformType" (file: ${file.path})',
+        );
+      }
+      target[terraformType] = override;
     }
 
     if (errors.isNotEmpty) {
@@ -185,15 +269,27 @@ class YamlOverrideLoader {
     }
 
     return LoadedOverrides(
-      resources: {
-        for (final e in all.entries)
-          if (e.value.kind == WrapperOverrideKind.resource) e.key: e.value,
-      },
-      dataSources: {
-        for (final e in all.entries)
-          if (e.value.kind == WrapperOverrideKind.dataSource) e.key: e.value,
-      },
+      resources: resources,
+      dataSources: dataSources,
     );
+  }
+
+  /// Resolves `--only` to one or two yaml files: the exact stem, plus the
+  /// `data_<stem>` twin when [only] is a bare terraform type.
+  List<File> _resolveOnlyFiles(String only) {
+    final files = <File>[];
+    final exact = File(p.join(rootDir, '$only.yaml'));
+    if (exact.existsSync()) files.add(exact);
+    if (!only.startsWith('data_')) {
+      final twin = File(p.join(rootDir, 'data_$only.yaml'));
+      if (twin.existsSync()) files.add(twin);
+    }
+    if (files.isEmpty) {
+      throw StateError(
+        'YamlOverrideLoader: --only target not found: ${exact.path}',
+      );
+    }
+    return files;
   }
 
   /// Parses one yaml mapping into a [WrapperOverride].

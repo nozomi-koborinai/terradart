@@ -169,7 +169,7 @@ void main() {
     var handEnumTotal = 0;
     var skipped = 0;
 
-    for (final entry in result.loaded.all.entries) {
+    for (final entry in result.loaded.entries) {
       final type = entry.key;
       final override = entry.value;
       final prelude = override.prelude;

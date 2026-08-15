@@ -81,11 +81,12 @@ class LintOverrideCommand extends Command<int> {
     final mmDir = (mmDirArg != null && mmDirArg.isNotEmpty)
         ? mmDirArg
         : defaultMmFixtureDirForOverrideRoot(rootDir);
-    final mmByType = loadMmFixtures(mmDir, loaded.all.keys);
+    final lintBag = loaded.asLintMap();
+    final mmByType = loadMmFixtures(mmDir, lintBag.keys);
     final debtPath = exactlyOneLintDebtPathForOverrideRoot(rootDir);
     final debt = loadExactlyOneLintDebt(debtPath);
     final staleDebt = staleExactlyOneOptionalFanoutDebt(
-      loaded.all,
+      lintBag,
       mmByType: mmByType,
       debt: debt.keys.toSet(),
     );
@@ -99,7 +100,7 @@ class LintOverrideCommand extends Command<int> {
       return CliExitCodes.dataError;
     }
     for (final tf in debt.keys) {
-      if (!loaded.all.containsKey(tf)) {
+      if (!lintBag.containsKey(tf)) {
         stderr.writeln(
           'lint-override: tool/exactly_one_lint_debt.yaml lists unknown override $tf',
         );
@@ -107,14 +108,14 @@ class LintOverrideCommand extends Command<int> {
       }
     }
     final violations = lintOverrides(
-      loaded.all,
+      lintBag,
       mmByType: mmByType,
       exactlyOneOptionalFanoutDebt: debt.keys.toSet(),
     );
 
     if (violations.isEmpty) {
       stdout.writeln(
-        'lint-override: ${loaded.all.length} overrides clean.',
+        'lint-override: ${loaded.length} overrides clean.',
       );
       return CliExitCodes.success;
     }

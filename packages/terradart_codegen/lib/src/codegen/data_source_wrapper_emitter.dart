@@ -79,7 +79,7 @@ class DataSourceWrapperEmitter {
 
     final buf = StringBuffer();
 
-    final pascal = snakeToPascal(def.terraformType); // GoogleProject
+    final pascal = dataSourceClassName(def.terraformType);
     final sensitiveConst = filePrivateSensitiveConstName(
       def.terraformType,
     ); // _googleProjectSensitive
@@ -300,15 +300,14 @@ class DataSourceWrapperEmitter {
     return out;
   }
 
-  /// Skip computed-only attributes and the synthetic `id` field. Data
-  /// source attributes almost always carry `computed: true`, so most
-  /// attributes get filtered here; the override's `paramOrder` lists the
-  /// input-shaped attributes (the ones that are also `optional`).
+  /// Skip computed-only attributes and the usual synthetic `id` field.
+  /// A required `id` (the lookup key on a few data sources, e.g.
+  /// `google_logging_sink`) is kept so terraform validate can see it.
   bool _skipAttribute(Attribute attr) {
     final c = attr.constraints;
     final isComputedOnly = c.computed && !c.optional && !c.required;
-    final isIdAttribute = attr.name == 'id';
-    return isComputedOnly || isIdAttribute;
+    final isSyntheticId = attr.name == 'id' && !c.required;
+    return isComputedOnly || isSyntheticId;
   }
 
   bool _skipNestedBlock(NestedBlockDef nested) {
