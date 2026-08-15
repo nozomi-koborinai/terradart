@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.25.0 - 2026-08-15
+
+Lockstep release with `terradart_google` 0.25.0. Coverage report no longer requires a live uncurated GA type as a sentinel.
+
 ## 0.24.0 - 2026-07-03
 
 Lockstep release with `terradart_core` / `terradart_google` 0.24.0. No functional changes in this package.

@@ -4,6 +4,22 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage` — this top-level file summarises cross-cutting milestones.
 
+## [0.25.0] - 2026-08-15
+
+Lockstep release across the workspace. **No breaking changes** vs `0.24.0`.
+
+The GA HashiCorp `google` provider catalog is filled. `google-beta` is coming soon.
+
+### Added
+
+- **`terradart_google`** — remaining GA `hashicorp/google` resources and data sources. Catalog: **1332 curated resource factories + 461 data sources** (1793 catalog entries; 131 service barrels).
+- **Examples** — leftover and data-source stacks on the apply-excluded path, including [`deferred_leftover_quickstart`](examples/deferred_leftover_quickstart/) and [`data_source_leftover_quickstart`](examples/data_source_leftover_quickstart/).
+
+### Changed
+
+- **Docs / site** — public copy says the GA catalog is filled; landing page shows Alpha; `google-beta` is coming soon.
+- **`terradart_coverage`** — coverage report no longer requires a live uncurated GA type as a sentinel.
+
 ## [0.24.0] - 2026-07-03
 
 Lockstep release across the workspace. **Breaking** — see [MIGRATING.md](MIGRATING.md). Nested blocks on 19 resources moved from raw `TfArg<Map>` params to generated typed helper classes (`deriveNestedTypes`), typing 49 nested enum sites; serialized Terraform JSON is semantically unchanged. `--strict-nested` enum coverage is now enforced in CI.
