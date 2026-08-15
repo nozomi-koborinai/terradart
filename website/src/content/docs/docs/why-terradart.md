@@ -96,7 +96,7 @@ HCL has provider schema types; CDKTF bindings are typed in TypeScript and other 
 
 ## Curated provider coverage
 
-[`terradart_google`](https://pub.dev/packages/terradart_google) wraps the **GA** HashiCorp `google` provider catalog — **1332 curated resource factories + 461 data sources** (1793 catalog entries). The `google-beta` provider is later. The full factory list with example pointers is on [Coverage](/docs/coverage/); see also [status](/docs/status/) and [Architecture — Provider integration](/docs/architecture/#provider-integration). Runnable stacks live in [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and the [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook) (both expanding). Upgrading across minors? Read [Migrating](/docs/migrating/) first.
+[`terradart_google`](https://pub.dev/packages/terradart_google) wraps the **GA** HashiCorp `google` provider catalog — **1332 curated resource factories + 461 data sources** (1793 catalog entries). The `google-beta` provider is coming soon. The full factory list with example pointers is on [Coverage](/docs/coverage/); see also [status](/docs/status/) and [Architecture — Provider integration](/docs/architecture/#provider-integration). Runnable stacks live in [examples](https://github.com/nozomi-koborinai/terradart/tree/main/examples) and the [cookbook](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook) (both expanding). Upgrading across minors? Read [Migrating](/docs/migrating/) first.
 
 ## Non-goals
 

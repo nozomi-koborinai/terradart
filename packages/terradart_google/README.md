@@ -2,7 +2,7 @@
 
 Ships **1332 curated resource factories + 461 data sources** (1793 catalog entries)
 
-The GA `hashicorp/google` catalog is filled. The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). Discover factories programmatically via `package:terradart_google/catalog.dart` (`terradartCatalog`).
+The GA `hashicorp/google` catalog is filled. `google-beta` is coming soon. The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). Discover factories programmatically via `package:terradart_google/catalog.dart` (`terradartCatalog`).
 
 ## How resources are built
 

@@ -25,6 +25,7 @@
 [![Schema Bump](https://github.com/nozomi-koborinai/terradart/actions/workflows/schema-bump.yml/badge.svg)](https://github.com/nozomi-koborinai/terradart/actions/workflows/schema-bump.yml)
 
 ```dart
+// docs:pitch:start
 // infra/lib/app_infra.dart
 // A Stack is one Terraform root module of GCP resources, written in Dart.
 import 'package:terradart_core/terradart_core.dart';
@@ -99,6 +100,7 @@ final class AppInfraStack extends Stack {
     ));
   }
 }
+// docs:pitch:end
 ```
 
 Cloud SQL, IAM, and a multi-container Cloud Run service with a `cloud-sql-proxy` sidecar — the kind of stack you would otherwise maintain in HCL or the console. Per-service imports (`cloud_run.dart`, `cloud_sql.dart`, …) keep IDE completion scoped; the legacy `package:terradart_google/terradart_google.dart` barrel re-export remains supported.
@@ -227,7 +229,7 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **1332 curated resource factories + 461 data sources** (1793 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). The GA `hashicorp/google` catalog is filled; `google-beta` is later.
+[`terradart_google`](packages/terradart_google/README.md) ships **1332 curated resource factories + 461 data sources** (1793 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). The GA `hashicorp/google` catalog is filled; `google-beta` is coming soon.
 
 The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). In Dart, discover factories via `package:terradart_google/catalog.dart` (`terradartCatalog`). CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 

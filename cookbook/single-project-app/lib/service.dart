@@ -7,7 +7,6 @@ import 'package:terradart_google/cloud_sql.dart';
 import 'package:terradart_google/iam.dart';
 import 'package:terradart_google/secret_manager.dart';
 
-// docs:pitch:start (rendered on terradart.dev's landing page — keep compiling)
 GoogleCloudRunV2Service buildCloudRunService({
   required GoogleServiceAccount runSa,
   required GoogleSqlDatabaseInstance sqlInstance,
@@ -58,7 +57,6 @@ GoogleCloudRunV2Service buildCloudRunService({
         ],
       ),
     );
-// docs:pitch:end
 
 GoogleCloudRunV2ServiceIamMember buildCloudRunInvoker(
   GoogleCloudRunV2Service coffeeService,
