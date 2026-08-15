@@ -94,7 +94,7 @@
     margin: 2rem 0 2.25rem;
   }
 
-  .pre-alpha {
+  .phase-badge {
     display: inline-block;
     font-size: 0.75rem;
     letter-spacing: 0.12em;
@@ -103,7 +103,7 @@
     margin-bottom: 1.25rem;
   }
 
-  .pre-alpha--header {
+  .phase-badge--header {
     margin-bottom: 0;
     font-size: 0.6875rem;
   }
