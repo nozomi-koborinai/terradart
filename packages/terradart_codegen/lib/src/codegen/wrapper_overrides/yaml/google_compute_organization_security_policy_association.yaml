@@ -10,3 +10,11 @@ curatedDoc: |-
   ///
   /// Needs an organization / folder / external artifact that
   /// standalone terradart-validate cannot supply. Do not apply.
+
+paramOrder:
+  - attachment_id
+  - deletion_policy
+  - excluded_folders
+  - excluded_projects
+  - name
+  - policy_id

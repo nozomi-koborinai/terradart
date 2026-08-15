@@ -16389,7 +16389,6 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'jsonParams',
       'kmsKeyName',
       'location',
-      'params',
       'project',
       'refreshInterval',
       'staticIpEnabled',

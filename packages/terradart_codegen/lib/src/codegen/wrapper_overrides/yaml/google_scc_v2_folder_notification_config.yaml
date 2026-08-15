@@ -12,3 +12,12 @@ curatedDoc: |-
   ///
   /// Needs an organization / folder / external artifact that
   /// standalone terradart-validate cannot supply. Do not apply.
+
+paramOrder:
+  - config_id
+  - deletion_policy
+  - description
+  - folder
+  - location
+  - pubsub_topic
+  - streaming_config

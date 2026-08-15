@@ -25,7 +25,12 @@ final class SccLeftoverStack extends Stack {
     const folder = '123456789';
     final apiDeps = Apis.enable(
       this,
-      barrels: [Barrels.scc, Barrels.pubsub, Barrels.bigquery, Barrels.iamApi],
+      barrels: [
+        Barrels.sccApi,
+        Barrels.pubsub,
+        Barrels.bigquery,
+        Barrels.iamApi
+      ],
       propagationDelay: const Duration(seconds: 60),
     );
 
