@@ -19,7 +19,7 @@ There are no SemVer guarantees until **v1.0.0**, but breaking changes land only 
 
 - Breaking changes to the public Dart API or the emitted Terraform JSON land only on **minor** bumps, each with a [MIGRATING.md](https://github.com/nozomi-koborinai/terradart/blob/main/MIGRATING.md) section; patch releases within `^0.N.x` are safe to take.
 - Use hosted `^0.24.x` carets on [pub.dev](https://pub.dev/packages/terradart_core) — not legacy `0.x.y-dev` pre-release tags.
-- Only the **curated** `terradart_google` surface is supported for users; non-curated resources require a curation request.
+- Only the **curated** `terradart_google` surface is supported for users. The GA `hashicorp/google` catalog is filled; `google-beta` is coming soon.
 
 ## Change policy (from alpha onward)
 

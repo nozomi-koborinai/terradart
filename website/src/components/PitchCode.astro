@@ -15,27 +15,21 @@ const terradartPaper = {
 };
 
 /**
- * LP pitch snippet — extracted at build time from the cookbook's
- * single-project-app recipe (analyzed on every PR, apply-verified against a
- * real GCP project). Single source: editing the recipe updates the landing
- * page; removing the markers fails the site build. No hand-maintained copy.
+ * LP pitch snippet — extracted at build time from the repository README.
+ * Single source: editing the README fence updates the landing page;
+ * removing the markers fails the site build. No hand-maintained copy.
  */
-import serviceSource from "../../../cookbook/single-project-app/lib/service.dart?raw";
+import readmeSource from "../../../README.md?raw";
 
 const startMarker = "// docs:pitch:start";
 const endMarker = "// docs:pitch:end";
-const sourceLines = serviceSource.split("\n");
+const sourceLines = readmeSource.split("\n");
 const startIndex = sourceLines.findIndex((l) => l.includes(startMarker));
 const endIndex = sourceLines.findIndex((l) => l.includes(endMarker));
 if (startIndex < 0 || endIndex < 0 || endIndex <= startIndex) {
-  throw new Error(
-    "PitchCode: docs:pitch markers not found in cookbook/single-project-app/lib/service.dart",
-  );
+  throw new Error("PitchCode: docs:pitch markers not found in README.md");
 }
-const code = [
-  "// cookbook/single-project-app/lib/service.dart (excerpt — real, apply-verified code)",
-  ...sourceLines.slice(startIndex + 1, endIndex),
-].join("\n");
+const code = sourceLines.slice(startIndex + 1, endIndex).join("\n");
 
 const highlightedHtml = await codeToHtml(code, {
   lang: "dart",
@@ -48,19 +42,19 @@ const highlightedHtml = await codeToHtml(code, {
     <p class="section-label">Example</p>
     <h2 class="display-section">GCP resources in Dart</h2>
     <p class="pitch-code-lead">
-      A Cloud Run service wired to Cloud SQL with its password pulled from
-      Secret Manager&nbsp;&mdash; typed helper classes, sealed env-var sources, and
-      enums where the provider documents values. This is not marketing pseudocode:
-      it is an excerpt of a cookbook recipe that CI analyzes on every pull request
-      and applies against a real GCP project.
+      Cloud SQL, IAM, and a multi-container Cloud Run service with a
+      <code>cloud-sql-proxy</code> sidecar&nbsp;&mdash; a
+      <code>final class … extends Stack</code>. Same snippet as the
+      repository README.
     </p>
     <div class="pitch-code-figure">
       <div class="terra-stratum" aria-hidden="true"></div>
       <div class="pitch-code-wrap" set:html={highlightedHtml} />
     </div>
     <p class="pitch-code-meta">
-      <code>terradart_google</code> ships a <strong>curated</strong> subset of the
-      HashiCorp <code>google</code> provider&nbsp;&mdash; not every resource type yet. The
+      <code>terradart_google</code> ships typed factories for the
+      <strong>GA</strong> HashiCorp <code>google</code> provider catalog. The
+      <code>google-beta</code> provider is coming soon. The
       full factory list with runnable examples is on
       <a href="/docs/coverage/" class="link-mark">Coverage</a>; complete stacks live in the
       <a

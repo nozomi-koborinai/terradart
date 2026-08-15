@@ -13,7 +13,7 @@ It is built with [genkit_mcp](https://pub.dev/packages/genkit_mcp) (Genkit's MCP
 graph LR
   agent["coding agent<br/>(Claude Code / Cursor / Claude Desktop)"]
   mcp["terradart-mcp<br/>list_barrels · list_resources<br/>get_resource_schema · get_quickstart<br/>check_coverage"]
-  catalog["static catalog in terradart_google<br/>334 entries · 59 service barrels"]
+  catalog["static catalog in terradart_google<br/>1793 entries · 131 service barrels"]
   agent -->|stdio JSON-RPC MCP| mcp
   mcp -->|reads in-process| catalog
 ```
