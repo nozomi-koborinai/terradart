@@ -28511,7 +28511,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     barrel: 'data',
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `google_logging_sink`.',
-    constructorParams: <String>['localName'],
+    constructorParams: <String>['localName', 'id'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
