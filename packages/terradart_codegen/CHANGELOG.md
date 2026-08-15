@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.25.0 - 2026-08-15
+
+Lockstep release with `terradart_google` 0.25.0 (GA `hashicorp/google` catalog filled). Wrap emits GA data-source factories (`data_<type>.yaml` twins, `Data` class prefix). No user-facing CLI flag changes.
+
 ## 0.24.0 - 2026-07-03
 
 New maintainer derivation gate `deriveNestedTypes: true` (+ `nestedTypeExcludes`): generates typed helper classes for nested blocks from the provider schema — fields typed per schema, enums parsed from attribute descriptions (single-sourced with `check_override_enum_gaps`, which is now excludes-aware and strict on nested sites in CI). Non-breaking for the wrap CLI; overrides that do not set the gate are unaffected.

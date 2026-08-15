@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.25.0 - 2026-08-15
+
+Lockstep release. **No breaking changes** vs `0.24.0`.
+
+The GA HashiCorp `google` provider catalog is filled. `google-beta` is coming soon.
+
+### Added
+
+- Remaining GA `hashicorp/google` resources and data sources. Catalog: **1332 curated resource factories + 461 data sources** (1793 catalog entries; 131 service barrels).
+- Leftover and data-source examples on the apply-excluded path (`deferred_leftover_quickstart`, `data_source_leftover_quickstart`, and related skip-listed quickstarts).
+
 ## 0.24.0 - 2026-07-03
 
 Lockstep release. **Breaking** — see [MIGRATING.md](../../MIGRATING.md).
