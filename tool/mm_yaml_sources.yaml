@@ -2168,6 +2168,8 @@ files:
     upstream: null  # MM templates IAM bindings; schema-only curation
   google_access_context_manager_authorized_orgs_desc:
     upstream: mmv1/products/accesscontextmanager/AuthorizedOrgsDesc.yaml
+  google_access_context_manager_access_level_condition:
+    upstream: mmv1/products/accesscontextmanager/AccessLevelCondition.yaml
   # Wave 76 (OS Config + Binary Authorization — VM compliance & image trust)
   google_network_services_edge_cache_keyset:
     upstream: mmv1/products/networkservices/EdgeCacheKeyset.yaml
