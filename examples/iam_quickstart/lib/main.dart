@@ -472,6 +472,91 @@ final class IamShowcaseStack extends Stack {
       ),
     );
 
+    // Apply-excluded workforce leftovers (org parent). iam_quickstart
+    // is skip-listed; these are synth + terraform validate only.
+    final workforce = add(
+      GoogleIamWorkforcePool(
+        localName: 'workforce',
+        location: TfArg.literal('global'),
+        parent: TfArg.literal('organizations/123456789'),
+        workforcePoolId: TfArg.literal('terradart-wf'),
+        displayName: TfArg.literal('terradart workforce'),
+        deletionPolicy: TfArg.literal('DELETE'),
+      ),
+    );
+
+    add(
+      GoogleIamWorkforcePoolIamMember(
+        localName: 'workforce_viewer',
+        workforcePoolId: TfArg.literal('terradart-wf'),
+        location: TfArg.literal('global'),
+        role: TfArg.literal('roles/iam.workforcePoolViewer'),
+        member: saMember,
+        dependsOn: [
+          ResourceDependency(workforce),
+          ResourceDependency(sa),
+        ],
+      ),
+    );
+
+    final wfProvider = add(
+      GoogleIamWorkforcePoolProvider(
+        localName: 'workforce_oidc',
+        location: TfArg.literal('global'),
+        workforcePoolId: TfArg.literal('terradart-wf'),
+        providerId: TfArg.literal('terradart-oidc'),
+        trustSource: IamWorkforcePoolProviderOidcTrust(
+          issuerUri: TfArg.literal('https://accounts.google.com'),
+          clientId: TfArg.literal('client.apps.googleusercontent.com'),
+        ),
+        deletionPolicy: TfArg.literal('DELETE'),
+        dependsOn: [ResourceDependency(workforce)],
+      ),
+    );
+
+    add(
+      GoogleIamWorkforcePoolProviderKey(
+        localName: 'workforce_key',
+        location: TfArg.literal('global'),
+        workforcePoolId: TfArg.literal('terradart-wf'),
+        providerId: TfArg.literal('terradart-oidc'),
+        keyId: TfArg.literal('terradart-key'),
+        use: TfArg.literal('ENCRYPTION'),
+        keyData: IamWorkforcePoolProviderKeyKeyData(
+          keySpec: TfArg.literal(
+            IamWorkforcePoolProviderKeyKeyDataKeySpec.rsa2048,
+          ),
+        ),
+        deletionPolicy: TfArg.literal('DELETE'),
+        dependsOn: [ResourceDependency(wfProvider)],
+      ),
+    );
+
+    final scim = add(
+      GoogleIamWorkforcePoolProviderScimTenant(
+        localName: 'workforce_scim',
+        location: TfArg.literal('global'),
+        workforcePoolId: TfArg.literal('terradart-wf'),
+        providerId: TfArg.literal('terradart-oidc'),
+        scimTenantId: TfArg.literal('terradart-scim'),
+        deletionPolicy: TfArg.literal('DELETE'),
+        dependsOn: [ResourceDependency(wfProvider)],
+      ),
+    );
+
+    add(
+      GoogleIamWorkforcePoolProviderScimToken(
+        localName: 'workforce_scim_token',
+        location: TfArg.literal('global'),
+        workforcePoolId: TfArg.literal('terradart-wf'),
+        providerId: TfArg.literal('terradart-oidc'),
+        scimTenantId: TfArg.literal('terradart-scim'),
+        scimTokenId: TfArg.literal('terradart-scim-token'),
+        deletionPolicy: TfArg.literal('DELETE'),
+        dependsOn: [ResourceDependency(scim)],
+      ),
+    );
+
     // The seam: export each resource path so the application side has
     // typed lookup keys for all four resources.
     addExport(

@@ -2,10 +2,12 @@
 // Run `terradart wrap` to regenerate.
 /// IAM service accounts, Workload Identity Federation pools
 /// (including trust-domain namespaces and managed identities),
-/// Workload Identity service-agent minting, Workforce OAuth
-/// clients, OS Login SSH public keys, project deny policies, and
-/// per-resource IAM members live alongside their owning service
-/// barrel (e.g. `pubsub.dart` exports `GooglePubsubTopicIamMember`).
+/// Workload Identity service-agent minting, Workforce Identity
+/// Federation pools / providers / keys / SCIM (apply-excluded;
+/// org parent), Workforce OAuth clients, OS Login SSH public keys,
+/// project deny policies, and per-resource IAM members live
+/// alongside their owning service barrel (e.g. `pubsub.dart`
+/// exports `GooglePubsubTopicIamMember`).
 library;
 
 export 'src/iam/google_iam_deny_policy.dart'
@@ -15,12 +17,37 @@ export 'src/iam/google_iam_deny_policy.dart'
         IamDenyPolicyRulesDenyRule,
         IamDenyPolicyRulesDenyRuleDenialCondition;
 export 'src/iam/google_iam_oauth_client.dart' show GoogleIamOauthClient;
+export 'src/iam/google_iam_workforce_pool.dart'
+    show
+        GoogleIamWorkforcePool,
+        IamWorkforcePoolAccessRestrictions,
+        IamWorkforcePoolAccessRestrictionsAllowedServices;
 export 'src/iam/google_iam_workforce_pool_iam_binding.dart'
     show GoogleIamWorkforcePoolIamBinding;
 export 'src/iam/google_iam_workforce_pool_iam_member.dart'
     show GoogleIamWorkforcePoolIamMember;
 export 'src/iam/google_iam_workforce_pool_iam_policy.dart'
     show GoogleIamWorkforcePoolIamPolicy;
+export 'src/iam/google_iam_workforce_pool_provider.dart'
+    show
+        GoogleIamWorkforcePoolProvider,
+        IamWorkforcePoolProviderExtendedAttributesOauth2Client,
+        IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecret,
+        IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValue,
+        IamWorkforcePoolProviderExtendedAttributesOauth2ClientQueryParameters,
+        IamWorkforcePoolProviderOidcTrust,
+        IamWorkforcePoolProviderSaml,
+        IamWorkforcePoolProviderSamlTrust,
+        IamWorkforcePoolProviderTrustSource;
+export 'src/iam/google_iam_workforce_pool_provider_key.dart'
+    show
+        GoogleIamWorkforcePoolProviderKey,
+        IamWorkforcePoolProviderKeyKeyData,
+        IamWorkforcePoolProviderKeyKeyDataKeySpec;
+export 'src/iam/google_iam_workforce_pool_provider_scim_tenant.dart'
+    show GoogleIamWorkforcePoolProviderScimTenant;
+export 'src/iam/google_iam_workforce_pool_provider_scim_token.dart'
+    show GoogleIamWorkforcePoolProviderScimToken;
 export 'src/iam/google_iam_workload_identity_pool.dart'
     show GoogleIamWorkloadIdentityPool, WorkloadIdentityPoolMode;
 export 'src/iam/google_iam_workload_identity_pool_iam_binding.dart'

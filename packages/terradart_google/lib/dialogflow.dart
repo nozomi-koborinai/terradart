@@ -1,12 +1,13 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 /// Dialogflow ES / CX: SIP trunk, ES conversation-profile metadata,
-/// Agent Assist summarization generators, ES agent plus intent /
-/// entity type / fulfillment / version / environment, and full CX
-/// agent surfaces (all CX factories are
-/// never_apply — agent / flow / intent / page / playbook / webhook /
-/// generative settings / security settings / generator / tool /
-/// entity type / environment / version / tool version / test case).
+/// Agent Assist summarization generators, location CMEK encryption
+/// spec (apply-excluded), ES agent plus intent / entity type /
+/// fulfillment / version / environment, and full CX agent surfaces
+/// (all CX factories are never_apply — agent / flow / intent / page /
+/// playbook / webhook / generative settings / security settings /
+/// generator / tool / entity type / environment / version / tool
+/// version / test case).
 library;
 
 export 'src/dialogflow/google_dialogflow_agent.dart'
@@ -281,6 +282,8 @@ export 'src/dialogflow/google_dialogflow_cx_webhook.dart'
         DialogflowCxWebhookServiceDirectoryGenericWebServiceServiceAgentAuth,
         DialogflowCxWebhookServiceDirectoryGenericWebServiceWebhookType,
         GoogleDialogflowCxWebhook;
+export 'src/dialogflow/google_dialogflow_encryption_spec.dart'
+    show DialogflowEncryptionSpecEncryptionSpec, GoogleDialogflowEncryptionSpec;
 export 'src/dialogflow/google_dialogflow_entity_type.dart'
     show
         DialogflowEntityTypeEntities,

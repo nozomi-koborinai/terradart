@@ -1,0 +1,115 @@
+outputDir: iam
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+# Sealed [trustSource] already covers `oidc` / `saml`. Extra-attributes
+# OAuth client is unused on the leftover smoke stack.
+nestedTypeExcludes:
+  - oidc
+  - extra_attributes_oauth2_client
+
+curatedDoc: |-
+  /// IAM **workforce pool provider** — an OIDC or SAML IdP binding
+  /// inside an organization-scoped [GoogleIamWorkforcePool].
+  ///
+  /// [trustSource] is sealed so MM `exactly_one_of` (`oidc` / `saml`)
+  /// is compile-time. This leftover is apply-excluded: the parent pool
+  /// needs `organizations/{org-id}`.
+  ///
+  /// Example (OIDC):
+  /// ```dart
+  /// GoogleIamWorkforcePoolProvider(
+  ///   localName: 'oidc',
+  ///   location: TfArg.literal('global'),
+  ///   workforcePoolId: TfArg.ref(pool.workforcePoolIdRef),
+  ///   providerId: TfArg.literal('terradart-oidc'),
+  ///   trustSource: IamWorkforcePoolProviderOidcTrust(
+  ///     issuerUri: TfArg.literal('https://accounts.google.com'),
+  ///     clientId: TfArg.literal('client.apps.googleusercontent.com'),
+  ///   ),
+  /// );
+  /// ```
+
+paramOrder:
+  - location
+  - workforce_pool_id
+  - provider_id
+  - display_name
+  - description
+  - disabled
+  - attribute_mapping
+  - attribute_condition
+  - trust_source
+  - deletion_policy
+
+argMapOrder:
+  - location
+  - workforce_pool_id
+  - provider_id
+  - display_name
+  - description
+  - disabled
+  - attribute_mapping
+  - attribute_condition
+  - deletion_policy
+  - trust_source
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+prelude: |
+  /// Trust binding for [GoogleIamWorkforcePoolProvider]. Sealed so the
+  /// provider's `exactly_one_of` across `oidc` / `saml` is exhaustive.
+  sealed class IamWorkforcePoolProviderTrustSource {
+    const IamWorkforcePoolProviderTrustSource();
+
+    String get blockKey;
+
+    List<Map<String, Object?>> encode();
+  }
+
+  /// OIDC identity provider.
+  @immutable
+  final class IamWorkforcePoolProviderOidcTrust
+      extends IamWorkforcePoolProviderTrustSource {
+    const IamWorkforcePoolProviderOidcTrust({
+      required this.issuerUri,
+      required this.clientId,
+    });
+
+    final TfArg<String> issuerUri;
+    final TfArg<String> clientId;
+
+    @override
+    String get blockKey => 'oidc';
+
+    @override
+    List<Map<String, Object?>> encode() => [
+      {
+        'issuer_uri': issuerUri.toTfJson(),
+        'client_id': clientId.toTfJson(),
+      },
+    ];
+  }
+
+  /// SAML 2.0 identity provider.
+  @immutable
+  final class IamWorkforcePoolProviderSamlTrust
+      extends IamWorkforcePoolProviderTrustSource {
+    const IamWorkforcePoolProviderSamlTrust({required this.idpMetadataXml});
+
+    final TfArg<String> idpMetadataXml;
+
+    @override
+    String get blockKey => 'saml';
+
+    @override
+    List<Map<String, Object?>> encode() => [
+      {'idp_metadata_xml': idpMetadataXml.toTfJson()},
+    ];
+  }
+
+customSlots:
+  trust_source:
+    paramDeclaration: 'required IamWorkforcePoolProviderTrustSource trustSource'
+    argMapEntry: 'trustSource.blockKey: TfArg.literal(trustSource.encode()),'

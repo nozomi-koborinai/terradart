@@ -11,8 +11,9 @@
 /// Endpoint Uptime is never_apply — $1.75/h), VPC Flow Logs configs,
 /// Network Services Mesh, Service Extensions (Authz / LB traffic /
 /// route / edge — debt-only: schema required forwarding_rules bill
-/// Cloud LB Forwarding Rule Minimum $0.025/h), and Network Services
-/// gateways (Secure Web Gateway is never_apply — $1.25/h).
+/// Cloud LB Forwarding Rule Minimum $0.025/h), Wasm plugin metadata
+/// (apply-excluded — needs an uploaded plugin image), and Network
+/// Services gateways (Secure Web Gateway is never_apply — $1.25/h).
 library;
 
 export 'src/network/google_network_connectivity_destination.dart'
@@ -384,3 +385,9 @@ export 'src/network/google_network_services_tls_route.dart'
         NetworkServicesTlsRouteRulesAction,
         NetworkServicesTlsRouteRulesActionDestinations,
         NetworkServicesTlsRouteRulesMatches;
+export 'src/network/google_network_services_wasm_plugin.dart'
+    show
+        GoogleNetworkServicesWasmPlugin,
+        NetworkServicesWasmPluginLogConfig,
+        NetworkServicesWasmPluginLogConfigMinLogLevel,
+        NetworkServicesWasmPluginVersions;

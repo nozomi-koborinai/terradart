@@ -198,5 +198,36 @@ final class DiscoveryEngineCatalogStack extends Stack {
         ],
       ),
     );
+
+    // Apply-excluded leftovers: CMEK + third-party connector. This
+    // example is skip-listed (soft-delete) and is never applied.
+    add(
+      GoogleDiscoveryEngineCmekConfig(
+        localName: 'cmek',
+        location: TfArg.literal('us'),
+        cmekConfigId: TfArg.literal('terradart-cmek'),
+        kmsKey: TfArg.literal(
+          'projects/$projectId/locations/us/keyRings/terradart/cryptoKeys/discovery',
+        ),
+        setDefault: TfArg.literal(false),
+        deletionPolicy: TfArg.literal('DELETE'),
+        dependsOn: apiDeps,
+      ),
+    );
+
+    add(
+      GoogleDiscoveryEngineDataConnector(
+        localName: 'jira',
+        location: TfArg.literal('global'),
+        collectionId: TfArg.literal('terradart-jira'),
+        collectionDisplayName: TfArg.literal('terradart jira'),
+        dataSource: TfArg.literal('jira'),
+        refreshInterval: TfArg.literal('1800s'),
+        jsonParams:
+            TfArg.literal('{"instance_uri":"https://example.atlassian.net"}'),
+        deletionPolicy: TfArg.literal('DELETE'),
+        dependsOn: apiDeps,
+      ),
+    );
   }
 }

@@ -1,7 +1,9 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 /// Compute Engine resources: instances, addresses, firewalls, networks,
-/// subnetworks, Hyperdisk Storage Pools (pool capacity is never_apply),
+/// subnetworks, hierarchical firewall policies with rules, organization
+/// Cloud Armor policies, BYOIP advertised/delegated prefixes (apply-
+/// excluded), Hyperdisk Storage Pools (pool capacity is never_apply),
 /// Cross-Site / wire groups (Partner Cross-Cloud Interconnect $17+/h is
 /// never_apply), and packet mirroring (mirrored GiBy is never_apply).
 library;
@@ -135,6 +137,15 @@ export 'src/compute/google_compute_firewall_policy_rule.dart'
         ComputeFirewallPolicyRuleMatchSrcSecureTags,
         ComputeFirewallPolicyRuleTargetSecureTags,
         GoogleComputeFirewallPolicyRule;
+export 'src/compute/google_compute_firewall_policy_with_rules.dart'
+    show
+        ComputeFirewallPolicyWithRulesRule,
+        ComputeFirewallPolicyWithRulesRuleDirection,
+        ComputeFirewallPolicyWithRulesRuleMatch,
+        ComputeFirewallPolicyWithRulesRuleMatchLayer4Config,
+        ComputeFirewallPolicyWithRulesRuleMatchSrcSecureTag,
+        ComputeFirewallPolicyWithRulesRuleTargetSecureTag,
+        GoogleComputeFirewallPolicyWithRules;
 export 'src/compute/google_compute_forwarding_rule.dart'
     show
         ComputeForwardingRuleForwardingRuleServiceDirectoryRegistration,
@@ -430,6 +441,25 @@ export 'src/compute/google_compute_node_template.dart'
         ComputeNodeTemplateServerBinding,
         ComputeNodeTemplateServerBindingType,
         GoogleComputeNodeTemplate;
+export 'src/compute/google_compute_organization_security_policy.dart'
+    show GoogleComputeOrganizationSecurityPolicy;
+export 'src/compute/google_compute_organization_security_policy_association.dart'
+    show GoogleComputeOrganizationSecurityPolicyAssociation;
+export 'src/compute/google_compute_organization_security_policy_rule.dart'
+    show
+        ComputeOrganizationSecurityPolicyRuleHeaderAction,
+        ComputeOrganizationSecurityPolicyRuleHeaderActionRequestHeadersToAdds,
+        ComputeOrganizationSecurityPolicyRuleMatch,
+        ComputeOrganizationSecurityPolicyRuleMatchConfig,
+        ComputeOrganizationSecurityPolicyRuleMatchExpr,
+        ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfig,
+        ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusion,
+        ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusionRequestCookie,
+        ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusionRequestHeader,
+        ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusionRequestQueryParam,
+        ComputeOrganizationSecurityPolicyRulePreconfiguredWafConfigExclusionRequestUri,
+        ComputeOrganizationSecurityPolicyRuleRedirectOptions,
+        GoogleComputeOrganizationSecurityPolicyRule;
 export 'src/compute/google_compute_packet_mirroring.dart'
     show
         ComputePacketMirroringCollectorIlb,
@@ -470,6 +500,16 @@ export 'src/compute/google_compute_project_metadata.dart'
     show GoogleComputeProjectMetadata;
 export 'src/compute/google_compute_project_metadata_item.dart'
     show GoogleComputeProjectMetadataItem;
+export 'src/compute/google_compute_public_advertised_prefix.dart'
+    show
+        ComputePublicAdvertisedPrefixIpv6AccessType,
+        ComputePublicAdvertisedPrefixPdpScope,
+        GoogleComputePublicAdvertisedPrefix;
+export 'src/compute/google_compute_public_delegated_prefix.dart'
+    show
+        ComputePublicDelegatedPrefixIpv6AccessType,
+        ComputePublicDelegatedPrefixMode,
+        GoogleComputePublicDelegatedPrefix;
 export 'src/compute/google_compute_region_autoscaler.dart'
     show
         ComputeRegionAutoscalerRegionAutoscalerAutoscalingPolicy,

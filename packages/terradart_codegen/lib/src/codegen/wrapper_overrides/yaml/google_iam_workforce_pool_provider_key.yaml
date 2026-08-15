@@ -1,0 +1,23 @@
+outputDir: iam
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Workforce pool provider key — leftover factory on the
+  /// apply-excluded path (synth + `terraform validate` only).
+  ///
+  /// Needs an organization / folder / external artifact that
+  /// standalone terradart-validate cannot supply. Do not apply.
+
+paramOrder:
+  - deletion_policy
+  - key_id
+  - location
+  - provider_id
+  - use
+  - workforce_pool_id
+  - key_data

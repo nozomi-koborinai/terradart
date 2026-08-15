@@ -655,6 +655,15 @@ final Map<String, Object Function()> _syntheticInstances = {
   'IamWorkloadIdentityPoolProviderX509Trust': () =>
       const IamWorkloadIdentityPoolProviderX509Trust(),
 
+  // --- IamWorkforcePoolProviderTrustSource (2) — leftover workforce IdP ---
+  'IamWorkforcePoolProviderOidcTrust': () => IamWorkforcePoolProviderOidcTrust(
+        issuerUri: TfArg.literal('https://accounts.google.com'),
+        clientId: TfArg.literal('client.apps.googleusercontent.com'),
+      ),
+  'IamWorkforcePoolProviderSamlTrust': () => IamWorkforcePoolProviderSamlTrust(
+        idpMetadataXml: TfArg.literal('<xml/>'),
+      ),
+
   // --- IndexFieldSpec (4) — firestore_index --------------------------------
   'FirestoreIndexIndexFieldOrder': () =>
       const FirestoreIndexIndexFieldOrder(FirestoreIndexOrder.ascending),

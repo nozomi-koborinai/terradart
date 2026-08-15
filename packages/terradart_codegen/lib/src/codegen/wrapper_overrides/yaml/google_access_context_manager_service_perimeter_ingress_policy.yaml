@@ -1,0 +1,21 @@
+outputDir: access_context_manager
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// ACM perimeter ingress policy — leftover factory on the
+  /// apply-excluded path (synth + `terraform validate` only).
+  ///
+  /// Needs an organization / folder / external artifact that
+  /// standalone terradart-validate cannot supply. Do not apply.
+
+paramOrder:
+  - deletion_policy
+  - perimeter
+  - title
+  - ingress_from
+  - ingress_to

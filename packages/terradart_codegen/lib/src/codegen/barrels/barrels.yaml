@@ -31,8 +31,9 @@ barrels:
     doc: |-
       /// Access Context Manager: VPC Service Controls access policies, levels,
       /// access-level conditions, service perimeters, dry-run perimeter
-      /// resources, authorized-orgs descriptors, and access-policy IAM
-      /// members.
+      /// resources, authorized-orgs descriptors, bulk levels/perimeters,
+      /// live/dry-run ingress and egress attachments, GCP user access
+      /// bindings, and access-policy IAM members.
   active_directory:
     doc: |-
       /// Managed Service for Microsoft Active Directory — domains bill hourly
@@ -202,7 +203,9 @@ barrels:
   compute:
     doc: |-
       /// Compute Engine resources: instances, addresses, firewalls, networks,
-      /// subnetworks, Hyperdisk Storage Pools (pool capacity is never_apply),
+      /// subnetworks, hierarchical firewall policies with rules, organization
+      /// Cloud Armor policies, BYOIP advertised/delegated prefixes (apply-
+      /// excluded), Hyperdisk Storage Pools (pool capacity is never_apply),
       /// Cross-Site / wire groups (Partner Cross-Cloud Interconnect $17+/h is
       /// never_apply), and packet mirroring (mirrored GiBy is never_apply).
   config:
@@ -283,16 +286,18 @@ barrels:
   dialogflow:
     doc: |-
       /// Dialogflow ES / CX: SIP trunk, ES conversation-profile metadata,
-      /// Agent Assist summarization generators, ES agent plus intent /
-      /// entity type / fulfillment / version / environment, and full CX
-      /// agent surfaces (all CX factories are
-      /// never_apply — agent / flow / intent / page / playbook / webhook /
-      /// generative settings / security settings / generator / tool /
-      /// entity type / environment / version / tool version / test case).
+      /// Agent Assist summarization generators, location CMEK encryption
+      /// spec (apply-excluded), ES agent plus intent / entity type /
+      /// fulfillment / version / environment, and full CX agent surfaces
+      /// (all CX factories are never_apply — agent / flow / intent / page /
+      /// playbook / webhook / generative settings / security settings /
+      /// generator / tool / entity type / environment / version / tool
+      /// version / test case).
   discovery_engine:
     doc: |-
       /// Vertex AI Search (Discovery Engine): data stores, search engines, IAM,
-      /// schema / serving controls, and Gemini Enterprise license configs
+      /// schema / serving controls, location CMEK config and third-party data
+      /// connectors (apply-excluded), and Gemini Enterprise license configs
       /// (never_apply — seat subscriptions).
   dlp:
     doc: |-
@@ -393,10 +398,12 @@ barrels:
     doc: |-
       /// IAM service accounts, Workload Identity Federation pools
       /// (including trust-domain namespaces and managed identities),
-      /// Workload Identity service-agent minting, Workforce OAuth
-      /// clients, OS Login SSH public keys, project deny policies, and
-      /// per-resource IAM members live alongside their owning service
-      /// barrel (e.g. `pubsub.dart` exports `GooglePubsubTopicIamMember`).
+      /// Workload Identity service-agent minting, Workforce Identity
+      /// Federation pools / providers / keys / SCIM (apply-excluded;
+      /// org parent), Workforce OAuth clients, OS Login SSH public keys,
+      /// project deny policies, and per-resource IAM members live
+      /// alongside their owning service barrel (e.g. `pubsub.dart`
+      /// exports `GooglePubsubTopicIamMember`).
   identity:
     doc: |-
       /// Identity Platform — project Auth config, multi-tenant realms,
@@ -477,8 +484,9 @@ barrels:
       /// Endpoint Uptime is never_apply — $1.75/h), VPC Flow Logs configs,
       /// Network Services Mesh, Service Extensions (Authz / LB traffic /
       /// route / edge — debt-only: schema required forwarding_rules bill
-      /// Cloud LB Forwarding Rule Minimum $0.025/h), and Network Services
-      /// gateways (Secure Web Gateway is never_apply — $1.25/h).
+      /// Cloud LB Forwarding Rule Minimum $0.025/h), Wasm plugin metadata
+      /// (apply-excluded — needs an uploaded plugin image), and Network
+      /// Services gateways (Secure Web Gateway is never_apply — $1.25/h).
   notebooks:
     doc: |-
       /// Vertex AI Workbench (Notebooks) — environments, user-managed
@@ -535,8 +543,9 @@ barrels:
       /// for apply-smoke).
   scc:
     doc: |-
-      /// Security Command Center (SCC) v2 — project notification configs that
-      /// continuously export findings to Pub/Sub.
+      /// Security Command Center (SCC) v1 / v2 / Management — sources,
+      /// notification configs, mute configs, custom modules, BigQuery
+      /// exports, and source IAM. Org/folder factories are apply-excluded.
   recaptcha:
     doc: |-
       /// reCAPTCHA Enterprise keys for web, Android, and iOS clients.
@@ -581,8 +590,9 @@ barrels:
       /// fine-grained ACLs.
   storage_control:
     doc: |-
-      /// Cloud Storage Control — project Storage Intelligence config
-      /// (edition / filters for inventory and insights at project scope).
+      /// Cloud Storage Control — project / folder / organization Storage
+      /// Intelligence config (edition / filters for inventory and insights).
+      /// Folder and organization configs are apply-excluded.
   tags:
     doc: |-
       /// Resource Manager Tags — tag keys, tag values, resource bindings, and the
