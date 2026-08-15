@@ -258,10 +258,6 @@ entries:
     detected_at: 2026-08-12
     provider_version: 7.43.0
     note: skipped by wave-shipper — attaches to an org-scoped service perimeter; sibling access_context_quickstart is skip-listed
-  - resource: google_access_context_manager_service_perimeter_dry_run_resource
-    detected_at: 2026-08-12
-    provider_version: 7.43.0
-    note: skipped by wave-shipper — attaches to an org-scoped service perimeter; sibling access_context_quickstart is skip-listed
   - resource: google_access_context_manager_service_perimeter_dry_run_ingress_policy
     detected_at: 2026-08-12
     provider_version: 7.43.0

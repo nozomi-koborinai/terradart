@@ -237,6 +237,24 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_access_context_manager_service_perimeter`.\n\nServicePerimeter describes a set of GCP resources which can freely import\nand export data amongst themselves, but not export outside of the\nServicePerimeter. If a request with a source within this ServicePerimeter\nhas a target outside of the ServicePerimeter, the request will be blocked.\nOtherwise the request is allowed. There are two types of Service Perimeter -\nRegular and Bridge. Regular Service Perimeters cannot overlap, a single GCP\nproject can only belong to a single regular Service Perimeter. Service\nPerimeter Bridges can contain only GCP projects as members, a single GCP\nproject may belong to multiple Service Perimeter Bridges.',
   ),
   CatalogEntry(
+    tfType: 'google_access_context_manager_service_perimeter_dry_run_resource',
+    className: 'GoogleAccessContextManagerServicePerimeterDryRunResource',
+    barrel: 'access_context_manager',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_access_context_manager_service_perimeter_dry_run_resource`.',
+    constructorParams: <String>[
+      'localName',
+      'perimeterName',
+      'resource',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_access_context_manager_service_perimeter_dry_run_resource`.\n\nAllows configuring a single GCP resource that should be inside of the `spec`\nblock of a dry run service perimeter. This resource is intended to be used\nin cases where it is not possible to compile a full list of projects to\ninclude in a `google_access_context_manager_service_perimeter` resource, to\nenable them to be added separately. If your perimeter is NOT in dry-run mode\nuse `google_access_context_manager_service_perimeter_resource` instead.\n\n~> **Note:** If this resource is used alongside a\n`google_access_context_manager_service_perimeter` resource, the service\nperimeter resource must have a `lifecycle` block with `ignore_changes =\n[spec[0].resources]` so they don\'t fight over which resources should be in\nthe policy.\n\nAccess Context Manager **dry-run perimeter resource** — an\nadditive project attached to a service perimeter `spec` (dry-run)\nonly. Prefer a dedicated perimeter with\n[useExplicitDryRunSpec] so the attachment does **not** change\nlive `status` evaluation.\n\nPrefer a thin smoke stack: [perimeterName] from that dry-run\nperimeter, placeholder [resource] `projects/987654321`, and\n[deletionPolicy] `DELETE`. Set the sibling perimeter\'s\n`lifecycle.ignore_changes` to `spec[0].resources` so the two\nresources do not fight.\n\n`access_context_quickstart` is apply-smoke skipped (needs a real\norganization id), so this factory is synth + `terraform validate`\nonly.\n\nExample:\n```dart\nGoogleAccessContextManagerServicePerimeterDryRunResource(\n  localName: \'dry_run_project\',\n  perimeterName: TfArg.ref(dryRun.nameRef),\n  resource: TfArg.literal(\'projects/987654321\'),\n  deletionPolicy: TfArg.literal(\'DELETE\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_active_directory_domain',
     className: 'GoogleActiveDirectoryDomain',
     barrel: 'active_directory',

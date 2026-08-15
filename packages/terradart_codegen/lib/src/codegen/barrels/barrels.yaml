@@ -30,8 +30,9 @@ barrels:
   access_context_manager:
     doc: |-
       /// Access Context Manager: VPC Service Controls access policies, levels,
-      /// access-level conditions, service perimeters, authorized-orgs
-      /// descriptors, and access-policy IAM members.
+      /// access-level conditions, service perimeters, dry-run perimeter
+      /// resources, authorized-orgs descriptors, and access-policy IAM
+      /// members.
   active_directory:
     doc: |-
       /// Managed Service for Microsoft Active Directory — domains bill hourly
