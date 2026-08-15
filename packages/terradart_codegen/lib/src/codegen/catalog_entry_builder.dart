@@ -41,7 +41,9 @@ CatalogEntryData buildCatalogEntry({
   required String kind,
   required String emittedSource,
 }) {
-  final className = snakeToPascal(tfType);
+  final className = kind == 'dataSource'
+      ? dataSourceClassName(tfType)
+      : snakeToPascal(tfType);
   // Phase A4: when `deriveClassDoc` is true, the assembled doc is built by
   // `buildClassDocComment` (same function the WrapperEmitter calls) and then
   // stripped of markers — so the catalog entry mirrors the emitted wrapper

@@ -2773,3 +2773,923 @@ files:
     upstream: null  # no mmv1 YAML (probed 2026-08-15)
   google_transcoder_job:
     upstream: mmv1/products/transcoder/Job.yaml
+  data_google_access_approval_folder_service_account:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_access_approval_organization_service_account:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_access_approval_project_service_account:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_access_context_manager_access_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_access_context_manager_access_policy_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_access_context_manager_supported_service:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_access_context_manager_supported_services:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_active_folder:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_agent_registry_agent:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_agent_registry_endpoint:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_agent_registry_mcp_server:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_alloydb_cluster:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_alloydb_instance:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_alloydb_locations:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_alloydb_supported_database_flags:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_apigee_environment_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_apigee_instance:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_app_engine_default_service_account:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_apphub_application:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_apphub_discovered_service:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_apphub_discovered_workload:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_artifact_registry_docker_image:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_artifact_registry_docker_images:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_artifact_registry_file:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_artifact_registry_locations:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_artifact_registry_maven_artifact:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_artifact_registry_maven_artifacts:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_artifact_registry_npm_package:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_artifact_registry_npm_packages:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_artifact_registry_package:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_artifact_registry_packages:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_artifact_registry_python_package:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_artifact_registry_python_packages:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_artifact_registry_repositories:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_artifact_registry_repository:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_artifact_registry_repository_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_artifact_registry_tag:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_artifact_registry_tags:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_artifact_registry_version:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_artifact_registry_versions:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_backup_dr_backup:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_backup_dr_backup_plan:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_backup_dr_backup_plan_association:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_backup_dr_backup_plan_associations:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_backup_dr_backup_vault:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_backup_dr_data_source:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_backup_dr_data_source_reference:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_backup_dr_data_source_references:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_backup_dr_data_sources:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_backup_dr_management_server:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_beyondcorp_app_connection:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_beyondcorp_app_connector:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_beyondcorp_app_gateway:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_beyondcorp_security_gateway:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_beyondcorp_security_gateway_application_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_beyondcorp_security_gateway_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_biglake_iceberg_catalog_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_biglake_iceberg_namespace_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_biglake_iceberg_table_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_bigquery_analytics_hub_data_exchange_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_bigquery_analytics_hub_listing_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_bigquery_connection_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_bigquery_datapolicy_data_policy_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_bigquery_datapolicyv2_data_policy_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_bigquery_dataset:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_bigquery_dataset_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_bigquery_datasets:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_bigquery_default_service_account:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_bigquery_routine_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_bigquery_table:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_bigquery_table_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_bigquery_tables:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_bigtable_instance_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_bigtable_table_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_billing_account:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_billing_account_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_binary_authorization_attestor_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_certificate_manager_certificate_map:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_certificate_manager_certificates:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_certificate_manager_dns_authorization:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_client_config:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_client_openid_userinfo:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloud_asset_search_all_resources:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloud_identity_group_lookup:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloud_identity_group_memberships:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloud_identity_group_transitive_memberships:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloud_identity_groups:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloud_identity_policies:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloud_identity_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloud_quotas_quota_info:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloud_quotas_quota_infos:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloud_run_locations:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloud_run_service:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloud_run_service_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloud_run_v2_job:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloud_run_v2_job_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloud_run_v2_service:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloud_run_v2_service_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloud_run_v2_worker_pool:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloud_run_v2_worker_pool_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloud_tasks_queue_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloudbuild_trigger:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloudbuildv2_connection_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_clouddeploy_custom_target_type_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_clouddeploy_delivery_pipeline_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_clouddeploy_target_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloudfunctions2_function:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloudfunctions2_function_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloudfunctions_function:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_cloudfunctions_function_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_colab_runtime_template_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_composer_environment:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_composer_image_versions:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_composer_user_workloads_config_map:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_composer_user_workloads_secret:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_address:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_addresses:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_backend_bucket:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_backend_service:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_default_service_account:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_disk:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_disk_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_firewall_policy_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_forwarding_rule:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_forwarding_rules:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_global_address:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_global_forwarding_rule:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_ha_vpn_gateway:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_health_check:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_image:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_image_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_images:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_instance:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_instance_group:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_instance_group_manager:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_instance_groups:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_instance_guest_attributes:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_instance_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_instance_serial_port:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_instance_template:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_instance_template_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_instant_snapshot_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_interconnect_location:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_interconnect_locations:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_lb_ip_ranges:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_machine_types:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_network:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_network_attachment:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_network_endpoint_group:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_network_endpoint_groups:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_network_firewall_policy_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_network_peering:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_networks:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_node_types:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_region_backend_service:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_region_disk:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_region_disk_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_region_instance_group:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_region_instance_group_manager:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_region_instance_template:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_region_instant_snapshot_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_region_network_endpoint_group:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_region_network_firewall_policy_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_region_security_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_region_ssl_certificate:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_region_ssl_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_region_target_http_proxy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_region_target_https_proxy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_regions:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_reservation:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_reservation_block:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_reservation_sub_block:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_resource_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_router:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_router_nat:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_router_status:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_routers:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_security_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_service_attachment:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_snapshot:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_snapshot_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_ssl_certificate:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_ssl_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_storage_pool:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_storage_pool_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_storage_pool_types:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_subnetwork:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_subnetwork_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_subnetworks:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_target_http_proxy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_target_https_proxy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_vpn_gateway:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_compute_zones:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_container_analysis_note_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_container_attached_install_manifest:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_container_attached_versions:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_container_aws_versions:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_container_azure_versions:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_container_cluster:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_container_engine_versions:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_container_registry_image:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_container_registry_repository:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_data_catalog_entry_group_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_data_catalog_policy_tag_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_data_catalog_tag_template_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_data_catalog_taxonomy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_data_catalog_taxonomy_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_data_fusion_instance_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_data_lineage_config:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dataplex_aspect_type_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dataplex_asset_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dataplex_data_product_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dataplex_data_quality_rules:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dataplex_datascan_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dataplex_entry_group_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dataplex_entry_type_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dataplex_glossary_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dataplex_lake_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dataplex_task_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dataplex_zone_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dataproc_autoscaling_policy_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dataproc_cluster_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dataproc_job_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dataproc_metastore_database_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dataproc_metastore_federation_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dataproc_metastore_service:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dataproc_metastore_service_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dataproc_metastore_table_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_datastream_static_ips:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_discovery_engine_data_store:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_discovery_engine_data_stores:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_discovery_engine_search_engine_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dns_keys:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dns_managed_zone:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dns_managed_zone_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dns_managed_zones:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dns_record_set:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_dns_record_sets:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_endpoints_service_consumers_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_endpoints_service_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_filestore_instance:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_firestore_document:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_folder:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_folder_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_folder_organization_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_folders:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_gemini_repository_group_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_gke_backup_backup_plan_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_gke_backup_restore_plan_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_gke_hub_feature:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_gke_hub_feature_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_gke_hub_membership:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_gke_hub_membership_binding:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_gke_hub_membership_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_gke_hub_scope_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_healthcare_consent_store_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_healthcare_dataset_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_healthcare_dicom_store_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_healthcare_fhir_store_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_healthcare_hl7_v2_store_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iam_role:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iam_testable_permissions:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iam_workforce_pool_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iam_workload_identity_pool:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iam_workload_identity_pool_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iam_workload_identity_pool_provider:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iap_agent_registry_agent_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iap_agent_registry_endpoint_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iap_agent_registry_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iap_agent_registry_mcp_server_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iap_app_engine_service_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iap_app_engine_version_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iap_client:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iap_location_web_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iap_tunnel_dest_group_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iap_tunnel_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iap_tunnel_instance_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iap_web_backend_service_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iap_web_cloud_run_service_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iap_web_forwarding_rule_service_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iap_web_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iap_web_region_backend_service_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iap_web_region_forwarding_rule_service_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iap_web_type_app_engine_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_iap_web_type_compute_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_kms_autokey_config:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_kms_crypto_key:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_kms_crypto_key_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_kms_crypto_key_latest_version:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_kms_crypto_key_version:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_kms_crypto_key_versions:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_kms_crypto_keys:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_kms_ekm_connection_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_kms_key_handle:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_kms_key_handles:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_kms_key_ring:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_kms_key_ring_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_kms_key_rings:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_kms_secret:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_kms_secret_asymmetric:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_kms_secret_ciphertext:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_logging_folder_settings:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_logging_log_view:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_logging_log_view_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_logging_organization_settings:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_logging_project_cmek_settings:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_logging_project_settings:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_logging_sink:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_lustre_instance:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_memcache_instance:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_memorystore_instance:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_monitoring_app_engine_service:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_monitoring_cluster_istio_service:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_monitoring_istio_canonical_service:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_monitoring_mesh_istio_service:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_monitoring_notification_channel:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_monitoring_uptime_check_ips:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_netblock_ip_ranges:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_network_connectivity_hub_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_network_management_connectivity_test_run:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_network_management_connectivity_tests:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_network_security_address_group_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_network_security_address_groups:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_notebooks_instance_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_notebooks_runtime_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_oracle_database_autonomous_database:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_oracle_database_autonomous_databases:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_oracle_database_cloud_exadata_infrastructure:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_oracle_database_cloud_exadata_infrastructures:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_oracle_database_cloud_vm_cluster:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_oracle_database_cloud_vm_clusters:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_oracle_database_db_nodes:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_oracle_database_db_servers:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_oracle_database_exascale_db_storage_vault:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_oracle_database_exascale_db_storage_vaults:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_oracle_database_goldengate_connection_types:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_oracle_database_goldengate_deployment_environments:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_oracle_database_goldengate_deployment_types:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_oracle_database_goldengate_deployment_versions:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_oracle_database_odb_network:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_oracle_database_odb_subnet:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_organization:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_organization_iam_custom_role:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_organization_iam_custom_roles:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_organization_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_organizations:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_parameter_manager_parameter:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_parameter_manager_parameter_version:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_parameter_manager_parameter_version_render:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_parameter_manager_parameters:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_parameter_manager_regional_parameter:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_parameter_manager_regional_parameter_version:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_parameter_manager_regional_parameter_version_render:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_parameter_manager_regional_parameters:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_privateca_ca_pool_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_privateca_certificate_authority:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_privateca_certificate_template_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_privileged_access_manager_entitlement:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_project_ancestry:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_project_iam_custom_role:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_project_iam_custom_roles:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_project_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_project_organization_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_project_service:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_projects:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_pubsub_schema_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_pubsub_subscription:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_pubsub_subscription_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_pubsub_topic:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_pubsub_topic_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_redis_cluster:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_redis_instance:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_scc_source_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_scc_v2_organization_source_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_secret_manager_regional_secret:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_secret_manager_regional_secret_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_secret_manager_regional_secret_version:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_secret_manager_regional_secret_version_access:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_secret_manager_regional_secrets:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_secret_manager_secret:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_secret_manager_secret_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_secret_manager_secret_version:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_secret_manager_secret_version_access:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_secret_manager_secrets:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_secure_source_manager_instance_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_secure_source_manager_repository_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_service_account:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_service_account_access_token:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_service_account_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_service_account_id_token:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_service_account_jwt:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_service_account_key:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_service_accounts:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_service_directory_namespace_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_service_directory_service_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_service_networking_peered_dns_domain:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_site_verification_token:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_sourcerepo_repository:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_sourcerepo_repository_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_spanner_database:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_spanner_database_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_spanner_instance:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_spanner_instance_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_sql_backup_run:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_sql_ca_certs:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_sql_database:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_sql_database_instance:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_sql_database_instance_latest_recovery_time:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_sql_database_instances:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_sql_databases:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_sql_tiers:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_bucket:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_bucket_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_bucket_object:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_bucket_object_content:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_bucket_object_contents:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_bucket_objects:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_buckets:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_control_folder_intelligence_config:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_control_folder_intelligence_findings_summary:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_control_organization_intelligence_config:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_control_organization_intelligence_findings_summary:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_control_project_intelligence_config:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_control_project_intelligence_finding:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_control_project_intelligence_finding_revision:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_control_project_intelligence_finding_revisions:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_control_project_intelligence_findings:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_control_project_intelligence_findings_summary:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_insights_dataset_config:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_managed_folder_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_object_signed_url:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_project_service_account:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_storage_transfer_project_service_account:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_tags_tag_key:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_tags_tag_key_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_tags_tag_keys:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_tags_tag_value:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_tags_tag_value_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_tags_tag_values:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_vertex_ai_index:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_vertex_ai_reasoning_engine_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_vertex_ai_reasoning_engine_query:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_vmwareengine_announcements:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_vmwareengine_cluster:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_vmwareengine_datastore:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_vmwareengine_external_access_rule:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_vmwareengine_external_address:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_vmwareengine_network:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_vmwareengine_network_peering:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_vmwareengine_network_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_vmwareengine_nsx_credentials:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_vmwareengine_private_cloud:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_vmwareengine_subnet:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_vmwareengine_upgrades:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_vmwareengine_vcenter_credentials:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_vpc_access_connector:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_workbench_instance_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_workstations_workstation_config_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)
+  data_google_workstations_workstation_iam_policy:
+    upstream: null  # data source; no mmv1 YAML (GA leftover; apply-excluded)

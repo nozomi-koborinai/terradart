@@ -14,9 +14,13 @@ void main() {
         terradartCatalog.where((e) => e.kind == CatalogKind.dataSource).length;
     expect(resources + dataSources, terradartCatalog.length);
     expect(terradartCatalog, isNotEmpty);
-    // Every doc phrase hardcodes "+ 1 data source"; guard that assumption so a
-    // second data source forces a deliberate prose update.
-    expect(dataSources, 1);
+    expect(dataSources, 461);
+    final classNames = terradartCatalog.map((e) => e.className).toList();
+    expect(
+      classNames.toSet().length,
+      classNames.length,
+      reason: 'resource / data-source class names must stay unique',
+    );
   });
 
   test('every catalog entry is well-formed', () {

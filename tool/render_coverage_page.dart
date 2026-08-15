@@ -53,7 +53,8 @@ List<CoverageRow> buildRows({
         className: item.className,
         barrel: item.barrel,
         kind: item.kind,
-        examples: ([...?tfTypeToExamples[item.tfType]]..sort()),
+        examples: ([...?tfTypeToExamples[_coverageKey(item.kind, item.tfType)]]
+          ..sort()),
       ),
   ]..sort(
       (a, b) {
@@ -63,6 +64,9 @@ List<CoverageRow> buildRows({
     );
   return rows;
 }
+
+/// Distinguishes resource / data-source twins that share a terraform type.
+String _coverageKey(String kind, String tfType) => '$kind:$tfType';
 
 String _exampleCell(List<String> examples) {
   if (examples.isEmpty) return '—';
@@ -162,8 +166,9 @@ Map<String, List<String>> _walkTfOuts() {
     for (final section in ['resource', 'data']) {
       final block = root[section];
       if (block is! Map<String, dynamic>) continue;
+      final kind = section == 'data' ? 'dataSource' : 'resource';
       for (final tfType in block.keys) {
-        map.putIfAbsent(tfType, () => <String>{}).add(slug);
+        map.putIfAbsent(_coverageKey(kind, tfType), () => <String>{}).add(slug);
       }
     }
   }
@@ -196,7 +201,7 @@ void main(List<String> args) {
   ];
   final countsPhrase =
       '${expectations.curatedFactoryCount} curated resource factories + '
-      '1 data source (${expectations.catalogEntryCount} catalog entries)';
+      '${expectations.dataSourceCatalogPhrase} (${expectations.catalogEntryCount} catalog entries)';
   final rendered = renderCoveragePage(
     rows: buildRows(catalog: catalog, tfTypeToExamples: _walkTfOuts()),
     countsPhrase: countsPhrase,

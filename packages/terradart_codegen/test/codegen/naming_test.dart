@@ -67,6 +67,14 @@ void main() {
       expect(safeDartIdentifier('displayName'), 'displayName');
     });
 
+    test('dataSourceClassName prefixes Data except google_project', () {
+      expect(
+        dataSourceClassName('google_compute_network'),
+        'DataGoogleComputeNetwork',
+      );
+      expect(dataSourceClassName('google_project'), 'GoogleProject');
+    });
+
     test('enumName carries the reserved-word-safe member through', () {
       final e = enumName(
         resourceType: 'google_compute_router',

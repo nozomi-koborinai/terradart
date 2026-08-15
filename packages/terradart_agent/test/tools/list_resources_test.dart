@@ -6,7 +6,10 @@ void main() {
   test('listResources returns all entries when no barrel filter', () {
     final all = listResources(terradartCatalog, barrel: null);
     expect(all.length, terradartCatalog.length);
-    expect(all.first.toJson().keys, containsAll(['name', 'barrel', 'summary']));
+    expect(
+      all.first.toJson().keys,
+      containsAll(['name', 'barrel', 'summary', 'kind']),
+    );
   });
 
   test('listResources filters by barrel', () {

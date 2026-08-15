@@ -5,9 +5,10 @@ import 'yaml_loader.dart';
 /// [LoadedOverrides.dataSources] by their top-level `kind` field.
 ///
 /// Overrides are sourced from `wrapper_overrides/yaml/<terraform_type>.yaml`
-/// and parsed via [YamlOverrideLoader]. Add a new resource by dropping a
-/// `<terraform_type>.yaml` under that directory; no Dart-side registry edits
-/// are needed.
+/// (resources) or `wrapper_overrides/yaml/data_<terraform_type>.yaml`
+/// (data sources, except legacy `google_project.yaml`) and parsed via
+/// [YamlOverrideLoader]. Add a new factory by dropping a yaml under that
+/// directory; no Dart-side registry edits are needed.
 ///
 /// The split lets callers wire each emitter to its own half:
 /// `WrapperEmitter(overrides: loaded.resources)` and (Phase 4.1)

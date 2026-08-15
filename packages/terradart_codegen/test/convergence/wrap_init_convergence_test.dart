@@ -60,7 +60,7 @@ void main() {
     var skipped = 0;
     var checked = 0;
 
-    for (final entry in loaded.all.entries) {
+    for (final entry in loaded.entries) {
       final tfType = entry.key;
       final committed = entry.value;
       final kind = committed.kind;
@@ -131,7 +131,7 @@ void main() {
     final offenders = <String>[];
     var skipped = 0;
 
-    for (final entry in loaded.all.entries) {
+    for (final entry in loaded.entries) {
       final tfType = entry.key;
       final committed = entry.value;
       final kind = committed.kind;

@@ -116,6 +116,55 @@ void main() {
       }
     });
 
+    test(
+        'twin without --kind is a usage error; --kind data_source writes data_',
+        () async {
+      final tmpOut = await Directory.systemTemp.createTemp('phase4_wrap_init_');
+      try {
+        expect(
+          () => buildCliRunner().run([
+            'wrap-init',
+            'google_compute_network',
+            '--source',
+            p.join('test', 'fixtures', 'wrap', 'source'),
+            '--output',
+            tmpOut.path,
+          ]),
+          throwsA(
+            isA<UsageException>().having(
+              (e) => e.message,
+              'message',
+              contains('--kind'),
+            ),
+          ),
+        );
+
+        final code = await buildCliRunner().run([
+          'wrap-init',
+          'google_compute_network',
+          '--kind',
+          'data_source',
+          '--source',
+          p.join('test', 'fixtures', 'wrap', 'source'),
+          '--output',
+          tmpOut.path,
+        ]);
+        expect(code, 0);
+        final out =
+            File(p.join(tmpOut.path, 'data_google_compute_network.yaml'));
+        expect(out.existsSync(), isTrue);
+        final body = out.readAsStringSync();
+        expect(body, contains('kind: data_source'));
+        expect(body, contains('outputDir: data'));
+        expect(
+          File(p.join(tmpOut.path, 'google_compute_network.yaml')).existsSync(),
+          isFalse,
+        );
+      } finally {
+        await tmpOut.delete(recursive: true);
+      }
+    });
+
     test('resource not in schema returns dataError', () async {
       final tmpOut = await Directory.systemTemp.createTemp('phase4_wrap_init_');
       try {

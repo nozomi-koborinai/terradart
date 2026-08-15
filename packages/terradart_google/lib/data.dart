@@ -7,4 +7,848 @@
 /// ```
 library;
 
+export 'src/data/google_access_approval_folder_service_account.dart'
+    show DataGoogleAccessApprovalFolderServiceAccount;
+export 'src/data/google_access_approval_organization_service_account.dart'
+    show DataGoogleAccessApprovalOrganizationServiceAccount;
+export 'src/data/google_access_approval_project_service_account.dart'
+    show DataGoogleAccessApprovalProjectServiceAccount;
+export 'src/data/google_access_context_manager_access_policy.dart'
+    show DataGoogleAccessContextManagerAccessPolicy;
+export 'src/data/google_access_context_manager_access_policy_iam_policy.dart'
+    show DataGoogleAccessContextManagerAccessPolicyIamPolicy;
+export 'src/data/google_access_context_manager_supported_service.dart'
+    show DataGoogleAccessContextManagerSupportedService;
+export 'src/data/google_access_context_manager_supported_services.dart'
+    show DataGoogleAccessContextManagerSupportedServices;
+export 'src/data/google_active_folder.dart' show DataGoogleActiveFolder;
+export 'src/data/google_agent_registry_agent.dart'
+    show DataGoogleAgentRegistryAgent;
+export 'src/data/google_agent_registry_endpoint.dart'
+    show DataGoogleAgentRegistryEndpoint;
+export 'src/data/google_agent_registry_mcp_server.dart'
+    show DataGoogleAgentRegistryMcpServer;
+export 'src/data/google_alloydb_cluster.dart' show DataGoogleAlloydbCluster;
+export 'src/data/google_alloydb_instance.dart' show DataGoogleAlloydbInstance;
+export 'src/data/google_alloydb_locations.dart' show DataGoogleAlloydbLocations;
+export 'src/data/google_alloydb_supported_database_flags.dart'
+    show DataGoogleAlloydbSupportedDatabaseFlags;
+export 'src/data/google_apigee_environment_iam_policy.dart'
+    show DataGoogleApigeeEnvironmentIamPolicy;
+export 'src/data/google_apigee_instance.dart' show DataGoogleApigeeInstance;
+export 'src/data/google_app_engine_default_service_account.dart'
+    show DataGoogleAppEngineDefaultServiceAccount;
+export 'src/data/google_apphub_application.dart'
+    show DataGoogleApphubApplication;
+export 'src/data/google_apphub_discovered_service.dart'
+    show DataGoogleApphubDiscoveredService;
+export 'src/data/google_apphub_discovered_workload.dart'
+    show DataGoogleApphubDiscoveredWorkload;
+export 'src/data/google_artifact_registry_docker_image.dart'
+    show DataGoogleArtifactRegistryDockerImage;
+export 'src/data/google_artifact_registry_docker_images.dart'
+    show DataGoogleArtifactRegistryDockerImages;
+export 'src/data/google_artifact_registry_file.dart'
+    show DataGoogleArtifactRegistryFile;
+export 'src/data/google_artifact_registry_locations.dart'
+    show DataGoogleArtifactRegistryLocations;
+export 'src/data/google_artifact_registry_maven_artifact.dart'
+    show DataGoogleArtifactRegistryMavenArtifact;
+export 'src/data/google_artifact_registry_maven_artifacts.dart'
+    show DataGoogleArtifactRegistryMavenArtifacts;
+export 'src/data/google_artifact_registry_npm_package.dart'
+    show DataGoogleArtifactRegistryNpmPackage;
+export 'src/data/google_artifact_registry_npm_packages.dart'
+    show DataGoogleArtifactRegistryNpmPackages;
+export 'src/data/google_artifact_registry_package.dart'
+    show DataGoogleArtifactRegistryPackage;
+export 'src/data/google_artifact_registry_packages.dart'
+    show DataGoogleArtifactRegistryPackages;
+export 'src/data/google_artifact_registry_python_package.dart'
+    show DataGoogleArtifactRegistryPythonPackage;
+export 'src/data/google_artifact_registry_python_packages.dart'
+    show DataGoogleArtifactRegistryPythonPackages;
+export 'src/data/google_artifact_registry_repositories.dart'
+    show DataGoogleArtifactRegistryRepositories;
+export 'src/data/google_artifact_registry_repository.dart'
+    show DataGoogleArtifactRegistryRepository;
+export 'src/data/google_artifact_registry_repository_iam_policy.dart'
+    show DataGoogleArtifactRegistryRepositoryIamPolicy;
+export 'src/data/google_artifact_registry_tag.dart'
+    show DataGoogleArtifactRegistryTag;
+export 'src/data/google_artifact_registry_tags.dart'
+    show DataGoogleArtifactRegistryTags;
+export 'src/data/google_artifact_registry_version.dart'
+    show DataGoogleArtifactRegistryVersion;
+export 'src/data/google_artifact_registry_versions.dart'
+    show DataGoogleArtifactRegistryVersions;
+export 'src/data/google_backup_dr_backup.dart' show DataGoogleBackupDrBackup;
+export 'src/data/google_backup_dr_backup_plan.dart'
+    show DataGoogleBackupDrBackupPlan;
+export 'src/data/google_backup_dr_backup_plan_association.dart'
+    show DataGoogleBackupDrBackupPlanAssociation;
+export 'src/data/google_backup_dr_backup_plan_associations.dart'
+    show DataGoogleBackupDrBackupPlanAssociations;
+export 'src/data/google_backup_dr_backup_vault.dart'
+    show DataGoogleBackupDrBackupVault;
+export 'src/data/google_backup_dr_data_source.dart'
+    show DataGoogleBackupDrDataSource;
+export 'src/data/google_backup_dr_data_source_reference.dart'
+    show DataGoogleBackupDrDataSourceReference;
+export 'src/data/google_backup_dr_data_source_references.dart'
+    show DataGoogleBackupDrDataSourceReferences;
+export 'src/data/google_backup_dr_data_sources.dart'
+    show DataGoogleBackupDrDataSources;
+export 'src/data/google_backup_dr_management_server.dart'
+    show DataGoogleBackupDrManagementServer;
+export 'src/data/google_beyondcorp_app_connection.dart'
+    show DataGoogleBeyondcorpAppConnection;
+export 'src/data/google_beyondcorp_app_connector.dart'
+    show DataGoogleBeyondcorpAppConnector;
+export 'src/data/google_beyondcorp_app_gateway.dart'
+    show DataGoogleBeyondcorpAppGateway;
+export 'src/data/google_beyondcorp_security_gateway.dart'
+    show DataGoogleBeyondcorpSecurityGateway;
+export 'src/data/google_beyondcorp_security_gateway_application_iam_policy.dart'
+    show DataGoogleBeyondcorpSecurityGatewayApplicationIamPolicy;
+export 'src/data/google_beyondcorp_security_gateway_iam_policy.dart'
+    show DataGoogleBeyondcorpSecurityGatewayIamPolicy;
+export 'src/data/google_biglake_iceberg_catalog_iam_policy.dart'
+    show DataGoogleBiglakeIcebergCatalogIamPolicy;
+export 'src/data/google_biglake_iceberg_namespace_iam_policy.dart'
+    show DataGoogleBiglakeIcebergNamespaceIamPolicy;
+export 'src/data/google_biglake_iceberg_table_iam_policy.dart'
+    show DataGoogleBiglakeIcebergTableIamPolicy;
+export 'src/data/google_bigquery_analytics_hub_data_exchange_iam_policy.dart'
+    show DataGoogleBigqueryAnalyticsHubDataExchangeIamPolicy;
+export 'src/data/google_bigquery_analytics_hub_listing_iam_policy.dart'
+    show DataGoogleBigqueryAnalyticsHubListingIamPolicy;
+export 'src/data/google_bigquery_connection_iam_policy.dart'
+    show DataGoogleBigqueryConnectionIamPolicy;
+export 'src/data/google_bigquery_datapolicy_data_policy_iam_policy.dart'
+    show DataGoogleBigqueryDatapolicyDataPolicyIamPolicy;
+export 'src/data/google_bigquery_datapolicyv2_data_policy_iam_policy.dart'
+    show DataGoogleBigqueryDatapolicyv2DataPolicyIamPolicy;
+export 'src/data/google_bigquery_dataset.dart' show DataGoogleBigqueryDataset;
+export 'src/data/google_bigquery_dataset_iam_policy.dart'
+    show DataGoogleBigqueryDatasetIamPolicy;
+export 'src/data/google_bigquery_datasets.dart' show DataGoogleBigqueryDatasets;
+export 'src/data/google_bigquery_default_service_account.dart'
+    show DataGoogleBigqueryDefaultServiceAccount;
+export 'src/data/google_bigquery_routine_iam_policy.dart'
+    show DataGoogleBigqueryRoutineIamPolicy;
+export 'src/data/google_bigquery_table.dart' show DataGoogleBigqueryTable;
+export 'src/data/google_bigquery_table_iam_policy.dart'
+    show DataGoogleBigqueryTableIamPolicy;
+export 'src/data/google_bigquery_tables.dart' show DataGoogleBigqueryTables;
+export 'src/data/google_bigtable_instance_iam_policy.dart'
+    show DataGoogleBigtableInstanceIamPolicy;
+export 'src/data/google_bigtable_table_iam_policy.dart'
+    show DataGoogleBigtableTableIamPolicy;
+export 'src/data/google_billing_account.dart' show DataGoogleBillingAccount;
+export 'src/data/google_billing_account_iam_policy.dart'
+    show DataGoogleBillingAccountIamPolicy;
+export 'src/data/google_binary_authorization_attestor_iam_policy.dart'
+    show DataGoogleBinaryAuthorizationAttestorIamPolicy;
+export 'src/data/google_certificate_manager_certificate_map.dart'
+    show DataGoogleCertificateManagerCertificateMap;
+export 'src/data/google_certificate_manager_certificates.dart'
+    show DataGoogleCertificateManagerCertificates;
+export 'src/data/google_certificate_manager_dns_authorization.dart'
+    show DataGoogleCertificateManagerDnsAuthorization;
+export 'src/data/google_client_config.dart' show DataGoogleClientConfig;
+export 'src/data/google_client_openid_userinfo.dart'
+    show DataGoogleClientOpenidUserinfo;
+export 'src/data/google_cloud_asset_search_all_resources.dart'
+    show DataGoogleCloudAssetSearchAllResources;
+export 'src/data/google_cloud_identity_group_lookup.dart'
+    show DataGoogleCloudIdentityGroupLookup;
+export 'src/data/google_cloud_identity_group_memberships.dart'
+    show DataGoogleCloudIdentityGroupMemberships;
+export 'src/data/google_cloud_identity_group_transitive_memberships.dart'
+    show DataGoogleCloudIdentityGroupTransitiveMemberships;
+export 'src/data/google_cloud_identity_groups.dart'
+    show DataGoogleCloudIdentityGroups;
+export 'src/data/google_cloud_identity_policies.dart'
+    show DataGoogleCloudIdentityPolicies;
+export 'src/data/google_cloud_identity_policy.dart'
+    show DataGoogleCloudIdentityPolicy;
+export 'src/data/google_cloud_quotas_quota_info.dart'
+    show DataGoogleCloudQuotasQuotaInfo;
+export 'src/data/google_cloud_quotas_quota_infos.dart'
+    show DataGoogleCloudQuotasQuotaInfos;
+export 'src/data/google_cloud_run_locations.dart'
+    show DataGoogleCloudRunLocations;
+export 'src/data/google_cloud_run_service.dart' show DataGoogleCloudRunService;
+export 'src/data/google_cloud_run_service_iam_policy.dart'
+    show DataGoogleCloudRunServiceIamPolicy;
+export 'src/data/google_cloud_run_v2_job.dart' show DataGoogleCloudRunV2Job;
+export 'src/data/google_cloud_run_v2_job_iam_policy.dart'
+    show DataGoogleCloudRunV2JobIamPolicy;
+export 'src/data/google_cloud_run_v2_service.dart'
+    show DataGoogleCloudRunV2Service;
+export 'src/data/google_cloud_run_v2_service_iam_policy.dart'
+    show DataGoogleCloudRunV2ServiceIamPolicy;
+export 'src/data/google_cloud_run_v2_worker_pool.dart'
+    show DataGoogleCloudRunV2WorkerPool;
+export 'src/data/google_cloud_run_v2_worker_pool_iam_policy.dart'
+    show DataGoogleCloudRunV2WorkerPoolIamPolicy;
+export 'src/data/google_cloud_tasks_queue_iam_policy.dart'
+    show DataGoogleCloudTasksQueueIamPolicy;
+export 'src/data/google_cloudbuild_trigger.dart'
+    show DataGoogleCloudbuildTrigger;
+export 'src/data/google_cloudbuildv2_connection_iam_policy.dart'
+    show DataGoogleCloudbuildv2ConnectionIamPolicy;
+export 'src/data/google_clouddeploy_custom_target_type_iam_policy.dart'
+    show DataGoogleClouddeployCustomTargetTypeIamPolicy;
+export 'src/data/google_clouddeploy_delivery_pipeline_iam_policy.dart'
+    show DataGoogleClouddeployDeliveryPipelineIamPolicy;
+export 'src/data/google_clouddeploy_target_iam_policy.dart'
+    show DataGoogleClouddeployTargetIamPolicy;
+export 'src/data/google_cloudfunctions2_function.dart'
+    show DataGoogleCloudfunctions2Function;
+export 'src/data/google_cloudfunctions2_function_iam_policy.dart'
+    show DataGoogleCloudfunctions2FunctionIamPolicy;
+export 'src/data/google_cloudfunctions_function.dart'
+    show DataGoogleCloudfunctionsFunction;
+export 'src/data/google_cloudfunctions_function_iam_policy.dart'
+    show DataGoogleCloudfunctionsFunctionIamPolicy;
+export 'src/data/google_colab_runtime_template_iam_policy.dart'
+    show DataGoogleColabRuntimeTemplateIamPolicy;
+export 'src/data/google_composer_environment.dart'
+    show DataGoogleComposerEnvironment;
+export 'src/data/google_composer_image_versions.dart'
+    show DataGoogleComposerImageVersions;
+export 'src/data/google_composer_user_workloads_config_map.dart'
+    show DataGoogleComposerUserWorkloadsConfigMap;
+export 'src/data/google_composer_user_workloads_secret.dart'
+    show DataGoogleComposerUserWorkloadsSecret;
+export 'src/data/google_compute_address.dart' show DataGoogleComputeAddress;
+export 'src/data/google_compute_addresses.dart' show DataGoogleComputeAddresses;
+export 'src/data/google_compute_backend_bucket.dart'
+    show DataGoogleComputeBackendBucket;
+export 'src/data/google_compute_backend_service.dart'
+    show DataGoogleComputeBackendService;
+export 'src/data/google_compute_default_service_account.dart'
+    show DataGoogleComputeDefaultServiceAccount;
+export 'src/data/google_compute_disk.dart' show DataGoogleComputeDisk;
+export 'src/data/google_compute_disk_iam_policy.dart'
+    show DataGoogleComputeDiskIamPolicy;
+export 'src/data/google_compute_firewall_policy_iam_policy.dart'
+    show DataGoogleComputeFirewallPolicyIamPolicy;
+export 'src/data/google_compute_forwarding_rule.dart'
+    show DataGoogleComputeForwardingRule;
+export 'src/data/google_compute_forwarding_rules.dart'
+    show DataGoogleComputeForwardingRules;
+export 'src/data/google_compute_global_address.dart'
+    show DataGoogleComputeGlobalAddress;
+export 'src/data/google_compute_global_forwarding_rule.dart'
+    show DataGoogleComputeGlobalForwardingRule;
+export 'src/data/google_compute_ha_vpn_gateway.dart'
+    show DataGoogleComputeHaVpnGateway;
+export 'src/data/google_compute_health_check.dart'
+    show DataGoogleComputeHealthCheck;
+export 'src/data/google_compute_image.dart' show DataGoogleComputeImage;
+export 'src/data/google_compute_image_iam_policy.dart'
+    show DataGoogleComputeImageIamPolicy;
+export 'src/data/google_compute_images.dart' show DataGoogleComputeImages;
+export 'src/data/google_compute_instance.dart' show DataGoogleComputeInstance;
+export 'src/data/google_compute_instance_group.dart'
+    show DataGoogleComputeInstanceGroup;
+export 'src/data/google_compute_instance_group_manager.dart'
+    show DataGoogleComputeInstanceGroupManager;
+export 'src/data/google_compute_instance_groups.dart'
+    show DataGoogleComputeInstanceGroups;
+export 'src/data/google_compute_instance_guest_attributes.dart'
+    show DataGoogleComputeInstanceGuestAttributes;
+export 'src/data/google_compute_instance_iam_policy.dart'
+    show DataGoogleComputeInstanceIamPolicy;
+export 'src/data/google_compute_instance_serial_port.dart'
+    show DataGoogleComputeInstanceSerialPort;
+export 'src/data/google_compute_instance_template.dart'
+    show DataGoogleComputeInstanceTemplate;
+export 'src/data/google_compute_instance_template_iam_policy.dart'
+    show DataGoogleComputeInstanceTemplateIamPolicy;
+export 'src/data/google_compute_instant_snapshot_iam_policy.dart'
+    show DataGoogleComputeInstantSnapshotIamPolicy;
+export 'src/data/google_compute_interconnect_location.dart'
+    show DataGoogleComputeInterconnectLocation;
+export 'src/data/google_compute_interconnect_locations.dart'
+    show DataGoogleComputeInterconnectLocations;
+export 'src/data/google_compute_lb_ip_ranges.dart'
+    show DataGoogleComputeLbIpRanges;
+export 'src/data/google_compute_machine_types.dart'
+    show DataGoogleComputeMachineTypes;
+export 'src/data/google_compute_network.dart' show DataGoogleComputeNetwork;
+export 'src/data/google_compute_network_attachment.dart'
+    show DataGoogleComputeNetworkAttachment;
+export 'src/data/google_compute_network_endpoint_group.dart'
+    show DataGoogleComputeNetworkEndpointGroup;
+export 'src/data/google_compute_network_endpoint_groups.dart'
+    show DataGoogleComputeNetworkEndpointGroups;
+export 'src/data/google_compute_network_firewall_policy_iam_policy.dart'
+    show DataGoogleComputeNetworkFirewallPolicyIamPolicy;
+export 'src/data/google_compute_network_peering.dart'
+    show DataGoogleComputeNetworkPeering;
+export 'src/data/google_compute_networks.dart' show DataGoogleComputeNetworks;
+export 'src/data/google_compute_node_types.dart'
+    show DataGoogleComputeNodeTypes;
+export 'src/data/google_compute_region_backend_service.dart'
+    show DataGoogleComputeRegionBackendService;
+export 'src/data/google_compute_region_disk.dart'
+    show DataGoogleComputeRegionDisk;
+export 'src/data/google_compute_region_disk_iam_policy.dart'
+    show DataGoogleComputeRegionDiskIamPolicy;
+export 'src/data/google_compute_region_instance_group.dart'
+    show DataGoogleComputeRegionInstanceGroup;
+export 'src/data/google_compute_region_instance_group_manager.dart'
+    show DataGoogleComputeRegionInstanceGroupManager;
+export 'src/data/google_compute_region_instance_template.dart'
+    show DataGoogleComputeRegionInstanceTemplate;
+export 'src/data/google_compute_region_instant_snapshot_iam_policy.dart'
+    show DataGoogleComputeRegionInstantSnapshotIamPolicy;
+export 'src/data/google_compute_region_network_endpoint_group.dart'
+    show DataGoogleComputeRegionNetworkEndpointGroup;
+export 'src/data/google_compute_region_network_firewall_policy_iam_policy.dart'
+    show DataGoogleComputeRegionNetworkFirewallPolicyIamPolicy;
+export 'src/data/google_compute_region_security_policy.dart'
+    show DataGoogleComputeRegionSecurityPolicy;
+export 'src/data/google_compute_region_ssl_certificate.dart'
+    show DataGoogleComputeRegionSslCertificate;
+export 'src/data/google_compute_region_ssl_policy.dart'
+    show DataGoogleComputeRegionSslPolicy;
+export 'src/data/google_compute_region_target_http_proxy.dart'
+    show DataGoogleComputeRegionTargetHttpProxy;
+export 'src/data/google_compute_region_target_https_proxy.dart'
+    show DataGoogleComputeRegionTargetHttpsProxy;
+export 'src/data/google_compute_regions.dart' show DataGoogleComputeRegions;
+export 'src/data/google_compute_reservation.dart'
+    show DataGoogleComputeReservation;
+export 'src/data/google_compute_reservation_block.dart'
+    show DataGoogleComputeReservationBlock;
+export 'src/data/google_compute_reservation_sub_block.dart'
+    show DataGoogleComputeReservationSubBlock;
+export 'src/data/google_compute_resource_policy.dart'
+    show DataGoogleComputeResourcePolicy;
+export 'src/data/google_compute_router.dart' show DataGoogleComputeRouter;
+export 'src/data/google_compute_router_nat.dart'
+    show DataGoogleComputeRouterNat;
+export 'src/data/google_compute_router_status.dart'
+    show DataGoogleComputeRouterStatus;
+export 'src/data/google_compute_routers.dart' show DataGoogleComputeRouters;
+export 'src/data/google_compute_security_policy.dart'
+    show DataGoogleComputeSecurityPolicy;
+export 'src/data/google_compute_service_attachment.dart'
+    show DataGoogleComputeServiceAttachment;
+export 'src/data/google_compute_snapshot.dart' show DataGoogleComputeSnapshot;
+export 'src/data/google_compute_snapshot_iam_policy.dart'
+    show DataGoogleComputeSnapshotIamPolicy;
+export 'src/data/google_compute_ssl_certificate.dart'
+    show DataGoogleComputeSslCertificate;
+export 'src/data/google_compute_ssl_policy.dart'
+    show DataGoogleComputeSslPolicy;
+export 'src/data/google_compute_storage_pool.dart'
+    show DataGoogleComputeStoragePool;
+export 'src/data/google_compute_storage_pool_iam_policy.dart'
+    show DataGoogleComputeStoragePoolIamPolicy;
+export 'src/data/google_compute_storage_pool_types.dart'
+    show DataGoogleComputeStoragePoolTypes;
+export 'src/data/google_compute_subnetwork.dart'
+    show DataGoogleComputeSubnetwork;
+export 'src/data/google_compute_subnetwork_iam_policy.dart'
+    show DataGoogleComputeSubnetworkIamPolicy;
+export 'src/data/google_compute_subnetworks.dart'
+    show DataGoogleComputeSubnetworks;
+export 'src/data/google_compute_target_http_proxy.dart'
+    show DataGoogleComputeTargetHttpProxy;
+export 'src/data/google_compute_target_https_proxy.dart'
+    show DataGoogleComputeTargetHttpsProxy;
+export 'src/data/google_compute_vpn_gateway.dart'
+    show DataGoogleComputeVpnGateway;
+export 'src/data/google_compute_zones.dart' show DataGoogleComputeZones;
+export 'src/data/google_container_analysis_note_iam_policy.dart'
+    show DataGoogleContainerAnalysisNoteIamPolicy;
+export 'src/data/google_container_attached_install_manifest.dart'
+    show DataGoogleContainerAttachedInstallManifest;
+export 'src/data/google_container_attached_versions.dart'
+    show DataGoogleContainerAttachedVersions;
+export 'src/data/google_container_aws_versions.dart'
+    show DataGoogleContainerAwsVersions;
+export 'src/data/google_container_azure_versions.dart'
+    show DataGoogleContainerAzureVersions;
+export 'src/data/google_container_cluster.dart' show DataGoogleContainerCluster;
+export 'src/data/google_container_engine_versions.dart'
+    show DataGoogleContainerEngineVersions;
+export 'src/data/google_container_registry_image.dart'
+    show DataGoogleContainerRegistryImage;
+export 'src/data/google_container_registry_repository.dart'
+    show DataGoogleContainerRegistryRepository;
+export 'src/data/google_data_catalog_entry_group_iam_policy.dart'
+    show DataGoogleDataCatalogEntryGroupIamPolicy;
+export 'src/data/google_data_catalog_policy_tag_iam_policy.dart'
+    show DataGoogleDataCatalogPolicyTagIamPolicy;
+export 'src/data/google_data_catalog_tag_template_iam_policy.dart'
+    show DataGoogleDataCatalogTagTemplateIamPolicy;
+export 'src/data/google_data_catalog_taxonomy.dart'
+    show DataGoogleDataCatalogTaxonomy;
+export 'src/data/google_data_catalog_taxonomy_iam_policy.dart'
+    show DataGoogleDataCatalogTaxonomyIamPolicy;
+export 'src/data/google_data_fusion_instance_iam_policy.dart'
+    show DataGoogleDataFusionInstanceIamPolicy;
+export 'src/data/google_data_lineage_config.dart'
+    show DataGoogleDataLineageConfig;
+export 'src/data/google_dataplex_aspect_type_iam_policy.dart'
+    show DataGoogleDataplexAspectTypeIamPolicy;
+export 'src/data/google_dataplex_asset_iam_policy.dart'
+    show DataGoogleDataplexAssetIamPolicy;
+export 'src/data/google_dataplex_data_product_iam_policy.dart'
+    show DataGoogleDataplexDataProductIamPolicy;
+export 'src/data/google_dataplex_data_quality_rules.dart'
+    show DataGoogleDataplexDataQualityRules;
+export 'src/data/google_dataplex_datascan_iam_policy.dart'
+    show DataGoogleDataplexDatascanIamPolicy;
+export 'src/data/google_dataplex_entry_group_iam_policy.dart'
+    show DataGoogleDataplexEntryGroupIamPolicy;
+export 'src/data/google_dataplex_entry_type_iam_policy.dart'
+    show DataGoogleDataplexEntryTypeIamPolicy;
+export 'src/data/google_dataplex_glossary_iam_policy.dart'
+    show DataGoogleDataplexGlossaryIamPolicy;
+export 'src/data/google_dataplex_lake_iam_policy.dart'
+    show DataGoogleDataplexLakeIamPolicy;
+export 'src/data/google_dataplex_task_iam_policy.dart'
+    show DataGoogleDataplexTaskIamPolicy;
+export 'src/data/google_dataplex_zone_iam_policy.dart'
+    show DataGoogleDataplexZoneIamPolicy;
+export 'src/data/google_dataproc_autoscaling_policy_iam_policy.dart'
+    show DataGoogleDataprocAutoscalingPolicyIamPolicy;
+export 'src/data/google_dataproc_cluster_iam_policy.dart'
+    show DataGoogleDataprocClusterIamPolicy;
+export 'src/data/google_dataproc_job_iam_policy.dart'
+    show DataGoogleDataprocJobIamPolicy;
+export 'src/data/google_dataproc_metastore_database_iam_policy.dart'
+    show DataGoogleDataprocMetastoreDatabaseIamPolicy;
+export 'src/data/google_dataproc_metastore_federation_iam_policy.dart'
+    show DataGoogleDataprocMetastoreFederationIamPolicy;
+export 'src/data/google_dataproc_metastore_service.dart'
+    show DataGoogleDataprocMetastoreService;
+export 'src/data/google_dataproc_metastore_service_iam_policy.dart'
+    show DataGoogleDataprocMetastoreServiceIamPolicy;
+export 'src/data/google_dataproc_metastore_table_iam_policy.dart'
+    show DataGoogleDataprocMetastoreTableIamPolicy;
+export 'src/data/google_datastream_static_ips.dart'
+    show DataGoogleDatastreamStaticIps;
+export 'src/data/google_discovery_engine_data_store.dart'
+    show DataGoogleDiscoveryEngineDataStore;
+export 'src/data/google_discovery_engine_data_stores.dart'
+    show DataGoogleDiscoveryEngineDataStores;
+export 'src/data/google_discovery_engine_search_engine_iam_policy.dart'
+    show DataGoogleDiscoveryEngineSearchEngineIamPolicy;
+export 'src/data/google_dns_keys.dart' show DataGoogleDnsKeys;
+export 'src/data/google_dns_managed_zone.dart' show DataGoogleDnsManagedZone;
+export 'src/data/google_dns_managed_zone_iam_policy.dart'
+    show DataGoogleDnsManagedZoneIamPolicy;
+export 'src/data/google_dns_managed_zones.dart' show DataGoogleDnsManagedZones;
+export 'src/data/google_dns_record_set.dart' show DataGoogleDnsRecordSet;
+export 'src/data/google_dns_record_sets.dart' show DataGoogleDnsRecordSets;
+export 'src/data/google_endpoints_service_consumers_iam_policy.dart'
+    show DataGoogleEndpointsServiceConsumersIamPolicy;
+export 'src/data/google_endpoints_service_iam_policy.dart'
+    show DataGoogleEndpointsServiceIamPolicy;
+export 'src/data/google_filestore_instance.dart'
+    show DataGoogleFilestoreInstance;
+export 'src/data/google_firestore_document.dart'
+    show DataGoogleFirestoreDocument;
+export 'src/data/google_folder.dart' show DataGoogleFolder;
+export 'src/data/google_folder_iam_policy.dart' show DataGoogleFolderIamPolicy;
+export 'src/data/google_folder_organization_policy.dart'
+    show DataGoogleFolderOrganizationPolicy;
+export 'src/data/google_folders.dart' show DataGoogleFolders;
+export 'src/data/google_gemini_repository_group_iam_policy.dart'
+    show DataGoogleGeminiRepositoryGroupIamPolicy;
+export 'src/data/google_gke_backup_backup_plan_iam_policy.dart'
+    show DataGoogleGkeBackupBackupPlanIamPolicy;
+export 'src/data/google_gke_backup_restore_plan_iam_policy.dart'
+    show DataGoogleGkeBackupRestorePlanIamPolicy;
+export 'src/data/google_gke_hub_feature.dart' show DataGoogleGkeHubFeature;
+export 'src/data/google_gke_hub_feature_iam_policy.dart'
+    show DataGoogleGkeHubFeatureIamPolicy;
+export 'src/data/google_gke_hub_membership.dart'
+    show DataGoogleGkeHubMembership;
+export 'src/data/google_gke_hub_membership_binding.dart'
+    show DataGoogleGkeHubMembershipBinding;
+export 'src/data/google_gke_hub_membership_iam_policy.dart'
+    show DataGoogleGkeHubMembershipIamPolicy;
+export 'src/data/google_gke_hub_scope_iam_policy.dart'
+    show DataGoogleGkeHubScopeIamPolicy;
+export 'src/data/google_healthcare_consent_store_iam_policy.dart'
+    show DataGoogleHealthcareConsentStoreIamPolicy;
+export 'src/data/google_healthcare_dataset_iam_policy.dart'
+    show DataGoogleHealthcareDatasetIamPolicy;
+export 'src/data/google_healthcare_dicom_store_iam_policy.dart'
+    show DataGoogleHealthcareDicomStoreIamPolicy;
+export 'src/data/google_healthcare_fhir_store_iam_policy.dart'
+    show DataGoogleHealthcareFhirStoreIamPolicy;
+export 'src/data/google_healthcare_hl7_v2_store_iam_policy.dart'
+    show DataGoogleHealthcareHl7V2StoreIamPolicy;
+export 'src/data/google_iam_policy.dart' show DataGoogleIamPolicy;
+export 'src/data/google_iam_role.dart' show DataGoogleIamRole;
+export 'src/data/google_iam_testable_permissions.dart'
+    show DataGoogleIamTestablePermissions;
+export 'src/data/google_iam_workforce_pool_iam_policy.dart'
+    show DataGoogleIamWorkforcePoolIamPolicy;
+export 'src/data/google_iam_workload_identity_pool.dart'
+    show DataGoogleIamWorkloadIdentityPool;
+export 'src/data/google_iam_workload_identity_pool_iam_policy.dart'
+    show DataGoogleIamWorkloadIdentityPoolIamPolicy;
+export 'src/data/google_iam_workload_identity_pool_provider.dart'
+    show DataGoogleIamWorkloadIdentityPoolProvider;
+export 'src/data/google_iap_agent_registry_agent_iam_policy.dart'
+    show DataGoogleIapAgentRegistryAgentIamPolicy;
+export 'src/data/google_iap_agent_registry_endpoint_iam_policy.dart'
+    show DataGoogleIapAgentRegistryEndpointIamPolicy;
+export 'src/data/google_iap_agent_registry_iam_policy.dart'
+    show DataGoogleIapAgentRegistryIamPolicy;
+export 'src/data/google_iap_agent_registry_mcp_server_iam_policy.dart'
+    show DataGoogleIapAgentRegistryMcpServerIamPolicy;
+export 'src/data/google_iap_app_engine_service_iam_policy.dart'
+    show DataGoogleIapAppEngineServiceIamPolicy;
+export 'src/data/google_iap_app_engine_version_iam_policy.dart'
+    show DataGoogleIapAppEngineVersionIamPolicy;
+export 'src/data/google_iap_client.dart' show DataGoogleIapClient;
+export 'src/data/google_iap_location_web_iam_policy.dart'
+    show DataGoogleIapLocationWebIamPolicy;
+export 'src/data/google_iap_tunnel_dest_group_iam_policy.dart'
+    show DataGoogleIapTunnelDestGroupIamPolicy;
+export 'src/data/google_iap_tunnel_iam_policy.dart'
+    show DataGoogleIapTunnelIamPolicy;
+export 'src/data/google_iap_tunnel_instance_iam_policy.dart'
+    show DataGoogleIapTunnelInstanceIamPolicy;
+export 'src/data/google_iap_web_backend_service_iam_policy.dart'
+    show DataGoogleIapWebBackendServiceIamPolicy;
+export 'src/data/google_iap_web_cloud_run_service_iam_policy.dart'
+    show DataGoogleIapWebCloudRunServiceIamPolicy;
+export 'src/data/google_iap_web_forwarding_rule_service_iam_policy.dart'
+    show DataGoogleIapWebForwardingRuleServiceIamPolicy;
+export 'src/data/google_iap_web_iam_policy.dart' show DataGoogleIapWebIamPolicy;
+export 'src/data/google_iap_web_region_backend_service_iam_policy.dart'
+    show DataGoogleIapWebRegionBackendServiceIamPolicy;
+export 'src/data/google_iap_web_region_forwarding_rule_service_iam_policy.dart'
+    show DataGoogleIapWebRegionForwardingRuleServiceIamPolicy;
+export 'src/data/google_iap_web_type_app_engine_iam_policy.dart'
+    show DataGoogleIapWebTypeAppEngineIamPolicy;
+export 'src/data/google_iap_web_type_compute_iam_policy.dart'
+    show DataGoogleIapWebTypeComputeIamPolicy;
+export 'src/data/google_kms_autokey_config.dart'
+    show DataGoogleKmsAutokeyConfig;
+export 'src/data/google_kms_crypto_key.dart' show DataGoogleKmsCryptoKey;
+export 'src/data/google_kms_crypto_key_iam_policy.dart'
+    show DataGoogleKmsCryptoKeyIamPolicy;
+export 'src/data/google_kms_crypto_key_latest_version.dart'
+    show DataGoogleKmsCryptoKeyLatestVersion;
+export 'src/data/google_kms_crypto_key_version.dart'
+    show DataGoogleKmsCryptoKeyVersion;
+export 'src/data/google_kms_crypto_key_versions.dart'
+    show DataGoogleKmsCryptoKeyVersions;
+export 'src/data/google_kms_crypto_keys.dart' show DataGoogleKmsCryptoKeys;
+export 'src/data/google_kms_ekm_connection_iam_policy.dart'
+    show DataGoogleKmsEkmConnectionIamPolicy;
+export 'src/data/google_kms_key_handle.dart' show DataGoogleKmsKeyHandle;
+export 'src/data/google_kms_key_handles.dart' show DataGoogleKmsKeyHandles;
+export 'src/data/google_kms_key_ring.dart' show DataGoogleKmsKeyRing;
+export 'src/data/google_kms_key_ring_iam_policy.dart'
+    show DataGoogleKmsKeyRingIamPolicy;
+export 'src/data/google_kms_key_rings.dart' show DataGoogleKmsKeyRings;
+export 'src/data/google_kms_secret.dart' show DataGoogleKmsSecret;
+export 'src/data/google_kms_secret_asymmetric.dart'
+    show DataGoogleKmsSecretAsymmetric;
+export 'src/data/google_kms_secret_ciphertext.dart'
+    show DataGoogleKmsSecretCiphertext;
+export 'src/data/google_logging_folder_settings.dart'
+    show DataGoogleLoggingFolderSettings;
+export 'src/data/google_logging_log_view.dart' show DataGoogleLoggingLogView;
+export 'src/data/google_logging_log_view_iam_policy.dart'
+    show DataGoogleLoggingLogViewIamPolicy;
+export 'src/data/google_logging_organization_settings.dart'
+    show DataGoogleLoggingOrganizationSettings;
+export 'src/data/google_logging_project_cmek_settings.dart'
+    show DataGoogleLoggingProjectCmekSettings;
+export 'src/data/google_logging_project_settings.dart'
+    show DataGoogleLoggingProjectSettings;
+export 'src/data/google_logging_sink.dart' show DataGoogleLoggingSink;
+export 'src/data/google_lustre_instance.dart' show DataGoogleLustreInstance;
+export 'src/data/google_memcache_instance.dart' show DataGoogleMemcacheInstance;
+export 'src/data/google_memorystore_instance.dart'
+    show DataGoogleMemorystoreInstance;
+export 'src/data/google_monitoring_app_engine_service.dart'
+    show DataGoogleMonitoringAppEngineService;
+export 'src/data/google_monitoring_cluster_istio_service.dart'
+    show DataGoogleMonitoringClusterIstioService;
+export 'src/data/google_monitoring_istio_canonical_service.dart'
+    show DataGoogleMonitoringIstioCanonicalService;
+export 'src/data/google_monitoring_mesh_istio_service.dart'
+    show DataGoogleMonitoringMeshIstioService;
+export 'src/data/google_monitoring_notification_channel.dart'
+    show DataGoogleMonitoringNotificationChannel;
+export 'src/data/google_monitoring_uptime_check_ips.dart'
+    show DataGoogleMonitoringUptimeCheckIps;
+export 'src/data/google_netblock_ip_ranges.dart'
+    show DataGoogleNetblockIpRanges;
+export 'src/data/google_network_connectivity_hub_iam_policy.dart'
+    show DataGoogleNetworkConnectivityHubIamPolicy;
+export 'src/data/google_network_management_connectivity_test_run.dart'
+    show DataGoogleNetworkManagementConnectivityTestRun;
+export 'src/data/google_network_management_connectivity_tests.dart'
+    show DataGoogleNetworkManagementConnectivityTests;
+export 'src/data/google_network_security_address_group_iam_policy.dart'
+    show DataGoogleNetworkSecurityAddressGroupIamPolicy;
+export 'src/data/google_network_security_address_groups.dart'
+    show DataGoogleNetworkSecurityAddressGroups;
+export 'src/data/google_notebooks_instance_iam_policy.dart'
+    show DataGoogleNotebooksInstanceIamPolicy;
+export 'src/data/google_notebooks_runtime_iam_policy.dart'
+    show DataGoogleNotebooksRuntimeIamPolicy;
+export 'src/data/google_oracle_database_autonomous_database.dart'
+    show DataGoogleOracleDatabaseAutonomousDatabase;
+export 'src/data/google_oracle_database_autonomous_databases.dart'
+    show DataGoogleOracleDatabaseAutonomousDatabases;
+export 'src/data/google_oracle_database_cloud_exadata_infrastructure.dart'
+    show DataGoogleOracleDatabaseCloudExadataInfrastructure;
+export 'src/data/google_oracle_database_cloud_exadata_infrastructures.dart'
+    show DataGoogleOracleDatabaseCloudExadataInfrastructures;
+export 'src/data/google_oracle_database_cloud_vm_cluster.dart'
+    show DataGoogleOracleDatabaseCloudVmCluster;
+export 'src/data/google_oracle_database_cloud_vm_clusters.dart'
+    show DataGoogleOracleDatabaseCloudVmClusters;
+export 'src/data/google_oracle_database_db_nodes.dart'
+    show DataGoogleOracleDatabaseDbNodes;
+export 'src/data/google_oracle_database_db_servers.dart'
+    show DataGoogleOracleDatabaseDbServers;
+export 'src/data/google_oracle_database_exascale_db_storage_vault.dart'
+    show DataGoogleOracleDatabaseExascaleDbStorageVault;
+export 'src/data/google_oracle_database_exascale_db_storage_vaults.dart'
+    show DataGoogleOracleDatabaseExascaleDbStorageVaults;
+export 'src/data/google_oracle_database_goldengate_connection_types.dart'
+    show DataGoogleOracleDatabaseGoldengateConnectionTypes;
+export 'src/data/google_oracle_database_goldengate_deployment_environments.dart'
+    show DataGoogleOracleDatabaseGoldengateDeploymentEnvironments;
+export 'src/data/google_oracle_database_goldengate_deployment_types.dart'
+    show DataGoogleOracleDatabaseGoldengateDeploymentTypes;
+export 'src/data/google_oracle_database_goldengate_deployment_versions.dart'
+    show DataGoogleOracleDatabaseGoldengateDeploymentVersions;
+export 'src/data/google_oracle_database_odb_network.dart'
+    show DataGoogleOracleDatabaseOdbNetwork;
+export 'src/data/google_oracle_database_odb_subnet.dart'
+    show DataGoogleOracleDatabaseOdbSubnet;
+export 'src/data/google_organization.dart' show DataGoogleOrganization;
+export 'src/data/google_organization_iam_custom_role.dart'
+    show DataGoogleOrganizationIamCustomRole;
+export 'src/data/google_organization_iam_custom_roles.dart'
+    show DataGoogleOrganizationIamCustomRoles;
+export 'src/data/google_organization_iam_policy.dart'
+    show DataGoogleOrganizationIamPolicy;
+export 'src/data/google_organizations.dart' show DataGoogleOrganizations;
+export 'src/data/google_parameter_manager_parameter.dart'
+    show DataGoogleParameterManagerParameter;
+export 'src/data/google_parameter_manager_parameter_version.dart'
+    show DataGoogleParameterManagerParameterVersion;
+export 'src/data/google_parameter_manager_parameter_version_render.dart'
+    show DataGoogleParameterManagerParameterVersionRender;
+export 'src/data/google_parameter_manager_parameters.dart'
+    show DataGoogleParameterManagerParameters;
+export 'src/data/google_parameter_manager_regional_parameter.dart'
+    show DataGoogleParameterManagerRegionalParameter;
+export 'src/data/google_parameter_manager_regional_parameter_version.dart'
+    show DataGoogleParameterManagerRegionalParameterVersion;
+export 'src/data/google_parameter_manager_regional_parameter_version_render.dart'
+    show DataGoogleParameterManagerRegionalParameterVersionRender;
+export 'src/data/google_parameter_manager_regional_parameters.dart'
+    show DataGoogleParameterManagerRegionalParameters;
+export 'src/data/google_privateca_ca_pool_iam_policy.dart'
+    show DataGooglePrivatecaCaPoolIamPolicy;
+export 'src/data/google_privateca_certificate_authority.dart'
+    show DataGooglePrivatecaCertificateAuthority;
+export 'src/data/google_privateca_certificate_template_iam_policy.dart'
+    show DataGooglePrivatecaCertificateTemplateIamPolicy;
+export 'src/data/google_privileged_access_manager_entitlement.dart'
+    show DataGooglePrivilegedAccessManagerEntitlement;
 export 'src/data/google_project.dart' show GoogleProject;
+export 'src/data/google_project_ancestry.dart' show DataGoogleProjectAncestry;
+export 'src/data/google_project_iam_custom_role.dart'
+    show DataGoogleProjectIamCustomRole;
+export 'src/data/google_project_iam_custom_roles.dart'
+    show DataGoogleProjectIamCustomRoles;
+export 'src/data/google_project_iam_policy.dart'
+    show DataGoogleProjectIamPolicy;
+export 'src/data/google_project_organization_policy.dart'
+    show DataGoogleProjectOrganizationPolicy;
+export 'src/data/google_project_service.dart' show DataGoogleProjectService;
+export 'src/data/google_projects.dart' show DataGoogleProjects;
+export 'src/data/google_pubsub_schema_iam_policy.dart'
+    show DataGooglePubsubSchemaIamPolicy;
+export 'src/data/google_pubsub_subscription.dart'
+    show DataGooglePubsubSubscription;
+export 'src/data/google_pubsub_subscription_iam_policy.dart'
+    show DataGooglePubsubSubscriptionIamPolicy;
+export 'src/data/google_pubsub_topic.dart' show DataGooglePubsubTopic;
+export 'src/data/google_pubsub_topic_iam_policy.dart'
+    show DataGooglePubsubTopicIamPolicy;
+export 'src/data/google_redis_cluster.dart' show DataGoogleRedisCluster;
+export 'src/data/google_redis_instance.dart' show DataGoogleRedisInstance;
+export 'src/data/google_scc_source_iam_policy.dart'
+    show DataGoogleSccSourceIamPolicy;
+export 'src/data/google_scc_v2_organization_source_iam_policy.dart'
+    show DataGoogleSccV2OrganizationSourceIamPolicy;
+export 'src/data/google_secret_manager_regional_secret.dart'
+    show DataGoogleSecretManagerRegionalSecret;
+export 'src/data/google_secret_manager_regional_secret_iam_policy.dart'
+    show DataGoogleSecretManagerRegionalSecretIamPolicy;
+export 'src/data/google_secret_manager_regional_secret_version.dart'
+    show DataGoogleSecretManagerRegionalSecretVersion;
+export 'src/data/google_secret_manager_regional_secret_version_access.dart'
+    show DataGoogleSecretManagerRegionalSecretVersionAccess;
+export 'src/data/google_secret_manager_regional_secrets.dart'
+    show DataGoogleSecretManagerRegionalSecrets;
+export 'src/data/google_secret_manager_secret.dart'
+    show DataGoogleSecretManagerSecret;
+export 'src/data/google_secret_manager_secret_iam_policy.dart'
+    show DataGoogleSecretManagerSecretIamPolicy;
+export 'src/data/google_secret_manager_secret_version.dart'
+    show DataGoogleSecretManagerSecretVersion;
+export 'src/data/google_secret_manager_secret_version_access.dart'
+    show DataGoogleSecretManagerSecretVersionAccess;
+export 'src/data/google_secret_manager_secrets.dart'
+    show DataGoogleSecretManagerSecrets;
+export 'src/data/google_secure_source_manager_instance_iam_policy.dart'
+    show DataGoogleSecureSourceManagerInstanceIamPolicy;
+export 'src/data/google_secure_source_manager_repository_iam_policy.dart'
+    show DataGoogleSecureSourceManagerRepositoryIamPolicy;
+export 'src/data/google_service_account.dart' show DataGoogleServiceAccount;
+export 'src/data/google_service_account_access_token.dart'
+    show DataGoogleServiceAccountAccessToken;
+export 'src/data/google_service_account_iam_policy.dart'
+    show DataGoogleServiceAccountIamPolicy;
+export 'src/data/google_service_account_id_token.dart'
+    show DataGoogleServiceAccountIdToken;
+export 'src/data/google_service_account_jwt.dart'
+    show DataGoogleServiceAccountJwt;
+export 'src/data/google_service_account_key.dart'
+    show DataGoogleServiceAccountKey;
+export 'src/data/google_service_accounts.dart' show DataGoogleServiceAccounts;
+export 'src/data/google_service_directory_namespace_iam_policy.dart'
+    show DataGoogleServiceDirectoryNamespaceIamPolicy;
+export 'src/data/google_service_directory_service_iam_policy.dart'
+    show DataGoogleServiceDirectoryServiceIamPolicy;
+export 'src/data/google_service_networking_peered_dns_domain.dart'
+    show DataGoogleServiceNetworkingPeeredDnsDomain;
+export 'src/data/google_site_verification_token.dart'
+    show DataGoogleSiteVerificationToken;
+export 'src/data/google_sourcerepo_repository.dart'
+    show DataGoogleSourcerepoRepository;
+export 'src/data/google_sourcerepo_repository_iam_policy.dart'
+    show DataGoogleSourcerepoRepositoryIamPolicy;
+export 'src/data/google_spanner_database.dart' show DataGoogleSpannerDatabase;
+export 'src/data/google_spanner_database_iam_policy.dart'
+    show DataGoogleSpannerDatabaseIamPolicy;
+export 'src/data/google_spanner_instance.dart' show DataGoogleSpannerInstance;
+export 'src/data/google_spanner_instance_iam_policy.dart'
+    show DataGoogleSpannerInstanceIamPolicy;
+export 'src/data/google_sql_backup_run.dart' show DataGoogleSqlBackupRun;
+export 'src/data/google_sql_ca_certs.dart' show DataGoogleSqlCaCerts;
+export 'src/data/google_sql_database.dart' show DataGoogleSqlDatabase;
+export 'src/data/google_sql_database_instance.dart'
+    show DataGoogleSqlDatabaseInstance;
+export 'src/data/google_sql_database_instance_latest_recovery_time.dart'
+    show DataGoogleSqlDatabaseInstanceLatestRecoveryTime;
+export 'src/data/google_sql_database_instances.dart'
+    show DataGoogleSqlDatabaseInstances;
+export 'src/data/google_sql_databases.dart' show DataGoogleSqlDatabases;
+export 'src/data/google_sql_tiers.dart' show DataGoogleSqlTiers;
+export 'src/data/google_storage_bucket.dart' show DataGoogleStorageBucket;
+export 'src/data/google_storage_bucket_iam_policy.dart'
+    show DataGoogleStorageBucketIamPolicy;
+export 'src/data/google_storage_bucket_object.dart'
+    show DataGoogleStorageBucketObject;
+export 'src/data/google_storage_bucket_object_content.dart'
+    show DataGoogleStorageBucketObjectContent;
+export 'src/data/google_storage_bucket_object_contents.dart'
+    show DataGoogleStorageBucketObjectContents;
+export 'src/data/google_storage_bucket_objects.dart'
+    show DataGoogleStorageBucketObjects;
+export 'src/data/google_storage_buckets.dart' show DataGoogleStorageBuckets;
+export 'src/data/google_storage_control_folder_intelligence_config.dart'
+    show DataGoogleStorageControlFolderIntelligenceConfig;
+export 'src/data/google_storage_control_folder_intelligence_findings_summary.dart'
+    show DataGoogleStorageControlFolderIntelligenceFindingsSummary;
+export 'src/data/google_storage_control_organization_intelligence_config.dart'
+    show DataGoogleStorageControlOrganizationIntelligenceConfig;
+export 'src/data/google_storage_control_organization_intelligence_findings_summary.dart'
+    show DataGoogleStorageControlOrganizationIntelligenceFindingsSummary;
+export 'src/data/google_storage_control_project_intelligence_config.dart'
+    show DataGoogleStorageControlProjectIntelligenceConfig;
+export 'src/data/google_storage_control_project_intelligence_finding.dart'
+    show DataGoogleStorageControlProjectIntelligenceFinding;
+export 'src/data/google_storage_control_project_intelligence_finding_revision.dart'
+    show DataGoogleStorageControlProjectIntelligenceFindingRevision;
+export 'src/data/google_storage_control_project_intelligence_finding_revisions.dart'
+    show DataGoogleStorageControlProjectIntelligenceFindingRevisions;
+export 'src/data/google_storage_control_project_intelligence_findings.dart'
+    show DataGoogleStorageControlProjectIntelligenceFindings;
+export 'src/data/google_storage_control_project_intelligence_findings_summary.dart'
+    show DataGoogleStorageControlProjectIntelligenceFindingsSummary;
+export 'src/data/google_storage_insights_dataset_config.dart'
+    show DataGoogleStorageInsightsDatasetConfig;
+export 'src/data/google_storage_managed_folder_iam_policy.dart'
+    show DataGoogleStorageManagedFolderIamPolicy;
+export 'src/data/google_storage_object_signed_url.dart'
+    show DataGoogleStorageObjectSignedUrl;
+export 'src/data/google_storage_project_service_account.dart'
+    show DataGoogleStorageProjectServiceAccount;
+export 'src/data/google_storage_transfer_project_service_account.dart'
+    show DataGoogleStorageTransferProjectServiceAccount;
+export 'src/data/google_tags_tag_key.dart' show DataGoogleTagsTagKey;
+export 'src/data/google_tags_tag_key_iam_policy.dart'
+    show DataGoogleTagsTagKeyIamPolicy;
+export 'src/data/google_tags_tag_keys.dart' show DataGoogleTagsTagKeys;
+export 'src/data/google_tags_tag_value.dart' show DataGoogleTagsTagValue;
+export 'src/data/google_tags_tag_value_iam_policy.dart'
+    show DataGoogleTagsTagValueIamPolicy;
+export 'src/data/google_tags_tag_values.dart' show DataGoogleTagsTagValues;
+export 'src/data/google_vertex_ai_index.dart' show DataGoogleVertexAiIndex;
+export 'src/data/google_vertex_ai_reasoning_engine_iam_policy.dart'
+    show DataGoogleVertexAiReasoningEngineIamPolicy;
+export 'src/data/google_vertex_ai_reasoning_engine_query.dart'
+    show DataGoogleVertexAiReasoningEngineQuery;
+export 'src/data/google_vmwareengine_announcements.dart'
+    show DataGoogleVmwareengineAnnouncements;
+export 'src/data/google_vmwareengine_cluster.dart'
+    show DataGoogleVmwareengineCluster;
+export 'src/data/google_vmwareengine_datastore.dart'
+    show DataGoogleVmwareengineDatastore;
+export 'src/data/google_vmwareengine_external_access_rule.dart'
+    show DataGoogleVmwareengineExternalAccessRule;
+export 'src/data/google_vmwareengine_external_address.dart'
+    show DataGoogleVmwareengineExternalAddress;
+export 'src/data/google_vmwareengine_network.dart'
+    show DataGoogleVmwareengineNetwork;
+export 'src/data/google_vmwareengine_network_peering.dart'
+    show DataGoogleVmwareengineNetworkPeering;
+export 'src/data/google_vmwareengine_network_policy.dart'
+    show DataGoogleVmwareengineNetworkPolicy;
+export 'src/data/google_vmwareengine_nsx_credentials.dart'
+    show DataGoogleVmwareengineNsxCredentials;
+export 'src/data/google_vmwareengine_private_cloud.dart'
+    show DataGoogleVmwareenginePrivateCloud;
+export 'src/data/google_vmwareengine_subnet.dart'
+    show DataGoogleVmwareengineSubnet;
+export 'src/data/google_vmwareengine_upgrades.dart'
+    show DataGoogleVmwareengineUpgrades;
+export 'src/data/google_vmwareengine_vcenter_credentials.dart'
+    show DataGoogleVmwareengineVcenterCredentials;
+export 'src/data/google_vpc_access_connector.dart'
+    show DataGoogleVpcAccessConnector;
+export 'src/data/google_workbench_instance_iam_policy.dart'
+    show DataGoogleWorkbenchInstanceIamPolicy;
+export 'src/data/google_workstations_workstation_config_iam_policy.dart'
+    show DataGoogleWorkstationsWorkstationConfigIamPolicy;
+export 'src/data/google_workstations_workstation_iam_policy.dart'
+    show DataGoogleWorkstationsWorkstationIamPolicy;

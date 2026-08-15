@@ -227,7 +227,7 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **1331 curated resource factories + 1 data source** (1332 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
+[`terradart_google`](packages/terradart_google/README.md) ships **1331 curated resource factories + 461 data sources** (1792 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). Surfaces include Compute, GKE, BigQuery, Cloud Run, IAM, networking, and Vertex AI.
 
 The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). In Dart, discover factories via `package:terradart_google/catalog.dart` (`terradartCatalog`). CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
@@ -296,6 +296,7 @@ Application platform & operations
 - [Security Command Center leftover sources / mute / custom modules / exports](examples/scc_quickstart/)
 - [Org leftover hierarchical firewall / Cloud Armor / BYOIP / Storage Intelligence / Wasm](examples/org_leftover_quickstart/)
 - [Deferred leftover remaining GA factories (org / billing / DMS / Datastream / …)](examples/deferred_leftover_quickstart/)
+- [Data-source leftover remaining GA data sources (read-only, apply-excluded)](examples/data_source_leftover_quickstart/)
 - [OS Config + Binary Authorization VM compliance](examples/vm_compliance_quickstart/) (STOPPED v2 policy orchestrator)
 - [API Keys + reCAPTCHA Enterprise + connectivity test](examples/api_security_quickstart/)
 - [Logging sinks (project / folder / org) → BigQuery](examples/ops_quickstart/)

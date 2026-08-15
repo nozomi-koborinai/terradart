@@ -45,16 +45,18 @@ Future<void> runExampleSynthGates(
 }) async {
   final quickstarts = _quickstartSlugs();
   final synthByExample = <String, Map<String, dynamic>>{};
-  final allTfTypes = <String>{};
+  final allResourceTypes = <String>{};
+  final allDataTypes = <String>{};
 
   for (final slug in quickstarts) {
     final json = await synthExample(slug, errors);
     if (json == null) continue;
     synthByExample[slug] = json;
-    allTfTypes.addAll(_resourceTfTypes(json));
+    allResourceTypes.addAll(_resourceTfTypes(json));
+    allDataTypes.addAll(_dataTfTypes(json));
   }
 
-  _checkSynthCoverage(errors, allTfTypes);
+  _checkSynthCoverage(errors, allResourceTypes, allDataTypes);
   final apiDebt = _apiEnablementDebt(errors);
   for (final entry in synthByExample.entries) {
     checkApiEnablement(entry.key, entry.value, errors, apiDebt: apiDebt);
@@ -68,7 +70,8 @@ Future<void> runExampleSynthGates(
 
   print(
     'example synth: ${quickstarts.length} quickstarts, '
-    '${allTfTypes.length} distinct tfTypes in synth output',
+    '${allResourceTypes.length} resource + ${allDataTypes.length} data '
+    'tfTypes in synth output',
   );
 }
 
@@ -182,14 +185,24 @@ Set<String> _resourceTfTypes(Map<String, dynamic> root) {
   return resources.keys.map((k) => k.toString()).toSet();
 }
 
-void _checkSynthCoverage(List<String> errors, Set<String> synthTfTypes) {
+Set<String> _dataTfTypes(Map<String, dynamic> root) {
+  final data = root['data'];
+  if (data is! Map) return const {};
+  return data.keys.map((k) => k.toString()).toSet();
+}
+
+void _checkSynthCoverage(
+  List<String> errors,
+  Set<String> synthResourceTypes,
+  Set<String> synthDataTypes,
+) {
   final catalog = File('packages/terradart_google/lib/src/_catalog.g.dart');
   if (!catalog.existsSync()) {
     errors.add('Missing ${catalog.path}');
     return;
   }
   final text = catalog.readAsStringSync();
-  final factories = <({String tfType, String className})>[];
+  final factories = <({String tfType, String className, String kind})>[];
   final catalogClasses = <String>{};
   // dart format may wrap long `tfType:` string literals onto the next line.
   final tfRe = RegExp(
@@ -197,8 +210,9 @@ void _checkSynthCoverage(List<String> errors, Set<String> synthTfTypes) {
   );
   for (final m in tfRe.allMatches(text)) {
     catalogClasses.add(m.group(2)!);
-    if (m.group(3) != 'resource') continue;
-    factories.add((tfType: m.group(1)!, className: m.group(2)!));
+    factories.add(
+      (tfType: m.group(1)!, className: m.group(2)!, kind: m.group(3)!),
+    );
   }
 
   final debt = _exampleDebt(errors);
@@ -207,7 +221,9 @@ void _checkSynthCoverage(List<String> errors, Set<String> synthTfTypes) {
   };
   var covered = 0;
   for (final f in factories) {
-    final used = synthTfTypes.contains(f.tfType);
+    final used = f.kind == 'dataSource'
+        ? synthDataTypes.contains(f.tfType)
+        : synthResourceTypes.contains(f.tfType);
     if (used) covered++;
     final listed = debt.containsKey(f.className);
     if (!used && !listed) {
@@ -233,12 +249,12 @@ void _checkSynthCoverage(List<String> errors, Set<String> synthTfTypes) {
       reason: entry.value,
       catalogClasses: catalogClasses,
       classToTfType: classToTfType,
-      synthTfTypes: synthTfTypes,
+      synthTfTypes: synthResourceTypes,
       errors: errors,
     );
   }
   print(
-    'example coverage (synth): ${factories.length} resource factories, '
+    'example coverage (synth): ${factories.length} factories, '
     '$covered in synth output, ${debt.length} in tool/example_debt.yaml',
   );
 }

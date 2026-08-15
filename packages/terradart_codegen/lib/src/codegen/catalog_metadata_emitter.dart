@@ -69,7 +69,13 @@ class CatalogMetadataEmitter {
   /// Renders the catalog source for [entries]. The returned string is
   /// unformatted (the wrap pipeline formats it) but always parseable.
   String emit(List<CatalogEntryData> entries) {
-    final sorted = [...entries]..sort((a, b) => a.tfType.compareTo(b.tfType));
+    final sorted = [...entries]..sort((a, b) {
+        final byType = a.tfType.compareTo(b.tfType);
+        if (byType != 0) return byType;
+        // Resource before dataSource when twins share a tfType, so
+        // first-match catalog lookups stay on the managed factory.
+        return _kindRank(a.kind).compareTo(_kindRank(b.kind));
+      });
     final buf = StringBuffer()
       ..writeln('// GENERATED FILE - DO NOT EDIT')
       ..writeln('// Run `terradart wrap` to regenerate.')
@@ -93,6 +99,8 @@ class CatalogMetadataEmitter {
     buf.writeln('];');
     return buf.toString();
   }
+
+  static int _kindRank(String kind) => kind == 'resource' ? 0 : 1;
 
   /// Renders [s] as a single-quoted Dart string literal, escaping the four
   /// characters that would otherwise break a single-line `'...'` literal:

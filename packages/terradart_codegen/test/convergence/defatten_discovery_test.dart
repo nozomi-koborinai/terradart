@@ -213,7 +213,7 @@ void main() {
       'doc',
     ].join('\t'));
 
-    for (final entry in result.loaded.all.entries) {
+    for (final entry in result.loaded.entries) {
       final type = entry.key;
       final override = entry.value;
 
@@ -271,7 +271,7 @@ void main() {
     // — proof the sweep visited every override with no silent caps.
     expect(
       (rows.length - 1) + skipped,
-      equals(result.loaded.all.length),
+      equals(result.loaded.length),
       reason: 'rows + skipped must equal total loaded overrides',
     );
   });

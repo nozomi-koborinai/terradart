@@ -327,10 +327,32 @@ class DemoHelper {}
       );
 
       expect(entry.kind, 'dataSource');
+      expect(entry.className, 'GoogleProject');
       expect(entry.docComment, 'Retrieve project metadata. Use downstream.');
       expect(entry.summary, 'Retrieve project metadata.');
       expect(entry.sensitiveFields, isEmpty);
       expect(entry.nestedTypes, isEmpty);
+    });
+
+    test('data-source twins get a Data-prefixed className', () {
+      final def = _def(
+        tfType: 'google_compute_network',
+        attributes: [_attr('name')],
+      );
+      const override = WrapperOverride(
+        outputDir: 'data',
+        kind: WrapperOverrideKind.dataSource,
+      );
+
+      final entry = buildCatalogEntry(
+        tfType: 'google_compute_network',
+        override: override,
+        def: def,
+        kind: 'dataSource',
+        emittedSource: 'final class DataGoogleComputeNetwork extends Data {}',
+      );
+
+      expect(entry.className, 'DataGoogleComputeNetwork');
     });
 
     test(

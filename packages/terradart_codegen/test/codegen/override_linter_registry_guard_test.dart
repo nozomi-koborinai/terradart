@@ -7,7 +7,7 @@ void main() {
     final loaded = YamlOverrideLoader(
       rootDir: 'lib/src/codegen/wrapper_overrides/yaml',
     ).load();
-    final violations = lintOverrides(loaded.all);
+    final violations = lintOverrides(loaded.asLintMap());
     expect(
       violations,
       isEmpty,

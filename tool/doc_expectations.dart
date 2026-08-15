@@ -19,6 +19,13 @@ int get catalogEntryCount => _counts.total;
 /// Curated resource factories (excludes data sources).
 int get curatedFactoryCount => _counts.resources;
 
+/// Curated data sources.
+int get dataSourceCount => _counts.dataSources;
+
+/// `1 data source` / `N data sources` for catalog prose.
+String get dataSourceCatalogPhrase =>
+    dataSourceCount == 1 ? '1 data source' : '$dataSourceCount data sources';
+
 /// Distinct per-service barrels (excludes the synthetic `data` barrel).
 int get serviceBarrelCount => _counts.serviceBarrels;
 
