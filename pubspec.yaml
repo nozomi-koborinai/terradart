@@ -102,12 +102,14 @@ workspace:
   - examples/oracle_db_system_quickstart
   - examples/oracle_exadata_quickstart
   - examples/oracle_goldengate_quickstart
+  - examples/org_leftover_quickstart
   - examples/parameter_manager_quickstart
   - examples/ops_quickstart
   - examples/privileged_access_manager_quickstart
   - examples/public_ca_quickstart
   - examples/project_iam_audit_config_quickstart
   - examples/pubsub_quickstart
+  - examples/scc_quickstart
   - examples/secret_manager_quickstart
   - examples/service_directory_quickstart
   - examples/sourcerepo_quickstart

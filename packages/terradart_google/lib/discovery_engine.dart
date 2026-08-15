@@ -1,7 +1,8 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 /// Vertex AI Search (Discovery Engine): data stores, search engines, IAM,
-/// schema / serving controls, and Gemini Enterprise license configs
+/// schema / serving controls, location CMEK config and third-party data
+/// connectors (apply-excluded), and Gemini Enterprise license configs
 /// (never_apply — seat subscriptions).
 library;
 
@@ -26,6 +27,10 @@ export 'src/discovery_engine/google_discovery_engine_chat_engine.dart'
         DiscoveryEngineChatEngineCommonConfig,
         DiscoveryEngineChatEngineIndustryVertical,
         GoogleDiscoveryEngineChatEngine;
+export 'src/discovery_engine/google_discovery_engine_cmek_config.dart'
+    show
+        DiscoveryEngineCmekConfigSingleRegionKeys,
+        GoogleDiscoveryEngineCmekConfig;
 export 'src/discovery_engine/google_discovery_engine_control.dart'
     show
         DiscoveryEngineControlAction,
@@ -40,6 +45,14 @@ export 'src/discovery_engine/google_discovery_engine_control.dart'
         DiscoveryEngineControlSolutionType,
         DiscoveryEngineControlSynonymsAction,
         GoogleDiscoveryEngineControl;
+export 'src/discovery_engine/google_discovery_engine_data_connector.dart'
+    show
+        DiscoveryEngineDataConnectorActionConfig,
+        DiscoveryEngineDataConnectorBapConfig,
+        DiscoveryEngineDataConnectorDestinationConfigs,
+        DiscoveryEngineDataConnectorDestinationConfigsDestinations,
+        DiscoveryEngineDataConnectorEntities,
+        GoogleDiscoveryEngineDataConnector;
 export 'src/discovery_engine/google_discovery_engine_data_store.dart'
     show
         DiscoveryEngineDataStoreContentConfig,

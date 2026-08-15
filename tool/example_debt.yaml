@@ -129,16 +129,13 @@ GoogleBigqueryReservationGroup: create returns 400 "Can not use Reservation Grou
 # (gcloud projects get-ancestors → project only), so create returns 400
 # "Precondition check failed." Keep the curated factory; revisit when an
 # org-backed validate project exists.
-GoogleSccV2ProjectNotificationConfig: requires an organization-activated Security Command Center parent — notification configs mint service-org-ORGANIZATION_ID@gcp-sa-scc-notification.iam.gserviceaccount.com; terradart-validate has no org ancestor, so apply returns 400 Precondition check failed
-
-# SCC source IAM (v1 + v2 organization) — org-scoped; parents uncurated and
-# require an organization absent on standalone terradart-validate.
-GoogleSccSourceIamMember: org-scoped SCC source IAM; requires organizations/{id} + google_scc_source (uncurated) — not applyable on terradart-validate
-GoogleSccSourceIamBinding: org-scoped authoritative SCC source IAM binding; deferred with sibling member
-GoogleSccSourceIamPolicy: org-scoped authoritative SCC source IAM policy; deferred with sibling member
-GoogleSccV2OrganizationSourceIamMember: org-scoped SCC v2 organization source IAM; requires organizations/{id} + google_scc_v2_organization_source (uncurated) — not applyable on terradart-validate
-GoogleSccV2OrganizationSourceIamBinding: org-scoped authoritative SCC v2 organization source IAM binding; deferred with sibling member
-GoogleSccV2OrganizationSourceIamPolicy: org-scoped authoritative SCC v2 organization source IAM policy; deferred with sibling member
+# SCC source IAM binding/policy — sibling *IamMember now in scc_quickstart
+# (apply-excluded leftover stack). Prefer the adjunct-debt path over
+# extending the example solely for authoritative binding/policy.
+GoogleSccSourceIamBinding: iam-adjunct-debt: sibling GoogleSccSourceIamMember already in scc_quickstart; authoritative binding not needed in smoke
+GoogleSccSourceIamPolicy: iam-adjunct-debt: sibling GoogleSccSourceIamMember already in scc_quickstart; authoritative policy not needed in smoke
+GoogleSccV2OrganizationSourceIamBinding: iam-adjunct-debt: sibling GoogleSccV2OrganizationSourceIamMember already in scc_quickstart; authoritative binding not needed in smoke
+GoogleSccV2OrganizationSourceIamPolicy: iam-adjunct-debt: sibling GoogleSccV2OrganizationSourceIamMember already in scc_quickstart; authoritative policy not needed in smoke
 
 # Vector Search indexes default dedicated_infrastructure to two
 # PERFORMANCE_OPTIMIZED replicas (hourly capacity-unit SKUs). vector_quickstart
@@ -885,11 +882,10 @@ GoogleCloudbuildv2ConnectionIamPolicy: iam-adjunct-debt: sibling GoogleCloudbuil
 GoogleIamWorkloadIdentityPoolIamBinding: iam-adjunct-debt: sibling GoogleIamWorkloadIdentityPoolIamMember already in iam_quickstart; authoritative binding not needed in smoke
 GoogleIamWorkloadIdentityPoolIamPolicy: iam-adjunct-debt: sibling GoogleIamWorkloadIdentityPoolIamMember already in iam_quickstart; authoritative policy not needed in smoke
 
-# Workforce Identity Federation pool IAM — parent google_iam_workforce_pool
-# is uncurated (org/folder parent + soft-delete lock similar to WIF pools).
-GoogleIamWorkforcePoolIamMember: requires a parent GoogleIamWorkforcePool (uncurated; org/folder scoped); deferred pending parent Wave — iam_quickstart already skips WIF-style pools
-GoogleIamWorkforcePoolIamBinding: requires a parent GoogleIamWorkforcePool (uncurated); deferred with sibling member
-GoogleIamWorkforcePoolIamPolicy: requires a parent GoogleIamWorkforcePool (uncurated); deferred with sibling member
+# Workforce Identity Federation pool IAM binding/policy — sibling
+# *IamMember now in iam_quickstart (apply-excluded leftover stack).
+GoogleIamWorkforcePoolIamBinding: iam-adjunct-debt: sibling GoogleIamWorkforcePoolIamMember already in iam_quickstart; authoritative binding not needed in smoke
+GoogleIamWorkforcePoolIamPolicy: iam-adjunct-debt: sibling GoogleIamWorkforcePoolIamMember already in iam_quickstart; authoritative policy not needed in smoke
 
 # Private CA certificate template IAM binding/policy — sibling *IamMember
 # already in compute_lb_quickstart (iam-adjunct-debt path).

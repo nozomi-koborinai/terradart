@@ -85,5 +85,19 @@ final class DialogflowSipTrunkStack extends Stack {
         dependsOn: apiDeps,
       ),
     );
+
+    // Apply-excluded leftover: location CMEK spec. Placeholder KMS key.
+    add(
+      GoogleDialogflowEncryptionSpec(
+        localName: 'cmek',
+        location: TfArg.literal('europe-west3'),
+        encryptionSpec: DialogflowEncryptionSpecEncryptionSpec(
+          kmsKey: TfArg.literal(
+            'projects/$projectId/locations/europe-west3/keyRings/terradart/cryptoKeys/dialogflow',
+          ),
+        ),
+        dependsOn: apiDeps,
+      ),
+    );
   }
 }

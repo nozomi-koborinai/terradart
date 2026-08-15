@@ -8,6 +8,7 @@ End-to-end terradart example for VPC Service Controls primitives:
 - `GoogleAccessContextManagerServicePerimeter` (Storage restriction + dedicated dry-run perimeter)
 - `GoogleAccessContextManagerServicePerimeterDryRunResource` (placeholder project on dry-run `spec` only)
 - `GoogleAccessContextManagerAuthorizedOrgsDesc` (placeholder org numbers; `deletion_policy=DELETE`)
+- Apply-excluded leftovers: bulk `access_levels` / `service_perimeters`, live perimeter resource, ingress/egress (live + dry-run), legacy ingress/egress attachments, GCP user access binding
 - `GoogleAccessContextManagerAccessPolicyIamMember`
 
 ```bash

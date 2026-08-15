@@ -2485,3 +2485,111 @@ files:
     upstream: null  # third_party terraform/services/storage/resource_storage_default_object_acl.go
   google_storage_object_acl:
     upstream: null  # third_party terraform/services/storage/resource_storage_object_acl.go
+
+  # Apply-excluded leftover batch (org/folder/BYOIP/SCC/ACM/workforce)
+  google_compute_firewall_policy_with_rules:
+    upstream: mmv1/products/compute/FirewallPolicyWithRules.yaml
+  google_compute_organization_security_policy:
+    upstream: mmv1/products/compute/OrganizationSecurityPolicy.yaml
+  google_compute_organization_security_policy_association:
+    upstream: mmv1/products/compute/OrganizationSecurityPolicyAssociation.yaml
+  google_compute_organization_security_policy_rule:
+    upstream: mmv1/products/compute/OrganizationSecurityPolicyRule.yaml
+  google_compute_public_advertised_prefix:
+    upstream: mmv1/products/compute/PublicAdvertisedPrefix.yaml
+  google_compute_public_delegated_prefix:
+    upstream: mmv1/products/compute/PublicDelegatedPrefix.yaml
+  google_network_services_wasm_plugin:
+    upstream: mmv1/products/networkservices/WasmPlugin.yaml
+  google_dialogflow_encryption_spec:
+    upstream: mmv1/products/dialogflow/EncryptionSpec.yaml
+  google_discovery_engine_cmek_config:
+    upstream: mmv1/products/discoveryengine/CmekConfig.yaml
+  google_discovery_engine_data_connector:
+    upstream: mmv1/products/discoveryengine/DataConnector.yaml
+  google_storage_control_folder_intelligence_config:
+    upstream: mmv1/products/storagecontrol/FolderIntelligenceConfig.yaml
+  google_storage_control_organization_intelligence_config:
+    upstream: mmv1/products/storagecontrol/OrganizationIntelligenceConfig.yaml
+  google_iam_workforce_pool:
+    upstream: mmv1/products/iamworkforcepool/WorkforcePool.yaml
+  google_iam_workforce_pool_provider:
+    upstream: mmv1/products/iamworkforcepool/WorkforcePoolProvider.yaml
+  google_iam_workforce_pool_provider_key:
+    upstream: mmv1/products/iamworkforcepool/WorkforcePoolProviderKey.yaml
+  google_iam_workforce_pool_provider_scim_tenant:
+    upstream: mmv1/products/iamworkforcepool/WorkforcePoolProviderScimTenant.yaml
+  google_iam_workforce_pool_provider_scim_token:
+    upstream: mmv1/products/iamworkforcepool/WorkforcePoolProviderScimToken.yaml
+  google_scc_source:
+    upstream: mmv1/products/securitycenter/Source.yaml
+  google_scc_notification_config:
+    upstream: mmv1/products/securitycenter/NotificationConfig.yaml
+  google_scc_event_threat_detection_custom_module:
+    upstream: mmv1/products/securitycenter/EventThreatDetectionCustomModule.yaml
+  google_scc_organization_custom_module:
+    upstream: mmv1/products/securitycenter/OrganizationCustomModule.yaml
+  google_scc_organization_scc_big_query_export:
+    upstream: mmv1/products/securitycenter/OrganizationSccBigQueryExport.yaml
+  google_scc_management_organization_event_threat_detection_custom_module:
+    upstream: mmv1/products/securitycentermanagement/OrganizationEventThreatDetectionCustomModule.yaml
+  google_scc_management_organization_security_health_analytics_custom_module:
+    upstream: mmv1/products/securitycentermanagement/OrganizationSecurityHealthAnalyticsCustomModule.yaml
+  google_scc_folder_custom_module:
+    upstream: mmv1/products/securitycenter/FolderCustomModule.yaml
+  google_scc_folder_notification_config:
+    upstream: mmv1/products/securitycenter/FolderNotificationConfig.yaml
+  google_scc_folder_scc_big_query_export:
+    upstream: mmv1/products/securitycenter/FolderSccBigQueryExport.yaml
+  google_scc_management_folder_security_health_analytics_custom_module:
+    upstream: mmv1/products/securitycentermanagement/FolderSecurityHealthAnalyticsCustomModule.yaml
+  google_scc_mute_config:
+    upstream: mmv1/products/securitycenter/MuteConfig.yaml
+  google_scc_project_custom_module:
+    upstream: mmv1/products/securitycenter/ProjectCustomModule.yaml
+  google_scc_project_notification_config:
+    upstream: mmv1/products/securitycenter/ProjectNotificationConfig.yaml
+  google_scc_project_scc_big_query_export:
+    upstream: mmv1/products/securitycenter/ProjectSccBigQueryExport.yaml
+  google_scc_management_project_security_health_analytics_custom_module:
+    upstream: mmv1/products/securitycentermanagement/ProjectSecurityHealthAnalyticsCustomModule.yaml
+  google_scc_v2_organization_source:
+    upstream: mmv1/products/securitycenterv2/OrganizationSource.yaml
+  google_scc_v2_organization_mute_config:
+    upstream: mmv1/products/securitycenterv2/OrganizationMuteConfig.yaml
+  google_scc_v2_organization_notification_config:
+    upstream: mmv1/products/securitycenterv2/OrganizationNotificationConfig.yaml
+  google_scc_v2_organization_scc_big_query_export:
+    upstream: mmv1/products/securitycenterv2/OrganizationSccBigQueryExport.yaml
+  google_scc_v2_organization_scc_big_query_exports:
+    upstream: mmv1/products/securitycenterv2/OrganizationSccBigQueryExports.yaml
+  google_scc_v2_folder_mute_config:
+    upstream: mmv1/products/securitycenterv2/FolderMuteConfig.yaml
+  google_scc_v2_folder_notification_config:
+    upstream: mmv1/products/securitycenterv2/FolderNotificationConfig.yaml
+  google_scc_v2_folder_scc_big_query_export:
+    upstream: mmv1/products/securitycenterv2/FolderSccBigQueryExport.yaml
+  google_scc_v2_project_mute_config:
+    upstream: mmv1/products/securitycenterv2/ProjectMuteConfig.yaml
+  google_scc_v2_project_scc_big_query_export:
+    upstream: mmv1/products/securitycenterv2/ProjectSccBigQueryExport.yaml
+  google_access_context_manager_gcp_user_access_binding:
+    upstream: mmv1/products/accesscontextmanager/GcpUserAccessBinding.yaml
+  google_access_context_manager_access_levels:
+    upstream: mmv1/products/accesscontextmanager/AccessLevels.yaml
+  google_access_context_manager_service_perimeters:
+    upstream: mmv1/products/accesscontextmanager/ServicePerimeters.yaml
+  google_access_context_manager_service_perimeter_resource:
+    upstream: mmv1/products/accesscontextmanager/ServicePerimeterResource.yaml
+  google_access_context_manager_service_perimeter_ingress_policy:
+    upstream: mmv1/products/accesscontextmanager/ServicePerimeterIngressPolicy.yaml
+  google_access_context_manager_service_perimeter_egress_policy:
+    upstream: mmv1/products/accesscontextmanager/ServicePerimeterEgressPolicy.yaml
+  google_access_context_manager_ingress_policy:
+    upstream: mmv1/products/accesscontextmanager/IngressPolicy.yaml
+  google_access_context_manager_egress_policy:
+    upstream: mmv1/products/accesscontextmanager/EgressPolicy.yaml
+  google_access_context_manager_service_perimeter_dry_run_ingress_policy:
+    upstream: mmv1/products/accesscontextmanager/ServicePerimeterDryRunIngressPolicy.yaml
+  google_access_context_manager_service_perimeter_dry_run_egress_policy:
+    upstream: mmv1/products/accesscontextmanager/ServicePerimeterDryRunEgressPolicy.yaml

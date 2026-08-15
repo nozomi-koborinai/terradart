@@ -1,0 +1,14 @@
+outputDir: scc
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// SCC Management folder SHA custom module — leftover factory on the
+  /// apply-excluded path (synth + `terraform validate` only).
+  ///
+  /// Needs an organization / folder / external artifact that
+  /// standalone terradart-validate cannot supply. Do not apply.

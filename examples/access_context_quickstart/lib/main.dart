@@ -5,10 +5,12 @@
 /// with an additive spec resource (placeholder project number), a
 /// dedicated access level with an additive condition (not attached to
 /// the Storage perimeter), a cross-org authorized-orgs descriptor
-/// (placeholder org numbers), and a policy IAM member. The policy
-/// `parent` reads `ops_organization_id` (Terraform variable — apply
-/// needs a real organization id). The dry-run attachment does not
-/// change live `status` evaluation.
+/// (placeholder org numbers), apply-excluded leftover attachments
+/// (bulk levels/perimeters, live resource, ingress/egress, GCP user
+/// access binding), and a policy IAM member. The policy `parent` reads
+/// `ops_organization_id` (Terraform variable — apply needs a real
+/// organization id). The dry-run attachment does not change live
+/// `status` evaluation.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -90,7 +92,11 @@ final class AccessControlsStack extends Stack {
           restrictedServices: TfArg.literal(['storage.googleapis.com']),
         ),
         lifecycle: const LifecycleOptions(
-          ignoreChanges: ['spec[0].resources'],
+          ignoreChanges: [
+            'spec[0].resources',
+            'spec[0].ingress_policies',
+            'spec[0].egress_policies',
+          ],
         ),
         dependsOn: [ResourceDependency(policy)],
       ),
@@ -193,6 +199,177 @@ final class AccessControlsStack extends Stack {
         ),
         deletionPolicy: TfArg.literal('DELETE'),
         dependsOn: [ResourceDependency(policy)],
+      ),
+    );
+
+    // Apply-excluded leftovers. Bulk replace + attachments use
+    // placeholders; this stack is skip-listed and is never applied.
+    add(
+      GoogleAccessContextManagerAccessLevels(
+        localName: 'bulk_levels',
+        parent: TfArg.ref(policy.name),
+        accessLevels: [
+          AccessContextManagerAccessLevelsAccessLevels(
+            name: TfArg.literal(
+              'accessPolicies/${policy.name.interpolation}'
+              '/accessLevels/bulk_eu',
+            ),
+            title: TfArg.literal('bulk_eu'),
+            basic: AccessContextManagerAccessLevelsAccessLevelsBasic(
+              conditions: [
+                AccessContextManagerAccessLevelsAccessLevelsBasicConditions(
+                  regions: TfArg.literal(['DE']),
+                ),
+              ],
+            ),
+          ),
+        ],
+        dependsOn: [ResourceDependency(policy)],
+      ),
+    );
+
+    add(
+      GoogleAccessContextManagerServicePerimeters(
+        localName: 'bulk_perimeters',
+        parent: TfArg.ref(policy.name),
+        servicePerimeters: [
+          AccessContextManagerServicePerimetersServicePerimeters(
+            name: TfArg.literal(
+              'accessPolicies/${policy.name.interpolation}'
+              '/servicePerimeters/bulk_storage',
+            ),
+            title: TfArg.literal('bulk_storage'),
+          ),
+        ],
+        dependsOn: [ResourceDependency(policy)],
+      ),
+    );
+
+    final attach = add(
+      GoogleAccessContextManagerServicePerimeter(
+        localName: 'attach_perimeter',
+        name: TfArg.literal('attach_perimeter'),
+        parent: TfArg.ref(policy.name),
+        title: TfArg.literal('Attachment perimeter'),
+        status: AccessContextManagerServicePerimeterStatus(
+          restrictedServices: TfArg.literal(['storage.googleapis.com']),
+        ),
+        lifecycle: const LifecycleOptions(
+          ignoreChanges: [
+            'status[0].resources',
+            'status[0].ingress_policies',
+            'status[0].egress_policies',
+          ],
+        ),
+        dependsOn: [ResourceDependency(policy)],
+      ),
+    );
+
+    add(
+      GoogleAccessContextManagerServicePerimeterResource(
+        localName: 'live_project',
+        perimeterName: TfArg.ref(attach.nameRef),
+        resource: TfArg.literal('projects/987654322'),
+        deletionPolicy: TfArg.literal('DELETE'),
+        dependsOn: [ResourceDependency(attach)],
+      ),
+    );
+
+    add(
+      GoogleAccessContextManagerServicePerimeterIngressPolicy(
+        localName: 'attach_ingress',
+        perimeter: TfArg.ref(attach.nameRef),
+        title: TfArg.literal('allow identities'),
+        ingressFrom:
+            AccessContextManagerServicePerimeterIngressPolicyIngressFrom(
+          identityType: TfArg.literal(
+            AccessContextManagerServicePerimeterIngressPolicyIngressFromIdentityType
+                .anyIdentity,
+          ),
+        ),
+        dependsOn: [ResourceDependency(attach)],
+      ),
+    );
+
+    add(
+      GoogleAccessContextManagerServicePerimeterEgressPolicy(
+        localName: 'attach_egress',
+        perimeter: TfArg.ref(attach.nameRef),
+        title: TfArg.literal('allow egress'),
+        egressFrom: AccessContextManagerServicePerimeterEgressPolicyEgressFrom(
+          identityType: TfArg.literal(
+            AccessContextManagerServicePerimeterEgressPolicyEgressFromIdentityType
+                .anyIdentity,
+          ),
+        ),
+        dependsOn: [ResourceDependency(attach)],
+      ),
+    );
+
+    add(
+      GoogleAccessContextManagerServicePerimeterDryRunIngressPolicy(
+        localName: 'dry_run_ingress',
+        perimeter: TfArg.ref(dryRun.nameRef),
+        title: TfArg.literal('dry-run ingress'),
+        ingressFrom:
+            AccessContextManagerServicePerimeterDryRunIngressPolicyIngressFrom(
+          identityType: TfArg.literal(
+            AccessContextManagerServicePerimeterDryRunIngressPolicyIngressFromIdentityType
+                .anyIdentity,
+          ),
+        ),
+        dependsOn: [ResourceDependency(dryRun)],
+      ),
+    );
+
+    add(
+      GoogleAccessContextManagerServicePerimeterDryRunEgressPolicy(
+        localName: 'dry_run_egress',
+        perimeter: TfArg.ref(dryRun.nameRef),
+        title: TfArg.literal('dry-run egress'),
+        egressFrom:
+            AccessContextManagerServicePerimeterDryRunEgressPolicyEgressFrom(
+          identityType: TfArg.literal(
+            AccessContextManagerServicePerimeterDryRunEgressPolicyEgressFromIdentityType
+                .anyIdentity,
+          ),
+        ),
+        dependsOn: [ResourceDependency(dryRun)],
+      ),
+    );
+
+    add(
+      GoogleAccessContextManagerIngressPolicy(
+        localName: 'legacy_ingress',
+        ingressPolicyName: TfArg.literal(
+          '${attach.nameRef.interpolation}/ingressPolicies/legacy',
+        ),
+        resource: TfArg.literal('projects/987654323'),
+        deletionPolicy: TfArg.literal('DELETE'),
+        dependsOn: [ResourceDependency(attach)],
+      ),
+    );
+
+    add(
+      GoogleAccessContextManagerEgressPolicy(
+        localName: 'legacy_egress',
+        egressPolicyName: TfArg.literal(
+          '${attach.nameRef.interpolation}/egressPolicies/legacy',
+        ),
+        resource: TfArg.literal('projects/987654323'),
+        deletionPolicy: TfArg.literal('DELETE'),
+        dependsOn: [ResourceDependency(attach)],
+      ),
+    );
+
+    add(
+      GoogleAccessContextManagerGcpUserAccessBinding(
+        localName: 'group_binding',
+        organizationId: TfArg.literal('\${var.ops_organization_id}'),
+        groupKey: TfArg.literal('00abcde12345678'),
+        accessLevels: TfArg.literal([usOnly.nameRef.interpolation]),
+        deletionPolicy: TfArg.literal('DELETE'),
+        dependsOn: [ResourceDependency(usOnly)],
       ),
     );
   }

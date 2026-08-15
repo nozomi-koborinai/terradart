@@ -60,6 +60,7 @@ enum Barrels {
   project('project'),
   pubsub('pubsub'),
   redis('redis'),
+  scc('scc'),
   secretManager('secret_manager'),
   serviceNetworking('service_networking'),
   sql('sql'),
