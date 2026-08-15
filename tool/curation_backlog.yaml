@@ -37,12 +37,12 @@
 # path.
 #
 # 2026-08-15 remaining-uncurated batch: the other 89 GA-fixture leftovers
-# (logging org/folder/billing, Identity Platform IdP configs except the
-# coverage sentinel, billing, DMS, Datastream, Assured Workloads, Cloud
-# Domains, …) shipped on the apply-excluded path. The only remaining
-# uncurated GA type is `google_identity_platform_oauth_idp_config`
-# (coverage-report sentinel in terradart_coverage). An empty backlog is
-# a normal wave-shipper no-op until the weekly schema bump appends newly
+# (logging org/folder/billing, Identity Platform IdP configs except
+# `google_identity_platform_oauth_idp_config`, billing, DMS, Datastream,
+# Assured Workloads, Cloud Domains, …) shipped on the apply-excluded path.
+# That last type is ordinary leftover, not a coverage sentinel — the
+# uncovered report path uses a fabricated type. An empty backlog is a
+# normal wave-shipper no-op until the weekly schema bump appends newly
 # detected types.
 
 entries:

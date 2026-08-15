@@ -14,11 +14,11 @@ import 'package:test/test.dart';
 /// many top-level keys we intentionally ignore), unlike the hand-written maps
 /// in the other tests.
 ///
-/// At capture time (after curating `google_dialogflow_conversation_profile`)
-/// the not-in-catalog type is `google_identity_platform_oauth_idp_config`.
-/// The assertions below deliberately avoid pinning that exact percentage
-/// so the test survives catalog growth; they pin the catalog-independent
-/// parse and the structural invariants instead.
+/// Assertions pin the catalog-independent parse and structural invariants.
+/// They do **not** require a live uncurated GA type — keeping one resource
+/// out of the catalog just to populate `notInCatalog` is the wrong ratchet.
+/// The uncovered path is covered by `coverage_report_test` with the
+/// fabricated type `google_notreal_thing`.
 void main() {
   final json =
       jsonDecode(File('test/fixtures/real_plan_show.json').readAsStringSync())
@@ -59,16 +59,9 @@ void main() {
       );
       expect(report.summary.supportedTypes, report.supported.length);
 
-      // The real plan mixes curated and uncurated types, so both lists fire.
+      // This plan always includes curated types. `notInCatalog` may be
+      // empty once every type in the fixture is curated — that is fine.
       expect(report.supported, isNotEmpty);
-      expect(
-        report.notInCatalog,
-        isNotEmpty,
-        reason:
-            'fixture is expected to contain at least one uncurated type; '
-            'if terradart_google has since curated them, regenerate the '
-            'fixture',
-      );
 
       // google_storage_bucket is a foundational resource — always curated.
       expect(

@@ -7,9 +7,10 @@
 #   terraform plan -out=tfplan.bin      # no credentials needed (managed resources only)
 #   terraform show -json tfplan.bin > ../real_plan_show.json
 #
-# Mixes curated terradart_google resources with not-in-catalog ones across a
-# root module and a child module, so the coverage report exercises both the
-# supported and the uncovered paths.
+# Mixes resources across a root module and a child module so the coverage
+# report exercises Terraform's real document shape. Do not keep a live GA
+# type uncurated just to populate notInCatalog — that path is tested with
+# a fabricated type in coverage_report_test.dart.
 
 terraform {
   required_providers {
@@ -62,7 +63,7 @@ resource "google_compute_router_nat" "nat" {
   source_subnetwork_ip_ranges_to_nat = "ALL_SUBNETWORKS_ALL_IP_RANGES"
 }
 
-# --- Not curated yet (expected: not in catalog) ---
+# --- Still uncurated in terradart_google (not a required sentinel) ---
 
 resource "google_identity_platform_oauth_idp_config" "hello" {
   name      = "oidc.hello"

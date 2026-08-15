@@ -3,8 +3,6 @@
 /// Identity Platform — project Auth config, multi-tenant realms,
 /// tenant OIDC IdP metadata, leftover default-supported / SAML IdP
 /// configs, and Cloud Identity groups / memberships (apply-excluded).
-/// `google_identity_platform_oauth_idp_config` stays uncurated as
-/// the coverage-fixture sentinel.
 library;
 
 export 'src/identity/google_cloud_identity_group.dart'
