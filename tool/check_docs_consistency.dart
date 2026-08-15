@@ -48,19 +48,19 @@ Future<void> main() async {
   _checkPhrase(
     errors,
     'website/src/content/docs/docs/status.md',
-    '$curatedFactoryCount curated resource factories + 1 data source',
+    '$curatedFactoryCount curated resource factories + $dataSourceCatalogPhrase',
     '($catalogEntryCount catalog entries)',
   );
   _checkPhrase(
     errors,
     'website/src/content/docs/docs/coverage.md',
-    '$curatedFactoryCount curated resource factories + 1 data source',
+    '$curatedFactoryCount curated resource factories + $dataSourceCatalogPhrase',
     '($catalogEntryCount catalog entries)',
   );
   _checkPhrase(
     errors,
     'website/src/content/docs/docs/why-terradart.md',
-    '$curatedFactoryCount curated resource factories + 1 data source',
+    '$curatedFactoryCount curated resource factories + $dataSourceCatalogPhrase',
     '($catalogEntryCount catalog entries)',
   );
   // Version-line freshness: any `0.NN.x` token in these user-facing pages must
@@ -83,6 +83,7 @@ Future<void> main() async {
     'website/src/content/docs/docs/agent/index.md',
     agentCatalogEntriesPhrase,
     agentResourceFactoriesPhrase,
+    dataSourceCatalogPhrase,
     serviceBarrelCountPhrase,
   );
   _checkPhrase(
@@ -96,6 +97,7 @@ Future<void> main() async {
     'packages/terradart_agent/README.md',
     agentCatalogEntriesPhrase,
     agentResourceFactoriesPhrase,
+    dataSourceCatalogPhrase,
     serviceBarrelCountPhrase,
   );
   for (final template in [
@@ -160,6 +162,7 @@ void _checkPhrase(
   String phrase, [
   String? phrase2,
   String? phrase3,
+  String? phrase4,
 ]) {
   final file = File(path);
   if (!file.existsSync()) {
@@ -167,7 +170,7 @@ void _checkPhrase(
     return;
   }
   final text = file.readAsStringSync();
-  for (final p in [phrase, phrase2, phrase3]) {
+  for (final p in [phrase, phrase2, phrase3, phrase4]) {
     if (p != null && !text.contains(p)) {
       errors.add('$path: expected phrase "$p"');
     }

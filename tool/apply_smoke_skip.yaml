@@ -27,6 +27,7 @@ access_context_quickstart: needs a real organization id for access policy parent
 scc_quickstart: needs an organization-activated Security Command Center parent (org/folder sources, mute configs, custom modules, BQ exports) — terradart-validate has no org ancestor
 org_leftover_quickstart: org-scoped hierarchical firewall / Cloud Armor, BYOIP advertised/delegated prefixes (owned public CIDR), Storage Intelligence folder/org configs, and a Wasm plugin image artifact — none applyable on standalone terradart-validate
 deferred_leftover_quickstart: remaining uncurated GA leftovers (org / folder / billing / DMS / Datastream / Cloud Domains / Assured Workloads / Identity Platform IdP / …) — none applyable on standalone terradart-validate; synth + terraform validate only
+data_source_leftover_quickstart: remaining GA data sources (read-only lookups against dummy ids) — synth + terraform validate only; do not apply on terradart-validate
 firebase_app_check_quickstart: needs real App Check debug token / DeviceCheck key / reCAPTCHA secret
 
 # --- Need the project registered with Firebase (firebase.googleapis.com is not

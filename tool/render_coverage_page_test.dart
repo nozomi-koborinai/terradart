@@ -30,8 +30,11 @@ void main() {
     final rows = buildRows(
       catalog: catalog,
       tfTypeToExamples: {
-        'google_pubsub_topic': ['pubsub_quickstart', 'eventarc_quickstart'],
-        'google_dns_policy': ['dns_quickstart'],
+        'resource:google_pubsub_topic': [
+          'pubsub_quickstart',
+          'eventarc_quickstart',
+        ],
+        'resource:google_dns_policy': ['dns_quickstart'],
       },
     );
     expect(rows.first.barrel, 'dns');
@@ -63,6 +66,36 @@ void main() {
     expect(md, contains('## dns'));
     expect(md, contains('| `google_dns_policy` | `GoogleDnsPolicy` |'));
     expect(md, contains('Release history'));
+  });
+
+  test('resource / data-source twins do not share example back-references', () {
+    const twins = [
+      (
+        tfType: 'google_compute_network',
+        className: 'GoogleComputeNetwork',
+        barrel: 'compute',
+        kind: 'resource',
+      ),
+      (
+        tfType: 'google_compute_network',
+        className: 'DataGoogleComputeNetwork',
+        barrel: 'data',
+        kind: 'dataSource',
+      ),
+    ];
+    final rows = buildRows(
+      catalog: twins,
+      tfTypeToExamples: {
+        'resource:google_compute_network': ['compute_quickstart'],
+        'dataSource:google_compute_network': [
+          'data_source_leftover_quickstart'
+        ],
+      },
+    );
+    expect(rows[0].className, 'GoogleComputeNetwork');
+    expect(rows[0].examples, ['compute_quickstart']);
+    expect(rows[1].className, 'DataGoogleComputeNetwork');
+    expect(rows[1].examples, ['data_source_leftover_quickstart']);
   });
 
   test('render is deterministic across input permutations', () {
