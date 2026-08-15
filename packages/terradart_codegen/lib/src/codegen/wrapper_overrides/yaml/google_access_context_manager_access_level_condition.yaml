@@ -1,0 +1,63 @@
+outputDir: access_context_manager
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveEnums: true
+deriveNestedTypes: true
+
+extraImports:
+  - "import 'package:meta/meta.dart';"
+
+curatedDoc: |-
+  /// Access Context Manager **access-level condition** — an additive
+  /// VPC-SC condition appended to an existing access level. Prefer a
+  /// dedicated level that is **not** attached to a service perimeter
+  /// so the condition does not change live perimeter evaluation.
+  ///
+  /// Prefer a thin smoke stack: [accessLevel] from the sibling level,
+  /// Hashicorp basic [ipSubnetworks] / [members] / [devicePolicy] /
+  /// [regions], and [deletionPolicy] `DELETE`. Do not set
+  /// [vpcNetworkSources] together with [ipSubnetworks].
+  ///
+  /// `access_context_quickstart` is apply-smoke skipped (needs a real
+  /// organization id), so this factory is synth + `terraform validate`
+  /// only.
+  ///
+  /// Example:
+  /// ```dart
+  /// GoogleAccessContextManagerAccessLevelCondition(
+  ///   localName: 'chromeos_condition',
+  ///   accessLevel: TfArg.ref(chromeos.nameRef),
+  ///   ipSubnetworks: TfArg.literal(['192.0.4.0/24']),
+  ///   members: TfArg.literal([
+  ///     'user:test@google.com',
+  ///     'user:test2@google.com',
+  ///   ]),
+  ///   negate: TfArg.literal(false),
+  ///   devicePolicy: AccessContextManagerAccessLevelConditionDevicePolicy(
+  ///     requireScreenLock: TfArg.literal(false),
+  ///     requireAdminApproval: TfArg.literal(false),
+  ///     requireCorpOwned: TfArg.literal(true),
+  ///     osConstraints: [
+  ///       AccessContextManagerAccessLevelConditionDevicePolicyOsConstraints(
+  ///         osType: TfArg.literal(
+  ///           AccessContextManagerAccessLevelConditionDevicePolicyOsConstraintsOsType
+  ///               .desktopChromeOs,
+  ///         ),
+  ///       ),
+  ///     ],
+  ///   ),
+  ///   regions: TfArg.literal(['IT', 'US']),
+  ///   deletionPolicy: TfArg.literal('DELETE'),
+  /// );
+  /// ```
+
+paramOrder:
+  - access_level
+  - ip_subnetworks
+  - members
+  - negate
+  - device_policy
+  - regions
+  - required_access_levels
+  - vpc_network_sources
+  - deletion_policy

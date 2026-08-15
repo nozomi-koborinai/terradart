@@ -1,11 +1,12 @@
 /// Access Context Manager quickstart — VPC Service Controls core chain.
 ///
 /// Provisions an organization-scoped access policy, a geo access level, a
-/// service perimeter restricting Storage, a cross-org authorized-orgs
-/// descriptor (placeholder org numbers), and a policy IAM member. The
-/// policy `parent` reads `ops_organization_id` (Terraform variable —
-/// apply needs a real organization id). Creating the descriptor does
-/// not evaluate traffic.
+/// service perimeter restricting Storage, a dedicated access level with an
+/// additive condition (not attached to the perimeter), a cross-org
+/// authorized-orgs descriptor (placeholder org numbers), and a policy IAM
+/// member. The policy `parent` reads `ops_organization_id` (Terraform
+/// variable — apply needs a real organization id). The additive condition
+/// does not change the Storage perimeter.
 library;
 
 import 'package:terradart_core/terradart_core.dart';
@@ -69,6 +70,59 @@ final class AccessControlsStack extends Stack {
           ResourceDependency(policy),
           ResourceDependency(usOnly),
         ],
+      ),
+    );
+
+    // Dedicated access level for the additive condition. Not attached
+    // to the Storage perimeter, so the condition does not change
+    // perimeter evaluation. Hashicorp: ignore_changes on inline
+    // conditions so the two resources do not fight.
+    final chromeos = add(
+      GoogleAccessContextManagerAccessLevel(
+        localName: 'chromeos_no_lock',
+        name: TfArg.literal('chromeos_no_lock'),
+        parent: TfArg.ref(policy.name),
+        title: TfArg.literal('chromeos_no_lock'),
+        basic: AccessContextManagerAccessLevelBasic(
+          conditions: [
+            AccessContextManagerAccessLevelBasicConditions(
+              regions: TfArg.literal(['US']),
+            ),
+          ],
+        ),
+        lifecycle: const LifecycleOptions(
+          ignoreChanges: ['basic[0].conditions'],
+        ),
+        dependsOn: [ResourceDependency(policy)],
+      ),
+    );
+
+    add(
+      GoogleAccessContextManagerAccessLevelCondition(
+        localName: 'chromeos_condition',
+        accessLevel: TfArg.ref(chromeos.nameRef),
+        ipSubnetworks: TfArg.literal(['192.0.4.0/24']),
+        members: TfArg.literal([
+          'user:test@google.com',
+          'user:test2@google.com',
+        ]),
+        negate: TfArg.literal(false),
+        devicePolicy: AccessContextManagerAccessLevelConditionDevicePolicy(
+          requireScreenLock: TfArg.literal(false),
+          requireAdminApproval: TfArg.literal(false),
+          requireCorpOwned: TfArg.literal(true),
+          osConstraints: [
+            AccessContextManagerAccessLevelConditionDevicePolicyOsConstraints(
+              osType: TfArg.literal(
+                AccessContextManagerAccessLevelConditionDevicePolicyOsConstraintsOsType
+                    .desktopChromeOs,
+              ),
+            ),
+          ],
+        ),
+        regions: TfArg.literal(['IT', 'US']),
+        deletionPolicy: TfArg.literal('DELETE'),
+        dependsOn: [ResourceDependency(chromeos)],
       ),
     );
 

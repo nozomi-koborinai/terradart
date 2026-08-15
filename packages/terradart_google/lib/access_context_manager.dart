@@ -1,8 +1,8 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 /// Access Context Manager: VPC Service Controls access policies, levels,
-/// service perimeters, authorized-orgs descriptors, and access-policy
-/// IAM members.
+/// access-level conditions, service perimeters, authorized-orgs
+/// descriptors, and access-policy IAM members.
 library;
 
 export 'src/access_context_manager/google_access_context_manager_access_level.dart'
@@ -20,6 +20,16 @@ export 'src/access_context_manager/google_access_context_manager_access_level.da
         AccessContextManagerAccessLevelCustom,
         AccessContextManagerAccessLevelCustomExpr,
         GoogleAccessContextManagerAccessLevel;
+export 'src/access_context_manager/google_access_context_manager_access_level_condition.dart'
+    show
+        AccessContextManagerAccessLevelConditionDevicePolicy,
+        AccessContextManagerAccessLevelConditionDevicePolicyAllowedDeviceManagementLevels,
+        AccessContextManagerAccessLevelConditionDevicePolicyAllowedEncryptionStatuses,
+        AccessContextManagerAccessLevelConditionDevicePolicyOsConstraints,
+        AccessContextManagerAccessLevelConditionDevicePolicyOsConstraintsOsType,
+        AccessContextManagerAccessLevelConditionVpcNetworkSources,
+        AccessContextManagerAccessLevelConditionVpcNetworkSourcesVpcSubnetwork,
+        GoogleAccessContextManagerAccessLevelCondition;
 export 'src/access_context_manager/google_access_context_manager_access_policy.dart'
     show GoogleAccessContextManagerAccessPolicy;
 export 'src/access_context_manager/google_access_context_manager_access_policy_iam_binding.dart'

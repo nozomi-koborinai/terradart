@@ -39,6 +39,38 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
         'Factory wrapper for `google_access_context_manager_access_level`.\n\nAn AccessLevel is a label that can be applied to requests to GCP services,\nalong with a list of requirements necessary for the label to be applied.',
   ),
   CatalogEntry(
+    tfType: 'google_access_context_manager_access_level_condition',
+    className: 'GoogleAccessContextManagerAccessLevelCondition',
+    barrel: 'access_context_manager',
+    kind: CatalogKind.resource,
+    summary:
+        'Factory wrapper for `google_access_context_manager_access_level_condition`.',
+    constructorParams: <String>[
+      'localName',
+      'accessLevel',
+      'ipSubnetworks',
+      'members',
+      'negate',
+      'devicePolicy',
+      'regions',
+      'requiredAccessLevels',
+      'vpcNetworkSources',
+      'deletionPolicy',
+    ],
+    nestedTypes: <String>[
+      'AccessContextManagerAccessLevelConditionDevicePolicy',
+      'AccessContextManagerAccessLevelConditionDevicePolicyAllowedDeviceManagementLevels',
+      'AccessContextManagerAccessLevelConditionDevicePolicyAllowedEncryptionStatuses',
+      'AccessContextManagerAccessLevelConditionDevicePolicyOsConstraints',
+      'AccessContextManagerAccessLevelConditionDevicePolicyOsConstraintsOsType',
+      'AccessContextManagerAccessLevelConditionVpcNetworkSources',
+      'AccessContextManagerAccessLevelConditionVpcNetworkSourcesVpcSubnetwork',
+    ],
+    sensitiveFields: <String>[],
+    docComment:
+        'Factory wrapper for `google_access_context_manager_access_level_condition`.\n\nAllows configuring a single access level condition to be appended to an\naccess level\'s conditions. This resource is intended to be used in cases\nwhere it is not possible to compile a full list of conditions to include in\na `google_access_context_manager_access_level` resource, to enable them to\nbe added separately.\n\n~> **Note:** If this resource is used alongside a\n`google_access_context_manager_access_level` resource, the access level\nresource must have a `lifecycle` block with `ignore_changes =\n[basic[0].conditions]` so they don\'t fight over which service accounts\nshould be included.\n\nAccess Context Manager **access-level condition** — an additive\nVPC-SC condition appended to an existing access level. Prefer a\ndedicated level that is **not** attached to a service perimeter\nso the condition does not change live perimeter evaluation.\n\nPrefer a thin smoke stack: [accessLevel] from the sibling level,\nHashicorp basic [ipSubnetworks] / [members] / [devicePolicy] /\n[regions], and [deletionPolicy] `DELETE`. Do not set\n[vpcNetworkSources] together with [ipSubnetworks].\n\n`access_context_quickstart` is apply-smoke skipped (needs a real\norganization id), so this factory is synth + `terraform validate`\nonly.\n\nExample:\n```dart\nGoogleAccessContextManagerAccessLevelCondition(\n  localName: \'chromeos_condition\',\n  accessLevel: TfArg.ref(chromeos.nameRef),\n  ipSubnetworks: TfArg.literal([\'192.0.4.0/24\']),\n  members: TfArg.literal([\n    \'user:test@google.com\',\n    \'user:test2@google.com\',\n  ]),\n  negate: TfArg.literal(false),\n  devicePolicy: AccessContextManagerAccessLevelConditionDevicePolicy(\n    requireScreenLock: TfArg.literal(false),\n    requireAdminApproval: TfArg.literal(false),\n    requireCorpOwned: TfArg.literal(true),\n    osConstraints: [\n      AccessContextManagerAccessLevelConditionDevicePolicyOsConstraints(\n        osType: TfArg.literal(\n          AccessContextManagerAccessLevelConditionDevicePolicyOsConstraintsOsType\n              .desktopChromeOs,\n        ),\n      ),\n    ],\n  ),\n  regions: TfArg.literal([\'IT\', \'US\']),\n  deletionPolicy: TfArg.literal(\'DELETE\'),\n);\n```',
+  ),
+  CatalogEntry(
     tfType: 'google_access_context_manager_access_policy',
     className: 'GoogleAccessContextManagerAccessPolicy',
     barrel: 'access_context_manager',
