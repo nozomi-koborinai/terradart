@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_scc_project_custom_module`.
 const Set<String> _googleSccProjectCustomModuleSensitive = <String>{};
 
+/// Scc Project Custom Module Enablement enum for `enablement_state`.
+enum SccProjectCustomModuleEnablementState implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const SccProjectCustomModuleEnablementState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `custom_config` block of
 /// `google_scc_project_custom_module` (derived from provider schema).
 @immutable
@@ -176,7 +186,7 @@ final class GoogleSccProjectCustomModule extends Resource {
     required super.localName,
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,
-    required TfArg<String> enablementState,
+    required TfArg<SccProjectCustomModuleEnablementState> enablementState,
     TfArg<String>? project,
     required SccProjectCustomModuleCustomConfig customConfig,
     super.lifecycle,

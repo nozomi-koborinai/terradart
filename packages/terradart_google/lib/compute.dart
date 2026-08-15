@@ -501,9 +501,15 @@ export 'src/compute/google_compute_project_metadata.dart'
 export 'src/compute/google_compute_project_metadata_item.dart'
     show GoogleComputeProjectMetadataItem;
 export 'src/compute/google_compute_public_advertised_prefix.dart'
-    show GoogleComputePublicAdvertisedPrefix;
+    show
+        ComputePublicAdvertisedPrefixIpv6AccessType,
+        ComputePublicAdvertisedPrefixPdpScope,
+        GoogleComputePublicAdvertisedPrefix;
 export 'src/compute/google_compute_public_delegated_prefix.dart'
-    show GoogleComputePublicDelegatedPrefix;
+    show
+        ComputePublicDelegatedPrefixIpv6AccessType,
+        ComputePublicDelegatedPrefixMode,
+        GoogleComputePublicDelegatedPrefix;
 export 'src/compute/google_compute_region_autoscaler.dart'
     show
         ComputeRegionAutoscalerRegionAutoscalerAutoscalingPolicy,

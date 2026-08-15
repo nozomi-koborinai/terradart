@@ -6,6 +6,28 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_public_delegated_prefix`.
 const Set<String> _googleComputePublicDelegatedPrefixSensitive = <String>{};
 
+/// Compute Public Delegated Prefix Ipv6 Access enum for `ipv6_access_type`.
+enum ComputePublicDelegatedPrefixIpv6AccessType implements TerraformEnum {
+  external('EXTERNAL'),
+  internal('INTERNAL');
+
+  const ComputePublicDelegatedPrefixIpv6AccessType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Compute Public Delegated Prefix enum for `mode`.
+enum ComputePublicDelegatedPrefixMode implements TerraformEnum {
+  delegation('DELEGATION'),
+  externalIpv6ForwardingRuleCreation('EXTERNAL_IPV6_FORWARDING_RULE_CREATION'),
+  externalIpv6SubnetworkCreation('EXTERNAL_IPV6_SUBNETWORK_CREATION'),
+  internalIpv6SubnetworkCreation('INTERNAL_IPV6_SUBNETWORK_CREATION');
+
+  const ComputePublicDelegatedPrefixMode(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_compute_public_delegated_prefix`.
 ///
 /// Represents a PublicDelegatedPrefix for use with bring your own IP addresses
@@ -26,7 +48,7 @@ final class GoogleComputePublicDelegatedPrefix extends Resource {
     TfArg<String>? description,
     required TfArg<String> ipCidrRange,
     TfArg<bool>? isLiveMigration,
-    TfArg<String>? mode,
+    TfArg<ComputePublicDelegatedPrefixMode>? mode,
     required TfArg<String> name,
     required TfArg<String> parentPrefix,
     TfArg<String>? project,

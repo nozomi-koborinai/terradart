@@ -1,8 +1,11 @@
 outputDir: compute
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true
 deriveNestedTypes: true
 
+dartTypeOverrides:
+  mode: ComputePublicDelegatedPrefixMode
 
 curatedDoc: |-
   /// BYOIP public delegated prefix — leftover factory on the

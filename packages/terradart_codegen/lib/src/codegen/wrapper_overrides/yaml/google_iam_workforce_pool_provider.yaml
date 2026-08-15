@@ -1,6 +1,12 @@
 outputDir: iam
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveNestedTypes: true
+# Sealed [trustSource] already covers `oidc` / `saml`. Extra-attributes
+# OAuth client is unused on the leftover smoke stack.
+nestedTypeExcludes:
+  - oidc
+  - extra_attributes_oauth2_client
 
 curatedDoc: |-
   /// IAM **workforce pool provider** — an OIDC or SAML IdP binding

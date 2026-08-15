@@ -1,8 +1,11 @@
 outputDir: compute
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true
 deriveNestedTypes: true
 
+dartTypeOverrides:
+  pdp_scope: ComputePublicAdvertisedPrefixPdpScope
 
 curatedDoc: |-
   /// BYOIP public advertised prefix — leftover factory on the

@@ -1,7 +1,11 @@
 outputDir: scc
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true
 deriveNestedTypes: true
+
+dartTypeOverrides:
+  enablement_state: SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState
 
 extraImports:
   - "import 'package:meta/meta.dart';"

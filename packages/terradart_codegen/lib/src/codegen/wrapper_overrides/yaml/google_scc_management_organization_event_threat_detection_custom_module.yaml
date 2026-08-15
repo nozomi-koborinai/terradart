@@ -1,8 +1,11 @@
 outputDir: scc
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveEnums: true
 deriveNestedTypes: true
 
+dartTypeOverrides:
+  enablement_state: SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState
 
 curatedDoc: |-
   /// SCC Management org ETD custom module — leftover factory on the

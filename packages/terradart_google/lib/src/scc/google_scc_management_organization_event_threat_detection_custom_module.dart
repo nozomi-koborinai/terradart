@@ -8,6 +8,19 @@ const Set<String>
 _googleSccManagementOrganizationEventThreatDetectionCustomModuleSensitive =
     <String>{};
 
+/// Scc Management Organization Event Threat Detection Custom Module Enablement enum for `enablement_state`.
+enum SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_scc_management_organization_event_threat_detection_custom_module`.
 ///
 /// Represents an instance of an Event Threat Detection custom module, including
@@ -29,7 +42,10 @@ final class GoogleSccManagementOrganizationEventThreatDetectionCustomModule
     TfArg<String>? config,
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,
-    TfArg<String>? enablementState,
+    TfArg<
+      SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState
+    >?
+    enablementState,
     TfArg<String>? location,
     required TfArg<String> organization,
     TfArg<String>? type,

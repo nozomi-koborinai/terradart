@@ -7,6 +7,16 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_scc_folder_custom_module`.
 const Set<String> _googleSccFolderCustomModuleSensitive = <String>{};
 
+/// Scc Folder Custom Module Enablement enum for `enablement_state`.
+enum SccFolderCustomModuleEnablementState implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const SccFolderCustomModuleEnablementState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `custom_config` block of
 /// `google_scc_folder_custom_module` (derived from provider schema).
 @immutable
@@ -176,7 +186,7 @@ final class GoogleSccFolderCustomModule extends Resource {
     required super.localName,
     TfArg<String>? deletionPolicy,
     required TfArg<String> displayName,
-    required TfArg<String> enablementState,
+    required TfArg<SccFolderCustomModuleEnablementState> enablementState,
     required TfArg<String> folder,
     required SccFolderCustomModuleCustomConfig customConfig,
     super.lifecycle,

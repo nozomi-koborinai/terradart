@@ -6,6 +6,17 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_scc_mute_config`.
 const Set<String> _googleSccMuteConfigSensitive = <String>{};
 
+/// Scc Mute Config enum for `type`.
+enum SccMuteConfigType implements TerraformEnum {
+  muteConfigTypeUnspecified('MUTE_CONFIG_TYPE_UNSPECIFIED'),
+  static('STATIC'),
+  dynamic('DYNAMIC');
+
+  const SccMuteConfigType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_scc_mute_config`.
 ///
 /// Mute Findings is a volume management feature in Security Command Center that
@@ -29,7 +40,7 @@ final class GoogleSccMuteConfig extends Resource {
     required TfArg<String> filter,
     required TfArg<String> muteConfigId,
     required TfArg<String> parent,
-    TfArg<String>? type,
+    TfArg<SccMuteConfigType>? type,
     super.lifecycle,
     super.dependsOn,
   }) : super(

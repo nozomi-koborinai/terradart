@@ -1,6 +1,11 @@
 outputDir: compute
 deriveClassDoc: true
 deriveOutputGetters: true
+deriveNestedTypes: true
+# WAF size enum values (`8KB` / `16KB`) are not legal Dart identifiers.
+# Freeze the unused advanced-options subtree; leftover smoke only sets parent.
+nestedTypeExcludes:
+  - advanced_options_config
 
 curatedDoc: |-
   /// Organization Cloud Armor security policy — leftover factory on the

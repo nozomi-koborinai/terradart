@@ -9,6 +9,19 @@ const Set<String>
 _googleSccManagementOrganizationSecurityHealthAnalyticsCustomModuleSensitive =
     <String>{};
 
+/// Scc Management Organization Security Health Analytics Custom Module Enablement enum for `enablement_state`.
+enum SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `custom_config` block of
 /// `google_scc_management_organization_security_health_analytics_custom_module` (derived from provider schema).
 @immutable
@@ -193,7 +206,10 @@ final class GoogleSccManagementOrganizationSecurityHealthAnalyticsCustomModule
     required super.localName,
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,
-    TfArg<String>? enablementState,
+    TfArg<
+      SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState
+    >?
+    enablementState,
     TfArg<String>? location,
     required TfArg<String> organization,
     SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfig?

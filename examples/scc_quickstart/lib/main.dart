@@ -29,7 +29,7 @@ final class SccLeftoverStack extends Stack {
         Barrels.sccApi,
         Barrels.pubsub,
         Barrels.bigquery,
-        Barrels.iamApi
+        Barrels.iamApi,
       ],
       propagationDelay: const Duration(seconds: 60),
     );
@@ -186,7 +186,9 @@ final class SccLeftoverStack extends Stack {
         localName: 'etd',
         organization: TfArg.literal(org),
         displayName: TfArg.literal('terradart_etd'),
-        enablementState: TfArg.literal('ENABLED'),
+        enablementState: TfArg.literal(
+          SccEventThreatDetectionCustomModuleEnablementState.enabled,
+        ),
         type: TfArg.literal('CONFIGURABLE_BAD_IP'),
         config: TfArg.literal(
           '{"metadata":{"severity":"LOW"},"ips":["192.0.2.1"]}',
@@ -200,7 +202,10 @@ final class SccLeftoverStack extends Stack {
         localName: 'mgmt_etd',
         organization: TfArg.literal(org),
         displayName: TfArg.literal('terradart_mgmt_etd'),
-        enablementState: TfArg.literal('ENABLED'),
+        enablementState: TfArg.literal(
+          SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState
+              .enabled,
+        ),
         type: TfArg.literal('CONFIGURABLE_BAD_IP'),
         config: TfArg.literal(
           '{"metadata":{"severity":"LOW"},"ips":["192.0.2.1"]}',
@@ -215,7 +220,9 @@ final class SccLeftoverStack extends Stack {
         localName: 'org_sha',
         organization: TfArg.literal(org),
         displayName: TfArg.literal('terradart_org_sha'),
-        enablementState: TfArg.literal('ENABLED'),
+        enablementState: TfArg.literal(
+          SccOrganizationCustomModuleEnablementState.enabled,
+        ),
         customConfig: SccOrganizationCustomModuleCustomConfig(
           recommendation: TfArg.literal('Review the finding.'),
           severity: TfArg.literal(
@@ -241,7 +248,9 @@ final class SccLeftoverStack extends Stack {
         localName: 'folder_sha',
         folder: TfArg.literal(folder),
         displayName: TfArg.literal('terradart_folder_sha'),
-        enablementState: TfArg.literal('ENABLED'),
+        enablementState: TfArg.literal(
+          SccFolderCustomModuleEnablementState.enabled,
+        ),
         customConfig: SccFolderCustomModuleCustomConfig(
           recommendation: TfArg.literal('Review the finding.'),
           severity: TfArg.literal(
@@ -265,7 +274,9 @@ final class SccLeftoverStack extends Stack {
       GoogleSccProjectCustomModule(
         localName: 'project_sha',
         displayName: TfArg.literal('terradart_project_sha'),
-        enablementState: TfArg.literal('ENABLED'),
+        enablementState: TfArg.literal(
+          SccProjectCustomModuleEnablementState.enabled,
+        ),
         customConfig: SccProjectCustomModuleCustomConfig(
           recommendation: TfArg.literal('Review the finding.'),
           severity: TfArg.literal(
@@ -291,7 +302,10 @@ final class SccLeftoverStack extends Stack {
         localName: 'mgmt_org_sha',
         organization: TfArg.literal(org),
         displayName: TfArg.literal('terradart_mgmt_org_sha'),
-        enablementState: TfArg.literal('ENABLED'),
+        enablementState: TfArg.literal(
+          SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState
+              .enabled,
+        ),
         deletionPolicy: TfArg.literal('DELETE'),
         dependsOn: apiDeps,
       ),
@@ -301,7 +315,10 @@ final class SccLeftoverStack extends Stack {
         localName: 'mgmt_folder_sha',
         folder: TfArg.literal(folder),
         displayName: TfArg.literal('terradart_mgmt_folder_sha'),
-        enablementState: TfArg.literal('ENABLED'),
+        enablementState: TfArg.literal(
+          SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState
+              .enabled,
+        ),
         deletionPolicy: TfArg.literal('DELETE'),
         dependsOn: apiDeps,
       ),
@@ -310,7 +327,10 @@ final class SccLeftoverStack extends Stack {
       GoogleSccManagementProjectSecurityHealthAnalyticsCustomModule(
         localName: 'mgmt_project_sha',
         displayName: TfArg.literal('terradart_mgmt_project_sha'),
-        enablementState: TfArg.literal('ENABLED'),
+        enablementState: TfArg.literal(
+          SccManagementProjectSecurityHealthAnalyticsCustomModuleEnablementState
+              .enabled,
+        ),
         deletionPolicy: TfArg.literal('DELETE'),
         dependsOn: apiDeps,
       ),
@@ -322,7 +342,7 @@ final class SccLeftoverStack extends Stack {
         parent: TfArg.literal('organizations/$org'),
         muteConfigId: TfArg.literal('terradart-mute'),
         filter: TfArg.literal('severity="LOW"'),
-        type: TfArg.literal('STATIC'),
+        type: TfArg.literal(SccMuteConfigType.static),
         deletionPolicy: TfArg.literal('DELETE'),
         dependsOn: apiDeps,
       ),

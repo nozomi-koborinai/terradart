@@ -6,6 +6,26 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_compute_public_advertised_prefix`.
 const Set<String> _googleComputePublicAdvertisedPrefixSensitive = <String>{};
 
+/// Compute Public Advertised Prefix Ipv6 Access enum for `ipv6_access_type`.
+enum ComputePublicAdvertisedPrefixIpv6AccessType implements TerraformEnum {
+  external('EXTERNAL'),
+  internal('INTERNAL');
+
+  const ComputePublicAdvertisedPrefixIpv6AccessType(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
+/// Compute Public Advertised Prefix Pdp enum for `pdp_scope`.
+enum ComputePublicAdvertisedPrefixPdpScope implements TerraformEnum {
+  global('GLOBAL'),
+  regional('REGIONAL');
+
+  const ComputePublicAdvertisedPrefixPdpScope(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_compute_public_advertised_prefix`.
 ///
 /// Represents a PublicAdvertisedPrefix for use with bring your own IP addresses
@@ -27,7 +47,7 @@ final class GoogleComputePublicAdvertisedPrefix extends Resource {
     required TfArg<String> ipCidrRange,
     TfArg<String>? ipv6AccessType,
     required TfArg<String> name,
-    TfArg<String>? pdpScope,
+    TfArg<ComputePublicAdvertisedPrefixPdpScope>? pdpScope,
     TfArg<String>? project,
     super.lifecycle,
     super.dependsOn,

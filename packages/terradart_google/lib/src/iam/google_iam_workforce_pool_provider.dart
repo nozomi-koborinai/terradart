@@ -59,6 +59,107 @@ final class IamWorkforcePoolProviderSamlTrust
   ];
 }
 
+/// Typed helper for the `extended_attributes_oauth2_client` block of
+/// `google_iam_workforce_pool_provider` (derived from provider schema).
+@immutable
+final class IamWorkforcePoolProviderExtendedAttributesOauth2Client {
+  const IamWorkforcePoolProviderExtendedAttributesOauth2Client({
+    required this.attributesType,
+    required this.clientId,
+    required this.issuerUri,
+    required this.clientSecret,
+    this.queryParameters,
+  });
+
+  final TfArg<String> attributesType;
+
+  final TfArg<String> clientId;
+
+  final TfArg<String> issuerUri;
+
+  final IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecret
+  clientSecret;
+
+  final IamWorkforcePoolProviderExtendedAttributesOauth2ClientQueryParameters?
+  queryParameters;
+
+  Map<String, Object?> encode() => {
+    'attributes_type': attributesType.toTfJson(),
+    'client_id': clientId.toTfJson(),
+    'issuer_uri': issuerUri.toTfJson(),
+    'client_secret': clientSecret.encode(),
+    if (queryParameters != null) 'query_parameters': queryParameters!.encode(),
+  };
+}
+
+/// Typed helper for the `extended_attributes_oauth2_client.client_secret` block of
+/// `google_iam_workforce_pool_provider` (derived from provider schema).
+@immutable
+final class IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecret {
+  const IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecret({
+    this.value,
+  });
+
+  final IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValue?
+  value;
+
+  Map<String, Object?> encode() => {
+    if (value != null) 'value': value!.encode(),
+  };
+}
+
+/// Typed helper for the `extended_attributes_oauth2_client.client_secret.value` block of
+/// `google_iam_workforce_pool_provider` (derived from provider schema).
+@immutable
+final class IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValue {
+  const IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValue({
+    this.plainText,
+    this.plainTextWo,
+    this.plainTextWoVersion,
+  });
+
+  final TfArg<String>? plainText;
+
+  final TfArg<String>? plainTextWo;
+
+  final TfArg<String>? plainTextWoVersion;
+
+  Map<String, Object?> encode() => {
+    if (plainText != null) 'plain_text': plainText!.toTfJson(),
+    if (plainTextWo != null) 'plain_text_wo': plainTextWo!.toTfJson(),
+    if (plainTextWoVersion != null)
+      'plain_text_wo_version': plainTextWoVersion!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `extended_attributes_oauth2_client.query_parameters` block of
+/// `google_iam_workforce_pool_provider` (derived from provider schema).
+@immutable
+final class IamWorkforcePoolProviderExtendedAttributesOauth2ClientQueryParameters {
+  const IamWorkforcePoolProviderExtendedAttributesOauth2ClientQueryParameters({
+    this.filter,
+  });
+
+  final TfArg<String>? filter;
+
+  Map<String, Object?> encode() => {
+    if (filter != null) 'filter': filter!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `saml` block of
+/// `google_iam_workforce_pool_provider` (derived from provider schema).
+@immutable
+final class IamWorkforcePoolProviderSaml {
+  const IamWorkforcePoolProviderSaml({required this.idpMetadataXml});
+
+  final TfArg<String> idpMetadataXml;
+
+  Map<String, Object?> encode() => {
+    'idp_metadata_xml': idpMetadataXml.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_iam_workforce_pool_provider`.
 ///
 /// A configuration for an external identity provider.

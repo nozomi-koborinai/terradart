@@ -9981,7 +9981,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'pdpScope',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'ComputePublicAdvertisedPrefixIpv6AccessType',
+      'ComputePublicAdvertisedPrefixPdpScope',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_public_advertised_prefix`.\n\nRepresents a PublicAdvertisedPrefix for use with bring your own IP addresses\n(BYOIP).\n\nBYOIP public advertised prefix — leftover factory on the\napply-excluded path (synth + `terraform validate` only).\n\nNeeds an organization / folder / external artifact that\nstandalone terradart-validate cannot supply. Do not apply.',
@@ -10005,7 +10008,10 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'project',
       'region',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'ComputePublicDelegatedPrefixIpv6AccessType',
+      'ComputePublicDelegatedPrefixMode',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_compute_public_delegated_prefix`.\n\nRepresents a PublicDelegatedPrefix for use with bring your own IP addresses\n(BYOIP).\n\nBYOIP public delegated prefix — leftover factory on the\napply-excluded path (synth + `terraform validate` only).\n\nNeeds an organization / folder / external artifact that\nstandalone terradart-validate cannot supply. Do not apply.',
@@ -19807,6 +19813,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'IamWorkforcePoolProviderTrustSource',
       'IamWorkforcePoolProviderOidcTrust',
       'IamWorkforcePoolProviderSamlTrust',
+      'IamWorkforcePoolProviderExtendedAttributesOauth2Client',
+      'IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecret',
+      'IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValue',
+      'IamWorkforcePoolProviderExtendedAttributesOauth2ClientQueryParameters',
+      'IamWorkforcePoolProviderSaml',
     ],
     sensitiveFields: <String>[
       'extended_attributes_oauth2_client.client_secret.value.plain_text',
@@ -26811,7 +26822,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'organization',
       'type',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SccEventThreatDetectionCustomModuleEnablementState'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_scc_event_threat_detection_custom_module`.\n\nRepresents an instance of an Event Threat Detection custom module, including\nits full module name, display name, enablement state, andlast updated time.\nYou can create a custom module at the organization level only.\n\nSCC Event Threat Detection custom module — leftover factory on the\napply-excluded path (synth + `terraform validate` only).\n\nNeeds an organization / folder / external artifact that\nstandalone terradart-validate cannot supply. Do not apply.',
@@ -26831,6 +26842,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'customConfig',
     ],
     nestedTypes: <String>[
+      'SccFolderCustomModuleEnablementState',
       'SccFolderCustomModuleCustomConfig',
       'SccFolderCustomModuleCustomConfigSeverity',
       'SccFolderCustomModuleCustomConfigCustomOutput',
@@ -26901,6 +26913,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'customConfig',
     ],
     nestedTypes: <String>[
+      'SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState',
       'SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfig',
       'SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfigSeverity',
       'SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutput',
@@ -26932,7 +26945,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'organization',
       'type',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_scc_management_organization_event_threat_detection_custom_module`.\n\nRepresents an instance of an Event Threat Detection custom module, including\nits full module name, display name, enablement state, and last updated time.\nYou can create a custom module at the organization level only.\n\nSCC Management org ETD custom module — leftover factory on the\napply-excluded path (synth + `terraform validate` only).\n\nNeeds an organization / folder / external artifact that\nstandalone terradart-validate cannot supply. Do not apply.',
@@ -26956,6 +26971,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'customConfig',
     ],
     nestedTypes: <String>[
+      'SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState',
       'SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfig',
       'SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigSeverity',
       'SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutput',
@@ -26986,6 +27002,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'customConfig',
     ],
     nestedTypes: <String>[
+      'SccManagementProjectSecurityHealthAnalyticsCustomModuleEnablementState',
       'SccManagementProjectSecurityHealthAnalyticsCustomModuleCustomConfig',
       'SccManagementProjectSecurityHealthAnalyticsCustomModuleCustomConfigSeverity',
       'SccManagementProjectSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutput',
@@ -27014,7 +27031,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'parent',
       'type',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['SccMuteConfigType'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_scc_mute_config`.\n\nMute Findings is a volume management feature in Security Command Center that\nlets you manually or programmatically hide irrelevant findings, and create\nfilters to automatically silence existing and future findings based on\ncriteria you specify.\n\nSCC mute config — leftover factory on the\napply-excluded path (synth + `terraform validate` only).\n\nNeeds an organization / folder / external artifact that\nstandalone terradart-validate cannot supply. Do not apply.',
@@ -27054,6 +27071,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'customConfig',
     ],
     nestedTypes: <String>[
+      'SccOrganizationCustomModuleEnablementState',
       'SccOrganizationCustomModuleCustomConfig',
       'SccOrganizationCustomModuleCustomConfigSeverity',
       'SccOrganizationCustomModuleCustomConfigCustomOutput',
@@ -27102,6 +27120,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'customConfig',
     ],
     nestedTypes: <String>[
+      'SccProjectCustomModuleEnablementState',
       'SccProjectCustomModuleCustomConfig',
       'SccProjectCustomModuleCustomConfigSeverity',
       'SccProjectCustomModuleCustomConfigCustomOutput',

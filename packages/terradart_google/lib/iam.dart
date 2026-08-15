@@ -31,7 +31,12 @@ export 'src/iam/google_iam_workforce_pool_iam_policy.dart'
 export 'src/iam/google_iam_workforce_pool_provider.dart'
     show
         GoogleIamWorkforcePoolProvider,
+        IamWorkforcePoolProviderExtendedAttributesOauth2Client,
+        IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecret,
+        IamWorkforcePoolProviderExtendedAttributesOauth2ClientClientSecretValue,
+        IamWorkforcePoolProviderExtendedAttributesOauth2ClientQueryParameters,
         IamWorkforcePoolProviderOidcTrust,
+        IamWorkforcePoolProviderSaml,
         IamWorkforcePoolProviderSamlTrust,
         IamWorkforcePoolProviderTrustSource;
 export 'src/iam/google_iam_workforce_pool_provider_key.dart'

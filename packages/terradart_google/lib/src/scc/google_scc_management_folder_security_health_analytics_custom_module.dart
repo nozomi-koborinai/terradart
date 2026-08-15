@@ -9,6 +9,19 @@ const Set<String>
 _googleSccManagementFolderSecurityHealthAnalyticsCustomModuleSensitive =
     <String>{};
 
+/// Scc Management Folder Security Health Analytics Custom Module Enablement enum for `enablement_state`.
+enum SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState(
+    this.terraformValue,
+  );
+  @override
+  final String terraformValue;
+}
+
 /// Typed helper for the `custom_config` block of
 /// `google_scc_management_folder_security_health_analytics_custom_module` (derived from provider schema).
 @immutable
@@ -194,7 +207,10 @@ final class GoogleSccManagementFolderSecurityHealthAnalyticsCustomModule
     required super.localName,
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,
-    TfArg<String>? enablementState,
+    TfArg<
+      SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState
+    >?
+    enablementState,
     required TfArg<String> folder,
     TfArg<String>? location,
     SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfig?

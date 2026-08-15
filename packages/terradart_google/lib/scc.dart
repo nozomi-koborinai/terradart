@@ -6,7 +6,9 @@
 library;
 
 export 'src/scc/google_scc_event_threat_detection_custom_module.dart'
-    show GoogleSccEventThreatDetectionCustomModule;
+    show
+        GoogleSccEventThreatDetectionCustomModule,
+        SccEventThreatDetectionCustomModuleEnablementState;
 export 'src/scc/google_scc_folder_custom_module.dart'
     show
         GoogleSccFolderCustomModule,
@@ -16,7 +18,8 @@ export 'src/scc/google_scc_folder_custom_module.dart'
         SccFolderCustomModuleCustomConfigCustomOutputPropertiesValueExpression,
         SccFolderCustomModuleCustomConfigPredicate,
         SccFolderCustomModuleCustomConfigResourceSelector,
-        SccFolderCustomModuleCustomConfigSeverity;
+        SccFolderCustomModuleCustomConfigSeverity,
+        SccFolderCustomModuleEnablementState;
 export 'src/scc/google_scc_folder_notification_config.dart'
     show
         GoogleSccFolderNotificationConfig,
@@ -32,9 +35,12 @@ export 'src/scc/google_scc_management_folder_security_health_analytics_custom_mo
         SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutputPropertiesValueExpression,
         SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfigPredicate,
         SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfigResourceSelector,
-        SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfigSeverity;
+        SccManagementFolderSecurityHealthAnalyticsCustomModuleCustomConfigSeverity,
+        SccManagementFolderSecurityHealthAnalyticsCustomModuleEnablementState;
 export 'src/scc/google_scc_management_organization_event_threat_detection_custom_module.dart'
-    show GoogleSccManagementOrganizationEventThreatDetectionCustomModule;
+    show
+        GoogleSccManagementOrganizationEventThreatDetectionCustomModule,
+        SccManagementOrganizationEventThreatDetectionCustomModuleEnablementState;
 export 'src/scc/google_scc_management_organization_security_health_analytics_custom_module.dart'
     show
         GoogleSccManagementOrganizationSecurityHealthAnalyticsCustomModule,
@@ -44,7 +50,8 @@ export 'src/scc/google_scc_management_organization_security_health_analytics_cus
         SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutputPropertiesValueExpression,
         SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigPredicate,
         SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigResourceSelector,
-        SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigSeverity;
+        SccManagementOrganizationSecurityHealthAnalyticsCustomModuleCustomConfigSeverity,
+        SccManagementOrganizationSecurityHealthAnalyticsCustomModuleEnablementState;
 export 'src/scc/google_scc_management_project_security_health_analytics_custom_module.dart'
     show
         GoogleSccManagementProjectSecurityHealthAnalyticsCustomModule,
@@ -54,8 +61,10 @@ export 'src/scc/google_scc_management_project_security_health_analytics_custom_m
         SccManagementProjectSecurityHealthAnalyticsCustomModuleCustomConfigCustomOutputPropertiesValueExpression,
         SccManagementProjectSecurityHealthAnalyticsCustomModuleCustomConfigPredicate,
         SccManagementProjectSecurityHealthAnalyticsCustomModuleCustomConfigResourceSelector,
-        SccManagementProjectSecurityHealthAnalyticsCustomModuleCustomConfigSeverity;
-export 'src/scc/google_scc_mute_config.dart' show GoogleSccMuteConfig;
+        SccManagementProjectSecurityHealthAnalyticsCustomModuleCustomConfigSeverity,
+        SccManagementProjectSecurityHealthAnalyticsCustomModuleEnablementState;
+export 'src/scc/google_scc_mute_config.dart'
+    show GoogleSccMuteConfig, SccMuteConfigType;
 export 'src/scc/google_scc_notification_config.dart'
     show GoogleSccNotificationConfig, SccNotificationConfigStreamingConfig;
 export 'src/scc/google_scc_organization_custom_module.dart'
@@ -67,7 +76,8 @@ export 'src/scc/google_scc_organization_custom_module.dart'
         SccOrganizationCustomModuleCustomConfigCustomOutputPropertiesValueExpression,
         SccOrganizationCustomModuleCustomConfigPredicate,
         SccOrganizationCustomModuleCustomConfigResourceSelector,
-        SccOrganizationCustomModuleCustomConfigSeverity;
+        SccOrganizationCustomModuleCustomConfigSeverity,
+        SccOrganizationCustomModuleEnablementState;
 export 'src/scc/google_scc_organization_scc_big_query_export.dart'
     show GoogleSccOrganizationSccBigQueryExport;
 export 'src/scc/google_scc_project_custom_module.dart'
@@ -79,7 +89,8 @@ export 'src/scc/google_scc_project_custom_module.dart'
         SccProjectCustomModuleCustomConfigCustomOutputPropertiesValueExpression,
         SccProjectCustomModuleCustomConfigPredicate,
         SccProjectCustomModuleCustomConfigResourceSelector,
-        SccProjectCustomModuleCustomConfigSeverity;
+        SccProjectCustomModuleCustomConfigSeverity,
+        SccProjectCustomModuleEnablementState;
 export 'src/scc/google_scc_project_notification_config.dart'
     show
         GoogleSccProjectNotificationConfig,

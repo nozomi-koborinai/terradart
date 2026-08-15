@@ -7,6 +7,17 @@ import 'package:terradart_core/terradart_core.dart';
 const Set<String> _googleSccEventThreatDetectionCustomModuleSensitive =
     <String>{};
 
+/// Scc Event Threat Detection Custom Module Enablement enum for `enablement_state`.
+enum SccEventThreatDetectionCustomModuleEnablementState
+    implements TerraformEnum {
+  enabled('ENABLED'),
+  disabled('DISABLED');
+
+  const SccEventThreatDetectionCustomModuleEnablementState(this.terraformValue);
+  @override
+  final String terraformValue;
+}
+
 /// Factory wrapper for `google_scc_event_threat_detection_custom_module`.
 ///
 /// Represents an instance of an Event Threat Detection custom module, including
@@ -27,7 +38,8 @@ final class GoogleSccEventThreatDetectionCustomModule extends Resource {
     required TfArg<String> config,
     TfArg<String>? deletionPolicy,
     TfArg<String>? displayName,
-    required TfArg<String> enablementState,
+    required TfArg<SccEventThreatDetectionCustomModuleEnablementState>
+    enablementState,
     required TfArg<String> organization,
     required TfArg<String> type,
     super.lifecycle,
