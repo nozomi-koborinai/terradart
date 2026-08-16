@@ -25,6 +25,15 @@
 # applied (apply_smoke.sh skips the example; apply_smoke_test.sh test9 fails the
 # build). Classify new types here — confirm cost via terraform MCP + docs; when
 # unsure leave it unclassified (it stays skipped, which is safe).
+#
+# Comment evidence (enforced by tool/apply_smoke_test.sh test 13): every new
+# `safe` line must carry `gcp-cost: SKU …` (or `gcp-cost: no Cloud Billing
+# Catalog SKU` after an MCP lookup) or `apply-verified`, plus a
+# `billing-behavior:` note. `billing-behavior:` ALONE is valid only for
+# `*_iam_member` / `*_iam_binding` / `*_iam_policy`; other exceptions live in
+# tool/apply_cost_comment_debt.yaml. Agents call the gcp-cost tools themselves
+# (Cursor MCP locally; `dart tool/gcp_cost_call.dart` in Cloud Agent sessions)
+# — CI checks the committed comment, not the MCP call.
 
 # --- safe_exception: safe types whose name matches COST_DANGER_RE but are confirmed zero-billing ---
 # Format: safe_exception: <type>  # rationale

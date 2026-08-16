@@ -2,6 +2,22 @@
 # Tests apply_smoke.sh selection + skip-list + dry-run WITHOUT touching
 # GCP/terraform. --dry-run prints the chosen example slugs (one per line) and
 # exits 0.
+#
+# Key policy gates among the numbered tests below (full list inline):
+#   test 9  — cost gate, DEFAULT-DENY: any example whose committed-synth tf-out
+#             contains a type not classified in tool/apply_cost_denylist.yaml
+#             (or classified sweep_only/never_apply without the matching skip
+#             entry) fails. Fails closed when 0 tf-outs are present — run
+#             `dart tool/example_synth_gates.dart` first (CI does).
+#   test 12 — safe-tier sanity: a `safe` type whose name matches a high-cost
+#             pattern (license/reservation/…) fails unless listed as
+#             safe_exception with a rationale.
+#   test 13 — cost-comment evidence: new `safe` ledger lines need `gcp-cost:`
+#             or `apply-verified` (IAM adjuncts: `billing-behavior:` alone OK;
+#             tool/apply_cost_comment_debt.yaml is the audited escape hatch).
+#   test 14 — wave skiplist gate: a wave/* PR touching a skip-listed example
+#             fails via tool/check_wave_skiplist_gate.dart, so WIP-1 cannot
+#             silently stall behind a human-merge-only verdict (#296).
 set -uo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
