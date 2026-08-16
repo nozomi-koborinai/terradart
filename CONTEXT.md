@@ -32,6 +32,18 @@ _Avoid_: Local notes, chat transcript dump
 Gitignored working notes, historical design drafts, raw transcripts, and private planning under `docs/`. They can inform future work but are not authoritative for cloud agents.
 _Avoid_: Agent guide, public docs
 
+**Wave**:
+A user-visible release batch of related curated factories. With the GA catalog filled, Waves originate from new resources the weekly schema bump detects and appends to the curation backlog.
+_Avoid_: Sprint, milestone
+
+**Debt ledger**:
+A machine-checked YAML under `tool/` (for example `example_debt.yaml`, the apply-smoke skip lists, `apply_cost_denylist.yaml`) that records a reviewed, reasoned gap so CI can enforce that every gap is a decision, not an accident.
+_Avoid_: TODO list, wishlist
+
+**Apply-excluded path**:
+Curating a factory whose example coverage is synth + `terraform validate` only, with the real-apply gap recorded in a debt ledger. Used heavily in the 2026-08 GA-catalog fill; paying the debt down is standing maintenance-phase work.
+_Avoid_: Untested, uncovered
+
 ## Example Dialogue
 
 Dev: "Should users run codegen for Pub/Sub?"

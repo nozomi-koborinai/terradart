@@ -169,6 +169,28 @@ attempt any of those. Pushing IS your delivery mechanism:
 - If the platform auto-opened a `cursor/*` PR, report its number for
   human closure (you never close PRs yourself).
 
+## Delivery pipeline (downstream of your push)
+
+What happens after your push — you never drive these, but repairs make more
+sense when you know them:
+
+- `wave-open.yml` (PAT-authenticated so its label fires the executor) turns a
+  `[wave-ready]` marker push into a ready PR + the `wave-approved` label,
+  generating the PR body from your commit messages. A marker-less push only
+  creates/keeps a draft backup PR (the apply-smoke change-gate skips drafts).
+- `wave-merge.yml` independently re-verifies before merging: every changed
+  file inside `tool/wave_allowed_paths.yaml` (`MIGRATING.md` / `CHANGELOG.md`
+  / pubspecs / workflows are outside it, so only additive Waves auto-merge;
+  the root pubspec is content-gated to workspace-member additions), required
+  checks green, and the apply-smoke change-gate run for the head SHA polled
+  to completion (40-minute cap) with ≥ 1 real apply. A Wave with no example
+  changes passes without apply proof; a skip-listed example still disqualifies
+  auto-merge.
+- If the branch is BEHIND at merge time, the executor updates it and
+  re-dispatches itself once (depth-capped).
+- Merging stays disarmed unless the `WAVE_MERGE_ENABLED` repository variable
+  is `true`. WIP limit is 1: no second Wave while a `wave/*` PR is open.
+
 ## Hard rules
 
 - Never merge, close, or reopen PRs.
