@@ -25,7 +25,9 @@ export 'src/secure/google_secure_source_manager_instance_iam_policy.dart'
 export 'src/secure/google_secure_source_manager_repository.dart'
     show
         GoogleSecureSourceManagerRepository,
-        SecureSourceManagerRepositoryInitialConfig;
+        SecureSourceManagerRepositoryInitialConfig,
+        SecureSourceManagerRepositoryScanConfig,
+        SecureSourceManagerRepositoryScanConfigSecretScanConfig;
 export 'src/secure/google_secure_source_manager_repository_iam_binding.dart'
     show GoogleSecureSourceManagerRepositoryIamBinding;
 export 'src/secure/google_secure_source_manager_repository_iam_member.dart'

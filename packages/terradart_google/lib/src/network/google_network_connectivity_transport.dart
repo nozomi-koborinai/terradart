@@ -58,7 +58,7 @@ final class GoogleNetworkConnectivityTransport extends Resource {
     required super.localName,
     required TfArg<String> name,
     required TfArg<String> region,
-    required TfArg<String> network,
+    TfArg<String>? network,
     required TfArg<String> remoteProfile,
     TfArg<String>? description,
     TfArg<String>? bandwidth,
@@ -77,7 +77,7 @@ final class GoogleNetworkConnectivityTransport extends Resource {
          argMap: {
            'name': name,
            'region': region,
-           'network': network,
+           if (network != null) 'network': network,
            'remote_profile': remoteProfile,
            if (description != null) 'description': description,
            if (bandwidth != null) 'bandwidth': bandwidth,
