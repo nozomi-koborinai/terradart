@@ -2,7 +2,12 @@ import 'package:test/test.dart';
 
 import 'loop_health_report.dart';
 
-LoopHealthData _base({List<Stall> stalls = const []}) => (
+LoopHealthData _base({
+  List<Stall> stalls = const [],
+  int backlogRemaining = 12,
+  int backlogSkipNoted = 3,
+}) =>
+    (
       bumpOpened: 1,
       bumpMerged: 1,
       bumpApproved: 1,
@@ -16,8 +21,8 @@ LoopHealthData _base({List<Stall> stalls = const []}) => (
       waveApproved: 5,
       waveExecutorRejections: 1,
       waveArmed: false,
-      backlogRemaining: 12,
-      backlogSkipNoted: 3,
+      backlogRemaining: backlogRemaining,
+      backlogSkipNoted: backlogSkipNoted,
       stalls: stalls,
     );
 
@@ -60,6 +65,18 @@ void main() {
     final md = renderLoopHealth(data: _base(), now: now);
     expect(md, contains('WAVE_MERGE_ENABLED: disarmed'));
     expect(md, contains('BUMP_MERGE_ENABLED: armed'));
+  });
+
+  test('empty backlog renders as idle', () {
+    final md = renderLoopHealth(
+      data: _base(backlogRemaining: 0, backlogSkipNoted: 0),
+      now: now,
+    );
+    expect(
+      md,
+      contains('- backlog remaining: 0 (0 skip-noted) — idle until the '
+          'weekly schema bump detects new resources'),
+    );
   });
 
   test('collectLoopHealth counts backlog entries and skip notes from yaml', () {

@@ -227,7 +227,8 @@ String renderLoopHealth({
     ..writeln('- executor rejections: ${data.waveExecutorRejections}')
     ..writeln(
       '- backlog remaining: ${data.backlogRemaining} '
-      '(${data.backlogSkipNoted} skip-noted)',
+      '(${data.backlogSkipNoted} skip-noted)'
+      '${data.backlogRemaining == 0 ? ' — idle until the weekly schema bump detects new resources' : ''}',
     )
     ..writeln('- WAVE_MERGE_ENABLED: ${armed(data.waveArmed)}')
     ..writeln()
