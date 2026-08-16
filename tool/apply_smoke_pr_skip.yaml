@@ -1,8 +1,8 @@
 # Examples the PER-PR change-gate does NOT `terraform apply` because they
 # provision expensive, hourly-billed resources (GKE control plane + node VMs,
 # Compute Engine VMs, Memorystore Redis/Memcache). They are NOT skipped
-# wholesale: the full sweep
-# (apply-smoke-weekly.yml / `apply_smoke.sh --all`) still applies them, and
+# wholesale: the monthly full sweep
+# (apply-smoke-monthly.yml / `apply_smoke.sh --all`) still applies them, and
 # per-PR they still synth + `terraform validate`. This keeps per-PR apply cost
 # low on Wave PRs (which push many times) while preserving apply coverage.
 #

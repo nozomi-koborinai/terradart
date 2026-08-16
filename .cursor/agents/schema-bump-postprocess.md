@@ -81,6 +81,15 @@ next step, e.g. a sealed-slot sketch), then apply `bump-escalated`. Stop.
 - **Did:** commits you pushed (or "nothing — clean").
 - **Verdict:** Tier + one-line justification.
 
+## Merge executor (downstream of your label)
+
+`bump-merge.yml` reacts to `bump-approved` and independently re-verifies
+before squash-merging: branch pattern `chore/schema-bump-*`, same-repo head,
+every changed file inside `tool/bump_allowed_paths.yaml`, required checks
+green. Merging stays disarmed unless the `BUMP_MERGE_ENABLED` repository
+variable is `true`. A `bump-escalated` PR is maintainer work — humans may
+add commits, then re-label or merge manually.
+
 ## Hard rules
 
 - Never merge, close, or reopen the PR.

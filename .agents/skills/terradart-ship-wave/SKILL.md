@@ -2,11 +2,15 @@
 name: terradart-ship-wave
 description: Ship a TerraDart Wave release — curated factories, examples/docs debt, catalog counts, CHANGELOG, and agent_verify. Use when landing multiple related google_* resources as one user-visible release.
 metadata:
-  last_modified: 2026-06-22
+  last_modified: 2026-08-16
 ---
 # Ship a TerraDart Wave
 
 Read [`CONTEXT.md`](../../../CONTEXT.md) for vocabulary. Generation policy is in [`AGENTS.md`](../../../AGENTS.md). For each new `google_*` factory, follow [`terradart-add-curated-resource`](../terradart-add-curated-resource/SKILL.md) first; this skill covers the **release boundary** around a Wave.
+
+The GA catalog is filled (0.25.x): Waves now originate from new resources the
+weekly schema bump appends to `tool/curation_backlog.yaml`, and catalog counts
+move as increments on the completed baseline.
 
 ## PR scope
 
