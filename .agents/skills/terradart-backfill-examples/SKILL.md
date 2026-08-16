@@ -2,7 +2,7 @@
 name: terradart-backfill-examples
 description: Backfill example quickstarts for curated factories listed in tool/example_debt.yaml — extend stacks, sync debt, and run terraform validate locally before PR.
 metadata:
-  last_modified: 2026-06-09
+  last_modified: 2026-08-16
 ---
 # Backfill example coverage
 
@@ -10,6 +10,9 @@ Read [`CONTEXT.md`](../../../CONTEXT.md) for vocabulary. Wave policy lives in [`
 
 ## When to use
 
+- Paying down the apply-excluded legacy: the 2026-08 GA-catalog fill curated
+  many factories with debt-ledger coverage only, so `tool/example_debt.yaml`
+  is now the standing maintenance-phase work queue.
 - Shrinking `tool/example_debt.yaml` (explicit backfill PRs).
 - After a Wave lands factories in examples, but older debt remains.
 - When CI `terraform validate` fails on an example you extended.
@@ -42,6 +45,16 @@ Read [`CONTEXT.md`](../../../CONTEXT.md) for vocabulary. Wave policy lives in [`
 | GCS notification `topic` as bare topic name | Full path: `TfArg.ref(topic.id)` on a sibling `GooglePubsubTopic`. |
 | Eventarc / workflow destinations as nested objects when schema expects a map | Match provider schema literally; validate early. |
 | Forgetting to remove `example_debt.yaml` entry after coverage | `check_docs_consistency` fails on stale debt lines. |
+| IAM member references an identity that does not exist (apply says "does not exist") | Create the service account in-stack and `TfArg.ref` it; a Google Group cannot be created via Terraform. |
+| Project **id** where the API wants the project **number** (Dataplex `entry_type`, entry-link targets → 400) | Resolve via a `GoogleProject` data source's `.number`. |
+| Predefined resource-level role rejected (e.g. Binary Authorization `…attestorViewer`) | Use a basic role such as `roles/viewer`. |
+| Dataplex "data asset" fields given a Dataplex asset name | Pass the underlying resource's full name (`//bigquery.googleapis.com/…`). |
+| Spark-SQL Dataplex task missing `output_location` | Add it in `execution_spec.args` (some resources need extra required args beyond schema). |
+| Async operations race even when serialized (bidirectional VPC peering: "peering operation in progress" despite `dependsOn`) | The operation completes after the resource reports created — treat as a flake class (re-run), don't fight it with more `dependsOn`. |
+
+The last six pass synth + `terraform validate` and only fail at real apply
+(they came out of apply-smoke sweeps; `AGENTS.md` **Fix An Example That Fails
+Apply-Smoke** points here).
 
 ## Schema probe (when unsure)
 
