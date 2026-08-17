@@ -91,8 +91,8 @@ else
   echo ">> package test suites: SKIPPED (--quick)"
 fi
 
-echo ">> dart test tool/ (render_formula, render_to_file, select_changed_examples, check_bump_scope, wave_skiplist_gate)"
-dart test tool/render_formula_test.dart tool/render_to_file_test.dart tool/select_changed_examples_test.dart tool/check_bump_scope_test.dart tool/check_wave_skiplist_gate_test.dart
+echo ">> dart test tool/ (render_formula, render_to_file, select_changed_examples, check_bump_scope, wave_skiplist_gate, loop_health_report)"
+dart test tool/render_formula_test.dart tool/render_to_file_test.dart tool/select_changed_examples_test.dart tool/check_bump_scope_test.dart tool/check_wave_skiplist_gate_test.dart tool/loop_health_report_test.dart
 
 echo ">> terradart wrap --check"
 (

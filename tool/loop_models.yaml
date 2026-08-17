@@ -1,0 +1,22 @@
+# tool/loop_models.yaml — which model each scheduled agent loop runs on.
+#
+# Append-only history, maintained by the MAINTAINER only (never by agents):
+# when you flip a loop's model in the Cursor schedule UI, append an entry
+# here in the same change. tool/loop_health_report.dart joins each weekly
+# report window against this history so per-loop metrics (first-pass green,
+# repair rounds, escalations) can be compared across models. A loop with no
+# entry renders as "model: unknown" in the report — visible, never fatal.
+#
+# The Cursor schedule UI is the actuator; this file is the machine-readable
+# record. They only stay in sync through the append-on-flip habit, which is
+# why the weekly report prints the assumed model: a mismatch should be
+# caught at the Monday read.
+#
+# Loops: bump | wave | diagnosis
+#
+# Schema:
+#   entries:
+#     - loop: wave
+#       model: composer-1      # name as shown in the Cursor model picker
+#       from: 2026-08-19       # UTC date the schedule flipped, inclusive
+entries: []
