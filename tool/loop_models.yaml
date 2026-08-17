@@ -19,4 +19,15 @@
 #     - loop: wave
 #       model: composer-1      # name as shown in the Cursor model picker
 #       from: 2026-08-19       # UTC date the schedule flipped, inclusive
-entries: []
+# 2026-08-17 baseline: all three schedules predate this ledger; attribution
+# starts at the recording date, not the (unknown) original flip date.
+entries:
+  - loop: bump
+    model: claude-opus-5-thinking-high
+    from: 2026-08-17
+  - loop: wave
+    model: claude-opus-5-thinking-high
+    from: 2026-08-17
+  - loop: diagnosis
+    model: claude-opus-5-thinking-high
+    from: 2026-08-17
