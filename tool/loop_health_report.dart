@@ -27,6 +27,12 @@ const diagStallDays = 7;
 /// like it missed it.
 const bumpStallDays = 4;
 
+/// Days an actionable backlog entry must have existed before a week with no
+/// wave PR and no escalation counts as a wave-loop stall — younger entries
+/// may simply be waiting for their first weekly run (e.g. a Monday bump
+/// merge landing hours before the Monday-noon report).
+const backlogStallDays = 7;
+
 typedef GhRunner = String Function(List<String> args);
 
 typedef Stall = ({String kind, String ref, int ageDays});
@@ -86,7 +92,9 @@ LoopModel? resolveLoopModel({
     final fromDt = DateTime.parse('${fr}T00:00:00Z');
     if (fromDt.isAfter(now)) return;
     final b = best;
-    if (b == null || fromDt.isAfter(b.fromDt)) {
+    // >= not >: in an append-only ledger a same-day re-flip means the
+    // later entry is current.
+    if (b == null || !fromDt.isBefore(b.fromDt)) {
       best = (model: m, from: fr, fromDt: fromDt);
     }
   }
@@ -264,18 +272,55 @@ LoopHealthData collectLoopHealth({
         ),
   ];
 
-  // Actionable backlog, no wave PR opened this window, and none in flight
-  // (WIP-1 not the cause): a run that got confused and left no trace at all
-  // would otherwise be invisible.
-  final actionable = backlogRemaining - backlogSkipNoted;
+  // Aged actionable backlog, no wave PR opened this window, none in flight
+  // (WIP-1 not the cause), and no comment-marked escalation (escalate-and-
+  // exit is a correct run): a run that got confused and left no trace at
+  // all would otherwise be invisible. Only entries older than
+  // backlogStallDays count — younger ones may not have had a weekly run
+  // yet — and an unparsable detected_at never fabricates a stall.
+  final eligibleAges = <int>[];
+  final backlogDateRe = RegExp(r'^\s+detected_at:\s*(\d{4}-\d{2}-\d{2})');
+  var curSkipNoted = false;
+  int? curAge;
+  void flushBacklogEntry() {
+    final age = curAge;
+    if (!curSkipNoted && age != null && age >= backlogStallDays) {
+      eligibleAges.add(age);
+    }
+    curSkipNoted = false;
+    curAge = null;
+  }
+
+  var inEntry = false;
+  for (final line in backlogYaml.split('\n')) {
+    if (line.startsWith('  - resource:')) {
+      if (inEntry) flushBacklogEntry();
+      inEntry = true;
+      continue;
+    }
+    if (!inEntry) continue;
+    final d = backlogDateRe.firstMatch(line);
+    if (d != null) {
+      curAge = now.difference(DateTime.parse('${d.group(1)}T00:00:00Z')).inDays;
+    }
+    if (line.contains('note:') && line.contains('skipped by wave-shipper')) {
+      curSkipNoted = true;
+    }
+  }
+  if (inEntry) flushBacklogEntry();
+
   final anyOpenWave = wavePulls.any((p) => p['state'] == 'open');
-  if (actionable > 0 && waveOpened == 0 && !anyOpenWave) {
+  if (eligibleAges.isNotEmpty &&
+      waveOpened == 0 &&
+      !anyOpenWave &&
+      waveEscalations == 0) {
+    final n = eligibleAges.length;
     stalls.add(
       (
         kind: 'wave loop',
-        ref: 'no PR despite $actionable actionable backlog '
-            'entr${actionable == 1 ? 'y' : 'ies'}',
-        ageDays: 7,
+        ref: 'no PR despite $n actionable backlog '
+            'entr${n == 1 ? 'y' : 'ies'} at least $backlogStallDays days old',
+        ageDays: eligibleAges.reduce((a, b) => a > b ? a : b),
       ),
     );
   }

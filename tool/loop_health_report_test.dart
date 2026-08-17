@@ -97,11 +97,11 @@ void main() {
 
   test(
       'collectLoopHealth counts backlog entries and skip notes from yaml '
-      'and flags the idle wave loop behind an actionable backlog', () {
+      'and flags the idle wave loop behind an aged actionable backlog', () {
     const yaml = '''
 entries:
   - resource: google_a_b
-    detected_at: 2026-07-01
+    detected_at: 2026-06-20
     provider_version: 7.39.0
   - resource: google_c_d
     detected_at: 2026-07-01
@@ -121,10 +121,73 @@ entries:
     expect(data.backlogRemaining, 2);
     expect(data.backlogSkipNoted, 1);
     expect(data.waveOpened, 0);
-    // One actionable entry, no wave PR opened this window, none in flight:
-    // the loop is silently idle — that is a stall, not a no-op.
+    // One actionable entry 16 days old, no wave PR opened this window, none
+    // in flight, no escalation: the loop is silently idle — that is a stall,
+    // aged by the oldest eligible entry, not a hard-coded week.
     expect(data.stalls, hasLength(1));
     expect(data.stalls.single.kind, 'wave loop');
+    expect(data.stalls.single.ageDays, 16);
+  });
+
+  test(
+      'backlog younger than the stall grace period does not flag the wave '
+      'loop (its first Tuesday run has not come yet)', () {
+    const yaml = '''
+entries:
+  - resource: google_a_b
+    detected_at: 2026-07-03
+    provider_version: 7.39.0
+''';
+    final data = collectLoopHealth(
+      gh: (args) =>
+          args[1].startsWith('repos/') ? '[]' : '{"total_count":0,"items":[]}',
+      now: DateTime.utc(2026, 7, 6),
+      backlogYaml: yaml,
+      loopModelsYaml: '',
+      bumpArmed: false,
+      waveArmed: false,
+    );
+    expect(data.stalls, isEmpty);
+  });
+
+  test(
+      'a comment-marked escalation suppresses the idle-wave stall '
+      '(escalate-and-exit is a correct run, not a silent one)', () {
+    const yaml = '''
+entries:
+  - resource: google_a_b
+    detected_at: 2026-06-20
+    provider_version: 7.39.0
+''';
+    String gh(List<String> args) {
+      final path = args[1];
+      if (path.contains('loop-health')) {
+        return jsonEncode({
+          'total_count': 1,
+          'items': [
+            {'number': 42, 'created_at': '2026-01-01T00:00:00Z'},
+          ],
+        });
+      }
+      if (path.contains('/issues/42/comments')) {
+        return jsonEncode([
+          {'body': 'escalation(wave): backlog entries all org-scoped'},
+        ]);
+      }
+      if (path.startsWith('repos/') && path.contains('/pulls?')) return '[]';
+      return '{"total_count":0,"items":[]}';
+    }
+
+    final data = collectLoopHealth(
+      gh: gh,
+      now: DateTime.utc(2026, 7, 6),
+      backlogYaml: yaml,
+      loopModelsYaml: '',
+      bumpArmed: false,
+      waveArmed: false,
+    );
+    expect(data.waveEscalations, 1);
+    expect(data.stalls, isEmpty);
   });
 
   group('resolveLoopModel', () {
@@ -192,6 +255,29 @@ entries:
       );
       expect(m!.model, 'composer-1');
       expect(m.midWindow, isFalse);
+    });
+
+    test('same-day double flip: the last appended entry wins', () {
+      const sameDay = '''
+entries:
+  - loop: wave
+    model: grok-4
+    from: 2026-07-01
+  - loop: wave
+    model: composer-1
+    from: 2026-07-01
+''';
+      final m = resolveLoopModel(
+        loopModelsYaml: sameDay,
+        loop: 'wave',
+        now: now,
+        windowStart: now.subtract(const Duration(days: 7)),
+      );
+      expect(
+        m!.model,
+        'composer-1',
+        reason: 'append-only ledger: the later same-day entry is current',
+      );
     });
   });
 
@@ -338,10 +424,11 @@ entries:
   });
 
   test('an open wave PR suppresses the idle-wave stall (WIP-1 is at work)', () {
+    // Old enough to be stall-eligible — only the in-flight PR suppresses.
     const yaml = '''
 entries:
   - resource: google_a_b
-    detected_at: 2026-07-01
+    detected_at: 2026-06-20
     provider_version: 7.39.0
 ''';
     String gh(List<String> args) {
