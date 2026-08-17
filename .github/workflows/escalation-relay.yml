@@ -1,0 +1,89 @@
+name: escalation-relay
+
+# Relays agent escalations to the open loop-health issue. Cloud-agent
+# tokens can push but cannot comment or label (probed 2026-08-18, #597),
+# so an agent delivers an escalation as an EMPTY commit pushed to an
+# escalation/* branch whose subject line is
+#
+#   [agent-relay] escalation(<loop>): <one-line reason>
+#
+# This workflow posts everything after the marker VERBATIM as an issue
+# comment (transport only — it never interprets or rewrites the text;
+# tool/loop_health_report.dart counts comments by their escalation(...)
+# prefix), then deletes the relay branch so nothing accumulates and no
+# stray PR can sit on it. workflow_dispatch exists so the posting path
+# can be tested end to end without an agent.
+
+on:
+  push:
+    branches: ['escalation/**']
+  workflow_dispatch:
+    inputs:
+      message:
+        description: 'Comment to relay verbatim (start it with escalation(<loop>):)'
+        required: true
+        type: string
+
+permissions:
+  contents: write # delete the relay branch after posting
+  issues: write # comment on the loop-health issue
+
+concurrency:
+  group: escalation-relay-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  relay:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Extract the relayed message
+        id: msg
+        env:
+          HEAD_MSG: ${{ github.event.head_commit.message }}
+          DISPATCH_MSG: ${{ inputs.message }}
+        run: |
+          set -euo pipefail
+          if [ -n "${DISPATCH_MSG:-}" ]; then
+            body="$DISPATCH_MSG"
+          else
+            marker='[agent-relay] '
+            case "$HEAD_MSG" in
+              "$marker"*) body="${HEAD_MSG#"$marker"}" ;;
+              *)
+                echo "head commit has no [agent-relay] marker; nothing to relay"
+                echo "body=" >>"$GITHUB_OUTPUT"
+                exit 0
+                ;;
+            esac
+          fi
+          {
+            echo "body<<RELAY_EOF"
+            printf '%s\n' "$body"
+            echo "RELAY_EOF"
+          } >>"$GITHUB_OUTPUT"
+
+      - name: Comment on the loop-health issue
+        if: steps.msg.outputs.body != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BODY: ${{ steps.msg.outputs.body }}
+        run: |
+          set -euo pipefail
+          n=$(gh issue list --repo "$GITHUB_REPOSITORY" --label loop-health \
+            --state open --json number --jq '.[0].number // empty')
+          if [ -z "$n" ]; then
+            echo "no open loop-health issue to relay to" >&2
+            exit 1
+          fi
+          gh issue comment "$n" --repo "$GITHUB_REPOSITORY" --body "$BODY"
+
+      - name: Delete the relay branch
+        if: always() && github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELAY_REF: ${{ github.ref_name }}
+        run: |
+          gh api -X DELETE \
+            "repos/$GITHUB_REPOSITORY/git/refs/heads/$RELAY_REF" \
+            || echo "branch already gone"

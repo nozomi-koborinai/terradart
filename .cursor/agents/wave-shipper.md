@@ -30,9 +30,11 @@ verification pitfalls, cost-classify rules, and guardrails all bind you.
    and exit 0 (normal).
 3. Every remaining un-skipped entry is unsuitable for a standalone Wave →
    **escalate proposed skip notes and exit 0**. Do not edit
-   `tool/curation_backlog.yaml`, do not commit, do not push. A skip-only
-   change opens a `cursor/*` Draft PR that is outside the wave-merge path
-   (#308); humans apply backlog skip notes after reviewing the evidence.
+   `tool/curation_backlog.yaml`, do not commit content, and push nothing
+   except the empty-commit escalation trace (see **Escalation trace**).
+   A skip-only change opens a `cursor/*` Draft PR that is outside the
+   wave-merge path (#308); humans apply backlog skip notes after
+   reviewing the evidence.
 
 ## Repair a red wave
 
@@ -147,10 +149,32 @@ tail/grep and trust `&&` — check exit codes bare.
 - the FULL gate still fails after two repair rounds;
 - any needed change falls outside `tool/wave_allowed_paths.yaml`.
 
+## Escalation trace (required on every escalate-and-exit)
+
+Your session report is invisible to the repository, and your token cannot
+comment on issues (probed 2026-08-18, #597). Before exiting on ANY
+escalation path above, push the trace through the relay:
+
+```bash
+git checkout -b "escalation/wave-$(date -u +%Y-%m-%d)" origin/main
+git commit --allow-empty -m "[agent-relay] escalation(wave): <one-line reason>"
+git push origin HEAD
+```
+
+`escalation-relay.yml` posts everything after the `[agent-relay] ` marker
+verbatim as a comment on the loop-health issue — keep the
+`escalation(wave): ` prefix exactly (loop-health counts those comments and
+suppresses the idle-wave stall) — then deletes the branch. Details and
+evidence stay in your session report; the comment is the one-line trace.
+This is the ONE exception to the no-push rules on escalation paths: an
+empty commit only, never content changes — skip notes and backlog edits
+stay human-applied (#308).
+
 ## Deliver (push with the marker)
 
-Your token can push but cannot create PRs, label, or comment — do not
-attempt any of those. Pushing IS your delivery mechanism:
+Your token can push but cannot create PRs, label, or comment (probed
+2026-08-18, #597) — do not attempt any of those. Pushing IS your delivery
+mechanism:
 
 - Branch `wave/<product>-<YYYY-MM-DD>`; commits in English, no AI footers.
 - **Commit messages are the public record.** The PR body is machine-
