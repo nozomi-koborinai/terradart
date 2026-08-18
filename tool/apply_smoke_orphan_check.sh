@@ -90,7 +90,9 @@ run_rest() {
     return 0
   fi
   local names
-  names="$(printf '%s' "$out" | grep -o '"name": *"[^"]*"' | sed 's/.*: *"//; s/"$//')"
+  # grep exits 1 on a healthy empty list; without the guard, set -e
+  # would abort the whole probe on the happiest possible response.
+  names="$(printf '%s' "$out" | grep -o '"name": *"[^"]*"' | sed 's/.*: *"//; s/"$//')" || true
   if [[ -z "$names" ]]; then
     echo "(none)"
   else
