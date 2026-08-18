@@ -121,6 +121,20 @@ jobs:
             --source test/fixtures/wrap/source \
             --output ../terradart_google/lib/src \
             --check
+      # Per-provider lanes beyond GA google — coordinates in
+      # tool/providers.yaml. A lane that lives only in agent_verify.sh
+      # rots silently (the documented override_gates lesson).
+      - name: Verify generated google-beta wrappers are up to date
+        working-directory: packages/terradart_codegen
+        run: |
+          dart run bin/terradart.dart wrap \
+            --provider hashicorp/google-beta \
+            --source test/fixtures/wrap/source_beta \
+            --output ../terradart_google_beta/lib/src \
+            --overrides-root lib/src/codegen/wrapper_overrides/google_beta/yaml \
+            --barrels-manifest lib/src/codegen/barrels/barrels_google_beta.yaml \
+            --resource-provider google-beta \
+            --check
 
   override_gates:
     name: override gates (lint, enum gaps, MM fingerprint)
