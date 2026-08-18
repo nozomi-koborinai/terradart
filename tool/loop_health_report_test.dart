@@ -16,6 +16,7 @@ LoopHealthData _base({
   int waveFirstPassGreen = 0,
   int waveRepairCommits = 0,
   int waveEscalations = 0,
+  int waveBugbotFindings = 0,
 }) =>
     (
       bumpOpened: 1,
@@ -37,6 +38,7 @@ LoopHealthData _base({
       waveFirstPassGreen: waveFirstPassGreen,
       waveRepairCommits: waveRepairCommits,
       waveEscalations: waveEscalations,
+      waveBugbotFindings: waveBugbotFindings,
       backlogRemaining: backlogRemaining,
       backlogSkipNoted: backlogSkipNoted,
       stalls: stalls,
@@ -318,6 +320,67 @@ entries:
     expect(md, contains('- escalations (comment-marked): 1'));
   });
 
+  test('render shows Bugbot findings on merged waves', () {
+    final md = renderLoopHealth(data: _base(waveBugbotFindings: 2), now: now);
+    expect(md, contains('- Bugbot findings on merged waves: 2'));
+  });
+
+  test('collect counts cursor[bot] review comments on merged waves only', () {
+    String gh(List<String> args) {
+      final path = args[1];
+      if (path.contains('/pulls/10/comments')) {
+        return jsonEncode([
+          {
+            'user': {'login': 'cursor[bot]'},
+            'body': '### Some finding',
+          },
+          {
+            'user': {'login': 'cursor[bot]'},
+            'body': '### Another finding',
+          },
+          {
+            'user': {'login': 'nozomi-koborinai'},
+            'body': 'human reply',
+          },
+        ]);
+      }
+      if (path.contains('/pulls/10/commits')) {
+        return jsonEncode([
+          {
+            'commit': {'message': 'feat(google): curate foo'},
+          },
+        ]);
+      }
+      if (path.startsWith('repos/') && path.contains('/pulls?')) {
+        return jsonEncode([
+          {
+            'number': 10,
+            'state': 'closed',
+            'head': {'ref': 'wave/foo'},
+            'created_at': '2026-07-01T00:00:00Z',
+            'merged_at': '2026-07-02T00:00:00Z',
+            'updated_at': '2026-07-02T00:00:00Z',
+          },
+        ]);
+      }
+      return '{"total_count":0,"items":[]}';
+    }
+
+    final data = collectLoopHealth(
+      gh: gh,
+      now: DateTime.utc(2026, 7, 6),
+      backlogYaml: '',
+      loopModelsYaml: '',
+      bumpArmed: false,
+      waveArmed: false,
+    );
+    expect(
+      data.waveBugbotFindings,
+      2,
+      reason: 'two cursor[bot] comments; the human reply is not a finding',
+    );
+  });
+
   test('render derives the bump escalation rate from verdict counts', () {
     final md = renderLoopHealth(
       data: _base(bumpApproved: 3, bumpEscalated: 1),
@@ -330,6 +393,7 @@ entries:
       () {
     String gh(List<String> args) {
       final path = args[1];
+      if (path.contains('/comments')) return '[]';
       if (path.contains('/pulls/10/commits')) {
         return jsonEncode([
           {
