@@ -48,38 +48,70 @@ verification pitfalls, and guardrails all bind you.
   factory level; SA permissions / WIF / infrastructure; a bug in
   `tool/apply_smoke.sh` itself; teardown/destroy failures — possible
   orphaned resources cost real money; or you are not confident): analysis
-  comment only, with your recommended next step. Do not attempt the fix.
+  comment only (delivered via the relay, see **Report and mark**), with
+  your recommended next step. Do not attempt the fix.
   When Cursor Secret `GCP_VALIDATE_SA_JSON` is present, you MAY run
   `tool/apply_smoke_orphan_check.sh` (read-only) and quote its output as
   evidence — never `gcloud … delete` / create; reclaim via the Apply smoke
   janitor. If `gcloud` or the secret is missing, say so and escalate.
 
-## Open fix PRs (classes A-D only)
+## Push fix branches (classes A-D only)
 
-- One single-purpose PR per failure class (bundle same-class slugs).
+- One single-purpose branch per failure class (bundle same-class slugs).
 - Branch names: `fix/smoke-<class-keyword>-<YYYY-MM-DD>` (e.g.
   `fix/smoke-api-enablement-2026-07-06`).
 - If a fix adds resources to an example, the cost-classify rules apply
   (gcp-cost MCP → record SKU in `tool/apply_cost_denylist.yaml` comments).
 - Verify before pushing: `tool/agent_verify.sh --quick` while iterating,
-  FULL `tool/agent_verify.sh` before the PR (you are touching examples —
+  FULL `tool/agent_verify.sh` before the push (you are touching examples —
   the synth gates and ledgers must stay green). Never pipe a test command
   into tail/grep and trust `&&` — check exit codes bare.
 - Commits in English, no AI footers, prefix `fix(examples):` or
   `chore(apply-smoke):` for skip-ledger changes.
-- PR body: the target issue (`Refs #<n>`), the slugs, the class, and the
-  quoted terraform error. The apply-smoke change-gate will re-apply the
-  touched examples — that gate going green is the real verification, and
-  a HUMAN merges (never you).
+- Your token cannot create PRs (probed 2026-08-18, #597) — do not attempt
+  `gh pr create`. Commit messages are the public record: carry
+  `Refs #<n>`, the slugs, the class, and the quoted terraform error. A
+  human opens the PR from the compare link you put in the diagnosis; the
+  apply-smoke change-gate re-applies the touched examples on that PR —
+  that gate going green is the real verification, and a HUMAN merges
+  (never you).
 
-## Report and mark (always, in this order)
+## Report and mark (always)
 
-1. Comment the diagnosis on the issue — a table of slug → class → root
-   cause (one line, with the error quoted or referenced) → action
-   (PR link / skip entry / flake / escalated).
-2. Apply the `smoke-diagnosed` label LAST.
-3. Do not close the issue — the human closes it after the next sweep is
-   green.
+Your token cannot comment or label either (same probe). Deliver the
+diagnosis AND the label through `escalation-relay.yml` in ONE push: the
+commit subject targets the issue, the body is the verbatim comment, and
+a trailer applies the label after the comment lands.
+
+Write the message to a FILE with your file-writing tool — NEVER build it
+in shell (quoted terraform error text can contain `$(...)`/backticks,
+which a double-quoted shell assignment would execute). File content:
+
+```text
+[agent-relay #<issue>] apply-smoke diagnosis <YYYY-MM-DD>
+
+<one row per failed slug: slug → class → root cause (error quoted or
+referenced) → action (pushed fix branch + its compare URL
+https://github.com/nozomi-koborinai/terradart/compare/main...<branch>?expand=1
+/ skip entry / flake / escalated)>
+
+Relay-Label: smoke-diagnosed
+```
+
+Then push it without the message ever touching shell evaluation:
+
+```bash
+trace=$(git commit-tree 'origin/main^{tree}' -p origin/main -F /tmp/diagnosis.msg)
+git push origin "${trace}:refs/heads/relay/diagnosis-$(date -u +%Y%m%d-%H%M%S)"
+```
+
+`commit-tree` against origin/main's tree makes the pushed commit empty by
+construction and works from any tree state — do NOT substitute a
+`checkout` + `commit --allow-empty` flow. The relay posts the body on the
+issue, then applies `smoke-diagnosed` (your idempotency marker — the next
+run skips labeled issues), then deletes the relay branch.
+Do not close the issue — the human closes it after the next sweep is
+green.
 
 ## Hard rules
 

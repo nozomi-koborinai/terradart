@@ -155,10 +155,20 @@ Your session report is invisible to the repository, and your token cannot
 comment on issues (probed 2026-08-18, #597). Before exiting on ANY
 escalation path above, push the trace through the relay:
 
+Write the one-line trace to a FILE with your file-writing tool — NEVER
+build it in shell (a reason containing quoted error text can carry
+`$(...)`/backticks, which shell string-building would execute). File
+content (single line):
+
+```text
+[agent-relay] escalation(wave): <one-line reason>
+```
+
+Then push it without the message ever touching shell evaluation:
+
 ```bash
-trace=$(git commit-tree 'origin/main^{tree}' -p origin/main \
-  -m "[agent-relay] escalation(wave): <one-line reason>")
-git push origin "$trace:refs/heads/escalation/wave-$(date -u +%Y%m%d-%H%M%S)"
+trace=$(git commit-tree 'origin/main^{tree}' -p origin/main -F /tmp/escalation.msg)
+git push origin "${trace}:refs/heads/escalation/wave-$(date -u +%Y%m%d-%H%M%S)"
 ```
 
 This never checks anything out: `commit-tree` reuses origin/main's tree,
