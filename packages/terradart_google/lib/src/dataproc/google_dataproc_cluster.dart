@@ -593,6 +593,7 @@ final class DataprocClusterClusterConfigMasterConfigDiskConfig {
     this.bootDiskType,
     this.localSsdInterface,
     this.numLocalSsds,
+    this.attachedDiskConfig,
   });
 
   final TfArg<num>? bootDiskProvisionedIops;
@@ -607,6 +608,11 @@ final class DataprocClusterClusterConfigMasterConfigDiskConfig {
 
   final TfArg<num>? numLocalSsds;
 
+  final List<
+    DataprocClusterClusterConfigMasterConfigDiskConfigAttachedDiskConfig
+  >?
+  attachedDiskConfig;
+
   Map<String, Object?> encode() => {
     if (bootDiskProvisionedIops != null)
       'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
@@ -618,6 +624,37 @@ final class DataprocClusterClusterConfigMasterConfigDiskConfig {
     if (localSsdInterface != null)
       'local_ssd_interface': localSsdInterface!.toTfJson(),
     if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    if (attachedDiskConfig != null)
+      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
+  };
+}
+
+/// Typed helper for the `cluster_config.master_config.disk_config.attached_disk_config` block of
+/// `google_dataproc_cluster` (derived from provider schema).
+@immutable
+final class DataprocClusterClusterConfigMasterConfigDiskConfigAttachedDiskConfig {
+  const DataprocClusterClusterConfigMasterConfigDiskConfigAttachedDiskConfig({
+    this.diskSizeGb,
+    this.diskType,
+    this.provisionedIops,
+    this.provisionedThroughput,
+  });
+
+  final TfArg<num>? diskSizeGb;
+
+  final TfArg<String>? diskType;
+
+  final TfArg<num>? provisionedIops;
+
+  final TfArg<num>? provisionedThroughput;
+
+  Map<String, Object?> encode() => {
+    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
+    if (diskType != null) 'disk_type': diskType!.toTfJson(),
+    if (provisionedIops != null)
+      'provisioned_iops': provisionedIops!.toTfJson(),
+    if (provisionedThroughput != null)
+      'provisioned_throughput': provisionedThroughput!.toTfJson(),
   };
 }
 
@@ -677,6 +714,7 @@ final class DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyIns
     this.bootDiskType,
     this.localSsdInterface,
     this.numLocalSsds,
+    this.attachedDiskConfig,
   });
 
   final TfArg<num>? bootDiskProvisionedIops;
@@ -691,6 +729,11 @@ final class DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyIns
 
   final TfArg<num>? numLocalSsds;
 
+  final List<
+    DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig
+  >?
+  attachedDiskConfig;
+
   Map<String, Object?> encode() => {
     if (bootDiskProvisionedIops != null)
       'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
@@ -702,6 +745,37 @@ final class DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyIns
     if (localSsdInterface != null)
       'local_ssd_interface': localSsdInterface!.toTfJson(),
     if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    if (attachedDiskConfig != null)
+      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
+  };
+}
+
+/// Typed helper for the `cluster_config.master_config.instance_flexibility_policy.instance_selection_list.disk_config.attached_disk_config` block of
+/// `google_dataproc_cluster` (derived from provider schema).
+@immutable
+final class DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig {
+  const DataprocClusterClusterConfigMasterConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig({
+    this.diskSizeGb,
+    this.diskType,
+    this.provisionedIops,
+    this.provisionedThroughput,
+  });
+
+  final TfArg<num>? diskSizeGb;
+
+  final TfArg<String>? diskType;
+
+  final TfArg<num>? provisionedIops;
+
+  final TfArg<num>? provisionedThroughput;
+
+  Map<String, Object?> encode() => {
+    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
+    if (diskType != null) 'disk_type': diskType!.toTfJson(),
+    if (provisionedIops != null)
+      'provisioned_iops': provisionedIops!.toTfJson(),
+    if (provisionedThroughput != null)
+      'provisioned_throughput': provisionedThroughput!.toTfJson(),
   };
 }
 
@@ -761,6 +835,7 @@ final class DataprocClusterClusterConfigPreemptibleWorkerConfigDiskConfig {
     this.bootDiskType,
     this.localSsdInterface,
     this.numLocalSsds,
+    this.attachedDiskConfig,
   });
 
   final TfArg<num>? bootDiskProvisionedIops;
@@ -775,6 +850,11 @@ final class DataprocClusterClusterConfigPreemptibleWorkerConfigDiskConfig {
 
   final TfArg<num>? numLocalSsds;
 
+  final List<
+    DataprocClusterClusterConfigPreemptibleWorkerConfigDiskConfigAttachedDiskConfig
+  >?
+  attachedDiskConfig;
+
   Map<String, Object?> encode() => {
     if (bootDiskProvisionedIops != null)
       'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
@@ -786,6 +866,37 @@ final class DataprocClusterClusterConfigPreemptibleWorkerConfigDiskConfig {
     if (localSsdInterface != null)
       'local_ssd_interface': localSsdInterface!.toTfJson(),
     if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    if (attachedDiskConfig != null)
+      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
+  };
+}
+
+/// Typed helper for the `cluster_config.preemptible_worker_config.disk_config.attached_disk_config` block of
+/// `google_dataproc_cluster` (derived from provider schema).
+@immutable
+final class DataprocClusterClusterConfigPreemptibleWorkerConfigDiskConfigAttachedDiskConfig {
+  const DataprocClusterClusterConfigPreemptibleWorkerConfigDiskConfigAttachedDiskConfig({
+    this.diskSizeGb,
+    this.diskType,
+    this.provisionedIops,
+    this.provisionedThroughput,
+  });
+
+  final TfArg<num>? diskSizeGb;
+
+  final TfArg<String>? diskType;
+
+  final TfArg<num>? provisionedIops;
+
+  final TfArg<num>? provisionedThroughput;
+
+  Map<String, Object?> encode() => {
+    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
+    if (diskType != null) 'disk_type': diskType!.toTfJson(),
+    if (provisionedIops != null)
+      'provisioned_iops': provisionedIops!.toTfJson(),
+    if (provisionedThroughput != null)
+      'provisioned_throughput': provisionedThroughput!.toTfJson(),
   };
 }
 
@@ -851,6 +962,7 @@ final class DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibili
     this.bootDiskType,
     this.localSsdInterface,
     this.numLocalSsds,
+    this.attachedDiskConfig,
   });
 
   final TfArg<num>? bootDiskProvisionedIops;
@@ -865,6 +977,11 @@ final class DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibili
 
   final TfArg<num>? numLocalSsds;
 
+  final List<
+    DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig
+  >?
+  attachedDiskConfig;
+
   Map<String, Object?> encode() => {
     if (bootDiskProvisionedIops != null)
       'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
@@ -876,6 +993,37 @@ final class DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibili
     if (localSsdInterface != null)
       'local_ssd_interface': localSsdInterface!.toTfJson(),
     if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    if (attachedDiskConfig != null)
+      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
+  };
+}
+
+/// Typed helper for the `cluster_config.preemptible_worker_config.instance_flexibility_policy.instance_selection_list.disk_config.attached_disk_config` block of
+/// `google_dataproc_cluster` (derived from provider schema).
+@immutable
+final class DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig {
+  const DataprocClusterClusterConfigPreemptibleWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig({
+    this.diskSizeGb,
+    this.diskType,
+    this.provisionedIops,
+    this.provisionedThroughput,
+  });
+
+  final TfArg<num>? diskSizeGb;
+
+  final TfArg<String>? diskType;
+
+  final TfArg<num>? provisionedIops;
+
+  final TfArg<num>? provisionedThroughput;
+
+  Map<String, Object?> encode() => {
+    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
+    if (diskType != null) 'disk_type': diskType!.toTfJson(),
+    if (provisionedIops != null)
+      'provisioned_iops': provisionedIops!.toTfJson(),
+    if (provisionedThroughput != null)
+      'provisioned_throughput': provisionedThroughput!.toTfJson(),
   };
 }
 
@@ -1119,6 +1267,7 @@ final class DataprocClusterClusterConfigWorkerConfigDiskConfig {
     this.bootDiskType,
     this.localSsdInterface,
     this.numLocalSsds,
+    this.attachedDiskConfig,
   });
 
   final TfArg<num>? bootDiskProvisionedIops;
@@ -1133,6 +1282,11 @@ final class DataprocClusterClusterConfigWorkerConfigDiskConfig {
 
   final TfArg<num>? numLocalSsds;
 
+  final List<
+    DataprocClusterClusterConfigWorkerConfigDiskConfigAttachedDiskConfig
+  >?
+  attachedDiskConfig;
+
   Map<String, Object?> encode() => {
     if (bootDiskProvisionedIops != null)
       'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
@@ -1144,6 +1298,37 @@ final class DataprocClusterClusterConfigWorkerConfigDiskConfig {
     if (localSsdInterface != null)
       'local_ssd_interface': localSsdInterface!.toTfJson(),
     if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    if (attachedDiskConfig != null)
+      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
+  };
+}
+
+/// Typed helper for the `cluster_config.worker_config.disk_config.attached_disk_config` block of
+/// `google_dataproc_cluster` (derived from provider schema).
+@immutable
+final class DataprocClusterClusterConfigWorkerConfigDiskConfigAttachedDiskConfig {
+  const DataprocClusterClusterConfigWorkerConfigDiskConfigAttachedDiskConfig({
+    this.diskSizeGb,
+    this.diskType,
+    this.provisionedIops,
+    this.provisionedThroughput,
+  });
+
+  final TfArg<num>? diskSizeGb;
+
+  final TfArg<String>? diskType;
+
+  final TfArg<num>? provisionedIops;
+
+  final TfArg<num>? provisionedThroughput;
+
+  Map<String, Object?> encode() => {
+    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
+    if (diskType != null) 'disk_type': diskType!.toTfJson(),
+    if (provisionedIops != null)
+      'provisioned_iops': provisionedIops!.toTfJson(),
+    if (provisionedThroughput != null)
+      'provisioned_throughput': provisionedThroughput!.toTfJson(),
   };
 }
 
@@ -1203,6 +1388,7 @@ final class DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyIns
     this.bootDiskType,
     this.localSsdInterface,
     this.numLocalSsds,
+    this.attachedDiskConfig,
   });
 
   final TfArg<num>? bootDiskProvisionedIops;
@@ -1217,6 +1403,11 @@ final class DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyIns
 
   final TfArg<num>? numLocalSsds;
 
+  final List<
+    DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig
+  >?
+  attachedDiskConfig;
+
   Map<String, Object?> encode() => {
     if (bootDiskProvisionedIops != null)
       'boot_disk_provisioned_iops': bootDiskProvisionedIops!.toTfJson(),
@@ -1228,6 +1419,37 @@ final class DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyIns
     if (localSsdInterface != null)
       'local_ssd_interface': localSsdInterface!.toTfJson(),
     if (numLocalSsds != null) 'num_local_ssds': numLocalSsds!.toTfJson(),
+    if (attachedDiskConfig != null)
+      'attached_disk_config': [for (final e in attachedDiskConfig!) e.encode()],
+  };
+}
+
+/// Typed helper for the `cluster_config.worker_config.instance_flexibility_policy.instance_selection_list.disk_config.attached_disk_config` block of
+/// `google_dataproc_cluster` (derived from provider schema).
+@immutable
+final class DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig {
+  const DataprocClusterClusterConfigWorkerConfigInstanceFlexibilityPolicyInstanceSelectionListDiskConfigAttachedDiskConfig({
+    this.diskSizeGb,
+    this.diskType,
+    this.provisionedIops,
+    this.provisionedThroughput,
+  });
+
+  final TfArg<num>? diskSizeGb;
+
+  final TfArg<String>? diskType;
+
+  final TfArg<num>? provisionedIops;
+
+  final TfArg<num>? provisionedThroughput;
+
+  Map<String, Object?> encode() => {
+    if (diskSizeGb != null) 'disk_size_gb': diskSizeGb!.toTfJson(),
+    if (diskType != null) 'disk_type': diskType!.toTfJson(),
+    if (provisionedIops != null)
+      'provisioned_iops': provisionedIops!.toTfJson(),
+    if (provisionedThroughput != null)
+      'provisioned_throughput': provisionedThroughput!.toTfJson(),
   };
 }
 

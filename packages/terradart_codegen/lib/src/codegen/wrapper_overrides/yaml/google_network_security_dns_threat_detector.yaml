@@ -1,10 +1,34 @@
 outputDir: network
 deriveClassDoc: true
 deriveOutputGetters: true
-deriveEnums: true
+
+# The typed threat_detector_provider param is a HUMAN decision now, not a
+# derivation: the 2026-08-16 MM sync restored upstream's `api_name:
+# provider` (REST name), which detaches enum_values from the TF attribute
+# key, so deriveEnums no longer emits this enum. Upstream's description
+# still mandates INFOBLOX as the only value, so the enum lives in the
+# prelude (sync-proof) instead of a local MM fixture patch (clobbered by
+# every weekly sync — the exact failure of PR #595). If upstream ever
+# re-attaches enum_values, deriveEnums + this prelude would emit a
+# duplicate type — delete the prelude then, per the derivation-gate rule.
 
 dartTypeOverrides:
   threat_detector_provider: NetworkSecurityDnsThreatDetectorThreatDetectorProvider
+
+prelude: |
+  /// `threat_detector_provider` for [GoogleNetworkSecurityDnsThreatDetector].
+  ///
+  /// Upstream documents `INFOBLOX` as the only supported value.
+  enum NetworkSecurityDnsThreatDetectorThreatDetectorProvider
+      implements TerraformEnum {
+    infoblox('INFOBLOX');
+
+    const NetworkSecurityDnsThreatDetectorThreatDetectorProvider(
+      this.terraformValue,
+    );
+    @override
+    final String terraformValue;
+  }
 
 curatedDoc: |-
   /// Network Security **DNS threat detector** (DNS Armor / Infoblox) — enables

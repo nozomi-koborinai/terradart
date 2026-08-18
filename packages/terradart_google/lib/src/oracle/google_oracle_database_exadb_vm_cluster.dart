@@ -84,6 +84,10 @@ final class GoogleOracleDatabaseExadbVmCluster extends Resource {
   TfRef<String> get gcpOracleZone =>
       TfRef.attribute<String>(this, 'gcp_oracle_zone');
 
+  /// Reference to `identity_connector` attribute.
+  TfRef<List<Map<String, Object?>>> get identityConnector =>
+      TfRef.attribute<List<Map<String, Object?>>>(this, 'identity_connector');
+
   /// Reference to `terraform_labels` attribute.
   TfRef<Map<String, String>> get terraformLabels =>
       TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
