@@ -79,6 +79,10 @@ next step, e.g. a sealed-slot sketch), then apply `bump-escalated`. Stop.
 
 ## Report format (PR comment, always, before any label)
 
+Start the comment with the exact line `## Schema-bump post-process` —
+loop-health machine-checks that marker and flags a verdict label without
+it as a stalled handoff.
+
 - **Saw:** drift summary in 2-3 lines (provider bump, MM files, new
   resources, check states).
 - **Did:** commits you pushed (or "nothing — clean").
