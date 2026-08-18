@@ -34,6 +34,41 @@ final class SecureSourceManagerRepositoryInitialConfig {
   };
 }
 
+/// Typed helper for the `scan_config` block of
+/// `google_secure_source_manager_repository` (derived from provider schema).
+@immutable
+final class SecureSourceManagerRepositoryScanConfig {
+  const SecureSourceManagerRepositoryScanConfig({this.secretScanConfig});
+
+  final SecureSourceManagerRepositoryScanConfigSecretScanConfig?
+  secretScanConfig;
+
+  Map<String, Object?> encode() => {
+    if (secretScanConfig != null)
+      'secret_scan_config': secretScanConfig!.encode(),
+  };
+}
+
+/// Typed helper for the `scan_config.secret_scan_config` block of
+/// `google_secure_source_manager_repository` (derived from provider schema).
+@immutable
+final class SecureSourceManagerRepositoryScanConfigSecretScanConfig {
+  const SecureSourceManagerRepositoryScanConfigSecretScanConfig({
+    this.enabled,
+    this.inspectTemplate,
+  });
+
+  final TfArg<bool>? enabled;
+
+  final TfArg<String>? inspectTemplate;
+
+  Map<String, Object?> encode() => {
+    if (enabled != null) 'enabled': enabled!.toTfJson(),
+    if (inspectTemplate != null)
+      'inspect_template': inspectTemplate!.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_secure_source_manager_repository`.
 ///
 /// Repositories store source code. It supports all Git SCM client commands and

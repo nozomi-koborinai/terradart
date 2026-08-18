@@ -46,4 +46,30 @@
 # detected types.
 
 entries:
-  []
+  - resource: google_chronicle_soar_network
+    detected_at: 2026-08-16
+    provider_version: 7.44.0
+  - resource: google_dataform_repository
+    detected_at: 2026-08-16
+    provider_version: 7.44.0
+  - resource: google_dataform_repository_iam_binding
+    detected_at: 2026-08-16
+    provider_version: 7.44.0
+  - resource: google_dataform_repository_iam_member
+    detected_at: 2026-08-16
+    provider_version: 7.44.0
+  - resource: google_dataform_repository_iam_policy
+    detected_at: 2026-08-16
+    provider_version: 7.44.0
+  - resource: google_iam_folder_access_policy
+    detected_at: 2026-08-16
+    provider_version: 7.44.0
+  - resource: google_iam_organization_access_policy
+    detected_at: 2026-08-16
+    provider_version: 7.44.0
+  - resource: google_iam_project_access_policy
+    detected_at: 2026-08-16
+    provider_version: 7.44.0
+  - resource: google_vertex_ai_evaluation_metric
+    detected_at: 2026-08-16
+    provider_version: 7.44.0

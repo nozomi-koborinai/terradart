@@ -6,7 +6,9 @@ import 'package:terradart_core/terradart_core.dart';
 /// Sensitive field paths for `google_network_security_dns_threat_detector`.
 const Set<String> _googleNetworkSecurityDnsThreatDetectorSensitive = <String>{};
 
-/// Network Security Dns Threat Detector Threat Detector enum for `threat_detector_provider`.
+/// `threat_detector_provider` for [GoogleNetworkSecurityDnsThreatDetector].
+///
+/// Upstream documents `INFOBLOX` as the only supported value.
 enum NetworkSecurityDnsThreatDetectorThreatDetectorProvider
     implements TerraformEnum {
   infoblox('INFOBLOX');
