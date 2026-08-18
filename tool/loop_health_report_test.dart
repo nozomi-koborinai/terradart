@@ -487,6 +487,64 @@ entries:
     expect(data.waveEscalations, 2);
   });
 
+  group('bump report-comment stall', () {
+    LoopHealthData collectWith(List<Map<String, dynamic>> comments) {
+      String gh(List<String> args) {
+        final path = args[1];
+        if (path.contains('label%3Aschema-bump') &&
+            path.contains('is%3Aopen')) {
+          return jsonEncode({
+            'total_count': 1,
+            'items': [
+              {
+                'number': 595,
+                'created_at': '2026-08-16T22:07:48Z',
+                'labels': [
+                  {'name': 'schema-bump'},
+                  {'name': 'bump-escalated'},
+                ],
+              },
+            ],
+          });
+        }
+        if (path.contains('/issues/595/comments')) return jsonEncode(comments);
+        if (path.startsWith('repos/') && path.contains('/pulls?')) return '[]';
+        return '{"total_count":0,"items":[]}';
+      }
+
+      return collectLoopHealth(
+        gh: gh,
+        now: DateTime.utc(2026, 8, 18),
+        backlogYaml: '',
+        loopModelsYaml: '',
+        bumpArmed: false,
+        waveArmed: false,
+      );
+    }
+
+    test('a verdict-labeled open bump PR without a report comment stalls', () {
+      final data = collectWith([
+        {'body': 'some unrelated bot comment'},
+      ]);
+      expect(
+        data.stalls.where((s) => s.kind == 'bump report'),
+        hasLength(1),
+        reason: 'label landed but the mandated Saw/Did/Verdict report did not',
+      );
+      expect(
+        data.stalls.singleWhere((s) => s.kind == 'bump report').ref,
+        '#595',
+      );
+    });
+
+    test('the report comment suppresses the stall', () {
+      final data = collectWith([
+        {'body': '## Schema-bump post-process\n- Saw: ...\n- Verdict: Tier 3'},
+      ]);
+      expect(data.stalls.where((s) => s.kind == 'bump report'), isEmpty);
+    });
+  });
+
   test('an open wave PR suppresses the idle-wave stall (WIP-1 is at work)', () {
     // Old enough to be stall-eligible — only the in-flight PR suppresses.
     const yaml = '''

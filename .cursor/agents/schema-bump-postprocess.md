@@ -17,8 +17,11 @@ guardrails all bind you.
 
 ## Inspect
 
-- Read `.schema-bump/drift_report.md` on the PR branch (summary table:
-  provider version, MM files, wrap --check, QA gates, new/removed resources).
+- Read the drift report — it is the PR BODY, not a file on the branch
+  (`schema-bump.yml` renders `.schema-bump/drift_report.md` locally and
+  passes it via `--body-file` when opening the PR):
+  `gh pr view <n> --json body -q .body`. Summary table: provider version,
+  MM files, wrap --check, QA gates, new/removed resources.
 - Read the PR diff and CI status (`gh pr checks <n>`). To list changed
   files, use the paginated files API — `gh pr diff --name-only` trips the
   20k-line diff limit on bump PRs:
