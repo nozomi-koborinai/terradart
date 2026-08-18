@@ -68,7 +68,7 @@ Map<String, String> buildBarrelFiles({
       files: byBarrel[barrel]!,
     );
   }
-  out['terradart_google'] = _emitUmbrella(
+  out[manifest.umbrellaFile] = _emitUmbrella(
     manifest: manifest,
     barrelFileStems: [
       for (final barrel in byBarrel.keys)
