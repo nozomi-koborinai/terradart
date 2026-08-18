@@ -118,6 +118,10 @@ Future<void> main(List<String> args) async {
     rawSchema = File(schemaJsonPath).readAsStringSync();
   } else {
     final tmp = Directory.systemTemp.createTempSync('extract_schema_');
+    // dart:io's exit() skips finally blocks, so failures are collected and
+    // exit happens only AFTER the temp-dir cleanup below.
+    String? failure;
+    var raw = '';
     try {
       final name = provider.split('/').last;
       File('${tmp.path}/main.tf').writeAsStringSync('''
@@ -130,28 +134,40 @@ terraform {
   }
 }
 ''');
+      // Terraform emits UTF-8; the default systemEncoding is not UTF-8
+      // everywhere (Windows), and a mis-decoded description would land
+      // silently in the committed fixture.
       final init = Process.runSync(
         'terraform',
         ['init', '-no-color'],
         workingDirectory: tmp.path,
+        stdoutEncoding: utf8,
+        stderrEncoding: utf8,
       );
       if (init.exitCode != 0) {
-        stderr.writeln('terraform init failed:\n${init.stderr}');
-        exit(_exitExtract);
+        failure = 'terraform init failed:\n${init.stderr}';
+      } else {
+        final dump = Process.runSync(
+          'terraform',
+          ['providers', 'schema', '-json'],
+          workingDirectory: tmp.path,
+          stdoutEncoding: utf8,
+          stderrEncoding: utf8,
+        );
+        if (dump.exitCode != 0) {
+          failure = 'terraform providers schema failed:\n${dump.stderr}';
+        } else {
+          raw = dump.stdout as String;
+        }
       }
-      final dump = Process.runSync(
-        'terraform',
-        ['providers', 'schema', '-json'],
-        workingDirectory: tmp.path,
-      );
-      if (dump.exitCode != 0) {
-        stderr.writeln('terraform providers schema failed:\n${dump.stderr}');
-        exit(_exitExtract);
-      }
-      rawSchema = dump.stdout as String;
     } finally {
       tmp.deleteSync(recursive: true);
     }
+    if (failure != null) {
+      stderr.writeln(failure);
+      exit(_exitExtract);
+    }
+    rawSchema = raw;
   }
 
   final Map<String, dynamic> subset;
