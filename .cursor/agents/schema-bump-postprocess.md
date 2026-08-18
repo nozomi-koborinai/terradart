@@ -17,8 +17,11 @@ guardrails all bind you.
 
 ## Inspect
 
-- Read `.schema-bump/drift_report.md` on the PR branch (summary table:
-  provider version, MM files, wrap --check, QA gates, new/removed resources).
+- Read the drift report — it is the PR BODY, not a file on the branch
+  (`schema-bump.yml` renders `.schema-bump/drift_report.md` locally and
+  passes it via `--body-file` when opening the PR):
+  `gh pr view <n> --json body -q .body`. Summary table: provider version,
+  MM files, wrap --check, QA gates, new/removed resources.
 - Read the PR diff and CI status (`gh pr checks <n>`). To list changed
   files, use the paginated files API — `gh pr diff --name-only` trips the
   20k-line diff limit on bump PRs:
@@ -75,6 +78,10 @@ Two full repair rounds without green → escalate (Tier 3).
 next step, e.g. a sealed-slot sketch), then apply `bump-escalated`. Stop.
 
 ## Report format (PR comment, always, before any label)
+
+Start the comment with the exact line `## Schema-bump post-process` —
+loop-health machine-checks that marker and flags a verdict label without
+it as a stalled handoff.
 
 - **Saw:** drift summary in 2-3 lines (provider bump, MM files, new
   resources, check states).

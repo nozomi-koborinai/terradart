@@ -257,6 +257,8 @@ LoopHealthData collectLoopHealth({
         windowStart: sinceDt,
       );
 
+  final openBumpPrs = _searchItems(gh, repo, 'is:pr is:open label:schema-bump');
+
   final stalls = <Stall>[
     for (final p in wavePulls)
       if (p['state'] == 'open' &&
@@ -279,7 +281,7 @@ LoopHealthData collectLoopHealth({
           ref: '#${i['number']}',
           ageDays: _ageDays(now, i['created_at'] as String),
         ),
-    for (final p in _searchItems(gh, repo, 'is:pr is:open label:schema-bump'))
+    for (final p in openBumpPrs)
       if (_ageDays(now, p['created_at'] as String) >= bumpStallDays)
         (
           kind: 'bump PR',
@@ -287,6 +289,37 @@ LoopHealthData collectLoopHealth({
           ageDays: _ageDays(now, p['created_at'] as String),
         ),
   ];
+
+  // A verdict label without the mandated Saw/Did/Verdict report comment is
+  // a contentless maintainer handoff (the #595 failure): the runbook says
+  // "comment ALWAYS, before any label", but nothing enforced it.
+  for (final p in openBumpPrs) {
+    final labels = ((p['labels'] as List<dynamic>?) ?? const [])
+        .cast<Map<String, dynamic>>()
+        .map((l) => l['name'] as String? ?? '');
+    if (!labels.contains('bump-approved') &&
+        !labels.contains('bump-escalated')) {
+      continue;
+    }
+    final commentsRaw = gh([
+      'api',
+      'repos/$repo/issues/${p['number']}/comments?per_page=100',
+    ]);
+    final comments =
+        (jsonDecode(commentsRaw) as List<dynamic>).cast<Map<String, dynamic>>();
+    final hasReport = comments.any(
+      (c) => (c['body'] as String? ?? '').contains('Schema-bump post-process'),
+    );
+    if (!hasReport) {
+      stalls.add(
+        (
+          kind: 'bump report',
+          ref: '#${p['number']}',
+          ageDays: _ageDays(now, p['created_at'] as String),
+        ),
+      );
+    }
+  }
 
   // Aged actionable backlog, no wave PR opened this window, none in flight
   // (WIP-1 not the cause), and no comment-marked escalation (escalate-and-
