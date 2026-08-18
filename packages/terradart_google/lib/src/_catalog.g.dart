@@ -30683,7 +30683,9 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'deletionPolicy',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>[
+      'NetworkSecurityDnsThreatDetectorThreatDetectorProvider',
+    ],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_network_security_dns_threat_detector`.\n\nDNS Armor is a fully-managed service that provides DNS-layer security for\nyour Google Cloud workloads.\n\nNetwork Security **DNS threat detector** (DNS Armor / Infoblox) — enables\nDNS-layer advanced threat detection for VPC workloads in a project.\n\nCreating a detector enables DNS Armor for the project. Billing is\nusage-based (workloads / internet-bound DNS queries) via Network Security\nSKU `F6D7-37A1-D4A0`, not a flat existence charge for the config alone.\n[threatDetectorProvider] must be `INFOBLOX` (only supported value).\nLocation must be `global`.\n\nEnable `networksecurity.googleapis.com` via [GoogleProjectService]\nbefore apply. At most one DNS threat detector exists per project.\n\nExample:\n```dart\nGoogleNetworkSecurityDnsThreatDetector(\n  localName: \'dns_threat\',\n  name: TfArg.literal(\'terradart-dns-threat\'),\n  location: TfArg.literal(\'global\'),\n  threatDetectorProvider: TfArg.literal(\n    NetworkSecurityDnsThreatDetectorThreatDetectorProvider.infoblox,\n  ),\n);\n```',
