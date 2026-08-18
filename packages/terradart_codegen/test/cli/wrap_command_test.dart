@@ -717,6 +717,126 @@ paramOrder:
       }
     });
   });
+
+  group('WrapCommand provider parameterization', () {
+    test(
+        'wraps a non-google provider from a custom overrides root and '
+        'barrels manifest, without an mm/ directory', () async {
+      final tmp = await Directory.systemTemp.createTemp('wrap_beta_');
+      try {
+        // Source: schema.json only — deliberately NO mm/ directory (the
+        // documented schema-only path a provider without Magic Modules
+        // metadata will take).
+        final sourceDir = Directory(p.join(tmp.path, 'source'))..createSync();
+        File(p.join(sourceDir.path, 'schema.json')).writeAsStringSync(
+          jsonEncode({
+            'format_version': '1.0',
+            'provider_schemas': {
+              'registry.terraform.io/hashicorp/google-beta': {
+                'resource_schemas': {
+                  'google_project_service_identity': {
+                    'version': 0,
+                    'block': {
+                      'attributes': {
+                        'id': {'type': 'string', 'computed': true},
+                        'project': {
+                          'type': 'string',
+                          'optional': true,
+                          'computed': true,
+                        },
+                        'service': {'type': 'string', 'required': true},
+                        'email': {'type': 'string', 'computed': true},
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          }),
+        );
+
+        // Overrides live OUTSIDE the package default root.
+        final overridesDir = Directory(p.join(tmp.path, 'overrides'))
+          ..createSync();
+        File(
+          p.join(overridesDir.path, 'google_project_service_identity.yaml'),
+        ).writeAsStringSync('''
+outputDir: project
+deriveClassDoc: true
+deriveOutputGetters: true
+
+paramOrder:
+  - service
+  - project
+''');
+
+        // A per-package barrels manifest that also names the umbrella.
+        final manifestFile = File(p.join(tmp.path, 'barrels_beta.yaml'))
+          ..writeAsStringSync('''
+umbrellaFile: terradart_google_beta
+umbrellaDoc: |-
+  /// google-beta curated surface umbrella.
+umbrellaExtraExports: []
+barrels:
+  project:
+    doc: |-
+      /// Project-level beta resources.
+''');
+
+        final runner = buildCliRunner();
+        final code = await runner.run([
+          'wrap',
+          '--provider',
+          'hashicorp/google-beta',
+          '--source',
+          sourceDir.path,
+          '--output',
+          _libSrcOut(tmp),
+          '--overrides-root',
+          overridesDir.path,
+          '--barrels-manifest',
+          manifestFile.path,
+        ]);
+        expect(code, 0);
+
+        final files = <String>[];
+        for (final ent in Directory(tmp.path).listSync(recursive: true)) {
+          if (ent is File && ent.path.endsWith('.dart')) {
+            files.add(p.relative(ent.path, from: tmp.path));
+          }
+        }
+        expect(
+          files,
+          contains(
+            p.join(
+              'lib',
+              'src',
+              'project',
+              'google_project_service_identity.dart',
+            ),
+          ),
+        );
+        expect(files, contains(p.join('lib', 'project.dart')));
+        // The umbrella takes the manifest's name — not terradart_google.
+        expect(files, contains(p.join('lib', 'terradart_google_beta.dart')));
+        expect(
+          files,
+          isNot(contains(p.join('lib', 'terradart_google.dart'))),
+        );
+      } finally {
+        await tmp.delete(recursive: true);
+      }
+    });
+
+    test('umbrellaFile defaults to terradart_google when absent', () {
+      final manifest = const BarrelManifest(
+        umbrellaDoc: '/// Umbrella.',
+        umbrellaExtraExports: [],
+        barrels: {'app': BarrelSpec(doc: '/// App.')},
+      );
+      expect(manifest.umbrellaFile, 'terradart_google');
+    });
+  });
 }
 
 /// Loads `resource_schemas[terraformType].block` straight from an
