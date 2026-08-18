@@ -69,6 +69,21 @@ class WrapCommand extends Command<int> {
             '`wrap-promote` markers that would otherwise break the '
             'full-registry load.',
         valueHelp: 'TERRAFORM_TYPE',
+      )
+      ..addOption(
+        'overrides-root',
+        help: 'Directory of wrapper-override YAMLs. Defaults to the '
+            'committed google registry '
+            '(src/codegen/wrapper_overrides/yaml/); other providers pass '
+            'their own root.',
+        valueHelp: 'DIR',
+      )
+      ..addOption(
+        'barrels-manifest',
+        help: 'Authored barrels manifest. Defaults to the committed google '
+            'manifest (src/codegen/barrels/barrels.yaml); other providers '
+            'pass their own (its umbrellaFile axis names the umbrella).',
+        valueHelp: 'FILE',
       );
   }
 
@@ -165,26 +180,36 @@ class WrapCommand extends Command<int> {
         ? baseIr
         : const IrMerger().merge(base: baseIr, overrides: mmOverrides);
 
-    // 2. Resolve the YAML override root. In `dart test` the package_config
-    //    is provided by the runner, so `Isolate.resolvePackageUri` succeeds.
-    //    Production CLI invocations (`dart run` / `dart compile exe`) also
-    //    have a package config available. Compile-time AOT snapshots are
-    //    the one mode where this can fail; surface a clear software error.
-    final yamlRootUri = await Isolate.resolvePackageUri(
-      Uri.parse(
-          'package:terradart_codegen/src/codegen/wrapper_overrides/yaml/'),
-    );
-    if (yamlRootUri == null) {
-      stderr.writeln(
-        'terradart wrap: failed to resolve '
-        'package:terradart_codegen yaml root.',
+    // 2. Resolve the YAML override root: the --overrides-root flag when
+    //    given (non-google providers carry their own registry), else the
+    //    committed google registry via package URI. In `dart test` the
+    //    package_config is provided by the runner, so
+    //    `Isolate.resolvePackageUri` succeeds. Production CLI invocations
+    //    (`dart run` / `dart compile exe`) also have a package config
+    //    available. Compile-time AOT snapshots are the one mode where this
+    //    can fail; surface a clear software error.
+    final overridesRootArg = argResults?['overrides-root'] as String?;
+    final String yamlRootPath;
+    if (overridesRootArg != null) {
+      yamlRootPath = overridesRootArg;
+    } else {
+      final yamlRootUri = await Isolate.resolvePackageUri(
+        Uri.parse(
+            'package:terradart_codegen/src/codegen/wrapper_overrides/yaml/'),
       );
-      return CliExitCodes.software;
+      if (yamlRootUri == null) {
+        stderr.writeln(
+          'terradart wrap: failed to resolve '
+          'package:terradart_codegen yaml root.',
+        );
+        return CliExitCodes.software;
+      }
+      yamlRootPath = yamlRootUri.toFilePath();
     }
     final LoadedOverrides loaded;
     try {
       loaded = loadWrapperOverrides(
-        rootDir: yamlRootUri.toFilePath(),
+        rootDir: yamlRootPath,
         only: only,
       );
     } on StateError catch (e) {
@@ -315,20 +340,28 @@ class WrapCommand extends Command<int> {
       // manifest (doc, file-name override, hand-written extraExports). Same
       // `--only` skip rationale as the catalog: barrels are whole-registry
       // artifacts, so a single-resource regen must not clobber them.
-      final manifestUri = await Isolate.resolvePackageUri(
-        Uri.parse('package:terradart_codegen/src/codegen/barrels/barrels.yaml'),
-      );
-      if (manifestUri == null) {
-        stderr.writeln(
-          'terradart wrap: failed to resolve barrels.yaml package path.',
+      final manifestArg = argResults?['barrels-manifest'] as String?;
+      final String manifestPath;
+      if (manifestArg != null) {
+        manifestPath = manifestArg;
+      } else {
+        final manifestUri = await Isolate.resolvePackageUri(
+          Uri.parse(
+              'package:terradart_codegen/src/codegen/barrels/barrels.yaml'),
         );
-        return CliExitCodes.software;
+        if (manifestUri == null) {
+          stderr.writeln(
+            'terradart wrap: failed to resolve barrels.yaml package path.',
+          );
+          return CliExitCodes.software;
+        }
+        manifestPath = manifestUri.toFilePath();
       }
       final Map<String, String> barrelFiles;
       try {
         barrelFiles = buildBarrelFiles(
           entries: catalogEntries,
-          manifest: loadBarrelManifest(manifestUri.toFilePath()),
+          manifest: loadBarrelManifest(manifestPath),
         );
       } on StateError catch (e) {
         stderr.writeln('terradart wrap: $e');

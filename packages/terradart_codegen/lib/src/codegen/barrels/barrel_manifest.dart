@@ -18,9 +18,15 @@ class BarrelManifest {
     required this.umbrellaDoc,
     required this.umbrellaExtraExports,
     required this.barrels,
+    this.umbrellaFile = 'terradart_google',
   });
 
-  /// Verbatim `///` doc block for the `terradart_google.dart` umbrella.
+  /// Umbrella file stem under `lib/` (e.g. `terradart_google_beta` for the
+  /// beta package). Defaults to the original google umbrella so existing
+  /// manifests need no edit.
+  final String umbrellaFile;
+
+  /// Verbatim `///` doc block for the umbrella.
   final String umbrellaDoc;
 
   /// Verbatim `export '...';` directives the umbrella carries beyond the
@@ -64,7 +70,12 @@ BarrelManifest loadBarrelManifest(String path) {
   if (yaml is! YamlMap) {
     throw FormatException('$path: top-level must be a YAML mapping');
   }
-  const allowedTop = {'umbrellaDoc', 'umbrellaExtraExports', 'barrels'};
+  const allowedTop = {
+    'umbrellaFile',
+    'umbrellaDoc',
+    'umbrellaExtraExports',
+    'barrels',
+  };
   for (final key in yaml.keys) {
     if (!allowedTop.contains(key)) {
       throw FormatException('$path: unknown top-level key: $key');
@@ -73,6 +84,11 @@ BarrelManifest loadBarrelManifest(String path) {
   final umbrellaDoc = yaml['umbrellaDoc'];
   if (umbrellaDoc is! String || umbrellaDoc.trim().isEmpty) {
     throw FormatException('$path: umbrellaDoc must be a non-empty string');
+  }
+  final umbrellaFileNode = yaml['umbrellaFile'];
+  if (umbrellaFileNode != null &&
+      (umbrellaFileNode is! String || umbrellaFileNode.trim().isEmpty)) {
+    throw FormatException('$path: umbrellaFile must be a non-empty string');
   }
   final umbrellaExtra =
       _stringList(yaml['umbrellaExtraExports'], path, 'umbrellaExtraExports');
@@ -114,6 +130,8 @@ BarrelManifest loadBarrelManifest(String path) {
     umbrellaDoc: umbrellaDoc.trimRight(),
     umbrellaExtraExports: umbrellaExtra,
     barrels: barrels,
+    umbrellaFile:
+        umbrellaFileNode is String ? umbrellaFileNode : 'terradart_google',
   );
 }
 
