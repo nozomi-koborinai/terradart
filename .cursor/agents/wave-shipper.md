@@ -156,10 +156,16 @@ comment on issues (probed 2026-08-18, #597). Before exiting on ANY
 escalation path above, push the trace through the relay:
 
 ```bash
-git checkout -b "escalation/wave-$(date -u +%Y-%m-%d)" origin/main
-git commit --allow-empty -m "[agent-relay] escalation(wave): <one-line reason>"
-git push origin HEAD
+trace=$(git commit-tree 'origin/main^{tree}' -p origin/main \
+  -m "[agent-relay] escalation(wave): <one-line reason>")
+git push origin "$trace:refs/heads/escalation/wave-$(date -u +%Y%m%d-%H%M%S)"
 ```
+
+This never checks anything out: `commit-tree` reuses origin/main's tree,
+so the pushed commit is empty by construction and the commands work from
+any state — dirty tree, staged repair leftovers, mid-anything. Do NOT
+substitute a `checkout` + `commit --allow-empty` flow; with staged
+changes, `--allow-empty` happily commits content.
 
 `escalation-relay.yml` posts everything after the `[agent-relay] ` marker
 verbatim as a comment on the loop-health issue — keep the
