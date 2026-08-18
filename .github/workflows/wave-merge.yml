@@ -29,6 +29,10 @@ on:
         description: 'Internal: BEHIND-redispatch depth (0-2)'
         required: false
         default: '0'
+      ignore_review_threads:
+        description: 'Human override: merge despite unresolved Bugbot threads'
+        required: false
+        default: 'false'
 
 permissions:
   contents: write
@@ -194,6 +198,37 @@ jobs:
           fi
           echo "Applied examples: $n (run $run_id)"
 
+      - name: Verify agent-review threads are resolved
+        id: review
+        if: steps.verify.outputs.verdict == 'pass'
+        env:
+          GH_TOKEN: ${{ secrets.SCHEMA_BUMP_PAT }}
+          PR: ${{ steps.pr.outputs.number }}
+          IGNORE: ${{ github.event.inputs.ignore_review_threads }}
+        run: |
+          set -euo pipefail
+          echo "verdict=pass" >> "$GITHUB_OUTPUT"
+          if [ "$IGNORE" = "true" ]; then
+            echo "review-thread gate skipped by dispatch input (human override)"
+            exit 0
+          fi
+          # CI green is not review clean: Bugbot findings arrive as review
+          # threads, and the shipper's token cannot resolve them — but
+          # Bugbot's re-review auto-resolves threads its fix push addressed,
+          # so a fix-and-push loop self-heals this gate.
+          unresolved=$(gh api graphql \
+            -F owner="${GITHUB_REPOSITORY%%/*}" \
+            -F name="${GITHUB_REPOSITORY##*/}" \
+            -F pr="$PR" \
+            -f query='query($owner:String!,$name:String!,$pr:Int!){repository(owner:$owner,name:$name){pullRequest(number:$pr){reviewThreads(first:100){nodes{isResolved comments(first:1){nodes{author{login}}}}}}}}' \
+            --jq '[.data.repository.pullRequest.reviewThreads.nodes[] | select(.isResolved==false and .comments.nodes[0].author.login=="cursor")] | length')
+          if [ "${unresolved:-0}" -gt 0 ]; then
+            echo "verdict=fail" >> "$GITHUB_OUTPUT"
+            echo "reason=$unresolved unresolved Bugbot finding(s) — fix and push (Bugbot's re-review auto-resolves addressed threads), or a human resolves the threads / re-dispatches with ignore_review_threads=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "no unresolved Bugbot threads"
+          fi
+
       - name: Merge or report
         env:
           GH_TOKEN: ${{ secrets.SCHEMA_BUMP_PAT }}
@@ -203,10 +238,14 @@ jobs:
           CHECKS_EXIT: ${{ steps.checks.outputs.exit }}
           APPLY_VERDICT: ${{ steps.applyproof.outputs.verdict }}
           APPLY_REASON: ${{ steps.applyproof.outputs.reason }}
+          REVIEW_VERDICT: ${{ steps.review.outputs.verdict }}
+          REVIEW_REASON: ${{ steps.review.outputs.reason }}
           DRY_RUN: ${{ steps.pr.outputs.dry_run }}
           DEPTH: ${{ github.event.inputs.depth }}
+          IGNORE: ${{ github.event.inputs.ignore_review_threads }}
         run: |
           set -euo pipefail
+          [ "$IGNORE" = "true" ] || IGNORE=false
           if [ "$VERDICT" != "pass" ]; then
             gh pr comment "$PR" --body "**wave-merge:** NOT merging — ${REASON}."
             exit 1
@@ -219,8 +258,12 @@ jobs:
             gh pr comment "$PR" --body "**wave-merge:** NOT merging — ${APPLY_REASON}."
             exit 1
           fi
+          if [ "$REVIEW_VERDICT" != "pass" ]; then
+            gh pr comment "$PR" --body "**wave-merge:** NOT merging — ${REVIEW_REASON}."
+            exit 1
+          fi
           if [ "$DRY_RUN" = "true" ]; then
-            gh pr comment "$PR" --body "**wave-merge (dry run):** all verifications passed — branch pattern, same-repo head, Wave scope ledger, required checks green, and a real apply-smoke apply for this head SHA. Merging is disarmed (WAVE_MERGE_ENABLED != true)."
+            gh pr comment "$PR" --body "**wave-merge (dry run):** all verifications passed — branch pattern, same-repo head, Wave scope ledger, required checks green, a real apply-smoke apply for this head SHA, and no unresolved Bugbot threads. Merging is disarmed (WAVE_MERGE_ENABLED != true)."
             exit 0
           fi
           state=$(gh pr view "$PR" --json mergeStateStatus -q .mergeStateStatus)
@@ -232,9 +275,12 @@ jobs:
               exit 1
             fi
             gh pr update-branch "$PR"
-            gh workflow run wave-merge.yml -f pr="$PR" -f dry_run=false -f depth="$((d + 1))"
+            # Forward the human override — a BEHIND redispatch must not
+            # silently drop ignore_review_threads back to its default.
+            gh workflow run wave-merge.yml -f pr="$PR" -f dry_run=false \
+              -f depth="$((d + 1))" -f ignore_review_threads="$IGNORE"
             gh pr comment "$PR" --body "**wave-merge:** branch was BEHIND — updated it and re-dispatched myself (depth $((d + 1))) to re-verify against the new head."
             exit 0
           fi
           gh pr merge "$PR" --squash --delete-branch
-          gh pr comment "$PR" --body "**wave-merge:** verified (branch pattern, same-repo head, scope ledger, required checks, real apply proof) and squash-merged."
+          gh pr comment "$PR" --body "**wave-merge:** verified (branch pattern, same-repo head, scope ledger, required checks, real apply proof, no unresolved Bugbot threads) and squash-merged."

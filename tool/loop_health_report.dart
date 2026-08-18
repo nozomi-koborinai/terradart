@@ -61,6 +61,7 @@ typedef LoopHealthData = ({
   int waveFirstPassGreen,
   int waveRepairCommits,
   int waveEscalations,
+  int waveBugbotFindings,
   int backlogRemaining,
   int backlogSkipNoted,
   List<Stall> stalls,
@@ -195,9 +196,12 @@ LoopHealthData collectLoopHealth({
   final waveMerged = mergedInWindow.length;
 
   // Repair effort per merged wave: fix(repair): commits are the structured
-  // trace the wave-shipper runbook mandates for repair rounds.
+  // trace the wave-shipper runbook mandates for repair rounds. Bugbot
+  // review comments on the same PRs measure what the independent reviewer
+  // caught — the complement of first-pass green (CI green != review clean).
   var waveRepairCommits = 0;
   var waveFirstPassGreen = 0;
+  var waveBugbotFindings = 0;
   for (final p in mergedInWindow) {
     final commitsRaw = gh([
       'api',
@@ -212,6 +216,18 @@ LoopHealthData collectLoopHealth({
     }).length;
     waveRepairCommits += repairs;
     if (repairs == 0) waveFirstPassGreen++;
+
+    final reviewRaw = gh([
+      'api',
+      'repos/$repo/pulls/${p['number']}/comments?per_page=100',
+    ]);
+    final reviewComments =
+        (jsonDecode(reviewRaw) as List<dynamic>).cast<Map<String, dynamic>>();
+    waveBugbotFindings += reviewComments.where((c) {
+      final login =
+          (c['user'] as Map<String, dynamic>?)?['login'] as String? ?? '';
+      return login == 'cursor[bot]';
+    }).length;
   }
 
   // Agent escalations land as structured comments on the loop-health issue
@@ -362,6 +378,7 @@ LoopHealthData collectLoopHealth({
     waveFirstPassGreen: waveFirstPassGreen,
     waveRepairCommits: waveRepairCommits,
     waveEscalations: waveEscalations,
+    waveBugbotFindings: waveBugbotFindings,
     backlogRemaining: backlogRemaining,
     backlogSkipNoted: backlogSkipNoted,
     stalls: stalls,
@@ -428,6 +445,7 @@ String renderLoopHealth({
     )
     ..writeln('- executor rejections: ${data.waveExecutorRejections}')
     ..writeln('- escalations (comment-marked): ${data.waveEscalations}')
+    ..writeln('- Bugbot findings on merged waves: ${data.waveBugbotFindings}')
     ..writeln(
       '- backlog remaining: ${data.backlogRemaining} '
       '(${data.backlogSkipNoted} skip-noted)'

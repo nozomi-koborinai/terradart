@@ -57,6 +57,13 @@ evidence-first:
   the marker first and wait for CI (draft = no real applies burned), then
   push the `[wave-ready]` marker once required checks are green. The
   change-gate's real apply and the merge executor take it from there.
+- **Bugbot findings block the merge executor** like a failing check: an
+  unresolved Bugbot review thread on your PR means no auto-merge. Treat a
+  finding as repair input — verify it against the code, fix, and push;
+  Bugbot's re-review auto-resolves threads your push addressed (you
+  cannot resolve threads yourself — token limits, #597). A finding you
+  believe is wrong after verification is an escalation (trace it): a
+  human resolves the thread or overrides the executor.
 
 ## Select the Wave
 
