@@ -123,12 +123,18 @@ jobs:
                 ;;
             esac
           fi
+          # Output-injection hardening: a body line matching a fixed heredoc
+          # delimiter would end the block early and let following body lines
+          # be parsed as new output assignments (e.g. label=wave-approved).
+          # Use an unpredictable delimiter, and write the validated scalars
+          # AFTER the body so they win even if a delimiter were ever guessed.
+          delim="RELAY_EOF_${RANDOM}${RANDOM}${RANDOM}${RANDOM}"
           {
+            echo "body<<$delim"
+            printf '%s\n' "$body"
+            echo "$delim"
             echo "issue=$issue"
             echo "label=$label"
-            echo "body<<RELAY_EOF"
-            printf '%s\n' "$body"
-            echo "RELAY_EOF"
           } >>"$GITHUB_OUTPUT"
 
       - name: Comment (and label) the target issue
@@ -140,6 +146,25 @@ jobs:
           LABEL: ${{ steps.msg.outputs.label }}
         run: |
           set -euo pipefail
+          # Re-validate at the privileged boundary — do not trust step
+          # outputs alone (defense in depth against output injection).
+          if ! printf '%s' "$ISSUE" | grep -qE '^[0-9]*$'; then
+            echo "refusing non-numeric issue '$ISSUE'" >&2
+            exit 1
+          fi
+          if [ -n "$LABEL" ]; then
+            if [ -z "$ISSUE" ]; then
+              echo "refusing label without an explicit issue target" >&2
+              exit 1
+            fi
+            case " $RELAY_LABEL_ALLOWLIST " in
+              *" $LABEL "*) ;;
+              *)
+                echo "refusing non-allowlisted label '$LABEL' at apply time" >&2
+                exit 1
+                ;;
+            esac
+          fi
           n="$ISSUE"
           if [ -z "$n" ]; then
             n=$(gh issue list --repo "$GITHUB_REPOSITORY" --label loop-health \
