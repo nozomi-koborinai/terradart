@@ -103,6 +103,12 @@ oracle_autonomous_database_quickstart: Autonomous Database apply needs Oracle zo
 # --- Oracle GoldenGate needs live ODB subnet/network and subscription entitlement
 oracle_goldengate_quickstart: GoldenGate apply needs Oracle zone entitlement and live ODB subnet provisioning — API rejects placeholder VPC/ODB wiring in terradart-validate
 
+# --- google-beta provider lane (apply policy not yet designed) ---
+# The apply-smoke harness targets the GA provider lane; how beta examples
+# apply (provider pinning in the harness, WIF scope review) is a separate
+# design. Until then beta examples are synth + terraform validate only.
+beta_service_identity_quickstart: google-beta example — beta apply policy is not designed yet, so synth + terraform validate cover it; the resource itself is free (service-agent metadata, no SKU — see google_project_service_identity in apply_cost_denylist.yaml)
+
 # --- Bills heavily even for a brief existence (third-party software licenses) ---
 # License Manager reserves third-party software licenses (e.g. Office SPLA) that
 # bill per license_count for the configuration's entire lifetime — no Compute VM

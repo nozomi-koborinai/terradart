@@ -5,6 +5,10 @@
       "Write(packages/terradart_google/lib/src/*/google_*.dart)",
       "Edit(packages/terradart_google/lib/src/_catalog.g.dart)",
       "Write(packages/terradart_google/lib/src/_catalog.g.dart)",
+      "Edit(packages/terradart_google_beta/lib/src/*/google_*.dart)",
+      "Write(packages/terradart_google_beta/lib/src/*/google_*.dart)",
+      "Edit(packages/terradart_google_beta/lib/src/_catalog.g.dart)",
+      "Write(packages/terradart_google_beta/lib/src/_catalog.g.dart)",
       "Edit(packages/terradart_codegen/test/fixtures/wrap/expected_output/**)",
       "Write(packages/terradart_codegen/test/fixtures/wrap/expected_output/**)"
     ],

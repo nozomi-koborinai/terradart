@@ -45,13 +45,14 @@ class TfJsonEncoder {
     };
     final missingByPrefix = <String, List<String>>{};
     for (final r in [...stack.resources, ...stack.dataSources]) {
-      final prefix = r.terraformType.split('_').first;
-      if (!providerNames.contains(prefix)) {
-        missingByPrefix.putIfAbsent(prefix, () => []).add(r.tfAddress);
-      }
+      // An explicit provider meta-argument REPLACES the implied prefix
+      // provider (Terraform semantics) — google-beta wrappers share the
+      // GA google_* type prefix, so requiring both would force beta-only
+      // stacks to register a google provider they never use.
       final explicit = r.provider;
-      if (explicit != null && !providerNames.contains(explicit)) {
-        missingByPrefix.putIfAbsent(explicit, () => []).add(r.tfAddress);
+      final needed = explicit ?? r.terraformType.split('_').first;
+      if (!providerNames.contains(needed)) {
+        missingByPrefix.putIfAbsent(needed, () => []).add(r.tfAddress);
       }
     }
     if (missingByPrefix.isNotEmpty) {

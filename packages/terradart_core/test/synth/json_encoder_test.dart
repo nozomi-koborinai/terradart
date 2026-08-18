@@ -735,4 +735,56 @@ void main() {
       expect(out, equals({'secret_data': r'${var.db_secret}'}));
     });
   });
+
+  group('explicit provider meta-argument vs implied prefix', () {
+    const betaProvider = FakeStackProvider(
+      providerName: 'google-beta',
+      source: 'hashicorp/google-beta',
+      versionConstraint: '~> 7.0',
+    );
+
+    test(
+        'an explicit provider replaces the implied prefix provider '
+        '(beta packages share the google_* type prefix)', () {
+      final stack = TestStack(providers: const [betaProvider]);
+      stack.add(
+        FakePubsubTopic.withMeta(
+          localName: 't',
+          argMap: {'name': TfArg.literal('x')},
+          provider: 'google-beta',
+        ),
+      );
+      expect(() => TfJsonEncoder.terraformBlock(stack), returnsNormally);
+    });
+
+    test('an explicit provider must still be registered', () {
+      final stack = TestStack(providers: const [betaProvider]);
+      stack.add(
+        FakePubsubTopic.withMeta(
+          localName: 't',
+          argMap: {'name': TfArg.literal('x')},
+          provider: 'google-beta-nope',
+        ),
+      );
+      expect(
+        () => TfJsonEncoder.terraformBlock(stack),
+        throwsA(isA<StateError>()),
+      );
+    });
+
+    test('without an explicit provider the implied prefix is still required',
+        () {
+      final stack = TestStack(providers: const [betaProvider]);
+      stack.add(
+        FakePubsubTopic(
+          localName: 't',
+          argMap: {'name': TfArg.literal('x')},
+        ),
+      );
+      expect(
+        () => TfJsonEncoder.terraformBlock(stack),
+        throwsA(isA<StateError>()),
+      );
+    });
+  });
 }

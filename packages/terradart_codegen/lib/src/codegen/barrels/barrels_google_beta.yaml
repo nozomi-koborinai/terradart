@@ -1,0 +1,24 @@
+# Authored barrel manifest for terradart_google_beta — the human-decided
+# axes of the generated barrels under terradart_google_beta/lib/.
+# Same contract as barrels.yaml (fail-closed both directions); consumed via
+# `terradart wrap --barrels-manifest`.
+
+umbrellaFile: terradart_google_beta
+
+umbrellaDoc: |-
+  /// Curated **google-beta** surface for TerraDart.
+  ///
+  /// Beta-only resources, curated on demand — for GA resources use
+  /// `package:terradart_google`. Both packages share `terradart_core` and
+  /// compose in one `Stack` (each provider block is emitted separately).
+  ///
+  /// This umbrella re-exports every per-service barrel. Prefer the
+  /// per-service imports in new code.
+
+umbrellaExtraExports:
+  - "export 'provider.dart';"
+
+barrels:
+  project:
+    doc: |-
+      /// Project-level beta resources (service identities).

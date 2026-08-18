@@ -46,9 +46,21 @@ import 'wrapper_overrides/wrapper_override.dart';
 ///   const from `.schema.dart`.
 /// - The `sensitiveFields` getter references the new file-private const.
 class WrapperEmitter {
-  WrapperEmitter({required this.overrides, this.rawResourceSchemas = const {}});
+  WrapperEmitter({
+    required this.overrides,
+    this.rawResourceSchemas = const {},
+    this.resourceProvider,
+  });
 
   final Map<String, WrapperOverride> overrides;
+
+  /// When set (e.g. `google-beta`), every emitted wrapper pins its
+  /// Terraform `provider` meta-argument to this name in the `super(...)`
+  /// call. Non-default providers share the GA `google_*` type prefix, so
+  /// without the pin `terradart_core`'s synth would attribute their
+  /// resources to the implied `google` provider. Null (the GA default)
+  /// emits nothing and keeps the implied-provider behavior.
+  final String? resourceProvider;
 
   /// Raw provider-schema JSON `block` maps, keyed by Terraform type — the
   /// shape `collectNestedTypes` consumes (`block_types` / `nesting_mode` /
@@ -265,6 +277,9 @@ class WrapperEmitter {
     buf.writeln('    super.dependsOn,');
     buf.writeln('  }) : super(');
     buf.writeln('         terraformType: tfType,');
+    if (resourceProvider != null) {
+      buf.writeln("         provider: '$resourceProvider',");
+    }
     buf.writeln('         argMap: {');
     for (final name in argMapOrder) {
       final snippet = argMapByName[name];

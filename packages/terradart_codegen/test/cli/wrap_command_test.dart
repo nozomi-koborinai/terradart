@@ -796,8 +796,22 @@ barrels:
           overridesDir.path,
           '--barrels-manifest',
           manifestFile.path,
+          '--resource-provider',
+          'google-beta',
         ]);
         expect(code, 0);
+
+        // Beta resources share the GA google_* type prefix, so the wrapper
+        // must pin the provider meta-argument or core's synth would
+        // attribute them to the implied google provider.
+        final wrapper = File(
+          p.join(
+            _libSrcOut(tmp),
+            'project',
+            'google_project_service_identity.dart',
+          ),
+        ).readAsStringSync();
+        expect(wrapper, contains("provider: 'google-beta',"));
 
         final files = <String>[];
         for (final ent in Directory(tmp.path).listSync(recursive: true)) {

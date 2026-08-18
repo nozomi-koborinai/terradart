@@ -1,0 +1,47 @@
+# tool/providers.yaml — per-provider generation-pipeline coordinates.
+#
+# The provider-parameterization ledger: each entry records where a
+# provider's schema fixture lives, which package `terradart wrap` emits
+# into, and which override registry / barrels manifest / provider
+# meta-argument the wrap invocation uses. Adding a provider (cloudflare,
+# ...) should mean adding an entry here plus its directories — consumers
+# are tool/agent_verify.sh's per-provider wrap --check loop and (future)
+# per-provider schema-bump lanes.
+#
+# Fields:
+#   source:          terraform registry source (NAMESPACE/NAME)
+#   schemaDir:       checked-in schema fixture directory
+#   schemaMode:      full | filtered
+#                    full     — entire provider schema (backlog detection
+#                               needs every resource key; GA google only)
+#                    filtered — only curated resources, re-extracted with
+#                               tool/extract_schema_subset.dart (see the
+#                               fixture's README)
+#   mm:              whether Magic Modules YAML enriches the merged IR
+#   outputPackage:   the package wrap emits into
+#   overridesRoot:   wrapper-override YAML registry (wrap --overrides-root)
+#   barrelsManifest: authored barrels manifest (wrap --barrels-manifest)
+#   resourceProvider: value for wrap --resource-provider, or null for the
+#                    implied default provider (GA google). Non-default
+#                    providers sharing the google_* type prefix MUST set
+#                    this or synth attributes their resources to `google`.
+
+providers:
+  google:
+    source: hashicorp/google
+    schemaDir: packages/terradart_codegen/test/fixtures/wrap/source
+    schemaMode: full
+    mm: true
+    outputPackage: packages/terradart_google
+    overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/yaml
+    barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels.yaml
+    resourceProvider: null
+  google-beta:
+    source: hashicorp/google-beta
+    schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_beta
+    schemaMode: filtered
+    mm: false
+    outputPackage: packages/terradart_google_beta
+    overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/google_beta/yaml
+    barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_google_beta.yaml
+    resourceProvider: google-beta
