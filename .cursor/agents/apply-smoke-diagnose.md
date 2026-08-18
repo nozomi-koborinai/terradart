@@ -83,16 +83,25 @@ diagnosis AND the label through `escalation-relay.yml` in ONE push: the
 commit subject targets the issue, the body is the verbatim comment, and
 a trailer applies the label after the comment lands.
 
-```bash
-msg="[agent-relay #<issue>] apply-smoke diagnosis $(date -u +%Y-%m-%d)
+Write the message to a FILE with your file-writing tool — NEVER build it
+in shell (quoted terraform error text can contain `$(...)`/backticks,
+which a double-quoted shell assignment would execute). File content:
+
+```text
+[agent-relay #<issue>] apply-smoke diagnosis <YYYY-MM-DD>
 
 <one row per failed slug: slug → class → root cause (error quoted or
 referenced) → action (pushed fix branch + its compare URL
 https://github.com/nozomi-koborinai/terradart/compare/main...<branch>?expand=1
 / skip entry / flake / escalated)>
 
-Relay-Label: smoke-diagnosed"
-trace=$(git commit-tree 'origin/main^{tree}' -p origin/main -m "$msg")
+Relay-Label: smoke-diagnosed
+```
+
+Then push it without the message ever touching shell evaluation:
+
+```bash
+trace=$(git commit-tree 'origin/main^{tree}' -p origin/main -F /tmp/diagnosis.msg)
 git push origin "${trace}:refs/heads/relay/diagnosis-$(date -u +%Y%m%d-%H%M%S)"
 ```
 

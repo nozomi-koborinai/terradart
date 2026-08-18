@@ -148,7 +148,10 @@ jobs:
           set -euo pipefail
           # Re-validate at the privileged boundary — do not trust step
           # outputs alone (defense in depth against output injection).
-          if ! printf '%s' "$ISSUE" | grep -qE '^[0-9]*$'; then
+          # Empty ISSUE is legal (loop-health path); non-empty must be
+          # all digits. printf '%s' on an empty value emits no line at
+          # all, so a single ^[0-9]*$ grep would wrongly reject it.
+          if [ -n "$ISSUE" ] && ! printf '%s\n' "$ISSUE" | grep -qE '^[0-9]+$'; then
             echo "refusing non-numeric issue '$ISSUE'" >&2
             exit 1
           fi
