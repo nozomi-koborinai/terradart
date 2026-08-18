@@ -1,82 +1,158 @@
 name: escalation-relay
 
-# Relays agent escalations to the open loop-health issue. Cloud-agent
-# tokens can push but cannot comment or label (probed 2026-08-18, #597),
-# so an agent delivers an escalation as an EMPTY commit pushed to an
-# escalation/* branch whose subject line is
+# Relays agent-authored issue comments (and one allowlisted label) on
+# behalf of cloud agents. Cloud-agent tokens can push but cannot comment
+# or label (probed 2026-08-18, #597), so an agent delivers text as an
+# EMPTY commit pushed to an escalation/* or relay/* branch whose subject
+# line starts with one of:
 #
-#   [agent-relay] escalation(<loop>): <one-line reason>
+#   [agent-relay] <text>        -> comment on the open loop-health issue
+#   [agent-relay #123] <text>   -> comment on issue/PR 123
 #
-# This workflow posts everything after the marker VERBATIM as an issue
-# comment (transport only — it never interprets or rewrites the text;
-# tool/loop_health_report.dart counts comments by their escalation(...)
-# prefix), then deletes the relay branch so nothing accumulates and no
-# stray PR can sit on it. workflow_dispatch exists so the posting path
-# can be tested end to end without an agent.
+# Everything after the marker (including further message lines) is posted
+# VERBATIM — transport only, never interpreted or rewritten
+# (tool/loop_health_report.dart counts escalation comments by their
+# escalation(...) prefix). One exception to pure transport, for safety
+# rather than judgment: a trailer line
+#
+#   Relay-Label: smoke-diagnosed
+#
+# is stripped from the comment and applied as a label AFTER commenting —
+# only to an explicit #N target and only for allowlisted labels, so a
+# relay push can never forge executor-gating labels like wave-approved.
+# The relay branch is deleted afterwards so nothing accumulates and no
+# stray PR can sit on it. workflow_dispatch exists so both legs can be
+# tested end to end without an agent.
 
 on:
   push:
-    branches: ['escalation/**']
+    branches: ['escalation/**', 'relay/**']
   workflow_dispatch:
     inputs:
       message:
-        description: 'Comment to relay verbatim (start it with escalation(<loop>):)'
+        description: 'Comment to relay verbatim'
         required: true
+        type: string
+      issue:
+        description: 'Target issue number (empty = open loop-health issue)'
+        required: false
+        type: string
+      label:
+        description: 'Allowlisted label to apply after commenting (needs issue)'
+        required: false
         type: string
 
 permissions:
   contents: write # delete the relay branch after posting
-  issues: write # comment on the loop-health issue
+  issues: write # comment on / label the target issue
 
 concurrency:
   group: escalation-relay-${{ github.ref }}
   cancel-in-progress: false
+
+env:
+  # Labels a relay push may apply. Everything else fails the run loudly —
+  # in particular executor-gating labels (wave-approved, bump-approved)
+  # must never be reachable from a push.
+  RELAY_LABEL_ALLOWLIST: 'smoke-diagnosed'
 
 jobs:
   relay:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
-      - name: Extract the relayed message
+      - name: Extract target, message, and label
         id: msg
         env:
           HEAD_MSG: ${{ github.event.head_commit.message }}
           DISPATCH_MSG: ${{ inputs.message }}
+          DISPATCH_ISSUE: ${{ inputs.issue }}
+          DISPATCH_LABEL: ${{ inputs.label }}
         run: |
           set -euo pipefail
+          issue=''
+          label=''
           if [ -n "${DISPATCH_MSG:-}" ]; then
             body="$DISPATCH_MSG"
+            issue="${DISPATCH_ISSUE:-}"
+            label="${DISPATCH_LABEL:-}"
           else
-            marker='[agent-relay] '
-            case "$HEAD_MSG" in
-              "$marker"*) body="${HEAD_MSG#"$marker"}" ;;
+            subject="${HEAD_MSG%%$'\n'*}"
+            case "$subject" in
+              '[agent-relay] '*)
+                body="${HEAD_MSG#'[agent-relay] '}"
+                ;;
+              '[agent-relay #'*)
+                t="${subject#'[agent-relay #'}"
+                issue="${t%%]*}"
+                if ! printf '%s' "$issue" | grep -qE '^[0-9]+$'; then
+                  echo "malformed issue number in marker: $subject" >&2
+                  exit 1
+                fi
+                body="${HEAD_MSG#"[agent-relay #$issue] "}"
+                if [ "$body" = "$HEAD_MSG" ]; then
+                  echo "marker did not match its own subject: $subject" >&2
+                  exit 1
+                fi
+                ;;
               *)
                 echo "head commit has no [agent-relay] marker; nothing to relay"
                 echo "body=" >>"$GITHUB_OUTPUT"
                 exit 0
                 ;;
             esac
+            # Pull an optional Relay-Label trailer out of the body.
+            label=$(printf '%s\n' "$body" \
+              | sed -n 's/^Relay-Label:[[:space:]]*//p' | tail -1)
+            body=$(printf '%s\n' "$body" | grep -v '^Relay-Label:' || true)
+          fi
+          if [ -z "$(printf '%s' "$body" | tr -d '[:space:]')" ]; then
+            echo "empty relay body; refusing" >&2
+            exit 1
+          fi
+          if [ -n "$label" ]; then
+            if [ -z "$issue" ]; then
+              echo "Relay-Label requires an explicit #N target" >&2
+              exit 1
+            fi
+            case " $RELAY_LABEL_ALLOWLIST " in
+              *" $label "*) ;;
+              *)
+                echo "label '$label' is not in the relay allowlist" >&2
+                exit 1
+                ;;
+            esac
           fi
           {
+            echo "issue=$issue"
+            echo "label=$label"
             echo "body<<RELAY_EOF"
             printf '%s\n' "$body"
             echo "RELAY_EOF"
           } >>"$GITHUB_OUTPUT"
 
-      - name: Comment on the loop-health issue
+      - name: Comment (and label) the target issue
         if: steps.msg.outputs.body != ''
         env:
           GH_TOKEN: ${{ github.token }}
           BODY: ${{ steps.msg.outputs.body }}
+          ISSUE: ${{ steps.msg.outputs.issue }}
+          LABEL: ${{ steps.msg.outputs.label }}
         run: |
           set -euo pipefail
-          n=$(gh issue list --repo "$GITHUB_REPOSITORY" --label loop-health \
-            --state open --json number --jq '.[0].number // empty')
+          n="$ISSUE"
           if [ -z "$n" ]; then
-            echo "no open loop-health issue to relay to" >&2
-            exit 1
+            n=$(gh issue list --repo "$GITHUB_REPOSITORY" --label loop-health \
+              --state open --json number --jq '.[0].number // empty')
+            if [ -z "$n" ]; then
+              echo "no open loop-health issue to relay to" >&2
+              exit 1
+            fi
           fi
           gh issue comment "$n" --repo "$GITHUB_REPOSITORY" --body "$BODY"
+          if [ -n "$LABEL" ]; then
+            gh issue edit "$n" --repo "$GITHUB_REPOSITORY" --add-label "$LABEL"
+          fi
 
       - name: Delete the relay branch
         if: always() && github.event_name == 'push'

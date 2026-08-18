@@ -158,7 +158,7 @@ escalation path above, push the trace through the relay:
 ```bash
 trace=$(git commit-tree 'origin/main^{tree}' -p origin/main \
   -m "[agent-relay] escalation(wave): <one-line reason>")
-git push origin "$trace:refs/heads/escalation/wave-$(date -u +%Y%m%d-%H%M%S)"
+git push origin "${trace}:refs/heads/escalation/wave-$(date -u +%Y%m%d-%H%M%S)"
 ```
 
 This never checks anything out: `commit-tree` reuses origin/main's tree,
