@@ -84,6 +84,14 @@ class WrapCommand extends Command<int> {
             'manifest (src/codegen/barrels/barrels.yaml); other providers '
             'pass their own (its umbrellaFile axis names the umbrella).',
         valueHelp: 'FILE',
+      )
+      ..addOption(
+        'resource-provider',
+        help: 'Pin every emitted wrapper\'s Terraform provider '
+            'meta-argument (e.g. "google-beta"). Required for providers '
+            'that share the default provider\'s type prefix; omit for the '
+            'implied default.',
+        valueHelp: 'NAME',
       );
   }
 
@@ -252,6 +260,7 @@ class WrapCommand extends Command<int> {
     final resourceEmitter = WrapperEmitter(
       overrides: loaded.resources,
       rawResourceSchemas: rawResourceSchemas,
+      resourceProvider: argResults?['resource-provider'] as String?,
     );
     final dataSourceEmitter =
         DataSourceWrapperEmitter(overrides: loaded.dataSources);

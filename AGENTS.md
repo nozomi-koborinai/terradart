@@ -20,7 +20,7 @@ Human / maintainer focus in this phase:
 - **Example-debt paydown** — the 2026-08 apply-excluded batch left a large [`tool/example_debt.yaml`](tool/example_debt.yaml); shrinking it is standing quality work via [`terradart-backfill-examples`](.agents/skills/terradart-backfill-examples/SKILL.md).
 - **Cookbook and docs** — real-apply records and user-facing guides.
 
-`google-beta` support is a future expansion, out of scope for this phase.
+`google-beta` support exists as a **demand-driven vertical slice**: [`packages/terradart_google_beta`](packages/terradart_google_beta) curates beta-only resources on request (no backlog sweep, no wave lane), generated against a **filtered** schema fixture (`source_beta/`, re-extracted via [`tool/extract_schema_subset.dart`](tool/extract_schema_subset.dart) — never hand-edited). Per-provider pipeline coordinates live in [`tool/providers.yaml`](tool/providers.yaml); beta wrappers pin the `provider` meta-argument (`wrap --resource-provider`) because beta shares the GA `google_*` type prefix. Beta examples are synth + `terraform validate` only (the apply-smoke skip ledger records why), and the package is not yet in the publish pipeline — publishing it is a maintainer decision. `cloudflare` is the next provider-parameterization target.
 
 ## Project Shape
 
@@ -28,6 +28,7 @@ TerraDart is a Dart-first infrastructure-as-code project that synthesizes Terraf
 
 - `terradart_core` for `Stack`, `Resource`, `Data`, `TfArg`, and synth/write behavior.
 - `terradart_google` for committed curated Google Cloud factories.
+- `terradart_google_beta` for beta-only curated factories (`hashicorp/google-beta`, demand-driven).
 - `terradart_agent` for the MCP catalog server.
 - `terradart_codegen` for maintainer generation commands such as `wrap`, `wrap-init`, and `wrap-promote`.
 
