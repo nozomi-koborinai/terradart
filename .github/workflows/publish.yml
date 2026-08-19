@@ -33,11 +33,12 @@ env:
 # Phase 3 waits again, then publishes terradart_google.
 # Phase 4 publishes terradart_google_beta (depends only on terradart_core,
 # which has been indexed since Phase 2's wait — no extra sleep needed).
+# Phase 5 publishes terradart_appwrite (same shape and rationale).
 # NOTE: pub.dev's OIDC automated publishing only works for packages that
-# already exist there, so terradart_google_beta's FIRST release is a manual
+# already exist there, so a NEW package's FIRST release is a manual
 # `dart pub publish` by the maintainer (then enable automated publishing in
-# the pub.dev admin UI); skip_if_published keeps this job a no-op until the
-# workflow takes over.
+# the pub.dev admin UI); skip_if_published keeps these jobs a no-op until
+# the workflow takes over.
 #
 # Previous shape (matrix of all 3 leaves in parallel) raced terradart_codegen
 # against terradart_core's index propagation and intermittently failed
@@ -219,3 +220,47 @@ jobs:
         if: steps.pub.outputs.skip != 'true'
         run: dart pub publish --force
         working-directory: packages/terradart_google_beta
+
+  publish-appwrite:
+    name: publish terradart_appwrite
+    needs: publish-google-beta
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: dart-lang/setup-dart@v1
+        with:
+          sdk: stable
+      - name: Install yq
+        run: |
+          sudo wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/download/v4.44.3/yq_linux_amd64
+          echo "a2c097180dd884a8d50c956ee16a9cec070f30a7947cf4ebf87d5f36213e9ed7  /usr/local/bin/yq" | sha256sum -c -
+          sudo chmod +x /usr/local/bin/yq
+          yq --version
+      - run: dart pub get
+
+      - name: Verify generated wrapper files
+        run: |
+          # Source of truth: the appwrite override registry.
+          yaml_count=$(find packages/terradart_codegen/lib/src/codegen/wrapper_overrides/appwrite/yaml -name '*.yaml' | wc -l | tr -d ' ')
+          wrapper_count=$(find packages/terradart_appwrite/lib/src -mindepth 2 -name 'appwrite_*.dart' | wc -l | tr -d ' ')
+          echo "yaml=$yaml_count wrapper=$wrapper_count"
+          [ "$yaml_count" -eq "$wrapper_count" ] || { echo "::error::wrapper count ($wrapper_count) != yaml count ($yaml_count)"; exit 1; }
+
+      - name: Pre-publish pubspec mutations
+        run: tool/prepare_publish.sh "${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}" terradart_appwrite
+
+      - name: Check if already on pub.dev
+        id: pub
+        run: |
+          TAG="${{ github.event_name == 'workflow_dispatch' && inputs.tag || github.ref_name }}"
+          VERSION="${TAG#v}"
+          if tool/skip_if_published.sh terradart_appwrite "$VERSION"; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Publish to pub.dev
+        if: steps.pub.outputs.skip != 'true'
+        run: dart pub publish --force
+        working-directory: packages/terradart_appwrite
