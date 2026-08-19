@@ -1,0 +1,21 @@
+outputDir: storage
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Appwrite **storage bucket** — file storage with per-bucket security,
+  /// size limits, allowed extensions, compression, encryption, and
+  /// antivirus toggles.
+  ///
+  /// Project-scoped: apply resolves the target project from the provider's
+  /// `project_id` (or `APPWRITE_PROJECT_ID`).
+
+paramOrder:
+  - name
+  - enabled
+  - file_security
+  - maximum_file_size
+  - allowed_file_extensions
+  - compression
+  - encryption
+  - antivirus

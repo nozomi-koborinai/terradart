@@ -19,6 +19,8 @@ hook_is_handwritten_dart() {
   [[ "$rel" == packages/terradart_google/lib/src/* ]] && return 1
   [[ "$rel" == packages/terradart_google_beta/lib/src/*/google_*.dart ]] && return 1
   [[ "$rel" == packages/terradart_google_beta/lib/src/_catalog.g.dart ]] && return 1
+  [[ "$rel" == packages/terradart_appwrite/lib/src/*/appwrite_*.dart ]] && return 1
+  [[ "$rel" == packages/terradart_appwrite/lib/src/_catalog.g.dart ]] && return 1
   [[ "$rel" == packages/terradart_core/* ]] && return 0
   [[ "$rel" == packages/terradart_codegen/* ]] && return 0
   [[ "$rel" == packages/terradart_agent/* ]] && return 0
@@ -39,6 +41,8 @@ hook_is_protected_write_path() {
     packages/terradart_google/lib/src/_catalog.g.dart) return 0 ;;
     packages/terradart_google_beta/lib/src/*/google_*.dart) return 0 ;;
     packages/terradart_google_beta/lib/src/_catalog.g.dart) return 0 ;;
+    packages/terradart_appwrite/lib/src/*/appwrite_*.dart) return 0 ;;
+    packages/terradart_appwrite/lib/src/_catalog.g.dart) return 0 ;;
     packages/terradart_codegen/test/fixtures/wrap/expected_output/*) return 0 ;;
     .github/workflows/*) return 0 ;;
     *) return 1 ;;

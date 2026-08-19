@@ -1,0 +1,17 @@
+outputDir: project
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Appwrite **project** — the top-level container for auth, databases,
+  /// storage, functions, and messaging.
+  ///
+  /// Creating a project is an organization-scoped operation: apply needs an
+  /// organization API key (`APPWRITE_ORGANIZATION_API_KEY` env var, or the
+  /// provider's `organization_api_key`) and an organization id. Synth output
+  /// never contains credentials — see [AppwriteProvider].
+
+paramOrder:
+  - name
+  - organization_id
+  - region

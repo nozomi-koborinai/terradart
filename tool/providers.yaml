@@ -45,3 +45,12 @@ providers:
     overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/google_beta/yaml
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_google_beta.yaml
     resourceProvider: google-beta
+  appwrite:
+    source: appwrite/appwrite
+    schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_appwrite
+    schemaMode: filtered
+    mm: false
+    outputPackage: packages/terradart_appwrite
+    overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/appwrite/yaml
+    barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_appwrite.yaml
+    resourceProvider: null # appwrite_ prefix collides with nothing

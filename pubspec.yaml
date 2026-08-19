@@ -10,9 +10,11 @@ workspace:
   - packages/terradart_codegen
   - packages/terradart_google
   - packages/terradart_google_beta
+  - packages/terradart_appwrite
   - packages/terradart_agent
   - packages/terradart_coverage
   - examples/apigee_quickstart
+  - examples/appwrite_quickstart
   - examples/api_security_quickstart
   - examples/access_context_quickstart
   - examples/apphub_quickstart

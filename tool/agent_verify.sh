@@ -5,7 +5,7 @@
 #   tool/agent_verify.sh
 #   tool/agent_verify.sh --quick       # iteration loop: static checks + unit
 #                                      # gates only (skips example synth, the
-#                                      # six package suites, cookbook, smoke).
+#                                      # seven package suites, cookbook, smoke).
 #                                      # Run the FULL gate before opening a PR.
 #   tool/agent_verify.sh --format      # add scoped dart format (hand-written packages)
 #   tool/agent_verify.sh --maintainer  # add wrap-init / wrap-promote e2e tests
@@ -82,7 +82,7 @@ if [[ "$WITH_FORMAT" == "1" ]]; then
 fi
 
 if [[ "$QUICK" == "0" ]]; then
-  PACKAGES=(terradart_core terradart_codegen terradart_google terradart_google_beta terradart_agent terradart_coverage)
+  PACKAGES=(terradart_core terradart_codegen terradart_google terradart_google_beta terradart_appwrite terradart_agent terradart_coverage)
   for pkg in "${PACKAGES[@]}"; do
     echo ">> dart test packages/$pkg"
     (cd "packages/$pkg" && dart test --reporter=expanded)
@@ -115,6 +115,18 @@ echo ">> terradart wrap --check (google-beta)"
     --overrides-root lib/src/codegen/wrapper_overrides/google_beta/yaml \
     --barrels-manifest lib/src/codegen/barrels/barrels_google_beta.yaml \
     --resource-provider google-beta \
+    --check
+)
+
+echo ">> terradart wrap --check (appwrite)"
+(
+  cd packages/terradart_codegen
+  dart run bin/terradart.dart wrap \
+    --provider appwrite/appwrite \
+    --source test/fixtures/wrap/source_appwrite \
+    --output ../terradart_appwrite/lib/src \
+    --overrides-root lib/src/codegen/wrapper_overrides/appwrite/yaml \
+    --barrels-manifest lib/src/codegen/barrels/barrels_appwrite.yaml \
     --check
 )
 

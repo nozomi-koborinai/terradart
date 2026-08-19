@@ -12,6 +12,17 @@
   - changed-files:
       - any-glob-to-any-file: 'packages/terradart_google/**'
 
+'area:google-beta':
+  - changed-files:
+      - any-glob-to-any-file: 'packages/terradart_google_beta/**'
+
+'area:appwrite':
+  - changed-files:
+      - any-glob-to-any-file:
+          - 'packages/terradart_appwrite/**'
+          - 'packages/terradart_codegen/lib/src/codegen/wrapper_overrides/appwrite/**'
+          - 'packages/terradart_codegen/test/fixtures/wrap/source_appwrite/**'
+
 'area:agent':
   - changed-files:
       - any-glob-to-any-file: 'packages/terradart_agent/**'
