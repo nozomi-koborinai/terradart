@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.25.1
+
+- Lockstep release with the TerraDart workspace. No Appwrite factory or
+  provider changes.
+
 ## 0.25.0
 
 - Initial release: `AppwriteProvider` (credential-free by design — apply

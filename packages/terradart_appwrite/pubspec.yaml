@@ -1,6 +1,6 @@
 name: terradart_appwrite
 description: Curated factory wrappers for Appwrite resources (official appwrite/appwrite Terraform provider) for Dart-first Terraform stacks.
-version: 0.25.0
+version: 0.25.1
 homepage: https://github.com/nozomi-koborinai/terradart
 repository: https://github.com/nozomi-koborinai/terradart
 issue_tracker: https://github.com/nozomi-koborinai/terradart/issues
@@ -18,7 +18,7 @@ environment:
 resolution: workspace
 
 dependencies:
-  terradart_core: ^0.25.0
+  terradart_core: ^0.25.1
   meta: ^1.15.0
 
 dev_dependencies:

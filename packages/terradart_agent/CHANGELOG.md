@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.25.1 - 2026-08-19
+
+Lockstep release with `terradart_google_beta` 0.25.1. MCP catalog is unchanged (GA `hashicorp/google` only). No MCP protocol or tool changes.
+
 ## 0.25.0 - 2026-08-15
 
 Lockstep release with `terradart_google` 0.25.0. Catalog: **1793 entries** (1332 curated resource factories + 461 data sources) across **131 service barrels**. No MCP protocol or tool changes.
