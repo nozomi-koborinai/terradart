@@ -120,6 +120,7 @@ Committed maintainer skills live under [`.agents/skills/`](.agents/skills/) (Age
 |-------|----------|
 | [`terradart-agent-verify`](.agents/skills/terradart-agent-verify/SKILL.md) | Finishing any agent or maintainer change |
 | [`terradart-add-curated-resource`](.agents/skills/terradart-add-curated-resource/SKILL.md) | Adding or updating a curated `google_*` factory |
+| [`terradart-add-beta-resource`](.agents/skills/terradart-add-beta-resource/SKILL.md) | Adding a beta-only factory to `terradart_google_beta` (demand-driven) |
 | [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md) | Landing a Wave release (curated + example/docs + counts + CHANGELOG + GitHub release notes) |
 | [`terradart-backfill-examples`](.agents/skills/terradart-backfill-examples/SKILL.md) | Shrinking `tool/example_debt.yaml` (the maintenance-phase work queue) in existing quickstarts |
 | [`terradart-tighten-example-topology`](.agents/skills/terradart-tighten-example-topology/SKILL.md) | Wiring backfilled factories into sibling refs; `tool/check_example_topology.dart` |

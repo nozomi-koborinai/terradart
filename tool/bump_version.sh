@@ -12,9 +12,10 @@
 #   - packages/terradart_core/pubspec.yaml        (version: line)
 #   - packages/terradart_codegen/pubspec.yaml     (version: + terradart_core caret)
 #   - packages/terradart_google/pubspec.yaml      (version: + terradart_core caret + terradart_codegen dev caret)
+#   - packages/terradart_google_beta/pubspec.yaml (version: + terradart_core caret)
 #   - packages/terradart_agent/pubspec.yaml       (version: + terradart_core caret + terradart_google caret)
 #   - packages/terradart_agent/lib/src/version.dart  (packageVersion const — lockstep with its pubspec)
-#   - examples/*/pubspec.yaml                     (terradart_core + terradart_google carets)
+#   - examples/*/pubspec.yaml                     (terradart_core + terradart_google + terradart_google_beta carets)
 #   - cookbook/*/pubspec.yaml,                    (terradart_core + terradart_google carets on
 #     cookbook/*/*/pubspec.yaml                    workspace-member cookbook recipes)
 #   - README.md                                   (Quickstart pubspec sample + `dart pub global activate terradart_codegen ^...` line + status blurb)
@@ -92,7 +93,7 @@ sed_inplace() {
 
 # 1. `version:` field on the package pubspecs.
 echo "  Package versions:"
-for pkg in terradart_core terradart_codegen terradart_google terradart_agent terradart_coverage; do
+for pkg in terradart_core terradart_codegen terradart_google terradart_google_beta terradart_agent terradart_coverage; do
   sed_inplace "s#^version: ${OLD_RE}\$#version: ${NEW}#" "packages/$pkg/pubspec.yaml"
   echo "    - packages/$pkg/pubspec.yaml -> $NEW"
 done
@@ -106,6 +107,8 @@ sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terra
 echo "    - terradart_google.dependencies.terradart_core: ^${NEW}"
 sed_inplace "s#^( *terradart_codegen): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_google/pubspec.yaml
 echo "    - terradart_google.dev_dependencies.terradart_codegen: ^${NEW}"
+sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_google_beta/pubspec.yaml
+echo "    - terradart_google_beta.dependencies.terradart_core: ^${NEW}"
 sed_inplace "s#^( *terradart_core): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_agent/pubspec.yaml
 echo "    - terradart_agent.dependencies.terradart_core: ^${NEW}"
 sed_inplace "s#^( *terradart_google): \\^${OLD_RE}\$#\\1: ^${NEW}#" packages/terradart_agent/pubspec.yaml
@@ -125,10 +128,10 @@ echo "    - packages/terradart_agent/lib/src/version.dart -> $NEW"
 echo "  Example pubspecs:"
 EXAMPLE_COUNT=0
 for f in examples/*/pubspec.yaml; do
-  sed_inplace "s#^( *terradart_(core|google)): \\^${OLD_RE}\$#\\1: ^${NEW}#" "$f"
+  sed_inplace "s#^( *terradart_(core|google|google_beta)): \\^${OLD_RE}\$#\\1: ^${NEW}#" "$f"
   EXAMPLE_COUNT=$((EXAMPLE_COUNT + 1))
 done
-echo "    - bumped $EXAMPLE_COUNT examples to terradart_{core,google}: ^$NEW"
+echo "    - bumped $EXAMPLE_COUNT examples to terradart_{core,google,google_beta}: ^$NEW"
 
 # 3b. Cookbook recipe pubspecs (workspace members under cookbook/, one or two
 #     levels deep — e.g. cookbook/single-project-app/ and
