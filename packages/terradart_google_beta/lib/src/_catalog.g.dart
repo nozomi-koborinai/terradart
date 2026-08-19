@@ -1511,10 +1511,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     barrel: 'folder',
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `google_folder_service_identity`.',
-    constructorParams: <String>['localName', 'folder', 'service'],
+    constructorParams: <String>['localName', 'service', 'folder'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_folder_service_identity`.',
+    docComment:
+        'Factory wrapper for `google_folder_service_identity`.\n\nFolder **service identity** (beta-only) — provisions the per-service\nservice agent ahead of first use, so IAM grants on that agent never\nrace its lazy creation.\n\nThe [member] / [email] outputs feed IAM grants directly:\n`GoogleFolderIamMember(member: identity.member, ...)`.',
   ),
   CatalogEntry(
     tfType: 'google_gke_hub_membership_rbac_role_binding',
@@ -1733,10 +1734,11 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     barrel: 'organization',
     kind: CatalogKind.resource,
     summary: 'Factory wrapper for `google_organization_service_identity`.',
-    constructorParams: <String>['localName', 'organization', 'service'],
+    constructorParams: <String>['localName', 'service', 'organization'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
-    docComment: 'Factory wrapper for `google_organization_service_identity`.',
+    docComment:
+        'Factory wrapper for `google_organization_service_identity`.\n\nOrganization **service identity** (beta-only) — provisions the\nper-service service agent ahead of first use, so IAM grants on that\nagent never race its lazy creation.\n\nThe [member] / [email] outputs feed IAM grants directly:\n`GoogleOrganizationIamMember(member: identity.member, ...)`.',
   ),
   CatalogEntry(
     tfType: 'google_os_config_guest_policies',
