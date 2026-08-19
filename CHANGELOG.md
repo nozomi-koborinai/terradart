@@ -6,6 +6,12 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ## Unreleased
 
+## [0.25.1] - 2026-08-19
+
+Lockstep release across the workspace. **No breaking changes** vs `0.25.0`.
+
+### Added
+
 - **`terradart_google_beta`** — fill the beta-only `hashicorp/google-beta` catalog (**128 resource factories** at provider 7.44.0). Coverage via [`beta_leftover_quickstart`](examples/beta_leftover_quickstart/) (synth + `terraform validate`; apply-smoke skip-listed). Beta-only data sources stay uncurated.
 
 ## [0.25.0] - 2026-08-15

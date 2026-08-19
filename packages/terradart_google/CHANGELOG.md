@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.25.1 - 2026-08-19
+
+Lockstep release. **No breaking changes** vs `0.25.0`. No `terradart_google` API changes — the beta-only catalog fill ships in `terradart_google_beta`.
+
 ## 0.25.0 - 2026-08-15
 
 Lockstep release. **No breaking changes** vs `0.24.0`.

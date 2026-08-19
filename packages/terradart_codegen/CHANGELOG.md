@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.25.1 - 2026-08-19
+
+Lockstep release with `terradart_google_beta` 0.25.1 (beta-only catalog filled). No user-facing CLI flag changes.
+
 ## 0.25.0 - 2026-08-15
 
 Lockstep release with `terradart_google` 0.25.0 (GA `hashicorp/google` catalog filled). Wrap emits GA data-source factories (`data_<type>.yaml` twins, `Data` class prefix). No user-facing CLI flag changes.

@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.25.1
 
 - Fill the beta-only `hashicorp/google-beta` catalog: **128 resource
   factories** (74 core + 54 IAM adjuncts) at provider 7.44.0. Wrappers
