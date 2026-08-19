@@ -1,0 +1,29 @@
+# Authored barrel manifest for terradart_appwrite — the human-decided
+# axes of the generated barrels under terradart_appwrite/lib/.
+# Same contract as barrels.yaml (fail-closed both directions); consumed via
+# `terradart wrap --barrels-manifest`.
+
+umbrellaFile: terradart_appwrite
+
+umbrellaDoc: |-
+  /// Curated **Appwrite** surface for TerraDart (official
+  /// `appwrite/appwrite` Terraform provider).
+  ///
+  /// Demand-driven catalog — resources are curated on request
+  /// (issue #76 lineage). Credentials never appear in synth output:
+  /// authentication happens at apply time via APPWRITE_API_KEY /
+  /// APPWRITE_ORGANIZATION_API_KEY environment variables.
+  ///
+  /// This umbrella re-exports every per-service barrel. Prefer the
+  /// per-service imports in new code.
+
+umbrellaExtraExports:
+  - "export 'provider.dart';"
+
+barrels:
+  project:
+    doc: |-
+      /// Appwrite projects (organization-scoped).
+  storage:
+    doc: |-
+      /// Appwrite file storage (buckets).

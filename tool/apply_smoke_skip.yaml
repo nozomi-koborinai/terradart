@@ -103,6 +103,15 @@ oracle_autonomous_database_quickstart: Autonomous Database apply needs Oracle zo
 # --- Oracle GoldenGate needs live ODB subnet/network and subscription entitlement
 oracle_goldengate_quickstart: GoldenGate apply needs Oracle zone entitlement and live ODB subnet provisioning — API rejects placeholder VPC/ODB wiring in terradart-validate
 
+# --- appwrite provider lane (non-GCP; apply harness does not target it) ---
+# apply-smoke authenticates against GCP (WIF, terradart-validate); an
+# appwrite example has nothing to apply there and Appwrite Cloud applies
+# would be a separate billing surface. Beta-maturity provider, synth +
+# terraform validate only. Cost ledger note: appwrite_* types are outside
+# the GCP Billing Catalog, so apply_cost_denylist.yaml does not classify
+# them — the skip here is what keeps them out of apply scope.
+appwrite_quickstart: appwrite provider example — the apply-smoke harness is GCP-only and Appwrite Cloud is a separate billing surface; synth + terraform validate cover it
+
 # --- google-beta provider lane (apply policy not yet designed) ---
 # The apply-smoke harness targets the GA provider lane; how beta examples
 # apply (provider pinning in the harness, WIF scope review) is a separate

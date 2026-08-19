@@ -1,0 +1,15 @@
+name: terradart_example_appwrite_quickstart
+description: Smallest terradart_appwrite example -- an Appwrite project and a storage bucket, credentials kept out of synth output by design.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.25.0
+  terradart_appwrite: ^0.25.0
+
+dev_dependencies:
+  lints: ^6.0.0
