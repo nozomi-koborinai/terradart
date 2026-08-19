@@ -229,11 +229,11 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 ## What ships
 
-[`terradart_google`](packages/terradart_google/README.md) ships **1332 curated resource factories + 461 data sources** (1793 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). The GA `hashicorp/google` catalog is filled; `google-beta` is coming soon.
+[`terradart_google`](packages/terradart_google/README.md) ships **1332 curated resource factories + 461 data sources** (1793 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). The GA `hashicorp/google` catalog is filled.
+
+[`terradart_google_beta`](packages/terradart_google_beta/README.md) ships the **beta-only** `hashicorp/google-beta` catalog (**128 resource factories**). Import `package:terradart_google_beta` and `GoogleBetaProvider`; wrappers pin the `google-beta` meta-argument. Types that also exist in GA stay in `terradart_google`.
 
 The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). In Dart, discover factories via `package:terradart_google/catalog.dart` (`terradartCatalog`). CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
-
-For `google-beta` types, open a [feature request](https://github.com/nozomi-koborinai/terradart/issues/new/choose) to discuss adding them.
 
 ## Examples
 
@@ -298,6 +298,7 @@ Application platform & operations
 - [Security Command Center leftover sources / mute / custom modules / exports](examples/scc_quickstart/)
 - [Org leftover hierarchical firewall / Cloud Armor / BYOIP / Storage Intelligence / Wasm](examples/org_leftover_quickstart/)
 - [Deferred leftover remaining GA factories (org / billing / DMS / Datastream / …)](examples/deferred_leftover_quickstart/)
+- [Beta leftover remaining beta-only factories](examples/beta_leftover_quickstart/)
 - [Data-source leftover remaining GA data sources (read-only, apply-excluded)](examples/data_source_leftover_quickstart/)
 - [OS Config + Binary Authorization VM compliance](examples/vm_compliance_quickstart/) (STOPPED v2 policy orchestrator)
 - [API Keys + reCAPTCHA Enterprise + connectivity test](examples/api_security_quickstart/)

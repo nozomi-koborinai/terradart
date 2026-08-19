@@ -4,6 +4,10 @@ All notable changes to terradart are documented here. The format follows [Keep a
 
 Per-package changelogs live alongside each package and are the system of record for `terradart_core`, `terradart_codegen`, `terradart_google`, `terradart_agent`, and `terradart_coverage` — this top-level file summarises cross-cutting milestones.
 
+## Unreleased
+
+- **`terradart_google_beta`** — fill the beta-only `hashicorp/google-beta` catalog (**128 resource factories** at provider 7.44.0). Coverage via [`beta_leftover_quickstart`](examples/beta_leftover_quickstart/) (synth + `terraform validate`; apply-smoke skip-listed). Beta-only data sources stay uncurated.
+
 ## [0.25.0] - 2026-08-15
 
 Lockstep release across the workspace. **No breaking changes** vs `0.24.0`.

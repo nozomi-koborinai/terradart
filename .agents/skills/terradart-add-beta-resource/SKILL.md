@@ -1,14 +1,14 @@
 ---
 name: terradart-add-beta-resource
-description: Add a beta-only curated factory to terradart_google_beta (filtered-fixture extraction, google_beta override, wrap with provider pin). Use when extending the demand-driven google-beta catalog with a new beta-only google_* resource.
+description: Add a beta-only curated factory to terradart_google_beta (filtered-fixture extraction, google_beta override, wrap with provider pin). Use when a later provider pin introduces a new beta-only google_* type — the current pin's beta-only catalog is filled.
 metadata:
   last_modified: 2026-08-19
 ---
 # Add a beta-only curated resource
 
-Read [`CONTEXT.md`](../../../CONTEXT.md) for vocabulary. The beta lane's coordinates live in [`tool/providers.yaml`](../../../tool/providers.yaml); its philosophy (demand-driven, filtered fixture, no backlog/wave lane) is in `AGENTS.md`'s Current-phase section. Do **not** hand-edit files under `packages/terradart_google_beta/lib/src/` or the `source_beta/` fixture — regenerate both.
+Read [`CONTEXT.md`](../../../CONTEXT.md) for vocabulary. The beta lane's coordinates live in [`tool/providers.yaml`](../../../tool/providers.yaml); its philosophy (filled at the current pin, filtered fixture, no backlog/wave lane) is in `AGENTS.md`'s Current-phase section. Do **not** hand-edit files under `packages/terradart_google_beta/lib/src/` or the `source_beta/` fixture — regenerate both.
 
-The beta catalog is **demand-driven**: add a resource only against a concrete request (issue / maintainer ask), never by sweeping the provider. GA resources belong in `terradart_google` — check the GA schema fixture first; a resource present there is NOT beta-only.
+The beta-only catalog at the current provider pin is **filled**. Add a resource only when a later pin introduces a new beta-only type (issue / maintainer ask) — do not sweep overlapping GA names into this package. GA resources belong in `terradart_google` — check the GA schema fixture first; a resource present there is NOT beta-only.
 
 ## Workflow
 
@@ -37,7 +37,7 @@ The beta catalog is **demand-driven**: add a resource only against a concrete re
     --resource-provider google-beta
   ```
 - [ ] 6. **Cost-classify the type** (policy, apply or not): gcp-cost tools (`dart tool/gcp_cost_call.dart` in cloud-agent sessions) → record evidence in `tool/apply_cost_denylist.yaml` per its header format. When unsure, leave unclassified and say so.
-- [ ] 7. **Example coverage:** extend `examples/beta_service_identity_quickstart` (or a new beta example) so the factory appears in a synth, or record a reasoned `tool/example_debt.yaml` line. NOTE: the synth coverage gate currently reads only the GA catalog, so beta coverage is enforced by THIS checklist, not by machine — a beta coverage gate is future harness work; do not treat the gate's silence as permission to skip.
+- [ ] 7. **Example coverage:** extend [`examples/beta_leftover_quickstart`](../../../examples/beta_leftover_quickstart/) (or a focused beta example) so the factory appears in a synth, or record a reasoned `tool/example_debt.yaml` line. `dart tool/example_synth_gates.dart` reads **both** GA and beta catalogs — an uncovered new factory fails CI.
 - [ ] 8. **Ledger check:** any new beta example must be listed in `tool/apply_smoke_skip.yaml` under the google-beta-lane section (beta apply policy is not designed; synth + `terraform validate` only).
 - [ ] 9. **Package test:** extend `packages/terradart_google_beta/test/synth_test.dart` when the new factory has synth-visible behavior worth pinning (provider pin, sealed slots, sensitive fields).
 - [ ] 10. **CHANGELOG:** add the factory to `packages/terradart_google_beta/CHANGELOG.md` under the next version heading.

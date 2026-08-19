@@ -78,7 +78,7 @@ graph LR
 
 The MM YAML overlay carries metadata that the provider schema does not surface — `sensitive_fields`, `force_new`, free-form description text. `terradart_codegen` merges both inputs into typed `<resource>.schema.dart` files that compose into the `terradart_google` package.
 
-Provider tracking is pinned to GA `~> 7.0`. The `-beta` provider is coming soon; resources that only exist in beta are documented in `tool/mm_yaml_sources.yaml` with an `upstream: null` marker.
+Provider tracking is pinned to GA `~> 7.0`. Beta-only types live in `terradart_google_beta` (128 resource factories at the current pin); overlapping GA names stay in `terradart_google`.
 
 A weekly GitHub Actions workflow (`.github/workflows/schema-bump.yml`) runs every Monday morning JST. It detects new `terraform-provider-google` v7 releases and MM YAML overlay changes, refreshes the local schema + MM fixtures, runs `terradart wrap --check`, and opens a single drift-report PR if anything needs maintainer attention. Quiet weeks produce no PR.
 

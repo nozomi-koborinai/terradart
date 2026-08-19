@@ -8,7 +8,7 @@ This package ships the `terradart` CLI for **maintainers** and contributors cura
 - **`terradart wrap-init`** — scaffold a new wrapper override YAML from schema + MM hints.
 - **`terradart wrap-promote`** — propose `enum_values` and `dartTypeOverrides` blocks for human review.
 
-End users depend on [`terradart_google`](https://pub.dev/packages/terradart_google) directly; they do not run generation locally. The GA `hashicorp/google` catalog is filled; `google-beta` types are coming soon (open a [feature issue](https://github.com/nozomi-koborinai/terradart/issues/new/choose)).
+End users depend on [`terradart_google`](https://pub.dev/packages/terradart_google) (and [`terradart_google_beta`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_google_beta) for beta-only types) directly; they do not run generation locally. The GA catalog is filled; new beta-only types after a later pin still land on request (open a [feature issue](https://github.com/nozomi-koborinai/terradart/issues/new/choose)).
 
 ## Installation
 
