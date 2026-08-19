@@ -19,6 +19,7 @@ workspace:
   - examples/access_context_quickstart
   - examples/apphub_quickstart
   - examples/artifact_registry_quickstart
+  - examples/beta_leftover_quickstart
   - examples/beta_service_identity_quickstart
   - examples/biglake_quickstart
   - examples/bigquery_datapolicyv2_quickstart

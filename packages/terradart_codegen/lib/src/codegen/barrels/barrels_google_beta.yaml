@@ -8,9 +8,11 @@ umbrellaFile: terradart_google_beta
 umbrellaDoc: |-
   /// Curated **google-beta** surface for TerraDart.
   ///
-  /// Beta-only resources, curated on demand — for GA resources use
-  /// `package:terradart_google`. Both packages share `terradart_core` and
-  /// compose in one `Stack` (each provider block is emitted separately).
+  /// Beta-only `google_*` types from `hashicorp/google-beta`. GA resources
+  /// live in `package:terradart_google`. Both packages share
+  /// `terradart_core` and compose in one `Stack` (each provider block is
+  /// emitted separately). Wrappers pin the `google-beta` provider
+  /// meta-argument.
   ///
   /// This umbrella re-exports every per-service barrel. Prefer the
   /// per-service imports in new code.
@@ -19,6 +21,95 @@ umbrellaExtraExports:
   - "export 'provider.dart';"
 
 barrels:
+  active_directory:
+    doc: |-
+      /// Managed Microsoft AD peering (beta-only).
+  api_gateway:
+    doc: |-
+      /// API Gateway APIs, configs, gateways, and resource IAM (beta-only).
+  artifact_registry:
+    doc: |-
+      /// Artifact Registry VPC-SC config (beta-only).
+  biglake:
+    doc: |-
+      /// BigLake Hive catalogs, databases, tables, and resource IAM (beta-only).
+  bigquery:
+    doc: |-
+      /// BigQuery Analytics Hub data-exchange subscription (beta-only).
+  ces:
+    doc: |-
+      /// Customer Engagement Suite evaluation and security settings (beta-only).
+  chronicle:
+    doc: |-
+      /// Chronicle / Google SecOps SOAR domain (beta-only).
+  compute:
+    doc: |-
+      /// Compute Engine beta-only types: machine images, future
+      /// reservations, region backend buckets, network policies, and
+      /// backend IAM adjuncts.
+  container:
+    doc: |-
+      /// GKE Hub membership RBAC role binding (beta-only).
+  dataflow:
+    doc: |-
+      /// Dataflow Flex Template job (beta-only).
+  dataform:
+    doc: |-
+      /// Dataform config, release config, and workflow config (beta-only).
+  dataplex:
+    doc: |-
+      /// Dataplex data asset (beta-only).
+  firebase:
+    doc: |-
+      /// Firebase apps, Hosting, Storage, Realtime Database, Extensions,
+      /// and AI Logic (beta-only).
+  folder:
+    doc: |-
+      /// Folder-level service identity (beta-only).
+  identity:
+    doc: |-
+      /// Cloud Identity policy (beta-only).
+  kms:
+    doc: |-
+      /// Cloud KMS key-access justification (KAJ) policy configs (beta-only).
+  network:
+    doc: |-
+      /// Network Security / Network Services beta-only types (authorization
+      /// policy, SAC, service LB policies).
+  observability:
+    doc: |-
+      /// Observability folder / organization / project settings (beta-only).
+  organization:
+    doc: |-
+      /// Organization-level service identity (beta-only).
+  os_config:
+    doc: |-
+      /// OS Config guest policies (beta-only).
+  privileged_access_manager:
+    doc: |-
+      /// Privileged Access Manager settings (beta-only).
   project:
     doc: |-
       /// Project-level beta resources (service identities).
+  runtimeconfig:
+    doc: |-
+      /// Runtime Configurator configs, variables, and config IAM (beta-only).
+  saas_runtime:
+    doc: |-
+      /// SaaS Runtime units, tenants, releases, and rollouts (beta-only).
+  security_scanner:
+    doc: |-
+      /// Web Security Scanner scan config (beta-only).
+  service_usage:
+    doc: |-
+      /// Service Usage consumer quota override (beta-only).
+  tags:
+    doc: |-
+      /// Resource Manager tag binding collection (beta-only).
+  tpu:
+    doc: |-
+      /// Cloud TPU v2 VMs and queued resources (beta-only).
+  vertex_ai:
+    doc: |-
+      /// Vertex AI metadata store, Model Garden enablement, and
+      /// featurestore / endpoint IAM (beta-only).
