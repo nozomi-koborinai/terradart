@@ -196,23 +196,28 @@ void _checkSynthCoverage(
   Set<String> synthResourceTypes,
   Set<String> synthDataTypes,
 ) {
-  final catalog = File('packages/terradart_google/lib/src/_catalog.g.dart');
-  if (!catalog.existsSync()) {
-    errors.add('Missing ${catalog.path}');
-    return;
-  }
-  final text = catalog.readAsStringSync();
+  final catalogPaths = [
+    'packages/terradart_google/lib/src/_catalog.g.dart',
+    'packages/terradart_google_beta/lib/src/_catalog.g.dart',
+  ];
   final factories = <({String tfType, String className, String kind})>[];
   final catalogClasses = <String>{};
   // dart format may wrap long `tfType:` string literals onto the next line.
   final tfRe = RegExp(
     r"tfType:\s*'([^']+)'[\s\S]*?className:\s*'([^']+)'[\s\S]*?kind:\s*CatalogKind\.(\w+)",
   );
-  for (final m in tfRe.allMatches(text)) {
-    catalogClasses.add(m.group(2)!);
-    factories.add(
-      (tfType: m.group(1)!, className: m.group(2)!, kind: m.group(3)!),
-    );
+  for (final path in catalogPaths) {
+    final catalog = File(path);
+    if (!catalog.existsSync()) {
+      errors.add('Missing $path');
+      return;
+    }
+    for (final m in tfRe.allMatches(catalog.readAsStringSync())) {
+      catalogClasses.add(m.group(2)!);
+      factories.add(
+        (tfType: m.group(1)!, className: m.group(2)!, kind: m.group(3)!),
+      );
+    }
   }
 
   final debt = _exampleDebt(errors);

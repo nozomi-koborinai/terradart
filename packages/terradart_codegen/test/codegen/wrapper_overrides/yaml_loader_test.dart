@@ -908,5 +908,64 @@ deriveClassDoc: true
         );
       },
     );
+
+    test(
+      'google_beta/yaml/ loads 128 resources',
+      () {
+        final loaded = loadWrapperOverrides(
+          rootDir: p.absolute(
+            'lib',
+            'src',
+            'codegen',
+            'wrapper_overrides',
+            'google_beta',
+            'yaml',
+          ),
+        );
+        expect(loaded.resources.length, 128);
+        expect(loaded.dataSources, isEmpty);
+      },
+    );
+
+    test(
+      'google_beta IAM binding/policy overrides document authoritative '
+      'replace semantics',
+      () {
+        final loaded = loadWrapperOverrides(
+          rootDir: p.absolute(
+            'lib',
+            'src',
+            'codegen',
+            'wrapper_overrides',
+            'google_beta',
+            'yaml',
+          ),
+        );
+        final missingDoc = <String>[];
+        final missingWarning = <String>[];
+        for (final entry in loaded.resources.entries) {
+          final type = entry.key;
+          if (!type.endsWith('_iam_binding') && !type.endsWith('_iam_policy')) {
+            continue;
+          }
+          final doc = entry.value.curatedDoc?.trim() ?? '';
+          if (doc.isEmpty) {
+            missingDoc.add(type);
+            continue;
+          }
+          final lower = doc.toLowerCase();
+          final warns = lower.contains('authoritative') ||
+              lower.contains('replaces') ||
+              lower.contains('replace') ||
+              lower.contains('overwrite') ||
+              lower.contains('overwrites');
+          if (!warns) {
+            missingWarning.add(type);
+          }
+        }
+        expect(missingDoc, isEmpty);
+        expect(missingWarning, isEmpty);
+      },
+    );
   });
 }

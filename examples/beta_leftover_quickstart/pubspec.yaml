@@ -1,0 +1,15 @@
+name: terradart_example_beta_leftover_quickstart
+description: Apply-excluded leftover of beta-only curated factories (synth + terraform validate).
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.25.0
+  terradart_google_beta: ^0.25.0
+
+dev_dependencies:
+  lints: ^6.0.0

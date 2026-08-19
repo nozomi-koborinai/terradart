@@ -26,7 +26,7 @@ Check [pub.dev](https://pub.dev/packages/terradart_core) for the latest patch, t
 dart pub get
 ```
 
-The GA `hashicorp/google` catalog is filled. `google-beta` types are coming soon and are not generated locally — request them via a [GitHub feature issue](https://github.com/nozomi-koborinai/terradart/issues/new/choose).
+The GA `hashicorp/google` catalog is filled. Beta-only types live in [`terradart_google_beta`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_google_beta) (128 resource factories). Types that also exist in GA stay in `terradart_google`.
 
 ## 2. Define a Stack
 

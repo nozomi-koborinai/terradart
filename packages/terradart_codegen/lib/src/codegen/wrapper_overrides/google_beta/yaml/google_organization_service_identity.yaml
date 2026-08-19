@@ -1,0 +1,15 @@
+outputDir: organization
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Organization **service identity** (beta-only) — provisions the
+  /// per-service service agent ahead of first use, so IAM grants on that
+  /// agent never race its lazy creation.
+  ///
+  /// The [member] / [email] outputs feed IAM grants directly:
+  /// `GoogleOrganizationIamMember(member: identity.member, ...)`.
+
+paramOrder:
+  - service
+  - organization

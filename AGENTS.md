@@ -20,7 +20,7 @@ Human / maintainer focus in this phase:
 - **Example-debt paydown** — the 2026-08 apply-excluded batch left a large [`tool/example_debt.yaml`](tool/example_debt.yaml); shrinking it is standing quality work via [`terradart-backfill-examples`](.agents/skills/terradart-backfill-examples/SKILL.md).
 - **Cookbook and docs** — real-apply records and user-facing guides.
 
-`google-beta` support exists as a **demand-driven vertical slice**: [`packages/terradart_google_beta`](packages/terradart_google_beta) curates beta-only resources on request (no backlog sweep, no wave lane), generated against a **filtered** schema fixture (`source_beta/`, re-extracted via [`tool/extract_schema_subset.dart`](tool/extract_schema_subset.dart) — never hand-edited). Per-provider pipeline coordinates live in [`tool/providers.yaml`](tool/providers.yaml); beta wrappers pin the `provider` meta-argument (`wrap --resource-provider`) because beta shares the GA `google_*` type prefix. Beta examples are synth + `terraform validate` only (the apply-smoke skip ledger records why). The package releases in lockstep and publishes as `publish.yml` Phase 4 — its FIRST pub.dev release must be a manual maintainer `dart pub publish` (OIDC automated publishing only covers packages that already exist there).
+`google-beta` support is a **filled beta-only catalog** (128 resource factories at the current provider pin): [`packages/terradart_google_beta`](packages/terradart_google_beta). Types that also exist in GA stay in `terradart_google`. There is still no backlog sweep or wave lane for new names — a later provider pin that adds a beta-only type lands on request via [`terradart-add-beta-resource`](.agents/skills/terradart-add-beta-resource/SKILL.md). Generated against a **filtered** schema fixture (`source_beta/`, re-extracted via [`tool/extract_schema_subset.dart`](tool/extract_schema_subset.dart) — never hand-edited). Per-provider pipeline coordinates live in [`tool/providers.yaml`](tool/providers.yaml); beta wrappers pin the `provider` meta-argument (`wrap --resource-provider`) because beta shares the GA `google_*` type prefix. Beta examples are synth + `terraform validate` only (the apply-smoke skip ledger records why). The package releases in lockstep and publishes as `publish.yml` Phase 4 — its FIRST pub.dev release must be a manual maintainer `dart pub publish` (OIDC automated publishing only covers packages that already exist there).
 
 The same lane pattern now also carries **appwrite** (issue #76): [`packages/terradart_appwrite`](packages/terradart_appwrite) wraps the official `appwrite/appwrite` provider (exact-pinned at a beta-maturity version — bumps are deliberate, together with a fixture re-extraction), demand-driven, `mm: false`, no `--resource-provider` pin (the `appwrite_` prefix collides with nothing). **Credentials never enter synth output by design**: `AppwriteProvider` has no API-key parameters; apply authenticates via `APPWRITE_*` environment variables. Appwrite examples are synth + `terraform validate` only (the apply-smoke harness is GCP-only — see the skip ledger's appwrite section). The package releases in lockstep and publishes as `publish.yml` Phase 5 (same first-release-manual caveat as beta). `cloudflare` is the next provider-parameterization target.
 
@@ -30,12 +30,12 @@ TerraDart is a Dart-first infrastructure-as-code project that synthesizes Terraf
 
 - `terradart_core` for `Stack`, `Resource`, `Data`, `TfArg`, and synth/write behavior.
 - `terradart_google` for committed curated Google Cloud factories.
-- `terradart_google_beta` for beta-only curated factories (`hashicorp/google-beta`, demand-driven).
+- `terradart_google_beta` for beta-only curated factories (`hashicorp/google-beta`).
 - `terradart_appwrite` for curated Appwrite factories (`appwrite/appwrite`, demand-driven).
 - `terradart_agent` for the MCP catalog server.
 - `terradart_codegen` for maintainer generation commands such as `wrap`, `wrap-init`, and `wrap-promote`.
 
-Read `CONTEXT.md` before design work. It defines project-specific terms such as Curated factory, Maintainer generation pipeline, Merged IR, Wrapper override, Agent guide, and Local notes.
+Read `CONTEXT.md` before design work. It defines project-specific terms such as Curated factory, Beta-only factory, Maintainer generation pipeline, Merged IR, Wrapper override, Agent guide, and Local notes.
 
 ## Generation Policy
 
@@ -123,7 +123,7 @@ Committed maintainer skills live under [`.agents/skills/`](.agents/skills/) (Age
 |-------|----------|
 | [`terradart-agent-verify`](.agents/skills/terradart-agent-verify/SKILL.md) | Finishing any agent or maintainer change |
 | [`terradart-add-curated-resource`](.agents/skills/terradart-add-curated-resource/SKILL.md) | Adding or updating a curated `google_*` factory |
-| [`terradart-add-beta-resource`](.agents/skills/terradart-add-beta-resource/SKILL.md) | Adding a beta-only factory to `terradart_google_beta` (demand-driven) |
+| [`terradart-add-beta-resource`](.agents/skills/terradart-add-beta-resource/SKILL.md) | Adding a later-pin beta-only factory to `terradart_google_beta` |
 | [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md) | Landing a Wave release (curated + example/docs + counts + CHANGELOG + GitHub release notes) |
 | [`terradart-backfill-examples`](.agents/skills/terradart-backfill-examples/SKILL.md) | Shrinking `tool/example_debt.yaml` (the maintenance-phase work queue) in existing quickstarts |
 | [`terradart-tighten-example-topology`](.agents/skills/terradart-tighten-example-topology/SKILL.md) | Wiring backfilled factories into sibling refs; `tool/check_example_topology.dart` |
