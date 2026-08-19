@@ -275,7 +275,7 @@ echo "==> Verifying no stale '$OLD' references remain"
 set +e
 STALE=$(
   grep -nE "^version: ${OLD_RE}\$" packages/*/pubspec.yaml 2>/dev/null
-  grep -nE "terradart_(core|codegen|google|coverage): \\^${OLD_RE}([^0-9A-Za-z.-]|\$)" \
+  grep -nE "terradart_(core|codegen|google|google_beta|coverage): \\^${OLD_RE}([^0-9A-Za-z.-]|\$)" \
     packages/*/pubspec.yaml examples/*/pubspec.yaml \
     cookbook/*/pubspec.yaml cookbook/*/*/pubspec.yaml \
     README.md website/src/content/docs/docs/getting-started.md \
