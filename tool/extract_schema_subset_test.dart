@@ -81,4 +81,34 @@ void main() {
       throwsA(isA<StateError>()),
     );
   });
+
+  group('resourceNamesFromFixture', () {
+    test('returns the sorted resource keys of the fixture', () {
+      expect(
+        resourceNamesFromFixture(full),
+        ['google_compute_instance', 'google_project_service_identity'],
+      );
+    });
+
+    test('ignores data sources', () {
+      expect(
+        resourceNamesFromFixture(full),
+        isNot(contains('google_project')),
+      );
+    });
+
+    test('throws StateError on a fixture with no resources', () {
+      expect(
+        () => resourceNamesFromFixture({
+          'provider_schemas': {
+            'registry.terraform.io/hashicorp/google-beta': {
+              'resource_schemas': <String, dynamic>{},
+            },
+          },
+        }),
+        throwsStateError,
+      );
+      expect(() => resourceNamesFromFixture({}), throwsStateError);
+    });
+  });
 }
