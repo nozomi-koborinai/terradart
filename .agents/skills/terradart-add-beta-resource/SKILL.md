@@ -15,11 +15,12 @@ The beta-only catalog at the current provider pin is **filled**. Add a resource 
 **Task progress:**
 
 - [ ] 1. **Confirm beta-only.** The type must be absent from the GA fixture (`packages/terradart_codegen/test/fixtures/wrap/source/schema.json`) and present in the google-beta provider. If it exists in GA, stop — curate it in `terradart_google` instead ([`terradart-add-curated-resource`](../terradart-add-curated-resource/SKILL.md)).
-- [ ] 2. **Re-extract the fixture** with the new type APPENDED to the existing list (the fixture README records the current list — the extraction replaces the whole file, so dropping a name would silently shrink the catalog's schema):
+- [ ] 2. **Re-extract the fixture** with the new type added via union — the current set comes from the fixture itself (`schema.json` keys are the single source of truth; no name list is maintained anywhere else):
   ```bash
   dart tool/extract_schema_subset.dart \
     --provider=hashicorp/google-beta --version=<provider_version.txt> \
-    --resources=<existing,list,plus_new_type> \
+    --resources-from=packages/terradart_codegen/test/fixtures/wrap/source_beta/schema.json \
+    --resources=<new_type> \
     --out=packages/terradart_codegen/test/fixtures/wrap/source_beta
   ```
   Requires `terraform` on PATH and terraform-registry network access (no cloud credentials). If either is missing in your environment, stop and report — never hand-write schema JSON.

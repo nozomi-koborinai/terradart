@@ -1,141 +1,18 @@
 # Filtered schema fixture — hashicorp/google-beta
 
-Machine-extracted subset containing ONLY the curated resources below.
-Never hand-edit; re-extract with:
+Machine-extracted subset containing ONLY the curated resources. The keys of
+`schema.json` are the single source of truth for the set, and
+`provider_version.txt` records the extraction version. Never hand-edit
+either file. Re-extract the SAME set at the pinned version with:
 
 ```bash
 dart tool/extract_schema_subset.dart \
-  --provider=hashicorp/google-beta --version=7.44.0 \
-  --resources=google_active_directory_peering,google_api_gateway_api,google_api_gateway_api_config,google_api_gateway_api_config_iam_binding,google_api_gateway_api_config_iam_member,google_api_gateway_api_config_iam_policy,google_api_gateway_api_iam_binding,google_api_gateway_api_iam_member,google_api_gateway_api_iam_policy,google_api_gateway_gateway,google_api_gateway_gateway_iam_binding,google_api_gateway_gateway_iam_member,google_api_gateway_gateway_iam_policy,google_artifact_registry_vpcsc_config,google_biglake_hive_catalog,google_biglake_hive_catalog_iam_binding,google_biglake_hive_catalog_iam_member,google_biglake_hive_catalog_iam_policy,google_biglake_hive_database,google_biglake_hive_database_iam_binding,google_biglake_hive_database_iam_member,google_biglake_hive_database_iam_policy,google_biglake_hive_table,google_biglake_hive_table_iam_binding,google_biglake_hive_table_iam_member,google_biglake_hive_table_iam_policy,google_bigquery_analytics_hub_data_exchange_subscription,google_ces_evaluation,google_ces_security_settings,google_chronicle_soar_domain,google_cloud_identity_policy,google_compute_backend_bucket_iam_binding,google_compute_backend_bucket_iam_member,google_compute_backend_bucket_iam_policy,google_compute_backend_service_iam_binding,google_compute_backend_service_iam_member,google_compute_backend_service_iam_policy,google_compute_future_reservation,google_compute_instance_from_machine_image,google_compute_machine_image,google_compute_machine_image_iam_binding,google_compute_machine_image_iam_member,google_compute_machine_image_iam_policy,google_compute_network_edge_security_service,google_compute_network_firewall_policy_packet_mirroring_rule,google_compute_region_backend_bucket,google_compute_region_backend_bucket_iam_binding,google_compute_region_backend_bucket_iam_member,google_compute_region_backend_bucket_iam_policy,google_compute_region_backend_service_iam_binding,google_compute_region_backend_service_iam_member,google_compute_region_backend_service_iam_policy,google_compute_region_network_policy,google_compute_region_network_policy_traffic_classification_rule,google_dataflow_flex_template_job,google_dataform_config,google_dataform_repository_release_config,google_dataform_repository_workflow_config,google_dataplex_data_asset,google_firebase_ai_logic_config,google_firebase_ai_logic_prompt_template,google_firebase_ai_logic_prompt_template_lock,google_firebase_android_app,google_firebase_apple_app,google_firebase_database_instance,google_firebase_extensions_instance,google_firebase_hosting_channel,google_firebase_hosting_custom_domain,google_firebase_hosting_release,google_firebase_hosting_site,google_firebase_hosting_version,google_firebase_project,google_firebase_storage_bucket,google_firebase_storage_default_bucket,google_firebase_web_app,google_folder_service_identity,google_gke_hub_membership_rbac_role_binding,google_kms_folder_kaj_policy_config,google_kms_organization_kaj_policy_config,google_kms_project_kaj_policy_config,google_network_security_authorization_policy,google_network_security_sac_attachment,google_network_security_sac_realm,google_network_services_service_lb_policies,google_observability_folder_settings,google_observability_organization_settings,google_observability_project_settings,google_organization_service_identity,google_os_config_guest_policies,google_privileged_access_manager_settings,google_project_service_identity,google_runtimeconfig_config,google_runtimeconfig_config_iam_binding,google_runtimeconfig_config_iam_member,google_runtimeconfig_config_iam_policy,google_runtimeconfig_variable,google_saas_runtime_release,google_saas_runtime_rollout_kind,google_saas_runtime_saas,google_saas_runtime_tenant,google_saas_runtime_unit,google_saas_runtime_unit_kind,google_saas_runtime_unit_operation,google_security_scanner_scan_config,google_service_usage_consumer_quota_override,google_tags_tag_binding_collection,google_tpu_v2_queued_resource,google_tpu_v2_vm,google_vertex_ai_endpoint_iam_binding,google_vertex_ai_endpoint_iam_member,google_vertex_ai_endpoint_iam_policy,google_vertex_ai_feature_group_iam_binding,google_vertex_ai_feature_group_iam_member,google_vertex_ai_feature_group_iam_policy,google_vertex_ai_feature_online_store_featureview_iam_binding,google_vertex_ai_feature_online_store_featureview_iam_member,google_vertex_ai_feature_online_store_featureview_iam_policy,google_vertex_ai_feature_online_store_iam_binding,google_vertex_ai_feature_online_store_iam_member,google_vertex_ai_feature_online_store_iam_policy,google_vertex_ai_featurestore_entitytype_iam_binding,google_vertex_ai_featurestore_entitytype_iam_member,google_vertex_ai_featurestore_entitytype_iam_policy,google_vertex_ai_featurestore_iam_binding,google_vertex_ai_featurestore_iam_member,google_vertex_ai_featurestore_iam_policy,google_vertex_ai_metadata_store,google_vertex_ai_model_garden_enable_model \
+  --provider=hashicorp/google-beta \
+  --version="$(cat packages/terradart_codegen/test/fixtures/wrap/source_beta/provider_version.txt)" \
+  --resources-from=packages/terradart_codegen/test/fixtures/wrap/source_beta/schema.json \
   --out=packages/terradart_codegen/test/fixtures/wrap/source_beta
 ```
 
-Resources:
-- `google_active_directory_peering`
-- `google_api_gateway_api`
-- `google_api_gateway_api_config`
-- `google_api_gateway_api_config_iam_binding`
-- `google_api_gateway_api_config_iam_member`
-- `google_api_gateway_api_config_iam_policy`
-- `google_api_gateway_api_iam_binding`
-- `google_api_gateway_api_iam_member`
-- `google_api_gateway_api_iam_policy`
-- `google_api_gateway_gateway`
-- `google_api_gateway_gateway_iam_binding`
-- `google_api_gateway_gateway_iam_member`
-- `google_api_gateway_gateway_iam_policy`
-- `google_artifact_registry_vpcsc_config`
-- `google_biglake_hive_catalog`
-- `google_biglake_hive_catalog_iam_binding`
-- `google_biglake_hive_catalog_iam_member`
-- `google_biglake_hive_catalog_iam_policy`
-- `google_biglake_hive_database`
-- `google_biglake_hive_database_iam_binding`
-- `google_biglake_hive_database_iam_member`
-- `google_biglake_hive_database_iam_policy`
-- `google_biglake_hive_table`
-- `google_biglake_hive_table_iam_binding`
-- `google_biglake_hive_table_iam_member`
-- `google_biglake_hive_table_iam_policy`
-- `google_bigquery_analytics_hub_data_exchange_subscription`
-- `google_ces_evaluation`
-- `google_ces_security_settings`
-- `google_chronicle_soar_domain`
-- `google_cloud_identity_policy`
-- `google_compute_backend_bucket_iam_binding`
-- `google_compute_backend_bucket_iam_member`
-- `google_compute_backend_bucket_iam_policy`
-- `google_compute_backend_service_iam_binding`
-- `google_compute_backend_service_iam_member`
-- `google_compute_backend_service_iam_policy`
-- `google_compute_future_reservation`
-- `google_compute_instance_from_machine_image`
-- `google_compute_machine_image`
-- `google_compute_machine_image_iam_binding`
-- `google_compute_machine_image_iam_member`
-- `google_compute_machine_image_iam_policy`
-- `google_compute_network_edge_security_service`
-- `google_compute_network_firewall_policy_packet_mirroring_rule`
-- `google_compute_region_backend_bucket`
-- `google_compute_region_backend_bucket_iam_binding`
-- `google_compute_region_backend_bucket_iam_member`
-- `google_compute_region_backend_bucket_iam_policy`
-- `google_compute_region_backend_service_iam_binding`
-- `google_compute_region_backend_service_iam_member`
-- `google_compute_region_backend_service_iam_policy`
-- `google_compute_region_network_policy`
-- `google_compute_region_network_policy_traffic_classification_rule`
-- `google_dataflow_flex_template_job`
-- `google_dataform_config`
-- `google_dataform_repository_release_config`
-- `google_dataform_repository_workflow_config`
-- `google_dataplex_data_asset`
-- `google_firebase_ai_logic_config`
-- `google_firebase_ai_logic_prompt_template`
-- `google_firebase_ai_logic_prompt_template_lock`
-- `google_firebase_android_app`
-- `google_firebase_apple_app`
-- `google_firebase_database_instance`
-- `google_firebase_extensions_instance`
-- `google_firebase_hosting_channel`
-- `google_firebase_hosting_custom_domain`
-- `google_firebase_hosting_release`
-- `google_firebase_hosting_site`
-- `google_firebase_hosting_version`
-- `google_firebase_project`
-- `google_firebase_storage_bucket`
-- `google_firebase_storage_default_bucket`
-- `google_firebase_web_app`
-- `google_folder_service_identity`
-- `google_gke_hub_membership_rbac_role_binding`
-- `google_kms_folder_kaj_policy_config`
-- `google_kms_organization_kaj_policy_config`
-- `google_kms_project_kaj_policy_config`
-- `google_network_security_authorization_policy`
-- `google_network_security_sac_attachment`
-- `google_network_security_sac_realm`
-- `google_network_services_service_lb_policies`
-- `google_observability_folder_settings`
-- `google_observability_organization_settings`
-- `google_observability_project_settings`
-- `google_organization_service_identity`
-- `google_os_config_guest_policies`
-- `google_privileged_access_manager_settings`
-- `google_project_service_identity`
-- `google_runtimeconfig_config`
-- `google_runtimeconfig_config_iam_binding`
-- `google_runtimeconfig_config_iam_member`
-- `google_runtimeconfig_config_iam_policy`
-- `google_runtimeconfig_variable`
-- `google_saas_runtime_release`
-- `google_saas_runtime_rollout_kind`
-- `google_saas_runtime_saas`
-- `google_saas_runtime_tenant`
-- `google_saas_runtime_unit`
-- `google_saas_runtime_unit_kind`
-- `google_saas_runtime_unit_operation`
-- `google_security_scanner_scan_config`
-- `google_service_usage_consumer_quota_override`
-- `google_tags_tag_binding_collection`
-- `google_tpu_v2_queued_resource`
-- `google_tpu_v2_vm`
-- `google_vertex_ai_endpoint_iam_binding`
-- `google_vertex_ai_endpoint_iam_member`
-- `google_vertex_ai_endpoint_iam_policy`
-- `google_vertex_ai_feature_group_iam_binding`
-- `google_vertex_ai_feature_group_iam_member`
-- `google_vertex_ai_feature_group_iam_policy`
-- `google_vertex_ai_feature_online_store_featureview_iam_binding`
-- `google_vertex_ai_feature_online_store_featureview_iam_member`
-- `google_vertex_ai_feature_online_store_featureview_iam_policy`
-- `google_vertex_ai_feature_online_store_iam_binding`
-- `google_vertex_ai_feature_online_store_iam_member`
-- `google_vertex_ai_feature_online_store_iam_policy`
-- `google_vertex_ai_featurestore_entitytype_iam_binding`
-- `google_vertex_ai_featurestore_entitytype_iam_member`
-- `google_vertex_ai_featurestore_entitytype_iam_policy`
-- `google_vertex_ai_featurestore_iam_binding`
-- `google_vertex_ai_featurestore_iam_member`
-- `google_vertex_ai_featurestore_iam_policy`
-- `google_vertex_ai_metadata_store`
-- `google_vertex_ai_model_garden_enable_model`
+To ADD a resource, append it via union:
+`--resources-from=packages/terradart_codegen/test/fixtures/wrap/source_beta/schema.json --resources=<new_type>`.
+To REMOVE one, pass an explicit `--resources=` list without it.
