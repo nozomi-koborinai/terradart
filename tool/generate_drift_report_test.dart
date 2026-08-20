@@ -1,3 +1,7 @@
+// The tool/ test convention keeps this file outside test/, so the analyzer
+// does not recognize it as a test for @visibleForTesting purposes.
+// ignore_for_file: invalid_use_of_visible_for_testing_member
+
 import 'package:test/test.dart';
 
 import 'generate_drift_report.dart';
@@ -31,13 +35,15 @@ void main() {
   });
 
   test('clean beta bump renders version movement in section and summary', () {
-    final i = inputs(betaBump: {
-      'previous_version': '7.44.0',
-      'version': '7.46.0',
-      'extract_exit': 0,
-      'wrap_check_exit': 0,
-      'log_excerpt': '',
-    });
+    final i = inputs(
+      betaBump: {
+        'previous_version': '7.44.0',
+        'version': '7.46.0',
+        'extract_exit': 0,
+        'wrap_check_exit': 0,
+        'log_excerpt': '',
+      },
+    );
     final section = buildBetaSection(i)!;
     expect(section, contains('## google-beta bump (7.44.0 → 7.46.0)'));
     expect(section, contains('re-extracted at 7.46.0'));
@@ -47,13 +53,15 @@ void main() {
   });
 
   test('extract failure: GA-only note, excerpt, warning summary row', () {
-    final i = inputs(betaBump: {
-      'previous_version': '7.44.0',
-      'version': '7.46.0',
-      'extract_exit': 69,
-      'wrap_check_exit': null,
-      'log_excerpt': 'StateError: requested resource(s) absent',
-    });
+    final i = inputs(
+      betaBump: {
+        'previous_version': '7.44.0',
+        'version': '7.46.0',
+        'extract_exit': 69,
+        'wrap_check_exit': null,
+        'log_excerpt': 'StateError: requested resource(s) absent',
+      },
+    );
     final section = buildBetaSection(i)!;
     expect(section, contains('re-extraction failed (exit 69)'));
     expect(section, contains('ships GA-only'));
@@ -62,13 +70,15 @@ void main() {
   });
 
   test('wrap-check divergence: divergence line and excerpt', () {
-    final i = inputs(betaBump: {
-      'previous_version': '7.44.0',
-      'version': '7.46.0',
-      'extract_exit': 0,
-      'wrap_check_exit': 1,
-      'log_excerpt': 'MISMATCH lib/src/firebase/google_firebase_project.dart',
-    });
+    final i = inputs(
+      betaBump: {
+        'previous_version': '7.44.0',
+        'version': '7.46.0',
+        'extract_exit': 0,
+        'wrap_check_exit': 1,
+        'log_excerpt': 'MISMATCH lib/src/firebase/google_firebase_project.dart',
+      },
+    );
     final section = buildBetaSection(i)!;
     expect(section, contains('divergence (exit 1)'));
     expect(section, contains('MISMATCH'));
