@@ -364,8 +364,7 @@ void main() {
       final beta = jsonDecode(
         File('test/fixtures/wrap/source_beta/schema.json').readAsStringSync(),
       ) as Map<String, dynamic>;
-      final promoted =
-          overlappingResourceTypes(gaSchema: ga, betaSchema: beta);
+      final promoted = overlappingResourceTypes(gaSchema: ga, betaSchema: beta);
       expect(
         promoted,
         isEmpty,

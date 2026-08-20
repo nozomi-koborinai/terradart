@@ -87,8 +87,7 @@ Map<String, dynamic> filterSchemaSubset(
   final allResources =
       (providerBody['resource_schemas'] as Map?)?.cast<String, dynamic>() ??
           const {};
-  final missing =
-      resources.where((r) => !allResources.containsKey(r)).toList();
+  final missing = resources.where((r) => !allResources.containsKey(r)).toList();
   if (missing.isNotEmpty) {
     throw StateError(
       'requested resource(s) absent from $providerKey: '

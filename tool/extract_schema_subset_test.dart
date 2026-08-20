@@ -40,7 +40,7 @@ void main() {
     );
     expect(out['format_version'], '1.0');
     final schemas = (out['provider_schemas']
-            as Map)['registry.terraform.io/hashicorp/google-beta'] as Map;
+        as Map)['registry.terraform.io/hashicorp/google-beta'] as Map;
     final resources = schemas['resource_schemas'] as Map;
     expect(resources.keys, ['google_project_service_identity']);
     expect(
@@ -53,8 +53,7 @@ void main() {
     expect(schemas.containsKey('data_source_schemas'), isFalse);
   });
 
-  test('fails closed when a requested resource is absent from the schema',
-      () {
+  test('fails closed when a requested resource is absent from the schema', () {
     expect(
       () => filterSchemaSubset(
         full,
