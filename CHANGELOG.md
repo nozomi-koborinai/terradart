@@ -6,6 +6,12 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ## Unreleased
 
+### Added
+
+- **`terradart_appwrite` / `terradart_google_beta`** — package-level
+  `example/main.dart` so pub.dev scores the "Package has an example"
+  documentation point.
+
 ## [0.25.1] - 2026-08-19
 
 Lockstep release across the workspace. **No breaking changes** vs `0.25.0`.

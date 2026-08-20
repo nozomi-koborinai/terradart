@@ -29,6 +29,8 @@ final class MyStack extends Stack {
 }
 ```
 
+A runnable copy lives in [`example/main.dart`](example/main.dart).
+
 Curated surface: **128 resource factories** across per-service barrels
 (`firebase`, `compute`, `vertex_ai`, `api_gateway`, `biglake`, …).
 The first factory remains `google_project_service_identity` (project

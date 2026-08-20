@@ -1,4 +1,5 @@
-// check_docs_consistency.dart — verifies docs caret minors and catalog counts.
+// check_docs_consistency.dart — verifies docs caret minors, catalog counts,
+// and that every published package ships a Dart file under example/.
 //
 // Text-only: the example synth gates (coverage + API-enablement ratchet +
 // local terraform validate) live in tool/example_synth_gates.dart and run as
@@ -131,6 +132,8 @@ Future<void> main() async {
     }
   }
 
+  _checkPublishedPackageExamples(errors);
+
   if (errors.isEmpty) {
     print('check_docs_consistency: OK');
     exit(0);
@@ -220,6 +223,39 @@ void _checkCaretMinor(
   for (final phrase in mustContain) {
     if (!text.contains(phrase)) {
       errors.add('$path: expected phrase "$phrase"');
+    }
+  }
+}
+
+/// pub.dev's "Package has an example" point requires a Dart file under
+/// `example/` in the published tarball. Un-published workspace packages
+/// (`publish_to: none`) are skipped.
+void _checkPublishedPackageExamples(List<String> errors) {
+  final packagesDir = Directory('packages');
+  if (!packagesDir.existsSync()) {
+    errors.add('Missing directory: packages');
+    return;
+  }
+  final dirs = packagesDir.listSync().whereType<Directory>().toList()
+    ..sort((a, b) => a.path.compareTo(b.path));
+  for (final dir in dirs) {
+    final pubspec = File('${dir.path}/pubspec.yaml');
+    if (!pubspec.existsSync()) continue;
+    final text = pubspec.readAsStringSync();
+    if (RegExp(r'^publish_to:\s*none\s*$', multiLine: true).hasMatch(text)) {
+      continue;
+    }
+    final exampleDir = Directory('${dir.path}/example');
+    final hasDart = exampleDir.existsSync() &&
+        exampleDir
+            .listSync()
+            .whereType<File>()
+            .any((f) => f.path.endsWith('.dart'));
+    if (!hasDart) {
+      errors.add(
+        '${dir.path}/example: published package needs a Dart example '
+        '(pub.dev "Package has an example")',
+      );
     }
   }
 }

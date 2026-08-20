@@ -21,6 +21,7 @@ const String kBetaProviderVersionConstraint = '~> 7.0';
 /// there is no `TfArgRef` use case here. Pass literal strings only.
 @immutable
 final class GoogleBetaProvider implements StackProvider {
+  /// Creates a `google-beta` provider block.
   const GoogleBetaProvider({
     this.project,
     this.region,

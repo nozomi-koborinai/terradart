@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+
+- Add `example/main.dart` so pub.dev scores the package-has-an-example
+  documentation point.
+
 ## 0.25.1
 
 - Fill the beta-only `hashicorp/google-beta` catalog: **128 resource

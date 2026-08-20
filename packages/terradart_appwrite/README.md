@@ -39,6 +39,8 @@ final class MyStack extends Stack {
 }
 ```
 
+A runnable copy lives in [`example/main.dart`](example/main.dart).
+
 Curated surface: `appwrite_project` (project barrel),
 `appwrite_storage_bucket` (storage barrel). Provider pinned at
 `2.0.0-beta.1` (exact — the provider is beta-maturity).

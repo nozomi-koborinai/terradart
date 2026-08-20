@@ -26,6 +26,11 @@ const String kAppwriteProviderVersionConstraint = '2.0.0-beta.1';
 /// blocks in Terraform JSON do not interpolate references to resources.
 @immutable
 final class AppwriteProvider implements StackProvider {
+  /// Creates an Appwrite provider block.
+  ///
+  /// Do not pass API keys here — set `APPWRITE_API_KEY` /
+  /// `APPWRITE_ORGANIZATION_API_KEY` at apply time so credentials never
+  /// enter synth output.
   const AppwriteProvider({
     this.endpoint,
     this.projectId,
