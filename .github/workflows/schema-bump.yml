@@ -182,6 +182,83 @@ jobs:
           echo "Exit: $rc"
           cat /tmp/wrap_check.txt
 
+      - name: Refresh google-beta fixture + regenerate (rides the GA bump)
+        run: |
+          # Runs BEFORE the universal QA gates so Gate 9 (beta/GA overlap)
+          # sees the refreshed fixture pair. Fail-soft: a beta failure never
+          # blocks the GA bump — it lands in beta_bump.json for the report.
+          bump_needed=$(jq -r '.bump_needed' /tmp/state.json)
+          if [ "$bump_needed" != "true" ]; then
+            echo "No v7 bump; google-beta lane skipped."
+            exit 0
+          fi
+          v7_latest=$(jq -r '.v7_latest' /tmp/state.json)
+          beta_dir=packages/terradart_codegen/test/fixtures/wrap/source_beta
+          prev=$(cat "$beta_dir/provider_version.txt")
+
+          set +e
+          dart tool/extract_schema_subset.dart \
+            --provider=hashicorp/google-beta \
+            --version="$v7_latest" \
+            --resources-from="$beta_dir/schema.json" \
+            --out="$beta_dir" > /tmp/beta_extract.txt 2>&1
+          extract_rc=$?
+          set -e
+          cat /tmp/beta_extract.txt
+
+          wrap_check_rc=null
+          if [ "$extract_rc" = "0" ]; then
+            printf '%s\n' "$v7_latest" > "$beta_dir/provider_version.txt"
+            set +e
+            (cd packages/terradart_codegen && dart run bin/terradart.dart wrap \
+              --provider hashicorp/google-beta \
+              --source test/fixtures/wrap/source_beta \
+              --output ../terradart_google_beta/lib/src \
+              --overrides-root lib/src/codegen/wrapper_overrides/google_beta/yaml \
+              --barrels-manifest lib/src/codegen/barrels/barrels_google_beta.yaml \
+              --resource-provider google-beta) > /tmp/beta_wrap.txt 2>&1
+            regen_rc=$?
+            set -e
+            cat /tmp/beta_wrap.txt
+            if [ "$regen_rc" != "0" ]; then
+              # GA precedent: keep the refreshed fixture (PR carries inputs),
+              # discard partial generation; --check below records divergence.
+              git checkout -- packages/terradart_google_beta/lib
+            fi
+            set +e
+            (cd packages/terradart_codegen && dart run bin/terradart.dart wrap \
+              --provider hashicorp/google-beta \
+              --source test/fixtures/wrap/source_beta \
+              --output ../terradart_google_beta/lib/src \
+              --overrides-root lib/src/codegen/wrapper_overrides/google_beta/yaml \
+              --barrels-manifest lib/src/codegen/barrels/barrels_google_beta.yaml \
+              --resource-provider google-beta \
+              --check) > /tmp/beta_wrap_check.txt 2>&1
+            wrap_check_rc=$?
+            set -e
+            cat /tmp/beta_wrap_check.txt
+          else
+            # Fail-closed extractor tripped (upstream type removal?) or
+            # terraform init failed — ship GA-only, keep the old fixture.
+            git checkout -- "$beta_dir"
+          fi
+
+          excerpt=""
+          if [ "$extract_rc" != "0" ]; then
+            excerpt=$(tail -c 2000 /tmp/beta_extract.txt)
+          elif [ "$wrap_check_rc" != "null" ] && [ "$wrap_check_rc" != "0" ]; then
+            excerpt=$(tail -c 2000 /tmp/beta_wrap_check.txt)
+          fi
+          jq -n \
+            --arg prev "$prev" \
+            --arg version "$v7_latest" \
+            --argjson extract_exit "$extract_rc" \
+            --argjson wrap_check_exit "$wrap_check_rc" \
+            --arg log_excerpt "$excerpt" \
+            '{previous_version: $prev, version: $version, extract_exit: $extract_exit, wrap_check_exit: $wrap_check_exit, log_excerpt: $log_excerpt}' \
+            > /tmp/beta_bump.json
+          cat /tmp/beta_bump.json
+
       - name: Run universal QA gates
         id: gates
         run: |
@@ -203,6 +280,11 @@ jobs:
           cp /tmp/gates_exit /tmp/inputs/gates_exit
           cp /tmp/mm_yaml_sync.json /tmp/inputs/mm_yaml_sync.json
           cp /tmp/schema_diff.json /tmp/inputs/schema_diff.json
+          # Present only on bump weeks (the beta ride-along step wrote it);
+          # absent → the report omits its google-beta section.
+          if [ -f /tmp/beta_bump.json ]; then
+            cp /tmp/beta_bump.json /tmp/inputs/beta_bump.json
+          fi
           # Add bump_date to state.json for the report title.
           today=$(date -u +%Y-%m-%d)
           jq --arg d "$today" '. + {bump_date: $d}' /tmp/state.json \
@@ -266,7 +348,9 @@ jobs:
             packages/terradart_codegen/test/fixtures/wrap/source/schema.json \
             packages/terradart_codegen/test/fixtures/wrap/source/provider_version.txt \
             packages/terradart_codegen/test/fixtures/wrap/source/mm \
-            packages/terradart_google/lib
+            packages/terradart_codegen/test/fixtures/wrap/source_beta \
+            packages/terradart_google/lib \
+            packages/terradart_google_beta/lib
           git commit -m "chore(schema): weekly bump $today"
           git push -u origin "$branch"
           # Ensure the PR labels exist (idempotent) so a missing label can't fail
