@@ -78,6 +78,7 @@ class ReportInputs {
     required this.gatesExitCode,
     required this.mmYamlSync,
     required this.schemaDiff,
+    this.betaBump,
   });
   final Map<String, dynamic> state;
   final String wrapCheckStdout;
@@ -86,6 +87,11 @@ class ReportInputs {
   final int gatesExitCode;
   final Map<String, dynamic> mmYamlSync;
   final Map<String, dynamic> schemaDiff;
+
+  /// Optional `beta_bump.json` payload — present only when the workflow ran
+  /// the google-beta ride-along (a GA bump week). Absent file → null → the
+  /// report omits the beta section entirely.
+  final Map<String, dynamic>? betaBump;
 }
 
 @visibleForTesting
@@ -104,6 +110,10 @@ ReportInputs readInputs(String dir) {
       as Map<String, dynamic>;
   final schema = jsonDecode(File('$dir/schema_diff.json').readAsStringSync())
       as Map<String, dynamic>;
+  final betaFile = File('$dir/beta_bump.json');
+  final beta = betaFile.existsSync()
+      ? jsonDecode(betaFile.readAsStringSync()) as Map<String, dynamic>
+      : null;
   return ReportInputs(
     state: state,
     wrapCheckStdout: wrapCheck,
@@ -112,6 +122,7 @@ ReportInputs readInputs(String dir) {
     gatesExitCode: gatesExit,
     mmYamlSync: mm,
     schemaDiff: schema,
+    betaBump: beta,
   );
 }
 
@@ -133,6 +144,11 @@ String buildReport(ReportInputs i) {
   b.writeln();
   b.writeln(buildMmYamlSection(i));
   b.writeln();
+  final betaSection = buildBetaSection(i);
+  if (betaSection != null) {
+    b.writeln(betaSection);
+    b.writeln();
+  }
   b.writeln(buildDivergenceSection(i));
   b.writeln();
   b.writeln(buildGateSection(i));
@@ -172,15 +188,73 @@ String buildSummaryTable(ReportInputs i) {
   final newResources = (i.schemaDiff['added_resources'] as List?)?.length ?? 0;
   final removedResources =
       (i.schemaDiff['removed_resources'] as List?)?.length ?? 0;
+  final betaRow = betaSummaryRow(i);
   return '## Summary\n\n'
       '| Source | Status |\n'
       '|---|---|\n'
       '| `hashicorp/google` v7 | $v7Current → **$v7Latest** |\n'
+      '${betaRow == null ? '' : '$betaRow\n'}'
       '| magic-modules | **$mmChanged files updated** |\n'
       '| `terradart wrap --check` | $wrapStatus |\n'
-      '| 6 universal QA gates | $gatesStatus |\n'
+      '| universal QA gates | $gatesStatus |\n'
       '| New `google_*` resources | **$newResources detected** |\n'
       '| Removed curated resources | ${removedResources == 0 ? "✅ none" : "⚠️ $removedResources"} |';
+}
+
+@visibleForTesting
+String? betaSummaryRow(ReportInputs i) {
+  final beta = i.betaBump;
+  if (beta == null) return null;
+  final prev = beta['previous_version'] ?? 'unknown';
+  final version = beta['version'] ?? 'unknown';
+  final clean = beta['extract_exit'] == 0 && beta['wrap_check_exit'] == 0;
+  final status = clean
+      ? '$prev → **$version**'
+      : '⚠️ $prev → $version — see the google-beta section';
+  return '| `hashicorp/google-beta` | $status |';
+}
+
+@visibleForTesting
+String? buildBetaSection(ReportInputs i) {
+  final beta = i.betaBump;
+  if (beta == null) return null;
+  final prev = beta['previous_version'] ?? 'unknown';
+  final version = beta['version'] ?? 'unknown';
+  final b = StringBuffer('## google-beta bump ($prev → $version)\n\n');
+  if (beta['extract_exit'] != 0) {
+    b.writeln(
+      '- ❌ fixture re-extraction failed (exit ${beta['extract_exit']}) — '
+      'the PR ships GA-only; `source_beta/` is unchanged at $prev. A '
+      'fail-closed StateError usually means an upstream beta-only type '
+      'was removed (Tier 3).',
+    );
+  } else {
+    b.writeln(
+      '- ✅ fixture re-extracted at $version (same resource set — keys '
+      'from the previous fixture).',
+    );
+    if (beta['wrap_check_exit'] == 0) {
+      b.writeln('- ✅ `terradart wrap --check` (beta) clean.');
+    } else {
+      b.writeln(
+        '- ⚠️ `terradart wrap --check` (beta) divergence '
+        '(exit ${beta['wrap_check_exit']}) — see the excerpt below.',
+      );
+    }
+  }
+  final excerpt = (beta['log_excerpt'] as String?) ?? '';
+  if (excerpt.isNotEmpty) {
+    b
+      ..writeln()
+      ..writeln('<details><summary>beta failure log excerpt</summary>')
+      ..writeln()
+      ..writeln('```')
+      ..writeln(excerpt.trim())
+      ..writeln('```')
+      ..writeln()
+      ..writeln('</details>');
+  }
+  return b.toString().trimRight();
 }
 
 @visibleForTesting

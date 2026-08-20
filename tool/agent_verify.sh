@@ -92,7 +92,7 @@ else
 fi
 
 echo ">> dart test tool/ (render_formula, render_to_file, select_changed_examples, check_bump_scope, wave_skiplist_gate, loop_health_report, extract_schema_subset)"
-dart test tool/render_formula_test.dart tool/render_to_file_test.dart tool/select_changed_examples_test.dart tool/check_bump_scope_test.dart tool/check_wave_skiplist_gate_test.dart tool/loop_health_report_test.dart tool/extract_schema_subset_test.dart
+dart test tool/render_formula_test.dart tool/render_to_file_test.dart tool/select_changed_examples_test.dart tool/check_bump_scope_test.dart tool/check_wave_skiplist_gate_test.dart tool/loop_health_report_test.dart tool/extract_schema_subset_test.dart tool/generate_drift_report_test.dart
 
 echo ">> terradart wrap --check"
 (

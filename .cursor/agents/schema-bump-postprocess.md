@@ -51,7 +51,12 @@ guardrails all bind you.
 - the regenerated site coverage page when the catalog changed: run
   `dart tool/example_synth_gates.dart --skip-validate` then
   `dart tool/render_coverage_page.dart` (CI's freshness check fails
-  otherwise).
+  otherwise);
+- a new beta barrel's `doc:` entry in
+  `packages/terradart_codegen/lib/src/codegen/barrels/barrels_google_beta.yaml`
+  (same fail-closed rule as the GA barrels manifest). Beta wrappers are
+  regenerated with the beta `wrap` coordinates in `tool/providers.yaml`
+  (`--resource-provider google-beta` is mandatory) — never hand-edited.
 
 Repair loop: edit → `tool/agent_verify.sh --quick` (~20s) → iterate; run
 the FULL `tool/agent_verify.sh` before pushing. Never pipe a test command
@@ -72,6 +77,13 @@ Two full repair rounds without green → escalate (Tier 3).
   edit);
 - a fix would need files outside `tool/bump_allowed_paths.yaml`;
 - universal QA gates red in the drift report;
+- the drift report's google-beta section shows a re-extraction failure
+  (the fail-closed extractor tripping usually means an upstream beta-only
+  type was REMOVED — a demotion decision, maintainer work);
+- universal QA Gate 9 (beta/GA overlap) is red: a beta-only type was
+  PROMOTED to GA. Never repair — removing it from `terradart_google_beta`
+  is breaking (minor bump + MIGRATING.md, which you must never edit) and
+  GA curation goes through the backlog;
 - anything you cannot confidently classify.
 
 → Comment your analysis (what is Tier 3 and why, plus your recommended
