@@ -5,8 +5,9 @@
 # into, and which override registry / barrels manifest / provider
 # meta-argument the wrap invocation uses. Adding a provider (cloudflare,
 # ...) should mean adding an entry here plus its directories — consumers
-# are tool/agent_verify.sh's per-provider wrap --check loop and (future)
-# per-provider schema-bump lanes.
+# are tool/agent_verify.sh's per-provider wrap --check loop and the
+# schema-bump lanes (GA google + the google-beta ride-along in
+# .github/workflows/schema-bump.yml; appwrite bumps stay deliberate).
 #
 # Fields:
 #   source:          terraform registry source (NAMESPACE/NAME)

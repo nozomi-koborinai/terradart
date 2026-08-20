@@ -231,7 +231,7 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 [`terradart_google`](packages/terradart_google/README.md) ships **1332 curated resource factories + 461 data sources** (1793 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). The GA `hashicorp/google` catalog is filled.
 
-[`terradart_google_beta`](packages/terradart_google_beta/README.md) ships the **beta-only** `hashicorp/google-beta` catalog (**128 resource factories**). Import `package:terradart_google_beta` and `GoogleBetaProvider`; wrappers pin the `google-beta` meta-argument. Types that also exist in GA stay in `terradart_google`.
+[`terradart_google_beta`](packages/terradart_google_beta/README.md) ships the **beta-only** `hashicorp/google-beta` catalog (**128 resource factories**, schema pin tracking the weekly GA bump). Import `package:terradart_google_beta` and `GoogleBetaProvider`; wrappers pin the `google-beta` meta-argument. Types that also exist in GA stay in `terradart_google`.
 
 The full factory table with example pointers is on [Coverage](https://terradart.dev/docs/coverage/). In Dart, discover factories via `package:terradart_google/catalog.dart` (`terradartCatalog`). CI verifies regeneration is byte-deterministic via `terradart wrap --check`.
 
