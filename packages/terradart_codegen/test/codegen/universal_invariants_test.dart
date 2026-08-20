@@ -1,7 +1,9 @@
 // packages/terradart_codegen/test/codegen/universal_invariants_test.dart
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:path/path.dart' as p;
+import 'package:terradart_codegen/src/codegen/universal_invariants/beta_overlap.dart';
 import 'package:terradart_codegen/src/codegen/universal_invariants/enum_extractor.dart';
 import 'package:terradart_codegen/src/codegen/universal_invariants/enum_value_length.dart';
 import 'package:terradart_codegen/src/codegen/universal_invariants/nested_helper_prefix.dart';
@@ -351,6 +353,30 @@ void main() {
           reason: 'Short enum values found (consider verbose-natural form '
               'or add to allowList if legitimately short):\n'
               '${violations.join('\n')}');
+    });
+  });
+
+  group('Gate 9: beta-only catalog does not overlap the GA schema', () {
+    test('no source_beta resource type exists in the GA fixture', () {
+      final ga = jsonDecode(
+        File('test/fixtures/wrap/source/schema.json').readAsStringSync(),
+      ) as Map<String, dynamic>;
+      final beta = jsonDecode(
+        File('test/fixtures/wrap/source_beta/schema.json').readAsStringSync(),
+      ) as Map<String, dynamic>;
+      final promoted = overlappingResourceTypes(gaSchema: ga, betaSchema: beta);
+      expect(
+        promoted,
+        isEmpty,
+        reason: 'beta-only type(s) promoted to GA: ${promoted.join(', ')}.\n'
+            'Playbook (maintainer, Tier 3 — never auto-repair):\n'
+            '1. Remove the factory from terradart_google_beta (breaking: '
+            'minor bump + MIGRATING.md).\n'
+            '2. Re-extract source_beta without the promoted type(s) '
+            '(see its README).\n'
+            '3. GA curation picks the type up via the normal backlog/wave '
+            'lane.',
+      );
     });
   });
 }

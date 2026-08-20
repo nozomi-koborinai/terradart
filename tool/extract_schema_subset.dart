@@ -17,6 +17,14 @@
 //     --resources=google_project_service_identity[,google_x,...] \
 //     --out=packages/terradart_codegen/test/fixtures/wrap/source_beta
 //
+//   --resources-from=<schema.json>  read the resource set from an existing
+//                         fixture (its resource_schemas keys). May be
+//                         combined with --resources= — the union is
+//                         extracted (how terradart-add-beta-resource
+//                         appends a type without a baked-in name list;
+//                         the weekly schema bump passes it alone to
+//                         re-extract the same set at the new version).
+//
 //   --schema-json=<file>  read an existing `terraform providers schema
 //                         -json` dump instead of running terraform
 //                         (tests / offline use).
@@ -34,6 +42,26 @@ import 'dart:io';
 
 const _exitUsage = 64;
 const _exitExtract = 69;
+
+/// Returns the resource type names of an existing (filtered) fixture: the
+/// union of every provider's `resource_schemas` keys, sorted. Fails closed
+/// on an empty result — re-extracting an empty set must never silently
+/// produce an empty fixture.
+List<String> resourceNamesFromFixture(Map<String, dynamic> fixture) {
+  final providerSchemas =
+      (fixture['provider_schemas'] as Map?)?.cast<String, dynamic>() ??
+          const {};
+  final names = <String>{};
+  for (final body in providerSchemas.values) {
+    final resources =
+        ((body as Map?)?['resource_schemas'] as Map?)?.cast<String, dynamic>();
+    if (resources != null) names.addAll(resources.keys);
+  }
+  if (names.isEmpty) {
+    throw StateError('no resource_schemas found in the fixture');
+  }
+  return names.toList()..sort();
+}
 
 /// Returns a schema JSON containing only [resources] under
 /// `registry.terraform.io/<providerSource>`. Fails closed: an absent
@@ -59,8 +87,7 @@ Map<String, dynamic> filterSchemaSubset(
   final allResources =
       (providerBody['resource_schemas'] as Map?)?.cast<String, dynamic>() ??
           const {};
-  final missing =
-      resources.where((r) => !allResources.containsKey(r)).toList();
+  final missing = resources.where((r) => !allResources.containsKey(r)).toList();
   if (missing.isNotEmpty) {
     throw StateError(
       'requested resource(s) absent from $providerKey: '
@@ -84,6 +111,7 @@ Future<void> main(List<String> args) async {
   String? version;
   String? out;
   String? schemaJsonPath;
+  String? resourcesFrom;
   var resources = const <String>[];
   for (final a in args) {
     if (a.startsWith('--provider=')) {
@@ -92,6 +120,8 @@ Future<void> main(List<String> args) async {
       version = a.substring('--version='.length);
     } else if (a.startsWith('--resources=')) {
       resources = a.substring('--resources='.length).split(',');
+    } else if (a.startsWith('--resources-from=')) {
+      resourcesFrom = a.substring('--resources-from='.length);
     } else if (a.startsWith('--out=')) {
       out = a.substring('--out='.length);
     } else if (a.startsWith('--schema-json=')) {
@@ -101,10 +131,21 @@ Future<void> main(List<String> args) async {
       exit(_exitUsage);
     }
   }
+  if (resourcesFrom != null) {
+    // Union: the fixture's current set is the base, --resources adds to it
+    // (used by terradart-add-beta-resource to append a new type without a
+    // baked-in name list).
+    final base = resourceNamesFromFixture(
+      jsonDecode(File(resourcesFrom).readAsStringSync())
+          as Map<String, dynamic>,
+    );
+    resources = {...base, ...resources}.toList()..sort();
+  }
   if (provider == null || out == null || resources.isEmpty) {
     stderr.writeln(
       'Usage: dart tool/extract_schema_subset.dart --provider=NS/NAME '
-      '--version=X.Y.Z --resources=a,b --out=DIR [--schema-json=FILE]',
+      '--version=X.Y.Z (--resources=a,b | --resources-from=FIXTURE.json '
+      '| both) --out=DIR [--schema-json=FILE]',
     );
     exit(_exitUsage);
   }
@@ -188,22 +229,26 @@ terraform {
   if (version != null) {
     File('${outDir.path}/provider_version.txt').writeAsStringSync('$version\n');
   }
-  final sortedResources = [...resources]..sort();
+  final fixtureDir = out.replaceAll(r'\', '/');
   File('${outDir.path}/README.md').writeAsStringSync('''
 # Filtered schema fixture — $provider
 
-Machine-extracted subset containing ONLY the curated resources below.
-Never hand-edit; re-extract with:
+Machine-extracted subset containing ONLY the curated resources. The keys of
+`schema.json` are the single source of truth for the set, and
+`provider_version.txt` records the extraction version. Never hand-edit
+either file. Re-extract the SAME set at the pinned version with:
 
 ```bash
 dart tool/extract_schema_subset.dart \\
-  --provider=$provider --version=${version ?? '<X.Y.Z>'} \\
-  --resources=${sortedResources.join(',')} \\
-  --out=${out.replaceAll(r'\', '/')}
+  --provider=$provider \\
+  --version="\$(cat $fixtureDir/provider_version.txt)" \\
+  --resources-from=$fixtureDir/schema.json \\
+  --out=$fixtureDir
 ```
 
-Resources:
-${sortedResources.map((r) => '- `$r`').join('\n')}
+To ADD a resource, append it via union:
+`--resources-from=$fixtureDir/schema.json --resources=<new_type>`.
+To REMOVE one, pass an explicit `--resources=` list without it.
 ''');
   print(
     'extract_schema_subset: wrote ${resources.length} resource(s) to '
