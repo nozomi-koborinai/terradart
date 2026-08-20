@@ -87,6 +87,23 @@ void main() {
       expect(violations, isEmpty);
     });
 
+    test('committed ledger admits the google-beta bump surface', () {
+      final rules = loadBumpRules('tool/bump_allowed_paths.yaml');
+      final violations = checkBumpScope(
+        changed: const [
+          'packages/terradart_codegen/test/fixtures/wrap/source_beta/schema.json',
+          'packages/terradart_codegen/test/fixtures/wrap/source_beta/provider_version.txt',
+          'packages/terradart_codegen/test/fixtures/wrap/source_beta/README.md',
+          'packages/terradart_google_beta/lib/src/_catalog.g.dart',
+          'packages/terradart_google_beta/lib/firebase.dart',
+          'packages/terradart_codegen/lib/src/codegen/barrels/barrels_google_beta.yaml',
+          'packages/terradart_codegen/lib/src/codegen/wrapper_overrides/google_beta/yaml/google_firebase_project.yaml',
+        ],
+        rules: rules,
+      );
+      expect(violations, isEmpty);
+    });
+
     test('committed ledger rejects the deliberate exclusions', () {
       final rules = loadBumpRules('tool/bump_allowed_paths.yaml');
       final violations = checkBumpScope(

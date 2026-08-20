@@ -10,12 +10,21 @@
 # Bump inputs (schema fixture, provider pin, MM overlays)
 packages/terradart_codegen/test/fixtures/wrap/source/
 
+# google-beta ride-along inputs (filtered fixture, re-extracted at the GA
+# bump version by the same weekly run)
+packages/terradart_codegen/test/fixtures/wrap/source_beta/
+
 # Generated surface (wrappers, catalog, barrels, umbrella) + provider meta
 packages/terradart_google/lib/
+
+# google-beta generated surface
+packages/terradart_google_beta/lib/
 
 # Tier-2 repair surface
 packages/terradart_codegen/lib/src/codegen/wrapper_overrides/yaml/
 packages/terradart_codegen/lib/src/codegen/barrels/barrels.yaml
+packages/terradart_codegen/lib/src/codegen/wrapper_overrides/google_beta/yaml/
+packages/terradart_codegen/lib/src/codegen/barrels/barrels_google_beta.yaml
 packages/terradart_codegen/test/golden/
 packages/terradart_codegen/test/fixtures/wrap/expected_output/
 website/src/content/docs/docs/coverage.md
