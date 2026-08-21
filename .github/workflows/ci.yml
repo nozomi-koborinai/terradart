@@ -56,7 +56,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        package: [terradart_core, terradart_codegen, terradart_google, terradart_google_beta, terradart_appwrite, terradart_agent, terradart_coverage]
+        package: [terradart_core, terradart_codegen, terradart_google, terradart_google_beta, terradart_appwrite, terradart_cloudflare, terradart_agent, terradart_coverage]
     steps:
       - uses: actions/checkout@v6
       - uses: dart-lang/setup-dart@v1
@@ -144,6 +144,16 @@ jobs:
             --output ../terradart_appwrite/lib/src \
             --overrides-root lib/src/codegen/wrapper_overrides/appwrite/yaml \
             --barrels-manifest lib/src/codegen/barrels/barrels_appwrite.yaml \
+            --check
+      - name: Verify generated cloudflare wrappers are up to date
+        working-directory: packages/terradart_codegen
+        run: |
+          dart run bin/terradart.dart wrap \
+            --provider cloudflare/cloudflare \
+            --source test/fixtures/wrap/source_cloudflare \
+            --output ../terradart_cloudflare/lib/src \
+            --overrides-root lib/src/codegen/wrapper_overrides/cloudflare/yaml \
+            --barrels-manifest lib/src/codegen/barrels/barrels_cloudflare.yaml \
             --check
 
   override_gates:
