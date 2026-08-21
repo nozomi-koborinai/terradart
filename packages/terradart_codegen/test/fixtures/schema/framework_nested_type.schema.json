@@ -1,0 +1,73 @@
+{
+  "format_version": "1.0",
+  "provider_schemas": {
+    "registry.terraform.io/example/framework": {
+      "resource_schemas": {
+        "framework_widget": {
+          "version": 0,
+          "block": {
+            "attributes": {
+              "name": { "type": "string", "required": true },
+              "account": {
+                "nested_type": {
+                  "attributes": {
+                    "id": { "type": "string", "optional": true }
+                  },
+                  "nesting_mode": "single"
+                },
+                "required": true,
+                "description": "Account."
+              },
+              "settings": {
+                "nested_type": {
+                  "attributes": {
+                    "flatten": { "type": "bool", "optional": true },
+                    "inner": {
+                      "nested_type": {
+                        "attributes": {
+                          "value": { "type": "string", "optional": true }
+                        },
+                        "nesting_mode": "single"
+                      },
+                      "optional": true
+                    }
+                  },
+                  "nesting_mode": "single"
+                },
+                "optional": true
+              },
+              "rules": {
+                "nested_type": {
+                  "attributes": {
+                    "pattern": { "type": "string", "required": true }
+                  },
+                  "nesting_mode": "list"
+                },
+                "optional": true
+              },
+              "meta": {
+                "nested_type": {
+                  "attributes": {
+                    "etag": { "type": "string", "computed": true }
+                  },
+                  "nesting_mode": "single"
+                },
+                "computed": true
+              }
+            },
+            "block_types": {
+              "legacy_settings": {
+                "nesting_mode": "single",
+                "block": {
+                  "attributes": {
+                    "flatten": { "type": "bool", "optional": true }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -104,15 +104,20 @@ class SchemaJsonParser {
 
   BlockDef _parseBlock(Map<String, Object?> block) {
     final attrs = <Attribute>[];
+    final nested = <NestedBlockDef>[];
     final attrMap =
         (block['attributes'] as Map?)?.cast<String, Object?>() ?? const {};
     for (final entry in attrMap.entries) {
-      attrs.add(_parseAttribute(
-        entry.key,
-        (entry.value as Map).cast<String, Object?>(),
-      ));
+      final body = (entry.value as Map).cast<String, Object?>();
+      if (body.containsKey('nested_type')) {
+        // Plugin-framework object attribute. Terraform JSON erases the HCL
+        // block-vs-attribute syntax split, so it normalizes into the same
+        // IR as a block_types entry.
+        nested.add(_parseNestedAttribute(entry.key, body));
+      } else {
+        attrs.add(_parseAttribute(entry.key, body));
+      }
     }
-    final nested = <NestedBlockDef>[];
     final blockMap =
         (block['block_types'] as Map?)?.cast<String, Object?>() ?? const {};
     for (final entry in blockMap.entries) {
@@ -145,20 +150,47 @@ class SchemaJsonParser {
     );
   }
 
-  NestedBlockDef _parseNestedBlock(String name, Map<String, Object?> body) {
-    final mode = switch (body['nesting_mode']) {
-      'single' => NestingMode.single,
-      'list' => NestingMode.list,
-      'set' => NestingMode.set,
-      'map' => NestingMode.map,
-      'group' => NestingMode.group,
-      final other => throw FormatException(
-          'Unknown nesting_mode: $other for nested block $name',
-        ),
-    };
+  /// Normalizes a plugin-framework `nested_type` attribute (an object
+  /// attribute, e.g. `cloudflare_zone.account`) into the same IR as a
+  /// `block_types` entry. A required object attribute maps to
+  /// `minItems: 1` so downstream required-ness checks treat both worlds
+  /// identically; recursion happens through [_parseBlock], which routes
+  /// inner `nested_type` attributes back here.
+  NestedBlockDef _parseNestedAttribute(String name, Map<String, Object?> body) {
+    final nestedType = (body['nested_type'] as Map).cast<String, Object?>();
+    final required = body['required'] as bool? ?? false;
     return NestedBlockDef(
       name: name,
-      nesting: mode,
+      nesting: _decodeNestingMode(nestedType['nesting_mode'], name),
+      minItems: required ? 1 : null,
+      maxItems: null,
+      block: _parseBlock(nestedType),
+      constraints: Constraints(
+        required: required,
+        optional: body['optional'] as bool? ?? false,
+        computed: body['computed'] as bool? ?? false,
+        sensitive: body['sensitive'] as bool? ?? false,
+        deprecationMessage: _deprecationMessage(body),
+      ),
+      description: _sanitizeDescription(body['description'] as String?),
+    );
+  }
+
+  NestingMode _decodeNestingMode(Object? raw, String name) => switch (raw) {
+        'single' => NestingMode.single,
+        'list' => NestingMode.list,
+        'set' => NestingMode.set,
+        'map' => NestingMode.map,
+        'group' => NestingMode.group,
+        final other => throw FormatException(
+            'Unknown nesting_mode: $other for nested block $name',
+          ),
+      };
+
+  NestedBlockDef _parseNestedBlock(String name, Map<String, Object?> body) {
+    return NestedBlockDef(
+      name: name,
+      nesting: _decodeNestingMode(body['nesting_mode'], name),
       minItems: (body['min_items'] as num?)?.toInt(),
       maxItems: (body['max_items'] as num?)?.toInt(),
       block: _parseBlock((body['block'] as Map).cast<String, Object?>()),
