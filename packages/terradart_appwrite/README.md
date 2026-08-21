@@ -4,10 +4,9 @@ Curated factory wrappers for **Appwrite** resources (the official
 [`appwrite/appwrite`](https://registry.terraform.io/providers/appwrite/appwrite)
 Terraform provider), for Dart-first Terraform stacks.
 
-The catalog is curated on demand — resources are added against concrete
-requests (this package exists because of
-[#76](https://github.com/nozomi-koborinai/terradart/issues/76)), not by
-sweeping the provider.
+Curated factories are added on request — if you need a resource that is
+not wrapped yet, open a
+[feature request](https://github.com/nozomi-koborinai/terradart/issues/new/choose).
 
 **Credentials never appear in synth output.** `AppwriteProvider` has no
 API-key parameters; authenticate at apply time via `APPWRITE_API_KEY` /

@@ -3,8 +3,8 @@
 /// Curated **Appwrite** surface for TerraDart (official
 /// `appwrite/appwrite` Terraform provider).
 ///
-/// Demand-driven catalog — resources are curated on request
-/// (issue #76 lineage). Credentials never appear in synth output:
+/// Curated factories are added on request — open a feature request for
+/// resources not wrapped yet. Credentials never appear in synth output:
 /// authentication happens at apply time via APPWRITE_API_KEY /
 /// APPWRITE_ORGANIZATION_API_KEY environment variables.
 ///
