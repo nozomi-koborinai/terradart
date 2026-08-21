@@ -1,0 +1,25 @@
+outputDir: dns
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Cloudflare **DNS record** — points a name inside a zone at your
+  /// backend (e.g. a `CNAME` for `api.example.com` toward Cloud Run's
+  /// `ghs.googlehosted.com`).
+  ///
+  /// Reference the parent zone with `zoneId: TfArg.ref(zone.id)`.
+  /// `ttl: 1` means
+  /// "automatic" in Cloudflare's API; proxied records always use it.
+  /// The optional `data` / `settings` object attributes are not curated
+  /// slots yet — ask via a feature request if you need them.
+
+paramOrder:
+  - zone_id
+  - name
+  - type
+  - ttl
+  - content
+  - proxied
+  - comment
+  - priority
+  - tags

@@ -55,3 +55,12 @@ providers:
     overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/appwrite/yaml
     barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_appwrite.yaml
     resourceProvider: null # appwrite_ prefix collides with nothing
+  cloudflare:
+    source: cloudflare/cloudflare
+    schemaDir: packages/terradart_codegen/test/fixtures/wrap/source_cloudflare
+    schemaMode: filtered
+    mm: false
+    outputPackage: packages/terradart_cloudflare
+    overridesRoot: packages/terradart_codegen/lib/src/codegen/wrapper_overrides/cloudflare/yaml
+    barrelsManifest: packages/terradart_codegen/lib/src/codegen/barrels/barrels_cloudflare.yaml
+    resourceProvider: null # cloudflare_ prefix collides with nothing

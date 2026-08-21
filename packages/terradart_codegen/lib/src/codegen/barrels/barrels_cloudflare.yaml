@@ -1,0 +1,32 @@
+# Authored barrel manifest for terradart_cloudflare — the human-decided
+# axes of the generated barrels under terradart_cloudflare/lib/.
+# Same contract as barrels.yaml (fail-closed both directions); consumed via
+# `terradart wrap --barrels-manifest`.
+
+umbrellaFile: terradart_cloudflare
+
+umbrellaDoc: |-
+  /// Curated **Cloudflare** surface for TerraDart (official
+  /// `cloudflare/cloudflare` Terraform provider).
+  ///
+  /// Cloudflare here is the infrastructure edge around a Dart app — the
+  /// DNS zone and records pointing a custom domain at Cloud Run, Firebase
+  /// Hosting, or wherever the Dart backend lives (not Dart on Workers).
+  /// Curated factories are added on request — open a feature request for
+  /// resources not wrapped yet. Secrets never appear in synth output:
+  /// authentication happens at apply time via CLOUDFLARE_* environment
+  /// variables.
+  ///
+  /// This umbrella re-exports every per-service barrel. Prefer the
+  /// per-service imports in new code.
+
+umbrellaExtraExports:
+  - "export 'provider.dart';"
+
+barrels:
+  zone:
+    doc: |-
+      /// Cloudflare zones (domains under Cloudflare management).
+  dns:
+    doc: |-
+      /// Cloudflare DNS records.

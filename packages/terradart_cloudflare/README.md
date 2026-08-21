@@ -38,7 +38,7 @@ final class MyStack extends Stack {
     add(
       CloudflareDnsRecord(
         localName: 'api',
-        zoneId: zone.id,
+        zoneId: TfArg.ref(zone.id),
         name: TfArg.literal('api.example.com'),
         type: TfArg.literal('CNAME'),
         ttl: TfArg.literal(1),
