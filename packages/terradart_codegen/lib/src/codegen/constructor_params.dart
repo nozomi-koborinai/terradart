@@ -68,9 +68,13 @@ bool skipAttribute(Attribute attr) {
 
 /// Returns true when [block] must be excluded from the constructor / catalog.
 ///
-/// Excludes the Terraform-internal `timeouts` block, which is SDK metadata
-/// rather than a user-facing input. Shared with [WrapperEmitter] (and the
-/// catalog metadata emitter) so all surfaces filter identically.
+/// Excludes the Terraform-internal `timeouts` block (SDK metadata rather
+/// than a user-facing input) and computed-only blocks — plugin-framework
+/// `nested_type` attributes normalize into nested blocks, so a read-only
+/// object attribute (e.g. cloudflare's `meta`) carries
+/// [Constraints.computedOnly] and has no input role, mirroring
+/// [skipAttribute]. Shared with [WrapperEmitter] (and the catalog metadata
+/// emitter) so all surfaces filter identically.
 bool skipNestedBlock(NestedBlockDef block) {
-  return block.name == 'timeouts';
+  return block.name == 'timeouts' || block.constraints.computedOnly;
 }
