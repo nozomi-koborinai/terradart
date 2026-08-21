@@ -11,6 +11,7 @@ workspace:
   - packages/terradart_google
   - packages/terradart_google_beta
   - packages/terradart_appwrite
+  - packages/terradart_cloudflare
   - packages/terradart_agent
   - packages/terradart_coverage
   - examples/apigee_quickstart
