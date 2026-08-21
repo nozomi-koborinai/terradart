@@ -1,6 +1,7 @@
 import '../ir/attribute.dart';
 import '../ir/nested_block.dart';
 import '../ir/resource_def.dart';
+import 'constructor_params.dart' show skipNestedBlock;
 import 'dart_type_writer.dart';
 import 'doc_comment_builder.dart';
 import 'getter_emitter.dart';
@@ -310,9 +311,9 @@ class DataSourceWrapperEmitter {
     return isComputedOnly || isSyntheticId;
   }
 
-  bool _skipNestedBlock(NestedBlockDef nested) {
-    return nested.name == 'timeouts';
-  }
+  // Delegates to the shared rule so framework-normalized computed-only
+  // nested_type attributes stay out of data-source constructors too.
+  bool _skipNestedBlock(NestedBlockDef nested) => skipNestedBlock(nested);
 
   String _attributeParam(
     Attribute attr, {

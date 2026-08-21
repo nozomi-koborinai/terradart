@@ -157,6 +157,32 @@ void main() {
       expect(result, ['retry_policy']);
       expect(result, isNot(contains('timeouts')));
     });
+
+    test('computed-only nested block is excluded (framework nested_type)', () {
+      // A plugin-framework computed object attribute (e.g. cloudflare_zone
+      // `meta`) normalizes into a nested block with computed-only
+      // constraints — it has no input role, exactly like a computed-only
+      // attribute, and must not become a constructor slot.
+      final def = makeResource(
+        blocks: [
+          const NestedBlockDef(
+            name: 'meta',
+            nesting: NestingMode.single,
+            block: BlockDef(),
+            constraints: Constraints(computed: true),
+          ),
+          const NestedBlockDef(
+            name: 'account',
+            nesting: NestingMode.single,
+            block: BlockDef(),
+            constraints: Constraints(required: true),
+          ),
+        ],
+      );
+      final result = orderedConstructorParams(def, null);
+      expect(result, ['account']);
+      expect(result, isNot(contains('meta')));
+    });
   });
 
   group('orderedConstructorParams – paramOrder override', () {

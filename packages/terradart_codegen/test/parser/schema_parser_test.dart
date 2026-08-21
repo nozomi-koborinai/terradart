@@ -143,8 +143,9 @@ void main() {
       expect(inner.block.attributes.single.name, 'value');
     });
 
-    test('computed-only nested_type carries computed (paramOrder excludes it)',
-        () {
+    test(
+        'computed-only nested_type carries computed '
+        '(skipNestedBlock excludes it from constructors)', () {
       final meta =
           widget().root.nestedBlocks.singleWhere((n) => n.name == 'meta');
       expect(meta.constraints.computed, isTrue);
