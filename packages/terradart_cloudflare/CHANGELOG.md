@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 0.25.2
 
 - Initial release: `CloudflareProvider` (secret-free by design — the
   schema's sensitive attributes `api_token` / `api_key` /

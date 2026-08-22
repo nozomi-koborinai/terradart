@@ -6,6 +6,16 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ## Unreleased
 
+## [0.25.2] - 2026-08-22
+
+Lockstep release across the workspace. **No breaking changes** vs `0.25.1`.
+
+### Added
+
+- **`terradart_cloudflare`** — new curated package for the official `cloudflare/cloudflare` provider (exact-pinned at 5.23.0): `CloudflareProvider` (schema-sensitive attributes structurally excluded — apply authenticates via `CLOUDFLARE_*` env vars), `CloudflareZone`, and `CloudflareDnsRecord`. Coverage via [`cloudflare_dns_quickstart`](examples/cloudflare_dns_quickstart/) (synth + `terraform validate`; apply-smoke skip-listed).
+- **Plugin-framework schema support** — `terradart_codegen` now normalizes `nested_type` object attributes (Terraform plugin-framework providers) into the nested-block IR; computed-only object attributes stay out of constructors.
+- **Package examples** — `terradart_google_beta` and `terradart_appwrite` ship an in-package `example/main.dart` (pub.dev pana example check).
+
 ## [0.25.1] - 2026-08-19
 
 Lockstep release across the workspace. **No breaking changes** vs `0.25.0`.
