@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 # Read-only inventory of high-cost / sticky resources in terradart-validate.
 #
-# Use after a failed apply-smoke run (or anytime billing looks suspicious) to
-# confirm orphans that terraform destroy may have missed. NEVER creates or
-# deletes — reclaim via tool/apply_smoke_janitor.sh / the Apply smoke janitor
-# workflow (or an explicit maintainer destroy).
+# Use anytime billing looks suspicious to confirm leftovers that a past
+# apply-smoke run may have left. NEVER creates or deletes — agents must not
+# reclaim; a human maintainer decides.
 #
 # Prerequisites:
 #   - gcloud on PATH (.cursor/install.sh)
@@ -140,7 +139,7 @@ for loc in "${REGIONS[@]}" global; do
 done
 
 if [[ "$found" -eq 1 ]]; then
-  echo "orphan-check: RESOURCES FOUND — investigate billing; reclaim with Apply smoke janitor / apply_smoke.sh --destroy-only (do not delete ad hoc from the agent)." >&2
+  echo "orphan-check: RESOURCES FOUND — investigate billing; a human maintainer reclaims (do not delete ad hoc from the agent)." >&2
   exit 1
 fi
 

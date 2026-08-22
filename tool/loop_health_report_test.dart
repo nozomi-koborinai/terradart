@@ -12,7 +12,6 @@ LoopHealthData _base({
   int bumpEscalated = 0,
   LoopModel? bumpModel,
   LoopModel? waveModel,
-  LoopModel? diagModel,
   int waveFirstPassGreen = 0,
   int waveRepairCommits = 0,
   int waveEscalations = 0,
@@ -25,10 +24,6 @@ LoopHealthData _base({
       bumpEscalated: bumpEscalated,
       bumpArmed: true,
       bumpModel: bumpModel,
-      diagIssuesOpened: 0,
-      diagIssuesClosed: 1,
-      diagLabeled: 1,
-      diagModel: diagModel,
       waveOpened: 5,
       waveMerged: 4,
       waveApproved: 5,
@@ -47,11 +42,11 @@ LoopHealthData _base({
 void main() {
   final now = DateTime.utc(2026, 7, 6, 3);
 
-  test('healthy week renders the all-clear summary and all three loops', () {
+  test('healthy week renders the all-clear summary and both loops', () {
     final md = renderLoopHealth(data: _base(), now: now);
     expect(md, contains('✅ all loops healthy'));
     expect(md, contains('## Bump loop'));
-    expect(md, contains('## Diagnosis loop'));
+    expect(md, isNot(contains('## Diagnosis loop')));
     expect(md, contains('## Wave loop'));
     expect(md, contains('merged: 4'));
     expect(md, contains('backlog remaining: 12 (3 skip-noted)'));
@@ -68,7 +63,7 @@ void main() {
       data: _base(
         stalls: const [
           (kind: 'wave PR', ref: '#301', ageDays: 4),
-          (kind: 'diagnosed issue', ref: '#280', ageDays: 9),
+          (kind: 'bump PR', ref: '#280', ageDays: 9),
         ],
       ),
       now: now,

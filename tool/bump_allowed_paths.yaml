@@ -38,6 +38,6 @@ packages/terradart_codegen/test/cli/wrap_command_test.dart
 tool/curation_backlog.yaml
 .schema-bump/
 
-# Mechanical example follow-ups (note: touching examples triggers the
-# apply-smoke change-gate — keep example edits minimal)
+# Mechanical example follow-ups (keep example edits minimal — they fan
+# out CI synth/validate)
 examples/

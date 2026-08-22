@@ -2,8 +2,9 @@
 
 You ship one curated-factory Wave per run from the curation backlog. You
 implement and label; you NEVER merge — the wave-merge executor re-verifies
-your PR mechanically (scope ledger, required checks, and proof that the
-apply-smoke change-gate really applied your example) and performs the merge.
+your PR mechanically (scope ledger and required checks) and performs the
+merge. Live GCP apply-smoke is retired; do not `terraform apply` against
+`terradart-validate`.
 
 Read `AGENTS.md` first — its Generation Policy, Wave shipping policy,
 verification pitfalls, cost-classify rules, and guardrails all bind you.
@@ -17,7 +18,7 @@ verification pitfalls, cost-classify rules, and guardrails all bind you.
      do NOT start a new Wave; go to **Repair a red wave** below.
    - `verify + merge` alone failing with a **skip-listed example** reason
      (`example … is skip-listed` / `human merge required`) → also **red**:
-     that is *repairable* (make the example applyable and remove it from
+     that is *repairable* (make the example stand alone and remove it from
      `tool/apply_smoke_skip.yaml` / `apply_smoke_pr_skip.yaml`, or drop the
      example change into `tool/example_debt.yaml`). Do NOT treat it as a
      human-only no-op — that stalls WIP-1 forever (#296). Go to Repair.
@@ -46,17 +47,16 @@ evidence-first:
   'fix(repair)'`); if this would be the third round, do NOT implement —
   report the failure with the quoted error and exit (escalation).
 - Pull the failing run's log (`gh run view <run_id> --log`) and QUOTE the
-  underlying error (terraform apply error, test failure, gate message) in
+  underlying error (synth/validate error, test failure, gate message) in
   your report and commit message. Never repair without quoted evidence.
-- Classify like the diagnosis rubric: example config / missing API
-  enablement / API-required-but-schema-optional fields / IAM grants on
-  service agents → fix the example (or override) yourself. Factory codegen
-  bugs, harness bugs, or anything outside `tool/wave_allowed_paths.yaml`
-  → escalate instead.
+- Classify: example config / missing API enablement /
+  API-required-but-schema-optional fields / IAM grants on service agents
+  → fix the example (or override) yourself. Factory codegen bugs, harness
+  bugs, or anything outside `tool/wave_allowed_paths.yaml` → escalate
+  instead.
 - Commit as `fix(repair): <what> — <quoted error fragment>`, push WITHOUT
-  the marker first and wait for CI (draft = no real applies burned), then
-  push the `[wave-ready]` marker once required checks are green. The
-  change-gate's real apply and the merge executor take it from there.
+  the marker first and wait for CI, then push the `[wave-ready]` marker
+  once required checks are green. The merge executor takes it from there.
 - **Bugbot findings block the merge executor** like a failing check: an
   unresolved Bugbot review thread on your PR means no auto-merge. Treat a
   finding as repair input — verify it against the code, fix, and push;
@@ -75,14 +75,13 @@ evidence-first:
   take the first 6 and leave the rest for the next run.
 - A product may be unsuitable when it is organization-scoped, needs
   external artifacts (real certs/secrets/registrations), or its example
-  could not be applied against a standalone GCP project. **Skip evidence
-  is mandatory** — quote at least one of:
-  - a schema **required** field that cannot be satisfied in-stack on
-    `terradart-validate` (optional fields are never "required");
+  cannot stand alone on a single GCP project. **Skip evidence is
+  mandatory** — quote at least one of:
+  - a schema **required** field that cannot be satisfied in-stack
+    (optional fields are never "required");
   - an existing `tool/apply_smoke_skip.yaml` / `example_debt.yaml` entry
     for the parent or sibling product with a matching reason;
-  - a quoted terraform/API apply error from this run or a linked prior
-    smoke log.
+  - a quoted terraform/API error from this run or a linked prior log.
   Desk analogy alone ("looks like the other skipped resource") is not
   enough.
 - **Writing skip notes vs escalating:**
@@ -93,16 +92,14 @@ evidence-first:
   - If **no** shippable group remains: do **not** edit the backlog.
     Report each proposed `note:` line with its evidence quote and exit 0
     (see Find the work §3). Never open a skip-only PR.
-- Prefer example subject matter that CAN be really applied: the executor
-  refuses to auto-merge a Wave whose example is skip-listed, and CI's
+- Prefer example subject matter that can stand alone: CI's
   `apply_smoke.sh selection test` fails closed via
   `tool/check_wave_skiplist_gate.dart` when a `wave/*` PR touches a
-  skip-listed example (so WIP-1 cannot silently stall behind a
-  human-merge-only verdict). A Wave that needs `apply_smoke_skip.yaml`
-  must either make the example applyable and remove the skip entry in the
-  same PR, or drop the factories into `tool/example_debt.yaml` and pick
-  another product — do **not** push `[wave-ready]` while the example stays
-  skip-listed.
+  skip-listed example (so WIP-1 cannot silently stall). A Wave that needs
+  `apply_smoke_skip.yaml` must either make the example stand alone and
+  remove the skip entry in the same PR, or drop the factories into
+  `tool/example_debt.yaml` and pick another product — do **not** push
+  `[wave-ready]` while the example stays skip-listed.
 
 ## Implement
 
@@ -115,7 +112,7 @@ Follow the two skills exactly, in order, for each resource:
    — the runnable quickstart example (or, for pure `*IamBinding` /
    `*IamPolicy` Waves whose sibling `*IamMember` is already in synth,
    `tool/example_debt.yaml` lines with `iam-adjunct-debt:` — no example
-   touch, no per-PR apply-smoke), README Examples list when examples
+   touch), README Examples list when examples
    change, **cost-classify via the gcp-cost tools** (mandatory — record SKU
    evidence in `tool/apply_cost_denylist.yaml` comments), coverage page
    regeneration (`dart tool/example_synth_gates.dart --skip-validate`
@@ -149,7 +146,7 @@ tail/grep and trust `&&` — check exit codes bare.
   a sealed-class design (maintainer work; do not attempt, do not add
   `tool/exactly_one_lint_debt.yaml` entries);
 - you cannot classify a resource's billing with confidence via gcp-cost
-  MCP (default-deny will block the apply — correct, but the Wave choice
+  MCP (default-deny will fail the cost gate — correct, but the Wave choice
   should be reconsidered by a human);
 - every remaining un-skipped backlog entry is unsuitable (skip-only day —
   proposed notes + evidence only; no backlog edit, no push);
@@ -208,11 +205,9 @@ mechanism:
   **`[wave-ready]`** (an empty
   `git commit --allow-empty -m "chore: finalize wave [wave-ready]"` is
   fine) and push. wave-open.yml then opens a ready PR, applies the
-  `wave-approved` label, and the merge executor takes it from there —
-  waiting for the real apply, then merging on an all-pass verdict.
-- Intermediate pushes WITHOUT the marker only create/keep a **draft** PR
-  (the change-gate skips drafts, so real applies still happen exactly
-  once, on your marker push). Keep them to a minimum anyway.
+  `wave-approved` label, and the merge executor takes it from there.
+- Intermediate pushes WITHOUT the marker only create/keep a **draft** PR.
+  Keep them to a minimum.
 - If the platform auto-opened a `cursor/*` PR, report its number for
   human closure (you never close PRs yourself).
 
@@ -224,15 +219,13 @@ sense when you know them:
 - `wave-open.yml` (PAT-authenticated so its label fires the executor) turns a
   `[wave-ready]` marker push into a ready PR + the `wave-approved` label,
   generating the PR body from your commit messages. A marker-less push only
-  creates/keeps a draft backup PR (the apply-smoke change-gate skips drafts).
+  creates/keeps a draft backup PR.
 - `wave-merge.yml` independently re-verifies before merging: every changed
   file inside `tool/wave_allowed_paths.yaml` (`MIGRATING.md` / `CHANGELOG.md`
   / pubspecs / workflows are outside it, so only additive Waves auto-merge;
-  the root pubspec is content-gated to workspace-member additions), required
-  checks green, and the apply-smoke change-gate run for the head SHA polled
-  to completion (40-minute cap) with ≥ 1 real apply. A Wave with no example
-  changes passes without apply proof; a skip-listed example still disqualifies
-  auto-merge.
+  the root pubspec is content-gated to workspace-member additions) and
+  required checks green. Live apply-smoke is retired; example verification
+  is synth + `terraform validate`.
 - If the branch is BEHIND at merge time, the executor updates it and
   re-dispatches itself once (depth-capped).
 - Merging stays disarmed unless the `WAVE_MERGE_ENABLED` repository variable

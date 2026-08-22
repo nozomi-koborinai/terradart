@@ -1,7 +1,7 @@
 name: loop-health
 
-# Weekly loop-health report: metrics for the three agent loops (bump /
-# diagnosis / wave) plus stall detection, appended as one comment to the
+# Weekly loop-health report: metrics for the agent loops (bump / wave)
+# plus stall detection, appended as one comment to the
 # single "Loop health" tracking issue every Monday noon JST — right after
 # the morning agents have run, so the week starts with a fresh picture.
 

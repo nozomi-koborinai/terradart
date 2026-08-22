@@ -4,8 +4,8 @@ name: wave-open
 # cannot create PRs or apply labels (403, verified 2026-07-04..06). A push
 # to wave/** whose HEAD commit message contains [wave-ready] gets a ready
 # PR + the wave-approved label (firing the wave-merge executor); a push
-# without the marker gets a draft PR (backup only — the apply-smoke
-# change-gate skips drafts). Auth uses SCHEMA_BUMP_PAT: labels applied by
+# without the marker gets a draft PR (backup only). Auth uses
+# SCHEMA_BUMP_PAT: labels applied by
 # GITHUB_TOKEN would not trigger wave-merge's labeled event.
 
 on:

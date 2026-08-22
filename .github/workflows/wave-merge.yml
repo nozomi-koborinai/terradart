@@ -3,12 +3,13 @@ name: wave-merge
 # Merge executor for the wave-shipper agent. The agent implements a Wave
 # from the curation backlog and labels the PR (wave-approved); this
 # workflow INDEPENDENTLY re-verifies — branch pattern, same-repo head,
-# the Wave scope ledger (additive-only by construction), required checks,
-# AND proof that the apply-smoke change-gate REALLY applied at least one
-# example (checks can be green with zero applies via draft-skip or
-# pr_skip deferral) — and only then squash-merges. The agent holds no
-# merge power. Staged rollout: merging is disarmed (verify + comment
-# only) until the repository variable WAVE_MERGE_ENABLED is 'true'.
+# the Wave scope ledger (additive-only by construction), and required
+# checks — and only then squash-merges. The agent holds no merge power.
+# Staged rollout: merging is disarmed (verify + comment only) until the
+# repository variable WAVE_MERGE_ENABLED is 'true'.
+#
+# Live GCP apply-smoke is retired. Example verification is synth +
+# terraform validate (CI + agent_verify), not terraform apply.
 #
 # Injection hygiene: every ${{ }} value consumed by a run: step goes
 # through env: (never inline interpolation).
@@ -144,60 +145,6 @@ jobs:
           gh pr checks "$PR" --required --watch --interval 60
           echo "exit=$?" >> "$GITHUB_OUTPUT"
 
-      - name: Verify a real apply happened (change-gate proof)
-        id: applyproof
-        if: steps.verify.outputs.verdict == 'pass'
-        env:
-          GH_TOKEN: ${{ secrets.SCHEMA_BUMP_PAT }}
-          PR: ${{ steps.pr.outputs.number }}
-        run: |
-          set -euo pipefail
-          fail() {
-            echo "verdict=fail" >> "$GITHUB_OUTPUT"
-            echo "reason=$1" >> "$GITHUB_OUTPUT"
-            exit 0
-          }
-          echo "verdict=pass" >> "$GITHUB_OUTPUT"
-          gh api "repos/${GITHUB_REPOSITORY}/pulls/${PR}/files" \
-            --paginate --jq '.[].filename' > /tmp/wave_files.txt
-          # Gate 1: a Wave that touches no example has nothing to apply.
-          if ! grep -qE '^examples/' /tmp/wave_files.txt; then
-            echo "no example changes — apply proof not applicable"
-            exit 0
-          fi
-          # Gate 2: skip-listed examples are never really applied — no auto-merge.
-          slugs=$(grep -oE '^examples/[^/]+_quickstart' /tmp/wave_files.txt | cut -d/ -f2 | sort -u || true)
-          for slug in $slugs; do
-            if grep -qE "^${slug}:" tool/apply_smoke_skip.yaml tool/apply_smoke_pr_skip.yaml; then
-              fail "example $slug is skip-listed — it was never really applied; human merge required"
-            fi
-          done
-          # Gate 3: wait for the change-gate run for this exact head SHA to
-          # COMPLETE (required checks can be green while it is still running
-          # or not yet scheduled), then demand success with N>=1 applies.
-          sha=$(gh pr view "$PR" --json headRefOid -q .headRefOid)
-          run_id=""
-          conclusion=""
-          for i in $(seq 1 80); do
-            line=$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/apply-smoke.yml/runs?head_sha=${sha}" \
-              --jq '.workflow_runs[0] | "\(.id // "")|\(.conclusion // "")"' 2>/dev/null || echo "|")
-            run_id="${line%%|*}"
-            conclusion="${line##*|}"
-            if [ -n "$run_id" ] && [ -n "$conclusion" ]; then
-              break
-            fi
-            echo "waiting for apply-smoke (attempt $i: run=${run_id:-none} conclusion=${conclusion:-pending})"
-            sleep 30
-          done
-          [ -n "$run_id" ] || fail "no apply-smoke run appeared for head $sha within 40 minutes"
-          [ "$conclusion" = "success" ] || fail "apply-smoke run $run_id concluded: ${conclusion:-timed out}"
-          n=$(gh run view "$run_id" --log 2>/dev/null \
-            | grep -oE 'apply_smoke\.sh: OK \([0-9]+ example' | grep -oE '[0-9]+' | head -1)
-          if [ -z "$n" ] || [ "$n" -lt 1 ]; then
-            fail "apply-smoke run $run_id applied ${n:-0} examples (need >= 1)"
-          fi
-          echo "Applied examples: $n (run $run_id)"
-
       - name: Verify agent-review threads are resolved
         id: review
         if: steps.verify.outputs.verdict == 'pass'
@@ -236,8 +183,6 @@ jobs:
           VERDICT: ${{ steps.verify.outputs.verdict }}
           REASON: ${{ steps.verify.outputs.reason }}
           CHECKS_EXIT: ${{ steps.checks.outputs.exit }}
-          APPLY_VERDICT: ${{ steps.applyproof.outputs.verdict }}
-          APPLY_REASON: ${{ steps.applyproof.outputs.reason }}
           REVIEW_VERDICT: ${{ steps.review.outputs.verdict }}
           REVIEW_REASON: ${{ steps.review.outputs.reason }}
           DRY_RUN: ${{ steps.pr.outputs.dry_run }}
@@ -254,16 +199,12 @@ jobs:
             gh pr comment "$PR" --body "**wave-merge:** NOT merging — required checks did not finish green (gh pr checks exit ${CHECKS_EXIT})."
             exit 1
           fi
-          if [ "$APPLY_VERDICT" != "pass" ]; then
-            gh pr comment "$PR" --body "**wave-merge:** NOT merging — ${APPLY_REASON}."
-            exit 1
-          fi
           if [ "$REVIEW_VERDICT" != "pass" ]; then
             gh pr comment "$PR" --body "**wave-merge:** NOT merging — ${REVIEW_REASON}."
             exit 1
           fi
           if [ "$DRY_RUN" = "true" ]; then
-            gh pr comment "$PR" --body "**wave-merge (dry run):** all verifications passed — branch pattern, same-repo head, Wave scope ledger, required checks green, a real apply-smoke apply for this head SHA, and no unresolved Bugbot threads. Merging is disarmed (WAVE_MERGE_ENABLED != true)."
+            gh pr comment "$PR" --body "**wave-merge (dry run):** all verifications passed — branch pattern, same-repo head, Wave scope ledger, required checks green, and no unresolved Bugbot threads. Merging is disarmed (WAVE_MERGE_ENABLED != true)."
             exit 0
           fi
           state=$(gh pr view "$PR" --json mergeStateStatus -q .mergeStateStatus)
@@ -283,4 +224,4 @@ jobs:
             exit 0
           fi
           gh pr merge "$PR" --squash --delete-branch
-          gh pr comment "$PR" --body "**wave-merge:** verified (branch pattern, same-repo head, scope ledger, required checks, real apply proof, no unresolved Bugbot threads) and squash-merged."
+          gh pr comment "$PR" --body "**wave-merge:** verified (branch pattern, same-repo head, scope ledger, required checks, no unresolved Bugbot threads) and squash-merged."

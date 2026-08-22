@@ -1,16 +1,13 @@
-# Examples the apply-smoke sweep does NOT `terraform apply`, with the reason.
+# Examples that cannot stand alone on a single GCP project, with the reason.
 #
 # These examples still get `dart run bin/infra.dart` (synth) + `terraform
-# validate` via tool/example_synth_gates.dart. They are excluded ONLY from real
-# `terraform apply` because they need inputs that terradart-validate (a
-# standalone project: no organization, no real secrets/certs, not registered
-# with Firebase) cannot provide. The list doubles as a coverage-debt ledger —
-# delete an entry to put that example back in the sweep.
+# validate` via tool/example_synth_gates.dart. Live apply-smoke is retired;
+# this list is the cost-gate / wave-skiplist partition for examples that
+# need inputs a standalone project (no organization, no real secrets/certs,
+# not registered with Firebase) cannot provide.
 #
-# Honored by tool/apply_smoke.sh in apply modes (--all and the PR change-gate).
-# `--example <slug>` applies even a listed example (explicit override), and
-# `--destroy-only` (the janitor) never skips, so leftover state stays
-# reclaimable.
+# Honored by tool/apply_smoke.sh --dry-run in --all / changed modes.
+# `--example <slug>` still selects a listed example (explicit override).
 #
 # Format (one per line):  <example_slug>: <reason>
 

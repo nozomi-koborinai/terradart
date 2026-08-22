@@ -12,7 +12,8 @@
 # why the weekly report prints the assumed model: a mismatch should be
 # caught at the Monday read.
 #
-# Loops: bump | wave | diagnosis
+# Loops: bump | wave
+# (diagnosis retired with live apply-smoke; historical entries stay)
 #
 # Schema:
 #   entries:
