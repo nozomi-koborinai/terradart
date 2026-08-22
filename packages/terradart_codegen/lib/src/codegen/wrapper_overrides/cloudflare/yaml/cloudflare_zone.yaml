@@ -1,0 +1,20 @@
+outputDir: zone
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Cloudflare **zone** — a domain under Cloudflare management, the
+  /// starting point for pointing a custom domain at a Dart backend
+  /// (Cloud Run, Firebase Hosting, ...).
+  ///
+  /// `account` is the plugin-framework object attribute — pass
+  /// `TfArg.literal({'id': '<account id>'})`. Apply authenticates via
+  /// `CLOUDFLARE_*` environment variables — see [CloudflareProvider];
+  /// synth output never contains credentials.
+
+paramOrder:
+  - name
+  - account
+  - type
+  - paused
+  - vanity_name_servers

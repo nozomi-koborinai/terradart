@@ -112,6 +112,15 @@ oracle_goldengate_quickstart: GoldenGate apply needs Oracle zone entitlement and
 # them — the skip here is what keeps them out of apply scope.
 appwrite_quickstart: appwrite provider example — the apply-smoke harness is GCP-only and Appwrite Cloud is a separate billing surface; synth + terraform validate cover it
 
+# --- cloudflare provider lane (non-GCP; apply harness does not target it) ---
+# Same posture as appwrite: apply-smoke authenticates against GCP (WIF,
+# terradart-validate); a cloudflare example has nothing to apply there and
+# Cloudflare would be a separate account/billing surface. cloudflare_*
+# types are outside the GCP Billing Catalog, so apply_cost_denylist.yaml
+# does not classify them — the skip here is what keeps them out of apply
+# scope.
+cloudflare_dns_quickstart: cloudflare provider example — the apply-smoke harness is GCP-only and Cloudflare is a separate account/billing surface; synth + terraform validate cover it
+
 # --- google-beta provider lane (apply policy not yet designed) ---
 # The apply-smoke harness targets the GA provider lane; how beta examples
 # apply (provider pinning in the harness, WIF scope review) is a separate

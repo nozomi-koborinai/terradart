@@ -1,0 +1,15 @@
+name: terradart_example_cloudflare_dns_quickstart
+description: Smallest terradart_cloudflare example -- a Cloudflare zone and a CNAME record pointing a subdomain at a backend, secrets kept out of synth output by design.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.25.1
+  terradart_cloudflare: ^0.25.1
+
+dev_dependencies:
+  lints: ^6.0.0
