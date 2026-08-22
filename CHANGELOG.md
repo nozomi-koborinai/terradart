@@ -6,6 +6,10 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ## Unreleased
 
+### Removed
+
+- Live GCP apply-smoke CI against `terradart-validate` (per-PR change-gate, monthly sweep, janitor) and the Monday smoke-diagnosis loop. Example verification is synth + `terraform validate` only; `tool/apply_smoke.sh` refuses live apply/destroy.
+
 ## [0.25.2] - 2026-08-22
 
 Lockstep release across the workspace. **No breaking changes** vs `0.25.1`.

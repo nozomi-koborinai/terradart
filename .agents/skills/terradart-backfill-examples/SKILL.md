@@ -52,9 +52,9 @@ Read [`CONTEXT.md`](../../../CONTEXT.md) for vocabulary. Wave policy lives in [`
 | Spark-SQL Dataplex task missing `output_location` | Add it in `execution_spec.args` (some resources need extra required args beyond schema). |
 | Async operations race even when serialized (bidirectional VPC peering: "peering operation in progress" despite `dependsOn`) | The operation completes after the resource reports created — treat as a flake class (re-run), don't fight it with more `dependsOn`. |
 
-The last six pass synth + `terraform validate` and only fail at real apply
-(they came out of apply-smoke sweeps; `AGENTS.md` **Fix An Example That Fails
-Apply-Smoke** points here).
+The last six pass synth + `terraform validate` and only fail at a human's
+real apply (they came out of historical apply-smoke sweeps; `AGENTS.md`
+**Fix An Example That Fails Synth Or Validate** points here).
 
 ## Schema probe (when unsure)
 
@@ -69,4 +69,4 @@ cd tf-out && terraform init -backend=false && terraform validate
 ## What this does not cover
 
 - Curating **new** `google_*` factories — use [`terradart-add-curated-resource`](../terradart-add-curated-resource/SKILL.md).
-- Live `terraform apply` or `apply-smoke` — label-gated CI only when needed.
+- Live `terraform apply` against `terradart-validate` (retired).

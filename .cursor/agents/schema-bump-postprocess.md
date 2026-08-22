@@ -46,8 +46,8 @@ guardrails all bind you.
 - MM-fixture-driven test follow-ups inside
   `packages/terradart_codegen/test/`;
 - mechanical example follow-ups under `examples/**` when a regenerated
-  signature forces them (keep minimal — example changes trigger the
-  apply-smoke change-gate, which costs real GCP applies);
+  signature forces them (keep minimal — example edits still fan out CI
+  synth/validate);
 - the regenerated site coverage page when the catalog changed: run
   `dart tool/example_synth_gates.dart --skip-validate` then
   `dart tool/render_coverage_page.dart` (CI's freshness check fails

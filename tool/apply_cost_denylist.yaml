@@ -1,30 +1,28 @@
 # apply_cost_denylist.yaml — Terraform resource types that make an example too
-# expensive to `terraform apply` freely in apply-smoke. Enforced by
-# tool/apply_smoke_test.sh (test 9): an example whose generated tf-out contains
-# one of these types MUST be skip-listed, or CI fails. This is the machine guard
-# that stops a high-cost resource — e.g. a software license that bills merely by
-# existing — from slipping into the sweep. That gap caused the Cloud License
-# Manager cost spike: license_manager_quickstart provisioned Office SPLA licenses
-# and was in neither skip list, so the per-PR gate applied it on every push.
+# expensive to `terraform apply` freely. Enforced by tool/apply_smoke_test.sh
+# (test 9): an example whose generated tf-out contains one of these types MUST
+# be skip-listed, or CI fails. Live apply-smoke is retired; this ledger is the
+# machine guard that stops a high-cost resource — e.g. a software license that
+# bills merely by existing — from being treated as cheap. That gap caused the
+# Cloud License Manager cost spike: license_manager_quickstart provisioned
+# Office SPLA licenses and was in neither skip list, so the former per-PR gate
+# applied it on every push.
 #
 # Format (one per line):  <terraform_type>: <tier>   # reason
 #
-# Tiers:
-#   safe        — no existence billing; apply→destroy stops all charges; cheap.
-#                 Applied per-PR and in the full sweep.
-#   sweep_only  — billed hourly and expensive, but safe to apply briefly in the
-#                 full sweep (apply -> destroy). Must not apply per-PR. The
-#                 example MUST be in tool/apply_smoke_skip.yaml OR
-#                 tool/apply_smoke_pr_skip.yaml.
+# Tiers (cost-gate partition; CI does not terraform apply):
+#   safe        — no existence billing; apply→destroy would stop all charges;
+#                 cheap enough that an example may omit both skip lists.
+#   sweep_only  — billed hourly and expensive. The example MUST be in
+#                 tool/apply_smoke_skip.yaml OR tool/apply_smoke_pr_skip.yaml.
 #   never_apply — bills heavily merely by existing (software licenses,
-#                 reservations) or cannot be cheaply torn down. Must NEVER apply,
-#                 even in the full sweep. The example MUST be in
-#                 tool/apply_smoke_skip.yaml.
+#                 reservations) or cannot be cheaply torn down. The example
+#                 MUST be in tool/apply_smoke_skip.yaml.
 #
-# DEFAULT-DENY: a type absent from ALL three tiers is "unclassified" and is NOT
-# applied (apply_smoke.sh skips the example; apply_smoke_test.sh test9 fails the
-# build). Classify new types here — confirm cost via terraform MCP + docs; when
-# unsure leave it unclassified (it stays skipped, which is safe).
+# DEFAULT-DENY: a type absent from ALL three tiers is "unclassified" and
+# apply_smoke_test.sh test9 fails the build. Classify new types here —
+# confirm cost via terraform MCP + docs; when unsure leave it unclassified
+# (the example stays skip-listed, which is safe).
 #
 # Comment evidence (enforced by tool/apply_smoke_test.sh test 13): every new
 # `safe` line must carry `gcp-cost: SKU …` (or `gcp-cost: no Cloud Billing

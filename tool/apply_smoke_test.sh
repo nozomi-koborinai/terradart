@@ -34,6 +34,14 @@ skip_slugs="$(grep -vE '^[[:space:]]*#' tool/apply_smoke_skip.yaml \
 # The apply set is every quickstart minus the skip-listed ones.
 apply_set="$(comm -23 <(printf '%s\n' "$all_slugs") <(printf '%s\n' "$skip_slugs"))"
 
+# 0. Live apply/destroy is refused (exit 78) even with a project id.
+GCP_PROJECT_ID=ci-test-project-id tool/apply_smoke.sh --example pubsub_quickstart \
+  >/tmp/apply_smoke_live.out 2>/tmp/apply_smoke_live.err
+live_rc=$?
+[[ "$live_rc" -eq 78 ]] || fail "live apply should exit 78, got $live_rc"
+grep -q 'retired' /tmp/apply_smoke_live.err \
+  || fail "live-apply refuse message missing"
+
 # 1. --all --dry-run lists the apply set (every quickstart minus the skip-list).
 all_out="$(tool/apply_smoke.sh --all --dry-run)" || fail "--all --dry-run exited non-zero"
 [[ "$all_out" == "$apply_set" ]] || fail "--all apply-set mismatch:
@@ -238,11 +246,10 @@ while IFS= read -r type; do
   fi
 done <<< "$debt_types"
 
-# 14. Wave skiplist gate: a wave/* PR that touches a skip-listed example will
-#     never auto-merge (wave-merge refuses) and used to stall WIP-1 forever
-#     because the daily shipper treated verify+merge-only as "human verdict,
-#     don't repair" (#296, 2026-07). Fail this required CI check instead so
-#     the shipper enters Repair (make applyable / un-skip) rather than no-op.
+# 14. Wave skiplist gate: a wave/* PR that touches a skip-listed example
+#     used to stall WIP-1 forever (#296, 2026-07). Fail this required CI
+#     check instead so the shipper enters Repair (un-skip or drop the
+#     example) rather than no-op.
 head_ref="${GITHUB_HEAD_REF:-}"
 if [[ -z "$head_ref" ]]; then
   head_ref="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || true)"

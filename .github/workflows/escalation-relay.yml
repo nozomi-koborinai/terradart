@@ -15,11 +15,13 @@ name: escalation-relay
 # escalation(...) prefix). One exception to pure transport, for safety
 # rather than judgment: a trailer line
 #
-#   Relay-Label: smoke-diagnosed
+#   Relay-Label: <name>
 #
 # is stripped from the comment and applied as a label AFTER commenting —
 # only to an explicit #N target and only for allowlisted labels, so a
 # relay push can never forge executor-gating labels like wave-approved.
+# The allowlist is currently empty (the former smoke-diagnosed label
+# retired with live apply-smoke).
 # The relay branch is deleted afterwards so nothing accumulates and no
 # stray PR can sit on it. workflow_dispatch exists so both legs can be
 # tested end to end without an agent.
@@ -54,7 +56,7 @@ env:
   # Labels a relay push may apply. Everything else fails the run loudly —
   # in particular executor-gating labels (wave-approved, bump-approved)
   # must never be reachable from a push.
-  RELAY_LABEL_ALLOWLIST: 'smoke-diagnosed'
+  RELAY_LABEL_ALLOWLIST: ''
 
 jobs:
   relay:

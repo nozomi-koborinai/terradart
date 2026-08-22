@@ -10,8 +10,6 @@ The GA `hashicorp/google` catalog is **filled** (0.25.x, alpha). The curation pu
 |------|---------|--------------------|
 | Schema bump (GA + google-beta ride-along) | Sundays 22:00 UTC ([`schema-bump.yml`](.github/workflows/schema-bump.yml)) | Monday-morning agent ([runbook](.cursor/agents/schema-bump-postprocess.md)) → [`bump-merge.yml`](.github/workflows/bump-merge.yml) executor, gated by `BUMP_MERGE_ENABLED` |
 | Wave shipping | Weekly, Tuesday mornings (Cursor schedule); no-op while [`tool/curation_backlog.yaml`](tool/curation_backlog.yaml) is empty | agent ([runbook](.cursor/agents/wave-shipper.md)) → [`wave-open.yml`](.github/workflows/wave-open.yml) + [`wave-merge.yml`](.github/workflows/wave-merge.yml) executor, gated by `WAVE_MERGE_ENABLED` |
-| Apply smoke | Monthly full sweep + weekly janitor + per-PR change-gate | workflows only — see **Apply smoke** |
-| Smoke diagnosis | Monday mornings; no-op without an open failure issue | agent ([runbook](.cursor/agents/apply-smoke-diagnose.md)) → human merge |
 | Loop health | Mondays 03:00 UTC ([`loop-health.yml`](.github/workflows/loop-health.yml)) | report appended to the `loop-health` issue |
 
 Human / maintainer focus in this phase:
@@ -51,7 +49,7 @@ The supported maintainer generation path is `terradart wrap`.
 
 ## Wave shipping policy
 
-A **Wave** is a user-visible release batch of related curated factories — now originating from new resources the weekly schema bump appends to [`tool/curation_backlog.yaml`](tool/curation_backlog.yaml). A Wave PR is complete only when every new or breaking factory has a **runnable example** or a reasoned [`tool/example_debt.yaml`](tool/example_debt.yaml) entry (a reviewed decision, not a default — stale entries fail CI). Example coverage, the API-enablement dependency graph, and the IAM `iam-adjunct-debt:` path (binding/policy factories whose sibling `*IamMember` is already in some quickstart synth may take a ledger entry instead of an example, and skip per-PR apply-smoke) are machine-checked by `dart tool/example_synth_gates.dart`. Breaking API changes include **`MIGRATING.md`** and updated examples in the same PR; catalog counts, README Examples, and the CI `terraform_validate` matrix move in lockstep. `curatedDoc` alone is never sufficient. Full checklist: [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md).
+A **Wave** is a user-visible release batch of related curated factories — now originating from new resources the weekly schema bump appends to [`tool/curation_backlog.yaml`](tool/curation_backlog.yaml). A Wave PR is complete only when every new or breaking factory has a **runnable example** or a reasoned [`tool/example_debt.yaml`](tool/example_debt.yaml) entry (a reviewed decision, not a default — stale entries fail CI). Example coverage, the API-enablement dependency graph, and the IAM `iam-adjunct-debt:` path (binding/policy factories whose sibling `*IamMember` is already in some quickstart synth may take a ledger entry instead of an example) are machine-checked by `dart tool/example_synth_gates.dart`. Breaking API changes include **`MIGRATING.md`** and updated examples in the same PR; catalog counts, README Examples, and the CI `terraform_validate` matrix move in lockstep. `curatedDoc` alone is never sufficient. Full checklist: [`terradart-ship-wave`](.agents/skills/terradart-ship-wave/SKILL.md).
 
 ## PR granularity
 
@@ -82,23 +80,21 @@ When a Wave also pays down example `pubspec.yaml` carets or docs debt, **prefer 
 
 `lint-override` clean does **not** guarantee every optional nested block is type-enforced: resources without MM `exactly_one_of` metadata (e.g. large schema-only surfaces) may still fan out at the Dart API until sealed. Prefer sealed virtual slots + `wrap-promote` when curating new `exactly_one_of` groups. Pre-existing optional-fanout overrides may be listed in [`tool/exactly_one_lint_debt.yaml`](tool/exactly_one_lint_debt.yaml) with a reason until sealed (#107).
 
-### Apply smoke (dynamic example verification)
+### Example verification (no live GCP apply)
 
-`terraform validate` does not catch apply-time mistakes (API formats, service enablement, addon prerequisites), so examples get real applies against the `terradart-validate` project via Workload Identity Federation (no long-lived keys in the repo):
+Live `terraform apply` / `destroy` against `terradart-validate` is **retired**. CI and agents must not apply or destroy examples on a real GCP project. Example quality is synth + `terraform validate` (`dart tool/example_synth_gates.dart` and the CI `terraform_validate` matrix).
 
-1. **Per-PR change-gate** ([`apply-smoke.yml`](.github/workflows/apply-smoke.yml)) — applies then destroys only the quickstarts the PR changed. Skips drafts, cancels superseded runs per PR, and defers high-cost examples to the sweep. Read failures as apply-time regressions; fix before merge.
-2. **Monthly full sweep** ([`apply-smoke-monthly.yml`](.github/workflows/apply-smoke-monthly.yml)) — regression backstop over every example for provider/API drift the per-PR gate can't see; opens a dedup'd failure issue for the diagnosis loop. **After a provider/factory bump, dispatch it manually.**
-3. **Weekly janitor** ([`apply-smoke-janitor.yml`](.github/workflows/apply-smoke-janitor.yml)) — `--all --destroy-only` reclaims orphans from failed or cancelled runs. `terraform destroy` is not trustworthy: after failures, audit the live project with `gcloud`/REST.
+Cost and skip ledgers remain as policy, not as a live-apply harness:
 
-Which examples apply — and why not — is governed by three ledgers whose headers document their own semantics: [`tool/apply_smoke_skip.yaml`](tool/apply_smoke_skip.yaml) (cannot apply on a standalone project at all), [`tool/apply_smoke_pr_skip.yaml`](tool/apply_smoke_pr_skip.yaml) (high-cost, sweep-only), and [`tool/apply_cost_denylist.yaml`](tool/apply_cost_denylist.yaml) (per-type cost tiers). **The cost gate is default-deny:** a type not classified in the denylist is never applied, and classification requires gcp-cost MCP evidence recorded in the ledger comment (see **Cloud Agent Runbooks**). [`tool/apply_smoke_test.sh`](tool/apply_smoke_test.sh) enforces the ledger partition and the evidence trail in CI; its header maps each policy gate to the rule it guards. To force a one-off apply: the **Apply smoke** workflow manually, or `tool/apply_smoke.sh --example <slug>` locally. Maintainer prerequisite: GCP WIF pool + `terradart-validate` project (not cloud-agent automatable).
+- [`tool/apply_smoke_skip.yaml`](tool/apply_smoke_skip.yaml) — examples that cannot stand alone (org-only, external deps, other-provider lanes)
+- [`tool/apply_smoke_pr_skip.yaml`](tool/apply_smoke_pr_skip.yaml) — high-cost examples (historical PR-deferral list; still part of the cost-gate partition)
+- [`tool/apply_cost_denylist.yaml`](tool/apply_cost_denylist.yaml) — per-type cost tiers (`safe` / `sweep_only` / `never_apply`)
+
+**The cost gate is default-deny:** a type not classified in the denylist fails [`tool/apply_smoke_test.sh`](tool/apply_smoke_test.sh) test 9. Classification requires gcp-cost MCP evidence recorded in the ledger comment (see **Cloud Agent Runbooks**). `tool/apply_smoke.sh` accepts `--dry-run` only; a live apply or destroy exits non-zero.
 
 ### Schema-bump post-processing (weekly)
 
 The weekly bump PR (`chore/schema-bump-*`, opened Sunday 22:00 UTC by [`schema-bump.yml`](.github/workflows/schema-bump.yml)) is classified and mechanically repaired by a Monday-morning agent — the Tier 1/2/3 rubric, allowed repairs, and the downstream [`bump-merge.yml`](.github/workflows/bump-merge.yml) executor's re-verification live in [`.cursor/agents/schema-bump-postprocess.md`](.cursor/agents/schema-bump-postprocess.md). The agent never merges; merging stays disarmed unless the `BUMP_MERGE_ENABLED` repository variable is `true`. A `bump-escalated` PR is maintainer work (typically a new `exactly_one_of` sealed design or a breaking diff needing `MIGRATING.md`).
-
-### Apply-smoke failure diagnosis (weekly)
-
-Sweep-failure issues (`apply-smoke failures` in the title, opened by [`apply-smoke-monthly.yml`](.github/workflows/apply-smoke-monthly.yml)) are diagnosed by a Monday-morning agent — the evidence rules, failure classes, and allowed fix surface live in [`.cursor/agents/apply-smoke-diagnose.md`](.cursor/agents/apply-smoke-diagnose.md). The agent pushes single-purpose fix branches (a human opens each PR from the compare link in the diagnosis) and delivers its diagnosis comment plus the `smoke-diagnosed` label through [`escalation-relay.yml`](.github/workflows/escalation-relay.yml) — agent tokens cannot comment or label directly (#597); it never merges, never touches GCP, and never re-runs sweeps — the per-PR change-gate re-applies every touched example, and a **human** merges on green and closes the issue after the next green sweep. Factory-level fixes, infrastructure, harness bugs, and teardown failures stay maintainer work.
 
 ### Wave shipping (weekly)
 
@@ -106,7 +102,7 @@ Waves are implemented by a scheduled agent on Tuesday mornings — instructions 
 
 ### Loop health (weekly)
 
-Every Monday noon JST, [`loop-health.yml`](.github/workflows/loop-health.yml) appends a metrics + stall report to the open issue labeled `loop-health`: per-loop throughput and verdict counts (bump / diagnosis / wave), backlog depth, executor arm state, and stalls — open `wave/*` PRs quiet too long (WIP-1 halts silently behind them), `smoke-diagnosed` issues left open (forgotten closes), bump PRs the Monday agent missed, verdict-labeled bump PRs missing their mandated report comment (a contentless maintainer handoff), and an actionable backlog with no wave PR opened and none in flight (a run that left no trace). Runs are attributed to the model each schedule was on via [`tool/loop_models.yaml`](tool/loop_models.yaml) — the maintainer appends an entry whenever a loop's model is flipped in the Cursor UI — so per-loop precision (first-pass green rate, `fix(repair):` commit counts, comment-marked escalations, Bugbot findings per merged wave) stays comparable across models. Agents cannot comment directly (their tokens are push-only — probed in #597), so escalation comments arrive via [`escalation-relay.yml`](.github/workflows/escalation-relay.yml), which turns an empty-commit `[agent-relay]` push on an `escalation/*` branch into a verbatim comment on the loop-health issue. Stall thresholds live as constants in [`tool/loop_health_report.dart`](tool/loop_health_report.dart). This is the input to the outer loop: a human reads it and improves instructions or ledgers, not the code under them.
+Every Monday noon JST, [`loop-health.yml`](.github/workflows/loop-health.yml) appends a metrics + stall report to the open issue labeled `loop-health`: per-loop throughput and verdict counts (bump / wave), backlog depth, executor arm state, and stalls — open `wave/*` PRs quiet too long (WIP-1 halts silently behind them), bump PRs the Monday agent missed, verdict-labeled bump PRs missing their mandated report comment (a contentless maintainer handoff), and an actionable backlog with no wave PR opened and none in flight (a run that left no trace). Runs are attributed to the model each schedule was on via [`tool/loop_models.yaml`](tool/loop_models.yaml) — the maintainer appends an entry whenever a loop's model is flipped in the Cursor UI — so per-loop precision (first-pass green rate, `fix(repair):` commit counts, comment-marked escalations, Bugbot findings per merged wave) stays comparable across models. Agents cannot comment directly (their tokens are push-only — probed in #597), so escalation comments arrive via [`escalation-relay.yml`](.github/workflows/escalation-relay.yml), which turns an empty-commit `[agent-relay]` push on an `escalation/*` branch into a verbatim comment on the loop-health issue. Stall thresholds live as constants in [`tool/loop_health_report.dart`](tool/loop_health_report.dart). This is the input to the outer loop: a human reads it and improves instructions or ledgers, not the code under them.
 
 ## Documentation Policy
 
@@ -226,13 +222,13 @@ Inputs: a checked-in or task-provided `schema.json` (plus Magic Modules YAML whe
 3. Move machine-derived facts toward merged IR and keep wrapper overrides for human API decisions.
 4. Prefer adding repeatable `tool/agent_*.dart` or `tool/agent_*.sh` scripts before adding long prose instructions.
 
-### Fix An Example That Fails Apply-Smoke
+### Fix An Example That Fails Synth Or Validate
 
-Apply-smoke failures are apply-time regressions: `synth` and `terraform validate` pass, so the bug only shows against a live project. Fix the example, then re-run `tool/apply_smoke.sh --example <slug>` and confirm **both apply AND destroy** succeed. A `pr_skip` example is *not* applied by the per-PR gate — verify it locally or via a manual **Apply smoke** dispatch. After a run, audit the live project for orphans with `gcloud`/REST.
+Example failures are synth or `terraform validate` regressions. Fix the example, then re-run `dart tool/example_synth_gates.dart` (or `tool/agent_verify.sh`) and confirm the slug is green. Do **not** `terraform apply` against `terradart-validate` or any other live project from CI or an agent session.
 
-Recurring apply-time constraints that pass synth + `terraform validate` (real identities for IAM members, project *number* vs id, restricted resource-level roles, full-name data assets, extra required args, async-operation races) are cataloged with their fixes in the [`terradart-backfill-examples`](.agents/skills/terradart-backfill-examples/SKILL.md) pitfall table.
+Recurring constraints that pass synth + `terraform validate` but fail at a human's real apply (real identities for IAM members, project *number* vs id, restricted resource-level roles, full-name data assets, extra required args, async-operation races) are cataloged with their fixes in the [`terradart-backfill-examples`](.agents/skills/terradart-backfill-examples/SKILL.md) pitfall table.
 
-When a resource can't apply on a standalone project at all — org-only (Shared VPC host/service), physical-circuit-dependent (Interconnect), or needing scaffolding out of the example's scope (VPN gateways/tunnels) — drop it from the example and record each dropped factory in [`tool/example_debt.yaml`](tool/example_debt.yaml) with a reason. Removal drops the factory from synth coverage, which `check_docs_consistency` fails otherwise; also update the example's doc comment to match the reduced surface.
+When a resource can't stand alone in an example — org-only (Shared VPC host/service), physical-circuit-dependent (Interconnect), or needing scaffolding out of the example's scope (VPN gateways/tunnels) — drop it from the example and record each dropped factory in [`tool/example_debt.yaml`](tool/example_debt.yaml) with a reason. Removal drops the factory from synth coverage, which `check_docs_consistency` fails otherwise; also update the example's doc comment to match the reduced surface.
 
 ## Project Pitfalls
 
@@ -247,7 +243,7 @@ When a resource can't apply on a standalone project at all — org-only (Shared 
 
 Cloud Agent VMs provision their toolchain from [`.cursor/environment.json`](.cursor/environment.json), whose `install` step runs the idempotent [`.cursor/install.sh`](.cursor/install.sh): it installs **Dart SDK stable** (≥ 3.10; workspace root requires ^3.6, `terradart_agent` requires ^3.10) from the official apt repo, **Terraform** (≥ 1.11) from HashiCorp apt, and the **Google Cloud CLI** (`gcloud`) from Google's apt repo, then runs `dart pub get`. Cursor caches the result as a snapshot, so later agent boots are fast. Edit `install.sh` when the toolchain changes — do not rely on a hand-built snapshot. After changing `install.sh`, rebuild / refresh the Cloud Agent environment snapshot so new boots pick up `gcloud`.
 
-**gcloud + terradart-validate (read-only).** CLI alone is not enough — register a **separate** Cursor Secret `GCP_VALIDATE_SA_JSON` (inline service-account JSON) for a **read-only** SA on `terradart-validate` (list/get style roles such as `roles/viewer` / Browser; no create/delete). Do **not** reuse the gcp-cost `GOOGLE_APPLICATION_CREDENTIALS` secret (Billing Catalog only). Auth helper: `eval "$(tool/gcloud_validate_auth.sh)"`. High-cost orphan probe (never mutates): `tool/apply_smoke_orphan_check.sh`. Reclaim orphans via the **Apply smoke janitor** workflow / `tool/apply_smoke.sh --all --destroy-only` — agents must not ad-hoc `gcloud … delete`.
+**gcloud + terradart-validate (read-only).** CLI alone is not enough — register a **separate** Cursor Secret `GCP_VALIDATE_SA_JSON` (inline service-account JSON) for a **read-only** SA on `terradart-validate` (list/get style roles such as `roles/viewer` / Browser; no create/delete). Do **not** reuse the gcp-cost `GOOGLE_APPLICATION_CREDENTIALS` secret (Billing Catalog only). Auth helper: `eval "$(tool/gcloud_validate_auth.sh)"`. High-cost orphan probe (never mutates): `tool/apply_smoke_orphan_check.sh`. Agents must not `gcloud … delete` / create, and must not run `tool/apply_smoke.sh` without `--dry-run`.
 
 **gcp-cost MCP.** `.cursor/mcp.json` launches [`tool/gcp-cost-mcp-wrapper.sh`](tool/gcp-cost-mcp-wrapper.sh), which materializes the Cursor Secret `GOOGLE_APPLICATION_CREDENTIALS` (inline JSON) to `~/.config/gcp-cost/service-account.json` (`chmod 600`) before exec'ing `gcp-cost-mcp-server`. Register the service-account JSON as a Cursor Secret; do not commit credentials. Public Cloud Billing Catalog pricing needs no project API enablement; prefer a dedicated low-privilege SA over a production key. Cursor's MCP integration reaches this server from the local IDE only; Cloud Agent sessions never launch command-type MCP servers, so they call the same tools through [`tool/gcp_cost_call.dart`](tool/gcp_cost_call.dart) (maintainer ops, not part of any shipped package) — a judgment-free genkit_mcp-client transport that launches the server via the wrapper above. Wrappers that decide *for* the agent (pre-picked SKUs, canned classifications) remain forbidden; CI verifies only the resulting denylist comments (test 13).
 
@@ -257,10 +253,9 @@ There is no long-running dev server for core work. Primary flows:
 |------|---------------------|
 | Agent gate (lint, tests, wrap check, smoke) | `tool/agent_verify.sh` |
 | Suspected mislabeled `upstream: null` | `dart tool/check_mm_upstream_fingerprint.dart` |
-| Apply-smoke selection (no GCP) | `tool/apply_smoke.sh --all --dry-run` |
+| Apply-smoke selection (dry-run only) | `tool/apply_smoke.sh --all --dry-run` |
 | Auth gcloud for validate project (read-only) | `eval "$(tool/gcloud_validate_auth.sh)"` |
 | High-cost orphan probe (read-only) | `tool/apply_smoke_orphan_check.sh` |
-| Apply one example for real | `GCP_PROJECT_ID=terradart-validate tool/apply_smoke.sh --example <slug>` |
 | Example coverage + API-enablement ratchet | `dart tool/example_synth_gates.dart` |
 | Publish readiness (per package) | `cd packages/<pkg> && dart pub publish --dry-run` |
 | Synth example stack | `cd examples/pubsub_quickstart && GCP_PROJECT_ID=ci-test-project-id dart run bin/infra.dart` |

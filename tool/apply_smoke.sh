@@ -1,27 +1,15 @@
 #!/usr/bin/env bash
-# Apply-smoke example quickstarts against a live GCP project (terradart-validate).
+# Example-selection helper for skip-list / cost-gate tests.
+#
+# Live terraform apply/destroy against terradart-validate is RETIRED.
+# The only supported mode is --dry-run (print selected slugs and exit).
 #
 # Modes:
-#   (default)         apply the examples changed vs GITHUB_BASE_SHA/origin/main
-#   --all             apply every examples/*_quickstart (nightly sweep)
-#   --example <slug>  apply exactly one
-#   --destroy-only    skip apply; just destroy each selected example's state
-#                     (janitor reclaim — relies on the GCS backend below)
+#   (default)         select examples changed vs GITHUB_BASE_SHA/origin/main
+#   --all             select every examples/*_quickstart
+#   --example <slug>  select exactly one
+#   --destroy-only    kept for flag compatibility; refused unless --dry-run
 #   --dry-run         print the selected slugs and exit (no terraform, no GCP)
-#
-# State backend:
-#   Each example uses a GCS backend (gs://$TF_STATE_BUCKET/apply-smoke/<slug>)
-#   so state PERSISTS across runs. A failed apply or a killed runner leaves
-#   reclaimable state, and `--destroy-only` (the janitor) can always tear it
-#   down. TF_STATE_BUCKET defaults to terradart-validate-tfstate.
-#
-# Behaviour:
-#   - apply mode: synth -> init -> apply, with destroy on ANY exit (trap).
-#   - --all keeps going past a failing example and exits non-zero at the end
-#     with a summary; default/--example fail fast.
-#
-# Requires (non-dry-run): terraform on PATH, WIF auth (CI) or ADC, and
-# GCP_PROJECT_ID or GCP_VALIDATE_PROJECT_ID.
 set -uo pipefail
 
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
@@ -40,7 +28,7 @@ while [[ $# -gt 0 ]]; do
     --dry-run) DRY_RUN=1; shift ;;
     --destroy-only) DESTROY_ONLY=1; shift ;;
     -h | --help)
-      sed -n '2,24p' "$0"
+      sed -n '2,12p' "$0"
       exit 0
       ;;
     *)
@@ -49,6 +37,12 @@ while [[ $# -gt 0 ]]; do
       ;;
   esac
 done
+
+if [[ "$DRY_RUN" != "1" ]]; then
+  echo "apply_smoke.sh: live terraform apply/destroy against GCP is retired." >&2
+  echo "use --dry-run for selection; example verification is synth + terraform validate." >&2
+  exit 78
+fi
 
 STATE_BUCKET="${TF_STATE_BUCKET:-terradart-validate-tfstate}"
 
@@ -257,7 +251,7 @@ apply_one() {
       echo "  !! teardown failed for $slug — retrying in 15s" >&2
       sleep 15
       if ! tf_destroy; then
-        echo "  !! TEARDOWN FAILED for $slug after retry — ORPHAN RISK; run tool/apply_smoke_janitor.sh" >&2
+        echo "  !! TEARDOWN FAILED for $slug after retry — ORPHAN RISK; a human maintainer reclaims" >&2
         echo "$slug" >> "$TEARDOWN_FAILS_FILE"
       fi
     fi
@@ -295,7 +289,7 @@ done
 TEARDOWN_FAILS="$(tr '\n' ' ' < "$TEARDOWN_FAILS_FILE" 2>/dev/null)"
 rm -f "$TEARDOWN_FAILS_FILE"
 if [[ -n "${TEARDOWN_FAILS// /}" ]]; then
-  echo "apply_smoke.sh: !! TEARDOWN FAILED (orphan risk): ${TEARDOWN_FAILS}— run tool/apply_smoke_janitor.sh" >&2
+  echo "apply_smoke.sh: !! TEARDOWN FAILED (orphan risk): ${TEARDOWN_FAILS}— a human maintainer reclaims" >&2
 fi
 COST_SKIPS="$(tr '\n' ' ' < "$COST_SKIP_FILE" 2>/dev/null)"
 rm -f "$COST_SKIP_FILE"

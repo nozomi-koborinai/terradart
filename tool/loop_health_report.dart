@@ -1,7 +1,7 @@
-// loop_health_report.dart — weekly health report for the three agent loops.
+// loop_health_report.dart — weekly health report for the agent loops.
 //
-// Collects metrics (trailing 7 days, UTC) and stall signals for the bump,
-// diagnosis, and wave loops from GitHub traces plus two checked-out ledgers
+// Collects metrics (trailing 7 days, UTC) and stall signals for the bump
+// and wave loops from GitHub traces plus two checked-out ledgers
 // (tool/curation_backlog.yaml for depth, tool/loop_models.yaml for model
 // attribution), and renders one markdown report. loop-health.yml runs this
 // every Monday 03:00 UTC and appends the output to the single "Loop health"
@@ -18,10 +18,6 @@ import 'dart:io';
 /// Days without update before an open wave/* PR counts as stalled
 /// (WIP-1 silently halts the whole loop behind it).
 const waveStallDays = 3;
-
-/// Days a smoke-diagnosed issue may stay open before it reads as a
-/// forgotten close (humans close after the next green sweep).
-const diagStallDays = 7;
 
 /// Days a schema-bump PR may stay open before the Monday agent looks
 /// like it missed it.
@@ -48,10 +44,6 @@ typedef LoopHealthData = ({
   int bumpEscalated,
   bool bumpArmed,
   LoopModel? bumpModel,
-  int diagIssuesOpened,
-  int diagIssuesClosed,
-  int diagLabeled,
-  LoopModel? diagModel,
   int waveOpened,
   int waveMerged,
   int waveApproved,
@@ -270,17 +262,6 @@ LoopHealthData collectLoopHealth({
           // which only makes the detector more lenient, never noisier.
           ageDays: _ageDays(now, p['updated_at'] as String),
         ),
-    for (final i in _searchItems(
-      gh,
-      repo,
-      'is:issue is:open label:smoke-diagnosed',
-    ))
-      if (_ageDays(now, i['created_at'] as String) >= diagStallDays)
-        (
-          kind: 'diagnosed issue',
-          ref: '#${i['number']}',
-          ageDays: _ageDays(now, i['created_at'] as String),
-        ),
     for (final p in openBumpPrs)
       if (_ageDays(now, p['created_at'] as String) >= bumpStallDays)
         (
@@ -385,16 +366,6 @@ LoopHealthData collectLoopHealth({
         _searchCount(gh, repo, 'is:pr label:bump-escalated updated:>=$since'),
     bumpArmed: bumpArmed,
     bumpModel: modelFor('bump'),
-    diagIssuesOpened:
-        _searchCount(gh, repo, 'is:issue label:apply-smoke created:>=$since'),
-    diagIssuesClosed:
-        _searchCount(gh, repo, 'is:issue label:apply-smoke closed:>=$since'),
-    diagLabeled: _searchCount(
-      gh,
-      repo,
-      'is:issue label:smoke-diagnosed updated:>=$since',
-    ),
-    diagModel: modelFor('diagnosis'),
     waveOpened: waveOpened,
     waveMerged: waveMerged,
     waveApproved:
@@ -455,15 +426,6 @@ String renderLoopHealth({
       'escalated: ${data.bumpEscalated}$bumpRate',
     )
     ..writeln('- BUMP_MERGE_ENABLED: ${armed(data.bumpArmed)}')
-    ..writeln()
-    ..writeln('## Diagnosis loop')
-    ..writeln()
-    ..writeln(model(data.diagModel))
-    ..writeln(
-      '- failure issues opened: ${data.diagIssuesOpened} · '
-      'closed: ${data.diagIssuesClosed}',
-    )
-    ..writeln('- diagnosed (smoke-diagnosed): ${data.diagLabeled}')
     ..writeln()
     ..writeln('## Wave loop')
     ..writeln()

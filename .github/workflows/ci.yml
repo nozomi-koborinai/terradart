@@ -81,10 +81,9 @@ jobs:
   apply_smoke_selection_test:
     name: apply_smoke.sh selection test
     runs-on: ubuntu-latest
-    # The change-gate that scopes apply-smoke to changed examples lives in shell;
-    # a broken awk regex once fanned a pubspec-only bump out to every example (a
-    # real GCP-cost leak). Run the selection unit test so that can't regress
-    # unnoticed. The cost gate (test 9) reads tf-out/main.tf.json, which is
+    # Selection + skip-list + cost-ledger tests (no live GCP). A broken awk
+    # regex once fanned a pubspec-only bump out to every example. The cost
+    # gate (test 9) reads tf-out/main.tf.json, which is
     # gitignored, so example_synth_gates synths every example once (also running
     # the coverage + API-enablement gates); the topology and cost gates reuse
     # those tf-outs instead of re-synthing. terraform validate is skipped here —
