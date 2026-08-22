@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.25.2 - 2026-08-22
+
+- Add an in-package `example/main.dart` (pub.dev pana example check). No
+  factory or provider changes; the schema pin now tracks the weekly GA
+  bump automatically.
+
 ## 0.25.1
 
 - Fill the beta-only `hashicorp/google-beta` catalog: **128 resource

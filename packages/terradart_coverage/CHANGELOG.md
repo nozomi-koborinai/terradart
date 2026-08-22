@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.25.2 - 2026-08-22
+
+Lockstep release with `terradart_cloudflare` 0.25.2. No functional changes in this package.
+
 ## 0.25.1 - 2026-08-19
 
 Lockstep release with `terradart_google_beta` 0.25.1. No functional changes in this package.

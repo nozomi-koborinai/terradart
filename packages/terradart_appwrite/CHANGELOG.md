@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.25.2 - 2026-08-22
+
+- Add an in-package `example/main.dart` (pub.dev pana example check) and
+  rewrite the catalog note as a feature-request invitation. No factory or
+  provider changes.
+
 ## 0.25.1
 
 - Lockstep release with the TerraDart workspace. No Appwrite factory or

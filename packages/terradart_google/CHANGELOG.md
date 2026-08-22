@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.25.2 - 2026-08-22
+
+Lockstep release. **No breaking changes** vs `0.25.1`. No `terradart_google` API changes — the new curated surface ships in `terradart_cloudflare`.
+
 ## 0.25.1 - 2026-08-19
 
 Lockstep release. **No breaking changes** vs `0.25.0`. No `terradart_google` API changes — the beta-only catalog fill ships in `terradart_google_beta`.

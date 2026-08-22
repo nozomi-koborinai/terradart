@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.25.2 - 2026-08-22
+
+Plugin-framework schema support: `SchemaJsonParser` normalizes `nested_type` object attributes into the nested-block IR (first consumer: the cloudflare 5.23.0 fixture); computed-only object attributes are excluded from constructors. No user-facing CLI flag changes.
+
 ## 0.25.1 - 2026-08-19
 
 Lockstep release with `terradart_google_beta` 0.25.1 (beta-only catalog filled). No user-facing CLI flag changes.
