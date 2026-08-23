@@ -1,8 +1,9 @@
 // example_synth_gates.dart — synth every quickstart once and run machine gates.
 //
-// - Coverage v2: curated factory tfTypes must appear in synth output (or
-//   tool/example_debt.yaml by className). Reasons containing `iam-adjunct-debt:`
-//   additionally require *IamBinding/*IamPolicy + sibling *IamMember in synth.
+// - Coverage v2: curated factory tfTypes (GA + google-beta + appwrite) must
+//   appear in synth output (or tool/example_debt.yaml by className). Reasons
+//   containing `iam-adjunct-debt:` additionally require *IamBinding/*IamPolicy
+//   + sibling *IamMember in synth.
 // - API enablement: when an example enables APIs via google_project_service,
 //   EVERY resource requiring an API must have its API enabled in the same
 //   stack (or be listed in tool/example_api_debt.yaml) and transitively
@@ -199,6 +200,7 @@ void _checkSynthCoverage(
   final catalogPaths = [
     'packages/terradart_google/lib/src/_catalog.g.dart',
     'packages/terradart_google_beta/lib/src/_catalog.g.dart',
+    'packages/terradart_appwrite/lib/src/_catalog.g.dart',
   ];
   final factories = <({String tfType, String className, String kind})>[];
   final catalogClasses = <String>{};
