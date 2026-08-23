@@ -48,9 +48,41 @@ void main() {
           as Map)['attributes'],
       isNotEmpty,
     );
-    // Data sources are not part of the subset contract yet — omitted, not
-    // copied wholesale (the fixture stays exactly as small as the catalog).
+    // Data sources stay omitted until explicitly requested — not copied
+    // wholesale (the fixture stays exactly as small as the catalog).
     expect(schemas.containsKey('data_source_schemas'), isFalse);
+  });
+
+  test('includes only the requested data sources when asked', () {
+    final out = filterSchemaSubset(
+      full,
+      providerSource: 'hashicorp/google-beta',
+      resources: ['google_project_service_identity'],
+      dataSources: ['google_project'],
+    );
+    final schemas = (out['provider_schemas']
+        as Map)['registry.terraform.io/hashicorp/google-beta'] as Map;
+    expect((schemas['data_source_schemas'] as Map).keys, ['google_project']);
+    expect((schemas['resource_schemas'] as Map).keys,
+        ['google_project_service_identity']);
+  });
+
+  test('fails closed when a requested data source is absent', () {
+    expect(
+      () => filterSchemaSubset(
+        full,
+        providerSource: 'hashicorp/google-beta',
+        resources: ['google_project_service_identity'],
+        dataSources: ['google_nope'],
+      ),
+      throwsA(
+        isA<StateError>().having(
+          (e) => e.message,
+          'message',
+          contains('google_nope'),
+        ),
+      ),
+    );
   });
 
   test('fails closed when a requested resource is absent from the schema', () {
@@ -93,6 +125,25 @@ void main() {
       expect(
         resourceNamesFromFixture(full),
         isNot(contains('google_project')),
+      );
+    });
+
+    test('dataSourceNamesFromFixture returns sorted data-source keys', () {
+      expect(dataSourceNamesFromFixture(full), ['google_project']);
+    });
+
+    test('dataSourceNamesFromFixture is empty on a resource-only fixture', () {
+      expect(
+        dataSourceNamesFromFixture({
+          'provider_schemas': {
+            'registry.terraform.io/hashicorp/google-beta': {
+              'resource_schemas': {
+                'google_compute_instance': {'version': 6},
+              },
+            },
+          },
+        }),
+        isEmpty,
       );
     });
 
