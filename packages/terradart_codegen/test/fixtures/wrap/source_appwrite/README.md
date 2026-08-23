@@ -1,15 +1,21 @@
 # Filtered schema fixture — appwrite/appwrite
 
-Machine-extracted subset containing ONLY the curated resources below.
-Never hand-edit; re-extract with:
+Machine-extracted subset containing ONLY the curated resources. The keys of
+`schema.json` are the single source of truth for the set, and
+`provider_version.txt` records the extraction version. Never hand-edit
+either file. Re-extract the SAME set at the pinned version with:
 
 ```bash
 dart tool/extract_schema_subset.dart \
-  --provider=appwrite/appwrite --version=2.0.0-beta.1 \
-  --resources=appwrite_project,appwrite_storage_bucket \
+  --provider=appwrite/appwrite \
+  --version="$(cat packages/terradart_codegen/test/fixtures/wrap/source_appwrite/provider_version.txt)" \
+  --resources-from=packages/terradart_codegen/test/fixtures/wrap/source_appwrite/schema.json \
   --out=packages/terradart_codegen/test/fixtures/wrap/source_appwrite
 ```
 
-Resources:
-- `appwrite_project`
-- `appwrite_storage_bucket`
+To ADD a resource, append it via union:
+`--resources-from=packages/terradart_codegen/test/fixtures/wrap/source_appwrite/schema.json --resources=<new_type>`.
+To ADD a data source: `--data-sources=<type>` (combined with
+`--resources-from` so the current resource set is kept).
+To REMOVE one, pass an explicit `--resources=` / `--data-sources=` list
+without it.

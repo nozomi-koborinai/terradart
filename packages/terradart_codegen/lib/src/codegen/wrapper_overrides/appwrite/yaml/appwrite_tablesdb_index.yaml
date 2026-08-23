@@ -1,0 +1,3 @@
+outputDir: tablesdb
+deriveClassDoc: true
+deriveOutputGetters: true

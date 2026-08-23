@@ -1,0 +1,7 @@
+outputDir: postgresql
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Dedicated PostgreSQL database (reserved compute, billed while it
+  /// exists). Provisioning takes several minutes; apply waits for settle.

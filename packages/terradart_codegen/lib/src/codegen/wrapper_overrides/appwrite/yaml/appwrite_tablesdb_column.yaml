@@ -1,0 +1,35 @@
+outputDir: tablesdb
+deriveClassDoc: true
+deriveOutputGetters: true
+
+# `default` and `required` are Dart reserved / contextual keywords — virtual
+# slots keep the constructor parseable (`defaultValue`, `columnRequired`).
+paramOrder:
+  - database_id
+  - table_id
+  - type
+  - key
+  - columnRequired
+  - defaultValue
+  - size
+  - array
+  - elements
+  - encrypt
+  - float_max
+  - float_min
+  - max
+  - min
+  - on_delete
+  - related_table_id
+  - relationship_type
+  - two_way
+  - two_way_key
+  - project_id
+
+customSlots:
+  defaultValue:
+    paramDeclaration: 'TfArg<String>? defaultValue'
+    argMapEntry: "if (defaultValue != null) 'default': defaultValue,"
+  columnRequired:
+    paramDeclaration: 'TfArg<bool>? columnRequired'
+    argMapEntry: "if (columnRequired != null) 'required': columnRequired,"

@@ -1,0 +1,10 @@
+outputDir: project
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Appwrite **project API key**.
+  ///
+  /// The create endpoint is gone upstream: mint the key in the Console and
+  /// `terraform import` it. Read / update / delete still work. Synth output
+  /// never contains the secret — see [AppwriteProvider].

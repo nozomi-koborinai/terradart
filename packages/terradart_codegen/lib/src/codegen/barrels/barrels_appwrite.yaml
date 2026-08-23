@@ -9,10 +9,11 @@ umbrellaDoc: |-
   /// Curated **Appwrite** surface for TerraDart (official
   /// `appwrite/appwrite` Terraform provider).
   ///
-  /// Curated factories are added on request — open a feature request for
-  /// resources not wrapped yet. Credentials never appear in synth output:
-  /// authentication happens at apply time via APPWRITE_API_KEY /
-  /// APPWRITE_ORGANIZATION_API_KEY environment variables.
+  /// The catalog at the current provider pin (`2.0.0-beta.1`) is filled —
+  /// every resource and data source in that schema has a factory. A later
+  /// pin that adds names lands on request. Credentials never appear in
+  /// synth output: authentication happens at apply time via APPWRITE_API_KEY
+  /// / APPWRITE_ORGANIZATION_API_KEY environment variables.
   ///
   /// This umbrella re-exports every per-service barrel. Prefer the
   /// per-service imports in new code.
@@ -23,7 +24,47 @@ umbrellaExtraExports:
 barrels:
   project:
     doc: |-
-      /// Appwrite projects (organization-scoped).
+      /// Appwrite projects and project API keys (organization-scoped).
+  proxy:
+    doc: |-
+      /// Appwrite proxy rules (custom domains for sites and functions).
+  tablesdb:
+    doc: |-
+      /// Appwrite TablesDB — shared databases, tables, columns, indexes, and rows.
+  postgresql:
+    doc: |-
+      /// Dedicated PostgreSQL databases, backups, branches, pooler, and extensions.
+  mysql:
+    doc: |-
+      /// Dedicated MySQL databases, backups, branches, and connection pooler.
+  mongo:
+    doc: |-
+      /// Dedicated MongoDB databases, backups, and branches.
   storage:
     doc: |-
-      /// Appwrite file storage (buckets).
+      /// Appwrite file storage (buckets and files).
+  auth:
+    doc: |-
+      /// Appwrite Auth — users and teams.
+  functions:
+    doc: |-
+      /// Appwrite Functions — runtimes, variables, and deployments.
+  sites:
+    doc: |-
+      /// Appwrite Sites — hosted frontends, variables, and deployments.
+  messaging:
+    doc: |-
+      /// Appwrite Messaging — providers, topics, and subscribers.
+  webhooks:
+    doc: |-
+      /// Appwrite webhooks.
+  backups:
+    doc: |-
+      /// Project-level Appwrite backup policies (shared TablesDB / storage).
+  data:
+    doc: |-
+      /// Read-only Appwrite data sources (no `terraform apply` side effects).
+      ///
+      /// ```dart
+      /// import 'package:terradart_appwrite/data.dart';
+      /// ```

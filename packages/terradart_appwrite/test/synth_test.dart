@@ -4,6 +4,9 @@ import 'package:terradart_appwrite/storage.dart';
 import 'package:terradart_core/terradart_core.dart';
 import 'package:test/test.dart';
 
+import '../lib/src/_catalog.g.dart';
+import '../lib/src/catalog_entry.dart';
+
 final class _TestStack extends Stack {
   _TestStack()
       : super(
@@ -41,6 +44,17 @@ void main() {
     final project = (resources['appwrite_project'] as Map<String, dynamic>)['p']
         as Map<String, dynamic>;
     expect(project.containsKey('provider'), isFalse);
+  });
+
+  test('catalog lists every factory at the current pin', () {
+    expect(
+      terradartCatalog.where((e) => e.kind == CatalogKind.resource).length,
+      38,
+    );
+    expect(
+      terradartCatalog.where((e) => e.kind == CatalogKind.dataSource).length,
+      24,
+    );
   });
 
   test('credentials cannot appear in synth output by construction', () {
