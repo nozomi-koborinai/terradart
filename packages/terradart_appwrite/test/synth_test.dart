@@ -1,11 +1,10 @@
 import 'package:terradart_appwrite/project.dart';
 import 'package:terradart_appwrite/provider.dart';
+import 'package:terradart_appwrite/src/_catalog.g.dart';
+import 'package:terradart_appwrite/src/catalog_entry.dart';
 import 'package:terradart_appwrite/storage.dart';
 import 'package:terradart_core/terradart_core.dart';
 import 'package:test/test.dart';
-
-import '../lib/src/_catalog.g.dart';
-import '../lib/src/catalog_entry.dart';
 
 final class _TestStack extends Stack {
   _TestStack()
