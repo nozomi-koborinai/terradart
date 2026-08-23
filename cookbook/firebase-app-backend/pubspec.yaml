@@ -1,0 +1,17 @@
+name: firebase_app_backend
+description: terradart cookbook recipe — deploy a full-stack Firebase (beta) and Google Cloud (GA) backend in a single Stack (Firebase Web App + Firestore + Cloud Storage + Cloud Run v2 API).
+publish_to: none
+version: 0.1.0
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.25.2
+  terradart_google: ^0.25.2
+  terradart_google_beta: ^0.25.2
+
+dev_dependencies:
+  lints: ^6.0.0

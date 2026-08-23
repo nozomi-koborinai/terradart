@@ -135,6 +135,7 @@ workspace:
   - examples/workflows_quickstart
   - examples/app_engine_quickstart
   - cookbook/single-project-app
+  - cookbook/firebase-app-backend
   - cookbook/firestore-seeded-data
   - cookbook/remote-backend
   - cookbook/lunch-concierge/shared
