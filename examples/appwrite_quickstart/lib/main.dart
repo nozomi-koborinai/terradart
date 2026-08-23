@@ -355,25 +355,63 @@ final class AppwriteDemoStack extends Stack {
       ),
     );
 
-    addData(DataAppwriteAuthTeam(
-        localName: 'editors_ds', id: TfArg.literal('editors')));
+    addData(
+      DataAppwriteAuthTeam(
+        localName: 'editors_ds',
+        id: TfArg.literal('editors'),
+      ),
+    );
     addData(
       DataAppwriteAuthUser(
-          localName: 'demo_user_ds', id: TfArg.literal('demo_user')),
+        localName: 'demo_user_ds',
+        id: TfArg.literal('demo_user'),
+      ),
     );
-    addData(DataAppwriteFunction(localName: 'fn_ds', id: TfArg.ref(fn.id)));
-    addData(DataAppwriteMessagingTopic(
-        localName: 'topic_ds', id: TfArg.ref(topic.id)));
-    addData(DataAppwriteSite(localName: 'site_ds', id: TfArg.ref(site.id)));
-    addData(DataAppwriteStorageBucket(
-        localName: 'bucket_ds', id: TfArg.ref(bucket.id)));
-    addData(DataAppwriteTablesdb(localName: 'db_ds', id: TfArg.ref(db.id)));
-    addData(DataAppwriteWebhook(localName: 'hook_ds', id: TfArg.ref(hook.id)));
+    addData(
+      DataAppwriteFunction(
+        localName: 'fn_ds',
+        id: TfArg.ref(fn.id),
+      ),
+    );
+    addData(
+      DataAppwriteMessagingTopic(
+        localName: 'topic_ds',
+        id: TfArg.ref(topic.id),
+      ),
+    );
+    addData(
+      DataAppwriteSite(
+        localName: 'site_ds',
+        id: TfArg.ref(site.id),
+      ),
+    );
+    addData(
+      DataAppwriteStorageBucket(
+        localName: 'bucket_ds',
+        id: TfArg.ref(bucket.id),
+      ),
+    );
+    addData(
+      DataAppwriteTablesdb(
+        localName: 'db_ds',
+        id: TfArg.ref(db.id),
+      ),
+    );
+    addData(
+      DataAppwriteWebhook(
+        localName: 'hook_ds',
+        id: TfArg.ref(hook.id),
+      ),
+    );
 
     addData(DataAppwritePostgresqlSpecifications(localName: 'pg_specs'));
     addData(DataAppwritePostgresqlDatabases(localName: 'pg_list'));
-    addData(DataAppwritePostgresqlDatabase(
-        localName: 'pg_ds', id: TfArg.ref(pg.id)));
+    addData(
+      DataAppwritePostgresqlDatabase(
+        localName: 'pg_ds',
+        id: TfArg.ref(pg.id),
+      ),
+    );
     addData(
       DataAppwritePostgresqlDatabaseStatus(
         localName: 'pg_status',
@@ -382,7 +420,9 @@ final class AppwriteDemoStack extends Stack {
     );
     addData(
       DataAppwritePostgresqlBackups(
-          localName: 'pg_backups', databaseId: TfArg.ref(pg.id)),
+        localName: 'pg_backups',
+        databaseId: TfArg.ref(pg.id),
+      ),
     );
     addData(
       DataAppwritePostgresqlExtensions(
@@ -393,8 +433,12 @@ final class AppwriteDemoStack extends Stack {
 
     addData(DataAppwriteMysqlSpecifications(localName: 'mysql_specs'));
     addData(DataAppwriteMysqlDatabases(localName: 'mysql_list'));
-    addData(DataAppwriteMysqlDatabase(
-        localName: 'mysql_ds', id: TfArg.ref(mysql.id)));
+    addData(
+      DataAppwriteMysqlDatabase(
+        localName: 'mysql_ds',
+        id: TfArg.ref(mysql.id),
+      ),
+    );
     addData(
       DataAppwriteMysqlDatabaseStatus(
         localName: 'mysql_status',
@@ -410,8 +454,12 @@ final class AppwriteDemoStack extends Stack {
 
     addData(DataAppwriteMongoSpecifications(localName: 'mongo_specs'));
     addData(DataAppwriteMongoDatabases(localName: 'mongo_list'));
-    addData(DataAppwriteMongoDatabase(
-        localName: 'mongo_ds', id: TfArg.ref(mongo.id)));
+    addData(
+      DataAppwriteMongoDatabase(
+        localName: 'mongo_ds',
+        id: TfArg.ref(mongo.id),
+      ),
+    );
     addData(
       DataAppwriteMongoDatabaseStatus(
         localName: 'mongo_status',
