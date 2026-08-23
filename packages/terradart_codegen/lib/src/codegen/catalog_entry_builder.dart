@@ -104,7 +104,7 @@ List<String> catalogConstructorParams(
     params.add(
       custom != null
           ? paramIdentifier(custom.paramDeclaration)
-          : snakeToCamel(name),
+          : snakeToDartIdent(name),
     );
   }
   return params;

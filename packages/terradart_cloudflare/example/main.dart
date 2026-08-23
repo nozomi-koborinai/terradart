@@ -12,7 +12,7 @@ final class HelloStack extends Stack {
     final zone = CloudflareZone(
       localName: 'main',
       name: TfArg.literal('example.com'),
-      account: TfArg.literal({'id': 'your-account-id'}),
+      account: ZoneAccount(id: TfArg.literal('your-account-id')),
     );
     add(zone);
     add(

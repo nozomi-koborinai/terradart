@@ -1,0 +1,63 @@
+// GENERATED FILE - DO NOT EDIT
+// Run `terradart wrap` to regenerate.
+// ignore_for_file: prefer_relative_imports
+import 'package:terradart_core/terradart_core.dart';
+
+/// Sensitive field paths for `cloudflare_authenticated_origin_pulls_certificate`.
+const Set<String> _cloudflareAuthenticatedOriginPullsCertificateSensitive =
+    <String>{'private_key'};
+
+/// Factory wrapper for `cloudflare_authenticated_origin_pulls_certificate`.
+final class CloudflareAuthenticatedOriginPullsCertificate extends Resource {
+  static const String tfType =
+      'cloudflare_authenticated_origin_pulls_certificate';
+
+  CloudflareAuthenticatedOriginPullsCertificate({
+    required super.localName,
+    required TfArg<String> certificate,
+    required TfArg<String> privateKey,
+    required TfArg<String> zoneId,
+    super.lifecycle,
+    super.dependsOn,
+  }) : super(
+         terraformType: tfType,
+         argMap: {
+           'certificate': certificate,
+           'private_key': privateKey,
+           'zone_id': zoneId,
+         },
+       );
+
+  @override
+  Set<String> get sensitiveFields =>
+      _cloudflareAuthenticatedOriginPullsCertificateSensitive;
+
+  /// Reference to `id` attribute.
+  TfRef<String> get id => TfRef.attribute<String>(this, 'id');
+
+  /// Reference to `certificate_id` attribute.
+  TfRef<String> get certificateId =>
+      TfRef.attribute<String>(this, 'certificate_id');
+
+  /// Reference to `enabled` attribute.
+  TfRef<bool> get enabled => TfRef.attribute<bool>(this, 'enabled');
+
+  /// Reference to `expires_on` attribute.
+  TfRef<String> get expiresOn => TfRef.attribute<String>(this, 'expires_on');
+
+  /// Reference to `issuer` attribute.
+  TfRef<String> get issuer => TfRef.attribute<String>(this, 'issuer');
+
+  /// Reference to `serial_number` attribute.
+  TfRef<String> get serialNumber =>
+      TfRef.attribute<String>(this, 'serial_number');
+
+  /// Reference to `signature` attribute.
+  TfRef<String> get signature => TfRef.attribute<String>(this, 'signature');
+
+  /// Reference to `status` attribute.
+  TfRef<String> get status => TfRef.attribute<String>(this, 'status');
+
+  /// Reference to `uploaded_on` attribute.
+  TfRef<String> get uploadedOn => TfRef.attribute<String>(this, 'uploaded_on');
+}

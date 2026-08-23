@@ -318,4 +318,83 @@ void main() {
     expect(excludedResources.repeated, isTrue);
     expect(excludedResources.required, isTrue);
   });
+
+  test(
+      'plugin-framework nested_type objects become specs; computed-only '
+      'objects are skipped (Cloudflare zone/dns shape)', () {
+    const zoneBlock = {
+      'attributes': {
+        'name': {'type': 'string', 'required': true},
+        'account': {
+          'nested_type': {
+            'attributes': {
+              'id': {'type': 'string', 'optional': true},
+            },
+            'nesting_mode': 'single',
+          },
+          'required': true,
+        },
+        'meta': {
+          'nested_type': {
+            'attributes': {
+              'cdn_only': {'type': 'bool', 'computed': true},
+            },
+            'nesting_mode': 'single',
+          },
+          'computed': true,
+        },
+      },
+    };
+    final zoneSpecs = collectNestedTypes(
+      resourceBlock: zoneBlock,
+      resourcePrefix: 'Zone',
+      customSlotKeys: const {},
+      excludedPaths: const {},
+    );
+    expect(zoneSpecs.map((s) => s.tfName), ['account']);
+    final account = zoneSpecs.single;
+    expect(account.className, 'ZoneAccount');
+    expect(account.required, isTrue);
+    expect(account.repeated, isFalse);
+    expect(account.attrs.single.tfName, 'id');
+    expect(account.attrs.single.required, isFalse);
+    expect(account.attrs.single.dartType, 'String');
+
+    const dnsBlock = {
+      'attributes': {
+        'data': {
+          'nested_type': {
+            'attributes': {
+              'priority': {'type': 'number', 'optional': true},
+              'target': {'type': 'string', 'optional': true},
+            },
+            'nesting_mode': 'single',
+          },
+          'optional': true,
+        },
+        'settings': {
+          'nested_type': {
+            'attributes': {
+              'flatten_cname': {
+                'type': 'bool',
+                'optional': true,
+                'computed': true
+              },
+            },
+            'nesting_mode': 'single',
+          },
+          'optional': true,
+          'computed': true,
+        },
+      },
+    };
+    final dnsSpecs = collectNestedTypes(
+      resourceBlock: dnsBlock,
+      resourcePrefix: 'DnsRecord',
+      customSlotKeys: const {},
+      excludedPaths: const {},
+    );
+    expect(
+        dnsSpecs.map((s) => s.tfName).toList()..sort(), ['data', 'settings']);
+  });
 }

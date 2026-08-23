@@ -58,9 +58,10 @@ class EnumName {
   });
 }
 
-/// Strips the `google_` provider prefix (if present) from [terraformType],
-/// then converts the remainder to PascalCase — e.g.
-/// `google_app_engine_domain_mapping` → `AppEngineDomainMapping`.
+/// Strips a known provider prefix (`google_`, `cloudflare_`, `appwrite_`)
+/// from [terraformType], then converts the remainder to PascalCase — e.g.
+/// `google_app_engine_domain_mapping` → `AppEngineDomainMapping`,
+/// `cloudflare_zone` → `Zone`.
 ///
 /// This is the shared "short resource name" both [enumName] (top-level
 /// derived enum names, e.g. `PubsubTopicEncoding` rather than
@@ -69,10 +70,14 @@ class EnumName {
 /// `AppEngineDomainMappingSslSettings`) build their generated names from —
 /// dropping the prefix keeps generated names readable in user code.
 String shortResourcePascal(String terraformType) {
-  const providerPrefix = 'google_';
-  final short = terraformType.startsWith(providerPrefix)
-      ? terraformType.substring(providerPrefix.length)
-      : terraformType;
+  const providerPrefixes = ['google_', 'cloudflare_', 'appwrite_'];
+  var short = terraformType;
+  for (final prefix in providerPrefixes) {
+    if (short.startsWith(prefix)) {
+      short = short.substring(prefix.length);
+      break;
+    }
+  }
   return snakeToPascal(short);
 }
 
@@ -120,6 +125,14 @@ String screamingToCamel(String screaming) {
   final camel = snakeToCamel(parts.join('_'));
   return safeDartIdentifier(camel);
 }
+
+/// Terraform snake_case attribute / block name → a legal Dart identifier.
+///
+/// Combines [snakeToCamel] with [safeDartIdentifier] so a schema field
+/// named `default` becomes constructor parameter `defaultCase` rather than
+/// unparseable `default`.
+String snakeToDartIdent(String snake) =>
+    safeDartIdentifier(snakeToCamel(snake));
 
 /// Returns [ident] verbatim unless it is a Dart reserved word, in which
 /// case a `Case` suffix is appended (`default` → `defaultCase`). Shared by

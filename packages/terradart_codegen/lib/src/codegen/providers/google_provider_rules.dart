@@ -8,6 +8,9 @@ final class GoogleProviderRules extends ProviderRules {
   String get providerId => 'hashicorp/google';
 
   @override
+  String get terraformTypePrefix => 'google_';
+
+  @override
   Map<String, String> get outputDirAliases => _aliases;
 
   @override

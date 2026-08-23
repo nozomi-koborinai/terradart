@@ -1,0 +1,4 @@
+outputDir: address_map
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

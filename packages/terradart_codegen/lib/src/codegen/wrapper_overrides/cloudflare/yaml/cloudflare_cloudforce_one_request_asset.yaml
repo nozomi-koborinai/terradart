@@ -1,0 +1,4 @@
+outputDir: cloudforce_one
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

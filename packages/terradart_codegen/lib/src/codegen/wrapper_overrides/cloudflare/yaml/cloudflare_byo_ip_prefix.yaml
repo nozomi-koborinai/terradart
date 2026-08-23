@@ -1,0 +1,4 @@
+outputDir: byo_ip
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

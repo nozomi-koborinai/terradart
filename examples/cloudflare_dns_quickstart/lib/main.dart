@@ -25,7 +25,7 @@ final class CloudflareDnsStack extends Stack {
     final zone = CloudflareZone(
       localName: 'main',
       name: TfArg.literal('terradart-demo.example'),
-      account: TfArg.literal({'id': 'terradart-demo-account'}),
+      account: ZoneAccount(id: TfArg.literal('terradart-demo-account')),
     );
     add(zone);
     add(

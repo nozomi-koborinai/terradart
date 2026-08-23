@@ -1,0 +1,4 @@
+outputDir: calls
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

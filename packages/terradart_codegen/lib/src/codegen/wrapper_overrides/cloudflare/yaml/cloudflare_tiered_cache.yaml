@@ -1,0 +1,4 @@
+outputDir: cache
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

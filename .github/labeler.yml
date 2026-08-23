@@ -30,6 +30,7 @@
           - 'packages/terradart_codegen/lib/src/codegen/wrapper_overrides/cloudflare/**'
           - 'packages/terradart_codegen/test/fixtures/wrap/source_cloudflare/**'
           - 'examples/cloudflare_dns_quickstart/**'
+          - 'examples/cloudflare_leftover_quickstart/**'
 
 'area:agent':
   - changed-files:

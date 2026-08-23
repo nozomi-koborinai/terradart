@@ -125,9 +125,14 @@ typedef _ChildScan = ({
   List<ExcludedNestedBlock> excludedChildren,
 });
 
-/// Scans one block's `block_types` map, returning the child specs that
-/// survive filtering plus the children dropped because their dotted path is
-/// in `excludedPaths` (recorded with cardinality via [ExcludedNestedBlock]).
+/// Scans one block's nested children: SDKv2 `block_types` plus
+/// plugin-framework `nested_type` object attributes (Cloudflare v5, etc.).
+///
+/// `nested_type` attributes are synthesized into the same child-body shape
+/// `_buildSpec` already understands (`nesting_mode` / `min_items` / `block`)
+/// so one collector serves both schema dialects. Computed-only objects
+/// (no input role, e.g. Cloudflare `meta`) are skipped — the same filter
+/// `skipNestedBlock` applies after IR normalization.
 _ChildScan _scanChildren(
   Map<String, dynamic> block, {
   required List<String> path,
@@ -135,15 +140,16 @@ _ChildScan _scanChildren(
   required Set<String> customSlotKeys,
   required Set<String> excludedPaths,
 }) {
-  final blockTypes = _optionalMap(block['block_types'], context: 'block_types');
   final children = <NestedBlockSpec>[];
   final excludedChildren = <ExcludedNestedBlock>[];
-  for (final entry in blockTypes.entries) {
-    final tfName = entry.key;
-    if (customSlotKeys.contains(tfName) || tfName == 'timeouts') continue;
+
+  void consider({
+    required String tfName,
+    required Map<String, dynamic> childBody,
+  }) {
+    if (customSlotKeys.contains(tfName) || tfName == 'timeouts') return;
 
     final childPath = [...path, tfName];
-    final childBody = _requireMap(entry.value, context: 'block_types.$tfName');
     if (excludedPaths.contains(childPath.join('.'))) {
       final cardinality = _blockCardinality(childBody, tfName: tfName);
       excludedChildren.add(ExcludedNestedBlock(
@@ -151,7 +157,7 @@ _ChildScan _scanChildren(
         repeated: cardinality.repeated,
         required: cardinality.required,
       ));
-      continue;
+      return;
     }
 
     children.add(_buildSpec(
@@ -163,7 +169,57 @@ _ChildScan _scanChildren(
       excludedPaths: excludedPaths,
     ));
   }
+
+  final blockTypes = _optionalMap(block['block_types'], context: 'block_types');
+  for (final entry in blockTypes.entries) {
+    consider(
+      tfName: entry.key,
+      childBody: _requireMap(entry.value, context: 'block_types.${entry.key}'),
+    );
+  }
+
+  final attributes = _optionalMap(block['attributes'], context: 'attributes');
+  for (final entry in attributes.entries) {
+    final attrBody =
+        _requireMap(entry.value, context: 'attributes.${entry.key}');
+    final nestedTypeRaw = attrBody['nested_type'];
+    if (nestedTypeRaw == null) continue;
+    if (_isComputedOnly(attrBody)) continue;
+    final nestedType = _requireMap(nestedTypeRaw,
+        context: 'attributes.${entry.key}.nested_type');
+    consider(
+      tfName: entry.key,
+      childBody: _nestedTypeAsBlockBody(attrBody, nestedType),
+    );
+  }
+
   return (children: children, excludedChildren: excludedChildren);
+}
+
+/// True when a schema attribute/block has no input role (computed, and
+/// neither optional nor required). Mirrors [Constraints.computedOnly].
+bool _isComputedOnly(Map<String, dynamic> body) {
+  final computed = body['computed'] == true;
+  final optional = body['optional'] == true;
+  final required = body['required'] == true;
+  return computed && !optional && !required;
+}
+
+/// Lifts a plugin-framework `nested_type` attribute into the
+/// `block_types`-shaped map [_buildSpec] / [_blockCardinality] consume.
+Map<String, dynamic> _nestedTypeAsBlockBody(
+  Map<String, dynamic> attrBody,
+  Map<String, dynamic> nestedType,
+) {
+  final required = attrBody['required'] == true;
+  return {
+    'nesting_mode': nestedType['nesting_mode'],
+    if (required) 'min_items': 1,
+    'block': {
+      'attributes': nestedType['attributes'] ?? const <String, dynamic>{},
+      'block_types': nestedType['block_types'] ?? const <String, dynamic>{},
+    },
+  };
 }
 
 const _knownNestingModes = {'single', 'list', 'set', 'map', 'group'};
@@ -235,6 +291,8 @@ List<NestedAttrSpec> _collectAttrs(
   for (final entry in attributes.entries) {
     final tfName = entry.key;
     final body = _requireMap(entry.value, context: 'attributes.$tfName');
+    // Object attributes belong to [_scanChildren], not the leaf-attr list.
+    if (body.containsKey('nested_type')) continue;
 
     final isComputed = body['computed'] == true;
     final isOptional = body['optional'] == true;

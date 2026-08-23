@@ -1,0 +1,4 @@
+outputDir: cloud_connector
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

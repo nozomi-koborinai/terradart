@@ -1,0 +1,4 @@
+outputDir: load_balancer
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

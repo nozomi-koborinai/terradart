@@ -235,7 +235,8 @@ Docs: [terradart.dev/docs/agent/](https://terradart.dev/docs/agent/)
 
 - [`terradart_google`](packages/terradart_google/README.md) ships **1332 curated resource factories + 461 data sources** (1793 catalog entries) across per-service barrels (`compute`, `pubsub`, `cloud_run`, `bigquery`, …). The GA `hashicorp/google` catalog is filled.
 - [`terradart_google_beta`](packages/terradart_google_beta/README.md) ships the **beta-only** `hashicorp/google-beta` catalog (**128 resource factories**, schema pin tracking the weekly GA bump).
-- [`terradart_appwrite`](packages/terradart_appwrite/README.md) and [`terradart_cloudflare`](packages/terradart_cloudflare/README.md) provide curated factories for Appwrite and Cloudflare infrastructure.
+- [`terradart_appwrite`](packages/terradart_appwrite/README.md) ships the filled `appwrite/appwrite` catalog at `2.0.0-beta.1` (38 resource factories + 24 data sources).
+- [`terradart_cloudflare`](packages/terradart_cloudflare/README.md) ships the filled `cloudflare/cloudflare` catalog at `5.23.0` (**257 resource factories + 446 data sources**). Nested plugin-framework objects are typed Dart helpers.
 
 Explore ready-to-run examples in [`examples/`](examples/):
 - **Foundational & IAM**: [Pub/Sub](examples/pubsub_quickstart/), [Cloud Tasks](examples/cloud_tasks_quickstart/), [Secret Manager](examples/secret_manager_quickstart/), [IAM](examples/iam_quickstart/)

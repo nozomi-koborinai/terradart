@@ -101,6 +101,16 @@ class WrapperEmitter {
     // itself doesn't depend on anything emitted in between.
     final customSlots = override?.customSlots ?? const <String, CustomSlot>{};
 
+    final nestedTypeSpecs = (override?.deriveNestedTypes ?? false)
+        ? collectNestedTypes(
+            resourceBlock: _requireRawSchema(def.terraformType),
+            resourcePrefix: shortResourcePascal(def.terraformType),
+            customSlotKeys: customSlots.keys.toSet(),
+            excludedPaths:
+                (override?.nestedTypeExcludes ?? const <String>[]).toSet(),
+          )
+        : const <NestedBlockSpec>[];
+
     // Imports. `extraImports` is emitted FIRST so that `package:meta` (the
     // common case for hand-written helper classes that decorate themselves
     // with `@immutable`) sorts above `package:terradart_core` — both live
@@ -111,6 +121,11 @@ class WrapperEmitter {
     // `package:terradart_annotations` import (package deleted). Only
     // `package:terradart_core` + override-supplied `extraImports`.
     final extraImports = override?.extraImports ?? const <String>[];
+    final needsMeta = nestedTypeSpecs.isNotEmpty &&
+        !extraImports.any((i) => i.contains('package:meta/meta.dart'));
+    if (needsMeta) {
+      buf.writeln("import 'package:meta/meta.dart';");
+    }
     for (final imp in extraImports) {
       buf.writeln(imp);
     }
@@ -175,25 +190,6 @@ class WrapperEmitter {
       buf.writeln();
     }
 
-    // `deriveNestedTypes` gate: derive a typed `@immutable` helper class
-    // (plus any attribute `TerraformEnum`s) for each of this resource's
-    // TOP-LEVEL nested blocks from the RAW provider-schema JSON —
-    // `collectNestedTypes` needs `block_types` / `nesting_mode` / etc., which
-    // the parsed IR no longer carries. `customSlots.keys` marks subtrees the
-    // hand-written override already owns (the collector skips them
-    // entirely, at any depth); `nestedTypeExcludes` marks additional
-    // subtrees left as the generic passthrough. Dark by construction: no
-    // committed override sets `deriveNestedTypes`, so `nestedTypeSpecs` is
-    // always `const []` today and this whole block is a no-op.
-    final nestedTypeSpecs = (override?.deriveNestedTypes ?? false)
-        ? collectNestedTypes(
-            resourceBlock: _requireRawSchema(def.terraformType),
-            resourcePrefix: shortResourcePascal(def.terraformType),
-            customSlotKeys: customSlots.keys.toSet(),
-            excludedPaths:
-                (override?.nestedTypeExcludes ?? const <String>[]).toSet(),
-          )
-        : const <NestedBlockSpec>[];
     if (nestedTypeSpecs.isNotEmpty) {
       buf.write(renderNestedTypes(
         nestedTypeSpecs,
@@ -442,7 +438,7 @@ class WrapperEmitter {
     String? typeOverride,
     String? deprecation,
   }) {
-    final dartName = snakeToCamel(attr.name);
+    final dartName = snakeToDartIdent(attr.name);
     final dartType = typeOverride ?? writeDartType(attr.type);
     final modifier = isRequired ? 'required ' : '';
     final nullSuffix = isRequired ? '' : '?';
@@ -460,7 +456,7 @@ class WrapperEmitter {
     NestedBlockDef nested, {
     required bool isRequired,
   }) {
-    final dartName = snakeToCamel(nested.name);
+    final dartName = snakeToDartIdent(nested.name);
     final isSingle = nested.nesting == NestingMode.single ||
         (nested.nesting == NestingMode.list && nested.maxItems == 1);
     final innerType =
@@ -474,7 +470,7 @@ class WrapperEmitter {
   /// optional ones are `if`-guarded so the synth pass distinguishes
   /// "unset" from "explicit null".
   String _argMapEntry(String snakeName, bool isRequired) {
-    final camel = snakeToCamel(snakeName);
+    final camel = snakeToDartIdent(snakeName);
     if (isRequired) {
       return "'$snakeName': $camel,";
     }
@@ -497,28 +493,8 @@ class WrapperEmitter {
   ({String param, String argMapEntry}) _nestedTypeSlot(
     NestedBlockSpec spec, {
     required bool isRequired,
-  }) {
-    final dartName = snakeToCamel(spec.tfName);
-    final nullableType = nestedParamType(spec);
-    final bareType = nullableType.substring(0, nullableType.length - 1);
-    final param =
-        isRequired ? 'required $bareType $dartName' : '$nullableType $dartName';
-
-    // No `!` needed in the optional branch even though `dartName` is a
-    // nullable-typed parameter: it's always paired with the SAME-named
-    // `if ($dartName != null)` guard below, which promotes a constructor
-    // PARAMETER (unlike a public field — Dart field promotion is
-    // private-only, which is why `nested_type_emitter.dart`'s `_plan` still
-    // needs `!` for its field-based optional accesses). Confirmed empirically
-    // (`dart analyze` flags the `!` here as `unnecessary_non_null_assertion`
-    // once a real override exercises this path).
-    final encodeExpr = spec.repeated
-        ? '[for (final e in $dartName) e.encode()]'
-        : '$dartName.encode()';
-    final entry = "'${spec.tfName}': TfArg.literal($encodeExpr),";
-    final argMapEntry = isRequired ? entry : 'if ($dartName != null) $entry';
-    return (param: param, argMapEntry: argMapEntry);
-  }
+  }) =>
+      nestedTypeConstructorSlot(spec, isRequired: isRequired);
 
   /// Looks up [terraformType]'s raw provider-schema `block` map in
   /// [rawResourceSchemas], failing loudly when it's missing — this only

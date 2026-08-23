@@ -1,5 +1,6 @@
 import 'package:args/command_runner.dart';
 
+import '../codegen/providers/cloudflare_provider_rules.dart';
 import '../codegen/providers/google_provider_rules.dart';
 import '../codegen/providers/provider_rules.dart';
 import 'lint_override_command.dart';
@@ -15,6 +16,7 @@ import 'wrap_promote_command.dart';
 CommandRunner<int> buildCliRunner() {
   const providers = <String, ProviderRules>{
     'hashicorp/google': GoogleProviderRules(),
+    'cloudflare/cloudflare': CloudflareProviderRules(),
   };
   final runner = CommandRunner<int>(
     'terradart',

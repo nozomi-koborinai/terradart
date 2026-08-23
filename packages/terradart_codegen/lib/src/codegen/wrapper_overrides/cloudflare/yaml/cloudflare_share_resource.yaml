@@ -1,0 +1,4 @@
+outputDir: share
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

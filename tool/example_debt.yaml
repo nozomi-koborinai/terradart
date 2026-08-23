@@ -921,3 +921,37 @@ GoogleComputeRegionDiskIamPolicy: iam-adjunct-debt: sibling GoogleComputeRegionD
 # `terraform import` it. appwrite_quickstart therefore does not add
 # AppwriteProjectKey (that would teach a create path that fails on apply).
 AppwriteProjectKey: import-only — appwrite_project_key create endpoint is gone upstream; mint in the Console and terraform import. Read / update / delete still work. Not added to appwrite_quickstart so the example does not teach a create path.
+
+# Cloudflare leftover dummy constructors fail terraform validate for these
+# types (provider enums, nested JSON, or exactly-one nested blocks that the
+# leftover generator cannot dummy without per-resource schema). They remain
+# typed factories in terradart_cloudflare; coverage is the Dart constructor
+# plus wrap --check, not leftover synth JSON.
+CloudflareAccessRule: leftover dummy cannot satisfy provider enum/nested-schema constraints (mode/config); not emitted in cloudflare_leftover_quickstart
+CloudflareAiGateway: leftover dummy omits terraform-required id (wrapper treats it as computed); not emitted in cloudflare_leftover_quickstart
+CloudflareAiSearchInstance: leftover dummy omits terraform-required id (wrapper treats it as computed); not emitted in cloudflare_leftover_quickstart
+CloudflareImage: leftover dummy omits terraform-required id (wrapper treats it as computed); not emitted in cloudflare_leftover_quickstart
+CloudflareImageVariant: leftover dummy omits terraform-required id (wrapper treats it as computed); not emitted in cloudflare_leftover_quickstart
+CloudflareSnippet: leftover dummy cannot satisfy files[].name/content nested schema
+CloudflareZeroTrustAccessAiControlsMcpPortal: leftover dummy omits terraform-required id (wrapper treats it as computed)
+CloudflareZeroTrustAccessAiControlsMcpServer: leftover dummy omits terraform-required id (wrapper treats it as computed)
+CloudflareZeroTrustRiskBehavior: leftover dummy cannot satisfy behaviors map-of-object schema
+CloudflareCertificatePack: leftover dummy cannot satisfy certificate_authority/type/validity_days enums
+CloudflareFirewallRule: leftover dummy cannot satisfy deprecated firewall-rule nested schema
+CloudflareOauthClient: leftover dummy cannot satisfy grant_types/response_types/token_endpoint_auth_method enums
+CloudflareR2BucketEventNotification: leftover dummy cannot satisfy rules[].actions enum
+CloudflareRateLimit: leftover dummy cannot satisfy period range / nested match schema
+CloudflareSchemaValidationSchemas: leftover dummy cannot satisfy kind=openapi_v3 plus schema body
+CloudflareShare: leftover dummy cannot satisfy resources JSON + resource_type enum
+CloudflareShareResource: leftover dummy cannot satisfy resource_type enum / JSON
+CloudflareUserAgentBlockingRule: leftover dummy cannot satisfy mode enum
+CloudflareVulnerabilityScannerCredential: leftover dummy cannot satisfy location enum
+CloudflareWaitingRoomRules: leftover dummy cannot satisfy rules[].action enum
+CloudflareWorkersDeployment: leftover dummy cannot satisfy strategy=percentage plus versions
+CloudflareWorkersScript: leftover dummy cannot satisfy content/content_file/assets exactly-one-of
+CloudflareZeroTrustAccessIdentityProvider: leftover dummy cannot satisfy identity-provider type enum
+CloudflareZoneLockdown: leftover dummy cannot satisfy nested configurations schema
+DataCloudflareAccount: leftover dummy cannot satisfy account_id XOR filter without a real lookup id shape
+DataCloudflareFirewallRule: leftover dummy cannot satisfy deprecated firewall-rule data schema
+DataCloudflareZone: leftover dummy cannot satisfy zone_id XOR filter without a real zone lookup
+

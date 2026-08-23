@@ -1,0 +1,4 @@
+outputDir: image
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

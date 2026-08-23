@@ -1,0 +1,4 @@
+outputDir: r2
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

@@ -1,0 +1,4 @@
+outputDir: access
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true

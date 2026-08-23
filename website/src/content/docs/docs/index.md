@@ -15,7 +15,7 @@ TerraDart is organized as a multi-package monorepo:
 - **[`terradart_google`](https://pub.dev/packages/terradart_google)** — Curated factories for Google Cloud (`hashicorp/google`).
 - **[`terradart_google_beta`](https://pub.dev/packages/terradart_google_beta)** — Curated factories for beta-only Google Cloud resources (`hashicorp/google-beta`).
 - **[`terradart_appwrite`](https://pub.dev/packages/terradart_appwrite)** — Curated factories for Appwrite (`appwrite/appwrite`).
-- **[`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare)** — Curated factories for Cloudflare edge infrastructure (`cloudflare/cloudflare`).
+- **[`terradart_cloudflare`](https://pub.dev/packages/terradart_cloudflare)** — Curated factories for Cloudflare edge infrastructure (`cloudflare/cloudflare`, filled at `5.23.0`: 257 resource factories + 446 data sources).
 - **[`terradart_agent`](https://github.com/nozomi-koborinai/terradart/tree/main/packages/terradart_agent)** — MCP server (`terradart-mcp`) exposing the curated catalog to AI coding agents.
 - **[`terradart_codegen`](https://pub.dev/packages/terradart_codegen)** — Maintainer generation CLI (`terradart wrap`).
 

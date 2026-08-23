@@ -252,18 +252,25 @@ class WrapCommand extends Command<int> {
     // loaded override actually sets the gate keeps today's (dark) run
     // exactly as cheap as before this gate existed — every committed
     // override currently leaves `deriveNestedTypes` at its `false` default.
-    final needsRawSchemas =
+    final needsRawResourceSchemas =
         loaded.resources.values.any((o) => o.deriveNestedTypes);
-    final rawResourceSchemas = needsRawSchemas
-        ? _rawResourceBlocks(schemaSrc)
+    final needsRawDataSourceSchemas =
+        loaded.dataSources.values.any((o) => o.deriveNestedTypes);
+    final rawResourceSchemas = needsRawResourceSchemas
+        ? _rawSchemaBlocks(schemaSrc, schemasKey: 'resource_schemas')
+        : const <String, Map<String, dynamic>>{};
+    final rawDataSourceSchemas = needsRawDataSourceSchemas
+        ? _rawSchemaBlocks(schemaSrc, schemasKey: 'data_source_schemas')
         : const <String, Map<String, dynamic>>{};
     final resourceEmitter = WrapperEmitter(
       overrides: loaded.resources,
       rawResourceSchemas: rawResourceSchemas,
       resourceProvider: argResults?['resource-provider'] as String?,
     );
-    final dataSourceEmitter =
-        DataSourceWrapperEmitter(overrides: loaded.dataSources);
+    final dataSourceEmitter = DataSourceWrapperEmitter(
+      overrides: loaded.dataSources,
+      rawDataSourceSchemas: rawDataSourceSchemas,
+    );
     // Layer 2 emit output is unformatted; match the WrapperEmitter /
     // DataSourceWrapperEmitter Level A test convention (dart_style 3.x with
     // `latestLanguageVersion`) so wrap output is byte-identical with the
@@ -476,23 +483,20 @@ class WrapCommand extends Command<int> {
   }
 }
 
-/// Decodes [schemaJson]'s raw `resource_schemas` entries down to just their
-/// `block` map, keyed by Terraform type — the shape
-/// `collectNestedTypes`/`WrapperEmitter.rawResourceSchemas` need for the
-/// `deriveNestedTypes` gate. Mirrors the navigation path
-/// `SchemaJsonParser.parseString` itself uses
-/// (`provider_schemas` -> the single provider body -> `resource_schemas`),
-/// just stopping one level short of IR construction so `block_types` /
-/// `nesting_mode` survive.
-Map<String, Map<String, dynamic>> _rawResourceBlocks(String schemaJson) {
+/// Decodes [schemaJson]'s raw `resource_schemas` or `data_source_schemas`
+/// entries down to just their `block` map, keyed by Terraform type — the
+/// shape `collectNestedTypes` needs for the `deriveNestedTypes` gate.
+Map<String, Map<String, dynamic>> _rawSchemaBlocks(
+  String schemaJson, {
+  required String schemasKey,
+}) {
   final root = jsonDecode(schemaJson) as Map<String, dynamic>;
   final schemas = (root['provider_schemas'] as Map).cast<String, dynamic>();
   final providerBody = (schemas.values.single as Map).cast<String, dynamic>();
-  final resourceSchemas =
-      (providerBody['resource_schemas'] as Map?)?.cast<String, dynamic>() ??
-          const {};
+  final typed =
+      (providerBody[schemasKey] as Map?)?.cast<String, dynamic>() ?? const {};
   return {
-    for (final entry in resourceSchemas.entries)
+    for (final entry in typed.entries)
       entry.key: ((entry.value as Map)['block'] as Map).cast<String, dynamic>(),
   };
 }

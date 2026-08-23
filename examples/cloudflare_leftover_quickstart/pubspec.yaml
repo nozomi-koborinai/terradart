@@ -1,0 +1,15 @@
+name: terradart_example_cloudflare_leftover_quickstart
+description: Fills remaining terradart_cloudflare factories at pin 5.23.0 — synth + terraform validate only; never apply.
+publish_to: none
+
+environment:
+  sdk: ^3.6.0
+
+resolution: workspace
+
+dependencies:
+  terradart_core: ^0.25.3
+  terradart_cloudflare: ^0.25.3
+
+dev_dependencies:
+  lints: ^6.0.0

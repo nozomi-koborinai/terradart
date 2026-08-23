@@ -1,0 +1,4 @@
+outputDir: api_shield
+deriveClassDoc: true
+deriveOutputGetters: true
+deriveNestedTypes: true
