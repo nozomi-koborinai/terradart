@@ -15,4 +15,7 @@ dart tool/extract_schema_subset.dart \
 
 To ADD a resource, append it via union:
 `--resources-from=packages/terradart_codegen/test/fixtures/wrap/source_beta/schema.json --resources=<new_type>`.
-To REMOVE one, pass an explicit `--resources=` list without it.
+To ADD a data source: `--data-sources=<type>` (combined with
+`--resources-from` so the current resource set is kept).
+To REMOVE one, pass an explicit `--resources=` / `--data-sources=` list
+without it.

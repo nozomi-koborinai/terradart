@@ -308,7 +308,9 @@ export 'src/chronicle/google_chronicle_retrohunt.dart'
     show ChronicleRetrohuntProcessInterval, GoogleChronicleRetrohunt;
 export 'src/chronicle/google_chronicle_rule.dart' show GoogleChronicleRule;
 export 'src/chronicle/google_chronicle_rule_deployment.dart'
-    show GoogleChronicleRuleDeployment;
+    show
+        ChronicleRuleDeploymentScheduleCustomizations,
+        GoogleChronicleRuleDeployment;
 export 'src/chronicle/google_chronicle_watchlist.dart'
     show
         ChronicleWatchlistEntityPopulationMechanism,

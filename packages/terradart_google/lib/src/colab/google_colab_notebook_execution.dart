@@ -171,6 +171,40 @@ final class ColabNotebookExecutionServiceAccount
   String get blockKey => 'service_account';
 }
 
+/// Typed helper for the `workbench_runtime` block of
+/// `google_colab_notebook_execution` (derived from provider schema).
+@immutable
+final class ColabNotebookExecutionWorkbenchRuntime {
+  const ColabNotebookExecutionWorkbenchRuntime({required this.vmImage});
+
+  final ColabNotebookExecutionWorkbenchRuntimeVmImage vmImage;
+
+  Map<String, Object?> encode() => {'vm_image': vmImage.encode()};
+}
+
+/// Typed helper for the `workbench_runtime.vm_image` block of
+/// `google_colab_notebook_execution` (derived from provider schema).
+@immutable
+final class ColabNotebookExecutionWorkbenchRuntimeVmImage {
+  const ColabNotebookExecutionWorkbenchRuntimeVmImage({
+    this.family,
+    this.name,
+    this.project,
+  });
+
+  final TfArg<String>? family;
+
+  final TfArg<String>? name;
+
+  final TfArg<String>? project;
+
+  Map<String, Object?> encode() => {
+    if (family != null) 'family': family!.toTfJson(),
+    if (name != null) 'name': name!.toTfJson(),
+    if (project != null) 'project': project!.toTfJson(),
+  };
+}
+
 /// Factory wrapper for `google_colab_notebook_execution`.
 ///
 /// 'An instance of a notebook Execution'

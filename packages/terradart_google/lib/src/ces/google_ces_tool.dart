@@ -488,6 +488,7 @@ final class CesToolDataStoreToolModalityConfigs {
     required this.modalityType,
     this.groundingConfig,
     this.rewriterConfig,
+    this.snippetsConfig,
     this.summarizationConfig,
   });
 
@@ -497,6 +498,8 @@ final class CesToolDataStoreToolModalityConfigs {
 
   final CesToolDataStoreToolModalityConfigsRewriterConfig? rewriterConfig;
 
+  final CesToolDataStoreToolModalityConfigsSnippetsConfig? snippetsConfig;
+
   final CesToolDataStoreToolModalityConfigsSummarizationConfig?
   summarizationConfig;
 
@@ -504,6 +507,7 @@ final class CesToolDataStoreToolModalityConfigs {
     'modality_type': modalityType.toTfJson(),
     if (groundingConfig != null) 'grounding_config': groundingConfig!.encode(),
     if (rewriterConfig != null) 'rewriter_config': rewriterConfig!.encode(),
+    if (snippetsConfig != null) 'snippets_config': snippetsConfig!.encode(),
     if (summarizationConfig != null)
       'summarization_config': summarizationConfig!.encode(),
   };
@@ -568,6 +572,21 @@ final class CesToolDataStoreToolModalityConfigsRewriterConfigModelSettings {
   Map<String, Object?> encode() => {
     if (model != null) 'model': model!.toTfJson(),
     if (temperature != null) 'temperature': temperature!.toTfJson(),
+  };
+}
+
+/// Typed helper for the `data_store_tool.modality_configs.snippets_config` block of
+/// `google_ces_tool` (derived from provider schema).
+@immutable
+final class CesToolDataStoreToolModalityConfigsSnippetsConfig {
+  const CesToolDataStoreToolModalityConfigsSnippetsConfig({
+    this.enableSnippets,
+  });
+
+  final TfArg<bool>? enableSnippets;
+
+  Map<String, Object?> encode() => {
+    if (enableSnippets != null) 'enable_snippets': enableSnippets!.toTfJson(),
   };
 }
 
@@ -711,16 +730,35 @@ final class CesToolGoogleSearchToolPromptConfig {
 /// `google_ces_tool` (derived from provider schema).
 @immutable
 final class CesToolPythonFunction {
-  const CesToolPythonFunction({this.name, this.pythonCode});
+  const CesToolPythonFunction({
+    this.name,
+    this.pythonCode,
+    this.serviceDirectoryConfig,
+  });
 
   final TfArg<String>? name;
 
   final TfArg<String>? pythonCode;
 
+  final CesToolPythonFunctionServiceDirectoryConfig? serviceDirectoryConfig;
+
   Map<String, Object?> encode() => {
     if (name != null) 'name': name!.toTfJson(),
     if (pythonCode != null) 'python_code': pythonCode!.toTfJson(),
+    if (serviceDirectoryConfig != null)
+      'service_directory_config': serviceDirectoryConfig!.encode(),
   };
+}
+
+/// Typed helper for the `python_function.service_directory_config` block of
+/// `google_ces_tool` (derived from provider schema).
+@immutable
+final class CesToolPythonFunctionServiceDirectoryConfig {
+  const CesToolPythonFunctionServiceDirectoryConfig({required this.service});
+
+  final TfArg<String> service;
+
+  Map<String, Object?> encode() => {'service': service.toTfJson()};
 }
 
 /// Typed helper for the `tool_fake_config` block of

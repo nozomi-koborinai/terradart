@@ -1,10 +1,33 @@
 // GENERATED FILE - DO NOT EDIT
 // Run `terradart wrap` to regenerate.
 // ignore_for_file: prefer_relative_imports
+import 'package:meta/meta.dart';
 import 'package:terradart_core/terradart_core.dart';
 
 /// Sensitive field paths for `google_chronicle_rule_deployment`.
 const Set<String> _googleChronicleRuleDeploymentSensitive = <String>{};
+
+/// Typed helper for the `schedule_customizations` block of
+/// `google_chronicle_rule_deployment` (derived from provider schema).
+@immutable
+final class ChronicleRuleDeploymentScheduleCustomizations {
+  const ChronicleRuleDeploymentScheduleCustomizations({
+    this.ensureEnrichmentCompleteness,
+    this.lateArrivingDataAdjustment,
+  });
+
+  final TfArg<bool>? ensureEnrichmentCompleteness;
+
+  final TfArg<String>? lateArrivingDataAdjustment;
+
+  Map<String, Object?> encode() => {
+    if (ensureEnrichmentCompleteness != null)
+      'ensure_enrichment_completeness': ensureEnrichmentCompleteness!
+          .toTfJson(),
+    if (lateArrivingDataAdjustment != null)
+      'late_arriving_data_adjustment': lateArrivingDataAdjustment!.toTfJson(),
+  };
+}
 
 /// Factory wrapper for `google_chronicle_rule_deployment`.
 ///

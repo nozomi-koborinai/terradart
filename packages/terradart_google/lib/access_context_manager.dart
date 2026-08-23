@@ -66,6 +66,7 @@ export 'src/access_context_manager/google_access_context_manager_egress_policy.d
     show GoogleAccessContextManagerEgressPolicy;
 export 'src/access_context_manager/google_access_context_manager_gcp_user_access_binding.dart'
     show
+        AccessContextManagerGcpUserAccessBindingPrincipal,
         AccessContextManagerGcpUserAccessBindingScopedAccessSettings,
         AccessContextManagerGcpUserAccessBindingScopedAccessSettingsActiveSettings,
         AccessContextManagerGcpUserAccessBindingScopedAccessSettingsActiveSettingsSessionSettings,

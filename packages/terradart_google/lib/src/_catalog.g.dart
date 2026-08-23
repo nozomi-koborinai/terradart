@@ -298,6 +298,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'sessionSettings',
     ],
     nestedTypes: <String>[
+      'AccessContextManagerGcpUserAccessBindingPrincipal',
       'AccessContextManagerGcpUserAccessBindingScopedAccessSettings',
       'AccessContextManagerGcpUserAccessBindingScopedAccessSettingsActiveSettings',
       'AccessContextManagerGcpUserAccessBindingScopedAccessSettingsActiveSettingsSessionSettings',
@@ -6565,6 +6566,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'CesToolDataStoreToolModalityConfigsGroundingConfig',
       'CesToolDataStoreToolModalityConfigsRewriterConfig',
       'CesToolDataStoreToolModalityConfigsRewriterConfigModelSettings',
+      'CesToolDataStoreToolModalityConfigsSnippetsConfig',
       'CesToolDataStoreToolModalityConfigsSummarizationConfig',
       'CesToolDataStoreToolModalityConfigsSummarizationConfigModelSettings',
       'CesToolFileSearchTool',
@@ -6572,6 +6574,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'CesToolGoogleSearchTool',
       'CesToolGoogleSearchToolPromptConfig',
       'CesToolPythonFunction',
+      'CesToolPythonFunctionServiceDirectoryConfig',
       'CesToolToolFakeConfig',
       'CesToolToolFakeConfigCodeBlock',
       'CesToolWidgetTool',
@@ -7420,7 +7423,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'runFrequency',
       'project',
     ],
-    nestedTypes: <String>[],
+    nestedTypes: <String>['ChronicleRuleDeploymentScheduleCustomizations'],
     sensitiveFields: <String>[],
     docComment:
         'Factory wrapper for `google_chronicle_rule_deployment`.\n\nThe RuleDeployment resource represents the deployment state of a Rule.\n\nChronicle (Google SecOps) **rule deployment** — enables / archives a\ncompiled [GoogleChronicleRule] (live detection + alerting).\n\n**Cost / apply:** gcp-cost: Chronicle `144D-4907-2A21` Bytes of data\ningested in US for the Enterprise Plus package SKU `0310-AEE4-5DC1`\n**\$6.58/GBy** (plus dollar-based SecOps commitments). billing-behavior:\nenabling a deployment runs detection against entitlement-gated SecOps\ningestion; alerting and live evaluation accrue while enabled. Not\napplyable on `terradart-validate`. **Never** wire into apply-smoke.\n\nEnable `chronicle.googleapis.com` before apply. [rule] is the rule\nresource name; [instance] / [location] must match the parent rule.',
@@ -9599,6 +9602,8 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'ColabNotebookExecutionIdentity',
       'ColabNotebookExecutionExecutionUser',
       'ColabNotebookExecutionServiceAccount',
+      'ColabNotebookExecutionWorkbenchRuntime',
+      'ColabNotebookExecutionWorkbenchRuntimeVmImage',
     ],
     sensitiveFields: <String>[],
     docComment:
