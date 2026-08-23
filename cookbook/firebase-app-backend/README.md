@@ -12,29 +12,22 @@ In Terraform, Firebase resources are provided by `hashicorp/google-beta`, while 
 
 ### Architecture
 
-```
-                          ┌────────────────────────────┐
-                          │  Firebase Web App (Beta)   │
-                          │     (Frontend Client)      │
-                          └─────────────┬──────────────┘
-                                        │
-                         REST API calls │
-                                        ▼
-┌─────────────────────────────────────────────────────────────────────────────┐
-│ Google Cloud Infrastructure (GA)                                            │
-│                                                                             │
-│  ┌─────────────────────────┐            ┌────────────────────────────────┐  │
-│  │   Cloud Run v2 Service  │───────────▶│   Firestore Database (Native)  │  │
-│  │      (Backend API)      │            │           (default)            │  │
-│  └────────────┬────────────┘            └────────────────────────────────┘  │
-│               │                                                             │
-│               │ Uploads                                                     │
-│               ▼                                                             │
-│  ┌─────────────────────────┐                                                │
-│  │   Cloud Storage Bucket  │                                                │
-│  │   ($projectId-uploads)  │                                                │
-│  └─────────────────────────┘                                                │
-└─────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+graph TB
+  subgraph Client["Firebase App (Beta)"]
+    WebApp["GoogleFirebaseWebApp<br/>(Frontend Client)"]
+  end
+
+  subgraph GCP["Google Cloud Infrastructure (GA)"]
+    CloudRun["GoogleCloudRunV2Service<br/>(Backend API)"]
+    Firestore["GoogleFirestoreDatabase<br/>(Native Mode / (default))"]
+    Storage["GoogleStorageBucket<br/>(User Uploads)"]
+
+    CloudRun -->|Read/Write Data| Firestore
+    CloudRun -->|Store Assets| Storage
+  end
+
+  WebApp -.REST API Calls.-> CloudRun
 ```
 
 ## Resources included

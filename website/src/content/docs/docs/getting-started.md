@@ -102,6 +102,24 @@ Rename `orders-prod` in the Stack without updating the subscriber and `dart anal
 
 You can seamlessly combine Google Cloud GA resources (`terradart_google`) with beta-only resources (`terradart_google_beta`, such as Firebase project configuration and Web App registration) in a single `Stack`:
 
+```mermaid
+graph TB
+  subgraph Client["Firebase App (Beta)"]
+    WebApp["GoogleFirebaseWebApp<br/>(Frontend Client)"]
+  end
+
+  subgraph GCP["Google Cloud Infrastructure (GA)"]
+    CloudRun["GoogleCloudRunV2Service<br/>(Backend API)"]
+    Firestore["GoogleFirestoreDatabase<br/>(Native Mode / (default))"]
+    Storage["GoogleStorageBucket<br/>(User Uploads)"]
+
+    CloudRun -->|Read/Write Data| Firestore
+    CloudRun -->|Store Assets| Storage
+  end
+
+  WebApp -.REST API Calls.-> CloudRun
+```
+
 ```yaml
 # pubspec.yaml
 dependencies:
