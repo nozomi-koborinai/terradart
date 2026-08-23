@@ -24,7 +24,7 @@ export default defineConfig({
     starlight({
       title: "TerraDart",
       description:
-        "Documentation for TerraDart — type-safe Google Cloud IaC for Dart.",
+        "Documentation for TerraDart — type-safe infrastructure-as-code for Dart.",
       defaultLocale: "root",
       locales: {
         root: { label: "English", lang: "en" },

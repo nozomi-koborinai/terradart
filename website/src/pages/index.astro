@@ -38,7 +38,7 @@ import Footer from "../components/Footer.astro";
     <Comparison
       eyebrow="Compare"
       heading="Where TerraDart fits"
-      intro="TerraDart fits teams already centered on <strong>Dart</strong>, already running <strong>Terraform</strong> (or a compatible pipeline) or managing GCP in the <strong>console</strong>, where the seam between infra and app code hurts."
+      intro="TerraDart fits teams already centered on <strong>Dart</strong>, already running <strong>Terraform</strong> (or a compatible pipeline) or managing infrastructure in cloud <strong>consoles</strong>, where the seam between infra and app code hurts."
       footnote="HCL has provider schema types; CDKTF bindings are typed in TypeScript and other languages. TerraDart&rsquo;s difference is <strong>Dart-native authoring</strong> without replacing your Terraform execution pipeline."
       columns={["TerraDart", "HCL", "CDKTF", "Pulumi"]}
       rows={[
@@ -51,7 +51,7 @@ import Footer from "../components/Footer.astro";
           cells: ["Yes", "Yes", "Yes", "Different model"],
         },
         {
-          label: "Curated Dart factories for GCP",
+          label: "Curated Dart factories",
           cells: ["Yes", "No", "No", "No"],
         },
         {
@@ -73,7 +73,7 @@ import Footer from "../components/Footer.astro";
           steps={[
             {
               title: "Author in Dart",
-              body: "Subclass Stack with curated google_* factories from terradart_google.",
+              body: "Subclass Stack with curated factories from provider packages.",
             },
             {
               title: "Generate Terraform JSON",

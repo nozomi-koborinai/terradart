@@ -40,7 +40,7 @@ const highlightedHtml = await codeToHtml(code, {
 <section class="section rule-top pitch-code-section">
   <div class="container-edit section-inner">
     <p class="section-label">Example</p>
-    <h2 class="display-section">GCP resources in Dart</h2>
+    <h2 class="display-section">Cloud infrastructure in Dart</h2>
     <p class="pitch-code-lead">
       Cloud SQL, IAM, and a multi-container Cloud Run service with a
       <code>cloud-sql-proxy</code> sidecar&nbsp;&mdash; a
@@ -52,11 +52,11 @@ const highlightedHtml = await codeToHtml(code, {
       <div class="pitch-code-wrap" set:html={highlightedHtml} />
     </div>
     <p class="pitch-code-meta">
-      <code>terradart_google</code> ships typed factories for the
-      <strong>GA</strong> HashiCorp <code>google</code> provider catalog.
-      Beta-only types live in <code>terradart_google_beta</code>
-      (128 resource factories). The
-      full factory list with runnable examples is on
+      Curated packages wrap official Terraform providers:
+      <code>terradart_google</code> (GA catalog, 1793 entries),
+      <code>terradart_google_beta</code> (128 beta-only factories),
+      <code>terradart_appwrite</code>, and <code>terradart_cloudflare</code>.
+      The full factory list with runnable examples is on
       <a href="/docs/coverage/" class="link-mark">Coverage</a>; complete stacks live in the
       <a
         href="https://github.com/nozomi-koborinai/terradart/tree/main/cookbook"
