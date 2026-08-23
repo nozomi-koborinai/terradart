@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.25.3 - 2026-08-23
+
+`extract_schema_subset` accepts `--data-sources=` (and `--resources-from` unions fixture data sources). Catalog `constructorParams` for data sources now includes a required lookup `id`, matching the emitted constructor. No user-facing CLI flag changes.
+
 ## 0.25.2 - 2026-08-22
 
 Plugin-framework schema support: `SchemaJsonParser` normalizes `nested_type` object attributes into the nested-block IR (first consumer: the cloudflare 5.23.0 fixture); computed-only object attributes are excluded from constructors. No user-facing CLI flag changes.

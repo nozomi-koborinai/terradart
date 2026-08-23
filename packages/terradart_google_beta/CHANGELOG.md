@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.25.3 - 2026-08-23
+
+Lockstep release with the TerraDart workspace. No factory or provider changes.
+
 ## 0.25.2 - 2026-08-22
 
 - Add an in-package `example/main.dart` (pub.dev pana example check). No

@@ -148,10 +148,10 @@ echo "  Cookbook recipe pubspecs:"
 COOKBOOK_COUNT=0
 for f in cookbook/*/pubspec.yaml cookbook/*/*/pubspec.yaml; do
   [ -f "$f" ] || continue
-  sed_inplace "s#^( *terradart_(core|google)): \\^${OLD_RE}\$#\\1: ^${NEW}#" "$f"
+  sed_inplace "s#^( *terradart_(core|google|google_beta|appwrite|cloudflare)): \\^${OLD_RE}\$#\\1: ^${NEW}#" "$f"
   COOKBOOK_COUNT=$((COOKBOOK_COUNT + 1))
 done
-echo "    - scanned $COOKBOOK_COUNT cookbook pubspecs for terradart_{core,google}: ^$NEW"
+echo "    - scanned $COOKBOOK_COUNT cookbook pubspecs for terradart_{core,google,google_beta,appwrite,cloudflare}: ^$NEW"
 
 # 4. Markdown caret samples (README + website getting-started).
 #    Two distinct patterns:
@@ -293,27 +293,29 @@ STALE=$(
     website/src/content/docs/docs/getting-started.md \
     packages/terradart_codegen/README.md 2>/dev/null
   grep -nE "packageVersion = '${OLD_RE}'" packages/terradart_agent/lib/src/version.dart 2>/dev/null
-  grep -nE "\\^${OLD_MINOR_RE}\\.x" \
-    CONTRIBUTING.md SECURITY.md 2>/dev/null
-  grep -nE "\\*\\*${OLD_MINOR_RE}\\.x\\*\\* (today|\\()" \
-    CONTRIBUTING.md SECURITY.md \
-    .github/ISSUE_TEMPLATE/bug.yml \
-    .github/ISSUE_TEMPLATE/feature.yml \
-    .github/ISSUE_TEMPLATE/question.yml 2>/dev/null
-  grep -nE "\\*\\*${OLD_MINOR_RE}\\.x\\*\\* line" \
-    website/src/content/docs/docs/getting-started.md 2>/dev/null
-  grep -nE "\\^${OLD_MINOR_RE}\\.x" \
-    README.md website/src/content/docs/docs/getting-started.md \
-    packages/terradart_core/README.md \
-    packages/terradart_google/README.md \
-    packages/terradart_codegen/README.md 2>/dev/null
-  grep -nE "pre-1\\.0 \\(${OLD_MINOR_RE}\\.x\\)" README.md 2>/dev/null
-  grep -nE "\\b${OLD_MINOR_RE}\\.x\\b" \
-    README.md CONTRIBUTING.md \
-    website/src/content/docs/docs/index.md \
-    website/src/content/docs/docs/status.md \
-    website/src/content/docs/docs/getting-started.md \
-    website/src/content/docs/docs/why-terradart.md 2>/dev/null
+  if [ "$OLD_MINOR" != "$NEW_MINOR" ]; then
+    grep -nE "\\^${OLD_MINOR_RE}\\.x" \
+      CONTRIBUTING.md SECURITY.md 2>/dev/null
+    grep -nE "\\*\\*${OLD_MINOR_RE}\\.x\\*\\* (today|\\()" \
+      CONTRIBUTING.md SECURITY.md \
+      .github/ISSUE_TEMPLATE/bug.yml \
+      .github/ISSUE_TEMPLATE/feature.yml \
+      .github/ISSUE_TEMPLATE/question.yml 2>/dev/null
+    grep -nE "\\*\\*${OLD_MINOR_RE}\\.x\\*\\* line" \
+      website/src/content/docs/docs/getting-started.md 2>/dev/null
+    grep -nE "\\^${OLD_MINOR_RE}\\.x" \
+      README.md website/src/content/docs/docs/getting-started.md \
+      packages/terradart_core/README.md \
+      packages/terradart_google/README.md \
+      packages/terradart_codegen/README.md 2>/dev/null
+    grep -nE "pre-1\\.0 \\(${OLD_MINOR_RE}\\.x\\)" README.md 2>/dev/null
+    grep -nE "\\b${OLD_MINOR_RE}\\.x\\b" \
+      README.md CONTRIBUTING.md \
+      website/src/content/docs/docs/index.md \
+      website/src/content/docs/docs/status.md \
+      website/src/content/docs/docs/getting-started.md \
+      website/src/content/docs/docs/why-terradart.md 2>/dev/null
+  fi
 )
 set -e
 
