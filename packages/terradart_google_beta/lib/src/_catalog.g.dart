@@ -2052,6 +2052,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
       'maxQps',
       'project',
       'startingUrls',
+      'staticIpScan',
       'targetPlatforms',
       'userAgent',
       'authentication',

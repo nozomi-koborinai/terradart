@@ -134,6 +134,10 @@ final class GoogleBigqueryReservation extends Resource {
   /// Reference to `id` attribute.
   TfRef<String> get id => TfRef.attribute<String>(this, 'id');
 
+  /// Reference to `effective_labels` attribute.
+  TfRef<Map<String, String>> get effectiveLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'effective_labels');
+
   /// Reference to `original_primary_location` attribute.
   TfRef<String> get originalPrimaryLocation =>
       TfRef.attribute<String>(this, 'original_primary_location');
@@ -145,4 +149,8 @@ final class GoogleBigqueryReservation extends Resource {
   /// Reference to `replication_status` attribute.
   TfRef<List<Map<String, Object?>>> get replicationStatus =>
       TfRef.attribute<List<Map<String, Object?>>>(this, 'replication_status');
+
+  /// Reference to `terraform_labels` attribute.
+  TfRef<Map<String, String>> get terraformLabels =>
+      TfRef.attribute<Map<String, String>>(this, 'terraform_labels');
 }

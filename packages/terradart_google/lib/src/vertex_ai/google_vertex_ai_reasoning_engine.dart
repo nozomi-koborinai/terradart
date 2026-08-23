@@ -75,11 +75,19 @@ enum VertexAiReasoningEngineSpecIdentityType implements TerraformEnum {
 /// `google_vertex_ai_reasoning_engine` (derived from provider schema).
 @immutable
 final class VertexAiReasoningEngineSpecContainerSpec {
-  const VertexAiReasoningEngineSpecContainerSpec({required this.imageUri});
+  const VertexAiReasoningEngineSpecContainerSpec({
+    required this.imageUri,
+    this.port,
+  });
 
   final TfArg<String> imageUri;
 
-  Map<String, Object?> encode() => {'image_uri': imageUri.toTfJson()};
+  final TfArg<num>? port;
+
+  Map<String, Object?> encode() => {
+    'image_uri': imageUri.toTfJson(),
+    if (port != null) 'port': port!.toTfJson(),
+  };
 }
 
 /// Typed helper for the `spec.deployment_spec` block of
