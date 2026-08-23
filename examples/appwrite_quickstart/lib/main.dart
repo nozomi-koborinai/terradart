@@ -1,5 +1,9 @@
 /// Appwrite quickstart — the filled `terradart_appwrite` catalog at pin
-/// `2.0.0-beta.1` (every resource and data source).
+/// `2.0.0-beta.1`.
+///
+/// Covers every applyable resource and every data source. `AppwriteProjectKey`
+/// is import-only (upstream create is gone) and lives in
+/// `tool/example_debt.yaml` rather than teaching a create path here.
 ///
 /// Synth needs no credentials and none appear in `tf-out/` — apply-time
 /// authentication uses the `APPWRITE_ORGANIZATION_API_KEY` /
@@ -40,18 +44,10 @@ final class AppwriteDemoStack extends Stack {
             ),
           ],
         ) {
-    final project = add(
+    add(
       AppwriteProject(
         localName: 'demo',
         name: TfArg.literal('terradart-demo'),
-      ),
-    );
-    add(
-      AppwriteProjectKey(
-        localName: 'server',
-        name: TfArg.literal('terradart-server'),
-        scopes: TfArg.literal(['sessions.write', 'users.read']),
-        projectId: TfArg.ref(project.id),
       ),
     );
 
@@ -230,13 +226,13 @@ final class AppwriteDemoStack extends Stack {
       ),
     );
 
-    add(
+    final team = add(
       AppwriteAuthTeam(
         localName: 'editors',
         name: TfArg.literal('editors'),
       ),
     );
-    add(
+    final user = add(
       AppwriteAuthUser(
         localName: 'demo_user',
         name: TfArg.literal('Demo User'),
@@ -358,13 +354,13 @@ final class AppwriteDemoStack extends Stack {
     addData(
       DataAppwriteAuthTeam(
         localName: 'editors_ds',
-        id: TfArg.literal('editors'),
+        id: TfArg.ref(team.id),
       ),
     );
     addData(
       DataAppwriteAuthUser(
         localName: 'demo_user_ds',
-        id: TfArg.literal('demo_user'),
+        id: TfArg.ref(user.id),
       ),
     );
     addData(

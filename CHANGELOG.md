@@ -8,7 +8,7 @@ Per-package changelogs live alongside each package and are the system of record 
 
 ### Added
 
-- **`terradart_appwrite`** — fill the curated catalog at the `appwrite/appwrite` `2.0.0-beta.1` pin (38 resource factories + 24 data sources). Coverage via [`appwrite_quickstart`](examples/appwrite_quickstart/) (synth + `terraform validate`; apply-smoke skip-listed).
+- **`terradart_appwrite`** — fill the curated catalog at the `appwrite/appwrite` `2.0.0-beta.1` pin (38 resource factories + 24 data sources). Coverage via [`appwrite_quickstart`](examples/appwrite_quickstart/) (synth + `terraform validate`; apply-smoke skip-listed). `AppwriteProjectKey` is import-only (create endpoint gone upstream) and listed in [`tool/example_debt.yaml`](tool/example_debt.yaml).
 
 ### Removed
 
