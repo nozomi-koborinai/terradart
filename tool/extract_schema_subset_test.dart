@@ -63,8 +63,9 @@ void main() {
     final schemas = (out['provider_schemas']
         as Map)['registry.terraform.io/hashicorp/google-beta'] as Map;
     expect((schemas['data_source_schemas'] as Map).keys, ['google_project']);
-    expect((schemas['resource_schemas'] as Map).keys,
-        ['google_project_service_identity']);
+    expect((schemas['resource_schemas'] as Map).keys, [
+      'google_project_service_identity',
+    ]);
   });
 
   test('fails closed when a requested data source is absent', () {
