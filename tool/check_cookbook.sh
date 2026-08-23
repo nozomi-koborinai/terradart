@@ -53,6 +53,12 @@ echo ">> synth Lunch Concierge infra"
     dart run bin/infra.dart
 )
 
+echo ">> synth firebase-app-backend infra"
+(
+  cd cookbook/firebase-app-backend
+  GCP_PROJECT_ID="$COOKBOOK_GCP_PROJECT_ID" dart run bin/infra.dart
+)
+
 if command -v terraform >/dev/null 2>&1; then
   echo ">> terraform validate Lunch Concierge infra"
   (
@@ -60,11 +66,9 @@ if command -v terraform >/dev/null 2>&1; then
     terraform init -backend=false
     terraform validate
   )
-  echo ">> synth & validate firebase-app-backend"
+  echo ">> terraform validate firebase-app-backend"
   (
-    cd cookbook/firebase-app-backend
-    GCP_PROJECT_ID="$COOKBOOK_GCP_PROJECT_ID" dart run bin/infra.dart
-    cd tf-out
+    cd cookbook/firebase-app-backend/tf-out
     terraform init -backend=false
     terraform validate
   )

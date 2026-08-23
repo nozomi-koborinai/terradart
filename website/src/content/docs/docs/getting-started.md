@@ -188,7 +188,9 @@ final class MobileAppBackendStack extends Stack {
         containers: [
           CloudRunV2ServiceServiceContainer(
             name: TfArg.literal('server'),
-            image: TfArg.literal('gcr.io/$projectId/api:latest'),
+            image: TfArg.literal(
+              'us-docker.pkg.dev/cloudrun/container/hello',
+            ),
             env: [
               CloudRunV2ServiceEnvVar(
                 name: TfArg.literal('UPLOAD_BUCKET'),

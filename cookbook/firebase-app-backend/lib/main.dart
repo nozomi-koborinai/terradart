@@ -132,7 +132,8 @@ final class FirebaseAppBackendStack extends Stack {
           containers: [
             CloudRunV2ServiceServiceContainer(
               name: TfArg.literal('server'),
-              image: TfArg.literal('gcr.io/$projectId/backend-api:latest'),
+              image:
+                  TfArg.literal('us-docker.pkg.dev/cloudrun/container/hello'),
               ports: CloudRunV2ServiceContainerPort(
                 containerPort: TfArg.literal(8080),
               ),
