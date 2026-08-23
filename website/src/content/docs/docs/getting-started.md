@@ -98,6 +98,98 @@ bool acceptsTopic(String eventTopic) =>
 
 Rename `orders-prod` in the Stack without updating the subscriber and `dart analyze` fails. See [Architecture — AppExport](/docs/architecture/#appexport-the-iac--app-seam) and the runnable [pubsub quickstart](https://github.com/nozomi-koborinai/terradart/tree/main/examples/pubsub_quickstart) (`lib/subscriber_stub.dart`).
 
+## 6. Composing GA and Beta providers (Firebase + Google Cloud)
+
+You can seamlessly combine Google Cloud GA resources (`terradart_google`) with beta-only resources (`terradart_google_beta`, such as Firebase project configuration and Web App registration) in a single `Stack`:
+
+```yaml
+# pubspec.yaml
+dependencies:
+  terradart_core: ^0.25.x
+  terradart_google: ^0.25.x
+  terradart_google_beta: ^0.25.x
+```
+
+```dart
+import 'package:terradart_core/terradart_core.dart';
+// GA: Google Cloud backend infrastructure
+import 'package:terradart_google/cloud_run.dart';
+import 'package:terradart_google/firestore.dart';
+import 'package:terradart_google/provider.dart';
+import 'package:terradart_google/storage.dart';
+// Beta: Firebase project and app registration
+import 'package:terradart_google_beta/firebase.dart';
+import 'package:terradart_google_beta/provider.dart';
+
+final class MobileAppBackendStack extends Stack {
+  MobileAppBackendStack({required String projectId})
+      : super(
+          providers: [
+            GoogleProvider(project: projectId, region: 'asia-northeast1'),
+            GoogleBetaProvider(project: projectId, region: 'asia-northeast1'),
+          ],
+        ) {
+    // 1. [Beta] Enable Firebase on the project
+    final fb = add(GoogleFirebaseProject(
+      localName: 'firebase',
+      project: TfArg.literal(projectId),
+    ));
+
+    // 2. [Beta] Register Firebase client app
+    add(GoogleFirebaseWebApp(
+      localName: 'web_client',
+      displayName: TfArg.literal('Web Client'),
+      project: TfArg.literal(projectId),
+      dependsOn: [fb],
+    ));
+
+    // 3. [GA] Firestore Database (Native mode)
+    final db = add(GoogleFirestoreDatabase(
+      localName: 'db',
+      name: TfArg.literal('(default)'),
+      locationId: TfArg.literal('asia-northeast1'),
+      type: TfArg.literal(FirestoreDatabaseType.firestoreNative),
+      dependsOn: [fb],
+    ));
+
+    // 4. [GA] Cloud Storage for user uploads
+    final uploadsBucket = add(GoogleStorageBucket(
+      localName: 'uploads',
+      name: TfArg.literal('$projectId-uploads'),
+      location: TfArg.literal('ASIA-NORTHEAST1'),
+      storageClass: TfArg.literal(BucketStorageClass.standard),
+      uniformBucketLevelAccess: TfArg.literal(true),
+    ));
+
+    // 5. [GA] Cloud Run v2 backend service
+    add(GoogleCloudRunV2Service(
+      localName: 'api',
+      name: TfArg.literal('api-server'),
+      location: TfArg.literal('asia-northeast1'),
+      template: CloudRunV2ServiceTemplate(
+        containers: [
+          CloudRunV2ServiceServiceContainer(
+            name: TfArg.literal('server'),
+            image: TfArg.literal('gcr.io/$projectId/api:latest'),
+            env: [
+              CloudRunV2ServiceEnvVar(
+                name: TfArg.literal('UPLOAD_BUCKET'),
+                source: CloudRunV2ServiceEnvVarFromLiteral(
+                  TfArg.ref(uploadsBucket.nameRef),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+      dependsOn: [db],
+    ));
+  }
+}
+```
+
+Wrappers from `terradart_google_beta` automatically attach `provider = "google-beta"` in the synthesized Terraform JSON. See the complete runnable recipe in [`cookbook/firebase-app-backend`](https://github.com/nozomi-koborinai/terradart/tree/main/cookbook/firebase-app-backend).
+
 ## Next steps
 
 - [Why TerraDart](/docs/why-terradart/) — motivation and comparisons

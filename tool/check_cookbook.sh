@@ -24,6 +24,7 @@ dart format --output=none --set-exit-if-changed \
   cookbook/lunch-concierge/server \
   cookbook/lunch-concierge/infra \
   cookbook/single-project-app \
+  cookbook/firebase-app-backend \
   cookbook/firestore-seeded-data \
   cookbook/remote-backend
 
@@ -33,6 +34,7 @@ dart analyze \
   cookbook/lunch-concierge/infra \
   cookbook/lunch-concierge/shared \
   cookbook/single-project-app \
+  cookbook/firebase-app-backend \
   cookbook/firestore-seeded-data \
   cookbook/remote-backend
 
@@ -55,6 +57,14 @@ if command -v terraform >/dev/null 2>&1; then
   echo ">> terraform validate Lunch Concierge infra"
   (
     cd cookbook/lunch-concierge/infra/tf-out
+    terraform init -backend=false
+    terraform validate
+  )
+  echo ">> synth & validate firebase-app-backend"
+  (
+    cd cookbook/firebase-app-backend
+    GCP_PROJECT_ID="$COOKBOOK_GCP_PROJECT_ID" dart run bin/infra.dart
+    cd tf-out
     terraform init -backend=false
     terraform validate
   )

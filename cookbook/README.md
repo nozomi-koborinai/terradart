@@ -10,6 +10,7 @@ Each recipe is a self-contained Dart project under `cookbook/<name>/` that uses 
 |---|---|---|---|
 | [`lunch-concierge`](lunch-concierge/README.md) | Flutter Web + Dart server + Genkit Vertex AI + Cloud Run sidecar + private Cloud SQL | Demo recipe | 8 |
 | [`single-project-app`](single-project-app/README.md) | Single GCP project, end-to-end app surface (Cloud Run + Cloud SQL + Pub/Sub + Monitoring + Secret Manager + IAM) | Imported | 8 |
+| [`firebase-app-backend`](firebase-app-backend/README.md) | Full-stack Firebase (beta) + Google Cloud (GA) backend (Firebase Web App + Firestore + Cloud Storage + Cloud Run v2 API) | Ready | 4 |
 | [`remote-backend`](remote-backend/README.md) | GCS-backed Terraform remote state (Stage 0 bootstrap + state migration) | Imported | 1 |
 | [`firestore-seeded-data`](firestore-seeded-data/README.md) | Cloud Firestore master-data seeding (11 docs across 4 collections + composite index + daily backup) via `GoogleFirestoreDocument` + `FirestoreFields.encode` | Imported | 3 |
 
