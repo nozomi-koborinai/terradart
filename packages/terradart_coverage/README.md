@@ -1,5 +1,8 @@
 # terradart_coverage
 
+[![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.6-blue.svg)](https://dart.dev)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/nozomi-koborinai/terradart/blob/main/LICENSE)
+
 `terradart-coverage` — a read-only CLI that reports how much of an existing Terraform configuration is already covered by curated [TerraDart](https://terradart.dev) factories.
 
 Point it at a Terraform directory and it tells you which `resource` / `data` types already have a curated `terradart_google` factory, which are not in the catalog yet, and roughly how big a migration would be — **with no setup**: no `terraform init`, no backend, no credentials, not even a `terraform` binary. It reads only the `.tf` / `.tf.json` source you already have.
@@ -87,12 +90,6 @@ Not analyzed (1):
 ```
 
 Each supported line maps a Terraform type to the Dart factory (`className`) and its service barrel, so you know exactly what to import when rewriting a stack.
-
-## Why scan source instead of requiring `terraform show -json`?
-
-Checking coverage shouldn't make you `terraform init`. With a remote backend you don't init locally, and "show me what's covered" should never demand a backend or credentials. So the default reads the `.tf` source directly — the resource/data type is a literal in every block header, which is all coverage needs.
-
-The trade-offs are honest and called out in the report: `count` / `for_each` are counted as one block each (not expanded), and registry/git modules aren't read from local source. When you want that precision, the evaluated `terraform show -json` mode (above) provides it — as an opt-in for people who already run Terraform, not a requirement.
 
 ## Library
 

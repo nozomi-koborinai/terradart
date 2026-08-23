@@ -1,6 +1,9 @@
 # terradart_agent
 
-`terradart-mcp` — a [Model Context Protocol](https://modelcontextprotocol.io) server that exposes the curated GCP factory catalog of [TerraDart](https://terradart.dev) to AI coding agents.
+[![Dart SDK](https://img.shields.io/badge/Dart-%E2%89%A53.10-blue.svg)](https://dart.dev)
+[![License: Apache-2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/nozomi-koborinai/terradart/blob/main/LICENSE)
+
+`terradart-mcp` — a [Model Context Protocol](https://modelcontextprotocol.io) server that exposes the curated factory catalog of [TerraDart](https://terradart.dev) to AI coding agents.
 
 It reads the static catalog compiled into [`terradart_google`](https://pub.dev/packages/terradart_google) (`package:terradart_google/catalog.dart`) and surfaces it as five read-only MCP tools so agents can discover constructor signatures, nested types, quickstart snippets, and coverage gaps without guessing factory names.
 
@@ -43,7 +46,7 @@ Full walkthroughs: [terradart.dev — terradart-mcp](https://terradart.dev/docs/
 ## Tools
 
 | Tool | Purpose |
-|------|---------|
+| :--- | :--- |
 | `list_barrels` | Service barrels in the catalog (`compute`, `pubsub`, …) |
 | `list_resources` | Resources / data sources (optional `barrel` filter) |
 | `get_resource_schema` | Constructor params and nested types for one factory |
