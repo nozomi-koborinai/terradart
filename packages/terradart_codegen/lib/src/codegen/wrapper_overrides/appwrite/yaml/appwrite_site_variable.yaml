@@ -1,0 +1,7 @@
+outputDir: sites
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Site environment variable. [value] is sensitive — pass
+  /// `TfArg.variable` so the secret never enters synth output.

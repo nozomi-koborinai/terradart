@@ -915,3 +915,9 @@ GoogleComputeInstanceTemplateIamBinding: iam-adjunct-debt: sibling GoogleCompute
 GoogleComputeInstanceTemplateIamPolicy: iam-adjunct-debt: sibling GoogleComputeInstanceTemplateIamMember already in compute_quickstart; authoritative policy not needed in smoke
 GoogleComputeRegionDiskIamBinding: iam-adjunct-debt: sibling GoogleComputeRegionDiskIamMember already in compute_quickstart; authoritative binding not needed in smoke
 GoogleComputeRegionDiskIamPolicy: iam-adjunct-debt: sibling GoogleComputeRegionDiskIamMember already in compute_quickstart; authoritative policy not needed in smoke
+
+# Appwrite project API keys cannot be created through the provider — the
+# create endpoint is gone upstream. Mint the key in the Console and
+# `terraform import` it. appwrite_quickstart therefore does not add
+# AppwriteProjectKey (that would teach a create path that fails on apply).
+AppwriteProjectKey: import-only — appwrite_project_key create endpoint is gone upstream; mint in the Console and terraform import. Read / update / delete still work. Not added to appwrite_quickstart so the example does not teach a create path.

@@ -156,6 +156,14 @@ echo ">> terradart lint-override (google-beta)"
     --mm-dir test/fixtures/wrap/source_beta
 )
 
+echo ">> terradart lint-override (appwrite)"
+(
+  cd packages/terradart_codegen
+  dart run bin/terradart.dart lint-override \
+    --dir lib/src/codegen/wrapper_overrides/appwrite/yaml \
+    --mm-dir test/fixtures/wrap/source_appwrite
+)
+
 # --strict-nested restored: the 0.24.0 flip (deriveNestedTypes across 19
 # NESTED_THIN resources) paid down the 56-advisory rot this gate silently
 # accumulated after Wave 76. Remaining NESTED_THIN sites are only the ones a

@@ -1,0 +1,8 @@
+outputDir: storage
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Appwrite **storage file** — uploads a local file into a bucket.
+  ///
+  /// [filePath] is resolved at apply time on the machine running Terraform.

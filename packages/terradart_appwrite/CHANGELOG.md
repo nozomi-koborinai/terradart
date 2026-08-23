@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Fill the curated catalog at the `appwrite/appwrite` `2.0.0-beta.1` pin:
+  every remaining resource factory and data source (38 resources + 24
+  data sources). `examples/appwrite_quickstart` synths every applyable
+  factory; `AppwriteProjectKey` is import-only and listed in
+  `tool/example_debt.yaml`.
+
 ## 0.25.2 - 2026-08-22
 
 - Add an in-package `example/main.dart` (pub.dev pana example check) and

@@ -1,0 +1,7 @@
+outputDir: mysql
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Dedicated MySQL database (reserved compute, billed while it exists).
+  /// Provisioning takes several minutes; apply waits for settle.

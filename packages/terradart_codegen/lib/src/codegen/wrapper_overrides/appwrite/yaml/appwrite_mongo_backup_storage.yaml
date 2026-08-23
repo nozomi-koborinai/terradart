@@ -1,0 +1,8 @@
+outputDir: mongo
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Custom MongoDB backup destination. The API has no read route, so
+  /// Terraform cannot detect drift or import an existing configuration.
+  /// [accessKey] / [secretKey] are sensitive — use `TfArg.variable`.

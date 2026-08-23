@@ -1,0 +1,7 @@
+outputDir: functions
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Function environment variable. [value] is sensitive — pass
+  /// `TfArg.variable` so the secret never enters synth output.

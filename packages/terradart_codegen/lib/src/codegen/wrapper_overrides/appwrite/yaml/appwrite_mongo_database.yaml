@@ -1,0 +1,7 @@
+outputDir: mongo
+deriveClassDoc: true
+deriveOutputGetters: true
+
+curatedDoc: |-
+  /// Dedicated MongoDB database (reserved compute, billed while it exists).
+  /// Provisioning takes several minutes; apply waits for settle.

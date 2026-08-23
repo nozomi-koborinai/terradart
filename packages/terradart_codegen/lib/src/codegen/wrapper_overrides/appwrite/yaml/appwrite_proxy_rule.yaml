@@ -1,0 +1,3 @@
+outputDir: proxy
+deriveClassDoc: true
+deriveOutputGetters: true

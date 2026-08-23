@@ -1,0 +1,3 @@
+outputDir: mysql
+deriveClassDoc: true
+deriveOutputGetters: true

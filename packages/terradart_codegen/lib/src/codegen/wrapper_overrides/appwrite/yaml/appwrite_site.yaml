@@ -1,0 +1,3 @@
+outputDir: sites
+deriveClassDoc: true
+deriveOutputGetters: true

@@ -1,0 +1,3 @@
+outputDir: webhooks
+deriveClassDoc: true
+deriveOutputGetters: true

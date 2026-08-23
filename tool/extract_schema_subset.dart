@@ -1,11 +1,12 @@
 // tool/extract_schema_subset.dart
 //
 // Extracts a filtered provider-schema fixture containing ONLY the listed
-// resource types — the fixture strategy for demand-driven provider
-// catalogs (google-beta first): the full google-beta schema is >9 MB and
-// the beta catalog is curated on request, so the committed fixture stays
-// exactly as small as the catalog. The GA google fixture stays full (its
-// backlog detection needs every resource key); this tool is NOT for it.
+// resource types (and, when requested, data sources) — the fixture
+// strategy for demand-driven provider catalogs (google-beta first): the
+// full google-beta schema is >9 MB and the beta catalog is curated on
+// request, so the committed fixture stays exactly as small as the
+// catalog. The GA google fixture stays full (its backlog detection needs
+// every resource key); this tool is NOT for it.
 //
 // The committed output must never be hand-edited — always re-extract
 // (the MM-fixture local patch that PR #595 clobbered is the cautionary
@@ -63,15 +64,33 @@ List<String> resourceNamesFromFixture(Map<String, dynamic> fixture) {
   return names.toList()..sort();
 }
 
-/// Returns a schema JSON containing only [resources] under
-/// `registry.terraform.io/<providerSource>`. Fails closed: an absent
-/// provider key or absent requested resource throws [StateError] (a typo
-/// must never produce a silently-empty fixture). `data_source_schemas`
-/// is omitted until a data source joins the subset contract.
+/// Returns the data-source type names of an existing fixture: the union
+/// of every provider's `data_source_schemas` keys, sorted. Empty is
+/// allowed — resource-only fixtures are the historical default.
+List<String> dataSourceNamesFromFixture(Map<String, dynamic> fixture) {
+  final providerSchemas =
+      (fixture['provider_schemas'] as Map?)?.cast<String, dynamic>() ??
+          const {};
+  final names = <String>{};
+  for (final body in providerSchemas.values) {
+    final dataSources = ((body as Map?)?['data_source_schemas'] as Map?)
+        ?.cast<String, dynamic>();
+    if (dataSources != null) names.addAll(dataSources.keys);
+  }
+  return names.toList()..sort();
+}
+
+/// Returns a schema JSON containing only [resources] (and optionally
+/// [dataSources]) under `registry.terraform.io/<providerSource>`. Fails
+/// closed: an absent provider key or absent requested type throws
+/// [StateError] (a typo must never produce a silently-empty fixture).
+/// `data_source_schemas` is omitted when [dataSources] is empty so
+/// resource-only fixtures stay exactly as small as the catalog.
 Map<String, dynamic> filterSchemaSubset(
   Map<String, dynamic> full, {
   required String providerSource,
   required List<String> resources,
+  List<String> dataSources = const [],
 }) {
   final providerKey = 'registry.terraform.io/$providerSource';
   final providerSchemas =
@@ -94,6 +113,17 @@ Map<String, dynamic> filterSchemaSubset(
       '${missing.join(', ')}',
     );
   }
+  final allDataSources =
+      (providerBody['data_source_schemas'] as Map?)?.cast<String, dynamic>() ??
+          const {};
+  final missingData =
+      dataSources.where((d) => !allDataSources.containsKey(d)).toList();
+  if (missingData.isNotEmpty) {
+    throw StateError(
+      'requested data source(s) absent from $providerKey: '
+      '${missingData.join(', ')}',
+    );
+  }
   return {
     'format_version': full['format_version'],
     'provider_schemas': {
@@ -101,6 +131,10 @@ Map<String, dynamic> filterSchemaSubset(
         'resource_schemas': {
           for (final r in resources) r: allResources[r],
         },
+        if (dataSources.isNotEmpty)
+          'data_source_schemas': {
+            for (final d in dataSources) d: allDataSources[d],
+          },
       },
     },
   };
@@ -113,6 +147,7 @@ Future<void> main(List<String> args) async {
   String? schemaJsonPath;
   String? resourcesFrom;
   var resources = const <String>[];
+  var dataSources = const <String>[];
   for (final a in args) {
     if (a.startsWith('--provider=')) {
       provider = a.substring('--provider='.length);
@@ -120,6 +155,12 @@ Future<void> main(List<String> args) async {
       version = a.substring('--version='.length);
     } else if (a.startsWith('--resources=')) {
       resources = a.substring('--resources='.length).split(',');
+    } else if (a.startsWith('--data-sources=')) {
+      dataSources = a
+          .substring('--data-sources='.length)
+          .split(',')
+          .where((s) => s.isNotEmpty)
+          .toList();
     } else if (a.startsWith('--resources-from=')) {
       resourcesFrom = a.substring('--resources-from='.length);
     } else if (a.startsWith('--out=')) {
@@ -135,17 +176,21 @@ Future<void> main(List<String> args) async {
     // Union: the fixture's current set is the base, --resources adds to it
     // (used by terradart-add-beta-resource to append a new type without a
     // baked-in name list).
-    final base = resourceNamesFromFixture(
-      jsonDecode(File(resourcesFrom).readAsStringSync())
-          as Map<String, dynamic>,
-    );
-    resources = {...base, ...resources}.toList()..sort();
+    final fixture = jsonDecode(File(resourcesFrom).readAsStringSync())
+        as Map<String, dynamic>;
+    resources = {...resourceNamesFromFixture(fixture), ...resources}.toList()
+      ..sort();
+    dataSources = {
+      ...dataSourceNamesFromFixture(fixture),
+      ...dataSources,
+    }.toList()
+      ..sort();
   }
   if (provider == null || out == null || resources.isEmpty) {
     stderr.writeln(
       'Usage: dart tool/extract_schema_subset.dart --provider=NS/NAME '
       '--version=X.Y.Z (--resources=a,b | --resources-from=FIXTURE.json '
-      '| both) --out=DIR [--schema-json=FILE]',
+      '| both) [--data-sources=a,b] --out=DIR [--schema-json=FILE]',
     );
     exit(_exitUsage);
   }
@@ -217,6 +262,7 @@ terraform {
       jsonDecode(rawSchema) as Map<String, dynamic>,
       providerSource: provider,
       resources: resources,
+      dataSources: dataSources,
     );
   } on StateError catch (e) {
     stderr.writeln('extract_schema_subset: ${e.message}');
@@ -248,10 +294,14 @@ dart tool/extract_schema_subset.dart \\
 
 To ADD a resource, append it via union:
 `--resources-from=$fixtureDir/schema.json --resources=<new_type>`.
-To REMOVE one, pass an explicit `--resources=` list without it.
+To ADD a data source: `--data-sources=<type>` (combined with
+`--resources-from` so the current resource set is kept).
+To REMOVE one, pass an explicit `--resources=` / `--data-sources=` list
+without it.
 ''');
   print(
-    'extract_schema_subset: wrote ${resources.length} resource(s) to '
-    '${outDir.path}',
+    'extract_schema_subset: wrote ${resources.length} resource(s)'
+    '${dataSources.isEmpty ? '' : ' + ${dataSources.length} data source(s)'} '
+    'to ${outDir.path}',
   );
 }
