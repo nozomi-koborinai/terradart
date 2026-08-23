@@ -250,4 +250,47 @@ void main() {
       expect(result, ['name', 'target']);
     });
   });
+
+  group('orderedDataSourceConstructorParams', () {
+    test('keeps a required lookup id', () {
+      final def = makeResource(
+        attrs: [
+          const Attribute(
+            name: 'id',
+            type: StringType(),
+            constraints: Constraints(required: true, computed: true),
+          ),
+          const Attribute(
+            name: 'project_id',
+            type: StringType(),
+            constraints: Constraints(optional: true, computed: true),
+          ),
+        ],
+      );
+      expect(
+        orderedDataSourceConstructorParams(def, null),
+        ['id', 'project_id'],
+      );
+      // Resource natural order still drops id.
+      expect(orderedConstructorParams(def, null), ['project_id']);
+    });
+
+    test('drops a synthetic optional/computed id', () {
+      final def = makeResource(
+        attrs: [
+          const Attribute(
+            name: 'id',
+            type: StringType(),
+            constraints: Constraints(optional: true, computed: true),
+          ),
+          const Attribute(
+            name: 'project_id',
+            type: StringType(),
+            constraints: Constraints(optional: true),
+          ),
+        ],
+      );
+      expect(orderedDataSourceConstructorParams(def, null), ['project_id']);
+    });
+  });
 }

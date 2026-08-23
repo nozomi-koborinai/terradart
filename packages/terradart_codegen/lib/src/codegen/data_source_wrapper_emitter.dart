@@ -1,7 +1,11 @@
 import '../ir/attribute.dart';
 import '../ir/nested_block.dart';
 import '../ir/resource_def.dart';
-import 'constructor_params.dart' show skipNestedBlock;
+import 'constructor_params.dart'
+    show
+        orderedDataSourceConstructorParams,
+        skipDataSourceAttribute,
+        skipNestedBlock;
 import 'dart_type_writer.dart';
 import 'doc_comment_builder.dart';
 import 'getter_emitter.dart';
@@ -158,7 +162,8 @@ class DataSourceWrapperEmitter {
     // of that (no fan-outs, no `BigQueryConfig` helpers, no deprecation
     // policy). We still respect dartTypeOverrides and requiredOverrides
     // for parity with the resource path; they're cheap.
-    final paramOrder = override.paramOrder ?? _naturalOrderNames(def);
+    final paramOrder =
+        orderedDataSourceConstructorParams(def, override.paramOrder);
     final argMapOrder = override.argMapOrder ?? paramOrder;
     final dartTypeOverrides =
         override.dartTypeOverrides ?? const <String, String>{};
@@ -239,23 +244,6 @@ class DataSourceWrapperEmitter {
   // so the surface is smaller.
   // ---------------------------------------------------------------------
 
-  /// IR-natural order: attributes first (alphabetical), then nested blocks.
-  /// Computed-only attributes and `timeouts` blocks are filtered out (data
-  /// sources rarely carry either, but the rules match WrapperEmitter for
-  /// symmetry).
-  List<String> _naturalOrderNames(ResourceDef def) {
-    final out = <String>[];
-    for (final attr in def.root.attributes) {
-      if (_skipAttribute(attr)) continue;
-      out.add(attr.name);
-    }
-    for (final nested in def.root.nestedBlocks) {
-      if (_skipNestedBlock(nested)) continue;
-      out.add(nested.name);
-    }
-    return out;
-  }
-
   Map<String, String> _paramsByName(
     ResourceDef def,
     Set<String> requiredOverrides,
@@ -263,7 +251,7 @@ class DataSourceWrapperEmitter {
   ) {
     final out = <String, String>{};
     for (final attr in def.root.attributes) {
-      if (_skipAttribute(attr)) continue;
+      if (skipDataSourceAttribute(attr)) continue;
       final isRequired =
           attr.constraints.required || requiredOverrides.contains(attr.name);
       out[attr.name] = _attributeParam(
@@ -287,7 +275,7 @@ class DataSourceWrapperEmitter {
   ) {
     final out = <String, String>{};
     for (final attr in def.root.attributes) {
-      if (_skipAttribute(attr)) continue;
+      if (skipDataSourceAttribute(attr)) continue;
       final isRequired =
           attr.constraints.required || requiredOverrides.contains(attr.name);
       out[attr.name] = _argMapEntry(attr.name, isRequired);
@@ -299,16 +287,6 @@ class DataSourceWrapperEmitter {
       out[nested.name] = _argMapEntry(nested.name, isRequired);
     }
     return out;
-  }
-
-  /// Skip computed-only attributes and the usual synthetic `id` field.
-  /// A required `id` (the lookup key on a few data sources, e.g.
-  /// `google_logging_sink`) is kept so terraform validate can see it.
-  bool _skipAttribute(Attribute attr) {
-    final c = attr.constraints;
-    final isComputedOnly = c.computed && !c.optional && !c.required;
-    final isSyntheticId = attr.name == 'id' && !c.required;
-    return isComputedOnly || isSyntheticId;
   }
 
   // Delegates to the shared rule so framework-normalized computed-only

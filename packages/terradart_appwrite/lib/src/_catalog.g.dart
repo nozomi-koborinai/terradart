@@ -21,7 +21,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     barrel: 'data',
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `appwrite_auth_team`.',
-    constructorParams: <String>['localName', 'projectId'],
+    constructorParams: <String>['localName', 'id', 'projectId'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
@@ -56,7 +56,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     barrel: 'data',
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `appwrite_auth_user`.',
-    constructorParams: <String>['localName', 'projectId'],
+    constructorParams: <String>['localName', 'id', 'projectId'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
@@ -123,7 +123,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     barrel: 'data',
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `appwrite_function`.',
-    constructorParams: <String>['localName', 'projectId'],
+    constructorParams: <String>['localName', 'id', 'projectId'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
@@ -262,7 +262,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     barrel: 'data',
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `appwrite_messaging_topic`.',
-    constructorParams: <String>['localName', 'projectId'],
+    constructorParams: <String>['localName', 'id', 'projectId'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
@@ -389,7 +389,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     barrel: 'data',
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `appwrite_mongo_database`.',
-    constructorParams: <String>['localName', 'projectId'],
+    constructorParams: <String>['localName', 'id', 'projectId'],
     nestedTypes: <String>[],
     sensitiveFields: <String>['connection_password', 'connection_string'],
     docComment:
@@ -552,7 +552,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     barrel: 'data',
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `appwrite_mysql_database`.',
-    constructorParams: <String>['localName', 'projectId'],
+    constructorParams: <String>['localName', 'id', 'projectId'],
     nestedTypes: <String>[],
     sensitiveFields: <String>['connection_password', 'connection_string'],
     docComment:
@@ -739,7 +739,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     barrel: 'data',
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `appwrite_postgresql_database`.',
-    constructorParams: <String>['localName', 'projectId'],
+    constructorParams: <String>['localName', 'id', 'projectId'],
     nestedTypes: <String>[],
     sensitiveFields: <String>['connection_password', 'connection_string'],
     docComment:
@@ -924,7 +924,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     barrel: 'data',
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `appwrite_site`.',
-    constructorParams: <String>['localName', 'projectId'],
+    constructorParams: <String>['localName', 'id', 'projectId'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
@@ -1006,7 +1006,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     barrel: 'data',
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `appwrite_storage_bucket`.',
-    constructorParams: <String>['localName', 'projectId'],
+    constructorParams: <String>['localName', 'id', 'projectId'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
@@ -1049,7 +1049,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     barrel: 'data',
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `appwrite_tablesdb`.',
-    constructorParams: <String>['localName', 'projectId'],
+    constructorParams: <String>['localName', 'id', 'projectId'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:
@@ -1177,7 +1177,7 @@ const List<CatalogEntry> terradartCatalog = <CatalogEntry>[
     barrel: 'data',
     kind: CatalogKind.dataSource,
     summary: 'Factory wrapper for `appwrite_webhook`.',
-    constructorParams: <String>['localName', 'projectId'],
+    constructorParams: <String>['localName', 'id', 'projectId'],
     nestedTypes: <String>[],
     sensitiveFields: <String>[],
     docComment:

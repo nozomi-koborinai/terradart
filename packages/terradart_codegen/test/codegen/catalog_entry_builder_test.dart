@@ -334,6 +334,34 @@ class DemoHelper {}
       expect(entry.nestedTypes, isEmpty);
     });
 
+    test('data-source catalog includes a required lookup id', () {
+      final def = _def(
+        tfType: 'appwrite_auth_team',
+        attributes: [
+          const Attribute(
+            name: 'id',
+            type: StringType(),
+            constraints: Constraints(required: true, computed: true),
+          ),
+          _attr('project_id'),
+        ],
+      );
+      const override = WrapperOverride(
+        outputDir: 'data',
+        kind: WrapperOverrideKind.dataSource,
+      );
+
+      final entry = buildCatalogEntry(
+        tfType: 'appwrite_auth_team',
+        override: override,
+        def: def,
+        kind: 'dataSource',
+        emittedSource: 'final class DataAppwriteAuthTeam extends Data {}',
+      );
+
+      expect(entry.constructorParams, ['localName', 'id', 'projectId']);
+    });
+
     test('data-source twins get a Data-prefixed className', () {
       final def = _def(
         tfType: 'google_compute_network',

@@ -66,6 +66,43 @@ bool skipAttribute(Attribute attr) {
   return attr.constraints.computedOnly || isIdAttribute;
 }
 
+/// Data-source skip: computed-only attributes, and `id` only when it is
+/// not a required lookup key.
+///
+/// Resource constructors always drop `id` ([skipAttribute]) because it is
+/// the identity getter. Data sources reuse `id` as the lookup argument on
+/// singular reads (e.g. `appwrite_auth_team`, `google_logging_sink`); the
+/// emitter keeps a required `id` so terraform validate can see it. Shared
+/// with [DataSourceWrapperEmitter] and the catalog metadata emitter so
+/// those surfaces cannot drift.
+bool skipDataSourceAttribute(Attribute attr) {
+  final isSyntheticId = attr.name == 'id' && !attr.constraints.required;
+  return attr.constraints.computedOnly || isSyntheticId;
+}
+
+/// Ordered snake-case slot names for a **data source** wrapper constructor.
+///
+/// Same [paramOrder] contract as [orderedConstructorParams]: a non-null
+/// override list is returned verbatim. Natural order uses
+/// [skipDataSourceAttribute] instead of [skipAttribute] so a required
+/// lookup `id` stays in the constructor and the catalog.
+List<String> orderedDataSourceConstructorParams(
+  ResourceDef def,
+  List<String>? paramOrder,
+) {
+  if (paramOrder != null) return List<String>.of(paramOrder);
+  final out = <String>[];
+  for (final attr in def.root.attributes) {
+    if (skipDataSourceAttribute(attr)) continue;
+    out.add(attr.name);
+  }
+  for (final nested in def.root.nestedBlocks) {
+    if (skipNestedBlock(nested)) continue;
+    out.add(nested.name);
+  }
+  return out;
+}
+
 /// Returns true when [block] must be excluded from the constructor / catalog.
 ///
 /// Excludes the Terraform-internal `timeouts` block (SDK metadata rather

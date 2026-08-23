@@ -77,19 +77,26 @@ CatalogEntryData buildCatalogEntry({
 /// Constructor parameter names in emitted order: `localName` first, then each
 /// resolved slot's Dart identifier.
 ///
-/// Mirrors `WrapperEmitter`'s slot resolution: a name present in
-/// `override.customSlots` takes its identifier from the slot's verbatim
-/// `paramDeclaration` (handling renames like `host_rule` → `hostRules` and
-/// virtual slots like scheduler_job's `target`); every other name is an IR
-/// slot rendered as `snakeToCamel(name)`. The super-parameter bookends
-/// (`lifecycle`, `dependsOn`) are excluded — only `localName` is prepended,
-/// matching the `CatalogEntry.constructorParams` contract.
+/// Mirrors `WrapperEmitter` / `DataSourceWrapperEmitter` slot resolution: a
+/// name present in `override.customSlots` takes its identifier from the
+/// slot's verbatim `paramDeclaration` (handling renames like `host_rule` →
+/// `hostRules` and virtual slots like scheduler_job's `target`); every
+/// other name is an IR slot rendered as `snakeToCamel(name)`. The
+/// super-parameter bookends (`lifecycle`, `dependsOn`) are excluded — only
+/// `localName` is prepended, matching the `CatalogEntry.constructorParams`
+/// contract.
+///
+/// Data-source overrides use [orderedDataSourceConstructorParams] so a
+/// required lookup `id` is listed the same way the emitted constructor
+/// requires it.
 @visibleForTesting
 List<String> catalogConstructorParams(
   ResourceDef def,
   WrapperOverride override,
 ) {
-  final slots = orderedConstructorParams(def, override.paramOrder);
+  final slots = override.kind == WrapperOverrideKind.dataSource
+      ? orderedDataSourceConstructorParams(def, override.paramOrder)
+      : orderedConstructorParams(def, override.paramOrder);
   final customSlots = override.customSlots ?? const <String, CustomSlot>{};
   final params = <String>['localName'];
   for (final name in slots) {
